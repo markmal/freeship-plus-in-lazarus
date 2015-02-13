@@ -3,14 +3,17 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="93">
+    <Units Count="94">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="81"/>
-        <CursorPos X="35" Y="100"/>
+        <TopLine Value="9"/>
+        <CursorPos X="22" Y="9"/>
         <UsageCount Value="118"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -26,7 +29,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1336"/>
@@ -70,13 +72,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FreeSplashWndw"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="72"/>
         <CursorPos X="5" Y="83"/>
         <UsageCount Value="118"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -513,12 +512,10 @@
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FreeShipUnit"/>
-        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="13535"/>
         <CursorPos X="1" Y="13545"/>
         <UsageCount Value="118"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
@@ -885,55 +882,54 @@
         <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit92>
+      <Unit93>
+        <Filename Value="Packages/FreePackage.pas"/>
+        <UnitName Value="FreePackage"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="3" Y="10"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit93>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="11" HistoryIndex="10">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
         <Filename Value="Forms/Main.pas"/>
         <Caret Line="1776" Column="33" TopLine="1774"/>
       </Position1>
       <Position2>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="13577" Column="32" TopLine="13573"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1776" Column="33" TopLine="1774"/>
       </Position2>
       <Position3>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="13545" Column="1" TopLine="13535"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1372" Column="32" TopLine="1371"/>
       </Position3>
       <Position4>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1776" Column="33" TopLine="1774"/>
+        <Caret Line="1388" Column="87" TopLine="1371"/>
       </Position4>
       <Position5>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1372" Column="32" TopLine="1371"/>
+        <Caret Line="12" Column="73" TopLine="1"/>
       </Position5>
       <Position6>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1388" Column="87" TopLine="1371"/>
+        <Caret Line="1339" Column="20" TopLine="1336"/>
       </Position6>
       <Position7>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="12" Column="73" TopLine="1"/>
+        <Filename Value="Packages/FreePackage.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position7>
       <Position8>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1339" Column="20" TopLine="1336"/>
+        <Filename Value="FreeShip.dpr"/>
+        <Caret Line="1" Column="35" TopLine="1"/>
       </Position8>
-      <Position9>
-        <Filename Value="Forms/FreeSplashWndw.pas"/>
-        <Caret Line="83" Column="5" TopLine="72"/>
-      </Position9>
-      <Position10>
-        <Filename Value="Forms/FreeSplashWndw.pas"/>
-        <Caret Line="84" Column="5" TopLine="73"/>
-      </Position10>
-      <Position11>
-        <Filename Value="Forms/FreeSplashWndw.pas"/>
-        <Caret Line="83" Column="5" TopLine="72"/>
-      </Position11>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="0"/>
@@ -941,7 +937,7 @@
     </CustomSessionData>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="10">
+    <BreakPoints Count="11">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -1012,6 +1008,13 @@
         <Source Value="Forms/FreeHydrodyn_RVRSDlg.pas"/>
         <Line Value="584"/>
       </Item10>
+      <Item11>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="FreeShip.dpr"/>
+        <Line Value="1"/>
+      </Item11>
     </BreakPoints>
     <Watches Count="1">
       <Item1>

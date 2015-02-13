@@ -1,0 +1,180 @@
+object FreeHydrostaticsForm: TFreeHydrostaticsForm
+  Left = 431
+  Top = 311
+  BorderStyle = bsDialog
+  Caption = 'Hydrostatics'
+  ClientHeight = 190
+  ClientWidth = 253
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clBlack
+  Font.Height = -12
+  Font.Name = 'Courier New'
+  Font.Style = []
+  Position = poOwnerFormCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 253
+    Height = 25
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 0
+    object Button1: TSpeedButton
+      Left = 160
+      Top = 0
+      Width = 86
+      Height = 23
+      Caption = 'Close'
+      Flat = True
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        04000000000080000000204E0000204E00001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333344333333333333342243333333333342222433333333342222224333
+        33334222A22224333333222A3A2224333333A2A333A2224333333A33333A2224
+        333333333333A2224333333333333A2224333333333333A2224333333333333A
+        2224333333333333A2243333333333333A2233333333333333A3
+      }
+      OnClick = Button1Click
+    end
+    object Button2: TSpeedButton
+      Left = 72
+      Top = 0
+      Width = 86
+      Height = 23
+      Hint = 'Start the calculation.'
+      Caption = 'Calculate'
+      Flat = True
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        04000000000080000000130B0000130B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00337000000000
+        7333330888888888033333080808999803333308888888880333330808080808
+        0333330888888888033333080808080803333308888888880333330808080808
+        0333330888888888033333080000000803333308000E0E080333330800000008
+        0333330888888888033333088888888803333370000000007333
+      }
+      OnClick = Button2Click
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 25
+    Width = 253
+    Height = 165
+    Align = alClient
+    BevelOuter = bvLowered
+    BorderWidth = 10
+    TabOrder = 1
+    object Panel: TPanel
+      Left = 9
+      Top = 9
+      Width = 231
+      Height = 143
+      Align = alClient
+      BevelOuter = bvLowered
+      TabOrder = 0
+      object Label2: TLabel
+        Left = 1
+        Top = 46
+        Width = 63
+        Height = 15
+        Caption = 'End draft'
+      end
+      object Label3: TLabel
+        Left = 1
+        Top = 79
+        Width = 70
+        Height = 15
+        Caption = 'Draft step'
+      end
+      object Label4: TLabel
+        Left = 1
+        Top = 111
+        Width = 28
+        Height = 15
+        Caption = 'Trim'
+      end
+      object Label9: TLabel
+        Left = 195
+        Top = 111
+        Width = 42
+        Height = 15
+        Caption = 'Label9'
+      end
+      object _Label10: TLabel
+        Left = 195
+        Top = 79
+        Width = 42
+        Height = 15
+        Caption = '_Label10'
+      end
+      object _Label11: TLabel
+        Left = 195
+        Top = 46
+        Width = 45
+        Height = 15
+        Caption = '_Label11'
+      end
+      object Label1: TLabel
+        Left = 1
+        Top = 14
+        Width = 84
+        Height = 15
+        Caption = 'Start draft '
+      end
+      object _Label5: TLabel
+        Left = 195
+        Top = 14
+        Width = 42
+        Height = 15
+        Caption = 'Label9'
+      end
+      object Edit2: TEdit
+        Left = 126
+        Top = 37
+        Width = 63
+        Height = 23
+        TabOrder = 1
+        Text = '1.0'
+        OnExit = Edit2Exit
+        OnKeyPress = Edit1KeyPress
+      end
+      object Edit3: TEdit
+        Left = 126
+        Top = 70
+        Width = 63
+        Height = 23
+        TabOrder = 2
+        Text = '1.0'
+        OnExit = Edit3Exit
+        OnKeyPress = Edit1KeyPress
+      end
+      object Edit4: TEdit
+        Left = 126
+        Top = 102
+        Width = 63
+        Height = 23
+        TabOrder = 3
+        Text = '0.0'
+        OnExit = Edit4Exit
+        OnKeyPress = Edit1KeyPress
+      end
+      object Edit1: TEdit
+        Left = 126
+        Top = 5
+        Width = 63
+        Height = 23
+        TabOrder = 0
+        Text = '0.5'
+        OnExit = Edit1Exit
+        OnKeyPress = Edit1KeyPress
+      end
+    end
+  end
+end

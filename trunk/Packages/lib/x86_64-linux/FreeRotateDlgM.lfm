@@ -1,0 +1,216 @@
+object FreeRotateMDialog: TFreeRotateMDialog
+  Left = 487
+  Top = 141
+  BorderStyle = bsDialog
+  Caption = 'Rotation'
+  ClientHeight = 148
+  ClientWidth = 400
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = True
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    Left = 0
+    Top = 22
+    Width = 245
+    Height = 103
+    Align = alClient
+    BevelOuter = bvLowered
+    TabOrder = 0
+    object GroupBox1: TGroupBox
+      Left = 5
+      Top = 10
+      Width = 200
+      Height = 100
+      Caption = 'Axis:'
+      TabOrder = 0
+      object Label3: TLabel
+        Left = 168
+        Top = 18
+        Width = 30
+        Height = 13
+        Caption = '[degr.]'
+      end
+      object Label6: TLabel
+        Left = 168
+        Top = 48
+        Width = 30
+        Height = 13
+        Caption = '[degr.]'
+      end
+      object Label9: TLabel
+        Left = 168
+        Top = 78
+        Width = 30
+        Height = 13
+        Caption = '[degr.]'
+      end
+      object Label1: TLabel
+        Left = 5
+        Top = 18
+        Width = 78
+        Height = 13
+        Caption = 'Longitudinal axis'
+      end
+      object Label2: TLabel
+        Left = 5
+        Top = 48
+        Width = 74
+        Height = 13
+        Caption = 'Transverse axis'
+      end
+      object Label4: TLabel
+        Left = 5
+        Top = 78
+        Width = 56
+        Height = 13
+        Caption = 'Vertical axis'
+      end
+      object Edit1: TEdit
+        Left = 97
+        Top = 10
+        Width = 65
+        Height = 21
+        TabOrder = 0
+        OnExit = Edit1Exit
+        OnKeyPress = Edit1KeyPress
+      end
+      object Edit2: TEdit
+        Left = 97
+        Top = 40
+        Width = 65
+        Height = 21
+        TabOrder = 1
+        OnExit = Edit2Exit
+        OnKeyPress = Edit1KeyPress
+      end
+      object Edit3: TEdit
+        Left = 97
+        Top = 70
+        Width = 65
+        Height = 21
+        TabOrder = 2
+        OnExit = Edit3Exit
+        OnKeyPress = Edit1KeyPress
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 210
+      Top = 10
+      Width = 185
+      Height = 100
+      Caption = 'Current angles:'
+      TabOrder = 0
+      object Label11: TLabel
+        Left = 10
+        Top = 18
+        Width = 78
+        Height = 13
+        Caption = 'of the heel:'
+      end
+      object Label12: TLabel
+        Left = 10
+        Top = 48
+        Width = 74
+        Height = 13
+        Caption = 'of the trim:'
+      end
+      object Label13: TLabel
+        Left = 10
+        Top = 78
+        Width = 56
+        Height = 13
+        Caption = 'of the yaw:'
+      end
+      object Label14: TLabel
+        Left = 125
+        Top = 18
+        Width = 78
+        Height = 13
+        Caption = '0.00 degr'
+      end
+      object Label15: TLabel
+        Left = 125
+        Top = 48
+        Width = 74
+        Height = 13
+        Caption = '0.00 degr'
+      end
+      object Label16: TLabel
+        Left = 125
+        Top = 78
+        Width = 56
+        Height = 13
+        Caption = '0.00 degr'
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 245
+    Height = 22
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 1
+    object OKButton: TSpeedButton
+      Left = 283
+      Top = 2
+      Width = 57
+      Height = 18
+      Hint = 'Close dialog.'
+      Caption = '&Ok'
+      Flat = True
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        040000000000800000000000000000000000100000001000000073000000007B
+        000000FF0000BDBDBD00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00444444444444
+        4444444400444444444444401104444444444401111044444444401111110444
+        4444011121111044444411124211104444442124442111044444424444421110
+        4444444444442111044444444444421110444444444444211104444444444442
+        1110444444444444211044444444444442114444444444444424
+      }
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = OKButtonClick
+    end
+    object CancelButton: TSpeedButton
+      Left = 340
+      Top = 2
+      Width = 57
+      Height = 18
+      Hint = 'Cancel operation.'
+      Caption = '&Cancel'
+      Flat = True
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        040000000000800000000000000000000000100000001000000073000000007B
+        000000FF00000000FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00434444444444
+        4444433444444444444343334444444444334433444444444334444334444444
+        4344444333444444334444443334444334444444433344334444444444433334
+        4444444444433334444444444443333444444444443344334444444443334433
+        3344444333444444433443333444444444334333444444444444
+      }
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = CancelButtonClick
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 125
+    Width = 245
+    Height = 13
+    Align = alBottom
+    BevelOuter = bvNone
+    TabOrder = 2
+  end
+end

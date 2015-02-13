@@ -1,0 +1,600 @@
+object FreeResistance_Kaper: TFreeResistance_Kaper
+  Left = 282
+  Height = 550
+  Top = 104
+  Width = 765
+  Caption = 'Kaper resistance calculation.'
+  ClientHeight = 550
+  ClientWidth = 765
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 765
+    AutoSize = True
+    ButtonWidth = 50
+    Caption = 'ToolBar1'
+    Color = clBtnFace
+    Images = MenuImages
+    Indent = 5
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+    object _ToolButton10: TToolButton
+      Left = 5
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton10'
+      ImageIndex = 6
+      Style = tbsSeparator
+    end
+    object PrintButton: TToolButton
+      Left = 15
+      Hint = 'Print the results of the calculation.'
+      Top = 2
+      Caption = 'PrintButton'
+      ImageIndex = 2
+      OnClick = PrintButtonClick
+    end
+    object _ToolButton14: TToolButton
+      Left = 65
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton14'
+      ImageIndex = 12
+      Style = tbsSeparator
+    end
+    object ToolButton25: TToolButton
+      Left = 75
+      Hint = 'Close the window and save changes.'
+      Top = 2
+      ImageIndex = 1
+      OnClick = ToolButton25Click
+    end
+    object ToolButton7: TToolButton
+      Left = 125
+      Hint = 'Close window without saving changes.'
+      Top = 2
+      ImageIndex = 0
+      OnClick = ToolButton7Click
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 526
+    Top = 24
+    Width = 765
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'General'
+      ClientHeight = 494
+      ClientWidth = 759
+      object Panel1: TPanel
+        Left = 0
+        Height = 494
+        Top = 0
+        Width = 759
+        Align = alClient
+        BevelOuter = bvLowered
+        BorderWidth = 10
+        ClientHeight = 494
+        ClientWidth = 759
+        TabOrder = 0
+        object Panel: TPanel
+          Left = 11
+          Height = 472
+          Top = 11
+          Width = 737
+          Align = alClient
+          BevelOuter = bvLowered
+          ClientHeight = 472
+          ClientWidth = 737
+          TabOrder = 0
+          object Label2: TLabel
+            Left = 6
+            Height = 14
+            Top = 32
+            Width = 94
+            Caption = 'Length waterline'
+            ParentColor = False
+          end
+          object Label3: TLabel
+            Left = 6
+            Height = 14
+            Top = 60
+            Width = 89
+            Caption = 'Beam waterline'
+            ParentColor = False
+          end
+          object Label4: TLabel
+            Left = 6
+            Height = 14
+            Top = 88
+            Width = 28
+            Caption = 'Draft'
+            ParentColor = False
+          end
+          object Label9: TLabel
+            Left = 197
+            Height = 14
+            Top = 32
+            Width = 12
+            Caption = '[-]'
+            ParentColor = False
+          end
+          object Label10: TLabel
+            Left = 197
+            Height = 14
+            Top = 60
+            Width = 12
+            Caption = '[-]'
+            ParentColor = False
+          end
+          object Label11: TLabel
+            Left = 197
+            Height = 14
+            Top = 88
+            Width = 12
+            Caption = '[-]'
+            ParentColor = False
+          end
+          object Label6: TLabel
+            Left = 6
+            Height = 14
+            Top = 116
+            Width = 115
+            Caption = 'Wetted surface area'
+            ParentColor = False
+          end
+          object Label7: TLabel
+            Left = 197
+            Height = 14
+            Top = 116
+            Width = 12
+            Caption = '[-]'
+            ParentColor = False
+          end
+          object Label8: TLabel
+            Left = 6
+            Height = 14
+            Top = 144
+            Width = 15
+            Caption = 'Cp'
+            ParentColor = False
+          end
+          object Label13: TLabel
+            Left = 6
+            Height = 14
+            Top = 172
+            Width = 76
+            Caption = 'Displacement'
+            ParentColor = False
+          end
+          object Label14: TLabel
+            Left = 197
+            Height = 14
+            Top = 172
+            Width = 12
+            Caption = '[-]'
+            ParentColor = False
+          end
+          object Label15: TLabel
+            Left = 6
+            Height = 14
+            Top = 200
+            Width = 111
+            Caption = 'Half entrance angle'
+            ParentColor = False
+          end
+          object Label16: TLabel
+            Left = 197
+            Height = 14
+            Top = 200
+            Width = 12
+            Caption = '[-]'
+            ParentColor = False
+          end
+          object Label17: TLabel
+            Left = 6
+            Height = 14
+            Top = 228
+            Width = 22
+            Caption = 'LCB'
+            ParentColor = False
+          end
+          object Label19: TLabel
+            Left = 6
+            Height = 14
+            Top = 256
+            Width = 117
+            Caption = 'Subm. transom ratio'
+            ParentColor = False
+          end
+          object Edit2: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 24
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 0
+          end
+          object Edit3: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 52
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 1
+          end
+          object Edit4: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 80
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 2
+          end
+          object Edit5: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 108
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 3
+          end
+          object Edit6: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 136
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 4
+            Digits = 12
+            Max = 1
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 4
+          end
+          object Edit7: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 164
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 4
+            Digits = 12
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 5
+          end
+          object Edit8: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 192
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 6
+          end
+          object Edit9: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 220
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 7
+          end
+          object Edit10: TFreeNumInput
+            Left = 141
+            Height = 24
+            Top = 248
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 0.04
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = Edit1AfterSetValue
+            TabOrder = 8
+          end
+          object Chart: TChart
+            Left = 232
+            Height = 470
+            Top = 1
+            Width = 504
+            AxisList = <            
+              item
+                Minors = <>
+                Title.LabelFont.Orientation = 900
+                Title.Visible = True
+                Title.Caption = 'Resistance [Lbs]'
+              end            
+              item
+                Alignment = calBottom
+                Minors = <>
+                Title.Visible = True
+                Title.Caption = 'Speed [knots]'
+              end>
+            Foot.Brush.Color = clBtnFace
+            Foot.Font.Color = clBlue
+            Title.Brush.Color = clBtnFace
+            Title.Font.Color = clBlue
+            Title.Text.Strings = (
+              'KAPER resistance for canoes and kayaks'
+            )
+            Align = alRight
+            ParentColor = False
+            object Series1: TLineSeries
+              Marks.Visible = False
+              Title = 'Rf      '
+              LinePen.Color = 11162880
+              Pointer.HorizSize = 2
+              Pointer.VertSize = 2
+              Pointer.Visible = False
+            end
+            object Series2: TLineSeries
+              Marks.Visible = False
+              Title = 'Rr      '
+              LinePen.Color = clGreen
+              Pointer.Visible = False
+            end
+            object Series3: TLineSeries
+              Marks.Visible = False
+              Title = 'Rt      '
+              LinePen.Color = clRed
+              LinePen.Width = 2
+              Pointer.Visible = False
+            end
+            object Series4: TLineSeries
+              Marks.Visible = False
+              Title = 'Spilman'
+              Pointer.Visible = False
+            end
+          end
+          object CheckBox2: TCheckBox
+            Left = 7
+            Height = 21
+            Top = 6
+            Width = 192
+            Caption = 'Extract data from current hull'
+            OnClick = CheckBox2Click
+            TabOrder = 10
+          end
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Results'
+      ClientHeight = 494
+      ClientWidth = 759
+      ImageIndex = 1
+      object Resultsmemo: TMemo
+        Left = 0
+        Height = 494
+        Top = 0
+        Width = 759
+        Align = alClient
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Courier New'
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 0
+      end
+    end
+  end
+  object MenuImages: TImageList
+    left = 292
+    Bitmap = {
+      4C69040000001000000010000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      80FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
+      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
+      80FF000080FF000000000000000000000000000000000000FFFF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
+      80FF808080FF000000000000000000000000000000000000FFFF000080FF0000
+      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF8080
+      80FF0000000000000000000000000000000000000000000000000000FFFF0000
+      80FF000080FF000080FF808080FF000080FF000080FF000080FF808080FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000080FF000080FF000080FF000080FF000080FF808080FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000FFFF000080FF000080FF000080FF000080FF808080FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000080FF000080FF000080FF000080FF000080FF808080FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000080FF000080FF000080FF000080FF000080FF000080FF808080FF0000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      80FF000080FF000080FF000080FF000080FF000080FF000080FF000080FF8080
+      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
+      80FF000080FF000080FF808080FF000080FF000080FF000080FF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
+      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF8080
+      80FF000000000000000000000000000000000000FFFF000080FF000080FF8080
+      80FF00000000000000000000000000000000000000000000FFFF808080FF0000
+      00000000000000000000000000000000000000000000808080FF808080FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000FF00FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000FF00FF008000FF008000FF000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000000FF
+      00FF008000FF008000FF800000FF000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000FF00FF0080
+      00FF008000FF008000FF800000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000FF00FF008000FF0080
+      00FF008000FF800000FF00000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000FF00FF008000FF008000FF0080
+      00FF800000FF0000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000FF00FF008000FF008000FF008000FF8000
+      00FF0000000000000000000000000000000000FF00FF00000000000000000000
+      0000000000000000000000FF00FF008000FF008000FF008000FF800000FF0000
+      000000000000000000000000000000FF00FF008000FF00FF00FF000000000000
+      00000000000000FF00FF008000FF008000FF008000FF800000FF000000000000
+      0000000000000000000000000000008000FF008000FF008000FF00FF00FF0000
+      000000FF00FF008000FF008000FF008000FF800000FF00000000000000000000
+      0000000000000000000000000000800000FF008000FF008000FF008000FF00FF
+      00FF008000FF008000FF008000FF008000FF800000FF00000000000000000000
+      000000000000000000000000000000000000800000FF008000FF008000FF0080
+      00FF008000FF008000FF008000FF800000FF0000000000000000000000000000
+      00000000000000000000000000000000000000000000800000FF008000FF0080
+      00FF008000FF008000FF800000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000800000FF0080
+      00FF008000FF800000FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008000
+      00FF800000FF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C6
+      C6FF000000FFC6C6C6FF000000FF00000000000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C6C6FF0000
+      00FFC6C6C6FF000000FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
+      C6FF000000FFC6C6C6FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C6C6FFC6C6C6FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FF848484FF848484FF848484FFC6C6C6FFC6C6C6FF0000
+      00FFC6C6C6FF000000FF00000000000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FF00FFFFFF00FFFFFF00FFFFFFC6C6C6FFC6C6C6FF0000
+      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C6C6FF000000FF0000000000000000000000FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
+      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000007F7F7FFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
+      7FFF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF0000FFFF0000FFFF0000FFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF00000000000000000000000000000000000000007F7F7FFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
+      7FFF000000000000000000000000
+    }
+  end
+  object PrintDialog: TPrintDialog
+    left = 193
+    top = 3
+  end
+end

@@ -1,0 +1,954 @@
+object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
+  Left = 168
+  Height = 739
+  Top = 153
+  Width = 955
+  Caption = 'Cross curves.'
+  ClientHeight = 739
+  ClientWidth = 955
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 955
+    AutoSize = True
+    ButtonWidth = 50
+    Caption = 'ToolBar1'
+    Color = clBtnFace
+    Images = MenuImages
+    Indent = 5
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+    object _ToolButton10: TToolButton
+      Left = 5
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton10'
+      ImageIndex = 6
+      Style = tbsSeparator
+    end
+    object ToolButton1: TToolButton
+      Left = 15
+      Hint = 'Start the calculation.'
+      Top = 2
+      Caption = 'ToolButton1'
+      ImageIndex = 3
+      OnClick = ToolButton1Click
+    end
+    object ToolButton2: TToolButton
+      Left = 65
+      Hint = 'Abort the calculation'
+      Top = 2
+      Caption = 'Abort'
+      Enabled = False
+      ImageIndex = 4
+      OnClick = ToolButton2Click
+    end
+    object PrintButton: TToolButton
+      Left = 115
+      Hint = 'Print the results of the calculation.'
+      Top = 2
+      Caption = 'Cross curves.'
+      Enabled = False
+      ImageIndex = 2
+      OnClick = PrintButtonClick
+    end
+    object SaveButton: TToolButton
+      Left = 165
+      Hint = 'Save the results of the calculation.'
+      Top = 2
+      Caption = 'SaveButton'
+      Enabled = False
+      ImageIndex = 5
+      OnClick = SaveButtonClick
+    end
+    object _ToolButton14: TToolButton
+      Left = 215
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton14'
+      ImageIndex = 12
+      Style = tbsSeparator
+    end
+    object ToolButton25: TToolButton
+      Left = 225
+      Hint = 'Close the window and save changes.'
+      Top = 2
+      ImageIndex = 1
+      OnClick = ToolButton25Click
+    end
+    object ToolButton7: TToolButton
+      Left = 275
+      Hint = 'Close window without saving changes.'
+      Top = 2
+      ImageIndex = 0
+      OnClick = ToolButton7Click
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 715
+    Top = 24
+    Width = 955
+    Align = alClient
+    BevelOuter = bvLowered
+    BorderWidth = 6
+    ClientHeight = 715
+    ClientWidth = 955
+    TabOrder = 1
+    object Splitter1: TSplitter
+      Left = 267
+      Height = 701
+      Top = 7
+      Width = 5
+    end
+    object Panel: TPanel
+      Left = 7
+      Height = 701
+      Top = 7
+      Width = 260
+      Align = alLeft
+      BevelOuter = bvLowered
+      ClientHeight = 701
+      ClientWidth = 260
+      TabOrder = 0
+      object GroupBox1: TGroupBox
+        Left = 8
+        Height = 213
+        Top = 5
+        Width = 243
+        Caption = 'Displacements.'
+        ClientHeight = 197
+        ClientWidth = 239
+        TabOrder = 0
+        object Label1: TLabel
+          Left = 104
+          Height = 14
+          Top = 86
+          Width = 61
+          Caption = 'Start displ.'
+          ParentColor = False
+        end
+        object Label2: TLabel
+          Left = 104
+          Height = 14
+          Top = 124
+          Width = 55
+          Caption = 'End displ.'
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 104
+          Height = 14
+          Top = 162
+          Width = 59
+          Caption = 'Displ. step'
+          ParentColor = False
+        end
+        object DisplBox: TListBox
+          Left = 8
+          Height = 153
+          Top = 44
+          Width = 85
+          ItemHeight = 0
+          OnMouseDown = DisplBoxMouseDown
+          ScrollWidth = 83
+          TabOrder = 0
+          TopIndex = -1
+        end
+        object FreeNumInput1: TFreeNumInput
+          Left = 8
+          Height = 24
+          Top = 16
+          Width = 85
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 1
+        end
+        object Button1: TButton
+          Left = 104
+          Height = 21
+          Top = 16
+          Width = 70
+          Caption = 'Add'
+          OnClick = Button1Click
+          TabOrder = 2
+        end
+        object Button2: TButton
+          Left = 104
+          Height = 21
+          Top = 38
+          Width = 70
+          Caption = 'Delete'
+          OnClick = Button2Click
+          TabOrder = 3
+        end
+        object CheckBox1: TCheckBox
+          Left = 104
+          Height = 21
+          Top = 64
+          Width = 140
+          Caption = 'Incremental displ.'
+          OnClick = CheckBox1Click
+          TabOrder = 4
+        end
+        object FreeNumInput2: TFreeNumInput
+          Left = 104
+          Height = 24
+          Top = 100
+          Width = 85
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 5
+        end
+        object FreeNumInput3: TFreeNumInput
+          Left = 104
+          Height = 24
+          Top = 138
+          Width = 85
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 6
+        end
+        object FreeNumInput4: TFreeNumInput
+          Left = 104
+          Height = 24
+          Top = 176
+          Width = 85
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 7
+        end
+      end
+      object GroupBox2: TGroupBox
+        Left = 8
+        Height = 105
+        Top = 222
+        Width = 243
+        Caption = 'Heeling angles.'
+        ClientHeight = 89
+        ClientWidth = 239
+        TabOrder = 2
+        object HeelBox: TListBox
+          Left = 8
+          Height = 55
+          Top = 44
+          Width = 65
+          ItemHeight = 0
+          OnClick = HeelBoxClick
+          ScrollWidth = 63
+          TabOrder = 0
+          TopIndex = -1
+        end
+        object FreeNumInput5: TFreeNumInput
+          Left = 8
+          Height = 24
+          Top = 16
+          Width = 65
+          Alignment = taRightJustify
+          Decimals = 2
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 1
+        end
+        object Button3: TButton
+          Left = 104
+          Height = 21
+          Top = 16
+          Width = 70
+          Caption = 'Add'
+          OnClick = Button3Click
+          TabOrder = 2
+        end
+        object Button4: TButton
+          Left = 104
+          Height = 21
+          Top = 38
+          Width = 70
+          Caption = 'Delete'
+          OnClick = Button4Click
+          TabOrder = 3
+        end
+      end
+      object GroupBox3: TGroupBox
+        Left = 8
+        Height = 330
+        Top = 330
+        Width = 243
+        Caption = 'Data for SSD:'
+        ClientHeight = 314
+        ClientWidth = 239
+        TabOrder = 1
+        object Label1_: TLabel
+          Left = 8
+          Height = 14
+          Top = 20
+          Width = 127
+          Caption = 'Projected displ., [tons]'
+          ParentColor = False
+        end
+        object Label2_: TLabel
+          Left = 8
+          Height = 14
+          Top = 46
+          Width = 123
+          Caption = 'Estimated Z CoG, [m]'
+          ParentColor = False
+        end
+        object Label3_: TLabel
+          Left = 8
+          Height = 14
+          Top = 64
+          Width = 31
+          Caption = 'Area:'
+          ParentColor = False
+        end
+        object Label4_: TLabel
+          Left = 8
+          Height = 14
+          Top = 80
+          Width = 118
+          Caption = 'of bilge keels, [m^2]'
+          ParentColor = False
+        end
+        object Label5_: TLabel
+          Left = 8
+          Height = 14
+          Top = 104
+          Width = 84
+          Caption = 'of skeg, [m^2]'
+          ParentColor = False
+        end
+        object Label6_: TLabel
+          Left = 8
+          Height = 14
+          Top = 130
+          Width = 142
+          Caption = 'Lateral wind area, [m^2]'
+          ParentColor = False
+        end
+        object Label7_: TLabel
+          Left = 8
+          Height = 14
+          Top = 156
+          Width = 206
+          Caption = 'Z CoG of wind area above DWL, [m]'
+          ParentColor = False
+        end
+        object Label12_: TLabel
+          Left = 8
+          Height = 14
+          Top = 182
+          Width = 190
+          Caption = 'Decrease metacentric height, [m]'
+          ParentColor = False
+        end
+        object Label13_: TLabel
+          Left = 8
+          Height = 14
+          Top = 208
+          Width = 167
+          Caption = 'Immersion deck angle, [degr]'
+          ParentColor = False
+        end
+        object Label8_: TLabel
+          Left = 8
+          Height = 14
+          Top = 230
+          Width = 104
+          Caption = 'Navigation region:'
+          ParentColor = False
+        end
+        object ComboBox: TComboBox
+          Left = 130
+          Height = 25
+          Top = 228
+          Width = 110
+          ItemHeight = 0
+          ItemIndex = 0
+          Items.Strings = (
+            'Nonlimit'
+            'R1'
+            'R2'
+            'R2-RSN'
+            'R3'
+            'R3-RSN'
+          )
+          OnChange = ComboBoxClick
+          OnClick = ComboBoxClick
+          TabOrder = 2
+          Text = 'Nonlimit'
+        end
+        object Label9_: TLabel
+          Left = 8
+          Height = 14
+          Top = 256
+          Width = 50
+          Caption = 'Registry:'
+          ParentColor = False
+        end
+        object ComboBox1: TComboBox
+          Left = 100
+          Height = 25
+          Top = 254
+          Width = 140
+          ItemHeight = 0
+          ItemIndex = 0
+          Items.Strings = (
+            'Russian Registry 2010'
+            'Russian Registry 1996'
+            'GISS'
+            'Ukrainian Registry 2005'
+          )
+          OnChange = ComboBox1Click
+          OnClick = ComboBox1Click
+          TabOrder = 0
+          Text = 'Russian Registry 2010'
+        end
+        object FreeNumInput5_: TFreeNumInput
+          Left = 173
+          Height = 24
+          Top = 14
+          Width = 65
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 3
+        end
+        object FreeNumInput6_: TFreeNumInput
+          Left = 173
+          Height = 24
+          Top = 42
+          Width = 65
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 4
+        end
+        object FreeNumInput7_: TFreeNumInput
+          Left = 173
+          Height = 24
+          Top = 72
+          Width = 65
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 5
+        end
+        object FreeNumInput8_: TFreeNumInput
+          Left = 173
+          Height = 24
+          Top = 99
+          Width = 65
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 6
+        end
+        object FreeNumInput9_: TFreeNumInput
+          Left = 173
+          Height = 24
+          Top = 126
+          Width = 65
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 7
+        end
+        object FreeNumInput10_: TFreeNumInput
+          Left = 173
+          Height = 24
+          Top = 153
+          Width = 65
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 8
+        end
+        object FreeNumInput12_: TFreeNumInput
+          Left = 193
+          Height = 24
+          Top = 180
+          Width = 45
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 9
+        end
+        object FreeNumInput13_: TFreeNumInput
+          Left = 193
+          Height = 24
+          Top = 206
+          Width = 45
+          Alignment = taRightJustify
+          Decimals = 2
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          TabOrder = 1
+        end
+      end
+    end
+    object PageControl1: TPageControl
+      Left = 272
+      Height = 701
+      Top = 7
+      Width = 676
+      ActivePage = TabSheet4
+      Align = alClient
+      TabIndex = 3
+      TabOrder = 1
+      object TabSheet1: TTabSheet
+        Caption = 'Graph'
+        ClientHeight = 669
+        ClientWidth = 670
+        object Chart: TChart
+          Left = 0
+          Height = 669
+          Top = 0
+          Width = 670
+          AxisList = <          
+            item
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+              Title.Visible = True
+              Title.Caption = 'KN sin(phi)'
+            end          
+            item
+              Alignment = calBottom
+              Minors = <>
+              Title.Visible = True
+              Title.Caption = 'Displacement [tons]'
+            end          
+            item
+              Alignment = calRight
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+              Title.Visible = True
+              Title.Caption = 'Power [kW]'
+            end>
+          Foot.Brush.Color = clBtnFace
+          Foot.Font.Color = clBlue
+          Legend.Visible = True
+          Title.Brush.Color = clBtnFace
+          Title.Font.Color = clBlue
+          Title.Font.Height = -15
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Title.Text.Strings = (
+            'Cross curves'
+          )
+          Title.Visible = True
+          Align = alClient
+          ParentColor = False
+        end
+      end
+      object TabSheet2: TTabSheet
+        Caption = 'Data'
+        ClientHeight = 669
+        ClientWidth = 670
+        ImageIndex = 1
+        object Grid: TStringGrid
+          Left = 0
+          Height = 669
+          Top = 0
+          Width = 670
+          Align = alClient
+          ColCount = 17
+          DefaultColWidth = 49
+          DefaultRowHeight = 18
+          FixedColor = 14211288
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goRowSelect]
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.CharSet = ANSI_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Arial'
+          OnDrawCell = GridDrawCell
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'Stability diagram'
+        ClientHeight = 669
+        ClientWidth = 670
+        object Chart0: TChart
+          Left = 0
+          Height = 669
+          Top = 0
+          Width = 670
+          AxisList = <          
+            item
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+              Title.Visible = True
+              Title.Caption = 'l, [m]'
+            end          
+            item
+              Alignment = calBottom
+              Minors = <>
+              Title.Visible = True
+              Title.Caption = 'Heeling angle, [degr]'
+            end          
+            item
+              Alignment = calRight
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+              Title.Visible = True
+              Title.Caption = 'Power [kW]'
+            end>
+          Foot.Brush.Color = clBtnFace
+          Foot.Font.Color = clBlue
+          Legend.Alignment = laTopCenter
+          Legend.ColumnCount = 2
+          Legend.Visible = True
+          Title.Brush.Color = clBtnFace
+          Title.Font.Color = clBlue
+          Title.Font.Height = -15
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Title.Text.Strings = (
+            'Static stability diagram'
+          )
+          Title.Visible = True
+          Align = alClient
+          ParentColor = False
+          object Series1: TLineSeries
+            Marks.Visible = False
+            Title = 'l(Teta)'
+            LinePen.Color = clYellow
+            LinePen.Width = 2
+            Pointer.HorizSize = 2
+            Pointer.Style = psCircle
+            Pointer.VertSize = 2
+          end
+          object Series2: TLineSeries
+            Marks.Visible = False
+            Title = 'd(Teta)'
+            LinePen.Color = clWhite
+            LinePen.Width = 2
+            Pointer.Visible = False
+          end
+        end
+      end
+      object TabSheet4: TTabSheet
+        Caption = 'Results'
+        ClientHeight = 669
+        ClientWidth = 670
+        ImageIndex = 1
+        object Resultsmemo: TMemo
+          Left = 0
+          Height = 669
+          Top = 0
+          Width = 670
+          Align = alClient
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          ParentFont = False
+          ScrollBars = ssBoth
+          TabOrder = 0
+        end
+      end
+    end
+  end
+  object MenuImages: TImageList
+    left = 624
+    Bitmap = {
+      4C69060000001000000010000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      84FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
+      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF000000000000000000000000000000000000FFFF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF848284FF000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF8482
+      84FF0000000000000000000000000000000000000000000000000000FFFF0000
+      84FF000084FF000084FF848284FF000084FF000084FF000084FF848284FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000084FF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000FFFF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000084FF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000084FF000084FF000084FF000084FF000084FF000084FF848284FF0000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      84FF000084FF000084FF000084FF000084FF000084FF000084FF000084FF8482
+      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF000084FF848284FF000084FF000084FF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF8482
+      84FF000000000000000000000000000000000000FFFF000084FF000084FF8482
+      84FF00000000000000000000000000000000000000000000FFFF848284FF0000
+      00000000000000000000000000000000000000000000848284FF848284FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000FF00FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000FF00FF008200FF008200FF000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000000FF
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000FF00FF0082
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000FF00FF008200FF0082
+      00FF008200FF840000FF00000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000FF00FF008200FF008200FF0082
+      00FF840000FF0000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000FF00FF008200FF008200FF008200FF8400
+      00FF0000000000000000000000000000000000FF00FF00000000000000000000
+      0000000000000000000000FF00FF008200FF008200FF008200FF840000FF0000
+      000000000000000000000000000000FF00FF008200FF00FF00FF000000000000
+      00000000000000FF00FF008200FF008200FF008200FF840000FF000000000000
+      0000000000000000000000000000008200FF008200FF008200FF00FF00FF0000
+      000000FF00FF008200FF008200FF008200FF840000FF00000000000000000000
+      0000000000000000000000000000840000FF008200FF008200FF008200FF00FF
+      00FF008200FF008200FF008200FF008200FF840000FF00000000000000000000
+      000000000000000000000000000000000000840000FF008200FF008200FF0082
+      00FF008200FF008200FF008200FF840000FF0000000000000000000000000000
+      00000000000000000000000000000000000000000000840000FF008200FF0082
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000840000FF0082
+      00FF008200FF840000FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008400
+      00FF840000FF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C7
+      C6FF000000FFC6C7C6FF000000FF00000000000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C7C6FF0000
+      00FFC6C7C6FF000000FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
+      C6FF000000FFC6C7C6FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C7C6FFC6C7C6FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FF848684FF848684FF848684FFC6C7C6FFC6C7C6FF0000
+      00FFC6C7C6FF000000FF00000000000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FF00FFFFFF00FFFFFF00FFFFFFC6C7C6FFC6C7C6FF0000
+      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C7C6FF000000FF0000000000000000000000FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
+      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000007B7D7BFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
+      7BFF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF0000FFFF0000FFFF0000FFFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF00000000000000000000000000000000000000007B7D7BFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
+      7BFF00000000000000000000000000000000000000007B7D7BFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
+      7BFF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FF000000FF006994FF00698CFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000659CFF00518CFFBDBEBDFF0000
+      00FF000000FF000000FF0051ADFF0000BDFF0000A5FF00519CFFBDBEBDFF0000
+      00FF00000000000000000000000000659CFF0018BDFF00008CFF397984FF0000
+      00FF000000FF004DB5FF0004B5FF000084FF181C84FF186984FFBDBEBDFF0000
+      00FF0000000000000000000000000051ADFF0000B5FF000084FF212884FF4282
+      84FF0051ADFF0008B5FF000084FF181884FF426D84FFBDBEBDFFBDBEBDFF0000
+      00FF00000000000000000000000000000000003CBDFF0004A5FF000084FF2128
+      84FF313884FF000084FF101484FF527984FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000003CC6FF0000A5FF0000
+      84FF000084FF000084FF6B7184FFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FF0008B5FF0000
+      84FF000084FF000084FF6B7184FF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000003CC6FF000084FF0000
+      84FF000084FF000084FF212884FF428284FFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF00000000000000000000000000000000003CBDFF0004A5FF000084FF0000
+      84FF000484FF000084FF000084FF212884FF397984FF000000FFBDBEBDFF0000
+      00FF000000000000000000000000003CB5FF0000ADFF000084FF000484FF313C
+      84FF31418CFF00008CFF000084FF000084FF393884FF318284FFBDBEBDFF0000
+      00FF0000000000000000000000000000CEFF000084FF000084FF313C84FF3182
+      84FF005DA5FF0010BDFF000084FF080C84FF395584FF188284FFBDBEBDFF0000
+      00FF0000000000000000000000000000CEFF000084FF393C84FF297D84FFBDBE
+      BDFFBDBEBDFF005DA5FF000CC6FF4A5D84FF188284FFBDBEBDFFBDBEBDFF0000
+      00FF00000000000000000000000021698CFF6B6984FF297984FF000000FF0000
+      00FF000000FF000000FF006D94FF108284FF000000FF000000FF000000FF7B7D
+      7BFF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000848684FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF848684FF0000000000000000000000FFFF4142FF000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FFFF4142FF000000FF0000000000000000000000FF000000FF000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FF000000FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF848600FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF8486
+      00FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FFFF41
+      42FFFF4142FFFF4142FFFF4142FFFF4142FFFF4142FFFF4142FFFF4142FFFF41
+      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF8486
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF848600FFFF41
+      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF0000
+      00FFC6C7C6FF848684FF848684FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFFF41
+      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF0000
+      00FF848684FFFF4142FFFF4142FFFFFFFFFFC6C7C6FFC6C7C6FF000000FFFF41
+      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF0000
+      00FF848684FFFF4142FFFF4142FFFFFFFFFFC6C7C6FFC6C7C6FF000000FFFF41
+      42FFFF4142FF000000FF0000000000000000848684FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF848684FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000
+    }
+  end
+  object PrintDialog: TPrintDialog
+    left = 704
+    top = 65533
+  end
+  object SaveDialog: TSaveDialog
+    Filter = 'Text files (*.txt)|*.txt'
+    FilterIndex = 2
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    left = 800
+  end
+end

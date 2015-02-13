@@ -1,0 +1,26 @@
+s/^\([[:space:]]*\)Legend\.Alignment = laTop[[:space:]]*$/\1Legend.Alignment = laTopCenter/
+/^[[:space:]]*AnimatedZoom = True/d
+/^[[:space:]]*BackWall\./d
+/^[[:space:]]*MarginRight =/d
+/^[[:space:]]*Title.AdjustFrame =/d
+/^[[:space:]]*RightAxis\./d
+/^[[:space:]]*View3DOptions\./d
+/^[[:space:]]*View3D =/d
+/^[[:space:]]*Chart3DPercent =/d
+/^[[:space:]]*Title\.Color =/d
+/Axis.MinorTickCount =/d
+/Axis.MinorTickLength =/d
+/Axis.AxisValuesFormat =/d
+/^[[:space:]]*XValues\./d
+/Axis.LabelStyle =/d
+/Axis.TitleSize =/d
+/^[[:space:]]*Legend.ColorWidth =/d
+/^[[:space:]]*Legend.TextStyle =/d
+/^[[:space:]]*Legend.TopPos =/d
+/^[[:space:]]*BevelOuter =/d
+/^[[:space:]]*TabOrder =/d
+s/SeriesColor = 11162880/SeriesColor = clBlue/
+/^[[:space:]]*Marks.ArrowLength =/d
+/^[[:space:]]*Pointer.InflateMargins =/d
+/^[[:space:]]*YValues\./d
+/^[[:space:]]*VertAxis =/d

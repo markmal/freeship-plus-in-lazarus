@@ -1,0 +1,1114 @@
+Test only Version 3.4 in Lazarus
+Released: Thursday 12 Feb, 2015
+New features:
+    * MDI design windows are replaced by non-MDI windows because MDI is supported in MS Windows only. For MS Windows build it is still MDI.
+    * Important values in Resistance dialogs are highlighted red when wrong values are entered.
+    * Some more diagnostic output is written into Results tab in case of calculation errors
+    * Small fixes of bugs caused by uninitalized vars
+
+Release Version 3.4
+Released March 31, 2013
+New features:
+     * Specify the range of FPP series Zvezdkinoy per curves of the propeller in the free water    
+     * Set rotative speed propeller default of 100 rev. in minutes    
+     * The abscissa of the bow perpendicular  was set equal to project length       
+     * Added a series of five-blade surface piercing propeller KSRI  SPP-5  (for x32)  
+     * Added output engine power with a 10% premium (on the recommendation of the diesel firm MAN)   
+     * Added  2 new multi-lingual messages 
+     * Made more than 40 small changes and interface corrections
+
+Test only version 3.39+
+Released: February 14, 2013
+New features: 
+      * Added a series of FPP Zvezdkinoy ZV-3-50 ... 110 curves in the calculation of the propeller in open water (for x32)
+      * Added two series of ducted propellers (E-4-57 and VIT-4-35, 58, 75)
+      * Added two series of ducted propellers Kaplan
+      * Fixed value range P/D in the calculation of the propeller curves
+      * Added output parameters of propeller and power at rated conditions for FPP series T, M, Z, ZM, ZV, E, VIT, Ka
+      * Added 10 new multi-lingual messages
+
+Test only version 3.38+
+Released: February 4, 2013
+New features: 
+     * Added 5 series FPP in calculation of the propellers in free water (for x32 only) 
+     * Fixed error in output Weights.txt at zero density of the material and thickness of the layers 
+     * Changed format data in the file Weights.txt, added the type of the (three-or rectangular)
+     * Added  30 new multi-lingual messages 
+     * Made more than 20 small changes and interface corrections
+
+Test only Version 3.37+
+Released: January 14, 2013
+New features:
+     * Added 7 series propellers (ducted propellers, CPP and CRP)
+     * Increased the range of power of the main engine (<100 MW)
+     * Added a check on the calculation method of cavitation Schonherr
+     * Added  5 new multi-lingual messages 
+     * Made more than 20 small changes and interface corrections
+
+Test only Version 3.36+
+Released: December 10, 2012
+New features:
+     * Added a limited distance between the catamaran hulls in the calculation of the resistance
+     * Fixed calculation Kdt in method Holtrop-84/88
+     * Added import the results of calculation of resistance for propeller elements calculation with setted engine (without 3D model making) 
+     * Added output of calculation results propeller and engine file Propres.dat
+     * Added import calculation results propeller and engine propulsion calculation chart
+     * Added import calculation results propeller and engine into account acceleration, braking and reversing
+     *Made more than 20 small changes and interface corrections
+
+Test only Version 3.35+
+Released: November 12, 2012
+New features: 
+    * Fixed an error in the calculation of the resistance for hard-chine catamarans 
+    * Fixed calculation cross curves for keel boats, etc.
+    * Fixed calculation of the minimum freeboard for keel boats, etc.
+    * Allocated methods of calculating the resistance of high-speed round bilge ships in a separate group 
+    * Allocated methods of calculating the resistance of catamarans and trimarans in a separate group 
+    * Changed the format of the data in the file weight distribution (Weights.txt), added start and end x-coordinates of facets 
+    * Added more than 100 new multi-lingual messages 
+    * Made more than 20 small changes and fixes for GUI
+
+Test only Version 3.33+
+Released July 18, 2012
+New features:
+    * Added a calculation of weight distribution (Weights.txt) to calculate the strength of
+    * Added a deadrise angle in the Clement-Poup method 
+    * Added the output of the angle of trim in Bunkov and Radojcic methods
+    * Added calculation of resistance for a small displacement vessels method Ridgeley-Nevitt-1967 and UBC-1993
+    * Combined three methods of calculating the towing resistance of small displacement vessels in one group
+    * Added a graphical comparison of the resistances of three methods for small displacement vessels
+    * Added Chinese Language (Not tested)
+    * It's added 47 new multilanguage messages
+    * It's made more than 30 small changes and interface corrections
+
+Test only Version 3.32 + 
+Released May 20, 2012
+New features:
+    * Added to the calculation of the planing ships on the Savitsky output parameters for the design speed planing and draft
+    * Fixed a bug in output of distances between selected points
+    * Increased the maximum number of stations and waterlines in the calculation of the Bonjean scale and SACs to 100.
+    * Added speed limits for the calculation methods for the planing ships Radojcic, Robinson and Compton.
+    * Recompiled computational modules for compatibility with Windows 7 (x64) (Radojcic, Robinson and Compton methods)
+    Added on / off recording the results of the calculation of a family of SAC (SACs.txt) and Bonjean scale (Bonjean.txt) in files (off by default).
+    * Added output to a file of stern's coordinates  (Sterns.txt)
+    * It's added 2 new multilanguage messages
+    * It's made more than 40 small changes and interface corrections
+
+Release Version 3.3+
+Released January 25, 2012
+New features:
+    * Applied a new algorithm for model balance 
+    * Added calculation of derivation moment and the increment of the trim angle
+    * Fixed calculation of coefficients of completeness for keel yachts in the calculation of hydrostatic curves 
+    * Added a calculation method for round bilge highspeed ships Radojcic-1985 series (65 B)
+    * Added output limits the applicability of Compton, Robinson and Radojcic
+    * Added a round bilge shapes influence for highspeed ships by Compton, Robinson methods
+    * It's added 2 new multilanguage messages
+    * It's made more than 40 small changes and interface corrections
+
+Test only Version 3.29 + 
+Released January 10, 2011
+New features:
+    * Fixed calculation of the hydrostatics coefficients for yacht with a keel and hull with a dome
+    * Added calculation of initial stability in a moving coordinate system (with Zmin <> 0)
+    * Added calculation of planing ships by the method of Compton (Compton-1986) for the displacement and semiplaning regimes
+    * Added calculation hard chined planing ships by the method of Robinson (Wolfson-1999)
+    * Added a calculation for hard chined planing ships by Radojcic-1985's method (62 series TMB)
+    * It's added 20 new multilanguage messages
+    * It's made more than 10 small changes and interface corrections
+
+Test only Version 3.28 + 
+Released December 25, 2011
+New features:
+    * Added saving of data for calculating the aerodynamic characteristics and stability in the course (in FBM file)
+    * Added the output length of the broken line and the distance between its end points, if you select 5 or more control points.
+    * Added calculation of aerodynamic forces and yaw moment without drift
+    * It's added 10 new multilanguage messages
+    * It's made more than 10 small changes and interface corrections
+
+Test only Version 3.27 + 
+Released December 15, 2011
+New features:
+    * Added a record-bulb keel fairing below the line for warships in the calculations on how to Fung-Leibman 1995 
+      and Hotrop-1984(88)
+    * Added a calculation of the aerodynamic characteristics without creating a model ship
+    * Fixed calculation of the aerodynamic characteristics of the module by Isherwood (now compatible with Win 7 (x64))
+    * It's added 2 new multilanguage messages
+    * It's made more than 10 small changes and interface corrections
+
+Test only Version 3.26 + 
+Released November 20, 2011
+New features:
+    * Inserted check for the minimum design speed in the calculation of the resistance by the method of Clement-Blount
+    * Significantly expanded the range of acceptable speed and power in the calculation of the propeller
+    * Added calculation Cwp and ie on statistical formulas to calculate the resistance by the method of Fung-Leibman (without a model)
+    * Fixed output window, insert a set of points
+    * Recompiled computational modules in \Exec directory for compatibility with Windows 7(x64)
+    * It's made more than 20 small changes and interface corrections
+
+Test only Version 3.24 + 
+Released August 26, 2011
+New features:
+   * Tunnel contours of hull in hydrostatics calculation Is added
+   * Import of calculated speed, resistance and diameter to calculation optimum propeller task Is added
+   * Fixed bug of calculation of a angle between lines on selected to three and four points
+   * Fixed bug at resistance calculation on Fung-Lejbman at the task of small speeds
+   * Calculation of optimum characteristics of hull according to Bunkov Is added for speedboats
+   * Added SAC and Bonjan scale calculation and output in SAC.txt and Bonjan.txt files   
+   * It's added 7 new multilanguage messages
+   * It's made more than 10 small changes and interface corrections
+
+Test only Version 3.23+
+Released July 6, 2011
+New features:
+   *  Fixed bug of geometry output in format *.GF for imperial system units
+   *  Added in stability calculation an accuracy range (to 1 % from set deposits) at check of equality Zmin=0
+   *  The task of weight and coordinates of the center of weights manually (while it is reserved) Is disconnected in properties of layers  
+   *  The output of results of calculation of stability Is added at the press on the printer and in TXT a file
+   *  Calculation and a output of optimum parameters of the planing ships for maximal speed (on M.Bunkov) Is added
+   *  Added 6 new multilanguage messages
+   *  It's made more than 10 little changes and corrections for interface
+
+Test only Version 3.22+
+Released May 24, 2011
+New features:
+   *  Fixed bug with display CoG ship
+   *  Added check in the calculation of the stability equation Zmin = 0
+   *  Added displaying the distance between two points and the angles between the received segment and the axes
+   *  Added displaying the distance between the endpoints and the angle between the sides (1-2 and 2-3)
+   *  Added a conclusion of the angle between two segments (1-2 and 3-4) and the distance between 1 and 4 selected points
+   *  Fixed a bug in the calculation of the resistance by the method of Mercier-Savitsky
+   *  Added input and accounting components of the propulsive efficiency in the preliminary calculation of propeller series B
+   *  Added a choice of type of propulsor and the interaction coefficients in the calculation of planing ships
+   *  Added 18 new multilanguage messages
+   *  It's made more than 50 little changes and corrections for interface
+
+Test only Version 3.21+
+Released April 4, 2011
+New features:
+   * Added the calculation of allowable wind speed and determination of level navigation on the GIMS (Russia)
+   * Fixed the output coordinates of the CG in the rudder and keel wizard.
+   * Added the calculation and display the distance between the two control points (Developed by Yatsenko D.V., Kremenchug, Ukraine)   * Added a stability calculation for undecked vessels
+   * It is made more than 10 small changes and interface corrections
+
+Release Version 3.2+
+Released February 23, 2011
+New features:
+   * The conclusion of the table of results for a series 19 by OST Is corrected
+   * Selection of all leakpoints Is added
+   * Immersion deck angle Is added in calculation of stability
+   * Navigation region influence in calculation of amplitude of rolling and the account of length of a vessel in stability calculation Is added
+   * Accuracy of weather criterion calculation under IMO A.749 Is raised
+   * It is made more than 20 small changes and interface corrections
+
+Test only Version 3.19+
+Released February 10, 2011
+New features:
+   *  Added calculation of weather criterion under the Register of Russia of 2010 and other parameters under requirements IMO A.749 
+   *  Display of a ship CoG position if weight loading is set is added
+   *  More faster algorithm of automatic model moving with the set weight loading Is applied.
+   *  Added 18 new multilanguage messages
+   *  It's made more than 30 little changes and corrections for interface	     
+
+Test only Version 3.18+
+Released January 10, 2011
+New features:
+   *  Some criteries of stability on GIMS Is added  
+   *  It's added heeling and triming models (mirrored and to disconnect symmetry in properties of layers for this)
+   *  It's added step-by-step automatic balance models with the set weight loading.
+   *  Added 28 new multilanguage messages
+   *  It's made more than 30 little changes and corrections for interface	     
+
+Test only Version 3.17+
+Released December 10, 2010
+New features:
+   *  The graphic output and text output of the area wind center is added.
+   *  The text output of results of calculation of stability is added. 
+   *  Calculation of the minimum surface board is added. 
+   *  Inclusion of automatic vertical moving of model to baseline is added (by default disconnected)
+   *  Speed of import of VRML files a minimum three times is increased
+   *  At replacement of boundary edges in area of negative ordinates automatic zeroing of ordinates is made.
+   *  Added 5 new multilanguage messages
+   *  It's made more than 40 little changes and corrections for interface	     
+
+Test only Version 3.16+
+Released November 10, 2010
+New features:
+   *  Added automatic data input (number and diameter of propeller) in resistance calculation by Hollenbach, 
+      van Oortmerssen and Fung-Leibman methods
+   *  Added input data valid domain in acceleration, free and active brake of ships calcs
+   *  Added vietnamese language .ini file (translated by Le Quoc Van)
+   *  The number of speeds to 10 in calculation on a method of Holtrop-1984(88) is increased
+   *  Syntactic errors in some *.ini files are rectified 
+   *  It's made more than 50 little changes and corrections for interface	     
+
+Test only Version 3.15+
+Released September 28, 2010
+New features:
+   *  Increase number of velocities (10) in OCT methods and other
+   *  Added hard-chine catamarans resistance calculation (Nser=19) by regression method using
+   *  Added some input parameters for Fung-Leibman method
+   *  Added 10 new multilanguage messages
+   *  It's made more than 20 little changes and corrections for interface	     
+
+Test only Version 3.14+
+Released July 24, 2010
+New features:
+   *  Accuracy made 0.1 mm for export geometry into Michlet
+   *  Added calculation some  parameters of propeller (series B) in open water
+   *  Manuals (when click Help button) are started in any projects directory
+   *  Added 7 new multilanguage messages
+
+Test only Version 3.13+
+Released April 20, 2010
+New features:
+   *  Added calculation power and resistance of naval and transom stern ships by Fung-Leibman 1995
+   *  Added calculation power and resistance of planing ships by Clement-Poup 1961 and
+Clement-Blount 1963. This is software made by Le Cuok Van (Vietnam).
+   *  Added calculation power and resistance of pre-planing and planing ships by M.Bunkov method
+   *  Added transom area influence in calculation by Mercier-Savitsky method
+   *  Added 105 new multilanguage messages
+   *  It's made more than 30 little changes and corrections for interface	     
+
+Test only Version 3.12+
+Released February 10, 2010
+New features:
+   *  Added data results valid domain for Hamilton WaterJet calcs
+   *  Changed import data in stability calculation in any coordinate systems
+   *  Added wake and thrust ratio formulaes in function of ship type, propellers number and KDE
+   *  Changed input and import data for Ke calculation
+   *  Fixed bug in metacentric height calculation for one layer model
+   *  Added changings of hydrostatic parameters calculation for catamarans 
+   *  Added 5 new multilanguage messages
+   *  It's made more than 10 little changes and corrections for interface	     
+
+Test only Version 3.11+
+Released December 30, 2009
+New features:
+   *  Added calculation of added masses riverships by NIEWT method
+   *  Added power prediction waterjet for planing ships 
+   *  Accuracy of bulbous characteristics import from model is raised
+   *  Check of results of calculations of resistance by OCT is added, etc.
+   *  It's made more than 30 little changes and corrections for interface	     
+
+Release Version 3.1+
+Released December 1, 2009
+New features:
+   *  Added into Mercier-Savitsky method graphics output 15 points
+   *  Added half entrance angle by Holtrop-84 formulae calculation in van Oortmerssen's method
+   *  Added 13 new multilanguage messages
+   *  It's made more than 20 little changes and corrections for interface	     
+
+Test only Version 3.09+ 
+Released November 2, 2009
+New features:
+   *  Added calculation power and resistance of semi-planing ships by  Mercier-Savitsky method
+   *  Added calculation power and resistance of small ships by van Oortmerssen's method (1971)
+   *  Added influence shaft of propeller data for planing ships in Savitsky method calcs
+   *  Added nonsymmetrical layers
+   *  Added leak points under DWL model test in hydrostatics calcs
+   *  Added 5 formulaes for wetted surface area calculation
+   *  Added 142 new multilanguage messages
+   *  It's made more than 40 little changes and corrections for interface
+
+Test only Version 3.08+ 
+Released September 30, 2009
+New features:
+   *  Added import interaction coefficients (Wt and t) in propeller tasks from resistance calcs
+   *  Added 4 types of ships in aerodynamics characteristics calculation (by OIEMF data)
+   *  Added graphics output results by Savitsky method calculation
+   *  Changed output data results format in 8 tasks (for report's print)
+   *  Fixed bug in stability calcs
+   *  Added 5 new multilanguage messages
+   *  It's made more than 40 little changes and corrections for interface
+
+Test only Version 3.07+ 
+Released April 28, 2009
+New features:
+   *  Added calculation of planing regime by D.Savitsky method
+   *  Added calculation transverse wind area and distance from DWL to centroid
+   *  Made import bulb area and hb into Holtrop method
+   *  Made import wind area and distance from DWL to centroid into aerodynamics characteristics calculation
+   *  Added 2 new multilanguage messages
+
+Test only Version 3.06+ 
+Released March 25, 2009
+New features:
+   *  Added calculation lateral wind area and distance from DWL to centroid 
+   *  Added calculation of Dinamic Stability Diagram (DSD)
+   *  Made import lateral wind area and distance from DWL to centroid into DSD calculation
+   *  Made import displacement and Z of CoG into DSD calculation
+   *  Added calculation Weather Criteria K (by Russian Registry)
+   *  Added calculation power prediction of planing ships by D.Savitsky method
+   *  Added 20 new multilanguage messages
+   *  It's made more than 30 little changes and corrections for interface
+
+Test only Version 3.05+ 
+Released February 01, 2009
+New features:
+   *  Made geometry of hull export with Part file into other programs (Freeship 2.6 and higher)
+   *  Added bulb-keel mass calculation
+   *  Added control input data for MPP-1.3 program
+   *  Added 6 new multilanguage messages
+   *  It's made more than 10 little changes and corrections for interface
+
+Test only Version 3.04+ 
+Released December 25, 2008
+New features:
+   *  Made multilanguage results output into program Holtrop-84 (Powerprd.exe)
+   *  Made multilanguage results output into program Ishercof.exe
+   *  Made multilanguage results output into program  PPP (Propol.exe)
+   *  Made multilanguage results output into program  POP (PropPred.exe)
+   *  Added formulaes for calculation added masses coefficients of ship hull
+   *  Added more accuracy calculation of bulbous parameters
+   *  Added 114 new multilanguage messages
+   *  It's made more than 20 little changes and corrections for interface
+
+Test only Version 3.03+ 
+Released December 01, 2008
+New features:
+   *  Added program Ishercof.exe for wind coefficients of a merchant ship calculation
+   *  Increased output points for propeller (B series) characteristics calculation 
+   *  Added 66 new multilanguage messages
+   *  It's made more than 10 little changes and corrections for interface
+
+Test only Version 3.02+ 
+Released November 15, 2008
+New features:
+   *  Added program Propol.exe of B-Screw Series Propeller characteristics of open water calculation
+   *  Increased input datas valid domain for big displacement ships
+   *  Added 18 new multilanguage messages
+   *  It's made more than 40 little changes and corrections for interface
+
+Test only Version 3.01+ 
+Released October 20, 2008
+New features:
+   *  Added waiting result time of added masses calculation for slowly computers
+   *  Added added masses of equivalence ellipsoid calculation
+   *  Fixed some bugs of added masses result output
+   *  Added into calculation by Holtrop-88 import half angle Ie from model
+   *  Added calculation resistance for displacement catamarans (Nser=15)
+   *  All .EXE files are moved into subdirectory \Exec
+   *  Fixed bug with started calculation by Delft method after save result in .fbm file
+   *  Added 2 new multilanguage messages
+   *  It's made more than 10 little changes and corrections for interface	     
+
+Release Version 3.0+
+Released September 10, 2008
+New features:
+   *  Changed data import for yachts with keel in Delft method
+   *  Added diagnostics input data for Hollenbach method (w/o model)
+   *  Added table of ship parameters for Hollenbach method into Help
+   *  Changed format output results data in Hollenbh.exe (v1.03)
+   *  Changed ETAh calculation by Holtrop formula for nearly value Ae/Ao of propeller's diagram
+   *  Added 20 new multilanguage messages
+   *  It's made more than 20 little changes and corrections for interface	     
+
+Test only Version 2.98+ 
+Released July 30, 2008
+New features:
+   *  Added control input data and calculation added masses
+   *  Added translation on Russian and Ukrainian for MPP program help
+   *  Changed residual resistance calculation by Kaper in different system units
+   *  Changed density calculation in imperial system units for planing ships
+   *  Added imperial system units into Delft, Kaper and Holtrop method calcs
+   *  Fixed bug for optimal R_t_min by holtrop method
+   *  Added more 90 new multilanguage messages
+   *  Added bulb wizard (Developed by Yatsenko D.V., Kremenchug, Ukraine)
+   *  It's made more than 60 little changes and corrections for interface	     
+
+Test only Version 2.97+ 
+Released July 10, 2008
+New features:
+   *  Added conrtol input data for bulb in Holtrop method calcs resistance
+   *  Added program MPP-1.3 for calculation of maneuverability by linear theory
+   *  Added program HydroNShIp_AddMass v1.0 for inertia characteristics a ship hull calculation
+   *  Added 31 new multilanguage messages
+   *  It's made more than 40 little changes and corrections	     
+
+Test only Version 2.96+ 
+Released June 10, 2008
+New features:
+   *  Added into method Hollenbach-1998 calculation of minimal residual resistance for good optimazed
+      ship hulls (HydroNShIp_Hollenbach âåðñèè v1.02)
+   *  Added output resistance curve into input datas for maneuverability calculation
+   *  Initial speed in brake moving is set estimated speed from resistance prediction calculation
+   *  Added output computing time of maneuver
+   *  Added program PPP-1.8 of resistance and power prediction by method Holtrop-1984
+   *  Added program POP-1.5 of Wageningen B-Screw Series Propeller Preliminary Design
+   *  Added 73 new multilanguage messages
+   *  It's made more than 30 little changes and corrections	     
+
+Test only Version 2.95+
+Released May 19, 2008
+New features:
+   *  Added resistance and power prediction Hollenbach's-1998 method for cargo ships
+   *  Added 4 formulaes of wetted area calcs for OCT and other methods
+   *  Added 15 new multilanguage messages   
+   *  It's made more than 30 little changes and corrections	     
+
+Test only Version 2.94+
+Released May 5, 2008
+New features:
+   *  New version HydroNShIp_RVRS v1.04 is available
+   *  The maneuver time is limited (not more 2 ours) 
+   *  Integration method for solving maneuver equation of moving ship is changed
+   *  Added some help diesels data for maneuverability calcs
+   *  Fixed 4 little bugs
+   *  Added 50 new multilanguage messages   
+   *  It's made more than 20 little changes and corrections	     
+
+Test only Version 2.93+
+Released April 22, 2008
+New features:
+   *  Added calculation appendage and aerodynamics resistance for planning ships
+   *  Added spray strips influence for planning ships
+   *  Added input data control for maneuverability of ship calculation and fixed some bugs
+   *  Added input data control for resistance calcs by OCT methods without hull model
+   *  Added formulas for wake and thrust fraction calcs by Holtrop-1984 method
+      for bulkcarriers, tankers and ore-carriers
+   *  Added 6 new multilanguage messages   
+   *  It's made more than 50 little changes and corrections	  
+
+Test only Version 2.92+
+Released April 10, 2008
+New features:
+   *  Added calculation and input some data for ship sinkage (see sample in FREE!ship demo 3+deck+gruz_man.fbm  ) 
+   *  Added import data from model into maneuverability of ship calculation and output some text and graphics results
+   *  Added input data diagnostics for maneuverability of ship calculation
+   *  Added autostart of program for maneuverability of ship calculation RvrsShip.exe now
+   *  Added ended control of maneuver calcs
+   *  Delete  output some temporary  files
+   *  Added 22 new multilanguage messages   
+   *  It's made more than 10 little changes and corrections	  
+
+Test only Version 2.91+
+Released March 31, 2008
+New features:
+   *  Added GZ curve calcs for imported from hydrostatics calculation displacement D and CoG Z
+   *  Added maneuverability of ship calculation: acceleration, free and active brake (reverse)
+   *  Added 37 new multilanguage messages   
+   *  It's made more than 30 little changes and corrections	  
+
+Release Version 2.9+ 
+Released March 22, 2008
+New features:
+   *  Fixed bug in Holtrop method when Tf=1,5*hb
+   *  Delete commercian code accoding with requirements of GPL 2
+
+Test only Version 2.89+ rc1
+Released March 15, 2008
+New features:
+   *  Added GZ curve calcs for estimated Z of CoG
+   *  Added diagnostics for Holtrop method resistance calcs
+   *  Added 27 new multilanguage messages
+   *  It's made more than 10 little changes and corrections	  
+
+Test only Version 2.88+ 
+Released February 28, 2008
+New features:
+   *  Added input control Cp in OCT resistance calcs and w/o Linesplan
+   *  Fixed bug for optimal P/D calculation in OCT resistance calcs
+   *  Added input data control for Holtrop-Mennen method
+   *  Added temperature influence on viscosity for imperial units system
+   *  Added temperature and density influence in planing ship resistance calcs
+   *  Fixed bug for water density calcs into imperial units system from metrical and back
+   *  It's made more than 20 little changes and corrections	  
+
+Test only Version 2.87+ 
+Released February 11, 2008
+New features:
+   *  Added resistance and power prediction of planing ships
+   *  Fixed bug is in hydrostatic calcs for ships w/o forward bulb
+   *  Added Note N3 is in hydrostatic calcs
+   *  It's made more than 30 changes and corrections	  
+
+Test only Version 2.86+ 
+Released January 30, 2008
+New features:
+   *  Changed and added a messages into "Project settings", Kaper and Delft methods 
+   *  Output now a informatuon window about damaged or absent configuration file Resist.cnf
+   *  Added diagnostica for OCT and other methods resistance calcs
+   *  Coefficient Ke  calcs only for estimate speed in OCT methods now
+   *  Added static stability diagram (SSD) calculation
+   *  Added calcs some parameters of SSD (ho,Lmax,Tetao) and information window output, when this values
+      is outside valid domain by Russian Marine Registry for cargo sea ships
+   *  It's made more than 20 changes and corrections	  
+
+Test only Version 2.85+ 
+Released December 25, 2007
+New features:
+   *  Added calculation of aero- hydrodynamics wing characteristics  by Betz-Phedyaevsky theory
+   *  Added calculation of influence type of appendage (rudder or keel) and thickness of profile on 
+      hydrodynamic characteristics
+   *  Set as default beginning data of three speeds for resistance prediction by OCT and other methods
+   *  Information window about non correct using series or method for resistance and power prediction is now.
+   *  The bulb area on FP is in "Design hydrostatics" to calc now with SAC curve using
+   *  Made more better graphic results in calculation propeller for engine selection 
+   *  Added input control resistance data in calculation propeller for selected engine 
+   *  Renamed Power engine on Specified power into propeller tasks input data (Ps=0,85...0,9*Psn) 
+   *  Accuracy of construction of the passport diagram is increased
+
+
+Test only Version 2.84+ 
+Released December 10, 2007
+New features:
+   *  Added subroutines for linear and nonlinear interpolation-extrapolation
+   *  The factor of scale for Ts in the passport diagram is added
+   *  Input of the main engine power is added at calculation of the passport diagram
+   *  Calculation of the of the external restrictive characteristic of main engine 
+      Ps=f(Vs) is added (a diesel engine with a turbo-supercharging) in the passport 
+      diagram task
+   *  Calculation of the characteristic of total propeller's thrust Ts=f(Vs) is added
+   *  Are renamed wing profiles HEÆ on Jouk
+   *  22 symmetric structures Eppler are added
+   *  49 symmetric structures GOE, NACA, RAF, WORTMANN and others (total 125) are added
+   *  It's made more than 18 changes and corrections
+
+Test only Version 2.83+ 
+Released October 30, 2007
+New features:
+   *  Added a button for start engine selection in propeller task N1
+   *  Added into strength propeller calculation some parameters e/D, dí/D and other as function 
+      by number of diagram
+   *  Added into strength propeller calculation 8 types of metal (brass, bronze, stainless steel and duralumin)
+   *  Added more better diagnostics of input parameters for propellers calculation
+   *  Added manuals FREE!ship v2.6 on french and spain (Castellano) languages with button Help click
+   *  Added spanish ini file
+   *  Synchronized  *.ini files
+   *  Made more 10 little changings and fixed some bugs
+
+Test only Version 2.82+ 
+Released October 14, 2007
+New features:
+   *  Fixed bug with command UNDO for projects with backgroud images
+   *  Added saving data of resistance calculation by Holtrop in project's file *.fbm
+   *  Added saving data of resistance calculation by OCT and other methods in project's file 
+   *  Added saving data of 3 propeller's tasks in *.fbm
+   *  Added calcs Ae/Ao and optimal P/D for propellers series B into all methods
+      of resistance calcs for selection propeller diagram (w/o highspeed boats).
+   *  Made more 12 little changings and fixed some bugs
+
+Test only Version 2.81+ 
+Released August 28, 2007
+New features:
+   *  Translated and added manual FREE!ship v2.6 on Ukrainian
+   *  Included new freeware program for view and edit BDs *.dbf with engines
+   *  Added into BD hydromotors (30) and electromotors (23+74) for submercibles
+   *  Added into BD diesels MAN (Low speed engines - 165  and Medium speed - 66)
+   *  Added calculation pitch ratio P/D for propellers of series B 
+   *  Changed calculation additional resistance Ñà and Ñàðð for catamarans and trimarans
+   *  Added the resistance and power calcs for river cargo, passenger, cargopassenger ships and river 
+      tugs by methods of NIIWT, GIIWT and LIWT ( 19 ship's prototypes )
+   *  Added the resistance and power calcs for fishing ships by method Yeroshin 
+      for small and medium fishing ships
+   *  Made more 10 little changings
+
+Release Version 2.8+
+Released August 20, 2007
+New features:
+   *  Delete commercian code and calls from fortlib.dll accoding with requirements of GPL 2
+
+Test only Version 2.78+ 
+Released August 8, 2007
+New features:
+   *  Updated links on site FREE!ship Plus and e-mail
+   *  Added 12 body plans of NACA0006...NACA0035
+   *  Added 12 body plans of HEÆ-06...HEÆ-35 (Joukovsky)
+   *  Added three type of ship by Neyman's diagram for resistance calcs
+   *  Added data input in form for calculation of displacement catamaran and triple-hulled 
+      vessel by method Doubrovsky (Nser=14,15)
+   *  Added more better diagnostics of input parameters for resistance calculation
+   *  Fixed some bugs in input data diagnostics for propeller tasks
+   *  Updated Íålð for 16 methods of resistance and power calcs
+   *  Synchronized  *.ini files
+   *  Made more 20 little changings
+
+Test only Version 2.77+ 
+Released July 30, 2007
+New features:
+   *  Fixed bug in export data for program Michlet (write Lwl into .mlt file)
+   *  Translated and added manual of FREE!ship v2.6 on RUSSIAN
+   *  Added the resistance and power calcs for highspeed round-bilge boats 
+      by diagrams Volodin, Nordstrem, Groot, SSPA, NPL
+   *  Added the resistance and power calcs for highspeed round-bilge boats for
+      big L/V**0.333 by diagrams of 64 series Teylor's basin
+   *  Released calc of coefficient of exploitation condition Êå for ÎÑÒ and for other methods
+   *  Added more better diagnostics of input parameters for calculation resistance
+      by data of model's experiment
+   *  Added diagnostics of input data for 7 methods (Nser=5,8,9,10,11,12,13) 
+   *  Added Íålð for 14 methods of resistance and power calcs
+   *  Made more 25 little changings
+
+Test only Version 2.76+ 
+Released July 10, 2007
+New features:
+   *  Increased number of speed on graphics by OCT calculation (to 10)
+   *  Changed output of Tb
+   *  Added 50 ship's dizels in to BD (xUSSR, Shkoda, Braun-Volf)
+   *  Changed data input form by OCT and added input fields for experimental data Cr=f(Fr)  
+   *  Added calculation of wetted area without linesplane by 8 formulas for different 
+      ships and type of hulls
+   *  Added resistance and power prediction by experimental data of model ships
+   *  Added resistance and power prediction by diagrams of Braun (for highspeed vessels)  
+   *  Added resistance and power prediction by diagram of Neyman (for tags and trawlers)  
+   *  Added resistance and power prediction by method NIEWT(ÍÈÈÂÒ)for river cargo ships
+      and river-sea cargo vessels
+   *  Made many the little changings
+
+Test only Version 2.75+ 
+Released June 30, 2007
+New features:
+   *  Changed approximation accuracy of B series propellers' diagrams
+   *  Made more better diagnostics of input parameters for propeller tasks
+   *  Added 6 propeller's diagrams (from 5 to 10)
+   *  Added resistance and power prediction by method ÎÑÒ 5.0181-75 (1-4 series)   
+   *  Added tramslation on English in Help for propeller calcs
+   *  Made many the little changings
+
+Test only Version 2.74+ 
+Released June 11, 2007
+New features:
+   *  Released import FEF files from Delftship Pro (hull only)
+   *  Added Help in PDF from Freeship2.6 (English)
+   *  Appendage areas moving to added data panel
+   *  Added sample of calculation resistance, power, propeller and engine for ship of project
+      "FREE!ship demo 6.fbm" (without graphics and on RUSSIAN now) in PDF format
+   *  Released calc of coefficient of exploitation condition (influence of waves,
+      wind, depth of water and other)
+   *  Made many the little changings
+
+Test only Version 2.73+ 
+Released May 28, 2007
+New features:
+   *  Àdded calculation wetted area S, ratio Ae/Ao and diametr of propeller Dp
+      by method Holtrop-Mennen
+   *  Added input data form for calc of coefficient of exploitation condition
+   *  Fixed bug in loading of project with background image
+   *  Made many the little changings
+
+
+Test only Version 2.72+ 
+Released May 15, 2007
+New features:
+   *  Adapted resistance calc by Holtrop to propeller tasks
+   *  When exit from program are deleted temporary *.dat files in current directory
+   *  Changed input data diagram for propeller tasks
+   *  Released data testing and import for propeller task with selected engine
+   *  Added selection diesels from BD (MAN, Pilstic, Zultzer and other)
+   *  Made many the little changings
+
+Test only Version 2.71+ 
+Released May 11, 2007
+New features:
+   *  Changed the formula for calc cross curves
+   *  Added testing calc designed propeller on cavitation and on general strong
+   *  Made many the little changings
+
+Release Version 2.7+
+Released April 6, 2007
+New features:
+   *  Added input data forms for 3 propeller's tasks
+   *  Added calculation propeller for selection main engine
+   *  Added "Help" for propeller calculation 
+   *  Made many the little changings
+   *  Translated on Ukrainian language .ini file 
+   *  Changed SAC calculation 
+   *  Solved the problems with cyrillic in hydrostatics calc 
+   *  Added messages on English and Ukrainian languages
+   *  Delete commercian code and calls from fortlib.dll accoding with
+      requirements of GPL 2
+
+Test Version 2.65+
+Released March 6, 2007
+New features:
+   *  Changed the formula for Wt in method by Holtrop-Mennen
+   *  Added calculation of efficiency coefficient of hull interaction ETAh
+   *  Added "Help" in Holtrop method
+   *  Bug fixed in import FEF files saved in DelftShip
+   *  Made many the little changings
+   *  Translated on Ukrainian language .ini file (main+50%)
+
+Test Version 2.64+
+Released March 1, 2007
+New features:
+   *  There is a new formula for LCB in methods Delft and Holtrop
+   *  Now optimal Cp and LCB calculated and may be transformated the geometry of
+      ship hull for minimization of the resistance and the power
+   *  The graphics interface for the method Holtrop was changed
+   *  Made many the little changings
+
+Test Version 2.63+
+Released February 20, 2007
+New features:
+   *  Made the correct input FEF files from Delftship
+   *  Changed input from Cbt on Abt as in Holtrop-Mennen method documentation
+
+Test Version 2.62+
+Released February 11, 2007
+New features:
+   *  Changed the formulas calculation Cb and Cm for bulbous vessel in Holtrop method
+   *  Added  calculation corellation resistance with roughness drag
+
+Test Version 2.61+
+Released February 10, 2007
+New features:
+   *  Added to method Holtrop of resistance calculation influence for different (Tf-Ta)
+   *  Added  calculation appendage drag 
+   *  Made many changings on Holtrop resistance form 
+
+Test Version 2.60+
+Released January 16, 2007
+
+New features:
+   *  Added method Holtrop of resistance calculation for sea vessels
+   *  The viscosity now calculate as function of temperature and may be corrected manually
+   *  Translated on Russian language .ini file (90%)
+     
+
+Version 2.60
+Released April 21, 2006
+
+New features:
+   *  Select and delete markers
+   *  Multilanguage support completed. Current complete translations include:
+            English, Dutch, Suomi, Deutsch, Castellano and French
+   *  Select all command added
+   *  Several modifications to the controlpoint form, also made it transparent
+      so the model shines through
+   *  Shade submerged surfaces of developed plates in a different color
+   *  Support asymmetrical layers (only layers that are not used for hydrostatics)
+   *  Transparency setting of layers for transparent shading
+   *  Export to STL file (ASCII version)
+   *  Cross curves calculation
+   *  Export boundary coordinates of developed plates to textfile
+Bugs fixes or improvements:
+   *  Fixed bug in intersection routine (sometimes no knuckles were inserted)
+   *  Support filenames with multiple dots in the recent files list
+   *  Made some modifications to the GHS export format as suggested by
+      Creative Systems Inc
+   *  Correct displaying and exporting of intersectioncurves on mirrored
+      developed plates
+   *  Dragging/positioning of background images with the mouse
+
+Version 2.50
+Released March 3rd, 2006
+
+New features:
+   *  Mirroring of developed plates
+   *  Multiple language support
+   *  Add scaled background images to viewports in order to reproduce the
+      lines of an existing hull.
+   *  Export to GHS
+   *  Visualize geometry based flowlines
+   *  Add cylindrical surfaces
+Bugs fixes or improvements:
+   *  Bug fixed in the check model procedure
+   *  Added the dimensioning of cornerpoints of developed plates
+   *  Bug in Delft resistance when length dwl was 0.0
+   *  Increased visibility of thin lines of preview image
+   *  Old file format (.free files, prior to Version 1.91) no longer supported
+   *  Max. limit on undo memory
+   *  Draft and trim settings for hydrostatic calculations are stored in file
+
+Version 2.40
+Released Februari 5th, 2006
+
+New features:
+   *  Keel and rudder wizard dialog added
+   *  find the intersection of edges of one layer with faces of a second layer
+   *  Zebra stripe shading to check fairness
+   *  Redo
+   *  Clear undo history
+   *  Browse through undo history to view or select any previous state
+   *  Import PolyCad files
+   *  Remove unused points from the model
+   *  Mainform size and position is stored when the program terminates 
+Bugs fixes or improvements:
+   *  Replaced Richedit component in design-hydrostatics report by a TMemo component
+      to fix a WINE related bug
+   *  Fixed the sometimes incorrect numbering of new layers
+   *  Correct displaying of markers and controlcurves in bodyplan view
+   *  Improved the automated normal direction test
+   *  Error in IGES file so that SolidWorks and some other packages now import it
+   *  Shifting points of the aftship with arrowkeys in the bodyplan view
+   *  Viewports from the Lackenby hullform transformation are made sizeable
+
+Version 2.30
+Released January 05, 2006
+
+New features:
+   *  Show geometry info on statusbar
+   *  Added vert. prismatic coefficient in design hydrostatics
+   *  Lackenby hullform transformation (autom. adapting Cb,Cp and LCB)
+   *  Export NURBS surfaces to an IGES file
+   *  Split bodyplan view
+   *  Import and export part of the geometry as "parts" to a file
+Bugs fixes or improvements:
+   *  Improved routine for developing surfaces, also shows difference between the
+      3D surface area and the unfolded 2D area 
+   *  Add switch for removing points from intersections (simplifying) in project settings
+   *  Export stations, buttocks and waterlines to (individual) 2D DXF file(s) with
+      adjustable precision. (no diagonals, edges and controlcurves are exported)
+   *  Surface export to dxf now sends meshes instead of 3D faces for all faces with
+      4 points. All the other faces are still exported as 3D faces
+   *  Fixed error in intersections which caused loops in some intersections
+   *  Rewrote the entire VRML import routine
+   *  Added normal direction test before unfolding developable surfaces
+   *  Display the new filename in the captionbar after file->Saveas
+   *  Restyled the intersections dialog
+
+Version 2.20
+Released December 02, 2005
+
+New features:
+   *  Import Michlet wave elevations
+   *  Some hydrostatic properties are shown in the viewports, such as LCB, SAC, metacentric height etc. (mainparticuars must have been set)
+   *  Mirror selected faces or layers
+   *  Show Gaussian curvature of the surfaces in shading mode
+   *  Resistance for yachts according to Delft Systematic Yacht Series
+Bugs fixes or improvements:
+   *  Rearranged the project settings dialog, it now has tabs for different data and settings
+   *  Prevented the controlpoint-form to recieve focus while dragging a point, which caused the active
+      viewport not to respond to mousewheel zooming after dragging a point
+   *  Use escape key to quickly deselect all
+   *  Added shortcuts for easier switching between the different views and shading modes
+   *  Ctrl-L shortcut opens layer dialog
+   *  Output to DXF 3D-Polylines now also includes crease edges (knuckle lines)
+   *  Optimized DXF output of linesplan a bit so that it does uses less line-segments for
+      the crease edges as before. Data is now written as 2D polylines instead of 3D polylines
+   *  Developed plates now written as 2D polylines instead of 3D polylines to a DXF file
+   *  Improved lighting model used for shading the surfaces
+   *  Scaling, rotating and moving now also applicable to individual layers
+   *  Bug fixed in edge collapse
+   *  Deselect a point when it is selected and ctrl-clicked
+   *  ("No seedface could be found") bug fixed in unfolding routine 
+
+Version 2.10
+Released November 03, 2005
+
+New features:
+   *  Modified the design database to include a preview and improved search routine
+   *  Show/hide layers in the linesplan
+   *  Save a preview of the model in the file (used for browsing designs at the FREE!ship website)
+   *  Choose in project settings if hydrostatic coefficients should be calculated using the dimensions
+      from the project settings or the actual waterline dimensions
+   *  Export files to Michlet
+   *  Zoom in/out by using the mousewheel, rotation of perspective viewports by keeping middle
+      mousebutton (or mousewheel) pressed
+   *  KAPER resistance calculation for canoes and kayaks, according to John Winters
+   *  Move points with arrow keys (not in perspective view). Increase/decrease stepsize by
+      pressing + or -. Click the panel saying "Incr. distance" on the statusbar to manually set
+      the distance.
+   *  Added the following waterplane properties to the hydrostatics: waterplane area, coeff., LCF,
+      entrance angle and Trv/long. moment of inertia
+   *  Added metacentric height to hydrostatics
+   *  Ctrl selecting of faces
+   *  Added sectional area info to design hydrostatics
+   *  Project selected points on a straight line segment
+
+Bugs fixes or improvements:
+   *  Fixed bug in offsets import from round bottomed hulls that ignored the metric/imperial
+      settings in the file
+   *  Prevent the program from zooming out on the model when undo is used
+   *  When layers are turned on/off, viewports that have been zoomed in or out are simply redrawn,
+      others viewports are zoomed out to the extents of the entire model
+   *  Severe error occurring when an edge was collapsed with two faces attached with inconsistent
+      normal directions
+   *  Fixed locked points that where not scaled when the project units was changed to metric/imperal
+      are correctly processed
+   *  Corrected an error in the routine were imperial distances were translated into a text containing
+      the number of feet and fractional inches. This error occurred when the value was negative but larger
+      the -1.0 foot. In those cases the negative sign was omitted.
+
+Version 2.0
+Released October 06, 2005
+
+   *  Added a database with FREE!ship designs to the website. These designs may be freely
+      downloaded from www.freeship.org/designs Users willing to share their own designs are
+      kindly invited to send their designs to designs@freeship.org
+
+   *  Added import functionality of chines from a textfile (default meters, use either comma or period)
+   *  Import markers from a textfile
+   *  Modified input-format of offsets of rounded hulls
+   *  Implemented controlcurves as a new feature
+   *  Controlcurves are added to the chines of imported chine hulls
+   *  Create one panel for bottom panels and transoms (and other surfaces) that are flat
+   *  Switch visibility of partnames on or off in developed plates dialog
+   *  Export all controlpoint coordinates to a textfile which can be imported in Rhino
+   *  Modified the offsets output, also exports controlcurves
+   *  The order of layers in the layer dialog can be modified. Also developed plates appear in the same
+      order as the layers in the layer dialog
+   *  View surface area, weight and COG from within the layer properties dialog
+   *  Insert multiple points in one pass by intersecting visible edges with a 3D plane
+   *  Lock/unlock points
+   *  Modified the developability-shading procedure by lowering the value used to test for developability
+      so that it produces less noise
+   *  Extended the current hydrostatic calculations and modified the output format
+
+Version 1.91
+Released September 08, 2005
+   *  Major modification to the file format and file extension. FREE!hip models are from
+      now on stored as binary files. This reduces the average filesize (and undo memory) to
+      approx. 40 percent. This modification is done in preparation for web distribution of
+      FREE!ship models (user database) and for the inclusion of a preview thumbnail in the file.
+      The extension if the files is modified from .free to .fbm (Freeship Binary Model) Old
+      files can still be imported but saving in the old FREE!ship file-format is no longer
+      supported.
+   *  Monochrome drawing of linesplan
+   *  If no diagonals are present in the model, the plan view can optionally
+      be mirrored in the linesplan, so that both port and starboardside are visible
+   *  New startup screen
+   *  Export the formatted linesplan to an AutoCad dxf file (lines only, no fill colors used)
+   *  Added comment and file-creator fields to project settings dialog
+   *  Import of XYZ files describing longitudinal chines, created with Carene
+   *  Added dimensioning of unfolded parts to the developed plates window
+   *  Enabled manual input of the rotation angle of unfolded plates
+   *  Updated imperial coordinate input
+   *  Save viewports as bmp image
+   *  Select/deselect edgeloops by ctrl-clicking an edge
+   *  Fixed bug which caused faces created by edge-extrusion to be assigned to another
+      layer then the currently active layer
+   *  Only shade the submerged surfaces in another color if the layer is also used for hydrostatics
+   *  Import and interpolate a surface defined as a number of curves in a textfile
+   *  Curvature plot of intersectionlines
+   *  Added material properties to layers used to calculate weight of the surface area of a layer
+   *  Program remembers settings of the intersection dialog
+   *  Separate save and saveas functions
+   *  Shading of submerged parts on the linesplan is turned of when it is disabled in the projectsettings. 
+
+Version 1.80
+Released August 18, 2005
+   *  Export stations now also to Archimedes (single body) in addition to
+      ArchimedesMB (ref. manual section 3.5.6)
+   *  Improved Archimedes export routine by merging stations containing multiple
+      segments into one larger station (ref. manual section 3.5.6)
+   *  Modified selecting procedure of controlpoints. Selecting multiple
+      controlpoints from this release and on is done by keeping the ctrl-key
+      pressed. If not, then only 1 controlpoint is selected at a time. (ref.
+      manual section 2.2)
+   *  Input relative values and imperial units in the controlpoint form (ref.
+      manual section 2.4)
+   *  Extra buttons and layer properties in layer properties dialog (ref.
+      manual section 9.8)
+   *  Keep as much from the original data when assigning faces to new layers
+      using the autogroup function
+   *  Improved unfolding routine, highlight edges which are stretched or compressed
+      and added intersection with diagonals (ref. manual section 12.3)
+   *  Linesplan view added (ref. manual section 4.2)
+   *  Diagonals added to intersection lines. (ref. manual section 13.1)
+   *  Delete all intersections in one pass from intersection dialog
+   *  Printing from multiple windows (ref. manual section 2.6)
+   *  Program now gives a warning when the current model has been changed and a
+      new one is about to be loaded
+   *  Created a dialog to control the image size when saving data to a bitmap
+   *  Added list with recently opened files to the menu for faster acces
+   *  Drawing of leak points in a different color (ref. manual section 12.1)
+
+Version 1.70
+Released July 29, 2005
+   *  Unfold Develop plates
+   *  After auto-group of layers, the proper active layer is displayed
+   *  When importing a .hul file, one new layer is created between two subsequent chines
+      and one layer for faces which are added to close the hull at the centerline
+   *  Store separate (last used) paths for import, export, save or load files
+   *  Export stations to ArchimedesMB
+   *  Implemented different shading modes
+
+Version 1.65
+Released July 14, 2005
+   *  Set decimal seperator to a point.
+   *  Fixed some minor points on .hul input
+   *  Remember settings from hydrostatics dialog
+   *  Fixed shading of underwaterview when the lowest part of the hull was not on
+      Z=0.0 plane (height of waterline was incorrect)
+   *  Model-check routine now also indicates location of leak points.
+   *  Automatic model-checking can be swtched off in ptojectsettings dialog.
+   *  When a new default model is started the user can also specify if the project
+      should use metric or imperial units.
+   *  Information exported to a DXF file is the same as what is seen on screen.
+   *  3D translation of the entire model
+   *  Mainframe location is also adapted when the model is scaled or moved
+   *  Bug fixed that occurred when first a point was selected in a orthogonal view
+      and secondly an edge was selected. The selected point then incorrectly moved
+      to a new location.
+   *  Manual add a new point in 3D space.
+
+Version 1.60
+Released July 7, 2005
+   *  Export faces to wavefront .Obj format
+   *  Changed capital characters in filenames to lowercase characters for Linux users
+   *  Bug fixed which occurred when shading developable surfaces when the model exceeded
+      the right side of the viewport
+   *  Invert the normal direction of selected controlfaces
+   *  Included user definable mainframe location in projectsettings
+   *  Program preferences such as colors and controlpointsize can now
+      be specified by the user
+   *  Import a 3D bodyplan from textfile and fit a surface
+   *  Export stations, buttocks and waterlines to 3D DXF file
+   *  Export surface as 3Dfaces to DXF
+   *  Import .hul files created with Carlson's freeware Hulls program
+   *  Program performs an automated check for inconsistencies each time hydrostatics are calculated
+   *  Bug fixed which caused incorrect length/beam waterline when interior edges started or
+      ended exactly on the waterline at the calculated draft
+   *  Export all intersections as offsets to a textfile.
+
+Version 1.50
+Released June 23, 2005 
+   *  Fixed VRML import error, when all edges were set as crease edges
+   *  Added metric/imperial units header to hydrostatics report when calculating multiple drafts
+   *  Bug fixed which caused "spikes" on the surface after an undo operation
+   *  Corrected memoryleak in undo-object data
+   *  Mark layers as developable. Developable layers are shaded differently. Parts
+      that have zero gauss curvature (thus are developale) are shaded green. Areas which are not
+      developable are shaded red.
+
+Version 1.40
+Released June 22, 2005
+   *  Save hydrostatics to richtext or plain textfile
+   *  Import a VRML 1.0 file (for example from Hull program by Carlson design)
+   *  Automatic removal of all controlfaces entirely on the starboardside of the hull
+   *  Bug fixed, when deleting faces the remaing boundaryedges where set crease=true, but their
+      start/endpoints remained regular vertices instead of creasevertices
+   *  Rotate the model in 3D space
+   *  3D scaling of the entire model
+   *  Included wetted surface in hydrostatics
+   *  Error messages are shown in hydrostatics
+   *  Fixed bug that occurred when selecting controlpoints in viewports with a very high zoom ratio
+   *  Made another modification to the fileversioning system
+   *  Smoother zooming and panning
+   *  Draw grid of intersections in profile, plan and bodyplan views
+   *  Open email program or web browser when clicked on the hyperlinks in the startup/about screen
+   *  Removed the Del-shortcut which caused selected items to be deleted when the delete key was
+      pressed within the controlpoint form
+   *  Implemented undo-function
+   *  Calculate and output hydrostatic data for a range of drafts and trim
+
+Version 1.30
+Released June 14, 2005
+   *  Draw normals of selected controlfaces when the visibility of interior faces is set to true
+   *  Pan settings of the viewport are adapted when zooming in or out
+   *  Implemented surface-analyzation to check for consistent and correct normal direction
+   *  Interior edges descending from controledges are drawn slightly darker then normal interior edges.
+   *  Implemented first simple hydrostatic calculations, based on surface panels rather then ordinates
+   *  Switch between metric and imperial units
+   *  Open file on double-click in windows explorer
+
+Version 1.20
+Released June 9, 2005
+   *  Update the coordinate information of the active controlpoint in the controlpoint form
+      when a point is being dragged with the mouse
+   *  Included multiple project settings
+   *  Shading of the underwaterpart in a different color
+   *  Create a backup of old file when saving to disk
+
+Version 1.10
+Released June 7, 2005
+   *  Added GNU General Public License info and copyright information to all units
+   *  Bug fix: The crease property of boundary edges may not be set to false
+   *  Made a change to the file-version which is now saved as a floatingpoint value
+   *  Implemented a controlpoint form, for manual editing of a controlpoint
+
+Version 1.0
+Released June 3, 2005
+   *  Initial release of FREE!ship and sourcecode

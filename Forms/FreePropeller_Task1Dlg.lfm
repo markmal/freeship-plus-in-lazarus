@@ -1,0 +1,786 @@
+object FreePropeller_Task1: TFreePropeller_Task1
+  Left = 282
+  Height = 660
+  Top = 104
+  Width = 830
+  Caption = 'Design of propeller elements for engine selection.'
+  ClientHeight = 660
+  ClientWidth = 830
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 830
+    AutoSize = True
+    ButtonWidth = 50
+    Caption = 'ToolBar1'
+    Color = clBtnFace
+    Images = MenuImages
+    Indent = 5
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+    object _ToolButton10: TToolButton
+      Left = 5
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton10'
+      ImageIndex = 6
+      Style = tbsSeparator
+    end
+    object PrintButton: TToolButton
+      Left = 15
+      Hint = 'Print the results of the calculation.'
+      Top = 2
+      Caption = 'PrintButton'
+      ImageIndex = 2
+      OnClick = PrintButtonClick
+    end
+    object _ToolButton14: TToolButton
+      Left = 65
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton14'
+      ImageIndex = 12
+      Style = tbsSeparator
+    end
+    object ToolButton25: TToolButton
+      Left = 75
+      Hint = 'Close the window and save changes.'
+      Top = 2
+      ImageIndex = 1
+      OnClick = ToolButton25Click
+    end
+    object ToolButton7: TToolButton
+      Left = 125
+      Hint = 'Close window without saving changes.'
+      Top = 2
+      ImageIndex = 0
+      OnClick = ToolButton7Click
+    end
+    object ToolButton17: TToolButton
+      Left = 175
+      Hint = 'Start engine selection'
+      Top = 2
+      ImageIndex = 3
+      OnClick = ToolButton17Click
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 636
+    Top = 24
+    Width = 830
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'General'
+      ClientHeight = 604
+      ClientWidth = 824
+      object Panel: TPanel
+        Left = 0
+        Height = 604
+        Top = 0
+        Width = 259
+        Align = alLeft
+        ClientHeight = 604
+        ClientWidth = 259
+        TabOrder = 0
+        object Label2: TLabel
+          Left = 8
+          Height = 14
+          Top = 34
+          Width = 83
+          Caption = 'Ship speed, kn'
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 8
+          Height = 14
+          Top = 62
+          Width = 83
+          Caption = 'Resistance, kN'
+          ParentColor = False
+        end
+        object Label4: TLabel
+          Left = 8
+          Height = 14
+          Top = 90
+          Width = 121
+          Caption = 'Number of propellers'
+          ParentColor = False
+        end
+        object Label5: TLabel
+          Left = 8
+          Height = 14
+          Top = 118
+          Width = 171
+          Caption = 'Limit of propeller diameter, m'
+          ParentColor = False
+        end
+        object Label6: TLabel
+          Left = 8
+          Height = 14
+          Top = 146
+          Width = 169
+          Caption = 'Step changing of diameter, m'
+          ParentColor = False
+        end
+        object Label7: TLabel
+          Left = 8
+          Height = 14
+          Top = 174
+          Width = 131
+          Caption = 'Water Density, kg/m^3'
+          ParentColor = False
+        end
+        object Label8: TLabel
+          Left = 8
+          Height = 14
+          Top = 202
+          Width = 63
+          Caption = 'Wake Ratio'
+          ParentColor = False
+        end
+        object Label9: TLabel
+          Left = 8
+          Height = 14
+          Top = 230
+          Width = 96
+          Caption = 'Thrust Deduction'
+          ParentColor = False
+        end
+        object Label10: TLabel
+          Left = 8
+          Height = 14
+          Top = 258
+          Width = 140
+          Caption = 'Koef. influence on Thrust'
+          ParentColor = False
+        end
+        object Label11: TLabel
+          Left = 8
+          Height = 14
+          Top = 286
+          Width = 142
+          Caption = 'Koef. influence on Torque'
+          ParentColor = False
+        end
+        object Label12: TLabel
+          Left = 8
+          Height = 14
+          Top = 314
+          Width = 87
+          Caption = 'Shaft Efficiency'
+          ParentColor = False
+        end
+        object Label13: TLabel
+          Left = 8
+          Height = 14
+          Top = 342
+          Width = 86
+          Caption = 'Gear Efficiency'
+          ParentColor = False
+        end
+        object Label14: TLabel
+          Left = 8
+          Height = 14
+          Top = 370
+          Width = 166
+          Caption = 'Number of propeller diagram'
+          ParentColor = False
+        end
+        object Label15: TLabel
+          Left = 8
+          Height = 14
+          Top = 398
+          Width = 95
+          Caption = 'Number of blade'
+          ParentColor = False
+        end
+        object Label16: TLabel
+          Left = 8
+          Height = 14
+          Top = 426
+          Width = 53
+          Caption = 'Disk ratio'
+          ParentColor = False
+        end
+        object Label17: TLabel
+          Left = 8
+          Height = 14
+          Top = 454
+          Width = 194
+          Caption = 'Depth of Shaft below Waterline, m'
+          ParentColor = False
+        end
+        object Label18: TLabel
+          Left = 8
+          Height = 14
+          Top = 482
+          Width = 206
+          Caption = 'Burrill Back Cavitation Constraint, %'
+          ParentColor = False
+        end
+        object Edit2: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 26
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 0
+        end
+        object Edit3: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 54
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 2
+          Digits = 12
+          Max = 0
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 1
+        end
+        object Edit4: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 82
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 0
+          Digits = 12
+          Max = 3
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 2
+        end
+        object Edit5: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 110
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 25
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 3
+        end
+        object Edit6: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 138
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 3
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 4
+        end
+        object Edit7: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 166
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 1
+          Digits = 12
+          Max = 2000
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 5
+        end
+        object Edit8: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 194
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 4
+          Digits = 12
+          Max = 0.5
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 6
+        end
+        object Edit9: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 222
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 4
+          Digits = 12
+          Max = 0.5
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = False
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 7
+        end
+        object Edit10: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 250
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 1.1
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 8
+        end
+        object Edit11: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 278
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 1.1
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 9
+        end
+        object Edit12: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 306
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 1
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 10
+        end
+        object Edit13: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 334
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 1
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 11
+        end
+        object Edit14: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 362
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 0
+          Digits = 12
+          Max = 20
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 12
+        end
+        object Edit15: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 390
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 0
+          Digits = 12
+          Max = 8
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 13
+        end
+        object Edit16: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 418
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 1.8
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 14
+        end
+        object Edit17: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 446
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 3
+          Digits = 12
+          Max = 30
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 15
+        end
+        object Edit18: TFreeNumInput
+          Left = 200
+          Height = 24
+          Top = 474
+          Width = 50
+          Alignment = taRightJustify
+          Decimals = 1
+          Digits = 12
+          Max = 100
+          Min = 0
+          OutOfRangeMessage = False
+          TabOnEnterKey = False
+          Value = 0
+          Validate = True
+          OnAfterSetValue = Edit1AfterSetValue
+          TabOrder = 16
+        end
+      end
+      object Chart: TChart
+        Left = 259
+        Height = 604
+        Top = 0
+        Width = 550
+        AxisList = <        
+          item
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.Caption = 'Power'
+          end        
+          item
+            Alignment = calBottom
+            Minors = <>
+            Title.Visible = True
+            Title.Caption = 'RPM'
+          end        
+          item
+            Alignment = calRight
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.Caption = 'Diameter of Propeller, m'
+          end>
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Legend.Alignment = laTopCenter
+        Legend.ColumnCount = 4
+        Legend.Visible = True
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'Design optimal propeller for engine selection'
+        )
+        Title.Visible = True
+        Align = alLeft
+        ParentColor = False
+        object Series1: TLineSeries
+          Marks.Visible = False
+          Title = 'Ps   '
+          LinePen.Color = clBlue
+          Pointer.HorizSize = 2
+          Pointer.VertSize = 2
+          Pointer.Visible = False
+        end
+        object Series2: TLineSeries
+          Marks.Visible = False
+          Title = 'Ps_r   '
+          LinePen.Color = clGreen
+          Pointer.Visible = False
+        end
+        object Series3: TLineSeries
+          Marks.Visible = False
+          Title = 'Dp   '
+          LinePen.Color = clRed
+          LinePen.Width = 2
+          Pointer.Visible = False
+        end
+        object Series4: TLineSeries
+          Marks.Visible = False
+          Title = 'Ps_n '
+          Pointer.Visible = False
+        end
+      end
+      object CheckBox2: TCheckBox
+        Left = 9
+        Height = 21
+        Top = 8
+        Width = 192
+        Caption = 'Extract data from current hull'
+        OnClick = CheckBox2Click
+        TabOrder = 2
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Results'
+      ClientHeight = 604
+      ClientWidth = 824
+      ImageIndex = 1
+      object Resultsmemo: TMemo
+        Left = 0
+        Height = 604
+        Top = 0
+        Width = 824
+        Align = alClient
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Courier New'
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 0
+      end
+    end
+    object Results2: TTabSheet
+      Caption = 'Help'
+      ClientHeight = 604
+      ClientWidth = 824
+      object Panel15: TPanel
+        Left = 0
+        Height = 407
+        Top = 0
+        Width = 781
+        Align = alClient
+        ClientHeight = 407
+        ClientWidth = 781
+        TabOrder = 0
+        object Resultsmemo2: TMemo
+          Left = 1
+          Height = 405
+          Top = 1
+          Width = 779
+          Align = alClient
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          ParentFont = False
+          ScrollBars = ssBoth
+          TabOrder = 0
+          Visible = False
+        end
+      end
+    end
+  end
+  object MenuImages: TImageList
+    left = 292
+    Bitmap = {
+      4C69040000001000000010000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      84FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
+      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF000000000000000000000000000000000000FFFF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF848284FF000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF8482
+      84FF0000000000000000000000000000000000000000000000000000FFFF0000
+      84FF000084FF000084FF848284FF000084FF000084FF000084FF848284FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000084FF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000FFFF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000084FF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000084FF000084FF000084FF000084FF000084FF000084FF848284FF0000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      84FF000084FF000084FF000084FF000084FF000084FF000084FF000084FF8482
+      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF000084FF848284FF000084FF000084FF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF8482
+      84FF000000000000000000000000000000000000FFFF000084FF000084FF8482
+      84FF00000000000000000000000000000000000000000000FFFF848284FF0000
+      00000000000000000000000000000000000000000000848284FF848284FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000FF00FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000FF00FF008200FF008200FF000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000000FF
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000FF00FF0082
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000FF00FF008200FF0082
+      00FF008200FF840000FF00000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000FF00FF008200FF008200FF0082
+      00FF840000FF0000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000FF00FF008200FF008200FF008200FF8400
+      00FF0000000000000000000000000000000000FF00FF00000000000000000000
+      0000000000000000000000FF00FF008200FF008200FF008200FF840000FF0000
+      000000000000000000000000000000FF00FF008200FF00FF00FF000000000000
+      00000000000000FF00FF008200FF008200FF008200FF840000FF000000000000
+      0000000000000000000000000000008200FF008200FF008200FF00FF00FF0000
+      000000FF00FF008200FF008200FF008200FF840000FF00000000000000000000
+      0000000000000000000000000000840000FF008200FF008200FF008200FF00FF
+      00FF008200FF008200FF008200FF008200FF840000FF00000000000000000000
+      000000000000000000000000000000000000840000FF008200FF008200FF0082
+      00FF008200FF008200FF008200FF840000FF0000000000000000000000000000
+      00000000000000000000000000000000000000000000840000FF008200FF0082
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000840000FF0082
+      00FF008200FF840000FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008400
+      00FF840000FF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C7
+      C6FF000000FFC6C7C6FF000000FF00000000000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C7C6FF0000
+      00FFC6C7C6FF000000FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
+      C6FF000000FFC6C7C6FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C7C6FFC6C7C6FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FF848684FF848684FF848684FFC6C7C6FFC6C7C6FF0000
+      00FFC6C7C6FF000000FF00000000000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FF00FFFFFF00FFFFFF00FFFFFFC6C7C6FFC6C7C6FF0000
+      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C7C6FF000000FF0000000000000000000000FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
+      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000007B7D7BFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
+      7BFF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF0000FFFF0000FFFF0000FFFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF00000000000000000000000000000000000000007B7D7BFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
+      7BFF000000000000000000000000
+    }
+  end
+  object PrintDialog: TPrintDialog
+    left = 193
+    top = 3
+  end
+end

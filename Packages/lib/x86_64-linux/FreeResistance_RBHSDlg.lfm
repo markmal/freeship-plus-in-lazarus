@@ -1,0 +1,1959 @@
+object FreeResistance_RBHS: TFreeResistance_RBHS
+  Left = 229
+  Height = 640
+  Top = 71
+  Width = 880
+  Caption = 'Resistance for displacement ships'
+  ClientHeight = 640
+  ClientWidth = 880
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 616
+    Top = 24
+    Width = 880
+    ActivePage = General
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object General: TTabSheet
+      Caption = 'General'
+      ClientHeight = 584
+      ClientWidth = 874
+      object Panel1: TPanel
+        Left = 0
+        Height = 584
+        Top = 0
+        Width = 390
+        Align = alLeft
+        ClientHeight = 584
+        ClientWidth = 390
+        TabOrder = 0
+        object GroupBox1: TGroupBox
+          Left = 10
+          Height = 91
+          Top = 10
+          Width = 371
+          Caption = 'General'
+          ClientHeight = 75
+          ClientWidth = 367
+          TabOrder = 0
+          object Label1: TLabel
+            Left = 5
+            Height = 14
+            Top = 23
+            Width = 65
+            Caption = 'Start speed'
+            ParentColor = False
+          end
+          object Label2: TLabel
+            Left = 5
+            Height = 14
+            Top = 46
+            Width = 91
+            Caption = 'Estimate speed '
+            ParentColor = False
+          end
+          object Label3: TLabel
+            Left = 5
+            Height = 14
+            Top = 69
+            Width = 85
+            Caption = 'Maximal speed'
+            ParentColor = False
+          end
+          object Label4: TLabel
+            Left = 180
+            Height = 14
+            Top = 23
+            Width = 78
+            Caption = 'Water density'
+            ParentColor = False
+          end
+          object Label5: TLabel
+            Left = 180
+            Height = 14
+            Top = 46
+            Width = 50
+            Caption = 'Viscosity'
+            ParentColor = False
+          end
+          object _Label31: TLabel
+            Left = 146
+            Height = 14
+            Top = 23
+            Width = 13
+            Caption = 'kn'
+            ParentColor = False
+          end
+          object _Label32: TLabel
+            Left = 146
+            Height = 14
+            Top = 46
+            Width = 13
+            Caption = 'kn'
+            ParentColor = False
+          end
+          object _Label33: TLabel
+            Left = 146
+            Height = 14
+            Top = 69
+            Width = 13
+            Caption = 'kn'
+            ParentColor = False
+          end
+          object Label34: TLabel
+            Left = 326
+            Height = 14
+            Top = 23
+            Width = 35
+            Caption = 't/m^3'
+            ParentColor = False
+          end
+          object _Label36: TLabel
+            Left = 325
+            Height = 14
+            Top = 46
+            Width = 37
+            Caption = 'm^2/s'
+            ParentColor = False
+          end
+          object StartSpeedBox: TFreeNumInput
+            Left = 95
+            Height = 24
+            Top = 15
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 6
+            Max = 50
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            TabOrder = 0
+          end
+          object EndSpeedBox: TFreeNumInput
+            Left = 95
+            Height = 24
+            Top = 38
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 6
+            Max = 50
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            TabOrder = 1
+          end
+          object StepSpeedBox: TFreeNumInput
+            Left = 95
+            Height = 24
+            Top = 61
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 6
+            Max = 10
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            TabOrder = 2
+          end
+          object DensityBox: TFreeNumInput
+            Left = 275
+            Height = 24
+            Top = 15
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 5
+            Max = 0
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            TabOrder = 3
+          end
+          object ViscosityBox: TFreeNumInput
+            Left = 275
+            Height = 24
+            Top = 38
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 4
+            Digits = 12
+            Max = 1
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            TabOrder = 4
+          end
+        end
+        object GroupBox2: TGroupBox
+          Left = 10
+          Height = 430
+          Top = 105
+          Width = 371
+          Caption = 'Hull'
+          ClientHeight = 414
+          ClientWidth = 367
+          TabOrder = 1
+          object Label13: TLabel
+            Left = 5
+            Height = 14
+            Top = 131
+            Width = 85
+            Caption = 'Wetted surface'
+            ParentColor = False
+          end
+          object Label20: TLabel
+            Left = 5
+            Height = 14
+            Top = 85
+            Width = 73
+            Caption = 'Midship draft'
+            ParentColor = False
+          end
+          object Label21: TLabel
+            Left = 5
+            Height = 14
+            Top = 108
+            Width = 49
+            Caption = 'Different'
+            ParentColor = False
+          end
+          object Label22: TLabel
+            Left = 5
+            Height = 14
+            Top = 62
+            Width = 93
+            Caption = 'Beam waterline '
+            ParentColor = False
+          end
+          object Label23: TLabel
+            Left = 5
+            Height = 14
+            Top = 39
+            Width = 94
+            Caption = 'Length waterline'
+            ParentColor = False
+          end
+          object Label24: TLabel
+            Left = 175
+            Height = 14
+            Top = 108
+            Width = 118
+            Caption = 'Prismatic coefficient '
+            ParentColor = False
+          end
+          object Label25: TLabel
+            Left = 175
+            Height = 14
+            Top = 85
+            Width = 22
+            Caption = 'LCB'
+            ParentColor = False
+          end
+          object Label26: TLabel
+            Left = 175
+            Height = 14
+            Top = 62
+            Width = 76
+            Caption = 'Displacement'
+            ParentColor = False
+          end
+          object Label27: TLabel
+            Left = 175
+            Height = 14
+            Top = 39
+            Width = 94
+            Caption = 'Waterplane area'
+            ParentColor = False
+          end
+          object Label8: TLabel
+            Left = 175
+            Height = 14
+            Top = 131
+            Width = 128
+            Caption = 'Exploitation coefficient'
+            ParentColor = False
+          end
+          object _Label8: TLabel
+            Left = 147
+            Height = 14
+            Top = 39
+            Width = 19
+            Caption = '[m]'
+            ParentColor = False
+          end
+          object _Label9: TLabel
+            Left = 147
+            Height = 14
+            Top = 62
+            Width = 19
+            Caption = '[m]'
+            ParentColor = False
+          end
+          object _Label10: TLabel
+            Left = 147
+            Height = 14
+            Top = 85
+            Width = 19
+            Caption = '[m]'
+            ParentColor = False
+          end
+          object _Label11: TLabel
+            Left = 147
+            Height = 14
+            Top = 108
+            Width = 19
+            Caption = '[m]'
+            ParentColor = False
+          end
+          object _Label12: TLabel
+            Left = 147
+            Height = 14
+            Top = 129
+            Width = 19
+            Caption = '[m]'
+            ParentColor = False
+          end
+          object _Label14: TLabel
+            Left = 340
+            Height = 14
+            Top = 39
+            Width = 19
+            Caption = '[m]'
+            ParentColor = False
+          end
+          object _Label15: TLabel
+            Left = 340
+            Height = 14
+            Top = 62
+            Width = 19
+            Caption = '[m]'
+            ParentColor = False
+          end
+          object _Label16: TLabel
+            Left = 340
+            Height = 14
+            Top = 85
+            Width = 18
+            Caption = '[%]'
+            ParentColor = False
+          end
+          object Label19: TLabel
+            Left = 5
+            Height = 14
+            Top = 177
+            Width = 78
+            Caption = 'Type of ships:'
+            ParentColor = False
+          end
+          object ComboBox: TComboBox
+            Left = 140
+            Height = 25
+            Top = 170
+            Width = 220
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'model tests'
+              'Braun'
+              'Volodin'
+              'Nordstrom'
+              'de Groote'
+              'SSPA'
+              'NPL'
+              '64 series'
+              'Doubrovsky'
+            )
+            OnClick = ComboBoxClick
+            TabOrder = 0
+            Text = 'model tests'
+          end
+          object Label9: TLabel
+            Left = 5
+            Height = 14
+            Top = 200
+            Width = 131
+            Caption = 'Number of series ships'
+            ParentColor = False
+          end
+          object Label10: TLabel
+            Left = 5
+            Height = 14
+            Top = 223
+            Width = 122
+            Caption = 'Type of forward stern'
+            ParentColor = False
+          end
+          object Label11: TLabel
+            Left = 5
+            Height = 14
+            Top = 246
+            Width = 105
+            Caption = 'Type of after stern'
+            ParentColor = False
+          end
+          object Label15: TLabel
+            Left = 5
+            Height = 14
+            Top = 269
+            Width = 121
+            Caption = 'Number of propellers'
+            ParentColor = False
+          end
+          object Label16: TLabel
+            Left = 5
+            Height = 14
+            Top = 292
+            Width = 118
+            Caption = 'Propeller diametr, m'
+            ParentColor = False
+          end
+          object Label_17: TLabel
+            Left = 8
+            Height = 14
+            Top = 315
+            Width = 185
+            Caption = 'Froude number Fr of model ship:'
+            ParentColor = False
+          end
+          object Label_18: TLabel
+            Left = 8
+            Height = 14
+            Top = 361
+            Width = 246
+            Caption = 'Coefficient of residual resistance Cr*10**3:'
+            ParentColor = False
+          end
+          object LwlBox: TFreeNumInput
+            Left = 120
+            Height = 24
+            Top = 31
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 600
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 1
+          end
+          object BwlBox: TFreeNumInput
+            Left = 120
+            Height = 24
+            Top = 54
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 100
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 2
+          end
+          object DraftBox: TFreeNumInput
+            Left = 120
+            Height = 24
+            Top = 100
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 30
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 3
+          end
+          object DraftTotalBox: TFreeNumInput
+            Left = 120
+            Height = 24
+            Top = 77
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 30
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = DraftTotalBoxAfterSetValue
+            TabOrder = 4
+          end
+          object WettedSurfacebox: TFreeNumInput
+            Left = 120
+            Height = 24
+            Top = 123
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 20000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 5
+          end
+          object EstimateBox: TCheckBox
+            Left = 4
+            Height = 21
+            Top = 151
+            Width = 110
+            Caption = 'Use estimate'
+            OnClick = EstimateBoxClick
+            TabOrder = 6
+          end
+          object Estimate2Box: TCheckBox
+            Left = 174
+            Height = 21
+            Top = 151
+            Width = 119
+            Caption = 'Use calculated'
+            OnClick = Estimate2BoxClick
+            TabOrder = 7
+          end
+          object WlAreabox: TFreeNumInput
+            Left = 311
+            Height = 24
+            Top = 31
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 100000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 8
+          end
+          object DisplacementBox: TFreeNumInput
+            Left = 306
+            Height = 24
+            Top = 54
+            Width = 55
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 500000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 9
+          end
+          object LCBBox: TFreeNumInput
+            Left = 311
+            Height = 24
+            Top = 77
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 10
+            Min = -10
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 10
+          end
+          object CpBox: TFreeNumInput
+            Left = 311
+            Height = 24
+            Top = 100
+            Width = 50
+            Alignment = taRightJustify
+            Decimals = 4
+            Digits = 12
+            Max = 1
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 11
+          end
+          object KeBox: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 123
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 1.4
+            Min = 1
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 1
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 12
+          end
+          object NserBox: TFreeNumInput
+            Left = 221
+            Height = 24
+            Top = 192
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 0
+            Digits = 10
+            Max = 10
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 13
+          end
+          object NfBox: TFreeNumInput
+            Left = 221
+            Height = 24
+            Top = 215
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 0
+            Digits = 10
+            Max = 5
+            Min = 1
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 1
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 14
+          end
+          object NaBox: TFreeNumInput
+            Left = 221
+            Height = 24
+            Top = 238
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 0
+            Digits = 10
+            Max = 5
+            Min = 1
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 1
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 15
+          end
+          object NpBox: TFreeNumInput
+            Left = 221
+            Height = 24
+            Top = 261
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 0
+            Digits = 10
+            Max = 3
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 16
+          end
+          object DpBox: TFreeNumInput
+            Left = 221
+            Height = 24
+            Top = 284
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 10
+            Max = 25
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 17
+          end
+          object CheckBox2: TCheckBox
+            Left = 5
+            Height = 21
+            Top = 14
+            Width = 215
+            Caption = 'Extract data from current hull'
+            OnClick = CheckBox2Click
+            TabOrder = 18
+          end
+          object Edit17_1: TFreeNumInput
+            Left = 8
+            Height = 24
+            Top = 333
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 50
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 19
+          end
+          object Edit17_2: TFreeNumInput
+            Left = 56
+            Height = 24
+            Top = 333
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 50
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 20
+          end
+          object Edit17_3: TFreeNumInput
+            Left = 104
+            Height = 24
+            Top = 333
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 50
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 21
+          end
+          object Edit17_4: TFreeNumInput
+            Left = 152
+            Height = 24
+            Top = 333
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 50
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 22
+          end
+          object Edit17_5: TFreeNumInput
+            Left = 200
+            Height = 24
+            Top = 333
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 50
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 23
+          end
+          object Edit18_1: TFreeNumInput
+            Left = 8
+            Height = 24
+            Top = 379
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 1000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 24
+          end
+          object Edit18_2: TFreeNumInput
+            Left = 56
+            Height = 24
+            Top = 379
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 1000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 25
+          end
+          object Edit18_3: TFreeNumInput
+            Left = 104
+            Height = 24
+            Top = 379
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 1000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 26
+          end
+          object Edit18_4: TFreeNumInput
+            Left = 152
+            Height = 24
+            Top = 379
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 1000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 27
+          end
+          object Edit18_5: TFreeNumInput
+            Left = 200
+            Height = 24
+            Top = 379
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 1000
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = True
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 28
+          end
+        end
+      end
+      object Chart: TChart
+        Left = 390
+        Height = 584
+        Top = 0
+        Width = 484
+        AxisList = <        
+          item
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.Caption = 'Resistance [kN]'
+          end        
+          item
+            Alignment = calBottom
+            Minors = <>
+            Title.Visible = True
+            Title.Caption = 'Speed [knots]'
+          end        
+          item
+            Alignment = calRight
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.Caption = 'Power [kW]'
+          end>
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Legend.ColumnCount = 4
+        Legend.Visible = True
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'Resistance according to OST sea vessel Series'
+        )
+        Title.Visible = True
+        Align = alClient
+        ParentColor = False
+        object Series1: TLineSeries
+          Marks.Visible = False
+          Title = 'Rt      '
+          LinePen.Color = clBlue
+          LinePen.Width = 2
+          Pointer.HorizSize = 2
+          Pointer.VertSize = 2
+          Pointer.Visible = False
+        end
+        object Series2: TLineSeries
+          Marks.Visible = False
+          Title = 'Rt_e    '
+          LinePen.Color = clGreen
+          LinePen.Width = 2
+          Pointer.Visible = False
+        end
+        object Series3: TLineSeries
+          Marks.Visible = False
+          Title = 'Pe      '
+          LinePen.Color = clRed
+          LinePen.Width = 2
+          Pointer.Visible = False
+        end
+        object Series4: TLineSeries
+          Marks.Visible = False
+          Title = 'Pe_e '
+          LinePen.Width = 2
+          Pointer.Visible = False
+        end
+      end
+    end
+    object Data2: TTabSheet
+      Caption = 'Added data'
+      ClientHeight = 584
+      ClientWidth = 874
+      object Panel6: TPanel
+        Left = 0
+        Height = 584
+        Top = 0
+        Width = 790
+        Align = alLeft
+        ClientHeight = 584
+        ClientWidth = 790
+        TabOrder = 0
+        object GroupBox3: TGroupBox
+          Left = 10
+          Height = 520
+          Top = 10
+          Width = 371
+          Caption = 'Added data input:'
+          ClientHeight = 504
+          ClientWidth = 367
+          TabOrder = 0
+          object Label6_1: TLabel
+            Left = 5
+            Height = 14
+            Top = 25
+            Width = 186
+            Caption = 'Time ship hull is in water, month'
+            ParentColor = False
+          end
+          object Label6_2: TLabel
+            Left = 5
+            Height = 14
+            Top = 50
+            Width = 129
+            Caption = 'Height of 3% wave, m '
+            ParentColor = False
+          end
+          object Label6_3: TLabel
+            Left = 5
+            Height = 14
+            Top = 75
+            Width = 218
+            Caption = 'Course angle of moving wave, degree'
+            ParentColor = False
+          end
+          object Label6_4: TLabel
+            Left = 5
+            Height = 14
+            Top = 100
+            Width = 95
+            Caption = 'Wind speed, m/s'
+            ParentColor = False
+          end
+          object Label6_5: TLabel
+            Left = 5
+            Height = 14
+            Top = 125
+            Width = 153
+            Caption = 'Course wind angle, degree'
+            ParentColor = False
+          end
+          object Label6_6: TLabel
+            Left = 5
+            Height = 14
+            Top = 150
+            Width = 182
+            Caption = 'Height of board above water, m'
+            ParentColor = False
+          end
+          object Label6_7: TLabel
+            Left = 5
+            Height = 14
+            Top = 175
+            Width = 113
+            Caption = 'Air density, kg/m^3'
+            ParentColor = False
+          end
+          object Label6_8: TLabel
+            Left = 5
+            Height = 14
+            Top = 200
+            Width = 327
+            Caption = 'Height of COG area of superstructure above waterline, m'
+            ParentColor = False
+          end
+          object Label6_9: TLabel
+            Left = 5
+            Height = 14
+            Top = 225
+            Width = 103
+            Caption = 'Depth of water, m'
+            ParentColor = False
+          end
+          object Label6_10: TLabel
+            Left = 5
+            Height = 14
+            Top = 250
+            Width = 167
+            Caption = 'Wetted area of midship, m^2'
+            ParentColor = False
+          end
+          object Label17: TLabel
+            Left = 5
+            Height = 14
+            Top = 275
+            Width = 148
+            Caption = 'Absolute roughness, mkm'
+            ParentColor = False
+          end
+          object Label6_11: TLabel
+            Left = 5
+            Height = 14
+            Top = 300
+            Width = 72
+            Caption = 'Type of ship:'
+            ParentColor = False
+          end
+          object Label7_1: TLabel
+            Left = 5
+            Height = 14
+            Top = 317
+            Width = 162
+            Caption = '1 - Passenger ship and ferry'
+            ParentColor = False
+          end
+          object Label7_2: TLabel
+            Left = 5
+            Height = 14
+            Top = 330
+            Width = 275
+            Caption = '2 - Cargo ship with middle engine is in full cargo'
+            ParentColor = False
+          end
+          object Label7_3: TLabel
+            Left = 5
+            Height = 14
+            Top = 343
+            Width = 259
+            Caption = '3 - Cargo ship with middle engine is in ballast'
+            ParentColor = False
+          end
+          object Label7_4: TLabel
+            Left = 5
+            Height = 14
+            Top = 356
+            Width = 252
+            Caption = '4 - Cargo ship with aft engine is in full cargo'
+            ParentColor = False
+          end
+          object Label7_5: TLabel
+            Left = 5
+            Height = 14
+            Top = 369
+            Width = 236
+            Caption = '5 - Cargo ship with aft engine is in ballast'
+            ParentColor = False
+          end
+          object Label7_6: TLabel
+            Left = 5
+            Height = 14
+            Top = 382
+            Width = 341
+            Caption = '6 - Tanker and bulkcarrier with middle engine is in full cargo'
+            ParentColor = False
+          end
+          object Label7_7: TLabel
+            Left = 5
+            Height = 14
+            Top = 395
+            Width = 325
+            Caption = '7 - Tanker and bulkcarrier with middle engine is in ballast'
+            ParentColor = False
+          end
+          object Label7_8: TLabel
+            Left = 5
+            Height = 14
+            Top = 408
+            Width = 318
+            Caption = '8 - Tanker and bulkcarrier with aft engine is in full cargo'
+            ParentColor = False
+          end
+          object Label7_9: TLabel
+            Left = 5
+            Height = 14
+            Top = 421
+            Width = 302
+            Caption = '9 - Tanker and bulkcarrier with aft engine is in ballast'
+            ParentColor = False
+          end
+          object Label7_10: TLabel
+            Left = 5
+            Height = 14
+            Top = 434
+            Width = 67
+            Caption = '10 - Trawler'
+            ParentColor = False
+          end
+          object Label7_11: TLabel
+            Left = 5
+            Height = 14
+            Top = 447
+            Width = 45
+            Caption = '11 - Tug'
+            ParentColor = False
+          end
+          object A1Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 17
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 1
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 0
+          end
+          object A2Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 42
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 1
+          end
+          object A3Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 67
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 2
+          end
+          object A4Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 92
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 3
+          end
+          object A5Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 117
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 4
+          end
+          object A6Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 142
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 5
+          end
+          object A7Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 167
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 6
+          end
+          object A8Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 192
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 7
+          end
+          object A9Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 217
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 1
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 8
+          end
+          object A10Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 242
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 9
+          end
+          object KsBox: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 267
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 0
+            Digits = 12
+            Max = 2500
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 10
+          end
+          object A11Box: TFreeNumInput
+            Left = 315
+            Height = 24
+            Top = 292
+            Width = 45
+            Alignment = taRightJustify
+            Decimals = 0
+            Digits = 12
+            Max = 11
+            Min = 1
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 1
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 11
+          end
+        end
+        object GroupBox4: TGroupBox
+          Left = 400
+          Height = 520
+          Top = 10
+          Width = 371
+          Caption = 'Appendage areas input, [m^2]:'
+          ClientHeight = 504
+          ClientWidth = 367
+          TabOrder = 1
+          object Label30: TLabel
+            Left = 5
+            Height = 14
+            Top = 25
+            Width = 81
+            Caption = 'Shaft brackets'
+            ParentColor = False
+          end
+          object Label31: TLabel
+            Left = 5
+            Height = 14
+            Top = 50
+            Width = 74
+            Caption = 'Strut bossing'
+            ParentColor = False
+          end
+          object Label37: TLabel
+            Left = 5
+            Height = 14
+            Top = 75
+            Width = 76
+            Caption = 'Stabiliser fins'
+            ParentColor = False
+          end
+          object Label33: TLabel
+            Left = 5
+            Height = 14
+            Top = 150
+            Width = 133
+            Caption = 'Exposed shafts, [m^2]:'
+            ParentColor = False
+          end
+          object Label35: TLabel
+            Left = 5
+            Height = 14
+            Top = 175
+            Width = 158
+            Caption = 'Angle with battoks about 10'
+            ParentColor = False
+          end
+          object Label36: TLabel
+            Left = 5
+            Height = 14
+            Top = 200
+            Width = 158
+            Caption = 'Angle with battoks about 20'
+            ParentColor = False
+          end
+          object Label32: TLabel
+            Left = 5
+            Height = 14
+            Top = 100
+            Width = 68
+            Caption = 'Hull bossing'
+            ParentColor = False
+          end
+          object Label38: TLabel
+            Left = 5
+            Height = 14
+            Top = 125
+            Width = 33
+            Caption = 'Dome'
+            ParentColor = False
+          end
+          object K1Box: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 17
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 0
+          end
+          object K2Box: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 43
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 1
+          end
+          object K3Box: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 68
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 2
+          end
+          object K4Box: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 93
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 3
+          end
+          object K5Box: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 118
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 4
+          end
+          object K6Box: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 168
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 5
+          end
+          object K7Box: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 193
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 3
+            Digits = 12
+            Max = 250
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = LwlBoxAfterSetValue
+            TabOrder = 6
+          end
+          object Label281: TLabel
+            Left = 10
+            Height = 14
+            Top = 225
+            Width = 155
+            Caption = 'Keel and skeg area, [m^2]:'
+            ParentColor = False
+          end
+          object Label28: TLabel
+            Left = 5
+            Height = 14
+            Top = 250
+            Width = 27
+            Caption = 'Skeg'
+            ParentColor = False
+          end
+          object Label29: TLabel
+            Left = 5
+            Height = 14
+            Top = 275
+            Width = 61
+            Caption = 'Bilge keels'
+            ParentColor = False
+          end
+          object KeelChordLengthbox: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 243
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 75
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            ParentFont = False
+            TabOrder = 7
+          end
+          object KeelAreaBox: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 268
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 100
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            TabOrder = 8
+          end
+          object Label61: TLabel
+            Left = 5
+            Height = 14
+            Top = 300
+            Width = 124
+            Caption = 'Rudders area, [m^2]:'
+            ParentColor = False
+          end
+          object Label6: TLabel
+            Left = 5
+            Height = 14
+            Top = 325
+            Width = 146
+            Caption = 'Rudder behind skeg/stern'
+            ParentColor = False
+          end
+          object Label7: TLabel
+            Left = 5
+            Height = 14
+            Top = 350
+            Width = 104
+            Caption = 'Two-screw slender'
+            ParentColor = False
+          end
+          object RudderChordLengthbox: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 318
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 75
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            ParentFont = False
+            TabOrder = 9
+          end
+          object RudderAreaBox: TFreeNumInput
+            Left = 321
+            Height = 24
+            Top = 343
+            Width = 40
+            Alignment = taRightJustify
+            Decimals = 2
+            Digits = 12
+            Max = 100
+            Min = 0
+            OutOfRangeMessage = False
+            TabOnEnterKey = False
+            Value = 0
+            Validate = False
+            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            TabOrder = 10
+          end
+        end
+      end
+    end
+    object Results: TTabSheet
+      Caption = 'Results'
+      ClientHeight = 584
+      ClientWidth = 874
+      object Panel5: TPanel
+        Left = 0
+        Height = 584
+        Top = 0
+        Width = 874
+        Align = alClient
+        ClientHeight = 584
+        ClientWidth = 874
+        TabOrder = 0
+        object Resultsmemo: TMemo
+          Left = 1
+          Height = 582
+          Top = 1
+          Width = 872
+          Align = alClient
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          ParentFont = False
+          ScrollBars = ssBoth
+          TabOrder = 0
+          Visible = False
+        end
+      end
+    end
+    object Results2: TTabSheet
+      Caption = 'Help'
+      ClientHeight = 584
+      ClientWidth = 874
+      object Panel15: TPanel
+        Left = 0
+        Height = 584
+        Top = 0
+        Width = 874
+        Align = alClient
+        ClientHeight = 584
+        ClientWidth = 874
+        TabOrder = 0
+        object Resultsmemo2: TMemo
+          Left = 1
+          Height = 582
+          Top = 1
+          Width = 872
+          Align = alClient
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          ParentFont = False
+          ScrollBars = ssBoth
+          TabOrder = 0
+          Visible = False
+        end
+      end
+    end
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 880
+    AutoSize = True
+    ButtonWidth = 50
+    Caption = 'ToolBar1'
+    Color = clBtnFace
+    Images = MenuImages
+    Indent = 5
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    object _ToolButton10: TToolButton
+      Left = 5
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton10'
+      ImageIndex = 6
+      Style = tbsSeparator
+    end
+    object ToolButton20: TToolButton
+      Left = 15
+      Hint = 'Start the calculation.'
+      Top = 2
+      ImageIndex = 3
+      OnClick = ToolButton20Click
+    end
+    object PrintButton: TToolButton
+      Left = 65
+      Hint = 'Print the results of the calculation.'
+      Top = 2
+      Caption = 'PrintButton'
+      ImageIndex = 2
+      OnClick = PrintButtonClick
+    end
+    object _ToolButton14: TToolButton
+      Left = 115
+      Top = 2
+      Width = 10
+      Caption = '_ToolButton14'
+      ImageIndex = 12
+      Style = tbsSeparator
+    end
+    object ToolButton25: TToolButton
+      Left = 125
+      Hint = 'Close the window and save changes.'
+      Top = 2
+      ImageIndex = 1
+      OnClick = ToolButton25Click
+    end
+    object ToolButton7: TToolButton
+      Left = 175
+      Hint = 'Close window without saving changes.'
+      Top = 2
+      ImageIndex = 0
+      OnClick = ToolButton7Click
+    end
+  end
+  object PrintDialog: TPrintDialog
+    left = 383
+    top = 1
+  end
+  object MenuImages: TImageList
+    left = 292
+    Bitmap = {
+      4C69040000001000000010000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      84FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
+      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF000000000000000000000000000000000000FFFF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF848284FF000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF8482
+      84FF0000000000000000000000000000000000000000000000000000FFFF0000
+      84FF000084FF000084FF848284FF000084FF000084FF000084FF848284FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000084FF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000FFFF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000084FF000084FF000084FF000084FF000084FF848284FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000084FF000084FF000084FF000084FF000084FF000084FF848284FF0000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      84FF000084FF000084FF000084FF000084FF000084FF000084FF000084FF8482
+      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
+      84FF000084FF000084FF848284FF000084FF000084FF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
+      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF8482
+      84FF000000000000000000000000000000000000FFFF000084FF000084FF8482
+      84FF00000000000000000000000000000000000000000000FFFF848284FF0000
+      00000000000000000000000000000000000000000000848284FF848284FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000FF00FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000FF00FF008200FF008200FF000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000000FF
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000FF00FF0082
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000FF00FF008200FF0082
+      00FF008200FF840000FF00000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000FF00FF008200FF008200FF0082
+      00FF840000FF0000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000FF00FF008200FF008200FF008200FF8400
+      00FF0000000000000000000000000000000000FF00FF00000000000000000000
+      0000000000000000000000FF00FF008200FF008200FF008200FF840000FF0000
+      000000000000000000000000000000FF00FF008200FF00FF00FF000000000000
+      00000000000000FF00FF008200FF008200FF008200FF840000FF000000000000
+      0000000000000000000000000000008200FF008200FF008200FF00FF00FF0000
+      000000FF00FF008200FF008200FF008200FF840000FF00000000000000000000
+      0000000000000000000000000000840000FF008200FF008200FF008200FF00FF
+      00FF008200FF008200FF008200FF008200FF840000FF00000000000000000000
+      000000000000000000000000000000000000840000FF008200FF008200FF0082
+      00FF008200FF008200FF008200FF840000FF0000000000000000000000000000
+      00000000000000000000000000000000000000000000840000FF008200FF0082
+      00FF008200FF008200FF840000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000840000FF0082
+      00FF008200FF840000FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008400
+      00FF840000FF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C7
+      C6FF000000FFC6C7C6FF000000FF00000000000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C7C6FF0000
+      00FFC6C7C6FF000000FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
+      C6FF000000FFC6C7C6FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C7C6FFC6C7C6FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FF848684FF848684FF848684FFC6C7C6FFC6C7C6FF0000
+      00FFC6C7C6FF000000FF00000000000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FF00FFFFFF00FFFFFF00FFFFFFC6C7C6FFC6C7C6FF0000
+      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C7C6FF000000FF0000000000000000000000FFC6C7C6FFC6C7C6FFC6C7
+      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
+      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000007B7D7BFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
+      7BFF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
+      00FFBDBEBDFF000000FFBDBEBDFF0000FFFF0000FFFF0000FFFFBDBEBDFF0000
+      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
+      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
+      00FF00000000000000000000000000000000000000007B7D7BFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
+      7BFF000000000000000000000000
+    }
+  end
+end

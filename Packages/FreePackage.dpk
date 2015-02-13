@@ -1,0 +1,57 @@
+package FreePackage;
+
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
+{$R *.res}
+{$R '..\Units\FreeShipUnit.dcr'}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS OFF}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'FreeShip components'}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  dclstd,
+  designide,
+  vclactnband,
+  vclx,
+  bdertl,
+  dbrtl,
+  vcljpg,
+  VclSmp,
+  tee;
+
+contains
+  FasterList in '..\Units\FasterList.pas',
+  FreeGeometry in '..\Units\FreeGeometry.pas',
+  FreeVersionUnit in '..\Units\FreeVersionUnit.pas',
+  FreeNewModelDlg in '..\Forms\FreeNewModelDlg.pas' {FreeNewModelDialog},
+  FreeLayerDlg in '..\Forms\FreeLayerDlg.pas' {FreeLayerDialog},
+  FreeShipUnit in '..\Units\FreeShipUnit.pas',
+  FreeExtrudeDlg in '..\Forms\FreeExtrudeDlg.pas' {FreeExtrudeDialog},
+  FreeIntersectionDlg in '..\Forms\FreeIntersectionDlg.pas' {FreeIntersectionDialog},
+  FreeNumInput in '..\Units\FreeNumInput.pas';
+
+end.

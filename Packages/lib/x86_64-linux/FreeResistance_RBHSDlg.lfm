@@ -36,11 +36,11 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
         TabOrder = 0
         object GroupBox1: TGroupBox
           Left = 10
-          Height = 91
+          Height = 110
           Top = 10
           Width = 371
           Caption = 'General'
-          ClientHeight = 75
+          ClientHeight = 94
           ClientWidth = 367
           TabOrder = 0
           object Label1: TLabel
@@ -211,11 +211,11 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
         end
         object GroupBox2: TGroupBox
           Left = 10
-          Height = 430
-          Top = 105
+          Height = 432
+          Top = 120
           Width = 371
           Caption = 'Hull'
-          ClientHeight = 414
+          ClientHeight = 416
           ClientWidth = 367
           TabOrder = 1
           object Label13: TLabel
@@ -388,6 +388,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
               '64 series'
               'Doubrovsky'
             )
+            OnChange = ComboBoxChange
             OnClick = ComboBoxClick
             TabOrder = 0
             Text = 'model tests'
@@ -929,6 +930,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
           end>
         Foot.Brush.Color = clBtnFace
         Foot.Font.Color = clBlue
+        Legend.Alignment = laTopCenter
         Legend.ColumnCount = 4
         Legend.Visible = True
         Title.Brush.Color = clBtnFace

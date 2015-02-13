@@ -1700,8 +1700,8 @@ uses Math,
 // function to find the corresponding water viscosity based on the density
 // My correction begin
 function FindWaterViscosity(Temper:TFloatType;Units:TFreeUnitType):TFloatType;
-const Temp : array[1..11] of single=(3.8, 5.0, 7.2,  10.0, 12.2, 15.0, 17.2, 20.0, 22.2, 25.0, 30.0);
-      Visc : array[1..11] of single=(1.61,1.56,1.462,1.352,1.274,1.189,1.125,1.020,0.95,0.910,0.817);
+const Temp : array[1..11] of TFloatType=(3.8, 5.0, 7.2,  10.0, 12.2, 15.0, 17.2, 20.0, 22.2, 25.0, 30.0);
+      Visc : array[1..11] of TFloatType=(1.61,1.56,1.462,1.352,1.274,1.189,1.125,1.020,0.95,0.910,0.817);
 //  t,grad C   0     10    20    30    40    50    60    70    80    90
 //  Nu*1000  1.82  1.33  1.02  0.817 0.666 0.56  0.479 0.414 0.362 0.321
 //  t   0       1.0      2.0    3.0    4.0        5.0    6.0    7.0      8.0    9.0

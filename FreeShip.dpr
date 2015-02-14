@@ -9,6 +9,8 @@
 {    FREE!ship project page  : www.FREEship-plus.pisem.su                                     }
 {    FREE!ship homepage      : www.FREEship-plus.pisem.su                                     }
 {                                                                                             }
+{    Copyright © 2015-2015, Conversion to FPC/Lazarus by Mark Malakanov.                      }
+{                                                                                             }
 {    This program is free software; you can redistribute it and/or modify it under            }
 {    the terms of the GNU General Public License as published by the                          }
 {    Free Software Foundation; either version 2 of the License, or (at your option)           }

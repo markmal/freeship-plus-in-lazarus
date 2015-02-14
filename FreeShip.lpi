@@ -13,6 +13,7 @@
       <Title Value="FreeShip"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
+      <Icon Value="0"/>
     </General>
     <i18n>
       <EnableI18N LFM="False"/>
@@ -455,6 +456,10 @@
         <OverflowChecks Value="True"/>
         <StackChecks Value="True"/>
       </Checks>
+      <VerifyObjMethodCallValidity Value="True"/>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
     </CodeGeneration>
     <Linking>
       <Debugging>
@@ -468,8 +473,6 @@
     </Linking>
     <Other>
       <Verbosity>
-        <ShowNotes Value="False"/>
-        <ShowHints Value="False"/>
         <ShowGenInfo Value="False"/>
         <ShoLineNum Value="True"/>
       </Verbosity>

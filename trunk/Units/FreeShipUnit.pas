@@ -9,6 +9,8 @@
 {    FREE!ship project page  : http://freeship-plus.pisem.su                                  }
 {    FREE!ship homepage      : http://freeship-plus.pisem.su                                  }
 {                                                                                             }
+{    Copyright © 2015-2015, Conversion to FPC/Lazarus by Mark Malakanov.                      }
+{                                                                                             }
 {    This program is free software; you can redistribute it and/or modify it under            }
 {    the terms of the GNU General Public License as published by the                          }
 {    Free Software Foundation; either version 2 of the License, or (at your option)           }
@@ -4354,7 +4356,13 @@ begin
          if Spline.ShowCurvature then Spline.Fragments:=800
                                  else Spline.Fragments:=600;
 
+         try
+         //writeln('Try to allocate ',Spline.Fragments+1,' TPoints');
          Setlength(Pts,Spline.Fragments+1);
+         except
+            writeln('Failure to allocate ',Spline.Fragments+1,' TPoints');
+            raise;
+         end;
          if Spline.ShowCurvature then Setlength(CPts,Spline.Fragments+1);
          // Draw portside
          DrawIt:=IntersectionType in [fiButtock,fiWaterline,fiDiagonal];

@@ -5,10 +5,11 @@
 {                                                                                             }
 {    Copyright © 2005, by Martijn van Engeland                                                }
 {    Copyright © 2006-2011, by Timoshenko V.F.                                                }
-{    Copyright © 2015-2015, by Malakanov M.A.                                                }
 {    e-mail                  : Info@FREEship.org                                              }
 {    FREE!ship project page  : http://freeship-plus.land.ru                                   }
 {    FREE!ship homepage      : www.freeship-plus.pisem.su                                     }
+{                                                                                             }
+{    Copyright © 2015-2015, Conversion to FPC/Lazarus by Mark Malakanov.                      }
 {                                                                                             }
 {    This program is free software; you can redistribute it and/or modify it under            }
 {    the terms of the GNU General Public License as published by the                          }
@@ -2687,6 +2688,11 @@ var D : PChar;
     I : Integer;
 begin
    D := PChar(@Dest);
+   if FPosition+Size>FCount then
+     begin
+       MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
+       exit;
+     end;
    for I:=0 to size-1 do
    begin
       D[I]:=Char(FData[FPosition]);
@@ -7218,7 +7224,7 @@ end;{TFreeSpline.FGetPoint}
 
 procedure TFreeSpline.Rebuild;
 var I,K,K1,I1,I2  : integer;
-    Length     : TFloatType;
+    Len     : TFloatType;
     Sig,P      : TFloatType;
     U          : TFreeCoordinateArray;
     Un,Qn      : T3DCoordinate;
@@ -7231,8 +7237,8 @@ begin
    FTotalLength:=0;
    while I<=FNoPoints do
    begin
-      Length:=Sqrt(DistPP3D(FPoints[I-2],FPoints[I-1]));
-      FTotalLength:=FTotalLength+Length;
+      Len:=Sqrt(DistPP3D(FPoints[I-2],FPoints[I-1]));
+      FTotalLength:=FTotalLength+Len;
       Inc(I);
    end;
 
@@ -7242,7 +7248,7 @@ begin
       Setlength(FParameters,FNoPoints);
       SetLength(U,FNoPoints);
 
-      Length:=0;
+      Len:=0;
       if abs(FTotalLength)<1e-5 then
       begin
          // zero arclength, use uniform parameterisation
@@ -7252,8 +7258,8 @@ begin
          FParameters[0]:=0.0;
          for I:=2 to FNoPoints-1 do
          begin
-            Length:=Length+Sqrt(DistPP3D(FPoints[I-2],FPoints[I-1]));
-            FParameters[I-1]:=Length/FTotalLength;
+            Len:=Len+Sqrt(DistPP3D(FPoints[I-2],FPoints[I-1]));
+            FParameters[I-1]:=Len/FTotalLength;
          end;
          FParameters[FNoPoints-1]:=1.0;
       end;
@@ -7321,6 +7327,13 @@ begin
       end;
    end;
    FBuild:=true;
+   {MMDebug}
+   if Length(FDerivatives)<>FNoPoints
+     then FBuild:=false;
+   if Length(FDerivatives)<>FNoPoints
+     then FBuild:=false;
+   {MMDebug}
+
    // Determine min/max values
    if FNoPoints>0 then
    begin
@@ -8045,7 +8058,12 @@ begin
    Result.Y:=0;
    Result.Z:=0;
    if FNoPoints<2 then exit;
-   if not FBuild then Rebuild;
+   if not FBuild
+      then Rebuild;
+   if (length(FParameters)<FNoPoints)
+         then Rebuild;
+   if (length(FDerivatives)<FNoPoints)
+         then Rebuild;
    if FNoPoints<2 then exit;
    if FNoPoints=2 then
    begin
@@ -8053,6 +8071,8 @@ begin
       Hi:=1;
    end else
    begin
+      if (length(FParameters)<FNoPoints)
+            then Rebuild;
       Lo:=0;
       Hi:=FNoPoints-1;
       repeat
@@ -8063,9 +8083,25 @@ begin
          except
             FParameters[K]:=FParameters[K]-1+1;
          end;
+         if (length(FParameters)<FNoPoints)
+               then Rebuild;
       until Hi-Lo<=1;
    end;
+   if (Hi>(FNoPoints-1)) or (Hi < 0)
+      then writeln('Hi:',Hi);
+   try
+   if (length(FParameters)<FNoPoints)
+         then Rebuild;
+   if (length(FDerivatives)<FNoPoints)
+         then Rebuild;
    H:=FParameters[Hi]-FParameters[Lo];
+   except
+      writeln('length(FParameters):',length(FParameters));
+      writeln('FNoPoints:',FNoPoints,' Lo:',Lo,' Hi:',Hi);
+      writeln('FParameters[Lo]:',FParameters[Lo]);
+      writeln('FParameters[Hi]:',FParameters[Hi]);
+      writeln('FParameters[Hi]-FParameters[Lo]:', FParameters[Hi]-FParameters[Lo]);
+   end;
    if abs(H)<1e-6 then
    begin
       //Raise exception.Create('Invalid cspline');
@@ -16021,8 +16057,8 @@ begin
    for I:=1 to N do
    begin
       Point:=TFreeSubdivisionControlPoint.Create(self);
-      FControlPoints.Add(Point);
       Point.LoadBinary(Source);
+      FControlPoints.Add(Point);
    end;
    // Read controlEdges
    Source.Load(N);
@@ -16031,8 +16067,8 @@ begin
    begin
       Edge:=TFreeSubdivisionControlEdge.Create(self);
       Edge.FControlEdge:=True;
-      FControlEdges.Add(Edge);
       Edge.LoadBinary(Source);
+      FControlEdges.Add(Edge);
    end;
    if Source.Version>=fv195 then
    begin
@@ -16042,8 +16078,8 @@ begin
       for I:=1 to N do
       begin
          Curve:=TFreeSubdivisionControlCurve.Create(self);
-         FControlCurves.Add(Curve);
          Curve.LoadBinary(Source);
+         FControlCurves.Add(Curve);
       end;
    end;
 
@@ -16053,13 +16089,15 @@ begin
    for I:=1 to N do
    begin
       Face:=TFreeSubdivisionControlFace.Create(self);
-      FControlFaces.Add(Face);
       Face.LoadBinary(Source);
+      FControlFaces.Add(Face);
    end;
    Build:=False;
    FInitialized:=True;
-   if assigned(FOnChangeLayerData) then FOnChangeLayerData(self);
-   if assigned(FOnChangeActiveLayer) then FOnChangeActiveLayer(self,self.Layer[0]);
+   if assigned(FOnChangeLayerData)
+      then FOnChangeLayerData(self);
+   if assigned(FOnChangeActiveLayer)
+      then FOnChangeActiveLayer(self,self.Layer[0]);
 end;{TFreeSubdivisionSurface.LoadBinary}
 
 procedure TFreeSubdivisionSurface.LoadFromStream(var LineNr:Integer;Strings:TStringList);

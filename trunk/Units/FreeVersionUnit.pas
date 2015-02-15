@@ -37,12 +37,18 @@ interface
 uses SysUtils,
      Dialogs;
 
+const
+ COMPILE_DATE={$I %DATE%};
+ COMPILE_TIME={$I %TIME%};
+ TARGET_CPU={$I %FPCTARGET%};
+ TARGET_OS={$I %FPCTARGETOS%};
+
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,
                              fv201,fv210,fv220,fv230,fv240,fv250,fv260,fv270,fv280,fv290,fv295,fv296,fv297,fv298,fv300,
                              fv302,fv303,fv305,fv309,fv310,fv313,fv314,fv317,fv327,fv332,fv335);
 const CurrentVersion      = fv335;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
-      ReleasedDate        = 'March 31, 2013';
+      ReleasedDate        = 'Feb 14, 2015';
 function VersionString(Version:TFreeFileVersion):String;
 
 implementation
@@ -97,4 +103,4 @@ begin
    end
 end;{VersionString}
 
-end.
+end.

@@ -1,7 +1,7 @@
 object FreeSplashWindow: TFreeSplashWindow
-  Left = 236
+  Left = 239
   Height = 426
-  Top = 114
+  Top = 152
   Width = 548
   AlphaBlend = True
   AlphaBlendValue = 210
@@ -2417,9 +2417,9 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object _Label5: TLabel
     Cursor = crHandPoint
-    Left = 426
+    Left = 419
     Height = 17
-    Top = 32
+    Top = 325
     Width = 111
     Caption = 'Hydronship.net'
     Font.Color = clYellow
@@ -2431,12 +2431,12 @@ object FreeSplashWindow: TFreeSplashWindow
     OnClick = _Label5Click
   end
   object _Label6: TLabel
-    Left = 270
+    Left = 304
     Height = 14
-    Top = 24
-    Width = 26
+    Top = 11
+    Width = 46
     Alignment = taRightJustify
-    Caption = 'Date'
+    Caption = 'Release'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -12
@@ -2473,6 +2473,19 @@ object FreeSplashWindow: TFreeSplashWindow
     ParentColor = False
     ParentFont = False
     OnClick = _Label5Click
+  end
+  object LabelBuildInfo: TLabel
+    Left = 304
+    Height = 14
+    Top = 24
+    Width = 28
+    Caption = 'Build'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentColor = False
+    ParentFont = False
   end
   object Timer: TTimer
     Enabled = False

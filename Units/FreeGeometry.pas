@@ -43,20 +43,20 @@ uses
   Printer4Lazarus,
 {$ENDIF}
   FasterList,
-     Messages,
-     SysUtils,
-     Classes,
-     Graphics,
-     Controls,
-     Forms,
-     Math,
-     Dialogs,
-     buttons,
-     StdCtrls,
-     Printers,
-     StrUtils,
-     FreeVersionUnit,
-     ExtCtrls, FileUtil;
+  Messages,
+  SysUtils,
+  Classes,
+  Graphics,
+  Controls,
+  Forms,
+  Math,
+  Dialogs,
+  buttons,
+  StdCtrls,
+  Printers,
+  StrUtils,
+  FreeVersionUnit,
+  ExtCtrls, FileUtil;
 
 const Foot                          = 0.3048;
       Lbs                           = 0.44642857;
@@ -199,6 +199,8 @@ type TFreeSubdivisionBase           = class;
                                           FPosition      : Integer;              // current position when reading information from the buffer
                                           FVersion       : TFreeFileVersion;
                                           FData          : array of byte;
+                                          FFileName      : String;
+                                          FFile          : File;
                                           procedure FGrow(size:Integer);
                                           procedure FSetCapacity(val:integer);
                                        public
@@ -2690,7 +2692,11 @@ begin
    D := PChar(@Dest);
    if FPosition+Size>FCount then
      begin
-       MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
+       raise Exception.Create(UserString(192)+'_0 ! Load data'+EOL
+       +'Position+Size:'+IntToStr(FPosition+Size)
+       +' > '+IntToStr(FCount)
+       +EOL+FFileName);
+       //MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
        exit;
      end;
    for I:=0 to size-1 do
@@ -2714,7 +2720,13 @@ begin
          Inc(FPosition);
          Output:=Output+Ch;
       end;
-   end else MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
+   end
+   else
+    raise Exception.Create(UserString(192)+'_0 ! Load String'+EOL
+       +'Position+Size:'+IntToStr(FPosition+Size)
+       +' > '+IntToStr(FCount)
+       +EOL+FFileName);
+   //MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Load(var Output:Integer);
@@ -2726,7 +2738,13 @@ begin
    begin
       Move(FData[FPosition],Output,Size);
       Inc(FPosition,Size);
-   end else MessageDlg(UserString(192)+'_1 !',mtError,[mbOk],0);
+   end
+   else
+   raise Exception.Create(UserString(192)+'_1 ! Load Integer'+EOL
+      +'Position+Size:'+IntToStr(FPosition+Size)
+      +' > '+IntToStr(FCount)
+      +EOL+FFileName);
+   //MessageDlg(UserString(192)+'_1 !',mtError,[mbOk],0);
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Load(var Output:TFreeFileVersion);
@@ -2737,7 +2755,14 @@ begin
    begin
       Move(FData[FPosition],Output,Size);
       Inc(FPosition,Size);
-   end else MessageDlg(UserString(192)+'_2 !',mtError,[mbOk],0);
+   end
+   else
+     raise Exception.Create(UserString(192)+'_2 ! Load TFreeFileVersion'+EOL
+       +'Position+Size:'+IntToStr(FPosition+Size)
+       +' > '+IntToStr(FCount)
+       +EOL+FFileName);
+
+   //MessageDlg(UserString(192)+'_2 !',mtError,[mbOk],0);
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Load(var Output:Boolean);
@@ -2749,7 +2774,13 @@ begin
    begin
       Move(FData[FPosition],Output,Size);
       Inc(FPosition,Size);
-   end else MessageDlg(UserString(192)+'_3 !',mtError,[mbOk],0);
+   end
+   else //MessageDlg(UserString(192)+'_3 !',mtError,[mbOk],0);
+   raise Exception.Create(UserString(192)+'_3 ! Load Boolean'+EOL
+      +'Position+Size:'+IntToStr(FPosition+Size)
+      +' > '+IntToStr(FCount)
+      +EOL+FFileName);
+
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Load(var Output:TFloatType);
@@ -2761,7 +2792,13 @@ begin
    begin
       Move(FData[FPosition],Output,Size);
       Inc(FPosition,Size);
-   end else MessageDlg(UserString(192)+'_4 !',mtError,[mbOk],0);
+   end
+   else //MessageDlg(UserString(192)+'_4 !',mtError,[mbOk],0);
+     raise Exception.Create(UserString(192)+'_4 ! Load TFloatType'+EOL
+       +'Position+Size:'+IntToStr(FPosition+Size)
+       +' > '+IntToStr(FCount)
+       +EOL+FFileName);
+
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Load(var Output:TColor);
@@ -2773,7 +2810,13 @@ begin
    begin
       Move(FData[FPosition],Output,Size);
       Inc(FPosition,Size);
-   end else MessageDlg(UserString(192)+'_5 !',mtError,[mbOk],0);
+   end
+   else //MessageDlg(UserString(192)+'_5 !',mtError,[mbOk],0);
+     raise Exception.Create(UserString(192)+'_5 ! Load TColor'+EOL
+       +'Position+Size:'+IntToStr(FPosition+Size)
+       +' > '+IntToStr(FCount)
+       +EOL+FFileName);
+
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Load(var Output:T3DCoordinate);
@@ -2785,7 +2828,13 @@ begin
    begin
       Move(FData[FPosition],Output,Size);
       Inc(FPosition,Size);
-   end else MessageDlg(UserString(192)+'_6 !',mtError,[mbOk],0);
+   end
+   else //MessageDlg(UserString(192)+'_6 !',mtError,[mbOk],0);
+     raise Exception.Create(UserString(192)+'_6 Load T3DCoordinate!'+EOL
+       +'Position+Size:'+IntToStr(FPosition+Size)
+       +' > '+IntToStr(FCount)
+       +EOL+FFileName);
+
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Load(var Output:T3DPlane);
@@ -2796,7 +2845,12 @@ begin
    begin
       Move(FData[FPosition],Output,Size);
       Inc(FPosition,Size);
-   end else MessageDlg(UserString(192)+'_7 !',mtError,[mbOk],0);
+   end
+   else //MessageDlg(UserString(192)+'_7 !',mtError,[mbOk],0);
+   raise Exception.Create(UserString(192)+'_7 ! Load T3DPlane'+EOL
+      +'Position+Size:'+IntToStr(FPosition+Size)
+      +' > '+IntToStr(FCount)
+      +EOL+FFileName);
 end;{TFreeFileBuffer.Load}
 
 procedure TFreeFileBuffer.Add(Text:String);
@@ -2840,6 +2894,7 @@ begin
    FCount:=0;
    FPosition:=0;
    Setlength(FData,0);
+   FFileName := '';
 end;{TFreeFileBuffer.Clear}
 
 destructor TFreeFileBuffer.Destroy;
@@ -2849,11 +2904,12 @@ begin
 end;{TFreeFileBuffer.Destroy}
 
 procedure TFreeFileBuffer.LoadFromFile(Filename:string);
-var FFile      : File;
+var
     DataLeft   : Integer;
     Tmp        : Integer;
     Size       : Integer;
 begin
+   FFileName := Filename;
    AssignFile(FFile,Filename);
    system.Reset(FFile,1);
    FCount:=0;
@@ -2870,6 +2926,7 @@ begin
       Inc(FCount,Tmp);
    end;
    Closefile(FFile);
+   FFileName := '';
 end;{TFreeFileBuffer.LoadFromFile}
 
 // reset the data before reading
@@ -2879,13 +2936,14 @@ begin
 end;{TFreeFileBuffer.Reset}
 
 procedure TFreeFileBuffer.SaveToFile(Filename:string);
-var FFile      : File;
+var
     DataWritten: Integer;
     DataLeft   : Integer;
     Tmp        : Integer;
     Size       : Integer;
 begin
-   AssignFile(FFile,Filename);
+  FFileName := Filename;
+  AssignFile(FFile,Filename);
    Rewrite(FFile,1);
    DataWritten:=0;
    DataLeft:=Count;
@@ -2898,6 +2956,7 @@ begin
       Inc(DataWritten,Tmp);
    end;
    Closefile(FFile);
+   FFileName := '';
 end;{TFreeFileBuffer.SaveToFile}
 
 {---------------------------------------------------------------------------------------------------}
@@ -7123,6 +7182,7 @@ end;{TFreeEntity.Draw}
 
 procedure TFreeEntity.Rebuild;
 begin
+   FBuild := true;
 end;{TFreeEntity.Rebuild}
 
 {---------------------------------------------------------------------------------------------------}
@@ -7159,13 +7219,16 @@ begin
    begin
       FCapacity:=Val;
       Setlength(FPoints,FCapacity);
+      { // MM: this logic may cause Build not set in case of decrease of Capacity.
+        // MM: Replacing it with unconditional Build:=false;
       if FNoPoints>FCapacity then
       begin
          // Make sure that number of points does not exceed the capacity of the curve
          FNoPoints:=FCapacity;
          Build:=false;
-      end;
+      end;}
       Setlength(FKnuckles,FCapacity);
+      Build:=false;
    end;
 end;{TFreeSpline.FSetCapacity}
 
@@ -7185,8 +7248,9 @@ end;{TFreeSpline.FGetFragments}
 
 function TFreeSpline.FGetKnuckle(Index:integer):Boolean;
 begin
-   if (Index>=0) and (Index<FNoPoints) then Result:=FKnuckles[Index]
-                                       else Raise Exception.Create('List index out of bounds in '+ClassName+'.FGetKnuckle. ('+IntToStr(Index)+').');
+   if (Index>=0) and (Index<FNoPoints)
+      then Result:=FKnuckles[Index]
+      else Raise Exception.Create('List index out of bounds in '+ClassName+'.FGetKnuckle. ('+IntToStr(Index)+').');
 end;{TFreeSpline.FGetKnuckle}
 
 procedure TFreeSpline.FSetKnuckle(Index:integer;Value:Boolean);
@@ -7218,8 +7282,9 @@ end;{TFreeSpline.FGetParameter}
 
 function TFreeSpline.FGetPoint(Index:Integer):T3DCoordinate;
 begin
-   if (Index>=0) and (Index<NumberOfPoints) then Result:=FPoints[index]
-                                            else Raise exception.Create('Point index out of bounds!');
+   if (Index>=0) and (Index<NumberOfPoints)
+      then Result:=FPoints[index]
+      else Raise exception.Create('Point index out of bounds!');
 end;{TFreeSpline.FGetPoint}
 
 procedure TFreeSpline.Rebuild;
@@ -7326,13 +7391,9 @@ begin
          FDerivatives[K1].Z:=FDerivatives[K1].Z*FDerivatives[K].Z+U[K1].Z;
       end;
    end;
-   FBuild:=true;
-   {MMDebug}
-   if Length(FDerivatives)<>FNoPoints
-     then FBuild:=false;
-   if Length(FDerivatives)<>FNoPoints
-     then FBuild:=false;
-   {MMDebug}
+   // MM: Suspicious setting of FBuild before inherited Rebuild.
+   // MM: FBuild:=true; is moved to TFreeEntity.Rebuild;
+   //FBuild:=true;
 
    // Determine min/max values
    if FNoPoints>0 then
@@ -7410,8 +7471,9 @@ var Weights    : array of TFloatType;
             Dist:=DistancepointToLine(P2,P1,P3);
             if Dist<1e-2 then
             begin
-               if Length*Length/TotalLength>0.01 then Result:=1e10
-                                                 else Result:=1e8*Dist*Dist*Length;
+               if Length*Length/TotalLength>0.01
+                  then Result:=1e10
+                  else Result:=1e8*Dist*Dist*Length;
             end else Result:=1e8*Dist*Dist*Length;
          end;
       end;
@@ -7481,14 +7543,19 @@ begin
       Result:=False;
    end;
 
-   for I:=1 to numberofpoints do if Knuckle[I-1] then inc(N2);
+   // MM: Useless code? Commenting out
+   {
+   for I:=1 to numberofpoints do
+      if Knuckle[I-1]
+         then inc(N2);
    if N1<>N2 then
    begin
       Build:=false;
    end;
+   }
 
-   Build:=False;
    Capacity:=NumberOfPoints;
+   Build:=False;
 end;{TFreeSpline.Simplify}
 
 procedure TFreeSpline.Add(P:T3DCoordinate);
@@ -7807,6 +7874,7 @@ begin
          end;
       end;
       FNoPoints:=Source.NumberOfpoints;
+      Build := False;
    end else
    begin
       if DuplicatePoint then NoNewPoints:=Source.NumberOfPoints-1
@@ -7863,6 +7931,7 @@ begin
       end;
       inc(FNoPoints,NoNewPoints);
       if not DuplicatePoint then Fknuckles[index]:=True;
+      Build := False;
    end;
 end;{TFreeSpline.InsertSpline}
 
@@ -8064,6 +8133,7 @@ begin
          then Rebuild;
    if (length(FDerivatives)<FNoPoints)
          then Rebuild;
+
    if FNoPoints<2 then exit;
    if FNoPoints=2 then
    begin
@@ -8087,21 +8157,22 @@ begin
                then Rebuild;
       until Hi-Lo<=1;
    end;
+
+   // MM: debug
    if (Hi>(FNoPoints-1)) or (Hi < 0)
-      then writeln('Hi:',Hi);
-   try
+      then raise Exception.Create('Hi is out of range'+EOL+IntToStr(Hi)+' out of 0:'+IntToStr(FNoPoints));
+   if (Lo>(FNoPoints-1)) or (Hi < 0)
+      then raise Exception.Create('Lo is out of range'+EOL+IntToStr(Hi)+' out of 0:'+IntToStr(FNoPoints));
    if (length(FParameters)<FNoPoints)
-         then Rebuild;
+     then raise Exception.Create('length(FParameters)<FNoPoints'+EOL+IntToStr(length(FParameters))
+                                     +' '+IntToStr(FNoPoints));
    if (length(FDerivatives)<FNoPoints)
-         then Rebuild;
+     then raise Exception.Create('length(FDerivatives)<FNoPoints'+EOL+IntToStr(length(FParameters))
+                                  +' '+IntToStr(FNoPoints));
+   // MM: end debug
+
    H:=FParameters[Hi]-FParameters[Lo];
-   except
-      writeln('length(FParameters):',length(FParameters));
-      writeln('FNoPoints:',FNoPoints,' Lo:',Lo,' Hi:',Hi);
-      writeln('FParameters[Lo]:',FParameters[Lo]);
-      writeln('FParameters[Hi]:',FParameters[Hi]);
-      writeln('FParameters[Hi]-FParameters[Lo]:', FParameters[Hi]-FParameters[Lo]);
-   end;
+
    if abs(H)<1e-6 then
    begin
       //Raise exception.Create('Invalid cspline');

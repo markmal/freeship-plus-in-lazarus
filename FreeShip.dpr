@@ -99,6 +99,12 @@ uses
 {$R *.res}
 
 begin
+    Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
+    Writeln ('Compiler version: ',{$I %FPCVERSION%});
+    Writeln ('Target CPU: ',TARGET_CPU);
+    Writeln ('Target OS: ',TARGET_OS);
+
+
    FormatSettings.DecimalSeparator:='.';
    Application.Initialize;
    Application.CreateForm(TMainForm, MainForm);
@@ -193,7 +199,7 @@ begin
 
    ShowTranslatedValues(FreeSplashWindow);
    FreeSplashWindow.Show;
-   FreeSplashWindow.Refresh;
+   //FreeSplashWindow.Refresh;
    sleep(2500);
    Application.Run;
 end.

@@ -50,7 +50,6 @@ uses
      FreeVersionUnit,
      StdCtrls;
 
-
 type
 
 { TFreeSplashWindow }
@@ -67,6 +66,7 @@ type
                                   _Label6: TLabel;
                                   _Label7: TLabel;
                                   _label8: TLabel;
+                                  LabelBuildInfo: TLabel;
                                   procedure TimerTimer(Sender: TObject);
                                   procedure FormClose(Sender: TObject; var Action: TCloseAction);
                                   procedure Image1Click(Sender: TObject);
@@ -156,7 +156,8 @@ var Str:string;
 
 begin
    _Label1.Caption:=Userstring(279)+#32+VersionString(CurrentVersion);
-   _Label6.Caption:=ReleasedDate;
+   _Label6.Caption:='Relese: '+ReleasedDate;
+   LabelBuildInfo.Caption := 'Build: '+COMPILE_DATE+' '+COMPILE_TIME+' '+TARGET_CPU+' '+TARGET_OS;
    Str:='';
    if CurrentLanguage<>nil then
    begin

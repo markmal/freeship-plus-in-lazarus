@@ -57,6 +57,7 @@ uses
      Buttons,
      Classes,
      Printers,
+     FreeTypes,
      FreeGeometry,
      FreeLanguageSupport,
      FasterList,

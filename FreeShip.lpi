@@ -46,7 +46,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="59">
+    <Units Count="62">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -142,7 +142,9 @@
       <Unit15>
         <Filename Value="Forms/FreeLinesplanFrme.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeLinesplanFrame"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
         <UnitName Value="FreeLinesplanFrme"/>
       </Unit15>
       <Unit16>
@@ -435,6 +437,21 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FreePropeller_Task5Dlg"/>
       </Unit58>
+      <Unit59>
+        <Filename Value="Units/FreeTypes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeTypes"/>
+      </Unit59>
+      <Unit60>
+        <Filename Value="Units/FreeFileBuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeFileBuffer"/>
+      </Unit60>
+      <Unit61>
+        <Filename Value="Units/FreeLogger.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeLogger"/>
+      </Unit61>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -456,7 +473,6 @@
         <OverflowChecks Value="True"/>
         <StackChecks Value="True"/>
       </Checks>
-      <VerifyObjMethodCallValidity Value="True"/>
       <Optimizations>
         <OptimizationLevel Value="0"/>
       </Optimizations>
@@ -473,6 +489,8 @@
     </Linking>
     <Other>
       <Verbosity>
+        <ShowNotes Value="False"/>
+        <ShowHints Value="False"/>
         <ShowGenInfo Value="False"/>
         <ShoLineNum Value="True"/>
       </Verbosity>

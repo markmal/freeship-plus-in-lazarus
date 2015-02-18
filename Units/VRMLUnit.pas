@@ -17,6 +17,7 @@ uses
      SysUtils,
      Dialogs,
      Graphics,
+     FreeTypes,
      FreeGeometry,
      FasterList;
 

@@ -36,11 +36,10 @@
       </Linking>
       <Other>
         <Verbosity>
+          <ShowNotes Value="False"/>
+          <ShowHints Value="False"/>
+          <ShowGenInfo Value="False"/>
           <ShoLineNum Value="True"/>
-          <ShowAllProcsOnError Value="True"/>
-          <ShowDebugInfo Value="True"/>
-          <ShowUsedFiles Value="True"/>
-          <ShowTriedFiles Value="True"/>
         </Verbosity>
         <CompilerMessages>
           <MsgFileName Value=""/>

@@ -54,6 +54,7 @@ uses
      Buttons,
      Classes,
      Printers,
+     FreeTypes,
      FreeGeometry,
      FreeShipUnit,
      Math,

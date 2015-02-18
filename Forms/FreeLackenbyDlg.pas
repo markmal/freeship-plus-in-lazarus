@@ -48,6 +48,7 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
+    FreeTypes,
      FreeGeometry,
      FreeshipUnit,
      ExtCtrls,

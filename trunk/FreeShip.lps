@@ -598,7 +598,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3634"/>
         <CursorPos X="1" Y="3645"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="199"/>
       </Unit54>
       <Unit55>
         <Filename Value="Forms/FreeResistance_MHDlg.pas"/>
@@ -610,7 +610,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="49"/>
         <CursorPos X="16" Y="58"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="199"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit55>
       <Unit56>
@@ -623,7 +623,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="49"/>
         <CursorPos X="16" Y="58"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit56>
       <Unit57>
@@ -636,7 +636,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="474"/>
         <CursorPos X="46" Y="484"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="196"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit57>
       <Unit58>
@@ -649,7 +649,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="537"/>
         <CursorPos X="42" Y="554"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="196"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit58>
       <Unit59>
@@ -659,7 +659,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="623"/>
         <CursorPos X="1" Y="11"/>
-        <UsageCount Value="82"/>
+        <UsageCount Value="84"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit59>
       <Unit60>
@@ -670,25 +670,37 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2208"/>
         <CursorPos X="19" Y="2208"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="79"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit60>
       <Unit61>
+        <Filename Value="Units/FreeLogger.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeLogger"/>
+        <EditorIndex Value="9"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="31"/>
+        <CursorPos X="28" Y="62"/>
+        <UsageCount Value="28"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit61>
+      <Unit62>
         <Filename Value="Forms/FreeResistance_RBHSDLG.pas"/>
         <HasResources Value="True"/>
         <UnitName Value="FreeResistance_RBHSDLG"/>
         <UsageCount Value="84"/>
-      </Unit61>
-      <Unit62>
+      </Unit62>
+      <Unit63>
         <Filename Value="/usr/share/lazarus/1.2.6/components/lazutils/lazutf8.pas"/>
         <UnitName Value="LazUTF8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="199"/>
         <CursorPos X="1" Y="217"/>
         <UsageCount Value="4"/>
-      </Unit62>
-      <Unit63>
+      </Unit63>
+      <Unit64>
         <Filename Value="../tachart/tachartteechart.pas"/>
         <UnitName Value="TAChartTeeChart"/>
         <WindowIndex Value="0"/>
@@ -696,8 +708,8 @@
         <CursorPos X="1" Y="208"/>
         <UsageCount Value="28"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit63>
-      <Unit64>
+      </Unit64>
+      <Unit65>
         <Filename Value="Forms/FreeResistance_FungLeibDlg.lfm"/>
         <HasResources Value="True"/>
         <WindowIndex Value="0"/>
@@ -711,27 +723,27 @@
         </ExtraEditor1>
         <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit64>
-      <Unit65>
+      </Unit65>
+      <Unit66>
         <Filename Value="../tachart/talegend.pas"/>
         <UnitName Value="TALegend"/>
         <WindowIndex Value="0"/>
         <TopLine Value="120"/>
         <CursorPos X="5" Y="133"/>
         <UsageCount Value="1"/>
-      </Unit65>
-      <Unit66>
+      </Unit66>
+      <Unit67>
         <Filename Value="Units/FreeGeometry.pas"/>
         <UnitName Value="FreeGeometry"/>
         <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
         <TopLine Value="45"/>
         <CursorPos X="54" Y="73"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="91"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit66>
-      <Unit67>
+      </Unit67>
+      <Unit68>
         <Filename Value="Forms/FreeHydrostaticsFrm.pas"/>
         <UnitName Value="FreeHydrostaticsFrm"/>
         <WindowIndex Value="0"/>
@@ -739,16 +751,16 @@
         <CursorPos X="6" Y="49"/>
         <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit67>
-      <Unit68>
+      </Unit68>
+      <Unit69>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/graphics.pp"/>
         <UnitName Value="Graphics"/>
         <WindowIndex Value="0"/>
         <TopLine Value="41"/>
         <CursorPos X="3" Y="58"/>
         <UsageCount Value="21"/>
-      </Unit68>
-      <Unit69>
+      </Unit69>
+      <Unit70>
         <Filename Value="Packages/FreePackage.pas"/>
         <UnitName Value="FreePackage"/>
         <WindowIndex Value="0"/>
@@ -756,70 +768,58 @@
         <CursorPos X="34" Y="10"/>
         <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit69>
-      <Unit70>
+      </Unit70>
+      <Unit71>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/classes/classesh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1788"/>
         <CursorPos X="27" Y="1807"/>
         <UsageCount Value="11"/>
-      </Unit70>
-      <Unit71>
+      </Unit71>
+      <Unit72>
         <Filename Value="/usr/share/lazarus/1.2.6/components/lazutils/lazlogger.pas"/>
         <UnitName Value="LazLogger"/>
         <WindowIndex Value="0"/>
         <TopLine Value="489"/>
         <CursorPos X="1" Y="520"/>
         <UsageCount Value="2"/>
-      </Unit71>
-      <Unit72>
+      </Unit72>
+      <Unit73>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/graphtype.pp"/>
         <UnitName Value="GraphType"/>
         <WindowIndex Value="0"/>
         <TopLine Value="76"/>
         <CursorPos X="84" Y="151"/>
         <UsageCount Value="9"/>
-      </Unit72>
-      <Unit73>
+      </Unit73>
+      <Unit74>
         <Filename Value="/usr/share/lazarus/1.2.6/components/lazutils/unixlazfileutils.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="1" Y="42"/>
         <UsageCount Value="4"/>
-      </Unit73>
-      <Unit74>
+      </Unit74>
+      <Unit75>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/classes/stringl.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="890"/>
         <CursorPos X="9" Y="902"/>
         <UsageCount Value="4"/>
-      </Unit74>
-      <Unit75>
+      </Unit75>
+      <Unit76>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/include/rasterimage.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="401"/>
         <CursorPos X="1" Y="417"/>
         <UsageCount Value="16"/>
-      </Unit75>
-      <Unit76>
+      </Unit76>
+      <Unit77>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/objpas.pp"/>
         <UnitName Value="objpas"/>
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="8" Y="28"/>
         <UsageCount Value="14"/>
-      </Unit76>
-      <Unit77>
-        <Filename Value="Units/FreeLogger.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeLogger"/>
-        <EditorIndex Value="9"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="31"/>
-        <CursorPos X="28" Y="62"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit77>
       <Unit78>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/dialogs.pp"/>
@@ -828,7 +828,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="172"/>
         <CursorPos X="31" Y="203"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit78>
       <Unit79>
@@ -837,7 +837,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="36"/>
         <CursorPos X="1" Y="53"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit79>
       <Unit80>
@@ -846,7 +846,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="1" Y="30"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit80>
       <Unit81>
@@ -856,7 +856,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="27"/>
         <CursorPos X="1" Y="125"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit81>
       <Unit82>
@@ -866,7 +866,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="39"/>
         <CursorPos X="10" Y="57"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit82>
       <Unit83>
@@ -890,7 +890,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="422"/>
         <CursorPos X="16" Y="673"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit85>
     </Units>

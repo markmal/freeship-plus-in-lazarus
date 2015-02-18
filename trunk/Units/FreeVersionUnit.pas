@@ -50,6 +50,7 @@ const CurrentVersion      = fv335;   // Current (latest) version of the FREE!shi
                                      // All new created models are initialized to this version
       ReleasedDate        = 'Feb 14, 2015';
 function VersionString(Version:TFreeFileVersion):String;
+function VersionBinary(Version:String):TFreeFileVersion;
 
 implementation
 
@@ -101,6 +102,52 @@ begin
       fv335  : Result:='3.4';	  
       else MessageDlg(Userstring(204)+'!',mtError,[mbok],0);
    end
+end;{VersionString}
+
+function VersionBinary(Version:String):TFreeFileVersion;
+begin
+
+  if Version =	'1.1'	 then Result:=	      fv110	 else
+  if Version =	'1.2'	 then Result:=	      fv120	 else
+  if Version =	'1.3'	 then Result:=	      fv130	 else
+  if Version =	'1.4'	 then Result:=	      fv140	 else
+  if Version =	'1.5'	 then Result:=	      fv150	 else
+  if Version =	'1.6'	 then Result:=	      fv160	 else
+  if Version =	'1.65'	 then Result:=	      fv165	 else
+  if Version =	'1.7'	 then Result:=	      fv170	 else
+  if Version =	'1.8'	 then Result:=	      fv180	 else
+  if Version =	'1.9'	 then Result:=	      fv190	 else
+  if Version =	'1.91'	 then Result:=	      fv191	 else
+  if Version =	'1.95'	 then Result:=	      fv195	 else
+  if Version =	'1.98'	 then Result:=	      fv198	 else
+  if Version =	'2.0'	 then Result:=	      fv200	 else
+  if Version =	'2.01'	 then Result:=	      fv201	 else
+  if Version =	'2.1'	 then Result:=	      fv210	 else
+  if Version =	'2.2'	 then Result:=	      fv220	 else
+  if Version =	'2.3'	 then Result:=	      fv230	 else
+  if Version =	'2.4'	 then Result:=	      fv240	 else
+  if Version =	'2.5'	 then Result:=	      fv250	 else
+  if Version =	'2.6'	 then Result:=	      fv260	 else
+  if Version =	'2.7+'	 then Result:=	      fv270	 else
+  if Version =	'2.8+'	 then Result:=	      fv280	 else
+  if Version =	'2.94+'	 then Result:=	      fv290	 else
+  if Version =	'2.95+'	 then Result:=	      fv295	 else
+  if Version =	'2.96+'	 then Result:=	      fv296	 else
+  if Version =	'2.97+'	 then Result:=	      fv297	 else
+  if Version =	'2.98+'	 then Result:=	      fv298	 else
+  if Version =	'3.0+'	 then Result:=	      fv300	 else
+  if Version =	'3.02+'	 then Result:=	      fv302	 else
+  if Version =	'3.03+'	 then Result:=	      fv303	 else
+  if Version =	'3.08+'	 then Result:=	      fv305	 else
+  if Version =	'3.09+'	 then Result:=	      fv309	 else
+  if Version =	'3.12+'	 then Result:=	      fv310	 else
+  if Version =	'3.13+'	 then Result:=	      fv313	 else
+  if Version =	'3.16+'	 then Result:=	      fv314	 else
+  if Version =	'3.27+'	 then Result:=	      fv317	 else
+  if Version =	'3.3+'	 then Result:=	      fv327	 else
+  if Version =	'3.34+'	 then Result:=	      fv332	 else
+  if Version =	'3.4'	 then Result:=	      fv335	 else
+  raise Exception.Create(Userstring(204)+'! '+Version);
 end;{VersionString}
 
 end.

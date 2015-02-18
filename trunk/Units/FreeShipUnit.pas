@@ -51,12 +51,15 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
         Forms,
         Dialogs,
         Classes,
+     FreeTypes,
         FreeVersionUnit,
         FasterList,
+     FreeFileBuffer,
         FreeGeometry,
         FreeMatrices,
         FreeLanguageSupport,
-        FreeControlPointFrm;
+        FreeControlPointFrm,
+     FreeLogger;
 
 
 // FREE!ship uses British imperial format, eg 1 long ton=2240 lbs
@@ -66,20 +69,11 @@ const FreeShipExtention           = '.fbm';                                     
       SelectDistance              = 3;                                                                   // Max. distance in pixels between an item and the cursor in order to be selected
       Threshold                   = 3;                                                                   // The distance that the cursor has to be moved before a controlpoint starts moving
       FontheightFactor            = 140;                                                                 // used for calculating fontheight
-type TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);                                  // Precision of the ship-model
-     TFreeIntersectionType        = (fiFree,fiStation,fiButtock,fiWaterline,fiDiagonal);                 // Different types of intersectionlines, stations, buttocks, waterlines and lines orientated in random planes
-     TFreeModelView               = (mvPort,mvBoth);                                                     // Show half the hull or the entire hull
-     TFreeEditMode                = (emSelectItems);                                                     // The program responds differnt to mouse actions depending on the editmode of the component
-     TFreeHydrostaticType         = (fhShort,fhExtensive);                                               // Determines how calculations are performed: short, extensive etc.
-     TFreeHydrostaticsMode        = (fhSingleCalculation,fhMultipleCalculations);                        // Used when creating hydrostatic reports
-     TFreeHydrostaticsCalculation = (hcAll,hcVolume,hcMainframe,hcWaterline,hcSAC,hcLateralArea,hcBulbSection);        //
-     TFreeHydrostaticsCalculate   = set of TFreeHydrostaticsCalculation;                                 // Set with all calculations to be performed
-     TFreeHydrostaticsCalculateGravity   = set of TFreeHydrostaticsCalculation;                          
+type
      TFreeShip                    = class;                                                               // to be declared later
      TFreeIntersection            = class;
-     TFreeHydrostaticError        = (feNothingSubmerged,feMakingWater,feNotEnoughBuoyancy);              // Errors that may occur when calculating hydrostatics
-     TFreeHydrostaticErrors       = set of TFreeHydrostaticError;
-     TFreeHydrostaticCoeff        = (fcProjectSettings,fcActualData);
+
+
      TFreeHydrostaticsData        = record
                                        ModelMin,ModelMax       : T3DCoordinate;        // Min/max coordinates under given heelingangle and trim
                                        WlMin,WlMax             : T3DCoordinate;        // Min/max coordinates of the waterline
@@ -118,9 +112,9 @@ type TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);         
                                        VertPrismCoefficient    : TFloatType;
                                        // Sectional areas
                                        SAC                     : array of T2DCoordinate;
-                                       // Weight and coordinates of CoG									  
+                                       // Weight and coordinates of CoG
                                        Weight_                 : TFloatType;
-                                       CenterOfGravity_        : T3DCoordinate;									   									   
+                                       CenterOfGravity_        : T3DCoordinate;
                                        // BulbSection properties
                                        BulbSectionarea         : TFloatType;
                                        BulbSectionCOG          : T3DCoordinate;
@@ -131,43 +125,43 @@ type TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);         
                                        Zsdp                    : TFloatType;
                                        Xsdp                    : TFloatType;
                                        YWindAreaMax            : TFloatType;
-                                       // TransverseArea above DWL and coordinates Z of CoG 
+                                       // TransverseArea above DWL and coordinates Z of CoG
                                        SM                      : TFloatType;
                                        Zsm                     : TFloatType;
                                        XWindAreaMax            : TFloatType;
                                        // Angle between BL and QBB
                                        QBBAngle                : TFloatType;
                                        Z_min_board             : TFloatType;
-                                       // Y coordinate of waterplane area for left hull half 
+                                       // Y coordinate of waterplane area for left hull half
                                        Y_c_half                : TFloatType;
                                        // Results of resistance calculation
-									   Wt                      : TFloatType;
-									   t0                      : TFloatType;
-									   EtaR                    : TFloatType;
-									   Dp                      : TFloatType;
-									   Tb                      : TFloatType;
-									   Vs1                     : TFloatType;
-									   Vs2                     : TFloatType;
+        								   Wt                      : TFloatType;
+        								   t0                      : TFloatType;
+        								   EtaR                    : TFloatType;
+        								   Dp                      : TFloatType;
+        								   Tb                      : TFloatType;
+        								   Vs1                     : TFloatType;
+        								   Vs2                     : TFloatType;
                                        Vs3                     : TFloatType;
                                        Vs4                     : TFloatType;
                                        Vs5                     : TFloatType;
-                                       Rt1                     : TFloatType;									   
+                                       Rt1                     : TFloatType;
                                        Rt2                     : TFloatType;
                                        Rt3                     : TFloatType;
                                        Rt4                     : TFloatType;
-                                       Rt5                     : TFloatType;									   
-                                       // Results of propeller calculation									   
-  									   Kt                      : TFloatType;
-									   Kq                      : TFloatType;
+                                       Rt5                     : TFloatType;
+                                       // Results of propeller calculation
+          								   Kt                      : TFloatType;
+        								   Kq                      : TFloatType;
                                        Eta0                    : TFloatType;
                                        Jp                      : TFloatType;
                                        Dpr                     : TFloatType;
-                                       n_nom                   : TFloatType;									   
+                                       n_nom                   : TFloatType;
                                        Nprop                   : TFloatType;
-									   Ndiag                   : TFloatType;
+        								   Ndiag                   : TFloatType;
                                        Zp                      : TFloatType;
                                        Teta                    : TFloatType;
-                                       P_D                     : TFloatType;									   
+                                       P_D                     : TFloatType;
                                        Peng                    : TFloatType;
                                        EtaG                    : TFloatType;
                                        EtaS                    : TFloatType;
@@ -182,616 +176,7 @@ type TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);         
                                        // Stability data
                                        KNSinPhi                : TFloatType;
                                      end;
-     TFreeDelftSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       WlArea            : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeHoltrSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       WlArea            : TFloatType;
-                                       Ke                : TFloatType;
-                                       BA                : TFloatType;
-                                       KBulb             : TFloatType;
-                                       ZBulb             : TFloatType;
-                                       Cstrn             : TFloatType;
-                                       Np                : TFloatType;
-                                       Dp                : TFloatType;
-                                       Ks                : TFloatType;
-                                       K1                : TFloatType;
-                                       K2                : TFloatType;
-                                       K3                : TFloatType;
-                                       K4                : TFloatType;
-                                       K5                : TFloatType;
-                                       K6                : TFloatType;
-                                       K7                : TFloatType;
-                                       A1                : TFloatType;
-                                       A2                : TFloatType;
-                                       A3                : TFloatType;
-                                       A4                : TFloatType;
-                                       A5                : TFloatType;
-                                       A6                : TFloatType;
-                                       A7                : TFloatType;
-                                       A8                : TFloatType;
-                                       A9                : TFloatType;
-                                       A10               : TFloatType;
-                                       A11               : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeHollenSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       Los               : TFloatType;
-                                       Ke                : TFloatType;
-                                       BA                : TFloatType;
-                                       KBulb             : TFloatType;
-                                       ZBulb             : TFloatType;
-                                       Cstrn             : TFloatType;
-                                       Np                : TFloatType;
-                                       Dp                : TFloatType;
-                                       Ks                : TFloatType;
-                                       K1                : TFloatType;
-                                       K2                : TFloatType;
-                                       K3                : TFloatType;
-                                       K4                : TFloatType;
-                                       K5                : TFloatType;
-                                       K6                : TFloatType;
-                                       K7                : TFloatType;
-                                       A1                : TFloatType;
-                                       A2                : TFloatType;
-                                       A3                : TFloatType;
-                                       A4                : TFloatType;
-                                       A5                : TFloatType;
-                                       A6                : TFloatType;
-                                       A7                : TFloatType;
-                                       A8                : TFloatType;
-                                       A9                : TFloatType;
-                                       A10               : TFloatType;
-                                       A11               : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeOortmerSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       Los               : TFloatType;
-                                       Ke                : TFloatType;
-                                       BA                : TFloatType;
-                                       KBulb             : TFloatType;
-                                       ZBulb             : TFloatType;
-                                       Cstrn             : TFloatType;
-                                       Np                : TFloatType;
-                                       Dp                : TFloatType;
-                                       Ks                : TFloatType;
-                                       K1                : TFloatType;
-                                       K2                : TFloatType;
-                                       K3                : TFloatType;
-                                       K4                : TFloatType;
-                                       K5                : TFloatType;
-                                       K6                : TFloatType;
-                                       K7                : TFloatType;
-                                       A1                : TFloatType;
-                                       A2                : TFloatType;
-                                       A3                : TFloatType;
-                                       A4                : TFloatType;
-                                       A5                : TFloatType;
-                                       A6                : TFloatType;
-                                       A7                : TFloatType;
-                                       A8                : TFloatType;
-                                       A9                : TFloatType;
-                                       A10               : TFloatType;
-                                       A11               : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeFungSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       Los               : TFloatType;
-                                       Ke                : TFloatType;
-                                       BA                : TFloatType;
-                                       KBulb             : TFloatType;
-                                       ZBulb             : TFloatType;
-                                       Cstrn             : TFloatType;
-                                       Np                : TFloatType;
-                                       Dp                : TFloatType;
-                                       Ks                : TFloatType;
-                                       K1                : TFloatType;
-                                       K2                : TFloatType;
-                                       K3                : TFloatType;
-                                       K4                : TFloatType;
-                                       K5                : TFloatType;
-                                       K6                : TFloatType;
-                                       K7                : TFloatType;
-                                       A1                : TFloatType;
-                                       A2                : TFloatType;
-                                       A3                : TFloatType;
-                                       A4                : TFloatType;
-                                       A5                : TFloatType;
-                                       A6                : TFloatType;
-                                       A7                : TFloatType;
-                                       A8                : TFloatType;
-                                       A9                : TFloatType;
-                                       A10               : TFloatType;
-                                       A11               : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;													
-     TFreeOSTSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       WlArea            : TFloatType;
-                                       Ke                : TFloatType;
-                                       Ks                : TFloatType;
-                                       Nser              : TFloatType;
-                                       Na                : TFloatType;
-                                       Nf                : TFloatType;
-                                       Np                : TFloatType;
-                                       Dp                : TFloatType;
-                                       K1                : TFloatType;
-                                       K2                : TFloatType;
-                                       K3                : TFloatType;
-                                       K4                : TFloatType;
-                                       K5                : TFloatType;
-                                       K6                : TFloatType;
-                                       K7                : TFloatType;
-                                       A1                : TFloatType;
-                                       A2                : TFloatType;
-                                       A3                : TFloatType;
-                                       A4                : TFloatType;
-                                       A5                : TFloatType;
-                                       A6                : TFloatType;
-                                       A7                : TFloatType;
-                                       A8                : TFloatType;
-                                       A9                : TFloatType;
-                                       A10               : TFloatType;
-                                       A11               : TFloatType;
-                                       Dat17_1           : TFloatType;
-                                       Dat17_2           : TFloatType;
-                                       Dat17_3           : TFloatType;
-                                       Dat17_4           : TFloatType;
-                                       Dat17_5           : TFloatType;
-                                       Dat18_1           : TFloatType;
-                                       Dat18_2           : TFloatType;
-                                       Dat18_3           : TFloatType;
-                                       Dat18_4           : TFloatType;
-                                       Dat18_5           : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;
-     TFreePlaningResistanceData     = record
-                                       Draft             : TFloatType;
-                                       Lwl               : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       LCB               : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       At_Ax             : TFloatType;
-                                       EntranceAngle     : TFloatType;
-                                       Sa                : TFloatType;
-                                       Caa               : TFloatType;
-                                       Angle             : TFloatType;
-                                       K                 : TFloatType;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeKAPERResistanceData     = record
-                                       Draft             : TFloatType;
-                                       Lwl               : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       LCB               : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       At_Ax             : TFloatType;
-                                       EntranceAngle     : TFloatType;
-                                       Extract           : Boolean;
-                                    end;									
-     TFreeTask1PropellerData     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Extract            : Boolean;
-                                    end;
-     TFreeTask2PropellerData     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Dat17_1            : TFloatType;
-                                       Dat17_2            : TFloatType;
-                                       Dat17_3            : TFloatType;
-                                       Dat17_4            : TFloatType;
-                                       Dat17_5            : TFloatType;
-                                       Dat18_1            : TFloatType;
-                                       Dat18_2            : TFloatType;
-                                       Dat18_3            : TFloatType;
-                                       Dat18_4            : TFloatType;
-                                       Dat18_5            : TFloatType;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeTask3PropellerData     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Dat17              : TFloatType;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeTask4PropellerData     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Extract            : Boolean;
-                                    end;
-     TFreeTask5PropellerData     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Extract            : Boolean;
-                                    end;
-     TFreeRvrsPropellerData     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Dat17              : TFloatType;
-//				   Dat18              : TFloatType;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeHydrodynManeuvData     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Dat17              : TFloatType;
-                                       Dat18              : TFloatType;
-                                       Dat19              : TFloatType;									   
-                                       Dat20              : TFloatType;									   
-                                       Extract            : Boolean;
-                                    end;									
-     TFreeHydrodynTask1Data     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Extract            : Boolean;
-                                    end;
-									
-{     TFreeHydrodynTask2Data     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;									   
-                                       Extract            : Boolean;
-                                    end;
-     TFreeHydrodynTask3Data     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Extract            : Boolean;
-                                    end;
-     TFreeHydrodynTask4Data     = record
-                                       Dat2               : TFloatType;
-                                       Dat3               : TFloatType;
-                                       Dat4               : TFloatType;
-                                       Dat5               : TFloatType;
-                                       Dat6               : TFloatType;
-                                       Dat7               : TFloatType;
-                                       Dat8               : TFloatType;
-                                       Dat9               : TFloatType;
-                                       Dat10              : TFloatType;
-                                       Dat11              : TFloatType;
-                                       Dat12              : TFloatType;
-                                       Dat13              : TFloatType;
-                                       Dat14              : TFloatType;
-                                       Dat15              : TFloatType;
-                                       Dat16              : TFloatType;
-                                       Extract            : Boolean;
-                                    end;
 
-}
-     TFreeRBHSSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       WlArea            : TFloatType;
-                                       Ke                : TFloatType;
-                                       Ks                : TFloatType;
-                                       Nser              : TFloatType;
-                                       Na                : TFloatType;
-                                       Nf                : TFloatType;
-                                       Np                : TFloatType;
-                                       Dp                : TFloatType;
-                                       K1                : TFloatType;
-                                       K2                : TFloatType;
-                                       K3                : TFloatType;
-                                       K4                : TFloatType;
-                                       K5                : TFloatType;
-                                       K6                : TFloatType;
-                                       K7                : TFloatType;
-                                       A1                : TFloatType;
-                                       A2                : TFloatType;
-                                       A3                : TFloatType;
-                                       A4                : TFloatType;
-                                       A5                : TFloatType;
-                                       A6                : TFloatType;
-                                       A7                : TFloatType;
-                                       A8                : TFloatType;
-                                       A9                : TFloatType;
-                                       A10               : TFloatType;
-                                       A11               : TFloatType;
-                                       Dat17_1           : TFloatType;
-                                       Dat17_2           : TFloatType;
-                                       Dat17_3           : TFloatType;
-                                       Dat17_4           : TFloatType;
-                                       Dat17_5           : TFloatType;
-                                       Dat18_1           : TFloatType;
-                                       Dat18_2           : TFloatType;
-                                       Dat18_3           : TFloatType;
-                                       Dat18_4           : TFloatType;
-                                       Dat18_5           : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;
-     TFreeMHSeriesResistanceData=record
-                                       StartSpeed        : TFloatType;
-                                       EndSpeed          : TFloatType;
-                                       StepSpeed         : TFloatType;
-                                       Bwl               : TFloatType;
-                                       Cp                : TFloatType;
-                                       Displacement      : TFloatType;
-                                       Draft             : TFloatType;
-                                       DraftTotal        : TFloatType;
-                                       KeelChordLength   : TFloatType;
-                                       KeelArea          : TFloatType;
-                                       LCB               : TFloatType;
-                                       Lwl               : TFloatType;
-                                       RudderChordLength : TFloatType;
-                                       RudderArea        : TFloatType;
-                                       Viscosity         : TFloatType;
-                                       WettedSurface     : TFloatType;
-                                       WlArea            : TFloatType;
-                                       Ke                : TFloatType;
-                                       Ks                : TFloatType;
-                                       Nser              : TFloatType;
-                                       Na                : TFloatType;
-                                       Nf                : TFloatType;
-                                       Np                : TFloatType;
-                                       Dp                : TFloatType;
-                                       K1                : TFloatType;
-                                       K2                : TFloatType;
-                                       K3                : TFloatType;
-                                       K4                : TFloatType;
-                                       K5                : TFloatType;
-                                       K6                : TFloatType;
-                                       K7                : TFloatType;
-                                       A1                : TFloatType;
-                                       A2                : TFloatType;
-                                       A3                : TFloatType;
-                                       A4                : TFloatType;
-                                       A5                : TFloatType;
-                                       A6                : TFloatType;
-                                       A7                : TFloatType;
-                                       A8                : TFloatType;
-                                       A9                : TFloatType;
-                                       A10               : TFloatType;
-                                       A11               : TFloatType;
-                                       Dat17_1           : TFloatType;
-                                       Dat17_2           : TFloatType;
-                                       Dat17_3           : TFloatType;
-                                       Dat17_4           : TFloatType;
-                                       Dat17_5           : TFloatType;
-                                       Dat18_1           : TFloatType;
-                                       Dat18_2           : TFloatType;
-                                       Dat18_3           : TFloatType;
-                                       Dat18_4           : TFloatType;
-                                       Dat18_5           : TFloatType;
-                                       EstimateWetSurf   : boolean;
-                                       Extract           : Boolean;
-                                    end;									
-									
      {---------------------------------------------------------------------------------------------------}
      {                                       TFreeUndoObject                                             }
      {                                                                                                   }
@@ -1108,6 +493,7 @@ type TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);         
                                     FRecentFiles                  : TStringList;
                                     function FGetRecentFile(Index:integer):string;
                                     function FGetRecentFileCount:integer;
+                                    procedure SaveDialogTypeChange(Sender: TObject);
                                  public
                                     procedure AddToRecentFiles(Filename:String);                            // Takes a filename and adds it to the list with recent files
                                     procedure BackgroundImage_Delete(Viewport:TFreeViewport);               // Delete the backgrundimage associated with this view
@@ -1960,7 +1346,7 @@ end;{TFreeBackgroundImageData.LoadBinary}
 
 procedure TFreeBackgroundImageData.SaveBinary(Destination:TFreeFileBuffer);
 begin
-   destination.Add(Ord(AssignedView));
+   Destination.Add(Ord(AssignedView));
    Destination.Add(FVisible);
    Destination.Add(FQuality);
    Destination.Add(FOrigin.X);
@@ -5889,8 +5275,8 @@ begin
    AlreadyPresent:=false;
    Ext:=Uppercase(ExtractFileExt(Filename));
 
-   Tmp:=ChangeFileExt(Filename,'');
-   Tmp:=Trim(Tmp);
+   //Tmp:=ChangeFileExt(Filename,'');
+   Tmp:=trim(Filename);
    for I:=1 to FRecentFiles.Count do
    begin
       if Uppercase(FRecentFiles[I-1])=Uppercase(Tmp) then
@@ -10287,7 +9673,7 @@ begin
    Owner.Preferences.InitDirectory:=ExtractFilePath('freeship.exe');   
 /////   
    OpenDialog.InitialDir:=Owner.Preferences.OpenDirectory;
-   OpenDialog.Filter:='FREE!ship files (*.fbm)|*.fbm';
+   OpenDialog.Filter:='FREE!ship files (*.fbm *.ftm)|*.fbm;*.ftm';
    Opendialog.Options:=[ofHideReadOnly];
    if OpenDialog.Execute then
    begin
@@ -10323,13 +9709,22 @@ if FileExistsUTF8('Sterns.txt') { *Converted from FileExists* } then DeleteFileU
 end;{TFreeEdit.File_Load}
 
 procedure TFreeEdit.File_Load(filename:string);
-var Source  : TFreeFileBuffer;
+var Source  : TFreeFileBuffer; ext:String;
 begin
-   Source:=TFreeFileBuffer.Create;
+   Ext:=LowerCase(ExtractFileExt(filename));
+   if Ext='.fbm'
+   then Source:=TFreeFileBuffer.Create
+   else
+     if Ext='.ftm'
+       then Source:=TFreeTextBuffer.Create
+   else
+     raise Exception.Create('Unsupported file format: '+Ext);
+
    try
       Source.LoadFromFile(FileName);                // Load everything into memory
       Owner.Preferences.OpenDirectory:=ExtractFilePath(FileName);
-      Owner.Filename:=ChangeFileExt(FileName,'.fbm');
+      //Owner.Filename:=ChangeFileExt(FileName,'.fbm');
+      Owner.Filename:=FileName;
 //My correction
 //      MessageDlg('Begin Loading *.fbm',mtError,[mbOk],0);
       Owner.LoadBinary(Source);                    // Now read the information from memory
@@ -10353,7 +9748,7 @@ end;{TFreeEdit.File_Load}
 procedure TFreeEdit.File_Save;
 var Backup     : string;
     Destination: TFreeFileBuffer;
-    Str        : string;
+    Str, Ext   : string;
     Answer     : word;
 begin
    if not Owner.FilenameSet then File_SaveAs;
@@ -10381,7 +9776,10 @@ begin
       if not RenameFileUTF8(Owner.Filename,Backup) { *Converted from RenameFile* }
          then MessageDlg(Userstring(129),mtError,[mbOk],0);
    end;
-   Destination:=TFreeFileBuffer.Create;
+   Ext := ExtractFileExt(Owner.Filename);
+   if Ext = '.fbm'
+     then Destination:=TFreeFileBuffer.Create
+     else Destination:=TFreeTextBuffer.Create;
    Owner.SaveBinary(Destination);
    Destination.SaveToFile(Owner.Filename);
    Owner.Preferences.SaveDirectory:=ExtractFilePath(Owner.FileName);
@@ -10389,20 +9787,53 @@ begin
    Destination.Destroy;
 end;{TFreeEdit.File_Save}
 
+
+procedure TFreeEdit.SaveDialogTypeChange(Sender: TObject);
+var
+  FName, Ext: string;
+  SD : TSaveDialog;
+  C,I : integer;
+  Comp:TComponent;
+begin
+  SD := TSaveDialog(Sender);
+  with SD do
+  begin
+    if DirectoryExists(FileName) then // FileName is Empty
+      exit;
+    case FilterIndex of
+    1: Ext := '.ftm';
+    2: Ext := '.fbm';
+    end;
+    FName := ChangeFileExt(ExtractFileName(FileName), Ext);
+    FileName:=FName;
+    Title:=FName;
+    C:=ComponentCount;
+    for I:=0 to C do
+     Comp:=SD.Components[I];
+    //SendMessage(GetParent(Handle), CDM_SETCONTROLTEXT, 1152, LongInt(PChar(FName)));
+  end;
+end;
+
 procedure TFreeEdit.File_SaveAs;
-var SaveDialog : TSaveDialog;
+var SaveDialog : TSaveDialog; I:integer;
 begin
    SaveDialog:=TSaveDialog.Create(Owner);
    SaveDialog.InitialDir:=Owner.Preferences.SaveDirectory;
    Savedialog.FileName:=ExtractFilename(Owner.Filename);
-   SaveDialog.Filter:='FREE!ship files (*.fbm)|*.fbm';
+   SaveDialog.Filter:='FREE!ship text files (*.ftm)|*.ftm|FREE!ship binary files (*.fbm)|*.fbm';
    Savedialog.Options:=[ofOverwritePrompt,ofHideReadOnly];
+   Savedialog.OnTypeChange:=SaveDialogTypeChange;
    if SaveDialog.Execute then
    begin
       Owner.Preferences.SaveDirectory:=ExtractFilePath(SaveDialog.FileName);
       if CurrentVersion>Owner.FileVersion then Owner.FStopAskingForFileVersion:=False;
-      Owner.Filename:=Savedialog.Filename;;
+      Owner.Filename:=Savedialog.Filename;
       Owner.FFilenameSet:=True;
+      I:=SaveDialog.FilterIndex;
+      case I of
+       1: Owner.Filename:=ChangeFileExt(Savedialog.Filename,'.ftm');
+       2: Owner.Filename:=ChangeFileExt(Savedialog.Filename,'.fbm');
+      end;
       File_Save;
    end;
    SaveDialog.Destroy;
@@ -14362,7 +13793,8 @@ begin
             begin
                Readln(FFile,Filename);
                // only add the file to the list if it is a valid filename
-               if FileExistsUTF8(Filename+'.fbm') { *Converted from FileExists* } then Owner.Edit.FRecentFiles.Add(Filename);
+               if FileExistsUTF8(Filename) { *Converted from FileExists* }
+                 then Owner.Edit.FRecentFiles.Add(Filename);
             end;
             if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
          end;
@@ -15238,9 +14670,13 @@ begin
 end;{TFreeShip.FGetBuild}
 
 function TFreeShip.FGetFilename:string;
+var Ext:String;
 begin
    if FFilename='' then FFilename:=Userstring(179);
-   Result:=ChangeFileExt(FFilename,FreeShipExtention);
+   Ext:=ExtractFileExt(FFilename);
+   if (Ext='.ftm') or (Ext='.fbm')
+   then Result:=FFilename
+   else Result:=ChangeFileExt(FFilename,FreeShipExtention);
 end;{TFreeShip.FGetFilename}
 
 function TFreeShip.FGetHydrostaticCalculation(Index:integer):TFreeHydrostaticCalc;
@@ -16590,6 +16026,7 @@ begin
    PrevCursor:=Screen.Cursor;
    Screen.Cursor:=crHourGlass;
    try
+      Logger.Debug('LoadBinary');
       Source.Reset;
       Source.Load(Str);
       if Str='FREE!ship' then
@@ -16606,6 +16043,7 @@ begin
             Surface.LoadBinary(Source);
             // Load stations
             Source.Load(N);
+            Logger.Debug('Stations:'+IntToStr(N)+' pos:'+IntToStr(Source.Position));
             FStations.Capacity:=N;
             for I:=1 to N do
             begin
@@ -16616,6 +16054,7 @@ begin
             // Load Buttocks
             Source.Load(N);
             FButtocks.Capacity:=N;
+            Logger.Debug('Buttocks:'+IntToStr(N)+' pos:'+IntToStr(Source.Position));
             for I:=1 to N do
             begin
                Intersection:=TFreeIntersection.Create(self);
@@ -16625,6 +16064,7 @@ begin
             // Load Waterlines
             Source.Load(N);
             FWaterlines.Capacity:=N;
+            Logger.Debug('Waterlines:'+IntToStr(N)+' pos:'+IntToStr(Source.Position));
             for I:=1 to N do
             begin
                Intersection:=TFreeIntersection.Create(self);
@@ -16635,6 +16075,7 @@ begin
             begin
                // Load Diagonals
                Source.Load(N);
+               Logger.Debug('Diagonals:'+IntToStr(N)+' pos:'+IntToStr(Source.Position));
                FDiagonals.Capacity:=N;
                for I:=1 to N do
                begin
@@ -16646,6 +16087,7 @@ begin
                begin
                   // Load markers
                   Source.Load(N);
+                  Logger.Debug('Markers:'+IntToStr(N)+' pos:'+IntToStr(Source.Position));
                   FMarkers.Capacity:=N;
                   for I:=1 to N do
                   begin
@@ -16656,11 +16098,14 @@ begin
                   end;
                   if FileVersion>=fv210 then
                   begin
-                     Source.Load(FResistanceDelftData,SizeOf(FResistanceDelftData));
-                     Source.Load(FResistanceKaperData,SizeOf(FResistanceKaperData));
+                     Logger.Debug('FResistanceDelftData:'+' pos:'+IntToStr(Source.Position));
+                     Source.Load(FResistanceDelftData);
+                     Logger.Debug('FResistanceKaperData:'+' pos:'+IntToStr(Source.Position));
+                     Source.Load(FResistanceKaperData);
                      if FileVersion>=fv250 then
                      begin
                         Source.Load(N);
+                        Logger.Debug('BackgroundImages:'+IntToStr(N)+' pos:'+IntToStr(Source.Position));
                         for I:=1 to N do
                         begin
                            Data:=TFreeBackgroundImageData.Create(self);
@@ -16668,6 +16113,7 @@ begin
                            Data.LoadBinary(Source);
                         end;
                         Source.Load(N);
+                        Logger.Debug('Flowlines:'+IntToStr(N)+' pos:'+IntToStr(Source.Position));
                         FFlowlines.Capacity:=N;
                         for I:=1 to N do
                         begin
@@ -16676,35 +16122,48 @@ begin
                            Flowline.LoadBinary(Source);
                         end;
                         if FileVersion>=fv270 then
-                        begin         
+                        begin
+                          {
                           Source.Load(FResistanceHoltrData,SizeOf(FResistanceHoltrData));
                           Source.Load(FResistanceOSTData,SizeOf(FResistanceOSTData));
                           Source.Load(FPropellerTask1Data,SizeOf(TFreeTask1PropellerData));
                           Source.Load(FPropellerTask2Data,SizeOf(TFreeTask2PropellerData));
                           Source.Load(FPropellerTask3Data,SizeOf(TFreeTask3PropellerData));
-                        end; 
-						if FileVersion>=fv280 then	Source.Load(FResistancePlaningData,SizeOf(FResistancePlaningData));						  						
-						if FileVersion>=fv290 then	Source.Load(FPropellerRvrsData,SizeOf(TFreeRvrsPropellerData));
-						if FileVersion>=fv295 then	Source.Load(FResistanceHollenData,SizeOf(FResistanceHollenData));
-						if FileVersion>=fv296 then	Source.Load(FPropellerTask4Data,SizeOf(TFreeTask4PropellerData));
-						if FileVersion>=fv302 then	Source.Load(FPropellerTask5Data,SizeOf(TFreeTask5PropellerData));
-						if FileVersion>=fv309 then	Source.Load(FResistanceOortmerData,SizeOf(FResistanceOortmerData));
-						if FileVersion>=fv313 then	Source.Load(FResistanceFungData,SizeOf(FResistanceFungData));
-						if FileVersion>=fv327 then	begin
-                          Source.Load(FHydrodynManeuvData,SizeOf(TFreeHydrodynManeuvData));						
-                          Source.Load(FHydrodynTask1Data,SizeOf(TFreeHydrodynTask1Data));
-						end;					
-						if FileVersion>=fv335 then	begin
-                          Source.Load(FResistanceRBHSData,SizeOf(FResistanceRBHSData));
-                          Source.Load(FResistanceMHData,SizeOf(FResistanceMHData));
-                        end;						  
-                     end;
-                  end;
-               end;
-            end;
-         end else MessageDlg(Userstring(113)+eol+
+                          }
+                           Source.Load(FResistanceHoltrData);
+                           Source.Load(FResistanceOSTData);
+                           Source.Load(FPropellerTask1Data);
+                           Source.Load(FPropellerTask2Data);
+                           Source.Load(FPropellerTask3Data);
+                        end;
+
+                      if FileVersion>=fv280 then	Source.Load(FResistancePlaningData);
+		      if FileVersion>=fv290 then	Source.Load(FPropellerRvrsData);
+		      if FileVersion>=fv295 then	Source.Load(FResistanceHollenData);
+		      if FileVersion>=fv296 then	Source.Load(FPropellerTask4Data);
+		      if FileVersion>=fv302 then	Source.Load(FPropellerTask5Data);
+		      if FileVersion>=fv309 then	Source.Load(FResistanceOortmerData);
+		      if FileVersion>=fv313 then	Source.Load(FResistanceFungData);
+
+                      if FileVersion>=fv327 then
+                      begin
+                        Source.Load(FHydrodynManeuvData);
+                        Source.Load(FHydrodynTask1Data);
+		      end;
+		      if FileVersion>=fv335 then
+                      begin
+                        Source.Load(FResistanceRBHSData);
+                        Source.Load(FResistanceMHData);
+                      end;
+                     end; //if FileVersion>=fv250
+                  end; //if FileVersion>=fv210
+               end;  //if FileVersion>=fv191
+            end;  //if FileVersion>=fv180
+          end //if (FFileVersion<=CurrentVersion) or (FFileVersion<=High(FFileVersion))
+      else MessageDlg(Userstring(113)+eol+
                              UserString(188)+'.',mtError,[mbOk],0);
-      end else MessageDlg(Userstring(189),mtError,[mbOk],0);
+      end //if Str='FREE!ship' then
+      else MessageDlg(Userstring(189),mtError,[mbOk],0);
       FileChanged:=False;
    finally
       Surface.DesiredSubdivisionLevel:=Ord(Precision)+1;
@@ -16780,6 +16239,7 @@ begin
    PrevCursor:=Screen.Cursor;
    Screen.Cursor:=crHourGlass;
    try
+      Logger.Debug('SaveBinary');
       Destination.Add('FREE!ship');
       Destination.Add(FileVersion);
       Destination.Add(Ord(Precision));
@@ -16789,57 +16249,68 @@ begin
       Surface.SaveBinary(Destination);
       // Save stations
       Destination.Add(NumberOfStations);
+      Logger.Debug('Stations:'+IntToStr(NumberOfStations)+' pos:'+IntToStr(Destination.Position));
       For I:=1 to NumberOfStations do Station[I-1].SaveBinary(Destination);
       // Save Buttocks
       Destination.Add(NumberOfButtocks);
+      Logger.Debug('Buttocks:'+IntToStr(NumberOfButtocks)+' pos:'+IntToStr(Destination.Position));
       For I:=1 to NumberOfButtocks do Buttock[I-1].SaveBinary(Destination);
       // Save Waterlines
       Destination.Add(NumberOfWaterlines);
+      Logger.Debug('Waterlines:'+IntToStr(NumberOfWaterlines)+' pos:'+IntToStr(Destination.Position));
       For I:=1 to NumberOfWaterlines do Waterline[I-1].SaveBinary(Destination);
       if FileVersion>=fv180 then
       begin
          // Save Diagonals
          Destination.Add(NumberOfDiagonals);
+         Logger.Debug('Diagonals:'+IntToStr(NumberOfDiagonals)+' pos:'+IntToStr(Destination.Position));
          For I:=1 to NumberOfDiagonals do Diagonal[I-1].SaveBinary(Destination);
          if FileVersion>=fv191 then
          begin
             // Save markers
             Destination.Add(NumberOfMarkers);
+            Logger.Debug('Markers:'+IntToStr(NumberOfMarkers)+' pos:'+IntToStr(Destination.Position));
             for I:=1 to NumberOfMarkers do Marker[I-1].SaveBinary(Destination);
             if FileVersion>=fv210 then
             begin
-               Destination.Add(FResistanceDelftData,SizeOf(FResistanceDelftData));
-               Destination.Add(FResistanceKaperData,SizeOf(FResistanceKaperData));
+               Logger.Debug('ResistanceDelftData:'+' pos:'+IntToStr(Destination.Position));
+               Destination.Add(FResistanceDelftData);
+               Logger.Debug('ResistanceKaperData:'+' pos:'+IntToStr(Destination.Position));
+               Destination.Add(FResistanceKaperData);
                if FileVersion>=fv250 then
                begin
                   Destination.Add(NumberOfbackgroundImages);
+                  Logger.Debug('backgroundImages:'+IntToStr(NumberOfbackgroundImages)+' pos:'+IntToStr(Destination.Position));
                   for I:=1 to NumberOfBackgroundImages do BackgroundImage[I-1].SaveBinary(Destination);
                   Destination.Add(NumberOfFlowlines);
+                  Logger.Debug('Flowlines:'+IntToStr(NumberOfFlowlines)+' pos:'+IntToStr(Destination.Position));
                   for I:=1 to NumberOfFlowlines do Flowline[I-1].SaveBinary(Destination);
                end;
                if FileVersion>=fv270 then
                begin
-                  Destination.Add(FResistanceHoltrData,SizeOf(FResistanceHoltrData));
-                  Destination.Add(FResistanceOSTData,  SizeOf(FResistanceOSTData));
-                  Destination.Add(FPropellerTask1Data, SizeOf(TFreeTask1PropellerData));
-                  Destination.Add(FPropellerTask2Data, SizeOf(TFreeTask2PropellerData));
-                  Destination.Add(FPropellerTask3Data, SizeOf(TFreeTask3PropellerData));
+                  Destination.Add(FResistanceHoltrData);
+                  Destination.Add(FResistanceOSTData);
+                  Destination.Add(FPropellerTask1Data);
+                  Destination.Add(FPropellerTask2Data);
+                  Destination.Add(FPropellerTask3Data);
                end; 
-               if FileVersion>=fv280 then Destination.Add(FResistancePlaningData,SizeOf(FResistancePlaningData));				  
-			   if FileVersion>=fv290 then Destination.Add(FPropellerRvrsData,    SizeOf(TFreeRvrsPropellerData));
-			   if FileVersion>=fv295 then Destination.Add(FResistanceHollenData, SizeOf(FResistanceHollenData));
-			   if FileVersion>=fv296 then Destination.Add(FPropellerTask4Data,   SizeOf(TFreeTask4PropellerData));
-			   if FileVersion>=fv302 then Destination.Add(FPropellerTask5Data,   SizeOf(TFreeTask5PropellerData));
-			   if FileVersion>=fv309 then Destination.Add(FResistanceOortmerData,SizeOf(FResistanceOortmerData));
-			   if FileVersion>=fv313 then Destination.Add(FResistanceFungData,   SizeOf(FResistanceFungData));
-               if FileVersion>=fv327 then begin
-                  Destination.Add(FHydrodynManeuvData,SizeOf(TFreeHydrodynManeuvData));			   
-                  Destination.Add(FHydrodynTask1Data,SizeOf(TFreeHydrodynTask1Data));
-			   end;										   
-               if FileVersion>=fv335 then begin
-                  Destination.Add(FResistanceRBHSData,  SizeOf(FResistanceRBHSData));
-                  Destination.Add(FResistanceMHData,  SizeOf(FResistanceMHData));
-			   end;								
+               if FileVersion>=fv280 then Destination.Add(FResistancePlaningData);
+	       if FileVersion>=fv290 then Destination.Add(FPropellerRvrsData);
+	       if FileVersion>=fv295 then Destination.Add(FResistanceHollenData);
+	       if FileVersion>=fv296 then Destination.Add(FPropellerTask4Data);
+	       if FileVersion>=fv302 then Destination.Add(FPropellerTask5Data);
+	       if FileVersion>=fv309 then Destination.Add(FResistanceOortmerData);
+	       if FileVersion>=fv313 then Destination.Add(FResistanceFungData);
+               if FileVersion>=fv327 then
+               begin
+                  Destination.Add(FHydrodynManeuvData);
+                  Destination.Add(FHydrodynTask1Data);
+	       end;
+               if FileVersion>=fv335 then
+               begin
+                  Destination.Add(FResistanceRBHSData);
+                  Destination.Add(FResistanceMHData);
+	       end;
             end;
          end;
       end;

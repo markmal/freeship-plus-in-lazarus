@@ -59,6 +59,7 @@ uses
      {$IFDEF MEMCHECK}
         MemCheck,     // Memcheck is used for memory-leak tracking (debugging all)
      {$ENDIF}
+     FreeTypes,
      FreeGeometry,
      FreeShipUnit,
      FreeVersionUnit,
@@ -1072,7 +1073,7 @@ begin
    begin
       Menu:=sender as TMenuItem;
       // Skip translation
-      Filename:=Menu.Caption+'.fbm';
+      Filename:=Menu.Caption;
       repeat
          N:=Pos('&',Filename);
          if N<>0 then system.Delete(Filename,N,1);
@@ -1106,7 +1107,7 @@ var Menu    : TMenuItem;
 begin
   if FreeShip.Edit.RecentFileCount = 0 then exit;
   Filename := Freeship.Edit.RecentFile[0];
-  Filename := Filename + '.fbm';
+  Filename := Filename;
   if FileExistsUTF8(Filename) { *Converted from FileExists* } then
     begin
     Freeship.Edit.File_Load(Filename);

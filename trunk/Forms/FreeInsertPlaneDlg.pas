@@ -48,6 +48,7 @@ uses
      Buttons,
      ExtCtrls,
      StdCtrls,
+     FreeTypes,
      FreeGeometry;
 
 type

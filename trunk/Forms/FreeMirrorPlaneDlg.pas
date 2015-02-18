@@ -49,6 +49,7 @@ uses
      ExtCtrls,
      StdCtrls,
      FreeGeometry,
+     FreeTypes,
      FreeNumInput;
 
 type TFreeMirrorPlaneDialog  = class(TForm)

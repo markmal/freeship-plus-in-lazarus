@@ -55,8 +55,11 @@ uses
   StdCtrls,
   Printers,
   StrUtils,
+  FreeTypes,
   FreeVersionUnit,
-  ExtCtrls, FileUtil;
+  FreeFileBuffer,
+  ExtCtrls,
+  FileUtil;
 
 const Foot                          = 0.3048;
       Lbs                           = 0.44642857;
@@ -64,10 +67,8 @@ const Foot                          = 0.3048;
       IncrementSize                 = 25;                            // amount of points which is automaticly allocated extra memory for
       Decimals                      = 4;                             // When weilding points together this is the accuracy for comparing points
       PixelCountMax                 = 32768;                         // used for faster pixel acces when shading to viewport
-      EOL                           = #13#10;
       ZBufferScaleFactor            = 1.004;                         // Offset for hidden-line drawing when drawing ontop of shaded triangles
       Zoomfactor                    = 1.02;
-      FileBufferBlockSize           = 4096;                          // used for reading and writing files using TFilebuffer
 
       DXFLayerColors           : array[1..255] of TColor = ($0000FF, $00FFFF, $00FF00, $FFFF00, $FF0000, $FF00FF, $000000, $808080, $C0C0C0, $0000FF,
                                                             $7F7FFF, $0000A5, $5252A5, $00007F, $3F3F7F, $00004C, $26264C, $000026, $131326, $003FFF,
@@ -98,17 +99,9 @@ const Foot                          = 0.3048;
 
 
 
-type  TFloatType                    = single;                        // All floatingpoint variables are of this type
-      T2DCoordinate                 = record                         // 2D coordinate type
-                                         X,Y:TFloatType;
-                                      end;
-      T3DCoordinate                 = record                         // 3D coordinate type
-                                         X,Y,Z:TFloatType;
-                                      end;
-      T3DPlane                      = record
-                                         a,b,c,d:TFloatType;         // Description of a 3D plane: a*x + b*y + c*z -d = 0.0;
-                                      end;
-      TShadePoint                   = record                         // Used for drawing to the Z-buffer
+type
+
+     TShadePoint                   = record                         // Used for drawing to the Z-buffer
                                          X,Y  : Integer;
                                          Z    : TFloatType;
                                          R,G,B: integer;
@@ -187,52 +180,7 @@ type TFreeSubdivisionBase           = class;
                                          First,Last:Integer;
                                          Pixels    : array of TAlphaBlendPixelArray;
                                       end;
-     {---------------------------------------------------------------------------------------------------}
-     {                                           TFreeFileBuffer                                         }
-     {                                                                                                   }
-     { Binary stream used to store file info                                                             }
-     {---------------------------------------------------------------------------------------------------}
-     TFreeFileBuffer              = class
-                                       private
-                                          FCapacity      : integer;              // Amount of bytes allocated
-                                          FCount         : Integer;              // The amount of bytes actually used
-                                          FPosition      : Integer;              // current position when reading information from the buffer
-                                          FVersion       : TFreeFileVersion;
-                                          FData          : array of byte;
-                                          FFileName      : String;
-                                          FFile          : File;
-                                          procedure FGrow(size:Integer);
-                                          procedure FSetCapacity(val:integer);
-                                       public
-                                          procedure Add(Text:String);                  overload;virtual;
-                                          procedure Add(BooleanValue:Boolean);         reintroduce;overload;
-                                          procedure Add(FloatValue:TFloatType);        reintroduce;overload;
-                                          procedure Add(IntegerValue:integer);         reintroduce;overload;
-                                          procedure Add(Version:TFreeFileVersion);     reintroduce;overload;
-                                          procedure Add(Coordinate:T3DCoordinate);     reintroduce;overload;
-                                          procedure Add(Plane:T3DPlane);               reintroduce;overload;
-                                          procedure Add(const source;Size:Integer);    reintroduce;overload;
-                                          procedure Add(JPegImage:TJPEGImage);         reintroduce;overload;
-                                          procedure Load(var Output:String);           overload;virtual;
-                                          procedure Load(var Output:Integer);          reintroduce;overload;
-                                          procedure Load(var Output:TFreeFileVersion); reintroduce;overload;
-                                          procedure Load(var Output:Boolean);          reintroduce;overload;
-                                          procedure Load(var Output:TFloatType);       reintroduce;overload;
-                                          procedure Load(var Output:TColor);           reintroduce;overload;
-                                          procedure Load(var Output:T3DCoordinate);    reintroduce;overload;
-                                          procedure Load(var Output:T3DPlane);         reintroduce;overload;
-                                          procedure Load(var JPegImage:TJPEGImage);    reintroduce;overload;
-                                          procedure Load(var Dest;Size:Integer);       reintroduce;overload;
-                                          constructor Create;
-                                          procedure Clear;
-                                          procedure LoadFromFile(Filename:string);
-                                          procedure Reset;                             // reset the data before reading
-                                          procedure SaveToFile(Filename:string);
-                                          destructor Destroy;override;
-                                          property Capacity          : Integer read FCapacity write FSetCapacity;
-                                          property Count             : Integer read FCount;
-                                          property Version           : TFreeFileVersion read FVersion write FVersion;
-                                    end;
+
      {---------------------------------------------------------------------------------------------------}
      {                                           TFreeAlphaBuffer                                        }
      {                                                                                                   }
@@ -1295,7 +1243,6 @@ type TFreeSubdivisionBase           = class;
 
 
 
-const Zero : T3DCoordinate  = (X:0.0;Y:0.0;Z:0.0);
 
 function  AddPoint(P1,P2:T3DCoordinate):T3DCoordinate;                     // Add two vectors
 function  AddPointSymm(P1,P2:T3DCoordinate):T3DCoordinate;                 // Add two vectors for symmetric layers 
@@ -2580,384 +2527,8 @@ begin
    if Result = 0 then Result := 0.0000001;
 end;{VectorLength}
 
-{---------------------------------------------------------------------------------------------------}
-{                                           TFreeFileBuffer                                         }
-{                                                                                                   }
-{ Binary stream used to store file info                                                             }
-{---------------------------------------------------------------------------------------------------}
-procedure TFreeFileBuffer.FGrow(size:Integer);
-var AmountToGrow:Integer;
-begin
-   AmountToGrow:=1024;
-   if Size>AmountToGrow then AmountToGrow:=Size;
-   Capacity:=Capacity+AmountToGrow;
-end;{TFreeFileBuffer.FGrow}
 
-procedure TFreeFileBuffer.FSetCapacity(val:integer);
-var I:Integer;
-begin
-   Setlength(FData,Val);
-   for I:=FCapacity+1 to Val do FData[I-1]:=255;
-   FCapacity:=Val;
 
-end;{TFreeFileBuffer.FSetCapacity}
-
-procedure TFreeFileBuffer.Add(IntegerValue:integer);
-var Size:Integer;
-begin
-   Size:=4;//SizeOf(Integer);
-   if Count+Size>Capacity then FGrow(Size);
-   Move(IntegerValue,FData[FCount],Size);
-   Inc(FCount,Size);
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Add(Version:TFreeFileVersion);
-var Size:Integer;
-begin
-   FVersion:=Version;
-   Size:=SizeOf(Version);
-   if Count+Size>Capacity then FGrow(Size);
-   Move(Version,FData[FCount],Size);
-   Inc(FCount,Size);
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Add(Coordinate:T3DCoordinate);
-var Size:Integer;
-begin
-   Size:=SizeOf(Coordinate);
-   if Count+Size>Capacity then FGrow(Size);
-   Move(Coordinate,FData[FCount],Size);
-   Inc(FCount,Size);
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Add(Plane:T3DPlane);
-var Size:Integer;
-begin
-   Size:=SizeOf(Plane);
-   if Count+Size>Capacity then FGrow(Size);
-   Move(Plane,FData[FCount],Size);
-   Inc(FCount,Size);
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Add(const source;Size:Integer);
-var S: PChar;
-    I: Integer;
-begin
-   S:=PChar(@Source);
-   if Count+Size>Capacity then FGrow(Size);
-   for I := 0 to size-1 do
-   begin
-      FData[FCount]:=Byte(S[I]);
-      Inc(FCount);
-   end;
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Add(JPegImage:TJPEGImage);
-var Stream:TMemoryStream;
-    Size:Integer;
-begin
-   Add(JPEGImage.Width);
-   Add(JPEGImage.Height);
-   Stream:=TMemoryStream.Create;
-   JPEGImage.SaveToStream(Stream);
-   Size:=Stream.Size;
-   Stream.Position:=0;
-   Add(Size);
-   if Count+Size+20>Capacity then FGrow(Size+20);
-   Stream.Read(FData[FCount],Size);
-   inc(FCount,Size);
-   Stream.Destroy;
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Load(var JPegImage:TJPEGImage);
-var Stream:TMemoryStream;
-    W,H,Size:Integer;
-begin
-   Load(W);
-   Load(H);
-   Load(Size);
-   Stream:=TMemoryStream.Create;
-   Stream.SetSize(Size);
-   Stream.Write(FData[FPosition],Size);
-   Inc(FPosition,Size);
-   Stream.Position:=0;
-   JPEGImage.LoadFromStream(Stream);
-   Stream.Destroy;
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Load(var Dest;Size:Integer);
-var D : PChar;
-    I : Integer;
-begin
-   D := PChar(@Dest);
-   if FPosition+Size>FCount then
-     begin
-       raise Exception.Create(UserString(192)+'_0 ! Load data'+EOL
-       +'Position+Size:'+IntToStr(FPosition+Size)
-       +' > '+IntToStr(FCount)
-       +EOL+FFileName);
-       //MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
-       exit;
-     end;
-   for I:=0 to size-1 do
-   begin
-      D[I]:=Char(FData[FPosition]);
-      Inc(FPosition);
-   end;
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:String);
-var I,Size : Integer;
-    Ch     : Char;
-begin
-   Load(Size);
-   Output:='';
-   if FPosition+Size<=FCount then
-   begin
-      for I:=1 to Size do
-      begin
-         Ch:=Char(FData[FPosition]);
-         Inc(FPosition);
-         Output:=Output+Ch;
-      end;
-   end
-   else
-    raise Exception.Create(UserString(192)+'_0 ! Load String'+EOL
-       +'Position+Size:'+IntToStr(FPosition+Size)
-       +' > '+IntToStr(FCount)
-       +EOL+FFileName);
-   //MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:Integer);
-var Size : Integer;
-begin
-   Size:=4;
-   Output:=0;
-   if FPosition+Size<=FCount then
-   begin
-      Move(FData[FPosition],Output,Size);
-      Inc(FPosition,Size);
-   end
-   else
-   raise Exception.Create(UserString(192)+'_1 ! Load Integer'+EOL
-      +'Position+Size:'+IntToStr(FPosition+Size)
-      +' > '+IntToStr(FCount)
-      +EOL+FFileName);
-   //MessageDlg(UserString(192)+'_1 !',mtError,[mbOk],0);
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:TFreeFileVersion);
-var Size : Integer;
-begin
-   Size:=SizeOf(Output);
-   if FPosition+Size<=FCount then
-   begin
-      Move(FData[FPosition],Output,Size);
-      Inc(FPosition,Size);
-   end
-   else
-     raise Exception.Create(UserString(192)+'_2 ! Load TFreeFileVersion'+EOL
-       +'Position+Size:'+IntToStr(FPosition+Size)
-       +' > '+IntToStr(FCount)
-       +EOL+FFileName);
-
-   //MessageDlg(UserString(192)+'_2 !',mtError,[mbOk],0);
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:Boolean);
-var Size : Integer;
-begin
-   Size:=1;
-   Output:=False;
-   if FPosition+Size<=FCount then
-   begin
-      Move(FData[FPosition],Output,Size);
-      Inc(FPosition,Size);
-   end
-   else //MessageDlg(UserString(192)+'_3 !',mtError,[mbOk],0);
-   raise Exception.Create(UserString(192)+'_3 ! Load Boolean'+EOL
-      +'Position+Size:'+IntToStr(FPosition+Size)
-      +' > '+IntToStr(FCount)
-      +EOL+FFileName);
-
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:TFloatType);
-var Size : Integer;
-begin
-   Size:=SizeOf(Output);
-   Output:=0.0;
-   if FPosition+Size<=FCount then
-   begin
-      Move(FData[FPosition],Output,Size);
-      Inc(FPosition,Size);
-   end
-   else //MessageDlg(UserString(192)+'_4 !',mtError,[mbOk],0);
-     raise Exception.Create(UserString(192)+'_4 ! Load TFloatType'+EOL
-       +'Position+Size:'+IntToStr(FPosition+Size)
-       +' > '+IntToStr(FCount)
-       +EOL+FFileName);
-
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:TColor);
-var Size : Integer;
-begin
-   Size:=SizeOf(Output);
-   Output:=clBlack;
-   if FPosition+Size<=FCount then
-   begin
-      Move(FData[FPosition],Output,Size);
-      Inc(FPosition,Size);
-   end
-   else //MessageDlg(UserString(192)+'_5 !',mtError,[mbOk],0);
-     raise Exception.Create(UserString(192)+'_5 ! Load TColor'+EOL
-       +'Position+Size:'+IntToStr(FPosition+Size)
-       +' > '+IntToStr(FCount)
-       +EOL+FFileName);
-
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:T3DCoordinate);
-var Size : Integer;
-begin
-   Size:=SizeOf(Output);
-   Output:=ZERO;
-   if FPosition+Size<=FCount then
-   begin
-      Move(FData[FPosition],Output,Size);
-      Inc(FPosition,Size);
-   end
-   else //MessageDlg(UserString(192)+'_6 !',mtError,[mbOk],0);
-     raise Exception.Create(UserString(192)+'_6 Load T3DCoordinate!'+EOL
-       +'Position+Size:'+IntToStr(FPosition+Size)
-       +' > '+IntToStr(FCount)
-       +EOL+FFileName);
-
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Load(var Output:T3DPlane);
-var Size : Integer;
-begin
-   Size:=SizeOf(Output);
-   if FPosition+Size<=FCount then
-   begin
-      Move(FData[FPosition],Output,Size);
-      Inc(FPosition,Size);
-   end
-   else //MessageDlg(UserString(192)+'_7 !',mtError,[mbOk],0);
-   raise Exception.Create(UserString(192)+'_7 ! Load T3DPlane'+EOL
-      +'Position+Size:'+IntToStr(FPosition+Size)
-      +' > '+IntToStr(FCount)
-      +EOL+FFileName);
-end;{TFreeFileBuffer.Load}
-
-procedure TFreeFileBuffer.Add(Text:String);
-var Size:Integer;
-begin
-   Size:=Length(Text);
-   Add(Size);
-   if Size = 0 then exit;
-   if Count+Size>Capacity then FGrow(Size);
-   Move(Text[1],FData[FCount],Size);
-   Inc(FCount,Size);
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Add(BooleanValue:Boolean);
-var Size:Integer;
-begin
-   Size:=1;//SizeOf(BooleanValue);
-   if Count+Size>Capacity then FGrow(Size);
-   Move(BooleanValue,FData[FCount],Size);
-   Inc(FCount,Size);
-end;{TFreeFileBuffer.Add}
-
-procedure TFreeFileBuffer.Add(FloatValue:TFloatType);
-var Size:Integer;
-begin
-   Size:=SizeOf(FloatValue);
-   if Count+Size>Capacity then FGrow(Size);
-   Move(FloatValue,FData[FCount],Size);
-   Inc(FCount,Size);
-end;{TFreeFileBuffer.Add}
-
-constructor TFreeFileBuffer.Create;
-begin
-   Inherited Create;
-   Clear;
-end;{TFreeFileBuffer.Create}
-
-procedure TFreeFileBuffer.Clear;
-begin
-   FCapacity:=0;
-   FCount:=0;
-   FPosition:=0;
-   Setlength(FData,0);
-   FFileName := '';
-end;{TFreeFileBuffer.Clear}
-
-destructor TFreeFileBuffer.Destroy;
-begin
-    Clear;
-    Inherited Destroy;
-end;{TFreeFileBuffer.Destroy}
-
-procedure TFreeFileBuffer.LoadFromFile(Filename:string);
-var
-    DataLeft   : Integer;
-    Tmp        : Integer;
-    Size       : Integer;
-begin
-   FFileName := Filename;
-   AssignFile(FFile,Filename);
-   system.Reset(FFile,1);
-   FCount:=0;
-   DataLeft:=FileSize(FFile);
-   Capacity:=DataLeft;
-   FPosition:=0;
-   if DataLeft<0 then exit;
-   while DataLeft>0 do
-   begin
-      if DataLeft<FileBufferBlockSize then Size:=DataLeft
-                                      else Size:=FileBufferBlockSize;
-      BlockRead(FFile,FData[FCount],Size,Tmp);
-      Dec(DataLeft,Tmp);
-      Inc(FCount,Tmp);
-   end;
-   Closefile(FFile);
-   FFileName := '';
-end;{TFreeFileBuffer.LoadFromFile}
-
-// reset the data before reading
-procedure TFreeFileBuffer.Reset;
-begin
-   FPosition:=0;
-end;{TFreeFileBuffer.Reset}
-
-procedure TFreeFileBuffer.SaveToFile(Filename:string);
-var
-    DataWritten: Integer;
-    DataLeft   : Integer;
-    Tmp        : Integer;
-    Size       : Integer;
-begin
-  FFileName := Filename;
-  AssignFile(FFile,Filename);
-   Rewrite(FFile,1);
-   DataWritten:=0;
-   DataLeft:=Count;
-   while DataWritten<Count do
-   begin
-      if DataLeft<FileBufferBlockSize then Size:=DataLeft
-                                      else Size:=FileBufferBlockSize;
-      BlockWrite(FFile,FData[DataWritten],Size,Tmp);
-      Dec(DataLeft,Tmp);
-      Inc(DataWritten,Tmp);
-   end;
-   Closefile(FFile);
-   FFileName := '';
-end;{TFreeFileBuffer.SaveToFile}
 
 {---------------------------------------------------------------------------------------------------}
 {                                           TFreeAlphaBuffer                                        }

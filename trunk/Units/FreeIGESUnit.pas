@@ -44,6 +44,7 @@ uses
      Forms,
      Dialogs,
      Graphics,
+     FreeTypes,
      FreeGeometry;
 
 const ParameterDelimiter = ',';

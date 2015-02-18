@@ -92,14 +92,17 @@ uses
   FreeCylinderDlg in 'Forms/FreeCylinderDlg.pas' {FreeCylinderDialog},
   FreeStringsUnit in 'Units/FreeStringsUnit.pas',
   Free2DDXFExportDlg in 'Forms/Free2DDXFExportDlg.pas' {DXFExport2DDialog},
-  FreeCrosscurvesDlg in 'Forms/FreeCrosscurvesDlg.pas' {FreeCrosscurvesDialog};
+  FreeCrosscurvesDlg in 'Forms/FreeCrosscurvesDlg.pas' {FreeCrosscurvesDialog},
+  FreeLogger in 'Units/FreeLogger.pas';
 
 //{$R *.res}
 
 {$R *.res}
 
 begin
-    Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
+   Logger.LogLevel:=LOG_DEBUG;
+
+   Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
     Writeln ('Compiler version: ',{$I %FPCVERSION%});
     Writeln ('Target CPU: ',TARGET_CPU);
     Writeln ('Target OS: ',TARGET_OS);
@@ -198,8 +201,8 @@ begin
    {$ENDIF}
 
    ShowTranslatedValues(FreeSplashWindow);
-   FreeSplashWindow.Show;
+   //FreeSplashWindow.Show;
    //FreeSplashWindow.Refresh;
-   sleep(2500);
+   //sleep(2500);
    Application.Run;
 end.

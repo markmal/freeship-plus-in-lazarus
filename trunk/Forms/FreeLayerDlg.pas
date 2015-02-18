@@ -47,6 +47,7 @@ uses
      ExtCtrls,
      Forms,
      FreeShipUnit,
+     FreeTypes,
      FreeGeometry,
      CheckLst,
      Dialogs,

@@ -46,6 +46,7 @@ uses
      Dialogs,
      StdCtrls,
      FreeShipUnit,
+     FreeTypes,
      FreeGeometry,
      ExtCtrls,
      FreeHydrostaticsResultsDlg,

@@ -53,6 +53,7 @@ uses
      ToolWin,
      FreeShipUnit,
      ComCtrls,
+    FreeTypes,
      FreeGeometry,
      Buttons;
 

@@ -46,6 +46,7 @@ uses
      Buttons,
      ExtCtrls,
      Dialogs,
+     FreeTypes,
      FreeGeometry,
      FreeShipUnit,
      Menus,
@@ -371,4 +372,4 @@ begin
    UpdateMenu;
 end;{TFreeIntersectionDialog.DeleteAllExecute}
 
-end.
+end.

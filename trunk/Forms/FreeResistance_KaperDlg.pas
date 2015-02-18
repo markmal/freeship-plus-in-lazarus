@@ -53,6 +53,7 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
+     FreeTypes,
      FreeGeometry,
      ExtCtrls,
      FreeShipUnit,

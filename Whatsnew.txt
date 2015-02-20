@@ -1,3 +1,9 @@
+Test only Version 3.5.1.5 in Lazarus
+Released: 18 Feb, 2015
+New features:
+- Added preview of FREE!ship .fbm and .ftm files in Open File dialog
+- Added automatic change of FREE!Ship file extension in Save As dialog (for Windows and GTK only)
+
 Test only Version 3.5 in Lazarus
 Released: 18 Feb, 2015
 New features:

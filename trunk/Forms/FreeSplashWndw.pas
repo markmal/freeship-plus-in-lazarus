@@ -50,6 +50,9 @@ uses
      FreeVersionUnit,
      StdCtrls;
 
+const
+ SPLASH_TIME = 5000;
+
 type
 
 { TFreeSplashWindow }
@@ -82,7 +85,7 @@ type
 
 var FreeSplashWindow: TFreeSplashWindow;
 
-procedure SetTransparentForm(AHandle : THandle; AValue : byte = 0);
+procedure SetTransparentForm(form: TForm; AValue : byte = 0);
 implementation
 
 uses FreeLanguageSupport;
@@ -107,7 +110,7 @@ type
      ): BOOL; stdcall;
 
 {$IFDEF WINDOWS}
-procedure SetTransparentForm(AHandle : THandle; AValue : byte = 0);
+procedure SetTransparentForm(form: TForm; AValue : byte = 0);
 var
  Info: TOSVersionInfo;
  SetLayeredWindowAttributes: TSetLayeredWindowAttributes;
@@ -121,22 +124,43 @@ begin
      SetLayeredWindowAttributes := GetProcAddress(GetModulehandle(user32), 'SetLayeredWindowAttributes');
       if Assigned(SetLayeredWindowAttributes) then
        begin
-        SetWindowLong(AHandle, GWL_EXSTYLE, GetWindowLong(AHandle, GWL_EXSTYLE) or WS_EX_LAYERED);
+        SetWindowLong(AHandle, GWL_EXSTYLE, GetWindowLong(form.Handle, GWL_EXSTYLE) or WS_EX_LAYERED);
         //Make form transparent
         SetLayeredWindowAttributes(AHandle, 0, AValue, LWA_ALPHA);
       end;
    end;
 end;
 {$ELSE}
-procedure SetTransparentForm(AHandle : THandle; AValue : byte = 0);
+procedure SetTransparentForm(form: TForm; AValue : byte = 0);
 begin
+ form.AlphaBlendValue := AValue;
 end;
 {$ENDIF}
 
 procedure TFreeSplashWindow.TimerTimer(Sender: TObject);
+var TI : integer; ABV: byte;
 begin
-   inc(FCounter,Timer.Interval);
-   if FCounter>2000 then Close;
+  TI:=Timer.Interval;
+  inc(FCounter,TI);
+  //Label2.Caption:=IntToStr(TI);
+  if AlphaBlend then
+    begin
+     ABV:=AlphaBlendValue;
+
+     if (FCounter < 1000) and (ABV<255)
+     then inc(ABV)
+     else ABV:=255;
+
+     if (FCounter >= (SPLASH_TIME-1000)) and (ABV>0)
+     then dec(ABV)
+     else ABV:=0;
+
+     //Label3.Caption:=IntToStr(ABV);
+     Label2.Update;
+     AlphaBlendValue := ABV;
+    end;
+  if FCounter>SPLASH_TIME
+    then Close;
 end;{TFreeSplashWindow.TimerTimer}
 
 procedure TFreeSplashWindow.FormClose(Sender: TObject;var Action: TCloseAction);
@@ -156,8 +180,8 @@ var Str:string;
 
 begin
    _Label1.Caption:=Userstring(279)+#32+VersionString(CurrentVersion);
-   _Label6.Caption:='Relese: '+ReleasedDate;
-   LabelBuildInfo.Caption := 'Build: '+COMPILE_DATE+' '+COMPILE_TIME+' '+TARGET_CPU+' '+TARGET_OS;
+   _Label6.Caption:='Release: '+ReleasedDate;
+   LabelBuildInfo.Caption := 'Build: '+ResourceVersionInfo+' '+COMPILE_DATE+' '+COMPILE_TIME+' '+TARGET_CPU+' '+TARGET_OS;
    Str:='';
    if CurrentLanguage<>nil then
    begin
@@ -169,7 +193,7 @@ begin
    FCounter:=0;
    Timer.Enabled:=True;
    Caption:='';
-
+   if AlphaBlend then AlphaBlendValue:=0 else AlphaBlendValue:=255;
 end;{TFreeSplashWindow.FormShow}
 
 procedure TFreeSplashWindow._Label5Click(Sender: TObject);

@@ -39,6 +39,7 @@ uses
 {$ELSE}
   Interfaces,
 {$ENDIF}
+  Controls,
   Forms,
   SysUtils,
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
@@ -93,25 +94,32 @@ uses
   FreeStringsUnit in 'Units/FreeStringsUnit.pas',
   Free2DDXFExportDlg in 'Forms/Free2DDXFExportDlg.pas' {DXFExport2DDialog},
   FreeCrosscurvesDlg in 'Forms/FreeCrosscurvesDlg.pas' {FreeCrosscurvesDialog},
+  FreeAboutDlg in 'Forms/FreeAboutDlg.pas' {FreeAboutDlg},
   FreeLogger in 'Units/FreeLogger.pas';
 
 //{$R *.res}
 
 {$R *.res}
 
+var ShowSplash, InDebugger : boolean;
+
 begin
    Logger.LogLevel:=LOG_DEBUG;
-
    Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
-    Writeln ('Compiler version: ',{$I %FPCVERSION%});
-    Writeln ('Target CPU: ',TARGET_CPU);
-    Writeln ('Target OS: ',TARGET_OS);
+   Writeln ('Compiler version: ',{$I %FPCVERSION%});
+   Writeln ('Target CPU: ',TARGET_CPU);
+   Writeln ('Target OS: ',TARGET_OS);
+   Writeln ('FreeShip Product version: ',FREESHIP_VERSION);
+   Writeln ('FreeShip Program version: ',ResourceVersionInfo);
+   Writeln ('Last SVN Change Revision: ',SUBVERSION_REVISION);
 
+   ShowSplash:=True;
+   InDebugger:=False;
 
    FormatSettings.DecimalSeparator:='.';
    Application.Initialize;
    Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
+   Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
   {$IFNDEF CREATE_TRANSLATION}
    LoadLanguage(Mainform.Freeship.Preferences.LanguageFile);
    {$ENDIF}
@@ -200,9 +208,17 @@ begin
       FreeCrosscurvesDialog.Free;
    {$ENDIF}
 
-   ShowTranslatedValues(FreeSplashWindow);
-   //FreeSplashWindow.Show;
-   //FreeSplashWindow.Refresh;
-   //sleep(2500);
+   if ShowSplash then
+   begin
+    //ShowTranslatedValues(FreeSplashWindow);
+    if InDebugger then
+      begin
+      FreeSplashWindow.FormStyle:=fsNormal;
+      FreeSplashWindow.BorderStyle:=bsSizeable;
+      end;
+    FreeSplashWindow.Show;
+    //sleep(SPLASH_TIME);
+   end;
+
    Application.Run;
 end.

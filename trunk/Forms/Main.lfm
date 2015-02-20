@@ -1,5 +1,5 @@
 object MainForm: TMainForm
-  Left = 405
+  Left = 374
   Height = 83
   Top = 99
   Width = 1252
@@ -18,7 +18,7 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.1'
   object StatusBar: TPanel
     Left = 0
     Height = 20
@@ -123,6 +123,7 @@ object MainForm: TMainForm
     end
     object ToolButton4: TToolButton
       Left = 104
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton4'
@@ -149,6 +150,7 @@ object MainForm: TMainForm
     end
     object ToolButton7: TToolButton
       Left = 189
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton7'
@@ -228,6 +230,7 @@ object MainForm: TMainForm
     end
     object ToolButton12: TToolButton
       Left = 25
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton12'
@@ -278,6 +281,7 @@ object MainForm: TMainForm
     end
     object ToolButton11: TToolButton
       Left = 781
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton11'
@@ -291,6 +295,7 @@ object MainForm: TMainForm
     end
     object ToolButton14: TToolButton
       Left = 814
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton14'
@@ -334,6 +339,7 @@ object MainForm: TMainForm
     end
     object ToolButton19: TToolButton
       Left = 985
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton19'
@@ -367,6 +373,7 @@ object MainForm: TMainForm
     end
     object ToolButton25: TToolButton
       Left = 1110
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton25'
@@ -380,6 +387,7 @@ object MainForm: TMainForm
     end
     object ToolButton39: TToolButton
       Left = 1143
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton39'
@@ -398,6 +406,7 @@ object MainForm: TMainForm
     end
     object ToolButton28: TToolButton
       Left = 1199
+      Height = 22
       Top = 1
       Width = 10
       Caption = 'ToolButton28'

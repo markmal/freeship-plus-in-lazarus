@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="5">
+      <Unit0>
+        <Filename Value="versinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="versinfo"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="1" Y="67"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/resource.pp"/>
+        <UnitName Value="resource"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="18" Y="1001"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versionresource.pp"/>
+        <UnitName Value="versionresource"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="43" Y="78"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
+        <UnitName Value="versiontypes"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="65"/>
+        <CursorPos X="28" Y="62"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versionconsts.pp"/>
+        <UnitName Value="versionconsts"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="29"/>
+        <CursorPos X="3" Y="46"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit4>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="30" Column="41" TopLine="14"/>
+      </Position1>
+      <Position2>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="29" Column="27" TopLine="12"/>
+      </Position2>
+      <Position3>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="52" Column="5" TopLine="24"/>
+      </Position3>
+      <Position4>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="36" Column="45" TopLine="20"/>
+      </Position4>
+      <Position5>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="16" Column="25" TopLine="11"/>
+      </Position5>
+      <Position6>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="43" Column="4" TopLine="26"/>
+      </Position6>
+      <Position7>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="23" Column="15" TopLine="16"/>
+      </Position7>
+      <Position8>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="35" Column="60" TopLine="16"/>
+      </Position8>
+      <Position9>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="39" Column="1" TopLine="16"/>
+      </Position9>
+      <Position10>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="40" Column="1" TopLine="16"/>
+      </Position10>
+      <Position11>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="34" Column="1" TopLine="16"/>
+      </Position11>
+      <Position12>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="36" Column="1" TopLine="16"/>
+      </Position12>
+      <Position13>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="37" Column="1" TopLine="16"/>
+      </Position13>
+      <Position14>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="34" Column="1" TopLine="16"/>
+      </Position14>
+      <Position15>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="36" Column="1" TopLine="16"/>
+      </Position15>
+      <Position16>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="49" Column="1" TopLine="28"/>
+      </Position16>
+      <Position17>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="41" Column="25" TopLine="22"/>
+      </Position17>
+      <Position18>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versionresource.pp"/>
+        <Caret Line="78" Column="43" TopLine="62"/>
+      </Position18>
+      <Position19>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/resource.pp"/>
+        <Caret Line="281" Column="56" TopLine="262"/>
+      </Position19>
+      <Position20>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
+        <Caret Line="362" Column="59" TopLine="344"/>
+      </Position20>
+      <Position21>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
+        <Caret Line="12" Column="55" TopLine="1"/>
+      </Position22>
+      <Position23>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
+        <Caret Line="56" Column="12" TopLine="27"/>
+      </Position23>
+      <Position24>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
+        <Caret Line="66" Column="58" TopLine="38"/>
+      </Position24>
+      <Position25>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
+        <Caret Line="309" Column="10" TopLine="281"/>
+      </Position25>
+      <Position26>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="43" Column="31" TopLine="20"/>
+      </Position26>
+      <Position27>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="62" Column="41" TopLine="32"/>
+      </Position27>
+      <Position28>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="40" Column="1" TopLine="32"/>
+      </Position28>
+      <Position29>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="30" Column="27" TopLine="25"/>
+      </Position29>
+      <Position30>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="28" Column="1" TopLine="21"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="14">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreeResistance_DelftDlg.pas"/>
+        <Line Value="473"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Units/FreeGeometry.pas"/>
+        <Line Value="2624"/>
+      </Item2>
+      <Item3>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreeResistance_OortmerDlg.pas"/>
+        <Line Value="735"/>
+      </Item3>
+      <Item4>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreeResistance_PlaningDlg.pas"/>
+        <Line Value="1751"/>
+      </Item4>
+      <Item5>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreeResistance_PlaningDlg.pas"/>
+        <Line Value="1733"/>
+      </Item5>
+      <Item6>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreeResistance_MHDlg.pas"/>
+        <Line Value="827"/>
+      </Item6>
+      <Item7>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreeResistance_MHDlg.pas"/>
+        <Line Value="829"/>
+      </Item7>
+      <Item8>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreePropeller_Task5Dlg.pas"/>
+        <Line Value="333"/>
+      </Item8>
+      <Item9>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/FreeHydrodyn_RVRSDlg.pas"/>
+        <Line Value="584"/>
+      </Item9>
+      <Item10>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../FreeShip.dpr"/>
+        <Line Value="1"/>
+      </Item10>
+      <Item11>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Units/FreeGeometry.pas"/>
+        <Line Value="2530"/>
+      </Item11>
+      <Item12>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/classes/stringl.inc"/>
+        <Line Value="897"/>
+      </Item12>
+      <Item13>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Forms/Main.pas"/>
+        <Line Value="1072"/>
+      </Item13>
+      <Item14>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../Units/FreeShipUnit.pas"/>
+        <Line Value="9826"/>
+      </Item14>
+    </BreakPoints>
+    <Watches Count="11">
+      <Item1>
+        <Expression Value="FLINES"/>
+      </Item1>
+      <Item2>
+        <Expression Value="S"/>
+      </Item2>
+      <Item3>
+        <Expression Value="P"/>
+      </Item3>
+      <Item4>
+        <Expression Value="sizeof(TFreeDelftSeriesResistanceData)"/>
+      </Item4>
+      <Item5>
+        <Expression Value="sizeof(TFreeKAPERResistanceData)"/>
+      </Item5>
+      <Item6>
+        <Expression Value="FDATA"/>
+        <DisplayStyle Value="wdfMemDump"/>
+      </Item6>
+      <Item7>
+        <Expression Value="FCOUNT"/>
+      </Item7>
+      <Item8>
+        <Expression Value="DESTINATION.COUNT"/>
+      </Item8>
+      <Item9>
+        <Expression Value="SELF"/>
+      </Item9>
+      <Item10>
+        <Expression Value="SOURCE"/>
+      </Item10>
+      <Item11>
+        <Expression Value="SELF.FPOSITION"/>
+      </Item11>
+    </Watches>
+  </Debugging>
+  <EditorMacros Count="0"/>
+</CONFIG>

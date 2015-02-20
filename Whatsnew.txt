@@ -1,3 +1,9 @@
+Test only Version 3.5.1.15 in Lazarus
+Released: 20 Feb, 2015
+New features:
+- Added About dialog
+- Added translucency support for splash screen
+
 Test only Version 3.5.1.5 in Lazarus
 Released: 18 Feb, 2015
 New features:

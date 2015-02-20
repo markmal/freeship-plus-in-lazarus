@@ -8,6 +8,7 @@
 {    e-mail                  : tvf@rambler.ru                                                 }
 {    FREE!ship project page  : http://freeship-plus.land.ru                                   }
 {    FREE!ship homepage      : http://freeship-plus.pisem.su                                  }
+{    Copyright © 2015, by Mark Malakanov                                                      }
 {                                                                                             }
 {    This program is free software; you can redistribute it and/or modify it under            }
 {    the terms of the GNU General Public License as published by the                          }
@@ -34,8 +35,7 @@ unit FreeVersionUnit;
 
 interface
 
-uses SysUtils,
-     Dialogs;
+uses Classes,SysUtils,Dialogs;
 
 const
  COMPILE_DATE={$I %DATE%};
@@ -45,18 +45,26 @@ const
 
  FREESHIP_VERSION='3.5.0.0';
 
+ SUBVERSION_REVISION={$I SVNLastChangeRevision.inc};
+
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,
                              fv201,fv210,fv220,fv230,fv240,fv250,fv260,fv270,fv280,fv290,fv295,fv296,fv297,fv298,fv300,
                              fv302,fv303,fv305,fv309,fv310,fv313,fv314,fv317,fv327,fv332,fv335);
 const CurrentVersion      = fv335;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
       ReleasedDate        = 'Feb 14, 2015';
+
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;
+function ResourceVersionInfo: String;
+
+
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeLanguageSupport,
+     resource, versionresource, versiontypes,
+     resreader, coffreader, elfreader, winpeimagereader, elfconsts;
 
 function VersionString(Version:TFreeFileVersion):String;
 begin
@@ -151,5 +159,43 @@ begin
   if Version =	'3.4'	 then Result:=	      fv335	 else
   raise Exception.Create(Userstring(204)+'! '+Version);
 end;{VersionString}
+
+
+FUNCTION resourceVersionInfo: STRING;
+
+(* Unlike most of AboutText (below), this takes significant activity at run-    *)
+(* time to extract version/release/build numbers from resource information      *)
+(* appended to the binary.                                                      *)
+
+VAR     Stream: TResourceStream;
+        vr: TVersionResource;
+        fi: TVersionFixedInfo;
+
+BEGIN
+  RESULT:= '';
+  TRY
+
+(* This raises an exception if version info has not been incorporated into the  *)
+(* binary (Lazarus Project -> Project Options -> Version Info -> Version        *)
+(* numbering).                                                                  *)
+
+    Stream:= TResourceStream.CreateFromID(HINSTANCE, 1, PChar(RT_VERSION));
+    TRY
+      vr:= TVersionResource.Create;
+      TRY
+        vr.SetCustomRawDataStream(Stream);
+        fi:= vr.FixedInfo;
+        RESULT := IntToStr(fi.FileVersion[0]) + '.' + IntToStr(fi.FileVersion[1]) +
+               '.' + IntToStr(fi.FileVersion[2]) + '.' + IntToStr(fi.FileVersion[3]);
+        vr.SetCustomRawDataStream(nil)
+      FINALLY
+        vr.Free
+      END
+    FINALLY
+      Stream.Free
+    END
+  EXCEPT
+  END
+END { resourceVersionInfo } ;
 
 end.

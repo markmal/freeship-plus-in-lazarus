@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="6"/>
+      <BuildNr Value="16"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -52,7 +52,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="63">
+    <Units Count="64">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -92,10 +92,12 @@
         <ComponentName Value="FreeSplashWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeSplashWndw"/>
       </Unit6>
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeVersionUnit"/>
       </Unit7>
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
@@ -340,7 +342,6 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeShipUnit"/>
       </Unit51>
       <Unit52>
         <Filename Value="Forms/unit1.pas"/>
@@ -399,13 +400,19 @@
       <Unit61>
         <Filename Value="Units/FreeLogger.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeLogger"/>
       </Unit61>
       <Unit62>
         <Filename Value="Units/FreeOpenDialog.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeOpenDialog"/>
       </Unit62>
+      <Unit63>
+        <Filename Value="Forms/FreeAboutDlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeAboutDlg"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeAboutDlg"/>
+      </Unit63>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -449,6 +456,10 @@
         <ShoLineNum Value="True"/>
       </Verbosity>
       <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
+      <ExecuteBefore>
+        <Command Value="bash $(ProjPath)/svnlastrev.sh"/>
+        <CompileReasons Run="False"/>
+      </ExecuteBefore>
     </Other>
   </CompilerOptions>
   <Debugging>

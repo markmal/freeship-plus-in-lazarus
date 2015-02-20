@@ -1,10 +1,9 @@
 object FreeSplashWindow: TFreeSplashWindow
-  Left = 239
+  Left = 522
   Height = 426
-  Top = 152
+  Top = 191
   Width = 548
   AlphaBlend = True
-  AlphaBlendValue = 210
   AutoSize = True
   BorderIcons = []
   BorderStyle = bsNone
@@ -18,7 +17,7 @@ object FreeSplashWindow: TFreeSplashWindow
   OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.1'
   object Image1: TImage
     Left = 0
     Height = 363

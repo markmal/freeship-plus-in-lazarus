@@ -64,6 +64,7 @@ uses
      FreeShipUnit,
      FreeVersionUnit,
      FreeHullformWindow,
+     FreeAboutDlg,
      Menus,
      ToolWin,
      Buttons, FileUtil;
@@ -1335,12 +1336,17 @@ begin
 end;{TMainForm.EdgeExtrudeExecute}
 
 procedure TMainForm.About1Click(Sender: TObject);
+var FreeAboutDlg : TFreeAboutDlg;
 begin
    // Show splash screen again
-   FreeSplashWindow:=TFreeSplashWindow.Create(Application);
+   {FreeSplashWindow:=TFreeSplashWindow.Create(Application);
    ShowTranslatedValues(FreeSplashWindow);
    FreeSplashWindow.Show;
-   FreeSplashWindow.Refresh;
+   FreeSplashWindow.Refresh;}
+
+ FreeAboutDlg := TFreeAboutDlg.Create(Self);
+ FreeAboutDlg.ShowModal;
+ FreeAboutDlg.Destroy;
 end;{TMainForm.About1Click}
 
 // begin correction Victor T

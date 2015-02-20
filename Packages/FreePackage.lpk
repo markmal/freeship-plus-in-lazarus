@@ -2,6 +2,7 @@
 <CONFIG>
   <Package Version="4">
     <Name Value="FreePackage"/>
+    <Type Value="RunAndDesignTime"/>
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
@@ -13,7 +14,7 @@
       </SearchPaths>
       <Parsing>
         <SyntaxOptions>
-          <SyntaxMode Value="delphi"/>
+          <SyntaxMode Value="Delphi"/>
           <IncludeAssertionCode Value="True"/>
         </SyntaxOptions>
       </Parsing>
@@ -41,11 +42,7 @@
           <ShowGenInfo Value="False"/>
           <ShoLineNum Value="True"/>
         </Verbosity>
-        <CompilerMessages>
-          <MsgFileName Value=""/>
-        </CompilerMessages>
         <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
-        <CompilerPath Value="$(CompPath)"/>
       </Other>
     </CompilerOptions>
     <Files Count="3">
@@ -65,7 +62,6 @@
         <UnitName Value="FreeNumInput"/>
       </Item3>
     </Files>
-    <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="3">
       <Item1>
         <PackageName Value="TAChartLazarusPkg"/>

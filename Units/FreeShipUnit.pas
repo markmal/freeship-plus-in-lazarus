@@ -47,10 +47,14 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
       PrintersDlgs, Printer4Lazarus, FreePrinter,
       FileUtil,
      {$endif}
-        Types,
+     {$IFDEF LCLGTK2}
+      Gtk2WSDialogs, GTK2,
+     {$ENDIF}
+       Types,
         Forms,
         Dialogs,
         Classes,
+     ExtCtrls,
      FreeTypes,
         FreeVersionUnit,
         FasterList,
@@ -59,7 +63,8 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
         FreeMatrices,
         FreeLanguageSupport,
         FreeControlPointFrm,
-     FreeLogger;
+     FreeLogger,
+     FreeOpenDialog;
 
 
 // FREE!ship uses British imperial format, eg 1 long ton=2240 lbs
@@ -603,7 +608,8 @@ type
                                     procedure Selection_SelectLeakPoints;                                   // Select all leakpoints
                                     procedure Undo;                                                         // Restores the state of the model as it was before the last modification
                                     procedure Undo_Clear;                                                   // Clear the undo history
-                                    procedure Undo_ShowHistory;                                             // Show the undo history
+                                    procedure Undo_ShowHistory; //Show the undo history
+                                    procedure OnFilePreview(Sender: TObject);
                                     property  Owner                     : TFreeShip read FOwner write FOwner;
                                     property  RecentFile[index:integer] : string read FGetRecentFile;       // retrieve a filename from the recently used file list
                                     property  RecentFileCount           : integer read FGetRecentFileCount; // The number of files in the recently used file list
@@ -9664,17 +9670,36 @@ begin
    OpenDialog.Destroy;
 end;{TFreeEdit.File_ImportVRML}
 
+
+procedure TFreeEdit.OnFilePreview(Sender: TObject);
+ var
+  Dlg : TFreeOpenDialog;
+  FN, X : String;
+  Img : TImage;
+  Jpg : TJPegImage;
+begin
+  Dlg := TFreeOpenDialog(Sender);
+  FN := Dlg.FileName;
+  Img := Dlg.PreviewImage;
+  Jpg := TJPegImage.Create;
+  Owner.LoadPreview(FN, Jpg);
+  if Assigned(Jpg)
+   then Img.Picture.Bitmap.Assign(Jpg)
+   else Img.Picture := nil;
+end;
+
 procedure TFreeEdit.File_Load;
 var Answer     : word;
-    OpenDialog : TOpenDialog;
+    OpenDialog : TFreeOpenDialog; //TOpenDialog;
 begin
-   OpenDialog:=TOpenDialog.Create(Owner);
+   OpenDialog:=TFreeOpenDialog.Create(Owner);
 //////   определяем директорию с freeship.exe
    Owner.Preferences.InitDirectory:=ExtractFilePath('freeship.exe');   
 /////   
    OpenDialog.InitialDir:=Owner.Preferences.OpenDirectory;
    OpenDialog.Filter:='FREE!ship files (*.fbm *.ftm)|*.fbm;*.ftm';
    Opendialog.Options:=[ofHideReadOnly];
+   Opendialog.OnPreview := OnFilePreview;
    if OpenDialog.Execute then
    begin
       if Owner.FileChanged then
@@ -9792,8 +9817,9 @@ procedure TFreeEdit.SaveDialogTypeChange(Sender: TObject);
 var
   FName, Ext: string;
   SD : TSaveDialog;
-  C,I : integer;
-  Comp:TComponent;
+  {$IFDEF LCLGTK2}
+  Widget: PGtkWidget;
+  {$ENDIF}
 begin
   SD := TSaveDialog(Sender);
   with SD do
@@ -9806,11 +9832,15 @@ begin
     end;
     FName := ChangeFileExt(ExtractFileName(FileName), Ext);
     FileName:=FName;
-    Title:=FName;
-    C:=ComponentCount;
-    for I:=0 to C do
-     Comp:=SD.Components[I];
-    //SendMessage(GetParent(Handle), CDM_SETCONTROLTEXT, 1152, LongInt(PChar(FName)));
+
+    {$IFDEF LCLGTK2}
+    Widget := {%H-}PGtkWidget(Handle);
+    gtk_file_chooser_set_current_name(PGtkFileChooser(Widget),Pchar(FName));
+    {$ENDIF}
+
+    {$IFDEF LCLWIN32}
+      SendMessage(GetParent(Handle), CDM_SETCONTROLTEXT, 1152, LongInt(PChar(FName)));
+    {$ENDIF}
   end;
 end;
 
@@ -16178,9 +16208,17 @@ end;{TFreeShip.LoadBinary}
 procedure TFreeShip.LoadPreview(Filename:string;Image:TJPegImage);
 var Source        : TFreeFileBuffer;
     I             : integer;
-    Str           : String;
+    Str,Ext           : String;
 begin
-   Source:=TFreeFileBuffer.Create;
+  Ext := LowerCase(ExtractFileExt(FileName));
+  if Ext = '.fbm'
+   then Source:=TFreeFileBuffer.Create
+  else
+  if Ext = '.ftm'
+   then Source:=TFreeTextBuffer.Create
+  else
+   exit;
+
    try
       Source.LoadFromFile(FileName);                // Load everything into memory
       Source.Reset;

@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="2"/>
+      <BuildNr Value="6"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -52,7 +52,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="62">
+    <Units Count="63">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -60,7 +60,6 @@
       <Unit1>
         <Filename Value="Units/FreeLanguageSupport.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeLanguageSupport"/>
       </Unit1>
       <Unit2>
         <Filename Value="Forms/Main.pas"/>
@@ -76,19 +75,16 @@
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHullformWindow"/>
       </Unit3>
       <Unit4>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeLayerDlg"/>
       </Unit4>
       <Unit5>
         <Filename Value="Forms/FreeNewModelDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeNewModelDlg"/>
       </Unit5>
       <Unit6>
         <Filename Value="Forms/FreeSplashWndw.pas"/>
@@ -96,54 +92,45 @@
         <ComponentName Value="FreeSplashWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeSplashWndw"/>
       </Unit6>
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeVersionUnit"/>
       </Unit7>
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeIntersectionDlg"/>
       </Unit8>
       <Unit9>
         <Filename Value="Forms/FreeExtrudeDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeExtrudeDlg"/>
       </Unit9>
       <Unit10>
         <Filename Value="Forms/FreeControlPointFrm.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeControlPointFrm"/>
       </Unit10>
       <Unit11>
         <Filename Value="Forms/FreeProjectSettingsDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeProjectSettingsDlg"/>
       </Unit11>
       <Unit12>
         <Filename Value="Forms/FreeRotateDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeRotateDlg"/>
       </Unit12>
       <Unit13>
         <Filename Value="Forms/FreePreferencesDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreePreferencesDlg"/>
       </Unit13>
       <Unit14>
         <Filename Value="Forms/FreeExpanedPlatesDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeExpanedPlatesDlg"/>
       </Unit14>
       <Unit15>
         <Filename Value="Forms/FreeLinesplanFrme.pas"/>
@@ -151,37 +138,31 @@
         <ComponentName Value="FreeLinesplanFrame"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <UnitName Value="FreeLinesplanFrme"/>
       </Unit15>
       <Unit16>
         <Filename Value="Forms/FreeLinesplanFrm.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeLinesplanFrm"/>
       </Unit16>
       <Unit17>
         <Filename Value="Forms/FreeSaveImageDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeSaveImageDlg"/>
       </Unit17>
       <Unit18>
         <Filename Value="Forms/FreeInsertPlaneDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeInsertPlaneDlg"/>
       </Unit18>
       <Unit19>
         <Filename Value="Forms/FreeMichletOutputDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeMichletOutputDlg"/>
       </Unit19>
       <Unit20>
         <Filename Value="Forms/FreeAddMassOutputDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeAddMassOutputDlg"/>
       </Unit20>
       <Unit21>
         <Filename Value="Forms/FreeResistance_KaperDlg.pas"/>
@@ -189,7 +170,6 @@
         <ComponentName Value="FreeResistance_Kaper"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_KaperDlg"/>
       </Unit21>
       <Unit22>
         <Filename Value="Forms/FreeResistance_DelftDlg.pas"/>
@@ -197,7 +177,6 @@
         <ComponentName Value="FreeResistance_Delft"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_DelftDlg"/>
       </Unit22>
       <Unit23>
         <Filename Value="Forms/FreeResistance_HoltrDlg.pas"/>
@@ -205,7 +184,6 @@
         <ComponentName Value="FreeResistance_Holtr"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_HoltrDlg"/>
       </Unit23>
       <Unit24>
         <Filename Value="Forms/FreeResistance_HollenDlg.pas"/>
@@ -213,7 +191,6 @@
         <ComponentName Value="FreeResistance_Hollen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_HollenDlg"/>
       </Unit24>
       <Unit25>
         <Filename Value="Forms/FreeResistance_OortmerDlg.pas"/>
@@ -221,7 +198,6 @@
         <ComponentName Value="FreeResistance_Oortmer"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_OortmerDlg"/>
       </Unit25>
       <Unit26>
         <Filename Value="Forms/FreeResistance_FungLeibDlg.pas"/>
@@ -229,7 +205,6 @@
         <ComponentName Value="FreeResistance_FungLeib"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_FungLeibDlg"/>
       </Unit26>
       <Unit27>
         <Filename Value="Forms/FreeResistance_OSTDlg.pas"/>
@@ -237,7 +212,6 @@
         <ComponentName Value="FreeResistance_OST"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_OSTDlg"/>
       </Unit27>
       <Unit28>
         <Filename Value="Forms/FreePropeller_Task1Dlg.pas"/>
@@ -245,7 +219,6 @@
         <ComponentName Value="FreePropeller_Task1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreePropeller_Task1Dlg"/>
       </Unit28>
       <Unit29>
         <Filename Value="Forms/FreePropeller_Task2Dlg.pas"/>
@@ -253,7 +226,6 @@
         <ComponentName Value="FreePropeller_Task2"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreePropeller_Task2Dlg"/>
       </Unit29>
       <Unit30>
         <Filename Value="Forms/FreePropeller_Task3Dlg.pas"/>
@@ -261,7 +233,6 @@
         <ComponentName Value="FreePropeller_Task3"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreePropeller_Task3Dlg"/>
       </Unit30>
       <Unit31>
         <Filename Value="Forms/FreeHydrodyn_Task1Dlg.pas"/>
@@ -269,87 +240,72 @@
         <ComponentName Value="FreeHydrodyn_Task1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHydrodyn_Task1Dlg"/>
       </Unit31>
       <Unit32>
         <Filename Value="Forms/FreeMirrorPlaneDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeMirrorPlaneDlg"/>
       </Unit32>
       <Unit33>
         <Filename Value="Forms/FreeSelectLayersDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeSelectLayersDlg"/>
       </Unit33>
       <Unit34>
         <Filename Value="Forms/FreeKeelWizardDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeKeelWizardDlg"/>
       </Unit34>
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeNumInput"/>
       </Unit35>
       <Unit36>
         <Filename Value="Units/VRMLUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="VRMLUnit"/>
       </Unit36>
       <Unit37>
         <Filename Value="Forms/FreeLackenbyDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeLackenbyDlg"/>
       </Unit37>
       <Unit38>
         <Filename Value="Units/FreeIGESUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeIGESUnit"/>
       </Unit38>
       <Unit39>
         <Filename Value="Forms/FreeIntersectLayerDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeIntersectLayerDlg"/>
       </Unit39>
       <Unit40>
         <Filename Value="Forms/FreeUndoHistoryDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeUndoHistoryDlg"/>
       </Unit40>
       <Unit41>
         <Filename Value="Forms/FreeHydrostaticsResultsDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeHydrostaticsResultsDlg"/>
       </Unit41>
       <Unit42>
         <Filename Value="Forms/FreeBackgroundBlendingDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeBackgroundBlendingDlg"/>
       </Unit42>
       <Unit43>
         <Filename Value="Forms/FreeCylinderDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeCylinderDlg"/>
       </Unit43>
       <Unit44>
         <Filename Value="Units/FreeStringsUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeStringsUnit"/>
       </Unit44>
       <Unit45>
         <Filename Value="Forms/Free2DDXFExportDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="Free2DDXFExportDlg"/>
       </Unit45>
       <Unit46>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
@@ -357,7 +313,6 @@
         <ComponentName Value="FreeCrosscurvesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeCrosscurvesDlg"/>
       </Unit46>
       <Unit47>
         <Filename Value="Forms/FreeRotateDlgM.pas"/>
@@ -365,12 +320,10 @@
         <ComponentName Value="FreeRotateMDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeRotateDlgM"/>
       </Unit47>
       <Unit48>
         <Filename Value="Units/FasterList.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FasterList"/>
       </Unit48>
       <Unit49>
         <Filename Value="Forms/FreeHydrodyn_RVRSDlg.pas"/>
@@ -378,13 +331,11 @@
         <ComponentName Value="FreeHydrodyn_Rvrs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHydrodyn_RVRSDlg"/>
       </Unit49>
       <Unit50>
         <Filename Value="Forms/FreeHydrostaticsDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="FreeHydrostaticsDlg"/>
       </Unit50>
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
@@ -397,7 +348,6 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit1"/>
       </Unit52>
       <Unit53>
         <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
@@ -405,7 +355,6 @@
         <ComponentName Value="FreeResistance_Planing"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_PlaningDlg"/>
       </Unit53>
       <Unit54>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/include/control.inc"/>
@@ -417,7 +366,6 @@
         <ComponentName Value="FreeResistance_MH"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_MHDlg"/>
       </Unit55>
       <Unit56>
         <Filename Value="Forms/FreeResistance_RBHSDlg.pas"/>
@@ -425,7 +373,6 @@
         <ComponentName Value="FreeResistance_RBHS"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_RBHSDlg"/>
       </Unit56>
       <Unit57>
         <Filename Value="Forms/FreePropeller_Task4Dlg.pas"/>
@@ -433,7 +380,6 @@
         <ComponentName Value="FreePropeller_Task4"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreePropeller_Task4Dlg"/>
       </Unit57>
       <Unit58>
         <Filename Value="Forms/FreePropeller_Task5Dlg.pas"/>
@@ -441,23 +387,25 @@
         <ComponentName Value="FreePropeller_Task5"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreePropeller_Task5Dlg"/>
       </Unit58>
       <Unit59>
         <Filename Value="Units/FreeTypes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeTypes"/>
       </Unit59>
       <Unit60>
         <Filename Value="Units/FreeFileBuffer.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeFileBuffer"/>
       </Unit60>
       <Unit61>
         <Filename Value="Units/FreeLogger.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FreeLogger"/>
       </Unit61>
+      <Unit62>
+        <Filename Value="Units/FreeOpenDialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeOpenDialog"/>
+      </Unit62>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -500,11 +448,7 @@
         <ShowGenInfo Value="False"/>
         <ShoLineNum Value="True"/>
       </Verbosity>
-      <CompilerMessages>
-        <MsgFileName Value=""/>
-      </CompilerMessages>
       <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
-      <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>
   <Debugging>

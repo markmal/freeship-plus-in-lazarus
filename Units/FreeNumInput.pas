@@ -1,7 +1,7 @@
 unit FreeNumInput;
 
 {$IFDEF FPC}
-  {$MODE Delphi}
+  {$MODE Delphi}{$H+}
 {$ENDIF}
 
 interface
@@ -665,7 +665,7 @@ end;
 
 procedure Register;
 begin
-  RegisterComponents ('Freeship', [TFreeNumInput]);
+  RegisterComponents ('FreeShip', [TFreeNumInput]);
 end;
 
 end.

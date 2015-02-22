@@ -114,8 +114,15 @@ begin
    end;
    Str:=Grid.Cells[ACol,ARow];
    W:=Grid.Canvas.TextWidth(Str);
-   if (ARow in [0,1]) then Grid.Canvas.TextRect(Rect,(Rect.Left+Rect.Right-W) div 2,Rect.Top+3,Str)
-                      else Grid.Canvas.TextRect(Rect,Rect.Right-W-5,Rect.Top+3,Str);
+
+   if (ARow in [0,1]) or (ACol = 0)
+     then
+      begin
+        Grid.Canvas.FillRect(Rect);
+        Grid.Canvas.TextRect(Rect,(Rect.Left+Rect.Right-W) div 2,Rect.Top+3,Str);
+      end
+     else Grid.Canvas.TextRect(Rect,Rect.Right-W-5,Rect.Top+3,Str);
+
 end;{TFreeHydrostaticsResultsDialog.GridDrawCell}
 
 function TFreeHydrostaticsResultsDialog.Execute:Boolean;

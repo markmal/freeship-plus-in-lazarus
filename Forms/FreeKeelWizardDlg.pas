@@ -61,7 +61,7 @@ uses
      FreeGeometry,
      FreeLanguageSupport,
      FasterList,
-     FreeshipUnit,
+     FreeShipUnit,
      Math,
      ExtCtrls,
      ImgList,
@@ -207,7 +207,11 @@ const Nh           = 26;
 
 
 
-type TFreeKeelWizardDialog  = class(TForm)
+type
+
+{ TFreeKeelWizardDialog }
+
+ TFreeKeelWizardDialog  = class(TForm)
                                  Panel1: TPanel;
                                  Panel3: TPanel;
                                  BitBtn1: TSpeedButton;

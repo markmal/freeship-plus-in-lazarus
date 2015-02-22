@@ -29,7 +29,7 @@
 program FreeShip;
 
 {$IFDEF FPC}
-  {$MODE Delphi}
+  {$MODE Delphi} {$H+}
 {$ENDIF}
 
 //{$DEFINE CREATE_TRANSLATION}

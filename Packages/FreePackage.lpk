@@ -6,7 +6,7 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <IncludeFiles Value="/home/mark/MyProjects/freeship-plus-in-lazarus/Forms/;/home/mark/MyProjects/freeship-plus-in-lazarus/Units/"/>
+        <IncludeFiles Value="/home/mark/MyProjects/freeship-plus-in-lazarus/;/home/mark/MyProjects/freeship-plus-in-lazarus/Forms/;/home/mark/MyProjects/freeship-plus-in-lazarus/Units/"/>
         <Libraries Value="/home/mark/MyProjects/freeship-plus-in-lazarus/Units/"/>
         <OtherUnitFiles Value="/home/mark/MyProjects/freeship-plus-in-lazarus/Forms/;/home/mark/MyProjects/freeship-plus-in-lazarus/Units/"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
@@ -41,25 +41,27 @@
           <ShowHints Value="False"/>
           <ShowGenInfo Value="False"/>
           <ShoLineNum Value="True"/>
+          <ShowDebugInfo Value="True"/>
+          <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
         </Verbosity>
         <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
       </Other>
     </CompilerOptions>
     <Files Count="3">
       <Item1>
-        <Filename Value="../Units/FreeGeometry.pas"/>
-        <HasRegisterProc Value="True"/>
-        <UnitName Value="FreeGeometry"/>
-      </Item1>
-      <Item2>
         <Filename Value="../Units/FreeShipUnit.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="FreeShipUnit"/>
-      </Item2>
-      <Item3>
+      </Item1>
+      <Item2>
         <Filename Value="../Units/FreeNumInput.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="FreeNumInput"/>
+      </Item2>
+      <Item3>
+        <Filename Value="../Units/FreeGeometry.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="FreeGeometry"/>
       </Item3>
     </Files>
     <RequiredPkgs Count="3">

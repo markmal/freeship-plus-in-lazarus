@@ -1,7 +1,7 @@
 object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
-  Left = 168
+  Left = 596
   Height = 739
-  Top = 153
+  Top = 170
   Width = 955
   Caption = 'Cross curves.'
   ClientHeight = 739
@@ -11,7 +11,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.1'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -29,6 +29,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -72,6 +73,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     end
     object _ToolButton14: TToolButton
       Left = 215
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'
@@ -122,11 +124,11 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       TabOrder = 0
       object GroupBox1: TGroupBox
         Left = 8
-        Height = 213
+        Height = 221
         Top = 5
         Width = 243
         Caption = 'Displacements.'
-        ClientHeight = 197
+        ClientHeight = 205
         ClientWidth = 239
         TabOrder = 0
         object Label1: TLabel
@@ -258,16 +260,16 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       end
       object GroupBox2: TGroupBox
         Left = 8
-        Height = 105
-        Top = 222
+        Height = 129
+        Top = 232
         Width = 243
         Caption = 'Heeling angles.'
-        ClientHeight = 89
+        ClientHeight = 113
         ClientWidth = 239
         TabOrder = 2
         object HeelBox: TListBox
           Left = 8
-          Height = 55
+          Height = 60
           Top = 44
           Width = 65
           ItemHeight = 0
@@ -314,7 +316,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       object GroupBox3: TGroupBox
         Left = 8
         Height = 330
-        Top = 330
+        Top = 368
         Width = 243
         Caption = 'Data for SSD:'
         ClientHeight = 314
@@ -581,9 +583,9 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       Height = 701
       Top = 7
       Width = 676
-      ActivePage = TabSheet4
+      ActivePage = TabSheet1
       Align = alClient
-      TabIndex = 3
+      TabIndex = 0
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Graph'
@@ -736,6 +738,10 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Courier New'
+          Lines.Strings = (
+            'Tes'
+            'Test'
+          )
           ParentFont = False
           ScrollBars = ssBoth
           TabOrder = 0

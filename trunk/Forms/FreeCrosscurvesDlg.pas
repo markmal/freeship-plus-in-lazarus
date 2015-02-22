@@ -501,14 +501,21 @@ begin
       Di:=0; 
       Units:=FFreeship.ProjectSettings.ProjectUnits;
       if (FreeNuminput5_.Value>0) and (FreeNuminput6_.Value<>0) then begin
+         FreeNuminput5_.Color:=clDefault;
+         FreeNuminput6_.Color:=clDefault;
           Dr:=FreeNuminput5_.Value;   // расчетное водоизмещение в тоннах
 	      Zgr:=FreeNuminput6_.Value;  // ожидаемая Zg в метрах
           if Units=fuImperial then Zgr:=Zgr/0.3048;
           inc(NDispl);
           Displacements[NDispl-1]:=Dr;	 
     	  JJ:=1;
-	      II:=NDispl;
-      end;  
+	  II:=NDispl;
+      end
+      else
+      begin
+        FreeNuminput5_.Color:=clRed;
+        FreeNuminput6_.Color:=clRed;
+      end;
 
 
       if (NDispl=1) and (JJ=0) then begin	  
@@ -680,7 +687,11 @@ begin
    if (Units=fuImperial) and (Dr>0) and (Zgr>0) then begin
       MessageDlg(Userstring(1437),mtInformation,[mbOk],0);
       exit;
-   end; 
+   end;
+
+   if not((Dr>0) and (Zgr>0)) then
+     ResultsMemo.Append('Must be Dr>0 and Zgr>0');
+
    if (Dr>0) and (Zgr>0) then begin
           Series2:=TLineSeries.Create(Chart0);
 //          MessageDlg(Userstring(1126),mtInformation,[mbOk],0);
@@ -714,19 +725,31 @@ begin
    Series2.AddXY(d_Teta0,d_Teta,'',clTeeColor);
    Series2.Title:=Userstring(1049)+FloatToStrF(Zgr+Zmin,ffFixed,7,3)+'m';
    h0:=0;   
-   I0:=0;   
+   I0:=0;
+
+   if Grid.Colcount>length(Angles) then
+   begin
+    MessageDlg('There should be not less than '+IntToStr(Grid.Colcount)+' heeling angles. Results may be wrong.' ,mtError,[mbOk],0);
+    exit;
+   end;
+
    for I:=1 to Grid.Colcount do begin 
 	if Lmax<L_Teta[I-1] then begin
                    Lmax:=L_Teta[I-1];
                    Teta_max:=Angles[I-1];
         end;
         d_Teta0:=d_Teta;
+
+     if I<length(Angles) then
+       begin
         d_Teta:=d_Teta+(L_Teta[I]+L_Teta[I-1])*(Angles[I]-Angles[I-1])/2./57.3;
         if (d_Teta<0) and (d_Teta0>0) then Tet0d:=Angles[I];
         if (Angles[I]>1) and (Angles[I]<Tet0d) then begin
                        Series2.AddXY(Angles[I],d_Teta,'',clTeeColor);
                        d_Teta_[i]:=d_Teta; 
-        end; 
+        end;
+       end;
+
 //        MessageDlg(FloatToStrF(Angles[I],ffFixed,6,3)+' '+FloatToStrF(Angles[I-1],ffFixed,6,3)+' '+FloatToStrF(L_Teta[I],ffFixed,6,3)+' '+FloatToStrF(L_Teta[I-1],ffFixed,6,3)+' '+FloatToStrF(d_Teta,ffFixed,6,5),mtInformation,[mbOk],0);
 	if i=2 then h0:=(L_Teta[I-1]-L_Teta[I-2])/Angles[I-1]*57.29;
 	if L_Teta[I-1]>=0 then begin
@@ -1204,8 +1227,13 @@ begin
    end;
    Str:=Grid.Cells[ACol,ARow];
    W:=Grid.Canvas.TextWidth(Str);
-   if (ARow=0) then Grid.Canvas.TextRect(Rect,(Rect.Left+Rect.Right-W) div 2,Rect.Top+3,Str)
-               else Grid.Canvas.TextRect(Rect,Rect.Right-W-5,Rect.Top+3,Str);
+   if (ARow in [0,1]) or (ACol = 0)
+   then
+     begin
+      Grid.Canvas.FillRect(Rect);
+      Grid.Canvas.TextRect(Rect,(Rect.Left+Rect.Right-W) div 2,Rect.Top+3,Str);
+     end
+   else Grid.Canvas.TextRect(Rect,Rect.Right-W-5,Rect.Top+3,Str);
 end;{TFreeCrosscurvesDialog.GridDrawCell}
 
 procedure TFreeCrosscurvesDialog.PrintButtonClick(Sender: TObject);

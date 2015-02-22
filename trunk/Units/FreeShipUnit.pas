@@ -29,7 +29,7 @@
 unit FreeShipUnit;
 
 {$IFDEF FPC}
-  {$MODE Delphi}
+  {$MODE Delphi}{$H+}
 {$ENDIF}
 
 interface
@@ -14932,7 +14932,7 @@ begin
 end;{TFreeShip.FSetPrecision}
 
 function TFreeShip.FGetPreview:TJPEGImage;
-
+{
    procedure Resample1(var source,Target:TBitmap;Width,Height:integer);
    var I,J,W,H       : Integer;
        Row1,Row2     : integer;
@@ -14979,7 +14979,8 @@ function TFreeShip.FGetPreview:TJPEGImage;
             DestPix^[J].rgbtBlue:=Round(B1+T*(B2-B1));
          end;
       end;
-   end;{Resample}
+   end;//Resample
+
 
    procedure Resample(var source,Target:TBitmap;Width,Height:integer);
    var Bmp1       : TBitmap;
@@ -15009,7 +15010,7 @@ function TFreeShip.FGetPreview:TJPEGImage;
          end;
       end;
       Bmp1.Destroy;
-   end;{Resample}
+   end;//Resample
 
    Procedure SnapShot(xpos: integer; ypos: integer;OrgWidth,OrgHeight:integer; Var Bmp:TBitmap);
    const DesW = 400;
@@ -15050,8 +15051,8 @@ function TFreeShip.FGetPreview:TJPEGImage;
       Resample(TmpBmp,Bmp,W,H);
       ReleaseDc(0, dc);
       TmpBmp.Destroy;
-   End;{SnapShot}
-
+   End;//SnapShot
+ }
 var Tmp,thumbNail:TBitmap;
 begin
    {

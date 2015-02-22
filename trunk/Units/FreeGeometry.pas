@@ -29,7 +29,7 @@
 unit FreeGeometry;
 
 {$IFDEF FPC}
-  {$MODE Delphi}
+  {$MODE Delphi} {$H+}
 {$ENDIF}
 
 interface
@@ -253,11 +253,11 @@ type TFreeSubdivisionBase           = class;
                                     property Origin            : TPoint read FOrigin write FSetOrigin;
                                  published
                                     property Alpha             : byte read FAlpha write FSetAlpha;
-                                    property Bitmap            : TBitmap read FBitmap;
-                                    property Owner             : TFreeViewport read FOwner;
-                                    property Quality           : byte read FQuality;
-                                    property Scale             : TFloatType read FScale;
-                                    property ShowInView        : TFreeViewType read FShowInView;
+                                    property Bitmap            : TBitmap read FBitmap write FBitmap;
+                                    property Owner             : TFreeViewport read FOwner write FOwner;
+                                    property Quality           : byte read FQuality write FQuality;
+                                    property Scale             : TFloatType read FScale write FScale;
+                                    property ShowInView        : TFreeViewType read FShowInView write FShowInView;
                                     property Tolerance         : Byte read FTolerance write FSetTolerance;
                                     property Transparent       : Boolean read FTransparent write FSetTransparent;
                                     property TransparentColor  : TColor read FTransparentColor write FSetTransparentColor;
@@ -2592,7 +2592,7 @@ procedure TFreeAlphaBuffer.Draw;
 var I,J : Integer;
 
 
-procedure ProcessPixel(X,Y:Integer;PixData:TAlphaBlendPixelArray);
+    procedure ProcessPixel(X,Y:Integer;PixData:TAlphaBlendPixelArray);
 
       procedure QuickSort(L,R:Integer);
       var I, J : Integer;
@@ -2629,6 +2629,7 @@ procedure ProcessPixel(X,Y:Integer;PixData:TAlphaBlendPixelArray);
         I:Byte;
     begin
        if PixData.Number>1 then QuickSort(0,PixData.Number-1);
+       FViewport.FDrawingBuffer.BeginUpdate;
        Row:=FViewport.FDrawingBuffer.ScanLine[Y];
        for I:=1 to PixData.Number do
        begin
@@ -2640,7 +2641,8 @@ procedure ProcessPixel(X,Y:Integer;PixData:TAlphaBlendPixelArray);
          Row^[X].rgbtBlue:=Row^[X].rgbtBlue+(Data.Alpha*(Data.B-Row^[X].rgbtBlue)) shr 8;
          end;
        end;
-    end;
+       FViewport.FDrawingBuffer.EndUpdate;
+    end; {ProcessPixel}
 begin
    for I:=FFirstRow to FLastRow do
    begin
@@ -3263,6 +3265,7 @@ end;{TFreeViewport.WMMouseLeave}
 
 constructor TFreeViewport.Create(AOwner:TComponent);
 begin
+   Inherited create(AOwner);
    FPrinting:=False;
    FBackgroundMode:=emNormal;
    FMargin:=0.0;
@@ -3282,7 +3285,8 @@ begin
    FBackgroundImage:=TFreeBackgroundImage.Create(Self);
    FHorScrollbar:=nil;
    FVertScrollbar:=nil;
-   Inherited create(AOwner);
+
+   //Inherited create(AOwner);
    FDrawingBuffer:=TBitmap.Create;
    FDrawingBuffer.PixelFormat := pf24bit; // Use 24 bit for faster pixel-access when shading
    FDrawingBuffer.Width:=10;
@@ -3304,6 +3308,7 @@ begin
    Screen.Cursors[crSetOrigin]:=LoadCursor(hInstance,'SETORIGIN');
    Screen.Cursors[crSetScale]:=LoadCursor(hInstance,'SETSCALE');
    Screen.Cursors[crTranspCol]:=LoadCursor(hInstance,'TRANSPARENTCOLOR');
+   writeln('TFreeViewport.Create: done');
 end;{TFreeViewport.Create}
 
 destructor TFreeViewport.Destroy;
@@ -16258,6 +16263,7 @@ begin
       Point.FCoordinate:=TmpPoints[I-1];
    end;
 end;{TFreeSubdivisionSurface.SubDivide}
+
 
 procedure Register;
 begin

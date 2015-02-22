@@ -7,15 +7,15 @@ unit FreePackage;
 interface
 
 uses
-  FreeGeometry, FreeShipUnit, FreeNumInput, LazarusPackageIntf;
+  FreeShipUnit, FreeNumInput, FreeGeometry, LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
-  RegisterUnit('FreeGeometry', @FreeGeometry.Register);
   RegisterUnit('FreeShipUnit', @FreeShipUnit.Register);
   RegisterUnit('FreeNumInput', @FreeNumInput.Register);
+  RegisterUnit('FreeGeometry', @FreeGeometry.Register);
 end;
 
 initialization

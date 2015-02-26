@@ -51,7 +51,7 @@ uses
      StdCtrls;
 
 const
- SPLASH_TIME = 5000;
+ SPLASH_TIME = 3000;
 
 type
 

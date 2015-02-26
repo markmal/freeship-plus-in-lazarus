@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="24"/>
+      <BuildNr Value="25"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -52,7 +52,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="67">
+    <Units Count="64">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -177,6 +177,7 @@
         <ComponentName Value="FreeResistance_Delft"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_DelftDlg"/>
       </Unit22>
       <Unit23>
         <Filename Value="Forms/FreeResistance_HoltrDlg.pas"/>
@@ -257,7 +258,6 @@
         <ComponentName Value="FreeKeelWizardDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeKeelWizardDlg"/>
       </Unit34>
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
@@ -292,7 +292,6 @@
         <ComponentName Value="FreeHydrostaticsResultsDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHydrostaticsResultsDlg"/>
       </Unit41>
       <Unit42>
         <Filename Value="Forms/FreeBackgroundBlendingDlg.pas"/>
@@ -350,90 +349,71 @@
         <UnitName Value="FreeShipUnit"/>
       </Unit51>
       <Unit52>
-        <Filename Value="Forms/unit1.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit52>
-      <Unit53>
         <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeResistance_Planing"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit53>
-      <Unit54>
-        <Filename Value="/usr/share/lazarus/1.2.6/lcl/include/control.inc"/>
-        <IsPartOfProject Value="True"/>
-      </Unit54>
-      <Unit55>
+      </Unit52>
+      <Unit53>
         <Filename Value="Forms/FreeResistance_MHDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeResistance_MH"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit55>
-      <Unit56>
+      </Unit53>
+      <Unit54>
         <Filename Value="Forms/FreeResistance_RBHSDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeResistance_RBHS"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit56>
-      <Unit57>
+      </Unit54>
+      <Unit55>
         <Filename Value="Forms/FreePropeller_Task4Dlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreePropeller_Task4"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit57>
-      <Unit58>
+      </Unit55>
+      <Unit56>
         <Filename Value="Forms/FreePropeller_Task5Dlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreePropeller_Task5"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit56>
+      <Unit57>
+        <Filename Value="Units/FreeTypes.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit57>
+      <Unit58>
+        <Filename Value="Units/FreeFileBuffer.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit58>
       <Unit59>
-        <Filename Value="Units/FreeTypes.pas"/>
+        <Filename Value="Units/FreeLogger.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit59>
       <Unit60>
-        <Filename Value="Units/FreeFileBuffer.pas"/>
+        <Filename Value="Units/FreeOpenDialog.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit60>
       <Unit61>
-        <Filename Value="Units/FreeLogger.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit61>
-      <Unit62>
-        <Filename Value="Units/FreeOpenDialog.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit62>
-      <Unit63>
         <Filename Value="Forms/FreeAboutDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeAboutDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit63>
-      <Unit64>
+      </Unit61>
+      <Unit62>
         <Filename Value="Units/FreeViewPort.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit64>
-      <Unit65>
-        <Filename Value="Forms/unit2.pas"/>
+      </Unit62>
+      <Unit63>
+        <Filename Value="Units/colorfactory.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form2"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit65>
-      <Unit66>
-        <Filename Value="Forms/unit3.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form3"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit66>
+      </Unit63>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

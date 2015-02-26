@@ -63,7 +63,8 @@ uses
      ToolWin,
      ImgList,
      Printers,
-     Grids;
+     Grids,
+    ColorFactory;
 
 {$IFDEF FPC}
  const  clTeeColor = clTAColor;
@@ -436,6 +437,7 @@ var NHeel         : Integer;
     Series2       : TLineSeries;	
     PrevCursor    : TCursor;
     Total         : TLayerProperties;
+    ColorFactory,ColorFactory1  : TColorFactory;
     l_Teta        : array[0..100] of single;
     d_Teta_       : array[0..100] of single;
     T_sum         : array[0..100] of single;
@@ -583,6 +585,8 @@ begin
       Chart.ZoomFull;
       {$ENDIF}
 
+      ColorFactory := TColorFactory.Create;
+      ColorFactory1 := TColorFactory.Create;
 
       while (I<=NHeel) and (not FAbortCalculation) do
       begin
@@ -596,14 +600,14 @@ begin
 	    Chart0.AddSeries(Series1);
             if Zgr=0 then Series.Title:='KN sin(Psi)'
                      else Series.Title:='GZ,m';
-            Series.LinePen.Color:=clBlack;
+            Series.LinePen.Color := ColorFactory.getNextColor;
             {$IFnDEF FPC}
             Series.LinePen.Visible:=True;
             {$ENDIF}
             Series.LinePen.Style:=psSolid;
             Series.ShowInLegend:=false;
             Series1.Title:='GZ(Psi), m';
-            Series1.LinePen.Color:=clBlack;
+            Series1.LinePen.Color := ColorFactory1.getNextColor;
             {$IFnDEF FPC}
             Series1.LinePen.Visible:=True;
             {$ENDIF}
@@ -619,10 +623,12 @@ begin
             {$IFnDEF FPC}
             Series.AllowSinglePoint:=True;
             {$ENDIF}
+            Series.LinePen.Color := ColorFactory.getNextColor;
             Chart.AddSeries(Series);
             Series.Title:=FloatToStrF(Angles[I-1],ffFixed,7,1)+'°';
             Grid.Cells[I,0]:=FloatToStrF(Angles[I-1],ffFixed,7,1)+'°';
             Series1:=TLineSeries.Create(Chart0);
+            Series1.LinePen.Color := ColorFactory1.getNextColor;
             {$IFnDEF FPC}
             Series1.AllowSinglePoint:=True;
             {$ENDIF}
@@ -676,6 +682,8 @@ begin
       end;
       TabSheet1.Visible:=True;
       Calculation.Destroy;
+      ColorFactory.Destroy;
+      ColorFactory1.Destroy;
    finally
       Screen.Cursor:=PrevCursor;
       ToolButton2.Enabled:=False;

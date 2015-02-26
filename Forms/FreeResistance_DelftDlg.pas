@@ -41,7 +41,7 @@ uses
 {$ELSE}
   LCLIntf, LCLType, LMessages,
   TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
-  TAChartAxis, TAChartAxisUtils,
+  TAChartAxis, TAChartAxisUtils, TATransformations,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
      SysUtils,
@@ -107,7 +107,19 @@ const Matrix1 : array[0..13,0..9] of extended=((-6.735654,38.368310,-0.008193,0.
 {$IFDEF FPC}
        clTeeColor = clTAColor;
 {$ENDIF}
-type TFreeResistance_Delft   = class(TForm)
+type
+
+{ TFreeResistance_Delft }
+
+ TFreeResistance_Delft   = class(TForm)
+
+                                     ChartAxisTransformations1: TChartAxisTransformations;
+
+                                       ChartAxisTransformations1AutoScaleAxisTransform1: TAutoScaleAxisTransform;
+
+                                       ChartAxisTransformations2: TChartAxisTransformations;
+
+                                         ChartAxisTransformations2AutoScaleAxisTransform1: TAutoScaleAxisTransform;
                                     PrintDialog: TPrintDialog;
                                     PageControl1: TPageControl;
                                     General: TTabSheet;

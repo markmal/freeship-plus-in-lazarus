@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="25"/>
+      <BuildNr Value="53"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -52,7 +52,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="64">
+    <Units Count="68">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -67,7 +67,6 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Main"/>
       </Unit2>
       <Unit3>
         <Filename Value="Forms/FreeHullformWindow.pas"/>
@@ -75,6 +74,7 @@
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeHullformWindow"/>
       </Unit3>
       <Unit4>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
@@ -177,7 +177,6 @@
         <ComponentName Value="FreeResistance_Delft"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_DelftDlg"/>
       </Unit22>
       <Unit23>
         <Filename Value="Forms/FreeResistance_HoltrDlg.pas"/>
@@ -262,6 +261,7 @@
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeNumInput"/>
       </Unit35>
       <Unit36>
         <Filename Value="Units/VRMLUnit.pas"/>
@@ -318,7 +318,6 @@
         <ComponentName Value="FreeCrosscurvesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeCrosscurvesDlg"/>
       </Unit46>
       <Unit47>
         <Filename Value="Forms/FreeRotateDlgM.pas"/>
@@ -346,7 +345,6 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeShipUnit"/>
       </Unit51>
       <Unit52>
         <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
@@ -386,6 +384,7 @@
       <Unit57>
         <Filename Value="Units/FreeTypes.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeTypes"/>
       </Unit57>
       <Unit58>
         <Filename Value="Units/FreeFileBuffer.pas"/>
@@ -414,6 +413,24 @@
         <Filename Value="Units/colorfactory.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit63>
+      <Unit64>
+        <Filename Value="Units/FreeBitmap.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit64>
+      <Unit65>
+        <Filename Value="Units/FreeBGRbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit65>
+      <Unit66>
+        <Filename Value="Units/FreeRGBbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeRGBbuffer"/>
+      </Unit66>
+      <Unit67>
+        <Filename Value="Units/FreeBitmapFormatHelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeBitmapFormatHelper"/>
+      </Unit67>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -464,7 +481,7 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="3">
+    <Exceptions Count="4">
       <Item1>
         <Name Value="EAbort"/>
       </Item1>
@@ -474,6 +491,9 @@
       <Item3>
         <Name Value="EFOpenError"/>
       </Item3>
+      <Item4>
+        <Name Value="Exception"/>
+      </Item4>
     </Exceptions>
   </Debugging>
 </CONFIG>

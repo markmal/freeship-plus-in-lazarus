@@ -113,8 +113,8 @@ begin
    Writeln ('FreeShip Program version: ',ResourceVersionInfo);
    Writeln ('Last SVN Change Revision: ',SUBVERSION_REVISION);
 
-   ShowSplash:=True;
-   InDebugger:=False;
+   ShowSplash:=False;
+   InDebugger:=True;
 
    FormatSettings.DecimalSeparator:='.';
    Application.Initialize;

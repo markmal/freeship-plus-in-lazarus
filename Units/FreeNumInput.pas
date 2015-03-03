@@ -598,26 +598,28 @@ end;
 
 procedure TFreeNumInput.CalcTextMargin;
 var
-  DC: HDC;
+  {DC: HDC;
   SaveFont: HFont;
-  I: Integer;
   SysMetrics, Metrics: TTextMetric;
-  LCLSysMetrics, LCLMetrics: TLCLTextMetric;
+  LCLSysMetrics, LCLMetrics: TLCLTextMetric;}
+  I: Integer;
 begin
-  DC:=GetDC(0);
+{  DC:=GetDC(0);
   GetTextMetrics(DC, SysMetrics);
   SaveFont:=SelectObject(DC, Font.Handle);
   GetTextMetrics(DC, Metrics);
   SelectObject(DC, SaveFont);
   ReleaseDC(0, DC);
   I:=SysMetrics.tmHeight;
-  if I>Metrics.tmHeight then I:=Metrics.tmHeight;
-  FTextMargin:=I div 4;
+  if I>Metrics.tmHeight then I:=Metrics.tmHeight;}
+  //I:=FCanvas.TextHeight('0');
+  //FTextMargin:=I div 4;
+  FTextMargin:=2;
 end;
 
 procedure TFreeNumInput.WMPaint(var Message: TWMPaint);
 var
-  Width_, Indent_, Left_: Integer;
+  Width_, Height_, Indent_, Left_: Integer;
   R: TRect;
   DC: HDC;
   PS: TPaintStruct;
@@ -636,7 +638,6 @@ begin
   then only poorly) we will draw right and center justify manually unless
   the edit has the focus. }
 
-
   DC:=Message.DC;
   if DC=0 then DC:=BeginPaint(Handle, PS);
   FCanvas.Handle:=DC;
@@ -650,6 +651,8 @@ begin
       if Pen.Color<>Brush.color then Pen.Color:=Brush.Color;
       S:=Text;
       Width_:=TextWidth(S);
+      Height_:=TextHeight(S);
+      FTextMargin := Height_ div 4;
       if BorderStyle=bsNone then Indent_:=0
                             else Indent_:=FTextMargin;
       if FAlignment=taRightJustify then

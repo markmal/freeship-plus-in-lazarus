@@ -4,8 +4,9 @@ unit FreeTypes;
 
 interface
 
-uses
-  Classes, SysUtils;
+
+const
+  PixelCountMax                 = 32768;                         // used for faster pixel acces when shading to viewport
 
 Type
 
@@ -20,6 +21,14 @@ Type
   T3DPlane                      = record
                                      a,b,c,d:TFloatType;         // Description of a 3D plane: a*x + b*y + c*z -d = 0.0;
                                   end;
+
+  TRGBTriple                    = packed record
+                                     rgbtBlue : BYTE;
+                                     rgbtGreen: BYTE;
+                                     rgbtRed  : BYTE;
+                                  end;
+  pRGBTripleArray               = ^TRGBTripleArray;
+  TRGBTripleArray               = array[0..PixelCountMax-1] of TRGBTriple;
 
 
   TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);                                  // Precision of the ship-model

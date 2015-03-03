@@ -35,17 +35,15 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
-  PrintersDlgs, Printer4Lazarus, FreePrinter,
+  LCLIntf, LCLType,
+  PrintersDlgs,
 {$ENDIF}
      SysUtils,
-     Variants,
      Classes,
      Graphics,
      Controls,
      Forms,
      Dialogs,
-     ExtCtrls,
      FreeTypes,
      FreeGeometry,
      FreeShipUnit,

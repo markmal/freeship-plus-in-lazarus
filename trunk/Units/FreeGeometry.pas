@@ -39,8 +39,6 @@ uses
   JPeg, Windows,
 {$ELSE}
   LCLIntf, LCLType, LMessages,
-  GraphType, GraphMath,
-  Printer4Lazarus,
 {$ENDIF}
   FasterList,
   Messages,
@@ -59,7 +57,8 @@ uses
   FreeVersionUnit,
   FreeFileBuffer,
   ExtCtrls,
-  FileUtil;
+  FileUtil,
+  FreeBitmapFormatHelper;
 
 const Foot                          = 0.3048;
       Lbs                           = 0.44642857;
@@ -106,13 +105,6 @@ type
                                          Z    : TFloatType;
                                          R,G,B: integer;
                                       end;
-      TRGBTriple                    = packed record
-                                         rgbtBlue : BYTE;
-                                         rgbtGreen: BYTE;
-                                         rgbtRed  : BYTE;
-                                      end;
-      pRGBTripleArray               = ^TRGBTripleArray;
-      TRGBTripleArray               = array[0..PixelCountMax-1] of TRGBTriple;
       TLayerProperties              = record
                                          SurfaceArea           : TFloatType;
                                          Weight                : TFloatType;
@@ -296,6 +288,7 @@ type TFreeSubdivisionBase           = class;
                                     FViewportMode              : TFreeViewportmode;       // Switch between wireframe mode or differentypes of shading
                                     FDrawingCanvas             : TCanvas;
                                     FDrawingBuffer             : TBitmap;                 // Drawingbuffer to prevent flickering. Everything is drawn on this bitmap, and then copied to the screen
+                                    //FBitmapFormatHelper        : TFreeBitmapFormatHelper;
                                     FOnMouseDown               : TMouseEvent;
                                     FOnMouseUp                 : TMouseEvent;
                                     FOnMouseEnter              : TNotifyEvent;
@@ -1322,6 +1315,8 @@ const crRotate    = 1; // Rotation cursor
       crSetOrigin = 3; // Cursor used when setting the origin of a background image
       crSetScale  = 4; // Cursor used when setting the scale of a background image
       crTranspCol = 5; // Cursor used when setting the transparent color of a background image
+
+
 
 function  AddPoint(P1,P2:T3DCoordinate):T3DCoordinate;
 // Add two vectors
@@ -2625,12 +2620,16 @@ var I,J : Integer;
 
 
     var Data:TAlphaBlendData;
-        Row     : pRGBTripleArray;
+        //Row     : pRGBTripleArray;
+        pRow,pPixel:pointer;
+        Pixel : TRGBTriple;
+        Clr : TColor;
         I:Byte;
     begin
        if PixData.Number>1 then QuickSort(0,PixData.Number-1);
-       FViewport.FDrawingBuffer.BeginUpdate;
-       Row:=FViewport.FDrawingBuffer.ScanLine[Y];
+       //FViewport.FDrawingBuffer.BeginUpdate;
+
+       {Row:=FViewport.FDrawingBuffer.ScanLine[Y];
        for I:=1 to PixData.Number do
        begin
          Data:=PixData.Data[I-1];
@@ -2640,7 +2639,43 @@ var I,J : Integer;
          Row^[X].rgbtGreen:=Row^[X].rgbtGreen+(Data.Alpha*(Data.G-Row^[X].rgbtGreen)) shr 8;
          Row^[X].rgbtBlue:=Row^[X].rgbtBlue+(Data.Alpha*(Data.B-Row^[X].rgbtBlue)) shr 8;
          end;
+       end;}
+
+       // temporary draw via Canvas
+       Clr := FViewport.FDrawingBuffer.Canvas.Pixels[X,Y];
+       Pixel.rgbtBlue:=Blue(Clr);
+       Pixel.rgbtGreen:=Green(Clr);
+       Pixel.rgbtRed:=Red(Clr);
+       for I:=1 to PixData.Number do
+       begin
+         Data:=PixData.Data[I-1];
+         if Data.zvalue>FViewport.ZBuffer.FBuffer[Y][X] then
+         begin
+         Pixel.rgbtRed:=Pixel.rgbtRed+(Data.Alpha*(Data.R-Pixel.rgbtRed)) shr 8;
+         Pixel.rgbtGreen:=Pixel.rgbtGreen+(Data.Alpha*(Data.G-Pixel.rgbtGreen)) shr 8;
+         Pixel.rgbtBlue:=Pixel.rgbtBlue+(Data.Alpha*(Data.B-Pixel.rgbtBlue)) shr 8;
+         end;
        end;
+       FViewport.FDrawingBuffer.Canvas.Pixels[X,Y]:=RGBtoColor(Pixel.rgbtRed, Pixel.rgbtGreen, Pixel.rgbtBlue);
+
+       {
+       pRow := FViewport.FDrawingBuffer.RawImage.GetLineStart(Y);
+       pPixel := pRow + FViewport.FBitmapFormatHelper.BytesPerPixel * X;
+       Pixel := FViewport.FBitmapFormatHelper.ToTRGBTriple(pPixel);
+       for I:=1 to PixData.Number do
+       begin
+         Data:=PixData.Data[I-1];
+         if Data.zvalue>FViewport.ZBuffer.FBuffer[Y][X] then
+         begin
+         Pixel.rgbtRed:=Pixel.rgbtRed+(Data.Alpha*(Data.R-Pixel.rgbtRed)) shr 8;
+         Pixel.rgbtGreen:=Pixel.rgbtGreen+(Data.Alpha*(Data.G-Pixel.rgbtGreen)) shr 8;
+         Pixel.rgbtBlue:=Pixel.rgbtBlue+(Data.Alpha*(Data.B-Pixel.rgbtBlue)) shr 8;
+         end;
+       end;
+       FViewport.FBitmapFormatHelper.FromTRGBTriple(Pixel, pPixel);
+       }
+
+
        FViewport.FDrawingBuffer.EndUpdate;
     end; {ProcessPixel}
 begin
@@ -2823,6 +2858,10 @@ var Dest    : TRect;
     DrawingToprinter:Boolean;
     Backgr  : TRGBTriple;
     TmpVal  : Byte;
+    BitmapFormatHelper    : TFreeBitmapFormatHelper;
+    pPixel, pRow : pointer;
+    Pixel : TRGBTriple;
+    C : TColor;
 begin
    if (Visible) and (Owner.ViewType=FShowInView) then
    begin
@@ -2830,7 +2869,9 @@ begin
 
       Tmp:=TBitmap.Create;
       Tmp.Assign(FBitmap);
-      if Tmp.PixelFormat<>pf24bit then Tmp.PixelFormat:=pf24bit;
+      //if Tmp.PixelFormat<>pf24bit then Tmp.PixelFormat:=pf24bit;
+      BitmapFormatHelper := TFreeBitmapFormatHelper.Create(Tmp);
+
       DrawingToprinter:=False;
       if Printer<>nil then DrawingToPrinter:=(FOwner.DrawingCanvas=Printer.Canvas) and (Fowner.FPrinting);
 
@@ -2851,36 +2892,53 @@ begin
       Gt:=GetGValue(FTransparentColor);
       Bt:=GetBValue(FTransparentColor);
       TmpVal:=255-FAlpha;
-      if (Transparent) or (Alpha<>255) then for I:=0 to Tmp.Height-1 do
+      Tmp.BeginUpdate(true);
+      //if (Transparent) or (Alpha<>255) then
+      for I:=0 to Tmp.Height-1 do
       begin
-         Scan:=Tmp.ScanLine[I];
+         //Scan:=Tmp.ScanLine[I];
+         pRow := Tmp.RawImage.GetLineStart(I);
+
          for J:=0 to Tmp.Width-1 do
          begin
+            pPixel := pRow + BitmapFormatHelper.BytesPerPixel * J;
+            Pixel := BitmapFormatHelper.ToTRGBTriple(pPixel);
+            {C := Tmp.Canvas.Pixels[J,I];
+            Pixel.rgbtRed := Red(C);
+            Pixel.rgbtGreen:=Green(C);
+            Pixel.rgbtBlue:=Blue(C);}
             if Transparent then
             begin
                // Replace transparent pixels with the viewport color
-               if (abs(Scan^[J].rgbtRed-Rt)<=FTolerance) and
-                  (abs(Scan^[J].rgbtGreen-Gt)<=FTolerance) and
-                  (abs(Scan^[J].rgbtBlue-Bt)<=FTolerance) then
+               if (abs(Pixel.rgbtRed-Rt)<=FTolerance) and
+                  (abs(Pixel.rgbtGreen-Gt)<=FTolerance) and
+                  (abs(Pixel.rgbtBlue-Bt)<=FTolerance) then
                begin
-                  Scan^[J]:=Backgr;
+                  Pixel:=Backgr;
                end else
                begin
                   // Blend non-transparent pixels with the viewport
-                  Scan^[J].rgbtRed:=(Tmpval*Backgr.rgbtRed+FAlpha*Scan^[J].rgbtRed) shr 8;
-                  Scan^[J].rgbtGreen:=(Tmpval*Backgr.rgbtGreen+FAlpha*Scan^[J].rgbtGreen) shr 8;
-                  Scan^[J].rgbtBlue:=(Tmpval*Backgr.rgbtBlue+FAlpha*Scan^[J].rgbtBlue) shr 8;
+                  Pixel.rgbtRed:=(Tmpval*Backgr.rgbtRed+FAlpha*Pixel.rgbtRed) shr 8;
+                  Pixel.rgbtGreen:=(Tmpval*Backgr.rgbtGreen+FAlpha*Pixel.rgbtGreen) shr 8;
+                  Pixel.rgbtBlue:=(Tmpval*Backgr.rgbtBlue+FAlpha*Pixel.rgbtBlue) shr 8;
                end;
             end else
             begin
                // Blend all pixels with the viewport
-               Scan^[J].rgbtRed:=(Tmpval*Backgr.rgbtRed+FAlpha*Scan^[J].rgbtRed) shr 8;
-               Scan^[J].rgbtGreen:=(Tmpval*Backgr.rgbtGreen+FAlpha*Scan^[J].rgbtGreen) shr 8;
-               Scan^[J].rgbtBlue:=(Tmpval*Backgr.rgbtBlue+FAlpha*Scan^[J].rgbtBlue) shr 8;
+               Pixel.rgbtRed:=(Tmpval*Backgr.rgbtRed+FAlpha*Pixel.rgbtRed) shr 8;
+               Pixel.rgbtGreen:=(Tmpval*Backgr.rgbtGreen+FAlpha*Pixel.rgbtGreen) shr 8;
+               Pixel.rgbtBlue:=(Tmpval*Backgr.rgbtBlue+FAlpha*Pixel.rgbtBlue) shr 8;
             end;
+
+            BitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);
+            //Tmp.Canvas.Pixels[J,I]:= RGBtoColor(Pixel.rgbtRed,Pixel.rgbtGreen,Pixel.rgbtBlue);
          end;
-      end;
-      StretchBlt(FOwner.DrawingCanvas.Handle,Dest.Left,Dest.Top,Dest.Right-Dest.Left,Dest.Bottom-Dest.Top,Tmp.Canvas.Handle,0,0,Tmp.Width,Tmp.Height,SRCCOPY);
+      end;  //for I
+      Tmp.EndUpdate(true);
+
+      //StretchBlt(FOwner.DrawingCanvas.Handle,Dest.Left,Dest.Top,Dest.Right-Dest.Left,Dest.Bottom-Dest.Top,Tmp.Canvas.Handle,0,0,Tmp.Width,Tmp.Height,SRCCOPY);
+      FOwner.DrawingCanvas.StretchDraw(Dest,Tmp);
+      BitmapFormatHelper.Destroy;
       tmp.Destroy;
    end;
 end;{TFreeBackgroundImage.Draw}
@@ -3287,11 +3345,21 @@ begin
    FVertScrollbar:=nil;
 
    //Inherited create(AOwner);
-   FDrawingBuffer:=TBitmap.Create;
-   FDrawingBuffer.PixelFormat := pf24bit; // Use 24 bit for faster pixel-access when shading
+   FDrawingBuffer:=TBitmap.Create ;
+   // FDrawingBuffer.PixelFormat := pf24bit; // Use 24 bit for faster pixel-access when shading
+   // We cannot use incompatible format in X11. It will cause desynchronization of RawImage with Canvas,
+   // so Canvas operations will cause to "forget" previous RawImage changes.
+   // We will create native buffer Bitmap and convert ScanLine pixels to/from TRGBTriple using TFreeBitmapFormatHelper
+   // NO. It does not work. Currently all works via Canvas.Pixels[x,y]. Quite good.
    FDrawingBuffer.Width:=10;
    FDrawingBuffer.Height:=10;
+   //Canvas.Pen.Color:=clBlack;
+   //Canvas.Brush.Color:=clWhite;
+   //FDrawingBuffer.Canvas.FillRect(0,0,10,10); // to init handles
+   //FBitmapFormatHelper := TFreeBitmapFormatHelper.Create(FDrawingBuffer);
+
    FDrawingCanvas:=Canvas;
+
    FZBuffer:=TFreeZBuffer.Create;
    FZBuffer.FViewport:=self;
    FAlphaBuffer:=TFreeAlphaBuffer.Create;
@@ -3326,7 +3394,9 @@ var D           : Integer;
     ax,ay,sx,sy   : Integer;
     dx,dy,W,H     : Integer;
     dZ            : TFloatType;
-    Row           : pRGBTripleArray;
+    //Row           : pRGBTripleArray;
+    pRow, pPixel : pointer;
+    Pixel : TRGBTriple;
 begin
    P1:=self.ProjectToZBuffer(ZBufferScaleFactor,Point1);
    W:=ClientWidth;
@@ -3352,10 +3422,18 @@ begin
             begin
                if P1.Z>=FZBuffer.FBuffer[P1.Y][P1.X] then
                begin
-                  Row:=FDrawingBuffer.Scanline[P1.Y];
-                  Row^[P1.X].rgbtRed:=R;
-                  Row^[P1.X].rgbtGreen:=G;
-                  Row^[P1.X].rgbtBlue:=B;
+                  //Row:=FDrawingBuffer.Scanline[P1.Y];
+                  {pRow := FDrawingBuffer.RawImage.GetLineStart(P1.Y);
+                  pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * P1.X;
+                  Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
+                  Pixel.rgbtRed:=R;
+                  Pixel.rgbtGreen:=G;
+                  Pixel.rgbtBlue:=B;
+                  FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);}
+
+                  // temporary draw via canvas
+                  FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y]:=RGBtoColor(R,G,B);
+
                   FZBuffer.FBuffer[P1.Y][P1.X]:=P1.Z;
                end;
             end;
@@ -3382,11 +3460,17 @@ begin
             begin
                if P1.Z>=FZBuffer.FBuffer[P1.Y][P1.X] then
                begin
-                  Row:=FDrawingBuffer.Scanline[P1.Y];
-                  Row^[P1.X].rgbtRed:=R;
-                  Row^[P1.X].rgbtGreen:=G;
-                  Row^[P1.X].rgbtBlue:=B;
-                  FZBuffer.FBuffer[P1.Y][P1.X]:=P1.Z;
+                 //Row:=FDrawingBuffer.Scanline[P1.Y];
+                 {pRow := FDrawingBuffer.RawImage.GetLineStart(P1.Y);
+                 pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * P1.X;
+                 Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
+                 Pixel.rgbtRed:=R;
+                 Pixel.rgbtGreen:=G;
+                 Pixel.rgbtBlue:=B;
+                 FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel); }
+                 // temporary draw via canvas
+                 FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y]:=RGBtoColor(R,G,B);
+                 FZBuffer.FBuffer[P1.Y][P1.X]:=P1.Z;
                end;
             end;
          end;
@@ -3911,14 +3995,16 @@ begin
          end;
          if (FDoubleBuffer) or (ViewportMode<>vmWireframe) then
          begin
-            if FDrawingBuffer.Width<>FDestinationWidth then FDrawingBuffer.Width:=FDestinationWidth;
-            if FDrawingBuffer.Height<>FDestinationHeight then FDrawingBuffer.Height:=FDestinationHeight;
+            if FDrawingBuffer.Width<>FDestinationWidth
+               then FDrawingBuffer.Width:=FDestinationWidth;
+            if FDrawingBuffer.Height<>FDestinationHeight
+               then FDrawingBuffer.Height:=FDestinationHeight;
             FDrawingCanvas:=FDrawingBuffer.Canvas;
          end else FDrawingCanvas:=OldCanvas;
          // Clear buffer
-         FDrawingcanvas.Brush.Color:=Color;
-         FDrawingcanvas.Brush.Style:=bsSolid;
-         FDrawingcanvas.Rectangle(-1,-1,FDestinationWidth+2,FDestinationHeight+2);
+         FDrawingCanvas.Brush.Color:=Color;
+         FDrawingCanvas.Brush.Style:=bsSolid;
+         FDrawingCanvas.Rectangle(-1,-1,FDestinationWidth+2,FDestinationHeight+2);
 
          if BackgroundImage.Bitmap<>nil then BackgroundImage.Draw;
 
@@ -3928,14 +4014,18 @@ begin
             ZBuffer.Initialize;
             AlphaBuffer.Initialize;
          end;
-         if Assigned(OnRedraw) then OnRedraw(Self);
-         
-         if ViewportMode<>vmWireframe then AlphaBuffer.Draw;
+
+         if Assigned(OnRedraw)
+            then OnRedraw(Self);
+
+         if ViewportMode<>vmWireframe
+            then AlphaBuffer.Draw;
 
          if (FDoubleBuffer) or (ViewportMode<>vmWireframe) then
          begin
             // Copy buffer to screen
-            Bitblt(OldCanvas.Handle,0,0,FDestinationWidth,FDestinationHeight,FDrawingBuffer.Canvas.Handle,0,0,SRCCOPY);
+            //Bitblt(OldCanvas.Handle,0,0,FDestinationWidth,FDestinationHeight,FDrawingBuffer.Canvas.Handle,0,0,SRCCOPY);
+            OldCanvas.Draw(0,0,FDrawingBuffer);
             FDrawingCanvas:=OldCanvas;
          end;
       end;
@@ -4317,8 +4407,9 @@ var Normal           : T3DCoordinate;
 
    procedure ShadeLine(X1,X2,Y: integer;Z1,Z2: TFloatType);
    var IncZ,T  : TFloatType;
-       Row     : pRGBTripleArray;
-
+       //Row     : pRGBTripleArray;
+       pRow, pPixel : pointer;
+       Pixel : TRGBTriple;
    begin
       if (Y<0) or (Y>FDestinationHeight-1) then exit;
       X1:=X1 div 256;
@@ -4342,17 +4433,26 @@ var Normal           : T3DCoordinate;
       if X1>=0 then
       begin
          // Use scanline property for faster pixel access
-         Row:=FDrawingBuffer.Scanline[y];
+         //Row:=FDrawingBuffer.Scanline[y];
+         //pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
          while X1<=X2 do
          begin
             if Z1>FZBuffer.FBuffer[Y][X1] then
             begin
                if Alpha=255 then
                begin
-                  Row^[X1].rgbtRed:=R;
-                  Row^[X1].rgbtGreen:=G;
-                  Row^[X1].rgbtBlue:=B;
-                  FZBuffer.FBuffer[Y][X1]:=Z1;
+                 {
+                 pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * X1;
+                 Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
+                 Pixel.rgbtRed:=R;
+                 Pixel.rgbtGreen:=G;
+                 Pixel.rgbtBlue:=B;
+                 FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel); }
+
+                 // temporary draw via canvas
+                 FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);
+
+                 FZBuffer.FBuffer[Y][X1]:=Z1;
                end else AlphaBuffer.AddPixelData(X1,Y,R,G,B,Alpha,Z1);
             end;
             Z1:=Z1+IncZ;
@@ -4495,7 +4595,9 @@ var Left,Right,DLeft,dRight:TShadePoint;
    procedure ShadeLine(Left,Right:TShadePoint;Y:Integer);
    var Delta,Tmp  : TShadePoint;
        d          : Integer;
-       Row        : pRGBTripleArray;
+       //Row        : pRGBTripleArray;
+       pROw, pPixel : pointer;
+       Pixel : TRGBTriple;
    begin
 //      if (Y<0) or (Y>H-1) then exit;
       Left.X:=Left.X div 256;
@@ -4536,15 +4638,23 @@ var Left,Right,DLeft,dRight:TShadePoint;
       if Right.X>ClientWidth-1 then Right.X:=ClientWidth-1;
       if Left.X>=0 then
       begin
-         Row:=FDrawingBuffer.Scanline[y];
+         //Row:=FDrawingBuffer.Scanline[y];
+         //pRow := FDrawingBuffer.RawImage.GetLineStart(Y); // this is slow!
+
          while Left.X<=Right.X do
          begin
             if Left.Z>FZBuffer.FBuffer[Y][Left.X] then
             begin
                FZBuffer.FBuffer[Y][Left.X]:=Left.Z;
-               Row^[Left.X].rgbtRed:=Left.R shr 8;
-               Row^[Left.X].rgbtGreen:=Left.G shr 8;
-               Row^[Left.X].rgbtBlue:=Left.B shr 8;
+
+               {pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * Left.X;
+               Pixel.rgbtRed:=Left.R shr 8;
+               Pixel.rgbtGreen:=Left.G shr 8;
+               Pixel.rgbtBlue:=Left.B shr 8;
+               FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);}
+
+               // temporary draw via canvas
+               FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
             end;
             Left.Z:=Left.Z+Delta.Z;
             Inc(Left.R,Delta.R);
@@ -4649,8 +4759,9 @@ begin
 
    while Y<V2.Y do
    begin
-      if Right.X>=Left.X then ShadeLine(Left,Right,Y)
-                         else ShadeLine(Right,Left,Y);
+      if Right.X>=Left.X
+         then ShadeLine(Left,Right,Y)
+         else ShadeLine(Right,Left,Y);
       if Y<V2.Y then
       begin
          Inc(Left.X,dLeft.X);
@@ -4678,7 +4789,8 @@ begin
       dRight.R:=(V3.R-V2.R) div d;
       dRight.G:=(V3.G-V2.G) div d;
       dRight.B:=(V3.B-V2.B) div d;
-   end else Fillchar(dRight,SizeOf(dRight),0);
+   end
+   else Fillchar(dRight,SizeOf(dRight),0);
 
    Y:=V2.Y;
    if (Y<0) and (V3.Y>0) then
@@ -4698,8 +4810,9 @@ begin
    end;
    while Y<=V3.Y do
    begin
-      if Right.X>=Left.X then ShadeLine(Left,Right,Y)
-                         else ShadeLine(Right,Left,Y);
+      if Right.X>=Left.X
+         then ShadeLine(Left,Right,Y)
+         else ShadeLine(Right,Left,Y);
       if Y<=V3.Y then
       begin
          Inc(Left.X,dLeft.X);
@@ -4743,7 +4856,9 @@ var Left,Right,DLeft,dRight:TShadePoint;
    procedure ShadeLine(Left,Right:TShadePoint;Y:Integer);
    var Delta,Tmp  : TShadePoint;
        d          : Integer;
-       Row        : pRGBTripleArray;
+       //Row        : pRGBTripleArray;
+       pROw, pPixel : pointer;
+       Pixel : TRGBTriple;
    begin
 //      if (Y<0) or (Y>H-1) then exit;
       Left.X:=Left.X div 256;
@@ -4784,15 +4899,22 @@ var Left,Right,DLeft,dRight:TShadePoint;
       if Right.X>ClientWidth-1 then Right.X:=ClientWidth-1;
       if Left.X>=0 then
       begin
-         Row:=FDrawingBuffer.Scanline[y];
+         //Row:=FDrawingBuffer.Scanline[y];
+         ///pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
+
          while Left.X<=Right.X do
          begin
             if Left.Z>FZBuffer.FBuffer[Y][Left.X] then
             begin
                FZBuffer.FBuffer[Y][Left.X]:=Left.Z;
-               Row^[Left.X].rgbtRed:=Left.R shr 8;
-               Row^[Left.X].rgbtGreen:=Left.G shr 8;
-               Row^[Left.X].rgbtBlue:=Left.B shr 8;
+               {pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * Left.X;
+               Pixel.rgbtRed:=Left.R shr 8;
+               Pixel.rgbtGreen:=Left.G shr 8;
+               Pixel.rgbtBlue:=Left.B shr 8;
+               FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel); }
+
+               // temporary draw via canvas
+               FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
             end;
             Left.Z:=Left.Z+Delta.Z;
             Inc(Left.R,Delta.R);
@@ -9002,8 +9124,13 @@ begin
    begin
       if Viewport.ViewportMode<>vmWireframe then
       begin
-         if Viewport.ViewportMode=vmShadeGauss then for I:=1 to Count do Items[I-1].Draw(Viewport,Owner.FMinGaussCurvature,Owner.FMaxGaussCurvature)
-                                               else for I:=1 to count do Items[I-1].Draw(Viewport);
+         if Viewport.ViewportMode=vmShadeGauss
+            then
+              for I:=1 to Count do
+                Items[I-1].Draw(Viewport,Owner.FMinGaussCurvature,Owner.FMaxGaussCurvature)
+            else
+              for I:=1 to count do
+                Items[I-1].Draw(Viewport);
       end else
       begin
          if Owner.ShowInteriorEdges then
@@ -12287,6 +12414,7 @@ var I,J     : Integer;
     R1,G1,B1: Byte;
     R2,G2,B2: Byte;
     R3,G3,B3: Byte;
+    ChidCnt, ChildPointsCnt: Integer;
 
     function Fragment(Curvature:TFloatType):TFloatType;
     const contrast=0.1;
@@ -12307,10 +12435,13 @@ var I,J     : Integer;
     end;
 
 begin
-   for I:=1 to ChildCount do
+   Viewport.FDrawingBuffer.BeginUpdate(true);
+   ChidCnt:=ChildCount;
+   for I:=1 to ChidCnt do
    begin
       Child:=Self.Child[I-1];
-      for J:=2 to Child.NumberOfpoints-1 do
+      ChildPointsCnt:=Child.NumberOfpoints;
+      for J:=2 to ChildPointsCnt-1 do
       begin
          P1:=Child.Point[0].Coordinate;
          Index:=Owner.FPoints.SortedIndexOf(Child.Point[0]);
@@ -12334,6 +12465,7 @@ begin
          end;
       end;
    end;
+   Viewport.FDrawingBuffer.EndUpdate;
 end;{TFreeSubdivisionControlFace.Draw}
 
 function TFreeSubdivisionControlFace.InsertEdge(P1,P2:TFreeSubdivisionControlPoint):TFreesubdivisionControlEdge;
@@ -15103,10 +15235,16 @@ var I       : Integer;
 begin
    if not Build then Rebuild;
    if Viewport.ViewportMode<>vmWireframe then
-   begin
-      if Viewport.ViewportMode in [vmShadeGauss,vmShadeDevelopable] then if not GaussCurvatureCalculated then CalculateGaussCurvature;
-   end else inherited Draw(Viewport);
-   for I:=1 to NumberOfLayers do Layer[I-1].Draw(Viewport);
+     begin
+        if Viewport.ViewportMode in [vmShadeGauss,vmShadeDevelopable] then
+           if not GaussCurvatureCalculated
+              then CalculateGaussCurvature;
+     end
+   else inherited Draw(Viewport);
+
+   for I:=1 to NumberOfLayers do
+     Layer[I-1].Draw(Viewport);
+
    if ShowControlNet then
    begin
       for I:=1 to NumberOfControlEdges do
@@ -15117,7 +15255,8 @@ begin
       for I:=1 to NumberOfControlPoints do
          if ControlPoint[I-1].Visible then ControlPoint[I-1].Draw(Viewport);
    end;
-   for I:=1 to NumberOfControlCurves do if ControlCurve[I-1].Visible then ControlCurve[I-1].Draw(Viewport);
+   for I:=1 to NumberOfControlCurves do if ControlCurve[I-1].Visible
+      then ControlCurve[I-1].Draw(Viewport);
 end;{TFreeSubdivisionSurface.Draw}
 
 function TFreeSubdivisionSurface.EdgeExists(P1,P2:TFreeSubdivisionPoint):TFreeSubdivisionEdge;

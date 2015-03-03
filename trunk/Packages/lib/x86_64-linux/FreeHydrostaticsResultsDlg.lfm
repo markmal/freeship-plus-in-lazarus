@@ -1,33 +1,33 @@
 object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
-  Left = 216
-  Top = 107
-  Width = 848
+  Left = 610
   Height = 650
+  Top = 143
+  Width = 848
   Caption = 'Hydrostatics'
+  ClientHeight = 650
+  ClientWidth = 848
   Color = clBtnFace
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-  OldCreateOrder = False
-  Position = poMainFormCenter
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'Arial'
   OnResize = FormResize
-  PixelsPerInch = 96
-  TextHeight = 14
+  Position = poMainFormCenter
+  LCLVersion = '1.4.0.1'
   object Panel1: TPanel
     Left = 0
-    Top = 0
-    Width = 840
     Height = 23
+    Top = 0
+    Width = 848
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 23
+    ClientWidth = 848
     TabOrder = 0
     object SpeedButton1: TSpeedButton
       Left = 8
+      Height = 21
       Top = 1
       Width = 75
-      Height = 21
       Caption = 'Print'
       Flat = True
       Glyph.Data = {
@@ -49,14 +49,15 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
         1F7C1F7C1F7C1F7C1F7C1F7C1F7C0000FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
         00001F7C1F7C1F7C1F7C1F7C1F7C1F7C00000000000000000000000000000000
         00001F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
-        1F7C1F7C1F7C}
+        1F7C1F7C1F7C
+      }
       OnClick = SpeedButton1Click
     end
     object SpeedButton2: TSpeedButton
       Left = 84
+      Height = 21
       Top = 1
       Width = 75
-      Height = 21
       Caption = 'Save'
       Flat = True
       Glyph.Data = {
@@ -78,14 +79,15 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
         000000001F7C1F7C00001F000000FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F0000
         1F0000001F7C1F7C104200000000000000000000000000000000000000000000
         000010421F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
-        1F7C1F7C1F7C}
+        1F7C1F7C1F7C
+      }
       OnClick = SpeedButton2Click
     end
     object Button1: TSpeedButton
       Left = 760
+      Height = 21
       Top = 1
       Width = 75
-      Height = 21
       Caption = 'Close'
       Flat = True
       Glyph.Data = {
@@ -96,55 +98,63 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
         3333333344333333333333342243333333333342222433333333342222224333
         33334222A22224333333222A3A2224333333A2A333A2224333333A33333A2224
         333333333333A2224333333333333A2224333333333333A2224333333333333A
-        2224333333333333A2243333333333333A2233333333333333A3}
+        2224333333333333A2243333333333333A2233333333333333A3
+      }
       OnClick = Button1Click
     end
   end
   object Panel2: TPanel
     Left = 0
+    Height = 627
     Top = 23
-    Width = 840
-    Height = 602
+    Width = 848
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 8
+    ClientHeight = 627
+    ClientWidth = 848
     TabOrder = 1
     object Splitter1: TSplitter
-      Left = 9
-      Top = 181
-      Width = 822
-      Height = 3
       Cursor = crVSplit
+      Left = 9
+      Height = 3
+      Top = 181
+      Width = 830
       Align = alTop
+      ResizeAnchor = akTop
     end
     object Grid: TStringGrid
       Left = 9
+      Height = 434
       Top = 184
-      Width = 822
-      Height = 409
+      Width = 830
       Align = alClient
       ColCount = 17
-      Ctl3D = False
       DefaultColWidth = 49
       DefaultRowHeight = 18
-      FixedColor = 14211288
+      FixedColor = clSilver
       FixedRows = 2
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Arial'
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goRowSelect]
-      ParentCtl3D = False
+      ParentFont = False
       TabOrder = 0
+      TitleFont.Color = clBlack
+      TitleFont.Height = -11
+      TitleFont.Name = 'Arial'
+      TitleStyle = tsStandard
       OnDrawCell = GridDrawCell
     end
     object Header: TMemo
       Left = 9
-      Top = 9
-      Width = 822
       Height = 172
+      Top = 9
+      Width = 830
       Align = alTop
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Courier New'
-          Font.Style = []
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Courier New'
       ParentFont = False
       ScrollBars = ssVertical
       TabOrder = 1
@@ -152,14 +162,14 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
   end
   object PrintDialog: TPrintDialog
     Options = [poPageNums, poDisablePrintToFile]
-    Left = 20
-    Top = 40
+    left = 20
+    top = 40
   end
   object SaveDialog: TSaveDialog
     Filter = 'Text files (*.txt)|*.txt'
     FilterIndex = 2
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    Left = 52
-    Top = 40
+    left = 52
+    top = 40
   end
 end

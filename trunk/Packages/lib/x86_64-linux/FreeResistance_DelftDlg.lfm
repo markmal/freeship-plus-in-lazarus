@@ -1,7 +1,7 @@
 object FreeResistance_Delft: TFreeResistance_Delft
-  Left = 229
+  Left = 250
   Height = 493
-  Top = 71
+  Top = 185
   Width = 840
   Caption = 'Resistance for Sailing Yachts or a Sea Ships'
   ClientHeight = 493
@@ -11,7 +11,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.1'
   object PageControl1: TPageControl
     Left = 0
     Height = 469
@@ -691,8 +691,10 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Title.LabelFont.Orientation = 900
             Title.Visible = True
             Title.Caption = 'Resistance [N]'
+            Transformations = ChartAxisTransformations1
           end        
           item
+            Grid.Style = psDash
             Alignment = calBottom
             Minors = <>
             Title.Visible = True
@@ -704,6 +706,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Title.LabelFont.Orientation = 900
             Title.Visible = True
             Title.Caption = 'Power [W]'
+            Transformations = ChartAxisTransformations2
           end>
         Foot.Brush.Color = clBtnFace
         Foot.Font.Color = clBlue
@@ -720,6 +723,8 @@ object FreeResistance_Delft: TFreeResistance_Delft
         object Series1: TLineSeries
           Marks.Visible = False
           Title = 'Rf      '
+          AxisIndexX = 1
+          AxisIndexY = 0
           LinePen.Color = clBlue
           Pointer.HorizSize = 2
           Pointer.VertSize = 2
@@ -728,12 +733,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
         object Series2: TLineSeries
           Marks.Visible = False
           Title = 'Rr      '
+          AxisIndexX = 1
+          AxisIndexY = 0
           LinePen.Color = clGreen
           Pointer.Visible = False
         end
         object Series3: TLineSeries
           Marks.Visible = False
           Title = 'Rt      '
+          AxisIndexX = 1
+          AxisIndexY = 0
           LinePen.Color = clRed
           LinePen.Width = 2
           Pointer.Visible = False
@@ -741,6 +750,8 @@ object FreeResistance_Delft: TFreeResistance_Delft
         object Series4: TLineSeries
           Marks.Visible = False
           Title = 'Pe '
+          AxisIndexX = 1
+          AxisIndexY = 2
           LinePen.Width = 2
           Pointer.Visible = False
         end
@@ -794,6 +805,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
     TabOrder = 1
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -817,6 +829,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
     end
     object _ToolButton14: TToolButton
       Left = 115
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'
@@ -975,5 +988,17 @@ object FreeResistance_Delft: TFreeResistance_Delft
       00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
       7FFF000000000000000000000000
     }
+  end
+  object ChartAxisTransformations1: TChartAxisTransformations
+    left = 533
+    top = 20
+    object ChartAxisTransformations1AutoScaleAxisTransform1: TAutoScaleAxisTransform
+    end
+  end
+  object ChartAxisTransformations2: TChartAxisTransformations
+    left = 584
+    top = 20
+    object ChartAxisTransformations2AutoScaleAxisTransform1: TAutoScaleAxisTransform
+    end
   end
 end

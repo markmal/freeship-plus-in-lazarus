@@ -984,9 +984,11 @@ procedure TFreeKeelWizardDialog.ViewportRedraw(Sender: TObject);
       Viewport.DrawingCanvas.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
       // Draw upper left part in black
       Viewport.BrushColor:=clBlack;
-      Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y-Size,Pt.X-Size,Pt.Y-1);
+      //Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y-Size,Pt.X-Size,Pt.Y-1);
+      Viewport.DrawingCanvas.Line(Pt.X-Size,Pt.Y,Pt.X+Size,Pt.Y);
+      Viewport.DrawingCanvas.Line(Pt.X,Pt.Y-Size,Pt.X,Pt.Y-Size);
       // Draw lower right part in black
-      Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y+Size,Pt.X+Size,Pt.Y-1);
+      //Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y+Size,Pt.X+Size,Pt.Y-1);
       Viewport.BrushStyle:=bsClear;
       if Text<>'' then Viewport.DrawingCanvas.TextOut(Pt.X+2*size,Pt.Y,Text);
     end;{DrawPoint}

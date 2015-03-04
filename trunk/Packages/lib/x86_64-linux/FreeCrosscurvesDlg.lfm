@@ -1,7 +1,7 @@
 object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   Left = 596
   Height = 739
-  Top = 170
+  Top = 153
   Width = 955
   Caption = 'Cross curves.'
   ClientHeight = 739
@@ -462,6 +462,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          OnAfterSetValue = FreeNumInput5_AfterSetValue
           TabOrder = 3
         end
         object FreeNumInput6_: TFreeNumInput
@@ -478,6 +479,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          OnAfterSetValue = FreeNumInput6_AfterSetValue
           TabOrder = 4
         end
         object FreeNumInput7_: TFreeNumInput
@@ -610,6 +612,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               Title.Caption = 'Displacement [tons]'
             end          
             item
+              Visible = False
               Alignment = calRight
               Minors = <>
               Title.LabelFont.Orientation = 900
@@ -684,6 +687,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               Title.Caption = 'Heeling angle, [degr]'
             end          
             item
+              Visible = False
               Alignment = calRight
               Minors = <>
               Title.LabelFont.Orientation = 900
@@ -714,13 +718,14 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
             Pointer.HorizSize = 2
             Pointer.Style = psCircle
             Pointer.VertSize = 2
+            ShowPoints = True
           end
           object Series2: TLineSeries
             Marks.Visible = False
             Title = 'd(Teta)'
             LinePen.Color = clWhite
             LinePen.Width = 2
-            Pointer.Visible = False
+            ShowPoints = True
           end
         end
       end

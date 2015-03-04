@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="53"/>
+      <BuildNr Value="65"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -74,7 +74,6 @@
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHullformWindow"/>
       </Unit3>
       <Unit4>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
@@ -318,6 +317,7 @@
         <ComponentName Value="FreeCrosscurvesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeCrosscurvesDlg"/>
       </Unit46>
       <Unit47>
         <Filename Value="Forms/FreeRotateDlgM.pas"/>
@@ -345,6 +345,7 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeShipUnit"/>
       </Unit51>
       <Unit52>
         <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
@@ -424,12 +425,10 @@
       <Unit66>
         <Filename Value="Units/FreeRGBbuffer.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeRGBbuffer"/>
       </Unit66>
       <Unit67>
         <Filename Value="Units/FreeBitmapFormatHelper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeBitmapFormatHelper"/>
       </Unit67>
     </Units>
   </ProjectOptions>

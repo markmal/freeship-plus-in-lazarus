@@ -141,7 +141,6 @@ type TFreeSubdivisionBase           = class;
                                          NRows : Integer
                                       end;
      TFreeFaceArray                 = array of TFreeFaceGrid;
-     TFloatArray                    = array of TFloatType;
      TFreeSubdivisionGrid           = array of array of TFreeSubdivisionPoint;
      TFreeZBufferRow                = TFloatArray;
      TFreeCoordinateArray           = array of T3DCoordinate;

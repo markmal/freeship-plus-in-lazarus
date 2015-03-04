@@ -35,6 +35,7 @@ type TDataType     = (dtInteger,dtFloat);
                            FFocused          : Boolean;
                            FMax              : extended;
                            FMin              : extended;
+                           FBorderColor      : TColor;
                            OldColor          : TColor;
                            OldTNIColor       : TColor;
                            FDataType         : TDataType;
@@ -62,6 +63,7 @@ type TDataType     = (dtInteger,dtFloat);
                            procedure SetValue(Value : extended);
                            procedure SetValidate(Value : boolean);
                            function  FGetValue:extended;
+                           procedure setBorderColor(aColor : TColor);
                         protected
                            procedure FormatText; dynamic;
                            procedure CheckRange; dynamic;
@@ -91,6 +93,7 @@ type TDataType     = (dtInteger,dtFloat);
                            property AutoSelect;
                            property AutoSize;
                            property BorderStyle;
+                           property BorderColor:TColor read FBorderColor write setBorderColor;
                            property Color;
                            //property Ctl3D;
                            property Enabled;
@@ -149,6 +152,7 @@ begin
    Text:='0.0';
    OldColor:=Font.Color;
    OldTNIColor:=Color;
+   FBorderColor:=clBtnShadow;
    FTabOnEnterKey:=false;
    FOutOfRangeMessage:=False;
    FIsEditing:=false;
@@ -527,7 +531,7 @@ begin
     if Valid(X) then
     begin
       IsValid:=true;
-      if FValue<>X then
+      if (FValue<>X)or(FInitialValue<>FValue) then
       begin
          if Assigned(FOnBeforeSetValue) then FOnBeforeSetValue(self);
          FValue:=X;
@@ -617,6 +621,14 @@ begin
   FTextMargin:=2;
 end;
 
+procedure TFreeNumInput.setBorderColor(aColor : TColor);
+begin
+ if aColor = clDefault then
+   FBorderColor := clBtnShadow
+ else FBorderColor := aColor;
+ invalidate;
+end;
+
 procedure TFreeNumInput.WMPaint(var Message: TWMPaint);
 var
   Width_, Height_, Indent_, Left_: Integer;
@@ -646,8 +658,15 @@ begin
     with FCanvas do
     begin
       R:=ClientRect;
+      if BorderStyle <> bsNone then
+        begin
+          Pen.Color := FBorderColor;
+          Pen.Style := psSolid;
+          Pen.Width := BorderWidth;
+          FCanvas.Rectangle(R);
+        end;
       if Enabled then Brush.Color:=Color
-                 else Brush.Color:=clbtnface;
+                 else Brush.Color:=clBtnFace;
       if Pen.Color<>Brush.color then Pen.Color:=Brush.Color;
       S:=Text;
       Width_:=TextWidth(S);

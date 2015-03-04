@@ -25,25 +25,23 @@
 {#############################################################################################}
 unit FreeCrosscurvesDlg;
 
-{$IFDEF FPC}
-  {$MODE Delphi}
-{$ENDIF}
+{$MODE Delphi}
 
 interface
 
 uses
-    {$IFDEF Windows}
-     Windows,
-      TeEngine,
-      Series,
-      TeeProcs,
-      Chart,
-    {$ELSE}
-     LCLIntf, LCLType, LMessages,
-     TATypes,TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
-     TAChartAxis, TAChartAxisUtils,
-     PrintersDlgs, Printer4Lazarus, FreePrinter,
-    {$ENDIF}
+{$IFDEF Windows}
+ Windows,
+  TeEngine,
+  Series,
+  TeeProcs,
+  Chart,
+{$ELSE}
+ LCLIntf, LCLType, LMessages,
+ TATypes,TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
+ TAChartAxis, TAChartAxisUtils,
+ PrintersDlgs, Printer4Lazarus, FreePrinter,
+{$ENDIF}
      Messages,
      SysUtils,
      Variants,
@@ -54,7 +52,7 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
-    FreeTypes,
+     FreeTypes,
      FreeGeometry,
      ExtCtrls,
      FreeshipUnit,
@@ -64,11 +62,7 @@ uses
      ImgList,
      Printers,
      Grids,
-    ColorFactory;
-
-{$IFDEF FPC}
- const  clTeeColor = clTAColor;
-{$ENDIF}
+     ColorFactory;
 
 type
 
@@ -142,6 +136,10 @@ type
     ToolButton2: TToolButton;
     SaveButton: TToolButton;
     SaveDialog: TSaveDialog;
+                                 procedure FreeNumInput5_AfterSetValue(
+                                   Sender: TObject);
+                                 procedure FreeNumInput6_AfterSetValue(
+                                   Sender: TObject);
                                  procedure ToolButton25Click(Sender: TObject);
                                  procedure ToolButton7Click(Sender: TObject);
                                  procedure Button1Click(Sender: TObject);
@@ -182,11 +180,7 @@ implementation
 uses FreeLanguageSupport,
      Math;
 
-{$IFnDEF FPC}
-  {$R *.dfm}
-{$ELSE}
-  {$R *.lfm}
-{$ENDIF}
+{$R *.lfm}
 
 function TFreeCrosscurvesDialog.Execute(Freeship:TFreeship):Boolean;
 begin
@@ -242,6 +236,22 @@ begin
    ModalResult:=mrOK;
 end;{TFreeCrosscurvesDialog.ToolButton25Click}
 
+procedure TFreeCrosscurvesDialog.FreeNumInput5_AfterSetValue(Sender: TObject);
+begin
+   if (FreeNuminput5_.Value>0) then
+     FreeNuminput5_.BorderColor:=clDefault
+   else
+     FreeNuminput5_.BorderColor:=clRed;
+end;
+
+procedure TFreeCrosscurvesDialog.FreeNumInput6_AfterSetValue(Sender: TObject);
+begin
+   if (FreeNuminput6_.Value>0) then
+     FreeNuminput6_.BorderColor:=clDefault
+   else
+     FreeNuminput6_.BorderColor:=clRed;
+end;
+
 procedure TFreeCrosscurvesDialog.ToolButton7Click(Sender: TObject);
 begin
    ModalResult:=mrCancel;
@@ -284,6 +294,13 @@ begin
    DisplBox.Enabled:=not Checkbox1.Checked;
    if Checkbox1.Checked then DisplBox.Color:=clBtnFace
                         else DisplBox.Color:=clWindow;
+   if FreeNuminput5_.Value > 0.0
+   then FreeNuminput5_.BorderColor:=clDefault
+   else FreeNuminput5_.BorderColor:=clRed;
+
+   if FreeNuminput6_.Value > 0.0
+   then FreeNuminput6_.BorderColor:=clDefault
+   else FreeNuminput6_.BorderColor:=clRed;
 end;{TFreeCrosscurvesDialog.UpdateDisplacementData}
 
 procedure TFreeCrosscurvesDialog.UpdateHeelingAngleData;
@@ -437,7 +454,6 @@ var NHeel         : Integer;
     Series2       : TLineSeries;	
     PrevCursor    : TCursor;
     Total         : TLayerProperties;
-    ColorFactory,ColorFactory1  : TColorFactory;
     l_Teta        : array[0..100] of single;
     d_Teta_       : array[0..100] of single;
     T_sum         : array[0..100] of single;
@@ -451,6 +467,8 @@ var NHeel         : Integer;
     P0,P1,TetaP,Vb,Vb_,Nraz,Zp2,Zp3     : Single;
 	Zmin,Lmin,Lgr,sin_a : Single;
     iii,jjj       : integer;
+    ColorFactory, ColorFactory1 : TColorFactory;
+
   const  X1_      : array[1..14] of single=(1,  0.96,0.93,0.9,0.86,0.82,0.8,0.79,0.78,0.76,0.72,0.68,0.64,0.62);
          B_d_     : array[1..14] of single=(2.4,2.6 ,2.8 ,3  ,3.2 ,3.4 ,3.5,3.6 ,4   ,4.5 ,5   ,5.5 ,6   ,6.5);
          X2_      : array[1..6] of single=(0.75, 0.83, 0.89, 0.95, 0.97, 1);
@@ -465,11 +483,12 @@ var NHeel         : Integer;
 //  ((((((2750661700*x-1695316700)*x+426303140)*x-56031151)*x+4075919.4)*x-158879.9324273)*x+3048.0653733)*x+1.6925274
 //      yI_II : array[1..10] of single=(16,17,19.7,22.8,25.4,27.6,29.2,30.5,31.4,32);
 //  ((((((3024016600*x-1928761900)*x+504136380)*x-69096902)*x+5245882.6)*x-212994.0998629)*x+4239.7519862)*x-16.0136265
-    label exit1, exit2, exit3, exit4, exit5;
+   const  clTeeColor = clTAColor;
+   label exit1, exit2, exit3, exit4, exit5;
 begin
    sin_a := 0.0;
    ResultsMemo.Clear;
-   ResultsMemo.Visible:=True;
+   ResultsMemo.Visible:=False;
    II:=1;
    iii:=1;
    GetHeelingAngles(Angles,NHeel);
@@ -503,20 +522,20 @@ begin
       Di:=0; 
       Units:=FFreeship.ProjectSettings.ProjectUnits;
       if (FreeNuminput5_.Value>0) and (FreeNuminput6_.Value<>0) then begin
-         FreeNuminput5_.Color:=clDefault;
-         FreeNuminput6_.Color:=clDefault;
           Dr:=FreeNuminput5_.Value;   // расчетное водоизмещение в тоннах
 	      Zgr:=FreeNuminput6_.Value;  // ожидаемая Zg в метрах
           if Units=fuImperial then Zgr:=Zgr/0.3048;
           inc(NDispl);
           Displacements[NDispl-1]:=Dr;	 
     	  JJ:=1;
-	  II:=NDispl;
+          II:=NDispl;
+          FreeNuminput5_.BorderColor:=clDefault;
+          FreeNuminput6_.BorderColor:=clDefault;
       end
       else
       begin
-        FreeNuminput5_.Color:=clRed;
-        FreeNuminput6_.Color:=clRed;
+        FreeNuminput5_.BorderColor:=clRed;
+        FreeNuminput6_.BorderColor:=clRed;
       end;
 
 
@@ -579,11 +598,8 @@ begin
       I:=1;
       if NDispl=1 then Chart.BottomAxis.Title.Caption:=Userstring(768)
                   else Chart.BottomAxis.Title.Caption:=Userstring(4)+', '+WeightStr(FFreeship.ProjectSettings.ProjectUnits);
-      {$IFnDEF FPC}
-      Chart.UndoZoom;
-      {$ELSE}
+      //Chart.UndoZoom;
       Chart.ZoomFull;
-      {$ENDIF}
 
       ColorFactory := TColorFactory.Create;
       ColorFactory1 := TColorFactory.Create;
@@ -600,17 +616,13 @@ begin
 	    Chart0.AddSeries(Series1);
             if Zgr=0 then Series.Title:='KN sin(Psi)'
                      else Series.Title:='GZ,m';
-            Series.LinePen.Color := ColorFactory.getNextColor;
-            {$IFnDEF FPC}
-            Series.LinePen.Visible:=True;
-            {$ENDIF}
+            Series.LinePen.Color:=ColorFactory.getNextColor;
+            //Series.LinePen.Visible:=True;
             Series.LinePen.Style:=psSolid;
             Series.ShowInLegend:=false;
             Series1.Title:='GZ(Psi), m';
-            Series1.LinePen.Color := ColorFactory1.getNextColor;
-            {$IFnDEF FPC}
-            Series1.LinePen.Visible:=True;
-            {$ENDIF}
+            Series1.LinePen.Color:=ColorFactory1.getNextColor;
+            //Series1.LinePen.Visible:=True;
             Series1.LinePen.Style:=psSolid;
             Series1.ShowInLegend:=false;	
             Pagecontrol1.ActivePage:=Tabsheet1;				
@@ -620,18 +632,14 @@ begin
          end else if NDispl<>1 then
          begin
             Series:=TLineSeries.Create(Chart);
-            {$IFnDEF FPC}
-            Series.AllowSinglePoint:=True;
-            {$ENDIF}
+            //Series.AllowSinglePoint:=True;
             Series.LinePen.Color := ColorFactory.getNextColor;
             Chart.AddSeries(Series);
             Series.Title:=FloatToStrF(Angles[I-1],ffFixed,7,1)+'°';
             Grid.Cells[I,0]:=FloatToStrF(Angles[I-1],ffFixed,7,1)+'°';
             Series1:=TLineSeries.Create(Chart0);
-            Series1.LinePen.Color := ColorFactory1.getNextColor;
-            {$IFnDEF FPC}
-            Series1.AllowSinglePoint:=True;
-            {$ENDIF}
+            Series1.LinePen.Color:=ColorFactory1.getNextColor;
+            //Series1.AllowSinglePoint:=True;
             Series1.Title:=Userstring(1048)+FloatToStrF(Zgr+Zmin,ffFixed,7,3)+'m';
          end;
 
@@ -654,9 +662,8 @@ begin
 ///                  if Zgr=0 then Series.AddXY(Angles[I-1],Data.CenterOfBuoyancy.y)
 ///                           else begin
 //                                    l_Teta[i-1]:=Data.CenterOfBuoyancy.Y-Zgr*sin(Angles[I-1]/57.29);
-                       sin_a := sin(Angles[I-1]/57.29);
-                       l_Teta[i-1]:=Data.CenterOfBuoyancy.Y-Zgr*sin_a;
-                       Series.AddXY(Angles[I-1],l_Teta[i-1]);
+                                    l_Teta[i-1]:=Data.CenterOfBuoyancy.Y-Zgr*sin_a;
+                                    Series.AddXY(Angles[I-1],l_Teta[i-1]);
 ///                  end;          
                   Grid.Cells[1,I]:=FloatToStrF(Data.CenterOfBuoyancy.Y+Zmin*sin(Angles[I-1]/57.29),ffFixed,7,3);
                end else
@@ -682,8 +689,6 @@ begin
       end;
       TabSheet1.Visible:=True;
       Calculation.Destroy;
-      ColorFactory.Destroy;
-      ColorFactory1.Destroy;
    finally
       Screen.Cursor:=PrevCursor;
       ToolButton2.Enabled:=False;
@@ -695,15 +700,11 @@ begin
    if (Units=fuImperial) and (Dr>0) and (Zgr>0) then begin
       MessageDlg(Userstring(1437),mtInformation,[mbOk],0);
       exit;
-   end;
-
-   if not((Dr>0) and (Zgr>0)) then
-     ResultsMemo.Append('Must be Dr>0 and Zgr>0');
-
+   end; 
    if (Dr>0) and (Zgr>0) then begin
-          Series2:=TLineSeries.Create(Chart0);
+     Series2:=TLineSeries.Create(Chart0);
 //          MessageDlg(Userstring(1126),mtInformation,[mbOk],0);
-   if jj=1 then begin 
+     if jj=1 then begin
           Chart0.AddSeries(Series1);	
           Chart0.AddSeries(Series2);
           Series1.LinePen.Width:=1;
@@ -715,12 +716,24 @@ begin
           Series2.Pointer.VertSize := 3;
           Series2.Pointer.Visible := True;
           Series1.Pointer.HorizSize := 3;
+          //Series1.Pointer.InflateMargins := False;
           Series2.Pointer.HorizSize := 3;
-          {$IFnDEF FPC}
-          Series1.Pointer.InflateMargins := False;
-          Series2.Pointer.InflateMargins := False;
-          {$ENDIF}
-   end;
+          //Series2.Pointer.InflateMargins := False;
+
+          // added by MM
+          Series1.LinePen.Color:=clRed;
+          Series1.Pointer.Pen.Color:=clBlack;
+          Series1.Pointer.Pen.Style:=psSolid;
+          Series1.Pointer.Brush.Color:=clRed;
+          Series1.Pointer.Brush.Style:=bsSolid;
+
+          Series2.LinePen.Color:=clGreen;
+          Series2.Pointer.Pen.Color:=clBlack;
+          Series2.Pointer.Pen.Style:=psSolid;
+          Series2.Pointer.Brush.Color:=clGreen;
+          Series2.Pointer.Brush.Style:=bsSolid;
+          // end added by MM
+       end;
    Pagecontrol1.ActivePage:=Tabsheet3;
    Lmax:=0; 
    Teta_max:=0;
@@ -734,30 +747,24 @@ begin
    Series2.Title:=Userstring(1049)+FloatToStrF(Zgr+Zmin,ffFixed,7,3)+'m';
    h0:=0;   
    I0:=0;
+   if length(Angles)<(Grid.Colcount-1)    // by MM
+     then MessageDlg('Angles count '+IntToStr(length(Angles))
+          +' is less than table gol count '+IntToStr(Grid.Colcount)+'. Will be error',
+          mtInformation,[mbOk],0);
 
-   if Grid.Colcount>length(Angles) then
-   begin
-    MessageDlg('There should be not less than '+IntToStr(Grid.Colcount)+' heeling angles. Results may be wrong.' ,mtError,[mbOk],0);
-    exit;
-   end;
 
-   for I:=1 to Grid.Colcount do begin 
+   for I:=1 to Grid.Colcount-2 do begin
 	if Lmax<L_Teta[I-1] then begin
                    Lmax:=L_Teta[I-1];
                    Teta_max:=Angles[I-1];
         end;
         d_Teta0:=d_Teta;
-
-     if I<length(Angles) then
-       begin
         d_Teta:=d_Teta+(L_Teta[I]+L_Teta[I-1])*(Angles[I]-Angles[I-1])/2./57.3;
         if (d_Teta<0) and (d_Teta0>0) then Tet0d:=Angles[I];
         if (Angles[I]>1) and (Angles[I]<Tet0d) then begin
                        Series2.AddXY(Angles[I],d_Teta,'',clTeeColor);
                        d_Teta_[i]:=d_Teta; 
-        end;
-       end;
-
+        end; 
 //        MessageDlg(FloatToStrF(Angles[I],ffFixed,6,3)+' '+FloatToStrF(Angles[I-1],ffFixed,6,3)+' '+FloatToStrF(L_Teta[I],ffFixed,6,3)+' '+FloatToStrF(L_Teta[I-1],ffFixed,6,3)+' '+FloatToStrF(d_Teta,ffFixed,6,5),mtInformation,[mbOk],0);
 	if i=2 then h0:=(L_Teta[I-1]-L_Teta[I-2])/Angles[I-1]*57.29;
 	if L_Teta[I-1]>=0 then begin
@@ -982,7 +989,7 @@ exit2: iii:=i;
    TetaP:=180; 
    P0:=0;
    P1:=0;
-   for i:=0 to NHeel do begin
+   for i:=0 to NHeel-1 do begin
     T_sum[i]:=Angles[I];
     L_sum[i]:=l_teta[I];
     if i>1 then begin
@@ -1280,18 +1287,15 @@ begin
          end;
          Writeln(PrintText,#32#32,Str);
       end;
-      Printer.Canvas.Font.Assign(ResultsMemo.Font);	  
+    Printer.Canvas.Font.Assign(ResultsMemo.Font);
     for N := 0 to ResultsMemo.Lines.Count - 1 do
       Writeln(PrintText, ResultsMemo.Lines[N]);	  
-      CloseFile(PrintText);
 
-      {$IFnDEF FPC}
-      Chart.Print;
-      Chart0.Print;
-      {$ELSE}
-      Chart.PaintOnCanvas(Printer.Canvas, Rect(0, 0, Chart.Width, Chart.Height));
-      Chart0.PaintOnCanvas(Printer.Canvas, Rect(0, 0, Chart.Width, Chart.Height));
-      {$ENDIF}
+    CloseFile(PrintText);
+    //Chart.Print;
+    //Chart0.Print;
+    Chart.PaintOnCanvas(Printer.Canvas, Rect(0, 0, Chart.Width, Chart.Height));
+    Chart0.PaintOnCanvas(Printer.Canvas, Rect(0, 0, Chart.Width, Chart.Height));
 
   end;
 end;{TFreeCrosscurvesDialog.PrintButtonClick}

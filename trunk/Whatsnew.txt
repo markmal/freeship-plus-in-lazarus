@@ -1,3 +1,22 @@
+Test only Version 3.5.1.65 in Lazarus
+Released: Build date	2015/03/03 00:26:52
+New features and fixes:
+- Bug fix: Index out of Anges array is fixed in CrosscurvesDlg.pas
+- New: BorderFrame in FreeNumInput component.
+- New: Set border red if required values are wrong/unset in CrosscurvesDlg.pas
+
+Test only Version 3.5.1.54 in Lazarus
+Released: Build date	2015/03/03 00:26:52
+New features and fixes:
+- Bug fix: colors auto assigned in Crosscurves Dialog. Had to introduce my unit
+ColorFactory because Lazarus does not autoassign different colors for added
+series.
+- Bug fix: left and right axises automatically range in Resistance Delft DIalog
+- Fixed rendering of non-wireframe modes Shaded, Gauss, Zebra ...
+- Fixed rendering of background image. Speedup with using FreeBitmapFormatHelper
+- changed calculation of margins in FreeNumInput
+- other little changes.
+
 Test only Version 3.5.1.24 in Lazarus
 Released: 20 Feb, 2015
 New features and fixes:

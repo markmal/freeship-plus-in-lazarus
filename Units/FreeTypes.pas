@@ -11,6 +11,7 @@ const
 Type
 
   TFloatType                    = single;                        // All floatingpoint variables are of this type
+  TFloatArray                    = array of TFloatType;
 
   T2DCoordinate                 = record                         // 2D coordinate type
                                      X,Y:TFloatType;

@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="65"/>
+      <BuildNr Value="66"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -260,7 +260,6 @@
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeNumInput"/>
       </Unit35>
       <Unit36>
         <Filename Value="Units/VRMLUnit.pas"/>
@@ -385,7 +384,6 @@
       <Unit57>
         <Filename Value="Units/FreeTypes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeTypes"/>
       </Unit57>
       <Unit58>
         <Filename Value="Units/FreeFileBuffer.pas"/>

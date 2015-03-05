@@ -39,7 +39,7 @@ uses
 {$ELSE}
  LCLIntf, LCLType, LMessages,
  TATypes,TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
- TAChartAxis, TAChartAxisUtils,
+ TAChartAxis, TAChartAxisUtils, TASources,
  PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
      Messages,
@@ -726,12 +726,18 @@ begin
           Series1.Pointer.Pen.Style:=psSolid;
           Series1.Pointer.Brush.Color:=clRed;
           Series1.Pointer.Brush.Style:=bsSolid;
+          Series1.ShowPoints:=True;
 
           Series2.LinePen.Color:=clGreen;
           Series2.Pointer.Pen.Color:=clBlack;
           Series2.Pointer.Pen.Style:=psSolid;
           Series2.Pointer.Brush.Color:=clGreen;
           Series2.Pointer.Brush.Style:=bsSolid;
+          Series2.ShowPoints:=True;
+          Series2.Marks.Style:=smsLabel;
+          Series2.Marks.Visible:=False;  //turn on labels for debugging
+          Series2.Source:=TListChartSource.Create(Series2);
+          TListChartSource(Series2.Source).Sorted := True;
           // end added by MM
        end;
    Pagecontrol1.ActivePage:=Tabsheet3;
@@ -743,7 +749,7 @@ begin
    d_Teta:=0;
    d_Teta0:=0;
    L30:=0;  
-   Series2.AddXY(d_Teta0,d_Teta,'',clTeeColor);
+   Series2.AddXY(d_Teta0,d_Teta,'Init',clTeeColor);
    Series2.Title:=Userstring(1049)+FloatToStrF(Zgr+Zmin,ffFixed,7,3)+'m';
    h0:=0;   
    I0:=0;
@@ -762,7 +768,7 @@ begin
         d_Teta:=d_Teta+(L_Teta[I]+L_Teta[I-1])*(Angles[I]-Angles[I-1])/2./57.3;
         if (d_Teta<0) and (d_Teta0>0) then Tet0d:=Angles[I];
         if (Angles[I]>1) and (Angles[I]<Tet0d) then begin
-                       Series2.AddXY(Angles[I],d_Teta,'',clTeeColor);
+                       Series2.AddXY(Angles[I],d_Teta,'DSO',clTeeColor);
                        d_Teta_[i]:=d_Teta; 
         end; 
 //        MessageDlg(FloatToStrF(Angles[I],ffFixed,6,3)+' '+FloatToStrF(Angles[I-1],ffFixed,6,3)+' '+FloatToStrF(L_Teta[I],ffFixed,6,3)+' '+FloatToStrF(L_Teta[I-1],ffFixed,6,3)+' '+FloatToStrF(d_Teta,ffFixed,6,5),mtInformation,[mbOk],0);
@@ -1108,11 +1114,11 @@ exit1:
 
 // Определение максимальной работы кренящего момента
    for i:=1 to 10 do begin
-      if Angles[I]<Teta then Series2.AddXY(-Angles[I],d_Teta_[I],'',clTeeColor)
+      if Angles[I]<Teta then Series2.AddXY(-Angles[I],d_Teta_[I],'Max Work: A<T',clTeeColor)
                         else begin
                              N:=i;
                              SFINEX1(N,Angles,d_Teta_,Teta,dteta); 
-                             Series2.AddXY(-Teta,dteta,'',clTeeColor);
+                             Series2.AddXY(-Teta,dteta,'Max Work: A>=T',clTeeColor);
                         end;
    end;
 // Расчет уравнения касательной

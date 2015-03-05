@@ -4,6 +4,7 @@ New features and fixes:
 - Bug fix: Index out of Anges array is fixed in CrosscurvesDlg.pas
 - New: BorderFrame in FreeNumInput component.
 - New: Set border red if required values are wrong/unset in CrosscurvesDlg.pas
+- Bug fix: Set sorted X poins and round pointers in DSO chart of CrossCurvesDlg.
 
 Test only Version 3.5.1.54 in Lazarus
 Released: Build date	2015/03/03 00:26:52

@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="105">
+    <Units Count="109">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -361,7 +361,6 @@
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeNumInput"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="523"/>
         <CursorPos X="33" Y="540"/>
@@ -456,8 +455,8 @@
         <UnitName Value="FreeCrosscurvesDlg"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="282"/>
-        <CursorPos X="46" Y="302"/>
+        <TopLine Value="722"/>
+        <CursorPos X="58" Y="739"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -500,7 +499,7 @@
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FreeShipUnit"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="13"/>
         <CursorPos X="24" Y="32"/>
         <UsageCount Value="200"/>
@@ -565,7 +564,6 @@
       <Unit57>
         <Filename Value="Units/FreeTypes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeTypes"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="15"/>
         <UsageCount Value="218"/>
@@ -625,7 +623,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="188"/>
+        <UsageCount Value="190"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit63>
       <Unit64>
@@ -634,7 +632,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="31" Y="28"/>
-        <UsageCount Value="179"/>
+        <UsageCount Value="181"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit64>
       <Unit65>
@@ -643,7 +641,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="7" Y="49"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="170"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit65>
       <Unit66>
@@ -651,7 +649,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="14"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="166"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>
       <Unit67>
@@ -660,7 +658,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="133"/>
         <CursorPos X="42" Y="2"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="123"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
@@ -712,7 +710,6 @@
       </Unit73>
       <Unit74>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <UnitName Value="FreeGeometry"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="128"/>
         <CursorPos X="27" Y="136"/>
@@ -742,19 +739,19 @@
       <Unit78>
         <Filename Value="/usr/share/lazarus/1.4RC1/lcl/graphics.pp"/>
         <UnitName Value="Graphics"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="2416"/>
         <CursorPos X="54" Y="2444"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
       </Unit78>
       <Unit79>
         <Filename Value="/usr/share/lazarus/1.4RC1/lcl/controls.pp"/>
         <UnitName Value="Controls"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="2065"/>
         <CursorPos X="15" Y="2081"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit79>
       <Unit80>
@@ -893,15 +890,14 @@
       </Unit98>
       <Unit99>
         <Filename Value="/usr/share/lazarus/1.4RC1/lcl/include/wincontrol.inc"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="4066"/>
         <CursorPos X="3" Y="4071"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit99>
       <Unit100>
         <Filename Value="Forms/FreeCrosscurvesDlg.1.pas"/>
-        <UnitName Value="FreeCrosscurvesDlg"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="492"/>
         <CursorPos X="36" Y="518"/>
@@ -918,84 +914,188 @@
       <Unit102>
         <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tacustomseries.pas"/>
         <UnitName Value="TACustomSeries"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="628"/>
-        <CursorPos X="29" Y="643"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="5" Y="129"/>
         <UsageCount Value="15"/>
+        <Loaded Value="True"/>
       </Unit102>
       <Unit103>
         <Filename Value="../FreeShip348/Forms/FreeCrosscurvesDlg.pas"/>
         <UnitName Value="FreeCrosscurvesDlg"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="386"/>
         <CursorPos X="24" Y="402"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit103>
       <Unit104>
         <Filename Value="/usr/share/lazarus/1.4RC1/lcl/stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="734"/>
         <CursorPos X="20" Y="764"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit104>
+      <Unit105>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tachartutils.pas"/>
+        <UnitName Value="TAChartUtils"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="65"/>
+        <CursorPos X="5" Y="81"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit105>
+      <Unit106>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/taseries.pas"/>
+        <UnitName Value="TASeries"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="195"/>
+        <CursorPos X="16" Y="179"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit106>
+      <Unit107>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tacustomsource.pas"/>
+        <UnitName Value="TACustomSource"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="40"/>
+        <CursorPos X="28" Y="760"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit107>
+      <Unit108>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tasources.pas"/>
+        <UnitName Value="TASources"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="19"/>
+        <CursorPos X="19" Y="24"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit108>
     </Units>
-    <JumpHistory Count="13" HistoryIndex="12">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="/usr/share/lazarus/1.4RC1/lcl/graphics.pp"/>
-        <Caret Line="1178" Column="57" TopLine="1152"/>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="252" Column="6" TopLine="224"/>
       </Position1>
       <Position2>
-        <Filename Value="/usr/share/lazarus/1.4RC1/lcl/graphics.pp"/>
-        <Caret Line="2443" Column="50" TopLine="2415"/>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="195" Column="26" TopLine="190"/>
       </Position2>
       <Position3>
-        <Filename Value="/usr/share/lazarus/1.4RC1/lcl/stdctrls.pp"/>
-        <Caret Line="764" Column="20" TopLine="749"/>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="303" Column="22" TopLine="286"/>
       </Position3>
       <Position4>
-        <Filename Value="/usr/share/lazarus/1.4RC1/lcl/controls.pp"/>
-        <Caret Line="2092" Column="14" TopLine="2075"/>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="185" Column="19" TopLine="180"/>
       </Position4>
       <Position5>
-        <Filename Value="/usr/share/lazarus/1.4RC1/lcl/stdctrls.pp"/>
-        <Caret Line="764" Column="20" TopLine="734"/>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="129" Column="41" TopLine="113"/>
       </Position5>
       <Position6>
-        <Filename Value="/usr/share/lazarus/1.4RC1/lcl/controls.pp"/>
-        <Caret Line="2092" Column="80" TopLine="2077"/>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="454" Column="12" TopLine="426"/>
       </Position6>
       <Position7>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="114" Column="34" TopLine="98"/>
+        <Caret Line="734" Column="18" TopLine="707"/>
       </Position7>
       <Position8>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="257" Column="56" TopLine="226"/>
+        <Caret Line="748" Column="4" TopLine="732"/>
       </Position8>
       <Position9>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="241" TopLine="226"/>
+        <Caret Line="784" Column="24" TopLine="780"/>
       </Position9>
       <Position10>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="250" Column="20" TopLine="222"/>
+        <Caret Line="1117" Column="70" TopLine="1085"/>
       </Position10>
       <Position11>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="252" Column="6" TopLine="224"/>
+        <Caret Line="767" Column="59" TopLine="748"/>
       </Position11>
       <Position12>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="195" Column="26" TopLine="190"/>
+        <Caret Line="743" Column="50" TopLine="1058"/>
       </Position12>
       <Position13>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="303" Column="22" TopLine="286"/>
+        <Caret Line="1113" Column="29" TopLine="941"/>
       </Position13>
+      <Position14>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="745" Column="8" TopLine="719"/>
+      </Position14>
+      <Position15>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="690" Column="30" TopLine="680"/>
+      </Position15>
+      <Position16>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="739" Column="39" TopLine="719"/>
+      </Position16>
+      <Position17>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="741" Column="25" TopLine="723"/>
+      </Position17>
+      <Position18>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/taseries.pas"/>
+        <Caret Line="225" Column="14" TopLine="176"/>
+      </Position18>
+      <Position19>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tacustomseries.pas"/>
+        <Caret Line="232" Column="3" TopLine="227"/>
+      </Position19>
+      <Position20>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tacustomseries.pas"/>
+        <Caret Line="127" Column="3" TopLine="116"/>
+      </Position20>
+      <Position21>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/taseries.pas"/>
+        <Caret Line="225" Column="14" TopLine="211"/>
+      </Position21>
+      <Position22>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tacustomseries.pas"/>
+        <Caret Line="205" Column="14" TopLine="191"/>
+      </Position22>
+      <Position23>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="739" Column="43" TopLine="723"/>
+      </Position23>
+      <Position24>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/taseries.pas"/>
+        <Caret Line="225" Column="14" TopLine="211"/>
+      </Position24>
+      <Position25>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/taseries.pas"/>
+        <Caret Line="179" Column="16" TopLine="195"/>
+      </Position25>
+      <Position26>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tacustomseries.pas"/>
+        <Caret Line="697" Column="12" TopLine="689"/>
+      </Position26>
+      <Position27>
+        <Filename Value="/usr/share/lazarus/1.4RC1/components/tachart/tacustomseries.pas"/>
+        <Caret Line="129" Column="5"/>
+      </Position27>
+      <Position28>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="735" Column="27" TopLine="723"/>
+      </Position28>
+      <Position29>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="739" Column="27" TopLine="723"/>
+      </Position29>
+      <Position30>
+        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
+        <Caret Line="42" Column="43" TopLine="35"/>
+      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -1012,7 +1112,7 @@
         <Line Value="2687"/>
       </Item1>
     </BreakPoints>
-    <Watches Count="4">
+    <Watches Count="6">
       <Item1>
         <Expression Value="L_Teta"/>
       </Item1>
@@ -1025,6 +1125,12 @@
       <Item4>
         <Expression Value="FDrawBuffer"/>
       </Item4>
+      <Item5>
+        <Expression Value="SERIES2.SOURCE"/>
+      </Item5>
+      <Item6>
+        <Expression Value="SERIES2"/>
+      </Item6>
     </Watches>
   </Debugging>
 </CONFIG>

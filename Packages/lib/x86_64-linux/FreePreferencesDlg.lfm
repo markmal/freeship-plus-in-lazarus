@@ -1,23 +1,23 @@
 object FreePreferencesDialog: TFreePreferencesDialog
   Left = 526
+  Height = 388
   Top = 120
+  Width = 383
   BorderStyle = bsDialog
   Caption = 'Preferences.'
   ClientHeight = 388
   ClientWidth = 383
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
   Position = poMainFormCenter
-  PixelsPerInch = 96
+  LCLVersion = '1.4.0.1'
   object SpeedButton1: TSpeedButton
     Left = 260
+    Height = 19
     Top = 1
     Width = 60
-    Height = 19
     Caption = 'OK'
     Flat = True
     Glyph.Data = {
@@ -36,15 +36,16 @@ object FreePreferencesDialog: TFreePreferencesDialog
       33333333A222433333333333338F338F00003333333333333A22433333333333
       3338F38F000033333333333333A223333333333333338F830000333333333333
       333A333333333333333338330000333333333333333333333333333333333333
-      0000}
+      0000
+    }
     NumGlyphs = 2
     OnClick = BitBtn1Click
   end
   object SpeedButton2: TSpeedButton
     Left = 322
+    Height = 19
     Top = 1
     Width = 60
-    Height = 19
     Caption = 'Cancel'
     Flat = True
     Glyph.Data = {
@@ -63,365 +64,397 @@ object FreePreferencesDialog: TFreePreferencesDialog
       9118333911183333338F33838F338F33000033333913333391113333338FF833
       38F338F300003333333333333919333333388333338FFF830000333333333333
       3333333333333333333888330000333333333333333333333333333333333333
-      0000}
+      0000
+    }
     NumGlyphs = 2
     OnClick = BitBtn2Click
   end
   object Panel1: TPanel
     Left = 0
+    Height = 366
     Top = 22
     Width = 383
-    Height = 366
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 10
+    ClientHeight = 366
+    ClientWidth = 383
     TabOrder = 0
     object Panel: TPanel
-      Left = 9
-      Top = 9
-      Width = 361
+      Left = 11
       Height = 344
+      Top = 11
+      Width = 361
       Align = alClient
       BevelOuter = bvLowered
+      ClientHeight = 344
+      ClientWidth = 361
       TabOrder = 0
       object Label1: TLabel
         Left = 1
+        Height = 14
         Top = 80
-        Width = 101
-        Height = 13
+        Width = 120
         Caption = 'Viewport background'
+        ParentColor = False
       end
       object Label2: TLabel
         Left = 1
+        Height = 14
         Top = 160
-        Width = 65
-        Height = 13
+        Width = 76
         Caption = 'New surfaces'
+        ParentColor = False
       end
       object Label3: TLabel
         Left = 1
+        Height = 14
         Top = 180
-        Width = 97
-        Height = 13
+        Width = 117
         Caption = 'Submerged surfaces'
+        ParentColor = False
       end
       object Label4: TLabel
         Left = 1
+        Height = 14
         Top = 280
-        Width = 104
-        Height = 13
+        Width = 125
         Caption = 'Regular control edges'
+        ParentColor = False
       end
       object Label5: TLabel
         Left = 1
+        Height = 14
         Top = 300
-        Width = 106
-        Height = 13
+        Width = 129
         Caption = 'Crease edges (control)'
+        ParentColor = False
       end
       object Label6: TLabel
         Left = 1
+        Height = 14
         Top = 320
-        Width = 105
-        Height = 13
+        Width = 131
         Caption = 'Crease edges (interior)'
+        ParentColor = False
       end
       object Label7: TLabel
         Left = 181
+        Height = 14
         Top = 40
-        Width = 103
-        Height = 13
+        Width = 125
         Caption = 'Regular control points'
+        ParentColor = False
       end
       object Label8: TLabel
         Left = 181
+        Height = 14
         Top = 60
-        Width = 64
-        Height = 13
+        Width = 78
         Caption = 'Crease points'
+        ParentColor = False
       end
       object Label9: TLabel
         Left = 181
+        Height = 14
         Top = 80
-        Width = 62
-        Height = 13
+        Width = 77
         Caption = 'Corner points'
+        ParentColor = False
       end
       object Label10: TLabel
         Left = 181
+        Height = 14
         Top = 100
-        Width = 51
-        Height = 13
+        Width = 62
         Caption = 'Dart points'
+        ParentColor = False
       end
       object Label11: TLabel
         Left = 181
+        Height = 14
         Top = 160
-        Width = 69
-        Height = 13
+        Width = 83
         Caption = 'Selected items'
+        ParentColor = False
       end
       object Label12: TLabel
         Left = 1
+        Height = 14
         Top = 100
-        Width = 61
-        Height = 13
+        Width = 76
         Caption = 'Viewport grid'
+        ParentColor = False
       end
       object Label13: TLabel
         Left = 1
+        Height = 14
         Top = 120
-        Width = 40
-        Height = 13
+        Width = 50
         Caption = 'Grid font'
+        ParentColor = False
       end
       object Label14: TLabel
         Left = 181
+        Height = 14
         Top = 220
-        Width = 38
-        Height = 13
+        Width = 45
         Caption = 'Stations'
+        ParentColor = False
       end
       object Label15: TLabel
         Left = 181
+        Height = 14
         Top = 240
-        Width = 42
-        Height = 13
+        Width = 48
         Caption = 'Buttocks'
+        ParentColor = False
       end
       object Label16: TLabel
         Left = 181
+        Height = 14
         Top = 260
-        Width = 50
-        Height = 13
+        Width = 59
         Caption = 'Waterlines'
+        ParentColor = False
       end
       object Label17: TLabel
         Left = 1
+        Height = 14
         Top = 60
-        Width = 77
-        Height = 13
+        Width = 95
         Caption = 'Controlpoint size'
+        ParentColor = False
       end
       object Label18: TLabel
         Left = 1
+        Height = 14
         Top = 200
-        Width = 76
-        Height = 13
+        Width = 93
         Caption = 'Surface normals'
+        ParentColor = False
       end
       object Label19: TLabel
         Left = 181
+        Height = 14
         Top = 280
-        Width = 47
-        Height = 13
+        Width = 55
         Caption = 'Diagonals'
+        ParentColor = False
       end
       object Label20: TLabel
         Left = 181
+        Height = 14
         Top = 120
-        Width = 55
-        Height = 13
+        Width = 64
         Caption = 'Leak points'
+        ParentColor = False
       end
       object Label21: TLabel
         Left = 181
+        Height = 14
         Top = 200
-        Width = 38
-        Height = 13
+        Width = 45
         Caption = 'Markers'
+        ParentColor = False
       end
       object Label22: TLabel
         Left = 181
+        Height = 14
         Top = 180
-        Width = 71
-        Height = 13
+        Width = 88
         Caption = 'Curvature plots'
+        ParentColor = False
       end
       object Label23: TLabel
         Left = 1
+        Height = 14
         Top = 240
-        Width = 68
-        Height = 13
+        Width = 83
         Caption = 'Control curves'
+        ParentColor = False
       end
       object Label24: TLabel
         Left = 181
+        Height = 14
         Top = 300
-        Width = 105
-        Height = 13
+        Width = 128
         Caption = 'Hydrostatics font color'
+        ParentColor = False
       end
       object Label25: TLabel
         Left = 181
+        Height = 14
         Top = 320
-        Width = 87
-        Height = 13
+        Width = 108
         Caption = 'Zebra stripes color'
+        ParentColor = False
       end
       object Label26: TLabel
         Left = 1
+        Height = 14
         Top = 18
-        Width = 48
-        Height = 13
+        Width = 55
         Caption = 'Language'
+        ParentColor = False
       end
       object Label27: TLabel
         Left = 1
+        Height = 14
         Top = 40
-        Width = 113
-        Height = 13
+        Width = 139
         Caption = 'Max. undo memory (Mb)'
+        ParentColor = False
       end
       object Panel4: TPanel
         Left = 128
+        Height = 18
         Top = 75
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 3
         OnClick = Panel4Click
       end
       object Panel2: TPanel
         Left = 128
+        Height = 18
         Top = 155
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 6
         OnClick = Panel2Click
       end
       object Panel5: TPanel
         Left = 128
+        Height = 18
         Top = 175
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 7
         OnClick = Panel5Click
       end
       object Panel6: TPanel
         Left = 128
+        Height = 18
         Top = 275
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 9
         OnClick = Panel6Click
       end
       object Panel7: TPanel
         Left = 128
+        Height = 18
         Top = 295
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 10
         OnClick = Panel7Click
       end
       object Panel8: TPanel
         Left = 128
+        Height = 18
         Top = 315
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 11
         OnClick = Panel8Click
       end
       object Panel9: TPanel
         Left = 300
+        Height = 18
         Top = 33
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 12
         OnClick = Panel9Click
       end
       object Panel10: TPanel
         Left = 300
+        Height = 18
         Top = 55
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 13
         OnClick = Panel10Click
       end
       object Panel11: TPanel
         Left = 300
+        Height = 18
         Top = 75
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 14
         OnClick = Panel11Click
       end
       object Panel12: TPanel
         Left = 300
+        Height = 18
         Top = 95
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 15
         OnClick = Panel12Click
       end
       object Panel13: TPanel
         Left = 300
+        Height = 20
         Top = 155
         Width = 45
-        Height = 20
         BevelOuter = bvLowered
         TabOrder = 17
         OnClick = Panel13Click
       end
       object Panel14: TPanel
         Left = 128
+        Height = 18
         Top = 95
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 4
         OnClick = Panel14Click
       end
       object Panel15: TPanel
         Left = 128
+        Height = 18
         Top = 115
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 5
         OnClick = Panel15Click
       end
       object Panel16: TPanel
         Left = 300
+        Height = 18
         Top = 215
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 20
         OnClick = Panel16Click
       end
       object Panel17: TPanel
         Left = 300
+        Height = 18
         Top = 235
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 21
         OnClick = Panel17Click
       end
       object Panel18: TPanel
         Left = 300
+        Height = 18
         Top = 255
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 22
         OnClick = Panel18Click
       end
       object TrackBar1: TTrackBar
         Left = 124
+        Height = 21
         Top = 53
         Width = 55
-        Height = 21
         Max = 3
         Min = 1
         PageSize = 1
@@ -430,117 +463,122 @@ object FreePreferencesDialog: TFreePreferencesDialog
       end
       object Panel19: TPanel
         Left = 128
+        Height = 18
         Top = 195
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 8
         OnClick = Panel19Click
       end
       object Panel20: TPanel
         Left = 300
+        Height = 18
         Top = 275
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 23
         OnClick = Panel20Click
       end
       object Panel21: TPanel
         Left = 300
+        Height = 18
         Top = 115
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 16
         OnClick = Panel21Click
       end
       object Panel22: TPanel
         Left = 300
+        Height = 18
         Top = 195
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 19
         OnClick = Panel22Click
       end
       object Panel23: TPanel
         Left = 300
+        Height = 18
         Top = 175
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 18
         OnClick = Panel23Click
       end
       object Panel24: TPanel
         Left = 128
+        Height = 18
         Top = 235
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 24
         OnClick = Panel24Click
       end
       object Panel25: TPanel
         Left = 300
+        Height = 18
         Top = 295
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 25
         OnClick = Panel25Click
       end
       object Panel26: TPanel
         Left = 300
+        Height = 18
         Top = 315
         Width = 45
-        Height = 18
         BevelOuter = bvLowered
         TabOrder = 26
         OnClick = Panel26Click
       end
       object ComboBox1: TComboBox
         Left = 70
+        Height = 25
         Top = 10
         Width = 101
-        Height = 21
-        ItemHeight = 13
+        ItemHeight = 0
         Sorted = True
         TabOrder = 0
         Text = 'ComboBox1'
       end
       object FreeNumInput1: TFreeNumInput
         Left = 128
+        Height = 18
         Top = 34
         Width = 45
-        Height = 18
         Alignment = taRightJustify
         Decimals = 0
         Digits = 12
-        Max = 25.000000000000000000
+        Max = 25
+        Min = 0
         DataType = dtInteger
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = True
         AutoSize = False
+        BorderColor = clBtnShadow
         TabOrder = 1
       end
     end
   end
   object Panel3: TPanel
     Left = 0
+    Height = 22
     Top = 0
     Width = 383
-    Height = 22
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 383
     TabOrder = 1
     object BitBtn2: TSpeedButton
       Left = 312
+      Height = 19
       Top = 0
       Width = 65
-      Height = 19
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -559,15 +597,16 @@ object FreePreferencesDialog: TFreePreferencesDialog
         9118333911183333338F33838F338F33000033333913333391113333338FF833
         38F338F300003333333333333919333333388333338FFF830000333333333333
         3333333333333333333888330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn2Click
     end
     object BitBtn1: TSpeedButton
       Left = 247
+      Height = 19
       Top = 0
       Width = 65
-      Height = 19
       Caption = 'OK'
       Flat = True
       Glyph.Data = {
@@ -586,21 +625,44 @@ object FreePreferencesDialog: TFreePreferencesDialog
         33333333A222433333333333338F338F00003333333333333A22433333333333
         3338F38F000033333333333333A223333333333333338F830000333333333333
         333A333333333333333338330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn1Click
     end
     object SpeedButton3: TSpeedButton
       Left = 18
+      Height = 20
       Top = 0
       Width = 65
-      Height = 20
       Caption = 'Reset'
       OnClick = SpeedButton3Click
     end
   end
   object ColorDialog: TColorDialog
-    Left = 199
-    Top = 46
+    Color = clBlack
+    CustomColors.Strings = (
+      'ColorA=000000'
+      'ColorB=000080'
+      'ColorC=008000'
+      'ColorD=008080'
+      'ColorE=800000'
+      'ColorF=800080'
+      'ColorG=808000'
+      'ColorH=808080'
+      'ColorI=C0C0C0'
+      'ColorJ=0000FF'
+      'ColorK=00FF00'
+      'ColorL=00FFFF'
+      'ColorM=FF0000'
+      'ColorN=FF00FF'
+      'ColorO=FFFF00'
+      'ColorP=FFFFFF'
+      'ColorQ=C0DCC0'
+      'ColorR=F0CAA6'
+      'ColorS=F0FBFF'
+      'ColorT=A4A0A0'
+    )
+    left = 208
   end
 end

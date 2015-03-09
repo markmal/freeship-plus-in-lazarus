@@ -11,7 +11,7 @@ object FreeResistance_MH: TFreeResistance_MH
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.1'
   object PageControl1: TPageControl
     Left = 0
     Height = 616
@@ -138,6 +138,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object EndSpeedBox: TFreeNumInput
@@ -155,6 +156,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object StepSpeedBox: TFreeNumInput
@@ -172,6 +174,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object DensityBox: TFreeNumInput
@@ -189,6 +192,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object ViscosityBox: TFreeNumInput
@@ -206,6 +210,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
         end
@@ -466,6 +471,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object BwlBox: TFreeNumInput
@@ -483,6 +489,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object DraftBox: TFreeNumInput
@@ -500,6 +507,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object DraftTotalBox: TFreeNumInput
@@ -517,6 +525,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = DraftTotalBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object WettedSurfacebox: TFreeNumInput
@@ -534,6 +543,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object EstimateBox: TCheckBox
@@ -569,13 +579,14 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object DisplacementBox: TFreeNumInput
-            Left = 306
+            Left = 311
             Height = 24
             Top = 54
-            Width = 55
+            Width = 50
             Alignment = taRightJustify
             Decimals = 2
             Digits = 12
@@ -586,6 +597,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 9
           end
           object LCBBox: TFreeNumInput
@@ -603,6 +615,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
           object CpBox: TFreeNumInput
@@ -620,13 +633,14 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 11
           end
           object KeBox: TFreeNumInput
-            Left = 321
+            Left = 311
             Height = 24
             Top = 123
-            Width = 40
+            Width = 50
             Alignment = taRightJustify
             Decimals = 2
             Digits = 12
@@ -637,6 +651,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 1
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 12
           end
           object NserBox: TFreeNumInput
@@ -654,6 +669,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 13
           end
           object NfBox: TFreeNumInput
@@ -671,6 +687,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 1
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 14
           end
           object NaBox: TFreeNumInput
@@ -688,6 +705,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 1
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 15
           end
           object NpBox: TFreeNumInput
@@ -705,6 +723,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 16
           end
           object DpBox: TFreeNumInput
@@ -722,6 +741,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 17
           end
           object CheckBox2: TCheckBox
@@ -748,6 +768,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 19
           end
           object Edit17_2: TFreeNumInput
@@ -765,6 +786,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 20
           end
           object Edit17_3: TFreeNumInput
@@ -782,6 +804,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 21
           end
           object Edit17_4: TFreeNumInput
@@ -799,6 +822,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 22
           end
           object Edit17_5: TFreeNumInput
@@ -816,6 +840,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 23
           end
           object Edit18_1: TFreeNumInput
@@ -833,6 +858,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 24
           end
           object Edit18_2: TFreeNumInput
@@ -850,6 +876,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 25
           end
           object Edit18_3: TFreeNumInput
@@ -867,6 +894,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 26
           end
           object Edit18_4: TFreeNumInput
@@ -884,6 +912,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 27
           end
           object Edit18_5: TFreeNumInput
@@ -901,6 +930,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 28
           end
         end
@@ -1195,6 +1225,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object A2Box: TFreeNumInput
@@ -1212,6 +1243,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object A3Box: TFreeNumInput
@@ -1229,6 +1261,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object A4Box: TFreeNumInput
@@ -1246,6 +1279,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object A5Box: TFreeNumInput
@@ -1263,6 +1297,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object A6Box: TFreeNumInput
@@ -1280,6 +1315,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object A7Box: TFreeNumInput
@@ -1297,6 +1333,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object A8Box: TFreeNumInput
@@ -1314,6 +1351,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object A9Box: TFreeNumInput
@@ -1331,6 +1369,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object A10Box: TFreeNumInput
@@ -1348,6 +1387,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 9
           end
           object KsBox: TFreeNumInput
@@ -1365,6 +1405,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
           object A11Box: TFreeNumInput
@@ -1382,6 +1423,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 1
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 11
           end
         end
@@ -1473,6 +1515,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object K2Box: TFreeNumInput
@@ -1490,6 +1533,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object K3Box: TFreeNumInput
@@ -1507,6 +1551,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object K4Box: TFreeNumInput
@@ -1524,6 +1569,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object K5Box: TFreeNumInput
@@ -1541,6 +1587,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object K6Box: TFreeNumInput
@@ -1558,6 +1605,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object K7Box: TFreeNumInput
@@ -1575,6 +1623,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object Label281: TLabel
@@ -1616,6 +1665,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
             ParentFont = False
@@ -1636,6 +1686,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object Label61: TLabel
@@ -1677,6 +1728,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
             ParentFont = False
@@ -1697,6 +1749,7 @@ object FreeResistance_MH: TFreeResistance_MH
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
         end
@@ -1778,6 +1831,7 @@ object FreeResistance_MH: TFreeResistance_MH
     TabOrder = 1
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -1801,6 +1855,7 @@ object FreeResistance_MH: TFreeResistance_MH
     end
     object _ToolButton14: TToolButton
       Left = 115
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'

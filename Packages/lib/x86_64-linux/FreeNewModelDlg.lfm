@@ -1,27 +1,32 @@
 object FreeNewModelDialog: TFreeNewModelDialog
   Left = 558
+  Height = 209
   Top = 124
+  Width = 345
   BorderStyle = bsDialog
   Caption = 'New model.'
-  ClientHeight = 203
-  ClientWidth = 278
+  ClientHeight = 209
+  ClientWidth = 345
   Color = clBtnFace
   ParentFont = True
   Position = poScreenCenter
-  PixelsPerInch = 96
+  LCLVersion = '1.4.0.1'
   object Panel3: TPanel
     Left = 0
-    Top = 0
-    Width = 278
     Height = 22
+    Top = 0
+    Width = 345
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 345
     TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 136
+      Left = 264
+      Height = 22
       Top = 0
-      Width = 65
-      Height = 19
+      Width = 81
+      Align = alRight
       Caption = 'OK'
       Flat = True
       Glyph.Data = {
@@ -40,15 +45,17 @@ object FreeNewModelDialog: TFreeNewModelDialog
         33333333A222433333333333338F338F00003333333333333A22433333333333
         3338F38F000033333333333333A223333333333333338F830000333333333333
         333A333333333333333338330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 201
+      Left = 184
+      Height = 22
       Top = 0
-      Width = 65
-      Height = 19
+      Width = 80
+      Align = alRight
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -67,123 +74,135 @@ object FreeNewModelDialog: TFreeNewModelDialog
         9118333911183333338F33838F338F33000033333913333391113333338FF833
         38F338F300003333333333333919333333388333338FFF830000333333333333
         3333333333333333333888330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn2Click
     end
   end
   object Panel1: TPanel
     Left = 0
+    Height = 187
     Top = 22
-    Width = 278
-    Height = 181
+    Width = 345
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 10
+    ClientHeight = 187
+    ClientWidth = 345
     TabOrder = 1
     object Panel: TPanel
-      Left = 7
-      Top = 7
-      Width = 256
-      Height = 159
+      Left = 11
+      Height = 165
+      Top = 11
+      Width = 323
       Align = alClient
       BevelOuter = bvLowered
+      ClientHeight = 165
+      ClientWidth = 323
       TabOrder = 0
       object Label1: TLabel
         Left = 8
+        Height = 17
         Top = 12
-        Width = 158
-        Height = 13
+        Width = 224
         Caption = 'No. points in longitudinal direction'
+        ParentColor = False
       end
       object Label2: TLabel
         Left = 8
+        Height = 17
         Top = 36
-        Width = 139
-        Height = 13
+        Width = 196
         Caption = 'No. points in vertical direction'
+        ParentColor = False
       end
       object Label3: TLabel
         Left = 8
+        Height = 17
         Top = 60
-        Width = 33
-        Height = 13
+        Width = 44
         Caption = 'Length'
+        ParentColor = False
       end
       object Label4: TLabel
         Left = 8
+        Height = 17
         Top = 84
-        Width = 27
-        Height = 13
+        Width = 38
         Caption = 'Beam'
+        ParentColor = False
       end
       object Label5: TLabel
         Left = 8
+        Height = 17
         Top = 108
-        Width = 23
-        Height = 13
+        Width = 33
         Caption = 'Draft'
+        ParentColor = False
       end
       object Label6: TLabel
         Left = 8
+        Height = 17
         Top = 132
-        Width = 24
-        Height = 13
+        Width = 34
         Caption = 'Units'
+        ParentColor = False
       end
       object Edit1: TEdit
-        Left = 172
+        Left = 246
+        Height = 27
         Top = 4
         Width = 70
-        Height = 21
         TabOrder = 0
         Text = '6'
       end
       object Edit2: TEdit
-        Left = 172
+        Left = 246
+        Height = 27
         Top = 28
         Width = 70
-        Height = 21
         TabOrder = 1
         Text = '5'
       end
       object Edit3: TEdit
-        Left = 172
+        Left = 246
+        Height = 27
         Top = 52
         Width = 70
-        Height = 21
         TabOrder = 2
         Text = '12.00'
       end
       object Edit4: TEdit
-        Left = 172
+        Left = 246
+        Height = 27
         Top = 76
         Width = 70
-        Height = 21
         TabOrder = 3
         Text = '3.7'
       end
       object Edit5: TEdit
-        Left = 172
+        Left = 246
+        Height = 27
         Top = 100
         Width = 70
-        Height = 21
         TabOrder = 4
         Text = '.5'
       end
       object ComboBox1: TComboBox
-        Left = 172
+        Left = 246
+        Height = 27
         Top = 124
         Width = 70
-        Height = 21
-        ItemHeight = 13
+        ItemHeight = 0
         ItemIndex = 0
-        TabOrder = 5
-        Text = 'Meters'
         Items.Strings = (
           'Meters'
-          'Feet')
+          'Feet'
+        )
+        TabOrder = 5
+        Text = 'Meters'
       end
     end
   end
-end
+end

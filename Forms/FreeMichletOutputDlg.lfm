@@ -1,31 +1,33 @@
 object FreeMichletOutputDialog: TFreeMichletOutputDialog
   Left = 540
+  Height = 539
   Top = 90
   Width = 474
-  Height = 539
   Caption = 'Michlet file generator.'
+  ClientHeight = 539
+  ClientWidth = 474
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
-  Position = poMainFormCenter
   OnResize = FormResize
-  PixelsPerInch = 96
+  Position = poMainFormCenter
+  LCLVersion = '1.4.0.1'
   object Panel1: TPanel
     Left = 0
-    Top = 0
-    Width = 466
     Height = 22
+    Top = 0
+    Width = 474
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 474
     TabOrder = 0
     object OKbutton: TSpeedButton
       Left = 328
+      Height = 19
       Top = 0
       Width = 65
-      Height = 19
       Caption = 'OK'
       Flat = True
       Glyph.Data = {
@@ -44,15 +46,16 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
         33333333A222433333333333338F338F00003333333333333A22433333333333
         3338F38F000033333333333333A223333333333333338F830000333333333333
         333A333333333333333338330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = OKbuttonClick
     end
     object CancelButton: TSpeedButton
       Left = 393
+      Height = 19
       Top = 0
       Width = 65
-      Height = 19
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -71,248 +74,281 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
         9118333911183333338F33838F338F33000033333913333391113333338FF833
         38F338F300003333333333333919333333388333338FFF830000333333333333
         3333333333333333333888330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = CancelButtonClick
     end
   end
   object Panel2: TPanel
     Left = 0
+    Height = 504
     Top = 22
-    Width = 466
-    Height = 477
+    Width = 474
     Align = alClient
     BevelOuter = bvLowered
+    ClientHeight = 504
+    ClientWidth = 474
     TabOrder = 1
     object PageControl1: TPageControl
-      Left = 0
-      Top = 0
-      Width = 464
-      Height = 475
+      Left = 1
+      Height = 502
+      Top = 1
+      Width = 472
       ActivePage = TabSheet1
       Align = alClient
+      TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Hull geometry'
+        ClientHeight = 470
+        ClientWidth = 466
         object Panel4: TPanel
           Left = 0
-          Top = 0
-          Width = 456
           Height = 135
+          Top = 0
+          Width = 466
           Align = alTop
           BevelOuter = bvLowered
+          ClientHeight = 135
+          ClientWidth = 466
           TabOrder = 0
           object Label1: TLabel
             Left = 10
+            Height = 14
             Top = 14
-            Width = 118
-            Height = 13
+            Width = 145
             Caption = 'Number of stations (5-81)'
+            ParentColor = False
           end
           object Label2: TLabel
             Left = 10
+            Height = 14
             Top = 38
-            Width = 129
-            Height = 13
+            Width = 159
             Caption = 'Number of waterlines (5-81)'
+            ParentColor = False
           end
           object Label3: TLabel
             Left = 10
+            Height = 14
             Top = 62
-            Width = 23
-            Height = 13
+            Width = 28
             Caption = 'Draft'
+            ParentColor = False
           end
           object Label4: TLabel
             Left = 10
+            Height = 14
             Top = 86
-            Width = 33
-            Height = 13
+            Width = 38
             Caption = 'Length'
+            ParentColor = False
           end
           object Label5: TLabel
             Left = 10
+            Height = 14
             Top = 110
-            Width = 35
-            Height = 13
+            Width = 42
             Caption = 'Volume'
+            ParentColor = False
           end
           object _Label18: TLabel
             Left = 214
+            Height = 14
             Top = 62
-            Width = 14
-            Height = 13
+            Width = 19
             Caption = '[m]'
+            ParentColor = False
           end
           object _Label19: TLabel
             Left = 214
+            Height = 14
             Top = 86
-            Width = 14
-            Height = 13
+            Width = 19
             Caption = '[m]'
+            ParentColor = False
           end
           object _Label20: TLabel
             Left = 214
+            Height = 14
             Top = 110
-            Width = 25
-            Height = 13
+            Width = 30
             Caption = '[m/3]'
+            ParentColor = False
           end
           object Edit1: TFreeNumInput
             Left = 150
+            Height = 24
             Top = 6
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 0
             Digits = 12
-            Max = 81.000000000000000000
-            Min = 5.000000000000000000
+            Max = 81
+            Min = 5
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 5.000000000000000000
+            Value = 5
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object Edit2: TFreeNumInput
             Left = 150
+            Height = 24
             Top = 30
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 0
             Digits = 12
-            Max = 81.000000000000000000
-            Min = 5.000000000000000000
+            Max = 81
+            Min = 5
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 5.000000000000000000
+            Value = 5
             Validate = True
             OnAfterSetValue = Edit2AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object Edit3: TFreeNumInput
             Left = 150
+            Height = 24
             Top = 54
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 3
             Digits = 12
-            Max = 10000000000.000000000000000000
+            Max = 10000000000
+            Min = 0
             OutOfRangeMessage = False
             TabOnEnterKey = False
+            Value = 0
             Validate = True
             OnAfterSetValue = Edit3AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object Edit4: TFreeNumInput
             Left = 150
+            Height = 24
             Top = 78
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 3
             Digits = 12
+            Max = 0
+            Min = 0
             OutOfRangeMessage = False
             TabOnEnterKey = False
+            Value = 0
             Validate = False
             OnAfterSetValue = Edit4AfterSetValue
+            BorderColor = clBtnShadow
             Color = clBtnFace
-            Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
-            Font.Style = []
             ParentFont = False
             ReadOnly = True
             TabOrder = 3
           end
           object Edit5: TFreeNumInput
             Left = 150
+            Height = 24
             Top = 102
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 3
             Digits = 12
+            Max = 0
+            Min = 0
             OutOfRangeMessage = False
             TabOnEnterKey = False
+            Value = 0
             Validate = False
             OnAfterSetValue = Edit5AfterSetValue
+            BorderColor = clBtnShadow
             Color = clBtnFace
-            Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
-            Font.Style = []
             ParentFont = False
             ReadOnly = True
             TabOrder = 4
           end
           object GroupBox3: TGroupBox
             Left = 262
-            Top = 6
-            Width = 181
             Height = 121
+            Top = 6
+            Width = 202
             Caption = 'Hullform configuration.  '
+            ClientHeight = 105
+            ClientWidth = 198
             TabOrder = 5
             object Label14: TLabel
               Left = 3
+              Height = 14
               Top = 62
-              Width = 158
-              Height = 13
+              Width = 189
               Caption = 'Distance between center of hulls:'
+              ParentColor = False
             end
             object _Label15: TLabel
               Left = 93
+              Height = 14
               Top = 86
-              Width = 14
-              Height = 13
+              Width = 19
               Caption = '[m]'
+              ParentColor = False
             end
             object RadioButton1: TRadioButton
               Left = 3
+              Height = 21
               Top = 2
-              Width = 100
-              Height = 17
+              Width = 82
               Caption = 'Monohull'
               Checked = True
+              OnClick = RadioButton1Click
               TabOrder = 0
               TabStop = True
-              OnClick = RadioButton1Click
             end
             object RadioButton2: TRadioButton
               Left = 3
+              Height = 21
               Top = 22
-              Width = 165
-              Height = 17
+              Width = 214
               Caption = 'Monohull, send as catamaran'
-              TabOrder = 1
               OnClick = RadioButton1Click
+              TabOrder = 1
             end
             object RadioButton3: TRadioButton
               Left = 3
+              Height = 21
               Top = 42
-              Width = 100
-              Height = 17
+              Width = 95
               Caption = 'Catamaran'
-              TabOrder = 2
               OnClick = RadioButton1Click
+              TabOrder = 2
             end
             object Distance: TFreeNumInput
               Left = 6
+              Height = 24
               Top = 78
               Width = 85
-              Height = 21
               Alignment = taRightJustify
               Decimals = 3
               Digits = 12
+              Max = 0
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = False
               OnAfterSetValue = DistanceAfterSetValue
+              BorderColor = clBtnShadow
               Enabled = False
               TabOrder = 3
             end
@@ -320,17 +356,19 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
         end
         object Panel6: TPanel
           Left = 0
+          Height = 335
           Top = 135
-          Width = 456
-          Height = 312
+          Width = 466
           Align = alClient
           BevelOuter = bvLowered
+          ClientHeight = 335
+          ClientWidth = 466
           TabOrder = 1
           object ScrollBar1: TScrollBar
-            Left = 0
-            Top = 296
-            Width = 454
-            Height = 13
+            Left = 1
+            Height = 15
+            Top = 319
+            Width = 464
             Align = alBottom
             Max = 180
             Min = -180
@@ -339,10 +377,10 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             TabOrder = 0
           end
           object ScrollBar2: TScrollBar
-            Left = 440
-            Top = 0
-            Width = 13
-            Height = 297
+            Left = 450
+            Height = 318
+            Top = 1
+            Width = 15
             Align = alRight
             Kind = sbVertical
             Max = 180
@@ -352,13 +390,17 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             TabOrder = 1
           end
           object Viewport: TFreeViewport
-            Left = 0
-            Top = 0
-            Width = 441
-            Height = 297
-            Angle = 20.000000000000000000
+            Left = 1
+            Height = 318
+            Top = 1
+            Width = 449
+            Angle = 20
             Align = alClient
             BackgroundImage.Alpha = 255
+            BackgroundImage.Owner = Viewport
+            BackgroundImage.Quality = 100
+            BackgroundImage.Scale = 1
+            BackgroundImage.ShowInView = fvBodyplan
             BackgroundImage.Tolerance = 5
             BackgroundImage.Transparent = False
             BackgroundImage.TransparentColor = clBlack
@@ -366,8 +408,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             CameraType = ftStandard
             Color = clBlack
             DoubleBuffer = True
-            Elevation = 20.000000000000000000
+            Elevation = 20
             HorScrollbar = ScrollBar1
+            Margin = 0
             VertScrollbar = ScrollBar2
             ViewType = fvPerspective
             ViewportMode = vmWireFrame
@@ -378,333 +421,385 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Environment'
+        ClientHeight = 470
+        ClientWidth = 466
         ImageIndex = 2
         object Panel7: TPanel
           Left = 0
+          Height = 470
           Top = 0
-          Width = 456
-          Height = 447
+          Width = 466
           Align = alClient
           BevelOuter = bvLowered
+          ClientHeight = 470
+          ClientWidth = 466
           TabOrder = 0
           object Label6: TLabel
             Left = 10
+            Height = 14
             Top = 14
-            Width = 129
-            Height = 13
+            Width = 157
             Caption = 'Gravitational acceleration g'
+            ParentColor = False
           end
           object Label7: TLabel
             Left = 10
+            Height = 14
             Top = 62
-            Width = 65
-            Height = 13
+            Width = 78
             Caption = 'Water density'
+            ParentColor = False
           end
           object _Label8: TLabel
             Left = 328
+            Height = 14
             Top = 62
-            Width = 28
-            Height = 13
+            Width = 34
             Caption = '[t/m3]'
+            ParentColor = False
           end
           object _Label9: TLabel
             Left = 328
+            Height = 14
             Top = 14
-            Width = 30
-            Height = 13
+            Width = 36
             Caption = '[m/s2]'
+            ParentColor = False
           end
           object Label10: TLabel
             Left = 10
+            Height = 14
             Top = 86
-            Width = 120
-            Height = 13
+            Width = 144
             Caption = 'Water kinematic viscosity'
+            ParentColor = False
           end
           object _Label11: TLabel
             Left = 328
+            Height = 14
             Top = 86
-            Width = 61
-            Height = 13
+            Width = 75
             Caption = '*10-6  [m2/s]'
+            ParentColor = False
           end
           object Label12: TLabel
             Left = 10
+            Height = 14
             Top = 110
-            Width = 59
-            Height = 13
+            Width = 69
             Caption = 'Water depth'
+            ParentColor = False
           end
           object _Label13: TLabel
             Left = 328
+            Height = 14
             Top = 110
-            Width = 14
-            Height = 13
+            Width = 19
             Caption = '[m]'
+            ParentColor = False
           end
           object Edit6: TFreeNumInput
             Left = 248
+            Height = 24
             Top = 6
             Width = 78
-            Height = 21
             Alignment = taRightJustify
             Decimals = 3
             Digits = 12
-            Max = 9.900000000000000000
-            Min = 9.600000000000000000
+            Max = 9.9
+            Min = 9.6
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 9.810000000000000000
+            Value = 9.81
             Validate = True
             OnAfterSetValue = Edit6AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object Edit7: TFreeNumInput
             Left = 248
+            Height = 24
             Top = 54
             Width = 78
-            Height = 21
             Alignment = taRightJustify
             Decimals = 3
             Digits = 12
-            Max = 1.030000000000000000
-            Min = 0.995000000000000000
+            Max = 1.03
+            Min = 0.995
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 1.000000000000000000
+            Value = 1
             Validate = False
             OnAfterSetValue = Edit7AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object Edit8: TFreeNumInput
             Left = 248
+            Height = 24
             Top = 78
             Width = 78
-            Height = 21
             Alignment = taRightJustify
             Decimals = 4
             Digits = 12
-            Max = 1.310000000000000000
-            Min = 0.800000000000000000
+            Max = 1.31
+            Min = 0.8
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 0.800000000000000000
+            Value = 0.8
             Validate = True
+            BorderColor = clBtnShadow
             Color = clBtnFace
-            Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
-            Font.Style = []
             ParentFont = False
             ReadOnly = True
             TabOrder = 2
           end
           object Edit9: TFreeNumInput
             Left = 248
+            Height = 24
             Top = 102
             Width = 78
-            Height = 21
             Alignment = taRightJustify
             Decimals = 2
             Digits = 12
-            Max = 10000.000000000000000000
+            Max = 10000
+            Min = 0
             OutOfRangeMessage = False
             TabOnEnterKey = False
+            Value = 0
             Validate = True
             OnAfterSetValue = Edit9AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Resistance'
+        ClientHeight = 470
+        ClientWidth = 466
         ImageIndex = 1
         object Panel5: TPanel
           Left = 0
+          Height = 470
           Top = 0
-          Width = 456
-          Height = 447
+          Width = 466
           Align = alClient
           BevelOuter = bvLowered
+          ClientHeight = 470
+          ClientWidth = 466
           TabOrder = 0
           object Label21: TLabel
             Left = 10
+            Height = 14
             Top = 14
-            Width = 54
-            Height = 13
+            Width = 65
             Caption = 'Start speed'
+            ParentColor = False
           end
           object Label22: TLabel
-            Left = 202
+            Left = 225
+            Height = 14
             Top = 14
-            Width = 32
-            Height = 13
+            Width = 38
             Caption = '[knots]'
+            ParentColor = False
           end
           object Label23: TLabel
             Left = 10
+            Height = 14
             Top = 38
-            Width = 51
-            Height = 13
+            Width = 59
             Caption = 'End speed'
+            ParentColor = False
           end
           object Label24: TLabel
-            Left = 202
+            Left = 225
+            Height = 14
             Top = 38
-            Width = 32
-            Height = 13
+            Width = 38
             Caption = '[knots]'
+            ParentColor = False
           end
           object _Label25: TLabel
-            Left = 250
+            Left = 270
+            Height = 14
             Top = 14
-            Width = 44
-            Height = 13
+            Width = 50
             Caption = '_Label25'
+            ParentColor = False
           end
           object _Label26: TLabel
-            Left = 250
+            Left = 270
+            Height = 14
             Top = 38
-            Width = 44
-            Height = 13
+            Width = 50
             Caption = '_Label26'
+            ParentColor = False
           end
           object Label27: TLabel
             Left = 10
+            Height = 14
             Top = 62
-            Width = 122
-            Height = 13
+            Width = 148
             Caption = 'Number of speeds (2-100)'
+            ParentColor = False
           end
           object Edit12: TFreeNumInput
-            Left = 138
+            Left = 161
+            Height = 24
             Top = 6
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 3
             Digits = 12
-            Max = 77.560000000000000000
-            Min = 0.020000000000000000
+            Max = 77.56
+            Min = 0.02
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 0.020000000000000000
+            Value = 0.02
             Validate = True
             OnAfterSetValue = Edit12AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object Edit13: TFreeNumInput
-            Left = 138
+            Left = 161
+            Height = 24
             Top = 30
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 3
             Digits = 12
-            Max = 100.000000000000000000
-            Min = 0.100000000000000000
+            Max = 100
+            Min = 0.1
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 0.100000000000000000
+            Value = 0.1
             Validate = True
             OnAfterSetValue = Edit13AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object Edit14: TFreeNumInput
-            Left = 138
+            Left = 161
+            Height = 24
             Top = 54
             Width = 61
-            Height = 21
             Alignment = taRightJustify
             Decimals = 0
             Digits = 12
-            Max = 100.000000000000000000
-            Min = 2.000000000000000000
+            Max = 100
+            Min = 2
             OutOfRangeMessage = False
             TabOnEnterKey = False
-            Value = 2.000000000000000000
+            Value = 2
             Validate = True
             OnAfterSetValue = Edit14AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object Group1: TRadioGroup
             Left = 10
+            Height = 85
             Top = 86
             Width = 141
-            Height = 85
+            AutoFill = True
             Caption = 'Skin friction method. '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 69
+            ClientWidth = 137
             ItemIndex = 1
             Items.Strings = (
               'None'
               'ITTC 1957'
-              'Grigson')
+              'Grigson'
+            )
             TabOrder = 3
           end
         end
       end
       object TabSheet4: TTabSheet
         Caption = 'Waves'
+        ClientHeight = 470
+        ClientWidth = 466
         ImageIndex = 3
         object Panel8: TPanel
           Left = 0
+          Height = 470
           Top = 0
-          Width = 456
-          Height = 447
+          Width = 466
           Align = alClient
           BevelOuter = bvLowered
+          ClientHeight = 470
+          ClientWidth = 466
           TabOrder = 0
           object GroupBox1: TGroupBox
             Left = 22
+            Height = 173
             Top = 6
             Width = 400
-            Height = 173
             Caption = 'Sectorial cut. '
+            ClientHeight = 157
+            ClientWidth = 396
             TabOrder = 0
             object _Label28: TLabel
               Left = 10
+              Height = 14
               Top = 18
-              Width = 14
-              Height = 13
+              Width = 15
               Caption = 'R0'
+              ParentColor = False
             end
             object _Label29: TLabel
               Left = 10
+              Height = 14
               Top = 42
-              Width = 14
-              Height = 13
+              Width = 15
               Caption = 'R1'
+              ParentColor = False
             end
             object _Label30: TLabel
               Left = 10
+              Height = 14
               Top = 66
-              Width = 22
-              Height = 13
+              Width = 26
               Caption = 'Beta'
+              ParentColor = False
             end
             object _Label31: TLabel
               Left = 10
+              Height = 14
               Top = 90
-              Width = 47
-              Height = 13
+              Width = 57
               Caption = 'Nr (2-200)'
+              ParentColor = False
             end
             object _Label32: TLabel
               Left = 10
+              Height = 14
               Top = 114
-              Width = 68
-              Height = 13
+              Width = 81
               Caption = 'N beta (2-200)'
+              ParentColor = False
             end
             object Image1: TImage
               Left = 238
+              Height = 150
               Top = 0
               Width = 136
-              Height = 150
               Center = True
               Picture.Data = {
-                0A544A504547496D6167656E160000FFD8FFE000104A46494600010201006000
+                0A544A706567496D6167656E160000FFD8FFE000104A46494600010201006000
                 600000FFFE010290D66404FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
                 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
                 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -883,157 +978,181 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 F8F391D232DAD4A8C372487F79140B80562324996FB42AC5FAF9451400514514
                 005145140051451400571563F0FF00C33A77C45F137C53B5B5913C61ABE8961E
                 1FBD98CC4A35AD9CD75340A13A021EFAE324727207F08AED68A0028A28A0028A
-                28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A00FFFD9}
+                28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A00FFFD9
+              }
             end
             object _Label33: TLabel
               Left = 162
+              Height = 14
               Top = 18
-              Width = 14
-              Height = 13
+              Width = 19
               Caption = '[m]'
+              ParentColor = False
             end
             object _Label34: TLabel
               Left = 162
+              Height = 14
               Top = 42
-              Width = 14
-              Height = 13
+              Width = 19
               Caption = '[m]'
+              ParentColor = False
             end
             object _Label35: TLabel
               Left = 162
+              Height = 14
               Top = 66
-              Width = 29
-              Height = 13
+              Width = 35
               Caption = '[Degr]'
+              ParentColor = False
             end
             object Edit15: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 10
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 2
               Digits = 12
+              Max = 0
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = False
               OnAfterSetValue = Edit15AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 0
             end
             object Edit16: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 34
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 2
               Digits = 12
+              Max = 0
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = False
               OnAfterSetValue = Edit16AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 1
             end
             object Edit17: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 58
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 2
               Digits = 12
-              Max = 90.000000000000000000
+              Max = 90
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = True
               OnAfterSetValue = Edit17AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 2
             end
             object Edit18: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 82
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 0
               Digits = 12
-              Max = 200.000000000000000000
-              Min = 2.000000000000000000
+              Max = 200
+              Min = 2
               OutOfRangeMessage = False
               TabOnEnterKey = False
-              Value = 2.000000000000000000
+              Value = 2
               Validate = True
               OnAfterSetValue = Edit18AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 3
             end
             object Edit19: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 106
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 0
               Digits = 12
-              Max = 200.000000000000000000
-              Min = 2.000000000000000000
+              Max = 200
+              Min = 2
               OutOfRangeMessage = False
               TabOnEnterKey = False
-              Value = 2.000000000000000000
+              Value = 2
               Validate = True
               OnAfterSetValue = Edit19AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 4
             end
           end
           object GroupBox2: TGroupBox
             Left = 22
+            Height = 171
             Top = 194
             Width = 400
-            Height = 171
             Caption = 'Rectangular cut. '
+            ClientHeight = 155
+            ClientWidth = 396
             TabOrder = 1
             object _Label36: TLabel
               Left = 10
+              Height = 14
               Top = 18
-              Width = 13
-              Height = 13
+              Width = 15
               Caption = 'X0'
+              ParentColor = False
             end
             object _Label37: TLabel
               Left = 10
+              Height = 14
               Top = 42
-              Width = 13
-              Height = 13
+              Width = 15
               Caption = 'X1'
+              ParentColor = False
             end
             object _Label38: TLabel
               Left = 10
+              Height = 14
               Top = 66
-              Width = 13
-              Height = 13
+              Width = 14
               Caption = 'Y0'
+              ParentColor = False
             end
             object _Label39: TLabel
               Left = 10
+              Height = 14
               Top = 90
-              Width = 13
-              Height = 13
+              Width = 14
               Caption = 'Y1'
+              ParentColor = False
             end
             object _Label40: TLabel
               Left = 10
+              Height = 14
               Top = 114
-              Width = 16
-              Height = 13
+              Width = 19
               Caption = 'N x'
+              ParentColor = False
             end
             object Image2: TImage
               Left = 238
+              Height = 150
               Top = 0
               Width = 136
-              Height = 150
               Center = True
               Picture.Data = {
-                0A544A504547496D616765080F0000FFD8FFE000104A46494600010201006000
+                0A544A706567496D616765080F0000FFD8FFE000104A46494600010201006000
                 600000FFFE010208796E04020000000200000005000000070000000B0000000B
                 0000000B000000020000000200000002000000070000000B0000000B0000000B
                 0000000B0000000200000002000000060000000B0000000B0000000B0000000B
@@ -1153,131 +1272,155 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 55E35F0BFE165D7C3EF1B7ED17E2CB8D5E3D4A1F1CF8CE0F14DBC11C254DA247
                 A2E9DA6F94C73F312DA7B3E4638900C7193ECB40051451400514514005145140
                 0514514005145140051451400514514005145140051451400514514005145140
-                05145140051451400514514005145140051451401FFFD9}
+                05145140051451400514514005145140051451401FFFD9
+              }
             end
             object _Label41: TLabel
               Left = 162
+              Height = 14
               Top = 18
-              Width = 14
-              Height = 13
+              Width = 19
               Caption = '[m]'
+              ParentColor = False
             end
             object _Label42: TLabel
               Left = 162
+              Height = 14
               Top = 42
-              Width = 14
-              Height = 13
+              Width = 19
               Caption = '[m]'
+              ParentColor = False
             end
             object _Label44: TLabel
               Left = 10
+              Height = 14
               Top = 138
-              Width = 16
-              Height = 13
+              Width = 19
               Caption = 'N y'
+              ParentColor = False
             end
             object _Label16: TLabel
               Left = 162
+              Height = 14
               Top = 66
-              Width = 14
-              Height = 13
+              Width = 19
               Caption = '[m]'
+              ParentColor = False
             end
             object _Label17: TLabel
               Left = 162
+              Height = 14
               Top = 90
-              Width = 14
-              Height = 13
+              Width = 19
               Caption = '[m]'
+              ParentColor = False
             end
             object Edit20: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 10
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 2
               Digits = 12
+              Max = 0
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = False
               OnAfterSetValue = Edit20AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 0
             end
             object Edit21: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 34
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 2
               Digits = 12
+              Max = 0
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = False
               OnAfterSetValue = Edit21AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 1
             end
             object Edit22: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 58
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 2
               Digits = 12
+              Max = 0
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = False
               OnAfterSetValue = Edit22AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 2
             end
             object Edit23: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 82
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 2
               Digits = 12
+              Max = 0
+              Min = 0
               OutOfRangeMessage = False
               TabOnEnterKey = False
+              Value = 0
               Validate = False
               OnAfterSetValue = Edit23AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 3
             end
             object Edit24: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 106
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 0
               Digits = 12
-              Max = 200.000000000000000000
-              Min = 2.000000000000000000
+              Max = 200
+              Min = 2
               OutOfRangeMessage = False
               TabOnEnterKey = False
-              Value = 2.000000000000000000
+              Value = 2
               Validate = True
               OnAfterSetValue = Edit24AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 4
             end
             object Edit25: TFreeNumInput
               Left = 98
+              Height = 24
               Top = 130
               Width = 61
-              Height = 21
               Alignment = taRightJustify
               Decimals = 0
               Digits = 12
-              Max = 200.000000000000000000
-              Min = 2.000000000000000000
+              Max = 200
+              Min = 2
               OutOfRangeMessage = False
               TabOnEnterKey = False
-              Value = 2.000000000000000000
+              Value = 2
               Validate = True
               OnAfterSetValue = Edit25AfterSetValue
+              BorderColor = clBtnShadow
               TabOrder = 5
             end
           end
@@ -1287,16 +1430,16 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
   end
   object Panel3: TPanel
     Left = 0
-    Top = 499
-    Width = 466
     Height = 13
+    Top = 526
+    Width = 474
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
   end
   object ActionList1: TActionList
-    Left = 557
-    Top = 55
+    left = 557
+    top = 55
     object SaveFile: TAction
       Caption = 'Save'
     end

@@ -51,10 +51,12 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
       Gtk2WSDialogs, GTK2,
      {$ENDIF}
        Types,
+     IniFiles,
         Forms,
         Dialogs,
         Classes,
      ExtCtrls,
+     ColorIniFile,
      FreeTypes,
         FreeVersionUnit,
         FasterList,
@@ -648,13 +650,29 @@ type
                                     FControlCurveColor         : TColor;
                                     FHydrostaticsFontColor     : TColor;
                                     FZebraStripeColor          : TColor;
+
+                                    FGlobalConfigDirectory     : string;   // Default directory where FreeShip.ini file is stored
+                                    FGlobalAppDataDirectory    : string;   // Default directory where FreeShip data and resource files stored
+                                    FUserConfigDirectory       : string;   // Default directory where users FreeShip.ini file is stored
+                                    FUserAppDataDirectory      : string;   // Default directory where users FreeShip data and resource files stored
+
                                     FInitDirectory             : string;   // Default directory where freeship.exe started
                                     FOpenDirectory             : string;   // Default directory to open existing files
                                     FSaveDirectory             : string;   // Default directory to save files
                                     FImportDirectory           : string;   // Default directory to import files
                                     FExportDirectory           : string;   // Default directory to export files
+
+                                    FLanguagesDirectory        : string;   // Default directory where Language files stored. Default FGlobalAppDataDirectory/Languages
                                     FLanguageFile              : String;
+                                    FLanguage                  : String;
+
                                     FMaxUndoMemory             : Integer;  // Max. amount of allowable undo memory in megabytes
+
+                                    function getGlobalConfigDirectory:string;
+                                    function getUserAppDataDirectory:string;
+                                    function getGlobalAppDataDirectory:string;
+                                    function getUserConfigDirectory:string;
+
                                     function FGetExportDirectory:string;
                                     function FGetImportDirectory:string;
                                     function FGetOpenDirectory:string;
@@ -666,8 +684,13 @@ type
                                     constructor Create(Owner:TFreeShip);
                                     procedure   Edit;
                                     procedure   Load;
+                                    procedure   LoadFromIni(Filename: string);
+                                    procedure   LoadFromDta(Filename: string);
                                     procedure   ResetColors;
+                                    procedure   ResetDirectories;
+                                    procedure   SetDefaults;
                                     procedure   Save;
+                                    procedure   SaveToDta;
                                     property    Owner                : TFreeShip read FOwner write FOwner;
                                  published
                                     // General options
@@ -13606,51 +13629,97 @@ end;{TFreeEdit.Intersection_Add}
 {                                                                                                   }
 {   Container class for all program settings                                                        }
 {---------------------------------------------------------------------------------------------------}
+{ Due to migration into multiplatform environment config files and directories will be stored
+in diffrent locations for different config areas.
+  Global Config: the default config for all users. Users have read-only privileges.
+    In Linux: /etc/FreeShip/FreeShip.ini
+    In Windows: C:\Documents and Settings\All Users\Application Data\FreeShip\FreeShip.ini
+
+  User Config: config for current user. User have full privileges.
+    In Linux: $HOME/.config/FreeShip/FreeShip.ini
+    In Windows: C:\Documents and Settings\user\Local Settings\Application Data\FreeShip\FreeShip.ini
+
+  Executables:
+    In Linux: /usr/local/bin/FreeShip
+    In Windows: C:\Program Files\FreeShip\FreeShip.exe
+
+  External Executables:
+    In Linux: /usr/local/bin/FreeShip/Exec/*
+    In Windows: C:\Program Files\FreeShip\Exec\*.exe
+
+  All data and resource files (such as Languages, Manuals) can be stored globally or locally
+  Globally:
+    In Linux: /usr/share/FreeShip/
+    In Windows: defined by CSIDL_COMMON_APPDATA C:\Users\Public\Application Data\FreeShip\FreeShip.exe
+
+  Locally:
+    In Linux: $HOME/FreeShip/
+    In Windows: defined by CSIDL_APPDATA C:\Users\user\Application Data\FreeShip\
+    CSIDL_APPDATA
+
+  Note: Paths from Config have piority over default paths.
+  Default Local config and data paths have piority over global ones.
+
+  Application defines paths following way:
+  1. Try to get from local config, if exists
+  2. Try to get from global config, if exists
+  3. Try to get from default local location, if exists
+  4. Try to get from default global location, if exists
+  5. Get from the app start location. Deprecated. Left for compatibility with FreeShip for Windows
+
+}
+
 function TFreePreferences.FGetExportDirectory:string;
 begin
-   if DirectoryExistsUTF8(FExportDirectory) { *Converted from DirectoryExists* } then result:=FExportDirectory
-                                        else Result:=ExtractFilePath(Application.ExeName);
+  if DirectoryExistsUTF8(FExportDirectory) { *Converted from DirectoryExists* }
+    then result:=FExportDirectory
+    else Result:=ExtractFilePath(Application.ExeName);
 end;{TFreePreferences.FGetExportDirectory}
 
 function TFreePreferences.FGetImportDirectory:string;
 begin
-   if DirectoryExistsUTF8(FImportDirectory) { *Converted from DirectoryExists* } then result:=FImportDirectory
-                                        else Result:=ExtractFilePath(Application.ExeName);
+  if DirectoryExistsUTF8(FImportDirectory) { *Converted from DirectoryExists* }
+    then result:=FImportDirectory
+    else Result:=ExtractFilePath(Application.ExeName);
 end;{TFreePreferences.FGetImportDirectory}
 
 function TFreePreferences.FGetOpenDirectory:string;
 begin
-   if DirectoryExistsUTF8(FOpenDirectory) { *Converted from DirectoryExists* } then result:=FOpenDirectory
-                                      else Result:=ExtractFilePath(Application.ExeName);
+  if DirectoryExistsUTF8(FOpenDirectory) { *Converted from DirectoryExists* }
+    then result:=FOpenDirectory
+    else Result:=ExtractFilePath(Application.ExeName);
 end;{TFreePreferences.FGetOpenDirectory}
 
 function TFreePreferences.FGetSaveDirectory:string;
 begin
-   if DirectoryExistsUTF8(FSaveDirectory) { *Converted from DirectoryExists* } then result:=FSaveDirectory
-                                      else Result:=ExtractFilePath(Application.ExeName);
+  if DirectoryExistsUTF8(FSaveDirectory) { *Converted from DirectoryExists* }
+    then result:=FSaveDirectory
+    else Result:=ExtractFilePath(Application.ExeName);
 end;{TFreePreferences.FGetSaveDirectory}
 
 function TFreePreferences.FGetInitDirectory:string;
 begin
-   if DirectoryExistsUTF8(FInitDirectory) { *Converted from DirectoryExists* } then result:=FInitDirectory
-                                      else Result:=ExtractFilePath(Application.ExeName);
+  if DirectoryExistsUTF8(FInitDirectory) { *Converted from DirectoryExists* }
+    then result:=FInitDirectory
+    else Result:=ExtractFilePath(Application.ExeName);
 end;{TFreePreferences.FGetInitDirectory}
 
 procedure TFreePreferences.FSetViewportColor(Val:TColor);
 var I : integer;
 begin
    FViewportColor:=Val;
-   for I:=1 to Owner.NumberOfViewports do Owner.Viewport[I-1].Color:=FViewportColor;
+   for I:=1 to Owner.NumberOfViewports
+     do Owner.Viewport[I-1].Color:=FViewportColor;
 end;{TFreePreferences.FSetViewportColor}
 
 procedure TFreePreferences.Clear;
 begin
    ResetColors;
    FPointSize:=2;
-   FOpenDirectory:=ExtractFilePath(Application.ExeName);
-   FSaveDirectory:=ExtractFilePath(Application.ExeName);
-   FImportDirectory:=ExtractFilePath(Application.ExeName);
-   FExportDirectory:=ExtractFilePath(Application.ExeName);
+   FOpenDirectory:='';
+   FSaveDirectory:='';
+   FImportDirectory:='';
+   FExportDirectory:='';
    FLanguageFile:='English';
    FMaxUndoMemory:=20;// Max 20Mb undomemory
 end;{TFreePreferences.Clear}
@@ -13664,7 +13733,7 @@ end;{TFreePreferences.Create}
 
 procedure TFreePreferences.Edit;
 var Dialog  : TFreePreferencesDialog;
-    Filename: string;
+    Lang: string;
     I       : Integer;
     Dir     : string;
 
@@ -13703,14 +13772,15 @@ var Dialog  : TFreePreferencesDialog;
 begin
    Dialog:=TFreePreferencesDialog.Create(Owner);
    ShowTranslatedValues(Dialog);
-   Dir:=ExtractFileDir(Application.ExeName)+'/Languages/';
+   //Dir:=ExtractFileDir(Application.ExeName)+'/Languages/';
+   Dir := FLanguagesDirectory;
    Dialog.ComboBox1.Items.Clear;
    Dialog.ComboBox1.Items.Add('English');
    Browse(Dir);
    Dialog.ComboBox1.ItemIndex:=0;
    for I:=1 to Dialog.ComboBox1.Items.Count do
    begin
-      if Uppercase(Dialog.ComboBox1.Items[I-1])=Uppercase(LanguageFile) then
+      if Uppercase(Dialog.ComboBox1.Items[I-1])=Uppercase(FLanguage) then
       begin
          Dialog.ComboBox1.ItemIndex:=I-1;
          break;
@@ -13744,13 +13814,15 @@ begin
       HydrostaticsFontColor:=Dialog.Panel25.Color;
       ZebraStripeColor:=Dialog.Panel26.Color;
       ViewportColor:=Dialog.Panel4.Color; // Set viewportcolor last, because it forces a repaint
-      Filename:=Dialog.Combobox1.Text;
-      if Uppercase(Filename)<>Uppercase(LanguageFile) then
+      Lang:=Dialog.Combobox1.Text;
+      if Uppercase(Lang)<>Uppercase(FLanguage) then
       begin
-         if FileExistsUTF8(ExtractFilePath(Application.ExeName)+'/Languages/'+Filename+'.ini') { *Converted from FileExists* } then
+         if FileExistsUTF8(FLanguagesDirectory+'/'+Lang+'.ini') { *Converted from FileExists* } then
          begin
-            LoadLanguage(Filename);
-            LanguageFile:=Filename;
+            LoadLanguage(FLanguagesDirectory+'/'+Lang+'.ini');
+            FLanguageFile:=FLanguagesDirectory+'/'+Lang+'.ini';
+            FLanguage:=Lang;
+
             for I:=1 to Application.ComponentCount do
             begin
                if Application.Components[I-1] is TCustomForm then
@@ -13763,7 +13835,8 @@ begin
                   ShowTranslatedValues(TFreeLinesplanForm(Application.Mainform.MDIChildren[I-1]).LinesplanFrame);
                end else ShowTranslatedValues(Application.Mainform.MDIChildren[I-1]);
             end;
-         end else LanguageFile:=Filename;
+         end;
+         //else FLanguage:=Lang;
       end;
       FMaxUndoMemory:=Dialog.FreeNumInput1.AsInteger;
       if assigned(Owner.FOnFileChanged) then Owner.FOnFileChanged(Owner);
@@ -13777,14 +13850,58 @@ begin
    Dialog.Destroy;
 end;{TFreePreferences.Edit}
 
-procedure TFreePreferences.Load;
-var FileName: string;
+
+function TFreePreferences.getGlobalConfigDirectory:string;
+var D:string;
+begin
+  D:=ExcludeTrailingPathDelimiter(GetAppConfigDir(true));
+  if DirectoryExistsUTF8(D)
+    then result:=D
+    else ExtractFilePath(Application.Exename); //deprecated. for old Win app compatibility
+end;
+
+
+function TFreePreferences.getUserConfigDirectory:string;
+var D:string;
+begin
+  result:=ExcludeTrailingPathDelimiter(GetAppConfigDir(false));
+end;
+
+function TFreePreferences.getGlobalAppDataDirectory:string;
+var D:string;
+begin
+  {$ifdef UNIX}
+  D:='/usr/share/FreeShip';
+  {$else}
+    {$ifdef Windows}
+    D:=GetEnvironmentVariableUTF8('ALLUSERSPROFILE')+'\Application Data\FreeShip';
+    {$endif}
+  {$endif}
+  if DirectoryExistsUTF8(D)
+    then result:=D
+    else ExtractFilePath(Application.Exename); //deprecated. for old Win app compatibility
+end;
+
+function TFreePreferences.getUserAppDataDirectory:string;
+var D:string;
+begin
+  {$ifdef UNIX}
+  result:=GetEnvironmentVariableUTF8('HOME')+'/FreeShip';
+  {$else}
+    {$ifdef Windows}
+    result:=GetEnvironmentVariableUTF8('APPDATA')+'/FreeShip';
+    {$endif}
+  {$endif}
+end;
+
+procedure TFreePreferences.LoadFromDta(Filename: String);
+var
     FFile   : TextFile;
     I,N     : Integer;
     T,L,W,H,S:Integer;
 begin
-   Filename:=ChangeFileExt(Application.ExeName,'.dta');
-   if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+   //Filename:=ChangeFileExt(Application.ExeName,'.dta');
+   if FileExists(Filename) then
    begin
       AssignFile(FFile,Filename);
       Try
@@ -13823,8 +13940,7 @@ begin
             begin
                Readln(FFile,Filename);
                // only add the file to the list if it is a valid filename
-               if FileExistsUTF8(Filename) { *Converted from FileExists* }
-                 then Owner.Edit.FRecentFiles.Add(Filename);
+               if FileExists(Filename+'.fbm') then Owner.Edit.FRecentFiles.Add(Filename);
             end;
             if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
          end;
@@ -13851,16 +13967,155 @@ begin
                end;
             end;
          end;
-         if not EOF(FFile) then Readln(FFile,FLanguageFile)
-                           else FLanguageFile:='English';
-         Filename:=ExtractFilePath(Application.Exename)+'Languages/'+FlanguageFile+'.ini';
-         if not FileExistsUTF8(Filename) { *Converted from FileExists* } then FLanguageFile:='English';
+         if not EOF(FFile) then Readln(FFile,FLanguage)
+                           else FLanguage:='English';
+         FLanguageFile:=ExtractFilePath(Application.Exename)+'Languages/'+Flanguage+'.ini';
+         if not FileExists(FLanguageFile) then
+           begin
+           FLanguage:='English';
+           FLanguageFile:=ExtractFilePath(Application.Exename)+'Languages/'+FLanguage+'.ini';
+           end;
          if not EOF(FFile) then Readln(FFile,FMaxUndoMemory);
          CloseFile(FFile);
       except
          MessageDlg(Userstring(176)+':'+EOL+Filename,mtError,[mbOk],0);
       end;
    end;
+end;{TFreePreferences.LoadFromDta}
+
+procedure TFreePreferences.LoadFromIni(FileName: String);
+var
+    I,N     : Integer;
+    T,L,W,H,S:Integer;
+    params:TColorIniFile;
+    RecentFileNames : TStringList;
+begin
+  if not FileExistsUTF8(Filename)
+   then exit;
+
+  params := TColorIniFile.create(Filename, false );
+
+  FPointSize := params.ReadInteger('Graphic','PointSize',FPointSize);
+  FButtockColor := params.ReadColor('Graphic','PointSize',FButtockColor);
+  FWaterlineColor := params.ReadColor('Graphic','WaterlineColor',FWaterlineColor);
+  FStationColor := params.ReadColor('Graphic','StationColor',FStationColor);
+  FCreaseColor := params.ReadColor('Graphic','CreaseColor',FCreaseColor);
+  FCreaseEdgeColor := params.ReadColor('Graphic','CreaseEdgeColor',FCreaseEdgeColor);
+  FGridColor := params.ReadColor('Graphic','GridColor',FGridColor);
+  FGridFontColor := params.ReadColor('Graphic','GridFontColor',FGridFontColor);
+  FEdgeColor := params.ReadColor('Graphic','EdgeColor',FEdgeColor);
+  FCreasePointColor := params.ReadColor('Graphic','CreasePointColor',FCreasePointColor);
+  FRegularPointColor := params.ReadColor('Graphic','RegularPointColor',FRegularPointColor);
+  FCornerPointColor := params.ReadColor('Graphic','CornerPointColor',FCornerPointColor);
+  FDartPointColor := params.ReadColor('Graphic','DartPointColor',FDartPointColor);
+  FSelectColor := params.ReadColor('Graphic','SelectColor',FSelectColor);
+  FLayerColor := params.ReadColor('Graphic','LayerColor',FLayerColor);
+  FUnderWaterColor := params.ReadColor('Graphic','UnderWaterColor',FUnderWaterColor);
+  FNormalColor := params.ReadColor('Graphic','NormalColor',FNormalColor);
+  FViewportColor := params.ReadColor('Graphic','ViewportColor',FViewportColor);
+  FDiagonalColor := params.ReadColor('Graphic','DiagonalColor',FDiagonalColor);
+  FLeakPointColor := params.ReadColor('Graphic','LeakPointColor',FLeakPointColor);
+  FMarkerColor := params.ReadColor('Graphic','MarkerColor',FMarkerColor);
+  FCurvaturePlotColor := params.ReadColor('Graphic','CurvaturePlotColor',FCurvaturePlotColor);
+  FControlCurveColor := params.ReadColor('Graphic','ControlCurveColor',FControlCurveColor);
+  FHydrostaticsFontColor := params.ReadColor('Graphic','HydrostaticsFontColor',FHydrostaticsFontColor);
+  FZebraStripeColor := params.ReadColor('Graphic','ZebraStripeColor',FZebraStripeColor);
+
+
+  FOpenDirectory := params.ReadString('Directories','OpenDirectory',FOpenDirectory);
+  FSaveDirectory := params.ReadString('Directories','SaveDirectory',FSaveDirectory);
+  FImportDirectory := params.ReadString('Directories','ImportDirectory',FImportDirectory);
+  FExportDirectory := params.ReadString('Directories','ExportDirectory',FExportDirectory);
+  FLanguagesDirectory := params.ReadString('Directories','LanguageDirectory',FLanguagesDirectory);
+
+  RecentFileNames := TStringList.Create;
+  params.ReadSectionValues('RecentFiles',RecentFileNames);
+
+  Owner.Edit.FRecentFiles.Clear;
+  Owner.Edit.FRecentFiles.Capacity:=RecentFileNames.Count;
+  for I:=0 to RecentFileNames.Count-1 do
+  begin
+     Filename := RecentFileNames.ValueFromIndex[I];
+     // only add the file to the list if it is a valid filename
+     if FileExistsUTF8(Filename) { *Converted from FileExists* }
+       then Owner.Edit.FRecentFiles.Add(Filename);
+  end;
+  RecentFileNames.Destroy;
+  if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
+
+    //Readln(FFile,T,L,H,W,S);
+   T := params.ReadInteger('Window','Top',0);
+   L := params.ReadInteger('Window','Left',0);
+   H := params.ReadInteger('Window','Height',80);
+   W := params.ReadInteger('Window','Width',1250);
+   S := params.ReadInteger('Window','State',Integer(wsNormal));
+
+   if Application.Mainform<>nil then
+    begin
+       if L>Screen.Width then L:=0;
+       if T>Screen.Height then T:=0;
+       if W>Screen.Width then begin W:=Screen.Width; H:=110; end;
+       if H>Screen.Height then H:=Screen.Height;
+       case TWindowState(S) of
+          wsNormal	   : Application.MainForm.SetBounds(L,T,W,H);
+          wsMinimized	   : begin
+                              Application.MainForm.WindowState:=wsNormal;
+                              Application.MainForm.SetBounds(L,T,W,H);
+                             end;
+          wsMaximized	   : Application.MainForm.WindowState:=wsMaximized;
+       end;
+    end;
+
+  FLanguage := params.ReadString('General','Language',FLanguage);
+  FLanguageFile:=FLanguagesDirectory+'/'+Flanguage+'.ini';
+  if not FileExistsUTF8(FLanguageFile) { *Converted from FileExists* }
+    then FLanguage:='English';
+
+  FMaxUndoMemory := params.ReadInteger('General','MaxUndoMemory',FMaxUndoMemory);
+end;
+
+procedure TFreePreferences.setDefaults;
+begin
+  FPointSize := 2;
+  FLanguage := 'English';
+  FMaxUndoMemory := 20;
+  ResetColors;
+  ResetDirectories;
+end;
+
+procedure TFreePreferences.ResetDirectories;
+begin
+  FOpenDirectory := self.getUserAppDataDirectory+'/Ships';
+  FSaveDirectory := self.getUserAppDataDirectory+'/Ships';
+  FImportDirectory := self.getUserAppDataDirectory+'/Import';
+  FExportDirectory := self.getUserAppDataDirectory+'/Export';
+  FLanguagesDirectory := self.getGlobalAppDataDirectory+'/Languages';
+end;
+
+
+procedure TFreePreferences.Load;
+var GlobalConfigFileName, UserConfigFileName,DtaFilename: string;
+    I,N     : Integer;
+    T,L,W,H,S:Integer;
+    params:TColorIniFile;
+    RecentFileNames : TStrings;
+begin
+  setDefaults;
+  GlobalConfigFileName:=getGlobalConfigDirectory+'/FreeShip.ini';
+  UserConfigFileName:=getUserConfigDirectory+'/FreeShip.ini';
+
+  // just for migration from .dta to .ini
+  if not FileExistsUTF8(GlobalConfigFileName)
+     and not FileExistsUTF8(UserConfigFileName)
+  then
+   begin
+     DtaFilename:=ChangeFileExt(Application.ExeName,'.dta');
+     LoadFromDta(DtaFilename);
+     exit;
+   end;
+
+  LoadFromIni(GlobalConfigFileName);
+  LoadFromIni(UserConfigFileName);
 end;{TFreePreferences.Load}
 
 procedure TFreePreferences.ResetColors;
@@ -13891,7 +14146,7 @@ begin
    FZebraStripeColor:=RGB(230,230,230);
 end;{TFreePreferences.ResetColors}
 
-procedure TFreePreferences.Save;
+procedure TFreePreferences.SaveToDta; //deprecated
 var FileName: string;
     FFile   : TextFile;
     I       : Integer;
@@ -13940,6 +14195,73 @@ begin
       MessageDlg(Userstring(177)+':'+EOL+Filename,mtError,[mbOk],0);
    end;
 end;{TFreePreferences.Save}
+
+procedure TFreePreferences.Save;
+var FileName: String;
+    I,N     : Integer;
+    T,L,W,H,S:Integer;
+    params:TColorIniFile;
+begin
+  FileName := self.getUserConfigDirectory+'/FreeShip.ini';
+  if not FileExistsUTF8(Filename) then
+    ForceDirectoriesUTF8(ExtractFilePath(Filename));
+
+  params := TColorIniFile.create(Filename, false);
+
+  params.WriteColor('Graphic','PointSize',FPointSize);
+  params.WriteColor('Graphic','ButtockColor',FButtockColor);
+  params.WriteColor('Graphic','WaterlineColor',FWaterlineColor);
+  params.WriteColor('Graphic','StationColor',FStationColor);
+  params.WriteColor('Graphic','CreaseColor',FCreaseColor);
+  params.WriteColor('Graphic','CreaseEdgeColor',FCreaseEdgeColor);
+  params.WriteColor('Graphic','GridColor',FGridColor);
+  params.WriteColor('Graphic','GridFontColor',FGridFontColor);
+  params.WriteColor('Graphic','EdgeColor',FEdgeColor);
+  params.WriteColor('Graphic','CreasePointColor',FCreasePointColor);
+  params.WriteColor('Graphic','RegularPointColor',FRegularPointColor);
+  params.WriteColor('Graphic','CornerPointColor',FCornerPointColor);
+  params.WriteColor('Graphic','DartPointColor',FDartPointColor);
+  params.WriteColor('Graphic','SelectColor',FSelectColor);
+  params.WriteColor('Graphic','LayerColor',FLayerColor);
+  params.WriteColor('Graphic','UnderWaterColor',FUnderWaterColor);
+  params.WriteColor('Graphic','NormalColor',FNormalColor);
+  params.WriteColor('Graphic','ViewportColor',FViewportColor);
+  params.WriteColor('Graphic','DiagonalColor',FDiagonalColor);
+  params.WriteColor('Graphic','LeakPointColor',FLeakPointColor);
+  params.WriteColor('Graphic','MarkerColor',FMarkerColor);
+  params.WriteColor('Graphic','CurvaturePlotColor',FCurvaturePlotColor);
+  params.WriteColor('Graphic','ControlCurveColor',FControlCurveColor);
+  params.WriteColor('Graphic','HydrostaticsFontColor',FHydrostaticsFontColor);
+  params.WriteColor('Graphic','ZebraStripeColor',FZebraStripeColor);
+
+  params.WriteString('Directories','OpenDirectory',FOpenDirectory);
+  params.WriteString('Directories','SaveDirectory',FSaveDirectory);
+  params.WriteString('Directories','ImportDirectory',FImportDirectory);
+  params.WriteString('Directories','ExportDirectory',FExportDirectory);
+  params.WriteString('Directories','LanguageDirectory',FLanguagesDirectory);
+
+  for I:=0 to Owner.Edit.FRecentFiles.Count-1 do
+  begin
+     Filename := Owner.Edit.FRecentFiles[I];
+     params.WriteString('RecentFiles', 'File'+IntToStr(I+1), Filename);
+  end;
+
+  if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
+
+  if Application.Mainform<>nil then
+   begin
+   params.WriteInteger('Window','Top',Application.MainForm.Top);
+   params.WriteInteger('Window','Left',Application.MainForm.Left);
+   params.WriteInteger('Window','Height',Application.MainForm.Height);
+   params.WriteInteger('Window','Width',Application.MainForm.Width);
+   params.WriteInteger('Window','State',Integer(Application.MainForm.WindowState));
+   end;
+
+  params.WriteString('General','Language',FLanguage);
+  params.WriteInteger('General','MaxUndoMemory',FMaxUndoMemory);
+end;
+
+
 
 {---------------------------------------------------------------------------------------------------}
 {                                       TFreeProjectSettings                                        }

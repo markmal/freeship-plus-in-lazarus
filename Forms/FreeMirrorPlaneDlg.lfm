@@ -1,63 +1,66 @@
 object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
   Left = 239
+  Height = 191
   Top = 210
+  Width = 205
   BorderStyle = bsDialog
   Caption = 'Mirror'
   ClientHeight = 191
   ClientWidth = 205
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
-  OldCreateOrder = True
   Position = poMainFormCenter
-  PixelsPerInch = 96
-  TextHeight = 13
+  LCLVersion = '1.4.0.1'
   object Panel2: TPanel
     Left = 0
+    Height = 156
     Top = 22
     Width = 205
-    Height = 156
     Align = alClient
     BevelOuter = bvLowered
+    ClientHeight = 156
+    ClientWidth = 205
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 11
+      Height = 144
       Top = 8
       Width = 184
-      Height = 139
       Caption = '3D Mirror plane. '
+      ClientHeight = 128
+      ClientWidth = 180
       TabOrder = 0
       object Label1: TLabel
         Left = 8
-        Top = 94
-        Width = 42
-        Height = 13
+        Height = 14
+        Top = 82
+        Width = 48
         Caption = 'Distance'
+        ParentColor = False
       end
       object RadioButton1: TRadioButton
         Left = 8
-        Top = 22
-        Width = 113
-        Height = 17
+        Height = 21
+        Top = 7
+        Width = 120
         Caption = 'Transverse plane'
         TabOrder = 0
       end
       object RadioButton2: TRadioButton
         Left = 8
-        Top = 44
-        Width = 113
-        Height = 17
+        Height = 21
+        Top = 29
+        Width = 115
         Caption = 'Horizontal plane'
         TabOrder = 1
       end
       object RadioButton3: TRadioButton
         Left = 8
-        Top = 66
-        Width = 113
-        Height = 17
+        Height = 21
+        Top = 51
+        Width = 100
         Caption = 'Vertical plane'
         Checked = True
         TabOrder = 2
@@ -65,22 +68,26 @@ object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
       end
       object Edit1: TFreeNumInput
         Left = 82
-        Top = 86
+        Height = 24
+        Top = 74
         Width = 83
-        Height = 21
         Alignment = taRightJustify
         Decimals = 4
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         TabOrder = 3
       end
       object CheckBox1: TCheckBox
         Left = 6
-        Top = 114
-        Width = 158
-        Height = 17
+        Height = 21
+        Top = 103
+        Width = 170
         Alignment = taLeftJustify
         Caption = 'Connect to existing points'
         Checked = True
@@ -91,17 +98,19 @@ object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
   end
   object Panel1: TPanel
     Left = 0
+    Height = 22
     Top = 0
     Width = 205
-    Height = 22
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 205
     TabOrder = 1
     object BitBtn1: TSpeedButton
       Left = 68
+      Height = 19
       Top = 1
       Width = 65
-      Height = 19
       Caption = 'OK'
       Flat = True
       Glyph.Data = {
@@ -120,15 +129,16 @@ object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
         33333333A222433333333333338F338F00003333333333333A22433333333333
         3338F38F000033333333333333A223333333333333338F830000333333333333
         333A333333333333333338330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
       Left = 133
+      Height = 19
       Top = 1
       Width = 65
-      Height = 19
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -147,16 +157,17 @@ object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
         9118333911183333338F33838F338F33000033333913333391113333338FF833
         38F338F300003333333333333919333333388333338FFF830000333333333333
         3333333333333333333888330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn2Click
     end
   end
   object Panel3: TPanel
     Left = 0
+    Height = 13
     Top = 178
     Width = 205
-    Height = 13
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2

@@ -1,80 +1,89 @@
 object SaveImageDialog: TSaveImageDialog
   Left = 387
+  Height = 160
   Top = 141
+  Width = 288
   BorderStyle = bsDialog
   Caption = 'Save image.'
   ClientHeight = 160
-  ClientWidth = 261
+  ClientWidth = 288
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
   Position = poOwnerFormCenter
-  PixelsPerInch = 96
+  LCLVersion = '1.4.0.1'
   object Panel2: TPanel
     Left = 0
-    Top = 22
-    Width = 261
     Height = 125
+    Top = 22
+    Width = 288
     Align = alClient
     BevelOuter = bvLowered
+    ClientHeight = 125
+    ClientWidth = 288
     TabOrder = 0
     object Label3: TLabel
       Left = 152
+      Height = 14
       Top = 40
-      Width = 32
-      Height = 13
+      Width = 41
       Caption = '[pixels]'
+      ParentColor = False
     end
     object Label6: TLabel
       Left = 152
+      Height = 14
       Top = 70
-      Width = 32
-      Height = 13
+      Width = 41
       Caption = '[pixels]'
+      ParentColor = False
     end
     object Label1: TLabel
       Left = 3
+      Height = 14
       Top = 40
-      Width = 28
-      Height = 13
+      Width = 32
       Caption = 'Width'
+      ParentColor = False
     end
     object Label2: TLabel
       Left = 3
+      Height = 14
       Top = 70
-      Width = 31
-      Height = 13
+      Width = 36
       Caption = 'Height'
+      ParentColor = False
     end
     object Label4: TLabel
       Left = 3
+      Height = 14
       Top = 100
-      Width = 67
-      Height = 13
+      Width = 82
       Caption = 'Estimated size'
+      ParentColor = False
     end
     object _Label5: TLabel
       Left = 98
+      Height = 14
       Top = 100
-      Width = 38
-      Height = 13
+      Width = 43
       Caption = '_Label5'
+      ParentColor = False
     end
     object Label7: TLabel
       Left = 3
+      Height = 14
       Top = 10
-      Width = 42
-      Height = 13
+      Width = 50
       Caption = 'Filename'
+      ParentColor = False
     end
     object SpeedButton1: TSpeedButton
-      Left = 194
-      Top = 30
+      Left = 256
+      Height = 24
+      Top = 6
       Width = 23
-      Height = 22
       Glyph.Data = {
         F6000000424DF600000000000000760000002800000010000000100000000100
         04000000000080000000130B0000130B00001000000010000000000000000084
@@ -89,44 +98,47 @@ object SaveImageDialog: TSaveImageDialog
     end
     object Edit1: TEdit
       Left = 73
+      Height = 24
       Top = 32
       Width = 75
-      Height = 21
-      TabOrder = 1
       OnExit = Edit1Exit
       OnKeyPress = Edit1KeyPress
+      TabOrder = 1
     end
     object Edit2: TEdit
       Left = 73
+      Height = 24
       Top = 62
       Width = 75
-      Height = 21
-      TabOrder = 2
       OnExit = Edit2Exit
       OnKeyPress = Edit1KeyPress
+      TabOrder = 2
     end
     object Edit3: TEdit
       Left = 73
+      Height = 24
       Top = 6
       Width = 178
-      Height = 21
       TabOrder = 0
       Text = 'Edit3'
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 0
-    Width = 261
     Height = 22
+    Top = 0
+    Width = 288
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 288
     TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 126
+      Left = 218
+      Height = 22
       Top = 0
-      Width = 65
-      Height = 19
+      Width = 70
+      Align = alRight
       Caption = 'OK'
       Flat = True
       Glyph.Data = {
@@ -151,10 +163,11 @@ object SaveImageDialog: TSaveImageDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 191
+      Left = 148
+      Height = 22
       Top = 0
-      Width = 65
-      Height = 19
+      Width = 70
+      Align = alRight
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -181,16 +194,16 @@ object SaveImageDialog: TSaveImageDialog
   end
   object Panel3: TPanel
     Left = 0
-    Top = 147
-    Width = 261
     Height = 13
+    Top = 147
+    Width = 288
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
   end
   object SaveDialog: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist, ofEnableSizing]
-    Left = 220
-    Top = 62
+    left = 220
+    top = 62
   end
 end

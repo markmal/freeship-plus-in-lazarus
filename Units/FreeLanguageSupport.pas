@@ -49,13 +49,15 @@ uses
      Forms,
      stdCtrls,
      typInfo,
-	   extCtrls,
+     extCtrls,
      iniFiles,
      Dialogs,
      Menus,
      ComCtrls,
      FreeStringsUnit,
-     Controls, FileUtil;
+     Controls,
+     FileUtil,
+     StrUtils;
 
 // Skip translation
 
@@ -73,6 +75,7 @@ var CurrentLanguage : TMemIniFile; 	//Global variable for current language
 function LoadLanguage(Name:string):TMemIniFile;overload;
 procedure ShowTranslatedValues(Component:TComponent);
 function UserString(Index:Integer):String;
+function tl8(Key:String):String;
 
 //utilities
 function GetCompInfo(Component:TComponent):TCompInfo;
@@ -85,7 +88,8 @@ implementation
 function LoadLanguage(Name:string):TMemIniFile;
 var Filename:string;    
 begin
-   Filename:=ChangeFileExt(extractFileDir(application.exeName)+'/Languages/'+Name,'.ini');
+   //Filename:=ChangeFileExt(extractFileDir(application.exeName)+'/Languages/'+Name,'.ini');
+   Filename:=Name;
    if FileExistsUTF8(Filename) { *Converted from FileExists* } then
    begin
       if CurrentLanguage<>nil then CurrentLanguage.Free;
@@ -170,6 +174,34 @@ begin
       end;
    end;
 end;{UserString}
+
+{ Direct translation - key is a word or a phrase in Latin chars, it can be a whole phase.
+ Example:
+Hello world!=Здравствуй, мир!
+It can be multiline too, EOLs in key and value will be replaced by \n.
+}
+function tl8(Key:String):String;
+var Str     : string;
+    Section : String;
+    val     : string;
+    idx     : string;
+    I,N     : Integer;
+begin
+   Result:=Key;
+   if CurrentLanguage<>nil then
+   begin
+      Section:='Direct';
+      idx:=ReplaceStr(key,'\','\\');
+      idx:=ReplaceStr(idx,'=','\q');
+      idx:=ReplaceStr(idx,LineEnding,'\n');
+      Str:=CurrentLanguage.readString(Section,idx,idx);
+      Str:=ReplaceStr(Str,'\n',LineEnding);
+      Str:=ReplaceStr(Str,'\q','=');
+      Str:=ReplaceStr(Str,'\\','\');
+      Result:=Str;
+   end;
+end;{UserString}
+
 
 {Translates the forms you choose in the language called in ini.
 Only created forms are translated with ShowTranslatedValues. Call it in the onShow

@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="66"/>
+      <BuildNr Value="78"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -52,7 +52,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="68">
+    <Units Count="69">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -60,6 +60,7 @@
       <Unit1>
         <Filename Value="Units/FreeLanguageSupport.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeLanguageSupport"/>
       </Unit1>
       <Unit2>
         <Filename Value="Forms/Main.pas"/>
@@ -67,6 +68,7 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Main"/>
       </Unit2>
       <Unit3>
         <Filename Value="Forms/FreeHullformWindow.pas"/>
@@ -78,12 +80,16 @@
       <Unit4>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeLayerDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit4>
       <Unit5>
         <Filename Value="Forms/FreeNewModelDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeNewModelDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit5>
       <Unit6>
         <Filename Value="Forms/FreeSplashWndw.pas"/>
@@ -99,37 +105,51 @@
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeIntersectionDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit8>
       <Unit9>
         <Filename Value="Forms/FreeExtrudeDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeExtrudeDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit9>
       <Unit10>
         <Filename Value="Forms/FreeControlPointFrm.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeControlPointForm"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit10>
       <Unit11>
         <Filename Value="Forms/FreeProjectSettingsDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FREEProjectSettingsDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit11>
       <Unit12>
         <Filename Value="Forms/FreeRotateDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeRotateDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit12>
       <Unit13>
         <Filename Value="Forms/FreePreferencesDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreePreferencesDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit13>
       <Unit14>
         <Filename Value="Forms/FreeExpanedPlatesDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeExpanedplatesDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit14>
       <Unit15>
         <Filename Value="Forms/FreeLinesplanFrme.pas"/>
@@ -141,27 +161,37 @@
       <Unit16>
         <Filename Value="Forms/FreeLinesplanFrm.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeLinesplanForm"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit16>
       <Unit17>
         <Filename Value="Forms/FreeSaveImageDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="SaveImageDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit17>
       <Unit18>
         <Filename Value="Forms/FreeInsertPlaneDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeInsertPlaneDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit18>
       <Unit19>
         <Filename Value="Forms/FreeMichletOutputDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeMichletOutputDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit19>
       <Unit20>
         <Filename Value="Forms/FreeAddMassOutputDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeAddMassOutputDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit20>
       <Unit21>
         <Filename Value="Forms/FreeResistance_KaperDlg.pas"/>
@@ -243,12 +273,16 @@
       <Unit32>
         <Filename Value="Forms/FreeMirrorPlaneDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeMirrorPlaneDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit32>
       <Unit33>
         <Filename Value="Forms/FreeSelectLayersDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeSelectLayersDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit33>
       <Unit34>
         <Filename Value="Forms/FreeKeelWizardDlg.pas"/>
@@ -268,7 +302,9 @@
       <Unit37>
         <Filename Value="Forms/FreeLackenbyDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeLackenbyDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit37>
       <Unit38>
         <Filename Value="Units/FreeIGESUnit.pas"/>
@@ -277,12 +313,16 @@
       <Unit39>
         <Filename Value="Forms/FreeIntersectLayerDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeIntersectLayerDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit39>
       <Unit40>
         <Filename Value="Forms/FreeUndoHistoryDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeUndoHistoryDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit40>
       <Unit41>
         <Filename Value="Forms/FreeHydrostaticsResultsDlg.pas"/>
@@ -299,7 +339,9 @@
       <Unit43>
         <Filename Value="Forms/FreeCylinderDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeCylinderDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit43>
       <Unit44>
         <Filename Value="Units/FreeStringsUnit.pas"/>
@@ -308,7 +350,9 @@
       <Unit45>
         <Filename Value="Forms/Free2DDXFExportDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DXFExport2DDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit45>
       <Unit46>
         <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
@@ -316,7 +360,6 @@
         <ComponentName Value="FreeCrosscurvesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeCrosscurvesDlg"/>
       </Unit46>
       <Unit47>
         <Filename Value="Forms/FreeRotateDlgM.pas"/>
@@ -324,6 +367,7 @@
         <ComponentName Value="FreeRotateMDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeRotateDlgM"/>
       </Unit47>
       <Unit48>
         <Filename Value="Units/FasterList.pas"/>
@@ -339,7 +383,9 @@
       <Unit50>
         <Filename Value="Forms/FreeHydrostaticsDlg.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeHydrostaticsDialog"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit50>
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
@@ -427,7 +473,13 @@
       <Unit67>
         <Filename Value="Units/FreeBitmapFormatHelper.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeBitmapFormatHelper"/>
       </Unit67>
+      <Unit68>
+        <Filename Value="Units/ColorIniFile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ColorIniFile"/>
+      </Unit68>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

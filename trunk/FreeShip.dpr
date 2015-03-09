@@ -42,6 +42,7 @@ uses
   Controls,
   Forms,
   SysUtils,
+  FileUtil,
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
   Main in 'Forms/Main.pas' {MainForm},
   FreeHullformWindow in 'Forms/FreeHullformWindow.pas' {FreeHullWindow},
@@ -103,6 +104,22 @@ uses
 
 var ShowSplash, InDebugger : boolean;
 
+procedure InitByParameters;
+var S: string; p: integer;
+begin
+  for p:=1 to ParamCount do
+  begin
+    S := ParamStrUTF8(p);
+    if S = '--nosplash' then ShowSplash:=False;
+    if S = '--debug' then InDebugger:=True;
+    if S = '--log-info' then Logger.LogLevel:=LOG_INFO;
+    if S = '--log-error' then Logger.LogLevel:=LOG_ERROR;
+    if S = '--log-warning' then Logger.LogLevel:=LOG_WARNING;
+    if S = '--log-debug' then Logger.LogLevel:=LOG_DEBUG;
+  end;
+end;
+
+
 begin
    Logger.LogLevel:=LOG_DEBUG;
    Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
@@ -113,8 +130,11 @@ begin
    Writeln ('FreeShip Program version: ',ResourceVersionInfo);
    Writeln ('Last SVN Change Revision: ',SUBVERSION_REVISION);
 
-   ShowSplash:=False;
-   InDebugger:=True;
+
+   ShowSplash:=true;
+   InDebugger:=false;
+
+   InitByParameters;
 
    FormatSettings.DecimalSeparator:='.';
    Application.Initialize;
@@ -143,7 +163,7 @@ begin
       FreeLayerDialog:=TFreeLayerDialog.Create(Application);
       FreeLinesplanFrame:=TFreeLinesplanFrame.Create(Application);
       FreeMichletOutputDialog:=TFreeMichletOutputDialog.Create(Application);
-//	  FreeAddMassOutputDialog:=TFreeAddMassOutputDialog.Create(Application);
+//    FreeAddMassOutputDialog:=TFreeAddMassOutputDialog.Create(Application);
       FreeMirrorPlaneDialog:=TFreeMirrorPlaneDialog.Create(Application);
       FreeNewModelDialog:=TFreeNewModelDialog.Create(Application);
       FreePreferencesDialog:=TFreePreferencesDialog.Create(Application);

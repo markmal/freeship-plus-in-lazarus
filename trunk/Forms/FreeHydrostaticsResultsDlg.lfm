@@ -119,15 +119,15 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
       Left = 9
       Height = 3
       Top = 181
-      Width = 830
+      Width = 826
       Align = alTop
       ResizeAnchor = akTop
     end
     object Grid: TStringGrid
       Left = 9
-      Height = 434
+      Height = 430
       Top = 184
-      Width = 830
+      Width = 826
       Align = alClient
       ColCount = 17
       DefaultColWidth = 49
@@ -150,7 +150,7 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
       Left = 9
       Height = 172
       Top = 9
-      Width = 830
+      Width = 826
       Align = alTop
       Font.Color = clBlack
       Font.Height = -12

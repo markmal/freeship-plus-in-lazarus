@@ -1,71 +1,77 @@
 object FreeSelectLayersDialog: TFreeSelectLayersDialog
-  Left = 240
-  Top = 116
+  Left = 615
+  Height = 272
+  Top = 145
+  Width = 387
   BorderStyle = bsDialog
   Caption = 'Select layers.'
   ClientHeight = 272
-  ClientWidth = 297
+  ClientWidth = 387
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
-  OldCreateOrder = True
   Position = poMainFormCenter
-  PixelsPerInch = 96
-  TextHeight = 13
+  LCLVersion = '1.4.0.1'
   object Panel2: TPanel
     Left = 0
-    Top = 22
-    Width = 297
     Height = 237
+    Top = 22
+    Width = 387
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 10
+    ClientHeight = 237
+    ClientWidth = 387
     TabOrder = 0
     object LayerBox: TCheckListBox
       Left = 11
-      Top = 11
-      Width = 275
       Height = 189
-      OnClickCheck = LayerBoxClickCheck
+      Top = 11
+      Width = 365
       Align = alClient
-      ItemHeight = 13
+      ItemHeight = 0
+      OnClickCheck = LayerBoxClickCheck
       TabOrder = 0
+      TopIndex = -1
     end
     object Panel4: TPanel
       Left = 11
-      Top = 200
-      Width = 275
       Height = 26
+      Top = 200
+      Width = 365
       Align = alBottom
       BevelOuter = bvNone
+      ClientHeight = 26
+      ClientWidth = 365
       TabOrder = 1
       object CheckBox: TCheckBox
         Left = 0
+        Height = 21
         Top = 7
-        Width = 277
-        Height = 17
+        Width = 368
         Caption = 'Include points that are shared with unselected layers'
-        TabOrder = 0
         OnClick = CheckBoxClick
+        TabOrder = 0
       end
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 0
-    Width = 297
     Height = 22
+    Top = 0
+    Width = 387
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 387
     TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 156
-      Top = 1
-      Width = 65
-      Height = 19
+      Left = 317
+      Height = 22
+      Top = 0
+      Width = 70
+      Align = alRight
       Caption = 'OK'
       Flat = True
       Glyph.Data = {
@@ -84,15 +90,17 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
         33333333A222433333333333338F338F00003333333333333A22433333333333
         3338F38F000033333333333333A223333333333333338F830000333333333333
         333A333333333333333338330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 221
-      Top = 1
-      Width = 65
-      Height = 19
+      Left = 247
+      Height = 22
+      Top = 0
+      Width = 70
+      Align = alRight
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -111,16 +119,17 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
         9118333911183333338F33838F338F33000033333913333391113333338FF833
         38F338F300003333333333333919333333388333338FFF830000333333333333
         3333333333333333333888330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = BitBtn2Click
     end
   end
   object Panel3: TPanel
     Left = 0
-    Top = 259
-    Width = 297
     Height = 13
+    Top = 259
+    Width = 387
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2

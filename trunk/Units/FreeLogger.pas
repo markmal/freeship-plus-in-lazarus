@@ -10,8 +10,9 @@ uses
 const
   LOG_NONE = 0;
   LOG_ERROR = 1;
-  LOG_INFO = 2;
-  LOG_DEBUG = 3;
+  LOG_WARNING = 2;
+  LOG_INFO = 3;
+  LOG_DEBUG = 4;
 Type
   TLogger = class
     private
@@ -19,6 +20,7 @@ Type
     public
       constructor Create();
       procedure Info(S:String);
+      procedure Warning(S:String);
       procedure Error(S:String);
       procedure Debug(S:String);
       procedure SetLogLevel(L:integer);
@@ -37,6 +39,12 @@ end;
 procedure TLogger.Info(S:String);
 begin
   if FLogLevel >= LOG_INFO then
+    writeln(S);
+end;
+
+procedure TLogger.Warning(S:String);
+begin
+  if FLogLevel >= LOG_WARNING then
     writeln(S);
 end;
 

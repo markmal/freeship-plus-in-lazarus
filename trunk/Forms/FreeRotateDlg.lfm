@@ -1,110 +1,121 @@
 object FreeRotateDialog: TFreeRotateDialog
   Left = 387
+  Height = 138
   Top = 141
+  Width = 245
   BorderStyle = bsDialog
   Caption = 'Rotation'
   ClientHeight = 138
   ClientWidth = 245
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
   Position = poMainFormCenter
-  PixelsPerInch = 96
+  LCLVersion = '1.4.0.1'
   object Panel2: TPanel
     Left = 0
+    Height = 103
     Top = 22
     Width = 245
-    Height = 103
     Align = alClient
     BevelOuter = bvLowered
+    ClientHeight = 103
+    ClientWidth = 245
     TabOrder = 0
     object Label3: TLabel
       Left = 196
+      Height = 14
       Top = 16
-      Width = 30
-      Height = 13
+      Width = 37
       Caption = '[degr.]'
+      ParentColor = False
     end
     object Label6: TLabel
       Left = 196
+      Height = 14
       Top = 46
-      Width = 30
-      Height = 13
+      Width = 37
       Caption = '[degr.]'
+      ParentColor = False
     end
     object Label9: TLabel
       Left = 196
+      Height = 14
       Top = 76
-      Width = 30
-      Height = 13
+      Width = 37
       Caption = '[degr.]'
+      ParentColor = False
     end
     object Label1: TLabel
       Left = 3
+      Height = 14
       Top = 16
-      Width = 78
-      Height = 13
+      Width = 95
       Caption = 'Longitudinal axis'
+      ParentColor = False
     end
     object Label2: TLabel
       Left = 3
+      Height = 14
       Top = 46
-      Width = 74
-      Height = 13
+      Width = 89
       Caption = 'Transverse axis'
+      ParentColor = False
     end
     object Label4: TLabel
       Left = 3
+      Height = 14
       Top = 76
-      Width = 56
-      Height = 13
+      Width = 69
       Caption = 'Vertical axis'
+      ParentColor = False
     end
     object Edit1: TEdit
       Left = 115
+      Height = 24
       Top = 8
       Width = 75
-      Height = 21
-      TabOrder = 0
       OnExit = Edit1Exit
       OnKeyPress = Edit1KeyPress
+      TabOrder = 0
     end
     object Edit2: TEdit
       Left = 115
+      Height = 24
       Top = 38
       Width = 75
-      Height = 21
-      TabOrder = 1
       OnExit = Edit2Exit
       OnKeyPress = Edit1KeyPress
+      TabOrder = 1
     end
     object Edit3: TEdit
       Left = 115
+      Height = 24
       Top = 68
       Width = 75
-      Height = 21
-      TabOrder = 2
       OnExit = Edit3Exit
       OnKeyPress = Edit1KeyPress
+      TabOrder = 2
     end
   end
   object Panel1: TPanel
     Left = 0
+    Height = 22
     Top = 0
     Width = 245
-    Height = 22
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 245
     TabOrder = 1
     object OKButton: TSpeedButton
-      Left = 121
-      Top = 0
-      Width = 57
-      Height = 18
+      Left = 175
+      Height = 22
       Hint = 'Close dialog.'
+      Top = 0
+      Width = 70
+      Align = alRight
       Caption = '&Ok'
       Flat = True
       Glyph.Data = {
@@ -117,16 +128,17 @@ object FreeRotateDialog: TFreeRotateDialog
         4444444444442111044444444444421110444444444444211104444444444442
         1110444444444444211044444444444442114444444444444424
       }
-      ParentShowHint = False
-      ShowHint = True
       OnClick = OKButtonClick
+      ShowHint = True
+      ParentShowHint = False
     end
     object CancelButton: TSpeedButton
-      Left = 178
-      Top = 0
-      Width = 57
-      Height = 18
+      Left = 105
+      Height = 22
       Hint = 'Cancel operation.'
+      Top = 0
+      Width = 70
+      Align = alRight
       Caption = '&Cancel'
       Flat = True
       Glyph.Data = {
@@ -139,16 +151,16 @@ object FreeRotateDialog: TFreeRotateDialog
         4444444444433334444444444443333444444444443344334444444443334433
         3344444333444444433443333444444444334333444444444444
       }
-      ParentShowHint = False
-      ShowHint = True
       OnClick = CancelButtonClick
+      ShowHint = True
+      ParentShowHint = False
     end
   end
   object Panel3: TPanel
     Left = 0
+    Height = 13
     Top = 125
     Width = 245
-    Height = 13
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2

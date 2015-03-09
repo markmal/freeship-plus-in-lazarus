@@ -1,36 +1,37 @@
 object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
   Left = 250
+  Height = 434
   Top = 89
   Width = 684
-  Height = 434
   Caption = 'Undo history.'
+  ClientHeight = 434
+  ClientWidth = 684
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
-  OldCreateOrder = False
-  Position = poMainFormCenter
   OnResize = FormResize
-  PixelsPerInch = 96
-  TextHeight = 13
+  Position = poMainFormCenter
+  LCLVersion = '1.4.0.1'
   object Panel: TPanel
     Left = 0
+    Height = 22
     Top = 0
-    Width = 676
-    Height = 19
+    Width = 684
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 684
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
     object SpeedButton1: TSpeedButton
-      Left = 540
+      Left = 70
+      Height = 22
       Top = 0
-      Width = 65
-      Height = 19
+      Width = 70
+      Align = alLeft
       Caption = 'Select'
       Flat = True
       Glyph.Data = {
@@ -49,15 +50,17 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
         33333333A222433333333333338F338F00003333333333333A22433333333333
         3338F38F000033333333333333A223333333333333338F830000333333333333
         333A333333333333333338330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = SpeedButton1Click
     end
     object SpeedButton2: TSpeedButton
-      Left = 605
+      Left = 0
+      Height = 22
       Top = 0
-      Width = 65
-      Height = 19
+      Width = 70
+      Align = alLeft
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -76,51 +79,61 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
         9118333911183333338F33838F338F33000033333913333391113333338FF833
         38F338F300003333333333333919333333388333338FFF830000333333333333
         3333333333333333333888330000333333333333333333333333333333333333
-        0000}
+        0000
+      }
       NumGlyphs = 2
       OnClick = SpeedButton2Click
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 19
-    Width = 676
-    Height = 390
+    Height = 412
+    Top = 22
+    Width = 684
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 8
+    ClientHeight = 412
+    ClientWidth = 684
     TabOrder = 1
     object Splitter1: TSplitter
       Left = 259
+      Height = 394
       Top = 9
-      Height = 372
+      Width = 5
       Color = clBtnFace
       ParentColor = False
     end
     object UndoBox: TListBox
       Left = 9
+      Height = 394
       Top = 9
       Width = 250
-      Height = 372
       Align = alLeft
-      Font.Charset = ANSI_CHARSET
+      Font.CharSet = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Courier New'
-      Font.Style = []
-      ItemHeight = 14
-      ParentFont = False
-      TabOrder = 0
+      ItemHeight = 0
       OnClick = UndoBoxClick
+      ParentFont = False
+      ScrollWidth = 248
+      TabOrder = 0
+      TopIndex = -1
     end
     object Viewport: TFreeViewport
-      Left = 262
+      Left = 264
+      Height = 394
       Top = 9
-      Width = 405
-      Height = 372
-      Angle = 20.000000000000000000
+      Width = 411
+      Angle = 20
       Align = alClient
       BackgroundImage.Alpha = 255
+      BackgroundImage.Owner = Viewport
+      BackgroundImage.Quality = 100
+      BackgroundImage.Scale = 1
+      BackgroundImage.ShowInView = fvBodyplan
+      BackgroundImage.Tolerance = 5
       BackgroundImage.Transparent = False
       BackgroundImage.TransparentColor = clBlack
       BackgroundImage.Visible = True
@@ -128,7 +141,8 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
       BorderStyle = bsSingle
       CameraType = ftStandard
       DoubleBuffer = True
-      Elevation = 20.000000000000000000
+      Elevation = 20
+      Margin = 0
       ViewType = fvPerspective
       ViewportMode = vmWireFrame
       OnRedraw = ViewportRedraw
@@ -140,7 +154,7 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
     Filename = 'New model.fbm'
     FileVersion = fv230
     Precision = fpLow
-    Left = 116
-    Top = 4
+    left = 116
+    top = 4
   end
 end

@@ -1022,7 +1022,7 @@ exit2: iii:=i;
     Teta:=int(Teta1r+0.5)-Teta0r;
 ///            MessageDlg('Teta='+FloatToStrF(Teta,ffFixed,6,3),mtInformation,[mbOk],0);
     If Teta<=2 then begin
-            MessageDlg('Amplitude of heel angle <2.0 degrees !!!',mtInformation,[mbOk],0);
+            MessageDlg(tl8('Amplitude of heel angle <2.0 degrees !!!'),mtInformation,[mbOk],0);
             exit;  
     end;
 

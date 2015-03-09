@@ -32,6 +32,7 @@ type
 TBitMapDataFormat = (
  //bmdf_BPP1, // Black and White
  bmdf_BPP16_R5G6B5, // 16-bit
+ bmdf_BPP16_B5G6R5, // 16-bit
  // Formats in RGB order
  bmdf_BPP24_R8G8B8,
  bmdf_BPP32_R8G8B8,
@@ -85,6 +86,7 @@ TFreeBitmapFormatHelper = class
   private
     FBytesPerPixel : integer;
     procedure TRGBTriple_to_BPP16_R5G6B5(C:TRGBTriple; var p:TColor);
+    procedure TRGBTriple_to_BPP16_B5G6R5(C:TRGBTriple; var p:TColor);
     // Formats in RGB order
     procedure TRGBTriple_to_BPP24_R8G8B8(C:TRGBTriple; var p:TRGB);
     procedure TRGBTriple_to_BPP32_R8G8B8(C:TRGBTriple; var p:TRGBA);
@@ -108,6 +110,7 @@ TFreeBitmapFormatHelper = class
 }
     // 16-bits formats
     function BPP16_R5G6B5_to_TRGBTriple(C:TColor):TRGBTriple;
+    function BPP16_B5G6R5_to_TRGBTriple(C:TColor):TRGBTriple;
     // Formats in RGB order
     function BPP24_R8G8B8_to_TRGBTriple(C:TRGB):TRGBTriple;
     function BPP32_R8G8B8_to_TRGBTriple(C:TRGBA):TRGBTriple;
@@ -149,7 +152,7 @@ begin
       and (Depth = 16) // used bits per pixel
       and (BitOrder = riboBitsInOrder)
       and (ByteOrder = riboLSBFirst)
-      and (BitsPerPixel = 24) // bits per pixel. can be greater than Depth.
+      and (BitsPerPixel = 16) // bits per pixel. can be greater than Depth.
       and (RedPrec = 5) // red precision. bits for red
       and (RedShift = 0)
       and (GreenPrec = 6)
@@ -159,6 +162,21 @@ begin
       and (AlphaPrec=0)
       and (MaskBitsPerPixel=0)
     then FBitMapDataFormat := bmdf_BPP16_R5G6B5
+    else if
+      (Format = ricfRGBA) and (PaletteColorCount = 0)
+      and (Depth = 16) // used bits per pixel
+      and (BitOrder = riboBitsInOrder)
+      and (ByteOrder = riboLSBFirst)
+      and (BitsPerPixel = 16) // bits per pixel. can be greater than Depth.
+      and (RedPrec = 5) // red precision. bits for red
+      and (RedShift = 11)
+      and (GreenPrec = 6)
+      and (GreenShift = 5) // bitshift. Direction from least to most significant
+      and (BluePrec = 5)
+      and (BlueShift=0)
+      and (AlphaPrec=0)
+      and (MaskBitsPerPixel=0)
+    then FBitMapDataFormat := bmdf_BPP16_B5G6R5
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 24) // used bits per pixel
@@ -279,6 +297,7 @@ function TFreeBitmapFormatHelper.ToTRGBTriple(p:pointer):TRGBTriple;
 begin
   case FBitMapDataFormat of
     bmdf_BPP16_R5G6B5:   result := BPP16_R5G6B5_to_TRGBTriple(TColor(p^));
+    bmdf_BPP16_B5G6R5:   result := BPP16_B5G6R5_to_TRGBTriple(TColor(p^));
     bmdf_BPP24_R8G8B8:   result := BPP24_R8G8B8_to_TRGBTriple(TRGB(p^));
     bmdf_BPP32_A8R8G8B8: result := BPP32_A8R8G8B8_to_TRGBTriple(TARGB(p^));
     bmdf_BPP32_R8G8B8A8: result := BPP32_R8G8B8A8_to_TRGBTriple(TRGBA(p^));
@@ -306,6 +325,12 @@ procedure TFreeBitmapFormatHelper.TRGBTriple_to_BPP16_R5G6B5(C:TRGBTriple; var p
 begin
   p := RGBToColor(C.rgbtRed, C.rgbtGreen, C.rgbtBlue);
 end;
+
+procedure TFreeBitmapFormatHelper.TRGBTriple_to_BPP16_B5G6R5(C:TRGBTriple; var p:TColor);
+begin
+  p := RGBToColor(C.rgbtBlue, C.rgbtGreen, C.rgbtRed);
+end;
+
 // Formats in RGB order
 procedure TFreeBitmapFormatHelper.TRGBTriple_to_BPP24_R8G8B8(C:TRGBTriple; var p:TRGB);
 begin
@@ -417,10 +442,17 @@ end;
 // 16-bits formats
 function TFreeBitmapFormatHelper.BPP16_R5G6B5_to_TRGBTriple(C:TColor):TRGBTriple;
 begin
-  result.rgbtBlue:=Blue(C);
-  result.rgbtGreen:=Green(C);
-  result.rgbtRed:=Red(C);
+  result.rgbtRed:=C and $00001F;
+  result.rgbtGreen:=(C shr 5) and $00003F;
+  result.rgbtBlue:=(C shr 11) and $00001F;
 end;
+function TFreeBitmapFormatHelper.BPP16_B5G6R5_to_TRGBTriple(C:TColor):TRGBTriple;
+begin
+  result.rgbtBlue:=C and $00001F;
+  result.rgbtGreen:=(C shr 5) and $00003F;
+  result.rgbtRed:=(C shr 11) and $00001F;
+end;
+
 // Formats in RGB order
 function TFreeBitmapFormatHelper.BPP24_R8G8B8_to_TRGBTriple(C:TRGB):TRGBTriple;
 begin

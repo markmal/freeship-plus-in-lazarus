@@ -12,7 +12,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.1'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -30,6 +30,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -46,6 +47,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
     end
     object _ToolButton14: TToolButton
       Left = 65
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'
@@ -79,9 +81,9 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
     Height = 558
     Top = 24
     Width = 799
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
@@ -209,6 +211,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object Edit3: TFreeNumInput
@@ -226,6 +229,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object Edit4: TFreeNumInput
@@ -243,6 +247,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object Edit5: TFreeNumInput
@@ -260,6 +265,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object Edit6: TFreeNumInput
@@ -277,6 +283,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object Edit7: TFreeNumInput
@@ -294,6 +301,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object Edit8: TFreeNumInput
@@ -311,6 +319,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object Edit9: TFreeNumInput
@@ -328,6 +337,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object Edit10: TFreeNumInput
@@ -345,6 +355,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object Edit11: TFreeNumInput
@@ -362,6 +373,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 9
           end
           object Edit12: TFreeNumInput
@@ -379,6 +391,7 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
           object Chart: TChart
@@ -447,9 +460,9 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Left = 9
             Height = 21
             Top = 8
-            Width = 215
+            Width = 192
             Caption = 'Extract data from current hull'
-            OnClick = CheckBox2Click
+            OnChange = CheckBox2Click
             TabOrder = 12
           end
         end

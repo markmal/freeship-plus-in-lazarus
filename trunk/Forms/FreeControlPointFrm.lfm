@@ -1,46 +1,49 @@
 object FreeControlPointForm: TFreeControlPointForm
   Left = 235
+  Height = 104
   Top = 112
+  Width = 145
   AlphaBlend = True
   AlphaBlendValue = 210
   AutoSize = True
   BorderStyle = bsToolWindow
-  ClientHeight = 95
-  ClientWidth = 143
+  ClientHeight = 104
+  ClientWidth = 145
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
   FormStyle = fsStayOnTop
-  PixelsPerInch = 96
+  LCLVersion = '1.4.0.1'
   object Label1: TLabel
     Left = 3
+    Height = 14
     Top = 2
-    Width = 40
-    Height = 13
+    Width = 47
     Caption = 'X-coord.'
+    ParentColor = False
   end
   object Label2: TLabel
     Left = 3
+    Height = 14
     Top = 18
-    Width = 40
-    Height = 13
+    Width = 46
     Caption = 'Y-coord.'
+    ParentColor = False
   end
   object Label3: TLabel
     Left = 3
+    Height = 14
     Top = 34
-    Width = 40
-    Height = 13
+    Width = 48
     Caption = 'Z-coord.'
+    ParentColor = False
   end
   object SpeedButton1: TSpeedButton
     Left = 129
+    Height = 15
     Top = 0
     Width = 14
-    Height = 15
     Flat = True
     Glyph.Data = {
       76010000424D760100000000000036000000280000000A0000000A0000000100
@@ -54,14 +57,15 @@ object FreeControlPointForm: TFreeControlPointForm
       8080800000000000000000000000008080808080808080800000808080808080
       8080800000000000000000008080808080808080808080800000808080808080
       8080800000000000008080808080808080808080808080800000808080808080
-      8080800000008080808080808080808080808080808080800000}
+      8080800000008080808080808080808080808080808080800000
+    }
     OnClick = SpeedButton1Click
   end
   object SpeedButton2: TSpeedButton
     Left = 129
+    Height = 15
     Top = 16
     Width = 14
-    Height = 15
     Flat = True
     Glyph.Data = {
       76010000424D760100000000000036000000280000000A0000000A0000000100
@@ -75,14 +79,15 @@ object FreeControlPointForm: TFreeControlPointForm
       8080800000000000000000000000008080808080808080800000808080808080
       8080800000000000000000008080808080808080808080800000808080808080
       8080800000000000008080808080808080808080808080800000808080808080
-      8080800000008080808080808080808080808080808080800000}
+      8080800000008080808080808080808080808080808080800000
+    }
     OnClick = SpeedButton2Click
   end
   object SpeedButton3: TSpeedButton
     Left = 129
+    Height = 15
     Top = 32
     Width = 14
-    Height = 15
     Flat = True
     Glyph.Data = {
       76010000424D760100000000000036000000280000000A0000000A0000000100
@@ -96,14 +101,15 @@ object FreeControlPointForm: TFreeControlPointForm
       8080800000000000000000000000008080808080808080800000808080808080
       8080800000000000000000008080808080808080808080800000808080808080
       8080800000000000008080808080808080808080808080800000808080808080
-      8080800000008080808080808080808080808080808080800000}
+      8080800000008080808080808080808080808080808080800000
+    }
     OnClick = SpeedButton3Click
   end
   object SpeedButton4: TSpeedButton
     Left = 56
+    Height = 15
     Top = 0
     Width = 14
-    Height = 15
     Flat = True
     Glyph.Data = {
       76010000424D760100000000000036000000280000000A0000000A0000000100
@@ -117,14 +123,15 @@ object FreeControlPointForm: TFreeControlPointForm
       8080800000000000000000000000008080808080808080800000808080808080
       8080808080800000000000000000008080808080808080800000808080808080
       8080808080808080800000000000008080808080808080800000808080808080
-      8080808080808080808080800000008080808080808080800000}
+      8080808080808080808080800000008080808080808080800000
+    }
     OnClick = SpeedButton4Click
   end
   object SpeedButton5: TSpeedButton
     Left = 56
+    Height = 15
     Top = 16
     Width = 14
-    Height = 15
     Flat = True
     Glyph.Data = {
       76010000424D760100000000000036000000280000000A0000000A0000000100
@@ -138,14 +145,15 @@ object FreeControlPointForm: TFreeControlPointForm
       8080800000000000000000000000008080808080808080800000808080808080
       8080808080800000000000000000008080808080808080800000808080808080
       8080808080808080800000000000008080808080808080800000808080808080
-      8080808080808080808080800000008080808080808080800000}
+      8080808080808080808080800000008080808080808080800000
+    }
     OnClick = SpeedButton5Click
   end
   object SpeedButton6: TSpeedButton
     Left = 56
+    Height = 15
     Top = 32
     Width = 14
-    Height = 15
     Flat = True
     Glyph.Data = {
       76010000424D760100000000000036000000280000000A0000000A0000000100
@@ -159,80 +167,83 @@ object FreeControlPointForm: TFreeControlPointForm
       8080800000000000000000000000008080808080808080800000808080808080
       8080808080800000000000000000008080808080808080800000808080808080
       8080808080808080800000000000008080808080808080800000808080808080
-      8080808080808080808080800000008080808080808080800000}
+      8080808080808080808080800000008080808080808080800000
+    }
     OnClick = SpeedButton6Click
   end
   object Edit1: TEdit
     Left = 70
+    Height = 15
     Top = 0
     Width = 60
-    Height = 15
     AutoSize = False
     BorderStyle = bsNone
-    TabOrder = 0
     OnExit = Edit1Exit
     OnKeyPress = Edit1KeyPress
+    TabOrder = 0
   end
   object Edit2: TEdit
     Left = 70
+    Height = 15
     Top = 16
     Width = 60
-    Height = 15
     AutoSize = False
     BorderStyle = bsNone
-    TabOrder = 1
     OnExit = Edit2Exit
     OnKeyPress = Edit2KeyPress
+    TabOrder = 1
   end
   object Edit3: TEdit
     Left = 70
+    Height = 15
     Top = 32
     Width = 60
-    Height = 15
     AutoSize = False
     BorderStyle = bsNone
-    TabOrder = 2
     OnExit = Edit3Exit
     OnKeyPress = Edit3KeyPress
+    TabOrder = 2
   end
   object CheckBox1: TCheckBox
     Left = 0
+    Height = 21
     Top = 49
-    Width = 131
-    Height = 14
+    Width = 66
     Caption = 'Corner'
-    TabOrder = 3
     OnMouseUp = CheckBox1MouseUp
+    TabOrder = 3
   end
   object Label4: TLabel
     Left = 3
+    Height = 14
     Top = 65
-    Width = 33
-    Height = 13
+    Width = 48
     Caption = 'Distance'
+    ParentColor = False
   end
   object Label5: TLabel
     Left = 3
+    Height = 14
     Top = 81
-    Width = 33
-    Height = 13
+    Width = 38
     Caption = 'Angles'
-  end  
+    ParentColor = False
+  end
   object Edit4: TEdit
     Left = 70
+    Height = 15
     Top = 65
     Width = 60
-    Height = 15
     AutoSize = False
     BorderStyle = bsNone
     ReadOnly = True
-    TabOrder = 4
+    TabOrder = 5
   end
   object Edit5: TEdit
     Left = 40
+    Height = 15
     Top = 81
     Width = 90
-    Height = 15
     AutoSize = False
     BorderStyle = bsNone
     ReadOnly = True

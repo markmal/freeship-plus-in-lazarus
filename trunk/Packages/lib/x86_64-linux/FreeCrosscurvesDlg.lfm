@@ -180,6 +180,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 1
         end
         object Button1: TButton
@@ -223,6 +224,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 5
         end
         object FreeNumInput3: TFreeNumInput
@@ -239,6 +241,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 6
         end
         object FreeNumInput4: TFreeNumInput
@@ -255,6 +258,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 7
         end
       end
@@ -292,6 +296,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 1
         end
         object Button3: TButton
@@ -463,6 +468,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Value = 0
           Validate = False
           OnAfterSetValue = FreeNumInput5_AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 3
         end
         object FreeNumInput6_: TFreeNumInput
@@ -480,6 +486,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Value = 0
           Validate = False
           OnAfterSetValue = FreeNumInput6_AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 4
         end
         object FreeNumInput7_: TFreeNumInput
@@ -496,6 +503,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 5
         end
         object FreeNumInput8_: TFreeNumInput
@@ -512,6 +520,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 6
         end
         object FreeNumInput9_: TFreeNumInput
@@ -528,6 +537,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 7
         end
         object FreeNumInput10_: TFreeNumInput
@@ -544,6 +554,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 8
         end
         object FreeNumInput12_: TFreeNumInput
@@ -560,6 +571,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 9
         end
         object FreeNumInput13_: TFreeNumInput
@@ -576,6 +588,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOnEnterKey = False
           Value = 0
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 1
         end
       end

@@ -1,3 +1,12 @@
+Test only Version 3.5.1.77 in Lazarus
+Released: Build date	2015/03/09 17:20:00
+New features and fixes:
+- Bug fix: Parsing 16-bit bitmaps
+- New: Config file is .ini with text .INI format: [Section], Name=Value
+- New: Two level of config files: global config for all users, and user's config.
+- New: executable, common application data, and user's data are separated according to OS standards.
+- Bug fix: components are arranged in forms to be completely visible. some forms resized.
+
 Test only Version 3.5.1.65 in Lazarus
 Released: Build date	2015/03/03 00:26:52
 New features and fixes:

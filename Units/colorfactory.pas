@@ -14,7 +14,7 @@ unit ColorFactory;
 interface
 
 uses
-  Classes, SysUtils, Graphics, Math;
+  Classes, SysUtils, Graphics, Math, GraphUtil, LCLType;
 
 const
   StdColors : array[0..15] of TColor = (
@@ -66,6 +66,9 @@ type
     function getNextStandardColor:TColor; // get next standard color
     function getColor( I : integer):TColor;
     function getNextColor:TColor;
+
+    function getColorDistance(A,B:TColor):integer;
+    function getNextColorFarFrom(F:TColor; minDistance:integer):TColor;
 
     property Value:Double read FValue write FValue;
     property Saturation:Double read FSaturation write FSaturation;
@@ -138,6 +141,7 @@ begin
     Result := RGBFP(V, p, q);
   end;
 end;
+
 
 // Phi-based pseudo random Color in Hue space
 function TColorFactory.getRandomColor( I : integer):TColor;
@@ -231,6 +235,29 @@ begin
   end;
 end;
 
+function TColorFactory.getColorDistance(A,B:TColor):integer;
+var Ha,La,Sa, Hb,Lb,Sb:byte; Ar,Br:TColorRef; rgb:longint;
+begin
+  rgb:=ColorToRGB(A);
+  Ar := TColorRef(rgb);
+  rgb:=ColorToRGB(B);
+  Br := TColorRef(rgb);
+  ColorToHLS(Ar,Ha,La,Sa);
+  ColorToHLS(Br,Hb,Lb,Sb);
+  result:=round(sqrt( (Ha-Hb)**2 + (La-Lb)**2 + (Sa-Sb)**2 ));
+end;
+
+function TColorFactory.getNextColorFarFrom(F:TColor; minDistance:integer):TColor;
+var C:TColor; I:integer = 0;
+begin
+  C:=getNextColor;
+  while (getColorDistance(C,F) > minDistance) and (I<255) do
+   begin
+   C:=getNextColor;
+   inc(I);
+   end;
+  result:=C;
+end;
 
 end.
 

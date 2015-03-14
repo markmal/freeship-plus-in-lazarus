@@ -616,16 +616,18 @@ begin
 	    Chart0.AddSeries(Series1);
             if Zgr=0 then Series.Title:='KN sin(Psi)'
                      else Series.Title:='GZ,m';
-            Series.LinePen.Color:=ColorFactory.getNextColor;
+            Series.LinePen.Color:=ColorFactory.getNextColorFarFrom(Chart.Color,199);
+            Series.LinePen.Width:=2;
             //Series.LinePen.Visible:=True;
             Series.LinePen.Style:=psSolid;
             Series.ShowInLegend:=false;
             Series1.Title:='GZ(Psi), m';
-            Series1.LinePen.Color:=ColorFactory1.getNextColor;
+            Series1.LinePen.Color:=ColorFactory1.getNextColorFarFrom(Chart.Color,199);
             //Series1.LinePen.Visible:=True;
             Series1.LinePen.Style:=psSolid;
-            Series1.ShowInLegend:=false;	
-            Pagecontrol1.ActivePage:=Tabsheet1;				
+            Series1.LinePen.Width:=2;
+            Series1.ShowInLegend:=false;
+            Pagecontrol1.ActivePage:=Tabsheet1;
             Grid.Cells[I,0]:=FloatToStrF(Angles[I-1],ffFixed,7,1)+'°';
 //            MessageDlg(Userstring(1124),mtInformation,[mbOk],0);
 //            MessageDlg(Userstring(1125),mtInformation,[mbOk],0);
@@ -633,12 +635,14 @@ begin
          begin
             Series:=TLineSeries.Create(Chart);
             //Series.AllowSinglePoint:=True;
-            Series.LinePen.Color := ColorFactory.getNextColor;
+            Series.LinePen.Color := ColorFactory.getNextColorFarFrom(Chart.Color,199);
+            Series.LinePen.Width:=2;
             Chart.AddSeries(Series);
             Series.Title:=FloatToStrF(Angles[I-1],ffFixed,7,1)+'°';
             Grid.Cells[I,0]:=FloatToStrF(Angles[I-1],ffFixed,7,1)+'°';
             Series1:=TLineSeries.Create(Chart0);
-            Series1.LinePen.Color:=ColorFactory1.getNextColor;
+            Series1.LinePen.Color:=ColorFactory1.getNextColorFarFrom(Chart.Color,199);
+            Series1.LinePen.Width:=2;
             //Series1.AllowSinglePoint:=True;
             Series1.Title:=Userstring(1048)+FloatToStrF(Zgr+Zmin,ffFixed,7,3)+'m';
          end;
@@ -1358,4 +1362,4 @@ begin
    end;
 end;{TFreeCrosscurvesDialog.SaveButtonClick}
 
-end.
+end.

@@ -23,8 +23,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="78"/>
+      <RevisionNr Value="2"/>
+      <BuildNr Value="19"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -60,7 +60,6 @@
       <Unit1>
         <Filename Value="Units/FreeLanguageSupport.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeLanguageSupport"/>
       </Unit1>
       <Unit2>
         <Filename Value="Forms/Main.pas"/>
@@ -76,6 +75,7 @@
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeHullformWindow"/>
       </Unit3>
       <Unit4>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
@@ -164,6 +164,7 @@
         <ComponentName Value="FreeLinesplanForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeLinesplanFrm"/>
       </Unit16>
       <Unit17>
         <Filename Value="Forms/FreeSaveImageDlg.pas"/>
@@ -220,6 +221,7 @@
         <ComponentName Value="FreeResistance_Hollen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_HollenDlg"/>
       </Unit24>
       <Unit25>
         <Filename Value="Forms/FreeResistance_OortmerDlg.pas"/>
@@ -234,6 +236,7 @@
         <ComponentName Value="FreeResistance_FungLeib"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_FungLeibDlg"/>
       </Unit26>
       <Unit27>
         <Filename Value="Forms/FreeResistance_OSTDlg.pas"/>
@@ -269,6 +272,7 @@
         <ComponentName Value="FreeHydrodyn_Task1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeHydrodyn_Task1Dlg"/>
       </Unit31>
       <Unit32>
         <Filename Value="Forms/FreeMirrorPlaneDlg.pas"/>
@@ -294,6 +298,7 @@
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeNumInput"/>
       </Unit35>
       <Unit36>
         <Filename Value="Units/VRMLUnit.pas"/>
@@ -360,6 +365,7 @@
         <ComponentName Value="FreeCrosscurvesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeCrosscurvesDlg"/>
       </Unit46>
       <Unit47>
         <Filename Value="Forms/FreeRotateDlgM.pas"/>
@@ -367,7 +373,6 @@
         <ComponentName Value="FreeRotateMDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeRotateDlgM"/>
       </Unit47>
       <Unit48>
         <Filename Value="Units/FasterList.pas"/>
@@ -412,6 +417,7 @@
         <ComponentName Value="FreeResistance_RBHS"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_RBHSDlg"/>
       </Unit54>
       <Unit55>
         <Filename Value="Forms/FreePropeller_Task4Dlg.pas"/>
@@ -457,6 +463,7 @@
       <Unit63>
         <Filename Value="Units/colorfactory.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ColorFactory"/>
       </Unit63>
       <Unit64>
         <Filename Value="Units/FreeBitmap.pas"/>
@@ -473,12 +480,10 @@
       <Unit67>
         <Filename Value="Units/FreeBitmapFormatHelper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeBitmapFormatHelper"/>
       </Unit67>
       <Unit68>
         <Filename Value="Units/ColorIniFile.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ColorIniFile"/>
       </Unit68>
     </Units>
   </ProjectOptions>
@@ -501,6 +506,7 @@
         <OverflowChecks Value="True"/>
         <StackChecks Value="True"/>
       </Checks>
+      <VerifyObjMethodCallValidity Value="True"/>
       <Optimizations>
         <OptimizationLevel Value="0"/>
       </Optimizations>
@@ -530,7 +536,7 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="4">
+    <Exceptions Count="5">
       <Item1>
         <Name Value="EAbort"/>
       </Item1>
@@ -543,6 +549,9 @@
       <Item4>
         <Name Value="Exception"/>
       </Item4>
+      <Item5>
+        <Name Value="RunError(201)"/>
+      </Item5>
     </Exceptions>
   </Debugging>
 </CONFIG>

@@ -374,7 +374,7 @@ type
                                  procedure FSetDat18_5(val:single);
 
                                  public
-                                    PathFile,PathFileOld,FileToFind,FileName : string;
+                                    PathFile,PathFileOld,FileToFind,FileName,FExecDirectory : string;
 									L           : Boolean;
 									Capp_       : Single;
 									Nwa         : integer;
@@ -1745,17 +1745,17 @@ begin
     end;
 	
 //  Определение каталогов и запуск расчета
+  PathFile:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }   // текущий каталог проекта
+  ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+  SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
 
+  FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
-   PathFile:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }   // текущий каталог проекта
-   FileToFind:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-   PathFileOld:=FileToFind;   // задаем переменной каталог Freeshipa
-   L:=SetCurrentDirUTF8(FileToFind); { *Converted from SetCurrentDir* } // переходим в каталог Freeshipa
    File_ExportData(dat,dan);   	 // записываем файл данных в каталог Freeshipa
    {$ifdef Windows}
    WinExec(PChar(FileToFind+'Exec/hship.exe'),0); // запускаем расчет
    {$else}
-   SysUtils.ExecuteProcess(UTF8ToSys('Exec/hship.EXE'), '', []);
+   SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/hship.EXE'), '', []);
    {$endif}
    L:=SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }   // возвращаемся в каталог проекта
 
@@ -2340,4 +2340,4 @@ end;{TFreeResistance_MH.ComboBoxClick}
 
 
 end.
-
+

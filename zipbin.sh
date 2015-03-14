@@ -4,5 +4,5 @@ VERS=$(Utils/versinfo FreeShip|grep 'File Full Version:'|cut -f2)
 ARCH=$(file -b FreeShip|cut -f6 -d' '|sed 's/,//')
 NAME=FreeShip-${VERS}_${ARCH}_linux_gtk2
 md5sum FreeShip >FreeShip.md5
-zip -r ${NAME}.zip Languages FreeShip FreeShip.md5 Whatsnew.txt
+zip -r ${NAME}.zip Languages FreeShip FreeShip.md5 Whatsnew.txt install-user.sh install-share.sh
 md5sum ${NAME}.zip > ${NAME}.md5

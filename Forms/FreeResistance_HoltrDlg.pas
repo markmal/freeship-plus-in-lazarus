@@ -1759,7 +1759,9 @@ var
     STR                : string;	
     FileToFind         : string;
     FOpenDirectory     : string;
-    FInitDirectory     : string;
+    FTempDirectory     : string;
+    FExecDirectory     : string;
+    PathFileOld        : string;
     FileName           : string;
     ffile              : textfile;
     label NewSearch;	
@@ -1907,12 +1909,16 @@ begin
 //--------------------------------------------------------------------------------------   
    if Ke=0 then begin
 //  Определяем каталог с программой SeaMargn.EXE
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+      FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
+      PathFileOld:=GetCurrentDir;
+      ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+      SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
       FileToFind := FileSearchUTF8('TMPke.txt',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'TMPke.txt' then begin
-	    MessageDlg('Нет файла исходных данных для расчета!!!',mtError,[mbOk],0); 
+            SetCurrentDir(PathFileOld);
+	    MessageDlg('File with inpit data TMPke.txt is not found in '+GetCurrentDir,mtError,[mbOk],0);
 	    exit;
 	  end;		  
 
@@ -1920,7 +1926,7 @@ begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\SeaMargn.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/SeaMargn.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/SeaMargn.EXE'), '', []);
       {$endif}
       FileName:='OUT.TXT';
 //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
@@ -1932,6 +1938,7 @@ NewSearch1:    FileToFind := FileSearchUTF8('TMPke.txt',GetCurrentDir); { *Conve
 	         if i<5 then goto NewSearch1
 		        else begin
 				 if FileExistsUTF8('TMPke.txt') { *Converted from FileExists* } then  DeleteFileUTF8('TMPke.txt'); { *Converted from DeleteFile* }
+                                 SetCurrentDir(PathFileOld);
                                  MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' SeaMargn.EXE '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0); 
                                  Ke:=1;
 				 exit;
@@ -2000,13 +2007,14 @@ NewSearch1:    FileToFind := FileSearchUTF8('TMPke.txt',GetCurrentDir); { *Conve
         File_ExportData84(dat,dan); 
 
 //  Определяем каталог с программой PPP.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+      FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
       FileToFind := FileSearchUTF8('IN.',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'IN.' then begin
-	    MessageDlg('Нет файла исходных данных для расчета!!!',mtError,[mbOk],0); 
-		exit;
+           SetCurrentDir(PathFileOld);
+           MessageDlg('Нет файла исходных данных для расчета!!!',mtError,[mbOk],0);
+	   exit;
 	  end;		  
 
 // Запускаем программу расчета
@@ -2014,31 +2022,33 @@ NewSearch1:    FileToFind := FileSearchUTF8('TMPke.txt',GetCurrentDir); { *Conve
       {$ifNdef FPC}
       WinExec(PChar(FInitDirectory+'Exec/PowerPrd.EXE '),1);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/PowerPrd.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/PowerPrd.EXE'), '', []);
       {$endif}
 
       FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если IN. присутствует значит расчет не закончен
       i:=1;
 NewSearch:    FileToFind := FileSearchUTF8('IN.',GetCurrentDir); { *Converted from FileSearch* }
-	  if FileToFind='IN.' then begin
-	     sleep(300);
-         if FileExistsUTF8('OUT.') { *Converted from FileExists* } then begin
-		                            DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
-                                    exit;
-				               end;
-		 i:=i+1;
-	     if i<25 then goto NewSearch
-		        else begin
-				 if FileExistsUTF8('IN.') { *Converted from FileExists* } then  DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
-                                    MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' PowerPrd.EXE '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0); 
-				 exit;
-				end;	 
-	     end;    
-      end;        
+      if FileToFind='IN.' then begin
+        sleep(300);
+        if FileExistsUTF8('OUT.') then begin
+            DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
+            SetCurrentDir(PathFileOld);
+            exit;
+            end;
+        i:=i+1;
+        if i<25 then goto NewSearch
+        else begin
+	   if FileExistsUTF8('IN.') { *Converted from FileExists* } then  DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
+           SetCurrentDir(PathFileOld);
+           MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' PowerPrd.EXE '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0);
+  	   exit;
+	end;
+      end;
+   end; //if (jspeed=1) and (iflag>0)
 end;{TFreeResistance_Holtr.CalculateResistanceHoltr}
 
-      procedure TFreeResistance_Holtr.resist(vms:single;dat:array of single; var Rf,Rr,w,t0,nr:single);
+procedure TFreeResistance_Holtr.resist(vms:single;dat:array of single; var Rf,Rr,w,t0,nr:single);
 
 var   T,Ta,Tf,D,L,B,V,Cb,Cp,Abt,Cbt,Ca,ks,appd,Sapp,Thb :single;
       S, Cm, Cwp, Lr, hb, At, lamb, Cstrn, k1, k2, ke :single;
@@ -2262,4 +2272,4 @@ begin
 end;{TFreePropeller_Task1.File_ExportData}
 
 end.
-
+

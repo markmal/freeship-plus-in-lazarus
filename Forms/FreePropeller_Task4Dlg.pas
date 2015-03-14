@@ -375,8 +375,8 @@ var Units      : TFreeUnitType;
     Density,Lambda     : single;
     Mp,Nz,Np           : single;
     STR,tmp,SSS        : string;	
-    FileToFind         : string;
-    FInitDirectory     : string;
+    FileToFind,PathFileOld         : string;
+    FExecDirectory     : string;
     STR_               : array[1..70] of string;	
     STR0               : array[1..30] of string;	
     label NewSearch;	
@@ -464,11 +464,14 @@ dat16=EtaM
 	dat[18]:=0;	
 	dat[19]:=0;    
 	dat[20]:=0;        
-      
-    File_ExportData(dat); 
 
-//  Определяем каталог с программой POP.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+        PathFileOld:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }   // текущий каталог проекта
+        ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+        SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+
+        FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+    File_ExportData(dat); 
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
       FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted from FileSearch* }
@@ -481,7 +484,7 @@ dat16=EtaM
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec/PropPred.EXE '),1);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/PropPred.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/PropPred.EXE'), '', []);
       {$endif}
       FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен
@@ -669,23 +672,23 @@ end;{TFreePropeller_Task4.Execute}
 
 procedure TFreePropeller_Task4.ToolButton17Click(Sender: TObject);
 var pathFile,FileToFind : string;
-    FOpenDirectory      :  string;
+    FExecDirectory      :  string;
     L                   : boolean;
 begin
 //  Определяем каталог с программой freeship.exe
-      FOpenDirectory:=FFreeship.Preferences.InitDirectory; 
+      FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 //      ResultsMemo.Lines.Add(FOpenDirectory+'freeship.exe');
       PathFile:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }
 // Переходим в директорию Freeshipa
-	  L:=SetCurrentDirUTF8(FOpenDirectory); { *Converted from SetCurrentDir* }
+	  L:=SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory); { *Converted from SetCurrentDir* }
 // Запускаем программу расчета
       {$ifdef Windows}
       WinExec(PChar(FOpenDirectory+'Engines\dbfview'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/DBFview.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/DBFview.EXE'), '', []);
       {$endif}
 // Переходим назад в директорию открытого проекта
- 	  L:=SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }
+   L:=SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }
    Calculate;
 end;{TFreePropeller_Task4.ToolButton17Click}
 
@@ -783,4 +786,4 @@ begin
 end;{TFreePropeller_Task4.File_IExportData}
 
 
-end.
+end.

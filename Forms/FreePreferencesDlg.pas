@@ -52,7 +52,28 @@ uses
      ComCtrls,
      FreeNumInput;
 
-type TFreePreferencesDialog = class(TForm)
+type
+
+{ TFreePreferencesDialog }
+
+ TFreePreferencesDialog = class(TForm)
+                                   EditTempDir: TEdit;
+                                   EditLanguagesDir: TEdit;
+                                   EditManualsDir: TEdit;
+                                   EditExecDir: TEdit;
+                                   EditOpenDir: TEdit;
+                                   EditSaveDir: TEdit;
+                                   EditImportDir: TEdit;
+                                   EditExportDir: TEdit;
+                                   Label28: TLabel;
+                                   Label29: TLabel;
+                                   Label30: TLabel;
+                                   Label31: TLabel;
+                                   Label32: TLabel;
+                                   Label33: TLabel;
+                                   Label34: TLabel;
+                                   Label35: TLabel;
+                                   PageControl1: TPageControl;
                                     Panel1: TPanel;
                                     Panel: TPanel;
                                     Panel3: TPanel;
@@ -91,6 +112,21 @@ type TFreePreferencesDialog = class(TForm)
                                     Label16: TLabel;
                                     Panel18: TPanel;
                                     Label17: TLabel;
+
+                                      SelectDirectoryDialog1: TSelectDirectoryDialog;
+                                      SpeedButton10: TSpeedButton;
+                                      SpeedButton11: TSpeedButton;
+                                      SpeedButton12: TSpeedButton;
+                                      SpeedButton13: TSpeedButton;
+                                      SpeedButton14: TSpeedButton;
+                                      SpeedButton15: TSpeedButton;
+                                      SpeedButton16: TSpeedButton;
+                                      SpeedButton17: TSpeedButton;
+                                      SpeedButton8: TSpeedButton;
+                                      SpeedButton9: TSpeedButton;
+                                    TabSheet1: TTabSheet;
+                                    TabSheet2: TTabSheet;
+                                    TabSheet3: TTabSheet;
                                     TrackBar1: TTrackBar;
                                     Label18: TLabel;
                                     Panel19: TPanel;
@@ -104,8 +140,6 @@ type TFreePreferencesDialog = class(TForm)
                                     Panel23: TPanel;
                                     Label23: TLabel;
                                     Panel24: TPanel;
-                                    SpeedButton1: TSpeedButton;
-                                    SpeedButton2: TSpeedButton;
                                     BitBtn1: TSpeedButton;
                                     Label24: TLabel;
                                     Panel25: TPanel;
@@ -142,7 +176,23 @@ type TFreePreferencesDialog = class(TForm)
                                     procedure BitBtn2Click(Sender: TObject);
                                     procedure Panel25Click(Sender: TObject);
                                     procedure Panel26Click(Sender: TObject);
+                                    procedure SpeedButton12Click(Sender: TObject
+                                      );
+                                    procedure SpeedButton13Click(Sender: TObject
+                                      );
+                                    procedure SpeedButton14Click(Sender: TObject
+                                      );
+                                    procedure SpeedButton15Click(Sender: TObject
+                                      );
+                                    procedure SpeedButton16Click(Sender: TObject
+                                      );
+                                    procedure SpeedButton17Click(Sender: TObject
+                                      );
                                     procedure SpeedButton3Click(Sender: TObject);
+                                    procedure SpeedButton8Click(Sender: TObject
+                                      );
+                                    procedure SpeedButton9Click(Sender: TObject
+                                      );
                                  private   { Private declarations }
                                     FFreeship:TFreeShip;
                                     procedure Updatedata;
@@ -191,6 +241,15 @@ begin
    TrackBar1.Position:=FFreeship.Preferences.PointSize;
    if FFreeship.Preferences.MaxUndoMemory<1 then FreeNumInput1.Value:=1
                                             else FreeNumInput1.Value:=FFreeship.Preferences.MaxUndoMemory;
+
+   EditLanguagesDir.Text:= FFreeship.Preferences.LanguagesDirectory;
+   EditManualsDir.Text:= FFreeship.Preferences.ManualsDirectory;
+   EditExecDir.Text:= FFreeship.Preferences.ExecDirectory;
+   EditTempDir.Text:= FFreeship.Preferences.TempDirectory;
+   EditOpenDir.Text:= FFreeship.Preferences.OpenDirectory;
+   EditSaveDir.Text:= FFreeship.Preferences.SaveDirectory;
+   EditImportDir.Text:= FFreeship.Preferences.ImportDirectory;
+   EditExportDir.Text:= FFreeship.Preferences.ExportDirectory;
 end;{TFreePreferencesDialog.Updatedata}
 
 function TFreePreferencesDialog.Execute(Freeship:TFreeShip):Boolean;
@@ -355,6 +414,7 @@ begin
    if ColorDialog.Execute then Panel26.Color:=ColorDialog.Color;
 end;{TFreePreferencesDialog.Panel26Click}
 
+
 procedure TFreePreferencesDialog.SpeedButton3Click(Sender: TObject);
 begin
    if MessageDlg(Userstring(247)+'?'+#13#10+
@@ -365,4 +425,61 @@ begin
    end;
 end;{TFreePreferencesDialog.SpeedButton3Click}
 
-end.
+procedure TFreePreferencesDialog.SpeedButton8Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditLanguagesDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditLanguagesDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton9Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditManualsDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditManualsDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton12Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditExecDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditExecDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton13Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditTempDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditTempDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton14Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditOpenDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditOpenDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton15Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditSaveDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditSaveDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton16Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditImportDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditImportDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton17Click(Sender: TObject);
+begin
+  SelectDirectoryDialog1.FileName:=EditExportDir.Text;
+  if SelectDirectoryDialog1.Execute then
+    EditExportDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+
+end.

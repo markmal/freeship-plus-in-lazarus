@@ -535,7 +535,7 @@ var I,J,ij,ires  : Integer;
     pathFile,FileToFind: string;
     PathFileOld        : string;
     FOpenDirectory     : string;
-    FInitDirectory     : string;
+    FExecDirectory     : string;
     strp               : string;
     label NewSearch;	
     label StartHere;
@@ -735,7 +735,13 @@ begin
        exit
    end;
 
-StartHere:   File_ExportData(dat,dat1);
+  PathFileOld:=GetCurrentDir;
+
+StartHere:
+  ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+  SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+
+  File_ExportData(dat,dat1);
 
   if (Dat2>0) and (Dat3>0) then 
     begin
@@ -745,7 +751,7 @@ StartHere:   File_ExportData(dat,dat1);
 
     PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
   //  Определяем каталог с программой CalcProp.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+  FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
 //  Определяем текущий каталог с проектами и с данными для расчета TMP2.tsk
       FileToFind := FileSearchUTF8('TMP2.tsk',GetCurrentDir); { *Converted from FileSearch* }
@@ -757,7 +763,7 @@ StartHere:   File_ExportData(dat,dat1);
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\CalcProp.exe 2'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/CALCPROP.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/CALCPROP.EXE'), '', []);
       {$endif}
 
       FileName:='RES2.tsk';
@@ -1167,4 +1173,4 @@ begin
          CloseFile(FFile);
 end;{TFreePropeller_Task2.File_ExportData}
 
-end.
+end.

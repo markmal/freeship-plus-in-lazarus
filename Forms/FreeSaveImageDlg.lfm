@@ -2,11 +2,11 @@ object SaveImageDialog: TSaveImageDialog
   Left = 387
   Height = 160
   Top = 141
-  Width = 288
+  Width = 287
   BorderStyle = bsDialog
   Caption = 'Save image.'
   ClientHeight = 160
-  ClientWidth = 288
+  ClientWidth = 287
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
@@ -17,11 +17,11 @@ object SaveImageDialog: TSaveImageDialog
     Left = 0
     Height = 125
     Top = 22
-    Width = 288
+    Width = 287
     Align = alClient
     BevelOuter = bvLowered
     ClientHeight = 125
-    ClientWidth = 288
+    ClientWidth = 287
     TabOrder = 0
     object Label3: TLabel
       Left = 152
@@ -127,14 +127,14 @@ object SaveImageDialog: TSaveImageDialog
     Left = 0
     Height = 22
     Top = 0
-    Width = 288
+    Width = 287
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 22
-    ClientWidth = 288
+    ClientWidth = 287
     TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 218
+      Left = 217
       Height = 22
       Top = 0
       Width = 70
@@ -163,7 +163,7 @@ object SaveImageDialog: TSaveImageDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 148
+      Left = 147
       Height = 22
       Top = 0
       Width = 70
@@ -196,7 +196,7 @@ object SaveImageDialog: TSaveImageDialog
     Left = 0
     Height = 13
     Top = 147
-    Width = 288
+    Width = 287
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2

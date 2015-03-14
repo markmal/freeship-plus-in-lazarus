@@ -139,12 +139,12 @@ begin
    FormatSettings.DecimalSeparator:='.';
    Application.Initialize;
    Application.CreateForm(TMainForm, MainForm);
-   Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
+   //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
   {$IFNDEF CREATE_TRANSLATION}
    LoadLanguage(Mainform.Freeship.Preferences.LanguageFile);
    {$ENDIF}
    ShowTranslatedValues(Mainform);
-   Application.CreateForm(TFreeKeelWizardDialog, FreeKeelWizardDialog);
+   //Application.CreateForm(TFreeKeelWizardDialog, FreeKeelWizardDialog);
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);
 
    {$IFDEF CREATE_TRANSLATION}
@@ -241,4 +241,4 @@ begin
    end;
 
    Application.Run;
-end.
+end.

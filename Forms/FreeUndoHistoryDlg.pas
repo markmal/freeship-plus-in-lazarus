@@ -55,9 +55,13 @@ uses
      ComCtrls,
     FreeTypes,
      FreeGeometry,
-     Buttons;
+     Buttons, DBGrids, Grids;
 
-type  TFreeUndoHistoryDialog   = class(TForm)
+type
+
+{ TFreeUndoHistoryDialog }
+
+  TFreeUndoHistoryDialog   = class(TForm)
                                        Panel: TPanel;
                                        Panel1: TPanel;
                                        UndoBox: TListBox;
@@ -159,4 +163,4 @@ begin
    Speedbutton2.Left:=Speedbutton1.Left+SpeedButton1.Width+2;
 end;
 
-end.
+end.

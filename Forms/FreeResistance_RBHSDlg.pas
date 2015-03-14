@@ -374,11 +374,12 @@ type
                                  procedure FSetDat18_5(val:single);
 
                                  public
-                                    PathFile,PathFileOld,FileToFind,FileName : string;
-									L           : Boolean;
-									Capp_       : Single;
-									Nwa         : integer;
-									Label10Old,Label11Old,Label15Old,Label16Old : string;
+                                    PathFile,PathFileOld,FileToFind,
+                                      FileName,FExecDirectory,FTempDirectory : string;
+				    L           : Boolean;
+				    Capp_       : Single;
+				    Nwa         : integer;
+				    Label10Old,Label11Old,Label15Old,Label16Old : string;
                                     function CorrectInputdata:boolean;
                                     procedure Calculate;
                                     function Execute(Freeship:TFreeship;AutoExtract:Boolean):Boolean;
@@ -544,8 +545,8 @@ begin
    Series2.Clear;
    Series3.Clear;
    Series4.Clear;
-   ResultsMemo.Visible:=false;
-   ResultsMemo2.Visible:=false;
+   ResultsMemo.Visible:=true;
+   ResultsMemo2.Visible:=true;
    PrintButton.Enabled:=False;
 
 // Вывод помощи для метода OCTa
@@ -810,31 +811,34 @@ begin
     Speed:=Vs[10];
     dVs:=(Vs[8]-Vs[1])/7;
 
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    Assignfile(FFile2,PathFileOld+'Resistp.dat');		 
-    {$I-}Rewrite(FFile2);{$I+}
- 
-        for j:=1 to 10 do Vs[j]:=Vs[1]+dVs*(J-1);
-        Vs[9]:=(EndSpeed+StepSpeed)/2;
-        Vs[10]:=StepSpeed;
-        CalculateResistanceOST(Vs,LCB,Cp,Rf,Rr,w,t0,nr);
-        sleep(1000); 
+    PathFileOld:=GetCurrentDir;
+    FTempDirectory:=FFreeship.Preferences.TempDirectory;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+
+
+    for j:=1 to 10 do Vs[j]:=Vs[1]+dVs*(J-1);
+
+    Vs[9]:=(EndSpeed+StepSpeed)/2;
+    Vs[10]:=StepSpeed;
+    CalculateResistanceOST(Vs,LCB,Cp,Rf,Rr,w,t0,nr);
+    sleep(1000);
 
     FileName:='ostres.tmp';
-
-     if FileExists(PathFileOld+'ostres.tmp') then  begin
-      Assignfile(FFile,PathFileOld+'ostres.tmp');
+    NN:=0;
+    if FileExistsUTF8(FTempDirectory+'/ostres.tmp') then  begin
+      AssignFile(FFile,FTempDirectory+'/ostres.tmp');
       {$I-}Reset(FFile);{$I+}
-         Read(FFile,Nser);
-		 if Nser=0 then begin
-		    Nstr:=22;
-	        NN:=2;
-		 end;
-		 if Nser>=5 then begin
- 		    Nstr:=24;
-		    NN:=0;		 
-		 end;			 
-         for J:=1 to 8 do
+       Read(FFile,Nser);
+       if Nser=0 then begin
+	  Nstr:=22;
+	  NN:=2;
+       end;
+       if Nser>=5 then begin
+ 	  Nstr:=24;
+	  NN:=0;
+       end;
+       for J:=1 to 8 do
          begin
             for I:=1 to 3 do
               Read(FFile,ParRes[I,J]);
@@ -857,13 +861,9 @@ begin
 	end;
 	 
 // Удаление временных файлов
-	  if FileExists(PathFileOld+'ostres.tmp') then  begin
-	          DeleteFileUTF8(PChar(PathFile+'/Resist.dat'));
- 		  DeleteFileUTF8(PChar(PathFile+'/Resistp.dat'));
-		  L:=RenameFileUTF8(PChar(PathFileOld+'Resist.dat'),PChar(PathFile+'/Resist.dat'));
-		  L:=RenameFileUTF8(PChar(PathFileOld+'Resistp.dat'),PChar(PathFile+'/Resistp.dat'));
-	          DeleteFileUTF8(PChar(PathFileOld+'ostres.tmp'));
- 		  DeleteFileUTF8(PChar(PathFileOld+'Resist.dat'));
+	  if FileExistsUTF8(FTempDirectory+'/ostres.tmp') then  begin
+	          DeleteFileUTF8(FTempDirectory+'/Resist.dat');
+	          DeleteFileUTF8(FTempDirectory+'/ostres.tmp');
 	  end;
 	  
 
@@ -955,7 +955,10 @@ begin
 	   
        Index:=0;
 
-        For ispeed:=1 to 10 do
+       AssignFile(FFile2,FTempDirectory+'/Resistp.dat');
+       {$I-}Rewrite(FFile2);{$I+}
+
+       For ispeed:=1 to 10 do
          begin
             Speed:=Res[ispeed,1]; //Vs[ispeed];
             ConvertedSpeed:=Speed*1852/3600;
@@ -1024,9 +1027,9 @@ begin
                Vms:=ConvertedSpeed;
             end;
          end;
-         CloseFile(FFile2);
-         ResultsMemo.Lines.Add(Space(10)+'+-------+-------+-------+--------+--------+--------+---------+--------+---------+');
-         ResultsMemo.Lines.Add('');
+      CloseFile(FFile2);
+      ResultsMemo.Lines.Add(Space(10)+'+-------+-------+-------+--------+--------+--------+---------+--------+---------+');
+      ResultsMemo.Lines.Add('');
 
 //      Np:=0;
       if Np>0 then begin
@@ -1107,14 +1110,14 @@ begin
            nr:=1;
          end;
 
-         Assignfile(FFile2,PathFileOld+'Resistp.dat');		 
+         Assignfile(FFile2,FTempDirectory+'/Resistp.dat');
          {$I-}Rewrite(FFile2);{$I+}
          Writeln(FFile2,'#     Nser      Np       Wt        t       Eta_R     Dp');
          Writeln(FFile2,Nser:10:0,Np:10:0,w:10:4,t0:10:4,nr:10:4,Dp:10:4);
          Writeln(FFile2,'#      Vs       Rt        Rte       Pe       Pee');
          for i:=1 to 10 do Writeln(FFile2,Res_[i,1],Res_[i,2],Res_[i,3],Res_[i,4],Res_[i,5]);
          CloseFile(FFile2);
-         L:=RenameFileUTF8(PChar(PathFileOld+'Resistp.dat'),PChar(PathFile+'/Resistp.dat'));
+         //L:=RenameFileUTF8(PChar(PathFileOld+'Resistp.dat'),PChar(PathFile+'/Resistp.dat'));
 //	     DeleteFile(PChar(PathFileOld+'Resistp.dat'));        	   		  
 
       if flag=1 then ResultsMemo.Lines.Add(Space(10)+'Tb        =  '+FloatToStrF(Tb,ffFixed,6,3)+' '+Userstring(324))
@@ -1595,22 +1598,25 @@ begin
       ResultsMemo.Lines.Add(Space(10)+'FrV_min       = '+FloatToStrF(FrVmin,ffFixed,6,3));
       ResultsMemo.Lines.Add(Space(10)+'FrV_max       = '+FloatToStrF(FrVmax,ffFixed,6,3));
       if Nser=5 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,8 ... 2,6');
-	  if Nser=8 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 1,0 ... 2,5');
-	  if Nser=9 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,9 ... 2,0');
-	  if Nser=10 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,8 ... 2,7');
-	  if Nser=11 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 1,0 ... 2,0');
-	  if Nser=12 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,5 ... 2,8');
-	  if Nser=13 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,8 ... 3,0');
-	  if Nser=14 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,8 ... 2,2');	  
-	  exit;
+      if Nser=8 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 1,0 ... 2,5');
+      if Nser=9 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,9 ... 2,0');
+      if Nser=10 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,8 ... 2,7');
+      if Nser=11 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 1,0 ... 2,0');
+      if Nser=12 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,5 ... 2,8');
+      if Nser=13 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,8 ... 3,0');
+      if Nser=14 then ResultsMemo.Lines.Add(Space(10)+'FrV '+Userstring(476)+' 0,8 ... 2,2');
+      ResultsMemo.Lines.Add('(FrVmin<0.5) or (FrVmax>2.8)) and ((Nser=5) or ((Nser>=8) and (Nser<=14)): Exit');
+      exit;
    end;
 
 
    if (FrVmin<0.7) and (Nser=11) then begin
-       exit;
+      ResultsMemo.Lines.Add('(FrVmin<0.7) and (Nser=11) : Exit');
+      exit;
    end;
    if (FrVmin<0.5) and ((Nser=5) or ((Nser>=8) and (Nser<=14))) then begin
-       exit;
+      ResultsMemo.Lines.Add('(FrVmin<0.5) and ((Nser=5) or ((Nser>=8) and (Nser<=14))) : Exit');
+      exit;
    end;
 	
    if ke=0 then begin
@@ -1645,23 +1651,31 @@ begin
 	dan[25]:=E_10;	    //  Cr(5) 
 	if Nser=0 then begin
 	 for i:=1 to 5 do begin
-	  if (dan[15+i]<=0) or (dan[20+i]<=0) then exit;
-	  if (dan[15+i]>=dan[16+i]) and (i<5) then exit;
+	  if (dan[15+i]<=0) or (dan[20+i]<=0) then
+            begin
+              ResultsMemo.Lines.Add('Error: Fr['+IntToStr(i)+']<=0) or Cr['+IntToStr(i)+']<=0) : exit');
+              exit;
+            end;
+          if (dan[15+i]>=dan[16+i]) and (i<5) then
+            begin
+              ResultsMemo.Lines.Add('Error: Fr['+IntToStr(i)+'] >= Fr['+IntToStr(i+1)+'] : exit');
+              exit;
+            end;
 	 end;
     end;
 	
 //  Определение каталогов и запуск расчета
 
+    PathFileOld:=GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
 
-   PathFile:=GetCurrentDir;   // текущий каталог проекта
-   FileToFind:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-   PathFileOld:=FileToFind;   // задаем переменной каталог Freeshipa
-   L:=SetCurrentDir(FileToFind); // переходим в каталог Freeshipa
    File_ExportData(dat,dan);   	 // записываем файл данных в каталог Freeshipa
+
    {$ifdef Windows}
    WinExec(PChar(FileToFind+'Exec/hship.exe'),0); // запускаем расчет
    {$else}
-   SysUtils.ExecuteProcess(UTF8ToSys('Exec/hship.EXE'), '', []);
+   SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/hship.EXE'), '', []);
    {$endif}
    L:=SetCurrentDir(PathFile);   // возвращаемся в каталог проекта
 //      ResultsMemo.Lines.Add('PathFile='+PathFile);
@@ -1674,9 +1688,10 @@ procedure TFreeResistance_RBHS.File_ExportData(dat,dan:array of single);
 var I          : integer;
     ffile      : textfile;
 begin
-     if FileExists(PathFileOld+'ostdat.tmp') then  DeleteFile(PChar(PathFile+'\ostdat.tmp'));
+     if FileExistsUTF8(FFreeship.Preferences.TempDirectory+'/ostdat.tmp') then
+       DeleteFileUTF8(FFreeship.Preferences.TempDirectory+'/ostdat.tmp');
 
-      Assignfile(FFile,'ostdat.tmp');
+      Assignfile(FFile,FFreeship.Preferences.TempDirectory+'/ostdat.tmp');
       {$I-}Rewrite(FFile);{$I+}
          for I:=0 to 29 do
          begin
@@ -2243,4 +2258,4 @@ end;{TFreeResistance_RBHS.ComboBoxClick}
 
 
 end.
-
+

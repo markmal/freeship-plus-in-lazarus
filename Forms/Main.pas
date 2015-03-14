@@ -410,6 +410,7 @@ type
 
     FMDIChildList : TList;
 
+    procedure FormActivate(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
 
                               procedure LoadFileExecute(Sender   : TObject);
@@ -554,13 +555,14 @@ type
       procedure FreeShipChangeActiveLayer(Sender: TObject;Layer: TFreeSubdivisionLayer);
       procedure FOnSelectItem(Sender:TObject);
       procedure FOpenHullWindows;   // Creates 4 different views on the hullform
+   public     { Public declarations }
       {$IFDEF FPC}
       function  MDIChildCount: Integer; override;
-      function GetMDIChildren(AIndex: Integer): TCustomForm; override;
+      function  GetMDIChildren(AIndex: Integer): TCustomForm; override;
+      procedure AbandonMDIChildren(AIndex: Integer);
       procedure Tile;
       procedure Cascade;
       {$ENDIF}
-   public     { Public declarations }
       constructor Create(AOwner: TComponent); override;
       destructor Destroy; override;
 
@@ -603,6 +605,23 @@ procedure TMainForm.FormChangeBounds(Sender: TObject);
 var t : integer;
 begin
     t := Top;
+end;
+
+var inActivation: boolean = false;
+
+procedure TMainForm.FormActivate(Sender: TObject);
+var i:integer;
+begin
+  if inActivation then exit;
+  inActivation:=true;
+  for i:=0 to FMDIChildList.Count -1 do begin
+    TFreeHullWindow(FMDIChildList.Items[i]).BringToFront;
+    Application.ProcessMessages;
+  end;
+  BringToFront;
+  Application.BringToFront;
+  Application.ProcessMessages;
+  inActivation:=false;
 end;
 
 
@@ -692,7 +711,7 @@ end;{TMainForm.SetCaption}
 procedure TMainForm.UpdateMenu;
 var I       : Integer;
     NLayers : Integer;
-    FInitDirectory     : string;
+    FExecDirectory     : string;
 //    FileToFind         : string;
 // In this procedure all actions are set to enabled/disabled according to the current state
 // and selected items
@@ -722,7 +741,7 @@ begin
    ExportGHS.Enabled:=FreeShip.NumberofStations>0;
    ExportPAM.Enabled:=FreeShip.NumberofStations>0;   
 // Определяем наличие внешних модулей
-   FInitDirectory:=Freeship.Preferences.InitDirectory;
+   FExecDirectory:=Freeship.Preferences.ExecDirectory;
    ExportMichlet.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);
    ExportAddMass.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
    HydrodynTask1_.Enabled:=False;
@@ -744,25 +763,25 @@ begin
    ResistanceRBHS.Enabled:=False;
    ResistanceMH.Enabled:=False;   
 // Определяем наличие внешних модулей и если есть включаем задачи в меню
-   if FileExistsUTF8(FInitDirectory+'Exec/ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/Rot_Ship.EXE') { *Converted from FileExists* } then HydrodynTask3_.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/HOLLENBH.EXE') { *Converted from FileExists* } then ResistanceHollen.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/OORTMERS.EXE') { *Converted from FileExists* } then ResistanceOortmer.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/fungleib.EXE') { *Converted from FileExists* } then ResistanceFungLeib.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/hship.EXE') { *Converted from FileExists* }    then ResistanceOST.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/hship.EXE') { *Converted from FileExists* }    then ResistanceRBHS.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/hship.EXE') { *Converted from FileExists* }    then ResistanceMH.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/ManeuvPP.EXE') { *Converted from FileExists* } then HydrodynManeuv_.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/CALCPROP.EXE') { *Converted from FileExists* } then begin
+   if FileExistsUTF8(FExecDirectory+'/ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/Rot_Ship.EXE') { *Converted from FileExists* } then HydrodynTask3_.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/HOLLENBH.EXE') { *Converted from FileExists* } then ResistanceHollen.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/OORTMERS.EXE') { *Converted from FileExists* } then ResistanceOortmer.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/fungleib.EXE') { *Converted from FileExists* } then ResistanceFungLeib.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceOST.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceRBHS.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceMH.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/ManeuvPP.EXE') { *Converted from FileExists* } then HydrodynManeuv_.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/CALCPROP.EXE') { *Converted from FileExists* } then begin
       PropTask1_.Enabled:=True;
       PropTask2_.Enabled:=True;
       PropTask3_.Enabled:=True;
    end;
-   if FileExistsUTF8(FInitDirectory+'Exec/PropPred.EXE') { *Converted from FileExists* } then PropTask4_.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/PROPOL.EXE') { *Converted from FileExists* }   then PropTask5_.Enabled:=True;
-   if FileExistsUTF8(FInitDirectory+'Exec/RVRSSHIP.EXE') { *Converted from FileExists* } then PropTaskRvrs_.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/PropPred.EXE') { *Converted from FileExists* } then PropTask4_.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/PROPOL.EXE') { *Converted from FileExists* }   then PropTask5_.Enabled:=True;
+   if FileExistsUTF8(FExecDirectory+'/RVRSSHIP.EXE') { *Converted from FileExists* } then PropTaskRvrs_.Enabled:=True;
    if ExportAddMass.Enabled then ExportAddMass.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
 //   if HydrodynTask2_.Enabled then HydrodynTask2_.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
 //   HydrodynTask3_.Enabled:=False; //(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
@@ -972,6 +991,10 @@ begin
   Result := TCustomForm(FMDIChildList.Items[AIndex]) ;
 end;
 
+procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
+begin
+  FMDIChildList.Delete(AIndex);
+end;
 
 procedure TMainForm.Tile;
 var T,L,MW,MH, X,Y,W,H, i, MCC, HH,FW : Integer;
@@ -989,14 +1012,17 @@ begin
  for i:= 0 to MCC - 1 do
    begin
    HFW := MDIChildren[i];
-   if i = 0 then HFW.SetBounds(L,                T+MH,
-                               MW div 2 -FW*2,   HFW.Height -FW*2);
-   if i = 1 then HFW.SetBounds(L+MW div 2 +FW*2, T+MH,
-                               MW div 2 -FW*2,   HFW.Height -FW*2);
-   if i = 2 then HFW.SetBounds(L,                T+MH+HFW.Height+HH+FW*2,
-                               MW div 2 -FW*2,   HFW.Height -FW*2);
-   if i = 3 then HFW.SetBounds(L+MW div 2 +FW*2, T+MH+HFW.Height+HH+FW*2,
-                               MW div 2 -FW*2,   HFW.Height -FW*2);
+   if Assigned(HFW) then
+     begin
+     if i = 0 then HFW.SetBounds(L,                T+MH,
+                                 MW div 2 -FW*2,   HFW.Height -FW*2);
+     if i = 1 then HFW.SetBounds(L+MW div 2 +FW*2, T+MH,
+                                 MW div 2 -FW*2,   HFW.Height -FW*2);
+     if i = 2 then HFW.SetBounds(L,                T+MH+HFW.Height+HH+FW*2,
+                                 MW div 2 -FW*2,   HFW.Height -FW*2);
+     if i = 3 then HFW.SetBounds(L+MW div 2 +FW*2, T+MH+HFW.Height+HH+FW*2,
+                                 MW div 2 -FW*2,   HFW.Height -FW*2);
+     end;
    end;
 
 end;{TMainForm.Tile}
@@ -2063,4 +2089,4 @@ begin
 end;
 
 
-end.
+end.

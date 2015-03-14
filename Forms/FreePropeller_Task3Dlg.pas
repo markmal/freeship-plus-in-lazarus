@@ -439,7 +439,7 @@ var I,J,JI,IJ,Km,Kt,Kk,Nser,Nprop : Integer;
     pathFile,FileToFind: string;
     PathFileOld        : string;
     FOpenDirectory     : string;
-    FInitDirectory     : string;
+    FExecDirectory     : string;
     strp               : string;  
     label NewSearch;
 begin
@@ -608,7 +608,9 @@ begin
    ResultsMemo.Lines.Add('');
    ResultsMemo.Lines.Add('');
 
-
+   PathFileOld:=GetCurrentDir;
+   ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+   SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
 
   File_ExportData(dat);
 
@@ -621,7 +623,8 @@ begin
 
     PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
   //  Определяем каталог с программой CalcProp.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+  FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
 
 //  Определяем текущий каталог с проектами и с данными для расчета TMP3.tsk
       FileToFind := FileSearchUTF8('TMP3.tsk',GetCurrentDir); { *Converted from FileSearch* }
@@ -633,7 +636,7 @@ begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\CalcProp.exe 3'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/CALCPROP.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/CALCPROP.EXE'), '', []);
       {$endif}
 
       FileName:='RES3.tsk';
@@ -1048,4 +1051,4 @@ begin
          CloseFile(FFile);
 end;{TFreePropeller_Task3.File_ExportData}
 
-end.
+end.

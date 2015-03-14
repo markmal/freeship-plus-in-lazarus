@@ -235,8 +235,8 @@ var Units  : TFreeUnitType;
 	Temper,Viscosity   : single;
 	Density,Lambda   : single;
     STR                : string;	
-    FileToFind         : string;
-    FInitDirectory     : string;
+    FileToFind, PathFileOld         : string;
+    FExecDirectory     : string;
     STR_               : array[1..100] of string;		
     Sym                : string;
     KoeKT              : array[1..4] of single;		
@@ -301,11 +301,13 @@ dat7=Velocity Vp
 	dat[5]:=dat6;
 	if dat7=0 then dat7:=1;
 	dat[6]:=dat7;	
-      
-    File_ExportData(dat); 
 
-//  Определяем каталог с программой Propol.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+        PathFileOld:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }   // текущий каталог проекта
+        ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+        SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+        FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+    File_ExportData(dat); 
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
       FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted from FileSearch* }
@@ -317,15 +319,15 @@ dat7=Velocity Vp
 // Запускаем программу расчета
 	 if Combobox.ItemIndex=0 then
             {$ifdef Windows}
-            WinExec(PChar(FInitDirectory+'Exec/Propol.EXE <IN.'),0)
+            WinExec(PChar(FExecDirectory+'/Propol.EXE <IN.'),0)
             {$else}
-            SysUtils.ExecuteProcess(UTF8ToSys('Exec/PROPOL.EXE'), '', [])
+            SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/PROPOL.EXE'), '', [])
             {$endif}
          else
             {$ifdef Windows}
-            WinExec(PChar(FInitDirectory+'Exec/FPPCALC.EXE'),0);
+            WinExec(PChar(FExecDirectory+'/FPPCALC.EXE'),0);
             {$else}
-            SysUtils.ExecuteProcess(UTF8ToSys('Exec/fppcalc.EXE'), '', []);
+            SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/fppcalc.EXE'), '', []);
             {$endif}
       FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен
@@ -931,4 +933,4 @@ begin
 end;{TFreePropeller_Task5.ComboBoxClick1}
 
 
-end.
+end.

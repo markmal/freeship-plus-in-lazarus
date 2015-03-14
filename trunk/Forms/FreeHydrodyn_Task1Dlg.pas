@@ -322,8 +322,8 @@ var Units  : TFreeUnitType;
     Temper,Viscosity   : single;
     Density,Lambda     : single;
     STR,tmp            : string;	
-    FileToFind         : string;
-    FInitDirectory     : string;
+    FileToFind, PathFileOld         : string;
+    FExecDirectory     : string;
     STR_               : array[1..70] of string;
     STR0               : array[1..10] of string;			
     label NewSearch;	
@@ -393,10 +393,16 @@ begin
          
   if dat9<12 then begin  
 
+    PathFileOld:=GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+
     File_ExportData(dat); 
 
-//  Определяем каталог с программой Ishercof.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+  //  Определяем каталог с программой Ishercof.exe
+  FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+  //  Определяем текущий каталог с проектами и с данными для расчета IN.
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
       FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted from FileSearch* }
@@ -409,7 +415,7 @@ begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec/Ishercof.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/Ishercof.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/Ishercof.EXE'), '', []);
       {$endif}
       FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен
@@ -749,4 +755,4 @@ begin
 end;
 
 
-end.
+end.

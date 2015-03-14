@@ -211,7 +211,7 @@ type
 
                               public { Public declarations }
                                  I3,I4,I5,I6,ie_,Cm         :single;
-                                 PathFile,PathFileOld,FileToFind,FileName : string;
+                                 PathFile,PathFileOld,FileToFind,FileName,FExecDirectory : string;
                                  procedure SelectCalcMethod;
                                  procedure SelectPropulsorType;
                                  procedure Calculate;
@@ -1094,12 +1094,16 @@ begin
 	dat[8]:=Nu;
 	dat[9]:=1;   // Reserved
 	dat[10]:=2;  // Reserved
-    File_ExportDataCP(dat);   	   
 
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    FInitDirectory:=FFreeship.Preferences.InitDirectory; 
-	
-   if NOT FileExistsUTF8(FInitDirectory+'Exec/CLEMPOUP.EXE') { *Converted from FileExists* } then begin
+    PathFileOld:=GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+    FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+    File_ExportDataCP(dat);
+
+
+   if NOT FileExistsUTF8(FExecDirectory+'/CLEMPOUP.EXE') { *Converted from FileExists* } then begin
       MessageDlg(Userstring(1211)+' CLEMPOUP.EXE',mtError,[mbOk],0);
       Exit; 
    end;
@@ -1220,9 +1224,14 @@ NewSearch:    FileToFind := FileSearchUTF8('clempoup.dat',GetCurrentDir); { *Con
 	dat[8]:=Nu;
 	dat[9]:=1;   // Reserved
 	dat[10]:=2;  // Reserved
+
+        PathFileOld:=GetCurrentDir;
+        ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+        SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+        FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
     File_ExportDataCB(dat);   	   
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+
     FileToFind := FileSearchUTF8('clemblou.dat',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'clemblou.dat' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
@@ -1231,7 +1240,7 @@ NewSearch:    FileToFind := FileSearchUTF8('clempoup.dat',GetCurrentDir); { *Con
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\CLEMBLOU.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/CLEMBLOU.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/CLEMBLOU.EXE'), '', []);
       {$endif}
       FileName:='clemblou.res';
       i:=1;
@@ -1358,8 +1367,11 @@ NewSearch1:    FileToFind := FileSearchUTF8('clemblou.dat',GetCurrentDir); { *Co
     if (dat[4]/power(dat[2],3)>0.9) or (dat[4]/power(dat[2],3)<0.427) then ResultsMemo.Lines.Add(Space(14)+'D/B^3      '+Userstring(476)+'  0,427 ... 0,90');	  
     if dat[4]/power(dat[2],3)>1 then exit;
 
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+    PathFileOld:=GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+    FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
     FileToFind := FileSearchUTF8('bunkdata.dat',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'bunkdata.dat' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
@@ -1368,7 +1380,7 @@ NewSearch1:    FileToFind := FileSearchUTF8('clemblou.dat',GetCurrentDir); { *Co
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\BUNKOV.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/BUNKOV.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/BUNKOV.EXE'), '', []);
       {$endif}
       FileName:='BUNKOV00.RES';
       i:=1;
@@ -1464,7 +1476,13 @@ NewSearch2:    FileToFind := FileSearchUTF8('bunkdata.dat',GetCurrentDir); { *Co
 	dat[7]:=Ro;
 	dat[8]:=Nu;
 	dat[9]:=i6;	
-	dat[10]:=0;		
+	dat[10]:=0;
+
+    PathFileOld:=GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+    FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
     File_ExportDataCompton(dat);   	  
     V_L:=dat[4]/power(0.01*dat[1]/0.3048,3);		
 	ResultsMemo.Lines.Add(Space(14)+'L/B         = '+FloatToStrF(dat[1]/dat[2],ffFixed,6,3));
@@ -1477,8 +1495,6 @@ NewSearch2:    FileToFind := FileSearchUTF8('bunkdata.dat',GetCurrentDir); { *Co
 	ResultsMemo.Lines.Add(Space(14)+'Vs/Lwl^0,5  = '+FloatToStrF(V_L,ffFixed,6,3));	
     if (V_L>2) or (V_L<0.35) then ResultsMemo.Lines.Add(Space(14)+'Vs/Lwl^0,5   '+Userstring(476)+' 0,35 ... 2,0');	  	
 
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
     FileToFind := FileSearchUTF8('cmptdata.dat',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'cmptdata.dat' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
@@ -1487,7 +1503,7 @@ NewSearch2:    FileToFind := FileSearchUTF8('bunkdata.dat',GetCurrentDir); { *Co
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\COMPTON.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/COMPTON.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/COMPTON.EXE'), '', []);
       {$endif}
       FileName:='COMPTON0.RES';
       i:=1;
@@ -1580,6 +1596,11 @@ NewSearch3:    FileToFind := FileSearchUTF8('cmptdata.dat',GetCurrentDir); { *Co
         dat[9]:=i6;	
 	dat[10]:=0;
 
+    PathFileOld:=GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+    FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
     File_ExportDataWolfson(dat);   	
     if (dat[1]>72) or (dat[1]<9) then ResultsMemo.Lines.Add(Space(14)+'Lwl   '+Userstring(476)+' 10 ... 70 m');	  
 {    V_L:=dat[4]/2.204*0.0283/power(0.01*dat[1],3);	
@@ -1594,8 +1615,7 @@ NewSearch3:    FileToFind := FileSearchUTF8('cmptdata.dat',GetCurrentDir); { *Co
     if (dat[5]/dat[1]>0.48) or (dat[5]/dat[1]<0.37) then ResultsMemo.Lines.Add(Space(14)+'Xg/L         '+Userstring(476)+' 0,37 ... 0,48');	  
 }
 	
-	PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+    FInitDirectory:=FFreeship.Preferences.InitDirectory;
     FileToFind := FileSearchUTF8('wolfdata.dat',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'wolfdata.dat' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
@@ -1604,7 +1624,7 @@ NewSearch3:    FileToFind := FileSearchUTF8('cmptdata.dat',GetCurrentDir); { *Co
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\Wolfson.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/WOLFSON.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/WOLFSON.EXE'), '', []);
       {$endif}
       FileName:='Wolfson0.res';
       i:=1;
@@ -1704,6 +1724,11 @@ NewSearch4:    FileToFind := FileSearchUTF8('wolfdata.dat',GetCurrentDir); { *Co
         dat[9]:=i6;    // 1-круглоскулый 0-острокилеватый 	
 	dat[10]:=0;  // зарезервировано
 
+    PathFileOld:=GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+    FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
     File_ExportDataRadojcic(dat);   	
 //    if (dat[1]>75) or (dat[1]<9) then ResultsMemo.Lines.Add(Space(14)+'Lwl   '+Userstring(476)+' 10 ... 70 m');	  
     V_L:=dat[1]*dat[2]/power(dat[4],0.66667);
@@ -1718,8 +1743,6 @@ NewSearch4:    FileToFind := FileSearchUTF8('wolfdata.dat',GetCurrentDir); { *Co
     end;
     if (V_L>9.5) or (V_L<4.25)                 then ResultsMemo.Lines.Add(Space(14)+'Ap/V^0.6667 '+Userstring(476)+' 4,25 ... 9,5');	  
 
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
     FileToFind := FileSearchUTF8('radodata.dat',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'radodata.dat' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
@@ -1728,7 +1751,7 @@ NewSearch4:    FileToFind := FileSearchUTF8('wolfdata.dat',GetCurrentDir); { *Co
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\Radojcic.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/RADOJCIC.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/RADOJCIC.EXE'), '', []);
       {$endif}
       FileName:='Radojcic.res';
       i:=1;
@@ -2423,4 +2446,4 @@ begin
          CloseFile(FFile);
 end;{TFreeResistance_Planing.File_ExportDataRadojcic}
 
-end.
+end.

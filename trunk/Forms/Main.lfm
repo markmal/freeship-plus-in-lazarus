@@ -12,13 +12,14 @@ object MainForm: TMainForm
   Font.Name = 'MS Sans Serif'
   FormStyle = fsMDIForm
   Menu = MainMenu1
+  OnActivate = FormActivate
   OnChangeBounds = FormChangeBounds
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.2'
   object StatusBar: TPanel
     Left = 0
     Height = 20
@@ -5534,4 +5535,4 @@ object MainForm: TMainForm
     left = 114
     top = 78
   end
-end
+end

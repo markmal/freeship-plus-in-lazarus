@@ -469,8 +469,7 @@ var ConvertedSpeed   : single;
     pathFile,FileToFind: string;
     PathFileOld        : string;
     FOpenDirectory     : string;
-    FInitDirectory     : string;
-    ExecFileName     : string = 'Exec/fungleib.EXE';
+    FExecDirectory     : string;
     ParamFileName     : string = 'fungdata.dat';
     ResultFileName     : string = 'fungleib.res';
     label NewSearch;
@@ -662,11 +661,19 @@ begin
 //         if (Np=0) or (Np>2) then ResultsMemo.Lines.Add(Space(14)+'Np        '+Userstring(476)+' 1 ... 2');
          Speed:=Vs[4];
          ConvertedSpeed:=Speed*0.514444;
-         CalculateResistanceFungLeib(ConvertedSpeed,LCB,Cp,Rf,Rr,w,t0,nr);
-if (Lwl>0) and (Bwl>0) and (Dp>=0) and (Np>=0) and (Ta>0)then   begin
+
+       PathFileOld:=GetCurrentDir;
+       ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+       SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+
+       CalculateResistanceFungLeib(ConvertedSpeed,LCB,Cp,Rf,Rr,w,t0,nr);
+
+  if (Lwl>0) and (Bwl>0) and (Dp>=0) and (Np>=0) and (Ta>0)then   begin
     PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
   //  Определяем каталог с программой FungLeib.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+  FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+//  Определяем текущий каталог с проектами и с данными для расчета IN.
 
 //  Определяем текущий каталог с проектами и с данными для расчета fungdata.dat
       FileToFind := FileSearchUTF8(ParamFileName,GetCurrentDir); { *Converted from FileSearch* }
@@ -678,7 +685,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>=0) and (Np>=0) and (Ta>0)then   begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\FungLeib.exe'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(ExecFileName), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/fungleib.EXE'), '', []);
       {$endif}
 
 //  Определяем есть ли файл с результатами расчета FUNGLEIB.RES. Если fungdata.dat присутствует значит расчет не закончен
@@ -692,7 +699,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>=0) and (Np>=0) and (Ta>0)then   begin
          if i<25 then goto NewSearch
 	   else
            begin
-             MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' '+ExecFileName+' '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0);
+             MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' '+FExecDirectory+'/fungleib.EXE'+' '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0);
 	     if FileExistsUTF8('fungdata.dat') { *Converted from FileExists* } then  DeleteFileUTF8('fungdata.dat'); { *Converted from DeleteFile* }
 	     exit;
 	   end;
@@ -743,7 +750,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>=0) and (Np>=0) and (Ta>0)then   begin
 
    if Ke=0 then begin
 //  Определяем каталог с программой Freeship.EXE
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+     FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
       FileToFind := FileSearchUTF8('TMPke.txt',GetCurrentDir); { *Converted from FileSearch* }
@@ -757,7 +764,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>=0) and (Np>=0) and (Ta>0)then   begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\SeaMargn.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/SeaMargn.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/SeaMargn.EXE'), '', []);
       {$endif}
       FileName:='OUT.TXT';
 //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
@@ -1826,7 +1833,8 @@ begin
 	dat[27]:=0;
 	dat[28]:=0;
 	dat[29]:=0;
-	dat[30]:=0;	
+	dat[30]:=0;
+
 
     File_ExportData(dat,dan);   	   
 
@@ -1941,4 +1949,4 @@ begin
 end;{TFreeResistance_FungLeib.File_ExportDataKe}
 
 end.
-
+

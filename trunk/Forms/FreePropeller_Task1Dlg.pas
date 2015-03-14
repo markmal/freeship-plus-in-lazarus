@@ -416,7 +416,7 @@ var I,J,N  : Integer;
     pathFile,FileToFind: string;
     PathFileOld        : string;
     FOpenDirectory     : string;
-    FInitDirectory     : string;
+    FExecDirectory     : string;
     strp               : string;  
     label NewSearch;	
 
@@ -603,9 +603,13 @@ begin
      Ntask:=1.;
 //     FSpropel(Ntask);
 
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
   //  Определяем каталог с программой CalcProp.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+  FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+//  Определяем текущий каталог с проектами и с данными для расчета IN.
+  PathFileOld:=GetCurrentDir;
+  ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+  SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
 
 //  Определяем текущий каталог с проектами и с данными для расчета TMP1.tsk
       FileToFind := FileSearchUTF8('TMP1.tsk',GetCurrentDir); { *Converted from FileSearch* }
@@ -617,7 +621,7 @@ begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\CalcProp.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/CALCPROP.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/CALCPROP.EXE'), '', []);
       {$endif}
 
       FileName:='RES1.tsk';
@@ -791,23 +795,24 @@ end;{TFreePropeller_Task1.Execute}
 
 procedure TFreePropeller_Task1.ToolButton17Click(Sender: TObject);
 var pathFile,FileToFind : string;
-    FOpenDirectory      :  string;
+    FOpenDirectory,FExecDirectory      :  string;
     L                   : boolean;
 begin
-//  Определяем каталог с программой freeship.exe
-      FOpenDirectory:=FFreeship.Preferences.InitDirectory; 
-//      ResultsMemo.Lines.Add(FOpenDirectory+'freeship.exe');
+// Определяем каталог с программой freeship.exe
+   FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+   FOpenDirectory:=FFreeship.Preferences.TempDirectory;
+// ResultsMemo.Lines.Add(FOpenDirectory+'freeship.exe');
       PathFile:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }
 // Переходим в директорию Freeshipa
-	  L:=SetCurrentDirUTF8(FOpenDirectory); { *Converted from SetCurrentDir* }
+      L:=SetCurrentDirUTF8(FOpenDirectory); { *Converted from SetCurrentDir* }
 // Запускаем программу расчета
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\dbfview.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/DBFview.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/DBFview.EXE'), '', []);
       {$endif}
 // Переходим назад в директорию открытого проекта
- 	  L:=SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }
+      L:=SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }
 end;{TFreePropeller_Task1.ToolButton17Click}
 
 procedure TFreePropeller_Task1.ToolButton7Click(Sender: TObject);
@@ -933,4 +938,4 @@ begin
 end;{TFreePropeller_Task1.File_ImportData}
 
 
-end.
+end.

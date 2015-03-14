@@ -2623,7 +2623,7 @@ var I,J : Integer;
         pRow,pPixel:pointer;
         Pixel : TRGBTriple;
         Clr : TColor;
-        I:Byte;
+        I:Byte;   R,G,B, dR,dG,dB,dA:Smallint;
     begin
        if PixData.Number>1 then QuickSort(0,PixData.Number-1);
        //FViewport.FDrawingBuffer.BeginUpdate;
@@ -2641,21 +2641,22 @@ var I,J : Integer;
        end;}
 
        // temporary draw via Canvas
-       Clr := FViewport.FDrawingBuffer.Canvas.Pixels[X,Y];
-       Pixel.rgbtBlue:=Blue(Clr);
-       Pixel.rgbtGreen:=Green(Clr);
-       Pixel.rgbtRed:=Red(Clr);
+       Clr := FViewport.FDrawingCanvas.Pixels[X,Y];
+       B:=Blue(Clr);
+       G:=Green(Clr);
+       R:=Red(Clr);
        for I:=1 to PixData.Number do
        begin
          Data:=PixData.Data[I-1];
          if Data.zvalue>FViewport.ZBuffer.FBuffer[Y][X] then
          begin
-         Pixel.rgbtRed:=Pixel.rgbtRed+(Data.Alpha*(Data.R-Pixel.rgbtRed)) shr 8;
-         Pixel.rgbtGreen:=Pixel.rgbtGreen+(Data.Alpha*(Data.G-Pixel.rgbtGreen)) shr 8;
-         Pixel.rgbtBlue:=Pixel.rgbtBlue+(Data.Alpha*(Data.B-Pixel.rgbtBlue)) shr 8;
+         dA:=Data.Alpha;
+         R := R + ((dA*(Data.R-R)) div 256);  // Use div because Negative shr 8 causes range error
+         G := G + ((dA*(Data.G-G)) div 256);
+         B := B + ((dA*(Data.B-B)) div 256);
          end;
        end;
-       FViewport.FDrawingBuffer.Canvas.Pixels[X,Y]:=RGBtoColor(Pixel.rgbtRed, Pixel.rgbtGreen, Pixel.rgbtBlue);
+       FViewport.FDrawingCanvas.Pixels[X,Y]:=RGBtoColor(R,G,B);
 
        {
        pRow := FViewport.FDrawingBuffer.RawImage.GetLineStart(Y);
@@ -2675,9 +2676,11 @@ var I,J : Integer;
        }
 
 
-       FViewport.FDrawingBuffer.EndUpdate;
+       //FViewport.FDrawingBuffer.EndUpdate;
     end; {ProcessPixel}
 begin
+   //FViewport.FDrawingBuffer.BeginUpdate; // doing that before working via Canvas causes black Canvas
+
    for I:=FFirstRow to FLastRow do
    begin
       for J:=FBuffer[I].First to FBuffer[I].Last do
@@ -2693,6 +2696,8 @@ begin
    end;
    FFirstRow:=0;
    FLastRow:=-1;
+
+   //FViewport.FDrawingBuffer.EndUpdate; // doing that after working via Canvas causes black Canvas
 end;{TFreeAlphaBuffer.Draw}
 
 {---------------------------------------------------------------------------------------------------}
@@ -16412,4 +16417,4 @@ initialization
    Randomize;
 end.
 
-
+

@@ -413,7 +413,7 @@ var I,J,ii : Integer;
     pathFile,FileToFind: string;
     PathFileOld,Str    : string;
     FOpenDirectory     : string;
-    FInitDirectory     : string;	
+    FExecDirectory     : string;
     label NewSearch;
 begin
    Units:=FFreeship.ProjectSettings.ProjectUnits;
@@ -542,7 +542,12 @@ begin
   if (Dat2>0) and (Dat3>0) and (Dat4>0) and (Dat5>0) and (Dat6>0)then 
     begin
 //  Определяем каталог с программой rvrsship.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+       FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+       //  Определяем текущий каталог с проектами и с данными для расчета IN.
+       PathFileOld:=GetCurrentDir;
+       ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+       SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
 
 //  Определяем текущий каталог с проектами и результатами расчета resist.dat
       FileToFind := FileSearchUTF8('resist.dat',GetCurrentDir); { *Converted from FileSearch* }
@@ -578,7 +583,7 @@ begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\rvrsship.exe'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/RVRSSHIP.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/RVRSSHIP.EXE'), '', []);
       {$endif}
 
       FileName:='RVRSRES.dat';
@@ -861,4 +866,4 @@ begin
 end;{TFreeHydrodyn_Rvrs.File_ImportData}
 
 
-end.
+end.

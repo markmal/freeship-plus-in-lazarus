@@ -481,7 +481,7 @@ var ConvertedSpeed   : single;
     pathFile,FileToFind: string;
     PathFileOld        : string;
     FOpenDirectory     : string;
-    FInitDirectory     : string;
+    FExecDirectory     : string;
     FileName           : string;	
     label NewSearch;	
     label NewSearch1;	
@@ -710,9 +710,13 @@ begin
 if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
     PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
   //  Определяем каталог с программой Oortmers.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+      FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
 //  Определяем текущий каталог с проектами и с данными для расчета TMP6.tsk
+      PathFileOld:=GetCurrentDir;
+      ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+      SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+
       FileToFind := FileSearchUTF8('TMP6.tsk',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'TMP6.tsk' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
@@ -723,7 +727,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\OORTMERS.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/OORTMERS.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/OORTMERS.EXE'), '', []);
       {$endif}
       Nser:=1;
                      end;
@@ -732,7 +736,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\RNTSP.exe'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/RNTSP.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/RNTSP.EXE'), '', []);
       {$endif}
       Nser:=2;
                      end;
@@ -741,7 +745,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\UBCRT.exe'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/UBCRT.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/UBCRT.EXE'), '', []);
       {$endif}
       Nser:=3;
    end;
@@ -818,7 +822,12 @@ NewSearch:    FileToFind := FileSearchUTF8('TMP6.tsk',GetCurrentDir); { *Convert
 //=====================================================================================
    if Ke=0 then begin
 //  Определяем каталог с программой Freeship.EXE
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+   FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
+//  Определяем текущий каталог с проектами и с данными для расчета IN.
+   PathFileOld:=GetCurrentDir;
+   ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+   SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
       FileToFind := FileSearchUTF8('TMPke.txt',GetCurrentDir); { *Converted from FileSearch* }
@@ -832,7 +841,7 @@ NewSearch:    FileToFind := FileSearchUTF8('TMP6.tsk',GetCurrentDir); { *Convert
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\SeaMargn.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/SeaMargn.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/SeaMargn.EXE'), '', []);
       {$endif}
       FileName:='OUT.TXT';
 //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
@@ -2056,4 +2065,4 @@ end;{TFreeResistance_Oortmer.ComboBoxClick}
 
 
 end.
-
+

@@ -52,7 +52,11 @@ uses
      ActnList,
      Printers;
 
-type TFreeHullWindow   = class(TForm)
+type
+
+{ TFreeHullWindow }
+
+ TFreeHullWindow   = class(TForm)
                            ScrollBar1: TScrollBar;
                            ScrollBar2: TScrollBar;
                            Viewport  : TFreeViewport;
@@ -123,6 +127,7 @@ type TFreeHullWindow   = class(TForm)
                            Tolerance1: TMenuItem;
                            BackgroundVisible: TAction;
                            Visible1: TMenuItem;
+                           procedure FormDestroy(Sender: TObject);
                            procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                            procedure ViewportRedraw(Sender: TObject);
                            procedure FormCreate(Sender: TObject);
@@ -274,6 +279,10 @@ begin
    end;
 end;{TFreeHullWindow.ViewportRequestExtents}
 
+procedure TFreeHullWindow.FormDestroy(Sender: TObject);
+begin
+end;
+
 procedure TFreeHullWindow.ViewportRedraw(Sender: TObject);
 begin
    if FreeShip<>nil then FreeShip.DrawToViewport(Viewport);
@@ -287,8 +296,15 @@ begin
 end;{TFreeHullWindow.FormCreate}
 
 procedure TFreeHullWindow.FormClose(Sender: TObject; var Action: TCloseAction);
+var I:integer;
 begin
    // Disconnect from FreeShip component;
+   {$IFDEF FPC}
+   if Assigned(Owner) then
+     for I:=0 to TMainForm(Owner).MDIChildCount-1 do
+       if TMainForm(Owner).GetMDIChildren(I)=Self then
+         TMainForm(Owner).AbandonMDIChildren(I);
+   {$ENDIF}
    Freeship:=nil;
    Action:=caFree;
 end;{TFreeHullWindow.FormClose}
@@ -621,4 +637,4 @@ begin
    Viewport.BackgroundImage.Visible:=not Viewport.BackgroundImage.Visible;
 end;{TFreeHullWindow.BackgroundVisibleExecute}
 
-end.
+end.

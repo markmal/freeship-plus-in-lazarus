@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils,
   FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtDlgs, ExtCtrls;
+  ExtDlgs, ExtCtrls, ComCtrls;
 
 type
 
@@ -19,6 +19,7 @@ type
     function GetPreviewImage: TImage;
   public
     constructor Create(TheOwner: TComponent); override;
+    function GetPlaces:TListItems;
     property PreviewImage: TImage read GetPreviewImage;
     property OnPreview: TNotifyEvent read FOnPreview write FOnPreview;
   end;
@@ -48,6 +49,14 @@ begin
   inherited Create(TheOwner);
   Filter := 'FREE!Ship model|*.ftm;*.fbm|Images|*.jpg;*.png';
 end;
+
+
+function TFreeOpenDialog.GetPlaces:TListItems;
+var e,gbe:TComponentEnumerator; gbi,c: TComponent;
+begin
+  result:=nil;
+end;
+
 
 end.
 

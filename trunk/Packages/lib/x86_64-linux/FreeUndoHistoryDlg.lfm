@@ -12,7 +12,7 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
   Font.Name = 'MS Sans Serif'
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.2'
   object Panel: TPanel
     Left = 0
     Height = 22
@@ -157,4 +157,4 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
     left = 116
     top = 4
   end
-end
+end

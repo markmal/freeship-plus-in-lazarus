@@ -475,6 +475,7 @@ var ConvertedSpeed   : single;
     PathFileOld        : string;
     FOpenDirectory     : string;
     FInitDirectory     : string;
+    FExecDirectory     : string;
     FileName           : string;	
     label NewSearch;	
     label NewSearch1;	
@@ -677,34 +678,38 @@ Lwl_L       1.000–1.055 0.945–1.000 1.000–1.070
 DP_TA       0.430–0.840 0.655–1.050 0.495–0.860	  
 }	
 //      ResultsMemo.Visible:=True;  
-         Speed:=Vs[4];
-         ConvertedSpeed:=Speed*1852/3600;
-         CalculateResistanceHollen(ConvertedSpeed,LCB,Cp,Rf,Rr,w,t0,nr);
+     Speed:=Vs[4];
+     ConvertedSpeed:=Speed*1852/3600;
+
+     PathFileOld:=GetCurrentDir;
+     ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+     SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+
+     CalculateResistanceHollen(ConvertedSpeed,LCB,Cp,Rf,Rr,w,t0,nr);
 
 
 
-if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-  //  Определяем каталог с программой hollenbh.exe
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+  if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
 
 //  Определяем текущий каталог с проектами и с данными для расчета TMP5.tsk
-      FileToFind := FileSearchUTF8('TMP5.tsk',GetCurrentDir); { *Converted from FileSearch* }
+    FileToFind := FileSearchUTF8('TMP5.tsk',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'TMP5.tsk' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
 		exit;
 	  end;		  
 
+    FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\hollenbh.exe'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/HOLLENBH.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/HOLLENBH.EXE'), '', []);
       {$endif}
 
       FileName:='hollenba.res';
 //  Определяем есть ли файл с результатами расчета HOLLENBA.res. Если TMP5.tsk присутствует значит расчет не закончен
       i:=1;
-NewSearch:    FileToFind := FileSearchUTF8('TMP5.tsk',GetCurrentDir); { *Converted from FileSearch* }
+   NewSearch:    FileToFind := FileSearchUTF8('TMP5.tsk',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind='TMP5.tsk' then begin
 	     sleep(300);
 		 i:=i+1;
@@ -750,8 +755,12 @@ NewSearch:    FileToFind := FileSearchUTF8('TMP5.tsk',GetCurrentDir); { *Convert
    Rtotal:=res[7,9];
 //==========================================================================
    if Ke=0 then begin
-//  Определяем каталог с программой Freeship.EXE
-      FInitDirectory:=FFreeship.Preferences.InitDirectory; 	
+
+     ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+     SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+      //  Определяем каталог с программой Freeship.EXE
+     FInitDirectory:=FFreeship.Preferences.InitDirectory;
+     FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
 //  Определяем текущий каталог с проектами и с данными для расчета IN.
       FileToFind := FileSearchUTF8('TMPke.txt',GetCurrentDir); { *Converted from FileSearch* }
@@ -765,7 +774,7 @@ NewSearch:    FileToFind := FileSearchUTF8('TMP5.tsk',GetCurrentDir); { *Convert
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec\SeaMargn.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/SeaMargn.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/SeaMargn.EXE'), '', []);
       {$endif}
       FileName:='OUT.TXT';
 //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
@@ -1967,4 +1976,4 @@ begin
 end;{TFreeResistance_Hollen.File_ExportDataKe}
 
 end.
-
+

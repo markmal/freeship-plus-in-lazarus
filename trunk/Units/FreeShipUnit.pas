@@ -56,6 +56,7 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
         Dialogs,
         Classes,
      ExtCtrls,
+     ComCtrls,
      ColorIniFile,
      FreeTypes,
         FreeVersionUnit,
@@ -651,10 +652,13 @@ type
                                     FHydrostaticsFontColor     : TColor;
                                     FZebraStripeColor          : TColor;
 
-                                    FGlobalConfigDirectory     : string;   // Default directory where FreeShip.ini file is stored
-                                    FGlobalAppDataDirectory    : string;   // Default directory where FreeShip data and resource files stored
-                                    FUserConfigDirectory       : string;   // Default directory where users FreeShip.ini file is stored
-                                    FUserAppDataDirectory      : string;   // Default directory where users FreeShip data and resource files stored
+                                    //FGlobalConfigDirectory     : string;   // Default directory where FreeShip.ini file is stored
+                                    //FGlobalAppDataDirectory    : string;   // Default directory where FreeShip data and resource files stored
+                                    //FUserConfigDirectory       : string;   // Default directory where users FreeShip.ini file is stored
+                                    //FUserAppDataDirectory      : string;   // Default directory where users FreeShip data and resource files stored
+                                    FExecDirectory             : string;   // directory where users FreeShip 3-rd party executables located
+                                    FManualsDirectory          : string;   // Manuals directory
+                                    FTempDirectory             : string;   // 3-rd party executables write/read temp files
 
                                     FInitDirectory             : string;   // Default directory where freeship.exe started
                                     FOpenDirectory             : string;   // Default directory to open existing files
@@ -710,6 +714,7 @@ type
                                     property EdgeColor               : TColor read FEdgecolor write FEdgeColor;
                                     property ExportDirectory         : string read FGetExportDirectory write FExportDirectory;
                                     property CreasePointColor        : TColor read FCreasePointColor write FCreasePointColor;
+                                    property Language                : string read FLanguage write FLanguage;
                                     property LanguageFile            : string read FLanguageFile write FLanguageFile;
                                     property LayerColor              : TColor Read FLayerColor Write FLayerColor;
                                     property LeakPointColor          : TColor read FLeakPointColor write FLeakPointColor;
@@ -719,6 +724,10 @@ type
                                     property InitDirectory           : string read FGetInitDirectory write FInitDirectory;									
                                     property OpenDirectory           : string read FGetOpenDirectory write FOpenDirectory;
                                     property SaveDirectory           : string read FGetSaveDirectory write FSaveDirectory;
+                                    property LanguagesDirectory      : string read FLanguagesDirectory write FLanguagesDirectory;
+                                    property ExecDirectory           : string read FExecDirectory write FExecDirectory;
+                                    property ManualsDirectory        : string read FManualsDirectory write FManualsDirectory;
+                                    property TempDirectory           : string read FTempDirectory write FTempDirectory;
                                     property StationColor            : TColor read FStationColor write FStationColor;
                                     property UnderWaterColor         : TColor read FUnderWaterColor write FUnderWaterColor;
                                     property RegularPointColor       : TColor read FRegularPointColor write FRegularPointColor;
@@ -7648,7 +7657,8 @@ exit1:  Dialog.ResultsMemo.Lines.Add(' ');
         end;
       end;	
     end;
-      if FileExistsUTF8('OUTA.') { *Converted from FileExists* } then  DeleteFileUTF8('OUTA.'); { *Converted from DeleteFile* }
+      if FileExistsUTF8('OUTA.') { *Converted from FileExists* }
+         then  DeleteFileUTF8('OUTA.'); { *Converted from DeleteFile* }
       Dialog.Destroy;
    finally
       if UndoObject<>nil then UndoObject.Restore;
@@ -7659,32 +7669,38 @@ end;{TFreeEdit.File_Export_AddMass}
 procedure TFreeEdit.File_Execute_AddMass; 
 var 
     FileToFind       : string;
-    FInitDirectory   : string;
+    FExecDirectory,FTempDirectory, OldDir   : string;
   begin
+    OldDir := GetCurrentDirUTF8;
+    FTempDirectory := Owner.Preferences.TempDirectory;
+    SetCurrentDirUTF8(FTempDirectory);
     DeleteFileUTF8('OUTA.'); { *Converted from DeleteFile* }
 //  Определяем каталог с программой Add_Mass.EXE
-      FInitDirectory:=Owner.Preferences.InitDirectory; 	
+    FExecDirectory:=Owner.Preferences.ExecDirectory;
 
 //  Определяем текущий каталог с проектами и с данными для расчета INA.
-      FileToFind := FileSearchUTF8('INA.',GetCurrentDir); { *Converted from FileSearch* }
+      FileToFind := FileSearchUTF8('INA.',FTempDirectory); { *Converted from FileSearch* }
 	  if FileToFind<>'INA.' then begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
-		exit;
+  	    exit;
 	  end;		  
 
 // Запускаем программу расчета
-      FileToFind := FileSearchUTF8('Exec/Add_Mass.EXE',FInitDirectory); { *Converted from FileSearch* }
-	  if FileToFind<>FInitDirectory+'Exec/Add_Mass.EXE' then begin
-          MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' Add_Mass.EXE '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0); 
-		exit;
+      FileToFind := FileSearchUTF8('Add_Mass.EXE',FExecDirectory); { *Converted from FileSearch* }
+      if FileToFind<>FExecDirectory+'/Add_Mass.EXE' then begin
+          MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)
+          +' Add_Mass.EXE '+#13#10#13#10+Userstring(1140)+#13#10#13#10
+          +Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0);
+  	  exit;
 	  end;	
       ShowMessage('        HydroNShIp_AddedMass v1.03'#13#10#13#10+'                      Calculating...'#13#10#13#10+'Copyright (c) 2008-2009, Timoshenko V.F.');
       {$ifdef Windows}
       WinExec(PChar(FInitDirectory+'Exec/Add_Mass.EXE '),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/Add_Mass'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/Add_Mass.EXE'), '', []);
       {$endif}
-
+   // may be it needs to wait the out file and to rename it to something meningful?
+   SetCurrentDirUTF8(OldDir);
 end;{TFreeEdit.File_Output_AddMass}
 
 
@@ -9714,15 +9730,14 @@ end;
 procedure TFreeEdit.File_Load;
 var Answer     : word;
     OpenDialog : TFreeOpenDialog; //TOpenDialog;
+    Places:TListItems;
 begin
    OpenDialog:=TFreeOpenDialog.Create(Owner);
-//////   определяем директорию с freeship.exe
-   Owner.Preferences.InitDirectory:=ExtractFilePath('freeship.exe');   
-/////   
    OpenDialog.InitialDir:=Owner.Preferences.OpenDirectory;
    OpenDialog.Filter:='FREE!ship files (*.fbm *.ftm)|*.fbm;*.ftm';
    Opendialog.Options:=[ofHideReadOnly];
    Opendialog.OnPreview := OnFilePreview;
+   Places:=Opendialog.GetPlaces;
    if OpenDialog.Execute then
    begin
       if Owner.FileChanged then
@@ -9868,10 +9883,15 @@ begin
 end;
 
 procedure TFreeEdit.File_SaveAs;
-var SaveDialog : TSaveDialog; I:integer;
+var SaveDialog : TSaveDialog; I:integer; Dir:String;
 begin
+  Dir := Owner.Preferences.SaveDirectory;
+  if not DirectoryExistsUTF8(Dir)
+     and not ForceDirectoriesUTF8(Dir) then
+     MessageDlg(tl8('Cannot create directory: ')+Dir,mtWarning,[mbOk],0);
+
    SaveDialog:=TSaveDialog.Create(Owner);
-   SaveDialog.InitialDir:=Owner.Preferences.SaveDirectory;
+   SaveDialog.InitialDir:=Dir;
    Savedialog.FileName:=ExtractFilename(Owner.Filename);
    SaveDialog.Filter:='FREE!ship text files (*.ftm)|*.ftm|FREE!ship binary files (*.fbm)|*.fbm';
    Savedialog.Options:=[ofOverwritePrompt,ofHideReadOnly];
@@ -13673,28 +13693,32 @@ function TFreePreferences.FGetExportDirectory:string;
 begin
   if DirectoryExistsUTF8(FExportDirectory) { *Converted from DirectoryExists* }
     then result:=FExportDirectory
-    else Result:=ExtractFilePath(Application.ExeName);
+    //else Result:=ExtractFilePath(Application.ExeName);
+    else Result:=self.getUserAppDataDirectory+'/Export';
 end;{TFreePreferences.FGetExportDirectory}
 
 function TFreePreferences.FGetImportDirectory:string;
 begin
   if DirectoryExistsUTF8(FImportDirectory) { *Converted from DirectoryExists* }
     then result:=FImportDirectory
-    else Result:=ExtractFilePath(Application.ExeName);
+    //else Result:=ExtractFilePath(Application.ExeName);
+    else Result:=self.getUserAppDataDirectory+'/Import';
 end;{TFreePreferences.FGetImportDirectory}
 
 function TFreePreferences.FGetOpenDirectory:string;
 begin
   if DirectoryExistsUTF8(FOpenDirectory) { *Converted from DirectoryExists* }
     then result:=FOpenDirectory
-    else Result:=ExtractFilePath(Application.ExeName);
+    //else Result:=ExtractFilePath(Application.ExeName);
+    else Result:=self.getUserAppDataDirectory+'/Ships';
 end;{TFreePreferences.FGetOpenDirectory}
 
 function TFreePreferences.FGetSaveDirectory:string;
 begin
   if DirectoryExistsUTF8(FSaveDirectory) { *Converted from DirectoryExists* }
     then result:=FSaveDirectory
-    else Result:=ExtractFilePath(Application.ExeName);
+    //else Result:=ExtractFilePath(Application.ExeName);
+    else Result:=self.getUserAppDataDirectory+'/Ships';
 end;{TFreePreferences.FGetSaveDirectory}
 
 function TFreePreferences.FGetInitDirectory:string;
@@ -13720,7 +13744,11 @@ begin
    FSaveDirectory:='';
    FImportDirectory:='';
    FExportDirectory:='';
-   FLanguageFile:='English';
+   FExecDirectory:='';
+   FManualsDirectory:='';
+   FTempDirectory:='';
+   FLanguage:='English';
+   FLanguageFile:='';
    FMaxUndoMemory:=20;// Max 20Mb undomemory
 end;{TFreePreferences.Clear}
 
@@ -13815,6 +13843,16 @@ begin
       ZebraStripeColor:=Dialog.Panel26.Color;
       ViewportColor:=Dialog.Panel4.Color; // Set viewportcolor last, because it forces a repaint
       Lang:=Dialog.Combobox1.Text;
+
+      FLanguagesDirectory:=Dialog.EditLanguagesDir.Text;
+      FManualsDirectory:=Dialog.EditManualsDir.Text;
+      FExecDirectory:=Dialog.EditExecDir.Text;
+      FTempDirectory:=Dialog.EditTempDir.Text;
+      FOpenDirectory:=Dialog.EditOpenDir.Text;
+      FSaveDirectory:=Dialog.EditSaveDir.Text;
+      FImportDirectory:=Dialog.EditImportDir.Text;
+      FExportDirectory:=Dialog.EditExportDir.Text;
+
       if Uppercase(Lang)<>Uppercase(FLanguage) then
       begin
          if FileExistsUTF8(FLanguagesDirectory+'/'+Lang+'.ini') { *Converted from FileExists* } then
@@ -13839,6 +13877,7 @@ begin
          //else FLanguage:=Lang;
       end;
       FMaxUndoMemory:=Dialog.FreeNumInput1.AsInteger;
+
       if assigned(Owner.FOnFileChanged) then Owner.FOnFileChanged(Owner);
       if assigned(Owner.FOnUpdateUndoData) then Owner.FOnUpdateUndoData(Owner);
       if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(Owner);
@@ -14026,7 +14065,10 @@ begin
   FSaveDirectory := params.ReadString('Directories','SaveDirectory',FSaveDirectory);
   FImportDirectory := params.ReadString('Directories','ImportDirectory',FImportDirectory);
   FExportDirectory := params.ReadString('Directories','ExportDirectory',FExportDirectory);
-  FLanguagesDirectory := params.ReadString('Directories','LanguageDirectory',FLanguagesDirectory);
+  FLanguagesDirectory := params.ReadString('Directories','LanguagesDirectory',FLanguagesDirectory);
+  FExecDirectory := params.ReadString('Directories','ExecDirectory',FExecDirectory);
+  FManualsDirectory := params.ReadString('Directories','ManualsDirectory',FManualsDirectory);
+  FTempDirectory := params.ReadString('Directories','TempDirectory',FTempDirectory);
 
   RecentFileNames := TStringList.Create;
   params.ReadSectionValues('RecentFiles',RecentFileNames);
@@ -14090,6 +14132,9 @@ begin
   FImportDirectory := self.getUserAppDataDirectory+'/Import';
   FExportDirectory := self.getUserAppDataDirectory+'/Export';
   FLanguagesDirectory := self.getGlobalAppDataDirectory+'/Languages';
+  FExecDirectory := self.getGlobalAppDataDirectory+'/Exec';
+  FManualsDirectory := self.getGlobalAppDataDirectory+'/Manuals';
+  FTempDirectory := self.getUserAppDataDirectory+'/Temp';
 end;
 
 
@@ -14238,7 +14283,10 @@ begin
   params.WriteString('Directories','SaveDirectory',FSaveDirectory);
   params.WriteString('Directories','ImportDirectory',FImportDirectory);
   params.WriteString('Directories','ExportDirectory',FExportDirectory);
-  params.WriteString('Directories','LanguageDirectory',FLanguagesDirectory);
+  params.WriteString('Directories','LanguagesDirectory',FLanguagesDirectory);
+  params.WriteString('Directories','ExecDirectory',FExecDirectory);
+  params.WriteString('Directories','ManualsDirectory',FManualsDirectory);
+  params.WriteString('Directories','TempDirectory',FTempDirectory);
 
   for I:=0 to Owner.Edit.FRecentFiles.Count-1 do
   begin
@@ -15376,6 +15424,8 @@ function TFreeShip.FGetPreview:TJPEGImage;
    End;//SnapShot
  }
 var Tmp,thumbNail:TBitmap;
+  Frm:TCustomForm;
+  I, L,T,W,H:integer;
 begin
    {
    Tmp:=TBitmap.Create;
@@ -15386,21 +15436,30 @@ begin
             Application.MainForm.Width,
             Application.MainForm.Height,Tmp);
    }
-   Application.ProcessMessages;
-   Application.MainForm.Repaint;
-   Tmp := Application.MainForm.GetFormImage;
+  thumbNail := TBitmap.Create;
+  thumbNail.PixelFormat:=pf24bit;
+  thumbNail.setSize(400,300);
+  Application.ProcessMessages;
 
-   thumbNail := TBitmap.Create;
-   thumbNail.PixelFormat:=pf24bit;
-   thumbNail.setSize(400,300);
-   thumbNail.Canvas.StretchDraw(Rect(0,0,400,300),Tmp);
-
-   Result:=TJPEGImage.Create;
-   Result.Assign(thumbNail);
-   Result.CompressionQuality:=90;
-   Result.SaveToFile('saved_screenshot.jpg');
-   Tmp.Destroy;
-   thumbNail.Destroy;
+  for I:=0 to Application.MainForm.MDIChildCount-1 do
+    begin
+    Frm:=Application.MainForm.GetMDIChildren(I);
+    Frm.Repaint;
+    Tmp := Frm.GetFormImage;
+    case I of
+      0: begin L:=0; T:=0; end;
+      1: begin L:=200; T:=0; end;
+      2: begin L:=0; T:=150; end;
+      3: begin L:=200; T:=150; end;
+    end;
+    thumbNail.Canvas.StretchDraw(Rect(L,T,L+200,T+150),Tmp);
+    end;
+  Result:=TJPEGImage.Create;
+  Result.Assign(thumbNail);
+  Result.CompressionQuality:=90;
+  Result.SaveToFile('saved_screenshot.jpg');
+  Tmp.Destroy;
+  thumbNail.Destroy;
 end;{TFreeShip.FGetPreview}
 
 procedure TFreeShip.AddViewport(Viewport:TFreeViewport);
@@ -17242,4 +17301,4 @@ end;{Register}
 
 
 end.
-
+

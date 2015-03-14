@@ -372,7 +372,7 @@ type TFreeResistance_OST   = class(TForm)
                                  procedure FSetDat18_5(val:single);
 
                                  public
-                                    PathFile,PathFileOld,FileToFind,FileName : string;
+                                    PathFile,PathFileOld,FileToFind,FileName, FTempDirectory : string;
 									L           : Boolean;
 									Capp_       : Single;
 									Nwa         : integer;
@@ -801,8 +801,10 @@ begin
     Speed:=Vs[10];
     dVs:=(Vs[8]-Vs[1])/7;
 
-    PathFileOld:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
-    Assignfile(FFile2,PathFileOld+'Resistp.dat');		 
+    FTempDirectory:=FFreeship.Preferences.TempDirectory;
+    SetCurrentDir(FTempDirectory);
+
+    Assignfile(FFile2,FTempDirectory+'/Resistp.dat');
     {$I-}Rewrite(FFile2);{$I+}
  
     for j:=1 to 10 do Vs[j]:=Vs[1]+dVs*(J-1);
@@ -815,9 +817,9 @@ begin
 
     NN:=2;
 
-    if FileExistsUTF8(PathFileOld+'ostres.tmp') { *Converted from FileExists* } then
+    if FileExistsUTF8(FTempDirectory+'/ostres.tmp') { *Converted from FileExists* } then
     begin
-      Assignfile(FFile,PathFileOld+'ostres.tmp');
+      Assignfile(FFile,FTempDirectory+'/ostres.tmp');
       {$I-}Reset(FFile);{$I+}
       Read(FFile,Nser);
       if (Nser=1) or (Nser=0) then begin
@@ -866,20 +868,18 @@ begin
     end
     else
     begin
-     ResultsMemo.Lines.Add('Result file '+PathFileOld+'ostres.tmp'+' was not created');
+     ResultsMemo.Lines.Add('Result file '+FTempDirectory+'/ostres.tmp'+' was not created');
      exit;
     end;
 
-// Удаление временных файлов
-	  if FileExistsUTF8(PathFileOld+'ostres.tmp') { *Converted from FileExists* } then  begin
-	      DeleteFileUTF8(PChar(PathFile+'Resist.dat')); { *Converted from DeleteFile* }
- 		  DeleteFileUTF8(PChar(PathFile+'Resistp.dat')); { *Converted from DeleteFile* }
-		  L:=RenameFileUTF8(PChar(PathFileOld+'/Resist.dat'),PChar(PathFile+'/Resist.dat'));
-		  L:=RenameFileUTF8(PChar(PathFileOld+'/Resistp.dat'),PChar(PathFile+'/Resistp.dat'));
-	      DeleteFileUTF8(PChar(PathFileOld+'ostres.tmp')); { *Converted from DeleteFile* }
- 		  DeleteFileUTF8(PChar(PathFileOld+'Resist.dat')); { *Converted from DeleteFile* }
-	  end;
-	  
+    // Удаление временных файлов
+    if FileExistsUTF8(FTempDirectory+'/ostres.tmp') { *Converted from FileExists* }
+      then DeleteFileUTF8(FTempDirectory+'/ostres.tmp'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(FTempDirectory+'/Resist.dat')
+      then DeleteFileUTF8(FTempDirectory+'/Resist.dat'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(FTempDirectory+'/Resistp.dat')
+      then DeleteFileUTF8(FTempDirectory+'/Resistp.dat'); { *Converted from DeleteFile* }
+
 
      if (ke=0) and (res[10,17-NN]>0) then ke:=res[10,21-NN]/res[10,17-NN];
 
@@ -1171,14 +1171,14 @@ begin
            nr:=1;
          end;
 		 
-         Assignfile(FFile2,PathFileOld+'Resistp.dat');		 
+         Assignfile(FFile2,FTempDirectory+'/Resistp.dat');
          {$I-}Rewrite(FFile2);{$I+}
          Writeln(FFile2,'#     Nser      Np       Wt        t       Eta_R     Dp');
          Writeln(FFile2,Nser:10:0,Np:10:0,w:10:4,t0:10:4,nr:10:4,Dp:10:4);
          Writeln(FFile2,'#      Vs       Rt        Rte       Pe       Pee');
          for i:=1 to 10 do Writeln(FFile2,Res_[i,1]:10:3,Res_[i,2]:11:2,Res_[i,3]:11:2,Res_[i,4]:12:1,Res_[i,5]:12:1);
          CloseFile(FFile2);
-         L:=RenameFileUTF8(PChar(PathFileOld+'Resistp.dat'),PChar(PathFile+'/Resistp.dat'));
+         ///L:=RenameFileUTF8(PChar(PathFileOld+'Resistp.dat'),PChar(PathFile+'/Resistp.dat'));
 //	     DeleteFile(PChar(PathFileOld+'Resistp.dat'));        	   		  
 
       if flag=1 then ResultsMemo.Lines.Add(Space(10)+'Tb        =  '+FloatToStrF(Tb,ffFixed,6,3)+' '+Userstring(324))
@@ -1828,10 +1828,12 @@ begin
 
 
    if (FrVmin<0.7) and (Nser=11) then begin
-       exit;
+     ResultsMemo.Lines.Add('(FrVmin<0.7) and (Nser=11). Exit');
+     exit;
    end;
    if (FrVmin<0.5) and ((Nser=5) or ((Nser>=8) and (Nser<=14))) then begin
-       exit;
+     ResultsMemo.Lines.Add('(FrVmin<0.5) and ((Nser=5) or ((Nser>=8) and (Nser<=14))). Exit');
+     exit;
    end;
 	
    if ke=0 then begin
@@ -1889,14 +1891,14 @@ begin
 
 
    PathFile:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }   // текущий каталог проекта
-   FileToFind:=FFreeship.Preferences.InitDirectory; // каталог Freeshipa
+   FileToFind:=FFreeship.Preferences.ExecDirectory; // каталог Freeshipa
    PathFileOld:=FileToFind;   // задаем переменной каталог Freeshipa
-   L:=SetCurrentDirUTF8(FileToFind); { *Converted from SetCurrentDir* } // переходим в каталог Freeshipa
+   L:=SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory); { *Converted from SetCurrentDir* } // переходим в каталог Freeshipa
    File_ExportData(dat,dan);   	 // записываем файл данных в каталог Freeshipa
    {$ifdef Windows}
    WinExec(PChar(FileToFind+'Exec/hship.exe'),0); // запускаем расчет
    {$else}
-   SysUtils.ExecuteProcess(UTF8ToSys('Exec/hship.EXE'), '', []);
+   SysUtils.ExecuteProcess(UTF8ToSys(FFreeship.Preferences.ExecDirectory+'/hship.EXE'), '', []);
    {$endif}
 
    L:=SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }   // возвращаемся в каталог проекта
@@ -1909,10 +1911,13 @@ end;{TFreeResistance_OST.CalculateResistanceOST}
 procedure TFreeResistance_OST.File_ExportData(dat,dan:array of single);
 var I          : integer;
     ffile      : textfile;
+    fn: string;
 begin
-     if FileExistsUTF8(PathFileOld+'ostdat.tmp') { *Converted from FileExists* } then  DeleteFileUTF8(PChar(PathFile+'\ostdat.tmp')); { *Converted from DeleteFile* }
+   fn := FFreeship.Preferences.TempDirectory+'/ostdat.tmp';
+     if FileExistsUTF8(fn) { *Converted from FileExists* }
+        then  DeleteFileUTF8(fn); { *Converted from DeleteFile* }
 
-      Assignfile(FFile,'ostdat.tmp');
+      Assignfile(FFile,fn);
       {$I-}Rewrite(FFile);{$I+}
          for I:=0 to 29 do
          begin
@@ -2496,4 +2501,4 @@ end;{TFreeResistance_OST.ComboBoxClick}
 
 
 end.
-
+

@@ -84,13 +84,14 @@ xdg-desktop-menu install --novendor --mode user Engineering.directory freeship.d
 xdg-desktop-menu forceupdate
 
 ## manually move Engineering menu item from bottom to above Games (for simplicity). I do not know a standard way to do it.
+CURDIR=$(pwd)
 cd ~/.config/menus
 MENUFILE=$(grep -lr '^\s*<Menuname>Games</Menuname>$' * )
 if [ ! -z $MENUFILE ]; then
   sed -i '/<Menuname>Engineering<\/Menuname>/d' ${MENUFILE}
   sed -i 's/^\s*<Menuname>Games<\/Menuname>/\t\t<Menuname>Engineering<\/Menuname>\n&/' ${MENUFILE}
 fi
-cd -
+cd $CURDIR
 ##
 
 echo "  Install MIME"

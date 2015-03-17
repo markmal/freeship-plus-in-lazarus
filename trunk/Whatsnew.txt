@@ -1,6 +1,11 @@
 Test only Version 3.5.2.19 in Lazarus
 Released: Build date	2015/03/14 17:12:00
 New features and fixes:
+- New: Installation and uninstallation scripts for user's home and system-wide installations. Menu and MIME supported.
+
+Test only Version 3.5.2.19 in Lazarus
+Released: Build date	2015/03/14 17:12:00
+New features and fixes:
 - New: Major directories added to Properties dialog to support new file structure
 - Bug fix: Tiling after closing of a window caused error.
 - Bug fix: Preview picture is combined now from four view images. Previously main window was captured.

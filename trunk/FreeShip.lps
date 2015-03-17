@@ -3,12 +3,13 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="108">
+    <Units Count="103">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="132"/>
-        <CursorPos X="63" Y="152"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="134"/>
+        <CursorPos X="27" Y="149"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -30,8 +31,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="602"/>
-        <CursorPos X="96" Y="610"/>
+        <TopLine Value="1124"/>
+        <CursorPos X="30" Y="1148"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -44,11 +45,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FreeHullformWindow"/>
-        <EditorIndex Value="19"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="291"/>
         <CursorPos Y="306"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -538,13 +538,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FreeCrosscurvesDlg"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="623"/>
-        <CursorPos X="83" Y="644"/>
+        <CursorPos X="65" Y="647"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit46>
       <Unit47>
@@ -591,8 +588,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="FreeShipUnit"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="15443"/>
-        <CursorPos Y="15457"/>
+        <TopLine Value="9730"/>
+        <CursorPos X="4" Y="9735"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -717,7 +714,7 @@
         <Filename Value="Units/colorfactory.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ColorFactory"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="234"/>
         <CursorPos Y="256"/>
         <UsageCount Value="202"/>
@@ -774,14 +771,14 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="11"/>
         <CursorPos X="34" Y="25"/>
-        <UsageCount Value="167"/>
+        <UsageCount Value="163"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit69>
       <Unit70>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/include/control.inc"/>
         <TopLine Value="3634"/>
         <CursorPos Y="3645"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="158"/>
       </Unit70>
       <Unit71>
         <Filename Value="Forms/unit2.pas"/>
@@ -789,7 +786,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="2" Y="6"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit71>
       <Unit72>
@@ -799,22 +796,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="8" Y="7"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit72>
       <Unit73>
         <Filename Value="Forms/FreeResistance_RBHSDLG.pas"/>
         <HasResources Value="True"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="34"/>
       </Unit73>
       <Unit74>
         <Filename Value="Units/FreeGeometry.pas"/>
         <UnitName Value="FreeGeometry"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2640"/>
         <CursorPos X="23" Y="2656"/>
-        <UsageCount Value="105"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="101"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit74>
       <Unit75>
@@ -822,372 +818,328 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1001"/>
         <CursorPos X="17" Y="1013"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="2"/>
       </Unit75>
       <Unit76>
         <Filename Value="/usr/share/lazarus/1.4RC1/lcl/graphics.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2666"/>
         <CursorPos X="30" Y="2673"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="39"/>
       </Unit76>
       <Unit77>
-        <Filename Value="/usr/share/lazarus/1.4RC1/components/lazsvnpkg/svnstatusform.pas"/>
-        <ComponentName Value="SVNStatusFrm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="94"/>
-        <CursorPos X="23" Y="110"/>
-        <UsageCount Value="2"/>
-      </Unit77>
-      <Unit78>
-        <Filename Value="/usr/share/lazarus/1.4RC1/components/lazsvnpkg/svnclasses.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="454"/>
-        <CursorPos X="47" Y="479"/>
-        <UsageCount Value="2"/>
-      </Unit78>
-      <Unit79>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/generic.inc"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="832"/>
         <CursorPos Y="847"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-      </Unit79>
-      <Unit80>
-        <Filename Value="Forms/FreeCrosscurvesDlg.1.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="492"/>
-        <CursorPos X="36" Y="518"/>
-        <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit80>
-      <Unit81>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/classes/reader.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1241"/>
-        <CursorPos X="31" Y="1255"/>
-        <UsageCount Value="2"/>
-      </Unit81>
-      <Unit82>
+        <UsageCount Value="27"/>
+      </Unit77>
+      <Unit78>
         <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-base/src/inifiles.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="413"/>
         <CursorPos X="19" Y="442"/>
-        <UsageCount Value="12"/>
-      </Unit82>
-      <Unit83>
+        <UsageCount Value="8"/>
+      </Unit78>
+      <Unit79>
         <Filename Value="/usr/share/lazarus/1.4RC1/lcl/forms.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1734"/>
         <CursorPos X="3" Y="1754"/>
-        <UsageCount Value="9"/>
-      </Unit83>
-      <Unit84>
+        <UsageCount Value="5"/>
+      </Unit79>
+      <Unit80>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/sysutils/finah.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="10" Y="25"/>
-        <UsageCount Value="17"/>
-      </Unit84>
-      <Unit85>
+        <UsageCount Value="13"/>
+      </Unit80>
+      <Unit81>
         <Filename Value="/usr/share/lazarus/1.4RC1/components/lazutils/fileutil.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="250"/>
         <CursorPos X="30" Y="267"/>
-        <UsageCount Value="12"/>
-      </Unit85>
-      <Unit86>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-base/src/custapp.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="57"/>
-        <CursorPos X="14" Y="74"/>
-        <UsageCount Value="3"/>
-      </Unit86>
-      <Unit87>
+        <UsageCount Value="8"/>
+      </Unit81>
+      <Unit82>
         <Filename Value="/usr/share/lazarus/1.4RC1/lcl/extdlgs.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="33"/>
         <CursorPos X="3" Y="51"/>
-        <UsageCount Value="9"/>
-      </Unit87>
-      <Unit88>
+        <UsageCount Value="5"/>
+      </Unit82>
+      <Unit83>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/classes/classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1671"/>
         <CursorPos X="15" Y="1688"/>
-        <UsageCount Value="9"/>
-      </Unit88>
-      <Unit89>
+        <UsageCount Value="5"/>
+      </Unit83>
+      <Unit84>
         <Filename Value="/usr/share/lazarus/1.4RC2/components/lazutils/fileutil.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="250"/>
         <CursorPos X="30" Y="267"/>
-        <UsageCount Value="30"/>
-      </Unit89>
-      <Unit90>
+        <UsageCount Value="26"/>
+      </Unit84>
+      <Unit85>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/sysutils/sysstr.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1023"/>
         <CursorPos X="3" Y="1030"/>
-        <UsageCount Value="25"/>
-      </Unit90>
-      <Unit91>
+        <UsageCount Value="21"/>
+      </Unit85>
+      <Unit86>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/sysutils/sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="168"/>
         <CursorPos X="10" Y="182"/>
-        <UsageCount Value="25"/>
-      </Unit91>
-      <Unit92>
+        <UsageCount Value="21"/>
+      </Unit86>
+      <Unit87>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/text.inc"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="1489"/>
-        <CursorPos X="8" Y="1510"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="1492"/>
+        <CursorPos Y="1511"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
-      </Unit92>
-      <Unit93>
+      </Unit87>
+      <Unit88>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/sstrings.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1164"/>
-        <CursorPos Y="1179"/>
-        <UsageCount Value="25"/>
-      </Unit93>
-      <Unit94>
+        <EditorIndex Value="6"/>
+        <TopLine Value="1158"/>
+        <CursorPos X="42" Y="1178"/>
+        <UsageCount Value="39"/>
+        <Loaded Value="True"/>
+      </Unit88>
+      <Unit89>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/math.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="107"/>
         <CursorPos X="8" Y="121"/>
-        <UsageCount Value="25"/>
-      </Unit94>
-      <Unit95>
+        <UsageCount Value="21"/>
+      </Unit89>
+      <Unit90>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/system.inc"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="948"/>
         <CursorPos Y="963"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-      </Unit95>
-      <Unit96>
+        <UsageCount Value="27"/>
+      </Unit90>
+      <Unit91>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/customform.inc"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="3056"/>
         <CursorPos X="3" Y="3058"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-      </Unit96>
-      <Unit97>
+        <UsageCount Value="27"/>
+      </Unit91>
+      <Unit92>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/linux/ossysc.inc"/>
-        <EditorIndex Value="21"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="203"/>
         <CursorPos Y="218"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-      </Unit97>
-      <Unit98>
+        <UsageCount Value="27"/>
+      </Unit92>
+      <Unit93>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/forms.pp"/>
         <UnitName Value="Forms"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="697"/>
         <CursorPos X="17" Y="713"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-      </Unit98>
-      <Unit99>
+        <UsageCount Value="27"/>
+      </Unit93>
+      <Unit94>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/widgetset/wsforms.pp"/>
         <UnitName Value="WSForms"/>
-        <EditorIndex Value="20"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="225"/>
         <CursorPos X="3" Y="234"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
-      </Unit99>
-      <Unit100>
+      </Unit94>
+      <Unit95>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/linux/x86_64/sighnd.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos Y="38"/>
-        <UsageCount Value="10"/>
-      </Unit100>
-      <Unit101>
+        <UsageCount Value="6"/>
+      </Unit95>
+      <Unit96>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/linux/x86_64/syscall.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="213"/>
         <CursorPos X="12" Y="226"/>
-        <UsageCount Value="10"/>
-      </Unit101>
-      <Unit102>
+        <UsageCount Value="6"/>
+      </Unit96>
+      <Unit97>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/sysutils/osutilsh.inc"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="24" Y="30"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
-      </Unit102>
-      <Unit103>
+        <UsageCount Value="8"/>
+      </Unit97>
+      <Unit98>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/graphutil.pp"/>
         <UnitName Value="GraphUtil"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="67"/>
         <CursorPos X="21" Y="73"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
-      </Unit103>
-      <Unit104>
+        <UsageCount Value="8"/>
+      </Unit98>
+      <Unit99>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/graphics.pp"/>
         <UnitName Value="Graphics"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="2589"/>
         <CursorPos Y="2593"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
-      </Unit104>
-      <Unit105>
+      </Unit99>
+      <Unit100>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/winapih.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="128"/>
         <CursorPos X="10" Y="143"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit105>
-      <Unit106>
+        <UsageCount Value="6"/>
+      </Unit100>
+      <Unit101>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/intfbasewinapi.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1067"/>
         <CursorPos X="3" Y="1075"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit106>
-      <Unit107>
+        <UsageCount Value="6"/>
+      </Unit101>
+      <Unit102>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/lcltype.pp"/>
         <UnitName Value="LCLType"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1629"/>
         <CursorPos X="12" Y="1644"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit107>
+        <UsageCount Value="6"/>
+      </Unit102>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="72" TopLine="55"/>
+        <Caret Line="236" Column="17" TopLine="229"/>
       </Position1>
       <Position2>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="157" TopLine="149"/>
+        <Caret Line="68" Column="28" TopLine="54"/>
       </Position2>
       <Position3>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="17" Column="47"/>
+        <Caret Line="71" Column="44" TopLine="58"/>
       </Position3>
       <Position4>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="54" Column="47" TopLine="48"/>
+        <Caret Line="246" Column="54" TopLine="230"/>
       </Position4>
       <Position5>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="144" TopLine="118"/>
+        <Caret Line="250" Column="42" TopLine="230"/>
       </Position5>
       <Position6>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="242" Column="60" TopLine="215"/>
+        <Caret Line="71" Column="55" TopLine="45"/>
       </Position6>
       <Position7>
-        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="7" Column="103"/>
+        <Filename Value="Units/colorfactory.pas"/>
+        <Caret Line="255" Column="11" TopLine="230"/>
       </Position7>
       <Position8>
-        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="586" Column="19" TopLine="613"/>
+        <Filename Value="Units/colorfactory.pas"/>
+        <Caret Line="241" Column="18" TopLine="230"/>
       </Position8>
       <Position9>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="236" Column="17" TopLine="229"/>
+        <Caret Line="242" Column="24" TopLine="230"/>
       </Position9>
       <Position10>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="68" Column="28" TopLine="54"/>
+        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/graphics.pp"/>
+        <Caret Line="2593" TopLine="2586"/>
       </Position10>
       <Position11>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="71" Column="44" TopLine="58"/>
+        <Caret Line="246" Column="47" TopLine="230"/>
       </Position11>
       <Position12>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="246" Column="54" TopLine="230"/>
+        <Caret Line="239" Column="45" TopLine="224"/>
       </Position12>
       <Position13>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="250" Column="42" TopLine="230"/>
+        <Caret Line="229" Column="39" TopLine="224"/>
       </Position13>
       <Position14>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="71" Column="55" TopLine="45"/>
+        <Caret Line="17" Column="56"/>
       </Position14>
       <Position15>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="255" Column="11" TopLine="230"/>
+        <Caret Line="246" TopLine="234"/>
       </Position15>
       <Position16>
-        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="654" Column="83" TopLine="635"/>
+        <Filename Value="Units/colorfactory.pas"/>
+        <Caret Line="247" TopLine="234"/>
       </Position16>
       <Position17>
-        <Filename Value="Forms/FreeCrosscurvesDlg.pas"/>
-        <Caret Line="619" Column="48" TopLine="606"/>
+        <Filename Value="Units/colorfactory.pas"/>
+        <Caret Line="248" TopLine="234"/>
       </Position17>
       <Position18>
         <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="241" Column="18" TopLine="230"/>
+        <Caret Line="247" TopLine="234"/>
       </Position18>
       <Position19>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="242" Column="24" TopLine="230"/>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/text.inc"/>
+        <Caret Line="1511" TopLine="1496"/>
       </Position19>
       <Position20>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/graphics.pp"/>
-        <Caret Line="2593" TopLine="2586"/>
+        <Filename Value="FreeShip.dpr"/>
+        <Caret Line="136" Column="104" TopLine="128"/>
       </Position20>
       <Position21>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="246" Column="47" TopLine="230"/>
+        <Filename Value="FreeShip.dpr"/>
+        <Caret Line="119" Column="20" TopLine="104"/>
       </Position21>
       <Position22>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="239" Column="45" TopLine="224"/>
+        <Filename Value="FreeShip.dpr"/>
+        <Caret Line="149" Column="30" TopLine="134"/>
       </Position22>
       <Position23>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/graphutil.pp"/>
-        <Caret Line="73" Column="21" TopLine="67"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="610" Column="96" TopLine="659"/>
       </Position23>
       <Position24>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="229" Column="39" TopLine="224"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="909" Column="4" TopLine="907"/>
       </Position24>
       <Position25>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="17" Column="56"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="554" Column="47" TopLine="540"/>
       </Position25>
       <Position26>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="246" TopLine="234"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="909" Column="4" TopLine="901"/>
       </Position26>
       <Position27>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="247" TopLine="234"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1147" Column="29" TopLine="1135"/>
       </Position27>
       <Position28>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="248" TopLine="234"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1146" Column="47" TopLine="1117"/>
       </Position28>
       <Position29>
-        <Filename Value="Units/colorfactory.pas"/>
-        <Caret Line="247" TopLine="234"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="552" Column="15" TopLine="537"/>
       </Position29>
+      <Position30>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="911" Column="69" TopLine="900"/>
+      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -1195,7 +1147,7 @@
     </CustomSessionData>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
+    <BreakPoints Count="2">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -1203,6 +1155,13 @@
         <Source Value="Forms/FreeResistance_RBHSDlg.pas"/>
         <Line Value="1691"/>
       </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="/usr/share/fpcsrc/2.6.4/rtl/inc/text.inc"/>
+        <Line Value="1511"/>
+      </Item2>
     </BreakPoints>
     <Watches Count="1">
       <Item1>

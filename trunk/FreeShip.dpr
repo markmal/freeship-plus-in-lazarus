@@ -102,7 +102,7 @@ uses
 
 {$R *.res}
 
-var ShowSplash, InDebugger : boolean;
+var ShowSplash, InDebugger : boolean; sOpenFile:string='';
 
 procedure InitByParameters;
 var S: string; p: integer;
@@ -110,12 +110,13 @@ begin
   for p:=1 to ParamCount do
   begin
     S := ParamStrUTF8(p);
-    if S = '--nosplash' then ShowSplash:=False;
-    if S = '--debug' then InDebugger:=True;
-    if S = '--log-info' then Logger.LogLevel:=LOG_INFO;
-    if S = '--log-error' then Logger.LogLevel:=LOG_ERROR;
-    if S = '--log-warning' then Logger.LogLevel:=LOG_WARNING;
-    if S = '--log-debug' then Logger.LogLevel:=LOG_DEBUG;
+    if S = '--nosplash' then ShowSplash:=False
+    else if S = '--debug' then InDebugger:=True
+    else if S = '--log-info' then Logger.LogLevel:=LOG_INFO
+    else if S = '--log-error' then Logger.LogLevel:=LOG_ERROR
+    else if S = '--log-warning' then Logger.LogLevel:=LOG_WARNING
+    else if S = '--log-debug' then Logger.LogLevel:=LOG_DEBUG
+    else sOpenFile:=S;
   end;
 end;
 
@@ -144,6 +145,9 @@ begin
    LoadLanguage(Mainform.Freeship.Preferences.LanguageFile);
    {$ENDIF}
    ShowTranslatedValues(Mainform);
+   if sOpenFile <> ''
+   then MainForm.LoadNamedFile(sOpenFile);
+
    //Application.CreateForm(TFreeKeelWizardDialog, FreeKeelWizardDialog);
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);
 

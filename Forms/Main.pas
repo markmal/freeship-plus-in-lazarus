@@ -549,6 +549,7 @@ type
     procedure CrossCurvesExecute(Sender: TObject);
     procedure SelectLeakPointsExecute(Sender: TObject);
     procedure LoadMostRecentFile;
+    procedure LoadNamedFile(FileName:string);
    private    { Private declarations }
       procedure FLoadRecentFile(sender:TObject);
       procedure FreeShipChangeLayerData(Sender: TObject);
@@ -1144,6 +1145,19 @@ begin
     end;
 end;{TMainForm.LoadMostRecentFile}
 
+procedure TMainForm.LoadNamedFile(FileName:string);
+var Menu    : TMenuItem;
+    N       : Integer;
+    Answer  : word;
+begin
+  if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+    begin
+    Freeship.Edit.File_Load(Filename);
+    FOpenHullWindows;
+    SetCaption;
+    UpdateMenu;
+    end;
+end;{TMainForm.LoadMostRecentFile}
 
 procedure TMainForm.FreeShipChangeLayerData(Sender: TObject);
 var I : Integer;

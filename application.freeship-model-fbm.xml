@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-fbm">
+        <comment>FREE!Ship Plus model (binary)</comment>
+	<icon name="freeship"/>
+        <glob pattern="*.fbm"/>
+    </mime-type>
+</mime-info>

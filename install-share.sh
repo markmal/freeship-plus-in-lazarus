@@ -14,11 +14,12 @@ sudo mkdir -p ${FS_APP}/Languages
 sudo mkdir -p ${FS_APP}/Manuals
 sudo mkdir -p ${FS_APP}/Ships
 
+sudo cp -r Languages ${FS_APP}/Languages
 
 mkdir ${HOME}/.config/FreeShip
 CFG=${HOME}/.config/FreeShip/FreeShip.ini
 
-[ -f $CFG ] && exit
+if [ -f $CFG ] && exit
 
 echo "[Directories]" >$CFG
 echo "LanguagesDirectory=${FS_APP}/Languages" >>$CFG

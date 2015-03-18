@@ -13775,11 +13775,12 @@ var Dialog  : TFreePreferencesDialog;
       begin
          Tmp:=ChangeFileExt(ExtractFilename(Filename),'');
          found:=False;
-         for I:=1 to Dialog.ComboBox1.Items.Count do if Uppercase(Tmp)=Uppercase(Dialog.Combobox1.Items[I-1]) then
-         begin
-            Found:=True;
-            break;
-         end;
+         for I:=1 to Dialog.ComboBox1.Items.Count do
+           if Uppercase(Tmp)=Uppercase(Dialog.Combobox1.Items[I-1]) then
+             begin
+             Found:=True;
+             break;
+             end;
          if not found then Dialog.Combobox1.Items.Add(Tmp);
       end;{Add}
 

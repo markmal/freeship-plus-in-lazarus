@@ -5,7 +5,7 @@ ARCH=$(file -b FreeShip|cut -f6 -d' '|sed 's/,//')
 NAME=FreeShip-${VERS}_${ARCH}_linux_gtk2
 md5sum FreeShip >FreeShip.md5
 
-zip -r ${NAME}.zip Languages FreeShip FreeShip.md5 Whatsnew.txt \
+zip -r ${NAME}.zip Languages Manuals FreeShip FreeShip.md5 Whatsnew.txt \
  install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh \
  Engineering.directory install-share.sh install-system.sh install-user.sh uninstall-system.sh uninstall-user.sh \
  application.freeship-model-fbm.xml application.freeship-model-ftm.xml \

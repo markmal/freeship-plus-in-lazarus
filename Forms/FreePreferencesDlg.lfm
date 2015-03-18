@@ -12,7 +12,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
   Font.Height = -13
   Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.2'
   object Panel1: TPanel
     Left = 0
     Height = 413
@@ -29,13 +29,13 @@ object FreePreferencesDialog: TFreePreferencesDialog
       Height = 391
       Top = 11
       Width = 570
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'MS Sans Serif'
       ParentFont = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
@@ -871,10 +871,14 @@ object FreePreferencesDialog: TFreePreferencesDialog
     end
     object SpeedButton3: TSpeedButton
       Left = 18
-      Height = 20
+      Height = 21
       Top = 0
-      Width = 65
+      Width = 40
+      AutoSize = True
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 10
       Caption = 'Reset'
+      Margin = 4
       OnClick = SpeedButton3Click
     end
   end
@@ -941,4 +945,4 @@ object FreePreferencesDialog: TFreePreferencesDialog
     left = 392
     top = 8
   end
-end
+end

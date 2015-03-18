@@ -11,7 +11,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.2'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -975,4 +975,4 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     left = 800
   end
-end
+end

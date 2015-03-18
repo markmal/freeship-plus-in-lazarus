@@ -1393,13 +1393,17 @@ end;{TMainForm.About1Click}
 procedure TMainForm.Help1Click(Sender: TObject);
 var pathFile,FileToFind : string;
     PathFileOld        : string;
-    FInitDirectory     : string;
+    //FInitDirectory     : string;
+    FManDirectory     : string;
+    FLang : string;
+    man : string;
 //    FFreeship          : TFreeship;
     command            : PAnsiChar;
     I,II               : integer;
     L                  : boolean;
     //label NewCatalogSearch;
 begin
+{
   ii:=1;
   if Userstring(279)='Версия'  then II:=10;
   if Userstring(279)='Версія'  then II:=20;
@@ -1409,39 +1413,49 @@ begin
   if Userstring(279)='Phien ban' then II:=70;
   if Userstring(279)='Versiуn' then II:=62;
   if Userstring(279)='Version' then begin
-                              if Userstring(273)='Speed'     then II:=60;
-                              if Userstring(273)='Vitesse'   then II:=61;
-                              if Userstring(273)='Velocidad' then II:=62;
-                              if Userstring(273)='Geschwindigkeit' then II:=63;
-                               end;
-   FInitDirectory:=Freeship.Preferences.InitDirectory;
-   PathFile:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }
-   PathFileOld:=GetCurrentDirUTF8; { *Converted from GetCurrentDir* }
-                   L:=SetCurrentDirUTF8(FInitDirectory); { *Converted from SetCurrentDir* }
-		   Case II of
-		      10 : command:='Manuals/ManualRU.pdf';
-		      20 : command:='Manuals/ManualUA.pdf';
-		      30 : command:='Manuals/ManualHO.pdf';
-		      40 : command:='Manuals/ManualNO.pdf';
-		      50 : command:='Manuals/ManualFI.pdf';
-		      60 : command:='Manuals/Manual.pdf';
-		      61 : command:='Manuals/ManualFR.pdf';
-		      62 : command:='Manuals/ManualCA.pdf';
-		      63 : command:='Manuals/ManualGE.pdf';
-		      70 : command:='Manuals/ManualVN.pdf';
-		      else command:='Manuals/Manual.pdf';
-		   end;
-		   FileToFind := FileSearchUTF8(command,FInitDirectory); { *Converted from FileSearch* }
-		   IF FileToFind='' then begin
-                                         FileToFind := FileSearchUTF8('Manuals/Manual.pdf',FInitDirectory); { *Converted from FileSearch* }
-                                         IF FileToFind='' then MessageDlg('Do NOT found needed manual in /Manuals subdirectory !!!',mtInformation,[mbOk],0)
-                                                          else  OpenDocument('Manuals/Manual.pdf'); { *Converted from ShellExecute* }
-                                    end   
-                		    else  OpenDocument(command); { *Converted from ShellExecute* }
+    if Userstring(273)='Speed'     then II:=60;
+    if Userstring(273)='Vitesse'   then II:=61;
+    if Userstring(273)='Velocidad' then II:=62;
+    if Userstring(273)='Geschwindigkeit' then II:=63;
+  end;
+  FInitDirectory:=Freeship.Preferences.ManualsDirectory;
+  PathFile:=GetCurrentDirUTF8;
+  PathFileOld:=GetCurrentDirUTF8;
+  L:=SetCurrentDirUTF8(FInitDirectory);
+  Case II of
+    10 : command:='Manuals/ManualRU.pdf';
+    20 : command:='Manuals/ManualUA.pdf';
+    30 : command:='Manuals/ManualHO.pdf';
+    40 : command:='Manuals/ManualNO.pdf';
+    50 : command:='Manuals/ManualFI.pdf';
+    60 : command:='Manuals/Manual.pdf';
+    61 : command:='Manuals/ManualFR.pdf';
+    62 : command:='Manuals/ManualCA.pdf';
+    63 : command:='Manuals/ManualGE.pdf';
+    70 : command:='Manuals/ManualVN.pdf';
+    else command:='Manuals/Manual.pdf';
+  end;
+  FileToFind := FileSearchUTF8(command,FInitDirectory);
+  }
+  FLang := Freeship.Preferences.Language;
+  FManDirectory := Freeship.Preferences.ManualsDirectory;
+  man := FLang+'.pdf';
+  FileToFind := FileSearchUTF8(FManDirectory+'/'+man,FManDirectory);
+  if (FileToFind='') and (FLang<>'English') then begin
+     MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory'+EOL
+               +'English manual will be opened.',mtInformation,[mbOk],0);
+     man := 'English.pdf'
+  end;
+  FileToFind := FileSearchUTF8(FManDirectory+'/'+man,FManDirectory);
+  if FileToFind='' then begin
+     MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory',mtInformation,[mbOk],0);
+     exit;
+  end;
 
-                   L:=SetCurrentDirUTF8(PathFileOld); { *Converted from SetCurrentDir* }
-                   exit;
+  OpenDocument(FileToFind); { *Converted from ShellExecute* }
 
+  //L:=SetCurrentDirUTF8(PathFileOld); { *Converted from SetCurrentDir* }
+  //exit;
 end;{TMainForm.Help1Click}
 // end correction Victor T
 

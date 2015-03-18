@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="19"/>
+      <BuildNr Value="20"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -75,7 +75,6 @@
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHullformWindow"/>
       </Unit3>
       <Unit4>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
@@ -143,6 +142,7 @@
         <ComponentName Value="FreePreferencesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreePreferencesDlg"/>
       </Unit13>
       <Unit14>
         <Filename Value="Forms/FreeExpanedPlatesDlg.pas"/>
@@ -164,7 +164,6 @@
         <ComponentName Value="FreeLinesplanForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeLinesplanFrm"/>
       </Unit16>
       <Unit17>
         <Filename Value="Forms/FreeSaveImageDlg.pas"/>
@@ -272,7 +271,6 @@
         <ComponentName Value="FreeHydrodyn_Task1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHydrodyn_Task1Dlg"/>
       </Unit31>
       <Unit32>
         <Filename Value="Forms/FreeMirrorPlaneDlg.pas"/>
@@ -298,7 +296,6 @@
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeNumInput"/>
       </Unit35>
       <Unit36>
         <Filename Value="Units/VRMLUnit.pas"/>
@@ -365,7 +362,6 @@
         <ComponentName Value="FreeCrosscurvesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeCrosscurvesDlg"/>
       </Unit46>
       <Unit47>
         <Filename Value="Forms/FreeRotateDlgM.pas"/>
@@ -417,7 +413,6 @@
         <ComponentName Value="FreeResistance_RBHS"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_RBHSDlg"/>
       </Unit54>
       <Unit55>
         <Filename Value="Forms/FreePropeller_Task4Dlg.pas"/>

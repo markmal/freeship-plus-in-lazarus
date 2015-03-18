@@ -11,7 +11,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.2'
   object PageControl1: TPageControl
     Left = 0
     Height = 616

@@ -23,8 +23,28 @@ echo "  Uninstall executables"
 
 echo "  Uninstall MIME"
 
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-ftm">
+        <comment>FREE!Ship Plus model (text)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.ftm"/>
+    </mime-type>
+</mime-info>' >application.freeship-model-ftm.xml
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-fbm">
+        <comment>FREE!Ship Plus model (binary)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.fbm"/>
+    </mime-type>
+</mime-info>' > application.freeship-model-fbm.xml
+
 xdg-mime uninstall --mode system application.freeship-model-fbm.xml
 xdg-mime uninstall --mode system application.freeship-model-ftm.xml
+
+rm application.freeship-model-fbm.xml application.freeship-model-ftm.xml
 
 for SZ in 16 24 32 48; do
   xdg-icon-resource uninstall --context mimetypes --mode system --size ${SZ} freeship-${SZ}.png application/freeship-model-fbm
@@ -39,7 +59,7 @@ update-mime-database /usr/share/mime
 
 remove_mime(){
  if [ -f $1 ] ; then
-   echo remove MIME $1
+   echo "      remove MIME defaults from $1"
    sed -i '/application\/freeship-model-fbm=freeship\.desktop/d' $1
    sed -i '/application\/freeship-model-ftm=freeship\.desktop/d' $1
  fi
@@ -92,9 +112,10 @@ Terminal=false
 # Due to standard Science/Engineering is "Additional" item, it is not presented in visible menu.
 # We add our own Engineering top level menu folder and place FreeShip launcher into it.
 
-
 xdg-desktop-menu uninstall --novendor --mode system Engineering.directory freeship.desktop
 xdg-desktop-menu forceupdate
+
+rm freeship.desktop
 
 echo "  Update Desktop database"
 update-desktop-database /usr/share/applications

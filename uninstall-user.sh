@@ -9,7 +9,6 @@ echo "  Uninstall files"
 [ -d ${FS_HOME}/Exec ]      && rm -rf ${FS_APP}/Exec
 [ -d ${FS_HOME}/Languages ] && rm -rf ${FS_APP}/Languages
 [ -d ${FS_HOME}/Manuals ]   && rm -rf ${FS_APP}/Manuals
-[ -d ${FS_HOME}/Ships ]     && rm -rf ${FS_APP}/Ships
 
 [ -x ${HOME}/bin/FreeShip ] && rm -f ${HOME}/bin/FreeShip
 
@@ -21,8 +20,30 @@ echo "    your configuration saved as $CFG.0"
 # Remove menu item and MIME types
 
 echo "  Uninstall MIME"
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-ftm">
+        <comment>FREE!Ship Plus model (text)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.ftm"/>
+    </mime-type>
+</mime-info>' >application.freeship-model-ftm.xml
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-fbm">
+        <comment>FREE!Ship Plus model (binary)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.fbm"/>
+    </mime-type>
+</mime-info>' > application.freeship-model-fbm.xml
+
 xdg-mime uninstall --mode user application.freeship-model-fbm.xml
 xdg-mime uninstall --mode user application.freeship-model-ftm.xml
+
+rm application.freeship-model-fbm.xml application.freeship-model-ftm.xml
+
 
 for SZ in 16 24 32 48; do
   xdg-icon-resource uninstall --context mimetypes --mode user --size ${SZ} freeship-${SZ}.png application/freeship-model-fbm
@@ -31,7 +52,7 @@ done
 
 remove_mime(){
  if [ -f $1 ] ; then
-   echo remove MIME $1    
+   echo "    remove MIME default from $1"
    sed -i '/application\/freeship-model-fbm=freeship\.desktop/d' $1
    sed -i '/application\/freeship-model-ftm=freeship\.desktop/d' $1
  fi 
@@ -85,6 +106,7 @@ echo if this hangs, press ^C
 xdg-desktop-menu uninstall  --mode user Engineering.directory freeship.desktop 
 xdg-desktop-menu forceupdate
 
+rm freeship.desktop
 
 echo "  Update Desktop database"
 update-desktop-database ~/.local/share/applications

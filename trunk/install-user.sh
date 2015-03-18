@@ -14,7 +14,10 @@ cp FreeShip ${HOME}/bin/
 
 FS_APP=${FS_HOME}
 
+# these files are needed for uninstall
 cp uninstall-user.sh ${FS_APP}/
+#cp application.freeship-model-fbm.xml ${FS_APP}/
+#cp application.freeship-model-ftm.xml ${FS_APP}/
 
 [ -d ${FS_HOME}/Exec ]   || mkdir -p ${FS_APP}/Exec
 
@@ -95,8 +98,29 @@ cd $CURDIR
 ##
 
 echo "  Install MIME"
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-ftm">
+        <comment>FREE!Ship Plus model (text)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.ftm"/>
+    </mime-type>
+</mime-info>' >application.freeship-model-ftm.xml
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-fbm">
+        <comment>FREE!Ship Plus model (binary)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.fbm"/>
+    </mime-type>
+</mime-info>' > application.freeship-model-fbm.xml
+
 xdg-mime install --mode user application.freeship-model-fbm.xml
 xdg-mime install --mode user application.freeship-model-ftm.xml
+
+rm application.freeship-model-fbm.xml application.freeship-model-ftm.xml
 
 for SZ in 16 24 32 48; do
   xdg-icon-resource install --context mimetypes --mode user --size ${SZ} freeship-${SZ}.png application/freeship-model-fbm
@@ -112,4 +136,6 @@ echo "  Update MIME database"
 update-mime-database ~/.local/share/mime
 
 echo "Done"
+echo "FreeShip is installed into $FS_APP"
+echo "  to uninstall enter into $FS_APP and execute uninstall-user.sh"
 

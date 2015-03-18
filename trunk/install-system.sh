@@ -15,7 +15,11 @@ FS_HOME=/usr/share/FreeShip
 [ -d ${FS_HOME}/Ships ]  || mkdir -p ${FS_HOME}/Ships
 
 FS_APP=${FS_HOME}
-cp uninstall-system.sh ${FS_APP}
+
+# these files are needed for uninstall
+cp uninstall-system.sh ${FS_APP}/
+cp application.freeship-model-fbm.xml ${FS_APP}/
+cp application.freeship-model-ftm.xml ${FS_APP}/
 
 [ -d ${FS_HOME}/Exec ]   || mkdir -p ${FS_APP}/Exec
 
@@ -55,6 +59,8 @@ Terminal=false
 xdg-desktop-menu install --novendor --mode system Engineering.directory freeship.desktop
 xdg-desktop-menu forceupdate
 
+rm freeship.desktop
+
 ## manually move Engineering menu item from bottom to above Games (for simplicity). I do not know a standard way to do it.
 CURDIR=$(pwd)
 cd /etc/xdg
@@ -70,8 +76,29 @@ echo "  Install MIME"
 grep "^\s*text/x-freeship-model-ftm\s\s*fbm\s\s*ftm\s*$" /etc/mime.types
 [ $? -eq 0 ] || echo "text/x-freeship-model-ftm			fbm ftm" >> /etc/mime.types
 
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-ftm">
+        <comment>FREE!Ship Plus model (text)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.ftm"/>
+    </mime-type>
+</mime-info>' >application.freeship-model-ftm.xml
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/freeship-model-fbm">
+        <comment>FREE!Ship Plus model (binary)</comment>
+        <icon name="freeship"/>
+        <glob pattern="*.fbm"/>
+    </mime-type>
+</mime-info>' > application.freeship-model-fbm.xml
+
 xdg-mime install --mode system application.freeship-model-fbm.xml
 xdg-mime install --mode system application.freeship-model-ftm.xml
+
+rm application.freeship-model-fbm.xml application.freeship-model-ftm.xml
 
 for SZ in 16 24 32 48; do
   xdg-icon-resource install --context mimetypes --mode system --size ${SZ} freeship-${SZ}.png application/freeship-model-fbm
@@ -87,5 +114,7 @@ echo "  Update MIME database"
 update-mime-database /usr/share/mime
 
 echo "Done"
+echo "FreeShip is installed into $FS_APP"
+echo "  to uninstall enter into $FS_APP and execute uninstall-system.sh"
 
 

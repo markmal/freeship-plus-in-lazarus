@@ -2031,6 +2031,8 @@ end;{TMainForm.LayerIntersectionExecute}
 
 procedure TMainForm.KeelRudderWizardExecute(Sender: TObject);
 begin
+   if not Assigned(FreeKeelWizardDialog) then
+     FreeKeelWizardDialog := TFreeKeelWizardDialog.Create(Self);
    ShowTranslatedValues(FreeKeelWizardDialog);
    FreeKeelWizardDialog.Execute(freeship);
    UpdateMenu;

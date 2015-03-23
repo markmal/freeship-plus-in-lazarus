@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="20"/>
+      <BuildNr Value="21"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -60,6 +60,7 @@
       <Unit1>
         <Filename Value="Units/FreeLanguageSupport.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeLanguageSupport"/>
       </Unit1>
       <Unit2>
         <Filename Value="Forms/Main.pas"/>
@@ -96,10 +97,12 @@
         <ComponentName Value="FreeSplashWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeSplashWndw"/>
       </Unit6>
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeVersionUnit"/>
       </Unit7>
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
@@ -220,7 +223,6 @@
         <ComponentName Value="FreeResistance_Hollen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_HollenDlg"/>
       </Unit24>
       <Unit25>
         <Filename Value="Forms/FreeResistance_OortmerDlg.pas"/>
@@ -235,7 +237,6 @@
         <ComponentName Value="FreeResistance_FungLeib"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeResistance_FungLeibDlg"/>
       </Unit26>
       <Unit27>
         <Filename Value="Forms/FreeResistance_OSTDlg.pas"/>
@@ -292,6 +293,7 @@
         <ComponentName Value="FreeKeelWizardDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeKeelWizardDlg"/>
       </Unit34>
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
@@ -458,7 +460,6 @@
       <Unit63>
         <Filename Value="Units/colorfactory.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ColorFactory"/>
       </Unit63>
       <Unit64>
         <Filename Value="Units/FreeBitmap.pas"/>

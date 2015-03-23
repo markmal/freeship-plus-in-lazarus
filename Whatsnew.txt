@@ -1,6 +1,11 @@
 Test only Version 3.5.2.20 in Lazarus
 Released: Build date	2015/03/18 14:18:00
 New features and fixes:
+- fixed call of KeelWizardDialog
+
+Test only Version 3.5.2.20 in Lazarus
+Released: Build date	2015/03/18 14:18:00
+New features and fixes:
 - Changed: Manual files naming is changed to be same as language files in Languages directory. 
   I.e. for Languages/Russian.ini manual file must be Manuals/Russian.pdf
   Manuals added into distribution package.

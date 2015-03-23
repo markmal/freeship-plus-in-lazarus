@@ -1,36 +1,36 @@
 object FreeKeelWizardDialog: TFreeKeelWizardDialog
-  Left = 333
-  Height = 511
-  Top = 124
+  Left = 517
+  Height = 527
+  Top = 135
   Width = 720
   BorderStyle = bsDialog
   Caption = 'Keel and rudder wizard'
-  ClientHeight = 511
+  ClientHeight = 527
   ClientWidth = 720
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.2'
   object Panel2: TPanel
     Left = 0
-    Height = 476
+    Height = 492
     Top = 22
     Width = 720
     Align = alClient
     BorderWidth = 10
-    ClientHeight = 476
+    ClientHeight = 492
     ClientWidth = 720
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 8
-      Height = 184
+      Height = 193
       Top = 288
-      Width = 236
+      Width = 256
       Caption = 'Properties'
-      ClientHeight = 168
-      ClientWidth = 232
+      ClientHeight = 177
+      ClientWidth = 252
       TabOrder = 0
       object Label7: TLabel
         Left = 7
@@ -178,23 +178,23 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
     end
     object PageControl: TPageControl
-      Left = 254
-      Height = 454
+      Left = 272
+      Height = 470
       Top = 11
-      Width = 455
+      Width = 437
       ActivePage = TabSheet1
       Align = alRight
       TabIndex = 0
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = '3D view'
-        ClientHeight = 422
-        ClientWidth = 449
+        ClientHeight = 438
+        ClientWidth = 431
         object Viewport: TFreeViewport
           Left = 0
-          Height = 422
+          Height = 438
           Top = 0
-          Width = 449
+          Width = 431
           Angle = 20
           Align = alClient
           BackgroundImage.Alpha = 255
@@ -222,14 +222,14 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Lift and drag'
-        ClientHeight = 422
-        ClientWidth = 449
+        ClientHeight = 438
+        ClientWidth = 431
         ImageIndex = 1
         object Chart: TChart
           Left = 0
-          Height = 422
+          Height = 438
           Top = 0
-          Width = 449
+          Width = 431
           AxisList = <          
             item
               Minors = <>
@@ -308,14 +308,14 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Left = 8
       Height = 280
       Top = 8
-      Width = 236
+      Width = 256
       ActivePage = TabSheet3
       TabIndex = 0
       TabOrder = 2
       object TabSheet3: TTabSheet
         Caption = 'Keel'
         ClientHeight = 248
-        ClientWidth = 230
+        ClientWidth = 250
         object Label1: TLabel
           Left = 0
           Height = 14
@@ -583,6 +583,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 2
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 3
         end
         object Input2: TFreeNumInput
@@ -600,6 +601,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 1
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 4
         end
         object Input4: TFreeNumInput
@@ -617,6 +619,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 0.1
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 5
         end
         object Input3: TFreeNumInput
@@ -634,6 +637,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 1
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 6
         end
         object Input5: TFreeNumInput
@@ -652,6 +656,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 6
           Validate = False
           OnAfterSetValue = Input5AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 7
         end
         object Input6: TFreeNumInput
@@ -670,6 +675,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 15
           Validate = False
           OnAfterSetValue = Input6AfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 8
         end
         object TrackBar1: TTrackBar
@@ -686,7 +692,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       object TabSheet4: TTabSheet
         Caption = 'Bulb'
         ClientHeight = 248
-        ClientWidth = 230
+        ClientWidth = 250
         ImageIndex = 1
         object Label8: TLabel
           Left = 0
@@ -943,6 +949,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 1.2
           Validate = False
           OnAfterSetValue = InputLengthAfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 2
         end
         object InputPoints: TFreeNumInput
@@ -960,6 +967,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           TabOnEnterKey = False
           Value = 26
           Validate = False
+          BorderColor = clBtnShadow
           TabOrder = 3
         end
         object InputDensity: TFreeNumInput
@@ -977,6 +985,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 11.35
           Validate = False
           OnAfterSetValue = InputDensityAfterSetValue
+          BorderColor = clBtnShadow
           Enabled = False
           TabOrder = 4
         end
@@ -1003,6 +1012,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           TabOnEnterKey = False
           Value = 0.6
           Validate = False
+          BorderColor = clBtnShadow
           Enabled = False
           TabOrder = 6
         end
@@ -1031,6 +1041,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 0.1
           Validate = False
           OnAfterSetValue = InputDeltaAfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 8
         end
         object Button2: TButton
@@ -1057,6 +1068,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 0.1
           Validate = False
           OnAfterSetValue = InputDeltaAfterSetValue
+          BorderColor = clBtnShadow
           TabOrder = 10
         end
         object InputMaterial: TComboBox
@@ -1156,9 +1168,9 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     end
     object SpeedButton2: TSpeedButton
       Left = 84
-      Height = 19
+      Height = 18
       Top = 1
-      Width = 65
+      Width = 90
       Caption = 'Save as part'
       Flat = True
       OnClick = SpeedButton2Click
@@ -1167,9 +1179,9 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
   object Panel3: TPanel
     Left = 0
     Height = 13
-    Top = 498
+    Top = 514
     Width = 720
     Align = alBottom
     TabOrder = 2
   end
-end
+end

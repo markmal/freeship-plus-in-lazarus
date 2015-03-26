@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="21"/>
+      <BuildNr Value="26"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -83,6 +83,7 @@
         <ComponentName Value="FreeLayerDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeLayerDlg"/>
       </Unit4>
       <Unit5>
         <Filename Value="Forms/FreeNewModelDlg.pas"/>
@@ -97,7 +98,6 @@
         <ComponentName Value="FreeSplashWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeSplashWndw"/>
       </Unit6>
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
@@ -145,7 +145,6 @@
         <ComponentName Value="FreePreferencesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreePreferencesDlg"/>
       </Unit13>
       <Unit14>
         <Filename Value="Forms/FreeExpanedPlatesDlg.pas"/>
@@ -293,7 +292,6 @@
         <ComponentName Value="FreeKeelWizardDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeKeelWizardDlg"/>
       </Unit34>
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
@@ -389,6 +387,7 @@
         <ComponentName Value="FreeHydrostaticsDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeHydrostaticsDlg"/>
       </Unit50>
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>

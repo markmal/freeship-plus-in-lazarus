@@ -192,9 +192,9 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         ClientWidth = 431
         object Viewport: TFreeViewport
           Left = 0
-          Height = 438
+          Height = 423
           Top = 0
-          Width = 431
+          Width = 416
           Angle = 20
           Align = alClient
           BackgroundImage.Alpha = 255
@@ -211,13 +211,40 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Color = clWhite
           DoubleBuffer = True
           Elevation = 20
+          HorScrollbar = ScrollBar1
           Margin = 0
+          VertScrollbar = ScrollBar2
           ViewType = fvPerspective
           ViewportMode = vmWireFrame
           OnMouseDown = ViewportMouseDown
           OnMouseMove = ViewportMouseMove
           OnRedraw = ViewportRedraw
           OnRequestExtents = ViewportRequestExtents
+        end
+        object ScrollBar1: TScrollBar
+          Left = 0
+          Height = 15
+          Top = 423
+          Width = 431
+          Align = alBottom
+          Max = 180
+          Min = -180
+          PageSize = 0
+          Position = 20
+          TabOrder = 1
+        end
+        object ScrollBar2: TScrollBar
+          Left = 416
+          Height = 423
+          Top = 0
+          Width = 15
+          Align = alRight
+          Kind = sbVertical
+          Max = 180
+          Min = -180
+          PageSize = 0
+          Position = 20
+          TabOrder = 2
         end
       end
       object TabSheet2: TTabSheet

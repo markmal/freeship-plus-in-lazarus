@@ -1123,11 +1123,34 @@ uses Math,
      FreeCrosscurvesDlg,
      FreeLayerDlg;
 
+{ -- mmm. probably not. These funcs are used a lot when data read from files. And the files are not always UTF8
+function Pos(const SearchForText, SearchInText: string): PtrInt;
+begin
+  result:=UTF8Pos(SearchForText, SearchInText);
+end;
+
+function Copy(const s: string; StartCharIndex, CharCount: PtrInt): string;
+begin
+  result:=UTF8Copy(s, StartCharIndex, CharCount);
+end;
+
+procedure Delete(var s: String; StartCharIndex, CharCount: PtrInt);
+begin
+  UTF8Delete(s, StartCharIndex, CharCount);
+end;
+
+procedure Insert(const source: String; var s: string; StartCharIndex: PtrInt);
+begin
+  UTF8Insert(source,s,StartCharIndex);
+end;
+}
+
+
 // function to find the corresponding water viscosity based on the density
 // My correction begin
 function FindWaterViscosity(Temper:TFloatType;Units:TFreeUnitType):TFloatType;
-const Temp : array[1..11] of TFloatType=(3.8, 5.0, 7.2,  10.0, 12.2, 15.0, 17.2, 20.0, 22.2, 25.0, 30.0);
-      Visc : array[1..11] of TFloatType=(1.61,1.56,1.462,1.352,1.274,1.189,1.125,1.020,0.95,0.910,0.817);
+const Temp : array[0..11] of TFloatType=(0.0,3.8, 5.0, 7.2,  10.0, 12.2, 15.0, 17.2, 20.0, 22.2, 25.0, 30.0);
+      Visc : array[0..11] of TFloatType=(1.82,1.61,1.56,1.462,1.352,1.274,1.189,1.125,1.020,0.95,0.910,0.817);
 //  t,grad C   0     10    20    30    40    50    60    70    80    90
 //  Nu*1000  1.82  1.33  1.02  0.817 0.666 0.56  0.479 0.414 0.362 0.321
 //  t   0       1.0      2.0    3.0    4.0        5.0    6.0    7.0      8.0    9.0
@@ -1141,20 +1164,19 @@ const Temp : array[1..11] of TFloatType=(3.8, 5.0, 7.2,  10.0, 12.2, 15.0, 17.2,
 
 var
  i     :integer; 
-
 begin
-      For i:=1 to 11 do begin
-         if Temper < Temp[i] then
-            begin
-              Result:=Visc[i-1] + (Visc[i-1]-Visc[i])/(Temp[i-1]-Temp[i])*(Temper-Temp[i-1]);
-              exit;
-            end; 
-      end;   
-   if Units=fuImperial then
-    begin
-     // convert to imperial
-     Result:=Result/(Foot*Foot);
-    end;
+  For i:=1 to 11 do begin
+     if Temper < Temp[i] then
+        begin
+          Result:=Visc[i-1] + (Visc[i-1]-Visc[i])/(Temp[i-1]-Temp[i])*(Temper-Temp[i-1]);
+          exit;
+        end;
+  end;
+  if Units=fuImperial then
+  begin
+   // convert to imperial
+   Result:=Result/(Foot*Foot);
+  end;
 end;{FindWaterViscosity}
 
 
@@ -1761,8 +1783,9 @@ begin
             Properties.SurfaceCenterOfGravity.Z:=Properties.SurfaceCenterOfGravity.Z-FData.ModelMin.Z;
             if Owner.ProjectSettings.ProjectUnits=fuImperial then Properties.Weight:=Properties.Weight/(12*2240)
                                                              else Properties.Weight:=Properties.Weight/1000;
-            While Length(Str)<23 do Str:=Str+#32;
-            if length(Str)>23 then Str:=Copy(Str,1,23);
+            While UTF8Length(Str)<23 do Str:=Str+' ';
+            if UTF8Length(Str)>23
+               then Str:=UTF8Copy(Str,1,23);
             Strings.Add('| '+Str+' | '+Makelength(Properties.SurfaceArea,-1,7)+
                                  ' | '+MakeLength(Owner.Layer[I-1].Thickness,3,9)+
                                  ' | '+Makelength(Properties.Weight,3,8)+
@@ -3334,20 +3357,29 @@ procedure TFreeHydrostaticCalc.ShowData(Mode:TFreeHydrostaticsMode);
 var Strings : TStringlist;
     Dialog  : TFreeHydrostaticsDialog;
     I       : integer;
+
 begin
-   if not Calculated then Calculate;
+   if not Calculated
+      then Calculate;
    Strings:=TStringlist.Create;
    AddData(Strings,Mode,';');
    Dialog:=TFreeHydrostaticsDialog.Create(Owner);
    ShowTranslatedValues(Dialog);
+   Strings.SaveToFile('FreeHydrostaticsMode.ShowData.Strings.txt');
    try
       Dialog.Edit.Lines.BeginUpdate;
       Dialog.Edit.Clear;
-      for I:=1 to Strings.Count do Dialog.Edit.Lines.Add(Strings.Strings[I-1]);
-   finally
+      //writeln('FreeHydrostaticsMode: Text >>>');
+      for I:=1 to Strings.Count
+        do begin
+          //writeln(Strings.Strings[I-1]);
+          Dialog.Edit.Lines.Add(Strings.Strings[I-1]);
+        end;
+      //writeln('FreeHydrostaticsMode: Text <<<');
       Dialog.Edit.Lines.EndUpdate;
-      Strings.Destroy;
       Dialog.ShowModal;
+   finally
+      Strings.Destroy;
       Dialog.Destroy;
    end;
 end;{TFreeHydrostaticCalc.ShowData}
@@ -7090,7 +7122,7 @@ begin
 //      if Owner.ProjectSettings.ProjectUnits=fuMetric then Scale:=1.0
 //                                                     else Scale:=1/Foot;
       Str:=Owner.ProjectSettings.ProjectName;
-      if Length(Str)>58 then Str:=copy(Str,1,58);
+      if Length(Str)>58 then Str:=UTF8Copy(Str,1,58);
       Strings.Add(Str);                                                                      // ProjectDescription, max 58 characters
       Strings.Add('L:'+FloatToStrF(Scale*Owner.ProjectSettings.ProjectLength,ffFixed,7,3));  // Length
       Strings.Add('W:'+FloatToStrF(Scale*Owner.ProjectSettings.ProjectBeam,ffFixed,7,3));    // Beam
@@ -7247,7 +7279,7 @@ begin
       if Owner.ProjectSettings.ProjectUnits=fuMetric then Scale:=1.0
                                                      else Scale:=1/Foot;
       Str:=Owner.ProjectSettings.ProjectName+' L='+FloatToStrF(Scale*Owner.ProjectSettings.ProjectLength,ffFixed,7,3)+' B='+FloatToStrF(Scale*Owner.ProjectSettings.ProjectBeam,ffFixed,7,3)+' T='+FloatToStrF(Scale*Owner.ProjectSettings.ProjectDraft,ffFixed,7,3);
-      if Length(Str)>58 then Str:=copy(Str,1,58);
+      if Length(Str)>58 then Str:=UTF8Copy(Str,1,58);
       Strings.Add(Str);       // ProjectDescription, max 58 characters
 
       if Owner.ProjectSettings.ProjectUnits=fuMetric then Strings.Add(FloatToStrF(Owner.ProjectSettings.ProjectWaterDensity*1000,ffFixed,7,1)+' 1600 100 .2 2. 1000 0') // specific gravity of water
@@ -8335,8 +8367,8 @@ begin
          // Y0
          Str:=Trim(Str);
          J:=Pos(',',Str);
-         Tmp:=Copy(Str,1,J-1);
-         Delete(Str,1,J);
+         Tmp:=UTF8Copy(Str,1,J-1);
+         UTF8Delete(Str,1,J);
          // Y1
          Str:=Trim(Str);
          J:=Pos(',',Str);

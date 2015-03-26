@@ -1,39 +1,39 @@
 object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
   Left = 456
+  Height = 573
   Top = 110
+  Width = 792
   BorderStyle = bsDialog
   Caption = 'Hydrostatics results'
   ClientHeight = 573
   ClientWidth = 792
   Color = clBtnFace
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Courier New'
-          Font.Style = []
-  Position = poOwnerFormCenter
+  Font.Color = clBlack
+  Font.Height = -12
+  Font.Name = 'Courier New'
   OnShow = FormShow
-  PixelsPerInch = 96
+  Position = poOwnerFormCenter
+  LCLVersion = '1.4.0.2'
   object Panel1: TPanel
     Left = 0
+    Height = 542
     Top = 31
     Width = 792
-    Height = 542
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 10
+    ClientHeight = 542
+    ClientWidth = 792
     TabOrder = 0
     object Edit: TMemo
-      Left = 9
-      Top = 9
-      Width = 770
-      Height = 520
+      Left = 11
+      Height = 516
+      Top = 11
+      Width = 766
       Align = alClient
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Courier New'
-          Font.Style = []
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Courier New'
       ParentFont = False
       ReadOnly = True
       ScrollBars = ssBoth
@@ -43,17 +43,19 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
   end
   object Panel2: TPanel
     Left = 0
+    Height = 31
     Top = 0
     Width = 792
-    Height = 31
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 31
+    ClientWidth = 792
     TabOrder = 1
     object SpeedButton1: TSpeedButton
       Left = 6
+      Height = 25
       Top = 0
       Width = 75
-      Height = 25
       Caption = 'Print'
       Glyph.Data = {
         42020000424D4202000000000000420000002800000010000000100000000100
@@ -74,14 +76,15 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
         1F7C1F7C1F7C1F7C1F7C1F7C1F7C0000FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
         00001F7C1F7C1F7C1F7C1F7C1F7C1F7C00000000000000000000000000000000
         00001F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
-        1F7C1F7C1F7C}
+        1F7C1F7C1F7C
+      }
       OnClick = SpeedButton1Click
     end
     object SpeedButton2: TSpeedButton
       Left = 82
+      Height = 25
       Top = 0
       Width = 75
-      Height = 25
       Caption = 'Save'
       Glyph.Data = {
         42020000424D4202000000000000420000002800000010000000100000000100
@@ -102,14 +105,15 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
         000000001F7C1F7C00001F000000FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F0000
         1F0000001F7C1F7C104200000000000000000000000000000000000000000000
         000010421F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
-        1F7C1F7C1F7C}
+        1F7C1F7C1F7C
+      }
       OnClick = SpeedButton2Click
     end
     object Button1: TSpeedButton
       Left = 710
+      Height = 25
       Top = 0
       Width = 75
-      Height = 25
       Caption = 'Close'
       Glyph.Data = {
         F6000000424DF600000000000000760000002800000010000000100000000100
@@ -119,20 +123,21 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
         3333333344333333333333342243333333333342222433333333342222224333
         33334222A22224333333222A3A2224333333A2A333A2224333333A33333A2224
         333333333333A2224333333333333A2224333333333333A2224333333333333A
-        2224333333333333A2243333333333333A2233333333333333A3}
+        2224333333333333A2243333333333333A2233333333333333A3
+      }
       OnClick = Button1Click
     end
   end
   object PrintDialog: TPrintDialog
     Options = [poPageNums, poDisablePrintToFile]
-    Left = 172
-    Top = 4
+    left = 172
+    top = 4
   end
   object SaveDialog: TSaveDialog
     Filter = 'Text files (*.txt)|*.txt'
     FilterIndex = 0
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    Left = 200
-    Top = 4
+    left = 200
+    top = 4
   end
-end
+end

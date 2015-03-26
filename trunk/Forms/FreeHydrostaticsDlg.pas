@@ -120,9 +120,16 @@ begin
 end;{TFreeHydrostaticsDialog.SpeedButton2Click}
 
 procedure TFreeHydrostaticsDialog.FormShow(Sender: TObject);
+var
+    I       : integer;
+    S : string;
 begin
+   I:=Edit.Lines.Count;
+   S := Edit.Lines.CommaText;
    // Place cursor at beginning
    Edit.CaretPos:=TPoint(Point(0,0));
+   I:=Edit.Lines.Count;
+   S := Edit.Lines.CommaText;
 end;{TFreeHydrostaticsDialog.FormShow}
 
-end.
+end.

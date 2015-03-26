@@ -213,11 +213,14 @@ type
 
  TFreeKeelWizardDialog  = class(TForm)
                                  Panel1: TPanel;
+                                 Panel2: TPanel;
                                  Panel3: TPanel;
                                  BitBtn1: TSpeedButton;
                                  BitBtn2: TSpeedButton;
                                  GroupBox1: TGroupBox;
                                  Label7: TLabel;
+                                 ScrollBar1: TScrollBar;
+                                 ScrollBar2: TScrollBar;
     _Label8: TLabel;
                                  Label9: TLabel;
     _Label10: TLabel;

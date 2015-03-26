@@ -1,4 +1,11 @@
-Test only Version 3.5.2.20 in Lazarus
+Test only Version 3.5.2.25 in Lazarus
+Released: Build date	2015/03/26 17:38:00
+New features and fixes:
+- fixed "Out of Array" in FindWaterViscosity. Added viscosity for 0C temp.
+- fixed bugs with ASCII functions Copy, Length, Delete. Replaced by UTF8Copy, UTF8Length, UTF8Delete where applicable.
+- Added scrollbars to 3-D view in Keel Wizard Dialog
+
+Test only Version 3.5.2.21 in Lazarus
 Released: Build date	2015/03/18 14:18:00
 New features and fixes:
 - fixed call of KeelWizardDialog

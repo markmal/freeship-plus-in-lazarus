@@ -38,7 +38,7 @@ uses
 {$IFnDEF FPC}
   JPeg, Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, LCLProc, LMessages,
 {$ENDIF}
   FasterList,
   Messages,
@@ -2420,7 +2420,7 @@ function Space(Index:Integer):String;
 var I : Integer;
 begin
    Result:='';
-   for I:=1 to Index do Result:=Result+#32;
+   for I:=1 to Index do Result:=Result+' ';
 end;{Space}
 
 function SquaredDistPP(P1,P2:T3DCoordinate):TFloatType;
@@ -2434,9 +2434,9 @@ function Truncate(Value:TFloatType;Maxlength:integer):String;
 // All trailing zeros will be removed
 begin
    Result:=FloatToStrF(Value,ffFixed,10,Maxlength);
-   while Result[Length(Result)]='0' do Delete(Result,Length(Result),1);
-   if Length(Result)<MaxLength then Result:=Result+'0' else
-      if Result[Length(Result)] in ['.',','] then Result:=Result+'0';
+   while Result[UTF8Length(Result)]='0' do UTF8Delete(Result,UTF8Length(Result),1);
+   if UTF8Length(Result)<MaxLength then Result:=Result+'0' else
+      if Result[UTF8Length(Result)] in ['.',','] then Result:=Result+'0';
 end;{Truncate}
 
 function MakeLength(value:TFloatType;Decimals,DesLength:integer):string;
@@ -2444,13 +2444,13 @@ var Input:String;
 begin
    if Decimals=-1 then Decimals:=NumberOfDecimals(Value);
    Input:=FloatToStrF(Value,ffFixed,10,Decimals);
-   While length(Input)<DesLength do Input:=#32+Input;
+   While UTF8Length(Input)<DesLength do Input:=' '+Input;
    Result:=Input;
 end;{MakeLength}
 
 function MakeLength(value:String;DesLength:integer):string;
 begin
-   While length(Value)<DesLength do Value:=value+#32;
+   While UTF8Length(Value)<DesLength do Value:=value+' ';
    Result:=Value;
 end;{MakeLength}
 

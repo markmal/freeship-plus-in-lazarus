@@ -13,7 +13,7 @@ object FreeLayerDialog: TFreeLayerDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.2'
   object Panel1: TPanel
     Left = 0
     Height = 410
@@ -307,12 +307,12 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object GroupBox1: TGroupBox
         Left = 4
-        Height = 73
+        Height = 97
         Top = 293
-        Width = 230
+        Width = 242
         Caption = 'Surface properties. '
-        ClientHeight = 57
-        ClientWidth = 226
+        ClientHeight = 81
+        ClientWidth = 238
         TabOrder = 9
         object Label7: TLabel
           Left = 60

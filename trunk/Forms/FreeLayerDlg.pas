@@ -569,4 +569,4 @@ begin
 end;{TFreeLayerDialog.WeightBoxAfterSetValue}
 
 end.
-
+

@@ -134,6 +134,7 @@ begin
 
    ShowSplash:=true;
    InDebugger:=false;
+   sOpenFile := '';
 
    InitByParameters;
 
@@ -145,8 +146,9 @@ begin
    LoadLanguage(Mainform.Freeship.Preferences.LanguageFile);
    {$ENDIF}
    ShowTranslatedValues(Mainform);
-   if sOpenFile <> ''
-   then MainForm.LoadNamedFile(sOpenFile);
+   Mainform.FFileName:=sOpenFile;
+   //if sOpenFile <> ''
+   //then MainForm.LoadNamedFile(sOpenFile);
 
    //Application.CreateForm(TFreeKeelWizardDialog, FreeKeelWizardDialog);
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);

@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="26"/>
+      <BuildNr Value="35"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -36,6 +36,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
+        <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
     </RunParams>
     <RequiredPackages Count="4">
@@ -52,7 +53,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="69">
+    <Units Count="70">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -83,7 +84,6 @@
         <ComponentName Value="FreeLayerDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeLayerDlg"/>
       </Unit4>
       <Unit5>
         <Filename Value="Forms/FreeNewModelDlg.pas"/>
@@ -102,7 +102,6 @@
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeVersionUnit"/>
       </Unit7>
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
@@ -373,6 +372,7 @@
       <Unit48>
         <Filename Value="Units/FasterList.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FasterList"/>
       </Unit48>
       <Unit49>
         <Filename Value="Forms/FreeHydrodyn_RVRSDlg.pas"/>
@@ -387,7 +387,6 @@
         <ComponentName Value="FreeHydrostaticsDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHydrostaticsDlg"/>
       </Unit50>
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
@@ -432,14 +431,17 @@
       <Unit57>
         <Filename Value="Units/FreeTypes.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeTypes"/>
       </Unit57>
       <Unit58>
         <Filename Value="Units/FreeFileBuffer.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeFileBuffer"/>
       </Unit58>
       <Unit59>
         <Filename Value="Units/FreeLogger.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeLogger"/>
       </Unit59>
       <Unit60>
         <Filename Value="Units/FreeOpenDialog.pas"/>
@@ -480,6 +482,10 @@
         <Filename Value="Units/ColorIniFile.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit68>
+      <Unit69>
+        <Filename Value="Units/freestringutils.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit69>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

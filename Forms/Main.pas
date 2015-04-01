@@ -557,6 +557,7 @@ type
       procedure FOnSelectItem(Sender:TObject);
       procedure FOpenHullWindows;   // Creates 4 different views on the hullform
    public     { Public declarations }
+      FFileName : string;
       {$IFDEF FPC}
       function  MDIChildCount: Integer; override;
       function  GetMDIChildren(AIndex: Integer): TCustomForm; override;
@@ -591,6 +592,7 @@ constructor TMainForm.Create(AOwner: TComponent);
 begin
  inherited Create(AOwner);
  FMDIChildList := TList.Create;
+ FFileName:='';
 end;
 
 destructor TMainForm.Destroy;
@@ -633,12 +635,15 @@ var Face1 : TFreeSubdivisionControlFace;
     I     : Integer;
 
 begin
-   if (Sender is TFreeSubdivisionControlPoint) and (Sender=FreeShip.ActiveControlPoint) and (FreeShip.ActiveControlPoint.Selected=false) then
-   begin
-      // The active controlpoint was deselected, probably internally by the subdivision surface.
-      // Set the FreeShip.ActiveControlPoint to nil (which also closes the controlpoint window)
-      FreeShip.ActiveControlPoint:=nil;
-   end;
+   if (Sender is TFreeSubdivisionControlPoint)
+     and (Sender=FreeShip.ActiveControlPoint)
+     and (FreeShip.ActiveControlPoint.Selected=false)
+   then
+     begin
+        // The active controlpoint was deselected, probably internally by the subdivision surface.
+        // Set the FreeShip.ActiveControlPoint to nil (which also closes the controlpoint window)
+        FreeShip.ActiveControlPoint:=nil;
+     end;
    if FreeShip.NumberOfSelectedControlFaces>0 then
    begin
       // set the layerbox itemindex to the index of the layer of the selected controlfaces
@@ -940,18 +945,17 @@ begin
    FreeShip.Preferences.Load;
    FreeShip.Clear;
 
-   if ParamCount = 0 then
-     LoadMostRecentFile;
-
-   if ParamCount<>0 then
+   if FFileName = '' then
+     LoadMostRecentFile
+   else
    begin
       // Skip translation
-      if (FileExistsUTF8(ParamStr(1)) { *Converted from FileExists* })
-        and (Uppercase(ExtractFileExt(ParamStr(1)))='.FBM') then
+      if (FileExistsUTF8(FFileName) { *Converted from FileExists* })
+        and (Uppercase(ExtractFileExt(FFileName))='.FBM') then
       begin
          FOpenHullWindows;
-         FreeShip.Edit.File_Load(ParamStr(1));
-      end else MessageDlg(Userstring(106)+#32+ParamStr(1),mtError,[mbOk],0);
+         FreeShip.Edit.File_Load(FFileName);
+      end else MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
       // End Skip translation
    end;
    SetCaption;

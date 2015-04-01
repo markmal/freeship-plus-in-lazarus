@@ -41,7 +41,9 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType,
+  LCLProc,
+  LMessages,
 {$ENDIF}
   ActnList,
      SysUtils,
@@ -55,6 +57,7 @@ uses
      Menus,
      ComCtrls,
      FreeStringsUnit,
+     FreeStringUtils,
      Controls,
      FileUtil,
      StrUtils;
@@ -94,7 +97,8 @@ begin
    begin
       if CurrentLanguage<>nil then CurrentLanguage.Free;
       CurrentLanguage:=TMemIniFile.create(Filename);
-   end else if uppercase(Name)<>'ENGLISH' then MessageDlg('Could not load language file '+Filename,mtError,[mbOk],0);
+   end else if uppercase(Name)<>'ENGLISH'
+      then MessageDlg('Could not load language file '+Filename,mtError,[mbOk],0);
    Result:=CurrentLanguage;
 end;{LoadLanguage}
 
@@ -140,7 +144,7 @@ begin
    begin
       // check for valid characters
       N:=0;
-      for I:=1 to length(Up) do if Up[I] in ['A'..'Z']then
+      for I:=1 to Length(Up) do if Up[I] in ['A'..'Z']then
       begin
          inc(N);
       end;
@@ -153,20 +157,25 @@ var Str     : string;
     Section : String;
     val     : string;
     I,N     : Integer;
+    Key     : string = 'User0000';
 begin
    Result:='';
    if CurrentLanguage<>nil then
    begin
       Section:='User';
+       {Val:=IntToStr(Index);
+       while length(val)<4 do val:='0'+val;
+       Val:='User'+Val;
+       Str:=CurrentLanguage.readString(Section,Val,'');
+       }
       Val:=IntToStr(Index);
-      while length(val)<4 do val:='0'+val;
-      Val:='User'+Val;
-      Str:=CurrentLanguage.readString(Section,Val,'');
+      Key := Copy(Key,1,8-len(Val))+Val;
+      Str:=CurrentLanguage.readString(Section,Key,'');
       if Str<>'' then Result:=Str;
    end;
    if Result='' then
    begin
-      N:=length(UserStrings);
+      N:=Length(UserStrings);
       for I:=1 to N do if UserStrings[I-1].ID=index then
       begin
          Result:=UserStrings[I-1].Value;
@@ -327,4 +336,4 @@ initialization
 finalization
    if CurrentLanguage<>nil then CurrentLanguage.Free;
 
-end.
+end.

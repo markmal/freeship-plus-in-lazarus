@@ -40,12 +40,6 @@ interface
 
 uses math;
 
-{$IFDEF FPC}
-type Cardinal = PtrUInt;
-{$ENDIF}
-
-
-
 type {---------------------------------------------------------------------------------------------------}
      {                                       TFasterList                                                 }
      {                                                                                                   }
@@ -107,22 +101,23 @@ begin
 end;{TFasterList.Destroy}
 
 procedure TFasterList.Add(Item: Pointer);
-var Cur,Prev:Cardinal;
+var Cur,Prev:PtrUInt;
 begin
    if FCount=FCapacity then FGrow;
    FList[FCount]:=Item;
    if FUseUserData then FData[FCount]:=nil;
-   if FCount<=1 then FSorted:=True else if FSorted then
-   begin
-      Prev:=Cardinal(FList[FCount-1]);
-      Cur:=Cardinal(Item);
-      FSorted:=Prev<Cur;
-   end;
+   if FCount<1 then FSorted:=True
+   else if FSorted then
+     begin
+        Prev:=PtrUInt(FList[FCount-1]);
+        Cur:=PtrUInt(Item);
+        FSorted:=Prev<Cur;
+     end;
    Inc(FCount);
 end;{TFasterList.Add}
 
 procedure TFasterList.AddObject(Item,UserObject: Pointer);
-var Cur,Prev:Cardinal;
+var Cur,Prev:PtrUInt;
 begin
    if FCount=FCapacity then FGrow;
    if not FUseUserdata then
@@ -133,12 +128,13 @@ begin
 
    FList[FCount]:=Item;
    FData[FCount]:=UserObject;
-   if FCount<=1 then FSorted:=True else if FSorted then
-   begin
-      Prev:=Cardinal(FList[FCount-1]);
-      Cur:=Cardinal(Item);
-      FSorted:=Prev<Cur;
-   end;
+   if FCount<1 then FSorted:=True
+   else if FSorted then
+     begin
+        Prev:=PtrUInt(FList[FCount-1]);
+        Cur:=PtrUInt(Item);
+        FSorted:=Prev<Cur;
+     end;
    Inc(FCount);
 end;{TFasterList.Add}
 
@@ -160,7 +156,7 @@ begin
 end;{TFasterList.AddList}
 
 procedure TFasterList.AddSorted(Item:Pointer);
-var Address : Cardinal;
+var Address : PtrUInt;
     L,H,Mid : Integer;
 begin
    if FCount=FCapacity then FGrow;
@@ -171,9 +167,9 @@ begin
       Inc(FCount);
    end else
    begin
-      Address:=Cardinal(Item);
+      Address:=PtrUInt(Item);
       // check start
-      if Address<Cardinal(FList[0]) then
+      if Address<PtrUInt(FList[0]) then
       begin
          // insert at start
          Move(FList[0],FList[1],FCount*SizeOf(Pointer));
@@ -183,7 +179,7 @@ begin
             Move(FData[0],FData[1],FCount*SizeOf(Pointer));
             FData[0]:=nil;
          end;
-      end else if Address>Cardinal(FList[FCount-1]) then
+      end else if Address>PtrUInt(FList[FCount-1]) then
       begin
          // add at end
          FList[FCount]:=Item;
@@ -196,11 +192,11 @@ begin
          while H-L>1 do
          begin
             Mid:=Floor(0.5*(L+H));
-            if Address<Cardinal(FList[Mid]) then H:=Mid-1
+            if Address<PtrUInt(FList[Mid]) then H:=Mid-1
                                             else L:=Mid+1;
          end;
-         if Address<cardinal(FList[L]) then Mid:=L else
-            if Address<cardinal(FList[H]) then Mid:=H else
+         if Address<PtrUInt(FList[L]) then Mid:=L else
+            if Address<PtrUInt(FList[H]) then Mid:=H else
                Mid:=H+1;
          Move(FList[Mid],FList[Mid+1],(FCount-Mid)*SizeOf(Pointer));
          FList[Mid]:=Item;
@@ -215,7 +211,7 @@ begin
 end;{TFasterList.AddSorted}
 
 procedure TFasterList.AddSortedObject(Item,UserObject:Pointer);
-var Address : Cardinal;
+var Address : PtrUInt;
     L,H,Mid : Integer;
 begin
    if not FUseUserData then
@@ -232,9 +228,9 @@ begin
       Inc(FCount);
    end else
    begin
-      Address:=Cardinal(Item);
+      Address:=PtrUInt(Item);
       // check start
-      if Address<Cardinal(FList[0]) then
+      if Address<PtrUInt(FList[0]) then
       begin
          // insert at start
          Move(FList[0],FList[1],FCount*SizeOf(Pointer));
@@ -244,7 +240,7 @@ begin
             Move(FData[0],FData[1],FCount*SizeOf(Pointer));
             FData[0]:=UserObject;
          end;
-      end else if Address>Cardinal(FList[FCount-1]) then
+      end else if Address>PtrUInt(FList[FCount-1]) then
       begin
          // add at end
          FList[FCount]:=Item;
@@ -257,11 +253,11 @@ begin
          while H-L>1 do
          begin
             Mid:=Floor(0.5*(L+H));
-            if Address<Cardinal(FList[Mid]) then H:=Mid-1
+            if Address<PtrUInt(FList[Mid]) then H:=Mid-1
                                             else L:=Mid+1;
          end;
-         if Address<cardinal(FList[L]) then Mid:=L else
-            if Address<cardinal(FList[H]) then Mid:=H else
+         if Address<PtrUInt(FList[L]) then Mid:=L else
+            if Address<PtrUInt(FList[H]) then Mid:=H else
                Mid:=H+1;
          Move(FList[Mid],FList[Mid+1],(FCount-Mid)*SizeOf(Pointer));
          FList[Mid]:=Item;
@@ -356,7 +352,7 @@ var Delta : Integer;
 begin
   if FCapacity>64 then
   begin
-     Delta:=FCapacity div 4;
+     Delta:=FCapacity div SizeOf(Pointer);
      if Delta>1024 then Delta:=1024;
   end else
     if FCapacity>8 then Delta:=16 else
@@ -368,11 +364,12 @@ function TFasterList.IndexOf(Item: Pointer): Integer;
 var I : Integer;
 begin
    Result:=-1;
-   for I:=1 to FCount do if FList[I-1]=Item then
-   begin
-      Result:=I-1;
-      break;
-   end;
+   for I:=1 to FCount do
+   if FList[I-1]=Item then
+     begin
+        Result:=I-1;
+        break;
+     end;
 end;{TFasterList.IndexOf}
 
 procedure TFasterList.Insert(Index: Integer; Item: Pointer);
@@ -393,7 +390,7 @@ procedure TFasterList.Sort;
 
    procedure QuickSort(L,R:Integer);
    var I, J : Integer;
-       Val  : Cardinal;
+       Val  : PtrUInt;
 
        Procedure Swap(I,J:Integer);
        var Tmp : Pointer;
@@ -412,10 +409,10 @@ procedure TFasterList.Sort;
    begin
       I:=L;
       J:=R;
-      Val:=Cardinal(FList[(L+R) div 2]);
+      Val:=PtrUInt(FList[(L+R) div 2]);
       repeat
-	      While Cardinal(FList[I])<Val do Inc(I);
-	      while Val<Cardinal(FList[J]) do Dec(J);
+	      While PtrUInt(FList[I])<Val do Inc(I);
+	      while Val<PtrUInt(FList[J]) do Dec(J);
          if I<=J then
          begin
             Swap(I,J);
@@ -436,18 +433,18 @@ begin
 end;{TFasterList.Sort}
 
 function TFasterList.SortedIndexOf(Item: Pointer): Integer;
-var MemAddr : Cardinal;
-    MidVal  : Cardinal;
+var MemAddr : PtrUInt;
+    MidVal  : PtrUInt;
     L,H,Mid : Integer;
 begin
    Result:=-1;
-   MemAddr:=Cardinal(Item);
+   MemAddr:=PtrUInt(Item);
    L:=0;
    H:=FCount-1;
    while L<=H do
    begin
       Mid:=Floor(0.5*(L+H));
-      MidVal:=Cardinal(FList[Mid]);
+      MidVal:=PtrUInt(FList[Mid]);
       if MemAddr=MidVal then
       begin
          Result:=Mid;
@@ -489,4 +486,4 @@ begin
    if FCapacity<FCount then FCount:=Fcapacity;
 end;{TFasterList.FSetCapacity}
 
-end.
+end.

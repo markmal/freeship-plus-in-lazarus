@@ -9924,6 +9924,7 @@ begin
 
    SaveDialog:=TSaveDialog.Create(Owner);
    SaveDialog.InitialDir:=Dir;
+   Owner.Filename:=ChangeFileExt(Owner.Filename,'.ftm');
    Savedialog.FileName:=ExtractFilename(Owner.Filename);
    SaveDialog.Filter:='FREE!ship text files (*.ftm)|*.ftm|FREE!ship binary files (*.fbm)|*.fbm';
    Savedialog.Options:=[ofOverwritePrompt,ofHideReadOnly];
@@ -10345,15 +10346,17 @@ begin
                if Edge<>nil then Edge.Crease:=True else
                begin
                   // Find out if P1 and P2 share the same controlface
-                  for J:=1 to P1.NumberOfFaces do if P2.IndexOfFace(P1.Face[J-1])<>-1 then
-                  begin
-                     Face:=P1.Face[J-1] as TFreeSubdivisionControlFace;
-                     Edge:=Face.InsertEdge(P1,P2);
-                     if Edge<>nil then
-                     begin
-                        Edge.Crease:=True;
-                     end;
-                  end;
+                  for J:=1 to P1.NumberOfFaces do
+                    if P2.IndexOfFace(P1.Face[J-1])<>-1 then
+                    begin
+                       Face:=P1.Face[J-1] as TFreeSubdivisionControlFace;
+                       Edge:=Face.InsertEdge(P1,P2);
+                       if Edge<>nil then
+                       begin
+                          Edge.Crease:=True;
+                       end;
+                    end;
+                  DelayedDestroyList.DestroyAll;
                end;
             end;
             P1:=P2;
@@ -10382,15 +10385,17 @@ begin
                if Edge<>nil then Edge.Crease:=True else
                begin
                   // Find out if P1 and P2 share the same controlface
-                  for J:=1 to P1.NumberOfFaces do if P2.IndexOfFace(P1.Face[J-1])<>-1 then
-                  begin
-                     Face:=P1.Face[J-1] as TFreeSubdivisionControlFace;
-                     Edge:=Face.InsertEdge(P1,P2);
-                     if Edge<>nil then
-                     begin
-                        Edge.Crease:=True;
-                     end;
-                  end;
+                  for J:=1 to P1.NumberOfFaces do
+                    if P2.IndexOfFace(P1.Face[J-1])<>-1 then
+                    begin
+                       Face:=P1.Face[J-1] as TFreeSubdivisionControlFace;
+                       Edge:=Face.InsertEdge(P1,P2);
+                       if Edge<>nil then
+                       begin
+                          Edge.Crease:=True;
+                       end;
+                    end;
+                  DelayedDestroyList.DestroyAll;
                end;
             end;
             P1:=P2;

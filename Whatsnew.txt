@@ -1,4 +1,12 @@
-Test only Version 3.5.2.25 in Lazarus
+Test only Version 3.5.2.35 in Lazarus
+Released: Build date	2015/04/01 16:48:00
+New features and fixes:
+- fixed bug with Insert Plane and Intersect Layers. 
+  (FreeDestroyList object introduced for this to do delayed destroy. 
+   Previously destroy of control surface was done during walking through the surface points. 
+   Now the surface is destroyed out of this processing cycle.)
+
+Test only Version 3.5.2.26 in Lazarus
 Released: Build date	2015/03/26 17:38:00
 New features and fixes:
 - fixed "Out of Array" in FindWaterViscosity. Added viscosity for 0C temp.

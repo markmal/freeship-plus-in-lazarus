@@ -1233,7 +1233,18 @@ type TFreeSubdivisionBase           = class;
                                     property    ZebraColor                          : TColor read FZebraColor write FZebraColor;
                               end;
 
+   {--------------------------------------------------------------------------------------------------}
+   {                                         TFreeDestroyList                                         }
+   {  Some objects can be split to number of new ones and destroyed after it.                         }
+   {  However they cannot be destroyed right away because they are referred in a processing cycle     }
+   {  They should be added to this list and destroyed later.                                          }
+   {--------------------------------------------------------------------------------------------------}
 
+   TFreeDestroyList = class (TFasterList)
+   public
+     constructor Create;
+     procedure DestroyAll; // destroy all objects in the list, but not the list itself. To destroy the list call Destroy;
+   end;
 
 
 function  AddPoint(P1,P2:T3DCoordinate):T3DCoordinate;                     // Add two vectors
@@ -1298,6 +1309,8 @@ function  WeightStr(Units:TFreeUnitType):String;                           // Re
 function  DegrStr(Units:TFreeUnitType):String;                             // Returns a string value with the degr units
 function  LenMMStr(Units:TFreeUnitType):String;                            // Returns a string value with the length (mm or inch) units
 
+var DelayedDestroyList : TFreeDestroyList;
+
 procedure Register;
 
 implementation
@@ -1307,14 +1320,14 @@ implementation
 uses FreeLanguageSupport,
      VRMLUnit,
      FreeBackgroundBlendingDlg,
-     FreeSaveImageDlg;
+     FreeSaveImageDlg,
+     FreeLogger;
 
 const crRotate    = 1; // Rotation cursor
       crPan       = 2; // Pan cursor
       crSetOrigin = 3; // Cursor used when setting the origin of a background image
       crSetScale  = 4; // Cursor used when setting the scale of a background image
       crTranspCol = 5; // Cursor used when setting the transparent color of a background image
-
 
 
 function  AddPoint(P1,P2:T3DCoordinate):T3DCoordinate;
@@ -1894,6 +1907,7 @@ begin
                // Destroy the matching spline
                List.Delete(MatchIndex-1);
                Match.Destroy;
+               Match := nil;
                I:=0; // Reset match index to start searching for a new matching spline
             end;
          end;
@@ -1987,7 +2001,7 @@ end;{MirrorPlane}
 
 // Finds out with how many decimals a number should be presented
 function NumberOfDecimals(Value:TFloatType):Integer;
-var I   : real;
+var I   : TFloatType;
 begin
    Value:=Abs(Value);
    if Value<1e-6 then Value:=1e-6;
@@ -2943,6 +2957,7 @@ begin
       //StretchBlt(FOwner.DrawingCanvas.Handle,Dest.Left,Dest.Top,Dest.Right-Dest.Left,Dest.Bottom-Dest.Top,Tmp.Canvas.Handle,0,0,Tmp.Width,Tmp.Height,SRCCOPY);
       FOwner.DrawingCanvas.StretchDraw(Dest,Tmp);
       BitmapFormatHelper.Destroy;
+      BitmapFormatHelper := nil;
       tmp.Destroy;
    end;
 end;{TFreeBackgroundImage.Draw}
@@ -3386,9 +3401,13 @@ end;{TFreeViewport.Create}
 destructor TFreeViewport.Destroy;
 begin
    FDrawingBuffer.Destroy;
+   FDrawingBuffer := nil;
    FZBuffer.Destroy;
+   FZBuffer := nil;
    FAlphaBuffer.Destroy;
+   FAlphaBuffer := nil;
    FBackgroundImage.Destroy;
+   FBackgroundImage := nil;
    inherited Destroy;
 end;{TFreeViewport.Destroy}
 
@@ -5343,14 +5362,23 @@ begin
    Fillchar(FMirrorplane,SizeOf(FMirrorplane),0);
    FMirror:=False;
    FPoints.Destroy;
+   FPoints := nil;
    FEdges.Destroy;
+   FEdges := nil;
    FDoneList.Destroy;
+   FDoneList := nil;
    FBoundaryEdges.Destroy;
+   FBoundaryEdges := nil;
    FStations.Destroy;
+   FStations := nil;
    FWaterlines.Destroy;
+   FWaterlines := nil;
    FButtocks.Destroy;
+   FButtocks := nil;
    FDiagonals.Destroy;
+   FDiagonals := nil;
    FCorners.Destroy;
+   FCorners := nil;
    Inherited Destroy;
 end;{TFreeDevelopedPatch.Destroy}
 
@@ -6815,7 +6843,9 @@ begin
       end;
    end else MessageDlg('Seed could not be found!',mtError,[mbOk],0);
    Seedfaces.Destroy;
+   Seedfaces := nil;
    FFaces.Destroy;
+   FFaces := nil;
 end;{TFreeDevelopedPatch.Unroll}
 
 {---------------------------------------------------------------------------------------------------}
@@ -6852,8 +6882,13 @@ constructor TFreeEntity.Create;
 // Create and initialise all data
 begin
    inherited Create;
-   Clear;
-   Build:=False;
+   //Clear;
+   FBuild:=False;
+   FMin:=ZERO;
+   FMax:=ZERO; // The min/max boundary coordinates of the entity after it has been build
+   FPenWidth:=1;        // Pen thickness to use when drawing
+   FColor:=clBlack;     // Color when drawing
+   FPenstyle:=psSolid;  // Pen style for drawing the line
 end;{TFreeEntity.Create}
 
 procedure TFreeEntity.Clear;
@@ -7362,13 +7397,13 @@ end;{TFreeSpline.ChordlengthApproximation}
 
 constructor TFreeSpline.Create;
 begin
+  inherited Create;
    Setlength(FPoints,0);
    Setlength(FDerivatives,0);
    Setlength(FParameters,0);
    Setlength(FKnuckles,0);
    FCapacity:=0;
    FNoPoints:=0;
-   inherited Create;
 end;{TFreeSpline.Create}
 
 function TFreeSpline.Curvature(Parameter:TFloatType;var Value,Normal:T3DCoordinate):TFloatType;
@@ -8332,7 +8367,9 @@ begin
       P1:=FControlPoints[I-2];
       P2:=FControlPoints[I-1];
       Edge:=Owner.EdgeExists(P1,P2);
-      if Edge<>nil then Edge.FCurve:=nil;
+      if Edge<>nil then begin
+        Edge.FCurve:=nil;
+      end;
    end;
    FControlPoints.Clear;
    // Remove references from subdivided edges
@@ -8341,7 +8378,9 @@ begin
       P1:=FSubdividedPoints[I-2];
       P2:=FSubdividedPoints[I-1];
       Edge:=Owner.EdgeExists(P1,P2);
-      if Edge<>nil then Edge.FCurve:=nil;
+      if Edge<>nil then begin
+        Edge.FCurve:=nil;
+      end;
    end;
    FSubdividedPoints.Clear;
    Destroy;
@@ -8442,8 +8481,11 @@ destructor TFreeSubdivisionControlCurve.Destroy;
 begin
    Clear;
    FControlPoints.Destroy;
+   FControlPoints := nil;
    FSubdividedPoints.Destroy;
-   Fcurve.Destroy;
+   FSubdividedPoints := nil;
+   FCurve.Destroy;
+   FCurve := nil;
    Inherited Destroy;
 end;{TFreeSubdivisionControlCurve.Destroy}
 
@@ -9056,6 +9098,7 @@ begin
                end;
                if not Inserted then inc(J);
             end;
+            DelayedDestroyList.DestroyAll;
             inc(I);
          end;
 
@@ -9893,7 +9936,7 @@ end;{TFreeSubdivisionPoint.CalculateVertexPoint}
 
 procedure TFreeSubdivisionPoint.Clear;
 begin
-   Fillchar(FCoordinate,SizeOf(T3DCoordinate),0);
+   FCoordinate.X:=0; FCoordinate.Y:=0; FCoordinate.Z:=0;
    FFaces.Clear;
    FEdges.Clear;
    FVertexType:=svRegular;
@@ -10557,6 +10600,7 @@ begin
    if self=nil then exit;
    Clear;
    FFaces.Destroy;
+   FFaces := nil;
    Inherited Destroy;
 end;{TFreeSubdivisionEdge.Destroy}
 
@@ -11479,16 +11523,17 @@ end;{TFreeSubdivisionFace.Clear}
 
 constructor TFreeSubdivisionFace.Create(Owner:TFreeSubdivisionSurface);
 begin
-   FPoints:=TFasterlist.Create;
    inherited Create(Owner);
+   FPoints:=TFasterlist.Create;
    Clear;
 end;{TFreeSubdivisionFace.Create}
 
 destructor TFreeSubdivisionFace.Destroy;
 begin
    Clear;
-   inherited Destroy;
    FPoints.Destroy;
+   FPoints := nil;
+   inherited Destroy;
 end;{TFreeSubdivisionFace.Destroy}
 
 // Inverts the point ordering of the face
@@ -11795,10 +11840,16 @@ end;{TFreeSubdivisionControlFace.Clear}
 procedure TFreeSubdivisionControlFace.ClearChildren;
 var I:Integer;
 begin
-   for I:=1 to Childcount do Child[I-1].Destroy;
-   FChildren.Clear;
-   for I:=1 to EdgeCount do Edge[I-1].Destroy;
-   FEdges.Clear;
+   if Assigned(FChildren) then begin
+     for I:=1 to Childcount do
+       Child[I-1].Destroy;
+     FChildren.Clear;
+   end;
+   if Assigned(FEdges) then begin
+     for I:=1 to EdgeCount do
+       Edge[I-1].Destroy;
+     FEdges.Clear;
+   end;
 end;{TFreeSubdivisionControlFace.ClearChildren}
 
 constructor TFreeSubdivisionControlFace.Create(Owner:TFreeSubdivisionSurface);
@@ -11955,15 +12006,20 @@ begin
    end;
    Owner.Build:=False;
    Clear;
-   Destroy;
+   //Destroy;
+   DelayedDestroyList.Add(Self);
 end;{TFreeSubdivisionControlFace.Delete}
 
 destructor TFreeSubdivisionControlFace.Destroy;
 begin
-   Inherited Destroy;
+   logger.debug('TFreeSubdivisionControlFace.Destroy. $'+IntToStr(PtrUInt(Self)));
    FEdges.Destroy;
+   FEdges := nil;
    FControlEdges.Destroy;
+   FControlEdges := nil;
    FChildren.Destroy;
+   FChildren := nil;
+   Inherited Destroy;
 end;{TFreeSubdivisionControlFace.Destroy}
 
 procedure TFreeSubdivisionControlFace.Draw(Viewport:TFreeViewport);
@@ -12508,7 +12564,7 @@ begin
             Owner.AddControlFace(Pts,False,Layer);
          end;
          Pts.Destroy;
-         Delete;
+         Delete;  ///MM ??? Why it suicide itself? It does not makes sence. I comment it. No does not work without it.
       end;
       Result:=Fowner.EdgeExists(P1,P2) as TFreesubdivisionControlEdge;
       if Result<>nil then Result.Crease:=False;
@@ -12818,7 +12874,8 @@ begin
    ControlEdges.Capacity:=ControlEdges.Count+FControlEdges.Count;
    for I:=1 to FControlEdges.Count do
    begin
-      if ControlEdges.SortedIndexOf(FControlEdges[I-1])=-1 then ControlEdges.AddSorted(FControlEdges[I-1]);
+      if ControlEdges.SortedIndexOf(FControlEdges[I-1])=-1
+       then ControlEdges.AddSorted(FControlEdges[I-1]);
    end;
    CalcExtents;
 end;{TFreeSubdivisionControlFace.Subdivide}
@@ -14171,15 +14228,20 @@ end;{TFreeSubdivisionSurface.Clear}
 procedure TFreeSubdivisionSurface.ClearFaces;
 var I : integer;
 begin
-   for I:=1 to NumberOfControlFaces do Controlface[I-1].ClearChildren; // deletes children and rendermesh
-   for I:=1 to FEdges.Count do Edge[I-1].Destroy;
-   FEdges.Clear;
-   for I:=1 to FPoints.Count do Point[I-1].Destroy;
-   FPoints.Clear;
-   for I:=1 to NumberOfControlFaces do
-   begin
-      Controlface[I-1].FControlEdges.Clear;
+   if Assigned(FControlFaces) then
+     for I:=1 to NumberOfControlFaces do
+       Controlface[I-1].ClearChildren; // deletes children and rendermesh
+   if Assigned(FEdges) then begin
+     for I:=1 to FEdges.Count do Edge[I-1].Destroy;
+     FEdges.Clear;
    end;
+   if Assigned(FPoints) then begin
+     for I:=1 to FPoints.Count do Point[I-1].Destroy;
+     FPoints.Clear;
+   end;
+   if Assigned(FControlFaces) then
+     for I:=1 to NumberOfControlFaces do
+       Controlface[I-1].FControlEdges.Clear;
 end;{TFreeSubdivisionSurface.ClearFaces}
 
 procedure TFreeSubdivisionSurface.Clearselection;
@@ -14546,7 +14608,9 @@ begin
             begin
                Edge:=AddControlEdge(V1,V2);
                if Edge<>nil then edge.Crease:=True;
-            end else For J:=1 to V1.NumberOfFaces do
+            end
+            else
+            For J:=1 to V1.NumberOfFaces do
             begin
                Face:=V1.Face[J-1] as TFreeSubdivisionControlFace;
                if V2.IndexOfFace(Face)<>-1 then
@@ -14557,6 +14621,7 @@ begin
                   break;
                end;
             end;
+            DelayedDestroyList.DestroyAll;
          end else if NumberOfSelectedControlPoints=2 then MessageDlg(Userstring(202)+'!',mtWarning,[mbOk],0);
       end;
       for I:=NumberOfSelectedControlPoints downto 1 do SelectedControlPoint[I-1].Selected:=False;
@@ -15179,6 +15244,7 @@ end;{TFreeSubdivisionSurface.CalculateIntersections}
 
 constructor TFreeSubdivisionSurface.Create;
 begin
+  inherited Create;
    FControlPoints:=TFasterList.Create;
    FControlEdges:=TFasterList.Create;
    FControlFaces:=TFasterList.Create;
@@ -15209,7 +15275,6 @@ begin
    FControlCurveColor:=clRed;
    FSubdivisionMode:=fmQuadTriangle;
    FZebraColor:=clBlack;
-   inherited Create;
 end;{TFreeSubdivisionSurface.Create}
 
 destructor TFreeSubdivisionSurface.Destroy;
@@ -15680,6 +15745,7 @@ begin
             P.Y:=Edge.Startpoint.Coordinate.Y+T*(Edge.Endpoint.Coordinate.Y-Edge.Startpoint.Coordinate.Y);
             P.Z:=Edge.Startpoint.Coordinate.Z+T*(Edge.Endpoint.Coordinate.Z-Edge.Startpoint.Coordinate.Z);
             NewP:=Edge.InsertControlPoint(P);
+
             Points.Add(NewP);
          end;
       end;
@@ -15687,13 +15753,16 @@ begin
    end;
    if Points.Count>0 then
    begin
+
       // Try to find multiple points belonging to the same face and insert an edge
       I:=1;
       Points.Sort;
+
       Edges:=TFasterList.Create;
       while I<=Points.Count do
       begin
          P1:=Points[I-1];
+         writeln('InsertPlane: Point[',I,'].NumberOfFaces=',P1.NumberOfFaces);
          J:=1;
          while J<=P1.NumberOfFaces do
          begin
@@ -15702,6 +15771,7 @@ begin
             Inserted:=False;
             while (K<=Face.NumberOfpoints) and (Not Inserted) do
             begin
+               writeln('InsertPlane:  K=',K);
                P2:=Face.Point[K-1] as TFreeSubdivisionControlPoint;
                if (P1<>P2) and (Points.SortedIndexOf(P2)<>-1) then
                begin
@@ -15710,12 +15780,15 @@ begin
                   begin
                      Inserted:=True;
                      Edge:=Face.InsertEdge(P1,P2);
-                     Edge.Selected:=True;
+                     Edge.Selected:=True;    //selecting causes loosing Face.FPoints !
                      Edges.Add(Edge);
+                     if not Assigned(Face)
+                       then break;
                   end;
                end;
                inc(K);
             end;
+            DelayedDestroyList.DestroyAll;
             if not Inserted then inc(J);
          end;
          inc(I);
@@ -16408,6 +16481,25 @@ begin
 end;{TFreeSubdivisionSurface.SubDivide}
 
 
+// -----------------------------------------------------------------------------
+constructor TFreeDestroyList.Create;
+begin
+   inherited Create;
+end;
+
+procedure TFreeDestroyList.DestroyAll;
+var O: TObject; I: integer;
+begin
+  while Count>0 do begin
+    O := TObject(Items[0]);
+    if Assigned(O) then begin
+      O.Destroy;
+      Delete(I);
+    end;
+  end;
+end;
+// -----------------------------------------------------------------------------
+
 procedure Register;
 begin
   RegisterComponents('FreeShip', [TFreeViewport]);
@@ -16415,6 +16507,7 @@ end;
 
 initialization
    Randomize;
+   DelayedDestroyList := TFreeDestroyList.Create;
 end.
 
 

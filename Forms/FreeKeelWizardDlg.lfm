@@ -336,8 +336,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Height = 280
       Top = 8
       Width = 256
-      ActivePage = TabSheet4
-      TabIndex = 1
+      ActivePage = TabSheet3
+      TabIndex = 0
       TabOrder = 2
       object TabSheet3: TTabSheet
         Caption = 'Keel'

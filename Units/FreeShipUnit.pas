@@ -11933,7 +11933,9 @@ var I       : Integer;
     Dialog  : TFreeIntersectLayerDialog;
 begin
    Layers:=TFasterList.Create;
-   for I:=1 to Owner.NumberOfLayers do if Owner.Layer[I-1].Count>0 then Layers.Add(Owner.Layer[I-1]);
+   for I:=1 to Owner.NumberOfLayers do
+     if Owner.Layer[I-1].Count>0
+        then Layers.Add(Owner.Layer[I-1]);
    if Layers.Count>1 then
    begin
       Dialog:=TFreeIntersectLayerDialog.Create(Owner);

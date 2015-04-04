@@ -4341,7 +4341,9 @@ var Factor:single;
     Mid:TPoint;
 begin
    Result:=Inherited DoMousewheel(Shift,Wheeldelta,Mousepos);
+   {$IFDEF WIN32} // We need to bring ScreenToClient in MDF mode, not a case for X11
    MousePos:=self.ScreenToClient(MousePos);
+   {$ENDIF}
    if (Focused) and (MousePos.X>=0) and (MousePos.Y>=0) and (MousePos.X<Clientwidth) and (MousePos.Y<Clientheight) then
    begin
       // zoom by using mousewheel
@@ -8995,7 +8997,7 @@ var I,J,K,L    : Integer;
     Inserted   : Boolean;
     Plane      : T3DPlane;
     S1,S2,T    : TFloatType;
-    P3D        : T3DCoordinate;
+    P3D,esp,eep, CP0,CP2,CP1 : T3DCoordinate;
 begin
    Result:=False;
    Edges:=TFasterList.Create;
@@ -9010,8 +9012,9 @@ begin
          begin
             P2:=Face.Point[J-1];
             Edge:=Owner.EdgeExists(P1,P2) as TFreeSubdivisionControlEdge;
-            if Edge<>nil then if Edges.SortedIndexOf(Edge)=-1 then Edges.AddSorted(Edge);
-
+            if Edge<>nil then
+               if Edges.SortedIndexOf(Edge)=-1
+                  then Edges.AddSorted(Edge);
             P1:=P2;
          end;
       end;
@@ -9034,24 +9037,36 @@ begin
                L:=3;
                while (L<=Child.NumberOfpoints) and (not IntFound) do
                begin
-                  Plane:=PlanePPP(Child.Point[0].Coordinate,Child.Point[L-2].Coordinate,Child.Point[L-1].Coordinate);
-                  S1:=Plane.a*Edge.FStartpoint.FCoordinate.X+Plane.b*Edge.FStartpoint.FCoordinate.Y+Plane.c*Edge.FStartpoint.FCoordinate.Z+Plane.d;
-                  S2:=Plane.a*Edge.FEndpoint.FCoordinate.X+Plane.b*Edge.FEndpoint.FCoordinate.Y+Plane.c*Edge.FEndpoint.FCoordinate.Z+Plane.d;
+                 CP0 := Child.Point[0].Coordinate;
+                 CP2 := Child.Point[L-2].Coordinate;
+                 CP1 := Child.Point[L-1].Coordinate;
+
+                  Plane:=PlanePPP(CP0,CP2,CP1);
+                  esp := Edge.FStartpoint.FCoordinate;
+                  eep := Edge.FEndpoint.FCoordinate;
+                  S1:=Plane.a*esp.X
+                     +Plane.b*esp.Y
+                     +Plane.c*esp.Z
+                     +Plane.d;
+                  S2:=Plane.a*eep.X
+                     +Plane.b*eep.Y
+                     +Plane.c*eep.Z
+                     +Plane.d;
                   if ((S1<0) and (S2>0)) or ((S1>0) and (S2<0)) then
                   begin
                      // Edge intersects the plane, does it lie in the triangle?
                      if S1=S2 then T:=0.5
                               else T:=-s1/(s2-s1);
-                     P3D.X:=Edge.FStartpoint.FCoordinate.X+T*(Edge.FEndpoint.FCoordinate.X-Edge.FStartpoint.FCoordinate.X);
-                     P3D.Y:=Edge.FStartpoint.FCoordinate.Y+T*(Edge.FEndpoint.FCoordinate.Y-Edge.FStartpoint.FCoordinate.Y);
-                     P3D.Z:=Edge.FStartpoint.FCoordinate.Z+T*(Edge.FEndpoint.FCoordinate.Z-Edge.FStartpoint.FCoordinate.Z);
-                     if PointInTriangle(P3D,Child.Point[0].Coordinate,Child.Point[L-2].Coordinate,Child.Point[L-1].Coordinate) then
+                     P3D.X:=esp.X+T*(eep.X-esp.X);
+                     P3D.Y:=esp.Y+T*(eep.Y-esp.Y);
+                     P3D.Z:=esp.Z+T*(eep.Z-esp.Z);
+                     if PointInTriangle(P3D, CP0,CP2,CP1) then
                      begin
                         // Yes, we have a valid intersection here
                         P:=Edge.InsertControlPoint(P3D);
                         if P<>nil then
                         begin
-                           IntFound:=true;
+                           //IntFound:=true;  //MM:I do not know why to stop searching for all intersections ?
                            Result:=True;
                            NewPoints.Add(P);
                         end;
@@ -9065,6 +9080,7 @@ begin
          end;
          inc(I);
       end;
+
       if NewPoints.Count>0 then
       begin
          // Try to find multiple new points belonging to the same face and insert an edge

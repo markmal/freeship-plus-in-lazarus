@@ -74,9 +74,11 @@ type
 { TMainForm }
 
  TMainForm         = class(TForm)
+     SelectLeakPoints: TAction;
                               FreeShip                   : TFreeShip;
                               ActionList1                : TActionList;
                               LoadFile                   : TAction;
+                              SelectLeakPoints1: TMenuItem;
                               MH: TMenuItem;
                               OST: TMenuItem;
                               PropellerRvrs: TMenuItem;
@@ -404,7 +406,7 @@ type
     STL1: TMenuItem;
     CrossCurves: TAction;
     Crosscurves1: TMenuItem;
-    SelectLeakPoints: TAction;
+    //SelectLeakPoints: TAction;
     SelectionSeparator1: TMenuItem;
     Select_LeakPoints: TMenuItem;
 
@@ -626,7 +628,6 @@ begin
   Application.ProcessMessages;
   inActivation:=false;
 end;
-
 
 procedure TMainForm.FOnselectItem(Sender:TObject);
 var Face1 : TFreeSubdivisionControlFace;

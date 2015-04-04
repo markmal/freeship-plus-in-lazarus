@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 374
+  Left = 371
   Height = 83
-  Top = 99
+  Top = 98
   Width = 1252
   Align = alTop
   ClientHeight = 62
@@ -1162,6 +1162,11 @@ object MainForm: TMainForm
       Category = 'Calculate'
       Caption = 'Cross curves'
       OnExecute = CrossCurvesExecute
+    end
+    object SelectLeakPoints: TAction
+      Category = 'Selection'
+      Caption = 'SelectLeakPoints'
+      OnExecute = SelectLeakPointsExecute
     end
   end
   object MenuImages: TImageList
@@ -5089,6 +5094,9 @@ object MainForm: TMainForm
       end
       object SelectionSeparator1: TMenuItem
         Caption = '-'
+      end
+      object SelectLeakPoints1: TMenuItem
+        Action = SelectLeakPoints
       end
     end
     object ools1: TMenuItem

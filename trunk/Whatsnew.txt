@@ -1,3 +1,13 @@
+Test only Version 3.5.2.36 in Lazarus
+Released: Build date	2015/04/04 11:11:00
+New features and fixes:
+- further fix of the bug with Insert Plane and Intersect Layers. 
+  (Cycle of intersection detection was optimized to exit as soon as first intersection found.
+   Looks like this optimization caused some intersection points and last intersection rib missed.
+   The optimization is disabled.)
+- fix - Mouse wheel zoom worked incorrectly. Fixed.
+- fix - "Select all leak points" menu item was lost in conversion. Added.
+
 Test only Version 3.5.2.35 in Lazarus
 Released: Build date	2015/04/01 16:48:00
 New features and fixes:

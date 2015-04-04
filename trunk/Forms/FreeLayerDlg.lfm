@@ -2,12 +2,12 @@ object FreeLayerDialog: TFreeLayerDialog
   Left = 378
   Height = 434
   Top = 94
-  Width = 460
+  Width = 501
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Layer properties.'
   ClientHeight = 434
-  ClientWidth = 460
+  ClientWidth = 501
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
@@ -18,22 +18,22 @@ object FreeLayerDialog: TFreeLayerDialog
     Left = 0
     Height = 410
     Top = 24
-    Width = 460
+    Width = 501
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 6
     ClientHeight = 410
-    ClientWidth = 460
+    ClientWidth = 501
     TabOrder = 0
     object Panel2: TPanel
-      Left = 203
+      Left = 224
       Height = 396
       Top = 7
-      Width = 250
+      Width = 270
       Align = alRight
       BevelOuter = bvLowered
       ClientHeight = 396
-      ClientWidth = 250
+      ClientWidth = 270
       TabOrder = 0
       object Label1: TLabel
         Left = 6
@@ -400,7 +400,7 @@ object FreeLayerDialog: TFreeLayerDialog
       Left = 7
       Height = 396
       Top = 7
-      Width = 196
+      Width = 217
       Align = alClient
       ItemHeight = 0
       OnClick = LayerBoxClick
@@ -413,7 +413,7 @@ object FreeLayerDialog: TFreeLayerDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 460
+    Width = 501
     AutoSize = True
     Caption = 'ToolBar1'
     Color = clBtnFace

@@ -48,6 +48,7 @@ type TDataType     = (dtInteger,dtFloat);
                            FOutOfRangeMessage: boolean;
                            FOnBeforeSetValue : TNotifyEvent;
                            FOnAfterSetValue  : TNotifyEvent;
+                           FOnChangeValue    : TNotifyEvent; // when value changes but is not committed.
                            procedure CMExit(var Message: TCMExit); message CM_EXIT;
                            procedure CMEnter(var Message: TCMEnter); message CM_ENTER;
                            procedure CMFontChanged(var Message: TMessage); message CM_FONTCHANGED;
@@ -89,6 +90,7 @@ type TDataType     = (dtInteger,dtFloat);
                            property Validate          : boolean read FValidate write SetValidate;
                            property OnBeforeSetValue  : TNotifyEvent read FOnBeforeSetValue write FOnBeforeSetValue;
                            property OnAfterSetValue   : TNotifyEvent read FOnAfterSetValue write FOnAfterSetValue;
+                           property OnChangeValue     : TNotifyEvent read FOnChangeValue write FOnChangeValue;
 
                            property AutoSelect;
                            property AutoSize;
@@ -215,6 +217,7 @@ begin
          FInitialValue:=FValue;
       FormatText;
       //if Assigned(FOnAfterSetValue) then FOnAfterSetValue(self);
+      if Assigned(FOnChangeValue) then FOnChangeValue(self);
    end else
    begin
       //FValue:=Value;
@@ -262,6 +265,7 @@ begin
       begin
          FValue:=FMin;
          FormatText;
+         if Assigned(FOnChangeValue) then FOnChangeValue(self);
       end;
    end;
 end;{TFreeNumInput.SetValidate}
@@ -299,7 +303,9 @@ begin
 
    if FValidate and ((Value<FMin) or (Value>FMax)) then
    begin
-      if FOutOfRangeMessage then MessageDlg(Userstring(205)+#32+FloatToStrF(FMin,ffFixed,7,Decimals)+#32+Userstring(206)+#32+FloatToStrF(FMax,ffFixed,7,Decimals),mtError,[mbOk],0);
+      if FOutOfRangeMessage then MessageDlg(
+         Userstring(205)+' '+FloatToStrF(FMin,ffFixed,7,Decimals)+' '
+         +Userstring(206)+' '+FloatToStrF(FMax,ffFixed,7,Decimals),mtError,[mbOk],0);
       Tmp:=FloatToStrF(Value,ffFixed,FDigits,FDecimals);
       Value:=StrToFloat(Tmp);
 
@@ -308,29 +314,14 @@ begin
       if FValue<>Value then
       begin
          if Assigned(FOnBeforeSetValue) then FOnBeforeSetValue(self);
-
          FValue:=Value;
          FormatText;
-         
+         if Assigned(FOnChangeValue) then FOnChangeValue(self);
          if Assigned(FOnAfterSetValue) then FOnAfterSetValue(self);
       end;
       Result:=false;
    end;
 end;{TFreeNumInput.Valid}
-
-procedure TFreeNumInput.KeyDown(var Key: Word; Shift: TShiftState);
-var Ch : Char;
-begin
-   FIsEditing:=true;
-   Ch:=Chr(Key);
-   if (key=VK_UP) then //PostMessage(GetparentForm(Self).Handle, WM_NEXTDLGCTL ,1,0);
-      Value := Value + 1;
-   if (Key=VK_DOWN) then //PostMessage(GetparentForm(Self).Handle, WM_NEXTDLGCTL ,0,0);
-      Value := Value - 1;
-   if (Key=VK_DELETE) then Keypress(Ch);
-   inherited KeyDown(Key, Shift);
-   FIsEditing:=false;
-end;{TFreeNumInput.KeyDown}
 
 function MessageBeep(uType: UINT): BOOL;
 begin
@@ -341,6 +332,20 @@ begin
   Result := true;
 {$ENDIF}
 end;
+
+procedure TFreeNumInput.KeyDown(var Key: Word; Shift: TShiftState);
+var Ch : Char;
+begin
+   FIsEditing:=true;
+   Ch:=Chr(Key);
+   if (key=VK_UP) then //PostMessage(GetparentForm(Self).Handle, WM_NEXTDLGCTL ,1,0);
+     Value := Value + 1;
+   if (Key=VK_DOWN) then //PostMessage(GetparentForm(Self).Handle, WM_NEXTDLGCTL ,0,0);
+      Value := Value - 1;
+   if (Key=VK_DELETE) then Keypress(Ch);
+   inherited KeyDown(Key, Shift);
+   FIsEditing:=false;
+end;{TFreeNumInput.KeyDown}
 
 procedure TFreeNumInput.KeyPress(var Key: Char);
 var I,X,Sel,OldLength:Integer;
@@ -356,7 +361,7 @@ begin
       begin
          if Assigned(FOnBeforeSetValue) then FOnBeforeSetValue(self);
          //PostMessage(GetparentForm(Self).Handle, WM_NEXTDLGCTL ,0,0);
-         inherited KeyPress(Key);
+         inherited KeyPress(Key); //do not pass Enter upstairs because it can close modal dialog
          if Assigned(FOnAfterSetValue) then FOnAfterSetValue(self);
          Key:=#0;
          Exit;
@@ -690,4 +695,4 @@ begin
   RegisterComponents ('FreeShip', [TFreeNumInput]);
 end;
 
-end.
+end.

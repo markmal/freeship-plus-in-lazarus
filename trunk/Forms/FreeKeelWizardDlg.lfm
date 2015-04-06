@@ -610,6 +610,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 2
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          OnChangeValue = Input1ChangeValue
           BorderColor = clBtnShadow
           TabOrder = 3
         end
@@ -628,13 +629,14 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 1
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          OnChangeValue = Input2ChangeValue
           BorderColor = clBtnShadow
           TabOrder = 4
         end
         object Input4: TFreeNumInput
           Left = 162
           Height = 24
-          Top = 121
+          Top = 120
           Width = 65
           Alignment = taRightJustify
           Decimals = 3
@@ -646,6 +648,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 0.1
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          OnChangeValue = Input4ChangeValue
           BorderColor = clBtnShadow
           TabOrder = 5
         end
@@ -664,6 +667,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Value = 1
           Validate = False
           OnAfterSetValue = Input1AfterSetValue
+          OnChangeValue = Input3ChangeValue
           BorderColor = clBtnShadow
           TabOrder = 6
         end
@@ -675,15 +679,19 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Alignment = taRightJustify
           Decimals = 0
           Digits = 12
-          Max = 0
-          Min = 0
+          Max = 1000
+          Min = 2
           DataType = dtInteger
           OutOfRangeMessage = False
           TabOnEnterKey = False
           Value = 6
           Validate = False
           OnAfterSetValue = Input5AfterSetValue
+          OnChangeValue = Input5ChangeValue
           BorderColor = clBtnShadow
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
           TabOrder = 7
         end
         object Input6: TFreeNumInput
@@ -694,15 +702,19 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Alignment = taRightJustify
           Decimals = 0
           Digits = 12
-          Max = 0
-          Min = 0
+          Max = 1000
+          Min = 3
           DataType = dtInteger
           OutOfRangeMessage = False
           TabOnEnterKey = False
           Value = 15
           Validate = False
           OnAfterSetValue = Input6AfterSetValue
+          OnChangeValue = Input6ChangeValue
           BorderColor = clBtnShadow
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
           TabOrder = 8
         end
         object TrackBar1: TTrackBar

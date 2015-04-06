@@ -780,6 +780,7 @@ type TFreeSubdivisionBase           = class;
                                     procedure SaveToDXF(Strings:TStringList);
                                     procedure SaveBinary(Destination:TFreeFileBuffer);
                                     procedure SaveToStream(Strings:TStringList);
+                                    procedure SelectAll;
                                     procedure Unroll(Destination:TFasterList);
                                     property  AlphaBlend                : Byte read FAlphaBlend write FAlphaBlend;
                                     property  Color                     : TColor read FGetColor write FSetColor;
@@ -1699,9 +1700,9 @@ end;{DistanceToLine}
 
 function CrossProduct(U,V:T3DCoordinate):T3DCoordinate;
 begin
-   Result.X := (V.Y * (U.Z) - (V.Z )* U.Y);
-   Result.Y := -(V.X * (U.Z) - (V.Z)* U.X);
-   Result.Z := (V.X * U.Y - V.Y * U.X);
+   Result.X :=  (V.Y * U.Z - V.Z * U.Y);
+   Result.Y := -(V.X * U.Z - V.Z * U.X);
+   Result.Z :=  (V.X * U.Y - V.Y * U.X);
 end;{CrossProduct}
 
 // Converts a displacement to volume
@@ -2088,6 +2089,46 @@ begin
    Result.c:=N.z/L;
    Result.d:=-P1.x*Result.a-P1.y*Result.b-P1.z*Result.c;
 end;{PlanePPP}
+
+
+function PointInBlock(P,Pmin,Pmax:T3DCoordinate):Boolean;
+begin
+  result := ( (P.X >= Pmin.X) and (P.Y >= Pmin.Y) and (P.Z >= Pmin.Z) )
+        and ( (P.X <= Pmax.X) and (P.Y <= Pmax.Y) and (P.Z <= Pmax.Z) );
+end;
+
+
+function PointInTriangleBarycentric(P,A,B,C:T3DCoordinate):Boolean;
+// This function calculates using Barycentric method
+// if a point lies inside a triangle
+// from: http://blogs.msdn.com/b/rezanour/archive/2011/08/07/barycentric-coordinates-and-point-in-triangle-tests.aspx
+var s,t,r, denom: double;
+    u,v,w,
+    vCrossU, vCrossW, uCrossV, uCrossW :T3DCoordinate; //vectors
+    i: double;
+begin
+  result := false;
+  u := Subtract(B,A);
+  v := Subtract(C,A);
+  w := Subtract(P,A);
+  vCrossW := CrossProduct(v,w);
+  vCrossU := CrossProduct(v,w);
+  r := DotProduct(vCrossW, vCrossU); // calc r just to know its sign
+   if ( r < 0)
+     then exit;
+  uCrossW := CrossProduct(u,w);
+  uCrossV := CrossProduct(u,v);
+  t :=DotProduct(uCrossW, uCrossV);  // calc t just to know its sign
+  if ( t < 0)
+     then exit;
+  // At this point, we know that r and t and both > 0.
+  // Therefore, as long as their sum is <= 1, each must be less <= 1
+  denom := VectorLength(uCrossV);
+  r := VectorLength(vCrossW) / denom;
+  t := VectorLength(uCrossW) / denom;
+  i := round(( r + t )*1000000.0)/1000000.0;
+  result := (i <= 1);
+end;
 
 function PointInTriangle(Int,P0,P1,P2:T3DCoordinate):Boolean;
 // This function calculates if a point lies inside a triangle
@@ -8984,6 +9025,11 @@ begin
    FThickness:=Source.FThickness;
 end;{TFreeSubdivisionLayer.AssignProperties}
 
+function ToStr(c:T3DCoordinate):String;
+begin
+   result:='('+FloatToStr(c.X)+','+FloatToStr(c.Y)+','+FloatToStr(c.Z)+')';
+end;
+
 function TFreeSubdivisionLayer.CalculateIntersectionPoints(Layer:TFreeSubdivisionLayer):Boolean;
 var I,J,K,L    : Integer;
     Edges      : TFasterlist;
@@ -8997,7 +9043,8 @@ var I,J,K,L    : Integer;
     Inserted   : Boolean;
     Plane      : T3DPlane;
     S1,S2,T    : TFloatType;
-    P3D,esp,eep, CP0,CP2,CP1 : T3DCoordinate;
+    P2D,P3D,esp,eep, CP0,CP2,CP1 : T3DCoordinate;
+    PiT : Boolean;
 begin
    Result:=False;
    Edges:=TFasterList.Create;
@@ -9012,20 +9059,39 @@ begin
          begin
             P2:=Face.Point[J-1];
             Edge:=Owner.EdgeExists(P1,P2) as TFreeSubdivisionControlEdge;
-            if Edge<>nil then
-               if Edges.SortedIndexOf(Edge)=-1
-                  then Edges.AddSorted(Edge);
+            if Edge<>nil then begin
+              if Edges.SortedIndexOf(Edge)=-1
+                then Edges.AddSorted(Edge);
+            end;
             P1:=P2;
          end;
       end;
 
+writeln('found edges:');
+for I:=0 to Edges.Count-1 do
+begin
+  Edge := Edges[I];
+  esp := Edge.FStartpoint.FCoordinate;
+  eep := Edge.FEndpoint.FCoordinate;
+  writeln(I,' ',ToStr(esp),' ',ToStr(eep));
+  //if I=27 then Edge.selected:=true;
+end;
+
+
       // now check all edges for intersection with layer 2
       I:=1;
-
       while I<=Edges.Count do
       begin
          Edge:=Edges[I-1];
          IntFound:=False;
+         esp := Edge.FStartpoint.FCoordinate;
+         eep := Edge.FEndpoint.FCoordinate;
+         //debug
+         {if ((esp.X=5) and (esp.Y=0) )
+           or ((eep.X=5) and (eep.Y=0))
+           then
+             Edge.Selected:=true;}
+         // end debug
          J:=1;
          while (J<=Layer.Count) and (not IntFound) do
          begin
@@ -9041,18 +9107,17 @@ begin
                  CP2 := Child.Point[L-2].Coordinate;
                  CP1 := Child.Point[L-1].Coordinate;
 
-                  Plane:=PlanePPP(CP0,CP2,CP1);
-                  esp := Edge.FStartpoint.FCoordinate;
-                  eep := Edge.FEndpoint.FCoordinate;
-                  S1:=Plane.a*esp.X
+                 Plane:=PlanePPP(CP0,CP2,CP1);
+
+                 S1:= Plane.a*esp.X
                      +Plane.b*esp.Y
                      +Plane.c*esp.Z
                      +Plane.d;
-                  S2:=Plane.a*eep.X
+                 S2:= Plane.a*eep.X
                      +Plane.b*eep.Y
                      +Plane.c*eep.Z
                      +Plane.d;
-                  if ((S1<0) and (S2>0)) or ((S1>0) and (S2<0)) then
+                 if ((S1<0) and (S2>0)) or ((S1>0) and (S2<0)) then
                   begin
                      // Edge intersects the plane, does it lie in the triangle?
                      if S1=S2 then T:=0.5
@@ -9060,9 +9125,30 @@ begin
                      P3D.X:=esp.X+T*(eep.X-esp.X);
                      P3D.Y:=esp.Y+T*(eep.Y-esp.Y);
                      P3D.Z:=esp.Z+T*(eep.Z-esp.Z);
-                     if PointInTriangle(P3D, CP0,CP2,CP1) then
+
+                     PiT := false; //PIT0:=false;
+                     if PointInBlock(P3D, Face.Min, Face.Max)
+                        then begin
+                        { //Debug
+                        Face.Selected := true;
+                        if (P3D.Y=0)and(CP2.Y=0)and(CP1.Y=0)
+                           and (P3D.X<=CP2.X)and(P3D.X>=CP1.X)
+                           then
+                           Face.Selected := true;}
+                        PiT:=PointInTriangleBarycentric(P3D, CP0,CP2,CP1);
+                        //PIT0:=PointInTriangle(P3D, CP0,CP2,CP1);
+                        end;
+                     //if Edge.Selected or Face.Selected then
+                       //write('P3D:',ToStr(P3D), ' CP0:',ToStr(CP0),' CP2:',ToStr(CP2),' CP1:',ToStr(CP1));
+                     //if PIT<>PIT0
+                        //then writeln ('PIT<>PIT0');
+                     if PiT then
                      begin
+                        //if Edge.Selected or Face.Selected then
+                        //   write(' :IN');
                         // Yes, we have a valid intersection here
+                        //writeln('FreeGeometry.CalculateIntersectionPoint: Intersection found. Edge:',I,' FaceChild:',K,' Point:',L);
+                        //writeln('FreeGeometry.CalculateIntersectionPoint: Intersection found. P3D(',P3D.X,',',P3D.Y,',',P3D.Z,')');
                         P:=Edge.InsertControlPoint(P3D);
                         if P<>nil then
                         begin
@@ -9071,15 +9157,17 @@ begin
                            NewPoints.Add(P);
                         end;
                      end;
-                  end;
+                     //if Edge.Selected or Face.Selected then
+                        //writeln();
+                  end; //if ((S1<0) and (S2>0)) or ((S1>0) and (S2<0)) then
                   inc(L);
-               end;
+               end; //while (L<=Child.NumberOfpoints) and (not IntFound) do
                inc(K);
-            end;
+            end; //while (K<=Face.ChildCount) and (not IntFound) do
             inc(J);
-         end;
+         end; //while (J<=Layer.Count) and (not IntFound) do
          inc(I);
-      end;
+      end; //while I<=Edges.Count do
 
       if NewPoints.Count>0 then
       begin
@@ -9460,6 +9548,13 @@ begin
    Str:=Str+#32+BoolToStr(FUseForIntersections)+#32+BoolToStr(FUseInHydrostatics);
    Strings.Add(Str);
 end;{TFreeSubdivisionLayer.SaveToStream}
+
+procedure TFreeSubdivisionLayer.SelectAll;
+var I: integer;
+begin
+for i:=0 to Count-1 do
+  Items[i].Selected:=True;
+end;
 
 procedure TFreeSubdivisionLayer.Unroll(Destination:TFasterList);
 var ToDoList   : TFasterList;
@@ -15778,7 +15873,7 @@ begin
       while I<=Points.Count do
       begin
          P1:=Points[I-1];
-         writeln('InsertPlane: Point[',I,'].NumberOfFaces=',P1.NumberOfFaces);
+         //writeln('InsertPlane: Point[',I,'].NumberOfFaces=',P1.NumberOfFaces);
          J:=1;
          while J<=P1.NumberOfFaces do
          begin
@@ -15787,7 +15882,7 @@ begin
             Inserted:=False;
             while (K<=Face.NumberOfpoints) and (Not Inserted) do
             begin
-               writeln('InsertPlane:  K=',K);
+               //writeln('InsertPlane:  K=',K);
                P2:=Face.Point[K-1] as TFreeSubdivisionControlPoint;
                if (P1<>P2) and (Points.SortedIndexOf(P2)<>-1) then
                begin
@@ -16510,7 +16605,7 @@ begin
     O := TObject(Items[0]);
     if Assigned(O) then begin
       O.Destroy;
-      Delete(I);
+      Delete(0);
     end;
   end;
 end;

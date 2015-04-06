@@ -16094,12 +16094,19 @@ begin
             begin
                P.X:=FDesignHydrostatics.FData.SAC[I-1].X;
                P.Y:=0;
-               if (FDesignHydrostatics.FData.BeamWaterline*FDesignHydrostatics.Draft)<>0 then P.Z:=2*(FDesignHydrostatics.FData.ModelMax.Z-FDesignHydrostatics.FData.ModelMin.Z)*FDesignHydrostatics.FData.SAC[I-1].Y/(FDesignHydrostatics.FData.BeamWaterline*FDesignHydrostatics.Draft)
-                                                                                         else P.Z:=FDesignHydrostatics.FData.SAC[I-1].Y;
+               if (FDesignHydrostatics.FData.BeamWaterline*FDesignHydrostatics.Draft)<>0
+                  then P.Z:=2*(FDesignHydrostatics.FData.ModelMax.Z-FDesignHydrostatics.FData.ModelMin.Z)
+                              *FDesignHydrostatics.FData.SAC[I-1].Y
+                              /(FDesignHydrostatics.FData.BeamWaterline*FDesignHydrostatics.Draft)
+                  else P.Z:=FDesignHydrostatics.FData.SAC[I-1].Y;
                P.Z:=P.Z+FDesignHydrostatics.FData.ModelMin.Z;
                Curve.Add(P);
             end;
             Curve.Color:=Preferences.HydrostaticsFontColor;
+            if Curve.ShowCurvature
+               then Curve.Fragments:=800
+               else Curve.Fragments:=600;
+
             Curve.Draw(Viewport);
             for I:=1 to Curve.NumberOfPoints do
             begin

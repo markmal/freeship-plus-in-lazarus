@@ -46,6 +46,7 @@ uses
   PrintersDlgs, Printer4Lazarus, FreePrinter,
   FileUtil,
 {$ENDIF}
+     LazUTF8,//FreeStringUtils,
      SysUtils,
      Graphics,
      Forms,
@@ -300,6 +301,24 @@ type
                                  procedure ComboBoxClick(Sender: TObject);
                                  procedure ComboBox1Click(Sender: TObject);
                                  procedure Input1AfterSetValue(Sender: TObject);
+                                 procedure Input1ChangeValue(Sender: TObject);
+                                 procedure Input1KeyDown(Sender: TObject;
+                                   var Key: Word; Shift: TShiftState);
+                                 procedure Input2ChangeValue(Sender: TObject);
+                                 procedure Input2KeyDown(Sender: TObject;
+                                   var Key: Word; Shift: TShiftState);
+                                 procedure Input3ChangeValue(Sender: TObject);
+                                 procedure Input3KeyDown(Sender: TObject;
+                                   var Key: Word; Shift: TShiftState);
+                                 procedure Input4ChangeValue(Sender: TObject);
+                                 procedure Input4KeyDown(Sender: TObject;
+                                   var Key: Word; Shift: TShiftState);
+                                 procedure Input5ChangeValue(Sender: TObject);
+                                 procedure Input5KeyDown(Sender: TObject;
+                                   var Key: Word; Shift: TShiftState);
+                                 procedure Input6ChangeValue(Sender: TObject);
+                                 procedure Input6KeyDown(Sender: TObject;
+                                   var Key: Word; Shift: TShiftState);
                                  procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                                  procedure ViewportRedraw(Sender: TObject);
                                  procedure SpeedButton1Click(Sender: TObject);
@@ -330,6 +349,7 @@ type
                                  VolCOG            : T3DCoordinate;
                                  WettedArea        : TFloatType;
                                  fDragBegin:TPoint;
+                                 IsUptoDate : boolean;
                                  function FGetCols:Integer;
                                  function FGetRows:Integer;
                                  procedure UpdateData;
@@ -355,13 +375,19 @@ implementation
 function TFreeKeelWizardDialog.FGetCols:Integer;
 begin
    Result:=Input6.AsInteger;
-   if Result<3 then Result:=3;
+   if Result<3 then begin
+     Result:=3;
+     Input6.Value:=3;
+   end;
 end;{TFreeKeelWizardDialog.FGetCols}
 
 function TFreeKeelWizardDialog.FGetRows:Integer;
 begin
    Result:=Input5.AsInteger;
-   if Result<2 then Result:=2;
+   if Result<2 then begin
+     Result:=2;
+     Input5.Value:=2;
+   end;
 end;{TFreeKeelWizardDialog.FGetRows}
 
 procedure TFreeKeelWizardDialog.UpdateData;
@@ -881,7 +907,7 @@ begin
                                           _Label23.Caption:=FloatToStrF(VolBulb*InputDensity.Value,ffFixed,8,6)+#32+WeightStr(FFreeship.ProjectSettings.ProjectUnits);  
        end;           
    end;
-
+   IsUptoDate := true;
    Viewport.ZoomExtents;
 end;{TFreeKeelWizardDialog.UpdateData}
 
@@ -935,6 +961,72 @@ procedure TFreeKeelWizardDialog.Input1AfterSetValue(Sender: TObject);
 begin
    UpdateData;
 end;{TFreeKeelWizardDialog.Input1AfterSetValue}
+
+procedure TFreeKeelWizardDialog.Input1ChangeValue(Sender: TObject);
+begin
+  IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input2ChangeValue(Sender: TObject);
+begin
+  IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input3ChangeValue(Sender: TObject);
+begin
+  IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input3KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input4ChangeValue(Sender: TObject);
+begin
+  IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input4KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input5ChangeValue(Sender: TObject);
+begin
+  IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input5KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input6ChangeValue(Sender: TObject);
+begin
+  IsUptoDate := false;
+end;
+
+procedure TFreeKeelWizardDialog.Input6KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    IsUptoDate := false;
+end;
 
 procedure TFreeKeelWizardDialog.ViewportRequestExtents(Sender: TObject; var Min, Max: T3DCoordinate);
 var I,J  : Integer;
@@ -999,10 +1091,12 @@ procedure TFreeKeelWizardDialog.ViewportRedraw(Sender: TObject);
 var Pts  : array of TPoint;
     P1,P2: T3DCoordinate;
     P3,P4: T3DCoordinate;
-    I,J  : Integer;
+    I,J, R,C  : Integer;
     Pts100: array [0..99]of TPoint;
     dy,dz,wng: Extended;
 begin
+  if not IsUptoDate then
+     UpdateData;
    // create aft profile
    if FProfile<>nil then
    begin
@@ -1012,14 +1106,23 @@ begin
          if FProfile.NumberOfPoints>1 then
          begin
             FProfile.Draw(Viewport);
+
             Setlength(Pts,Cols);
-            for I:=1 to Rows do //if (I=0) or (I=Rows) then
+            //Setlength(Mesh,Cols*Rows);
+            R:=Rows;
+            if not IsUptoDate then
+              UpdateData;
+            for I:=1 to R do //if (I=0) or (I=Rows) then
             begin
-               if I in [1,Rows] then Viewport.PenColor:=clBlack
+               if I in [1,R] then Viewport.PenColor:=clBlack
                                 else Viewport.PenColor:=clSilver;
-               for J:=1 to Cols do Pts[J-1]:=Viewport.Project(Mesh[I-1,J-1]);
+               C:=Cols;
+               for J:=1 to C do
+                 Pts[J-1]:=Viewport.Project(
+                                            Mesh[I-1,J-1]
+                                            );
                Viewport.DrawingCanvas.Polyline(Pts);
-               for J:=1 to Cols do
+               for J:=1 to C do
                begin
                   P1:=Mesh[I-1,J-1];
                   P1.Y:=-P1.Y;
@@ -1027,14 +1130,22 @@ begin
                end;
                Viewport.DrawingCanvas.Polyline(Pts);
             end;
-            Setlength(Pts,Rows);
-            for J:=1 to Cols do //if not odd(J) then
+            Setlength(Pts,R);
+            //Setlength(Mesh,Cols*Rows);
+            C:=Cols;
+            if not IsUptoDate then
+              UpdateData;
+            for J:=1 to C do //if not odd(J) then
             begin
-               if J in [1,Cols] then Viewport.PenColor:=clBlack
+               if J in [1,C] then Viewport.PenColor:=clBlack
                                 else Viewport.PenColor:=clSilver;
-               for I:=1 to Rows do Pts[I-1]:=Viewport.Project(Mesh[I-1,J-1]);
-               Viewport.DrawingCanvas.Polyline(Pts);
                for I:=1 to Rows do
+                   Pts[I-1]:=Viewport.Project(Mesh[I-1,J-1]);
+               Viewport.DrawingCanvas.Polyline(Pts);
+               R:=Rows;
+               if not IsUptoDate then
+                 UpdateData;
+               for I:=1 to R do
                begin
                   P1:=Mesh[I-1,J-1];
                   P1.Y:=-P1.Y;
@@ -1128,7 +1239,7 @@ end;{TFreeKeelWizardDialog.ViewportRedraw}
 procedure TFreeKeelWizardDialog.SpeedButton1Click(Sender: TObject);
 var Str  : String;
 begin
-   Str:=Lowercase(Combobox.Text)+#32+_Combobox2.Text;
+   Str:=UTF8Lowercase(Combobox.Text)+' '+_Combobox2.Text;
    FFreeship.Edit.CreateUndoObject('Add '+str,True);
    SendToSurface(FFreeship.Surface);
    FFreeship.FileChanged:=True;
@@ -1487,14 +1598,14 @@ var I,J           : Integer;
         FacePoints.Destroy;
 
     end;
-
+var SelectControlPoints: boolean = true;
 begin 
 
    PrevCursor:=Screen.Cursor;
    try
-      Str:=Lowercase(Combobox.Text)+#32+_Combobox2.Text;
+      Str:=UTF8Lowercase(Combobox.Text)+' '+_Combobox2.Text;
       Layer:=Surface.AddNewLayer;
-      Str:=Combobox1.Text+#32+Lowercase(ComboBox.Text)+#32+_ComboBox2.Text;
+      Str:=Combobox1.Text+' '+UTF8Lowercase(ComboBox.Text)+' '+_ComboBox2.Text;
       Layer.Name:=Str;
       Layer.Color:=FFreeship.Preferences.LayerColor;
       Setlength(Grid,Rows+2);
@@ -1504,6 +1615,7 @@ begin
          if (I=2) and (ComboBox1.ItemIndex>0) then
          begin
             P:=TFreeSubdivisionControlPoint.Create(Surface);
+            P.Selected := SelectControlPoints;
             Surface.AddControlPoint(P);
             P.Coordinate:=Mesh[I-2,0];
             Grid[I-1,0]:=P;
@@ -1513,6 +1625,7 @@ begin
             for J:=1 to Cols do
             begin
                P:=TFreeSubdivisionControlPoint.Create(Surface);
+               P.Selected := SelectControlPoints;
                Surface.AddControlPoint(P);
                P.Coordinate:=Mesh[I-2,J-1];
                Grid[I-1,J-1]:=P;
@@ -1535,6 +1648,7 @@ begin
                P3D:=P.Coordinate;
                P3D.Y:=0.0;
                P:=TFreeSubdivisionControlPoint.Create(Surface);
+               P.Selected := SelectControlPoints;
                Surface.AddControlPoint(P);
                P.Coordinate:=P3D;
                Grid[0,J-1]:=P;
@@ -1553,6 +1667,7 @@ begin
             P3D:=P.Coordinate;
             P3D.Y:=0.0;
             P:=TFreeSubdivisionControlPoint.Create(Surface);
+            P.Selected := SelectControlPoints;
             Surface.AddControlPoint(P);
             P.Coordinate:=P3D;
             Grid[Rows+1,J-1]:=P;
@@ -1584,6 +1699,7 @@ begin
          Edge:=Surface.EdgeExists(Grid[Rows,J-2],Grid[Rows,J-1]);
          if Edge<>nil then Edge.Crease:=true;
       end;
+      Layer.SelectAll;
       if InputShape.ItemIndex>0 then
       Begin
         Layer:=Surface.AddNewLayer;
@@ -1593,8 +1709,7 @@ begin
           AddRoundBulb
         else
           AddWingBulb;
-
-
+        Layer.SelectAll;
       end;
    finally
       Screen.Cursor:=prevCursor;

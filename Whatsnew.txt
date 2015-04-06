@@ -1,3 +1,14 @@
+Test only Version 3.5.2.45 in Lazarus
+Released: Build date	2015/04/06 14:41:00
+New features and fixes:
+- further fix of the bug with Insert Plane and Intersect Layers. 
+  (Optimization added in Cycle of intersection detection, before checking point-in-face, it checks point-in-block of a panel first, 
+	then it checks point-in-triangle for each trinagle of face.
+   Original point-in-triangle function produced wrong results when points were close to 0, like middlepoints.
+   Created and use new procedure based on barycentric method. It is more efficient and precise.)
+- fix - Keel DIalog failed when number of rows/columns changed using keyboard. Fixed.
+- improvement - added new keel is selected, this improves ergonomics, because it usually needs to be shifted forward.
+
 Test only Version 3.5.2.36 in Lazarus
 Released: Build date	2015/04/04 11:11:00
 New features and fixes:

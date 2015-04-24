@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="45"/>
+      <BuildNr Value="54"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -295,7 +295,6 @@
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeNumInput"/>
       </Unit35>
       <Unit36>
         <Filename Value="Units/VRMLUnit.pas"/>
@@ -318,6 +317,7 @@
         <ComponentName Value="FreeIntersectLayerDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeIntersectLayerDlg"/>
       </Unit39>
       <Unit40>
         <Filename Value="Forms/FreeUndoHistoryDlg.pas"/>
@@ -437,12 +437,10 @@
       <Unit58>
         <Filename Value="Units/FreeFileBuffer.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeFileBuffer"/>
       </Unit58>
       <Unit59>
         <Filename Value="Units/FreeLogger.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeLogger"/>
       </Unit59>
       <Unit60>
         <Filename Value="Units/FreeOpenDialog.pas"/>

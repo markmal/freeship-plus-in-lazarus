@@ -154,4 +154,4 @@ begin
    UpdateBox2;
 end;{TFreeIntersectLayerDialog.ComboBox1Change}
 
-end.
+end.

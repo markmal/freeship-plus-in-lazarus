@@ -6,9 +6,9 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <IncludeFiles Value="/home/mark/MyProjects/freeship-plus-in-lazarus/;/home/mark/MyProjects/freeship-plus-in-lazarus/Forms/;/home/mark/MyProjects/freeship-plus-in-lazarus/Units/"/>
-        <Libraries Value="/home/mark/MyProjects/freeship-plus-in-lazarus/Units/"/>
-        <OtherUnitFiles Value="/home/mark/MyProjects/freeship-plus-in-lazarus/Forms/;/home/mark/MyProjects/freeship-plus-in-lazarus/Units/"/>
+        <IncludeFiles Value="$(ProjPath)/;$(ProjPath)/Forms/;$(ProjPath)/Units/"/>
+        <Libraries Value="$(ProjPath)/Units/"/>
+        <OtherUnitFiles Value="$(ProjPath)/Forms/;$(ProjPath)/Units/"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
         <ObjectPath Value="../Units"/>
       </SearchPaths>

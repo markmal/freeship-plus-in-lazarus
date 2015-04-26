@@ -9450,7 +9450,7 @@ var I,J,K,L,M    : Integer;
     P2D,P3D,esp,eep, CP0,CP2,CP1 : T3DCoordinate;
     PP3D : ^T3DCoordinate;
     PiT : Boolean;
-    label StartAgan;
+    //label StartAgan;
 begin
    Result:=False;
    Edges:=TFasterList.Create;
@@ -9495,7 +9495,7 @@ begin
                         for L:=0 to Edge.FFaces.Count-1 do
                           TFreeSubdivisionControlFace(Edge.Face[L]).Selected:=true;
                         //Face.Selected:=True;
-                        /Edges.Add(Edge); // what for ?
+                        //Edges.Add(Edge); // what for ?
                         //TODO: For Intersect faces - find intersections of Edge's faces with Layer's dubdiv edges and insert points into Self edges.
 
                         Result := true;

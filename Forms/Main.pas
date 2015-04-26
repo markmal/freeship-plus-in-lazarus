@@ -37,7 +37,7 @@ unit Main;
 interface
 
 uses
-{$IFnDEF FPC}
+{$IFDEF WINDOWS}
   jpeg, ShellAPI, Windows,
 {$ELSE}
   LCLIntf, LCLType, LMessages,
@@ -700,7 +700,7 @@ begin
          HullformWindow.Top := I * 40;
       end;
       {$ifdef Windows}
-      TileMode := tbHorizontal;
+        TileMode := tbHorizontal;
       {$endif}
       Tile;
    end;
@@ -1001,11 +1001,21 @@ procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
 begin
   FMDIChildList.Delete(AIndex);
 end;
+{$ENDIF}
 
 procedure TMainForm.Tile;
 var T,L,MW,MH, X,Y,W,H, i, MCC, HH,FW : Integer;
     HFW : TCustomForm; //TFreeHullWindow;
 begin
+ {$ifdef Windows}
+  inherited Tile;
+ {$endif}
+
+ {$ifdef LCLQt}
+  inherited Tile;
+ {$else}
+ // do manual tile for non MDI environments
+
  //HH := GetSystemMetrics(SM_CYCAPTION); //header height
  //FW := GetSystemMetrics(SM_CYDLGFRAME); //frame width
  HH:=24;
@@ -1030,39 +1040,49 @@ begin
                                  MW div 2 -FW*2,   HFW.Height -FW*2);
      end;
    end;
-
+ {$endif}
 end;{TMainForm.Tile}
 
 procedure TMainForm.Cascade;
 var T,L,MW,MH, X,Y,W,H, i : Integer;
     HFW : TCustomForm; //TFreeHullWindow;
 begin
- MW := Self.Width;
- MH := Self.Height + 30;
- T := Self.Top;
- L := Self.Left;
- W := MW-40*MdiChildCount;
- if W<200 then W:=200;
- for i:= 0 to MdiChildCount - 1 do
+  {$ifdef Windows}
+   inherited Cascade;
+  {$endif}
+
+  {$ifdef LCLQt}
+   inherited Cascade;
+  {$else}
+  // do manual cascade for non MDI environments
+  MW := Self.Width;
+  MH := Self.Height + 30;
+  T := Self.Top;
+  L := Self.Left;
+  W := MW-40*MdiChildCount;
+  if W<200 then W:=200;
+  for i:= 0 to MdiChildCount - 1 do
    begin
    HFW := MDIChildren[i];
    HFW.SetBounds(L+i*40,T+MH+i*40,W,HFW.Height);
    end;
+  {$endif}
 end;{TMainForm.Cascade}
-{$ENDIF}
 
 procedure TMainForm.TileWindowExecute(Sender: TObject);
 begin
   {$ifdef Windows}
   TileMode := tbHorizontal;
-  {$else}
-  Tile;
   {$endif}
+  Tile;
 end;{TMainForm.TileWindowExecute}
 
 procedure TMainForm.CascadeWindowExecute(Sender: TObject);
 begin
-   Cascade;
+  {$ifdef Windows}
+  TileMode := tbHorizontal;
+  {$endif}
+  Cascade;
 end;{TMainForm.CascadeWindowExecute}
 
 procedure TMainForm.BothSidesExecute(Sender: TObject);

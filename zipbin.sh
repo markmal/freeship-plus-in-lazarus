@@ -2,7 +2,7 @@
 BLDDT=$(strings FreeShip |grep Build:|cut -f2 -d' ')
 VERS=$(Utils/versinfo FreeShip|grep 'File Full Version:'|cut -f2)
 ARCH=$(file -b FreeShip|cut -f6 -d' '|sed 's/,//')
-NAME=FreeShip-${VERS}_${ARCH}_linux_gtk2
+NAME=FreeShip-${VERS}_${ARCH}_linux_qt
 md5sum FreeShip >FreeShip.md5
 
 rm ${NAME}.zip ${NAME}.md5 2>/dev/null

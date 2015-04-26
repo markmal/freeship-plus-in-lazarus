@@ -1,2 +1,7 @@
 *.o
 *.ppu
+FreeShip
+FreeShip.or
+Units/backup/
+backup/
+hortlog

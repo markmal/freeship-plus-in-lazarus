@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="56"/>
+      <BuildNr Value="57"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -107,6 +107,7 @@
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeVersionUnit"/>
       </Unit7>
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
@@ -536,7 +537,7 @@
       </Verbosity>
       <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
       <ExecuteBefore>
-        <Command Value="bash $(ProjPath)/svnlastrev.sh"/>
+        <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
         <CompileReasons Run="False"/>
       </ExecuteBefore>
     </Other>

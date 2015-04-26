@@ -5,3 +5,6 @@ FreeShip.or
 Units/backup/
 backup/
 hortlog
+Utils/versinfo
+*.zip
+*.md5

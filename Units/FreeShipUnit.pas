@@ -35,12 +35,11 @@ unit FreeShipUnit;
 interface
 
 uses SysUtils,// this declaration must be at the start, before the FreeGeometry unit
-     {$ifndef LCL}
+     {$ifdef windows}
       Windows,
-     Graphics,
-     Controls,
-     JPeg,
-     {$else}
+     {$ifndef LCL} JPeg,{$endif}
+     {$endif}
+     {$ifdef LCL}
       Interfaces, LCLIntf, LCLType, LCLProc,
       LMessages,
       GraphType, GraphMath, Graphics, Controls,

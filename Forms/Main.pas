@@ -37,7 +37,7 @@ unit Main;
 interface
 
 uses
-{$IFDEF WINDOWS}
+{$IFNDEF LCL}
   jpeg, ShellAPI, Windows,
 {$ELSE}
   LCLIntf, LCLType, LMessages,
@@ -699,7 +699,7 @@ begin
          HullformWindow.Left := I * 40;
          HullformWindow.Top := I * 40;
       end;
-      {$ifdef Windows}
+      {$ifndef LCL}
         TileMode := tbHorizontal;
       {$endif}
       Tile;
@@ -1071,17 +1071,17 @@ end;{TMainForm.Cascade}
 
 procedure TMainForm.TileWindowExecute(Sender: TObject);
 begin
-  {$ifdef Windows}
+  {$ifndef LCL}{$ifndef CLX}
   TileMode := tbHorizontal;
-  {$endif}
+  {$endif}{$endif}
   Tile;
 end;{TMainForm.TileWindowExecute}
 
 procedure TMainForm.CascadeWindowExecute(Sender: TObject);
 begin
-  {$ifdef Windows}
+  {$ifndef LCL}{$ifndef CLX}
   TileMode := tbHorizontal;
-  {$endif}
+  {$endif}{$endif}
   Cascade;
 end;{TMainForm.CascadeWindowExecute}
 

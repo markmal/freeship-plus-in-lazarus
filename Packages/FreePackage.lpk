@@ -6,9 +6,9 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <IncludeFiles Value="$(ProjPath)/;$(ProjPath)/Forms/;$(ProjPath)/Units/"/>
-        <Libraries Value="$(ProjPath)/Units/"/>
-        <OtherUnitFiles Value="$(ProjPath)/Forms/;$(ProjPath)/Units/"/>
+        <IncludeFiles Value="$(ProjPath);$(ProjPath)/Forms;$(ProjPath)/Units;../Forms;../Units;.."/>
+        <Libraries Value="$(ProjPath)/Units"/>
+        <OtherUnitFiles Value="$(ProjPath)/Forms;$(ProjPath)/Units;../Forms;../Units"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
         <ObjectPath Value="../Units"/>
       </SearchPaths>

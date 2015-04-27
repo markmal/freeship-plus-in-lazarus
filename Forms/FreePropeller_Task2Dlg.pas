@@ -760,7 +760,7 @@ StartHere:
 		exit;
 	  end;		  
 
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\CalcProp.exe 2'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/CALCPROP.EXE'), '', []);

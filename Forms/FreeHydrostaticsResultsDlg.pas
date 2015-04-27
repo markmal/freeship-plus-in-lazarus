@@ -34,7 +34,8 @@ interface
 uses
      {$ifdef Windows}
      Windows,
-     {$else}
+     {$endif}
+     {$ifdef LCL}
      LCLIntf, LCLType, LMessages, LResources,
      PrintersDlgs, Printer4Lazarus, FreePrinter,
      {$endif}
@@ -247,4 +248,4 @@ begin
 end;{TFreeHydrostaticsResultsDialog.SpeedButton1Click}
 
 end.
-
+

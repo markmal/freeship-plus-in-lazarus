@@ -1752,7 +1752,7 @@ begin
   FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
    File_ExportData(dat,dan);   	 // записываем файл данных в каталог Freeshipa
-   {$ifdef Windows}
+   {$ifndef LCL}
    WinExec(PChar(FileToFind+'Exec/hship.exe'),0); // запускаем расчет
    {$else}
    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/hship.EXE'), '', []);

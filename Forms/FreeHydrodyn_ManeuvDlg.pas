@@ -586,7 +586,7 @@ dat20 = 'Rudder Angle [degrees]'
 	  end;		  
 
 // Запускаем программу расчета
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/ManeuvPP.EXE '),1);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys('Exec/ManeuvPP.EXE'), '', []);
@@ -827,4 +827,4 @@ begin
 end;{TFreeHydrodyn_Maneuv.File_IExportData}
 
 
-end.
+end.

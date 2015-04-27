@@ -700,7 +700,7 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
 
     FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\hollenbh.exe'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/HOLLENBH.EXE'), '', []);
@@ -771,7 +771,7 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
 
 // Запускаем программу расчета
 
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\SeaMargn.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/SeaMargn.EXE'), '', []);

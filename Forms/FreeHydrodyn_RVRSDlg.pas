@@ -580,7 +580,7 @@ begin
 	  
 // Запускаем программу расчета
 
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\rvrsship.exe'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/RVRSSHIP.EXE'), '', []);

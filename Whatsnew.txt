@@ -1,6 +1,12 @@
 Test only Version 3.5.2.45 in Lazarus
 Released: Build date	2015/04/06 14:41:00
 New features and fixes:
+- Application is retargeted to Qt
+- Project is moved to git at GitHub
+
+Test only Version 3.5.2.45 in Lazarus
+Released: Build date	2015/04/06 14:41:00
+New features and fixes:
 - further fix of the bug with Insert Plane and Intersect Layers. 
   (Optimization added in Cycle of intersection detection, before checking point-in-face, it checks point-in-block of a panel first, 
 	then it checks point-in-triangle for each trinagle of face.

@@ -452,6 +452,7 @@
       <Unit60>
         <Filename Value="Units/FreeOpenDialog.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeOpenDialog"/>
       </Unit60>
       <Unit61>
         <Filename Value="Forms/FreeAboutDlg.pas"/>

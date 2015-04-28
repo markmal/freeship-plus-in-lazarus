@@ -35,6 +35,9 @@ uses
     {$IFDEF Windows}
      Windows,
      shlobj,
+    {$ifdef LCL}
+    FileUtil,
+    {$endif}
     {$ELSE}
      LCLIntf, LCLType, LMessages,
      FileUtil,
@@ -217,4 +220,4 @@ begin
    FSetUnits;
 end;{TDXFExport2DDialog.ComboBox1Change}
 
-end.
+end.

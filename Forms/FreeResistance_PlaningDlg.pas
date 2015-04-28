@@ -1112,7 +1112,7 @@ begin
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
 		exit;
 	  end;		  
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\CLEMPOUP.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys('Exec/CLEMPOUP.EXE'), '', []);
@@ -1237,7 +1237,7 @@ NewSearch:    FileToFind := FileSearchUTF8('clempoup.dat',GetCurrentDir); { *Con
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
 		exit;
 	  end;		  
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\CLEMBLOU.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/CLEMBLOU.EXE'), '', []);
@@ -1377,7 +1377,7 @@ NewSearch1:    FileToFind := FileSearchUTF8('clemblou.dat',GetCurrentDir); { *Co
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
 		exit;
 	  end;		  
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\BUNKOV.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/BUNKOV.EXE'), '', []);
@@ -1500,7 +1500,7 @@ NewSearch2:    FileToFind := FileSearchUTF8('bunkdata.dat',GetCurrentDir); { *Co
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
 		exit;
 	  end;		  
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\COMPTON.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/COMPTON.EXE'), '', []);
@@ -1621,7 +1621,7 @@ NewSearch3:    FileToFind := FileSearchUTF8('cmptdata.dat',GetCurrentDir); { *Co
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
 		exit;
 	  end;		  
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\Wolfson.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/WOLFSON.EXE'), '', []);
@@ -1748,7 +1748,7 @@ NewSearch4:    FileToFind := FileSearchUTF8('wolfdata.dat',GetCurrentDir); { *Co
 	    MessageDlg(Userstring(1229),mtError,[mbOk],0); 
 		exit;
 	  end;		  
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\Radojcic.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/RADOJCIC.EXE'), '', []);

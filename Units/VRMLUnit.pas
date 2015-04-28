@@ -10,7 +10,8 @@ interface
 uses
     {$IFDEF Windows}
     Windows,
-    {$ELSE}
+    {$ENDIF}
+    {$IFDEF LCL}
     FileUtil,
     {$ENDIF}
      Classes,
@@ -771,4 +772,4 @@ begin
    end;
 end;{TVRMLList.LoadFromFile}
 
-end.
+end.

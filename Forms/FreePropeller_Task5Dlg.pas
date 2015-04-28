@@ -318,13 +318,13 @@ dat7=Velocity Vp
 
 // Запускаем программу расчета
 	 if Combobox.ItemIndex=0 then
-            {$ifdef Windows}
+            {$ifndef LCL}
             WinExec(PChar(FExecDirectory+'/Propol.EXE <IN.'),0)
             {$else}
             SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/PROPOL.EXE'), '', [])
             {$endif}
          else
-            {$ifdef Windows}
+            {$ifndef LCL}
             WinExec(PChar(FExecDirectory+'/FPPCALC.EXE'),0);
             {$else}
             SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/fppcalc.EXE'), '', []);
@@ -552,7 +552,7 @@ begin
 // Переходим в директорию Freeshipa
 	  L:=SetCurrentDirUTF8(FOpenDirectory); { *Converted from SetCurrentDir* }
 // Запускаем программу расчета
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FOpenDirectory+'Engines\dbfview'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys('Exec/DBFview.EXE'), '', []);

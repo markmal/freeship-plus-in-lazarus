@@ -1895,7 +1895,7 @@ begin
    PathFileOld:=FileToFind;   // задаем переменной каталог Freeshipa
    L:=SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory); { *Converted from SetCurrentDir* } // переходим в каталог Freeshipa
    File_ExportData(dat,dan);   	 // записываем файл данных в каталог Freeshipa
-   {$ifdef Windows}
+   {$ifndef LCL}
    WinExec(PChar(FileToFind+'Exec/hship.exe'),0); // запускаем расчет
    {$else}
    SysUtils.ExecuteProcess(UTF8ToSys(FFreeship.Preferences.ExecDirectory+'/hship.EXE'), '', []);

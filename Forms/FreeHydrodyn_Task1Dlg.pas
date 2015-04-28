@@ -412,7 +412,7 @@ begin
 	  end;		  
 
 // Запускаем программу расчета
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/Ishercof.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/Ishercof.EXE'), '', []);

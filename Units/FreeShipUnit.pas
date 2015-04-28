@@ -35,12 +35,11 @@ unit FreeShipUnit;
 interface
 
 uses SysUtils,// this declaration must be at the start, before the FreeGeometry unit
-     {$ifdef Windows}
+     {$ifdef windows}
       Windows,
-     Graphics,
-     Controls,
-     JPeg,
-     {$else}
+     {$ifndef LCL} JPeg,{$endif}
+     {$endif}
+     {$ifdef LCL}
       Interfaces, LCLIntf, LCLType, LCLProc,
       LMessages,
       GraphType, GraphMath, Graphics, Controls,
@@ -7726,7 +7725,7 @@ var
   	  exit;
 	  end;	
       ShowMessage('        HydroNShIp_AddedMass v1.03'#13#10#13#10+'                      Calculating...'#13#10#13#10+'Copyright (c) 2008-2009, Timoshenko V.F.');
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/Add_Mass.EXE '),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/Add_Mass.EXE'), '', []);

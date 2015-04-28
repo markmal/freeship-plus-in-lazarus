@@ -3442,7 +3442,7 @@ begin
    Screen.Cursors[crSetOrigin]:=LoadCursor(hInstance,'SETORIGIN');
    Screen.Cursors[crSetScale]:=LoadCursor(hInstance,'SETSCALE');
    Screen.Cursors[crTranspCol]:=LoadCursor(hInstance,'TRANSPARENTCOLOR');
-   writeln('TFreeViewport.Create: done');
+   logger.debug('TFreeViewport.Create: done');
 end;{TFreeViewport.Create}
 
 destructor TFreeViewport.Destroy;

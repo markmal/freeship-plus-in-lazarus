@@ -481,7 +481,7 @@ dat16=EtaM
 	  end;		  
 
 // Запускаем программу расчета
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/PropPred.EXE '),1);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/PropPred.EXE'), '', []);
@@ -682,7 +682,7 @@ begin
 // Переходим в директорию Freeshipa
 	  L:=SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory); { *Converted from SetCurrentDir* }
 // Запускаем программу расчета
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FOpenDirectory+'Engines\dbfview'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/DBFview.EXE'), '', []);

@@ -33,9 +33,10 @@ unit FreeSplashWndw;
 interface
 
 uses
-{$IFnDEF FPC}
-  ShellAPI, jpeg, Windows,
-{$ELSE}
+{$IFDEF Windows}
+  ShellAPI, {$ifndef LCL} jpeg, {$endif} Windows,
+{$ENDIF}
+{$IFDEF LCL}
   LCLIntf, LCLType, LMessages,
 {$ENDIF}
   Messages,
@@ -109,7 +110,7 @@ type
      dwFlags : DWORD      // action
      ): BOOL; stdcall;
 
-{$IFDEF WINDOWS}
+{$IFNDEF LCL}
 procedure SetTransparentForm(form: TForm; AValue : byte = 0);
 var
  Info: TOSVersionInfo;
@@ -212,4 +213,4 @@ begin
    // End Skip translation
 end;{TFreeSplashWindow.Label4Click}
 
-end.
+end.

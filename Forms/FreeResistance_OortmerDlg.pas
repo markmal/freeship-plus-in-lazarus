@@ -724,7 +724,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
 	  end;		  
    if Combobox.ItemIndex=0 then begin // Oortmerssen метод
       Chart.Title.Text.Text:=Userstring(265)+' '+Userstring(1650);
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\OORTMERS.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/OORTMERS.EXE'), '', []);
@@ -733,7 +733,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
                      end;
    if Combobox.ItemIndex=1 then begin  // Ridgeley-Nevitt метод
       Chart.Title.Text.Text:=Userstring(265)+' '+Userstring(1651);
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\RNTSP.exe'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/RNTSP.EXE'), '', []);
@@ -742,7 +742,7 @@ if (Lwl>0) and (Bwl>0) and (Dp>0) and (Np>0) and (Ta>0)then   begin
                      end;
    if Combobox.ItemIndex=2 then begin  // UBC метод
       Chart.Title.Text.Text:=Userstring(265)+' '+Userstring(1652);
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\UBCRT.exe'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/UBCRT.EXE'), '', []);
@@ -838,7 +838,7 @@ NewSearch:    FileToFind := FileSearchUTF8('TMP6.tsk',GetCurrentDir); { *Convert
 
 // Запускаем программу расчета
 
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\SeaMargn.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/SeaMargn.EXE'), '', []);

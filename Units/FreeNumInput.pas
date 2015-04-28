@@ -9,9 +9,12 @@ interface
 uses
      {$ifdef Windows}
      Windows,
+     {$ifndef LCL}
      WinTypes,
      WinProcs,
-     {$else}
+     {$endif}
+     {$endif}
+     {$ifdef LCL}
      LCLIntf, LCLType, LMessages, LResources,
      {$endif}
      SysUtils,

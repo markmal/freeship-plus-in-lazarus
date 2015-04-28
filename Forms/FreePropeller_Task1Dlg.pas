@@ -618,7 +618,7 @@ begin
 		exit;
 	  end;		  
 
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\CalcProp.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/CALCPROP.EXE'), '', []);
@@ -806,7 +806,7 @@ begin
 // Переходим в директорию Freeshipa
       L:=SetCurrentDirUTF8(FOpenDirectory); { *Converted from SetCurrentDir* }
 // Запускаем программу расчета
-      {$ifdef Windows}
+      {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec\dbfview.EXE'),0);
       {$else}
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/DBFview.EXE'), '', []);

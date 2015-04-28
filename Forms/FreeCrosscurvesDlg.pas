@@ -30,7 +30,7 @@ unit FreeCrosscurvesDlg;
 interface
 
 uses
-{$IFDEF Windows}
+{$IFNDEF LCL}
  Windows,
   TeEngine,
   Series,

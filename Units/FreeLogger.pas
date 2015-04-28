@@ -5,7 +5,8 @@ unit FreeLogger;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils
+  {$ifdef LCL}, LazLogger{$endif};
 
 const
   LOG_NONE = 0;
@@ -39,25 +40,42 @@ end;
 procedure TLogger.Info(S:String);
 begin
   if FLogLevel >= LOG_INFO then
-    writeln(S);
+  begin
+    {$ifdef LCL}
+    debugln(S);
+    {$endif}
+  end;
 end;
+
 
 procedure TLogger.Warning(S:String);
 begin
   if FLogLevel >= LOG_WARNING then
-    writeln(S);
+  begin
+    {$ifdef LCL}
+    debugln(S);
+    {$endif}
+  end;
 end;
 
 procedure TLogger.Error(S:String);
 begin
   if FLogLevel >= LOG_ERROR then
-    writeln(S);
+  begin
+    {$ifdef LCL}
+    debugln(S);
+    {$endif}
+  end;
 end;
 
 procedure TLogger.Debug(S:String);
 begin
   if FLogLevel >= LOG_DEBUG then
-    writeln(S);
+  begin
+    {$ifdef LCL}
+    debugln(S);
+    {$endif}
+  end;
 end;
 
 procedure TLogger.SetLogLevel(L:integer);

@@ -4391,7 +4391,7 @@ begin
    {$IFDEF WIN32} // We need to bring ScreenToClient in MDF mode, not a case for X11
    MousePos:=self.ScreenToClient(MousePos);
    {$ENDIF}
-   if (Focused) and (MousePos.X>=0) and (MousePos.Y>=0) and (MousePos.X<Clientwidth) and (MousePos.Y<Clientheight) then
+   if (MousePos.X>=0) and (MousePos.Y>=0) and (MousePos.X<Clientwidth) and (MousePos.Y<Clientheight) then
    begin
       // zoom by using mousewheel
       Factor:=1.1;

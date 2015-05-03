@@ -1,12 +1,12 @@
 object MainForm: TMainForm
   Left = 371
-  Height = 83
+  Height = 90
   Top = 98
   Width = 1252
   Align = alTop
-  ClientHeight = 62
+  ClientHeight = 69
   ClientWidth = 1252
-  Color = clGray
+  Color = clSilver
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
@@ -23,12 +23,13 @@ object MainForm: TMainForm
   object StatusBar: TPanel
     Left = 0
     Height = 20
-    Top = 42
+    Top = 49
     Width = 1252
     Align = alBottom
     BevelOuter = bvLowered
     ClientHeight = 20
     ClientWidth = 1252
+    Color = clBtnFace
     Font.Color = clWindowText
     Font.Height = -9
     Font.Name = 'Courier New'

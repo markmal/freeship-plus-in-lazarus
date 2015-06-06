@@ -41,7 +41,9 @@ TBitMapDataFormat = (
  // Formats in Windows pixels order: BGR
  bmdf_BPP24_B8G8R8,
  bmdf_BPP32_B8G8R8,
- bmdf_BPP32_B8G8R8A8
+ bmdf_BPP32_B8G8R8A8,
+ // Qt Standard format (see lcl/interfaces/qt/qtproc.pp)
+ bmdf_BPP32_B8G8R8A8_r
  );
 
 TRGB = packed record
@@ -96,6 +98,8 @@ TFreeBitmapFormatHelper = class
     procedure TRGBTriple_to_BPP24_B8G8R8(C:TRGBTriple; var p:TBGR); // yes, it is opposite in WIndows, RGB is BGR :)
     procedure TRGBTriple_to_BPP32_B8G8R8(C:TRGBTriple; var p:TBGRA);
     procedure TRGBTriple_to_BPP32_B8G8R8A8(C:TRGBTriple; var p:TBGRA);
+    // Qt Standard format (see lcl/interfaces/qt/qtproc.pp)
+    procedure TRGBTriple_to_BPP32_B8G8R8A8_r(C:TRGBTriple; var p:TBGRA);
 
 {    // 16-bits formats
     function TRGBTriple_to_BPP16_R5G6B5(C:TRGBTriple):TColor;
@@ -274,7 +278,6 @@ begin
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 32) // used bits per pixel
-      and (BitOrder = riboBitsInOrder)
       and (ByteOrder = DefaultByteOrder)
       and (BitsPerPixel = 32) // bits per pixel. can be greater than Depth.
       and (RedPrec = 8) // red precision. bits for red
@@ -283,13 +286,18 @@ begin
       and (GreenShift = 8) // bitshift. Direction from least to most significant
       and (BluePrec = 8)
       and (BlueShift=0)
-      and (AlphaPrec=0)
+      and (AlphaPrec=8)
       and (AlphaShift=24)
       and (MaskBitsPerPixel=0)
-    then FBitMapDataFormat := bmdf_BPP32_B8G8R8A8
+    then
+      begin;
+      if (BitOrder = riboBitsInOrder) then
+        FBitMapDataFormat := bmdf_BPP32_B8G8R8A8
+        else
+          FBitMapDataFormat := bmdf_BPP32_B8G8R8A8_r;
+      end
     else
       raise Exception.Create('Unsupported bitmap format:'+Desc.AsString);
-
   end;
 end;
 
@@ -304,6 +312,7 @@ begin
     bmdf_BPP24_B8G8R8:   result := BPP24_B8G8R8_to_TRGBTriple(TBGR(p^));
     bmdf_BPP32_B8G8R8:   result := BPP32_B8G8R8_to_TRGBTriple(TBGRA(p^));
     bmdf_BPP32_B8G8R8A8: result := BPP32_B8G8R8A8_to_TRGBTriple(TBGRA(p^));
+    bmdf_BPP32_B8G8R8A8_r: result := BPP32_B8G8R8A8_to_TRGBTriple(TBGRA(p^))
   end;
 end;
 
@@ -317,6 +326,7 @@ begin
     bmdf_BPP24_B8G8R8:   TRGBTriple_to_BPP24_B8G8R8(C,TBGR(p^));
     bmdf_BPP32_B8G8R8:   TRGBTriple_to_BPP32_B8G8R8(C,TBGRA(p^));
     bmdf_BPP32_B8G8R8A8: TRGBTriple_to_BPP32_B8G8R8A8(C,TBGRA(p^));
+    bmdf_BPP32_B8G8R8A8_r: TRGBTriple_to_BPP32_B8G8R8A8_r(C,TBGRA(p^));
   end;
 end;
 
@@ -386,6 +396,15 @@ begin
   p.bgraRed   := C.rgbtRed;
   p.bgraAlpha := 0;
 end;
+
+procedure TFreeBitmapFormatHelper.TRGBTriple_to_BPP32_B8G8R8A8_r(C:TRGBTriple; var p:TBGRA);
+begin
+  p.bgraBlue  := C.rgbtBlue;
+  p.bgraGreen := C.rgbtGreen;
+  p.bgraRed   := C.rgbtRed;
+  p.bgraAlpha := 255;
+end;
+
 
 {
 function TFreeBitmapFormatHelper.TRGBTriple_to_BPP16_R5G6B5(C:TRGBTriple):TColor;

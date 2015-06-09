@@ -67,13 +67,17 @@ uses
      FreeAboutDlg,
      Menus,
      ToolWin,
-     Buttons, FileUtil;
+     Buttons, StdActns, FileUtil;
 
 type
 
 { TMainForm }
 
  TMainForm         = class(TForm)
+     AboutAction: TAction;
+     HelpAction: THelpAction;
+     HelpContents: TMenuItem;
+     HelpAbout: TMenuItem;
      SelectLeakPoints: TAction;
                               FreeShip                   : TFreeShip;
                               ActionList1                : TActionList;
@@ -97,7 +101,7 @@ type
                               ShowInteriorEdges1         : TMenuItem;
                               Window1                    : TMenuItem;
                               Cascade1                   : TMenuItem;
-                              ile1                       : TMenuItem;
+                              Tile1                       : TMenuItem;
                               NewWindow1                 : TMenuItem;
                               NewWindow                  : TAction;
                               TileWindow                 : TAction;
@@ -182,7 +186,6 @@ type
                               ToolButton27: TToolButton;
                               Extrude1: TMenuItem;
                               ToolButton28: TToolButton;
-                              About1: TMenuItem;
                               Help1: TMenuItem;
                               EdgeSplit: TAction;
                               ToolButton29: TToolButton;

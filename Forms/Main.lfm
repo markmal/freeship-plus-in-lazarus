@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 371
+  Left = 47
   Height = 90
-  Top = 98
-  Width = 1252
+  Top = 104
+  Width = 1215
   Align = alTop
-  ClientHeight = 69
-  ClientWidth = 1252
+  ClientHeight = 63
+  ClientWidth = 1215
   Color = clSilver
   Font.Color = clWindowText
   Font.Height = -11
@@ -19,16 +19,16 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '1.4.0.2'
+  LCLVersion = '1.4.0.4'
   object StatusBar: TPanel
     Left = 0
     Height = 20
-    Top = 49
-    Width = 1252
+    Top = 43
+    Width = 1215
     Align = alBottom
     BevelOuter = bvLowered
     ClientHeight = 20
-    ClientWidth = 1252
+    ClientWidth = 1215
     Color = clBtnFace
     Font.Color = clWindowText
     Font.Height = -9
@@ -89,9 +89,9 @@ object MainForm: TMainForm
   end
   object ToolBar: TToolBar
     Left = 0
-    Height = 30
+    Height = 45
     Top = 0
-    Width = 1252
+    Width = 1215
     AutoSize = True
     Caption = 'ToolBar'
     Color = clBtnFace
@@ -416,8 +416,8 @@ object MainForm: TMainForm
       Style = tbsSeparator
     end
     object ToolButton26: TToolButton
-      Left = 1209
-      Top = 1
+      Left = 2
+      Top = 23
       Action = IntersectionDialog
     end
   end
@@ -1168,6 +1168,15 @@ object MainForm: TMainForm
       Category = 'Selection'
       Caption = 'SelectLeakPoints'
       OnExecute = SelectLeakPointsExecute
+    end
+    object HelpAction: THelpAction
+      Category = 'Help'
+      Caption = 'HelpAction'
+      OnExecute = Help1Click
+    end
+    object AboutAction: TAction
+      Caption = 'AboutAction'
+      OnExecute = About1Click
     end
   end
   object MenuImages: TImageList
@@ -5426,7 +5435,7 @@ object MainForm: TMainForm
           0000000000000000000000000000000000000000000000000000
         }
       end
-      object ile1: TMenuItem
+      object Tile1: TMenuItem
         Action = TileWindow
         Bitmap.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -5510,11 +5519,16 @@ object MainForm: TMainForm
     end
     object Help1: TMenuItem
       Caption = 'Help'
-      OnClick = Help1Click
-    end
-    object About1: TMenuItem
-      Caption = 'About'
-      OnClick = About1Click
+      ShortCut = 112
+      object HelpContents: TMenuItem
+        Action = HelpAction
+        Caption = 'Contents'
+        ShortCut = 112
+      end
+      object HelpAbout: TMenuItem
+        Action = AboutAction
+        Caption = 'About'
+      end
     end
   end
   object ColorDialog: TColorDialog

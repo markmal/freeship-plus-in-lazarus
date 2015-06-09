@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="89">
+    <Units Count="91">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -30,8 +30,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="100"/>
-        <CursorPos X="31" Y="116"/>
+        <TopLine Value="1463"/>
+        <CursorPos X="6" Y="1480"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -87,10 +87,12 @@
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="28" Y="40"/>
+        <UnitName Value="FreeVersionUnit"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="149"/>
+        <CursorPos X="60" Y="200"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -459,12 +461,10 @@
         <ComponentName Value="FreeIntersectLayerDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeIntersectLayerDlg"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="73" Y="79"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit39>
       <Unit40>
@@ -589,7 +589,7 @@
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FreeShipUnit"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="9744"/>
         <CursorPos X="34" Y="9744"/>
         <UsageCount Value="200"/>
@@ -685,12 +685,10 @@
       <Unit60>
         <Filename Value="Units/FreeOpenDialog.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeOpenDialog"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
         <CursorPos Y="44"/>
         <UsageCount Value="216"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit60>
       <Unit61>
@@ -699,10 +697,12 @@
         <ComponentName Value="FreeAboutDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="93"/>
-        <CursorPos X="35" Y="107"/>
+        <UnitName Value="FreeAboutDlg"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="98"/>
+        <CursorPos X="44" Y="119"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
       <Unit62>
@@ -780,19 +780,19 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="11"/>
         <CursorPos X="34" Y="25"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="74"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit70>
       <Unit71>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/include/control.inc"/>
         <TopLine Value="3634"/>
         <CursorPos Y="3645"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="69"/>
       </Unit71>
       <Unit72>
         <Filename Value="Units/FreeGeometry.pas"/>
         <UnitName Value="FreeGeometry"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="9447"/>
         <CursorPos X="7" Y="9453"/>
         <UsageCount Value="101"/>
@@ -804,252 +804,202 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="832"/>
         <CursorPos Y="844"/>
-        <UsageCount Value="219"/>
+        <UsageCount Value="209"/>
       </Unit73>
       <Unit74>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/astrings.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="86"/>
-        <CursorPos Y="100"/>
-        <UsageCount Value="4"/>
-      </Unit74>
-      <Unit75>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/objpas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos Y="48"/>
-        <UsageCount Value="160"/>
-      </Unit75>
-      <Unit76>
+        <UsageCount Value="150"/>
+      </Unit74>
+      <Unit75>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/graphics.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="3" Y="58"/>
-        <UsageCount Value="158"/>
-      </Unit76>
-      <Unit77>
+        <UsageCount Value="148"/>
+      </Unit75>
+      <Unit76>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/extdlgs.pas"/>
-        <UnitName Value="ExtDlgs"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="295"/>
         <CursorPos Y="312"/>
-        <UsageCount Value="42"/>
-        <Loaded Value="True"/>
-      </Unit77>
-      <Unit78>
+        <UsageCount Value="32"/>
+      </Unit76>
+      <Unit77>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <UnitName Value="qtwidgets"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="18253"/>
         <CursorPos Y="18261"/>
-        <UsageCount Value="42"/>
-        <Loaded Value="True"/>
-      </Unit78>
-      <Unit79>
+        <UsageCount Value="32"/>
+      </Unit77>
+      <Unit78>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/filedialog.inc"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="225"/>
         <CursorPos Y="242"/>
-        <UsageCount Value="42"/>
-        <Loaded Value="True"/>
-      </Unit79>
-      <Unit80>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/except.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="198"/>
-        <CursorPos Y="215"/>
-        <UsageCount Value="4"/>
-      </Unit80>
-      <Unit81>
+        <UsageCount Value="32"/>
+      </Unit78>
+      <Unit79>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/ustrings.inc"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="199"/>
         <CursorPos Y="216"/>
-        <UsageCount Value="42"/>
-        <Loaded Value="True"/>
-      </Unit81>
-      <Unit82>
+        <UsageCount Value="32"/>
+      </Unit79>
+      <Unit80>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtobject.inc"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="283"/>
         <CursorPos Y="300"/>
-        <UsageCount Value="42"/>
-        <Loaded Value="True"/>
-      </Unit82>
-      <Unit83>
+        <UsageCount Value="32"/>
+      </Unit80>
+      <Unit81>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qt45.pas"/>
-        <UnitName Value="qt45"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="7083"/>
         <CursorPos X="10" Y="7099"/>
-        <UsageCount Value="42"/>
-        <Loaded Value="True"/>
-      </Unit83>
-      <Unit84>
+        <UsageCount Value="32"/>
+      </Unit81>
+      <Unit82>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/widgetset/wsextdlgs.pp"/>
-        <UnitName Value="WSExtDlgs"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="108"/>
         <CursorPos Y="130"/>
-        <UsageCount Value="41"/>
-        <Loaded Value="True"/>
-      </Unit84>
-      <Unit85>
+        <UsageCount Value="31"/>
+      </Unit82>
+      <Unit83>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwsfactory.pas"/>
-        <UnitName Value="QtWSFactory"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="403"/>
         <CursorPos Y="421"/>
-        <UsageCount Value="41"/>
-        <Loaded Value="True"/>
-      </Unit85>
-      <Unit86>
+        <UsageCount Value="31"/>
+      </Unit83>
+      <Unit84>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/commondialog.inc"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="13"/>
         <CursorPos Y="30"/>
-        <UsageCount Value="41"/>
-        <Loaded Value="True"/>
-      </Unit86>
-      <Unit87>
+        <UsageCount Value="31"/>
+      </Unit84>
+      <Unit85>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/lclclasses.pp"/>
-        <UnitName Value="LCLClasses"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="79"/>
         <CursorPos Y="96"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="31"/>
+      </Unit85>
+      <Unit86>
+        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/widgetset/wsdialogs.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="138"/>
+        <CursorPos Y="155"/>
+        <UsageCount Value="31"/>
+      </Unit86>
+      <Unit87>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/resh.inc"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="39"/>
+        <CursorPos X="10" Y="56"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
       </Unit87>
       <Unit88>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/widgetset/wsdialogs.pp"/>
-        <UnitName Value="WSDialogs"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="138"/>
-        <CursorPos Y="155"/>
-        <UsageCount Value="41"/>
+        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/lclintf.pas"/>
+        <UnitName Value="LCLIntf"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="64"/>
+        <CursorPos X="10" Y="81"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
       </Unit88>
+      <Unit89>
+        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/sysenvapis_unix.inc"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="13"/>
+        <CursorPos X="16" Y="46"/>
+        <UsageCount Value="62"/>
+        <Loaded Value="True"/>
+      </Unit89>
+      <Unit90>
+        <Filename Value="/usr/share/lazarus/1.4RC2/components/lazutils/utf8process.pp"/>
+        <UnitName Value="UTF8Process"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="272"/>
+        <CursorPos X="3" Y="276"/>
+        <UsageCount Value="62"/>
+        <Loaded Value="True"/>
+      </Unit90>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="17" HistoryIndex="16">
       <Position1>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/filedialog.inc"/>
-        <Caret Line="242" TopLine="225"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="923" Column="43" TopLine="914"/>
       </Position1>
       <Position2>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/widgetset/wsdialogs.pp"/>
-        <Caret Line="155" TopLine="138"/>
+        <Filename Value="Forms/Main.pas"/>
       </Position2>
       <Position3>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18210" TopLine="18202"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="116" Column="31" TopLine="100"/>
       </Position3>
       <Position4>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18211" TopLine="18202"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="9754" TopLine="9744"/>
       </Position4>
       <Position5>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18212" TopLine="18202"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="9755" TopLine="9744"/>
       </Position5>
       <Position6>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18213" TopLine="18202"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="9756" TopLine="9744"/>
       </Position6>
       <Position7>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18214" TopLine="18202"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="9757" TopLine="9744"/>
       </Position7>
       <Position8>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18215" TopLine="18202"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="9759" TopLine="9744"/>
       </Position8>
       <Position9>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18216" TopLine="18202"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="102" Column="23" TopLine="79"/>
       </Position9>
       <Position10>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18217" TopLine="18202"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1412" Column="26" TopLine="1402"/>
       </Position10>
       <Position11>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18218" TopLine="18202"/>
+        <Filename Value="Forms/FreeAboutDlg.pas"/>
+        <Caret Line="119" Column="44" TopLine="95"/>
       </Position11>
       <Position12>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18219" TopLine="18202"/>
+        <Filename Value="Units/FreeVersionUnit.pas"/>
+        <Caret Line="183" Column="47" TopLine="170"/>
       </Position12>
       <Position13>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18221" TopLine="18221"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1412" Column="26" TopLine="1402"/>
       </Position13>
       <Position14>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="923" Column="43" TopLine="914"/>
+        <Caret Line="1480" Column="19" TopLine="1460"/>
       </Position14>
       <Position15>
         <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1478" Column="38" TopLine="1463"/>
       </Position15>
       <Position16>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="116" Column="31" TopLine="100"/>
+        <Caret Line="1480" Column="6" TopLine="1463"/>
       </Position16>
       <Position17>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/extdlgs.pas"/>
-        <Caret Line="345" TopLine="328"/>
+        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/include/sysenvapis_unix.inc"/>
+        <Caret Line="46" Column="16" TopLine="13"/>
       </Position17>
-      <Position18>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/extdlgs.pas"/>
-        <Caret Line="312" TopLine="295"/>
-      </Position18>
-      <Position19>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18210" TopLine="18193"/>
-      </Position19>
-      <Position20>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18258" TopLine="18247"/>
-      </Position20>
-      <Position21>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18259" TopLine="18247"/>
-      </Position21>
-      <Position22>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18261" TopLine="18247"/>
-      </Position22>
-      <Position23>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9754" TopLine="9744"/>
-      </Position23>
-      <Position24>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9755" TopLine="9744"/>
-      </Position24>
-      <Position25>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9756" TopLine="9744"/>
-      </Position25>
-      <Position26>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9757" TopLine="9744"/>
-      </Position26>
-      <Position27>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9759" TopLine="9744"/>
-      </Position27>
-      <Position28>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18258" TopLine="18254"/>
-      </Position28>
-      <Position29>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18259" TopLine="18253"/>
-      </Position29>
-      <Position30>
-        <Filename Value="/usr/share/lazarus/1.4RC2/lcl/interfaces/qt/qtwidgets.pas"/>
-        <Caret Line="18261" TopLine="18253"/>
-      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

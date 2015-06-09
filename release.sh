@@ -5,6 +5,6 @@ ARCH=$(file -b FreeShip|cut -f6 -d' '|sed 's/,//')
 
 git tag -a v$VERS -m "Test Release. $ARCH Linux Qt. ver $VERS"
 
-./zipbin
+./zipbin.sh
 
 

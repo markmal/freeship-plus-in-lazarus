@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 47
-  Height = 90
-  Top = 104
-  Width = 1215
+  Left = 474
+  Height = 800
+  Top = 150
+  Width = 1200
   Align = alTop
-  ClientHeight = 63
-  ClientWidth = 1215
+  ClientHeight = 779
+  ClientWidth = 1200
   Color = clSilver
   Font.Color = clWindowText
   Font.Height = -11
@@ -19,16 +19,16 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.0.2'
   object StatusBar: TPanel
     Left = 0
     Height = 20
-    Top = 43
-    Width = 1215
+    Top = 759
+    Width = 1200
     Align = alBottom
     BevelOuter = bvLowered
     ClientHeight = 20
-    ClientWidth = 1215
+    ClientWidth = 1200
     Color = clBtnFace
     Font.Color = clWindowText
     Font.Height = -9
@@ -91,7 +91,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 45
     Top = 0
-    Width = 1215
+    Width = 1200
     AutoSize = True
     Caption = 'ToolBar'
     Color = clBtnFace
@@ -407,16 +407,16 @@ object MainForm: TMainForm
       Action = InvertFace
     end
     object ToolButton28: TToolButton
-      Left = 1199
+      Left = 2
       Height = 22
-      Top = 1
+      Top = 23
       Width = 10
       Caption = 'ToolButton28'
       ImageIndex = 15
       Style = tbsSeparator
     end
     object ToolButton26: TToolButton
-      Left = 2
+      Left = 12
       Top = 23
       Action = IntersectionDialog
     end

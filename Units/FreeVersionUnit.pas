@@ -65,7 +65,8 @@ implementation
 
 uses FreeLanguageSupport,
      resource, versionresource, versiontypes,
-     resreader, coffreader, elfreader, winpeimagereader, elfconsts;
+     resreader, coffreader, elfreader, winpeimagereader, elfconsts,
+     FreeLogger;
 
 function VersionString(Version:TFreeFileVersion):String;
 begin
@@ -196,6 +197,7 @@ BEGIN
       Stream.Free
     END
   EXCEPT
+    Logger.error('Failed to get version info from HINSTANCE');
   END
 END { resourceVersionInfo } ;
 

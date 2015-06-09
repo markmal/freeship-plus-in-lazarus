@@ -107,6 +107,7 @@
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeVersionUnit"/>
       </Unit7>
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
@@ -322,7 +323,6 @@
         <ComponentName Value="FreeIntersectLayerDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeIntersectLayerDlg"/>
       </Unit39>
       <Unit40>
         <Filename Value="Forms/FreeUndoHistoryDlg.pas"/>
@@ -448,7 +448,6 @@
       <Unit60>
         <Filename Value="Units/FreeOpenDialog.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeOpenDialog"/>
       </Unit60>
       <Unit61>
         <Filename Value="Forms/FreeAboutDlg.pas"/>
@@ -456,6 +455,7 @@
         <ComponentName Value="FreeAboutDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeAboutDlg"/>
       </Unit61>
       <Unit62>
         <Filename Value="Units/FreeViewPort.pas"/>

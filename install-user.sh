@@ -139,3 +139,7 @@ echo "Done"
 echo "FreeShip is installed into $FS_APP"
 echo "  to uninstall enter into $FS_APP and execute uninstall-user.sh"
 
+if ldd FreeShip|grep "libQt4Pas\.so\.5.*not found" >/dev/null
+then echo "Warning! Free Pascal Qt4 Binding is not installed. Install package libqt4pas5"
+fi
+

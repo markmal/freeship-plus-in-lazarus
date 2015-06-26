@@ -12,7 +12,11 @@ fi
 FS_HOME=/usr/share/FreeShip
 
 [ -d ${FS_HOME}/Import ] || mkdir -p ${FS_HOME}/Import
+[ -d ${FS_HOME}/Languages ] || mkdir -p ${FS_HOME}/Languages
+[ -d ${FS_HOME}/Manuals ] || mkdir -p ${FS_HOME}/Manuals
 [ -d ${FS_HOME}/Ships ]  || mkdir -p ${FS_HOME}/Ships
+[ -d ${FS_HOME}/Themes ]  || mkdir -p ${FS_HOME}/Themes
+[ -d ${FS_HOME}/Temp ]  || mkdir -p ${FS_HOME}/Temp
 
 FS_APP=${FS_HOME}
 
@@ -26,6 +30,7 @@ cp application.freeship-model-ftm.xml ${FS_APP}/
 cp -r Languages ${FS_APP}/
 cp -r Manuals ${FS_APP}/
 cp -r Ships ${FS_APP}/
+cp -r Themes ${FS_APP}/
 
 echo "  Install configuration"
 CFG=/etc/FreeShip.ini

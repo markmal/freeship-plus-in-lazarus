@@ -1,3 +1,12 @@
+Test only Version 3.5.3.1 in Lazarus
+Released: Build date	2015/06/26 17:39:00
+New features and fixes:
+- Scalable toolbar icons in SVG and sets of PNG icons of various sizes were created (Thanks Tom https://github.com/tvld ).
+- Toolbar resizes according to icon size.
+- Original icons were captured into PNG files and resized to various sizes
+- Themes support is added. Now colors and icons are saved in themes. Custom themes can inherit icons from ancestors.
+- Tom's icons are placed into Default theme. Original icons placed into Original theme.
+
 Test only Version 3.5.2.45 in Lazarus
 Released: Build date	2015/04/06 14:41:00
 New features and fixes:

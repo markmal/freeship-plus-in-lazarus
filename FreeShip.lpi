@@ -23,8 +23,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="57"/>
+      <RevisionNr Value="3"/>
+      <BuildNr Value="1"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -59,7 +59,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="70">
+    <Units Count="71">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -107,7 +107,6 @@
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeVersionUnit"/>
       </Unit7>
       <Unit8>
         <Filename Value="Forms/FreeIntersectionDlg.pas"/>
@@ -150,6 +149,7 @@
         <ComponentName Value="FreePreferencesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreePreferencesDlg"/>
       </Unit13>
       <Unit14>
         <Filename Value="Forms/FreeExpanedPlatesDlg.pas"/>
@@ -455,7 +455,6 @@
         <ComponentName Value="FreeAboutDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeAboutDlg"/>
       </Unit61>
       <Unit62>
         <Filename Value="Units/FreeViewPort.pas"/>
@@ -489,6 +488,14 @@
         <Filename Value="Units/freestringutils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit69>
+      <Unit70>
+        <Filename Value="Forms/EnterThemeNameDlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="EnterThemeNameDlg"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="EnterThemeNameDlg"/>
+      </Unit70>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -496,6 +503,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <OtherUnitFiles Value="Units;Forms"/>
+      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -510,7 +518,6 @@
         <OverflowChecks Value="True"/>
         <StackChecks Value="True"/>
       </Checks>
-      <VerifyObjMethodCallValidity Value="True"/>
       <Optimizations>
         <OptimizationLevel Value="0"/>
       </Optimizations>

@@ -11,6 +11,7 @@ cp FreeShip ${HOME}/bin/
 [ -d ${FS_HOME}/Import ] || mkdir -p ${FS_HOME}/Import
 [ -d ${FS_HOME}/Ships ]  || mkdir -p ${FS_HOME}/Ships
 [ -d ${FS_HOME}/Temp ]   || mkdir -p ${FS_HOME}/Temp
+[ -d ${FS_HOME}/Themes ]  || mkdir -p ${FS_HOME}/Themes
 
 FS_APP=${FS_HOME}
 
@@ -24,6 +25,7 @@ cp uninstall-user.sh ${FS_APP}/
 cp -r Languages ${FS_APP}/
 cp -r Manuals ${FS_APP}/
 cp -r Ships ${FS_APP}/
+cp -r Themes ${FS_APP}/
 
 echo "  Install configuration"
 [ -d ${HOME}/.config/FreeShip ] || mkdir ${HOME}/.config/FreeShip

@@ -11,6 +11,7 @@
         <OtherUnitFiles Value="$(ProjPath)/Forms;$(ProjPath)/Units;../Forms;../Units"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
         <ObjectPath Value="../Units"/>
+        <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
       </SearchPaths>
       <Parsing>
         <SyntaxOptions>

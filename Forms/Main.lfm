@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = 474
+  Left = 426
   Height = 800
-  Top = 150
+  Top = 92
   Width = 1200
   Align = alTop
-  ClientHeight = 779
+  ClientHeight = 773
   ClientWidth = 1200
   Color = clSilver
   Font.Color = clWindowText
@@ -19,11 +19,11 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '1.4.0.2'
+  LCLVersion = '1.4.0.4'
   object StatusBar: TPanel
     Left = 0
     Height = 20
-    Top = 759
+    Top = 753
     Width = 1200
     Align = alBottom
     BevelOuter = bvLowered
@@ -107,21 +107,25 @@ object MainForm: TMainForm
       Left = 2
       Top = 1
       Action = NewModel
+      AutoSize = True
     end
     object ToolButton1: TToolButton
       Left = 35
       Top = 1
       Action = LoadFile
+      AutoSize = True
     end
     object ToolButton38: TToolButton
       Left = 58
       Top = 1
       Action = FileSave
+      AutoSize = True
     end
     object ToolButton3: TToolButton
       Left = 81
       Top = 1
       Action = ExitProgram
+      AutoSize = True
     end
     object ToolButton4: TToolButton
       Left = 104
@@ -134,11 +138,11 @@ object MainForm: TMainForm
     end
     object PrecisionBox: TComboBox
       Left = 114
-      Height = 25
+      Height = 24
       Hint = 'Change the precision of the model.'
       Top = 1
       Width = 75
-      ItemHeight = 0
+      ItemHeight = 16
       ItemIndex = 0
       Items.Strings = (
         'Low'
@@ -262,11 +266,11 @@ object MainForm: TMainForm
     end
     object LayerBox: TComboBox
       Left = 613
-      Height = 29
+      Height = 24
       Hint = 'Assign selected faces to a new layer or change the currently active layer.'
       Top = 1
       Width = 145
-      ItemHeight = 0
+      ItemHeight = 23
       OnChange = LayerBoxChange
       Style = csDropDownList
       TabOrder = 0
@@ -431,11 +435,13 @@ object MainForm: TMainForm
     OnUpdateRecentFileList = FreeShipUpdateRecentFileList
     OnUpdateUndoData = FreeShipUpdateUndoData
     Precision = fpLow
+    left = 32
+    top = 72
   end
   object ActionList1: TActionList
     Images = MenuImages
-    left = 18
-    top = 78
+    left = 296
+    top = 72
     object ExportFEF: TAction
       Category = 'Export'
       Caption = 'FEF file...'
@@ -1180,8 +1186,8 @@ object MainForm: TMainForm
     end
   end
   object MenuImages: TImageList
-    left = 49
-    top = 78
+    left = 200
+    top = 72
     Bitmap = {
       4C69380000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2980,8 +2986,8 @@ object MainForm: TMainForm
   end
   object MainMenu1: TMainMenu
     Images = MenuImages
-    left = 84
-    top = 78
+    left = 112
+    top = 72
     object File1: TMenuItem
       Caption = 'File'
       object New3: TMenuItem
@@ -3100,6 +3106,7 @@ object MainForm: TMainForm
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000
         }
+        GlyphShowMode = gsmAlways
       end
       object Save1: TMenuItem
         Action = FileSaveas
@@ -5555,7 +5562,7 @@ object MainForm: TMainForm
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 114
-    top = 78
+    left = 392
+    top = 72
   end
 end

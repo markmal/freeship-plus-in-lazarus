@@ -622,120 +622,146 @@ type
      {   Container class for all program settings                                                        }
      {---------------------------------------------------------------------------------------------------}
      TFreePreferences       = class(TPersistent)
-                                 private
-                                    FOwner                     : TFreeShip;
-                                    FPointSize                 : integer; // Half width of controlpoints in pixels when drawn on screen
-                                    // Colors
-                                    FButtockColor              : TColor;
-                                    FWaterlineColor            : TColor;
-                                    FStationColor              : TColor;
-                                    FDiagonalColor             : TColor;
-                                    FEdgeColor                 : TColor;   // Color of normal edges
-                                    FCreaseColor               : TColor;   // color of crease edges
-                                    FCreaseEdgeColor           : TColor;   // color of crease control-edges
-                                    FGridColor                 : TColor;   // Color of gridlines
-                                    FGridFontColor             : TColor;   // Color of font with gridlines
-                                    FCreasePointColor          : TColor;   // Color of crease vertices
-                                    FRegularPointColor         : TColor;   //
-                                    FCornerPointColor          : TColor;   // Color of cornerpoints and points with at least 3 crease edges
-                                    FDartPointColor            : TColor;   //
-                                    FSelectColor               : TColor;   // Color of selected items
-                                    FLayerColor                : TColor;   // Default color for new layers
-                                    FNormalColor               : TColor;   // color of surface normals
-                                    FUnderWaterColor           : TColor;   // Default color used for shading underwaterpart of the vessel
-                                    FViewportColor             : TColor;
-                                    FLeakPointColor            : TColor;
-                                    FMarkerColor               : TColor;
-                                    FCurvaturePlotColor        : TColor;
-                                    FControlCurveColor         : TColor;
-                                    FHydrostaticsFontColor     : TColor;
-                                    FZebraStripeColor          : TColor;
+       private
+          FOwner                     : TFreeShip;
+          FPointSize                 : integer; // Half width of controlpoints in pixels when drawn on screen
+          // Colors
+          FButtockColor              : TColor;
+          FWaterlineColor            : TColor;
+          FStationColor              : TColor;
+          FDiagonalColor             : TColor;
+          FEdgeColor                 : TColor;   // Color of normal edges
+          FCreaseColor               : TColor;   // color of crease edges
+          FCreaseEdgeColor           : TColor;   // color of crease control-edges
+          FGridColor                 : TColor;   // Color of gridlines
+          FGridFontColor             : TColor;   // Color of font with gridlines
+          FCreasePointColor          : TColor;   // Color of crease vertices
+          FRegularPointColor         : TColor;   //
+          FCornerPointColor          : TColor;   // Color of cornerpoints and points with at least 3 crease edges
+          FDartPointColor            : TColor;   //
+          FSelectColor               : TColor;   // Color of selected items
+          FLayerColor                : TColor;   // Default color for new layers
+          FNormalColor               : TColor;   // color of surface normals
+          FUnderWaterColor           : TColor;   // Default color used for shading underwaterpart of the vessel
+          FViewportColor             : TColor;
+          FLeakPointColor            : TColor;
+          FMarkerColor               : TColor;
+          FCurvaturePlotColor        : TColor;
+          FControlCurveColor         : TColor;
+          FHydrostaticsFontColor     : TColor;
+          FZebraStripeColor          : TColor;
 
-                                    //FGlobalConfigDirectory     : string;   // Default directory where FreeShip.ini file is stored
-                                    //FGlobalAppDataDirectory    : string;   // Default directory where FreeShip data and resource files stored
-                                    //FUserConfigDirectory       : string;   // Default directory where users FreeShip.ini file is stored
-                                    //FUserAppDataDirectory      : string;   // Default directory where users FreeShip data and resource files stored
-                                    FExecDirectory             : string;   // directory where users FreeShip 3-rd party executables located
-                                    FManualsDirectory          : string;   // Manuals directory
-                                    FTempDirectory             : string;   // 3-rd party executables write/read temp files
+          FGlobalConfigDirectory     : string;   // Default directory where FreeShip.ini file is stored
+          FGlobalAppDataDirectory    : string;   // Default directory where FreeShip data and resource files stored
+          FUserConfigDirectory       : string;   // Default directory where users FreeShip.ini file is stored
+          FUserAppDataDirectory      : string;   // Default directory where users FreeShip data and resource files stored
 
-                                    FInitDirectory             : string;   // Default directory where freeship.exe started
-                                    FOpenDirectory             : string;   // Default directory to open existing files
-                                    FSaveDirectory             : string;   // Default directory to save files
-                                    FImportDirectory           : string;   // Default directory to import files
-                                    FExportDirectory           : string;   // Default directory to export files
+          FExecDirectory             : string;   // directory where users FreeShip 3-rd party executables located
+          FManualsDirectory          : string;   // Manuals directory
+          FTempDirectory             : string;   // 3-rd party executables write/read temp files
+          FMenuIconDirectory         : string;   // Directory where menu icons are 'Themes/Default/icons/16';
+          FToolIconDirectory         : string;   // Directory where toolbar icons are 'Themes/Default/icons/24';
 
-                                    FLanguagesDirectory        : string;   // Default directory where Language files stored. Default FGlobalAppDataDirectory/Languages
-                                    FLanguageFile              : String;
-                                    FLanguage                  : String;
+          FThemeName                 : string;
+          FParentThemeName           : string;
+          FMenuIconSize              : integer;
+          FToolIconSize              : integer;
 
-                                    FMaxUndoMemory             : Integer;  // Max. amount of allowable undo memory in megabytes
+          FInitDirectory             : string;   // Default directory where freeship.exe started
+          FOpenDirectory             : string;   // Default directory to open existing files
+          FSaveDirectory             : string;   // Default directory to save files
+          FImportDirectory           : string;   // Default directory to import files
+          FExportDirectory           : string;   // Default directory to export files
 
-                                    function getGlobalConfigDirectory:string;
-                                    function getUserAppDataDirectory:string;
-                                    function getGlobalAppDataDirectory:string;
-                                    function getUserConfigDirectory:string;
+          FLanguagesDirectory        : string;   // Default directory where Language files stored. Default FGlobalAppDataDirectory/Languages
+          FLanguageFile              : String;
+          FLanguage                  : String;
 
-                                    function FGetExportDirectory:string;
-                                    function FGetImportDirectory:string;
-                                    function FGetOpenDirectory:string;
-                                    function FGetSaveDirectory:string;
-                                    function FGetInitDirectory:string;																		
-                                    procedure FSetViewportColor(Val:TColor);
-                                 public
-                                    procedure   Clear;
-                                    constructor Create(Owner:TFreeShip);
-                                    procedure   Edit;
-                                    procedure   Load;
-                                    procedure   LoadFromIni(Filename: string);
-                                    procedure   LoadFromDta(Filename: string);
-                                    procedure   ResetColors;
-                                    procedure   ResetDirectories;
-                                    procedure   SetDefaults;
-                                    procedure   Save;
-                                    procedure   SaveToDta;
-                                    property    Owner                : TFreeShip read FOwner write FOwner;
-                                 published
-                                    // General options
-                                    property PointSize               : integer read FPointSize write FPointSize;
-                                    // Color settings
-                                    property ButtockColor            : TColor read FButtockColor write FButtockColor;
-                                    property ControlCurveColor       : TColor read FControlCurveColor write FControlCurveColor;
-                                    property CornerPointColor        : TColor read FCornerPointColor write FCornerPointColor;
-                                    property CreaseColor             : TColor read FCreaseColor write FCreaseColor;
-                                    property CreaseEdgeColor         : TColor read FCreaseEdgeColor write FCreaseEdgeColor;
-                                    property CurvaturePlotColor      : TColor read FCurvaturePlotColor write FCurvaturePlotColor;
-                                    property DiagonalColor           : TColor read FDiagonalColor write FDiagonalColor;
-                                    property GridColor               : TColor read FGridColor write FGridColor;
-                                    property GridFontColor           : TColor read FGridFontColor write FGridFontColor;
-                                    property HydrostaticsFontColor   : TColor read FHydrostaticsFontColor write FHydrostaticsFontColor;
-                                    property ImportDirectory         : string read FGetImportDirectory write FImportDirectory;
-                                    property EdgeColor               : TColor read FEdgecolor write FEdgeColor;
-                                    property ExportDirectory         : string read FGetExportDirectory write FExportDirectory;
-                                    property CreasePointColor        : TColor read FCreasePointColor write FCreasePointColor;
-                                    property Language                : string read FLanguage write FLanguage;
-                                    property LanguageFile            : string read FLanguageFile write FLanguageFile;
-                                    property LayerColor              : TColor Read FLayerColor Write FLayerColor;
-                                    property LeakPointColor          : TColor read FLeakPointColor write FLeakPointColor;
-                                    property MarkerColor             : TColor Read FMarkerColor Write FMarkerColor;
-                                    property MaxUndoMemory           : Integer read FMaxUndoMemory write FMaxUndoMemory;
-                                    property NormalColor             : TColor read FNormalColor write FNormalColor;
-                                    property InitDirectory           : string read FGetInitDirectory write FInitDirectory;									
-                                    property OpenDirectory           : string read FGetOpenDirectory write FOpenDirectory;
-                                    property SaveDirectory           : string read FGetSaveDirectory write FSaveDirectory;
-                                    property LanguagesDirectory      : string read FLanguagesDirectory write FLanguagesDirectory;
-                                    property ExecDirectory           : string read FExecDirectory write FExecDirectory;
-                                    property ManualsDirectory        : string read FManualsDirectory write FManualsDirectory;
-                                    property TempDirectory           : string read FTempDirectory write FTempDirectory;
-                                    property StationColor            : TColor read FStationColor write FStationColor;
-                                    property UnderWaterColor         : TColor read FUnderWaterColor write FUnderWaterColor;
-                                    property RegularPointColor       : TColor read FRegularPointColor write FRegularPointColor;
-                                    property DartPointColor          : TColor read FDartPointColor write FDartPointColor;
-                                    property SelectColor             : TColor read FSelectColor write FSelectColor;
-                                    property ViewportColor           : TColor read FViewportColor write FSetViewportColor;
-                                    property WaterlineColor          : TColor read FWaterlineColor write FWaterlineColor;
-                                    property ZebraStripeColor        : TColor read FZebraStripeColor write FZebraStripeColor;
-                              end;
+          FMaxUndoMemory             : Integer;  // Max. amount of allowable undo memory in megabytes
+
+          function getGlobalConfigDirectory:string;
+          function getUserAppDataDirectory:string;
+          function getGlobalAppDataDirectory:string;
+          function getUserConfigDirectory:string;
+
+          function FGetExportDirectory:string;
+          function FGetImportDirectory:string;
+          function FGetOpenDirectory:string;
+          function FGetSaveDirectory:string;
+          function FGetInitDirectory:string;
+          procedure FSetViewportColor(Val:TColor);
+       public
+          procedure   Clear;
+          constructor Create(Owner:TFreeShip);
+          procedure   Edit;
+          procedure   Load;
+          procedure   LoadFromIni(Filename: string);
+          procedure   LoadFromDta(Filename: string);
+          procedure   ResetColors;
+          procedure   ResetDirectories;
+          procedure   SetDefaults;
+          procedure   Save;
+          procedure   SaveToDta;
+
+          function    getThemeConfigFile(ThemeName: string): string;
+          function    getParentThemeName(ThemeName: string): string;
+          procedure   getAllThemes(ss:TStrings);
+          procedure   getThemesInDir(dir:string; ss:TStrings);
+          function    GetIconFileName(ThemeName, IconName: string; IconSize:integer): string;
+          function    IsThemeCustom(ThemeName: string): boolean;
+          procedure   SaveCustomTheme(Dialog:TForm);
+          procedure   SaveThemeAsCustom(Dialog:TForm);
+          procedure   LoadTheme(ThemeName: String);
+          procedure   LoadThemeIni(FileName: String);
+          procedure   SaveTheme(ThemeName, ParentThemeName:string);
+          property    Owner                : TFreeShip read FOwner write FOwner;
+       published
+          // General options
+          property PointSize               : integer read FPointSize write FPointSize;
+          // Color settings
+          property ButtockColor            : TColor read FButtockColor write FButtockColor;
+          property ControlCurveColor       : TColor read FControlCurveColor write FControlCurveColor;
+          property CornerPointColor        : TColor read FCornerPointColor write FCornerPointColor;
+          property CreaseColor             : TColor read FCreaseColor write FCreaseColor;
+          property CreaseEdgeColor         : TColor read FCreaseEdgeColor write FCreaseEdgeColor;
+          property CurvaturePlotColor      : TColor read FCurvaturePlotColor write FCurvaturePlotColor;
+          property DiagonalColor           : TColor read FDiagonalColor write FDiagonalColor;
+          property GridColor               : TColor read FGridColor write FGridColor;
+          property GridFontColor           : TColor read FGridFontColor write FGridFontColor;
+          property HydrostaticsFontColor   : TColor read FHydrostaticsFontColor write FHydrostaticsFontColor;
+          property ImportDirectory         : string read FGetImportDirectory write FImportDirectory;
+          property EdgeColor               : TColor read FEdgecolor write FEdgeColor;
+          property ExportDirectory         : string read FGetExportDirectory write FExportDirectory;
+          property CreasePointColor        : TColor read FCreasePointColor write FCreasePointColor;
+          property Language                : string read FLanguage write FLanguage;
+          property LanguageFile            : string read FLanguageFile write FLanguageFile;
+          property LayerColor              : TColor Read FLayerColor Write FLayerColor;
+          property LeakPointColor          : TColor read FLeakPointColor write FLeakPointColor;
+          property MarkerColor             : TColor Read FMarkerColor Write FMarkerColor;
+          property MaxUndoMemory           : Integer read FMaxUndoMemory write FMaxUndoMemory;
+          property NormalColor             : TColor read FNormalColor write FNormalColor;
+          property InitDirectory           : string read FGetInitDirectory write FInitDirectory;
+          property OpenDirectory           : string read FGetOpenDirectory write FOpenDirectory;
+          property SaveDirectory           : string read FGetSaveDirectory write FSaveDirectory;
+          property LanguagesDirectory      : string read FLanguagesDirectory write FLanguagesDirectory;
+          property ExecDirectory           : string read FExecDirectory write FExecDirectory;
+          property ManualsDirectory        : string read FManualsDirectory write FManualsDirectory;
+          property TempDirectory           : string read FTempDirectory write FTempDirectory;
+          property StationColor            : TColor read FStationColor write FStationColor;
+          property UnderWaterColor         : TColor read FUnderWaterColor write FUnderWaterColor;
+          property RegularPointColor       : TColor read FRegularPointColor write FRegularPointColor;
+          property DartPointColor          : TColor read FDartPointColor write FDartPointColor;
+          property SelectColor             : TColor read FSelectColor write FSelectColor;
+          property ViewportColor           : TColor read FViewportColor write FSetViewportColor;
+          property WaterlineColor          : TColor read FWaterlineColor write FWaterlineColor;
+          property ZebraStripeColor        : TColor read FZebraStripeColor write FZebraStripeColor;
+
+          property MenuIconDirectory       : string read FMenuIconDirectory write FMenuIconDirectory;
+          property ToolIconDirectory       : string read FToolIconDirectory write FToolIconDirectory;
+          property MenuIconSize            : integer read FMenuIconSize write FMenuIconSize;
+          property ToolIconSize            : integer read FToolIconSize write FToolIconSize;
+          property Theme                   : string read FThemeName;
+     end;
 
      {---------------------------------------------------------------------------------------------------}
      {                                       TFreeProjectSettings                                        }
@@ -1120,7 +1146,8 @@ uses Math,
      FreeUndoHistoryDlg,
      FreeCylinderDlg,
      FreeCrosscurvesDlg,
-     FreeLayerDlg;
+     FreeLayerDlg,
+     EnterThemeNameDlg;
 
 { -- mmm. probably not. These funcs are used a lot when data read from files. And the files are not always UTF8
 function Pos(const SearchForText, SearchInText: string): PtrInt;
@@ -13802,6 +13829,7 @@ var Dialog  : TFreePreferencesDialog;
     Lang: string;
     I       : Integer;
     Dir     : string;
+    StrList : TStringList;
 
    procedure Browse(Dir:string);
    var SearchRec  : TSearchRec;
@@ -13854,9 +13882,20 @@ begin
       end;
    end;
 
+   Dialog.ComboBoxThemes.Text:=FThemeName;
+   StrList := TStringList.Create;
+   StrList.Sorted:=true;
+   StrList.Duplicates:=dupIgnore;
+
+   getAllThemes(StrList);
+
+   Dialog.ComboBoxThemes.Items.Clear;
+   Dialog.ComboBoxThemes.Items.AddStrings(StrList);
+   StrList.Free;
+
    if Dialog.Execute(Owner) then
    begin
-      PointSize:=Dialog.TrackBar1.Position;
+      PointSize:=Dialog.SpinEdit1.Value;
       LayerColor:=Dialog.Panel2.Color;
       UnderWaterColor:=Dialog.Panel5.Color;
       EdgeColor:=Dialog.Panel6.Color;
@@ -13891,6 +13930,9 @@ begin
       FSaveDirectory:=Dialog.EditSaveDir.Text;
       FImportDirectory:=Dialog.EditImportDir.Text;
       FExportDirectory:=Dialog.EditExportDir.Text;
+      //FToolIconDirectory:=Dialog.EditToolIconsDir.Text;
+      FToolIconSize := StrToInt(Dialog.SelectToolIconSize.Text);
+
 
       if Uppercase(Lang)<>Uppercase(FLanguage) then
       begin
@@ -13923,11 +13965,46 @@ begin
       if assigned(Owner.FOnChangeCursorIncrement) then Owner.FOnChangeCursorIncrement(Owner);
       if assigned(Owner.FOnUpdateGeometryInfo) then Owner.FOnUpdateGeometryInfo(owner);
       Owner.Redraw;
-      Save;
+
+      if Dialog.IsThemeChanged then
+        if IsThemeCustom(Dialog.ComboBoxThemes.Text)
+        then SaveCustomTheme(Dialog)
+        else SaveThemeAsCustom(Dialog);
+
+      if Dialog.IsConfigChanged
+        then Save;
+
    end;
    Dialog.Destroy;
 end;{TFreePreferences.Edit}
 
+
+
+procedure TFreePreferences.SaveCustomTheme(Dialog:TForm);
+var  d: TFreePreferencesDialog;
+begin
+  d := TFreePreferencesDialog(dialog);
+  SaveTheme(FThemeName, FParentThemeName);
+end;
+
+procedure TFreePreferences.SaveThemeAsCustom(Dialog:TForm);
+var  d: TFreePreferencesDialog; t: TEnterThemeNameDlg;
+  r : integer;
+begin
+  d := TFreePreferencesDialog(Dialog);
+  t := TEnterThemeNameDlg.Create(d.Owner);
+  t.EditCustomSchemeName.Text:= 'New Custom Theme';
+  t.Message.Caption := 'Some properties of current scheme "'+d.ComboBoxThemes.Text+'" were changed.'
+     +' Please enter a name to save it as a new custom scheme.';
+  r := t.ShowModal;
+  if r = mrOk then
+    begin
+    FParentThemeName:=FThemeName;
+    FThemeName:=t.EditCustomSchemeName.Text;
+    SaveTheme(FThemeName, FParentThemeName);
+    end;
+  t.Free;
+end;
 
 function TFreePreferences.getGlobalConfigDirectory:string;
 var D:string;
@@ -14061,7 +14138,95 @@ begin
    end;
 end;{TFreePreferences.LoadFromDta}
 
-procedure TFreePreferences.LoadFromIni(FileName: String);
+// Only schemes that are saved in User Config are custom
+function TFreePreferences.IsThemeCustom(ThemeName: string): boolean;
+begin
+   result :=  FileExistsUTF8(Self.FUserConfigDirectory+'/Themes/'+ThemeName+'/theme.ini')
+end;
+
+function TFreePreferences.getThemeConfigFile(ThemeName: string): string;
+begin
+   if FileExistsUTF8(Self.FUserConfigDirectory+'/Themes/'+ThemeName+'/theme.ini')
+   then result := Self.FUserConfigDirectory+'/Themes/'+ThemeName+'/theme.ini'
+   else
+     if FileExistsUTF8(Self.FGlobalConfigDirectory+'/Themes/'+ThemeName+'/theme.ini')
+     then result := Self.FGlobalConfigDirectory+'/Themes/'+ThemeName+'/theme.ini'
+     else
+       if FileExistsUTF8(Self.FUserAppDataDirectory +'/Themes/'+ThemeName+'/theme.ini')
+       then result := Self.FUserAppDataDirectory+'/Themes/'+ThemeName+'/theme.ini'
+       else
+         if FileExistsUTF8(Self.FGlobalAppDataDirectory +'/Themes/'+ThemeName+'/theme.ini')
+         then result := Self.FGlobalAppDataDirectory+'/Themes/'+ThemeName+'/theme.ini'
+         else result := Self.FGlobalAppDataDirectory+'/Themes/Default/theme.ini'
+end;
+
+procedure TFreePreferences.getAllThemes(ss:TStrings);
+begin
+  ss.Clear;
+  getThemesInDir(Self.FUserConfigDirectory+'/Themes',ss);
+  getThemesInDir(Self.FGlobalConfigDirectory+'/Themes',ss);
+  getThemesInDir(Self.FUserAppDataDirectory+'/Themes',ss);
+  getThemesInDir(Self.FGlobalAppDataDirectory+'/Themes',ss);
+end;
+
+procedure TFreePreferences.getThemesInDir(dir:string; ss:TStrings);
+var sr: TSearchRec;
+begin
+  if not DirectoryExistsUTF8(dir) then exit;
+  if FindFirst(dir+'/*',faDirectory,sr)=0 then
+    begin
+    repeat
+    if ((sr.Attr and faDirectory) = faDirectory)
+      and (sr.Name<>'.') and (sr.Name<>'..')
+    then
+      ss.Add(sr.Name);
+    until FindNext(sr)<>0;
+    end;
+  FindClose(sr);
+end;
+
+
+function TFreePreferences.getParentThemeName(ThemeName: string): string;
+var     params:TColorIniFile;
+begin
+  params:=TColorIniFile.Create(getThemeConfigFile(FThemeName));
+  result := params.ReadString('Theme','ParentTheme','');
+  params.Free;
+end;
+
+// finds IconFileName recursively from the current theme and its parents
+function TFreePreferences.GetIconFileName(ThemeName, IconName: string; IconSize:integer): string;
+var subPath, ptn: string;
+begin
+  subPath := '/Themes/'+ThemeName+'/icons/'+ IntToStr(IconSize)+'/'+IconName+'.png';
+  if FileExistsUTF8(Self.FUserConfigDirectory+subPath)
+  then result := Self.FUserConfigDirectory+subPath
+  else
+   if FileExistsUTF8(Self.FGlobalConfigDirectory+subPath)
+   then result := Self.FGlobalConfigDirectory+subPath
+   else
+     if FileExistsUTF8(Self.FUserAppDataDirectory +subPath)
+     then result := Self.FUserAppDataDirectory+subPath
+     else
+       if FileExistsUTF8(Self.FGlobalAppDataDirectory +subPath)
+       then result := Self.FGlobalAppDataDirectory+subPath
+       else
+       begin
+         ptn := getParentThemeName(ThemeName);
+         if (ptn > '') and (ptn<>ThemeName)
+         then result := GetIconFileName(ptn, IconName, IconSize)
+         else result := '';
+       end;
+end;
+
+procedure TFreePreferences.LoadTheme(ThemeName: String);
+var IniFile: string;
+begin
+  IniFile := self.getThemeConfigFile(ThemeName);
+  LoadThemeIni(IniFile);
+end;
+
+procedure TFreePreferences.LoadThemeIni(FileName: String);
 var
     I,N     : Integer;
     T,L,W,H,S:Integer;
@@ -14072,6 +14237,9 @@ begin
    then exit;
 
   params := TColorIniFile.create(Filename, false );
+
+  FThemeName := params.ReadString('Theme','Name',FThemeName);
+  FParentThemeName := params.ReadString('Theme','ParentTheme',FParentThemeName);
 
   FPointSize := params.ReadInteger('Graphic','PointSize',FPointSize);
   FButtockColor := params.ReadColor('Graphic','PointSize',FButtockColor);
@@ -14098,7 +14266,19 @@ begin
   FControlCurveColor := params.ReadColor('Graphic','ControlCurveColor',FControlCurveColor);
   FHydrostaticsFontColor := params.ReadColor('Graphic','HydrostaticsFontColor',FHydrostaticsFontColor);
   FZebraStripeColor := params.ReadColor('Graphic','ZebraStripeColor',FZebraStripeColor);
+end;
 
+procedure TFreePreferences.LoadFromIni(FileName: String);
+var
+    I,N     : Integer;
+    T,L,W,H,S:Integer;
+    params:TColorIniFile;
+    RecentFileNames : TStringList;
+begin
+  if not FileExistsUTF8(Filename)
+   then exit;
+
+  params := TColorIniFile.create(Filename, false );
 
   FOpenDirectory := params.ReadString('Directories','OpenDirectory',FOpenDirectory);
   FSaveDirectory := params.ReadString('Directories','SaveDirectory',FSaveDirectory);
@@ -14108,6 +14288,13 @@ begin
   FExecDirectory := params.ReadString('Directories','ExecDirectory',FExecDirectory);
   FManualsDirectory := params.ReadString('Directories','ManualsDirectory',FManualsDirectory);
   FTempDirectory := params.ReadString('Directories','TempDirectory',FTempDirectory);
+
+  //FThemeDirectory := params.ReadString('Directories','ThemeDirectory',FMenuIconDirectory);
+  //FThemeName := params.ReadString('Theme','Name',FThemeName);
+
+  FMenuIconSize := params.ReadInteger('Graphic','MenuIconSize',FMenuIconSize);
+  FToolIconSize := params.ReadInteger('Graphic','ToolIconSize',FToolIconSize);
+  FThemeName := params.ReadString('Graphic','Theme',FThemeName);
 
   RecentFileNames := TStringList.Create;
   params.ReadSectionValues('RecentFiles',RecentFileNames);
@@ -14162,10 +14349,19 @@ begin
   FMaxUndoMemory := 20;
   ResetColors;
   ResetDirectories;
+  FMenuIconSize := 16;
+  FToolIconSize := 24;
+  FThemeName := 'Default';
+  FParentThemeName := '';
 end;
 
 procedure TFreePreferences.ResetDirectories;
 begin
+  FUserConfigDirectory := getUserConfigDirectory;
+  FGlobalConfigDirectory := getGlobalConfigDirectory;
+  FUserAppDataDirectory := getUserAppDataDirectory;
+  FGlobalAppDataDirectory := getGlobalAppDataDirectory;
+
   FOpenDirectory := self.getUserAppDataDirectory+'/Ships';
   FSaveDirectory := self.getUserAppDataDirectory+'/Ships';
   FImportDirectory := self.getUserAppDataDirectory+'/Import';
@@ -14174,6 +14370,8 @@ begin
   FExecDirectory := self.getGlobalAppDataDirectory+'/Exec';
   FManualsDirectory := self.getGlobalAppDataDirectory+'/Manuals';
   FTempDirectory := self.getUserAppDataDirectory+'/Temp';
+  FMenuIconDirectory := self.getUserAppDataDirectory+'/Themes/Default/icons/16';
+  FToolIconDirectory := self.getUserAppDataDirectory+'/Themes/Default/icons/24';
 end;
 
 
@@ -14185,8 +14383,14 @@ var GlobalConfigFileName, UserConfigFileName,DtaFilename: string;
     RecentFileNames : TStrings;
 begin
   setDefaults;
-  GlobalConfigFileName:=getGlobalConfigDirectory+'/FreeShip.ini';
-  UserConfigFileName:=getUserConfigDirectory+'/FreeShip.ini';
+
+  FGlobalConfigDirectory     := self.getGlobalConfigDirectory;
+  FGlobalAppDataDirectory    := self.getGlobalAppDataDirectory;
+  FUserConfigDirectory       := self.getUserConfigDirectory;
+  FUserAppDataDirectory      := self.getUserAppDataDirectory;
+
+  GlobalConfigFileName:=FGlobalConfigDirectory+'/FreeShip.ini';
+  UserConfigFileName:=FUserConfigDirectory+'/FreeShip.ini';
 
   // just for migration from .dta to .ini
   if not FileExistsUTF8(GlobalConfigFileName)
@@ -14200,10 +14404,14 @@ begin
 
   LoadFromIni(GlobalConfigFileName);
   LoadFromIni(UserConfigFileName);
+  LoadTheme(FThemeName);
 end;{TFreePreferences.Load}
 
 procedure TFreePreferences.ResetColors;
 begin
+   FThemeName := 'Default';
+   FParentThemeName := '';
+
    FButtockColor:=$00808040;     // Kind of teal-blue
    FWaterlineColor:=$00808040;   // Kind of teal-blue
    FStationColor:=$00808040;     // Kind of teal-blue
@@ -14278,7 +14486,7 @@ begin
    except
       MessageDlg(Userstring(177)+':'+EOL+Filename,mtError,[mbOk],0);
    end;
-end;{TFreePreferences.Save}
+end;{TFreePreferences.SaveToDta}
 
 procedure TFreePreferences.Save;
 var FileName: String;
@@ -14291,6 +14499,57 @@ begin
     ForceDirectoriesUTF8(ExtractFilePath(Filename));
 
   params := TColorIniFile.create(Filename, false);
+
+  params.WriteString('Directories','OpenDirectory',FOpenDirectory);
+  params.WriteString('Directories','SaveDirectory',FSaveDirectory);
+  params.WriteString('Directories','ImportDirectory',FImportDirectory);
+  params.WriteString('Directories','ExportDirectory',FExportDirectory);
+  params.WriteString('Directories','LanguagesDirectory',FLanguagesDirectory);
+  params.WriteString('Directories','ExecDirectory',FExecDirectory);
+  params.WriteString('Directories','ManualsDirectory',FManualsDirectory);
+  params.WriteString('Directories','TempDirectory',FTempDirectory);
+
+  params.WriteString('Directories','MenuIconDirectory',FMenuIconDirectory);
+  params.WriteString('Directories','ToolIconDirectory',FToolIconDirectory);
+  params.WriteInteger('Graphic','MenuIconSize',FMenuIconSize);
+  params.WriteInteger('Graphic','ToolIconSize',FToolIconSize);
+  params.WriteString('Graphic','Theme',FThemeName);
+
+  for I:=0 to Owner.Edit.FRecentFiles.Count-1 do
+  begin
+     Filename := Owner.Edit.FRecentFiles[I];
+     params.WriteString('RecentFiles', 'File'+IntToStr(I+1), Filename);
+  end;
+
+  if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
+
+  if Application.Mainform<>nil then
+   begin
+   params.WriteInteger('Window','Top',Application.MainForm.Top);
+   params.WriteInteger('Window','Left',Application.MainForm.Left);
+   params.WriteInteger('Window','Height',Application.MainForm.Height);
+   params.WriteInteger('Window','Width',Application.MainForm.Width);
+   params.WriteInteger('Window','State',Integer(Application.MainForm.WindowState));
+   end;
+
+  params.WriteString('General','Language',FLanguage);
+  params.WriteInteger('General','MaxUndoMemory',FMaxUndoMemory);
+end;
+
+procedure TFreePreferences.SaveTheme(ThemeName, ParentThemeName:string);
+var FileName, DirName: String;
+    params:TColorIniFile;
+begin
+  DirName := self.getUserConfigDirectory+'/Themes/'+ThemeName;
+  FileName := DirName+'/theme.ini';
+
+  if not DirectoryExistsUTF8(DirName) then
+    ForceDirectoriesUTF8(DirName);
+
+  params := TColorIniFile.create(Filename, false);
+
+  params.WriteString('Theme','Name',ThemeName);
+  params.WriteString('Theme','ParentTheme',ParentThemeName);
 
   params.WriteColor('Graphic','PointSize',FPointSize);
   params.WriteColor('Graphic','ButtockColor',FButtockColor);
@@ -14317,38 +14576,7 @@ begin
   params.WriteColor('Graphic','ControlCurveColor',FControlCurveColor);
   params.WriteColor('Graphic','HydrostaticsFontColor',FHydrostaticsFontColor);
   params.WriteColor('Graphic','ZebraStripeColor',FZebraStripeColor);
-
-  params.WriteString('Directories','OpenDirectory',FOpenDirectory);
-  params.WriteString('Directories','SaveDirectory',FSaveDirectory);
-  params.WriteString('Directories','ImportDirectory',FImportDirectory);
-  params.WriteString('Directories','ExportDirectory',FExportDirectory);
-  params.WriteString('Directories','LanguagesDirectory',FLanguagesDirectory);
-  params.WriteString('Directories','ExecDirectory',FExecDirectory);
-  params.WriteString('Directories','ManualsDirectory',FManualsDirectory);
-  params.WriteString('Directories','TempDirectory',FTempDirectory);
-
-  for I:=0 to Owner.Edit.FRecentFiles.Count-1 do
-  begin
-     Filename := Owner.Edit.FRecentFiles[I];
-     params.WriteString('RecentFiles', 'File'+IntToStr(I+1), Filename);
-  end;
-
-  if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
-
-  if Application.Mainform<>nil then
-   begin
-   params.WriteInteger('Window','Top',Application.MainForm.Top);
-   params.WriteInteger('Window','Left',Application.MainForm.Left);
-   params.WriteInteger('Window','Height',Application.MainForm.Height);
-   params.WriteInteger('Window','Width',Application.MainForm.Width);
-   params.WriteInteger('Window','State',Integer(Application.MainForm.WindowState));
-   end;
-
-  params.WriteString('General','Language',FLanguage);
-  params.WriteInteger('General','MaxUndoMemory',FMaxUndoMemory);
-end;
-
-
+end;  {SaveTheme}
 
 {---------------------------------------------------------------------------------------------------}
 {                                       TFreeProjectSettings                                        }

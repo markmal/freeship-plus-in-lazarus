@@ -7,7 +7,7 @@ md5sum FreeShip >FreeShip.md5
 
 rm ${NAME}.zip ${NAME}.md5 2>/dev/null
 
-zip -r ${NAME}.zip Languages Manuals Ships FreeShip FreeShip.md5 Whatsnew.txt \
+zip -r ${NAME}.zip Languages Manuals Ships Themes FreeShip FreeShip.md5 Whatsnew.txt \
  install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh \
  Engineering.directory \
  freeship-16.png freeship-24.png freeship-32.png freeship-48.png

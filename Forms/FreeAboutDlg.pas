@@ -129,6 +129,7 @@ begin
   AddCredits('Author','Timoshenko Victor F, from 2007');
   AddCredits('Translation','Martijn van Engeland');
   AddCredits('Conversion to FPC','Mark Malakanov, from 2015');
+  AddCredits('New scalable icons','Tom (https://github.com/tvld), from 2015');
 
   AddCopyrights('Copyright © 2005, by Martijn van Engeland');
   AddCopyrights('Copyright © 2007-2012, by Timoshenko Victor F.');

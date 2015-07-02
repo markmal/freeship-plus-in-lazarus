@@ -113,6 +113,7 @@ type
                            procedure LayerBoxClick(Sender: TObject);
                            procedure LayerBoxDblClick(Sender: TObject);
                            procedure Edit1Change(Sender: TObject);
+                           procedure MenuImagesChange(Sender: TObject);
                            procedure Panel3Click(Sender: TObject);
                            procedure CheckBox1Click(Sender: TObject);
                            procedure ToolButton20Click(Sender: TObject);
@@ -193,6 +194,15 @@ begin
    if FFreeship.ProjectSettings.ProjectUnits=fuImperial then _Label6.Caption:=LenMMStr(FFreeship.ProjectSettings.ProjectUnits)
                                                         else _Label6.Caption:=LenMMStr(FFreeship.ProjectSettings.ProjectUnits);
    // End skip translation
+
+   ToolBar1.ButtonWidth :=Freeship.Preferences.ToolIconSize;
+   ToolBar1.ButtonHeight:=Freeship.Preferences.ToolIconSize;
+
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'ExitProgram');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 1, 'NewLayer');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'DeleteEmptyLayers');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'MoveUp');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 4, 'MoveDown');
 
    UpdateMenu;
    ShowModal;
@@ -316,6 +326,12 @@ begin
       Layerbox.Items[Layerbox.ItemIndex]:=SelectedLayer.Name;
    end;
 end;{TFreeLayerDialog.Edit1Change}
+
+procedure TFreeLayerDialog.MenuImagesChange(Sender: TObject);
+begin
+   if Assigned(Sender)
+     then;
+end;
 
 procedure TFreeLayerDialog.Panel3Click(Sender: TObject);
 begin

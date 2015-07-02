@@ -41,7 +41,8 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
      {$endif}
      {$ifdef LCL}
       Interfaces, LCLIntf, LCLType, LCLProc,
-      LMessages,
+      LMessages, IntfGraphics,
+      FPImage,
       GraphType, GraphMath, Graphics, Controls,
       PrintersDlgs, Printer4Lazarus, FreePrinter,
       FileUtil,
@@ -57,6 +58,8 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
      ExtCtrls,
      ComCtrls,
      ColorIniFile,
+     ActnList,
+     ImgList,
      FreeTypes,
         FreeVersionUnit,
         FasterList,
@@ -708,6 +711,9 @@ type
           procedure   getAllThemes(ss:TStrings);
           procedure   getThemesInDir(dir:string; ss:TStrings);
           function    GetIconFileName(ThemeName, IconName: string; IconSize:integer): string;
+          procedure   dumpIcons(ImageList:TImageList; ActionList:TActionList);
+          procedure   LoadImageListByActions(ImageList:TImageList; ActionList:TActionList);
+          procedure   LoadImageIntoList(ImageList:TImageList; Item:integer; Name:string);
           function    IsThemeCustom(ThemeName: string): boolean;
           procedure   SaveCustomTheme(Dialog:TForm);
           procedure   SaveThemeAsCustom(Dialog:TForm);
@@ -791,6 +797,7 @@ type
                                     FSavePreview                  : Boolean;
                                     FProjectUnderWaterColor       : TColor;
                                     FProjectUnits                 : TFreeUnitType;
+                                    FProjectPrecision             : TFreePrecisionType;
                                     FProjectSimplifyIntersections : boolean;
                                     FFreeHydrostaticCoefficients  : TFreeHydrostaticCoeff;
                                     // General hydrostatics calculation settings
@@ -867,6 +874,7 @@ type
                                     property  ProjectSimplifyIntersections : boolean read FProjectSimplifyIntersections write FSetProjectSimplifyIntersections;
                                     property  ProjectUnderWaterColor       : TColor read FProjectUnderWaterColor write FSetProjectUnderWaterColor;
                                     property  ProjectUnits                 : TFreeUnitType read FProjectUnits write FSetProjectUnits;
+                                    property  ProjectPrecision             : TFreePrecisionType read FProjectPrecision write FProjectPrecision;
                                     property  ProjectWaterDensity          : TFloatType read FProjectWaterDensity write FSetProjectWaterDensity;
                                     property  ProjectWaterTemper           : TFloatType read FProjectWaterTemper write FSetProjectWaterTemper;
                                     property  SavePreview                  : Boolean read FSavePreview write FSetSavePreview;
@@ -14219,6 +14227,194 @@ begin
        end;
 end;
 
+
+{ this is used just once to dump menu/toolbutton icons }
+procedure TFreePreferences.dumpIcons(ImageList:TImageList; ActionList:TActionList);
+const transpix: TRGBQuad = (rgbBlue:$FF; rgbGreen:$99; rgbRed:$33; rgbReserved:$00);
+var i, II, sz, ilcnt, x,y:integer;
+    A: TAction; AName, IName, IPath:String;
+    cil: TCustomImageList;
+    it:TImageType;
+    bmp, bmp2:TBitmap; bkcl : TColor;
+    png:TPortableNetworkGraphic;
+    img: TLazIntfImage;
+    rimg:TRawImage;
+    //cimg: TFPCustomImage;
+    aFlags : TRawImageQueryFlags;
+    tb:TToolButton;
+    ico:TIcon;
+    ppix: PRGBQuad;
+    pix: TRGBQuad;
+    col, txcol:TFPColor;
+    pngWriter : TLazWriterPNG;
+begin
+  sz := ImageList.Width;
+  cil := TCustomImageList(ImageList);
+  ilcnt := cil.Count;
+  bmp:=TBitmap.Create;
+  bmp.PixelFormat:=pf32bit;
+  bmp.RawImage.Description.AlphaPrec:=8;
+  bmp.Transparent:=true;
+  bmp.SetSize(sz,sz);
+  {
+  bmp2:=TBitmap.Create;
+
+  png:=TPortableNetworkGraphic.Create;
+  png.PixelFormat:=pf32bit;
+  png.SetSize(sz,sz);
+
+  img:=TLazIntfImage.Create(sz,sz);
+  img.DataDescription.BitsPerPixel:=32;
+  img.DataDescription.AlphaPrec:=8;
+  img.DataDescription.Format:=ricfRGBA;
+  //cimg:= TImage.Create(nil);
+  //cimg.Picture.Bitmap:=bmp;
+  }
+  pngWriter := TLazWriterPNG.create;
+  pngWriter.UseAlpha:=true;
+
+
+  for i:=0 to ActionList.ActionCount-1 do
+  begin
+    A := TAction(ActionList.Actions[i]);
+    AName := A.Name;
+    II := A.ImageIndex;
+    if (II > -1) and (II < ilcnt) then
+    begin
+      IPath := 'icons/'+IntToStr(sz)+'/'+AName;
+      //cil.GetBitmap(II, bmp);
+      //bmp.LoadFromIntfImage(img);
+      bmp.Canvas.Brush.Color:=RGB(transpix.rgbRed,transpix.rgbGreen,transpix.rgbBlue);
+      bmp.Canvas.FillRect(0,0,sz,sz);
+      cil.Draw(bmp.Canvas,0,0, II, dsTransparent, itImage);
+      {
+      for y:=bmp.Height-1 downto 0 do
+      begin
+        ppix:=bmp.ScanLine[y];
+        for x:=bmp.Width-1 downto 0 do
+        begin
+          if TColor(ppix^) = TColor(transpix)
+          then
+            ppix.rgbReserved:=$00
+          else
+            ppix.rgbReserved:=$FF;
+          inc(ppix);
+        end;
+      end;
+      }
+
+      img:=bmp.CreateIntfImage;
+      txcol:=TColorToFPColor(RGB(transpix.rgbRed,transpix.rgbGreen,transpix.rgbBlue));
+      for y:=img.Height-1 downto 0 do
+      begin
+        //ppix:=img.GetDataLineStart(y);
+        for x:=img.Width-1 downto 0 do
+        begin
+          col:=img.Colors[x,y];
+          if    (col.Blue=txcol.Blue)
+            and (col.Green=txcol.Green)
+            and (col.Red=txcol.Red)
+          then
+            col.alpha:=$0000
+          else
+            col.alpha:=$FFFF;
+          //col.Red:=0; col.Green:=0; col.Blue:=0;
+          img.Colors[x,y]:=col;
+        end;
+      end;
+
+      img.SaveToFile(IPath+'.png',pngWriter);
+    end;
+  end;
+  bmp.Free;
+  img.Free;
+  pngWriter.Free;
+end;
+
+
+// loads icons from FMenuIconDirectory that is set according to theme and icon size
+procedure TFreePreferences.LoadImageListByActions(ImageList:TImageList; ActionList:TActionList);
+var i, II, sz, ilcnt:integer;
+    A: TAction; AName, IName, IPath, IconFile:String;
+    cil: TCustomImageList;
+    bmp:TBitmap; png: TPortableNetworkGraphic; img: TLazIntfImage;
+begin
+  sz := ToolIconSize;
+  ImageList.Width := sz; ImageList.Height := sz;
+  IPath := ToolIconDirectory;
+  cil := TCustomImageList(ImageList);
+  ilcnt := cil.Count;
+  bmp:=TBitmap.Create;
+  bmp.SetSize(sz,sz);
+  png:=TPortableNetworkGraphic.Create;
+  img:= TLazIntfImage.Create(sz,sz);
+
+  // insert empties, just for count
+  for i:=0 to ActionList.ActionCount-1 do
+    if TAction(ActionList.Actions[i]).ImageIndex > -1 then
+      cil.Add(bmp,nil);
+
+  ilcnt := cil.Count;
+  for i:=0 to ActionList.ActionCount-1 do
+  begin
+    A := TAction(ActionList.Actions[i]);
+    AName := A.Name;
+    II := A.ImageIndex;
+    if (II > -1) then
+    begin
+      IconFile := GetIconFileName(
+         Theme, AName, ToolIconSize);
+      if (IconFile > '') and FileExistsUTF8(IconFile) then
+        if (II < ilcnt) then
+        begin
+          png.LoadFromFile(IconFile);
+          img:=png.CreateIntfImage;
+          //img.LoadFromFile(IPath+'/'+AName+'.png');
+          bmp.LoadFromIntfImage(img);
+          cil.Replace(II,bmp,nil);
+          img.Free;
+        end;
+    end;
+  end;
+  bmp.Free;
+  png.Free;
+end;
+
+// loads icons from FMenuIconDirectory that is set according to theme and icon size
+procedure TFreePreferences.LoadImageIntoList(ImageList:TImageList; Item:integer; Name:string);
+var i, II, sz, ilcnt:integer;
+    A: TAction; IName, IPath, IconFile:String;
+    cil: TCustomImageList;
+    bmp:TBitmap; png: TPortableNetworkGraphic; img: TLazIntfImage;
+begin
+  sz := ToolIconSize;
+  ImageList.Width := sz; ImageList.Height := sz;
+  IPath := ToolIconDirectory;
+  cil := TCustomImageList(ImageList);
+  ilcnt := cil.Count;
+  bmp:=TBitmap.Create;
+  bmp.SetSize(sz,sz);
+  png:=TPortableNetworkGraphic.Create;
+  img:= TLazIntfImage.Create(sz,sz);
+
+  IconFile := GetIconFileName(Theme, Name, ToolIconSize);
+
+  if (Item > ImageList.Count-1) then
+   for i:=ImageList.Count to Item do
+      cil.Add(bmp,nil);
+
+  if (IconFile > '') and FileExistsUTF8(IconFile) then
+    begin
+      png.LoadFromFile(IconFile);
+      img:=png.CreateIntfImage;
+      bmp.LoadFromIntfImage(img);
+      cil.Replace(Item,bmp,nil);
+      img.Free;
+    end;
+  bmp.Free;
+  png.Free;
+end;
+
 procedure TFreePreferences.LoadTheme(ThemeName: String);
 var IniFile: string;
 begin
@@ -14932,9 +15128,11 @@ end;{TFreeProjectSettings.Create}
 procedure TFreeProjectSettings.Edit;
 var Dialog : TFreeProjectSettingsDialog;
 begin
+   ProjectPrecision := Owner.Precision;
    Dialog:=TFreeProjectSettingsDialog.Create(Owner);
    Dialog.Edit1.Text:=ProjectName;
    Dialog.UnitBox.ItemIndex:=Ord(ProjectUnits);
+   Dialog.PrecisionBox.ItemIndex:=Ord(ProjectPrecision);
    Dialog.Edit7.Text:=ProjectDesigner;
    Dialog.Edit9.Text:=ProjectComment;
    Dialog.Edit10.Text:=ProjectFileCreatedBy;
@@ -14970,6 +15168,8 @@ begin
       ProjectComment:=Dialog.Edit9.Text;
       ProjectFileCreatedBy:=Dialog.Edit10.Text;
       ProjectUnits:=TFreeUnitType(Dialog.UnitBox.ItemIndex);
+      ProjectPrecision:=TFreePrecisionType(Dialog.PrecisionBox.ItemIndex);
+
       ProjectLength:=Dialog.Length;
       ProjectBeam:=Dialog.Beam;
       ProjectDraft:=Dialog.Draft;
@@ -14993,6 +15193,7 @@ begin
       Owner.Visibility.FShowHydrostLateralArea:=Dialog.CheckBox9.Checked;
       ProjectSimplifyIntersections:=Dialog.CheckBox10.Checked;
       Owner.FileChanged:=True;
+      Owner.Precision:=ProjectPrecision;   //TODO: save and load precision
       Owner.Redraw;
    end;
    Dialog.Destroy;

@@ -141,6 +141,7 @@ end;{TFasterList.Add}
 procedure TFasterList.AddList(List:TFasterList);
 var NewCap:Integer;
 begin
+   if List.FCount = 0 then exit;
    NewCap:=FCount+List.FCount;
    FUseUserData:=FUseUserData or List.FUseUserData;
    if NewCap>FCapacity then

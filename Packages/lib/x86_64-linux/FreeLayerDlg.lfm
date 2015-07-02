@@ -1,7 +1,7 @@
 object FreeLayerDialog: TFreeLayerDialog
-  Left = 378
+  Left = 533
   Height = 434
-  Top = 94
+  Top = 70
   Width = 501
   BorderIcons = []
   BorderStyle = bsDialog
@@ -13,7 +13,7 @@ object FreeLayerDialog: TFreeLayerDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.2'
+  LCLVersion = '1.4.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 410
@@ -47,7 +47,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 6
         Height = 14
         Top = 36
-        Width = 30
+        Width = 29
         Caption = 'Color'
         ParentColor = False
       end
@@ -55,7 +55,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 6
         Height = 14
         Top = 165
-        Width = 84
+        Width = 85
         Caption = 'Specific weight'
         ParentColor = False
       end
@@ -63,7 +63,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 214
         Height = 14
         Top = 168
-        Width = 43
+        Width = 44
         Caption = '[t/m^3]'
         ParentColor = False
       end
@@ -87,7 +87,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 5
         Height = 14
         Top = 54
-        Width = 76
+        Width = 74
         Caption = 'Transparency'
         ParentColor = False
       end
@@ -95,7 +95,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 214
         Height = 12
         Top = 54
-        Width = 36
+        Width = 35
         Caption = '100.0%'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clWindowText
@@ -123,36 +123,36 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object CheckBox1: TCheckBox
         Left = 4
-        Height = 21
+        Height = 20
         Top = 126
-        Width = 105
+        Width = 98
         Caption = 'Developable'
         OnClick = CheckBox1Click
         TabOrder = 5
       end
       object CheckBox2: TCheckBox
         Left = 4
-        Height = 21
+        Height = 20
         Top = 108
-        Width = 147
+        Width = 135
         Caption = 'Intersection curves'
         OnClick = CheckBox2Click
         TabOrder = 4
       end
       object CheckBox3: TCheckBox
         Left = 4
-        Height = 21
+        Height = 20
         Top = 72
-        Width = 154
+        Width = 140
         Caption = 'Use for hydrostatics'
         OnClick = CheckBox3Click
         TabOrder = 12
       end
       object CheckBox6: TCheckBox
         Left = 4
-        Height = 21
+        Height = 20
         Top = 208
-        Width = 216
+        Width = 193
         Caption = 'Set weigth and CoG manually'
         OnClick = CheckBox3Click
         TabOrder = 2
@@ -161,7 +161,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 6
         Height = 14
         Top = 232
-        Width = 38
+        Width = 39
         Caption = 'Weight'
         ParentColor = False
       end
@@ -169,7 +169,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 214
         Height = 14
         Top = 232
-        Width = 12
+        Width = 13
         Caption = '[t]'
         ParentColor = False
       end
@@ -195,7 +195,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 5
         Height = 14
         Top = 253
-        Width = 215
+        Width = 204
         Caption = 'Coordinates center of gravity,          :'
         ParentColor = False
       end
@@ -203,7 +203,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Left = 224
         Height = 14
         Top = 253
-        Width = 19
+        Width = 20
         Caption = '[m]'
         ParentColor = False
       end
@@ -311,14 +311,14 @@ object FreeLayerDialog: TFreeLayerDialog
         Top = 293
         Width = 242
         Caption = 'Surface properties. '
-        ClientHeight = 81
-        ClientWidth = 238
+        ClientHeight = 79
+        ClientWidth = 234
         TabOrder = 9
         object Label7: TLabel
           Left = 60
           Height = 14
           Top = 2
-          Width = 27
+          Width = 26
           Alignment = taRightJustify
           Caption = 'Area'
           ParentColor = False
@@ -327,7 +327,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 48
           Height = 14
           Top = 20
-          Width = 38
+          Width = 39
           Alignment = taRightJustify
           Caption = 'Weight'
           ParentColor = False
@@ -336,7 +336,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 5
           Height = 14
           Top = 38
-          Width = 97
+          Width = 94
           Alignment = taRightJustify
           Caption = 'Center of gravity'
           ParentColor = False
@@ -368,18 +368,18 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object CheckBox4: TCheckBox
         Left = 4
-        Height = 21
+        Height = 20
         Top = 144
-        Width = 137
+        Width = 125
         Caption = 'Show in linesplan'
         OnClick = CheckBox4Click
         TabOrder = 6
       end
       object CheckBox5: TCheckBox
         Left = 4
-        Height = 21
+        Height = 20
         Top = 90
-        Width = 94
+        Width = 89
         Caption = 'Symmetric'
         OnClick = CheckBox5Click
         TabOrder = 3
@@ -406,7 +406,6 @@ object FreeLayerDialog: TFreeLayerDialog
       OnClick = LayerBoxClick
       OnDblClick = LayerBoxDblClick
       TabOrder = 1
-      TopIndex = -1
     end
   end
   object ToolBar1: TToolBar
@@ -482,8 +481,9 @@ object FreeLayerDialog: TFreeLayerDialog
     end
   end
   object MenuImages: TImageList
-    left = 32
-    top = 48
+    OnChange = MenuImagesChange
+    left = 56
+    top = 40
     Bitmap = {
       4C690500000010000000100000000000000000000000000000FF000000FF0000
       00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
@@ -672,7 +672,7 @@ object FreeLayerDialog: TFreeLayerDialog
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 24
-    top = 80
+    left = 48
+    top = 120
   end
 end

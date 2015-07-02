@@ -155,6 +155,11 @@ begin
    FFreeShip:=Val;
    if FFreeShip<>nil then
    begin
+      //USE ONCE!
+      ///FFreeship.Preferences.dumpIcons(MenuImages,ActionList1);
+
+      Freeship.Preferences.LoadImageListByActions(MenuImages,ActionList1);
+
       FFreeShip.LinesplanFrame:=self;
       UpdateMenu;
    end;
@@ -1678,4 +1683,4 @@ begin
    SaveDialog.Destroy;
 end;
 
-end.
+end.

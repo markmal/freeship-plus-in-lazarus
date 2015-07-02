@@ -1158,4 +1158,4 @@ begin
    CancelButton.Left:=Panel1.Clientwidth-CancelButton.Width-5;
 end;{TFreeMichletOutputDialog.FormResize}
 
-end.
+end.

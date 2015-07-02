@@ -79,6 +79,16 @@ type
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
+     PanelActiveLayerColor: TPanel;
+     PanelEdges: TPanel;
+     PanelCurves: TPanel;
+     PanelFaces: TPanel;
+     PanelFile: TPanel;
+     PanelEdit: TPanel;
+     PanelPoints: TPanel;
+     PanelMain: TPanel;
+     PanelVisibility: TPanel;
+     PanelLayers: TPanel;
      SelectLeakPoints: TAction;
     FreeShip                   : TFreeShip;
     ActionList1                : TActionList;
@@ -97,6 +107,18 @@ type
     File1                      : TMenuItem;
     Mediumtelelens130mm1       : TMenuItem;
     ExitProgram1               : TMenuItem;
+    ToolBarMain: TToolBar;
+    ToolBarCurves: TToolBar;
+    ToolBarFaces: TToolBar;
+    ToolBarFile: TToolBar;
+    ToolBarEdit: TToolBar;
+    ToolBarEdges: TToolBar;
+    ToolBarPoints: TToolBar;
+    ToolBarVisibility: TToolBar;
+    ToolBarLayers: TToolBar;
+    ToolButtonSelect: TToolButton;
+    ToolButtonRedo: TToolButton;
+    ToolButtonUndo: TToolButton;
     Visibility1                : TMenuItem;
     ShowControlNet1            : TMenuItem;
     ShowInteriorEdges1         : TMenuItem;
@@ -118,29 +140,22 @@ type
     NewLayer                   : TAction;
     New1                       : TMenuItem;
     Delete: TAction;
-    ToolBar: TToolBar;
     ToolButton1: TToolButton;
     ToolButton3: TToolButton;
-    ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
     LayerBox: TComboBox;
-    ToolButton7: TToolButton;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     ToolButton10: TToolButton;
-    PrecisionBox: TComboBox;
     Edit1: TMenuItem;
-    ToolButton12: TToolButton;
     Point1: TMenuItem;
     Edge1: TMenuItem;
     Face1: TMenuItem;
     EdgeCollapse: TAction;
-    ToolButton11: TToolButton;
     ToolButton13: TToolButton;
     Collapse1: TMenuItem;
-    ToolButton14: TToolButton;
-    ToolButton15: TToolButton;
+    ToolButtonDelete: TToolButton;
     Delete1: TMenuItem;
     NewEdge: TAction;
     ToolButton16: TToolButton;
@@ -155,9 +170,7 @@ type
     Clearselection1: TMenuItem;
     PointCollapse: TAction;
     ToolButton18: TToolButton;
-    ToolButton19: TToolButton;
     PointCollapse1: TMenuItem;
-    Panel1: TPanel;
     ColorDialog: TColorDialog;
     ActiveLayerColor: TAction;
     Activelayercolor1: TMenuItem;
@@ -179,14 +192,12 @@ type
     Waterlines1: TMenuItem;
     NewFace: TAction;
     ToolButton24: TToolButton;
-    ToolButton25: TToolButton;
     New4: TMenuItem;
     IntersectionDialog: TAction;
     ToolButton26: TToolButton;
     EdgeExtrude: TAction;
     ToolButton27: TToolButton;
     Extrude1: TMenuItem;
-    ToolButton28: TToolButton;
     Help1: TMenuItem;
     EdgeSplit: TAction;
     ToolButton29: TToolButton;
@@ -289,7 +300,6 @@ type
     ToolButton2: TToolButton;
     NewCurve: TAction;
     AddCurve1: TMenuItem;
-    ToolButton39: TToolButton;
     ToolButton40: TToolButton;
     ExportCoordinates: TAction;
     Coordinates1: TMenuItem;
@@ -415,9 +425,10 @@ type
     Select_LeakPoints: TMenuItem;
 
     FMDIChildList : TList;
-
     procedure FormActivate(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure FormWindowStateChange(Sender: TObject);
 
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
@@ -429,7 +440,7 @@ type
     procedure CascadeWindowExecute(Sender: TObject);
     procedure BothSidesExecute(Sender: TObject);
     procedure FreeShipFileChanged(Sender: TObject);
-    procedure PrecisionBoxChange(Sender: TObject);
+    //procedure PrecisionBoxChange(Sender: TObject);
     procedure FileSaveasExecute(Sender: TObject);
     procedure LayerAutoGroupExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -442,7 +453,7 @@ type
     procedure DeselectAllExecute(Sender: TObject);
     procedure PointCollapseExecute(Sender: TObject);
     procedure LayerBoxChange(Sender: TObject);
-    procedure Panel1Click(Sender: TObject);
+    procedure PanelActiveLayerColorClick(Sender: TObject);
     procedure ActiveLayerColorExecute(Sender: TObject);
     procedure DeleteEmptyLayersExecute(Sender: TObject);
     procedure LayerDialogExecute(Sender: TObject);
@@ -469,6 +480,7 @@ type
     procedure RotateModelMExecute(Sender: TObject);
     procedure ScaleModelExecute(Sender: TObject);
     procedure ShowGridExecute(Sender: TObject);
+    procedure ToolButtonSelectClick(Sender: TObject);
     procedure UndoExecute(Sender: TObject);
     procedure FreeShipUpdateUndoData(Sender: TObject);
     procedure HydrostaticsDialogExecute(Sender: TObject);
@@ -558,7 +570,21 @@ type
     procedure LoadNamedFile(FileName:string);
     procedure dumpIcons;
     procedure LoadToolIcons;
+    function  getToolbarControlsWidth(tb:TToolBar): integer;
+    function  getAllToolbarsControlWidth: integer;
+    procedure AlignAllToolbars;
+
    private    { Private declarations }
+      FAllToolbarsControlsWidth : integer;
+      FToolBarFileControlsWidth : integer;
+      FToolBarVisibilityControlsWidth : integer;
+      FToolBarLayersControlsWidth : integer;
+      FToolBarPointsControlsWidth : integer;
+      FToolBarEditControlsWidth : integer;
+      FToolBarEdgesControlsWidth : integer;
+      FToolBarFacesControlsWidth : integer;
+      FToolBarCurvesControlsWidth : integer;
+
       procedure FLoadRecentFile(sender:TObject);
       procedure FreeShipChangeLayerData(Sender: TObject);
       procedure FreeShipChangeActiveLayer(Sender: TObject;Layer: TFreeSubdivisionLayer);
@@ -596,11 +622,66 @@ uses FreeSplashWndw,
   {$R *.lfm}
 {$ENDIF}
 
+procedure SortControlsByXY(tb:TWinControl);
+var c1,c2: TControl; i,j:integer;
+begin
+  {
+  Writeln();
+  Writeln(tb.Name);
+  for i:=0 to tb.ControlCount-1 do
+   with tb.Controls[i] do
+    Writeln( Name, ' t:',Top, ' l:', Left);
+   }
+  i:=0;
+  while i <= tb.ControlCount-2 do
+   begin
+   j:=1;
+   while j <= tb.ControlCount-1 do
+      begin
+      c1 := tb.Controls[j-1];
+      c2 := tb.Controls[j];
+      if c1.Top > c2.Top then
+        begin
+          tb.RemoveControl(c2);
+          tb.InsertControl(c2,j-1);
+        end
+      else
+        if c1.Left > c2.Left then
+          begin
+            tb.RemoveControl(c2);
+            tb.InsertControl(c2,j-1);
+          end
+        else
+          inc(j);
+      end;
+    inc(i);
+    end;
+ {
+  Writeln();
+  Writeln(tb.Name);
+  for i:=0 to tb.ControlCount-1 do
+   with tb.Controls[i] do
+    Writeln( Name, ' t:',Top, ' l:', Left);
+    }
+end;
+
+
 constructor TMainForm.Create(AOwner: TComponent);
 begin
  inherited Create(AOwner);
  FMDIChildList := TList.Create;
  FFileName:='';
+
+ SortControlsByXY(PanelMain);
+
+ SortControlsByXY(ToolBarFile);
+ SortControlsByXY(ToolBarVisibility);
+ SortControlsByXY(ToolBarLayers);
+ SortControlsByXY(ToolBarPoints);
+ SortControlsByXY(ToolBarEdit);
+ SortControlsByXY(ToolBarEdges);
+ SortControlsByXY(ToolBarFaces);
+ SortControlsByXY(ToolBarCurves);
 end;
 
 destructor TMainForm.Destroy;
@@ -613,10 +694,162 @@ begin
 end;
 
 procedure TMainForm.FormChangeBounds(Sender: TObject);
-var t : integer;
 begin
-    t := Top;
 end;
+
+procedure TMainForm.FormResize(Sender: TObject);
+begin
+  if Self.IsResizing then exit;
+  PanelMain.Invalidate;
+  Application.ProcessMessages;
+  AlignAllToolbars;
+end;
+
+procedure TMainForm.FormWindowStateChange(Sender: TObject);
+begin
+ // this is just to kick toolbar to autoresize
+ Self.Height:=Self.Height+1;
+ Self.Resize;
+ Self.Height:=Self.Height-1;
+ Self.Resize;
+ Self.Invalidate;
+end;
+
+// total width of all controls in toolbar
+function TMainForm.getToolbarControlsWidth(tb:TToolBar): integer;
+var i:integer; c: TControl;
+begin
+  result := 0;
+  for i:=0 to tb.ControlCount-1 do
+    begin
+      c := tb.Controls[i];
+      result := result + c.Width + c.BorderSpacing.Right+c.BorderSpacing.Left+c.BorderSpacing.Around;
+    end;
+end;
+
+function TMainForm.getAllToolbarsControlWidth: integer;
+begin
+  FToolBarFileControlsWidth := getToolbarControlsWidth(ToolBarFile);
+  FToolBarVisibilityControlsWidth := getToolbarControlsWidth(ToolBarVisibility);
+  FToolBarLayersControlsWidth := getToolbarControlsWidth(ToolBarLayers);
+  FToolBarPointsControlsWidth := getToolbarControlsWidth(ToolBarPoints);
+  FToolBarEditControlsWidth := getToolbarControlsWidth(ToolBarEdit);
+  FToolBarEdgesControlsWidth := getToolbarControlsWidth(ToolBarEdges);
+  FToolBarFacesControlsWidth := getToolbarControlsWidth(ToolBarFaces);
+  FToolBarCurvesControlsWidth := getToolbarControlsWidth(ToolBarCurves);
+
+  FAllToolbarsControlsWidth :=
+    FToolBarFileControlsWidth +
+    FToolBarVisibilityControlsWidth +
+    FToolBarLayersControlsWidth +
+    FToolBarPointsControlsWidth +
+    FToolBarEditControlsWidth +
+    FToolBarEdgesControlsWidth +
+    FToolBarFacesControlsWidth +
+    FToolBarCurvesControlsWidth;
+
+  result := FAllToolbarsControlsWidth;
+end;
+
+procedure TMainForm.AlignAllToolbars;
+var AllW, lft, gap:integer;
+    // max bottom Y of all controls in toolbar
+    function getToolbarControlsBottom(tb:TToolBar): integer;
+    var i:integer; c: TControl;
+    begin
+      result := 0;
+      for i:=0 to tb.ControlCount-1 do
+        begin
+          c := tb.Controls[i];
+          result := max(result, c.BoundsRect.Bottom + c.BorderSpacing.Bottom+c.BorderSpacing.Around);
+        end;
+    end;
+
+    // max right X of all controls in toolbar
+    function getToolbarControlsRight(tb:TToolBar): integer;
+    var i:integer; c: TControl;
+    begin
+      result := 0;
+      for i:=0 to tb.ControlCount-1 do
+        begin
+          c := tb.Controls[i];
+          result := max(result, c.BoundsRect.Right + c.BorderSpacing.Right+c.BorderSpacing.Around);
+        end;
+    end;
+
+    // max right of a control in toolbar smaller than X
+    function getToolbarXtrunc(tb:TToolBar; X:integer): integer;
+    var i,r:integer; c: TControl;
+    begin
+      result := 0; r:=0;
+      i:=0;
+      while (i<=tb.ControlCount-1) do
+        begin
+          c := tb.Controls[i];
+          r := r + c.Width + c.BorderSpacing.Right+c.BorderSpacing.Around;
+          if (r<=X)
+            then result := max(result,r);
+          inc(i);
+        end;
+    end;
+
+    function alignToolbar(tb:TToolBar; tbcw, lft, wdth: integer): integer;
+    var tbch, r,w :integer; c: TControl;
+    begin
+      tb.Top:=0;
+      tb.Parent.Left:=lft;
+      //tbcw := getToolbarControlsWidth(tb);
+      //if tb.Name='ToolBarFile'
+      //   then c:=c;
+      w:=round(wdth * (tbcw / (FAllToolbarsControlsWidth+tb.ButtonWidth*2)));
+      //tb.Width := w;
+      r:=getToolbarXtrunc(tb,w);
+      tb.Width := max(r+4, tb.ButtonWidth+4);
+
+      //tb.Height := 16;
+      tb.ReAlign;
+      tb.Invalidate;
+      //tb.Width := getToolbarControlsRight(tb)+4;
+      //tb.ReAlign;
+      Application.ProcessMessages;
+      tbch:=getToolbarControlsBottom(tb);
+      tb.Height := tbch + 4;
+      //tb.Parent.Height := tb.Height;
+      //tb.Parent.Width := tb.Width;
+      //tb.InvalidatePreferredSize;
+      //Application.ProcessMessages;
+      result:=tb.Parent.BoundsRect.Right;
+    end;
+
+begin
+  gap:=4;
+  if FAllToolbarsControlsWidth=0
+   then FAllToolbarsControlsWidth:=getAllToolbarsControlWidth;
+  lft:=gap;
+
+  lft := alignToolbar(ToolBarFile, FToolBarFileControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarEdit, FToolBarEditControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarVisibility, FToolBarVisibilityControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarLayers, FToolBarLayersControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarPoints, FToolBarPointsControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarEdges, FToolBarEdgesControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarFaces, FToolBarFacesControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarCurves, FToolBarCurvesControlsWidth, lft+gap, PanelMain.Width);
+
+  {
+  //make all toolbars uniform height
+  ToolBarFile.Height:=PanelMain.Height-2;
+  ToolBarEdit.Height:=PanelMain.Height-2;
+  ToolBarVisibility.Height:=PanelMain.Height-2;
+  ToolBarLayers.Height:=PanelMain.Height-2;
+  ToolBarPoints.Height:=PanelMain.Height-2;
+  ToolBarEdges.Height:=PanelMain.Height-2;
+  ToolBarFaces.Height:=PanelMain.Height-2;
+  ToolBarCurves.Height:=PanelMain.Height-2;
+   }
+  ToolBarMain.Height:=PanelMain.Height;
+end;
+
 
 var inActivation: boolean = false;
 
@@ -820,17 +1053,19 @@ begin
    TileWindow.Enabled:=MDIChildCount>0;
    CascadeWindow.Enabled:=MDIChildCount>0;
    // Precision
-   PrecisionBox.ItemIndex:=Ord(FreeShip.Precision);
+   //PrecisionBox.ItemIndex:=Ord(FreeShip.Precision);
    // Layers
    LayerAutoGroup.Enabled:=(Freeship.Surface.NumberOfControlFaces>1) and (FreeShip.Visibility.ShowInteriorEdges);
    // Tools
    CheckModel.Enabled:=FreeShip.Surface.NumberOfControlFaces>0;
    DevelopLayers.Enabled:=False;
-   for I:=1 to FreeShip.NumberOfLayers do if (FreeShip.Layer[I-1].Developable) and (FreeShip.Layer[I-1].Count>0) then
-   begin
-      DevelopLayers.Enabled:=True;
-      break;
-   end;
+   for I:=1 to FreeShip.NumberOfLayers do
+     if (FreeShip.Layer[I-1].Developable) and (FreeShip.Layer[I-1].Count>0)
+     then
+       begin
+          DevelopLayers.Enabled:=True;
+          break;
+       end;
    KeelRudderWizard.Enabled:=MDIChildCount>0;
    DeleteMarkers.Enabled:=Freeship.NumberofMarkers>0;
    // Calculations
@@ -1104,11 +1339,13 @@ begin
    SetCaption;
 end;{TMainForm.FreeShipFileChanged}
 
+{ //moved to TFREEProjectSettingsDialog
 procedure TMainForm.PrecisionBoxChange(Sender: TObject);
 begin
    FreeShip.Precision:=TFreePrecisionType(PrecisionBox.ItemIndex);
    UpdateMenu;
-end;{TMainForm.PrecisionBoxChange}
+end;}{TMainForm.PrecisionBoxChange}
+
 
 procedure TMainForm.FileSaveasExecute(Sender: TObject);
 begin
@@ -1221,12 +1458,12 @@ begin
       begin
          Index:=-1;
          Layerbox.ItemIndex:=Index;
-         Panel1.Color:=clBtnface;
+         PanelActiveLayerColor.Color:=clBtnface;
       end else
       begin
          Index:=Layerbox.Items.IndexOfObject(Layer);
          Layerbox.ItemIndex:=Index;
-         Panel1.Color:=Layer.Color;
+         PanelActiveLayerColor.Color:=Layer.Color;
       end;
    end;
 end;{TMainForm.FreeShipChangeActiveLayer}
@@ -1311,7 +1548,7 @@ begin
    UpdateMenu;
 end;{TMainForm.LayerBoxChange}
 
-procedure TMainForm.Panel1Click(Sender: TObject);
+procedure TMainForm.PanelActiveLayerColorClick(Sender: TObject);
 begin
    ActiveLayerColorExecute(self);
 end;{TMainForm.Panel1Click}
@@ -1359,6 +1596,7 @@ begin
    if self.Align = alTop
      then self.Top := 0;
    {$endif}
+   FAllToolbarsControlsWidth := 0;
    //dumpIcons;
 end;{TMainForm.FormCreate}
 
@@ -1575,6 +1813,10 @@ begin
    Freeship.Visibility.ShowGrid:=not Freeship.Visibility.ShowGrid;
    UpdateMenu;
 end;{TMainForm.ShowGridExecute}
+
+procedure TMainForm.ToolButtonSelectClick(Sender: TObject);
+begin
+end;
 
 procedure TMainForm.UndoExecute(Sender: TObject);
 begin
@@ -2154,106 +2396,8 @@ end;
 
 { this is used just once to dump menu/toolbutton icons }
 procedure TMainForm.dumpIcons;
-const transpix: TRGBQuad = (rgbBlue:$FF; rgbGreen:$99; rgbRed:$33; rgbReserved:$00);
-var i, II, sz, ilcnt, x,y:integer;
-    A: TAction; AName, IName, IPath:String;
-    cil: TCustomImageList;
-    it:TImageType;
-    bmp, bmp2:TBitmap; bkcl : TColor;
-    png:TPortableNetworkGraphic;
-    img: TLazIntfImage;
-    rimg:TRawImage;
-    //cimg: TFPCustomImage;
-    aFlags : TRawImageQueryFlags;
-    tb:TToolButton;
-    ico:TIcon;
-    ppix: PRGBQuad;
-    pix: TRGBQuad;
-    col, txcol:TFPColor;
-    pngWriter : TLazWriterPNG;
 begin
-  sz := MenuImages.Width;
-  cil := TCustomImageList(MenuImages);
-  ilcnt := cil.Count;
-  bmp:=TBitmap.Create;
-  bmp.PixelFormat:=pf32bit;
-  bmp.RawImage.Description.AlphaPrec:=8;
-  bmp.Transparent:=true;
-  //bmp.Canvas.Brush.Color:=RGB(1,2,3);
-  bmp.SetSize(sz,sz);
-  {
-  bmp2:=TBitmap.Create;
-
-  png:=TPortableNetworkGraphic.Create;
-  png.PixelFormat:=pf32bit;
-  png.SetSize(sz,sz);
-
-  img:=TLazIntfImage.Create(sz,sz);
-  img.DataDescription.BitsPerPixel:=32;
-  img.DataDescription.AlphaPrec:=8;
-  img.DataDescription.Format:=ricfRGBA;
-  //cimg:= TImage.Create(nil);
-  //cimg.Picture.Bitmap:=bmp;
-  }
-  pngWriter := TLazWriterPNG.create;
-  pngWriter.UseAlpha:=true;
-
-
-  for i:=0 to ActionList1.ActionCount-1 do
-  begin
-    A := TAction(ActionList1.Actions[i]);
-    AName := A.Name;
-    II := A.ImageIndex;
-    if (II > -1) and (II < ilcnt) then
-    begin
-      IPath := 'icons/'+IntToStr(sz)+'/'+AName;
-      //cil.GetBitmap(II, bmp);
-      //bmp.LoadFromIntfImage(img);
-      bmp.Canvas.Brush.Color:=RGB(transpix.rgbRed,transpix.rgbGreen,transpix.rgbBlue);
-      bmp.Canvas.FillRect(0,0,sz,sz);
-      cil.Draw(bmp.Canvas,0,0, II, dsTransparent, itImage);
-      {
-      for y:=bmp.Height-1 downto 0 do
-      begin
-        ppix:=bmp.ScanLine[y];
-        for x:=bmp.Width-1 downto 0 do
-        begin
-          if TColor(ppix^) = TColor(transpix)
-          then
-            ppix.rgbReserved:=$00
-          else
-            ppix.rgbReserved:=$FF;
-          inc(ppix);
-        end;
-      end;
-      }
-
-      img:=bmp.CreateIntfImage;
-      txcol:=TColorToFPColor(RGB(transpix.rgbRed,transpix.rgbGreen,transpix.rgbBlue));
-      for y:=img.Height-1 downto 0 do
-      begin
-        //ppix:=img.GetDataLineStart(y);
-        for x:=img.Width-1 downto 0 do
-        begin
-          col:=img.Colors[x,y];
-          if    (col.Blue=txcol.Blue)
-            and (col.Green=txcol.Green)
-            and (col.Red=txcol.Red)
-          then
-            col.alpha:=$0000
-          else
-            col.alpha:=$FFFF;
-          //col.Red:=0; col.Green:=0; col.Blue:=0;
-          img.Colors[x,y]:=col;
-        end;
-      end;
-
-      img.SaveToFile(IPath+'.png',pngWriter);
-    end;
-  end;
-  bmp.Free;
-  img.Free;
-  pngWriter.Free;
+  Freeship.Preferences.dumpIcons(MenuImages,ActionList1);
 end;
 
 // loads icons from FMenuIconDirectory that is set according to theme and icon size
@@ -2262,49 +2406,31 @@ var i, II, sz, ilcnt:integer;
     A: TAction; AName, IName, IPath, IconFile:String;
     cil: TCustomImageList;
     bmp:TBitmap; png: TPortableNetworkGraphic; img: TLazIntfImage;
-begin
-  sz := Freeship.Preferences.ToolIconSize;
-  MenuImages.Width := sz; MenuImages.Height := sz;
-  IPath := Freeship.Preferences.ToolIconDirectory;
-  cil := TCustomImageList(MenuImages);
-  ilcnt := cil.Count;
-  bmp:=TBitmap.Create;
-  bmp.SetSize(sz,sz);
-  png:=TPortableNetworkGraphic.Create;
-  img:= TLazIntfImage.Create(sz,sz);
 
-  // insert empties, just for count
-  for i:=0 to ActionList1.ActionCount-1 do
-    if TAction(ActionList1.Actions[i]).ImageIndex > -1 then
-      cil.Add(bmp,nil);
-
-  ilcnt := cil.Count;
-  for i:=0 to ActionList1.ActionCount-1 do
-  begin
-    A := TAction(ActionList1.Actions[i]);
-    AName := A.Name;
-    II := A.ImageIndex;
-    if (II > -1) then
+    procedure setToolBarButtonSize(ToolBar: TToolBar; sz: integer);
     begin
-      IconFile := FreeShip.preferences.GetIconFileName(
-         FreeShip.preferences.Theme, AName, FreeShip.preferences.ToolIconSize);
-      if (IconFile > '') and FileExistsUTF8(IconFile) then
-        if (II < ilcnt) then
-        begin
-          png.LoadFromFile(IconFile);
-          img:=png.CreateIntfImage;
-          //img.LoadFromFile(IPath+'/'+AName+'.png');
-          bmp.LoadFromIntfImage(img);
-          cil.Replace(II,bmp,nil);
-          img.Free;
-        end;
+      ToolBar.ButtonHeight:= sz + (sz div 16)*2;
+      ToolBar.ButtonWidth := sz + (sz div 16)*2;
+      //ToolBar.Parent.Width := ToolBar.Width;
+      //ToolBar.Parent.Height := ToolBar.Height;
     end;
-  end;
-  bmp.Free;
-  png.Free;
 
-  ToolBar.ButtonHeight:= sz + (sz div 16)*2;
-  ToolBar.ButtonWidth := sz + (sz div 16)*2;
+begin
+  FreeShip.preferences.LoadImageListByActions(MenuImages, ActionList1);
+
+  sz := Freeship.Preferences.ToolIconSize;
+
+  setToolBarButtonSize(ToolBarFile, sz);
+  setToolBarButtonSize(ToolBarVisibility, sz);
+  setToolBarButtonSize(ToolBarLayers, sz);
+  setToolBarButtonSize(ToolBarPoints, sz);
+  setToolBarButtonSize(ToolBarEdit, sz);
+  setToolBarButtonSize(ToolBarEdges, sz);
+  setToolBarButtonSize(ToolBarFaces, sz);
+  setToolBarButtonSize(ToolBarCurves, sz);
+
+  FAllToolbarsControlsWidth := getAllToolbarsControlWidth;
+  AlignAllToolbars;
 
   // this is just to kick toolbar to autoresize
   Self.Height:=Self.Height+1;

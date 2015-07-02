@@ -51,13 +51,19 @@ uses
      FreeGeometry,
      Buttons, ComCtrls;
 
-type TFREEProjectSettingsDialog   = class(TForm)
+type
+
+{ TFREEProjectSettingsDialog }
+
+ TFREEProjectSettingsDialog   = class(TForm)
+                                         Label24: TLabel;
                                           Panel1: TPanel;
                                           Panel3: TPanel;
                                           ColorDialog: TColorDialog;
                                           BitBtn1: TSpeedButton;
                                           BitBtn2: TSpeedButton;
                                           PageControl1: TPageControl;
+                                          PrecisionBox: TComboBox;
                                           TabSheet1: TTabSheet;
                                           Panel: TPanel;
                                           Label1: TLabel;
@@ -523,4 +529,4 @@ begin
    ActiveControl:=Edit1;
 end;{TFREEProjectSettingsDialog.FormShow}
 
-end.
+end.

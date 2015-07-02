@@ -342,7 +342,14 @@ var I          : Integer;
 begin
    FFreeship:=FreeShip;
    FPlates:=Plates;
+
+   //USE ONCE!
+   ////Freeship.Preferences.dumpIcons(MenuImages,ActionList1);
+
+   Freeship.Preferences.LoadImageListByActions(MenuImages,ActionList1);
+
    FUpdateListBox;
+
    ShowStations.Checked:=FreeShip.Visibility.ShowStations;
    ShowButtocks.Checked:=FreeShip.Visibility.ShowButtocks;
    ShowWaterlines.Checked:=FreeShip.Visibility.ShowWaterlines;
@@ -909,4 +916,4 @@ begin
    SaveDialog.Destroy;
 end;{TFreeExpanedplatesDialog.ExportTextFileExecute}
 
-end.
+end.

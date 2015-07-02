@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 426
+  Left = 636
   Height = 800
-  Top = 92
+  Top = 144
   Width = 1200
   Align = alTop
   ClientHeight = 773
@@ -17,8 +17,11 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnResize = FormResize
   OnShow = FormShow
+  OnWindowStateChange = FormWindowStateChange
   Position = poDefault
+  ShowHint = True
   LCLVersion = '1.4.0.4'
   object StatusBar: TPanel
     Left = 0
@@ -87,342 +90,524 @@ object MainForm: TMainForm
       OnClick = Panel3Click
     end
   end
-  object ToolBar: TToolBar
+  object ToolBarMain: TToolBar
     Left = 0
-    Height = 45
+    Height = 42
     Top = 0
     Width = 1200
     AutoSize = True
-    Caption = 'ToolBar'
-    Color = clBtnFace
-    EdgeInner = esLowered
-    EdgeOuter = esNone
-    Images = MenuImages
-    Indent = 2
-    ParentColor = False
-    ParentShowHint = False
-    ShowHint = True
+    Caption = 'ToolBarMain'
     TabOrder = 1
-    object ToolButton20: TToolButton
-      Left = 2
-      Top = 1
-      Action = NewModel
+    object PanelMain: TPanel
+      Left = 1
+      Height = 31
+      Top = 2
+      Width = 1199
+      Align = alTop
       AutoSize = True
-    end
-    object ToolButton1: TToolButton
-      Left = 35
-      Top = 1
-      Action = LoadFile
-      AutoSize = True
-    end
-    object ToolButton38: TToolButton
-      Left = 58
-      Top = 1
-      Action = FileSave
-      AutoSize = True
-    end
-    object ToolButton3: TToolButton
-      Left = 81
-      Top = 1
-      Action = ExitProgram
-      AutoSize = True
-    end
-    object ToolButton4: TToolButton
-      Left = 104
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton4'
-      ImageIndex = 2
-      Style = tbsSeparator
-    end
-    object PrecisionBox: TComboBox
-      Left = 114
-      Height = 24
-      Hint = 'Change the precision of the model.'
-      Top = 1
-      Width = 75
-      ItemHeight = 16
-      ItemIndex = 0
-      Items.Strings = (
-        'Low'
-        'Medium'
-        'High'
-        'Highest'
-      )
-      OnChange = PrecisionBoxChange
-      TabOrder = 1
-      Text = 'Low'
-    end
-    object ToolButton7: TToolButton
-      Left = 189
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton7'
-      ImageIndex = 7
-      Style = tbsSeparator
-    end
-    object ToolButton8: TToolButton
-      Left = 199
-      Top = 1
-      Action = ShowControlNet
-    end
-    object ToolButton2: TToolButton
-      Left = 222
-      Top = 1
-      Action = ShowControlCurves
-    end
-    object ToolButton9: TToolButton
-      Left = 245
-      Top = 1
-      Action = ShowInteriorEdges
-    end
-    object ToolButton10: TToolButton
-      Left = 268
-      Top = 1
-      Action = BothSides
-    end
-    object ToolButton31: TToolButton
-      Left = 291
-      Top = 1
-      Action = ShowGrid
-    end
-    object ToolButton21: TToolButton
-      Left = 314
-      Top = 1
-      Action = ShowStations
-      AllowAllUp = True
-    end
-    object ToolButton22: TToolButton
-      Left = 337
-      Top = 1
-      Action = ShowButtocks
-    end
-    object ToolButton23: TToolButton
-      Left = 360
-      Top = 1
-      Action = ShowWaterlines
-    end
-    object ToolButton35: TToolButton
-      Left = 383
-      Top = 1
-      Action = ShowDiagonals
-    end
-    object ToolButton46: TToolButton
-      Left = 406
-      Top = 1
-      Action = ShowHydrostatics
-    end
-    object ToolButton48: TToolButton
-      Left = 429
-      Top = 1
-      Action = ShowFlowlines
-    end
-    object ToolButton30: TToolButton
-      Left = 452
-      Top = 1
-      Action = ShowNormals
-    end
-    object ToolButton37: TToolButton
-      Left = 475
-      Top = 1
-      Action = Showcurvature
-    end
-    object ToolButton36: TToolButton
-      Left = 498
-      Top = 1
-      Action = ShowMarkers
-    end
-    object ToolButton12: TToolButton
-      Left = 25
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton12'
-      ImageIndex = 5
-      Style = tbsSeparator
-      Wrap = True
-    end
-    object ToolButton5: TToolButton
-      Left = 521
-      Top = 1
-      Action = NewLayer
-    end
-    object ToolButton34: TToolButton
-      Left = 544
-      Top = 1
-      Action = DeleteEmptyLayers
-    end
-    object ToolButton33: TToolButton
-      Left = 567
-      Top = 1
-      Action = LayerDialog
-    end
-    object ToolButton6: TToolButton
-      Left = 590
-      Top = 1
-      Action = LayerAutoGroup
-    end
-    object LayerBox: TComboBox
-      Left = 613
-      Height = 24
-      Hint = 'Assign selected faces to a new layer or change the currently active layer.'
-      Top = 1
-      Width = 145
-      ItemHeight = 23
-      OnChange = LayerBoxChange
-      Style = csDropDownList
+      ClientHeight = 31
+      ClientWidth = 1199
       TabOrder = 0
-    end
-    object Panel1: TPanel
-      Left = 758
-      Height = 22
-      Hint = 'Change the color of the active layer.'
-      Top = 1
-      Width = 23
-      BevelOuter = bvLowered
-      TabOrder = 2
-      OnClick = Panel1Click
-    end
-    object ToolButton11: TToolButton
-      Left = 781
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton11'
-      ImageIndex = 7
-      Style = tbsSeparator
-    end
-    object ToolButton15: TToolButton
-      Left = 791
-      Top = 1
-      Action = Delete
-    end
-    object ToolButton14: TToolButton
-      Left = 814
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton14'
-      ImageIndex = 10
-      Style = tbsSeparator
-    end
-    object ToolButton45: TToolButton
-      Left = 824
-      Top = 1
-      Action = PointAlign
-    end
-    object ToolButton18: TToolButton
-      Left = 847
-      Top = 1
-      Action = PointCollapse
-    end
-    object ToolButton41: TToolButton
-      Left = 870
-      Top = 1
-      Action = InsertPlane
-    end
-    object ToolButton47: TToolButton
-      Left = 893
-      Top = 1
-      Action = LayerIntersection
-    end
-    object ToolButton42: TToolButton
-      Left = 916
-      Top = 1
-      Action = PointsLock
-    end
-    object ToolButton43: TToolButton
-      Left = 939
-      Top = 1
-      Action = PointsUnlock
-    end
-    object ToolButton44: TToolButton
-      Left = 962
-      Top = 1
-      Action = PointsUnlockAll
-    end
-    object ToolButton19: TToolButton
-      Left = 985
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton19'
-      ImageIndex = 12
-      Style = tbsSeparator
-    end
-    object ToolButton27: TToolButton
-      Left = 995
-      Top = 1
-      Action = EdgeExtrude
-    end
-    object ToolButton29: TToolButton
-      Left = 1018
-      Top = 1
-      Action = EdgeSplit
-    end
-    object ToolButton13: TToolButton
-      Left = 1041
-      Top = 1
-      Action = EdgeCollapse
-    end
-    object ToolButton16: TToolButton
-      Left = 1064
-      Top = 1
-      Action = NewEdge
-    end
-    object ToolButton17: TToolButton
-      Left = 1087
-      Top = 1
-      Action = EdgeCrease
-    end
-    object ToolButton25: TToolButton
-      Left = 1110
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton25'
-      ImageIndex = 19
-      Style = tbsSeparator
-    end
-    object ToolButton40: TToolButton
-      Left = 1120
-      Top = 1
-      Action = NewCurve
-    end
-    object ToolButton39: TToolButton
-      Left = 1143
-      Height = 22
-      Top = 1
-      Width = 10
-      Caption = 'ToolButton39'
-      ImageIndex = 15
-      Style = tbsSeparator
-    end
-    object ToolButton24: TToolButton
-      Left = 1153
-      Top = 1
-      Action = NewFace
-    end
-    object ToolButton32: TToolButton
-      Left = 1176
-      Top = 1
-      Action = InvertFace
-    end
-    object ToolButton28: TToolButton
-      Left = 2
-      Height = 22
-      Top = 23
-      Width = 10
-      Caption = 'ToolButton28'
-      ImageIndex = 15
-      Style = tbsSeparator
-    end
-    object ToolButton26: TToolButton
-      Left = 12
-      Top = 23
-      Action = IntersectionDialog
+      object PanelFile: TPanel
+        Left = 1
+        Height = 23
+        Top = 1
+        Width = 84
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 23
+        ClientWidth = 84
+        TabOrder = 0
+        object ToolBarFile: TToolBar
+          Left = 1
+          Height = 20
+          Top = 1
+          Width = 81
+          Align = alCustom
+          BorderSpacing.Around = 1
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarFile'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButton20: TToolButton
+            Left = 1
+            Top = 0
+            Action = NewModel
+            AutoSize = True
+          end
+          object ToolButton1: TToolButton
+            Left = 21
+            Top = 0
+            Action = LoadFile
+            AutoSize = True
+          end
+          object ToolButton38: TToolButton
+            Left = 41
+            Top = 0
+            Action = FileSave
+            AutoSize = True
+          end
+          object ToolButton3: TToolButton
+            Left = 61
+            Top = 0
+            Action = ExitProgram
+            AutoSize = True
+          end
+        end
+      end
+      object PanelVisibility: TPanel
+        Left = 151
+        Height = 25
+        Top = 1
+        Width = 284
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 25
+        ClientWidth = 284
+        TabOrder = 1
+        object ToolBarVisibility: TToolBar
+          Left = 1
+          Height = 22
+          Top = 1
+          Width = 281
+          Align = alCustom
+          BorderSpacing.Around = 1
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarFile'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButton8: TToolButton
+            Left = 1
+            Top = 0
+            Action = ShowControlNet
+            AutoSize = True
+          end
+          object ToolButton2: TToolButton
+            Left = 261
+            Top = 0
+            Action = ShowControlCurves
+            AutoSize = True
+          end
+          object ToolButton9: TToolButton
+            Left = 241
+            Top = 0
+            Action = ShowInteriorEdges
+            AutoSize = True
+          end
+          object ToolButton10: TToolButton
+            Left = 221
+            Top = 0
+            Action = BothSides
+            AutoSize = True
+          end
+          object ToolButton31: TToolButton
+            Left = 201
+            Top = 0
+            Action = ShowGrid
+            AutoSize = True
+          end
+          object ToolButton21: TToolButton
+            Left = 181
+            Top = 0
+            Action = ShowStations
+            AllowAllUp = True
+            AutoSize = True
+          end
+          object ToolButton22: TToolButton
+            Left = 161
+            Top = 0
+            Action = ShowButtocks
+            AutoSize = True
+          end
+          object ToolButton23: TToolButton
+            Left = 141
+            Top = 0
+            Action = ShowWaterlines
+            AutoSize = True
+          end
+          object ToolButton35: TToolButton
+            Left = 121
+            Top = 0
+            Action = ShowDiagonals
+            AutoSize = True
+          end
+          object ToolButton46: TToolButton
+            Left = 101
+            Top = 0
+            Action = ShowHydrostatics
+            AutoSize = True
+          end
+          object ToolButton48: TToolButton
+            Left = 81
+            Top = 0
+            Action = ShowFlowlines
+            AutoSize = True
+          end
+          object ToolButton30: TToolButton
+            Left = 61
+            Top = 0
+            Action = ShowNormals
+            AutoSize = True
+          end
+          object ToolButton37: TToolButton
+            Left = 41
+            Top = 0
+            Action = Showcurvature
+            AutoSize = True
+          end
+          object ToolButton36: TToolButton
+            Left = 21
+            Top = 0
+            Action = ShowMarkers
+            AutoSize = True
+          end
+        end
+      end
+      object PanelLayers: TPanel
+        Left = 440
+        Height = 29
+        Top = 1
+        Width = 281
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 29
+        ClientWidth = 281
+        TabOrder = 2
+        object ToolBarLayers: TToolBar
+          Left = 1
+          Height = 26
+          Top = 1
+          Width = 278
+          Align = alCustom
+          BorderSpacing.Around = 1
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarFile'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButton5: TToolButton
+            Left = 1
+            Top = 0
+            Action = NewLayer
+            AutoSize = True
+          end
+          object ToolButton34: TToolButton
+            Left = 206
+            Top = 0
+            Action = DeleteEmptyLayers
+            AutoSize = True
+          end
+          object ToolButton33: TToolButton
+            Left = 186
+            Top = 0
+            Action = LayerDialog
+            AutoSize = True
+          end
+          object ToolButton6: TToolButton
+            Left = 166
+            Top = 0
+            Action = LayerAutoGroup
+            AutoSize = True
+          end
+          object ToolButton26: TToolButton
+            Left = 226
+            Top = 0
+            Action = IntersectionDialog
+            AutoSize = True
+          end
+          object LayerBox: TComboBox
+            Left = 21
+            Height = 24
+            Hint = 'Assign selected faces to a new layer or change the currently active layer.'
+            Top = 0
+            Width = 145
+            ItemHeight = 23
+            OnChange = LayerBoxChange
+            Style = csDropDownList
+            TabOrder = 0
+          end
+          object PanelActiveLayerColor: TPanel
+            Left = 246
+            Height = 0
+            Top = 0
+            Width = 0
+            AutoSize = True
+            Caption = 'PanelActiveLayerColor'
+            TabOrder = 1
+            OnClick = PanelActiveLayerColorClick
+          end
+        end
+      end
+      object PanelPoints: TPanel
+        Left = 689
+        Height = 23
+        Top = 1
+        Width = 144
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 23
+        ClientWidth = 144
+        TabOrder = 3
+        object ToolBarPoints: TToolBar
+          Left = 1
+          Height = 20
+          Top = 1
+          Width = 141
+          Align = alCustom
+          BorderSpacing.Around = 1
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarPoints'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButton45: TToolButton
+            Left = 1
+            Top = 0
+            Action = PointAlign
+            AutoSize = True
+          end
+          object ToolButton18: TToolButton
+            Left = 21
+            Top = 0
+            Action = PointCollapse
+            AutoSize = True
+          end
+          object ToolButton42: TToolButton
+            Left = 41
+            Top = 0
+            Action = PointsLock
+            AutoSize = True
+          end
+          object ToolButton43: TToolButton
+            Left = 61
+            Top = 0
+            Action = PointsUnlock
+            AutoSize = True
+          end
+          object ToolButton44: TToolButton
+            Left = 81
+            Top = 0
+            Action = PointsUnlockAll
+            AutoSize = True
+          end
+          object ToolButton41: TToolButton
+            Left = 101
+            Top = 0
+            Action = InsertPlane
+            AutoSize = True
+          end
+          object ToolButton47: TToolButton
+            Left = 121
+            Top = 0
+            Action = LayerIntersection
+            AutoSize = True
+          end
+        end
+      end
+      object PanelEdit: TPanel
+        Left = 88
+        Height = 25
+        Top = 1
+        Width = 84
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 25
+        ClientWidth = 84
+        TabOrder = 4
+        object ToolBarEdit: TToolBar
+          Left = 1
+          Height = 22
+          Top = 1
+          Width = 81
+          Align = alCustom
+          BorderSpacing.Around = 1
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarFile'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButtonDelete: TToolButton
+            Left = 21
+            Top = 0
+            Action = Delete
+            AutoSize = True
+          end
+          object ToolButtonUndo: TToolButton
+            Left = 41
+            Top = 0
+            Action = Undo
+            AutoSize = True
+          end
+          object ToolButtonRedo: TToolButton
+            Left = 61
+            Top = 0
+            Action = Redo
+            AutoSize = True
+          end
+          object ToolButtonSelect: TToolButton
+            Left = 1
+            Hint = 'Deselect All'
+            Top = 0
+            Action = DeselectAll
+            AutoSize = True
+            ImageIndex = 58
+            Style = tbsCheck
+          end
+        end
+      end
+      object PanelEdges: TPanel
+        Left = 873
+        Height = 25
+        Top = 1
+        Width = 104
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 25
+        ClientWidth = 104
+        TabOrder = 5
+        object ToolBarEdges: TToolBar
+          Left = 1
+          Height = 22
+          Top = 1
+          Width = 101
+          Align = alCustom
+          BorderSpacing.Around = 1
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarFile'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButton27: TToolButton
+            Left = 1
+            Top = 0
+            Action = EdgeExtrude
+            AutoSize = True
+          end
+          object ToolButton29: TToolButton
+            Left = 41
+            Top = 0
+            Action = EdgeSplit
+            AutoSize = True
+          end
+          object ToolButton13: TToolButton
+            Left = 81
+            Top = 0
+            Action = EdgeCollapse
+            AutoSize = True
+          end
+          object ToolButton16: TToolButton
+            Left = 61
+            Top = 0
+            Action = NewEdge
+            AutoSize = True
+          end
+          object ToolButton17: TToolButton
+            Left = 21
+            Top = 0
+            Action = EdgeCrease
+            AutoSize = True
+          end
+        end
+      end
+      object PanelFaces: TPanel
+        Left = 824
+        Height = 24
+        Top = 1
+        Width = 43
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 24
+        ClientWidth = 43
+        TabOrder = 6
+        object ToolBarFaces: TToolBar
+          Left = 1
+          Height = 22
+          Top = 1
+          Width = 41
+          Align = alCustom
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarFile'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButton24: TToolButton
+            Left = 1
+            Top = 0
+            Action = NewFace
+            AutoSize = True
+          end
+          object ToolButton32: TToolButton
+            Left = 21
+            Top = 0
+            Action = InvertFace
+            AutoSize = True
+          end
+        end
+      end
+      object PanelCurves: TPanel
+        Left = 976
+        Height = 25
+        Top = 1
+        Width = 24
+        AutoSize = True
+        Caption = 'c'
+        ClientHeight = 25
+        ClientWidth = 24
+        TabOrder = 7
+        object ToolBarCurves: TToolBar
+          Left = 1
+          Height = 22
+          Top = 1
+          Width = 21
+          Align = alCustom
+          BorderSpacing.Around = 1
+          ButtonHeight = 16
+          ButtonWidth = 16
+          Caption = 'ToolBarFile'
+          EdgeBorders = []
+          EdgeInner = esNone
+          EdgeOuter = esNone
+          Images = MenuImages
+          TabOrder = 0
+          Transparent = True
+          object ToolButton40: TToolButton
+            Left = 1
+            Top = 0
+            Action = NewCurve
+            AutoSize = True
+          end
+        end
+      end
     end
   end
   object FreeShip: TFreeShip
@@ -738,6 +923,7 @@ object MainForm: TMainForm
       Category = 'Edit'
       Caption = 'Undo'
       Hint = 'Undo the last modification.'
+      ImageIndex = 56
       OnExecute = UndoExecute
       ShortCut = 16474
     end
@@ -1106,6 +1292,7 @@ object MainForm: TMainForm
       Category = 'Edit'
       Caption = 'Redo'
       Hint = 'Undo the previous modification.'
+      ImageIndex = 57
       OnExecute = RedoExecute
       ShortCut = 16466
     end
@@ -1157,6 +1344,7 @@ object MainForm: TMainForm
     object SelectAll: TAction
       Category = 'Selection'
       Caption = 'Select all'
+      ImageIndex = 58
       OnExecute = SelectAllExecute
       ShortCut = 16449
     end
@@ -1189,7 +1377,7 @@ object MainForm: TMainForm
     left = 200
     top = 72
     Bitmap = {
-      4C69380000001000000010000000000000000000000000000000000000000000
+      4C693B0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000FF000000FF000000FF0000
@@ -2981,7 +3169,103 @@ object MainForm: TMainForm
       8BFF586470FF314355FF0B1F34FF061123FF060E1CFF071224FF42505EFFA19B
       9BFF000000000000000000000000000000000000000000000000000000000000
       000000000000000000009D9D9EFF81858AFF58636EFF2E4052FF57626DFFA09C
-      9CFF000000000000000000000000
+      9CFF000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FFFFFFFFFFFFFF8F0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000FFFFFFFFFFFFFFFF000000FFFFFFFFFF0000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000FFFF
+      FFFFFFFFFFFF000000FF000000FFFFFFFFFFFFFFFF7FFFFFFF7F000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFFFFFFFF
+      FFFF000000FF000000FF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF0000000000000000000000000000000000000000FFFFFFFFFFFFFFFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FFFFFF
+      FFFFFFFFFFFF000000000000000000000000FFFFFFFFFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFFFFFFFF2F0000000000000000FFFFFFFFFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFFFFFFFFFF000000000000000000000000FFFFFFFFFFFFFFFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF464646FFFFFFFFFF00000000000000000000000000000000FFFFFFFFFFFF
+      FFFF000000FF000000FF000000FFFFFFFFFFFFFFFFFF010101FF000000FF0000
+      00FF363636FFFFFFFFFF0000000000000000000000000000000000000000FFFF
+      FFFFFFFFFFFF000000FF000000FFFFFFFFFFFFFFFFDFFFFFFFFF000000FF0000
+      00FF363636FFFFFFFFFF00000000000000000000000000000000000000000000
+      0000FFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFF7FFFFFFFFF000000FF0000
+      00FF6D6D6DFFFFFFFFFF00000000000000000000000000000000000000000000
+      000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF363636FF000000FF0000
+      00FFFFFFFFFFFFFFFFCF00000000000000000000000000000000000000000000
+      00000000000000000000FFFFFFFFFFFFFFFF000000FF000000FF000000FF0000
+      00FFFFFFFFFF0000000000000000000000000000000000000000000000000000
+      00000000000000000000FFFFFFFFFFFFFFFF858585FF858585FFDCDCDCFFFFFF
+      FFFFFFFFFFCF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000FFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FF0F000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FFFFFFBFFFFFFFFF0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FFFFFFFF000000FFFFFFFFFFFFFFFFFF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000FFFFFF7FFFFFFF7FFFFFFFFF000000FF000000FFFFFFFFFFFFFFFFFF0000
+      0000000000000000000000000000000000000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF000000FF000000FFFFFFFFFFFFFF
+      FFFF0000000000000000000000000000000000000000FFFFFFFFDCDCDCFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FFFFFF
+      FFFFFFFFFFFF000000000000000000000000FFFFFF6FFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFFFFFFFFFF0000000000000000FFFFFFFF6D6D6DFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFFFFFFFFFF0000000000000000FFFFFFFF0D0D0DFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FFFFFF
+      FFFFFFFFFFFF000000000000000000000000FFFFFFFF0D0D0DFF000000FF0000
+      00FF030303FFFFFFFFFFFFFFFFFF000000FF000000FF000000FFFFFFFFFFFFFF
+      FFFF00000000000000000000000000000000FFFFFFFF0D0D0DFF000000FF0000
+      00FFFFFFFFFFFFFFFFBFFFFFFFFF000000FF000000FFFFFFFFFFFFFFFFFF0000
+      000000000000000000000000000000000000FFFFFFFF141414FF000000FF0000
+      00FFFFFFFFFFFFFFFF3FFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000000000
+      000000000000000000000000000000000000FFFFFFFFDCDCDCFF000000FF0000
+      00FF9F9F9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+      000000000000000000000000000000000000FFFFFF0FFFFFFFFF000000FF0000
+      00FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000000000000000
+      00000000000000000000000000000000000000000000FFFFFFEFFFFFFFFFBCBC
+      BCFF858585FF858585FFFFFFFFFFFFFFFFEF0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FFFFFF1FFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFDF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+      00000000000000000000000000000000000000000000FFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF010101FFFFFFFFFFFFFF
+      FFA00000000000000000000000000000000000000000FFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF010101FFFFFF
+      FFFFFFFFFFA000000000000000000000000000000000FFFFFFFF000000FF2B2B
+      2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF000000FF0101
+      01FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF0202
+      02FF080808FF080808FF080808FF080808FF080808FF000000FF000000FF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF2B2B
+      2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2B2B2BFF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF2B2B
+      2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2B2B2BFF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF0101
+      01FF040404FF040404FF040404FF040404FF040404FF040404FF010101FF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF2B2B
+      2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2B2B2BFF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF0101
+      01FF040404FF040404FF040404FF040404FF040404FF040404FF010101FF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFFFFFFFFF00000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFF0000000000000000
     }
   end
   object MainMenu1: TMainMenu
@@ -3586,6 +3870,42 @@ object MainForm: TMainForm
         end
         object PAM1: TMenuItem
           Action = ExportPAM
+          Bitmap.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000FFFFFFEFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF0F000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFF8585
+            85FF858585FFDCDCDCFFFFFFFFFFFFFFFFCF0000000000000000000000000000
+            00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFF0000
+            00FF000000FF000000FF000000FFFFFFFFFF0000000000000000000000000000
+            000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFF363636FF000000FF000000FFFFFFFFFFFFFFFFCF00000000000000000000
+            0000000000000000000000000000FFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFF
+            FF7FFFFFFFFF000000FF000000FF6D6D6DFFFFFFFFFF00000000000000000000
+            00000000000000000000FFFFFFFFFFFFFFFF000000FF000000FFFFFFFFFFFFFF
+            FFDFFFFFFFFF000000FF000000FF363636FFFFFFFFFF00000000000000000000
+            000000000000FFFFFFFFFFFFFFFF000000FF000000FF000000FFFFFFFFFFFFFF
+            FFFF010101FF000000FF000000FF363636FFFFFFFFFF00000000000000000000
+            0000FFFFFFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF464646FFFFFFFFFF0000000000000000FFFF
+            FFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000FFFF
+            FFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FFFFFFFFFFFFFFFF2F00000000000000000000
+            0000FFFFFFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000000000000000
+            000000000000FFFFFFFFFFFFFFFF000000FF000000FF000000FFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
+            00000000000000000000FFFFFFFFFFFFFFFF000000FF000000FFFFFFFFFFFFFF
+            FF7FFFFFFF7F0000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000FFFFFFFFFFFFFFFF000000FFFFFFFFFF0000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000FFFFFFFFFFFFFF8F0000
+            0000000000000000000000000000000000000000000000000000
+          }
         end
       end
       object ExitProgram1: TMenuItem
@@ -3689,9 +4009,81 @@ object MainForm: TMainForm
       Caption = 'Edit'
       object Undo1: TMenuItem
         Action = Undo
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000FFFFFFEFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFF0F000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFF8585
+          85FF858585FFDCDCDCFFFFFFFFFFFFFFFFCF0000000000000000000000000000
+          00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFF0000
+          00FF000000FF000000FF000000FFFFFFFFFF0000000000000000000000000000
+          000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFF363636FF000000FF000000FFFFFFFFFFFFFFFFCF00000000000000000000
+          0000000000000000000000000000FFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFF
+          FF7FFFFFFFFF000000FF000000FF6D6D6DFFFFFFFFFF00000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFF000000FF000000FFFFFFFFFFFFFF
+          FFDFFFFFFFFF000000FF000000FF363636FFFFFFFFFF00000000000000000000
+          000000000000FFFFFFFFFFFFFFFF000000FF000000FF000000FFFFFFFFFFFFFF
+          FFFF010101FF000000FF000000FF363636FFFFFFFFFF00000000000000000000
+          0000FFFFFFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FF464646FFFFFFFFFF0000000000000000FFFF
+          FFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000FFFF
+          FFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFFFFFFFF2F00000000000000000000
+          0000FFFFFFFFFFFFFFFF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000000000000000
+          000000000000FFFFFFFFFFFFFFFF000000FF000000FF000000FFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFF000000FF000000FFFFFFFFFFFFFF
+          FF7FFFFFFF7F0000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000FFFFFFFFFFFFFFFF000000FFFFFFFFFF0000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000FFFFFFFFFFFFFF8F0000
+          0000000000000000000000000000000000000000000000000000
+        }
       end
       object Archimedes1: TMenuItem
         Action = Redo
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          000000000000FFFFFF1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000FFFFFFEFFFFFFFFFBCBCBCFF858585FF858585FFFFFFFFFFFFFFFFEF0000
+          000000000000000000000000000000000000000000000000000000000000FFFF
+          FF0FFFFFFFFF000000FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF0000
+          000000000000000000000000000000000000000000000000000000000000FFFF
+          FFFFDCDCDCFF000000FF000000FF9F9F9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFF00000000000000000000000000000000000000000000000000000000FFFF
+          FFFF141414FF000000FF000000FFFFFFFFFFFFFFFF3FFFFFFFFF000000FFFFFF
+          FFFFFFFFFFFF000000000000000000000000000000000000000000000000FFFF
+          FFFF0D0D0DFF000000FF000000FFFFFFFFFFFFFFFFBFFFFFFFFF000000FF0000
+          00FFFFFFFFFFFFFFFFFF0000000000000000000000000000000000000000FFFF
+          FFFF0D0D0DFF000000FF000000FF030303FFFFFFFFFFFFFFFFFF000000FF0000
+          00FF000000FFFFFFFFFFFFFFFFFF00000000000000000000000000000000FFFF
+          FFFF0D0D0DFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FFFFFFFFFFFFFFFFFF000000000000000000000000FFFF
+          FFFF6D6D6DFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000FFFF
+          FF6FFFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF00000000000000000000
+          0000FFFFFFFFDCDCDCFF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000000000000000
+          000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF0000
+          00FF000000FFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
+          0000000000000000000000000000FFFFFF7FFFFFFF7FFFFFFFFF000000FF0000
+          00FFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000FFFFFFFF000000FFFFFF
+          FFFFFFFFFFFF0000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+          FFFF000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000FFFFFFBFFFFFFFFF0000
+          0000000000000000000000000000000000000000000000000000
+        }
       end
       object Delete1: TMenuItem
         Action = Delete
@@ -5105,6 +5497,42 @@ object MainForm: TMainForm
       Caption = 'Selection'
       object Selectall1: TMenuItem
         Action = SelectAll
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF010101FF040404FF040404FF040404FF040404FF0404
+          04FF040404FF010101FF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF2B2B2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFF2B2B2BFF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF010101FF040404FF040404FF040404FF040404FF0404
+          04FF040404FF010101FF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF2B2B2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFF2B2B2BFF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF2B2B2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFF2B2B2BFF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF000000FF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF020202FF080808FF080808FF080808FF080808FF0808
+          08FF000000FF000000FF000000FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF2B2B2BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFF000000FF000000FF010101FFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF000000FF010101FFFFFFFFFFFFFFFFA00000000000000000000000000000
+          0000FFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+          00FF010101FFFFFFFFFFFFFFFFA0000000000000000000000000000000000000
+          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFA000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
       end
       object Clearselection1: TMenuItem
         Action = DeselectAll
@@ -5380,6 +5808,42 @@ object MainForm: TMainForm
         Caption = 'Hydrodynamics characteristics'
         object AddMassCFD1: TMenuItem
           Action = ExportAddMass
+          Bitmap.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            000000000000FFFFFF1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDF000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000FFFFFFEFFFFFFFFFBCBCBCFF858585FF858585FFFFFFFFFFFFFFFFEF0000
+            000000000000000000000000000000000000000000000000000000000000FFFF
+            FF0FFFFFFFFF000000FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF0000
+            000000000000000000000000000000000000000000000000000000000000FFFF
+            FFFFDCDCDCFF000000FF000000FF9F9F9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFF00000000000000000000000000000000000000000000000000000000FFFF
+            FFFF141414FF000000FF000000FFFFFFFFFFFFFFFF3FFFFFFFFF000000FFFFFF
+            FFFFFFFFFFFF000000000000000000000000000000000000000000000000FFFF
+            FFFF0D0D0DFF000000FF000000FFFFFFFFFFFFFFFFBFFFFFFFFF000000FF0000
+            00FFFFFFFFFFFFFFFFFF0000000000000000000000000000000000000000FFFF
+            FFFF0D0D0DFF000000FF000000FF030303FFFFFFFFFFFFFFFFFF000000FF0000
+            00FF000000FFFFFFFFFFFFFFFFFF00000000000000000000000000000000FFFF
+            FFFF0D0D0DFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FFFFFFFFFFFFFFFFFF000000000000000000000000FFFF
+            FFFF6D6D6DFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000FFFF
+            FF6FFFFFFFFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FFFFFFFFFFFFFFFFFF00000000000000000000
+            0000FFFFFFFFDCDCDCFF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FFFFFFFFFFFFFFFFFF0000000000000000000000000000
+            000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF0000
+            00FF000000FFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
+            0000000000000000000000000000FFFFFF7FFFFFFF7FFFFFFFFF000000FF0000
+            00FFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000FFFFFFFF000000FFFFFF
+            FFFFFFFFFFFF0000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+            FFFF000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000FFFFFFBFFFFFFFFF0000
+            0000000000000000000000000000000000000000000000000000
+          }
         end
         object HydrodynTask1: TMenuItem
           Action = HydrodynTask1_

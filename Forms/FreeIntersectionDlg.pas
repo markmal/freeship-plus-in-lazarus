@@ -71,10 +71,10 @@ type TFreeIntersectionDialog   = class(TForm)
                                        ToolButton5: TToolButton;
                                        MenuImages: TImageList;
                                        ActionList1: TActionList;
-                                       ViewStations: TAction;
-                                       ViewButtocks: TAction;
-                                       ViewWaterlines: TAction;
-                                       ViewDiagonals: TAction;
+                                       ShowStations: TAction;
+                                       ShowButtocks: TAction;
+                                       ShowWaterlines: TAction;
+                                       ShowDiagonals: TAction;
                                        CloseDialog: TAction;
                                        AddOne: TAction;
                                        AddRange: TAction;
@@ -82,10 +82,10 @@ type TFreeIntersectionDialog   = class(TForm)
                                        ToolButton6: TToolButton;
                                        procedure ListBoxKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
                                        procedure ListBoxClick(Sender: TObject);
-                                       procedure ViewStationsExecute(Sender: TObject);
-                                       procedure ViewButtocksExecute(Sender: TObject);
-                                       procedure ViewWaterlinesExecute(Sender: TObject);
-                                       procedure ViewDiagonalsExecute(Sender: TObject);
+                                       procedure ShowStationsExecute(Sender: TObject);
+                                       procedure ShowButtocksExecute(Sender: TObject);
+                                       procedure ShowWaterlinesExecute(Sender: TObject);
+                                       procedure ShowDiagonalsExecute(Sender: TObject);
                                        procedure CloseDialogExecute(Sender: TObject);
                                        procedure AddOneExecute(Sender: TObject);
                                        procedure AddRangeExecute(Sender: TObject);
@@ -112,25 +112,25 @@ uses FreeLanguageSupport;
 
 procedure TFreeIntersectionDialog.UpdateMenu;
 begin
-   if ViewStations.Checked then
+   if ShowStations.Checked then
    begin
       AddOne.Hint:=Userstring(223)+'.';
       AddRange.Hint:=Userstring(224)+'.';
       DeleteAll.Hint:=Userstring(225)+'.';
       DeleteAll.Enabled:=FFreeship.NumberofStations>0;
-   end else if ViewButtocks.Checked then
+   end else if ShowButtocks.Checked then
    begin
       AddOne.Hint:=Userstring(226)+'.';
       AddRange.Hint:=Userstring(227)+'.';
       DeleteAll.Hint:=Userstring(228)+'.';
       DeleteAll.Enabled:=FFreeship.NumberofButtocks>0;
-   end else if ViewWaterlines.Checked then
+   end else if ShowWaterlines.Checked then
    begin
       AddOne.Hint:=Userstring(229)+'.';
       AddRange.Hint:=Userstring(230)+'.';
       DeleteAll.Hint:=Userstring(231)+'.';
       DeleteAll.Enabled:=FFreeship.NumberofWaterlines>0;
-   end else if ViewDiagonals.Checked then
+   end else if ShowDiagonals.Checked then
    begin
       AddOne.Hint:=Userstring(232)+'.';
       AddRange.Hint:=Userstring(233)+'.';
@@ -147,7 +147,7 @@ begin
    ListBox.Items.BeginUpdate;
    try
       ListBox.Clear;
-      if ViewStations.Checked then
+      if ShowStations.Checked then
       begin
          // Fill box with stations
          for I:=1 to FFreeShip.NumberofStations do
@@ -155,7 +155,7 @@ begin
             Ind:=ListBox.Items.AddObject(FFreeship.Station[I-1].Description,FFreeship.Station[I-1]);
             ListBox.Checked[Ind]:=FFreeship.Station[I-1].ShowCurvature;
          end;
-      end else if ViewButtocks.Checked then
+      end else if ShowButtocks.Checked then
       begin
          // Fill box with buttocks
          for I:=1 to FFreeShip.NumberofButtocks do
@@ -163,7 +163,7 @@ begin
             Ind:=ListBox.Items.AddObject(FFreeship.Buttock[I-1].Description,FFreeship.Buttock[I-1]);
             ListBox.Checked[Ind]:=FFreeship.Buttock[I-1].ShowCurvature;
          end;
-      end else if ViewWaterlines.Checked then
+      end else if ShowWaterlines.Checked then
       begin
          // Fill box with waterlines
          for I:=1 to FFreeShip.NumberofWaterlines do
@@ -189,6 +189,7 @@ end;{TFreeIntersectionDialog.FillBox}
 procedure TFreeIntersectionDialog.Execute(FreeShip:TFreeShip);
 begin
    FFreeShip:=FreeShip;
+   Freeship.Preferences.LoadImageListByActions(MenuImages,ActionList1);
    FillBox;
    UpdateMenu;
    ShowModal;
@@ -198,7 +199,7 @@ procedure TFreeIntersectionDialog.ListBoxKeyDown(Sender: TObject;var Key: Word; 
 var Intersection  : TFreeIntersection;
     Index         : Integer;
 begin
-   if Key=46 then // Delete the currently selected intersection
+   if Key=46 then // DeleteAll the currently selected intersection
    begin
       Index:=ListBox.ItemIndex;
       if Index<>-1 then
@@ -236,42 +237,42 @@ begin
    end;
 end;{TFreeIntersectionDialog.ListBoxClick}
 
-procedure TFreeIntersectionDialog.ViewStationsExecute(Sender: TObject);
+procedure TFreeIntersectionDialog.ShowStationsExecute(Sender: TObject);
 begin
-   ViewStations.Checked:=True;
-   ViewButtocks.Checked:=False;
-   ViewWaterlines.Checked:=False;
-   ViewDiagonals.Checked:=False;
+   ShowStations.Checked:=True;
+   ShowButtocks.Checked:=False;
+   ShowWaterlines.Checked:=False;
+   ShowDiagonals.Checked:=False;
    UpdateMenu;
    FillBox;
 end;{TFreeIntersectionDialog.ViewStationsExecute}
 
-procedure TFreeIntersectionDialog.ViewButtocksExecute(Sender: TObject);
+procedure TFreeIntersectionDialog.ShowButtocksExecute(Sender: TObject);
 begin
-   ViewStations.Checked:=False;
-   ViewButtocks.Checked:=True;
-   ViewWaterlines.Checked:=False;
-   ViewDiagonals.Checked:=False;
+   ShowStations.Checked:=False;
+   ShowButtocks.Checked:=True;
+   ShowWaterlines.Checked:=False;
+   ShowDiagonals.Checked:=False;
    UpdateMenu;
    FillBox;
 end;{TFreeIntersectionDialog.ViewButtocksExecute}
 
-procedure TFreeIntersectionDialog.ViewWaterlinesExecute(Sender: TObject);
+procedure TFreeIntersectionDialog.ShowWaterlinesExecute(Sender: TObject);
 begin
-   ViewStations.Checked:=False;
-   ViewButtocks.Checked:=False;
-   ViewWaterlines.Checked:=True;
-   ViewDiagonals.Checked:=False;
+   ShowStations.Checked:=False;
+   ShowButtocks.Checked:=False;
+   ShowWaterlines.Checked:=True;
+   ShowDiagonals.Checked:=False;
    UpdateMenu;
    FillBox;
 end;{TFreeIntersectionDialog.ViewWaterlinesExecute}
 
-procedure TFreeIntersectionDialog.ViewDiagonalsExecute(Sender: TObject);
+procedure TFreeIntersectionDialog.ShowDiagonalsExecute(Sender: TObject);
 begin
-   ViewStations.Checked:=False;
-   ViewButtocks.Checked:=False;
-   ViewWaterlines.Checked:=False;
-   ViewDiagonals.Checked:=True;
+   ShowStations.Checked:=False;
+   ShowButtocks.Checked:=False;
+   ShowWaterlines.Checked:=False;
+   ShowDiagonals.Checked:=True;
    FillBox;
 end;{TFreeIntersectionDialog.ViewDiagonalsExecute}
 
@@ -288,10 +289,10 @@ begin
    if InputQuery(Userstring(235),Userstring(236)+':',Str) then
    begin
       Int:=nil;
-      if ViewStations.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiStation,StrToFloat(Str));
-      if ViewButtocks.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiButtock,StrToFloat(Str));
-      if ViewWaterlines.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiWaterline,StrToFloat(Str));
-      if ViewDiagonals.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiDiagonal,StrToFloat(Str));
+      if ShowStations.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiStation,StrToFloat(Str));
+      if ShowButtocks.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiButtock,StrToFloat(Str));
+      if ShowWaterlines.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiWaterline,StrToFloat(Str));
+      if ShowDiagonals.Checked then Int:=FFreeShip.Edit.Intersection_Add(fiDiagonal,StrToFloat(Str));
       if Int<>nil then
       begin
          // Added and sorted, refill the list
@@ -313,19 +314,19 @@ begin
    Step:=abs(StrToFloat(Str));
    if abs(Step)<1e-3 then exit;
    FFreeShip.Extents(Min,Max);
-   if ViewStations.Checked then
+   if ShowStations.Checked then
    begin
       Start:=Min.X;
       Stop:=Max.X;
-   end else if ViewButtocks.Checked then
+   end else if ShowButtocks.Checked then
    begin
       Start:=0.0;
       Stop:=Max.Y;
-   end else if ViewWaterlines.Checked then
+   end else if ShowWaterlines.Checked then
    begin
       Start:=Min.Z;
       Stop:=Max.Z;
-   end else if ViewDiagonals.Checked then
+   end else if ShowDiagonals.Checked then
    begin
       Start:=Min.Z;
       Stop:=2*Max.Z;
@@ -338,10 +339,10 @@ begin
    Start:=Index*Step;
    while Start<=Stop do
    begin
-      if ViewStations.Checked then FFreeShip.Edit.Intersection_Add(fiStation,Start);
-      if ViewButtocks.Checked then FFreeShip.Edit.Intersection_Add(fiButtock,Start);
-      if ViewWaterlines.Checked then FFreeShip.Edit.Intersection_Add(fiWaterline,Start);
-      if ViewDiagonals.Checked then FFreeShip.Edit.Intersection_Add(fidiagonal,Start);
+      if ShowStations.Checked then FFreeShip.Edit.Intersection_Add(fiStation,Start);
+      if ShowButtocks.Checked then FFreeShip.Edit.Intersection_Add(fiButtock,Start);
+      if ShowWaterlines.Checked then FFreeShip.Edit.Intersection_Add(fiWaterline,Start);
+      if ShowDiagonals.Checked then FFreeShip.Edit.Intersection_Add(fidiagonal,Start);
       Start:=Start+step;
    end;
    FFreeShip.Redraw;
@@ -352,19 +353,19 @@ end;{TFreeIntersectionDialog.Range1Click}
 procedure TFreeIntersectionDialog.DeleteAllExecute(Sender: TObject);
 var I : Integer;
 begin
-   if ViewStations.Checked then
+   if ShowStations.Checked then
    begin
       for I:=FFreeShip.NumberofStations downto 1 do FFreeship.Station[I-1].Delete(I=1);
       FillBox;
-   end else if ViewButtocks.Checked then
+   end else if ShowButtocks.Checked then
    begin
       for I:=FFreeShip.NumberofButtocks downto 1 do FFreeship.Buttock[I-1].Delete(I=1);
       FillBox;
-   end else if ViewWaterlines.Checked then
+   end else if ShowWaterlines.Checked then
    begin
       for I:=FFreeShip.NumberofWaterlines downto 1 do FFreeship.Waterline[I-1].Delete(I=1);
       FillBox;
-   end else if ViewDiagonals.Checked then
+   end else if ShowDiagonals.Checked then
    begin
       for I:=FFreeShip.NumberofDiagonals downto 1 do FFreeship.Diagonal[I-1].Delete(I=1);
       FillBox;
@@ -372,4 +373,4 @@ begin
    UpdateMenu;
 end;{TFreeIntersectionDialog.DeleteAllExecute}
 
-end.
+end.

@@ -652,6 +652,15 @@ function TFreeHydrodyn_Task1.Execute(Freeship:TFreeship;AutoExtract:Boolean):Boo
 var Units : TFreeUnitType;
 begin
    FFreeship:=Freeship;
+
+   ToolBar1.ButtonWidth :=Freeship.Preferences.ToolIconSize;
+   ToolBar1.ButtonHeight:=Freeship.Preferences.ToolIconSize;
+
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'Cancel');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 1, 'Ok');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'Print');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'Calculate');
+
    Units:=FFreeship.ProjectSettings.ProjectUnits;
       if Units=fuImperial then begin
         MessageDlg(Userstring(754),mtInformation,[mbOk],0);

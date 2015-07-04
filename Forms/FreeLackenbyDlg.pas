@@ -629,6 +629,9 @@ var I,Index       : Integer;
     Spline        : TFreeSpline;
 begin
    FFreeship:=Freeship;
+
+   Freeship.Preferences.LoadImageIntoBitmap(Button1.Glyph, 'Calculate');
+
    FOriginalStations:=TFasterList.Create;
    FNewStations:=TFasterList.Create;
    FOriginalWaterline:=TFasterList.Create;
@@ -1080,4 +1083,4 @@ begin
    end;
 end;{TFreeLackenbyDialog.TopViewRedraw}
 
-end.
+end.

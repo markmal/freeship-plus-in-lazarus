@@ -1,7 +1,7 @@
 object FreeResistance_Kaper: TFreeResistance_Kaper
-  Left = 282
+  Left = 498
   Height = 550
-  Top = 104
+  Top = 105
   Width = 765
   Caption = 'Kaper resistance calculation.'
   ClientHeight = 550
@@ -11,7 +11,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -29,6 +29,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -45,6 +46,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     end
     object _ToolButton14: TToolButton
       Left = 65
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'
@@ -77,34 +79,34 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 494
-      ClientWidth = 759
+      ClientHeight = 496
+      ClientWidth = 761
       object Panel1: TPanel
         Left = 0
-        Height = 494
+        Height = 496
         Top = 0
-        Width = 759
+        Width = 761
         Align = alClient
         BevelOuter = bvLowered
         BorderWidth = 10
-        ClientHeight = 494
-        ClientWidth = 759
+        ClientHeight = 496
+        ClientWidth = 761
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 472
+          Height = 474
           Top = 11
-          Width = 737
+          Width = 739
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 472
-          ClientWidth = 737
+          ClientHeight = 474
+          ClientWidth = 739
           TabOrder = 0
           object Label2: TLabel
             Left = 6
             Height = 14
             Top = 32
-            Width = 94
+            Width = 93
             Caption = 'Length waterline'
             ParentColor = False
           end
@@ -112,7 +114,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 6
             Height = 14
             Top = 60
-            Width = 89
+            Width = 87
             Caption = 'Beam waterline'
             ParentColor = False
           end
@@ -120,7 +122,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 6
             Height = 14
             Top = 88
-            Width = 28
+            Width = 29
             Caption = 'Draft'
             ParentColor = False
           end
@@ -128,7 +130,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 197
             Height = 14
             Top = 32
-            Width = 12
+            Width = 13
             Caption = '[-]'
             ParentColor = False
           end
@@ -136,7 +138,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 197
             Height = 14
             Top = 60
-            Width = 12
+            Width = 13
             Caption = '[-]'
             ParentColor = False
           end
@@ -144,7 +146,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 197
             Height = 14
             Top = 88
-            Width = 12
+            Width = 13
             Caption = '[-]'
             ParentColor = False
           end
@@ -152,7 +154,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 6
             Height = 14
             Top = 116
-            Width = 115
+            Width = 112
             Caption = 'Wetted surface area'
             ParentColor = False
           end
@@ -160,7 +162,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 197
             Height = 14
             Top = 116
-            Width = 12
+            Width = 13
             Caption = '[-]'
             ParentColor = False
           end
@@ -176,7 +178,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 6
             Height = 14
             Top = 172
-            Width = 76
+            Width = 77
             Caption = 'Displacement'
             ParentColor = False
           end
@@ -184,7 +186,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 197
             Height = 14
             Top = 172
-            Width = 12
+            Width = 13
             Caption = '[-]'
             ParentColor = False
           end
@@ -192,7 +194,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 6
             Height = 14
             Top = 200
-            Width = 111
+            Width = 109
             Caption = 'Half entrance angle'
             ParentColor = False
           end
@@ -200,7 +202,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 197
             Height = 14
             Top = 200
-            Width = 12
+            Width = 13
             Caption = '[-]'
             ParentColor = False
           end
@@ -216,7 +218,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Left = 6
             Height = 14
             Top = 256
-            Width = 117
+            Width = 114
             Caption = 'Subm. transom ratio'
             ParentColor = False
           end
@@ -235,6 +237,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object Edit3: TFreeNumInput
@@ -252,6 +255,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object Edit4: TFreeNumInput
@@ -269,6 +273,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object Edit5: TFreeNumInput
@@ -286,6 +291,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object Edit6: TFreeNumInput
@@ -303,6 +309,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object Edit7: TFreeNumInput
@@ -320,6 +327,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object Edit8: TFreeNumInput
@@ -337,6 +345,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object Edit9: TFreeNumInput
@@ -354,6 +363,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object Edit10: TFreeNumInput
@@ -371,11 +381,12 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object Chart: TChart
-            Left = 232
-            Height = 470
+            Left = 234
+            Height = 472
             Top = 1
             Width = 504
             AxisList = <            
@@ -429,9 +440,9 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
           end
           object CheckBox2: TCheckBox
             Left = 7
-            Height = 21
+            Height = 20
             Top = 6
-            Width = 192
+            Width = 193
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 10
@@ -441,14 +452,14 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 494
-      ClientWidth = 759
+      ClientHeight = 496
+      ClientWidth = 761
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0
-        Height = 494
+        Height = 496
         Top = 0
-        Width = 759
+        Width = 761
         Align = alClient
         Font.Color = clBlack
         Font.Height = -13
@@ -460,7 +471,8 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     end
   end
   object MenuImages: TImageList
-    left = 292
+    left = 320
+    top = 24
     Bitmap = {
       4C69040000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -594,7 +606,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     }
   end
   object PrintDialog: TPrintDialog
-    left = 193
-    top = 3
+    left = 216
+    top = 24
   end
-end
+end

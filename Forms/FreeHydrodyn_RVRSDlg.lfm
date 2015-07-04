@@ -12,7 +12,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -30,6 +30,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -46,6 +47,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
     end
     object _ToolButton14: TToolButton
       Left = 65
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'
@@ -85,32 +87,32 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 526
-      ClientWidth = 794
+      ClientHeight = 528
+      ClientWidth = 796
       object Panel1: TPanel
         Left = 0
-        Height = 526
+        Height = 528
         Top = 0
-        Width = 794
+        Width = 796
         Align = alClient
         BorderWidth = 10
-        ClientHeight = 526
-        ClientWidth = 794
+        ClientHeight = 528
+        ClientWidth = 796
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 504
+          Height = 506
           Top = 11
-          Width = 772
+          Width = 774
           Align = alClient
-          ClientHeight = 504
-          ClientWidth = 772
+          ClientHeight = 506
+          ClientWidth = 774
           TabOrder = 0
           object Label2: TLabel
             Left = 8
             Height = 14
             Top = 34
-            Width = 201
+            Width = 198
             Caption = 'Length between perpendiculars [m]'
             ParentColor = False
           end
@@ -118,7 +120,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 62
-            Width = 112
+            Width = 110
             Caption = 'Beam waterline [m]'
             ParentColor = False
           end
@@ -126,7 +128,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 90
-            Width = 96
+            Width = 95
             Caption = 'Midship draft [m]'
             ParentColor = False
           end
@@ -142,7 +144,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 146
-            Width = 154
+            Width = 151
             Caption = 'Wetted surface area [m^2]'
             ParentColor = False
           end
@@ -150,7 +152,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 174
-            Width = 121
+            Width = 117
             Caption = 'Number of propellers'
             ParentColor = False
           end
@@ -158,7 +160,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 202
-            Width = 129
+            Width = 126
             Caption = 'Propeller diameter [m]'
             ParentColor = False
           end
@@ -166,7 +168,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 230
-            Width = 80
+            Width = 79
             Caption = 'Pitch ratio P/D'
             ParentColor = False
           end
@@ -174,7 +176,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 258
-            Width = 121
+            Width = 117
             Caption = 'Disk area ratio Ae/Ao'
             ParentColor = False
           end
@@ -182,7 +184,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 286
-            Width = 101
+            Width = 98
             Caption = 'Number of blades'
             ParentColor = False
           end
@@ -190,7 +192,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 314
-            Width = 77
+            Width = 76
             Caption = 'Wake fraction'
             ParentColor = False
           end
@@ -198,7 +200,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 342
-            Width = 83
+            Width = 81
             Caption = 'Thrust fraction'
             ParentColor = False
           end
@@ -206,7 +208,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 370
-            Width = 161
+            Width = 159
             Caption = 'Specified engine power [kW]'
             ParentColor = False
           end
@@ -214,7 +216,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 398
-            Width = 220
+            Width = 214
             Caption = 'Frequency of propeller rotation [1/min]'
             ParentColor = False
           end
@@ -222,7 +224,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 426
-            Width = 142
+            Width = 138
             Caption = 'Shaft and gear efficiency'
             ParentColor = False
           end
@@ -230,7 +232,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 454
-            Width = 196
+            Width = 192
             Caption = 'Inertia moment by engine [t*m^2]'
             ParentColor = False
           end
@@ -238,7 +240,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Left = 8
             Height = 14
             Top = 482
-            Width = 149
+            Width = 146
             Caption = 'Number of maneuver task'
             ParentColor = False
           end
@@ -257,6 +259,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object Edit3: TFreeNumInput
@@ -274,6 +277,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object Edit4: TFreeNumInput
@@ -291,6 +295,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object Edit5: TFreeNumInput
@@ -308,6 +313,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object Edit6: TFreeNumInput
@@ -325,6 +331,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object Edit7: TFreeNumInput
@@ -342,6 +349,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object Edit8: TFreeNumInput
@@ -359,6 +367,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object Edit9: TFreeNumInput
@@ -376,6 +385,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object Edit10: TFreeNumInput
@@ -393,6 +403,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object Edit11: TFreeNumInput
@@ -410,6 +421,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 9
           end
           object Edit12: TFreeNumInput
@@ -427,6 +439,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
           object Edit13: TFreeNumInput
@@ -444,6 +457,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 11
           end
           object Edit14: TFreeNumInput
@@ -461,6 +475,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 12
           end
           object Edit15: TFreeNumInput
@@ -478,6 +493,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 13
           end
           object Edit16: TFreeNumInput
@@ -495,6 +511,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 14
           end
           object Edit17: TFreeNumInput
@@ -512,6 +529,7 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 15
           end
           object Edit18: TFreeNumInput
@@ -529,11 +547,12 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 16
           end
           object Chart: TChart
-            Left = 251
-            Height = 502
+            Left = 253
+            Height = 504
             Top = 1
             Width = 520
             AxisList = <            
@@ -608,9 +627,9 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
           end
           object CheckBox2: TCheckBox
             Left = 9
-            Height = 21
+            Height = 20
             Top = 8
-            Width = 192
+            Width = 193
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 18
@@ -805,4 +824,4 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
     left = 193
     top = 3
   end
-end
+end

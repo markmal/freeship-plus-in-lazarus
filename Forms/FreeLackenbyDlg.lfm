@@ -1,52 +1,59 @@
 object FreeLackenbyDialog: TFreeLackenbyDialog
   Left = 189
+  Height = 511
   Top = 71
+  Width = 746
   BorderStyle = bsSingle
   Caption = 'Lackenby hullform transformation.'
   ClientHeight = 511
   ClientWidth = 746
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
-  OldCreateOrder = True
   Position = poOwnerFormCenter
-  PixelsPerInch = 96
-  TextHeight = 13
+  LCLVersion = '1.4.0.4'
   object Splitter2: TSplitter
+    Cursor = crVSplit
     Left = 0
+    Height = 3
     Top = 302
     Width = 746
-    Height = 3
-    Cursor = crVSplit
     Align = alTop
     Color = clRed
     ParentColor = False
+    ResizeAnchor = akTop
   end
   object Panel2: TPanel
     Left = 0
+    Height = 280
     Top = 22
     Width = 746
-    Height = 280
     Align = alTop
     BevelOuter = bvLowered
+    ClientHeight = 280
+    ClientWidth = 746
     TabOrder = 0
     object Splitter3: TSplitter
       Left = 409
-      Top = 1
       Height = 278
+      Top = 1
+      Width = 5
       Color = clRed
       ParentColor = False
     end
     object Viewport: TFreeViewport
-      Left = 412
-      Top = 1
-      Width = 333
+      Left = 414
       Height = 278
+      Top = 1
+      Width = 331
+      Angle = 0
       Align = alClient
       BackgroundImage.Alpha = 255
+      BackgroundImage.Owner = Viewport
+      BackgroundImage.Quality = 100
+      BackgroundImage.Scale = 1
+      BackgroundImage.ShowInView = fvBodyplan
       BackgroundImage.Tolerance = 5
       BackgroundImage.Transparent = False
       BackgroundImage.TransparentColor = clBlack
@@ -54,6 +61,8 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       BorderStyle = bsSingle
       CameraType = ftStandard
       DoubleBuffer = True
+      Elevation = 0
+      Margin = 0
       ViewType = fvBodyplan
       ViewportMode = vmWireFrame
       OnRedraw = ViewportRedraw
@@ -61,338 +70,403 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object Panel5: TPanel
       Left = 1
+      Height = 278
       Top = 1
       Width = 408
-      Height = 278
       Align = alLeft
       BevelOuter = bvNone
+      ClientHeight = 278
+      ClientWidth = 408
       TabOrder = 1
       object Label1: TLabel
         Left = 4
+        Height = 14
         Top = 32
-        Width = 64
-        Height = 13
+        Width = 77
         Caption = 'Displacement'
+        ParentColor = False
       end
       object Label2: TLabel
         Left = 183
+        Height = 15
         Top = 2
-        Width = 42
-        Height = 13
+        Width = 52
         Caption = 'Current'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object Label3: TLabel
         Left = 242
+        Height = 15
         Top = 2
-        Width = 44
-        Height = 13
+        Width = 52
         Caption = 'Desired'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object Label4: TLabel
         Left = 359
+        Height = 14
         Top = 30
-        Width = 32
-        Height = 13
+        Width = 37
         Caption = 'Label4'
+        ParentColor = False
       end
       object Label5: TLabel
         Left = 4
+        Height = 14
         Top = 60
-        Width = 79
-        Height = 13
+        Width = 92
         Caption = 'Block coefficient'
+        ParentColor = False
       end
       object Label7: TLabel
         Left = 4
+        Height = 14
         Top = 88
-        Width = 94
-        Height = 13
+        Width = 113
         Caption = 'Prismatic coefficient'
+        ParentColor = False
       end
       object Label6: TLabel
         Left = 4
+        Height = 14
         Top = 116
-        Width = 121
-        Height = 13
+        Width = 141
         Caption = 'Long. center of buoyancy'
+        ParentColor = False
       end
       object Label8: TLabel
         Left = 301
+        Height = 15
         Top = 2
-        Width = 60
-        Height = 13
+        Width = 70
         Caption = 'Difference'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object Label9: TLabel
         Left = 359
+        Height = 14
         Top = 114
-        Width = 32
-        Height = 13
+        Width = 37
         Caption = 'Label9'
+        ParentColor = False
       end
       object Label10: TLabel
         Left = 4
+        Height = 14
         Top = 144
-        Width = 119
-        Height = 13
+        Width = 145
         Caption = 'Maximum no. of iterations'
+        ParentColor = False
       end
       object Label11: TLabel
         Left = 4
+        Height = 14
         Top = 200
-        Width = 106
-        Height = 13
+        Width = 126
         Caption = 'Prismatic coeff. aftship'
+        ParentColor = False
       end
       object _Label12: TLabel
         Left = 183
+        Height = 14
         Top = 198
-        Width = 44
-        Height = 13
+        Width = 50
         Caption = '_Label12'
+        ParentColor = False
       end
       object Label13: TLabel
         Left = 4
+        Height = 14
         Top = 228
-        Width = 112
-        Height = 13
+        Width = 133
         Caption = 'Prismatic coeff. foreship'
+        ParentColor = False
       end
       object _Label14: TLabel
         Left = 183
+        Height = 14
         Top = 226
-        Width = 38
-        Height = 13
+        Width = 44
         Caption = 'Label12'
+        ParentColor = False
       end
       object Label15: TLabel
         Left = 4
+        Height = 14
         Top = 256
-        Width = 109
-        Height = 13
+        Width = 133
         Caption = 'Maximum displacement'
+        ParentColor = False
       end
       object _Label16: TLabel
         Left = 183
+        Height = 14
         Top = 254
-        Width = 38
-        Height = 13
+        Width = 44
         Caption = 'Label12'
+        ParentColor = False
       end
       object Edit1: TFreeNumInput
         Left = 183
+        Height = 24
         Top = 22
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 3
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 0
       end
       object Input1: TFreeNumInput
         Left = 242
+        Height = 24
         Top = 22
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 3
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
         OnAfterSetValue = Input1AfterSetValue
+        BorderColor = clBtnShadow
         TabOrder = 1
       end
       object Edit2: TFreeNumInput
         Left = 183
+        Height = 24
         Top = 50
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 4
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 2
       end
       object Input2: TFreeNumInput
         Left = 242
+        Height = 24
         Top = 50
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 4
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
         OnAfterSetValue = Input2AfterSetValue
+        BorderColor = clBtnShadow
         TabOrder = 3
       end
       object Edit3: TFreeNumInput
         Left = 183
+        Height = 24
         Top = 78
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 4
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 4
       end
       object Input3: TFreeNumInput
         Left = 242
+        Height = 24
         Top = 78
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 4
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
         OnAfterSetValue = Input3AfterSetValue
+        BorderColor = clBtnShadow
         TabOrder = 5
       end
       object Diff1: TFreeNumInput
         Left = 301
+        Height = 24
         Top = 22
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 3
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 6
       end
       object Diff2: TFreeNumInput
         Left = 301
+        Height = 24
         Top = 50
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 4
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 7
       end
       object Diff3: TFreeNumInput
         Left = 301
+        Height = 24
         Top = 78
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 4
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 8
       end
       object Edit4: TFreeNumInput
         Left = 183
+        Height = 24
         Top = 106
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 3
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 9
       end
       object Input4: TFreeNumInput
         Left = 242
+        Height = 24
         Top = 106
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 3
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         TabOrder = 10
       end
       object Diff4: TFreeNumInput
         Left = 301
+        Height = 24
         Top = 106
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 3
         Digits = 12
+        Max = 0
+        Min = 0
         OutOfRangeMessage = False
         TabOnEnterKey = False
+        Value = 0
         Validate = False
+        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 11
       end
       object IterationBox: TFreeNumInput
         Left = 183
+        Height = 24
         Top = 134
         Width = 55
-        Height = 21
         Alignment = taRightJustify
         Decimals = 0
         Digits = 12
         Max = 50
+        Min = 0
         DataType = dtInteger
         OutOfRangeMessage = False
         TabOnEnterKey = False
         Value = 15
         Validate = True
+        BorderColor = clBtnShadow
         TabOrder = 12
       end
       object CheckBox1: TCheckBox
         Left = 3
+        Height = 20
         Top = 172
-        Width = 192
-        Height = 17
+        Width = 181
         Alignment = taLeftJustify
         Caption = 'Redraw after each iteration'
         Checked = True
@@ -403,20 +477,22 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   end
   object Panel1: TPanel
     Left = 0
+    Height = 22
     Top = 0
     Width = 746
-    Height = 22
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 22
+    ClientWidth = 746
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
     object Button1: TSpeedButton
       Left = 529
-      Top = 1
-      Width = 75
       Height = 19
       Hint = 'Start the hullform transformation.'
+      Top = 1
+      Width = 75
       Caption = 'Transform'
       Flat = True
       Glyph.Data = {
@@ -429,15 +505,15 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         0333330888888888033333080000000803333308000E0E080333330800000008
         0333330888888888033333088888888803333370000000007333
       }
-      ParentShowHint = False
-      ShowHint = True
       OnClick = Button1Click
+      ShowHint = True
+      ParentShowHint = False
     end
     object SpeedButton1: TSpeedButton
       Left = 604
+      Height = 19
       Top = 1
       Width = 70
-      Height = 19
       Caption = 'OK'
       Flat = True
       Glyph.Data = {
@@ -463,9 +539,9 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object BitBtn2: TSpeedButton
       Left = 674
+      Height = 19
       Top = 1
       Width = 70
-      Height = 19
       Caption = 'Cancel'
       Flat = True
       Glyph.Data = {
@@ -492,37 +568,44 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   end
   object Panel4: TPanel
     Left = 0
+    Height = 206
     Top = 305
     Width = 746
-    Height = 206
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel4'
+    ClientHeight = 206
+    ClientWidth = 746
     TabOrder = 2
     object Splitter1: TSplitter
       Left = 163
-      Top = 0
       Height = 206
+      Top = 0
+      Width = 5
       Color = clRed
       ParentColor = False
     end
     object LayerBox: TCheckListBox
       Left = 0
+      Height = 206
       Top = 0
       Width = 163
-      Height = 206
       Align = alLeft
-      ItemHeight = 13
+      ItemHeight = 0
       TabOrder = 0
     end
     object TopView: TFreeViewport
-      Left = 166
-      Top = 0
-      Width = 580
+      Left = 168
       Height = 206
+      Top = 0
+      Width = 578
       Angle = 90
       Align = alClient
       BackgroundImage.Alpha = 255
+      BackgroundImage.Owner = TopView
+      BackgroundImage.Quality = 100
+      BackgroundImage.Scale = 1
+      BackgroundImage.ShowInView = fvBodyplan
       BackgroundImage.Tolerance = 5
       BackgroundImage.Transparent = False
       BackgroundImage.TransparentColor = clBlack
@@ -531,6 +614,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       CameraType = ftStandard
       DoubleBuffer = True
       Elevation = 90
+      Margin = 0
       ViewType = fvPlan
       ViewportMode = vmWireFrame
       OnRedraw = TopViewRedraw

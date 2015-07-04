@@ -2027,6 +2027,15 @@ function TFreeResistance_Planing.Execute(Freeship:TFreeship;AutoExtract:Boolean)
 var     RightAxis        : TChartAxis;
 begin
    FFreeship:=Freeship;
+
+   ToolBar1.ButtonWidth :=Freeship.Preferences.ToolIconSize;
+   ToolBar1.ButtonHeight:=Freeship.Preferences.ToolIconSize;
+
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'Cancel');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 1, 'Ok');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'Print');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'Calculate');
+
    if Combobox.ItemIndex=0 then Chart.Title.Text.Text:=Userstring(965);
    if Combobox.ItemIndex=1 then Chart.Title.Text.Text:=Userstring(1563);
    if Combobox.ItemIndex=2 then Chart.Title.Text.Text:=Userstring(758);

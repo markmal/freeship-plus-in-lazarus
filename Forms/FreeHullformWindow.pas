@@ -29,6 +29,8 @@ unit FreeHullformWindow;
   {$MODE Delphi}
 {$ENDIF}
 
+{$DEFINE XUSEOPENGL}
+
 interface
 
 uses
@@ -50,7 +52,11 @@ uses
      StdCtrls,
      Menus,
      ActnList,
-     Printers;
+     Printers
+{$IFDEF USEOPENGL}
+    ,FreeViewPortOpenGL
+{$ENDIF}
+;
 
 type
 
@@ -289,10 +295,29 @@ begin
 end;{TFreeHullWindow.ViewportRedraw}
 
 procedure TFreeHullWindow.FormCreate(Sender: TObject);
+{$IFDEF USEOPENGL}
+var VP: TFreeViewportOpenGL;
+{$ENDIF}
 begin
    ScrollBar1.Position:=Round(Viewport.Angle);
    ScrollBar2.Position:=Round(Viewport.Elevation);
    FAllowPanOrZoom:=False;
+
+   {$IFDEF USEOPENGL}
+   VP := TFreeViewportOpenGL.Create(Self);
+   VP.Parent := ViewPort.Parent;
+   VP.Align  := ViewPort.Align;
+   VP.BevelInner:= ViewPort.BevelInner;
+   VP.BevelOuter:= ViewPort.BevelOuter;
+   VP.Color := ViewPort.Color;
+   VP.Cursor := ViewPort.Cursor;
+   VP.HorScrollbar := ViewPort.HorScrollbar;
+   VP.PopupMenu := ViewPort.PopupMenu;
+   VP.VertScrollbar := ViewPort.VertScrollbar;
+
+   ViewPort.Destroy;
+   ViewPort:=VP;
+   {$ENDIF}
 end;{TFreeHullWindow.FormCreate}
 
 procedure TFreeHullWindow.FormClose(Sender: TObject; var Action: TCloseAction);

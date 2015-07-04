@@ -712,6 +712,7 @@ type
           procedure   getThemesInDir(dir:string; ss:TStrings);
           function    GetIconFileName(ThemeName, IconName: string; IconSize:integer): string;
           procedure   dumpIcons(ImageList:TImageList; ActionList:TActionList);
+          procedure   LoadImageIntoBitmap(Bitmap:TBitmap; Name:string);
           procedure   LoadImageListByActions(ImageList:TImageList; ActionList:TActionList);
           procedure   LoadImageIntoList(ImageList:TImageList; Item:integer; Name:string);
           function    IsThemeCustom(ThemeName: string): boolean;
@@ -14376,6 +14377,34 @@ begin
         end;
     end;
   end;
+  bmp.Free;
+  png.Free;
+end;
+
+// loads icon into Bitmap that is set according to theme and icon size
+procedure TFreePreferences.LoadImageIntoBitmap(Bitmap:TBitmap; Name:string);
+var sz:integer;
+    IName, IPath, IconFile:String;
+    bmp:TBitmap; png: TPortableNetworkGraphic; img: TLazIntfImage;
+begin
+  sz := ToolIconSize;
+  IPath := ToolIconDirectory;
+  bmp:=TBitmap.Create;
+  bmp.SetSize(sz,sz);
+  png:=TPortableNetworkGraphic.Create;
+  img:= TLazIntfImage.Create(sz,sz);
+
+  IconFile := GetIconFileName(Theme, Name, ToolIconSize);
+
+  if (IconFile > '') and FileExistsUTF8(IconFile) then
+    begin
+      png.LoadFromFile(IconFile);
+      img:=png.CreateIntfImage;
+      bmp.LoadFromIntfImage(img);
+      Bitmap.Free;
+      Bitmap.Assign(bmp);
+      img.Free;
+    end;
   bmp.Free;
   png.Free;
 end;

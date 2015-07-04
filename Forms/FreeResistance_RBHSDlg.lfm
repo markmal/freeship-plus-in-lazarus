@@ -11,7 +11,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
-  LCLVersion = '1.4.0.2'
+  LCLVersion = '1.4.0.4'
   object PageControl1: TPageControl
     Left = 0
     Height = 616
@@ -23,15 +23,15 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 584
-      ClientWidth = 874
+      ClientHeight = 586
+      ClientWidth = 876
       object Panel1: TPanel
         Left = 0
-        Height = 584
+        Height = 586
         Top = 0
         Width = 390
         Align = alLeft
-        ClientHeight = 584
+        ClientHeight = 586
         ClientWidth = 390
         TabOrder = 0
         object GroupBox1: TGroupBox
@@ -40,14 +40,14 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
           Top = 10
           Width = 371
           Caption = 'General'
-          ClientHeight = 94
-          ClientWidth = 367
+          ClientHeight = 92
+          ClientWidth = 363
           TabOrder = 0
           object Label1: TLabel
             Left = 5
             Height = 14
             Top = 23
-            Width = 65
+            Width = 64
             Caption = 'Start speed'
             ParentColor = False
           end
@@ -55,7 +55,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 46
-            Width = 91
+            Width = 89
             Caption = 'Estimate speed '
             ParentColor = False
           end
@@ -63,7 +63,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 69
-            Width = 85
+            Width = 83
             Caption = 'Maximal speed'
             ParentColor = False
           end
@@ -71,7 +71,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 180
             Height = 14
             Top = 23
-            Width = 78
+            Width = 76
             Caption = 'Water density'
             ParentColor = False
           end
@@ -79,7 +79,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 180
             Height = 14
             Top = 46
-            Width = 50
+            Width = 49
             Caption = 'Viscosity'
             ParentColor = False
           end
@@ -87,7 +87,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 146
             Height = 14
             Top = 23
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -95,7 +95,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 146
             Height = 14
             Top = 46
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -103,7 +103,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 146
             Height = 14
             Top = 69
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -220,14 +220,14 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
           Top = 120
           Width = 371
           Caption = 'Hull'
-          ClientHeight = 416
-          ClientWidth = 367
+          ClientHeight = 414
+          ClientWidth = 363
           TabOrder = 1
           object Label13: TLabel
             Left = 5
             Height = 14
             Top = 131
-            Width = 85
+            Width = 84
             Caption = 'Wetted surface'
             ParentColor = False
           end
@@ -235,7 +235,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 85
-            Width = 73
+            Width = 74
             Caption = 'Midship draft'
             ParentColor = False
           end
@@ -243,7 +243,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 108
-            Width = 49
+            Width = 50
             Caption = 'Different'
             ParentColor = False
           end
@@ -251,7 +251,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 62
-            Width = 93
+            Width = 90
             Caption = 'Beam waterline '
             ParentColor = False
           end
@@ -259,7 +259,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 39
-            Width = 94
+            Width = 93
             Caption = 'Length waterline'
             ParentColor = False
           end
@@ -267,7 +267,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 175
             Height = 14
             Top = 108
-            Width = 118
+            Width = 116
             Caption = 'Prismatic coefficient '
             ParentColor = False
           end
@@ -283,7 +283,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 175
             Height = 14
             Top = 62
-            Width = 76
+            Width = 77
             Caption = 'Displacement'
             ParentColor = False
           end
@@ -291,7 +291,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 175
             Height = 14
             Top = 39
-            Width = 94
+            Width = 91
             Caption = 'Waterplane area'
             ParentColor = False
           end
@@ -307,7 +307,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 147
             Height = 14
             Top = 39
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -315,7 +315,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 147
             Height = 14
             Top = 62
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -323,7 +323,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 147
             Height = 14
             Top = 85
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -331,7 +331,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 147
             Height = 14
             Top = 108
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -339,7 +339,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 147
             Height = 14
             Top = 129
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -347,7 +347,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 340
             Height = 14
             Top = 39
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -355,7 +355,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 340
             Height = 14
             Top = 62
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -363,7 +363,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 340
             Height = 14
             Top = 85
-            Width = 18
+            Width = 19
             Caption = '[%]'
             ParentColor = False
           end
@@ -371,16 +371,16 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 177
-            Width = 78
+            Width = 75
             Caption = 'Type of ships:'
             ParentColor = False
           end
           object ComboBox: TComboBox
             Left = 140
-            Height = 25
+            Height = 24
             Top = 170
             Width = 220
-            ItemHeight = 0
+            ItemHeight = 16
             ItemIndex = 0
             Items.Strings = (
               'model tests'
@@ -402,7 +402,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 200
-            Width = 131
+            Width = 127
             Caption = 'Number of series ships'
             ParentColor = False
           end
@@ -410,7 +410,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 223
-            Width = 122
+            Width = 117
             Caption = 'Type of forward stern'
             ParentColor = False
           end
@@ -418,7 +418,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 246
-            Width = 105
+            Width = 101
             Caption = 'Type of after stern'
             ParentColor = False
           end
@@ -426,7 +426,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 269
-            Width = 121
+            Width = 117
             Caption = 'Number of propellers'
             ParentColor = False
           end
@@ -434,7 +434,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 5
             Height = 14
             Top = 292
-            Width = 118
+            Width = 114
             Caption = 'Propeller diametr, m'
             ParentColor = False
           end
@@ -442,7 +442,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 8
             Height = 14
             Top = 315
-            Width = 185
+            Width = 179
             Caption = 'Froude number Fr of model ship:'
             ParentColor = False
           end
@@ -450,7 +450,7 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
             Left = 8
             Height = 14
             Top = 361
-            Width = 246
+            Width = 238
             Caption = 'Coefficient of residual resistance Cr*10**3:'
             ParentColor = False
           end
@@ -546,18 +546,18 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
           end
           object EstimateBox: TCheckBox
             Left = 4
-            Height = 21
+            Height = 20
             Top = 151
-            Width = 110
+            Width = 102
             Caption = 'Use estimate'
             OnClick = EstimateBoxClick
             TabOrder = 6
           end
           object Estimate2Box: TCheckBox
             Left = 174
-            Height = 21
+            Height = 20
             Top = 151
-            Width = 119
+            Width = 110
             Caption = 'Use calculated'
             OnClick = Estimate2BoxClick
             TabOrder = 7
@@ -744,9 +744,9 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
           end
           object CheckBox2: TCheckBox
             Left = 5
-            Height = 21
+            Height = 20
             Top = 14
-            Width = 215
+            Width = 193
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 18
@@ -935,9 +935,9 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
       end
       object Chart: TChart
         Left = 390
-        Height = 584
+        Height = 586
         Top = 0
-        Width = 484
+        Width = 486
         AxisList = <        
           item
             Minors = <>
@@ -1021,8 +1021,8 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
           Top = 10
           Width = 371
           Caption = 'Added data input:'
-          ClientHeight = 504
-          ClientWidth = 367
+          ClientHeight = 502
+          ClientWidth = 363
           TabOrder = 0
           object Label6_1: TLabel
             Left = 5
@@ -1431,8 +1431,8 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
           Top = 10
           Width = 371
           Caption = 'Appendage areas input, [m^2]:'
-          ClientHeight = 504
-          ClientWidth = 367
+          ClientHeight = 502
+          ClientWidth = 363
           TabOrder = 1
           object Label30: TLabel
             Left = 5

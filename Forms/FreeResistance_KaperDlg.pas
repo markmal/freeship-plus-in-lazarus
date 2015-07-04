@@ -569,6 +569,15 @@ end;{TFreeResistance_Kaper.Calculate}
 function TFreeResistance_Kaper.Execute(Freeship:TFreeship;AutoExtract:Boolean):Boolean;
 begin
    FFreeship:=Freeship;
+
+   ToolBar1.ButtonWidth :=Freeship.Preferences.ToolIconSize;
+   ToolBar1.ButtonHeight:=Freeship.Preferences.ToolIconSize;
+
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'Cancel');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 1, 'Ok');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'Print');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'Calculate');
+
    Chart.Title.Text.Text:=Userstring(274);
    Chart.LeftAxis.Title.Caption:=Userstring(272)+' ,'+Userstring(330);
    Chart.BottomAxis.Title.Caption:=Userstring(273)+', '+Userstring(326);
@@ -668,4 +677,4 @@ begin
    end;
 end;{TFreeResistance_Kaper.CheckBox2Click}
 
-end.
+end.

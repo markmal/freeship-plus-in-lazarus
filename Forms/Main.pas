@@ -793,18 +793,27 @@ var AllW, lft, gap:integer;
         end;
     end;
 
-    function alignToolbar(tb:TToolBar; tbcw, lft, wdth: integer): integer;
-    var tbch, r,w :integer; c: TControl;
+    function alignToolbar(tb:TToolBar; tbcw, lft, wdth, cnt: integer): integer;
+    var tbch, r,w,bw :integer; c: TControl; b:TToolButton;
     begin
       tb.Top:=0;
       tb.Parent.Left:=lft;
       //tbcw := getToolbarControlsWidth(tb);
       //if tb.Name='ToolBarFile'
       //   then c:=c;
-      w:=round(wdth * (tbcw / (FAllToolbarsControlsWidth+tb.ButtonWidth*2)));
+      bw := tb.ButtonWidth;
+      b := tb.Buttons[0];
+      bw := b.Width;
+
+      // leave some space (bw+4)*cnt
+      w:=round((wdth) * (tbcw / (FAllToolbarsControlsWidth)));
+
       //tb.Width := w;
       r:=getToolbarXtrunc(tb,w);
-      tb.Width := max(r+4, tb.ButtonWidth+4);
+      if (lft+r)>(wdth-(bw+4)*cnt)
+        then r:=getToolbarXtrunc(tb,r-bw);
+
+      tb.Width := max(r+4, bw+4);
 
       //tb.Height := 16;
       tb.ReAlign;
@@ -827,14 +836,14 @@ begin
    then FAllToolbarsControlsWidth:=getAllToolbarsControlWidth;
   lft:=gap;
 
-  lft := alignToolbar(ToolBarFile, FToolBarFileControlsWidth, lft+gap, PanelMain.Width);
-  lft := alignToolbar(ToolBarEdit, FToolBarEditControlsWidth, lft+gap, PanelMain.Width);
-  lft := alignToolbar(ToolBarVisibility, FToolBarVisibilityControlsWidth, lft+gap, PanelMain.Width);
-  lft := alignToolbar(ToolBarLayers, FToolBarLayersControlsWidth, lft+gap, PanelMain.Width);
-  lft := alignToolbar(ToolBarPoints, FToolBarPointsControlsWidth, lft+gap, PanelMain.Width);
-  lft := alignToolbar(ToolBarEdges, FToolBarEdgesControlsWidth, lft+gap, PanelMain.Width);
-  lft := alignToolbar(ToolBarFaces, FToolBarFacesControlsWidth, lft+gap, PanelMain.Width);
-  lft := alignToolbar(ToolBarCurves, FToolBarCurvesControlsWidth, lft+gap, PanelMain.Width);
+  lft := alignToolbar(ToolBarFile, FToolBarFileControlsWidth, lft+gap, PanelMain.Width, 7);
+  lft := alignToolbar(ToolBarEdit, FToolBarEditControlsWidth, lft+gap, PanelMain.Width, 6);
+  lft := alignToolbar(ToolBarVisibility, FToolBarVisibilityControlsWidth, lft+gap, PanelMain.Width, 5);
+  lft := alignToolbar(ToolBarLayers, FToolBarLayersControlsWidth, lft+gap, PanelMain.Width, 4);
+  lft := alignToolbar(ToolBarPoints, FToolBarPointsControlsWidth, lft+gap, PanelMain.Width, 3);
+  lft := alignToolbar(ToolBarEdges, FToolBarEdgesControlsWidth, lft+gap, PanelMain.Width, 2);
+  lft := alignToolbar(ToolBarFaces, FToolBarFacesControlsWidth, lft+gap, PanelMain.Width, 1);
+  lft := alignToolbar(ToolBarCurves, FToolBarCurvesControlsWidth, lft+gap, PanelMain.Width, 0);
 
   {
   //make all toolbars uniform height

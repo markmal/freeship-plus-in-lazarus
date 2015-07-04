@@ -11,7 +11,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.0.4'
   object PageControl1: TPageControl
     Left = 0
     Height = 469
@@ -23,16 +23,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 437
-      ClientWidth = 834
+      ClientHeight = 439
+      ClientWidth = 836
       object Panel1: TPanel
         Left = 0
-        Height = 437
+        Height = 439
         Top = 0
         Width = 416
         Align = alLeft
         BevelOuter = bvLowered
-        ClientHeight = 437
+        ClientHeight = 439
         ClientWidth = 416
         TabOrder = 0
         object GroupBox1: TGroupBox
@@ -41,14 +41,14 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 10
           Width = 400
           Caption = 'General'
-          ClientHeight = 86
-          ClientWidth = 396
+          ClientHeight = 84
+          ClientWidth = 392
           TabOrder = 0
           object Label1: TLabel
             Left = 5
             Height = 14
             Top = 23
-            Width = 65
+            Width = 64
             Caption = 'Start speed'
             ParentColor = False
           end
@@ -56,7 +56,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 5
             Height = 14
             Top = 46
-            Width = 63
+            Width = 62
             Caption = 'End speed '
             ParentColor = False
           end
@@ -64,7 +64,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 5
             Height = 14
             Top = 69
-            Width = 25
+            Width = 26
             Caption = 'Step'
             ParentColor = False
           end
@@ -72,7 +72,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 170
             Height = 14
             Top = 23
-            Width = 78
+            Width = 76
             Caption = 'Water density'
             ParentColor = False
           end
@@ -80,7 +80,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 170
             Height = 14
             Top = 46
-            Width = 50
+            Width = 49
             Caption = 'Viscosity'
             ParentColor = False
           end
@@ -88,7 +88,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 141
             Height = 14
             Top = 23
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -96,7 +96,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 141
             Height = 14
             Top = 46
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -104,7 +104,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 141
             Height = 14
             Top = 69
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -112,7 +112,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 300
             Height = 14
             Top = 23
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -120,7 +120,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 300
             Height = 14
             Top = 46
-            Width = 67
+            Width = 65
             Caption = '*10-6  m2/s'
             ParentColor = False
           end
@@ -221,14 +221,14 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 112
           Width = 400
           Caption = 'Hull'
-          ClientHeight = 174
-          ClientWidth = 396
+          ClientHeight = 172
+          ClientWidth = 392
           TabOrder = 1
           object Label13: TLabel
             Left = 5
             Height = 14
             Top = 131
-            Width = 85
+            Width = 84
             Caption = 'Wetted surface'
             ParentColor = False
           end
@@ -252,7 +252,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 5
             Height = 14
             Top = 62
-            Width = 93
+            Width = 90
             Caption = 'Beam waterline '
             ParentColor = False
           end
@@ -260,7 +260,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 5
             Height = 14
             Top = 39
-            Width = 94
+            Width = 93
             Caption = 'Length waterline'
             ParentColor = False
           end
@@ -268,7 +268,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 180
             Height = 14
             Top = 108
-            Width = 118
+            Width = 116
             Caption = 'Prismatic coefficient '
             ParentColor = False
           end
@@ -284,7 +284,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 180
             Height = 14
             Top = 62
-            Width = 76
+            Width = 77
             Caption = 'Displacement'
             ParentColor = False
           end
@@ -292,7 +292,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 180
             Height = 14
             Top = 39
-            Width = 94
+            Width = 91
             Caption = 'Waterplane area'
             ParentColor = False
           end
@@ -300,7 +300,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 151
             Height = 14
             Top = 39
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -308,7 +308,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 151
             Height = 14
             Top = 62
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -316,7 +316,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 151
             Height = 14
             Top = 85
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -324,7 +324,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 151
             Height = 14
             Top = 108
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -332,7 +332,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 151
             Height = 14
             Top = 129
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -340,7 +340,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 363
             Height = 14
             Top = 39
-            Width = 26
+            Width = 27
             Caption = '[m2]'
             ParentColor = False
           end
@@ -348,7 +348,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 363
             Height = 14
             Top = 62
-            Width = 26
+            Width = 27
             Caption = '[m2]'
             ParentColor = False
           end
@@ -356,7 +356,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 363
             Height = 14
             Top = 85
-            Width = 18
+            Width = 19
             Caption = '[%]'
             ParentColor = False
           end
@@ -452,9 +452,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
           end
           object EstimateBox: TCheckBox
             Left = 4
-            Height = 21
+            Height = 20
             Top = 151
-            Width = 110
+            Width = 102
             Caption = 'Use estimate'
             OnClick = EstimateBoxClick
             TabOrder = 5
@@ -533,9 +533,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
           end
           object CheckBox2: TCheckBox
             Left = 4
-            Height = 21
+            Height = 20
             Top = 14
-            Width = 215
+            Width = 193
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 10
@@ -547,14 +547,14 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 304
           Width = 195
           Caption = 'Keel'
-          ClientHeight = 71
-          ClientWidth = 191
+          ClientHeight = 69
+          ClientWidth = 187
           TabOrder = 2
           object Label28: TLabel
             Left = 5
             Height = 14
             Top = 48
-            Width = 69
+            Width = 68
             Caption = 'Wetted area'
             ParentColor = False
           end
@@ -562,7 +562,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 5
             Height = 14
             Top = 25
-            Width = 118
+            Width = 115
             Caption = 'Average chordlength'
             ParentColor = False
           end
@@ -570,7 +570,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 162
             Height = 14
             Top = 25
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -578,7 +578,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 162
             Height = 14
             Top = 48
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -625,14 +625,14 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 304
           Width = 201
           Caption = 'Rudder'
-          ClientHeight = 71
-          ClientWidth = 197
+          ClientHeight = 69
+          ClientWidth = 193
           TabOrder = 3
           object Label6: TLabel
             Left = 5
             Height = 14
             Top = 25
-            Width = 118
+            Width = 115
             Caption = 'Average chordlength'
             ParentColor = False
           end
@@ -640,7 +640,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 5
             Height = 14
             Top = 48
-            Width = 69
+            Width = 68
             Caption = 'Wetted area'
             ParentColor = False
           end
@@ -648,7 +648,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 162
             Height = 14
             Top = 25
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -656,7 +656,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 162
             Height = 14
             Top = 48
-            Width = 26
+            Width = 27
             Caption = '[m2]'
             ParentColor = False
           end
@@ -700,9 +700,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
       end
       object Chart: TChart
         Left = 416
-        Height = 437
+        Height = 439
         Top = 0
-        Width = 418
+        Width = 420
         AxisList = <        
           item
             Minors = <>

@@ -861,6 +861,15 @@ var Units : TFreeUnitType;
     Temper:single;
 begin
    FFreeship:=Freeship;
+
+   ToolBar1.ButtonWidth :=Freeship.Preferences.ToolIconSize;
+   ToolBar1.ButtonHeight:=Freeship.Preferences.ToolIconSize;
+
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'Cancel');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 1, 'Ok');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'Print');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'Calculate');
+
    Chart.Title.Text.Text:=' ';
 //   Chart.LeftAxis.Title.Caption:=Userstring(272)+', '+Userstring(330);
    Chart.BottomAxis.Title.Caption:=Userstring(273)+', '+Userstring(326);
@@ -1526,4 +1535,4 @@ var   T,Ta,Tf,D,L,B,V,Cb,Cp,Abt,Cbt,Ca,ks,appd,Sapp,Thb :single;
 end;
 
 end.
-
+

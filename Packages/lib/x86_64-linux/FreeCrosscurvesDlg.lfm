@@ -11,7 +11,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.2'
+  LCLVersion = '1.4.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -128,14 +128,14 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
         Top = 5
         Width = 243
         Caption = 'Displacements.'
-        ClientHeight = 205
-        ClientWidth = 239
+        ClientHeight = 203
+        ClientWidth = 235
         TabOrder = 0
         object Label1: TLabel
           Left = 104
           Height = 14
           Top = 86
-          Width = 61
+          Width = 60
           Caption = 'Start displ.'
           ParentColor = False
         end
@@ -143,7 +143,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 104
           Height = 14
           Top = 124
-          Width = 55
+          Width = 54
           Caption = 'End displ.'
           ParentColor = False
         end
@@ -151,7 +151,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 104
           Height = 14
           Top = 162
-          Width = 59
+          Width = 58
           Caption = 'Displ. step'
           ParentColor = False
         end
@@ -162,9 +162,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Width = 85
           ItemHeight = 0
           OnMouseDown = DisplBoxMouseDown
-          ScrollWidth = 83
           TabOrder = 0
-          TopIndex = -1
         end
         object FreeNumInput1: TFreeNumInput
           Left = 8
@@ -203,9 +201,9 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
         end
         object CheckBox1: TCheckBox
           Left = 104
-          Height = 21
+          Height = 20
           Top = 64
-          Width = 140
+          Width = 128
           Caption = 'Incremental displ.'
           OnClick = CheckBox1Click
           TabOrder = 4
@@ -268,8 +266,8 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
         Top = 232
         Width = 243
         Caption = 'Heeling angles.'
-        ClientHeight = 113
-        ClientWidth = 239
+        ClientHeight = 111
+        ClientWidth = 235
         TabOrder = 2
         object HeelBox: TListBox
           Left = 8
@@ -278,9 +276,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Width = 65
           ItemHeight = 0
           OnClick = HeelBoxClick
-          ScrollWidth = 63
           TabOrder = 0
-          TopIndex = -1
         end
         object FreeNumInput5: TFreeNumInput
           Left = 8
@@ -324,14 +320,14 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
         Top = 368
         Width = 243
         Caption = 'Data for SSD:'
-        ClientHeight = 314
-        ClientWidth = 239
+        ClientHeight = 312
+        ClientWidth = 235
         TabOrder = 1
         object Label1_: TLabel
           Left = 8
           Height = 14
           Top = 20
-          Width = 127
+          Width = 124
           Caption = 'Projected displ., [tons]'
           ParentColor = False
         end
@@ -339,7 +335,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 46
-          Width = 123
+          Width = 120
           Caption = 'Estimated Z CoG, [m]'
           ParentColor = False
         end
@@ -347,7 +343,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 64
-          Width = 31
+          Width = 30
           Caption = 'Area:'
           ParentColor = False
         end
@@ -355,7 +351,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 80
-          Width = 118
+          Width = 116
           Caption = 'of bilge keels, [m^2]'
           ParentColor = False
         end
@@ -363,7 +359,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 104
-          Width = 84
+          Width = 83
           Caption = 'of skeg, [m^2]'
           ParentColor = False
         end
@@ -371,7 +367,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 130
-          Width = 142
+          Width = 139
           Caption = 'Lateral wind area, [m^2]'
           ParentColor = False
         end
@@ -379,7 +375,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 156
-          Width = 206
+          Width = 199
           Caption = 'Z CoG of wind area above DWL, [m]'
           ParentColor = False
         end
@@ -387,7 +383,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 182
-          Width = 190
+          Width = 187
           Caption = 'Decrease metacentric height, [m]'
           ParentColor = False
         end
@@ -395,7 +391,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 208
-          Width = 167
+          Width = 163
           Caption = 'Immersion deck angle, [degr]'
           ParentColor = False
         end
@@ -403,16 +399,16 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 230
-          Width = 104
+          Width = 102
           Caption = 'Navigation region:'
           ParentColor = False
         end
         object ComboBox: TComboBox
           Left = 130
-          Height = 25
+          Height = 24
           Top = 228
           Width = 110
-          ItemHeight = 0
+          ItemHeight = 16
           ItemIndex = 0
           Items.Strings = (
             'Nonlimit'
@@ -431,16 +427,16 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 14
           Top = 256
-          Width = 50
+          Width = 49
           Caption = 'Registry:'
           ParentColor = False
         end
         object ComboBox1: TComboBox
           Left = 100
-          Height = 25
+          Height = 24
           Top = 254
           Width = 140
-          ItemHeight = 0
+          ItemHeight = 16
           ItemIndex = 0
           Items.Strings = (
             'Russian Registry 2010'
@@ -604,13 +600,13 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Graph'
-        ClientHeight = 669
-        ClientWidth = 670
+        ClientHeight = 671
+        ClientWidth = 672
         object Chart: TChart
           Left = 0
-          Height = 669
+          Height = 671
           Top = 0
-          Width = 670
+          Width = 672
           AxisList = <          
             item
               Minors = <>

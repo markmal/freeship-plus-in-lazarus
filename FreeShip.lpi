@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="9"/>
+      <BuildNr Value="15"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -45,21 +45,24 @@
         <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="4">
+    <RequiredPackages Count="5">
       <Item1>
-        <PackageName Value="FreePackage"/>
+        <PackageName Value="lazopenglcontext"/>
       </Item1>
       <Item2>
-        <PackageName Value="TAChartLazarusPkg"/>
+        <PackageName Value="FreePackage"/>
       </Item2>
       <Item3>
-        <PackageName Value="Printer4Lazarus"/>
+        <PackageName Value="TAChartLazarusPkg"/>
       </Item3>
       <Item4>
-        <PackageName Value="LCL"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item4>
+      <Item5>
+        <PackageName Value="LCL"/>
+      </Item5>
     </RequiredPackages>
-    <Units Count="69">
+    <Units Count="70">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -106,7 +109,6 @@
         <ComponentName Value="FreeSplashWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeSplashWndw"/>
       </Unit6>
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
@@ -158,7 +160,6 @@
         <ComponentName Value="FreePreferencesDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreePreferencesDlg"/>
       </Unit13>
       <Unit14>
         <Filename Value="Forms/FreeExpanedPlatesDlg.pas"/>
@@ -182,7 +183,6 @@
         <ComponentName Value="FreeLinesplanForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeLinesplanFrm"/>
       </Unit16>
       <Unit17>
         <Filename Value="Forms/FreeSaveImageDlg.pas"/>
@@ -190,7 +190,6 @@
         <ComponentName Value="SaveImageDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeSaveImageDlg"/>
       </Unit17>
       <Unit18>
         <Filename Value="Forms/FreeInsertPlaneDlg.pas"/>
@@ -238,6 +237,7 @@
         <ComponentName Value="FreeResistance_Holtr"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_HoltrDlg"/>
       </Unit23>
       <Unit24>
         <Filename Value="Forms/FreeResistance_HollenDlg.pas"/>
@@ -245,6 +245,7 @@
         <ComponentName Value="FreeResistance_Hollen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_HollenDlg"/>
       </Unit24>
       <Unit25>
         <Filename Value="Forms/FreeResistance_OortmerDlg.pas"/>
@@ -252,6 +253,7 @@
         <ComponentName Value="FreeResistance_Oortmer"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_OortmerDlg"/>
       </Unit25>
       <Unit26>
         <Filename Value="Forms/FreeResistance_FungLeibDlg.pas"/>
@@ -259,6 +261,7 @@
         <ComponentName Value="FreeResistance_FungLeib"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_FungLeibDlg"/>
       </Unit26>
       <Unit27>
         <Filename Value="Forms/FreeResistance_OSTDlg.pas"/>
@@ -266,6 +269,7 @@
         <ComponentName Value="FreeResistance_OST"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeResistance_OSTDlg"/>
       </Unit27>
       <Unit28>
         <Filename Value="Forms/FreePropeller_Task1Dlg.pas"/>
@@ -281,6 +285,7 @@
         <ComponentName Value="FreePropeller_Task2"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreePropeller_Task2Dlg"/>
       </Unit29>
       <Unit30>
         <Filename Value="Forms/FreePropeller_Task3Dlg.pas"/>
@@ -288,6 +293,7 @@
         <ComponentName Value="FreePropeller_Task3"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreePropeller_Task3Dlg"/>
       </Unit30>
       <Unit31>
         <Filename Value="Forms/FreeHydrodyn_Task1Dlg.pas"/>
@@ -324,7 +330,6 @@
       <Unit35>
         <Filename Value="Units/FreeNumInput.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeNumInput"/>
       </Unit35>
       <Unit36>
         <Filename Value="Units/VRMLUnit.pas"/>
@@ -341,7 +346,6 @@
       <Unit38>
         <Filename Value="Units/FreeIGESUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeIGESUnit"/>
       </Unit38>
       <Unit39>
         <Filename Value="Forms/FreeIntersectLayerDlg.pas"/>
@@ -381,12 +385,10 @@
         <ComponentName Value="FreeCylinderDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeCylinderDlg"/>
       </Unit43>
       <Unit44>
         <Filename Value="Units/FreeStringsUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeStringsUnit"/>
       </Unit44>
       <Unit45>
         <Filename Value="Forms/Free2DDXFExportDlg.pas"/>
@@ -415,7 +417,6 @@
       <Unit48>
         <Filename Value="Units/FasterList.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FasterList"/>
       </Unit48>
       <Unit49>
         <Filename Value="Forms/FreeHydrodyn_RVRSDlg.pas"/>
@@ -481,7 +482,6 @@
       <Unit57>
         <Filename Value="Units/FreeTypes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeTypes"/>
       </Unit57>
       <Unit58>
         <Filename Value="Units/FreeFileBuffer.pas"/>
@@ -501,12 +501,10 @@
         <ComponentName Value="FreeAboutDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeAboutDlg"/>
       </Unit61>
       <Unit62>
         <Filename Value="Units/colorfactory.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ColorFactory"/>
       </Unit62>
       <Unit63>
         <Filename Value="Units/FreeBitmap.pas"/>
@@ -535,6 +533,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit68>
+      <Unit69>
+        <Filename Value="Units/FreeViewPortOpenGL.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeViewPortOpenGL"/>
+      </Unit69>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

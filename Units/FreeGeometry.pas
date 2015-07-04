@@ -352,9 +352,9 @@ type TFreeSubdivisionBase           = class;
                                  public
                                     constructor Create(AOwner:TComponent);                                  override;
                                     destructor Destroy;                                                     override;
-                                    procedure DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:Integer);
-                                    procedure InitializeViewport(Min,Max:T3DCoordinate);
-                                    procedure Print(Units:TFreeUnitType;AskPrintScale:Boolean;Jobname:string);
+                                    procedure DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:Integer); virtual;
+                                    procedure InitializeViewport(Min,Max:T3DCoordinate);                    virtual;
+                                    procedure Print(Units:TFreeUnitType;AskPrintScale:Boolean;Jobname:string); virtual;
                                     function Project(P:T3DCoordinate):TPoint;
                                     function ProjectBack(P:TPoint;Input:T3DCoordinate):T3DCoordinate;
                                     function ProjectBackTo2D(P:TPoint):T2DCoordinate;        // Takes the cursor position and projects it to 2D object space
@@ -362,12 +362,12 @@ type TFreeSubdivisionBase           = class;
                                     function ProjectToZBuffer(Scale:TFloatType;P:T3DCoordinate):TShadePoint;  reintroduce;overload;// Projects a 3D point with a certain z-buffer offset to the screen, used for drawing lines on top of shaded surfaces
                                     function RotatedPoint(P:T3DCoordinate):T3DCoordinate;
                                     function RotatedPointBack(P:T3DCoordinate):T3DCoordinate;
-                                    procedure SaveAsBitmap(Filename:string;const ShowDialog:boolean=true);
-                                    procedure SetPenWidth(Width:integer);
-                                    Procedure ShadedColor(Dp:single;R,G,B:byte;var ROut,GOut,BOut:byte);
+                                    procedure SaveAsBitmap(Filename:string;const ShowDialog:boolean=true);   virtual;
+                                    procedure SetPenWidth(Width:integer);                                    virtual;
+                                    Procedure ShadedColor(Dp:single;R,G,B:byte;var ROut,GOut,BOut:byte);     virtual;
                                     procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R,G,B:byte;Alpha:byte);overload;virtual;
-                                    procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;C1,C2,C3:Extended);reintroduce;overload;
-                                    procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R1,G1,B1,R2,G2,B2,R3,G3,B3:byte);reintroduce;overload;
+                                    procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;C1,C2,C3:Extended); virtual;//reintroduce;overload;
+                                    procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R1,G1,B1,R2,G2,B2,R3,G3,B3:byte); virtual;//reintroduce;overload;
                                     procedure ZoomIn;
                                     procedure ZoomExtents;
                                     procedure ZoomOut;
@@ -428,6 +428,8 @@ type TFreeSubdivisionBase           = class;
                                     property OnRequestBackgroundImage  : TNotifyEvent read FOnRequestBackgroundImage write FOnRequestBackgroundImage;
                                     property OnRequestExtents     : TOnRequestExtentsEvent read FOnRequestExtents write FOnRequestExtents;
                               end;
+
+
      {---------------------------------------------------------------------------------------------------}
      {                                           TFreeDevelopedPatch                                     }
      {                                                                                                   }

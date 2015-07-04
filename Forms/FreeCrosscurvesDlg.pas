@@ -185,6 +185,15 @@ uses FreeLanguageSupport,
 function TFreeCrosscurvesDialog.Execute(Freeship:TFreeship):Boolean;
 begin
    FFreeship:=Freeship;
+
+   ToolBar1.ButtonWidth :=Freeship.Preferences.ToolIconSize;
+   ToolBar1.ButtonHeight:=Freeship.Preferences.ToolIconSize;
+
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'Cancel');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 1, 'Ok');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'Print');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'Calculate');
+
    Pagecontrol1.ActivePage:=Tabsheet1;
    Chart.Title.Text.Text:=Userstring(293);
    Chart.LeftAxis.Title.Caption:=Userstring(996)+', '+LengthStr(FFreeship.ProjectSettings.ProjectUnits);

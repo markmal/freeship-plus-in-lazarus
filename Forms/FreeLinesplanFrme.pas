@@ -146,7 +146,6 @@ begin
    ShowFillcolor.Enabled:=not ShowMonochrome.Checked;
    UseLights.Enabled:=(ShowFillcolor.Checked) and (not ShowMonochrome.Checked);
    MirrorPlanview.Enabled:=Freeship.NumberofDiagonals=0;
-
 end;{TFreeLinesplanFrame.UpdateMenu}
 
 procedure TFreeLinesplanFrame.FSetFreeShip(Val:TFreeShip);

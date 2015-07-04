@@ -6,6 +6,8 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
   ClientHeight = 494
   ClientWidth = 761
   TabOrder = 0
+  DesignLeft = 30
+  DesignTop = 86
   object Viewport: TFreeViewport
     Left = 0
     Height = 470

@@ -12,7 +12,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -30,6 +30,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -46,6 +47,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
     end
     object _ToolButton14: TToolButton
       Left = 65
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'
@@ -85,32 +87,32 @@ object FreePropeller_Task4: TFreePropeller_Task4
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 526
-      ClientWidth = 794
+      ClientHeight = 528
+      ClientWidth = 796
       object Panel1: TPanel
         Left = 0
-        Height = 526
+        Height = 528
         Top = 0
-        Width = 794
+        Width = 796
         Align = alClient
         BorderWidth = 10
-        ClientHeight = 526
-        ClientWidth = 794
+        ClientHeight = 528
+        ClientWidth = 796
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 504
+          Height = 506
           Top = 11
-          Width = 772
+          Width = 774
           Align = alClient
-          ClientHeight = 504
-          ClientWidth = 772
+          ClientHeight = 506
+          ClientWidth = 774
           TabOrder = 0
           object Label2: TLabel
             Left = 8
             Height = 14
             Top = 34
-            Width = 83
+            Width = 81
             Caption = 'Ship speed, kn'
             ParentColor = False
           end
@@ -118,7 +120,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 62
-            Width = 83
+            Width = 82
             Caption = 'Resistance, kN'
             ParentColor = False
           end
@@ -126,7 +128,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 90
-            Width = 184
+            Width = 177
             Caption = 'Type of propeller (1-FPP ; 2-CPP)'
             ParentColor = False
           end
@@ -134,7 +136,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 118
-            Width = 101
+            Width = 98
             Caption = 'Number of blades'
             ParentColor = False
           end
@@ -150,7 +152,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 174
-            Width = 74
+            Width = 73
             Caption = 'Pitch fraction'
             ParentColor = False
           end
@@ -158,7 +160,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 202
-            Width = 174
+            Width = 169
             Caption = 'Initial diameter of propeller, m'
             ParentColor = False
           end
@@ -166,7 +168,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 230
-            Width = 77
+            Width = 76
             Caption = 'Wake fraction'
             ParentColor = False
           end
@@ -174,7 +176,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 258
-            Width = 130
+            Width = 126
             Caption = 'Depth of axis propeller'
             ParentColor = False
           end
@@ -182,7 +184,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 286
-            Width = 187
+            Width = 181
             Caption = 'Minimal diameter of propeller, m'
             ParentColor = False
           end
@@ -190,7 +192,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 314
-            Width = 191
+            Width = 185
             Caption = 'Maximal diameter of propeller, m'
             ParentColor = False
           end
@@ -198,7 +200,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 342
-            Width = 188
+            Width = 184
             Caption = 'Burrill Back Cavitation Constraint'
             ParentColor = False
           end
@@ -206,7 +208,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 370
-            Width = 139
+            Width = 136
             Caption = 'Rotative coefficient EtaR'
             ParentColor = False
           end
@@ -214,7 +216,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 398
-            Width = 86
+            Width = 83
             Caption = 'Gear efficiency'
             ParentColor = False
           end
@@ -222,7 +224,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Left = 8
             Height = 14
             Top = 426
-            Width = 87
+            Width = 86
             Caption = 'Shaft efficiency'
             ParentColor = False
           end
@@ -241,6 +243,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object Edit3: TFreeNumInput
@@ -258,6 +261,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object Edit4: TFreeNumInput
@@ -275,6 +279,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object Edit5: TFreeNumInput
@@ -292,6 +297,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object Edit6: TFreeNumInput
@@ -309,6 +315,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object Edit7: TFreeNumInput
@@ -326,6 +333,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object Edit8: TFreeNumInput
@@ -343,6 +351,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object Edit9: TFreeNumInput
@@ -360,6 +369,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = False
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object Edit10: TFreeNumInput
@@ -377,6 +387,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object Edit11: TFreeNumInput
@@ -394,6 +405,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 9
           end
           object Edit12: TFreeNumInput
@@ -411,6 +423,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
           object Edit13: TFreeNumInput
@@ -428,6 +441,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 11
           end
           object Edit14: TFreeNumInput
@@ -445,6 +459,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 12
           end
           object Edit15: TFreeNumInput
@@ -462,6 +477,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 13
           end
           object Edit16: TFreeNumInput
@@ -479,11 +495,12 @@ object FreePropeller_Task4: TFreePropeller_Task4
             Value = 0
             Validate = True
             OnAfterSetValue = Edit1AfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 14
           end
           object Chart: TChart
-            Left = 251
-            Height = 502
+            Left = 253
+            Height = 504
             Top = 1
             Width = 520
             AxisList = <            
@@ -548,9 +565,9 @@ object FreePropeller_Task4: TFreePropeller_Task4
           end
           object CheckBox2: TCheckBox
             Left = 9
-            Height = 21
+            Height = 20
             Top = 8
-            Width = 215
+            Width = 193
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 16
@@ -746,4 +763,4 @@ object FreePropeller_Task4: TFreePropeller_Task4
     left = 193
     top = 3
   end
-end
+end

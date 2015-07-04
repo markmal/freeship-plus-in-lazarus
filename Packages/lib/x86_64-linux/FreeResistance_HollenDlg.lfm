@@ -11,7 +11,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object PageControl1: TPageControl
     Left = 0
     Height = 576
@@ -23,16 +23,16 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 544
-      ClientWidth = 844
+      ClientHeight = 546
+      ClientWidth = 846
       object Panel1: TPanel
         Left = 0
-        Height = 544
+        Height = 546
         Top = 0
         Width = 408
         Align = alLeft
         BevelOuter = bvLowered
-        ClientHeight = 544
+        ClientHeight = 546
         ClientWidth = 408
         TabOrder = 0
         object GroupBox1: TGroupBox
@@ -41,14 +41,14 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           Top = 10
           Width = 382
           Caption = 'General'
-          ClientHeight = 94
-          ClientWidth = 378
+          ClientHeight = 92
+          ClientWidth = 374
           TabOrder = 0
           object Label1: TLabel
             Left = 5
             Height = 14
             Top = 23
-            Width = 65
+            Width = 64
             Caption = 'Start speed'
             ParentColor = False
           end
@@ -56,7 +56,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 46
-            Width = 91
+            Width = 89
             Caption = 'Estimate speed '
             ParentColor = False
           end
@@ -64,7 +64,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 69
-            Width = 85
+            Width = 83
             Caption = 'Maximal speed'
             ParentColor = False
           end
@@ -72,7 +72,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 180
             Height = 14
             Top = 23
-            Width = 78
+            Width = 76
             Caption = 'Water density'
             ParentColor = False
           end
@@ -80,7 +80,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 180
             Height = 14
             Top = 46
-            Width = 50
+            Width = 49
             Caption = 'Viscosity'
             ParentColor = False
           end
@@ -88,7 +88,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 146
             Height = 14
             Top = 23
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -96,7 +96,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 146
             Height = 14
             Top = 46
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -104,7 +104,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 146
             Height = 14
             Top = 69
-            Width = 13
+            Width = 14
             Caption = 'kn'
             ParentColor = False
           end
@@ -139,6 +139,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object EndSpeedBox: TFreeNumInput
@@ -156,6 +157,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object StepSpeedBox: TFreeNumInput
@@ -173,6 +175,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object DensityBox: TFreeNumInput
@@ -190,6 +193,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object ViscosityBox: TFreeNumInput
@@ -207,6 +211,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = StartSpeedBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
         end
@@ -216,14 +221,14 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           Top = 128
           Width = 382
           Caption = 'Hull'
-          ClientHeight = 352
-          ClientWidth = 378
+          ClientHeight = 350
+          ClientWidth = 374
           TabOrder = 1
           object Label13: TLabel
             Left = 5
             Height = 14
             Top = 131
-            Width = 85
+            Width = 84
             Caption = 'Wetted surface'
             ParentColor = False
           end
@@ -231,7 +236,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 85
-            Width = 73
+            Width = 74
             Caption = 'Midship draft'
             ParentColor = False
           end
@@ -239,7 +244,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 108
-            Width = 49
+            Width = 50
             Caption = 'Different'
             ParentColor = False
           end
@@ -247,7 +252,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 62
-            Width = 93
+            Width = 90
             Caption = 'Beam waterline '
             ParentColor = False
           end
@@ -255,7 +260,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 269
-            Width = 124
+            Width = 122
             Caption = 'Form stern coefficient'
             ParentColor = False
           end
@@ -263,7 +268,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 292
-            Width = 121
+            Width = 117
             Caption = 'Number of propellers'
             ParentColor = False
           end
@@ -271,7 +276,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 315
-            Width = 118
+            Width = 114
             Caption = 'Propeller diametr, m'
             ParentColor = False
           end
@@ -279,7 +284,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 246
-            Width = 148
+            Width = 144
             Caption = 'Absolute roughness, mkm'
             ParentColor = False
           end
@@ -287,7 +292,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 39
-            Width = 94
+            Width = 93
             Caption = 'Length waterline'
             ParentColor = False
           end
@@ -295,7 +300,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 175
             Height = 14
             Top = 108
-            Width = 118
+            Width = 116
             Caption = 'Prismatic coefficient '
             ParentColor = False
           end
@@ -311,7 +316,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 175
             Height = 14
             Top = 62
-            Width = 76
+            Width = 77
             Caption = 'Displacement'
             ParentColor = False
           end
@@ -319,7 +324,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 175
             Height = 14
             Top = 39
-            Width = 114
+            Width = 111
             Caption = 'Length over surface'
             ParentColor = False
           end
@@ -335,7 +340,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 147
             Height = 14
             Top = 39
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -343,7 +348,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 147
             Height = 14
             Top = 62
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -351,7 +356,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 147
             Height = 14
             Top = 85
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -359,7 +364,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 147
             Height = 14
             Top = 108
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -367,7 +372,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 147
             Height = 14
             Top = 129
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -375,7 +380,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 340
             Height = 14
             Top = 39
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -383,7 +388,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 340
             Height = 14
             Top = 62
-            Width = 19
+            Width = 20
             Caption = '[m]'
             ParentColor = False
           end
@@ -391,7 +396,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 340
             Height = 14
             Top = 85
-            Width = 18
+            Width = 19
             Caption = '[%]'
             ParentColor = False
           end
@@ -399,7 +404,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 177
-            Width = 153
+            Width = 148
             Caption = 'Number of thrusters (0...2)'
             ParentColor = False
           end
@@ -407,7 +412,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 200
-            Width = 149
+            Width = 143
             Caption = 'Bulbous area on F.P., m^2'
             ParentColor = False
           end
@@ -415,7 +420,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Left = 5
             Height = 14
             Top = 223
-            Width = 152
+            Width = 147
             Caption = 'Full Cargo or Ballast (0...1)'
             ParentColor = False
           end
@@ -434,6 +439,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object BwlBox: TFreeNumInput
@@ -451,6 +457,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object DraftBox: TFreeNumInput
@@ -468,6 +475,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object DraftTotalBox: TFreeNumInput
@@ -485,6 +493,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = DraftTotalBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object WettedSurfacebox: TFreeNumInput
@@ -502,22 +511,23 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object EstimateBox: TCheckBox
             Left = 4
-            Height = 21
+            Height = 20
             Top = 151
-            Width = 110
+            Width = 102
             Caption = 'Use estimate'
             OnClick = EstimateBoxClick
             TabOrder = 11
           end
           object Estimate2Box: TCheckBox
             Left = 174
-            Height = 21
+            Height = 20
             Top = 151
-            Width = 119
+            Width = 110
             Caption = 'Use calculated'
             OnClick = Estimate2BoxClick
             TabOrder = 5
@@ -538,6 +548,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object DisplacementBox: TFreeNumInput
@@ -556,6 +567,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object LCBBox: TFreeNumInput
@@ -574,6 +586,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 12
           end
           object CpBox: TFreeNumInput
@@ -592,6 +605,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = True
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 9
           end
           object KeBox: TFreeNumInput
@@ -610,6 +624,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 1
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 13
           end
           object BABox: TFreeNumInput
@@ -627,6 +642,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 14
           end
           object KBulbBox: TFreeNumInput
@@ -644,6 +660,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 15
           end
           object ZBulbBox: TFreeNumInput
@@ -661,6 +678,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 16
           end
           object CstrnBox: TFreeNumInput
@@ -678,6 +696,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 17
           end
           object NpBox: TFreeNumInput
@@ -695,6 +714,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 18
           end
           object DpBox: TFreeNumInput
@@ -712,6 +732,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 19
           end
           object KsBox: TFreeNumInput
@@ -729,13 +750,14 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object CheckBox2: TCheckBox
             Left = 5
-            Height = 21
+            Height = 20
             Top = 14
-            Width = 215
+            Width = 193
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 10
@@ -744,9 +766,9 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
       end
       object Chart: TChart
         Left = 408
-        Height = 544
+        Height = 546
         Top = 0
-        Width = 436
+        Width = 438
         AxisList = <        
           item
             Minors = <>
@@ -839,8 +861,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           Top = 10
           Width = 371
           Caption = 'Added data input:'
-          ClientHeight = 464
-          ClientWidth = 367
+          ClientHeight = 462
+          ClientWidth = 363
           TabOrder = 1
           object Label6_1: TLabel
             Left = 5
@@ -1033,6 +1055,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 0
           end
           object A2Box: TFreeNumInput
@@ -1050,6 +1073,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
           object A3Box: TFreeNumInput
@@ -1067,6 +1091,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object A4Box: TFreeNumInput
@@ -1084,6 +1109,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object A5Box: TFreeNumInput
@@ -1101,6 +1127,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object A6Box: TFreeNumInput
@@ -1118,6 +1145,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object A7Box: TFreeNumInput
@@ -1135,6 +1163,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object A8Box: TFreeNumInput
@@ -1152,6 +1181,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object A9Box: TFreeNumInput
@@ -1169,6 +1199,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 9
           end
           object A10Box: TFreeNumInput
@@ -1186,6 +1217,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
           object A11Box: TFreeNumInput
@@ -1203,6 +1235,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
         end
@@ -1212,8 +1245,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           Top = 10
           Width = 371
           Caption = 'Number of appendages :'
-          ClientHeight = 464
-          ClientWidth = 367
+          ClientHeight = 462
+          ClientWidth = 363
           TabOrder = 0
           object Label30: TLabel
             Left = 5
@@ -1294,6 +1327,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 2
           end
           object K2Box: TFreeNumInput
@@ -1311,6 +1345,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 3
           end
           object K3Box: TFreeNumInput
@@ -1328,6 +1363,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 4
           end
           object K4Box: TFreeNumInput
@@ -1345,6 +1381,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 5
           end
           object K5Box: TFreeNumInput
@@ -1362,6 +1399,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 6
           end
           object K6Box: TFreeNumInput
@@ -1379,6 +1417,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 7
           end
           object K7Box: TFreeNumInput
@@ -1396,6 +1435,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = LwlBoxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 8
           end
           object Label281: TLabel
@@ -1437,6 +1477,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
             ParentFont = False
@@ -1457,6 +1498,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 10
           end
           object Label61: TLabel
@@ -1498,6 +1540,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
             ParentFont = False
@@ -1518,6 +1561,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Value = 0
             Validate = False
             OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            BorderColor = clBtnShadow
             TabOrder = 1
           end
         end
@@ -1601,6 +1645,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     TabOrder = 1
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton10'
@@ -1624,6 +1669,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
     object _ToolButton14: TToolButton
       Left = 115
+      Height = 22
       Top = 2
       Width = 10
       Caption = '_ToolButton14'

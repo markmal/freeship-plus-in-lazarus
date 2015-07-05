@@ -327,21 +327,21 @@ var I,J,N,K       : Integer;
       Proj2.Y:=Attachpoint.Y+P2.Y;
       Proj2.Z:=0.0;
       Pts[1]:=Viewport.Project(Proj2);
-      Viewport.DrawingCanvas.Polyline(Pts);
+      Viewport.Polyline(Pts);
       if Text<>'' then
       begin
          if (CenterText) and (Pts[0].X=Pts[1].X) then
          begin
-            W:=Viewport.DrawingCanvas.TextWidth(Text) div 2;
-            Viewport.DrawingCanvas.TextOut(Pts[0].X-W,Pts[0].Y,Text);
-            Viewport.DrawingCanvas.TextOut(Pts[1].X-W,Pts[1].Y,Text);
+            W:=Viewport.TextWidth(Text) div 2;
+            Viewport.TextOut(Pts[0].X-W,Pts[0].Y,Text);
+            Viewport.TextOut(Pts[1].X-W,Pts[1].Y,Text);
          end else
          begin
             W:=0;
-            Viewport.DrawingCanvas.TextOut(Pts[1].X-W,Pts[0].Y,Text);
-            if (Pts[0].Y=Pts[1].Y) and (Pts[1].X<>Pts[0].X) then W:=Viewport.DrawingCanvas.TextWidth(Text)
+            Viewport.TextOut(Pts[1].X-W,Pts[0].Y,Text);
+            if (Pts[0].Y=Pts[1].Y) and (Pts[1].X<>Pts[0].X) then W:=Viewport.TextWidth(Text)
                                                             else W:=0;
-            Viewport.DrawingCanvas.TextOut(Pts[0].X-W,Pts[1].Y,Text);
+            Viewport.TextOut(Pts[0].X-W,Pts[1].Y,Text);
          end;
       end;
    end;{DrawLineAtt}
@@ -354,19 +354,19 @@ var I,J,N,K       : Integer;
       P.Y:=Origin.Y+P1.Z;
       P.Z:=0.0;
       Pt:=Viewport.Project(P);
-      Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+      Viewport.MoveTo(Pt.X,Pt.Y);
       P.X:=Origin.X+P2.Y;
       P.Y:=Origin.Y+P2.Z;
       Pt:=Viewport.Project(P);
-      Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y);
+      Viewport.LineTo(Pt.X,Pt.Y);
       P.X:=Origin.X-P1.Y;
       P.Y:=Origin.Y+P1.Z;
       Pt:=Viewport.Project(P);
-      Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+      Viewport.MoveTo(Pt.X,Pt.Y);
       P.X:=Origin.X-P2.Y;
       P.Y:=Origin.Y+P2.Z;
       Pt:=Viewport.Project(P);
-      Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y);
+      Viewport.LineTo(Pt.X,Pt.Y);
    end;{DrawDiagonalLine}
 
    procedure DrawLine(P1,P2:T3DCoordinate);
@@ -383,7 +383,7 @@ var I,J,N,K       : Integer;
       Proj2.Y:=FProfileOrigin.Y+P2.Z;
       Proj2.Z:=0.0;
       Pts[1]:=Viewport.Project(Proj2);
-      Viewport.DrawingCanvas.Polyline(Pts);
+      Viewport.Polyline(Pts);
 
       // Draw in aft view of bodyplan
       if (P1.X<=Mainframe) and (P2.X<Mainframe) then
@@ -394,14 +394,14 @@ var I,J,N,K       : Integer;
          Proj2.X:=FAftOrigin.X-P2.Y;
          Proj2.Y:=FAftOrigin.Y+P2.Z;
          Pts[1]:=Viewport.Project(Proj2);
-         Viewport.DrawingCanvas.PolyLine(Pts);
+         Viewport.PolyLine(Pts);
          Proj1.X:=FAftOrigin.X+P1.Y;
          Proj1.Y:=FAftOrigin.Y+P1.Z;
          Pts[0]:=Viewport.Project(Proj1);
          Proj2.X:=FAftOrigin.X+P2.Y;
          Proj2.Y:=FAftOrigin.Y+P2.Z;
          Pts[1]:=Viewport.Project(Proj2);
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
       end;
 
       // Draw in front view of bodyplan
@@ -413,14 +413,14 @@ var I,J,N,K       : Integer;
          Proj2.X:=FFrontOrigin.X-P2.Y;
          Proj2.Y:=FFrontOrigin.Y+P2.Z;
          Pts[1]:=Viewport.Project(Proj2);
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
          Proj1.X:=FFrontOrigin.X+P1.Y;
          Proj1.Y:=FFrontOrigin.Y+P1.Z;
          Pts[0]:=Viewport.Project(Proj1);
          Proj2.X:=FFrontOrigin.X+P2.Y;
          Proj2.Y:=FFrontOrigin.Y+P2.Z;
          Pts[1]:=Viewport.Project(Proj2);
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
       end;
       // Draw in plan view
       Proj1.X:=FPlanOrigin.X+P1.X;
@@ -429,7 +429,7 @@ var I,J,N,K       : Integer;
       Proj2.X:=FPlanOrigin.X+P2.X;
       Proj2.Y:=FPlanOrigin.Y+P2.Y;
       Pts[1]:=Viewport.Project(Proj2);
-      Viewport.DrawingCanvas.Polyline(Pts);
+      Viewport.Polyline(Pts);
       if (Freeship.NumberofDiagonals=0) and (MirrorPlanview.Checked) then
       begin
          Proj1.X:=FPlanOrigin.X+P1.X;
@@ -438,7 +438,7 @@ var I,J,N,K       : Integer;
          Proj2.X:=FPlanOrigin.X+P2.X;
          Proj2.Y:=FPlanOrigin.Y-P2.Y;
          Pts[1]:=Viewport.Project(Proj2);
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
       end;
    end;{DrawLine}
 
@@ -459,7 +459,7 @@ var I,J,N,K       : Integer;
             Pr.Z:=0.0;
             Pts[I]:=Viewport.Project(Pr);
          end;
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
       end;
       if (lvAftBody in views) and (Spline.Max.X<=MainFrame) then
       begin
@@ -471,7 +471,7 @@ var I,J,N,K       : Integer;
             Pr.Z:=0.0;
             Pts[I]:=Viewport.Project(Pr);
          end;
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
          for I:=0 to steps do
          begin
             P:=Spline.Value(I/steps);
@@ -480,7 +480,7 @@ var I,J,N,K       : Integer;
             Pr.Z:=0.0;
             Pts[I]:=Viewport.Project(Pr);
          end;
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
       end;
       if (lvFrontBody in views) and (Spline.Min.X>=MainFrame) then
       begin
@@ -492,7 +492,7 @@ var I,J,N,K       : Integer;
             Pr.Z:=0.0;
             Pts[I]:=Viewport.Project(Pr);
          end;
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
          for I:=0 to steps do
          begin
             P:=Spline.Value(I/steps);
@@ -501,7 +501,7 @@ var I,J,N,K       : Integer;
             Pr.Z:=0.0;
             Pts[I]:=Viewport.Project(Pr);
          end;
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
       end;
       if lvPLan in views then
       begin
@@ -513,7 +513,7 @@ var I,J,N,K       : Integer;
             Pr.Z:=0.0;
             Pts[I]:=Viewport.Project(Pr);
          end;
-         Viewport.DrawingCanvas.Polyline(Pts);
+         Viewport.Polyline(Pts);
          if (Freeship.NumberofDiagonals=0) and (MirrorPlanview.Checked) then
          begin
             for I:=0 to steps do
@@ -524,7 +524,7 @@ var I,J,N,K       : Integer;
                Pr.Z:=0.0;
                Pts[I]:=Viewport.Project(Pr);
             end;
-            Viewport.DrawingCanvas.Polyline(Pts);
+            Viewport.Polyline(Pts);
          end;
       end;
    end;{DrawSpline}
@@ -680,7 +680,7 @@ var I,J,N,K       : Integer;
             P.X:=FAftOrigin.X-Triangle.P3.Y;
             P.Y:=FAftOrigin.Y+Triangle.P3.Z;
             Pts[2]:=Viewport.Project(P);
-            Viewport.DrawingCanvas.Polygon(Pts);
+            Viewport.Polygon(Pts);
             if Triangle.Symmetric then
             begin
                P.X:=FAftOrigin.X+Triangle.P1.Y;
@@ -692,7 +692,7 @@ var I,J,N,K       : Integer;
                P.X:=FAftOrigin.X+Triangle.P3.Y;
                P.Y:=FAftOrigin.Y+Triangle.P3.Z;
                Pts[2]:=Viewport.Project(P);
-               Viewport.DrawingCanvas.Polygon(Pts);
+               Viewport.Polygon(Pts);
             end;
          end;
       end else
@@ -725,7 +725,7 @@ var I,J,N,K       : Integer;
                P.X:=FProfileOrigin.X+Triangle.P3.X;
                P.Y:=FProfileOrigin.Y+Triangle.P3.Z;
                Pts[2]:=Viewport.Project(P);
-               Viewport.DrawingCanvas.Polygon(Pts);
+               Viewport.Polygon(Pts);
             end;
 
             if lvFrontBody in views then
@@ -751,7 +751,7 @@ var I,J,N,K       : Integer;
                P.X:=FFrontOrigin.X-Triangle.P3.Y;
                P.Y:=FFrontOrigin.Y+Triangle.P3.Z;
                Pts[2]:=Viewport.Project(P);
-               Viewport.DrawingCanvas.Polygon(Pts);
+               Viewport.Polygon(Pts);
                if Triangle.Symmetric then
                begin
                   P.X:=FFrontOrigin.X+Triangle.P1.Y;
@@ -763,7 +763,7 @@ var I,J,N,K       : Integer;
                   P.X:=FFrontOrigin.X+Triangle.P3.Y;
                   P.Y:=FFrontOrigin.Y+Triangle.P3.Z;
                   Pts[2]:=Viewport.Project(P);
-                  Viewport.DrawingCanvas.Polygon(Pts);
+                  Viewport.Polygon(Pts);
                end;
             end;
             if lvPlan in views then
@@ -789,7 +789,7 @@ var I,J,N,K       : Integer;
                P.X:=FPlanOrigin.X+Triangle.P3.X;
                P.Y:=FPlanOrigin.Y+Triangle.P3.Y;
                Pts[2]:=Viewport.Project(P);
-               Viewport.DrawingCanvas.Polygon(Pts);
+               Viewport.Polygon(Pts);
                if (Freeship.NumberofDiagonals=0) and (MirrorPlanview.Checked) and (Triangle.Symmetric) then
                begin
                   P.X:=FPlanOrigin.X+Triangle.P1.X;
@@ -801,7 +801,7 @@ var I,J,N,K       : Integer;
                   P.X:=FPlanOrigin.X+Triangle.P3.X;
                   P.Y:=FPlanOrigin.Y-Triangle.P3.Y;
                   Pts[2]:=Viewport.Project(P);
-                  Viewport.DrawingCanvas.Polygon(Pts);
+                  Viewport.Polygon(Pts);
                end;
             end;
          end;
@@ -814,13 +814,13 @@ var I,J,N,K       : Integer;
    begin
       // Sets the fontheight to a height in modelspace
       Height:=DesiredHeight*Viewport.Scale*Viewport.Zoom;
-      Viewport.DrawingCanvas.Font.Size:=8;
-      CurrentHeight:=Viewport.DrawingCanvas.TextHeight('X');
+      Viewport.Font.Size:=8;
+      CurrentHeight:=Viewport.TextHeight('X');
       while CurrentHeight>Height do
       begin
-         Viewport.DrawingCanvas.Font.Size:=Viewport.DrawingCanvas.Font.Size-1;
-         CurrentHeight:=Viewport.DrawingCanvas.TextHeight('X');
-         if Viewport.DrawingCanvas.Font.Size<6 then break;
+         Viewport.Font.Size:=Viewport.Font.Size-1;
+         CurrentHeight:=Viewport.TextHeight('X');
+         if Viewport.Font.Size<6 then break;
       end;
    end;{SetFontHeight}
 
@@ -1106,7 +1106,7 @@ begin
                P.Z:=0.0;
                Pts[K]:=Viewport.Project(P);
             end;
-            Viewport.DrawingCanvas.Polyline(Pts);
+            Viewport.Polyline(Pts);
             // draw as grid in bodyplan views
             Viewport.SetPenWidth(PenwidthFactor);
             if ShowMonochrome.Checked then Viewport.PenColor:=clBlack

@@ -1076,16 +1076,16 @@ procedure TFreeKeelWizardDialog.ViewportRedraw(Sender: TObject);
       Viewport.BrushColor:=clWhite;
       Viewport.BrushStyle:=bsSolid;
       // Draw entire circle in white;
-      Viewport.DrawingCanvas.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
+      Viewport.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
       // Draw upper left part in black
       Viewport.BrushColor:=clBlack;
-      //Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y-Size,Pt.X-Size,Pt.Y-1);
-      Viewport.DrawingCanvas.Line(Pt.X-Size,Pt.Y,Pt.X+Size,Pt.Y);
-      Viewport.DrawingCanvas.Line(Pt.X,Pt.Y-Size,Pt.X,Pt.Y-Size);
+      //Viewport.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y-Size,Pt.X-Size,Pt.Y-1);
+      Viewport.Line(Pt.X-Size,Pt.Y,Pt.X+Size,Pt.Y);
+      Viewport.Line(Pt.X,Pt.Y-Size,Pt.X,Pt.Y-Size);
       // Draw lower right part in black
-      //Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y+Size,Pt.X+Size,Pt.Y-1);
+      //Viewport.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y+Size,Pt.X+Size,Pt.Y-1);
       Viewport.BrushStyle:=bsClear;
-      if Text<>'' then Viewport.DrawingCanvas.TextOut(Pt.X+2*size,Pt.Y,Text);
+      if Text<>'' then Viewport.TextOut(Pt.X+2*size,Pt.Y,Text);
     end;{DrawPoint}
 
 var Pts  : array of TPoint;
@@ -1121,14 +1121,14 @@ begin
                  Pts[J-1]:=Viewport.Project(
                                             Mesh[I-1,J-1]
                                             );
-               Viewport.DrawingCanvas.Polyline(Pts);
+               Viewport.Polyline(Pts);
                for J:=1 to C do
                begin
                   P1:=Mesh[I-1,J-1];
                   P1.Y:=-P1.Y;
                   Pts[J-1]:=Viewport.Project(P1);
                end;
-               Viewport.DrawingCanvas.Polyline(Pts);
+               Viewport.Polyline(Pts);
             end;
             Setlength(Pts,R);
             //Setlength(Mesh,Cols*Rows);
@@ -1141,7 +1141,7 @@ begin
                                 else Viewport.PenColor:=clSilver;
                for I:=1 to Rows do
                    Pts[I-1]:=Viewport.Project(Mesh[I-1,J-1]);
-               Viewport.DrawingCanvas.Polyline(Pts);
+               Viewport.Polyline(Pts);
                R:=Rows;
                if not IsUptoDate then
                  UpdateData;
@@ -1151,7 +1151,7 @@ begin
                   P1.Y:=-P1.Y;
                   Pts[I-1]:=Viewport.Project(P1);
                end;
-               Viewport.DrawingCanvas.Polyline(Pts);
+               Viewport.Polyline(Pts);
             end;
             DrawPoint(SetPoint(COG.X,0,COG.Y),'');
 //Bulb intersections
@@ -1187,7 +1187,7 @@ begin
                   P1.Z:=-Input3.Value + dz;
                   Pts100[50+j]:=Viewport.Project(P1);
                 end;
-                Viewport.DrawingCanvas.Polyline(Pts100);
+                Viewport.Polyline(Pts100);
                 end
                 else
                 if (InputShape.ItemIndex=2) then
@@ -1206,7 +1206,7 @@ begin
                   Pts[3]:=Viewport.Project(P1);
                   Pts[4]:=Pts[0];
 
-                  Viewport.DrawingCanvas.Polyline(Pts);
+                  Viewport.Polyline(Pts);
                 end;
               end;
             end;

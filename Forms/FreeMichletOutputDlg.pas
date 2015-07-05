@@ -718,10 +718,10 @@ begin
          P2.Y:=Dist+Offsets[NumberOfStations-I][J-1];
          P2.Z:=(J-1)*ZSpacing;
          Pt:=Viewport.Project(P2);
-         if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+         if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
          begin
-            if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                        else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+            if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                        else Viewport.MoveTo(Pt.X,Pt.Y);
          end;
          P1:=P2;
       end;
@@ -732,10 +732,10 @@ begin
          P2.Y:=Dist-Offsets[NumberOfStations-I][J-1];
          P2.Z:=(J-1)*ZSpacing;
          Pt:=Viewport.Project(P2);
-         if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+         if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
          begin
-            if (P1.Y<Tmp) or (P2.Y<Tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                        else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+            if (P1.Y<Tmp) or (P2.Y<Tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                        else Viewport.MoveTo(Pt.X,Pt.Y);
          end;
          P1:=P2;
       end;
@@ -748,10 +748,10 @@ begin
             P2.Y:=-Dist+Offsets[NumberOfStations-I][J-1];
             P2.Z:=(J-1)*ZSpacing;
             Pt:=Viewport.Project(P2);
-            if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+            if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
             begin
-               if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                           else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+               if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                           else Viewport.MoveTo(Pt.X,Pt.Y);
             end;
             P1:=P2;
          end;
@@ -762,10 +762,10 @@ begin
             P2.Y:=-Dist-Offsets[NumberOfStations-I][J-1];
             P2.Z:=(J-1)*ZSpacing;
             Pt:=Viewport.Project(P2);
-            if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+            if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
             begin
-               if (P1.Y<tmp) or (P2.Y<tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                           else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+               if (P1.Y<tmp) or (P2.Y<tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                           else Viewport.MoveTo(Pt.X,Pt.Y);
             end;
             P1:=P2;
          end;
@@ -782,10 +782,10 @@ begin
          P2.Y:=Dist+Offsets[NumberOfStations-J][I-1];
          P2.X:=(J-1)*XSpacing;
          Pt:=Viewport.Project(P2);
-         if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+         if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
          begin
-            if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                        else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+            if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                        else Viewport.MoveTo(Pt.X,Pt.Y);
          end;
          P1:=P2;
       end;
@@ -796,10 +796,10 @@ begin
          P2.Y:=Dist-Offsets[NumberOfStations-J][I-1];
          P2.X:=(J-1)*XSpacing;
          Pt:=Viewport.Project(P2);
-         if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+         if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
          begin
-            if (P1.Y<Tmp) or (P2.Y<Tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                        else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+            if (P1.Y<Tmp) or (P2.Y<Tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                        else Viewport.MoveTo(Pt.X,Pt.Y);
          end;
          P1:=P2;
       end;
@@ -812,10 +812,10 @@ begin
             P2.Y:=-Dist+Offsets[NumberOfStations-J][I-1];
             P2.X:=(J-1)*XSpacing;
             Pt:=Viewport.Project(P2);
-            if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+            if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
             begin
-               if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                           else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+               if (P1.Y>Tmp) or (P2.Y>Tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                           else Viewport.MoveTo(Pt.X,Pt.Y);
             end;
             P1:=P2;
          end;
@@ -826,10 +826,10 @@ begin
             P2.Y:=-Dist-Offsets[NumberOfStations-J][I-1];
             P2.X:=(J-1)*XSpacing;
             Pt:=Viewport.Project(P2);
-            if J=1 then Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y) else
+            if J=1 then Viewport.MoveTo(Pt.X,Pt.Y) else
             begin
-               if (P1.Y<Tmp) or (P2.Y<Tmp) then Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y)
-                                           else Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+               if (P1.Y<Tmp) or (P2.Y<Tmp) then Viewport.LineTo(Pt.X,Pt.Y)
+                                           else Viewport.MoveTo(Pt.X,Pt.Y);
             end;
             P1:=P2;
          end;

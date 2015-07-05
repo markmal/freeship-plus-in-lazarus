@@ -3875,7 +3875,7 @@ begin
             Viewport.BrushStyle:=bsSolid;
             Viewport.PenColor:=Spline.Color;
             Viewport.PenStyle:=Spline.PenStyle;
-            Viewport.DrawingCanvas.Polygon(Pts);
+            Viewport.Polygon(Pts);
          end else
          }
          if DrawIt then
@@ -3903,14 +3903,14 @@ begin
                Viewport.PenStyle:=psSolid;
                for J:=0 to Spline.Fragments do if (J mod 10=0) or (J=0) or (J=Spline.Fragments) then
                begin
-                  Viewport.DrawingCanvas.MoveTo(Pts[J].X,Pts[J].Y);
-                  Viewport.DrawingCanvas.LineTo(CPts[J].X,CPts[J].Y);
+                  Viewport.MoveTo(Pts[J].X,Pts[J].Y);
+                  Viewport.LineTo(CPts[J].X,CPts[J].Y);
                end;
-               Viewport.DrawingCanvas.Polyline(CPts);
+               Viewport.Polyline(CPts);
             end;
             Viewport.PenColor:=Spline.Color;
             Viewport.PenStyle:=Spline.PenStyle;
-            Viewport.DrawingCanvas.Polyline(Pts);
+            Viewport.Polyline(Pts);
          end;
 
          DrawIt:=False;
@@ -3945,14 +3945,14 @@ begin
                Viewport.PenStyle:=psSolid;
                for J:=0 to Spline.Fragments do if (J mod 10=0) or (J=0) or (J=Spline.Fragments) then
                begin
-                  Viewport.DrawingCanvas.MoveTo(Pts[J].X,Pts[J].Y);
-                  Viewport.DrawingCanvas.LineTo(CPts[J].X,CPts[J].Y);
+                  Viewport.MoveTo(Pts[J].X,Pts[J].Y);
+                  Viewport.LineTo(CPts[J].X,CPts[J].Y);
                end;
-               Viewport.DrawingCanvas.Polyline(CPts);
+               Viewport.Polyline(CPts);
             end;
             Viewport.PenColor:=Spline.Color;
             Viewport.PenStyle:=Spline.PenStyle;
-            Viewport.DrawingCanvas.Polyline(Pts);
+            Viewport.Polyline(Pts);
          end;
          
       end;
@@ -4313,10 +4313,10 @@ begin
                Viewport.PenColor:=CurvatureColor;
                for J:=1 to Fragm do if (J mod 4=0) or (J=1) or (J=Fragm) then
                begin
-                  Viewport.DrawingCanvas.MoveTo(PArray1[J-1].X,PArray1[J-1].Y);
-                  Viewport.DrawingCanvas.LineTo(PArray2[J-1].X,PArray2[J-1].Y);
+                  Viewport.MoveTo(PArray1[J-1].X,PArray1[J-1].Y);
+                  Viewport.LineTo(PArray2[J-1].X,PArray2[J-1].Y);
                end;
-               Viewport.DrawingCanvas.Polyline(PArray2);
+               Viewport.Polyline(PArray2);
             end else
             begin
                SetLength(PArray1,Fragm);
@@ -4330,18 +4330,18 @@ begin
             end;
             Viewport.SetPenWidth(1);
             Viewport.PenColor:=Color;
-            Viewport.DrawingCanvas.Pen.Style:=Penstyle;
-            Viewport.DrawingCanvas.Polyline(PArray1);
+            Viewport.PenStyle:=Penstyle;
+            Viewport.Polyline(PArray1);
          end;
          for I:=1 to NumberOfPoints do
          begin
             P3D:=Point[I-1];
             if P3D.X<Owner.ProjectSettings.ProjectMainframeLocation then P3D.Y:=-P3D.Y;
             Pt:=Viewport.Project(P3D);
-            Viewport.DrawingCanvas.MoveTo(Pt.X-Size,Pt.Y-Size);
-            Viewport.DrawingCanvas.LineTo(Pt.X+Size,Pt.Y+Size);
-            Viewport.DrawingCanvas.MoveTo(Pt.X-Size,Pt.Y+Size);
-            Viewport.DrawingCanvas.LineTo(Pt.X+Size,Pt.Y-Size);
+            Viewport.MoveTo(Pt.X-Size,Pt.Y-Size);
+            Viewport.LineTo(Pt.X+Size,Pt.Y+Size);
+            Viewport.MoveTo(Pt.X-Size,Pt.Y+Size);
+            Viewport.LineTo(Pt.X+Size,Pt.Y-Size);
          end;
       end else
       begin
@@ -4349,10 +4349,10 @@ begin
          for I:=1 to NumberOfPoints do
          begin
             Pt:=Viewport.Project(Point[I-1]);
-            Viewport.DrawingCanvas.MoveTo(Pt.X-Size,Pt.Y-Size);
-            Viewport.DrawingCanvas.LineTo(Pt.X+Size,Pt.Y+Size);
-            Viewport.DrawingCanvas.MoveTo(Pt.X-Size,Pt.Y+Size);
-            Viewport.DrawingCanvas.LineTo(Pt.X+Size,Pt.Y-Size);
+            Viewport.MoveTo(Pt.X-Size,Pt.Y-Size);
+            Viewport.LineTo(Pt.X+Size,Pt.Y+Size);
+            Viewport.MoveTo(Pt.X-Size,Pt.Y+Size);
+            Viewport.LineTo(Pt.X+Size,Pt.Y-Size);
          end;
       end;
    end;
@@ -4542,13 +4542,13 @@ begin
       Viewport.BrushColor:=clWhite;
       Viewport.BrushStyle:=bsSolid;
       // Draw entire circle in white;
-      Viewport.DrawingCanvas.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
+      Viewport.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
       if Owner.Visibility.ModelView=mvBoth then
       begin
          P3D.Y:=-P3D.Y;
          Pt:=Viewport.Project(P3D);
          // Draw entire circle in white;
-         Viewport.DrawingCanvas.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
+         Viewport.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
       end;
    end;
 
@@ -4587,8 +4587,8 @@ begin
          end;
          Viewport.SetPenWidth(1);
          Viewport.PenColor:=FFlowline.Color;
-         Viewport.DrawingCanvas.Pen.Style:=FFlowline.Penstyle;
-         Viewport.DrawingCanvas.Polyline(PArray1);
+         Viewport.PenStyle:=FFlowline.Penstyle;
+         Viewport.Polyline(PArray1);
       end;
    end else
    begin
@@ -16205,14 +16205,14 @@ var I,Size        : integer;
       Viewport.BrushColor:=clWhite;
       Viewport.BrushStyle:=bsSolid;
       // Draw entire circle in white;
-      Viewport.DrawingCanvas.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
+      Viewport.Ellipse(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size);
       // Draw upper left part in black
       Viewport.BrushColor:=clBlack;
-      Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y-Size,Pt.X-Size,Pt.Y-1);
+      Viewport.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y-Size,Pt.X-Size,Pt.Y-1);
       // Draw lower right part in black
-      Viewport.DrawingCanvas.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y+Size,Pt.X+Size,Pt.Y-1);
+      Viewport.Pie(Pt.X-Size,Pt.Y-Size,Pt.X+Size,Pt.Y+Size,Pt.X-1,Pt.Y+Size,Pt.X+Size,Pt.Y-1);
       Viewport.BrushStyle:=bsClear;
-      Viewport.DrawingCanvas.TextOut(Pt.X+2*size,Pt.Y,Text);
+      Viewport.TextOut(Pt.X+2*size,Pt.Y,Text);
     end;{DrawPoint}
 
     procedure DrawGrid;
@@ -16235,13 +16235,13 @@ var I,Size        : integer;
         begin
            // Sets the fontheight to a height in modelspace
            Height:=DesiredHeight*Viewport.Scale*Viewport.Zoom;
-           Viewport.DrawingCanvas.Font.Size:=8;
-           CurrentHeight:=Viewport.DrawingCanvas.TextHeight('X');
+           Viewport.Font.Size:=8;
+           CurrentHeight:=Viewport.TextHeight('X');
            while CurrentHeight>Height do
            begin
-              Viewport.DrawingCanvas.Font.Size:=Viewport.DrawingCanvas.Font.Size-1;
-              CurrentHeight:=Viewport.DrawingCanvas.TextHeight('X');
-              if Viewport.DrawingCanvas.Font.Size<4 then break;
+              Viewport.Font.Size:=Viewport.Font.Size-1;
+              CurrentHeight:=Viewport.TextHeight('X');
+              if Viewport.Font.Size<4 then break;
            end;
         end;{SetFontHeight}
 
@@ -16262,7 +16262,7 @@ var I,Size        : integer;
           Viewport.FontColor:=Preferences.GridFontColor;
           // calculate and set fontheight
           SetFontHeight(DistPP3D(Min,Max)/FontheightFactor);
-          Height:=Viewport.DrawingCanvas.TextHeight('X');
+          Height:=Viewport.TextHeight('X');
           Viewport.BrushStyle:=bsClear;
           // draw centerline
           if Viewport.ViewType<>fvProfile then
@@ -16276,17 +16276,17 @@ var I,Size        : integer;
              P2.Y:=P1.Y;
              Pt1:=Viewport.Project(P1);
              Pt2:=Viewport.Project(P2);
-             Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-             Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
-             Width:=Viewport.DrawingCanvas.TextWidth(Str);
+             Viewport.MoveTo(Pt1.X,Pt1.Y);
+             Viewport.LineTo(Pt2.X,Pt2.Y);
+             Width:=Viewport.TextWidth(Str);
              if Viewport.ViewType=fvBodyplan then
              begin
-                Viewport.DrawingCanvas.TextOut(Pt1.X-Width div 2,Pt1.Y,str);
-                Viewport.DrawingCanvas.TextOut(Pt2.X-width div 2,Pt2.Y-Height,Str);
+                Viewport.TextOut(Pt1.X-Width div 2,Pt1.Y,str);
+                Viewport.TextOut(Pt2.X-width div 2,Pt2.Y-Height,Str);
              end else
              begin
-               Viewport.DrawingCanvas.TextOut(Pt1.X-Width,Pt1.Y-Height,str);
-               Viewport.DrawingCanvas.TextOut(Pt2.X,Pt2.Y-Height,Str);
+               Viewport.TextOut(Pt1.X-Width,Pt1.Y-Height,str);
+               Viewport.TextOut(Pt2.X,Pt2.Y-Height,Str);
              end;
              Viewport.PenWidth:=1;
              Viewport.FontColor:=Preferences.GridFontColor;
@@ -16304,11 +16304,11 @@ var I,Size        : integer;
              P2.Z:=P1.Z;
              Pt1:=Viewport.Project(P1);
              Pt2:=Viewport.Project(P2);
-             Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-             Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
-             Width:=Viewport.DrawingCanvas.TextWidth(Str);
-             Viewport.DrawingCanvas.TextOut(Pt1.X,Pt1.Y-Height,Str);
-             Viewport.DrawingCanvas.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+             Viewport.MoveTo(Pt1.X,Pt1.Y);
+             Viewport.LineTo(Pt2.X,Pt2.Y);
+             Width:=Viewport.TextWidth(Str);
+             Viewport.TextOut(Pt1.X,Pt1.Y-Height,Str);
+             Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
              // Draw dwl
              if ProjectSettings.FMainparticularsHasBeenset then
              begin
@@ -16320,11 +16320,11 @@ var I,Size        : integer;
                 P2.Z:=P1.Z;
                 Pt1:=Viewport.Project(P1);
                 Pt2:=Viewport.Project(P2);
-                Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
-                Width:=Viewport.DrawingCanvas.TextWidth(Str);
-                Viewport.DrawingCanvas.TextOut(Pt1.X-width div 2,Pt1.Y-Height,Str);
-                Viewport.DrawingCanvas.TextOut(Pt2.X-Width div 2,Pt2.Y-Height,str);
+                Viewport.MoveTo(Pt1.X,Pt1.Y);
+                Viewport.LineTo(Pt2.X,Pt2.Y);
+                Width:=Viewport.TextWidth(Str);
+                Viewport.TextOut(Pt1.X-width div 2,Pt1.Y-Height,Str);
+                Viewport.TextOut(Pt2.X-Width div 2,Pt2.Y-Height,str);
              end;
              Viewport.PenWidth:=1;
              Viewport.FontColor:=Preferences.GridFontColor;
@@ -16341,10 +16341,10 @@ var I,Size        : integer;
                 P2.X:=P1.X;
                 Pt1:=Viewport.Project(P1);
                 Pt2:=Viewport.Project(P2);
-                Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
-                Viewport.DrawingCanvas.TextOut(Pt1.X,Pt1.Y,Str);
-                Viewport.DrawingCanvas.TextOut(Pt2.X,Pt2.Y-Height,Str);
+                Viewport.MoveTo(Pt1.X,Pt1.Y);
+                Viewport.LineTo(Pt2.X,Pt2.Y);
+                Viewport.TextOut(Pt1.X,Pt1.Y,Str);
+                Viewport.TextOut(Pt2.X,Pt2.Y-Height,Str);
              end;
           end;
           if DrawDiagonals then
@@ -16361,7 +16361,7 @@ var I,Size        : integer;
                       P1:=Diagonal[I-1].Items[J-1].Value(N/100);
                       Pts[N]:=Viewport.Project(P1);
                    end;
-                   Viewport.DrawingCanvas.Polyline(Pts);
+                   Viewport.Polyline(Pts);
                    if (Visibility.ModelView=mvBoth) or (Viewport.ViewType=fvBodyplan) then
                    begin
                       for N:=0 to 100 do
@@ -16370,7 +16370,7 @@ var I,Size        : integer;
                          P1.Y:=-P1.Y;
                          Pts[N]:=Viewport.Project(P1);
                       end;
-                      Viewport.DrawingCanvas.Polyline(Pts);
+                      Viewport.Polyline(Pts);
                    end;
                 end;
              end;
@@ -16387,37 +16387,37 @@ var I,Size        : integer;
                 P2.Y:=P1.Y;
                 Pt1:=Viewport.Project(P1);
                 Pt2:=Viewport.Project(P2);
-                Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                Viewport.MoveTo(Pt1.X,Pt1.Y);
+                Viewport.LineTo(Pt2.X,Pt2.Y);
                 if Viewport.ViewType=fvBodyplan then Width:=0
-                                                else Width:=Viewport.DrawingCanvas.TextWidth(Str);
+                                                else Width:=Viewport.TextWidth(Str);
                 if Viewport.ViewType=fvBodyplan then
                 begin
-                   Viewport.DrawingCanvas.TextOut(Pt1.X,Pt1.Y,Str);
-                   Viewport.DrawingCanvas.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+                   Viewport.TextOut(Pt1.X,Pt1.Y,Str);
+                   Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
                 end else
                 begin
-                  Viewport.DrawingCanvas.TextOut(Pt1.X,Pt1.Y-Height,Str);
-                  Viewport.DrawingCanvas.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+                  Viewport.TextOut(Pt1.X,Pt1.Y-Height,Str);
+                  Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
                 end;
                 if (Visibility.ModelView=mvBoth) or (Viewport.ViewType=fvBodyplan) then
                 begin
                   P1.Y:=-Position;
                   P2.Y:=P1.Y;
                   Str:=ConvertDimension(-Position,ProjectSettings.ProjectUnits);
-                  Width:=Viewport.DrawingCanvas.TextWidth(Str);
+                  Width:=Viewport.TextWidth(Str);
                   Pt1:=Viewport.Project(P1);
                   Pt2:=Viewport.Project(P2);
-                  Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                  Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                  Viewport.MoveTo(Pt1.X,Pt1.Y);
+                  Viewport.LineTo(Pt2.X,Pt2.Y);
                   if Viewport.ViewType=fvBodyplan then
                   begin
-                     Viewport.DrawingCanvas.TextOut(Pt1.X-Width,Pt1.Y,Str);
-                     Viewport.DrawingCanvas.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+                     Viewport.TextOut(Pt1.X-Width,Pt1.Y,Str);
+                     Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
                   end else
                   begin
-                     Viewport.DrawingCanvas.TextOut(Pt2.X-Width,Pt2.Y,str);
-                     Viewport.DrawingCanvas.TextOut(Pt1.X,Pt1.Y,Str);
+                     Viewport.TextOut(Pt2.X-Width,Pt2.Y,str);
+                     Viewport.TextOut(Pt1.X,Pt1.Y,Str);
                   end;
                 end;
              end;
@@ -16434,11 +16434,11 @@ var I,Size        : integer;
                 P2.Z:=P1.Z;
                 Pt1:=Viewport.Project(P1);
                 Pt2:=Viewport.Project(P2);
-                Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
-                Width:=Viewport.DrawingCanvas.TextWidth(Str);
-                Viewport.DrawingCanvas.TextOut(Pt1.X,Pt1.Y-Height,Str);
-                Viewport.DrawingCanvas.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+                Viewport.MoveTo(Pt1.X,Pt1.Y);
+                Viewport.LineTo(Pt2.X,Pt2.Y);
+                Width:=Viewport.TextWidth(Str);
+                Viewport.TextOut(Pt1.X,Pt1.Y-Height,Str);
+                Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
              end;
           end;
        end;
@@ -16571,13 +16571,13 @@ begin
                Pt:=Viewport.Project(P);
                Size:=round(Sqrt(Viewport.Zoom)*3);
                if Size<1 then Size:=1;
-               Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y-Size);
-               Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y+Size);
-               Viewport.DrawingCanvas.MoveTo(Pt.X-Size,Pt.Y);
-               Viewport.DrawingCanvas.LineTo(Pt.X+Size,Pt.Y);
+               Viewport.MoveTo(Pt.X,Pt.Y-Size);
+               Viewport.LineTo(Pt.X,Pt.Y+Size);
+               Viewport.MoveTo(Pt.X-Size,Pt.Y);
+               Viewport.LineTo(Pt.X+Size,Pt.Y);
                Str:=FloatToStrF(FDesignHydrostatics.FData.SAC[I-1].Y,ffFixed,7,2);
-               if P.X<FProjectsettings.ProjectMainframeLocation then Viewport.DrawingCanvas.TextOut(Pt.X-Viewport.DrawingCanvas.TextWidth(str),Pt.Y-Viewport.DrawingCanvas.TextHeight(str),Str)
-                                                                else Viewport.DrawingCanvas.TextOut(Pt.X,Pt.Y-Viewport.DrawingCanvas.TextHeight(str),Str);
+               if P.X<FProjectsettings.ProjectMainframeLocation then Viewport.TextOut(Pt.X-Viewport.TextWidth(str),Pt.Y-Viewport.TextHeight(str),Str)
+                                                                else Viewport.TextOut(Pt.X,Pt.Y-Viewport.TextHeight(str),Str);
             end;
             Curve.Destroy;
          end;
@@ -16604,7 +16604,7 @@ begin
       Rect.Top:=5;
       Rect.Bottom:=Rect.Top+LegendHeight;
       Rect.Right:=Rect.Left+LegendWidth;
-      Viewport.DrawingCanvas.Rectangle(Rect);
+      Viewport.Rectangle(Rect);
       Viewport.FontName:='Arial';
       Viewport.FontSize:=8;
       Viewport.FontColor:=Preferences.GridFontColor;
@@ -16616,7 +16616,7 @@ begin
          FillColor(I/Nrect,R,G,B);
          Viewport.BrushColor:=RGB(R,G,B);
          Viewport.BrushStyle:=bsSolid;
-         Viewport.DrawingCanvas.Rectangle(Rect);
+         Viewport.Rectangle(Rect);
          Viewport.BrushStyle:=bsClear;
          if odd(I) then
          begin
@@ -16630,7 +16630,7 @@ begin
                Tmp:=2*(0.5-Tmp);
                Str:=FloatToStrF(Surface.MaxGaussCurvature*Tmp,ffFixed,7,NDecimal);
             end else Str:='0.0';
-            Viewport.DrawingCanvas.TextOut(Rect.Right+5,(Rect.Top+Rect.Bottom-Viewport.DrawingCanvas.TextHeight(str)) div 2,Str);
+            Viewport.TextOut(Rect.Right+5,(Rect.Top+Rect.Bottom-Viewport.TextHeight(str)) div 2,Str);
          end;
          Rect.Top:=Rect.Top+RectHeight;
       end;

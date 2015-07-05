@@ -314,6 +314,7 @@ type TFreeSubdivisionBase           = class;
                                     function  FGetFontColor:TColor;
                                     function  FGetFontName:string;
                                     function  FGetFontSize:Integer;
+                                    function  FGetFontHeight:integer;
                                     function  FGetPenColor:TColor;
                                     function  FGetPenStyle:TPenStyle;
                                     function  FGetPenWidth:integer;
@@ -327,6 +328,7 @@ type TFreeSubdivisionBase           = class;
                                     procedure FSetFontColor(Val:TColor);
                                     procedure FSetFontName(val:string);
                                     procedure FSetFontSize(val:integer);
+                                    procedure FSetFontHeight(val:integer);
                                     procedure FSetHorScrollbar(val:TScrollbar);
                                     procedure FSetVertScrollbar(val:TScrollbar);
                                     procedure FSetMargin(Val:TFloatType);
@@ -362,25 +364,43 @@ type TFreeSubdivisionBase           = class;
                                     function ProjectToZBuffer(Scale:TFloatType;P:T3DCoordinate):TShadePoint;  reintroduce;overload;// Projects a 3D point with a certain z-buffer offset to the screen, used for drawing lines on top of shaded surfaces
                                     function RotatedPoint(P:T3DCoordinate):T3DCoordinate;
                                     function RotatedPointBack(P:T3DCoordinate):T3DCoordinate;
+
+                                    procedure LineTo(x,y:integer); virtual;
+                                    procedure MoveTo(x,y:integer); virtual;
+                                    procedure Line(x1,y1, x2,y2:integer); virtual;
+                                    procedure Rectangle(x1,y1, x2,y2:integer); virtual; overload;
+                                    procedure Rectangle(rect:TRect); virtual; overload;
+                                    procedure Ellipse(x1,y1, x2,y2:integer); virtual;
+                                    procedure Pie(EllipseX1,EllipseY1,EllipseX2,EllipseY2, StartX,StartY,EndX,EndY: Integer); virtual;
+
+                                    procedure Polyline(const Points: array of TPoint);                      virtual;
+                                    procedure Polygon(const Points: array of TPoint);                      virtual;
                                     procedure SaveAsBitmap(Filename:string;const ShowDialog:boolean=true);   virtual;
                                     procedure SetPenWidth(Width:integer);                                    virtual;
+                                    procedure StretchDraw(DestRect:TRect; bmp:TBitmap);                      virtual;
                                     Procedure ShadedColor(Dp:single;R,G,B:byte;var ROut,GOut,BOut:byte);     virtual;
                                     procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R,G,B:byte;Alpha:byte);overload;virtual;
                                     procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;C1,C2,C3:Extended); virtual;//reintroduce;overload;
                                     procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R1,G1,B1,R2,G2,B2,R3,G3,B3:byte); virtual;//reintroduce;overload;
-                                    procedure ZoomIn;
-                                    procedure ZoomExtents;
-                                    procedure ZoomOut;
+                                    function  TextWidth(val:string):integer; virtual;
+                                    function  TextHeight(val:string):integer; virtual;
+                                    procedure TextOut(x,y:integer; val:string); virtual;
+                                    procedure ZoomIn; virtual;
+                                    procedure ZoomExtents; virtual;
+                                    procedure ZoomOut; virtual;
+
                                     property AlphaBuffer          : TFreeAlphaBuffer read FAlphaBuffer;
                                     property BackgroundMode       : TFreeViewportBackgroundMode read FBackgroundMode write FSetBackgroundMode;
                                     property BrushColor           : TColor read FGetBrushColor write FSetBrushColor;
                                     property BrushStyle           : TBrushStyle read FGetBrushStyle write FSetBrushStyle;
                                     property CameraLocation       : T3DCoordinate read FCameraLocation;
-                                    property DrawingCanvas        : TCanvas read FDrawingCanvas;
+                                    //property DrawingCanvas        : TCanvas read FDrawingCanvas;
                                     property FieldOfView          : TFloatType read FFieldOfView;
                                     property FontColor            : TColor read FGetFontColor write FSetFontColor;
                                     property FontName             : string read FGetFontname write FSetFontName;
                                     property FontSize             : integer read FGetFontSize write FSetFontSize;
+                                    property FontHeight           : integer read FGetFontHeight write FSetFontHeight;
+
                                     property Light                : TFreeLight read FLight;
                                     property Max3D                : T3DCoordinate read FMax3D;
                                     property Min3D                : T3DCoordinate read FMin3D;
@@ -2917,11 +2937,11 @@ begin
 end;{TFreeBackgroundImage.Destroy}
 
 procedure TFreeBackgroundImage.Draw;
-var Dest    : TRect;
+var DestRect    : TRect;
     I,J     : Integer;
     Scan    : PRGBTripleArray;
     Rt,Gt,Bt: Byte;
-    Tmp     : TBitmap;
+    TmpBmp     : TBitmap;
     DrawingToprinter:Boolean;
     Backgr  : TRGBTriple;
     TmpVal  : Byte;
@@ -2932,15 +2952,16 @@ var Dest    : TRect;
 begin
    if (Visible) and (Owner.ViewType=FShowInView) then
    begin
-      Dest:=TargetRect;
+      DestRect:=TargetRect;
 
-      Tmp:=TBitmap.Create;
-      Tmp.Assign(FBitmap);
-      //if Tmp.PixelFormat<>pf24bit then Tmp.PixelFormat:=pf24bit;
-      BitmapFormatHelper := TFreeBitmapFormatHelper.Create(Tmp);
+      TmpBmp:=TBitmap.Create;
+      TmpBmp.Assign(FBitmap);
+      //if TmpBmp.PixelFormat<>pf24bit then TmpBmp.PixelFormat:=pf24bit;
+      BitmapFormatHelper := TFreeBitmapFormatHelper.Create(TmpBmp);
 
-      DrawingToprinter:=False;
-      if Printer<>nil then DrawingToPrinter:=(FOwner.DrawingCanvas=Printer.Canvas) and (Fowner.FPrinting);
+      //DrawingToprinter:=False;
+      //if Printer<>nil then DrawingToPrinter:=(FOwner.DrawingCanvas=Printer.Canvas) and (Fowner.FPrinting);
+      DrawingToPrinter:=FOwner.FGetPrinting;
 
       if DrawingToPrinter then
       begin
@@ -2959,18 +2980,18 @@ begin
       Gt:=GetGValue(FTransparentColor);
       Bt:=GetBValue(FTransparentColor);
       TmpVal:=255-FAlpha;
-      Tmp.BeginUpdate(true);
+      TmpBmp.BeginUpdate(true);
       //if (Transparent) or (Alpha<>255) then
-      for I:=0 to Tmp.Height-1 do
+      for I:=0 to TmpBmp.Height-1 do
       begin
-         //Scan:=Tmp.ScanLine[I];
-         pRow := Tmp.RawImage.GetLineStart(I);
+         //Scan:=TmpBmp.ScanLine[I];
+         pRow := TmpBmp.RawImage.GetLineStart(I);
 
-         for J:=0 to Tmp.Width-1 do
+         for J:=0 to TmpBmp.Width-1 do
          begin
             pPixel := pRow + BitmapFormatHelper.BytesPerPixel * J;
             Pixel := BitmapFormatHelper.ToTRGBTriple(pPixel);
-            {C := Tmp.Canvas.Pixels[J,I];
+            {C := TmpBmp.Canvas.Pixels[J,I];
             Pixel.rgbtRed := Red(C);
             Pixel.rgbtGreen:=Green(C);
             Pixel.rgbtBlue:=Blue(C);}
@@ -2998,16 +3019,17 @@ begin
             end;
 
             BitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);
-            //Tmp.Canvas.Pixels[J,I]:= RGBtoColor(Pixel.rgbtRed,Pixel.rgbtGreen,Pixel.rgbtBlue);
+            //TmpBmp.Canvas.Pixels[J,I]:= RGBtoColor(Pixel.rgbtRed,Pixel.rgbtGreen,Pixel.rgbtBlue);
          end;
       end;  //for I
-      Tmp.EndUpdate(true);
+      TmpBmp.EndUpdate(true);
 
-      //StretchBlt(FOwner.DrawingCanvas.Handle,Dest.Left,Dest.Top,Dest.Right-Dest.Left,Dest.Bottom-Dest.Top,Tmp.Canvas.Handle,0,0,Tmp.Width,Tmp.Height,SRCCOPY);
-      FOwner.DrawingCanvas.StretchDraw(Dest,Tmp);
+      //StretchBlt(FOwner.DrawingCanvas.Handle,DestRect.Left,DestRect.Top,DestRect.Right-DestRect.Left,DestRect.Bottom-DestRect.Top,TmpBmp.Canvas.Handle,0,0,TmpBmp.Width,TmpBmp.Height,SRCCOPY);
+      //FOwner.DrawingCanvas.StretchDraw(DestRect,TmpBmp);
+      FOwner.StretchDraw(DestRect,TmpBmp);
       BitmapFormatHelper.Destroy;
       BitmapFormatHelper := nil;
-      tmp.Destroy;
+      TmpBmp.Destroy;
    end;
 end;{TFreeBackgroundImage.Draw}
 
@@ -3133,53 +3155,75 @@ end;{TFreeViewport.FSetBackgroundMode}
 
 procedure TFreeViewport.FSetBrushStyle(Val:TBrushStyle);
 begin
-   if Drawingcanvas.Brush.Style<>val then Drawingcanvas.Brush.Style:=Val;
+   if FDrawingcanvas.Brush.Style<>val then FDrawingcanvas.Brush.Style:=Val;
 end;{TFreeViewport.FSetBrushStyle}
 
 function TFreeViewport.FGetPenStyle:TPenStyle;
 begin
-   Result:=DrawingCanvas.Pen.Style;
+   Result:=FDrawingCanvas.Pen.Style;
 end;{TFreeViewport.FGetPenStyle}
 
 function TFreeViewport.FGetPenWidth:integer;
 begin
-   Result:=DrawingCanvas.Pen.Width;
+   Result:=FDrawingCanvas.Pen.Width;
 end;{TFreeViewport.FGetPenWidth}
 
 function TFreeViewport.FGetPrinting:Boolean;
 begin
-   if Printer=nil then Result:=False else Result:=FPrinting and (Drawingcanvas=printer.Canvas);
+   if Printer=nil then Result:=False else Result:=FPrinting and (FDrawingcanvas=printer.Canvas);
 end;{TFreeViewport.FGetPrinting}
 
 function TFreeViewport.FGetBrushStyle:TBrushStyle;
 begin
-   Result:=Drawingcanvas.Brush.Style;
+   Result:=FDrawingcanvas.Brush.Style;
 end;{TFreeViewport.FGetBrushStyle}
 
 function TFreeViewport.FGetPenColor:TColor;
 begin
-   Result:=DrawingCanvas.Pen.Color;
+   Result:=FDrawingCanvas.Pen.Color;
 end;{TFreeViewport.FGetPenColor}
 
 function TFreeViewport.FGetBrushColor:TColor;
 begin
-   Result:=DrawingCanvas.Brush.Color;
+   Result:=FDrawingCanvas.Brush.Color;
 end;{TFreeViewport.FGetBrushColor}
 
 function TFreeViewport.FGetFontColor:TColor;
 begin
-   Result:=DrawingCanvas.Font.Color;
+   Result:=FDrawingCanvas.Font.Color;
 end;{TFreeViewport.FGetFontColor}
 
 function TFreeViewport.FGetFontName:string;
 begin
-   Result:=Drawingcanvas.Font.Name;
+   Result:=FDrawingcanvas.Font.Name;
 end;{TFreeViewport.FGetFontName}
 
 function TFreeViewport.FGetFontSize:Integer;
 begin
-   Result:=DrawingCanvas.Font.Size;
+   Result:=FDrawingCanvas.Font.Size;
 end;{TFreeViewport.FGetFontSize}
+
+procedure TFreeViewport.StretchDraw(DestRect:TRect; bmp:TBitmap);
+begin
+   FDrawingCanvas.StretchDraw(DestRect, bmp);
+end;
+
+
+function TFreeViewport.TextWidth(val:string):integer;
+begin
+   result := FDrawingCanvas.TextWidth(val);
+end;
+
+function TFreeViewport.TextHeight(val:string):integer;
+begin
+   result := FDrawingCanvas.TextHeight(val);
+end;
+
+procedure TFreeViewport.TextOut(x,y:integer; val:string);
+begin
+   FDrawingCanvas.TextOut(x,y, val);
+end;
+
 
 procedure TFreeViewport.FSetCameraType(Val:TFreeCameraType);
 var Film : TFloatType;
@@ -3225,28 +3269,50 @@ end;{TFreeViewport.FSetPan}
 
 procedure TFreeViewport.FSetPenColor(Val:TColor);
 begin
-   if Drawingcanvas.Pen.Color<>val then Drawingcanvas.Pen.Color:=Val;
+   if FDrawingcanvas.Pen.Color<>val then FDrawingcanvas.Pen.Color:=Val;
 end;{TFreeViewport.FSetPenColor}
 
 procedure TFreeViewport.FSetBrushColor(Val:TColor);
 begin
-   if Drawingcanvas.Brush.Color<>val then Drawingcanvas.Brush.Color:=Val;
+   if FDrawingcanvas.Brush.Color<>val then FDrawingcanvas.Brush.Color:=Val;
 end;{TFreeViewport.FSetBrushColor}
 
 procedure TFreeViewport.FSetFontColor(Val:TColor);
 begin
-   if Drawingcanvas.Font.Color<>val then Drawingcanvas.Font.Color:=Val;
+   if FDrawingcanvas.Font.Color<>val then FDrawingcanvas.Font.Color:=Val;
 end;{TFreeViewport.FSetFontColor}
 
 procedure TFreeViewport.FSetFontName(val:string);
 begin
-   if Uppercase(Drawingcanvas.Font.Name)<>uppercase(name) then Drawingcanvas.Font.Name:=Name;
+   if Uppercase(FDrawingcanvas.Font.Name)<>uppercase(name) then FDrawingcanvas.Font.Name:=Name;
 end;{TFreeViewport.FSetFontName}
 
 procedure TFreeViewport.FSetFontSize(val:integer);
 begin
-   if Drawingcanvas.Font.Size<>val then Drawingcanvas.Font.Size:=val;
+   if FDrawingcanvas.Font.Size<>val then FDrawingcanvas.Font.Size:=val;
 end;{TFreeViewport.FSetFontSize}
+
+function TFreeViewport.FGetFontHeight:integer;
+begin
+   Result:=FDrawingCanvas.TextHeight('Xy');
+end;{TFreeViewport.FGetFontSize}
+
+procedure TFreeViewport.FSetFontHeight(val:integer);
+var Height         : TFloatType;
+  CurrentHeight  : Integer;
+begin
+  // Sets the fontheight to a height in modelspace
+  Height:=val*Self.Scale*Self.Zoom;
+  FSetFontSize(8);
+  CurrentHeight:=FDrawingCanvas.TextHeight('Xy');
+  while CurrentHeight>Height do
+    begin
+    FDrawingCanvas.Font.Size:=FDrawingCanvas.Font.Size-1;
+    CurrentHeight:=FDrawingCanvas.TextHeight('Xy');
+    if FDrawingCanvas.Font.Size<3 then break;
+    end;
+end;{SetFontHeight}
+
 
 procedure TFreeViewport.FSetHorScrollbar(val:TScrollbar);
 begin
@@ -3292,12 +3358,12 @@ end;{TFreeViewport.FSetMargin}
 
 procedure TFreeViewport.FSetPenStyle(Val:TPenStyle);
 begin
-   if Drawingcanvas.Pen.Style<>val then Drawingcanvas.Pen.Style:=Val;
+   if FDrawingcanvas.Pen.Style<>val then FDrawingcanvas.Pen.Style:=Val;
 end;{TFreeViewport.FSetPenStyle}
 
 procedure TFreeViewport.FSetPenWidth(Val:integer);
 begin
-   if Drawingcanvas.Pen.Width<>val then Drawingcanvas.Pen.Width:=Val;
+   if FDrawingcanvas.Pen.Width<>val then FDrawingcanvas.Pen.Width:=Val;
 end;{TFreeViewport.FSetPenWidth}
 
 function TFreeViewport.FGetPrintScaleFactor:TFloatType;
@@ -4104,6 +4170,54 @@ begin
    end;
 end;{TFreeViewport.Paint}
 
+procedure TFreeViewport.MoveTo(x,y:integer);
+begin
+  FDrawingCanvas.MoveTo(x,y);
+end;
+
+procedure TFreeViewport.LineTo(x,y:integer);
+begin
+  FDrawingCanvas.LineTo(x,y);
+end;
+
+procedure TFreeViewport.Line(x1,y1, x2,y2:integer);
+begin
+  FDrawingCanvas.Line(x1,y1, x2,y2);
+end;
+
+procedure TFreeViewport.Rectangle(x1,y1, x2,y2:integer);
+begin
+  FDrawingCanvas.Rectangle(x1,y1, x2,y2);
+end;
+
+procedure TFreeViewport.Rectangle(rect:TRect);
+begin
+  FDrawingCanvas.Rectangle(rect);
+end;
+
+procedure TFreeViewport.Ellipse(x1,y1, x2,y2:integer);
+begin
+  FDrawingCanvas.Ellipse(x1,y1, x2,y2);
+end;
+
+procedure TFreeViewport.Pie(EllipseX1,EllipseY1,EllipseX2,EllipseY2,
+                  StartX,StartY,EndX,EndY: Integer);
+begin
+  FDrawingCanvas.Pie(EllipseX1,EllipseY1,EllipseX2,EllipseY2,
+                  StartX,StartY,EndX,EndY);
+end;
+
+
+procedure TFreeViewport.Polyline(const Points: array of TPoint);
+begin
+  FDrawingCanvas.Polyline(points);
+end;
+
+procedure TFreeViewport.Polygon(const Points: array of TPoint);
+begin
+  FDrawingCanvas.Polygon(points);
+end;
+
 procedure TFreeViewport.SaveAsBitmap(Filename:string;const ShowDialog:boolean=true);
 var CanvasWidth   : Integer;
     CanvasHeight  : Integer;
@@ -4421,7 +4535,7 @@ end;{TFreeViewport.DoMouseWheel}
 
 procedure TFreeViewport.SetPenWidth(Width:integer);
 begin
-   if DrawingCanvas.Pen.Width<>Width then DrawingCanvas.Pen.Width:=Width;
+   if FDrawingCanvas.Pen.Width<>Width then FDrawingCanvas.Pen.Width:=Width;
 end;{TFreeViewport.SetPenWidth}
 
 Procedure TFreeViewport.ShadedColor(Dp:single;R,G,B:byte;var ROut,GOut,BOut:byte);
@@ -5502,24 +5616,8 @@ var I,J,K,S,E  : Integer;
        end;
        Viewport.SetPenWidth(PenwidthFactor);
        Viewport.PenColor:=Spline.Color;
-       Viewport.DrawingCanvas.Polyline(Pts);
+       Viewport. Polyline(Pts);
     end;{DrawSpline}
-
-   procedure SetFontHeight(DesiredHeight:TFloatType);
-   var Height         : TFloatType;
-       CurrentHeight  : Integer;
-   begin
-      // Sets the fontheight to a height in modelspace
-      Height:=DesiredHeight*Viewport.Scale*Viewport.Zoom;
-      Viewport.DrawingCanvas.Font.Size:=8;
-      CurrentHeight:=Viewport.DrawingCanvas.TextHeight('X');
-      while CurrentHeight>Height do
-      begin
-         Viewport.DrawingCanvas.Font.Size:=Viewport.DrawingCanvas.Font.Size-1;
-         CurrentHeight:=Viewport.DrawingCanvas.TextHeight('X');
-         if Viewport.DrawingCanvas.Font.Size<3 then break;
-      end;
-   end;{SetFontHeight}
 
    procedure Swap(var P1,P2:T3DCoordinate);
    var Tmp:T3DCoordinate;
@@ -5548,7 +5646,7 @@ var I,J,K,S,E  : Integer;
                P.Z:=0.0;
                Pt:=Viewport.Project(P);
                Str:=ConvertDimension(P.Y,Units);
-               Viewport.DrawingCanvas.TextOut(Pt.X-Viewport.DrawingCanvas.TextWidth(Str) div 2,Pt.Y,Str);
+               Viewport.TextOut(Pt.X-Viewport.TextWidth(Str) div 2,Pt.Y,Str);
             end;
             P.X:=P.X+XGrid;
          end;
@@ -5566,7 +5664,7 @@ var I,J,K,S,E  : Integer;
                P.Z:=0.0;
                Pt:=Viewport.Project(P);
                Str:=ConvertDimension(P.X,Units);
-               Viewport.DrawingCanvas.TextOut(Pt.X-Viewport.DrawingCanvas.TextWidth(Str) div 2,Pt.Y,Str);
+               Viewport.TextOut(Pt.X-Viewport.TextWidth(Str) div 2,Pt.Y,Str);
             end;
             P.Y:=P.Y+YGrid;
          end;
@@ -5581,7 +5679,7 @@ var I,J,K,S,E  : Integer;
       Pts[2]:=Viewport.Project(P3);
       Viewport.PenColor:=Color;
       Viewport.BrushColor:=Color;
-      Viewport.DrawingCanvas.Polygon(Pts);
+      Viewport.Polygon(Pts);
    end;{DrawTriangle}
 
 begin
@@ -5674,7 +5772,7 @@ begin
                   Pts[J-1]:=Viewport.Project(P1);
                end else Raise Exception.Create('Unrolled point could not be found!');
             end;
-            Viewport.DrawingCanvas.Polygon(Pts);
+            Viewport.Polygon(Pts);
          end;
          if FMirror then
          begin
@@ -5687,7 +5785,7 @@ begin
                   Pts[J-1]:=Viewport.Project(P1);
                end else Raise Exception.Create('Unrolled point could not be found!');
             end;
-            Viewport.DrawingCanvas.Polygon(Pts);
+            Viewport.Polygon(Pts);
          end;
       end;
    end;
@@ -5706,15 +5804,15 @@ begin
          if (S<>-1) and (E<>-1) then
          begin
             Pt:=Viewport.Project(self.Point[S]);
-            Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+            Viewport.MoveTo(Pt.X,Pt.Y);
             Pt:=Viewport.Project(self.Point[E]);
-            Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y);
+            Viewport.LineTo(Pt.X,Pt.Y);
             if FMirror then
             begin
                Pt:=Viewport.Project(MirrorPoint[S]);
-               Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+               Viewport.MoveTo(Pt.X,Pt.Y);
                Pt:=Viewport.Project(MirrorPoint[E]);
-               Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y);
+               Viewport.LineTo(Pt.X,Pt.Y);
             end;
          end;
       end;
@@ -5729,7 +5827,7 @@ begin
 
       // calculate and set fontheight
       Viewport.FontName:='arial';
-      SetFontHeight(DistPP3D(Viewport.Min3D,Viewport.Max3D)/150);
+      Viewport.FontHeight:=round(DistPP3D(Viewport.Min3D,Viewport.Max3D)/150);
 
       for I:=1 to FBoundaryEdges.Count do
       begin
@@ -5753,13 +5851,13 @@ begin
          P1:=Self.Point[S];
          Str:='('+ConvertDimension(P1.X,Units)+' / '+ConvertDimension(P1.Y,Units)+')';
          Pt:=Viewport.Project(P1);
-         Viewport.DrawingCanvas.TextOut(Pt.X-Viewport.DrawingCanvas.TextWidth(Str) div 2,Pt.Y,Str);
+         Viewport.TextOut(Pt.X-Viewport.TextWidth(Str) div 2,Pt.Y,Str);
          if FMirror then
          begin
             P1:=Self.MirrorPoint[S];
             Str:='('+ConvertDimension(P1.X,Units)+' / '+ConvertDimension(P1.Y,Units)+')';
             Pt:=Viewport.Project(P1);
-            Viewport.DrawingCanvas.TextOut(Pt.X-Viewport.DrawingCanvas.TextWidth(Str) div 2,Pt.Y,Str);
+            Viewport.TextOut(Pt.X-Viewport.TextWidth(Str) div 2,Pt.Y,Str);
          end;
       end;
    end;
@@ -5779,15 +5877,15 @@ begin
             if (S<>-1) and (E<>-1) then
             begin
                Pt:=Viewport.Project(self.Point[S]);
-               Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+               Viewport.MoveTo(Pt.X,Pt.Y);
                Pt:=Viewport.Project(self.Point[E]);
-               Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y);
+               Viewport.LineTo(Pt.X,Pt.Y);
                if FMirror then
                begin
                   Pt:=Viewport.Project(MirrorPoint[S]);
-                  Viewport.DrawingCanvas.MoveTo(Pt.X,Pt.Y);
+                  Viewport.MoveTo(Pt.X,Pt.Y);
                   Pt:=Viewport.Project(MirrorPoint[E]);
-                  Viewport.DrawingCanvas.LineTo(Pt.X,Pt.Y);
+                  Viewport.LineTo(Pt.X,Pt.Y);
                end;
 
             end;
@@ -5811,10 +5909,10 @@ begin
       Viewport.BrushColor:=clWhite;
       Viewport.BrushStyle:=bsSolid;
       I:=Owner.Owner.ControlPointSize;
-      Viewport.DrawingCanvas.Font.Size:=7;
-      Viewport.DrawingCanvas.Rectangle(Pt.X-I,Pt.Y-I,Pt.X+I,Pt.Y+I);
+      Viewport.FontSize:=7;
+      Viewport.Rectangle(Pt.X-I,Pt.Y-I,Pt.X+I,Pt.Y+I);
       Viewport.BrushStyle:=bsClear;
-      Viewport.DrawingCanvas.TextOut(Pt.X-Viewport.DrawingCanvas.TextWidth(Name) div 2,Pt.Y,Name);
+      Viewport.TextOut(Pt.X-Viewport.TextWidth(Name) div 2,Pt.Y,Name);
    end;
    if (ShowBoundingBox) and (not viewport.Printing) then
    begin
@@ -5832,7 +5930,7 @@ begin
       Pts[2]:=Viewport.Project(P1);
       P1.X:=Min.X;
       Pts[3]:=Viewport.Project(P1);
-      Viewport.Drawingcanvas.Polygon(Pts);
+      Viewport.Polygon(Pts);
    end;
    Viewport.BrushStyle:=bsClear;
    Viewport.FontColor:=clBlack;
@@ -7592,10 +7690,10 @@ begin
          Viewport.PenColor:=CurvatureColor;
          for I:=1 to Fragments do if (I mod 4=0) or (I=1) or (I=Fragments) then
          begin
-            Viewport.DrawingCanvas.MoveTo(PArray1[I-1].X,PArray1[I-1].Y);
-            Viewport.DrawingCanvas.LineTo(PArray2[I-1].X,PArray2[I-1].Y);
+            Viewport.MoveTo(PArray1[I-1].X,PArray1[I-1].Y);
+            Viewport.LineTo(PArray2[I-1].X,PArray2[I-1].Y);
          end;
-         Viewport.DrawingCanvas.Polyline(PArray2);
+         Viewport.Polyline(PArray2);
       end else
       begin
          SetLength(PArray1,Fragments);
@@ -7607,8 +7705,8 @@ begin
       end;
       Viewport.SetPenWidth(1);
       Viewport.PenColor:=Color;
-      Viewport.DrawingCanvas.Pen.Style:=FPenstyle;
-      Viewport.DrawingCanvas.Polyline(PArray1);
+      Viewport.PenStyle:=FPenstyle;
+      Viewport.Polyline(PArray1);
       if ShowPoints then
       begin
          Viewport.Fontname:='small fonts';
@@ -7618,8 +7716,8 @@ begin
          for I:=1 to NumberOfPoints do
          begin
             Pt:=Viewport.Project(Point[I-1]);
-            Viewport.DrawingCanvas.Ellipse(Pt.X-2,Pt.Y-2,Pt.X+2,Pt.Y+2);
-            Viewport.DrawingCanvas.TextOut(Pt.X+2,Pt.Y,IntToStr(I));
+            Viewport.Ellipse(Pt.X-2,Pt.Y-2,Pt.X+2,Pt.Y+2);
+            Viewport.TextOut(Pt.X+2,Pt.Y,IntToStr(I));
          end;
       end;
    end else
@@ -8683,10 +8781,10 @@ begin
                for J:=1 to Fragm do if (J mod 4=0) or (J=1) or (J=Fragm) then
                begin
                   J1:=J-1;
-                  Viewport.DrawingCanvas.MoveTo(PArray1[J1].X,PArray1[J1].Y);
-                  Viewport.DrawingCanvas.LineTo(PArray2[J1].X,PArray2[J1].Y);
+                  Viewport.MoveTo(PArray1[J1].X,PArray1[J1].Y);
+                  Viewport.LineTo(PArray2[J1].X,PArray2[J1].Y);
                end;
-               Viewport.DrawingCanvas.Polyline(PArray2);
+               Viewport.Polyline(PArray2);
             end else
             begin
                SetLength(PArray1,Fragm);
@@ -8701,8 +8799,8 @@ begin
             end;
             Viewport.SetPenWidth(1);
             Viewport.PenColor:=Color;
-            Viewport.DrawingCanvas.Pen.Style:=FCurve.Penstyle;
-            Viewport.DrawingCanvas.Polyline(PArray1);
+            Viewport.PenStyle:=FCurve.Penstyle;
+            Viewport.Polyline(PArray1);
          end;
       end else FCurve.Draw(Viewport);
       if Owner.DrawMirror then
@@ -10729,33 +10827,33 @@ begin
          begin
             // yes, the point is visible
             Viewport.ZBuffer.FBuffer[Pz.Y][Pz.X]:=Pz.Z;
-            if Viewport.DrawingCanvas.Pen.Width<>1 then Viewport.DrawingCanvas.Pen.Width:=1;
+            if Viewport.PenWidth<>1 then Viewport.PenWidth:=1;
             Viewport.PenColor:=Color;
             Viewport.BrushStyle:=bsClear;
             Viewport.PenStyle:=psSolid;
-            for I:=1 to Owner.ControlPointSize do Viewport.DrawingCanvas.Rectangle(Pz.X-I,Pz.Y-I,Pz.X+I,Pz.Y+I);
+            for I:=1 to Owner.ControlPointSize do Viewport.Rectangle(Pz.X-I,Pz.Y-I,Pz.X+I,Pz.Y+I);
          end;
       end;
    end else
    begin
-      with Viewport.DrawingCanvas do
-      begin
+      //with Viewport.DrawingCanvas do
+      //begin
          P3D:=FCoordinate;
          if Viewport.ViewType=fvBodyplan then if P3D.X<=Owner.MainframeLocation then P3D.Y:=-P3D.Y;
          P:=Viewport.Project(P3D);
-         if Pen.Width<>1 then Pen.Width:=1;
+         if Viewport.PenWidth<>1 then Viewport.PenWidth:=1;
          Viewport.PenColor:=Color;
-         if Brush.Style<>bsClear then Brush.Style:=bsClear;
+         if Viewport.BrushStyle<>bsClear then Viewport.BrushStyle:=bsClear;
          if Selected then
          begin
             //FInitializeCanvas(Viewport,1,Color,Mode);
-            for I:=1 to Owner.ControlPointSize do Viewport.DrawingCanvas.Rectangle(P.X-I,P.Y-I,P.X+I,P.Y+I);
-            Viewport.DrawingCanvas.Rectangle(P.X-Owner.ControlPointSize-2,P.Y-Owner.ControlPointSize-2,P.X+Owner.ControlPointSize+2,P.Y+Owner.ControlPointSize+2);
+            for I:=1 to Owner.ControlPointSize do Viewport.Rectangle(P.X-I,P.Y-I,P.X+I,P.Y+I);
+            Viewport.Rectangle(P.X-Owner.ControlPointSize-2,P.Y-Owner.ControlPointSize-2,P.X+Owner.ControlPointSize+2,P.Y+Owner.ControlPointSize+2);
          end else
          begin
-            for I:=1 to Owner.ControlPointSize do Viewport.DrawingCanvas.Rectangle(P.X-I,P.Y-I,P.X+I,P.Y+I);
+            for I:=1 to Owner.ControlPointSize do Viewport.Rectangle(P.X-I,P.Y-I,P.X+I,P.Y+I);
          end;
-      end;
+      //end;
    end;
 end;{TFreeSubdivisionControlPoint.Draw}
 
@@ -11162,29 +11260,29 @@ begin
             // P2 lies on port
             Pt1:=Viewport.Project(P2);
             Pt2:=Viewport.Project(M);
-            Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-            Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+            Viewport.MoveTo(Pt1.X,Pt1.Y);
+            Viewport.LineTo(Pt2.X,Pt2.Y);
             // P1 lies on starboard
             P1.Y:=-P1.Y;
             M.Y:=-M.Y;
             Pt1:=Viewport.Project(P1);
             Pt2:=Viewport.Project(M);
-            Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-            Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+            Viewport.MoveTo(Pt1.X,Pt1.Y);
+            Viewport.LineTo(Pt2.X,Pt2.Y);
          end else
          begin
             // P1 lies on port
             Pt1:=Viewport.Project(P1);
             Pt2:=Viewport.Project(M);
-            Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-            Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+            Viewport.MoveTo(Pt1.X,Pt1.Y);
+            Viewport.LineTo(Pt2.X,Pt2.Y);
             // P2 lies on starboard
             P2.Y:=-P2.Y;
             M.Y:=-M.Y;
             Pt1:=Viewport.Project(P2);
             Pt2:=Viewport.Project(M);
-            Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-            Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+            Viewport.MoveTo(Pt1.X,Pt1.Y);
+            Viewport.LineTo(Pt2.X,Pt2.Y);
 
          end;
       end else
@@ -11193,24 +11291,24 @@ begin
          if P2.X<=Owner.MainframeLocation then P2.Y:=-P2.Y;
          Pt1:=Viewport.Project(P1);
          Pt2:=Viewport.Project(P2);
-         Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-         Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+         Viewport.MoveTo(Pt1.X,Pt1.Y);
+         Viewport.LineTo(Pt2.X,Pt2.Y);
       end;
 
    end else
    begin
       Pt1:=Viewport.Project(P1);
       Pt2:=Viewport.Project(P2);
-      Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-      Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+      Viewport.MoveTo(Pt1.X,Pt1.Y);
+      Viewport.LineTo(Pt2.X,Pt2.Y);
       if DrawMirror then
       begin
          P1.Y:=-P1.Y;
          P2.Y:=-P2.Y;
          Pt1:=Viewport.Project(P1);
          Pt2:=Viewport.Project(P2);
-         Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-         Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+         Viewport.MoveTo(Pt1.X,Pt1.Y);
+         Viewport.LineTo(Pt2.X,Pt2.Y);
       end;
    end;
 end;{TFreeSubdivisionEdge.Draw}
@@ -11617,29 +11715,29 @@ begin
                   // P2 lies on port
                   Pt1:=Viewport.Project(P2);
                   Pt2:=Viewport.Project(M);
-                  Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                  Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                  Viewport.MoveTo(Pt1.X,Pt1.Y);
+                  Viewport.LineTo(Pt2.X,Pt2.Y);
                   // P1 lies on starboard
                   P1.Y:=-P1.Y;
                   M.Y:=-M.Y;
                   Pt1:=Viewport.Project(P1);
                   Pt2:=Viewport.Project(M);
-                  Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                  Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                  Viewport.MoveTo(Pt1.X,Pt1.Y);
+                  Viewport.LineTo(Pt2.X,Pt2.Y);
                end else
                begin
                   // P1 lies on port
                   Pt1:=Viewport.Project(P1);
                   Pt2:=Viewport.Project(M);
-                  Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                  Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                  Viewport.MoveTo(Pt1.X,Pt1.Y);
+                  Viewport.LineTo(Pt2.X,Pt2.Y);
                   // P2 lies on starboard
                   P2.Y:=-P2.Y;
                   M.Y:=-M.Y;
                   Pt1:=Viewport.Project(P2);
                   Pt2:=Viewport.Project(M);
-                  Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-                  Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                  Viewport.MoveTo(Pt1.X,Pt1.Y);
+                  Viewport.LineTo(Pt2.X,Pt2.Y);
                end;
             end else
             begin
@@ -11647,15 +11745,15 @@ begin
                if P2.X<=Owner.MainframeLocation then P2.Y:=-P2.Y;
                Pt1:=Viewport.Project(P1);
                Pt2:=Viewport.Project(P2);
-               Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-               Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+               Viewport.MoveTo(Pt1.X,Pt1.Y);
+               Viewport.LineTo(Pt2.X,Pt2.Y);
             end;
          end else
          begin
             Pt1:=Viewport.Project(P1);
             Pt2:=Viewport.Project(P2);
-            Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
-            Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+            Viewport.MoveTo(Pt1.X,Pt1.Y);
+            Viewport.LineTo(Pt2.X,Pt2.Y);
          end;
       end;
    end;
@@ -12537,8 +12635,8 @@ var I,J,K,index   : Integer;
          V.Y:=P.Y+N.Y;
          V.Z:=P.Z+N.Z;
          P2:=Viewport.Project(V);
-         Viewport.DrawingCanvas.MoveTo(P1.X,P1.Y);
-         Viewport.DrawingCanvas.LineTo(P2.X,P2.Y);
+         Viewport.MoveTo(P1.X,P1.Y);
+         Viewport.LineTo(P2.X,P2.Y);
       end;
     end;{Draw normal}
 

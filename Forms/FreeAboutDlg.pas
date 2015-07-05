@@ -130,7 +130,7 @@ begin
   AddCredits('Translation','Martijn van Engeland');
   AddCredits('Conversion to FPC','Mark Malakanov, from 2015');
   AddCredits('New scalable icons','Tom (https://github.com/tvld), from 2015');
-  AddCredits('Fixing issues','Sönke J. Peters, from 2015');
+  AddCredits('Improvements, fixing issues','Sönke J. Peters, from 2015');
 
   AddCopyrights('Copyright © 2005, by Martijn van Engeland');
   AddCopyrights('Copyright © 2007-2012, by Timoshenko Victor F.');

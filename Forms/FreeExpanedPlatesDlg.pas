@@ -449,20 +449,20 @@ begin
             // Skip translation
             Viewport.FontName:='Arial';
             // End Skip translation
-            Viewport.DrawingCanvas.Font.Size:=6;
+            Viewport.FontSize:=6;
             while X<=Viewport.Max3D.X do
             begin
                if (X>=Viewport.Min3D.X-0.01) and (X<=Viewport.Max3D.X+0.01) then
                begin
                   P:=SetPoint(X,Viewport.Min3D.Y-Space,0.0);
                   Pt1:=Viewport.Project(P);
-                  Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
+                  Viewport.MoveTo(Pt1.X,Pt1.Y);
                   P:=SetPoint(X,Viewport.Max3D.Y+Space,0.0);
                   Pt2:=Viewport.Project(P);
-                  Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                  Viewport.LineTo(Pt2.X,Pt2.Y);
                   Str:=ConvertDimension(X,FFreeship.ProjectSettings.ProjectUnits);
-                  Viewport.DrawingCanvas.TextOut(Pt1.X-Viewport.DrawingCanvas.TextWidth(Str) div 2,Pt1.Y,Str);
-                  Viewport.DrawingCanvas.TextOut(Pt2.X-Viewport.DrawingCanvas.TextWidth(Str) div 2,Pt2.Y-Viewport.DrawingCanvas.TextHeight(Str),Str);
+                  Viewport.TextOut(Pt1.X-Viewport.TextWidth(Str) div 2,Pt1.Y,Str);
+                  Viewport.TextOut(Pt2.X-Viewport.TextWidth(Str) div 2,Pt2.Y-Viewport.TextHeight(Str),Str);
                end;
                X:=X+FXGridSpacing;
             end;
@@ -480,20 +480,20 @@ begin
             // Skip translation
             Viewport.FontName:='Arial';
             // End Skip translation
-            Viewport.DrawingCanvas.Font.Size:=6;
+            Viewport.Font.Size:=6;
             while Y<=Viewport.Max3D.Y do
             begin
                if (Y>=Viewport.Min3D.Y-0.01) and (Y<=Viewport.Max3D.Y+0.01) then
                begin
                   P:=SetPoint(Viewport.Min3D.X-Space,Y,0.0);
                   Pt1:=Viewport.Project(P);
-                  Viewport.DrawingCanvas.MoveTo(Pt1.X,Pt1.Y);
+                  Viewport.MoveTo(Pt1.X,Pt1.Y);
                   P:=SetPoint(Viewport.Max3D.X+Space,Y,0.0);
                   Pt2:=Viewport.Project(P);
-                  Viewport.DrawingCanvas.LineTo(Pt2.X,Pt2.Y);
+                  Viewport.LineTo(Pt2.X,Pt2.Y);
                   Str:=ConvertDimension(Y,FFreeship.ProjectSettings.ProjectUnits);
-                  Viewport.DrawingCanvas.TextOut(Pt1.X,Pt1.Y-Viewport.DrawingCanvas.TextHeight(Str) div 2,Str);
-                  Viewport.DrawingCanvas.TextOut(Pt2.X-Viewport.DrawingCanvas.TextWidth(Str) div 2,Pt2.Y-Viewport.DrawingCanvas.TextHeight(Str) div 2,Str);
+                  Viewport.TextOut(Pt1.X,Pt1.Y-Viewport.TextHeight(Str) div 2,Str);
+                  Viewport.TextOut(Pt2.X-Viewport.TextWidth(Str) div 2,Pt2.Y-Viewport.TextHeight(Str) div 2,Str);
                end;
                Y:=Y+FYGridSpacing;
             end;

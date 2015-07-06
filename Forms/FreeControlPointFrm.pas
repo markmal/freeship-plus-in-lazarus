@@ -48,16 +48,23 @@ uses
      Math,
      FreeTypes,
      FreeGeometry,
-     StdCtrls, Buttons;
+     StdCtrls, Buttons, ExtCtrls;
 
-type TFreeControlPointForm  = class(TForm)
-                                    Edit1: TEdit;
-                                    Label1: TLabel;
-                                    Edit2: TEdit;
-                                    Edit3: TEdit;
-                                    Label2: TLabel;
-                                    Label3: TLabel;
-                                    CheckBox1: TCheckBox;
+type
+
+{ TFreeControlPointForm }
+
+ TFreeControlPointForm  = class(TForm)
+    Edit1: TEdit;
+    Label1: TLabel;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    CheckBox1: TCheckBox;
+    Label6: TLabel;
+    Panel1: TPanel;
+    Panel2: TPanel;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
@@ -68,27 +75,27 @@ type TFreeControlPointForm  = class(TForm)
     Edit4: TEdit;
     Label5: TLabel;
     Edit5: TEdit;
-                                    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
-                                    procedure Edit1Exit(Sender: TObject);
-                                    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
-                                    procedure Edit2Exit(Sender: TObject);
-                                    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
-                                    procedure Edit3Exit(Sender: TObject);
-                                    procedure CheckBox1MouseUp(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1Exit(Sender: TObject);
+    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit2Exit(Sender: TObject);
+    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit3Exit(Sender: TObject);
+    procedure CheckBox1MouseUp(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
-                                 private  { Private declarations }
-                                    FActiveControlPoint  : TFreeSubdivisionControlPoint;
-                                    FFreeShip            : TComponent;
-                                    procedure FSetActiveControlPoint(Val:TFreeSubdivisionControlPoint);
-                                 public   { Public declarations }
-                                    property ActiveControlPoint   : TFreeSubdivisionControlPoint read FActiveControlPoint write FSetActiveControlPoint;
-                                    property FreeShip             : TComponent read FFreeShip write FFreeShip;
-                              end;
+   private  { Private declarations }
+      FActiveControlPoint  : TFreeSubdivisionControlPoint;
+      FFreeShip            : TComponent;
+      procedure FSetActiveControlPoint(Val:TFreeSubdivisionControlPoint);
+   public   { Public declarations }
+      property ActiveControlPoint   : TFreeSubdivisionControlPoint read FActiveControlPoint write FSetActiveControlPoint;
+      property FreeShip             : TComponent read FFreeShip write FFreeShip;
+end;
 
 var FreeControlPointForm: TFreeControlPointForm;
 
@@ -567,4 +574,4 @@ begin
    end;
 end;{TFreeControlPointForm.SpeedButton6Click}
 
-end.
+end.

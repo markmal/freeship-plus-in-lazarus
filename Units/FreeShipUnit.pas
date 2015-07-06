@@ -15982,7 +15982,10 @@ end;{TFreeShip.AdjustMarkers}
 constructor TFreeShip.Create(AOwner:TComponent);
 begin
    Inherited Create(AOwner);
-   FIntersectionDialog:=TFreeIntersectionDialog.Create(self);
+
+   if not (csDesigning in ComponentState) then
+     FIntersectionDialog:=TFreeIntersectionDialog.Create(self);
+
    FEdit:=TFreeEdit.Create(Self);
    FPreferences:=TFreePreferences.Create(self);
    FPreferences.Load;
@@ -16007,8 +16010,11 @@ begin
    FDesignHydrostatics:=TFreeHydrostaticCalc.Create(self);
    ClearUndo;
    Clear;
-   FControlpointForm:=TFreeControlPointForm.Create(Self);
-   FControlpointForm.FreeShip:=self;
+   if not (csDesigning in ComponentState) then
+     begin
+     FControlpointForm:=TFreeControlPointForm.Create(Self);
+     FControlpointForm.FreeShip:=self;
+     end;
 end;{TFreeShip.Create}
 
 procedure TFreeShip.CreateOutputHeader(CalcHeader:string;Strings:TStrings);
@@ -16137,7 +16143,8 @@ destructor TFreeShip.Destroy;
 begin
    Clear;
    ClearUndo;
-   FControlpointForm.Destroy;
+   if Assigned(FControlpointForm)
+     then FControlpointForm.Destroy;
    FMarkers.Destroy;
    FStations.Destroy;
    FButtocks.Destroy;
@@ -16152,7 +16159,8 @@ begin
    FHydrostaticCalculations.Destroy;
    FUndoObjects.Destroy;
    FPreferences.Destroy;
-   FIntersectionDialog.Destroy;
+   if Assigned(FIntersectionDialog)
+      then FIntersectionDialog.Destroy;
    FBackgroundImages.Destroy;
    FFlowlines.Destroy;
    FSelectedFlowlines.Destroy;

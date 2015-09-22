@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="18"/>
+      <BuildNr Value="21"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -77,7 +77,6 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Main"/>
       </Unit2>
       <Unit3>
         <Filename Value="Forms/FreeHullformWindow.pas"/>
@@ -85,7 +84,6 @@
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeHullformWindow"/>
       </Unit3>
       <Unit4>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
@@ -333,7 +331,6 @@
         <ComponentName Value="FreeUndoHistoryDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeUndoHistoryDlg"/>
       </Unit40>
       <Unit41>
         <Filename Value="Forms/FreeHydrostaticsResultsDlg.pas"/>
@@ -402,7 +399,6 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeShipUnit"/>
       </Unit51>
       <Unit52>
         <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
@@ -496,7 +492,6 @@
       <Unit69>
         <Filename Value="Units/FreeViewPortOpenGL.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeViewPortOpenGL"/>
       </Unit69>
     </Units>
   </ProjectOptions>

@@ -2,13 +2,13 @@ object FreeControlPointForm: TFreeControlPointForm
   Left = 605
   Height = 189
   Top = 219
-  Width = 213
+  Width = 308
   AlphaBlend = True
   AlphaBlendValue = 210
   AutoSize = True
   BorderStyle = bsToolWindow
   ClientHeight = 189
-  ClientWidth = 213
+  ClientWidth = 308
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
@@ -19,13 +19,13 @@ object FreeControlPointForm: TFreeControlPointForm
     Left = 0
     Height = 97
     Top = 0
-    Width = 213
+    Width = 308
     Align = alTop
     AutoSize = True
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
     ClientHeight = 97
-    ClientWidth = 213
+    ClientWidth = 308
     TabOrder = 0
     object Label1: TLabel
       Left = 26
@@ -227,13 +227,13 @@ object FreeControlPointForm: TFreeControlPointForm
     Left = 0
     Height = 99
     Top = 97
-    Width = 213
+    Width = 308
     Align = alTop
     AutoSize = True
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
     ClientHeight = 99
-    ClientWidth = 213
+    ClientWidth = 308
     TabOrder = 1
     object CheckBox1: TCheckBox
       Left = 20
@@ -271,7 +271,7 @@ object FreeControlPointForm: TFreeControlPointForm
       Left = 93
       Height = 20
       Top = 6
-      Width = 80
+      Width = 140
       BorderSpacing.Top = 6
       Caption = '   '
       ParentColor = False
@@ -280,7 +280,7 @@ object FreeControlPointForm: TFreeControlPointForm
       Left = 93
       Height = 24
       Top = 32
-      Width = 80
+      Width = 140
       BorderSpacing.Around = 6
       BorderStyle = bsNone
       ReadOnly = True
@@ -290,10 +290,11 @@ object FreeControlPointForm: TFreeControlPointForm
       Left = 93
       Height = 24
       Top = 62
-      Width = 80
+      Width = 140
       BorderSpacing.Bottom = 6
       BorderSpacing.Around = 6
       BorderStyle = bsNone
+      Constraints.MinWidth = 140
       ReadOnly = True
       TabOrder = 2
     end

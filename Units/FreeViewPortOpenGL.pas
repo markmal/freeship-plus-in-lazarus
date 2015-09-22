@@ -1,5 +1,7 @@
 unit FreeViewPortOpenGL;
 
+{with helpful stuff from unit UOpenGLCanvas by Qianyuan Wang}
+
 {$mode delphi}
 { $mode objfpc}{$H+}
 
@@ -22,6 +24,7 @@ type
      procedure OpenGLControl1Resize(Sender: TObject);
   private
      AreaInitialized: boolean;
+     FPenWidth : integer;
   protected
      procedure Paint;                                                        override;
      procedure Resize;                                                       override;
@@ -84,7 +87,7 @@ end;
 
 procedure TFreeViewportOpenGL.DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:Integer);
 begin
-
+  raise Exception.create('Not implemented');
 end;
 
 procedure TFreeViewportOpenGL.InitializeViewport(Min,Max:T3DCoordinate);
@@ -95,37 +98,55 @@ end;
 
 procedure TFreeViewportOpenGL.Print(Units:TFreeUnitType;AskPrintScale:Boolean;Jobname:string);
 begin
-
+  raise Exception.create('Not implemented');
 end;
 
 procedure TFreeViewportOpenGL.SaveAsBitmap(Filename:string;const ShowDialog:boolean=true);
 begin
-
+  raise Exception.create('Not implemented');
 end;
 
 procedure TFreeViewportOpenGL.SetPenWidth(Width:integer);
 begin
-
+  FPenWidth := Width;
+  glLineWidth(FPenWidth);
+  glPointSize(FPenWidth);
 end;
 
 procedure TFreeViewportOpenGL.ShadedColor(Dp:single;R,G,B:byte;var ROut,GOut,BOut:byte);
 begin
-
+   raise Exception.create('Not implemented');
 end;
 
 procedure TFreeViewportOpenGL.ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R,G,B:byte;Alpha:byte);
 begin
-
+  glBegin(GL_LINE_LOOP);
+  glColor4i(R,G,B,Alpha);
+  glVertex2f(P_1.X, P_1.Y);
+  glVertex2f(P_2.X, P_2.Y);
+  glVertex2f(P_3.X, P_3.Y);
+  glEnd;
 end;
 
 procedure TFreeViewportOpenGL.ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;C1,C2,C3:Extended);
 begin
-
+  glBegin(GL_LINE_LOOP);
+  glVertex2f(P_1.X, P_1.Y);
+  glVertex2f(P_2.X, P_2.Y);
+  glVertex2f(P_3.X, P_3.Y);
+  glEnd;
 end;
 
 procedure TFreeViewportOpenGL.ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R1,G1,B1,R2,G2,B2,R3,G3,B3:byte);
 begin
-
+  glBegin(GL_LINE_LOOP);
+  glColor3i(R1,G1,B1);
+  glVertex2f(P_1.X, P_1.Y);
+  glColor3i(R2,G2,B2);
+  glVertex2f(P_2.X, P_2.Y);
+  glColor3i(R3,G3,B3);
+  glVertex2f(P_3.X, P_3.Y);
+  glEnd;
 end;
 
 procedure TFreeViewportOpenGL.InitGL;

@@ -15954,7 +15954,7 @@ begin
   Result:=TJPEGImage.Create;
   Result.Assign(thumbNail);
   Result.CompressionQuality:=90;
-  Result.SaveToFile('saved_screenshot.jpg');
+  //Result.SaveToFile('saved_screenshot.jpg');
   Tmp.Destroy;
   thumbNail.Destroy;
 end;{TFreeShip.FGetPreview}

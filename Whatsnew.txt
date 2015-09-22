@@ -1,3 +1,9 @@
+Test only Version 3.5.3.21 in Lazarus
+Released: Build date	2015/09/21 23:25:00
+New features and fixes:
+- removed saving of dev/test preview picture "saved_screenshot.jpg". Caused errors in some distros. Issue#6:  Can't save files 
+- fixed issue#7  not work Develop Plates 
+
 Test only Version 3.5.3.1 in Lazarus
 Released: Build date	2015/06/26 17:39:00
 New features and fixes:

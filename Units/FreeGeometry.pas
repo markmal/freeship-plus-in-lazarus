@@ -5604,6 +5604,10 @@ var I,J,K,S,E  : Integer;
         P3D : T3DCoordinate;
         Pts : array of TPoint;
     begin
+       //MM: for some reason number of fragments is not set for Dev Patch splines, so we set it here
+       if Spline.Fragments = 0
+          then Spline.Fragments := round(sqrt(sqrt(Spline.NumberOfPoints)) * 100.0);
+
        Setlength(Pts,Spline.Fragments+1);
        for I:=0 to Spline.Fragments do
        begin
@@ -5616,7 +5620,7 @@ var I,J,K,S,E  : Integer;
        end;
        Viewport.SetPenWidth(PenwidthFactor);
        Viewport.PenColor:=Spline.Color;
-       Viewport. Polyline(Pts);
+       Viewport.Polyline(Pts);
     end;{DrawSpline}
 
    procedure Swap(var P1,P2:T3DCoordinate);
@@ -7129,6 +7133,7 @@ end;{TFreeSpline.FSetFragments}
 
 function TFreeSpline.FGetFragments:Integer;
 begin
+   if not Build then Rebuild;
    Result:=FFragments;
 end;{TFreeSpline.FGetFragments}
 

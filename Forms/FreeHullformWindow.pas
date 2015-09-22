@@ -29,7 +29,7 @@ unit FreeHullformWindow;
   {$MODE Delphi}
 {$ENDIF}
 
-{$DEFINE XUSEOPENGL}
+{$DEFINE NOTUSEOPENGL}
 
 interface
 

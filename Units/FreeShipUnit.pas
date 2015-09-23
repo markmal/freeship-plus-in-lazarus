@@ -16238,19 +16238,26 @@ var I,Size        : integer;
         Pts             : array of TPoint;
 
         procedure SetFontHeight(DesiredHeight:TFloatType);
-        var Height         : TFloatType;
+        var Height         : integer;
             CurrentHeight  : integer;
         begin
            // Sets the fontheight to a height in modelspace
-           Height:=DesiredHeight*Viewport.Scale*Viewport.Zoom;
-           Viewport.Font.Size:=8;
+           Height:=round(DesiredHeight*Viewport.Scale*Viewport.Zoom);
+           CurrentHeight := Viewport.Font.Height;
+           if CurrentHeight <> Height
+             then Viewport.Font.Height := Height;
+
+           // below code causes loop redraw and 100% CPU.
+           // Changed to above code with direct set of required Font.Height
+          {Viewport.Font.Size:=8;
+           CurrentHeight:=round(Height); ///remove
            CurrentHeight:=Viewport.TextHeight('X');
            while CurrentHeight>Height do
            begin
               Viewport.Font.Size:=Viewport.Font.Size-1;
               CurrentHeight:=Viewport.TextHeight('X');
               if Viewport.Font.Size<4 then break;
-           end;
+           end; }
         end;{SetFontHeight}
 
     begin

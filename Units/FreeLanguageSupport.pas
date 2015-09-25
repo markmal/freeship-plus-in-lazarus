@@ -91,6 +91,7 @@ implementation
 function LoadLanguage(Name:string):TMemIniFile;
 var Filename:string;    
 begin
+   if Name='' then exit; // leave with default English language
    //Filename:=ChangeFileExt(extractFileDir(application.exeName)+'/Languages/'+Name,'.ini');
    Filename:=Name;
    if FileExistsUTF8(Filename) { *Converted from FileExists* } then

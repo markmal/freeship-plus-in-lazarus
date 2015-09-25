@@ -14581,22 +14581,26 @@ begin
 end;
 
 procedure TFreePreferences.ResetDirectories;
+var AppDataDir: String;
 begin
   FUserConfigDirectory := getUserConfigDirectory;
   FGlobalConfigDirectory := getGlobalConfigDirectory;
   FUserAppDataDirectory := getUserAppDataDirectory;
   FGlobalAppDataDirectory := getGlobalAppDataDirectory;
 
-  FOpenDirectory := self.getUserAppDataDirectory+'/Ships';
-  FSaveDirectory := self.getUserAppDataDirectory+'/Ships';
-  FImportDirectory := self.getUserAppDataDirectory+'/Import';
-  FExportDirectory := self.getUserAppDataDirectory+'/Export';
-  FLanguagesDirectory := self.getGlobalAppDataDirectory+'/Languages';
-  FExecDirectory := self.getGlobalAppDataDirectory+'/Exec';
-  FManualsDirectory := self.getGlobalAppDataDirectory+'/Manuals';
-  FTempDirectory := self.getUserAppDataDirectory+'/Temp';
-  FMenuIconDirectory := self.getUserAppDataDirectory+'/Themes/Default/icons/16';
-  FToolIconDirectory := self.getUserAppDataDirectory+'/Themes/Default/icons/24';
+  if FGlobalAppDataDirectory <> '' then AppDataDir := FGlobalAppDataDirectory;
+  if FUserAppDataDirectory   <> '' then AppDataDir := FUserAppDataDirectory;
+
+  FOpenDirectory := AppDataDir+'/Ships';
+  FSaveDirectory := AppDataDir+'/Ships';
+  FImportDirectory := AppDataDir+'/Import';
+  FExportDirectory := AppDataDir+'/Export';
+  FLanguagesDirectory := AppDataDir+'/Languages';
+  FExecDirectory := AppDataDir+'/Exec';
+  FManualsDirectory := AppDataDir+'/Manuals';
+  FTempDirectory := AppDataDir+'/Temp';
+  FMenuIconDirectory := AppDataDir+'/Themes/Default/icons/16';
+  FToolIconDirectory := AppDataDir+'/Themes/Default/icons/24';
 end;
 
 
@@ -14623,8 +14627,11 @@ begin
   then
    begin
      DtaFilename:=ChangeFileExt(Application.ExeName,'.dta');
-     LoadFromDta(DtaFilename);
-     exit;
+     if FileExistsUTF8(DtaFilename) then
+      begin
+       LoadFromDta(DtaFilename);
+       exit;
+      end;
    end;
 
   LoadFromIni(GlobalConfigFileName);

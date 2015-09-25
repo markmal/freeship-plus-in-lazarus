@@ -3,29 +3,36 @@ object FreeSplashWindow: TFreeSplashWindow
   Height = 426
   Top = 191
   Width = 548
+  HorzScrollBar.Visible = False
+  VertScrollBar.Visible = False
   AlphaBlend = True
-  AutoSize = True
+  AlphaBlendValue = 0
   BorderIcons = []
-  BorderStyle = bsNone
+  BorderStyle = bsDialog
+  Caption = 'FREE!ship Plus'
   ClientHeight = 426
   ClientWidth = 548
-  Color = clGray
+  Color = clSilver
+  DefaultMonitor = dmMainForm
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  FormStyle = fsStayOnTop
+  FormStyle = fsSystemStayOnTop
   OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.2.0'
   object Image1: TImage
     Left = 0
     Height = 363
     Top = 0
     Width = 548
+    Align = alTop
     AutoSize = True
     Center = True
     OnClick = Image1Click
+    OnMouseDown = Image1MouseDown
+    OnMouseUp = Image1MouseUp
     Picture.Data = {
       0A544A706567496D616765C1200100FFD8FFE000104A46494600010201006000
       600000FFFE01027073AC047C2B00007C2B0000C03C00009C240000C03C000094
@@ -2383,9 +2390,10 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object Label3: TLabel
     Left = 0
-    Height = 54
-    Top = 368
+    Height = 63
+    Top = 363
     Width = 548
+    Align = alClient
     Alignment = taCenter
     AutoSize = False
     Caption = 'FREE!ship comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under the conditions of the GNU General Public License (GPL) Version 2, June 1991'
@@ -2400,9 +2408,9 @@ object FreeSplashWindow: TFreeSplashWindow
   object _Label4: TLabel
     Cursor = crHandPoint
     Left = 419
-    Height = 18
+    Height = 15
     Top = 344
-    Width = 109
+    Width = 106
     Alignment = taRightJustify
     Caption = 'vftim@rambler.ru'
     Font.CharSet = ANSI_CHARSET
@@ -2445,9 +2453,9 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object _Label7: TLabel
     Left = 6
-    Height = 30
+    Height = 24
     Top = 1
-    Width = 172
+    Width = 168
     Caption = 'FREE!ship Plus'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
@@ -2488,7 +2496,7 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object Timer: TTimer
     Enabled = False
-    Interval = 100
+    Interval = 5
     OnTimer = TimerTimer
     left = 110
     top = 63

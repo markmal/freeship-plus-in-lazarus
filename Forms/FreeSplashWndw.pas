@@ -49,10 +49,11 @@ uses
      ExtCtrls,
      FreeGeometry,
      FreeVersionUnit,
-     StdCtrls;
+     StdCtrls,
+     FreeLogger;
 
 const
- SPLASH_TIME = 3000;
+ SPLASH_TIME = 5000;
 
 type
 
@@ -71,6 +72,12 @@ type
                                   _Label7: TLabel;
                                   _label8: TLabel;
                                   LabelBuildInfo: TLabel;
+                                  procedure Image1MouseDown(Sender: TObject;
+                                    Button: TMouseButton; Shift: TShiftState;
+                                    X, Y: Integer);
+                                  procedure Image1MouseUp(Sender: TObject;
+                                    Button: TMouseButton; Shift: TShiftState;
+                                    X, Y: Integer);
                                   procedure TimerTimer(Sender: TObject);
                                   procedure FormClose(Sender: TObject; var Action: TCloseAction);
                                   procedure Image1Click(Sender: TObject);
@@ -139,30 +146,57 @@ end;
 {$ENDIF}
 
 procedure TFreeSplashWindow.TimerTimer(Sender: TObject);
-var TI : integer; ABV: byte;
+var TI : integer; ABV: integer; ABD:integer;
 begin
   TI:=Timer.Interval;
   inc(FCounter,TI);
-  //Label2.Caption:=IntToStr(TI);
-  if AlphaBlend then
+  ABD := 255 div TI;
+
+ if AlphaBlend then
     begin
      ABV:=AlphaBlendValue;
 
-     if (FCounter < 1000) and (ABV<255)
-     then inc(ABV)
-     else ABV:=255;
+     if (FCounter < 1000) then inc(ABV,ABD);
+     if (ABV>255) then ABV:=255;
 
-     if (FCounter >= (SPLASH_TIME-1000)) and (ABV>0)
-     then dec(ABV)
-     else ABV:=0;
+     if (FCounter >= (SPLASH_TIME-1000)) then dec(ABV,ABD);
+     if (ABV<1) then ABV:=1;
 
      //Label3.Caption:=IntToStr(ABV);
-     Label2.Update;
+     //Label2.Update;
      AlphaBlendValue := ABV;
+     //Update;
+     //Application.ProcessMessages;
     end;
+  //Self.SetFocus;
+  //Self.SetZOrder(true);
+  //Update;
+  Application.ProcessMessages; // there maight be no message loop yet
+  //Logger.Debug('in TFreeSplashWindow.TimerTimer: ABV='+IntToStr(ABV));
+
   if FCounter>SPLASH_TIME
-    then Close;
+    then begin
+       //Visible:=false;
+       Close;
+       Application.ProcessMessages; // there maight be no message loop yet
+    end;
 end;{TFreeSplashWindow.TimerTimer}
+
+procedure TFreeSplashWindow.Image1MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  // This should hold splash window until mouse button released
+  AlphaBlendValue := 255;
+  Update;
+  Timer.Enabled:=False;
+end;
+
+procedure TFreeSplashWindow.Image1MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  // close splash window when mouse button released
+  Close;
+end;
 
 procedure TFreeSplashWindow.FormClose(Sender: TObject;var Action: TCloseAction);
 begin
@@ -172,13 +206,12 @@ end;{TFreeSplashWindow.FormClose}
 
 procedure TFreeSplashWindow.Image1Click(Sender: TObject);
 begin
-   Timer.Enabled:=False;
-   Close;
+   //Timer.Enabled:=False;
+   //Close;
 end;{TFreeSplashWindow.Image1Click}
 
 procedure TFreeSplashWindow.FormShow(Sender: TObject);
 var Str:string;
-
 begin
    _Label1.Caption:=Userstring(279)+#32+VersionString(CurrentVersion);
    _Label6.Caption:='Release: '+ReleasedDate;
@@ -194,7 +227,11 @@ begin
    FCounter:=0;
    Timer.Enabled:=True;
    Caption:='';
-   if AlphaBlend then AlphaBlendValue:=0 else AlphaBlendValue:=255;
+   //Parent := NIL;
+
+   //AlphaBlend := false;
+
+   if AlphaBlend then AlphaBlendValue:=1 else AlphaBlendValue:=255;
 end;{TFreeSplashWindow.FormShow}
 
 procedure TFreeSplashWindow._Label5Click(Sender: TObject);

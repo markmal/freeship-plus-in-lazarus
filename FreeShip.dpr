@@ -140,7 +140,24 @@ begin
 
    FormatSettings.DecimalSeparator:='.';
    Application.Initialize;
+
+   FreeSplashWindow:=TFreeSplashWindow.Create(Application);
+
+   if ShowSplash then
+   begin
+    //ShowTranslatedValues(FreeSplashWindow);
+    if InDebugger then
+      begin
+      //FreeSplashWindow.FormStyle:=fsNormal;
+      //FreeSplashWindow.BorderStyle:=bsSizeable;
+      end;
+    FreeSplashWindow.ShowOnTop;
+    //sleep(SPLASH_TIME);
+   end;
+
    Application.CreateForm(TMainForm, MainForm);
+   //FreeSplashWindow.Parent := Mainform;
+
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
   {$IFNDEF CREATE_TRANSLATION}
    LoadLanguage(Mainform.Freeship.Preferences.LanguageFile);
@@ -151,7 +168,7 @@ begin
    //then MainForm.LoadNamedFile(sOpenFile);
 
    //Application.CreateForm(TFreeKeelWizardDialog, FreeKeelWizardDialog);
-   FreeSplashWindow:=TFreeSplashWindow.Create(Application);
+
 
    {$IFDEF CREATE_TRANSLATION}
       // Create a translation of all the forms and stringvalues in the project
@@ -234,17 +251,6 @@ begin
       FreeCrosscurvesDialog.Free;
    {$ENDIF}
 
-   if ShowSplash then
-   begin
-    //ShowTranslatedValues(FreeSplashWindow);
-    if InDebugger then
-      begin
-      FreeSplashWindow.FormStyle:=fsNormal;
-      FreeSplashWindow.BorderStyle:=bsSizeable;
-      end;
-    FreeSplashWindow.Show;
-    //sleep(SPLASH_TIME);
-   end;
 
    Application.Run;
 end.

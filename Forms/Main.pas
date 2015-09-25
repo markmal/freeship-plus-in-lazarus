@@ -1186,6 +1186,7 @@ if FileExistsUTF8('Sterns.txt') { *Converted from FileExists* } then DeleteFileU
 end;{TMainForm.ExitProgramExecute}
 
 procedure TMainForm.FormShow(Sender: TObject);
+var FileExt: string;
 begin
    self.WindowState := wsNormal;
 
@@ -1201,8 +1202,9 @@ begin
    else
    begin
       // Skip translation
+      FileExt := Uppercase(ExtractFileExt(FFileName));
       if (FileExistsUTF8(FFileName) { *Converted from FileExists* })
-        and (Uppercase(ExtractFileExt(FFileName))='.FBM') then
+        and ( (FileExt = '.FBM') or (FileExt = '.FTM') ) then
       begin
          FOpenHullWindows;
          FreeShip.Edit.File_Load(FFileName);

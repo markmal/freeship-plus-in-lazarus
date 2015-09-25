@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = 636
+  Left = 476
   Height = 800
-  Top = 144
+  Top = 70
   Width = 1200
   Align = alTop
-  ClientHeight = 773
+  ClientHeight = 779
   ClientWidth = 1200
   Color = clSilver
   Font.Color = clWindowText
@@ -22,11 +22,11 @@ object MainForm: TMainForm
   OnWindowStateChange = FormWindowStateChange
   Position = poDefault
   ShowHint = True
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object StatusBar: TPanel
     Left = 0
     Height = 20
-    Top = 753
+    Top = 759
     Width = 1200
     Align = alBottom
     BevelOuter = bvLowered
@@ -331,20 +331,20 @@ object MainForm: TMainForm
           end
           object LayerBox: TComboBox
             Left = 21
-            Height = 24
+            Height = 29
             Hint = 'Assign selected faces to a new layer or change the currently active layer.'
             Top = 0
             Width = 145
-            ItemHeight = 23
+            ItemHeight = 0
             OnChange = LayerBoxChange
             Style = csDropDownList
             TabOrder = 0
           end
           object PanelActiveLayerColor: TPanel
             Left = 246
-            Height = 0
+            Height = 1
             Top = 0
-            Width = 0
+            Width = 1
             AutoSize = True
             Caption = 'PanelActiveLayerColor'
             TabOrder = 1

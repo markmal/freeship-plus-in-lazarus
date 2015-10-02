@@ -631,6 +631,8 @@ begin
    FFreeship:=Freeship;
 
    Freeship.Preferences.LoadImageIntoBitmap(Button1.Glyph, 'Calculate');
+   Freeship.Preferences.LoadImageIntoBitmap(SpeedButton1.Glyph, 'Ok');
+   Freeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
 
    FOriginalStations:=TFasterList.Create;
    FNewStations:=TFasterList.Create;

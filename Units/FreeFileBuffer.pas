@@ -6,9 +6,11 @@ unit FreeFileBuffer;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes,
+  SysUtils,
   Graphics,
   StrUtils,
+  LConvEncoding,
   FreeVersionUnit,
   FreeTypes,
   FreeLanguageSupport;
@@ -35,6 +37,7 @@ type
     FData: array of byte;
     FFileName: string;
     FFile: file;
+    FEncoding: string;
     procedure FGrow(size: integer);
     procedure FSetCapacity(val: integer); virtual;
     function FGetCapacity: integer; virtual;
@@ -112,6 +115,7 @@ type
     property Count: integer read FCount;
     property Version: TFreeFileVersion read FVersion write FVersion;
     property Position: integer read GetPosition;
+    property Encoding: string read FEncoding write FEncoding;
   end;
 
   {---------------------------------------------------------------------------------------------------}
@@ -1827,6 +1831,7 @@ begin
       Inc(FPosition);
       Output := Output + Ch;
     end;
+    Output := ConvertEncoding(Output,FEncoding,'utf8');
   end
   else
     raise Exception.Create(UserString(192) + '_0 ! Load String' + EOL
@@ -2002,6 +2007,8 @@ procedure TFreeFileBuffer.Add(Text: string);
 var
   Size: integer;
 begin
+  // convert text from UTF8 to Windows ANSI
+  Text:=ConvertEncoding(Text,'utf8',FEncoding);
   Size := Length(Text);
   Add(Size);
   if Size = 0 then
@@ -2059,6 +2066,7 @@ begin
   FPosition := 0;
   Setlength(FData, 0);
   FFileName := '';
+  FEncoding := 'cp1252';
 end;{TFreeFileBuffer.Clear}
 
 destructor TFreeFileBuffer.Destroy;

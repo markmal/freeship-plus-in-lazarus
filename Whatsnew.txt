@@ -1,3 +1,14 @@
+Test only Version 3.5.3.29 in Lazarus
+Released: Build date	2015/10/02 14:10:00
+New features and fixes:
+- fixed issue #11 problem with layers name. Now FBM file is saved in encoding that is selected in preferences
+- fixed issue #12 Creating a layer in empty project. No exception when save empty project.
+- fixed issue #13 100% CPU in LinesPlan window
+- fixed issue #14 Design Hydrostatics not working
+- fixed issue #15 Access violation trying to use Lackenby transformation
+- added feature: added manual font size adjustment controls in main and Linespan windows. Automatic font sizing is out of use.
+- added feature: related to issue #11, added setting for single byte encoding that is used to save or load FBM files.
+
 Test only Version 3.5.3.27 in Lazarus
 Released: Build date	2015/09/25 17:40:00
 New features and fixes:

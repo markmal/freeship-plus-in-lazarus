@@ -3294,15 +3294,17 @@ end;{TFreeViewport.FSetFontSize}
 
 function TFreeViewport.FGetFontHeight:integer;
 begin
-   Result:=FDrawingCanvas.TextHeight('Xy');
+   //Result:=FDrawingCanvas.TextHeight('Xy');
+   Result:=FDrawingCanvas.Font.Height;
 end;{TFreeViewport.FGetFontSize}
 
 procedure TFreeViewport.FSetFontHeight(val:integer);
 var Height         : TFloatType;
   CurrentHeight  : Integer;
 begin
+  FDrawingCanvas.Font.Height := val;
   // Sets the fontheight to a height in modelspace
-  Height:=val*Self.Scale*Self.Zoom;
+  {Height:=val*Self.Scale*Self.Zoom;
   FSetFontSize(8);
   CurrentHeight:=FDrawingCanvas.TextHeight('Xy');
   while CurrentHeight>Height do
@@ -3310,7 +3312,7 @@ begin
     FDrawingCanvas.Font.Size:=FDrawingCanvas.Font.Size-1;
     CurrentHeight:=FDrawingCanvas.TextHeight('Xy');
     if FDrawingCanvas.Font.Size<3 then break;
-    end;
+    end;}
 end;{SetFontHeight}
 
 
@@ -3510,7 +3512,13 @@ begin
    Screen.Cursors[crSetOrigin]:=LoadCursor(hInstance,'SETORIGIN');
    Screen.Cursors[crSetScale]:=LoadCursor(hInstance,'SETSCALE');
    Screen.Cursors[crTranspCol]:=LoadCursor(hInstance,'TRANSPARENTCOLOR');
+
+   FontName := 'Courier';
+   FontSize := 8;
+   FontColor := clWhite;
+
    logger.debug('TFreeViewport.Create: done');
+
 end;{TFreeViewport.Create}
 
 destructor TFreeViewport.Destroy;
@@ -5281,6 +5289,7 @@ var Min,Max:T3DCoordinate;
 begin
    if Assigned(FOnRequestExtents) then
    begin
+      Min:=ZERO; Max:=ZERO;
       FOnRequestExtents(self,Min,Max);
       FZoom:=1.0;
       FPan.X:=0;

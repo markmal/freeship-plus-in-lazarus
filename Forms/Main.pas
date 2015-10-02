@@ -68,7 +68,7 @@ uses
      FreeAboutDlg,
      Menus,
      ToolWin,
-     Buttons, StdActns, FileUtil;
+     Buttons, StdActns, Spin, FileUtil;
 
 type
 
@@ -79,6 +79,7 @@ type
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
+     Label1: TLabel;
      PanelActiveLayerColor: TPanel;
      PanelEdges: TPanel;
      PanelCurves: TPanel;
@@ -98,6 +99,7 @@ type
     OST: TMenuItem;
     PropellerRvrs: TMenuItem;
     RBHS: TMenuItem;
+    SpinEditFontSize: TSpinEdit;
     StatusBar                  : TPanel;
     MenuImages                 : TImageList;
     ExitProgram                : TAction;
@@ -105,7 +107,7 @@ type
     ShowInteriorEdges          : TAction;
     MainMenu1                  : TMainMenu;
     File1                      : TMenuItem;
-    Mediumtelelens130mm1       : TMenuItem;
+    Open       : TMenuItem;
     ExitProgram1               : TMenuItem;
     ToolBarMain: TToolBar;
     ToolBarCurves: TToolBar;
@@ -436,6 +438,7 @@ type
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
     procedure NewWindowExecute(Sender: TObject);
+    procedure SpinEditFontSizeChange(Sender: TObject);
     procedure TileWindowExecute(Sender: TObject);
     procedure CascadeWindowExecute(Sender: TObject);
     procedure BothSidesExecute(Sender: TObject);
@@ -573,7 +576,7 @@ type
     function  getToolbarControlsWidth(tb:TToolBar): integer;
     function  getAllToolbarsControlWidth: integer;
     procedure AlignAllToolbars;
-
+    procedure SetAllActionsEnabled(val : boolean);
    private    { Private declarations }
       FAllToolbarsControlsWidth : integer;
       FToolBarFileControlsWidth : integer;
@@ -623,7 +626,7 @@ uses FreeSplashWndw,
 {$ENDIF}
 
 procedure SortControlsByXY(tb:TWinControl);
-var c1,c2: TControl; i,j:integer;
+var c1,c2: TControl; i,j, t1,t2, l1,l2:integer;
 begin
   {
   Writeln();
@@ -640,13 +643,15 @@ begin
       begin
       c1 := tb.Controls[j-1];
       c2 := tb.Controls[j];
+      t1:=c1.Top; t2:=c2.Top;
+      l1:=c1.Left; l2:=c2.Left;
       if c1.Top > c2.Top then
         begin
           tb.RemoveControl(c2);
           tb.InsertControl(c2,j-1);
         end
       else
-        if c1.Left > c2.Left then
+        if (c1.Top = c2.Top) and (c1.Left > c2.Left) then
           begin
             tb.RemoveControl(c2);
             tb.InsertControl(c2,j-1);
@@ -963,6 +968,16 @@ begin
    // End Skip translation
 end;{TMainForm.SetCaption}
 
+procedure TMainForm.SetAllActionsEnabled(val : boolean);
+var i: integer; A: TAction;
+begin
+  for i:=0 to ActionList1.ActionCount-1 do
+  begin
+    A := TAction(ActionList1.Actions[i]);
+    A.Enabled:=val;
+  end;
+end;
+
 procedure TMainForm.UpdateMenu;
 var I       : Integer;
     NLayers : Integer;
@@ -973,9 +988,33 @@ var I       : Integer;
 begin
    NLayers:=0;
    For I:=1 to Freeship.NumberOfLayers do if Freeship.Layer[I-1].Count>0 then inc(NLayers);
+
+   {
+   // disable almost all actions if model was not loaded for some reason
+   if not Freeship.ModelLoaded then
+     begin
+        FreeShip.Filename:='MODEL NOT LOADED!';
+        FreeShip.FilenameSet:=false;
+
+        SetAllActionsEnabled(false);
+
+        NewModel.Enabled:=true;
+        LoadFile.Enabled:=true;
+        ExitProgram.Enabled:=true;
+        HelpAction.Enabled:=true;
+        AboutAction.Enabled:=true;
+
+        //ImportFEF.Enabled:=true;
+        //ImportCarene.Enabled:=true;
+        //ImportVRML.Enabled:=true;
+        //ImportHullFile.Enabled:=true;
+     end;
+    }
+
    // File menu
    FileSaveas.Enabled:=(FreeShip.Surface.NumberOfControlPoints>0) or (Freeship.FileChanged) or (Freeship.FilenameSet);
    FileSave.Enabled:=(FileSaveas.Enabled) and (Freeship.FilenameSet);
+
    ImportMichletWaves1.Enabled:=(MDIChildCount>0) and (Freeship.Surface.NumberOfControlFaces>1);
    ExportFEF.Enabled:=Freeship.Surface.NumberOfControlPoints>0;
    ExportObj.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
@@ -1093,11 +1132,12 @@ begin
    NewCurve.Enabled:=FreeShip.NumberOfSelectedControlEdges>0;
    PointCollapse.Enabled:=Freeship.NumberOfSelectedControlPoints>0;
    DeleteEmptyLayers.Enabled:=False;
-   for I:=1 to Freeship.NumberOfLayers do if (FreeShip.Layer[I-1].Count=0) and (FreeShip.NumberOfLayers>0) then
-   begin
-      DeleteEmptyLayers.Enabled:=True;
-      break;
-   end;
+   for I:=1 to Freeship.NumberOfLayers do
+     if (FreeShip.ModelLoaded) and (FreeShip.Layer[I-1].Count=0) and (FreeShip.NumberOfLayers>0) then
+       begin
+          DeleteEmptyLayers.Enabled:=True;
+          break;
+       end;
    RemoveUnusedPoints.Enabled:=False;
    for I:=1 to Freeship.Surface.NumberOfControlPoints do if Freeship.Surface.ControlPoint[I-1].NumberOfFaces=0 then
    begin
@@ -1188,7 +1228,8 @@ end;{TMainForm.ExitProgramExecute}
 procedure TMainForm.FormShow(Sender: TObject);
 var FileExt: string;
 begin
-   self.WindowState := wsNormal;
+   self.WindowState:=wsNormal;
+   self.Position:=poScreenCenter;
 
    // Initialize some data
    FreeShip.OnChangeActiveLayer:=FreeShipChangeActiveLayer;
@@ -1216,6 +1257,7 @@ begin
    UpdateMenu;
 end;{TMainForm.FormShow}
 
+
 procedure TMainForm.ShowControlNetExecute(Sender: TObject);
 begin
    FreeShip.Visibility.ShowControlNet:=not FreeShip.Visibility.ShowControlNet;
@@ -1241,12 +1283,24 @@ begin
    UpdateMenu;
 end;{TMainForm.NewWindowExecute}
 
+procedure TMainForm.SpinEditFontSizeChange(Sender: TObject);
+var w: integer;  vp:TFreeViewport;
+begin
+  FreeShip.FontSize := SpinEditFontSize.value;
+  for w:=0 to FMDIChildList.Count-1 do
+  begin
+    vp := TFreeHullWindow(FMDIChildList.Items[w]).Viewport;
+    vp.invalidate;
+  end;
+end;
+
 {$IFDEF FPC}
 function TMainForm.GetMDIChildren(AIndex: Integer): TCustomForm;
 begin
   Result := nil;
   if not (FormStyle in [fsMDIForm, fsMDIChild]) then
     exit;
+  if AIndex > FMDIChildList.Count -1 then exit;
   Result := TCustomForm(FMDIChildList.Items[AIndex]) ;
 end;
 

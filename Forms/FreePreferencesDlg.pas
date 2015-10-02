@@ -57,7 +57,9 @@ type
 { TFreePreferencesDialog }
 
  TFreePreferencesDialog = class(TForm)
+   ComboBoxEncoding: TComboBox;
    ComboBoxThemes: TComboBox;
+   LabelEncoding: TLabel;
    Label38: TLabel;
    SelectToolIconSize: TComboBox;
    EditTempDir: TEdit;
@@ -173,6 +175,7 @@ type
     FConfigChanged : boolean;
     FThemeChanged : boolean;
     procedure Updatedata;
+    procedure ComboBoxEncodingFillItems;
  public    { Public declarations }
     property IsThemeChanged : boolean read FThemeChanged;
     property IsConfigChanged : boolean read FConfigChanged;
@@ -193,6 +196,7 @@ uses FreeLanguageSupport;
 {$ENDIF}
 
 procedure TFreePreferencesDialog.Updatedata;
+var i: integer;
 begin
    Panel4.Color:=FFreeship.Preferences.ViewportColor;
    Panel2.Color:=FFreeship.Preferences.LayerColor;
@@ -233,6 +237,13 @@ begin
    //EditToolIconsDir.Text:= FFreeship.Preferences.ToolIconDirectory;
 
    SelectToolIconSize.Text:=IntToStr(FFreeship.Preferences.ToolIconSize);
+
+   ComboBoxEncodingFillItems;
+   for i:=0 to ComboBoxEncoding.Items.Count-1 do
+     if String(ComboBoxEncoding.Items.Objects[i]) = FFreeship.Preferences.FbmEncoding
+       then break;
+   if i>ComboBoxEncoding.Items.Count then i:=-1;
+   ComboBoxEncoding.ItemIndex:=i;
 
 end;{TFreePreferencesDialog.Updatedata}
 
@@ -363,6 +374,31 @@ begin
   //SelectDirectoryDialog1.FileName:=EditToolIconsDir.Text;
   //if SelectDirectoryDialog1.Execute then
     //EditToolIconsDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.ComboBoxEncodingFillItems;
+begin
+ with ComboBoxEncoding.Items do
+   begin
+    AddObject('ISO_8859_1 -  Central Europe', TObject(String('iso88591')));
+    AddObject('ISO_8859_15 -  Western European languages', TObject(String('iso885915')));
+    AddObject('ISO_8859_2 -  Eastern Europe', TObject(String('iso88592')));
+    AddObject('CP1250 -  Central Europe', TObject(String('cp1250')));
+    AddObject('CP1251 -  Cyrillic', TObject(String('cp1251')));
+    AddObject('CP1252 -  Latin 1', TObject(String('cp1252')));
+    AddObject('CP1253 -  Greek', TObject(String('cp1253')));
+    AddObject('CP1254 -  Turkish', TObject(String('cp1254')));
+    AddObject('CP1255 -  Hebrew', TObject(String('cp1255')));
+    AddObject('CP1256 -  Arabic', TObject(String('cp1256')));
+    AddObject('CP1257 -  Baltic', TObject(String('cp1257')));
+    AddObject('CP1258 -  Vietnam', TObject(String('cp1258')));
+    AddObject('CP437 -  DOS Central Europe', TObject(String('cp437')));
+    AddObject('CP850 -  DOS Western Europe', TObject(String('cp850')));
+    AddObject('CP852 -  DOS Central Europe', TObject(String('cp852')));
+    AddObject('CP866 -  DOS and Windows console Cyrillic', TObject(String('cp866')));
+    AddObject('CP874 -  Thai', TObject(String('cp874')));
+    AddObject('KOI8 -  Russian Cyrillic', TObject(String('koi8')));
+   end;
 end;
 
 

@@ -6,12 +6,12 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
   ClientHeight = 494
   ClientWidth = 761
   TabOrder = 0
-  DesignLeft = 30
-  DesignTop = 86
+  DesignLeft = 364
+  DesignTop = 161
   object Viewport: TFreeViewport
     Left = 0
-    Height = 470
-    Top = 24
+    Height = 467
+    Top = 27
     Width = 761
     Angle = 90
     Align = alClient
@@ -39,7 +39,7 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 24
+    Height = 27
     Top = 0
     Width = 761
     AutoSize = True
@@ -67,7 +67,7 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
       Action = ZoomOut
     end
     object ToolButton6: TToolButton
-      Left = 74
+      Left = 119
       Height = 22
       Top = 2
       Width = 10
@@ -76,27 +76,27 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
       Style = tbsSeparator
     end
     object ToolButton19: TToolButton
-      Left = 84
+      Left = 129
       Top = 2
       Action = ShowFillColor
     end
     object ToolButton2: TToolButton
-      Left = 107
+      Left = 152
       Top = 2
       Action = UseLights
     end
     object ToolButton3: TToolButton
-      Left = 130
+      Left = 175
       Top = 2
       Action = ShowMonochrome
     end
     object ToolButton4: TToolButton
-      Left = 153
+      Left = 198
       Top = 2
       Action = MirrorPlanView
     end
     object ToolButton14: TToolButton
-      Left = 176
+      Left = 221
       Height = 22
       Top = 2
       Width = 10
@@ -105,19 +105,42 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
       Style = tbsSeparator
     end
     object ToolButton7: TToolButton
-      Left = 186
+      Left = 231
       Top = 2
       Action = SaveBitmap
     end
     object ToolButton13: TToolButton
-      Left = 209
+      Left = 254
       Top = 2
       Action = ExportDXF
     end
     object ToolButton1: TToolButton
-      Left = 232
+      Left = 277
       Top = 2
       Action = Print
+    end
+    object ToolButton15: TToolButton
+      Left = 300
+      Height = 22
+      Top = 2
+      Width = 10
+      Caption = 'ToolButton15'
+      ImageIndex = 12
+      Style = tbsSeparator
+    end
+    object SpinEdit1: TSpinEdit
+      Left = 74
+      Height = 25
+      Hint = 'Font Size'
+      Top = 2
+      Width = 45
+      Font.Height = -13
+      MaxValue = 20
+      MinValue = 3
+      OnChange = SpinEdit1Change
+      ParentFont = False
+      TabOrder = 0
+      Value = 8
     end
   end
   object ActionList1: TActionList

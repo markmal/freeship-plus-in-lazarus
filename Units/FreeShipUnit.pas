@@ -75,7 +75,7 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
 // FREE!ship uses British imperial format, eg 1 long ton=2240 lbs
 
 
-const FreeShipExtention           = '.fbm';                                                              // Default extention for hull model files
+const FreeShipExtention           = '.ftm';                                                              // Default extention for hull model files
       SelectDistance              = 3;                                                                   // Max. distance in pixels between an item and the cursor in order to be selected
       Threshold                   = 3;                                                                   // The distance that the cursor has to be moved before a controlpoint starts moving
       FontheightFactor            = 140;                                                                 // used for calculating fontheight
@@ -681,7 +681,7 @@ type
           FLanguage                  : String;
 
           FMaxUndoMemory             : Integer;  // Max. amount of allowable undo memory in megabytes
-
+          FFbmEncoding               : string; //encoding that is used to convert national strings from/to FBM files
           function getGlobalConfigDirectory:string;
           function getUserAppDataDirectory:string;
           function getGlobalAppDataDirectory:string;
@@ -768,6 +768,7 @@ type
           property MenuIconSize            : integer read FMenuIconSize write FMenuIconSize;
           property ToolIconSize            : integer read FToolIconSize write FToolIconSize;
           property Theme                   : string read FThemeName;
+          property FbmEncoding             : string read FFbmEncoding write FFbmEncoding;
      end;
 
      {---------------------------------------------------------------------------------------------------}
@@ -915,6 +916,7 @@ type
                                     FOnUpdateGeometryInfo      : TNotifyEvent;         // This event is raised whenever items are added or deleted from the surface
                                     FFreeLinesplanFrme         : TFrame;
                                     FFilenameSet               : Boolean; // Flag to determine if the filename already has been set
+                                    FModelLoaded               : Boolean; // Flag to determine if the model is created new or loaded.
                                     // The folowing private variables are for moving controlpoints with the mouse
                                     FCurrentlyMoving           : boolean;
                                     FPointHasBeenMoved         : boolean;
@@ -949,6 +951,7 @@ type
                                     FResistanceRBHSData        : TFreeRBHSSeriesResistanceData;									
                                     FResistanceMHData          : TFreeMHSeriesResistanceData;									
                                     FDesignHydrostatics        : TFreeHydrostaticCalc; // This object calculates hydrostatic data to draw in the viewports
+                                    FFontSize                  : integer;
                                     procedure FBuildValidFrameTable(Destination:TFasterList;CloseAtDeck:Boolean); // Assembles all stations and builds a 2D bodyplan for export to other calculating programs
                                     function  FGetActiveLayer:TFreeSubdivisionlayer;
                                     function  FGetBackgroundImage(Index:Integer):TFreeBackgroundImageData;
@@ -1044,6 +1047,7 @@ type
                                     property    Edit                                   : TFreeEdit read FEdit;                      // Containerclass for all editing commands
                                     property    EditMode                               : TFreeEditMode read FEditMode write FSetEditMode;
                                     property    FilenameSet                            : boolean read FFilenameSet write FFilenameSet;
+                                    property    ModelLoaded                            : boolean read FModelLoaded write FModelLoaded;
                                     property    Flowline[index:integer]                : TFreeFlowline read FGetFlowline;
                                     property    HydrostaticCalculation[index:integer]  : TFreeHydrostaticCalc read FGetHydrostaticCalculation;
                                     property    Layer[index:integer]                   : TFreeSubdivisionLayer read FGetLayer;
@@ -1099,7 +1103,8 @@ type
                                     property    Preferences                            : TFreePreferences read FPreferences;
                                     property    ProjectSettings                        : TFreeProjectSettings read FProjectSettings;
                                     property    Visibility                             : TFreeVisibility read FVisibility;
-                              end;
+                                    property    FontSize                               : integer read FFontSize write FFontSize;
+      end;
 // function to find the corresponding water viscosity based on the density
 function FindWaterViscosity(Temper:TFloatType;Units:TFreeUnitType):TFloatType;
 procedure INEXTR(XX:single;N:integer;Xs,Ws:array of single;var YY:single);
@@ -3400,7 +3405,7 @@ begin
    AddData(Strings,Mode,';');
    Dialog:=TFreeHydrostaticsDialog.Create(Owner);
    ShowTranslatedValues(Dialog);
-   Strings.SaveToFile('FreeHydrostaticsMode.ShowData.Strings.txt');
+   //Strings.SaveToFile('FreeHydrostaticsMode.ShowData.Strings.txt');
    try
       Dialog.Edit.Lines.BeginUpdate;
       Dialog.Edit.Clear;
@@ -9801,7 +9806,7 @@ var Answer     : word;
 begin
    OpenDialog:=TFreeOpenDialog.Create(Owner);
    OpenDialog.InitialDir:=Owner.Preferences.OpenDirectory;
-   OpenDialog.Filter:='FREE!ship files (*.fbm *.ftm)|*.fbm;*.ftm';
+   OpenDialog.Filter:='FREE!ship files (*.ftm *.fbm)|*.ftm;*.fbm';
    Opendialog.Options:=[ofHideReadOnly];
    Opendialog.OnPreview := OnFilePreview;
    Places:=Opendialog.GetPlaces;
@@ -9851,6 +9856,7 @@ begin
      raise Exception.Create('Unsupported file format: '+Ext);
 
    try
+      Owner.ModelLoaded:=false;
       Source.LoadFromFile(FileName);                // Load everything into memory
       Owner.Preferences.OpenDirectory:=ExtractFilePath(FileName);
       //Owner.Filename:=ChangeFileExt(FileName,'.fbm');
@@ -9866,6 +9872,7 @@ begin
       Owner.Draw;
       Owner.FFilenameSet:=True;
       Owner.FStopAskingForFileVersion:=False;
+      Owner.ModelLoaded:=true;
    finally
       Source.Destroy;
       AddToRecentFiles(FileName);
@@ -9910,6 +9917,7 @@ begin
    if Ext = '.fbm'
      then Destination:=TFreeFileBuffer.Create
      else Destination:=TFreeTextBuffer.Create;
+   Destination.Encoding:=Owner.Preferences.FbmEncoding;
    Owner.SaveBinary(Destination);
    Destination.SaveToFile(Owner.Filename);
    Owner.Preferences.SaveDirectory:=ExtractFilePath(Owner.FileName);
@@ -11462,6 +11470,7 @@ begin
    ShowTranslatedValues(FreeNewModelDialog);
    if FreeNewModelDialog.Execute then
    begin
+      Owner.ModelLoaded:=false;
       CreateUndoObject(Userstring(157),True);
       Cols:=FreeNewModelDialog.NCols-1;
       Rows:=FreeNewModelDialog.NRows-1;
@@ -11594,6 +11603,7 @@ begin
 
       Owner.draw;
       Owner.FileChanged:=True;
+      Owner.ModelLoaded:=true;
       if Assigned(Owner.OnUpdateGeometryInfo) then Owner.OnUpdateGeometryInfo(self);
       Result:=true;
       TrvSplines.Destroy;
@@ -13824,6 +13834,7 @@ begin
    FLanguage:='English';
    FLanguageFile:='';
    FMaxUndoMemory:=20;// Max 20Mb undomemory
+   FFbmEncoding:='cp1252';
 end;{TFreePreferences.Clear}
 
 constructor TFreePreferences.Create(Owner:TFreeShip);
@@ -13966,6 +13977,8 @@ begin
          end;
          //else FLanguage:=Lang;
       end;
+
+      FFbmEncoding := String(Dialog.ComboBoxEncoding.Items.Objects[Dialog.ComboBoxEncoding.ItemIndex]);
       FMaxUndoMemory:=Dialog.FreeNumInput1.AsInteger;
 
       if assigned(Owner.FOnFileChanged) then Owner.FOnFileChanged(Owner);
@@ -14401,7 +14414,7 @@ begin
       png.LoadFromFile(IconFile);
       img:=png.CreateIntfImage;
       bmp.LoadFromIntfImage(img);
-      Bitmap.Free;
+      Bitmap.FreeImage;
       Bitmap.Assign(bmp);
       img.Free;
     end;
@@ -14563,7 +14576,7 @@ begin
   FLanguageFile:=FLanguagesDirectory+'/'+Flanguage+'.ini';
   if not FileExistsUTF8(FLanguageFile) { *Converted from FileExists* }
     then FLanguage:='English';
-
+  FFbmEncoding := params.ReadString('General','FbmEncoding',FbmEncoding);
   FMaxUndoMemory := params.ReadInteger('General','MaxUndoMemory',FMaxUndoMemory);
 end;
 
@@ -14578,6 +14591,7 @@ begin
   FToolIconSize := 24;
   FThemeName := 'Default';
   FParentThemeName := '';
+  FFbmEncoding := 'cp1252';
 end;
 
 procedure TFreePreferences.ResetDirectories;
@@ -14765,6 +14779,7 @@ begin
    end;
 
   params.WriteString('General','Language',FLanguage);
+  params.WriteString('General','FbmEncoding',FbmEncoding);
   params.WriteInteger('General','MaxUndoMemory',FMaxUndoMemory);
 end;
 
@@ -15956,13 +15971,16 @@ begin
       2: begin L:=0; T:=150; end;
       3: begin L:=200; T:=150; end;
     end;
-    thumbNail.Canvas.StretchDraw(Rect(L,T,L+200,T+150),Tmp);
+    if Assigned(tmp) then
+      begin
+      thumbNail.Canvas.StretchDraw(Rect(L,T,L+200,T+150),Tmp);
+      Tmp.Destroy;
+      end;
     end;
   Result:=TJPEGImage.Create;
   Result.Assign(thumbNail);
   Result.CompressionQuality:=90;
   //Result.SaveToFile('saved_screenshot.jpg');
-  Tmp.Destroy;
   thumbNail.Destroy;
 end;{TFreeShip.FGetPreview}
 
@@ -16066,6 +16084,7 @@ begin
    FPrecision:=fpLow;
    FFileVersion:=CurrentVersion;
    FFileChanged:=False;
+   FModelLoaded:=false;
    FSurface.Clear;
    FFilename:=Userstring(179);
    FVisibility.Clear;
@@ -16209,9 +16228,9 @@ var I,Size        : integer;
       Pt:=Viewport.Project(P);
       Viewport.FontName:='Arial';
       Viewport.FontColor:=Preferences.HydrostaticsFontColor;
-      size:=Round(Sqrt(Viewport.Zoom)*7);
-      if size<2 then size:=2;
-      Viewport.FontSize:=size;
+      //size:=Round(Sqrt(Viewport.Zoom)*7);
+      //if size<2 then size:=2;
+      Viewport.FontSize:=FFontSize;
       Size:=Round(Sqrt(Viewport.Zoom)*(Preferences.PointSize+1));
       if size<1 then size:=1;
       Viewport.BrushStyle:=bsClear;
@@ -16250,9 +16269,9 @@ var I,Size        : integer;
         begin
            // Sets the fontheight to a height in modelspace
            Height:=round(DesiredHeight*Viewport.Scale*Viewport.Zoom);
-           CurrentHeight := Viewport.Font.Height;
+           CurrentHeight := Viewport.FontHeight;
            if CurrentHeight <> Height
-             then Viewport.Font.Height := Height;
+             then Viewport.FontHeight := Height;
 
            // below code causes loop redraw and 100% CPU.
            // Changed to above code with direct set of required Font.Height
@@ -16283,8 +16302,12 @@ var I,Size        : integer;
           Viewport.FontName:='Arial';
           Viewport.FontColor:=Preferences.GridFontColor;
           // calculate and set fontheight
-          SetFontHeight(DistPP3D(Min,Max)/FontheightFactor);
-          Height:=Viewport.TextHeight('X');
+          //SetFontHeight(DistPP3D(Min,Max)/FontheightFactor * FFontScale);
+
+          // just set font size
+          Viewport.FontSize:=FFontSize;
+
+          //Height:=Viewport.TextHeight('X');
           Viewport.BrushStyle:=bsClear;
           // draw centerline
           if Viewport.ViewType<>fvProfile then
@@ -16966,6 +16989,7 @@ begin
    try
       Logger.Debug('LoadBinary');
       Source.Reset;
+      Source.Encoding := Preferences.FbmEncoding;
       Source.Load(Str);
       if Str='FREE!ship' then
       begin
@@ -17103,6 +17127,7 @@ begin
       end //if Str='FREE!ship' then
       else MessageDlg(Userstring(189),mtError,[mbOk],0);
       FileChanged:=False;
+      ModelLoaded:=true;
    finally
       Surface.DesiredSubdivisionLevel:=Ord(Precision)+1;
       Surface.Rebuild;
@@ -17130,6 +17155,7 @@ begin
    try
       Source.LoadFromFile(FileName);                // Load everything into memory
       Source.Reset;
+      Source.Encoding := Preferences.FbmEncoding;
       Source.Load(Str);
       if Str='FREE!ship' then
       begin
@@ -17186,6 +17212,7 @@ begin
    Screen.Cursor:=crHourGlass;
    try
       Logger.Debug('SaveBinary');
+      Destination.Encoding := Preferences.FbmEncoding;
       Destination.Add('FREE!ship');
       Destination.Add(FileVersion);
       Destination.Add(Ord(Precision));
@@ -17344,6 +17371,7 @@ begin
 
       PartFile:=TFreeFileBuffer.Create;
       PartFile.Version:=CurrentVersion;
+      PartFile.Encoding:=Preferences.FbmEncoding;
 
       PrevCursor:=Screen.Cursor;
       Screen.Cursor:=crHourGlass;

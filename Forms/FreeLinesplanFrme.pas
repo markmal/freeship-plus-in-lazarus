@@ -55,14 +55,19 @@ uses
      Printers,
      Math,
      ImgList,
-     ActnList;
+     ActnList, StdCtrls, Spin;
 
 const SpacePercentage    = 0.20;
       Textspace          = 0.05;
 
 type TLinesplanView      = (lvProfile,lvAftBody,lvFrontBody,lvPlan);
      TLinesplanViews     = set of TLinesplanView;
+
+     { TFreeLinesplanFrame }
+
      TFreeLinesplanFrame = class(TFrame)
+                                SpinEdit1: TSpinEdit;
+                                ToolButton15: TToolButton;
                                  Viewport: TFreeViewport;
                                  ActionList1: TActionList;
                                  ZoomExtents: TAction;
@@ -90,6 +95,7 @@ type TLinesplanView      = (lvProfile,lvAftBody,lvFrontBody,lvPlan);
                                  ToolButton3: TToolButton;
                                  MirrorPlanView: TAction;
                                  ToolButton4: TToolButton;
+                                 procedure SpinEdit1Change(Sender: TObject);
                                  procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                                  procedure ViewportRedraw(Sender: TObject);
                                  procedure ZoomExtentsExecute(Sender: TObject);
@@ -119,6 +125,7 @@ type TLinesplanView      = (lvProfile,lvAftBody,lvFrontBody,lvPlan);
                                  procedure FSetFreeShip(Val:TFreeShip);
                               private
                               public    { Public declarations }
+                                 constructor Create(TheOwner: TComponent); override;
                                  procedure UpdateMenu;
                                  property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
                            end;
@@ -140,6 +147,11 @@ function CalculateSpace(Percentage,Min,Max:TFloatType):TFloatType;
 begin
    Result:=Percentage*(Max-Min);
 end;{Space}
+
+constructor TFreeLinesplanFrame.Create(TheOwner: TComponent);
+begin
+  inherited Create(TheOwner);
+end;
 
 procedure TFreeLinesplanFrame.UpdateMenu;
 begin
@@ -273,6 +285,12 @@ begin
       Max.Z:=Max.X;
    end;
 end;{TFreeLinesplanFrame.ViewportRequestExtents}
+
+procedure TFreeLinesplanFrame.SpinEdit1Change(Sender: TObject);
+begin
+   Font.Size := SpinEdit1.Value;
+   Viewport.invalidate;
+end;
 
 procedure TFreeLinesplanFrame.ViewportRedraw(Sender: TObject);
 type TriangleData = record
@@ -809,11 +827,18 @@ var I,J,N,K       : Integer;
    end;{DrawTriangles}
 
    procedure SetFontHeight(DesiredHeight:TFloatType);
-   var Height         : TFloatType;
-       CurrentHeight  : Integer;
+   var Height         : integer;
+       CurrentHeight  : integer;
    begin
       // Sets the fontheight to a height in modelspace
-      Height:=DesiredHeight*Viewport.Scale*Viewport.Zoom;
+      Height:=round(DesiredHeight*Viewport.Scale*Viewport.Zoom);
+      CurrentHeight := Viewport.FontHeight;
+      if CurrentHeight <> Height
+        then Viewport.FontHeight := Height;
+
+      // below code causes loop redraw and 100% CPU.
+      // Changed to above code with direct set of required Font.Height
+      {Height:=DesiredHeight*Viewport.Scale*Viewport.Zoom;
       Viewport.Font.Size:=8;
       CurrentHeight:=Viewport.TextHeight('X');
       while CurrentHeight>Height do
@@ -821,7 +846,7 @@ var I,J,N,K       : Integer;
          Viewport.Font.Size:=Viewport.Font.Size-1;
          CurrentHeight:=Viewport.TextHeight('X');
          if Viewport.Font.Size<6 then break;
-      end;
+      end;}
    end;{SetFontHeight}
 
 begin
@@ -851,7 +876,13 @@ begin
    Viewport.FontName:='Arial';
    Viewport.FontColor:=clBlack;
    // calculate and set fontheight
-   SetFontHeight(DistPP3D(FMin3D,FMax3D)/FontheightFactor);
+   //SetFontHeight(DistPP3D(FMin3D,FMax3D)/FontheightFactor * FFontheightScale);
+
+   //just set font from the frame self
+   Viewport.FontName:=Font.Name;
+   Viewport.FontColor:=Font.Color;
+   //Viewport.FontHeight:=Font.Height;
+   Viewport.FontSize:=Font.Size;
 
    try
       if (not ShowMonochrome.Checked) and (ShowFillcolor.Checked) then

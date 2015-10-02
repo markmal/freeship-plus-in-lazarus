@@ -12,7 +12,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
   Font.Height = -13
   Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 433
@@ -39,8 +39,10 @@ object FreePreferencesDialog: TFreePreferencesDialog
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
-        ClientHeight = 381
-        ClientWidth = 566
+        ClientHeight = 375
+        ClientWidth = 562
+        ParentShowHint = False
+        ShowHint = True
         object Label26: TLabel
           Left = 16
           Height = 14
@@ -50,11 +52,11 @@ object FreePreferencesDialog: TFreePreferencesDialog
           ParentColor = False
         end
         object ComboBox1: TComboBox
-          Left = 120
+          Left = 176
           Height = 24
           Top = 18
           Width = 117
-          ItemHeight = 23
+          ItemHeight = 0
           OnChange = EditDirChange
           Sorted = True
           TabOrder = 0
@@ -63,15 +65,15 @@ object FreePreferencesDialog: TFreePreferencesDialog
         object Label27: TLabel
           Left = 16
           Height = 14
-          Top = 64
-          Width = 136
+          Top = 100
+          Width = 137
           Caption = 'Max. undo memory (Mb)'
           ParentColor = False
         end
         object FreeNumInput1: TFreeNumInput
-          Left = 192
+          Left = 248
           Height = 18
-          Top = 60
+          Top = 96
           Width = 45
           Alignment = taRightJustify
           Decimals = 0
@@ -88,11 +90,31 @@ object FreePreferencesDialog: TFreePreferencesDialog
           BorderColor = clBtnShadow
           TabOrder = 1
         end
+        object LabelEncoding: TLabel
+          Left = 16
+          Height = 14
+          Top = 62
+          Width = 98
+          Caption = 'Encoding for FBM'
+          ParentColor = False
+        end
+        object ComboBoxEncoding: TComboBox
+          Left = 176
+          Height = 24
+          Hint = 'Encoding for FBM files'#10'Used to convert Windows encoded strings to UTF8'
+          Top = 56
+          Width = 368
+          ItemHeight = 0
+          ItemWidth = 200
+          OnChange = EditDirChange
+          Sorted = True
+          TabOrder = 2
+        end
       end
       object TabSheet2: TTabSheet
         Caption = 'Directories'
-        ClientHeight = 387
-        ClientWidth = 566
+        ClientHeight = 375
+        ClientWidth = 562
         object EditLanguagesDir: TEdit
           Left = 24
           Height = 24
@@ -368,8 +390,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Graphics'
-        ClientHeight = 387
-        ClientWidth = 566
+        ClientHeight = 375
+        ClientWidth = 562
         object Panel: TPanel
           Left = 0
           Height = 387
@@ -809,7 +831,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Height = 24
             Top = 35
             Width = 93
-            ItemHeight = 16
+            ItemHeight = 0
             ItemIndex = 1
             Items.Strings = (
               '16'
@@ -837,7 +859,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Height = 24
             Top = 8
             Width = 309
-            ItemHeight = 23
+            ItemHeight = 0
             OnChange = ComboBoxThemesChange
             Sorted = True
             TabOrder = 25

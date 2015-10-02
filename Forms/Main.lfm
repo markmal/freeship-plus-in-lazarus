@@ -8,7 +8,7 @@ object MainForm: TMainForm
   ClientWidth = 1200
   Color = clSilver
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = 11
   Font.Name = 'MS Sans Serif'
   FormStyle = fsMDIForm
   Menu = MainMenu1
@@ -100,12 +100,12 @@ object MainForm: TMainForm
     TabOrder = 1
     object PanelMain: TPanel
       Left = 1
-      Height = 31
+      Height = 36
       Top = 2
       Width = 1199
       Align = alTop
       AutoSize = True
-      ClientHeight = 31
+      ClientHeight = 36
       ClientWidth = 1199
       TabOrder = 0
       object PanelFile: TPanel
@@ -161,20 +161,20 @@ object MainForm: TMainForm
         end
       end
       object PanelVisibility: TPanel
-        Left = 151
-        Height = 25
+        Left = 175
+        Height = 34
         Top = 1
-        Width = 284
+        Width = 290
         AutoSize = True
         Caption = 'c'
-        ClientHeight = 25
-        ClientWidth = 284
+        ClientHeight = 34
+        ClientWidth = 290
         TabOrder = 1
         object ToolBarVisibility: TToolBar
           Left = 1
-          Height = 22
+          Height = 31
           Top = 1
-          Width = 281
+          Width = 287
           Align = alCustom
           BorderSpacing.Around = 1
           ButtonHeight = 16
@@ -271,23 +271,35 @@ object MainForm: TMainForm
             Action = ShowMarkers
             AutoSize = True
           end
+          object SpinEditFontSize: TSpinEdit
+            Left = 1
+            Height = 22
+            Hint = 'Font Size'
+            Top = 16
+            Width = 36
+            MaxValue = 20
+            MinValue = 3
+            OnChange = SpinEditFontSizeChange
+            TabOrder = 0
+            Value = 8
+          end
         end
       end
       object PanelLayers: TPanel
-        Left = 440
+        Left = 464
         Height = 29
         Top = 1
-        Width = 281
+        Width = 225
         AutoSize = True
         Caption = 'c'
         ClientHeight = 29
-        ClientWidth = 281
+        ClientWidth = 225
         TabOrder = 2
         object ToolBarLayers: TToolBar
-          Left = 1
+          Left = 0
           Height = 26
           Top = 1
-          Width = 278
+          Width = 223
           Align = alCustom
           BorderSpacing.Around = 1
           ButtonHeight = 16
@@ -306,8 +318,8 @@ object MainForm: TMainForm
             AutoSize = True
           end
           object ToolButton34: TToolButton
-            Left = 206
-            Top = 0
+            Left = 1
+            Top = 16
             Action = DeleteEmptyLayers
             AutoSize = True
           end
@@ -324,14 +336,14 @@ object MainForm: TMainForm
             AutoSize = True
           end
           object ToolButton26: TToolButton
-            Left = 226
-            Top = 0
+            Left = 21
+            Top = 16
             Action = IntersectionDialog
             AutoSize = True
           end
           object LayerBox: TComboBox
             Left = 21
-            Height = 29
+            Height = 26
             Hint = 'Assign selected faces to a new layer or change the currently active layer.'
             Top = 0
             Width = 145
@@ -341,9 +353,9 @@ object MainForm: TMainForm
             TabOrder = 0
           end
           object PanelActiveLayerColor: TPanel
-            Left = 246
+            Left = 41
             Height = 1
-            Top = 0
+            Top = 16
             Width = 1
             AutoSize = True
             Caption = 'PanelActiveLayerColor'
@@ -3313,7 +3325,7 @@ object MainForm: TMainForm
           0000000000000000000000000000000000000000000000000000
         }
       end
-      object Mediumtelelens130mm1: TMenuItem
+      object Open: TMenuItem
         Action = LoadFile
         Bitmap.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100

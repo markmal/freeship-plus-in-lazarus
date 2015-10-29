@@ -43,7 +43,8 @@ const
  TARGET_CPU={$I %FPCTARGET%};
  TARGET_OS={$I %FPCTARGETOS%};
 
- FREESHIP_VERSION='3.5.0.0';   //Major version
+ FREESHIP_MAJOR_VERSION='3.5';   //Major version
+ FREESHIP_VERSION='3.5.0.0';   //Major full version
 
  SUBVERSION_REVISION={$I SVNLastChangeRevision.inc};
  GITVERSION_REVISION={$I GITLastChangeRevision.inc}; //number of git commits

@@ -7,7 +7,7 @@
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="148"/>
         <CursorPos X="11" Y="107"/>
         <UsageCount Value="200"/>
@@ -29,9 +29,8 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
         <TopLine Value="1215"/>
-        <CursorPos X="19" Y="1233"/>
+        <CursorPos X="19" Y="1239"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -78,19 +77,23 @@
         <ComponentName Value="FreeSplashWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="161"/>
-        <CursorPos X="28" Y="169"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="188"/>
+        <CursorPos X="63" Y="216"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="149"/>
-        <CursorPos X="60" Y="200"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="23"/>
+        <CursorPos X="24" Y="46"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -438,13 +441,10 @@
         <ComponentName Value="FreeLackenbyDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="133"/>
         <CursorPos X="11" Y="154"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit37>
       <Unit38>
@@ -591,10 +591,10 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="14398"/>
-        <CursorPos X="7" Y="14405"/>
+        <CursorPos X="78" Y="14418"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
@@ -780,14 +780,14 @@
         <Filename Value="Units/FreeViewPort.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="91"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit70>
       <Unit71>
         <Filename Value="Units/FreeRGBbuffer.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="14"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="85"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit71>
       <Unit72>
@@ -795,7 +795,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="5275"/>
         <CursorPos Y="5294"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="105"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit72>
       <Unit73>
@@ -803,21 +803,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="811"/>
         <CursorPos Y="827"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="75"/>
       </Unit73>
       <Unit74>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/objpas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="577"/>
         <CursorPos Y="599"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="18"/>
       </Unit74>
       <Unit75>
         <Filename Value="/usr/share/lazarus/1.4RC2/lcl/graphics.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="3" Y="58"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit75>
       <Unit76>
@@ -826,7 +826,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1166"/>
         <CursorPos X="51" Y="1184"/>
-        <UsageCount Value="476"/>
+        <UsageCount Value="475"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit76>
       <Unit77>
@@ -835,7 +835,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="419"/>
         <CursorPos Y="508"/>
-        <UsageCount Value="488"/>
+        <UsageCount Value="487"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit77>
       <Unit78>
@@ -844,7 +844,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="16" Y="468"/>
-        <UsageCount Value="487"/>
+        <UsageCount Value="486"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit78>
       <Unit79>
@@ -853,21 +853,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1151"/>
         <CursorPos X="3" Y="1165"/>
-        <UsageCount Value="431"/>
+        <UsageCount Value="430"/>
       </Unit79>
       <Unit80>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6263"/>
         <CursorPos Y="6279"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="27"/>
       </Unit80>
       <Unit81>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5436"/>
         <CursorPos Y="5452"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="27"/>
       </Unit81>
       <Unit82>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/ustringh.inc"/>
@@ -897,14 +897,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="25" Y="37"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="53"/>
       </Unit85>
       <Unit86>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="176"/>
         <CursorPos X="23" Y="192"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit86>
       <Unit87>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/stdctrls.pp"/>
@@ -919,7 +919,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="800"/>
         <CursorPos X="3" Y="819"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit88>
       <Unit89>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/classes/classesh.inc"/>
@@ -941,7 +941,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1289"/>
         <CursorPos Y="1306"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit91>
       <Unit92>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/forms.pp"/>
@@ -956,7 +956,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="850"/>
         <CursorPos Y="871"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit93>
       <Unit94>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/extctrls.pp"/>
@@ -964,18 +964,17 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="997"/>
         <CursorPos X="6" Y="1013"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit94>
       <Unit95>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/speedbutton.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="421"/>
         <CursorPos Y="439"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="10"/>
       </Unit95>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="9" HistoryIndex="8">
       <Position1>
         <Filename Value="Forms/Main.pas"/>
         <Caret Line="2377" TopLine="2360"/>
@@ -997,33 +996,20 @@
         <Caret Line="1231" TopLine="1228"/>
       </Position5>
       <Position6>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16233" Column="32" TopLine="16225"/>
+        <Filename Value="Forms/FreeSplashWndw.pas"/>
+        <Caret Line="174" Column="41" TopLine="161"/>
       </Position6>
       <Position7>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="3416" Column="90" TopLine="3393"/>
+        <Filename Value="Forms/FreeSplashWndw.pas"/>
       </Position7>
       <Position8>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="14418" TopLine="14398"/>
+        <Filename Value="Forms/FreeSplashWndw.pas"/>
+        <Caret Line="66" Column="42" TopLine="38"/>
       </Position8>
       <Position9>
-        <Filename Value="Forms/FreeLackenbyDlg.pas"/>
-        <Caret Line="633" TopLine="616"/>
+        <Filename Value="Forms/FreeSplashWndw.pas"/>
+        <Caret Line="216" Column="54" TopLine="188"/>
       </Position9>
-      <Position10>
-        <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/speedbutton.inc"/>
-        <Caret Line="438" TopLine="421"/>
-      </Position10>
-      <Position11>
-        <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/speedbutton.inc"/>
-        <Caret Line="439" TopLine="421"/>
-      </Position11>
-      <Position12>
-        <Filename Value="Forms/FreeLackenbyDlg.pas"/>
-        <Caret Line="636" TopLine="616"/>
-      </Position12>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

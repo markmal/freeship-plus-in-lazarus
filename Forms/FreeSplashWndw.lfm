@@ -2351,7 +2351,7 @@ object FreeSplashWindow: TFreeSplashWindow
   object _Label1: TLabel
     Left = 184
     Height = 19
-    Top = 8
+    Top = 5
     Width = 112
     Alignment = taRightJustify
     Caption = 'Version 0.00'
@@ -2440,7 +2440,7 @@ object FreeSplashWindow: TFreeSplashWindow
   object _Label6: TLabel
     Left = 304
     Height = 14
-    Top = 11
+    Top = 6
     Width = 46
     Alignment = taRightJustify
     Caption = 'Release'

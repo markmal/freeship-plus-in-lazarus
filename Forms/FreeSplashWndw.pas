@@ -213,7 +213,7 @@ end;{TFreeSplashWindow.Image1Click}
 procedure TFreeSplashWindow.FormShow(Sender: TObject);
 var Str:string;
 begin
-   _Label1.Caption:=Userstring(279)+#32+VersionString(CurrentVersion);
+   _Label1.Caption:=Userstring(279)+#32+FREESHIP_MAJOR_VERSION;
    _Label6.Caption:='Release: '+ReleasedDate;
    LabelBuildInfo.Caption := 'Build: '+ResourceVersionInfo+' '+COMPILE_DATE+' '+COMPILE_TIME+' '+TARGET_CPU+' '+TARGET_OS;
    Str:='';

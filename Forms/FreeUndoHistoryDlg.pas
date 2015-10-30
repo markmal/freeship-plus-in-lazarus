@@ -52,6 +52,7 @@ uses
      ExtCtrls,
      ToolWin,
      FreeShipUnit,
+    FreeLanguageSupport,
      ComCtrls,
     FreeTypes,
      FreeGeometry,
@@ -121,6 +122,11 @@ begin
       Freeship1.AddViewport(Viewport);
       UndoBox.ItemIndex:=Freeship.UndoPosition-1;
       Viewport.Color:=Freeship.Preferences.ViewportColor;
+
+      Freeship.Preferences.LoadImageIntoBitmap(Speedbutton1.Glyph,'Ok');
+      Freeship.Preferences.LoadImageIntoBitmap(Speedbutton2.Glyph,'Cancel');
+      ShowTranslatedValues(Self);
+
       ShowModal;
    end;
    Result:=ModalResult=mrOK;

@@ -46,26 +46,32 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
-     ExtCtrls;
+     ExtCtrls,
+     FreeShipUnit,
+     FreeLanguageSupport;
 
-type TSaveImageDialog = class(TForm)
+type
+
+{ TSaveImageDialog }
+
+ TSaveImageDialog = class(TForm)
+                             BitBtn1: TSpeedButton;
+                             BitBtn2: TSpeedButton;
                               Panel2: TPanel;
     Label3: TLabel;
     Label6: TLabel;
                               Edit1: TEdit;
                               Edit2: TEdit;
-                              Panel1: TPanel;
                               Panel3: TPanel;
                               Label1: TLabel;
                               Label2: TLabel;
                               Label4: TLabel;
+                              Panel4: TPanel;
                               _Label5: TLabel;
                               Label7: TLabel;
                               Edit3: TEdit;
                               SpeedButton1: TSpeedButton;
                               SaveDialog: TSaveDialog;
-                              BitBtn1: TSpeedButton;
-                              BitBtn2: TSpeedButton;
                               procedure Edit1KeyPress(Sender: TObject; var Key: Char);
                               procedure Edit1Exit(Sender: TObject);
                               procedure Edit1KeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
@@ -144,6 +150,11 @@ end;{TSaveImageDialog.FSetImageHeight}
 function TSaveImageDialog.Execute:Boolean;
 begin
    FRatio:=Imagewidth/ImageHeight;
+
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
+
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TSaveImageDialog.Execute}
@@ -187,4 +198,4 @@ begin
    ModalResult:=mrCancel;
 end;{TSaveImageDialog.BitBtn2Click}
 
-end.
+end.

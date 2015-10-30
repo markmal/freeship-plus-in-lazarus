@@ -49,19 +49,24 @@ uses
      ExtCtrls,
      StdCtrls,
      FreeshipUnit,
+     FreeLanguageSupport,
      FreeGeometry,
      FasterList,
      CheckLst;
 
 type TFreeSelectMode          = (fsFaces,fsPoints);
+
+     { TFreeSelectLayersDialog }
+
      TFreeSelectLayersDialog  = class(TForm)
-                                 Panel1: TPanel;
+                                BitBtn1: TSpeedButton;
+                                BitBtn2: TSpeedButton;
+                                Panel2: TPanel;
                                  Panel3: TPanel;
-                                 BitBtn1: TSpeedButton;
-                                 BitBtn2: TSpeedButton;
                                  LayerBox: TCheckListBox;
                                  Panel4: TPanel;
                                  CheckBox: TCheckBox;
+                                 Panel5: TPanel;
                                  procedure BitBtn1Click(Sender: TObject);
                                  procedure BitBtn2Click(Sender: TObject);
                                  procedure LayerBoxClickCheck(Sender: TObject);
@@ -214,8 +219,13 @@ begin
       Freeship.Visibility.ShowControlNet:=True;
       Freeship.Visibility.ShowInteriorEdges:=False;
    end;
+
+   Freeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   Freeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
+
    try
-      ShowModal;
+     ShowModal;
    finally
       Result:=ModalResult=mrOK;
       Freeship.Visibility.ShowInteriorEdges:=OldEdges;
@@ -261,4 +271,4 @@ begin
    if FSelectMode=fsPoints then FUpdateSelection(nil);
 end;{TFreeSelectLayersDialog.CheckBoxClick}
 
-end.
+end.

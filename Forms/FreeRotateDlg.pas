@@ -46,6 +46,8 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
+     FreeShipUnit,
+     FreeLanguageSupport,
      ExtCtrls;
 
 type TFreeRotateDialog = class(TForm)
@@ -131,6 +133,11 @@ begin
    Label3.Caption:=Units;
    Label6.Caption:=Units;
    Label9.Caption:=Units;
+
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph,'Ok');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
+
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TFreeRotateDialog.Execute}
@@ -171,4 +178,4 @@ begin
    ModalResult:=mrCancel;
 end;{TFreeRotateDialog.CancelButtonClick}
 
-end.
+end.

@@ -617,7 +617,8 @@ uses FreeSplashWndw,
      FreeLinesplanFrm,
      FreeControlPointFrm,
      FreeKeelWizardDlg,
-     FreeLanguageSupport;
+     FreeLanguageSupport,
+     FreeEmptyModelChooserDlg;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1239,17 +1240,37 @@ begin
    FreeShip.Clear;
 
    if FFileName = '' then
-     LoadMostRecentFile
+     LoadMostRecentFile;
+
+   if (FFileName = '') and not FreeShip.ModelLoaded then  //default behaviour if no recent file defined
+     NewModelExecute(Self)
    else
+   if (FFileName <> '') and not FreeShip.ModelLoaded then
    begin
       // Skip translation
       FileExt := Uppercase(ExtractFileExt(FFileName));
       if (FileExistsUTF8(FFileName) { *Converted from FileExists* })
         and ( (FileExt = '.FBM') or (FileExt = '.FTM') ) then
+        begin
+           FOpenHullWindows;
+           FreeShip.Edit.File_Load(FFileName);
+        end
+      else
       begin
-         FOpenHullWindows;
-         FreeShip.Edit.File_Load(FFileName);
-      end else MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+         //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+         FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
+         ShowTranslatedValues(FreeEmptyModelChooserDialog);
+         if FreeEmptyModelChooserDialog.Execute(FFileName)
+         then
+           begin
+           if FreeEmptyModelChooserDialog.RbCreateNew.Checked
+             then NewModelExecute(Self)
+           else
+           if FreeEmptyModelChooserDialog.RbLoadFile.Checked
+             then LoadFileExecute(Self)
+           end;
+         FreeEmptyModelChooserDialog.Free;
+      end
       // End Skip translation
    end;
    SetCaption;
@@ -1440,24 +1461,42 @@ begin
          N:=Pos('&',Filename);
          if N<>0 then system.Delete(Filename,N,1);
       until N=0;
-      // End Skip translation
-      if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+
+   if Freeship.FileChanged then
+   begin
+      Answer:=MessageDlg(Userstring(103)+EOL+Userstring(104),mtConfirmation,[mbYes,mbNo,mbCancel],0);
+      if Answer=mrCancel then exit;
+      if Answer=mrYes then
       begin
-         if Freeship.FileChanged then
-         begin
-            Answer:=MessageDlg(Userstring(103)+EOL+Userstring(104),mtConfirmation,[mbYes,mbNo,mbCancel],0);
-            if Answer=mrCancel then exit;
-            if Answer=mrYes then
-            begin
-               Freeship.Edit.File_SaveAs;
-               if Freeship.FileChanged then exit; // Apparently saving was not successfull, abort
-            end;
-         end;
+         Freeship.Edit.File_SaveAs;
+         if Freeship.FileChanged then exit; // Apparently saving was not successfull, abort
+      end;
+   end;
+
+   // End Skip translation
+   if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+      begin
          Freeship.Edit.File_Load(Filename);
          FOpenHullWindows;
          SetCaption;
          UpdateMenu;
-      end;
+      end
+   else
+      begin
+         //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+         FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
+         ShowTranslatedValues(FreeEmptyModelChooserDialog);
+         if FreeEmptyModelChooserDialog.Execute(FileName)
+         then
+           begin
+           if FreeEmptyModelChooserDialog.RbCreateNew.Checked
+             then NewModelExecute(Self)
+           else
+           if FreeEmptyModelChooserDialog.RbLoadFile.Checked
+             then LoadFileExecute(Self)
+           end;
+         FreeEmptyModelChooserDialog.Free;
+      end
    end;
 end;{TMainForm.FLoadRecentFile}
 
@@ -1469,7 +1508,7 @@ var Menu    : TMenuItem;
 begin
   if FreeShip.Edit.RecentFileCount = 0 then exit;
   Filename := Freeship.Edit.RecentFile[0];
-  Filename := Filename;
+  FFilename := Filename;
   if FileExistsUTF8(Filename) { *Converted from FileExists* } then
     begin
     Freeship.Edit.File_Load(Filename);
@@ -1490,7 +1529,23 @@ begin
     FOpenHullWindows;
     SetCaption;
     UpdateMenu;
-    end;
+    end
+  else
+    begin
+       //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+       FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
+       if FreeEmptyModelChooserDialog.Execute(FileName)
+       then
+         begin
+         if FreeEmptyModelChooserDialog.RbCreateNew.Checked
+           then NewModelExecute(Self)
+         else
+         if FreeEmptyModelChooserDialog.RbLoadFile.Checked
+           then LoadFileExecute(Self)
+         end;
+       FreeEmptyModelChooserDialog.Free;
+    end
+
 end;{TMainForm.LoadMostRecentFile}
 
 procedure TMainForm.FreeShipChangeLayerData(Sender: TObject);
@@ -1662,6 +1717,7 @@ begin
      then self.Top := 0;
    {$endif}
    FAllToolbarsControlsWidth := 0;
+   GlobalFreeship := Freeship;
    //dumpIcons;
 end;{TMainForm.FormCreate}
 

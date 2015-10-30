@@ -55,6 +55,7 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
         Forms,
         Dialogs,
         Classes,
+     StdCtrls,
      ExtCtrls,
      ComCtrls,
      ColorIniFile,
@@ -501,6 +502,10 @@ type
                                  private
                                     FOwner                        : TFreeShip;
                                     FRecentFiles                  : TStringList;
+
+                                    PreviewFrm : TForm;
+                                    PreviewImg : TImage;
+
                                     function FGetRecentFile(Index:integer):string;
                                     function FGetRecentFileCount:integer;
                                     procedure SaveDialogTypeChange(Sender: TObject);
@@ -1111,6 +1116,8 @@ procedure INEXTR(XX:single;N:integer;Xs,Ws:array of single;var YY:single);
 procedure SFINEX1(N:integer;X,Y:array of single;X0:single;var YY:single);
 
 procedure Register;
+
+var GlobalFreeShip : TFreeShip;
 
 implementation
 
@@ -9788,27 +9795,63 @@ procedure TFreeEdit.OnFilePreview(Sender: TObject);
   FN, X : String;
   Img : TImage;
   Jpg : TJPegImage;
+  TempFreeShip : TFreeShip;
+  Frm : TForm;
+  h:THandle; rect:TRect;
 begin
   Dlg := TFreeOpenDialog(Sender);
   FN := Dlg.FileName;
   Img := Dlg.PreviewImage;
+
+  //TGroupBox(Img.Parent).Caption := 'FreeShip';
   Jpg := TJPegImage.Create;
-  Owner.LoadPreview(FN, Jpg);
+  TempFreeShip := TFreeShip.Create(nil);
+  TempFreeShip.LoadPreview(FN, Jpg);
   if Assigned(Jpg)
-   then Img.Picture.Bitmap.Assign(Jpg)
-   else Img.Picture := nil;
+   then
+   begin
+     PreviewImg.Picture.Bitmap.Assign(Jpg);
+     PreviewFrm.Height:=PreviewImg.Picture.Bitmap.Height+10;
+     PreviewFrm.Width:=PreviewImg.Picture.Bitmap.Width+10;
+   end
+   else PreviewImg.Picture := nil;
+  TempFreeShip.Free;
 end;
 
 procedure TFreeEdit.File_Load;
 var Answer     : word;
     OpenDialog : TFreeOpenDialog; //TOpenDialog;
     Places:TListItems;
+    w,h:integer;
 begin
    OpenDialog:=TFreeOpenDialog.Create(Owner);
    OpenDialog.InitialDir:=Owner.Preferences.OpenDirectory;
    OpenDialog.Filter:='FREE!ship files (*.ftm *.fbm)|*.ftm;*.fbm';
    Opendialog.Options:=[ofHideReadOnly];
    Opendialog.OnPreview := OnFilePreview;
+
+   // standard preview does not work in Qt4pas. We open a separate window nearby
+   PreviewFrm := TForm.Create(Application);
+   PreviewFrm.Caption:='Preview';
+   PreviewFrm.Height:=100;
+   PreviewFrm.Width:=200;
+   PreviewFrm.Constraints.MinHeight:=100;
+   PreviewFrm.Constraints.MinWidth:=200;
+   PreviewFrm.Constraints.MaxHeight:=Screen.Height div 2;
+   PreviewFrm.Constraints.MaxWidth:=Screen.Width div 2;
+   PreviewFrm.Top:=Screen.Height div 2 - Screen.Height div 6;
+   PreviewFrm.Left:=Screen.Width div 2 + Screen.Width div 6;
+
+   PreviewImg := TImage.Create(PreviewFrm);
+   //PreviewImg := Opendialog.PreviewImage;
+   PreviewImg.Parent:=nil;
+   PreviewImg.Align:= alClient;
+   PreviewFrm.InsertControl(PreviewImg);
+   //PreviewFrm.Position := poMainFormCenter;
+   PreviewFrm.FormStyle:=fsStayOnTop;
+   PreviewFrm.Visible := true;
+   PreviewFrm.Show;
+
    Places:=Opendialog.GetPlaces;
    if OpenDialog.Execute then
    begin
@@ -9833,14 +9876,16 @@ begin
       end;
       File_Load(Opendialog.FileName);   // Load everything into memory
    end;
+   PreviewFrm.Close;
+   PreviewFrm.Free;
    Opendialog.Destroy;
-if FileExistsUTF8('Resist.dat') { *Converted from FileExists* } then DeleteFileUTF8('Resist.dat'); { *Converted from DeleteFile* }
-if FileExistsUTF8('RESISTp.dat') { *Converted from FileExists* } then DeleteFileUTF8('RESISTp.dat'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Vint1.dat') { *Converted from FileExists* } then DeleteFileUTF8('Vint1.dat'); { *Converted from DeleteFile* }
-if FileExistsUTF8('SACs.txt') { *Converted from FileExists* } then DeleteFileUTF8('SACs.txt'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Bonjean.txt') { *Converted from FileExists* } then DeleteFileUTF8('Bonjean.txt'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Weights.txt') { *Converted from FileExists* } then DeleteFileUTF8('Weights.txt'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Sterns.txt') { *Converted from FileExists* } then DeleteFileUTF8('Sterns.txt'); { *Converted from DeleteFile* }
+    if FileExistsUTF8('Resist.dat') { *Converted from FileExists* } then DeleteFileUTF8('Resist.dat'); { *Converted from DeleteFile* }
+    if FileExistsUTF8('RESISTp.dat') { *Converted from FileExists* } then DeleteFileUTF8('RESISTp.dat'); { *Converted from DeleteFile* }
+    if FileExistsUTF8('Vint1.dat') { *Converted from FileExists* } then DeleteFileUTF8('Vint1.dat'); { *Converted from DeleteFile* }
+    if FileExistsUTF8('SACs.txt') { *Converted from FileExists* } then DeleteFileUTF8('SACs.txt'); { *Converted from DeleteFile* }
+    if FileExistsUTF8('Bonjean.txt') { *Converted from FileExists* } then DeleteFileUTF8('Bonjean.txt'); { *Converted from DeleteFile* }
+    if FileExistsUTF8('Weights.txt') { *Converted from FileExists* } then DeleteFileUTF8('Weights.txt'); { *Converted from DeleteFile* }
+    if FileExistsUTF8('Sterns.txt') { *Converted from FileExists* } then DeleteFileUTF8('Sterns.txt'); { *Converted from DeleteFile* }
 end;{TFreeEdit.File_Load}
 
 procedure TFreeEdit.File_Load(filename:string);
@@ -14117,7 +14162,8 @@ begin
             begin
                Readln(FFile,Filename);
                // only add the file to the list if it is a valid filename
-               if FileExists(Filename+'.fbm') then Owner.Edit.FRecentFiles.Add(Filename);
+               //if FileExists(Filename+'.fbm') then
+               Owner.Edit.FRecentFiles.Add(Filename);
             end;
             if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
          end;
@@ -14543,8 +14589,9 @@ begin
   begin
      Filename := RecentFileNames.ValueFromIndex[I];
      // only add the file to the list if it is a valid filename
-     if FileExistsUTF8(Filename) { *Converted from FileExists* }
-       then Owner.Edit.FRecentFiles.Add(Filename);
+     //if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+     // add any filename, TFreeEmptyModelChooserDialog will be invoked if the file does not exist
+     Owner.Edit.FRecentFiles.Add(Filename);
   end;
   RecentFileNames.Destroy;
   if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
@@ -16307,7 +16354,7 @@ var I,Size        : integer;
           // just set font size
           Viewport.FontSize:=FFontSize;
 
-          //Height:=Viewport.TextHeight('X');
+          Height:=Viewport.TextHeight('Oly');
           Viewport.BrushStyle:=bsClear;
           // draw centerline
           if Viewport.ViewType<>fvProfile then

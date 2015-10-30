@@ -23,8 +23,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
-      <RevisionNr Value="3"/>
-      <BuildNr Value="29"/>
+      <RevisionNr Value="4"/>
+      <BuildNr Value="9"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -42,7 +42,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="--debug --log-debug"/>
+        <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
     </RunParams>
     <RequiredPackages Count="5">
@@ -62,7 +62,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="70">
+    <Units Count="71">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -340,9 +340,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit41>
       <Unit42>
-        <Filename Value="Forms/FreeBackgroundBlendingDlg.pas"/>
+        <Filename Value="Forms/FreeEmptyModelChooserDlg.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FreeBackgroundBlendDialog"/>
+        <ComponentName Value="FreeEmptyModelChooserDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit42>
@@ -493,6 +493,13 @@
         <Filename Value="Units/FreeViewPortOpenGL.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit69>
+      <Unit70>
+        <Filename Value="Forms/FreeBackgroundBlendingDlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeBackgroundBlendDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit70>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

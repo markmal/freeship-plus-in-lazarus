@@ -17,7 +17,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     Cursor = crVSplit
     Left = 0
     Height = 3
-    Top = 306
+    Top = 304
     Width = 746
     Align = alTop
     Color = clRed
@@ -27,7 +27,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   object Panel2: TPanel
     Left = 0
     Height = 280
-    Top = 26
+    Top = 24
     Width = 746
     Align = alTop
     BevelOuter = bvLowered
@@ -90,7 +90,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 183
         Height = 15
         Top = 2
-        Width = 54
+        Width = 52
         Caption = 'Current'
         Font.Color = clWindowText
         Font.Height = -12
@@ -103,7 +103,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 242
         Height = 15
         Top = 2
-        Width = 55
+        Width = 52
         Caption = 'Desired'
         Font.Color = clWindowText
         Font.Height = -12
@@ -132,7 +132,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 4
         Height = 14
         Top = 88
-        Width = 115
+        Width = 113
         Caption = 'Prismatic coefficient'
         ParentColor = False
       end
@@ -140,7 +140,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 4
         Height = 14
         Top = 116
-        Width = 143
+        Width = 141
         Caption = 'Long. center of buoyancy'
         ParentColor = False
       end
@@ -148,7 +148,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 301
         Height = 15
         Top = 2
-        Width = 73
+        Width = 70
         Caption = 'Difference'
         Font.Color = clWindowText
         Font.Height = -12
@@ -169,7 +169,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 4
         Height = 14
         Top = 144
-        Width = 149
+        Width = 145
         Caption = 'Maximum no. of iterations'
         ParentColor = False
       end
@@ -177,7 +177,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 4
         Height = 14
         Top = 200
-        Width = 132
+        Width = 126
         Caption = 'Prismatic coeff. aftship'
         ParentColor = False
       end
@@ -193,7 +193,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 4
         Height = 14
         Top = 228
-        Width = 140
+        Width = 133
         Caption = 'Prismatic coeff. foreship'
         ParentColor = False
       end
@@ -209,7 +209,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Left = 4
         Height = 14
         Top = 256
-        Width = 134
+        Width = 133
         Caption = 'Maximum displacement'
         ParentColor = False
       end
@@ -223,7 +223,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Edit1: TFreeNumInput
         Left = 183
-        Height = 22
+        Height = 24
         Top = 22
         Width = 55
         Alignment = taRightJustify
@@ -242,7 +242,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Input1: TFreeNumInput
         Left = 242
-        Height = 22
+        Height = 24
         Top = 22
         Width = 55
         Alignment = taRightJustify
@@ -260,7 +260,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Edit2: TFreeNumInput
         Left = 183
-        Height = 22
+        Height = 24
         Top = 50
         Width = 55
         Alignment = taRightJustify
@@ -279,7 +279,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Input2: TFreeNumInput
         Left = 242
-        Height = 22
+        Height = 24
         Top = 50
         Width = 55
         Alignment = taRightJustify
@@ -297,7 +297,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Edit3: TFreeNumInput
         Left = 183
-        Height = 22
+        Height = 24
         Top = 78
         Width = 55
         Alignment = taRightJustify
@@ -316,7 +316,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Input3: TFreeNumInput
         Left = 242
-        Height = 22
+        Height = 24
         Top = 78
         Width = 55
         Alignment = taRightJustify
@@ -334,7 +334,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Diff1: TFreeNumInput
         Left = 301
-        Height = 22
+        Height = 24
         Top = 22
         Width = 55
         Alignment = taRightJustify
@@ -353,7 +353,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Diff2: TFreeNumInput
         Left = 301
-        Height = 22
+        Height = 24
         Top = 50
         Width = 55
         Alignment = taRightJustify
@@ -372,7 +372,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Diff3: TFreeNumInput
         Left = 301
-        Height = 22
+        Height = 24
         Top = 78
         Width = 55
         Alignment = taRightJustify
@@ -391,7 +391,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Edit4: TFreeNumInput
         Left = 183
-        Height = 22
+        Height = 24
         Top = 106
         Width = 55
         Alignment = taRightJustify
@@ -410,7 +410,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Input4: TFreeNumInput
         Left = 242
-        Height = 22
+        Height = 24
         Top = 106
         Width = 55
         Alignment = taRightJustify
@@ -427,7 +427,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Diff4: TFreeNumInput
         Left = 301
-        Height = 22
+        Height = 24
         Top = 106
         Width = 55
         Alignment = taRightJustify
@@ -446,7 +446,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object IterationBox: TFreeNumInput
         Left = 183
-        Height = 22
+        Height = 24
         Top = 134
         Width = 55
         Alignment = taRightJustify
@@ -464,9 +464,9 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object CheckBox1: TCheckBox
         Left = 3
-        Height = 26
+        Height = 20
         Top = 172
-        Width = 199
+        Width = 181
         Alignment = taLeftJustify
         Caption = 'Redraw after each iteration'
         Checked = True
@@ -477,13 +477,13 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 26
+    Height = 24
     Top = 0
     Width = 746
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 26
+    ClientHeight = 24
     ClientWidth = 746
     Constraints.MinWidth = 60
     ParentShowHint = False
@@ -491,10 +491,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     TabOrder = 1
     object Button1: TSpeedButton
       Left = 4
-      Height = 22
+      Height = 20
       Hint = 'Start the hullform transformation.'
       Top = 2
-      Width = 82
+      Width = 79
       Align = alLeft
       AutoSize = True
       BorderSpacing.Left = 4
@@ -520,7 +520,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object SpeedButton1: TSpeedButton
       Left = 578
-      Height = 22
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight
@@ -572,7 +572,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object BitBtn2: TSpeedButton
       Left = 662
-      Height = 22
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight
@@ -625,18 +625,18 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   end
   object Panel4: TPanel
     Left = 0
-    Height = 202
-    Top = 309
+    Height = 204
+    Top = 307
     Width = 746
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel4'
-    ClientHeight = 202
+    ClientHeight = 204
     ClientWidth = 746
     TabOrder = 2
     object Splitter1: TSplitter
       Left = 163
-      Height = 202
+      Height = 204
       Top = 0
       Width = 5
       Color = clRed
@@ -644,17 +644,16 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object LayerBox: TCheckListBox
       Left = 0
-      Height = 202
+      Height = 204
       Top = 0
       Width = 163
       Align = alLeft
       ItemHeight = 0
       TabOrder = 0
-      TopIndex = -1
     end
     object TopView: TFreeViewport
       Left = 168
-      Height = 202
+      Height = 204
       Top = 0
       Width = 578
       Angle = 90

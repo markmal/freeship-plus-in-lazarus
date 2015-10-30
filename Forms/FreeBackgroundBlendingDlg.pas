@@ -48,7 +48,9 @@ uses
      Buttons,
      ExtCtrls,
      FreeGeometry,
-     ComCtrls;
+     ComCtrls,
+    FreeShipUnit,
+    FreeLanguageSupport;
 
 type TFreeBackgroundBlendDialog = class(TForm)
                               Panel2: TPanel;
@@ -81,6 +83,9 @@ begin
    FViewport:=Viewport;
    Trackbar1.Position:=Viewport.BackgroundImage.Alpha;
    TrackBar1Change(self);
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TFreeBackgroundBlendDialog.Execute}
@@ -101,4 +106,4 @@ begin
    _Label2.Caption:=IntToStr(Round(100*(Trackbar1.Position)/Trackbar1.Max))+'%';
 end;{TFreeBackgroundBlendDialog.TrackBar1Change}
 
-end.
+end.

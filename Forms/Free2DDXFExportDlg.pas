@@ -52,7 +52,8 @@ uses
      StdCtrls,
      Buttons,
      ExtCtrls,
-     FreeNumInput;
+     FreeNumInput,
+    FreeShipUnit,FreeLanguageSupport;
 
 type TDXFExport2DDialog = class(TForm)
                               Panel2: TPanel;
@@ -90,8 +91,6 @@ type TDXFExport2DDialog = class(TForm)
 var DXFExport2DDialog:TDXFExport2DDialog;
 
 implementation
-
-uses FreeLanguageSupport;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -194,6 +193,9 @@ end;{TDXFExport2DDialog.FSetUnits}
 function TDXFExport2DDialog.Execute:Boolean;
 begin
    FSetUnits;
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TDXFExport2DDialog.Execute}

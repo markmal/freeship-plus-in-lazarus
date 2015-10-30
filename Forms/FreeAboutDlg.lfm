@@ -2,18 +2,18 @@ object FreeAboutDlg: TFreeAboutDlg
   Left = 494
   Height = 569
   Top = 182
-  Width = 765
+  Width = 764
   Caption = 'FREE!ship About'
   ClientHeight = 569
-  ClientWidth = 765
+  ClientWidth = 764
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '1.4.0.1'
+  LCLVersion = '1.4.2.0'
   object LabelTitle: TLabel
     Left = 0
     Height = 30
     Top = 0
-    Width = 765
+    Width = 764
     Align = alTop
     Alignment = taCenter
     Caption = 'FREE!ship Plus'
@@ -29,7 +29,7 @@ object FreeAboutDlg: TFreeAboutDlg
     Left = 0
     Height = 17
     Top = 30
-    Width = 765
+    Width = 764
     Align = alTop
     Alignment = taCenter
     Caption = 'Product Version: '
@@ -40,18 +40,18 @@ object FreeAboutDlg: TFreeAboutDlg
   end
   object Panel1: TPanel
     Left = 0
-    Height = 395
+    Height = 412
     Top = 74
     Width = 300
     Align = alLeft
     BevelOuter = bvNone
     Caption = 'Panel1'
-    ClientHeight = 395
+    ClientHeight = 412
     ClientWidth = 300
     TabOrder = 0
     object Image1: TImage
       Left = 20
-      Height = 395
+      Height = 412
       Top = 0
       Width = 280
       Align = alClient
@@ -2377,20 +2377,20 @@ object FreeAboutDlg: TFreeAboutDlg
   end
   object Panel2: TPanel
     Left = 300
-    Height = 395
+    Height = 412
     Top = 74
-    Width = 465
+    Width = 464
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel2'
-    ClientHeight = 395
-    ClientWidth = 465
+    ClientHeight = 412
+    ClientWidth = 464
     TabOrder = 1
     object StringGridVersionInfo: TStringGrid
       Left = 10
       Height = 100
       Top = 27
-      Width = 445
+      Width = 444
       Align = alTop
       AutoEdit = False
       AutoFillColumns = True
@@ -2422,7 +2422,7 @@ object FreeAboutDlg: TFreeAboutDlg
       Left = 0
       Height = 17
       Top = 10
-      Width = 465
+      Width = 464
       Align = alTop
       Alignment = taCenter
       BorderSpacing.Top = 10
@@ -2433,7 +2433,7 @@ object FreeAboutDlg: TFreeAboutDlg
       Left = 0
       Height = 17
       Top = 137
-      Width = 465
+      Width = 464
       Align = alTop
       Alignment = taCenter
       BorderSpacing.Top = 10
@@ -2444,7 +2444,7 @@ object FreeAboutDlg: TFreeAboutDlg
       Left = 10
       Height = 100
       Top = 154
-      Width = 445
+      Width = 444
       Align = alTop
       AutoEdit = False
       AutoFillColumns = True
@@ -2475,7 +2475,7 @@ object FreeAboutDlg: TFreeAboutDlg
       Left = 0
       Height = 17
       Top = 264
-      Width = 465
+      Width = 464
       Align = alTop
       Alignment = taCenter
       BorderSpacing.Top = 10
@@ -2486,7 +2486,7 @@ object FreeAboutDlg: TFreeAboutDlg
       Left = 10
       Height = 100
       Top = 281
-      Width = 445
+      Width = 444
       Align = alTop
       AutoEdit = False
       AutoFillColumns = True
@@ -2518,7 +2518,7 @@ object FreeAboutDlg: TFreeAboutDlg
     Left = 0
     Height = 17
     Top = 57
-    Width = 765
+    Width = 764
     Align = alTop
     Alignment = taCenter
     BorderSpacing.Top = 10
@@ -2528,8 +2528,8 @@ object FreeAboutDlg: TFreeAboutDlg
   object Panel3: TPanel
     Left = 0
     Height = 50
-    Top = 469
-    Width = 765
+    Top = 486
+    Width = 764
     Align = alBottom
     ChildSizing.LeftRightSpacing = 20
     ChildSizing.HorizontalSpacing = 4
@@ -2537,24 +2537,24 @@ object FreeAboutDlg: TFreeAboutDlg
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
     ClientHeight = 50
-    ClientWidth = 765
+    ClientWidth = 764
     TabOrder = 2
     object Label5: TLabel
       Left = 20
       Height = 17
       Top = 0
-      Width = 260
+      Width = 269
       BorderSpacing.Left = 10
       Caption = 'FREE!ship Plus for Lazarus project page:'
       ParentColor = False
     end
     object LabelFreeShipProjectLink: TLabel
-      Left = 284
+      Left = 293
       Height = 17
       Top = 0
-      Width = 330
+      Width = 341
       Caption = 'https://code.google.com/p/freeship-plus-in-lazarus/'
-      Font.Color = clMenuHighlight
+      Font.Color = clBlue
       Font.Style = [fsUnderline]
       ParentColor = False
       ParentFont = False
@@ -2564,18 +2564,18 @@ object FreeAboutDlg: TFreeAboutDlg
       Left = 20
       Height = 17
       Top = 19
-      Width = 260
+      Width = 269
       BorderSpacing.Left = 10
       Caption = 'FREE!ship Plus homepage:'
       ParentColor = False
     end
     object LabelFreeShipHomeLink: TLabel
-      Left = 284
+      Left = 293
       Height = 17
       Top = 19
-      Width = 330
+      Width = 341
       Caption = 'http://www.hydronship.net'
-      Font.Color = clMenuHighlight
+      Font.Color = clBlue
       Font.Style = [fsUnderline]
       ParentColor = False
       ParentFont = False
@@ -2584,33 +2584,28 @@ object FreeAboutDlg: TFreeAboutDlg
   end
   object Panel4: TPanel
     Left = 0
-    Height = 50
-    Top = 519
-    Width = 765
+    Height = 33
+    Top = 536
+    Width = 764
     Align = alBottom
+    AutoSize = True
     BevelOuter = bvNone
-    ChildSizing.LeftRightSpacing = 4000
-    ChildSizing.HorizontalSpacing = 10
     ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
     ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
     ChildSizing.ShrinkHorizontal = crsHomogenousSpaceResize
     ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 50
-    ClientWidth = 765
+    ClientHeight = 33
+    ClientWidth = 764
     TabOrder = 3
     object Button1: TButton
-      Left = 382
-      Height = 27
-      Top = 10
+      Left = 332
+      Height = 29
+      Top = 2
       Width = 100
-      Align = alTop
-      Anchors = [akTop]
-      BorderSpacing.Left = 1000
-      BorderSpacing.Top = 10
-      BorderSpacing.Right = 1000
-      BorderSpacing.Bottom = 10
+      AutoSize = True
+      BorderSpacing.Around = 2
       BorderSpacing.CellAlignHorizontal = ccaCenter
       BorderSpacing.CellAlignVertical = ccaCenter
       Caption = 'Close'

@@ -90,7 +90,7 @@ uses
   FreeIntersectLayerDlg in 'Forms/FreeIntersectLayerDlg.pas' {FreeIntersectLayerDialog},
   FreeUndoHistoryDlg in 'Forms/FreeUndoHistoryDlg.pas' {FreeUndoHistoryDialog},
   FreeHydrostaticsResultsDlg in 'Forms/FreeHydrostaticsResultsDlg.pas' {FreeHydrostaticsResultsDialog},
-  FreeBackgroundBlendingDlg in 'Forms/FreeBackgroundBlendingDlg.pas' {FreeBackgroundBlendDialog},
+  FreeEmptyModelChooserDlg {FreeBackgroundBlendDialog},
   FreeCylinderDlg in 'Forms/FreeCylinderDlg.pas' {FreeCylinderDialog},
   FreeStringsUnit in 'Units/FreeStringsUnit.pas',
   Free2DDXFExportDlg in 'Forms/Free2DDXFExportDlg.pas' {DXFExport2DDialog},

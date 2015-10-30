@@ -4,7 +4,7 @@ object MainForm: TMainForm
   Top = 70
   Width = 1200
   Align = alTop
-  ClientHeight = 779
+  ClientHeight = 773
   ClientWidth = 1200
   Color = clSilver
   Font.Color = clWindowText
@@ -26,7 +26,7 @@ object MainForm: TMainForm
   object StatusBar: TPanel
     Left = 0
     Height = 20
-    Top = 759
+    Top = 753
     Width = 1200
     Align = alBottom
     BevelOuter = bvLowered
@@ -273,7 +273,7 @@ object MainForm: TMainForm
           end
           object SpinEditFontSize: TSpinEdit
             Left = 1
-            Height = 22
+            Height = 24
             Hint = 'Font Size'
             Top = 16
             Width = 36
@@ -343,20 +343,20 @@ object MainForm: TMainForm
           end
           object LayerBox: TComboBox
             Left = 21
-            Height = 26
+            Height = 24
             Hint = 'Assign selected faces to a new layer or change the currently active layer.'
             Top = 0
             Width = 145
-            ItemHeight = 0
+            ItemHeight = 23
             OnChange = LayerBoxChange
             Style = csDropDownList
             TabOrder = 0
           end
           object PanelActiveLayerColor: TPanel
             Left = 41
-            Height = 1
+            Height = 0
             Top = 16
-            Width = 1
+            Width = 0
             AutoSize = True
             Caption = 'PanelActiveLayerColor'
             TabOrder = 1

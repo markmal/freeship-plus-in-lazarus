@@ -52,7 +52,8 @@ uses
      FreeTypes,
      FreeGeometry,
      ActnList,
-     FreeNumInput;	 
+     FreeNumInput,
+     FreeLanguageSupport;
 	 
 type TFreeAddMassOutputDialog  = class(TForm)
                                     Panel1: TPanel;
@@ -543,6 +544,9 @@ begin
       end;	     
    Viewport.Color:=FFreeship.Preferences.ViewportColor;
    FBuildOffsets;
+   Freeship.Preferences.LoadImageIntoBitmap(OKbutton.Glyph,'Ok');
+   Freeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
    ShowModal;
    Result:=ModalResult=mrOK;
 end;{TFreeAddMassOutputDialog.Execute}

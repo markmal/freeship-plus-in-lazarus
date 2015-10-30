@@ -6,12 +6,12 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
   ClientHeight = 494
   ClientWidth = 761
   TabOrder = 0
-  DesignLeft = 364
-  DesignTop = 161
+  DesignLeft = 719
+  DesignTop = 159
   object Viewport: TFreeViewport
     Left = 0
-    Height = 467
-    Top = 27
+    Height = 465
+    Top = 29
     Width = 761
     Angle = 90
     Align = alClient
@@ -39,7 +39,7 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 27
+    Height = 29
     Top = 0
     Width = 761
     AutoSize = True
@@ -55,16 +55,19 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
       Left = 5
       Top = 2
       Action = ZoomExtents
+      AutoSize = True
     end
     object ToolButton8: TToolButton
       Left = 28
       Top = 2
       Action = ZoomIn
+      AutoSize = True
     end
     object ToolButton9: TToolButton
       Left = 51
       Top = 2
       Action = ZoomOut
+      AutoSize = True
     end
     object ToolButton6: TToolButton
       Left = 119
@@ -79,27 +82,32 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
       Left = 129
       Top = 2
       Action = ShowFillColor
+      AutoSize = True
     end
     object ToolButton2: TToolButton
       Left = 152
       Top = 2
       Action = UseLights
+      AutoSize = True
     end
     object ToolButton3: TToolButton
       Left = 175
       Top = 2
       Action = ShowMonochrome
+      AutoSize = True
     end
     object ToolButton4: TToolButton
       Left = 198
       Top = 2
       Action = MirrorPlanView
+      AutoSize = True
     end
     object ToolButton14: TToolButton
       Left = 221
       Height = 22
       Top = 2
       Width = 10
+      AutoSize = True
       Caption = 'ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
@@ -108,16 +116,19 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
       Left = 231
       Top = 2
       Action = SaveBitmap
+      AutoSize = True
     end
     object ToolButton13: TToolButton
       Left = 254
       Top = 2
       Action = ExportDXF
+      AutoSize = True
     end
     object ToolButton1: TToolButton
       Left = 277
       Top = 2
       Action = Print
+      AutoSize = True
     end
     object ToolButton15: TToolButton
       Left = 300
@@ -130,7 +141,7 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
     end
     object SpinEdit1: TSpinEdit
       Left = 74
-      Height = 25
+      Height = 27
       Hint = 'Font Size'
       Top = 2
       Width = 45

@@ -44,9 +44,18 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
-     ExtCtrls;
+     ExtCtrls,
+     FreeShipUnit,
+     FreeLanguageSupport;
 
-type TFreeRotateMDialog = class(TForm)
+type
+
+{ TFreeRotateMDialog }
+
+ TFreeRotateMDialog = class(TForm)
+                             CancelButton: TSpeedButton;
+                             OKButton: TSpeedButton;
+                             Panel1: TPanel;
                               Panel2: TPanel;
                               Label3: TLabel;
                               Label6: TLabel;
@@ -54,9 +63,6 @@ type TFreeRotateMDialog = class(TForm)
                               Edit1: TEdit;
                               Edit2: TEdit;
                               Edit3: TEdit;
-                              Panel1: TPanel;
-                              OKButton: TSpeedButton;
-                              CancelButton: TSpeedButton;
                               Panel3: TPanel;
                               Label1: TLabel;
                               Label2: TLabel;
@@ -138,6 +144,11 @@ begin
    Label3.Caption:=Units;
    Label6.Caption:=Units;
    Label9.Caption:=Units;
+
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph,'Ok');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
+
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TFreeRotateMDialog.Execute}
@@ -178,4 +189,4 @@ begin
    ModalResult:=mrCancel;
 end;{TFreeRotateMDialog.CancelButtonClick}
 
-end.
+end.

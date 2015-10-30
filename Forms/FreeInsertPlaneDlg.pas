@@ -49,14 +49,19 @@ uses
      ExtCtrls,
      StdCtrls,
      FreeTypes,
-     FreeGeometry;
+     FreeGeometry,
+     FreeShipUnit,
+     FreeLanguageSupport;
 
 type
 
 { TFreeInsertPlaneDialog }
 
  TFreeInsertPlaneDialog  = class(TForm)
+                                BitBtn1: TSpeedButton;
+                                BitBtn2: TSpeedButton;
                                  GroupBox1: TGroupBox;
+                                 Panel1: TPanel;
                                  Panel2: TPanel;
                                  RadioButton1: TRadioButton;
                                  RadioButton2: TRadioButton;
@@ -68,10 +73,7 @@ type
                                  Label5: TLabel;
                                  Label3: TLabel;
                                  CheckBox1: TCheckBox;
-                                 Panel1: TPanel;
                                  Panel3: TPanel;
-    BitBtn1: TSpeedButton;
-    BitBtn2: TSpeedButton;
                                  procedure RadioButton1Click(Sender: TObject);
                                  procedure RadioButton2Click(Sender: TObject);
                                  procedure RadioButton3Click(Sender: TObject);
@@ -131,6 +133,9 @@ end;{TFreeInsertPlaneDialog.FUpdate}
 function TFreeInsertPlaneDialog.Execute:Boolean;
 begin
    FUpdate;
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
    ShowModal;
    Result:=ModalResult=mrOK;
 end;{TFreeInsertPlaneDialog.Execute}
@@ -166,4 +171,4 @@ begin
    Modalresult:=mrCancel;
 end;{TFreeInsertPlaneDialog.BitBtn2Click}
 
-end.
+end.

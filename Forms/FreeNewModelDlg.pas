@@ -44,7 +44,10 @@ uses
      Controls,
      StdCtrls,
      Buttons,
-     ExtCtrls;
+     ExtCtrls,
+     FreeShipUnit,
+     FreeLanguageSupport
+;
 
 type TFreeNewModelDialog = class(TForm)
     Panel3: TPanel;
@@ -155,6 +158,11 @@ begin
    Length:=Length;
    Breadth:=Breadth;
    Draft:=Draft;
+
+   ShowTranslatedValues(Self);
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+
    Showmodal;
    Result:=ModalResult=mrOK;
 end;{TFreeNewModelDialog.Execute}

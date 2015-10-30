@@ -49,6 +49,8 @@ uses
      ExtCtrls,
      StdCtrls,
      FreeGeometry,
+     FreeShipUnit,
+     FreeLanguageSupport,
      Buttons, ComCtrls;
 
 type
@@ -191,7 +193,6 @@ var FREEProjectSettingsDialog: TFREEProjectSettingsDialog;
 
 implementation
 
-uses FreeShipUnit;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -330,6 +331,11 @@ begin
    YWindAreaMax:=0.0;
    XWindAreaMax:=0.5*Length;
    FSetUnitCaptions;
+
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
+
    ShowModal;
    Result:=Modalresult=mrOk;
 end;{TFREEProjectSettingsDialog.Execute}
@@ -527,6 +533,7 @@ procedure TFREEProjectSettingsDialog.FormShow(Sender: TObject);
 begin
    Pagecontrol1.ActivePage:=Tabsheet1;
    ActiveControl:=Edit1;
+
 end;{TFREEProjectSettingsDialog.FormShow}
 
 end.

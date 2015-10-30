@@ -46,9 +46,19 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
-     ExtCtrls;
+     ExtCtrls,
+     FreeShipUnit,
+     FreeLanguageSupport
+     ;
 
-type TFreeExtrudeDialog = class(TForm)
+type
+
+{ TFreeExtrudeDialog }
+
+ TFreeExtrudeDialog = class(TForm)
+                             BitBtn1: TSpeedButton;
+                             BitBtn2: TSpeedButton;
+                             Panel1: TPanel;
                               Panel2: TPanel;
     _Label3: TLabel;
     _Label6: TLabel;
@@ -56,13 +66,10 @@ type TFreeExtrudeDialog = class(TForm)
                               Edit1: TEdit;
                               Edit2: TEdit;
                               Edit3: TEdit;
-                              Panel1: TPanel;
                               Panel3: TPanel;
                               Label1: TLabel;
                               Label2: TLabel;
                               Label4: TLabel;
-    BitBtn1: TSpeedButton;
-    BitBtn2: TSpeedButton;
                               procedure Edit1KeyPress(Sender: TObject; var Key: Char);
                               procedure Edit1Exit(Sender: TObject);
                               procedure Edit1KeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
@@ -135,6 +142,9 @@ begin
    _label3.Caption:=Str;
    _label6.Caption:=Str;
    _label9.Caption:=Str;
+   ShowTranslatedValues(Self);
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TFreeExtrudeDialog.Execute}
@@ -198,4 +208,4 @@ begin
    ModalResult:=mrCancel;
 end;{TFreeExtrudeDialog.BitBtn2Click}
 
-end.
+end.

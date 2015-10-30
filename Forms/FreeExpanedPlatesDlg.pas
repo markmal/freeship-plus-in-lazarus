@@ -414,6 +414,7 @@ begin
    if Plates.Count=0 then ActivePatch:=nil
                      else ListBox.ItemIndex:=0;
    ActivePatch:=ActivePatch;
+   ShowTranslatedValues(Self);
    ShowModal;
    Result:=ModalResult=mrOk;
 end;{TFreeExpanedplatesDialog.Execute}

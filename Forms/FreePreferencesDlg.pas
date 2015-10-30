@@ -50,7 +50,8 @@ uses
      ExtCtrls,
      FreeShipUnit,
      ComCtrls, Spin,
-     FreeNumInput;
+     FreeNumInput,
+     FreeLanguageSupport;
 
 type
 
@@ -187,8 +188,6 @@ var FreePreferencesDialog: TFreePreferencesDialog;
 
 implementation
 
-uses FreeLanguageSupport;
-
 {$IFnDEF FPC}
   {$R *.dfm}
 {$ELSE}
@@ -253,6 +252,9 @@ begin
    Updatedata;
    FConfigChanged:= false;
    FThemeChanged := false;
+   Freeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   Freeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
    Showmodal;
    Result:=ModalResult=mrOK;
 end;{TFreePreferencesDialog.Execute}

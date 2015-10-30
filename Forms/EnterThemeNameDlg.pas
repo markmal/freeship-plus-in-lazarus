@@ -6,7 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, ExtCtrls;
+  Buttons, ExtCtrls,
+  FreeShipUnit,FreeLanguageSupport;
+
 
 type
 
@@ -24,6 +26,7 @@ type
     { private declarations }
   public
     { public declarations }
+    function Execute:Boolean;
   end;
 
 implementation
@@ -31,6 +34,15 @@ implementation
 {$R *.lfm}
 
 { TEnterThemeNameDlg }
+
+function TEnterThemeNameDlg.Execute:Boolean;
+begin
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
+   Showmodal;
+   Result:=ModalResult=mrOk;
+end;{TEnterThemeNameDlg.Execute}
 
 procedure TEnterThemeNameDlg.Button1Click(Sender: TObject);
 begin

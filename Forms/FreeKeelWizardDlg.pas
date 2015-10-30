@@ -213,11 +213,11 @@ type
 { TFreeKeelWizardDialog }
 
  TFreeKeelWizardDialog  = class(TForm)
-                                 Panel1: TPanel;
+                                BitBtn1: TSpeedButton;
+                                BitBtn2: TSpeedButton;
+                                Panel1: TPanel;
                                  Panel2: TPanel;
                                  Panel3: TPanel;
-                                 BitBtn1: TSpeedButton;
-                                 BitBtn2: TSpeedButton;
                                  GroupBox1: TGroupBox;
                                  Label7: TLabel;
                                  ScrollBar1: TScrollBar;
@@ -928,6 +928,11 @@ begin
    FProfile:=TFreeSpline.Create;
    ComboBoxClick(self);
    ComboBox1Click(self);
+
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
+
    ShowModal;
    FProfile.Destroy;
    FProfile:=nil;

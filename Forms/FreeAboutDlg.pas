@@ -32,7 +32,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   Messages,
   LCLIntf, LCLType, LMessages,
-  StdCtrls, ValEdit, Grids,
+  StdCtrls, ValEdit, Grids, Buttons,
   FreeVersionUnit;
 
 type

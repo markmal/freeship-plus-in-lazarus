@@ -51,6 +51,7 @@ uses
     FreeTypes,
      FreeGeometry,
      FreeshipUnit,
+    FreeLanguageSupport,
      ExtCtrls,
      FasterList,
      FreeNumInput,
@@ -159,8 +160,7 @@ var FreeLackenbyDialog:TFreeLackenbyDialog;
 
 implementation
 
-uses FreeLanguageSupport,
-     math;
+uses Math;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -712,7 +712,11 @@ begin
    Input2.Value:=Edit2.Value;
    Viewport.ZoomExtents;
    TopView.ZoomExtents;
+
+   ShowTranslatedValues(Self);
+
    Showmodal;
+
    Modified:=FModified;
    Result:=ModalResult=mrOk;
 

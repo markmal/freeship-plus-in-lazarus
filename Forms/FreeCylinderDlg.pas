@@ -50,7 +50,9 @@ uses
      Buttons,
     FreeTypes,
      FreeGeometry,
-     ExtCtrls, FreeNumInput;
+     ExtCtrls, FreeNumInput,
+    FreeShipUnit,
+    FreeLanguageSupport;
 
 type TFreeCylinderDialog = class(TForm)
                               Panel2: TPanel;
@@ -126,6 +128,9 @@ begin
    _label3.Caption:=Str;
    _label6.Caption:=Str;
    _label9.Caption:=Str;
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TFreeCylinderDialog.Execute}
@@ -150,4 +155,4 @@ begin
    ModalResult:=mrCancel;
 end;{TFreeCylinderDialog.BitBtn2Click}
 
-end.
+end.

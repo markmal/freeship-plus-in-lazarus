@@ -51,24 +51,30 @@ uses
      ExtCtrls,
      StdCtrls,
      Printers,
-     Buttons;
+     Buttons,
+     FreeShipUnit,
+     FreeLanguageSupport;
 
-type TFreeHydrostaticsResultsDialog  = class(TForm)
+type
+
+{ TFreeHydrostaticsResultsDialog }
+
+ TFreeHydrostaticsResultsDialog  = class(TForm)
                                              Panel1: TPanel;
                                              Panel2: TPanel;
                                              Grid: TStringGrid;
                                              Header: TMemo;
                                              Splitter1: TSplitter;
-                                             SpeedButton1: TSpeedButton;
-                                             SpeedButton2: TSpeedButton;
-                                             Button1: TSpeedButton;
+                                             ButtonPrint: TSpeedButton;
+                                             ButtonSave: TSpeedButton;
+                                             ButtonClose: TSpeedButton;
     PrintDialog: TPrintDialog;
     SaveDialog: TSaveDialog;
                                              procedure GridDrawCell(Sender: TObject; ACol, ARow: Integer;Rect: TRect; State: TGridDrawState);
                                              procedure FormResize(Sender: TObject);
-                                             procedure Button1Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
+                                             procedure ButtonCloseClick(Sender: TObject);
+    procedure ButtonSaveClick(Sender: TObject);
+    procedure ButtonPrintClick(Sender: TObject);
                                            private { Private declarations }
                                               ColWidths : array of Integer;
                                            public  { Public declarations }
@@ -132,6 +138,12 @@ begin
    // Store the column width for resizing purposes
    setlength(ColWidths,Grid.ColCount);
    for I:=1 to Grid.ColCount do ColWidths[I-1]:=Grid.ColWidths[I-1];
+
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonPrint.Glyph,'Print');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonSave.Glyph,'Save');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonClose.Glyph,'Ok');
+   ShowTranslatedValues(Self);
+
    ShowModal;
    Result:=modalresult=mrOK;
 end;{TFreeHydrostaticsResultsDialog.Execute}
@@ -142,7 +154,7 @@ var I,Total : Integer;
     NewW    : Integer;
     Fraction: Double;
 begin
-   Button1.Left:=Panel1.Width-Button1.Width-5;
+   ButtonClose.Left:=Panel1.Width-ButtonClose.Width-5;
    Total:=0;
    for I:=1 to Grid.ColCount do Inc(Total,ColWidths[I-1]);
    if Total<>0 then
@@ -157,12 +169,12 @@ begin
    end;
 end;{TFreeHydrostaticsResultsDialog.FormResize}
 
-procedure TFreeHydrostaticsResultsDialog.Button1Click(Sender: TObject);
+procedure TFreeHydrostaticsResultsDialog.ButtonCloseClick(Sender: TObject);
 begin
    ModalResult:=mrOK;
 end;{TFreeHydrostaticsResultsDialog.Button1Click}
 
-procedure TFreeHydrostaticsResultsDialog.SpeedButton2Click(Sender: TObject);
+procedure TFreeHydrostaticsResultsDialog.ButtonSaveClick(Sender: TObject);
 var Strings    : TStringList;
     MaxWidth   : array of integer;
     I,J,L,N    : Integer;
@@ -204,7 +216,7 @@ begin
    end;
 end;{TFreeHydrostaticsResultsDialog.SpeedButton2Click}
 
-procedure TFreeHydrostaticsResultsDialog.SpeedButton1Click(Sender: TObject);
+procedure TFreeHydrostaticsResultsDialog.ButtonPrintClick(Sender: TObject);
 var PrintText : TextFile;
     MaxWidth  : array of integer;
     I,J,L,N   : Integer;

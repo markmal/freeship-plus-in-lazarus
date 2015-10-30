@@ -51,20 +51,27 @@ uses
      ComCtrls,
      Buttons,
      Printers,
-     ExtCtrls;
+     ExtCtrls,
+     FreeShipUnit,
+     FreeLanguageSupport
+     ;
 
-type TFreeHydrostaticsDialog   = class(TForm)
+type
+
+{ TFreeHydrostaticsDialog }
+
+ TFreeHydrostaticsDialog   = class(TForm)
                                        Panel1: TPanel;
     Edit: TMemo;
-                                       Panel2: TPanel;
-                                       Button1: TSpeedButton;
-                                       SpeedButton1: TSpeedButton;
+                                       Panel22: TPanel;
+                                       ButtonClose: TSpeedButton;
+                                       ButtonPrint: TSpeedButton;
                                        PrintDialog: TPrintDialog;
-                                       SpeedButton2: TSpeedButton;
+                                       ButtonSave: TSpeedButton;
                                        SaveDialog: TSaveDialog;
-                                       procedure Button1Click(Sender: TObject);
-                                       procedure SpeedButton1Click(Sender: TObject);
-                                       procedure SpeedButton2Click(Sender: TObject);
+                                       procedure ButtonCloseClick(Sender: TObject);
+                                       procedure ButtonPrintClick(Sender: TObject);
+                                       procedure ButtonSaveClick(Sender: TObject);
                                        procedure FormShow(Sender: TObject);
                                     private   { Private declarations }
                                     public    { Public declarations }
@@ -80,12 +87,12 @@ implementation
   {$R *.lfm}
 {$ENDIF}
 
-procedure TFreeHydrostaticsDialog.Button1Click(Sender: TObject);
+procedure TFreeHydrostaticsDialog.ButtonCloseClick(Sender: TObject);
 begin
    Close;
 end;{TFreeHydrostaticsDialog.Button1Click}
 
-procedure TFreeHydrostaticsDialog.SpeedButton1Click(Sender: TObject);
+procedure TFreeHydrostaticsDialog.ButtonPrintClick(Sender: TObject);
 var PrintText : TextFile;
     Str       : AnsiString;
     I         : Integer;
@@ -105,7 +112,7 @@ begin
    end;
 end;{TFreeHydrostaticsDialog.SpeedButton1Click}
 
-procedure TFreeHydrostaticsDialog.SpeedButton2Click(Sender: TObject);
+procedure TFreeHydrostaticsDialog.ButtonSaveClick(Sender: TObject);
 begin
    // Skip translation
    if SaveDialog.Execute then
@@ -130,6 +137,12 @@ begin
    Edit.CaretPos:=TPoint(Point(0,0));
    I:=Edit.Lines.Count;
    S := Edit.Lines.CommaText;
+
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonPrint.Glyph,'Print');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonSave.Glyph,'Save');
+   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonClose.Glyph,'Ok');
+   ShowTranslatedValues(Self);
+
 end;{TFreeHydrostaticsDialog.FormShow}
 
 end.

@@ -52,18 +52,23 @@ uses
      FreeTypes,
      FreeNumInput;
 
-type TFreeMirrorPlaneDialog  = class(TForm)
+type
+
+{ TFreeMirrorPlaneDialog }
+
+ TFreeMirrorPlaneDialog  = class(TForm)
+                                BitBtn1: TSpeedButton;
+                                BitBtn2: TSpeedButton;
                                  GroupBox1: TGroupBox;
+                                 Panel1: TPanel;
+                                 Panel2: TPanel;
                                  RadioButton1: TRadioButton;
                                  RadioButton2: TRadioButton;
                                  RadioButton3: TRadioButton;
                                  Edit1: TFreeNumInput;
                                  Label1: TLabel;
                                  CheckBox1: TCheckBox;
-                                 Panel1: TPanel;
                                  Panel3: TPanel;
-                                 BitBtn1: TSpeedButton;
-                                 BitBtn2: TSpeedButton;
                                  procedure BitBtn1Click(Sender: TObject);
                                  procedure BitBtn2Click(Sender: TObject);
                               private   { Private declarations }
@@ -108,4 +113,4 @@ begin
    Modalresult:=mrCancel;
 end;{TFreeMirrorPlaneDialog.BitBtn2Click}
 
-end.
+end.

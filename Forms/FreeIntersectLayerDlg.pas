@@ -48,14 +48,22 @@ uses
      Forms,
      Dialogs,
      Buttons,
+    StdCtrls,
      ExtCtrls,
      FasterList,
-     Freegeometry, StdCtrls;
+     Freegeometry,
+    FreeShipUnit,
+    FreeLanguageSupport;
 
-type TFreeIntersectLayerDialog = class(TForm)
-                                       Panel1: TPanel;
+
+type
+
+{ TFreeIntersectLayerDialog }
+
+ TFreeIntersectLayerDialog = class(TForm)
                                        BitBtn1: TSpeedButton;
                                        BitBtn2: TSpeedButton;
+                                       Panel1: TPanel;
                                        Panel2: TPanel;
                                        Panel3: TPanel;
                                        Label1: TLabel;
@@ -134,6 +142,10 @@ begin
       if Combobox1.Items.Count>0 then ComboBox1.ItemIndex:=0;
       UpdateBox2;
    end;
+
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
+   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+   ShowTranslatedValues(Self);
 
    ShowModal;
    Result:=modalResult=mrOk;

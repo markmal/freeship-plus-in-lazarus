@@ -223,6 +223,7 @@ procedure ShowTranslatedValues(Component:TComponent);
 var I,J     : integer;
     Index   : Integer;
     Comp    : TComponent;
+    CmbBox  : TComboBox;
     Str,Tmp : string;
 begin
    if (CurrentLanguage=nil) or (Component=nil) then exit;
@@ -242,7 +243,7 @@ begin
 
          if comp is TCustomMemo then
          begin
-         	for J:=0 to TCustomMemo(comp).lines.count-1 do
+            for J:=0 to TCustomMemo(comp).lines.count-1 do
             begin
             	Str:=readString(Component.classname,
                   Component.classname+'.'+comp.name+'.lines['+intToStr(J)+']','fsdef');
@@ -251,7 +252,7 @@ begin
             end;
          end else if comp is TRadioGroup then
          begin
-         	for J:=0 to TRadioGroup(comp).items.count-1 do
+            for J:=0 to TRadioGroup(comp).items.count-1 do
             begin
             	Str:=readString(Component.classname,
                   Component.classname+'.'+comp.name+'.items['+intToStr(J)+']','');
@@ -259,18 +260,21 @@ begin
             end;
          end else if comp is TComboBox then
          begin
-            Index:=TComboBox(comp).ItemIndex;
-            TComboBox(comp).Items.BeginUpdate;
+            CmbBox := TComboBox(comp);
+            Index:=CmbBox.ItemIndex;
+            CmbBox.Items.BeginUpdate;
             try
-            	for J:=0 to TComboBox(comp).items.count-1 do
+               for J:=0 to CmbBox.items.count-1 do
                begin
-                  Tmp:=Component.classname+'.'+comp.name+'.items['+IntToStr(J)+']';
+                  Tmp:=Component.classname+'.'+CmbBox.name+'.items['+IntToStr(J)+']';
                	Str:=readString(Component.classname,Tmp,'');
-               	if Str<>'' then TComboBox(comp).items[J]:=Str;
+               	if Str<>'' then CmbBox.items[J]:=Str;
                end;
             finally
-               TComboBox(comp).Items.EndUpdate;
-               TComboBox(comp).ItemIndex:=Index;
+               CmbBox.Items.EndUpdate;
+               CmbBox.ItemIndex:=Index;
+               if (Index>-1) and (Index<CmbBox.items.count)
+                  then CmbBox.Text:=TComboBox(comp).Items[Index];
             end;
          end;
    	end;

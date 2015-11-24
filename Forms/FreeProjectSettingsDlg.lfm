@@ -30,9 +30,9 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       Height = 374
       Top = 9
       Width = 555
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       Align = alClient
-      TabIndex = 0
+      TabIndex = 2
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
@@ -387,17 +387,17 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Hydrostatics'
-        ClientHeight = 346
+        ClientHeight = 344
         ClientWidth = 551
         ImageIndex = 1
         object Panel2: TPanel
           Left = 0
-          Height = 346
+          Height = 344
           Top = 0
           Width = 551
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 346
+          ClientHeight = 344
           ClientWidth = 551
           TabOrder = 0
           object Label5: TLabel

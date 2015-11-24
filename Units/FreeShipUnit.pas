@@ -14885,7 +14885,8 @@ begin
    begin
       FFreeHydrostaticCoefficients:=val;
       Owner.FileChanged:=True;
-      for I:=1 to Owner.NumberOfHydrostaticCalculations do Owner.HydrostaticCalculation[I-1].Calculated:=False;
+      for I:=1 to Owner.NumberOfHydrostaticCalculations
+        do Owner.HydrostaticCalculation[I-1].Calculated:=False;
    end;
 end;{TFreeProjectSettings.FSetFreeHydrostaticCoefficients}
 

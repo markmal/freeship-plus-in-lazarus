@@ -1,3 +1,10 @@
+Test only Version 3.5.4.14 in Lazarus
+Released: Build date	2015/11/29 16:00:00
+New features and fixes:
+- fixed issues with item checkboxes in Layer Dialog and Intersection Dialog.
+- fixed balnk icons in Layer Dialog. Added MoveUp/Down icons
+- added feature: set DWL color to Red
+
 Test only Version 3.5.4.9 in Lazarus
 Released: Build date	2015/10/16 10:00:00
 New features and fixes:

@@ -13,7 +13,7 @@ object FreeLayerDialog: TFreeLayerDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 410
@@ -404,7 +404,9 @@ object FreeLayerDialog: TFreeLayerDialog
       Align = alClient
       ItemHeight = 0
       OnClick = LayerBoxClick
+      OnClickCheck = LayerBoxClickCheck
       OnDblClick = LayerBoxDblClick
+      OnItemClick = LayerBoxItemClick
       TabOrder = 1
     end
   end

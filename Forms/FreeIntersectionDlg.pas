@@ -56,7 +56,11 @@ uses
      ToolWin,
      ActnList;
 
-type TFreeIntersectionDialog   = class(TForm)
+type
+
+{ TFreeIntersectionDialog }
+
+ TFreeIntersectionDialog   = class(TForm)
                                        Panel1: TPanel;
                                        ListBox: TCheckListBox;
                                        ToolBar1: TToolBar;
@@ -80,6 +84,8 @@ type TFreeIntersectionDialog   = class(TForm)
                                        AddRange: TAction;
                                        DeleteAll: TAction;
                                        ToolButton6: TToolButton;
+                                       procedure ListBoxClickCheck(
+                                         Sender: TObject);
                                        procedure ListBoxKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
                                        procedure ListBoxClick(Sender: TObject);
                                        procedure ShowStationsExecute(Sender: TObject);
@@ -220,7 +226,7 @@ begin
    end;
 end;{TFreeIntersectionDialog.ListBoxKeyDown}
 
-procedure TFreeIntersectionDialog.ListBoxClick(Sender: TObject);
+procedure TFreeIntersectionDialog.ListBoxClickCheck(Sender: TObject);
 var Intersection : TFreeIntersection;
     I            : Integer;
 begin
@@ -235,6 +241,11 @@ begin
             if FFreeship.Viewport[I-1].Viewportmode=vmWireframe then FFreeship.Viewport[I-1].Refresh;
       end;
    end;
+end;
+
+procedure TFreeIntersectionDialog.ListBoxClick(Sender: TObject);
+begin
+
 end;{TFreeIntersectionDialog.ListBoxClick}
 
 procedure TFreeIntersectionDialog.ShowStationsExecute(Sender: TObject);

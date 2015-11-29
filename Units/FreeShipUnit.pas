@@ -16310,6 +16310,8 @@ var I,Size        : integer;
         Pt1,Pt2         : TPoint;
         Str             : string;
         Pts             : array of TPoint;
+        cl              : TColor;
+        pw              : Integer;
 
         procedure SetFontHeight(DesiredHeight:TFloatType);
         var Height         : integer;
@@ -16402,8 +16404,9 @@ var I,Size        : integer;
              Width:=Viewport.TextWidth(Str);
              Viewport.TextOut(Pt1.X,Pt1.Y-Height,Str);
              Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+
              // Draw dwl
-             if ProjectSettings.FMainparticularsHasBeenset then
+             if ProjectSettings.FMainParticularsHasBeenSet then
              begin
                 P1:=Min;
                 P2:=Max;
@@ -16413,12 +16416,21 @@ var I,Size        : integer;
                 P2.Z:=P1.Z;
                 Pt1:=Viewport.Project(P1);
                 Pt2:=Viewport.Project(P2);
+
+                cl:=Viewport.Color;
+                Viewport.PenColor :=clRed;
+                pw:=Viewport.PenWidth;
+                Viewport.PenWidth:=1;
                 Viewport.MoveTo(Pt1.X,Pt1.Y);
                 Viewport.LineTo(Pt2.X,Pt2.Y);
+                Viewport.PenColor :=cl;
+                Viewport.PenWidth:=pw;
+
                 Width:=Viewport.TextWidth(Str);
                 Viewport.TextOut(Pt1.X-width div 2,Pt1.Y-Height,Str);
                 Viewport.TextOut(Pt2.X-Width div 2,Pt2.Y-Height,str);
              end;
+
              Viewport.PenWidth:=1;
              Viewport.FontColor:=Preferences.GridFontColor;
           end;

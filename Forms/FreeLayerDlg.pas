@@ -110,6 +110,7 @@ type
                            Label4: TLabel;
                            AlphaBar: TScrollBar;
                            _Label1: TLabel;
+                           procedure LayerBoxClick(Sender: TObject);
                            procedure LayerBoxClickCheck(Sender: TObject);
                            procedure LayerBoxDblClick(Sender: TObject);
                            procedure Edit1Change(Sender: TObject);
@@ -260,6 +261,14 @@ begin
      FFreeShip.FileChanged:=true;
      FFreeShip.Redraw;
      end;
+   UpdateMenu;
+end;
+
+procedure TFreeLayerDialog.LayerBoxClick(Sender: TObject);
+var Index: integer;
+begin
+  index := Layerbox.ItemIndex;
+  LayerBoxItemClick(Sender, Index);
 end;
 
 
@@ -334,6 +343,7 @@ begin
       Layer:=Layerbox.Items.Objects[Layerbox.ItemIndex] as TFreeSubdivisionLayer;
       FFreeShip.ActiveLayer:=Layer;
    end;
+   UpdateMenu;
 end;{TFreeLayerDialog.LayerBoxDblClick}
 
 procedure TFreeLayerDialog.Edit1Change(Sender: TObject);

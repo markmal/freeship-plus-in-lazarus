@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="89">
+    <Units Count="90">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -56,8 +56,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="186"/>
-        <CursorPos X="60" Y="206"/>
+        <TopLine Value="253"/>
+        <CursorPos Y="254"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -501,7 +501,7 @@
         <ComponentName Value="FreeEmptyModelChooserDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="107"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit42>
       <Unit43>
@@ -594,8 +594,8 @@
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="11025"/>
-        <CursorPos X="4" Y="11031"/>
+        <TopLine Value="14481"/>
+        <CursorPos Y="14488"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -901,7 +901,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="642"/>
         <CursorPos X="15" Y="661"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit85>
       <Unit86>
@@ -915,9 +915,9 @@
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="699"/>
-        <CursorPos X="17" Y="713"/>
-        <UsageCount Value="2"/>
+        <TopLine Value="487"/>
+        <CursorPos X="15" Y="505"/>
+        <UsageCount Value="10"/>
       </Unit87>
       <Unit88>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/speedbutton.inc"/>
@@ -926,127 +926,134 @@
         <CursorPos Y="439"/>
         <UsageCount Value="2"/>
       </Unit88>
+      <Unit89>
+        <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="864"/>
+        <CursorPos X="28" Y="866"/>
+        <UsageCount Value="10"/>
+      </Unit89>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="257" TopLine="246"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14485" TopLine="14459"/>
       </Position1>
       <Position2>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="191" TopLine="173"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14486" TopLine="14459"/>
       </Position2>
       <Position3>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="235" TopLine="217"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14488" TopLine="14469"/>
       </Position3>
       <Position4>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="257" Column="35" TopLine="241"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14268" TopLine="14250"/>
       </Position4>
       <Position5>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="336" TopLine="321"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14269" TopLine="14250"/>
       </Position5>
       <Position6>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="252" TopLine="246"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14270" TopLine="14250"/>
       </Position6>
       <Position7>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="257" Column="36" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14273" TopLine="14262"/>
       </Position7>
       <Position8>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="274" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14276" TopLine="14262"/>
       </Position8>
       <Position9>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="259" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14277" TopLine="14262"/>
       </Position9>
       <Position10>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="252" TopLine="245"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14288" TopLine="14262"/>
       </Position10>
       <Position11>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="253" TopLine="245"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14490" TopLine="14472"/>
       </Position11>
       <Position12>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="265" Column="14" TopLine="243"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14491" TopLine="14472"/>
       </Position12>
       <Position13>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="271" Column="45" TopLine="252"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14492" TopLine="14472"/>
       </Position13>
       <Position14>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="254" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14491" TopLine="14472"/>
       </Position14>
       <Position15>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="255" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14494" TopLine="14482"/>
       </Position15>
       <Position16>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="256" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14496" TopLine="14482"/>
       </Position16>
       <Position17>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="257" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14497" TopLine="14482"/>
       </Position17>
       <Position18>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="258" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14498" TopLine="14482"/>
       </Position18>
       <Position19>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="260" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14499" TopLine="14482"/>
       </Position19>
       <Position20>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="261" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14500" TopLine="14482"/>
       </Position20>
       <Position21>
-        <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="262" TopLine="247"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14488" TopLine="14481"/>
       </Position21>
       <Position22>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="264" TopLine="247"/>
+        <Caret Line="203" Column="22" TopLine="177"/>
       </Position22>
       <Position23>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="281" TopLine="263"/>
+        <Caret Line="152" Column="48" TopLine="132"/>
       </Position23>
       <Position24>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="266" TopLine="251"/>
+        <Caret Line="272" TopLine="249"/>
       </Position24>
       <Position25>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="113" TopLine="96"/>
+        <Caret Line="327" TopLine="310"/>
       </Position25>
       <Position26>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="237" Column="27" TopLine="219"/>
+        <Caret Line="272" TopLine="253"/>
       </Position26>
       <Position27>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="391" Column="4" TopLine="373"/>
+        <Caret Line="327" TopLine="310"/>
       </Position27>
       <Position28>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="452" Column="7" TopLine="434"/>
+        <Caret Line="272" TopLine="253"/>
       </Position28>
       <Position29>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="449" Column="29" TopLine="434"/>
+        <Caret Line="327" TopLine="310"/>
       </Position29>
       <Position30>
         <Filename Value="Forms/FreeLayerDlg.pas"/>
-        <Caret Line="473" Column="13" TopLine="455"/>
+        <Caret Line="272" Column="25" TopLine="252"/>
       </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
@@ -1055,7 +1062,7 @@
     </CustomSessionData>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="7">
+    <BreakPoints Count="10">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -1103,8 +1110,29 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="Forms/FreeLayerDlg.pas"/>
-        <Line Value="332"/>
+        <Line Value="335"/>
       </Item7>
+      <Item8>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="Forms/FreeLayerDlg.pas"/>
+        <Line Value="280"/>
+      </Item8>
+      <Item9>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="Forms/FreeLayerDlg.pas"/>
+        <Line Value="270"/>
+      </Item9>
+      <Item10>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="Forms/FreeLayerDlg.pas"/>
+        <Line Value="254"/>
+      </Item10>
     </BreakPoints>
     <Watches Count="3">
       <Item1>

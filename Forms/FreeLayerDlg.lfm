@@ -403,6 +403,7 @@ object FreeLayerDialog: TFreeLayerDialog
       Width = 217
       Align = alClient
       ItemHeight = 0
+      OnClick = LayerBoxClick
       OnClickCheck = LayerBoxClickCheck
       OnDblClick = LayerBoxDblClick
       OnItemClick = LayerBoxItemClick

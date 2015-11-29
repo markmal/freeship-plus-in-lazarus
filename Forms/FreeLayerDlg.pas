@@ -110,9 +110,11 @@ type
                            Label4: TLabel;
                            AlphaBar: TScrollBar;
                            _Label1: TLabel;
-                           procedure LayerBoxClick(Sender: TObject);
+                           procedure LayerBoxClickCheck(Sender: TObject);
                            procedure LayerBoxDblClick(Sender: TObject);
                            procedure Edit1Change(Sender: TObject);
+                           procedure LayerBoxItemClick(Sender: TObject;
+                             Index: integer);
                            procedure MenuImagesChange(Sender: TObject);
                            procedure Panel3Click(Sender: TObject);
                            procedure CheckBox1Click(Sender: TObject);
@@ -232,7 +234,7 @@ begin
       if LayerBox.Count>0 then
       begin
          LayerBox.ItemIndex:=0;
-         LayerBoxClick(self);
+         LayerBoxItemClick(self,0);
       end;
    end;
 end;{TFreeLayerDialog.FFillBox}
@@ -243,69 +245,85 @@ begin
                              else Result:=nil;
 end;{TFreeLayerDialog.FGetSelectedLayer}
 
-procedure TFreeLayerDialog.LayerBoxClick(Sender: TObject);
+
+procedure TFreeLayerDialog.LayerBoxClickCheck(Sender: TObject);
+var index : integer; chk : boolean;
+    Layer   : TFreeSubdivisionLayer;
+begin
+   index := Layerbox.ItemIndex;
+   chk := Layerbox.Checked[index];
+   Layer:=Layerbox.Items.Objects[index] as TFreeSubdivisionLayer;
+   if Layer=nil then exit;
+   if Layer.Visible <> chk then
+     begin
+     Layer.Visible:=chk;
+     FFreeShip.FileChanged:=true;
+     FFreeShip.Redraw;
+     end;
+end;
+
+
+
+procedure TFreeLayerDialog.LayerBoxItemClick(Sender: TObject; Index: integer);
 var Layer   : TFreeSubdivisionLayer;
     Prop    : TLayerProperties;
 begin
-   if Layerbox.ItemIndex<>-1 then
-   begin
-      Layer:=Layerbox.Items.Objects[Layerbox.ItemIndex] as TFreeSubdivisionLayer;
-      if Layer.Visible<>Layerbox.Checked[Layerbox.ItemIndex] then
-      begin
-         Layer.Visible:=Layerbox.Checked[Layerbox.ItemIndex];
-         FFreeShip.FileChanged:=true;
-         FFreeShip.Redraw;
-      end;
-      if Layer<>nil then
-      begin
-         Edit1.Text:=Layer.Name;
-         Panel3.Color:=Layer.Color;
-         Checkbox1.Checked:=Layer.Developable;
-         Checkbox2.Checked:=Layer.UseForIntersections;
-         Checkbox3.Checked:=Layer.UseInHydrostatics;
-         Checkbox4.Checked:=layer.ShowInLinesplan;
-         Checkbox5.Checked:=layer.Symmetric;
-////////         Checkbox5.Enabled:=not Layer.UseInHydrostatics;
-         Checkbox6.Enabled:=false; 
-      if Checkbox6.Checked then
-        begin
-//		 Weightbox.Enabled:=True;
-//		 Xgbox.Enabled:=True;
-//		 Ygbox.Enabled:=True;
-//		 Zgbox.Enabled:=True;		
-         Edit2.Text:=Truncate(Layer.MaterialDensity,4);
-         Edit3.Text:=Truncate(Layer.Thickness,4);
-         Prop:=Layer.SurfaceProperties;
-         WeightS:=Prop.Weight+Weight*1000.;
-         XgS:=Prop.SurfaceCenterOfGravity.X*Prop.Weight+Xg*Weight*1000.;
-         YgS:=Prop.SurfaceCenterOfGravity.Y*Prop.Weight+Yg*Weight*1000.;
-         ZgS:=Prop.SurfaceCenterOfGravity.Z*Prop.Weight+Zg*Weight*1000.;
-		 Prop.SurfaceCenterOfGravity.X:=XgS/WeightS;
-		 Prop.SurfaceCenterOfGravity.Z:=YgS/WeightS;
-		 Prop.SurfaceCenterOfGravity.Z:=ZgS/WeightS;
-		 Prop.Weight:=WeightS;
-        end
-        else begin 
-		 Weightbox.Enabled:=False;
-		 Xgbox.Enabled:=False;
-		 Ygbox.Enabled:=False;
-		 Zgbox.Enabled:=False;
-         Edit2.Text:=Truncate(Layer.MaterialDensity,4);
-         Edit3.Text:=Truncate(Layer.Thickness,4);
-         Prop:=Layer.SurfaceProperties;
-        end;
-         if FFreeship.ProjectSettings.ProjectUnits=fuImperial then Prop.Weight:=Prop.Weight/(12*2240)
-                                                              else Prop.Weight:=Prop.Weight/1000;
-         _Label10.Caption:=FloatToStrF(Prop.SurfaceArea,ffFixed,7,3)+#32+AreaStr(FFreeship.ProjectSettings.ProjectUnits);
-         _Label11.Caption:=FloatToStrF(Prop.Weight,ffFixed,7,3)+#32+WeightStr(FFreeship.ProjectSettings.ProjectUnits);
-         _Label12.Caption:=Makelength(Prop.SurfaceCenterOfGravity.X,2,7)+','+
-                          Makelength(Prop.SurfaceCenterOfGravity.Y,2,7)+', '+
-                          Makelength(Prop.SurfaceCenterOfGravity.Z,2,7)+#32+LengthStr(FFreeship.ProjectSettings.ProjectUnits);
-         Alphabar.Position:=255-Layer.AlphaBlend;
-         _label1.Caption:=FloatToStrF(100*(255-Layer.AlphaBlend)/255,ffFixed,7,1)+'%';
-      end;
-   end;
-   UpdateMenu;
+  index := Layerbox.ItemIndex;
+  if index = -1 then exit;
+
+  Layer:=Layerbox.Items.Objects[index] as TFreeSubdivisionLayer;
+  if Layer=nil then exit;
+
+  Edit1.Text:=Layer.Name;
+  Panel3.Color:=Layer.Color;
+  Checkbox1.Checked:=Layer.Developable;
+  Checkbox2.Checked:=Layer.UseForIntersections;
+  Checkbox3.Checked:=Layer.UseInHydrostatics;
+  Checkbox4.Checked:=layer.ShowInLinesplan;
+  Checkbox5.Checked:=layer.Symmetric;
+  ////////         Checkbox5.Enabled:=not Layer.UseInHydrostatics;
+  Checkbox6.Enabled:=false;
+  if Checkbox6.Checked then
+    begin
+    //		 Weightbox.Enabled:=True;
+    //		 Xgbox.Enabled:=True;
+    //		 Ygbox.Enabled:=True;
+    //		 Zgbox.Enabled:=True;
+    Edit2.Text:=Truncate(Layer.MaterialDensity,4);
+    Edit3.Text:=Truncate(Layer.Thickness,4);
+    Prop:=Layer.SurfaceProperties;
+    WeightS:=Prop.Weight+Weight*1000.;
+    XgS:=Prop.SurfaceCenterOfGravity.X*Prop.Weight+Xg*Weight*1000.;
+    YgS:=Prop.SurfaceCenterOfGravity.Y*Prop.Weight+Yg*Weight*1000.;
+    ZgS:=Prop.SurfaceCenterOfGravity.Z*Prop.Weight+Zg*Weight*1000.;
+           Prop.SurfaceCenterOfGravity.X:=XgS/WeightS;
+           Prop.SurfaceCenterOfGravity.Z:=YgS/WeightS;
+           Prop.SurfaceCenterOfGravity.Z:=ZgS/WeightS;
+           Prop.Weight:=WeightS;
+    end
+  else
+    begin
+    Weightbox.Enabled:=False;
+    Xgbox.Enabled:=False;
+    Ygbox.Enabled:=False;
+    Zgbox.Enabled:=False;
+    Edit2.Text:=Truncate(Layer.MaterialDensity,4);
+    Edit3.Text:=Truncate(Layer.Thickness,4);
+    Prop:=Layer.SurfaceProperties;
+    end;
+
+  if FFreeship.ProjectSettings.ProjectUnits=fuImperial
+    then Prop.Weight:=Prop.Weight/(12*2240)
+    else Prop.Weight:=Prop.Weight/1000;
+
+  _Label10.Caption:=FloatToStrF(Prop.SurfaceArea,ffFixed,7,3)+#32+AreaStr(FFreeship.ProjectSettings.ProjectUnits);
+  _Label11.Caption:=FloatToStrF(Prop.Weight,ffFixed,7,3)+#32+WeightStr(FFreeship.ProjectSettings.ProjectUnits);
+  _Label12.Caption:=Makelength(Prop.SurfaceCenterOfGravity.X,2,7)+','+
+                  Makelength(Prop.SurfaceCenterOfGravity.Y,2,7)+', '+
+                  Makelength(Prop.SurfaceCenterOfGravity.Z,2,7)+#32+LengthStr(FFreeship.ProjectSettings.ProjectUnits);
+  Alphabar.Position:=255-Layer.AlphaBlend;
+  _label1.Caption:=FloatToStrF(100*(255-Layer.AlphaBlend)/255,ffFixed,7,1)+'%';
+  UpdateMenu;
 end;{TFreeLayerDialog.LayerBoxClick}
 
 procedure TFreeLayerDialog.LayerBoxDblClick(Sender: TObject);
@@ -370,7 +388,7 @@ begin
    N:=Layerbox.Items.AddObject(NewLayer.Name,NewLayer);
    Layerbox.Checked[N] := LayVis;
    Layerbox.ItemIndex:=N;
-   LayerBoxClick(self);
+   LayerBoxItemClick(self,N);
    UpdateMenu;
 end;{TFreeLayerDialog.ToolButton20Click}
 
@@ -426,12 +444,11 @@ begin
    if SelectedLayer<>nil then
    begin
       Value:=StrToFloat(Edit2.Text);
-//	  LayerBoxClick(self);
       if Value<>SelectedLayer.MaterialDensity then
       begin
          SelectedLayer.MaterialDensity:=Value;
       end;
-      LayerBoxClick(self);	  
+      LayerBoxItemClick(self,Layerbox.ItemIndex);
    end;
 end;{TFreeLayerDialog.Edit2Exit}
 
@@ -450,9 +467,8 @@ begin
       if Value<>SelectedLayer.Thickness then
       begin
          SelectedLayer.Thickness:=Value;
-//         LayerBoxClick(self);
       end;
-  	  LayerBoxClick(self);
+      LayerBoxItemClick(self,Layerbox.ItemIndex);
    end;
 end;{TFreeLayerDialog.Edit3Exit}
 

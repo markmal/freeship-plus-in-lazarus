@@ -87,7 +87,6 @@ type
                                        procedure ListBoxClickCheck(
                                          Sender: TObject);
                                        procedure ListBoxKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
-                                       procedure ListBoxClick(Sender: TObject);
                                        procedure ShowStationsExecute(Sender: TObject);
                                        procedure ShowButtocksExecute(Sender: TObject);
                                        procedure ShowWaterlinesExecute(Sender: TObject);
@@ -242,11 +241,6 @@ begin
       end;
    end;
 end;
-
-procedure TFreeIntersectionDialog.ListBoxClick(Sender: TObject);
-begin
-
-end;{TFreeIntersectionDialog.ListBoxClick}
 
 procedure TFreeIntersectionDialog.ShowStationsExecute(Sender: TObject);
 begin

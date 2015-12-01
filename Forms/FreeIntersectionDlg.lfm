@@ -29,7 +29,6 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
       Width = 204
       Align = alClient
       ItemHeight = 0
-      OnClick = ListBoxClick
       OnClickCheck = ListBoxClickCheck
       OnKeyDown = ListBoxKeyDown
       TabOrder = 0

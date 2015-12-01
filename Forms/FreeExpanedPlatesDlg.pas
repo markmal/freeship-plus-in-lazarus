@@ -60,7 +60,12 @@ uses
      Math,
      CheckLst;
 
-type TFreeExpanedplatesDialog  = class(TForm)
+type
+
+{ TFreeExpanedplatesDialog }
+
+ TFreeExpanedplatesDialog  = class(TForm)
+                                      CloseDialog: TAction;
                                        Panel2: TPanel;
                                        Panel3: TPanel;
                                        Label1: TLabel;
@@ -144,11 +149,14 @@ type TFreeExpanedplatesDialog  = class(TForm)
                                        ToolButton4: TToolButton;
                                        ExportTextFile: TAction;
                                        ToolButton6: TToolButton;
+                                       procedure CloseDialogExecute(
+                                         Sender: TObject);
+                                       procedure ListBoxClickCheck(
+                                         Sender: TObject);
                                        procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                                        procedure ViewportRedraw(Sender: TObject);
                                        procedure ViewportMouseMove(Sender: TObject; Shift: TShiftState; X,Y: Integer);
                                        procedure ViewportMouseDown(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
-                                       procedure ListBoxClick(Sender: TObject);
                                        procedure ViewportMouseUp(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
                                        procedure RotateCCW90Execute(Sender: TObject);
                                        procedure RotateCCW5Execute(Sender: TObject);
@@ -166,7 +174,6 @@ type TFreeExpanedplatesDialog  = class(TForm)
                                        procedure ShowWaterlinesExecute(Sender: TObject);
                                        procedure ShowInteriorEdgesExecute(Sender: TObject);
                                        procedure ShowFillColorExecute(Sender: TObject);
-                                       procedure ToolButton22Click(Sender: TObject);
                                        procedure ShowErrorEdgesExecute(Sender: TObject);
                                        procedure ShowDiagonalsExecute(Sender: TObject);
                                        procedure PrintExecute(Sender: TObject);
@@ -414,6 +421,7 @@ begin
    if Plates.Count=0 then ActivePatch:=nil
                      else ListBox.ItemIndex:=0;
    ActivePatch:=ActivePatch;
+
    ShowTranslatedValues(Self);
    ShowModal;
    Result:=ModalResult=mrOk;
@@ -602,7 +610,8 @@ begin
    end;
 end;{TFreeExpanedplatesDialog.ViewportMouseDown}
 
-procedure TFreeExpanedplatesDialog.ListBoxClick(Sender: TObject);
+
+procedure TFreeExpanedplatesDialog.ListBoxClickCheck(Sender: TObject);
 var Patch: TFreeDevelopedPatch;
 begin
    if Listbox.ItemIndex<>-1 then
@@ -616,7 +625,13 @@ begin
       end;
    end;
    ActivePatch:=ActivePatch;
-end;{TFreeExpanedplatesDialog.ListBoxClick}
+end;
+
+procedure TFreeExpanedplatesDialog.CloseDialogExecute(Sender: TObject);
+begin
+  Close;
+end;
+
 
 procedure TFreeExpanedplatesDialog.ViewportMouseUp(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
@@ -779,11 +794,6 @@ begin
    ShowSubmergedArea.Enabled:=ShowFillColor.Checked;
    Viewport.Refresh;
 end;{TFreeExpanedplatesDialog.ShowFillColorExecute}
-
-procedure TFreeExpanedplatesDialog.ToolButton22Click(Sender: TObject);
-begin
-   Close;
-end;{TFreeExpanedplatesDialog.ToolButton22Click}
 
 procedure TFreeExpanedplatesDialog.ShowErrorEdgesExecute(Sender: TObject);
 begin

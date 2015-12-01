@@ -10,7 +10,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poDefault
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object Splitter1: TSplitter
     Left = 456
     Height = 503
@@ -237,7 +237,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Width = 173
       Align = alClient
       ItemHeight = 0
-      OnClick = ListBoxClick
+      OnClickCheck = ListBoxClickCheck
       TabOrder = 1
     end
   end
@@ -418,11 +418,8 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     end
     object ToolButton22: TToolButton
       Left = 589
-      Hint = 'Close this window.'
       Top = 2
-      Caption = 'ToolButton22'
-      ImageIndex = 17
-      OnClick = ToolButton22Click
+      Action = CloseDialog
     end
   end
   object Viewport: TFreeViewport
@@ -458,12 +455,13 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     Images = MenuImages
     left = 32
     top = 48
-    object RotateCCW1: TAction
-      Category = 'Rotate'
-      Caption = '-1'
-      Hint = 'Rotate part 1 degr. counter clockwise.'
-      ImageIndex = 8
-      OnExecute = RotateCCW1Execute
+    object ZoomExtents: TAction
+      Category = 'Zoom'
+      Caption = 'Extents'
+      Hint = 'Zoom all.'
+      ImageIndex = 0
+      OnExecute = ZoomExtentsExecute
+      ShortCut = 16449
     end
     object RotateCCW5: TAction
       Category = 'Rotate'
@@ -479,13 +477,6 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       ImageIndex = 2
       OnExecute = RotateCCW90Execute
     end
-    object RotateCW1: TAction
-      Category = 'Rotate'
-      Caption = '+1'
-      Hint = 'Rotate part 1 degr. clockwise.'
-      ImageIndex = 9
-      OnExecute = RotateCW1Execute
-    end
     object RotateCW5: TAction
       Category = 'Rotate'
       Caption = '+5'
@@ -500,20 +491,13 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       ImageIndex = 4
       OnExecute = RotateCW90Execute
     end
-    object ZoomExtents: TAction
+    object ZoomOut: TAction
       Category = 'Zoom'
-      Caption = 'Extents'
-      Hint = 'Zoom all.'
-      ImageIndex = 0
-      OnExecute = ZoomExtentsExecute
-      ShortCut = 16449
-    end
-    object SaveBitmap: TAction
-      Category = 'Export'
-      Caption = 'Save bitmap'
-      Hint = 'Save the current layout as a bitmap.'
-      ImageIndex = 10
-      OnExecute = SaveBitmapExecute
+      Caption = 'Zoom out'
+      Hint = 'Zoom out.'
+      ImageIndex = 6
+      OnExecute = ZoomOutExecute
+      ShortCut = 16463
     end
     object ZoomIn: TAction
       Category = 'Zoom'
@@ -523,13 +507,26 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       OnExecute = ZoomInExecute
       ShortCut = 16457
     end
-    object ZoomOut: TAction
-      Category = 'Zoom'
-      Caption = 'Zoom out'
-      Hint = 'Zoom out.'
-      ImageIndex = 6
-      OnExecute = ZoomOutExecute
-      ShortCut = 16463
+    object RotateCCW1: TAction
+      Category = 'Rotate'
+      Caption = '-1'
+      Hint = 'Rotate part 1 degr. counter clockwise.'
+      ImageIndex = 8
+      OnExecute = RotateCCW1Execute
+    end
+    object RotateCW1: TAction
+      Category = 'Rotate'
+      Caption = '+1'
+      Hint = 'Rotate part 1 degr. clockwise.'
+      ImageIndex = 9
+      OnExecute = RotateCW1Execute
+    end
+    object SaveBitmap: TAction
+      Category = 'Export'
+      Caption = 'Save bitmap'
+      Hint = 'Save the current layout as a bitmap.'
+      ImageIndex = 10
+      OnExecute = SaveBitmapExecute
     end
     object ExportDXF: TAction
       Category = 'Export'
@@ -537,13 +534,6 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Hint = 'Export the visible plates to a DXF file.'
       ImageIndex = 11
       OnExecute = ExportDXFExecute
-    end
-    object ShowStations: TAction
-      Category = 'Visibility'
-      Caption = 'Stations'
-      Hint = 'Show stations on developed plates.'
-      ImageIndex = 14
-      OnExecute = ShowStationsExecute
     end
     object ShowButtocks: TAction
       Category = 'Visibility'
@@ -558,6 +548,13 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Hint = 'Show waterlines on developed plates.'
       ImageIndex = 13
       OnExecute = ShowWaterlinesExecute
+    end
+    object ShowStations: TAction
+      Category = 'Visibility'
+      Caption = 'Stations'
+      Hint = 'Show stations on developed plates.'
+      ImageIndex = 14
+      OnExecute = ShowStationsExecute
     end
     object ShowInteriorEdges: TAction
       Category = 'Visibility'
@@ -625,12 +622,19 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       ImageIndex = 24
       OnExecute = ExportTextFileExecute
     end
+    object CloseDialog: TAction
+      Category = 'Dialog'
+      Caption = 'Close Dialog'
+      Hint = 'Close Dialog'
+      ImageIndex = 25
+      OnExecute = CloseDialogExecute
+    end
   end
   object MenuImages: TImageList
     left = 112
     top = 80
     Bitmap = {
-      4C69190000001000000010000000000000FF000000FF1E1E1EFFD6D6D6FF0000
+      4C691A0000001000000010000000000000FF000000FF1E1E1EFFD6D6D6FF0000
       000000000000000000000000000000000000000000000000000000000000D6D6
       D6FF1E1E1EFF000000FF000000FF000000FF282828FFC1C1C1FF000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1429,6 +1433,38 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000002110C0FF2110C0FF2110C0FF000000000000
+      00000000000000000000000000002110C0FF2110C0FF200FC2FF000000000000
+      00000000000000000000000000002110C0FF2110C0FF2110C0FF2513BAFF0000
+      000000000000000000002210BFFF2110C0FF2110C1FF2714B5FF000000000000
+      00000000000000000000000000002110C0FF2110C0FF2010C1FF2614B6FF643F
+      45FF805310FF4F306BFF2110BFFF2110C0FF3A2291FF70472EFF805211FF7F52
+      12FF7F5212FF7F5212FF7F5212FF000000002715B4FF2613B7FF200FC2FF321C
+      A0FF4D2F6EFF2915B2FF2010C1FF2614B7FF68423CFF81530EFF7F5212FF7F52
+      12FF7F5212FF7F5212FF7F5212FF0000000081530FFF5F3B4EFF2C18ACFF200F
+      C2FF200FC2FF2110C1FF2110C0FF2110C0FF0000000000000000000000000000
+      0000000000007F5212FF7F5212FF0000000082540DFF805211FF462A7BFF1F0F
+      C3FF2110C0FF2110C0FF2110C0FF000000000000000000000000000000000000
+      0000000000007F5212FF7F5212FF000000007B4F19FF58375AFF2916B1FF2110
+      C1FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000000000
+      0000000000007F5212FF7F5212FF000000002513B9FF2412BBFF2010C1FF2110
+      C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000000000
+      0000000000007F5212FF7F5212FF2110C0FF2110C0FF2010C1FF2211BFFF2110
+      C0FF000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF000000000000
+      0000000000007F5212FF7F5212FF2110C0FF2010C1FF351E9CFF593759FF0000
+      000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF000000000000
+      0000000000007F5212FF7F5212FF1D0DC7FF2A17AFFF6C4436FF81540DFF0000
+      00000000000000000000000000001D0DC8FF1D0EC7FF00000000000000000000
+      0000000000007F5212FF7F5212FF00000000764C23FF7F5211FF7F5212FF7F52
+      12FF7F5212FF7F5212FF7F5211FF7F5211FF7F5212FF805211FF7F5212FF7F52
+      12FF7F5212FF7F5212FF7F5212FF000000007F5212FF7F5212FF7F5212FF7F52
+      12FF7F5212FF7F5212FF7F5212FF7F5212FF7F5212FF7F5212FF7F5212FF7F52
+      12FF7F5212FF7F5212FF7F5212FF000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000
     }

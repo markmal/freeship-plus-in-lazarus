@@ -1,3 +1,10 @@
+Test only Version 3.5.4.16 in Lazarus
+Released: Build date	2015/12/01 00:00:00
+New features and fixes:
+- fixed issues with item checkboxes in other dialogs
+- fixed balnk icons in Expanded Plates Dialog
+- set DWL color to Blue and thickness to 2
+
 Test only Version 3.5.4.14 in Lazarus
 Released: Build date	2015/11/29 16:00:00
 New features and fixes:

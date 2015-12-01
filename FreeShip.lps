@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="93">
+    <Units Count="95">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -28,8 +28,8 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1142"/>
-        <CursorPos Y="1156"/>
+        <TopLine Value="1916"/>
+        <CursorPos Y="1934"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -54,8 +54,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="240"/>
-        <CursorPos X="31" Y="243"/>
+        <TopLine Value="69"/>
+        <CursorPos X="59" Y="83"/>
         <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
@@ -99,8 +99,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="228"/>
-        <CursorPos X="2" Y="248"/>
+        <TopLine Value="73"/>
+        <CursorPos X="48" Y="75"/>
         <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
@@ -134,11 +134,10 @@
         <ComponentName Value="FREEProjectSettingsDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="134"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="133"/>
         <CursorPos X="34" Y="131"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -172,8 +171,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="434"/>
-        <CursorPos X="35" Y="452"/>
+        <TopLine Value="349"/>
+        <CursorPos X="28" Y="353"/>
         <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
@@ -400,6 +399,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
+        <TopLine Value="212"/>
+        <CursorPos X="38" Y="218"/>
         <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit33>
@@ -439,8 +440,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="133"/>
-        <CursorPos X="11" Y="154"/>
+        <TopLine Value="382"/>
+        <CursorPos X="16" Y="408"/>
         <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit37>
@@ -495,7 +496,7 @@
         <ComponentName Value="FreeEmptyModelChooserDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="115"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit42>
       <Unit43>
@@ -589,8 +590,8 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="16407"/>
-        <CursorPos X="35" Y="16434"/>
+        <TopLine Value="16539"/>
+        <CursorPos X="19" Y="16541"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -800,20 +801,19 @@
       </Unit72>
       <Unit73>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="408"/>
-        <CursorPos X="46" Y="425"/>
-        <UsageCount Value="98"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="4185"/>
+        <CursorPos X="3" Y="4188"/>
+        <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit73>
       <Unit74>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/generic.inc"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="811"/>
         <CursorPos Y="824"/>
         <UsageCount Value="67"/>
-        <Loaded Value="True"/>
       </Unit74>
       <Unit75>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/objpas.inc"/>
@@ -941,136 +941,155 @@
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/graphics.pp"/>
         <UnitName Value="Graphics"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="294"/>
-        <CursorPos X="3" Y="312"/>
+        <TopLine Value="570"/>
+        <CursorPos X="3" Y="586"/>
         <UsageCount Value="10"/>
       </Unit91>
       <Unit92>
         <Filename Value="/usr/share/lazarus/1.4.2/lcl/include/customcontrol.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="14" Y="84"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit92>
+      <Unit93>
+        <Filename Value="/usr/share/lazarus/1.4.2/lcl/checklst.pas"/>
+        <UnitName Value="CheckLst"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="68"/>
+        <CursorPos X="5" Y="84"/>
+        <UsageCount Value="10"/>
+      </Unit93>
+      <Unit94>
+        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-image/src/fpcanvas.pp"/>
+        <UnitName Value="FPCanvas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="95"/>
+        <CursorPos X="3" Y="112"/>
+        <UsageCount Value="10"/>
+      </Unit94>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="14530" Column="50" TopLine="14523"/>
+        <Caret Line="16408" TopLine="16386"/>
       </Position1>
       <Position2>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1868" TopLine="1850"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16411" TopLine="16389"/>
       </Position2>
       <Position3>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="15241" TopLine="15222"/>
+        <Caret Line="16413" TopLine="16389"/>
       </Position3>
       <Position4>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1868" TopLine="1850"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16414" TopLine="16407"/>
       </Position4>
       <Position5>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="484" Column="49" TopLine="467"/>
+        <Caret Line="16415" TopLine="16407"/>
       </Position5>
       <Position6>
-        <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="1252" Column="49" TopLine="1236"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16416" TopLine="16407"/>
       </Position6>
       <Position7>
-        <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="8737" Column="20" TopLine="8796"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16417" TopLine="16407"/>
       </Position7>
       <Position8>
-        <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="10590" Column="13" TopLine="10593"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16418" TopLine="16407"/>
       </Position8>
       <Position9>
-        <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="15884" Column="45" TopLine="15871"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16419" TopLine="16407"/>
       </Position9>
       <Position10>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1284" Column="22" TopLine="1277"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16420" TopLine="16407"/>
       </Position10>
       <Position11>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="488" Column="49" TopLine="470"/>
+        <Caret Line="16422" TopLine="16407"/>
       </Position11>
       <Position12>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16552" Column="15" TopLine="16531"/>
+        <Caret Line="16423" TopLine="16407"/>
       </Position12>
       <Position13>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16300" Column="15" TopLine="16341"/>
+        <Caret Line="16424" TopLine="16407"/>
       </Position13>
       <Position14>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1934" TopLine="1927"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16425" TopLine="16407"/>
       </Position14>
       <Position15>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1156" TopLine="1142"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16426" TopLine="16407"/>
       </Position15>
       <Position16>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="488" Column="49" TopLine="470"/>
+        <Caret Line="16427" TopLine="16407"/>
       </Position16>
       <Position17>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16549" Column="21" TopLine="16540"/>
+        <Caret Line="16428" TopLine="16407"/>
       </Position17>
       <Position18>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16532" TopLine="16511"/>
+        <Caret Line="16429" TopLine="16407"/>
       </Position18>
       <Position19>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="135" Column="59" TopLine="115"/>
+        <Caret Line="16431" TopLine="16407"/>
       </Position19>
       <Position20>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="139" Column="67" TopLine="115"/>
+        <Caret Line="16432" TopLine="16407"/>
       </Position20>
       <Position21>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16417" Column="32" TopLine="16395"/>
+        <Caret Line="16433" TopLine="16407"/>
       </Position21>
       <Position22>
-        <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="425" Column="46" TopLine="408"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16436" TopLine="16410"/>
       </Position22>
       <Position23>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16418" TopLine="16395"/>
+        <Caret Line="16437" TopLine="16420"/>
       </Position23>
       <Position24>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/generic.inc"/>
-        <Caret Line="823" TopLine="811"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16439" TopLine="16420"/>
       </Position24>
       <Position25>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/generic.inc"/>
-        <Caret Line="824" TopLine="811"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16450" TopLine="16423"/>
       </Position25>
       <Position26>
         <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16418" TopLine="16395"/>
+        <Caret Line="16439" TopLine="16423"/>
       </Position26>
       <Position27>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/generic.inc"/>
-        <Caret Line="823" TopLine="811"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16440" TopLine="16422"/>
       </Position27>
       <Position28>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/generic.inc"/>
-        <Caret Line="824" TopLine="811"/>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16377" TopLine="16346"/>
       </Position28>
       <Position29>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="16418" TopLine="16395"/>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <Caret Line="408" Column="46" TopLine="394"/>
       </Position29>
+      <Position30>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="16558" Column="17" TopLine="16514"/>
+      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
@@ -1078,7 +1097,7 @@
     </CustomSessionData>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="4">
+    <BreakPoints Count="2">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -1093,31 +1112,14 @@
         <Source Value="Units/FreeGeometry.pas"/>
         <Line Value="8057"/>
       </Item2>
-      <Item3>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="Units/FreeShipUnit.pas"/>
-        <Line Value="14978"/>
-      </Item3>
-      <Item4>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="Forms/Main.pas"/>
-        <Line Value="1934"/>
-      </Item4>
     </BreakPoints>
-    <Watches Count="3">
+    <Watches Count="2">
       <Item1>
-        <Expression Value="RESULT"/>
+        <Expression Value="ANAME"/>
       </Item1>
       <Item2>
-        <Expression Value="NAME"/>
+        <Expression Value="II"/>
       </Item2>
-      <Item3>
-        <Expression Value="STR"/>
-      </Item3>
     </Watches>
   </Debugging>
 </CONFIG>

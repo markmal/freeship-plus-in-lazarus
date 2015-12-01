@@ -14400,21 +14400,23 @@ var i, II, sz, ilcnt:integer;
     bmp:TBitmap; png: TPortableNetworkGraphic; img: TLazIntfImage;
 begin
   sz := ToolIconSize;
-  ImageList.Width := sz; ImageList.Height := sz;
-  IPath := ToolIconDirectory;
   cil := TCustomImageList(ImageList);
   ilcnt := cil.Count;
+  ImageList.Width := sz; ImageList.Height := sz;
+  IPath := ToolIconDirectory;
   bmp:=TBitmap.Create;
   bmp.SetSize(sz,sz);
   png:=TPortableNetworkGraphic.Create;
-  img:= TLazIntfImage.Create(sz,sz);
+  //img:= TLazIntfImage.Create(sz,sz);
 
   // insert empties, just for count
-  for i:=0 to ActionList.ActionCount-1 do
-    if TAction(ActionList.Actions[i]).ImageIndex > -1 then
-      cil.Add(bmp,nil);
+  //for i:=0 to ActionList.ActionCount-1 do
+  //  if TAction(ActionList.Actions[i]).ImageIndex > -1 then
+  //    cil.Add(bmp,nil);
 
+  for i:=0 to ilcnt-1 do cil.Add(bmp,nil);
   ilcnt := cil.Count;
+
   for i:=0 to ActionList.ActionCount-1 do
   begin
     A := TAction(ActionList.Actions[i]);
@@ -16359,81 +16361,11 @@ var I,Size        : integer;
 
           Height:=Viewport.TextHeight('Oly');
           Viewport.BrushStyle:=bsClear;
-          // draw centerline
-          if Viewport.ViewType<>fvProfile then
-          begin
-             Viewport.FontColor:=clRed;
-             Viewport.PenWidth:=2;
-             P1:=Min;
-             P2:=Max;
-             Str:=Userstring(183);
-             P1.Y:=0.0;
-             P2.Y:=P1.Y;
-             Pt1:=Viewport.Project(P1);
-             Pt2:=Viewport.Project(P2);
-             Viewport.MoveTo(Pt1.X,Pt1.Y);
-             Viewport.LineTo(Pt2.X,Pt2.Y);
-             Width:=Viewport.TextWidth(Str);
-             if Viewport.ViewType=fvBodyplan then
-             begin
-                Viewport.TextOut(Pt1.X-Width div 2,Pt1.Y,str);
-                Viewport.TextOut(Pt2.X-width div 2,Pt2.Y-Height,Str);
-             end else
-             begin
-               Viewport.TextOut(Pt1.X-Width,Pt1.Y-Height,str);
-               Viewport.TextOut(Pt2.X,Pt2.Y-Height,Str);
-             end;
-             Viewport.PenWidth:=1;
-             Viewport.FontColor:=Preferences.GridFontColor;
-          end;
-          if Viewport.Viewtype<>fvPlan then
-          begin
-             Viewport.FontColor:=clRed;
-             // Draw baseline
-             Viewport.PenWidth:=2;
-             P1:=Min;
-             P2:=Max;
-             Position:=Surface.Min.Z;
-             Str:=Userstring(184)+#32+ConvertDimension(Position,ProjectSettings.ProjectUnits);
-             P1.Z:=Position;
-             P2.Z:=P1.Z;
-             Pt1:=Viewport.Project(P1);
-             Pt2:=Viewport.Project(P2);
-             Viewport.MoveTo(Pt1.X,Pt1.Y);
-             Viewport.LineTo(Pt2.X,Pt2.Y);
-             Width:=Viewport.TextWidth(Str);
-             Viewport.TextOut(Pt1.X,Pt1.Y-Height,Str);
-             Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+          Viewport.PenWidth:=1;
+          Viewport.PenStyle:=psSolid;
+          Viewport.PenColor:=Preferences.GridColor;
+          Viewport.FontColor:=Preferences.GridFontColor;
 
-             // Draw dwl
-             if ProjectSettings.FMainParticularsHasBeenSet then
-             begin
-                P1:=Min;
-                P2:=Max;
-                Position:=Surface.Min.Z+ProjectSettings.FProjectDraft;
-                Str:=Userstring(185)+#32+ConvertDimension(Position,ProjectSettings.ProjectUnits);
-                P1.Z:=Position;
-                P2.Z:=P1.Z;
-                Pt1:=Viewport.Project(P1);
-                Pt2:=Viewport.Project(P2);
-
-                cl:=Viewport.Color;
-                Viewport.PenColor :=clRed;
-                pw:=Viewport.PenWidth;
-                Viewport.PenWidth:=1;
-                Viewport.MoveTo(Pt1.X,Pt1.Y);
-                Viewport.LineTo(Pt2.X,Pt2.Y);
-                Viewport.PenColor :=cl;
-                Viewport.PenWidth:=pw;
-
-                Width:=Viewport.TextWidth(Str);
-                Viewport.TextOut(Pt1.X-width div 2,Pt1.Y-Height,Str);
-                Viewport.TextOut(Pt2.X-Width div 2,Pt2.Y-Height,str);
-             end;
-
-             Viewport.PenWidth:=1;
-             Viewport.FontColor:=Preferences.GridFontColor;
-          end;
           if DrawStations then
           begin
              P1:=Min;
@@ -16544,6 +16476,82 @@ var I,Size        : integer;
                 Width:=Viewport.TextWidth(Str);
                 Viewport.TextOut(Pt1.X,Pt1.Y-Height,Str);
                 Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+             end;
+          end;
+
+          // draw centerline
+          if Viewport.ViewType<>fvProfile then
+          begin
+             Viewport.FontColor:=clBlue;
+             Viewport.PenColor:=clBlue;
+             Viewport.PenWidth:=2;
+             P1:=Min;
+             P2:=Max;
+             Str:=Userstring(183);
+             P1.Y:=0.0;
+             P2.Y:=P1.Y;
+             Pt1:=Viewport.Project(P1);
+             Pt2:=Viewport.Project(P2);
+             Viewport.MoveTo(Pt1.X,Pt1.Y);
+             Viewport.LineTo(Pt2.X,Pt2.Y);
+             Width:=Viewport.TextWidth(Str);
+             if Viewport.ViewType=fvBodyplan then
+             begin
+                Viewport.TextOut(Pt1.X-Width div 2,Pt1.Y,str);
+                Viewport.TextOut(Pt2.X-width div 2,Pt2.Y-Height,Str);
+             end else
+             begin
+               Viewport.TextOut(Pt1.X-Width,Pt1.Y-Height,str);
+               Viewport.TextOut(Pt2.X,Pt2.Y-Height,Str);
+             end;
+             Viewport.PenWidth:=1;
+             Viewport.FontColor:=Preferences.GridFontColor;
+          end;
+          if Viewport.Viewtype<>fvPlan then
+          begin
+             // Draw baseline
+             Viewport.FontColor:=clBlue;
+             Viewport.PenColor:=clBlue;
+             Viewport.PenWidth:=2;
+             P1:=Min;
+             P2:=Max;
+             Position:=Surface.Min.Z;
+             Str:=Userstring(184)+#32+ConvertDimension(Position,ProjectSettings.ProjectUnits);
+             P1.Z:=Position;
+             P2.Z:=P1.Z;
+             Pt1:=Viewport.Project(P1);
+             Pt2:=Viewport.Project(P2);
+             Viewport.MoveTo(Pt1.X,Pt1.Y);
+             Viewport.LineTo(Pt2.X,Pt2.Y);
+             Width:=Viewport.TextWidth(Str);
+             Viewport.TextOut(Pt1.X,Pt1.Y-Height,Str);
+             Viewport.TextOut(Pt2.X-Width,Pt2.Y-Height,str);
+
+             // Draw dwl
+             if ProjectSettings.FMainParticularsHasBeenSet then
+             begin
+               //Viewport.FontColor:=clBlue;
+               //Viewport.PenColor:=clBlue;
+               //Viewport.PenWidth:=2;
+                P1:=Min;
+                P2:=Max;
+                Position:=Surface.Min.Z+ProjectSettings.FProjectDraft;
+                Str:=Userstring(185)+#32+ConvertDimension(Position,ProjectSettings.ProjectUnits);
+                P1.Z:=Position;
+                P2.Z:=P1.Z;
+                Pt1:=Viewport.Project(P1);
+                Pt2:=Viewport.Project(P2);
+
+                Viewport.PenColor:=clGreen;  //I do not know why, but without changing color PenWith becomes 1
+                Viewport.PenColor:=clBlue;
+                Viewport.PenStyle:=psSolid;
+                Viewport.PenWidth:=2;
+                Viewport.MoveTo(Pt1.X,Pt1.Y);
+                Viewport.LineTo(Pt2.X,Pt2.Y);
+
+                Width:=Viewport.TextWidth(Str);
+                Viewport.TextOut(Pt1.X-width div 2,Pt1.Y-Height,Str);
+                Viewport.TextOut(Pt2.X-Width div 2,Pt2.Y-Height,str);
              end;
           end;
        end;

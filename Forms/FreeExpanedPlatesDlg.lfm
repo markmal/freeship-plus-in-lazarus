@@ -1,20 +1,20 @@
 object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
   Left = 494
-  Height = 527
-  Top = 292
-  Width = 636
-  ClientHeight = 527
-  ClientWidth = 636
+  Height = 583
+  Top = 236
+  Width = 816
+  ClientHeight = 583
+  ClientWidth = 816
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poDefault
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '1.4.4.0'
   object Splitter1: TSplitter
-    Left = 456
-    Height = 503
-    Top = 24
+    Left = 636
+    Height = 557
+    Top = 26
     Width = 5
     Align = alRight
     Color = clRed
@@ -22,13 +22,13 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     ResizeAnchor = akRight
   end
   object Panel2: TPanel
-    Left = 461
-    Height = 503
-    Top = 24
+    Left = 641
+    Height = 557
+    Top = 26
     Width = 175
     Align = alRight
     BevelOuter = bvLowered
-    ClientHeight = 503
+    ClientHeight = 557
     ClientWidth = 175
     TabOrder = 0
     object Panel3: TPanel
@@ -45,7 +45,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 26
-        Width = 113
+        Width = 116
         Caption = 'Minimum edge error'
         ParentColor = False
       end
@@ -61,7 +61,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 42
-        Width = 116
+        Width = 120
         Caption = 'Maximum edge error'
         ParentColor = False
       end
@@ -77,7 +77,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 10
-        Width = 57
+        Width = 59
         Caption = 'Part name'
         ParentColor = False
       end
@@ -106,7 +106,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 90
-        Width = 75
+        Width = 76
         Caption = 'No. iterations'
         ParentColor = False
       end
@@ -122,7 +122,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 132
-        Width = 79
+        Width = 81
         Caption = 'X grid spacing'
         ParentColor = False
       end
@@ -130,7 +130,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 154
-        Width = 78
+        Width = 80
         Caption = 'Y grid spacing'
         ParentColor = False
       end
@@ -146,7 +146,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 140
         Height = 14
         Top = 130
-        Width = 20
+        Width = 19
         Caption = '[m]'
         ParentColor = False
       end
@@ -154,7 +154,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 140
         Height = 14
         Top = 150
-        Width = 20
+        Width = 19
         Caption = '[m]'
         ParentColor = False
       end
@@ -162,7 +162,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 58
-        Width = 113
+        Width = 118
         Caption = 'Maximum area error'
         ParentColor = False
       end
@@ -178,7 +178,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Left = 2
         Height = 14
         Top = 74
-        Width = 85
+        Width = 89
         Caption = 'Total area error'
         ParentColor = False
       end
@@ -222,9 +222,9 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       end
       object CheckBox1: TCheckBox
         Left = 0
-        Height = 20
+        Height = 21
         Top = 173
-        Width = 62
+        Width = 61
         Caption = 'Mirror'
         OnClick = CheckBox1Click
         TabOrder = 3
@@ -232,20 +232,21 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     end
     object ListBox: TCheckListBox
       Left = 1
-      Height = 306
+      Height = 360
       Top = 196
       Width = 173
       Align = alClient
       ItemHeight = 0
       OnClickCheck = ListBoxClickCheck
       TabOrder = 1
+      TopIndex = -1
     end
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 24
+    Height = 26
     Top = 0
-    Width = 636
+    Width = 816
     AutoSize = True
     Caption = 'ToolBar1'
     Color = clBtnFace
@@ -318,7 +319,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Action = ZoomOut
     end
     object _ToolButton6: TToolButton
-      Left = 232
+      Left = 272
       Height = 22
       Top = 2
       Width = 10
@@ -327,59 +328,59 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Style = tbsSeparator
     end
     object ToolButton19: TToolButton
-      Left = 242
+      Left = 282
       Top = 2
       Action = ShowFillColor
     end
     object ToolButton4: TToolButton
-      Left = 265
+      Left = 305
       Top = 2
       Action = ShowSubmergedArea
     end
     object ToolButton18: TToolButton
-      Left = 288
+      Left = 328
       Top = 2
       Action = ShowInteriorEdges
     end
     object ToolButton23: TToolButton
-      Left = 311
+      Left = 351
       Top = 2
       Action = ShowErrorEdges
     end
     object ToolButton26: TToolButton
-      Left = 334
+      Left = 374
       Hint = 'Show dimensions of the unfolded plates.'
       Top = 2
       Action = ShowDimensions
     end
     object ToolButton27: TToolButton
-      Left = 357
+      Left = 397
       Top = 2
       Action = ShowPartName
     end
     object ToolButton15: TToolButton
-      Left = 380
+      Left = 420
       Top = 2
       Action = ShowStations
       Style = tbsCheck
     end
     object ToolButton16: TToolButton
-      Left = 403
+      Left = 443
       Top = 2
       Action = ShowButtocks
     end
     object ToolButton17: TToolButton
-      Left = 426
+      Left = 466
       Top = 2
       Action = ShowWaterlines
     end
     object ToolButton24: TToolButton
-      Left = 449
+      Left = 489
       Top = 2
       Action = ShowDiagonals
     end
     object _ToolButton14: TToolButton
-      Left = 472
+      Left = 512
       Height = 22
       Top = 2
       Width = 10
@@ -388,27 +389,27 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 482
+      Left = 522
       Top = 2
       Action = Print
     end
     object ToolButton7: TToolButton
-      Left = 505
+      Left = 545
       Top = 2
       Action = SaveBitmap
     end
     object ToolButton13: TToolButton
-      Left = 528
+      Left = 568
       Top = 2
       Action = ExportDXF
     end
     object ToolButton6: TToolButton
-      Left = 551
+      Left = 591
       Top = 2
       Action = ExportTextFile
     end
     object _ToolButton21: TToolButton
-      Left = 574
+      Left = 614
       Height = 22
       Top = 2
       Width = 15
@@ -417,16 +418,28 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Style = tbsSeparator
     end
     object ToolButton22: TToolButton
-      Left = 589
+      Left = 629
       Top = 2
       Action = CloseDialog
+    end
+    object SpinEditFontSize: TSpinEdit
+      Left = 232
+      Height = 24
+      Hint = 'Font Size'
+      Top = 2
+      Width = 40
+      MaxValue = 20
+      MinValue = 3
+      OnChange = SpinEditFontSizeChange
+      TabOrder = 0
+      Value = 8
     end
   end
   object Viewport: TFreeViewport
     Left = 0
-    Height = 503
-    Top = 24
-    Width = 456
+    Height = 557
+    Top = 26
+    Width = 636
     Angle = 90
     Align = alClient
     BackgroundImage.Alpha = 255

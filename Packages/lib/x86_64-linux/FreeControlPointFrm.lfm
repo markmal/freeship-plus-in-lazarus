@@ -14,24 +14,25 @@ object FreeControlPointForm: TFreeControlPointForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   FormStyle = fsStayOnTop
-  LCLVersion = '1.4.0.4'
+  OnActivate = FormActivate
+  LCLVersion = '1.4.4.0'
   object Panel1: TPanel
     Left = 0
-    Height = 97
+    Height = 79
     Top = 0
     Width = 308
     Align = alTop
     AutoSize = True
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 97
+    ClientHeight = 79
     ClientWidth = 308
     TabOrder = 0
     object Label1: TLabel
       Left = 26
-      Height = 24
+      Height = 18
       Top = 6
-      Width = 46
+      Width = 48
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
       Caption = 'X-coord.'
@@ -40,9 +41,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label2: TLabel
       Left = 26
-      Height = 24
-      Top = 36
-      Width = 46
+      Height = 18
+      Top = 30
+      Width = 48
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
       Caption = 'Y-coord.'
@@ -51,9 +52,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label3: TLabel
       Left = 26
-      Height = 24
-      Top = 66
-      Width = 46
+      Height = 18
+      Top = 54
+      Width = 48
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
       Caption = 'Z-coord.'
@@ -61,8 +62,8 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object SpeedButton4: TSpeedButton
-      Left = 78
-      Height = 24
+      Left = 80
+      Height = 18
       Top = 6
       Width = 14
       Flat = True
@@ -83,9 +84,9 @@ object FreeControlPointForm: TFreeControlPointForm
       OnClick = SpeedButton4Click
     end
     object SpeedButton5: TSpeedButton
-      Left = 78
-      Height = 24
-      Top = 36
+      Left = 80
+      Height = 18
+      Top = 30
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -105,9 +106,9 @@ object FreeControlPointForm: TFreeControlPointForm
       OnClick = SpeedButton5Click
     end
     object SpeedButton6: TSpeedButton
-      Left = 78
-      Height = 24
-      Top = 66
+      Left = 80
+      Height = 18
+      Top = 54
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -127,8 +128,8 @@ object FreeControlPointForm: TFreeControlPointForm
       OnClick = SpeedButton6Click
     end
     object Edit1: TEdit
-      Left = 92
-      Height = 24
+      Left = 94
+      Height = 18
       Top = 6
       Width = 80
       BorderStyle = bsNone
@@ -137,9 +138,9 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 0
     end
     object Edit2: TEdit
-      Left = 92
-      Height = 24
-      Top = 36
+      Left = 94
+      Height = 18
+      Top = 30
       Width = 80
       BorderStyle = bsNone
       OnExit = Edit2Exit
@@ -147,9 +148,9 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 1
     end
     object Edit3: TEdit
-      Left = 92
-      Height = 24
-      Top = 66
+      Left = 94
+      Height = 18
+      Top = 54
       Width = 80
       BorderStyle = bsNone
       OnExit = Edit3Exit
@@ -157,8 +158,8 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 2
     end
     object SpeedButton1: TSpeedButton
-      Left = 172
-      Height = 24
+      Left = 174
+      Height = 18
       Top = 6
       Width = 14
       Flat = True
@@ -179,9 +180,9 @@ object FreeControlPointForm: TFreeControlPointForm
       OnClick = SpeedButton1Click
     end
     object SpeedButton2: TSpeedButton
-      Left = 172
-      Height = 24
-      Top = 36
+      Left = 174
+      Height = 18
+      Top = 30
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -201,9 +202,9 @@ object FreeControlPointForm: TFreeControlPointForm
       OnClick = SpeedButton2Click
     end
     object SpeedButton3: TSpeedButton
-      Left = 172
-      Height = 24
-      Top = 66
+      Left = 174
+      Height = 18
+      Top = 54
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -225,32 +226,32 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 99
-    Top = 97
+    Height = 88
+    Top = 79
     Width = 308
     Align = alTop
     AutoSize = True
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 99
+    ClientHeight = 88
     ClientWidth = 308
     TabOrder = 1
     object CheckBox1: TCheckBox
       Left = 20
-      Height = 20
+      Height = 21
       Top = 6
-      Width = 67
+      Width = 66
       BorderSpacing.Left = 20
       BorderSpacing.Top = 6
       Caption = 'Corner'
-      OnMouseUp = CheckBox1MouseUp
+      OnClick = CheckBox1Click
       TabOrder = 0
     end
     object Label4: TLabel
       Left = 20
-      Height = 24
-      Top = 32
-      Width = 67
+      Height = 18
+      Top = 33
+      Width = 66
       BorderSpacing.Left = 20
       Caption = 'Distance'
       Layout = tlCenter
@@ -258,9 +259,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label5: TLabel
       Left = 20
-      Height = 24
-      Top = 62
-      Width = 67
+      Height = 18
+      Top = 57
+      Width = 66
       BorderSpacing.Left = 20
       BorderSpacing.Bottom = 6
       Caption = 'Angles'
@@ -268,8 +269,8 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object Label6: TLabel
-      Left = 93
-      Height = 20
+      Left = 92
+      Height = 21
       Top = 6
       Width = 140
       BorderSpacing.Top = 6
@@ -277,9 +278,9 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object Edit4: TEdit
-      Left = 93
-      Height = 24
-      Top = 32
+      Left = 92
+      Height = 18
+      Top = 33
       Width = 140
       BorderSpacing.Around = 6
       BorderStyle = bsNone
@@ -287,9 +288,9 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 1
     end
     object Edit5: TEdit
-      Left = 93
-      Height = 24
-      Top = 62
+      Left = 92
+      Height = 18
+      Top = 57
       Width = 140
       BorderSpacing.Bottom = 6
       BorderSpacing.Around = 6

@@ -75,13 +75,15 @@ type
     Edit4: TEdit;
     Label5: TLabel;
     Edit5: TEdit;
+    procedure CheckBox1Change(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure Edit1Exit(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Edit2Exit(Sender: TObject);
     procedure Edit3KeyPress(Sender: TObject; var Key: Char);
     procedure Edit3Exit(Sender: TObject);
-    procedure CheckBox1MouseUp(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
+    procedure FormActivate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
@@ -91,7 +93,9 @@ type
    private  { Private declarations }
       FActiveControlPoint  : TFreeSubdivisionControlPoint;
       FFreeShip            : TComponent;
+      FSkipCheckbox1OnClick: boolean;
       procedure FSetActiveControlPoint(Val:TFreeSubdivisionControlPoint);
+      procedure FSetActiveControlPointCorner(isCorner: boolean);
    public   { Public declarations }
       property ActiveControlPoint   : TFreeSubdivisionControlPoint read FActiveControlPoint write FSetActiveControlPoint;
       property FreeShip             : TComponent read FFreeShip write FFreeShip;
@@ -229,11 +233,19 @@ begin
       Edit1.Text:=Truncate(FActiveControlPoint.Coordinate.X,4);
       Edit2.Text:=Truncate(FActiveControlPoint.Coordinate.Y,4);
       Edit3.Text:=Truncate(FActiveControlPoint.Coordinate.Z,4);
-      Checkbox1.Checked:=FActiveControlPoint.VertexType=svCorner;
+
+      if (Checkbox1.Checked <> (FActiveControlPoint.VertexType=svCorner))
+         then begin
+            FSkipCheckbox1OnClick:=true;
+            Checkbox1.Checked:=FActiveControlPoint.VertexType=svCorner;
+            FSkipCheckbox1OnClick:=false;
+         end;
+
       // Count the number of crease edges connected to this point
       N:=0;
       for I:=1 to FActiveControlPoint.NumberOfEdges do if FActiveControlPoint.Edge[I-1].Crease then inc(N);
-      Checkbox1.Enabled:=(N>0) and (N<3); // points with more than two crease edges must always be a corner
+      Checkbox1.Enabled:=((N>0) and (N<3) and (not Val.Locked)); // points with more than two crease edges must always be a corner
+
       Edit1.Enabled:=not Val.Locked;
       Edit2.Enabled:=not Val.Locked;
       Edit3.Enabled:=not Val.Locked;
@@ -243,7 +255,6 @@ begin
       SpeedButton4.Enabled:=not val.locked;
       SpeedButton5.Enabled:=not val.locked;
       SpeedButton6.Enabled:=not val.locked;
-      Checkbox1.Enabled:=not Val.Locked;
       if Val.Locked then
       begin
          BCol:=clBtnFace;
@@ -444,29 +455,45 @@ begin
    end;
 end;{TFreeControlPointForm.Edit3Exit}
 
-procedure TFreeControlPointForm.CheckBox1MouseUp(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TFreeControlPointForm.CheckBox1Change(Sender: TObject);
+begin
+end;
+
+procedure TFreeControlPointForm.CheckBox1Click(Sender: TObject);
+begin
+   if FSkipCheckbox1OnClick then exit;
+   FSetActiveControlPointCorner(CheckBox1.Checked);
+end;
+
+procedure TFreeControlPointForm.FSetActiveControlPointCorner(isCorner: boolean);
 var I,N     : Integer;
     OldType : TFreeVertexType;
     Undo    : TFreeUndoObject;
 begin
-   if ActiveControlPoint<>nil then
+  if (ActiveControlPoint<>nil)
+    and (isCorner <> (ActiveControlPoint.VertexType=svCorner))
+  then
    begin
       // Count the number of crease edges connected to this point
       OldType:=ActiveControlPoint.VertexType;
       Undo:=TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(213),false);
-      Case ActiveControlPoint.Vertextype of
-         svCorner  : begin
-                        N:=0;
-                        for I:=1 to ActiveControlPoint.NumberOfEdges do if FActiveControlPoint.Edge[I-1].Crease then inc(N);
-                        // Count the number of incident crease edges
-                        Case N of
-                           0 : ActiveControlPoint.Vertextype:=svRegular;
-                           1 : ActiveControlPoint.VertexType:=svDart;
-                           2 : ActiveControlPoint.VertexType:=svCrease;
-                        end;
-                     end;
-         else ActiveControlPoint.VertexType:=svCorner;
-      end;
+      if (ActiveControlPoint.Vertextype=svCorner) and (not isCorner)
+      then
+         begin
+            N:=0;
+            // Count the number of incident crease edges
+            for I:=1 to ActiveControlPoint.NumberOfEdges do
+                if FActiveControlPoint.Edge[I-1].Crease then inc(N);
+            Case N of
+               0 : ActiveControlPoint.Vertextype:=svRegular;
+               1 : ActiveControlPoint.VertexType:=svDart;
+               2 : ActiveControlPoint.VertexType:=svCrease;
+               // points with more than two crease edges must always be a corner
+            end;
+         end;
+      if (ActiveControlPoint.Vertextype<>svCorner) and (isCorner)
+         then ActiveControlPoint.VertexType:=svCorner;
+
       if ActiveControlPoint.VertexType<>OldType then
       begin
          Undo.Accept;
@@ -477,6 +504,11 @@ begin
       end else Undo.Delete;
    end;
 end;{TFreeControlPointForm.CheckBox1MouseUp}
+
+procedure TFreeControlPointForm.FormActivate(Sender: TObject);
+begin
+  FSkipCheckbox1OnClick:=false;
+end;
 
 procedure TFreeControlPointForm.SpeedButton1Click(Sender: TObject);
 var P   : T3DCoordinate;

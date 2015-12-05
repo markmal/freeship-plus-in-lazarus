@@ -58,7 +58,7 @@ uses
      Printers,
      ImgList,
      Math,
-     CheckLst;
+     CheckLst, Spin;
 
 type
 
@@ -69,6 +69,7 @@ type
                                        Panel2: TPanel;
                                        Panel3: TPanel;
                                        Label1: TLabel;
+                                       SpinEditFontSize: TSpinEdit;
                                        _Label2: TLabel;
                                        Label3: TLabel;
                                        _Label4: TLabel;
@@ -152,6 +153,8 @@ type
                                        procedure CloseDialogExecute(
                                          Sender: TObject);
                                        procedure ListBoxClickCheck(
+                                         Sender: TObject);
+                                       procedure SpinEditFontSizeChange(
                                          Sender: TObject);
                                        procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                                        procedure ViewportRedraw(Sender: TObject);
@@ -417,6 +420,8 @@ begin
    Edit2.Text:=FloatToStrF(FXGridSpacing,ffFixed,7,3);
    Edit3.Text:=FloatToStrF(FYGridSpacing,ffFixed,7,3);
 
+   SpinEditFontSizeChange(nil); //refresh font sizes
+
    Viewport.ZoomExtents;
    if Plates.Count=0 then ActivePatch:=nil
                      else ListBox.ItemIndex:=0;
@@ -625,6 +630,18 @@ begin
       end;
    end;
    ActivePatch:=ActivePatch;
+end;
+
+procedure TFreeExpanedplatesDialog.SpinEditFontSizeChange(Sender: TObject);
+var I,Index : Integer;
+    Patch   : TFreeDevelopedPatch;
+begin
+   for I:=1 to FPlates.Count do
+   begin
+      Patch:=FPlates[I-1];
+      Patch.DimFontSize := SpinEditFontSize.Value;
+   end;
+   Viewport.Refresh;
 end;
 
 procedure TFreeExpanedplatesDialog.CloseDialogExecute(Sender: TObject);

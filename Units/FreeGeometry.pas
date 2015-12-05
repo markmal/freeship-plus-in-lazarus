@@ -498,6 +498,10 @@ type TFreeSubdivisionBase           = class;
                                     FShadeSubmerged   : Boolean;
                                     FNoIterations     : Integer;
                                     FUnits            : TFreeUnitType;
+                                    FDimFontColor     : TColor;
+                                    FDimFontName      : String;
+                                    FDimFontSize    : Integer;
+
                                     function FGetShowErrorEdges:Boolean;
                                     function FGetMidPoint:T2DCoordinate;
                                     function FGetMinError:Extended;
@@ -542,6 +546,9 @@ type TFreeSubdivisionBase           = class;
                                     property ShowSolid            : boolean read FShowSolid write FShowSolid;
                                     property ShowStations         : Boolean read FShowStations write FShowStations;
                                     property ShowWaterlines       : Boolean read FShowWaterlines write FShowWaterlines;
+                                    property DimFontColor         : TColor  read FDimFontColor write FDimFontColor;
+                                    property DimFontName          : String  read FDimFontName write FDimFontName;
+                                    property DimFontSize          : integer  read FDimFontSize write FDimFontSize;
                                     property TotalAreaError       : extended read FTotalAreaError;
                                     property Translation          : T2DCoordinate read FTranslation write FSetTranslation;
                                     property Units                : TFreeUnitType read FUnits write FUnits;
@@ -5414,6 +5421,11 @@ begin
    FShowErrorEdges:=Org.FShowErrorEdges;
    FShowDimensions:=Org.FShowDimensions;
    FShadeSubmerged:=Org.FShadeSubmerged;
+
+   FDimFontColor:=Org.FDimFontColor;
+   FDimFontName:=Org.FDimFontName;
+   FDimFontSize:=Org.FDimFontSize;
+
    FBoundaryEdges.Clear;
    FBoundaryEdges.AddList(Org.FBoundaryEdges);
    FPoints.Clear;
@@ -5488,6 +5500,11 @@ begin
    FShadeSubmerged:=True;
    FVisible:=True;
    FMirrorOnScreen:=False;
+
+   FDimFontColor:=clBlack;
+   FDimFontName:='Arial';
+   FDimFontSize:=6;
+
    for I:=1 to FStations.Count do
    begin
       Spline:=FStations[I-1];
@@ -5839,8 +5856,12 @@ begin
       Viewport.PenWidth:=PenwidthFactor;
 
       // calculate and set fontheight
-      Viewport.FontName:='arial';
-      Viewport.FontHeight:=round(DistPP3D(Viewport.Min3D,Viewport.Max3D)/150);
+      //Viewport.FontName:='arial';
+      //Viewport.FontHeight:=round(DistPP3D(Viewport.Min3D,Viewport.Max3D)/150);
+
+      Viewport.FontColor:=FDimFontColor;
+      Viewport.FontName:=FDimFontName;
+      Viewport.FontHeight:=FDimFontSize;
 
       for I:=1 to FBoundaryEdges.Count do
       begin

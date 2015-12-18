@@ -1,4 +1,8 @@
 # freeship-plus-in-lazarus
+
+To download binary packages ( .zip and .deb files) please proceed to Releases page 
+https://github.com/markmal/freeship-plus-in-lazarus/releases
+
 FREE!ship Plus in Lazarus is further development of the FREE!ship Plus (by http://www.hydronship.net ) 
 Windows program with free source code FREE!ship v3.x under license GNU GPL. 
 This FREE!ship Plus application is migrated into free open source Lazarus / Free Pascal environment 

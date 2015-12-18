@@ -1,0 +1,4 @@
+E: freeship: unstripped-binary-or-object usr/bin/FreeShip
+W: freeship: hardening-no-relro usr/bin/FreeShip
+W: freeship: syntax-error-in-debian-changelog line 13 "found eof where expected first heading"
+W: freeship: binary-without-manpage usr/bin/FreeShip

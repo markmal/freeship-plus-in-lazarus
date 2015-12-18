@@ -1,3 +1,11 @@
+Test only Version 3.5.5.7 in Lazarus
+Released: Build date	2015/12/17 21:20:00
+New features and fixes:
+- fixed script installers/uninstallers for more standard install of MIME and menu, including icons
+- added deb package creation in instpkg/deb as follow up on issue #16 Request
+- added rpm package creation in instpkg/rpm
+- added install-HOWTO.txt as follow up on issue #17 Installation Manual
+
 Test only Version 3.5.5.3 in Lazarus
 Released: Build date	2015/12/05 14:10:00
 New features and fixes:

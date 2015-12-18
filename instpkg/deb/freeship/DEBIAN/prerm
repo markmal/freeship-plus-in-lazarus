@@ -1,0 +1,45 @@
+#!/bin/sh
+
+set -e
+
+echo "dpkg operation:'${1}'"
+
+if [ "$1" = "remove" ]; then
+
+FS_HOME=/usr/share/FreeShip
+cd /usr/share/FreeShip/install/
+
+if [ -x "`which xdg-desktop-menu 2>/dev/null`" ]; then
+    echo "  Uninstall Menu"
+    # Due to standard Science/Engineering is "Additional" item, it is not presented in visible menu.
+    # We add our own Engineering top level menu folder and place FreeShip launcher into it.
+    xdg-desktop-menu uninstall --novendor --mode system Engineering.directory freeship.desktop
+    xdg-desktop-menu forceupdate
+else 
+ echo "Warning: Menu possibly not uninstalled. xdg-desktop-menu not found."
+fi
+
+if [ -x "`which xdg-mime 2>/dev/null`" ]; then
+    echo "  Uninstall MIME"
+    xdg-mime uninstall --mode system application.freeship-model-fbm.xml
+    xdg-mime uninstall --mode system application.freeship-model-ftm.xml
+else
+ echo "Warning: MIME possibly not uninstalled. xdg-mime not found."
+fi
+
+if [ -x "`which xdg-icon-resource 2>/dev/null`" ]; then
+    echo "  Uninstall Icons"
+    for SZ in 16 24 32 48 64 96 128; do
+      xdg-icon-resource uninstall --novendor --context apps --mode system --size ${SZ} freeship
+      xdg-icon-resource uninstall --novendor --context mimetypes --mode system --size ${SZ} application-freeship-model-fbm
+      xdg-icon-resource uninstall --novendor --context mimetypes --mode system --size ${SZ} application-freeship-model-ftm
+    done
+    xdg-icon-resource forceupdate --mode system
+else
+ echo "Warning: Icons possibly not uninstalled. xdg-icon-resource not found."
+fi
+
+cd -
+
+fi
+

@@ -1,0 +1,8 @@
+freeship plus for Debian
+-------------------
+
+ fakeroot debian/rules clean
+ fakeroot debian/rules build
+ fakeroot debian/rules binary
+
+ -- Soenke J. Peters <speters@github.com>  Tue, 09 Jun 2015 15:59:54 +0200

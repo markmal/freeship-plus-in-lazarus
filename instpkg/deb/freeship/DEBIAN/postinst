@@ -1,0 +1,51 @@
+#!/bin/sh
+
+set -e
+
+echo "dpkg operation:'${1}'"
+
+FS_HOME=/usr/share/FreeShip
+cd $FS_HOME/install/
+
+if [ "$1" = "configure" ] && [ -x "`which xdg-desktop-menu 2>/dev/null`" ]; then
+    echo "  Install Menu"
+    # Due to standard Science/Engineering is "Additional" item, it is not presented in visible menu.
+    # We add our own Engineering top level menu folder and place FreeShip launcher into it.
+    xdg-desktop-menu install --novendor --mode system Engineering.directory freeship.desktop
+    xdg-desktop-menu forceupdate
+else 
+ echo "Warning: Menu not installed. xdg-desktop-menu not found."
+fi
+
+if [ "$1" = "configure" ] && [ -x "`which xdg-mime 2>/dev/null`" ]; then
+    echo "  Install MIME"
+    xdg-mime install --mode system application.freeship-model-fbm.xml
+    xdg-mime install --mode system application.freeship-model-ftm.xml
+    xdg-mime default freeship.desktop application/freeship-model-fbm
+    xdg-mime default freeship.desktop application/freeship-model-ftm
+else
+ echo "Warning: MIME not installed. xdg-mime not found."
+fi
+
+# for some reason mime-icon association is not created by dpkg. We do it here
+if [ "$1" = "configure" ] && [ -x "`which xdg-icon-resource 2>/dev/null`" ]; then
+    echo "  Install Icons"
+    for SZ in 16 24 32 48 64 96 128; do
+      ICON=$FS_HOME/Themes/Default/icons/${SZ}/00-freeship.png
+      xdg-icon-resource install --novendor --context apps --mode system --size ${SZ} $ICON freeship
+      xdg-icon-resource install --novendor --context mimetypes --mode system --size ${SZ} $ICON application-freeship-model-fbm
+      xdg-icon-resource install --novendor --context mimetypes --mode system --size ${SZ} $ICON application-freeship-model-ftm
+    done
+    xdg-icon-resource forceupdate --mode system
+else
+ echo "Warning: Icons not installed. xdg-icon-resource not found."
+fi
+
+cd -
+
+# Automatically added by dh_installmenu
+if [ "$1" = "configure" ] && [ -x "`which update-menus 2>/dev/null`" ]; then
+	update-menus
+fi
+# End automatically added section
+

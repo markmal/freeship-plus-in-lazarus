@@ -11,114 +11,72 @@ fi
 FS_HOME=/usr/share/FreeShip
 FS_APP=${FS_HOME}
 
-[ -d ${FS_APP} ] && rm -rf ${FS_APP}
 
-CFG=/etc/FreeShip.ini
+CFG=/etc/FreeShip/FreeShip.ini
 [ -f $CFG ] && mv $CFG $CFG.0
 
 echo "  Uninstall executables"
 [ -x /usr/bin/FreeShip ] && rm /usr/bin/FreeShip
 
-# Make menu item and MIME types
 
-echo "  Uninstall MIME"
+cd $FS_HOME/install/
 
-echo '<?xml version="1.0" encoding="UTF-8"?>
-<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-    <mime-type type="application/freeship-model-ftm">
-        <comment>FREE!Ship Plus model (text)</comment>
-        <icon name="freeship"/>
-        <glob pattern="*.ftm"/>
-    </mime-type>
-</mime-info>' >application.freeship-model-ftm.xml
+if [ -x "`which xdg-desktop-menu 2>/dev/null`" ]; then
+    echo "  Uninstall Menu"
+    # Due to standard Science/Engineering is "Additional" item, it is not presented in visible menu.
+    # We add our own Engineering top level menu folder and place FreeShip launcher into it.
+    xdg-desktop-menu uninstall --novendor --mode system Engineering.directory freeship.desktop
+    xdg-desktop-menu forceupdate
+else
+ echo "Warning: Menu possibly not uninstalled. xdg-desktop-menu not found."
+fi
 
-echo '<?xml version="1.0" encoding="UTF-8"?>
-<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-    <mime-type type="application/freeship-model-fbm">
-        <comment>FREE!Ship Plus model (binary)</comment>
-        <icon name="freeship"/>
-        <glob pattern="*.fbm"/>
-    </mime-type>
-</mime-info>' > application.freeship-model-fbm.xml
+if [ -x "`which xdg-mime 2>/dev/null`" ]; then
+    echo "  Uninstall MIME"
+    xdg-mime uninstall --mode system /usr/share/mime/packages/application.freeship-model-fbm.xml
+    xdg-mime uninstall --mode system /usr/share/mime/packages/application.freeship-model-ftm.xml
+else
+ echo "Warning: MIME possibly not uninstalled. xdg-mime not found."
+fi
 
-xdg-mime uninstall --mode system application.freeship-model-fbm.xml
-xdg-mime uninstall --mode system application.freeship-model-ftm.xml
+if [ -x "`which xdg-icon-resource 2>/dev/null`" ]; then
+    echo "  Uninstall Icons"
+    for SZ in 16 24 32 48 64 96 128; do
+      xdg-icon-resource uninstall --novendor --context apps --mode system --size ${SZ} freeship
+      xdg-icon-resource uninstall --novendor --context mimetypes --mode system --size ${SZ} application-freeship-model-fbm
+      xdg-icon-resource uninstall --novendor --context mimetypes --mode system --size ${SZ} application-freeship-model-ftm
+    done
+    xdg-icon-resource forceupdate
+else
+ echo "Warning: Icons possibly not uninstalled. xdg-icon-resource not found."
+fi
 
-rm application.freeship-model-fbm.xml application.freeship-model-ftm.xml
+if [ -x "`which update-desktop-database 2>/dev/null`" ]; then
+    echo "  Update Desktop database"
+    update-desktop-database /usr/share/applications
+else
+ echo "Warning: Desktop database not updated. update-desktop-database not found."
+fi
 
-for SZ in 16 24 32 48; do
-  xdg-icon-resource uninstall --context mimetypes --mode system --size ${SZ} freeship-${SZ}.png application/freeship-model-fbm
-  xdg-icon-resource uninstall --context mimetypes --mode system --size ${SZ} freeship-${SZ}.png application/freeship-model-ftm
-done
+if [ -x "`which update-mime-database 2>/dev/null`" ]; then
+    echo "  Update MIME database"
+    update-mime-database /usr/share/mime
+else
+ echo "Warning: MIME database not updated. update-mime-database not found."
+fi
 
-echo "  Update Desktop database"
-update-desktop-database /usr/share/applications
-echo "  Update MIME database"
+cd -
 
-update-mime-database /usr/share/mime
+#change ownership of .local files of current user back to the user,
+#because above commands may chane them to root:root
+GRP=$(ls -ld ~ | while read P X USR GRP S ; do echo $GRP; done)
+USR=$(ls -ld ~ | while read P X USR GRP S ; do echo $USR; done)
+[ -d ~/.local/share/applications ] && chown -R $USR:$GRP ~/.local/share/applications
+[ -d ~/.local/share/icons ] || chown -R $USR:$GRP ~/.local/share/icons
+[ -d ~/.local/share/mime ] || chown -R $USR:$GRP ~/.local/share/mime
 
-remove_mime(){
- if [ -f $1 ] ; then
-   echo "      remove MIME defaults from $1"
-   sed -i '/application\/freeship-model-fbm=freeship\.desktop/d' $1
-   sed -i '/application\/freeship-model-ftm=freeship\.desktop/d' $1
- fi
-}
-
-#cleanup users MIME defaults. Just in case xdg-mime uninstall has not done it
-#for mimefile in mimeapps defaults; do
-#remove_mime /etc/xdg/$desktop-${mimefile}.list
-#remove_mime /etc/xdg/${mimefile}.list
-#remove_mime /usr/local/share/applications/$desktop-${mimefile}.list
-#remove_mime /usr/share/applications/$desktop-${mimefile}.list
-#remove_mime /usr/local/share/applications/${mimefile}.list
-#remove_mime /usr/share/applications/${mimefile}.list
-#done
-
-for F in $(find /etc -name "*defaults.list") $(find /etc -name "*mimeapps.list") \
-  $(find /usr -name "*defaults.list") $(find /usr -name "*mimeapps.list")
-do 
-  if grep 'application\/freeship-model-f[bt]m=freeship\.desktop' $F >/dev/null 2>&1; then 
-    remove_mime $F
-  fi;
-done
-
-sed -i "/^\s*text\/x-freeship-model-ftm\s\s*fbm\s\s*ftm\s*$/d" /etc/mime.types
-
-echo "  Uninstall Menu"
-
-for SZ in 16 24 32 48; do
-  xdg-icon-resource uninstall --novendor --mode system --size ${SZ} freeship-${SZ}.png freeship
-done
-
-echo \
-'[Desktop Entry]
-Version=1.0
-Type=Application
-Name=FreeShip Plus
-Comment=FREE!ship Plus for Linux
-Icon=freeship
-Exec=/usr/bin/FreeShip %f
-Path=/usr/share/FreeShip
-NoDisplay=false
-Categories=Engineering;
-Keywords=Engineering;FreeShip;Designer;Vessel;
-MimeType=application/freeship-model-ftm;application/freeship-model-fbm;
-StartupWMClass=FreeShip
-StartupNotify=false
-Terminal=false
-' > freeship.desktop
-
-# Due to standard Science/Engineering is "Additional" item, it is not presented in visible menu.
-# We add our own Engineering top level menu folder and place FreeShip launcher into it.
-
-xdg-desktop-menu uninstall --novendor --mode system Engineering.directory freeship.desktop
-xdg-desktop-menu forceupdate
-
-rm freeship.desktop
-
-echo "  Update Desktop database"
-update-desktop-database /usr/share/applications
+echo "  Delete files"
+[ -d /usr/share/FreeShip ] && rm -rf /usr/share/FreeShip
 
 echo "Done"
 

@@ -856,7 +856,7 @@ type
                                     procedure Clear;
                                     constructor Create(Owner:TFreeShip);
                                     procedure Edit;                              // User input of mainparticulars and project setting
-                                    procedure LoadBinary(Source:TFreeFilebuffer;Image:TJPegImage);overload;virtual;
+                                    procedure LoadBinary(Source:TFreeFilebuffer; Image:TJPegImage);overload;virtual;
                                     procedure SaveBinary(Destination:TFreeFileBuffer);
                                     property  DisableModelCheck            : boolean read FDisableModelCheck write FSetDisableModelCheck;
                                     property  EnableModelAutoMove          : boolean read FEnableModelAutoMove write FSetEnableModelAutoMove;
@@ -1031,7 +1031,7 @@ type
                                     function    FindLowestHydrostaticsPoint:TFloatType;
                                     procedure   ImportChines(Np:Integer;Chines:TFasterList);                               // imports a number of longitudinally lines and creates developable surfaces between each two subsequent chines
                                     Procedure   LoadBinary(Source:TFreeFileBuffer);
-                                    procedure   LoadPreview(Filename:string;Image:TJPegImage);                             // loads the preview image from a file
+                                    procedure   LoadPreview(Filename:string; Image:TJPegImage);                             // loads the preview image from a file
                                     procedure   RebuildModel;                                                              // Force to rebuild the entire ship and recalculate all data
                                     procedure   Redraw;                                                                    // Redraws the model on all viewports
                                     Procedure   SaveBinary(Destination:TFreeFileBuffer);
@@ -14105,7 +14105,6 @@ begin
 end;
 
 function TFreePreferences.getUserAppDataDirectory:string;
-var D:string;
 begin
   {$ifdef UNIX}
   result:=GetEnvironmentVariableUTF8('HOME')+'/FreeShip';
@@ -14645,25 +14644,31 @@ end;
 
 procedure TFreePreferences.ResetDirectories;
 var AppDataDir: String;
+
+ function chooseDirAppDataDir(GlobalAppDataDir,UserAppDataDir:string): string;
+ begin
+   if (UserAppDataDir <> '') and (DirectoryExistsUTF8(UserAppDataDir)) then
+    result := UserAppDataDir
+   else
+    result := GlobalAppDataDir;
+ end;
+
 begin
   FUserConfigDirectory := getUserConfigDirectory;
   FGlobalConfigDirectory := getGlobalConfigDirectory;
   FUserAppDataDirectory := getUserAppDataDirectory;
   FGlobalAppDataDirectory := getGlobalAppDataDirectory;
 
-  if FGlobalAppDataDirectory <> '' then AppDataDir := FGlobalAppDataDirectory;
-  if FUserAppDataDirectory   <> '' then AppDataDir := FUserAppDataDirectory;
-
-  FOpenDirectory := AppDataDir+'/Ships';
-  FSaveDirectory := AppDataDir+'/Ships';
-  FImportDirectory := AppDataDir+'/Import';
-  FExportDirectory := AppDataDir+'/Export';
-  FLanguagesDirectory := AppDataDir+'/Languages';
-  FExecDirectory := AppDataDir+'/Exec';
-  FManualsDirectory := AppDataDir+'/Manuals';
-  FTempDirectory := AppDataDir+'/Temp';
-  FMenuIconDirectory := AppDataDir+'/Themes/Default/icons/16';
-  FToolIconDirectory := AppDataDir+'/Themes/Default/icons/24';
+  FOpenDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Ships',FUserAppDataDirectory+'/Ships');
+  FSaveDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Ships',FUserAppDataDirectory+'/Ships');
+  FImportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Import',FUserAppDataDirectory+'/Import');
+  FExportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Export',FUserAppDataDirectory+'/Export');
+  FLanguagesDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Languages',FUserAppDataDirectory+'/Languages');
+  FExecDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Exec',FUserAppDataDirectory+'/Exec');
+  FManualsDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Manuals',FUserAppDataDirectory+'/Manuals');
+  FTempDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Temp',FUserAppDataDirectory+'/Temp');
+  FMenuIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Themes/Default/icons/16',FUserAppDataDirectory+'/Themes/Default/icons/16');
+  FToolIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory+'/Themes/Default/icons/24',FUserAppDataDirectory+'/Themes/Default/icons/24');
 end;
 
 
@@ -15300,7 +15305,7 @@ begin
    Dialog.Destroy;
 end;{TFreeProjectSettings.Edit}
 
-procedure TFreeProjectSettings.LoadBinary(Source:TFreeFilebuffer;Image:TJPegImage);
+procedure TFreeProjectSettings.LoadBinary(Source:TFreeFilebuffer; Image:TJPegImage);
 var I   : Integer;
     Jpg : TJPEGImage;
 begin
@@ -17047,6 +17052,7 @@ var PrevCursor    : TCursor;
     Marker        : TFreeMarker;
     Data          : TFreeBackgroundImageData;
     Flowline      : TFreeFlowline;
+    //PreviewImg : TJPegImage;
 begin
    // Remember the filename because it will be erased by the clear method
    Str:=FFilename;
@@ -17206,7 +17212,7 @@ begin
 end;{TFreeShip.LoadBinary}
 
 // loads the preview image from a file
-procedure TFreeShip.LoadPreview(Filename:string;Image:TJPegImage);
+procedure TFreeShip.LoadPreview(Filename:string; Image:TJPegImage);
 var Source        : TFreeFileBuffer;
     I             : integer;
     Str,Ext           : String;

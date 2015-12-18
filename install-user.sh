@@ -6,6 +6,7 @@ echo "  Install executables"
 # copy executable
 [ -d ${HOME}/bin ] || mkdir ${HOME}/bin
 cp FreeShip ${HOME}/bin/
+chmod 755 ${HOME}/bin/FreeShip
 
 [ -d ${FS_HOME}/Export ] || mkdir -p ${FS_HOME}/Export
 [ -d ${FS_HOME}/Import ] || mkdir -p ${FS_HOME}/Import
@@ -17,8 +18,7 @@ FS_APP=${FS_HOME}
 
 # these files are needed for uninstall
 cp uninstall-user.sh ${FS_APP}/
-#cp application.freeship-model-fbm.xml ${FS_APP}/
-#cp application.freeship-model-ftm.xml ${FS_APP}/
+cp -r install ${FS_APP}/
 
 [ -d ${FS_HOME}/Exec ]   || mkdir -p ${FS_APP}/Exec
 
@@ -26,6 +26,15 @@ cp -r Languages ${FS_APP}/
 cp -r Manuals ${FS_APP}/
 cp -r Ships ${FS_APP}/
 cp -r Themes ${FS_APP}/
+cp -r install ${FS_APP}/
+
+cp "GNU General Public License (GPL).txt" ${FS_APP}/
+
+for F in Whatsnew.txt uninstall-user.sh install-HOWTO.txt copyright
+do
+ cp $F ${FS_APP}/
+done
+
 
 echo "  Install configuration"
 [ -d ${HOME}/.config/FreeShip ] || mkdir ${HOME}/.config/FreeShip
@@ -60,11 +69,6 @@ fi
 
 # Make menu item and MIME types
 
-echo "  Install Menu"
-for SZ in 16 24 32 48; do
-  xdg-icon-resource install --novendor --mode user --size ${SZ} freeship-${SZ}.png freeship
-done
-
 echo \
 "[Desktop Entry]
 Version=1.0
@@ -81,61 +85,58 @@ MimeType=application/freeship-model-ftm;application/freeship-model-fbm;
 StartupWMClass=FreeShip
 StartupNotify=false
 Terminal=false
-" > freeship.desktop
+" > $FS_HOME/install/freeship.desktop
 
-# Due to standard Science/Engineering is "Additional" item, it is not presented in visible menu.
-# We add our own Engineering top level menu folder and place FreeShip launcher into it.
-xdg-desktop-menu install --novendor --mode user Engineering.directory freeship.desktop
-xdg-desktop-menu forceupdate
 
-## manually move Engineering menu item from bottom to above Games (for simplicity). I do not know a standard way to do it.
-CURDIR=$(pwd)
-cd ~/.config/menus
-MENUFILE=$(grep -lr '^\s*<Menuname>Games</Menuname>$' * )
-if [ ! -z $MENUFILE ]; then
-  sed -i '/<Menuname>Engineering<\/Menuname>/d' ${MENUFILE}
-  sed -i 's/^\s*<Menuname>Games<\/Menuname>/\t\t<Menuname>Engineering<\/Menuname>\n&/' ${MENUFILE}
+
+cd $FS_HOME/install/
+
+if [ -x "`which xdg-desktop-menu 2>/dev/null`" ]; then
+    echo "  Install Menu"
+    # Due to standard Science/Engineering is "Additional" item, it is not presented in visible menu.
+    # We add our own Engineering top level menu folder and place FreeShip launcher into it.
+    xdg-desktop-menu install --novendor --mode user Engineering.directory freeship.desktop
+    xdg-desktop-menu forceupdate
+else
+ echo "Warning: Menu not installed. xdg-desktop-menu not found."
 fi
-cd $CURDIR
-##
 
-echo "  Install MIME"
+if [ -x "`which xdg-mime 2>/dev/null`" ]; then
+    echo "  Install MIME"
+    xdg-mime install --mode user application.freeship-model-fbm.xml
+    xdg-mime install --mode user application.freeship-model-ftm.xml
+    xdg-mime default freeship.desktop application/freeship-model-fbm
+    xdg-mime default freeship.desktop application/freeship-model-ftm
+else
+ echo "Warning: MIME not installed. xdg-mime not found."
+fi
 
-echo '<?xml version="1.0" encoding="UTF-8"?>
-<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-    <mime-type type="application/freeship-model-ftm">
-        <comment>FREE!Ship Plus model (text)</comment>
-        <icon name="freeship"/>
-        <glob pattern="*.ftm"/>
-    </mime-type>
-</mime-info>' >application.freeship-model-ftm.xml
+if [ -x "`which xdg-icon-resource 2>/dev/null`" ]; then
+    echo "  Install Icons"
+    for SZ in 16 24 32 48 64 96 128; do
+      ICON=$FS_HOME/Themes/Default/icons/${SZ}/00-freeship.png
+      xdg-icon-resource install --novendor --context apps --mode user --size ${SZ} $ICON freeship
+      xdg-icon-resource install --novendor --context mimetypes --mode user --size ${SZ} $ICON application-freeship-model-fbm
+      xdg-icon-resource install --novendor --context mimetypes --mode user --size ${SZ} $ICON application-freeship-model-ftm
+    done
+else
+ echo "Warning: Icons not installed. xdg-icon-resource not found."
+fi
 
-echo '<?xml version="1.0" encoding="UTF-8"?>
-<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-    <mime-type type="application/freeship-model-fbm">
-        <comment>FREE!Ship Plus model (binary)</comment>
-        <icon name="freeship"/>
-        <glob pattern="*.fbm"/>
-    </mime-type>
-</mime-info>' > application.freeship-model-fbm.xml
 
-xdg-mime install --mode user application.freeship-model-fbm.xml
-xdg-mime install --mode user application.freeship-model-ftm.xml
+if [ -x "`which update-desktop-database 2>/dev/null`" ]; then
+    echo "  Update Desktop database"
+    update-desktop-database $HOME/.local/share/applications
+else
+ echo "Warning: Desktop database not updated. update-desktop-database not found."
+fi
 
-rm application.freeship-model-fbm.xml application.freeship-model-ftm.xml
-
-for SZ in 16 24 32 48; do
-  xdg-icon-resource install --context mimetypes --mode user --size ${SZ} freeship-${SZ}.png application/freeship-model-fbm
-  xdg-icon-resource install --context mimetypes --mode user --size ${SZ} freeship-${SZ}.png application/freeship-model-ftm
-done
-
-xdg-mime default freeship.desktop application/freeship-model-fbm
-xdg-mime default freeship.desktop application/freeship-model-ftm
-
-echo "  Update Desktop database"
-update-desktop-database ~/.local/share/applications
-echo "  Update MIME database"
-update-mime-database ~/.local/share/mime
+if [ -x "`which update-mime-database 2>/dev/null`" ]; then
+    echo "  Update MIME database"
+    update-mime-database $HOME/.local/share/mime
+else
+ echo "Warning: MIME database not updated. update-mime-database not found."
+fi
 
 echo "Done"
 echo "FreeShip is installed into $FS_APP"

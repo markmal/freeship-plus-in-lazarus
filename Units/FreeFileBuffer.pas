@@ -1819,7 +1819,7 @@ end;{TFreeFileBuffer.Load}
 procedure TFreeFileBuffer.Load(var Output: string);
 var
   I, Size: integer;
-  Ch: char;
+  Ch: char;   S: string;
 begin
   Load(Size);
   Output := '';
@@ -1831,7 +1831,8 @@ begin
       Inc(FPosition);
       Output := Output + Ch;
     end;
-    Output := ConvertEncoding(Output,FEncoding,'utf8');
+    S:=Output;
+    Output := ConvertEncoding(S,FEncoding,'utf8');
   end
   else
     raise Exception.Create(UserString(192) + '_0 ! Load String' + EOL
@@ -2083,7 +2084,9 @@ var
 begin
   FFileName := Filename;
   AssignFile(FFile, Filename);
-  system.Reset(FFile, 1);
+  //TheStream:=TFileStream.Create(FileName,fmOpenRead or fmShareDenyWrite);
+  system.FileMode := fmOpenRead;
+  system.Reset(FFile,1);
   FCount := 0;
   DataLeft := FileSize(FFile);
   Capacity := DataLeft;

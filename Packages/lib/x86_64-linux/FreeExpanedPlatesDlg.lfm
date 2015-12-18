@@ -432,7 +432,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       MinValue = 3
       OnChange = SpinEditFontSizeChange
       TabOrder = 0
-      Value = 6
+      Value = 8
     end
   end
   object Viewport: TFreeViewport

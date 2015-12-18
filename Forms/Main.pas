@@ -678,8 +678,9 @@ begin
  FMDIChildList := TList.Create;
  FFileName:='';
 
- SortControlsByXY(PanelMain);
+ //FreeShip.Preferences.SetDefaults;
 
+ SortControlsByXY(PanelMain);
  SortControlsByXY(ToolBarFile);
  SortControlsByXY(ToolBarVisibility);
  SortControlsByXY(ToolBarLayers);
@@ -1236,7 +1237,6 @@ begin
    FreeShip.OnChangeActiveLayer:=FreeShipChangeActiveLayer;
    Freeship.OnChangeLayerData:=FreeShipChangeLayerData;
    FreeShip.OnSelectItem:=FOnSelectItem;
-   FreeShip.Preferences.Load;
    FreeShip.Clear;
 
    if FFileName = '' then
@@ -1300,6 +1300,7 @@ begin
    // Connect viewport to freeship component
    HullformWindow.FreeShip:=FreeShip;
    HullformWindow.Viewport.ViewType:=fvPerspective;
+   ShowTranslatedValues(HullformWindow);
    HullformWindow.SetCaption;
    UpdateMenu;
 end;{TMainForm.NewWindowExecute}

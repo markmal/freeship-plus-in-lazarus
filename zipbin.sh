@@ -7,10 +7,9 @@ md5sum FreeShip >FreeShip.md5
 
 rm ${NAME}.zip ${NAME}.md5 2>/dev/null
 
-zip -r ${NAME}.zip Languages Manuals Ships Themes FreeShip FreeShip.md5 Whatsnew.txt \
- install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh \
- Engineering.directory \
- freeship-16.png freeship-24.png freeship-32.png freeship-48.png
+zip -r ${NAME}.zip Languages Manuals Ships Themes install FreeShip FreeShip.md5 Whatsnew.txt \
+ install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh install-HOWTO.txt \
+ "GNU General Public License (GPL).txt" copyright
 
 if [ $? -ne 0 ]; then echo "Error while zip" ; exit 1; fi
 

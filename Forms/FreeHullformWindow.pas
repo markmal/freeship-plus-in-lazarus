@@ -299,10 +299,11 @@ procedure TFreeHullWindow.FormCreate(Sender: TObject);
 var VP: TFreeViewportOpenGL;
 {$ENDIF}
 begin
+
    ScrollBar1.Position:=Round(Viewport.Angle);
    ScrollBar2.Position:=Round(Viewport.Elevation);
    FAllowPanOrZoom:=False;
-
+   FreeShip:=GlobalFreeShip;
    {$IFDEF USEOPENGL}
    VP := TFreeViewportOpenGL.Create(Self);
    VP.Parent := ViewPort.Parent;
@@ -479,7 +480,10 @@ begin
          FInitialPosition.X:=X;
          FInitialPosition.Y:=Y;
       end;
-   end else FFreeShip.MouseMove(Viewport,Shift,X,Y);
+   end
+   else
+     if Assigned(FFreeShip) then
+       FFreeShip.MouseMove(Viewport,Shift,X,Y);
 end;{TFreeHullWindow.ViewportMouseMove}
 
 procedure TFreeHullWindow.ViewportMouseUp(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);

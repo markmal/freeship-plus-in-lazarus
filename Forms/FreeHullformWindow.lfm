@@ -16,7 +16,7 @@ object FreeHullWindow: TFreeHullWindow
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.4.0'
   Visible = True
   object ScrollBar1: TScrollBar
     Left = 0

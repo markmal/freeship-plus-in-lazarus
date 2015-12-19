@@ -7,4 +7,8 @@ git tag -a v$VERS -m "Test Release. $ARCH Linux Qt. ver $VERS"
 
 ./zipbin.sh
 
-
+# create deb package
+cd instpkg/deb/
+./prep.sh
+./build.sh
+cd -

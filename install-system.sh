@@ -1,3 +1,4 @@
+#/bin/bash
 echo Installation FreeShip into the system
 # should be started as root or with sudo
 

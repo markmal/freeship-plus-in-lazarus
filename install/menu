@@ -1,0 +1,6 @@
+?package(freeship):\
+  needs=X11\
+  section=Applications/Science/Engineering\
+  title="FreeShip Plus"\
+  command=/usr/bin/FreeShip\
+  icon=freeship

@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Uninstallation FreeShip from user home"
 
 FS_HOME=${HOME}/FreeShip
@@ -13,9 +14,25 @@ echo "  Uninstall files"
 
 [ -x ${HOME}/bin/FreeShip ] && rm -f ${HOME}/bin/FreeShip
 
+SaveDirectory=${FS_HOME}/Ships
+##SHIPS=$(grep -e 'SaveDirectory=' -e 'ExportDirectory=' ~/.config/FreeShip/FreeShip.ini)
+##eval $SHIPS
+cd $SaveDirectory
+# this command will remove all files that md5sum is matching with .original-ships.md5
+md5sum -c .original-ships.md5 2>/dev/null | grep ': OK$' | sed 's/: OK$//' | \
+ while read OFN; do rm "$OFN"; done
+
+rm .original-ships.md5
+
+while read ODN; do rmdir "$ODN"; done < .original-ship-dirs.lst
+
+rm .original-ship-dirs.lst
+
+cd -
+
 
 echo "  Uninstall configuration"
-CFG=${HOME}/.config/FreeShip/FreeShip.ini
+CFG=~/.config/FreeShip/FreeShip.ini
 [ -f $CFG ] && mv $CFG $CFG.0
 echo "    your configuration saved as $CFG.0"
 
@@ -67,6 +84,6 @@ fi
 
 cd -
 
-rm -rf $FS_HOME
+rmdir "$FS_HOME"
 
 echo "Done"

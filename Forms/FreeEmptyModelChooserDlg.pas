@@ -92,6 +92,7 @@ begin
    GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph,'Cancel');
    ShowTranslatedValues(Self);
    Showmodal;
+   BringToFront;
    Result:=ModalResult=mrOk;
 end;{TFreeEmptyModelChooserDialog.Execute}
 

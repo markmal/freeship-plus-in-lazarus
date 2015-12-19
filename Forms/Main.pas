@@ -577,6 +577,7 @@ type
     function  getAllToolbarsControlWidth: integer;
     procedure AlignAllToolbars;
     procedure SetAllActionsEnabled(val : boolean);
+    procedure InitiallyLoadModel;
    private    { Private declarations }
       FAllToolbarsControlsWidth : integer;
       FToolBarFileControlsWidth : integer;
@@ -595,6 +596,7 @@ type
       procedure FOpenHullWindows;   // Creates 4 different views on the hullform
    public     { Public declarations }
       FFileName : string;
+      FModelInitallyLoaded : boolean;
       {$IFDEF FPC}
       function  MDIChildCount: Integer; override;
       function  GetMDIChildren(AIndex: Integer): TCustomForm; override;
@@ -866,6 +868,47 @@ begin
   ToolBarMain.Height:=PanelMain.Height;
 end;
 
+procedure TMainForm.InitiallyLoadModel;
+var FileExt: string;
+begin
+if FFileName = '' then
+  LoadMostRecentFile;
+
+if (FFileName = '') and not FreeShip.ModelLoaded then  //default behaviour if no recent file defined
+  NewModelExecute(Self)
+else
+if (FFileName <> '') and not FreeShip.ModelLoaded then
+begin
+   // Skip translation
+   FileExt := Uppercase(ExtractFileExt(FFileName));
+   if (FileExistsUTF8(FFileName) { *Converted from FileExists* })
+     and ( (FileExt = '.FBM') or (FileExt = '.FTM') ) then
+     begin
+        FOpenHullWindows;
+        FreeShip.Edit.File_Load(FFileName);
+     end
+   else
+   begin
+      //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+      FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
+      ShowTranslatedValues(FreeEmptyModelChooserDialog);
+      if FreeEmptyModelChooserDialog.Execute(FFileName)
+      then
+        begin
+        if FreeEmptyModelChooserDialog.RbCreateNew.Checked
+          then NewModelExecute(Self)
+        else
+        if FreeEmptyModelChooserDialog.RbLoadFile.Checked
+          then LoadFileExecute(Self)
+        end;
+      FreeEmptyModelChooserDialog.Free;
+   end
+   // End Skip translation
+end;
+SetCaption;
+LoadToolIcons;
+UpdateMenu;
+end;
 
 var inActivation: boolean = false;
 
@@ -874,6 +917,13 @@ var i:integer;
 begin
   if inActivation then exit;
   inActivation:=true;
+
+  if not FModelInitallyLoaded then
+    begin
+       InitiallyLoadModel;
+       FModelInitallyLoaded := true;
+    end;
+
   for i:=0 to FMDIChildList.Count -1 do begin
     TFreeHullWindow(FMDIChildList.Items[i]).BringToFront;
     Application.ProcessMessages;
@@ -947,7 +997,7 @@ begin
          ///HullformWindow:=TFreeHullWindow.CreateParented(self.Handle);
          //HullformWindow.ParentWindow := self.Handle ;
          // Connect viewport to freeship component
-         HullformWindow.FreeShip:=FreeShip;
+         //HullformWindow.FreeShip:=FreeShip;
          HullformWindow.Viewport.ViewType:=TFreeViewType(I);
          ShowTranslatedValues(HullformWindow);
          HullformWindow.SetCaption;
@@ -1239,40 +1289,6 @@ begin
    FreeShip.OnSelectItem:=FOnSelectItem;
    FreeShip.Clear;
 
-   if FFileName = '' then
-     LoadMostRecentFile;
-
-   if (FFileName = '') and not FreeShip.ModelLoaded then  //default behaviour if no recent file defined
-     NewModelExecute(Self)
-   else
-   if (FFileName <> '') and not FreeShip.ModelLoaded then
-   begin
-      // Skip translation
-      FileExt := Uppercase(ExtractFileExt(FFileName));
-      if (FileExistsUTF8(FFileName) { *Converted from FileExists* })
-        and ( (FileExt = '.FBM') or (FileExt = '.FTM') ) then
-        begin
-           FOpenHullWindows;
-           FreeShip.Edit.File_Load(FFileName);
-        end
-      else
-      begin
-         //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
-         FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
-         ShowTranslatedValues(FreeEmptyModelChooserDialog);
-         if FreeEmptyModelChooserDialog.Execute(FFileName)
-         then
-           begin
-           if FreeEmptyModelChooserDialog.RbCreateNew.Checked
-             then NewModelExecute(Self)
-           else
-           if FreeEmptyModelChooserDialog.RbLoadFile.Checked
-             then LoadFileExecute(Self)
-           end;
-         FreeEmptyModelChooserDialog.Free;
-      end
-      // End Skip translation
-   end;
    SetCaption;
    LoadToolIcons;
    UpdateMenu;
@@ -1719,6 +1735,7 @@ begin
    {$endif}
    FAllToolbarsControlsWidth := 0;
    GlobalFreeship := Freeship;
+   FModelInitallyLoaded := false;
    //dumpIcons;
 end;{TMainForm.FormCreate}
 

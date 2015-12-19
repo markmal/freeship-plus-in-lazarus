@@ -1,3 +1,11 @@
+Test only Version 3.5.5.12 in Lazarus
+Released: Build date	2015/12/17 21:20:00
+New features and fixes:
+- added deb package creation into release.sh
+- fixed issue #18 .deb install gives non-valid. added Installed-Size field
+- fixed icon on Deselect All tool button
+- fixed autotomatic new model creation on very first startup.
+
 Test only Version 3.5.5.7 in Lazarus
 Released: Build date	2015/12/17 21:20:00
 New features and fixes:

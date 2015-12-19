@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Installation FreeShip into user home"
 
 FS_HOME=${HOME}/FreeShip
@@ -34,6 +35,19 @@ for F in Whatsnew.txt uninstall-user.sh install-HOWTO.txt copyright
 do
  cp $F ${FS_APP}/
 done
+
+# save original ships lists that will be used when uninstall-user.sh executed to remove only files that were originally installed,
+# preserving files created or modified by user
+# original-ships.md5 is list of files with their md5 checksums. It is created with this command
+
+cd Ships/
+
+find . -type f -exec md5sum \{\} \; > .original-ships.md5
+
+# save original dirs
+find . -type d | grep -v '^.$' > .original-ship-dirs.lst
+
+cd ..
 
 
 echo "  Install configuration"

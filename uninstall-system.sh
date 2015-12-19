@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Uninstallation FreeShip from the system"
 # should be started as root or with sudo
 

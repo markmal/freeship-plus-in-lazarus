@@ -1,5 +1,5 @@
 Package: freeship
-Version: 3.5.5.12
+Version: 3.5.5.13
 Provides: freeship
 Architecture: amd64
 Depends: libc6, libx11-6, libqt4pas | libqt4pas5 | libqt4pas-dev
@@ -9,7 +9,7 @@ Priority: optional
 Maintainer: markmal <markmal@github.com>
 #Build-Depends: debhelper (>= 8.0.0), lazarus (>=1.4.0), libqt4pas-dev, git, libgl1-mesa-dev, inkscape, imagemagick
 #Standards-Version: 3.9.4
-Installed-Size: 91168
+Installed-Size: 91196
 Homepage: https://github.com/markmal/freeship-plus-in-lazarus
 Origin: https://github.com/markmal/freeship-plus-in-lazarus
 #Vcs-Git: git://github.com/markmal/freeship-plus-in-lazarus.git

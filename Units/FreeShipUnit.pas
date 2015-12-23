@@ -3975,6 +3975,7 @@ begin
       R:=GetRValue(Color);
       G:=GetGValue(Color);
       B:=GetBValue(Color);
+      Viewport.BeginUpdate;
       for I:=1 to Count do
       begin
          Spline:=Items[I-1];
@@ -4000,6 +4001,7 @@ begin
             end;
          end;
       end;
+      Viewport.EndUpdate;
    end;
 end;{TFreeIntersection.Draw}
 
@@ -16578,10 +16580,19 @@ begin
       end else
       begin
          // draws the actual splines as a dashed line
-         if Viewport.ViewType<>fvBodyplan then if Visibility.ShowStations then for I:=1 to NumberOfStations do Station[I-1].Draw(Viewport);
-         if Viewport.ViewType<>fvProfile then if Visibility.ShowButtocks then for I:=1 to NumberOfButtocks do Buttock[I-1].Draw(Viewport);
-         if Viewport.ViewType<>fvPlan then if Visibility.ShowWaterlines then for I:=1 to NumberOfWaterlines do Waterline[I-1].Draw(Viewport);
-         if Visibility.ShowDiagonals then for I:=1 to NumberOfDiagonals do Diagonal[I-1].Draw(Viewport);
+         if Viewport.ViewType<>fvBodyplan then
+           if Visibility.ShowStations then
+             for I:=1 to NumberOfStations
+               do Station[I-1].Draw(Viewport);
+         if Viewport.ViewType<>fvProfile then
+           if Visibility.ShowButtocks then
+             for I:=1 to NumberOfButtocks
+               do Buttock[I-1].Draw(Viewport);
+         if Viewport.ViewType<>fvPlan then
+           if Visibility.ShowWaterlines then
+             for I:=1 to NumberOfWaterlines do Waterline[I-1].Draw(Viewport);
+         if Visibility.ShowDiagonals then
+           for I:=1 to NumberOfDiagonals do Diagonal[I-1].Draw(Viewport);
       end;
       if (Viewport.ViewType=fvBodyplan) and (Visibility.ShowStations) then for I:=1 to NumberOfStations do Station[I-1].Draw(Viewport);
       if (Viewport.ViewType=fvProfile) and (Visibility.ShowButtocks) then for I:=1 to NumberOfButtocks do Buttock[I-1].Draw(Viewport);
@@ -16589,8 +16600,12 @@ begin
       if (Viewport.ViewType<>fvBodyplan) and (Visibility.ShowDiagonals) then for I:=1 to NumberOfDiagonals do Diagonal[I-1].Draw(Viewport);
    end else
    begin
-      if Visibility.ShowStations then for I:=1 to NumberOfStations do Station[I-1].Draw(Viewport);
-      if Visibility.ShowButtocks then for I:=1 to NumberOfButtocks do Buttock[I-1].Draw(Viewport);
+      if Visibility.ShowStations then
+        for I:=1 to NumberOfStations
+          do Station[I-1].Draw(Viewport);
+      if Visibility.ShowButtocks then
+        for I:=1 to NumberOfButtocks
+          do Buttock[I-1].Draw(Viewport);
       if Visibility.ShowWaterlines then for I:=1 to NumberOfWaterlines do Waterline[I-1].Draw(Viewport);
       if Visibility.ShowDiagonals then for I:=1 to NumberOfDiagonals do Diagonal[I-1].Draw(Viewport);
    end;
@@ -16628,7 +16643,10 @@ begin
       Surface.UnderWaterColor:=ProjectSettings.ProjectUnderWaterColor;
       Surface.ShadeUnderWater:=True;
    end else Surface.ShadeUnderWater:=False;
+
    Surface.Draw(Viewport);
+   exit; //debug - REMOVE
+
    if (Viewport.Viewtype<>fvPerspective) and (Viewport.ViewportMode<>vmWireframe) and (Visibility.ShowGrid) then
    begin
       // Shaded viewport is a special case when visibility.drawgrid has been set to tru

@@ -213,6 +213,21 @@ begin
     then FBitMapDataFormat := bmdf_BPP32_R8G8B8
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
+      and (Depth = 24) // used bits per pixel
+      and (BitOrder = riboReversedBits)
+      and (ByteOrder = riboLSBFirst)
+      and (BitsPerPixel = 32) // bits per pixel. can be greater than Depth.
+      and (RedPrec = 8) // red precision. bits for red
+      and (RedShift = 16)
+      and (GreenPrec = 8)
+      and (GreenShift = 8) // bitshift. Direction from least to most significant
+      and (BluePrec = 8)
+      and (BlueShift=0)
+      and (AlphaPrec=0)
+      //and (MaskBitsPerPixel=0)
+    then FBitMapDataFormat := bmdf_BPP32_R8G8B8      // this one still RGB because of reverce bit order
+    else if
+      (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 32) // used bits per pixel
       and (BitOrder = riboBitsInOrder)
       and (ByteOrder = riboLSBFirst)
@@ -311,6 +326,7 @@ begin
     bmdf_BPP32_R8G8B8A8: result := BPP32_R8G8B8A8_to_TRGBTriple(TRGBA(p^));
     bmdf_BPP24_B8G8R8:   result := BPP24_B8G8R8_to_TRGBTriple(TBGR(p^));
     bmdf_BPP32_B8G8R8:   result := BPP32_B8G8R8_to_TRGBTriple(TBGRA(p^));
+    bmdf_BPP32_R8G8B8:   result := BPP32_R8G8B8_to_TRGBTriple(TRGBA(p^));
     bmdf_BPP32_B8G8R8A8: result := BPP32_B8G8R8A8_to_TRGBTriple(TBGRA(p^));
     bmdf_BPP32_B8G8R8A8_r: result := BPP32_B8G8R8A8_to_TRGBTriple(TBGRA(p^))
   end;
@@ -324,6 +340,7 @@ begin
     bmdf_BPP32_A8R8G8B8: TRGBTriple_to_BPP32_A8R8G8B8(C,TARGB(p^));
     bmdf_BPP32_R8G8B8A8: TRGBTriple_to_BPP32_R8G8B8A8(C,TRGBA(p^));
     bmdf_BPP24_B8G8R8:   TRGBTriple_to_BPP24_B8G8R8(C,TBGR(p^));
+    bmdf_BPP32_R8G8B8:   TRGBTriple_to_BPP32_R8G8B8(C,TRGBA(p^));
     bmdf_BPP32_B8G8R8:   TRGBTriple_to_BPP32_B8G8R8(C,TBGRA(p^));
     bmdf_BPP32_B8G8R8A8: TRGBTriple_to_BPP32_B8G8R8A8(C,TBGRA(p^));
     bmdf_BPP32_B8G8R8A8_r: TRGBTriple_to_BPP32_B8G8R8A8_r(C,TBGRA(p^));

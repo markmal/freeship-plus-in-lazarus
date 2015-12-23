@@ -2322,6 +2322,7 @@ begin
   S := ReplaceStr(S, '\n', EOL);
   S := ReplaceStr(S, '\\', '\');
   Output := S;
+  //Output := ConvertEncoding(S,FEncoding,'utf8');
   Inc(FPosition);
 end;{TFreeTextBuffer.Load}
 

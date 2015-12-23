@@ -27,12 +27,14 @@ mkdir -p freeship/usr/share/doc/freeship
 #mkdir -p freeship/usr/share/icons  
 mkdir -p freeship/usr/share/menu/freeship
 mkdir -p freeship/usr/share/pixmaps
+mkdir -p freeship/usr/share/man/man1/
 
 cp $PRJ_HOME/Whatsnew.txt freeship/usr/share/doc/freeship/changelog
 gzip -9 freeship/usr/share/doc/freeship/changelog
 grep -v '^# ' $PRJ_HOME/copyright > freeship/usr/share/doc/freeship/copyright
 cp $PRJ_HOME/install/menu freeship/usr/share/menu/freeship/menu
-convert $PRJ_HOME/Themes/Default/icons/32/00-freeship.png freeship/usr/share/pixmaps/freeship.pxm
+convert $PRJ_HOME/Themes/Default/icons/32/00-freeship.png freeship/usr/share/pixmaps/freeship.xpm
+cp $PRJ_HOME/install/FreeShip.1.gz freeship/usr/share/man/man1/
 
 # remove some stuff
 rm freeship/usr/share/FreeShip/Themes/Default/icons/mkicons-from-svg.sh

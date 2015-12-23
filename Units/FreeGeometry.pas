@@ -45,6 +45,8 @@ uses
   SysUtils,
   Classes,
   Graphics,
+  GraphType,
+  IntfGraphics,
   Controls,
   Forms,
   Math,
@@ -287,7 +289,7 @@ type TFreeSubdivisionBase           = class;
                                     FViewportMode              : TFreeViewportmode;       // Switch between wireframe mode or differentypes of shading
                                     FDrawingCanvas             : TCanvas;
                                     FDrawingBuffer             : TBitmap;                 // Drawingbuffer to prevent flickering. Everything is drawn on this bitmap, and then copied to the screen
-                                    //FBitmapFormatHelper        : TFreeBitmapFormatHelper;
+                                    FBitmapFormatHelper        : TFreeBitmapFormatHelper;
                                     FOnMouseDown               : TMouseEvent;
                                     FOnMouseUp                 : TMouseEvent;
                                     FOnMouseEnter              : TNotifyEvent;
@@ -309,6 +311,7 @@ type TFreeSubdivisionBase           = class;
                                     FHorScrollbar              : TScrollBar;
                                     FVertScrollbar             : TScrollBar;
                                     FOnChangeBackgroundImage   : TNotifyEvent;
+                                    FUpdating                  : boolean;
                                     function  FGetBrushColor:TColor;
                                     function  FGetBrushStyle:TBrushStyle;
                                     function  FGetFontColor:TColor;
@@ -351,6 +354,9 @@ type TFreeSubdivisionBase           = class;
                                     procedure MouseMove(Shift:TShiftState;X,Y:Integer);                     override;
                                     procedure MouseUp(Button:TMouseButton;Shift:TShiftState;X,Y:Integer);   override;
                                     function  DoMouseWheel(Shift: TShiftState; WheelDelta: Integer;     MousePos: TPoint): Boolean; override;
+                                    procedure UnshareDrawingBuffer;
+                                    procedure GetPixel(X,Y:Integer; var R,G,B:Integer);
+                                    procedure SetPixel(X,Y:Integer; R,G,B:Integer);
                                  public
                                     constructor Create(AOwner:TComponent);                                  override;
                                     destructor Destroy;                                                     override;
@@ -364,6 +370,9 @@ type TFreeSubdivisionBase           = class;
                                     function ProjectToZBuffer(Scale:TFloatType;P:T3DCoordinate):TShadePoint;  reintroduce;overload;// Projects a 3D point with a certain z-buffer offset to the screen, used for drawing lines on top of shaded surfaces
                                     function RotatedPoint(P:T3DCoordinate):T3DCoordinate;
                                     function RotatedPointBack(P:T3DCoordinate):T3DCoordinate;
+
+                                    procedure BeginUpdate;
+                                    procedure EndUpdate;
 
                                     procedure LineTo(x,y:integer); virtual;
                                     procedure MoveTo(x,y:integer); virtual;
@@ -2713,31 +2722,30 @@ var I,J : Integer;
         pRow,pPixel:pointer;
         Pixel : TRGBTriple;
         Clr : TColor;
-        I:Byte;   R,G,B, dR,dG,dB,dA:Smallint;
+        I:Byte;   R,G,B: Integer; dR,dG,dB,dA:Smallint;
     begin
        if PixData.Number>1 then QuickSort(0,PixData.Number-1);
-       //FViewport.FDrawingBuffer.BeginUpdate;
+       //FViewport.BeginUpdate;
 
+       //ScanLine method. From Delphi
        {Row:=FViewport.FDrawingBuffer.ScanLine[Y];
-       for I:=1 to PixData.Number do
-       begin
-         Data:=PixData.Data[I-1];
-         if Data.zvalue>FViewport.ZBuffer.FBuffer[Y][X] then
-         begin
-         Row^[X].rgbtRed:=Row^[X].rgbtRed+(Data.Alpha*(Data.R-Row^[X].rgbtRed)) shr 8;
-         Row^[X].rgbtGreen:=Row^[X].rgbtGreen+(Data.Alpha*(Data.G-Row^[X].rgbtGreen)) shr 8;
-         Row^[X].rgbtBlue:=Row^[X].rgbtBlue+(Data.Alpha*(Data.B-Row^[X].rgbtBlue)) shr 8;
-         end;
-       end;}
+        R:=Row^[X].rgbtRed;
+        G:=Row^[X].rgbtGreen;
+        B:=Row^[X].rgbtBlue;
+        }
 
-       // temporary draw via Canvas
+      { // temporary get pixel color via Canvas
        Clr := FViewport.FDrawingCanvas.Pixels[X,Y];
+       // process with Alpha
        B:=Blue(Clr);
        G:=Green(Clr);
-       R:=Red(Clr);
-       for I:=1 to PixData.Number do
+       R:=Red(Clr); }
+
+       FViewport.GetPixel(X,Y, R,G,B);
+
+       for I:=0 to PixData.Number-1 do
        begin
-         Data:=PixData.Data[I-1];
+         Data:=PixData.Data[I];
          if Data.zvalue>FViewport.ZBuffer.FBuffer[Y][X] then
          begin
          dA:=Data.Alpha;
@@ -2746,31 +2754,17 @@ var I,J : Integer;
          B := B + ((dA*(Data.B-B)) div 256);
          end;
        end;
-       FViewport.FDrawingCanvas.Pixels[X,Y]:=RGBtoColor(R,G,B);
+       // "Universal" setPixel
 
-       {
-       pRow := FViewport.FDrawingBuffer.RawImage.GetLineStart(Y);
-       pPixel := pRow + FViewport.FBitmapFormatHelper.BytesPerPixel * X;
-       Pixel := FViewport.FBitmapFormatHelper.ToTRGBTriple(pPixel);
-       for I:=1 to PixData.Number do
-       begin
-         Data:=PixData.Data[I-1];
-         if Data.zvalue>FViewport.ZBuffer.FBuffer[Y][X] then
-         begin
-         Pixel.rgbtRed:=Pixel.rgbtRed+(Data.Alpha*(Data.R-Pixel.rgbtRed)) shr 8;
-         Pixel.rgbtGreen:=Pixel.rgbtGreen+(Data.Alpha*(Data.G-Pixel.rgbtGreen)) shr 8;
-         Pixel.rgbtBlue:=Pixel.rgbtBlue+(Data.Alpha*(Data.B-Pixel.rgbtBlue)) shr 8;
-         end;
-       end;
-       FViewport.FBitmapFormatHelper.FromTRGBTriple(Pixel, pPixel);
-       }
+       FViewport.SetPixel(X,Y, R,G,B);
 
+       //FViewport.FDrawingCanvas.Pixels[X,Y]:=RGBtoColor(R,G,B);
 
-       //FViewport.FDrawingBuffer.EndUpdate;
+       //FViewport.EndUpdate;
     end; {ProcessPixel}
 begin
-   //FViewport.FDrawingBuffer.BeginUpdate; // doing that before working via Canvas causes black Canvas
-
+   //FViewport.UnshareDrawingBuffer;
+   //FViewport.BeginUpdate; // doing that before working via Canvas causes black Canvas
    for I:=FFirstRow to FLastRow do
    begin
       for J:=FBuffer[I].First to FBuffer[I].Last do
@@ -2787,7 +2781,7 @@ begin
    FFirstRow:=0;
    FLastRow:=-1;
 
-   //FViewport.FDrawingBuffer.EndUpdate; // doing that after working via Canvas causes black Canvas
+   //FViewport.EndUpdate; // doing that after working via Canvas causes black Canvas
 end;{TFreeAlphaBuffer.Draw}
 
 {---------------------------------------------------------------------------------------------------}
@@ -3499,7 +3493,7 @@ begin
    //Canvas.Pen.Color:=clBlack;
    //Canvas.Brush.Color:=clWhite;
    //FDrawingBuffer.Canvas.FillRect(0,0,10,10); // to init handles
-   //FBitmapFormatHelper := TFreeBitmapFormatHelper.Create(FDrawingBuffer);
+   FBitmapFormatHelper := TFreeBitmapFormatHelper.Create(FDrawingBuffer);
 
    FDrawingCanvas:=Canvas;
 
@@ -3530,16 +3524,126 @@ end;{TFreeViewport.Create}
 
 destructor TFreeViewport.Destroy;
 begin
-   FDrawingBuffer.Destroy;
+   if Assigned(FDrawingBuffer)
+      then FDrawingBuffer.Destroy;
    FDrawingBuffer := nil;
-   FZBuffer.Destroy;
+   if Assigned(FZBuffer)
+      then FZBuffer.Destroy;
    FZBuffer := nil;
-   FAlphaBuffer.Destroy;
+   if Assigned(FAlphaBuffer)
+      then FAlphaBuffer.Destroy;
    FAlphaBuffer := nil;
-   FBackgroundImage.Destroy;
+   if Assigned(FBackgroundImage)
+      then FBackgroundImage.Destroy;
    FBackgroundImage := nil;
+   if Assigned(FBitmapFormatHelper)
+      then FBitmapFormatHelper.Destroy;
    inherited Destroy;
 end;{TFreeViewport.Destroy}
+
+// We need to do it sometimes before direct pixel access if image was "spoiled" by its Canvas operations
+procedure TFreeViewport.UnshareDrawingBuffer;
+var
+  NewImage: TBitmap;
+  OldImage: TBitmap;
+  NIRIP: TRawImage;
+  LIM: TLazIntfImage;
+  DC: HDC;
+begin
+  // release old FImage and create a new one
+  OldImage := FDrawingBuffer;
+  NewImage := TBitmap.Create;
+  try
+    if OldImage.Canvas.HandleAllocated
+    then begin
+      //LIM:=TLazIntfImage.Create(OldImage.RawImage,false);
+      DC := OldImage.Canvas.Handle;
+      NewImage.LoadFromDevice(DC);
+    end
+    else begin
+      // keep width, height and bpp
+      NewImage.RawImage.Description := OldImage.RawImage.Description;
+    end;
+
+    FDrawingBuffer := NewImage;
+    NewImage := nil; // transaction sucessful
+    //OldImage.Canvas.Free;
+    //OldImage.RawImage.FreeData;
+    OldImage.Free ;
+  finally
+    // in case something goes wrong, keep old and free new
+    NewImage.Free;
+  end;
+  FUpdating := false;
+end;
+
+procedure TFreeViewport.BeginUpdate;
+begin
+   if not FUpdating then
+   begin
+     FDrawingBuffer.BeginUpdate(false);
+     FUpdating := true;
+   end;
+end;
+
+procedure TFreeViewport.EndUpdate;
+begin
+   if FUpdating then
+   begin
+     FDrawingBuffer.EndUpdate;
+     FUpdating := false;
+   end;
+end;
+
+procedure TFreeViewport.GetPixel(X,Y:Integer; var R,G,B:Integer);
+var pRow, pPixel : pointer;
+    Pixel : TRGBTriple;
+    //Row           : pRGBTripleArray;
+    //Clr:TColor;
+begin
+   // Scanline method. Came from Delphy
+   //Row:=FDrawingBuffer.Scanline[P1.Y];
+
+   // My method via FBitmapFormatHelper
+   pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
+   pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * X;
+   Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
+   R:=Pixel.rgbtRed;
+   G:=Pixel.rgbtGreen;
+   B:=Pixel.rgbtBlue;
+
+   // Canvas.Pixels method.
+   // temporary draw via canvas. Appeared it works well in QT.
+  { //Clr:=FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y];  // this causes mem leak in LibQt4 DCSetPixel (qtobject.inc) calling QPen_create5
+      B:=Blue(Clr);
+      G:=Green(Clr);
+      R:=Red(Clr);
+   }
+end;
+
+procedure TFreeViewport.SetPixel(X,Y:Integer; R,G,B:Integer);
+var pRow, pPixel : pointer;
+    Pixel : TRGBTriple;
+    //Row           : pRGBTripleArray;
+begin
+   // Scanline method. Came from Delphy
+   //Row:=FDrawingBuffer.Scanline[P1.Y];
+
+   // My method via FBitmapFormatHelper
+   //BeginUpdate;   //do it on higher level
+   pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
+   pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * X;
+   Pixel.rgbtRed:=R;
+   Pixel.rgbtGreen:=G;
+   Pixel.rgbtBlue:=B;
+   FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);
+   //Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
+   //EndUpdate;
+
+   // Canvas.Pixels method.
+   // temporary draw via canvas. Appeared it works well in QT.
+   //FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 DCSetPixel (qtobject.inc) calling QPen_create5
+end;
 
 procedure TFreeViewport.DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:Integer);
 var D           : Integer;
@@ -3555,6 +3659,9 @@ begin
    W:=ClientWidth;
    H:=ClientHeight;
    P2:=self.ProjectToZBuffer(ZBufferScaleFactor,Point2);
+
+   //BeginUpdate;  // do not do that here otherwise background jumps blask-and-gray on movements
+   // do this outside cycle that draws lines
 
    dx:=P2.X-P1.X;
    dy:=P2.Y-P1.Y;
@@ -3575,18 +3682,7 @@ begin
             begin
                if P1.Z>=FZBuffer.FBuffer[P1.Y][P1.X] then
                begin
-                  //Row:=FDrawingBuffer.Scanline[P1.Y];
-                  {pRow := FDrawingBuffer.RawImage.GetLineStart(P1.Y);
-                  pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * P1.X;
-                  Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
-                  Pixel.rgbtRed:=R;
-                  Pixel.rgbtGreen:=G;
-                  Pixel.rgbtBlue:=B;
-                  FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);}
-
-                  // temporary draw via canvas
-                  FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y]:=RGBtoColor(R,G,B);
-
+                  SetPixel(P1.X, P1.Y, R,G,B);
                   FZBuffer.FBuffer[P1.Y][P1.X]:=P1.Z;
                end;
             end;
@@ -3613,16 +3709,7 @@ begin
             begin
                if P1.Z>=FZBuffer.FBuffer[P1.Y][P1.X] then
                begin
-                 //Row:=FDrawingBuffer.Scanline[P1.Y];
-                 {pRow := FDrawingBuffer.RawImage.GetLineStart(P1.Y);
-                 pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * P1.X;
-                 Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
-                 Pixel.rgbtRed:=R;
-                 Pixel.rgbtGreen:=G;
-                 Pixel.rgbtBlue:=B;
-                 FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel); }
-                 // temporary draw via canvas
-                 FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y]:=RGBtoColor(R,G,B);
+                 SetPixel(P1.X, P1.Y, R,G,B);
                  FZBuffer.FBuffer[P1.Y][P1.X]:=P1.Z;
                end;
             end;
@@ -3637,6 +3724,7 @@ begin
          inc(d,ax);
       end;
    end;
+   //EndUpdate;
 end;{DrawPolylineToZBuffer}
 
 procedure TFreeViewport.InitializeViewport(Min,Max:T3DCoordinate);
@@ -4168,7 +4256,7 @@ begin
             AlphaBuffer.Initialize;
          end;
 
-         if Assigned(OnRedraw)
+         if Assigned(OnRedraw) //and (ViewportMode=vmWireframe)
             then OnRedraw(Self);
 
          if ViewportMode<>vmWireframe
@@ -4637,7 +4725,7 @@ var Normal           : T3DCoordinate;
       begin
          // Use scanline property for faster pixel access
          //Row:=FDrawingBuffer.Scanline[y];
-         //pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
+         pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
          while X1<=X2 do
          begin
             if Z1>FZBuffer.FBuffer[Y][X1] then
@@ -4650,10 +4738,13 @@ var Normal           : T3DCoordinate;
                  Pixel.rgbtRed:=R;
                  Pixel.rgbtGreen:=G;
                  Pixel.rgbtBlue:=B;
-                 FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel); }
+                 FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);
+                 }
 
                  // temporary draw via canvas
-                 FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);
+                 ///FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 widget DCSetPixel (qtobject.inc) calling QPen_create5
+
+                 SetPixel(X1,Y, R,G,B);
 
                  FZBuffer.FBuffer[Y][X1]:=Z1;
                end else AlphaBuffer.AddPixelData(X1,Y,R,G,B,Alpha,Z1);
@@ -4857,7 +4948,8 @@ var Left,Right,DLeft,dRight:TShadePoint;
                FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);}
 
                // temporary draw via canvas
-               FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
+               //FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
+               SetPixel(Left.X,Y, Left.R shr 8, Left.G shr 8, Left.B shr 8);
             end;
             Left.Z:=Left.Z+Delta.Z;
             Inc(Left.R,Delta.R);
@@ -5117,7 +5209,9 @@ var Left,Right,DLeft,dRight:TShadePoint;
                FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel); }
 
                // temporary draw via canvas
-               FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
+               //FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
+
+               SetPixel(Left.X,Y, Left.R shr 8, Left.G shr 8, Left.B shr 8);
             end;
             Left.Z:=Left.Z+Delta.Z;
             Inc(Left.R,Delta.R);
@@ -13088,7 +13182,7 @@ var I,J     : Integer;
     end;
 
 begin
-   Viewport.FDrawingBuffer.BeginUpdate(true);
+   Viewport.BeginUpdate;
    ChidCnt:=ChildCount;
    for I:=1 to ChidCnt do
    begin
@@ -13118,7 +13212,7 @@ begin
          end;
       end;
    end;
-   Viewport.FDrawingBuffer.EndUpdate;
+   Viewport.EndUpdate;
 end;{TFreeSubdivisionControlFace.Draw}
 
 function TFreeSubdivisionControlFace.InsertEdge(P1,P2:TFreeSubdivisionControlPoint):TFreesubdivisionControlEdge;

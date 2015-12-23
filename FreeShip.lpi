@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="12"/>
+      <BuildNr Value="15"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -42,7 +42,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="--debug --log-debug"/>
+        <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
     </RunParams>
     <RequiredPackages Count="5">
@@ -529,6 +529,7 @@
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2"/>
+        <UseHeaptrc Value="True"/>
         <UseValgrind Value="True"/>
       </Debugging>
       <Options>

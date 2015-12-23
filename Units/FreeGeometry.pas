@@ -354,13 +354,12 @@ type TFreeSubdivisionBase           = class;
                                     procedure MouseMove(Shift:TShiftState;X,Y:Integer);                     override;
                                     procedure MouseUp(Button:TMouseButton;Shift:TShiftState;X,Y:Integer);   override;
                                     function  DoMouseWheel(Shift: TShiftState; WheelDelta: Integer;     MousePos: TPoint): Boolean; override;
-                                    procedure UnshareDrawingBuffer;
-                                    procedure GetPixel(X,Y:Integer; var R,G,B:Integer);
-                                    procedure SetPixel(X,Y:Integer; R,G,B:Integer);
+                                    procedure GetPixel(X,Y:Integer; out R,G,B:byte);
+                                    procedure SetPixel(X,Y:Integer; R,G,B:byte);
                                  public
                                     constructor Create(AOwner:TComponent);                                  override;
                                     destructor Destroy;                                                     override;
-                                    procedure DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:Integer); virtual;
+                                    procedure DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:byte); virtual;
                                     procedure InitializeViewport(Min,Max:T3DCoordinate);                    virtual;
                                     procedure Print(Units:TFreeUnitType;AskPrintScale:Boolean;Jobname:string); virtual;
                                     function Project(P:T3DCoordinate):TPoint;
@@ -2722,24 +2721,9 @@ var I,J : Integer;
         pRow,pPixel:pointer;
         Pixel : TRGBTriple;
         Clr : TColor;
-        I:Byte;   R,G,B: Integer; dR,dG,dB,dA:Smallint;
+        I:Byte;   R,G,B: byte; dR,dG,dB,dA:Smallint;
     begin
        if PixData.Number>1 then QuickSort(0,PixData.Number-1);
-       //FViewport.BeginUpdate;
-
-       //ScanLine method. From Delphi
-       {Row:=FViewport.FDrawingBuffer.ScanLine[Y];
-        R:=Row^[X].rgbtRed;
-        G:=Row^[X].rgbtGreen;
-        B:=Row^[X].rgbtBlue;
-        }
-
-      { // temporary get pixel color via Canvas
-       Clr := FViewport.FDrawingCanvas.Pixels[X,Y];
-       // process with Alpha
-       B:=Blue(Clr);
-       G:=Green(Clr);
-       R:=Red(Clr); }
 
        FViewport.GetPixel(X,Y, R,G,B);
 
@@ -2754,16 +2738,11 @@ var I,J : Integer;
          B := B + ((dA*(Data.B-B)) div 256);
          end;
        end;
-       // "Universal" setPixel
 
        FViewport.SetPixel(X,Y, R,G,B);
 
-       //FViewport.FDrawingCanvas.Pixels[X,Y]:=RGBtoColor(R,G,B);
-
-       //FViewport.EndUpdate;
     end; {ProcessPixel}
 begin
-   //FViewport.UnshareDrawingBuffer;
    //FViewport.BeginUpdate; // doing that before working via Canvas causes black Canvas
    for I:=FFirstRow to FLastRow do
    begin
@@ -2780,7 +2759,6 @@ begin
    end;
    FFirstRow:=0;
    FLastRow:=-1;
-
    //FViewport.EndUpdate; // doing that after working via Canvas causes black Canvas
 end;{TFreeAlphaBuffer.Draw}
 
@@ -3488,13 +3466,15 @@ begin
    // so Canvas operations will cause to "forget" previous RawImage changes.
    // We will create native buffer Bitmap and convert ScanLine pixels to/from TRGBTriple using TFreeBitmapFormatHelper
    // NO. It does not work. Currently all works via Canvas.Pixels[x,y]. Quite good.
+   // NO2. It does work. Currently Canvas.Pixels[x,y] causes severe memory leak SetPixel creates Pen each call.
+   //      TFreeBitmapFormatHelper works Quite good though requires native 24/32-bit formats RGB or BGR.
    FDrawingBuffer.Width:=10;
    FDrawingBuffer.Height:=10;
    //Canvas.Pen.Color:=clBlack;
    //Canvas.Brush.Color:=clWhite;
    //FDrawingBuffer.Canvas.FillRect(0,0,10,10); // to init handles
    FBitmapFormatHelper := TFreeBitmapFormatHelper.Create(FDrawingBuffer);
-
+   Logger.Debug('FBitmapFormatHelper:'+FBitmapFormatHelper.AsString);
    FDrawingCanvas:=Canvas;
 
    FZBuffer:=TFreeZBuffer.Create;
@@ -3541,42 +3521,6 @@ begin
    inherited Destroy;
 end;{TFreeViewport.Destroy}
 
-// We need to do it sometimes before direct pixel access if image was "spoiled" by its Canvas operations
-procedure TFreeViewport.UnshareDrawingBuffer;
-var
-  NewImage: TBitmap;
-  OldImage: TBitmap;
-  NIRIP: TRawImage;
-  LIM: TLazIntfImage;
-  DC: HDC;
-begin
-  // release old FImage and create a new one
-  OldImage := FDrawingBuffer;
-  NewImage := TBitmap.Create;
-  try
-    if OldImage.Canvas.HandleAllocated
-    then begin
-      //LIM:=TLazIntfImage.Create(OldImage.RawImage,false);
-      DC := OldImage.Canvas.Handle;
-      NewImage.LoadFromDevice(DC);
-    end
-    else begin
-      // keep width, height and bpp
-      NewImage.RawImage.Description := OldImage.RawImage.Description;
-    end;
-
-    FDrawingBuffer := NewImage;
-    NewImage := nil; // transaction sucessful
-    //OldImage.Canvas.Free;
-    //OldImage.RawImage.FreeData;
-    OldImage.Free ;
-  finally
-    // in case something goes wrong, keep old and free new
-    NewImage.Free;
-  end;
-  FUpdating := false;
-end;
-
 procedure TFreeViewport.BeginUpdate;
 begin
    if not FUpdating then
@@ -3595,9 +3539,10 @@ begin
    end;
 end;
 
-procedure TFreeViewport.GetPixel(X,Y:Integer; var R,G,B:Integer);
+procedure TFreeViewport.GetPixel(X,Y:Integer; out R,G,B:byte);
 var pRow, pPixel : pointer;
     Pixel : TRGBTriple;
+    A: byte;
     //Row           : pRGBTripleArray;
     //Clr:TColor;
 begin
@@ -3605,12 +3550,13 @@ begin
    //Row:=FDrawingBuffer.Scanline[P1.Y];
 
    // My method via FBitmapFormatHelper
-   pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
+   {pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
    pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * X;
    Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
    R:=Pixel.rgbtRed;
    G:=Pixel.rgbtGreen;
-   B:=Pixel.rgbtBlue;
+   B:=Pixel.rgbtBlue;}
+  FBitmapFormatHelper.GetPixel(FDrawingBuffer, X,Y, R,G,B,A);
 
    // Canvas.Pixels method.
    // temporary draw via canvas. Appeared it works well in QT.
@@ -3621,31 +3567,27 @@ begin
    }
 end;
 
-procedure TFreeViewport.SetPixel(X,Y:Integer; R,G,B:Integer);
-var pRow, pPixel : pointer;
-    Pixel : TRGBTriple;
-    //Row           : pRGBTripleArray;
+procedure TFreeViewport.SetPixel(X,Y:Integer; R,G,B:byte);
+//var Row           : pRGBTripleArray;
 begin
-   // Scanline method. Came from Delphy
-   //Row:=FDrawingBuffer.Scanline[P1.Y];
+  //BeginUpdate;   //do it on higher level
 
-   // My method via FBitmapFormatHelper
-   //BeginUpdate;   //do it on higher level
-   pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
-   pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * X;
-   Pixel.rgbtRed:=R;
-   Pixel.rgbtGreen:=G;
-   Pixel.rgbtBlue:=B;
-   FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);
-   //Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
-   //EndUpdate;
+  // Scanline method. Came from Delphy
+  //Row:=FDrawingBuffer.Scanline[Y];
+  //with TRGBTriple(Row^[X]) do begin rgbtBlue:=B; rgbtGreen:=G; rgbtRed:=R; end;
 
-   // Canvas.Pixels method.
-   // temporary draw via canvas. Appeared it works well in QT.
-   //FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 DCSetPixel (qtobject.inc) calling QPen_create5
+  // My method via FBitmapFormatHelper
+
+  FBitmapFormatHelper.SetPixel(FDrawingBuffer, X,Y, R,G,B,255);
+
+  //EndUpdate;    //do it on higher level
+
+  // Canvas.Pixels method.
+  // temporary draw via canvas. Appeared it works well in QT.
+  //FDrawingBuffer.Canvas.Pixels[P1.X,P1.Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 DCSetPixel (qtobject.inc) calling QPen_create5
 end;
 
-procedure TFreeViewport.DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:Integer);
+procedure TFreeViewport.DrawLineToZBuffer(Point1,Point2:T3DCoordinate;R,G,B:byte);
 var D           : Integer;
     P1,P2         : TShadePoint;
     ax,ay,sx,sy   : Integer;
@@ -12970,7 +12912,7 @@ begin
       G:=GetGValue(Layer.Color);
       B:=GetBValue(Layer.Color);
       Alpha:=Layer.AlphaBlend;
-
+      Viewport.BeginUpdate;
       if (Owner.ShadeUnderWater) and (Viewport.ViewportMode=vmShade) and (Layer.UseInHydrostatics)then
       begin
          // Clip all triangles against the waterline plane
@@ -13052,7 +12994,8 @@ begin
          for I:=1 to ChildCount do
          begin
             Child:=Self.Child[I-1];
-            for J:=2 to Child.NumberOfpoints-1 do ZebraStripe(Camera,Child.Point[0],Child.Point[J-1],Child.Point[J],R,G,B,Ru,Gu,Bu);
+            for J:=2 to Child.NumberOfpoints-1
+              do ZebraStripe(Camera,Child.Point[0],Child.Point[J-1],Child.Point[J],R,G,B,Ru,Gu,Bu);
          end;
          if capacity<0 then exit;
       end else
@@ -13095,6 +13038,7 @@ begin
             end;
          end;
       end;
+      Viewport.EndUpdate;
    end else
    begin
       // Draw interior edges (not descending from controledges)

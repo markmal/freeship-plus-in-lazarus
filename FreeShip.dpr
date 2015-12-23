@@ -153,6 +153,7 @@ begin
       end;
     FreeSplashWindow.ShowOnTop;
     //sleep(SPLASH_TIME);
+    //TODO: call somewhere FreeSplashWindow.Free;
    end;
 
    Application.CreateForm(TMainForm, MainForm);

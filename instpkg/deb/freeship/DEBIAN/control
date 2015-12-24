@@ -1,5 +1,5 @@
 Package: freeship
-Version: 3.5.5.19
+Version: 3.5.5.21
 Provides: freeship
 Architecture: amd64
 Depends: libc6, libx11-6, libqt4pas | libqt4pas5 | libqt4pas-dev

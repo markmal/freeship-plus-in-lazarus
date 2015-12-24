@@ -12,3 +12,4 @@ cd instpkg/deb/
 ./prep.sh
 ./build.sh
 cd -
+mv instpkg/deb/freeship_*.deb .

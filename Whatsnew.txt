@@ -1,3 +1,9 @@
+Test only Version 3.5.5.21 in Lazarus
+Released: Build date	2015/12/24 10:50:00
+New features and fixes:
+- fixed color sex issue noted in #19
+- set default log mode to log-error
+
 Test only Version 3.5.5.19 in Lazarus
 Released: Build date	2015/12/23 16:16:00
 New features and fixes:

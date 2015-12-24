@@ -257,7 +257,7 @@ begin
       and (BlueShift=0)
       and (AlphaPrec=0)
       //and (MaskBitsPerPixel=0)
-    then FBitMapDataFormat := bmdf_BPP32_R8G8B8      // this one still RGB because of reverce bit order
+    then FBitMapDataFormat := bmdf_BPP32_B8G8R8      // not sure what reverce bit order means here
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 32) // used bits per pixel

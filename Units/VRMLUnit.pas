@@ -12,7 +12,13 @@ uses
     Windows,
     {$ENDIF}
     {$IFDEF LCL}
-    FileUtil,
+         {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
     {$ENDIF}
      Classes,
      SysUtils,

@@ -43,7 +43,13 @@ uses
   TAChartAxis, TAChartAxisUtils,
     TAChartTeeChart,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
-  FileUtil,
+       {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
 {$ENDIF}
      SysUtils,
      Graphics,

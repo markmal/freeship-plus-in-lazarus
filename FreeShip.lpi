@@ -22,18 +22,20 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
-      <MinorVersionNr Value="5"/>
-      <RevisionNr Value="5"/>
-      <BuildNr Value="22"/>
-      <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
+      <MinorVersionNr Value="6"/>
+      <BuildNr Value="2"/>
+      <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
-    <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="qt"/>
+    <MacroValues Count="4">
+      <Macro4 Name="LCLWidgetType" Value="qt"/>
     </MacroValues>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
-      <SharedMatrixOptions Count="1">
-        <Item1 ID="596526450382" Modes="Default" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
+      <SharedMatrixOptions Count="4">
+        <Item1 ID="596526450382" Modes="Default" Type="IDEMacro"/>
+        <Item2 ID="308552500954" Modes="Default" Type="IDEMacro"/>
+        <Item3 ID="044456480061" Modes="Default" Type="IDEMacro"/>
+        <Item4 ID="134221032983" Modes="Default" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
@@ -542,6 +544,7 @@
         <ShowHints Value="False"/>
         <ShowGenInfo Value="False"/>
         <ShoLineNum Value="True"/>
+        <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
       </Verbosity>
       <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
       <ExecuteBefore>

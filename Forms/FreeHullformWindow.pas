@@ -134,6 +134,10 @@ type
                            BackgroundVisible: TAction;
                            Visible1: TMenuItem;
                            procedure FormDestroy(Sender: TObject);
+                           procedure FormKeyPress(Sender: TObject; var Key: char
+                             );
+                           procedure FormKeyUp(Sender: TObject; var Key: Word;
+                             Shift: TShiftState);
                            procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                            procedure ViewportRedraw(Sender: TObject);
                            procedure FormCreate(Sender: TObject);
@@ -287,6 +291,17 @@ end;{TFreeHullWindow.ViewportRequestExtents}
 
 procedure TFreeHullWindow.FormDestroy(Sender: TObject);
 begin
+end;
+
+procedure TFreeHullWindow.FormKeyPress(Sender: TObject; var Key: char);
+begin
+  ViewportKeyPress(Sender, Key);
+end;
+
+procedure TFreeHullWindow.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  ViewportKeyUp(Sender, Key, Shift);
 end;
 
 procedure TFreeHullWindow.ViewportRedraw(Sender: TObject);

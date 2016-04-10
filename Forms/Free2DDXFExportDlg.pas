@@ -36,11 +36,23 @@ uses
      Windows,
      shlobj,
     {$ifdef LCL}
-    FileUtil,
+         {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
     {$endif}
     {$ELSE}
      LCLIntf, LCLType, LMessages,
-     FileUtil,
+          {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
     {$ENDIF}
      Messages,
      SysUtils,

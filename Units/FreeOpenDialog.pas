@@ -6,7 +6,13 @@ interface
 
 uses
   Classes, SysUtils,
-  FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+       {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+ Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtDlgs, ExtCtrls, ComCtrls;
 
 type

@@ -29,7 +29,13 @@ unit FreeAboutDlg;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  Classes, SysUtils,      {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+ Forms, Controls, Graphics, Dialogs, ExtCtrls,
   Messages,
   LCLIntf, LCLType, LMessages,
   StdCtrls, ValEdit, Grids, Buttons,

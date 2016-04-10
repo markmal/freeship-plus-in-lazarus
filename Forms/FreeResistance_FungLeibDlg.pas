@@ -43,7 +43,13 @@ uses
   TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
-  FileUtil,
+       {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
 {$ENDIF}
      SysUtils,
      Graphics,

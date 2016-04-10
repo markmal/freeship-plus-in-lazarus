@@ -45,7 +45,14 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
       FPImage,
       GraphType, GraphMath, Graphics, Controls,
       PrintersDlgs, Printer4Lazarus, FreePrinter,
-      FileUtil,
+
+     {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
      {$endif}
      {$IFDEF LCLGTK2}
       Gtk2WSDialogs, GTK2,
@@ -5278,7 +5285,8 @@ begin
    FShowHydrostMetacentricHeight:=True;
    FShowHydrostLCF:=True;
    FShowFlowlines:=True;
-   if assigned(Owner.FOnChangeCursorIncrement) then Owner.FOnChangeCursorIncrement(self);
+   if assigned(Owner.FOnChangeCursorIncrement)
+       then Owner.FOnChangeCursorIncrement(self);
 end;{TFreeVisibility.Clear}
 
 procedure TFreeVisibility.DecreaseCurvatureScale;
@@ -6486,7 +6494,7 @@ end;{TFreeEdit.Face_New}
 procedure TFreeEdit.File_ExportArchimedes;
 var Frames     : TFasterList;
     Frame      : TFreeSpline;
-    Tmp,Str    : widestring;
+    Tmp,Str    : String; //widestring;
     I,J,Np     : integer;
     P          : T3DCoordinate;
     SaveDialog : TSaveDialog;
@@ -7778,7 +7786,7 @@ var
       {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/Add_Mass.EXE '),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/Add_Mass.EXE'), '', []);
+      SysUtils.ExecuteProcess( UTF8ToSys(FExecDirectory+'/Add_Mass.EXE'), '', []);
       {$endif}
    // may be it needs to wait the out file and to rename it to something meningful?
    SetCurrentDirUTF8(OldDir);
@@ -8244,8 +8252,9 @@ begin
             for I:=1 to Owner.Surface.NumberOfControlFaces do
             begin
                CtrlFace:=Owner.Surface.ControlFace[I-1];
-               if Layers.SortedIndexOf(Ctrlface.Layer)<>-1 then ColorIndex:=ColorIndices[Layers.SortedIndexOf(Ctrlface.Layer)]
-                                                           else Colorindex:=0;
+               if Layers.SortedIndexOf(Ctrlface.Layer)<>-1
+                  then ColorIndex:=ColorIndices[Layers.SortedIndexOf(Ctrlface.Layer)]
+                  else Colorindex:=0;
                if CtrlFace.NumberOfpoints=4 then
                begin
                   FaceData.NCols:=1;
@@ -11198,7 +11207,7 @@ var I,J           : integer;
     Inconsistent  : integer;
     NonManifold   : integer;
     DblEdges      : Integer;
-    Str           : Widestring;
+    Str             : String; //Widestring;
     Undo          : TFreeUndoObject;
     Leaks         : TFasterList;
     Swap          : Boolean;
@@ -11432,7 +11441,7 @@ begin
       NewGroup.Destroy;
       if (Leaks.Count>0) and (ShowResult) then
       begin
-         Str:=Userstring(149)+#32+IntToStr(Leaks.Count)+#32+Userstring(150)+'.';
+         Str:=Userstring(149)+' '+IntToStr(Leaks.Count)+' '+Userstring(150)+'.';
          if Leaks.Count>10 then Str:=Str+EOL+Userstring(151)+':';
          Str:=Str+EOL;
          for I:=1 to Leaks.Count do
@@ -11457,10 +11466,10 @@ begin
          if ShowResult then
          begin
             Str:=Userstring(152)+':';
-            if DblEdges>0 then Str:=Str+EOL+IntToStr(DblEdges)+#32+UserString(158)+'.';
-            if Inconsistent>0 then Str:=Str+EOL+IntToStr(Inconsistent)+#32+Userstring(153)+'.';
-            if InvertedFaces>0 then Str:=Str+EOL+IntToStr(InvertedFaces)+#32+Userstring(154)+'.';
-            if NonManifold>0 then Str:=Str+EOL+IntToStr(NonManifold)+#32+Userstring(155);
+            if DblEdges>0 then Str:=Str+EOL+IntToStr(DblEdges)+' '+UserString(158)+'.';
+            if Inconsistent>0 then Str:=Str+EOL+IntToStr(Inconsistent)+' '+Userstring(153)+'.';
+            if InvertedFaces>0 then Str:=Str+EOL+IntToStr(InvertedFaces)+' '+Userstring(154)+'.';
+            if NonManifold>0 then Str:=Str+EOL+IntToStr(NonManifold)+' '+Userstring(155);
             MessageDlg(Str,mtInformation,[mbOk],0);
             if assigned(Owner.FOnUpdateGeometryInfo) then Owner.FOnUpdateGeometryInfo(self);
          end;
@@ -14242,16 +14251,16 @@ procedure TFreePreferences.getThemesInDir(dir:string; ss:TStrings);
 var sr: TSearchRec;
 begin
   if not DirectoryExistsUTF8(dir) then exit;
-  if FindFirst(dir+'/*',faDirectory,sr)=0 then
+  if FindFirstUTF8(dir+'/*',faDirectory,sr)=0 then
     begin
     repeat
     if ((sr.Attr and faDirectory) = faDirectory)
       and (sr.Name<>'.') and (sr.Name<>'..')
     then
       ss.Add(sr.Name);
-    until FindNext(sr)<>0;
+    until FindNextUTF8(sr)<>0;
     end;
-  FindClose(sr);
+  FindCloseUTF8(sr);
 end;
 
 
@@ -14314,7 +14323,7 @@ begin
   ilcnt := cil.Count;
   bmp:=TBitmap.Create;
   bmp.PixelFormat:=pf32bit;
-  bmp.RawImage.Description.AlphaPrec:=8;
+  //bmp.RawImage.Description.AlphaPrec:=8; TODO - fix
   bmp.Transparent:=true;
   bmp.SetSize(sz,sz);
   {

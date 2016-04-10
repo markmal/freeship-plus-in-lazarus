@@ -42,7 +42,13 @@ uses
   Controls,
   Forms,
   SysUtils,
-  FileUtil,
+       {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
   Main in 'Forms/Main.pas' {MainForm},
   FreeHullformWindow in 'Forms/FreeHullformWindow.pas' {FreeHullWindow},

@@ -1219,6 +1219,7 @@ const Temp : array[0..11] of TFloatType=(0.0,3.8, 5.0, 7.2,  10.0, 12.2, 15.0, 1
 var
  i     :integer; 
 begin
+  Result:=0;
   For i:=1 to 11 do begin
      if Temper < Temp[i] then
         begin

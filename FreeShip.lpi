@@ -23,19 +23,184 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
-      <BuildNr Value="2"/>
+      <BuildNr Value="6"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
-    <MacroValues Count="4">
-      <Macro4 Name="LCLWidgetType" Value="qt"/>
+    <MacroValues Count="1">
+      <Macro1 Name="LCLWidgetType" Value="qt"/>
     </MacroValues>
-    <BuildModes Count="1">
+    <BuildModes Count="4">
       <Item1 Name="Default" Default="True"/>
-      <SharedMatrixOptions Count="4">
-        <Item1 ID="596526450382" Modes="Default" Type="IDEMacro"/>
-        <Item2 ID="308552500954" Modes="Default" Type="IDEMacro"/>
-        <Item3 ID="044456480061" Modes="Default" Type="IDEMacro"/>
-        <Item4 ID="134221032983" Modes="Default" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
+      <Item2 Name="Debug">
+        <MacroValues Count="1">
+          <Macro1 Name="LCLWidgetType" Value="qt"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="FreeShip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
+            <OtherUnitFiles Value="Units;Forms"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <SyntaxMode Value="Delphi"/>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2Set"/>
+              <UseHeaptrc Value="True"/>
+              <UseExternalDbgSyms Value="True"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+              <ShowGenInfo Value="False"/>
+              <ShoLineNum Value="True"/>
+              <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+            </Verbosity>
+            <ExecuteBefore>
+              <Command Value="c:/msys2/bin/bash $(ProjPath)/gitlastrev.sh"/>
+              <CompileReasons Run="False"/>
+            </ExecuteBefore>
+            <ExecuteAfter>
+              <ScanForFPCMsgs Value="True"/>
+              <ScanForMakeMsgs Value="True"/>
+              <ShowAllMessages Value="True"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="Release">
+        <MacroValues Count="1">
+          <Macro1 Name="LCLWidgetType" Value="qt"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="FreeShip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
+            <OtherUnitFiles Value="Units;Forms"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <SyntaxMode Value="Delphi"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+              <ShowGenInfo Value="False"/>
+              <ShoLineNum Value="True"/>
+              <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+            </Verbosity>
+            <ExecuteBefore>
+              <Command Value="c:/msys2/bin/bash $(ProjPath)/gitlastrev.sh"/>
+              <CompileReasons Run="False"/>
+            </ExecuteBefore>
+            <ExecuteAfter>
+              <ScanForFPCMsgs Value="True"/>
+              <ScanForMakeMsgs Value="True"/>
+              <ShowAllMessages Value="True"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="Windows">
+        <MacroValues Count="1">
+          <Macro1 Name="LCLWidgetType" Value="qt"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="FreeShip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
+            <OtherUnitFiles Value="Units;Forms"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <SyntaxMode Value="Delphi"/>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+              <ShowGenInfo Value="False"/>
+              <ShoLineNum Value="True"/>
+              <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+            </Verbosity>
+            <ExecuteBefore>
+              <Command Value="C:/cygwin64/bin/bash.exe $(ProjPath)/gitlastrev.sh"/>
+              <CompileReasons Run="False"/>
+            </ExecuteBefore>
+            <ExecuteAfter>
+              <ScanForFPCMsgs Value="True"/>
+              <ScanForMakeMsgs Value="True"/>
+              <ShowAllMessages Value="True"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item4>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="134221032983" Modes="Default,Debug,Windows,Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
@@ -46,11 +211,6 @@
         <FormatVersion Value="1"/>
         <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
-      <environment>
-        <UserOverrides Count="1">
-          <Variable0 Name="Path" Value="c:/mingw/bin;c:/qt/4.8.6/bin;c:/windows;c:/windows/system32"/>
-        </UserOverrides>
-      </environment>
     </RunParams>
     <RequiredPackages Count="4">
       <Item1>
@@ -508,6 +668,9 @@
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
+    <Target>
+      <Filename Value="FreeShip"/>
+    </Target>
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <OtherUnitFiles Value="Units;Forms"/>
@@ -531,9 +694,6 @@
       </Optimizations>
     </CodeGeneration>
     <Linking>
-      <Debugging>
-        <DebugInfoType Value="dsDwarf2"/>
-      </Debugging>
       <Options>
         <Win32>
           <GraphicApplication Value="True"/>
@@ -548,11 +708,15 @@
         <ShoLineNum Value="True"/>
         <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
       </Verbosity>
-      <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
       <ExecuteBefore>
-        <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
+        <Command Value="c:/msys2/bin/bash $(ProjPath)/gitlastrev.sh"/>
         <CompileReasons Run="False"/>
       </ExecuteBefore>
+      <ExecuteAfter>
+        <ScanForFPCMsgs Value="True"/>
+        <ScanForMakeMsgs Value="True"/>
+        <ShowAllMessages Value="True"/>
+      </ExecuteAfter>
     </Other>
   </CompilerOptions>
   <Debugging>

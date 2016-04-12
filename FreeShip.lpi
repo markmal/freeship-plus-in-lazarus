@@ -46,23 +46,25 @@
         <FormatVersion Value="1"/>
         <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
+      <environment>
+        <UserOverrides Count="1">
+          <Variable0 Name="Path" Value="c:/mingw/bin;c:/qt/4.8.6/bin;c:/windows;c:/windows/system32"/>
+        </UserOverrides>
+      </environment>
     </RunParams>
-    <RequiredPackages Count="5">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="lazopenglcontext"/>
+        <PackageName Value="FreePackage"/>
       </Item1>
       <Item2>
-        <PackageName Value="FreePackage"/>
+        <PackageName Value="TAChartLazarusPkg"/>
       </Item2>
       <Item3>
-        <PackageName Value="TAChartLazarusPkg"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item3>
       <Item4>
-        <PackageName Value="Printer4Lazarus"/>
-      </Item4>
-      <Item5>
         <PackageName Value="LCL"/>
-      </Item5>
+      </Item4>
     </RequiredPackages>
     <Units Count="71">
       <Unit0>
@@ -509,7 +511,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <OtherUnitFiles Value="Units;Forms"/>
-      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
+      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>

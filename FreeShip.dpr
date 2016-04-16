@@ -129,6 +129,7 @@ end;
 
 begin
    Logger.LogLevel:=LOG_ERROR;
+   Writeln ('FreeShip in Lazarus');
    Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
    Writeln ('Compiler version: ',{$I %FPCVERSION%});
    Writeln ('Target CPU: ',TARGET_CPU);

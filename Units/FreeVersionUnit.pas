@@ -38,10 +38,10 @@ interface
 uses Classes,SysUtils,Dialogs;
 
 const
- COMPILE_DATE={$I %DATE%};
- COMPILE_TIME={$I %TIME%};
- TARGET_CPU={$I %FPCTARGET%};
- TARGET_OS={$I %FPCTARGETOS%};
+ COMPILE_DATE:string={$I %DATE%};
+ COMPILE_TIME:string={$I %TIME%};
+ TARGET_CPU:string={$I %FPCTARGET%};
+ TARGET_OS:string={$I %FPCTARGETOS%};
 
  FREESHIP_MAJOR_VERSION='3.6';   //Major version
  FREESHIP_VERSION='3.6.0.0';   //Major full version

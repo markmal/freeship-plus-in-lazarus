@@ -1,1 +1,1 @@
-git rev-list HEAD --count >GITLastChangeRevision.inc
+/bin/git rev-list HEAD --count >GITLastChangeRevision.inc

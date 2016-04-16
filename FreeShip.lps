@@ -7,10 +7,12 @@
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="33"/>
-        <CursorPos Y="51"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="121"/>
+        <CursorPos X="31" Y="127"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -87,11 +89,10 @@
       <Unit7>
         <Filename Value="Units/FreeVersionUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="42" Y="57"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="31"/>
+        <CursorPos X="2" Y="41"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -1090,7 +1091,7 @@
         <UsageCount Value="10"/>
       </Unit107>
     </Units>
-    <JumpHistory Count="18" HistoryIndex="17">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="Forms/Main.pas"/>
         <Caret Line="1343" Column="31" TopLine="1332"/>
@@ -1163,6 +1164,14 @@
         <Filename Value="Units/FreeViewPortOpenGL.pas"/>
         <Caret Line="49" TopLine="32"/>
       </Position18>
+      <Position19>
+        <Filename Value="FreeShip.dpr"/>
+        <Caret Line="130" TopLine="120"/>
+      </Position19>
+      <Position20>
+        <Filename Value="FreeShip.dpr"/>
+        <Caret Line="127" Column="31" TopLine="121"/>
+      </Position20>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

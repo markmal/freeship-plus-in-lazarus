@@ -2,14 +2,14 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="9"/>
-    <BuildModes Active="Debug"/>
-    <Units Count="101">
+    <BuildModes Active="Windows"/>
+    <Units Count="102">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="120"/>
-        <CursorPos X="31" Y="128"/>
+        <TopLine Value="122"/>
+        <CursorPos X="29" Y="133"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -41,7 +41,7 @@
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="309"/>
         <CursorPos X="15" Y="322"/>
         <UsageCount Value="200"/>
@@ -594,7 +594,7 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="17083"/>
         <CursorPos X="7" Y="17092"/>
         <UsageCount Value="200"/>
@@ -704,12 +704,11 @@
         <ComponentName Value="FreeAboutDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="24"/>
         <CursorPos X="52" Y="124"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
       <Unit62>
@@ -778,7 +777,7 @@
       <Unit69>
         <Filename Value="Units/FreeViewPortOpenGL.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="183"/>
         <CursorPos Y="201"/>
         <UsageCount Value="1015"/>
@@ -813,7 +812,7 @@
       </Unit72>
       <Unit73>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="55"/>
         <UsageCount Value="87"/>
         <Loaded Value="True"/>
@@ -945,6 +944,7 @@
         <TopLine Value="15"/>
         <CursorPos X="26" Y="18"/>
         <UsageCount Value="1"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit88>
       <Unit89>
         <Filename Value="/usr/share/lazarus/1.6/components/lazutils/lazutf8.pas"/>
@@ -952,6 +952,7 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="5"/>
         <UsageCount Value="14"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit89>
       <Unit90>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/customform.inc"/>
@@ -959,6 +960,7 @@
         <TopLine Value="3058"/>
         <CursorPos Y="3070"/>
         <UsageCount Value="13"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit90>
       <Unit91>
         <Filename Value="/usr/share/lazarus/1.6/lcl/interfaces/qt/qtwsforms.pp"/>
@@ -967,6 +969,7 @@
         <TopLine Value="777"/>
         <CursorPos Y="794"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit91>
       <Unit92>
         <Filename Value="../qt4pas-V2.5_Qt4.5.3/src/qmdiarea_c.cpp"/>
@@ -982,6 +985,7 @@
         <TopLine Value="72"/>
         <CursorPos Y="87"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit93>
       <Unit94>
         <Filename Value="/usr/share/lazarus/1.6/lcl/controls.pp"/>
@@ -990,6 +994,7 @@
         <TopLine Value="1500"/>
         <CursorPos X="15" Y="1510"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit94>
       <Unit95>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/control.inc"/>
@@ -997,6 +1002,7 @@
         <TopLine Value="2772"/>
         <CursorPos Y="2784"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit95>
       <Unit96>
         <Filename Value="/usr/share/lazarus/1.6/lcl/forms.pp"/>
@@ -1005,6 +1011,7 @@
         <TopLine Value="25"/>
         <CursorPos X="23" Y="716"/>
         <UsageCount Value="19"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit96>
       <Unit97>
         <Filename Value="/lazarus/components/opengl/glqtcontext.pas"/>
@@ -1026,20 +1033,27 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit99>
       <Unit100>
         <Filename Value="/usr/share/lazarus/1.6/components/lazutils/LazLoggerIntf.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="11" Y="13"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit100>
+      <Unit101>
+        <Filename Value="gitlastrev.sh"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="57"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Bash"/>
+      </Unit101>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="Forms/FreeHullformWindow.pas"/>
         <Caret Line="322" Column="19" TopLine="309"/>
@@ -1152,6 +1166,10 @@
         <Filename Value="Units/FreeShipUnit.pas"/>
         <Caret Line="14701" Column="27" TopLine="14695"/>
       </Position28>
+      <Position29>
+        <Filename Value="FreeShip.dpr"/>
+        <Caret Line="128" Column="31" TopLine="120"/>
+      </Position29>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

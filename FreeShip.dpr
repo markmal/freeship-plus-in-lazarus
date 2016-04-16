@@ -129,14 +129,14 @@ end;
 
 begin
    Logger.LogLevel:=LOG_ERROR;
-   Writeln ('FreeShip in Lazarus');
-   Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
-   Writeln ('Compiler version: ',{$I %FPCVERSION%});
-   Writeln ('Target CPU: ',TARGET_CPU);
-   Writeln ('Target OS: ',TARGET_OS);
-   Writeln ('FreeShip Product version: ',FREESHIP_VERSION);
-   Writeln ('FreeShip Program version: ',ResourceVersionInfo);
-   Writeln ('Last SVN Change Revision: ',SUBVERSION_REVISION);
+   Logger.Info('FreeShip in Lazarus');
+   Logger.Info('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
+   Logger.Info('Compiler version: ',{$I %FPCVERSION%});
+   Logger.Info('Target CPU: ',TARGET_CPU);
+   Logger.Info('Target OS: ',TARGET_OS);
+   Logger.Info('FreeShip Product version: ',FREESHIP_VERSION);
+   Logger.Info('FreeShip Program version: ',ResourceVersionInfo);
+   Logger.Info('Last SVN Change Revision: ',SUBVERSION_REVISION);
 
 
    ShowSplash:=true;

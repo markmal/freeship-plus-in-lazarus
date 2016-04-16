@@ -1,7 +1,7 @@
 object FreeControlPointForm: TFreeControlPointForm
-  Left = 605
+  Left = 478
   Height = 189
-  Top = 219
+  Top = 275
   Width = 308
   AlphaBlend = True
   AlphaBlendValue = 210
@@ -15,7 +15,7 @@ object FreeControlPointForm: TFreeControlPointForm
   Font.Name = 'MS Sans Serif'
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.6.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 79

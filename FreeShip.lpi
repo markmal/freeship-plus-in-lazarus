@@ -38,26 +38,22 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="FreeShip"/>
+            <Filename Value="FreeShip" ApplyConventions="False"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
+            <SrcPath Value="/usr/share/lazarus/1.6/lcl/"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
               <SyntaxMode Value="Delphi"/>
-              <IncludeAssertionCode Value="True"/>
             </SyntaxOptions>
           </Parsing>
           <CodeGeneration>
-            <Checks>
-              <IOChecks Value="True"/>
-              <RangeChecks Value="True"/>
-              <OverflowChecks Value="True"/>
-              <StackChecks Value="True"/>
-            </Checks>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -103,7 +99,7 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -159,7 +155,7 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -174,7 +170,6 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
-            <VerifyObjMethodCallValidity Value="True"/>
             <Optimizations>
               <OptimizationLevel Value="0"/>
             </Optimizations>
@@ -209,6 +204,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
+        <HostApplicationFilename Value="FreeShip"/>
         <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
     </RunParams>
@@ -674,7 +670,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <OtherUnitFiles Value="Units;Forms"/>
-      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
+      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>

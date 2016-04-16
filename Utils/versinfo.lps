@@ -8,8 +8,8 @@
         <Filename Value="versinfo.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="61"/>
-        <CursorPos Y="81"/>
+        <TopLine Value="63"/>
+        <CursorPos X="29" Y="67"/>
         <UsageCount Value="217"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -18,7 +18,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="15" Y="120"/>
-        <UsageCount Value="108"/>
+        <UsageCount Value="107"/>
       </Unit1>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">

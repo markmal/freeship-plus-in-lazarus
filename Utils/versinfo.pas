@@ -55,6 +55,8 @@ var
   writeln('      NoVebose prints just value(s) without name(s)');
   end;
 
+{$R *.res}
+
 begin
   if paramcount = 0 then printHelp;
   outset := [];

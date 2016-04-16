@@ -4,11 +4,13 @@ case ${OSTYPE} in
    versinfo=versinfo.exe
    FreeShip=FreeShip.exe
    INST_SCRIPTS="uninstall-user.cmd install-user.cmd"
+   MISCFILES="*.dll"
    OS=windows;;
  linux-gnu )
    versinfo=versinfo
    FreeShip=FreeShip
    INST_SCRIPTS="install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh"
+   MISCFILES=""
    OS=linux;;
 esac
 
@@ -22,7 +24,7 @@ md5sum ${FreeShip} >FreeShip.md5
 
 rm ${NAME}.zip ${NAME}.md5 2>/dev/null
 
-zip -r ${NAME}.zip Languages Manuals Ships Themes install ${FreeShip} *.dll FreeShip.md5 Whatsnew.txt \
+zip -r ${NAME}.zip Languages Manuals Ships Themes install ${FreeShip} ${MISCFILES} FreeShip.md5 Whatsnew.txt \
  ${INST_SCRIPTS} install-HOWTO.txt \
  "GNU General Public License (GPL).txt" copyright
 

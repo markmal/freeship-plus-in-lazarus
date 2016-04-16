@@ -7,6 +7,7 @@ unit FreeViewPortOpenGL;
 
 interface
 
+{$IFDEF USEOPENGL}
 uses
   Classes, SysUtils, Graphics,
   FreeTypes,
@@ -43,7 +44,11 @@ type
      procedure ShadeTriangle(P_1,P_2,P_3:T3DCoordinate;R1,G1,B1,R2,G2,B2,R3,G3,B3:byte);override;
   end;
 
+{$ENDIF}
+
 implementation
+
+{$IFDEF USEOPENGL}
 
 constructor TFreeViewportOpenGL.Create(AOwner:TComponent);
 begin
@@ -192,6 +197,7 @@ begin
     glViewport (0, 0, OpenGLControl.Width, OpenGLControl.Height);
 end;
 
+{$ENDIF}
 
 
 end.

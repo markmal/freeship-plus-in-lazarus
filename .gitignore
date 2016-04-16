@@ -12,3 +12,4 @@ Utils/lib
 *.md5
 *.deb
 *.log
+*.bak

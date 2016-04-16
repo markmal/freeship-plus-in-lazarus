@@ -13,12 +13,12 @@ uses
   elfconsts;
  
 type
-  TOutSet = set of (
+  TOutEnum = (
     osFileFullVersion, osFileMajorVersion, osFileMinorVersion,
     osFileRelease, osFileBuild,
     osProductFullVersion, osProductMajorVersion, osProductMinorVersion,
     osProductRelease, osProductBuild);
-
+  TOutSet = set of TOutEnum;
 var
   resources : TResources;
   inFile : TFileStream;
@@ -26,9 +26,7 @@ var
   ar : TAbstractResource;
   vr : TVersionResource;
   fi : TVersionFixedInfo;
-  fv : TFileProductVersion;
   F,I,RC : integer;
-  fos : longword;
   outset : TOutSet;
   p : string;
   inFileNames : TStringList;
@@ -63,7 +61,7 @@ begin
   inFileNames:=TStringList.Create;
   verbose := true;
 
-  for I:=0 to paramcount do
+  for I:=1 to paramcount do
     begin
     p:=paramstr(I);
     if      p='--FileFullVersion' then outset := outset + [osFileFullVersion]
@@ -106,7 +104,7 @@ begin
            vr := TVersionResource(ar);
            fi:= vr.FixedInfo;
 
-           if [osFileFullVersion] in outset then
+           if osFileFullVersion in outset then
              begin
                if verbose then write('File Full Version:' +#9);
                writeln(IntToStr(fi.FileVersion[0])
@@ -115,32 +113,32 @@ begin
                               + '.' + IntToStr(fi.FileVersion[3]));
              end;
 
-           if [osFileMajorVersion] in outset then
+           if osFileMajorVersion in outset then
              begin
                if verbose then write('File Major Version:' +#9);
                writeln(IntToStr(fi.FileVersion[0]));
              end;
 
-           if [osFileMinorVersion] in outset then
+           if osFileMinorVersion in outset then
              begin
                if verbose then write('File Minor Version:' +#9);
                writeln(IntToStr(fi.FileVersion[1]));
              end;
 
-           if [osFileRelease] in outset then
+           if osFileRelease in outset then
              begin
                if verbose then write('File Release:' +#9);
                writeln(IntToStr(fi.FileVersion[2]));
              end;
 
-           if [osFileBuild] in outset then
+           if osFileBuild in outset then
              begin
                if verbose then write('File Build:' +#9);
                writeln(IntToStr(fi.FileVersion[3]));
              end;
 
 
-           if [osProductFullVersion] in outset then
+           if osProductFullVersion in outset then
              begin
                if verbose then write('Product Full Version:' +#9);
                writeln(IntToStr(fi.ProductVersion[0])
@@ -149,25 +147,25 @@ begin
                               + '.' + IntToStr(fi.ProductVersion[3]));
              end;
 
-           if [osProductMajorVersion] in outset then
+           if osProductMajorVersion in outset then
              begin
                if verbose then write('Product Major Version:' +#9);
                writeln(IntToStr(fi.ProductVersion[0]));
              end;
 
-           if [osProductMinorVersion] in outset then
+           if osProductMinorVersion in outset then
              begin
                if verbose then write('Product Minor Version:' +#9);
                writeln(IntToStr(fi.ProductVersion[1]));
              end;
 
-           if [osProductRelease] in outset then
+           if osProductRelease in outset then
              begin
                if verbose then write('Product Release:' +#9);
                writeln(IntToStr(fi.ProductVersion[2]));
              end;
 
-           if [osProductBuild] in outset then
+           if osProductBuild in outset then
              begin
                if verbose then write('Product Build:' +#9);
                writeln(IntToStr(fi.ProductVersion[3]));

@@ -28,7 +28,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="FreeShip.res"/>
+        <CommandLineParams Value="--NoVerbose"/>
       </local>
     </RunParams>
     <Units Count="1">
@@ -44,8 +44,14 @@
       <Filename Value="versinfo"/>
     </Target>
     <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <CodeGeneration>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
+    </CodeGeneration>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">

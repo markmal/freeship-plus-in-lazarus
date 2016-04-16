@@ -3,18 +3,19 @@ case ${OSTYPE} in
  msys|cygwin )
    versinfo=versinfo.exe
    FreeShip=FreeShip.exe
-   INST_SCRIPTS=uninstall-user.cmd install-user.cmd
+   INST_SCRIPTS="uninstall-user.cmd install-user.cmd"
    OS=windows;;
  linux-gnu )
    versinfo=versinfo
    FreeShip=FreeShip
-   INST_SCRIPTS=install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh
+   INST_SCRIPTS="install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh"
    OS=linux;;
 esac
 
 # Zips files for binary distribution
-BLDDT=$(strings ${FreeShip} |grep Build:|cut -f2 -d' ')
-VERS=$(Utils/$versinfo ${FreeShip}|grep 'File Full Version:'|cut -f2)
+#BLDDT=$(strings ${FreeShip} |grep Build:|cut -f2 -d' ')
+#VERS=$(Utils/$versinfo ${FreeShip}|grep 'File Full Version:'|cut -f2)
+VERS=$(Utils/$versinfo --FileFullVersion --NoVerbose ${FreeShip})
 ARCH=$(file -b ${FreeShip}|cut -f6 -d' '|sed 's/,//')
 NAME=FreeShip-${VERS}_${ARCH}_${OS}_qt
 md5sum ${FreeShip} >FreeShip.md5

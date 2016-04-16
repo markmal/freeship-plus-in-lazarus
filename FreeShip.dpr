@@ -128,15 +128,16 @@ end;
 
 
 begin
-   Logger.LogLevel:=LOG_ERROR;
+   Logger.LogLevel:=LOG_INFO;
    Logger.Info('FreeShip in Lazarus');
-   Logger.Info('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
-   Logger.Info('Compiler version: ',{$I %FPCVERSION%});
-   Logger.Info('Target CPU: ',TARGET_CPU);
-   Logger.Info('Target OS: ',TARGET_OS);
-   Logger.Info('FreeShip Product version: ',FREESHIP_VERSION);
-   Logger.Info('FreeShip Program version: ',ResourceVersionInfo);
-   Logger.Info('Last SVN Change Revision: ',SUBVERSION_REVISION);
+   Logger.Info('Compiled at '+COMPILE_DATE+' '+COMPILE_TIME);
+   Logger.Info('Compiler version: '+FPCVERSION);
+   Logger.Info('Target CPU: '+TARGET_CPU);
+   Logger.Info('Target OS: '+TARGET_OS);
+   Logger.Info('FreeShip Product version: '+FREESHIP_VERSION);
+   Logger.Info('FreeShip Program version: '+ResourceVersionInfo);
+   Logger.Info('Last Git Change Revision: '+IntToStr(GITVERSION_REVISION));
+   Logger.LogLevel:=LOG_ERROR;
 
 
    ShowSplash:=true;

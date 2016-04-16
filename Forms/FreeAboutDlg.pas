@@ -123,7 +123,7 @@ begin
   //StringGridVersionInfo.RowCount:=0;
   AddVersionInfo('Product version',FREESHIP_VERSION);
   AddVersionInfo('Program version',ResourceVersionInfo);
-  AddVersionInfo('SVN Revision',IntToStr(SUBVERSION_REVISION));
+  AddVersionInfo('Git Revision',IntToStr(GITVERSION_REVISION));
   AddVersionInfo('Build date',COMPILE_DATE+' '+COMPILE_TIME);
   AddVersionInfo('Compiler version',{$I %FPCVERSION%});
   AddVersionInfo('Target CPU',TARGET_CPU);

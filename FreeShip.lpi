@@ -43,7 +43,7 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.6/lcl/"/>
+            <SrcPath Value="/usr/share/lazarus/1.6/lcl"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -99,7 +99,7 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -155,7 +155,7 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -183,7 +183,7 @@
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
             <ExecuteBefore>
-              <Command Value="C:/cygwin64/bin/bash.exe $(ProjPath)/gitlastrev.sh"/>
+              <Command Value="$(ProjPath)/gitlastrev.cmd"/>
               <CompileReasons Run="False"/>
             </ExecuteBefore>
             <ExecuteAfter>
@@ -670,7 +670,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <OtherUnitFiles Value="Units;Forms"/>
-      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
+      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>

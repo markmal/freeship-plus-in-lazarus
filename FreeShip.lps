@@ -7,8 +7,9 @@
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="127"/>
-        <CursorPos X="7" Y="133"/>
+        <CursorPos X="20" Y="142"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -679,10 +680,9 @@
       <Unit59>
         <Filename Value="Units/FreeLogger.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="7"/>
-        <CursorPos X="21" Y="44"/>
+        <CursorPos X="15" Y="24"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -939,6 +939,7 @@
         <TopLine Value="15"/>
         <CursorPos X="26" Y="18"/>
         <UsageCount Value="1"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit88>
       <Unit89>
         <Filename Value="/usr/share/lazarus/1.6/components/lazutils/lazutf8.pas"/>
@@ -946,6 +947,7 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="5"/>
         <UsageCount Value="14"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit89>
       <Unit90>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/customform.inc"/>
@@ -953,6 +955,7 @@
         <TopLine Value="3058"/>
         <CursorPos Y="3070"/>
         <UsageCount Value="13"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit90>
       <Unit91>
         <Filename Value="/usr/share/lazarus/1.6/lcl/interfaces/qt/qtwsforms.pp"/>
@@ -961,6 +964,7 @@
         <TopLine Value="777"/>
         <CursorPos Y="794"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit91>
       <Unit92>
         <Filename Value="../qt4pas-V2.5_Qt4.5.3/src/qmdiarea_c.cpp"/>
@@ -976,6 +980,7 @@
         <TopLine Value="72"/>
         <CursorPos Y="87"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit93>
       <Unit94>
         <Filename Value="/usr/share/lazarus/1.6/lcl/controls.pp"/>
@@ -984,6 +989,7 @@
         <TopLine Value="1500"/>
         <CursorPos X="15" Y="1510"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit94>
       <Unit95>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/control.inc"/>
@@ -991,6 +997,7 @@
         <TopLine Value="2772"/>
         <CursorPos Y="2784"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit95>
       <Unit96>
         <Filename Value="/usr/share/lazarus/1.6/lcl/forms.pp"/>
@@ -999,6 +1006,7 @@
         <TopLine Value="25"/>
         <CursorPos X="23" Y="716"/>
         <UsageCount Value="19"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit96>
       <Unit97>
         <Filename Value="/lazarus/components/opengl/glqtcontext.pas"/>
@@ -1029,6 +1037,7 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="11" Y="13"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit100>
       <Unit101>
         <Filename Value="gitlastrev.sh"/>
@@ -1049,6 +1058,7 @@
         <TopLine Value="97"/>
         <CursorPos X="60" Y="100"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit103>
       <Unit104>
         <Filename Value="/usr/share/lazarus/1.6/components/lazutils/lazloggerbase.pas"/>
@@ -1057,14 +1067,15 @@
         <TopLine Value="737"/>
         <CursorPos X="38" Y="741"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit104>
       <Unit105>
         <Filename Value="../../../../lazarus/components/lazutils/LazLoggerIntf.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="30"/>
         <CursorPos X="11" Y="13"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit105>
     </Units>
     <JumpHistory Count="25" HistoryIndex="24">

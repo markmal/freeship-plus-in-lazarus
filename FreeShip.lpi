@@ -106,7 +106,7 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
+            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -162,7 +162,6 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -181,6 +180,13 @@
               <OptimizationLevel Value="0"/>
             </Optimizations>
           </CodeGeneration>
+          <Linking>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
           <Other>
             <Verbosity>
               <ShowNotes Value="False"/>
@@ -211,7 +217,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="--nosplash --debug --log-debug"/>
+        <CommandLineParams Value="--nosplash --debug --log-debug --debug-log=FreeShip.log"/>
       </local>
     </RunParams>
     <RequiredPackages Count="4">

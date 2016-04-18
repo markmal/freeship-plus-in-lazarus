@@ -14573,7 +14573,13 @@ var
     RecentFileNames : TStringList;
 begin
   if not FileExistsUTF8(Filename)
-   then exit;
+   then begin
+     if Application.Mainform<>nil then begin
+       Application.MainForm.WindowState:=wsNormal;
+       Application.MainForm.SetBounds(0,0,Screen.WorkAreaWidth,Screen.WorkAreaHeight);
+       end;
+     exit;
+   end;
 
   params := TColorIniFile.create(Filename, false );
 
@@ -14612,16 +14618,16 @@ begin
     //Readln(FFile,T,L,H,W,S);
    T := params.ReadInteger('Window','Top',0);
    L := params.ReadInteger('Window','Left',0);
-   H := params.ReadInteger('Window','Height',80);
-   W := params.ReadInteger('Window','Width',1250);
+   H := params.ReadInteger('Window','Height',Screen.WorkAreaHeight );
+   W := params.ReadInteger('Window','Width',Screen.WorkAreaWidth );
    S := params.ReadInteger('Window','State',Integer(wsNormal));
 
    if Application.Mainform<>nil then
     begin
        if L>Screen.Width then L:=0;
        if T>Screen.Height then T:=0;
-       if W>Screen.Width then begin W:=Screen.Width; H:=110; end;
-       if H>Screen.Height then H:=Screen.Height;
+       if W>Screen.Width then W:=Screen.WorkAreaWidth;
+       if H>Screen.Height then H:=Screen.WorkAreaHeight;
        case TWindowState(S) of
           wsNormal	   : Application.MainForm.SetBounds(L,T,W,H);
           wsMinimized	   : begin
@@ -16080,7 +16086,8 @@ begin
 
    FEdit:=TFreeEdit.Create(Self);
    FPreferences:=TFreePreferences.Create(self);
-   FPreferences.Load;
+   if Assigned(AOwner)  // load preferences only for main FreeShip instance, not for preview ones
+     then FPreferences.Load;
    FProjectSettings:=TFreeProjectSettings.Create(self);
    FFileVersion:=CurrentVersion;
    FActiveControlPoint:=nil;

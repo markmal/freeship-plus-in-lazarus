@@ -47,7 +47,7 @@ const
  FREESHIP_VERSION='3.6.0.0';   //Major full version
 
  //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
- GITVERSION_REVISION={$I GITLastChangeRevision.inc}; //number of git commits
+ GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits
  FPCVERSION:string={$I %FPCVERSION%};
 
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,

@@ -37,7 +37,6 @@ xcopy /Y /E /H /I Languages %FS_APP%\Languages
 xcopy /Y /E /H /I Manuals %FS_APP%\Manuals
 xcopy /Y /E /H /I Ships %FS_APP%\Ships
 xcopy /Y /E /H /I Themes %FS_APP%\Themes
-rem xcopy /Y /E /H install %FS_APP%\
 
 xcopy /Y /H "GNU General Public License (GPL).txt" %FS_APP%\
 xcopy /Y /H Whatsnew.txt %FS_APP%\
@@ -118,16 +117,6 @@ set PSCMD=%PSCMD% $objShortCut.Save()"
 echo %PSCMD%
 powershell -Command %PSCMD%
 
-goto AVOID
-Remove-Item 'hkcu:\Software\Classes\Applications\FreeShip.exe' -Recurse;
-Remove-Item 'hkcu:\Software\Classes\.fbm' -Recurse;
-Remove-Item 'hkcu:\Software\Classes\fbm_auto_file' -Recurse;
-Remove-Item 'hkcu:\software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.fbm' -Recurse;
-Remove-Item 'hkcu:\Software\Classes\.ftm' -Recurse;
-Remove-Item 'hkcu:\Software\Classes\ftm_auto_file' -Recurse;
-Remove-Item 'hkcu:\software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.ftm' -Recurse;
-:AVOID
-
 rem register FreeShip
 set PSCMD="New-Item -Path 'hkcu:\Software\Classes\Applications\FreeShip.exe';
 set PSCMD=%PSCMD% New-Item -Path 'hkcu:\Software\Classes\Applications\FreeShip.exe\shell';
@@ -179,3 +168,5 @@ powershell -command %PSCMD%
 rem restart explorer
 taskkill /f /fi "imagename eq explorer.exe"
 START explorer.exe
+
+:FINAL

@@ -122,6 +122,8 @@ begin
     else if S = '--log-error' then Logger.LogLevel:=LOG_ERROR
     else if S = '--log-warning' then Logger.LogLevel:=LOG_WARNING
     else if S = '--log-debug' then Logger.LogLevel:=LOG_DEBUG
+    else if UTF8LeftStr(S,12) = '--debug-log=' then
+         // skip LazLogger param
     else sOpenFile:=S;
   end;
 end;

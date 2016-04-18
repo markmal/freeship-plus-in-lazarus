@@ -38,12 +38,11 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="FreeShip"/>
+            <Filename Value="FreeShip" ApplyConventions="False"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -58,6 +57,10 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -80,7 +83,7 @@
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
             <ExecuteBefore>
-              <Command Value="c:/msys2/bin/bash $(ProjPath)/gitlastrev.sh"/>
+              <Command Value="/bin/bash $(ProjPath)/gitlastrev.sh"/>
               <CompileReasons Run="False"/>
             </ExecuteBefore>
             <ExecuteAfter>
@@ -136,7 +139,7 @@
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
             <ExecuteBefore>
-              <Command Value="c:/msys2/bin/bash $(ProjPath)/gitlastrev.sh"/>
+              <Command Value="$(ProjPath)/gitlastrev.sh"/>
               <CompileReasons Run="False"/>
             </ExecuteBefore>
             <ExecuteAfter>
@@ -159,7 +162,6 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
-            <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -174,11 +176,17 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
-            <VerifyObjMethodCallValidity Value="True"/>
             <Optimizations>
               <OptimizationLevel Value="0"/>
             </Optimizations>
           </CodeGeneration>
+          <Linking>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
           <Other>
             <Verbosity>
               <ShowNotes Value="False"/>
@@ -188,7 +196,7 @@
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
             <ExecuteBefore>
-              <Command Value="C:/cygwin64/bin/bash.exe $(ProjPath)/gitlastrev.sh"/>
+              <Command Value="$(ProjPath)/gitlastrev.cmd"/>
               <CompileReasons Run="False"/>
             </ExecuteBefore>
             <ExecuteAfter>
@@ -209,7 +217,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="--nosplash --debug --log-debug"/>
+        <CommandLineParams Value="--nosplash --debug --log-debug --debug-log=FreeShip.log"/>
       </local>
     </RunParams>
     <RequiredPackages Count="4">
@@ -674,7 +682,6 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <OtherUnitFiles Value="Units;Forms"/>
-      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -709,7 +716,7 @@
         <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
       </Verbosity>
       <ExecuteBefore>
-        <Command Value="c:/msys2/bin/bash $(ProjPath)/gitlastrev.sh"/>
+        <Command Value="$(ProjPath)/gitlastrev.sh"/>
         <CompileReasons Run="False"/>
       </ExecuteBefore>
       <ExecuteAfter>

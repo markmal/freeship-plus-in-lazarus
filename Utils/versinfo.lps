@@ -3,184 +3,141 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="5">
+    <Units Count="2">
       <Unit0>
         <Filename Value="versinfo.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="versinfo"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="0"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="25"/>
-        <CursorPos X="1" Y="67"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="63"/>
+        <CursorPos X="29" Y="67"/>
+        <UsageCount Value="217"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/resource.pp"/>
-        <UnitName Value="resource"/>
-        <EditorIndex Value="4"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="22"/>
-        <CursorPos X="18" Y="1001"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <Filename Value="/lazarus/fpc/3.0.0/source/rtl/objpas/objpas.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="101"/>
+        <CursorPos X="15" Y="120"/>
+        <UsageCount Value="107"/>
       </Unit1>
-      <Unit2>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versionresource.pp"/>
-        <UnitName Value="versionresource"/>
-        <EditorIndex Value="1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="25"/>
-        <CursorPos X="43" Y="78"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit2>
-      <Unit3>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
-        <UnitName Value="versiontypes"/>
-        <EditorIndex Value="2"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="65"/>
-        <CursorPos X="28" Y="62"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit3>
-      <Unit4>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versionconsts.pp"/>
-        <UnitName Value="versionconsts"/>
-        <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="29"/>
-        <CursorPos X="3" Y="46"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit4>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="0"/>
-    </General>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="30" Column="41" TopLine="14"/>
+        <Caret Line="34" TopLine="16"/>
       </Position1>
       <Position2>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="29" Column="27" TopLine="12"/>
+        <Caret Line="36" TopLine="16"/>
       </Position2>
       <Position3>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="52" Column="5" TopLine="24"/>
+        <Caret Line="37" TopLine="16"/>
       </Position3>
       <Position4>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="36" Column="45" TopLine="20"/>
+        <Caret Line="34" TopLine="16"/>
       </Position4>
       <Position5>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="16" Column="25" TopLine="11"/>
+        <Caret Line="36" TopLine="16"/>
       </Position5>
       <Position6>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="43" Column="4" TopLine="26"/>
+        <Caret Line="49" TopLine="28"/>
       </Position6>
       <Position7>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="23" Column="15" TopLine="16"/>
+        <Caret Line="41" Column="25" TopLine="22"/>
       </Position7>
       <Position8>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="35" Column="60" TopLine="16"/>
+        <Caret Line="43" Column="31" TopLine="20"/>
       </Position8>
       <Position9>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="39" Column="1" TopLine="16"/>
+        <Caret Line="62" Column="41" TopLine="32"/>
       </Position9>
       <Position10>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="40" Column="1" TopLine="16"/>
+        <Caret Line="40" TopLine="32"/>
       </Position10>
       <Position11>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="34" Column="1" TopLine="16"/>
+        <Caret Line="30" Column="27" TopLine="25"/>
       </Position11>
       <Position12>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="36" Column="1" TopLine="16"/>
+        <Caret Line="28" TopLine="21"/>
       </Position12>
       <Position13>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="37" Column="1" TopLine="16"/>
+        <Caret Line="30" Column="5" TopLine="19"/>
       </Position13>
       <Position14>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="34" Column="1" TopLine="16"/>
+        <Caret Line="35" Column="30" TopLine="18"/>
       </Position14>
       <Position15>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="36" Column="1" TopLine="16"/>
+        <Caret Line="49" TopLine="27"/>
       </Position15>
       <Position16>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="49" Column="1" TopLine="28"/>
+        <Caret Line="51" TopLine="35"/>
       </Position16>
       <Position17>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="41" Column="25" TopLine="22"/>
+        <Caret Line="138" TopLine="129"/>
       </Position17>
       <Position18>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versionresource.pp"/>
-        <Caret Line="78" Column="43" TopLine="62"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="16" Column="20" TopLine="4"/>
       </Position18>
       <Position19>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/resource.pp"/>
-        <Caret Line="281" Column="56" TopLine="262"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="73" Column="42" TopLine="57"/>
       </Position19>
       <Position20>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
-        <Caret Line="362" Column="59" TopLine="344"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="80" Column="45" TopLine="63"/>
       </Position20>
       <Position21>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="85" TopLine="72"/>
       </Position21>
       <Position22>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
-        <Caret Line="12" Column="55" TopLine="1"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="30" Column="5" TopLine="16"/>
       </Position22>
       <Position23>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
-        <Caret Line="56" Column="12" TopLine="27"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="92" Column="34" TopLine="79"/>
       </Position23>
       <Position24>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
-        <Caret Line="66" Column="58" TopLine="38"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="109" Column="35" TopLine="96"/>
       </Position24>
       <Position25>
-        <Filename Value="/usr/share/fpcsrc/2.6.4/packages/fcl-res/src/versiontypes.pp"/>
-        <Caret Line="309" Column="10" TopLine="281"/>
+        <Filename Value="versinfo.pas"/>
+        <Caret Line="113" Column="56" TopLine="102"/>
       </Position25>
       <Position26>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="43" Column="31" TopLine="20"/>
+        <Caret Line="109" Column="15" TopLine="97"/>
       </Position26>
       <Position27>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="62" Column="41" TopLine="32"/>
+        <Caret Line="153" Column="15" TopLine="136"/>
       </Position27>
       <Position28>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="40" Column="1" TopLine="32"/>
+        <Caret Line="170" Column="15" TopLine="162"/>
       </Position28>
       <Position29>
         <Filename Value="versinfo.pas"/>
-        <Caret Line="30" Column="27" TopLine="25"/>
+        <Caret Line="81" TopLine="68"/>
       </Position29>
-      <Position30>
-        <Filename Value="versinfo.pas"/>
-        <Caret Line="28" Column="1" TopLine="21"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
@@ -321,5 +278,4 @@
       </Item11>
     </Watches>
   </Debugging>
-  <EditorMacros Count="0"/>
 </CONFIG>

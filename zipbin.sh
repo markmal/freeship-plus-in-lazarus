@@ -3,12 +3,12 @@ case ${OSTYPE} in
  msys|cygwin )
    versinfo=versinfo.exe
    FreeShip=FreeShip.exe
-   INST_SCRIPTS=uninstall-user.cmd install-user.cmd
+   INST_SCRIPTS="uninstall-user.cmd install-user.cmd"
    OS=windows;;
  linux-gnu )
    versinfo=versinfo
    FreeShip=FreeShip
-   INST_SCRIPTS=install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh
+   INST_SCRIPTS="install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh"
    OS=linux;;
 esac
 

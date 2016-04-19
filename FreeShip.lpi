@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
-      <BuildNr Value="9"/>
+      <BuildNr Value="14"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -162,6 +162,7 @@
           <SearchPaths>
             <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
             <OtherUnitFiles Value="Units;Forms"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -176,6 +177,7 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
             <Optimizations>
               <OptimizationLevel Value="0"/>
             </Optimizations>
@@ -197,7 +199,7 @@
             </Verbosity>
             <ExecuteBefore>
               <Command Value="$(ProjPath)/gitlastrev.cmd"/>
-              <CompileReasons Run="False"/>
+              <CompileReasons Compile="False" Run="False"/>
             </ExecuteBefore>
             <ExecuteAfter>
               <ScanForFPCMsgs Value="True"/>

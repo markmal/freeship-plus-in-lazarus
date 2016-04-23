@@ -1,2 +1,1 @@
-E: freeship: unstripped-binary-or-object usr/bin/FreeShip
 W: freeship: hardening-no-relro usr/bin/FreeShip

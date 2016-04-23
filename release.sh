@@ -19,7 +19,7 @@ BLDDT=$(strings FreeShip |grep Build:|cut -f2 -d' ')
 VERS=$(Utils/versinfo --FileFullVersion --NoVerbose ${FreeShip})
 ARCH=$(file -b ${FreeShip}|cut -f6 -d' '|sed 's/,//')
 
-if [ -x /usr/bin/git ]
+if [ -x /usr/bin/git ]; then
   git tag -a v$VERS -m "Test Release. $ARCH Linux Qt. ver $VERS"
 fi
 

@@ -19,7 +19,7 @@ esac
 # Zips files for binary distribution
 #BLDDT=$(strings ${FreeShip} |grep Build:|cut -f2 -d' ')
 #VERS=$(Utils/$versinfo ${FreeShip}|grep 'File Full Version:'|cut -f2)
-VERS=$(Utils/$versinfo --FileFullVersion --NoVerbose ${FreeShip})
+VERS=$(Utils/$versinfo --FileFullVersion --NoVerbose ${FreeShip}|tr -d '\r'|tr -d '\n')
 NAME=FreeShip-${VERS}_${ARCH}_${OS}_qt
 md5sum ${FreeShip} >FreeShip.md5
 

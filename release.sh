@@ -18,7 +18,7 @@ esac
 
 # Zips files for binary distribution
 #BLDDT=$(strings ${FreeShip} |grep Build:|cut -f2 -d' ')
-VERS=$(Utils/versinfo --FileFullVersion --NoVerbose ${FreeShip})
+VERS=$(Utils/versinfo --FileFullVersion --NoVerbose ${FreeShip}|tr -d '\r'|tr -d '\n')
 
 if [ -x /usr/bin/git ]
 then

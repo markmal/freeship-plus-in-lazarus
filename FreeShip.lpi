@@ -29,9 +29,9 @@
     <MacroValues Count="1">
       <Macro1 Name="LCLWidgetType" Value="qt"/>
     </MacroValues>
-    <BuildModes Count="4">
-      <Item1 Name="Default" Default="True"/>
-      <Item2 Name="Debug">
+    <BuildModes Count="5">
+      <Item1 Name="Default Qt4" Default="True"/>
+      <Item2 Name="Linux amd64 Qt4 Debug">
         <MacroValues Count="1">
           <Macro1 Name="LCLWidgetType" Value="qt"/>
         </MacroValues>
@@ -58,7 +58,6 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
-            <VerifyObjMethodCallValidity Value="True"/>
             <Optimizations>
               <OptimizationLevel Value="0"/>
             </Optimizations>
@@ -95,7 +94,7 @@
           </Other>
         </CompilerOptions>
       </Item2>
-      <Item3 Name="Release">
+      <Item3 Name="Linux amd64 Qt4 Release">
         <MacroValues Count="1">
           <Macro1 Name="LCLWidgetType" Value="qt"/>
         </MacroValues>
@@ -151,7 +150,7 @@
           </Other>
         </CompilerOptions>
       </Item3>
-      <Item4 Name="Windows">
+      <Item4 Name="Windows x86 Qt4 Debug">
         <MacroValues Count="1">
           <Macro1 Name="LCLWidgetType" Value="qt"/>
         </MacroValues>
@@ -178,7 +177,6 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
-            <VerifyObjMethodCallValidity Value="True"/>
             <Optimizations>
               <OptimizationLevel Value="0"/>
             </Optimizations>
@@ -210,8 +208,70 @@
           </Other>
         </CompilerOptions>
       </Item4>
+      <Item5 Name="Linux x86 Qt4 Debug">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="FreeShip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
+            <OtherUnitFiles Value="Units;Forms"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <SyntaxMode Value="Delphi"/>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2Set"/>
+              <UseHeaptrc Value="True"/>
+              <UseExternalDbgSyms Value="True"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+              <ShowGenInfo Value="False"/>
+              <ShoLineNum Value="True"/>
+              <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+            </Verbosity>
+            <ExecuteBefore>
+              <Command Value="/bin/bash $(ProjPath)/gitlastrev.sh"/>
+              <CompileReasons Run="False"/>
+            </ExecuteBefore>
+            <ExecuteAfter>
+              <ScanForFPCMsgs Value="True"/>
+              <ScanForMakeMsgs Value="True"/>
+              <ShowAllMessages Value="True"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item5>
       <SharedMatrixOptions Count="1">
-        <Item1 ID="134221032983" Modes="Default,Debug,Windows,Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
+        <Item1 ID="134221032983" Modes="Default Qt4,Linux amd64 Qt4 Debug,Windows x86 Qt4 Debug,Linux amd64 Qt4 Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>

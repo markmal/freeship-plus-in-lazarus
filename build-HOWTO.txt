@@ -7,8 +7,22 @@ Note: Due to absense of reliable Qt4 dlls only 32-bit Lazarus is currently suppo
 You may try to build 64-bit FreeShip, if you have Qt4 64-bit dlls.
 
 In Windows you need git for Windows. Please set it to upload texts in Unix style.
+Also you need: 
+- Cygwin with following packages: sed,grep,binutils,file,cut,git,zip,imagemagic
+- MinGW32 to build FreeShip
+- Qt4-opensource-mingw for following dependency libraries:
+libgcc_s_dw2-1.dll
+libstdc++-6.dll
+libwinpthread-1.dll
+QtCore4.dll
+QtGui4.dll
+QtNetwork4.dll
+QtWebKit4.dll
+
+copy these libraries into project root
 
 You need Qt4Pas5 libraries to run FreeShip.
+In WIndows: Qt4Pas5.dll
 
 If you have Lazarus 1.6.0, 1.6.1, you will need to fix bug 0029978 of LCL for QT by applying following patch:
 http://bugs.freepascal.org/ bug ID:0029978
@@ -19,13 +33,7 @@ Some prerequisites have to be fulfilled first:
  - build versinfo utility. Build Utils/versinfo.lpi
  - release.sh and zipbin.sh are Bash scripts that call some non-windows utils: md5sum, grep, sed, file, cut, zip.
    In Linux you usually already have them out of box. If not, please install.
-   In Windows you need to install something like Cygwin or Msys2.
+   In Windows you need to install something like Cygwin, as it mentioned above, or Msys2.
    Good recent news: In Windows 10 these binaries can be installed natively (from Ubuntu) and you can use Bash as command line.
 
 Good luck!
-
-
-
-
-
-

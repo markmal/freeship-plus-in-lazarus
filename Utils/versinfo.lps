@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectSession>
-    <Version Value="9"/>
+    <Version Value="10"/>
     <BuildModes Active="Default"/>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="versinfo.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="63"/>
         <CursorPos X="14" Y="67"/>
         <UsageCount Value="217"/>
@@ -20,8 +19,18 @@
         <CursorPos X="15" Y="120"/>
         <UsageCount Value="107"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="../Units/FreeShipUnit.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="55"/>
+        <CursorPos X="17" Y="62"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit2>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="versinfo.pas"/>
         <Caret Line="34" TopLine="16"/>
@@ -138,6 +147,9 @@
         <Filename Value="versinfo.pas"/>
         <Caret Line="81" TopLine="68"/>
       </Position29>
+      <Position30>
+        <Filename Value="../Units/FreeShipUnit.pas"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

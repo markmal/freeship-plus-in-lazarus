@@ -366,6 +366,7 @@ begin
       for N:=1 to Station.Count do
       begin
          Spline:=Station.Items[N-1];
+         Spline.Rebuild;
          for J:=1 to NumberOfWaterlines do
          begin
             WlSpacing:=Min.Z+(J-1)/(NumberOfWaterlines-1)*Draft;

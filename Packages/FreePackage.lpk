@@ -8,7 +8,7 @@
       <SearchPaths>
         <IncludeFiles Value="$(ProjPath);$(ProjPath)/Forms;$(ProjPath)/Units;../Forms;../Units;.."/>
         <Libraries Value="$(ProjPath)/Units"/>
-        <OtherUnitFiles Value="$(ProjPath)/Forms;$(ProjPath)/Units;../Forms;../Units"/>
+        <OtherUnitFiles Value="$(ProjPath)/Forms;$(ProjPath)/Units;../Forms"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
         <ObjectPath Value="../Units"/>
       </SearchPaths>
@@ -76,6 +76,7 @@
       </Item3>
     </RequiredPkgs>
     <UsageOptions>
+      <IncludePath Value="/home/mark/MyProjects/freeship-plus-in-lazarus/Utils;/home/mark/MyProjects/freeship-plus-in-lazarus/Forms"/>
       <UnitPath Value="$(PkgOutDir)"/>
     </UsageOptions>
     <PublishOptions>

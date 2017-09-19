@@ -7370,6 +7370,7 @@ begin
          end else MinMax(FPoints[I-1],FMin,FMax);
       end;
    end;
+   FFragments := FNoPoints * 1; //MM: just set
    inherited Rebuild;
 end;{TFreeSpline.Rebuild}
 
@@ -7506,7 +7507,7 @@ begin
       Result:=False;
    end;
 
-   // MM: Useless code? Commenting out
+   // MM: Useless code? Commenting out.
    {
    for I:=1 to numberofpoints do
       if Knuckle[I-1]
@@ -7518,6 +7519,7 @@ begin
    }
 
    Capacity:=NumberOfPoints;
+   Fragments:=NumberOfPoints*5;
    Build:=False;
 end;{TFreeSpline.Simplify}
 

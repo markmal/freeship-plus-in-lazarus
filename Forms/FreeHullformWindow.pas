@@ -454,6 +454,11 @@ begin
       P.X:=X;
       P.Y:=Y;
       P2D:=Viewport.ProjectBackTo2D(P);
+      if abs(P2D.X)<1e-6 then P2D.X := 0;
+      if abs(P2D.X)>1e+6 then P2D.X := 1e+6;
+      if abs(P2D.Y)<1e-6 then P2D.Y := 0;
+      if abs(P2D.Y)>1e+6 then P2D.Y := 1e+6;
+
       Case Viewport.ViewType of
          fvBodyplan     : Str:=Userstring(215)+'.';
          fvProfile      : Str:=Userstring(216)+'.';

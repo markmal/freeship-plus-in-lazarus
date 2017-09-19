@@ -59,7 +59,13 @@ uses
      FreeStringsUnit,
      FreeStringUtils,
      Controls,
-     FileUtil,
+          {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
      StrUtils;
 
 // Skip translation

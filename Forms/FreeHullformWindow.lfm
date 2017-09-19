@@ -14,9 +14,11 @@ object FreeHullWindow: TFreeHullWindow
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnKeyPress = FormKeyPress
+  OnKeyUp = FormKeyUp
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.6.0.4'
   Visible = True
   object ScrollBar1: TScrollBar
     Left = 0
@@ -90,8 +92,8 @@ object FreeHullWindow: TFreeHullWindow
     Images = Images
     AutoPopup = False
     OnPopup = PopupMenuPopup
-    left = 96
-    top = 96
+    left = 128
+    top = 40
     object Deselectall1: TMenuItem
       Action = DeselectAll
     end
@@ -524,8 +526,8 @@ object FreeHullWindow: TFreeHullWindow
   end
   object ActionList1: TActionList
     Images = Images
-    left = 24
-    top = 96
+    left = 48
+    top = 40
     object StandardLens: TAction
       Category = 'Camera'
       Caption = 'Standard lens 50mm.'
@@ -688,8 +690,8 @@ object FreeHullWindow: TFreeHullWindow
     end
   end
   object Images: TImageList
-    left = 184
-    top = 96
+    left = 208
+    top = 40
     Bitmap = {
       4C690A0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000B8B8C0FF9292
@@ -1015,7 +1017,7 @@ object FreeHullWindow: TFreeHullWindow
     }
   end
   object PrintDialog: TPrintDialog
-    left = 256
-    top = 96
+    left = 280
+    top = 40
   end
 end

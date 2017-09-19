@@ -45,9 +45,13 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
       FPImage,
       GraphType, GraphMath, Graphics, Controls,
       PrintersDlgs, Printer4Lazarus, FreePrinter,
-      //FileUtil, -- Deprecated
+     {$IFDEF VER3}
+      LazUTF8,
       LazFileUtils,
-      //LazUTF8,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
      {$endif}
      {$IFDEF LCLGTK2}
       Gtk2WSDialogs, GTK2,
@@ -1214,6 +1218,7 @@ const Temp : array[0..11] of TFloatType=(0.0,3.8, 5.0, 7.2,  10.0, 12.2, 15.0, 1
 var
  i     :integer; 
 begin
+  Result:=0;
   For i:=1 to 11 do begin
      if Temper < Temp[i] then
         begin
@@ -5280,7 +5285,8 @@ begin
    FShowHydrostMetacentricHeight:=True;
    FShowHydrostLCF:=True;
    FShowFlowlines:=True;
-   if assigned(Owner.FOnChangeCursorIncrement) then Owner.FOnChangeCursorIncrement(self);
+   if assigned(Owner.FOnChangeCursorIncrement)
+       then Owner.FOnChangeCursorIncrement(self);
 end;{TFreeVisibility.Clear}
 
 procedure TFreeVisibility.DecreaseCurvatureScale;
@@ -7781,7 +7787,6 @@ var
       {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/Add_Mass.EXE '),0);
       {$else}
-      //SysUtils.ExecuteProcessUTF8( (UTF8ToSys(FExecDirectory+'/Add_Mass.EXE'), '', []);
       SysUtils.ExecuteProcess(FExecDirectory+'/Add_Mass.EXE', '', []);
       {$endif}
    // may be it needs to wait the out file and to rename it to something meningful?
@@ -8248,8 +8253,9 @@ begin
             for I:=1 to Owner.Surface.NumberOfControlFaces do
             begin
                CtrlFace:=Owner.Surface.ControlFace[I-1];
-               if Layers.SortedIndexOf(Ctrlface.Layer)<>-1 then ColorIndex:=ColorIndices[Layers.SortedIndexOf(Ctrlface.Layer)]
-                                                           else Colorindex:=0;
+               if Layers.SortedIndexOf(Ctrlface.Layer)<>-1
+                  then ColorIndex:=ColorIndices[Layers.SortedIndexOf(Ctrlface.Layer)]
+                  else Colorindex:=0;
                if CtrlFace.NumberOfpoints=4 then
                begin
                   FaceData.NCols:=1;
@@ -11436,7 +11442,7 @@ begin
       NewGroup.Destroy;
       if (Leaks.Count>0) and (ShowResult) then
       begin
-         Str:=Userstring(149)+#32+IntToStr(Leaks.Count)+#32+Userstring(150)+'.';
+         Str:=Userstring(149)+' '+IntToStr(Leaks.Count)+' '+Userstring(150)+'.';
          if Leaks.Count>10 then Str:=Str+EOL+Userstring(151)+':';
          Str:=Str+EOL;
          for I:=1 to Leaks.Count do
@@ -11461,10 +11467,10 @@ begin
          if ShowResult then
          begin
             Str:=Userstring(152)+':';
-            if DblEdges>0 then Str:=Str+EOL+IntToStr(DblEdges)+#32+UserString(158)+'.';
-            if Inconsistent>0 then Str:=Str+EOL+IntToStr(Inconsistent)+#32+Userstring(153)+'.';
-            if InvertedFaces>0 then Str:=Str+EOL+IntToStr(InvertedFaces)+#32+Userstring(154)+'.';
-            if NonManifold>0 then Str:=Str+EOL+IntToStr(NonManifold)+#32+Userstring(155);
+            if DblEdges>0 then Str:=Str+EOL+IntToStr(DblEdges)+' '+UserString(158)+'.';
+            if Inconsistent>0 then Str:=Str+EOL+IntToStr(Inconsistent)+' '+Userstring(153)+'.';
+            if InvertedFaces>0 then Str:=Str+EOL+IntToStr(InvertedFaces)+' '+Userstring(154)+'.';
+            if NonManifold>0 then Str:=Str+EOL+IntToStr(NonManifold)+' '+Userstring(155);
             MessageDlg(Str,mtInformation,[mbOk],0);
             if assigned(Owner.FOnUpdateGeometryInfo) then Owner.FOnUpdateGeometryInfo(self);
          end;
@@ -14568,7 +14574,13 @@ var
     RecentFileNames : TStringList;
 begin
   if not FileExistsUTF8(Filename)
-   then exit;
+   then begin
+     if Application.Mainform<>nil then begin
+       Application.MainForm.WindowState:=wsNormal;
+       Application.MainForm.SetBounds(0,0,Screen.WorkAreaWidth,Screen.WorkAreaHeight);
+       end;
+     exit;
+   end;
 
   params := TColorIniFile.create(Filename, false );
 
@@ -14607,16 +14619,16 @@ begin
     //Readln(FFile,T,L,H,W,S);
    T := params.ReadInteger('Window','Top',0);
    L := params.ReadInteger('Window','Left',0);
-   H := params.ReadInteger('Window','Height',80);
-   W := params.ReadInteger('Window','Width',1250);
+   H := params.ReadInteger('Window','Height',Screen.WorkAreaHeight );
+   W := params.ReadInteger('Window','Width',Screen.WorkAreaWidth );
    S := params.ReadInteger('Window','State',Integer(wsNormal));
 
    if Application.Mainform<>nil then
     begin
        if L>Screen.Width then L:=0;
        if T>Screen.Height then T:=0;
-       if W>Screen.Width then begin W:=Screen.Width; H:=110; end;
-       if H>Screen.Height then H:=Screen.Height;
+       if W>Screen.Width then W:=Screen.WorkAreaWidth;
+       if H>Screen.Height then H:=Screen.WorkAreaHeight;
        case TWindowState(S) of
           wsNormal	   : Application.MainForm.SetBounds(L,T,W,H);
           wsMinimized	   : begin
@@ -16075,7 +16087,8 @@ begin
 
    FEdit:=TFreeEdit.Create(Self);
    FPreferences:=TFreePreferences.Create(self);
-   FPreferences.Load;
+   if Assigned(AOwner)  // load preferences only for main FreeShip instance, not for preview ones
+     then FPreferences.Load;
    FProjectSettings:=TFreeProjectSettings.Create(self);
    FFileVersion:=CurrentVersion;
    FActiveControlPoint:=nil;

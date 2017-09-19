@@ -7,5 +7,9 @@ Units/backup/
 backup/
 hortlog
 Utils/versinfo
+Utils/lib
 *.zip
 *.md5
+*.deb
+*.log
+*.bak

@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 557
+  Left = 402
   Height = 800
-  Top = 199
+  Top = 152
   Width = 1200
   Align = alTop
   ClientHeight = 775
@@ -45,7 +45,6 @@ object MainForm: TMainForm
       Height = 18
       Top = 1
       Width = 200
-      Align = alLeft
       BevelOuter = bvLowered
       Caption = 'Undo memory : 0 kb.'
       Font.Color = clWindowText
@@ -61,7 +60,6 @@ object MainForm: TMainForm
       Height = 18
       Top = 1
       Width = 200
-      Align = alLeft
       BevelOuter = bvLowered
       Caption = 'distance : '
       Font.Color = clWindowText
@@ -77,8 +75,7 @@ object MainForm: TMainForm
       Left = 401
       Height = 18
       Top = 1
-      Width = 300
-      Align = alLeft
+      Width = 583
       BevelOuter = bvLowered
       Font.Color = clWindowText
       Font.Height = -12
@@ -630,7 +627,6 @@ object MainForm: TMainForm
     OnUpdateRecentFileList = FreeShipUpdateRecentFileList
     OnUpdateUndoData = FreeShipUpdateUndoData
     Precision = fpLow
-    FontSize = 0
     left = 32
     top = 72
   end
@@ -770,6 +766,7 @@ object MainForm: TMainForm
       Hint = 'Split a face by inserting a new edge between to selected points.'
       ImageIndex = 10
       OnExecute = NewEdgeExecute
+      ShortCut = 69
     end
     object EdgeCrease: TAction
       Category = 'Edge'
@@ -870,6 +867,7 @@ object MainForm: TMainForm
       Hint = 'Create new controlpoints by splitting an controledge into two.'
       ImageIndex = 20
       OnExecute = EdgeSplitExecute
+      ShortCut = 83
     end
     object EditProjectSettings: TAction
       Category = 'Project'
@@ -1005,6 +1003,7 @@ object MainForm: TMainForm
       Caption = 'Add'
       Hint = 'Add a new controlpoint to the model.'
       OnExecute = AddPointExecute
+      ShortCut = 80
     end
     object DevelopLayers: TAction
       Category = 'Tools'

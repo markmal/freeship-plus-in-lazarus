@@ -5,16 +5,32 @@ Installation from ZIP
 1. Create temporary directory
 2. Copy FreeShip*.zip file into it and unzip it.
 3. You can install FreeShip into user space (your home) or into system space to be shared by multiple users.
-3.a To install it into user space run `./install-user.sh'
+3.a To install it into user space run `./install-user.sh'. In Windows run install-user.cmd
 3.b To install it into system space run `sudo ./install-system.sh'
 
 Uninstallation of FreeShip that has been installed from ZIP
-a. To uninstall it from user space `cd $HOME/FreeShip; ./uninstall-user.sh'
+a. To uninstall it from user space `cd $HOME/FreeShip; ./uninstall-user.sh'. In Windows run uninstall-user.cmd
 b. To uninstall it from system space `cd /usr/share/FreeShip; sudo ./uninstall-system.sh'
 
 Installation from Debian package `sudo dpkg -i freeship_<***>.deb
 Only system space installation from .deb is currently supported
 
+You can run FreeShip with following parameters:
+
+Parameters that can be helpful when debugging in Lazarus:
+--nosplash	does not show splash screen on start.
+--debug		tells program that it is running in debugger.
+
+Parameters for logging (use one of following):
+--log-error	sets log level to write only error messages.
+--log-warning	sets log level to write error and warning messages.
+--log-info	sets log level to write error, warning and informational messages.
+--log-debug	sets log level to write error, warning, informational and debug messages.
+--debug-log=<filename> to spool log into a file.
+
+Note that in Windows there is no console for GUI apps. 
+Messages cannot be written to console even when FreShip is started from console/command line.
+You should use parameter --log-debug=<filename> to spool log to a file.
 
 
 

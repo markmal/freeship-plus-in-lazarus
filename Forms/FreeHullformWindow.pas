@@ -134,6 +134,10 @@ type
                            BackgroundVisible: TAction;
                            Visible1: TMenuItem;
                            procedure FormDestroy(Sender: TObject);
+                           procedure FormKeyPress(Sender: TObject; var Key: char
+                             );
+                           procedure FormKeyUp(Sender: TObject; var Key: Word;
+                             Shift: TShiftState);
                            procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                            procedure ViewportRedraw(Sender: TObject);
                            procedure FormCreate(Sender: TObject);
@@ -289,6 +293,17 @@ procedure TFreeHullWindow.FormDestroy(Sender: TObject);
 begin
 end;
 
+procedure TFreeHullWindow.FormKeyPress(Sender: TObject; var Key: char);
+begin
+  ViewportKeyPress(Sender, Key);
+end;
+
+procedure TFreeHullWindow.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  ViewportKeyUp(Sender, Key, Shift);
+end;
+
 procedure TFreeHullWindow.ViewportRedraw(Sender: TObject);
 begin
    if FreeShip<>nil then FreeShip.DrawToViewport(Viewport);
@@ -439,6 +454,11 @@ begin
       P.X:=X;
       P.Y:=Y;
       P2D:=Viewport.ProjectBackTo2D(P);
+      if abs(P2D.X)<1e-6 then P2D.X := 0;
+      if abs(P2D.X)>1e+6 then P2D.X := 1e+6;
+      if abs(P2D.Y)<1e-6 then P2D.Y := 0;
+      if abs(P2D.Y)>1e+6 then P2D.Y := 1e+6;
+
       Case Viewport.ViewType of
          fvBodyplan     : Str:=Userstring(215)+'.';
          fvProfile      : Str:=Userstring(216)+'.';

@@ -35,7 +35,13 @@ uses
     {$IFDEF Windows}
     Windows,
     {$ELSE}
-    FileUtil,
+         {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
     {$ENDIF}
      Messages,
      SysUtils,

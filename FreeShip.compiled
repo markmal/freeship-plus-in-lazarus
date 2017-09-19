@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
+<<<<<<< HEAD
   <Compiler Value="D:\opt\lazarus\fpc\3.0.2\bin\x86_64-win64\fpc.exe" Date="1247518955"/>
   <Params Value=" -Twin32 -Pi386 -MDelphi -Scaghi -Cirot -gw2 -gl -l -vewilbq -vn-h- -FiD:\my\prj\freeship-plus-in-lazarus\Units -FiD:\my\prj\freeship-plus-in-lazarus\Forms -FuD:\my\prj\freeship-plus-in-lazarus\Units -FuD:\my\prj\freeship-plus-in-lazarus\Forms -FuD:\my\prj\freeship-plus-in-lazarus\Packages\lib\i386-win32 -FuD:\opt\lazarus\components\tachart\lib\i386-win32\qt -FuD:\opt\lazarus\components\printers\lib\i386-win32\qt -FuD:\opt\lazarus\components\ideintf\units\i386-win32\qt -FuD:\opt\lazarus\components\lazcontrols\lib\i386-win32\qt -FuD:\opt\lazarus\components\cairocanvas\lib\i386-win32\qt -FuD:\opt\lazarus\lcl\units\i386-win32\qt -FuD:\opt\lazarus\lcl\units\i386-win32 -FuD:\opt\lazarus\components\lazutils\lib\i386-win32 -FuD:\opt\lazarus\packager\units\i386-win32 -FuD:\my\prj\freeship-plus-in-lazarus\ -dLCL -dLCLqt -dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL FreeShip.dpr"/>
+=======
+  <Compiler Value="C:\lazarus\fpc\3.0.0\bin\i386-win32\fpc.exe" Date="1213097031"/>
+  <Params Value=" -MDelphi -Scaghi -CirotR -g -gl -WG -l -vewilbq -vn-h- -FiC:\Users\Administrator\MyProjects\freeship-plus-in-lazarus\Units -FiC:\Users\Administrator\MyProjects\freeship-plus-in-lazarus\Forms -FuC:\Users\Administrator\MyProjects\freeship-plus-in-lazarus\Units -FuC:\Users\Administrator\MyProjects\freeship-plus-in-lazarus\Forms -FuC:\Users\Administrator\MyProjects\freeship-plus-in-lazarus\Packages\lib\i386-win32 -FuC:\lazarus\components\tachart\lib\i386-win32\qt -FuC:\lazarus\components\printers\lib\i386-win32\qt -FuC:\lazarus\components\ideintf\units\i386-win32\qt -FuC:\lazarus\components\lazcontrols\lib\i386-win32\qt -FuC:\lazarus\components\cairocanvas\lib\i386-win32\qt -FuC:\lazarus\lcl\units\i386-win32\qt -FuC:\lazarus\lcl\units\i386-win32 -FuC:\lazarus\components\lazutils\lib\i386-win32 -FuC:\lazarus\packager\units\i386-win32 -FuC:\Users\Administrator\MyProjects\freeship-plus-in-lazarus\ -dLCL -dLCLqt FreeShip.dpr"/>
+>>>>>>> 1dc071a09fba17561caa85167f8f6993d0b2cff4
 </CONFIG>

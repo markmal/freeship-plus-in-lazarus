@@ -59,7 +59,12 @@ uses
   FreeVersionUnit,
   FreeFileBuffer,
   ExtCtrls,
-  FileUtil,
+{$IFDEF VER3}
+ LazUTF8,
+ LazFileUtils,
+{$ELSE}
+ FileUtil, //deprecated
+{$ENDIF}
   FreeBitmapFormatHelper;
 
 const Foot                          = 0.3048;
@@ -1181,6 +1186,7 @@ type TFreeSubdivisionBase           = class;
                                     procedure   Clearselection;
                                     procedure   ConvertToGrid(Input:TFreeFaceGrid;var Cols,Rows:Integer;var Grid:TFreeSubdivisionGrid);
                                     procedure   Edge_Connect;
+                                    function    CanInsertEdge: boolean;
                                     procedure   ExportFeFFile(Strings:TStringList);
                                     procedure   ExportObjFile(ExportControlNet:Boolean;Strings:TStringList);
                                     procedure   Extents(Var Min,Max : T3DCoordinate);                          override;
@@ -7364,7 +7370,7 @@ begin
          end else MinMax(FPoints[I-1],FMin,FMax);
       end;
    end;
-   FFragments := FNoPoints; //just to try
+   FFragments := FNoPoints * 1; //MM: just set
    inherited Rebuild;
 end;{TFreeSpline.Rebuild}
 
@@ -7501,7 +7507,7 @@ begin
       Result:=False;
    end;
 
-   // MM: Useless code? Commenting out
+   // MM: Useless code? Commenting out.
    {
    for I:=1 to numberofpoints do
       if Knuckle[I-1]
@@ -7513,6 +7519,7 @@ begin
    }
 
    Capacity:=NumberOfPoints;
+   Fragments:=NumberOfPoints*5;
    Build:=False;
 end;{TFreeSpline.Simplify}
 
@@ -15257,11 +15264,58 @@ begin
                end;
             end;
             DelayedDestroyList.DestroyAll;
-         end else if NumberOfSelectedControlPoints=2 then MessageDlg(Userstring(202)+'!',mtWarning,[mbOk],0);
+         end
+         else if NumberOfSelectedControlPoints=2
+            then MessageDlg(Userstring(202)+'!',mtWarning,[mbOk],0);
       end;
       for I:=NumberOfSelectedControlPoints downto 1 do SelectedControlPoint[I-1].Selected:=False;
    end;
 end;{TFreeSubdivisionSurface.Edge_Connect}
+
+{
+ Can new edge be inserted?
+ Following conditions have to be satisfied:
+  - two or more points must be selected;
+  - two points must belong same face;
+  - edge for these points must not exist.
+}
+function TFreeSubdivisionSurface.CanInsertEdge: boolean;
+var Face          : TFreeSubdivisionControlFace;
+    Edge          : TFreeSubdivisionControlEdge;
+    V1,V2         : TFreeSubdivisionControlPoint;
+    I,J           : Integer;
+begin
+   result := false;
+   if NumberOfSelectedControlPoints>1 then
+   begin
+      for I:=NumberOfSelectedControlPoints-1 downto 1 do
+      begin
+         V1:=SelectedControlPoint[NumberOfSelectedControlPoints-2];
+         V2:=SelectedControlPoint[NumberOfSelectedControlPoints-1];
+         if EdgeExists(V1,V2)=nil then
+         begin
+            if (V1.NumberOfFaces=0) and (V2.NumberOfFaces=0) then
+            begin
+               Edge:=AddControlEdge(V1,V2);
+               if Edge<>nil then edge.Crease:=True;
+            end
+            else
+            For J:=1 to V1.NumberOfFaces do
+            begin
+               Face:=V1.Face[J-1] as TFreeSubdivisionControlFace;
+               if V2.IndexOfFace(Face)<>-1 then
+               begin
+                  result := true;
+                  break;
+               end;
+            end;
+         end
+         else if NumberOfSelectedControlPoints=2
+            then result := false;
+      end;
+   end;
+end;{TFreeSubdivisionSurface.Edge_Connect}
+
 
 procedure TFreeSubdivisionSurface.ExportFEFFile(Strings:TStringList);
 var I       : Integer;

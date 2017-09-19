@@ -42,7 +42,13 @@ uses
   Controls,
   Forms,
   SysUtils,
-  FileUtil,
+       {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
   Main in 'Forms/Main.pas' {MainForm},
   FreeHullformWindow in 'Forms/FreeHullformWindow.pas' {FreeHullWindow},
@@ -116,20 +122,24 @@ begin
     else if S = '--log-error' then Logger.LogLevel:=LOG_ERROR
     else if S = '--log-warning' then Logger.LogLevel:=LOG_WARNING
     else if S = '--log-debug' then Logger.LogLevel:=LOG_DEBUG
+    else if UTF8LeftStr(S,12) = '--debug-log=' then
+         // skip LazLogger param
     else sOpenFile:=S;
   end;
 end;
 
 
 begin
+   Logger.LogLevel:=LOG_INFO;
+   Logger.Info('FreeShip in Lazarus');
+   Logger.Info('Compiled at '+COMPILE_DATE+' '+COMPILE_TIME);
+   Logger.Info('Compiler version: '+FPCVERSION);
+   Logger.Info('Target CPU: '+TARGET_CPU);
+   Logger.Info('Target OS: '+TARGET_OS);
+   Logger.Info('FreeShip Product version: '+FREESHIP_VERSION);
+   Logger.Info('FreeShip Program version: '+ResourceVersionInfo);
+   Logger.Info('Last Git Change Revision: '+IntToStr(GITVERSION_REVISION));
    Logger.LogLevel:=LOG_ERROR;
-   Writeln ('Compiled at ',COMPILE_DATE,' ',COMPILE_TIME);
-   Writeln ('Compiler version: ',{$I %FPCVERSION%});
-   Writeln ('Target CPU: ',TARGET_CPU);
-   Writeln ('Target OS: ',TARGET_OS);
-   Writeln ('FreeShip Product version: ',FREESHIP_VERSION);
-   Writeln ('FreeShip Program version: ',ResourceVersionInfo);
-   Writeln ('Last SVN Change Revision: ',SUBVERSION_REVISION);
 
 
    ShowSplash:=true;

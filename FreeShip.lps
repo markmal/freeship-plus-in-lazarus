@@ -2,8 +2,8 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="10"/>
-    <BuildModes Active="Default"/>
-    <Units Count="97">
+    <BuildModes Active="Default Qt4"/>
+    <Units Count="98">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -594,9 +594,10 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="8339"/>
-        <CursorPos Y="8348"/>
+        <TopLine Value="14342"/>
+        <CursorPos X="38" Y="14333"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -806,10 +807,9 @@
       </Unit72>
       <Unit73>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="7910"/>
-        <CursorPos X="25" Y="7922"/>
+        <TopLine Value="7358"/>
+        <CursorPos X="37" Y="7366"/>
         <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -1004,95 +1004,130 @@
         <CursorPos X="36" Y="77"/>
         <UsageCount Value="10"/>
       </Unit96>
+      <Unit97>
+        <Filename Value="GITLastChangeRevision.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="4"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit97>
     </Units>
-    <JumpHistory Count="22" HistoryIndex="21">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="679" TopLine="675"/>
-      </Position1>
-      <Position2>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="2218" TopLine="2212"/>
-      </Position2>
-      <Position3>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="8348" TopLine="8339"/>
-      </Position3>
-      <Position4>
         <Filename Value="Forms/FreeMichletOutputDlg.pas"/>
         <Caret Line="662" TopLine="637"/>
-      </Position4>
-      <Position5>
+      </Position1>
+      <Position2>
         <Filename Value="Forms/FreeMichletOutputDlg.pas"/>
         <Caret Line="373" TopLine="359"/>
+      </Position2>
+      <Position3>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <Caret Line="7916" TopLine="7901"/>
+      </Position3>
+      <Position4>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <Caret Line="7917" TopLine="7901"/>
+      </Position4>
+      <Position5>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <Caret Line="7918" TopLine="7901"/>
       </Position5>
       <Position6>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7916" TopLine="7901"/>
+        <Caret Line="7919" TopLine="7901"/>
       </Position6>
       <Position7>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7917" TopLine="7901"/>
+        <Caret Line="7920" TopLine="7901"/>
       </Position7>
       <Position8>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7918" TopLine="7901"/>
+        <Caret Line="7921" TopLine="7901"/>
       </Position8>
       <Position9>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7919" TopLine="7901"/>
+        <Caret Line="7922" TopLine="7901"/>
       </Position9>
       <Position10>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7920" TopLine="7901"/>
+        <Caret Line="8077" Column="10" TopLine="8056"/>
       </Position10>
       <Position11>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7921" TopLine="7901"/>
       </Position11>
       <Position12>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7922" TopLine="7901"/>
+        <Caret Line="7367" Column="42" TopLine="7342"/>
       </Position12>
       <Position13>
-        <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="8077" Column="10" TopLine="8056"/>
-      </Position13>
-      <Position14>
-        <Filename Value="Units/FreeGeometry.pas"/>
-      </Position14>
-      <Position15>
-        <Filename Value="Units/FreeGeometry.pas"/>
-        <Caret Line="7367" Column="42" TopLine="7342"/>
-      </Position15>
-      <Position16>
         <Filename Value="FreeShip.dpr"/>
         <Caret Line="125" TopLine="109"/>
-      </Position16>
-      <Position17>
+      </Position13>
+      <Position14>
         <Filename Value="Forms/Main.pas"/>
         <Caret Line="2218" TopLine="2212"/>
-      </Position17>
-      <Position18>
+      </Position14>
+      <Position15>
         <Filename Value="Forms/FreeMichletOutputDlg.pas"/>
         <Caret Line="373" TopLine="359"/>
-      </Position18>
-      <Position19>
+      </Position15>
+      <Position16>
         <Filename Value="Units/FreeGeometry.pas"/>
         <Caret Line="7917" TopLine="7902"/>
-      </Position19>
-      <Position20>
+      </Position16>
+      <Position17>
         <Filename Value="Units/FreeGeometry.pas"/>
         <Caret Line="7925" TopLine="7914"/>
-      </Position20>
-      <Position21>
+      </Position17>
+      <Position18>
         <Filename Value="Units/FreeGeometry.pas"/>
         <Caret Line="7202" TopLine="7186"/>
-      </Position21>
-      <Position22>
+      </Position18>
+      <Position19>
         <Filename Value="Forms/FreeMichletOutputDlg.pas"/>
         <Caret Line="373" TopLine="359"/>
+      </Position19>
+      <Position20>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="8348" TopLine="8339"/>
+      </Position20>
+      <Position21>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="53" Column="6" TopLine="33"/>
+      </Position21>
+      <Position22>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="6498" TopLine="6481"/>
       </Position22>
+      <Position23>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="7790" TopLine="7775"/>
+      </Position23>
+      <Position24>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="11212" TopLine="11197"/>
+      </Position24>
+      <Position25>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14257" TopLine="14240"/>
+      </Position25>
+      <Position26>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14329" TopLine="14313"/>
+      </Position26>
+      <Position27>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="14320" Column="18" TopLine="14313"/>
+      </Position27>
+      <Position28>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <Caret Line="7922" Column="25" TopLine="7910"/>
+      </Position28>
+      <Position29>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <Caret Line="7373" TopLine="7358"/>
+      </Position29>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

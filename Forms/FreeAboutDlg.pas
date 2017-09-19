@@ -29,7 +29,13 @@ unit FreeAboutDlg;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  Classes, SysUtils,      {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+ Forms, Controls, Graphics, Dialogs, ExtCtrls,
   Messages,
   LCLIntf, LCLType, LMessages,
   StdCtrls, ValEdit, Grids, Buttons,
@@ -117,7 +123,7 @@ begin
   //StringGridVersionInfo.RowCount:=0;
   AddVersionInfo('Product version',FREESHIP_VERSION);
   AddVersionInfo('Program version',ResourceVersionInfo);
-  AddVersionInfo('SVN Revision',IntToStr(SUBVERSION_REVISION));
+  AddVersionInfo('Git Revision',IntToStr(GITVERSION_REVISION));
   AddVersionInfo('Build date',COMPILE_DATE+' '+COMPILE_TIME);
   AddVersionInfo('Compiler version',{$I %FPCVERSION%});
   AddVersionInfo('Target CPU',TARGET_CPU);

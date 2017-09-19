@@ -5,7 +5,13 @@ unit EnterThemeNameDlg;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils,      {$IFDEF VER3}
+      LazUTF8,
+      LazFileUtils,
+     {$ELSE}
+      FileUtil, //deprecated
+     {$ENDIF}
+ Forms, Controls, Graphics, Dialogs, StdCtrls,
   Buttons, ExtCtrls,
   FreeShipUnit,FreeLanguageSupport;
 

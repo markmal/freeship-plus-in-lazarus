@@ -38,23 +38,24 @@ interface
 uses Classes,SysUtils,Dialogs;
 
 const
- COMPILE_DATE={$I %DATE%};
- COMPILE_TIME={$I %TIME%};
- TARGET_CPU={$I %FPCTARGET%};
- TARGET_OS={$I %FPCTARGETOS%};
+ COMPILE_DATE:string={$I %DATE%};
+ COMPILE_TIME:string={$I %TIME%};
+ TARGET_CPU:string={$I %FPCTARGET%};
+ TARGET_OS:string={$I %FPCTARGETOS%};
 
- FREESHIP_MAJOR_VERSION='3.5';   //Major version
- FREESHIP_VERSION='3.5.0.0';   //Major full version
+ FREESHIP_MAJOR_VERSION='3.6';   //Major version
+ FREESHIP_VERSION='3.6.0.0';   //Major full version
 
- SUBVERSION_REVISION={$I SVNLastChangeRevision.inc};
- GITVERSION_REVISION={$I GITLastChangeRevision.inc}; //number of git commits
+ //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
+ GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits
+ FPCVERSION:string={$I %FPCVERSION%};
 
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,
                              fv201,fv210,fv220,fv230,fv240,fv250,fv260,fv270,fv280,fv290,fv295,fv296,fv297,fv298,fv300,
                              fv302,fv303,fv305,fv309,fv310,fv313,fv314,fv317,fv327,fv332,fv335);
 const CurrentVersion      = fv335;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
-      ReleasedDate        = 'Feb 14, 2015';
+      ReleasedDate        = 'Apr 14, 2016';
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;

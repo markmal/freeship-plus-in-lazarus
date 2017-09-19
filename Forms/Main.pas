@@ -42,7 +42,15 @@ uses
 {$ELSE}
   LCLIntf, LCLType, LMessages,
 {$ENDIF}
-  Messages,
+
+{$IFDEF VER3}
+ LazUTF8,
+ LazFileUtils,
+{$ELSE}
+ FileUtil, //deprecated
+{$ENDIF}
+
+     Messages,
      SysUtils,
      Variants,
      Classes,
@@ -68,7 +76,8 @@ uses
      FreeAboutDlg,
      Menus,
      ToolWin,
-     Buttons, StdActns, Spin, FileUtil;
+     Buttons, StdActns, Spin
+;
 
 type
 
@@ -987,6 +996,19 @@ procedure TMainForm.FOpenHullWindows;
 var HullformWindow: TFreeHullWindow;
     I             : Integer;
 begin
+  Panel3.Destroy;
+  Panel3 := TPanel.Create(Self);
+  Panel3.Parent := StatusBar;
+  Panel3.Color := clWhite;
+  Panel3.Align := alLeft;
+  Panel3.Caption := 'Distance:';
+
+  Panel4.Destroy;
+  Panel4 := TPanel.Create(Self);
+  Panel4.Parent := StatusBar;
+  Panel4.Color := clWhite;
+  Panel4.Align := alLeft;
+
    if MDIChildCount=0 then
    begin
       for I:=0 to 3 do
@@ -1177,7 +1199,7 @@ begin
    Insertplane.Enabled:=(Freeship.Surface.NumberOfControlEdges>0) and (Freeship.Visibility.ShowControlNet);
    LayerIntersection.Enabled:=NLayers>1;
    EdgeCollapse.Enabled:=FreeShip.NumberOfSelectedControlEdges>0;
-   NewEdge.Enabled:=FreeShip.NumberOfSelectedControlPoints>1;
+   NewEdge.Enabled:= (FreeShip.NumberOfSelectedControlPoints>1) and FreeShip.Surface.CanInsertEdge;
    EdgeCrease.Enabled:=FreeShip.NumberOfSelectedControlEdges>0;
    DeselectAll.Enabled:=(Freeship.NumberOfSelectedControlPoints+FreeShip.NumberOfSelectedControlEdges+Freeship.NumberOfSelectedControlFaces+Freeship.NumberOfSelectedControlCurves>0) or
                         (Freeship.ActiveControlPoint<>nil);
@@ -1363,12 +1385,17 @@ begin
 
  //HH := GetSystemMetrics(SM_CYCAPTION); //header height
  //FW := GetSystemMetrics(SM_CYDLGFRAME); //frame width
+
+// Color:=clRed;
+
  HH:=24;
  FW:=2;
  MW := Self.Width + FW*2;
  MH := Self.Height + HH + FW*2;
  T := Self.Top;
  L := Self.Left;
+ T := HH;
+ L := FW;
  MCC := MdiChildCount;
  for i:= 0 to MCC - 1 do
    begin
@@ -2359,7 +2386,8 @@ end;{TMainForm.ResistanceFungLeibExecute}
 
 procedure TMainForm.FreeShipChangeCursorIncrement(Sender: TObject);
 begin
-   Panel3.Caption:=Userstring(284)+': '+Truncate(Freeship.Visibility.CursorIncrement,5);
+  if (csdestroying in componentstate) then exit;
+  Panel3.Caption:=Userstring(284)+': '+Truncate(Freeship.Visibility.CursorIncrement,5);
 end;{TMainForm.FreeShipChangeCursorIncrement}
 
 procedure TMainForm.Panel3Click(Sender: TObject);

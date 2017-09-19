@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="9"/>
+    <Version Value="10"/>
     <General>
       <Flags>
         <MainUnitHasUsesSectionForAllUnits Value="False"/>
@@ -24,7 +24,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="22"/>
+      <BuildNr Value="28"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.5"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -45,22 +45,19 @@
         <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="5">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="lazopenglcontext"/>
+        <PackageName Value="FreePackage"/>
       </Item1>
       <Item2>
-        <PackageName Value="FreePackage"/>
+        <PackageName Value="TAChartLazarusPkg"/>
       </Item2>
       <Item3>
-        <PackageName Value="TAChartLazarusPkg"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item3>
       <Item4>
-        <PackageName Value="Printer4Lazarus"/>
-      </Item4>
-      <Item5>
         <PackageName Value="LCL"/>
-      </Item5>
+      </Item4>
     </RequiredPackages>
     <Units Count="71">
       <Unit0>
@@ -507,7 +504,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <OtherUnitFiles Value="Units;Forms"/>
-      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl/"/>
+      <SrcPath Value="/usr/share/lazarus/1.4.0/lcl"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -522,6 +519,7 @@
         <OverflowChecks Value="True"/>
         <StackChecks Value="True"/>
       </Checks>
+      <TargetCPU Value="i386"/>
       <Optimizations>
         <OptimizationLevel Value="0"/>
       </Optimizations>
@@ -530,11 +528,6 @@
       <Debugging>
         <DebugInfoType Value="dsDwarf2"/>
       </Debugging>
-      <Options>
-        <Win32>
-          <GraphicApplication Value="True"/>
-        </Win32>
-      </Options>
     </Linking>
     <Other>
       <Verbosity>
@@ -545,7 +538,8 @@
       </Verbosity>
       <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
       <ExecuteBefore>
-        <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
+        <Command Value="c:/cygwin64/bin/bash.exe $(ProjPath)/gitlastrev.sh"/>
+        <ShowAllMessages Value="True"/>
         <CompileReasons Run="False"/>
       </ExecuteBefore>
     </Other>

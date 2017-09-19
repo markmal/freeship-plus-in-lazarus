@@ -881,7 +881,7 @@ if (FFileName <> '') and not FreeShip.ModelLoaded then
 begin
    // Skip translation
    FileExt := Uppercase(ExtractFileExt(FFileName));
-   if (FileExistsUTF8(FFileName) { *Converted from FileExists* })
+   if (FileExists(FFileName) { *Converted from FileExists* })
      and ( (FileExt = '.FBM') or (FileExt = '.FTM') ) then
      begin
         FOpenHullWindows;
@@ -1109,25 +1109,25 @@ begin
    ResistanceRBHS.Enabled:=False;
    ResistanceMH.Enabled:=False;   
 // Определяем наличие внешних модулей и если есть включаем задачи в меню
-   if FileExistsUTF8(FExecDirectory+'/ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/Rot_Ship.EXE') { *Converted from FileExists* } then HydrodynTask3_.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/HOLLENBH.EXE') { *Converted from FileExists* } then ResistanceHollen.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/OORTMERS.EXE') { *Converted from FileExists* } then ResistanceOortmer.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/fungleib.EXE') { *Converted from FileExists* } then ResistanceFungLeib.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceOST.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceRBHS.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceMH.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/ManeuvPP.EXE') { *Converted from FileExists* } then HydrodynManeuv_.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/CALCPROP.EXE') { *Converted from FileExists* } then begin
+   if FileExists(FExecDirectory+'/ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
+   if FileExists(FExecDirectory+'/Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
+   if FileExists(FExecDirectory+'/Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
+   if FileExists(FExecDirectory+'/Rot_Ship.EXE') { *Converted from FileExists* } then HydrodynTask3_.Enabled:=True;
+   if FileExists(FExecDirectory+'/HOLLENBH.EXE') { *Converted from FileExists* } then ResistanceHollen.Enabled:=True;
+   if FileExists(FExecDirectory+'/OORTMERS.EXE') { *Converted from FileExists* } then ResistanceOortmer.Enabled:=True;
+   if FileExists(FExecDirectory+'/fungleib.EXE') { *Converted from FileExists* } then ResistanceFungLeib.Enabled:=True;
+   if FileExists(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceOST.Enabled:=True;
+   if FileExists(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceRBHS.Enabled:=True;
+   if FileExists(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceMH.Enabled:=True;
+   if FileExists(FExecDirectory+'/ManeuvPP.EXE') { *Converted from FileExists* } then HydrodynManeuv_.Enabled:=True;
+   if FileExists(FExecDirectory+'/CALCPROP.EXE') { *Converted from FileExists* } then begin
       PropTask1_.Enabled:=True;
       PropTask2_.Enabled:=True;
       PropTask3_.Enabled:=True;
    end;
-   if FileExistsUTF8(FExecDirectory+'/PropPred.EXE') { *Converted from FileExists* } then PropTask4_.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/PROPOL.EXE') { *Converted from FileExists* }   then PropTask5_.Enabled:=True;
-   if FileExistsUTF8(FExecDirectory+'/RVRSSHIP.EXE') { *Converted from FileExists* } then PropTaskRvrs_.Enabled:=True;
+   if FileExists(FExecDirectory+'/PropPred.EXE') { *Converted from FileExists* } then PropTask4_.Enabled:=True;
+   if FileExists(FExecDirectory+'/PROPOL.EXE') { *Converted from FileExists* }   then PropTask5_.Enabled:=True;
+   if FileExists(FExecDirectory+'/RVRSSHIP.EXE') { *Converted from FileExists* } then PropTaskRvrs_.Enabled:=True;
    if ExportAddMass.Enabled then ExportAddMass.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
 //   if HydrodynTask2_.Enabled then HydrodynTask2_.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
 //   HydrodynTask3_.Enabled:=False; //(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
@@ -1265,14 +1265,14 @@ procedure TMainForm.ExitProgramExecute(Sender: TObject);
 begin
    UpdateMenu;
 // My correction begin
-if FileExistsUTF8('Resist.dat') { *Converted from FileExists* } then DeleteFileUTF8('Resist.dat'); { *Converted from DeleteFile* }
-if FileExistsUTF8('RESISTp.dat') { *Converted from FileExists* } then DeleteFileUTF8('RESISTp.dat'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Vint1.dat') { *Converted from FileExists* } then DeleteFileUTF8('Vint1.dat'); { *Converted from DeleteFile* }
-if FileExistsUTF8('SAC.tmp') { *Converted from FileExists* } then DeleteFileUTF8('SAC.tmp'); { *Converted from DeleteFile* }
-if FileExistsUTF8('SACs.txt') { *Converted from FileExists* } then DeleteFileUTF8('SACs.txt'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Bonjean.txt') { *Converted from FileExists* } then DeleteFileUTF8('Bonjean.txt'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Weights.txt') { *Converted from FileExists* } then DeleteFileUTF8('Weights.txt'); { *Converted from DeleteFile* }
-if FileExistsUTF8('Sterns.txt') { *Converted from FileExists* } then DeleteFileUTF8('Sterns.txt'); { *Converted from DeleteFile* }
+if FileExists('Resist.dat')  then DeleteFile('Resist.dat');
+if FileExists('RESISTp.dat')  then DeleteFile('RESISTp.dat');
+if FileExists('Vint1.dat')  then DeleteFile('Vint1.dat');
+if FileExists('SAC.tmp')  then DeleteFile('SAC.tmp');
+if FileExists('SACs.txt')  then DeleteFile('SACs.txt');
+if FileExists('Bonjean.txt')  then DeleteFile('Bonjean.txt');
+if FileExists('Weights.txt')  then DeleteFile('Weights.txt');
+if FileExists('Sterns.txt')  then DeleteFile('Sterns.txt');
 // My correction end
    Close;
 end;{TMainForm.ExitProgramExecute}
@@ -1491,7 +1491,7 @@ begin
    end;
 
    // End Skip translation
-   if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+   if FileExists(Filename)  then
       begin
          Freeship.Edit.File_Load(Filename);
          FOpenHullWindows;
@@ -1526,7 +1526,7 @@ begin
   if FreeShip.Edit.RecentFileCount = 0 then exit;
   Filename := Freeship.Edit.RecentFile[0];
   FFilename := Filename;
-  if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+  if FileExists(Filename)  then
     begin
     Freeship.Edit.File_Load(Filename);
     FOpenHullWindows;
@@ -1540,7 +1540,7 @@ var Menu    : TMenuItem;
     N       : Integer;
     Answer  : word;
 begin
-  if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+  if FileExists(Filename)  then
     begin
     Freeship.Edit.File_Load(Filename);
     FOpenHullWindows;
@@ -1850,13 +1850,13 @@ begin
   FLang := Freeship.Preferences.Language;
   FManDirectory := Freeship.Preferences.ManualsDirectory;
   man := FLang+'.pdf';
-  FileToFind := FileSearchUTF8(FManDirectory+'/'+man,FManDirectory);
+  FileToFind := FileSearch(FManDirectory+'/'+man,FManDirectory);
   if (FileToFind='') and (FLang<>'English') then begin
      MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory'+EOL
                +'English manual will be opened.',mtInformation,[mbOk],0);
      man := 'English.pdf'
   end;
-  FileToFind := FileSearchUTF8(FManDirectory+'/'+man,FManDirectory);
+  FileToFind := FileSearch(FManDirectory+'/'+man,FManDirectory);
   if FileToFind='' then begin
      MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory',mtInformation,[mbOk],0);
      exit;

@@ -45,7 +45,9 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
       FPImage,
       GraphType, GraphMath, Graphics, Controls,
       PrintersDlgs, Printer4Lazarus, FreePrinter,
-      FileUtil,
+      //FileUtil, -- Deprecated
+      LazFileUtils,
+      //LazUTF8,
      {$endif}
      {$IFDEF LCLGTK2}
       Gtk2WSDialogs, GTK2,
@@ -1830,9 +1832,9 @@ begin
             Properties.SurfaceCenterOfGravity.Z:=Properties.SurfaceCenterOfGravity.Z-FData.ModelMin.Z;
             if Owner.ProjectSettings.ProjectUnits=fuImperial then Properties.Weight:=Properties.Weight/(12*2240)
                                                              else Properties.Weight:=Properties.Weight/1000;
-            While UTF8Length(Str)<23 do Str:=Str+' ';
-            if UTF8Length(Str)>23
-               then Str:=UTF8Copy(Str,1,23);
+            While Length(Str)<23 do Str:=Str+' ';
+            if Length(Str)>23
+               then Str:=Copy(Str,1,23);
             Strings.Add('| '+Str+' | '+Makelength(Properties.SurfaceArea,-1,7)+
                                  ' | '+MakeLength(Owner.Layer[I-1].Thickness,3,9)+
                                  ' | '+Makelength(Properties.Weight,3,8)+
@@ -6486,7 +6488,7 @@ end;{TFreeEdit.Face_New}
 procedure TFreeEdit.File_ExportArchimedes;
 var Frames     : TFasterList;
     Frame      : TFreeSpline;
-    Tmp,Str    : widestring;
+    Tmp,Str    : string;
     I,J,Np     : integer;
     P          : T3DCoordinate;
     SaveDialog : TSaveDialog;
@@ -6530,8 +6532,9 @@ begin
             Write(FFile,'***************************************************************'+#10);
             // Hull name
             Write(FFile,'APPENDAGE_NAME'+#10);
-            if Owner.ProjectSettings.ProjectName<>'' then Tmp:=Owner.ProjectSettings.ProjectName
-                                                     else Tmp:=ChangeFileExt(ExtractFilename(Owner.Filename),'');
+            if Owner.ProjectSettings.ProjectName<>''
+               then Tmp:=Owner.ProjectSettings.ProjectName
+               else Tmp:=ChangeFileExt(ExtractFilename(Owner.Filename),'');
             Write(FFile,Tmp+#10);
             // Aft perpendicular
             Write(FFile,'AP'+#10);
@@ -7171,7 +7174,7 @@ begin
 //      if Owner.ProjectSettings.ProjectUnits=fuMetric then Scale:=1.0
 //                                                     else Scale:=1/Foot;
       Str:=Owner.ProjectSettings.ProjectName;
-      if Length(Str)>58 then Str:=UTF8Copy(Str,1,58);
+      if Length(Str)>58 then Str:=Copy(Str,1,58);
       Strings.Add(Str);                                                                      // ProjectDescription, max 58 characters
       Strings.Add('L:'+FloatToStrF(Scale*Owner.ProjectSettings.ProjectLength,ffFixed,7,3));  // Length
       Strings.Add('W:'+FloatToStrF(Scale*Owner.ProjectSettings.ProjectBeam,ffFixed,7,3));    // Beam
@@ -7328,7 +7331,7 @@ begin
       if Owner.ProjectSettings.ProjectUnits=fuMetric then Scale:=1.0
                                                      else Scale:=1/Foot;
       Str:=Owner.ProjectSettings.ProjectName+' L='+FloatToStrF(Scale*Owner.ProjectSettings.ProjectLength,ffFixed,7,3)+' B='+FloatToStrF(Scale*Owner.ProjectSettings.ProjectBeam,ffFixed,7,3)+' T='+FloatToStrF(Scale*Owner.ProjectSettings.ProjectDraft,ffFixed,7,3);
-      if Length(Str)>58 then Str:=UTF8Copy(Str,1,58);
+      if Length(Str)>58 then Str:=Copy(Str,1,58);
       Strings.Add(Str);       // ProjectDescription, max 58 characters
 
       if Owner.ProjectSettings.ProjectUnits=fuMetric then Strings.Add(FloatToStrF(Owner.ProjectSettings.ProjectWaterDensity*1000,ffFixed,7,1)+' 1600 100 .2 2. 1000 0') // specific gravity of water
@@ -7778,7 +7781,8 @@ var
       {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/Add_Mass.EXE '),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/Add_Mass.EXE'), '', []);
+      //SysUtils.ExecuteProcessUTF8( (UTF8ToSys(FExecDirectory+'/Add_Mass.EXE'), '', []);
+      SysUtils.ExecuteProcess(FExecDirectory+'/Add_Mass.EXE', '', []);
       {$endif}
    // may be it needs to wait the out file and to rename it to something meningful?
    SetCurrentDirUTF8(OldDir);
@@ -8416,8 +8420,8 @@ begin
          // Y0
          Str:=Trim(Str);
          J:=Pos(',',Str);
-         Tmp:=UTF8Copy(Str,1,J-1);
-         UTF8Delete(Str,1,J);
+         Tmp:=Copy(Str,1,J-1);
+         Delete(Str,1,J);
          // Y1
          Str:=Trim(Str);
          J:=Pos(',',Str);
@@ -11198,7 +11202,7 @@ var I,J           : integer;
     Inconsistent  : integer;
     NonManifold   : integer;
     DblEdges      : Integer;
-    Str           : Widestring;
+    Str           : string;
     Undo          : TFreeUndoObject;
     Leaks         : TFasterList;
     Swap          : Boolean;
@@ -14092,16 +14096,17 @@ begin
 end;
 
 function TFreePreferences.getGlobalAppDataDirectory:string;
-var D:string;
+var D:String;
 begin
   {$ifdef UNIX}
   D:='/usr/share/FreeShip';
   {$else}
     {$ifdef Windows}
-    D:=GetEnvironmentVariableUTF8('ALLUSERSPROFILE')+'\Application Data\FreeShip';
+    //D:=GetEnvironmentVariableUTF8('ALLUSERSPROFILE')+'\Application Data\FreeShip';
+    D := SysUtils.GetEnvironmentVariable('ALLUSERSPROFILE')+'\Application Data\FreeShip';
     {$endif}
   {$endif}
-  if DirectoryExistsUTF8(D)
+  if DirectoryExists(D)
     then result:=D
     else ExtractFilePath(Application.Exename); //deprecated. for old Win app compatibility
 end;
@@ -14109,10 +14114,10 @@ end;
 function TFreePreferences.getUserAppDataDirectory:string;
 begin
   {$ifdef UNIX}
-  result:=GetEnvironmentVariableUTF8('HOME')+'/FreeShip';
+  result:=SysUtils.GetEnvironmentVariable('HOME')+'/FreeShip';
   {$else}
     {$ifdef Windows}
-    result:=GetEnvironmentVariableUTF8('APPDATA')+'/FreeShip';
+    result:=SysUtils.GetEnvironmentVariable('APPDATA')+'/FreeShip';
     {$endif}
   {$endif}
 end;
@@ -14241,17 +14246,17 @@ end;
 procedure TFreePreferences.getThemesInDir(dir:string; ss:TStrings);
 var sr: TSearchRec;
 begin
-  if not DirectoryExistsUTF8(dir) then exit;
-  if FindFirst(dir+'/*',faDirectory,sr)=0 then
+  if not DirectoryExists(dir) then exit;
+  if FindFirstUTF8(dir+'/*',faDirectory, sr) = 0 then
     begin
     repeat
     if ((sr.Attr and faDirectory) = faDirectory)
       and (sr.Name<>'.') and (sr.Name<>'..')
     then
       ss.Add(sr.Name);
-    until FindNext(sr)<>0;
+    until FindNextUTF8(sr)<>0;
     end;
-  FindClose(sr);
+  FindCloseUTF8(sr);
 end;
 
 
@@ -14314,7 +14319,7 @@ begin
   ilcnt := cil.Count;
   bmp:=TBitmap.Create;
   bmp.PixelFormat:=pf32bit;
-  bmp.RawImage.Description.AlphaPrec:=8;
+  bmp.RawImage.Description.AlphaPrec.Parse('8');
   bmp.Transparent:=true;
   bmp.SetSize(sz,sz);
   {

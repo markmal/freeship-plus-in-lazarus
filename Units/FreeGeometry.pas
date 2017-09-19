@@ -2532,9 +2532,9 @@ function Truncate(Value:TFloatType;Maxlength:integer):String;
 // All trailing zeros will be removed
 begin
    Result:=FloatToStrF(Value,ffFixed,10,Maxlength);
-   while Result[UTF8Length(Result)]='0' do UTF8Delete(Result,UTF8Length(Result),1);
-   if UTF8Length(Result)<MaxLength then Result:=Result+'0' else
-      if Result[UTF8Length(Result)] in ['.',','] then Result:=Result+'0';
+   while Result[Length(Result)]='0' do Delete(Result,Length(Result),1);
+   if Length(Result)<MaxLength then Result:=Result+'0' else
+      if Result[Length(Result)] in ['.',','] then Result:=Result+'0';
 end;{Truncate}
 
 function MakeLength(value:TFloatType;Decimals,DesLength:integer):string;
@@ -2542,13 +2542,13 @@ var Input:String;
 begin
    if Decimals=-1 then Decimals:=NumberOfDecimals(Value);
    Input:=FloatToStrF(Value,ffFixed,10,Decimals);
-   While UTF8Length(Input)<DesLength do Input:=' '+Input;
+   While Length(Input)<DesLength do Input:=' '+Input;
    Result:=Input;
 end;{MakeLength}
 
 function MakeLength(value:String;DesLength:integer):string;
 begin
-   While UTF8Length(Value)<DesLength do Value:=value+' ';
+   While Length(Value)<DesLength do Value:=value+' ';
    Result:=Value;
 end;{MakeLength}
 
@@ -4620,7 +4620,7 @@ var Normal           : T3DCoordinate;
     ZLeft,dZLeft     : TFloatType;
     ZRight,dZRight   : TFloatType;
 
-    {$ifdef Windows}
+    {$ifdef Windows32}
        procedure Swap(var A, B: Integer);assembler;
        asm
           MOV     ECX,[EAX]
@@ -7364,6 +7364,7 @@ begin
          end else MinMax(FPoints[I-1],FMin,FMax);
       end;
    end;
+   FFragments := FNoPoints; //just to try
    inherited Rebuild;
 end;{TFreeSpline.Rebuild}
 
@@ -9058,14 +9059,17 @@ begin
    II:=0;
    Coeff:=Thickness*MaterialDensity;
    Fillchar(Result,SizeOf(Result),0);
-    if FileExistsUTF8('Weights.txt') { *Converted from FileExists* } and (coeff>0) then begin
+    if FileExists('Weights.txt') { *Converted from FileExists* } and (coeff>0)
+       then begin
       Assignfile(FFile,'Weights.txt');  
       Append(FFile);
       II:=1;
-         if Symmetric then begin 
-                        writeln(ffile,Count:4,Items[0].ChildCount:4,' 2');
-                        Coeff:=Coeff*2; 
-                  end else writeln(ffile,intToStr(Count)+' '+IntToStr(Items[0].ChildCount)+' 1');
+      if Symmetric then
+        begin
+        writeln(ffile,Count:4,Items[0].ChildCount:4,' 2');
+        Coeff:=Coeff*2;
+        end
+      else writeln(ffile,intToStr(Count)+' '+IntToStr(Items[0].ChildCount)+' 1');
     end;
    for I:=1 to Count do
    begin
@@ -16681,7 +16685,7 @@ var VRMLList      : TVRMLList;
     AddedCtrlPts  : TFasterList;
     CtrPoint      : TFreeSubdivisionControlpoint;
 begin
-   if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+   if FileExists(Filename) then
    begin
       VRMLList:=TVRMLList.Create;
       VRMLList.LoadFromFile(Filename);

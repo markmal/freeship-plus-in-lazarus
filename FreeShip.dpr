@@ -109,7 +109,7 @@ var S: string; p: integer;
 begin
   for p:=1 to ParamCount do
   begin
-    S := ParamStrUTF8(p);
+    S := ParamStr(p);
     if S = '--nosplash' then ShowSplash:=False
     else if S = '--debug' then InDebugger:=True
     else if S = '--log-info' then Logger.LogLevel:=LOG_INFO

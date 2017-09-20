@@ -1,6 +1,7 @@
 unit FreeOpenDialog;
 
-{$mode delphi}
+//{$mode delphi}
+{$mode objfpc}{$H+}
 
 interface
 
@@ -18,6 +19,7 @@ uses
 type
 
   TFreeOpenDialog = class(TOpenPictureDialog)
+  //TFreeOpenDialog = class(TPreviewFileDialog)
   private
     FOnPreview: TNotifyEvent;
   protected
@@ -40,8 +42,8 @@ var
   FileIsValid: boolean;
 begin
   //if Assigned(OnFolderChange) then OnFolderChange(Self);
-  if Assigned(OnPreview)
-   then OnPreview(Self);
+  if Assigned(FOnPreview)
+    then FOnPreview(Self);
 end;
 
 function TFreeOpenDialog.GetPreviewImage: TImage;
@@ -54,6 +56,7 @@ var H,W:integer; P:TComponent;
 begin
   inherited Create(TheOwner);
   Filter := 'FREE!Ship model|*.ftm;*.fbm|Images|*.jpg;*.png';
+  OnPreview := nil;
 end;
 
 

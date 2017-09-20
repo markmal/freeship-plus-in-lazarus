@@ -9820,11 +9820,16 @@ begin
   TempFreeShip := TFreeShip.Create(nil);
   TempFreeShip.LoadPreview(FN, Jpg);
   if Assigned(Jpg)
+     and Assigned(Dlg.PreviewImage)
+     and Assigned(Dlg.PreviewImage.Picture)
+     and Assigned(Dlg.PreviewImage.Picture.Bitmap)
    then
    begin
-     PreviewImg.Picture.Bitmap.Assign(Jpg);
-     PreviewFrm.Height:=PreviewImg.Picture.Bitmap.Height+10;
-     PreviewFrm.Width:=PreviewImg.Picture.Bitmap.Width+10;
+     ShowMessage(FN);
+     Dlg.PreviewImage.Picture.Bitmap.Assign(Jpg);
+     Dlg.PreviewImage.Refresh;
+     //PreviewFrm.Height:=PreviewImg.Picture.Bitmap.Height+10;
+     //PreviewFrm.Width:=PreviewImg.Picture.Bitmap.Width+10;
    end
    else PreviewImg.Picture := nil;
   TempFreeShip.Free;
@@ -9839,9 +9844,10 @@ begin
    OpenDialog:=TFreeOpenDialog.Create(Owner);
    OpenDialog.InitialDir:=Owner.Preferences.OpenDirectory;
    OpenDialog.Filter:='FREE!ship files (*.ftm *.fbm)|*.ftm;*.fbm';
-   Opendialog.Options:=[ofHideReadOnly];
+   //Opendialog.Options:=[ofHideReadOnly];
    Opendialog.OnPreview := OnFilePreview;
 
+   {
    // standard preview does not work in Qt4pas. We open a separate window nearby
    PreviewFrm := TForm.Create(Application);
    PreviewFrm.Caption:='Preview';
@@ -9853,7 +9859,9 @@ begin
    PreviewFrm.Constraints.MaxWidth:=Screen.Width div 2;
    PreviewFrm.Top:=Screen.Height div 2 - Screen.Height div 6;
    PreviewFrm.Left:=Screen.Width div 2 + Screen.Width div 6;
+    }
 
+   {
    PreviewImg := TImage.Create(PreviewFrm);
    //PreviewImg := Opendialog.PreviewImage;
    PreviewImg.Parent:=nil;
@@ -9863,6 +9871,7 @@ begin
    PreviewFrm.FormStyle:=fsStayOnTop;
    PreviewFrm.Visible := true;
    PreviewFrm.Show;
+   }
 
    Places:=Opendialog.GetPlaces;
    if OpenDialog.Execute then
@@ -9888,8 +9897,8 @@ begin
       end;
       File_Load(Opendialog.FileName);   // Load everything into memory
    end;
-   PreviewFrm.Close;
-   PreviewFrm.Free;
+   //PreviewFrm.Close;
+   //PreviewFrm.Free;
    Opendialog.Destroy;
     if FileExistsUTF8('Resist.dat') { *Converted from FileExists* } then DeleteFileUTF8('Resist.dat'); { *Converted from DeleteFile* }
     if FileExistsUTF8('RESISTp.dat') { *Converted from FileExists* } then DeleteFileUTF8('RESISTp.dat'); { *Converted from DeleteFile* }

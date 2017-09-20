@@ -76,7 +76,7 @@ uses
      FreeAboutDlg,
      Menus,
      ToolWin,
-     Buttons, StdActns, Spin
+     Buttons, StdActns, Spin, ExtDlgs
 ;
 
 type
@@ -85,6 +85,7 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     FontDialog1: TFontDialog;
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
@@ -1285,18 +1286,16 @@ end;{TMainForm.LoadFileExecute}
 
 procedure TMainForm.ExitProgramExecute(Sender: TObject);
 begin
-   UpdateMenu;
-// My correction begin
-if FileExists('Resist.dat')  then DeleteFile('Resist.dat');
-if FileExists('RESISTp.dat')  then DeleteFile('RESISTp.dat');
-if FileExists('Vint1.dat')  then DeleteFile('Vint1.dat');
-if FileExists('SAC.tmp')  then DeleteFile('SAC.tmp');
-if FileExists('SACs.txt')  then DeleteFile('SACs.txt');
-if FileExists('Bonjean.txt')  then DeleteFile('Bonjean.txt');
-if FileExists('Weights.txt')  then DeleteFile('Weights.txt');
-if FileExists('Sterns.txt')  then DeleteFile('Sterns.txt');
-// My correction end
-   Close;
+  UpdateMenu;
+  if FileExists('Resist.dat')  then DeleteFile('Resist.dat');
+  if FileExists('RESISTp.dat')  then DeleteFile('RESISTp.dat');
+  if FileExists('Vint1.dat')  then DeleteFile('Vint1.dat');
+  if FileExists('SAC.tmp')  then DeleteFile('SAC.tmp');
+  if FileExists('SACs.txt')  then DeleteFile('SACs.txt');
+  if FileExists('Bonjean.txt')  then DeleteFile('Bonjean.txt');
+  if FileExists('Weights.txt')  then DeleteFile('Weights.txt');
+  if FileExists('Sterns.txt')  then DeleteFile('Sterns.txt');
+  Close;
 end;{TMainForm.ExitProgramExecute}
 
 procedure TMainForm.FormShow(Sender: TObject);

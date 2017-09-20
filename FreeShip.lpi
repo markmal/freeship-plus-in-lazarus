@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
-      <BuildNr Value="17"/>
+      <BuildNr Value="25"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -760,7 +760,6 @@
         <OverflowChecks Value="True"/>
         <StackChecks Value="True"/>
       </Checks>
-      <TargetCPU Value="i386"/>
       <Optimizations>
         <OptimizationLevel Value="0"/>
       </Optimizations>
@@ -779,7 +778,7 @@
         <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
       </Verbosity>
       <ExecuteBefore>
-        <Command Value="c:/cygwin64/bin/bash.exe $(ProjPath)/gitlastrev.sh"/>
+        <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
         <ShowAllMessages Value="True"/>
         <CompileReasons Run="False"/>
       </ExecuteBefore>

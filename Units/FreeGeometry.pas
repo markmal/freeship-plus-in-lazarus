@@ -7519,7 +7519,7 @@ begin
    }
 
    Capacity:=NumberOfPoints;
-   Fragments:=NumberOfPoints*5;
+   Fragments:=NumberOfPoints-1;
    Build:=False;
 end;{TFreeSpline.Simplify}
 
@@ -7533,6 +7533,7 @@ begin
    FPoints[FNoPoints]:=P;
    FKnuckles[FNoPoints]:=False;
    inc(FNoPoints);
+   FFragments:=FNoPoints-1;
    Build:=False;  // Curve needs to be rebuild
 end;{TFreeSpline.Add}
 
@@ -7550,6 +7551,7 @@ begin
    // copy knuckles
    Move(Spline.FKnuckles[0],FKnuckles[0],Spline.NumberOfPoints*SizeOf(Boolean));
    FNoPoints:=Spline.NumberOfPoints;
+   FFragments:=FNoPoints-1;
    FShowCurvature:=Spline.ShowCurvature;
    FCurvatureScale:=Spline.FCurvatureScale;
    FCurvatureColor:=Spline.FCurvatureColor;
@@ -7666,6 +7668,7 @@ begin
    if NumberOfPoints>0 then
    begin
       dec(FNoPoints);
+      FFragments:=FNoPoints-1;
       for I:=Index to NumberOfPoints-1 do
       begin
          FPoints[I]:=FPoints[I+1];
@@ -7735,6 +7738,7 @@ begin
       FPoints[Index]:=P;
       FKnuckles[Index]:=False;
       inc(FNoPoints);
+      FFragments:=FNoPoints-1;
       Build:=false;
    end else raise Exception.Create('Index out of range'+EOL+IntToStr(Index)+#32+IntToStr(FNoPoints));
 end;{TFreeSpline.Insert}
@@ -7839,6 +7843,7 @@ begin
          end;
       end;
       FNoPoints:=Source.NumberOfpoints;
+      FFragments:=FNoPoints-1;
       Build := False;
    end else
    begin
@@ -7895,6 +7900,7 @@ begin
          end;
       end;
       inc(FNoPoints,NoNewPoints);
+      FFragments:=FNoPoints-1;
       if not DuplicatePoint then Fknuckles[index]:=True;
       Build := False;
    end;
@@ -8076,7 +8082,7 @@ begin
    Setlength(FPoints,0);
    FCapacity:=0;
    FNoPoints:=0;
-   FFragments:=100;
+   FFragments:=0;
    FShowCurvature:=false;
    FCurvatureScale:=0.10;
    FCurvatureColor:=clFuchsia;

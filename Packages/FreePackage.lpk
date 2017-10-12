@@ -76,7 +76,7 @@
       </Item3>
     </RequiredPkgs>
     <UsageOptions>
-      <IncludePath Value="/home/mark/MyProjects/freeship-plus-in-lazarus/Utils;/home/mark/MyProjects/freeship-plus-in-lazarus/Forms"/>
+      <IncludePath Value="$(ProjPath)/Utils;$(ProjPath)/Forms"/>
       <UnitPath Value="$(PkgOutDir)"/>
     </UsageOptions>
     <PublishOptions>

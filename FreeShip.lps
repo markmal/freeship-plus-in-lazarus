@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectSession>
-    <Version Value="10"/>
+    <Version Value="11"/>
     <BuildModes Active="Default Qt4"/>
-    <Units Count="107">
+    <Units Count="113">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="111"/>
         <CursorPos Y="132"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -29,8 +28,9 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1285"/>
-        <CursorPos X="3" Y="1310"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="732"/>
+        <CursorPos X="36" Y="744"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -593,12 +593,10 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="9811"/>
-        <CursorPos X="31" Y="9830"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15783"/>
+        <CursorPos Y="15810"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
@@ -673,11 +671,10 @@
       <Unit58>
         <Filename Value="Units/FreeFileBuffer.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2285"/>
         <CursorPos Y="2293"/>
         <UsageCount Value="213"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit58>
       <Unit59>
@@ -692,11 +689,10 @@
       <Unit60>
         <Filename Value="Units/FreeOpenDialog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="21" Y="4"/>
         <UsageCount Value="216"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit60>
       <Unit61>
@@ -808,11 +804,10 @@
       </Unit72>
       <Unit73>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="8148"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="8106"/>
         <CursorPos Y="8164"/>
         <UsageCount Value="68"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit73>
       <Unit74>
@@ -1049,174 +1044,218 @@
       <Unit102>
         <Filename Value="/usr/share/lazarus/1.6.4/lcl/extdlgs.pas"/>
         <UnitName Value="ExtDlgs"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="369"/>
         <CursorPos X="3" Y="353"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit102>
       <Unit103>
         <Filename Value="/usr/share/lazarus/1.6.4/lcl/dialogs.pp"/>
         <UnitName Value="Dialogs"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="191"/>
         <CursorPos X="32" Y="202"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit103>
       <Unit104>
         <Filename Value="/usr/share/lazarus/1.6.4/lcl/include/filedialog.inc"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="292"/>
         <CursorPos Y="429"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit104>
       <Unit105>
         <Filename Value="/usr/share/lazarus/1.6.4/lcl/widgetset/wsextdlgs.pp"/>
         <UnitName Value="WSExtDlgs"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="123"/>
         <CursorPos Y="141"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit105>
       <Unit106>
         <Filename Value="/usr/share/lazarus/1.6.4/lcl/interfaces/qt/qtwsfactory.pas"/>
         <UnitName Value="QtWSFactory"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="413"/>
         <CursorPos Y="427"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit106>
+      <Unit107>
+        <Filename Value="/usr/share/lazarus/2.0.0/components/tachart/tamath.pas"/>
+        <UnitName Value="TAMath"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="40"/>
+        <CursorPos X="9" Y="40"/>
+        <UsageCount Value="10"/>
+      </Unit107>
+      <Unit108>
+        <Filename Value="/usr/share/fpcsrc/3.0.4/packages/numlib/src/spe.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="238"/>
+        <CursorPos X="46" Y="256"/>
+        <UsageCount Value="10"/>
+      </Unit108>
+      <Unit109>
+        <Filename Value="/usr/share/lazarus/2.0.0/components/tachart/tatools.pas"/>
+        <UnitName Value="TATools"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1328"/>
+        <CursorPos X="63" Y="1330"/>
+        <UsageCount Value="10"/>
+      </Unit109>
+      <Unit110>
+        <Filename Value="Forms/Main.lfm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <CursorPos X="14" Y="21"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit110>
+      <Unit111>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1311"/>
+        <CursorPos Y="1325"/>
+        <UsageCount Value="10"/>
+      </Unit111>
+      <Unit112>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/scrollingwincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="47"/>
+        <CursorPos Y="61"/>
+        <UsageCount Value="10"/>
+      </Unit112>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="Units/FreeFileBuffer.pas"/>
-        <Caret Line="2293" TopLine="2285"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="839" TopLine="821"/>
       </Position1>
       <Position2>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9874" TopLine="9860"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="842" TopLine="833"/>
       </Position2>
       <Position3>
-        <Filename Value="Units/FreeOpenDialog.pas"/>
-        <Caret Line="45" Column="5" TopLine="35"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="843" TopLine="833"/>
       </Position3>
       <Position4>
-        <Filename Value="Units/FreeOpenDialog.pas"/>
-        <Caret Line="23" Column="29" TopLine="14"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="844" TopLine="833"/>
       </Position4>
       <Position5>
-        <Filename Value="Units/FreeOpenDialog.pas"/>
-        <Caret Line="45" Column="4" TopLine="35"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="849" TopLine="833"/>
       </Position5>
       <Position6>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9843" Column="6" TopLine="9836"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="825" Column="20" TopLine="818"/>
       </Position6>
       <Position7>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/extdlgs.pas"/>
-        <Caret Line="82" Column="32" TopLine="70"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="827" Column="33" TopLine="810"/>
       </Position7>
       <Position8>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/include/filedialog.inc"/>
-        <Caret Line="429" TopLine="425"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="824" Column="24" TopLine="811"/>
       </Position8>
       <Position9>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/extdlgs.pas"/>
-        <Caret Line="309" TopLine="301"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="870" TopLine="857"/>
       </Position9>
       <Position10>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/extdlgs.pas"/>
-        <Caret Line="310" TopLine="301"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="818" TopLine="805"/>
       </Position10>
       <Position11>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/widgetset/wsextdlgs.pp"/>
-        <Caret Line="136" TopLine="123"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="819" TopLine="805"/>
       </Position11>
       <Position12>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/widgetset/wsextdlgs.pp"/>
-        <Caret Line="137" TopLine="123"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="823" TopLine="805"/>
       </Position12>
       <Position13>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/interfaces/qt/qtwsfactory.pas"/>
-        <Caret Line="426" TopLine="413"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="824" TopLine="805"/>
       </Position13>
       <Position14>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/interfaces/qt/qtwsfactory.pas"/>
-        <Caret Line="427" TopLine="413"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="827" TopLine="805"/>
       </Position14>
       <Position15>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/widgetset/wsextdlgs.pp"/>
-        <Caret Line="140" TopLine="123"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="828" TopLine="806"/>
       </Position15>
       <Position16>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/widgetset/wsextdlgs.pp"/>
-        <Caret Line="141" TopLine="123"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="833" TopLine="821"/>
       </Position16>
       <Position17>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/extdlgs.pas"/>
-        <Caret Line="311" TopLine="301"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="836" TopLine="827"/>
       </Position17>
       <Position18>
-        <Filename Value="Units/FreeOpenDialog.pas"/>
-        <Caret Line="4" Column="21"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="832" Column="57" TopLine="824"/>
       </Position18>
       <Position19>
-        <Filename Value="/usr/share/lazarus/1.6.4/lcl/include/filedialog.inc"/>
-        <Caret Line="429" TopLine="424"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="873" Column="30" TopLine="862"/>
       </Position19>
       <Position20>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9843" Column="4" TopLine="9828"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="875" TopLine="860"/>
       </Position20>
       <Position21>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9819" Column="38" TopLine="9804"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="873" Column="53" TopLine="855"/>
       </Position21>
       <Position22>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="9825" Column="48" TopLine="9811"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="875" TopLine="861"/>
       </Position22>
       <Position23>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1280" TopLine="1275"/>
+        <Caret Line="2435" Column="4" TopLine="2429"/>
       </Position23>
       <Position24>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1281" TopLine="1276"/>
+        <Caret Line="2434" Column="4" TopLine="2428"/>
       </Position24>
       <Position25>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1282" TopLine="1277"/>
+        <Caret Line="2441" Column="114" TopLine="2377"/>
       </Position25>
       <Position26>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1285" Column="23" TopLine="1280"/>
+        <Caret Line="873" Column="63" TopLine="859"/>
       </Position26>
       <Position27>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1282" Column="3" TopLine="1269"/>
+        <Caret Line="755" Column="43" TopLine="741"/>
       </Position27>
       <Position28>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1281" Column="3" TopLine="1268"/>
+        <Caret Line="585" Column="15" TopLine="572"/>
       </Position28>
       <Position29>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1311" Column="3" TopLine="1277"/>
+        <Caret Line="742" Column="21" TopLine="736"/>
       </Position29>
       <Position30>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="1310" Column="3" TopLine="1285"/>
+        <Caret Line="743" Column="22" TopLine="729"/>
       </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>
       <Item1 Name="SVN repository" Value="https://freeship-plus-in-lazarus.googlecode.com/svn/trunk/"/>
     </CustomSessionData>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode="default"/>
+    </RunParams>
   </ProjectSession>
   <Debugging>
     <BreakPoints Count="2">
@@ -1225,14 +1264,14 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="Forms/Main.pas"/>
-        <Line Value="1481"/>
+        <Line Value="1492"/>
       </Item1>
       <Item2>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="Forms/Main.pas"/>
-        <Line Value="2182"/>
+        <Line Value="2223"/>
       </Item2>
     </BreakPoints>
     <Watches Count="2">

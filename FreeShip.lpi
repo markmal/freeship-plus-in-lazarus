@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="11"/>
     <General>
       <Flags>
         <MainUnitHasUsesSectionForAllUnits Value="False"/>
@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
-      <BuildNr Value="25"/>
+      <BuildNr Value="34"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -78,7 +78,6 @@
             <Verbosity>
               <ShowNotes Value="False"/>
               <ShowHints Value="False"/>
-              <ShowGenInfo Value="False"/>
               <ShoLineNum Value="True"/>
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
@@ -134,7 +133,6 @@
             <Verbosity>
               <ShowNotes Value="False"/>
               <ShowHints Value="False"/>
-              <ShowGenInfo Value="False"/>
               <ShoLineNum Value="True"/>
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
@@ -192,7 +190,6 @@
             <Verbosity>
               <ShowNotes Value="False"/>
               <ShowHints Value="False"/>
-              <ShowGenInfo Value="False"/>
               <ShoLineNum Value="True"/>
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
@@ -254,7 +251,6 @@
             <Verbosity>
               <ShowNotes Value="False"/>
               <ShowHints Value="False"/>
-              <ShowGenInfo Value="False"/>
               <ShoLineNum Value="True"/>
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
@@ -279,9 +275,16 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <FormatVersion Value="1"/>
         <CommandLineParams Value="--nosplash --debug --log-debug --debug-log=FreeShip.log"/>
       </local>
+      <FormatVersion Value="2"/>
+      <Modes Count="1">
+        <Mode0 Name="default">
+          <local>
+            <CommandLineParams Value="--nosplash --debug --log-debug --debug-log=FreeShip.log"/>
+          </local>
+        </Mode0>
+      </Modes>
     </RunParams>
     <RequiredPackages Count="4">
       <Item1>
@@ -773,7 +776,6 @@
       <Verbosity>
         <ShowNotes Value="False"/>
         <ShowHints Value="False"/>
-        <ShowGenInfo Value="False"/>
         <ShoLineNum Value="True"/>
         <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
       </Verbosity>

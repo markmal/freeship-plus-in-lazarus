@@ -89,7 +89,6 @@ type
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
-     Label1: TLabel;
      PanelActiveLayerColor: TPanel;
      PanelEdges: TPanel;
      PanelCurves: TPanel;
@@ -736,12 +735,12 @@ end;
 
 // total width of all controls in toolbar
 function TMainForm.getToolbarControlsWidth(tb:TToolBar): integer;
-var i:integer; c: TControl;
+var i:integer; c: TToolButton;
 begin
   result := 0;
-  for i:=0 to tb.ControlCount-1 do
+  for i:=0 to tb.ButtonCount-1 do
     begin
-      c := tb.Controls[i];
+      c := tb.Buttons[i];
       result := result + c.Width + c.BorderSpacing.Right+c.BorderSpacing.Left+c.BorderSpacing.Around;
     end;
 end;
@@ -821,11 +820,16 @@ var AllW, lft, gap:integer;
       //if tb.Name='ToolBarFile'
       //   then c:=c;
       bw := tb.ButtonWidth;
-      b := tb.Buttons[0];
-      bw := b.Width;
+      if tb.ButtonCount > 0
+        then
+          begin
+          b := tb.Buttons[0];
+          bw := b.Width;
+          end;
+
 
       // leave some space (bw+4)*cnt
-      w:=round((wdth) * (tbcw / (FAllToolbarsControlsWidth)));
+      w:=round((wdth) * ((tbcw - gap) / (FAllToolbarsControlsWidth)));
 
       //tb.Width := w;
       r:=getToolbarXtrunc(tb,w);
@@ -833,6 +837,8 @@ var AllW, lft, gap:integer;
         then r:=getToolbarXtrunc(tb,r-bw);
 
       tb.Width := max(r+4, bw+4);
+      //tb.Width := w;
+      //MainForm.Caption := 'ToolBarMain.Width:' + IntToStr(ToolBarMain.Width);
 
       //tb.Height := 16;
       tb.ReAlign;
@@ -842,27 +848,32 @@ var AllW, lft, gap:integer;
       Application.ProcessMessages;
       tbch:=getToolbarControlsBottom(tb);
       tb.Height := tbch + 4;
+      if PanelMain.Height < tb.Height+2 then PanelMain.Height := tb.Height + 2;
       //tb.Parent.Height := tb.Height;
       //tb.Parent.Width := tb.Width;
       //tb.InvalidatePreferredSize;
       //Application.ProcessMessages;
       result:=tb.Parent.BoundsRect.Right;
     end;
-
+var pnlWidth: integer;
 begin
   gap:=4;
   if FAllToolbarsControlsWidth=0
    then FAllToolbarsControlsWidth:=getAllToolbarsControlWidth;
   lft:=gap;
 
-  lft := alignToolbar(ToolBarFile, FToolBarFileControlsWidth, lft+gap, PanelMain.Width, 7);
-  lft := alignToolbar(ToolBarEdit, FToolBarEditControlsWidth, lft+gap, PanelMain.Width, 6);
-  lft := alignToolbar(ToolBarVisibility, FToolBarVisibilityControlsWidth, lft+gap, PanelMain.Width, 5);
-  lft := alignToolbar(ToolBarLayers, FToolBarLayersControlsWidth, lft+gap, PanelMain.Width, 4);
-  lft := alignToolbar(ToolBarPoints, FToolBarPointsControlsWidth, lft+gap, PanelMain.Width, 3);
-  lft := alignToolbar(ToolBarEdges, FToolBarEdgesControlsWidth, lft+gap, PanelMain.Width, 2);
-  lft := alignToolbar(ToolBarFaces, FToolBarFacesControlsWidth, lft+gap, PanelMain.Width, 1);
-  lft := alignToolbar(ToolBarCurves, FToolBarCurvesControlsWidth, lft+gap, PanelMain.Width, 0);
+  PanelMain.Width := ToolBarMain.Width - 2; // for some reason PanelMain does not autosize
+  PanelMain.Height := 20;
+  pnlWidth := PanelMain.Width;
+  lft := alignToolbar(ToolBarFile, FToolBarFileControlsWidth, lft+gap, pnlWidth, 7);
+  lft := alignToolbar(ToolBarEdit, FToolBarEditControlsWidth, lft+gap, pnlWidth, 6);
+  lft := alignToolbar(ToolBarVisibility, FToolBarVisibilityControlsWidth, lft+gap, pnlWidth, 5);
+  lft := alignToolbar(ToolBarLayers, FToolBarLayersControlsWidth, lft+gap, pnlWidth, 4);
+  lft := alignToolbar(ToolBarPoints, FToolBarPointsControlsWidth, lft+gap, pnlWidth, 3);
+  lft := alignToolbar(ToolBarEdges, FToolBarEdgesControlsWidth, lft+gap, pnlWidth, 2);
+  lft := alignToolbar(ToolBarFaces, FToolBarFacesControlsWidth, lft+gap, pnlWidth, 1);
+  lft := alignToolbar(ToolBarCurves, FToolBarCurvesControlsWidth, lft+gap, pnlWidth, 0);
+
 
   {
   //make all toolbars uniform height
@@ -1755,14 +1766,44 @@ begin
       MemChk;
    {$ENDIF}
    {$ifndef Windows}
-
    if self.Align = alTop
      then self.Top := 0;
    {$endif}
+
+   // Removed from LFM, moved here
+{ object FreeShip: TFreeShip
+    FileChanged = True
+    Filename = 'New model.fbm'
+    FileVersion = fv140
+    OnChangeCursorIncrement = FreeShipChangeCursorIncrement
+    OnFileChanged = FreeShipFileChanged
+    OnUpdateGeometryInfo = FreeShipUpdateGeometryInfo
+    OnUpdateRecentFileList = FreeShipUpdateRecentFileList
+    OnUpdateUndoData = FreeShipUpdateUndoData
+    Precision = fpLow
+    FontSize = 0
+    left = 32
+    top = 72
+  end
+  }
+   FreeShip := TFreeShip.Create(self) ;
+   FreeShip.FileChanged := true;
+   FreeShip.Filename := 'New model.fbm';
+   FreeShip.FileVersion := fv140;
+   FreeShip.OnChangeCursorIncrement := FreeShipChangeCursorIncrement;
+   FreeShip.OnFileChanged := FreeShipFileChanged;
+   FreeShip.OnUpdateGeometryInfo := FreeShipUpdateGeometryInfo;
+   FreeShip.OnUpdateRecentFileList := FreeShipUpdateRecentFileList;
+   FreeShip.OnUpdateUndoData := FreeShipUpdateUndoData;
+   FreeShip.Precision := fpLow;
+   FreeShip.FontSize := 0;
+
    FAllToolbarsControlsWidth := 0;
    GlobalFreeship := Freeship;
    FModelInitallyLoaded := false;
    //dumpIcons;
+
+
 end;{TMainForm.FormCreate}
 
 procedure TMainForm.ShowStationsExecute(Sender: TObject);

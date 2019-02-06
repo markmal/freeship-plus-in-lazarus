@@ -7,7 +7,10 @@ unit FreePackage;
 interface
 
 uses
-  FreeShipUnit, FreeNumInput, FreeGeometry, LazarusPackageIntf;
+  FreeShipUnit,
+  FreeNumInput,
+  FreeGeometry,
+  LazarusPackageIntf;
 
 implementation
 

@@ -1,24 +1,25 @@
 object FreePropeller_Task2: TFreePropeller_Task2
-  Left = 282
+  Left = 283
   Height = 626
-  Top = 104
-  Width = 840
+  Top = 174
+  Width = 900
   BorderStyle = bsDialog
   Caption = 'Optimal propeller for selected engine.'
   ClientHeight = 626
-  ClientWidth = 840
+  ClientWidth = 900
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 840
+    Width = 900
     AutoSize = True
+    ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
     Color = clBtnFace
@@ -30,14 +31,14 @@ object FreePropeller_Task2: TFreePropeller_Task2
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
+      Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton10'
       ImageIndex = 6
       Style = tbsSeparator
     end
     object PrintButton: TToolButton
-      Left = 15
+      Left = 13
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'PrintButton'
@@ -45,22 +46,22 @@ object FreePropeller_Task2: TFreePropeller_Task2
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 65
+      Left = 63
+      Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 75
+      Left = 71
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 125
+      Left = 121
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0
@@ -71,37 +72,37 @@ object FreePropeller_Task2: TFreePropeller_Task2
     Left = 0
     Height = 602
     Top = 24
-    Width = 840
+    Width = 900
     ActivePage = TabSheet1
     Align = alClient
     TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 570
-      ClientWidth = 834
+      ClientHeight = 571
+      ClientWidth = 894
       object Panel1: TPanel
         Left = 0
-        Height = 570
+        Height = 571
         Top = 0
-        Width = 834
+        Width = 894
         Align = alClient
         BorderWidth = 10
-        ClientHeight = 570
-        ClientWidth = 834
+        ClientHeight = 571
+        ClientWidth = 894
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 548
+          Height = 549
           Top = 11
-          Width = 812
+          Width = 872
           Align = alClient
-          ClientHeight = 548
-          ClientWidth = 812
+          ClientHeight = 549
+          ClientWidth = 872
           TabOrder = 0
           object Label2: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 34
             Width = 134
             Caption = 'Power main engine, kW'
@@ -109,7 +110,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label3: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 62
             Width = 168
             Caption = 'Frequency of propeller, 1/min'
@@ -117,7 +118,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label4: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 90
             Width = 121
             Caption = 'Number of propellers'
@@ -125,7 +126,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label5: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 118
             Width = 130
             Caption = 'Water density, kg/m^3'
@@ -133,7 +134,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label6: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 146
             Width = 77
             Caption = 'Wake fraction'
@@ -141,7 +142,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label7: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 174
             Width = 83
             Caption = 'Thrust fraction'
@@ -149,7 +150,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label8: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 202
             Width = 137
             Caption = 'Koef. influence on thrust'
@@ -157,7 +158,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label9: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 230
             Width = 141
             Caption = 'Koef. influence on torque'
@@ -165,7 +166,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label10: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 258
             Width = 101
             Caption = 'Efficiency of shaft'
@@ -173,7 +174,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label11: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 286
             Width = 99
             Caption = 'Efficiency of gear'
@@ -181,7 +182,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label12: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 314
             Width = 111
             Caption = 'Number of diagram'
@@ -189,7 +190,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label13: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 342
             Width = 95
             Caption = 'Number of blade'
@@ -197,7 +198,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label14: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 370
             Width = 53
             Caption = 'Disk ratio'
@@ -205,7 +206,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label15: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 398
             Width = 149
             Caption = 'Koef. infl. hull on diameter'
@@ -213,7 +214,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label16: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 426
             Width = 127
             Caption = 'Waiting ship speed, kn'
@@ -221,7 +222,7 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label17: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 454
             Width = 153
             Caption = 'Calculated ship speed, kn :'
@@ -229,461 +230,357 @@ object FreePropeller_Task2: TFreePropeller_Task2
           end
           object Label18: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 510
             Width = 151
             Caption = 'Calculated resistance, kN :'
             ParentColor = False
           end
-          object Edit2: TFreeNumInput
-            Left = 195
-            Height = 24
-            Top = 26
-            Width = 55
+          object Edit2: TFloatSpinEdit
+            Left = 200
+            Height = 23
+            Top = 24
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 0
+            Value = 0
           end
-          object Edit3: TFreeNumInput
+          object Edit3: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 54
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 1
+            Value = 0
           end
-          object Edit4: TFreeNumInput
+          object Edit4: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 82
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            MaxValue = 3
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 2
+            Value = 0
           end
-          object Edit5: TFreeNumInput
+          object Edit5: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 110
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 1
-            Digits = 12
-            Max = 2000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 1
+            MaxValue = 2000
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 3
+            Value = 0
           end
-          object Edit6: TFreeNumInput
+          object Edit6: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 138
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 0.5
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 4
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 4
+            Value = 0
           end
-          object Edit7: TFreeNumInput
+          object Edit7: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 166
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 0.5
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 4
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 5
+            Value = 0
           end
-          object Edit8: TFreeNumInput
+          object Edit8: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 194
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 3
+            MaxValue = 1.1
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 6
+            Value = 0
           end
-          object Edit9: TFreeNumInput
+          object Edit9: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 222
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 3
+            MaxValue = 1.1
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 7
+            Value = 0
           end
-          object Edit10: TFreeNumInput
+          object Edit10: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 250
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 3
+            MaxValue = 1
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 8
+            Value = 0
           end
-          object Edit11: TFreeNumInput
+          object Edit11: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 278
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 3
+            MaxValue = 1
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 9
+            Value = 0
           end
-          object Edit12: TFreeNumInput
+          object Edit12: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 306
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 20
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            MaxValue = 20
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 10
+            Value = 0
           end
-          object Edit13: TFreeNumInput
+          object Edit13: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 334
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 8
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            MaxValue = 8
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 11
+            Value = 0
           end
-          object Edit14: TFreeNumInput
+          object Edit14: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 362
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.8
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 3
+            MaxValue = 1.8
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 12
+            Value = 0
           end
-          object Edit15: TFreeNumInput
+          object Edit15: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 390
-            Width = 50
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 3
+            MaxValue = 1.1
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 13
+            Value = 0
           end
-          object Edit16: TFreeNumInput
+          object Edit16: TFloatSpinEdit
             Left = 200
-            Height = 24
+            Height = 23
             Top = 418
+            Width = 70
+            Alignment = taRightJustify
+            MaxValue = 70
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 14
+            Value = 0
+          end
+          object Edit17_1: TFloatSpinEdit
+            Left = 220
+            Height = 23
+            Top = 474
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 70
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
-            TabOrder = 14
-          end
-          object Edit17_1: TFreeNumInput
-            Left = 8
-            Height = 24
-            Top = 474
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 70
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            DecimalPlaces = 1
+            MaxValue = 70
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 15
-          end
-          object Edit17_2: TFreeNumInput
-            Left = 56
-            Height = 24
-            Top = 474
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 70
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit17_2: TFloatSpinEdit
+            Left = 168
+            Height = 23
+            Top = 474
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 70
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 16
-          end
-          object Edit17_3: TFreeNumInput
-            Left = 104
-            Height = 24
-            Top = 474
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 70
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit17_3: TFloatSpinEdit
+            Left = 115
+            Height = 23
+            Top = 474
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 70
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 17
-          end
-          object Edit17_4: TFreeNumInput
-            Left = 152
-            Height = 24
-            Top = 474
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 70
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit17_4: TFloatSpinEdit
+            Left = 61
+            Height = 23
+            Top = 474
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 70
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 18
-          end
-          object Edit17_5: TFreeNumInput
-            Left = 200
-            Height = 24
-            Top = 474
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 70
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
-            TabOrder = 19
           end
-          object Edit18_1: TFreeNumInput
+          object Edit17_5: TFloatSpinEdit
             Left = 8
-            Height = 24
-            Top = 526
-            Width = 44
+            Height = 23
+            Top = 474
+            Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 1
+            MaxValue = 70
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 19
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit18_1: TFloatSpinEdit
+            Left = 8
+            Height = 23
+            Top = 525
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 10000
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 20
-          end
-          object Edit18_2: TFreeNumInput
-            Left = 56
-            Height = 24
-            Top = 526
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit18_2: TFloatSpinEdit
+            Left = 61
+            Height = 23
+            Top = 526
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 10000
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 21
-          end
-          object Edit18_3: TFreeNumInput
-            Left = 104
-            Height = 24
-            Top = 526
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit18_3: TFloatSpinEdit
+            Left = 115
+            Height = 23
+            Top = 525
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 10000
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 22
-          end
-          object Edit18_4: TFreeNumInput
-            Left = 152
-            Height = 24
-            Top = 526
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit18_4: TFloatSpinEdit
+            Left = 168
+            Height = 23
+            Top = 526
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 10000
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 23
-          end
-          object Edit18_5: TFreeNumInput
-            Left = 200
-            Height = 24
-            Top = 526
-            Width = 44
-            Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+          end
+          object Edit18_5: TFloatSpinEdit
+            Left = 220
+            Height = 23
+            Top = 526
+            Width = 50
+            Alignment = taRightJustify
+            DecimalPlaces = 1
+            MaxValue = 10000
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
             TabOrder = 24
+            Value = 0
           end
           object Chart: TChart
-            Left = 251
-            Height = 546
+            Left = 311
+            Height = 547
             Top = 1
             Width = 560
             AxisList = <            
               item
+                Marks.LabelBrush.Style = bsClear
                 Minors = <>
                 Title.LabelFont.Orientation = 900
                 Title.Visible = True
                 Title.Caption = 'Power'
+                Title.LabelBrush.Style = bsClear
               end            
               item
                 Alignment = calBottom
+                Marks.LabelBrush.Style = bsClear
                 Minors = <>
                 Title.Visible = True
                 Title.Caption = 'Frequency [1/c]'
+                Title.LabelBrush.Style = bsClear
               end            
               item
                 Alignment = calRight
+                Marks.LabelBrush.Style = bsClear
                 Minors = <>
                 Title.LabelFont.Orientation = 900
                 Title.Visible = True
                 Title.Caption = 'Power vs reductor'
+                Title.LabelBrush.Style = bsClear
               end>
             Foot.Brush.Color = clBtnFace
             Foot.Font.Color = clBlue
@@ -697,7 +594,6 @@ object FreePropeller_Task2: TFreePropeller_Task2
             )
             Title.Visible = True
             Align = alRight
-            ParentColor = False
             object Series1: TLineSeries
               Marks.Visible = False
               Title = 'Pe   '
@@ -705,28 +601,25 @@ object FreePropeller_Task2: TFreePropeller_Task2
               LinePen.Width = 2
               Pointer.HorizSize = 2
               Pointer.VertSize = 2
-              Pointer.Visible = False
             end
             object Series2: TLineSeries
               Marks.Visible = False
               Title = 'Ps   '
               LinePen.Color = clGreen
               LinePen.Width = 2
-              Pointer.Visible = False
             end
             object Series3: TLineSeries
               Marks.Visible = False
               Title = 'Ne '
               LinePen.Color = clRed
               LinePen.Width = 2
-              Pointer.Visible = False
             end
           end
           object CheckBox2: TCheckBox
             Left = 9
             Height = 21
             Top = 8
-            Width = 215
+            Width = 192
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 26
@@ -736,8 +629,8 @@ object FreePropeller_Task2: TFreePropeller_Task2
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 570
-      ClientWidth = 834
+      ClientHeight = 571
+      ClientWidth = 894
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0
@@ -756,8 +649,8 @@ object FreePropeller_Task2: TFreePropeller_Task2
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 570
-      ClientWidth = 834
+      ClientHeight = 571
+      ClientWidth = 894
       object Panel15: TPanel
         Left = 0
         Height = 407
@@ -922,4 +815,4 @@ object FreePropeller_Task2: TFreePropeller_Task2
     left = 193
     top = 3
   end
-end
+end

@@ -64,13 +64,13 @@ uses
      StdCtrls,
      Buttons,
      ExtCtrls,
-     FreeNumInput,
+     Spin,
     FreeShipUnit,FreeLanguageSupport;
 
 type TDXFExport2DDialog = class(TForm)
                               Panel2: TPanel;
                               Label3: TLabel;
-                              Edit1: TFreeNumInput;
+                              Edit1: TFloatSpinEdit;
                               Panel1: TPanel;
                               Panel3: TPanel;
                               Label1: TLabel;

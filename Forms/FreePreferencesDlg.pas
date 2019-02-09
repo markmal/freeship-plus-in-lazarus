@@ -49,8 +49,8 @@ uses
      Buttons,
      ExtCtrls,
      FreeShipUnit,
-     ComCtrls, Spin,
-     FreeNumInput,
+     ComCtrls,
+     Spin,
      FreeLanguageSupport;
 
 type
@@ -154,7 +154,7 @@ type
     Label26: TLabel;
     ComboBox1: TComboBox;
     Label27: TLabel;
-    FreeNumInput1: TFreeNumInput;
+    FreeNumInput1: TSpinEdit;
     procedure ColorPanelClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);

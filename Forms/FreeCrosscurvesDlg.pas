@@ -56,7 +56,7 @@ uses
      FreeGeometry,
      ExtCtrls,
      FreeshipUnit,
-     FreeNumInput,
+     Spin,
      ComCtrls,
      ToolWin,
      ImgList,
@@ -81,19 +81,19 @@ type
                                  Panel: TPanel;
                                  GroupBox1: TGroupBox;
                                  DisplBox: TListBox;
-                                 FreeNumInput1: TFreeNumInput;
+                                 FreeNumInput1: TFloatSpinEdit;
                                  Button1: TButton;
                                  Button2: TButton;
                                  CheckBox1: TCheckBox;
                                  Label1: TLabel;
-                                 FreeNumInput2: TFreeNumInput;
+                                 FreeNumInput2: TFloatSpinEdit;
                                  Label2: TLabel;
-                                 FreeNumInput3: TFreeNumInput;
+                                 FreeNumInput3: TFloatSpinEdit;
                                  Label3: TLabel;
-                                 FreeNumInput4: TFreeNumInput;
+                                 FreeNumInput4: TFloatSpinEdit;
                                  GroupBox2: TGroupBox;
                                  HeelBox: TListBox;
-                                 FreeNumInput5: TFreeNumInput;
+                                 FreeNumInput5: TFloatSpinEdit;
                                  Button3: TButton;
                                  Button4: TButton;
                                  GroupBox3: TGroupBox;
@@ -110,15 +110,15 @@ type
                                  Label13_: TLabel;
                                  ComboBox: TComboBox;
                                  ComboBox1: TComboBox;
-                                 FreeNumInput5_: TFreeNumInput;
-                                 FreeNumInput6_: TFreeNumInput;	
-                                 FreeNumInput7_: TFreeNumInput;	
-                                 FreeNumInput8_: TFreeNumInput;	
-                                 FreeNumInput9_: TFreeNumInput;	
-                                 FreeNumInput10_: TFreeNumInput;	
-//                                 FreeNumInput11_: TFreeNumInput;	
-                                 FreeNumInput12_: TFreeNumInput;	
-                                 FreeNumInput13_: TFreeNumInput;	
+                                 FreeNumInput5_: TFloatSpinEdit;
+                                 FreeNumInput6_: TFloatSpinEdit;	
+                                 FreeNumInput7_: TFloatSpinEdit;	
+                                 FreeNumInput8_: TFloatSpinEdit;	
+                                 FreeNumInput9_: TFloatSpinEdit;	
+                                 FreeNumInput10_: TFloatSpinEdit;	
+//                                 FreeNumInput11_: TFloatSpinEdit;	
+                                 FreeNumInput12_: TFloatSpinEdit;	
+                                 FreeNumInput13_: TFloatSpinEdit;	
                                  TabSheet3: TTabSheet;
                                  TabSheet4: TTabSheet;
                                  Resultsmemo: TMemo;
@@ -248,17 +248,17 @@ end;{TFreeCrosscurvesDialog.ToolButton25Click}
 procedure TFreeCrosscurvesDialog.FreeNumInput5_AfterSetValue(Sender: TObject);
 begin
    if (FreeNuminput5_.Value>0) then
-     FreeNuminput5_.BorderColor:=clDefault
+     FreeNuminput5_.Color:=clDefault
    else
-     FreeNuminput5_.BorderColor:=clRed;
+     FreeNuminput5_.Color:=clYellow;
 end;
 
 procedure TFreeCrosscurvesDialog.FreeNumInput6_AfterSetValue(Sender: TObject);
 begin
    if (FreeNuminput6_.Value>0) then
-     FreeNuminput6_.BorderColor:=clDefault
+     FreeNuminput6_.Color:=clDefault
    else
-     FreeNuminput6_.BorderColor:=clRed;
+     FreeNuminput6_.Color:=clYellow;
 end;
 
 procedure TFreeCrosscurvesDialog.ToolButton7Click(Sender: TObject);
@@ -304,12 +304,12 @@ begin
    if Checkbox1.Checked then DisplBox.Color:=clBtnFace
                         else DisplBox.Color:=clWindow;
    if FreeNuminput5_.Value > 0.0
-   then FreeNuminput5_.BorderColor:=clDefault
-   else FreeNuminput5_.BorderColor:=clRed;
+   then FreeNuminput5_.Color:=clDefault
+   else FreeNuminput5_.Color:=clYellow;
 
    if FreeNuminput6_.Value > 0.0
-   then FreeNuminput6_.BorderColor:=clDefault
-   else FreeNuminput6_.BorderColor:=clRed;
+   then FreeNuminput6_.Color:=clDefault
+   else FreeNuminput6_.Color:=clYellow;
 end;{TFreeCrosscurvesDialog.UpdateDisplacementData}
 
 procedure TFreeCrosscurvesDialog.UpdateHeelingAngleData;
@@ -538,13 +538,13 @@ begin
           Displacements[NDispl-1]:=Dr;	 
     	  JJ:=1;
           II:=NDispl;
-          FreeNuminput5_.BorderColor:=clDefault;
-          FreeNuminput6_.BorderColor:=clDefault;
+          FreeNuminput5_.Color:=clDefault;
+          FreeNuminput6_.Color:=clDefault;
       end
       else
       begin
-        FreeNuminput5_.BorderColor:=clRed;
-        FreeNuminput6_.BorderColor:=clRed;
+        FreeNuminput5_.Color:=clYellow;
+        FreeNuminput6_.Color:=clYellow;
       end;
 
 

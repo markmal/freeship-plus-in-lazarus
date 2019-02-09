@@ -54,7 +54,7 @@ uses
      SysUtils,
      Graphics,
      Forms,
-     FreeNumInput,
+     Spin,
      Dialogs,
      StdCtrls,
      ComCtrls,
@@ -84,11 +84,11 @@ type TFreeResistance_FungLeib   = class(TForm)
                                     Data2: TTabSheet;
                                     GroupBox1: TGroupBox;
 
-                                    StartSpeedBox: TFreeNumInput;
-                                    EndSpeedBox: TFreeNumInput;
-                                    StepSpeedBox: TFreeNumInput;
-                                    DensityBox: TFreeNumInput;
-                                    ViscosityBox: TFreeNumInput;
+                                    StartSpeedBox: TFloatSpinEdit;
+                                    EndSpeedBox: TFloatSpinEdit;
+                                    StepSpeedBox: TFloatSpinEdit;
+                                    DensityBox: TFloatSpinEdit;
+                                    ViscosityBox: TFloatSpinEdit;
                                     GroupBox2: TGroupBox;
                                     Label1: TLabel;
                                     Label2: TLabel;
@@ -153,50 +153,50 @@ type TFreeResistance_FungLeib   = class(TForm)
                                     Label7_9: TLabel;
                                     Label7_10: TLabel;
                                     Label7_11: TLabel;
-                                    A1Box: TFreeNumInput;
-                                    A2Box: TFreeNumInput;
-                                    A3Box: TFreeNumInput;
-                                    A4Box: TFreeNumInput;
-                                    A5Box: TFreeNumInput;
-                                    A6Box: TFreeNumInput;
-                                    A7Box: TFreeNumInput;
-                                    A8Box: TFreeNumInput;
-                                    A9Box: TFreeNumInput;
-                                    A10Box: TFreeNumInput;
-                                    A11Box: TFreeNumInput;
-                                    LwlBox: TFreeNumInput;
-                                    BwlBox: TFreeNumInput;
-                                    DraftBox: TFreeNumInput; // Different
-                                    DraftTotalBox: TFreeNumInput; // Draft on midship
-                                    WettedSurfacebox: TFreeNumInput;
+                                    A1Box: TFloatSpinEdit;
+                                    A2Box: TFloatSpinEdit;
+                                    A3Box: TFloatSpinEdit;
+                                    A4Box: TFloatSpinEdit;
+                                    A5Box: TFloatSpinEdit;
+                                    A6Box: TFloatSpinEdit;
+                                    A7Box: TFloatSpinEdit;
+                                    A8Box: TFloatSpinEdit;
+                                    A9Box: TFloatSpinEdit;
+                                    A10Box: TFloatSpinEdit;
+                                    A11Box: TFloatSpinEdit;
+                                    LwlBox: TFloatSpinEdit;
+                                    BwlBox: TFloatSpinEdit;
+                                    DraftBox: TFloatSpinEdit; // Different
+                                    DraftTotalBox: TFloatSpinEdit; // Draft on midship
+                                    WettedSurfacebox: TFloatSpinEdit;
                                     EstimateBox: TCheckBox;
 				    Estimate2Box: TCheckBox;
-                                    Losbox: TFreeNumInput;
-                                    DisplacementBox: TFreeNumInput;
-                                    LCBBox: TFreeNumInput;
-                                    CpBox: TFreeNumInput;
-                                    KeBox: TFreeNumInput;
-                                    BABox: TFreeNumInput;
-                                    KBulbBox: TFreeNumInput;
-                                    ZBulbBox: TFreeNumInput;
-                                    CstrnBox: TFreeNumInput;
-                                    NpBox: TFreeNumInput;
-                                    DpBox: TFreeNumInput;
-                                    KsBox: TFreeNumInput;
-                                    K1Box: TFreeNumInput;
-                                    K2Box: TFreeNumInput;
-                                    K3Box: TFreeNumInput;
-                                    K4Box: TFreeNumInput;
-                                    K5Box: TFreeNumInput;
-                                    K6Box: TFreeNumInput;
-                                    K7Box: TFreeNumInput;
+                                    Losbox: TFloatSpinEdit;
+                                    DisplacementBox: TFloatSpinEdit;
+                                    LCBBox: TFloatSpinEdit;
+                                    CpBox: TFloatSpinEdit;
+                                    KeBox: TFloatSpinEdit;
+                                    BABox: TFloatSpinEdit;
+                                    KBulbBox: TFloatSpinEdit;
+                                    ZBulbBox: TFloatSpinEdit;
+                                    CstrnBox: TFloatSpinEdit;
+                                    NpBox: TFloatSpinEdit;
+                                    DpBox: TFloatSpinEdit;
+                                    KsBox: TFloatSpinEdit;
+                                    K1Box: TFloatSpinEdit;
+                                    K2Box: TFloatSpinEdit;
+                                    K3Box: TFloatSpinEdit;
+                                    K4Box: TFloatSpinEdit;
+                                    K5Box: TFloatSpinEdit;
+                                    K6Box: TFloatSpinEdit;
+                                    K7Box: TFloatSpinEdit;
                                     CheckBox2: TCheckBox;
                                     GroupBox3: TGroupBox;
-                                    KeelChordLengthbox: TFreeNumInput;
-                                    KeelAreaBox: TFreeNumInput;
+                                    KeelChordLengthbox: TFloatSpinEdit;
+                                    KeelAreaBox: TFloatSpinEdit;
                                     GroupBox4: TGroupBox;
-                                    RudderChordLengthbox: TFreeNumInput;
-                                    RudderAreaBox: TFreeNumInput;
+                                    RudderChordLengthbox: TFloatSpinEdit;
+                                    RudderAreaBox: TFloatSpinEdit;
                                     Results: TTabSheet;
                                     Results2: TTabSheet;
                                     Panel5: TPanel;

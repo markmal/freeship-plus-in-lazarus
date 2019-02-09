@@ -22,10 +22,6 @@ object FreeLinesplanForm: TFreeLinesplanForm
     Height = 594
     Align = alClient
     TabOrder = 0
-    inherited Viewport: TFreeViewport
-      Width = 820
-      Height = 570
-    end
     inherited ToolBar1: TToolBar
       Width = 820
       inherited ToolButton19: TToolButton
@@ -33,4 +29,4 @@ object FreeLinesplanForm: TFreeLinesplanForm
       end
     end
   end
-end
+end

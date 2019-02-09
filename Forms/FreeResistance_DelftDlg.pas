@@ -47,7 +47,7 @@ uses
      SysUtils,
      Graphics,
      Forms,
-     FreeNumInput,
+     Spin,
      Dialogs,
      StdCtrls,
      ComCtrls,
@@ -130,11 +130,11 @@ type
                                     Label3: TLabel;
                                     Label4: TLabel;
                                     Label5: TLabel;
-                                    StartSpeedBox: TFreeNumInput;
-                                    EndSpeedBox: TFreeNumInput;
-                                    StepSpeedBox: TFreeNumInput;
-                                    DensityBox: TFreeNumInput;
-                                    ViscosityBox: TFreeNumInput;
+                                    StartSpeedBox: TFloatSpinEdit;
+                                    EndSpeedBox: TFloatSpinEdit;
+                                    StepSpeedBox: TFloatSpinEdit;
+                                    DensityBox: TFloatSpinEdit;
+                                    ViscosityBox: TFloatSpinEdit;
                                     GroupBox2: TGroupBox;
                                     Label13: TLabel;
                                     Label20: TLabel;
@@ -145,27 +145,27 @@ type
                                     Label25: TLabel;
                                     Label26: TLabel;
                                     Label27: TLabel;
-                                    LwlBox: TFreeNumInput;
-                                    BwlBox: TFreeNumInput;
-                                    DraftBox: TFreeNumInput;
-                                    DraftTotalBox: TFreeNumInput;
-                                    WettedSurfacebox: TFreeNumInput;
+                                    LwlBox: TFloatSpinEdit;
+                                    BwlBox: TFloatSpinEdit;
+                                    DraftBox: TFloatSpinEdit;
+                                    DraftTotalBox: TFloatSpinEdit;
+                                    WettedSurfacebox: TFloatSpinEdit;
                                     EstimateBox: TCheckBox;
-                                    WlAreabox: TFreeNumInput;
-                                    DisplacementBox: TFreeNumInput;
-                                    LCBBox: TFreeNumInput;
-                                    CpBox: TFreeNumInput;
+                                    WlAreabox: TFloatSpinEdit;
+                                    DisplacementBox: TFloatSpinEdit;
+                                    LCBBox: TFloatSpinEdit;
+                                    CpBox: TFloatSpinEdit;
                                     CheckBox2: TCheckBox;
                                     GroupBox3: TGroupBox;
                                     Label28: TLabel;
                                     Label29: TLabel;
-                                    KeelChordLengthbox: TFreeNumInput;
-                                    KeelAreaBox: TFreeNumInput;
+                                    KeelChordLengthbox: TFloatSpinEdit;
+                                    KeelAreaBox: TFloatSpinEdit;
                                     GroupBox4: TGroupBox;
                                     Label6: TLabel;
                                     Label7: TLabel;
-                                    RudderChordLengthbox: TFreeNumInput;
-                                    RudderAreaBox: TFreeNumInput;
+                                    RudderChordLengthbox: TFloatSpinEdit;
+                                    RudderAreaBox: TFloatSpinEdit;
                                     Results: TTabSheet;
                                     Panel5: TPanel;
                                     Resultsmemo: TMemo;

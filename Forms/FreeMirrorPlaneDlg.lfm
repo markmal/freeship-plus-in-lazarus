@@ -66,21 +66,14 @@ object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
         TabOrder = 2
         TabStop = True
       end
-      object Edit1: TFreeNumInput
+      object Edit1: TFloatSpinEdit
         Left = 82
         Height = 24
         Top = 74
         Width = 83
         Alignment = taRightJustify
-        Decimals = 4
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 4
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         TabOrder = 3
       end
       object CheckBox1: TCheckBox

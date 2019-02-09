@@ -13,7 +13,7 @@ object FreeLayerDialog: TFreeLayerDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 410
@@ -37,7 +37,7 @@ object FreeLayerDialog: TFreeLayerDialog
       TabOrder = 0
       object Label1: TLabel
         Left = 6
-        Height = 14
+        Height = 13
         Top = 12
         Width = 33
         Caption = 'Name'
@@ -45,31 +45,31 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Label2: TLabel
         Left = 6
-        Height = 14
+        Height = 13
         Top = 36
-        Width = 29
+        Width = 30
         Caption = 'Color'
         ParentColor = False
       end
       object Label3: TLabel
         Left = 6
-        Height = 14
+        Height = 13
         Top = 165
-        Width = 85
+        Width = 84
         Caption = 'Specific weight'
         ParentColor = False
       end
       object _Label4: TLabel
         Left = 214
-        Height = 14
+        Height = 13
         Top = 168
-        Width = 44
+        Width = 43
         Caption = '[t/m^3]'
         ParentColor = False
       end
       object Label5: TLabel
         Left = 6
-        Height = 14
+        Height = 13
         Top = 187
         Width = 55
         Caption = 'Thickness'
@@ -77,7 +77,7 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object _Label6: TLabel
         Left = 214
-        Height = 14
+        Height = 13
         Top = 190
         Width = 30
         Caption = '[mm]'
@@ -85,17 +85,17 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Label4: TLabel
         Left = 5
-        Height = 14
+        Height = 13
         Top = 54
-        Width = 74
+        Width = 76
         Caption = 'Transparency'
         ParentColor = False
       end
       object _Label1: TLabel
         Left = 214
-        Height = 12
+        Height = 10
         Top = 54
-        Width = 35
+        Width = 36
         Caption = '100.0%'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clWindowText
@@ -106,7 +106,7 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Edit1: TEdit
         Left = 88
-        Height = 24
+        Height = 23
         Top = 4
         Width = 153
         OnChange = Edit1Change
@@ -123,93 +123,87 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object CheckBox1: TCheckBox
         Left = 4
-        Height = 20
+        Height = 21
         Top = 126
-        Width = 98
+        Width = 93
         Caption = 'Developable'
         OnClick = CheckBox1Click
         TabOrder = 5
       end
       object CheckBox2: TCheckBox
         Left = 4
-        Height = 20
+        Height = 21
         Top = 108
-        Width = 135
+        Width = 131
         Caption = 'Intersection curves'
         OnClick = CheckBox2Click
         TabOrder = 4
       end
       object CheckBox3: TCheckBox
         Left = 4
-        Height = 20
+        Height = 21
         Top = 72
-        Width = 140
+        Width = 137
         Caption = 'Use for hydrostatics'
         OnClick = CheckBox3Click
         TabOrder = 12
       end
       object CheckBox6: TCheckBox
         Left = 4
-        Height = 20
+        Height = 21
         Top = 208
-        Width = 193
+        Width = 191
         Caption = 'Set weigth and CoG manually'
         OnClick = CheckBox3Click
         TabOrder = 2
       end
       object Label6_: TLabel
         Left = 6
-        Height = 14
+        Height = 13
         Top = 232
-        Width = 39
+        Width = 38
         Caption = 'Weight'
         ParentColor = False
       end
       object Label6_0: TLabel
         Left = 214
-        Height = 14
+        Height = 13
         Top = 232
-        Width = 13
+        Width = 12
         Caption = '[t]'
         ParentColor = False
       end
-      object WeightBox: TFreeNumInput
-        Left = 153
-        Height = 24
+      object WeightBox: TFloatSpinEdit
+        Left = 136
+        Height = 23
         Top = 228
-        Width = 60
+        Width = 77
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 500000
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
-        Value = 0
-        Validate = False
-        OnAfterSetValue = WeightBoxAfterSetValue
-        BorderColor = clBtnShadow
+        DecimalPlaces = 3
+        MaxValue = 500000
+        MinValue = 0
         TabOrder = 13
+        Value = 0
       end
       object Label6_1: TLabel
         Left = 5
-        Height = 14
+        Height = 13
         Top = 253
-        Width = 204
+        Width = 215
         Caption = 'Coordinates center of gravity,          :'
         ParentColor = False
       end
       object Label6_1_: TLabel
         Left = 224
-        Height = 14
+        Height = 13
         Top = 253
-        Width = 20
+        Width = 19
         Caption = '[m]'
         ParentColor = False
       end
       object Label6_2: TLabel
         Left = 6
-        Height = 14
+        Height = 13
         Top = 273
         Width = 12
         Caption = 'X:'
@@ -217,7 +211,7 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Label6_3: TLabel
         Left = 87
-        Height = 14
+        Height = 13
         Top = 273
         Width = 10
         Caption = 'Y:'
@@ -225,85 +219,72 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Label6_4: TLabel
         Left = 168
-        Height = 14
+        Height = 13
         Top = 273
         Width = 12
         Caption = 'Z:'
         ParentColor = False
       end
-      object XgBox: TFreeNumInput
-        Left = 23
-        Height = 24
+      object XgBox: TFloatSpinEdit
+        Left = 16
+        Height = 23
         Top = 268
-        Width = 60
+        Width = 65
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 550
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
-        Value = 0
-        Validate = False
-        OnAfterSetValue = WeightBoxAfterSetValue
-        BorderColor = clBtnShadow
+        DecimalPlaces = 3
+        MaxValue = 550
+        MinValue = 0
         TabOrder = 14
-      end
-      object YgBox: TFreeNumInput
-        Left = 103
-        Height = 24
-        Top = 268
-        Width = 60
-        Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 100
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
         Value = 0
-        Validate = False
-        OnAfterSetValue = WeightBoxAfterSetValue
-        BorderColor = clBtnShadow
+      end
+      object YgBox: TFloatSpinEdit
+        Left = 96
+        Height = 23
+        Top = 268
+        Width = 67
+        Alignment = taRightJustify
+        DecimalPlaces = 3
+        MinValue = 0
         TabOrder = 15
-      end
-      object ZgBox: TFreeNumInput
-        Left = 183
-        Height = 24
-        Top = 268
-        Width = 60
-        Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 35
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
         Value = 0
-        Validate = False
-        OnAfterSetValue = WeightBoxAfterSetValue
-        BorderColor = clBtnShadow
-        TabOrder = 1
       end
-      object Edit2: TEdit
-        Left = 153
+      object ZgBox: TFloatSpinEdit
+        Left = 182
+        Height = 23
+        Top = 268
+        Width = 68
+        Alignment = taRightJustify
+        DecimalPlaces = 3
+        MaxValue = 35
+        MinValue = 0
+        TabOrder = 1
+        Value = 0
+      end
+      object Edit2: TFloatSpinEdit
+        Left = 136
         Height = 19
-        Top = 161
-        Width = 60
+        Top = 159
+        Width = 77
         AutoSize = False
+        MaxValue = 100000
+        MinValue = 0
         OnExit = Edit2Exit
         OnKeyPress = Edit2KeyPress
         TabOrder = 7
+        Value = 0
       end
-      object Edit3: TEdit
-        Left = 153
+      object Edit3: TFloatSpinEdit
+        Left = 136
         Height = 19
         Top = 184
-        Width = 60
+        Width = 77
         AutoSize = False
+        MaxValue = 10000
+        MinValue = 0
         OnExit = Edit3Exit
         OnKeyPress = Edit3KeyPress
         TabOrder = 8
+        Value = 0
       end
       object GroupBox1: TGroupBox
         Left = 4
@@ -311,39 +292,39 @@ object FreeLayerDialog: TFreeLayerDialog
         Top = 293
         Width = 242
         Caption = 'Surface properties. '
-        ClientHeight = 79
-        ClientWidth = 234
+        ClientHeight = 82
+        ClientWidth = 238
         TabOrder = 9
         object Label7: TLabel
           Left = 60
-          Height = 14
+          Height = 13
           Top = 2
-          Width = 26
+          Width = 27
           Alignment = taRightJustify
           Caption = 'Area'
           ParentColor = False
         end
         object Label8: TLabel
           Left = 48
-          Height = 14
+          Height = 13
           Top = 20
-          Width = 39
+          Width = 38
           Alignment = taRightJustify
           Caption = 'Weight'
           ParentColor = False
         end
         object Label9: TLabel
           Left = 5
-          Height = 14
+          Height = 13
           Top = 38
-          Width = 94
+          Width = 97
           Alignment = taRightJustify
           Caption = 'Center of gravity'
           ParentColor = False
         end
         object _Label10: TLabel
           Left = 115
-          Height = 14
+          Height = 13
           Top = 2
           Width = 8
           Caption = '--'
@@ -351,7 +332,7 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object _Label11: TLabel
           Left = 115
-          Height = 14
+          Height = 13
           Top = 20
           Width = 8
           Caption = '--'
@@ -359,7 +340,7 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object _Label12: TLabel
           Left = 115
-          Height = 14
+          Height = 13
           Top = 38
           Width = 8
           Caption = '--'
@@ -368,18 +349,18 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object CheckBox4: TCheckBox
         Left = 4
-        Height = 20
+        Height = 21
         Top = 144
-        Width = 125
+        Width = 121
         Caption = 'Show in linesplan'
         OnClick = CheckBox4Click
         TabOrder = 6
       end
       object CheckBox5: TCheckBox
         Left = 4
-        Height = 20
+        Height = 21
         Top = 90
-        Width = 89
+        Width = 84
         Caption = 'Symmetric'
         OnClick = CheckBox5Click
         TabOrder = 3
@@ -390,7 +371,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Top = 52
         Width = 121
         LargeChange = 5
-        Max = 255
+        MaxValue = 255
         PageSize = 0
         TabOrder = 10
         OnChange = AlphaBarChange
@@ -408,6 +389,7 @@ object FreeLayerDialog: TFreeLayerDialog
       OnDblClick = LayerBoxDblClick
       OnItemClick = LayerBoxItemClick
       TabOrder = 1
+      TopIndex = -1
     end
   end
   object ToolBar1: TToolBar
@@ -443,13 +425,12 @@ object FreeLayerDialog: TFreeLayerDialog
       Left = 51
       Height = 22
       Top = 2
-      Width = 20
       Caption = '_ToolButton2'
       ImageIndex = 1
       Style = tbsSeparator
     end
     object MoveUp: TToolButton
-      Left = 71
+      Left = 59
       Hint = 'Move the layer up in the list.'
       Top = 2
       Caption = 'Up'
@@ -457,7 +438,7 @@ object FreeLayerDialog: TFreeLayerDialog
       OnClick = MoveUpClick
     end
     object MoveDown: TToolButton
-      Left = 94
+      Left = 82
       Hint = 'Move the layer down in the list.'
       Top = 2
       Caption = 'Down'
@@ -465,16 +446,15 @@ object FreeLayerDialog: TFreeLayerDialog
       OnClick = MoveDownClick
     end
     object _ToolButton4: TToolButton
-      Left = 117
+      Left = 105
       Height = 22
       Top = 2
-      Width = 20
       Caption = '_ToolButton4'
       ImageIndex = 1
       Style = tbsSeparator
     end
     object ToolButton1: TToolButton
-      Left = 137
+      Left = 113
       Hint = 'Close this window.'
       Top = 2
       Caption = 'Done'

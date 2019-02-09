@@ -11,7 +11,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '2.0.0.4'
   object PageControl1: TPageControl
     Left = 0
     Height = 469
@@ -23,16 +23,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 439
-      ClientWidth = 836
+      ClientHeight = 438
+      ClientWidth = 834
       object Panel1: TPanel
         Left = 0
-        Height = 439
+        Height = 438
         Top = 0
         Width = 416
         Align = alLeft
         BevelOuter = bvLowered
-        ClientHeight = 439
+        ClientHeight = 438
         ClientWidth = 416
         TabOrder = 0
         object GroupBox1: TGroupBox
@@ -41,178 +41,152 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 10
           Width = 400
           Caption = 'General'
-          ClientHeight = 84
-          ClientWidth = 392
+          ClientHeight = 87
+          ClientWidth = 396
           TabOrder = 0
           object Label1: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 23
-            Width = 64
+            Width = 65
             Caption = 'Start speed'
             ParentColor = False
           end
           object Label2: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 46
-            Width = 62
+            Width = 63
             Caption = 'End speed '
             ParentColor = False
           end
           object Label3: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 69
-            Width = 26
+            Width = 25
             Caption = 'Step'
             ParentColor = False
           end
           object Label4: TLabel
             Left = 170
-            Height = 14
+            Height = 13
             Top = 23
-            Width = 76
+            Width = 78
             Caption = 'Water density'
             ParentColor = False
           end
           object Label5: TLabel
             Left = 170
-            Height = 14
+            Height = 13
             Top = 46
-            Width = 49
+            Width = 50
             Caption = 'Viscosity'
             ParentColor = False
           end
           object _Label31: TLabel
             Left = 141
-            Height = 14
+            Height = 13
             Top = 23
-            Width = 14
+            Width = 13
             Caption = 'kn'
             ParentColor = False
           end
           object _Label32: TLabel
             Left = 141
-            Height = 14
+            Height = 13
             Top = 46
-            Width = 14
+            Width = 13
             Caption = 'kn'
             ParentColor = False
           end
           object _Label33: TLabel
             Left = 141
-            Height = 14
+            Height = 13
             Top = 69
-            Width = 14
+            Width = 13
             Caption = 'kn'
             ParentColor = False
           end
           object Label34: TLabel
-            Left = 300
-            Height = 14
+            Left = 325
+            Height = 13
             Top = 23
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label36: TLabel
-            Left = 300
-            Height = 14
+            Left = 325
+            Height = 13
             Top = 46
-            Width = 65
+            Width = 67
             Caption = '*10-6  m2/s'
             ParentColor = False
           end
-          object StartSpeedBox: TFreeNumInput
+          object StartSpeedBox: TFloatSpinEdit
             Left = 94
-            Height = 24
+            Height = 23
             Top = 15
             Width = 45
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 6
-            Max = 1050
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 1
+            MaxValue = 1050
+            MinValue = 0
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 0
+            Value = 0
           end
-          object EndSpeedBox: TFreeNumInput
+          object EndSpeedBox: TFloatSpinEdit
             Left = 94
-            Height = 24
+            Height = 23
             Top = 38
             Width = 45
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 6
-            Max = 1050
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 1
+            MaxValue = 1050
+            MinValue = 0
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 1
+            Value = 0
           end
-          object StepSpeedBox: TFreeNumInput
+          object StepSpeedBox: TFloatSpinEdit
             Left = 94
-            Height = 24
+            Height = 23
             Top = 61
             Width = 45
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 6
-            Max = 1050
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 1
+            MaxValue = 1050
+            MinValue = 0
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 2
+            Value = 0
           end
-          object DensityBox: TFreeNumInput
-            Left = 255
-            Height = 24
+          object DensityBox: TFloatSpinEdit
+            Left = 252
+            Height = 23
             Top = 15
-            Width = 45
+            Width = 70
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 5
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MinValue = 0
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 3
-          end
-          object ViscosityBox: TFreeNumInput
-            Left = 255
-            Height = 24
-            Top = 38
-            Width = 45
-            Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
             Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
-            BorderColor = clBtnShadow
+          end
+          object ViscosityBox: TFloatSpinEdit
+            Left = 252
+            Height = 23
+            Top = 38
+            Width = 70
+            Alignment = taRightJustify
+            DecimalPlaces = 4
+            MaxValue = 1
+            MinValue = 0
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 4
+            Value = 0
           end
         end
         object GroupBox2: TGroupBox
@@ -221,20 +195,20 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 112
           Width = 400
           Caption = 'Hull'
-          ClientHeight = 172
-          ClientWidth = 392
+          ClientHeight = 175
+          ClientWidth = 396
           TabOrder = 1
           object Label13: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 131
-            Width = 84
+            Width = 85
             Caption = 'Wetted surface'
             ParentColor = False
           end
           object Label20: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 108
             Width = 57
             Caption = 'Total draft'
@@ -242,7 +216,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
           end
           object Label21: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 85
             Width = 52
             Caption = 'Draft hull'
@@ -250,31 +224,31 @@ object FreeResistance_Delft: TFreeResistance_Delft
           end
           object Label22: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 62
-            Width = 90
+            Width = 93
             Caption = 'Beam waterline '
             ParentColor = False
           end
           object Label23: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 39
-            Width = 93
+            Width = 94
             Caption = 'Length waterline'
             ParentColor = False
           end
           object Label24: TLabel
             Left = 180
-            Height = 14
+            Height = 13
             Top = 108
-            Width = 116
+            Width = 118
             Caption = 'Prismatic coefficient '
             ParentColor = False
           end
           object Label25: TLabel
             Left = 180
-            Height = 14
+            Height = 13
             Top = 85
             Width = 22
             Caption = 'LCB'
@@ -282,260 +256,213 @@ object FreeResistance_Delft: TFreeResistance_Delft
           end
           object Label26: TLabel
             Left = 180
-            Height = 14
+            Height = 13
             Top = 62
-            Width = 77
+            Width = 76
             Caption = 'Displacement'
             ParentColor = False
           end
           object Label27: TLabel
             Left = 180
-            Height = 14
+            Height = 13
             Top = 39
-            Width = 91
+            Width = 94
             Caption = 'Waterplane area'
             ParentColor = False
           end
           object _Label8: TLabel
             Left = 151
-            Height = 14
+            Height = 13
             Top = 39
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label9: TLabel
             Left = 151
-            Height = 14
+            Height = 13
             Top = 62
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label10: TLabel
             Left = 151
-            Height = 14
+            Height = 13
             Top = 85
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label11: TLabel
             Left = 151
-            Height = 14
+            Height = 13
             Top = 108
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label12: TLabel
             Left = 151
-            Height = 14
+            Height = 13
             Top = 129
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label14: TLabel
             Left = 363
-            Height = 14
+            Height = 13
             Top = 39
-            Width = 27
+            Width = 26
             Caption = '[m2]'
             ParentColor = False
           end
           object _Label15: TLabel
             Left = 363
-            Height = 14
+            Height = 13
             Top = 62
-            Width = 27
+            Width = 26
             Caption = '[m2]'
             ParentColor = False
           end
           object _Label16: TLabel
             Left = 363
-            Height = 14
+            Height = 13
             Top = 85
-            Width = 19
+            Width = 18
             Caption = '[%]'
             ParentColor = False
           end
-          object LwlBox: TFreeNumInput
+          object LwlBox: TFloatSpinEdit
             Left = 100
-            Height = 24
+            Height = 23
             Top = 31
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 100000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 100000
+            MinValue = 0
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 0
+            Value = 0
           end
-          object BwlBox: TFreeNumInput
+          object BwlBox: TFloatSpinEdit
             Left = 100
-            Height = 24
+            Height = 23
             Top = 54
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 100000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 100000
+            MinValue = 0
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 1
+            Value = 0
           end
-          object DraftBox: TFreeNumInput
+          object DraftBox: TFloatSpinEdit
             Left = 100
-            Height = 24
+            Height = 23
             Top = 77
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 100000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 100000
+            MinValue = 0
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 2
+            Value = 0
           end
-          object DraftTotalBox: TFreeNumInput
+          object DraftTotalBox: TFloatSpinEdit
             Left = 100
-            Height = 24
+            Height = 23
             Top = 100
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 100000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = DraftTotalBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 100000
+            MinValue = 0
+            OnExit = DraftTotalBoxAfterSetValue
             TabOrder = 3
+            Value = 0
           end
-          object WettedSurfacebox: TFreeNumInput
+          object WettedSurfacebox: TFloatSpinEdit
             Left = 100
-            Height = 24
+            Height = 23
             Top = 123
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 100000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            MaxValue = 100000
+            MinValue = 0
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 4
+            Value = 0
           end
           object EstimateBox: TCheckBox
             Left = 4
-            Height = 20
+            Height = 21
             Top = 151
-            Width = 102
+            Width = 97
             Caption = 'Use estimate'
             OnClick = EstimateBoxClick
             TabOrder = 5
           end
-          object WlAreabox: TFreeNumInput
+          object WlAreabox: TFloatSpinEdit
             Left = 311
-            Height = 24
+            Height = 23
             Top = 31
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 100000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            MaxValue = 100000
+            MinValue = 0
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 6
+            Value = 0
           end
-          object DisplacementBox: TFreeNumInput
+          object DisplacementBox: TFloatSpinEdit
             Left = 311
-            Height = 24
+            Height = 23
             Top = 54
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 500000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 500000
+            MinValue = 0
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 7
+            Value = 0
           end
-          object LCBBox: TFreeNumInput
+          object LCBBox: TFloatSpinEdit
             Left = 311
-            Height = 24
+            Height = 23
             Top = 77
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 10
-            Min = -10
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 10
+            MinValue = -10
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 8
+            Value = 0
           end
-          object CpBox: TFreeNumInput
+          object CpBox: TFloatSpinEdit
             Left = 311
-            Height = 24
+            Height = 23
             Top = 100
             Width = 50
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = True
-            OnAfterSetValue = LwlBoxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 4
+            MaxValue = 1
+            MinValue = 0
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 9
+            Value = 0
           end
           object CheckBox2: TCheckBox
             Left = 4
-            Height = 20
+            Height = 21
             Top = 14
-            Width = 193
+            Width = 192
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 10
@@ -547,76 +474,65 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 304
           Width = 195
           Caption = 'Keel'
-          ClientHeight = 69
-          ClientWidth = 187
+          ClientHeight = 72
+          ClientWidth = 191
           TabOrder = 2
           object Label28: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 48
-            Width = 68
+            Width = 69
             Caption = 'Wetted area'
             ParentColor = False
           end
           object Label29: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 25
-            Width = 115
+            Width = 118
             Caption = 'Average chordlength'
             ParentColor = False
           end
           object _Label17: TLabel
             Left = 162
-            Height = 14
+            Height = 13
             Top = 25
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label18: TLabel
             Left = 162
-            Height = 14
+            Height = 13
             Top = 48
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
-          object KeelChordLengthbox: TFreeNumInput
+          object KeelChordLengthbox: TFloatSpinEdit
             Left = 110
-            Height = 24
+            Height = 23
             Top = 17
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 75
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0.001
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 75
+            MinValue = 0
+            OnExit = KeelChordLengthboxAfterSetValue
             TabOrder = 0
+            Value = 0.001
           end
-          object KeelAreaBox: TFreeNumInput
+          object KeelAreaBox: TFloatSpinEdit
             Left = 110
-            Height = 24
+            Height = 23
             Top = 40
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 1000000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
-            BorderColor = clBtnShadow
+            MaxValue = 1000000
+            MinValue = 0
+            OnExit = KeelChordLengthboxAfterSetValue
             TabOrder = 1
+            Value = 0
           end
         end
         object GroupBox4: TGroupBox
@@ -625,105 +541,100 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Top = 304
           Width = 201
           Caption = 'Rudder'
-          ClientHeight = 69
-          ClientWidth = 193
+          ClientHeight = 72
+          ClientWidth = 197
           TabOrder = 3
           object Label6: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 25
-            Width = 115
+            Width = 118
             Caption = 'Average chordlength'
             ParentColor = False
           end
           object Label7: TLabel
             Left = 5
-            Height = 14
+            Height = 13
             Top = 48
-            Width = 68
+            Width = 69
             Caption = 'Wetted area'
             ParentColor = False
           end
           object _Label19: TLabel
             Left = 162
-            Height = 14
+            Height = 13
             Top = 25
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label30: TLabel
             Left = 162
-            Height = 14
+            Height = 13
             Top = 48
-            Width = 27
+            Width = 26
             Caption = '[m2]'
             ParentColor = False
           end
-          object RudderChordLengthbox: TFreeNumInput
+          object RudderChordLengthbox: TFloatSpinEdit
             Left = 110
-            Height = 24
+            Height = 23
             Top = 17
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 75
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0.001
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
-            BorderColor = clBtnShadow
+            DecimalPlaces = 3
+            MaxValue = 75
+            MinValue = 0
+            OnExit = KeelChordLengthboxAfterSetValue
             TabOrder = 0
+            Value = 0.001
           end
-          object RudderAreaBox: TFreeNumInput
+          object RudderAreaBox: TFloatSpinEdit
             Left = 110
-            Height = 24
+            Height = 23
             Top = 40
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 1000000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
-            Value = 0
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
-            BorderColor = clBtnShadow
+            MaxValue = 1000000
+            MinValue = 0
+            OnExit = KeelChordLengthboxAfterSetValue
             TabOrder = 1
+            Value = 0
           end
         end
       end
       object Chart: TChart
         Left = 416
-        Height = 439
+        Height = 438
         Top = 0
-        Width = 420
+        Width = 418
         AxisList = <        
           item
+            Marks.LabelBrush.Style = bsClear
             Minors = <>
             Title.LabelFont.Orientation = 900
             Title.Visible = True
             Title.Caption = 'Resistance [N]'
+            Title.LabelBrush.Style = bsClear
             Transformations = ChartAxisTransformations1
           end        
           item
             Grid.Style = psDash
             Alignment = calBottom
+            Marks.LabelBrush.Style = bsClear
             Minors = <>
             Title.Visible = True
             Title.Caption = 'Speed [knots]'
+            Title.LabelBrush.Style = bsClear
           end        
           item
             Alignment = calRight
+            Marks.LabelBrush.Style = bsClear
             Minors = <>
             Title.LabelFont.Orientation = 900
             Title.Visible = True
             Title.Caption = 'Power [W]'
+            Title.LabelBrush.Style = bsClear
             Transformations = ChartAxisTransformations2
           end>
         Foot.Brush.Color = clBtnFace
@@ -737,7 +648,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
           'Resistance according to Delft Systematic Yacht Series'
         )
         Align = alClient
-        ParentColor = False
         object Series1: TLineSeries
           Marks.Visible = False
           Title = 'Rf      '
@@ -746,7 +656,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
           LinePen.Color = clBlue
           Pointer.HorizSize = 2
           Pointer.VertSize = 2
-          Pointer.Visible = False
         end
         object Series2: TLineSeries
           Marks.Visible = False
@@ -754,7 +663,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
           AxisIndexX = 1
           AxisIndexY = 0
           LinePen.Color = clGreen
-          Pointer.Visible = False
         end
         object Series3: TLineSeries
           Marks.Visible = False
@@ -763,7 +671,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
           AxisIndexY = 0
           LinePen.Color = clRed
           LinePen.Width = 2
-          Pointer.Visible = False
         end
         object Series4: TLineSeries
           Marks.Visible = False
@@ -771,13 +678,12 @@ object FreeResistance_Delft: TFreeResistance_Delft
           AxisIndexX = 1
           AxisIndexY = 2
           LinePen.Width = 2
-          Pointer.Visible = False
         end
       end
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 437
+      ClientHeight = 438
       ClientWidth = 834
       object Panel5: TPanel
         Left = 0
@@ -812,6 +718,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
     Top = 0
     Width = 840
     AutoSize = True
+    ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
     Color = clBtnFace
@@ -825,20 +732,19 @@ object FreeResistance_Delft: TFreeResistance_Delft
       Left = 5
       Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton10'
       ImageIndex = 6
       Style = tbsSeparator
     end
     object ToolButton20: TToolButton
-      Left = 15
+      Left = 13
       Hint = 'Start the calculation.'
       Top = 2
       ImageIndex = 3
       OnClick = ToolButton20Click
     end
     object PrintButton: TToolButton
-      Left = 65
+      Left = 63
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'PrintButton'
@@ -846,23 +752,22 @@ object FreeResistance_Delft: TFreeResistance_Delft
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 115
+      Left = 113
       Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 125
+      Left = 121
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 175
+      Left = 171
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0

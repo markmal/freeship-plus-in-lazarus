@@ -56,7 +56,7 @@ uses
      Buttons,
     FreeTypes,
      FreeGeometry,
-     ExtCtrls, FreeNumInput,
+     ExtCtrls, Spin,
     FreeShipUnit,
     FreeLanguageSupport;
 
@@ -72,14 +72,14 @@ type TFreeCylinderDialog = class(TForm)
                               Label4: TLabel;
                               BitBtn1: TSpeedButton;
                               BitBtn2: TSpeedButton;
-                              Input1: TFreeNumInput;
-                              Input2: TFreeNumInput;
-                              Input3: TFreeNumInput;
-                              Input4: TFreeNumInput;
-                              Input5: TFreeNumInput;
-                              Input6: TFreeNumInput;
-                              Input7: TFreeNumInput;
-                              Input8: TFreeNumInput;
+                              Input1: TFloatSpinEdit;
+                              Input2: TFloatSpinEdit;
+                              Input3: TFloatSpinEdit;
+                              Input4: TFloatSpinEdit;
+                              Input5: TFloatSpinEdit;
+                              Input6: TFloatSpinEdit;
+                              Input7: TFloatSpinEdit;
+                              Input8: TSpinEdit;
                               Label3: TLabel;
                               procedure OKButtonClick(Sender: TObject);
                               procedure CancelButtonClick(Sender: TObject);

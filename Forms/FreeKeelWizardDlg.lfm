@@ -190,37 +190,6 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         Caption = '3D view'
         ClientHeight = 438
         ClientWidth = 433
-        object Viewport: TFreeViewport
-          Left = 0
-          Height = 423
-          Top = 0
-          Width = 418
-          Angle = 20
-          Align = alClient
-          BackgroundImage.Alpha = 255
-          BackgroundImage.Owner = Viewport
-          BackgroundImage.Quality = 100
-          BackgroundImage.Scale = 1
-          BackgroundImage.ShowInView = fvBodyplan
-          BackgroundImage.Tolerance = 5
-          BackgroundImage.Transparent = False
-          BackgroundImage.TransparentColor = clBlack
-          BackgroundImage.Visible = True
-          BorderStyle = bsSingle
-          CameraType = ftFarTele
-          Color = clWhite
-          DoubleBuffer = True
-          Elevation = 20
-          HorScrollbar = ScrollBar1
-          Margin = 0
-          VertScrollbar = ScrollBar2
-          ViewType = fvPerspective
-          ViewportMode = vmWireFrame
-          OnMouseDown = ViewportMouseDown
-          OnMouseMove = ViewportMouseMove
-          OnRedraw = ViewportRedraw
-          OnRequestExtents = ViewportRequestExtents
-        end
         object ScrollBar1: TScrollBar
           Left = 0
           Height = 15
@@ -594,123 +563,81 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           TabOrder = 2
           Text = 'NACA63-006'
         end
-        object Input1: TFreeNumInput
+        object Input1: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 73
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
+          MaxValue = 0
           Value = 2
-          Validate = False
-          OnAfterSetValue = Input1AfterSetValue
-          OnChangeValue = Input1ChangeValue
-          BorderColor = clBtnShadow
+          OnExit = Input1AfterSetValue
+          OnChange = Input1ChangeValue
           TabOrder = 3
         end
-        object Input2: TFreeNumInput
+        object Input2: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 97
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
           Value = 1
-          Validate = False
-          OnAfterSetValue = Input1AfterSetValue
-          OnChangeValue = Input2ChangeValue
-          BorderColor = clBtnShadow
+          OnExit = Input1AfterSetValue
           TabOrder = 4
         end
-        object Input4: TFreeNumInput
+        object Input4: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 120
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
           Value = 0.1
-          Validate = False
-          OnAfterSetValue = Input1AfterSetValue
-          OnChangeValue = Input4ChangeValue
-          BorderColor = clBtnShadow
+          OnExit = Input1AfterSetValue
+          OnChange = Input4ChangeValue
           TabOrder = 5
         end
-        object Input3: TFreeNumInput
+        object Input3: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 145
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
           Value = 1
-          Validate = False
-          OnAfterSetValue = Input1AfterSetValue
-          OnChangeValue = Input3ChangeValue
-          BorderColor = clBtnShadow
+          OnExit = Input1AfterSetValue
+          OnChange = Input3ChangeValue
           TabOrder = 6
         end
-        object Input5: TFreeNumInput
+        object Input5: TSpinEdit
           Left = 162
           Height = 24
           Top = 169
           Width = 65
           Alignment = taRightJustify
-          Decimals = 0
-          Digits = 12
-          Max = 1000
-          Min = 2
-          DataType = dtInteger
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          MaxValue = 1000
+          MinValue = 2
           Value = 6
-          Validate = False
-          OnAfterSetValue = Input5AfterSetValue
-          OnChangeValue = Input5ChangeValue
-          BorderColor = clBtnShadow
+          OnExit = Input5AfterSetValue
+          OnChange = Input5ChangeValue
           Font.Height = -11
           Font.Name = 'MS Sans Serif'
           ParentFont = False
           TabOrder = 7
         end
-        object Input6: TFreeNumInput
+        object Input6: TSpinEdit
           Left = 162
           Height = 24
           Top = 193
           Width = 65
           Alignment = taRightJustify
-          Decimals = 0
-          Digits = 12
-          Max = 1000
-          Min = 3
-          DataType = dtInteger
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          MaxValue = 1000
+          MinValue = 3
           Value = 15
-          Validate = False
-          OnAfterSetValue = Input6AfterSetValue
-          OnChangeValue = Input6ChangeValue
-          BorderColor = clBtnShadow
+          OnExit = Input6AfterSetValue
+          OnChange = Input6ChangeValue
           Font.Height = -11
           Font.Name = 'MS Sans Serif'
           ParentFont = False
@@ -972,58 +899,35 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           TabOrder = 1
           Text = 'NACA0020'
         end
-        object InputLength: TFreeNumInput
+        object InputLength: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 49
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
           Value = 1.2
-          Validate = False
-          OnAfterSetValue = InputLengthAfterSetValue
-          BorderColor = clBtnShadow
+          OnExit = InputLengthAfterSetValue
           TabOrder = 2
         end
-        object InputPoints: TFreeNumInput
+        object InputPoints: TSpinEdit
           Left = 162
           Height = 24
           Top = 193
           Width = 65
           Alignment = taRightJustify
-          Decimals = 0
-          Digits = 12
-          Max = 0
-          Min = 0
-          DataType = dtInteger
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
           Value = 26
-          Validate = False
-          BorderColor = clBtnShadow
           TabOrder = 3
         end
-        object InputDensity: TFreeNumInput
+        object InputDensity: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 145
           Width = 65
           Alignment = taRightJustify
-          Decimals = 2
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 2
           Value = 11.35
-          Validate = False
-          OnAfterSetValue = InputDensityAfterSetValue
-          BorderColor = clBtnShadow
+          OnExit = InputDensityAfterSetValue
           Enabled = False
           TabOrder = 4
         end
@@ -1036,21 +940,14 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Enabled = False
           TabOrder = 5
         end
-        object InputWeight: TFreeNumInput
+        object InputWeight: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 169
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
           Value = 0.6
-          Validate = False
-          BorderColor = clBtnShadow
           Enabled = False
           TabOrder = 6
         end
@@ -1064,22 +961,15 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Position = 0
           TabOrder = 7
         end
-        object InputDelta: TFreeNumInput
+        object InputDelta: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 73
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
           Value = 0.1
-          Validate = False
-          OnAfterSetValue = InputDeltaAfterSetValue
-          BorderColor = clBtnShadow
+          OnExit = InputDeltaAfterSetValue
           TabOrder = 8
         end
         object Button2: TButton
@@ -1091,22 +981,15 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Enabled = False
           TabOrder = 9
         end
-        object InputWingWidth: TFreeNumInput
+        object InputWingWidth: TFloatSpinEdit
           Left = 162
           Height = 24
           Top = 97
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          DecimalPlaces = 3
           Value = 0.1
-          Validate = False
-          OnAfterSetValue = InputDeltaAfterSetValue
-          BorderColor = clBtnShadow
+          OnExit = InputDeltaAfterSetValue
           TabOrder = 10
         end
         object InputMaterial: TComboBox

@@ -42,32 +42,6 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       Color = clRed
       ParentColor = False
     end
-    object Viewport: TFreeViewport
-      Left = 414
-      Height = 278
-      Top = 1
-      Width = 331
-      Angle = 0
-      Align = alClient
-      BackgroundImage.Alpha = 255
-      BackgroundImage.Owner = Viewport
-      BackgroundImage.Quality = 100
-      BackgroundImage.Scale = 1
-      BackgroundImage.ShowInView = fvBodyplan
-      BackgroundImage.Tolerance = 5
-      BackgroundImage.Transparent = False
-      BackgroundImage.TransparentColor = clBlack
-      BackgroundImage.Visible = True
-      BorderStyle = bsSingle
-      CameraType = ftStandard
-      DoubleBuffer = True
-      Elevation = 0
-      Margin = 0
-      ViewType = fvBodyplan
-      ViewportMode = vmWireFrame
-      OnRedraw = ViewportRedraw
-      OnRequestExtents = ViewportRequestExtents
-    end
     object Panel5: TPanel
       Left = 1
       Height = 278
@@ -221,245 +195,153 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Caption = 'Label12'
         ParentColor = False
       end
-      object Edit1: TFreeNumInput
+      object Edit1: TFloatSpinEdit
         Left = 183
         Height = 24
         Top = 22
         Width = 55
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 3
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 0
       end
-      object Input1: TFreeNumInput
+      object Input1: TFloatSpinEdit
         Left = 242
         Height = 24
         Top = 22
         Width = 55
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 3
         Value = 0
-        Validate = False
-        OnAfterSetValue = Input1AfterSetValue
-        BorderColor = clBtnShadow
+        OnExit = Input1AfterSetValue
         TabOrder = 1
       end
-      object Edit2: TFreeNumInput
+      object Edit2: TFloatSpinEdit
         Left = 183
         Height = 24
         Top = 50
         Width = 55
         Alignment = taRightJustify
-        Decimals = 4
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 4
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 2
       end
-      object Input2: TFreeNumInput
+      object Input2: TFloatSpinEdit
         Left = 242
         Height = 24
         Top = 50
         Width = 55
         Alignment = taRightJustify
-        Decimals = 4
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 4
         Value = 0
-        Validate = False
-        OnAfterSetValue = Input2AfterSetValue
-        BorderColor = clBtnShadow
+        OnExit = Input2AfterSetValue
         TabOrder = 3
       end
-      object Edit3: TFreeNumInput
+      object Edit3: TFloatSpinEdit
         Left = 183
         Height = 24
         Top = 78
         Width = 55
         Alignment = taRightJustify
-        Decimals = 4
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 4
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 4
       end
-      object Input3: TFreeNumInput
+      object Input3: TFloatSpinEdit
         Left = 242
         Height = 24
         Top = 78
         Width = 55
         Alignment = taRightJustify
-        Decimals = 4
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 4
         Value = 0
-        Validate = False
-        OnAfterSetValue = Input3AfterSetValue
-        BorderColor = clBtnShadow
+        OnExit = Input3AfterSetValue
         TabOrder = 5
       end
-      object Diff1: TFreeNumInput
+      object Diff1: TFloatSpinEdit
         Left = 301
         Height = 24
         Top = 22
         Width = 55
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 3
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 6
       end
-      object Diff2: TFreeNumInput
+      object Diff2: TFloatSpinEdit
         Left = 301
         Height = 24
         Top = 50
         Width = 55
         Alignment = taRightJustify
-        Decimals = 4
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 4
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 7
       end
-      object Diff3: TFreeNumInput
+      object Diff3: TFloatSpinEdit
         Left = 301
         Height = 24
         Top = 78
         Width = 55
         Alignment = taRightJustify
-        Decimals = 4
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 4
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 8
       end
-      object Edit4: TFreeNumInput
+      object Edit4: TFloatSpinEdit
         Left = 183
         Height = 24
         Top = 106
         Width = 55
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 3
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 9
       end
-      object Input4: TFreeNumInput
+      object Input4: TFloatSpinEdit
         Left = 242
         Height = 24
         Top = 106
         Width = 55
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 3
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         TabOrder = 10
       end
-      object Diff4: TFreeNumInput
+      object Diff4: TFloatSpinEdit
         Left = 301
         Height = 24
         Top = 106
         Width = 55
         Alignment = taRightJustify
-        Decimals = 3
-        Digits = 12
-        Max = 0
-        Min = 0
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        DecimalPlaces = 3
         Value = 0
-        Validate = False
-        BorderColor = clBtnShadow
         Enabled = False
         ReadOnly = True
         TabOrder = 11
       end
-      object IterationBox: TFreeNumInput
+      object IterationBox: TSpinEdit
         Left = 183
         Height = 24
         Top = 134
         Width = 55
         Alignment = taRightJustify
-        Decimals = 0
-        Digits = 12
-        Max = 50
-        Min = 0
-        DataType = dtInteger
-        OutOfRangeMessage = False
-        TabOnEnterKey = False
+        MaxValue = 50
         Value = 15
-        Validate = True
-        BorderColor = clBtnShadow
         TabOrder = 12
       end
       object CheckBox1: TCheckBox
@@ -650,32 +532,6 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       Align = alLeft
       ItemHeight = 0
       TabOrder = 0
-    end
-    object TopView: TFreeViewport
-      Left = 168
-      Height = 204
-      Top = 0
-      Width = 578
-      Angle = 90
-      Align = alClient
-      BackgroundImage.Alpha = 255
-      BackgroundImage.Owner = TopView
-      BackgroundImage.Quality = 100
-      BackgroundImage.Scale = 1
-      BackgroundImage.ShowInView = fvBodyplan
-      BackgroundImage.Tolerance = 5
-      BackgroundImage.Transparent = False
-      BackgroundImage.TransparentColor = clBlack
-      BackgroundImage.Visible = True
-      BorderStyle = bsSingle
-      CameraType = ftStandard
-      DoubleBuffer = True
-      Elevation = 90
-      Margin = 0
-      ViewType = fvPlan
-      ViewportMode = vmWireFrame
-      OnRedraw = TopViewRedraw
-      OnRequestExtents = TopViewRequestExtents
     end
   end
 end

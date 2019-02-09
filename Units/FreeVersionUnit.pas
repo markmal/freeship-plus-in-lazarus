@@ -44,7 +44,7 @@ const
  TARGET_OS:string={$I %FPCTARGETOS%};
 
  FREESHIP_MAJOR_VERSION='3.6';   //Major version
- FREESHIP_VERSION='3.6.0.0';   //Major full version
+ FREESHIP_VERSION='3.6.1.0';   //Major full version
 
  //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
  GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits

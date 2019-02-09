@@ -43,7 +43,7 @@ uses
      Graphics,
      Controls,
      Forms,
-     Dialogs,
+     Dialogs, ComCtrls,
      FreeGeometry,
      FreeLinesplanFrme;
 
@@ -54,10 +54,11 @@ type
  TFreeLinesplanForm  = class(TForm)
     LinesplanFrame: TFreeLinesplanFrame;
     Viewport: TFreeViewport;
-                                 procedure FormClose(Sender: TObject; var Action: TCloseAction);
-                              private   { Private declarations }
-                              public    { Public declarations }
-                           end;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+ private   { Private declarations }
+ public    { Public declarations }
+    constructor Create(Owner: TComponent); override;
+ end;
 
 var FreeLinesplanForm: TFreeLinesplanForm;
 
@@ -69,6 +70,19 @@ implementation
   {$R *.lfm}
 {$ENDIF}
 
+{
+inherited Viewport: TFreeViewport
+  Width = 820
+  Height = 570
+end
+}
+
+constructor TFreeLinesplanForm.Create(Owner: TComponent);
+begin
+  inherited Create(Owner);
+  Viewport:=LinesplanFrame.Viewport;
+end;
+
 procedure TFreeLinesplanForm.FormClose(Sender: TObject;var Action: TCloseAction);
 begin
    // Disconnect from FreeShip component;
@@ -76,4 +90,4 @@ begin
    Action:=caFree;
 end;{TFreeLinesplanForm.FormClose}
 
-end.
+end.

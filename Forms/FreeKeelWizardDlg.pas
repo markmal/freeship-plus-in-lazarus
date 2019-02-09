@@ -54,7 +54,7 @@ uses
      SysUtils,
      Graphics,
      Forms,
-     FreeNumInput,
+     Spin,
      Dialogs,
      StdCtrls,
      ComCtrls,
@@ -265,17 +265,17 @@ type
     Label17: TLabel;
     _ComboBox2: TComboBox;
     Label3: TLabel;
-    Input1: TFreeNumInput;
+    Input1: TFloatSpinEdit;
     Label4: TLabel;
-    Input2: TFreeNumInput;
+    Input2: TFloatSpinEdit;
     Label6: TLabel;
-    Input4: TFreeNumInput;
+    Input4: TFloatSpinEdit;
     Label5: TLabel;
-    Input3: TFreeNumInput;
+    Input3: TFloatSpinEdit;
     Label26: TLabel;
-    Input5: TFreeNumInput;
+    Input5: TSpinEdit;
     Label27: TLabel;
-    Input6: TFreeNumInput;
+    Input6: TSpinEdit;
     Label28: TLabel;
     TrackBar1: TTrackBar;
     Label8: TLabel;
@@ -283,21 +283,21 @@ type
     Label12: TLabel;
     InputWing: TComboBox;
     Label14: TLabel;
-    InputLength: TFreeNumInput;
+    InputLength: TFloatSpinEdit;
     Label16: TLabel;
-    InputPoints: TFreeNumInput;
+    InputPoints: TFloatSpinEdit;
     Label21: TLabel;
-    InputDensity: TFreeNumInput;
+    InputDensity: TFloatSpinEdit;
     Button1: TButton;
-    InputWeight: TFreeNumInput;
+    InputWeight: TFloatSpinEdit;
     Label23: TLabel;
     TrackBar2: TTrackBar;
     Label25: TLabel;
-    InputDelta: TFreeNumInput;
+    InputDelta: TFloatSpinEdit;
     Button2: TButton;
     Label29: TLabel;
     Label10: TLabel;
-    InputWingWidth: TFreeNumInput;
+    InputWingWidth: TFloatSpinEdit;
     Label19: TLabel;
     InputMaterial: TComboBox;
                                  procedure BitBtn1Click(Sender: TObject);
@@ -357,6 +357,7 @@ type
                                  function FGetCols:Integer;
                                  function FGetRows:Integer;
                                  procedure UpdateData;
+                                 procedure createViewport();
                               public    { Public declarations }
                                  str      : array [0..9] of string;
                                  Mesh     : array of array of T3DCoordinate;
@@ -378,7 +379,7 @@ implementation
 
 function TFreeKeelWizardDialog.FGetCols:Integer;
 begin
-   Result:=Input6.AsInteger;
+   Result:=Input6.Value;
    if Result<3 then begin
      Result:=3;
      Input6.Value:=3;
@@ -387,7 +388,7 @@ end;{TFreeKeelWizardDialog.FGetCols}
 
 function TFreeKeelWizardDialog.FGetRows:Integer;
 begin
-   Result:=Input5.AsInteger;
+   Result:=Input5.Value;
    if Result<2 then begin
      Result:=2;
      Input5.Value:=2;
@@ -915,8 +916,48 @@ begin
    Viewport.ZoomExtents;
 end;{TFreeKeelWizardDialog.UpdateData}
 
+procedure TFreeKeelWizardDialog.createViewport();
+begin
+   if assigned(Viewport) then exit;
+   Viewport := TFreeViewport.Create(Self);
+   with Viewport do
+   begin
+    Parent := TabSheet1;
+    Left := 0;
+    Height := 423;
+    Top := 0;
+    Width := 418;
+    Angle := 20;
+    Align := alClient;
+    BackgroundImage.Alpha := 255;
+    BackgroundImage.Owner := Viewport;
+    BackgroundImage.Quality := 100;
+    BackgroundImage.Scale := 1;
+    BackgroundImage.ShowInView := fvBodyplan;
+    BackgroundImage.Tolerance := 5;
+    BackgroundImage.Transparent := False;
+    BackgroundImage.TransparentColor := clBlack;
+    BackgroundImage.Visible := True;
+    BorderStyle := bsSingle;
+    CameraType := ftFarTele;
+    Color := clWhite;
+    DoubleBuffer := True;
+    Elevation := 20;
+    HorScrollbar := ScrollBar1;
+    Margin := 0;
+    VertScrollbar := ScrollBar2;
+    ViewType := fvPerspective;
+    ViewportMode := vmWireFrame;
+    OnMouseDown := ViewportMouseDown;
+    OnMouseMove := ViewportMouseMove;
+    OnRedraw := ViewportRedraw;
+    OnRequestExtents := ViewportRequestExtents;
+    end;
+end;
+
 function TFreeKeelWizardDialog.Execute(Freeship:TFreeShip):Boolean;
 begin
+   createViewport();
    str[0]:=Label18.Caption;
    str[1]:=Label20.Caption;
    str[2]:=Label22.Caption;

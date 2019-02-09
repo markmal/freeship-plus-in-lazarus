@@ -43,7 +43,7 @@ uses Windows,
      Series,
      TeeProcs,
      FreeshipUnit,
-     FreeNumInput,
+     Spin,
      ComCtrls,
      ToolWin,
      ShellAPI,
@@ -81,25 +81,25 @@ type TFreeHydrodyn_Task4  = class(TForm)
                                  Label18: TLabel;
                                  Label19: TLabel;
                                  Label20: TLabel;								 
-                                 Edit2: TFreeNumInput;
-                                 Edit3: TFreeNumInput;
-                                 Edit4: TFreeNumInput;
-                                 Edit5: TFreeNumInput;
-                                 Edit6: TFreeNumInput;
-                                 Edit7: TFreeNumInput;
-                                 Edit8: TFreeNumInput;
-                                 Edit9: TFreeNumInput;
-                                 Edit10: TFreeNumInput;
-                                 Edit11: TFreeNumInput;
-                                 Edit12: TFreeNumInput;
-                                 Edit13: TFreeNumInput;
-                                 Edit14: TFreeNumInput;
-                                 Edit15: TFreeNumInput;
-                                 Edit16: TFreeNumInput;
-                                 Edit17: TFreeNumInput;
-                                 Edit18: TFreeNumInput;
-                                 Edit19: TFreeNumInput;
-                                 Edit20: TFreeNumInput;								 
+                                 Edit2: TFloatSpinEdit;
+                                 Edit3: TFloatSpinEdit;
+                                 Edit4: TFloatSpinEdit;
+                                 Edit5: TFloatSpinEdit;
+                                 Edit6: TFloatSpinEdit;
+                                 Edit7: TFloatSpinEdit;
+                                 Edit8: TFloatSpinEdit;
+                                 Edit9: TFloatSpinEdit;
+                                 Edit10: TFloatSpinEdit;
+                                 Edit11: TFloatSpinEdit;
+                                 Edit12: TFloatSpinEdit;
+                                 Edit13: TFloatSpinEdit;
+                                 Edit14: TFloatSpinEdit;
+                                 Edit15: TFloatSpinEdit;
+                                 Edit16: TFloatSpinEdit;
+                                 Edit17: TFloatSpinEdit;
+                                 Edit18: TFloatSpinEdit;
+                                 Edit19: TFloatSpinEdit;
+                                 Edit20: TFloatSpinEdit;								 
                                  TabSheet2: TTabSheet;
                                  Resultsmemo: TMemo;
                                  Panel15: TPanel;

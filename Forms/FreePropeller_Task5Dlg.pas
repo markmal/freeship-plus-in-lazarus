@@ -68,7 +68,7 @@ uses
           FreeGeometry,
           ExtCtrls,
           FreeshipUnit,
-          FreeNumInput,
+          Spin,
           ComCtrls,
           ImgList;
 
@@ -99,12 +99,12 @@ type TFreePropeller_Task5  = class(TForm)
 								 Combobox: TComboBox;
                                  Label9: TLabel;								 
 								 Combobox1: TComboBox;								 
-                                 Edit2: TFreeNumInput;
-                                 Edit3: TFreeNumInput;
-                                 Edit4: TFreeNumInput;
-                                 Edit5: TFreeNumInput;
-                                 Edit6: TFreeNumInput;
-                                 Edit7: TFreeNumInput;
+                                 Edit2: TFloatSpinEdit;
+                                 Edit3: TFloatSpinEdit;
+                                 Edit4: TFloatSpinEdit;
+                                 Edit5: TFloatSpinEdit;
+                                 Edit6: TFloatSpinEdit;
+                                 Edit7: TFloatSpinEdit;
                                  Chart: TChart;
                                  Series1: TLineSeries;
                                  Series2: TLineSeries;

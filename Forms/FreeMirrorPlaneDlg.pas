@@ -50,7 +50,7 @@ uses
      StdCtrls,
      FreeGeometry,
      FreeTypes,
-     FreeNumInput;
+     Spin;
 
 type
 
@@ -65,7 +65,7 @@ type
                                  RadioButton1: TRadioButton;
                                  RadioButton2: TRadioButton;
                                  RadioButton3: TRadioButton;
-                                 Edit1: TFreeNumInput;
+                                 Edit1: TFloatSpinEdit;
                                  Label1: TLabel;
                                  CheckBox1: TCheckBox;
                                  Panel3: TPanel;

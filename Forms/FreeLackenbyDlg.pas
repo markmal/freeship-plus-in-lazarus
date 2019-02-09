@@ -60,7 +60,7 @@ uses
     FreeLanguageSupport,
      ExtCtrls,
      FasterList,
-     FreeNumInput,
+     Spin,
      CheckLst;
 
 const NStations     = 40;
@@ -110,19 +110,19 @@ type TSimpsonData        = record
     _Label14: TLabel;
     Label15: TLabel;
     _Label16: TLabel;
-    Edit1: TFreeNumInput;
-    Input1: TFreeNumInput;
-    Edit2: TFreeNumInput;
-    Input2: TFreeNumInput;
-    Edit3: TFreeNumInput;
-    Input3: TFreeNumInput;
-    Diff1: TFreeNumInput;
-    Diff2: TFreeNumInput;
-    Diff3: TFreeNumInput;
-    Edit4: TFreeNumInput;
-    Input4: TFreeNumInput;
-    Diff4: TFreeNumInput;
-    IterationBox: TFreeNumInput;
+    Edit1: TFloatSpinEdit;
+    Input1: TFloatSpinEdit;
+    Edit2: TFloatSpinEdit;
+    Input2: TFloatSpinEdit;
+    Edit3: TFloatSpinEdit;
+    Input3: TFloatSpinEdit;
+    Diff1: TFloatSpinEdit;
+    Diff2: TFloatSpinEdit;
+    Diff3: TFloatSpinEdit;
+    Edit4: TFloatSpinEdit;
+    Input4: TFloatSpinEdit;
+    Diff4: TFloatSpinEdit;
+    IterationBox: TSpinEdit;
     CheckBox1: TCheckBox;
     Splitter3: TSplitter;
                               procedure OKButtonClick(Sender: TObject);
@@ -157,6 +157,8 @@ type TSimpsonData        = record
                               procedure FUpdateDifferences;
                               procedure FExtractStations(Dest:TFasterList);
                               procedure FExtractWaterline(Dest:TFasterList);
+                              procedure createViewport();
+                              procedure createTopView();
                            public    { Public declarations }
                               function Execute(Freeship:TFreeship;var Modified:Boolean):Boolean;
                               procedure Transform(NewDispl:TFloatType;MaxIterations:integer;UpdateWindows:Boolean;var Succeeded:Boolean);
@@ -254,7 +256,7 @@ begin
    Input2.Value:=Edit2.Value;
    Input3.Value:=Edit3.Value;
    Input4.Value:=Edit4.Value;
-   Input1.Decimals:=Edit1.Decimals;
+   Input1.DecimalPlaces:=Edit1.DecimalPlaces;
 end;{TFreeLackenbyDialog.FCopyValues}
 
 procedure TFreeLackenbyDialog.FUpdateDifferences;
@@ -271,7 +273,7 @@ begin
    Diff4.Value:=Input4.Value-Edit4.Value;
    if abs(Diff4.Value)>1e-3 then Diff4.Font.Color:=clred
                             else Diff4.Font.Color:=clGreen;
-   Diff1.Decimals:=NumberOfdecimals(Diff1.Value);
+   Diff1.DecimalPlaces:=NumberOfdecimals(Diff1.Value);
 end;{TFreeLackenbyDialog.FUpdateDifferences}
 
 procedure TFreeLackenbyDialog.FUpdateData;
@@ -298,7 +300,7 @@ begin
    end;
    with FFreeship.ProjectSettings do
       Edit1.Value:=VolumeToDisplacement(Totalprop.Displacement,ProjectWaterDensity,ProjectAppendageCoefficient,ProjectUnits);
-   Edit1.Decimals:=NumberOfDecimals(Edit1.Value);
+   Edit1.DecimalPlaces:=NumberOfDecimals(Edit1.Value);
 ////   Edit2.Value:=Totalprop.Displacement/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
    Edit2.Value:=Totalprop.Displacement/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*FMax.Z);   
    Edit3.Value:=Totalprop.Cp;
@@ -623,6 +625,75 @@ begin
    end;
 end;{TFreeLackenbyDialog.Transform}
 
+procedure  TFreeLackenbyDialog.createViewport();
+  begin
+    if assigned(Viewport) then exit;
+    Viewport := TFreeViewport.Create(Self);
+    with Viewport do
+    begin
+      Parent := Panel2;
+      Left := 414;
+      Height := 278;
+      Top := 1;
+      Width := 331;
+      Angle := 0;
+      Align := alClient;
+      BackgroundImage.Alpha := 255;
+      BackgroundImage.Owner := Viewport;
+      BackgroundImage.Quality := 100;
+      BackgroundImage.Scale := 1;
+      BackgroundImage.ShowInView := fvBodyplan;
+      BackgroundImage.Tolerance := 5;
+      BackgroundImage.Transparent := False;
+      BackgroundImage.TransparentColor := clBlack;
+      BackgroundImage.Visible := True;
+      BorderStyle := bsSingle;
+      CameraType := ftStandard;
+      DoubleBuffer := True;
+      Elevation := 0;
+      Margin := 0;
+      ViewType := fvBodyplan;
+      ViewportMode := vmWireFrame;
+      OnRedraw := ViewportRedraw;
+      OnRequestExtents := ViewportRequestExtents;
+    end;
+end;
+
+procedure  TFreeLackenbyDialog.createTopView();
+  begin
+  if assigned(TopView) then exit;
+  TopView := TFreeViewport.Create(Self);
+  with TopView do
+  begin
+    Parent := Panel4;
+    Left := 168;
+    Height := 204;
+    Top := 0;
+    Width := 578;
+    Angle := 90;
+    Align := alClient;
+    BackgroundImage.Alpha := 255;
+    BackgroundImage.Owner := TopView;
+    BackgroundImage.Quality := 100;
+    BackgroundImage.Scale := 1;
+    BackgroundImage.ShowInView := fvBodyplan;
+    BackgroundImage.Tolerance := 5;
+    BackgroundImage.Transparent := False;
+    BackgroundImage.TransparentColor := clBlack;
+    BackgroundImage.Visible := True;
+    BorderStyle := bsSingle;
+    CameraType := ftStandard;
+    DoubleBuffer := True;
+    Elevation := 90;
+    Margin := 0;
+    ViewType := fvPlan;
+    ViewportMode := vmWireFrame;
+    OnRedraw := TopViewRedraw;
+    OnRequestExtents := TopViewRequestExtents;
+  end;
+end;
+
+
 function TFreeLackenbyDialog.Execute(Freeship:TFreeship;var Modified:boolean):Boolean;
 var I,Index       : Integer;
     Value         : TFloatType;
@@ -634,7 +705,10 @@ var I,Index       : Integer;
     Layer         : TFreeSubdivisionLayer;
     Spline        : TFreeSpline;
 begin
-   FFreeship:=Freeship;
+  createViewport();
+  createTopView();
+
+  FFreeship:=Freeship;
 
    Freeship.Preferences.LoadImageIntoBitmap(Button1.Glyph, 'Calculate');
    Freeship.Preferences.LoadImageIntoBitmap(SpeedButton1.Glyph, 'Ok');
@@ -794,7 +868,7 @@ begin
    if Input1.Value>0 then
    begin
       NewDispl:=DisplacementToVolume(Input1.Value,FFreeship.ProjectSettings.ProjectWaterDensity,FFreeship.ProjectSettings.ProjectAppendageCoefficient,FFreeship.ProjectSettings.ProjectUnits);
-      Transform(NewDispl,IterationBox.AsInteger,Checkbox1.Checked,Succeeded);
+      Transform(NewDispl,IterationBox.Value,Checkbox1.Checked,Succeeded);
       if Succeeded then
       begin
          FExtractStations(FNewStations);

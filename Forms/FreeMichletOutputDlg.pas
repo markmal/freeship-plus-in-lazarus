@@ -52,7 +52,7 @@ uses
      FreeTypes,
      FreeGeometry,
      ActnList,
-     FreeNumInput;
+     Spin;
 
 type TFreeMichletOutputDialog  = class(TForm)
                                     Panel1: TPanel;
@@ -73,11 +73,11 @@ type TFreeMichletOutputDialog  = class(TForm)
     _Label18: TLabel;
     _Label19: TLabel;
     _Label20: TLabel;
-                                    Edit1: TFreeNumInput;
-                                    Edit2: TFreeNumInput;
-                                    Edit3: TFreeNumInput;
-                                    Edit4: TFreeNumInput;
-                                    Edit5: TFreeNumInput;
+                                    Edit1: TSpinEdit;
+                                    Edit2: TSpinEdit;
+                                    Edit3: TFloatSpinEdit;
+                                    Edit4: TFloatSpinEdit;
+                                    Edit5: TFloatSpinEdit;
                                     TabSheet3: TTabSheet;
                                     Panel7: TPanel;
                                     Label6: TLabel;
@@ -88,10 +88,10 @@ type TFreeMichletOutputDialog  = class(TForm)
     _Label11: TLabel;
                                     Label12: TLabel;
     _Label13: TLabel;
-                                    Edit6: TFreeNumInput;
-                                    Edit7: TFreeNumInput;
-                                    Edit8: TFreeNumInput;
-                                    Edit9: TFreeNumInput;
+                                    Edit6: TFloatSpinEdit;
+                                    Edit7: TFloatSpinEdit;
+                                    Edit8: TFloatSpinEdit;
+                                    Edit9: TFloatSpinEdit;
                                     TabSheet2: TTabSheet;
                                     Panel5: TPanel;
                                     Label21: TLabel;
@@ -101,9 +101,9 @@ type TFreeMichletOutputDialog  = class(TForm)
     _Label25: TLabel;
     _Label26: TLabel;
                                     Label27: TLabel;
-                                    Edit12: TFreeNumInput;
-                                    Edit13: TFreeNumInput;
-                                    Edit14: TFreeNumInput;
+                                    Edit12: TFloatSpinEdit;
+                                    Edit13: TFloatSpinEdit;
+                                    Edit14: TSpinEdit;
                                     Group1: TRadioGroup;
                                     TabSheet4: TTabSheet;
                                     Panel8: TPanel;
@@ -117,11 +117,11 @@ type TFreeMichletOutputDialog  = class(TForm)
     _Label33: TLabel;
     _Label34: TLabel;
     _Label35: TLabel;
-                                    Edit15: TFreeNumInput;
-                                    Edit16: TFreeNumInput;
-                                    Edit17: TFreeNumInput;
-                                    Edit18: TFreeNumInput;
-                                    Edit19: TFreeNumInput;
+                                    Edit15: TFloatSpinEdit;
+                                    Edit16: TFloatSpinEdit;
+                                    Edit17: TFloatSpinEdit;
+                                    Edit18: TSpinEdit;
+                                    Edit19: TSpinEdit;
                                     GroupBox2: TGroupBox;
     _Label36: TLabel;
     _Label37: TLabel;
@@ -132,18 +132,18 @@ type TFreeMichletOutputDialog  = class(TForm)
     _Label41: TLabel;
     _Label42: TLabel;
     _Label44: TLabel;
-                                    Edit20: TFreeNumInput;
-                                    Edit21: TFreeNumInput;
-                                    Edit22: TFreeNumInput;
-                                    Edit23: TFreeNumInput;
-                                    Edit24: TFreeNumInput;
-                                    Edit25: TFreeNumInput;
+                                    Edit20: TFloatSpinEdit;
+                                    Edit21: TFloatSpinEdit;
+                                    Edit22: TFloatSpinEdit;
+                                    Edit23: TFloatSpinEdit;
+                                    Edit24: TSpinEdit;
+                                    Edit25: TSpinEdit;
                                     GroupBox3: TGroupBox;
                                     RadioButton1: TRadioButton;
                                     RadioButton2: TRadioButton;
                                     RadioButton3: TRadioButton;
                                     Label14: TLabel;
-                                    Distance: TFreeNumInput;
+                                    Distance: TFloatSpinEdit;
     _Label15: TLabel;
     _Label16: TLabel;
     _Label17: TLabel;
@@ -232,6 +232,7 @@ type TFreeMichletOutputDialog  = class(TForm)
                                     function FGetNy:Integer;
                                     procedure FSetNy(val:Integer);
                                     function FGetMultihull:boolean;
+                                    procedure createViewport();
                                  public { Public declarations }
                                     function Execute(Freeship:TFreeShip):Boolean;
                                     procedure SaveToFile(Filename:string);
@@ -577,19 +578,19 @@ end;{TFreeMichletOutputDialog.FSetWaterDepth}
 
 function TFreeMichletOutputDialog.FGetNumberOfStations:Integer;
 begin
-   Result:=Edit1.AsInteger;
+   Result:=Edit1.Value;
 end;{TFreeMichletOutputDialog.FGetNumberOfStations}
 
 procedure TFreeMichletOutputDialog.FSetNumberOfStations(val:Integer);
 begin
    if not odd(val) then inc(val);
-   if Edit1.AsInteger<>Val then Edit1.Value:=Val;
+   if Edit1.Value<>Val then Edit1.Value:=Val;
    FBuildOffsets;
 end;{TFreeMichletOutputDialog.FSetNumberOfStations}
 
 function TFreeMichletOutputDialog.FGetNumberOfSpeeds:Integer;
 begin
-   Result:=Edit14.AsInteger;
+   Result:=Edit14.Value;
 end;{TFreeMichletOutputDialog.FGetNumberOfSpeeds}
 
 procedure TFreeMichletOutputDialog.FSetNumberOfSpeeds(val:Integer);
@@ -599,7 +600,7 @@ end;{TFreeMichletOutputDialog.FSetNumberOfSpeeds}
 
 function TFreeMichletOutputDialog.FGetNr:Integer;
 begin
-   Result:=Edit18.AsInteger;
+   Result:=Edit18.Value;
 end;{TFreeMichletOutputDialog.FGetNr}
 
 procedure TFreeMichletOutputDialog.FSetNr(val:Integer);
@@ -609,7 +610,7 @@ end;{TFreeMichletOutputDialog.FSetNr}
 
 function TFreeMichletOutputDialog.FGetNx:Integer;
 begin
-   Result:=Edit24.AsInteger;
+   Result:=Edit24.Value;
 end;{TFreeMichletOutputDialog.FGetNx}
 
 procedure TFreeMichletOutputDialog.FSetNx(val:Integer);
@@ -619,7 +620,7 @@ end;{TFreeMichletOutputDialog.FSetNx}
 
 function TFreeMichletOutputDialog.FGetNy:Integer;
 begin
-   Result:=Edit25.AsInteger;
+   Result:=Edit25.Value;
 end;{TFreeMichletOutputDialog.FGetNy}
 
 procedure TFreeMichletOutputDialog.FSetNy(val:Integer);
@@ -629,7 +630,7 @@ end;{TFreeMichletOutputDialog.FSetNy}
 
 function TFreeMichletOutputDialog.FGetNBeta:Integer;
 begin
-   Result:=Edit19.AsInteger;
+   Result:=Edit19.Value;
 end;{TFreeMichletOutputDialog.FGetNBeta}
 
 procedure TFreeMichletOutputDialog.FSetNBeta(val:Integer);
@@ -639,18 +640,56 @@ end;{TFreeMichletOutputDialog.FSetNBeta}
 
 function TFreeMichletOutputDialog.FGetNumberOfWaterlines:Integer;
 begin
-   Result:=Edit2.AsInteger;
+   Result:=Edit2.Value;
 end;{TFreeMichletOutputDialog.FGetNumberOfWaterlines}
 
 procedure TFreeMichletOutputDialog.FSetNumberOfWaterlines(val:Integer);
 begin
    if not odd(val) then inc(val);
-   if Edit2.AsInteger<>Val then Edit2.Value:=Val;
+   if Edit2.Value<>Val then Edit2.Value:=Val;
    FBuildOffsets;
 end;{TFreeMichletOutputDialog.FSetNumberOfWaterlines}
 
+procedure TFreeMichletOutputDialog.createViewport();
+begin
+  if assigned(Viewport) then exit;
+  Viewport := TFreeViewport.Create(Self);
+  with Viewport do
+  begin
+    Parent := Panel6;
+    Left := 1;
+    Height := 316;
+    Top := 1;
+    Width := 451;
+    Angle := 20;
+    Align := alClient;
+    BackgroundImage.Alpha := 255;
+    BackgroundImage.Owner := Viewport;
+    BackgroundImage.Quality := 100;
+    BackgroundImage.Scale := 1;
+    BackgroundImage.ShowInView := fvBodyplan;
+    BackgroundImage.Tolerance := 5;
+    BackgroundImage.Transparent := False;
+    BackgroundImage.TransparentColor := clBlack;
+    BackgroundImage.Visible := True;
+    CameraType := ftStandard;
+    Color := clBlack;
+    DoubleBuffer := True;
+    Elevation := 20;
+    HorScrollbar := ScrollBar1;
+    Margin := 0;
+    VertScrollbar := ScrollBar2;
+    ViewType := fvPerspective;
+    ViewportMode := vmWireFrame;
+    OnRedraw := ViewportRedraw;
+    OnRequestExtents := ViewportRequestExtents;
+  end;
+end;
+
+
 function TFreeMichletOutputDialog.Execute(Freeship:TFreeShip):Boolean;
 begin
+  createViewport();
    ScrollBar1.Position:=Round(Viewport.Angle);
    ScrollBar2.Position:=Round(Viewport.Elevation);
    _Label18.Caption:=LengthStr(Freeship.ProjectSettings.ProjectUnits);
@@ -1044,12 +1083,12 @@ end;{TFreeMichletOutputDialog.DistanceAfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit1AfterSetValue(Sender: TObject);
 begin
-   NumberOfStations:=Edit1.AsInteger;
+   NumberOfStations:=Edit1.Value;
 end;{TFreeMichletOutputDialog.Edit1AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit2AfterSetValue(Sender: TObject);
 begin
-   NumberOfWaterLines:=Edit2.AsInteger;
+   NumberOfWaterLines:=Edit2.Value;
 end;{TFreeMichletOutputDialog.Edit2AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit3AfterSetValue(Sender: TObject);
@@ -1094,7 +1133,7 @@ end;{TFreeMichletOutputDialog.Edit13AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit14AfterSetValue(Sender: TObject);
 begin
-   NumberOfSpeeds:=Edit14.AsInteger;
+   NumberOfSpeeds:=Edit14.Value;
 end;{TFreeMichletOutputDialog.Edit14AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit15AfterSetValue(Sender: TObject);
@@ -1114,12 +1153,12 @@ end;{TFreeMichletOutputDialog.Edit17AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit18AfterSetValue(Sender: TObject);
 begin
-   Nr:=Edit18.AsInteger;
+   Nr:=Edit18.Value;
 end;{TFreeMichletOutputDialog.Edit18AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit19AfterSetValue(Sender: TObject);
 begin
-   NBeta:=Edit19.AsInteger;
+   NBeta:=Edit19.Value;
 end;{TFreeMichletOutputDialog.Edit19AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit20AfterSetValue(Sender: TObject);
@@ -1144,12 +1183,12 @@ end;{TFreeMichletOutputDialog.Edit23AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit24AfterSetValue(Sender: TObject);
 begin
-   Nx:=Edit24.AsInteger;
+   Nx:=Edit24.Value;
 end;{TFreeMichletOutputDialog.Edit24AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit25AfterSetValue(Sender: TObject);
 begin
-   Ny:=Edit25.AsInteger;
+   Ny:=Edit25.Value;
 end;{TFreeMichletOutputDialog.Edit25AfterSetValue}
 
 procedure TFreeMichletOutputDialog.FormResize(Sender: TObject);

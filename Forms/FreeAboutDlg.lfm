@@ -8,10 +8,10 @@ object FreeAboutDlg: TFreeAboutDlg
   ClientWidth = 764
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object LabelTitle: TLabel
     Left = 0
-    Height = 30
+    Height = 28
     Top = 0
     Width = 764
     Align = alTop
@@ -27,8 +27,8 @@ object FreeAboutDlg: TFreeAboutDlg
   end
   object LabelProductVersion: TLabel
     Left = 0
-    Height = 17
-    Top = 30
+    Height = 16
+    Top = 28
     Width = 764
     Align = alTop
     Alignment = taCenter
@@ -40,18 +40,18 @@ object FreeAboutDlg: TFreeAboutDlg
   end
   object Panel1: TPanel
     Left = 0
-    Height = 412
-    Top = 74
+    Height = 421
+    Top = 69
     Width = 300
     Align = alLeft
     BevelOuter = bvNone
     Caption = 'Panel1'
-    ClientHeight = 412
+    ClientHeight = 421
     ClientWidth = 300
     TabOrder = 0
     object Image1: TImage
       Left = 20
-      Height = 412
+      Height = 421
       Top = 0
       Width = 280
       Align = alClient
@@ -2377,31 +2377,31 @@ object FreeAboutDlg: TFreeAboutDlg
   end
   object Panel2: TPanel
     Left = 300
-    Height = 412
-    Top = 74
+    Height = 421
+    Top = 69
     Width = 464
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel2'
-    ClientHeight = 412
+    ClientHeight = 421
     ClientWidth = 464
     TabOrder = 1
     object StringGridVersionInfo: TStringGrid
       Left = 10
       Height = 100
-      Top = 27
+      Top = 25
       Width = 444
       Align = alTop
       AutoEdit = False
       AutoFillColumns = True
       BorderSpacing.Left = 10
       BorderSpacing.Right = 10
-      ColCount = 0
+      ColCount = 2
       Columns = <      
         item
           ReadOnly = True
           Title.Caption = 'Title'
-          Width = 220
+          Width = 221
         end      
         item
           MaxSize = 500
@@ -2417,10 +2417,14 @@ object FreeAboutDlg: TFreeAboutDlg
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goSmoothScroll]
       RowCount = 0
       TabOrder = 0
+      ColWidths = (
+        221
+        221
+      )
     end
     object Label1: TLabel
       Left = 0
-      Height = 17
+      Height = 15
       Top = 10
       Width = 464
       Align = alTop
@@ -2431,8 +2435,8 @@ object FreeAboutDlg: TFreeAboutDlg
     end
     object Label2: TLabel
       Left = 0
-      Height = 17
-      Top = 137
+      Height = 15
+      Top = 135
       Width = 464
       Align = alTop
       Alignment = taCenter
@@ -2443,25 +2447,25 @@ object FreeAboutDlg: TFreeAboutDlg
     object StringGridCredits: TStringGrid
       Left = 10
       Height = 100
-      Top = 154
+      Top = 150
       Width = 444
       Align = alTop
       AutoEdit = False
       AutoFillColumns = True
       BorderSpacing.Left = 10
       BorderSpacing.Right = 10
-      ColCount = 0
+      ColCount = 2
       Columns = <      
         item
           ReadOnly = True
           Title.Caption = 'Title'
-          Width = 200
+          Width = 221
         end      
         item
           MaxSize = 1000
           ReadOnly = True
           Title.Caption = 'Title'
-          Width = 400
+          Width = 221
         end>
       FixedCols = 0
       FixedRows = 0
@@ -2470,11 +2474,15 @@ object FreeAboutDlg: TFreeAboutDlg
       Options = [goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goSmoothScroll]
       RowCount = 0
       TabOrder = 1
+      ColWidths = (
+        221
+        221
+      )
     end
     object Label4: TLabel
       Left = 0
-      Height = 17
-      Top = 264
+      Height = 15
+      Top = 260
       Width = 464
       Align = alTop
       Alignment = taCenter
@@ -2485,25 +2493,25 @@ object FreeAboutDlg: TFreeAboutDlg
     object StringGridCopyrights: TStringGrid
       Left = 10
       Height = 100
-      Top = 281
+      Top = 275
       Width = 444
       Align = alTop
       AutoEdit = False
       AutoFillColumns = True
       BorderSpacing.Left = 10
       BorderSpacing.Right = 10
-      ColCount = 0
+      ColCount = 2
       Columns = <      
         item
           ReadOnly = True
           Title.Caption = 'Title'
-          Width = 200
+          Width = 221
         end      
         item
           MaxSize = 1000
           ReadOnly = True
           Title.Caption = 'Title'
-          Width = 400
+          Width = 221
         end>
       FixedCols = 0
       FixedRows = 0
@@ -2512,12 +2520,16 @@ object FreeAboutDlg: TFreeAboutDlg
       Options = [goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goSmoothScroll]
       RowCount = 0
       TabOrder = 2
+      ColWidths = (
+        221
+        221
+      )
     end
   end
   object Label3: TLabel
     Left = 0
-    Height = 17
-    Top = 57
+    Height = 15
+    Top = 54
     Width = 764
     Align = alTop
     Alignment = taCenter
@@ -2528,7 +2540,7 @@ object FreeAboutDlg: TFreeAboutDlg
   object Panel3: TPanel
     Left = 0
     Height = 50
-    Top = 486
+    Top = 490
     Width = 764
     Align = alBottom
     ChildSizing.LeftRightSpacing = 20
@@ -2541,18 +2553,18 @@ object FreeAboutDlg: TFreeAboutDlg
     TabOrder = 2
     object Label5: TLabel
       Left = 20
-      Height = 17
+      Height = 15
       Top = 0
-      Width = 269
+      Width = 260
       BorderSpacing.Left = 10
       Caption = 'FREE!ship Plus for Lazarus project page:'
       ParentColor = False
     end
     object LabelFreeShipProjectLink: TLabel
-      Left = 293
-      Height = 17
+      Left = 284
+      Height = 15
       Top = 0
-      Width = 341
+      Width = 330
       Caption = 'https://code.google.com/p/freeship-plus-in-lazarus/'
       Font.Color = clBlue
       Font.Style = [fsUnderline]
@@ -2562,18 +2574,18 @@ object FreeAboutDlg: TFreeAboutDlg
     end
     object Label7: TLabel
       Left = 20
-      Height = 17
-      Top = 19
-      Width = 269
+      Height = 15
+      Top = 17
+      Width = 260
       BorderSpacing.Left = 10
       Caption = 'FREE!ship Plus homepage:'
       ParentColor = False
     end
     object LabelFreeShipHomeLink: TLabel
-      Left = 293
-      Height = 17
-      Top = 19
-      Width = 341
+      Left = 284
+      Height = 15
+      Top = 17
+      Width = 330
       Caption = 'http://www.hydronship.net'
       Font.Color = clBlue
       Font.Style = [fsUnderline]
@@ -2584,8 +2596,8 @@ object FreeAboutDlg: TFreeAboutDlg
   end
   object Panel4: TPanel
     Left = 0
-    Height = 33
-    Top = 536
+    Height = 29
+    Top = 540
     Width = 764
     Align = alBottom
     AutoSize = True
@@ -2596,12 +2608,12 @@ object FreeAboutDlg: TFreeAboutDlg
     ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 33
+    ClientHeight = 29
     ClientWidth = 764
     TabOrder = 3
     object Button1: TButton
       Left = 332
-      Height = 29
+      Height = 25
       Top = 2
       Width = 100
       AutoSize = True

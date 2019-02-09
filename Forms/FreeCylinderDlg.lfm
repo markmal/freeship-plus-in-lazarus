@@ -78,141 +78,85 @@ object FreeCylinderDialog: TFreeCylinderDialog
       Caption = 'No. points'
       ParentColor = False
     end
-    object Input1: TFreeNumInput
+    object Input1: TFloatSpinEdit
       Left = 87
       Height = 24
       Top = 14
       Width = 55
       Alignment = taRightJustify
-      Decimals = 3
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 3
       Value = 0
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 0
     end
-    object Input2: TFreeNumInput
+    object Input2: TFloatSpinEdit
       Left = 147
       Height = 24
       Top = 14
       Width = 55
       Alignment = taRightJustify
-      Decimals = 3
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 3
       Value = 0
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 1
     end
-    object Input3: TFreeNumInput
+    object Input3: TFloatSpinEdit
       Left = 207
       Height = 24
       Top = 14
       Width = 55
       Alignment = taRightJustify
-      Decimals = 3
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 3
       Value = 0
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 2
     end
-    object Input4: TFreeNumInput
+    object Input4: TFloatSpinEdit
       Left = 87
       Height = 24
       Top = 40
       Width = 55
       Alignment = taRightJustify
-      Decimals = 3
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 3
       Value = 0
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 3
     end
-    object Input5: TFreeNumInput
+    object Input5: TFloatSpinEdit
       Left = 147
       Height = 24
       Top = 40
       Width = 55
       Alignment = taRightJustify
-      Decimals = 3
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 3
       Value = 0
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 4
     end
-    object Input6: TFreeNumInput
+    object Input6: TFloatSpinEdit
       Left = 207
       Height = 24
       Top = 40
       Width = 55
       Alignment = taRightJustify
-      Decimals = 3
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 3
       Value = 0
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 5
     end
-    object Input7: TFreeNumInput
+    object Input7: TFloatSpinEdit
       Left = 87
       Height = 24
       Top = 66
       Width = 55
       Alignment = taRightJustify
-      Decimals = 3
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 3
       Value = 0
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 6
     end
-    object Input8: TFreeNumInput
+    object Input8: TSpinEdit
       Left = 87
       Height = 24
       Top = 92
       Width = 55
       Alignment = taRightJustify
-      Decimals = 0
-      Digits = 12
-      Max = 50
-      Min = 4
-      DataType = dtInteger
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      MaxValue = 50
+      MinValue = 4
       Value = 4
-      Validate = True
-      BorderColor = clBtnShadow
       TabOrder = 7
     end
   end

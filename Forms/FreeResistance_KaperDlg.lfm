@@ -222,166 +222,106 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             Caption = 'Subm. transom ratio'
             ParentColor = False
           end
-          object Edit2: TFreeNumInput
+          object Edit2: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 24
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 0
           end
-          object Edit3: TFreeNumInput
+          object Edit3: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 52
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 1
           end
-          object Edit4: TFreeNumInput
+          object Edit4: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 80
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 2
           end
-          object Edit5: TFreeNumInput
+          object Edit5: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 108
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 3
           end
-          object Edit6: TFreeNumInput
+          object Edit6: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 136
             Width = 50
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 4
+            MaxValue = 1
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 4
           end
-          object Edit7: TFreeNumInput
+          object Edit7: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 164
             Width = 50
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 4
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 5
           end
-          object Edit8: TFreeNumInput
+          object Edit8: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 192
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 6
           end
-          object Edit9: TFreeNumInput
+          object Edit9: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 220
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 7
           end
-          object Edit10: TFreeNumInput
+          object Edit10: TFloatSpinEdit
             Left = 141
             Height = 24
             Top = 248
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0.04
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 8
           end
           object Chart: TChart

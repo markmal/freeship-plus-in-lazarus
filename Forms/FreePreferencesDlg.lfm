@@ -70,23 +70,16 @@ object FreePreferencesDialog: TFreePreferencesDialog
           Caption = 'Max. undo memory (Mb)'
           ParentColor = False
         end
-        object FreeNumInput1: TFreeNumInput
+        object FreeNumInput1: TSpinEdit
           Left = 176
           Height = 24
           Top = 96
           Width = 45
           Alignment = taRightJustify
-          Decimals = 0
-          Digits = 12
-          Max = 25
-          Min = 0
-          DataType = dtInteger
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
+          MaxValue = 25
+          MinValue = 0
           Value = 0
-          Validate = True
-          OnChangeValue = EditDirChange
-          BorderColor = clBtnShadow
+          OnChange = EditDirChange
           TabOrder = 1
         end
         object LabelEncoding: TLabel

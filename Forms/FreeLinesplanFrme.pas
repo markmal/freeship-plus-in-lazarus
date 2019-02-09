@@ -123,6 +123,7 @@ type TLinesplanView      = (lvProfile,lvAftBody,lvFrontBody,lvPlan);
                                  FPlanOrigin       : T3DCoordinate;
                                  FInitialPosition  : TPoint;
                                  procedure FSetFreeShip(Val:TFreeShip);
+                                 procedure CreateViewport;
                               private
                               public    { Public declarations }
                                  constructor Create(TheOwner: TComponent); override;
@@ -148,9 +149,79 @@ begin
    Result:=Percentage*(Max-Min);
 end;{Space}
 
+{
+   object Viewport: TFreeViewport
+    Left = 0
+    Height = 465
+    Top = 29
+    Width = 761
+    Angle = 90
+    Align = alClient
+    BackgroundImage.Alpha = 255
+    BackgroundImage.Owner = Viewport
+    BackgroundImage.Quality = 100
+    BackgroundImage.Scale = 1
+    BackgroundImage.ShowInView = fvBodyplan
+    BackgroundImage.Tolerance = 5
+    BackgroundImage.Transparent = False
+    BackgroundImage.TransparentColor = clBlack
+    BackgroundImage.Visible = True
+    BevelOuter = bvLowered
+    CameraType = ftStandard
+    Color = clWhite
+    DoubleBuffer = True
+    Elevation = 90
+    Margin = 1
+    ViewType = fvPlan
+    ViewportMode = vmWireFrame
+    OnMouseDown = ViewportMouseDown
+    OnMouseMove = ViewportMouseMove
+    OnRedraw = ViewportRedraw
+    OnRequestExtents = ViewportRequestExtents
+  end
+}
+
+procedure TFreeLinesplanFrame.CreateViewport;
+begin
+  Viewport := TFreeViewport.Create(Self);
+  with Viewport do
+    begin
+    Parent := Self;
+    Left := 0;
+    Height := 465;
+    Top := 29;
+    Width := 761;
+    Angle := 90;
+    Align := alClient;
+    BackgroundImage.Alpha := 255;
+    BackgroundImage.Owner := Viewport;
+    BackgroundImage.Quality := 100;
+    BackgroundImage.Scale := 1;
+    BackgroundImage.ShowInView := fvBodyplan;
+    BackgroundImage.Tolerance := 5;
+    BackgroundImage.Transparent := False;
+    BackgroundImage.TransparentColor := clBlack;
+    BackgroundImage.Visible := True;
+    BevelOuter := bvLowered;
+    CameraType := ftStandard;
+    Color := clWhite;
+    DoubleBuffer := True;
+    Elevation := 90;
+    Margin := 1;
+    ViewType := fvPlan;
+    ViewportMode := vmWireFrame;
+    OnMouseDown := ViewportMouseDown;
+    OnMouseMove := ViewportMouseMove;
+    OnRedraw := ViewportRedraw;
+    OnRequestExtents := ViewportRequestExtents;
+    end;
+end;
+
+
 constructor TFreeLinesplanFrame.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
+  CreateViewport;
 end;
 
 procedure TFreeLinesplanFrame.UpdateMenu;

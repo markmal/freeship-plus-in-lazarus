@@ -124,89 +124,63 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Caption = 'm^2/s'
             ParentColor = False
           end
-          object StartSpeedBox: TFreeNumInput
+          object StartSpeedBox: TFloatSpinEdit
             Left = 95
             Height = 24
             Top = 15
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 6
-            Max = 50
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 50
             Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 0
           end
-          object EndSpeedBox: TFreeNumInput
+          object EndSpeedBox: TFloatSpinEdit
             Left = 95
             Height = 24
             Top = 38
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 6
-            Max = 50
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 50
             Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 1
           end
-          object StepSpeedBox: TFreeNumInput
+          object StepSpeedBox: TFloatSpinEdit
             Left = 95
             Height = 24
             Top = 61
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 6
-            Max = 10
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 10
             Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 2
           end
-          object DensityBox: TFreeNumInput
+          object DensityBox: TFloatSpinEdit
             Left = 275
             Height = 24
             Top = 15
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 5
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 3
           end
-          object ViscosityBox: TFreeNumInput
+          object ViscosityBox: TFloatSpinEdit
             Left = 275
             Height = 24
             Top = 38
             Width = 50
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 4
+            MaxValue = 1
             Value = 0
-            Validate = False
-            OnAfterSetValue = StartSpeedBoxAfterSetValue
+            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 4
           end
         end
@@ -419,89 +393,64 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Caption = 'Transom beam, m'
             ParentColor = False
           end
-          object LwlBox: TFreeNumInput
+          object LwlBox: TFloatSpinEdit
             Left = 120
             Height = 24
             Top = 31
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 600
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 600
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 0
           end
-          object BwlBox: TFreeNumInput
+          object BwlBox: TFloatSpinEdit
             Left = 120
             Height = 24
             Top = 54
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 100
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 100
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 1
           end
-          object DraftBox: TFreeNumInput
+          object DraftBox: TFloatSpinEdit
             Left = 120
             Height = 24
             Top = 100
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 30
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 30
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 2
           end
-          object DraftTotalBox: TFreeNumInput
+          object DraftTotalBox: TFloatSpinEdit
             Left = 120
             Height = 24
             Top = 77
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 30
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 30
             Value = 0
-            Validate = False
-            OnAfterSetValue = DraftTotalBoxAfterSetValue
+            OnExit = DraftTotalBoxAfterSetValue
             TabOrder = 3
           end
-          object WettedSurfacebox: TFreeNumInput
+          object WettedSurfacebox: TFloatSpinEdit
             Left = 120
             Height = 24
             Top = 123
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 20000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 20000
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 4
           end
           object EstimateBox: TCheckBox
@@ -522,208 +471,148 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             OnClick = Estimate2BoxClick
             TabOrder = 5
           end
-          object Losbox: TFreeNumInput
+          object Losbox: TFloatSpinEdit
             Left = 310
             Height = 24
             Top = 32
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 600
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 600
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 6
           end
-          object DisplacementBox: TFreeNumInput
+          object DisplacementBox: TFloatSpinEdit
             Left = 310
             Height = 24
             Top = 55
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 500000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 500000
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 7
           end
-          object LCBBox: TFreeNumInput
+          object LCBBox: TFloatSpinEdit
             Left = 310
             Height = 24
             Top = 78
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 10
-            Min = -10
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 10
+            MinValue = -10
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 12
           end
-          object CpBox: TFreeNumInput
+          object CpBox: TFloatSpinEdit
             Left = 310
             Height = 24
             Top = 101
             Width = 50
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 4
+            MaxValue = 1
             Value = 0
             Validate = True
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 9
           end
-          object KeBox: TFreeNumInput
+          object KeBox: TFloatSpinEdit
             Left = 310
             Height = 24
             Top = 124
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.5
-            Min = 0.2
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 1.5
             Value = 0.2
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 13
           end
-          object BABox: TFreeNumInput
+          object BABox: TFloatSpinEdit
             Left = 221
             Height = 24
             Top = 169
             Width = 40
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 333
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 333
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 14
           end
-          object KBulbBox: TFreeNumInput
+          object KBulbBox: TFloatSpinEdit
             Left = 221
             Height = 24
             Top = 192
             Width = 40
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 190
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 190
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 15
           end
-          object ZBulbBox: TFreeNumInput
+          object ZBulbBox: TFloatSpinEdit
             Left = 221
             Height = 24
             Top = 215
             Width = 40
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 50
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 50
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 16
           end
-          object CstrnBox: TFreeNumInput
+          object CstrnBox: TFloatSpinEdit
             Left = 221
             Height = 24
             Top = 261
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 10
-            Max = 2
-            Min = 1
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 2
+            MinValue = 1
             Value = 1
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 17
           end
-          object NpBox: TFreeNumInput
+          object NpBox: TFloatSpinEdit
             Left = 221
             Height = 24
             Top = 284
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 10
-            Max = 5
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 5
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 18
           end
-          object DpBox: TFreeNumInput
+          object DpBox: TFloatSpinEdit
             Left = 221
             Height = 24
             Top = 307
             Width = 40
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 10
-            Max = 25
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 25
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 19
           end
-          object KsBox: TFreeNumInput
+          object KsBox: TFloatSpinEdit
             Left = 221
             Height = 24
             Top = 238
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 2500
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 2500
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 8
           end
           object CheckBox2: TCheckBox
@@ -1004,191 +893,135 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Caption = '11 - Tug'
             ParentColor = False
           end
-          object A1Box: TFreeNumInput
+          object A1Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 17
             Width = 45
             Alignment = taRightJustify
-            Decimals = 1
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 1
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 0
           end
-          object A2Box: TFreeNumInput
+          object A2Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 42
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 1
           end
-          object A3Box: TFreeNumInput
+          object A3Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 67
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 2
           end
-          object A4Box: TFreeNumInput
+          object A4Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 92
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 3
           end
-          object A5Box: TFreeNumInput
+          object A5Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 117
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 4
           end
-          object A6Box: TFreeNumInput
+          object A6Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 142
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 5
           end
-          object A7Box: TFreeNumInput
+          object A7Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 167
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 6
           end
-          object A8Box: TFreeNumInput
+          object A8Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 192
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 7
           end
-          object A9Box: TFreeNumInput
+          object A9Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 217
             Width = 45
             Alignment = taRightJustify
-            Decimals = 1
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 1
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 9
           end
-          object A10Box: TFreeNumInput
+          object A10Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 242
             Width = 45
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 10
           end
-          object A11Box: TFreeNumInput
+          object A11Box: TFloatSpinEdit
             Left = 315
             Height = 24
             Top = 267
             Width = 45
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 250
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 250
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 8
           end
         end
@@ -1265,123 +1098,81 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Caption = 'Dome'
             ParentColor = False
           end
-          object K1Box: TFreeNumInput
+          object K1Box: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 17
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 2
           end
-          object K2Box: TFreeNumInput
+          object K2Box: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 43
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 3
           end
-          object K3Box: TFreeNumInput
+          object K3Box: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 68
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 4
           end
-          object K4Box: TFreeNumInput
+          object K4Box: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 93
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 5
           end
-          object K5Box: TFreeNumInput
+          object K5Box: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 118
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 6
           end
-          object K6Box: TFreeNumInput
+          object K6Box: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 168
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 7
           end
-          object K7Box: TFreeNumInput
+          object K7Box: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 193
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = LwlBoxAfterSetValue
+            OnExit = LwlBoxAfterSetValue
             TabOrder = 8
           end
           object Label281: TLabel
@@ -1408,41 +1199,29 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Caption = 'Bilge keels'
             ParentColor = False
           end
-          object KeelChordLengthbox: TFreeNumInput
+          object KeelChordLengthbox: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 243
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            OnExit = KeelChordLengthboxAfterSetValue
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
             ParentFont = False
             TabOrder = 9
           end
-          object KeelAreaBox: TFreeNumInput
+          object KeelAreaBox: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 268
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            OnExit = KeelChordLengthboxAfterSetValue
             TabOrder = 10
           end
           object Label61: TLabel
@@ -1469,41 +1248,29 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Caption = 'Two-screw slender'
             ParentColor = False
           end
-          object RudderChordLengthbox: TFreeNumInput
+          object RudderChordLengthbox: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 318
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            OnExit = KeelChordLengthboxAfterSetValue
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
             ParentFont = False
             TabOrder = 0
           end
-          object RudderAreaBox: TFreeNumInput
+          object RudderAreaBox: TFloatSpinEdit
             Left = 321
             Height = 24
             Top = 343
             Width = 40
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = KeelChordLengthboxAfterSetValue
+            OnExit = KeelChordLengthboxAfterSetValue
             TabOrder = 1
           end
         end

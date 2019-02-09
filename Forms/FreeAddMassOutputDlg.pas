@@ -52,7 +52,7 @@ uses
      FreeTypes,
      FreeGeometry,
      ActnList,
-     FreeNumInput,
+     Spin,
      FreeLanguageSupport;
 	 
 type TFreeAddMassOutputDialog  = class(TForm)
@@ -74,11 +74,11 @@ type TFreeAddMassOutputDialog  = class(TForm)
     _Label18: TLabel;
     _Label19: TLabel;
     _Label20: TLabel;
-                                    Edit1: TFreeNumInput;
-                                    Edit2: TFreeNumInput;
-                                    Edit3: TFreeNumInput;
-                                    Edit4: TFreeNumInput;
-                                    Edit5: TFreeNumInput;
+                                    Edit1: TSpinEdit;
+                                    Edit2: TSpinEdit;
+                                    Edit3: TFloatSpinEdit;
+                                    Edit4: TFloatSpinEdit;
+                                    Edit5: TFloatSpinEdit;
                                     TabSheet3: TTabSheet;
                                     Panel7: TPanel;
                                     Label6: TLabel;
@@ -89,10 +89,10 @@ type TFreeAddMassOutputDialog  = class(TForm)
     _Label11: TLabel;
                                     Label12: TLabel;
     _Label13: TLabel;
-                                    Edit6: TFreeNumInput;
-                                    Edit7: TFreeNumInput;
-                                    Edit8: TFreeNumInput;
-                                    Edit9: TFreeNumInput;
+                                    Edit6: TFloatSpinEdit;
+                                    Edit7: TFloatSpinEdit;
+                                    Edit8: TFloatSpinEdit;
+                                    Edit9: TFloatSpinEdit;
                                     TabSheet2: TTabSheet;
                                     Resultsmemo: TMemo; 									
                                     TabSheet4: TTabSheet;
@@ -102,7 +102,7 @@ type TFreeAddMassOutputDialog  = class(TForm)
                                     RadioButton2: TRadioButton;
                                     RadioButton3: TRadioButton;
                                     Label14: TLabel;
-                                    Distance: TFreeNumInput;
+                                    Distance: TFloatSpinEdit;
                                     _Label15: TLabel;
                                     _Label16: TLabel;
                                     _Label17: TLabel;
@@ -116,13 +116,13 @@ type TFreeAddMassOutputDialog  = class(TForm)
                                     Label26: TLabel;
                                     Label27: TLabel;
                                     ComboBox: TComboBox;
-                                    Edit20: TFreeNumInput;
-                                    Edit21: TFreeNumInput;
-                                    Edit22: TFreeNumInput;
-                                    Edit23: TFreeNumInput;
-                                    Edit24: TFreeNumInput;
-                                    Edit25: TFreeNumInput;
-                                    Edit26: TFreeNumInput;
+                                    Edit20: TFloatSpinEdit;
+                                    Edit21: TFloatSpinEdit;
+                                    Edit22: TFloatSpinEdit;
+                                    Edit23: TFloatSpinEdit;
+                                    Edit24: TFloatSpinEdit;
+                                    Edit25: TFloatSpinEdit;
+                                    Edit26: TFloatSpinEdit;
                                     Panel6: TPanel;
                                     ScrollBar1: TScrollBar;
                                     ScrollBar2: TScrollBar;
@@ -189,6 +189,7 @@ type TFreeAddMassOutputDialog  = class(TForm)
                                     function FGetDat4:single;
                                     procedure FSetDat4(val:single);
                                     function FGetMultihull:boolean;
+                                    procedure createViewport();
                                  public { Public declarations }
                                     NType                         : integer;
                                     function Execute(Freeship:TFreeShip):Boolean;
@@ -422,26 +423,26 @@ end;{TFreeAddMassOutputDialog.FSetWaterDepth}
 
 function TFreeAddMassOutputDialog.FGetNumberOfStations:Integer;
 begin
-   Result:=Edit1.AsInteger;
+   Result:=Edit1.Value;
 end;{TFreeAddMassOutputDialog.FGetNumberOfStations}
 
 procedure TFreeAddMassOutputDialog.FSetNumberOfStations(val:Integer);
 begin
    if not odd(val) then inc(val);
-   if Edit1.AsInteger<>Val then Edit1.Value:=Val;
+   if Edit1.Value<>Val then Edit1.Value:=Val;
    FBuildOffsets;
 end;{TFreeAddMassOutputDialog.FSetNumberOfStations}
 
 
 function TFreeAddMassOutputDialog.FGetNumberOfWaterlines:Integer;
 begin
-   Result:=Edit2.AsInteger;
+   Result:=Edit2.Value;
 end;{TFreeAddMassOutputDialog.FGetNumberOfWaterlines}
 
 procedure TFreeAddMassOutputDialog.FSetNumberOfWaterlines(val:Integer);
 begin
    if not odd(val) then inc(val);
-   if Edit2.AsInteger<>Val then Edit2.Value:=Val;
+   if Edit2.Value<>Val then Edit2.Value:=Val;
    FBuildOffsets;
 end;{TFreeAddMassOutputDialog.FSetNumberOfWaterlines}
 
@@ -515,10 +516,47 @@ begin
    Edit26.Value:=val;
 end;{TFreeAddMassOutputDialog.FSetOm}
 
+procedure TFreeAddMassOutputDialog.createViewport();
+begin
+  if assigned(Viewport) then exit;
+  Viewport := TFreeViewport.Create(Self);
+  with Viewport do
+  begin
+    Parent := Panel6;
+    Left := 1;
+    Height := 316;
+    Top := 1;
+    Width := 671;
+    Angle := 20;
+    Align := alClient;
+    BackgroundImage.Alpha := 255;
+    BackgroundImage.Owner := Viewport;
+    BackgroundImage.Quality := 100;
+    BackgroundImage.Scale := 1;
+    BackgroundImage.ShowInView := fvBodyplan;
+    BackgroundImage.Tolerance := 5;
+    BackgroundImage.Transparent := False;
+    BackgroundImage.TransparentColor := clBlack;
+    BackgroundImage.Visible := True;
+    CameraType := ftStandard;
+    Color := clBlack;
+    DoubleBuffer := True;
+    Elevation := 20;
+    HorScrollbar := ScrollBar1;
+    Margin := 0;
+    VertScrollbar := ScrollBar2;
+    ViewType := fvPerspective;
+    ViewportMode := vmWireFrame;
+    OnRedraw := ViewportRedraw;
+    OnRequestExtents := ViewportRequestExtents;
+  end;
+end;
 
 function TFreeAddMassOutputDialog.Execute(Freeship:TFreeShip):Boolean;
 var Units : TFreeUnitType;
 begin
+    createViewport();
+
    if NType=0 then begin
     Edit24.Enabled:=False;
     Edit25.Enabled:=False;
@@ -788,12 +826,12 @@ end;{TFreeAddMassOutputDialog.DistanceAfterSetValue}
 
 procedure TFreeAddMassOutputDialog.Edit1AfterSetValue(Sender: TObject);
 begin
-   NumberOfStations:=Edit1.AsInteger;
+   NumberOfStations:=Edit1.Value;
 end;{TFreeAddMassOutputDialog.Edit1AfterSetValue}
 
 procedure TFreeAddMassOutputDialog.Edit2AfterSetValue(Sender: TObject);
 begin
-   NumberOfWaterLines:=Edit2.AsInteger;
+   NumberOfWaterLines:=Edit2.Value;
 end;{TFreeAddMassOutputDialog.Edit2AfterSetValue}
 
 procedure TFreeAddMassOutputDialog.Edit3AfterSetValue(Sender: TObject);

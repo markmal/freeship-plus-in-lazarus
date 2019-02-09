@@ -218,76 +218,54 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
             Caption = '[m^3]'
             ParentColor = False
           end
-          object Edit1: TFreeNumInput
+          object Edit1: TFloatSpinEdit
             Left = 184
             Height = 24
             Top = 8
             Width = 61
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 45
-            Min = 5
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 45
+            MinValue = 5
             Value = 5
-            Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit1AfterSetValue
             TabOrder = 0
           end
-          object Edit2: TFreeNumInput
+          object Edit2: TFloatSpinEdit
             Left = 184
             Height = 24
             Top = 32
             Width = 61
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 25
-            Min = 5
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 25
+            MinValue = 5
             Value = 5
-            Validate = True
-            OnAfterSetValue = Edit2AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit2AfterSetValue
             TabOrder = 1
           end
-          object Edit3: TFreeNumInput
+          object Edit3: TFloatSpinEdit
             Left = 184
             Height = 24
             Top = 56
             Width = 61
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 10000000000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 10000000000
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit3AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit3AfterSetValue
             TabOrder = 2
           end
-          object Edit4: TFreeNumInput
+          object Edit4: TFloatSpinEdit
             Left = 184
             Height = 24
             Top = 80
             Width = 61
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit4AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit4AfterSetValue
             Color = clBtnFace
             Font.Color = clWindowText
             Font.Height = -11
@@ -296,22 +274,15 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
             ReadOnly = True
             TabOrder = 3
           end
-          object Edit5: TFreeNumInput
+          object Edit5: TFloatSpinEdit
             Left = 184
             Height = 24
             Top = 104
             Width = 61
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 0
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit5AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit5AfterSetValue
             Color = clBtnFace
             Font.Color = clWindowText
             Font.Height = -11
@@ -374,22 +345,15 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
               OnClick = RadioButton1Click
               TabOrder = 2
             end
-            object Distance: TFreeNumInput
+            object Distance: TFloatSpinEdit
               Left = 8
               Height = 24
               Top = 78
               Width = 85
               Alignment = taRightJustify
-              Decimals = 3
-              Digits = 12
-              Max = 0
-              Min = 0
-              OutOfRangeMessage = False
-              TabOnEnterKey = False
+              DecimalPlaces = 3
               Value = 0
-              Validate = False
-              OnAfterSetValue = DistanceAfterSetValue
-              BorderColor = clBtnShadow
+              OnExit = DistanceAfterSetValue
               Enabled = False
               TabOrder = 3
             end
@@ -411,8 +375,8 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
             Top = 317
             Width = 686
             Align = alBottom
-            Max = 180
-            Min = -180
+            MaxValue = 180
+            MinValue = -180
             PageSize = 0
             Position = 20
             TabOrder = 0
@@ -424,39 +388,11 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
             Width = 15
             Align = alRight
             Kind = sbVertical
-            Max = 180
-            Min = -180
+            MaxValue = 180
+            MinValue = -180
             PageSize = 0
             Position = 20
             TabOrder = 1
-          end
-          object Viewport: TFreeViewport
-            Left = 1
-            Height = 316
-            Top = 1
-            Width = 671
-            Angle = 20
-            Align = alClient
-            BackgroundImage.Alpha = 255
-            BackgroundImage.Owner = Viewport
-            BackgroundImage.Quality = 100
-            BackgroundImage.Scale = 1
-            BackgroundImage.ShowInView = fvBodyplan
-            BackgroundImage.Tolerance = 5
-            BackgroundImage.Transparent = False
-            BackgroundImage.TransparentColor = clBlack
-            BackgroundImage.Visible = True
-            CameraType = ftStandard
-            Color = clBlack
-            DoubleBuffer = True
-            Elevation = 20
-            HorScrollbar = ScrollBar1
-            Margin = 0
-            VertScrollbar = ScrollBar2
-            ViewType = fvPerspective
-            ViewportMode = vmWireFrame
-            OnRedraw = ViewportRedraw
-            OnRequestExtents = ViewportRequestExtents
           end
         end
       end
@@ -628,40 +564,29 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
             TabOrder = 4
             Text = 'Any Objects or Ships'
           end
-          object Edit6: TFreeNumInput
+          object Edit6: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 8
             Width = 78
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.03
-            Min = 0.995
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 1.03
             Value = 1
-            Validate = False
-            OnAfterSetValue = Edit6AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit6AfterSetValue
             TabOrder = 1
           end
-          object Edit7: TFreeNumInput
+          object Edit7: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 32
             Width = 78
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 1.61
-            Min = 0.8
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 4
+            MaxValue = 1.61
             Value = 0.8
-            Validate = True
-            OnAfterSetValue = Edit7AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit7AfterSetValue
             Color = clBtnFace
             Font.Color = clWindowText
             Font.Height = -11
@@ -669,166 +594,122 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
             ParentFont = False
             TabOrder = 2
           end
-          object Edit8: TFreeNumInput
+          object Edit8: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 56
             Width = 78
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 10000
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit8AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit8AfterSetValue
             TabOrder = 3
           end
-          object Edit9: TFreeNumInput
+          object Edit9: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 80
             Width = 78
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 90
-            Min = -90
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 90
+            MinValue = -90
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit9AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit9AfterSetValue
             TabOrder = 5
           end
-          object Edit20: TFreeNumInput
+          object Edit20: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 104
             Width = 78
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 4000
-            Min = 400
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 4000
+            MinValue = 400
             Value = 1000
-            Validate = True
-            OnAfterSetValue = Edit20AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit20AfterSetValue
             TabOrder = 6
           end
-          object Edit21: TFreeNumInput
+          object Edit21: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 128
             Width = 78
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 100
-            Min = 10
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 100
+            MinValue = 10
             Value = 100
-            Validate = True
-            OnAfterSetValue = Edit21AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit21AfterSetValue
             TabOrder = 7
           end
-          object Edit22: TFreeNumInput
+          object Edit22: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 152
             Width = 78
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 1
             Value = 0.2
-            Validate = True
-            OnAfterSetValue = Edit22AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit22AfterSetValue
             TabOrder = 8
           end
-          object Edit23: TFreeNumInput
+          object Edit23: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 176
             Width = 78
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 2
-            Min = 1
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 2
+            MinValue = 1
             Value = 1
-            Validate = True
-            OnAfterSetValue = Edit23AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit23AfterSetValue
             TabOrder = 9
           end
-          object Edit24: TFreeNumInput
+          object Edit24: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 224
             Width = 78
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 90
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 90
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit24AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit24AfterSetValue
             TabOrder = 10
           end
-          object Edit25: TFreeNumInput
+          object Edit25: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 248
             Width = 78
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 30
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 30
             Value = 10
-            Validate = True
-            OnAfterSetValue = Edit25AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit25AfterSetValue
             TabOrder = 11
           end
-          object Edit26: TFreeNumInput
+          object Edit26: TFloatSpinEdit
             Left = 290
             Height = 24
             Top = 272
             Width = 78
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 30
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 30
             Value = 0
-            Validate = True
-            OnAfterSetValue = Edit26AfterSetValue
-            BorderColor = clBtnShadow
+
+            OnExit = Edit26AfterSetValue
             TabOrder = 0
           end
         end

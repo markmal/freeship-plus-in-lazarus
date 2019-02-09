@@ -227,276 +227,200 @@ object FreePropeller_Task3: TFreePropeller_Task3
             Caption = 'Engine power, kW'
             ParentColor = False
           end
-          object Edit2: TFreeNumInput
+          object Edit2: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 26
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 25
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 25
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 0
           end
-          object Edit3: TFreeNumInput
+          object Edit3: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 54
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.8
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 1.8
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 1
           end
-          object Edit4: TFreeNumInput
+          object Edit4: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 82
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 6
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 6
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 2
           end
-          object Edit5: TFreeNumInput
+          object Edit5: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 110
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 10
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 10
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 3
           end
-          object Edit6: TFreeNumInput
+          object Edit6: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 138
             Width = 50
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 8
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 8
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 4
           end
-          object Edit7: TFreeNumInput
+          object Edit7: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 166
             Width = 50
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 20
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 20
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 5
           end
-          object Edit8: TFreeNumInput
+          object Edit8: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 194
             Width = 50
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 3
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 3
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 6
           end
-          object Edit9: TFreeNumInput
+          object Edit9: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 222
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 10000
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 7
           end
-          object Edit10: TFreeNumInput
+          object Edit10: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 250
             Width = 50
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 0.5
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 4
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 8
           end
-          object Edit11: TFreeNumInput
+          object Edit11: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 278
             Width = 50
             Alignment = taRightJustify
-            Decimals = 4
-            Digits = 12
-            Max = 0.5
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 4
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 9
           end
-          object Edit12: TFreeNumInput
+          object Edit12: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 306
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 1.1
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 10
           end
-          object Edit13: TFreeNumInput
+          object Edit13: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 334
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1.1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 1.1
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 11
           end
-          object Edit14: TFreeNumInput
+          object Edit14: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 362
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 1
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 12
           end
-          object Edit15: TFreeNumInput
+          object Edit15: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 390
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 1
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 1
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 13
           end
-          object Edit16: TFreeNumInput
+          object Edit16: TFloatSpinEdit
             Left = 200
             Height = 24
             Top = 418
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 2000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 2000
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 14
           end
-          object Edit17: TFreeNumInput
+          object Edit17: TFloatSpinEdit
             Left = 195
             Height = 24
             Top = 446
             Width = 55
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 100000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 100000
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
+            OnExit = Edit1AfterSetValue
             TabOrder = 15
           end
           object Chart: TChart
@@ -907,4 +831,4 @@ object FreePropeller_Task3: TFreePropeller_Task3
     left = 193
     top = 3
   end
-end
+end

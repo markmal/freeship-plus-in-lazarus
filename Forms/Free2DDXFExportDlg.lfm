@@ -75,21 +75,14 @@ object DXFExport2DDialog: TDXFExport2DDialog
       Caption = 'Export units'
       ParentColor = False
     end
-    object Edit1: TFreeNumInput
+    object Edit1: TFloatSpinEdit
       Left = 182
       Height = 24
       Top = 60
       Width = 75
       Alignment = taRightJustify
-      Decimals = 5
-      Digits = 12
-      Max = 0
-      Min = 0
-      OutOfRangeMessage = False
-      TabOnEnterKey = False
+      DecimalPlaces = 5
       Value = 0.1
-      Validate = False
-      BorderColor = clBtnShadow
       TabOrder = 3
     end
     object Edit3: TEdit

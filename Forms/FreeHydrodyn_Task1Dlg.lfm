@@ -196,202 +196,136 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
             Caption = 'Wind angle, [degr.]'
             ParentColor = False
           end
-          object Edit2: TFreeNumInput
+          object Edit2: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 26
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 600
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 600
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 0
           end
-          object Edit3: TFreeNumInput
+          object Edit3: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 54
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 55
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 55
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 1
           end
-          object Edit4: TFreeNumInput
+          object Edit4: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 82
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 10000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 10000
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 2
           end
-          object Edit5: TFreeNumInput
+          object Edit5: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 110
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 5000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 5000
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 3
           end
-          object Edit6: TFreeNumInput
+          object Edit6: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 138
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 5000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 5000
             Value = 0
             Validate = True
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 4
           end
-          object Edit7: TFreeNumInput
+          object Edit7: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 166
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 3000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 3000
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 5
           end
-          object Edit8: TFreeNumInput
+          object Edit8: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 194
             Width = 50
             Alignment = taRightJustify
-            Decimals = 3
-            Digits = 12
-            Max = 3000
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 3
+            MaxValue = 3000
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 6
           end
-          object Edit9: TFreeNumInput
+          object Edit9: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 222
             Width = 50
             Alignment = taRightJustify
-            Decimals = 0
-            Digits = 12
-            Max = 11
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            MaxValue = 11
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 7
           end
-          object Edit10: TFreeNumInput
+          object Edit10: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 250
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 50
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 50
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 8
           end
-          object Edit11: TFreeNumInput
+          object Edit11: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 278
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 50
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 50
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 9
           end
-          object Edit12: TFreeNumInput
+          object Edit12: TFloatSpinEdit
             Left = 208
             Height = 24
             Top = 306
             Width = 50
             Alignment = taRightJustify
-            Decimals = 2
-            Digits = 12
-            Max = 180
-            Min = 0
-            OutOfRangeMessage = False
-            TabOnEnterKey = False
+            DecimalPlaces = 2
+            MaxValue = 180
             Value = 0
-            Validate = False
-            OnAfterSetValue = Edit1AfterSetValue
-            BorderColor = clBtnShadow
+            OnExit = Edit1AfterSetValue
             TabOrder = 10
           end
           object Chart: TChart
@@ -656,4 +590,4 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
     left = 193
     top = 3
   end
-end
+end

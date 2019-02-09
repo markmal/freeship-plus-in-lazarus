@@ -68,7 +68,7 @@ uses
      FreeGeometry,
      ExtCtrls,
      FreeshipUnit,
-     FreeNumInput,
+     Spin,
      ComCtrls,
      ImgList;
 
@@ -104,21 +104,21 @@ type TFreePropeller_Task4  = class(TForm)
                                  Label14: TLabel;
                                  Label15: TLabel;
                                  Label16: TLabel;
-                                 Edit2: TFreeNumInput;
-                                 Edit3: TFreeNumInput;
-                                 Edit4: TFreeNumInput;
-                                 Edit5: TFreeNumInput;
-                                 Edit6: TFreeNumInput;
-                                 Edit7: TFreeNumInput;
-                                 Edit8: TFreeNumInput;
-                                 Edit9: TFreeNumInput;
-                                 Edit10: TFreeNumInput;
-                                 Edit11: TFreeNumInput;
-                                 Edit12: TFreeNumInput;
-                                 Edit13: TFreeNumInput;
-                                 Edit14: TFreeNumInput;
-                                 Edit15: TFreeNumInput;
-                                 Edit16: TFreeNumInput;
+                                 Edit2: TFloatSpinEdit;
+                                 Edit3: TFloatSpinEdit;
+                                 Edit4: TFloatSpinEdit;
+                                 Edit5: TFloatSpinEdit;
+                                 Edit6: TFloatSpinEdit;
+                                 Edit7: TFloatSpinEdit;
+                                 Edit8: TFloatSpinEdit;
+                                 Edit9: TFloatSpinEdit;
+                                 Edit10: TFloatSpinEdit;
+                                 Edit11: TFloatSpinEdit;
+                                 Edit12: TFloatSpinEdit;
+                                 Edit13: TFloatSpinEdit;
+                                 Edit14: TFloatSpinEdit;
+                                 Edit15: TFloatSpinEdit;
+                                 Edit16: TFloatSpinEdit;
                                  Chart: TChart;
                                  Series1: TLineSeries;
                                  Series2: TLineSeries;

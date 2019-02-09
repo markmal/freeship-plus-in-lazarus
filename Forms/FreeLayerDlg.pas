@@ -53,7 +53,8 @@ uses
      Dialogs,
      ComCtrls,
      ToolWin,
-     ImgList, FreeNumInput;
+     ImgList,
+     Spin;
 
 type
 
@@ -78,10 +79,10 @@ type
                            CheckBox2: TCheckBox;
                            CheckBox3: TCheckBox;
                            Label3: TLabel;
-                           Edit2: TEdit;
+                           Edit2: TFloatSpinEdit;
                            _Label4: TLabel;
                            Label5: TLabel;
-                           Edit3: TEdit;
+                           Edit3: TFloatSpinEdit;
                            _Label6: TLabel;
                            LayerBox: TCheckListBox;
                            MoveUp: TToolButton;
@@ -91,10 +92,10 @@ type
                            Label8: TLabel;
                            Label9: TLabel;
                            CheckBox6: TCheckBox; //Set weight and coord. of CoG manually
-                           WeightBox: TFreeNumInput; // Weight
-                           XgBox    : TFreeNumInput;
-						   YgBox    : TFreeNumInput;
-						   ZgBox: TFreeNumInput;
+                           WeightBox: TFloatSpinEdit; // Weight
+                           XgBox    : TFloatSpinEdit;
+						               YgBox    : TFloatSpinEdit;
+						               ZgBox    : TFloatSpinEdit;
                            Label6_0: TLabel; // t
                            Label6_1: TLabel; // Coordinates center of gravity,        :
                            Label6_1_: TLabel; // m
@@ -134,7 +135,6 @@ type
                            procedure CheckBox5Click(Sender: TObject);
                            procedure CheckBox6Click(Sender: TObject);
                            procedure AlphaBarChange(Sender: TObject);
-                           procedure WeightBoxAfterSetValue(Sender: TObject);
                        private
                            FFreeShip : TFreeShip;
                            procedure FFillBox;
@@ -453,7 +453,7 @@ var Value:TFloatType;
 begin
    if SelectedLayer<>nil then
    begin
-      Value:=StrToFloat(Edit2.Text);
+      Value:=Edit2.Value;
       if Value<>SelectedLayer.MaterialDensity then
       begin
          SelectedLayer.MaterialDensity:=Value;
@@ -473,7 +473,7 @@ var Value:TFloatType;
 begin
    if SelectedLayer<>nil then
    begin
-      Value:=StrToFloat(Edit3.Text);
+      Value:=Edit3.Value;
       if Value<>SelectedLayer.Thickness then
       begin
          SelectedLayer.Thickness:=Value;
@@ -548,7 +548,6 @@ begin
 		 Xgbox.Enabled:=True;
 		 Ygbox.Enabled:=True;
 		 Zgbox.Enabled:=True;
-		 WeightBoxAfterSetValue(self);
    end;
 end;{TFreeLayerDialog.CheckBox6Click}
 
@@ -604,11 +603,6 @@ procedure TFreeLayerDialog.FSetZg(val:single);
 begin
    Zgbox.Value:=val;
 end;{TFreeLayerDialog.FSetZg}
-
-procedure TFreeLayerDialog.WeightBoxAfterSetValue(Sender: TObject);
-begin
-//   Calculate;
-end;{TFreeLayerDialog.WeightBoxAfterSetValue}
 
 end.
 

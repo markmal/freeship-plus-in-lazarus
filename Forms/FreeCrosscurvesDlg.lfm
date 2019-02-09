@@ -2,22 +2,23 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   Left = 596
   Height = 739
   Top = 153
-  Width = 955
+  Width = 970
   Caption = 'Cross curves.'
   ClientHeight = 739
-  ClientWidth = 955
+  ClientWidth = 970
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 955
+    Width = 970
     AutoSize = True
+    ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
     Color = clBtnFace
@@ -31,13 +32,12 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       Left = 5
       Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton10'
       ImageIndex = 6
       Style = tbsSeparator
     end
     object ToolButton1: TToolButton
-      Left = 15
+      Left = 13
       Hint = 'Start the calculation.'
       Top = 2
       Caption = 'ToolButton1'
@@ -45,7 +45,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       OnClick = ToolButton1Click
     end
     object ToolButton2: TToolButton
-      Left = 65
+      Left = 63
       Hint = 'Abort the calculation'
       Top = 2
       Caption = 'Abort'
@@ -54,7 +54,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       OnClick = ToolButton2Click
     end
     object PrintButton: TToolButton
-      Left = 115
+      Left = 113
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'Cross curves.'
@@ -63,7 +63,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       OnClick = PrintButtonClick
     end
     object SaveButton: TToolButton
-      Left = 165
+      Left = 163
       Hint = 'Save the results of the calculation.'
       Top = 2
       Caption = 'SaveButton'
@@ -72,23 +72,22 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       OnClick = SaveButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 215
+      Left = 213
       Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 225
+      Left = 221
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 275
+      Left = 271
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0
@@ -99,15 +98,15 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     Left = 0
     Height = 715
     Top = 24
-    Width = 955
+    Width = 970
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 6
     ClientHeight = 715
-    ClientWidth = 955
+    ClientWidth = 970
     TabOrder = 1
     object Splitter1: TSplitter
-      Left = 267
+      Left = 277
       Height = 701
       Top = 7
       Width = 5
@@ -116,26 +115,26 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       Left = 7
       Height = 701
       Top = 7
-      Width = 260
+      Width = 270
       Align = alLeft
       BevelOuter = bvLowered
       ClientHeight = 701
-      ClientWidth = 260
+      ClientWidth = 270
       TabOrder = 0
       object GroupBox1: TGroupBox
         Left = 8
         Height = 221
         Top = 5
-        Width = 243
+        Width = 259
         Caption = 'Displacements.'
-        ClientHeight = 196
-        ClientWidth = 239
+        ClientHeight = 206
+        ClientWidth = 255
         TabOrder = 0
         object Label1: TLabel
           Left = 104
           Height = 13
           Top = 86
-          Width = 60
+          Width = 61
           Caption = 'Start displ.'
           ParentColor = False
         end
@@ -143,7 +142,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 104
           Height = 13
           Top = 124
-          Width = 54
+          Width = 55
           Caption = 'End displ.'
           ParentColor = False
         end
@@ -151,7 +150,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 104
           Height = 13
           Top = 162
-          Width = 58
+          Width = 59
           Caption = 'Displ. step'
           ParentColor = False
         end
@@ -162,24 +161,20 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Width = 85
           ItemHeight = 0
           OnMouseDown = DisplBoxMouseDown
+          ScrollWidth = 83
           TabOrder = 0
+          TopIndex = -1
         end
-        object FreeNumInput1: TFreeNumInput
+        object FreeNumInput1: TFloatSpinEdit
           Left = 8
-          Height = 28
+          Height = 23
           Top = 16
           Width = 85
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 1
+          Value = 0
         end
         object Button1: TButton
           Left = 104
@@ -201,73 +196,55 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
         end
         object CheckBox1: TCheckBox
           Left = 104
-          Height = 20
+          Height = 21
           Top = 64
-          Width = 127
+          Width = 124
           Caption = 'Incremental displ.'
           OnClick = CheckBox1Click
           TabOrder = 4
         end
-        object FreeNumInput2: TFreeNumInput
+        object FreeNumInput2: TFloatSpinEdit
           Left = 104
-          Height = 28
+          Height = 23
           Top = 100
           Width = 85
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 5
+          Value = 0
         end
-        object FreeNumInput3: TFreeNumInput
+        object FreeNumInput3: TFloatSpinEdit
           Left = 104
-          Height = 28
+          Height = 23
           Top = 138
           Width = 85
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 6
+          Value = 0
         end
-        object FreeNumInput4: TFreeNumInput
+        object FreeNumInput4: TFloatSpinEdit
           Left = 104
-          Height = 28
+          Height = 23
           Top = 176
           Width = 85
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 7
+          Value = 0
         end
       end
       object GroupBox2: TGroupBox
         Left = 8
         Height = 129
         Top = 232
-        Width = 243
+        Width = 259
         Caption = 'Heeling angles.'
-        ClientHeight = 104
-        ClientWidth = 239
+        ClientHeight = 114
+        ClientWidth = 255
         TabOrder = 2
         object HeelBox: TListBox
           Left = 8
@@ -276,25 +253,20 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Width = 65
           ItemHeight = 0
           OnClick = HeelBoxClick
+          ScrollWidth = 63
           TabOrder = 0
+          TopIndex = -1
         end
-        object FreeNumInput5: TFreeNumInput
+        object FreeNumInput5: TFloatSpinEdit
           Left = 8
-          Height = 28
+          Height = 23
           Top = 16
           Width = 65
           Alignment = taRightJustify
-          Decimals = 2
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          OnAfterSetValue = FreeNumInput5_AfterSetValue
-          BorderColor = clBtnShadow
+          MinValue = 0
+          OnExit = FreeNumInput5_AfterSetValue
           TabOrder = 1
+          Value = 0
         end
         object Button3: TButton
           Left = 104
@@ -319,16 +291,16 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
         Left = 8
         Height = 330
         Top = 368
-        Width = 243
+        Width = 256
         Caption = 'Data for SSD:'
-        ClientHeight = 305
-        ClientWidth = 239
+        ClientHeight = 315
+        ClientWidth = 252
         TabOrder = 1
         object Label1_: TLabel
           Left = 8
           Height = 13
           Top = 20
-          Width = 124
+          Width = 127
           Caption = 'Projected displ., [tons]'
           ParentColor = False
         end
@@ -336,7 +308,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 46
-          Width = 120
+          Width = 123
           Caption = 'Estimated Z CoG, [m]'
           ParentColor = False
         end
@@ -344,7 +316,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 64
-          Width = 30
+          Width = 31
           Caption = 'Area:'
           ParentColor = False
         end
@@ -352,7 +324,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 80
-          Width = 116
+          Width = 118
           Caption = 'of bilge keels, [m^2]'
           ParentColor = False
         end
@@ -360,7 +332,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 104
-          Width = 83
+          Width = 84
           Caption = 'of skeg, [m^2]'
           ParentColor = False
         end
@@ -368,7 +340,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 130
-          Width = 139
+          Width = 142
           Caption = 'Lateral wind area, [m^2]'
           ParentColor = False
         end
@@ -376,7 +348,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 156
-          Width = 199
+          Width = 206
           Caption = 'Z CoG of wind area above DWL, [m]'
           ParentColor = False
         end
@@ -384,7 +356,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 182
-          Width = 187
+          Width = 190
           Caption = 'Decrease metacentric height, [m]'
           ParentColor = False
         end
@@ -392,7 +364,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 208
-          Width = 163
+          Width = 167
           Caption = 'Immersion deck angle, [degr]'
           ParentColor = False
         end
@@ -400,16 +372,16 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 230
-          Width = 102
+          Width = 104
           Caption = 'Navigation region:'
           ParentColor = False
         end
         object ComboBox: TComboBox
-          Left = 130
-          Height = 28
+          Left = 142
+          Height = 25
           Top = 228
           Width = 110
-          ItemHeight = 19
+          ItemHeight = 0
           ItemIndex = 0
           Items.Strings = (
             'Nonlimit'
@@ -428,16 +400,16 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Left = 8
           Height = 13
           Top = 256
-          Width = 49
+          Width = 50
           Caption = 'Registry:'
           ParentColor = False
         end
         object ComboBox1: TComboBox
-          Left = 100
-          Height = 28
+          Left = 112
+          Height = 25
           Top = 254
           Width = 140
-          ItemHeight = 19
+          ItemHeight = 0
           ItemIndex = 0
           Items.Strings = (
             'Russian Registry 2010'
@@ -450,184 +422,141 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           TabOrder = 0
           Text = 'Russian Registry 2010'
         end
-        object FreeNumInput5_: TFreeNumInput
-          Left = 173
-          Height = 28
+        object FreeNumInput5_: TFloatSpinEdit
+          Left = 185
+          Height = 23
           Top = 14
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          OnAfterSetValue = FreeNumInput5_AfterSetValue
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
+          OnExit = FreeNumInput5_AfterSetValue
           TabOrder = 3
+          Value = 0
         end
-        object FreeNumInput6_: TFreeNumInput
-          Left = 173
-          Height = 28
+        object FreeNumInput6_: TFloatSpinEdit
+          Left = 185
+          Height = 23
           Top = 42
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          OnAfterSetValue = FreeNumInput6_AfterSetValue
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
+          OnExit = FreeNumInput6_AfterSetValue
           TabOrder = 4
+          Value = 0
         end
-        object FreeNumInput7_: TFreeNumInput
-          Left = 173
-          Height = 28
+        object FreeNumInput7_: TFloatSpinEdit
+          Left = 185
+          Height = 23
           Top = 72
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 5
+          Value = 0
         end
-        object FreeNumInput8_: TFreeNumInput
-          Left = 173
-          Height = 28
+        object FreeNumInput8_: TFloatSpinEdit
+          Left = 185
+          Height = 23
           Top = 99
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 6
+          Value = 0
         end
-        object FreeNumInput9_: TFreeNumInput
-          Left = 173
-          Height = 28
+        object FreeNumInput9_: TFloatSpinEdit
+          Left = 185
+          Height = 23
           Top = 126
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 7
+          Value = 0
         end
-        object FreeNumInput10_: TFreeNumInput
-          Left = 173
-          Height = 28
+        object FreeNumInput10_: TFloatSpinEdit
+          Left = 185
+          Height = 23
           Top = 153
           Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 8
+          Value = 0
         end
-        object FreeNumInput12_: TFreeNumInput
-          Left = 193
-          Height = 28
+        object FreeNumInput12_: TFloatSpinEdit
+          Left = 185
+          Height = 23
           Top = 180
-          Width = 45
+          Width = 65
           Alignment = taRightJustify
-          Decimals = 3
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
-          Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+          DecimalPlaces = 3
+          MinValue = 0
           TabOrder = 9
-        end
-        object FreeNumInput13_: TFreeNumInput
-          Left = 193
-          Height = 28
-          Top = 206
-          Width = 45
-          Alignment = taRightJustify
-          Decimals = 2
-          Digits = 12
-          Max = 0
-          Min = 0
-          OutOfRangeMessage = False
-          TabOnEnterKey = False
           Value = 0
-          Validate = False
-          BorderColor = clBtnShadow
+        end
+        object FreeNumInput13_: TFloatSpinEdit
+          Left = 185
+          Height = 23
+          Top = 206
+          Width = 65
+          Alignment = taRightJustify
+          MinValue = 0
           TabOrder = 1
+          Value = 0
         end
       end
     end
     object PageControl1: TPageControl
-      Left = 272
+      Left = 282
       Height = 701
       Top = 7
-      Width = 676
+      Width = 681
       ActivePage = TabSheet1
       Align = alClient
       TabIndex = 0
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Graph'
-        ClientHeight = 666
-        ClientWidth = 668
+        ClientHeight = 670
+        ClientWidth = 675
         object Chart: TChart
           Left = 0
-          Height = 666
+          Height = 670
           Top = 0
-          Width = 668
+          Width = 675
           AxisList = <          
             item
+              Marks.LabelBrush.Style = bsClear
               Minors = <>
               Title.LabelFont.Orientation = 900
               Title.Visible = True
               Title.Caption = 'KN sin(phi)'
+              Title.LabelBrush.Style = bsClear
             end          
             item
               Alignment = calBottom
+              Marks.LabelBrush.Style = bsClear
               Minors = <>
               Title.Visible = True
               Title.Caption = 'Displacement [tons]'
+              Title.LabelBrush.Style = bsClear
             end          
             item
               Visible = False
               Alignment = calRight
+              Marks.LabelBrush.Style = bsClear
               Minors = <>
               Title.LabelFont.Orientation = 900
               Title.Visible = True
               Title.Caption = 'Power [kW]'
+              Title.LabelBrush.Style = bsClear
             end>
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
@@ -646,8 +575,8 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Data'
-        ClientHeight = 669
-        ClientWidth = 670
+        ClientHeight = 670
+        ClientWidth = 675
         ImageIndex = 1
         object Grid: TStringGrid
           Left = 0
@@ -675,8 +604,8 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Stability diagram'
-        ClientHeight = 669
-        ClientWidth = 670
+        ClientHeight = 670
+        ClientWidth = 675
         object Chart0: TChart
           Left = 0
           Height = 669
@@ -684,24 +613,30 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Width = 670
           AxisList = <          
             item
+              Marks.LabelBrush.Style = bsClear
               Minors = <>
               Title.LabelFont.Orientation = 900
               Title.Visible = True
               Title.Caption = 'l, [m]'
+              Title.LabelBrush.Style = bsClear
             end          
             item
               Alignment = calBottom
+              Marks.LabelBrush.Style = bsClear
               Minors = <>
               Title.Visible = True
               Title.Caption = 'Heeling angle, [degr]'
+              Title.LabelBrush.Style = bsClear
             end          
             item
               Visible = False
               Alignment = calRight
+              Marks.LabelBrush.Style = bsClear
               Minors = <>
               Title.LabelFont.Orientation = 900
               Title.Visible = True
               Title.Caption = 'Power [kW]'
+              Title.LabelBrush.Style = bsClear
             end>
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
@@ -726,6 +661,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
             Pointer.HorizSize = 2
             Pointer.Style = psCircle
             Pointer.VertSize = 2
+            Pointer.Visible = True
             ShowPoints = True
           end
           object Series2: TLineSeries
@@ -733,14 +669,15 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
             Title = 'd(Teta)'
             LinePen.Color = clWhite
             LinePen.Width = 2
+            Pointer.Visible = True
             ShowPoints = True
           end
         end
       end
       object TabSheet4: TTabSheet
         Caption = 'Results'
-        ClientHeight = 669
-        ClientWidth = 670
+        ClientHeight = 670
+        ClientWidth = 675
         ImageIndex = 1
         object Resultsmemo: TMemo
           Left = 0

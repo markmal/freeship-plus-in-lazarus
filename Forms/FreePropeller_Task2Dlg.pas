@@ -68,7 +68,7 @@ uses
      FreeGeometry,
      ExtCtrls,
      FreeshipUnit,
-     FreeNumInput,
+     Spin,
      ComCtrls,
      ImgList;
 
@@ -105,31 +105,31 @@ type TFreePropeller_Task2  = class(TForm)
                                  Label16: TLabel;
                                  Label17: TLabel;
                                  Label18: TLabel;
-                                 Edit2: TFreeNumInput;
-                                 Edit3: TFreeNumInput;
-                                 Edit4: TFreeNumInput;
-                                 Edit5: TFreeNumInput;
-                                 Edit6: TFreeNumInput;
-                                 Edit7: TFreeNumInput;
-                                 Edit8: TFreeNumInput;
-                                 Edit9: TFreeNumInput;
-                                 Edit10: TFreeNumInput;
-                                 Edit11: TFreeNumInput;
-                                 Edit12: TFreeNumInput;
-                                 Edit13: TFreeNumInput;
-                                 Edit14: TFreeNumInput;
-                                 Edit15: TFreeNumInput;
-                                 Edit16: TFreeNumInput;
-                                 Edit17_1: TFreeNumInput;
-                                 Edit17_2: TFreeNumInput;
-                                 Edit17_3: TFreeNumInput;
-                                 Edit17_4: TFreeNumInput;
-                                 Edit17_5: TFreeNumInput;
-                                 Edit18_1: TFreeNumInput;
-                                 Edit18_2: TFreeNumInput;
-                                 Edit18_3: TFreeNumInput;
-                                 Edit18_4: TFreeNumInput;
-                                 Edit18_5: TFreeNumInput;
+                                 Edit2: TFloatSpinEdit;
+                                 Edit3: TFloatSpinEdit;
+                                 Edit4: TFloatSpinEdit;
+                                 Edit5: TFloatSpinEdit;
+                                 Edit6: TFloatSpinEdit;
+                                 Edit7: TFloatSpinEdit;
+                                 Edit8: TFloatSpinEdit;
+                                 Edit9: TFloatSpinEdit;
+                                 Edit10: TFloatSpinEdit;
+                                 Edit11: TFloatSpinEdit;
+                                 Edit12: TFloatSpinEdit;
+                                 Edit13: TFloatSpinEdit;
+                                 Edit14: TFloatSpinEdit;
+                                 Edit15: TFloatSpinEdit;
+                                 Edit16: TFloatSpinEdit;
+                                 Edit17_1: TFloatSpinEdit;
+                                 Edit17_2: TFloatSpinEdit;
+                                 Edit17_3: TFloatSpinEdit;
+                                 Edit17_4: TFloatSpinEdit;
+                                 Edit17_5: TFloatSpinEdit;
+                                 Edit18_1: TFloatSpinEdit;
+                                 Edit18_2: TFloatSpinEdit;
+                                 Edit18_3: TFloatSpinEdit;
+                                 Edit18_4: TFloatSpinEdit;
+                                 Edit18_5: TFloatSpinEdit;
                                  Chart: TChart;
                                  Series1: TLineSeries;
                                  Series2: TLineSeries;

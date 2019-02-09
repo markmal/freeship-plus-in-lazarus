@@ -57,7 +57,7 @@ uses
      FreeGeometry,
      ExtCtrls,
      FreeShipUnit,
-     FreeNumInput,
+     Spin,
      ComCtrls,
      ToolWin,
      ImgList;
@@ -89,15 +89,15 @@ type TFreeResistance_Kaper  = class(TForm)
                                  Label16: TLabel;
                                  Label17: TLabel;
                                  Label19: TLabel;
-                                 Edit2: TFreeNumInput;
-                                 Edit3: TFreeNumInput;
-                                 Edit4: TFreeNumInput;
-                                 Edit5: TFreeNumInput;
-                                 Edit6: TFreeNumInput;
-                                 Edit7: TFreeNumInput;
-                                 Edit8: TFreeNumInput;
-                                 Edit9: TFreeNumInput;
-                                 Edit10: TFreeNumInput;
+                                 Edit2: TFloatSpinEdit;
+                                 Edit3: TFloatSpinEdit;
+                                 Edit4: TFloatSpinEdit;
+                                 Edit5: TFloatSpinEdit;
+                                 Edit6: TFloatSpinEdit;
+                                 Edit7: TFloatSpinEdit;
+                                 Edit8: TFloatSpinEdit;
+                                 Edit9: TFloatSpinEdit;
+                                 Edit10: TFloatSpinEdit;
                                  Chart: TChart;
                                  Series1: TLineSeries;
                                  Series2: TLineSeries;

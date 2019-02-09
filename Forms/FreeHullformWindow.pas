@@ -189,6 +189,7 @@ type
                            FAllowPanOrZoom   : Boolean;  // Flag to check whether panning or zooming is allowed or not (not when an item has just been selected)
                            procedure FSetFreeShip(Val:TFreeShip);
                            function FCaptionText:string;
+                           procedure createFreeViewport();
                         public     { Public declarations }
                            procedure SetCaption;
                            procedure UpdateMenu;
@@ -309,12 +310,62 @@ begin
    if FreeShip<>nil then FreeShip.DrawToViewport(Viewport);
 end;{TFreeHullWindow.ViewportRedraw}
 
+procedure TFreeHullWindow.createFreeViewport();
+  begin
+    Viewport := TFreeViewport.Create(Self);
+    with Viewport do
+    begin
+      Parent := Self;
+      Cursor := crCross;
+      Left := 0;
+      Height := 270;
+      Top := 0;
+      Width := 425;
+      Angle := 20;
+      Align := alClient;
+      BackgroundImage.Alpha := 255;
+      BackgroundImage.Owner := Viewport;
+      BackgroundImage.Quality := 100;
+      BackgroundImage.Scale := 1;
+      BackgroundImage.ShowInView := fvBodyplan;
+      BackgroundImage.Tolerance := 5;
+      BackgroundImage.Transparent := False;
+      BackgroundImage.TransparentColor := clBlack;
+      BackgroundImage.Visible := True;
+      BevelInner := bvLowered;
+      BevelOuter := bvLowered;
+      BorderStyle := bsSingle;
+      CameraType := ftStandard;
+      Color := 10461087;
+      DoubleBuffer := True;
+      Elevation := 20;
+      HorScrollbar := ScrollBar1;
+      Margin := 1;
+      PopupMenu := PopupMenu;
+      VertScrollbar := ScrollBar2;
+      ViewType := fvPerspective;
+      ViewportMode := vmWireFrame;
+      OnChangeBackground := ViewportChangeBackground;
+      OnChangeViewType := ViewportChangeViewType;
+      OnKeyPress := ViewportKeyPress;
+      OnKeyUp := ViewportKeyUp;
+      OnMouseDown := ViewportMouseDown;
+      OnMouseUp := ViewportMouseUp;
+      OnMouseMove := ViewportMouseMove;
+      OnMouseLeave := ViewportMouseLeave;
+      OnRedraw := ViewportRedraw;
+      OnRequestBackgroundImage := ViewportRequestBackgroundImage;
+      OnRequestExtents := ViewportRequestExtents;
+    end;
+  end;
+
+
 procedure TFreeHullWindow.FormCreate(Sender: TObject);
 {$IFDEF USEOPENGL}
 var VP: TFreeViewportOpenGL;
 {$ENDIF}
 begin
-
+   createFreeViewport();
    ScrollBar1.Position:=Round(Viewport.Angle);
    ScrollBar2.Position:=Round(Viewport.Elevation);
    FAllowPanOrZoom:=False;

@@ -10096,7 +10096,7 @@ begin
    Dialog.StartPoint:=SetPoint(0.0,0.0,0.0);
    Dialog.EndPoint:=SetPoint(0.0,1.0,0.0);
    Dialog.Input7.Value:=1.0;
-   Dialog.Input8.Value:=Dialog.Input8.Min+2;
+   Dialog.Input8.Value:=Dialog.Input8.MinValue+2;
 
    if Dialog.Execute(LengthStr(Owner.ProjectSettings.ProjectUnits)) then
    begin
@@ -10105,7 +10105,7 @@ begin
       StartPoint:=Dialog.StartPoint;
       EndPoint:=Dialog.EndPoint;
       Radius:=Dialog.Input7.Value;
-      NPoints:=Dialog.Input8.AsInteger;
+      NPoints:=Dialog.Input8.Value;
       Setlength(Points,2);
       setlength(Points[0],NPoints+1);
       setlength(Points[1],NPoints+1);
@@ -14045,7 +14045,7 @@ begin
       end;
 
       FFbmEncoding := String(Dialog.ComboBoxEncoding.Items.Objects[Dialog.ComboBoxEncoding.ItemIndex]);
-      FMaxUndoMemory:=Dialog.FreeNumInput1.AsInteger;
+      FMaxUndoMemory:=Dialog.FreeNumInput1.Value;
 
       if assigned(Owner.FOnFileChanged) then Owner.FOnFileChanged(Owner);
       if assigned(Owner.FOnUpdateUndoData) then Owner.FOnUpdateUndoData(Owner);

@@ -1,12 +1,14 @@
 object MainForm: TMainForm
-  Left = 402
+  Left = 499
   Height = 800
-  Top = 151
+  Top = 159
   Width = 1200
   Align = alTop
   ClientHeight = 781
   ClientWidth = 1200
   Color = clSilver
+  Constraints.MinHeight = 200
+  Constraints.MinWidth = 300
   Font.Color = clWindowText
   Font.Height = 11
   Font.Name = 'MS Sans Serif'
@@ -87,535 +89,436 @@ object MainForm: TMainForm
       OnClick = Panel3Click
     end
   end
-  object ToolBarMain: TToolBar
+  object PanelMain: TPanel
     Left = 0
-    Height = 42
+    Height = 37
     Top = 0
     Width = 1200
+    Align = alTop
     AutoSize = True
-    Caption = 'ToolBarMain'
+    BorderWidth = 1
+    ClientHeight = 37
+    ClientWidth = 1200
+    Color = clSilver
+    ParentColor = False
     TabOrder = 1
-    object PanelMain: TPanel
-      Left = 1
-      Height = 36
-      Top = 2
-      Width = 1199
-      Align = alClient
-      AutoSize = True
-      ClientHeight = 36
-      ClientWidth = 1199
-      Color = clSilver
-      ParentColor = False
+    OnResize = PanelMainResize
+    object ToolBarFile: TToolBar
+      Left = 2
+      Height = 31
+      Top = 4
+      Width = 81
+      Align = alNone
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarFile'
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      Indent = 2
       TabOrder = 0
-      object PanelFile: TPanel
-        Left = 1
-        Height = 23
-        Top = 1
-        Width = 84
+      Transparent = True
+      object ToolButton20: TToolButton
+        Left = 4
+        Top = 0
+        Action = NewModel
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 23
-        ClientWidth = 84
+      end
+      object ToolButtonOpenFile: TToolButton
+        Left = 24
+        Top = 0
+        Action = LoadFile
+        AutoSize = True
+      end
+      object ToolButton38: TToolButton
+        Left = 44
+        Top = 0
+        Action = FileSave
+        AutoSize = True
+      end
+      object ToolButton3: TToolButton
+        Left = 4
+        Top = 16
+        Action = ExitProgram
+        AutoSize = True
+      end
+    end
+    object ToolBarVisibility: TToolBar
+      Left = 176
+      Height = 31
+      Top = 4
+      Width = 310
+      Align = alNone
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarFile'
+      Color = clSilver
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      Indent = 2
+      ParentColor = False
+      TabOrder = 1
+      Transparent = True
+      object ToolButton8: TToolButton
+        Left = 4
+        Top = 0
+        Action = ShowControlNet
+        AutoSize = True
+      end
+      object ToolButton2: TToolButton
+        Left = 264
+        Top = 0
+        Action = ShowControlCurves
+        AutoSize = True
+      end
+      object ToolButton9: TToolButton
+        Left = 244
+        Top = 0
+        Action = ShowInteriorEdges
+        AutoSize = True
+      end
+      object ToolButton10: TToolButton
+        Left = 224
+        Top = 0
+        Action = BothSides
+        AutoSize = True
+      end
+      object ToolButton31: TToolButton
+        Left = 204
+        Top = 0
+        Action = ShowGrid
+        AutoSize = True
+      end
+      object ToolButton21: TToolButton
+        Left = 184
+        Top = 0
+        Action = ShowStations
+        AllowAllUp = True
+        AutoSize = True
+      end
+      object ToolButton22: TToolButton
+        Left = 164
+        Top = 0
+        Action = ShowButtocks
+        AutoSize = True
+      end
+      object ToolButton23: TToolButton
+        Left = 144
+        Top = 0
+        Action = ShowWaterlines
+        AutoSize = True
+      end
+      object ToolButton35: TToolButton
+        Left = 124
+        Top = 0
+        Action = ShowDiagonals
+        AutoSize = True
+      end
+      object ToolButton46: TToolButton
+        Left = 104
+        Top = 0
+        Action = ShowHydrostatics
+        AutoSize = True
+      end
+      object ToolButton48: TToolButton
+        Left = 84
+        Top = 0
+        Action = ShowFlowlines
+        AutoSize = True
+      end
+      object ToolButton30: TToolButton
+        Left = 64
+        Top = 0
+        Action = ShowNormals
+        AutoSize = True
+      end
+      object ToolButton37: TToolButton
+        Left = 44
+        Top = 0
+        Action = Showcurvature
+        AutoSize = True
+      end
+      object ToolButton36: TToolButton
+        Left = 24
+        Top = 0
+        Action = ShowMarkers
+        AutoSize = True
+      end
+      object SpinEditFontSize: TSpinEdit
+        Left = 4
+        Height = 23
+        Hint = 'Font Size'
+        Top = 16
+        Width = 36
+        MaxValue = 20
+        MinValue = 3
+        OnChange = SpinEditFontSizeChange
         TabOrder = 0
-        object ToolBarFile: TToolBar
-          Left = 1
-          Height = 20
-          Top = 1
-          Width = 81
-          Align = alCustom
-          BorderSpacing.Around = 1
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarFile'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButton20: TToolButton
-            Left = 1
-            Top = 0
-            Action = NewModel
-            AutoSize = True
-          end
-          object ToolButton1: TToolButton
-            Left = 21
-            Top = 0
-            Action = LoadFile
-            AutoSize = True
-          end
-          object ToolButton38: TToolButton
-            Left = 41
-            Top = 0
-            Action = FileSave
-            AutoSize = True
-          end
-          object ToolButton3: TToolButton
-            Left = 61
-            Top = 0
-            Action = ExitProgram
-            AutoSize = True
-          end
-        end
+        Value = 8
       end
-      object PanelVisibility: TPanel
-        Left = 175
-        Height = 34
-        Top = 1
-        Width = 290
+    end
+    object ToolBarLayers: TToolBar
+      Left = 465
+      Height = 26
+      Top = 4
+      Width = 223
+      Align = alNone
+      BorderSpacing.Left = 10
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarFile'
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      TabOrder = 2
+      Transparent = True
+      object ToolButton5: TToolButton
+        Left = 3
+        Top = 0
+        Action = NewLayer
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 34
-        ClientWidth = 290
+      end
+      object ToolButton34: TToolButton
+        Left = 3
+        Top = 16
+        Action = DeleteEmptyLayers
+        AutoSize = True
+      end
+      object ToolButton33: TToolButton
+        Left = 188
+        Top = 0
+        Action = LayerDialog
+        AutoSize = True
+      end
+      object ToolButton6: TToolButton
+        Left = 168
+        Top = 0
+        Action = LayerAutoGroup
+        AutoSize = True
+      end
+      object ToolButton26: TToolButton
+        Left = 23
+        Top = 16
+        Action = IntersectionDialog
+        AutoSize = True
+      end
+      object LayerBox: TComboBox
+        Left = 23
+        Height = 25
+        Hint = 'Assign selected faces to a new layer or change the currently active layer.'
+        Top = 0
+        Width = 145
+        ItemHeight = 0
+        OnChange = LayerBoxChange
+        Style = csDropDownList
+        TabOrder = 0
+      end
+      object PanelActiveLayerColor: TPanel
+        Left = 43
+        Height = 1
+        Top = 16
+        Width = 1
+        AutoSize = True
+        Caption = 'PanelActiveLayerColor'
         TabOrder = 1
-        object ToolBarVisibility: TToolBar
-          Left = 1
-          Height = 31
-          Top = 1
-          Width = 287
-          Align = alCustom
-          BorderSpacing.Around = 1
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarFile'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButton8: TToolButton
-            Left = 1
-            Top = 0
-            Action = ShowControlNet
-            AutoSize = True
-          end
-          object ToolButton2: TToolButton
-            Left = 261
-            Top = 0
-            Action = ShowControlCurves
-            AutoSize = True
-          end
-          object ToolButton9: TToolButton
-            Left = 241
-            Top = 0
-            Action = ShowInteriorEdges
-            AutoSize = True
-          end
-          object ToolButton10: TToolButton
-            Left = 221
-            Top = 0
-            Action = BothSides
-            AutoSize = True
-          end
-          object ToolButton31: TToolButton
-            Left = 201
-            Top = 0
-            Action = ShowGrid
-            AutoSize = True
-          end
-          object ToolButton21: TToolButton
-            Left = 181
-            Top = 0
-            Action = ShowStations
-            AllowAllUp = True
-            AutoSize = True
-          end
-          object ToolButton22: TToolButton
-            Left = 161
-            Top = 0
-            Action = ShowButtocks
-            AutoSize = True
-          end
-          object ToolButton23: TToolButton
-            Left = 141
-            Top = 0
-            Action = ShowWaterlines
-            AutoSize = True
-          end
-          object ToolButton35: TToolButton
-            Left = 121
-            Top = 0
-            Action = ShowDiagonals
-            AutoSize = True
-          end
-          object ToolButton46: TToolButton
-            Left = 101
-            Top = 0
-            Action = ShowHydrostatics
-            AutoSize = True
-          end
-          object ToolButton48: TToolButton
-            Left = 81
-            Top = 0
-            Action = ShowFlowlines
-            AutoSize = True
-          end
-          object ToolButton30: TToolButton
-            Left = 61
-            Top = 0
-            Action = ShowNormals
-            AutoSize = True
-          end
-          object ToolButton37: TToolButton
-            Left = 41
-            Top = 0
-            Action = Showcurvature
-            AutoSize = True
-          end
-          object ToolButton36: TToolButton
-            Left = 21
-            Top = 0
-            Action = ShowMarkers
-            AutoSize = True
-          end
-          object SpinEditFontSize: TSpinEdit
-            Left = 1
-            Height = 23
-            Hint = 'Font Size'
-            Top = 16
-            Width = 36
-            MaxValue = 20
-            MinValue = 3
-            OnChange = SpinEditFontSizeChange
-            TabOrder = 0
-            Value = 8
-          end
-        end
+        OnClick = PanelActiveLayerColorClick
       end
-      object PanelLayers: TPanel
-        Left = 464
-        Height = 29
-        Top = 1
-        Width = 225
+    end
+    object ToolBarPoints: TToolBar
+      Left = 689
+      Height = 20
+      Top = 2
+      Width = 141
+      Align = alNone
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarPoints'
+      Color = clSilver
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      ParentColor = False
+      TabOrder = 3
+      Transparent = True
+      object ToolButton45: TToolButton
+        Left = 3
+        Top = 0
+        Action = PointAlign
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 29
-        ClientWidth = 225
-        TabOrder = 2
-        object ToolBarLayers: TToolBar
-          Left = 0
-          Height = 26
-          Top = 1
-          Width = 223
-          Align = alCustom
-          BorderSpacing.Around = 1
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarFile'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButton5: TToolButton
-            Left = 1
-            Top = 0
-            Action = NewLayer
-            AutoSize = True
-          end
-          object ToolButton34: TToolButton
-            Left = 1
-            Top = 16
-            Action = DeleteEmptyLayers
-            AutoSize = True
-          end
-          object ToolButton33: TToolButton
-            Left = 186
-            Top = 0
-            Action = LayerDialog
-            AutoSize = True
-          end
-          object ToolButton6: TToolButton
-            Left = 166
-            Top = 0
-            Action = LayerAutoGroup
-            AutoSize = True
-          end
-          object ToolButton26: TToolButton
-            Left = 21
-            Top = 16
-            Action = IntersectionDialog
-            AutoSize = True
-          end
-          object LayerBox: TComboBox
-            Left = 21
-            Height = 25
-            Hint = 'Assign selected faces to a new layer or change the currently active layer.'
-            Top = 0
-            Width = 145
-            ItemHeight = 0
-            OnChange = LayerBoxChange
-            Style = csDropDownList
-            TabOrder = 0
-          end
-          object PanelActiveLayerColor: TPanel
-            Left = 41
-            Height = 1
-            Top = 16
-            Width = 1
-            AutoSize = True
-            Caption = 'PanelActiveLayerColor'
-            TabOrder = 1
-            OnClick = PanelActiveLayerColorClick
-          end
-        end
       end
-      object PanelPoints: TPanel
-        Left = 689
-        Height = 23
-        Top = 1
-        Width = 144
+      object ToolButton18: TToolButton
+        Left = 23
+        Top = 0
+        Action = PointCollapse
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 23
-        ClientWidth = 144
-        TabOrder = 3
-        object ToolBarPoints: TToolBar
-          Left = 1
-          Height = 20
-          Top = 1
-          Width = 141
-          Align = alCustom
-          BorderSpacing.Around = 1
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarPoints'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButton45: TToolButton
-            Left = 1
-            Top = 0
-            Action = PointAlign
-            AutoSize = True
-          end
-          object ToolButton18: TToolButton
-            Left = 21
-            Top = 0
-            Action = PointCollapse
-            AutoSize = True
-          end
-          object ToolButton42: TToolButton
-            Left = 41
-            Top = 0
-            Action = PointsLock
-            AutoSize = True
-          end
-          object ToolButton43: TToolButton
-            Left = 61
-            Top = 0
-            Action = PointsUnlock
-            AutoSize = True
-          end
-          object ToolButton44: TToolButton
-            Left = 81
-            Top = 0
-            Action = PointsUnlockAll
-            AutoSize = True
-          end
-          object ToolButton41: TToolButton
-            Left = 101
-            Top = 0
-            Action = InsertPlane
-            AutoSize = True
-          end
-          object ToolButton47: TToolButton
-            Left = 121
-            Top = 0
-            Action = LayerIntersection
-            AutoSize = True
-          end
-        end
       end
-      object PanelEdit: TPanel
-        Left = 88
-        Height = 25
-        Top = 1
-        Width = 84
+      object ToolButton42: TToolButton
+        Left = 43
+        Top = 0
+        Action = PointsLock
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 25
-        ClientWidth = 84
-        TabOrder = 4
-        object ToolBarEdit: TToolBar
-          Left = 1
-          Height = 22
-          Top = 1
-          Width = 81
-          Align = alCustom
-          BorderSpacing.Around = 1
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarFile'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButtonDelete: TToolButton
-            Left = 21
-            Top = 0
-            Action = Delete
-            AutoSize = True
-          end
-          object ToolButtonUndo: TToolButton
-            Left = 41
-            Top = 0
-            Action = Undo
-            AutoSize = True
-          end
-          object ToolButtonRedo: TToolButton
-            Left = 61
-            Top = 0
-            Action = Redo
-            AutoSize = True
-          end
-          object ToolButtonSelect: TToolButton
-            Left = 1
-            Hint = 'Deselect All'
-            Top = 0
-            Action = DeselectAll
-            AutoSize = True
-          end
-        end
       end
-      object PanelEdges: TPanel
-        Left = 873
-        Height = 25
-        Top = 1
-        Width = 104
+      object ToolButton43: TToolButton
+        Left = 63
+        Top = 0
+        Action = PointsUnlock
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 25
-        ClientWidth = 104
-        TabOrder = 5
-        object ToolBarEdges: TToolBar
-          Left = 1
-          Height = 22
-          Top = 1
-          Width = 101
-          Align = alCustom
-          BorderSpacing.Around = 1
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarFile'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButton27: TToolButton
-            Left = 1
-            Top = 0
-            Action = EdgeExtrude
-            AutoSize = True
-          end
-          object ToolButton29: TToolButton
-            Left = 41
-            Top = 0
-            Action = EdgeSplit
-            AutoSize = True
-          end
-          object ToolButton13: TToolButton
-            Left = 81
-            Top = 0
-            Action = EdgeCollapse
-            AutoSize = True
-          end
-          object ToolButton16: TToolButton
-            Left = 61
-            Top = 0
-            Action = NewEdge
-            AutoSize = True
-          end
-          object ToolButton17: TToolButton
-            Left = 21
-            Top = 0
-            Action = EdgeCrease
-            AutoSize = True
-          end
-        end
       end
-      object PanelFaces: TPanel
-        Left = 824
-        Height = 24
-        Top = 1
-        Width = 43
+      object ToolButton44: TToolButton
+        Left = 83
+        Top = 0
+        Action = PointsUnlockAll
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 24
-        ClientWidth = 43
-        TabOrder = 6
-        object ToolBarFaces: TToolBar
-          Left = 1
-          Height = 22
-          Top = 1
-          Width = 41
-          Align = alCustom
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarFile'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButton24: TToolButton
-            Left = 1
-            Top = 0
-            Action = NewFace
-            AutoSize = True
-          end
-          object ToolButton32: TToolButton
-            Left = 21
-            Top = 0
-            Action = InvertFace
-            AutoSize = True
-          end
-        end
       end
-      object PanelCurves: TPanel
-        Left = 976
-        Height = 25
-        Top = 1
-        Width = 24
+      object ToolButton41: TToolButton
+        Left = 103
+        Top = 0
+        Action = InsertPlane
         AutoSize = True
-        Caption = 'c'
-        ClientHeight = 25
-        ClientWidth = 24
-        TabOrder = 7
-        object ToolBarCurves: TToolBar
-          Left = 1
-          Height = 22
-          Top = 1
-          Width = 21
-          Align = alCustom
-          BorderSpacing.Around = 1
-          ButtonHeight = 16
-          ButtonWidth = 16
-          Caption = 'ToolBarFile'
-          EdgeBorders = []
-          EdgeInner = esNone
-          EdgeOuter = esNone
-          Images = MenuImages
-          TabOrder = 0
-          Transparent = True
-          object ToolButton40: TToolButton
-            Left = 1
-            Top = 0
-            Action = NewCurve
-            AutoSize = True
-          end
-        end
+      end
+      object ToolButton47: TToolButton
+        Left = 3
+        Top = 16
+        Action = LayerIntersection
+        AutoSize = True
+      end
+    end
+    object ToolBarEdit: TToolBar
+      Left = 88
+      Height = 31
+      Top = 2
+      Width = 81
+      Align = alNone
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarFile'
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      TabOrder = 4
+      Transparent = True
+      object ToolButtonDelete: TToolButton
+        Left = 23
+        Top = 0
+        Action = Delete
+        AutoSize = True
+      end
+      object ToolButtonUndo: TToolButton
+        Left = 43
+        Top = 0
+        Action = Undo
+        AutoSize = True
+      end
+      object ToolButtonRedo: TToolButton
+        Left = 3
+        Top = 16
+        Action = Redo
+        AutoSize = True
+      end
+      object ToolButtonSelect: TToolButton
+        Left = 3
+        Hint = 'Deselect All'
+        Top = 0
+        Action = DeselectAll
+        AutoSize = True
+      end
+    end
+    object ToolBarEdges: TToolBar
+      Left = 873
+      Height = 22
+      Top = 2
+      Width = 101
+      Align = alNone
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarFile'
+      Color = clSilver
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      ParentColor = False
+      TabOrder = 5
+      Transparent = True
+      object ToolButton27: TToolButton
+        Left = 3
+        Top = 0
+        Action = EdgeExtrude
+        AutoSize = True
+      end
+      object ToolButton29: TToolButton
+        Left = 43
+        Top = 0
+        Action = EdgeSplit
+        AutoSize = True
+      end
+      object ToolButton13: TToolButton
+        Left = 3
+        Top = 16
+        Action = EdgeCollapse
+        AutoSize = True
+      end
+      object ToolButton16: TToolButton
+        Left = 63
+        Top = 0
+        Action = NewEdge
+        AutoSize = True
+      end
+      object ToolButton17: TToolButton
+        Left = 23
+        Top = 0
+        Action = EdgeCrease
+        AutoSize = True
+      end
+    end
+    object ToolBarFaces: TToolBar
+      Left = 824
+      Height = 22
+      Top = 2
+      Width = 52
+      Align = alNone
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarFile'
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      TabOrder = 6
+      Transparent = True
+      object ToolButton24: TToolButton
+        Left = 3
+        Top = 0
+        Action = NewFace
+        AutoSize = True
+      end
+      object ToolButton32: TToolButton
+        Left = 23
+        Top = 0
+        Action = InvertFace
+        AutoSize = True
+      end
+    end
+    object ToolBarCurves: TToolBar
+      Left = 976
+      Height = 22
+      Top = 2
+      Width = 21
+      Align = alNone
+      ButtonHeight = 16
+      ButtonWidth = 16
+      Caption = 'ToolBarFile'
+      Color = clSilver
+      EdgeBorders = [ebLeft]
+      EdgeOuter = esRaised
+      Images = MenuImages
+      ParentColor = False
+      TabOrder = 7
+      Transparent = True
+      object ToolButton40: TToolButton
+        Left = 3
+        Top = 0
+        Action = NewCurve
+        AutoSize = True
       end
     end
   end

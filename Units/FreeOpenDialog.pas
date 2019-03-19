@@ -8,12 +8,12 @@ interface
 uses
   Classes, SysUtils,
        {$IFDEF VER3}
-      LazUTF8,
-      LazFileUtils,
+  LazUTF8,
+  LazFileUtils,
      {$ELSE}
-      FileUtil, //deprecated
+  FileUtil, //deprecated
      {$ENDIF}
- Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtDlgs, ExtCtrls, ComCtrls;
 
 type
@@ -27,7 +27,7 @@ type
     function GetPreviewImage: TImage;
   public
     constructor Create(TheOwner: TComponent); override;
-    function GetPlaces:TListItems;
+    function GetPlaces: TListItems;
     property PreviewImage: TImage read GetPreviewImage;
     property OnPreview: TNotifyEvent read FOnPreview write FOnPreview;
   end;
@@ -38,12 +38,12 @@ implementation
 
 procedure TFreeOpenDialog.UpdatePreview;
 var
-  FPreviewFilename: String;
+  FPreviewFilename: string;
   FileIsValid: boolean;
 begin
   //if Assigned(OnFolderChange) then OnFolderChange(Self);
-  if Assigned(FOnPreview)
-    then FOnPreview(Self);
+  if Assigned(FOnPreview) then
+    FOnPreview(Self);
 end;
 
 function TFreeOpenDialog.GetPreviewImage: TImage;
@@ -52,7 +52,9 @@ begin
 end;
 
 constructor TFreeOpenDialog.Create(TheOwner: TComponent);
-var H,W:integer; P:TComponent;
+var
+  H, W: integer;
+  P: TComponent;
 begin
   inherited Create(TheOwner);
   Filter := 'FREE!Ship model|*.ftm;*.fbm|Images|*.jpg;*.png';
@@ -60,12 +62,13 @@ begin
 end;
 
 
-function TFreeOpenDialog.GetPlaces:TListItems;
-var e,gbe:TComponentEnumerator; gbi,c: TComponent;
+function TFreeOpenDialog.GetPlaces: TListItems;
+var
+  e, gbe: TComponentEnumerator;
+  gbi, c: TComponent;
 begin
-  result:=nil;
+  Result := nil;
 end;
 
 
 end.
-

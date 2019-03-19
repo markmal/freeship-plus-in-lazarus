@@ -16,7 +16,8 @@
       <Icon Value="0"/>
     </General>
     <i18n>
-      <EnableI18N LFM="False"/>
+      <EnableI18N Value="True"/>
+      <OutDir Value="locale"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
@@ -24,7 +25,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="10"/>
+      <BuildNr Value="26"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -298,7 +299,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="71">
+    <Units Count="74">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -684,58 +685,78 @@
         <IsPartOfProject Value="True"/>
       </Unit59>
       <Unit60>
-        <Filename Value="Units/FreeOpenDialog.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit60>
-      <Unit61>
         <Filename Value="Forms/FreeAboutDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeAboutDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit60>
+      <Unit61>
+        <Filename Value="Units/colorfactory.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit61>
       <Unit62>
-        <Filename Value="Units/colorfactory.pas"/>
+        <Filename Value="Units/FreeBitmap.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit62>
       <Unit63>
-        <Filename Value="Units/FreeBitmap.pas"/>
+        <Filename Value="Units/FreeBGRbuffer.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit63>
       <Unit64>
-        <Filename Value="Units/FreeBGRbuffer.pas"/>
+        <Filename Value="Units/FreeBitmapFormatHelper.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit64>
       <Unit65>
-        <Filename Value="Units/FreeBitmapFormatHelper.pas"/>
+        <Filename Value="Units/ColorIniFile.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit65>
       <Unit66>
-        <Filename Value="Units/ColorIniFile.pas"/>
+        <Filename Value="Units/freestringutils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit66>
       <Unit67>
-        <Filename Value="Units/freestringutils.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit67>
-      <Unit68>
         <Filename Value="Forms/EnterThemeNameDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="EnterThemeNameDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit68>
-      <Unit69>
+      </Unit67>
+      <Unit68>
         <Filename Value="Units/FreeViewPortOpenGL.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit69>
-      <Unit70>
+      </Unit68>
+      <Unit69>
         <Filename Value="Forms/FreeBackgroundBlendingDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeBackgroundBlendDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit69>
+      <Unit70>
+        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeFilePreviewDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit70>
+      <Unit71>
+        <Filename Value="Units/freeshellctrls.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeShellCtrls"/>
+      </Unit71>
+      <Unit72>
+        <Filename Value="Units/scrollpanel.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit72>
+      <Unit73>
+        <Filename Value="Forms/tiledialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TileDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="TileDialog"/>
+      </Unit73>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -768,6 +789,7 @@
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2"/>
+        <UseValgrind Value="True"/>
       </Debugging>
     </Linking>
     <Other>

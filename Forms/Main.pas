@@ -76,7 +76,8 @@ uses
      FreeAboutDlg,
      Menus,
      ToolWin,
-     Buttons, StdActns, Spin, ExtDlgs
+     Buttons, StdActns, Spin, ExtDlgs,
+     DefaultTranslator
 ;
 
 type
@@ -90,15 +91,7 @@ type
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
      PanelActiveLayerColor: TPanel;
-     PanelEdges: TPanel;
-     PanelCurves: TPanel;
-     PanelFaces: TPanel;
-     PanelFile: TPanel;
-     PanelEdit: TPanel;
-     PanelPoints: TPanel;
      PanelMain: TPanel;
-     PanelVisibility: TPanel;
-     PanelLayers: TPanel;
      SelectLeakPoints: TAction;
     FreeShip                   : TFreeShip;
     ActionList1                : TActionList;
@@ -118,7 +111,6 @@ type
     File1                      : TMenuItem;
     Open       : TMenuItem;
     ExitProgram1               : TMenuItem;
-    ToolBarMain: TToolBar;
     ToolBarCurves: TToolBar;
     ToolBarFaces: TToolBar;
     ToolBarFile: TToolBar;
@@ -151,7 +143,7 @@ type
     NewLayer                   : TAction;
     New1                       : TMenuItem;
     Delete: TAction;
-    ToolButton1: TToolButton;
+    ToolButtonOpenFile: TToolButton;
     ToolButton3: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
@@ -444,6 +436,7 @@ type
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure PanelMainResize(Sender: TObject);
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
     procedure NewWindowExecute(Sender: TObject);
@@ -618,6 +611,7 @@ type
 
       procedure SetCaption;
       procedure UpdateMenu;
+      procedure ShowRecentFilesDialog;
   end;
 
 var MainForm: TMainForm;
@@ -629,7 +623,9 @@ uses FreeSplashWndw,
      FreeControlPointFrm,
      FreeKeelWizardDlg,
      FreeLanguageSupport,
-     FreeEmptyModelChooserDlg;
+     FreeEmptyModelChooserDlg,
+     RibbonToolBarMgr,
+     TileDialog;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -691,7 +687,7 @@ begin
 
  //FreeShip.Preferences.SetDefaults;
 
- SortControlsByXY(PanelMain);
+{ SortControlsByXY(PanelMain);
  SortControlsByXY(ToolBarFile);
  SortControlsByXY(ToolBarVisibility);
  SortControlsByXY(ToolBarLayers);
@@ -700,6 +696,7 @@ begin
  SortControlsByXY(ToolBarEdges);
  SortControlsByXY(ToolBarFaces);
  SortControlsByXY(ToolBarCurves);
+ }
 end;
 
 destructor TMainForm.Destroy;
@@ -717,20 +714,21 @@ end;
 
 procedure TMainForm.FormResize(Sender: TObject);
 begin
-  if Self.IsResizing then exit;
-  PanelMain.Invalidate;
-  Application.ProcessMessages;
-  AlignAllToolbars;
+  //if MainForm.IsResizing then exit;
+  //PanelMain.Invalidate;
+  //Application.ProcessMessages;
+  ///AlignAllToolbars;
 end;
 
 procedure TMainForm.FormWindowStateChange(Sender: TObject);
 begin
  // this is just to kick toolbar to autoresize
- Self.Height:=Self.Height+1;
+{ Self.Height:=Self.Height+1;
  Self.Resize;
  Self.Height:=Self.Height-1;
  Self.Resize;
  Self.Invalidate;
+ }
 end;
 
 // total width of all controls in toolbar
@@ -862,7 +860,7 @@ begin
    then FAllToolbarsControlsWidth:=getAllToolbarsControlWidth;
   lft:=gap;
 
-  PanelMain.Width := ToolBarMain.Width - 2; // for some reason PanelMain does not autosize
+  //PanelMain.Width := ToolBarMain.Width - 2; // for some reason PanelMain does not autosize
   PanelMain.Height := 20;
   pnlWidth := PanelMain.Width;
   lft := alignToolbar(ToolBarFile, FToolBarFileControlsWidth, lft+gap, pnlWidth, 7);
@@ -886,7 +884,7 @@ begin
   ToolBarFaces.Height:=PanelMain.Height-2;
   ToolBarCurves.Height:=PanelMain.Height-2;
    }
-  ToolBarMain.Height:=PanelMain.Height;
+  //ToolBarMain.Height:=PanelMain.Height;
 end;
 
 procedure TMainForm.InitiallyLoadModel;
@@ -1120,7 +1118,7 @@ begin
    ExportArchimedes.Enabled:=FreeShip.NumberofStations>0;
    ExportGHS.Enabled:=FreeShip.NumberofStations>0;
    ExportPAM.Enabled:=FreeShip.NumberofStations>0;   
-// Определяем наличие внешних модулей
+// Detect existance of external modules
    FExecDirectory:=Freeship.Preferences.ExecDirectory;
    ExportMichlet.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);
    ExportAddMass.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
@@ -1142,7 +1140,7 @@ begin
    ExportAddMass.Enabled:=False;
    ResistanceRBHS.Enabled:=False;
    ResistanceMH.Enabled:=False;   
-// Определяем наличие внешних модулей и если есть включаем задачи в меню
+   // Detect existance of external modules and include executables into menu
    if FileExists(FExecDirectory+'/ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
    if FileExists(FExecDirectory+'/Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
    if FileExists(FExecDirectory+'/Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
@@ -1287,9 +1285,45 @@ begin
    TransformLackenby.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
 end;{TMainForm.UpdateMenu}
 
+procedure TMainForm.ShowRecentFilesDialog;
+var dlg: TTileDialog; i:integer; vFileName,sTime:string; jpg:TJPEGImage;
+    pic:TPicture;
+begin
+  dlg := TTileDialog.create(Self);
+  MenuImages.GetBitmap(ToolButtonOpenFile.ImageIndex, dlg.ButtonOpenFile.Glyph);
+
+  for i:=0 to FreeShip.Edit.RecentFileCount-1 do
+    begin
+      vFileName:=Freeship.Edit.RecentFile[i];
+      if not FileExists(vFileName) then continue;
+      sTime:=FormatDateTime('YYYY-MM-DD hh:mm:ss',FileDateToDateTime(FileAgeUTF8(vFileName)));
+      jpg:= Freeship.Edit.getPreviewImage(vFileName);
+      if assigned(jpg) then
+        begin
+        pic := TPicture.Create;
+        pic.Bitmap.Assign(jpg);
+        dlg.AddTile(pic, sTime+' - '+vFileName, vFileName);
+        end;
+    end;
+
+  dlg.ShowModal;
+  vFileName:=dlg.FileName;
+  dlg.Free;
+  if (vFileName<>'') and (vFileName<>'*') then
+    FreeShip.Edit.File_Load(vFileName);
+  if (vFileName = '*') then
+    begin
+    FreeShip.Edit.File_Load;
+    FOpenHullWindows;
+    SetCaption;
+    UpdateMenu;
+    end;
+end;
+
 procedure TMainForm.LoadFileExecute(Sender: TObject);
 begin
-   FreeShip.Edit.File_Load;
+   ShowRecentFilesDialog;
+   //FreeShip.Edit.File_Load;
    FOpenHullWindows;
    SetCaption;
    UpdateMenu;
@@ -1325,6 +1359,12 @@ begin
    LoadToolIcons;
    UpdateMenu;
 end;{TMainForm.FormShow}
+
+procedure TMainForm.PanelMainResize(Sender: TObject);
+begin
+  if PanelMain.IsResizing then exit;
+  ArrangeRibbonPanel(PanelMain);
+end;
 
 
 procedure TMainForm.ShowControlNetExecute(Sender: TObject);
@@ -2615,9 +2655,16 @@ var i, II, sz, ilcnt:integer;
     bmp:TBitmap; png: TPortableNetworkGraphic; img: TLazIntfImage;
 
     procedure setToolBarButtonSize(ToolBar: TToolBar; sz: integer);
+    var i:integer;
     begin
       ToolBar.ButtonHeight:= sz + (sz div 16)*2;
       ToolBar.ButtonWidth := sz + (sz div 16)*2;
+      for i:=0 to ToolBar.ButtonCount-1 do
+        begin
+          ToolBar.Buttons[i].Height := ToolBar.ButtonHeight;
+          ToolBar.Buttons[i].Width := ToolBar.ButtonWidth;
+        end;
+
       //ToolBar.Parent.Width := ToolBar.Width;
       //ToolBar.Parent.Height := ToolBar.Height;
     end;
@@ -2637,14 +2684,17 @@ begin
   setToolBarButtonSize(ToolBarCurves, sz);
 
   FAllToolbarsControlsWidth := getAllToolbarsControlWidth;
-  AlignAllToolbars;
+  //AlignAllToolbars;
+  ArrangeRibbonPanel(PanelMain);
 
+  {
   // this is just to kick toolbar to autoresize
   Self.Height:=Self.Height+1;
   Self.Resize;
   Self.Height:=Self.Height-1;
   Self.Resize;
   Self.Invalidate;
+  }
 end;
 
 

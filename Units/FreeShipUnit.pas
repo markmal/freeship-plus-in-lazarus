@@ -76,7 +76,9 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
         FreeLanguageSupport,
         FreeControlPointFrm,
      FreeLogger,
-     FreeOpenDialog;
+     //FreeOpenDialog
+     FreeFilePreviewDialog
+     ;
 
 
 // FREE!ship uses British imperial format, eg 1 long ton=2240 lbs
@@ -504,132 +506,133 @@ type
      {                                                                                                   }
      {   Container class for all editing commandsns for the hull                                         }
      {---------------------------------------------------------------------------------------------------}
-     TFreeEdit           = class
-                                 private
-                                    FOwner                        : TFreeShip;
-                                    FRecentFiles                  : TStringList;
+     TFreeEdit = class
+       private
+          FOwner                        : TFreeShip;
+          FRecentFiles                  : TStringList;
 
-                                    PreviewFrm : TForm;
-                                    PreviewImg : TImage;
+          PreviewFrm : TForm;
+          PreviewImg : TImage;
 
-                                    function FGetRecentFile(Index:integer):string;
-                                    function FGetRecentFileCount:integer;
-                                    procedure SaveDialogTypeChange(Sender: TObject);
-                                 public
-                                    procedure AddToRecentFiles(Filename:String);                            // Takes a filename and adds it to the list with recent files
-                                    procedure BackgroundImage_Delete(Viewport:TFreeViewport);               // Delete the backgrundimage associated with this view
-                                    procedure BackgroundImage_Open(Viewport:TFreeViewport);                 // browse for and open a backgroundimage
-                                    constructor Create(Owner:TFreeShip);
-                                    function  CreateRedoObject:TFreeUndoObject;                             // Creates redo data before an undo is done
-                                    function  CreateUndoObject(UndoText:String;Accept:Boolean):TFreeUndoObject;// Creates undodata just prior to modifications
-                                    procedure Curve_Add;                                                    // Add a new controlcurve
-                                    destructor Destroy;                                         override;
-                                    procedure Edge_Collapse;                                                // Remove an edge by replacing the two connected faces by one controlface
-                                    procedure Edge_Connect;                                                 // Create a new edge by connection two controlpoints belonging to the same controlface
-                                    procedure Edge_Crease;                                                  // Switch selected edges between normal or crease edges (knuckle lines)
-                                    procedure Edge_Extrude;                                                 // Create new controlfaces by extruding selected boundary edges (eg edges with only 1 controlface connected to it)
-                                    procedure Edge_Split;                                                   // Create new controlpoints by splitting an controledge into two.
-                                    procedure Face_Assemble;
-                                    procedure Face_DeleteNegative;                                          // Deletes all faces on the starboardside of the hull
-                                    procedure Face_Flip;                                                    // Inverts the normal-direction of all selected controlfaces
-                                    procedure Face_MirrorPlane;                                             // Mirrors all selected faces in a 3D plane
-                                    procedure Face_New;                                                     // Creates a new controlface from the currently selected controlpoints
-                                    procedure Face_Rotate;                                                  // Rotate selected faces around the X,Y and/or Z axis
-                                    procedure Face_RotateM;                                                 // Rotate all model around the X,Y axis
-                                    procedure Face_Scale;                                                   // Scale selected faces
-                                    procedure Face_Move;                                                    // Move selected faces in X,Y and Z direction
-                                    procedure File_ExportArchimedes;                                        // Exports stations to Archimedes or ArchimedesMB
-                                    procedure File_ExportCoordinates;                                       // export the coordinates of all controlpoints to a textfile
-                                    procedure File_ExportDXF_2DPolylines;                                   // Export all intersections to an individual DXF file as 2D polylines
-                                    procedure File_ExportDXF_3DPolylines;                                   // Export all lines to a 3D DXF model as polylines
-                                    procedure File_ExportDXF_Faces;                                         // Export all faces to a 3D DXF model
-                                    procedure File_ExportFEF;                                               // Save to a Freeship Exchange Format (FEF) file
-                                    procedure File_ExportGHS;                                               // Save ordinates to the GHS file format
-                                    procedure File_ExportPAM;                                               // Save ordinates to the PAM file format for Added masses calcs
-                                    procedure File_Export_AddMass;                                          // Creates a file to be read by the CFD program Added masses
-                                    procedure File_Execute_AddMass; //(Component:TComponent);               // Output in Added masses program
-                                    procedure File_ExportPart;                                              // Save part of the geometry to a file
-                                    procedure File_ExportIGES;                                              // Save NURBS patches to an IGES file
-                                    procedure File_Export_Michlet;                                          // Creates a file to be read by the CFD program Michlet
-                                    procedure File_Import_MichletWaves;
-                                    procedure File_ExportObj;                                               // Saves the model as a wavefront .Obj file
-                                    procedure File_ExportOffsets;                                           // Exports all intersections to a textfile as 3D points
-                                    procedure File_ExportSTL;                                               // Export the surface to a STL file
-                                    procedure File_ImportCarene;                                            // imports a Carene XYZ file and creates a multichine boat with developable surfaces
-                                    procedure File_ImportChines;                                            // Import chines from a textfile and fit a surface through them
-                                    procedure File_ImportFEF;                                               // Import a Freeship Exchange Format (FEF) file
-                                    procedure File_ImportHull;                   overload;virtual;          // Imports a file created with Carlssons's Hulls program
-                                    procedure File_ImportHull(Filename:string;Quiet:Boolean);reintroduce;overload; // Imports a file created with Carlssons's Hulls program
-                                    procedure File_ImportPart;                                              // Import a partfile and add it to the current geometry
-                                    procedure File_ImportPolycad;                                           // Imports a PolyCad file
-                                    procedure File_ImportSurface;                                           // Imports a number of curves and fits a surface
-                                    Procedure File_ImportVRML;                                              // Import a VRML 1.0 file
-                                    procedure File_Load;                         overload;virtual;          // Load a FREE!ship file by showing an opendialog
-                                    procedure File_Load(filename:string);        reintroduce;overload;      // Loads the given filename quietly
-                                    procedure File_Save;                                                    // save as FREE!ship file without prompting for a filename (must already been set)
-                                    procedure File_SaveAs;                                                  // Ask for filename and save as FREE!ship file
-                                    procedure Flowline_Add(Source:T2DCoordinate;View:TFreeviewType);
-                                    procedure Geometry_AddCylinder;
-                                    function  Hydrostatics_Calculate(Draft,AngleOfHeel,Trim:TFloatType):TFreeHydrostaticCalc;// Creates and calculates a hydrostatics calculation
-                                    procedure Hydrostatics_Crosscurves;                                     // Opens the dialog to calculate crosscurves
-                                    procedure Hydrostatics_Dialog;                                          // Opens the hydrostatics dialog and calculates hydrostatic data for a range of inputdata
-                                    procedure ImportFrames;                                                 // Loads a bodyplane and tries to fit a surface to it
-                                    function  Intersection_Add(IntType:TFreeIntersectionType;Distance:TFloatType):TFreeIntersection;// Add a new intersection at the specified location
-                                    procedure Intersection_AddToList(Intersection:TFreeIntersection);       // Adds an intersection to the appropriate list
-                                    procedure Intersection_Dialog;                                          // Pops up the dialog in whcih to add or delete stations, buttocks and waterlines
-                                    procedure Layer_AutoGroup;                                              // All connected patches surrounded by crease edges are grouped together into a new layer
-                                    procedure Layer_Develop;                                                // Developes all developable layers
-                                    procedure Layer_Dialog;                                                 // Show layer dialog window
-                                    procedure Layer_DeleteEmpty(Quiet:Boolean);                             // Delete all layers that are empty from the model
-                                    function  Layer_New:TFreeSubdivisionLayer;                              // Add a new empty layer
-                                    procedure Marker_Add(Marker:TFreeMarker);                               // Adds a marker to the list with markers
-                                    procedure Marker_Delete;                                                // Delete all markers from the model
-                                    procedure Marker_Import;                                                // Import markers from a textfile
-                                    procedure Model_Check(ShowResult:Boolean);                              // Checks the surface for inconsistent normal directions and leaks
-                                    function  Model_New:Boolean;                                            // Start a new model (with a predefined surface)
-                                    procedure Model_LackenbyTransformation;                                 // Affine hullform transformation according to Lackenby
-                                    procedure Model_Scale(ScaleVector:T3DCoordinate;OverrideLock,AdjustMarkers:Boolean); // Scale the entire model and all equivalent data such as stations etc.
-                                    procedure Point_Collapse;                                               // Merge two selected edges by removing their common controlpoint.
-                                    procedure Point_RemoveUnused;                                           // removes any unused points from the model
-                                    procedure Point_InsertPlane;                                            // Finds all intersection of VISIBLE edges and a 3D plane, and inserts a point on each of these edges
-                                    procedure Point_IntersectLayer;                                         // Calculates the intersection points of two layers
-                                    procedure Point_Lock;                                                   // Locks all selected points
-                                    function  Point_New:TFreeSubdivisionControlPoint;                       // Add a new point to the model with no edges/faces attached
-                                    procedure Point_ProjectStraightLine;                                    // Project all selected points onto a straight line through the first and last selected points
-                                    procedure Point_Unlock;                                                 // Unlocks all selected locked points
-                                    procedure Point_UnlockAll;                                              // Unlocks all points
-                                    function  ProceedWhenLockedPoints:Boolean;                              // Function that shows a warning when certain edit commands are invoked and the model contains locked points
-                                    procedure Redo;                                                         // Restores the state of the model as it was after the previous undone
-                                    procedure Resistance_Delft;                                             // Calculate resistance of yachts according to Delft systematic yacht series
-                                    procedure Resistance_Kaper;                                             // Calculate resistance of slender hulls (canoes) according to John Winters
-                                    procedure Resistance_Planing;                                           // Calculate resistance of planing ships									
-                                    procedure Resistance_Holtr;                                             // Calculate resistance of ships
-                                    procedure Resistance_Hollen;                                            // Calculate resistance of ships by Hollenbach method
-                                    procedure Resistance_Oortmer;                                           // Calculate resistance of ships by Oortmerssen method
-                                    procedure Resistance_FungLeib;                                          // Calculate resistance of naval ships by Fung-Leibman method
-                                    procedure Resistance_OST;                                               // Calculate resistance of ships by OST									
-                                    procedure Resistance_RBHS;                                              // Calculate resistance of high speed round bilge ships 
-                                    procedure Resistance_MH;                                                // Calculate resistance of multihull ships 
-                                    procedure Propeller_Task1;                                              // Calculate propeller task1
-                                    procedure Propeller_Task2;                                              // Calculate propeller task2
-                                    procedure Propeller_Task3;                                              // Calculate propeller task3
-                                    procedure Propeller_Task4;                                              // Calculate propeller task4
-                                    procedure Propeller_Task5;                                              // Calculate propeller task5
-                                    procedure Hydrodyn_Rvrs;                                                // Calculate revers of ship
-                                    procedure Hydrodyn_Maneuv;                                              // Calculate maneuver of ship									
-                                    procedure Hydrodyn_Task1;                                               // Calculate aero characteristics task1
-                                    procedure Selection_Clear;                                              // Deselect all selected items at once
-                                    procedure Selection_Delete;                                             // Delete all selected items
-                                    procedure Selection_SelectAll;                                          // Select all visible items
-                                    procedure Selection_SelectLeakPoints;                                   // Select all leakpoints
-                                    procedure Undo;                                                         // Restores the state of the model as it was before the last modification
-                                    procedure Undo_Clear;                                                   // Clear the undo history
-                                    procedure Undo_ShowHistory; //Show the undo history
-                                    procedure OnFilePreview(Sender: TObject);
-                                    property  Owner                     : TFreeShip read FOwner write FOwner;
-                                    property  RecentFile[index:integer] : string read FGetRecentFile;       // retrieve a filename from the recently used file list
-                                    property  RecentFileCount           : integer read FGetRecentFileCount; // The number of files in the recently used file list
-                              end;
+          function FGetRecentFile(Index:integer):string;
+          function FGetRecentFileCount:integer;
+          procedure SaveDialogTypeChange(Sender: TObject);
+       public
+          procedure AddToRecentFiles(Filename:String);                            // Takes a filename and adds it to the list with recent files
+          procedure BackgroundImage_Delete(Viewport:TFreeViewport);               // Delete the backgrundimage associated with this view
+          procedure BackgroundImage_Open(Viewport:TFreeViewport);                 // browse for and open a backgroundimage
+          constructor Create(Owner:TFreeShip);
+          function  CreateRedoObject:TFreeUndoObject;                             // Creates redo data before an undo is done
+          function  CreateUndoObject(UndoText:String;Accept:Boolean):TFreeUndoObject;// Creates undodata just prior to modifications
+          procedure Curve_Add;                                                    // Add a new controlcurve
+          destructor Destroy;                                         override;
+          procedure Edge_Collapse;                                                // Remove an edge by replacing the two connected faces by one controlface
+          procedure Edge_Connect;                                                 // Create a new edge by connection two controlpoints belonging to the same controlface
+          procedure Edge_Crease;                                                  // Switch selected edges between normal or crease edges (knuckle lines)
+          procedure Edge_Extrude;                                                 // Create new controlfaces by extruding selected boundary edges (eg edges with only 1 controlface connected to it)
+          procedure Edge_Split;                                                   // Create new controlpoints by splitting an controledge into two.
+          procedure Face_Assemble;
+          procedure Face_DeleteNegative;                                          // Deletes all faces on the starboardside of the hull
+          procedure Face_Flip;                                                    // Inverts the normal-direction of all selected controlfaces
+          procedure Face_MirrorPlane;                                             // Mirrors all selected faces in a 3D plane
+          procedure Face_New;                                                     // Creates a new controlface from the currently selected controlpoints
+          procedure Face_Rotate;                                                  // Rotate selected faces around the X,Y and/or Z axis
+          procedure Face_RotateM;                                                 // Rotate all model around the X,Y axis
+          procedure Face_Scale;                                                   // Scale selected faces
+          procedure Face_Move;                                                    // Move selected faces in X,Y and Z direction
+          procedure File_ExportArchimedes;                                        // Exports stations to Archimedes or ArchimedesMB
+          procedure File_ExportCoordinates;                                       // export the coordinates of all controlpoints to a textfile
+          procedure File_ExportDXF_2DPolylines;                                   // Export all intersections to an individual DXF file as 2D polylines
+          procedure File_ExportDXF_3DPolylines;                                   // Export all lines to a 3D DXF model as polylines
+          procedure File_ExportDXF_Faces;                                         // Export all faces to a 3D DXF model
+          procedure File_ExportFEF;                                               // Save to a Freeship Exchange Format (FEF) file
+          procedure File_ExportGHS;                                               // Save ordinates to the GHS file format
+          procedure File_ExportPAM;                                               // Save ordinates to the PAM file format for Added masses calcs
+          procedure File_Export_AddMass;                                          // Creates a file to be read by the CFD program Added masses
+          procedure File_Execute_AddMass; //(Component:TComponent);               // Output in Added masses program
+          procedure File_ExportPart;                                              // Save part of the geometry to a file
+          procedure File_ExportIGES;                                              // Save NURBS patches to an IGES file
+          procedure File_Export_Michlet;                                          // Creates a file to be read by the CFD program Michlet
+          procedure File_Import_MichletWaves;
+          procedure File_ExportObj;                                               // Saves the model as a wavefront .Obj file
+          procedure File_ExportOffsets;                                           // Exports all intersections to a textfile as 3D points
+          procedure File_ExportSTL;                                               // Export the surface to a STL file
+          procedure File_ImportCarene;                                            // imports a Carene XYZ file and creates a multichine boat with developable surfaces
+          procedure File_ImportChines;                                            // Import chines from a textfile and fit a surface through them
+          procedure File_ImportFEF;                                               // Import a Freeship Exchange Format (FEF) file
+          procedure File_ImportHull;                   overload;virtual;          // Imports a file created with Carlssons's Hulls program
+          procedure File_ImportHull(Filename:string;Quiet:Boolean);reintroduce;overload; // Imports a file created with Carlssons's Hulls program
+          procedure File_ImportPart;                                              // Import a partfile and add it to the current geometry
+          procedure File_ImportPolycad;                                           // Imports a PolyCad file
+          procedure File_ImportSurface;                                           // Imports a number of curves and fits a surface
+          Procedure File_ImportVRML;                                              // Import a VRML 1.0 file
+          procedure File_Load;                         overload;virtual;          // Load a FREE!ship file by showing an opendialog
+          procedure File_Load(filename:string);        reintroduce;overload;      // Loads the given filename quietly
+          procedure File_Save;                                                    // save as FREE!ship file without prompting for a filename (must already been set)
+          procedure File_SaveAs;                                                  // Ask for filename and save as FREE!ship file
+          procedure Flowline_Add(Source:T2DCoordinate;View:TFreeviewType);
+          procedure Geometry_AddCylinder;
+          function  Hydrostatics_Calculate(Draft,AngleOfHeel,Trim:TFloatType):TFreeHydrostaticCalc;// Creates and calculates a hydrostatics calculation
+          procedure Hydrostatics_Crosscurves;                                     // Opens the dialog to calculate crosscurves
+          procedure Hydrostatics_Dialog;                                          // Opens the hydrostatics dialog and calculates hydrostatic data for a range of inputdata
+          procedure ImportFrames;                                                 // Loads a bodyplane and tries to fit a surface to it
+          function  Intersection_Add(IntType:TFreeIntersectionType;Distance:TFloatType):TFreeIntersection;// Add a new intersection at the specified location
+          procedure Intersection_AddToList(Intersection:TFreeIntersection);       // Adds an intersection to the appropriate list
+          procedure Intersection_Dialog;                                          // Pops up the dialog in whcih to add or delete stations, buttocks and waterlines
+          procedure Layer_AutoGroup;                                              // All connected patches surrounded by crease edges are grouped together into a new layer
+          procedure Layer_Develop;                                                // Developes all developable layers
+          procedure Layer_Dialog;                                                 // Show layer dialog window
+          procedure Layer_DeleteEmpty(Quiet:Boolean);                             // Delete all layers that are empty from the model
+          function  Layer_New:TFreeSubdivisionLayer;                              // Add a new empty layer
+          procedure Marker_Add(Marker:TFreeMarker);                               // Adds a marker to the list with markers
+          procedure Marker_Delete;                                                // Delete all markers from the model
+          procedure Marker_Import;                                                // Import markers from a textfile
+          procedure Model_Check(ShowResult:Boolean);                              // Checks the surface for inconsistent normal directions and leaks
+          function  Model_New:Boolean;                                            // Start a new model (with a predefined surface)
+          procedure Model_LackenbyTransformation;                                 // Affine hullform transformation according to Lackenby
+          procedure Model_Scale(ScaleVector:T3DCoordinate;OverrideLock,AdjustMarkers:Boolean); // Scale the entire model and all equivalent data such as stations etc.
+          procedure Point_Collapse;                                               // Merge two selected edges by removing their common controlpoint.
+          procedure Point_RemoveUnused;                                           // removes any unused points from the model
+          procedure Point_InsertPlane;                                            // Finds all intersection of VISIBLE edges and a 3D plane, and inserts a point on each of these edges
+          procedure Point_IntersectLayer;                                         // Calculates the intersection points of two layers
+          procedure Point_Lock;                                                   // Locks all selected points
+          function  Point_New:TFreeSubdivisionControlPoint;                       // Add a new point to the model with no edges/faces attached
+          procedure Point_ProjectStraightLine;                                    // Project all selected points onto a straight line through the first and last selected points
+          procedure Point_Unlock;                                                 // Unlocks all selected locked points
+          procedure Point_UnlockAll;                                              // Unlocks all points
+          function  ProceedWhenLockedPoints:Boolean;                              // Function that shows a warning when certain edit commands are invoked and the model contains locked points
+          procedure Redo;                                                         // Restores the state of the model as it was after the previous undone
+          procedure Resistance_Delft;                                             // Calculate resistance of yachts according to Delft systematic yacht series
+          procedure Resistance_Kaper;                                             // Calculate resistance of slender hulls (canoes) according to John Winters
+          procedure Resistance_Planing;                                           // Calculate resistance of planing ships
+          procedure Resistance_Holtr;                                             // Calculate resistance of ships
+          procedure Resistance_Hollen;                                            // Calculate resistance of ships by Hollenbach method
+          procedure Resistance_Oortmer;                                           // Calculate resistance of ships by Oortmerssen method
+          procedure Resistance_FungLeib;                                          // Calculate resistance of naval ships by Fung-Leibman method
+          procedure Resistance_OST;                                               // Calculate resistance of ships by OST
+          procedure Resistance_RBHS;                                              // Calculate resistance of high speed round bilge ships
+          procedure Resistance_MH;                                                // Calculate resistance of multihull ships
+          procedure Propeller_Task1;                                              // Calculate propeller task1
+          procedure Propeller_Task2;                                              // Calculate propeller task2
+          procedure Propeller_Task3;                                              // Calculate propeller task3
+          procedure Propeller_Task4;                                              // Calculate propeller task4
+          procedure Propeller_Task5;                                              // Calculate propeller task5
+          procedure Hydrodyn_Rvrs;                                                // Calculate revers of ship
+          procedure Hydrodyn_Maneuv;                                              // Calculate maneuver of ship
+          procedure Hydrodyn_Task1;                                               // Calculate aero characteristics task1
+          procedure Selection_Clear;                                              // Deselect all selected items at once
+          procedure Selection_Delete;                                             // Delete all selected items
+          procedure Selection_SelectAll;                                          // Select all visible items
+          procedure Selection_SelectLeakPoints;                                   // Select all leakpoints
+          procedure Undo;                                                         // Restores the state of the model as it was before the last modification
+          procedure Undo_Clear;                                                   // Clear the undo history
+          procedure Undo_ShowHistory; //Show the undo history
+          procedure OnFilePreview(Sender: TObject; filename:string);
+          property  Owner                     : TFreeShip read FOwner write FOwner;
+          property  RecentFile[index:integer] : string read FGetRecentFile;       // retrieve a filename from the recently used file list
+          property  RecentFileCount           : integer read FGetRecentFileCount; // The number of files in the recently used file list
+          function  getPreviewImage(aFileName:string):TJPegImage;
+     end;
      {---------------------------------------------------------------------------------------------------}
      {                                       TFreePreferences                                            }
      {                                                                                                   }
@@ -687,6 +690,9 @@ type
           FImportDirectory           : string;   // Default directory to import files
           FExportDirectory           : string;   // Default directory to export files
 
+          FGlobalOpenDirectory             : string;   // Default Global directory to open existing files
+          FGlobalImportDirectory           : string;   // Default Global directory to import files
+
           FLanguagesDirectory        : string;   // Default directory where Language files stored. Default FGlobalAppDataDirectory/Languages
           FLanguageFile              : String;
           FLanguage                  : String;
@@ -703,6 +709,10 @@ type
           function FGetOpenDirectory:string;
           function FGetSaveDirectory:string;
           function FGetInitDirectory:string;
+
+          function FGetGlobalImportDirectory:string;
+          function FGetGlobalOpenDirectory:string;
+
           procedure FSetViewportColor(Val:TColor);
        public
           procedure   Clear;
@@ -747,7 +757,6 @@ type
           property GridColor               : TColor read FGridColor write FGridColor;
           property GridFontColor           : TColor read FGridFontColor write FGridFontColor;
           property HydrostaticsFontColor   : TColor read FHydrostaticsFontColor write FHydrostaticsFontColor;
-          property ImportDirectory         : string read FGetImportDirectory write FImportDirectory;
           property EdgeColor               : TColor read FEdgecolor write FEdgeColor;
           property ExportDirectory         : string read FGetExportDirectory write FExportDirectory;
           property CreasePointColor        : TColor read FCreasePointColor write FCreasePointColor;
@@ -759,7 +768,10 @@ type
           property MaxUndoMemory           : Integer read FMaxUndoMemory write FMaxUndoMemory;
           property NormalColor             : TColor read FNormalColor write FNormalColor;
           property InitDirectory           : string read FGetInitDirectory write FInitDirectory;
+          property ImportDirectory         : string read FGetImportDirectory write FImportDirectory;
+          property GlobalImportDirectory   : string read FGetGlobalImportDirectory write FGlobalImportDirectory;
           property OpenDirectory           : string read FGetOpenDirectory write FOpenDirectory;
+          property GlobalOpenDirectory     : string read FGetGlobalOpenDirectory write FGlobalOpenDirectory;
           property SaveDirectory           : string read FGetSaveDirectory write FSaveDirectory;
           property LanguagesDirectory      : string read FLanguagesDirectory write FLanguagesDirectory;
           property ExecDirectory           : string read FExecDirectory write FExecDirectory;
@@ -1022,6 +1034,7 @@ type
                                     procedure FSetPrecision(Val:TFreePrecisionType);
                                     function  FGetPreview:TJPEGImage;
                                  protected   { Protected declarations }
+                                    procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                                  public      { Public declarations }
                                     procedure   AddViewport(Viewport:TFreeViewport);                                       // Add a viewport to the list of viewports connected to the model
                                     function    AdjustMarkers:Boolean;
@@ -5167,8 +5180,11 @@ begin
    begin
       FShowMarkers:=val;
       Owner.FileChanged:=True;
-      if Owner.NumberofMarkers>0 then for I:=1 to Owner.NumberOfViewports do if Owner.Viewport[I-1].Zoom=1.0 then Owner.Viewport[I-1].ZoomExtents
-                                                                                                             else Owner.Viewport[I-1].Refresh;
+      if Owner.NumberofMarkers>0 then
+        for I:=1 to Owner.NumberOfViewports do
+          if Owner.Viewport[I-1].Zoom=1.0
+            then Owner.Viewport[I-1].ZoomExtents
+            else Owner.Viewport[I-1].Refresh;
    end;
 end;{TFreeVisibility.FSetShowMarkers}
 
@@ -9801,9 +9817,115 @@ begin
 end;{TFreeEdit.File_ImportVRML}
 
 
-procedure TFreeEdit.OnFilePreview(Sender: TObject);
+function TFreeEdit.getPreviewImage(aFileName:string):TJPegImage;
+var
+  TempFreeShip : TFreeShip;
+  vp:TFreeViewPort;
+  thumbNail: TBitmap;
+  Source  : TFreeFileBuffer; ext:String;
+  pvWidth,pvHeight: integer;
+begin
+  if not FileExists(aFileName) then exit;
+  pvWidth:=600; pvHeight:=400;
+  result := TJPegImage.Create;
+  TempFreeShip := TFreeShip.Create(nil);
+  TempFreeShip.LoadPreview(aFileName, result);
+  if not assigned(result) or (result.width = 0) then
+    begin
+
+      Ext:=LowerCase(ExtractFileExt(aFileName));
+      if Ext='.fbm'
+      then Source:=TFreeFileBuffer.Create
+      else
+       if Ext='.ftm'
+         then Source:=TFreeTextBuffer.Create
+      else
+       raise Exception.Create('Unsupported file format: '+Ext);
+
+      TempFreeShip.ModelLoaded:=false;
+      Source.LoadFromFile(aFileName);     // Load everything into memory
+      TempFreeShip.Preferences.OpenDirectory:=ExtractFilePath(aFileName);
+      TempFreeShip.Filename:=aFileName;
+      TempFreeShip.LoadBinary(Source);    // Now read the information from memory
+      TempFreeShip.ModelLoaded:=true;
+      //TempFreeShip.Preferences.Load;
+
+      vp:=TFreeViewPort.Create(nil);
+
+      with vp do
+      begin
+        {Parent := Self.;
+        Cursor := crCross;
+        Left := 0;
+        Height := 270;
+        Top := 0;
+        Width := 425;
+        Align := alClient;
+        BevelInner := bvLowered;
+        BevelOuter := bvLowered;
+        BorderStyle := bsSingle;
+        Margin := 1;
+        HorScrollbar := nil;//ScrollBar1;
+        VertScrollbar := nil;//ScrollBar2;
+        }
+        {BackgroundImage.Alpha := 255;
+        BackgroundImage.Owner := vp;
+        BackgroundImage.Quality := 100;
+        BackgroundImage.Scale := 1;
+        BackgroundImage.ShowInView := fvBodyplan;
+        BackgroundImage.Tolerance := 5;
+        BackgroundImage.Transparent := False;
+        BackgroundImage.TransparentColor := clBlack;
+        BackgroundImage.Visible := True;}
+        CameraType := ftStandard;
+        Color := 10461087;
+        DoubleBuffer := True;
+        Angle := 30;
+        Elevation := 20;
+        PopupMenu := PopupMenu;
+        ViewType := fvPerspective;
+        ViewportMode := vmWireFrame;
+        {OnChangeBackground := ViewportChangeBackground;
+        OnChangeViewType := ViewportChangeViewType;
+        OnKeyPress := ViewportKeyPress;
+        OnKeyUp := ViewportKeyUp;
+        OnMouseDown := ViewportMouseDown;
+        OnMouseUp := ViewportMouseUp;
+        OnMouseMove := ViewportMouseMove;
+        OnMouseLeave := ViewportMouseLeave;
+        OnRedraw := ViewportRedraw;
+        OnRequestBackgroundImage := ViewportRequestBackgroundImage;
+        OnRequestExtents := ViewportRequestExtents;}
+      end;
+      vp.Width:=pvWidth;
+      vp.Height:=pvHeight;
+      vp.ViewType := fvPerspective;
+      vp.ViewportMode := vmWireFrame;
+      //vp.DestinationWidth :=pvWidth;  // shadow does not work here
+      //vp.DestinationHeight:=pvHeight;
+      //vp.ZBuffer.Initialize;
+      //vp.AlphaBuffer.Initialize;
+
+      result.PixelFormat:=pf24bit;
+      result.SetSize(pvWidth,pvHeight);
+      result.Canvas.AntialiasingMode:=amOn;
+      vp.DrawingCanvas := result.Canvas;
+
+      TempFreeShip.AddViewport(vp);
+
+      // fill background
+      vp.BrushColor:=vp.Color;
+      vp.Rectangle(0,0,pvWidth,pvHeight);
+      vp.ZoomExtents;
+      TempFreeShip.DrawToViewport(vp);
+      vp.Free;
+    end;
+  TempFreeShip.Free;
+end;
+
+procedure TFreeEdit.OnFilePreview(Sender: TObject; filename:string);
  var
-  Dlg : TFreeOpenDialog;
+  Dlg : TFreeFilePreviewDialog;
   FN, X : String;
   Img : TImage;
   Jpg : TJPegImage;
@@ -9811,69 +9933,65 @@ procedure TFreeEdit.OnFilePreview(Sender: TObject);
   Frm : TForm;
   h:THandle; rect:TRect;
 begin
-  Dlg := TFreeOpenDialog(Sender);
+  Dlg := TFreeFilePreviewDialog(Sender);
   FN := Dlg.FileName;
+  if FN='' then exit;
+  //ShowMessage(FN);
   Img := Dlg.PreviewImage;
 
   //TGroupBox(Img.Parent).Caption := 'FreeShip';
-  Jpg := TJPegImage.Create;
+  {Jpg := TJPegImage.Create;
   TempFreeShip := TFreeShip.Create(nil);
-  TempFreeShip.LoadPreview(FN, Jpg);
+  TempFreeShip.LoadPreview(FN, Jpg);}
+  Jpg := getPreviewImage(FN);
   if Assigned(Jpg)
      and Assigned(Dlg.PreviewImage)
      and Assigned(Dlg.PreviewImage.Picture)
      and Assigned(Dlg.PreviewImage.Picture.Bitmap)
    then
    begin
-     ShowMessage(FN);
+     //ShowMessage(FN);
+     writeln('jpg sz:', jpg.width,'x',jpg.Height);
      Dlg.PreviewImage.Picture.Bitmap.Assign(Jpg);
      Dlg.PreviewImage.Refresh;
      //PreviewFrm.Height:=PreviewImg.Picture.Bitmap.Height+10;
      //PreviewFrm.Width:=PreviewImg.Picture.Bitmap.Width+10;
    end
-   else PreviewImg.Picture := nil;
-  TempFreeShip.Free;
+   else Dlg.PreviewImage.Picture := nil;
+  //TempFreeShip.Free;
 end;
+
+resourcestring
+  FileDialogFilterFreeship='FreeShip files (*.ftm *.fbm)|*.ftm;*.fbm';
+  FileDialogFilterFreeshipText='FreeShip Text (*.ftm)|*.ftm';
+  FileDialogFilterFreeshipBinary='FreeShip Binary (*.fbm)|*.fbm';
+  FileDialogFilterAll='All|*';
+  FileDialogPlaceMyShips='My Ships';
+  FileDialogPlaceMyImport='My Import';
+  FileDialogPlaceGlobalShips='Global Ships';
+  FileDialogPlaceGlobalImport='Global Import';
 
 procedure TFreeEdit.File_Load;
 var Answer     : word;
-    OpenDialog : TFreeOpenDialog; //TOpenDialog;
-    Places:TListItems;
+    OpenDialog : TFreeFilePreviewDialog; //TFreeOpenDialog; //TOpenDialog;
+    //Places:TListItems;
     w,h:integer;
 begin
-   OpenDialog:=TFreeOpenDialog.Create(Owner);
-   OpenDialog.InitialDir:=Owner.Preferences.OpenDirectory;
-   OpenDialog.Filter:='FREE!ship files (*.ftm *.fbm)|*.ftm;*.fbm';
+   OpenDialog:=TFreeFilePreviewDialog.Create(Owner);
+   OpenDialog.CurrentPath:=Owner.Preferences.OpenDirectory;
+   OpenDialog.Filter:=FileDialogFilterFreeship+'|'+FileDialogFilterFreeshipText
+                 +'|'+FileDialogFilterFreeshipBinary+'|'+FileDialogFilterAll ;
+   OpenDialog.FilterIndex := 0;
    //Opendialog.Options:=[ofHideReadOnly];
    Opendialog.OnPreview := OnFilePreview;
+   Opendialog.addPlace(FileDialogPlaceMyShips,Owner.Preferences.OpenDirectory);
+   Opendialog.addPlace(FileDialogPlaceMyImport,Owner.Preferences.ImportDirectory );
+   Opendialog.addPlace(FileDialogPlaceGlobalShips,Owner.Preferences.GlobalOpenDirectory);
+   Opendialog.addPlace(FileDialogPlaceGlobalImport,Owner.Preferences.GlobalImportDirectory );
+   Opendialog.FileDialogMode:=fdmOpen;
+   Opendialog.ShellListView.ReadOnly:=true;
 
-   {
-   // standard preview does not work in Qt4pas. We open a separate window nearby
-   PreviewFrm := TForm.Create(Application);
-   PreviewFrm.Caption:='Preview';
-   PreviewFrm.Height:=100;
-   PreviewFrm.Width:=200;
-   PreviewFrm.Constraints.MinHeight:=100;
-   PreviewFrm.Constraints.MinWidth:=200;
-   PreviewFrm.Constraints.MaxHeight:=Screen.Height div 2;
-   PreviewFrm.Constraints.MaxWidth:=Screen.Width div 2;
-   PreviewFrm.Top:=Screen.Height div 2 - Screen.Height div 6;
-   PreviewFrm.Left:=Screen.Width div 2 + Screen.Width div 6;
-    }
-
-   {
-   PreviewImg := TImage.Create(PreviewFrm);
-   //PreviewImg := Opendialog.PreviewImage;
-   PreviewImg.Parent:=nil;
-   PreviewImg.Align:= alClient;
-   PreviewFrm.InsertControl(PreviewImg);
-   //PreviewFrm.Position := poMainFormCenter;
-   PreviewFrm.FormStyle:=fsStayOnTop;
-   PreviewFrm.Visible := true;
-   PreviewFrm.Show;
-   }
-
-   Places:=Opendialog.GetPlaces;
+   //Places:=Opendialog.GetPlaces;
    if OpenDialog.Execute then
    begin
       if Owner.FileChanged then
@@ -9899,7 +10017,9 @@ begin
    end;
    //PreviewFrm.Close;
    //PreviewFrm.Free;
+
    Opendialog.Destroy;
+
     if FileExistsUTF8('Resist.dat') { *Converted from FileExists* } then DeleteFileUTF8('Resist.dat'); { *Converted from DeleteFile* }
     if FileExistsUTF8('RESISTp.dat') { *Converted from FileExists* } then DeleteFileUTF8('RESISTp.dat'); { *Converted from DeleteFile* }
     if FileExistsUTF8('Vint1.dat') { *Converted from FileExists* } then DeleteFileUTF8('Vint1.dat'); { *Converted from DeleteFile* }
@@ -11080,8 +11200,10 @@ begin
       for I:=1 to Owner.NumberofMarkers do Owner.Marker[I-1].Destroy;
       Owner.FMarkers.Clear;
       Owner.FileChanged:=True;
-      for I:=1 to Owner.NumberOfViewports do if Owner.Viewport[I-1].Zoom=1.0 then Owner.Viewport[I-1].ZoomExtents
-                                                                             else Owner.Viewport[I-1].Refresh;
+      for I:=1 to Owner.NumberOfViewports do
+        if Owner.Viewport[I-1].Zoom=1.0
+           then Owner.Viewport[I-1].ZoomExtents
+           else Owner.Viewport[I-1].Refresh;
    end;
 end;{TFreeEdit.Marker_Delete}
 
@@ -11108,8 +11230,10 @@ var OpenDialog : TOpenDialog;
       end;
       Owner.FileChanged:=True;
       Owner.Visibility.ShowMarkers:=True;
-      for I:=1 to Owner.NumberOfViewports do if Owner.Viewport[I-1].Zoom=1.0 then Owner.Viewport[I-1].ZoomExtents
-                                                                             else Owner.Viewport[I-1].Refresh;
+      for I:=1 to Owner.NumberOfViewports do
+        if Owner.Viewport[I-1].Zoom=1.0
+           then Owner.Viewport[I-1].ZoomExtents
+           else Owner.Viewport[I-1].Refresh;
       Owner.Redraw;
     end;{import}
 
@@ -13855,6 +13979,14 @@ begin
     else Result:=self.getUserAppDataDirectory+'/Import';
 end;{TFreePreferences.FGetImportDirectory}
 
+function TFreePreferences.FGetGlobalImportDirectory:string;
+begin
+  if DirectoryExistsUTF8(FGlobalImportDirectory) { *Converted from DirectoryExists* }
+    then result:=FGlobalImportDirectory
+    //else Result:=ExtractFilePath(Application.ExeName);
+    else Result:=self.getGlobalAppDataDirectory+'/Import';
+end;{TFreePreferences.FGetGlobalImportDirectory}
+
 function TFreePreferences.FGetOpenDirectory:string;
 begin
   if DirectoryExistsUTF8(FOpenDirectory) { *Converted from DirectoryExists* }
@@ -13862,6 +13994,14 @@ begin
     //else Result:=ExtractFilePath(Application.ExeName);
     else Result:=self.getUserAppDataDirectory+'/Ships';
 end;{TFreePreferences.FGetOpenDirectory}
+
+function TFreePreferences.FGetGlobalOpenDirectory:string;
+begin
+  if DirectoryExistsUTF8(FGlobalOpenDirectory) { *Converted from DirectoryExists* }
+    then result:=FGlobalOpenDirectory
+    //else Result:=ExtractFilePath(Application.ExeName);
+    else Result:=self.getGlobalAppDataDirectory+'/Ships';
+end;{TFreePreferences.FGetGlobalOpenDirectory}
 
 function TFreePreferences.FGetSaveDirectory:string;
 begin
@@ -14594,8 +14734,10 @@ begin
   params := TColorIniFile.create(Filename, false );
 
   FOpenDirectory := params.ReadString('Directories','OpenDirectory',FOpenDirectory);
+  FGlobalOpenDirectory := params.ReadString('Directories','GlobalOpenDirectory',FGlobalOpenDirectory);
   FSaveDirectory := params.ReadString('Directories','SaveDirectory',FSaveDirectory);
   FImportDirectory := params.ReadString('Directories','ImportDirectory',FImportDirectory);
+  FGlobalImportDirectory := params.ReadString('Directories','GlobalImportDirectory',FGlobalImportDirectory);
   FExportDirectory := params.ReadString('Directories','ExportDirectory',FExportDirectory);
   FLanguagesDirectory := params.ReadString('Directories','LanguagesDirectory',FLanguagesDirectory);
   FExecDirectory := params.ReadString('Directories','ExecDirectory',FExecDirectory);
@@ -14829,8 +14971,10 @@ begin
   params := TColorIniFile.create(Filename, false);
 
   params.WriteString('Directories','OpenDirectory',FOpenDirectory);
+  params.WriteString('Directories','GlobalOpenDirectory',FGlobalOpenDirectory);
   params.WriteString('Directories','SaveDirectory',FSaveDirectory);
   params.WriteString('Directories','ImportDirectory',FImportDirectory);
+  params.WriteString('Directories','GlobalImportDirectory',FGlobalImportDirectory);
   params.WriteString('Directories','ExportDirectory',FExportDirectory);
   params.WriteString('Directories','LanguagesDirectory',FLanguagesDirectory);
   params.WriteString('Directories','ExecDirectory',FExecDirectory);
@@ -16074,6 +16218,7 @@ begin
    begin
       Viewport.Color:=Preferences.ViewportColor;
       FViewports.Add(Viewport);
+      Viewport.OnRequestExtents := ViewportRequestExtents;
       Viewport.ZoomExtents;
    end;
 end;{TFreeShip.AddViewport}
@@ -16672,7 +16817,7 @@ begin
    end else Surface.ShadeUnderWater:=False;
 
    Surface.Draw(Viewport);
-   exit; //debug - REMOVE
+   ///exit; //debug - REMOVE
 
    if (Viewport.Viewtype<>fvPerspective) and (Viewport.ViewportMode<>vmWireframe) and (Visibility.ShowGrid) then
    begin
@@ -17966,6 +18111,18 @@ begin
    FCurrentlyMoving:=False;
    if not Viewport.Focused then Viewport.SetFocus;
 end;{TFreeShip.MouseUp}
+
+{not sure why it should belong to an external window if this communication
+ is between TFreeShip and TFreeViewPort. Lets assign it in AddViewPort.
+ Sender here is TFreeViewPort}
+procedure TFreeShip.ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
+begin
+  Self.Extents(Min,Max);
+  if assigned(Sender) and (Sender is TFreeViewPort)
+     and (TFreeViewPort(Sender).ViewType = fvBodyPlan)
+  then Min.Y:=-Max.Y;
+end;
+
 
 procedure Register;
 begin

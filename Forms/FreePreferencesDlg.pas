@@ -50,7 +50,7 @@ uses
      ExtCtrls,
      FreeShipUnit,
      ComCtrls,
-     Spin,
+     Spin, ValEdit,
      FreeLanguageSupport;
 
 type
@@ -58,108 +58,135 @@ type
 { TFreePreferencesDialog }
 
  TFreePreferencesDialog = class(TForm)
+   ComboBox1: TComboBox;
    ComboBoxEncoding: TComboBox;
    ComboBoxThemes: TComboBox;
-   LabelEncoding: TLabel;
-   Label38: TLabel;
-   SelectToolIconSize: TComboBox;
-   EditTempDir: TEdit;
+   EditExecDir: TEdit;
+   EditExportDir: TEdit;
+   EditGlobalImportDir: TEdit;
+   EditGlobalOpenDir: TEdit;
+   EditImportDir: TEdit;
    EditLanguagesDir: TEdit;
    EditManualsDir: TEdit;
-   EditExecDir: TEdit;
    EditOpenDir: TEdit;
    EditSaveDir: TEdit;
-   EditImportDir: TEdit;
-   EditExportDir: TEdit;
-   Label28: TLabel;
+   EditTempDir: TEdit;
+   FreeNumInput1: TSpinEdit;
+   Label1: TLabel;
+   Label10: TLabel;
+   Label11: TLabel;
+   Label12: TLabel;
+   Label13: TLabel;
+   Label14: TLabel;
+   Label15: TLabel;
+   Label16: TLabel;
+   Label17: TLabel;
+   Label18: TLabel;
+   Label19: TLabel;
+   Label2: TLabel;
+   Label20: TLabel;
+   Label21: TLabel;
+   Label22: TLabel;
+   Label23: TLabel;
+   Label24: TLabel;
+   Label25: TLabel;
+   Label26: TLabel;
+   Label27: TLabel;
    Label29: TLabel;
+   Label3: TLabel;
    Label30: TLabel;
    Label31: TLabel;
    Label32: TLabel;
    Label33: TLabel;
    Label34: TLabel;
    Label35: TLabel;
+   Label36: TLabel;
    Label37: TLabel;
+   Label38: TLabel;
+   Label39: TLabel;
+   Label4: TLabel;
+   Label5: TLabel;
+   Label6: TLabel;
+   Label7: TLabel;
+   Label8: TLabel;
+   Label9: TLabel;
+   LabelEncoding: TLabel;
+   LabelLanguagesDir: TLabel;
    PageControl1: TPageControl;
+   Panel: TPanel;
     Panel1: TPanel;
-    Panel: TPanel;
+    Panel10: TPanel;
+    Panel11: TPanel;
+    Panel12: TPanel;
+    Panel13: TPanel;
+    Panel14: TPanel;
+    Panel15: TPanel;
+    Panel16: TPanel;
+    Panel17: TPanel;
+    Panel18: TPanel;
+    Panel19: TPanel;
+    Panel2: TPanel;
+    Panel20: TPanel;
+    Panel21: TPanel;
+    Panel22: TPanel;
+    Panel23: TPanel;
+    Panel24: TPanel;
+    Panel25: TPanel;
+    Panel26: TPanel;
+    Panel28: TPanel;
+    Panel29: TPanel;
     Panel3: TPanel;
     BitBtn2: TSpeedButton;
-    Label1: TLabel;
-    Panel4: TPanel;
     ColorDialog: TColorDialog;
-    Label2: TLabel;
-    Panel2: TPanel;
-    Label3: TLabel;
+    Panel30: TPanel;
+    Panel31: TPanel;
+    Panel32: TPanel;
+    Panel33: TPanel;
+    Panel34: TPanel;
+    Panel35: TPanel;
+    Panel38: TPanel;
+    Panel39: TPanel;
+    Panel4: TPanel;
+    Panel40: TPanel;
+    Panel41: TPanel;
+    Panel42: TPanel;
+    Panel43: TPanel;
+    Panel44: TPanel;
+    Panel45: TPanel;
+    PanelGlobalImportDir: TPanel;
+    Panel47: TPanel;
+    Panel48: TPanel;
+    Panel49: TPanel;
     Panel5: TPanel;
-    Label4: TLabel;
     Panel6: TPanel;
-    Label5: TLabel;
     Panel7: TPanel;
-    Label6: TLabel;
     Panel8: TPanel;
-    Label7: TLabel;
     Panel9: TPanel;
-    Label8: TLabel;
-    Panel10: TPanel;
-    Label9: TLabel;
-    Panel11: TPanel;
-    Label10: TLabel;
-    Panel12: TPanel;
-    Label11: TLabel;
-    Panel13: TPanel;
-    Label12: TLabel;
-    Panel14: TPanel;
-    Label13: TLabel;
-    Panel15: TPanel;
-    Label14: TLabel;
-    Panel16: TPanel;
-    Label15: TLabel;
-    Panel17: TPanel;
-    Label16: TLabel;
-    Panel18: TPanel;
-    Label17: TLabel;
 
       SelectDirectoryDialog1: TSelectDirectoryDialog;
-      SpeedButton12: TSpeedButton;
-      SpeedButton13: TSpeedButton;
-      SpeedButton14: TSpeedButton;
-      SpeedButton15: TSpeedButton;
-      SpeedButton16: TSpeedButton;
-      SpeedButton17: TSpeedButton;
-      SpeedButton8: TSpeedButton;
-      SpeedButton9: TSpeedButton;
-      SpinEdit1: TSpinEdit;
+    BitBtn1: TSpeedButton;
+    SelectToolIconSize: TComboBox;
+    SpeedButton12: TSpeedButton;
+    SpeedButton13: TSpeedButton;
+    SpeedButton14: TSpeedButton;
+    SpeedButton15: TSpeedButton;
+    SpeedButton16: TSpeedButton;
+    SpeedButton17: TSpeedButton;
+    SpeedButton18: TSpeedButton;
+    SpeedButton19: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButtonLanguagesDir: TSpeedButton;
+    SpinEdit1: TSpinEdit;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
-    Label18: TLabel;
-    Panel19: TPanel;
-    Label19: TLabel;
-    Panel20: TPanel;
-    Label20: TLabel;
-    Panel21: TPanel;
-    Label21: TLabel;
-    Panel22: TPanel;
-    Label22: TLabel;
-    Panel23: TPanel;
-    Label23: TLabel;
-    Panel24: TPanel;
-    BitBtn1: TSpeedButton;
-    Label24: TLabel;
-    Panel25: TPanel;
-    Label25: TLabel;
-    Panel26: TPanel;
-    SpeedButton3: TSpeedButton;
-    Label26: TLabel;
-    ComboBox1: TComboBox;
-    Label27: TLabel;
-    FreeNumInput1: TSpinEdit;
     procedure ColorPanelClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure ComboBoxThemesChange(      Sender: TObject);
     procedure EditDirChange(      Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure SpeedButton12Click(Sender: TObject      );
     procedure SpeedButton13Click(Sender: TObject      );
     procedure SpeedButton14Click(Sender: TObject      );
@@ -167,8 +194,9 @@ type
     procedure SpeedButton16Click(Sender: TObject      );
     procedure SpeedButton17Click(Sender: TObject      );
     procedure SpeedButton18Click(Sender: TObject      );
+    procedure SpeedButton19Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
-    procedure SpeedButton8Click(Sender: TObject       );
+    procedure SpeedButtonLanguagesDirClick(Sender: TObject       );
     procedure SpeedButton9Click(Sender: TObject       );
     procedure SpinEdit1Change(Sender: TObject);
  private   { Private declarations }
@@ -234,6 +262,8 @@ begin
    EditImportDir.Text:= FFreeship.Preferences.ImportDirectory;
    EditExportDir.Text:= FFreeship.Preferences.ExportDirectory;
    //EditToolIconsDir.Text:= FFreeship.Preferences.ToolIconDirectory;
+   EditGlobalOpenDir.Text:= FFreeship.Preferences.GlobalOpenDirectory;
+   EditGlobalImportDir.Text:= FFreeship.Preferences.GlobalImportDirectory;
 
    SelectToolIconSize.Text:=IntToStr(FFreeship.Preferences.ToolIconSize);
 
@@ -300,6 +330,12 @@ begin
   FConfigChanged:= true;
 end;
 
+procedure TFreePreferencesDialog.FormShow(Sender: TObject);
+begin
+  PageControl1.Constraints.MinHeight
+    := PanelGlobalImportDir.Top + PanelGlobalImportDir.Height + 8;
+end;
+
 procedure TFreePreferencesDialog.SpinEdit1Change(Sender: TObject);
 begin
   FThemeChanged := true;
@@ -315,7 +351,7 @@ begin
    end;
 end;{TFreePreferencesDialog.SpeedButton3Click}
 
-procedure TFreePreferencesDialog.SpeedButton8Click(Sender: TObject);
+procedure TFreePreferencesDialog.SpeedButtonLanguagesDirClick(Sender: TObject);
 begin
   SelectDirectoryDialog1.FileName:=EditLanguagesDir.Text;
   if SelectDirectoryDialog1.Execute then
@@ -373,9 +409,16 @@ end;
 
 procedure TFreePreferencesDialog.SpeedButton18Click(Sender: TObject);
 begin
-  //SelectDirectoryDialog1.FileName:=EditToolIconsDir.Text;
-  //if SelectDirectoryDialog1.Execute then
-    //EditToolIconsDir.Text := SelectDirectoryDialog1.FileName;
+ SelectDirectoryDialog1.FileName:=EditGlobalOpenDir.Text;
+ if SelectDirectoryDialog1.Execute then
+   EditGlobalOpenDir.Text := SelectDirectoryDialog1.FileName;
+end;
+
+procedure TFreePreferencesDialog.SpeedButton19Click(Sender: TObject);
+begin
+ SelectDirectoryDialog1.FileName:=EditGlobalImportDir.Text;
+ if SelectDirectoryDialog1.Execute then
+   EditGlobalImportDir.Text := SelectDirectoryDialog1.FileName;
 end;
 
 procedure TFreePreferencesDialog.ComboBoxEncodingFillItems;

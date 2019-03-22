@@ -1,7 +1,7 @@
 object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
-  Left = 591
+  Left = 601
   Height = 212
-  Top = 181
+  Top = 195
   Width = 302
   BorderStyle = bsDialog
   Caption = 'Background blending.'
@@ -12,7 +12,7 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
     Height = 175
@@ -27,7 +27,7 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
     TabOrder = 0
     object Label1: TLabel
       Left = 23
-      Height = 14
+      Height = 13
       Top = 46
       Width = 55
       BorderSpacing.Left = 20
@@ -37,7 +37,7 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
     end
     object LabelFileName: TLabel
       Left = 23
-      Height = 14
+      Height = 13
       Top = 23
       Width = 81
       BorderSpacing.Left = 20
@@ -50,7 +50,7 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
       Left = 23
       Height = 86
       Top = 70
-      Width = 197
+      Width = 191
       AutoFill = True
       AutoSize = True
       BorderSpacing.Left = 20
@@ -63,14 +63,14 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 68
-      ClientWidth = 189
+      ClientHeight = 71
+      ClientWidth = 187
       TabOrder = 0
       object RbLoadFile: TRadioButton
         Left = 6
-        Height = 20
+        Height = 21
         Top = 2
-        Width = 177
+        Width = 175
         BorderSpacing.Around = 2
         Caption = 'Load from a file'
         Checked = True
@@ -79,18 +79,18 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
       end
       object RbCreateNew: TRadioButton
         Left = 6
-        Height = 20
-        Top = 24
-        Width = 177
+        Height = 21
+        Top = 25
+        Width = 175
         BorderSpacing.Around = 2
         Caption = 'Create new model'
         TabOrder = 0
       end
       object RbEmptyModel: TRadioButton
         Left = 6
-        Height = 20
-        Top = 46
-        Width = 177
+        Height = 21
+        Top = 48
+        Width = 175
         BorderSpacing.Around = 2
         Caption = 'Proceed with empty model'
         TabOrder = 1

@@ -1,7 +1,7 @@
 object FreeResistance_Kaper: TFreeResistance_Kaper
-  Left = 498
+  Left = 503
   Height = 550
-  Top = 105
+  Top = 138
   Width = 765
   Caption = 'Kaper resistance calculation.'
   ClientHeight = 550
@@ -11,13 +11,14 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
     Width = 765
     AutoSize = True
+    ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
     Color = clBtnFace
@@ -31,13 +32,12 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
       Left = 5
       Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton10'
       ImageIndex = 6
       Style = tbsSeparator
     end
     object PrintButton: TToolButton
-      Left = 15
+      Left = 13
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'PrintButton'
@@ -45,23 +45,22 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 65
+      Left = 63
       Height = 22
       Top = 2
-      Width = 10
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 75
+      Left = 71
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 125
+      Left = 121
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0
@@ -79,96 +78,96 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 496
-      ClientWidth = 761
+      ClientHeight = 495
+      ClientWidth = 759
       object Panel1: TPanel
         Left = 0
-        Height = 496
+        Height = 495
         Top = 0
-        Width = 761
+        Width = 759
         Align = alClient
         BevelOuter = bvLowered
         BorderWidth = 10
-        ClientHeight = 496
-        ClientWidth = 761
+        ClientHeight = 495
+        ClientWidth = 759
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 474
+          Height = 473
           Top = 11
-          Width = 739
+          Width = 737
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 474
-          ClientWidth = 739
+          ClientHeight = 473
+          ClientWidth = 737
           TabOrder = 0
           object Label2: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 32
-            Width = 93
+            Width = 94
             Caption = 'Length waterline'
             ParentColor = False
           end
           object Label3: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 60
-            Width = 87
+            Width = 89
             Caption = 'Beam waterline'
             ParentColor = False
           end
           object Label4: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 88
-            Width = 29
+            Width = 28
             Caption = 'Draft'
             ParentColor = False
           end
           object Label9: TLabel
             Left = 197
-            Height = 14
+            Height = 13
             Top = 32
-            Width = 13
+            Width = 12
             Caption = '[-]'
             ParentColor = False
           end
           object Label10: TLabel
             Left = 197
-            Height = 14
+            Height = 13
             Top = 60
-            Width = 13
+            Width = 12
             Caption = '[-]'
             ParentColor = False
           end
           object Label11: TLabel
             Left = 197
-            Height = 14
+            Height = 13
             Top = 88
-            Width = 13
+            Width = 12
             Caption = '[-]'
             ParentColor = False
           end
           object Label6: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 116
-            Width = 112
+            Width = 115
             Caption = 'Wetted surface area'
             ParentColor = False
           end
           object Label7: TLabel
             Left = 197
-            Height = 14
+            Height = 13
             Top = 116
-            Width = 13
+            Width = 12
             Caption = '[-]'
             ParentColor = False
           end
           object Label8: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 144
             Width = 15
             Caption = 'Cp'
@@ -176,39 +175,39 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
           end
           object Label13: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 172
-            Width = 77
+            Width = 76
             Caption = 'Displacement'
             ParentColor = False
           end
           object Label14: TLabel
             Left = 197
-            Height = 14
+            Height = 13
             Top = 172
-            Width = 13
+            Width = 12
             Caption = '[-]'
             ParentColor = False
           end
           object Label15: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 200
-            Width = 109
+            Width = 111
             Caption = 'Half entrance angle'
             ParentColor = False
           end
           object Label16: TLabel
             Left = 197
-            Height = 14
+            Height = 13
             Top = 200
-            Width = 13
+            Width = 12
             Caption = '[-]'
             ParentColor = False
           end
           object Label17: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 228
             Width = 22
             Caption = 'LCB'
@@ -216,131 +215,141 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
           end
           object Label19: TLabel
             Left = 6
-            Height = 14
+            Height = 13
             Top = 256
-            Width = 114
+            Width = 117
             Caption = 'Subm. transom ratio'
             ParentColor = False
           end
           object Edit2: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 24
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 3
-            Value = 0
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 0
+            Value = 0
           end
           object Edit3: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 52
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 3
-            Value = 0
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 1
+            Value = 0
           end
           object Edit4: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 80
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 3
-            Value = 0
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 2
+            Value = 0
           end
           object Edit5: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 108
             Width = 50
             Alignment = taRightJustify
-            DecimalPlaces = 2
-            Value = 0
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 3
+            Value = 0
           end
           object Edit6: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 136
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 4
             MaxValue = 1
-            Value = 0
-            Validate = True
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 4
+            Value = 0
           end
           object Edit7: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 164
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 4
-            Value = 0
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 5
+            Value = 0
           end
           object Edit8: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 192
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 3
-            Value = 0
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 6
+            Value = 0
           end
           object Edit9: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 220
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 3
-            Value = 0
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 7
+            Value = 0
           end
           object Edit10: TFloatSpinEdit
             Left = 141
-            Height = 24
+            Height = 23
             Top = 248
             Width = 50
             Alignment = taRightJustify
             DecimalPlaces = 3
-            Value = 0
-            Validate = True
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 8
+            Value = 0
           end
           object Chart: TChart
-            Left = 234
-            Height = 472
+            Left = 232
+            Height = 471
             Top = 1
             Width = 504
             AxisList = <            
               item
+                Marks.LabelBrush.Style = bsClear
                 Minors = <>
                 Title.LabelFont.Orientation = 900
                 Title.Visible = True
                 Title.Caption = 'Resistance [Lbs]'
+                Title.LabelBrush.Style = bsClear
               end            
               item
                 Alignment = calBottom
+                Marks.LabelBrush.Style = bsClear
                 Minors = <>
                 Title.Visible = True
                 Title.Caption = 'Speed [knots]'
+                Title.LabelBrush.Style = bsClear
               end>
             Foot.Brush.Color = clBtnFace
             Foot.Font.Color = clBlue
@@ -350,39 +359,34 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               'KAPER resistance for canoes and kayaks'
             )
             Align = alRight
-            ParentColor = False
             object Series1: TLineSeries
               Marks.Visible = False
               Title = 'Rf      '
               LinePen.Color = 11162880
               Pointer.HorizSize = 2
               Pointer.VertSize = 2
-              Pointer.Visible = False
             end
             object Series2: TLineSeries
               Marks.Visible = False
               Title = 'Rr      '
               LinePen.Color = clGreen
-              Pointer.Visible = False
             end
             object Series3: TLineSeries
               Marks.Visible = False
               Title = 'Rt      '
               LinePen.Color = clRed
               LinePen.Width = 2
-              Pointer.Visible = False
             end
             object Series4: TLineSeries
               Marks.Visible = False
               Title = 'Spilman'
-              Pointer.Visible = False
             end
           end
           object CheckBox2: TCheckBox
             Left = 7
-            Height = 20
+            Height = 21
             Top = 6
-            Width = 193
+            Width = 192
             Caption = 'Extract data from current hull'
             OnClick = CheckBox2Click
             TabOrder = 10
@@ -392,8 +396,8 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 496
-      ClientWidth = 761
+      ClientHeight = 495
+      ClientWidth = 759
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0

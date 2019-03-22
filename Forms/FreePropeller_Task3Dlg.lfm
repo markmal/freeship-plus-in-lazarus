@@ -283,7 +283,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             Alignment = taRightJustify
             MaxValue = 8
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 4
           end
@@ -329,7 +328,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             Alignment = taRightJustify
             DecimalPlaces = 4
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 8
           end
@@ -341,7 +339,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             Alignment = taRightJustify
             DecimalPlaces = 4
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 9
           end
@@ -354,7 +351,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             DecimalPlaces = 3
             MaxValue = 1.1
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 10
           end
@@ -367,7 +363,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             DecimalPlaces = 3
             MaxValue = 1.1
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 11
           end
@@ -380,7 +375,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             DecimalPlaces = 3
             MaxValue = 1
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 12
           end
@@ -393,7 +387,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             DecimalPlaces = 3
             MaxValue = 1
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 13
           end
@@ -406,7 +399,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             DecimalPlaces = 2
             MaxValue = 2000
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 14
           end
@@ -419,7 +411,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
             DecimalPlaces = 2
             MaxValue = 100000
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 15
           end
@@ -661,35 +652,6 @@ object FreePropeller_Task3: TFreePropeller_Task3
         ScrollBars = ssBoth
         TabOrder = 0
         Visible = False
-      end
-    end
-    object Results2: TTabSheet
-      Caption = 'Help'
-      ClientHeight = 526
-      ClientWidth = 794
-      object Panel15: TPanel
-        Left = 0
-        Height = 407
-        Top = 0
-        Width = 781
-        Align = alClient
-        ClientHeight = 407
-        ClientWidth = 781
-        TabOrder = 0
-        object Resultsmemo2: TMemo
-          Left = 1
-          Height = 405
-          Top = 1
-          Width = 779
-          Align = alClient
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Courier New'
-          ParentFont = False
-          ScrollBars = ssBoth
-          TabOrder = 0
-          Visible = False
-        end
       end
     end
   end

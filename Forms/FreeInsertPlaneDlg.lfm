@@ -1,7 +1,7 @@
 object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
-  Left = 239
+  Left = 604
   Height = 233
-  Top = 210
+  Top = 300
   Width = 336
   BorderStyle = bsDialog
   Caption = 'Insert multiple points'
@@ -12,7 +12,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
     Height = 196
@@ -29,28 +29,28 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       Top = 6
       Width = 213
       Caption = 'Insert multiple vertices on a plane.  '
-      ClientHeight = 163
-      ClientWidth = 205
+      ClientHeight = 166
+      ClientWidth = 209
       TabOrder = 0
       object Label1: TLabel
         Left = 12
-        Height = 14
+        Height = 13
         Top = 122
-        Width = 49
+        Width = 48
         Caption = 'Distance'
         ParentColor = False
       end
       object Label2: TLabel
         Left = 12
-        Height = 14
+        Height = 13
         Top = 78
-        Width = 57
+        Width = 58
         Caption = 'Min. value'
         ParentColor = False
       end
       object Label4: TLabel
         Left = 94
-        Height = 14
+        Height = 13
         Top = 96
         Width = 4
         Caption = '-'
@@ -58,15 +58,15 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       end
       object Label5: TLabel
         Left = 12
-        Height = 14
+        Height = 13
         Top = 96
-        Width = 60
+        Width = 62
         Caption = 'Max. value'
         ParentColor = False
       end
       object Label3: TLabel
         Left = 94
-        Height = 14
+        Height = 13
         Top = 78
         Width = 4
         Caption = '-'
@@ -74,9 +74,9 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       end
       object RadioButton1: TRadioButton
         Left = 6
-        Height = 20
+        Height = 21
         Top = 8
-        Width = 122
+        Width = 120
         Caption = 'Transverse plane'
         Checked = True
         OnClick = RadioButton1Click
@@ -85,25 +85,25 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       end
       object RadioButton2: TRadioButton
         Left = 6
-        Height = 20
+        Height = 21
         Top = 30
-        Width = 120
+        Width = 115
         Caption = 'Horizontal plane'
         OnClick = RadioButton2Click
         TabOrder = 1
       end
       object RadioButton3: TRadioButton
         Left = 6
-        Height = 20
+        Height = 21
         Top = 52
-        Width = 104
+        Width = 100
         Caption = 'Vertical plane'
         OnClick = RadioButton3Click
         TabOrder = 2
       end
       object Edit1: TEdit
         Left = 112
-        Height = 24
+        Height = 23
         Top = 114
         Width = 83
         OnKeyPress = Edit1KeyPress
@@ -112,9 +112,9 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       end
       object CheckBox1: TCheckBox
         Left = 10
-        Height = 20
+        Height = 21
         Top = 140
-        Width = 127
+        Width = 124
         Caption = 'Add control curve'
         Checked = True
         State = cbChecked

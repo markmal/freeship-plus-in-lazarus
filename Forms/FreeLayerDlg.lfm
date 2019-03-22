@@ -1,7 +1,7 @@
 object FreeLayerDialog: TFreeLayerDialog
-  Left = 533
+  Left = 614
   Height = 434
-  Top = 70
+  Top = 245
   Width = 501
   BorderIcons = []
   BorderStyle = bsDialog
@@ -371,7 +371,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Top = 52
         Width = 121
         LargeChange = 5
-        MaxValue = 255
+        Max = 255
         PageSize = 0
         TabOrder = 10
         OnChange = AlphaBarChange

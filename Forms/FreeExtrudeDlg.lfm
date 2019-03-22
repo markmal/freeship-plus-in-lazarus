@@ -1,7 +1,7 @@
 object FreeExtrudeDialog: TFreeExtrudeDialog
-  Left = 387
+  Left = 771
   Height = 151
-  Top = 141
+  Top = 315
   Width = 280
   BorderStyle = bsDialog
   Caption = 'Extrusion vector'
@@ -11,7 +11,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
     Height = 114
@@ -24,55 +24,55 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
     TabOrder = 0
     object _Label3: TLabel
       Left = 241
-      Height = 14
+      Height = 13
       Top = 24
-      Width = 20
+      Width = 19
       Caption = '[m]'
       ParentColor = False
     end
     object _Label6: TLabel
       Left = 241
-      Height = 14
+      Height = 13
       Top = 54
-      Width = 20
+      Width = 19
       Caption = '[m]'
       ParentColor = False
     end
     object _Label9: TLabel
       Left = 241
-      Height = 14
+      Height = 13
       Top = 84
-      Width = 20
+      Width = 19
       Caption = '[m]'
       ParentColor = False
     end
     object Label1: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 24
-      Width = 120
+      Width = 121
       Caption = 'Longitudinal direction'
       ParentColor = False
     end
     object Label2: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 54
-      Width = 111
+      Width = 115
       Caption = 'Transverse direction'
       ParentColor = False
     end
     object Label4: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 84
-      Width = 93
+      Width = 95
       Caption = 'Vertical direction'
       ParentColor = False
     end
     object Edit1: TEdit
       Left = 160
-      Height = 24
+      Height = 23
       Top = 16
       Width = 75
       OnExit = Edit1Exit
@@ -81,7 +81,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
     end
     object Edit2: TEdit
       Left = 160
-      Height = 24
+      Height = 23
       Top = 46
       Width = 75
       OnExit = Edit2Exit
@@ -90,7 +90,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
     end
     object Edit3: TEdit
       Left = 160
-      Height = 24
+      Height = 23
       Top = 76
       Width = 75
       OnExit = Edit3Exit

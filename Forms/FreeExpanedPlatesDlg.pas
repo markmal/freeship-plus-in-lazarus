@@ -201,6 +201,7 @@ type
                                        function FGetActivePatch:TFreeDevelopedPatch;
                                        procedure FSetActivePatch(Val:TFreeDevelopedPatch);
                                        procedure FUpdateListBox;
+                                       procedure InitViewPort;
                                     public    { Public declarations }
                                        function Execute(FreeShip:TFreeShip;Plates:TFasterList):boolean;
                                        property ActivePatch : TFreeDevelopedPatch read FGetActivePatch write FSetActivePatch;
@@ -350,9 +351,9 @@ var I          : Integer;
     Clearance  : TFloatType;
     Tmp        : TFloatType;
 begin
+  InitViewPort;
    FFreeship:=FreeShip;
    FPlates:=Plates;
-
    //USE ONCE!
    ////Freeship.Preferences.dumpIcons(MenuImages,ActionList1);
 
@@ -943,5 +944,41 @@ begin
    end;
    SaveDialog.Destroy;
 end;{TFreeExpanedplatesDialog.ExportTextFileExecute}
+
+procedure TFreeExpanedplatesDialog.InitViewPort;
+begin
+  ViewPort := TFreeViewPort.Create(Self);
+  with Viewport do
+  begin
+    Parent := Self;
+    Left := 0;;
+    Height := 557;
+    Top := 26;
+    Width := 636;
+    Angle := 90;
+    Align := alClient;
+    BackgroundImage.Alpha := 255;
+    BackgroundImage.Owner := Viewport;
+    BackgroundImage.Quality := 100;
+    BackgroundImage.Scale := 1;
+    BackgroundImage.ShowInView := fvBodyplan;
+    BackgroundImage.Tolerance := 5;
+    BackgroundImage.Transparent := False;
+    BackgroundImage.TransparentColor := clBlack;
+    BackgroundImage.Visible := True;
+    CameraType := ftStandard;
+    Color := clWhite;
+    DoubleBuffer := True;
+    Elevation := 90;
+    Margin := 4;
+    ViewType := fvPlan;
+    ViewportMode := vmWireFrame;
+    OnMouseDown := ViewportMouseDown;
+    OnMouseUp := ViewportMouseUp;
+    OnMouseMove := ViewportMouseMove;
+    OnRedraw := ViewportRedraw;
+    OnRequestExtents := ViewportRequestExtents;
+  end;
+end;
 
 end.

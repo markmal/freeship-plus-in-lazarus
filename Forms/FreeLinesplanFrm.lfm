@@ -1,31 +1,39 @@
 object FreeLinesplanForm: TFreeLinesplanForm
-  Left = 735
-  Top = 101
-  Width = 828
+  Left = 650
   Height = 621
+  Top = 255
+  Width = 828
   Caption = 'Linesplan.'
+  ClientHeight = 621
+  ClientWidth = 828
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
   FormStyle = fsMDIChild
-  Position = poDefault
-  Visible = True
   OnClose = FormClose
-  PixelsPerInch = 96
+  Position = poDefault
+  LCLVersion = '2.0.0.4'
+  Visible = True
   inline LinesplanFrame: TFreeLinesplanFrame
-    Left = 0
-    Top = 0
-    Width = 820
-    Height = 594
+    Height = 621
+    Width = 828
     Align = alClient
-    TabOrder = 0
+    ClientHeight = 621
+    ClientWidth = 828
     inherited ToolBar1: TToolBar
-      Width = 820
+      Width = 828
+      inherited ToolButton6: TToolButton
+        Height = 22
+      end
       inherited ToolButton19: TToolButton
         AllowAllUp = True
+      end
+      inherited ToolButton14: TToolButton
+        Height = 22
+      end
+      inherited ToolButton15: TToolButton
+        Height = 22
       end
     end
   end

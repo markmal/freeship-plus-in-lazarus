@@ -403,22 +403,6 @@ object FreeResistance_OST: TFreeResistance_OST
             Caption = 'Propeller diametr, m'
             ParentColor = False
           end
-          object Label_17: TLabel
-            Left = 8
-            Height = 14
-            Top = 315
-            Width = 185
-            Caption = 'Froude number Fr of model ship:'
-            ParentColor = False
-          end
-          object Label_18: TLabel
-            Left = 8
-            Height = 14
-            Top = 361
-            Width = 246
-            Caption = 'Coefficient of residual resistance Cr*10**3:'
-            ParentColor = False
-          end
           object LwlBox: TFloatSpinEdit
             Left = 120
             Height = 24
@@ -543,7 +527,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 4
             MaxValue = 1
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 11
           end
@@ -636,7 +619,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 50
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 19
           end
@@ -649,7 +631,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 50
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 20
           end
@@ -662,7 +643,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 50
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 21
           end
@@ -675,7 +655,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 50
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 22
           end
@@ -688,7 +667,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 50
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 23
           end
@@ -701,7 +679,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 1000
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 24
           end
@@ -714,7 +691,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 1000
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 25
           end
@@ -727,7 +703,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 1000
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 26
           end
@@ -740,7 +715,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 1000
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 27
           end
@@ -753,7 +727,6 @@ object FreeResistance_OST: TFreeResistance_OST
             DecimalPlaces = 3
             MaxValue = 1000
             Value = 0
-            Validate = True
             OnExit = LwlBoxAfterSetValue
             TabOrder = 28
           end

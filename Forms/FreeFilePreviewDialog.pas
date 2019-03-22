@@ -199,7 +199,9 @@ type
     FOnPreview: TSelectFileEvent;
     FHistoryStack: TStringList;
     FFileDialogMode : TFileDialogMode;
+    {$IFNDEF WINDOWS}
     FFileMimeIcon:TFileMimeIcon;
+    {$ENDIF}
     FMouseDownTime:TDateTime;
     FInAutoSearchListBox:boolean;
     FListBox1ControlledByKeys:boolean;
@@ -877,9 +879,12 @@ begin
   fn:=ShellListView.Selected.Caption;
   dn:=ShellListView.Root;
   fn:=dn+fn;
+  msg:=Format('FileName:%s'+#10,[fn]);
+  {$IFNDEF WINDOWS}
   mime:=FFileMimeIcon.getMimeTypeForFile(fn);
   iconName:=FFileMimeIcon.getMimeToIconName(mime);
-  msg:=Format('FileName:%s'+#10+'MIME:%s'+#10+'IconName:%s',[fn,mime,iconName]);
+  msg:=msg + Format('MIME:%s'+#10+'IconName:%s',[mime,iconName]);
+  {$ENDIF}
   if FileIsReadable(fn) then msg:=msg+#10+'Readable';
   if FileIsWritable(fn) then msg:=msg+#10+'Writable';
   if FileIsText(fn) then msg:=msg+#10+'Text';

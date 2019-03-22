@@ -1,7 +1,7 @@
 object FreePropeller_Task2: TFreePropeller_Task2
-  Left = 283
+  Left = 336
   Height = 626
-  Top = 174
+  Top = 216
   Width = 900
   BorderStyle = bsDialog
   Caption = 'Optimal propeller for selected engine.'

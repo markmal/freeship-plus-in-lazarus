@@ -1,7 +1,7 @@
 object FreeNewModelDialog: TFreeNewModelDialog
-  Left = 558
+  Left = 566
   Height = 277
-  Top = 124
+  Top = 148
   Width = 389
   AutoSize = True
   BorderStyle = bsDialog
@@ -11,21 +11,21 @@ object FreeNewModelDialog: TFreeNewModelDialog
   Color = clBtnFace
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel3: TPanel
     Left = 0
-    Height = 25
+    Height = 24
     Top = 0
     Width = 389
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 25
+    ClientHeight = 24
     ClientWidth = 389
     TabOrder = 0
     object BitBtn1: TSpeedButton
       Left = 225
-      Height = 21
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight
@@ -74,7 +74,7 @@ object FreeNewModelDialog: TFreeNewModelDialog
     end
     object BitBtn2: TSpeedButton
       Left = 307
-      Height = 21
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight
@@ -124,32 +124,32 @@ object FreeNewModelDialog: TFreeNewModelDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 252
-    Top = 25
+    Height = 253
+    Top = 24
     Width = 389
     Align = alClient
     AutoSize = True
     BevelOuter = bvLowered
     BorderWidth = 10
-    ClientHeight = 252
+    ClientHeight = 253
     ClientWidth = 389
     TabOrder = 1
     object Panel: TPanel
       Left = 21
-      Height = 210
+      Height = 211
       Top = 21
       Width = 347
       Align = alClient
       BorderSpacing.Around = 10
       BevelOuter = bvLowered
-      ClientHeight = 210
+      ClientHeight = 211
       ClientWidth = 347
       TabOrder = 0
       object Label1: TLabel
         Left = 16
-        Height = 17
+        Height = 15
         Top = 13
-        Width = 230
+        Width = 224
         BorderSpacing.Left = 4
         BorderSpacing.Around = 2
         Caption = 'No. points in longitudinal direction'
@@ -157,9 +157,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Label2: TLabel
         Left = 16
-        Height = 17
+        Height = 15
         Top = 45
-        Width = 201
+        Width = 196
         BorderSpacing.Left = 6
         BorderSpacing.Around = 2
         Caption = 'No. points in vertical direction'
@@ -167,9 +167,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Label3: TLabel
         Left = 16
-        Height = 17
+        Height = 15
         Top = 80
-        Width = 47
+        Width = 44
         BorderSpacing.Left = 6
         BorderSpacing.Around = 2
         Caption = 'Length'
@@ -177,9 +177,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Label4: TLabel
         Left = 16
-        Height = 17
+        Height = 15
         Top = 112
-        Width = 39
+        Width = 38
         BorderSpacing.Left = 6
         BorderSpacing.Around = 2
         Caption = 'Beam'
@@ -187,9 +187,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Label5: TLabel
         Left = 16
-        Height = 17
+        Height = 15
         Top = 144
-        Width = 34
+        Width = 33
         BorderSpacing.Left = 6
         BorderSpacing.Around = 2
         Caption = 'Draft'
@@ -197,9 +197,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Label6: TLabel
         Left = 16
-        Height = 17
+        Height = 15
         Top = 176
-        Width = 35
+        Width = 34
         BorderSpacing.Left = 6
         BorderSpacing.Around = 2
         Caption = 'Units'
@@ -207,7 +207,7 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Edit1: TEdit
         Left = 272
-        Height = 27
+        Height = 25
         Top = 8
         Width = 60
         BorderSpacing.Around = 2
@@ -216,7 +216,7 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Edit2: TEdit
         Left = 272
-        Height = 27
+        Height = 25
         Top = 40
         Width = 60
         BorderSpacing.Around = 2
@@ -225,7 +225,7 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Edit3: TEdit
         Left = 272
-        Height = 27
+        Height = 25
         Top = 72
         Width = 60
         BorderSpacing.Around = 2
@@ -234,7 +234,7 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Edit4: TEdit
         Left = 272
-        Height = 27
+        Height = 25
         Top = 104
         Width = 60
         BorderSpacing.Around = 2
@@ -243,7 +243,7 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object Edit5: TEdit
         Left = 272
-        Height = 27
+        Height = 25
         Top = 136
         Width = 60
         BorderSpacing.Around = 2
@@ -252,11 +252,11 @@ object FreeNewModelDialog: TFreeNewModelDialog
       end
       object ComboBox1: TComboBox
         Left = 183
-        Height = 27
+        Height = 25
         Top = 168
         Width = 149
         BorderSpacing.Around = 2
-        ItemHeight = 19
+        ItemHeight = 0
         ItemIndex = 0
         Items.Strings = (
           'Meters'

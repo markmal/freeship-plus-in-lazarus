@@ -7,6 +7,7 @@
         <MainUnitHasUsesSectionForAllUnits Value="False"/>
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
+        <AlwaysBuild Value="True"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
@@ -25,7 +26,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="26"/>
+      <BuildNr Value="42"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -791,12 +792,16 @@
         <DebugInfoType Value="dsDwarf2"/>
         <UseValgrind Value="True"/>
       </Debugging>
+      <Options>
+        <LinkerOptions Value="-vd"/>
+      </Options>
     </Linking>
     <Other>
       <Verbosity>
         <ShowNotes Value="False"/>
         <ShowHints Value="False"/>
         <ShoLineNum Value="True"/>
+        <ShowDebugInfo Value="True"/>
         <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
       </Verbosity>
       <ExecuteBefore>
@@ -811,23 +816,4 @@
       </ExecuteAfter>
     </Other>
   </CompilerOptions>
-  <Debugging>
-    <Exceptions Count="5">
-      <Item1>
-        <Name Value="EAbort"/>
-      </Item1>
-      <Item2>
-        <Name Value="ECodetoolError"/>
-      </Item2>
-      <Item3>
-        <Name Value="EFOpenError"/>
-      </Item3>
-      <Item4>
-        <Name Value="Exception"/>
-      </Item4>
-      <Item5>
-        <Name Value="RunError(201)"/>
-      </Item5>
-    </Exceptions>
-  </Debugging>
 </CONFIG>

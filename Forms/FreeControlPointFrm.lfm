@@ -1,7 +1,7 @@
 object FreeControlPointForm: TFreeControlPointForm
-  Left = 478
+  Left = 490
   Height = 189
-  Top = 275
+  Top = 277
   Width = 308
   AlphaBlend = True
   AlphaBlendValue = 210
@@ -15,22 +15,22 @@ object FreeControlPointForm: TFreeControlPointForm
   Font.Name = 'MS Sans Serif'
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
-    Height = 79
+    Height = 76
     Top = 0
     Width = 308
     Align = alTop
     AutoSize = True
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 79
+    ClientHeight = 76
     ClientWidth = 308
     TabOrder = 0
     object Label1: TLabel
       Left = 26
-      Height = 18
+      Height = 17
       Top = 6
       Width = 48
       BorderSpacing.Left = 20
@@ -41,8 +41,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label2: TLabel
       Left = 26
-      Height = 18
-      Top = 30
+      Height = 17
+      Top = 29
       Width = 48
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
@@ -52,8 +52,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label3: TLabel
       Left = 26
-      Height = 18
-      Top = 54
+      Height = 17
+      Top = 52
       Width = 48
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
@@ -63,7 +63,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object SpeedButton4: TSpeedButton
       Left = 80
-      Height = 18
+      Height = 17
       Top = 6
       Width = 14
       Flat = True
@@ -85,8 +85,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object SpeedButton5: TSpeedButton
       Left = 80
-      Height = 18
-      Top = 30
+      Height = 17
+      Top = 29
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -107,8 +107,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object SpeedButton6: TSpeedButton
       Left = 80
-      Height = 18
-      Top = 54
+      Height = 17
+      Top = 52
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -129,7 +129,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Edit1: TEdit
       Left = 94
-      Height = 18
+      Height = 17
       Top = 6
       Width = 80
       BorderStyle = bsNone
@@ -139,8 +139,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Edit2: TEdit
       Left = 94
-      Height = 18
-      Top = 30
+      Height = 17
+      Top = 29
       Width = 80
       BorderStyle = bsNone
       OnExit = Edit2Exit
@@ -149,8 +149,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Edit3: TEdit
       Left = 94
-      Height = 18
-      Top = 54
+      Height = 17
+      Top = 52
       Width = 80
       BorderStyle = bsNone
       OnExit = Edit3Exit
@@ -159,7 +159,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object SpeedButton1: TSpeedButton
       Left = 174
-      Height = 18
+      Height = 17
       Top = 6
       Width = 14
       Flat = True
@@ -181,8 +181,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object SpeedButton2: TSpeedButton
       Left = 174
-      Height = 18
-      Top = 30
+      Height = 17
+      Top = 29
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -203,8 +203,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object SpeedButton3: TSpeedButton
       Left = 174
-      Height = 18
-      Top = 54
+      Height = 17
+      Top = 52
       Width = 14
       Flat = True
       Glyph.Data = {
@@ -226,21 +226,21 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 88
-    Top = 79
+    Height = 86
+    Top = 76
     Width = 308
     Align = alTop
     AutoSize = True
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 88
+    ClientHeight = 86
     ClientWidth = 308
     TabOrder = 1
     object CheckBox1: TCheckBox
       Left = 20
       Height = 21
       Top = 6
-      Width = 66
+      Width = 62
       BorderSpacing.Left = 20
       BorderSpacing.Top = 6
       Caption = 'Corner'
@@ -249,9 +249,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label4: TLabel
       Left = 20
-      Height = 18
+      Height = 17
       Top = 33
-      Width = 66
+      Width = 62
       BorderSpacing.Left = 20
       Caption = 'Distance'
       Layout = tlCenter
@@ -259,9 +259,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label5: TLabel
       Left = 20
-      Height = 18
-      Top = 57
-      Width = 66
+      Height = 17
+      Top = 56
+      Width = 62
       BorderSpacing.Left = 20
       BorderSpacing.Bottom = 6
       Caption = 'Angles'
@@ -269,7 +269,7 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object Label6: TLabel
-      Left = 92
+      Left = 88
       Height = 21
       Top = 6
       Width = 140
@@ -278,8 +278,8 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object Edit4: TEdit
-      Left = 92
-      Height = 18
+      Left = 88
+      Height = 17
       Top = 33
       Width = 140
       BorderSpacing.Around = 6
@@ -288,9 +288,9 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 1
     end
     object Edit5: TEdit
-      Left = 92
-      Height = 18
-      Top = 57
+      Left = 88
+      Height = 17
+      Top = 56
       Width = 140
       BorderSpacing.Bottom = 6
       BorderSpacing.Around = 6

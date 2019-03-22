@@ -1,7 +1,7 @@
 object FreePreferencesDialog: TFreePreferencesDialog
-  Left = 546
+  Left = 558
   Height = 525
-  Top = 288
+  Top = 289
   Width = 582
   AutoSize = True
   BorderStyle = bsToolWindow

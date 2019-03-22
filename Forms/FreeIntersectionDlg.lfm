@@ -1,7 +1,7 @@
 object FreeIntersectionDialog: TFreeIntersectionDialog
-  Left = 509
+  Left = 730
   Height = 264
-  Top = 114
+  Top = 330
   Width = 226
   BorderStyle = bsDialog
   Caption = 'Intersections'
@@ -10,7 +10,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
   Color = clBtnFace
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 240
@@ -32,6 +32,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
       OnClickCheck = ListBoxClickCheck
       OnKeyDown = ListBoxKeyDown
       TabOrder = 0
+      TopIndex = -1
     end
   end
   object ToolBar1: TToolBar
@@ -72,37 +73,35 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
       Left = 97
       Height = 22
       Top = 2
-      Width = 10
       Caption = 'ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton7: TToolButton
-      Left = 107
+      Left = 105
       Top = 2
       Action = AddOne
     end
     object ToolButton13: TToolButton
-      Left = 130
+      Left = 128
       Top = 2
       Action = AddRange
     end
     object ToolButton6: TToolButton
-      Left = 153
+      Left = 151
       Top = 2
       Action = DeleteAll
     end
     object ToolButton21: TToolButton
-      Left = 176
+      Left = 174
       Height = 22
       Top = 2
-      Width = 15
       Caption = 'ToolButton21'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton5: TToolButton
-      Left = 191
+      Left = 182
       Top = 2
       Action = CloseDialog
     end

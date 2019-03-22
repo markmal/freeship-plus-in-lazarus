@@ -1,7 +1,7 @@
 object FreeResistance_Delft: TFreeResistance_Delft
-  Left = 250
+  Left = 326
   Height = 493
-  Top = 185
+  Top = 237
   Width = 840
   Caption = 'Resistance for Sailing Yachts or a Sea Ships'
   ClientHeight = 493

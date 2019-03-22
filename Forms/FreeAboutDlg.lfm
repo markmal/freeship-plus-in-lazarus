@@ -1,7 +1,7 @@
 object FreeAboutDlg: TFreeAboutDlg
-  Left = 494
+  Left = 510
   Height = 569
-  Top = 182
+  Top = 199
   Width = 764
   Caption = 'FREE!ship About'
   ClientHeight = 569

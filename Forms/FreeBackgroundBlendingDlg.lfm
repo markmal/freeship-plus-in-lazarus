@@ -1,7 +1,7 @@
 object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
-  Left = 387
+  Left = 421
   Height = 123
-  Top = 141
+  Top = 167
   Width = 261
   BorderStyle = bsDialog
   Caption = 'Background blending.'
@@ -12,28 +12,28 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 84
-    Top = 26
+    Height = 86
+    Top = 24
     Width = 261
     Align = alClient
     BevelOuter = bvLowered
-    ClientHeight = 84
+    ClientHeight = 86
     ClientWidth = 261
     TabOrder = 0
     object Label1: TLabel
       Left = 24
-      Height = 14
+      Height = 13
       Top = 16
-      Width = 99
+      Width = 101
       Caption = 'Visibility of image'
       ParentColor = False
     end
     object _Label2: TLabel
       Left = 124
-      Height = 14
+      Height = 13
       Top = 16
       Width = 43
       Caption = '_Label2'
@@ -53,18 +53,18 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 26
+    Height = 24
     Top = 0
     Width = 261
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 26
+    ClientHeight = 24
     ClientWidth = 261
     TabOrder = 1
     object BitBtn1: TSpeedButton
       Left = 97
-      Height = 22
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight
@@ -113,7 +113,7 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
     end
     object BitBtn2: TSpeedButton
       Left = 179
-      Height = 22
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight

@@ -1,7 +1,7 @@
 object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
-  Left = 596
+  Left = 545
   Height = 739
-  Top = 153
+  Top = 197
   Width = 970
   Caption = 'Cross curves.'
   ClientHeight = 739

@@ -1,7 +1,7 @@
 object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
-  Left = 250
+  Left = 338
   Height = 434
-  Top = 89
+  Top = 177
   Width = 684
   Caption = 'Undo history.'
   ClientHeight = 434
@@ -12,7 +12,7 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
   Font.Name = 'MS Sans Serif'
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel: TPanel
     Left = 0
     Height = 24
@@ -157,42 +157,9 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
       ItemHeight = 0
       OnClick = UndoBoxClick
       ParentFont = False
+      ScrollWidth = 248
       TabOrder = 0
+      TopIndex = -1
     end
-    object Viewport: TFreeViewport
-      Left = 264
-      Height = 392
-      Top = 9
-      Width = 411
-      Angle = 20
-      Align = alClient
-      BackgroundImage.Alpha = 255
-      BackgroundImage.Owner = Viewport
-      BackgroundImage.Quality = 100
-      BackgroundImage.Scale = 1
-      BackgroundImage.ShowInView = fvBodyplan
-      BackgroundImage.Tolerance = 5
-      BackgroundImage.Transparent = False
-      BackgroundImage.TransparentColor = clBlack
-      BackgroundImage.Visible = True
-      BevelOuter = bvLowered
-      BorderStyle = bsSingle
-      CameraType = ftStandard
-      DoubleBuffer = True
-      Elevation = 20
-      Margin = 0
-      ViewType = fvPerspective
-      ViewportMode = vmWireFrame
-      OnRedraw = ViewportRedraw
-      OnRequestExtents = ViewportRequestExtents
-    end
-  end
-  object FreeShip1: TFreeShip
-    FileChanged = True
-    Filename = 'New model.fbm'
-    FileVersion = fv230
-    Precision = fpLow
-    left = 116
-    top = 4
   end
 end

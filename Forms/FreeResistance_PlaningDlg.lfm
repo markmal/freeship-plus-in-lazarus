@@ -460,7 +460,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 4
             MaxValue = 1
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 9
           end
@@ -506,7 +505,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 2
             MaxValue = 200
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 13
           end
@@ -519,7 +517,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 3
             MaxValue = 5
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 14
           end
@@ -532,7 +529,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 2
             MaxValue = 150
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 15
           end
@@ -545,7 +541,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 2
             MaxValue = 10
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 16
           end
@@ -558,7 +553,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 2
             MaxValue = 10
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 17
           end
@@ -571,7 +565,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 2
             MaxValue = 10
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 18
           end
@@ -584,7 +577,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 2
             MaxValue = 30
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 19
           end
@@ -597,7 +589,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             DecimalPlaces = 2
             MaxValue = 30
             Value = 0
-            Validate = True
             OnExit = Edit1AfterSetValue
             TabOrder = 20
           end

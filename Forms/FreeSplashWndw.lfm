@@ -1,7 +1,7 @@
 object FreeSplashWindow: TFreeSplashWindow
-  Left = 522
+  Left = 550
   Height = 426
-  Top = 191
+  Top = 225
   Width = 548
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -21,7 +21,7 @@ object FreeSplashWindow: TFreeSplashWindow
   OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Image1: TImage
     Left = 0
     Height = 363
@@ -2364,7 +2364,7 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object _Label2: TLabel
     Left = 9
-    Height = 14
+    Height = 13
     Top = 328
     Width = 244
     Caption = 'Copyright © 2005-2006, M v. Engeland'
@@ -2377,7 +2377,7 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object Label2: TLabel
     Left = 9
-    Height = 14
+    Height = 13
     Top = 340
     Width = 255
     Caption = 'Copyright © 2007-2013,Timoshenko V.F.'
@@ -2408,9 +2408,9 @@ object FreeSplashWindow: TFreeSplashWindow
   object _Label4: TLabel
     Cursor = crHandPoint
     Left = 419
-    Height = 15
+    Height = 17
     Top = 344
-    Width = 106
+    Width = 109
     Alignment = taRightJustify
     Caption = 'vftim@rambler.ru'
     Font.CharSet = ANSI_CHARSET
@@ -2425,7 +2425,7 @@ object FreeSplashWindow: TFreeSplashWindow
   object _Label5: TLabel
     Cursor = crHandPoint
     Left = 419
-    Height = 17
+    Height = 15
     Top = 325
     Width = 111
     Caption = 'Hydronship.net'
@@ -2453,9 +2453,9 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object _Label7: TLabel
     Left = 6
-    Height = 24
+    Height = 28
     Top = 1
-    Width = 168
+    Width = 172
     Caption = 'FREE!ship Plus'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
@@ -2468,7 +2468,7 @@ object FreeSplashWindow: TFreeSplashWindow
   object _label8: TLabel
     Cursor = crHandPoint
     Left = 9
-    Height = 16
+    Height = 15
     Top = 34
     Width = 165
     Caption = 'Translated by: M. van Engeland'

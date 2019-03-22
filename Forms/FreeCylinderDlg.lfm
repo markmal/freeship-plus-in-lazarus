@@ -1,7 +1,7 @@
 object FreeCylinderDialog: TFreeCylinderDialog
-  Left = 722
+  Left = 732
   Height = 170
-  Top = 423
+  Top = 436
   Width = 301
   BorderStyle = bsDialog
   Caption = 'Add a cylinder.'
@@ -11,7 +11,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
     Height = 133
@@ -24,47 +24,47 @@ object FreeCylinderDialog: TFreeCylinderDialog
     TabOrder = 0
     object _Label3: TLabel
       Left = 265
-      Height = 14
+      Height = 13
       Top = 22
-      Width = 20
+      Width = 19
       Caption = '[m]'
       ParentColor = False
     end
     object _Label6: TLabel
       Left = 265
-      Height = 14
+      Height = 13
       Top = 48
-      Width = 20
+      Width = 19
       Caption = '[m]'
       ParentColor = False
     end
     object _Label9: TLabel
       Left = 149
-      Height = 14
+      Height = 13
       Top = 72
-      Width = 20
+      Width = 19
       Caption = '[m]'
       ParentColor = False
     end
     object Label1: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 22
-      Width = 56
+      Width = 55
       Caption = 'Startpoint'
       ParentColor = False
     end
     object Label2: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 48
-      Width = 50
+      Width = 49
       Caption = 'Endpoint'
       ParentColor = False
     end
     object Label4: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 74
       Width = 38
       Caption = 'Radius'
@@ -72,92 +72,99 @@ object FreeCylinderDialog: TFreeCylinderDialog
     end
     object Label3: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 100
-      Width = 56
+      Width = 57
       Caption = 'No. points'
       ParentColor = False
     end
     object Input1: TFloatSpinEdit
       Left = 87
-      Height = 24
+      Height = 23
       Top = 14
       Width = 55
       Alignment = taRightJustify
       DecimalPlaces = 3
-      Value = 0
+      MinValue = 0
       TabOrder = 0
+      Value = 0
     end
     object Input2: TFloatSpinEdit
       Left = 147
-      Height = 24
+      Height = 23
       Top = 14
       Width = 55
       Alignment = taRightJustify
       DecimalPlaces = 3
-      Value = 0
+      MinValue = 0
       TabOrder = 1
+      Value = 0
     end
     object Input3: TFloatSpinEdit
       Left = 207
-      Height = 24
+      Height = 23
       Top = 14
       Width = 55
       Alignment = taRightJustify
       DecimalPlaces = 3
-      Value = 0
+      MinValue = 0
       TabOrder = 2
+      Value = 0
     end
     object Input4: TFloatSpinEdit
       Left = 87
-      Height = 24
+      Height = 23
       Top = 40
       Width = 55
       Alignment = taRightJustify
       DecimalPlaces = 3
-      Value = 0
+      MinValue = 0
       TabOrder = 3
+      Value = 0
     end
     object Input5: TFloatSpinEdit
       Left = 147
-      Height = 24
+      Height = 23
       Top = 40
       Width = 55
       Alignment = taRightJustify
       DecimalPlaces = 3
-      Value = 0
+      MinValue = 0
       TabOrder = 4
+      Value = 0
     end
     object Input6: TFloatSpinEdit
       Left = 207
-      Height = 24
+      Height = 23
       Top = 40
       Width = 55
       Alignment = taRightJustify
       DecimalPlaces = 3
-      Value = 0
+      MinValue = 0
       TabOrder = 5
+      Value = 0
     end
     object Input7: TFloatSpinEdit
       Left = 87
-      Height = 24
+      Height = 23
       Top = 66
       Width = 55
       Alignment = taRightJustify
       DecimalPlaces = 3
-      Value = 0
+      MinValue = 0
       TabOrder = 6
+      Value = 0
     end
     object Input8: TSpinEdit
       Left = 87
-      Height = 24
+      Height = 23
       Top = 92
       Width = 55
       Alignment = taRightJustify
       MaxValue = 50
       MinValue = 4
-      Value = 4
       TabOrder = 7
+      Value = 4
     end
   end
   object Panel1: TPanel

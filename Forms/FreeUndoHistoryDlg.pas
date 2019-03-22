@@ -57,7 +57,7 @@ uses
      CheckLst,
      ExtCtrls,
      ToolWin,
-     FreeShipUnit,
+     FreeShipUnit, FreeVersionUnit,
     FreeLanguageSupport,
      ComCtrls,
     FreeTypes,
@@ -69,9 +69,9 @@ type
 { TFreeUndoHistoryDialog }
 
   TFreeUndoHistoryDialog   = class(TForm)
-                                       Panel: TPanel;
-                                       Panel1: TPanel;
-                                       UndoBox: TListBox;
+    Panel: TPanel;
+    Panel1: TPanel;
+    UndoBox: TListBox;
     FreeShip1: TFreeShip;
     Viewport: TFreeViewport;
     Splitter1: TSplitter;
@@ -79,15 +79,17 @@ type
     SpeedButton2: TSpeedButton;
     procedure UndoBoxClick(Sender: TObject);
     procedure ViewportRequestExtents(Sender: TObject; var Min,
-      Max: T3DCoordinate);
+    Max: T3DCoordinate);
     procedure ViewportRedraw(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure FormResize(Sender: TObject);
-                                     private { Private declarations }
-                                     public { Public declarations }
-                                        function Execute(Freeship:TFreeShip):Boolean;
-                                  end;
+    private { Private declarations }
+    public { Public declarations }
+    procedure CreateFreeShip;
+    procedure CreateViewPort;
+    function Execute(Freeship:TFreeShip):Boolean;
+  end;
 
 var FreeUndoHistoryDialog: TFreeUndoHistoryDialog;
 
@@ -99,11 +101,60 @@ implementation
   {$R *.lfm}
 {$ENDIF}
 
+procedure TFreeUndoHistoryDialog.CreateFreeShip;
+begin
+  FreeShip1:= TFreeShip.Create(Self);
+  with FreeShip1 do
+  begin
+    Parent:=Self;
+    FileChanged := True;
+    Filename := 'New model.fbm';
+    FileVersion := fv230;
+    Precision := fpLow;
+  end;
+end;
+
+procedure TFreeUndoHistoryDialog.CreateViewPort;
+begin
+  Viewport := TFreeViewport.Create(Self);
+  with Viewport do
+  begin
+    Parent:=Self;
+    Left := 264;
+    Height := 392;
+    Top := 9;
+    Width := 411;
+    Angle := 20;
+    Align := alClient;
+    BackgroundImage.Alpha := 255;
+    BackgroundImage.Owner := Viewport;
+    BackgroundImage.Quality := 100;
+    BackgroundImage.Scale := 1;
+    BackgroundImage.ShowInView := fvBodyplan;
+    BackgroundImage.Tolerance := 5;
+    BackgroundImage.Transparent := False;
+    BackgroundImage.TransparentColor := clBlack;
+    BackgroundImage.Visible := True;
+    BevelOuter := bvLowered;
+    BorderStyle := bsSingle;
+    CameraType := ftStandard;
+    DoubleBuffer := True;
+    Elevation := 20;
+    Margin := 0;
+    ViewType := fvPerspective;
+    ViewportMode := vmWireFrame;
+    OnRedraw := ViewportRedraw;
+    OnRequestExtents := ViewportRequestExtents;
+  end;
+end;
+
 function TFreeUndoHistoryDialog.Execute(Freeship:TFreeShip):Boolean;
 var I,Max : Integer;
     Undo : TFreeUndoObject;
     Str  : string;
 begin
+   CreateFreeShip;
+   CreateViewPort;
    UndoBox.Clear;
    try
       UndoBox.Items.BeginUpdate;
@@ -174,5 +225,7 @@ begin
    Speedbutton1.Left:=Panel.Width-132;
    Speedbutton2.Left:=Speedbutton1.Left+SpeedButton1.Width+2;
 end;
+
+
 
 end.

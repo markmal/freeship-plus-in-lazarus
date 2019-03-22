@@ -1,7 +1,7 @@
 object FreeRotateMDialog: TFreeRotateMDialog
-  Left = 487
+  Left = 501
   Height = 159
-  Top = 141
+  Top = 162
   Width = 425
   BorderStyle = bsDialog
   Caption = 'Rotation'
@@ -12,7 +12,7 @@ object FreeRotateMDialog: TFreeRotateMDialog
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
     Height = 122
@@ -30,12 +30,12 @@ object FreeRotateMDialog: TFreeRotateMDialog
       Width = 247
       Align = alLeft
       Caption = 'Axis:'
-      ClientHeight = 102
-      ClientWidth = 239
+      ClientHeight = 105
+      ClientWidth = 243
       TabOrder = 1
       object Label3: TLabel
         Left = 194
-        Height = 14
+        Height = 13
         Top = 18
         Width = 37
         Caption = '[degr.]'
@@ -43,7 +43,7 @@ object FreeRotateMDialog: TFreeRotateMDialog
       end
       object Label6: TLabel
         Left = 194
-        Height = 14
+        Height = 13
         Top = 48
         Width = 37
         Caption = '[degr.]'
@@ -51,7 +51,7 @@ object FreeRotateMDialog: TFreeRotateMDialog
       end
       object Label9: TLabel
         Left = 194
-        Height = 14
+        Height = 13
         Top = 78
         Width = 37
         Caption = '[degr.]'
@@ -59,31 +59,31 @@ object FreeRotateMDialog: TFreeRotateMDialog
       end
       object Label1: TLabel
         Left = 5
-        Height = 14
+        Height = 13
         Top = 18
-        Width = 94
+        Width = 95
         Caption = 'Longitudinal axis'
         ParentColor = False
       end
       object Label2: TLabel
         Left = 5
-        Height = 14
+        Height = 13
         Top = 48
-        Width = 85
+        Width = 89
         Caption = 'Transverse axis'
         ParentColor = False
       end
       object Label4: TLabel
         Left = 5
-        Height = 14
+        Height = 13
         Top = 78
-        Width = 67
+        Width = 69
         Caption = 'Vertical axis'
         ParentColor = False
       end
       object Edit1: TEdit
         Left = 123
-        Height = 24
+        Height = 23
         Top = 10
         Width = 65
         OnExit = Edit1Exit
@@ -92,7 +92,7 @@ object FreeRotateMDialog: TFreeRotateMDialog
       end
       object Edit2: TEdit
         Left = 123
-        Height = 24
+        Height = 23
         Top = 40
         Width = 65
         OnExit = Edit2Exit
@@ -101,7 +101,7 @@ object FreeRotateMDialog: TFreeRotateMDialog
       end
       object Edit3: TEdit
         Left = 123
-        Height = 24
+        Height = 23
         Top = 70
         Width = 65
         OnExit = Edit3Exit
@@ -116,54 +116,54 @@ object FreeRotateMDialog: TFreeRotateMDialog
       Width = 204
       Align = alLeft
       Caption = 'Current angles:'
-      ClientHeight = 102
-      ClientWidth = 196
+      ClientHeight = 105
+      ClientWidth = 200
       TabOrder = 0
       object Label11: TLabel
         Left = 8
-        Height = 14
+        Height = 13
         Top = 18
-        Width = 63
+        Width = 65
         Caption = 'of the heel:'
         ParentColor = False
       end
       object Label12: TLabel
         Left = 8
-        Height = 14
+        Height = 13
         Top = 48
-        Width = 62
+        Width = 64
         Caption = 'of the trim:'
         ParentColor = False
       end
       object Label13: TLabel
         Left = 8
-        Height = 14
+        Height = 13
         Top = 78
-        Width = 61
+        Width = 63
         Caption = 'of the yaw:'
         ParentColor = False
       end
       object Label14: TLabel
         Left = 91
-        Height = 14
+        Height = 13
         Top = 18
-        Width = 54
+        Width = 55
         Caption = '0.00 degr'
         ParentColor = False
       end
       object Label15: TLabel
         Left = 91
-        Height = 14
+        Height = 13
         Top = 48
-        Width = 54
+        Width = 55
         Caption = '0.00 degr'
         ParentColor = False
       end
       object Label16: TLabel
         Left = 91
-        Height = 14
+        Height = 13
         Top = 78
-        Width = 54
+        Width = 55
         Caption = '0.00 degr'
         ParentColor = False
       end

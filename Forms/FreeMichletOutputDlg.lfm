@@ -1,7 +1,7 @@
 object FreeMichletOutputDialog: TFreeMichletOutputDialog
-  Left = 540
+  Left = 581
   Height = 539
-  Top = 90
+  Top = 158
   Width = 474
   Caption = 'Michlet file generator.'
   ClientHeight = 539
@@ -12,21 +12,21 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
   Font.Name = 'MS Sans Serif'
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
-    Height = 26
+    Height = 24
     Top = 0
     Width = 474
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 26
+    ClientHeight = 24
     ClientWidth = 474
     TabOrder = 0
     object OKbutton: TSpeedButton
       Left = 392
-      Height = 22
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight
@@ -75,7 +75,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
     end
     object CancelButton: TSpeedButton
       Left = 310
-      Height = 22
+      Height = 20
       Top = 2
       Width = 80
       Align = alRight
@@ -125,17 +125,17 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
   end
   object Panel2: TPanel
     Left = 0
-    Height = 500
-    Top = 26
+    Height = 502
+    Top = 24
     Width = 474
     Align = alClient
     BevelOuter = bvLowered
-    ClientHeight = 500
+    ClientHeight = 502
     ClientWidth = 474
     TabOrder = 1
     object PageControl1: TPageControl
       Left = 1
-      Height = 498
+      Height = 500
       Top = 1
       Width = 472
       ActivePage = TabSheet1
@@ -144,77 +144,77 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Hull geometry'
-        ClientHeight = 468
-        ClientWidth = 468
+        ClientHeight = 469
+        ClientWidth = 466
         object Panel4: TPanel
           Left = 0
           Height = 135
           Top = 0
-          Width = 468
+          Width = 466
           Align = alTop
           BevelOuter = bvLowered
           ClientHeight = 135
-          ClientWidth = 468
+          ClientWidth = 466
           TabOrder = 0
           object Label1: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 14
-            Width = 143
+            Width = 145
             Caption = 'Number of stations (5-81)'
             ParentColor = False
           end
           object Label2: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 38
-            Width = 156
+            Width = 159
             Caption = 'Number of waterlines (5-81)'
             ParentColor = False
           end
           object Label3: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 62
-            Width = 29
+            Width = 28
             Caption = 'Draft'
             ParentColor = False
           end
           object Label4: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 86
-            Width = 39
+            Width = 38
             Caption = 'Length'
             ParentColor = False
           end
           object Label5: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 110
-            Width = 41
+            Width = 42
             Caption = 'Volume'
             ParentColor = False
           end
           object _Label18: TLabel
             Left = 214
-            Height = 14
+            Height = 13
             Top = 62
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label19: TLabel
             Left = 214
-            Height = 14
+            Height = 13
             Top = 86
-            Width = 20
+            Width = 19
             Caption = '[m]'
             ParentColor = False
           end
           object _Label20: TLabel
             Left = 214
-            Height = 14
+            Height = 13
             Top = 110
             Width = 30
             Caption = '[m/3]'
@@ -222,76 +222,76 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Edit1: TFloatSpinEdit
             Left = 150
-            Height = 24
+            Height = 23
             Top = 6
             Width = 61
             Alignment = taRightJustify
             MaxValue = 81
-           MinValue = 5
-            Value = 5
-
+            MinValue = 5
             OnExit = Edit1AfterSetValue
             TabOrder = 0
+            Value = 5
           end
           object Edit2: TFloatSpinEdit
             Left = 150
-            Height = 24
+            Height = 23
             Top = 30
             Width = 61
             Alignment = taRightJustify
             MaxValue = 81
-           MinValue = 5
-            Value = 5
-
+            MinValue = 5
             OnExit = Edit2AfterSetValue
             TabOrder = 1
+            Value = 5
           end
           object Edit3: TFloatSpinEdit
             Left = 150
-            Height = 24
+            Height = 23
             Top = 54
             Width = 61
             Alignment = taRightJustify
             DecimalPlaces = 3
             MaxValue = 10000000000
-            Value = 0
-
+            MinValue = 0
             OnExit = Edit3AfterSetValue
             TabOrder = 2
+            Value = 0
           end
           object Edit4: TFloatSpinEdit
             Left = 150
-            Height = 24
+            Height = 23
             Top = 78
             Width = 61
             Alignment = taRightJustify
-            DecimalPlaces = 3
-            Value = 0
-            OnExit = Edit4AfterSetValue
             Color = clBtnFace
+            DecimalPlaces = 3
             Font.Color = clWindowText
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
+            MinValue = 0
+            OnExit = Edit4AfterSetValue
             ParentFont = False
             ReadOnly = True
             TabOrder = 3
+            Value = 0
           end
           object Edit5: TFloatSpinEdit
             Left = 150
-            Height = 24
+            Height = 23
             Top = 102
             Width = 61
             Alignment = taRightJustify
-            DecimalPlaces = 3
-            Value = 0
-            OnExit = Edit5AfterSetValue
             Color = clBtnFace
+            DecimalPlaces = 3
             Font.Color = clWindowText
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
+            MinValue = 0
+            OnExit = Edit5AfterSetValue
             ParentFont = False
             ReadOnly = True
             TabOrder = 4
+            Value = 0
           end
           object GroupBox3: TGroupBox
             Left = 262
@@ -299,30 +299,30 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             Top = 6
             Width = 202
             Caption = 'Hullform configuration.  '
-            ClientHeight = 103
-            ClientWidth = 194
+            ClientHeight = 106
+            ClientWidth = 198
             TabOrder = 5
             object Label14: TLabel
               Left = 3
-              Height = 14
+              Height = 13
               Top = 62
-              Width = 185
+              Width = 189
               Caption = 'Distance between center of hulls:'
               ParentColor = False
             end
             object _Label15: TLabel
               Left = 93
-              Height = 14
+              Height = 13
               Top = 86
-              Width = 20
+              Width = 19
               Caption = '[m]'
               ParentColor = False
             end
             object RadioButton1: TRadioButton
               Left = 3
-              Height = 20
+              Height = 21
               Top = 2
-              Width = 79
+              Width = 73
               Caption = 'Monohull'
               Checked = True
               OnClick = RadioButton1Click
@@ -331,51 +331,52 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object RadioButton2: TRadioButton
               Left = 3
-              Height = 20
+              Height = 21
               Top = 22
-              Width = 192
+              Width = 190
               Caption = 'Monohull, send as catamaran'
               OnClick = RadioButton1Click
               TabOrder = 1
             end
             object RadioButton3: TRadioButton
               Left = 3
-              Height = 20
+              Height = 21
               Top = 42
-              Width = 91
+              Width = 86
               Caption = 'Catamaran'
               OnClick = RadioButton1Click
               TabOrder = 2
             end
             object Distance: TFloatSpinEdit
               Left = 6
-              Height = 24
+              Height = 23
               Top = 78
               Width = 85
               Alignment = taRightJustify
               DecimalPlaces = 3
-              Value = 0
-              OnExit = DistanceAfterSetValue
               Enabled = False
+              MinValue = 0
+              OnExit = DistanceAfterSetValue
               TabOrder = 3
+              Value = 0
             end
           end
         end
         object Panel6: TPanel
           Left = 0
-          Height = 333
+          Height = 334
           Top = 135
-          Width = 468
+          Width = 466
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 333
-          ClientWidth = 468
+          ClientHeight = 334
+          ClientWidth = 466
           TabOrder = 1
           object ScrollBar1: TScrollBar
             Left = 1
             Height = 15
-            Top = 317
-            Width = 466
+            Top = 318
+            Width = 464
             Align = alBottom
             Max = 180
             Min = -180
@@ -384,8 +385,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             TabOrder = 0
           end
           object ScrollBar2: TScrollBar
-            Left = 452
-            Height = 316
+            Left = 450
+            Height = 317
             Top = 1
             Width = 15
             Align = alRight
@@ -400,22 +401,22 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Environment'
-        ClientHeight = 470
+        ClientHeight = 469
         ClientWidth = 466
         ImageIndex = 2
         object Panel7: TPanel
           Left = 0
-          Height = 470
+          Height = 469
           Top = 0
           Width = 466
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 470
+          ClientHeight = 469
           ClientWidth = 466
           TabOrder = 0
           object Label6: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 14
             Width = 157
             Caption = 'Gravitational acceleration g'
@@ -423,7 +424,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Label7: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 62
             Width = 78
             Caption = 'Water density'
@@ -431,7 +432,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object _Label8: TLabel
             Left = 328
-            Height = 14
+            Height = 13
             Top = 62
             Width = 34
             Caption = '[t/m3]'
@@ -439,7 +440,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object _Label9: TLabel
             Left = 328
-            Height = 14
+            Height = 13
             Top = 14
             Width = 36
             Caption = '[m/s2]'
@@ -447,7 +448,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Label10: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 86
             Width = 144
             Caption = 'Water kinematic viscosity'
@@ -455,7 +456,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object _Label11: TLabel
             Left = 328
-            Height = 14
+            Height = 13
             Top = 86
             Width = 75
             Caption = '*10-6  [m2/s]'
@@ -463,7 +464,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Label12: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 110
             Width = 69
             Caption = 'Water depth'
@@ -471,7 +472,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object _Label13: TLabel
             Left = 328
-            Height = 14
+            Height = 13
             Top = 110
             Width = 19
             Caption = '[m]'
@@ -479,81 +480,80 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Edit6: TFloatSpinEdit
             Left = 248
-            Height = 24
+            Height = 23
             Top = 6
             Width = 78
             Alignment = taRightJustify
             DecimalPlaces = 3
             MaxValue = 9.9
-           MinValue = 9.6
-            Value = 9.81
-
+            MinValue = 9.6
             OnExit = Edit6AfterSetValue
             TabOrder = 0
+            Value = 9.81
           end
           object Edit7: TFloatSpinEdit
             Left = 248
-            Height = 24
+            Height = 23
             Top = 54
             Width = 78
             Alignment = taRightJustify
             DecimalPlaces = 3
             MaxValue = 1.03
-            Value = 1
+            MinValue = 0
             OnExit = Edit7AfterSetValue
             TabOrder = 1
+            Value = 1
           end
           object Edit8: TFloatSpinEdit
             Left = 248
-            Height = 24
+            Height = 23
             Top = 78
             Width = 78
             Alignment = taRightJustify
-            DecimalPlaces = 4
-            MaxValue = 1.31
-            Value = 0.8
-
             Color = clBtnFace
+            DecimalPlaces = 4
             Font.Color = clWindowText
             Font.Height = -11
             Font.Name = 'MS Sans Serif'
+            MaxValue = 1.31
+            MinValue = 0
             ParentFont = False
             ReadOnly = True
             TabOrder = 2
+            Value = 0.8
           end
           object Edit9: TFloatSpinEdit
             Left = 248
-            Height = 24
+            Height = 23
             Top = 102
             Width = 78
             Alignment = taRightJustify
-            DecimalPlaces = 2
             MaxValue = 10000
-            Value = 0
-
+            MinValue = 0
             OnExit = Edit9AfterSetValue
             TabOrder = 3
+            Value = 0
           end
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Resistance'
-        ClientHeight = 470
+        ClientHeight = 469
         ClientWidth = 466
         ImageIndex = 1
         object Panel5: TPanel
           Left = 0
-          Height = 470
+          Height = 469
           Top = 0
           Width = 466
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 470
+          ClientHeight = 469
           ClientWidth = 466
           TabOrder = 0
           object Label21: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 14
             Width = 65
             Caption = 'Start speed'
@@ -561,7 +561,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Label22: TLabel
             Left = 225
-            Height = 14
+            Height = 13
             Top = 14
             Width = 38
             Caption = '[knots]'
@@ -569,7 +569,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Label23: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 38
             Width = 59
             Caption = 'End speed'
@@ -577,7 +577,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Label24: TLabel
             Left = 225
-            Height = 14
+            Height = 13
             Top = 38
             Width = 38
             Caption = '[knots]'
@@ -585,7 +585,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object _Label25: TLabel
             Left = 270
-            Height = 14
+            Height = 13
             Top = 14
             Width = 50
             Caption = '_Label25'
@@ -593,7 +593,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object _Label26: TLabel
             Left = 270
-            Height = 14
+            Height = 13
             Top = 38
             Width = 50
             Caption = '_Label26'
@@ -601,7 +601,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Label27: TLabel
             Left = 10
-            Height = 14
+            Height = 13
             Top = 62
             Width = 148
             Caption = 'Number of speeds (2-100)'
@@ -609,42 +609,39 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object Edit12: TFloatSpinEdit
             Left = 161
-            Height = 24
+            Height = 23
             Top = 6
             Width = 61
             Alignment = taRightJustify
             DecimalPlaces = 3
             MaxValue = 77.56
-            Value = 0.02
-
+            MinValue = 0
             OnExit = Edit12AfterSetValue
             TabOrder = 0
+            Value = 0.02
           end
           object Edit13: TFloatSpinEdit
             Left = 161
-            Height = 24
+            Height = 23
             Top = 30
             Width = 61
             Alignment = taRightJustify
             DecimalPlaces = 3
-            MaxValue = 100
-            Value = 0.1
-
+            MinValue = 0
             OnExit = Edit13AfterSetValue
             TabOrder = 1
+            Value = 0.1
           end
           object Edit14: TFloatSpinEdit
             Left = 161
-            Height = 24
+            Height = 23
             Top = 54
             Width = 61
             Alignment = taRightJustify
-            MaxValue = 100
-           MinValue = 2
-            Value = 2
-
+            MinValue = 2
             OnExit = Edit14AfterSetValue
             TabOrder = 2
+            Value = 2
           end
           object Group1: TRadioGroup
             Left = 10
@@ -660,8 +657,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             ChildSizing.ShrinkVertical = crsScaleChilds
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 67
-            ClientWidth = 133
+            ClientHeight = 70
+            ClientWidth = 137
             ItemIndex = 1
             Items.Strings = (
               'None'
@@ -674,17 +671,17 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       end
       object TabSheet4: TTabSheet
         Caption = 'Waves'
-        ClientHeight = 470
+        ClientHeight = 469
         ClientWidth = 466
         ImageIndex = 3
         object Panel8: TPanel
           Left = 0
-          Height = 470
+          Height = 469
           Top = 0
           Width = 466
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 470
+          ClientHeight = 469
           ClientWidth = 466
           TabOrder = 0
           object GroupBox1: TGroupBox
@@ -693,12 +690,12 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             Top = 6
             Width = 400
             Caption = 'Sectorial cut. '
-            ClientHeight = 155
-            ClientWidth = 392
+            ClientHeight = 158
+            ClientWidth = 396
             TabOrder = 0
             object _Label28: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 18
               Width = 15
               Caption = 'R0'
@@ -706,7 +703,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label29: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 42
               Width = 15
               Caption = 'R1'
@@ -714,7 +711,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label30: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 66
               Width = 26
               Caption = 'Beta'
@@ -722,7 +719,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label31: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 90
               Width = 57
               Caption = 'Nr (2-200)'
@@ -730,7 +727,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label32: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 114
               Width = 81
               Caption = 'N beta (2-200)'
@@ -927,7 +924,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label33: TLabel
               Left = 162
-              Height = 14
+              Height = 13
               Top = 18
               Width = 19
               Caption = '[m]'
@@ -935,7 +932,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label34: TLabel
               Left = 162
-              Height = 14
+              Height = 13
               Top = 42
               Width = 19
               Caption = '[m]'
@@ -943,7 +940,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label35: TLabel
               Left = 162
-              Height = 14
+              Height = 13
               Top = 66
               Width = 35
               Caption = '[Degr]'
@@ -951,64 +948,61 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object Edit15: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 10
               Width = 61
               Alignment = taRightJustify
-              DecimalPlaces = 2
-              Value = 0
+              MinValue = 0
               OnExit = Edit15AfterSetValue
               TabOrder = 0
+              Value = 0
             end
             object Edit16: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 34
               Width = 61
               Alignment = taRightJustify
-              DecimalPlaces = 2
-              Value = 0
+              MinValue = 0
               OnExit = Edit16AfterSetValue
               TabOrder = 1
+              Value = 0
             end
             object Edit17: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 58
               Width = 61
               Alignment = taRightJustify
-              DecimalPlaces = 2
               MaxValue = 90
-              Value = 0
-
+              MinValue = 0
               OnExit = Edit17AfterSetValue
               TabOrder = 2
+              Value = 0
             end
             object Edit18: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 82
               Width = 61
               Alignment = taRightJustify
               MaxValue = 200
-             MinValue = 2
-              Value = 2
-
+              MinValue = 2
               OnExit = Edit18AfterSetValue
               TabOrder = 3
+              Value = 2
             end
             object Edit19: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 106
               Width = 61
               Alignment = taRightJustify
               MaxValue = 200
-             MinValue = 2
-              Value = 2
-
+              MinValue = 2
               OnExit = Edit19AfterSetValue
               TabOrder = 4
+              Value = 2
             end
           end
           object GroupBox2: TGroupBox
@@ -1017,12 +1011,12 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             Top = 194
             Width = 400
             Caption = 'Rectangular cut. '
-            ClientHeight = 153
-            ClientWidth = 392
+            ClientHeight = 156
+            ClientWidth = 396
             TabOrder = 1
             object _Label36: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 18
               Width = 15
               Caption = 'X0'
@@ -1030,7 +1024,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label37: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 42
               Width = 15
               Caption = 'X1'
@@ -1038,7 +1032,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label38: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 66
               Width = 14
               Caption = 'Y0'
@@ -1046,7 +1040,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label39: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 90
               Width = 14
               Caption = 'Y1'
@@ -1054,7 +1048,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label40: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 114
               Width = 19
               Caption = 'N x'
@@ -1192,7 +1186,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label41: TLabel
               Left = 162
-              Height = 14
+              Height = 13
               Top = 18
               Width = 19
               Caption = '[m]'
@@ -1200,7 +1194,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label42: TLabel
               Left = 162
-              Height = 14
+              Height = 13
               Top = 42
               Width = 19
               Caption = '[m]'
@@ -1208,7 +1202,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label44: TLabel
               Left = 10
-              Height = 14
+              Height = 13
               Top = 138
               Width = 19
               Caption = 'N y'
@@ -1216,7 +1210,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label16: TLabel
               Left = 162
-              Height = 14
+              Height = 13
               Top = 66
               Width = 19
               Caption = '[m]'
@@ -1224,7 +1218,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object _Label17: TLabel
               Left = 162
-              Height = 14
+              Height = 13
               Top = 90
               Width = 19
               Caption = '[m]'
@@ -1232,73 +1226,71 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object Edit20: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 10
               Width = 61
               Alignment = taRightJustify
-              DecimalPlaces = 2
-              Value = 0
+              MinValue = 0
               OnExit = Edit20AfterSetValue
               TabOrder = 0
+              Value = 0
             end
             object Edit21: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 34
               Width = 61
               Alignment = taRightJustify
-              DecimalPlaces = 2
-              Value = 0
+              MinValue = 0
               OnExit = Edit21AfterSetValue
               TabOrder = 1
+              Value = 0
             end
             object Edit22: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 58
               Width = 61
               Alignment = taRightJustify
-              DecimalPlaces = 2
-              Value = 0
+              MinValue = 0
               OnExit = Edit22AfterSetValue
               TabOrder = 2
+              Value = 0
             end
             object Edit23: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 82
               Width = 61
               Alignment = taRightJustify
-              DecimalPlaces = 2
-              Value = 0
+              MinValue = 0
               OnExit = Edit23AfterSetValue
               TabOrder = 3
+              Value = 0
             end
             object Edit24: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 106
               Width = 61
               Alignment = taRightJustify
               MaxValue = 200
-             MinValue = 2
-              Value = 2
-
+              MinValue = 2
               OnExit = Edit24AfterSetValue
               TabOrder = 4
+              Value = 2
             end
             object Edit25: TFloatSpinEdit
               Left = 98
-              Height = 24
+              Height = 23
               Top = 130
               Width = 61
               Alignment = taRightJustify
               MaxValue = 200
-             MinValue = 2
-              Value = 2
-
+              MinValue = 2
               OnExit = Edit25AfterSetValue
               TabOrder = 5
+              Value = 2
             end
           end
         end

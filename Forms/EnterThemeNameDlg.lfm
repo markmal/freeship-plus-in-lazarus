@@ -1,14 +1,14 @@
 object EnterThemeNameDlg: TEnterThemeNameDlg
-  Left = 348
+  Left = 377
   Height = 240
-  Top = 279
+  Top = 300
   Width = 320
   ActiveControl = EditCustomSchemeName
   Caption = 'Enter Theme Name'
   ClientHeight = 240
   ClientWidth = 320
   Position = poMainFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Message: TLabel
     Left = 23
     Height = 97
@@ -21,7 +21,7 @@ object EnterThemeNameDlg: TEnterThemeNameDlg
   end
   object EditCustomSchemeName: TEdit
     Left = 25
-    Height = 27
+    Height = 25
     Top = 136
     Width = 272
     TabOrder = 0
@@ -29,17 +29,17 @@ object EnterThemeNameDlg: TEnterThemeNameDlg
   end
   object Panel1: TPanel
     Left = 0
-    Height = 28
+    Height = 26
     Top = 0
     Width = 320
     Align = alTop
     AutoSize = True
-    ClientHeight = 28
+    ClientHeight = 26
     ClientWidth = 320
     TabOrder = 1
     object BitBtn2: TSpeedButton
       Left = 237
-      Height = 22
+      Height = 20
       Top = 3
       Width = 80
       Align = alRight
@@ -88,7 +88,7 @@ object EnterThemeNameDlg: TEnterThemeNameDlg
     end
     object BitBtn1: TSpeedButton
       Left = 155
-      Height = 22
+      Height = 20
       Top = 3
       Width = 80
       Align = alRight

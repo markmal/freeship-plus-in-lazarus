@@ -11973,22 +11973,39 @@ end;
 
 procedure TFreeEdit.File_SaveAs;
 var
-  SaveDialog: TSaveDialog;
   I: integer;
   Dir: string;
+  SaveDialog: TFreeFilePreviewDialog; //TFreeOpenDialog; //TOpenDialog;
+  //Places:TListItems;
+  w, h: integer;
+  Preferences : TFreePreferences;
 begin
-  Dir := Owner.Preferences.SaveDirectory;
+  Preferences := Owner.Preferences;
+  Dir := Preferences.SaveDirectory;
   if not DirectoryExistsUTF8(Dir) and not ForceDirectoriesUTF8(Dir) then
     MessageDlg(tl8('Cannot create directory: ') + Dir, mtWarning, [mbOK], 0);
 
-  SaveDialog := TSaveDialog.Create(Owner);
-  SaveDialog.InitialDir := Dir;
-  Owner.Filename := ChangeFileExt(Owner.Filename, '.ftm');
-  Savedialog.FileName := ExtractFilename(Owner.Filename);
-  SaveDialog.Filter :=
-    'FREE!ship text files (*.ftm)|*.ftm|FREE!ship binary files (*.fbm)|*.fbm';
-  Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
-  Savedialog.OnTypeChange := SaveDialogTypeChange;
+  SaveDialog := TFreeFilePreviewDialog.Create(Owner);
+  with SaveDialog do
+  begin
+    CurrentPath := Preferences.OpenDirectory;
+    Filter := FileDialogFilterFreeship + '|' + FileDialogFilterFreeshipText
+      + '|' + FileDialogFilterFreeshipBinary;
+    FilterIndex := 0;
+    OnPreview := OnFilePreview;
+    addPlace(FileDialogPlaceMyShips, Preferences.OpenDirectory);
+    //addPlace(FileDialogPlaceMyImport, Preferences.ImportDirectory);
+    //addPlace(FileDialogPlaceGlobalShips, Preferences.GlobalOpenDirectory);
+    //addPlace(FileDialogPlaceGlobalImport, Preferences.GlobalImportDirectory);
+    FileDialogMode := fdmSave;
+    ShellListView.ReadOnly := True;
+  end;
+
+  //Owner.Filename := ChangeFileExt(Owner.Filename, '.ftm');
+  Savedialog.FileName := ExtractFilename(ChangeFileExt(Owner.Filename, '.ftm'));
+  //Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
+  //Savedialog.OnTypeChange := SaveDialogTypeChange;
+
   if SaveDialog.Execute then
   begin
     Owner.Preferences.SaveDirectory := ExtractFilePath(SaveDialog.FileName);
@@ -11996,11 +12013,11 @@ begin
       Owner.FStopAskingForFileVersion := False;
     Owner.Filename := Savedialog.Filename;
     Owner.FFilenameSet := True;
-    I := SaveDialog.FilterIndex;
+{    I := SaveDialog.FilterIndex;
     case I of
       1: Owner.Filename := ChangeFileExt(Savedialog.Filename, '.ftm');
       2: Owner.Filename := ChangeFileExt(Savedialog.Filename, '.fbm');
-    end;
+    end; }
     File_Save;
   end;
   SaveDialog.Destroy;

@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="11"/>
     <BuildModes Active="Default Qt4"/>
-    <Units Count="96">
+    <Units Count="99">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -28,8 +28,8 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="33"/>
-        <CursorPos X="23" Y="63"/>
+        <TopLine Value="1530"/>
+        <CursorPos X="4" Y="1532"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -122,10 +122,11 @@
         <ComponentName Value="FreeControlPointForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="222"/>
-        <CursorPos X="58" Y="223"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="242"/>
+        <CursorPos X="53" Y="245"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
@@ -592,10 +593,11 @@
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="4992"/>
-        <CursorPos X="18" Y="4920"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="11924"/>
+        <CursorPos X="39" Y="11946"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
@@ -604,10 +606,13 @@
         <ComponentName Value="FreeResistance_Planing"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2012"/>
-        <CursorPos X="17" Y="2013"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="2018"/>
+        <CursorPos X="60" Y="2022"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit52>
       <Unit53>
@@ -671,8 +676,8 @@
         <Filename Value="Units/FreeFileBuffer.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2285"/>
-        <CursorPos Y="2293"/>
+        <TopLine Value="2401"/>
+        <CursorPos Y="2417"/>
         <UsageCount Value="213"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit58>
@@ -786,12 +791,12 @@
         <ComponentName Value="FreeFilePreviewDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="1728"/>
-        <CursorPos X="21" Y="1447"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="566"/>
+        <CursorPos X="55" Y="574"/>
         <UsageCount Value="219"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit70>
       <Unit71>
@@ -833,7 +838,7 @@
         <TopLine Value="245"/>
         <CursorPos Y="438"/>
         <FoldState Value=" T0D291O1J371C"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit74>
       <Unit75>
@@ -841,13 +846,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7527"/>
         <CursorPos X="21" Y="7529"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
       </Unit75>
       <Unit76>
         <Filename Value="Forms/FreeAddMassOutputDlg.lfm"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="18" Y="3"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit76>
       <Unit77>
@@ -855,7 +860,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="299"/>
         <CursorPos Y="322"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit77>
       <Unit78>
@@ -863,13 +868,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="515"/>
         <CursorPos X="30" Y="520"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit78>
       <Unit79>
         <Filename Value="Forms/FreeResistance_HollenDlg.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit79>
       <Unit80>
@@ -877,21 +882,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="497"/>
         <CursorPos Y="520"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit80>
       <Unit81>
         <Filename Value="Forms/FreeResistance_FungLeibDlg.lfm"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="18" Y="2"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit81>
       <Unit82>
         <Filename Value="Forms/FreeResistance_OSTDlg.lfm"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16" Y="5"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit82>
       <Unit83>
@@ -899,20 +904,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="46" Y="24"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit83>
       <Unit84>
         <Filename Value="Forms/FreePropeller_Task3Dlg.lfm"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="33" Y="7"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit84>
       <Unit85>
         <Filename Value="Forms/FreeHydrodyn_Task1Dlg.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit85>
       <Unit86>
@@ -920,45 +925,46 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos Y="162"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit86>
       <Unit87>
         <Filename Value="Forms/FreeHydrodyn_RVRSDlg.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit87>
       <Unit88>
         <Filename Value="Forms/FreeResistance_PlaningDlg.lfm"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="32" Y="8"/>
+        <TopLine Value="7"/>
+        <CursorPos Y="10"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit88>
       <Unit89>
         <Filename Value="Forms/FreeResistance_MHDlg.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit89>
       <Unit90>
         <Filename Value="Forms/FreeResistance_RBHSDlg.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit90>
       <Unit91>
         <Filename Value="Forms/FreePropeller_Task4Dlg.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit91>
       <Unit92>
         <Filename Value="Forms/FreePropeller_Task5Dlg.lfm"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="40" Y="17"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit92>
       <Unit93>
@@ -966,14 +972,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="157"/>
         <CursorPos X="48" Y="13"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit93>
       <Unit94>
         <Filename Value="/usr/share/fpcsrc/3.0.4/rtl/wince/windows.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
       </Unit94>
       <Unit95>
         <Filename Value="/usr/share/fpcsrc/3.0.4/packages/winunits-base/src/shellapi.pp"/>
@@ -981,57 +987,156 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos X="66" Y="126"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="1"/>
       </Unit95>
+      <Unit96>
+        <Filename Value="Forms/FreeControlPointFrm.lfm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="127"/>
+        <CursorPos X="40" Y="136"/>
+        <UsageCount Value="3"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit96>
+      <Unit97>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="1612"/>
+        <CursorPos X="55" Y="1618"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit97>
+      <Unit98>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="646"/>
+        <CursorPos X="14" Y="655"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit98>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="61" Column="13" TopLine="57"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
       </Position1>
       <Position2>
-        <Filename Value="Forms/Main.pas"/>
-        <Caret Line="62" Column="24" TopLine="57"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
       </Position2>
       <Position3>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="33" Column="17" TopLine="3"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
       </Position3>
       <Position4>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="14" Column="7" TopLine="75"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
       </Position4>
       <Position5>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="202" Column="15" TopLine="60"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
       </Position5>
       <Position6>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="203" Column="5" TopLine="180"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
       </Position6>
       <Position7>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="671" TopLine="655"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
       </Position7>
       <Position8>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
       </Position8>
       <Position9>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="227" Column="23" TopLine="217"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
       </Position9>
       <Position10>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="748" Column="16" TopLine="721"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
       </Position10>
       <Position11>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="813" Column="11" TopLine="799"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
       </Position11>
       <Position12>
-        <Filename Value="Forms/FreeFilePreviewDialog.pas"/>
-        <Caret Line="775" TopLine="760"/>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
       </Position12>
+      <Position13>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
+      </Position13>
+      <Position14>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
+      </Position14>
+      <Position15>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
+      </Position15>
+      <Position16>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
+      </Position16>
+      <Position17>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
+      </Position17>
+      <Position18>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
+      </Position18>
+      <Position19>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
+      </Position19>
+      <Position20>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
+      </Position20>
+      <Position21>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
+      </Position21>
+      <Position22>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
+      </Position22>
+      <Position23>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
+      </Position23>
+      <Position24>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2022" Column="60" TopLine="2018"/>
+      </Position24>
+      <Position25>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2021" Column="60" TopLine="2017"/>
+      </Position25>
+      <Position26>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2020" Column="60" TopLine="2016"/>
+      </Position26>
+      <Position27>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2019" Column="60" TopLine="2015"/>
+      </Position27>
+      <Position28>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2018" Column="60" TopLine="2014"/>
+      </Position28>
+      <Position29>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2017" Column="60" TopLine="2013"/>
+      </Position29>
+      <Position30>
+        <Filename Value="Forms/FreeResistance_PlaningDlg.pas"/>
+        <Caret Line="2016" Column="60" TopLine="2012"/>
+      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

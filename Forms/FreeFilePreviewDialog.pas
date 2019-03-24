@@ -44,7 +44,7 @@ type
  TFreeFilePreviewDialog = class(TForm)
     ActionRefresh: TAction;
     ActionList: TActionList;
-    BitBtnOpen: TBitBtn;
+    BitBtnOk: TBitBtn;
     BitBtnCancel: TBitBtn;
     ComboBoxDir: TComboBox;
     FullSize: TMenuItem;
@@ -119,13 +119,12 @@ type
     procedure AutoSearchListBoxMouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: Integer);
     procedure AutoSearchListBoxSelectionChange(Sender: TObject; User: boolean);
-    procedure BitBtnOpenClick(Sender: TObject);
-    procedure BitBtnCancelClick(Sender: TObject);
     procedure ComboBoxDirChange(Sender: TObject);
     procedure ComboBoxDirEditingDone(Sender: TObject);
     procedure ComboBoxDirKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure ComboBoxDirKeyPress(Sender: TObject; var Key: char);
+    procedure EditNameEditingDone(Sender: TObject);
     procedure FilterComboBox1Change(Sender: TObject);
     procedure FilterComboBox1Select(Sender: TObject);
     procedure FitSizeClick(Sender: TObject);
@@ -570,6 +569,11 @@ begin
     end;
 end;
 
+procedure TFreeFilePreviewDialog.EditNameEditingDone(Sender: TObject);
+begin
+  FFileName := ShellListView.Root + DirectorySeparator + EditName.Text;
+end;
+
 procedure TFreeFilePreviewDialog.FilterComboBox1Change(Sender: TObject);
 begin
 
@@ -639,11 +643,6 @@ begin
     end;
 end;
 
-procedure TFreeFilePreviewDialog.BitBtnOpenClick(Sender: TObject);
-begin
-  Close;
-end;
-
 procedure TFreeFilePreviewDialog.ActionRefreshExecute(Sender: TObject);
 var x : boolean;
 begin
@@ -662,12 +661,7 @@ begin
  AutoSearchListBox.Visible:=false;}
 end;
 
-procedure TFreeFilePreviewDialog.BitBtnCancelClick(Sender: TObject);
-begin
-  FFileName := '';
-  Close;
-end;
-
+resourcestring CancelButtonCaptionCancel = 'Cancel';
 
 procedure TFreeFilePreviewDialog.FormCreate(Sender: TObject);
 var GlobalTranslator: TAbstractTranslator; LocalTranslator: TPOTranslator;
@@ -697,6 +691,8 @@ begin
 
   SpeedButtonViewListHidden.GroupIndex := 2;
   SpeedButtonViewListHidden.Down:=false;
+
+  BitBtnCancel.Caption:= CancelButtonCaptionCancel;
 
   ShellPathPanel := TShellPathPanel.Create(Self);
   with ShellPathPanel do
@@ -1016,7 +1012,7 @@ begin
      if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
         then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
 
-     BitBtnOpen.Enabled:=false;
+     BitBtnOk.Enabled:=false;
      end;
 end;
 
@@ -1218,10 +1214,10 @@ begin
   if not isDir then
     begin
     EditName.Text := Item.Caption;
-    BitBtnOpen.Enabled:=true;
+    BitBtnOk.Enabled:=true;
     end
   else
-    BitBtnOpen.Enabled:=false;
+    BitBtnOk.Enabled:=false;
  end;
 
 procedure TFreeFilePreviewDialog.ShellTreeViewChange(Sender: TObject;
@@ -1705,6 +1701,10 @@ begin
   result := (self.ShowModal = mrOK);
 end;
 
+resourcestring
+  OkButtonCaptionOpen = 'Open';
+  OkButtonCaptionSave = 'Save';
+
 procedure TFreeFilePreviewDialog.setFileDialogMode(const AValue: TFileDialogMode);
 begin
   FFileDialogMode := AValue;
@@ -1712,12 +1712,15 @@ begin
     begin
     SpeedButtonNewDir.Enabled := false;
     EditName.Enabled := false;
+    BitBtnOk.Caption := OkButtonCaptionOpen;
     end
   else
   if AValue = fdmSave then
     begin
     SpeedButtonNewDir.Enabled := true;
     EditName.Enabled := true;
+    BitBtnOk.Enabled := true;
+    BitBtnOk.Caption := OkButtonCaptionSave;
     end;
 end;
 

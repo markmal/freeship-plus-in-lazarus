@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 499
+  Left = 498
   Height = 800
-  Top = 159
+  Top = 196
   Width = 1200
   Align = alTop
   ClientHeight = 781
@@ -9,9 +9,6 @@ object MainForm: TMainForm
   Color = clSilver
   Constraints.MinHeight = 200
   Constraints.MinWidth = 300
-  Font.Color = clWindowText
-  Font.Height = 11
-  Font.Name = 'MS Sans Serif'
   FormStyle = fsMDIForm
   Menu = MainMenu1
   OnActivate = FormActivate
@@ -22,6 +19,7 @@ object MainForm: TMainForm
   OnResize = FormResize
   OnShow = FormShow
   OnWindowStateChange = FormWindowStateChange
+  ParentFont = True
   Position = poDefault
   ShowHint = True
   LCLVersion = '2.0.0.4'
@@ -247,7 +245,7 @@ object MainForm: TMainForm
       end
       object SpinEditFontSize: TSpinEdit
         Left = 4
-        Height = 23
+        Height = 25
         Hint = 'Font Size'
         Top = 16
         Width = 36
@@ -305,7 +303,7 @@ object MainForm: TMainForm
       end
       object LayerBox: TComboBox
         Left = 23
-        Height = 25
+        Height = 27
         Hint = 'Assign selected faces to a new layer or change the currently active layer.'
         Top = 0
         Width = 145

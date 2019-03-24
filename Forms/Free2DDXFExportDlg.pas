@@ -67,22 +67,25 @@ uses
      Spin,
     FreeShipUnit,FreeLanguageSupport;
 
-type TDXFExport2DDialog = class(TForm)
-                              Panel2: TPanel;
-                              Label3: TLabel;
-                              Edit1: TFloatSpinEdit;
+type
+
+{ TDXFExport2DDialog }
+
+ TDXFExport2DDialog = class(TForm)
+                             CheckBox1: TCheckBox;
+                             ComboBox1: TComboBox;
+                             Edit1: TFloatSpinEdit;
+                             Edit3: TEdit;
+                             Label1: TLabel;
+                             Label4: TLabel;
+                             Label7: TLabel;
                               Panel1: TPanel;
                               Panel3: TPanel;
-                              Label1: TLabel;
-                              Label7: TLabel;
-                              Edit3: TEdit;
-                              SpeedButton1: TSpeedButton;
+                              Panel4: TPanel;
                               SaveDialog: TSaveDialog;
                               BitBtn1: TSpeedButton;
                               BitBtn2: TSpeedButton;
-                              Label4: TLabel;
-                              ComboBox1: TComboBox;
-                              CheckBox1: TCheckBox;
+                              SpeedButton1: TSpeedButton;
                               procedure SpeedButton1Click(Sender: TObject);
                               procedure BitBtn1Click(Sender: TObject);
                               procedure BitBtn2Click(Sender: TObject);
@@ -199,7 +202,7 @@ procedure TDXFExport2DDialog.FSetUnits;
 var Str:String;
 begin
    Str:=ComboBox1.Text+Userstring(937);
-   Label3.Caption:=Str;
+   //Label3.Caption:=Str;
 end;{TDXFExport2DDialog.FSetUnits}
 
 function TDXFExport2DDialog.Execute:Boolean;

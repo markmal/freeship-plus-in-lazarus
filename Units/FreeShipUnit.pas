@@ -10493,7 +10493,9 @@ var
   Layer: TFreeSubdivisionLayer;
   Face: TFreeSubdivisionControlface;
   Child: TFreeSubdivisionface;
+  C1, C2, C3: T3DCoordinate;
 
+ {
   procedure Addfacet(P1, P2, P3: TFreeSubdivisionPoint);
   var
     Normal: T3DCoordinate;
@@ -10512,6 +10514,25 @@ var
     writeln(FFile, '    endloop');
     Writeln(FFile, '  endfacet');
 
+  end;
+ }
+  procedure Addfacet(C1, C2, C3: T3DCoordinate);
+  var
+    Normal: T3DCoordinate;
+  begin
+    Normal := UnifiedNormal(C1, C2, C3);
+    Write(FFile, '  facet normal ');
+    writeln(FFile, Truncate(normal.X, 4) + #32 + Truncate(normal.Y, 4) +
+      #32 + Truncate(normal.Z, 4));
+    writeln(FFile, '    outer loop');
+    writeln(FFile, '      vertex ' + Truncate(C1.X, 4) + #32 +
+      Truncate(C1.Y, 4) + #32 + Truncate(C1.Z, 4));
+    writeln(FFile, '      vertex ' + Truncate(C2.X, 4) + #32 +
+      Truncate(C2.Y, 4) + #32 + Truncate(C2.Z, 4));
+    writeln(FFile, '      vertex ' + Truncate(C3.X, 4) + #32 +
+      Truncate(C3.Y, 4) + #32 + Truncate(C3.Z, 4));
+    writeln(FFile, '    endloop');
+    Writeln(FFile, '  endfacet');
   end;{Addfacet}
 
 begin
@@ -10544,7 +10565,18 @@ begin
             begin
               Child := face.Child[K - 1];
               for L := 3 to Child.NumberOfpoints do
-                AddFacet(Child.Point[0], Child.Point[L - 2], Child.Point[L - 1]);
+                begin
+                C1 := Child.Point[0].Coordinate;
+                C2 := Child.Point[L - 2].Coordinate;
+                C3 := Child.Point[L - 1].Coordinate;
+                AddFacet(C1,C2,C3);
+
+               // mirror points, starboard to port
+                C1.Y := -C1.Y;
+                C2.Y := -C2.Y;
+                C3.Y := -C3.Y;
+                AddFacet(C3,C2,C1);
+                end;
             end;
           end;
       end;
@@ -18838,6 +18870,7 @@ var I,Size        : integer;
        end;
     end;{DrawGrid}
 
+
 begin
    if not Surface.Build then surface.Rebuild;
    // Draw intersectionlines BEFORE the surface is drawn,
@@ -18914,6 +18947,9 @@ begin
       Plane.c:=1.0;
       Plane.d:=-(FindLowestHydrostaticsPoint+ProjectSettings.ProjectDraft);
       Surface.WaterlinePlane:=Plane;
+      R:=GetRValue(ProjectSettings.ProjectUnderWaterColor);
+      G:=GetGValue(ProjectSettings.ProjectUnderWaterColor);
+      B:=GetBValue(ProjectSettings.ProjectUnderWaterColor);
       Surface.UnderWaterColor:=ProjectSettings.ProjectUnderWaterColor;
       Surface.ShadeUnderWater:=True;
    end else Surface.ShadeUnderWater:=False;

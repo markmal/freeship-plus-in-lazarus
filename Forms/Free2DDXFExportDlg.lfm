@@ -1,141 +1,30 @@
 object DXFExport2DDialog: TDXFExport2DDialog
   Left = 541
-  Height = 159
+  Height = 161
   Top = 330
-  Width = 446
+  Width = 598
+  AutoSize = True
   BorderStyle = bsDialog
   Caption = 'Export intersections to DXF as 2D polylines.'
-  ClientHeight = 159
-  ClientWidth = 446
+  ClientHeight = 161
+  ClientWidth = 598
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  ParentFont = True
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.2.0'
-  object Panel2: TPanel
-    Left = 0
-    Height = 122
-    Top = 24
-    Width = 446
-    Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 122
-    ClientWidth = 446
-    TabOrder = 0
-    object Label3: TLabel
-      Left = 270
-      Height = 14
-      Top = 70
-      Width = 41
-      Caption = '[pixels]'
-      ParentColor = False
-    end
-    object Label1: TLabel
-      Left = 8
-      Height = 14
-      Top = 68
-      Width = 157
-      Caption = 'Max length of line segments'
-      ParentColor = False
-    end
-    object Label7: TLabel
-      Left = 5
-      Height = 14
-      Top = 16
-      Width = 89
-      Caption = 'Export directory'
-      ParentColor = False
-    end
-    object SpeedButton1: TSpeedButton
-      Left = 416
-      Height = 22
-      Hint = 'Browse for the export directory'
-      Top = 8
-      Width = 23
-      Glyph.Data = {
-        F6000000424DF600000000000000760000002800000010000000100000000100
-        04000000000080000000130B0000130B00001000000010000000000000000084
-        8400FF00FF0000FFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00222222222222
-        2222222222222222222200000000000222220011111111102222030111111111
-        0222043011111111102203430111111111020434300000000000034343434302
-        2222043434343402222203430000000222222000222222220002222222222222
-        2002222222220222020222222222200022222222222222222222
-      }
-      OnClick = SpeedButton1Click
-      ShowHint = True
-      ParentShowHint = False
-    end
-    object Label4: TLabel
-      Left = 6
-      Height = 14
-      Top = 42
-      Width = 67
-      Caption = 'Export units'
-      ParentColor = False
-    end
-    object Edit1: TFloatSpinEdit
-      Left = 182
-      Height = 24
-      Top = 60
-      Width = 75
-      Alignment = taRightJustify
-      DecimalPlaces = 5
-      Value = 0.1
-      TabOrder = 3
-    end
-    object Edit3: TEdit
-      Left = 152
-      Height = 24
-      Top = 8
-      Width = 253
-      Color = clBtnFace
-      ReadOnly = True
-      TabOrder = 0
-      Text = 'Edit3'
-    end
-    object ComboBox1: TComboBox
-      Left = 332
-      Height = 24
-      Top = 34
-      Width = 105
-      ItemHeight = 16
-      ItemIndex = 0
-      Items.Strings = (
-        'Meters'
-        'Centimeters'
-        'Millimeters'
-        'Feet'
-        'Inch'
-      )
-      OnChange = ComboBox1Change
-      TabOrder = 1
-      Text = 'Meters'
-    end
-    object CheckBox1: TCheckBox
-      Left = 6
-      Height = 20
-      Top = 94
-      Width = 149
-      Alignment = taLeftJustify
-      Caption = 'Create individual files'
-      TabOrder = 2
-    end
-  end
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 446
+    Width = 598
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 446
-    TabOrder = 1
+    ClientWidth = 598
+    TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 282
+      Left = 434
       Height = 20
       Top = 2
       Width = 80
@@ -184,7 +73,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 364
+      Left = 516
       Height = 20
       Top = 2
       Width = 80
@@ -235,16 +124,131 @@ object DXFExport2DDialog: TDXFExport2DDialog
   end
   object Panel3: TPanel
     Left = 0
-    Height = 13
-    Top = 146
-    Width = 446
-    Align = alBottom
+    Height = 128
+    Top = 24
+    Width = 598
+    Align = alTop
     BevelOuter = bvNone
-    TabOrder = 2
+    ChildSizing.LeftRightSpacing = 10
+    ChildSizing.TopBottomSpacing = 10
+    ChildSizing.HorizontalSpacing = 6
+    ChildSizing.VerticalSpacing = 2
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 128
+    ClientWidth = 598
+    TabOrder = 1
+    object Label7: TLabel
+      Left = 10
+      Height = 25
+      Top = 10
+      Width = 232
+      Caption = 'Export directory'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object Panel4: TPanel
+      Left = 248
+      Height = 25
+      Top = 10
+      Width = 280
+      AutoSize = True
+      BevelOuter = bvNone
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      ClientHeight = 25
+      ClientWidth = 280
+      TabOrder = 0
+      object Edit3: TEdit
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 260
+        Color = clBtnFace
+        Constraints.MinWidth = 260
+        ReadOnly = True
+        TabOrder = 0
+        Text = 'Edit3'
+      end
+      object SpeedButton1: TSpeedButton
+        Left = 260
+        Height = 25
+        Hint = 'Browse for the export directory'
+        Top = 0
+        Width = 20
+        Glyph.Data = {
+          F6000000424DF600000000000000760000002800000010000000100000000100
+          04000000000080000000130B0000130B00001000000010000000000000000084
+          8400FF00FF0000FFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00222222222222
+          2222222222222222222200000000000222220011111111102222030111111111
+          0222043011111111102203430111111111020434300000000000034343434302
+          2222043434343402222203430000000222222000222222220002222222222222
+          2002222222220222020222222222200022222222222222222222
+        }
+        OnClick = SpeedButton1Click
+        ShowHint = True
+        ParentShowHint = False
+      end
+    end
+    object Label4: TLabel
+      Left = 10
+      Height = 25
+      Top = 37
+      Width = 232
+      Caption = 'Export units'
+      ParentColor = False
+    end
+    object ComboBox1: TComboBox
+      Left = 248
+      Height = 25
+      Top = 37
+      Width = 280
+      ItemHeight = 0
+      ItemIndex = 0
+      Items.Strings = (
+        'Meters'
+        'Centimeters'
+        'Millimeters'
+        'Feet'
+        'Inch'
+      )
+      OnChange = ComboBox1Change
+      TabOrder = 1
+      Text = 'Meters'
+    end
+    object Label1: TLabel
+      Left = 10
+      Height = 25
+      Top = 64
+      Width = 232
+      Caption = 'Max length of line segments, pixels'
+      ParentColor = False
+    end
+    object Edit1: TFloatSpinEdit
+      Left = 248
+      Height = 25
+      Top = 64
+      Width = 280
+      Alignment = taRightJustify
+      DecimalPlaces = 5
+      MinValue = 0
+      TabOrder = 2
+      Value = 0.1
+    end
+    object CheckBox1: TCheckBox
+      Left = 10
+      Height = 21
+      Top = 91
+      Width = 232
+      Alignment = taLeftJustify
+      Caption = 'Create individual files'
+      TabOrder = 3
+    end
   end
   object SaveDialog: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist, ofEnableSizing]
-    left = 306
-    top = 84
+    left = 360
+    top = 8
   end
 end

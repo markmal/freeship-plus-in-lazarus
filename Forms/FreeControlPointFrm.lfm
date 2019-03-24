@@ -10,29 +10,26 @@ object FreeControlPointForm: TFreeControlPointForm
   ClientHeight = 189
   ClientWidth = 308
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
   LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
-    Height = 94
+    Height = 100
     Top = 0
     Width = 308
     Align = alTop
     AutoSize = True
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 94
+    ClientHeight = 100
     ClientWidth = 308
     TabOrder = 0
     object LabelX: TLabel
       Left = 26
-      Height = 23
+      Height = 25
       Top = 6
-      Width = 48
+      Width = 54
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
       Caption = 'X-coord.'
@@ -41,9 +38,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object LabelY: TLabel
       Left = 26
-      Height = 23
-      Top = 35
-      Width = 48
+      Height = 25
+      Top = 37
+      Width = 54
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
       Caption = 'Y-coord.'
@@ -52,9 +49,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object LabelZ: TLabel
       Left = 26
-      Height = 23
-      Top = 64
-      Width = 48
+      Height = 25
+      Top = 68
+      Width = 54
       BorderSpacing.Left = 20
       BorderSpacing.Around = 6
       Caption = 'Z-coord.'
@@ -62,8 +59,8 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object EditX: TFloatSpinEdit
-      Left = 80
-      Height = 23
+      Left = 86
+      Height = 25
       Top = 6
       Width = 80
       Alignment = taRightJustify
@@ -78,9 +75,9 @@ object FreeControlPointForm: TFreeControlPointForm
       Value = 0
     end
     object EditY: TFloatSpinEdit
-      Left = 80
-      Height = 23
-      Top = 35
+      Left = 86
+      Height = 25
+      Top = 37
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
@@ -94,9 +91,9 @@ object FreeControlPointForm: TFreeControlPointForm
       Value = 0
     end
     object EditZ: TFloatSpinEdit
-      Left = 80
-      Height = 23
-      Top = 64
+      Left = 86
+      Height = 25
+      Top = 68
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
@@ -113,22 +110,22 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 85
-    Top = 94
+    Height = 89
+    Top = 100
     Width = 308
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 85
+    ClientHeight = 89
     ClientWidth = 308
     TabOrder = 1
     object CheckBoxCorner: TCheckBox
       Left = 20
       Height = 21
       Top = 6
-      Width = 62
+      Width = 66
       BorderSpacing.Left = 20
       BorderSpacing.Top = 6
       Caption = 'Corner'
@@ -137,9 +134,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label4: TLabel
       Left = 20
-      Height = 17
+      Height = 19
       Top = 33
-      Width = 62
+      Width = 66
       BorderSpacing.Left = 20
       Caption = 'Distance'
       Layout = tlCenter
@@ -147,9 +144,9 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label5: TLabel
       Left = 20
-      Height = 17
-      Top = 56
-      Width = 62
+      Height = 19
+      Top = 58
+      Width = 66
       BorderSpacing.Left = 20
       BorderSpacing.Bottom = 6
       Caption = 'Angles'
@@ -157,7 +154,7 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object Label6: TLabel
-      Left = 88
+      Left = 92
       Height = 21
       Top = 6
       Width = 140
@@ -166,8 +163,8 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentColor = False
     end
     object EditDistance: TEdit
-      Left = 88
-      Height = 17
+      Left = 92
+      Height = 19
       Top = 33
       Width = 140
       BorderSpacing.Around = 6
@@ -176,9 +173,9 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 1
     end
     object EditAngles: TEdit
-      Left = 88
-      Height = 17
-      Top = 56
+      Left = 92
+      Height = 19
+      Top = 58
       Width = 140
       BorderSpacing.Bottom = 6
       BorderSpacing.Around = 6

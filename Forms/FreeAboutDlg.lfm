@@ -17,7 +17,6 @@ object FreeAboutDlg: TFreeAboutDlg
     Align = alTop
     Alignment = taCenter
     Caption = 'FREE!ship Plus'
-    Font.CharSet = ANSI_CHARSET
     Font.Color = clTeal
     Font.Height = -20
     Font.Name = 'Arial Black'

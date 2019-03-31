@@ -8,9 +8,6 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   ClientHeight = 511
   ClientWidth = 746
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
   LCLVersion = '1.4.2.0'
   object Splitter2: TSplitter
@@ -66,9 +63,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Top = 2
         Width = 52
         Caption = 'Current'
-        Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
@@ -79,9 +74,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Top = 2
         Width = 52
         Caption = 'Desired'
-        Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
@@ -124,9 +117,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         Top = 2
         Width = 70
         Caption = 'Difference'
-        Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False

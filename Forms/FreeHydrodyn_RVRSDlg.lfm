@@ -8,9 +8,6 @@ object FreeHydrodyn_Rvrs: TFreeHydrodyn_Rvrs
   ClientHeight = 582
   ClientWidth = 800
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar

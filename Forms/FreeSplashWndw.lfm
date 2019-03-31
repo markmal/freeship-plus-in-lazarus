@@ -14,9 +14,6 @@ object FreeSplashWindow: TFreeSplashWindow
   ClientWidth = 548
   Color = clSilver
   DefaultMonitor = dmMainForm
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   FormStyle = fsSystemStayOnTop
   OnClose = FormClose
   OnShow = FormShow
@@ -2357,7 +2354,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Caption = 'Version 0.00'
     Font.Color = clWhite
     Font.Height = -16
-    Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -2369,8 +2365,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Width = 244
     Caption = 'Copyright © 2005-2006, M v. Engeland'
     Font.Color = 15461355
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -2382,8 +2376,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Width = 255
     Caption = 'Copyright © 2007-2013,Timoshenko V.F.'
     Font.Color = 15461355
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -2397,9 +2389,7 @@ object FreeSplashWindow: TFreeSplashWindow
     Alignment = taCenter
     AutoSize = False
     Caption = 'FREE!ship comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under the conditions of the GNU General Public License (GPL) Version 2, June 1991'
-    Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
     Font.Name = 'Arial Black'
     ParentColor = False
     ParentFont = False
@@ -2413,7 +2403,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Width = 109
     Alignment = taRightJustify
     Caption = 'vftim@rambler.ru'
-    Font.CharSet = ANSI_CHARSET
     Font.Color = clYellow
     Font.Height = -12
     Font.Name = 'Arial Black'
@@ -2431,7 +2420,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Caption = 'Hydronship.net'
     Font.Color = clYellow
     Font.Height = -13
-    Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold, fsUnderline]
     ParentColor = False
     ParentFont = False
@@ -2444,7 +2432,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Width = 46
     Alignment = taRightJustify
     Caption = 'Release'
-    Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -12
     Font.Name = 'Arial'
@@ -2457,7 +2444,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Top = 1
     Width = 172
     Caption = 'FREE!ship Plus'
-    Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -20
     Font.Name = 'Arial Black'
@@ -2472,7 +2458,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Top = 34
     Width = 165
     Caption = 'Translated by: M. van Engeland'
-    Font.CharSet = ANSI_CHARSET
     Font.Color = clAqua
     Font.Height = -13
     Font.Name = 'Arial Narrow'
@@ -2487,7 +2472,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Top = 24
     Width = 28
     Caption = 'Build'
-    Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -12
     Font.Name = 'Arial'

@@ -7,9 +7,6 @@ object FreeIntersectLayerDialog: TFreeIntersectLayerDialog
   ClientHeight = 116
   ClientWidth = 338
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
   LCLVersion = '1.4.2.0'
   object Panel2: TPanel

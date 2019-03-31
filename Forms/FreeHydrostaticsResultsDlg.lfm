@@ -8,7 +8,6 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
   ClientWidth = 848
   Color = clBtnFace
   Font.Color = clBlack
-  Font.Height = -11
   Font.Name = 'Arial'
   OnResize = FormResize
   Position = poMainFormCenter
@@ -24,8 +23,6 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
     ClientHeight = 24
     ClientWidth = 848
     Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
     ParentFont = False
     TabOrder = 0
     object ButtonPrint: TSpeedButton
@@ -209,7 +206,6 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
       FixedColor = clSilver
       FixedRows = 2
       Font.Color = clBlack
-      Font.Height = -11
       Font.Name = 'Arial'
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goRowSelect]
       ParentFont = False

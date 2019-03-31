@@ -7,9 +7,6 @@ object FreePropeller_Task1: TFreePropeller_Task1
   ClientHeight = 660
   ClientWidth = 830
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar

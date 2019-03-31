@@ -2,8 +2,8 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="11"/>
-    <BuildModes Active="Default Qt4"/>
-    <Units Count="80">
+    <BuildModes Active="Default GTK2"/>
+    <Units Count="92">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -28,23 +28,25 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="2626"/>
-        <CursorPos X="27" Y="2628"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="1017"/>
+        <CursorPos X="44" Y="1026"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
-        <Filename Value="Forms/FreeHullformWindow.pas"/>
+        <Filename Value="Forms/freehullformwindow_panel.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="307"/>
-        <CursorPos X="4" Y="310"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="196"/>
+        <CursorPos X="37" Y="205"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -527,7 +529,7 @@
         <ComponentName Value="DXFExport2DDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="193"/>
         <CursorPos X="6" Y="205"/>
         <UsageCount Value="200"/>
@@ -587,18 +589,16 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="86"/>
-        <CursorPos X="16" Y="87"/>
+        <TopLine Value="55"/>
         <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit50>
       <Unit51>
         <Filename Value="Units/FreeShipUnit.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="10567"/>
-        <CursorPos X="34" Y="10578"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="18061"/>
+        <CursorPos Y="18075"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -792,8 +792,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="566"/>
-        <CursorPos X="55" Y="574"/>
+        <TopLine Value="1190"/>
+        <CursorPos Y="1191"/>
         <UsageCount Value="219"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit70>
@@ -834,7 +834,7 @@
         <Filename Value="Packages/FreePackage.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="53"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit74>
       <Unit75>
@@ -842,32 +842,33 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos X="35" Y="137"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit75>
       <Unit76>
         <Filename Value="Units/FreeGeometry.pas"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="1312"/>
-        <CursorPos X="11" Y="1326"/>
-        <UsageCount Value="43"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="3352"/>
+        <CursorPos Y="3366"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit76>
       <Unit77>
         <Filename Value="/usr/share/lazarus/2.0.0/lcl/forms.pp"/>
         <UnitName Value="Forms"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="646"/>
-        <CursorPos X="14" Y="655"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="661"/>
+        <CursorPos X="14" Y="675"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
       </Unit77>
       <Unit78>
         <Filename Value="Forms/FreeAddMassOutputDlg.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="697"/>
         <CursorPos Y="709"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit78>
       <Unit79>
@@ -876,50 +877,227 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="31" Y="72"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit79>
+      <Unit80>
+        <Filename Value="Forms/freehullformwindow_panel.lfm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="313"/>
+        <CursorPos Y="323"/>
+        <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit80>
+      <Unit81>
+        <Filename Value="Forms/freehullformwindow_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeHullForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="363"/>
+        <CursorPos X="30" Y="370"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit81>
+      <Unit82>
+        <Filename Value="Units/MDIPanel.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="159"/>
+        <CursorPos X="26" Y="177"/>
+        <UsageCount Value="14"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit82>
+      <Unit83>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2245"/>
+        <CursorPos X="14" Y="2255"/>
+        <UsageCount Value="13"/>
+      </Unit83>
+      <Unit84>
+        <Filename Value="/usr/share/lazarus/2.0.0/components/lazutils/lazutf8classes.pas"/>
+        <UnitName Value="LazUTF8Classes"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="140"/>
+        <CursorPos Y="153"/>
+        <UsageCount Value="9"/>
+      </Unit84>
+      <Unit85>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="144"/>
+        <CursorPos Y="165"/>
+        <UsageCount Value="12"/>
+      </Unit85>
+      <Unit86>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/controlsproc.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="60"/>
+        <CursorPos Y="74"/>
+        <UsageCount Value="9"/>
+      </Unit86>
+      <Unit87>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/scrollbar.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="111"/>
+        <CursorPos Y="124"/>
+        <UsageCount Value="11"/>
+      </Unit87>
+      <Unit88>
+        <Filename Value="Forms/freehullformwindow_form.lfm"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="36" Y="7"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit88>
+      <Unit89>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/extctrls.pp"/>
+        <UnitName Value="ExtCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1036"/>
+        <CursorPos X="3" Y="1046"/>
+        <UsageCount Value="12"/>
+      </Unit89>
+      <Unit90>
+        <Filename Value="Forms/lfm2pas.awk"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="10" Y="2"/>
+        <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit90>
+      <Unit91>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/wincontrol.inc"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="8112"/>
+        <CursorPos Y="8130"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit91>
     </Units>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="2106" Column="4" TopLine="2104"/>
+        <Caret Line="1492" TopLine="1480"/>
       </Position1>
       <Position2>
         <Filename Value="Forms/Main.pas"/>
-        <Caret Line="2628" Column="27" TopLine="2626"/>
+        <Caret Line="1488" TopLine="1480"/>
       </Position2>
       <Position3>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="708" Column="15" TopLine="698"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1491" TopLine="1480"/>
       </Position3>
       <Position4>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="10549" Column="26" TopLine="10533"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1492" TopLine="1480"/>
       </Position4>
       <Position5>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="10491" Column="32" TopLine="10485"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1488" TopLine="1480"/>
       </Position5>
       <Position6>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="10557" Column="26" TopLine="10540"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1495" TopLine="1480"/>
       </Position6>
       <Position7>
-        <Filename Value="Forms/Free2DDXFExportDlg.pas"/>
-        <Caret Line="205" Column="6" TopLine="193"/>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1494" TopLine="1476"/>
       </Position7>
       <Position8>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="10557" Column="53" TopLine="10544"/>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/wincontrol.inc"/>
+        <Caret Line="8125" TopLine="8112"/>
       </Position8>
       <Position9>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="10577" TopLine="10564"/>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/wincontrol.inc"/>
+        <Caret Line="8127" TopLine="8112"/>
       </Position9>
       <Position10>
-        <Filename Value="Units/FreeShipUnit.pas"/>
-        <Caret Line="10517" Column="7" TopLine="10511"/>
+        <Filename Value="/usr/share/lazarus/2.0.0/lcl/include/wincontrol.inc"/>
+        <Caret Line="8128" TopLine="8112"/>
       </Position10>
+      <Position11>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1490" Column="34" TopLine="1476"/>
+      </Position11>
+      <Position12>
+        <Filename Value="Forms/freehullformwindow_form.pas"/>
+        <Caret Line="368" Column="14" TopLine="363"/>
+      </Position12>
+      <Position13>
+        <Filename Value="Forms/freehullformwindow_form.pas"/>
+        <Caret Line="143" Column="38" TopLine="131"/>
+      </Position13>
+      <Position14>
+        <Filename Value="Forms/freehullformwindow_form.pas"/>
+        <Caret Line="368" Column="4" TopLine="362"/>
+      </Position14>
+      <Position15>
+        <Filename Value="Forms/freehullformwindow_form.pas"/>
+        <Caret Line="192" Column="38" TopLine="180"/>
+      </Position15>
+      <Position16>
+        <Filename Value="Forms/freehullformwindow_form.pas"/>
+        <Caret Line="354" Column="32" TopLine="341"/>
+      </Position16>
+      <Position17>
+        <Filename Value="Forms/freehullformwindow_form.pas"/>
+        <Caret Line="161" Column="38" TopLine="148"/>
+      </Position17>
+      <Position18>
+        <Filename Value="Forms/freehullformwindow_panel.pas"/>
+        <Caret Line="246" Column="20" TopLine="232"/>
+      </Position18>
+      <Position19>
+        <Filename Value="Forms/freehullformwindow_panel.pas"/>
+        <Caret Line="199" Column="38" TopLine="187"/>
+      </Position19>
+      <Position20>
+        <Filename Value="Forms/freehullformwindow_panel.pas"/>
+        <Caret Line="464" Column="33" TopLine="444"/>
+      </Position20>
+      <Position21>
+        <Filename Value="Forms/freehullformwindow_panel.pas"/>
+        <Caret Line="261" Column="7" TopLine="240"/>
+      </Position21>
+      <Position22>
+        <Filename Value="Forms/freehullformwindow_panel.pas"/>
+        <Caret Line="147" Column="38" TopLine="134"/>
+      </Position22>
+      <Position23>
+        <Filename Value="Forms/freehullformwindow_panel.pas"/>
+        <Caret Line="436" TopLine="433"/>
+      </Position23>
+      <Position24>
+        <Filename Value="Units/FreeShipUnit.pas"/>
+        <Caret Line="18075" TopLine="18061"/>
+      </Position24>
+      <Position25>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1694" Column="16" TopLine="1692"/>
+      </Position25>
+      <Position26>
+        <Filename Value="Forms/Main.pas"/>
+      </Position26>
+      <Position27>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="605" Column="65" TopLine="584"/>
+      </Position27>
+      <Position28>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="707" Column="19" TopLine="685"/>
+      </Position28>
+      <Position29>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="948" Column="20" TopLine="926"/>
+      </Position29>
+      <Position30>
+        <Filename Value="Forms/Main.pas"/>
+        <Caret Line="1025" TopLine="1017"/>
+      </Position30>
     </JumpHistory>
     <CustomSessionData Count="2">
       <Item0 Name="SVN active" Value="-1"/>

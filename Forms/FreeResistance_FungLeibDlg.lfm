@@ -7,9 +7,6 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
   ClientHeight = 580
   ClientWidth = 963
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object PageControl1: TPageControl
@@ -1237,8 +1234,6 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Top = 243
             Width = 40
             Alignment = taRightJustify
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
             MaxValue = 3
             MinValue = 0
             OnExit = KeelChordLengthboxAfterSetValue
@@ -1288,8 +1283,6 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Top = 318
             Width = 40
             Alignment = taRightJustify
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
             MaxValue = 3
             MinValue = 0
             OnExit = KeelChordLengthboxAfterSetValue

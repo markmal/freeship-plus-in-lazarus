@@ -266,10 +266,11 @@ type
 
 implementation
 uses LCLType,
-  LResources, LCLTranslator, LazUTF8, // for translations
-  qtwidgets
-  ,qt4
-//  ,qt5
+  LResources, LCLTranslator, LazUTF8 // for translations
+  {$IfDef QT}
+  ,qtwidgets  ,qt4
+  //  ,qt5
+  {$EndIf}
   ;
 
 
@@ -288,9 +289,10 @@ end;
 { TFreeFilePreviewDialog }
 
 procedure TFreeFilePreviewDialog.ShellListViewSetWordWrap(slv:TCustomShellListView);
-var   QtListWidget: TQtListWidget; gSz : TSize; ih,fh:integer;
-    fd: TFontData;
+var gSz : TSize; ih,fh:integer; fd: TFontData;
+  {$IfDef QT}  QtListWidget: TQtListWidget;  {$EndIf}
 begin
+  {$IfDef QT}
   QtListWidget := TQtListWidget(slv.Handle);
   if ShellListView.ViewStyle=vsSmallIcon then
      ih:=SmallImageList.Height;
@@ -306,6 +308,7 @@ begin
   QtListWidget.GridSize:=gSz;
   QtListWidget.setWrapping(true);
   QtListWidget.setWordWrap(true);
+  {$EndIf}
 end;
 
 
@@ -1054,12 +1057,15 @@ end;
 procedure TFreeFilePreviewDialog.ShellListViewMouseMove(Sender: TObject;
   Shift: TShiftState; X, Y: Integer);
 var item:TListItem;
+  {$IfDef QT}
   QtTreeWidget: TQtTreeWidget;
   TWI : QTreeWidgetItemH;
   //QtListWidget: TQtListWidget;
   //LWI : QListWidgetItemH;
+  {$EndIf}
   wtooltip: widestring;
 begin
+  {$IfDef QT}
   // for some reason tooltip is not assigned in setTooltips
   item := ShellListView.GetItemAt(x,y);
   if not assigned(item) then exit;
@@ -1070,6 +1076,7 @@ begin
       TWI := QtTreeWidget.itemAt(x,y);
       QTreeWidgetItem_setToolTip(TWI, 0, @wtooltip);
     end
+  {$EndIf}
 end;
 
 procedure TFreeFilePreviewDialog.ShellListViewMouseDown(Sender: TObject;
@@ -1160,10 +1167,12 @@ procedure TFreeFilePreviewDialog.setTooltips;
 var
   i: integer;
   item:TListItem;
+  {$IfDef QT}
   QtTreeWidget: TQtTreeWidget;
   TWI : QTreeWidgetItemH;
   QtListWidget: TQtListWidget;
   LWI : QListWidgetItemH;
+  {$EndIf}
   wtooltip: widestring;
 begin
   //ShellListView.Hint := '';
@@ -1177,17 +1186,27 @@ begin
 
   if (ShellListView.ViewStyle = vsReport) then
     begin
+      {$IfDef QT}
       ShellListView.ShowHint := false;
       QtTreeWidget:=TQtTreeWidget(ShellListView.Handle);
       TWI := QtTreeWidget.currentItem;
       QTreeWidgetItem_setToolTip(TWI, 0, @wtooltip);
+      {$Else}
+      ShellListView.ShowHint := true;
+      ShellListView.Hint := Item.Caption;
+      {$EndIf}
     end
    else
     begin
+      {$IfDef QT}
       ShellListView.ShowHint := false;
       QtListWidget:=TQtListWidget(ShellListView.Handle);
       LWI := QtListWidget.getItem(Item.Index);
       QListWidgetItem_setToolTip(LWI, @wtooltip);
+      {$Else}
+      ShellListView.ShowHint := true;
+      ShellListView.Hint := Item.Caption;
+      {$EndIf}
     end;
   end;
 end;

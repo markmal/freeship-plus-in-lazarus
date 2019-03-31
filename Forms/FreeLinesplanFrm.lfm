@@ -7,9 +7,6 @@ object FreeLinesplanForm: TFreeLinesplanForm
   ClientHeight = 621
   ClientWidth = 828
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   FormStyle = fsMDIChild
   OnClose = FormClose
   Position = poDefault

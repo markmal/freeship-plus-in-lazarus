@@ -8,9 +8,6 @@ object SaveImageDialog: TSaveImageDialog
   ClientHeight = 160
   ClientWidth = 287
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel

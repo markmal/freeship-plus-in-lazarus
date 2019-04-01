@@ -48,7 +48,7 @@ uses
      {$ELSE}
       FileUtil, //deprecated
      {$ENDIF}
-  DefaultTranslator,
+  DefaultTranslator, Interfaces,
 
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
   Main in 'Forms/Main.pas' {MainForm},

@@ -1,32 +1,33 @@
 object TileDialog: TTileDialog
-  Left = 746
-  Height = 652
-  Top = 220
-  Width = 1023
-  ClientHeight = 652
-  ClientWidth = 1023
+  Left = 719
+  Height = 815
+  Top = 188
+  Width = 1279
+  ClientHeight = 815
+  ClientWidth = 1279
+  DesignTimePPI = 120
   Font.Quality = fqAntialiased
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object TopPanel: TPanel
     Left = 0
-    Height = 50
+    Height = 62
     Top = 0
-    Width = 1023
+    Width = 1279
     Align = alTop
     BevelOuter = bvNone
     Caption = 'Recent projects'
-    ClientHeight = 50
-    ClientWidth = 1023
+    ClientHeight = 62
+    ClientWidth = 1279
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
     OnClick = TopPanelClick
     object ButtonOpenFile: TBitBtn
-      Left = 16
-      Height = 30
-      Top = 8
-      Width = 144
+      Left = 20
+      Height = 38
+      Top = 10
+      Width = 180
       Action = ActionOpenAnother
       Caption = 'Open Another'
       Glyph.Data = {
@@ -71,34 +72,38 @@ object TileDialog: TTileDialog
   end
   object ScrollBox: TScrollBox
     Left = 0
-    Height = 602
-    Top = 50
-    Width = 1023
-    HorzScrollBar.Page = 21
-    VertScrollBar.Page = 21
+    Height = 753
+    Top = 62
+    Width = 1279
+    HorzScrollBar.Page = 24
+    VertScrollBar.Page = 24
     Align = alClient
-    ClientHeight = 600
-    ClientWidth = 1021
+    ClientHeight = 749
+    ClientWidth = 1275
+    Font.Quality = fqAntialiased
+    ParentFont = False
     TabOrder = 1
     object FlowPanel: TFlowPanel
-      Left = 10
-      Height = 1
-      Top = 10
-      Width = 1001
+      Left = 12
+      Height = 0
+      Top = 12
+      Width = 1251
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
-      BorderSpacing.Around = 10
+      BorderSpacing.Around = 12
       ControlList = <>
       FlowLayout = tlTop
       FlowStyle = fsLeftRightTopBottom
+      Font.Quality = fqAntialiased
       ParentColor = False
+      ParentFont = False
       TabOrder = 0
     end
   end
   object ActionList1: TActionList
-    left = 176
-    top = 8
+    left = 220
+    top = 10
     object ActionOpenAnother: TAction
       Caption = 'ActionOpenAnother'
       OnExecute = ActionOpenAnotherExecute

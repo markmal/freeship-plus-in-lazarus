@@ -10,7 +10,7 @@ uses
   //ShellCtrls,
   FreeShellCtrls,
   StdCtrls, Buttons,
-  ExtCtrls, PairSplitter, FileCtrl, Menus, ActnList, ShellCtrls, Math,
+  ExtCtrls, PairSplitter, FileCtrl, Menus, ActnList, Math,
   {$IFDEF WINDOWS}
   Windows, ShellApi
   {$ELSE}
@@ -297,8 +297,12 @@ begin
      ih:=SmallImageList.Height;
   if ShellListView.ViewStyle=vsIcon then
      ih:=LargeImageList.Height;
+  {$IFNDEF WINDOWS}
   fd := GetFontData(ShellListView.Font.Handle);
   fh:=fd.Height;
+  {$ELSE}
+  fh := 20;
+  {$ENDIF}
   if fh=0 then fh:=16;
   if FIconViewCellWidth = 0 then FIconViewCellWidth := 128;
   if FIconVIewCellHeight = 0 then FIconVIewCellHeight := ih + fh + 4;
@@ -473,6 +477,17 @@ begin
   end;
 end;
 
+function split(Input: string; const Delimiter: Char):TStringList;
+var Strings:TStringList;
+begin
+   Strings:=TStringList.Create;
+   Assert(Assigned(Strings)) ;
+   Strings.StrictDelimiter := true;
+   Strings.Delimiter := Delimiter;
+   Strings.DelimitedText := Input;
+   result:=Strings;
+end;
+
 procedure TFreeFilePreviewDialog.ComboBoxDirChange(Sender: TObject);
 var nm,s,cd:string; sl,sel: TStringList;
     item:TListItem; i,h:integer;
@@ -481,7 +496,7 @@ var nm,s,cd:string; sl,sel: TStringList;
 begin
  //if not ComboBoxDir.Focused then exit;
 
- sl := fileicon.Split(ComboBoxDir.Text, {System.}DirectorySeparator);
+  sl := split(ComboBoxDir.Text, {System.}DirectorySeparator);
   nm := sl[sl.Count-1];
   cd := '';
   // reconstruct path to compare with current path
@@ -535,7 +550,7 @@ var nm,s:string; sl,sel: TStringList;
     lb:TListBox; fi:TFileItem;
 begin
   //inherited KeyPress(Key);
-  sl := fileicon.Split(ComboBoxDir.Text, {System.}DirectorySeparator);
+  sl := split(ComboBoxDir.Text, {System.}DirectorySeparator);
   nm := sl[sl.Count-1];
   if (Key>#31) and (Key<#127) then
      nm := nm + key;
@@ -819,7 +834,7 @@ begin
   p:=CleanAndExpandDirectory(p);
   if n='' then
     begin
-     l := fileicon.Split(p, {System.}DirectorySeparator);
+     l := split(p, {System.}DirectorySeparator);
      n := l[l.count-2];
     end;
   ListViewPlaces.AddItem(n, TDir.Create(p) );
@@ -1395,7 +1410,8 @@ end;
 procedure TFreeFilePreviewDialog.addIconsForFile(filename:string; Item:TListItem);
 begin
 {$IFDEF WINDOWS}
- Item.ImageIndex := GetWinIconForFile(filename, isLarge, ImageList);
+ Item.ImageIndex := GetWinIconForFile(filename, true, Self.LargeImageList);
+ Item.ImageIndex := GetWinIconForFile(filename, false, Self.SmallImageList);
 {$ELSE}
  addMagicIconsForFile(filename, Item);
 {$ENDIF}

@@ -36,6 +36,9 @@ uses
 {$DEFINE NotLiteralFilenames}
 {$ENDIF}
 
+resourcestring
+  sShellCtrlsTime = 'Time';
+
 type
 
   { TObjectTypes }

@@ -26,18 +26,12 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="42"/>
+      <BuildNr Value="43"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
-    <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="qt"/>
-    </MacroValues>
     <BuildModes Count="5">
       <Item1 Name="Default Qt4" Default="True"/>
       <Item2 Name="Linux amd64 Qt4 Debug">
-        <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -97,9 +91,6 @@
         </CompilerOptions>
       </Item2>
       <Item3 Name="Linux amd64 Qt4 Release">
-        <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -178,6 +169,8 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="win32"/>
             <Optimizations>
               <OptimizationLevel Value="0"/>
             </Optimizations>
@@ -270,7 +263,7 @@
         </CompilerOptions>
       </Item5>
       <SharedMatrixOptions Count="1">
-        <Item1 ID="134221032983" Modes="Default Qt4,Linux amd64 Qt4 Debug,Windows x86 Qt4 Debug,Linux amd64 Qt4 Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
+        <Item1 ID="134221032983" Modes="Windows x86 Qt4 Debug" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
@@ -792,9 +785,6 @@
         <DebugInfoType Value="dsDwarf2"/>
         <UseValgrind Value="True"/>
       </Debugging>
-      <Options>
-        <LinkerOptions Value="-vd"/>
-      </Options>
     </Linking>
     <Other>
       <Verbosity>
@@ -805,7 +795,7 @@
         <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
       </Verbosity>
       <ExecuteBefore>
-        <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
+        <Command Value="$(ProjPath)/gitlastrev.cmd"/>
         <ShowAllMessages Value="True"/>
         <CompileReasons Run="False"/>
       </ExecuteBefore>

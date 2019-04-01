@@ -1,16 +1,17 @@
 object MainForm: TMainForm
-  Left = 499
-  Height = 800
-  Top = 159
-  Width = 1200
+  Left = 95
+  Height = 810
+  Top = 0
+  Width = 1500
   Align = alTop
-  ClientHeight = 781
-  ClientWidth = 1200
+  ClientHeight = 785
+  ClientWidth = 1500
   Color = clSilver
-  Constraints.MinHeight = 200
-  Constraints.MinWidth = 300
+  Constraints.MinHeight = 250
+  Constraints.MinWidth = 375
+  DesignTimePPI = 120
   Font.Color = clWindowText
-  Font.Height = 11
+  Font.Height = 14
   Font.Name = 'MS Sans Serif'
   FormStyle = fsMDIForm
   Menu = MainMenu1
@@ -27,16 +28,16 @@ object MainForm: TMainForm
   LCLVersion = '2.0.0.4'
   object StatusBar: TPanel
     Left = 0
-    Height = 20
-    Top = 761
-    Width = 1200
+    Height = 25
+    Top = 760
+    Width = 1500
     Align = alBottom
     BevelOuter = bvLowered
-    ClientHeight = 20
-    ClientWidth = 1200
+    ClientHeight = 25
+    ClientWidth = 1500
     Color = clBtnFace
     Font.Color = clWindowText
-    Font.Height = -9
+    Font.Height = -11
     Font.Name = 'Courier New'
     Font.Style = [fsBold]
     ParentColor = False
@@ -44,13 +45,13 @@ object MainForm: TMainForm
     TabOrder = 0
     object Panel2: TPanel
       Left = 1
-      Height = 18
+      Height = 22
       Top = 0
-      Width = 200
+      Width = 250
       BevelOuter = bvLowered
       Caption = 'Undo memory : 0 kb.'
       Font.Color = clWindowText
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentColor = False
@@ -58,14 +59,14 @@ object MainForm: TMainForm
       TabOrder = 0
     end
     object Panel3: TPanel
-      Left = 201
-      Height = 18
+      Left = 251
+      Height = 22
       Top = 0
-      Width = 200
+      Width = 250
       BevelOuter = bvLowered
       Caption = 'distance : '
       Font.Color = clWindowText
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentColor = False
@@ -74,13 +75,13 @@ object MainForm: TMainForm
       OnClick = Panel3Click
     end
     object Panel4: TPanel
-      Left = 401
-      Height = 18
+      Left = 501
+      Height = 22
       Top = 0
-      Width = 583
+      Width = 729
       BevelOuter = bvLowered
       Font.Color = clWindowText
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'Courier New'
       Font.Style = [fsBold]
       ParentColor = False
@@ -91,31 +92,39 @@ object MainForm: TMainForm
   end
   object PanelMain: TPanel
     Left = 0
-    Height = 37
+    Height = 46
     Top = 0
-    Width = 1200
+    Width = 1500
     Align = alTop
     AutoSize = True
     BorderWidth = 1
-    ClientHeight = 37
-    ClientWidth = 1200
+    ClientHeight = 46
+    ClientWidth = 1500
     Color = clSilver
+    Font.Color = clWindowText
+    Font.Height = 14
+    Font.Name = 'MS Sans Serif'
     ParentColor = False
+    ParentFont = False
     TabOrder = 1
     OnResize = PanelMainResize
     object ToolBarFile: TToolBar
       Left = 2
-      Height = 31
-      Top = 4
-      Width = 81
+      Height = 39
+      Top = 5
+      Width = 101
       Align = alNone
-      ButtonHeight = 16
-      ButtonWidth = 16
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
       Indent = 2
+      ParentFont = False
       TabOrder = 0
       Transparent = True
       object ToolButton20: TToolButton
@@ -137,27 +146,31 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton3: TToolButton
-        Left = 4
-        Top = 16
+        Left = 64
+        Top = 0
         Action = ExitProgram
         AutoSize = True
       end
     end
     object ToolBarVisibility: TToolBar
-      Left = 176
-      Height = 31
-      Top = 4
-      Width = 310
+      Left = 220
+      Height = 39
+      Top = 5
+      Width = 388
       Align = alNone
-      ButtonHeight = 16
-      ButtonWidth = 16
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarFile'
       Color = clSilver
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
       Indent = 2
       ParentColor = False
+      ParentFont = False
       TabOrder = 1
       Transparent = True
       object ToolButton8: TToolButton
@@ -246,31 +259,38 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object SpinEditFontSize: TSpinEdit
-        Left = 4
-        Height = 23
+        Left = 284
+        Height = 21
         Hint = 'Font Size'
-        Top = 16
-        Width = 36
+        Top = 0
+        Width = 45
+        Font.Color = clWindowText
+        Font.Height = 14
+        Font.Name = 'MS Sans Serif'
         MaxValue = 20
         MinValue = 3
         OnChange = SpinEditFontSizeChange
+        ParentFont = False
         TabOrder = 0
         Value = 8
       end
     end
     object ToolBarLayers: TToolBar
-      Left = 465
-      Height = 26
-      Top = 4
-      Width = 223
+      Left = 581
+      Top = 5
+      Width = 279
       Align = alNone
-      BorderSpacing.Left = 10
-      ButtonHeight = 16
-      ButtonWidth = 16
+      BorderSpacing.Left = 12
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
+      ParentFont = False
       TabOrder = 2
       Transparent = True
       object ToolButton5: TToolButton
@@ -280,65 +300,77 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton34: TToolButton
-        Left = 3
-        Top = 16
+        Left = 244
+        Top = 0
         Action = DeleteEmptyLayers
         AutoSize = True
       end
       object ToolButton33: TToolButton
-        Left = 188
+        Left = 224
         Top = 0
         Action = LayerDialog
         AutoSize = True
       end
       object ToolButton6: TToolButton
-        Left = 168
+        Left = 204
         Top = 0
         Action = LayerAutoGroup
         AutoSize = True
       end
       object ToolButton26: TToolButton
-        Left = 23
-        Top = 16
+        Left = 3
+        Top = 20
         Action = IntersectionDialog
         AutoSize = True
       end
       object LayerBox: TComboBox
         Left = 23
-        Height = 25
+        Height = 21
         Hint = 'Assign selected faces to a new layer or change the currently active layer.'
         Top = 0
-        Width = 145
-        ItemHeight = 0
+        Width = 181
+        Font.Color = clWindowText
+        Font.Height = 14
+        Font.Name = 'MS Sans Serif'
+        ItemHeight = 13
         OnChange = LayerBoxChange
+        ParentFont = False
         Style = csDropDownList
         TabOrder = 0
       end
       object PanelActiveLayerColor: TPanel
-        Left = 43
-        Height = 1
-        Top = 16
-        Width = 1
+        Left = 23
+        Height = 0
+        Top = 20
+        Width = 0
         AutoSize = True
         Caption = 'PanelActiveLayerColor'
+        Font.Color = clWindowText
+        Font.Height = 14
+        Font.Name = 'MS Sans Serif'
+        ParentFont = False
         TabOrder = 1
         OnClick = PanelActiveLayerColorClick
       end
     end
     object ToolBarPoints: TToolBar
-      Left = 689
-      Height = 20
+      Left = 861
+      Height = 25
       Top = 2
-      Width = 141
+      Width = 176
       Align = alNone
-      ButtonHeight = 16
-      ButtonWidth = 16
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarPoints'
       Color = clSilver
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
       ParentColor = False
+      ParentFont = False
       TabOrder = 3
       Transparent = True
       object ToolButton45: TToolButton
@@ -378,24 +410,28 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton47: TToolButton
-        Left = 3
-        Top = 16
+        Left = 123
+        Top = 0
         Action = LayerIntersection
         AutoSize = True
       end
     end
     object ToolBarEdit: TToolBar
-      Left = 88
-      Height = 31
+      Left = 110
+      Height = 39
       Top = 2
-      Width = 81
+      Width = 101
       Align = alNone
-      ButtonHeight = 16
-      ButtonWidth = 16
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
+      ParentFont = False
       TabOrder = 4
       Transparent = True
       object ToolButtonDelete: TToolButton
@@ -411,8 +447,8 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButtonRedo: TToolButton
-        Left = 3
-        Top = 16
+        Left = 63
+        Top = 0
         Action = Redo
         AutoSize = True
       end
@@ -425,19 +461,23 @@ object MainForm: TMainForm
       end
     end
     object ToolBarEdges: TToolBar
-      Left = 873
-      Height = 22
+      Left = 1091
+      Height = 28
       Top = 2
-      Width = 101
+      Width = 126
       Align = alNone
-      ButtonHeight = 16
-      ButtonWidth = 16
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarFile'
       Color = clSilver
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
       ParentColor = False
+      ParentFont = False
       TabOrder = 5
       Transparent = True
       object ToolButton27: TToolButton
@@ -453,8 +493,8 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton13: TToolButton
-        Left = 3
-        Top = 16
+        Left = 83
+        Top = 0
         Action = EdgeCollapse
         AutoSize = True
       end
@@ -472,17 +512,21 @@ object MainForm: TMainForm
       end
     end
     object ToolBarFaces: TToolBar
-      Left = 824
-      Height = 22
+      Left = 1030
+      Height = 28
       Top = 2
-      Width = 52
+      Width = 65
       Align = alNone
-      ButtonHeight = 16
-      ButtonWidth = 16
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
+      ParentFont = False
       TabOrder = 6
       Transparent = True
       object ToolButton24: TToolButton
@@ -499,19 +543,23 @@ object MainForm: TMainForm
       end
     end
     object ToolBarCurves: TToolBar
-      Left = 976
-      Height = 22
+      Left = 1220
+      Height = 28
       Top = 2
-      Width = 21
+      Width = 26
       Align = alNone
-      ButtonHeight = 16
-      ButtonWidth = 16
+      ButtonHeight = 20
+      ButtonWidth = 20
       Caption = 'ToolBarFile'
       Color = clSilver
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'MS Sans Serif'
       Images = MenuImages
       ParentColor = False
+      ParentFont = False
       TabOrder = 7
       Transparent = True
       object ToolButton40: TToolButton
@@ -524,8 +572,8 @@ object MainForm: TMainForm
   end
   object ActionList1: TActionList
     Images = MenuImages
-    left = 296
-    top = 72
+    left = 370
+    top = 90
     object ExportFEF: TAction
       Category = 'Export'
       Caption = 'FEF file...'
@@ -1278,8 +1326,8 @@ object MainForm: TMainForm
     end
   end
   object MenuImages: TImageList
-    left = 200
-    top = 72
+    left = 250
+    top = 90
     Bitmap = {
       4C693C0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3206,8 +3254,8 @@ object MainForm: TMainForm
   end
   object MainMenu1: TMainMenu
     Images = MenuImages
-    left = 112
-    top = 72
+    left = 140
+    top = 90
     object File1: TMenuItem
       Caption = 'File'
       object New3: TMenuItem
@@ -3694,13 +3742,13 @@ object MainForm: TMainForm
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 392
-    top = 72
+    left = 490
+    top = 90
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
-    left = 480
-    top = 72
+    left = 600
+    top = 90
   end
 end

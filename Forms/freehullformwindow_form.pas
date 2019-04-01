@@ -66,8 +66,8 @@ type
                            ScrollBar1: TScrollBar;
                            ScrollBar2: TScrollBar;
                            Viewport  : TFreeViewport;
-                           PopupMenu: TPopupMenu;
-                           ActionList1: TActionList;
+                           PopupMenuHull: TPopupMenu;
+                           ActionListHull: TActionList;
                            StandardLens: TAction;
                            WideLens: TAction;
                            Camera1: TMenuItem;
@@ -97,7 +97,7 @@ type
                            All1: TMenuItem;
                            DeselectAll: TAction;
                            Deselectall1: TMenuItem;
-                           Images: TImageList;
+                           ImagesHull: TImageList;
                            Print: TAction;
                            ShowWireFrame: TAction;
                            Mode1: TMenuItem;
@@ -109,7 +109,7 @@ type
                            ShowDevelopablity: TAction;
                            Developablitycheck1: TMenuItem;
                            Print1: TMenuItem;
-                           PrintDialog: TPrintDialog;
+                           PrintDialogHull: TPrintDialog;
                            SaveAsBitmap: TAction;
                            Saveimage1: TMenuItem;
                            ShadeZebra: TAction;
@@ -142,7 +142,7 @@ type
                            procedure ViewportRedraw(Sender: TObject);
                            procedure FormCreate(Sender: TObject);
                            procedure FormClose(Sender: TObject; var Action: TCloseAction);
-                           procedure PopupMenuPopup(Sender: TObject);
+                           procedure PopupMenuHullPopup(Sender: TObject);
                            procedure StandardLensExecute(Sender: TObject);
                            procedure WideLensExecute(Sender: TObject);
                            procedure ShortTeleLensExecute(Sender: TObject);
@@ -341,7 +341,7 @@ procedure TFreeHullForm.createFreeViewport();
       Elevation := 20;
       HorScrollbar := ScrollBar1;
       Margin := 1;
-      PopupMenu := PopupMenu;
+      PopupMenuHull := PopupMenuHull;
       VertScrollbar := ScrollBar2;
       ViewType := fvPerspective;
       ViewportMode := vmWireFrame;
@@ -365,11 +365,12 @@ procedure TFreeHullForm.FormCreate(Sender: TObject);
 var VP: TFreeViewportOpenGL;
 {$ENDIF}
 begin
-   createFreeViewport();
+{   createFreeViewport();
    ScrollBar1.Position:=Round(Viewport.Angle);
    ScrollBar2.Position:=Round(Viewport.Elevation);
    FAllowPanOrZoom:=False;
    FreeShip:=GlobalFreeShip;
+}
    {$IFDEF USEOPENGL}
    VP := TFreeViewportOpenGL.Create(Self);
    VP.Parent := ViewPort.Parent;
@@ -405,7 +406,7 @@ begin
    Action:=caFree;
 end;{TFreeHullForm.FormClose}
 
-procedure TFreeHullForm.PopupMenuPopup(Sender: TObject);
+procedure TFreeHullForm.PopupMenuHullPopup(Sender: TObject);
 begin
    UpdateMenu;
 end;{TFreeHullForm.PopupMenu1Popup}
@@ -576,7 +577,7 @@ begin
          P.X:=X;
          P.Y:=Y;
          P:=Viewport.ClientToScreen(P);
-         PopupMenu.Popup(P.X,P.Y);
+         PopupMenuHull.Popup(P.X,P.Y);
       end;
    end;
    // Reset the pan/zoom flag
@@ -602,7 +603,7 @@ procedure TFreeHullForm.PrintExecute(Sender: TObject);
 begin
    if Viewport.Width>Viewport.Height then Printer.Orientation:=poLandscape
                                      else Printer.Orientation:=poPortrait;
-   if PrintDialog.Execute then Viewport.Print(FreeShip.ProjectSettings.ProjectUnits,Viewport.ViewType<>fvPerspective,'FREE!ship '+FCaptiontext);
+   if PrintDialogHull.Execute then Viewport.Print(FreeShip.ProjectSettings.ProjectUnits,Viewport.ViewType<>fvPerspective,'FREE!ship '+FCaptiontext);
 end;{TFreeHullForm.PrintExecute}
 
 procedure TFreeHullForm.ShowWireFrameExecute(Sender: TObject);

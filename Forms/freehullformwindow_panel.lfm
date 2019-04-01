@@ -1,26 +1,24 @@
-object FreeHullWindow: TFreeHullWindow
-  Left = 641
-  Height = 300
-  Top = 402
+object FreeHullForm: TFreeHullForm
+  Left = 807
+  Height = 285
+  Top = 201
   Width = 440
   Caption = 'FreeHullWindow'
-  ClientHeight = 300
+  ClientHeight = 285
   ClientWidth = 440
   Color = clBtnFace
   FormStyle = fsMDIChild
   OnClose = FormClose
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnKeyPress = FormKeyPress
   OnKeyUp = FormKeyUp
   OnShow = FormShow
   Position = poDefault
   LCLVersion = '2.0.0.4'
-  Visible = True
   object ScrollBar1: TScrollBar
     Left = 0
     Height = 15
-    Top = 285
+    Top = 270
     Width = 440
     Align = alBottom
     LargeChange = 5
@@ -32,7 +30,7 @@ object FreeHullWindow: TFreeHullWindow
   end
   object ScrollBar2: TScrollBar
     Left = 425
-    Height = 285
+    Height = 270
     Top = 0
     Width = 15
     Align = alRight

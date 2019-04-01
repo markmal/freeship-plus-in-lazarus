@@ -55,7 +55,7 @@ uses
      Variants,
      Classes,
      Graphics,
-     IntfGraphics, GraphType, FPImage,
+     IntfGraphics, GraphType, PrintersDlgs, FPImage,
      Controls,
      Forms,
      Math,
@@ -1023,20 +1023,22 @@ begin
       begin
          // open a new window
          HullformWindow:=TFreeHullWindow.Create(Self);
+         HullformWindow.Name:='HullformWindow'+IntToStr(I);    // helps in debugging
+         HullformWindow.Viewport.Name :='Viewport'+IntToStr(I);
          HullformWindow.FreeShip:=FreeShip;
          FMDIChildList.Add(HullformWindow);
          HullformWindow.Parent:=MainClientPanel;
 
          ///HullformWindow:=TFreeHullWindow.CreateParented(self.Handle);
-         //HullformWindow.ParentWindow := self.Handle ;
+         HullformWindow.ParentWindow := self.Handle ;
          // Connect viewport to freeship component
          //HullformWindow.FreeShip:=FreeShip;
 
          HullformWindow.Viewport.ViewType:=TFreeViewType(I);
          ShowTranslatedValues(HullformWindow);
          HullformWindow.SetCaption;
-         HullformWindow.Left := I * 40;
-         HullformWindow.Top := I * 40;
+         HullformWindow.SetBounds(I * 40,I * 30,
+            ClientWidth * 3 div 4, ClientHeight * 3 div 4);
       end;
       {$ifndef LCL}
         TileMode := tbHorizontal;

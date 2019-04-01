@@ -389,6 +389,9 @@ type TFreeSubdivisionBase           = class;
               procedure Polyline(const Points: array of TPoint);                      virtual;
               procedure Polygon(const Points: array of TPoint);                      virtual;
               procedure SaveAsBitmap(Filename:string;const ShowDialog:boolean=true);   virtual;
+
+              procedure SetFocus; override;
+
               procedure SetPenWidth(Width:integer);                                    virtual;
               procedure StretchDraw(DestRect:TRect; bmp:TBitmap);                      virtual;
               Procedure ShadedColor(Dp:single;R,G,B:byte;var ROut,GOut,BOut:byte);     virtual;
@@ -3448,6 +3451,13 @@ end;{TFreeViewport.WMMouseLeave}
 constructor TFreeViewport.Create(AOwner:TComponent);
 begin
    Inherited create(AOwner);
+
+   BevelOuter := bvNone;
+   BevelInner := bvNone;
+   BevelWidth := 1;
+   BorderStyle := bsSingle;
+   BorderWidth := 0;
+
    FPrinting:=False;
    FBackgroundMode:=emNormal;
    FMargin:=0.0;
@@ -4154,6 +4164,7 @@ var OldCanvas        : TCanvas;
     L                : TFloatType;
     N                : T3DCoordinate;
 begin
+   inherited;
    if (not (csDestroying in ComponentState)) and
       (not (csLoading in ComponentState)) and
       (not (csReading in ComponentState)) and
@@ -4586,6 +4597,12 @@ begin
       end;
    end;
 end;{TFreeViewport.DoMouseWheel}
+
+procedure TFreeViewport.SetFocus;
+begin
+   inherited;
+   if assigned(Parent) then TWinControl(Parent).ActiveDefaultControlChanged(Self);
+end;
 
 procedure TFreeViewport.SetPenWidth(Width:integer);
 begin

@@ -25,9 +25,15 @@ type
   TCaptionButtons = set of TCaptionButton;
 
 type
-  TMDIPanel = class(TPanel)
+  TMDIClientPanel = class(TPanel)
+    public
+      procedure ActiveDefaultControlChanged(NewControl: TControl); override;
+  end;
+
+type
+  TMDIPanel = class(TCustomPanel)
     CaptionPanel: TPanel;
-    ClientPanel: TPanel; //TScrollBox;
+    ClientPanel: TMDIClientPanel; //TScrollBox;
     SystemButton: TSpeedButton;
     CloseButton: TSpeedButton;
     MaximizeButton: TSpeedButton;
@@ -36,6 +42,7 @@ type
     SystemPopupMenu: TPopupMenu;
     MenuItemMinimize: TMenuItem;
     MenuItemMaximize: TMenuItem;
+    MenuItemRestore: TMenuItem;
   private
     FOnClose: TCloseEvent;
     FOnCreate: TNotifyEvent;
@@ -48,12 +55,15 @@ type
     FNormalBounds: Trect; // bounds when not maximized, minimized or hidden
     FWindowState: TWindowState;
     FCornerSize: integer;
-    FWindowResizingSide: TWindowResizingSide;
+    FBorderColor: TColor;
+    FActiveBorderColor: TColor;
+    FInactiveBorderColor: TColor;
     FActive: boolean;
+    FParentForm: TCustomForm;
     FPassiveBevel: TGraphicControl;
     FClickProxies: TFPList;
     FCaptionButtons: TCaptionButtons;
-    //FActionList: TActionList;
+    FWindowResizingSide: TWindowResizingSide;
   private
 
     WindowPositionState: TWindowPositionState;
@@ -103,20 +113,22 @@ type
     function GetControl(const Index: integer): TControl;
     function GetControlCount: integer;
 
-    procedure setMouseClickProxiesRecursively(WinCtrl: TWinControl);
+    procedure setMouseClickProxiesRecursively(Ctrl: TControl);
+    procedure unsetMouseClickProxiesRecursively(Ctrl: TControl);
     procedure setMouseClickProxies;
     procedure unsetMouseClickProxies;
     procedure PassivePanelOnClick(Sender: TObject);
 
   protected
     procedure Deactivate; virtual;
+    procedure Paint; override;
+    function  GetBorderColor: TColor;
+    procedure SetActiveBorderColor(AValue: TColor);
+    procedure SetInactiveBorderColor(AValue: TColor);
     procedure SetParent(NewParent: TWinControl); override;
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
-    property Caption: TCaption read GetCaption write SetCaption;
-    property Controls[Index: integer]: TControl read GetControl;
-    property ControlCount: integer read GetControlCount;
 
     procedure InsertControl(AControl: TControl);
     procedure InsertControl(AControl: TControl; Index: integer); override;
@@ -125,15 +137,22 @@ type
     procedure setActive(val: boolean);
     procedure InactivateSiblings;
 
-    function getIcon :TIcon;
+    function  getIcon :TIcon;
     procedure setIcon(val:TIcon);
+    property Controls[Index: integer]: TControl read GetControl;
+    property ControlCount: integer read GetControlCount;
+
   published
+    property Active: boolean read FActive write setActive;
+    property BorderColor: TColor read GetBorderColor;
+    property ActiveBorderColor: TColor read FActiveBorderColor write SetActiveBorderColor default clDefault;
+    property InactiveBorderColor: TColor read FInactiveBorderColor write SetInactiveBorderColor default clDefault;
+    property Caption: TCaption read GetCaption write SetCaption;
     property Icon: TIcon read getIcon write setIcon;
     property OnClose: TCloseEvent read FOnClose write FOnClose;
     property OnCreate: TNotifyEvent read FOnCreate write FOnCreate;
     property OnDestroy: TNotifyEvent read FOnDestroy write FOnDestroy;
     property OnShow: TNotifyEvent read FOnShow write FOnShow;
-
   end;
 
   TMouseClickProxy = class
@@ -154,27 +173,38 @@ type
 implementation
 
 uses  graphtype, intfgraphics, lazcanvas, LCLType, FPImage,
-  lclproc;
-
+  types, lclproc, lcl;
 //{$R *.lfm}
 
 constructor TMDIPanel.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
+  //UpdateSysColorMap();
+
   FClickProxies := TFPList.Create;
   Name := getUniqueName('MDIPanel');
   Color := clForm;
-  BevelColor := clActiveBorder;
-  BevelInner := bvLowered;
-  BevelWidth := 4;
+  FActive:=false;
+  BevelOuter := bvNone;
+  BevelInner := bvNone;
+  BevelWidth := 1;
+
+  BorderStyle := bsSingle;
+  BorderWidth := 4;
+  FActiveBorderColor := clDefault;
+  FInactiveBorderColor := clDefault;
+
   FCornerSize := 10;
-  FWindowState := wsNormal; //wsMinimized, wsMaximized
+  FWindowState := wsNormal;
   WindowPositionState := wpsNone;
   FCaptionButtons := [cbSystemMenu, cbMinimize, cbMaximize, cbRestore, cbClose];
   CreateClientPanel;
   CreateCaptionPanel;
-  OrderButtons;
   CreateSystemPopupMenu;
+  OrderButtons;
+  SetActive(false);
+  self.setMouseClickProxies;
+  Invalidate;
 end;
 
 destructor TMDIPanel.Destroy;
@@ -354,8 +384,11 @@ begin
     AutoSize := True;
     Align := alTop;
     BevelOuter := bvNone;
+    BevelInner := bvNone;
+    BorderStyle := bsSingle;
+    BorderWidth := 0;
     Caption := 'MDIPanel';
-    Color := clActiveCaption;
+    Color := clInactiveCaption;
     Font.Color := clCaptionText;
     Font.Style := [fsBold];
     ParentColor := False;
@@ -503,7 +536,6 @@ begin
       Visible := False;
     end;
   end;
-
 end;
 
 procedure TMDIPanel.Deactivate;
@@ -522,41 +554,86 @@ begin
   SystemButton.Glyph.Assign(val);
 end;
 
-procedure TMDIPanel.SetParent(NewParent: TWinControl);
+procedure TMDIPanel.Paint;
 var
-  icn: TIcon;
+  ORect,IRect: TRect;
 begin
-  inherited SetParent(NewParent);
-  if self.Parent is TForm then
-  begin
-    icn := TForm(self.Parent).Icon;
-    if assigned(SystemButton) then
-      with SystemButton do
-      begin
-        Glyph.Assign(TForm(self.Parent).Icon);
-        if not assigned(Glyph) or (Glyph.Height = 0) then
-          begin
-          Glyph.Height := CloseButton.Glyph.Height;
-          Glyph.Width := CloseButton.Glyph.Width;
-          Glyph.Canvas.StretchDraw(
-                Rect(0,0,Glyph.Width,Glyph.Height),
-                Application.Icon);
-          //Assign(Application.Icon);
-          end;
-        if not assigned(Glyph) or (Glyph.Height = 0) then
-          Caption := ' $ ';
-        if assigned(Glyph) and (Glyph.Height > 0) then
-        begin
-          Constraints.MinWidth := Height;
-        end;
+  inherited Paint;
+  ORect := GetClientRect;
+  InflateRect(ORect, -BevelWidth, -BevelWidth);
+  Canvas.Frame3d(ORect, BorderColor, BorderColor, BorderWidth);
+end;
 
-      end;
+function TMDIPanel.GetBorderColor: TColor;
+begin
+  if Active then
+    if FActiveBorderColor <> clDefault
+      then result := FActiveBorderColor
+      else if ColorToRGB(clActiveBorder)<>ColorToRGB(clInactiveBorder)
+         then result := clActiveBorder
+         else result := clActiveCaption
+  else
+    if FInactiveBorderColor <> clDefault
+      then result := FInactiveBorderColor
+      else if ColorToRGB(clActiveBorder)<>ColorToRGB(clInactiveBorder)
+         then result := clInactiveBorder
+         else result := clInactiveCaption;
+end;
+
+procedure TMDIPanel.SetActiveBorderColor(AValue: TColor);
+begin
+  if FActiveBorderColor <> AValue then
+  begin
+    FActiveBorderColor := AValue;
+    Invalidate;
   end;
+end;
+
+procedure TMDIPanel.SetInactiveBorderColor(AValue: TColor);
+begin
+  if FInactiveBorderColor <> AValue then
+  begin
+    FInactiveBorderColor := AValue;
+    Invalidate;
+  end;
+end;
+
+
+procedure TMDIPanel.SetParent(NewParent: TWinControl);
+var H:integer;
+begin
+  if Parent = NewParent then exit;
+  inherited SetParent(NewParent);
+  FParentForm := GetParentForm(Self);
+
+  //BorderWidth := PF.BorderWidth;
+
+  if assigned(SystemButton) then
+    with SystemButton do
+    begin
+      if assigned(FParentForm) then
+         Glyph.Assign(FParentForm.Icon);
+      if not assigned(Glyph) or (Glyph.Height = 0) then
+        Glyph.Assign(Application.Icon);
+      if not assigned(Glyph) or (Glyph.Height = 0) then
+        Caption := ' $ ';
+      if assigned(Glyph) and (Glyph.Height > 0) then
+        Constraints.MinWidth := Height;
+    end;
+
+  Invalidate;
+
+  CaptionPanel.AdjustSize;
+  H := CaptionPanel.Height + 2*BorderWidth;
+  if BevelInner<>bvNone then H := H + 2*BevelWidth;
+  if BevelOuter<>bvNone then H := H + 2*BevelWidth;
+  Constraints.MinHeight := H + 4; // +4 - to prevent lower border disappear
+  Constraints.MinWidth  := 200;
 end;
 
 procedure TMDIPanel.CreateClientPanel;
 begin
-  ClientPanel := TPanel.Create(Self); //TScrollBox.Create(Self);
+  ClientPanel := TMDIClientPanel.Create(Self);
   with ClientPanel do
   begin
     Parent := Self;
@@ -566,6 +643,9 @@ begin
     Align := alClient;
     TabStop := False;
     BevelOuter := bvNone;
+    BevelInner := bvNone;
+    BorderStyle := bsSingle;
+    BorderWidth := 0;
   end;
 end;
 
@@ -581,20 +661,20 @@ var
 begin
   SystemPopupMenu := TPopupMenu.Create(Self);
 
-  MenuItem := TMenuItem.Create(Self);
-  MenuItem.Name := rsMaximize;
-  MenuItem.OnClick := self.MaximizeButton.OnClick;
-  SystemPopupMenu.Items.Add(MenuItem);
+  MenuItemMaximize := TMenuItem.Create(Self);
+  MenuItemMaximize.Name := rsMaximize;
+  MenuItemMaximize.OnClick := self.MaximizeButton.OnClick;
+  SystemPopupMenu.Items.Add(MenuItemMaximize);
 
-  MenuItem := TMenuItem.Create(Self);
-  MenuItem.Name := rsMinimize;
-  MenuItem.OnClick := self.MinimizeButton.OnClick;
-  SystemPopupMenu.Items.Add(MenuItem);
+  MenuItemMinimize := TMenuItem.Create(Self);
+  MenuItemMinimize.Name := rsMinimize;
+  MenuItemMinimize.OnClick := self.MinimizeButton.OnClick;
+  SystemPopupMenu.Items.Add(MenuItemMinimize);
 
-  MenuItem := TMenuItem.Create(Self);
-  MenuItem.Name := rsRestore;
-  MenuItem.OnClick := self.RestoreButton.OnClick;
-  SystemPopupMenu.Items.Add(MenuItem);
+  MenuItemRestore := TMenuItem.Create(Self);
+  MenuItemRestore.Name := rsRestore;
+  MenuItemRestore.OnClick := self.RestoreButton.OnClick;
+  SystemPopupMenu.Items.Add(MenuItemRestore);
 
   MenuItem := TMenuItem.Create(Self);
   MenuItem.Caption := '-';
@@ -884,6 +964,10 @@ begin
   if assigned(MinimizeButton) then
     MinimizeButton.Visible := (FWindowState <> wsMinimized);
 
+  MenuItemMinimize.Enabled := (FWindowState <> wsMinimized);
+  MenuItemMaximize.Enabled := (FWindowState <> wsMaximized);
+  MenuItemRestore.Enabled  := (FWindowState <> wsNormal);
+
   if assigned(CloseButton) then
     CloseButton.Left := 120;
   if assigned(MaximizeButton) then
@@ -962,7 +1046,11 @@ begin
   then
     inherited InsertControl(AControl, Index)
   else
+    begin
     ClientPanel.InsertControl(AControl, Index - 2); // -2 because ClientPanel and CaptionPanel
+    if not FActive then
+      setMouseClickProxiesRecursively(AControl);
+    end;
 end;
 
 procedure TMDIPanel.RemoveControl(AControl: TControl);
@@ -971,11 +1059,46 @@ begin
     (AControl = FPassiveBevel) then
     inherited RemoveControl(AControl)
   else
+    begin
     ClientPanel.RemoveControl(AControl);
+    if not Active then
+      unsetMouseClickProxiesRecursively(AControl);
+    end;
 end;
 
+procedure TMDIPanel.unsetMouseClickProxiesRecursively(Ctrl: TControl);
+var
+  i: integer;
+  C: TControl;
 
-procedure TMDIPanel.setMouseClickProxiesRecursively(WinCtrl: TWinControl);
+  procedure unsetProxyFor(C: TControl);
+  var i: integer;
+    L: TMouseClickProxy;
+  begin
+    if TMouseClickProxy.IsOnClick(C.OnClick) then
+    begin
+      i:=0;
+      repeat
+        L:=TMouseClickProxy(FClickProxies.Items[i]);
+        inc(i);
+      until L.FOwner = C;
+      C.OnClick := L.FOwnerOnClick;
+      FClickProxies.Remove(L);
+      L.Free;
+    end;
+  end;
+
+begin
+  if Ctrl is TWinControl then
+    for i := 0 to TWinControl(Ctrl).ControlCount - 1 do
+    begin
+      C := TWinControl(Ctrl).Controls[i];
+      unsetMouseClickProxiesRecursively(C);
+    end;
+  unsetProxyFor(Ctrl);
+end;
+
+procedure TMDIPanel.setMouseClickProxiesRecursively(Ctrl: TControl);
 var
   i: integer;
   C: TControl;
@@ -993,14 +1116,13 @@ var
   end;
 
 begin
-  setProxyFor(WinCtrl);
-  for i := 0 to WinCtrl.ControlCount - 1 do
-  begin
-    C := WinCtrl.Controls[i];
-    setProxyFor(C);
-    if C is TWinControl then
-      setMouseClickProxiesRecursively(TWinControl(C));
-  end;
+  setProxyFor(Ctrl);
+  if Ctrl is TWinControl then
+    for i := 0 to TWinControl(Ctrl).ControlCount - 1 do
+    begin
+      C := TWinControl(Ctrl).Controls[i];
+      setMouseClickProxiesRecursively(C);
+    end;
 end;
 
 procedure TMDIPanel.setMouseClickProxies;
@@ -1046,10 +1168,16 @@ end;
 
 procedure TMDIPanel.setActive(val: boolean);
 begin
+  if FActive = val then exit;
   FActive := val;
   if val then
   begin
-    BevelColor := clActiveBorder;
+    //BevelColor := clActiveBorder;
+    //BevelColor := clRed;
+    //Color := clActiveBorder;
+    //Color := clActiveCaption;
+    //BorderColor:=clActiveBorder;
+    //BorderColor:=clRed;
     CaptionPanel.Color := clActiveCaption;
     setZOrder(True);
     InactivateSiblings;
@@ -1057,10 +1185,14 @@ begin
   end
   else
   begin
-    BevelColor := clInactiveBorder;
+    //BevelColor := clInactiveBorder;
+    //Color := clInactiveBorder;
+    //Color := clInactiveCaption;
+    //BorderColor:=clInactiveBorder;
     CaptionPanel.Color := clInactiveCaption;
     setMouseClickProxies;
   end;
+  invalidate;
 end;
 
 procedure TMDIPanel.PassivePanelOnClick(Sender: TObject);
@@ -1117,6 +1249,19 @@ var
   PM: TMethod;
 begin
   Result := TMethod(P).Code = TMethod(@OnClick).Code;
+end;
+
+procedure TMDIClientPanel.ActiveDefaultControlChanged(NewControl: TControl);
+begin
+  if assigned(NewControl) and assigned(Parent)
+     and (Parent is TMDIPanel)
+  then
+    TMDIPanel(Parent).setActive(true);
+end;
+
+procedure Register;
+begin
+  RegisterComponents('MDIPanel', [TMDIPanel]);
 end;
 
 end.

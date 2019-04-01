@@ -1446,6 +1446,7 @@ type
       Shift: TShiftState; X, Y: integer);
     procedure MouseUp(Viewport: TFreeViewport;
       Shift: TShiftState; X, Y: integer);
+
     property ActiveControlPoint
       : TFreeSubdivisionControlPoint
       read FActiveControlPoint write FSetActiveControlPoint;
@@ -19994,179 +19995,180 @@ begin
    if Button=mbLeft then
    begin
       Case EditMode of
-         emSelectItems      : begin
-                                 Entity:=nil;
-                                 // First check the vertices
-                                 I:=1;
-                                 while I<=Surface.NumberOfControlPoints do
-                                 begin
-                                    if Surface.ControlPoint[I-1].Visible then
-                                    begin
-                                       Point:=Surface.ControlPoint[I-1];
-                                       Tmp:=Point.DistanceToCursor(X,Y,Viewport);
-                                       if Tmp<=SelectDistance then
-                                       begin
-                                          Entity:=Point;
-                                          //Point.Selected:=not Point.Selected;
-                                          ItemSelected:=True;
-                                          // Draw the selected point to all viewports
-                                          for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Point.Draw(self.Viewport[J-1]);
-                                          break;
-                                       end;
-                                    end;
-                                    Inc(I);
-                                 end;
-                                 if Entity=nil then
-                                 begin
-                                    // No points found, search for nearest controlEdge
-                                    I:=1;
-                                    while I<=Surface.NumberOfControlEdges do
-                                    begin
-                                       if Surface.ControlEdge[I-1].Visible then
-                                       begin
-                                          Edge:=Surface.ControlEdge[I-1];
-                                          Tmp:=Edge.DistanceToCursor(X,Y,P3D,Viewport);
-                                          if Tmp<=SelectDistance then
-                                          begin
-                                             Entity:=Edge;
-                                             Edge.Selected:=not Edge.Selected;
-                                             // If CTRL key is pressed, select multiple edges in one pass
-                                             // by tracing regular edges to a boundary or irregular points
-                                             if (ssCtrl in shift) then
-                                             begin
-                                                Edge.Trace;
-                                             end;
-                                             ItemSelected:=True;
-                                             // Draw the selected edge to all viewports
-                                             for J:=1 to NumberOfViewports do Self.Viewport[J-1].Refresh;
-                                             break;
-                                          end;
-                                       end;
-                                       Inc(I);
-                                    end;
-                                 end;
-                                 if (Entity=nil) and (Visibility.ShowInteriorEdges) then
-                                 begin
-                                    Surface.ShowInteriorEdges:=True;
-                                    // No edges found, search for nearest control-face
-                                    I:=1;
-                                    while I<=Surface.NumberOfControlFaces do
-                                    begin
-                                       if Surface.ControlFace[I-1].Visible then
-                                       begin
-                                          Face:=Surface.ControlFace[I-1];
-                                          Tmp:=Face.DistanceToCursor(X,Y,P3D,Viewport);
-                                          if Tmp<=SelectDistance then
-                                          begin
-                                             Entity:=Face;
-                                             Face.Selected:=not Face.Selected;
-                                             // If CTRL key is pressed, select all connected controlfaces that
-                                             // belong to the same layer and are not separated by a crease edge
-                                             // and have the same selected state
-                                             if (ssCtrl in shift) then
-                                             begin
-                                                Face.Trace;
-                                             end;
-                                             ItemSelected:=True;
-                                             // Draw the selected faces to all viewports
-                                             for J:=1 to NumberOfViewports do Self.Viewport[J-1].Refresh;
-                                             break;
-                                          end;
-                                       end;
-                                       Inc(I);
-                                    end;
-                                 end;
-                                 if (Entity=nil) then
-                                 begin
-                                    I:=1;
-                                    while I<=Surface.NumberOfControlCurves do
-                                    begin
-                                       if Surface.ControlCurve[I-1].Visible then
-                                       begin
-                                          Curve:=Surface.ControlCurve[I-1];
-                                          Tmp:=Curve.DistanceToCursor(X,Y,Viewport);
-                                          if Tmp<=SelectDistance then
-                                          begin
-                                             Entity:=Curve;
-                                             Curve.Selected:=not Curve.Selected;
-                                             ItemSelected:=True;
-                                             // Draw the selected edge to all viewports
-                                             for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Curve.Draw(self.Viewport[J-1]);
-                                             break;
-                                          end;
-                                       end;
-                                       Inc(I);
-                                    end;
-                                 end;
+        emSelectItems:
+          begin
+             Entity:=nil;
+             // First check the vertices
+             I:=1;
+             while I<=Surface.NumberOfControlPoints do
+             begin
+                if Surface.ControlPoint[I-1].Visible then
+                begin
+                   Point:=Surface.ControlPoint[I-1];
+                   Tmp:=Point.DistanceToCursor(X,Y,Viewport);
+                   if Tmp<=SelectDistance then
+                   begin
+                      Entity:=Point;
+                      //Point.Selected:=not Point.Selected;
+                      ItemSelected:=True;
+                      // Draw the selected point to all viewports
+                      for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Point.Draw(self.Viewport[J-1]);
+                      break;
+                   end;
+                end;
+                Inc(I);
+             end;
+             if Entity=nil then
+             begin
+                // No points found, search for nearest controlEdge
+                I:=1;
+                while I<=Surface.NumberOfControlEdges do
+                begin
+                   if Surface.ControlEdge[I-1].Visible then
+                   begin
+                      Edge:=Surface.ControlEdge[I-1];
+                      Tmp:=Edge.DistanceToCursor(X,Y,P3D,Viewport);
+                      if Tmp<=SelectDistance then
+                      begin
+                         Entity:=Edge;
+                         Edge.Selected:=not Edge.Selected;
+                         // If CTRL key is pressed, select multiple edges in one pass
+                         // by tracing regular edges to a boundary or irregular points
+                         if (ssCtrl in shift) then
+                         begin
+                            Edge.Trace;
+                         end;
+                         ItemSelected:=True;
+                         // Draw the selected edge to all viewports
+                         for J:=1 to NumberOfViewports do Self.Viewport[J-1].Refresh;
+                         break;
+                      end;
+                   end;
+                   Inc(I);
+                end;
+             end;
+             if (Entity=nil) and (Visibility.ShowInteriorEdges) then
+             begin
+                Surface.ShowInteriorEdges:=True;
+                // No edges found, search for nearest control-face
+                I:=1;
+                while I<=Surface.NumberOfControlFaces do
+                begin
+                   if Surface.ControlFace[I-1].Visible then
+                   begin
+                      Face:=Surface.ControlFace[I-1];
+                      Tmp:=Face.DistanceToCursor(X,Y,P3D,Viewport);
+                      if Tmp<=SelectDistance then
+                      begin
+                         Entity:=Face;
+                         Face.Selected:=not Face.Selected;
+                         // If CTRL key is pressed, select all connected controlfaces that
+                         // belong to the same layer and are not separated by a crease edge
+                         // and have the same selected state
+                         if (ssCtrl in shift) then
+                         begin
+                            Face.Trace;
+                         end;
+                         ItemSelected:=True;
+                         // Draw the selected faces to all viewports
+                         for J:=1 to NumberOfViewports do Self.Viewport[J-1].Refresh;
+                         break;
+                      end;
+                   end;
+                   Inc(I);
+                end;
+             end;
+             if (Entity=nil) then
+             begin
+                I:=1;
+                while I<=Surface.NumberOfControlCurves do
+                begin
+                   if Surface.ControlCurve[I-1].Visible then
+                   begin
+                      Curve:=Surface.ControlCurve[I-1];
+                      Tmp:=Curve.DistanceToCursor(X,Y,Viewport);
+                      if Tmp<=SelectDistance then
+                      begin
+                         Entity:=Curve;
+                         Curve.Selected:=not Curve.Selected;
+                         ItemSelected:=True;
+                         // Draw the selected edge to all viewports
+                         for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Curve.Draw(self.Viewport[J-1]);
+                         break;
+                      end;
+                   end;
+                   Inc(I);
+                end;
+             end;
 
-                                 // check flowlines
-                                 if (Entity=nil) and (not ItemSelected) and (Visibility.ShowFlowlines) then
-                                 begin
-                                    I:=1;
-                                    while I<=NumberOfFlowlines do
-                                    begin
-                                       Tmp:=Flowline[I-1].DistanceToCursor(X,Y,Viewport);
-                                       if Tmp<=SelectDistance then
-                                       begin
-                                          Flowline[I-1].Selected:=not Flowline[I-1].Selected;
-                                          ItemSelected:=True;
-                                          // Draw the selected flowline to all viewports
-                                          for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Flowline[I-1].Draw(self.Viewport[J-1]);
-                                          break;
-                                       end;
-                                       Inc(I);
-                                    end;
-                                 end;
+             // check flowlines
+             if (Entity=nil) and (not ItemSelected) and (Visibility.ShowFlowlines) then
+             begin
+                I:=1;
+                while I<=NumberOfFlowlines do
+                begin
+                   Tmp:=Flowline[I-1].DistanceToCursor(X,Y,Viewport);
+                   if Tmp<=SelectDistance then
+                   begin
+                      Flowline[I-1].Selected:=not Flowline[I-1].Selected;
+                      ItemSelected:=True;
+                      // Draw the selected flowline to all viewports
+                      for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Flowline[I-1].Draw(self.Viewport[J-1]);
+                      break;
+                   end;
+                   Inc(I);
+                end;
+             end;
 
-                                 // check Markers
-                                 if (Entity=nil) and (not ItemSelected) and (Visibility.ShowMarkers) then
-                                 begin
-                                    I:=1;
-                                    while I<=NumberOfMarkers do
-                                    begin
-                                       Tmp:=Marker[I-1].DistanceToCursor(X,Y,Viewport);
-                                       if Tmp<=SelectDistance then
-                                       begin
-                                          Marker[I-1].Selected:=not Marker[I-1].Selected;
-                                          ItemSelected:=True;
-                                          // Draw the selected Marker to all viewports
-                                          for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Marker[I-1].Draw(self.Viewport[J-1]);
-                                          break;
-                                       end;
-                                       Inc(I);
-                                    end;
-                                 end;
+             // check Markers
+             if (Entity=nil) and (not ItemSelected) and (Visibility.ShowMarkers) then
+             begin
+                I:=1;
+                while I<=NumberOfMarkers do
+                begin
+                   Tmp:=Marker[I-1].DistanceToCursor(X,Y,Viewport);
+                   if Tmp<=SelectDistance then
+                   begin
+                      Marker[I-1].Selected:=not Marker[I-1].Selected;
+                      ItemSelected:=True;
+                      // Draw the selected Marker to all viewports
+                      for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then Marker[I-1].Draw(self.Viewport[J-1]);
+                      break;
+                   end;
+                   Inc(I);
+                end;
+             end;
 
 
-                                 if Entity<>nil then // apparently SOMEthing has been selected
-                                 begin
-                                    if Entity is TFreeSubdivisionControlPoint then
-                                    begin
-                                       // If CTRL key is pressed, selection of multiple controlpoints is allowed,
-                                       // otherwise select only ONE controlpoint
-                                       Point:=Entity as TFreeSubdivisionControlPoint;
-                                       if not (ssCtrl in shift) then
-                                       begin
-                                          if NumberOfSelectedControlPoints>0 then for I:=NumberOfSelectedControlPoints downto 1 do SelectedControlPoint[I-1].Selected:=False;
-                                          Point.Selected:=True;
-                                          for J:=1 to NumberOfViewports do self.Viewport[J-1].Refresh;
-                                       end else
-                                       begin
-                                          Point.Selected:=not Point.Selected;
-                                          if not Point.Selected then Point:=SelectedControlPoint[NumberOfSelectedControlPoints-1];
-                                          for J:=1 to NumberOfViewports do self.Viewport[J-1].Refresh;
-                                       end;
-                                       if ActiveControlPoint<>point then ActiveControlPoint:=Point;
-                                       FCurrentlyMoving:=True;
-                                       FPointHasBeenMoved:=False;
-                                       FPrevCursorPosition.X:=X;
-                                       FPrevCursorPosition.Y:=Y;
-                                    end else if Entity is TFreeSubdivisionControlCurve then
-                                    begin
-                                       for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then self.Viewport[J-1].Refresh;
-                                    end;
-                                 end;
-                              end;
+             if Entity<>nil then // apparently SOMEthing has been selected
+             begin
+                if Entity is TFreeSubdivisionControlPoint then
+                begin
+                   // If CTRL key is pressed, selection of multiple controlpoints is allowed,
+                   // otherwise select only ONE controlpoint
+                   Point:=Entity as TFreeSubdivisionControlPoint;
+                   if not (ssCtrl in shift) then
+                   begin
+                      if NumberOfSelectedControlPoints>0 then for I:=NumberOfSelectedControlPoints downto 1 do SelectedControlPoint[I-1].Selected:=False;
+                      Point.Selected:=True;
+                      for J:=1 to NumberOfViewports do self.Viewport[J-1].Refresh;
+                   end else
+                   begin
+                      Point.Selected:=not Point.Selected;
+                      if not Point.Selected then Point:=SelectedControlPoint[NumberOfSelectedControlPoints-1];
+                      for J:=1 to NumberOfViewports do self.Viewport[J-1].Refresh;
+                   end;
+                   if ActiveControlPoint<>point then ActiveControlPoint:=Point;
+                   FCurrentlyMoving:=True;
+                   FPointHasBeenMoved:=False;
+                   FPrevCursorPosition.X:=X;
+                   FPrevCursorPosition.Y:=Y;
+                end else if Entity is TFreeSubdivisionControlCurve then
+                begin
+                   for J:=1 to NumberOfViewports do if self.Viewport[J-1].ViewportMode=vmWireframe then self.Viewport[J-1].Refresh;
+                end;
+             end;
+          end;
       end;
    end else if Button=mbRight then
    begin
@@ -20182,65 +20184,67 @@ var P2D  : T2DCoordinate;
     Point: TFreeSubdivisionControlPoint;
     I    : Integer;
 begin
-   Case EditMode of
-      emSelectItems      : if (ActiveControlPoint<>nil) and (FCurrentlyMoving) and (ssLeft in shift) and (Viewport.ViewType<>fvPerspective) then
-                           begin
-                              if (X<>FPrevCursorPosition.X) or (Y<>FPrevCursorPosition.Y) then
-                              begin
-                                 if FPointHasBeenMoved=False then
-                                 begin
-                                    // This is the first time the vertex is moved
-                                    // Apply a certain threshold to make sure that
-                                    // the controlpoint is not moved by accident
-                                    if Sqrt(Sqr(X-FPrevCursorPosition.X)+Sqr(Y-FPrevCursorPosition.Y))<Threshold then exit;
-                                    if ActiveControlPoint.Locked then
-                                    begin
-                                       MessageDlg(Userstring(191)+'!',mtWarning,[mbOk],0);
-                                       exit;
-                                    end;
-                                    Edit.CreateUndoObject(Userstring(190),True);
-                                 end;
-                                 Point:=ActiveControlPoint;
-                                 FileChanged:=True;
-                                 Build:=False;
-                                 FPointHasBeenMoved:=True;
-                                 Pt.X:=X;
-                                 Pt.Y:=Y;
-                                 P2D:=Viewport.ProjectBackTo2D(Pt);
-                                 P:=Point.Coordinate;
-                                 Case Viewport.Viewtype of
-                                    fvProfile      : begin
-                                                        P.X:=P2D.X;
-                                                        P.Z:=P2D.Y;
-                                                     end;
-                                    fvPlan         : begin
-                                                        P.X:=P2D.X;
-                                                        P.Y:=P2D.Y;
-                                                     end;
-                                    fvBodyplan     : begin
-                                                        if P.X<=ProjectSettings.ProjectMainframeLocation then P.Y:=-P2D.X
-                                                                                                         else P.Y:=P2D.X;
-                                                        P.Z:=P2D.Y;
-                                                     end;
-                                 end;
-                                 Point.Coordinate:=P;
-                                 ActiveControlPoint:=Point;
-                                 if ControlpointForm.Visible then
-                                 begin
-                                    // This lines updates the coordinate information in the controlpoint form
-                                    ControlPointform.ActiveControlPoint:=Point;
-                                    // and forces a repaint of the form
-                                    if not Viewport.Focused then Viewport.SetFocus;
-                                    application.ProcessMessages;
-                                    TForm(Viewport.Owner).BringToFront;
-                                 end;
-                                 Build:=False;
-                                 for I:=1 to NumberOfViewports do self.Viewport[I-1].Refresh;
-                                 if LinesplanFrame<>nil then TFreeLinesplanframe(LinesplanFrame).Viewport.Refresh;
-                                 FPrevCursorPosition.X:=X;
-                                 FPrevCursorPosition.Y:=Y;
-                              end;
-                           end;
+   case EditMode of
+      emSelectItems:
+       if (ActiveControlPoint<>nil) and (FCurrentlyMoving)
+          and (ssLeft in shift) and (Viewport.ViewType<>fvPerspective) then
+         begin
+            if (X<>FPrevCursorPosition.X) or (Y<>FPrevCursorPosition.Y) then
+            begin
+               if FPointHasBeenMoved=False then
+               begin
+                  // This is the first time the vertex is moved
+                  // Apply a certain threshold to make sure that
+                  // the controlpoint is not moved by accident
+                  if Sqrt(Sqr(X-FPrevCursorPosition.X)+Sqr(Y-FPrevCursorPosition.Y))<Threshold then exit;
+                  if ActiveControlPoint.Locked then
+                  begin
+                     MessageDlg(Userstring(191)+'!',mtWarning,[mbOk],0);
+                     exit;
+                  end;
+                  Edit.CreateUndoObject(Userstring(190),True);
+               end;
+               Point:=ActiveControlPoint;
+               FileChanged:=True;
+               Build:=False;
+               FPointHasBeenMoved:=True;
+               Pt.X:=X;
+               Pt.Y:=Y;
+               P2D:=Viewport.ProjectBackTo2D(Pt);
+               P:=Point.Coordinate;
+               Case Viewport.Viewtype of
+                  fvProfile      : begin
+                                      P.X:=P2D.X;
+                                      P.Z:=P2D.Y;
+                                   end;
+                  fvPlan         : begin
+                                      P.X:=P2D.X;
+                                      P.Y:=P2D.Y;
+                                   end;
+                  fvBodyplan     : begin
+                                      if P.X<=ProjectSettings.ProjectMainframeLocation then P.Y:=-P2D.X
+                                                                                       else P.Y:=P2D.X;
+                                      P.Z:=P2D.Y;
+                                   end;
+               end;
+               Point.Coordinate:=P;
+               ActiveControlPoint:=Point;
+               if ControlpointForm.Visible then
+               begin
+                  // This lines updates the coordinate information in the controlpoint form
+                  ControlPointform.ActiveControlPoint:=Point;
+                  // and forces a repaint of the form
+                  if not Viewport.Focused then Viewport.SetFocus;
+                  application.ProcessMessages;
+                  TForm(Viewport.Owner).BringToFront;
+               end;
+               Build:=False;
+               for I:=1 to NumberOfViewports do self.Viewport[I-1].Refresh;
+               if LinesplanFrame<>nil then TFreeLinesplanframe(LinesplanFrame).Viewport.Refresh;
+               FPrevCursorPosition.X:=X;
+               FPrevCursorPosition.Y:=Y;
+            end;
+         end;
    end;
 end;{TFreeShip.MouseMove}
 

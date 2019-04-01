@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 498
+  Left = 629
   Height = 800
-  Top = 196
+  Top = 232
   Width = 1200
   Align = alTop
   ClientHeight = 781
@@ -526,8 +526,8 @@ object MainForm: TMainForm
   end
   object ActionList1: TActionList
     Images = MenuImages
-    left = 296
-    top = 72
+    left = 112
+    top = 200
     object ExportFEF: TAction
       Category = 'Export'
       Caption = 'FEF file...'
@@ -1280,8 +1280,8 @@ object MainForm: TMainForm
     end
   end
   object MenuImages: TImageList
-    left = 200
-    top = 72
+    left = 112
+    top = 136
     Bitmap = {
       4C693C0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3696,13 +3696,13 @@ object MainForm: TMainForm
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 392
+    left = 240
     top = 72
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
-    left = 480
-    top = 72
+    left = 240
+    top = 136
   end
 end

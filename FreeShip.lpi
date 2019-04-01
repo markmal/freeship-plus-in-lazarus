@@ -26,7 +26,7 @@
       <MajorVersionNr Value="3"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="59"/>
+      <BuildNr Value="62"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
     <MacroValues Count="1">

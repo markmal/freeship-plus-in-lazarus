@@ -226,14 +226,19 @@ end;
 
 function TMDIPanel.drawCloseIcon(size: integer): TBitmap;
 var
-  scale, i, r, k: integer;
+  scale, i, r, k, AlphaShift: integer;
   AImage: TLazIntfImage;
   ACanvas: TLazCanvas;
   lRawImage: TRawImage;
   ImgHandle, ImgMaskHandle: HBitmap;
 begin
+  lRawImage.Description:=GetDescriptionFromDevice(0);
+  AlphaShift := lRawImage.Description.AlphaShift;
   lRawImage.Init;
-  lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size);
+  if AlphaShift = 0 then
+    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size) // linux
+  else
+    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size); // windows
   lRawImage.CreateData(True);
   AImage := TLazIntfImage.Create(0, 0);
   AImage.SetRawImage(lRawImage);
@@ -270,14 +275,20 @@ end;
 
 function TMDIPanel.drawMaximizeIcon(size: integer): TBitmap;
 var
-  scale, i, r: integer;
+  scale, i, r, AlphaShift: integer;
   AImage: TLazIntfImage;
   ACanvas: TLazCanvas;
   lRawImage: TRawImage;
   ImgHandle, ImgMaskHandle: HBitmap;
 begin
+  lRawImage.Description:=GetDescriptionFromDevice(0);
+  AlphaShift := lRawImage.Description.AlphaShift;
   lRawImage.Init;
-  lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size);
+  if AlphaShift = 0 then
+    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size) // linux
+  else
+    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size); // windows
+
   lRawImage.CreateData(True);
   AImage := TLazIntfImage.Create(0, 0);
   AImage.SetRawImage(lRawImage);
@@ -301,14 +312,19 @@ end;
 
 function TMDIPanel.drawMinimizeIcon(size: integer): TBitmap;
 var
-  scale, i, r: integer;
+  scale, i, r, AlphaShift: integer;
   AImage: TLazIntfImage;
   ACanvas: TLazCanvas;
   lRawImage: TRawImage;
   ImgHandle, ImgMaskHandle: HBitmap;
 begin
+  lRawImage.Description:=GetDescriptionFromDevice(0);
+  AlphaShift := lRawImage.Description.AlphaShift;
   lRawImage.Init;
-  lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size);
+  if AlphaShift = 0 then
+    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size) // linux
+  else
+    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size); // windows
   lRawImage.CreateData(True);
   AImage := TLazIntfImage.Create(0, 0);
   AImage.SetRawImage(lRawImage);
@@ -333,32 +349,42 @@ end;
 function TMDIPanel.drawRestoreIcon(size: integer): TBitmap;
 var
   scale, i, r: integer;
-  AImage: TLazIntfImage;
+  IntfImg: TLazIntfImage;
   ACanvas: TLazCanvas;
   lRawImage: TRawImage;
   ImgHandle, ImgMaskHandle: HBitmap;
 begin
-  lRawImage.Init;
-  lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size);
+  {lRawImage.Init;
+  //lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size);   // works in Linux
+  lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size);
+  lRawImage.Description.Init_BPP24_B8G8R8_BIO_TTB(size, size);
   lRawImage.CreateData(True);
-  AImage := TLazIntfImage.Create(0, 0);
-  AImage.SetRawImage(lRawImage);
-  ACanvas := TLazCanvas.Create(AImage);
+  AImage := TLazIntfImage.Create(size, size);
+  AImage.SetRawImage(lRawImage);}
+
+  IntfImg := TLazIntfImage.Create(0,0);
+  IntfImg.DataDescription:=GetDescriptionFromDevice(0);
+  IntfImg.SetSize(size,size);
+
+  ACanvas := TLazCanvas.Create(IntfImg);
 
   scale := size div 8;
+  ACanvas.Brush.FPColor := FPColor(0, 0, 0, 0);
+  ACanvas.FillRect(0, 0, size, size);
   ACanvas.Pen.FPColor := FPColor(0, 0, 0, $FFFF);
   i := scale * 2;
   r := size - i;
   ACanvas.Pen.Width := scale;
   ACanvas.Rectangle(i, i, r, r);
 
-  AImage.CreateBitmaps(ImgHandle, ImgMaskHandle, False);
+  IntfImg.CreateBitmaps(ImgHandle, ImgMaskHandle, False);
   Result := TBitmap.Create;
-  Result.Handle := ImgHandle;
-  Result.MaskHandle := ImgMaskHandle;
+  //Result.Handle := ImgHandle;
+  //Result.MaskHandle := ImgMaskHandle;
+  Result.LoadFromIntfImage(IntfImg);
 
   ACanvas.Free;
-  AImage.Free;
+  IntfImg.Free;
 end;
 
 
@@ -632,6 +658,7 @@ begin
 end;
 
 procedure TMDIPanel.CreateClientPanel;
+var Image1:TImage;
 begin
   ClientPanel := TMDIClientPanel.Create(Self);
   with ClientPanel do
@@ -802,8 +829,8 @@ begin
 
   if (Shift = [ssLeft]) and (WindowPositionState = wpsResizing) then
   begin
-    writeln('m:', Mouse.CursorPos.X, ':', Mouse.CursorPos.Y, ' sender:',
-      TControl(Sender).Name);
+    //writeln('m:', Mouse.CursorPos.X, ':', Mouse.CursorPos.Y, ' sender:',
+      //TControl(Sender).Name);
     L := Left;
     T := Top;
     W := Width;

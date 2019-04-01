@@ -213,6 +213,23 @@ begin
       and (AlphaPrec=0)
       and (MaskBitsPerPixel=0)
     then FBitMapDataFormat := bmdf_BPP16_B5G6R5
+    //  24
+    else if
+      (Format = ricfRGBA) and (PaletteColorCount = 0)
+      and (Depth = 24) // used bits per pixel
+      and (BitOrder = riboBitsInOrder)
+      and (ByteOrder = DefaultByteOrder)
+      and (BitsPerPixel = 24) // bits per pixel. can be greater than Depth.
+      and (RedPrec = 8) // red precision. bits for red
+      and (RedShift = 16)
+      and (GreenPrec = 8)
+      and (GreenShift = 8) // bitshift. Direction from least to most significant
+      and (BluePrec = 8)
+      and (BlueShift=0)
+      and (AlphaPrec=0)
+      and (AlphaShift=0)
+      and (MaskBitsPerPixel=0)
+    then FBitMapDataFormat := bmdf_BPP24_B8G8R8
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 24) // used bits per pixel
@@ -228,6 +245,21 @@ begin
       and (AlphaPrec=0)
       and (MaskBitsPerPixel=0)
     then FBitMapDataFormat := bmdf_BPP24_R8G8B8
+    else if
+      (Format = ricfRGBA) and (PaletteColorCount = 0)
+      and (Depth = 24) // used bits per pixel
+      and (BitOrder = riboReversedBits)
+      and (ByteOrder = riboLSBFirst)
+      and (BitsPerPixel = 24) // bits per pixel. can be greater than Depth.
+      and (RedPrec = 8) // red precision. bits for red
+      and (RedShift = 16)
+      and (GreenPrec = 8)
+      and (GreenShift = 8) // bitshift. Direction from least to most significant
+      and (BluePrec = 8)
+      and (BlueShift=0)
+      and (AlphaPrec=0)
+      //and (MaskBitsPerPixel=0)
+    then FBitMapDataFormat := bmdf_BPP24_B8G8R8      // not sure what reverce bit order means here
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 24) // used bits per pixel
@@ -260,6 +292,23 @@ begin
     then FBitMapDataFormat := bmdf_BPP32_B8G8R8      // not sure what reverce bit order means here
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
+      and (Depth = 24) // used bits per pixel
+      and (BitOrder = riboBitsInOrder)
+      and (ByteOrder = DefaultByteOrder)
+      and (BitsPerPixel = 32) // bits per pixel. can be greater than Depth.
+      and (RedPrec = 8) // red precision. bits for red
+      and (RedShift = 16)
+      and (GreenPrec = 8)
+      and (GreenShift = 8) // bitshift. Direction from least to most significant
+      and (BluePrec = 8)
+      and (BlueShift=0)
+      and (AlphaPrec=0)
+      and (AlphaShift=0)
+      //and (MaskBitsPerPixel=0) // Ignore mask, we do not need it for our purposes
+    then FBitMapDataFormat := bmdf_BPP32_B8G8R8
+    // 32
+    else if
+      (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 32) // used bits per pixel
       and (BitOrder = riboBitsInOrder)
       and (ByteOrder = riboLSBFirst)
@@ -290,38 +339,6 @@ begin
       and (AlphaShift=24)
       and (MaskBitsPerPixel=0)
     then FBitMapDataFormat := bmdf_BPP32_R8G8B8A8
-    else if
-      (Format = ricfRGBA) and (PaletteColorCount = 0)
-      and (Depth = 24) // used bits per pixel
-      and (BitOrder = riboBitsInOrder)
-      and (ByteOrder = DefaultByteOrder)
-      and (BitsPerPixel = 24) // bits per pixel. can be greater than Depth.
-      and (RedPrec = 8) // red precision. bits for red
-      and (RedShift = 16)
-      and (GreenPrec = 8)
-      and (GreenShift = 8) // bitshift. Direction from least to most significant
-      and (BluePrec = 8)
-      and (BlueShift=0)
-      and (AlphaPrec=0)
-      and (AlphaShift=0)
-      and (MaskBitsPerPixel=0)
-    then FBitMapDataFormat := bmdf_BPP24_B8G8R8
-    else if
-      (Format = ricfRGBA) and (PaletteColorCount = 0)
-      and (Depth = 24) // used bits per pixel
-      and (BitOrder = riboBitsInOrder)
-      and (ByteOrder = DefaultByteOrder)
-      and (BitsPerPixel = 32) // bits per pixel. can be greater than Depth.
-      and (RedPrec = 8) // red precision. bits for red
-      and (RedShift = 16)
-      and (GreenPrec = 8)
-      and (GreenShift = 8) // bitshift. Direction from least to most significant
-      and (BluePrec = 8)
-      and (BlueShift=0)
-      and (AlphaPrec=0)
-      and (AlphaShift=0)
-      //and (MaskBitsPerPixel=0) // Ignore mask, we do not need it for our purposes
-    then FBitMapDataFormat := bmdf_BPP32_B8G8R8
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 32) // used bits per pixel

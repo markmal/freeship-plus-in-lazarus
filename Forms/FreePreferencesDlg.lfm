@@ -1,7 +1,7 @@
 object FreePreferencesDialog: TFreePreferencesDialog
-  Left = 558
+  Left = 579
   Height = 525
-  Top = 289
+  Top = 296
   Width = 582
   AutoSize = True
   BorderStyle = bsToolWindow
@@ -15,6 +15,129 @@ object FreePreferencesDialog: TFreePreferencesDialog
   ParentFont = True
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
+  object Panel3: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 582
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 26
+    ClientWidth = 582
+    TabOrder = 0
+    object BitBtn2: TSpeedButton
+      Left = 499
+      Height = 20
+      Top = 3
+      Width = 80
+      Align = alRight
+      AutoSize = True
+      BorderSpacing.Around = 3
+      Constraints.MinWidth = 80
+      Caption = 'Cancel'
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF00000000000000000000000000000000000000000000
+        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF000000000000000000000000000000000000
+        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF000000002110C0FF2110
+        C0FF2110C0FF2110C0FF00000000000000000000000000000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF00000000000000000000000000000000000000002110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF000000000000000000000000000000002110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF0000000000000000000000002110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF00000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF00000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF0000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000
+        00000000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF000000000000
+        00000000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000000000
+        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000000000
+        0000000000002110C0FF2110C0FF2110C0FF2110C0FF00000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000000000
+        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000000000
+        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF00000000000000000000000000000000
+      }
+      OnClick = BitBtn2Click
+    end
+    object BitBtn1: TSpeedButton
+      Left = 416
+      Height = 20
+      Top = 3
+      Width = 80
+      Align = alRight
+      AutoSize = True
+      BorderSpacing.Around = 3
+      Constraints.MinWidth = 80
+      Caption = 'OK'
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        00000000000000000000000000000EA628FF0EA628FF00000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000EA628FF0EA628FF00000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000EA628FF0EA628FF0EA628FF000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000EA628FF0EA628FF0EA628FF0EA628FF000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000EA628FF0EA628FF0EA628FF0EA628FF000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA6
+        28FF000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF00000000000000000EA628FF0EA628FF0EA6
+        28FF000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000000000000EA628FF0EA628FF0EA6
+        28FF0EA628FF0000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000000000000EA628FF0EA6
+        28FF0EA628FF0EA628FF00000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000EA6
+        28FF0EA628FF0EA628FF00000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000EA6
+        28FF0EA628FF0EA628FF0EA628FF000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF0EA628FF0000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000EA628FF0EA628FF0EA628FF0000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000EA628FF0EA628FF0EA628FF0000000000000000
+      }
+      OnClick = BitBtn1Click
+    end
+    object SpeedButton3: TSpeedButton
+      Left = 10
+      Height = 23
+      Top = 0
+      Width = 80
+      AutoSize = True
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 10
+      Constraints.MinWidth = 80
+      Caption = 'Reset'
+      Margin = 4
+      OnClick = SpeedButton3Click
+    end
+  end
   object Panel1: TPanel
     Left = 0
     Height = 499
@@ -26,7 +149,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
     BorderWidth = 10
     ClientHeight = 499
     ClientWidth = 582
-    TabOrder = 0
+    TabOrder = 1
     object PageControl1: TPageControl
       Left = 11
       Height = 477
@@ -719,609 +842,627 @@ object FreePreferencesDialog: TFreePreferencesDialog
           Top = 0
           Width = 554
           Align = alClient
-          BevelOuter = bvLowered
+          BevelOuter = bvNone
           ClientHeight = 444
           ClientWidth = 554
           TabOrder = 0
-          object Label1: TLabel
-            Left = 16
-            Height = 15
-            Top = 118
-            Width = 138
-            Caption = 'Viewport background'
-            ParentColor = False
-          end
-          object Label2: TLabel
-            Left = 16
-            Height = 15
-            Top = 197
-            Width = 88
-            Caption = 'New surfaces'
-            ParentColor = False
-          end
-          object Label3: TLabel
-            Left = 16
-            Height = 15
-            Top = 217
-            Width = 133
-            Caption = 'Submerged surfaces'
-            ParentColor = False
-          end
-          object Label4: TLabel
-            Left = 16
-            Height = 15
-            Top = 317
-            Width = 141
-            Caption = 'Regular control edges'
-            ParentColor = False
-          end
-          object Label5: TLabel
-            Left = 16
-            Height = 15
-            Top = 337
-            Width = 147
-            Caption = 'Crease edges (control)'
-            ParentColor = False
-          end
-          object Label6: TLabel
-            Left = 16
-            Height = 15
-            Top = 357
-            Width = 149
-            Caption = 'Crease edges (interior)'
-            ParentColor = False
-          end
-          object Label7: TLabel
-            Left = 248
-            Height = 15
-            Top = 77
-            Width = 142
-            Caption = 'Regular control points'
-            ParentColor = False
-          end
-          object Label8: TLabel
-            Left = 248
-            Height = 15
-            Top = 97
-            Width = 89
-            Caption = 'Crease points'
-            ParentColor = False
-          end
-          object Label9: TLabel
-            Left = 248
-            Height = 15
-            Top = 117
-            Width = 87
-            Caption = 'Corner points'
-            ParentColor = False
-          end
-          object Label10: TLabel
-            Left = 248
-            Height = 15
-            Top = 137
-            Width = 72
-            Caption = 'Dart points'
-            ParentColor = False
-          end
-          object Label11: TLabel
-            Left = 248
-            Height = 15
-            Top = 197
-            Width = 97
-            Caption = 'Selected items'
-            ParentColor = False
-          end
-          object Label12: TLabel
-            Left = 16
-            Height = 15
-            Top = 138
-            Width = 87
-            Caption = 'Viewport grid'
-            ParentColor = False
-          end
-          object Label13: TLabel
-            Left = 16
-            Height = 15
-            Top = 158
-            Width = 57
-            Caption = 'Grid font'
-            ParentColor = False
-          end
-          object Label14: TLabel
-            Left = 248
-            Height = 15
-            Top = 257
-            Width = 53
-            Caption = 'Stations'
-            ParentColor = False
-          end
-          object Label15: TLabel
-            Left = 248
-            Height = 15
-            Top = 277
-            Width = 57
-            Caption = 'Buttocks'
-            ParentColor = False
-          end
-          object Label16: TLabel
-            Left = 248
-            Height = 15
-            Top = 297
-            Width = 69
-            Caption = 'Waterlines'
-            ParentColor = False
-          end
-          object Label17: TLabel
-            Left = 16
-            Height = 15
-            Top = 77
-            Width = 110
-            Caption = 'Controlpoint size'
-            ParentColor = False
-          end
-          object Label18: TLabel
-            Left = 16
-            Height = 15
-            Top = 237
-            Width = 106
-            Caption = 'Surface normals'
-            ParentColor = False
-          end
-          object Label19: TLabel
-            Left = 248
-            Height = 15
-            Top = 317
-            Width = 65
-            Caption = 'Diagonals'
-            ParentColor = False
-          end
-          object Label20: TLabel
-            Left = 248
-            Height = 15
-            Top = 157
-            Width = 75
-            Caption = 'Leak points'
-            ParentColor = False
-          end
-          object Label21: TLabel
-            Left = 248
-            Height = 15
-            Top = 237
-            Width = 52
-            Caption = 'Markers'
-            ParentColor = False
-          end
-          object Label22: TLabel
-            Left = 248
-            Height = 15
-            Top = 217
-            Width = 100
-            Caption = 'Curvature plots'
-            ParentColor = False
-          end
-          object Label23: TLabel
-            Left = 16
-            Height = 15
-            Top = 277
-            Width = 94
-            Caption = 'Control curves'
-            ParentColor = False
-          end
-          object Label24: TLabel
-            Left = 248
-            Height = 15
-            Top = 337
-            Width = 148
-            Caption = 'Hydrostatics font color'
-            ParentColor = False
-          end
-          object Label25: TLabel
-            Left = 248
-            Height = 15
-            Top = 357
-            Width = 122
-            Caption = 'Zebra stripes color'
-            ParentColor = False
-          end
-          object Panel4: TPanel
-            Left = 168
-            Height = 18
-            Top = 114
-            Width = 45
-            BevelOuter = bvLowered
+          object Panel37: TPanel
+            Left = 0
+            Height = 33
+            Top = 10
+            Width = 554
+            Align = alTop
+            AutoSize = True
+            BorderSpacing.Top = 10
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 4
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 33
+            ClientWidth = 554
             TabOrder = 0
-            OnClick = ColorPanelClick
+            object Label38: TLabel
+              Left = 10
+              Height = 25
+              Top = 4
+              Width = 45
+              Caption = 'Theme'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object ComboBoxThemes: TComboBox
+              Left = 61
+              Height = 25
+              Top = 4
+              Width = 200
+              Constraints.MinWidth = 200
+              ItemHeight = 0
+              OnChange = ComboBoxThemesChange
+              Sorted = True
+              TabOrder = 0
+              Text = 'ComboBoxThemes'
+            end
           end
-          object Panel2: TPanel
-            Left = 168
-            Height = 18
-            Top = 194
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 3
-            OnClick = ColorPanelClick
-          end
-          object Panel5: TPanel
-            Left = 168
-            Height = 18
-            Top = 214
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 4
-            OnClick = ColorPanelClick
-          end
-          object Panel6: TPanel
-            Left = 168
-            Height = 18
-            Top = 314
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 6
-            OnClick = ColorPanelClick
-          end
-          object Panel7: TPanel
-            Left = 168
-            Height = 18
-            Top = 334
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 7
-            OnClick = ColorPanelClick
-          end
-          object Panel8: TPanel
-            Left = 168
-            Height = 18
-            Top = 354
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 8
-            OnClick = ColorPanelClick
-          end
-          object Panel9: TPanel
-            Left = 384
-            Height = 18
-            Top = 72
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 9
-            OnClick = ColorPanelClick
-          end
-          object Panel10: TPanel
-            Left = 384
-            Height = 18
-            Top = 94
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 10
-            OnClick = ColorPanelClick
-          end
-          object Panel11: TPanel
-            Left = 384
-            Height = 18
-            Top = 114
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 11
-            OnClick = ColorPanelClick
-          end
-          object Panel12: TPanel
-            Left = 384
-            Height = 18
-            Top = 134
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 12
-            OnClick = ColorPanelClick
-          end
-          object Panel13: TPanel
-            Left = 384
-            Height = 20
-            Top = 194
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 14
-            OnClick = ColorPanelClick
-          end
-          object Panel14: TPanel
-            Left = 168
-            Height = 18
-            Top = 134
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 1
-            OnClick = ColorPanelClick
-          end
-          object Panel15: TPanel
-            Left = 168
-            Height = 18
-            Top = 154
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 2
-            OnClick = ColorPanelClick
-          end
-          object Panel16: TPanel
-            Left = 384
-            Height = 18
-            Top = 254
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 17
-            OnClick = ColorPanelClick
-          end
-          object Panel17: TPanel
-            Left = 384
-            Height = 18
-            Top = 274
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 18
-            OnClick = ColorPanelClick
-          end
-          object Panel18: TPanel
-            Left = 384
-            Height = 18
-            Top = 294
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 19
-            OnClick = ColorPanelClick
-          end
-          object Panel19: TPanel
-            Left = 168
-            Height = 18
-            Top = 234
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 5
-            OnClick = ColorPanelClick
-          end
-          object Panel20: TPanel
-            Left = 384
-            Height = 18
-            Top = 314
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 20
-            OnClick = ColorPanelClick
-          end
-          object Panel21: TPanel
-            Left = 384
-            Height = 18
-            Top = 154
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 13
-            OnClick = ColorPanelClick
-          end
-          object Panel22: TPanel
-            Left = 384
-            Height = 18
-            Top = 234
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 16
-            OnClick = ColorPanelClick
-          end
-          object Panel23: TPanel
-            Left = 384
-            Height = 18
-            Top = 214
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 15
-            OnClick = ColorPanelClick
-          end
-          object Panel24: TPanel
-            Left = 168
-            Height = 18
-            Top = 274
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 21
-            OnClick = ColorPanelClick
-          end
-          object Panel25: TPanel
-            Left = 384
-            Height = 18
-            Top = 334
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 22
-            OnClick = ColorPanelClick
-          end
-          object Panel26: TPanel
-            Left = 384
-            Height = 18
-            Top = 354
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 23
-            OnClick = ColorPanelClick
-          end
-          object Label37: TLabel
-            Left = 16
-            Height = 15
+          object Panel46: TPanel
+            Left = 0
+            Height = 60
             Top = 43
-            Width = 87
-            Caption = 'Tool icon size'
-            ParentColor = False
+            Width = 554
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 4
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 60
+            ClientWidth = 554
+            TabOrder = 1
+            object Label37: TLabel
+              Left = 10
+              Height = 25
+              Top = 4
+              Width = 110
+              Caption = 'Tool icon size'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object SelectToolIconSize: TComboBox
+              Left = 126
+              Height = 25
+              Top = 4
+              Width = 100
+              ItemHeight = 0
+              ItemIndex = 1
+              Items.Strings = (
+                '16'
+                '24'
+                '32'
+                '48'
+                '64'
+                '96'
+                '128'
+              )
+              OnChange = ComboBoxThemesChange
+              TabOrder = 0
+              Text = '24'
+            end
+            object Label17: TLabel
+              Left = 10
+              Height = 25
+              Top = 31
+              Width = 110
+              Caption = 'Controlpoint size'
+              ParentColor = False
+            end
+            object SpinEdit1: TSpinEdit
+              Left = 126
+              Height = 25
+              Top = 31
+              Width = 100
+              MaxValue = 5
+              MinValue = 1
+              OnChange = SpinEdit1Change
+              TabOrder = 1
+              Value = 2
+            end
           end
-          object SelectToolIconSize: TComboBox
-            Left = 120
-            Height = 25
-            Top = 35
-            Width = 93
-            ItemHeight = 0
-            ItemIndex = 1
-            Items.Strings = (
-              '16'
-              '24'
-              '32'
-              '48'
-              '64'
-              '96'
-              '128'
-            )
-            OnChange = ComboBoxThemesChange
-            TabOrder = 24
-            Text = '24'
-          end
-          object Label38: TLabel
-            Left = 16
-            Height = 15
-            Top = 14
-            Width = 45
-            Caption = 'Theme'
-            ParentColor = False
-          end
-          object ComboBoxThemes: TComboBox
-            Left = 120
-            Height = 25
-            Top = 8
-            Width = 309
-            ItemHeight = 0
-            OnChange = ComboBoxThemesChange
-            Sorted = True
-            TabOrder = 25
-            Text = 'ComboBoxThemes'
-          end
-          object SpinEdit1: TSpinEdit
-            Left = 168
-            Height = 25
-            Top = 72
-            Width = 45
-            MaxValue = 5
-            MinValue = 1
-            OnChange = SpinEdit1Change
-            TabOrder = 26
-            Value = 2
+          object Panel50: TPanel
+            Left = 0
+            Height = 292
+            Top = 103
+            Width = 554
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ClientHeight = 292
+            ClientWidth = 554
+            TabOrder = 2
+            object Panel27: TPanel
+              Left = 0
+              Height = 292
+              Top = 0
+              Width = 220
+              Align = alLeft
+              AutoSize = True
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.TopBottomSpacing = 4
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.VerticalSpacing = 2
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 2
+              ClientHeight = 292
+              ClientWidth = 220
+              TabOrder = 0
+              object Label1: TLabel
+                Left = 10
+                Height = 18
+                Top = 4
+                Width = 149
+                Caption = 'Viewport background'
+                ParentColor = False
+              end
+              object Panel4: TPanel
+                Left = 165
+                Height = 18
+                Top = 4
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 0
+                OnClick = ColorPanelClick
+              end
+              object Label12: TLabel
+                Left = 10
+                Height = 18
+                Top = 24
+                Width = 149
+                Caption = 'Viewport grid'
+                ParentColor = False
+              end
+              object Panel14: TPanel
+                Left = 165
+                Height = 18
+                Top = 24
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MaxWidth = 45
+                Constraints.MinHeight = 18
+                TabOrder = 1
+                OnClick = ColorPanelClick
+              end
+              object Label13: TLabel
+                Left = 10
+                Height = 18
+                Top = 44
+                Width = 149
+                Caption = 'Grid font'
+                ParentColor = False
+              end
+              object Panel15: TPanel
+                Left = 165
+                Height = 18
+                Top = 44
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MaxWidth = 45
+                Constraints.MinHeight = 18
+                TabOrder = 2
+                OnClick = ColorPanelClick
+              end
+              object Label2: TLabel
+                Left = 10
+                Height = 18
+                Top = 70
+                Width = 149
+                Caption = 'New surfaces'
+                ParentColor = False
+              end
+              object Panel2: TPanel
+                Left = 165
+                Height = 18
+                Top = 70
+                Width = 45
+                BorderSpacing.Top = 8
+                BevelOuter = bvLowered
+                Constraints.MaxWidth = 45
+                Constraints.MinHeight = 18
+                TabOrder = 3
+                OnClick = ColorPanelClick
+              end
+              object Label3: TLabel
+                Left = 10
+                Height = 18
+                Top = 90
+                Width = 149
+                Caption = 'Submerged surfaces'
+                ParentColor = False
+              end
+              object Panel5: TPanel
+                Left = 165
+                Height = 18
+                Top = 90
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MaxWidth = 45
+                Constraints.MinHeight = 18
+                TabOrder = 4
+                OnClick = ColorPanelClick
+              end
+              object Label18: TLabel
+                Left = 10
+                Height = 18
+                Top = 110
+                Width = 149
+                Caption = 'Surface normals'
+                ParentColor = False
+              end
+              object Panel19: TPanel
+                Left = 165
+                Height = 18
+                Top = 110
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 5
+                OnClick = ColorPanelClick
+              end
+              object Label23: TLabel
+                Left = 10
+                Height = 15
+                Top = 134
+                Width = 149
+                Caption = 'Control curves'
+                ParentColor = False
+              end
+              object Panel24: TPanel
+                Left = 165
+                Height = 15
+                Top = 134
+                Width = 45
+                BorderSpacing.Top = 6
+                BevelOuter = bvLowered
+                TabOrder = 6
+                OnClick = ColorPanelClick
+              end
+              object Label4: TLabel
+                Left = 10
+                Height = 18
+                Top = 151
+                Width = 149
+                Caption = 'Regular control edges'
+                ParentColor = False
+              end
+              object Panel6: TPanel
+                Left = 165
+                Height = 18
+                Top = 151
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 7
+                OnClick = ColorPanelClick
+              end
+              object Label5: TLabel
+                Left = 10
+                Height = 18
+                Top = 171
+                Width = 149
+                Caption = 'Crease edges (control)'
+                ParentColor = False
+              end
+              object Panel7: TPanel
+                Left = 165
+                Height = 18
+                Top = 171
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 8
+                OnClick = ColorPanelClick
+              end
+              object Label6: TLabel
+                Left = 10
+                Height = 18
+                Top = 191
+                Width = 149
+                Caption = 'Crease edges (interior)'
+                ParentColor = False
+              end
+              object Panel8: TPanel
+                Left = 165
+                Height = 18
+                Top = 191
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 9
+                OnClick = ColorPanelClick
+              end
+            end
+            object Panel36: TPanel
+              Left = 220
+              Height = 292
+              Top = 0
+              Width = 219
+              Align = alLeft
+              AutoSize = True
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.TopBottomSpacing = 4
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.VerticalSpacing = 2
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 2
+              ClientHeight = 292
+              ClientWidth = 219
+              TabOrder = 1
+              object Label7: TLabel
+                Left = 10
+                Height = 18
+                Top = 4
+                Width = 148
+                Caption = 'Regular control points'
+                ParentColor = False
+              end
+              object Panel9: TPanel
+                Left = 164
+                Height = 18
+                Top = 4
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 0
+                OnClick = ColorPanelClick
+              end
+              object Label8: TLabel
+                Left = 10
+                Height = 18
+                Top = 24
+                Width = 148
+                Caption = 'Crease points'
+                ParentColor = False
+              end
+              object Panel10: TPanel
+                Left = 164
+                Height = 18
+                Top = 24
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 1
+                OnClick = ColorPanelClick
+              end
+              object Label9: TLabel
+                Left = 10
+                Height = 18
+                Top = 44
+                Width = 148
+                Caption = 'Corner points'
+                ParentColor = False
+              end
+              object Panel11: TPanel
+                Left = 164
+                Height = 18
+                Top = 44
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 2
+                OnClick = ColorPanelClick
+              end
+              object Label10: TLabel
+                Left = 10
+                Height = 18
+                Top = 64
+                Width = 148
+                Caption = 'Dart points'
+                ParentColor = False
+              end
+              object Panel12: TPanel
+                Left = 164
+                Height = 18
+                Top = 64
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 3
+                OnClick = ColorPanelClick
+              end
+              object Label20: TLabel
+                Left = 10
+                Height = 18
+                Top = 84
+                Width = 148
+                Caption = 'Leak points'
+                ParentColor = False
+              end
+              object Panel21: TPanel
+                Left = 164
+                Height = 18
+                Top = 84
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 4
+                OnClick = ColorPanelClick
+              end
+              object Label11: TLabel
+                Left = 10
+                Height = 18
+                Top = 110
+                Width = 148
+                Caption = 'Selected items'
+                ParentColor = False
+              end
+              object Panel13: TPanel
+                Left = 164
+                Height = 18
+                Top = 110
+                Width = 45
+                BorderSpacing.Top = 8
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 5
+                OnClick = ColorPanelClick
+              end
+              object Label22: TLabel
+                Left = 10
+                Height = 18
+                Top = 130
+                Width = 148
+                Caption = 'Curvature plots'
+                ParentColor = False
+              end
+              object Panel23: TPanel
+                Left = 164
+                Height = 18
+                Top = 130
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 6
+                OnClick = ColorPanelClick
+              end
+              object Label21: TLabel
+                Left = 10
+                Height = 18
+                Top = 150
+                Width = 148
+                Caption = 'Markers'
+                ParentColor = False
+              end
+              object Panel22: TPanel
+                Left = 164
+                Height = 18
+                Top = 150
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 7
+                OnClick = ColorPanelClick
+              end
+              object Label14: TLabel
+                Left = 10
+                Height = 18
+                Top = 170
+                Width = 148
+                Caption = 'Stations'
+                ParentColor = False
+              end
+              object Panel16: TPanel
+                Left = 164
+                Height = 18
+                Top = 170
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 8
+                OnClick = ColorPanelClick
+              end
+              object Label15: TLabel
+                Left = 10
+                Height = 18
+                Top = 190
+                Width = 148
+                Caption = 'Buttocks'
+                ParentColor = False
+              end
+              object Panel17: TPanel
+                Left = 164
+                Height = 18
+                Top = 190
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 9
+                OnClick = ColorPanelClick
+              end
+              object Label16: TLabel
+                Left = 10
+                Height = 18
+                Top = 210
+                Width = 148
+                AutoSize = False
+                Caption = 'Waterlines'
+                ParentColor = False
+              end
+              object Panel18: TPanel
+                Left = 164
+                Height = 18
+                Top = 210
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 10
+                OnClick = ColorPanelClick
+              end
+              object Label19: TLabel
+                Left = 10
+                Height = 18
+                Top = 230
+                Width = 148
+                AutoSize = False
+                Caption = 'Diagonals'
+                ParentColor = False
+              end
+              object Panel20: TPanel
+                Left = 164
+                Height = 18
+                Top = 230
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 11
+                OnClick = ColorPanelClick
+              end
+              object Label24: TLabel
+                Left = 10
+                Height = 18
+                Top = 250
+                Width = 148
+                AutoSize = False
+                Caption = 'Hydrostatics font color'
+                ParentColor = False
+              end
+              object Panel25: TPanel
+                Left = 164
+                Height = 18
+                Top = 250
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 12
+                OnClick = ColorPanelClick
+              end
+              object Label25: TLabel
+                Left = 10
+                Height = 18
+                Top = 270
+                Width = 148
+                AutoSize = False
+                Caption = 'Zebra stripes color'
+                ParentColor = False
+              end
+              object Panel26: TPanel
+                Left = 164
+                Height = 18
+                Top = 270
+                Width = 45
+                BevelOuter = bvLowered
+                Constraints.MinHeight = 18
+                Constraints.MinWidth = 45
+                TabOrder = 13
+                OnClick = ColorPanelClick
+              end
+            end
           end
         end
       end
-    end
-  end
-  object Panel3: TPanel
-    Left = 0
-    Height = 26
-    Top = 0
-    Width = 582
-    Align = alTop
-    AutoSize = True
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 582
-    TabOrder = 1
-    object BitBtn2: TSpeedButton
-      Left = 499
-      Height = 20
-      Top = 3
-      Width = 80
-      Align = alRight
-      AutoSize = True
-      BorderSpacing.Around = 3
-      Constraints.MinWidth = 80
-      Caption = 'Cancel'
-      Flat = True
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000000000000000
-        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF00000000000000000000000000000000000000000000
-        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000002110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000002110
-        C0FF2110C0FF2110C0FF2110C0FF000000000000000000000000000000000000
-        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF000000002110C0FF2110
-        C0FF2110C0FF2110C0FF00000000000000000000000000000000000000002110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF00000000000000000000000000000000000000002110C0FF2110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF000000000000000000000000000000002110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF000000002110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF0000000000000000000000002110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF00000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF00000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF0000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000
-        00000000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF000000000000
-        00000000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000000000
-        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF000000002110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000000000
-        0000000000002110C0FF2110C0FF2110C0FF2110C0FF00000000000000002110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000000000
-        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000000000
-        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0FF00000000000000000000000000000000
-      }
-      OnClick = BitBtn2Click
-    end
-    object BitBtn1: TSpeedButton
-      Left = 416
-      Height = 20
-      Top = 3
-      Width = 80
-      Align = alRight
-      AutoSize = True
-      BorderSpacing.Around = 3
-      Constraints.MinWidth = 80
-      Caption = 'OK'
-      Flat = True
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000000000000000
-        00000000000000000000000000000EA628FF0EA628FF00000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000EA628FF0EA628FF00000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000EA628FF0EA628FF0EA628FF000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        000000000000000000000EA628FF0EA628FF0EA628FF0EA628FF000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        000000000000000000000EA628FF0EA628FF0EA628FF0EA628FF000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA6
-        28FF000000000000000000000000000000000000000000000000000000000000
-        00000EA628FF0EA628FF0EA628FF00000000000000000EA628FF0EA628FF0EA6
-        28FF000000000000000000000000000000000000000000000000000000000000
-        000000000000000000000000000000000000000000000EA628FF0EA628FF0EA6
-        28FF0EA628FF0000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000000000000000000000000000EA628FF0EA6
-        28FF0EA628FF0EA628FF00000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000EA6
-        28FF0EA628FF0EA628FF00000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000EA6
-        28FF0EA628FF0EA628FF0EA628FF000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000EA628FF0EA628FF0EA628FF0EA628FF0000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000EA628FF0EA628FF0EA628FF0000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000EA628FF0EA628FF0EA628FF0000000000000000
-      }
-      OnClick = BitBtn1Click
-    end
-    object SpeedButton3: TSpeedButton
-      Left = 10
-      Height = 23
-      Top = 0
-      Width = 80
-      AutoSize = True
-      BorderSpacing.Left = 10
-      BorderSpacing.Right = 10
-      Constraints.MinWidth = 80
-      Caption = 'Reset'
-      Margin = 4
-      OnClick = SpeedButton3Click
     end
   end
   object ColorDialog: TColorDialog

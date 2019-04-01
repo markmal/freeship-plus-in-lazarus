@@ -7,9 +7,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
   ClientHeight = 493
   ClientWidth = 840
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object PageControl1: TPageControl

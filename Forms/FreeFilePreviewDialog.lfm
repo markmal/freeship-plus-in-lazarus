@@ -622,18 +622,18 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     ClientWidth = 800
     Constraints.MaxHeight = 80
     TabOrder = 3
-    object BitBtnOpen: TBitBtn
-      Left = 711
+    object BitBtnOk: TBitBtn
+      Left = 727
       Height = 42
       Top = 9
-      Width = 80
+      Width = 64
       Align = alRight
       AutoSize = True
       BorderSpacing.Left = 8
       BorderSpacing.Top = 8
       BorderSpacing.Right = 8
       BorderSpacing.Bottom = 8
-      Caption = 'Open'
+      Caption = 'Ok'
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
         2000000000000010000064000000640000000000000000000000FFFFFF00FFFF
@@ -766,11 +766,11 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
-      OnClick = BitBtnOpenClick
+      ModalResult = 1
       TabOrder = 0
     end
     object BitBtnCancel: TBitBtn
-      Left = 613
+      Left = 629
       Height = 42
       Top = 9
       Width = 90
@@ -914,7 +914,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = BitBtnCancelClick
+      ModalResult = 2
       TabOrder = 1
     end
     object Panel1: TPanel
@@ -1190,7 +1190,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
       Left = 117
       Height = 58
       Top = 1
-      Width = 488
+      Width = 504
       Align = alClient
       BevelOuter = bvNone
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1199,7 +1199,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
       ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
       ClientHeight = 58
-      ClientWidth = 488
+      ClientWidth = 504
       Constraints.MinHeight = 30
       Constraints.MinWidth = 60
       TabOrder = 3
@@ -1207,7 +1207,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         Left = 0
         Height = 25
         Top = 17
-        Width = 488
+        Width = 504
         Constraints.MaxHeight = 32
         Filter = 'All|*|FreeShip Text|*.ftm|FreeShip Binary|*.fbm|FreeShip|*.ftm *.fbm'
         ItemIndex = 3
@@ -1608,6 +1608,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           Width = 657
           BorderSpacing.Left = 8
           BorderSpacing.Right = 8
+          OnEditingDone = EditNameEditingDone
           TabOrder = 0
           Text = 'EditName'
         end

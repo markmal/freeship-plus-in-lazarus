@@ -9,9 +9,6 @@ object FreeLayerDialog: TFreeLayerDialog
   ClientHeight = 434
   ClientWidth = 501
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object Panel1: TPanel
@@ -97,8 +94,6 @@ object FreeLayerDialog: TFreeLayerDialog
         Top = 54
         Width = 36
         Caption = '100.0%'
-        Font.CharSet = ANSI_CHARSET
-        Font.Color = clWindowText
         Font.Height = -9
         Font.Name = 'Small Fonts'
         ParentColor = False

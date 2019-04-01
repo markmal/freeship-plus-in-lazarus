@@ -48,41 +48,41 @@ uses
      Math,
      FreeTypes,
      FreeGeometry,
-     StdCtrls, Buttons, ExtCtrls;
+     StdCtrls, Buttons, ExtCtrls, Spin;
 
 type
 
 { TFreeControlPointForm }
 
  TFreeControlPointForm  = class(TForm)
-    Edit1: TEdit;
-    Label1: TLabel;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Label2: TLabel;
-    Label3: TLabel;
-    CheckBox1: TCheckBox;
+    EditX: TFloatSpinEdit;
+    LabelX: TLabel;
+    EditY: TFloatSpinEdit;
+    EditZ: TFloatSpinEdit;
+    LabelY: TLabel;
+    LabelZ: TLabel;
+    CheckBoxCorner: TCheckBox;
     Label6: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
-    SpeedButton6: TSpeedButton;
     Label4: TLabel;
-    Edit4: TEdit;
+    EditDistance: TEdit;
     Label5: TLabel;
-    Edit5: TEdit;
+    EditAngles: TEdit;
     procedure CheckBox1Change(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
-    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
-    procedure Edit1Exit(Sender: TObject);
-    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
-    procedure Edit2Exit(Sender: TObject);
-    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
-    procedure Edit3Exit(Sender: TObject);
+    procedure CheckBoxCornerClick(Sender: TObject);
+    procedure EditXChange(Sender: TObject);
+    procedure EditXEditingDone(Sender: TObject);
+    procedure EditXKeyPress(Sender: TObject; var Key: Char);
+    procedure EditXExit(Sender: TObject);
+    procedure EditYChange(Sender: TObject);
+    procedure EditYEditingDone(Sender: TObject);
+    procedure EditYKeyPress(Sender: TObject; var Key: Char);
+    procedure EditYExit(Sender: TObject);
+    procedure EditZChange(Sender: TObject);
+    procedure EditZEditingDone(Sender: TObject);
+    procedure EditZKeyPress(Sender: TObject; var Key: Char);
+    procedure EditZExit(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
@@ -126,26 +126,26 @@ begin
    if ActiveControlPoint=nil then
    begin
       Visible:=False;
-      Edit1.Text:='';
-      Edit2.Text:='';
-      Edit3.Text:='';
-      Checkbox1.Checked:=false;
+      EditX.Text:='';
+      EditY.Text:='';
+      EditZ.Text:='';
+      CheckBoxCorner.Checked:=false;
    end else
    begin
       R:=0.0;
-      Edit4.Text := '0.0';
+      EditDistance.Text := '0.0';
       Npoi:=TFreeShip(FreeShip).NumberOfSelectedControlPoints-1;
       if  Npoi>= 1 then begin
           Label5.Caption:=Userstring(1477);
           R:=SQRT(Sqr(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.X-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.X)+
           Sqr(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Y-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.Y)+
           Sqr(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Z-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.Z));
-          Edit4.Text := Truncate(R,4);
-          Edit5.Text :='0.0'; 		  
+          EditDistance.Text := Truncate(R,4);
+          EditAngles.Text :='0.0';
           end    
       else begin
           Label5.Caption:=Userstring(1477);
-          Edit4.Text :='0.0'; 
+          EditDistance.Text :='0.0';
       end;
 
       if  Npoi>= 4 then begin
@@ -153,7 +153,7 @@ begin
           R:=SQRT(Sqr(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.X-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.X)+
           Sqr(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Y-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.Y)+
           Sqr(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Z-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.Z));
-          Edit4.Text := Truncate(R,4);
+          EditDistance.Text := Truncate(R,4);
           len:=0;		  
           for i:=1 to Npoi do begin
            R:=SQRT(Sqr(TFreeShip(FreeShip).SelectedControlPoint[i-1].Coordinate.X-TFreeShip(FreeShip).SelectedControlPoint[i].Coordinate.X)+
@@ -162,7 +162,7 @@ begin
 		   len:=len+R;
           end;
           Label5.Caption:=Userstring(1493);
-          Edit5.Text := Truncate(len,4);		  
+          EditAngles.Text := Truncate(len,4);
       end;
 
 	  
@@ -172,12 +172,12 @@ begin
         alfa:=abs(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.X-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.X)/R;
         beta:=abs(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Y-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.Y)/R;
         gamma:=abs(TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Z-TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate.Z)/R;
-        Edit5.Text := Truncate(ArcCos(alfa)*57.29578,2)+';'+Truncate(ArcCos(beta)*57.29578,2)+';'+Truncate(ArcCos(gamma)*57.29578,2);
+        EditAngles.Text := Truncate(ArcCos(alfa)*57.29578,2)+';'+Truncate(ArcCos(beta)*57.29578,2)+';'+Truncate(ArcCos(gamma)*57.29578,2);
 {
         alfa:=(TFreeShip(FreeShip).SelectedControlPoint[1].Coordinate.X-TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.X)/R;
         beta:=(TFreeShip(FreeShip).SelectedControlPoint[1].Coordinate.Y-TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Y)/R;
         gamma:=(TFreeShip(FreeShip).SelectedControlPoint[1].Coordinate.Z-TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Z)/R;		
-        Edit5.Text := Truncate(alfa,2)+';'+Truncate(beta,2)+';'+Truncate(gamma,2);		
+        EditAngles.Text := Truncate(alfa,2)+';'+Truncate(beta,2)+';'+Truncate(gamma,2);
 }		
         end
       else if Npoi=0 then begin
@@ -189,7 +189,7 @@ begin
         alfa:=TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.X/R;
         beta:=TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Y/R;
         gamma:=TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate.Z/R;
-        Edit5.Text := Truncate(ArcCos(alfa)*57.29578,2)+';'+Truncate(ArcCos(beta)*57.29578,2)+';'+Truncate(ArcCos(gamma)*57.29578,2);
+        EditAngles.Text := Truncate(ArcCos(alfa)*57.29578,2)+';'+Truncate(ArcCos(beta)*57.29578,2)+';'+Truncate(ArcCos(gamma)*57.29578,2);
       end;
       if  Npoi=2 then begin
         Label5.Caption:=Userstring(1476);
@@ -208,7 +208,7 @@ begin
         acos:=cos1a*cos2a+cos1b*cos2b+cos1g*cos2g; 
         if acos>1 then acos:=1; 
         if acos<-1 then acos:=-1; 
-        Edit5.Text := Truncate(ArcCos(acos)*57.29578,2);		
+        EditAngles.Text := Truncate(ArcCos(acos)*57.29578,2);
       end;
       if  Npoi=3 then begin
         Label5.Caption:=Userstring(1476);
@@ -227,34 +227,28 @@ begin
         acos:=cos1a*cos2a+cos1b*cos2b+cos1g*cos2g; 
         if acos>1 then acos:=1; 
         if acos<-1 then acos:=-1; 
-        Edit5.Text := Truncate(ArcCos(acos)*57.29578,2);		
+        EditAngles.Text := Truncate(ArcCos(acos)*57.29578,2);
       end;
 	  
-      Edit1.Text:=Truncate(FActiveControlPoint.Coordinate.X,4);
-      Edit2.Text:=Truncate(FActiveControlPoint.Coordinate.Y,4);
-      Edit3.Text:=Truncate(FActiveControlPoint.Coordinate.Z,4);
+      EditX.Text:=Truncate(FActiveControlPoint.Coordinate.X,4);
+      EditY.Text:=Truncate(FActiveControlPoint.Coordinate.Y,4);
+      EditZ.Text:=Truncate(FActiveControlPoint.Coordinate.Z,4);
 
-      if (Checkbox1.Checked <> (FActiveControlPoint.VertexType=svCorner))
+      if (CheckBoxCorner.Checked <> (FActiveControlPoint.VertexType=svCorner))
          then begin
             FSkipCheckbox1OnClick:=true;
-            Checkbox1.Checked:=FActiveControlPoint.VertexType=svCorner;
+            CheckBoxCorner.Checked:=FActiveControlPoint.VertexType=svCorner;
             FSkipCheckbox1OnClick:=false;
          end;
 
       // Count the number of crease edges connected to this point
       N:=0;
       for I:=1 to FActiveControlPoint.NumberOfEdges do if FActiveControlPoint.Edge[I-1].Crease then inc(N);
-      Checkbox1.Enabled:=((N>0) and (N<3) and (not Val.Locked)); // points with more than two crease edges must always be a corner
+      CheckBoxCorner.Enabled:=((N>0) and (N<3) and (not Val.Locked)); // points with more than two crease edges must always be a corner
 
-      Edit1.Enabled:=not Val.Locked;
-      Edit2.Enabled:=not Val.Locked;
-      Edit3.Enabled:=not Val.Locked;
-      SpeedButton1.Enabled:=not val.locked;
-      SpeedButton2.Enabled:=not val.locked;
-      SpeedButton3.Enabled:=not val.locked;
-      SpeedButton4.Enabled:=not val.locked;
-      SpeedButton5.Enabled:=not val.locked;
-      SpeedButton6.Enabled:=not val.locked;
+      EditX.Enabled:=not Val.Locked;
+      EditY.Enabled:=not Val.Locked;
+      EditZ.Enabled:=not Val.Locked;
       if Val.Locked then
       begin
          BCol:=clBtnFace;
@@ -264,24 +258,46 @@ begin
          BCol:=clWindow;
          FCol:=clBlack;
       end;
-      if Edit1.Color<>BCol then Edit1.Color:=BCol;
-      if Edit1.Font.Color<>FCol then Edit1.Font.Color:=FCol;
-      if Edit2.Color<>BCol then Edit2.Color:=BCol;
-      if Edit2.Font.Color<>FCol then Edit2.Font.Color:=FCol;
-      if Edit3.Color<>BCol then Edit3.Color:=BCol;
-      if Edit3.Font.Color<>FCol then Edit3.Font.Color:=FCol;
+      if EditX.Color<>BCol then EditX.Color:=BCol;
+      if EditX.Font.Color<>FCol then EditX.Font.Color:=FCol;
+      if EditY.Color<>BCol then EditY.Color:=BCol;
+      if EditY.Font.Color<>FCol then EditY.Font.Color:=FCol;
+      if EditZ.Color<>BCol then EditZ.Color:=BCol;
+      if EditZ.Font.Color<>FCol then EditZ.Font.Color:=FCol;
    end;
 end;{TFreeControlPointForm.FSetActiveControlPoint}
 
-procedure TFreeControlPointForm.Edit1KeyPress(Sender: TObject;var Key: Char);
+procedure TFreeControlPointForm.EditXKeyPress(Sender: TObject;var Key: Char);
 begin
    if (Key in [#8,'1'..'9','0','-','@',#13]) or
       ((TFreeShip(FreeShip).ProjectSettings.ProjectUnits=fuImperial) and (Key='+')) or
       (Key=FormatSettings.DecimalSeparator) then else key:=#0; //SAP: added the '@'
-   if Key=#13 then Edit1Exit(Self);
+   if Key=#13 then EditXExit(Self);
 end;{TFreeControlPointForm.Edit1KeyPress}
 
-procedure TFreeControlPointForm.Edit1Exit(Sender: TObject);
+procedure TFreeControlPointForm.EditXExit(Sender: TObject);
+begin
+end;
+
+procedure TFreeControlPointForm.EditYChange(Sender: TObject);
+var P   : T3DCoordinate;
+begin
+   if ActiveControlPoint<>nil then
+   begin
+      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      P:=ActiveControlPoint.Coordinate;
+      //P.Y:=P.Y+TFreeShip(FreeShip).Visibility.CursorIncrement;
+      P.Y:=EditY.Value;
+      ActiveControlPoint.Coordinate:=P;
+      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).FileChanged:=True;
+      TFreeShip(FreeShip).Redraw;
+      ActiveControlPoint:=ActiveControlPoint;
+   end;
+end;
+
+
+procedure TFreeControlPointForm.EditXEditingDone(Sender: TObject);
 var P    : T3DCoordinate;
     Val  : TFloatType;
     I    : Integer;
@@ -292,7 +308,7 @@ begin
    begin
 // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
-      Val := ConvertCoordinate(Edit1.Text, P.X);
+      Val := ConvertCoordinate(EditX.Text, P.X);
       if (abs(P.X-Val)>1e-4) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
 // SAP change all selected points
@@ -300,7 +316,7 @@ begin
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
             P := TFreeShip(FreeShip).SelectedControlPoint[I-1].Coordinate;
-            Val:=ConvertCoordinate(Edit1.Text, P.X);
+            Val:=ConvertCoordinate(EditX.Text, P.X);
             if abs(P.X-Val)>1e-5 then
             begin
                if not saved then
@@ -314,13 +330,13 @@ begin
             Inc(I);
          end;
 //  finally update the text field:
-         if Edit1.Text<>'' then
+         if EditX.Text<>'' then
          begin
             P:=ActiveControlPoint.Coordinate;
-            Val:= ConvertCoordinate(Edit1.Text, P.X);
+            Val:= ConvertCoordinate(EditX.Text, P.X);
          end
          else Val:= 0;
-         Edit1.Text:=Truncate(Val,4); // update the field in case of input errors
+         EditX.Text:=Truncate(Val,4); // update the field in case of input errors
 
          if saved then
          begin
@@ -333,15 +349,37 @@ begin
    end;
 end;{TFreeControlPointForm.Edit1Exit}
 
-procedure TFreeControlPointForm.Edit2KeyPress(Sender: TObject;var Key: Char);
+procedure TFreeControlPointForm.EditYKeyPress(Sender: TObject;var Key: Char);
 begin
    if (Key in [#8,'1'..'9','0','-','@',#13]) or
       ((TFreeShip(FreeShip).ProjectSettings.ProjectUnits=fuImperial) and (Key='+')) or
       (Key=FormatSettings.DecimalSeparator) then else key:=#0; //SAP: added the '@'
-   if Key=#13 then Edit2Exit(Self);
+   if Key=#13 then EditYExit(Self);
 end;{TFreeControlPointForm.Edit2KeyPress}
 
-procedure TFreeControlPointForm.Edit2Exit(Sender: TObject);
+procedure TFreeControlPointForm.EditYExit(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeControlPointForm.EditZChange(Sender: TObject);
+var P   : T3DCoordinate;
+begin
+   if ActiveControlPoint<>nil then
+   begin
+      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      P:=ActiveControlPoint.Coordinate;
+      //P.Z:=P.Z+TFreeShip(FreeShip).Visibility.CursorIncrement;
+      P.Z:=EditZ.Value;
+      ActiveControlPoint.Coordinate:=P;
+      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).FileChanged:=True;
+      TFreeShip(FreeShip).Redraw;
+      ActiveControlPoint:=ActiveControlPoint;
+   end;
+end;
+
+procedure TFreeControlPointForm.EditYEditingDone(Sender: TObject);
 var P    : T3DCoordinate;
     Val  : TFloatType;
     I    : Integer;
@@ -352,7 +390,7 @@ begin
    begin
 // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
-      Val := ConvertCoordinate(Edit2.Text, P.Y);
+      Val := ConvertCoordinate(EditY.Text, P.Y);
       if (abs(P.Y-Val)>1e-4) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
 // SAP change all selected points
@@ -360,7 +398,7 @@ begin
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
             P := TFreeShip(FreeShip).SelectedControlPoint[I-1].Coordinate;
-            Val:=ConvertCoordinate(Edit2.Text, P.Y);
+            Val:=ConvertCoordinate(EditY.Text, P.Y);
             if abs(P.Y-Val)>1e-5 then
             begin
                if not saved then
@@ -375,13 +413,13 @@ begin
          end;
 
 //  finally update the text field:
-         if Edit2.Text<>'' then
+         if EditY.Text<>'' then
          begin
             P:=ActiveControlPoint.Coordinate;
-            Val:= ConvertCoordinate(Edit2.Text, P.Y);
+            Val:= ConvertCoordinate(EditY.Text, P.Y);
          end
          else Val:= 0;
-         Edit2.Text:=Truncate(Val,4); // update the field in case of input errors
+         EditY.Text:=Truncate(Val,4); // update the field in case of input errors
 
          if saved then
          begin
@@ -394,15 +432,20 @@ begin
    end;
 end;{TFreeControlPointForm.Edit2Exit}
 
-procedure TFreeControlPointForm.Edit3KeyPress(Sender: TObject; var Key: Char);
+procedure TFreeControlPointForm.EditZKeyPress(Sender: TObject; var Key: Char);
 begin
    if (Key in [#8,'1'..'9','0','-','@',#13]) or
       ((TFreeShip(FreeShip).ProjectSettings.ProjectUnits=fuImperial) and (Key='+')) or
       (Key=FormatSettings.DecimalSeparator) then else key:=#0; //SAP: added the '@'
-   if Key=#13 then Edit3Exit(Self);
+   if Key=#13 then EditZExit(Self);
 end;{TFreeControlPointForm.Edit3KeyPress}
 
-procedure TFreeControlPointForm.Edit3Exit(Sender: TObject);
+procedure TFreeControlPointForm.EditZExit(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeControlPointForm.EditZEditingDone(Sender: TObject);
 var P    : T3DCoordinate;
     Val  : TFloatType;
     I    : Integer;
@@ -413,7 +456,7 @@ begin
    begin
 // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
-      Val := ConvertCoordinate(Edit3.Text, P.Z);
+      Val := ConvertCoordinate(EditZ.Text, P.Z);
       if (abs(P.Z-Val)>1e-4) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
 // SAP change all selected points
@@ -421,7 +464,7 @@ begin
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
             P := TFreeShip(FreeShip).SelectedControlPoint[I-1].Coordinate;
-            Val:=ConvertCoordinate(Edit3.Text, P.Z);
+            Val:=ConvertCoordinate(EditZ.Text, P.Z);
             if abs(P.Z-Val)>1e-5 then
             begin
                if not saved then
@@ -436,13 +479,13 @@ begin
          end;
 
 //  finally update the text field:
-         if Edit3.Text<>'' then
+         if EditZ.Text<>'' then
          begin
             P:=ActiveControlPoint.Coordinate;
-            Val:=ConvertCoordinate(Edit3.Text, P.Z);
+            Val:=ConvertCoordinate(EditZ.Text, P.Z);
          end
          else Val:= 0;
-         Edit3.Text:=Truncate(Val,4); // update the field in case of input errors
+         EditZ.Text:=Truncate(Val,4); // update the field in case of input errors
 
          if saved then
          begin
@@ -459,10 +502,27 @@ procedure TFreeControlPointForm.CheckBox1Change(Sender: TObject);
 begin
 end;
 
-procedure TFreeControlPointForm.CheckBox1Click(Sender: TObject);
+procedure TFreeControlPointForm.CheckBoxCornerClick(Sender: TObject);
 begin
    if FSkipCheckbox1OnClick then exit;
-   FSetActiveControlPointCorner(CheckBox1.Checked);
+   FSetActiveControlPointCorner(CheckBoxCorner.Checked);
+end;
+
+procedure TFreeControlPointForm.EditXChange(Sender: TObject);
+var P   : T3DCoordinate;
+begin
+   if ActiveControlPoint<>nil then
+   begin
+      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      P:=ActiveControlPoint.Coordinate;
+      //P.X:=P.X+TFreeShip(FreeShip).Visibility.CursorIncrement;
+      P.X:=EditX.Value;
+      ActiveControlPoint.Coordinate:=P;
+      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).FileChanged:=True;
+      TFreeShip(FreeShip).Redraw;
+      ActiveControlPoint:=ActiveControlPoint;
+   end;
 end;
 
 procedure TFreeControlPointForm.FSetActiveControlPointCorner(isCorner: boolean);
@@ -508,6 +568,10 @@ end;{TFreeControlPointForm.CheckBox1MouseUp}
 procedure TFreeControlPointForm.FormActivate(Sender: TObject);
 begin
   FSkipCheckbox1OnClick:=false;
+  EditX.Increment := TFreeShip(FreeShip).Visibility.CursorIncrement;
+
+  EditY.Increment := TFreeShip(FreeShip).Visibility.CursorIncrement;
+  EditZ.Increment := TFreeShip(FreeShip).Visibility.CursorIncrement;
 end;
 
 procedure TFreeControlPointForm.SpeedButton1Click(Sender: TObject);

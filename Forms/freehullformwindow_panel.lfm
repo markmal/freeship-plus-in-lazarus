@@ -1,15 +1,12 @@
 object FreeHullWindow: TFreeHullWindow
-  Left = 592
-  Height = 285
-  Top = 149
+  Left = 641
+  Height = 300
+  Top = 402
   Width = 440
   Caption = 'FreeHullWindow'
-  ClientHeight = 285
+  ClientHeight = 300
   ClientWidth = 440
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   FormStyle = fsMDIChild
   OnClose = FormClose
   OnCreate = FormCreate
@@ -23,7 +20,7 @@ object FreeHullWindow: TFreeHullWindow
   object ScrollBar1: TScrollBar
     Left = 0
     Height = 15
-    Top = 270
+    Top = 285
     Width = 440
     Align = alBottom
     LargeChange = 5
@@ -35,7 +32,7 @@ object FreeHullWindow: TFreeHullWindow
   end
   object ScrollBar2: TScrollBar
     Left = 425
-    Height = 270
+    Height = 285
     Top = 0
     Width = 15
     Align = alRight

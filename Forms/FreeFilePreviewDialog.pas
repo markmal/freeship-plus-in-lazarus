@@ -44,7 +44,7 @@ type
  TFreeFilePreviewDialog = class(TForm)
     ActionRefresh: TAction;
     ActionList: TActionList;
-    BitBtnOpen: TBitBtn;
+    BitBtnOk: TBitBtn;
     BitBtnCancel: TBitBtn;
     ComboBoxDir: TComboBox;
     FullSize: TMenuItem;
@@ -119,13 +119,12 @@ type
     procedure AutoSearchListBoxMouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: Integer);
     procedure AutoSearchListBoxSelectionChange(Sender: TObject; User: boolean);
-    procedure BitBtnOpenClick(Sender: TObject);
-    procedure BitBtnCancelClick(Sender: TObject);
     procedure ComboBoxDirChange(Sender: TObject);
     procedure ComboBoxDirEditingDone(Sender: TObject);
     procedure ComboBoxDirKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure ComboBoxDirKeyPress(Sender: TObject; var Key: char);
+    procedure EditNameEditingDone(Sender: TObject);
     procedure FilterComboBox1Change(Sender: TObject);
     procedure FilterComboBox1Select(Sender: TObject);
     procedure FitSizeClick(Sender: TObject);
@@ -267,10 +266,11 @@ type
 
 implementation
 uses LCLType,
-  LResources, LCLTranslator, LazUTF8, // for translations
-  qtwidgets
-  ,qt4
-//  ,qt5
+  LResources, LCLTranslator, LazUTF8 // for translations
+  {$IfDef QT}
+  ,qtwidgets  ,qt4
+  //  ,qt5
+  {$EndIf}
   ;
 
 
@@ -289,9 +289,10 @@ end;
 { TFreeFilePreviewDialog }
 
 procedure TFreeFilePreviewDialog.ShellListViewSetWordWrap(slv:TCustomShellListView);
-var   QtListWidget: TQtListWidget; gSz : TSize; ih,fh:integer;
-    fd: TFontData;
+var gSz : TSize; ih,fh:integer; fd: TFontData;
+  {$IfDef QT}  QtListWidget: TQtListWidget;  {$EndIf}
 begin
+  {$IfDef QT}
   QtListWidget := TQtListWidget(slv.Handle);
   if ShellListView.ViewStyle=vsSmallIcon then
      ih:=SmallImageList.Height;
@@ -311,6 +312,7 @@ begin
   QtListWidget.GridSize:=gSz;
   QtListWidget.setWrapping(true);
   QtListWidget.setWordWrap(true);
+  {$EndIf}
 end;
 
 
@@ -585,6 +587,11 @@ begin
     end;
 end;
 
+procedure TFreeFilePreviewDialog.EditNameEditingDone(Sender: TObject);
+begin
+  FFileName := ShellListView.Root + DirectorySeparator + EditName.Text;
+end;
+
 procedure TFreeFilePreviewDialog.FilterComboBox1Change(Sender: TObject);
 begin
 
@@ -654,11 +661,6 @@ begin
     end;
 end;
 
-procedure TFreeFilePreviewDialog.BitBtnOpenClick(Sender: TObject);
-begin
-  Close;
-end;
-
 procedure TFreeFilePreviewDialog.ActionRefreshExecute(Sender: TObject);
 var x : boolean;
 begin
@@ -677,12 +679,7 @@ begin
  AutoSearchListBox.Visible:=false;}
 end;
 
-procedure TFreeFilePreviewDialog.BitBtnCancelClick(Sender: TObject);
-begin
-  FFileName := '';
-  Close;
-end;
-
+resourcestring CancelButtonCaptionCancel = 'Cancel';
 
 procedure TFreeFilePreviewDialog.FormCreate(Sender: TObject);
 var GlobalTranslator: TAbstractTranslator; LocalTranslator: TPOTranslator;
@@ -712,6 +709,8 @@ begin
 
   SpeedButtonViewListHidden.GroupIndex := 2;
   SpeedButtonViewListHidden.Down:=false;
+
+  BitBtnCancel.Caption:= CancelButtonCaptionCancel;
 
   ShellPathPanel := TShellPathPanel.Create(Self);
   with ShellPathPanel do
@@ -1031,7 +1030,7 @@ begin
      if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
         then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
 
-     BitBtnOpen.Enabled:=false;
+     BitBtnOk.Enabled:=false;
      end;
 end;
 
@@ -1073,12 +1072,15 @@ end;
 procedure TFreeFilePreviewDialog.ShellListViewMouseMove(Sender: TObject;
   Shift: TShiftState; X, Y: Integer);
 var item:TListItem;
+  {$IfDef QT}
   QtTreeWidget: TQtTreeWidget;
   TWI : QTreeWidgetItemH;
   //QtListWidget: TQtListWidget;
   //LWI : QListWidgetItemH;
+  {$EndIf}
   wtooltip: widestring;
 begin
+  {$IfDef QT}
   // for some reason tooltip is not assigned in setTooltips
   item := ShellListView.GetItemAt(x,y);
   if not assigned(item) then exit;
@@ -1089,6 +1091,7 @@ begin
       TWI := QtTreeWidget.itemAt(x,y);
       QTreeWidgetItem_setToolTip(TWI, 0, @wtooltip);
     end
+  {$EndIf}
 end;
 
 procedure TFreeFilePreviewDialog.ShellListViewMouseDown(Sender: TObject;
@@ -1179,10 +1182,12 @@ procedure TFreeFilePreviewDialog.setTooltips;
 var
   i: integer;
   item:TListItem;
+  {$IfDef QT}
   QtTreeWidget: TQtTreeWidget;
   TWI : QTreeWidgetItemH;
   QtListWidget: TQtListWidget;
   LWI : QListWidgetItemH;
+  {$EndIf}
   wtooltip: widestring;
 begin
   //ShellListView.Hint := '';
@@ -1196,17 +1201,27 @@ begin
 
   if (ShellListView.ViewStyle = vsReport) then
     begin
+      {$IfDef QT}
       ShellListView.ShowHint := false;
       QtTreeWidget:=TQtTreeWidget(ShellListView.Handle);
       TWI := QtTreeWidget.currentItem;
       QTreeWidgetItem_setToolTip(TWI, 0, @wtooltip);
+      {$Else}
+      ShellListView.ShowHint := true;
+      ShellListView.Hint := Item.Caption;
+      {$EndIf}
     end
    else
     begin
+      {$IfDef QT}
       ShellListView.ShowHint := false;
       QtListWidget:=TQtListWidget(ShellListView.Handle);
       LWI := QtListWidget.getItem(Item.Index);
       QListWidgetItem_setToolTip(LWI, @wtooltip);
+      {$Else}
+      ShellListView.ShowHint := true;
+      ShellListView.Hint := Item.Caption;
+      {$EndIf}
     end;
   end;
 end;
@@ -1233,10 +1248,10 @@ begin
   if not isDir then
     begin
     EditName.Text := Item.Caption;
-    BitBtnOpen.Enabled:=true;
+    BitBtnOk.Enabled:=true;
     end
   else
-    BitBtnOpen.Enabled:=false;
+    BitBtnOk.Enabled:=false;
  end;
 
 procedure TFreeFilePreviewDialog.ShellTreeViewChange(Sender: TObject;
@@ -1721,6 +1736,10 @@ begin
   result := (self.ShowModal = mrOK);
 end;
 
+resourcestring
+  OkButtonCaptionOpen = 'Open';
+  OkButtonCaptionSave = 'Save';
+
 procedure TFreeFilePreviewDialog.setFileDialogMode(const AValue: TFileDialogMode);
 begin
   FFileDialogMode := AValue;
@@ -1728,12 +1747,15 @@ begin
     begin
     SpeedButtonNewDir.Enabled := false;
     EditName.Enabled := false;
+    BitBtnOk.Caption := OkButtonCaptionOpen;
     end
   else
   if AValue = fdmSave then
     begin
     SpeedButtonNewDir.Enabled := true;
     EditName.Enabled := true;
+    BitBtnOk.Enabled := true;
+    BitBtnOk.Caption := OkButtonCaptionSave;
     end;
 end;
 

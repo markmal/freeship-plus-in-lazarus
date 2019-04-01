@@ -8,9 +8,6 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
   ClientHeight = 573
   ClientWidth = 792
   Color = clBtnFace
-  Font.Color = clBlack
-  Font.Height = -12
-  Font.Name = 'Courier New'
   OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
@@ -31,8 +28,7 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
       Top = 11
       Width = 770
       Align = alClient
-      Font.Color = clBlack
-      Font.Height = -12
+      Font.Height = 17
       Font.Name = 'Courier New'
       ParentFont = False
       ReadOnly = True

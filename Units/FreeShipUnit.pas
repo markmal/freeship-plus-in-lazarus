@@ -10493,7 +10493,9 @@ var
   Layer: TFreeSubdivisionLayer;
   Face: TFreeSubdivisionControlface;
   Child: TFreeSubdivisionface;
+  C1, C2, C3: T3DCoordinate;
 
+ {
   procedure Addfacet(P1, P2, P3: TFreeSubdivisionPoint);
   var
     Normal: T3DCoordinate;
@@ -10512,6 +10514,25 @@ var
     writeln(FFile, '    endloop');
     Writeln(FFile, '  endfacet');
 
+  end;
+ }
+  procedure Addfacet(C1, C2, C3: T3DCoordinate);
+  var
+    Normal: T3DCoordinate;
+  begin
+    Normal := UnifiedNormal(C1, C2, C3);
+    Write(FFile, '  facet normal ');
+    writeln(FFile, Truncate(normal.X, 4) + #32 + Truncate(normal.Y, 4) +
+      #32 + Truncate(normal.Z, 4));
+    writeln(FFile, '    outer loop');
+    writeln(FFile, '      vertex ' + Truncate(C1.X, 4) + #32 +
+      Truncate(C1.Y, 4) + #32 + Truncate(C1.Z, 4));
+    writeln(FFile, '      vertex ' + Truncate(C2.X, 4) + #32 +
+      Truncate(C2.Y, 4) + #32 + Truncate(C2.Z, 4));
+    writeln(FFile, '      vertex ' + Truncate(C3.X, 4) + #32 +
+      Truncate(C3.Y, 4) + #32 + Truncate(C3.Z, 4));
+    writeln(FFile, '    endloop');
+    Writeln(FFile, '  endfacet');
   end;{Addfacet}
 
 begin
@@ -10544,7 +10565,18 @@ begin
             begin
               Child := face.Child[K - 1];
               for L := 3 to Child.NumberOfpoints do
-                AddFacet(Child.Point[0], Child.Point[L - 2], Child.Point[L - 1]);
+                begin
+                C1 := Child.Point[0].Coordinate;
+                C2 := Child.Point[L - 2].Coordinate;
+                C3 := Child.Point[L - 1].Coordinate;
+                AddFacet(C1,C2,C3);
+
+               // mirror points, starboard to port
+                C1.Y := -C1.Y;
+                C2.Y := -C2.Y;
+                C3.Y := -C3.Y;
+                AddFacet(C3,C2,C1);
+                end;
             end;
           end;
       end;
@@ -11973,22 +12005,39 @@ end;
 
 procedure TFreeEdit.File_SaveAs;
 var
-  SaveDialog: TSaveDialog;
   I: integer;
   Dir: string;
+  SaveDialog: TFreeFilePreviewDialog; //TFreeOpenDialog; //TOpenDialog;
+  //Places:TListItems;
+  w, h: integer;
+  Preferences : TFreePreferences;
 begin
-  Dir := Owner.Preferences.SaveDirectory;
+  Preferences := Owner.Preferences;
+  Dir := Preferences.SaveDirectory;
   if not DirectoryExistsUTF8(Dir) and not ForceDirectoriesUTF8(Dir) then
     MessageDlg(tl8('Cannot create directory: ') + Dir, mtWarning, [mbOK], 0);
 
-  SaveDialog := TSaveDialog.Create(Owner);
-  SaveDialog.InitialDir := Dir;
-  Owner.Filename := ChangeFileExt(Owner.Filename, '.ftm');
-  Savedialog.FileName := ExtractFilename(Owner.Filename);
-  SaveDialog.Filter :=
-    'FREE!ship text files (*.ftm)|*.ftm|FREE!ship binary files (*.fbm)|*.fbm';
-  Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
-  Savedialog.OnTypeChange := SaveDialogTypeChange;
+  SaveDialog := TFreeFilePreviewDialog.Create(Owner);
+  with SaveDialog do
+  begin
+    CurrentPath := Preferences.OpenDirectory;
+    Filter := FileDialogFilterFreeship + '|' + FileDialogFilterFreeshipText
+      + '|' + FileDialogFilterFreeshipBinary;
+    FilterIndex := 0;
+    OnPreview := OnFilePreview;
+    addPlace(FileDialogPlaceMyShips, Preferences.OpenDirectory);
+    //addPlace(FileDialogPlaceMyImport, Preferences.ImportDirectory);
+    //addPlace(FileDialogPlaceGlobalShips, Preferences.GlobalOpenDirectory);
+    //addPlace(FileDialogPlaceGlobalImport, Preferences.GlobalImportDirectory);
+    FileDialogMode := fdmSave;
+    ShellListView.ReadOnly := True;
+  end;
+
+  //Owner.Filename := ChangeFileExt(Owner.Filename, '.ftm');
+  Savedialog.FileName := ExtractFilename(ChangeFileExt(Owner.Filename, '.ftm'));
+  //Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
+  //Savedialog.OnTypeChange := SaveDialogTypeChange;
+
   if SaveDialog.Execute then
   begin
     Owner.Preferences.SaveDirectory := ExtractFilePath(SaveDialog.FileName);
@@ -11996,11 +12045,11 @@ begin
       Owner.FStopAskingForFileVersion := False;
     Owner.Filename := Savedialog.Filename;
     Owner.FFilenameSet := True;
-    I := SaveDialog.FilterIndex;
+{    I := SaveDialog.FilterIndex;
     case I of
       1: Owner.Filename := ChangeFileExt(Savedialog.Filename, '.ftm');
       2: Owner.Filename := ChangeFileExt(Savedialog.Filename, '.fbm');
-    end;
+    end; }
     File_Save;
   end;
   SaveDialog.Destroy;
@@ -18821,6 +18870,7 @@ var I,Size        : integer;
        end;
     end;{DrawGrid}
 
+
 begin
    if not Surface.Build then surface.Rebuild;
    // Draw intersectionlines BEFORE the surface is drawn,
@@ -18897,6 +18947,9 @@ begin
       Plane.c:=1.0;
       Plane.d:=-(FindLowestHydrostaticsPoint+ProjectSettings.ProjectDraft);
       Surface.WaterlinePlane:=Plane;
+      R:=GetRValue(ProjectSettings.ProjectUnderWaterColor);
+      G:=GetGValue(ProjectSettings.ProjectUnderWaterColor);
+      B:=GetBValue(ProjectSettings.ProjectUnderWaterColor);
       Surface.UnderWaterColor:=ProjectSettings.ProjectUnderWaterColor;
       Surface.ShadeUnderWater:=True;
    end else Surface.ShadeUnderWater:=False;

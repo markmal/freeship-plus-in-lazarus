@@ -6,9 +6,6 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
   ClientHeight = 583
   ClientWidth = 816
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poDefault
   LCLVersion = '1.4.4.0'
   object Splitter1: TSplitter
@@ -87,9 +84,6 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         Top = 10
         Width = 47
         Caption = '_Label6'
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False

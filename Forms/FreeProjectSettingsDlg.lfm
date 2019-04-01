@@ -8,9 +8,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
   ClientHeight = 416
   ClientWidth = 573
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
@@ -30,9 +27,9 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       Height = 374
       Top = 9
       Width = 555
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
-      TabIndex = 2
+      TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
@@ -40,25 +37,25 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
         ClientWidth = 549
         object Panel: TPanel
           Left = 0
-          Height = 344
+          Height = 343
           Top = 0
-          Width = 551
+          Width = 549
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 344
-          ClientWidth = 551
+          ClientHeight = 343
+          ClientWidth = 549
           TabOrder = 0
           object Label1: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 16
-            Width = 73
+            Width = 75
             Caption = 'Project name'
             ParentColor = False
           end
           object Label7: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 42
             Width = 50
             Caption = 'Designer'
@@ -66,15 +63,15 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label8: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 120
-            Width = 29
+            Width = 28
             Caption = 'Units'
             ParentColor = False
           end
           object Label15: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 68
             Width = 55
             Caption = 'Comment'
@@ -82,31 +79,31 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label16: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 94
-            Width = 81
+            Width = 83
             Caption = 'File created by'
             ParentColor = False
           end
           object Edit1: TEdit
             Left = 123
-            Height = 24
+            Height = 23
             Top = 8
             Width = 310
             TabOrder = 0
           end
           object Edit7: TEdit
             Left = 123
-            Height = 24
+            Height = 23
             Top = 34
             Width = 310
             TabOrder = 1
           end
           object CheckBox1: TCheckBox
             Left = 8
-            Height = 20
+            Height = 21
             Top = 182
-            Width = 131
+            Width = 127
             Caption = 'Shade underwater'
             TabOrder = 5
           end
@@ -121,7 +118,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Unitbox: TComboBox
             Left = 123
-            Height = 24
+            Height = 25
             Top = 112
             Width = 100
             ItemHeight = 0
@@ -136,37 +133,37 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Edit9: TEdit
             Left = 123
-            Height = 24
+            Height = 23
             Top = 60
             Width = 310
             TabOrder = 2
           end
           object Edit10: TEdit
             Left = 123
-            Height = 24
+            Height = 23
             Top = 86
             Width = 310
             TabOrder = 3
           end
           object CheckBox4: TCheckBox
             Left = 8
-            Height = 20
+            Height = 21
             Top = 206
-            Width = 141
+            Width = 139
             Caption = 'Save preview image'
             TabOrder = 7
           end
           object CheckBox10: TCheckBox
             Left = 8
-            Height = 20
+            Height = 21
             Top = 230
-            Width = 148
+            Width = 144
             Caption = 'Simplify intersections'
             TabOrder = 8
           end
           object PrecisionBox: TComboBox
             Left = 123
-            Height = 24
+            Height = 25
             Hint = 'Change the precision of the model.'
             Top = 139
             Width = 100
@@ -183,9 +180,9 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label24: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 144
-            Width = 50
+            Width = 51
             Caption = 'Precision'
             ParentColor = False
           end
@@ -198,17 +195,17 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
         ImageIndex = 2
         object Panel5: TPanel
           Left = 0
-          Height = 346
+          Height = 343
           Top = 0
-          Width = 551
+          Width = 549
           Align = alClient
           BevelOuter = bvLowered
-          ClientHeight = 346
-          ClientWidth = 551
+          ClientHeight = 343
+          ClientWidth = 549
           TabOrder = 0
           object Label2: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 16
             Width = 42
             Caption = 'Length '
@@ -216,7 +213,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label9: TLabel
             Left = 203
-            Height = 14
+            Height = 13
             Top = 16
             Width = 37
             Caption = 'Label9'
@@ -224,7 +221,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label10: TLabel
             Left = 203
-            Height = 14
+            Height = 13
             Top = 42
             Width = 44
             Caption = 'Label10'
@@ -232,23 +229,23 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label3: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 42
-            Width = 32
+            Width = 33
             Caption = 'Beam'
             ParentColor = False
           end
           object Label4: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 68
-            Width = 29
+            Width = 28
             Caption = 'Draft'
             ParentColor = False
           end
           object Label11: TLabel
             Left = 203
-            Height = 14
+            Height = 13
             Top = 68
             Width = 44
             Caption = 'Label11'
@@ -256,15 +253,15 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label13: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 94
-            Width = 205
+            Width = 211
             Caption = 'Midship or max. area station location'
             ParentColor = False
           end
           object Label14: TLabel
             Left = 343
-            Height = 14
+            Height = 13
             Top = 94
             Width = 44
             Caption = 'Label14'
@@ -272,15 +269,15 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label20: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 120
-            Width = 268
+            Width = 276
             Caption = 'Y coord. of Longitudinal Max. Wind Area location'
             ParentColor = False
           end
           object Label21: TLabel
             Left = 343
-            Height = 14
+            Height = 13
             Top = 120
             Width = 11
             Caption = 'm'
@@ -288,15 +285,15 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Label22: TLabel
             Left = 8
-            Height = 14
+            Height = 13
             Top = 146
-            Width = 260
+            Width = 271
             Caption = 'X coord. of Transverse Max. Wind Area location'
             ParentColor = False
           end
           object Label23: TLabel
             Left = 343
-            Height = 14
+            Height = 13
             Top = 146
             Width = 11
             Caption = 'm'
@@ -304,7 +301,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Edit2: TEdit
             Left = 123
-            Height = 24
+            Height = 23
             Top = 8
             Width = 75
             OnExit = Edit2Exit
@@ -313,7 +310,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Edit3: TEdit
             Left = 123
-            Height = 24
+            Height = 23
             Top = 34
             Width = 75
             OnExit = EditExit
@@ -322,7 +319,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Edit4: TEdit
             Left = 123
-            Height = 24
+            Height = 23
             Top = 60
             Width = 75
             OnExit = Edit4Exit
@@ -331,7 +328,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Edit8: TEdit
             Left = 263
-            Height = 24
+            Height = 23
             Top = 86
             Width = 75
             OnExit = Edit8Exit
@@ -340,16 +337,16 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object CheckBox2: TCheckBox
             Left = 368
-            Height = 20
+            Height = 21
             Top = 92
-            Width = 118
+            Width = 112
             Caption = 'Default at 0.5*L'
             OnClick = CheckBox2Click
             TabOrder = 6
           end
           object Edit26: TEdit
             Left = 263
-            Height = 24
+            Height = 23
             Top = 112
             Width = 75
             OnExit = Edit26Exit
@@ -358,16 +355,16 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object CheckBox11: TCheckBox
             Left = 368
-            Height = 20
+            Height = 21
             Top = 118
-            Width = 105
+            Width = 100
             Caption = 'Default at 0.0'
             OnClick = CheckBox11Click
             TabOrder = 8
           end
           object Edit27: TEdit
             Left = 263
-            Height = 24
+            Height = 23
             Top = 140
             Width = 75
             OnExit = Edit27Exit
@@ -376,9 +373,9 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object CheckBox12: TCheckBox
             Left = 368
-            Height = 20
+            Height = 21
             Top = 144
-            Width = 118
+            Width = 112
             Caption = 'Default at 0.5*L'
             OnClick = CheckBox12Click
             TabOrder = 4
@@ -448,9 +445,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
             Caption = 'Display hydrostatic features. '
             ClientHeight = 148
             ClientWidth = 330
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
@@ -460,9 +454,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 4
               Width = 290
               Caption = 'Select which of the following hydrostatic properties'
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               ParentColor = False
               ParentFont = False
             end
@@ -472,9 +463,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 22
               Width = 236
               Caption = 'you want to have displayed in the model:'
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               ParentColor = False
               ParentFont = False
             end
@@ -484,9 +472,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 44
               Width = 238
               Caption = 'Displacement and center of buoyancy'
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               ParentFont = False
               TabOrder = 0
             end
@@ -496,9 +481,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 62
               Width = 162
               Caption = 'Curve of sectional areas'
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               ParentFont = False
               TabOrder = 1
             end
@@ -508,9 +490,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 80
               Width = 127
               Caption = 'Metacentric height'
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               ParentFont = False
               TabOrder = 2
             end
@@ -520,9 +499,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 98
               Width = 203
               Caption = 'Longitudinal center of floatation'
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               ParentFont = False
               TabOrder = 3
             end
@@ -532,9 +508,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 116
               Width = 207
               Caption = 'Lateral area and center of effort'
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               ParentFont = False
               TabOrder = 4
             end

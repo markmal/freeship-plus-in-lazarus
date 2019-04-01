@@ -23,7 +23,7 @@
 {                                                                                             }
 {#############################################################################################}
 
-unit FreeHullformWindow;
+unit freehullformwindow_form;
 
 {$IFDEF FPC}
   {$MODE Delphi}
@@ -60,9 +60,9 @@ uses
 
 type
 
-{ TFreeHullWindow }
+{ TFreeHullForm }
 
- TFreeHullWindow   = class(TForm)
+ TFreeHullForm   = class(TForm)
                            ScrollBar1: TScrollBar;
                            ScrollBar2: TScrollBar;
                            Viewport  : TFreeViewport;
@@ -196,7 +196,7 @@ type
                            property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
   end;
 
-var FreeHullWindow: TFreeHullWindow;
+var FreeHullWindow: TFreeHullForm;
 
 implementation
 
@@ -204,12 +204,12 @@ uses FreeLanguageSupport,
      Main;
 
 {$IFnDEF FPC}
-  {$R *.dfm}
+  {$R *.lfm}
 {$ELSE}
   {$R *.lfm}
 {$ENDIF}
 
-function TFreeHullWindow.FCaptionText:string;
+function TFreeHullForm.FCaptionText:string;
 begin
    Case Viewport.ViewType of
       fvBodyplan     : Result:=Userstring(215)+'.';
@@ -218,14 +218,14 @@ begin
       fvPerspective  : Result:=Userstring(218)+'.';
       else Result:='';
    end;
-end;{TFreeHullWindow.FCaptionText}
+end;{TFreeHullForm.FCaptionText}
 
-procedure TFreeHullWindow.SetCaption;
+procedure TFreeHullForm.SetCaption;
 begin
    Caption:=FCaptionText;
-end;{TFreeHullWindow.SetCaption}
+end;{TFreeHullForm.SetCaption}
 
-procedure TFreeHullWindow.FSetFreeShip(Val:TFreeShip);
+procedure TFreeHullForm.FSetFreeShip(Val:TFreeShip);
 begin
    if Val<>FFreeShip then
    begin
@@ -241,9 +241,9 @@ begin
          FFreeShip.AddViewport(Viewport);
       end;
    end;
-end;{TFreeHullWindow.FSetFreeShip}
+end;{TFreeHullForm.FSetFreeShip}
 
-procedure TFreeHullWindow.UpdateMenu;
+procedure TFreeHullForm.UpdateMenu;
 begin
    // Update all menuitems and action
    Print.Enabled:=(Viewport.ViewportMode=vmWireframe) and (Printer<>nil);
@@ -279,38 +279,38 @@ begin
                                 (Viewport.BackgroundImage.Transparent);
    BackgroundVisible.Checked:=Viewport.BackgroundImage.Visible;
    BackgroundVisible.Enabled:=(Viewport.ViewType<>fvPerspective) and (Viewport.BackgroundImage.Bitmap<>nil) and (Viewport.BackgroundImage.ShowInView=Viewport.ViewType);
-end;{TFreeHullWindow.UpdateMenu}
+end;{TFreeHullForm.UpdateMenu}
 
-procedure TFreeHullWindow.ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
+procedure TFreeHullForm.ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
 begin
    if FreeShip<>nil then
    begin
       Freeship.Extents(Min,Max);
       if Viewport.ViewType=fvBodyPlan then Min.Y:=-Max.Y;
    end;
-end;{TFreeHullWindow.ViewportRequestExtents}
+end;{TFreeHullForm.ViewportRequestExtents}
 
-procedure TFreeHullWindow.FormDestroy(Sender: TObject);
+procedure TFreeHullForm.FormDestroy(Sender: TObject);
 begin
 end;
 
-procedure TFreeHullWindow.FormKeyPress(Sender: TObject; var Key: char);
+procedure TFreeHullForm.FormKeyPress(Sender: TObject; var Key: char);
 begin
   ViewportKeyPress(Sender, Key);
 end;
 
-procedure TFreeHullWindow.FormKeyUp(Sender: TObject; var Key: Word;
+procedure TFreeHullForm.FormKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   ViewportKeyUp(Sender, Key, Shift);
 end;
 
-procedure TFreeHullWindow.ViewportRedraw(Sender: TObject);
+procedure TFreeHullForm.ViewportRedraw(Sender: TObject);
 begin
    if FreeShip<>nil then FreeShip.DrawToViewport(Viewport);
-end;{TFreeHullWindow.ViewportRedraw}
+end;{TFreeHullForm.ViewportRedraw}
 
-procedure TFreeHullWindow.createFreeViewport();
+procedure TFreeHullForm.createFreeViewport();
   begin
     Viewport := TFreeViewport.Create(Self);
     with Viewport do
@@ -360,7 +360,7 @@ procedure TFreeHullWindow.createFreeViewport();
   end;
 
 
-procedure TFreeHullWindow.FormCreate(Sender: TObject);
+procedure TFreeHullForm.FormCreate(Sender: TObject);
 {$IFDEF USEOPENGL}
 var VP: TFreeViewportOpenGL;
 {$ENDIF}
@@ -385,98 +385,102 @@ begin
    ViewPort.Destroy;
    ViewPort:=VP;
    {$ENDIF}
-end;{TFreeHullWindow.FormCreate}
+end;{TFreeHullForm.FormCreate}
 
-procedure TFreeHullWindow.FormClose(Sender: TObject; var Action: TCloseAction);
-var I:integer;
+procedure TFreeHullForm.FormClose(Sender: TObject; var Action: TCloseAction);
+var I:integer; C:TComponent;
 begin
    // Disconnect from FreeShip component;
    {$IFDEF FPC}
    if Assigned(Owner) then
      for I:=0 to TMainForm(Owner).MDIChildCount-1 do
-       if TMainForm(Owner).GetMDIChildren(I)=Self then
-         TMainForm(Owner).AbandonMDIChildren(I);
+       begin
+         C:= TMainForm(Owner).GetMDIChildren(I);
+         if (C is TFreeHullForm) and (TFreeHullForm(C)=Self) then
+             TMainForm(Owner).AbandonMDIChildren(I);
+
+       end;
    {$ENDIF}
    Freeship:=nil;
    Action:=caFree;
-end;{TFreeHullWindow.FormClose}
+end;{TFreeHullForm.FormClose}
 
-procedure TFreeHullWindow.PopupMenuPopup(Sender: TObject);
+procedure TFreeHullForm.PopupMenuPopup(Sender: TObject);
 begin
    UpdateMenu;
-end;{TFreeHullWindow.PopupMenu1Popup}
+end;{TFreeHullForm.PopupMenu1Popup}
 
-procedure TFreeHullWindow.StandardLensExecute(Sender: TObject);
+procedure TFreeHullForm.StandardLensExecute(Sender: TObject);
 begin
    Viewport.CameraType:=ftStandard;
-end;{TFreeHullWindow.StandardLensExecute}
+end;{TFreeHullForm.StandardLensExecute}
 
-procedure TFreeHullWindow.WideLensExecute(Sender: TObject);
+procedure TFreeHullForm.WideLensExecute(Sender: TObject);
 begin
    Viewport.CameraType:=ftWide;
-end;{TFreeHullWindow.WideLensExecute}
+end;{TFreeHullForm.WideLensExecute}
 
-procedure TFreeHullWindow.ShortTeleLensExecute(Sender: TObject);
+procedure TFreeHullForm.ShortTeleLensExecute(Sender: TObject);
 begin
    Viewport.CameraType:=ftShortTele;
-end;{TFreeHullWindow.ShortTeleLensExecute}
+end;{TFreeHullForm.ShortTeleLensExecute}
 
-procedure TFreeHullWindow.MediumTeleLensExecute(Sender: TObject);
+procedure TFreeHullForm.MediumTeleLensExecute(Sender: TObject);
 begin
    Viewport.CameraType:=ftMediumTele;
-end;{TFreeHullWindow.MediumTeleLensExecute}
+end;{TFreeHullForm.MediumTeleLensExecute}
 
-procedure TFreeHullWindow.LongTeleLensExecute(Sender: TObject);
+procedure TFreeHullForm.LongTeleLensExecute(Sender: TObject);
 begin
    Viewport.CameraType:=ftFarTele;
-end;{TFreeHullWindow.LongTeleLensExecute}
+end;{TFreeHullForm.LongTeleLensExecute}
 
-procedure TFreeHullWindow.ViewBodyPlanExecute(Sender: TObject);
+procedure TFreeHullForm.ViewBodyPlanExecute(Sender: TObject);
 begin
    Viewport.ViewType:=fvBodyplan;
-end;{TFreeHullWindow.ViewBodyPlanExecute}
+end;{TFreeHullForm.ViewBodyPlanExecute}
 
-procedure TFreeHullWindow.ViewProfileExecute(Sender: TObject);
+procedure TFreeHullForm.ViewProfileExecute(Sender: TObject);
 begin
    Viewport.ViewType:=fvProfile;
-end;{TFreeHullWindow.ViewProfileExecute}
+end;{TFreeHullForm.ViewProfileExecute}
 
-procedure TFreeHullWindow.ViewPlanExecute(Sender: TObject);
+procedure TFreeHullForm.ViewPlanExecute(Sender: TObject);
 begin
    Viewport.ViewType:=fvPlan;
-end;{TFreeHullWindow.ViewPlanExecute}
+end;{TFreeHullForm.ViewPlanExecute}
 
-procedure TFreeHullWindow.ViewPerspectiveExecute(Sender: TObject);
+procedure TFreeHullForm.ViewPerspectiveExecute(Sender: TObject);
 begin
    Viewport.ViewType:=fvPerspective;
-end;{TFreeHullWindow.ViewPerspectiveExecute}
+end;{TFreeHullForm.ViewPerspectiveExecute}
 
-procedure TFreeHullWindow.FormShow(Sender: TObject);
+procedure TFreeHullForm.FormShow(Sender: TObject);
 begin
    SetCaption;
-end;{TFreeHullWindow.FormShow}
+end;{TFreeHullForm.FormShow}
 
-procedure TFreeHullWindow.ViewportChangeViewType(Sender: TObject);
+procedure TFreeHullForm.ViewportChangeViewType(Sender: TObject);
 begin
    SetCaption;
-end;{TFreeHullWindow.ViewportChangeViewType}
+end;{TFreeHullForm.ViewportChangeViewType}
 
-procedure TFreeHullWindow.ZoomInExecute(Sender: TObject);
+procedure TFreeHullForm.ZoomInExecute(Sender: TObject);
 begin
    Viewport.ZoomIn;
-end;{TFreeHullWindow.ZoomInExecute}
+end;{TFreeHullForm.ZoomInExecute}
 
-procedure TFreeHullWindow.ZoomExtentsExecute(Sender: TObject);
+procedure TFreeHullForm.ZoomExtentsExecute(Sender: TObject);
 begin
    Viewport.ZoomExtents;
-end;{TFreeHullWindow.ZoomExtentsExecute}
+end;{TFreeHullForm.ZoomExtentsExecute}
 
-procedure TFreeHullWindow.ZoomOutExecute(Sender: TObject);
+procedure TFreeHullForm.ZoomOutExecute(Sender: TObject);
 begin
    Viewport.ZoomOut;
-end;{TFreeHullWindow.ZoomOutExecute}
+end;{TFreeHullForm.ZoomOutExecute}
 
-procedure TFreeHullWindow.ViewportMouseDown(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TFreeHullForm.ViewportMouseDown(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var Select  : Boolean;
     P:T2DCoordinate;
 begin
@@ -493,9 +497,9 @@ begin
    FPanned:=False;
    if Viewport.ViewportMode=vmWireframe then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
    FAllowPanOrZoom:=not select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
-end;{TFreeHullWindow.ViewportMouseDown}
+end;{TFreeHullForm.ViewportMouseDown}
 
-procedure TFreeHullWindow.ViewportMouseMove(Sender: TObject;Shift: TShiftState; X, Y: Integer);
+procedure TFreeHullForm.ViewportMouseMove(Sender: TObject;Shift: TShiftState; X, Y: Integer);
 var P    : TPoint;
     P2D  : T2DCoordinate;
     Str  : string;
@@ -555,9 +559,9 @@ begin
    else
      if Assigned(FFreeShip) then
        FFreeShip.MouseMove(Viewport,Shift,X,Y);
-end;{TFreeHullWindow.ViewportMouseMove}
+end;{TFreeHullForm.ViewportMouseMove}
 
-procedure TFreeHullWindow.ViewportMouseUp(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TFreeHullForm.ViewportMouseUp(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var P:TPoint;
 begin
    if Button=mbRight then
@@ -578,108 +582,108 @@ begin
    // Reset the pan/zoom flag
    FAllowPanOrZoom:=True;
    Freeship.MouseUp(Viewport,Shift,X,Y);
-end;{TFreeHullWindow.ViewportMouseUp}
+end;{TFreeHullForm.ViewportMouseUp}
 
-procedure TFreeHullWindow.DeselectAllExecute(Sender: TObject);
+procedure TFreeHullForm.DeselectAllExecute(Sender: TObject);
 begin
    FreeShip.Edit.Selection_Clear;
-end;{TFreeHullWindow.DeselectAllExecute}
+end;{TFreeHullForm.DeselectAllExecute}
 
-procedure TFreeHullWindow.ViewportMouseLeave(Sender: TObject);
+procedure TFreeHullForm.ViewportMouseLeave(Sender: TObject);
 begin
    // stop panning or zooming when the cursor leaves the viewport
    FAllowPanOrZoom:=False;
    // And remove the cursor location from the caption
    SetCaption;
    DeActivate;
-end;{TFreeHullWindow.ViewportMouseLeave}
+end;{TFreeHullForm.ViewportMouseLeave}
 
-procedure TFreeHullWindow.PrintExecute(Sender: TObject);
+procedure TFreeHullForm.PrintExecute(Sender: TObject);
 begin
    if Viewport.Width>Viewport.Height then Printer.Orientation:=poLandscape
                                      else Printer.Orientation:=poPortrait;
    if PrintDialog.Execute then Viewport.Print(FreeShip.ProjectSettings.ProjectUnits,Viewport.ViewType<>fvPerspective,'FREE!ship '+FCaptiontext);
-end;{TFreeHullWindow.PrintExecute}
+end;{TFreeHullForm.PrintExecute}
 
-procedure TFreeHullWindow.ShowWireFrameExecute(Sender: TObject);
+procedure TFreeHullForm.ShowWireFrameExecute(Sender: TObject);
 begin
    Viewport.ViewportMode:=vmWireframe;
-end;{TFreeHullWindow.ShowWireFrameExecute}
+end;{TFreeHullForm.ShowWireFrameExecute}
 
-procedure TFreeHullWindow.ShowFlatShadeExecute(Sender: TObject);
+procedure TFreeHullForm.ShowFlatShadeExecute(Sender: TObject);
 begin
    Viewport.ViewportMode:=vmShade;
-end;{TFreeHullWindow.ShowFlatShadeExecute}
+end;{TFreeHullForm.ShowFlatShadeExecute}
 
-procedure TFreeHullWindow.ShowGaussCurvatureExecute(Sender: TObject);
+procedure TFreeHullForm.ShowGaussCurvatureExecute(Sender: TObject);
 begin
    Viewport.ViewportMode:=vmShadeGauss;
-end;{TFreeHullWindow.ShowGaussCurvatureExecute}
+end;{TFreeHullForm.ShowGaussCurvatureExecute}
 
-procedure TFreeHullWindow.ShowDevelopablityExecute(Sender: TObject);
+procedure TFreeHullForm.ShowDevelopablityExecute(Sender: TObject);
 begin
    Viewport.ViewportMode:=vmShadeDevelopable;
-end;{TFreeHullWindow.ShowDevelopablityExecute}
+end;{TFreeHullForm.ShowDevelopablityExecute}
 
-procedure TFreeHullWindow.SaveAsBitmapExecute(Sender: TObject);
+procedure TFreeHullForm.SaveAsBitmapExecute(Sender: TObject);
 var Str : string;
 begin
    // Skip translation
    Str:=Freeship.Preferences.ExportDirectory+ChangeFileExt(ExtractFilename(Freeship.Filename),'.bmp');
    Viewport.SaveAsBitmap(Str);
    // End Skip translation
-end;{TFreeHullWindow.SaveAsBitmapExecute}
+end;{TFreeHullForm.SaveAsBitmapExecute}
 
-procedure TFreeHullWindow.ViewportKeyUp(Sender: TObject; var Key: Word;Shift: TShiftState);
+procedure TFreeHullForm.ViewportKeyUp(Sender: TObject; var Key: Word;Shift: TShiftState);
 begin
    Freeship.KeyUp(Viewport,Key,Shift);
-end;{TFreeHullWindow.ViewportKeyUp}
+end;{TFreeHullForm.ViewportKeyUp}
 
-procedure TFreeHullWindow.ViewportKeyPress(Sender: TObject; var Key: Char);
+procedure TFreeHullForm.ViewportKeyPress(Sender: TObject; var Key: Char);
 begin
    if key=#27 then DeselectAllExecute(self);
-end;{TFreeHullWindow.ViewportKeyPress}
+end;{TFreeHullForm.ViewportKeyPress}
 
-procedure TFreeHullWindow.ShadeZebraExecute(Sender: TObject);
+procedure TFreeHullForm.ShadeZebraExecute(Sender: TObject);
 begin
    Viewport.ViewportMode:=vmShadeZebra;
    UpdateMenu;
-end;{TFreeHullWindow.ShadeZebraExecute}
+end;{TFreeHullForm.ShadeZebraExecute}
 
-procedure TFreeHullWindow.ImportBackGroundExecute(Sender: TObject);
+procedure TFreeHullForm.ImportBackGroundExecute(Sender: TObject);
 begin
    if Freeship<>nil then Freeship.Edit.BackgroundImage_Open(Viewport);
-end;{TFreeHullWindow.ImportBackGroundExecute}
+end;{TFreeHullForm.ImportBackGroundExecute}
 
-procedure TFreeHullWindow.BackgroundOriginExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundOriginExecute(Sender: TObject);
 begin
    Viewport.BackgroundMode:=emSetOrigin;
-end;{TFreeHullWindow.BackgroundOriginExecute}
+end;{TFreeHullForm.BackgroundOriginExecute}
 
-procedure TFreeHullWindow.BackgroundScaleExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundScaleExecute(Sender: TObject);
 begin
    Viewport.BackgroundMode:=emSetScale;
-end;{TFreeHullWindow.BackgroundScaleExecute}
+end;{TFreeHullForm.BackgroundScaleExecute}
 
-procedure TFreeHullWindow.BackgroundTransparentColorExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundTransparentColorExecute(Sender: TObject);
 begin
    Viewport.BackgroundMode:=emSetTransparentColor;
-end;{TFreeHullWindow.BackgroundTransparentColorExecute}
+end;{TFreeHullForm.BackgroundTransparentColorExecute}
 
-procedure TFreeHullWindow.BackgroundclearExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundclearExecute(Sender: TObject);
 begin
    if (Viewport.BackgroundImage.Bitmap<>nil) and (Viewport.BackgroundImage.Visible) then
    begin
       if Freeship<>nil then Freeship.Edit.BackgroundImage_Delete(Viewport);
    end;
-end;{TFreeHullWindow.BackgroundclearExecute}
+end;{TFreeHullForm.BackgroundclearExecute}
 
-procedure TFreeHullWindow.BackgroundBlendingExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundBlendingExecute(Sender: TObject);
 begin
    Viewport.BackgroundImage.SetBlendingValue;
 end;
 
-procedure TFreeHullWindow.ViewportRequestBackgroundImage(Sender: TObject);
+procedure TFreeHullForm.ViewportRequestBackgroundImage(Sender: TObject);
 var I    : Integer;
     Data : TFreeBackgroundImageData;
     Pt:TPoint;
@@ -699,7 +703,7 @@ begin
    end;
 end;
 
-procedure TFreeHullWindow.ViewportChangeBackground(Sender: TObject);
+procedure TFreeHullForm.ViewportChangeBackground(Sender: TObject);
 var I:Integer;
 begin
    for I:=1 to Freeship.NumberofBackgroundImages do if Freeship.BackgroundImage[I-1].AssignedView=Viewport.ViewType then
@@ -708,14 +712,14 @@ begin
       Freeship.BackgroundImage[I-1].UpdateData(Viewport);
       Break;
    end;
-end;{TFreeHullWindow.ViewportChangeBackground}
+end;{TFreeHullForm.ViewportChangeBackground}
 
-procedure TFreeHullWindow.BackgroundExportExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundExportExecute(Sender: TObject);
 begin
    Viewport.BackgroundImage.Save;
-end;{TFreeHullWindow.BackgroundExportExecute}
+end;{TFreeHullForm.BackgroundExportExecute}
 
-procedure TFreeHullWindow.BackgroundToleranceExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundToleranceExecute(Sender: TObject);
 var Str:Ansistring;
     Value,I:Integer;
 begin
@@ -730,11 +734,11 @@ begin
          Viewport.BackgroundImage.Tolerance:=Value;
       end else MessageDlg(Userstring(222)+'!',mtError,[mbok],0)
    end;
-end;{TFreeHullWindow.BackgroundToleranceExecute}
+end;{TFreeHullForm.BackgroundToleranceExecute}
 
-procedure TFreeHullWindow.BackgroundVisibleExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundVisibleExecute(Sender: TObject);
 begin
    Viewport.BackgroundImage.Visible:=not Viewport.BackgroundImage.Visible;
-end;{TFreeHullWindow.BackgroundVisibleExecute}
+end;{TFreeHullForm.BackgroundVisibleExecute}
 
 end.

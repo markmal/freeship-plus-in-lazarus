@@ -72,7 +72,7 @@ uses
      FreeGeometry,
      FreeShipUnit,
      FreeVersionUnit,
-     FreeHullformWindow,
+     freehullformwindow_panel,
      FreeAboutDlg,
      Menus,
      ToolWin,
@@ -90,6 +90,7 @@ type
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
+     MainClientPanel: TPanel;
      PanelActiveLayerColor: TPanel;
      PanelMain: TPanel;
      SelectLeakPoints: TAction;
@@ -601,7 +602,7 @@ type
       FModelInitallyLoaded : boolean;
       {$IFDEF FPC}
       function  MDIChildCount: Integer; override;
-      function  GetMDIChildren(AIndex: Integer): TCustomForm; override;
+      function  GetMDIChildren(AIndex: Integer): TFreeHullWindow;
       procedure AbandonMDIChildren(AIndex: Integer);
       procedure Tile;
       procedure Cascade;
@@ -993,13 +994,10 @@ begin
 end;{TMainForm.FOnselectItem}
 
 
-{$ifdef FPC}
-// implement it in FPC
 function TMainForm.MDIChildCount: Integer;
 begin
   Result := FMDIChildList.Count;
 end;
-{$endif}
 
 // Creates 4 different views on the hullform
 procedure TMainForm.FOpenHullWindows;
@@ -1025,11 +1023,15 @@ begin
       begin
          // open a new window
          HullformWindow:=TFreeHullWindow.Create(Self);
+         HullformWindow.FreeShip:=FreeShip;
          FMDIChildList.Add(HullformWindow);
+         HullformWindow.Parent:=MainClientPanel;
+
          ///HullformWindow:=TFreeHullWindow.CreateParented(self.Handle);
          //HullformWindow.ParentWindow := self.Handle ;
          // Connect viewport to freeship component
          //HullformWindow.FreeShip:=FreeShip;
+
          HullformWindow.Viewport.ViewType:=TFreeViewType(I);
          ShowTranslatedValues(HullformWindow);
          HullformWindow.SetCaption;
@@ -1404,25 +1406,23 @@ begin
   end;
 end;
 
-{$IFDEF FPC}
-function TMainForm.GetMDIChildren(AIndex: Integer): TCustomForm;
+function TMainForm.GetMDIChildren(AIndex: Integer): TFreeHullWindow;
 begin
   Result := nil;
-  if not (FormStyle in [fsMDIForm, fsMDIChild]) then
-    exit;
+  //if not (FormStyle in [fsMDIForm, fsMDIChild]) then
+  //  exit;
   if AIndex > FMDIChildList.Count -1 then exit;
-  Result := TCustomForm(FMDIChildList.Items[AIndex]) ;
+  Result := TFreeHullWindow(FMDIChildList.Items[AIndex]) ;
 end;
 
 procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
 begin
   FMDIChildList.Delete(AIndex);
 end;
-{$ENDIF}
 
 procedure TMainForm.Tile;
-var T,L,MW,MH, X,Y,W,H, i, MCC, HH,FW : Integer;
-    HFW : TCustomForm; //TFreeHullWindow;
+var T,L,MW,MH, X,Y,W,H, i, MCC, r,c,rows,cols : Integer;
+    HFW : TFreeHullWindow;
 begin
  {$ifdef Windows}
   inherited Tile;
@@ -1438,36 +1438,36 @@ begin
 
 // Color:=clRed;
 
- HH:=24;
- FW:=2;
- MW := Self.Width + FW*2;
- MH := Self.Height + HH + FW*2;
- T := Self.Top;
- L := Self.Left;
- T := HH;
- L := FW;
- MCC := MdiChildCount;
+ MCC := MainClientPanel.ControlCount;
+ rows:=round(sqrt(MCC));
+ cols:=round(sqrt(MCC));
+
+ MW := MainClientPanel.ClientWidth;
+ MH := MainClientPanel.ClientHeight;
+ W := MW div rows;
+ H := MH div cols;
+ T := 0;
+ L := 0;
+
+ //MCC := MdiChildCount;
+ c:=0; r:=0;
  for i:= 0 to MCC - 1 do
    begin
-   HFW := MDIChildren[i];
+   //HFW := MDIChildren[i];
+   HFW := TFreeHullWindow(MainClientPanel.Controls[i]);
    if Assigned(HFW) then
      begin
-     if i = 0 then HFW.SetBounds(L,                T+MH,
-                                 MW div 2 -FW*2,   HFW.Height -FW*2);
-     if i = 1 then HFW.SetBounds(L+MW div 2 +FW*2, T+MH,
-                                 MW div 2 -FW*2,   HFW.Height -FW*2);
-     if i = 2 then HFW.SetBounds(L,                T+MH+HFW.Height+HH+FW*2,
-                                 MW div 2 -FW*2,   HFW.Height -FW*2);
-     if i = 3 then HFW.SetBounds(L+MW div 2 +FW*2, T+MH+HFW.Height+HH+FW*2,
-                                 MW div 2 -FW*2,   HFW.Height -FW*2);
+     HFW.SetBounds(L+(c*W), T+(r*H), W, H);
+     inc(c);
+     if c >= cols then begin c:=0; inc(r); end;
      end;
    end;
  {$endif}
 end;{TMainForm.Tile}
 
 procedure TMainForm.Cascade;
-var T,L,MW,MH, X,Y,W,H, i : Integer;
-    HFW : TCustomForm; //TFreeHullWindow;
+var T,L,MW,MH, X,Y,W,H, i, MCC : Integer;
+   Ctrl:TControl; HFW : TFreeHullWindow;
 begin
   {$ifdef Windows}
    inherited Cascade;
@@ -1477,16 +1477,21 @@ begin
    inherited Cascade;
   {$else}
   // do manual cascade for non MDI environments
-  MW := Self.Width;
-  MH := Self.Height + 30;
-  T := Self.Top;
-  L := Self.Left;
-  W := MW-40*MdiChildCount;
+  MW := MainClientPanel.ClientWidth;
+  MH := MainClientPanel.ClientHeight;
+  T := 0;
+  L := 0;
+  MCC:=MainClientPanel.ControlCount;
+  W := MW-40*MCC;
+  H := MH-30*MCC;
   if W<200 then W:=200;
-  for i:= 0 to MdiChildCount - 1 do
+  for i:= 0 to MCC - 1 do
    begin
-   HFW := MDIChildren[i];
-   HFW.SetBounds(L+i*40,T+MH+i*40,W,HFW.Height);
+   //HFW := MDIChildren[i];
+   Ctrl:=MainClientPanel.Controls[i];
+   if not (Ctrl is TFreeHullWindow) then continue;
+   HFW := TFreeHullWindow(MainClientPanel.Controls[i]);
+   HFW.SetBounds(i*40,i*30, W,H);
    end;
   {$endif}
 end;{TMainForm.Cascade}

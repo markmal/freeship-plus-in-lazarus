@@ -7,9 +7,6 @@ object FreeResistance_MH: TFreeResistance_MH
   ClientHeight = 640
   ClientWidth = 880
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object PageControl1: TPageControl
@@ -1381,8 +1378,6 @@ object FreeResistance_MH: TFreeResistance_MH
             Top = 243
             Width = 40
             Alignment = taRightJustify
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
             MaxValue = 75
             MinValue = 0
             OnExit = KeelChordLengthboxAfterSetValue
@@ -1431,8 +1426,6 @@ object FreeResistance_MH: TFreeResistance_MH
             Top = 318
             Width = 40
             Alignment = taRightJustify
-            Font.Height = -11
-            Font.Name = 'MS Sans Serif'
             MaxValue = 75
             MinValue = 0
             OnExit = KeelChordLengthboxAfterSetValue

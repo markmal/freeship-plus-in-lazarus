@@ -7,9 +7,6 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
   ClientHeight = 434
   ClientWidth = 684
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   OnResize = FormResize
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
@@ -150,9 +147,6 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
       Top = 9
       Width = 250
       Align = alLeft
-      Font.CharSet = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Courier New'
       ItemHeight = 0
       OnClick = UndoBoxClick

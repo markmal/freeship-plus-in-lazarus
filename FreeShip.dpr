@@ -52,7 +52,7 @@ uses
 
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
   Main in 'Forms/Main.pas' {MainForm},
-  FreeHullformWindow in 'Forms/FreeHullformWindow.pas' {FreeHullWindow},
+  freehullformwindow_panel in 'Forms/FreeHullformWindow.pas' {FreeHullWindow},
   FreeLayerDlg in 'Forms/FreeLayerDlg.pas' {FreeLayerDialog},
   FreeNewModelDlg in 'Forms/FreeNewModelDlg.pas' {FreeNewModelDialog},
   FreeSplashWndw in 'Forms/FreeSplashWndw.pas' {FreeSplashWindow},

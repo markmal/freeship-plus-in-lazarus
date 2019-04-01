@@ -8,9 +8,6 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
   ClientHeight = 527
   ClientWidth = 720
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
@@ -622,8 +619,6 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Top = 169
           Width = 65
           Alignment = taRightJustify
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
           MaxValue = 1000
           MinValue = 2
           OnChange = Input5ChangeValue
@@ -638,8 +633,6 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Top = 193
           Width = 65
           Alignment = taRightJustify
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
           MaxValue = 1000
           MinValue = 3
           OnChange = Input6ChangeValue

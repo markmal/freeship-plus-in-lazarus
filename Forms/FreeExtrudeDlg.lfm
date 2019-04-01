@@ -8,9 +8,6 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
   ClientHeight = 151
   ClientWidth = 280
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0

@@ -7,9 +7,6 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   ClientHeight = 739
   ClientWidth = 970
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
@@ -588,9 +585,6 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           DefaultColWidth = 49
           DefaultRowHeight = 18
           FixedColor = 14211288
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
           Font.Name = 'Arial'
           Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goRowSelect]
           ParentFont = False

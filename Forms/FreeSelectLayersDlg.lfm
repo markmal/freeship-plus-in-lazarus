@@ -8,9 +8,6 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
   ClientHeight = 272
   ClientWidth = 387
   Color = clBtnFace
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel

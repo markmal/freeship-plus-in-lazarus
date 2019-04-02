@@ -429,6 +429,7 @@ type
     Select_LeakPoints: TMenuItem;
 
     FMDIChildList : TList;
+
     procedure FormActivate(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -591,11 +592,18 @@ type
       FToolBarEdgesControlsWidth : integer;
       FToolBarFacesControlsWidth : integer;
       FToolBarCurvesControlsWidth : integer;
+      FActionListHull : TActionList;
+      FDestroying: boolean;
 
       procedure FLoadRecentFile(sender:TObject);
       procedure FreeShipChangeLayerData(Sender: TObject);
       procedure FreeShipChangeActiveLayer(Sender: TObject;Layer: TFreeSubdivisionLayer);
       procedure FOnSelectItem(Sender:TObject);
+
+      procedure HullformWindowOnActivate(Sender:TObject);
+      procedure HullformWindowOnDeactivate(Sender:TObject);
+      procedure HullformWindowOnClose(Sender:TObject; var CloseAction: TCloseAction);
+
       procedure FOpenHullWindows;   // Creates 4 different views on the hullform
    public     { Public declarations }
       FFileName : string;
@@ -701,12 +709,20 @@ begin
 end;
 
 destructor TMainForm.Destroy;
-var i: Integer;
+var i: Integer; thw:TFreeHullWindow;
 begin
+ FDestroying := true;
+ FActionListHull := nil;
  for i:=0 to FMDIChildList.Count -1 do
-   TFreeHullWindow(FMDIChildList.Items[i]).Destroy;
- FMDIChildList.Destroy;
- inherited Destroy;
+   if assigned(FMDIChildList.Items[i]) then
+      begin
+      thw:=TFreeHullWindow(FMDIChildList.Items[i]);
+      if assigned(thw.FreeHullForm) and assigned(thw.FreeHullForm.ActionListHull)
+        then self.RemoveComponent(thw.FreeHullForm.ActionListHull);
+      thw.Free;
+      end;
+ FMDIChildList.Free;
+ inherited;
 end;
 
 procedure TMainForm.FormChangeBounds(Sender: TObject);
@@ -943,11 +959,12 @@ begin
        InitiallyLoadModel;
        FModelInitallyLoaded := true;
     end;
-
+  {
   for i:=0 to FMDIChildList.Count -1 do begin
     TFreeHullWindow(FMDIChildList.Items[i]).BringToFront;
     Application.ProcessMessages;
   end;
+  }
   BringToFront;
   Application.BringToFront;
   Application.ProcessMessages;
@@ -999,10 +1016,38 @@ begin
   Result := FMDIChildList.Count;
 end;
 
+
+procedure TMainForm.HullformWindowOnActivate(Sender:TObject);
+begin
+  // bring Action List here to process keys and shortcuts
+  FActionListHull := TFreeHullWindow(Sender).FreeHullForm.ActionListHull;
+  self.InsertComponent(FActionListHull);
+end;
+
+procedure TMainForm.HullformWindowOnDeactivate(Sender:TObject);
+begin
+  // remove Action List to free place for another MDI action list
+  if not assigned(FActionListHull) then exit;
+  if not assigned(TFreeHullWindow(Sender).FreeHullForm) then exit;
+  if not assigned(TFreeHullWindow(Sender).FreeHullForm.ActionListHull) then exit;
+  if FActionListHull <> TFreeHullWindow(Sender).FreeHullForm.ActionListHull
+     then exit;
+  if not FDestroying then
+     RemoveComponent(FActionListHull);
+  FActionListHull:=nil;
+end;
+
+procedure TMainForm.HullformWindowOnClose(Sender:TObject; var CloseAction: TCloseAction);
+begin
+  HullformWindowOnDeactivate(Sender);
+  FMDIChildList.Remove(Sender);
+end;
+
 // Creates 4 different views on the hullform
 procedure TMainForm.FOpenHullWindows;
 var HullformWindow: TFreeHullWindow;
     I             : Integer;
+    HullformActionList:TActionList;
 begin
   Panel3.Destroy;
   Panel3 := TPanel.Create(Self);
@@ -1028,11 +1073,10 @@ begin
          HullformWindow.FreeShip:=FreeShip;
          FMDIChildList.Add(HullformWindow);
          HullformWindow.Parent:=MainClientPanel;
-
-         ///HullformWindow:=TFreeHullWindow.CreateParented(self.Handle);
-         HullformWindow.ParentWindow := self.Handle ;
-         // Connect viewport to freeship component
-         //HullformWindow.FreeShip:=FreeShip;
+         HullformWindow.OnActivate:=HullformWindowOnActivate;
+         HullformWindow.OnDeactivate:=HullformWindowOnDeactivate;
+         HullformWindow.OnClose:=HullformWindowOnClose;
+         HullformWindow.OnDestroy:=HullformWindowOnDeactivate;
 
          HullformWindow.Viewport.ViewType:=TFreeViewType(I);
          ShowTranslatedValues(HullformWindow);

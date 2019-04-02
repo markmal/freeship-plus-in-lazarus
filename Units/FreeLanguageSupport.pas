@@ -218,6 +218,7 @@ begin
    end;
 end;{UserString}
 
+// TODO Replace custom translations with standard.
 
 {Translates the forms you choose in the language called in ini.
 Only created forms are translated with ShowTranslatedValues. Call it in the onShow
@@ -230,13 +231,14 @@ var I,J     : integer;
     Index   : Integer;
     Comp    : TComponent;
     CmbBox  : TComboBox;
-    Str,Tmp : string;
+    Str,Tmp : TTranslateString;
 begin
    if (CurrentLanguage=nil) or (Component=nil) then exit;
    with CurrentLanguage do
    begin
       Str:=readString(Component.Classname,Component.Classname+'.Caption','');
-      if Str<>'' then TForm(Component).caption:=Str;
+      if Str<>'' then setProp(Component,'Caption',Str);
+
       for i:=0 to Component.componentCount-1 do
       begin
    		comp:=Component.Components[i];

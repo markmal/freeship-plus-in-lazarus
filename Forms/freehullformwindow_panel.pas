@@ -189,7 +189,7 @@ type
    procedure BackgroundVisibleExecute(Sender: TObject);
 
 private    { Private declarations }
-   FOnClose: TCloseEvent;
+   //FOnClose: TCloseEvent;
    FFreeShip         : TFreeShip;
    FPanned           : Boolean;  // Private variable from which can be seen if the popup menu has to be shown or not
    FInitialPosition  : TPoint;   // Initial position of the mouse cursor when the left or right button was pressed
@@ -201,10 +201,11 @@ private    { Private declarations }
    procedure CopyComponentsFromFreeHullForm;
 public     { Public declarations }
    constructor Create(AOwner: TComponent); override;
+   destructor Destroy; override;
    procedure SetCaption;
    procedure UpdateMenu;
    property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
-   property OnClose: TCloseEvent read FOnClose write FOnClose;
+   //property OnClose: TCloseEvent read FOnClose write FOnClose;
   end;
 
 var FreeHullWindow: TFreeHullWindow;
@@ -243,11 +244,18 @@ begin
   //FormCreate(Self);
   self.BorderWidth:=2;
 
-    //OnClose := @FreeHullForm.FormClose;
+  OnClose := @FormClose;
   OnKeyPress := @FormKeyPress;
   OnKeyUp := @FormKeyUp;
   OnShow := @FormShow;
 
+end;
+
+destructor TFreeHullWindow.Destroy;
+begin
+  if assigned(ViewPort) then ViewPort.Free;
+  if assigned(FreeHullForm) then FreeHullForm.Free;
+  inherited;
 end;
 
 procedure TFreeHullWindow.CopyComponentsFromFreeHullForm;
@@ -525,6 +533,9 @@ begin
          TMainForm(Owner).AbandonMDIChildren(I);}
    {$ENDIF}
    Freeship:=nil;
+
+   if assigned(FreeHullForm) then FreeHullForm.Free;
+
    aAction:=caFree;
 end;{TFreeHullWindow.FormClose}
 

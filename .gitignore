@@ -1,5 +1,10 @@
 *.o
 *.ppu
+*.lpi
+*.lps
+*.dll
+*.obj
+FreeShip.exe
 FreeShip
 FreeShip.or
 FreeShip.res

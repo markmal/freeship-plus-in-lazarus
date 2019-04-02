@@ -44,6 +44,8 @@ type
     MenuItemMaximize: TMenuItem;
     MenuItemRestore: TMenuItem;
   private
+    FOnActivate: TNotifyEvent;
+    FOnDeactivate: TNotifyEvent;
     FOnClose: TCloseEvent;
     FOnCreate: TNotifyEvent;
     FOnDestroy: TNotifyEvent;
@@ -64,6 +66,7 @@ type
     FClickProxies: TFPList;
     FCaptionButtons: TCaptionButtons;
     FWindowResizingSide: TWindowResizingSide;
+
   private
 
     WindowPositionState: TWindowPositionState;
@@ -107,6 +110,8 @@ type
       Shift: TShiftState; X, Y: integer);
     procedure SetBorderCursor(X, Y: integer);
 
+    function deriveCaptionHeight:integer;
+    function deriveCaptionIconHeight:integer;
 
     procedure SetCaption(const Value: TCaption);
     function GetCaption: TCaption;
@@ -149,6 +154,8 @@ type
     property InactiveBorderColor: TColor read FInactiveBorderColor write SetInactiveBorderColor default clDefault;
     property Caption: TCaption read GetCaption write SetCaption;
     property Icon: TIcon read getIcon write setIcon;
+    property OnActivate: TNotifyEvent read FOnActivate write FOnActivate;
+    property OnDeactivate: TNotifyEvent read FOnDeactivate write FOnDeactivate;
     property OnClose: TCloseEvent read FOnClose write FOnClose;
     property OnCreate: TNotifyEvent read FOnCreate write FOnCreate;
     property OnDestroy: TNotifyEvent read FOnDestroy write FOnDestroy;
@@ -211,6 +218,7 @@ destructor TMDIPanel.Destroy;
 begin
   unsetMouseClickProxies;
   FClickProxies.Free;
+  if assigned(onDestroy) then onDestroy(Self);
   inherited Destroy;
 end;
 
@@ -224,25 +232,33 @@ begin
   Result := nameBase + IntToStr(i);
 end;
 
-function TMDIPanel.drawCloseIcon(size: integer): TBitmap;
-var
-  scale, i, r, k, AlphaShift: integer;
+function createCompatibleBpp32LazCanvas(w,h: integer):TLazCanvas;
+var AlphaShift: integer;
   AImage: TLazIntfImage;
   ACanvas: TLazCanvas;
   lRawImage: TRawImage;
-  ImgHandle, ImgMaskHandle: HBitmap;
 begin
   lRawImage.Description:=GetDescriptionFromDevice(0);
   AlphaShift := lRawImage.Description.AlphaShift;
   lRawImage.Init;
   if AlphaShift = 0 then
-    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size) // linux
+    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(w, h) // linux
   else
-    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size); // windows
+    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(w, h); // windows
   lRawImage.CreateData(True);
   AImage := TLazIntfImage.Create(0, 0);
   AImage.SetRawImage(lRawImage);
   ACanvas := TLazCanvas.Create(AImage);
+  result:=ACanvas;
+end;
+
+function TMDIPanel.drawCloseIcon(size: integer): TBitmap;
+var
+  scale, i, r, k: integer;
+  ACanvas: TLazCanvas;
+  ImgHandle, ImgMaskHandle: HBitmap;
+begin
+  ACanvas := createCompatibleBpp32LazCanvas(size, size);
 
   scale := size div 8;
   ACanvas.Pen.FPColor := FPColor(0, 0, 0, $FFFF);
@@ -264,35 +280,22 @@ begin
     ACanvas.Line(i + k, r, r, i + k);
   end;
 
-  AImage.CreateBitmaps(ImgHandle, ImgMaskHandle, False);
+  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
   Result := TBitmap.Create;
   Result.Handle := ImgHandle;
   Result.MaskHandle := ImgMaskHandle;
 
+  ACanvas.Image.Free;
   ACanvas.Free;
-  AImage.Free;
 end;
 
 function TMDIPanel.drawMaximizeIcon(size: integer): TBitmap;
 var
-  scale, i, r, AlphaShift: integer;
-  AImage: TLazIntfImage;
+  scale, i, r: integer;
   ACanvas: TLazCanvas;
-  lRawImage: TRawImage;
   ImgHandle, ImgMaskHandle: HBitmap;
 begin
-  lRawImage.Description:=GetDescriptionFromDevice(0);
-  AlphaShift := lRawImage.Description.AlphaShift;
-  lRawImage.Init;
-  if AlphaShift = 0 then
-    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size) // linux
-  else
-    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size); // windows
-
-  lRawImage.CreateData(True);
-  AImage := TLazIntfImage.Create(0, 0);
-  AImage.SetRawImage(lRawImage);
-  ACanvas := TLazCanvas.Create(AImage);
+  ACanvas := createCompatibleBpp32LazCanvas(size, size);
 
   scale := size div 8;
   i := scale;
@@ -301,34 +304,22 @@ begin
   ACanvas.Pen.Width := scale;
   ACanvas.Rectangle(i, i, r, r);
 
-  AImage.CreateBitmaps(ImgHandle, ImgMaskHandle, False);
+  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
   Result := TBitmap.Create;
   Result.Handle := ImgHandle;
   Result.MaskHandle := ImgMaskHandle;
 
+  ACanvas.Image.Free;
   ACanvas.Free;
-  AImage.Free;
 end;
 
 function TMDIPanel.drawMinimizeIcon(size: integer): TBitmap;
 var
-  scale, i, r, AlphaShift: integer;
-  AImage: TLazIntfImage;
+  scale, i, r : integer;
   ACanvas: TLazCanvas;
-  lRawImage: TRawImage;
   ImgHandle, ImgMaskHandle: HBitmap;
 begin
-  lRawImage.Description:=GetDescriptionFromDevice(0);
-  AlphaShift := lRawImage.Description.AlphaShift;
-  lRawImage.Init;
-  if AlphaShift = 0 then
-    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size) // linux
-  else
-    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size); // windows
-  lRawImage.CreateData(True);
-  AImage := TLazIntfImage.Create(0, 0);
-  AImage.SetRawImage(lRawImage);
-  ACanvas := TLazCanvas.Create(AImage);
+  ACanvas := createCompatibleBpp32LazCanvas(size, size);
 
   scale := size div 8;
   ACanvas.Pen.FPColor := FPColor(0, 0, 0, $FFFF);
@@ -337,36 +328,22 @@ begin
   ACanvas.Pen.Width := scale;
   ACanvas.Line(i, size div 2, r, size div 2);
 
-  AImage.CreateBitmaps(ImgHandle, ImgMaskHandle, False);
+  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
   Result := TBitmap.Create;
   Result.Handle := ImgHandle;
   Result.MaskHandle := ImgMaskHandle;
 
+  ACanvas.Image.Free;
   ACanvas.Free;
-  AImage.Free;
 end;
 
 function TMDIPanel.drawRestoreIcon(size: integer): TBitmap;
 var
-  scale, i, r: integer;
-  IntfImg: TLazIntfImage;
+  scale, i, r : integer;
   ACanvas: TLazCanvas;
-  lRawImage: TRawImage;
   ImgHandle, ImgMaskHandle: HBitmap;
 begin
-  {lRawImage.Init;
-  //lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(size, size);   // works in Linux
-  lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(size, size);
-  lRawImage.Description.Init_BPP24_B8G8R8_BIO_TTB(size, size);
-  lRawImage.CreateData(True);
-  AImage := TLazIntfImage.Create(size, size);
-  AImage.SetRawImage(lRawImage);}
-
-  IntfImg := TLazIntfImage.Create(0,0);
-  IntfImg.DataDescription:=GetDescriptionFromDevice(0);
-  IntfImg.SetSize(size,size);
-
-  ACanvas := TLazCanvas.Create(IntfImg);
+  ACanvas := createCompatibleBpp32LazCanvas(size, size);
 
   scale := size div 8;
   ACanvas.Brush.FPColor := FPColor(0, 0, 0, 0);
@@ -377,23 +354,42 @@ begin
   ACanvas.Pen.Width := scale;
   ACanvas.Rectangle(i, i, r, r);
 
-  IntfImg.CreateBitmaps(ImgHandle, ImgMaskHandle, False);
+  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
   Result := TBitmap.Create;
-  //Result.Handle := ImgHandle;
-  //Result.MaskHandle := ImgMaskHandle;
-  Result.LoadFromIntfImage(IntfImg);
+  Result.Handle := ImgHandle;
+  Result.MaskHandle := ImgMaskHandle;
 
+  ACanvas.Image.Free;
   ACanvas.Free;
-  IntfImg.Free;
 end;
 
+function TMDIPanel.deriveCaptionHeight:integer;
+var h:integer; fd:TFontData;
+begin
+  //detect default font height to derive caption height
+  fd := GetFontData(CaptionPanel.Font.Handle);
+  // TFontData.Height is in logical units, convert it to pixels
+  h := abs(round(1.0 * fd.Height * Font.PixelsPerInch / 72.0));
+  result := h + 4; // add 4 so font does not touch borders
+end;
+
+function TMDIPanel.deriveCaptionIconHeight:integer;
+var h:integer;
+begin
+  h:=deriveCaptionHeight;
+  if (h < 24) then
+    result := 16
+  else if (h < 34) then
+    result := 22
+  else
+    result := 32;
+end;
 
 procedure TMDIPanel.CreateCaptionPanel;
 var
   pic: TPicture;
   h, fppi, IconSize: integer;
   IconSizeString: string;
-  fd: TFontData;
   icn: TIcon;
 begin
   OnMouseMove := @BorderMouseMove;
@@ -425,18 +421,10 @@ begin
     OnMouseUp := @CaptionPanelMouseUp;
   end;
 
-  //detect default font height to derive caption height
-  fd := GetFontData(CaptionPanel.Font.Handle);
-  // TFontData.Height is in logical units, convert it to pixels
-  h := abs(round(1.0 * fd.Height * Font.PixelsPerInch / 72.0));
-  CaptionPanel.Constraints.MinHeight := h + 4; // add 4 so font does not touch borders
+  h := deriveCaptionHeight;
+  CaptionPanel.Constraints.MinHeight := h;
 
-  if (h < 24) then
-    IconSize := 16
-  else if (h < 34) then
-    IconSize := 22
-  else
-    IconSize := 32;
+  IconSize:=deriveCaptionIconHeight;
   IconSizeString := IntToStr(IconSize) + 'x' + IntToStr(IconSize);
   IconSizeString := 'X';
 
@@ -452,6 +440,7 @@ begin
       ParentFont := False;
       Font.Color := clWindowText;
       Font.Style := [fsBold];
+      Transparent := true;
     end;
   end;
 
@@ -626,21 +615,33 @@ end;
 
 
 procedure TMDIPanel.SetParent(NewParent: TWinControl);
-var H:integer;
+var H:integer; bm:TBitmap;
 begin
   if Parent = NewParent then exit;
   inherited SetParent(NewParent);
   FParentForm := GetParentForm(Self);
 
-  //BorderWidth := PF.BorderWidth;
-
   if assigned(SystemButton) then
     with SystemButton do
     begin
+      Transparent:=true;
       if assigned(FParentForm) then
          Glyph.Assign(FParentForm.Icon);
       if not assigned(Glyph) or (Glyph.Height = 0) then
-        Glyph.Assign(Application.Icon);
+        begin
+        h:=deriveCaptionIconHeight;
+        if Application.Icon.Height = h then
+          Glyph.Assign(Application.Icon)
+        else
+          begin
+            bm := TBitmap.Create;
+            bm.SetSize(h,h);
+            bm.Canvas.AntialiasingMode:=amOn;
+            bm.Canvas.StretchDraw(Rect(0,0,h,h),Application.Icon);
+            Glyph.Assign(bm);
+            bm.free;
+          end;
+        end;
       if not assigned(Glyph) or (Glyph.Height = 0) then
         Caption := ' $ ';
       if assigned(Glyph) and (Glyph.Height > 0) then
@@ -956,15 +957,21 @@ end;
 
 procedure TMDIPanel.DoClose(CloseAction: TCloseAction);
 begin
+  if not assigned(self) then exit;
+  if assigned(FOnClose) then
+     FOnClose(self,CloseAction);
+
+  self.unsetMouseClickProxies;
+
   SystemPopupMenu.Close;
   Application.ProcessMessages;
 
-  if CloseAction = caFree then
-    Free;
   if CloseAction = caHide then
     Visible := False;
   if CloseAction = caMinimize then
     doMinimize;
+  if CloseAction = caFree then
+    Free;
 end;
 
 procedure TMDIPanel.SystemButtonClick(Sender: TObject);
@@ -973,13 +980,8 @@ begin
 end;
 
 procedure TMDIPanel.CloseButtonClick(Sender: TObject);
-var
-  CloseAction: TCloseAction;
 begin
-  CloseAction := caFree;
-  if Assigned(FOnClose) then
-    FOnClose(Self, CloseAction);
-  DoClose(CloseAction);
+  DoClose(caFree);
 end;
 
 procedure TMDIPanel.OrderButtons;
@@ -1160,6 +1162,7 @@ var
   M, MP: TMethod;
 begin
   setMouseClickProxiesRecursively(CaptionPanel);
+  unsetMouseClickProxiesRecursively(self.CloseButton);
   setMouseClickProxiesRecursively(ClientPanel);
 end;
 
@@ -1209,6 +1212,7 @@ begin
     setZOrder(True);
     InactivateSiblings;
     unsetMouseClickProxies;
+    if assigned(FOnActivate) then FOnActivate(Self);
   end
   else
   begin
@@ -1218,6 +1222,7 @@ begin
     //BorderColor:=clInactiveBorder;
     CaptionPanel.Color := clInactiveCaption;
     setMouseClickProxies;
+    if assigned(FOnDeactivate) then FOnDeactivate(Self);
   end;
   invalidate;
 end;

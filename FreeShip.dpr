@@ -35,10 +35,6 @@ program FreeShip;
 //{$DEFINE CREATE_TRANSLATION}
 
 uses
-{$IFnDEF FPC}
-{$ELSE}
-  Interfaces,
-{$ENDIF}
   Controls,
   Forms,
   SysUtils,

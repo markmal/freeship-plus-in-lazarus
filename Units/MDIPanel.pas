@@ -197,8 +197,8 @@ begin
   BevelWidth := 1;
 
   BorderStyle := bsSingle;
-  BorderWidth := 4;
-  FActiveBorderColor := clDefault;
+  BorderWidth := 10;
+  FActiveBorderColor := clRed; // clDefault;
   FInactiveBorderColor := clDefault;
 
   FCornerSize := 10;
@@ -407,7 +407,7 @@ begin
     Align := alTop;
     BevelOuter := bvNone;
     BevelInner := bvNone;
-    BorderStyle := bsSingle;
+    BorderStyle := bsNone; //bsSingle;
     BorderWidth := 0;
     Caption := 'MDIPanel';
     Color := clInactiveCaption;
@@ -672,7 +672,7 @@ begin
     TabStop := False;
     BevelOuter := bvNone;
     BevelInner := bvNone;
-    BorderStyle := bsSingle;
+    BorderStyle := bsNone; //bsSingle;
     BorderWidth := 0;
   end;
 end;

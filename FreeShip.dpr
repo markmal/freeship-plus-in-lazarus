@@ -146,6 +146,7 @@ begin
    InitByParameters;
 
    FormatSettings.DecimalSeparator:='.';
+  Application.Scaled:=True;
    Application.Initialize;
 
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);

@@ -463,7 +463,7 @@ begin
     BackgroundImage.Visible := True;
     BevelInner := bvNone;
     BevelOuter := bvNone;
-    BorderStyle := bsSingle;
+    BorderStyle := bsNone; //bsSingle;
     BorderWidth := 0;
     CameraType := ftStandard;
     //Color := 10461087;

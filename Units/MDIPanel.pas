@@ -181,7 +181,6 @@ implementation
 
 uses  graphtype, intfgraphics, lazcanvas, LCLType, FPImage,
   types, lclproc, lcl;
-//{$R *.lfm}
 
 constructor TMDIPanel.Create(TheOwner: TComponent);
 begin
@@ -571,12 +570,16 @@ end;
 
 procedure TMDIPanel.Paint;
 var
-  ORect,IRect: TRect;
+  ORect,IRect: TRect; W,H:integer;
 begin
   inherited Paint;
-  ORect := GetClientRect;
+  W := Width; H := Height;
+  ORect := Rect(0,0,W,H);
+  IRect := GetClientRect;
   InflateRect(ORect, -BevelWidth, -BevelWidth);
   Canvas.Frame3d(ORect, BorderColor, BorderColor, BorderWidth);
+  Canvas.Frame3d(ORect, clRed, clLime, 10);
+  //if Assigned(OnPaint) then OnPaint(Self);
 end;
 
 function TMDIPanel.GetBorderColor: TColor;
@@ -615,11 +618,18 @@ end;
 
 
 procedure TMDIPanel.SetParent(NewParent: TWinControl);
-var H:integer; bm:TBitmap;
+var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
 begin
   if Parent = NewParent then exit;
   inherited SetParent(NewParent);
   FParentForm := GetParentForm(Self);
+
+  bv:=BevelOuter;
+  bv:=BevelInner;
+  bw:=BevelWidth;
+  bs:=BorderStyle;
+  bw:=BorderWidth;
+
 
   if assigned(SystemButton) then
     with SystemButton do
@@ -1196,8 +1206,17 @@ begin
   end;
 end;
 
+
 procedure TMDIPanel.setActive(val: boolean);
+var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
 begin
+
+  bv:=BevelOuter;
+  bv:=BevelInner;
+  bw:=BevelWidth;
+  bs:=BorderStyle;
+  bw:=BorderWidth;
+
   if FActive = val then exit;
   FActive := val;
   if val then

@@ -34,7 +34,7 @@ type
   TMDIPanel = class(TCustomPanel)
     CaptionPanel: TPanel;
     ClientPanel: TMDIClientPanel; //TScrollBox;
-    SystemButton: TSpeedButton;
+    SystemButton: TImage;
     CloseButton: TSpeedButton;
     MaximizeButton: TSpeedButton;
     MinimizeButton: TSpeedButton;
@@ -77,6 +77,7 @@ type
     procedure CreateClientPanel;
     procedure CreateSystemPopupMenu;
     //procedure CreateSystemActions;
+    procedure setDefaultSystemIcon;
 
     function drawCloseIcon(size: integer): TBitmap;
     function drawMaximizeIcon(size: integer): TBitmap;
@@ -93,6 +94,7 @@ type
     procedure RestoreButtonClick(Sender: TObject);
     procedure DoRestore;
     procedure OrderButtons;
+    procedure SetCaptionButtons(aVal:TCaptionButtons);
 
     //procedure ActionActionSystemMenuExecute(Sender: TObject);
 
@@ -124,6 +126,7 @@ type
     procedure unsetMouseClickProxies;
     procedure PassivePanelOnClick(Sender: TObject);
 
+
   protected
     procedure Deactivate; virtual;
     procedure Paint; override;
@@ -147,6 +150,7 @@ type
     procedure setIcon(val:TIcon);
     property Controls[Index: integer]: TControl read GetControl;
     property ControlCount: integer read GetControlCount;
+    property CaptionButtons:TCaptionButtons read FCaptionButtons write SetCaptionButtons;
 
   published
     property Active: boolean read FActive write setActive;
@@ -210,7 +214,7 @@ begin
   CreateSystemPopupMenu;
   OrderButtons;
   SetActive(false);
-  self.setMouseClickProxies;
+  SetMouseClickProxies;
   Invalidate;
 end;
 
@@ -386,11 +390,6 @@ begin
 end;
 
 procedure TMDIPanel.CreateCaptionPanel;
-var
-  pic: TPicture;
-  h, fppi, IconSize: integer;
-  IconSizeString: string;
-  icn: TIcon;
 begin
   OnMouseMove := @BorderMouseMove;
   OnMouseDown := @BorderMouseDown;
@@ -421,26 +420,43 @@ begin
     OnMouseUp := @CaptionPanelMouseUp;
   end;
 
-  h := deriveCaptionHeight;
-  CaptionPanel.Constraints.MinHeight := h;
+  CaptionPanel.Constraints.MinHeight := deriveCaptionHeight;
+  SetCaptionButtons(FCaptionButtons);
+end;
+
+procedure TMDIPanel.SetCaptionButtons(aVal:TCaptionButtons);
+var pic: TPicture;
+hx, fppi, IconSize: integer;
+IconSizeString: string;
+icn: TIcon;
+begin
+  if aVal = FCaptionButtons then exit;
+  FCaptionButtons := aVal;
 
   IconSize:=deriveCaptionIconHeight;
   IconSizeString := IntToStr(IconSize) + 'x' + IntToStr(IconSize);
   IconSizeString := 'X';
 
+  if not (cbSystemMenu in FCaptionButtons) and assigned(SystemButton)
+     then SystemButton.Free;
+  if not (cbClose in FCaptionButtons) and assigned(CloseButton)
+     then CloseButton.Free;
+  if not (cbMinimize in FCaptionButtons) and assigned(MinimizeButton)
+     then MinimizeButton.Free;
+  if not (cbMaximize in FCaptionButtons) and assigned(MaximizeButton)
+     then MaximizeButton.Free;
+  if not (cbRestore in FCaptionButtons) and assigned(RestoreButton)
+     then RestoreButton.Free;
+
+
+  //h:=deriveCaptionIconHeight;
   if cbSystemMenu in FCaptionButtons then
   begin
-    SystemButton := TSpeedButton.Create(Self);
+    SystemButton := TImage.Create(Self);
     with SystemButton do
     begin
-      Parent := CaptionPanel;
-      Align := alLeft;
       onClick := @SystemButtonClick;
-      AutoSize := True;
-      ParentFont := False;
-      Font.Color := clWindowText;
-      Font.Style := [fsBold];
-      Transparent := true;
+      setDefaultSystemIcon;
     end;
   end;
 
@@ -551,7 +567,9 @@ begin
       Visible := False;
     end;
   end;
+
 end;
+
 
 procedure TMDIPanel.Deactivate;
 begin
@@ -561,12 +579,12 @@ end;
 function TMDIPanel.getIcon :TIcon;
 begin
   result := TIcon.Create;
-  result.Assign(SystemButton.Glyph);
+  result.Assign(SystemButton.Picture.Icon);
 end;
 
 procedure TMDIPanel.setIcon(val:TIcon);
 begin
-  SystemButton.Glyph.Assign(val);
+  SystemButton.Picture.Icon.Assign(val);
 end;
 
 procedure TMDIPanel.Paint;
@@ -622,6 +640,37 @@ begin
   if ClientRect.Left > 10 then self.FCornerSize:=ClientRect.Left;
 end;
 
+
+procedure TMDIPanel.setDefaultSystemIcon;
+  var icn:TIcon; sz,ch:integer; pf:TCustomForm;
+ {
+  function getParentForm(c:TControl):TCustomForm;
+  begin
+    result:=nil;
+    if assigned(c.Parent) then
+       if (c.Parent is TCustomForm)
+       then result:=TCustomForm(c.Parent)
+       else getParentForm(c.Parent);
+  end;
+  }
+begin
+  pf:=getParentForm(Self);
+  if assigned(pf) and assigned(TCustomForm(pf).Icon)
+  then icn:=TCustomForm(pf).Icon
+  else icn:=Application.Icon;
+
+  SystemButton.Parent:=nil;
+  SystemButton.Picture.Icon.Assign(Application.Icon);
+  SystemButton.Stretch:=true;
+  ch:=CaptionPanel.ClientHeight;
+  sz:=deriveCaptionIconHeight;
+  SystemButton.Constraints.MaxHeight:=sz;
+  SystemButton.Constraints.MaxWidth:=sz;
+  SystemButton.BorderSpacing.Around:=(ch-sz)div 2;
+  SystemButton.Parent:=CaptionPanel;
+end;
+
+
 procedure TMDIPanel.SetParent(NewParent: TWinControl);
 var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
 begin
@@ -639,6 +688,8 @@ begin
   if assigned(SystemButton) then
     with SystemButton do
     begin
+      setDefaultSystemIcon;
+      {
       Transparent:=true;
       if assigned(FParentForm) then
          Glyph.Assign(FParentForm.Icon);
@@ -661,6 +712,7 @@ begin
         Caption := ' $ ';
       if assigned(Glyph) and (Glyph.Height > 0) then
         Constraints.MinWidth := Height;
+      }
     end;
 
   Invalidate;
@@ -706,17 +758,17 @@ begin
 
   MenuItemMaximize := TMenuItem.Create(Self);
   MenuItemMaximize.Name := rsMaximize;
-  MenuItemMaximize.OnClick := self.MaximizeButton.OnClick;
+  MenuItemMaximize.OnClick := @MaximizeButtonClick;
   SystemPopupMenu.Items.Add(MenuItemMaximize);
 
   MenuItemMinimize := TMenuItem.Create(Self);
   MenuItemMinimize.Name := rsMinimize;
-  MenuItemMinimize.OnClick := self.MinimizeButton.OnClick;
+  MenuItemMinimize.OnClick := @MinimizeButtonClick;
   SystemPopupMenu.Items.Add(MenuItemMinimize);
 
   MenuItemRestore := TMenuItem.Create(Self);
   MenuItemRestore.Name := rsRestore;
-  MenuItemRestore.OnClick := self.RestoreButton.OnClick;
+  MenuItemRestore.OnClick := @RestoreButtonClick;
   SystemPopupMenu.Items.Add(MenuItemRestore);
 
   MenuItem := TMenuItem.Create(Self);
@@ -726,7 +778,7 @@ begin
 
   MenuItem := TMenuItem.Create(Self);
   MenuItem.Name := rsClose;
-  MenuItem.OnClick := self.CloseButton.OnClick;
+  MenuItem.OnClick := @CloseButtonClick;
   SystemPopupMenu.Items.Add(MenuItem);
 
   self.CaptionPanel.PopupMenu := SystemPopupMenu;
@@ -905,7 +957,7 @@ begin
       end;
     end;
 
-    writeln('setBounds(', L, ',', T, ',', W, ',', H, ')');
+    //writeln('setBounds(', L, ',', T, ',', W, ',', H, ')');
     setBounds(L, T, W, H);
   end;
 end;
@@ -998,6 +1050,7 @@ procedure TMDIPanel.CloseButtonClick(Sender: TObject);
 begin
   DoClose(caFree);
 end;
+
 
 procedure TMDIPanel.OrderButtons;
 begin
@@ -1119,6 +1172,7 @@ var
   var i: integer;
     L: TMouseClickProxy;
   begin
+    if not assigned(C) then exit;
     if TMouseClickProxy.IsOnClick(C.OnClick) then
     begin
       i:=0;
@@ -1133,6 +1187,7 @@ var
   end;
 
 begin
+  if not assigned(Ctrl) then exit;
   if Ctrl is TWinControl then
     for i := 0 to TWinControl(Ctrl).ControlCount - 1 do
     begin
@@ -1151,6 +1206,7 @@ var
   var
     L: TMouseClickProxy;
   begin
+    if not assigned(C) then exit;
     if not TMouseClickProxy.IsOnClick(C.OnClick) then
     begin
       L := TMouseClickProxy.Create(C);
@@ -1160,6 +1216,7 @@ var
   end;
 
 begin
+  if not assigned(Ctrl) then exit;
   setProxyFor(Ctrl);
   if Ctrl is TWinControl then
     for i := 0 to TWinControl(Ctrl).ControlCount - 1 do

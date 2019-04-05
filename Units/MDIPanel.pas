@@ -131,6 +131,7 @@ type
     procedure SetActiveBorderColor(AValue: TColor);
     procedure SetInactiveBorderColor(AValue: TColor);
     procedure SetParent(NewParent: TWinControl); override;
+    procedure AdjustClientRect(var ARect: TRect); override;
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -181,7 +182,6 @@ implementation
 
 uses  graphtype, intfgraphics, lazcanvas, LCLType, FPImage,
   types, lclproc, lcl;
-//{$R *.lfm}
 
 constructor TMDIPanel.Create(TheOwner: TComponent);
 begin
@@ -196,9 +196,9 @@ begin
   BevelInner := bvNone;
   BevelWidth := 1;
 
-  BorderStyle := bsSingle;
-  BorderWidth := 10;
-  FActiveBorderColor := clRed; // clDefault;
+  BorderStyle := bsNone; //bsSingle;
+  BorderWidth := 4;
+  FActiveBorderColor := clDefault;
   FInactiveBorderColor := clDefault;
 
   FCornerSize := 10;
@@ -571,12 +571,14 @@ end;
 
 procedure TMDIPanel.Paint;
 var
-  ORect,IRect: TRect;
+  IRect: TRect; ibw:integer;
 begin
   inherited Paint;
-  ORect := GetClientRect;
-  InflateRect(ORect, -BevelWidth, -BevelWidth);
-  Canvas.Frame3d(ORect, BorderColor, BorderColor, BorderWidth);
+  IRect := GetClientRect;
+  ibw:=0;
+  if self.BevelInner <> bvNone then ibw:=BevelWidth;
+  InflateRect(IRect, -ibw, -ibw);
+  Canvas.Frame3d(IRect, BorderColor, BorderColor, BorderWidth);
 end;
 
 function TMDIPanel.GetBorderColor: TColor;
@@ -613,13 +615,26 @@ begin
   end;
 end;
 
+procedure TMDIPanel.AdjustClientRect(var ARect: TRect);
+begin
+  inherited AdjustClientRect(ARect);
+  self.FCornerSize:=10;
+  if ClientRect.Left > 10 then self.FCornerSize:=ClientRect.Left;
+end;
 
 procedure TMDIPanel.SetParent(NewParent: TWinControl);
-var H:integer; bm:TBitmap;
+var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
 begin
   if Parent = NewParent then exit;
   inherited SetParent(NewParent);
   FParentForm := GetParentForm(Self);
+
+  bv:=BevelOuter;
+  bv:=BevelInner;
+  bw:=BevelWidth;
+  bs:=BorderStyle;
+  bw:=BorderWidth;
+
 
   if assigned(SystemButton) then
     with SystemButton do
@@ -1196,8 +1211,17 @@ begin
   end;
 end;
 
+
 procedure TMDIPanel.setActive(val: boolean);
+var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
 begin
+
+  bv:=BevelOuter;
+  bv:=BevelInner;
+  bw:=BevelWidth;
+  bs:=BorderStyle;
+  bw:=BorderWidth;
+
   if FActive = val then exit;
   FActive := val;
   if val then

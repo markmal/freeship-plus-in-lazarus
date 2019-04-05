@@ -1,12 +1,15 @@
 *.o
 *.ppu
-*.lps
 *.lpi
+*.lps
 *.dll
 *.obj
+FreeShip.exe
 FreeShip
 FreeShip.or
 FreeShip.res
+FreeShip.lpi
+FreeShip.lps
 Units/backup/
 backup/
 hortlog

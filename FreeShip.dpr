@@ -28,13 +28,14 @@
 
 program FreeShip;
 
-{$IFDEF FPC}
-  {$MODE Delphi} {$H+}
-{$ENDIF}
+{$mode objfpc}{$H+}
 
 //{$DEFINE CREATE_TRANSLATION}
 
 uses
+  {$IFDEF UNIX}{$IFDEF UseCThreads}
+  cthreads,
+  {$ENDIF}{$ENDIF}
   Controls,
   Forms,
   SysUtils,
@@ -44,7 +45,8 @@ uses
      {$ELSE}
       FileUtil, //deprecated
      {$ENDIF}
-  DefaultTranslator, Interfaces,
+  DefaultTranslator,
+  Interfaces, // this includes the LCL widgetset
 
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
   Main in 'Forms/Main.pas' {MainForm},
@@ -99,9 +101,8 @@ uses
   Free2DDXFExportDlg in 'Forms/Free2DDXFExportDlg.pas' {DXFExport2DDialog},
   FreeCrosscurvesDlg in 'Forms/FreeCrosscurvesDlg.pas' {FreeCrosscurvesDialog},
   FreeAboutDlg in 'Forms/FreeAboutDlg.pas' {FreeAboutDlg},
-  FreeLogger in 'Units/FreeLogger.pas';
-
-//{$R *.res}
+  FreeLogger in 'Units/FreeLogger.pas',
+  MDIPanel;
 
 {$R *.res}
 
@@ -125,6 +126,7 @@ begin
   end;
 end;
 
+var   TestForm1:TForm;  FMDIPanel:TMDIPanel;
 
 begin
    Logger.LogLevel:=LOG_INFO;
@@ -145,8 +147,9 @@ begin
 
    InitByParameters;
 
+   RequireDerivedFormResource:=True; // new
    FormatSettings.DecimalSeparator:='.';
-  Application.Scaled:=True;
+   Application.Scaled:=True;
    Application.Initialize;
 
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);
@@ -164,15 +167,18 @@ begin
     //TODO: call somewhere FreeSplashWindow.Free;
    end;
 
+
    Application.CreateForm(TMainForm, MainForm);
-   //FreeSplashWindow.Parent := Mainform;
+   FreeSplashWindow.Parent := Mainform;
 
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
-  {$IFNDEF CREATE_TRANSLATION}
+
+   {$IFNDEF CREATE_TRANSLATION}
    LoadLanguage(Mainform.Freeship.Preferences.LanguageFile);
    {$ENDIF}
    ShowTranslatedValues(Mainform);
    Mainform.FFileName:=sOpenFile;
+
    //if sOpenFile <> ''
    //then MainForm.LoadNamedFile(sOpenFile);
 

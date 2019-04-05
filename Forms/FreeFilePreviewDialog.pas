@@ -71,7 +71,7 @@ type
     NavigationPanel: TPanel;
     LocationSelectorPanel: TPanel;
     Panel4: TPanel;
-    Panel7: TPanel;
+    FileEditPanel: TPanel;
     PreviewToolPanel: TPanel;
     PlacesMenuItemRename: TMenuItem;
     PlacesMenuItemDelete: TMenuItem;
@@ -211,6 +211,8 @@ type
     FIconVIewCellHeight:integer;
     FLocaleDir:string;
     FLang:string; // short name like 'ru', 'de'
+    FListHidden:boolean;
+
     {$IFDEF WINDOWS}
     function GetWinIconForFile(filename:string; isLarge: boolean; imageList:TImageList): integer;
     {$ELSE}
@@ -238,6 +240,7 @@ type
     procedure setSpeedButtonGoUpEnabled(path:String);
     procedure setFileDialogMode(const AValue: TFileDialogMode);
     procedure setLang(ALang:string);
+    procedure setListHidden(val:boolean);
 
     function CreateNewDir(aName:String):boolean;
     procedure CreateNewFolder;
@@ -262,6 +265,7 @@ type
     property FileDialogMode: TFileDialogMode read FFileDialogMode write setFileDialogMode;
     property LocaleDir: String read FLocaleDir write FLocaleDir;
     property Lang: String read FLang write setLang;
+    property ListHidden: boolean read FListHidden write setListHidden;
   end;
 
 implementation
@@ -322,16 +326,33 @@ begin
   setTooltips;
 end;
 
+procedure TFreeFilePreviewDialog.setListHidden(val:boolean);
+  var ottv,otlv: TObjectTypes;
+begin
+  if FListHidden = val then exit;
+  FListHidden := val;
+  SpeedButtonViewListHidden.Down := val;
+
+  ottv:=ShellTreeView.ObjectTypes;
+  if val
+    then include(ottv, otHidden)
+    else exclude(ottv, otHidden);
+
+  otlv:=ShellListView.ObjectTypes;
+  if val
+    then include(otlv, otHidden)
+    else exclude(otlv, otHidden);
+
+  ShellTreeView.ObjectTypes:=ottv;
+  ShellListView.ObjectTypes:=otlv;
+  ShellListView.Reload;
+end;
+
 procedure TFreeFilePreviewDialog.SpeedButtonViewListHiddenClick(Sender: TObject
   );
 var ot: TObjectTypes;
 begin
-  ot:=ShellListView.ObjectTypes;
-  if SpeedButtonViewListHidden.Down
-    then include(ot, otHidden)
-    else exclude(ot, otHidden);
-  ShellListView.ObjectTypes:=ot;
-  ShellListView.Reload;
+  setListHidden(SpeedButtonViewListHidden.Down)
 end;
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewListSimpleClick(Sender: TObject);
@@ -1325,7 +1346,7 @@ begin
   Flags := SHGFI_ICON or SHGFI_TYPENAME;
   if isLarge then Flags := Flags or SHGFI_LARGEICON else Flags := Flags or SHGFI_SMALLICON;
   r := SHGetFileInfo(@pwc, FILE_ATTRIBUTE_NORMAL, FileInfo, SizeOf(FileInfo), Flags);
-  fTypeName := WideCharToString( FileInfo.szTypeName );
+  fTypeName := String(WideCharToString( FileInfo.szTypeName ));
 
   // check if icon is registered in iconName to IconIndex map
   i := FIconNamesMap.IndexOf(fTypeName);
@@ -1618,6 +1639,8 @@ end;
 procedure TFreeFilePreviewDialog.setCurrentPath(p:string);
 begin
   //ComboBoxDir.Text:=p;
+  if TCustomShellTreeView.PathContainsHiddenDir(p) then
+     setListHidden(true);
   ChangeDir(p);
 end;
 

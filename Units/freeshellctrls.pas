@@ -123,6 +123,7 @@ type
     { Methods specific to Lazarus - useful for other classes }
     class function  GetBasePath: string;
     function  GetRootPath: string;
+    class function PathContainsHiddenDir(path: String): Boolean;
     class procedure GetFilesInDir(const ABaseDir: string;
       AMask: string; AObjectTypes: TObjectTypes; AResult: TStrings; AFileSortType: TFileSortType = fstNone);
     { Other methods specific to Lazarus }
@@ -1104,6 +1105,67 @@ begin
   Result := GetPathFromNode(Selected);
 end;
 
+class function TCustomShellTreeView.PathContainsHiddenDir(path: String): Boolean;
+var
+  i: Integer;
+  Attr: LongInt;
+  Dirs: TStringList;
+  Fn, AbsPath, CurPath: String;
+begin
+  AbsPath:=TrimAndExpandFilename(path);
+
+  begin
+    Attr := FileGetAttrUtf8(AbsPath);
+    Result := ((Attr and faHidden{%H-}) = faHidden{%H-});
+    if not Result then
+    begin
+      //it also is not allowed that any folder above is hidden
+      Fn := ChompPathDelim(AbsPath);
+      Fn := ExtractFileDir(Fn);
+      Dirs := TStringList.Create;
+      try
+        Dirs.StrictDelimiter := True;
+        Dirs.Delimiter := PathDelim;
+        Dirs.DelimitedText := Fn;
+        CurPath := '';
+        for i := 0 to Dirs.Count - 1 do
+        begin
+          if (i = 0) then
+            CurPath := Dirs.Strings[i]
+          else
+            CurPath := CurPath + PathDelim + Dirs.Strings[i];
+          if (CurPath = '') then Continue;
+          //RelPath := CreateRelativePath(Fn, FQRootPath, False, True);
+          //don't check if Fn now is "higher up the tree" than the current root
+          {if (RelPath = '') or ((Length(RelPath) > 1) and (RelPath[1] = '.') and (RelPath[2] = '.')) then
+          begin
+            {$ifdef debug_shellctrls}
+            debugln(['TCustomShellTreeView.SetPath.ContainsHidden: Fn is higher: ',Fn]);
+            {$endif}
+            Continue;
+          end;}
+          {$if defined(windows) and not defined(wince)}
+          if (Length(CurPath) = 2) and (CurPath[2] = ':') then Continue;
+          {$endif}
+          Attr := FileGetAttrUtf8(CurPath);
+          if (Attr <> -1) and ((Attr and faHidden{%H-}) > 0) then
+          begin
+            Result := True;
+            {$ifdef debug_shellctrls}
+            debugln(['TCustomShellTreeView.SetPath.Exists: a subdir is hidden: Result := False']);
+            {$endif}
+            Break;
+          end;
+        end;
+      finally
+        Dirs.Free;
+      end;
+    end;
+  end;
+end;
+
+
+
 {
 SetPath: Path can be
 - Absolute like '/usr/lib'
@@ -1314,7 +1376,8 @@ begin
   end;
 
   if not (otHidden in FObjectTypes) and ContainsHiddenDir(AValue) then
-    Raise EInvalidPath.CreateFmt(sShellCtrlsInvalidPath,[AValue, FQRootPath]);
+  ///  Raise EInvalidPath.CreateFmt(sShellCtrlsInvalidPath,[AValue, FQRootPath]);
+      include(FObjectTypes, otHidden);
 
   sl := TStringList.Create;
   sl.Delimiter := PathDelim;
@@ -1542,13 +1605,17 @@ begin
 end;
 
 procedure TCustomShellListView.AdjustColumnSizes;
-var cw : integer = 0;
+var ncw:integer; cw:integer = 0;
 begin
   // Initial sizes, necessary under Windows CE
   if FSizeColumn.Visible then cw := cw + FSizeColumn.Width;
   if FTypeColumn.Visible then cw := cw + FTypeColumn.Width;
   if FTimeColumn.Visible then cw := cw + FTimeColumn.Width;
-  FNameColumn.Width := Self.ClientWidth - cw;
+  if Self.ClientWidth > 0 then
+     ncw := Self.ClientWidth - cw
+  else ncw := Self.Width - cw;
+  if ncw > 0 then
+     FNameColumn.Width := ncw;
   if FNameColumn.Width < FNameColumn.MinWidth
     then FNameColumn.Width := FNameColumn.MinWidth;
 end;

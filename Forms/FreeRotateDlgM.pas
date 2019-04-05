@@ -23,6 +23,8 @@
 {                                                                                             }
 {#############################################################################################}
 
+{$mode objfpc}{$H+}
+
 unit FreeRotateDlgM;
 
 interface
@@ -91,7 +93,7 @@ type
                               function FGetZValue:extended;
                               procedure FSetZValue(val:extended);
                            public    { Public declarations }
-                              function Execute(Caption,Units:String):Boolean;
+                              function Execute(aCaption,Units:String):Boolean;
                               property XValue:Extended read FGetXValue write FSetXValue;
                               property YValue:Extended read FGetYValue write FSetYValue;
                               property ZValue:Extended read FGetZValue write FSetZValue;
@@ -138,7 +140,7 @@ begin
    Edit3.Text:=FloatToStrF(Val,ffFixed,7,4);
 end;{TFreeRotateMDialog.FSetZValue}
 
-function TFreeRotateMDialog.Execute(Caption,Units:String):Boolean;
+function TFreeRotateMDialog.Execute(aCaption,Units:String):Boolean;
 begin
    Self.Caption:=Caption;
    Label3.Caption:=Units;

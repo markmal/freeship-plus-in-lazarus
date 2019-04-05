@@ -196,7 +196,7 @@ type
                            property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
   end;
 
-var FreeHullWindow: TFreeHullForm;
+//var FreeHullWindow: TFreeHullForm;
 
 implementation
 
@@ -332,9 +332,10 @@ procedure TFreeHullForm.createFreeViewport();
       BackgroundImage.Transparent := False;
       BackgroundImage.TransparentColor := clBlack;
       BackgroundImage.Visible := True;
-      BevelInner := bvLowered;
-      BevelOuter := bvLowered;
+      BevelInner := bvNone;
+      BevelOuter := bvNone;
       BorderStyle := bsSingle;
+      BorderWidth := 0;
       CameraType := ftStandard;
       Color := 10461087;
       DoubleBuffer := True;

@@ -242,12 +242,19 @@ begin
   CopyComponentsFromFreeHullForm;
   FormCreate(Self);
   //FormCreate(Self);
-  self.BorderWidth:=2;
+  self.BorderWidth:=4;
+  self.InactiveBorderColor:=clWindowFrame;
+  self.ActiveBorderColor:=cl3DLight;
+
+  //self.BevelInner:=bvRaised; // test
+  //self.BevelOuter:=bvLowered;
+  //self.BevelWidth:=5;
 
   OnClose := @FormClose;
   OnKeyPress := @FormKeyPress;
   OnKeyUp := @FormKeyUp;
   OnShow := @FormShow;
+
 
 end;
 
@@ -463,7 +470,7 @@ begin
     BackgroundImage.Visible := True;
     BevelInner := bvNone;
     BevelOuter := bvNone;
-    BorderStyle := bsSingle;
+    BorderStyle := bsNone; //bsSingle;
     BorderWidth := 0;
     CameraType := ftStandard;
     //Color := 10461087;

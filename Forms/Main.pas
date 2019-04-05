@@ -438,6 +438,7 @@ type
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MainClientPanelClick(Sender: TObject);
     procedure PanelMainResize(Sender: TObject);
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
@@ -634,7 +635,8 @@ uses FreeSplashWndw,
      FreeLanguageSupport,
      FreeEmptyModelChooserDlg,
      RibbonToolBarMgr,
-     TileDialog;
+     TileDialog,
+     MDIPanel;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1392,21 +1394,42 @@ begin
 end;{TMainForm.ExitProgramExecute}
 
 procedure TMainForm.FormShow(Sender: TObject);
-var FileExt: string;
+var FileExt: string; L,T,W,H:integer;
 begin
-   self.WindowState:=wsNormal;
-   self.Position:=poScreenCenter;
-
    // Initialize some data
    FreeShip.OnChangeActiveLayer:=FreeShipChangeActiveLayer;
    Freeship.OnChangeLayerData:=FreeShipChangeLayerData;
    FreeShip.OnSelectItem:=FOnSelectItem;
    FreeShip.Clear;
 
+   // fit to screen
+   L:=Left; T:=Top; W:=Width; H:=Height;
+   if self.BoundsRect.Right > Screen.Width then L:=0;
+   if self.Width > Screen.Width then W:=Screen.Width;
+   if self.BoundsRect.Bottom > Screen.Height then T:=0;
+   if self.Height > Screen.Height then H:=Screen.Height;
+   self.SetBounds(L,T,W,H);
+
    SetCaption;
    LoadToolIcons;
    UpdateMenu;
 end;{TMainForm.FormShow}
+
+
+// TO testing - remove!
+procedure TMainForm.MainClientPanelClick(Sender: TObject);
+var f:TForm; p:TMDIPanel;
+begin
+  f:=TForm.Create(Application);
+  f.SetBounds(0,0,500,600);
+
+  p:=TMDIPanel.Create(f);
+  p.parent:= f;
+  p.SetBounds(10,10,400,300);
+
+  f.Show;
+
+end;
 
 procedure TMainForm.PanelMainResize(Sender: TObject);
 begin

@@ -131,6 +131,7 @@ type
     procedure SetActiveBorderColor(AValue: TColor);
     procedure SetInactiveBorderColor(AValue: TColor);
     procedure SetParent(NewParent: TWinControl); override;
+    procedure AdjustClientRect(var ARect: TRect); override;
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -195,7 +196,7 @@ begin
   BevelInner := bvNone;
   BevelWidth := 1;
 
-  BorderStyle := bsSingle;
+  BorderStyle := bsNone; //bsSingle;
   BorderWidth := 4;
   FActiveBorderColor := clDefault;
   FInactiveBorderColor := clDefault;
@@ -406,7 +407,7 @@ begin
     Align := alTop;
     BevelOuter := bvNone;
     BevelInner := bvNone;
-    BorderStyle := bsSingle;
+    BorderStyle := bsNone; //bsSingle;
     BorderWidth := 0;
     Caption := 'MDIPanel';
     Color := clInactiveCaption;
@@ -570,16 +571,14 @@ end;
 
 procedure TMDIPanel.Paint;
 var
-  ORect,IRect: TRect; W,H:integer;
+  IRect: TRect; ibw:integer;
 begin
   inherited Paint;
-  W := Width; H := Height;
-  ORect := Rect(0,0,W,H);
   IRect := GetClientRect;
-  InflateRect(ORect, -BevelWidth, -BevelWidth);
-  Canvas.Frame3d(ORect, BorderColor, BorderColor, BorderWidth);
-  Canvas.Frame3d(ORect, clRed, clLime, 10);
-  //if Assigned(OnPaint) then OnPaint(Self);
+  ibw:=0;
+  if self.BevelInner <> bvNone then ibw:=BevelWidth;
+  InflateRect(IRect, -ibw, -ibw);
+  Canvas.Frame3d(IRect, BorderColor, BorderColor, BorderWidth);
 end;
 
 function TMDIPanel.GetBorderColor: TColor;
@@ -616,6 +615,12 @@ begin
   end;
 end;
 
+procedure TMDIPanel.AdjustClientRect(var ARect: TRect);
+begin
+  inherited AdjustClientRect(ARect);
+  self.FCornerSize:=10;
+  if ClientRect.Left > 10 then self.FCornerSize:=ClientRect.Left;
+end;
 
 procedure TMDIPanel.SetParent(NewParent: TWinControl);
 var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
@@ -682,7 +687,7 @@ begin
     TabStop := False;
     BevelOuter := bvNone;
     BevelInner := bvNone;
-    BorderStyle := bsSingle;
+    BorderStyle := bsNone; //bsSingle;
     BorderWidth := 0;
   end;
 end;

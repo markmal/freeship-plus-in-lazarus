@@ -192,8 +192,10 @@ begin
         bmp.Free;
       end;
     end;
-  sb.Constraints.MinWidth:=tw+fw*2;
-  sb.Margin:=fw;
+  sb.Constraints.MinWidth:=tw+fw*2+2;
+  //sb.Spacing:=6;
+  sb.Margin:=-1;//fw;
+  sb.AdjustSize;
   sb.Action := TBasicAction.Create(sb);
   sb.Action.ActionComponent:=sb;
   sb.Action.OnExecute := @DoOnControlActionExecute;

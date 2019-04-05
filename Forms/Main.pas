@@ -1070,6 +1070,7 @@ begin
       begin
          // open a new window
          HullformWindow:=TFreeHullWindow.Create(Self);
+         HullformWindow.CaptionButtons:=[cbSystemMenu,cbMaximize,cbMinimize,cbRestore];
          HullformWindow.Name:='HullformWindow'+IntToStr(I);    // helps in debugging
          HullformWindow.Viewport.Name :='Viewport'+IntToStr(I);
          HullformWindow.FreeShip:=FreeShip;
@@ -1082,6 +1083,7 @@ begin
 
          HullformWindow.Viewport.ViewType:=TFreeViewType(I);
          ShowTranslatedValues(HullformWindow);
+
          HullformWindow.SetCaption;
          HullformWindow.SetBounds(I * 40,I * 30,
             ClientWidth * 3 div 4, ClientHeight * 3 div 4);

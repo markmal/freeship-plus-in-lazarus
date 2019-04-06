@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 821
+  Left = 561
   Height = 640
-  Top = 124
+  Top = 200
   Width = 960
   Align = alTop
   ClientHeight = 621

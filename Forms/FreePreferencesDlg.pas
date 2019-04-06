@@ -58,6 +58,7 @@ type
 { TFreePreferencesDialog }
 
  TFreePreferencesDialog = class(TForm)
+   BitBtnReset: TSpeedButton;
    ComboBox1: TComboBox;
    ComboBoxEncoding: TComboBox;
    ComboBoxThemes: TComboBox;
@@ -136,7 +137,7 @@ type
    Panel27: TPanel;
    Panel28: TPanel;
    Panel29: TPanel;
-    Panel3: TPanel;
+    ButtonPanel: TPanel;
     BitBtn2: TSpeedButton;
     ColorDialog: TColorDialog;
     Panel30: TPanel;
@@ -179,7 +180,6 @@ type
     SpeedButton17: TSpeedButton;
     SpeedButton18: TSpeedButton;
     SpeedButton19: TSpeedButton;
-    SpeedButton3: TSpeedButton;
     SpeedButton9: TSpeedButton;
     SpeedButtonLanguagesDir: TSpeedButton;
     SpinEdit1: TSpinEdit;
@@ -187,11 +187,16 @@ type
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     procedure ColorPanelClick(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure OkButtonClick(Sender: TObject);
+    procedure CancelButtonClick(Sender: TObject);
+    procedure ResetButtonClick(Sender: TObject);
     procedure ComboBoxThemesChange(      Sender: TObject);
     procedure EditDirChange(      Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
+    procedure Panel1MouseEnter(Sender: TObject);
+    procedure Res(Sender: TObject);
     procedure SpeedButton12Click(Sender: TObject      );
     procedure SpeedButton13Click(Sender: TObject      );
     procedure SpeedButton14Click(Sender: TObject      );
@@ -200,7 +205,6 @@ type
     procedure SpeedButton17Click(Sender: TObject      );
     procedure SpeedButton18Click(Sender: TObject      );
     procedure SpeedButton19Click(Sender: TObject);
-    procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButtonLanguagesDirClick(Sender: TObject       );
     procedure SpeedButton9Click(Sender: TObject       );
     procedure SpinEdit1Change(Sender: TObject);
@@ -309,12 +313,12 @@ begin
 end;{TFreePreferencesDialog.ColorPanelClick}
 
 
-procedure TFreePreferencesDialog.BitBtn1Click(Sender: TObject);
+procedure TFreePreferencesDialog.OkButtonClick(Sender: TObject);
 begin
    ModalResult:=mrOk;
 end;{TFreePreferencesDialog.BitBtn1Click}
 
-procedure TFreePreferencesDialog.BitBtn2Click(Sender: TObject);
+procedure TFreePreferencesDialog.CancelButtonClick(Sender: TObject);
 begin
    ModalResult:=mrCancel;
 end;{TFreePreferencesDialog.BitBtn2Click}
@@ -335,18 +339,62 @@ begin
   FConfigChanged:= true;
 end;
 
+procedure TFreePreferencesDialog.Panel1MouseEnter(Sender: TObject);
+begin
+end;
+
+procedure TFreePreferencesDialog.Res(Sender: TObject);
+begin
+
+end;
+
+procedure TFreePreferencesDialog.PageControl1Change(Sender: TObject);
+begin
+  FormActivate(Sender);
+end;
+
+procedure TFreePreferencesDialog.FormActivate(Sender: TObject);
+var TxH, TbH, HdrHeight, BrdWidth,
+  TbT, PgT, PnT, PGIB:integer;
+  ScreenPoint:TPoint;
+begin
+  Application.ProcessMessages;
+  ScreenPoint:=ButtonPanel.ClientToScreen(Point(0,0));
+  HdrHeight := ScreenPoint.Y - self.Top;
+  BrdWidth := ScreenPoint.X - self.Left;
+  HdrHeight := HdrHeight - BrdWidth;
+
+  TabSheet2.AdjustSize;
+  PageControl1.AdjustSize;
+  Panel1.AdjustSize;
+  ButtonPanel.AdjustSize;
+  self.AdjustSize;
+  Application.ProcessMessages;
+
+  TbT:=TabSheet2.ClientToParent(Point(0,0),self).Y;
+  PgT:=PageControl1.ClientToParent(Point(0,0),self).Y;
+  PnT:=Panel1.ClientToParent(Point(0,0),self).Y;
+  TbH:=PgT - PnT - Panel1.BorderWidth - Panel1.BorderSpacing.InnerBorder;
+  PGIB:=PanelGlobalImportDir.Height*10 + TabSheet2.ChildSizing.VerticalSpacing*9;
+  TxH:= PGIB + TabSheet2.ChildSizing.TopBottomSpacing*2
+  + TbH + Panel1.BorderWidth*2 + Panel1.BorderSpacing.InnerBorder*2
+  + ButtonPanel.Height
+  + HdrHeight + BrdWidth*2;
+  if self.Constraints.MinHeight < TxH
+     then self.Constraints.MinHeight := TxH;
+end;
+
 procedure TFreePreferencesDialog.FormShow(Sender: TObject);
 begin
-  PageControl1.Constraints.MinHeight
-    := PanelGlobalImportDir.Top + PanelGlobalImportDir.Height + 8;
 end;
+
 
 procedure TFreePreferencesDialog.SpinEdit1Change(Sender: TObject);
 begin
   FThemeChanged := true;
 end;
 
-procedure TFreePreferencesDialog.SpeedButton3Click(Sender: TObject);
+procedure TFreePreferencesDialog.ResetButtonClick(Sender: TObject);
 begin
    if MessageDlg(Userstring(247)+'?'+#13#10+
                  Userstring(248)+'.',mtWarning,[mbYes,mbNo],0)=mrYes then

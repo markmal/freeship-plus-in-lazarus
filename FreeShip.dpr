@@ -102,6 +102,7 @@ uses
   FreeCrosscurvesDlg in 'Forms/FreeCrosscurvesDlg.pas' {FreeCrosscurvesDialog},
   FreeAboutDlg in 'Forms/FreeAboutDlg.pas' {FreeAboutDlg},
   FreeLogger in 'Units/FreeLogger.pas',
+  LightDialog in 'Forms/lightdialog.pas',
   MDIPanel;
 
 {$R *.res}

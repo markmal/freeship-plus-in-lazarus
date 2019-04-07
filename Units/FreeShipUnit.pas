@@ -14473,7 +14473,7 @@ begin
   Dialog.A8 := Owner.FResistanceHoltrData.A8;
   Dialog.A9 := Owner.FResistanceHoltrData.A9;
   Dialog.A10 := Owner.FResistanceHoltrData.A10;
-  Dialog.A11 := Owner.FResistanceHoltrData.A11;
+  Dialog.A11 := round(Owner.FResistanceHoltrData.A11);
   if Dialog.Execute(Owner, Owner.FResistanceHoltrData.Extract) then
   begin
     Owner.FResistanceHoltrData.Bwl := Dialog.Bwl;

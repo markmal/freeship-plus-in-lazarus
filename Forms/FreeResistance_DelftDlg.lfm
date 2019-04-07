@@ -1,7 +1,7 @@
 object FreeResistance_Delft: TFreeResistance_Delft
-  Left = 524
+  Left = 824
   Height = 531
-  Top = 207
+  Top = 313
   Width = 1059
   Caption = 'Resistance for Sailing Yachts or a Sea Ships'
   ClientHeight = 531
@@ -154,7 +154,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 1
               MaxValue = 1050
               MinValue = 0
-              OnExit = StartSpeedBoxAfterSetValue
+              OnEditingDone = StartSpeedBoxAfterSetValue
               TabOrder = 0
               Value = 0
             end
@@ -188,7 +188,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 1
               MaxValue = 1050
               MinValue = 0
-              OnExit = StartSpeedBoxAfterSetValue
+              OnEditingDone = StartSpeedBoxAfterSetValue
               TabOrder = 1
               Value = 0
             end
@@ -222,7 +222,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 1
               MaxValue = 1050
               MinValue = 0
-              OnExit = StartSpeedBoxAfterSetValue
+              OnEditingDone = StartSpeedBoxAfterSetValue
               TabOrder = 2
               Value = 0
             end
@@ -272,7 +272,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               MinValue = 0
-              OnExit = StartSpeedBoxAfterSetValue
+              OnEditingDone = StartSpeedBoxAfterSetValue
               TabOrder = 0
               Value = 0
             end
@@ -306,7 +306,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 4
               MaxValue = 1
               MinValue = 0
-              OnExit = StartSpeedBoxAfterSetValue
+              OnEditingDone = StartSpeedBoxAfterSetValue
               TabOrder = 1
               Value = 0
             end
@@ -391,7 +391,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 100000
               MinValue = 0
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 0
               Value = 0
             end
@@ -425,7 +425,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 100000
               MinValue = 0
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 1
               Value = 0
             end
@@ -459,7 +459,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 100000
               MinValue = 0
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 2
               Value = 0
             end
@@ -493,7 +493,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 100000
               MinValue = 0
-              OnExit = DraftTotalBoxAfterSetValue
+              OnEditingDone = DraftTotalBoxAfterSetValue
               TabOrder = 3
               Value = 0
             end
@@ -526,7 +526,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Constraints.MinWidth = 80
               MaxValue = 100000
               MinValue = 0
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 4
               Value = 0
             end
@@ -576,7 +576,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Constraints.MinWidth = 80
               MaxValue = 100000
               MinValue = 0
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 0
               Value = 0
             end
@@ -610,7 +610,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 500000
               MinValue = 0
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 1
               Value = 0
             end
@@ -644,7 +644,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 10
               MinValue = -10
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 2
               Value = 0
             end
@@ -678,7 +678,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 4
               MaxValue = 1
               MinValue = 0
-              OnExit = LwlBoxAfterSetValue
+              OnEditingDone = LwlBoxAfterSetValue
               TabOrder = 3
               Value = 0
             end
@@ -745,7 +745,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 75
               MinValue = 0
-              OnExit = KeelChordLengthboxAfterSetValue
+              OnEditingDone = KeelChordLengthboxAfterSetValue
               TabOrder = 0
               Value = 0.001
             end
@@ -778,7 +778,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Constraints.MinWidth = 80
               MaxValue = 1000000
               MinValue = 0
-              OnExit = KeelChordLengthboxAfterSetValue
+              OnEditingDone = KeelChordLengthboxAfterSetValue
               TabOrder = 1
               Value = 0
             end
@@ -831,7 +831,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               DecimalPlaces = 3
               MaxValue = 75
               MinValue = 0
-              OnExit = KeelChordLengthboxAfterSetValue
+              OnEditingDone = KeelChordLengthboxAfterSetValue
               TabOrder = 0
               Value = 0.001
             end
@@ -863,7 +863,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Constraints.MinWidth = 80
               MaxValue = 1000000
               MinValue = 0
-              OnExit = KeelChordLengthboxAfterSetValue
+              OnEditingDone = KeelChordLengthboxAfterSetValue
               TabOrder = 1
               Value = 0
             end

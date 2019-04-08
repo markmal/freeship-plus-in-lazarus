@@ -1,20 +1,21 @@
 object FreeResistance_Planing: TFreeResistance_Planing
-  Left = 600
-  Height = 751
-  Top = 193
-  Width = 978
+  Left = 541
+  Height = 720
+  Top = 214
+  Width = 900
   AutoSize = True
   Caption = 'Planing resistance calculation.'
-  ClientHeight = 751
-  ClientWidth = 978
+  ClientHeight = 720
+  ClientWidth = 900
   Color = clBtnFace
+  Constraints.MinWidth = 900
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 978
+    Width = 900
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
@@ -75,31 +76,31 @@ object FreeResistance_Planing: TFreeResistance_Planing
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 727
+    Height = 696
     Top = 24
-    Width = 978
+    Width = 900
     ActivePage = TabSheet1
     Align = alClient
     TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 694
-      ClientWidth = 972
+      ClientHeight = 663
+      ClientWidth = 894
       object Panel1: TPanel
         Left = 0
-        Height = 694
+        Height = 663
         Top = 0
-        Width = 972
+        Width = 894
         Align = alClient
         AutoSize = True
         BorderWidth = 10
-        ClientHeight = 694
-        ClientWidth = 972
+        ClientHeight = 663
+        ClientWidth = 894
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 672
+          Height = 641
           Top = 11
           Width = 412
           Align = alLeft
@@ -107,7 +108,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
           BevelOuter = bvNone
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 672
+          ClientHeight = 641
           ClientWidth = 412
           TabOrder = 0
           object Panel0: TPanel
@@ -115,7 +116,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             Height = 346
             Top = 0
             Width = 412
-            Align = alTop
             AutoSize = True
             BorderSpacing.InnerBorder = 10
             BevelOuter = bvNone
@@ -170,6 +170,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Alignment = taRightJustify
               Constraints.MinWidth = 80
               DecimalPlaces = 3
+              Increment = 0.01
               MinValue = 0
               OnExit = Edit1AfterSetValue
               TabOrder = 0
@@ -200,6 +201,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
+              Increment = 0.01
               MinValue = 0
               OnExit = Edit1AfterSetValue
               TabOrder = 1
@@ -230,6 +232,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
+              Increment = 0.01
               MinValue = 0
               OnExit = Edit1AfterSetValue
               TabOrder = 2
@@ -259,6 +262,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Top = 108
               Width = 80
               Alignment = taRightJustify
+              Increment = 0.1
               MinValue = 0
               OnExit = Edit1AfterSetValue
               TabOrder = 3
@@ -285,13 +289,17 @@ object FreeResistance_Planing: TFreeResistance_Planing
             object Edit6: TFloatSpinEdit
               Left = 231
               Height = 25
+              Hint = '0.40 .. 0.90'
               Top = 135
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 4
+              Increment = 0.01
               MaxValue = 1
               MinValue = 0
               OnExit = Edit1AfterSetValue
+              ParentShowHint = False
+              ShowHint = True
               TabOrder = 4
               Value = 0
             end
@@ -318,6 +326,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
+              Increment = 0.01
               MinValue = 0
               OnExit = Edit1AfterSetValue
               TabOrder = 5
@@ -348,6 +357,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
+              Increment = 0.01
               MinValue = 0
               OnExit = Edit1AfterSetValue
               TabOrder = 6
@@ -378,6 +388,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
+              Increment = 0.01
               MinValue = 0
               OnExit = Edit1AfterSetValue
               TabOrder = 7
@@ -407,6 +418,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Top = 243
               Width = 80
               Alignment = taRightJustify
+              Increment = 0.01
               MaxValue = 200
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -438,6 +450,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
+              Increment = 0.01
               MaxValue = 5
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -488,7 +501,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             Height = 98
             Top = 346
             Width = 412
-            Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -541,7 +553,6 @@ object FreeResistance_Planing: TFreeResistance_Planing
             Height = 195
             Top = 444
             Width = 412
-            Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -607,6 +618,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Top = 31
               Width = 100
               Alignment = taRightJustify
+              Increment = 0.1
               MaxValue = 10
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -637,6 +649,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Top = 58
               Width = 100
               Alignment = taRightJustify
+              Increment = 0.01
               MaxValue = 10
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -667,6 +680,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Top = 85
               Width = 100
               Alignment = taRightJustify
+              Increment = 0.01
               MaxValue = 10
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -697,6 +711,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Top = 112
               Width = 100
               Alignment = taRightJustify
+              Increment = 0.1
               MaxValue = 30
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -727,6 +742,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Top = 139
               Width = 100
               Alignment = taRightJustify
+              Increment = 0.1
               MaxValue = 30
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -774,9 +790,9 @@ object FreeResistance_Planing: TFreeResistance_Planing
         end
         object Chart: TChart
           Left = 423
-          Height = 672
+          Height = 641
           Top = 11
-          Width = 506
+          Width = 460
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -814,7 +830,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
             'Planing resistance and power prediction '
           )
           Title.Visible = True
-          Align = alLeft
+          Align = alClient
           object Series1: TLineSeries
             Marks.Visible = False
             Title = 'Rf      '
@@ -851,14 +867,14 @@ object FreeResistance_Planing: TFreeResistance_Planing
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 694
-      ClientWidth = 972
+      ClientHeight = 663
+      ClientWidth = 894
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0
-        Height = 694
+        Height = 663
         Top = 0
-        Width = 972
+        Width = 900
         Align = alClient
         Constraints.MinHeight = 600
         Constraints.MinWidth = 900

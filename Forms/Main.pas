@@ -970,6 +970,7 @@ begin
   BringToFront;
   Application.BringToFront;
   Application.ProcessMessages;
+
   inActivation:=false;
 end;
 

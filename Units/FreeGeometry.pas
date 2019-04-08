@@ -333,6 +333,7 @@ type TFreeSubdivisionBase           = class;
               procedure FSetBrushStyle(Val:TBrushStyle);
               procedure FSetCameraType(Val:TFreeCameraType);
               procedure FSetElevation(Val:TFloatType);
+              procedure FSetLight(val:TFreeLight);
               procedure FSetFontColor(Val:TColor);
               procedure FSetFontName(val:string);
               procedure FSetFontSize(val:integer);
@@ -417,7 +418,7 @@ type TFreeSubdivisionBase           = class;
               property FontSize             : integer read FGetFontSize write FSetFontSize;
               property FontHeight           : integer read FGetFontHeight write FSetFontHeight;
 
-              property Light                : TFreeLight read FLight;
+              property Light                : TFreeLight read FLight write FSetLight;
               property Max3D                : T3DCoordinate read FMax3D;
               property Min3D                : T3DCoordinate read FMin3D;
               property PenColor             : TColor read FGetPenColor write FSetPenColor;
@@ -3249,6 +3250,18 @@ begin
    end;
 end;{TFreeViewport.FSetElevation}
 
+procedure TFreeViewport.FSetLight(val:TFreeLight);
+begin
+   if (FLight.Position.X = Val.Position.X)
+    and (FLight.Position.Y = Val.Position.Y)
+    and (FLight.Position.Z = Val.Position.Z)
+    and (FLight.Ambient = Val.Ambient)
+    and (FLight.Luminance = Val.Luminance)
+      then exit;
+   FLight := Val;
+   Refresh;
+end;
+
 procedure TFreeViewport.FSetPan(Val:TPoint);
 begin
    if (FPan.X<>Val.X) or (FPan.Y<>Val.Y) then
@@ -3500,11 +3513,13 @@ begin
    FZBuffer.FViewport:=self;
    FAlphaBuffer:=TFreeAlphaBuffer.Create;
    FAlphaBuffer.FViewport:=self;
+
    FLight.Position.X:=50;
    FLight.Position.Y:=20;
-   FLight.Position.Z:=2;
+   FLight.Position.Z:=50;
    FLight.Ambient:=75;
    FLight.Luminance:=140;
+
    FViewportmode:=vmWireFrame;
    // Load cursors from resource file
    Screen.Cursors[crRotate]:=LoadCursor(hInstance,'ROTATEVIEWPORT');

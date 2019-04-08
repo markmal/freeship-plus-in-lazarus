@@ -1647,8 +1647,7 @@ uses Math,
   FreeCylinderDlg,
   FreeCrosscurvesDlg,
   FreeLayerDlg,
-  EnterThemeNameDlg,
-  Main;
+  EnterThemeNameDlg;
 
 { -- mmm. probably not. These funcs are used a lot when data read from files. And the files are not always UTF8
 function Pos(const SearchForText, SearchInText: string): PtrInt;
@@ -14474,7 +14473,7 @@ begin
   Dialog.A8 := Owner.FResistanceHoltrData.A8;
   Dialog.A9 := Owner.FResistanceHoltrData.A9;
   Dialog.A10 := Owner.FResistanceHoltrData.A10;
-  Dialog.A11 := Owner.FResistanceHoltrData.A11;
+  Dialog.A11 := round(Owner.FResistanceHoltrData.A11);
   if Dialog.Execute(Owner, Owner.FResistanceHoltrData.Extract) then
   begin
     Owner.FResistanceHoltrData.Bwl := Dialog.Bwl;
@@ -18306,25 +18305,28 @@ function TFreeShip.FGetPreview:TJPEGImage;
    End;//SnapShot
  }
 var Tmp,thumbNail:TBitmap;
-  Frm:TCustomPanel;
-  I,N, L,T,W,H:integer;
+  Frm:TCustomForm;
+  I, L,T,W,H:integer;
 begin
+   {
+   Tmp:=TBitmap.Create;
+   Tmp.PixelFormat:=pf24bit;
+   Tmp.SetSize(Application.MainForm.Width,Application.MainForm.Height);
+   Snapshot(Application.MainForm.Left,
+            Application.MainForm.Top,
+            Application.MainForm.Width,
+            Application.MainForm.Height,Tmp);
+   }
   thumbNail := TBitmap.Create;
   thumbNail.PixelFormat:=pf24bit;
   thumbNail.setSize(400,300);
   Application.ProcessMessages;
 
-  N:=MainForm.MDIChildCount-1;
-  if N>3 then N:=3; // save only up to four windows
-
-  for I:=0 to N do
+  for I:=0 to Application.MainForm.MDIChildCount-1 do
     begin
-    Frm:=MainForm.GetMDIChildren(I);
+    Frm:=Application.MainForm.GetMDIChildren(I);
     Frm.Repaint;
-    W:=Frm.Width; H:=Frm.Height;
-    Tmp := TBitmap.Create;
-    Tmp.SetSize(W, H);
-    Tmp.Canvas.CopyRect(Rect(0,0,W,H), Frm.Canvas, Rect(0,0,W,H)); //GetFormImage;
+    Tmp := Frm.GetFormImage;
     case I of
       0: begin L:=0; T:=0; end;
       1: begin L:=200; T:=0; end;
@@ -18334,13 +18336,14 @@ begin
     if Assigned(tmp) then
       begin
       thumbNail.Canvas.StretchDraw(Rect(L,T,L+200,T+150),Tmp);
-      Tmp.Free;
+      Tmp.Destroy;
       end;
     end;
   Result:=TJPEGImage.Create;
   Result.Assign(thumbNail);
   Result.CompressionQuality:=90;
-  thumbNail.Free;
+  //Result.SaveToFile('saved_screenshot.jpg');
+  thumbNail.Destroy;
 end;{TFreeShip.FGetPreview}
 
 procedure TFreeShip.AddViewport(Viewport:TFreeViewport);
@@ -20233,7 +20236,7 @@ begin
                   // and forces a repaint of the form
                   if not Viewport.Focused then Viewport.SetFocus;
                   application.ProcessMessages;
-                  //TForm(Viewport.Owner).BringToFront;
+                  TForm(Viewport.Owner).BringToFront;
                end;
                Build:=False;
                for I:=1 to NumberOfViewports do self.Viewport[I-1].Refresh;

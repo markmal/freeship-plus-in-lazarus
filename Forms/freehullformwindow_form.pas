@@ -52,7 +52,8 @@ uses
      StdCtrls,
      Menus,
      ActnList,
-     Printers
+     Printers,
+     LightDialog
 {$IFDEF USEOPENGL}
     ,FreeViewPortOpenGL
 {$ENDIF}
@@ -63,6 +64,9 @@ type
 { TFreeHullForm }
 
  TFreeHullForm   = class(TForm)
+                          SetLight: TAction;
+                          Light: TMenuItem;
+                          olerance1: TMenuItem;
                            ScrollBar1: TScrollBar;
                            ScrollBar2: TScrollBar;
                            Viewport  : TFreeViewport;
@@ -138,6 +142,7 @@ type
                              );
                            procedure FormKeyUp(Sender: TObject; var Key: Word;
                              Shift: TShiftState);
+                           procedure SetLightExecute(Sender: TObject);
                            procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
                            procedure ViewportRedraw(Sender: TObject);
                            procedure FormCreate(Sender: TObject);
@@ -191,6 +196,7 @@ type
                            function FCaptionText:string;
                            procedure createFreeViewport();
                         public     { Public declarations }
+                           LightDialog:TLightDialog;
                            procedure SetCaption;
                            procedure UpdateMenu;
                            property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
@@ -303,6 +309,23 @@ procedure TFreeHullForm.FormKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   ViewportKeyUp(Sender, Key, Shift);
+end;
+
+procedure TFreeHullForm.SetLightExecute(Sender: TObject);
+begin
+  if not assigned(LightDialog) then
+     begin
+     LightDialog:=TLightDialog.Create(self);
+     LightDialog.ViewPort := self.Viewport;
+     LightDialog.Show;
+     end
+  else
+      begin
+      if not LightDialog.IsVisible then
+        LightDialog.Show;
+      LightDialog.BringToFront;
+      LightDialog.SetFocus;
+      end;
 end;
 
 procedure TFreeHullForm.ViewportRedraw(Sender: TObject);

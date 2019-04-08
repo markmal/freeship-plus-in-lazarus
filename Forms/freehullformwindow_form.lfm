@@ -1,13 +1,12 @@
 object FreeHullForm: TFreeHullForm
   Left = 1334
-  Height = 356
+  Height = 285
   Top = 185
-  Width = 550
+  Width = 440
   Caption = 'FreeHullWindow'
-  ClientHeight = 356
-  ClientWidth = 550
+  ClientHeight = 285
+  ClientWidth = 440
   Color = clBtnFace
-  DesignTimePPI = 120
   FormStyle = fsMDIChild
   OnClose = FormClose
   OnCreate = FormCreate
@@ -18,9 +17,9 @@ object FreeHullForm: TFreeHullForm
   LCLVersion = '2.0.0.4'
   object ScrollBar1: TScrollBar
     Left = 0
-    Height = 19
-    Top = 337
-    Width = 550
+    Height = 15
+    Top = 270
+    Width = 440
     Align = alBottom
     LargeChange = 5
     Max = 180
@@ -30,10 +29,10 @@ object FreeHullForm: TFreeHullForm
     TabOrder = 0
   end
   object ScrollBar2: TScrollBar
-    Left = 531
-    Height = 337
+    Left = 425
+    Height = 270
     Top = 0
-    Width = 19
+    Width = 15
     Align = alRight
     Kind = sbVertical
     Max = 180
@@ -46,8 +45,8 @@ object FreeHullForm: TFreeHullForm
     Images = ImagesHull
     AutoPopup = False
     OnPopup = PopupMenuHullPopup
-    left = 160
-    top = 50
+    left = 128
+    top = 40
     object Deselectall1: TMenuItem
       Action = DeselectAll
     end
@@ -97,6 +96,10 @@ object FreeHullForm: TFreeHullForm
       object Longtelelens200mm1: TMenuItem
         Action = LongTeleLens
       end
+    end
+    object Light: TMenuItem
+      Action = SetLight
+      Caption = 'Light'
     end
     object Mode1: TMenuItem
       Caption = 'Mode'
@@ -156,8 +159,8 @@ object FreeHullForm: TFreeHullForm
   end
   object ActionListHull: TActionList
     Images = ImagesHull
-    left = 160
-    top = 140
+    left = 128
+    top = 112
     object StandardLens: TAction
       Category = 'Camera'
       Caption = 'Standard lens 50mm.'
@@ -318,10 +321,15 @@ object FreeHullForm: TFreeHullForm
       Caption = 'Visible'
       OnExecute = BackgroundVisibleExecute
     end
+    object SetLight: TAction
+      Category = 'Light'
+      Caption = 'SetLight'
+      OnExecute = SetLightExecute
+    end
   end
   object ImagesHull: TImageList
-    left = 160
-    top = 240
+    left = 128
+    top = 192
     Bitmap = {
       4C690A0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000B8B8C0FF9292
@@ -647,7 +655,7 @@ object FreeHullForm: TFreeHullForm
     }
   end
   object PrintDialogHull: TPrintDialog
-    left = 350
-    top = 50
+    left = 280
+    top = 40
   end
 end

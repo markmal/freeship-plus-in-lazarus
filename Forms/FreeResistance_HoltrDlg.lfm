@@ -1,651 +1,904 @@
 object FreeResistance_Holtr: TFreeResistance_Holtr
-  Left = 479
-  Height = 635
-  Top = 206
-  Width = 993
+  Left = 534
+  Height = 769
+  Top = 204
+  Width = 1237
   Caption = 'Resistance for sea ships'
-  ClientHeight = 635
-  ClientWidth = 993
-  Color = clBtnFace
+  ClientHeight = 769
+  ClientWidth = 1237
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object PageControl1: TPageControl
     Left = 0
-    Height = 611
+    Height = 745
     Top = 24
-    Width = 993
+    Width = 1237
     ActivePage = General
     Align = alClient
     TabIndex = 0
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 580
-      ClientWidth = 987
+      ClientHeight = 712
+      ClientWidth = 1231
       object Panel1: TPanel
         Left = 0
-        Height = 580
+        Height = 712
         Top = 0
-        Width = 408
+        Width = 558
         Align = alLeft
+        AutoSize = True
         BevelOuter = bvLowered
-        ClientHeight = 580
-        ClientWidth = 408
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 1
+        ClientHeight = 712
+        ClientWidth = 558
         TabOrder = 0
         object GroupBox1: TGroupBox
-          Left = 10
-          Height = 110
+          Left = 0
+          Height = 116
           Top = 10
-          Width = 390
+          Width = 557
+          AutoSize = True
           Caption = 'General'
-          ClientHeight = 95
-          ClientWidth = 386
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.HorizontalSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 99
+          ClientWidth = 553
+          Color = clForm
+          ParentColor = False
           TabOrder = 0
-          object Label1: TLabel
-            Left = 5
-            Height = 13
-            Top = 23
-            Width = 65
-            Caption = 'Start speed'
+          object GeneralPanel1: TPanel
+            Left = 10
+            Height = 99
+            Top = 0
+            Width = 182
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 3
+            ClientHeight = 99
+            ClientWidth = 182
             ParentColor = False
-          end
-          object Label2: TLabel
-            Left = 5
-            Height = 13
-            Top = 46
-            Width = 91
-            Caption = 'Estimate speed '
-            ParentColor = False
-          end
-          object Label3: TLabel
-            Left = 5
-            Height = 13
-            Top = 69
-            Width = 85
-            Caption = 'Maximal speed'
-            ParentColor = False
-          end
-          object Label4: TLabel
-            Left = 180
-            Height = 13
-            Top = 23
-            Width = 78
-            Caption = 'Water density'
-            ParentColor = False
-          end
-          object Label5: TLabel
-            Left = 180
-            Height = 13
-            Top = 46
-            Width = 50
-            Caption = 'Viscosity'
-            ParentColor = False
-          end
-          object _Label31: TLabel
-            Left = 146
-            Height = 13
-            Top = 23
-            Width = 13
-            Caption = 'kn'
-            ParentColor = False
-          end
-          object _Label32: TLabel
-            Left = 146
-            Height = 13
-            Top = 46
-            Width = 13
-            Caption = 'kn'
-            ParentColor = False
-          end
-          object _Label33: TLabel
-            Left = 146
-            Height = 13
-            Top = 69
-            Width = 13
-            Caption = 'kn'
-            ParentColor = False
-          end
-          object Label34: TLabel
-            Left = 326
-            Height = 13
-            Top = 23
-            Width = 35
-            Caption = 't/m^3'
-            ParentColor = False
-          end
-          object _Label36: TLabel
-            Left = 325
-            Height = 13
-            Top = 46
-            Width = 37
-            Caption = 'm^2/s'
-            ParentColor = False
-          end
-          object StartSpeedBox: TFloatSpinEdit
-            Left = 95
-            Height = 23
-            Top = 15
-            Width = 50
-            MaxValue = 50
-            MinValue = 0
-            OnExit = StartSpeedBoxAfterSetValue
             TabOrder = 0
-            Value = 0
+            object Label1: TLabel
+              Left = 10
+              Height = 25
+              Top = 10
+              Width = 74
+              Caption = 'Start speed'
+              Constraints.MaxWidth = 120
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object StartSpeedBox: TFloatSpinEdit
+              Left = 90
+              Height = 25
+              Top = 10
+              Width = 60
+              Alignment = taRightJustify
+              Constraints.MinWidth = 60
+              DecimalPlaces = 1
+              MaxValue = 1050
+              MinValue = 0
+              OnEditingDone = StartSpeedBoxAfterSetValue
+              TabOrder = 0
+              Value = 0
+            end
+            object _Label31: TLabel
+              Left = 156
+              Height = 25
+              Top = 10
+              Width = 16
+              Caption = 'kn'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label2: TLabel
+              Left = 10
+              Height = 25
+              Top = 37
+              Width = 74
+              Caption = 'End speed '
+              Constraints.MaxWidth = 120
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object EndSpeedBox: TFloatSpinEdit
+              Left = 90
+              Height = 25
+              Top = 37
+              Width = 60
+              Alignment = taRightJustify
+              Constraints.MinWidth = 60
+              DecimalPlaces = 1
+              MaxValue = 1050
+              MinValue = 0
+              OnEditingDone = StartSpeedBoxAfterSetValue
+              TabOrder = 1
+              Value = 0
+            end
+            object _Label32: TLabel
+              Left = 156
+              Height = 25
+              Top = 37
+              Width = 16
+              Caption = 'kn'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label3: TLabel
+              Left = 10
+              Height = 25
+              Top = 64
+              Width = 74
+              Caption = 'Step'
+              Constraints.MaxWidth = 120
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object StepSpeedBox: TFloatSpinEdit
+              Left = 90
+              Height = 25
+              Top = 64
+              Width = 60
+              Alignment = taRightJustify
+              Constraints.MinWidth = 60
+              DecimalPlaces = 1
+              MaxValue = 1050
+              MinValue = 0
+              OnEditingDone = StartSpeedBoxAfterSetValue
+              TabOrder = 2
+              Value = 0
+            end
+            object _Label33: TLabel
+              Left = 156
+              Height = 25
+              Top = 64
+              Width = 16
+              Caption = 'kn'
+              Layout = tlCenter
+              ParentColor = False
+            end
           end
-          object EndSpeedBox: TFloatSpinEdit
-            Left = 95
-            Height = 23
-            Top = 38
-            Width = 50
-            MaxValue = 50
-            MinValue = 0
-            OnExit = StartSpeedBoxAfterSetValue
+          object GeneralPanel2: TPanel
+            Left = 202
+            Height = 99
+            Top = 0
+            Width = 278
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 3
+            ClientHeight = 99
+            ClientWidth = 278
+            ParentColor = False
             TabOrder = 1
-            Value = 0
-          end
-          object StepSpeedBox: TFloatSpinEdit
-            Left = 95
-            Height = 23
-            Top = 61
-            Width = 50
-            MaxValue = 10
-            MinValue = 0
-            OnExit = StartSpeedBoxAfterSetValue
-            TabOrder = 2
-            Value = 0
-          end
-          object DensityBox: TFloatSpinEdit
-            Left = 275
-            Height = 23
-            Top = 15
-            Width = 50
-            DecimalPlaces = 3
-            MinValue = 0
-            OnExit = StartSpeedBoxAfterSetValue
-            TabOrder = 3
-            Value = 0
-          end
-          object ViscosityBox: TFloatSpinEdit
-            Left = 275
-            Height = 23
-            Top = 38
-            Width = 50
-            DecimalPlaces = 4
-            MaxValue = 1
-            MinValue = 0
-            OnExit = StartSpeedBoxAfterSetValue
-            TabOrder = 4
-            Value = 0
+            object Label4: TLabel
+              Left = 10
+              Height = 25
+              Top = 10
+              Width = 90
+              Caption = 'Water density'
+              Constraints.MaxWidth = 120
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object DensityBox: TFloatSpinEdit
+              Left = 106
+              Height = 25
+              Top = 10
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MinValue = 0
+              OnEditingDone = StartSpeedBoxAfterSetValue
+              TabOrder = 0
+              Value = 0
+            end
+            object Label34: TLabel
+              Left = 192
+              Height = 25
+              Top = 10
+              Width = 76
+              Caption = '[m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label5: TLabel
+              Left = 10
+              Height = 25
+              Top = 37
+              Width = 90
+              Caption = 'Viscosity'
+              Constraints.MaxWidth = 120
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object ViscosityBox: TFloatSpinEdit
+              Left = 106
+              Height = 25
+              Top = 37
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 4
+              MaxValue = 1
+              MinValue = 0
+              OnEditingDone = StartSpeedBoxAfterSetValue
+              TabOrder = 1
+              Value = 0
+            end
+            object _Label36: TLabel
+              Left = 192
+              Height = 25
+              Top = 37
+              Width = 76
+              Caption = '*10-6  m2/s'
+              Layout = tlCenter
+              ParentColor = False
+            end
           end
         end
         object GroupBox2: TGroupBox
-          Left = 10
-          Height = 399
-          Top = 120
-          Width = 390
+          Left = 0
+          Height = 523
+          Top = 126
+          Width = 557
+          AutoSize = True
           Caption = 'Hull'
-          ClientHeight = 384
-          ClientWidth = 386
+          ClientHeight = 506
+          ClientWidth = 553
+          Color = clForm
+          ParentColor = False
           TabOrder = 1
-          object Label13: TLabel
-            Left = 5
-            Height = 13
-            Top = 131
-            Width = 85
-            Caption = 'Wetted surface'
-            ParentColor = False
-          end
-          object Label20: TLabel
-            Left = 5
-            Height = 13
-            Top = 85
-            Width = 73
-            Caption = 'Midship draft'
-            ParentColor = False
-          end
-          object Label21: TLabel
-            Left = 5
-            Height = 13
-            Top = 108
-            Width = 49
-            Caption = 'Different'
-            ParentColor = False
-          end
-          object Label22: TLabel
-            Left = 5
-            Height = 13
-            Top = 62
-            Width = 93
-            Caption = 'Beam waterline '
-            ParentColor = False
-          end
-          object Label14: TLabel
-            Left = 5
-            Height = 13
-            Top = 269
-            Width = 124
-            Caption = 'Form stern coefficient'
-            ParentColor = False
-          end
-          object Label15: TLabel
-            Left = 5
-            Height = 13
-            Top = 292
-            Width = 121
-            Caption = 'Number of propellers'
-            ParentColor = False
-          end
-          object Label16: TLabel
-            Left = 5
-            Height = 13
-            Top = 315
-            Width = 118
-            Caption = 'Propeller diametr, m'
-            ParentColor = False
-          end
-          object Label17: TLabel
-            Left = 5
-            Height = 13
-            Top = 246
-            Width = 148
-            Caption = 'Absolute roughness, mkm'
-            ParentColor = False
-          end
-          object Label23: TLabel
-            Left = 5
-            Height = 13
-            Top = 39
-            Width = 94
-            Caption = 'Length waterline'
-            ParentColor = False
-          end
-          object Label24: TLabel
-            Left = 175
-            Height = 13
-            Top = 108
-            Width = 118
-            Caption = 'Prismatic coefficient '
-            ParentColor = False
-          end
-          object Label25: TLabel
-            Left = 175
-            Height = 13
-            Top = 85
-            Width = 22
-            Caption = 'LCB'
-            ParentColor = False
-          end
-          object Label26: TLabel
-            Left = 175
-            Height = 13
-            Top = 62
-            Width = 76
-            Caption = 'Displacement'
-            ParentColor = False
-          end
-          object Label27: TLabel
-            Left = 175
-            Height = 13
-            Top = 39
-            Width = 94
-            Caption = 'Waterplane area'
-            ParentColor = False
-          end
-          object Label8: TLabel
-            Left = 175
-            Height = 13
-            Top = 131
-            Width = 127
-            Caption = 'Sea margin coefficient'
-            ParentColor = False
-          end
-          object _Label8: TLabel
-            Left = 147
-            Height = 13
-            Top = 39
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label9: TLabel
-            Left = 147
-            Height = 13
-            Top = 62
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label10: TLabel
-            Left = 147
-            Height = 13
-            Top = 85
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label11: TLabel
-            Left = 147
-            Height = 13
-            Top = 108
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label12: TLabel
-            Left = 147
-            Height = 13
-            Top = 129
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label14: TLabel
-            Left = 360
-            Height = 13
-            Top = 40
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label15: TLabel
-            Left = 360
-            Height = 13
-            Top = 63
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label16: TLabel
-            Left = 360
-            Height = 13
-            Top = 86
-            Width = 18
-            Caption = '[%]'
-            ParentColor = False
-          end
-          object Label9: TLabel
-            Left = 5
-            Height = 13
-            Top = 177
-            Width = 155
-            Caption = 'Transom wetted area, m^2'
-            ParentColor = False
-          end
-          object Label10: TLabel
-            Left = 5
-            Height = 13
-            Top = 200
-            Width = 149
-            Caption = 'Bulbous area on F.P., m^2'
-            ParentColor = False
-          end
-          object Label11: TLabel
-            Left = 5
-            Height = 13
-            Top = 223
-            Width = 150
-            Caption = 'Z COG of bulbous area, m'
-            ParentColor = False
-          end
-          object LwlBox: TFloatSpinEdit
-            Left = 120
-            Height = 23
-            Top = 31
-            Width = 50
-            DecimalPlaces = 3
-            MaxValue = 600
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+          object Panel3: TPanel
+            Left = 0
+            Height = 153
+            Top = 41
+            Width = 553
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.HorizontalSpacing = 8
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 153
+            ClientWidth = 553
             TabOrder = 0
-            Value = 0
+            object GeneralPanel3: TPanel
+              Left = 10
+              Height = 153
+              Top = 0
+              Width = 244
+              AutoSize = True
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.TopBottomSpacing = 10
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.VerticalSpacing = 2
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 3
+              ClientHeight = 153
+              ClientWidth = 244
+              TabOrder = 0
+              object Label23: TLabel
+                Left = 10
+                Height = 25
+                Top = 10
+                Width = 109
+                Caption = 'Length waterline'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object LwlBox: TFloatSpinEdit
+                Left = 125
+                Height = 25
+                Top = 10
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MaxValue = 600
+                MinValue = 0
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 0
+                Value = 0
+              end
+              object _Label8: TLabel
+                Left = 211
+                Height = 25
+                Top = 10
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label22: TLabel
+                Left = 10
+                Height = 25
+                Top = 37
+                Width = 109
+                Caption = 'Beam waterline '
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object BwlBox: TFloatSpinEdit
+                Left = 125
+                Height = 25
+                Top = 37
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MinValue = 0
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 1
+                Value = 0
+              end
+              object _Label9: TLabel
+                Left = 211
+                Height = 25
+                Top = 37
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label20: TLabel
+                Left = 10
+                Height = 25
+                Top = 64
+                Width = 109
+                Caption = 'Midship draft'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object DraftTotalBox: TFloatSpinEdit
+                Left = 125
+                Height = 25
+                Top = 64
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MaxValue = 30
+                MinValue = 0
+                OnExit = DraftTotalBoxAfterSetValue
+                TabOrder = 2
+                Value = 0
+              end
+              object _Label10: TLabel
+                Left = 211
+                Height = 25
+                Top = 64
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label21: TLabel
+                Left = 10
+                Height = 25
+                Top = 91
+                Width = 109
+                Caption = 'Different'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object DraftBox: TFloatSpinEdit
+                Left = 125
+                Height = 25
+                Top = 91
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MaxValue = 30
+                MinValue = 0
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 3
+                Value = 0
+              end
+              object _Label11: TLabel
+                Left = 211
+                Height = 25
+                Top = 91
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label13: TLabel
+                Left = 10
+                Height = 25
+                Top = 118
+                Width = 109
+                Caption = 'Wetted surface'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object WettedSurfacebox: TFloatSpinEdit
+                Left = 125
+                Height = 25
+                Top = 118
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 20000
+                MinValue = 0
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 4
+                Value = 0
+              end
+              object _Label12: TLabel
+                Left = 211
+                Height = 25
+                Top = 118
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+            end
+            object Panel2: TPanel
+              Left = 262
+              Height = 153
+              Top = 0
+              Width = 281
+              AutoSize = True
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.TopBottomSpacing = 10
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.VerticalSpacing = 2
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 3
+              ClientHeight = 153
+              ClientWidth = 281
+              TabOrder = 1
+              object Label27: TLabel
+                Left = 10
+                Height = 25
+                Top = 10
+                Width = 146
+                Caption = 'Waterplane area'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object WlAreabox: TFloatSpinEdit
+                Left = 162
+                Height = 25
+                Top = 10
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 100000
+                MinValue = 0
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 0
+                Value = 0
+              end
+              object _Label14: TLabel
+                Left = 248
+                Height = 25
+                Top = 10
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label26: TLabel
+                Left = 10
+                Height = 25
+                Top = 37
+                Width = 146
+                Caption = 'Displacement'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object DisplacementBox: TFloatSpinEdit
+                Left = 162
+                Height = 25
+                Top = 37
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 500000
+                MinValue = 0
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 1
+                Value = 0
+              end
+              object _Label15: TLabel
+                Left = 248
+                Height = 25
+                Top = 37
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label25: TLabel
+                Left = 10
+                Height = 25
+                Top = 64
+                Width = 146
+                Caption = 'LCB'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object LCBBox: TFloatSpinEdit
+                Left = 162
+                Height = 25
+                Top = 64
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MaxValue = 10
+                MinValue = -10
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 2
+                Value = 0
+              end
+              object _Label16: TLabel
+                Left = 248
+                Height = 25
+                Top = 64
+                Width = 23
+                Caption = '[%]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label24: TLabel
+                Left = 10
+                Height = 25
+                Top = 91
+                Width = 146
+                Caption = 'Prismatic coefficient '
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object CpBox: TFloatSpinEdit
+                Left = 162
+                Height = 25
+                Top = 91
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 4
+                MaxValue = 1
+                MinValue = 0
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 3
+                Value = 0
+              end
+              object Label12: TLabel
+                Left = 248
+                Height = 25
+                Top = 91
+                Width = 23
+                ParentColor = False
+              end
+              object Label8: TLabel
+                Left = 10
+                Height = 25
+                Top = 118
+                Width = 146
+                Caption = 'Sea margin coefficient'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object KeBox: TFloatSpinEdit
+                Left = 162
+                Height = 25
+                Top = 118
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 1.3
+                MinValue = 1
+                OnEditingDone = LwlBoxAfterSetValue
+                TabOrder = 4
+                Value = 1
+              end
+            end
           end
-          object BwlBox: TFloatSpinEdit
-            Left = 120
-            Height = 23
-            Top = 54
-            Width = 50
-            DecimalPlaces = 3
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+          object Panel4: TPanel
+            Left = 0
+            Height = 207
+            Top = 235
+            Width = 553
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 20
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 207
+            ClientWidth = 553
             TabOrder = 1
-            Value = 0
+            object Label9: TLabel
+              Left = 20
+              Height = 25
+              Top = 10
+              Width = 177
+              Caption = 'Transom wetted area, m^2'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object BABox: TFloatSpinEdit
+              Left = 203
+              Height = 25
+              Top = 10
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 0
+              Value = 0
+            end
+            object Label10: TLabel
+              Left = 20
+              Height = 25
+              Top = 37
+              Width = 177
+              Caption = 'Bulbous area on F.P., m^2'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object KBulbBox: TFloatSpinEdit
+              Left = 203
+              Height = 25
+              Top = 37
+              Width = 80
+              Alignment = taRightJustify
+              DecimalPlaces = 3
+              MaxValue = 30
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 1
+              Value = 0
+            end
+            object Label11: TLabel
+              Left = 20
+              Height = 25
+              Top = 64
+              Width = 177
+              Caption = 'Z COG of bulbous area, m'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object ZBulbBox: TFloatSpinEdit
+              Left = 203
+              Height = 25
+              Top = 64
+              Width = 80
+              Alignment = taRightJustify
+              DecimalPlaces = 3
+              MaxValue = 25
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 2
+              Value = 0
+            end
+            object Label17: TLabel
+              Left = 20
+              Height = 25
+              Top = 91
+              Width = 177
+              Caption = 'Absolute roughness, mkm'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object KsBox: TFloatSpinEdit
+              Left = 203
+              Height = 25
+              Top = 91
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 2500
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 3
+              Value = 0
+            end
+            object Label14: TLabel
+              Left = 20
+              Height = 25
+              Top = 118
+              Width = 177
+              Caption = 'Form stern coefficient'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object CstrnBox: TFloatSpinEdit
+              Left = 203
+              Height = 25
+              Top = 118
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 25
+              MinValue = -25
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 4
+              Value = 0
+            end
+            object Label15: TLabel
+              Left = 20
+              Height = 25
+              Top = 145
+              Width = 177
+              Caption = 'Number of propellers'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object NpBox: TFloatSpinEdit
+              Left = 203
+              Height = 25
+              Top = 145
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 5
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 5
+              Value = 0
+            end
+            object Label16: TLabel
+              Left = 20
+              Height = 25
+              Top = 172
+              Width = 177
+              Caption = 'Propeller diametr, m'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object DpBox: TFloatSpinEdit
+              Left = 203
+              Height = 25
+              Top = 172
+              Width = 80
+              Alignment = taRightJustify
+              DecimalPlaces = 3
+              MaxValue = 25
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 6
+              Value = 0
+            end
           end
-          object DraftBox: TFloatSpinEdit
-            Left = 120
-            Height = 23
-            Top = 100
-            Width = 50
-            DecimalPlaces = 3
-            MaxValue = 30
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+          object Panel7: TPanel
+            Left = 0
+            Height = 41
+            Top = 0
+            Width = 553
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 41
+            ClientWidth = 553
             TabOrder = 2
-            Value = 0
+            object CheckBox2: TCheckBox
+              Left = 10
+              Height = 21
+              Top = 10
+              Width = 215
+              Caption = 'Extract data from current hull'
+              OnClick = CheckBox2Click
+              TabOrder = 0
+            end
           end
-          object DraftTotalBox: TFloatSpinEdit
-            Left = 120
-            Height = 23
-            Top = 77
-            Width = 50
-            DecimalPlaces = 3
-            MaxValue = 30
-            MinValue = 0
-            OnExit = DraftTotalBoxAfterSetValue
+          object Panel8: TPanel
+            Left = 0
+            Height = 64
+            Top = 442
+            Width = 553
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 64
+            ClientWidth = 553
             TabOrder = 3
-            Value = 0
+            object Estimate4Box: TCheckBox
+              Left = 10
+              Height = 21
+              Top = 10
+              Width = 304
+              Caption = 'Extract half entrance angle from model - Ie'
+              OnClick = Estimate4BoxClick
+              TabOrder = 0
+            end
+            object Estimate3Box: TCheckBox
+              Left = 10
+              Height = 21
+              Top = 33
+              Width = 304
+              Caption = 'Add calculated by Holtrop-1984 method'
+              OnClick = Estimate3BoxClick
+              TabOrder = 1
+            end
           end
-          object WettedSurfacebox: TFloatSpinEdit
-            Left = 120
-            Height = 23
-            Top = 123
-            Width = 50
-            MaxValue = 20000
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+          object Panel9: TPanel
+            Left = 0
+            Height = 41
+            Top = 194
+            Width = 553
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 41
+            ClientWidth = 553
             TabOrder = 4
-            Value = 0
-          end
-          object EstimateBox: TCheckBox
-            Left = 4
-            Height = 21
-            Top = 151
-            Width = 97
-            Caption = 'Use estimate'
-            OnClick = EstimateBoxClick
-            TabOrder = 11
-          end
-          object Estimate2Box: TCheckBox
-            Left = 174
-            Height = 21
-            Top = 151
-            Width = 105
-            Caption = 'Use calculated'
-            OnClick = Estimate2BoxClick
-            TabOrder = 12
-          end
-          object Estimate3Box: TCheckBox
-            Left = 4
-            Height = 21
-            Top = 355
-            Width = 248
-            Caption = 'Add calculated by Holtrop-1984 method'
-            OnClick = Estimate3BoxClick
-            TabOrder = 13
-          end
-          object Estimate4Box: TCheckBox
-            Left = 4
-            Height = 21
-            Top = 335
-            Width = 269
-            Caption = 'Extract half entrance angle from model - Ie'
-            OnClick = Estimate4BoxClick
-            TabOrder = 5
-          end
-          object WlAreabox: TFloatSpinEdit
-            Left = 310
-            Height = 23
-            Top = 32
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 100000
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 6
-            Value = 0
-          end
-          object DisplacementBox: TFloatSpinEdit
-            Left = 310
-            Height = 23
-            Top = 55
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 500000
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 7
-            Value = 0
-          end
-          object LCBBox: TFloatSpinEdit
-            Left = 310
-            Height = 23
-            Top = 78
-            Width = 50
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 10
-            MinValue = -10
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 14
-            Value = 0
-          end
-          object CpBox: TFloatSpinEdit
-            Left = 310
-            Height = 23
-            Top = 101
-            Width = 50
-            Alignment = taRightJustify
-            DecimalPlaces = 4
-            MaxValue = 1
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 9
-            Value = 0
-          end
-          object KeBox: TFloatSpinEdit
-            Left = 310
-            Height = 23
-            Top = 123
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 1.3
-            MinValue = 1
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 15
-            Value = 1
-          end
-          object BABox: TFloatSpinEdit
-            Left = 221
-            Height = 23
-            Top = 169
-            Width = 40
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 16
-            Value = 0
-          end
-          object KBulbBox: TFloatSpinEdit
-            Left = 221
-            Height = 23
-            Top = 192
-            Width = 40
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 30
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 17
-            Value = 0
-          end
-          object ZBulbBox: TFloatSpinEdit
-            Left = 221
-            Height = 23
-            Top = 215
-            Width = 40
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 25
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 18
-            Value = 0
-          end
-          object CstrnBox: TFloatSpinEdit
-            Left = 221
-            Height = 23
-            Top = 261
-            Width = 40
-            Alignment = taRightJustify
-            MaxValue = 25
-            MinValue = -25
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 19
-            Value = 0
-          end
-          object NpBox: TFloatSpinEdit
-            Left = 221
-            Height = 23
-            Top = 284
-            Width = 40
-            Alignment = taRightJustify
-            MaxValue = 5
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 20
-            Value = 0
-          end
-          object DpBox: TFloatSpinEdit
-            Left = 221
-            Height = 23
-            Top = 307
-            Width = 40
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 25
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 21
-            Value = 0
-          end
-          object KsBox: TFloatSpinEdit
-            Left = 221
-            Height = 23
-            Top = 238
-            Width = 40
-            Alignment = taRightJustify
-            MaxValue = 2500
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 8
-            Value = 0
-          end
-          object CheckBox2: TCheckBox
-            Left = 5
-            Height = 21
-            Top = 14
-            Width = 192
-            Caption = 'Extract data from current hull'
-            OnClick = CheckBox2Click
-            TabOrder = 10
+            object EstimateBox: TCheckBox
+              Left = 10
+              Height = 21
+              Top = 10
+              Width = 110
+              Caption = 'Use estimate'
+              OnClick = EstimateBoxClick
+              TabOrder = 0
+            end
+            object Estimate2Box: TCheckBox
+              Left = 126
+              Height = 21
+              Top = 10
+              Width = 119
+              Caption = 'Use calculated'
+              OnClick = Estimate2BoxClick
+              TabOrder = 1
+            end
           end
         end
       end
       object Chart: TChart
-        Left = 408
-        Height = 580
+        Left = 558
+        Height = 712
         Top = 0
-        Width = 579
+        Width = 673
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -683,6 +936,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
           'TAChart'
         )
         Align = alClient
+        Color = clForm
         object Series1: TLineSeries
           Marks.Visible = False
           Title = 'Rt'
@@ -712,604 +966,691 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     end
     object Data2: TTabSheet
       Caption = 'Added data'
-      ClientHeight = 580
-      ClientWidth = 987
+      ClientHeight = 712
+      ClientWidth = 1231
       object Panel6: TPanel
         Left = 0
-        Height = 579
+        Height = 712
         Top = 0
-        Width = 790
-        Align = alLeft
-        BevelOuter = bvLowered
-        ClientHeight = 579
-        ClientWidth = 790
+        Width = 1231
+        Align = alClient
+        BevelOuter = bvNone
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 712
+        ClientWidth = 1231
         TabOrder = 0
-        object GroupBox3: TGroupBox
-          Left = 10
-          Height = 480
+        object Panel11: TPanel
+          Left = 0
+          Height = 413
           Top = 10
-          Width = 382
-          Caption = 'Added data input:'
-          ClientHeight = 463
-          ClientWidth = 378
-          TabOrder = 1
-          object Label6_1: TLabel
-            Left = 5
-            Height = 14
-            Top = 25
-            Width = 186
-            Caption = 'Time ship hull is in water, month'
+          Width = 401
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 413
+          ClientWidth = 401
+          TabOrder = 0
+          object GroupBox3: TGroupBox
+            Left = 10
+            Height = 310
+            Top = 10
+            Width = 381
+            Caption = 'Added data input:'
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 293
+            ClientWidth = 377
+            Color = clForm
             ParentColor = False
-          end
-          object Label6_2: TLabel
-            Left = 5
-            Height = 14
-            Top = 50
-            Width = 129
-            Caption = 'Height of 3% wave, m '
-            ParentColor = False
-          end
-          object Label6_3: TLabel
-            Left = 5
-            Height = 14
-            Top = 75
-            Width = 218
-            Caption = 'Course angle of moving wave, degree'
-            ParentColor = False
-          end
-          object Label6_4: TLabel
-            Left = 5
-            Height = 14
-            Top = 100
-            Width = 95
-            Caption = 'Wind speed, m/s'
-            ParentColor = False
-          end
-          object Label6_5: TLabel
-            Left = 5
-            Height = 14
-            Top = 125
-            Width = 153
-            Caption = 'Course wind angle, degree'
-            ParentColor = False
-          end
-          object Label6_6: TLabel
-            Left = 5
-            Height = 14
-            Top = 150
-            Width = 182
-            Caption = 'Height of board above water, m'
-            ParentColor = False
-          end
-          object Label6_7: TLabel
-            Left = 5
-            Height = 14
-            Top = 175
-            Width = 113
-            Caption = 'Air density, kg/m^3'
-            ParentColor = False
-          end
-          object Label6_8: TLabel
-            Left = 5
-            Height = 14
-            Top = 200
-            Width = 327
-            Caption = 'Height of COG area of superstructure above waterline, m'
-            ParentColor = False
-          end
-          object Label6_9: TLabel
-            Left = 5
-            Height = 14
-            Top = 225
-            Width = 103
-            Caption = 'Depth of water, m'
-            ParentColor = False
-          end
-          object Label6_10: TLabel
-            Left = 5
-            Height = 14
-            Top = 250
-            Width = 167
-            Caption = 'Wetted area of midship, m^2'
-            ParentColor = False
-          end
-          object Label6_11: TLabel
-            Left = 5
-            Height = 14
-            Top = 275
-            Width = 72
-            Caption = 'Type of ship:'
-            ParentColor = False
-          end
-          object Label7_1: TLabel
-            Left = 5
-            Height = 14
-            Top = 300
-            Width = 162
-            Caption = '1 - Passenger ship and ferry'
-            ParentColor = False
-          end
-          object Label7_2: TLabel
-            Left = 5
-            Height = 14
-            Top = 315
-            Width = 275
-            Caption = '2 - Cargo ship with middle engine is in full cargo'
-            ParentColor = False
-          end
-          object Label7_3: TLabel
-            Left = 5
-            Height = 14
-            Top = 330
-            Width = 259
-            Caption = '3 - Cargo ship with middle engine is in ballast'
-            ParentColor = False
-          end
-          object Label7_4: TLabel
-            Left = 5
-            Height = 14
-            Top = 345
-            Width = 252
-            Caption = '4 - Cargo ship with aft engine is in full cargo'
-            ParentColor = False
-          end
-          object Label7_5: TLabel
-            Left = 5
-            Height = 14
-            Top = 360
-            Width = 236
-            Caption = '5 - Cargo ship with aft engine is in ballast'
-            ParentColor = False
-          end
-          object Label7_6: TLabel
-            Left = 5
-            Height = 14
-            Top = 375
-            Width = 341
-            Caption = '6 - Tanker and bulkcarrier with middle engine is in full cargo'
-            ParentColor = False
-          end
-          object Label7_7: TLabel
-            Left = 5
-            Height = 14
-            Top = 390
-            Width = 325
-            Caption = '7 - Tanker and bulkcarrier with middle engine is in ballast'
-            ParentColor = False
-          end
-          object Label7_8: TLabel
-            Left = 5
-            Height = 14
-            Top = 405
-            Width = 318
-            Caption = '8 - Tanker and bulkcarrier with aft engine is in full cargo'
-            ParentColor = False
-          end
-          object Label7_9: TLabel
-            Left = 5
-            Height = 14
-            Top = 420
-            Width = 302
-            Caption = '9 - Tanker and bulkcarrier with aft engine is in ballast'
-            ParentColor = False
-          end
-          object Label7_10: TLabel
-            Left = 5
-            Height = 14
-            Top = 435
-            Width = 67
-            Caption = '10 - Trawler'
-            ParentColor = False
-          end
-          object Label7_11: TLabel
-            Left = 5
-            Height = 14
-            Top = 450
-            Width = 45
-            Caption = '11 - Tug'
-            ParentColor = False
-          end
-          object A1Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 17
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 1
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
             TabOrder = 0
-            Value = 0
+            object Label6_1: TLabel
+              Left = 6
+              Height = 25
+              Top = 10
+              Width = 285
+              Caption = 'Time ship hull is in water, month'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A1Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 10
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 1
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 0
+              Value = 0
+            end
+            object Label6_2: TLabel
+              Left = 6
+              Height = 25
+              Top = 37
+              Width = 285
+              Caption = 'Height of 3% wave, m '
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A2Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 37
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 1
+              Value = 0
+            end
+            object Label6_3: TLabel
+              Left = 6
+              Height = 25
+              Top = 64
+              Width = 285
+              Caption = 'Course angle of moving wave, degree'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A3Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 64
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 2
+              Value = 0
+            end
+            object Label6_4: TLabel
+              Left = 6
+              Height = 25
+              Top = 91
+              Width = 285
+              Caption = 'Wind speed, m/s'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A4Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 91
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 3
+              Value = 0
+            end
+            object Label6_5: TLabel
+              Left = 6
+              Height = 25
+              Top = 118
+              Width = 285
+              Caption = 'Course wind angle, degree'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A5Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 118
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 4
+              Value = 0
+            end
+            object Label6_6: TLabel
+              Left = 6
+              Height = 25
+              Top = 145
+              Width = 285
+              Caption = 'Height of board above water, m'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A6Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 145
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 5
+              Value = 0
+            end
+            object Label6_7: TLabel
+              Left = 6
+              Height = 25
+              Top = 172
+              Width = 285
+              Caption = 'Air density, kg/m^3'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A7Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 172
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 6
+              Value = 0
+            end
+            object Label6_8: TLabel
+              Left = 6
+              Height = 30
+              Top = 199
+              Width = 285
+              Caption = 'Height of COG area of superstructure above waterline, m'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A8Box: TFloatSpinEdit
+              Left = 291
+              Height = 30
+              Top = 199
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 7
+              Value = 0
+            end
+            object Label6_9: TLabel
+              Left = 6
+              Height = 25
+              Top = 231
+              Width = 285
+              Caption = 'Depth of water, m'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A9Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 231
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 1
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 8
+              Value = 0
+            end
+            object Label6_10: TLabel
+              Left = 6
+              Height = 25
+              Top = 258
+              Width = 285
+              Caption = 'Wetted area of midship, m^2'
+              Constraints.MaxWidth = 300
+              Layout = tlCenter
+              ParentColor = False
+              WordWrap = True
+            end
+            object A10Box: TFloatSpinEdit
+              Left = 291
+              Height = 25
+              Top = 258
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 250
+              MinValue = 0
+              OnEditingDone = LwlBoxAfterSetValue
+              TabOrder = 9
+              Value = 0
+            end
           end
-          object A2Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 42
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+          object Panel10: TPanel
+            Left = 10
+            Height = 27
+            Top = 320
+            Width = 381
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 2
+            ChildSizing.HorizontalSpacing = 60
+            ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 27
+            ClientWidth = 381
             TabOrder = 1
-            Value = 0
-          end
-          object A3Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 67
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 2
-            Value = 0
-          end
-          object A4Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 92
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 3
-            Value = 0
-          end
-          object A5Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 117
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 4
-            Value = 0
-          end
-          object A6Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 142
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 5
-            Value = 0
-          end
-          object A7Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 167
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 6
-            Value = 0
-          end
-          object A8Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 192
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 7
-            Value = 0
-          end
-          object A9Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 217
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 1
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 9
-            Value = 0
-          end
-          object A10Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 242
-            Width = 45
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 10
-            Value = 0
-          end
-          object A11Box: TFloatSpinEdit
-            Left = 315
-            Height = 24
-            Top = 267
-            Width = 45
-            Alignment = taRightJustify
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 8
-            Value = 0
+            object Label6_11: TLabel
+              Left = 10
+              Height = 15
+              Top = 2
+              Width = 82
+              Caption = 'Type of ship:'
+              Constraints.MaxWidth = 300
+              Constraints.MinWidth = 10
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object A11Box: TComboBox
+              Left = 173
+              Height = 23
+              Top = 0
+              Width = 200
+              Anchors = [akTop, akRight]
+              AutoComplete = True
+              AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+              AutoDropDown = True
+              Constraints.MinWidth = 200
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Passenger ship and ferry'
+                'Cargo ship with middle engine is in full cargo'
+                'Cargo ship with middle engine is in ballast'
+                'Cargo ship with aft engine is in full cargo'
+                'Cargo ship with aft engine is in ballast'
+                'Tanker and bulkcarrier with middle engine is in full cargo'
+                'Tanker and bulkcarrier with middle engine is in ballast'
+                'Tanker and bulkcarrier with aft engine is in full cargo'
+                'Tanker and bulkcarrier with aft engine is in ballast'
+                'Trawler'
+                'Tug'
+              )
+              Style = csDropDownList
+              TabOrder = 0
+              Text = 'Passenger ship and ferry'
+            end
           end
         end
         object GroupBox4: TGroupBox
-          Left = 400
-          Height = 480
+          Left = 401
+          Height = 413
           Top = 10
-          Width = 371
+          Width = 293
+          AutoSize = True
+          BorderSpacing.Top = 10
           Caption = 'Appendage areas input, [m^2]:'
-          ClientHeight = 463
-          ClientWidth = 367
-          TabOrder = 0
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.HorizontalSpacing = 6
+          ChildSizing.VerticalSpacing = 2
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 396
+          ClientWidth = 289
+          Color = clForm
+          ParentColor = False
+          TabOrder = 1
           object Label30: TLabel
-            Left = 5
-            Height = 14
-            Top = 25
-            Width = 81
+            Left = 10
+            Height = 25
+            Top = 10
+            Width = 183
             Caption = 'Shaft brackets'
-            ParentColor = False
-          end
-          object Label31: TLabel
-            Left = 5
-            Height = 14
-            Top = 50
-            Width = 74
-            Caption = 'Strut bossing'
-            ParentColor = False
-          end
-          object Label37: TLabel
-            Left = 5
-            Height = 14
-            Top = 75
-            Width = 76
-            Caption = 'Stabiliser fins'
-            ParentColor = False
-          end
-          object Label33: TLabel
-            Left = 5
-            Height = 14
-            Top = 150
-            Width = 133
-            Caption = 'Exposed shafts, [m^2]:'
-            ParentColor = False
-          end
-          object Label35: TLabel
-            Left = 5
-            Height = 14
-            Top = 175
-            Width = 158
-            Caption = 'Angle with battoks about 10'
-            ParentColor = False
-          end
-          object Label36: TLabel
-            Left = 5
-            Height = 14
-            Top = 200
-            Width = 158
-            Caption = 'Angle with battoks about 20'
-            ParentColor = False
-          end
-          object Label32: TLabel
-            Left = 5
-            Height = 14
-            Top = 100
-            Width = 68
-            Caption = 'Hull bossing'
-            ParentColor = False
-          end
-          object Label38: TLabel
-            Left = 5
-            Height = 14
-            Top = 125
-            Width = 33
-            Caption = 'Dome'
+            Layout = tlCenter
             ParentColor = False
           end
           object K1Box: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 17
-            Width = 40
+            Left = 199
+            Height = 25
+            Top = 10
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 250
             MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+            OnEditingDone = LwlBoxAfterSetValue
+            TabOrder = 0
+            Value = 0
+          end
+          object Label31: TLabel
+            Left = 10
+            Height = 25
+            Top = 37
+            Width = 183
+            Caption = 'Strut bossing'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object K2Box: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 37
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            DecimalPlaces = 3
+            MaxValue = 250
+            MinValue = 0
+            OnEditingDone = LwlBoxAfterSetValue
+            TabOrder = 1
+            Value = 0
+          end
+          object Label37: TLabel
+            Left = 10
+            Height = 25
+            Top = 64
+            Width = 183
+            Caption = 'Stabiliser fins'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object K3Box: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 64
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            DecimalPlaces = 3
+            MaxValue = 250
+            MinValue = 0
+            OnEditingDone = LwlBoxAfterSetValue
             TabOrder = 2
             Value = 0
           end
-          object K2Box: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 43
-            Width = 40
+          object Label32: TLabel
+            Left = 10
+            Height = 25
+            Top = 91
+            Width = 183
+            Caption = 'Hull bossing'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object K4Box: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 91
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 250
             MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+            OnEditingDone = LwlBoxAfterSetValue
             TabOrder = 3
             Value = 0
           end
-          object K3Box: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 68
-            Width = 40
+          object Label38: TLabel
+            Left = 10
+            Height = 25
+            Top = 118
+            Width = 183
+            Caption = 'Dome'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object K5Box: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 118
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 250
             MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+            OnEditingDone = LwlBoxAfterSetValue
             TabOrder = 4
             Value = 0
           end
-          object K4Box: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 93
-            Width = 40
+          object Label33: TLabel
+            Left = 10
+            Height = 25
+            Top = 145
+            Width = 183
+            Caption = 'Exposed shafts, [m^2]:'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object K5Box1: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 145
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 250
             MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+            OnEditingDone = LwlBoxAfterSetValue
             TabOrder = 5
             Value = 0
           end
-          object K5Box: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 118
-            Width = 40
+          object Label35: TLabel
+            Left = 10
+            Height = 25
+            Top = 172
+            Width = 183
+            Caption = 'Angle with battoks about 10'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object K6Box: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 172
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 250
             MinValue = 0
-            OnExit = LwlBoxAfterSetValue
+            OnEditingDone = LwlBoxAfterSetValue
             TabOrder = 6
             Value = 0
           end
-          object K6Box: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 168
-            Width = 40
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 250
-            MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 7
-            Value = 0
+          object Label36: TLabel
+            Left = 10
+            Height = 25
+            Top = 199
+            Width = 183
+            Caption = 'Angle with battoks about 20'
+            Layout = tlCenter
+            ParentColor = False
           end
           object K7Box: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 193
-            Width = 40
+            Left = 199
+            Height = 25
+            Top = 199
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 250
             MinValue = 0
-            OnExit = LwlBoxAfterSetValue
-            TabOrder = 8
+            OnEditingDone = LwlBoxAfterSetValue
+            TabOrder = 7
             Value = 0
           end
           object Label281: TLabel
             Left = 10
-            Height = 14
-            Top = 225
-            Width = 155
+            Height = 25
+            Top = 226
+            Width = 183
             Caption = 'Keel and skeg area, [m^2]:'
+            Layout = tlCenter
             ParentColor = False
+          end
+          object K7Box1: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 226
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            DecimalPlaces = 3
+            MaxValue = 250
+            MinValue = 0
+            OnEditingDone = LwlBoxAfterSetValue
+            TabOrder = 8
+            Value = 0
           end
           object Label28: TLabel
-            Left = 5
-            Height = 14
-            Top = 250
-            Width = 27
+            Left = 10
+            Height = 25
+            Top = 253
+            Width = 183
             Caption = 'Skeg'
-            ParentColor = False
-          end
-          object Label29: TLabel
-            Left = 5
-            Height = 14
-            Top = 275
-            Width = 61
-            Caption = 'Bilge keels'
+            Layout = tlCenter
             ParentColor = False
           end
           object KeelChordLengthbox: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 243
-            Width = 40
+            Left = 199
+            Height = 25
+            Top = 253
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             MaxValue = 75
             MinValue = 0
-            OnExit = KeelChordLengthboxAfterSetValue
+            OnEditingDone = KeelChordLengthboxAfterSetValue
             ParentFont = False
             TabOrder = 9
             Value = 0
           end
+          object Label29: TLabel
+            Left = 10
+            Height = 25
+            Top = 280
+            Width = 183
+            Caption = 'Bilge keels'
+            Layout = tlCenter
+            ParentColor = False
+          end
           object KeelAreaBox: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 268
-            Width = 40
+            Left = 199
+            Height = 25
+            Top = 280
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             MinValue = 0
-            OnExit = KeelChordLengthboxAfterSetValue
+            OnEditingDone = KeelChordLengthboxAfterSetValue
             TabOrder = 10
             Value = 0
           end
           object Label61: TLabel
-            Left = 5
-            Height = 14
-            Top = 300
-            Width = 124
+            Left = 10
+            Height = 25
+            Top = 307
+            Width = 183
             Caption = 'Rudders area, [m^2]:'
+            Layout = tlCenter
             ParentColor = False
+          end
+          object KeelAreaBox1: TFloatSpinEdit
+            Left = 199
+            Height = 25
+            Top = 307
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            MinValue = 0
+            OnEditingDone = KeelChordLengthboxAfterSetValue
+            TabOrder = 11
+            Value = 0
           end
           object Label6: TLabel
-            Left = 5
-            Height = 14
-            Top = 325
-            Width = 146
+            Left = 10
+            Height = 25
+            Top = 334
+            Width = 183
             Caption = 'Rudder behind skeg/stern'
-            ParentColor = False
-          end
-          object Label7: TLabel
-            Left = 5
-            Height = 14
-            Top = 350
-            Width = 104
-            Caption = 'Two-screw slender'
+            Layout = tlCenter
             ParentColor = False
           end
           object RudderChordLengthbox: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 318
-            Width = 40
+            Left = 199
+            Height = 25
+            Top = 334
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             MaxValue = 75
             MinValue = 0
-            OnExit = KeelChordLengthboxAfterSetValue
+            OnEditingDone = KeelChordLengthboxAfterSetValue
             ParentFont = False
-            TabOrder = 0
+            TabOrder = 12
             Value = 0
           end
+          object Label7: TLabel
+            Left = 10
+            Height = 25
+            Top = 361
+            Width = 183
+            Caption = 'Two-screw slender'
+            Layout = tlCenter
+            ParentColor = False
+          end
           object RudderAreaBox: TFloatSpinEdit
-            Left = 321
-            Height = 24
-            Top = 343
-            Width = 40
+            Left = 199
+            Height = 25
+            Top = 361
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             MinValue = 0
-            OnExit = KeelChordLengthboxAfterSetValue
-            TabOrder = 1
+            OnEditingDone = KeelChordLengthboxAfterSetValue
+            TabOrder = 13
             Value = 0
           end
         end
@@ -1317,8 +1658,8 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 580
-      ClientWidth = 987
+      ClientHeight = 712
+      ClientWidth = 1231
       object Panel5: TPanel
         Left = 0
         Height = 579
@@ -1347,23 +1688,23 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 580
-      ClientWidth = 987
+      ClientHeight = 712
+      ClientWidth = 1231
       object Panel15: TPanel
         Left = 0
-        Height = 579
+        Height = 712
         Top = 0
-        Width = 987
+        Width = 1231
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 579
-        ClientWidth = 987
+        ClientHeight = 712
+        ClientWidth = 1231
         TabOrder = 0
         object Resultsmemo2: TMemo
           Left = 1
-          Height = 577
+          Height = 710
           Top = 1
-          Width = 985
+          Width = 1229
           Align = alClient
           Font.Color = clBlack
           Font.Height = -13
@@ -1380,7 +1721,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     Left = 0
     Height = 24
     Top = 0
-    Width = 993
+    Width = 1237
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
@@ -1439,11 +1780,10 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     end
   end
   object PrintDialog: TPrintDialog
-    left = 383
-    top = 1
+    left = 544
   end
   object MenuImages: TImageList
-    left = 292
+    left = 424
     Bitmap = {
       4C69040000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

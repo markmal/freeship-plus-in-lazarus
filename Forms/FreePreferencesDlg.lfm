@@ -1,34 +1,35 @@
 object FreePreferencesDialog: TFreePreferencesDialog
-  Left = 579
+  Left = 625
   Height = 525
-  Top = 296
-  Width = 582
+  Top = 384
+  Width = 580
   AutoSize = True
   BorderStyle = bsToolWindow
-  Caption = 'Preferences.'
+  Caption = '|Preferences.|'
   ClientHeight = 525
-  ClientWidth = 582
+  ClientWidth = 580
   Color = clBtnFace
   Constraints.MinHeight = 400
   Constraints.MinWidth = 580
+  OnActivate = FormActivate
   OnShow = FormShow
   ParentFont = True
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
-  object Panel3: TPanel
+  object ButtonPanel: TPanel
     Left = 0
-    Height = 26
+    Height = 34
     Top = 0
-    Width = 582
+    Width = 580
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 582
+    ClientHeight = 34
+    ClientWidth = 580
     TabOrder = 0
     object BitBtn2: TSpeedButton
-      Left = 499
-      Height = 20
+      Left = 497
+      Height = 28
       Top = 3
       Width = 80
       Align = alRight
@@ -73,11 +74,11 @@ object FreePreferencesDialog: TFreePreferencesDialog
         000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
         C0FF2110C0FF2110C0FF00000000000000000000000000000000
       }
-      OnClick = BitBtn2Click
+      OnClick = CancelButtonClick
     end
     object BitBtn1: TSpeedButton
-      Left = 416
-      Height = 20
+      Left = 414
+      Height = 28
       Top = 3
       Width = 80
       Align = alRight
@@ -122,37 +123,114 @@ object FreePreferencesDialog: TFreePreferencesDialog
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000EA628FF0EA628FF0EA628FF0000000000000000
       }
-      OnClick = BitBtn1Click
+      OnClick = OkButtonClick
     end
-    object SpeedButton3: TSpeedButton
-      Left = 10
-      Height = 23
-      Top = 0
+    object BitBtnReset: TSpeedButton
+      Left = 3
+      Height = 28
+      Top = 3
       Width = 80
+      Align = alLeft
       AutoSize = True
-      BorderSpacing.Left = 10
-      BorderSpacing.Right = 10
+      BorderSpacing.Around = 3
       Constraints.MinWidth = 80
       Caption = 'Reset'
-      Margin = 4
-      OnClick = SpeedButton3Click
+      Flat = True
+      Glyph.Data = {
+        36090000424D3609000000000000360000002800000018000000180000000100
+        2000000000000009000064000000640000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00007F5212147F5212D27F5212FF7F5212FE7F5212FE7F5212FE7F5212FE7F52
+        12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F52
+        12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FC7F5212F7000000000000
+        00007F5212157F5212D47F5212FF7F5212E97F5212E47F5212E47F5212E47F52
+        12E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F52
+        12E47F5212E47F5212E47F5212E47F5212E87F5212FD7F5212FA000000000000
+        000071482C187F5211D57F5212F37F52124C7F5212207F5212227F5212227F52
+        12227F5212227F52122382540C217A4E1D2482540E217F5211227F5212227F52
+        12227F5212227F5212227F5212207F5212457F5212EC7F5212FC000000001F0F
+        C4332A16AFA172492AE9805310EF7F5212300000000000000000000000000000
+        000000000000000000001D0DC8181F0FC38C1E0EC53D00000000000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC2110C03D2110
+        C0CE2110C0FF3C238FFF734929EE83550A300000000000000000000000000000
+        0000000000002110C0192110C0AC2110C0FF2110C0D82110C040000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC2110C0B72110
+        C0FF2110C0FF2010C1FF371F98F24C2E703D0000000000000000000000000000
+        00002110C01A2110C0AD2110C0FF2110C0FF2110C0FF2110C0B02110C00B0000
+        00000000000000000000000000007F5212287F5212E87F5212FC2110C0342110
+        C0C62110C0FF2110C0FF2010C1FF2110C0BB2110C02200000000000000002110
+        C01B2110C0AF2110C0FF2110C0FF2110C0FF2110C0D22110C037000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC000000002110
+        C02B2110C0C62010C1FF2110C0FF2110C0FF2110C0BD2110C0222110C01A2110
+        C0B12110C0FF2110C0FF2110C0FF2110C0D02110C03500000000000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+        0000311BA2332E19A8E42110C1FF2110C0FF2110C0FF2110C0C22110C0BB2110
+        C0FF2110C0FF2110C0FF2110C0CF2110C0330000000000000000000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+        0000865705156D4533D4382096FF2110C1FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0CD2110C032000000000000000000000000000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+        00007F52121580530FD471482CFA2E19A9E5200FC1FF2110C0FF2110C0FF2110
+        C0FF2110C0D12110C02F00000000000000000000000000000000000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+        00007F521215805310D5744A27F92F1AA6E2200FC1FF2110C0FF2110C0FF2110
+        C0FF2110C0CC2110C02700000000000000000000000000000000000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+        00008657041570482DD43B228FFF2110C1FF2110C0FF200FC2FF200FC2FF2110
+        C0FF2110C0FF2110C0C52110C02A000000000000000000000000000000000000
+        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+        0000361F982D311BA3E22110C1FF2110C0FF200FC1FF301AA5F2321CA1EF2110
+        C1FF2110C0FF2110C0FF2110C0C64E2F6D5183550A447F5212457F5212457F52
+        12457F5212457F5212457F5212437F5212627F5212EF7F5212FB000000002110
+        C0232110C0BD2010C1FF2110C0FF2110C1FF371F97FF70482EFE734A28FD3B22
+        90FF2110C0FF2110C0FF2010C1FF341D9DF96E4631F8805310FA7F5212FC7F52
+        12FC7F5212FC7F5212FC7F5212FC7F5212FC7F5212FF7F5212FA2110C02B2110
+        C0BD2110C0FF2110C0FF2110C1FF2A16AFD96B4438BB81530FBC80530FBC6F47
+        30BB2D19AAD52010C1FE2110C0FF200FC2FF351E9BFF6B4437DD805211BC7F52
+        12BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212B82110C0B62110
+        C0FF2110C0FF2110C0FF2110C0C32815B52BAF7400067F5212087E521208AA71
+        00062C18B0232110C0B72110C0FF2110C0FF2010C1FF2412BBB4482C77138959
+        00077F5212087F5212087F5212087F5212087F5212087F5212082110C0472110
+        C0D42110C0FF2110C0C02110C027000000000000000000000000000000000000
+        0000000000002110C01F2110C0B42110C0FF2110C0DE2110C1490000FF000000
+        0000000000000000000000000000000000000000000000000000000000002110
+        C0452110C0B52110C02D00000000000000000000000000000000000000000000
+        000000000000000000002110C0232110C0B12110C05200000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000
+      }
+      OnClick = ResetButtonClick
     end
   end
   object Panel1: TPanel
     Left = 0
-    Height = 499
-    Top = 26
-    Width = 582
+    Height = 491
+    Top = 34
+    Width = 580
     Align = alClient
     AutoSize = True
     BevelOuter = bvLowered
     BorderWidth = 10
-    ClientHeight = 499
-    ClientWidth = 582
+    ClientHeight = 491
+    ClientWidth = 580
     TabOrder = 1
+    OnMouseEnter = Panel1MouseEnter
     object PageControl1: TPageControl
       Left = 11
-      Height = 477
+      Height = 469
       Top = 11
       Width = 560
       ActivePage = TabSheet1
@@ -160,9 +238,10 @@ object FreePreferencesDialog: TFreePreferencesDialog
       Constraints.MinWidth = 560
       TabIndex = 0
       TabOrder = 0
+      OnChange = PageControl1Change
       object TabSheet1: TTabSheet
         Caption = 'General'
-        ClientHeight = 444
+        ClientHeight = 436
         ClientWidth = 554
         ParentShowHint = False
         ShowHint = True
@@ -226,42 +305,48 @@ object FreePreferencesDialog: TFreePreferencesDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Directories'
-        ClientHeight = 444
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.VerticalSpacing = 2
+        ChildSizing.Layout = cclTopToBottomThenLeftToRight
+        ChildSizing.ControlsPerLine = 1
+        ClientHeight = 436
         ClientWidth = 554
         object Panel30: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 0
-          Width = 554
+          Top = 10
+          Width = 534
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 0
           object Panel32: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditLanguagesDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditLanguagesDir'
             end
             object SpeedButtonLanguagesDir: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -283,47 +368,48 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Languages'
             ParentColor = False
           end
         end
         object Panel28: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 40
-          Width = 554
+          Top = 52
+          Width = 534
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 1
           object Panel29: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             Caption = 'Panel29'
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditExecDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditExecDir'
             end
             object SpeedButton12: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -345,47 +431,48 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Executables'
             ParentColor = False
           end
         end
         object Panel31: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 80
-          Width = 554
+          Top = 94
+          Width = 534
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 2
           object Panel33: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             Caption = 'Panel29'
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditManualsDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditManualsDir'
             end
             object SpeedButton9: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -407,47 +494,48 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Manuals'
             ParentColor = False
           end
         end
         object Panel34: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 120
-          Width = 554
+          Top = 136
+          Width = 534
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 3
           object Panel35: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             Caption = 'Panel29'
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditTempDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditTempDir'
             end
             object SpeedButton13: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -469,45 +557,46 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Temporary'
             ParentColor = False
           end
         end
         object Panel38: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 160
-          Width = 554
+          Top = 178
+          Width = 534
           Align = alTop
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 4
           object Panel39: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             BevelOuter = bvNone
             Caption = 'Panel29'
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditOpenDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditOpenDir'
             end
             object SpeedButton14: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -529,44 +618,45 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Open'
             ParentColor = False
           end
         end
         object Panel40: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 280
-          Width = 554
+          Top = 304
+          Width = 534
           Align = alTop
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 5
           object Panel41: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             BevelOuter = bvNone
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditExportDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditExportDir'
             end
             object SpeedButton17: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -588,44 +678,45 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Export'
             ParentColor = False
           end
         end
         object Panel42: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 240
-          Width = 554
+          Top = 262
+          Width = 534
           Align = alTop
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 6
           object Panel43: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             BevelOuter = bvNone
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditImportDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditImportDir'
             end
             object SpeedButton16: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -647,45 +738,46 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Import'
             ParentColor = False
           end
         end
         object Panel44: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 200
-          Width = 554
+          Top = 220
+          Width = 534
           Align = alTop
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 7
           object Panel45: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             BevelOuter = bvNone
             Caption = 'Panel29'
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditSaveDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditSaveDir'
             end
             object SpeedButton15: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -707,44 +799,45 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Save'
             ParentColor = False
           end
         end
         object PanelGlobalImportDir: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 360
-          Width = 554
+          Top = 388
+          Width = 534
           Align = alTop
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 8
           object Panel47: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             BevelOuter = bvNone
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
             TabOrder = 0
             object EditGlobalImportDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditGlobalImportDir'
             end
             object SpeedButton19: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -766,44 +859,46 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Global Import'
             ParentColor = False
           end
         end
         object Panel48: TPanel
-          Left = 0
+          Left = 10
           Height = 40
-          Top = 320
-          Width = 554
+          Top = 346
+          Width = 534
           Align = alTop
           BevelOuter = bvNone
           ClientHeight = 40
-          ClientWidth = 554
+          ClientWidth = 534
+          ParentColor = False
           TabOrder = 9
           object Panel49: TPanel
             Left = 0
             Height = 25
             Top = 15
-            Width = 554
+            Width = 534
             Align = alTop
             BevelOuter = bvNone
             ClientHeight = 25
-            ClientWidth = 554
+            ClientWidth = 534
+            ParentColor = False
             TabOrder = 0
             object EditGlobalOpenDir: TEdit
               Left = 0
               Height = 25
               Top = 0
-              Width = 531
+              Width = 511
               Align = alClient
               OnChange = EditDirChange
               TabOrder = 0
               Text = 'EditGlobalOpenDir'
             end
             object SpeedButton18: TSpeedButton
-              Left = 531
+              Left = 511
               Height = 25
               Top = 0
               Width = 23
@@ -825,7 +920,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Left = 0
             Height = 15
             Top = 0
-            Width = 554
+            Width = 534
             Align = alTop
             Caption = 'Global Open'
             ParentColor = False
@@ -834,7 +929,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Graphics'
-        ClientHeight = 444
+        ClientHeight = 436
         ClientWidth = 554
         object Panel: TPanel
           Left = 0
@@ -1489,7 +1584,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 408
+    left = 240
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog
     left = 288

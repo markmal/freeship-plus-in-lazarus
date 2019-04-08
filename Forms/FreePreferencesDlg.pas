@@ -140,6 +140,7 @@ type
     ButtonPanel: TPanel;
     BitBtn2: TSpeedButton;
     ColorDialog: TColorDialog;
+    Panel3: TPanel;
     Panel30: TPanel;
     Panel31: TPanel;
     Panel32: TPanel;
@@ -163,6 +164,10 @@ type
     Panel49: TPanel;
     Panel5: TPanel;
     Panel50: TPanel;
+    Panel51: TPanel;
+    Panel52: TPanel;
+    Panel53: TPanel;
+    Panel54: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
     Panel8: TPanel;

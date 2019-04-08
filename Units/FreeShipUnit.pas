@@ -11785,6 +11785,9 @@ begin
   {Jpg := TJPegImage.Create;
   TempFreeShip := TFreeShip.Create(nil);
   TempFreeShip.LoadPreview(FN, Jpg);}
+
+  Screen.Cursor := crHourGlass;
+
   Jpg := getPreviewImage(FN);
   if Assigned(Jpg) and Assigned(Dlg.PreviewImage) and
     Assigned(Dlg.PreviewImage.Picture) and
@@ -11799,6 +11802,9 @@ begin
   end
   else
     Dlg.PreviewImage.Picture := nil;
+
+  Screen.Cursor := crDefault;
+
   //TempFreeShip.Free;
 end;
 
@@ -18325,6 +18331,7 @@ begin
   for I:=0 to Application.MainForm.MDIChildCount-1 do
     begin
     Frm:=Application.MainForm.GetMDIChildren(I);
+    if not assigned(Frm) then continue;
     Frm.Repaint;
     Tmp := Frm.GetFormImage;
     case I of

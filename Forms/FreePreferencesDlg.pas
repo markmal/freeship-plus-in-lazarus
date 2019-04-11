@@ -164,7 +164,6 @@ type
     Panel49: TPanel;
     Panel5: TPanel;
     Panel50: TPanel;
-    Panel51: TPanel;
     Panel52: TPanel;
     Panel53: TPanel;
     Panel54: TPanel;

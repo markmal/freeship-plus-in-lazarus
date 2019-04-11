@@ -251,15 +251,6 @@ object FreePreferencesDialog: TFreePreferencesDialog
         ClientWidth = 695
         ParentShowHint = False
         ShowHint = True
-        object Panel51: TPanel
-          Left = 352
-          Height = 0
-          Top = 218
-          Width = 0
-          AutoSize = True
-          Caption = 'Panel51'
-          TabOrder = 0
-        end
         object Panel53: TPanel
           Left = 10
           Height = 92
@@ -275,9 +266,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 92
           ClientWidth = 675
-          Color = clNone
+          Color = clWindow
           ParentColor = False
-          TabOrder = 1
+          TabOrder = 0
           object Label26: TLabel
             Left = 10
             Height = 28
@@ -584,6 +575,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Width = 675
             Align = alTop
             Caption = 'Manuals'
+            ParentColor = False
           end
         end
         object Panel34: TPanel
@@ -647,6 +639,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Width = 675
             Align = alTop
             Caption = 'Temporary'
+            ParentColor = False
           end
         end
         object Panel38: TPanel
@@ -710,6 +703,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Width = 675
             Align = alTop
             Caption = 'Open'
+            ParentColor = False
           end
         end
         object Panel40: TPanel
@@ -772,6 +766,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Width = 675
             Align = alTop
             Caption = 'Export'
+            ParentColor = False
           end
         end
         object Panel42: TPanel
@@ -834,6 +829,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Width = 675
             Align = alTop
             Caption = 'Import'
+            ParentColor = False
           end
         end
         object Panel44: TPanel
@@ -897,6 +893,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             Width = 675
             Align = alTop
             Caption = 'Save'
+            ParentColor = False
           end
         end
         object PanelGlobalImportDir: TPanel
@@ -1069,6 +1066,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               Width = 45
               Caption = 'Theme'
               Layout = tlCenter
+              ParentColor = False
             end
             object ComboBoxThemes: TComboBox
               Left = 61
@@ -1107,6 +1105,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               Width = 113
               Caption = 'Tool icon size'
               Layout = tlCenter
+              ParentColor = False
             end
             object SelectToolIconSize: TComboBox
               Left = 129
@@ -1134,6 +1133,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               Top = 34
               Width = 113
               Caption = 'Controlpoint size'
+              ParentColor = False
             end
             object SpinEdit1: TSpinEdit
               Left = 129
@@ -1181,6 +1181,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 4
                 Width = 150
                 Caption = 'Viewport background'
+                ParentColor = False
               end
               object Panel4: TPanel
                 Left = 166
@@ -1199,6 +1200,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 28
                 Width = 150
                 Caption = 'Viewport grid'
+                ParentColor = False
               end
               object Panel14: TPanel
                 Left = 166
@@ -1217,6 +1219,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 52
                 Width = 150
                 Caption = 'Grid font'
+                ParentColor = False
               end
               object Panel15: TPanel
                 Left = 166
@@ -1235,6 +1238,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 84
                 Width = 150
                 Caption = 'New surfaces'
+                ParentColor = False
               end
               object Panel2: TPanel
                 Left = 166
@@ -1254,6 +1258,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 108
                 Width = 150
                 Caption = 'Submerged surfaces'
+                ParentColor = False
               end
               object Panel5: TPanel
                 Left = 166
@@ -1272,6 +1277,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 132
                 Width = 150
                 Caption = 'Surface normals'
+                ParentColor = False
               end
               object Panel19: TPanel
                 Left = 166
@@ -1290,6 +1296,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 162
                 Width = 150
                 Caption = 'Control curves'
+                ParentColor = False
               end
               object Panel24: TPanel
                 Left = 166
@@ -1307,6 +1314,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 184
                 Width = 150
                 Caption = 'Regular control edges'
+                ParentColor = False
               end
               object Panel6: TPanel
                 Left = 166
@@ -1325,6 +1333,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 208
                 Width = 150
                 Caption = 'Crease edges (control)'
+                ParentColor = False
               end
               object Panel7: TPanel
                 Left = 166
@@ -1343,6 +1352,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 232
                 Width = 150
                 Caption = 'Crease edges (interior)'
+                ParentColor = False
               end
               object Panel8: TPanel
                 Left = 166
@@ -1379,6 +1389,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 4
                 Width = 151
                 Caption = 'Regular control points'
+                ParentColor = False
               end
               object Panel9: TPanel
                 Left = 167
@@ -1397,6 +1408,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 28
                 Width = 151
                 Caption = 'Crease points'
+                ParentColor = False
               end
               object Panel10: TPanel
                 Left = 167
@@ -1415,6 +1427,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 52
                 Width = 151
                 Caption = 'Corner points'
+                ParentColor = False
               end
               object Panel11: TPanel
                 Left = 167
@@ -1433,6 +1446,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 76
                 Width = 151
                 Caption = 'Dart points'
+                ParentColor = False
               end
               object Panel12: TPanel
                 Left = 167
@@ -1451,6 +1465,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 100
                 Width = 151
                 Caption = 'Leak points'
+                ParentColor = False
               end
               object Panel21: TPanel
                 Left = 167
@@ -1469,6 +1484,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 132
                 Width = 151
                 Caption = 'Selected items'
+                ParentColor = False
               end
               object Panel13: TPanel
                 Left = 167
@@ -1488,6 +1504,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 156
                 Width = 151
                 Caption = 'Curvature plots'
+                ParentColor = False
               end
               object Panel23: TPanel
                 Left = 167
@@ -1506,6 +1523,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 180
                 Width = 151
                 Caption = 'Markers'
+                ParentColor = False
               end
               object Panel22: TPanel
                 Left = 167
@@ -1524,6 +1542,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 204
                 Width = 151
                 Caption = 'Stations'
+                ParentColor = False
               end
               object Panel16: TPanel
                 Left = 167
@@ -1542,6 +1561,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Top = 228
                 Width = 151
                 Caption = 'Buttocks'
+                ParentColor = False
               end
               object Panel17: TPanel
                 Left = 167
@@ -1561,6 +1581,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Width = 151
                 AutoSize = False
                 Caption = 'Waterlines'
+                ParentColor = False
               end
               object Panel18: TPanel
                 Left = 167
@@ -1580,6 +1601,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Width = 151
                 AutoSize = False
                 Caption = 'Diagonals'
+                ParentColor = False
               end
               object Panel20: TPanel
                 Left = 167
@@ -1599,6 +1621,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Width = 151
                 AutoSize = False
                 Caption = 'Hydrostatics font color'
+                ParentColor = False
               end
               object Panel25: TPanel
                 Left = 167
@@ -1618,6 +1641,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Width = 151
                 AutoSize = False
                 Caption = 'Zebra stripes color'
+                ParentColor = False
               end
               object Panel26: TPanel
                 Left = 167

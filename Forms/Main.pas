@@ -1904,6 +1904,7 @@ begin
   end
   }
    FreeShip := TFreeShip.Create(self) ;
+   FreeShip.MainForm := self;
    FreeShip.FileChanged := true;
    FreeShip.Filename := 'New model.fbm';
    FreeShip.FileVersion := fv140;

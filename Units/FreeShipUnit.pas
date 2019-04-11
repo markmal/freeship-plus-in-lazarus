@@ -863,6 +863,7 @@ type
   TFreePreferences = class(TPersistent)
   private
     FOwner: TFreeShip;
+    FMainForm: TForm;
     FPointSize: integer;
     // Half width of controlpoints in pixels when drawn on screen
     // Colors
@@ -985,6 +986,7 @@ type
     procedure LoadThemeIni(FileName: string);
     procedure SaveTheme(ThemeName, ParentThemeName: string);
     property Owner: TFreeShip read FOwner write FOwner;
+    property MainForm: TForm read FMainForm write FMainForm;
   published
     // General options
     property PointSize: integer read FPointSize write FPointSize;
@@ -1232,6 +1234,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeShip = class(TComponent)
   private     { Private declarations }
+    FMainForm:TForm;
     FViewports: TFasterList;
     // List containing all viewports associated with the hullform
     FPrecision: TFreePrecisionType;
@@ -1447,6 +1450,7 @@ type
     procedure MouseUp(Viewport: TFreeViewport;
       Shift: TShiftState; X, Y: integer);
 
+    property MainForm: TForm read FMainForm write FMainForm;
     property ActiveControlPoint
       : TFreeSubdivisionControlPoint
       read FActiveControlPoint write FSetActiveControlPoint;
@@ -1647,7 +1651,8 @@ uses Math,
   FreeCylinderDlg,
   FreeCrosscurvesDlg,
   FreeLayerDlg,
-  EnterThemeNameDlg;
+  EnterThemeNameDlg,
+  Main;
 
 { -- mmm. probably not. These funcs are used a lot when data read from files. And the files are not always UTF8
 function Pos(const SearchForText, SearchInText: string): PtrInt;
@@ -16314,12 +16319,12 @@ begin
                if Application.Components[I-1] is TCustomForm then
                   ShowTranslatedValues(Application.Components[I-1]);
             end;
-            for I:=1 to Application.MainForm.MDIChildCount do
+            for I:=1 to MainForm.MDIChildCount do
             begin
-               if Application.Mainform.MDIChildren[I-1] is TFreeLinesplanForm then
+               if MainForm.MDIChildren[I-1] is TFreeLinesplanForm then
                begin
-                  ShowTranslatedValues(TFreeLinesplanForm(Application.Mainform.MDIChildren[I-1]).LinesplanFrame);
-               end else ShowTranslatedValues(Application.Mainform.MDIChildren[I-1]);
+                  ShowTranslatedValues(TFreeLinesplanForm(MainForm.MDIChildren[I-1]).LinesplanFrame);
+               end else ShowTranslatedValues(MainForm.MDIChildren[I-1]);
             end;
          end;
          //else FLanguage:=Lang;
@@ -16478,17 +16483,17 @@ begin
          if not EOF(FFile) then
          begin
             Readln(FFile,T,L,H,W,S);
-            if Application.Mainform<>nil then
+            if MainForm<>nil then
             begin
                if L>Screen.Width then L:=0;
                if T>Screen.Height then T:=0;
                case TWindowState(S) of
-                  wsNormal        : Application.MainForm.SetBounds(L,T,W,H);
+                  wsNormal        : MainForm.SetBounds(L,T,W,H);
                   wsMinimized     : begin
-                                      Application.MainForm.WindowState:=wsNormal;
-                                      Application.MainForm.SetBounds(L,T,W,H);
+                                      MainForm.WindowState:=wsNormal;
+                                      MainForm.SetBounds(L,T,W,H);
                                    end;
-                  wsMaximized     : Application.MainForm.WindowState:=wsMaximized;
+                  wsMaximized     : MainForm.WindowState:=wsMaximized;
                end;
             end;
          end;
@@ -16865,9 +16870,9 @@ var
 begin
   if not FileExistsUTF8(Filename)
    then begin
-     if Application.Mainform<>nil then begin
-       Application.MainForm.WindowState:=wsNormal;
-       Application.MainForm.SetBounds(0,0,Screen.WorkAreaWidth,Screen.WorkAreaHeight);
+     if Mainform<>nil then begin
+       MainForm.WindowState:=wsNormal;
+       MainForm.SetBounds(0,0,Screen.WorkAreaWidth,Screen.WorkAreaHeight);
        end;
      exit;
    end;
@@ -16915,19 +16920,19 @@ begin
    W := params.ReadInteger('Window','Width',Screen.WorkAreaWidth );
    S := params.ReadInteger('Window','State',Integer(wsNormal));
 
-   if Application.Mainform<>nil then
+   if  MainForm<>nil then
     begin
        if L>Screen.Width then L:=0;
        if T>Screen.Height then T:=0;
        if W>Screen.Width then W:=Screen.WorkAreaWidth;
        if H>Screen.Height then H:=Screen.WorkAreaHeight;
        case TWindowState(S) of
-          wsNormal     : Application.MainForm.SetBounds(L,T,W,H);
+          wsNormal     : MainForm.SetBounds(L,T,W,H);
           wsMinimized     : begin
-                              Application.MainForm.WindowState:=wsNormal;
-                              Application.MainForm.SetBounds(L,T,W,H);
+                              MainForm.WindowState:=wsNormal;
+                              MainForm.SetBounds(L,T,W,H);
                              end;
-          wsMaximized     : Application.MainForm.WindowState:=wsMaximized;
+          wsMaximized     : MainForm.WindowState:=wsMaximized;
        end;
     end;
 
@@ -17090,7 +17095,7 @@ begin
       Writeln(FFile,FControlCurveColor);
       Writeln(FFile,FHydrostaticsFontColor);
       Writeln(FFile,FZebraStripeColor);
-      Writeln(FFile,Application.Mainform.Top,#32,Application.Mainform.Left,#32,Application.Mainform.Height,#32,Application.Mainform.Width,#32,Ord(Application.MainForm.WindowState));
+      Writeln(FFile,MainForm.Top,#32,MainForm.Left,#32,MainForm.Height,#32,MainForm.Width,#32,Ord(MainForm.WindowState));
       Writeln(FFile,FLanguageFile);
       Writeln(FFile,FMaxUndoMemory);
       CloseFile(FFile);
@@ -17136,13 +17141,13 @@ begin
 
   if assigned(Owner.FOnUpdateRecentFileList) then Owner.FOnUpdateRecentFileList(self);
 
-  if Application.Mainform<>nil then
+  if MainForm<>nil then
    begin
-   params.WriteInteger('Window','Top',Application.MainForm.Top);
-   params.WriteInteger('Window','Left',Application.MainForm.Left);
-   params.WriteInteger('Window','Height',Application.MainForm.Height);
-   params.WriteInteger('Window','Width',Application.MainForm.Width);
-   params.WriteInteger('Window','State',Integer(Application.MainForm.WindowState));
+   params.WriteInteger('Window','Top',MainForm.Top);
+   params.WriteInteger('Window','Left',MainForm.Left);
+   params.WriteInteger('Window','Height',MainForm.Height);
+   params.WriteInteger('Window','Width',MainForm.Width);
+   params.WriteInteger('Window','State',Integer(MainForm.WindowState));
    end;
 
   params.WriteString('General','Language',FLanguage);
@@ -18317,20 +18322,20 @@ begin
    {
    Tmp:=TBitmap.Create;
    Tmp.PixelFormat:=pf24bit;
-   Tmp.SetSize(Application.MainForm.Width,Application.MainForm.Height);
-   Snapshot(Application.MainForm.Left,
-            Application.MainForm.Top,
-            Application.MainForm.Width,
-            Application.MainForm.Height,Tmp);
+   Tmp.SetSize(MainForm.Width,MainForm.Height);
+   Snapshot(MainForm.Left,
+            MainForm.Top,
+            MainForm.Width,
+            MainForm.Height,Tmp);
    }
   thumbNail := TBitmap.Create;
   thumbNail.PixelFormat:=pf24bit;
   thumbNail.setSize(400,300);
   Application.ProcessMessages;
 
-  for I:=0 to Application.MainForm.MDIChildCount-1 do
+  for I:=0 to MainForm.MDIChildCount-1 do
     begin
-    Frm:=Application.MainForm.GetMDIChildren(I);
+    Frm:=MainForm.GetMDIChildren(I);
     if not assigned(Frm) then continue;
     Frm.Repaint;
     Tmp := Frm.GetFormImage;
@@ -18377,13 +18382,15 @@ end;{TFreeShip.AdjustMarkers}
 constructor TFreeShip.Create(AOwner:TComponent);
 begin
    Inherited Create(AOwner);
+   if AOwner is TMainForm then FMainForm:=TForm(AOwner);
 
    if not (csDesigning in ComponentState) then
      FIntersectionDialog:=TFreeIntersectionDialog.Create(self);
 
    FEdit:=TFreeEdit.Create(Self);
    FPreferences:=TFreePreferences.Create(self);
-   if Assigned(AOwner)  // load preferences only for main FreeShip instance, not for preview ones
+   FPreferences.MainForm:=FMainForm;
+   if Assigned(FMainForm)  // load preferences only for main FreeShip instance, not for preview ones
      then FPreferences.Load;
    FProjectSettings:=TFreeProjectSettings.Create(self);
    FFileVersion:=CurrentVersion;

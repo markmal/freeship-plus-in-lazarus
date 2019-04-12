@@ -20,6 +20,7 @@ powershell get-date -format "{yyyy-MM-dd_HHmmss}" > %TEMP%/dt
 set /p DT=<%TEMP%/dt
 if exist %FS_APP%\Ships  move %FS_APP%\Ships %FS_APP%\Ships_%DT%.bkp
 
+if not exist %FS_APP%\Exec mkdir %FS_APP%\Exec
 if not exist %FS_APP%\Export mkdir %FS_APP%\Export
 if not exist %FS_APP%\Import mkdir %FS_APP%\Import
 if not exist %FS_APP%\Ships  mkdir %FS_APP%\Ships
@@ -31,8 +32,7 @@ xcopy /Y /H uninstall-user.cmd %FS_APP%\
 rem it is for linux
 rem xcopy /Y /H /E install %FS_APP%\
 
-if not exist %FS_HOME%\Exec mkdir %FS_APP%\Exec
-
+xcopy /Y /E /H /I Exec %FS_APP%\Exec
 xcopy /Y /E /H /I Languages %FS_APP%\Languages
 xcopy /Y /E /H /I Manuals %FS_APP%\Manuals
 xcopy /Y /E /H /I Ships %FS_APP%\Ships

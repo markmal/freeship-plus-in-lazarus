@@ -32,17 +32,12 @@
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
       <BuildNr Value="78"/>
+      <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
-    <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
-    </MacroValues>
     <BuildModes Count="2">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
-        <MacroValues Count="1">
-          <Macro2 Name="LCLWidgetType" Value="win32"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -56,17 +51,24 @@
           <Parsing>
             <SyntaxOptions>
               <SyntaxMode Value="fpc"/>
+              <IncludeAssertionCode Value="True"/>
             </SyntaxOptions>
           </Parsing>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
             <Optimizations>
-              <OptimizationLevel Value="3"/>
+              <OptimizationLevel Value="0"/>
             </Optimizations>
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <GenerateDebugInfo Value="False"/>
               <UseValgrind Value="True"/>
             </Debugging>
             <LinkSmart Value="True"/>
@@ -83,7 +85,7 @@
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
             <ExecuteBefore>
-              <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
+              <Command Value="$(ProjPath)/gitlastrev.cmd"/>
               <ShowAllMessages Value="True"/>
               <CompileReasons Run="False"/>
             </ExecuteBefore>

@@ -5,7 +5,7 @@ case ${OSTYPE} in
    FreeShip=FreeShip.exe
    INST_SCRIPTS="uninstall-user.cmd install-user.cmd"
    MISCFILES="*.dll"
-   ARCH=$(file -b ${FreeShip}|cut -f5 -d' '|sed 's/,//')
+   ARCH=$(file -b ${FreeShip}|cut -f4 -d' '|sed 's/,//')
    OS=windows;;
  linux-gnu )
    versinfo=versinfo

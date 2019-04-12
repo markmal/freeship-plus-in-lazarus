@@ -20250,7 +20250,7 @@ begin
                   // and forces a repaint of the form
                   if not Viewport.Focused then Viewport.SetFocus;
                   application.ProcessMessages;
-                  TForm(Viewport.Owner).BringToFront;
+                  TControl(Viewport.Owner).BringToFront;
                end;
                Build:=False;
                for I:=1 to NumberOfViewports do self.Viewport[I-1].Refresh;

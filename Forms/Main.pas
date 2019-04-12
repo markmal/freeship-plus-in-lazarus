@@ -74,6 +74,7 @@ uses
      FreeVersionUnit,
      freehullformwindow_panel,
      FreeAboutDlg,
+     FreeSplashWndw,
      Menus,
      ToolWin,
      Buttons, StdActns, Spin, ExtDlgs,
@@ -102,6 +103,7 @@ type
     OST: TMenuItem;
     PropellerRvrs: TMenuItem;
     RBHS: TMenuItem;
+    SplashWindow: TFreeSplashWindow;
     SpinEditFontSize: TSpinEdit;
     StatusBar                  : TPanel;
     MenuImages                 : TImageList;
@@ -628,7 +630,7 @@ var MainForm: TMainForm;
 
 implementation
 
-uses FreeSplashWndw,
+uses //FreeSplashWndw,
      FreeLinesplanFrm,
      FreeControlPointFrm,
      FreeKeelWizardDlg,

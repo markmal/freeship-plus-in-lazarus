@@ -164,13 +164,18 @@ begin
       //FreeSplashWindow.BorderStyle:=bsSizeable;
       end;
     FreeSplashWindow.ShowOnTop;
+    Application.ProcessMessages;
+    Application.ProcessMessages;
     //sleep(SPLASH_TIME);
     //TODO: call somewhere FreeSplashWindow.Free;
    end;
 
 
    Application.CreateForm(TMainForm, MainForm);
-   FreeSplashWindow.Parent := Mainform;
+   MainForm.SplashWindow:=FreeSplashWindow;
+   FreeSplashWindow.Position:=poMainFormCenter;
+   Application.ProcessMessages;
+
 
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
 

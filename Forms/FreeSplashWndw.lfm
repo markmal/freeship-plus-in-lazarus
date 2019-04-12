@@ -2360,9 +2360,9 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object _Label2: TLabel
     Left = 9
-    Height = 13
+    Height = 15
     Top = 328
-    Width = 244
+    Width = 282
     Caption = 'Copyright © 2005-2006, M v. Engeland'
     Font.Color = 15461355
     Font.Style = [fsBold]
@@ -2371,9 +2371,9 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object Label2: TLabel
     Left = 9
-    Height = 13
+    Height = 15
     Top = 340
-    Width = 255
+    Width = 294
     Caption = 'Copyright © 2007-2013,Timoshenko V.F.'
     Font.Color = 15461355
     Font.Style = [fsBold]

@@ -16223,7 +16223,7 @@ var Dialog  : TFreePreferencesDialog;
       end;{Add}
 
    begin
-      if Dir[Length(Dir)]<>'/' then Dir:=Dir+'/';
+      if Dir[Length(Dir)]<>DirectorySeparator then Dir:=Dir+DirectorySeparator;
       if FindFirstUTF8(Dir+'*.ini',faAnyfile,SearchRec) { *Converted from FindFirst* }=0 then
       begin
          if Uppercase(ExtractFileExt(SearchRec.Name))='.INI' then Add(Searchrec.Name);

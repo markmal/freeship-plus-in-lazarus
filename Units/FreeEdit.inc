@@ -5,6 +5,7 @@
 {---------------------------------------------------------------------------------------------------}
 function TFreeEdit.FGetRecentFile(Index: integer): string;
 begin
+  if index >= FRecentFiles.Count then exit;
   Result := FRecentFiles[index];
 end;{TFreeEdit.FGetRecentFile}
 
@@ -22,27 +23,29 @@ var
 begin
   AlreadyPresent := False;
   Ext := Uppercase(ExtractFileExt(Filename));
+  Index := -1;
 
-  //Tmp:=ChangeFileExt(Filename,'');
-  Tmp := trim(Filename);
-  for I := 1 to FRecentFiles.Count do
-    if Uppercase(FRecentFiles[I - 1]) = Uppercase(Tmp) then
+  Tmp := Trim(Filename);
+  for I := 0 to FRecentFiles.Count-1 do
+    if Uppercase(Trim(FRecentFiles[I])) = Uppercase(Tmp) then
     begin
-      Index := I - 1;
-      AlreadyPresent := True;
-      // if not add the front of the list then move to the front;
-      if Index <> 0 then
-      begin
-        FRecentFiles.Delete(Index);
-        FRecentFiles.Insert(0, Tmp);
-      end;
+    Index := I;
+    break;
     end;
-  if not AlreadyPresent then
+
+  // Already in list. move to the front;
+  if Index >= 0 then
+  begin
+    FRecentFiles.Delete(Index);
+    FRecentFiles.Insert(0, Tmp);
+  end
+  else
     if FRecentFiles.Count = 0 then
       FRecentFiles.Add(Tmp)
     else
       FRecentFiles.Insert(0, Tmp)// file not yet in the list, add at the front
   ;
+
   // delete items until no more than 10 are left
   while FRecentFiles.Count > 10 do
     FRecentFiles.Delete(FRecentFiles.Count - 1);

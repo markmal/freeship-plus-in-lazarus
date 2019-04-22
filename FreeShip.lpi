@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="109"/>
+      <BuildNr Value="110"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -131,7 +131,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="107">
+    <Units Count="106">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -701,57 +701,52 @@
         <UnitName Value="Unit1"/>
       </Unit95>
       <Unit96>
-        <Filename Value="Units/FreeShipUnit_TFreeUndoObject.inc"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Unit1"/>
-      </Unit96>
-      <Unit97>
         <Filename Value="Units/FreeBackgroundImageData.inc"/>
         <IsPartOfProject Value="True"/>
+      </Unit96>
+      <Unit97>
+        <Filename Value="Units/FreeHydrostaticCalc.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
       </Unit97>
       <Unit98>
-        <Filename Value="Units/FreeHydrostaticCalc.inc"/>
+        <Filename Value="Units/FreeIntersection.inc"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Unit1"/>
       </Unit98>
       <Unit99>
-        <Filename Value="Units/FreeIntersection.inc"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Unit1"/>
-      </Unit99>
-      <Unit100>
         <Filename Value="Units/FreeMarker.inc"/>
         <IsPartOfProject Value="True"/>
+      </Unit99>
+      <Unit100>
+        <Filename Value="Units/FreeFlowline.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
       </Unit100>
       <Unit101>
-        <Filename Value="Units/FreeFlowline.inc"/>
+        <Filename Value="Units/FreeVisibility.inc"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Unit1"/>
       </Unit101>
       <Unit102>
-        <Filename Value="Units/FreeVisibility.inc"/>
+        <Filename Value="Units/FreeEdit.inc"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Unit1"/>
       </Unit102>
       <Unit103>
-        <Filename Value="Units/FreeEdit.inc"/>
+        <Filename Value="Units/FreePreferences.inc"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Unit1"/>
       </Unit103>
       <Unit104>
-        <Filename Value="Units/FreePreferences.inc"/>
+        <Filename Value="Units/FreeProjectSettings.inc"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Unit1"/>
       </Unit104>
       <Unit105>
-        <Filename Value="Units/FreeProjectSettings.inc"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Unit1"/>
-      </Unit105>
-      <Unit106>
         <Filename Value="Units/FreeShip.inc"/>
         <IsPartOfProject Value="True"/>
-      </Unit106>
+      </Unit105>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -799,6 +799,7 @@ type
     procedure Undo_ShowHistory; //Show the undo history
     procedure OnFilePreview(Sender: TObject; filename: string);
     property Owner: TFreeShip read FOwner write FOwner;
+    property RecentFiles: TStringList read FRecentFiles write FRecentFiles;
     property RecentFile[index: integer]: string read FGetRecentFile;
     // retrieve a filename from the recently used file list
     property RecentFileCount: integer read FGetRecentFileCount;

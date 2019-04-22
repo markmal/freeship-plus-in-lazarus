@@ -1177,6 +1177,7 @@ begin
   params.WriteInteger('Graphic', 'ToolIconSize', FToolIconSize);
   params.WriteString('Graphic', 'Theme', FThemeName);
 
+  params.EraseSection('RecentFiles');
   for I := 0 to Owner.Edit.FRecentFiles.Count - 1 do
   begin
     Filename := Owner.Edit.FRecentFiles[I];

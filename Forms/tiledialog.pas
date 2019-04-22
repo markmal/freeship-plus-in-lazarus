@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, ActnList;
+  StdCtrls, ActnList, Menus;
 
 type
 
@@ -26,25 +26,35 @@ type
   { TTileDialog }
 
   TTileDialog = class(TForm)
+    ActionOpen: TAction;
+    ActionRemove: TAction;
     ActionOpenAnother: TAction;
     ActionList1: TActionList;
     ButtonOpenFile: TBitBtn;
     FlowPanel: TFlowPanel;
+    MenuItemRemove: TMenuItem;
+    MenuItemOpen: TMenuItem;
+    PopupMenu1: TPopupMenu;
     TopPanel: TPanel;
     ScrollBox: TScrollBox;
     procedure ActionOpenAnotherExecute(Sender: TObject);
-    procedure ButtonOpenFileClick(Sender: TObject);
-    procedure TopPanelClick(Sender: TObject);
+    procedure ActionOpenExecute(Sender: TObject);
+    procedure ActionRemoveExecute(Sender: TObject);
+    procedure PopupMenu1Popup(Sender: TObject);
     procedure TileOnClick(Sender: TObject);
+    procedure RemoveSelectedTile;
   private
+    FFileList: TStringList;
     FTileWidth: integer;
     FTileHeight: integer;
     FSelectedFileName: string;
+    FSelectedTile:TTile;
   public
     constructor Create(AOwner: TComponent); override;
     procedure setTileSize(aWidth, aHeight: integer);
     procedure addTile(aPicture:TPicture; aCaption:string; aFileName:string);
     property FileName:string read FSelectedFileName;
+    property FileList:TStringList read FFileList write FFileList;
     //procedure add(aFileName:string);
   end;
 
@@ -100,16 +110,26 @@ constructor TTileDialog.Create(AOwner: TComponent);
    Height := Screen.Height * 3 div 4;
  end;
 
-procedure TTileDialog.ButtonOpenFileClick(Sender: TObject);
-var p:TPicture;
-begin
-  //FSelectedFileName:=
-end;
-
 procedure TTileDialog.ActionOpenAnotherExecute(Sender: TObject);
 begin
   FSelectedFileName := '*';
   Close;
+end;
+
+procedure TTileDialog.ActionOpenExecute(Sender: TObject);
+begin
+  FSelectedFileName := FSelectedTile.FileName;
+  Close;
+end;
+
+procedure TTileDialog.ActionRemoveExecute(Sender: TObject);
+begin
+  removeSelectedTile;
+end;
+
+procedure TTileDialog.PopupMenu1Popup(Sender: TObject);
+begin
+  FSelectedTile:=(PopupMenu1.PopupComponent as TImage).Parent as TTile;
 end;
 
 procedure TTileDialog.TileOnClick(Sender: TObject);
@@ -118,35 +138,19 @@ begin
   Close;
 end;
 
-procedure TTileDialog.TopPanelClick(Sender: TObject);
-begin
-
-end;
-
-{
-procedure TTileDialog.add(aFileName:string);
-begin
-  p:=TPicture.Create;
-  p. (aFileName);
-  sTime:=FormatDateTime('YYYY-DD-MM hh:mm:ss',FileDateToDateTime(FileAgeUTF8(aFileName)));
-  addTile(p, sTime + ' - ' + aFileName);
-end;
-}
-
 procedure TTileDialog.setTileSize(aWidth, aHeight: integer);
  begin
    FTileWidth:=aWidth;
    FTileHeight:=aHeight;
  end;
 
- procedure TTileDialog.addTile(aPicture:TPicture; aCaption:string; aFileName:string);
+procedure TTileDialog.addTile(aPicture:TPicture; aCaption:string; aFileName:string);
  var vtile:TTile; fpc:TFlowPanelControl; i:integer;
  begin
    vtile:=TTile.Create(Self);
    vtile.FileName:=aFileName;
    vtile.Width := FTileWidth;
    vtile.Height := FTileHeight;
-   //vtile.Color:=clLime;
    vtile.Image.Picture := aPicture;
    vtile.CaptionLabel.Caption := aCaption;
    vtile.Visible:=true;
@@ -155,8 +159,25 @@ procedure TTileDialog.setTileSize(aWidth, aHeight: integer);
    vtile.Parent:=FlowPanel;
    i:=FlowPanel.GetControlIndex(vtile);
    vtile.Image.OnClick:=@TileOnClick;
+   vtile.Image.PopupMenu:=PopupMenu1;
  end;
 
+procedure TTileDialog.RemoveSelectedTile;
+ var i:integer;
+ begin
+   if not assigned(FSelectedTile) then exit;
+
+   i := FFileList.IndexOf(FSelectedTile.FileName);
+   if i>=0 then
+     FFileList.Delete(i);
+
+   i := FlowPanel.ControlList.IndexOf(FSelectedTile);
+   if i>=0 then
+     FlowPanel.ControlList.Delete(i);
+
+   FSelectedTile.Free;
+   FSelectedTile:=nil;
+ end;
 
 end.
 

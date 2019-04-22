@@ -1,0 +1,1245 @@
+{---------------------------------------------------------------------------------------------------}
+{                                       TFreePreferences                                            }
+
+{   Container class for all program settings                                                        }
+{---------------------------------------------------------------------------------------------------}
+{ Due to migration into multiplatform environment config files and directories will be stored
+in diffrent locations for different config areas.
+  Global Config: the default config for all users. Users have read-only privileges.
+    In Linux: /etc/FreeShip/FreeShip.ini
+    In Windows: C:\Documents and Settings\All Users\Application Data\FreeShip\FreeShip.ini
+
+  User Config: config for current user. User have full privileges.
+    In Linux: $HOME/.config/FreeShip/FreeShip.ini
+    In Windows: C:\Documents and Settings\user\Local Settings\Application Data\FreeShip\FreeShip.ini
+
+  Executables:
+    In Linux: /usr/local/bin/FreeShip
+    In Windows: C:\Program Files\FreeShip\FreeShip.exe
+
+  External Executables:
+    In Linux: /usr/local/bin/FreeShip/Exec/*
+    In Windows: C:\Program Files\FreeShip\Exec\*.exe
+
+  All data and resource files (such as Languages, Manuals) can be stored globally or locally
+  Globally:
+    In Linux: /usr/share/FreeShip/
+    In Windows: defined by CSIDL_COMMON_APPDATA C:\Users\Public\Application Data\FreeShip\FreeShip.exe
+
+  Locally:
+    In Linux: $HOME/FreeShip/
+    In Windows: defined by CSIDL_APPDATA C:\Users\user\Application Data\FreeShip\
+    CSIDL_APPDATA
+
+  Note: Paths from Config have piority over default paths.
+  Default Local config and data paths have piority over global ones.
+
+  Application defines paths following way:
+  1. Try to get from local config, if exists
+  2. Try to get from global config, if exists
+  3. Try to get from default local location, if exists
+  4. Try to get from default global location, if exists
+  5. Get from the app start location. Deprecated. Left for compatibility with FreeShip for Windows
+
+}
+
+function TFreePreferences.FGetExportDirectory: string;
+begin
+  if DirectoryExistsUTF8(FExportDirectory) { *Converted from DirectoryExists* } then
+    Result := FExportDirectory
+  //else Result:=ExtractFilePath(Application.ExeName);
+  else
+    Result := self.getUserAppDataDirectory + '/Export';
+end;{TFreePreferences.FGetExportDirectory}
+
+function TFreePreferences.FGetImportDirectory: string;
+begin
+  if DirectoryExistsUTF8(FImportDirectory) { *Converted from DirectoryExists* } then
+    Result := FImportDirectory
+  //else Result:=ExtractFilePath(Application.ExeName);
+  else
+    Result := self.getUserAppDataDirectory + '/Import';
+end;{TFreePreferences.FGetImportDirectory}
+
+function TFreePreferences.FGetGlobalImportDirectory: string;
+begin
+  if DirectoryExistsUTF8(FGlobalImportDirectory)
+  { *Converted from DirectoryExists* } then
+    Result := FGlobalImportDirectory
+  //else Result:=ExtractFilePath(Application.ExeName);
+  else
+    Result := self.getGlobalAppDataDirectory + '/Import';
+end;{TFreePreferences.FGetGlobalImportDirectory}
+
+function TFreePreferences.FGetOpenDirectory: string;
+begin
+  if DirectoryExistsUTF8(FOpenDirectory) { *Converted from DirectoryExists* } then
+    Result := FOpenDirectory
+  //else Result:=ExtractFilePath(Application.ExeName);
+  else
+    Result := self.getUserAppDataDirectory + '/Ships';
+end;{TFreePreferences.FGetOpenDirectory}
+
+function TFreePreferences.FGetGlobalOpenDirectory: string;
+begin
+  if DirectoryExistsUTF8(FGlobalOpenDirectory)
+  { *Converted from DirectoryExists* } then
+    Result := FGlobalOpenDirectory
+  //else Result:=ExtractFilePath(Application.ExeName);
+  else
+    Result := self.getGlobalAppDataDirectory + '/Ships';
+end;{TFreePreferences.FGetGlobalOpenDirectory}
+
+function TFreePreferences.FGetSaveDirectory: string;
+begin
+  if DirectoryExistsUTF8(FSaveDirectory) { *Converted from DirectoryExists* } then
+    Result := FSaveDirectory
+  //else Result:=ExtractFilePath(Application.ExeName);
+  else
+    Result := self.getUserAppDataDirectory + '/Ships';
+end;{TFreePreferences.FGetSaveDirectory}
+
+function TFreePreferences.FGetInitDirectory: string;
+begin
+  if DirectoryExistsUTF8(FInitDirectory) { *Converted from DirectoryExists* } then
+    Result := FInitDirectory
+  else
+    Result := ExtractFilePath(Application.ExeName);
+end;{TFreePreferences.FGetInitDirectory}
+
+procedure TFreePreferences.FSetViewportColor(Val: TColor);
+var
+  I: integer;
+begin
+  FViewportColor := Val;
+  for I := 1 to Owner.NumberOfViewports do
+    Owner.Viewport[I - 1].Color := FViewportColor;
+end;{TFreePreferences.FSetViewportColor}
+
+procedure TFreePreferences.Clear;
+begin
+  ResetColors;
+  FPointSize := 2;
+  FOpenDirectory := '';
+  FSaveDirectory := '';
+  FImportDirectory := '';
+  FExportDirectory := '';
+  FExecDirectory := '';
+  FManualsDirectory := '';
+  FTempDirectory := '';
+  FLanguage := 'English';
+  FLanguageFile := '';
+  FMaxUndoMemory := 20;// Max 20Mb undomemory
+  FFbmEncoding := 'cp1252';
+end;{TFreePreferences.Clear}
+
+constructor TFreePreferences.Create(Owner: TFreeShip);
+begin
+  inherited Create;
+  FOwner := Owner;
+  Clear;
+end;{TFreePreferences.Create}
+
+procedure TFreePreferences.Edit;
+var
+  Dialog: TFreePreferencesDialog;
+  Lang: string;
+  I: integer;
+  Dir: string;
+  StrList: TStringList;
+
+  procedure Browse(Dir: string);
+  var
+    SearchRec: TSearchRec;
+
+    procedure Add(FileName: string);
+    var
+      Tmp: string;
+      I: integer;
+      Found: boolean;
+    begin
+      Tmp := ChangeFileExt(ExtractFilename(Filename), '');
+      found := False;
+      for I := 1 to Dialog.ComboBox1.Items.Count do
+        if Uppercase(Tmp) = Uppercase(Dialog.Combobox1.Items[I - 1]) then
+        begin
+          Found := True;
+          break;
+        end;
+      if not found then
+        Dialog.Combobox1.Items.Add(Tmp);
+    end;{Add}
+
+  begin
+    if Dir[Length(Dir)] <> DirectorySeparator then
+      Dir := Dir + DirectorySeparator;
+    if FindFirstUTF8(Dir + '*.ini', faAnyfile, SearchRec)
+      { *Converted from FindFirst* } = 0 then
+    begin
+      if Uppercase(ExtractFileExt(SearchRec.Name)) = '.INI' then
+        Add(Searchrec.Name);
+      while FindNextUTF8(SearchRec) { *Converted from FindNext* } = 0 do
+        if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') then
+          if Uppercase(ExtractFileExt(SearchRec.Name)) = '.INI' then
+            Add(Searchrec.Name);
+      FindCloseUTF8(SearchRec); { *Converted from FindClose* }
+    end;
+  end;{Browse}
+
+begin
+  Dialog := TFreePreferencesDialog.Create(Owner);
+  ShowTranslatedValues(Dialog);
+  //Dir:=ExtractFileDir(Application.ExeName)+'/Languages/';
+  Dir := FLanguagesDirectory;
+  Dialog.ComboBox1.Items.Clear;
+  Dialog.ComboBox1.Items.Add('English');
+  Browse(Dir);
+  Dialog.ComboBox1.ItemIndex := 0;
+  for I := 1 to Dialog.ComboBox1.Items.Count do
+    if Uppercase(Dialog.ComboBox1.Items[I - 1]) = Uppercase(FLanguage) then
+    begin
+      Dialog.ComboBox1.ItemIndex := I - 1;
+      break;
+    end;
+
+  Dialog.ComboBoxThemes.Text := FThemeName;
+  StrList := TStringList.Create;
+  StrList.Sorted := True;
+  StrList.Duplicates := dupIgnore;
+
+  getAllThemes(StrList);
+
+  Dialog.ComboBoxThemes.Items.Clear;
+  Dialog.ComboBoxThemes.Items.AddStrings(StrList);
+  StrList.Free;
+
+  if Dialog.Execute(Owner) then
+  begin
+    PointSize := Dialog.SpinEdit1.Value;
+    LayerColor := Dialog.Panel2.Color;
+    UnderWaterColor := Dialog.Panel5.Color;
+    EdgeColor := Dialog.Panel6.Color;
+    CreaseEdgeColor := Dialog.Panel7.Color;
+    CreaseColor := Dialog.Panel8.Color;
+    RegularPointColor := Dialog.Panel9.Color;
+    CreasePointColor := Dialog.Panel10.Color;
+    CornerPointColor := Dialog.Panel11.Color;
+    DartPointColor := Dialog.Panel12.Color;
+    SelectColor := Dialog.Panel13.Color;
+    GridColor := Dialog.Panel14.Color;
+    GridFontColor := Dialog.Panel15.Color;
+    StationColor := Dialog.Panel16.Color;
+    ButtockColor := Dialog.Panel17.Color;
+    WaterlineColor := Dialog.Panel18.Color;
+    NormalColor := Dialog.Panel19.Color;
+    DiagonalColor := Dialog.Panel20.Color;
+    LeakPointColor := Dialog.Panel21.Color;
+    MarkerColor := Dialog.Panel22.Color;
+    CurvaturePlotColor := Dialog.Panel23.Color;
+    ControlCurveColor := Dialog.Panel24.Color;
+    HydrostaticsFontColor := Dialog.Panel25.Color;
+    ZebraStripeColor := Dialog.Panel26.Color;
+    ViewportColor := Dialog.Panel4.Color;
+    // Set viewportcolor last, because it forces a repaint
+    Lang := Dialog.Combobox1.Text;
+
+    FLanguagesDirectory := Dialog.EditLanguagesDir.Text;
+    FManualsDirectory := Dialog.EditManualsDir.Text;
+    FExecDirectory := Dialog.EditExecDir.Text;
+    FTempDirectory := Dialog.EditTempDir.Text;
+    FOpenDirectory := Dialog.EditOpenDir.Text;
+    FSaveDirectory := Dialog.EditSaveDir.Text;
+    FImportDirectory := Dialog.EditImportDir.Text;
+    FExportDirectory := Dialog.EditExportDir.Text;
+    //FToolIconDirectory:=Dialog.EditToolIconsDir.Text;
+    FToolIconSize := StrToInt(Dialog.SelectToolIconSize.Text);
+
+
+    if Uppercase(Lang) <> Uppercase(FLanguage) then
+      if FileExistsUTF8(FLanguagesDirectory + '/' + Lang + '.ini')
+      { *Converted from FileExists* } then
+      begin
+        LoadLanguage(FLanguagesDirectory + '/' + Lang + '.ini');
+        FLanguageFile := FLanguagesDirectory + '/' + Lang + '.ini';
+        FLanguage := Lang;
+
+        for I := 1 to Application.ComponentCount do
+          if Application.Components[I - 1] is TCustomForm then
+            ShowTranslatedValues(Application.Components[I - 1]);
+        for I := 1 to MainForm.MDIChildCount do
+          if MainForm.MDIChildren[I - 1] is TFreeLinesplanForm then
+            ShowTranslatedValues(TFreeLinesplanForm(
+              MainForm.MDIChildren[I - 1]).LinesplanFrame)
+          else
+            ShowTranslatedValues(MainForm.MDIChildren[I - 1]);
+      end//else FLanguage:=Lang;
+    ;
+
+    FFbmEncoding := string(Dialog.ComboBoxEncoding.Items.Objects[
+      Dialog.ComboBoxEncoding.ItemIndex]);
+    FMaxUndoMemory := Dialog.FreeNumInput1.Value;
+
+    if assigned(Owner.FOnFileChanged) then
+      Owner.FOnFileChanged(Owner);
+    if assigned(Owner.FOnUpdateUndoData) then
+      Owner.FOnUpdateUndoData(Owner);
+    if assigned(Owner.FOnUpdateRecentFileList) then
+      Owner.FOnUpdateRecentFileList(Owner);
+    if assigned(Owner.FOnChangeCursorIncrement) then
+      Owner.FOnChangeCursorIncrement(Owner);
+    if assigned(Owner.FOnUpdateGeometryInfo) then
+      Owner.FOnUpdateGeometryInfo(owner);
+    Owner.Redraw;
+
+    if Dialog.IsThemeChanged then
+      if IsThemeCustom(Dialog.ComboBoxThemes.Text) then
+        SaveCustomTheme(Dialog)
+      else
+        SaveThemeAsCustom(Dialog);
+
+    if Dialog.IsConfigChanged then
+      Save;
+
+  end;
+  Dialog.Destroy;
+end;{TFreePreferences.Edit}
+
+
+
+procedure TFreePreferences.SaveCustomTheme(Dialog: TForm);
+var
+  d: TFreePreferencesDialog;
+begin
+  d := TFreePreferencesDialog(dialog);
+  SaveTheme(FThemeName, FParentThemeName);
+end;
+
+procedure TFreePreferences.SaveThemeAsCustom(Dialog: TForm);
+var
+  d: TFreePreferencesDialog;
+  t: TEnterThemeNameDlg;
+  r: integer;
+begin
+  d := TFreePreferencesDialog(Dialog);
+  t := TEnterThemeNameDlg.Create(d.Owner);
+  t.EditCustomSchemeName.Text := 'New Custom Theme';
+  t.Message.Caption := 'Some properties of current scheme "' +
+    d.ComboBoxThemes.Text + '" were changed.' +
+    ' Please enter a name to save it as a new custom scheme.';
+  r := t.ShowModal;
+  if r = mrOk then
+  begin
+    FParentThemeName := FThemeName;
+    FThemeName := t.EditCustomSchemeName.Text;
+    SaveTheme(FThemeName, FParentThemeName);
+  end;
+  t.Free;
+end;
+
+function TFreePreferences.getGlobalConfigDirectory: string;
+var
+  D: string;
+begin
+  D := ExcludeTrailingPathDelimiter(GetAppConfigDir(True));
+  if DirectoryExistsUTF8(D) then
+    Result := D
+  else
+    ExtractFilePath(Application.Exename); //deprecated. for old Win app compatibility
+end;
+
+
+function TFreePreferences.getUserConfigDirectory: string;
+var
+  D: string;
+begin
+  Result := ExcludeTrailingPathDelimiter(GetAppConfigDir(False));
+end;
+
+function TFreePreferences.getGlobalAppDataDirectory: string;
+var
+  D: string;
+begin
+  {$ifdef UNIX}
+  D := '/usr/share/FreeShip';
+  {$else}
+    {$ifdef Windows}
+  //D:=GetEnvironmentVariableUTF8('ALLUSERSPROFILE')+'\Application Data\FreeShip';
+  D := SysUtils.GetEnvironmentVariable('ALLUSERSPROFILE') + '\Application Data\FreeShip';
+    {$endif}
+  {$endif}
+  if DirectoryExists(D) then
+    Result := D
+  else
+    ExtractFilePath(Application.Exename); //deprecated. for old Win app compatibility
+end;
+
+function TFreePreferences.getUserAppDataDirectory: string;
+begin
+  {$ifdef UNIX}
+  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
+  {$else}
+    {$ifdef Windows}
+  Result := SysUtils.GetEnvironmentVariable('APPDATA') + '/FreeShip';
+    {$endif}
+  {$endif}
+end;
+
+procedure TFreePreferences.LoadFromDta(Filename: string);
+var
+  FFile: TextFile;
+  I, N: integer;
+  T, L, W, H, S: integer;
+begin
+  //Filename:=ChangeFileExt(Application.ExeName,'.dta');
+  if FileExists(Filename) then
+  begin
+    AssignFile(FFile, Filename);
+    try
+      Clear;
+      Reset(FFile);
+      Readln(FFile, FPointSize);
+      Readln(FFile, FButtockColor);
+      Readln(FFile, FWaterlineColor);
+      Readln(FFile, FStationColor);
+      Readln(FFile, FCreaseColor);
+      Readln(FFile, FCreaseEdgeColor);
+      Readln(FFile, FGridColor);
+      Readln(FFile, FGridFontColor);
+      Readln(FFile, FEdgeColor);
+      Readln(FFile, FCreasePointColor);
+      Readln(FFile, FRegularPointColor);
+      Readln(FFile, FCornerPointColor);
+      Readln(FFile, FDartPointColor);
+      Readln(FFile, FSelectColor);
+      Readln(FFile, FLayerColor);
+      Readln(FFile, FUnderWaterColor);
+      Readln(FFile, FNormalColor);
+      Readln(FFile, FViewportColor);
+      if not EOF(FFile) then
+        readln(FFile, FOpenDirectory);
+      if not EOF(FFile) then
+        readln(FFile, FSaveDirectory);
+      if not EOF(FFile) then
+        readln(FFile, FImportDirectory);
+      if not EOF(FFile) then
+        readln(FFile, FExportDirectory);
+      if not EOF(FFile) then
+        readln(FFile, FDiagonalColor);
+      if not EOF(FFile) then
+      begin
+        // load recent files
+        Readln(FFile, N);
+        Owner.Edit.FRecentFiles.Clear;
+        Owner.Edit.FRecentFiles.Capacity := N;
+        for I := 1 to N do
+        begin
+          Readln(FFile, Filename);
+          // only add the file to the list if it is a valid filename
+          //if FileExists(Filename+'.fbm') then
+          Owner.Edit.FRecentFiles.Add(Filename);
+        end;
+        if assigned(Owner.FOnUpdateRecentFileList) then
+          Owner.FOnUpdateRecentFileList(self);
+      end;
+      if not EOF(FFile) then
+        Readln(FFile, FLeakPointColor);
+      if not EOF(FFile) then
+        readln(FFile, FMarkerColor);
+      if not EOF(FFile) then
+        Readln(FFile, FCurvaturePlotColor);
+      if not EOF(FFile) then
+        Readln(FFile, FControlCurveColor);
+      if not EOF(FFile) then
+        readln(FFile, FHydrostaticsFontColor);
+      if not EOF(FFile) then
+        readln(FFile, FZebraStripeColor);
+      if not EOF(FFile) then
+      begin
+        Readln(FFile, T, L, H, W, S);
+        if MainForm <> nil then
+        begin
+          if L > Screen.Width then
+            L := 0;
+          if T > Screen.Height then
+            T := 0;
+          case TWindowState(S) of
+            wsNormal: MainForm.SetBounds(L, T, W, H);
+            wsMinimized:
+            begin
+              MainForm.WindowState := wsNormal;
+              MainForm.SetBounds(L, T, W, H);
+            end;
+            wsMaximized: MainForm.WindowState := wsMaximized;
+          end;
+        end;
+      end;
+      if not EOF(FFile) then
+        Readln(FFile, FLanguage)
+      else
+        FLanguage := 'English';
+      FLanguageFile := ExtractFilePath(Application.Exename) +
+        'Languages/' + Flanguage + '.ini';
+      if not FileExists(FLanguageFile) then
+      begin
+        FLanguage := 'English';
+        FLanguageFile := ExtractFilePath(Application.Exename) +
+          'Languages/' + FLanguage + '.ini';
+      end;
+      if not EOF(FFile) then
+        Readln(FFile, FMaxUndoMemory);
+      CloseFile(FFile);
+    except
+      MessageDlg(Userstring(176) + ':' + EOL + Filename, mtError, [mbOK], 0);
+    end;
+  end;
+end;{TFreePreferences.LoadFromDta}
+
+// Only schemes that are saved in User Config are custom
+function TFreePreferences.IsThemeCustom(ThemeName: string): boolean;
+begin
+  Result := FileExistsUTF8(Self.FUserConfigDirectory + '/Themes/' +
+    ThemeName + '/theme.ini');
+end;
+
+function TFreePreferences.getThemeConfigFile(ThemeName: string): string;
+begin
+  if FileExistsUTF8(Self.FUserConfigDirectory + '/Themes/' + ThemeName +
+    '/theme.ini') then
+    Result := Self.FUserConfigDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  else
+  if FileExistsUTF8(Self.FGlobalConfigDirectory + '/Themes/' +
+    ThemeName + '/theme.ini') then
+    Result := Self.FGlobalConfigDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  else
+  if FileExistsUTF8(Self.FUserAppDataDirectory + '/Themes/' + ThemeName +
+    '/theme.ini') then
+    Result := Self.FUserAppDataDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  else
+  if FileExistsUTF8(Self.FGlobalAppDataDirectory + '/Themes/' +
+    ThemeName + '/theme.ini') then
+    Result := Self.FGlobalAppDataDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  else
+    Result := Self.FGlobalAppDataDirectory + '/Themes/Default/theme.ini';
+end;
+
+procedure TFreePreferences.getAllThemes(ss: TStrings);
+begin
+  ss.Clear;
+  getThemesInDir(Self.FUserConfigDirectory + '/Themes', ss);
+  getThemesInDir(Self.FGlobalConfigDirectory + '/Themes', ss);
+  getThemesInDir(Self.FUserAppDataDirectory + '/Themes', ss);
+  getThemesInDir(Self.FGlobalAppDataDirectory + '/Themes', ss);
+end;
+
+procedure TFreePreferences.getThemesInDir(dir: string; ss: TStrings);
+var
+  sr: TSearchRec;
+begin
+  if not DirectoryExists(dir) then
+    exit;
+  if FindFirstUTF8(dir + '/*', faDirectory, sr) = 0 then
+    repeat
+      if ((sr.Attr and faDirectory) = faDirectory) and (sr.Name <> '.') and
+        (sr.Name <> '..') then
+        ss.Add(sr.Name);
+    until FindNextUTF8(sr) <> 0;
+  FindCloseUTF8(sr);
+end;
+
+
+function TFreePreferences.getParentThemeName(ThemeName: string): string;
+var
+  params: TColorIniFile;
+begin
+  params := TColorIniFile.Create(getThemeConfigFile(FThemeName));
+  Result := params.ReadString('Theme', 'ParentTheme', '');
+  params.Free;
+end;
+
+// finds IconFileName recursively from the current theme and its parents
+function TFreePreferences.GetIconFileName(ThemeName, IconName: string;
+  IconSize: integer): string;
+var
+  subPath, ptn: string;
+begin
+  subPath := '/Themes/' + ThemeName + '/icons/' + IntToStr(IconSize) +
+    '/' + IconName + '.png';
+  if FileExistsUTF8(Self.FUserConfigDirectory + subPath) then
+    Result := Self.FUserConfigDirectory + subPath
+  else
+  if FileExistsUTF8(Self.FGlobalConfigDirectory + subPath) then
+    Result := Self.FGlobalConfigDirectory + subPath
+  else
+  if FileExistsUTF8(Self.FUserAppDataDirectory + subPath) then
+    Result := Self.FUserAppDataDirectory + subPath
+  else
+  if FileExistsUTF8(Self.FGlobalAppDataDirectory + subPath) then
+    Result := Self.FGlobalAppDataDirectory + subPath
+  else
+  begin
+    ptn := getParentThemeName(ThemeName);
+    if (ptn > '') and (ptn <> ThemeName) then
+      Result := GetIconFileName(ptn, IconName, IconSize)
+    else
+      Result := '';
+  end;
+end;
+
+
+{ this is used just once to dump menu/toolbutton icons }
+procedure TFreePreferences.dumpIcons(ImageList: TImageList; ActionList: TActionList);
+const
+  transpix: TRGBQuad = (rgbBlue: $FF; rgbGreen: $99; rgbRed: $33; rgbReserved: $00);
+var
+  i, II, sz, ilcnt, x, y: integer;
+  A: TAction;
+  AName, IName, IPath: string;
+  cil: TCustomImageList;
+  it: TImageType;
+  bmp, bmp2: TBitmap;
+  bkcl: TColor;
+  png: TPortableNetworkGraphic;
+  img: TLazIntfImage;
+  rimg: TRawImage;
+  //cimg: TFPCustomImage;
+  aFlags: TRawImageQueryFlags;
+  tb: TToolButton;
+  ico: TIcon;
+  ppix: PRGBQuad;
+  pix: TRGBQuad;
+  col, txcol: TFPColor;
+  pngWriter: TLazWriterPNG;
+begin
+  sz := ImageList.Width;
+  cil := TCustomImageList(ImageList);
+  ilcnt := cil.Count;
+  bmp := TBitmap.Create;
+  bmp.PixelFormat := pf32bit;
+  bmp.RawImage.Description.AlphaPrec.Parse('8');
+  bmp.Transparent := True;
+  bmp.SetSize(sz, sz);
+  {
+  bmp2:=TBitmap.Create;
+
+  png:=TPortableNetworkGraphic.Create;
+  png.PixelFormat:=pf32bit;
+  png.SetSize(sz,sz);
+
+  img:=TLazIntfImage.Create(sz,sz);
+  img.DataDescription.BitsPerPixel:=32;
+  img.DataDescription.AlphaPrec:=8;
+  img.DataDescription.Format:=ricfRGBA;
+  //cimg:= TImage.Create(nil);
+  //cimg.Picture.Bitmap:=bmp;
+  }
+  pngWriter := TLazWriterPNG.Create;
+  pngWriter.UseAlpha := True;
+
+
+  for i := 0 to ActionList.ActionCount - 1 do
+  begin
+    A := TAction(ActionList.Actions[i]);
+    AName := A.Name;
+    II := A.ImageIndex;
+    if (II > -1) and (II < ilcnt) then
+    begin
+      IPath := 'icons/' + IntToStr(sz) + '/' + AName;
+      //cil.GetBitmap(II, bmp);
+      //bmp.LoadFromIntfImage(img);
+      bmp.Canvas.Brush.Color :=
+        RGB(transpix.rgbRed, transpix.rgbGreen, transpix.rgbBlue);
+      bmp.Canvas.FillRect(0, 0, sz, sz);
+      cil.Draw(bmp.Canvas, 0, 0, II, dsTransparent, itImage);
+      {
+      for y:=bmp.Height-1 downto 0 do
+      begin
+        ppix:=bmp.ScanLine[y];
+        for x:=bmp.Width-1 downto 0 do
+        begin
+          if TColor(ppix^) = TColor(transpix)
+          then
+            ppix.rgbReserved:=$00
+          else
+            ppix.rgbReserved:=$FF;
+          inc(ppix);
+        end;
+      end;
+      }
+
+      img := bmp.CreateIntfImage;
+      txcol := TColorToFPColor(RGB(transpix.rgbRed, transpix.rgbGreen,
+        transpix.rgbBlue));
+      for y := img.Height - 1 downto 0 do
+        for x := img.Width - 1 downto 0 do
+        begin
+          col := img.Colors[x, y];
+          if (col.Blue = txcol.Blue) and (col.Green = txcol.Green) and
+            (col.Red = txcol.Red) then
+            col.alpha := $0000
+          else
+            col.alpha := $FFFF;
+          //col.Red:=0; col.Green:=0; col.Blue:=0;
+          img.Colors[x, y] := col;
+        end//ppix:=img.GetDataLineStart(y);
+      ;
+
+      img.SaveToFile(IPath + '.png', pngWriter);
+    end;
+  end;
+  bmp.Free;
+  img.Free;
+  pngWriter.Free;
+end;
+
+
+// loads icons from FMenuIconDirectory that is set according to theme and icon size
+procedure TFreePreferences.LoadImageListByActions(ImageList: TImageList;
+  ActionList: TActionList);
+var
+  i, II, sz, ilcnt: integer;
+  A: TAction;
+  AName, IName, IPath, IconFile: string;
+  cil: TCustomImageList;
+  bmp: TBitmap;
+  png: TPortableNetworkGraphic;
+  img: TLazIntfImage;
+begin
+  sz := ToolIconSize;
+  cil := TCustomImageList(ImageList);
+  ilcnt := cil.Count;
+  ImageList.Width := sz;
+  ImageList.Height := sz;
+  IPath := ToolIconDirectory;
+  bmp := TBitmap.Create;
+  bmp.SetSize(sz, sz);
+  png := TPortableNetworkGraphic.Create;
+  //img:= TLazIntfImage.Create(sz,sz);
+
+  // insert empties, just for count
+  //for i:=0 to ActionList.ActionCount-1 do
+  //  if TAction(ActionList.Actions[i]).ImageIndex > -1 then
+  //    cil.Add(bmp,nil);
+
+  for i := 0 to ilcnt - 1 do
+    cil.Add(bmp, nil);
+  ilcnt := cil.Count;
+
+  for i := 0 to ActionList.ActionCount - 1 do
+  begin
+    A := TAction(ActionList.Actions[i]);
+    AName := A.Name;
+    II := A.ImageIndex;
+    if (II > -1) then
+    begin
+      IconFile := GetIconFileName(Theme, AName, ToolIconSize);
+      if (IconFile > '') and FileExistsUTF8(IconFile) then
+        if (II < ilcnt) then
+        begin
+          png.LoadFromFile(IconFile);
+          img := png.CreateIntfImage;
+          //img.LoadFromFile(IPath+'/'+AName+'.png');
+          bmp.LoadFromIntfImage(img);
+          cil.Replace(II, bmp, nil);
+          img.Free;
+        end;
+    end;
+  end;
+  bmp.Free;
+  png.Free;
+end;
+
+// loads icon into Bitmap that is set according to theme and icon size
+procedure TFreePreferences.LoadImageIntoBitmap(Bitmap: TBitmap; Name: string);
+var
+  sz: integer;
+  IName, IPath, IconFile: string;
+  bmp: TBitmap;
+  png: TPortableNetworkGraphic;
+  img: TLazIntfImage;
+begin
+  sz := ToolIconSize;
+  IPath := ToolIconDirectory;
+  bmp := TBitmap.Create;
+  bmp.SetSize(sz, sz);
+  png := TPortableNetworkGraphic.Create;
+  img := TLazIntfImage.Create(sz, sz);
+
+  IconFile := GetIconFileName(Theme, Name, ToolIconSize);
+
+  if (IconFile > '') and FileExistsUTF8(IconFile) then
+  begin
+    png.LoadFromFile(IconFile);
+    img := png.CreateIntfImage;
+    bmp.LoadFromIntfImage(img);
+    Bitmap.FreeImage;
+    Bitmap.Assign(bmp);
+    img.Free;
+  end;
+  bmp.Free;
+  png.Free;
+end;
+
+// loads icons from FMenuIconDirectory that is set according to theme and icon size
+procedure TFreePreferences.LoadImageIntoList(ImageList: TImageList;
+  Item: integer; Name: string);
+var
+  i, II, sz, ilcnt: integer;
+  A: TAction;
+  IName, IPath, IconFile: string;
+  cil: TCustomImageList;
+  bmp: TBitmap;
+  png: TPortableNetworkGraphic;
+  img: TLazIntfImage;
+begin
+  sz := ToolIconSize;
+  ImageList.Width := sz;
+  ImageList.Height := sz;
+  IPath := ToolIconDirectory;
+  cil := TCustomImageList(ImageList);
+  ilcnt := cil.Count;
+  bmp := TBitmap.Create;
+  bmp.SetSize(sz, sz);
+  png := TPortableNetworkGraphic.Create;
+  img := TLazIntfImage.Create(sz, sz);
+
+  IconFile := GetIconFileName(Theme, Name, ToolIconSize);
+
+  if (Item > ImageList.Count - 1) then
+    for i := ImageList.Count to Item do
+      cil.Add(bmp, nil);
+
+  if (IconFile > '') and FileExistsUTF8(IconFile) then
+  begin
+    png.LoadFromFile(IconFile);
+    img := png.CreateIntfImage;
+    bmp.LoadFromIntfImage(img);
+    cil.Replace(Item, bmp, nil);
+    img.Free;
+  end;
+  bmp.Free;
+  png.Free;
+end;
+
+procedure TFreePreferences.LoadTheme(ThemeName: string);
+var
+  IniFile: string;
+begin
+  IniFile := self.getThemeConfigFile(ThemeName);
+  LoadThemeIni(IniFile);
+end;
+
+procedure TFreePreferences.LoadThemeIni(FileName: string);
+var
+  I, N: integer;
+  T, L, W, H, S: integer;
+  params: TColorIniFile;
+  RecentFileNames: TStringList;
+begin
+  if not FileExistsUTF8(Filename) then
+    exit;
+
+  params := TColorIniFile.Create(Filename, False);
+
+  FThemeName := params.ReadString('Theme', 'Name', FThemeName);
+  FParentThemeName := params.ReadString('Theme', 'ParentTheme', FParentThemeName);
+
+  FPointSize := params.ReadInteger('Graphic', 'PointSize', FPointSize);
+  FButtockColor := params.ReadColor('Graphic', 'PointSize', FButtockColor);
+  FWaterlineColor := params.ReadColor('Graphic', 'WaterlineColor', FWaterlineColor);
+  FStationColor := params.ReadColor('Graphic', 'StationColor', FStationColor);
+  FCreaseColor := params.ReadColor('Graphic', 'CreaseColor', FCreaseColor);
+  FCreaseEdgeColor := params.ReadColor('Graphic', 'CreaseEdgeColor', FCreaseEdgeColor);
+  FGridColor := params.ReadColor('Graphic', 'GridColor', FGridColor);
+  FGridFontColor := params.ReadColor('Graphic', 'GridFontColor', FGridFontColor);
+  FEdgeColor := params.ReadColor('Graphic', 'EdgeColor', FEdgeColor);
+  FCreasePointColor := params.ReadColor('Graphic', 'CreasePointColor',
+    FCreasePointColor);
+  FRegularPointColor := params.ReadColor('Graphic', 'RegularPointColor',
+    FRegularPointColor);
+  FCornerPointColor := params.ReadColor('Graphic', 'CornerPointColor',
+    FCornerPointColor);
+  FDartPointColor := params.ReadColor('Graphic', 'DartPointColor', FDartPointColor);
+  FSelectColor := params.ReadColor('Graphic', 'SelectColor', FSelectColor);
+  FLayerColor := params.ReadColor('Graphic', 'LayerColor', FLayerColor);
+  FUnderWaterColor := params.ReadColor('Graphic', 'UnderWaterColor', FUnderWaterColor);
+  FNormalColor := params.ReadColor('Graphic', 'NormalColor', FNormalColor);
+  FViewportColor := params.ReadColor('Graphic', 'ViewportColor', FViewportColor);
+  FDiagonalColor := params.ReadColor('Graphic', 'DiagonalColor', FDiagonalColor);
+  FLeakPointColor := params.ReadColor('Graphic', 'LeakPointColor', FLeakPointColor);
+  FMarkerColor := params.ReadColor('Graphic', 'MarkerColor', FMarkerColor);
+  FCurvaturePlotColor := params.ReadColor('Graphic', 'CurvaturePlotColor',
+    FCurvaturePlotColor);
+  FControlCurveColor := params.ReadColor('Graphic', 'ControlCurveColor',
+    FControlCurveColor);
+  FHydrostaticsFontColor := params.ReadColor(
+    'Graphic', 'HydrostaticsFontColor', FHydrostaticsFontColor);
+  FZebraStripeColor := params.ReadColor('Graphic', 'ZebraStripeColor',
+    FZebraStripeColor);
+end;
+
+procedure TFreePreferences.LoadFromIni(FileName: string);
+var
+  I, N: integer;
+  T, L, W, H, S: integer;
+  params: TColorIniFile;
+  RecentFileNames: TStringList;
+begin
+  if not FileExistsUTF8(Filename) then
+  begin
+    if Mainform <> nil then
+    begin
+      MainForm.WindowState := wsNormal;
+      MainForm.SetBounds(0, 0, Screen.WorkAreaWidth, Screen.WorkAreaHeight);
+    end;
+    exit;
+  end;
+
+  params := TColorIniFile.Create(Filename, False);
+
+  FOpenDirectory := params.ReadString('Directories', 'OpenDirectory', FOpenDirectory);
+  FGlobalOpenDirectory := params.ReadString('Directories',
+    'GlobalOpenDirectory', FGlobalOpenDirectory);
+  FSaveDirectory := params.ReadString('Directories', 'SaveDirectory', FSaveDirectory);
+  FImportDirectory := params.ReadString('Directories', 'ImportDirectory',
+    FImportDirectory);
+  FGlobalImportDirectory := params.ReadString('Directories',
+    'GlobalImportDirectory', FGlobalImportDirectory);
+  FExportDirectory := params.ReadString('Directories', 'ExportDirectory',
+    FExportDirectory);
+  FLanguagesDirectory := params.ReadString('Directories', 'LanguagesDirectory',
+    FLanguagesDirectory);
+  FExecDirectory := params.ReadString('Directories', 'ExecDirectory', FExecDirectory);
+  FManualsDirectory := params.ReadString('Directories', 'ManualsDirectory',
+    FManualsDirectory);
+  FTempDirectory := params.ReadString('Directories', 'TempDirectory', FTempDirectory);
+
+  //FThemeDirectory := params.ReadString('Directories','ThemeDirectory',FMenuIconDirectory);
+  //FThemeName := params.ReadString('Theme','Name',FThemeName);
+
+  FMenuIconSize := params.ReadInteger('Graphic', 'MenuIconSize', FMenuIconSize);
+  FToolIconSize := params.ReadInteger('Graphic', 'ToolIconSize', FToolIconSize);
+  FThemeName := params.ReadString('Graphic', 'Theme', FThemeName);
+
+  RecentFileNames := TStringList.Create;
+  params.ReadSectionValues('RecentFiles', RecentFileNames);
+
+  Owner.Edit.FRecentFiles.Clear;
+  Owner.Edit.FRecentFiles.Capacity := RecentFileNames.Count;
+  for I := 0 to RecentFileNames.Count - 1 do
+  begin
+    Filename := RecentFileNames.ValueFromIndex[I];
+    // only add the file to the list if it is a valid filename
+    //if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+    // add any filename, TFreeEmptyModelChooserDialog will be invoked if the file does not exist
+    Owner.Edit.FRecentFiles.Add(Filename);
+  end;
+  RecentFileNames.Destroy;
+  if assigned(Owner.FOnUpdateRecentFileList) then
+    Owner.FOnUpdateRecentFileList(self);
+
+  //Readln(FFile,T,L,H,W,S);
+  T := params.ReadInteger('Window', 'Top', 0);
+  L := params.ReadInteger('Window', 'Left', 0);
+  H := params.ReadInteger('Window', 'Height', Screen.WorkAreaHeight);
+  W := params.ReadInteger('Window', 'Width', Screen.WorkAreaWidth);
+  S := params.ReadInteger('Window', 'State', integer(wsNormal));
+
+  if MainForm <> nil then
+  begin
+    if L > Screen.Width then
+      L := 0;
+    if T > Screen.Height then
+      T := 0;
+    if W > Screen.Width then
+      W := Screen.WorkAreaWidth;
+    if H > Screen.Height then
+      H := Screen.WorkAreaHeight;
+    case TWindowState(S) of
+      wsNormal: MainForm.SetBounds(L, T, W, H);
+      wsMinimized:
+      begin
+        MainForm.WindowState := wsNormal;
+        MainForm.SetBounds(L, T, W, H);
+      end;
+      wsMaximized: MainForm.WindowState := wsMaximized;
+    end;
+  end;
+
+  FLanguage := params.ReadString('General', 'Language', FLanguage);
+  FLanguageFile := FLanguagesDirectory + '/' + Flanguage + '.ini';
+  if not FileExistsUTF8(FLanguageFile) { *Converted from FileExists* } then
+    FLanguage := 'English';
+  FFbmEncoding := params.ReadString('General', 'FbmEncoding', FbmEncoding);
+  FMaxUndoMemory := params.ReadInteger('General', 'MaxUndoMemory', FMaxUndoMemory);
+end;
+
+procedure TFreePreferences.setDefaults;
+begin
+  FPointSize := 2;
+  FLanguage := 'English';
+  FMaxUndoMemory := 20;
+  ResetColors;
+  ResetDirectories;
+  FMenuIconSize := 16;
+  FToolIconSize := 24;
+  FThemeName := 'Default';
+  FParentThemeName := '';
+  FFbmEncoding := 'cp1252';
+end;
+
+procedure TFreePreferences.ResetDirectories;
+var
+  AppDataDir: string;
+
+  function chooseDirAppDataDir(GlobalAppDataDir, UserAppDataDir: string): string;
+  begin
+    if (UserAppDataDir <> '') and (DirectoryExistsUTF8(UserAppDataDir)) then
+      Result := UserAppDataDir
+    else
+      Result := GlobalAppDataDir;
+  end;
+
+begin
+  FUserConfigDirectory := getUserConfigDirectory;
+  FGlobalConfigDirectory := getGlobalConfigDirectory;
+  FUserAppDataDirectory := getUserAppDataDirectory;
+  FGlobalAppDataDirectory := getGlobalAppDataDirectory;
+
+  FOpenDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Ships', FUserAppDataDirectory + '/Ships');
+  FSaveDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Ships', FUserAppDataDirectory + '/Ships');
+  FImportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Import', FUserAppDataDirectory + '/Import');
+  FExportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Export', FUserAppDataDirectory + '/Export');
+  FLanguagesDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Languages', FUserAppDataDirectory + '/Languages');
+  FExecDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Exec', FUserAppDataDirectory + '/Exec');
+  FManualsDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Manuals', FUserAppDataDirectory + '/Manuals');
+  FTempDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Temp', FUserAppDataDirectory + '/Temp');
+  FMenuIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Themes/Default/icons/16', FUserAppDataDirectory + '/Themes/Default/icons/16');
+  FToolIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    '/Themes/Default/icons/24', FUserAppDataDirectory + '/Themes/Default/icons/24');
+end;
+
+
+procedure TFreePreferences.Load;
+var
+  GlobalConfigFileName, UserConfigFileName, DtaFilename: string;
+  I, N: integer;
+  T, L, W, H, S: integer;
+  params: TColorIniFile;
+  RecentFileNames: TStrings;
+begin
+  setDefaults;
+
+  FGlobalConfigDirectory := self.getGlobalConfigDirectory;
+  FGlobalAppDataDirectory := self.getGlobalAppDataDirectory;
+  FUserConfigDirectory := self.getUserConfigDirectory;
+  FUserAppDataDirectory := self.getUserAppDataDirectory;
+
+  GlobalConfigFileName := FGlobalConfigDirectory + '/FreeShip.ini';
+  UserConfigFileName := FUserConfigDirectory + '/FreeShip.ini';
+
+  // just for migration from .dta to .ini
+  if not FileExistsUTF8(GlobalConfigFileName) and not
+    FileExistsUTF8(UserConfigFileName) then
+  begin
+    DtaFilename := ChangeFileExt(Application.ExeName, '.dta');
+    if FileExistsUTF8(DtaFilename) then
+    begin
+      LoadFromDta(DtaFilename);
+      exit;
+    end;
+  end;
+
+  LoadFromIni(GlobalConfigFileName);
+  LoadFromIni(UserConfigFileName);
+  LoadTheme(FThemeName);
+end;{TFreePreferences.Load}
+
+procedure TFreePreferences.ResetColors;
+begin
+  FThemeName := 'Default';
+  FParentThemeName := '';
+
+  FButtockColor := $00808040;     // Kind of teal-blue
+  FWaterlineColor := $00808040;   // Kind of teal-blue
+  FStationColor := $00808040;     // Kind of teal-blue
+  FDiagonalColor := $00808040;     // Kind of teal-blue
+  FCreaseColor := clBlack;        // color of descendants from crease controledges
+  FCreaseEdgeColor := clRed;      // Color of crease control edges
+  FGridColor := clSilver;
+  FGridFontColor := clWhite;
+  FEdgeColor := $006F6F6F;
+  FCreasePointColor := $00004080;
+  FRegularPointColor := $00E1E1E1;
+  FCornerPointColor := $00B95C00;
+  FDartPointColor := clFuchsia;
+  FSelectColor := clYellow;
+  FLayerColor := RGB(0, 128, 0);       // Default color of each layer (green-ish)
+  FViewportColor := $009F9F9F;
+  FUnderwaterColor := RGB(240, 240, 240);
+  FLeakPointColor := $0099FF00;
+  FNormalColor := clWhite;
+  FMarkerColor := $008000FF;
+  FCurvaturePlotColor := clFuchsia;
+  FControlCurveColor := 16711808;
+  FHydrostaticsFontColor := clMaroon;
+  FZebraStripeColor := RGB(230, 230, 230);
+end;{TFreePreferences.ResetColors}
+
+procedure TFreePreferences.SaveToDta; //deprecated
+var
+  FileName: string;
+  FFile: TextFile;
+  I: integer;
+begin
+  Filename := ChangeFileExt(Application.ExeName, '.dta');
+  AssignFile(FFile, Filename);
+  try
+    Rewrite(FFile);
+    Writeln(FFile, FPointSize);
+    Writeln(FFile, FButtockColor);
+    Writeln(FFile, FWaterlineColor);
+    Writeln(FFile, FStationColor);
+    Writeln(FFile, FCreaseColor);
+    Writeln(FFile, FCreaseEdgeColor);
+    Writeln(FFile, FGridColor);
+    Writeln(FFile, FGridFontColor);
+    Writeln(FFile, FEdgeColor);
+    Writeln(FFile, FCreasePointColor);
+    Writeln(FFile, FRegularPointColor);
+    Writeln(FFile, FCornerPointColor);
+    Writeln(FFile, FDartPointColor);
+    Writeln(FFile, FSelectColor);
+    Writeln(FFile, FLayerColor);
+    Writeln(FFile, FUnderWaterColor);
+    Writeln(FFile, FNormalColor);
+    Writeln(FFile, FViewportColor);
+    Writeln(FFile, FOpenDirectory);
+    Writeln(FFile, FSaveDirectory);
+    Writeln(FFile, FImportDirectory);
+    Writeln(FFile, FExportDirectory);
+    Writeln(FFile, FDiagonalColor);
+    // save list with recently used files
+    writeln(FFile, Owner.Edit.RecentFileCount);
+    for I := 1 to Owner.Edit.RecentFileCount do
+      Writeln(FFile, Owner.Edit.RecentFile[I - 1]);
+    Writeln(FFile, FLeakPointColor);
+    Writeln(FFile, FMarkerColor);
+    Writeln(FFile, FCurvaturePlotColor);
+    Writeln(FFile, FControlCurveColor);
+    Writeln(FFile, FHydrostaticsFontColor);
+    Writeln(FFile, FZebraStripeColor);
+    Writeln(FFile, MainForm.Top, #32, MainForm.Left, #32, MainForm.Height, #32,
+      MainForm.Width, #32, Ord(MainForm.WindowState));
+    Writeln(FFile, FLanguageFile);
+    Writeln(FFile, FMaxUndoMemory);
+    CloseFile(FFile);
+  except
+    MessageDlg(Userstring(177) + ':' + EOL + Filename, mtError, [mbOK], 0);
+  end;
+end;{TFreePreferences.SaveToDta}
+
+procedure TFreePreferences.Save;
+var
+  FileName: string;
+  I, N: integer;
+  T, L, W, H, S: integer;
+  params: TColorIniFile;
+begin
+  FileName := self.getUserConfigDirectory + '/FreeShip.ini';
+  if not FileExistsUTF8(Filename) then
+    ForceDirectoriesUTF8(ExtractFilePath(Filename));
+
+  params := TColorIniFile.Create(Filename, False);
+
+  params.WriteString('Directories', 'OpenDirectory', FOpenDirectory);
+  params.WriteString('Directories', 'GlobalOpenDirectory', FGlobalOpenDirectory);
+  params.WriteString('Directories', 'SaveDirectory', FSaveDirectory);
+  params.WriteString('Directories', 'ImportDirectory', FImportDirectory);
+  params.WriteString('Directories', 'GlobalImportDirectory', FGlobalImportDirectory);
+  params.WriteString('Directories', 'ExportDirectory', FExportDirectory);
+  params.WriteString('Directories', 'LanguagesDirectory', FLanguagesDirectory);
+  params.WriteString('Directories', 'ExecDirectory', FExecDirectory);
+  params.WriteString('Directories', 'ManualsDirectory', FManualsDirectory);
+  params.WriteString('Directories', 'TempDirectory', FTempDirectory);
+
+  params.WriteString('Directories', 'MenuIconDirectory', FMenuIconDirectory);
+  params.WriteString('Directories', 'ToolIconDirectory', FToolIconDirectory);
+  params.WriteInteger('Graphic', 'MenuIconSize', FMenuIconSize);
+  params.WriteInteger('Graphic', 'ToolIconSize', FToolIconSize);
+  params.WriteString('Graphic', 'Theme', FThemeName);
+
+  for I := 0 to Owner.Edit.FRecentFiles.Count - 1 do
+  begin
+    Filename := Owner.Edit.FRecentFiles[I];
+    params.WriteString('RecentFiles', 'File' + IntToStr(I + 1), Filename);
+  end;
+
+  if assigned(Owner.FOnUpdateRecentFileList) then
+    Owner.FOnUpdateRecentFileList(self);
+
+  if MainForm <> nil then
+  begin
+    params.WriteInteger('Window', 'Top', MainForm.Top);
+    params.WriteInteger('Window', 'Left', MainForm.Left);
+    params.WriteInteger('Window', 'Height', MainForm.Height);
+    params.WriteInteger('Window', 'Width', MainForm.Width);
+    params.WriteInteger('Window', 'State', integer(MainForm.WindowState));
+  end;
+
+  params.WriteString('General', 'Language', FLanguage);
+  params.WriteString('General', 'FbmEncoding', FbmEncoding);
+  params.WriteInteger('General', 'MaxUndoMemory', FMaxUndoMemory);
+end;
+
+procedure TFreePreferences.SaveTheme(ThemeName, ParentThemeName: string);
+var
+  FileName, DirName: string;
+  params: TColorIniFile;
+begin
+  DirName := self.getUserConfigDirectory + '/Themes/' + ThemeName;
+  FileName := DirName + '/theme.ini';
+
+  if not DirectoryExistsUTF8(DirName) then
+    ForceDirectoriesUTF8(DirName);
+
+  params := TColorIniFile.Create(Filename, False);
+
+  params.WriteString('Theme', 'Name', ThemeName);
+  params.WriteString('Theme', 'ParentTheme', ParentThemeName);
+
+  params.WriteColor('Graphic', 'PointSize', FPointSize);
+  params.WriteColor('Graphic', 'ButtockColor', FButtockColor);
+  params.WriteColor('Graphic', 'WaterlineColor', FWaterlineColor);
+  params.WriteColor('Graphic', 'StationColor', FStationColor);
+  params.WriteColor('Graphic', 'CreaseColor', FCreaseColor);
+  params.WriteColor('Graphic', 'CreaseEdgeColor', FCreaseEdgeColor);
+  params.WriteColor('Graphic', 'GridColor', FGridColor);
+  params.WriteColor('Graphic', 'GridFontColor', FGridFontColor);
+  params.WriteColor('Graphic', 'EdgeColor', FEdgeColor);
+  params.WriteColor('Graphic', 'CreasePointColor', FCreasePointColor);
+  params.WriteColor('Graphic', 'RegularPointColor', FRegularPointColor);
+  params.WriteColor('Graphic', 'CornerPointColor', FCornerPointColor);
+  params.WriteColor('Graphic', 'DartPointColor', FDartPointColor);
+  params.WriteColor('Graphic', 'SelectColor', FSelectColor);
+  params.WriteColor('Graphic', 'LayerColor', FLayerColor);
+  params.WriteColor('Graphic', 'UnderWaterColor', FUnderWaterColor);
+  params.WriteColor('Graphic', 'NormalColor', FNormalColor);
+  params.WriteColor('Graphic', 'ViewportColor', FViewportColor);
+  params.WriteColor('Graphic', 'DiagonalColor', FDiagonalColor);
+  params.WriteColor('Graphic', 'LeakPointColor', FLeakPointColor);
+  params.WriteColor('Graphic', 'MarkerColor', FMarkerColor);
+  params.WriteColor('Graphic', 'CurvaturePlotColor', FCurvaturePlotColor);
+  params.WriteColor('Graphic', 'ControlCurveColor', FControlCurveColor);
+  params.WriteColor('Graphic', 'HydrostaticsFontColor', FHydrostaticsFontColor);
+  params.WriteColor('Graphic', 'ZebraStripeColor', FZebraStripeColor);
+end;  {SaveTheme}
+

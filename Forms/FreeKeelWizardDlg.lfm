@@ -26,150 +26,150 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Top = 288
       Width = 256
       Caption = 'Properties'
-      ClientHeight = 178
+      ClientHeight = 176
       ClientWidth = 252
       TabOrder = 0
       object Label7: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 68
-        Width = 81
+        Width = 92
         Caption = 'Planform area'
         ParentColor = False
       end
       object _Label8: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 68
-        Width = 43
+        Width = 50
         Caption = '_Label8'
         ParentColor = False
       end
       object Label9: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 84
-        Width = 81
+        Width = 92
         Caption = 'Planform COG'
         ParentColor = False
       end
       object _Label10: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 84
-        Width = 50
+        Width = 58
         Caption = '_Label10'
         ParentColor = False
       end
       object Label11: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 100
-        Width = 105
+        Width = 120
         Caption = 'Mean chord length'
         ParentColor = False
       end
       object _Label12: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 100
-        Width = 44
+        Width = 51
         Caption = 'Label10'
         ParentColor = False
       end
       object Label13: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 132
-        Width = 130
+        Width = 149
         Caption = 'Geometric aspect ratio'
         ParentColor = False
       end
       object _Label14: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 132
-        Width = 44
+        Width = 51
         Caption = 'Label10'
         ParentColor = False
       end
       object Label15: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 148
-        Width = 120
+        Width = 138
         Caption = 'Effective aspect ratio'
         ParentColor = False
       end
       object _Label16: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 148
-        Width = 44
+        Width = 51
         Caption = 'Label10'
         ParentColor = False
       end
       object Label18: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 20
-        Width = 42
+        Width = 49
         Caption = 'Volume'
         ParentColor = False
       end
       object _Label19: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 20
-        Width = 37
+        Width = 43
         Caption = 'Label8'
         ParentColor = False
       end
       object Label20: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 36
-        Width = 72
+        Width = 82
         Caption = 'Volume COG'
         ParentColor = False
       end
       object _Label21: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 36
-        Width = 37
+        Width = 43
         Caption = 'Label8'
         ParentColor = False
       end
       object Label22: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 52
-        Width = 69
+        Width = 79
         Caption = 'Wetted area'
         ParentColor = False
       end
       object _Label23: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 52
-        Width = 37
+        Width = 43
         Caption = 'Label8'
         ParentColor = False
       end
       object Label24: TLabel
         Left = 7
-        Height = 13
+        Height = 15
         Top = 116
-        Width = 55
+        Width = 65
         Caption = 'Thickness'
         ParentColor = False
       end
       object _Label25: TLabel
         Left = 150
-        Height = 13
+        Height = 15
         Top = 116
-        Width = 44
+        Width = 51
         Caption = 'Label10'
         ParentColor = False
       end
@@ -185,12 +185,12 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = '3D view'
-        ClientHeight = 437
+        ClientHeight = 435
         ClientWidth = 431
         object ScrollBar1: TScrollBar
           Left = 0
           Height = 15
-          Top = 422
+          Top = 420
           Width = 431
           Align = alBottom
           Max = 180
@@ -201,7 +201,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object ScrollBar2: TScrollBar
           Left = 416
-          Height = 422
+          Height = 420
           Top = 0
           Width = 15
           Align = alRight
@@ -215,7 +215,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Lift and drag'
-        ClientHeight = 437
+        ClientHeight = 435
         ClientWidth = 431
         ImageIndex = 1
         object Chart: TChart
@@ -307,85 +307,85 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       TabOrder = 2
       object TabSheet3: TTabSheet
         Caption = 'Keel'
-        ClientHeight = 249
+        ClientHeight = 247
         ClientWidth = 250
         object Label1: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 9
-          Width = 108
+          Width = 123
           Caption = 'Type of appendage'
           ParentColor = False
         end
         object Label2: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 33
-          Width = 89
+          Width = 102
           Caption = 'Planform shape'
           ParentColor = False
         end
         object Label17: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 57
-          Width = 72
+          Width = 84
           Caption = 'Wing section'
           ParentColor = False
         end
         object Label3: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 81
-          Width = 101
+          Width = 114
           Caption = 'Root chord length'
           ParentColor = False
         end
         object Label4: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 105
-          Width = 92
+          Width = 105
           Caption = 'Tip chord length'
           ParentColor = False
         end
         object Label6: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 129
-          Width = 47
+          Width = 56
           Caption = 'Delta tip'
           ParentColor = False
         end
         object Label5: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 153
-          Width = 28
+          Width = 32
           Caption = 'Span'
           ParentColor = False
         end
         object Label26: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 177
-          Width = 103
+          Width = 119
           Caption = 'No. vertical points'
           ParentColor = False
         end
         object Label27: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 201
-          Width = 113
+          Width = 131
           Caption = 'No horizontal points'
           ParentColor = False
         end
         object Label28: TLabel
           Left = 0
-          Height = 13
+          Height = 15
           Top = 221
-          Width = 118
+          Width = 136
           Caption = 'Vertical compression'
           ParentColor = False
         end
@@ -563,7 +563,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object Input1: TFloatSpinEdit
           Left = 162
-          Height = 23
+          Height = 25
           Top = 73
           Width = 65
           Alignment = taRightJustify
@@ -577,7 +577,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object Input2: TFloatSpinEdit
           Left = 162
-          Height = 23
+          Height = 25
           Top = 97
           Width = 65
           Alignment = taRightJustify
@@ -589,7 +589,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object Input4: TFloatSpinEdit
           Left = 162
-          Height = 23
+          Height = 25
           Top = 120
           Width = 65
           Alignment = taRightJustify
@@ -602,7 +602,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object Input3: TFloatSpinEdit
           Left = 162
-          Height = 23
+          Height = 25
           Top = 145
           Width = 65
           Alignment = taRightJustify
@@ -615,7 +615,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object Input5: TSpinEdit
           Left = 162
-          Height = 23
+          Height = 25
           Top = 169
           Width = 65
           Alignment = taRightJustify
@@ -629,7 +629,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object Input6: TSpinEdit
           Left = 162
-          Height = 23
+          Height = 25
           Top = 193
           Width = 65
           Alignment = taRightJustify
@@ -654,7 +654,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
       object TabSheet4: TTabSheet
         Caption = 'Bulb'
-        ClientHeight = 249
+        ClientHeight = 247
         ClientWidth = 250
         ImageIndex = 1
         object Label8: TLabel
@@ -1133,7 +1133,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       OnClick = BitBtn2Click
     end
     object SpeedButton1: TSpeedButton
-      Left = 84
+      Left = 89
       Height = 20
       Top = 2
       Width = 80
@@ -1149,7 +1149,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Left = 2
       Height = 20
       Top = 2
-      Width = 80
+      Width = 85
       Align = alLeft
       AutoSize = True
       BorderSpacing.Around = 2

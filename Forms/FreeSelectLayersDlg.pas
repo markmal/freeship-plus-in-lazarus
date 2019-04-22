@@ -78,11 +78,11 @@ type TFreeSelectMode          = (fsFaces,fsPoints);
                                  function FGetNumberOfLayers:Integer;
                                  function FGetSelected(Index:Integer):boolean;
                                  procedure FFillBox;
-                                 procedure FUpdateSelection(Destination:TFasterList);
+                                 procedure FUpdateSelection(Destination:TFasterListTFreeSubdivisionControlPoint);
                               public    { Public declarations }
                                  function Execute(Freeship:TFreeShip;SelectMode:TFreeSelectMode):Boolean;
-                                 procedure ExtractSelectedFaces(var Destination:TFasterList);
-                                 procedure ExtractSelectedPoints(var Destination:TFasterList);
+                                 procedure ExtractSelectedFaces(var Destination:TFasterListTFreeSubdivisionControlFace);
+                                 procedure ExtractSelectedPoints(var Destination:TFasterListTFreeSubdivisionControlPoint);
                                  property Layer[index:integer]    : TFreeSubdivisionLayer read FGetLayer;
                                  property NumberOfLayers          : Integer read FGetNumberOfLayers;
                                  property Selected[index:integer] : Boolean read FGetSelected;
@@ -132,7 +132,7 @@ begin
    FUpdateSelection(nil);
 end;{TFreeSelectLayersDialog.FFillBox}
 
-procedure TFreeSelectLayersDialog.FUpdateSelection(Destination:TFasterList);
+procedure TFreeSelectLayersDialog.FUpdateSelection(Destination:TFasterListTFreeSubdivisionControlPoint);
 var I,J    : Integer;
     Ind    : Integer;
     Layer  : TFreeSubdivisionLayer;
@@ -234,7 +234,7 @@ begin
    end;
 end;{TFreeSelectLayersDialog.Execute}
 
-procedure TFreeSelectLayersDialog.ExtractSelectedFaces(var Destination:TFasterList);
+procedure TFreeSelectLayersDialog.ExtractSelectedFaces(var Destination:TFasterListTFreeSubdivisionControlFace);
 var I,J  : Integer;
     Layer: TFreeSubdivisionLayer;
 begin
@@ -246,7 +246,7 @@ begin
    end;
 end;{TFreeSelectLayersDialog.ExtractSelectedFaces}
 
-procedure TFreeSelectLayersDialog.ExtractSelectedPoints(var Destination:TFasterList);
+procedure TFreeSelectLayersDialog.ExtractSelectedPoints(var Destination:TFasterListTFreeSubdivisionControlPoint);
 begin
    FUpdateSelection(Destination);
 end;{TFreeSelectLayersDialog.ExtractSelectedPoints}

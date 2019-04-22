@@ -1315,7 +1315,8 @@ end;{TFreeKeelWizardDialog.TrackBar1Change}
 
 procedure TFreeKeelWizardDialog.SendToSurface(Surface:TFreeSubdivisionsurface);
 var I,J           : Integer;
-    FacePoints    : TFasterList;
+    FacePoints    : TFasterListTFreeSubdivisionPoint;
+    ControlPoints : TFasterListTFreeSubdivisionControlPoint;
     Grid          : TFreeSubdivisionGrid;
     P             : TFreeSubdivisionControlPoint;
     Edge          : TFreeSubdivisionedge;
@@ -1330,7 +1331,7 @@ var I,J           : Integer;
        PP:array[0..3, 2..Nh-1] of TFreeSubdivisionControlPoint;
        i:integer;
        dx,dy,dZ,kZ,kR:Extended;
-        FacePoints    : TFasterList;
+        FacePoints    : TFasterListTFreeSubdivisionControlPoint;
     begin
 
         Layer.UseInHydrostatics:=False;
@@ -1384,7 +1385,7 @@ var I,J           : Integer;
 
         end;
 
-        FacePoints:=TFasterList.Create;
+        FacePoints:=TFasterListTFreeSubdivisionControlPoint.Create;
         begin
           FacePoints.Clear;
           FacePoints.Add(P1);
@@ -1479,7 +1480,8 @@ var I,J           : Integer;
        PP:array[0..4, 1..Nh-1] of TFreeSubdivisionControlPoint;
        i:integer;
        dx,dy,dZ,kZ,kR, wng:Extended;
-       FacePoints    : TFasterList;
+       FacePoints    : TFasterListTFreeSubdivisionPoint;
+       ControlPoints    : TFasterListTFreeSubdivisionControlPoint;
     begin
 
         Layer.UseInHydrostatics:=True;
@@ -1559,96 +1561,97 @@ var I,J           : Integer;
           PP[4,i]:=P;
         end;
 
-        FacePoints:=TFasterList.Create;
+        ControlPoints:=TFasterListTFreeSubdivisionControlPoint.Create;
         begin
-          FacePoints.Clear;
-          FacePoints.Add(P1);
-          FacePoints.Add(P3);
-          FacePoints.Add(PP[0,2]);
-          FacePoints.Add(PP[1,2]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P1);
+          ControlPoints.Add(P3);
+          ControlPoints.Add(PP[0,2]);
+          ControlPoints.Add(PP[1,2]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
-          FacePoints.Clear;
-          FacePoints.Add(P1);
-          FacePoints.Add(PP[1,2]);
-          FacePoints.Add(PP[2,2]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P1);
+          ControlPoints.Add(PP[1,2]);
+          ControlPoints.Add(PP[2,2]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
-          FacePoints.Clear;
-          FacePoints.Add(P1);
-          FacePoints.Add(PP[2,2]);
-          FacePoints.Add(PP[3,2]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P1);
+          ControlPoints.Add(PP[2,2]);
+          ControlPoints.Add(PP[3,2]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
-          FacePoints.Clear;
-          FacePoints.Add(P3);
-          FacePoints.Add(P1);
-          FacePoints.Add(PP[3,2]);
-          FacePoints.Add(PP[4,2]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P3);
+          ControlPoints.Add(P1);
+          ControlPoints.Add(PP[3,2]);
+          ControlPoints.Add(PP[4,2]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
           for i:=2 to Nh-2 do
           begin
-            FacePoints.Clear;
-            FacePoints.Add(PP[0,i]);
-            FacePoints.Add(PP[0,i+1]);
-            FacePoints.Add(PP[1,i+1]);
-            FacePoints.Add(PP[1,i]);
-            Surface.AddControlFace(FacePoints,True,Layer);
+            ControlPoints.Clear;
+            ControlPoints.Add(PP[0,i]);
+            ControlPoints.Add(PP[0,i+1]);
+            ControlPoints.Add(PP[1,i+1]);
+            ControlPoints.Add(PP[1,i]);
+            Surface.AddControlFace(ControlPoints,True,Layer);
 
-            FacePoints.Clear;
-            FacePoints.Add(PP[1,i]);
-            FacePoints.Add(PP[1,i+1]);
-            FacePoints.Add(PP[2,i+1]);
-            FacePoints.Add(PP[2,i]);
-            Surface.AddControlFace(FacePoints,True,Layer);
+            ControlPoints.Clear;
+            ControlPoints.Add(PP[1,i]);
+            ControlPoints.Add(PP[1,i+1]);
+            ControlPoints.Add(PP[2,i+1]);
+            ControlPoints.Add(PP[2,i]);
+            Surface.AddControlFace(ControlPoints,True,Layer);
 
-            FacePoints.Clear;
-            FacePoints.Add(PP[2,i]);
-            FacePoints.Add(PP[2,i+1]);
-            FacePoints.Add(PP[3,i+1]);
-            FacePoints.Add(PP[3,i]);
-            Surface.AddControlFace(FacePoints,True,Layer);
+            ControlPoints.Clear;
+            ControlPoints.Add(PP[2,i]);
+            ControlPoints.Add(PP[2,i+1]);
+            ControlPoints.Add(PP[3,i+1]);
+            ControlPoints.Add(PP[3,i]);
+            Surface.AddControlFace(ControlPoints,True,Layer);
 
-            FacePoints.Clear;
-            FacePoints.Add(PP[3,i]);
-            FacePoints.Add(PP[3,i+1]);
-            FacePoints.Add(PP[4,i+1]);
-            FacePoints.Add(PP[4,i]);
-            Surface.AddControlFace(FacePoints,True,Layer);
+            ControlPoints.Clear;
+            ControlPoints.Add(PP[3,i]);
+            ControlPoints.Add(PP[3,i+1]);
+            ControlPoints.Add(PP[4,i+1]);
+            ControlPoints.Add(PP[4,i]);
+            Surface.AddControlFace(ControlPoints,True,Layer);
           end;
 
-          FacePoints.Clear;
-          FacePoints.Add(P2);
-          FacePoints.Add(P4);
-          FacePoints.Add(PP[0,Nh-1]);
-          FacePoints.Add(PP[1,Nh-1]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P2);
+          ControlPoints.Add(P4);
+          ControlPoints.Add(PP[0,Nh-1]);
+          ControlPoints.Add(PP[1,Nh-1]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
-          FacePoints.Clear;
-          FacePoints.Add(P2);
-          FacePoints.Add(PP[1,Nh-1]);
-          FacePoints.Add(PP[2,Nh-1]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P2);
+          ControlPoints.Add(PP[1,Nh-1]);
+          ControlPoints.Add(PP[2,Nh-1]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
-          FacePoints.Clear;
-          FacePoints.Add(P2);
-          FacePoints.Add(PP[2,Nh-1]);
-          FacePoints.Add(PP[3,Nh-1]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P2);
+          ControlPoints.Add(PP[2,Nh-1]);
+          ControlPoints.Add(PP[3,Nh-1]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
-          FacePoints.Clear;
-          FacePoints.Add(P4);
-          FacePoints.Add(P2);
-          FacePoints.Add(PP[3,Nh-1]);
-          FacePoints.Add(PP[4,Nh-1]);
-          Surface.AddControlFace(FacePoints,True,Layer);
+          ControlPoints.Clear;
+          ControlPoints.Add(P4);
+          ControlPoints.Add(P2);
+          ControlPoints.Add(PP[3,Nh-1]);
+          ControlPoints.Add(PP[4,Nh-1]);
+          Surface.AddControlFace(ControlPoints,True,Layer);
 
          end;
-        FacePoints.Destroy;
+        ControlPoints.Destroy;
 
     end;
 var SelectControlPoints: boolean = true;
+   p11,p12,p21,p22:TFreeSubdivisionControlpoint;
 begin 
 
    PrevCursor:=Screen.Cursor;
@@ -1723,20 +1726,25 @@ begin
             Grid[Rows+1,J-1]:=P;
          end;
       end;
-      FacePoints:=TFasterList.Create;
+      ControlPoints:=TFasterListTFreeSubdivisionControlPoint.Create;
       for I:=2 to Rows+2 do
       begin
          for J:=2 to Cols do
          begin
-            FacePoints.Clear;
-            if FacePoints.IndexOf(Grid[I-1,J-1])=-1 then FacePoints.Add(Grid[I-1,J-1]);
-            if FacePoints.IndexOf(Grid[I-1,J-2])=-1 then FacePoints.Add(Grid[I-1,J-2]);
-            if FacePoints.IndexOf(Grid[I-2,J-2])=-1 then FacePoints.Add(Grid[I-2,J-2]);
-            if FacePoints.IndexOf(Grid[I-2,J-1])=-1 then FacePoints.Add(Grid[I-2,J-1]);
-            if FacePoints.Count>=3 then Surface.AddControlFace(FacePoints,True,Layer);
+            ControlPoints.Clear;
+            p11:=Grid[I-1,J-1] as TFreeSubdivisionControlpoint;
+            p12:=Grid[I-1,J-2] as TFreeSubdivisionControlpoint;
+            p22:=Grid[I-2,J-2] as TFreeSubdivisionControlpoint;
+            p21:=Grid[I-2,J-1] as TFreeSubdivisionControlpoint;
+
+            if ControlPoints.IndexOf(p11)=-1 then ControlPoints.Add(p11);
+            if ControlPoints.IndexOf(p12)=-1 then ControlPoints.Add(p12);
+            if ControlPoints.IndexOf(p22)=-1 then ControlPoints.Add(p22);
+            if ControlPoints.IndexOf(p21)=-1 then ControlPoints.Add(p21);
+            if ControlPoints.Count>=3 then Surface.AddControlFace(ControlPoints,True,Layer);
          end;
       end;
-      FacePoints.Destroy;
+      ControlPoints.Destroy;
 
       // set crease edges at top and bottom
       for J:=2 to Cols do
@@ -1768,14 +1776,15 @@ end;{TFreeKeelWizardDialog.SendToSurface}
 
 procedure TFreeKeelWizardDialog.SpeedButton2Click(Sender: TObject);
 var Surface : TFreeSubdivisionSurface;
-    Faces   : TFasterList;
+    Faces   : TFasterListTFreeSubdivisionControlFace;
     I       : Integer;
 begin
    Surface:=TFreeSubdivisionSurface.Create;
    SendToSurface(Surface);
-   Faces:=TFasterList.Create;
+   Faces:=TFasterListTFreeSubdivisionControlFace.Create;
    Faces.Capacity:=Surface.NumberOfControlFaces;
-   for I:=1 to Surface.NumberOfControlFaces do Faces.Add(Surface.ControlFace[I-1]);
+   for I:=1 to Surface.NumberOfControlFaces
+       do Faces.Add(Surface.ControlFace[I-1]);
    FFreeship.SavePart(Faces);
    Faces.Destroy;
    Surface.Destroy;

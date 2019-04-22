@@ -31,13 +31,19 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="78"/>
+      <BuildNr Value="108"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
+    <MacroValues Count="1">
+      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
+    </MacroValues>
     <BuildModes Count="2">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="win32"/>
+        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -103,13 +109,13 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
+        <CommandLineParams Value="--nosplash --debug --log-debug"/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="1">
         <Mode0 Name="default">
           <local>
-            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
+            <CommandLineParams Value="--nosplash --debug --log-debug"/>
           </local>
         </Mode0>
       </Modes>
@@ -125,7 +131,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="77">
+    <Units Count="95">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -602,6 +608,93 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LightDialog"/>
       </Unit76>
+      <Unit77>
+        <Filename Value="Units/FreeGometry_Functions.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit77>
+      <Unit78>
+        <Filename Value="Units/FreeAlphaBuffer.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit78>
+      <Unit79>
+        <Filename Value="Units/FreeBackgroundImage.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit79>
+      <Unit80>
+        <Filename Value="Units/FreeViewport.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit80>
+      <Unit81>
+        <Filename Value="Units/FreeDevelopedPatch.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit81>
+      <Unit82>
+        <Filename Value="Units/FreeEntity.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit82>
+      <Unit83>
+        <Filename Value="Units/FreeSpline.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit83>
+      <Unit84>
+        <Filename Value="Units/FreeNURBSurface.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit84>
+      <Unit85>
+        <Filename Value="Units/FreeSubdivisionBase.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit85>
+      <Unit86>
+        <Filename Value="Units/FreeSubdivisionControlCurve.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit86>
+      <Unit87>
+        <Filename Value="Units/FreeSubdivisionLayer.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit87>
+      <Unit88>
+        <Filename Value="Units/FreeSubdivisionPoint.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit88>
+      <Unit89>
+        <Filename Value="Units/FreeSubdivisionControlPoint.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit89>
+      <Unit90>
+        <Filename Value="Units/FreeSubdivisionEdge.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit90>
+      <Unit91>
+        <Filename Value="Units/FreesubdivisionControlEdge.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit91>
+      <Unit92>
+        <Filename Value="Units/FreeSubdivisionFace.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit92>
+      <Unit93>
+        <Filename Value="Units/FreeSubdivisionControlFace.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit93>
+      <Unit94>
+        <Filename Value="Units/FreeSubdivisionSurface.inc"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Unit1"/>
+      </Unit94>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -616,7 +709,6 @@
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <SyntaxMode Value="fpc"/>
         <IncludeAssertionCode Value="True"/>
       </SyntaxOptions>
     </Parsing>
@@ -628,17 +720,18 @@
         <StackChecks Value="True"/>
       </Checks>
       <VerifyObjMethodCallValidity Value="True"/>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
     </CodeGeneration>
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>
         <UseHeaptrc Value="True"/>
-        <TrashVariables Value="True"/>
         <UseValgrind Value="True"/>
-        <UseExternalDbgSyms Value="True"/>
       </Debugging>
       <Options>
-        <LinkerOptions Value="-vd"/>
+        <LinkerOptions Value="-vd -T"/>
       </Options>
     </Linking>
     <Other>

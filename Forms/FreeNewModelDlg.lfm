@@ -1,13 +1,13 @@
 object FreeNewModelDialog: TFreeNewModelDialog
-  Left = 566
-  Height = 277
-  Top = 148
-  Width = 389
+  Left = 600
+  Height = 240
+  Top = 369
+  Width = 400
   AutoSize = True
   BorderStyle = bsDialog
   Caption = 'New model.'
-  ClientHeight = 277
-  ClientWidth = 389
+  ClientHeight = 240
+  ClientWidth = 400
   Color = clBtnFace
   ParentFont = True
   Position = poScreenCenter
@@ -16,15 +16,15 @@ object FreeNewModelDialog: TFreeNewModelDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 389
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 389
+    ClientWidth = 400
     TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 225
+      Left = 236
       Height = 20
       Top = 2
       Width = 80
@@ -73,7 +73,7 @@ object FreeNewModelDialog: TFreeNewModelDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 307
+      Left = 318
       Height = 20
       Top = 2
       Width = 80
@@ -124,146 +124,198 @@ object FreeNewModelDialog: TFreeNewModelDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 253
+    Height = 216
     Top = 24
-    Width = 389
+    Width = 400
     Align = alClient
     AutoSize = True
-    BevelOuter = bvLowered
-    BorderWidth = 10
-    ClientHeight = 253
-    ClientWidth = 389
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ClientHeight = 216
+    ClientWidth = 400
     TabOrder = 1
-    object Panel: TPanel
-      Left = 21
-      Height = 211
-      Top = 21
-      Width = 347
-      Align = alClient
-      BorderSpacing.Around = 10
-      BevelOuter = bvLowered
-      ClientHeight = 211
-      ClientWidth = 347
+    object Panel5: TPanel
+      Left = 33
+      Height = 182
+      Top = 17
+      Width = 334
+      BevelOuter = bvNone
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 182
+      ClientWidth = 334
       TabOrder = 0
-      object Label1: TLabel
-        Left = 16
-        Height = 15
-        Top = 13
-        Width = 224
-        BorderSpacing.Left = 4
-        BorderSpacing.Around = 2
-        Caption = 'No. points in longitudinal direction'
-        ParentColor = False
-      end
-      object Label2: TLabel
-        Left = 16
-        Height = 15
-        Top = 45
-        Width = 196
-        BorderSpacing.Left = 6
-        BorderSpacing.Around = 2
-        Caption = 'No. points in vertical direction'
-        ParentColor = False
-      end
-      object Label3: TLabel
-        Left = 16
-        Height = 15
-        Top = 80
-        Width = 44
-        BorderSpacing.Left = 6
-        BorderSpacing.Around = 2
-        Caption = 'Length'
-        ParentColor = False
-      end
-      object Label4: TLabel
-        Left = 16
-        Height = 15
-        Top = 112
-        Width = 38
-        BorderSpacing.Left = 6
-        BorderSpacing.Around = 2
-        Caption = 'Beam'
-        ParentColor = False
-      end
-      object Label5: TLabel
-        Left = 16
-        Height = 15
-        Top = 144
-        Width = 33
-        BorderSpacing.Left = 6
-        BorderSpacing.Around = 2
-        Caption = 'Draft'
-        ParentColor = False
-      end
-      object Label6: TLabel
-        Left = 16
-        Height = 15
-        Top = 176
-        Width = 34
-        BorderSpacing.Left = 6
-        BorderSpacing.Around = 2
-        Caption = 'Units'
-        ParentColor = False
-      end
-      object Edit1: TEdit
-        Left = 272
-        Height = 25
-        Top = 8
-        Width = 60
-        BorderSpacing.Around = 2
+      object Panel2: TPanel
+        Left = 0
+        Height = 153
+        Top = 0
+        Width = 334
+        AutoSize = True
+        BevelOuter = bvNone
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 10
+        ChildSizing.VerticalSpacing = 2
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 153
+        ClientWidth = 334
         TabOrder = 0
-        Text = '6'
+        object Label1: TLabel
+          Left = 10
+          Height = 25
+          Top = 10
+          Width = 224
+          BorderSpacing.Left = 4
+          BorderSpacing.Around = 2
+          Caption = 'No. points in longitudinal direction'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object SpinEdit1: TSpinEdit
+          Left = 244
+          Height = 25
+          Top = 10
+          Width = 80
+          Constraints.MinWidth = 60
+          MaxValue = 10000
+          MinValue = 3
+          TabOrder = 0
+          Value = 6
+        end
+        object Label2: TLabel
+          Left = 10
+          Height = 25
+          Top = 37
+          Width = 224
+          BorderSpacing.Left = 6
+          BorderSpacing.Around = 2
+          Caption = 'No. points in vertical direction'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object SpinEdit2: TSpinEdit
+          Left = 244
+          Height = 25
+          Top = 37
+          Width = 80
+          Constraints.MinWidth = 60
+          MaxValue = 10000
+          MinValue = 3
+          TabOrder = 1
+          Value = 5
+        end
+        object Label3: TLabel
+          Left = 10
+          Height = 25
+          Top = 64
+          Width = 224
+          BorderSpacing.Left = 6
+          BorderSpacing.Around = 2
+          Caption = 'Length'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object FloatSpinEdit1: TFloatSpinEdit
+          Left = 244
+          Height = 25
+          Top = 64
+          Width = 80
+          Constraints.MinWidth = 80
+          MaxValue = 1000
+          MinValue = 0.01
+          TabOrder = 2
+          Value = 12
+        end
+        object Label4: TLabel
+          Left = 10
+          Height = 25
+          Top = 91
+          Width = 224
+          BorderSpacing.Left = 6
+          BorderSpacing.Around = 2
+          Caption = 'Beam'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object FloatSpinEdit2: TFloatSpinEdit
+          Left = 244
+          Height = 25
+          Top = 91
+          Width = 80
+          Constraints.MinWidth = 60
+          MaxValue = 1000
+          MinValue = 0.01
+          TabOrder = 3
+          Value = 3.7
+        end
+        object Label5: TLabel
+          Left = 10
+          Height = 25
+          Top = 118
+          Width = 224
+          BorderSpacing.Left = 6
+          BorderSpacing.Around = 2
+          Caption = 'Draft'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object FloatSpinEdit3: TFloatSpinEdit
+          Left = 244
+          Height = 25
+          Top = 118
+          Width = 80
+          Constraints.MinWidth = 60
+          MaxValue = 1000
+          MinValue = 0
+          TabOrder = 4
+          Value = 0.5
+        end
       end
-      object Edit2: TEdit
-        Left = 272
-        Height = 25
-        Top = 40
-        Width = 60
-        BorderSpacing.Around = 2
+      object Panel4: TPanel
+        Left = 0
+        Height = 29
+        Top = 153
+        Width = 334
+        AutoSize = True
+        BevelOuter = bvNone
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.HorizontalSpacing = 6
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 29
+        ClientWidth = 334
         TabOrder = 1
-        Text = '5'
-      end
-      object Edit3: TEdit
-        Left = 272
-        Height = 25
-        Top = 72
-        Width = 60
-        BorderSpacing.Around = 2
-        TabOrder = 2
-        Text = '12.00'
-      end
-      object Edit4: TEdit
-        Left = 272
-        Height = 25
-        Top = 104
-        Width = 60
-        BorderSpacing.Around = 2
-        TabOrder = 3
-        Text = '3.7'
-      end
-      object Edit5: TEdit
-        Left = 272
-        Height = 25
-        Top = 136
-        Width = 60
-        BorderSpacing.Around = 2
-        TabOrder = 4
-        Text = '.5'
-      end
-      object ComboBox1: TComboBox
-        Left = 183
-        Height = 25
-        Top = 168
-        Width = 149
-        BorderSpacing.Around = 2
-        ItemHeight = 0
-        ItemIndex = 0
-        Items.Strings = (
-          'Meters'
-          'Feet'
-        )
-        TabOrder = 5
-        Text = 'Meters'
+        object Label6: TLabel
+          Left = 10
+          Height = 25
+          Top = 2
+          Width = 34
+          Align = alLeft
+          BorderSpacing.Left = 6
+          BorderSpacing.Around = 2
+          Caption = 'Units'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object ComboBox1: TComboBox
+          Left = 224
+          Height = 25
+          Top = 2
+          Width = 100
+          Align = alRight
+          BorderSpacing.Around = 2
+          ItemHeight = 0
+          ItemIndex = 0
+          Items.Strings = (
+            'Meters'
+            'Feet'
+          )
+          TabOrder = 0
+          Text = 'Meters'
+        end
       end
     end
   end

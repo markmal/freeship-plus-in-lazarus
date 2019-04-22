@@ -5232,7 +5232,7 @@ begin
     Owner.Preferences.GlobalImportDirectory);
   Opendialog.FileDialogMode := fdmOpen;
   Opendialog.ShellListView.ReadOnly := True;
-  Opendialog.ShellListView.AutoWidthLastColumn := True;
+  //Opendialog.ShellListView.AutoWidthLastColumn := True;
   Opendialog.ShellListView.AutoWidthLastColumn := False;
   Opendialog.AutoFit := True;
   OpenDialog.CurrentPath := Owner.Preferences.OpenDirectory;
@@ -6947,7 +6947,7 @@ begin
       for I := 1 to NewGroup.Count do
       begin
         Face := NewGroup[I - 1];
-        for j := 1 to Face.NumberOfpoints do
+        for j := 1 to Face.NumberOfPoints do
         begin
           Pt := Face.Point[J - 1];
           if Point = nil then
@@ -6962,7 +6962,7 @@ begin
         // newgroup-list with faces and with the most vertical normal of all canditates
         Face := nil;
         for I := 1 to Pt0.NumberOfFaces do
-          if NewGroup.SortedIndexOf(Point.Face[I - 1]) <> -1 then
+          if NewGroup.SortedIndexOf(Pt0.Face[I - 1]) <> -1 then
             if Face = nil then
             begin
               Face := Pt0.Face[I - 1];

@@ -731,6 +731,7 @@ begin
 
   FListBox1ControlledByKeys:=false;
 
+  //ShellListView.AutoWidthLastColumn:=false;
   ShellListView.SortColumn := -1;
   ShellListView.OnFileAdded:=@ShellListViewFileAdded;
   ShellListView.OnEdited:=@ShellListViewEdited;

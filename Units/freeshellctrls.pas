@@ -1552,6 +1552,7 @@ begin
   FSizeColumn.AutoSize:=true;
   FTypeColumn.AutoSize:=true;
   FTimeColumn.AutoSize:=true;
+  FTimeColumn.MaxWidth:=100;
 
   AutoWidthLastColumn:=false;
 
@@ -1610,12 +1611,17 @@ begin
 end;
 
 function TCustomShellListView.GetAllColumnsWidth:integer;
+var w:integer;
 begin
   // Initial sizes, necessary under Windows CE
   result := FNameColumn.Width;
   if FSizeColumn.Visible then result := result + FSizeColumn.Width;
   if FTypeColumn.Visible then result := result + FTypeColumn.Width;
-  if FTimeColumn.Visible then result := result + FTimeColumn.Width;
+  w:=FTimeColumn.Width;
+  {$ifdef LCLGTK2}
+  if w > 120 then w:=120; // GTK2 sometimes makes last column auto expanded. Limit the size.
+  {$endif}
+  if FTimeColumn.Visible then result := result + w;
 end;
 
 procedure TCustomShellListView.AdjustColumnSizes;

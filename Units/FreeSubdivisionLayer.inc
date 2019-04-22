@@ -1180,7 +1180,7 @@ end;
 procedure TFreeSubdivisionLayer.Unroll(Destination: TFasterListTFreeDevelopedPatch);
 var
   ToDoList: TFasterListTFreeSubdivisionControlFace;
-  DoneList: TFasterListTFreeSubdivisionControlFace;
+  DoneList: TFasterList<TFasterListTFreeSubdivisionControlFace>;
   Current: TFasterListTFreeSubdivisionControlFace;
   I: integer;
   Face, Face1: TFreeSubdivisionControlFace;
@@ -1222,7 +1222,7 @@ var
 begin
 
   ToDoList := TFasterListTFreeSubdivisionControlFace.Create;
-  DoneList := TFasterListTFreeSubdivisionControlFace.Create;
+  DoneList := TFasterList<TFasterListTFreeSubdivisionControlFace>.Create;
   try
     ToDoList.Capacity := FPatches.Count;
     ToDoList.AddList(FPatches);
@@ -1235,12 +1235,12 @@ begin
         Current := TFasterListTFreeSubdivisionControlFace.Create;
         Current.Add(Face);
         FindAttachedFaces(Current, Face);
-        DoneList.AddList(Current);
+        DoneList.Add(Current);
       end;
       // Unroll each separate surface area
       for I := 1 to DoneList.Count do
       begin
-        Current.Add(DoneList[I - 1]);
+        Current := DoneList[I - 1];
         if Current.Count > 0 then
         begin
           Patch := TFreeDevelopedPatch.Create(self);

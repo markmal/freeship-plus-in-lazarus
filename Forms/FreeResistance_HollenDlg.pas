@@ -248,21 +248,18 @@ type
     procedure ToolButton7Click(Sender: TObject);
     procedure ToolButton20Click(Sender: TObject);
     procedure PrintButtonClick(Sender: TObject);
-    procedure DraftTotalBoxAfterSetValue(
-      Sender: TObject);
-    procedure StartSpeedBoxAfterSetValue(
-      Sender: TObject);
+    procedure DraftTotalBoxAfterSetValue(Sender: TObject);
+    procedure StartSpeedBoxAfterSetValue(Sender: TObject);
     procedure LwlBoxAfterSetValue(Sender: TObject);
-    procedure KeelChordLengthboxAfterSetValue(
-      Sender: TObject);
+    procedure KeelChordLengthboxAfterSetValue(Sender: TObject);
     procedure EstimateBoxClick(Sender: TObject);
     procedure Estimate2BoxClick(Sender: TObject);
   private
     FFreeship: TFreeship;
     B_T, L_D, A_D, L_B, Vsr, Rtotal: single;
     Am, Cm, Cwp, S_, Wbulb: single;
-    procedure CalculateResistanceHollen(
-      ConvertedSpeed, LCB, Cp: single; var Rf, Rr, w, t0, nr: single);
+    procedure CalculateResistanceHollen(ConvertedSpeed, LCB, Cp: single;
+      var Rf, Rr, w, t0, nr: single);
     function FGetStartSpeed: single;
     procedure FSetStartSpeed(val: single);
     function FGetEndSpeed: single;
@@ -360,98 +357,54 @@ type
     PathFile, PathFileOld, FileToFind, FileName: string;
     function CorrectInputdata: boolean;
     procedure Calculate;
-    function Execute(Freeship: TFreeship;
-      AutoExtract: boolean): boolean;
-    property Bwl: single
-      read FGetBwl write FSetBwl;
-    property Cp: single
-      read FGetCp write FSetCp;
-    property Density: single
-      read FGetDensity write FSetDensity;
-    property Displacement: single
-      read FGetDisplacement write FSetDisplacement;
-    property Draft: single
-      read FGetDraft write FSetDraft;
-    property DraftTotal: single
-      read FGetDraftTotal write FSetDraftTotal;
-    property EndSpeed: single
-      read FGetEndSpeed write FSetEndSpeed;
-    property ExtractFromHull: boolean
-      read FGetExtractFromHull write FSetExtractFromHull;
-    property KeelChordLength: single
-      read FGetKeelChordLength write FSetKeelChordLength;
-    property KeelArea: single
-      read FGetKeelArea write FSetKeelArea;
-    property LCB: single
-      read FGetLCB write FSetLCB;
-    property Ke: single
-      read FGetKe write FSetKe;
-    property K1: single
-      read FGetK1 write FSetK1;
-    property K2: single
-      read FGetK2 write FSetK2;
-    property K3: single
-      read FGetK3 write FSetK3;
-    property K4: single
-      read FGetK4 write FSetK4;
-    property K5: single
-      read FGetK5 write FSetK5;
-    property K6: single
-      read FGetK6 write FSetK6;
-    property K7: single
-      read FGetK7 write FSetK7;
-    property A1: single
-      read FGetA1 write FSetA1;
-    property A2: single
-      read FGetA2 write FSetA2;
-    property A3: single
-      read FGetA3 write FSetA3;
-    property A4: single
-      read FGetA4 write FSetA4;
-    property A5: single
-      read FGetA5 write FSetA5;
-    property A6: single
-      read FGetA6 write FSetA6;
-    property A7: single
-      read FGetA7 write FSetA7;
-    property A8: single
-      read FGetA8 write FSetA8;
-    property A9: single
-      read FGetA9 write FSetA9;
-    property A10: single
-      read FGetA10 write FSetA10;
-    property A11: integer
-      read FGetA11 write FSetA11;
-    property BA: single
-      read FGetBA write FSetBA;
-    property KBulb: single
-      read FGetKBulb write FSetKBulb;
-    property ZBulb: single
-      read FGetZBulb write FSetZBulb;
-    property Cstrn: single
-      read FGetCstrn write FSetCstrn;
-    property Np: single
-      read FGetNp write FSetNp;
-    property Dp: single
-      read FGetDp write FSetDp;
-    property Ks: single
-      read FGetKs write FSetKs;
-    property Lwl: single
-      read FGetLwl write FSetLwl;
-    property RudderChordLength: single
-      read FGetRudderChordLength write FSetRudderChordLength;
-    property RudderArea: single
-      read FGetRudderArea write FSetRudderArea;
-    property StartSpeed: single
-      read FGetStartSpeed write FSetStartSpeed;
-    property StepSpeed: single
-      read FGetStepSpeed write FSetStepSpeed;
-    property Viscosity: single
-      read FGetViscosity write FSetViscosity;
-    property WettedSurface: single
-      read FGetWettedSurface write FSetWettedSurface;
-    property Los: single
-      read FGetLos write FSetLos;
+    function Execute(Freeship: TFreeship; AutoExtract: boolean): boolean;
+    property Bwl: single read FGetBwl write FSetBwl;
+    property Cp: single read FGetCp write FSetCp;
+    property Density: single read FGetDensity write FSetDensity;
+    property Displacement: single read FGetDisplacement write FSetDisplacement;
+    property Draft: single read FGetDraft write FSetDraft;
+    property DraftTotal: single read FGetDraftTotal write FSetDraftTotal;
+    property EndSpeed: single read FGetEndSpeed write FSetEndSpeed;
+    property ExtractFromHull: boolean read FGetExtractFromHull
+      write FSetExtractFromHull;
+    property KeelChordLength: single read FGetKeelChordLength write FSetKeelChordLength;
+    property KeelArea: single read FGetKeelArea write FSetKeelArea;
+    property LCB: single read FGetLCB write FSetLCB;
+    property Ke: single read FGetKe write FSetKe;
+    property K1: single read FGetK1 write FSetK1;
+    property K2: single read FGetK2 write FSetK2;
+    property K3: single read FGetK3 write FSetK3;
+    property K4: single read FGetK4 write FSetK4;
+    property K5: single read FGetK5 write FSetK5;
+    property K6: single read FGetK6 write FSetK6;
+    property K7: single read FGetK7 write FSetK7;
+    property A1: single read FGetA1 write FSetA1;
+    property A2: single read FGetA2 write FSetA2;
+    property A3: single read FGetA3 write FSetA3;
+    property A4: single read FGetA4 write FSetA4;
+    property A5: single read FGetA5 write FSetA5;
+    property A6: single read FGetA6 write FSetA6;
+    property A7: single read FGetA7 write FSetA7;
+    property A8: single read FGetA8 write FSetA8;
+    property A9: single read FGetA9 write FSetA9;
+    property A10: single read FGetA10 write FSetA10;
+    property A11: integer read FGetA11 write FSetA11;
+    property BA: single read FGetBA write FSetBA;
+    property KBulb: single read FGetKBulb write FSetKBulb;
+    property ZBulb: single read FGetZBulb write FSetZBulb;
+    property Cstrn: single read FGetCstrn write FSetCstrn;
+    property Np: single read FGetNp write FSetNp;
+    property Dp: single read FGetDp write FSetDp;
+    property Ks: single read FGetKs write FSetKs;
+    property Lwl: single read FGetLwl write FSetLwl;
+    property RudderChordLength: single read FGetRudderChordLength
+      write FSetRudderChordLength;
+    property RudderArea: single read FGetRudderArea write FSetRudderArea;
+    property StartSpeed: single read FGetStartSpeed write FSetStartSpeed;
+    property StepSpeed: single read FGetStepSpeed write FSetStepSpeed;
+    property Viscosity: single read FGetViscosity write FSetViscosity;
+    property WettedSurface: single read FGetWettedSurface write FSetWettedSurface;
+    property Los: single read FGetLos write FSetLos;
   end;
 
 var
@@ -475,39 +428,39 @@ begin
   if (Draft <= 0.02) then
     Draft := 0.021;
   if (Lwl <= 0) then
-    LwlBox.Color := clRed
+    LwlBox.Color := clYellow
   else
     LwlBox.Color := clDefault;
   if (Bwl <= 0) then
-    BwlBox.Color := clRed
+    BwlBox.Color := clYellow
   else
     BwlBox.Color := clDefault;
   if (Los <= 0) then
-    LosBox.Color := clRed
+    LosBox.Color := clYellow
   else
     LosBox.Color := clDefault;
   if (DraftTotal < Draft) then
     Draft := DraftTotal;
   if (WettedSurface <= 0) then
-    WettedSurfaceBox.Color := clRed
+    WettedSurfaceBox.Color := clYellow
   else
     WettedSurfaceBox.Color := clDefault;
   if (Displacement <= 0) then
-    DisplacementBox.Color := clRed
+    DisplacementBox.Color := clYellow
   else
     DisplacementBox.Color := clDefault;
   if (Cp <= 0) then
-    CpBox.Color := clRed
+    CpBox.Color := clYellow
   else
     CpBox.Color := clDefault;
   if (Viscosity <= 0) then
-    ViscosityBox.Color := clRed
+    ViscosityBox.Color := clYellow
   else
     ViscosityBox.Color := clDefault;
   if (EndSpeed <= 0.0) then
     EndSpeed := 10.0;
   if (EndSpeed <= StartSpeed) then
-    EndSpeedBox.Color := clRed
+    EndSpeedBox.Color := clYellow
   else
     EndSpeedBox.Color := clDefault;
   if (StepSpeed <= 0) then
@@ -632,11 +585,11 @@ begin
     ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(50), 40) +
       ' : ' + FloatToStrF(Density, ffFixed, 8, 3) + #32 + DensityStr(Units));
     if Units = fuImperial then
-      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(255), 40) + ' : ' +
-        FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + Userstring(471))
+      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(255), 40) +
+        ' : ' + FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + Userstring(471))
     else
-      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(255), 40) + ' : ' +
-        FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + Userstring(472));
+      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(255), 40) +
+        ' : ' + FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + Userstring(472));
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + Userstring(256));
     ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(17), 40) +
@@ -648,9 +601,11 @@ begin
     ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(304), 40) +
       ' : ' + FloatToStrF(DraftTotal, ffFixed, 6, 3) + #32 + LengthStr(Units));
     ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(305), 40) +
-      ' : ' + FloatToStrF(DraftTotal + Draft / 2., ffFixed, 6, 3) + #32 + LengthStr(Units));
+      ' : ' + FloatToStrF(DraftTotal + Draft / 2., ffFixed, 6, 3) +
+      #32 + LengthStr(Units));
     ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(306), 40) +
-      ' : ' + FloatToStrF(DraftTotal - Draft / 2., ffFixed, 6, 3) + #32 + LengthStr(Units));
+      ' : ' + FloatToStrF(DraftTotal - Draft / 2., ffFixed, 6, 3) +
+      #32 + LengthStr(Units));
 
     Stop := False;
     if (abs(Draft) / Lwl > 0.05) or (abs(Draft) > DraftTotal) then
@@ -660,11 +615,12 @@ begin
       //Exit;
     end;
     if EstimateBox.Checked then
-      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(10), 40) + ' : ' +
-        FloatToStrF(WettedSurface, ffFixed, 6, 2) + #32 + AreaStr(Units) + ' (' + Userstring(266) + ')')
+      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(10), 40) +
+        ' : ' + FloatToStrF(WettedSurface, ffFixed, 6, 2) + #32 +
+        AreaStr(Units) + ' (' + Userstring(266) + ')')
     else
-      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(10), 40) + ' : ' +
-        FloatToStrF(WettedSurface, ffFixed, 6, 2) + #32 + AreaStr(Units));
+      ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(10), 40) +
+        ' : ' + FloatToStrF(WettedSurface, ffFixed, 6, 2) + #32 + AreaStr(Units));
     ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(19), 40) +
       ' : ' + FloatToStrF(WlArea, ffFixed, 6, 2) + #32 + AreaStr(Units));
     ResultsMemo.Lines.Add(Space(14) + Makelength(Userstring(4), 40) +
@@ -697,7 +653,8 @@ begin
       ResultsMemo.Lines.Add('');
   end;
 }
-    if (A1 + A2 + A3 + A4 + A5 + A6 + A7 + A8 + A9 + A10 + A11 + Ks > 0) and Estimate2Box.Checked then
+    if (A1 + A2 + A3 + A4 + A5 + A6 + A7 + A8 + A9 + A10 + A11 + Ks > 0) and
+      Estimate2Box.Checked then
     begin
       ResultsMemo.Lines.Add(Space(10) + Makelength(GroupBox3.Caption, 30));
       ResultsMemo.Lines.Add(Space(14) + Makelength(Label6_1.Caption, 45) +
@@ -735,9 +692,11 @@ begin
     if WettedSurface <= 0 then
     begin
       S := Lwl * (2 * DraftTotal + Bwl) * sqrt(Cm) *
-        (0.453 + 0.442 * Cp * Cm - 0.2862 * Cm - 0.003467 * Bwl / DraftTotal + 0.3696 * Cwp) + 2.38 * KBulb / Cp * Cm;
+        (0.453 + 0.442 * Cp * Cm - 0.2862 * Cm - 0.003467 * Bwl /
+        DraftTotal + 0.3696 * Cwp) + 2.38 * KBulb / Cp * Cm;
       ResultsMemo.Lines.Add(Space(14) + 'S             = ' + FloatToStrF(
-        S, ffFixed, 6, 2) + #32 + AreaStr(Units) + ' (' + Userstring(266) + ' ' + Userstring(630) + ')');
+        S, ffFixed, 6, 2) + #32 + AreaStr(Units) + ' (' + Userstring(266) +
+        ' ' + Userstring(630) + ')');
       S_ := S;
     end;
 
@@ -754,10 +713,14 @@ begin
     Nballast := 0;
     if ZBulb > 0 then
       Nballast := 1;
-    ResultsMemo.Lines.Add(Space(14) + 'Cp            = ' + FloatToStrF(Cp, ffFixed, 6, 4));
-    ResultsMemo.Lines.Add(Space(14) + 'Cb            = ' + FloatToStrF(Cp * Cm, ffFixed, 6, 4));
-    ResultsMemo.Lines.Add(Space(14) + 'Cwp           = ' + FloatToStrF(Cwp, ffFixed, 6, 4));
-    ResultsMemo.Lines.Add(Space(14) + 'Cm            = ' + FloatToStrF(Cm, ffFixed, 6, 4));
+    ResultsMemo.Lines.Add(Space(14) + 'Cp            = ' +
+      FloatToStrF(Cp, ffFixed, 6, 4));
+    ResultsMemo.Lines.Add(Space(14) + 'Cb            = ' +
+      FloatToStrF(Cp * Cm, ffFixed, 6, 4));
+    ResultsMemo.Lines.Add(Space(14) + 'Cwp           = ' +
+      FloatToStrF(Cwp, ffFixed, 6, 4));
+    ResultsMemo.Lines.Add(Space(14) + 'Cm            = ' +
+      FloatToStrF(Cm, ffFixed, 6, 4));
     ResultsMemo.Lines.Add(Space(14) + 'Cbt           = ' + FloatToStrF(
       KBulb / Bwl / DraftTotal / Cm, ffFixed, 6, 4));
     ResultsMemo.Lines.Add(Space(14) + 'Am            = ' + FloatToStrF(
@@ -772,10 +735,12 @@ begin
       Bwl / DraftTotal, ffFixed, 6, 3));
     ResultsMemo.Lines.Add(Space(14) + 'Lwl/T         = ' + FloatToStrF(
       Lwl / DraftTotal, ffFixed, 6, 3));
-    ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333     = ' + FloatToStrF(Psi, ffFixed, 6, 3));
+    ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333     = ' +
+      FloatToStrF(Psi, ffFixed, 6, 3));
     ResultsMemo.Lines.Add(Space(14) + 'Dp/Ta         = ' + FloatToStrF(
       Dp / Ta, ffFixed, 6, 3));
-    ResultsMemo.Lines.Add(Space(14) + 'Np            = ' + FloatToStrF(Np, ffFixed, 6, 0));
+    ResultsMemo.Lines.Add(Space(14) + 'Np            = ' +
+      FloatToStrF(Np, ffFixed, 6, 0));
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add('');
     // Проверка на валидность
@@ -783,53 +748,74 @@ begin
       if Nballast = 0 then
       begin
         if (Psi > 6.008) or (Psi < 4.490) then
-          ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333 ' + Userstring(476) + ' 4,490 ... 6,008');
+          ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333 ' + Userstring(476) +
+            ' 4,490 ... 6,008');
         if (Cb > 0.83) or (Cb < 0.601) then
-          ResultsMemo.Lines.Add(Space(14) + 'Cb        ' + Userstring(476) + ' 0,601 ... 0,830');
+          ResultsMemo.Lines.Add(Space(14) + 'Cb        ' + Userstring(476) +
+            ' 0,601 ... 0,830');
         if (Lpp / Bwl > 7.106) or (Lpp / Bwl < 4.710) then
-          ResultsMemo.Lines.Add(Space(14) + 'L/B       ' + Userstring(476) + ' 4,710 ... 7,106');
+          ResultsMemo.Lines.Add(Space(14) + 'L/B       ' + Userstring(476) +
+            ' 4,710 ... 7,106');
         if (Bwl / DraftTotal > 4.002) or (Bwl / DraftTotal < 1.989) then
-          ResultsMemo.Lines.Add(Space(14) + 'B/T       ' + Userstring(476) + ' 1,989 ... 4,002');
+          ResultsMemo.Lines.Add(Space(14) + 'B/T       ' + Userstring(476) +
+            ' 1,989 ... 4,002');
         if (Los / Lwl > 1.050) or (Los / Lwl < 1) then
-          ResultsMemo.Lines.Add(Space(14) + 'Los/Lwl   ' + Userstring(476) + ' 1,000 ... 1,050');
+          ResultsMemo.Lines.Add(Space(14) + 'Los/Lwl   ' + Userstring(476) +
+            ' 1,000 ... 1,050');
         if (Lwl / Lpp > 1.055) or (Lwl / Lpp < 1) then
-          ResultsMemo.Lines.Add(Space(14) + 'Lwl/L     ' + Userstring(476) + ' 1,000 ... 1,055');
+          ResultsMemo.Lines.Add(Space(14) + 'Lwl/L     ' + Userstring(476) +
+            ' 1,000 ... 1,055');
         if (Dp / Ta > 0.84) or (Dp / Ta < 0.43) then
-          ResultsMemo.Lines.Add(Space(14) + 'Dp/Ta     ' + Userstring(476) + ' 0,430 ... 0,840');
+          ResultsMemo.Lines.Add(Space(14) + 'Dp/Ta     ' + Userstring(476) +
+            ' 0,430 ... 0,840');
       end
       else
       begin
         if (Psi > 7.047) or (Psi < 5.45) then
-          ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333 ' + Userstring(476) + ' 5,450 ... 7,047');
+          ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333 ' + Userstring(476) +
+            ' 5,450 ... 7,047');
         if (Cb > 0.79) or (Cb < 0.559) then
-          ResultsMemo.Lines.Add(Space(14) + 'Cb        ' + Userstring(476) + ' 0,559 ... 0,790');
+          ResultsMemo.Lines.Add(Space(14) + 'Cb        ' + Userstring(476) +
+            ' 0,559 ... 0,790');
         if (Lpp / Bwl > 6.623) or (Lpp / Bwl < 4.949) then
-          ResultsMemo.Lines.Add(Space(14) + 'L/B       ' + Userstring(476) + ' 4,949 ... 6,623');
+          ResultsMemo.Lines.Add(Space(14) + 'L/B       ' + Userstring(476) +
+            ' 4,949 ... 6,623');
         if (Bwl / DraftTotal > 6.12) or (Bwl / DraftTotal < 2.967) then
-          ResultsMemo.Lines.Add(Space(14) + 'B/T       ' + Userstring(476) + ' 2,967 ... 6,120');
+          ResultsMemo.Lines.Add(Space(14) + 'B/T       ' + Userstring(476) +
+            ' 2,967 ... 6,120');
         if (Los / Lwl > 1.050) or (Los / Lwl < 1) then
-          ResultsMemo.Lines.Add(Space(14) + 'Los/Lwl   ' + Userstring(476) + ' 1,000 ... 1,050');
+          ResultsMemo.Lines.Add(Space(14) + 'Los/Lwl   ' + Userstring(476) +
+            ' 1,000 ... 1,050');
         if (Lwl / Lpp > 1.0) or (Lwl / Lpp < 0.945) then
-          ResultsMemo.Lines.Add(Space(14) + 'Lwl/L     ' + Userstring(476) + ' 0,945 ... 1,000');
+          ResultsMemo.Lines.Add(Space(14) + 'Lwl/L     ' + Userstring(476) +
+            ' 0,945 ... 1,000');
         if (Dp / Ta > 1.05) or (Dp / Ta < 0.655) then
-          ResultsMemo.Lines.Add(Space(14) + 'Dp/Ta     ' + Userstring(476) + ' 0,655 ... 1,050');
+          ResultsMemo.Lines.Add(Space(14) + 'Dp/Ta     ' + Userstring(476) +
+            ' 0,655 ... 1,050');
       end;
     if Np = 2 then
     begin
       if (Psi > 7.265) or (Psi < 4.406) then
-        ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333 ' + Userstring(476) + ' 4,406 ... 7,265');
+        ResultsMemo.Lines.Add(Space(14) + 'L/V^0.333 ' + Userstring(476) +
+          ' 4,406 ... 7,265');
       if (Cb > 0.775) or (Cb < 0.512) then
-        ResultsMemo.Lines.Add(Space(14) + 'Cb        ' + Userstring(476) + ' 0,512 ... 0,775');
+        ResultsMemo.Lines.Add(Space(14) + 'Cb        ' + Userstring(476) +
+          ' 0,512 ... 0,775');
       if (Lpp / Bwl > 7.13) or (Lpp / Bwl < 3.96) then
-        ResultsMemo.Lines.Add(Space(14) + 'L/B       ' + Userstring(476) + ' 3,960 ... 7,130');
+        ResultsMemo.Lines.Add(Space(14) + 'L/B       ' + Userstring(476) +
+          ' 3,960 ... 7,130');
       if (Bwl / DraftTotal > 6.11) or (Bwl / DraftTotal < 2.308) then
-        ResultsMemo.Lines.Add(Space(14) + 'B/T       ' + Userstring(476) + ' 2,308 ... 6,110');
+        ResultsMemo.Lines.Add(Space(14) + 'B/T       ' + Userstring(476) +
+          ' 2,308 ... 6,110');
       if (Los / Lwl > 1.050) or (Los / Lwl < 1) then
-        ResultsMemo.Lines.Add(Space(14) + 'Los/Lwl   ' + Userstring(476) + ' 1,000 ... 1,050');
+        ResultsMemo.Lines.Add(Space(14) + 'Los/Lwl   ' + Userstring(476) +
+          ' 1,000 ... 1,050');
       if (Lwl / Lpp > 1.07) or (Lwl / Lpp < 1) then
-        ResultsMemo.Lines.Add(Space(14) + 'Lwl/L     ' + Userstring(476) + ' 1,000 ... 1,070');
+        ResultsMemo.Lines.Add(Space(14) + 'Lwl/L     ' + Userstring(476) +
+          ' 1,000 ... 1,070');
       if (Dp / Ta > 0.86) or (Dp / Ta < 0.495) then
-        ResultsMemo.Lines.Add(Space(14) + 'Dp/Ta     ' + Userstring(476) + ' 0,495 ... 0,860');
+        ResultsMemo.Lines.Add(Space(14) + 'Dp/Ta     ' + Userstring(476) +
+          ' 0,495 ... 0,860');
     end;
     if (Np = 0) or (Np > 2) then
       ResultsMemo.Lines.Add(Space(14) + 'Np        ' + Userstring(476) + ' 1 ... 2');
@@ -880,7 +866,8 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
       //  Определяем есть ли файл с результатами расчета HOLLENBA.res. Если TMP5.tsk присутствует значит расчет не закончен
       i := 1;
       NewSearch:
-        FileToFind := FileSearchUTF8('TMP5.tsk', GetCurrentDir); { *Converted from FileSearch* }
+        FileToFind := FileSearchUTF8('TMP5.tsk', GetCurrentDir);
+      { *Converted from FileSearch* }
       if FileToFind = 'TMP5.tsk' then
       begin
         sleep(300);
@@ -891,9 +878,10 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         begin
           if FileExistsUTF8('TMP5.tsk') { *Converted from FileExists* } then
             DeleteFileUTF8('TMP5.tsk'); { *Converted from DeleteFile* }
-          MessageDlg(Userstring(1138) +
-            #13#10#13#10 + Userstring(1139) + ' Hollenbh.EXE ' + #13#10#13#10 + Userstring(
-            1140) + #13#10#13#10 + Userstring(1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
+          MessageDlg(Userstring(1138) + #13#10#13#10 +
+            Userstring(1139) + ' Hollenbh.EXE ' + #13#10#13#10 + Userstring(
+            1140) + #13#10#13#10 + Userstring(1141) + #13#10#13#10 +
+            Userstring(1142), mtError, [mbOK], 0);
           exit;
         end;
       end;
@@ -905,7 +893,8 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
       Reset(FFile);
 {$I+}
       II := 0;
-      Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1432) + #13 + 'File:' + FileName;
+      Chart.Title.Text.Text :=
+        Userstring(265) + ' ' + Userstring(1432) + #13 + 'File:' + FileName;
       while (not EOF(FFile)) and (II < 10) do
       begin
         II := II + 1;
@@ -962,7 +951,8 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
         i := 1;
         NewSearch1:
-          FileToFind := FileSearchUTF8('TMPke.txt', GetCurrentDir); { *Converted from FileSearch* }
+          FileToFind := FileSearchUTF8('TMPke.txt', GetCurrentDir);
+        { *Converted from FileSearch* }
         if FileToFind = 'TMPke.txt' then
         begin
           sleep(200);
@@ -973,9 +963,10 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
           begin
             if FileExistsUTF8('TMPke.txt') { *Converted from FileExists* } then
               DeleteFileUTF8('TMPke.txt'); { *Converted from DeleteFile* }
-            MessageDlg(Userstring(1138) +
-              #13#10#13#10 + Userstring(1139) + ' SeaMargn.EXE ' + #13#10#13#10 + Userstring(
-              1140) + #13#10#13#10 + Userstring(1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
+            MessageDlg(Userstring(1138) + #13#10#13#10 +
+              Userstring(1139) + ' SeaMargn.EXE ' + #13#10#13#10 + Userstring(
+              1140) + #13#10#13#10 + Userstring(1141) + #13#10#13#10 +
+              Userstring(1142), mtError, [mbOK], 0);
             Ke := 1;
             exit;
           end;
@@ -1002,7 +993,8 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         begin
           if Ke > 1 then
           begin
-            Series2.AddXY(res[1, II], res[9, II], '', clTeeColor);     // Сопротивление
+            Series2.AddXY(res[1, II], res[9, II], '', clTeeColor);
+            // Сопротивление
             Series4.AddXY(res[1, II], res[10, II], '', clTeeColor);
             // Мощность
           end;
@@ -1115,8 +1107,8 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
           ss[i] := FloatToStrF(res[i, II], ffFixed, 6, 3) + '  | ';
       end;
       if ii > 1 then
-        ResultsMemo.Lines.Add(Space(10) + '| ' + ss[1] + ss[2] + ss[3] + ss[5] + ss[6] +
-          ss[7] + ss[8] + ss[9] + ss[10]);
+        ResultsMemo.Lines.Add(Space(10) + '| ' + ss[1] + ss[2] +
+          ss[3] + ss[5] + ss[6] + ss[7] + ss[8] + ss[9] + ss[10]);
     end;
     ResultsMemo.Lines.Add(Space(10) + Userstring(1202));
     ResultsMemo.Lines.Add('');
@@ -1148,7 +1140,8 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         (Dp_ * Dp_ * (99047. + Density * 1000. * 9.81 * (Dp_ / 2. + Ta * 0.2)));
       Ae0 := Ae_Ao;
       if Ae0 > 1.1 then
-        ResultsMemo.Lines.Add(Space(14) + 'Ae/Ao   =  ' + FloatToStrF(Ae0, ffFixed, 6, 4));
+        ResultsMemo.Lines.Add(Space(14) + 'Ae/Ao   =  ' +
+          FloatToStrF(Ae0, ffFixed, 6, 4));
       if (Ae0 > 1.1) and (Np <= 2) then
       begin
         ResultsMemo.Lines.Add(Space(10) + Userstring(971));
@@ -1174,8 +1167,10 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         end;
         if (Ae0 <= 0.65) and (Ae0 > 0.5) then
         begin
-          P_D := 0.0236147 * x * x * x * x * x - 0.2234597 * x * x * x * x + 0.8044646 * x *
-            x * x - 1.3956004 * x * x + 1.3848023 * x + 0.3433638; // Для 3 лопастей Teta=0.65
+          P_D := 0.0236147 * x * x * x * x * x - 0.2234597 * x * x *
+            x * x + 0.8044646 * x * x * x - 1.3956004 * x * x + 1.3848023 *
+            x + 0.3433638;
+          // Для 3 лопастей Teta=0.65
           Ae_Ao := 0.65;
         end;
       end;
@@ -1200,20 +1195,23 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         if (Ae0 <= 0.7) and (Ae0 > 0.55) then
         begin
           //              ResultsMemo.Lines.Add(Space(14)+'Ae/Ao   =  '+FloatToStrF(Ae0,ffFixed,6,3));
-          P_D := 0.0074646 * x * x * x * x * x - 0.0783429 * x * x * x * x + 0.2946838 *
-            x * x * x - 0.5441205 * x * x + 0.8133517 * x + 0.3989677;     // Для 4 лопастей Teta=0.70
+          P_D := 0.0074646 * x * x * x * x * x - 0.0783429 * x * x *
+            x * x + 0.2946838 * x * x * x - 0.5441205 * x * x + 0.8133517 *
+            x + 0.3989677;
+          // Для 4 лопастей Teta=0.70
           Ae_Ao := 0.7;
           //              ResultsMemo.Lines.Add(Space(14)+'P/D 0.7 =  '+FloatToStrF(P_D,ffFixed,6,3));
         end;
       end;
       //      ResultsMemo.Lines.Add(Space(14)+'Ta        =  '+FloatToStrF(Ta,ffFixed,6,3)+' '+LengthStr(Units));
       if flag = 1 then
-        ResultsMemo.Lines.Add(Space(14) + 'Tb        =  ' + FloatToStrF(Tb, ffFixed, 6, 3) +
-          ' ' + Userstring(324))
+        ResultsMemo.Lines.Add(Space(14) + 'Tb        =  ' +
+          FloatToStrF(Tb, ffFixed, 6, 3) + ' ' + Userstring(324))
       else
         ResultsMemo.Lines.Add(Space(14) + 'Tb        =  ' + FloatToStrF(
           Tb / flag, ffFixed, 6, 0) + ' ' + Userstring(330));
-      ResultsMemo.Lines.Add(Space(14) + 'Kdt       =  ' + FloatToStrF(Kdt, ffFixed, 6, 3));
+      ResultsMemo.Lines.Add(Space(14) + 'Kdt       =  ' +
+        FloatToStrF(Kdt, ffFixed, 6, 3));
       ResultsMemo.Lines.Add(Space(14) + 'Dp        =  ' + FloatToStrF(
         Dp_, ffFixed, 6, 3) + ' ' + LengthStr(Units));
       ResultsMemo.Lines.Add(Space(14) + 'Z         =  ' + FloatToStrF(Z, ffFixed, 6, 0));
@@ -1686,7 +1684,8 @@ begin
       Am := Displacement / (Lwl * Cp);
       Cm := Am / (Bwl * DraftTotal);
       Cwp := WlArea / (Lwl * Bwl);
-      C23 := 0.453 + 0.443 * (Cp * Cm) - 0.286 * Cm - 0.00347 * (Bwl / DraftTotal) + 0.37 * Cwp;
+      C23 := 0.453 + 0.443 * (Cp * Cm) - 0.286 * Cm - 0.00347 *
+        (Bwl / DraftTotal) + 0.37 * Cwp;
       ScbFact := 0.616 * C23 + 0.111 * Cm * Cm * Cm + 0.245 * (C23 / Cm) - 0.0228;
       Result := ScbFact * Lwl * (2 * DraftTotal + Bwl) * sqrt(Cm);
     end
@@ -1733,7 +1732,8 @@ begin
     Checkbox2.Checked := val;
 end;{TFreeResistance_Hollen.FSetExtractFromHullVal}
 
-function TFreeResistance_Hollen.Execute(Freeship: TFreeship; AutoExtract: boolean): boolean;
+function TFreeResistance_Hollen.Execute(Freeship: TFreeship;
+  AutoExtract: boolean): boolean;
 var
   Units: TFreeUnitType;
   Temper: single;
@@ -1875,7 +1875,8 @@ begin
     Displacement := HydObject.Data.Volume;
     //      if Lwl<>0 then LCB:=100*(HydObject.Data.CenterOfBuoyancy.X-FFreeship.ProjectSettings.ProjectLength*0.5)/Lwl
     if Lwl <> 0 then
-      LCB := 100 * (HydObject.Data.CenterOfBuoyancy.X - (HydObject.Data.WlMin.X + 0.5 * Lwl)) / Lwl
+      LCB := 100 * (HydObject.Data.CenterOfBuoyancy.X -
+        (HydObject.Data.WlMin.X + 0.5 * Lwl)) / Lwl
     else
       LCB := 0;
     Cp := HydObject.Data.PrismCoefficient;
@@ -1929,7 +1930,8 @@ begin
 end;{TFreeResistance_Hollen.Estimate2BoxClick}
 
 
-procedure TFreeResistance_Hollen.CalculateResistanceHollen(ConvertedSpeed, LCB, Cp: single;
+procedure TFreeResistance_Hollen.CalculateResistanceHollen(
+  ConvertedSpeed, LCB, Cp: single;
   var Rf, Rr, w, t0, nr: single);
 var
   Rn_keel, Cf_keel, Rf_keel: single;
@@ -2214,8 +2216,9 @@ begin
   T_B := T / B;
   Lr := L * (1 - Cp + 0.06 * Cp * lcb / (4 * Cp - 1));
   C[14] := 1. + 0.011 * Cstrn;
-  k1_ := 0.93 + 0.487118 * C[14] * power(B_L, 1.06806) * power(T_L, 0.46106) * power(
-    (L / Lr), 0.121563) * power(L * L * L / V, 0.36486) * power((1 - Cp), -0.604247);
+  k1_ := 0.93 + 0.487118 * C[14] * power(B_L, 1.06806) * power(T_L, 0.46106) *
+    power((L / Lr), 0.121563) * power(L * L * L / V, 0.36486) *
+    power((1 - Cp), -0.604247);
   if B_Ta > 5 then
     C[8] := S * (7 * B_Ta - 25) / (L * D * (B_Ta - 3))
   else
@@ -2238,8 +2241,8 @@ begin
 
   C[20] := 1 + 0.0015 * Cstrn;
 
-  Ca := 0.006 * power((L + 100), (-0.16)) - 0.00205 + 0.003 * sqrt(L / 7.5) * sqr(sqr(Cb)) * C[2] *
-    (0.04 - C[4]);
+  Ca := 0.006 * power((L + 100), (-0.16)) - 0.00205 + 0.003 *
+    sqrt(L / 7.5) * sqr(sqr(Cb)) * C[2] * (0.04 - C[4]);
   if ks >= 150. then
     Ca := Ca + (0.105 * power(ks / 1000000., 0.333333) - 0.005579) / power(L, 0.33333);
   Cp1 := 1.45 * Cp - 0.315 - 0.0225 * lcb;
@@ -2248,10 +2251,10 @@ begin
   if Np = 1 then
   begin
     // по методу Холтропа 1988
-    w := C[20] * (C[9] * Cv * L / Ta * (0.050776 + 0.93405 * C[11] * Cv /
-      (1 - Cp1)) + 0.27915 * sqrt(B / (L * (1 - Cp1))) + C[19]);
-    t0 := 0.25014 * power(B_L, 0.28956) * power((sqrt(B * T) / D), 0.2624) / power(
-      (1 - Cp + 0.0225 * lcb), 0.01762) + 0.0015 * Cstrn;
+    w := C[20] * (C[9] * Cv * L / Ta * (0.050776 + 0.93405 * C[11] *
+      Cv / (1 - Cp1)) + 0.27915 * sqrt(B / (L * (1 - Cp1))) + C[19]);
+    t0 := 0.25014 * power(B_L, 0.28956) * power((sqrt(B * T) / D), 0.2624) /
+      power((1 - Cp + 0.0225 * lcb), 0.01762) + 0.0015 * Cstrn;
     nr := 0.9922 - 0.05908 * Ae0 + 0.07424 * (Cp - 0.0225 * lcb);
     nh := (1 - t0) / (1 - w) * nr;
 {       ResultsMemo.Lines.Add('Cp     =  '+FloatToStrF(Cp,ffFixed,6,4));
@@ -2266,12 +2269,14 @@ begin
     if nh > 1.33 then
     begin
       w := C[9] * Cv * L / Ta * (0.0661875 + 1.21736 * C[11] * Cv / (1 - Cp1)) +
-        0.24558 * sqrt(B / (L * (1 - Cp1))) - 0.09726 / (0.95 - Cp) + 0.11434 / (0.95 - Cb) + Cstrn * (0.75 * Cv + 0.002);
+        0.24558 * sqrt(B / (L * (1 - Cp1))) - 0.09726 / (0.95 - Cp) +
+        0.11434 / (0.95 - Cb) + Cstrn * (0.75 * Cv + 0.002);
       if L_B >= 5.2 then
         C[10] := B_L
       else
         C[10] := 0.25 - 0.003328402 / (B_L - 0.134615385);
-      t0 := 0.001979 * L / B / (1 - Cp1) + 1.0585 * C[10] - 0.00524 - 0.1418 * D * D / B / T + 0.0015 * Cstrn;
+      t0 := 0.001979 * L / B / (1 - Cp1) + 1.0585 * C[10] - 0.00524 -
+        0.1418 * D * D / B / T + 0.0015 * Cstrn;
       nr := 0.9922 - 0.05908 * Ae0 + 0.07424 * (Cp - 0.0225 * lcb);
       nh := (1 - t0) / (1 - w) * nr;
       //            ResultsMemo.Lines.Add('Wt     =  '+FloatToStrF(w,ffFixed,6,4));

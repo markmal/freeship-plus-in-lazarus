@@ -76,8 +76,37 @@ uses
       const  clTeeColor = clTAColor;
      {$ENDIF}
 
-type TFreePropeller_Task5  = class(TForm)
+type
+
+{ TFreePropeller_Task5 }
+
+ TFreePropeller_Task5  = class(TForm)
+                                Chart: TChart;
+                                CheckBox2: TCheckBox;
+                                ComboBox: TComboBox;
+                                ComboBox1: TComboBox;
+                                Edit2: TFloatSpinEdit;
+                                Edit3: TFloatSpinEdit;
+                                Edit4: TFloatSpinEdit;
+                                Edit5: TFloatSpinEdit;
+                                Edit6: TFloatSpinEdit;
+                                Edit7: TFloatSpinEdit;
+                                Label2: TLabel;
+                                Label3: TLabel;
+                                Label4: TLabel;
+                                Label5: TLabel;
+                                Label6: TLabel;
+                                Label7: TLabel;
+                                Label8: TLabel;
+                                Label9: TLabel;
                                  MenuImages: TImageList;
+                                 Panel2: TPanel;
+                                 Panel3: TPanel;
+                                 Panel4: TPanel;
+                                 Series1: TLineSeries;
+                                 Series2: TLineSeries;
+                                 Series3: TLineSeries;
+                                 Series4: TLineSeries;
                                  ToolBar1: TToolBar;
     _ToolButton10: TToolButton;
                                  PrintButton: TToolButton;
@@ -89,33 +118,11 @@ type TFreePropeller_Task5  = class(TForm)
                                  TabSheet1: TTabSheet;
                                  Panel1: TPanel;
                                  Panel: TPanel;
-                                 Label2: TLabel;
-                                 Label3: TLabel;
-                                 Label4: TLabel;
-                                 Label5: TLabel;
-                                 Label6: TLabel;
-                                 Label7: TLabel;
-                                 Label8: TLabel;								 
-								 Combobox: TComboBox;
-                                 Label9: TLabel;								 
-								 Combobox1: TComboBox;								 
-                                 Edit2: TFloatSpinEdit;
-                                 Edit3: TFloatSpinEdit;
-                                 Edit4: TFloatSpinEdit;
-                                 Edit5: TFloatSpinEdit;
-                                 Edit6: TFloatSpinEdit;
-                                 Edit7: TFloatSpinEdit;
-                                 Chart: TChart;
-                                 Series1: TLineSeries;
-                                 Series2: TLineSeries;
-                                 Series3: TLineSeries;
-                                 Series4: TLineSeries;
                                  TabSheet2: TTabSheet;
                                  Resultsmemo: TMemo;
                                  Panel15: TPanel;
                                  Resultsmemo2: TMemo; 
                                  PrintDialog: TPrintDialog;
-                                 CheckBox2: TCheckBox;
                                  procedure ComboBoxClick(Sender: TObject);								 
                                  procedure ComboBoxClick1(Sender: TObject);								 								 
                                  procedure File_ExportData(dat:array of single);

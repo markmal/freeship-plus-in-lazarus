@@ -1,23 +1,23 @@
 object FreeResistance_Hollen: TFreeResistance_Hollen
-  Left = 622
-  Height = 689
-  Top = 232
-  Width = 1125
+  Left = 563
+  Height = 740
+  Top = 274
+  Width = 1200
   Caption = 'Resistance for sea ships by Hollenbachs method 1998'
-  ClientHeight = 689
-  ClientWidth = 1125
+  ClientHeight = 740
+  ClientWidth = 1200
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 1125
+    Width = 1200
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False
@@ -76,22 +76,22 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 665
+    Height = 716
     Top = 24
-    Width = 1125
+    Width = 1200
     ActivePage = General
     Align = alClient
     TabIndex = 0
     TabOrder = 1
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 632
-      ClientWidth = 1119
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel1: TPanel
         Left = 0
-        Height = 632
+        Height = 683
         Top = 0
-        Width = 556
+        Width = 544
         Align = alLeft
         AutoSize = True
         BevelOuter = bvLowered
@@ -100,41 +100,42 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
         ChildSizing.VerticalSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 632
-        ClientWidth = 556
+        ClientHeight = 683
+        ClientWidth = 544
         TabOrder = 0
         object GroupBox1: TGroupBox
           Left = 10
-          Height = 96
+          Height = 116
           Top = 10
-          Width = 535
+          Width = 523
           AutoSize = True
           Caption = 'General'
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 79
-          ClientWidth = 531
+          ClientHeight = 99
+          ClientWidth = 519
           TabOrder = 0
           object Panel2: TPanel
             Left = 0
-            Height = 79
+            Height = 99
             Top = 0
-            Width = 260
+            Width = 254
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
+            ChildSizing.TopBottomSpacing = 10
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 79
-            ClientWidth = 260
+            ClientHeight = 99
+            ClientWidth = 254
             TabOrder = 0
             object Label1: TLabel
               Left = 6
               Height = 25
-              Top = 0
+              Top = 10
               Width = 105
               Caption = 'Start speed'
               Layout = tlCenter
@@ -143,7 +144,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object StartSpeedBox: TFloatSpinEdit
               Left = 117
               Height = 25
-              Top = 0
+              Top = 10
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -156,7 +157,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object _Label31: TLabel
               Left = 203
               Height = 25
-              Top = 0
+              Top = 10
               Width = 16
               Caption = 'kn'
               Layout = tlCenter
@@ -165,7 +166,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object Label2: TLabel
               Left = 6
               Height = 25
-              Top = 27
+              Top = 37
               Width = 105
               Caption = 'Estimate speed '
               Layout = tlCenter
@@ -174,7 +175,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object EndSpeedBox: TFloatSpinEdit
               Left = 117
               Height = 25
-              Top = 27
+              Top = 37
               Width = 80
               Alignment = taRightJustify
               MaxValue = 50
@@ -186,7 +187,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object _Label32: TLabel
               Left = 203
               Height = 25
-              Top = 27
+              Top = 37
               Width = 16
               Caption = 'kn'
               Layout = tlCenter
@@ -195,7 +196,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object Label3: TLabel
               Left = 6
               Height = 25
-              Top = 54
+              Top = 64
               Width = 105
               Caption = 'Maximal speed'
               Layout = tlCenter
@@ -204,7 +205,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object StepSpeedBox: TFloatSpinEdit
               Left = 117
               Height = 25
-              Top = 54
+              Top = 64
               Width = 80
               Alignment = taRightJustify
               MaxValue = 10
@@ -216,7 +217,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object _Label33: TLabel
               Left = 203
               Height = 25
-              Top = 54
+              Top = 64
               Width = 16
               Caption = 'kn'
               Layout = tlCenter
@@ -224,24 +225,25 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
           end
           object Panel3: TPanel
-            Left = 260
-            Height = 79
+            Left = 254
+            Height = 99
             Top = 0
-            Width = 271
+            Width = 265
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
+            ChildSizing.TopBottomSpacing = 10
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 79
-            ClientWidth = 271
+            ClientHeight = 99
+            ClientWidth = 265
             TabOrder = 1
             object Label4: TLabel
               Left = 6
               Height = 25
-              Top = 0
+              Top = 10
               Width = 90
               Caption = 'Water density'
               Layout = tlCenter
@@ -250,7 +252,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object DensityBox: TFloatSpinEdit
               Left = 102
               Height = 25
-              Top = 0
+              Top = 10
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -263,7 +265,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object Label34: TLabel
               Left = 188
               Height = 25
-              Top = 0
+              Top = 10
               Width = 43
               Caption = 't/m^3'
               Layout = tlCenter
@@ -272,7 +274,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object Label5: TLabel
               Left = 6
               Height = 25
-              Top = 27
+              Top = 37
               Width = 90
               Caption = 'Viscosity'
               Layout = tlCenter
@@ -281,7 +283,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object ViscosityBox: TFloatSpinEdit
               Left = 102
               Height = 25
-              Top = 27
+              Top = 37
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 4
@@ -294,7 +296,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object _Label36: TLabel
               Left = 188
               Height = 25
-              Top = 27
+              Top = 37
               Width = 43
               Caption = 'm^2/s'
               Layout = tlCenter
@@ -304,35 +306,36 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
         end
         object GroupBox2: TGroupBox
           Left = 10
-          Height = 379
-          Top = 116
-          Width = 535
+          Height = 419
+          Top = 136
+          Width = 523
           AutoSize = True
           Caption = 'Hull'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 362
-          ClientWidth = 531
+          ClientHeight = 402
+          ClientWidth = 519
           TabOrder = 1
           object Panel4: TPanel
             Left = 0
-            Height = 21
+            Height = 41
             Top = 0
-            Width = 531
+            Width = 519
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
+            ChildSizing.TopBottomSpacing = 10
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 21
-            ClientWidth = 531
+            ClientHeight = 41
+            ClientWidth = 519
             TabOrder = 0
             object CheckBox2: TCheckBox
               Left = 6
               Height = 21
-              Top = 0
+              Top = 10
               Width = 215
               Caption = 'Extract data from current hull'
               OnClick = CheckBox2Click
@@ -342,19 +345,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           object Panel7: TPanel
             Left = 0
             Height = 133
-            Top = 21
-            Width = 531
+            Top = 41
+            Width = 519
             BevelOuter = bvNone
-            ChildSizing.LeftRightSpacing = 6
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
             ClientHeight = 133
-            ClientWidth = 531
+            ClientWidth = 519
             TabOrder = 1
             object Panel10: TPanel
-              Left = 6
+              Left = 0
               Height = 133
               Top = 0
               Width = 236
@@ -523,7 +525,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
               end
             end
             object Panel11: TPanel
-              Left = 248
+              Left = 242
               Height = 133
               Top = 0
               Width = 277
@@ -688,23 +690,24 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           end
           object Panel9: TPanel
             Left = 0
-            Height = 21
-            Top = 154
-            Width = 531
+            Height = 41
+            Top = 174
+            Width = 519
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
+            ChildSizing.TopBottomSpacing = 10
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 21
-            ClientWidth = 531
+            ClientHeight = 41
+            ClientWidth = 519
             TabOrder = 2
             object EstimateBox: TCheckBox
               Left = 6
               Height = 21
-              Top = 0
+              Top = 10
               Width = 110
               Caption = 'Use estimate'
               OnClick = EstimateBoxClick
@@ -713,7 +716,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             object Estimate2Box: TCheckBox
               Left = 122
               Height = 21
-              Top = 0
+              Top = 10
               Width = 119
               Caption = 'Use calculated'
               OnClick = Estimate2BoxClick
@@ -723,8 +726,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           object Panel8: TPanel
             Left = 0
             Height = 187
-            Top = 175
-            Width = 531
+            Top = 215
+            Width = 519
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
             ChildSizing.HorizontalSpacing = 6
@@ -732,7 +735,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
             ClientHeight = 187
-            ClientWidth = 531
+            ClientWidth = 519
             TabOrder = 3
             object Label9: TLabel
               Left = 6
@@ -888,10 +891,10 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
         end
       end
       object Chart: TChart
-        Left = 556
-        Height = 632
+        Left = 544
+        Height = 683
         Top = 0
-        Width = 563
+        Width = 650
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -918,6 +921,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             Title.Caption = 'Power [W]'
             Title.LabelBrush.Style = bsClear
           end>
+        BackColor = clWindow
         Foot.Brush.Color = clBtnFace
         Foot.Font.Color = clBlue
         Legend.Alignment = laTopCenter
@@ -929,6 +933,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           'Resistance according to Hollenbach cargoship series'
         )
         Align = alClient
+        ParentColor = True
         object Series1: TLineSeries
           Marks.Visible = False
           Title = 'Rt      '
@@ -966,8 +971,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
     object Data2: TTabSheet
       Caption = 'Added data'
-      ClientHeight = 632
-      ClientWidth = 1119
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel6: TPanel
         Left = 0
         Height = 632
@@ -1010,8 +1015,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 288
-            ClientWidth = 477
+            ClientHeight = 284
+            ClientWidth = 473
             TabOrder = 0
             object Label6_1: TLabel
               Left = 10
@@ -1248,8 +1253,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 27
-            ClientWidth = 477
+            ClientHeight = 23
+            ClientWidth = 473
             TabOrder = 1
             object A11Box: TComboBox
               Left = 275
@@ -1316,8 +1321,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 366
-            ClientWidth = 324
+            ClientHeight = 362
+            ClientWidth = 320
             TabOrder = 0
             object Label30: TLabel
               Left = 10
@@ -1607,8 +1612,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 632
-      ClientWidth = 1119
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel5: TPanel
         Left = 0
         Height = 632
@@ -1637,8 +1642,8 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 632
-      ClientWidth = 1119
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel15: TPanel
         Left = 0
         Height = 632

@@ -8050,7 +8050,7 @@ begin
   Dialog.A8 := Owner.FResistanceOortmerData.A8;
   Dialog.A9 := Owner.FResistanceOortmerData.A9;
   Dialog.A10 := Owner.FResistanceOortmerData.A10;
-  Dialog.A11 := Owner.FResistanceOortmerData.A11;
+  Dialog.A11 := round(Owner.FResistanceOortmerData.A11);
   if Dialog.Execute(Owner, Owner.FResistanceOortmerData.Extract) then
   begin
     Owner.FResistanceOortmerData.Bwl := Dialog.Bwl;
@@ -8154,7 +8154,7 @@ begin
   Dialog.A8 := Owner.FResistanceFungData.A8;
   Dialog.A9 := Owner.FResistanceFungData.A9;
   Dialog.A10 := Owner.FResistanceFungData.A10;
-  Dialog.A11 := Owner.FResistanceFungData.A11;
+  Dialog.A11 := round(Owner.FResistanceFungData.A11);
   if Dialog.Execute(Owner, Owner.FResistanceFungData.Extract) then
   begin
     Owner.FResistanceFungData.Bwl := Dialog.Bwl;
@@ -8259,7 +8259,7 @@ begin
   Dialog.A8 := Owner.FResistanceOSTData.A8;
   Dialog.A9 := Owner.FResistanceOSTData.A9;
   Dialog.A10 := Owner.FResistanceOSTData.A10;
-  Dialog.A11 := Owner.FResistanceOSTData.A11;
+  Dialog.A11 := round(Owner.FResistanceOSTData.A11);
   Dialog.Dat17_1 := Owner.FResistanceOSTData.Dat17_1;
   Dialog.Dat17_2 := Owner.FResistanceOSTData.Dat17_2;
   Dialog.Dat17_3 := Owner.FResistanceOSTData.Dat17_3;
@@ -8382,7 +8382,7 @@ begin
   Dialog.A8 := Owner.FResistanceRBHSData.A8;
   Dialog.A9 := Owner.FResistanceRBHSData.A9;
   Dialog.A10 := Owner.FResistanceRBHSData.A10;
-  Dialog.A11 := Owner.FResistanceRBHSData.A11;
+  Dialog.A11 := round(Owner.FResistanceRBHSData.A11);
   Dialog.Dat17_1 := Owner.FResistanceRBHSData.Dat17_1;
   Dialog.Dat17_2 := Owner.FResistanceRBHSData.Dat17_2;
   Dialog.Dat17_3 := Owner.FResistanceRBHSData.Dat17_3;
@@ -8505,7 +8505,7 @@ begin
   Dialog.A8 := Owner.FResistanceMHData.A8;
   Dialog.A9 := Owner.FResistanceMHData.A9;
   Dialog.A10 := Owner.FResistanceMHData.A10;
-  Dialog.A11 := Owner.FResistanceMHData.A11;
+  Dialog.A11 := round(Owner.FResistanceMHData.A11);
   Dialog.Dat17_1 := Owner.FResistanceMHData.Dat17_1;
   Dialog.Dat17_2 := Owner.FResistanceMHData.Dat17_2;
   Dialog.Dat17_3 := Owner.FResistanceMHData.Dat17_3;

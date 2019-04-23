@@ -1,75 +1,73 @@
 object FreeResistance_Holtr: TFreeResistance_Holtr
-  Left = 103
-  Height = 769
-  Top = 241
-  Width = 1237
+  Left = 667
+  Height = 740
+  Top = 266
+  Width = 1200
   Caption = 'Resistance for sea ships'
-  ClientHeight = 769
-  ClientWidth = 1237
+  ClientHeight = 740
+  ClientWidth = 1200
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object PageControl1: TPageControl
     Left = 0
-    Height = 745
+    Height = 716
     Top = 24
-    Width = 1237
+    Width = 1200
     ActivePage = General
     Align = alClient
     TabIndex = 0
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 712
-      ClientWidth = 1231
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel1: TPanel
         Left = 0
-        Height = 712
+        Height = 683
         Top = 0
-        Width = 558
+        Width = 537
         Align = alLeft
         AutoSize = True
-        BevelOuter = bvLowered
+        BevelOuter = bvNone
         ChildSizing.TopBottomSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 712
-        ClientWidth = 558
+        ClientHeight = 683
+        ClientWidth = 537
         TabOrder = 0
         object GroupBox1: TGroupBox
           Left = 0
           Height = 116
           Top = 10
-          Width = 557
+          Width = 537
           AutoSize = True
           Caption = 'General'
-          ChildSizing.LeftRightSpacing = 10
-          ChildSizing.HorizontalSpacing = 10
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 99
-          ClientWidth = 553
-          Color = clForm
+          ClientWidth = 533
           ParentColor = False
           TabOrder = 0
           object GeneralPanel1: TPanel
-            Left = 10
+            Left = 0
             Height = 99
             Top = 0
-            Width = 182
+            Width = 229
             AutoSize = True
             BevelOuter = bvNone
-            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.LeftRightSpacing = 20
             ChildSizing.TopBottomSpacing = 10
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 99
-            ClientWidth = 182
+            ClientWidth = 229
             ParentColor = False
             TabOrder = 0
             object Label1: TLabel
-              Left = 10
+              Left = 20
               Height = 25
               Top = 10
               Width = 74
@@ -80,7 +78,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               WordWrap = True
             end
             object StartSpeedBox: TFloatSpinEdit
-              Left = 90
+              Left = 100
               Height = 25
               Top = 10
               Width = 60
@@ -94,7 +92,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               Value = 0
             end
             object _Label31: TLabel
-              Left = 156
+              Left = 166
               Height = 25
               Top = 10
               Width = 16
@@ -103,7 +101,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               ParentColor = False
             end
             object Label2: TLabel
-              Left = 10
+              Left = 20
               Height = 25
               Top = 37
               Width = 74
@@ -114,7 +112,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               WordWrap = True
             end
             object EndSpeedBox: TFloatSpinEdit
-              Left = 90
+              Left = 100
               Height = 25
               Top = 37
               Width = 60
@@ -128,7 +126,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               Value = 0
             end
             object _Label32: TLabel
-              Left = 156
+              Left = 166
               Height = 25
               Top = 37
               Width = 16
@@ -137,7 +135,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               ParentColor = False
             end
             object Label3: TLabel
-              Left = 10
+              Left = 20
               Height = 25
               Top = 64
               Width = 74
@@ -148,7 +146,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               WordWrap = True
             end
             object StepSpeedBox: TFloatSpinEdit
-              Left = 90
+              Left = 100
               Height = 25
               Top = 64
               Width = 60
@@ -162,7 +160,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               Value = 0
             end
             object _Label33: TLabel
-              Left = 156
+              Left = 166
               Height = 25
               Top = 64
               Width = 16
@@ -172,10 +170,10 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             end
           end
           object GeneralPanel2: TPanel
-            Left = 202
+            Left = 229
             Height = 99
             Top = 0
-            Width = 278
+            Width = 304
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -185,7 +183,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 99
-            ClientWidth = 278
+            ClientWidth = 304
             ParentColor = False
             TabOrder = 1
             object Label4: TLabel
@@ -261,19 +259,18 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
           Left = 0
           Height = 523
           Top = 126
-          Width = 557
+          Width = 537
           AutoSize = True
           Caption = 'Hull'
           ClientHeight = 506
-          ClientWidth = 553
-          Color = clForm
+          ClientWidth = 533
           ParentColor = False
           TabOrder = 1
           object Panel3: TPanel
             Left = 0
             Height = 153
             Top = 41
-            Width = 553
+            Width = 533
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -283,7 +280,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
             ClientHeight = 153
-            ClientWidth = 553
+            ClientWidth = 533
             TabOrder = 0
             object GeneralPanel3: TPanel
               Left = 10
@@ -464,20 +461,19 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               Left = 262
               Height = 153
               Top = 0
-              Width = 281
+              Width = 261
               AutoSize = True
               BevelOuter = bvNone
-              ChildSizing.LeftRightSpacing = 10
               ChildSizing.TopBottomSpacing = 10
               ChildSizing.HorizontalSpacing = 6
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 3
               ClientHeight = 153
-              ClientWidth = 281
+              ClientWidth = 261
               TabOrder = 1
               object Label27: TLabel
-                Left = 10
+                Left = 0
                 Height = 25
                 Top = 10
                 Width = 146
@@ -486,7 +482,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object WlAreabox: TFloatSpinEdit
-                Left = 162
+                Left = 152
                 Height = 25
                 Top = 10
                 Width = 80
@@ -499,7 +495,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 Value = 0
               end
               object _Label14: TLabel
-                Left = 248
+                Left = 238
                 Height = 25
                 Top = 10
                 Width = 23
@@ -508,7 +504,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object Label26: TLabel
-                Left = 10
+                Left = 0
                 Height = 25
                 Top = 37
                 Width = 146
@@ -517,7 +513,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object DisplacementBox: TFloatSpinEdit
-                Left = 162
+                Left = 152
                 Height = 25
                 Top = 37
                 Width = 80
@@ -530,7 +526,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 Value = 0
               end
               object _Label15: TLabel
-                Left = 248
+                Left = 238
                 Height = 25
                 Top = 37
                 Width = 23
@@ -539,7 +535,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object Label25: TLabel
-                Left = 10
+                Left = 0
                 Height = 25
                 Top = 64
                 Width = 146
@@ -548,7 +544,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object LCBBox: TFloatSpinEdit
-                Left = 162
+                Left = 152
                 Height = 25
                 Top = 64
                 Width = 80
@@ -562,7 +558,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 Value = 0
               end
               object _Label16: TLabel
-                Left = 248
+                Left = 238
                 Height = 25
                 Top = 64
                 Width = 23
@@ -571,7 +567,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object Label24: TLabel
-                Left = 10
+                Left = 0
                 Height = 25
                 Top = 91
                 Width = 146
@@ -580,7 +576,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object CpBox: TFloatSpinEdit
-                Left = 162
+                Left = 152
                 Height = 25
                 Top = 91
                 Width = 80
@@ -594,14 +590,14 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 Value = 0
               end
               object Label12: TLabel
-                Left = 248
+                Left = 238
                 Height = 25
                 Top = 91
                 Width = 23
                 ParentColor = False
               end
               object Label8: TLabel
-                Left = 10
+                Left = 0
                 Height = 25
                 Top = 118
                 Width = 146
@@ -610,7 +606,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
                 ParentColor = False
               end
               object KeBox: TFloatSpinEdit
-                Left = 162
+                Left = 152
                 Height = 25
                 Top = 118
                 Width = 80
@@ -628,7 +624,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             Left = 0
             Height = 207
             Top = 235
-            Width = 553
+            Width = 533
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -639,7 +635,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
             ClientHeight = 207
-            ClientWidth = 553
+            ClientWidth = 533
             TabOrder = 1
             object Label9: TLabel
               Left = 20
@@ -797,7 +793,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             Left = 0
             Height = 41
             Top = 0
-            Width = 553
+            Width = 533
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -808,7 +804,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
             ClientHeight = 41
-            ClientWidth = 553
+            ClientWidth = 533
             TabOrder = 2
             object CheckBox2: TCheckBox
               Left = 10
@@ -824,7 +820,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             Left = 0
             Height = 64
             Top = 442
-            Width = 553
+            Width = 533
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -835,7 +831,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
             ClientHeight = 64
-            ClientWidth = 553
+            ClientWidth = 533
             TabOrder = 3
             object Estimate4Box: TCheckBox
               Left = 10
@@ -860,7 +856,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             Left = 0
             Height = 41
             Top = 194
-            Width = 553
+            Width = 533
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -871,7 +867,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
             ClientHeight = 41
-            ClientWidth = 553
+            ClientWidth = 533
             TabOrder = 4
             object EstimateBox: TCheckBox
               Left = 10
@@ -895,10 +891,10 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
         end
       end
       object Chart: TChart
-        Left = 558
-        Height = 712
+        Left = 537
+        Height = 683
         Top = 0
-        Width = 673
+        Width = 657
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -925,6 +921,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             Title.Caption = 'Power [W]'
             Title.LabelBrush.Style = bsClear
           end>
+        BackColor = clWindow
         Foot.Brush.Color = clBtnFace
         Foot.Font.Color = clBlue
         Legend.Alignment = laTopCenter
@@ -936,7 +933,7 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
           'TAChart'
         )
         Align = alClient
-        Color = clForm
+        ParentColor = True
         object Series1: TLineSeries
           Marks.Visible = False
           Title = 'Rt'
@@ -966,8 +963,8 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     end
     object Data2: TTabSheet
       Caption = 'Added data'
-      ClientHeight = 712
-      ClientWidth = 1231
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel6: TPanel
         Left = 0
         Height = 712
@@ -1658,8 +1655,8 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 712
-      ClientWidth = 1231
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel5: TPanel
         Left = 0
         Height = 579
@@ -1688,8 +1685,8 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 712
-      ClientWidth = 1231
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel15: TPanel
         Left = 0
         Height = 712
@@ -1721,12 +1718,12 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     Left = 0
     Height = 24
     Top = 0
-    Width = 1237
+    Width = 1200
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False

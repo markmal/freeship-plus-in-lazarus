@@ -203,7 +203,8 @@ begin
 
   if FCounter > SPLASH_TIME then
   begin
-    Close;
+    //Visible:=false;
+    ////Close;
     Application.ProcessMessages; // there maight be no message loop yet
   end;
 

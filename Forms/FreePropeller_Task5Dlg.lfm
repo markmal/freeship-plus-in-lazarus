@@ -1,19 +1,19 @@
 object FreePropeller_Task5: TFreePropeller_Task5
   Left = 542
-  Height = 740
+  Height = 600
   Top = 153
-  Width = 1200
+  Width = 900
   BorderStyle = bsDialog
   Caption = 'Calculation of Open Water Characteristics of Screw Propeller.'
-  ClientHeight = 740
-  ClientWidth = 1200
+  ClientHeight = 600
+  ClientWidth = 900
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 1200
+    Width = 900
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
@@ -73,31 +73,31 @@ object FreePropeller_Task5: TFreePropeller_Task5
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 716
+    Height = 576
     Top = 24
-    Width = 1200
+    Width = 900
     ActivePage = TabSheet1
     Align = alClient
     TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 683
-      ClientWidth = 1194
+      ClientHeight = 543
+      ClientWidth = 894
       object Panel1: TPanel
         Left = 0
-        Height = 683
+        Height = 543
         Top = 0
-        Width = 1194
+        Width = 894
         Align = alClient
         BevelOuter = bvNone
         BorderWidth = 10
-        ClientHeight = 683
-        ClientWidth = 1194
+        ClientHeight = 543
+        ClientWidth = 894
         TabOrder = 0
         object Panel: TPanel
           Left = 10
-          Height = 663
+          Height = 523
           Top = 10
           Width = 349
           Align = alLeft
@@ -107,7 +107,7 @@ object FreePropeller_Task5: TFreePropeller_Task5
           ChildSizing.TopBottomSpacing = 10
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 663
+          ClientHeight = 523
           ClientWidth = 349
           TabOrder = 0
           object Panel2: TPanel
@@ -354,9 +354,9 @@ object FreePropeller_Task5: TFreePropeller_Task5
         end
         object Chart: TChart
           Left = 359
-          Height = 663
+          Height = 523
           Top = 10
-          Width = 825
+          Width = 525
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -424,8 +424,8 @@ object FreePropeller_Task5: TFreePropeller_Task5
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 683
-      ClientWidth = 1194
+      ClientHeight = 543
+      ClientWidth = 894
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0

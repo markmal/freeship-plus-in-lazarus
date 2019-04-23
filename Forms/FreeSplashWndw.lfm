@@ -1,7 +1,7 @@
 object FreeSplashWindow: TFreeSplashWindow
-  Left = 665
+  Left = 666
   Height = 500
-  Top = 177
+  Top = 178
   Width = 700
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False

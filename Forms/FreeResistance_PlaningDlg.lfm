@@ -1,13 +1,12 @@
 object FreeResistance_Planing: TFreeResistance_Planing
   Left = 541
-  Height = 720
+  Height = 740
   Top = 214
-  Width = 900
+  Width = 1200
   AutoSize = True
   Caption = 'Planing resistance calculation.'
-  ClientHeight = 720
-  ClientWidth = 900
-  Color = clBtnFace
+  ClientHeight = 740
+  ClientWidth = 1200
   Constraints.MinWidth = 900
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
@@ -15,12 +14,12 @@ object FreeResistance_Planing: TFreeResistance_Planing
     Left = 0
     Height = 24
     Top = 0
-    Width = 900
+    Width = 1200
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False
@@ -76,31 +75,31 @@ object FreeResistance_Planing: TFreeResistance_Planing
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 696
+    Height = 716
     Top = 24
-    Width = 900
+    Width = 1200
     ActivePage = TabSheet1
     Align = alClient
     TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 663
-      ClientWidth = 894
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel1: TPanel
         Left = 0
-        Height = 663
+        Height = 683
         Top = 0
-        Width = 894
+        Width = 1194
         Align = alClient
         AutoSize = True
         BorderWidth = 10
-        ClientHeight = 663
-        ClientWidth = 894
+        ClientHeight = 683
+        ClientWidth = 1194
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 641
+          Height = 661
           Top = 11
           Width = 412
           Align = alLeft
@@ -108,7 +107,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
           BevelOuter = bvNone
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 641
+          ClientHeight = 661
           ClientWidth = 412
           TabOrder = 0
           object Panel0: TPanel
@@ -790,9 +789,9 @@ object FreeResistance_Planing: TFreeResistance_Planing
         end
         object Chart: TChart
           Left = 423
-          Height = 641
+          Height = 661
           Top = 11
-          Width = 460
+          Width = 760
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -819,6 +818,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
               Title.Caption = 'Tau [degr]'
               Title.LabelBrush.Style = bsClear
             end>
+          BackColor = clNone
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Alignment = laTopCenter
@@ -831,6 +831,7 @@ object FreeResistance_Planing: TFreeResistance_Planing
           )
           Title.Visible = True
           Align = alClient
+          ParentColor = True
           object Series1: TLineSeries
             Marks.Visible = False
             Title = 'Rf      '
@@ -867,8 +868,8 @@ object FreeResistance_Planing: TFreeResistance_Planing
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 663
-      ClientWidth = 894
+      ClientHeight = 683
+      ClientWidth = 1194
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0

@@ -252,6 +252,7 @@ type
     { Methods specific to Lazarus }
     procedure PopulateWithRoot();
     procedure Resize; override;
+    function GetAllColumnsWidth:integer;
     procedure AdjustColumnSizes();
     procedure defaultFileCompare(Sender: TObject; Item1, Item2: TListItem;
                                    Data: Integer; var Compare: Integer);
@@ -270,6 +271,8 @@ type
     property ShellTreeView: TCustomShellTreeView read FShellTreeView write SetShellTreeView;
     { Protected properties which users may want to access, see bug 15374 }
     property Items;
+    property ColumnsWidth:integer read GetAllColumnsWidth;
+    property AutoWidthLastColumn;
   end;
 
   { TShellListView }
@@ -1549,6 +1552,9 @@ begin
   FSizeColumn.AutoSize:=true;
   FTypeColumn.AutoSize:=true;
   FTimeColumn.AutoSize:=true;
+  FTimeColumn.MaxWidth:=100;
+
+  AutoWidthLastColumn:=false;
 
   Resize;
 
@@ -1604,20 +1610,34 @@ begin
   ;
 end;
 
+function TCustomShellListView.GetAllColumnsWidth:integer;
+var w:integer;
+begin
+  // Initial sizes, necessary under Windows CE
+  result := FNameColumn.Width;
+  if FSizeColumn.Visible then result := result + FSizeColumn.Width;
+  if FTypeColumn.Visible then result := result + FTypeColumn.Width;
+  w:=FTimeColumn.Width;
+  {$ifdef LCLGTK2}
+  if w > 120 then w:=120; // GTK2 sometimes makes last column auto expanded. Limit the size.
+  {$endif}
+  if FTimeColumn.Visible then result := result + w;
+end;
+
 procedure TCustomShellListView.AdjustColumnSizes;
 var ncw:integer; cw:integer = 0;
 begin
   // Initial sizes, necessary under Windows CE
-  if FSizeColumn.Visible then cw := cw + FSizeColumn.Width;
-  if FTypeColumn.Visible then cw := cw + FTypeColumn.Width;
-  if FTimeColumn.Visible then cw := cw + FTimeColumn.Width;
+  {cw := GetAllColumnsWidth;
   if Self.ClientWidth > 0 then
      ncw := Self.ClientWidth - cw
   else ncw := Self.Width - cw;
   if ncw > 0 then
      FNameColumn.Width := ncw;
   if FNameColumn.Width < FNameColumn.MinWidth
-    then FNameColumn.Width := FNameColumn.MinWidth;
+    then FNameColumn.Width := FNameColumn.MinWidth;}
+  FNameColumn.AutoSize:=false;
+  FNameColumn.AutoSize:=true;
 end;
 
 procedure TCustomShellListView.PopulateWithRoot();
@@ -1701,7 +1721,7 @@ begin
     debugln(':>TCustomShellListView.HandleResize');
   {$endif}
 
-  AdjustColumnSizes;
+  ///AdjustColumnSizes;
 
   {$ifdef DEBUG_SHELLCTRLS}
     debugln([':<TCustomShellListView.HandleResize C0.Width=',

@@ -44,7 +44,7 @@ type
  TFreeFilePreviewDialog = class(TForm)
     ActionRefresh: TAction;
     ActionList: TActionList;
-    BitBtnOk: TBitBtn;
+    BitBtnOpen: TBitBtn;
     BitBtnCancel: TBitBtn;
     ComboBoxDir: TComboBox;
     FullSize: TMenuItem;
@@ -190,6 +190,8 @@ type
     procedure ShellPathPanelOnSelectionChanged(Sender: TObject);
  private
     { private declarations }
+    FAutoFit: boolean;
+    FIsShowing: boolean;
     FRoot : String;
     FFileName : string;
     FIconNamesMap: TStringList;
@@ -235,7 +237,6 @@ type
     function  getPreviewPicture:TPicture;
     procedure setPreviewPicture(pic:TPicture);
     procedure DefaultPreview(fn:string);
-    procedure FitImageIntoScrollBox;
     procedure ShellListViewSetWordWrap(slv: TCustomShellListView);
     procedure setSpeedButtonGoUpEnabled(path:String);
     procedure setFileDialogMode(const AValue: TFileDialogMode);
@@ -245,27 +246,35 @@ type
     function CreateNewDir(aName:String):boolean;
     procedure CreateNewFolder;
     procedure AddToHistory(dir:string);
+    procedure setAutoFit(val:boolean);
  public
+    procedure DoAutoFit;
+    procedure Activate; override;
+    procedure DoShow; override;
+    function ShowModal: Integer; override;
     function Execute: boolean;
+    procedure AddPlace(placeName:string; dirName:string);
     procedure ChangeDir(dir:string);
-    procedure addPlace(placeName:string; dirName:string);
-    procedure setStatusText(AValue:String);
+    procedure FitPreviewImage;
     procedure ReplaceLabels(aControl:TControl; fromText:String; toText:String); // search and replace a label for control and its children
+    procedure SetStatusText(AValue:String);
     procedure Translate(ALang:string); // '' is default Lang from environment  published
-    property FileName:string read getSelectedFileName write setSelectedFileName;
+
+    property AutoFit: boolean read FAutoFit write setAutoFit;
     property CurrentPath:string read getCurrentPath write setCurrentPath;
-    property OnSelectFile: TSelectFileEvent read FOnSelectFile write FOnSelectFile;
-    property OnPreview: TSelectFileEvent read FOnPreview write FOnPreview;
-    property PreviewImage: TImage read FPreviewImage;
-    property PreviewPicture: TPicture read getPreviewPicture write setPreviewPicture;
-    property PreviewBitmap: Graphics.TBitmap read getPreviewBitmap write setPreviewBitmap;
-    property PreviewText: String read getPreviewText write setPreviewText;
+    property FileName:string read getSelectedFileName write setSelectedFileName;
     property Filter: String read getFilter write setFilter;
     property FilterIndex: integer read getFilterIndex write setFilterIndex;
     property FileDialogMode: TFileDialogMode read FFileDialogMode write setFileDialogMode;
     property LocaleDir: String read FLocaleDir write FLocaleDir;
     property Lang: String read FLang write setLang;
     property ListHidden: boolean read FListHidden write setListHidden;
+    property OnSelectFile: TSelectFileEvent read FOnSelectFile write FOnSelectFile;
+    property OnPreview: TSelectFileEvent read FOnPreview write FOnPreview;
+    property PreviewImage: TImage read FPreviewImage;
+    property PreviewPicture: TPicture read getPreviewPicture write setPreviewPicture;
+    property PreviewBitmap: Graphics.TBitmap read getPreviewBitmap write setPreviewBitmap;
+    property PreviewText: String read getPreviewText write setPreviewText;
   end;
 
 implementation
@@ -653,7 +662,7 @@ begin
   FPreviewImage.AutoSize := false;
   if not FPreviewImage.AutoSize then
     begin
-    FitImageIntoScrollBox;
+    FitPreviewImage;
     FPreviewImage.Hint := hintDblClickToFullSize;
     ScrollBoxPreview.Hint := FPreviewImage.Hint;
     end
@@ -722,6 +731,7 @@ begin
 
   FListBox1ControlledByKeys:=false;
 
+  //ShellListView.AutoWidthLastColumn:=false;
   ShellListView.SortColumn := -1;
   ShellListView.OnFileAdded:=@ShellListViewFileAdded;
   ShellListView.OnEdited:=@ShellListViewEdited;
@@ -897,7 +907,7 @@ begin
  FPreviewImage.AutoSize := true;
  if not FPreviewImage.AutoSize then
    begin
-   FitImageIntoScrollBox;
+   FitPreviewImage;
    FPreviewImage.Hint := hintDblClickToFullSize;
    ScrollBoxPreview.Hint := FPreviewImage.Hint;
    end
@@ -1030,6 +1040,8 @@ begin
 
      FRoot := ExtractFileRoot(dir);
 
+     if not FIsShowing
+       then exit;
 
      if ShellTreeView.Root <> FRoot then ShellTreeView.Root := FRoot;
 
@@ -1051,7 +1063,7 @@ begin
      if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
         then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
 
-     BitBtnOk.Enabled:=false;
+     BitBtnOpen.Enabled:=false;
      end;
 end;
 
@@ -1269,10 +1281,10 @@ begin
   if not isDir then
     begin
     EditName.Text := Item.Caption;
-    BitBtnOk.Enabled:=true;
+    BitBtnOpen.Enabled:=true;
     end
   else
-    BitBtnOk.Enabled:=false;
+    BitBtnOpen.Enabled:=false;
  end;
 
 procedure TFreeFilePreviewDialog.ShellTreeViewChange(Sender: TObject;
@@ -1548,21 +1560,24 @@ begin
 end;
 }
 
-procedure TFreeFilePreviewDialog.FitImageIntoScrollBox;
+procedure TFreeFilePreviewDialog.FitPreviewImage;
 var kI, kS : real;
 begin
+ if FAutoFit then doAutoFit
+ else begin
   kI := FPreviewImage.Picture.Width / FPreviewImage.Picture.Height;
   kS := ScrollBoxPreview.ClientWidth / ScrollBoxPreview.ClientHeight;
   if kI > kS
     then FPreviewImage.Width := ScrollBoxPreview.ClientWidth
     else FPreviewImage.Height := ScrollBoxPreview.ClientHeight;
+ end;
 end;
 
 procedure TFreeFilePreviewDialog.ScrollBoxPreviewResize(Sender: TObject);
 begin
   if not Assigned(FPreviewImage.Picture.Bitmap) then exit;
   if FPreviewImage.AutoSize = false then
-     FitImageIntoScrollBox;
+     FitPreviewImage;
 end;
 
 procedure TFreeFilePreviewDialog.ScrollBoxPreviewDblClick(Sender: TObject);
@@ -1571,7 +1586,7 @@ begin
   FPreviewImage.AutoSize := not FPreviewImage.AutoSize;
   if not FPreviewImage.AutoSize then
     begin
-    FitImageIntoScrollBox;
+    FitPreviewImage;
     FPreviewImage.Hint := hintDblClickToFullSize;
     ScrollBoxPreview.Hint := FPreviewImage.Hint;
     end
@@ -1641,7 +1656,9 @@ begin
   //ComboBoxDir.Text:=p;
   if TCustomShellTreeView.PathContainsHiddenDir(p) then
      setListHidden(true);
-  ChangeDir(p);
+  FRoot := CleanAndExpandDirectory(p);
+  if FIsShowing then
+     ChangeDir(FRoot);
 end;
 
 function TFreeFilePreviewDialog.getPreviewText:string;
@@ -1694,6 +1711,60 @@ begin
   Halt; // End of program execution
 end;
 
+procedure TFreeFilePreviewDialog.setAutoFit(val:boolean);
+begin
+ if FAutoFit = val then exit;
+ FAutoFit := val;
+ FitPreviewImage;
+end;
+
+procedure TFreeFilePreviewDialog.doAutoFit;
+var
+  omd: TFreeFilePreviewDialog;
+  bmw,bmh, cw, tvw, lvw, pvpw,pvph, ppw, psp: integer;
+begin
+    bmw:=PreviewPicture.Bitmap.Width;
+    bmh:=PreviewPicture.Bitmap.Height;
+    cw := ShellListView.ColumnsWidth;
+    lvw := ShellListView.Width;
+    tvw := ShellTreeView.Width;
+    pvpw := ScrollBoxPreview.Width;
+    pvph := ScrollBoxPreview.Height;
+    ppw := PreviewPicture.Width;
+    psp := PairSplitterFilesAndPreview.Position;
+
+
+    if (cw + 10 < ShellListView.ClientWidth)
+      and (pvpw < PreviewPicture.Width) then
+      if (lvw - cw) < (ppw - pvpw) then
+        psp := cw + 10
+      else
+        psp := psp - (ppw - pvpw) + 10;
+    if psp < (tvw + cw + 60) then
+      psp := tvw + cw + 60;
+    PairSplitterFilesAndPreview.Position := psp;
+
+    // Smart fit
+    pvpw := ScrollBoxPreview.ClientWidth;
+    pvph := ScrollBoxPreview.ClientHeight;
+    if (pvpw < bmw) or (pvph < bmh) then
+    begin
+      PreviewImage.Center := True;
+      PreviewImage.Stretch := True;
+      PreviewImage.Align := alClient;
+      PreviewImage.AutoSize := false;
+    end
+    else
+    begin
+      PreviewImage.Center := True;
+      PreviewImage.Stretch := false;
+      PreviewImage.Align := alClient;
+      PreviewImage.AutoSize := false;
+    end;
+
+end;
+
+
 resourcestring UnableOpenFileMsg = 'Unable open file "%s"';
 
 procedure TFreeFilePreviewDialog.DefaultPreview(fn:string);
@@ -1714,7 +1785,7 @@ begin
          + IntToStr(FPreviewImage.Picture.Bitmap.Height);}
 
        FPreviewImage.AutoSize:=false;
-       FitImageIntoScrollBox;
+       FitPreviewImage;
     except
        on EInvalidGraphic do
           begin
@@ -1752,7 +1823,30 @@ end;
 procedure TFreeFilePreviewDialog.SetFilterIndex(const AValue: integer);
 begin
   FilterComboBox1.ItemIndex := AValue;
+  if ShellListView <> nil then
+    ShellListView.Mask := FilterComboBox1.Mask;
 end;
+
+function TFreeFilePreviewDialog.ShowModal: Integer;
+begin
+  result := inherited;
+  FIsShowing:=false;
+end;
+
+procedure TFreeFilePreviewDialog.Activate;
+begin
+  Application.ProcessMessages;
+  FIsShowing:=true;
+  ShellTreeView.Path:=FRoot;
+  //self.ShellListView.Refresh;
+  inherited;
+end;
+
+procedure TFreeFilePreviewDialog.DoShow;
+begin
+  inherited;
+end;
+
 
 function TFreeFilePreviewDialog.Execute: boolean;
 begin
@@ -1770,15 +1864,15 @@ begin
     begin
     SpeedButtonNewDir.Enabled := false;
     EditName.Enabled := false;
-    BitBtnOk.Caption := OkButtonCaptionOpen;
+    BitBtnOpen.Caption := OkButtonCaptionOpen;
     end
   else
   if AValue = fdmSave then
     begin
     SpeedButtonNewDir.Enabled := true;
     EditName.Enabled := true;
-    BitBtnOk.Enabled := true;
-    BitBtnOk.Caption := OkButtonCaptionSave;
+    BitBtnOpen.Enabled := true;
+    BitBtnOpen.Caption := OkButtonCaptionSave;
     end;
 end;
 

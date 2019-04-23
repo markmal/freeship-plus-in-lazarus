@@ -2,25 +2,25 @@
 {    This code is distributed as part of the FREE!ship project. FREE!ship is an               }
 {    open source surface-modelling program based on subdivision surfaces and intended for     }
 {    designing ships.                                                                         }
-{                                                                                             }
+
 {    Copyright © 2005, by Martijn van Engeland                                                }
 {    e-mail                  : Info@FREEship.org                                              }
 {    FREE!ship project page  : https://sourceforge.net/projects/freeship                      }
 {    FREE!ship homepage      : www.FREEship.org                                               }
-{                                                                                             }
+
 {    This program is free software; you can redistribute it and/or modify it under            }
 {    the terms of the GNU General Public License as published by the                          }
 {    Free Software Foundation; either version 2 of the License, or (at your option)           }
 {    any later version.                                                                       }
-{                                                                                             }
+
 {    This program is distributed in the hope that it will be useful, but WITHOUT ANY          }
 {    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A          }
 {    PARTICULAR PURPOSE. See the GNU General Public License for more details.                 }
-{                                                                                             }
+
 {    You should have received a copy of the GNU General Public License along with             }
 {    this program; if not, write to the Free Software Foundation, Inc.,                       }
 {    59 Temple Place, Suite 330, Boston, MA 02111-1307 USA                                    }
-{                                                                                             }
+
 {#############################################################################################}
 
 unit FreeNewModelDlg;
@@ -38,143 +38,157 @@ uses
   LCLIntf, LCLType, LMessages,
 {$ENDIF}
   SysUtils,
-     Classes,
-     Graphics,
-     Forms,
-     Controls,
-     StdCtrls,
-     Buttons,
-     ExtCtrls,
-     FreeShipUnit,
-     FreeLanguageSupport
-;
+  Classes,
+  Graphics,
+  Forms,
+  Controls,
+  StdCtrls,
+  Buttons,
+  ExtCtrls, Spin,
+  FreeShipUnit,
+  FreeLanguageSupport;
 
-type TFreeNewModelDialog = class(TForm)
+type
+
+  { TFreeNewModelDialog }
+
+  TFreeNewModelDialog = class(TForm)
+    FloatSpinEdit1: TFloatSpinEdit;
+    FloatSpinEdit2: TFloatSpinEdit;
+    FloatSpinEdit3: TFloatSpinEdit;
+    Panel2: TPanel;
     Panel3: TPanel;
     BitBtn1: TSpeedButton;
     BitBtn2: TSpeedButton;
     Panel1: TPanel;
-    Panel: TPanel;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
     ComboBox1: TComboBox;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    SpinEdit1: TSpinEdit;
+    SpinEdit2: TSpinEdit;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
-                              private   { Private declarations }
-                                 function FGetBreadth:Single;
-                                 function FGetDraft:Single;
-                                 function FGetLength:Single;
-                                 function FGetNCols:Integer;
-                                 function FGetNRows:Integer;
-                                 procedure FSetBreadth(Val:single);
-                                 procedure FSetDraft(Val:single);
-                                 procedure FSetLength(Val:single);
-                                 procedure FSetNCols(Val:Integer);
-                                 procedure FSetNRows(Val:Integer);
-                              public    { Public declarations }
-                                 function Execute:Boolean;
-                                 property Breadth  : Single read FGetBreadth write FSetBreadth;
-                                 property Draft    : Single read FGetDraft write FSetDraft;
-                                 property Length   : Single read FGetLength write FSetLength;
-                                 property NCols    : Integer read FGetNCols write FSetNCols;
-                                 property NRows    : Integer read FGetNRows write FSetNRows;
-                           end;
+  private   { Private declarations }
+    function FGetBreadth: single;
+    function FGetDraft: single;
+    function FGetLength: single;
+    function FGetNCols: integer;
+    function FGetNRows: integer;
+    procedure FSetBreadth(Val: single);
+    procedure FSetDraft(Val: single);
+    procedure FSetLength(Val: single);
+    procedure FSetNCols(Val: integer);
+    procedure FSetNRows(Val: integer);
+  public    { Public declarations }
+    function Execute: boolean;
+    property Breadth: single
+      read FGetBreadth write FSetBreadth;
+    property Draft: single
+      read FGetDraft write FSetDraft;
+    property Length: single
+      read FGetLength write FSetLength;
+    property NCols: integer
+      read FGetNCols write FSetNCols;
+    property NRows: integer
+      read FGetNRows write FSetNRows;
+  end;
 
-var FreeNewModelDialog: TFreeNewModelDialog;
+var
+  FreeNewModelDialog: TFreeNewModelDialog;
 
 implementation
 
 {$IFnDEF FPC}
   {$R *.dfm}
+
 {$ELSE}
   {$R *.lfm}
 {$ENDIF}
 
-function TFreeNewModelDialog.FGetLength:Single;
+function TFreeNewModelDialog.FGetLength: single;
 begin
-   Result:=StrToFloat(Edit3.Text);
+  Result := FloatSpinEdit1.Value;
 end;{TFreeNewModelDialog.FGetLength}
 
-procedure TFreeNewModelDialog.FSetLength(Val:single);
+procedure TFreeNewModelDialog.FSetLength(Val: single);
 begin
-   Edit3.Text:=FloatToStrF(Val,ffFixed,7,3);
+  FloatSpinEdit1.Value := Val;
 end;{TFreeNewModelDialog.FSetLength}
 
-function TFreeNewModelDialog.FGetBreadth:Single;
+function TFreeNewModelDialog.FGetBreadth: single;
 begin
-   Result:=StrToFloat(Edit4.Text);
+  Result := FloatSpinEdit2.Value;
 end;{TFreeNewModelDialog.FGetBreadth}
 
-procedure TFreeNewModelDialog.FSetBreadth(Val:single);
+procedure TFreeNewModelDialog.FSetBreadth(Val: single);
 begin
-   Edit4.Text:=FloatToStrF(Val,ffFixed,7,3);
+  FloatSpinEdit2.Value := Val;
 end;{TFreeNewModelDialog.FSetBreadth}
 
-function TFreeNewModelDialog.FGetDraft:Single;
+function TFreeNewModelDialog.FGetDraft: single;
 begin
-   Result:=StrToFloat(Edit5.Text);
+  result:=FloatSpinEdit3.Value;
 end;{TFreeNewModelDialog.FGetDraft}
 
-procedure TFreeNewModelDialog.FSetDraft(Val:single);
+procedure TFreeNewModelDialog.FSetDraft(Val: single);
 begin
-   Edit5.Text:=FloatToStrF(Val,ffFixed,7,3);
+  FloatSpinEdit3.Value := Val;
 end;{TFreeNewModelDialog.FSetDraft}
 
-function TFreeNewModelDialog.FGetNCols:Integer;
+function TFreeNewModelDialog.FGetNCols: integer;
 begin
-   Result:=StrToInt(Edit1.Text);
+  Result := SpinEdit1.Value;
 end;{TFreeNewModelDialog.FGetNCols}
 
-procedure TFreeNewModelDialog.FSetNCols(Val:Integer);
+procedure TFreeNewModelDialog.FSetNCols(Val: integer);
 begin
-   if Val<3 then Val:=3;
-   Edit1.Text:=IntToStr(Val);
+  if Val < 3 then
+    Val := 3;
+  SpinEdit1.Value := Val;
 end;{TFreeNewModelDialog.FSetNCols}
 
-function TFreeNewModelDialog.FGetNRows:Integer;
+function TFreeNewModelDialog.FGetNRows: integer;
 begin
-   Result:=StrToInt(Edit2.Text);
+  Result := SpinEdit2.Value;
 end;{TFreeNewModelDialog.FGetNRows}
 
-procedure TFreeNewModelDialog.FSetNRows(Val:Integer);
+procedure TFreeNewModelDialog.FSetNRows(Val: integer);
 begin
-   if Val<3 then Val:=3;
-   Edit2.Text:=IntToStr(Val);
+  if Val < 3 then
+    Val := 3;
+  SpinEdit2.Value := Val;
 end;{TFreeNewModelDialog.FSetNRows}
 
-function TFreeNewModelDialog.Execute:Boolean;
+function TFreeNewModelDialog.Execute: boolean;
 begin
-   NCols:=NCols;
-   NRows:=NRows;
-   Length:=Length;
-   Breadth:=Breadth;
-   Draft:=Draft;
+  NCols := NCols;
+  NRows := NRows;
+  Length := Length;
+  Breadth := Breadth;
+  Draft := Draft;
 
-   ShowTranslatedValues(Self);
-   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
-   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
+  ShowTranslatedValues(Self);
+  GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
+  GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
 
-   Showmodal;
-   Result:=ModalResult=mrOK;
+  Showmodal;
+  Result := ModalResult = mrOk;
 end;{TFreeNewModelDialog.Execute}
 
 procedure TFreeNewModelDialog.BitBtn1Click(Sender: TObject);
 begin
-   ModalResult:=mrOK;
+  ModalResult := mrOk;
 end;{TFreeNewModelDialog.BitBtn1Click}
 
 procedure TFreeNewModelDialog.BitBtn2Click(Sender: TObject);
 begin
-   ModalResult:=mrCancel;
+  ModalResult := mrCancel;
 end;{TFreeNewModelDialog.BitBtn2Click}
 
 end.

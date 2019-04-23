@@ -164,6 +164,7 @@ type
     Label6_1: TLabel;
     Label6_10: TLabel;
     Label6_11: TLabel;
+    Label6_12: TLabel;
     Label6_2: TLabel;
     Label6_3: TLabel;
     Label6_4: TLabel;

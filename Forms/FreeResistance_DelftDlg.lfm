@@ -1,23 +1,23 @@
 object FreeResistance_Delft: TFreeResistance_Delft
-  Left = 824
-  Height = 531
-  Top = 313
-  Width = 1059
+  Left = 306
+  Height = 740
+  Top = 314
+  Width = 1200
   Caption = 'Resistance for Sailing Yachts or a Sea Ships'
-  ClientHeight = 531
-  ClientWidth = 1059
+  ClientHeight = 740
+  ClientWidth = 1200
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 1059
+    Width = 1200
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False
@@ -72,9 +72,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 507
+    Height = 716
     Top = 24
-    Width = 1059
+    Width = 1200
     ActivePage = General
     Align = alClient
     Constraints.MinWidth = 80
@@ -82,23 +82,23 @@ object FreeResistance_Delft: TFreeResistance_Delft
     TabOrder = 1
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 474
-      ClientWidth = 1053
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel1: TPanel
         Left = 0
-        Height = 474
+        Height = 683
         Top = 0
-        Width = 529
+        Width = 528
         Align = alLeft
         AutoSize = True
-        BevelOuter = bvLowered
+        BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 474
-        ClientWidth = 529
+        ClientHeight = 683
+        ClientWidth = 528
         Color = clForm
         ParentColor = False
         TabOrder = 0
@@ -880,10 +880,10 @@ object FreeResistance_Delft: TFreeResistance_Delft
         end
       end
       object Chart: TChart
-        Left = 529
-        Height = 474
+        Left = 528
+        Height = 683
         Top = 0
-        Width = 524
+        Width = 666
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -913,6 +913,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Title.LabelBrush.Style = bsClear
             Transformations = ChartAxisTransformations2
           end>
+        BackColor = clWindow
         Foot.Brush.Color = clBtnFace
         Foot.Font.Color = clBlue
         Legend.Alignment = laTopCenter
@@ -960,8 +961,8 @@ object FreeResistance_Delft: TFreeResistance_Delft
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 474
-      ClientWidth = 1053
+      ClientHeight = 683
+      ClientWidth = 1194
       object Panel5: TPanel
         Left = 0
         Height = 474

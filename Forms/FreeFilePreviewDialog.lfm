@@ -1,42 +1,39 @@
 object FreeFilePreviewDialog: TFreeFilePreviewDialog
-  Left = 464
-  Height = 500
-  Top = 404
-  Width = 1000
+  Left = 528
+  Height = 400
+  Top = 414
+  Width = 800
   BorderIcons = []
-  ClientHeight = 500
-  ClientWidth = 1000
-  Constraints.MinHeight = 300
-  Constraints.MinWidth = 625
-  DesignTimePPI = 120
+  ClientHeight = 400
+  ClientWidth = 800
+  Constraints.MinHeight = 240
+  Constraints.MinWidth = 500
   OnCreate = FormCreate
   OnResize = FormResize
   OnShow = FormShow
-  Position = poScreenCenter
+  Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object StatusBar: TStatusBar
     Left = 0
-    Height = 29
-    Top = 471
-    Width = 1000
+    Height = 19
+    Top = 381
+    Width = 800
     Panels = <    
       item
-        Width = 62
+        Width = 50
       end>
-    ParentFont = False
     SimplePanel = False
   end
   object LocationPanel: TPanel
     Left = 0
     Height = 38
     Top = 42
-    Width = 1000
+    Width = 800
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 38
-    ClientWidth = 1000
-    ParentFont = False
+    ClientWidth = 800
     TabOrder = 1
     object NavigationPanel: TPanel
       Left = 0
@@ -47,7 +44,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
       AutoSize = True
       ClientHeight = 38
       ClientWidth = 74
-      ParentFont = False
       TabOrder = 0
       OnResize = NavigationPanelResize
       object SpeedButtonGoUp: TSpeedButton
@@ -190,7 +186,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           0000000000000000000000000000000000000000000000000000
         }
         OnClick = SpeedButtonGoUpClick
-        ParentFont = False
       end
       object SpeedButtonGoBack: TSpeedButton
         Left = 1
@@ -334,7 +329,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         }
         OnClick = SpeedButtonGoBackClick
         ShowHint = True
-        ParentFont = False
         ParentShowHint = False
       end
     end
@@ -342,35 +336,33 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
       Left = 74
       Height = 38
       Top = 0
-      Width = 926
+      Width = 726
       Align = alClient
       AutoSize = True
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
       ClientHeight = 38
-      ClientWidth = 926
-      ParentFont = False
+      ClientWidth = 726
       TabOrder = 1
       object LabelLocation: TLabel
-        Left = 11
+        Left = 9
         Height = 36
         Top = 1
-        Width = 75
+        Width = 60
         Align = alLeft
-        BorderSpacing.Left = 10
+        BorderSpacing.Left = 8
         Caption = 'Location:'
-        Constraints.MaxWidth = 125
-        Constraints.MinWidth = 75
+        Constraints.MaxWidth = 100
+        Constraints.MinWidth = 60
         Layout = tlCenter
         ParentColor = False
-        ParentFont = False
         OnResize = LabelLocationResize
       end
       object LocationEditorPanel: TPanel
-        Left = 86
+        Left = 69
         Height = 36
         Top = 1
-        Width = 839
+        Width = 656
         Align = alClient
         BevelOuter = bvNone
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -379,22 +371,20 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ClientHeight = 36
-        ClientWidth = 839
-        ParentFont = False
+        ClientWidth = 656
         TabOrder = 0
         object ComboBoxDir: TComboBox
-          Left = 10
-          Height = 28
-          Top = 4
-          Width = 819
-          BorderSpacing.Left = 10
-          BorderSpacing.Right = 10
+          Left = 8
+          Height = 25
+          Top = 6
+          Width = 640
+          BorderSpacing.Left = 8
+          BorderSpacing.Right = 8
           DragMode = dmAutomatic
-          ItemHeight = 20
+          ItemHeight = 0
           OnChange = ComboBoxDirChange
           OnEditingDone = ComboBoxDirEditingDone
           OnKeyDown = ComboBoxDirKeyDown
-          ParentFont = False
           TabOrder = 0
           Text = '.'
         end
@@ -403,95 +393,89 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
   end
   object CenterPanel: TPanel
     Left = 0
-    Height = 327
+    Height = 241
     Top = 80
-    Width = 1000
+    Width = 800
     Align = alClient
-    ClientHeight = 327
-    ClientWidth = 1000
-    ParentFont = False
+    ClientHeight = 241
+    ClientWidth = 800
     TabOrder = 2
     object PairSplitterFilesAndPreview: TPairSplitter
       Left = 1
-      Height = 325
+      Height = 239
       Top = 1
-      Width = 998
+      Width = 798
       Align = alClient
-      Position = 750
+      Position = 500
       object PairSplitterSideFiles: TPairSplitterSide
         Cursor = crArrow
         Left = 0
-        Height = 325
+        Height = 239
         Top = 0
-        Width = 750
-        ClientWidth = 750
-        ClientHeight = 325
+        Width = 500
+        ClientWidth = 500
+        ClientHeight = 239
         object PairSplitter1: TPairSplitter
           Left = 0
-          Height = 325
+          Height = 239
           Top = 0
-          Width = 750
+          Width = 500
           Align = alClient
-          Position = 250
+          Position = 200
           object PairSplitterSide1: TPairSplitterSide
             Cursor = crArrow
             Left = 0
-            Height = 325
+            Height = 239
             Top = 0
-            Width = 250
-            ClientWidth = 250
-            ClientHeight = 325
-            Constraints.MinWidth = 125
+            Width = 200
+            ClientWidth = 200
+            ClientHeight = 239
+            Constraints.MinWidth = 100
             object LeftPageControl: TPageControl
               Left = 0
-              Height = 325
+              Height = 239
               Top = 0
-              Width = 250
-              ActivePage = TabSheetPlaces
+              Width = 200
+              ActivePage = TabSheetTree
               Align = alClient
-              ParentFont = False
-              TabIndex = 0
+              TabIndex = 1
               TabOrder = 0
               OnChange = LeftPageControlChange
               object TabSheetPlaces: TTabSheet
                 Hint = 'Places'
                 Caption = 'Places'
-                ClientHeight = 292
-                ClientWidth = 242
-                ParentFont = False
+                ClientHeight = 206
+                ClientWidth = 194
                 object ToolBarOps: TToolBar
                   Left = 0
-                  Height = 30
+                  Height = 24
                   Top = 0
-                  Width = 242
+                  Width = 194
                   AutoSize = True
-                  ParentFont = False
                   TabOrder = 0
                   object SpeedButtonAddPlace: TSpeedButton
                     Left = 1
-                    Height = 28
+                    Height = 22
                     Hint = 'Add place'
                     Top = 2
-                    Width = 29
+                    Width = 23
                     Caption = '+'
                     OnClick = SpeedButtonAddPlaceClick
                     ShowHint = True
-                    ParentFont = False
                     ParentShowHint = False
                   end
                 end
                 object ListViewPlaces: TListView
                   Left = 0
-                  Height = 262
-                  Top = 30
-                  Width = 242
+                  Height = 186
+                  Top = 24
+                  Width = 194
                   Align = alClient
                   Columns = <                  
                     item
                       AutoSize = True
-                      Width = 0
+                      Width = 177
                     end>
-                  ParentFont = False
                   ParentShowHint = False
                   PopupMenu = PlacesPopupMenu
                   ShowColumnHeaders = False
@@ -509,7 +493,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
                 Caption = 'Tree'
                 ClientHeight = 206
                 ClientWidth = 194
-                ParentFont = False
                 object ShellTreeView: TShellTreeView
                   Left = 0
                   Height = 206
@@ -518,7 +501,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
                   Align = alClient
                   FileSortType = fstNone
                   Images = SmallImageList
-                  ParentFont = False
                   ReadOnly = True
                   TabOrder = 0
                   OnChange = ShellTreeViewChange
@@ -533,26 +515,25 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           end
           object PairSplitterSide2: TPairSplitterSide
             Cursor = crArrow
-            Left = 256
-            Height = 325
+            Left = 205
+            Height = 239
             Top = 0
-            Width = 500
-            ClientWidth = 500
-            ClientHeight = 325
-            Constraints.MinWidth = 500
+            Width = 400
+            ClientWidth = 400
+            ClientHeight = 239
+            Constraints.MinWidth = 400
             object ShellListView: TShellListView
               Left = 0
-              Height = 325
+              Height = 239
               Top = 0
-              Width = 500
+              Width = 400
               Align = alClient
               Color = clDefault
-              Constraints.MinWidth = 500
+              Constraints.MinWidth = 400
               DragMode = dmAutomatic
               HideSelection = False
               LargeImages = LargeImageList
               Mask = '*.ftm *.fbm'
-              ParentFont = False
               ParentShowHint = False
               PopupMenu = ShellListViewPopupMenu
               ReadOnly = True
@@ -577,25 +558,24 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
       end
       object PairSplitterSidePreview: TPairSplitterSide
         Cursor = crArrow
-        Left = 756
-        Height = 325
+        Left = 505
+        Height = 239
         Top = 0
-        Width = 242
-        ClientWidth = 242
-        ClientHeight = 325
-        Constraints.MinWidth = 50
+        Width = 293
+        ClientWidth = 293
+        ClientHeight = 239
+        Constraints.MinWidth = 40
         object ScrollBoxPreview: TScrollBox
           Left = 0
-          Height = 295
+          Height = 215
           Hint = 'DblClick to full size'
-          Top = 30
-          Width = 242
-          HorzScrollBar.Page = 113
-          VertScrollBar.Page = 113
+          Top = 24
+          Width = 293
+          HorzScrollBar.Page = 160
+          VertScrollBar.Page = 128
           Align = alClient
-          ClientHeight = 291
-          ClientWidth = 238
-          ParentFont = False
+          ClientHeight = 213
+          ClientWidth = 291
           ParentShowHint = False
           PopupMenu = PreviewPopupMenu
           ShowHint = True
@@ -605,13 +585,12 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           OnResize = ScrollBoxPreviewResize
           object FPreviewImage: TImage
             Left = 0
-            Height = 113
+            Height = 128
             Top = 0
-            Width = 113
-            Align = alCustom
+            Width = 160
             AutoSize = True
-            Constraints.MinHeight = 20
-            Constraints.MinWidth = 20
+            Constraints.MinHeight = 16
+            Constraints.MinWidth = 16
             OnDblClick = ScrollBoxPreviewDblClick
             ParentShowHint = False
             PopupMenu = PreviewPopupMenu
@@ -621,12 +600,11 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         end
         object PreviewToolPanel: TPanel
           Left = 0
-          Height = 30
+          Height = 24
           Top = 0
-          Width = 242
+          Width = 293
           Align = alTop
           BevelOuter = bvNone
-          ParentFont = False
           TabOrder = 1
         end
       end
@@ -634,28 +612,27 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
   end
   object BottomPanel: TPanel
     Left = 0
-    Height = 64
-    Top = 407
-    Width = 1000
+    Height = 60
+    Top = 321
+    Width = 800
     Align = alBottom
     AutoSize = True
-    ClientHeight = 64
-    ClientWidth = 1000
-    Constraints.MaxHeight = 100
-    ParentFont = False
+    ClientHeight = 60
+    ClientWidth = 800
+    Constraints.MaxHeight = 80
     TabOrder = 3
-    object BitBtnOk: TBitBtn
-      Left = 909
+    object BitBtnOpen: TBitBtn
+      Left = 711
       Height = 42
-      Top = 11
+      Top = 9
       Width = 80
       Align = alRight
       AutoSize = True
-      BorderSpacing.Left = 10
-      BorderSpacing.Top = 10
-      BorderSpacing.Right = 10
-      BorderSpacing.Bottom = 10
-      Caption = 'Ok'
+      BorderSpacing.Left = 8
+      BorderSpacing.Top = 8
+      BorderSpacing.Right = 8
+      BorderSpacing.Bottom = 8
+      Caption = 'Open'
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
         2000000000000010000064000000640000000000000000000000FFFFFF00FFFF
@@ -789,20 +766,19 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
       ModalResult = 1
-      ParentFont = False
       TabOrder = 0
     end
     object BitBtnCancel: TBitBtn
-      Left = 793
+      Left = 613
       Height = 42
-      Top = 11
-      Width = 106
+      Top = 9
+      Width = 90
       Align = alRight
       AutoSize = True
-      BorderSpacing.Left = 10
-      BorderSpacing.Top = 10
-      BorderSpacing.Right = 10
-      BorderSpacing.Bottom = 10
+      BorderSpacing.Left = 8
+      BorderSpacing.Top = 8
+      BorderSpacing.Right = 8
+      BorderSpacing.Bottom = 8
       Cancel = True
       Caption = 'Cancel'
       Glyph.Data = {
@@ -938,39 +914,36 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         0000000000000000000000000000000000000000000000000000
       }
       ModalResult = 2
-      ParentFont = False
       TabOrder = 1
     end
     object Panel1: TPanel
-      Left = 11
-      Height = 62
+      Left = 9
+      Height = 58
       Top = 1
-      Width = 125
+      Width = 100
       Align = alLeft
       AutoSize = True
-      BorderSpacing.Left = 10
-      BorderSpacing.Right = 10
+      BorderSpacing.Left = 8
+      BorderSpacing.Right = 8
       BevelOuter = bvNone
       ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.ShrinkHorizontal = crsHomogenousSpaceResize
       ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
-      ClientHeight = 62
-      ClientWidth = 125
-      Constraints.MinWidth = 125
-      ParentFont = False
+      ClientHeight = 58
+      ClientWidth = 100
+      Constraints.MinWidth = 100
       TabOrder = 2
       object Panel4: TPanel
-        Left = 15
+        Left = 2
         Height = 20
-        Top = 21
+        Top = 19
         Width = 96
         AutoSize = True
         BevelOuter = bvNone
         ClientHeight = 20
         ClientWidth = 96
-        ParentFont = False
         TabOrder = 0
         object SpeedButtonViewListLarge: TSpeedButton
           Left = 60
@@ -1020,7 +993,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           OnClick = SpeedButtonViewListLargeClick
           ShowCaption = False
           ShowHint = True
-          ParentFont = False
           ParentShowHint = False
         end
         object SpeedButtonViewListCompact: TSpeedButton
@@ -1071,7 +1043,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           OnClick = SpeedButtonViewListCompactClick
           ShowCaption = False
           ShowHint = True
-          ParentFont = False
           ParentShowHint = False
         end
         object SpeedButtonViewListSimple: TSpeedButton
@@ -1122,7 +1093,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           OnClick = SpeedButtonViewListSimpleClick
           ShowCaption = False
           ShowHint = True
-          ParentFont = False
           ParentShowHint = False
         end
         object SpeedButtonViewDetails: TSpeedButton
@@ -1174,7 +1144,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           OnClick = SpeedButtonViewDetailsClick
           ShowCaption = False
           ShowHint = True
-          ParentFont = False
           ParentShowHint = False
         end
         object SpeedButtonViewListHidden: TSpeedButton
@@ -1212,16 +1181,15 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           OnClick = SpeedButtonViewListHiddenClick
           ShowCaption = False
           ShowHint = True
-          ParentFont = False
           ParentShowHint = False
         end
       end
     end
     object Panel2: TPanel
-      Left = 146
-      Height = 62
+      Left = 117
+      Height = 58
       Top = 1
-      Width = 637
+      Width = 488
       Align = alClient
       BevelOuter = bvNone
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1229,21 +1197,19 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
       ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
       ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
-      ClientHeight = 62
-      ClientWidth = 637
-      Constraints.MinHeight = 38
-      Constraints.MinWidth = 75
-      ParentFont = False
+      ClientHeight = 58
+      ClientWidth = 488
+      Constraints.MinHeight = 30
+      Constraints.MinWidth = 60
       TabOrder = 3
       object FilterComboBox1: TFilterComboBox
         Left = 0
-        Height = 28
+        Height = 25
         Top = 17
-        Width = 637
-        Constraints.MaxHeight = 40
+        Width = 488
+        Constraints.MaxHeight = 32
         Filter = 'All|*|FreeShip Text|*.ftm|FreeShip Binary|*.fbm|FreeShip|*.ftm *.fbm'
         ItemIndex = 3
-        ParentFont = False
         ShellListView = ShellListView
         TabOrder = 0
         OnChange = FilterComboBox1Change
@@ -1255,23 +1221,21 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     Left = 0
     Height = 42
     Top = 0
-    Width = 1000
+    Width = 800
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 42
-    ClientWidth = 1000
-    ParentFont = False
+    ClientWidth = 800
     TabOrder = 4
     object SaveToolsPanel: TPanel
       Left = 0
       Height = 42
       Top = 0
-      Width = 92
+      Width = 74
       Align = alLeft
       ClientHeight = 42
-      ClientWidth = 92
-      ParentFont = False
+      ClientWidth = 74
       TabOrder = 0
       object SpeedButtonNewDir: TSpeedButton
         Left = 1
@@ -1415,7 +1379,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         }
         OnClick = SpeedButtonNewDirClick
         ShowHint = True
-        ParentFont = False
         ParentShowHint = False
       end
       object SpeedButtonEditLocation: TSpeedButton
@@ -1595,41 +1558,38 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         GroupIndex = -1
         OnClick = SpeedButtonEditLocationClick
         ShowHint = True
-        ParentFont = False
         ParentShowHint = False
       end
     end
     object Panel5: TPanel
-      Left = 92
+      Left = 74
       Height = 42
       Top = 0
-      Width = 908
+      Width = 726
       Align = alClient
       AutoSize = True
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
       ClientHeight = 42
-      ClientWidth = 908
-      ParentFont = False
+      ClientWidth = 726
       TabOrder = 1
       object LabelName: TLabel
-        Left = 11
+        Left = 9
         Height = 40
         Top = 1
         Width = 43
         Align = alLeft
-        BorderSpacing.Left = 10
+        BorderSpacing.Left = 8
         Caption = 'Name:'
-        Constraints.MaxWidth = 100
+        Constraints.MaxWidth = 80
         Layout = tlCenter
         ParentColor = False
-        ParentFont = False
       end
-      object FileEditPanel: TPanel
-        Left = 54
+      object Panel7: TPanel
+        Left = 52
         Height = 40
         Top = 1
-        Width = 853
+        Width = 673
         Align = alClient
         BevelOuter = bvNone
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1638,18 +1598,15 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ClientHeight = 40
-        ClientWidth = 853
-        ParentFont = False
+        ClientWidth = 673
         TabOrder = 0
         object EditName: TEdit
-          Left = 10
-          Height = 28
-          Top = 6
-          Width = 833
-          BorderSpacing.Left = 10
-          BorderSpacing.Right = 10
-          OnEditingDone = EditNameEditingDone
-          ParentFont = False
+          Left = 8
+          Height = 25
+          Top = 8
+          Width = 657
+          BorderSpacing.Left = 8
+          BorderSpacing.Right = 8
           TabOrder = 0
           Text = 'EditName'
         end
@@ -1657,10 +1614,10 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     end
   end
   object AutoSearchListBox: TListBox
-    Left = 189
-    Height = 100
-    Top = 85
-    Width = 125
+    Left = 151
+    Height = 80
+    Top = 68
+    Width = 100
     ClickOnSelChange = False
     ItemHeight = 0
     MultiSelect = True
@@ -1671,17 +1628,17 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     OnMouseLeave = AutoSearchListBoxMouseLeave
     OnMouseMove = AutoSearchListBoxMouseMove
     OnSelectionChange = AutoSearchListBoxSelectionChange
-    ParentFont = False
     ScrollWidth = 98
     TabOrder = 5
     TabStop = False
+    TopIndex = -1
     Visible = False
   end
   object LargeImageList: TImageList
     Height = 32
     Width = 32
-    left = 550
-    top = 170
+    left = 440
+    top = 136
     Bitmap = {
       4C69030000002000000020000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2071,8 +2028,8 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     }
   end
   object SmallImageList: TImageList
-    left = 430
-    top = 190
+    left = 344
+    top = 152
     Bitmap = {
       4C69030000001000000010000000000000000000000000000000000000000000
       000000000000B47F540000000000000000000000000000000000000000000000
@@ -2174,8 +2131,8 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     }
   end
   object PlacesPopupMenu: TPopupMenu
-    left = 78
-    top = 224
+    left = 62
+    top = 179
     object PlacesMenuItemRename: TMenuItem
       Caption = 'Rename'
       OnClick = PlacesMenuItemRenameClick
@@ -2186,8 +2143,8 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     end
   end
   object ActionList: TActionList
-    left = 810
-    top = 280
+    left = 648
+    top = 224
     object ActionRefresh: TAction
       Caption = 'ActionRefresh'
       OnExecute = ActionRefreshExecute
@@ -2195,8 +2152,8 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     end
   end
   object ShellListViewPopupMenu: TPopupMenu
-    left = 350
-    top = 280
+    left = 280
+    top = 224
     object ShellListViewItemNewFolder: TMenuItem
       Caption = 'New Folder'
       OnClick = ShellListViewItemNewFolderClick
@@ -2215,8 +2172,8 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
     end
   end
   object PreviewPopupMenu: TPopupMenu
-    left = 890
-    top = 330
+    left = 712
+    top = 264
     object FullSize: TMenuItem
       Caption = 'Full Size'
       OnClick = FullSizeClick

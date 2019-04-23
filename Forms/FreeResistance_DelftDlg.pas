@@ -394,39 +394,39 @@ begin
   if (Draft <= 0.02) then
     Draft := 0.021;
   if (Lwl <= 0) then
-    LwlBox.Color := clRed
+    LwlBox.Color := clYellow
   else
     LwlBox.Color := clDefault;
   if (Bwl <= 0) then
-    BwlBox.Color := clRed
+    BwlBox.Color := clYellow
   else
     BwlBox.Color := clDefault;
   if (DraftTotal < Draft) then
     Draft := DraftTotal;
   if (WettedSurface <= 0) then
-    WettedSurfaceBox.Color := clRed
+    WettedSurfaceBox.Color := clYellow
   else
     WettedSurfaceBox.Color := clDefault;
   if (WlArea <= 0) then
-    WlAreabox.Color := clRed
+    WlAreabox.Color := clYellow
   else
     WlAreabox.Color := clDefault;
   if (Displacement <= 0) then
-    DisplacementBox.Color := clRed
+    DisplacementBox.Color := clYellow
   else
     DisplacementBox.Color := clDefault;
   if (Cp <= 0) then
-    CpBox.Color := clRed
+    CpBox.Color := clYellow
   else
     CpBox.Color := clDefault;
   if (Viscosity <= 0) then
-    ViscosityBox.Color := clRed
+    ViscosityBox.Color := clYellow
   else
     ViscosityBox.Color := clDefault;
   if (EndSpeed <= 0.0) then
     EndSpeed := 10.0;
   if (EndSpeed <= StartSpeed) then
-    EndSpeedBox.Color := clRed
+    EndSpeedBox.Color := clYellow
   else
     EndSpeedBox.Color := clDefault;
   if (StepSpeed <= 0) then

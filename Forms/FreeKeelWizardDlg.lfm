@@ -1,196 +1,42 @@
 object FreeKeelWizardDialog: TFreeKeelWizardDialog
   Left = 534
-  Height = 527
+  Height = 634
   Top = 153
-  Width = 720
+  Width = 1096
   BorderStyle = bsDialog
   Caption = 'Keel and rudder wizard'
-  ClientHeight = 527
-  ClientWidth = 720
+  ClientHeight = 634
+  ClientWidth = 1096
   Color = clBtnFace
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 490
+    Height = 597
     Top = 24
-    Width = 720
+    Width = 1096
     Align = alClient
     BorderWidth = 10
-    ClientHeight = 490
-    ClientWidth = 720
+    ClientHeight = 597
+    ClientWidth = 1096
     TabOrder = 0
-    object GroupBox1: TGroupBox
-      Left = 8
-      Height = 193
-      Top = 288
-      Width = 256
-      Caption = 'Properties'
-      ClientHeight = 178
-      ClientWidth = 252
-      TabOrder = 0
-      object Label7: TLabel
-        Left = 7
-        Height = 13
-        Top = 68
-        Width = 81
-        Caption = 'Planform area'
-        ParentColor = False
-      end
-      object _Label8: TLabel
-        Left = 150
-        Height = 13
-        Top = 68
-        Width = 43
-        Caption = '_Label8'
-        ParentColor = False
-      end
-      object Label9: TLabel
-        Left = 7
-        Height = 13
-        Top = 84
-        Width = 81
-        Caption = 'Planform COG'
-        ParentColor = False
-      end
-      object _Label10: TLabel
-        Left = 150
-        Height = 13
-        Top = 84
-        Width = 50
-        Caption = '_Label10'
-        ParentColor = False
-      end
-      object Label11: TLabel
-        Left = 7
-        Height = 13
-        Top = 100
-        Width = 105
-        Caption = 'Mean chord length'
-        ParentColor = False
-      end
-      object _Label12: TLabel
-        Left = 150
-        Height = 13
-        Top = 100
-        Width = 44
-        Caption = 'Label10'
-        ParentColor = False
-      end
-      object Label13: TLabel
-        Left = 7
-        Height = 13
-        Top = 132
-        Width = 130
-        Caption = 'Geometric aspect ratio'
-        ParentColor = False
-      end
-      object _Label14: TLabel
-        Left = 150
-        Height = 13
-        Top = 132
-        Width = 44
-        Caption = 'Label10'
-        ParentColor = False
-      end
-      object Label15: TLabel
-        Left = 7
-        Height = 13
-        Top = 148
-        Width = 120
-        Caption = 'Effective aspect ratio'
-        ParentColor = False
-      end
-      object _Label16: TLabel
-        Left = 150
-        Height = 13
-        Top = 148
-        Width = 44
-        Caption = 'Label10'
-        ParentColor = False
-      end
-      object Label18: TLabel
-        Left = 7
-        Height = 13
-        Top = 20
-        Width = 42
-        Caption = 'Volume'
-        ParentColor = False
-      end
-      object _Label19: TLabel
-        Left = 150
-        Height = 13
-        Top = 20
-        Width = 37
-        Caption = 'Label8'
-        ParentColor = False
-      end
-      object Label20: TLabel
-        Left = 7
-        Height = 13
-        Top = 36
-        Width = 72
-        Caption = 'Volume COG'
-        ParentColor = False
-      end
-      object _Label21: TLabel
-        Left = 150
-        Height = 13
-        Top = 36
-        Width = 37
-        Caption = 'Label8'
-        ParentColor = False
-      end
-      object Label22: TLabel
-        Left = 7
-        Height = 13
-        Top = 52
-        Width = 69
-        Caption = 'Wetted area'
-        ParentColor = False
-      end
-      object _Label23: TLabel
-        Left = 150
-        Height = 13
-        Top = 52
-        Width = 37
-        Caption = 'Label8'
-        ParentColor = False
-      end
-      object Label24: TLabel
-        Left = 7
-        Height = 13
-        Top = 116
-        Width = 55
-        Caption = 'Thickness'
-        ParentColor = False
-      end
-      object _Label25: TLabel
-        Left = 150
-        Height = 13
-        Top = 116
-        Width = 44
-        Caption = 'Label10'
-        ParentColor = False
-      end
-    end
     object PageControl: TPageControl
-      Left = 272
-      Height = 468
+      Left = 307
+      Height = 575
       Top = 11
-      Width = 437
-      ActivePage = TabSheet1
-      Align = alRight
-      TabIndex = 0
-      TabOrder = 1
+      Width = 778
+      ActivePage = TabSheet2
+      Align = alClient
+      TabIndex = 1
+      TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = '3D view'
-        ClientHeight = 437
-        ClientWidth = 431
+        ClientHeight = 542
+        ClientWidth = 772
         object ScrollBar1: TScrollBar
           Left = 0
           Height = 15
-          Top = 422
+          Top = 527
           Width = 431
           Align = alBottom
           Max = 180
@@ -201,7 +47,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object ScrollBar2: TScrollBar
           Left = 416
-          Height = 422
+          Height = 527
           Top = 0
           Width = 15
           Align = alRight
@@ -215,14 +61,14 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Lift and drag'
-        ClientHeight = 437
-        ClientWidth = 431
+        ClientHeight = 542
+        ClientWidth = 772
         ImageIndex = 1
         object Chart: TChart
           Left = 0
-          Height = 438
+          Height = 542
           Top = 0
-          Width = 431
+          Width = 772
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -297,720 +143,1074 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
       end
     end
-    object PageControl1: TPageControl
-      Left = 8
-      Height = 280
-      Top = 8
-      Width = 256
-      ActivePage = TabSheet3
-      TabIndex = 0
-      TabOrder = 2
-      object TabSheet3: TTabSheet
-        Caption = 'Keel'
-        ClientHeight = 249
-        ClientWidth = 250
-        object Label1: TLabel
-          Left = 0
-          Height = 13
-          Top = 9
-          Width = 108
-          Caption = 'Type of appendage'
-          ParentColor = False
+    object Panel7: TPanel
+      Left = 11
+      Height = 575
+      Top = 11
+      Width = 296
+      Align = alLeft
+      AutoSize = True
+      Caption = 'Panel7'
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 575
+      ClientWidth = 296
+      TabOrder = 1
+      object PageControl1: TPageControl
+        Left = 0
+        Height = 363
+        Top = 0
+        Width = 295
+        ActivePage = TabSheet3
+        TabIndex = 0
+        TabOrder = 0
+        object TabSheet3: TTabSheet
+          Caption = 'Keel'
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 330
+          ClientWidth = 289
+          object Panel4: TPanel
+            Left = 0
+            Height = 99
+            Top = 0
+            Width = 289
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 99
+            ClientWidth = 289
+            TabOrder = 0
+            object Label1: TLabel
+              Left = 10
+              Height = 25
+              Top = 10
+              Width = 123
+              Caption = 'Type of appendage'
+              ParentColor = False
+            end
+            object ComboBox: TComboBox
+              Left = 139
+              Height = 25
+              Top = 10
+              Width = 140
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Keel'
+                'Rudder'
+              )
+              OnChange = ComboBoxClick
+              OnClick = ComboBoxClick
+              TabOrder = 0
+              Text = 'Keel'
+            end
+            object Label2: TLabel
+              Left = 10
+              Height = 25
+              Top = 37
+              Width = 123
+              Caption = 'Planform shape'
+              ParentColor = False
+            end
+            object ComboBox1: TComboBox
+              Left = 139
+              Height = 25
+              Top = 37
+              Width = 140
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Trapezoidal'
+                'Semi ellipse'
+                'Quarter ellipse'
+                'Straight quarter chord line'
+              )
+              OnChange = ComboBox1Click
+              OnClick = ComboBox1Click
+              TabOrder = 1
+              Text = 'Trapezoidal'
+            end
+            object Label17: TLabel
+              Left = 10
+              Height = 25
+              Top = 64
+              Width = 123
+              Caption = 'Wing section'
+              ParentColor = False
+            end
+            object _ComboBox2: TComboBox
+              Left = 139
+              Height = 25
+              Top = 64
+              Width = 140
+              Constraints.MinWidth = 140
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'NACA63-006'
+                'NACA63-009'
+                'NACA63-010'
+                'NACA63-012'
+                'NACA63-015'
+                'NACA63-018'
+                'NACA63-021'
+                'NACA63-010a'
+                'NACA63-012a'
+                'NACA63-015a'
+                'NACA64-006'
+                'NACA64-008'
+                'NACA64-009'
+                'NACA64-010'
+                'NACA64-012'
+                'NACA64-015'
+                'NACA64-018'
+                'NACA64-021'
+                'NACA65-006'
+                'NACA65-008'
+                'NACA65-009'
+                'NACA65-010'
+                'NACA65-012'
+                'NACA65-015'
+                'NACA65-018'
+                'NACA65-021'
+                'NACA66-009'
+                'NACA66-010'
+                'NACA66-018'
+                'NACA66-021'
+                'NACA0006'
+                'NACA0008'
+                'NACA0009'
+                'NACA0010'
+                'NACA0012'
+                'NACA0015'
+                'NACA0018'
+                'NACA0020'
+                'NACA0021'
+                'NACA0025'
+                'NACA0030'
+                'NACA0035'
+                'Jouk-06'
+                'Jouk-08'
+                'Jouk-09'
+                'Jouk-10'
+                'Jouk-12'
+                'Jouk-15'
+                'Jouk-18'
+                'Jouk-20'
+                'Jouk-21'
+                'Jouk-25'
+                'Jouk-30'
+                'Jouk-35'
+                'E168'
+                'E169'
+                'E171(Dicke 12.28%)'
+                'E297'
+                'E472'
+                'E473'
+                'E474'
+                'E475'
+                'E476'
+                'E477'
+                'E478'
+                'E479'
+                'E520'
+                'E521'
+                'E836'
+                'E837'
+                'E838'
+                'E862 STRUT'
+                'E864 STRUT'
+                'EA 6(-1)-009'
+                'EA 6(-1)-012'
+                'EA 6(-1)-006'
+                'GOE 409'
+                'GOE 410'
+                'GOE 411'
+                'GOE 443'
+                'GOE 444'
+                'GOE 445'
+                'GOE 459'
+                'GOE 460'
+                'GOE 775'
+                'GOE 776'
+                'RAF 27'
+                'RAF 30'
+                'RAF 30 MOD'
+                'S1010 HPV'
+                'S1012'
+                'S1014'
+                'S1016'
+                'S1046 17%'
+                'S1048 14%'
+                'S8035 14%'
+                'SD8020-010-88'
+                'NACA-M1'
+                'NACA-M2'
+                'NACA-M3'
+                'NACA-0009sm'
+                'NACA-0012'
+                'NACA64-008a'
+                'NACA64-010a'
+                'NACA64-012a'
+                'NACA642-015'
+                'NACA642-015a'
+                'NACA/LANGLEY LS(1)'
+                'NACA/LANGLEY 64-012'
+                'NACA/LANGLEY SC'
+                'HQ 0/7'
+                'HQ 0/9'
+                'HQ 0/10'
+                'WORTMANN FX 71-089A'
+                'FX 71-120'
+                'FX 71-L-150/20'
+                'FX 71-L-150/25'
+                'FX 71-L-150/K30'
+                'FX LIII-142 K25'
+                'FX L V-152'
+                'BELL 540'
+                'RYAN BQM-34'
+                'EH,0.0/9.0'
+                'Griffith 30%'
+                'JOUKOWSKI 12%'
+              )
+              OnChange = ComboBox1Click
+              TabOrder = 2
+              Text = 'NACA63-006'
+            end
+          end
+          object Panel5: TPanel
+            Left = 0
+            Height = 180
+            Top = 99
+            Width = 289
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 180
+            ClientWidth = 289
+            TabOrder = 1
+            object Label3: TLabel
+              Left = 10
+              Height = 25
+              Top = 10
+              Width = 131
+              Caption = 'Root chord length'
+              ParentColor = False
+            end
+            object Input1: TFloatSpinEdit
+              Left = 147
+              Height = 25
+              Top = 10
+              Width = 80
+              Alignment = taRightJustify
+              AutoSize = False
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 0
+              MinValue = 0
+              OnChange = Input1ChangeValue
+              OnExit = Input1AfterSetValue
+              TabOrder = 0
+              Value = 2
+            end
+            object Label4: TLabel
+              Left = 10
+              Height = 25
+              Top = 37
+              Width = 131
+              Caption = 'Tip chord length'
+              ParentColor = False
+            end
+            object Input2: TFloatSpinEdit
+              Left = 147
+              Height = 25
+              Top = 37
+              Width = 80
+              Alignment = taRightJustify
+              AutoSize = False
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MinValue = 0
+              OnExit = Input1AfterSetValue
+              TabOrder = 1
+              Value = 1
+            end
+            object Label6: TLabel
+              Left = 10
+              Height = 25
+              Top = 64
+              Width = 131
+              Caption = 'Delta tip'
+              ParentColor = False
+            end
+            object Input4: TFloatSpinEdit
+              Left = 147
+              Height = 25
+              Top = 64
+              Width = 80
+              Alignment = taRightJustify
+              AutoSize = False
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MinValue = 0
+              OnChange = Input4ChangeValue
+              OnExit = Input1AfterSetValue
+              TabOrder = 2
+              Value = 0.1
+            end
+            object Label5: TLabel
+              Left = 10
+              Height = 25
+              Top = 91
+              Width = 131
+              Caption = 'Span'
+              ParentColor = False
+            end
+            object Input3: TFloatSpinEdit
+              Left = 147
+              Height = 25
+              Top = 91
+              Width = 80
+              Alignment = taRightJustify
+              AutoSize = False
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MinValue = 0
+              OnChange = Input3ChangeValue
+              OnExit = Input1AfterSetValue
+              TabOrder = 3
+              Value = 1
+            end
+            object Label26: TLabel
+              Left = 10
+              Height = 25
+              Top = 118
+              Width = 131
+              Caption = 'No. vertical points'
+              ParentColor = False
+            end
+            object Input5: TSpinEdit
+              Left = 147
+              Height = 25
+              Top = 118
+              Width = 80
+              Alignment = taRightJustify
+              AutoSize = False
+              Constraints.MinWidth = 80
+              MaxValue = 1000
+              MinValue = 2
+              OnChange = Input5ChangeValue
+              OnExit = Input5AfterSetValue
+              ParentFont = False
+              TabOrder = 4
+              Value = 6
+            end
+            object Label27: TLabel
+              Left = 10
+              Height = 25
+              Top = 145
+              Width = 131
+              Caption = 'No horizontal points'
+              ParentColor = False
+            end
+            object Input6: TSpinEdit
+              Left = 147
+              Height = 25
+              Top = 145
+              Width = 80
+              Alignment = taRightJustify
+              AutoSize = False
+              Constraints.MinWidth = 80
+              MaxValue = 1000
+              MinValue = 3
+              OnChange = Input6ChangeValue
+              OnExit = Input6AfterSetValue
+              ParentFont = False
+              TabOrder = 5
+              Value = 15
+            end
+          end
+          object Panel6: TPanel
+            Left = 0
+            Height = 51
+            Top = 279
+            Width = 289
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 51
+            ClientWidth = 289
+            TabOrder = 2
+            object Label28: TLabel
+              Left = 10
+              Height = 15
+              Top = 0
+              Width = 269
+              Caption = 'Vertical compression'
+              ParentColor = False
+            end
+            object TrackBar1: TTrackBar
+              Left = 10
+              Height = 36
+              Top = 15
+              Width = 269
+              Max = 20
+              OnChange = TrackBar1Change
+              Position = 0
+              ScalePos = trRight
+              TabOrder = 0
+            end
+          end
         end
-        object Label2: TLabel
-          Left = 0
-          Height = 13
-          Top = 33
-          Width = 89
-          Caption = 'Planform shape'
-          ParentColor = False
-        end
-        object Label17: TLabel
-          Left = 0
-          Height = 13
-          Top = 57
-          Width = 72
-          Caption = 'Wing section'
-          ParentColor = False
-        end
-        object Label3: TLabel
-          Left = 0
-          Height = 13
-          Top = 81
-          Width = 101
-          Caption = 'Root chord length'
-          ParentColor = False
-        end
-        object Label4: TLabel
-          Left = 0
-          Height = 13
-          Top = 105
-          Width = 92
-          Caption = 'Tip chord length'
-          ParentColor = False
-        end
-        object Label6: TLabel
-          Left = 0
-          Height = 13
-          Top = 129
-          Width = 47
-          Caption = 'Delta tip'
-          ParentColor = False
-        end
-        object Label5: TLabel
-          Left = 0
-          Height = 13
-          Top = 153
-          Width = 28
-          Caption = 'Span'
-          ParentColor = False
-        end
-        object Label26: TLabel
-          Left = 0
-          Height = 13
-          Top = 177
-          Width = 103
-          Caption = 'No. vertical points'
-          ParentColor = False
-        end
-        object Label27: TLabel
-          Left = 0
-          Height = 13
-          Top = 201
-          Width = 113
-          Caption = 'No horizontal points'
-          ParentColor = False
-        end
-        object Label28: TLabel
-          Left = 0
-          Height = 13
-          Top = 221
-          Width = 118
-          Caption = 'Vertical compression'
-          ParentColor = False
-        end
-        object ComboBox: TComboBox
-          Left = 102
-          Height = 25
-          Top = 1
-          Width = 125
-          ItemHeight = 0
-          ItemIndex = 0
-          Items.Strings = (
-            'Keel'
-            'Rudder'
-          )
-          OnChange = ComboBoxClick
-          OnClick = ComboBoxClick
-          TabOrder = 0
-          Text = 'Keel'
-        end
-        object ComboBox1: TComboBox
-          Left = 102
-          Height = 25
-          Top = 25
-          Width = 125
-          ItemHeight = 0
-          ItemIndex = 0
-          Items.Strings = (
-            'Trapezoidal'
-            'Semi ellipse'
-            'Quarter ellipse'
-            'Straight quarter chord line'
-          )
-          OnChange = ComboBox1Click
-          OnClick = ComboBox1Click
-          TabOrder = 1
-          Text = 'Trapezoidal'
-        end
-        object _ComboBox2: TComboBox
-          Left = 102
-          Height = 25
-          Top = 49
-          Width = 125
-          ItemHeight = 0
-          ItemIndex = 0
-          Items.Strings = (
-            'NACA63-006'
-            'NACA63-009'
-            'NACA63-010'
-            'NACA63-012'
-            'NACA63-015'
-            'NACA63-018'
-            'NACA63-021'
-            'NACA63-010a'
-            'NACA63-012a'
-            'NACA63-015a'
-            'NACA64-006'
-            'NACA64-008'
-            'NACA64-009'
-            'NACA64-010'
-            'NACA64-012'
-            'NACA64-015'
-            'NACA64-018'
-            'NACA64-021'
-            'NACA65-006'
-            'NACA65-008'
-            'NACA65-009'
-            'NACA65-010'
-            'NACA65-012'
-            'NACA65-015'
-            'NACA65-018'
-            'NACA65-021'
-            'NACA66-009'
-            'NACA66-010'
-            'NACA66-018'
-            'NACA66-021'
-            'NACA0006'
-            'NACA0008'
-            'NACA0009'
-            'NACA0010'
-            'NACA0012'
-            'NACA0015'
-            'NACA0018'
-            'NACA0020'
-            'NACA0021'
-            'NACA0025'
-            'NACA0030'
-            'NACA0035'
-            'Jouk-06'
-            'Jouk-08'
-            'Jouk-09'
-            'Jouk-10'
-            'Jouk-12'
-            'Jouk-15'
-            'Jouk-18'
-            'Jouk-20'
-            'Jouk-21'
-            'Jouk-25'
-            'Jouk-30'
-            'Jouk-35'
-            'E168'
-            'E169'
-            'E171(Dicke 12.28%)'
-            'E297'
-            'E472'
-            'E473'
-            'E474'
-            'E475'
-            'E476'
-            'E477'
-            'E478'
-            'E479'
-            'E520'
-            'E521'
-            'E836'
-            'E837'
-            'E838'
-            'E862 STRUT'
-            'E864 STRUT'
-            'EA 6(-1)-009'
-            'EA 6(-1)-012'
-            'EA 6(-1)-006'
-            'GOE 409'
-            'GOE 410'
-            'GOE 411'
-            'GOE 443'
-            'GOE 444'
-            'GOE 445'
-            'GOE 459'
-            'GOE 460'
-            'GOE 775'
-            'GOE 776'
-            'RAF 27'
-            'RAF 30'
-            'RAF 30 MOD'
-            'S1010 HPV'
-            'S1012'
-            'S1014'
-            'S1016'
-            'S1046 17%'
-            'S1048 14%'
-            'S8035 14%'
-            'SD8020-010-88'
-            'NACA-M1'
-            'NACA-M2'
-            'NACA-M3'
-            'NACA-0009sm'
-            'NACA-0012'
-            'NACA64-008a'
-            'NACA64-010a'
-            'NACA64-012a'
-            'NACA642-015'
-            'NACA642-015a'
-            'NACA/LANGLEY LS(1)'
-            'NACA/LANGLEY 64-012'
-            'NACA/LANGLEY SC'
-            'HQ 0/7'
-            'HQ 0/9'
-            'HQ 0/10'
-            'WORTMANN FX 71-089A'
-            'FX 71-120'
-            'FX 71-L-150/20'
-            'FX 71-L-150/25'
-            'FX 71-L-150/K30'
-            'FX LIII-142 K25'
-            'FX L V-152'
-            'BELL 540'
-            'RYAN BQM-34'
-            'EH,0.0/9.0'
-            'Griffith 30%'
-            'JOUKOWSKI 12%'
-          )
-          OnChange = ComboBox1Click
-          TabOrder = 2
-          Text = 'NACA63-006'
-        end
-        object Input1: TFloatSpinEdit
-          Left = 162
-          Height = 23
-          Top = 73
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          MaxValue = 0
-          MinValue = 0
-          OnChange = Input1ChangeValue
-          OnExit = Input1AfterSetValue
-          TabOrder = 3
-          Value = 2
-        end
-        object Input2: TFloatSpinEdit
-          Left = 162
-          Height = 23
-          Top = 97
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          MinValue = 0
-          OnExit = Input1AfterSetValue
-          TabOrder = 4
-          Value = 1
-        end
-        object Input4: TFloatSpinEdit
-          Left = 162
-          Height = 23
-          Top = 120
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          MinValue = 0
-          OnChange = Input4ChangeValue
-          OnExit = Input1AfterSetValue
-          TabOrder = 5
-          Value = 0.1
-        end
-        object Input3: TFloatSpinEdit
-          Left = 162
-          Height = 23
-          Top = 145
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          MinValue = 0
-          OnChange = Input3ChangeValue
-          OnExit = Input1AfterSetValue
-          TabOrder = 6
-          Value = 1
-        end
-        object Input5: TSpinEdit
-          Left = 162
-          Height = 23
-          Top = 169
-          Width = 65
-          Alignment = taRightJustify
-          MaxValue = 1000
-          MinValue = 2
-          OnChange = Input5ChangeValue
-          OnExit = Input5AfterSetValue
-          ParentFont = False
-          TabOrder = 7
-          Value = 6
-        end
-        object Input6: TSpinEdit
-          Left = 162
-          Height = 23
-          Top = 193
-          Width = 65
-          Alignment = taRightJustify
-          MaxValue = 1000
-          MinValue = 3
-          OnChange = Input6ChangeValue
-          OnExit = Input6AfterSetValue
-          ParentFont = False
-          TabOrder = 8
-          Value = 15
-        end
-        object TrackBar1: TTrackBar
-          Left = 116
-          Height = 36
-          Top = 215
-          Width = 115
-          Max = 20
-          OnChange = TrackBar1Change
-          Position = 0
-          TabOrder = 9
+        object TabSheet4: TTabSheet
+          Caption = 'Bulb'
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 330
+          ClientWidth = 289
+          ImageIndex = 1
+          object Panel8: TPanel
+            Left = 0
+            Height = 268
+            Top = 0
+            Width = 283
+            AutoSize = True
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 268
+            ClientWidth = 283
+            TabOrder = 0
+            OnResize = Panel8Resize
+            object Label8: TLabel
+              Left = 10
+              Height = 23
+              Top = 10
+              Width = 131
+              Caption = 'Planform shape'
+              ParentColor = False
+            end
+            object InputShape: TComboBox
+              Left = 147
+              Height = 23
+              Top = 10
+              Width = 125
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'No bullb'
+                'Round profile'
+                'Wing'
+                'Round wing'
+              )
+              OnChange = InputShapeClick
+              Style = csDropDownList
+              TabOrder = 0
+              Text = 'No bullb'
+            end
+            object Label12: TLabel
+              Left = 10
+              Height = 23
+              Top = 35
+              Width = 131
+              Caption = 'Wing section'
+              ParentColor = False
+            end
+            object InputWing: TComboBox
+              Left = 147
+              Height = 23
+              Top = 35
+              Width = 125
+              ItemHeight = 0
+              ItemIndex = 37
+              Items.Strings = (
+                'NACA63-006'
+                'NACA63-009'
+                'NACA63-010'
+                'NACA63-012'
+                'NACA63-015'
+                'NACA63-018'
+                'NACA63-021'
+                'NACA63-010a'
+                'NACA63-012a'
+                'NACA63-015a'
+                'NACA64-006'
+                'NACA64-008'
+                'NACA64-009'
+                'NACA64-010'
+                'NACA64-012'
+                'NACA64-015'
+                'NACA64-018'
+                'NACA64-021'
+                'NACA65-006'
+                'NACA65-008'
+                'NACA65-009'
+                'NACA65-010'
+                'NACA65-012'
+                'NACA65-015'
+                'NACA65-018'
+                'NACA65-021'
+                'NACA66-009'
+                'NACA66-010'
+                'NACA66-018'
+                'NACA66-021'
+                'NACA0006'
+                'NACA0008'
+                'NACA0009'
+                'NACA0010'
+                'NACA0012'
+                'NACA0015'
+                'NACA0018'
+                'NACA0020'
+                'NACA0021'
+                'NACA0025'
+                'NACA0030'
+                'NACA0035'
+                'Jouk-06'
+                'Jouk-08'
+                'Jouk-09'
+                'Jouk-10'
+                'Jouk-12'
+                'Jouk-15'
+                'Jouk-18'
+                'Jouk-20'
+                'Jouk-21'
+                'Jouk-25'
+                'Jouk-30'
+                'Jouk-35'
+                'E168'
+                'E169'
+                'E171(Dicke 12.28%)'
+                'E297'
+                'E472'
+                'E473'
+                'E474'
+                'E475'
+                'E476'
+                'E477'
+                'E478'
+                'E479'
+                'E520'
+                'E521'
+                'E836'
+                'E837'
+                'E838'
+                'E862 STRUT'
+                'E864 STRUT'
+                'EA 6(-1)-009'
+                'EA 6(-1)-012'
+                'EA 6(-1)-006'
+                'GOE 409'
+                'GOE 410'
+                'GOE 411'
+                'GOE 443'
+                'GOE 444'
+                'GOE 445'
+                'GOE 459'
+                'GOE 460'
+                'GOE 775'
+                'GOE 776'
+                'RAF 27'
+                'RAF 30'
+                'RAF 30 MOD'
+                'S1010 HPV'
+                'S1012'
+                'S1014'
+                'S1016'
+                'S1046 17%'
+                'S1048 14%'
+                'S8035 14%'
+                'SD8020-010-88'
+                'NACA-M1'
+                'NACA-M2'
+                'NACA-M3'
+                'NACA-0009sm'
+                'NACA-0012'
+                'NACA64-008a'
+                'NACA64-010a'
+                'NACA64-012a'
+                'NACA642-015'
+                'NACA642-015a'
+                'NACA/LANGLEY LS(1)'
+                'NACA/LANGLEY 64-012'
+                'NACA/LANGLEY SC'
+                'HQ 0/7'
+                'HQ 0/9'
+                'HQ 0/10'
+                'WORTMANN FX 71-089A'
+                'FX 71-120'
+                'FX 71-L-150/20'
+                'FX 71-L-150/25'
+                'FX 71-L-150/K30'
+                'FX LIII-142 K25'
+                'FX L V-152'
+                'BELL 540'
+                'RYAN BQM-34'
+                'EH,0.0/9.0'
+                'Griffith 30%'
+                'JOUKOWSKI 12%'
+              )
+              OnChange = InputWingClick
+              Style = csDropDownList
+              TabOrder = 1
+              Text = 'NACA0020'
+            end
+            object Label14: TLabel
+              Left = 10
+              Height = 27
+              Top = 60
+              Width = 131
+              Caption = 'Length'
+              ParentColor = False
+            end
+            object Panel9: TPanel
+              Left = 147
+              Height = 27
+              Top = 60
+              Width = 125
+              AutoSize = True
+              BevelInner = bvRaised
+              BevelOuter = bvNone
+              ClientHeight = 27
+              ClientWidth = 125
+              TabOrder = 2
+              object Button2: TButton
+                Left = 1
+                Height = 25
+                Top = 1
+                Width = 58
+                Align = alRight
+                Caption = 'Calc'
+                Enabled = False
+                TabOrder = 0
+              end
+              object InputLength: TFloatSpinEdit
+                Left = 59
+                Height = 25
+                Top = 1
+                Width = 65
+                Align = alRight
+                Alignment = taRightJustify
+                DecimalPlaces = 3
+                MinValue = 0
+                OnExit = InputLengthAfterSetValue
+                TabOrder = 1
+                Value = 1.2
+              end
+            end
+            object Label25: TLabel
+              Left = 10
+              Height = 27
+              Top = 89
+              Width = 131
+              Caption = 'Delta tip'
+              ParentColor = False
+            end
+            object Panel10: TPanel
+              Left = 147
+              Height = 27
+              Top = 89
+              Width = 125
+              AutoSize = True
+              BevelInner = bvRaised
+              BevelOuter = bvNone
+              ClientHeight = 27
+              ClientWidth = 125
+              TabOrder = 3
+              object InputDelta: TFloatSpinEdit
+                Left = 59
+                Height = 25
+                Top = 1
+                Width = 65
+                Align = alRight
+                Alignment = taRightJustify
+                DecimalPlaces = 3
+                MinValue = 0
+                OnExit = InputDeltaAfterSetValue
+                TabOrder = 0
+                Value = 0.1
+              end
+            end
+            object Label10: TLabel
+              Left = 10
+              Height = 27
+              Top = 118
+              Width = 131
+              Caption = 'Wing width'
+              ParentColor = False
+            end
+            object Panel11: TPanel
+              Left = 147
+              Height = 27
+              Top = 118
+              Width = 125
+              AutoSize = True
+              BevelInner = bvRaised
+              BevelOuter = bvNone
+              ClientHeight = 27
+              ClientWidth = 125
+              TabOrder = 4
+              object InputWingWidth: TFloatSpinEdit
+                Left = 59
+                Height = 25
+                Top = 1
+                Width = 65
+                Align = alRight
+                Alignment = taRightJustify
+                DecimalPlaces = 3
+                MinValue = 0
+                OnExit = InputDeltaAfterSetValue
+                TabOrder = 0
+                Value = 0.1
+              end
+            end
+            object Label19: TLabel
+              Left = 10
+              Height = 23
+              Top = 147
+              Width = 131
+              Caption = 'Bulb''s material'
+              Enabled = False
+              ParentColor = False
+            end
+            object InputMaterial: TComboBox
+              Left = 147
+              Height = 23
+              Top = 147
+              Width = 125
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Plumbum'
+                'Steel'
+                'Wolfram'
+                'Set density'
+              )
+              OnChange = InputMaterialChange
+              Style = csDropDownList
+              TabOrder = 5
+              Text = 'Plumbum'
+            end
+            object Label21: TLabel
+              Left = 10
+              Height = 27
+              Top = 172
+              Width = 131
+              Caption = 'Specific weight'
+              Enabled = False
+              ParentColor = False
+            end
+            object Panel12: TPanel
+              Left = 147
+              Height = 27
+              Top = 172
+              Width = 125
+              AutoSize = True
+              BevelInner = bvRaised
+              BevelOuter = bvNone
+              ClientHeight = 27
+              ClientWidth = 125
+              TabOrder = 6
+              object InputDensity: TFloatSpinEdit
+                Left = 59
+                Height = 25
+                Top = 1
+                Width = 65
+                Align = alRight
+                Alignment = taRightJustify
+                Enabled = False
+                MinValue = 0
+                OnExit = InputDensityAfterSetValue
+                TabOrder = 0
+                Value = 11.35
+              end
+            end
+            object Label29: TLabel
+              Left = 10
+              Height = 27
+              Top = 201
+              Width = 131
+              Caption = 'Bulb weight'
+              Enabled = False
+              ParentColor = False
+            end
+            object Panel13: TPanel
+              Left = 147
+              Height = 27
+              Top = 201
+              Width = 125
+              AutoSize = True
+              BevelInner = bvRaised
+              BevelOuter = bvNone
+              ClientHeight = 27
+              ClientWidth = 125
+              TabOrder = 7
+              object InputWeight: TFloatSpinEdit
+                Left = 59
+                Height = 25
+                Top = 1
+                Width = 65
+                Align = alRight
+                Alignment = taRightJustify
+                DecimalPlaces = 3
+                Enabled = False
+                MinValue = 0
+                TabOrder = 0
+                Value = 0.6
+              end
+              object Button1: TButton
+                Left = 1
+                Height = 25
+                Top = 1
+                Width = 58
+                Align = alRight
+                Caption = 'Calc'
+                Enabled = False
+                TabOrder = 1
+              end
+            end
+            object Label16: TLabel
+              Left = 10
+              Height = 27
+              Top = 230
+              Width = 131
+              Caption = 'No horizontal points'
+              ParentColor = False
+            end
+            object Panel15: TPanel
+              Left = 147
+              Height = 27
+              Top = 230
+              Width = 125
+              AutoSize = True
+              BevelInner = bvRaised
+              BevelOuter = bvNone
+              ClientHeight = 27
+              ClientWidth = 125
+              TabOrder = 8
+              object InputPoints: TSpinEdit
+                Left = 59
+                Height = 25
+                Top = 1
+                Width = 65
+                Align = alRight
+                Alignment = taRightJustify
+                TabOrder = 0
+                Value = 26
+              end
+            end
+          end
+          object Panel14: TPanel
+            Left = 0
+            Height = 52
+            Top = 268
+            Width = 283
+            BevelInner = bvRaised
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 52
+            ClientWidth = 283
+            TabOrder = 1
+            object Label23: TLabel
+              Left = 10
+              Height = 15
+              Top = 0
+              Width = 263
+              Caption = 'Vertical compression'
+              ParentColor = False
+            end
+            object TrackBar2: TTrackBar
+              Left = 10
+              Height = 36
+              Top = 15
+              Width = 263
+              Max = 20
+              OnChange = TrackBar1Change
+              Position = 0
+              ScalePos = trRight
+              TabOrder = 0
+            end
+          end
         end
       end
-      object TabSheet4: TTabSheet
-        Caption = 'Bulb'
-        ClientHeight = 249
-        ClientWidth = 250
-        ImageIndex = 1
-        object Label8: TLabel
-          Left = 0
-          Height = 14
-          Top = 9
-          Width = 89
-          Caption = 'Planform shape'
+      object GroupBox1: TGroupBox
+        Left = 0
+        Height = 188
+        Top = 363
+        Width = 295
+        Caption = 'Properties'
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 6
+        ChildSizing.VerticalSpacing = 2
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 171
+        ClientWidth = 291
+        TabOrder = 1
+        object Label18: TLabel
+          Left = 10
+          Height = 15
+          Top = 10
+          Width = 149
+          Caption = 'Volume'
           ParentColor = False
         end
-        object Label12: TLabel
-          Left = 0
-          Height = 14
-          Top = 33
-          Width = 72
-          Caption = 'Wing section'
+        object _Label19: TLabel
+          Left = 165
+          Height = 15
+          Top = 10
+          Width = 58
+          Caption = 'Label8'
           ParentColor = False
         end
-        object Label14: TLabel
-          Left = 0
-          Height = 14
-          Top = 57
-          Width = 38
-          Caption = 'Length'
+        object Label20: TLabel
+          Left = 10
+          Height = 15
+          Top = 27
+          Width = 149
+          Caption = 'Volume COG'
           ParentColor = False
         end
-        object Label16: TLabel
-          Left = 0
-          Height = 14
-          Top = 201
-          Width = 113
-          Caption = 'No horizontal points'
+        object _Label21: TLabel
+          Left = 165
+          Height = 15
+          Top = 27
+          Width = 58
+          Caption = 'Label8'
           ParentColor = False
         end
-        object Label21: TLabel
-          Left = 0
-          Height = 14
-          Top = 153
-          Width = 84
-          Caption = 'Specific weight'
-          Enabled = False
+        object Label22: TLabel
+          Left = 10
+          Height = 15
+          Top = 44
+          Width = 149
+          Caption = 'Wetted area'
           ParentColor = False
         end
-        object Label23: TLabel
-          Left = 0
-          Height = 14
-          Top = 221
-          Width = 118
-          Caption = 'Vertical compression'
+        object _Label23: TLabel
+          Left = 165
+          Height = 15
+          Top = 44
+          Width = 58
+          Caption = 'Label8'
           ParentColor = False
         end
-        object Label25: TLabel
-          Left = 0
-          Height = 14
-          Top = 81
-          Width = 47
-          Caption = 'Delta tip'
+        object Label7: TLabel
+          Left = 10
+          Height = 15
+          Top = 61
+          Width = 149
+          Caption = 'Planform area'
           ParentColor = False
         end
-        object Label29: TLabel
-          Left = 0
-          Height = 14
-          Top = 177
-          Width = 66
-          Caption = 'Bulb weight'
-          Enabled = False
+        object _Label8: TLabel
+          Left = 165
+          Height = 15
+          Top = 61
+          Width = 58
+          Caption = '_Label8'
           ParentColor = False
         end
-        object Label10: TLabel
-          Left = 0
-          Height = 14
-          Top = 105
-          Width = 62
-          Caption = 'Wing width'
+        object Label9: TLabel
+          Left = 10
+          Height = 15
+          Top = 78
+          Width = 149
+          Caption = 'Planform COG'
           ParentColor = False
         end
-        object Label19: TLabel
-          Left = 0
-          Height = 14
+        object _Label10: TLabel
+          Left = 165
+          Height = 15
+          Top = 78
+          Width = 58
+          Caption = '_Label10'
+          ParentColor = False
+        end
+        object Label11: TLabel
+          Left = 10
+          Height = 15
+          Top = 95
+          Width = 149
+          Caption = 'Mean chord length'
+          ParentColor = False
+        end
+        object _Label12: TLabel
+          Left = 165
+          Height = 15
+          Top = 95
+          Width = 58
+          Caption = 'Label10'
+          ParentColor = False
+        end
+        object Label24: TLabel
+          Left = 10
+          Height = 15
+          Top = 112
+          Width = 149
+          Caption = 'Thickness'
+          ParentColor = False
+        end
+        object _Label25: TLabel
+          Left = 165
+          Height = 15
+          Top = 112
+          Width = 58
+          Caption = 'Label10'
+          ParentColor = False
+        end
+        object Label13: TLabel
+          Left = 10
+          Height = 15
           Top = 129
-          Width = 85
-          Caption = 'Bulb''s material'
-          Enabled = False
+          Width = 149
+          Caption = 'Geometric aspect ratio'
           ParentColor = False
         end
-        object InputShape: TComboBox
-          Left = 102
-          Height = 25
-          Top = 1
-          Width = 125
-          ItemHeight = 0
-          ItemIndex = 0
-          Items.Strings = (
-            'No bullb'
-            'Round profile'
-            'Wing'
-            'Round wing'
-          )
-          OnChange = InputShapeClick
-          Style = csDropDownList
-          TabOrder = 0
-          Text = 'No bullb'
-        end
-        object InputWing: TComboBox
-          Left = 102
-          Height = 25
-          Top = 25
-          Width = 125
-          ItemHeight = 0
-          ItemIndex = 37
-          Items.Strings = (
-            'NACA63-006'
-            'NACA63-009'
-            'NACA63-010'
-            'NACA63-012'
-            'NACA63-015'
-            'NACA63-018'
-            'NACA63-021'
-            'NACA63-010a'
-            'NACA63-012a'
-            'NACA63-015a'
-            'NACA64-006'
-            'NACA64-008'
-            'NACA64-009'
-            'NACA64-010'
-            'NACA64-012'
-            'NACA64-015'
-            'NACA64-018'
-            'NACA64-021'
-            'NACA65-006'
-            'NACA65-008'
-            'NACA65-009'
-            'NACA65-010'
-            'NACA65-012'
-            'NACA65-015'
-            'NACA65-018'
-            'NACA65-021'
-            'NACA66-009'
-            'NACA66-010'
-            'NACA66-018'
-            'NACA66-021'
-            'NACA0006'
-            'NACA0008'
-            'NACA0009'
-            'NACA0010'
-            'NACA0012'
-            'NACA0015'
-            'NACA0018'
-            'NACA0020'
-            'NACA0021'
-            'NACA0025'
-            'NACA0030'
-            'NACA0035'
-            'Jouk-06'
-            'Jouk-08'
-            'Jouk-09'
-            'Jouk-10'
-            'Jouk-12'
-            'Jouk-15'
-            'Jouk-18'
-            'Jouk-20'
-            'Jouk-21'
-            'Jouk-25'
-            'Jouk-30'
-            'Jouk-35'
-            'E168'
-            'E169'
-            'E171(Dicke 12.28%)'
-            'E297'
-            'E472'
-            'E473'
-            'E474'
-            'E475'
-            'E476'
-            'E477'
-            'E478'
-            'E479'
-            'E520'
-            'E521'
-            'E836'
-            'E837'
-            'E838'
-            'E862 STRUT'
-            'E864 STRUT'
-            'EA 6(-1)-009'
-            'EA 6(-1)-012'
-            'EA 6(-1)-006'
-            'GOE 409'
-            'GOE 410'
-            'GOE 411'
-            'GOE 443'
-            'GOE 444'
-            'GOE 445'
-            'GOE 459'
-            'GOE 460'
-            'GOE 775'
-            'GOE 776'
-            'RAF 27'
-            'RAF 30'
-            'RAF 30 MOD'
-            'S1010 HPV'
-            'S1012'
-            'S1014'
-            'S1016'
-            'S1046 17%'
-            'S1048 14%'
-            'S8035 14%'
-            'SD8020-010-88'
-            'NACA-M1'
-            'NACA-M2'
-            'NACA-M3'
-            'NACA-0009sm'
-            'NACA-0012'
-            'NACA64-008a'
-            'NACA64-010a'
-            'NACA64-012a'
-            'NACA642-015'
-            'NACA642-015a'
-            'NACA/LANGLEY LS(1)'
-            'NACA/LANGLEY 64-012'
-            'NACA/LANGLEY SC'
-            'HQ 0/7'
-            'HQ 0/9'
-            'HQ 0/10'
-            'WORTMANN FX 71-089A'
-            'FX 71-120'
-            'FX 71-L-150/20'
-            'FX 71-L-150/25'
-            'FX 71-L-150/K30'
-            'FX LIII-142 K25'
-            'FX L V-152'
-            'BELL 540'
-            'RYAN BQM-34'
-            'EH,0.0/9.0'
-            'Griffith 30%'
-            'JOUKOWSKI 12%'
-          )
-          OnChange = InputWingClick
-          Style = csDropDownList
-          TabOrder = 1
-          Text = 'NACA0020'
-        end
-        object InputLength: TFloatSpinEdit
-          Left = 162
-          Height = 24
-          Top = 49
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          MinValue = 0
-          OnExit = InputLengthAfterSetValue
-          TabOrder = 2
-          Value = 1.2
-        end
-        object InputPoints: TSpinEdit
-          Left = 162
-          Height = 24
-          Top = 193
-          Width = 65
-          Alignment = taRightJustify
-          TabOrder = 3
-          Value = 26
-        end
-        object InputDensity: TFloatSpinEdit
-          Left = 162
-          Height = 24
-          Top = 145
-          Width = 65
-          Alignment = taRightJustify
-          Enabled = False
-          MinValue = 0
-          OnExit = InputDensityAfterSetValue
-          TabOrder = 4
-          Value = 11.35
-        end
-        object Button1: TButton
-          Left = 102
-          Height = 25
-          Top = 167
+        object _Label14: TLabel
+          Left = 165
+          Height = 15
+          Top = 129
           Width = 58
-          Caption = 'Calc'
-          Enabled = False
-          TabOrder = 5
+          Caption = 'Label10'
+          ParentColor = False
         end
-        object InputWeight: TFloatSpinEdit
-          Left = 162
-          Height = 24
-          Top = 169
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          Enabled = False
-          MinValue = 0
-          TabOrder = 6
-          Value = 0.6
+        object Label15: TLabel
+          Left = 10
+          Height = 15
+          Top = 146
+          Width = 149
+          Caption = 'Effective aspect ratio'
+          ParentColor = False
         end
-        object TrackBar2: TTrackBar
-          Left = 118
-          Height = 23
-          Top = 215
-          Width = 115
-          Max = 20
-          OnChange = TrackBar1Change
-          Position = 0
-          TabOrder = 7
-        end
-        object InputDelta: TFloatSpinEdit
-          Left = 162
-          Height = 24
-          Top = 73
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          MinValue = 0
-          OnExit = InputDeltaAfterSetValue
-          TabOrder = 8
-          Value = 0.1
-        end
-        object Button2: TButton
-          Left = 102
-          Height = 25
-          Top = 47
+        object _Label16: TLabel
+          Left = 165
+          Height = 15
+          Top = 146
           Width = 58
-          Caption = 'Calc'
-          Enabled = False
-          TabOrder = 9
-        end
-        object InputWingWidth: TFloatSpinEdit
-          Left = 162
-          Height = 24
-          Top = 97
-          Width = 65
-          Alignment = taRightJustify
-          DecimalPlaces = 3
-          MinValue = 0
-          OnExit = InputDeltaAfterSetValue
-          TabOrder = 10
-          Value = 0.1
-        end
-        object InputMaterial: TComboBox
-          Left = 103
-          Height = 25
-          Top = 120
-          Width = 125
-          ItemHeight = 0
-          ItemIndex = 0
-          Items.Strings = (
-            'Plumbum'
-            'Steel'
-            'Wolfram'
-            'Set density'
-          )
-          OnChange = InputMaterialChange
-          Style = csDropDownList
-          TabOrder = 11
-          Text = 'Plumbum'
+          Caption = 'Label10'
+          ParentColor = False
         end
       end
     end
@@ -1018,8 +1218,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
   object Panel3: TPanel
     Left = 0
     Height = 13
-    Top = 514
-    Width = 720
+    Top = 621
+    Width = 1096
     Align = alBottom
     TabOrder = 1
   end
@@ -1027,15 +1227,15 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 720
+    Width = 1096
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 720
+    ClientWidth = 1096
     TabOrder = 2
     object BitBtn1: TSpeedButton
-      Left = 556
+      Left = 932
       Height = 20
       Top = 2
       Width = 80
@@ -1084,7 +1284,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 638
+      Left = 1014
       Height = 20
       Top = 2
       Width = 80
@@ -1133,7 +1333,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       OnClick = BitBtn2Click
     end
     object SpeedButton1: TSpeedButton
-      Left = 84
+      Left = 89
       Height = 20
       Top = 2
       Width = 80
@@ -1149,7 +1349,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Left = 2
       Height = 20
       Top = 2
-      Width = 80
+      Width = 85
       Align = alLeft
       AutoSize = True
       BorderSpacing.Around = 2

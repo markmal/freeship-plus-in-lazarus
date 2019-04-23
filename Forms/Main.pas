@@ -276,7 +276,7 @@ type
     ShowDiagonals: TAction;
     ToolButton35: TToolButton;
     Diagonals1: TMenuItem;
-    Recentfiles: TMenuItem;
+    RecentFiles: TMenuItem;
     N4: TMenuItem;
     ImportCarene: TAction;
     Carenefile1: TMenuItem;
@@ -623,6 +623,7 @@ type
 
       procedure SetCaption;
       procedure UpdateMenu;
+      procedure RecentFilesDialogActivate(Sender: TObject);
       procedure ShowRecentFilesDialog;
   end;
 
@@ -1340,6 +1341,33 @@ begin
    TransformLackenby.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
 end;{TMainForm.UpdateMenu}
 
+
+procedure TMainForm.RecentFilesDialogActivate(Sender: TObject);
+var dlg: TTileDialog; i:integer; vFileName,sTime:string; jpg:TJPEGImage;
+    pic:TPicture;
+begin
+  dlg:= Sender as TTileDialog;
+  Screen.Cursor := crHourGlass;
+  Application.ProcessMessages;
+  for i:=0 to FreeShip.Edit.RecentFileCount-1 do
+  begin
+    vFileName:=Freeship.Edit.RecentFile[i];
+    if not FileExists(vFileName) then continue;
+    sTime:=FormatDateTime('YYYY-MM-DD hh:mm:ss',FileDateToDateTime(FileAgeUTF8(vFileName)));
+    Screen.Cursor := crHourGlass;
+    Application.ProcessMessages;
+    jpg:= Freeship.Edit.getPreviewImage(vFileName);
+    if assigned(jpg) then
+      begin
+      pic := TPicture.Create;
+      pic.Bitmap.Assign(jpg);
+      dlg.AddTile(pic, sTime+' - '+vFileName, vFileName);
+      end;
+    Application.ProcessMessages;
+  end;
+  Screen.Cursor := crDefault;
+end;
+
 procedure TMainForm.ShowRecentFilesDialog;
 var dlg: TTileDialog; i:integer; vFileName,sTime:string; jpg:TJPEGImage;
     pic:TPicture;
@@ -1347,21 +1375,12 @@ begin
   dlg := TTileDialog.create(Self);
   MenuImages.GetBitmap(ToolButtonOpenFile.ImageIndex, dlg.ButtonOpenFile.Glyph);
 
-  for i:=0 to FreeShip.Edit.RecentFileCount-1 do
-    begin
-      vFileName:=Freeship.Edit.RecentFile[i];
-      if not FileExists(vFileName) then continue;
-      sTime:=FormatDateTime('YYYY-MM-DD hh:mm:ss',FileDateToDateTime(FileAgeUTF8(vFileName)));
-      jpg:= Freeship.Edit.getPreviewImage(vFileName);
-      if assigned(jpg) then
-        begin
-        pic := TPicture.Create;
-        pic.Bitmap.Assign(jpg);
-        dlg.AddTile(pic, sTime+' - '+vFileName, vFileName);
-        end;
-    end;
+  dlg.FileList := Freeship.Edit.RecentFiles;
+  dlg.onActivate := RecentFilesDialogActivate;
 
   dlg.ShowModal;
+  FreeShipUpdateRecentFileList(nil); //update just in case if items deleted
+
   vFileName:=dlg.FileName;
   dlg.Free;
   if (vFileName<>'') and (vFileName<>'*') then

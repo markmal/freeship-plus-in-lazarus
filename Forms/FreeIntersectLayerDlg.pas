@@ -84,7 +84,7 @@ type
                                         function FGetLayer2:TFreeSubdivisionLayer;
                                         procedure UpdateBox2;
                                      public { Public declarations }
-                                       function Execute(Layers:TFasterList):Boolean;
+                                       function Execute(Layers:TFasterListTFreeSubdivisionLayer):Boolean;
                                        property Layer1   : TFreeSubdivisionLayer read FGetLayer1;
                                        property Layer2   : TFreeSubdivisionLayer read FGetLayer2;
                                   end;
@@ -131,7 +131,7 @@ begin
    end;
 end;{TFreeIntersectLayerDialog.UpdateBox2}
 
-function TFreeIntersectLayerDialog.Execute(Layers:TFasterList):Boolean;
+function TFreeIntersectLayerDialog.Execute(Layers:TFasterListTFreeSubdivisionLayer):Boolean;
 var I       : Integer;
     Layer   : TFreeSubdivisionLayer;
 begin

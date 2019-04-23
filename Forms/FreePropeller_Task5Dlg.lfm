@@ -429,9 +429,9 @@ object FreePropeller_Task5: TFreePropeller_Task5
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0
-        Height = 525
+        Height = 543
         Top = 0
-        Width = 794
+        Width = 894
         Align = alClient
         Font.Color = clBlack
         Font.Height = -13

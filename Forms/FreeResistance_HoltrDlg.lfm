@@ -1,7 +1,7 @@
 object FreeResistance_Holtr: TFreeResistance_Holtr
-  Left = 534
+  Left = 103
   Height = 769
-  Top = 204
+  Top = 241
   Width = 1237
   Caption = 'Resistance for sea ships'
   ClientHeight = 769
@@ -13,9 +13,9 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     Height = 745
     Top = 24
     Width = 1237
-    ActivePage = General
+    ActivePage = Data2
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
@@ -1276,17 +1276,6 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
             ClientHeight = 27
             ClientWidth = 381
             TabOrder = 1
-            object Label6_11: TLabel
-              Left = 10
-              Height = 15
-              Top = 2
-              Width = 82
-              Caption = 'Type of ship:'
-              Constraints.MaxWidth = 300
-              Constraints.MinWidth = 10
-              Layout = tlCenter
-              ParentColor = False
-            end
             object A11Box: TComboBox
               Left = 173
               Height = 23
@@ -1315,6 +1304,17 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
               Style = csDropDownList
               TabOrder = 0
               Text = 'Passenger ship and ferry'
+            end
+            object Label6_12: TLabel
+              Left = 10
+              Height = 15
+              Top = 2
+              Width = 82
+              Caption = 'Type of ship:'
+              Constraints.MaxWidth = 300
+              Constraints.MinWidth = 10
+              Layout = tlCenter
+              ParentColor = False
             end
           end
         end
@@ -1778,6 +1778,17 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
       ImageIndex = 0
       OnClick = ToolButton7Click
     end
+  end
+  object Label6_11: TLabel
+    Left = 10
+    Height = 15
+    Top = 2
+    Width = 82
+    Caption = 'Type of ship:'
+    Constraints.MaxWidth = 300
+    Constraints.MinWidth = 10
+    Layout = tlCenter
+    ParentColor = False
   end
   object PrintDialog: TPrintDialog
     left = 544

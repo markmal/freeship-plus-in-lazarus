@@ -7946,7 +7946,7 @@ begin
   Dialog.A8 := Owner.FResistanceHollenData.A8;
   Dialog.A9 := Owner.FResistanceHollenData.A9;
   Dialog.A10 := Owner.FResistanceHollenData.A10;
-  Dialog.A11 := Owner.FResistanceHollenData.A11;
+  Dialog.A11 := round(Owner.FResistanceHollenData.A11);
   if Dialog.Execute(Owner, Owner.FResistanceHollenData.Extract) then
   begin
     Owner.FResistanceHollenData.Bwl := Dialog.Bwl;

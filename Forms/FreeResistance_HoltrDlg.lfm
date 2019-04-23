@@ -13,9 +13,9 @@ object FreeResistance_Holtr: TFreeResistance_Holtr
     Height = 745
     Top = 24
     Width = 1237
-    ActivePage = Data2
+    ActivePage = General
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'

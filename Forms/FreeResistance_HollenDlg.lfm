@@ -79,9 +79,9 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     Height = 665
     Top = 24
     Width = 1125
-    ActivePage = Data2
+    ActivePage = General
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     object General: TTabSheet
       Caption = 'General'

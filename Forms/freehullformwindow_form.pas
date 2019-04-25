@@ -654,7 +654,8 @@ procedure TFreeHullForm.SaveAsBitmapExecute(Sender: TObject);
 var Str : string;
 begin
    // Skip translation
-   Str:=Freeship.Preferences.ExportDirectory+ChangeFileExt(ExtractFilename(Freeship.Filename),'.bmp');
+   Str:=Freeship.Preferences.ExportDirectory + DirectorySeparator
+      + ChangeFileExt(ExtractFilename(Freeship.Filename),'.bmp');
    Viewport.SaveAsBitmap(Str);
    // End Skip translation
 end;{TFreeHullForm.SaveAsBitmapExecute}

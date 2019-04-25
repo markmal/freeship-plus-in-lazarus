@@ -376,10 +376,10 @@ end;
 function TFreePreferences.getUserAppDataDirectory: string;
 begin
   {$ifdef UNIX}
-  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
+  Result := SysUtils.GetEnvironmentVariable('HOME') + DirectorySeparator+'FreeShip';
   {$else}
     {$ifdef Windows}
-  Result := SysUtils.GetEnvironmentVariable('APPDATA') + '/FreeShip';
+  Result := SysUtils.GetEnvironmentVariable('APPDATA') + DirectorySeparator+'FreeShip';
     {$endif}
   {$endif}
 end;
@@ -988,8 +988,9 @@ begin
 end;
 
 procedure TFreePreferences.ResetDirectories;
+const DS = DirectorySeparator;
 var
-  AppDataDir: string;
+  AppDataDir, S: string;
 
   function chooseDirAppDataDir(GlobalAppDataDir, UserAppDataDir: string): string;
   begin
@@ -1006,25 +1007,30 @@ begin
   FGlobalAppDataDirectory := getGlobalAppDataDirectory;
 
   FOpenDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Ships', FUserAppDataDirectory + '/Ships');
+    DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');
   FSaveDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Ships', FUserAppDataDirectory + '/Ships');
+    DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');
   FImportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Import', FUserAppDataDirectory + '/Import');
+    DS + 'Import', FUserAppDataDirectory + DS + 'Import');
   FExportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Export', FUserAppDataDirectory + '/Export');
+    DS + 'Export', FUserAppDataDirectory + DS + 'Export');
   FLanguagesDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Languages', FUserAppDataDirectory + '/Languages');
+    DS + 'Languages', FUserAppDataDirectory + DS + 'Languages');
   FExecDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Exec', FUserAppDataDirectory + '/Exec');
+    DS + 'Exec', FUserAppDataDirectory + DS + 'Exec');
   FManualsDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Manuals', FUserAppDataDirectory + '/Manuals');
+    DS + 'Manuals', FUserAppDataDirectory + DS + 'Manuals');
   FTempDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Temp', FUserAppDataDirectory + '/Temp');
-  FMenuIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Themes/Default/icons/16', FUserAppDataDirectory + '/Themes/Default/icons/16');
-  FToolIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    '/Themes/Default/icons/24', FUserAppDataDirectory + '/Themes/Default/icons/24');
+    DS + 'Temp', FUserAppDataDirectory + DS + 'Temp');
+
+  S:=StringReplace('/Themes/Default/icons/16','/',DS,[rfReplaceAll]);
+  FMenuIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory + S,
+                        FUserAppDataDirectory + S );
+
+  S:=StringReplace('/Themes/Default/icons/24','/',DS,[rfReplaceAll]);
+  FToolIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory + S,
+                        FUserAppDataDirectory + S);
+
 end;
 
 
@@ -1043,8 +1049,8 @@ begin
   FUserConfigDirectory := self.getUserConfigDirectory;
   FUserAppDataDirectory := self.getUserAppDataDirectory;
 
-  GlobalConfigFileName := FGlobalConfigDirectory + '/FreeShip.ini';
-  UserConfigFileName := FUserConfigDirectory + '/FreeShip.ini';
+  GlobalConfigFileName := FGlobalConfigDirectory + DirectorySeparator+'FreeShip.ini';
+  UserConfigFileName := FUserConfigDirectory + DirectorySeparator+'FreeShip.ini';
 
   // just for migration from .dta to .ini
   if not FileExistsUTF8(GlobalConfigFileName) and not
@@ -1154,7 +1160,7 @@ var
   T, L, W, H, S: integer;
   params: TColorIniFile;
 begin
-  FileName := self.getUserConfigDirectory + '/FreeShip.ini';
+  FileName := self.getUserConfigDirectory + DirectorySeparator+'FreeShip.ini';
   if not FileExistsUTF8(Filename) then
     ForceDirectoriesUTF8(ExtractFilePath(Filename));
 

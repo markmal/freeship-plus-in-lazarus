@@ -74,13 +74,16 @@ type
     Label7: TLabel;
     SpeedButton1: TSpeedButton;
     SaveDialog: TSaveDialog;
+    procedure FormCreate(Sender: TObject);
     procedure SpinEdit1Change(Sender: TObject);
     procedure SpinEdit2Change(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure SetImageSizes(W,H: integer);
   private   { Private declarations }
     FRatio: single;
+    FIsInteractive : boolean;
     function FGetFilename: string;
     function FGetImageWidth: integer;
     procedure FSetImageWidth(val: integer);
@@ -134,6 +137,20 @@ begin
   Result := Edit3.Text;
 end;{TSaveImageDialog.FGetFilename}
 
+procedure TSaveImageDialog.FSetFilename(val: string);
+begin
+  Edit3.Text := val;
+end;{TSaveImageDialog.FSetFilename}
+
+procedure TSaveImageDialog.SetImageSizes(W,H: integer);
+begin
+  FIsInteractive:=false;
+  ImageWidth := W;
+  ImageHeight := H;
+  FRatio := ImageWidth / ImageHeight;
+  FIsInteractive:=true;
+end;
+
 function TSaveImageDialog.FGetImageWidth: integer;
 begin
   Result := SpinEdit1.Value;
@@ -144,11 +161,6 @@ begin
   SpinEdit1.Value := val;
   SetImageSize;
 end;{TSaveImageDialog.FSetImageWidth}
-
-procedure TSaveImageDialog.FSetFilename(val: string);
-begin
-  Edit3.Text := val;
-end;{TSaveImageDialog.FSetFilename}
 
 function TSaveImageDialog.FGetImageHeight: integer;
 begin
@@ -173,22 +185,32 @@ begin
   Result := ModalResult = mrOk;
 end;{TSaveImageDialog.Execute}
 
+procedure TSaveImageDialog.FormCreate(Sender: TObject);
+begin
+  FIsInteractive := true;
+  FRatio := 1.0;
+end;
+
 procedure TSaveImageDialog.SpinEdit1Change(Sender: TObject);
 begin
-  ImageWidth := self.ImageWidth;
+  if not FIsInteractive then exit;
+  //ImageWidth := self.ImageWidth;
   ImageHeight := Round(Imagewidth / FRatio);
+  SetImageSize;
 end;{TSaveImageDialog.Edit1Exit}
 
 procedure TSaveImageDialog.SpinEdit2Change(Sender: TObject);
 begin
-  inherited;
-  ImageHeight := self.ImageHeight;
+  if not FIsInteractive then exit;
+  //ImageHeight := self.ImageHeight;
   ImageWidth := Round(FRatio * ImageHeight);
+  SetImageSize;
 end;{TSaveImageDialog.Edit2Exit}
 
 procedure TSaveImageDialog.SpeedButton1Click(Sender: TObject);
 begin
-  SaveDialog.FileName := Filename;
+  SaveDialog.InitialDir:= ExtractFileDir(Filename);
+  SaveDialog.FileName := ExtractFileName(Filename);
   if SaveDialog.Execute then
     Filename := SaveDialog.FileName;
 end;{TSaveImageDialog.SpeedButton1Click}

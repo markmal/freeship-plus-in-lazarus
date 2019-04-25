@@ -1299,8 +1299,7 @@ begin
   begin
     Dialog := TSaveImageDialog.Create(self);
     ShowTranslatedValues(Dialog);
-    Dialog.ImageWidth := ClientWidth;
-    Dialog.ImageHeight := ClientHeight;
+    Dialog.SetImageSizes(ClientWidth,ClientHeight);
     Dialog.Filename := Filename;
     OK := Dialog.Execute;
   end

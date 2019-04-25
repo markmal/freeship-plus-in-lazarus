@@ -18,19 +18,19 @@ object FreePreferencesDialog: TFreePreferencesDialog
   LCLVersion = '2.0.0.4'
   object ButtonPanel: TPanel
     Left = 0
-    Height = 36
+    Height = 32
     Top = 0
     Width = 725
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 36
+    ClientHeight = 32
     ClientWidth = 725
     ParentFont = False
     TabOrder = 0
     object BitBtn2: TSpeedButton
       Left = 621
-      Height = 28
+      Height = 24
       Top = 4
       Width = 100
       Align = alRight
@@ -80,7 +80,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
     end
     object BitBtn1: TSpeedButton
       Left = 517
-      Height = 28
+      Height = 24
       Top = 4
       Width = 100
       Align = alRight
@@ -128,107 +128,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
       OnClick = OkButtonClick
       ParentFont = False
     end
-    object BitBtnReset: TSpeedButton
-      Left = 4
-      Height = 28
-      Top = 4
-      Width = 100
-      Align = alLeft
-      AutoSize = True
-      BorderSpacing.Around = 4
-      Constraints.MinWidth = 100
-      Caption = 'Reset'
-      Flat = True
-      Glyph.Data = {
-        36090000424D3609000000000000360000002800000018000000180000000100
-        2000000000000009000064000000640000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00007F5212147F5212D27F5212FF7F5212FE7F5212FE7F5212FE7F5212FE7F52
-        12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F52
-        12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FC7F5212F7000000000000
-        00007F5212157F5212D47F5212FF7F5212E97F5212E47F5212E47F5212E47F52
-        12E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F52
-        12E47F5212E47F5212E47F5212E47F5212E87F5212FD7F5212FA000000000000
-        000071482C187F5211D57F5212F37F52124C7F5212207F5212227F5212227F52
-        12227F5212227F52122382540C217A4E1D2482540E217F5211227F5212227F52
-        12227F5212227F5212227F5212207F5212457F5212EC7F5212FC000000001F0F
-        C4332A16AFA172492AE9805310EF7F5212300000000000000000000000000000
-        000000000000000000001D0DC8181F0FC38C1E0EC53D00000000000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC2110C03D2110
-        C0CE2110C0FF3C238FFF734929EE83550A300000000000000000000000000000
-        0000000000002110C0192110C0AC2110C0FF2110C0D82110C040000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC2110C0B72110
-        C0FF2110C0FF2010C1FF371F98F24C2E703D0000000000000000000000000000
-        00002110C01A2110C0AD2110C0FF2110C0FF2110C0FF2110C0B02110C00B0000
-        00000000000000000000000000007F5212287F5212E87F5212FC2110C0342110
-        C0C62110C0FF2110C0FF2010C1FF2110C0BB2110C02200000000000000002110
-        C01B2110C0AF2110C0FF2110C0FF2110C0FF2110C0D22110C037000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC000000002110
-        C02B2110C0C62010C1FF2110C0FF2110C0FF2110C0BD2110C0222110C01A2110
-        C0B12110C0FF2110C0FF2110C0FF2110C0D02110C03500000000000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
-        0000311BA2332E19A8E42110C1FF2110C0FF2110C0FF2110C0C22110C0BB2110
-        C0FF2110C0FF2110C0FF2110C0CF2110C0330000000000000000000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
-        0000865705156D4533D4382096FF2110C1FF2110C0FF2110C0FF2110C0FF2110
-        C0FF2110C0FF2110C0CD2110C032000000000000000000000000000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
-        00007F52121580530FD471482CFA2E19A9E5200FC1FF2110C0FF2110C0FF2110
-        C0FF2110C0D12110C02F00000000000000000000000000000000000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
-        00007F521215805310D5744A27F92F1AA6E2200FC1FF2110C0FF2110C0FF2110
-        C0FF2110C0CC2110C02700000000000000000000000000000000000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
-        00008657041570482DD43B228FFF2110C1FF2110C0FF200FC2FF200FC2FF2110
-        C0FF2110C0FF2110C0C52110C02A000000000000000000000000000000000000
-        00000000000000000000000000007F5212287F5212E87F5212FC000000000000
-        0000361F982D311BA3E22110C1FF2110C0FF200FC1FF301AA5F2321CA1EF2110
-        C1FF2110C0FF2110C0FF2110C0C64E2F6D5183550A447F5212457F5212457F52
-        12457F5212457F5212457F5212437F5212627F5212EF7F5212FB000000002110
-        C0232110C0BD2010C1FF2110C0FF2110C1FF371F97FF70482EFE734A28FD3B22
-        90FF2110C0FF2110C0FF2010C1FF341D9DF96E4631F8805310FA7F5212FC7F52
-        12FC7F5212FC7F5212FC7F5212FC7F5212FC7F5212FF7F5212FA2110C02B2110
-        C0BD2110C0FF2110C0FF2110C1FF2A16AFD96B4438BB81530FBC80530FBC6F47
-        30BB2D19AAD52010C1FE2110C0FF200FC2FF351E9BFF6B4437DD805211BC7F52
-        12BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212B82110C0B62110
-        C0FF2110C0FF2110C0FF2110C0C32815B52BAF7400067F5212087E521208AA71
-        00062C18B0232110C0B72110C0FF2110C0FF2010C1FF2412BBB4482C77138959
-        00077F5212087F5212087F5212087F5212087F5212087F5212082110C0472110
-        C0D42110C0FF2110C0C02110C027000000000000000000000000000000000000
-        0000000000002110C01F2110C0B42110C0FF2110C0DE2110C1490000FF000000
-        0000000000000000000000000000000000000000000000000000000000002110
-        C0452110C0B52110C02D00000000000000000000000000000000000000000000
-        000000000000000000002110C0232110C0B12110C05200000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-      }
-      OnClick = ResetButtonClick
-      ParentFont = False
-    end
   end
   object Panel1: TPanel
     Left = 0
-    Height = 664
-    Top = 36
+    Height = 668
+    Top = 32
     Width = 725
     Align = alClient
     AutoSize = True
     BevelOuter = bvLowered
     BorderWidth = 10
-    ClientHeight = 664
+    ClientHeight = 668
     ClientWidth = 725
     ParentFont = False
     TabOrder = 1
@@ -236,7 +146,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
     OnPaint = Panel1Paint
     object PageControl1: TPageControl
       Left = 11
-      Height = 642
+      Height = 646
       Top = 11
       Width = 703
       ActivePage = TabSheet1
@@ -254,7 +164,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
         ChildSizing.VerticalSpacing = 10
         ChildSizing.ShrinkHorizontal = crsHomogenousSpaceResize
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 609
+        ClientHeight = 613
         ClientWidth = 695
         ParentFont = False
         ParentShowHint = False
@@ -393,54 +303,56 @@ object FreePreferencesDialog: TFreePreferencesDialog
       object TabSheet2: TTabSheet
         Caption = 'Directories'
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 471
-        ClientWidth = 554
+        ClientHeight = 613
+        ClientWidth = 695
         ParentFont = False
         object Panel51: TPanel
           Left = 0
-          Height = 471
+          Height = 613
           Top = 0
-          Width = 554
+          Width = 695
           Align = alClient
           AutoSize = True
+          BevelOuter = bvNone
           Caption = 'Panel51'
           ChildSizing.LeftRightSpacing = 10
           ChildSizing.TopBottomSpacing = 10
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 471
-          ClientWidth = 554
+          ClientHeight = 613
+          ClientWidth = 695
+          Color = clBtnFace
+          ParentColor = False
           ParentFont = False
           TabOrder = 0
           object Panel30: TPanel
-            Left = 11
-            Height = 40
-            Top = 11
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 10
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 0
             object Panel32: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditLanguagesDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -448,8 +360,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditLanguagesDir'
               end
               object SpeedButtonLanguagesDir: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -469,9 +381,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object LabelLanguagesDir: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Languages'
               ParentColor = False
@@ -479,35 +391,35 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel28: TPanel
-            Left = 11
-            Height = 40
-            Top = 51
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 58
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 1
             object Panel29: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditExecDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -515,8 +427,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditExecDir'
               end
               object SpeedButton12: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -536,9 +448,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label30: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Executables'
               ParentColor = False
@@ -546,35 +458,35 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel31: TPanel
-            Left = 11
-            Height = 40
-            Top = 91
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 106
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 2
             object Panel33: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditManualsDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -582,8 +494,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditManualsDir'
               end
               object SpeedButton9: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -603,9 +515,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label29: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Manuals'
               ParentColor = False
@@ -613,35 +525,35 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel34: TPanel
-            Left = 11
-            Height = 40
-            Top = 131
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 154
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 3
             object Panel35: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditTempDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -649,8 +561,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditTempDir'
               end
               object SpeedButton13: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -670,9 +582,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label31: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Temporary'
               ParentColor = False
@@ -680,35 +592,35 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel38: TPanel
-            Left = 11
-            Height = 40
-            Top = 171
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 202
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 4
             object Panel39: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditOpenDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -716,8 +628,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditOpenDir'
               end
               object SpeedButton14: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -737,9 +649,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label32: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Open'
               ParentColor = False
@@ -747,34 +659,34 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel40: TPanel
-            Left = 11
-            Height = 40
-            Top = 291
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 346
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 5
             object Panel41: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditExportDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -782,8 +694,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditExportDir'
               end
               object SpeedButton17: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -803,9 +715,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label35: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Export'
               ParentColor = False
@@ -813,34 +725,34 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel42: TPanel
-            Left = 11
-            Height = 40
-            Top = 251
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 298
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 6
             object Panel43: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditImportDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -848,8 +760,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditImportDir'
               end
               object SpeedButton16: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -869,9 +781,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label34: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Import'
               ParentColor = False
@@ -879,35 +791,35 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel44: TPanel
-            Left = 11
-            Height = 40
-            Top = 211
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 250
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 7
             object Panel45: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditSaveDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -915,8 +827,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditSaveDir'
               end
               object SpeedButton15: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -936,9 +848,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label33: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Save'
               ParentColor = False
@@ -946,34 +858,34 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object PanelGlobalImportDir: TPanel
-            Left = 11
-            Height = 40
-            Top = 371
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 442
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 8
             object Panel47: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditGlobalImportDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -981,8 +893,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditGlobalImportDir'
               end
               object SpeedButton19: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -1002,9 +914,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label39: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Global Import'
               ParentColor = False
@@ -1012,34 +924,34 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
           end
           object Panel48: TPanel
-            Left = 11
-            Height = 40
-            Top = 331
-            Width = 532
+            Left = 10
+            Height = 48
+            Top = 394
+            Width = 675
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 40
-            ClientWidth = 532
+            ClientHeight = 48
+            ClientWidth = 675
             ParentFont = False
             TabOrder = 9
             object Panel49: TPanel
               Left = 0
-              Height = 25
-              Top = 15
-              Width = 532
+              Height = 28
+              Top = 20
+              Width = 675
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 25
-              ClientWidth = 532
+              ClientHeight = 28
+              ClientWidth = 675
               ParentFont = False
               TabOrder = 0
               object EditGlobalOpenDir: TEdit
                 Left = 0
-                Height = 25
+                Height = 28
                 Top = 0
-                Width = 509
+                Width = 646
                 Align = alClient
                 OnChange = EditDirChange
                 ParentFont = False
@@ -1047,8 +959,8 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 Text = 'EditGlobalOpenDir'
               end
               object SpeedButton18: TSpeedButton
-                Left = 503
-                Height = 25
+                Left = 646
+                Height = 28
                 Top = 0
                 Width = 29
                 Align = alRight
@@ -1068,12 +980,114 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label36: TLabel
               Left = 0
-              Height = 15
+              Height = 20
               Top = 0
-              Width = 532
+              Width = 675
               Align = alTop
               Caption = 'Global Open'
               ParentColor = False
+              ParentFont = False
+            end
+          end
+          object Panel55: TPanel
+            Left = 10
+            Height = 36
+            Top = 490
+            Width = 675
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ClientHeight = 36
+            ClientWidth = 675
+            TabOrder = 10
+            object BitBtnResetDirs: TSpeedButton
+              Left = 4
+              Height = 28
+              Top = 4
+              Width = 100
+              Align = alLeft
+              AutoSize = True
+              BorderSpacing.Around = 4
+              Constraints.MinWidth = 100
+              Caption = 'Reset'
+              Flat = True
+              Glyph.Data = {
+                36090000424D3609000000000000360000002800000018000000180000000100
+                2000000000000009000064000000640000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                00007F5212147F5212D27F5212FF7F5212FE7F5212FE7F5212FE7F5212FE7F52
+                12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F52
+                12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FC7F5212F7000000000000
+                00007F5212157F5212D47F5212FF7F5212E97F5212E47F5212E47F5212E47F52
+                12E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F52
+                12E47F5212E47F5212E47F5212E47F5212E87F5212FD7F5212FA000000000000
+                000071482C187F5211D57F5212F37F52124C7F5212207F5212227F5212227F52
+                12227F5212227F52122382540C217A4E1D2482540E217F5211227F5212227F52
+                12227F5212227F5212227F5212207F5212457F5212EC7F5212FC000000001F0F
+                C4332A16AFA172492AE9805310EF7F5212300000000000000000000000000000
+                000000000000000000001D0DC8181F0FC38C1E0EC53D00000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC2110C03D2110
+                C0CE2110C0FF3C238FFF734929EE83550A300000000000000000000000000000
+                0000000000002110C0192110C0AC2110C0FF2110C0D82110C040000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC2110C0B72110
+                C0FF2110C0FF2010C1FF371F98F24C2E703D0000000000000000000000000000
+                00002110C01A2110C0AD2110C0FF2110C0FF2110C0FF2110C0B02110C00B0000
+                00000000000000000000000000007F5212287F5212E87F5212FC2110C0342110
+                C0C62110C0FF2110C0FF2010C1FF2110C0BB2110C02200000000000000002110
+                C01B2110C0AF2110C0FF2110C0FF2110C0FF2110C0D22110C037000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000002110
+                C02B2110C0C62010C1FF2110C0FF2110C0FF2110C0BD2110C0222110C01A2110
+                C0B12110C0FF2110C0FF2110C0FF2110C0D02110C03500000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                0000311BA2332E19A8E42110C1FF2110C0FF2110C0FF2110C0C22110C0BB2110
+                C0FF2110C0FF2110C0FF2110C0CF2110C0330000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                0000865705156D4533D4382096FF2110C1FF2110C0FF2110C0FF2110C0FF2110
+                C0FF2110C0FF2110C0CD2110C032000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                00007F52121580530FD471482CFA2E19A9E5200FC1FF2110C0FF2110C0FF2110
+                C0FF2110C0D12110C02F00000000000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                00007F521215805310D5744A27F92F1AA6E2200FC1FF2110C0FF2110C0FF2110
+                C0FF2110C0CC2110C02700000000000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                00008657041570482DD43B228FFF2110C1FF2110C0FF200FC2FF200FC2FF2110
+                C0FF2110C0FF2110C0C52110C02A000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                0000361F982D311BA3E22110C1FF2110C0FF200FC1FF301AA5F2321CA1EF2110
+                C1FF2110C0FF2110C0FF2110C0C64E2F6D5183550A447F5212457F5212457F52
+                12457F5212457F5212457F5212437F5212627F5212EF7F5212FB000000002110
+                C0232110C0BD2010C1FF2110C0FF2110C1FF371F97FF70482EFE734A28FD3B22
+                90FF2110C0FF2110C0FF2010C1FF341D9DF96E4631F8805310FA7F5212FC7F52
+                12FC7F5212FC7F5212FC7F5212FC7F5212FC7F5212FF7F5212FA2110C02B2110
+                C0BD2110C0FF2110C0FF2110C1FF2A16AFD96B4438BB81530FBC80530FBC6F47
+                30BB2D19AAD52010C1FE2110C0FF200FC2FF351E9BFF6B4437DD805211BC7F52
+                12BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212B82110C0B62110
+                C0FF2110C0FF2110C0FF2110C0C32815B52BAF7400067F5212087E521208AA71
+                00062C18B0232110C0B72110C0FF2110C0FF2010C1FF2412BBB4482C77138959
+                00077F5212087F5212087F5212087F5212087F5212087F5212082110C0472110
+                C0D42110C0FF2110C0C02110C027000000000000000000000000000000000000
+                0000000000002110C01F2110C0B42110C0FF2110C0DE2110C1490000FF000000
+                0000000000000000000000000000000000000000000000000000000000002110
+                C0452110C0B52110C02D00000000000000000000000000000000000000000000
+                000000000000000000002110C0232110C0B12110C05200000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000
+              }
+              OnClick = ResetDirsButtonClick
               ParentFont = False
             end
           end
@@ -1081,27 +1095,27 @@ object FreePreferencesDialog: TFreePreferencesDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Graphics'
-        ClientHeight = 471
-        ClientWidth = 554
+        ClientHeight = 613
+        ClientWidth = 695
         ParentFont = False
         object Panel: TPanel
           Left = 0
-          Height = 471
+          Height = 613
           Top = 0
-          Width = 554
+          Width = 695
           Align = alClient
           BevelOuter = bvNone
-          ClientHeight = 471
-          ClientWidth = 554
-          Color = clNone
+          ClientHeight = 613
+          ClientWidth = 695
+          Color = clBtnFace
           ParentColor = False
           ParentFont = False
           TabOrder = 0
           object Panel37: TPanel
             Left = 0
-            Height = 33
-            Top = 10
-            Width = 554
+            Height = 36
+            Top = 12
+            Width = 695
             Align = alTop
             AutoSize = True
             BorderSpacing.Top = 12
@@ -1112,14 +1126,14 @@ object FreePreferencesDialog: TFreePreferencesDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 33
-            ClientWidth = 554
+            ClientHeight = 36
+            ClientWidth = 695
             ParentFont = False
             TabOrder = 0
             object Label38: TLabel
-              Left = 12
-              Height = 25
-              Top = 5
+              Left = 10
+              Height = 28
+              Top = 4
               Width = 45
               Caption = 'Theme'
               Layout = tlCenter
@@ -1127,9 +1141,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
               ParentFont = False
             end
             object ComboBoxThemes: TComboBox
-              Left = 76
+              Left = 61
               Height = 28
-              Top = 5
+              Top = 4
               Width = 250
               Constraints.MinWidth = 250
               ItemHeight = 20
@@ -1142,9 +1156,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel46: TPanel
             Left = 0
-            Height = 60
-            Top = 43
-            Width = 554
+            Height = 66
+            Top = 48
+            Width = 695
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -1154,24 +1168,24 @@ object FreePreferencesDialog: TFreePreferencesDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 60
-            ClientWidth = 554
+            ClientHeight = 66
+            ClientWidth = 695
             ParentFont = False
             TabOrder = 1
             object Label37: TLabel
-              Left = 12
-              Height = 25
-              Top = 5
-              Width = 110
+              Left = 10
+              Height = 28
+              Top = 4
+              Width = 113
               Caption = 'Tool icon size'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object SelectToolIconSize: TComboBox
-              Left = 158
+              Left = 129
               Height = 28
-              Top = 5
+              Top = 4
               Width = 125
               ItemHeight = 20
               ItemIndex = 1
@@ -1190,18 +1204,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
               Text = '24'
             end
             object Label17: TLabel
-              Left = 12
-              Height = 25
-              Top = 39
-              Width = 110
+              Left = 10
+              Height = 28
+              Top = 34
+              Width = 113
               Caption = 'Controlpoint size'
               ParentColor = False
               ParentFont = False
             end
             object SpinEdit1: TSpinEdit
-              Left = 158
-              Height = 25
-              Top = 39
+              Left = 129
+              Height = 28
+              Top = 34
               Width = 125
               MaxValue = 5
               MinValue = 1
@@ -1213,21 +1227,21 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel50: TPanel
             Left = 0
-            Height = 292
-            Top = 103
-            Width = 554
+            Height = 350
+            Top = 114
+            Width = 695
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 292
-            ClientWidth = 554
+            ClientHeight = 350
+            ClientWidth = 695
             ParentFont = False
             TabOrder = 2
             object Panel27: TPanel
               Left = 0
-              Height = 292
+              Height = 350
               Top = 0
-              Width = 220
+              Width = 232
               Align = alLeft
               AutoSize = True
               BevelOuter = bvNone
@@ -1237,23 +1251,23 @@ object FreePreferencesDialog: TFreePreferencesDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 2
-              ClientHeight = 292
-              ClientWidth = 220
+              ClientHeight = 350
+              ClientWidth = 232
               ParentFont = False
               TabOrder = 0
               object Label1: TLabel
-                Left = 12
-                Height = 18
-                Top = 5
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 4
+                Width = 150
                 Caption = 'Viewport background'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel4: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 5
+                Top = 4
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1263,18 +1277,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label12: TLabel
-                Left = 12
-                Height = 18
-                Top = 30
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 28
+                Width = 150
                 Caption = 'Viewport grid'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel14: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 30
+                Top = 28
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MaxWidth = 56
@@ -1284,18 +1298,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label13: TLabel
-                Left = 12
-                Height = 18
-                Top = 55
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 52
+                Width = 150
                 Caption = 'Grid font'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel15: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 55
+                Top = 52
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MaxWidth = 56
@@ -1305,18 +1319,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label2: TLabel
-                Left = 12
-                Height = 18
-                Top = 88
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 84
+                Width = 150
                 Caption = 'New surfaces'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel2: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 88
+                Top = 84
                 Width = 56
                 BorderSpacing.Top = 10
                 BevelOuter = bvLowered
@@ -1327,18 +1341,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label3: TLabel
-                Left = 12
-                Height = 18
-                Top = 112
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 108
+                Width = 150
                 Caption = 'Submerged surfaces'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel5: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 112
+                Top = 108
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MaxWidth = 56
@@ -1348,18 +1362,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label18: TLabel
-                Left = 12
-                Height = 18
-                Top = 138
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 132
+                Width = 150
                 Caption = 'Surface normals'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel19: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 138
+                Top = 132
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1369,18 +1383,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label23: TLabel
-                Left = 12
-                Height = 15
-                Top = 168
-                Width = 149
+                Left = 10
+                Height = 20
+                Top = 162
+                Width = 150
                 Caption = 'Control curves'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel24: TPanel
-                Left = 206
-                Height = 19
-                Top = 168
+                Left = 166
+                Height = 20
+                Top = 162
                 Width = 56
                 BorderSpacing.Top = 8
                 BevelOuter = bvLowered
@@ -1389,18 +1403,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label4: TLabel
-                Left = 12
-                Height = 18
-                Top = 189
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 184
+                Width = 150
                 Caption = 'Regular control edges'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel6: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 189
+                Top = 184
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1410,18 +1424,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label5: TLabel
-                Left = 12
-                Height = 18
-                Top = 214
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 208
+                Width = 150
                 Caption = 'Crease edges (control)'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel7: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 214
+                Top = 208
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1431,18 +1445,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label6: TLabel
-                Left = 12
-                Height = 18
-                Top = 239
-                Width = 149
+                Left = 10
+                Height = 22
+                Top = 232
+                Width = 150
                 Caption = 'Crease edges (interior)'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel8: TPanel
-                Left = 206
+                Left = 166
                 Height = 22
-                Top = 239
+                Top = 232
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1453,10 +1467,10 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
             end
             object Panel36: TPanel
-              Left = 220
-              Height = 292
+              Left = 232
+              Height = 350
               Top = 0
-              Width = 219
+              Width = 233
               Align = alLeft
               AutoSize = True
               BevelOuter = bvNone
@@ -1466,23 +1480,23 @@ object FreePreferencesDialog: TFreePreferencesDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 2
-              ClientHeight = 292
-              ClientWidth = 219
+              ClientHeight = 350
+              ClientWidth = 233
               ParentFont = False
               TabOrder = 1
               object Label7: TLabel
-                Left = 12
-                Height = 18
-                Top = 5
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 4
+                Width = 151
                 Caption = 'Regular control points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel9: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 5
+                Top = 4
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1492,18 +1506,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label8: TLabel
-                Left = 12
-                Height = 18
-                Top = 30
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 28
+                Width = 151
                 Caption = 'Crease points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel10: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 30
+                Top = 28
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1513,18 +1527,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label9: TLabel
-                Left = 12
-                Height = 18
-                Top = 55
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 52
+                Width = 151
                 Caption = 'Corner points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel11: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 55
+                Top = 52
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1534,18 +1548,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label10: TLabel
-                Left = 12
-                Height = 18
-                Top = 80
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 76
+                Width = 151
                 Caption = 'Dart points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel12: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 80
+                Top = 76
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1555,18 +1569,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label20: TLabel
-                Left = 12
-                Height = 18
-                Top = 105
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 100
+                Width = 151
                 Caption = 'Leak points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel21: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 105
+                Top = 100
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1576,18 +1590,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label11: TLabel
-                Left = 12
-                Height = 18
-                Top = 138
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 132
+                Width = 151
                 Caption = 'Selected items'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel13: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 138
+                Top = 132
                 Width = 56
                 BorderSpacing.Top = 10
                 BevelOuter = bvLowered
@@ -1598,18 +1612,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label22: TLabel
-                Left = 12
-                Height = 18
-                Top = 162
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 156
+                Width = 151
                 Caption = 'Curvature plots'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel23: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 162
+                Top = 156
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1619,18 +1633,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label21: TLabel
-                Left = 12
-                Height = 18
-                Top = 188
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 180
+                Width = 151
                 Caption = 'Markers'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel22: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 188
+                Top = 180
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1640,18 +1654,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label14: TLabel
-                Left = 12
-                Height = 18
-                Top = 212
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 204
+                Width = 151
                 Caption = 'Stations'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel16: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 212
+                Top = 204
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1661,18 +1675,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label15: TLabel
-                Left = 12
-                Height = 18
-                Top = 238
-                Width = 148
+                Left = 10
+                Height = 22
+                Top = 228
+                Width = 151
                 Caption = 'Buttocks'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel17: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 238
+                Top = 228
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1682,19 +1696,19 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label16: TLabel
-                Left = 12
+                Left = 10
                 Height = 22
-                Top = 262
-                Width = 185
+                Top = 252
+                Width = 151
                 AutoSize = False
                 Caption = 'Waterlines'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel18: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 262
+                Top = 252
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1704,19 +1718,19 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label19: TLabel
-                Left = 12
+                Left = 10
                 Height = 22
-                Top = 288
-                Width = 185
+                Top = 276
+                Width = 151
                 AutoSize = False
                 Caption = 'Diagonals'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel20: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 288
+                Top = 276
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1726,19 +1740,19 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label24: TLabel
-                Left = 12
+                Left = 10
                 Height = 22
-                Top = 312
-                Width = 185
+                Top = 300
+                Width = 151
                 AutoSize = False
                 Caption = 'Hydrostatics font color'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel25: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 312
+                Top = 300
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1748,19 +1762,19 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 OnClick = ColorPanelClick
               end
               object Label25: TLabel
-                Left = 12
+                Left = 10
                 Height = 22
-                Top = 338
-                Width = 185
+                Top = 324
+                Width = 151
                 AutoSize = False
                 Caption = 'Zebra stripes color'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel26: TPanel
-                Left = 205
+                Left = 167
                 Height = 22
-                Top = 338
+                Top = 324
                 Width = 56
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 22
@@ -1769,6 +1783,108 @@ object FreePreferencesDialog: TFreePreferencesDialog
                 TabOrder = 13
                 OnClick = ColorPanelClick
               end
+            end
+          end
+          object Panel56: TPanel
+            Left = 0
+            Height = 36
+            Top = 464
+            Width = 695
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ClientHeight = 36
+            ClientWidth = 695
+            TabOrder = 3
+            object BitBtnResetColors: TSpeedButton
+              Left = 4
+              Height = 28
+              Top = 4
+              Width = 100
+              Align = alLeft
+              AutoSize = True
+              BorderSpacing.Around = 4
+              Constraints.MinWidth = 100
+              Caption = 'Reset'
+              Flat = True
+              Glyph.Data = {
+                36090000424D3609000000000000360000002800000018000000180000000100
+                2000000000000009000064000000640000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                00007F5212147F5212D27F5212FF7F5212FE7F5212FE7F5212FE7F5212FE7F52
+                12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FE7F52
+                12FE7F5212FE7F5212FE7F5212FE7F5212FE7F5212FC7F5212F7000000000000
+                00007F5212157F5212D47F5212FF7F5212E97F5212E47F5212E47F5212E47F52
+                12E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F5212E47F52
+                12E47F5212E47F5212E47F5212E47F5212E87F5212FD7F5212FA000000000000
+                000071482C187F5211D57F5212F37F52124C7F5212207F5212227F5212227F52
+                12227F5212227F52122382540C217A4E1D2482540E217F5211227F5212227F52
+                12227F5212227F5212227F5212207F5212457F5212EC7F5212FC000000001F0F
+                C4332A16AFA172492AE9805310EF7F5212300000000000000000000000000000
+                000000000000000000001D0DC8181F0FC38C1E0EC53D00000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC2110C03D2110
+                C0CE2110C0FF3C238FFF734929EE83550A300000000000000000000000000000
+                0000000000002110C0192110C0AC2110C0FF2110C0D82110C040000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC2110C0B72110
+                C0FF2110C0FF2010C1FF371F98F24C2E703D0000000000000000000000000000
+                00002110C01A2110C0AD2110C0FF2110C0FF2110C0FF2110C0B02110C00B0000
+                00000000000000000000000000007F5212287F5212E87F5212FC2110C0342110
+                C0C62110C0FF2110C0FF2010C1FF2110C0BB2110C02200000000000000002110
+                C01B2110C0AF2110C0FF2110C0FF2110C0FF2110C0D22110C037000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000002110
+                C02B2110C0C62010C1FF2110C0FF2110C0FF2110C0BD2110C0222110C01A2110
+                C0B12110C0FF2110C0FF2110C0FF2110C0D02110C03500000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                0000311BA2332E19A8E42110C1FF2110C0FF2110C0FF2110C0C22110C0BB2110
+                C0FF2110C0FF2110C0FF2110C0CF2110C0330000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                0000865705156D4533D4382096FF2110C1FF2110C0FF2110C0FF2110C0FF2110
+                C0FF2110C0FF2110C0CD2110C032000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                00007F52121580530FD471482CFA2E19A9E5200FC1FF2110C0FF2110C0FF2110
+                C0FF2110C0D12110C02F00000000000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                00007F521215805310D5744A27F92F1AA6E2200FC1FF2110C0FF2110C0FF2110
+                C0FF2110C0CC2110C02700000000000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                00008657041570482DD43B228FFF2110C1FF2110C0FF200FC2FF200FC2FF2110
+                C0FF2110C0FF2110C0C52110C02A000000000000000000000000000000000000
+                00000000000000000000000000007F5212287F5212E87F5212FC000000000000
+                0000361F982D311BA3E22110C1FF2110C0FF200FC1FF301AA5F2321CA1EF2110
+                C1FF2110C0FF2110C0FF2110C0C64E2F6D5183550A447F5212457F5212457F52
+                12457F5212457F5212457F5212437F5212627F5212EF7F5212FB000000002110
+                C0232110C0BD2010C1FF2110C0FF2110C1FF371F97FF70482EFE734A28FD3B22
+                90FF2110C0FF2110C0FF2010C1FF341D9DF96E4631F8805310FA7F5212FC7F52
+                12FC7F5212FC7F5212FC7F5212FC7F5212FC7F5212FF7F5212FA2110C02B2110
+                C0BD2110C0FF2110C0FF2110C1FF2A16AFD96B4438BB81530FBC80530FBC6F47
+                30BB2D19AAD52010C1FE2110C0FF200FC2FF351E9BFF6B4437DD805211BC7F52
+                12BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212BC7F5212B82110C0B62110
+                C0FF2110C0FF2110C0FF2110C0C32815B52BAF7400067F5212087E521208AA71
+                00062C18B0232110C0B72110C0FF2110C0FF2010C1FF2412BBB4482C77138959
+                00077F5212087F5212087F5212087F5212087F5212087F5212082110C0472110
+                C0D42110C0FF2110C0C02110C027000000000000000000000000000000000000
+                0000000000002110C01F2110C0B42110C0FF2110C0DE2110C1490000FF000000
+                0000000000000000000000000000000000000000000000000000000000002110
+                C0452110C0B52110C02D00000000000000000000000000000000000000000000
+                000000000000000000002110C0232110C0B12110C05200000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000
+              }
+              OnClick = ResetColorsButtonClick
+              ParentFont = False
             end
           end
         end

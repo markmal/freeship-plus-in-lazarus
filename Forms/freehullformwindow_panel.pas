@@ -270,6 +270,7 @@ begin
   // create the form just to load components from .lfm
   FreeHullForm := TFreeHullForm.Create(Self);
   FreeHullForm.Viewport := Viewport;
+  FreeHullForm.FreeShip := FreeShip;
 
   PopupMenuHull := FreeHullForm.PopupMenuHull;
   PopupMenuHull.Parent:=Self;
@@ -377,6 +378,7 @@ begin
          FFreeShip.AddViewport(Viewport);
       end;
    end;
+   FreeHullForm.FreeShip := FreeShip;
 end;{TFreeHullWindow.FSetFreeShip}
 
 procedure TFreeHullWindow.UpdateMenu;

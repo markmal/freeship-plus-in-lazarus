@@ -67,7 +67,8 @@ type
   { TFreePreferencesDialog }
 
   TFreePreferencesDialog = class(TForm)
-    BitBtnReset: TSpeedButton;
+    BitBtnResetDirs: TSpeedButton;
+    BitBtnResetColors: TSpeedButton;
     ComboBox1: TComboBox;
     ComboBoxEncoding: TComboBox;
     ComboBoxThemes: TComboBox;
@@ -177,6 +178,8 @@ type
     Panel52: TPanel;
     Panel53: TPanel;
     Panel54: TPanel;
+    Panel55: TPanel;
+    Panel56: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
     Panel8: TPanel;
@@ -200,11 +203,12 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
+    procedure ResetColorsButtonClick(Sender: TObject);
     procedure ColorPanelClick(Sender: TObject);
     procedure OkButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure Panel1Paint(Sender: TObject);
-    procedure ResetButtonClick(Sender: TObject);
+    procedure ResetDirsButtonClick(Sender: TObject);
     procedure ComboBoxThemesChange(Sender: TObject);
     procedure EditDirChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -336,6 +340,16 @@ begin
     end;
 end;{TFreePreferencesDialog.ColorPanelClick}
 
+procedure TFreePreferencesDialog.ResetColorsButtonClick(Sender: TObject);
+begin
+  if MessageDlg(Userstring(247) + '?' + #13#10 +
+    Userstring(248) + '.', mtWarning, [mbYes, mbNo], 0) = mrYes then
+  begin
+    FFreeship.Preferences.ResetColors;
+    Updatedata;
+  end;
+end;
+
 
 procedure TFreePreferencesDialog.OkButtonClick(Sender: TObject);
 begin
@@ -429,12 +443,12 @@ begin
   FThemeChanged := True;
 end;
 
-procedure TFreePreferencesDialog.ResetButtonClick(Sender: TObject);
+procedure TFreePreferencesDialog.ResetDirsButtonClick(Sender: TObject);
 begin
   if MessageDlg(Userstring(247) + '?' + #13#10 +
     Userstring(248) + '.', mtWarning, [mbYes, mbNo], 0) = mrYes then
   begin
-    FFreeship.Preferences.ResetColors;
+    FFreeship.Preferences.ResetDirectories;
     Updatedata;
   end;
 end;{TFreePreferencesDialog.SpeedButton3Click}

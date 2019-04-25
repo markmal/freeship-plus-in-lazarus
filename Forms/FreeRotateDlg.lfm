@@ -1,114 +1,27 @@
 object FreeRotateDialog: TFreeRotateDialog
   Left = 551
-  Height = 155
+  Height = 200
   Top = 419
-  Width = 264
+  Width = 400
   BorderStyle = bsDialog
   Caption = 'Rotation'
-  ClientHeight = 155
-  ClientWidth = 264
-  Color = clBtnFace
+  ClientHeight = 200
+  ClientWidth = 400
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
-  object Panel2: TPanel
-    Left = 0
-    Height = 118
-    Top = 24
-    Width = 264
-    Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 118
-    ClientWidth = 264
-    TabOrder = 0
-    object Label3: TLabel
-      Left = 209
-      Height = 13
-      Top = 24
-      Width = 37
-      Caption = '[degr.]'
-      ParentColor = False
-    end
-    object Label6: TLabel
-      Left = 209
-      Height = 13
-      Top = 54
-      Width = 37
-      Caption = '[degr.]'
-      ParentColor = False
-    end
-    object Label9: TLabel
-      Left = 209
-      Height = 13
-      Top = 84
-      Width = 37
-      Caption = '[degr.]'
-      ParentColor = False
-    end
-    object Label1: TLabel
-      Left = 16
-      Height = 13
-      Top = 24
-      Width = 95
-      Caption = 'Longitudinal axis'
-      ParentColor = False
-    end
-    object Label2: TLabel
-      Left = 16
-      Height = 13
-      Top = 54
-      Width = 89
-      Caption = 'Transverse axis'
-      ParentColor = False
-    end
-    object Label4: TLabel
-      Left = 16
-      Height = 13
-      Top = 84
-      Width = 69
-      Caption = 'Vertical axis'
-      ParentColor = False
-    end
-    object Edit1: TEdit
-      Left = 128
-      Height = 23
-      Top = 16
-      Width = 75
-      OnExit = Edit1Exit
-      OnKeyPress = Edit1KeyPress
-      TabOrder = 0
-    end
-    object Edit2: TEdit
-      Left = 128
-      Height = 23
-      Top = 46
-      Width = 75
-      OnExit = Edit2Exit
-      OnKeyPress = Edit1KeyPress
-      TabOrder = 1
-    end
-    object Edit3: TEdit
-      Left = 128
-      Height = 23
-      Top = 76
-      Width = 75
-      OnExit = Edit3Exit
-      OnKeyPress = Edit1KeyPress
-      TabOrder = 2
-    end
-  end
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 264
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 264
-    TabOrder = 1
+    ClientWidth = 400
+    TabOrder = 0
     object OKButton: TSpeedButton
-      Left = 100
+      Left = 236
       Height = 20
       Hint = 'Close dialog.'
       Top = 2
@@ -160,7 +73,7 @@ object FreeRotateDialog: TFreeRotateDialog
       ParentShowHint = False
     end
     object CancelButton: TSpeedButton
-      Left = 182
+      Left = 318
       Height = 20
       Hint = 'Cancel operation.'
       Top = 2
@@ -214,11 +127,124 @@ object FreeRotateDialog: TFreeRotateDialog
   end
   object Panel3: TPanel
     Left = 0
-    Height = 13
-    Top = 142
-    Width = 264
-    Align = alBottom
+    Height = 176
+    Top = 24
+    Width = 400
+    Align = alClient
     BevelOuter = bvNone
-    TabOrder = 2
+    Caption = 'Panel3'
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ClientHeight = 176
+    ClientWidth = 400
+    TabOrder = 1
+    object Panel2: TPanel
+      Left = 58
+      Height = 99
+      Top = 39
+      Width = 285
+      AutoSize = True
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 3
+      ClientHeight = 99
+      ClientWidth = 285
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 10
+        Height = 25
+        Top = 10
+        Width = 111
+        Caption = 'Longitudinal axis'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 10
+        Height = 25
+        Top = 37
+        Width = 111
+        Caption = 'Transverse axis'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 10
+        Height = 25
+        Top = 64
+        Width = 111
+        Caption = 'Vertical axis'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object FloatSpinEdit1: TFloatSpinEdit
+        Left = 127
+        Height = 25
+        Top = 10
+        Width = 100
+        Constraints.MinWidth = 100
+        DecimalPlaces = 6
+        MaxValue = 360
+        MinValue = -360
+        TabOrder = 0
+        Value = 0
+      end
+      object FloatSpinEdit2: TFloatSpinEdit
+        Left = 127
+        Height = 25
+        Top = 37
+        Width = 100
+        Constraints.MinWidth = 100
+        DecimalPlaces = 6
+        MaxValue = 360
+        MinValue = -360
+        TabOrder = 1
+        Value = 0
+      end
+      object FloatSpinEdit3: TFloatSpinEdit
+        Left = 127
+        Height = 25
+        Top = 64
+        Width = 100
+        Constraints.MinWidth = 100
+        DecimalPlaces = 6
+        MaxValue = 360
+        MinValue = -360
+        TabOrder = 2
+        Value = 0
+      end
+      object Label3: TLabel
+        Left = 233
+        Height = 25
+        Top = 10
+        Width = 42
+        Caption = '[degr.]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label6: TLabel
+        Left = 233
+        Height = 25
+        Top = 37
+        Width = 42
+        Caption = '[degr.]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label9: TLabel
+        Left = 233
+        Height = 25
+        Top = 64
+        Width = 42
+        Caption = '[degr.]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+    end
   end
 end

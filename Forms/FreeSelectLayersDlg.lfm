@@ -7,7 +7,6 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
   Caption = 'Select layers.'
   ClientHeight = 272
   ClientWidth = 387
-  Color = clBtnFace
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
@@ -46,7 +45,7 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
         Left = 0
         Height = 21
         Top = 7
-        Width = 324
+        Width = 368
         Caption = 'Include points that are shared with unselected layers'
         OnClick = CheckBoxClick
         TabOrder = 0

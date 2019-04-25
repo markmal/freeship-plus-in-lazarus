@@ -37,158 +37,137 @@ uses
   LCLIntf, LCLType, LMessages,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
-     Messages,
-     SysUtils,
-     Classes,
-     Graphics,
-     Controls,
-     Forms,
-     Dialogs,
-     StdCtrls,
-     Buttons,
-     ExtCtrls,
-     FreeShipUnit,
-     FreeLanguageSupport;
+  Messages,
+  SysUtils,
+  Classes,
+  Graphics,
+  Controls,
+  Forms,
+  Dialogs,
+  StdCtrls,
+  Buttons,
+  ExtCtrls, Spin,
+  FreeShipUnit,
+  FreeLanguageSupport;
 
 type
 
-{ TFreeRotateMDialog }
+  { TFreeRotateMDialog }
 
- TFreeRotateMDialog = class(TForm)
-                             CancelButton: TSpeedButton;
-                             OKButton: TSpeedButton;
-                             Panel1: TPanel;
-                              Panel2: TPanel;
-                              Label3: TLabel;
-                              Label6: TLabel;
-                              Label9: TLabel;
-                              Edit1: TEdit;
-                              Edit2: TEdit;
-                              Edit3: TEdit;
-                              Panel3: TPanel;
-                              Label1: TLabel;
-                              Label2: TLabel;
-                              Label4: TLabel;
-                              Label11: TLabel;
-                              Label12: TLabel;
-                              Label13: TLabel;
-                              Label14: TLabel;
-                              Label15: TLabel;
-                              Label16: TLabel;
-//                              Label17: TLabel;
-                              GroupBox1: TGroupBox;
-                              GroupBox2: TGroupBox;
-                              procedure Edit1KeyPress(Sender: TObject; var Key: Char);
-                              procedure Edit1Exit(Sender: TObject);
-                              procedure Edit1KeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
-                              procedure Edit2Exit(Sender: TObject);
-                              procedure Edit3Exit(Sender: TObject);
-                              procedure OKButtonClick(Sender: TObject);
-                              procedure CancelButtonClick(Sender: TObject);
-                           private   { Private declarations }
-                              function FGetXValue:extended;
-                              procedure FSetXValue(val:extended);
-                              function FGetYValue:extended;
-                              procedure FSetYValue(val:extended);
-                              function FGetZValue:extended;
-                              procedure FSetZValue(val:extended);
-                           public    { Public declarations }
-                              function Execute(aCaption,Units:String):Boolean;
-                              property XValue:Extended read FGetXValue write FSetXValue;
-                              property YValue:Extended read FGetYValue write FSetYValue;
-                              property ZValue:Extended read FGetZValue write FSetZValue;
-                        end;
+  TFreeRotateMDialog = class(TForm)
+    CancelButton: TSpeedButton;
+    FloatSpinEdit1: TFloatSpinEdit;
+    FloatSpinEdit2: TFloatSpinEdit;
+    FloatSpinEdit3: TFloatSpinEdit;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    Label1: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label6: TLabel;
+    Label9: TLabel;
+    OKButton: TSpeedButton;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    procedure FloatSpinEdit1Resize(Sender: TObject);
+    procedure OKButtonClick(Sender: TObject);
+    procedure CancelButtonClick(Sender: TObject);
+  private   { Private declarations }
+    function FGetXValue: extended;
+    procedure FSetXValue(val: extended);
+    function FGetYValue: extended;
+    procedure FSetYValue(val: extended);
+    function FGetZValue: extended;
+    procedure FSetZValue(val: extended);
+  public    { Public declarations }
+    function Execute(aCaption, Units: string): boolean;
+    property XValue: extended read FGetXValue write FSetXValue;
+    property YValue: extended read FGetYValue write FSetYValue;
+    property ZValue: extended read FGetZValue write FSetZValue;
+  end;
 
-var FreeRotateMDialog:TFreeRotateMDialog;
+var
+  FreeRotateMDialog: TFreeRotateMDialog;
+
 implementation
+
 {$IFnDEF FPC}
   {$R *.dfm}
+
 {$ELSE}
   {$R *.lfm}
 {$ENDIF}
 
-function TFreeRotateMDialog.FGetXValue:extended;
+function TFreeRotateMDialog.FGetXValue: extended;
 begin
-   if Edit1.Text='' then result:=0.0
-                    else Result:=StrToFloat(Edit1.Text);
+  Result:=FloatSpinEdit1.Value;
 end;{TFreeRotateMDialog.FGetXValue}
 
-procedure TFreeRotateMDialog.FSetXValue(val:extended);
+procedure TFreeRotateMDialog.FSetXValue(val: extended);
 begin
-   Edit1.Text:=FloatToStrF(Val,ffFixed,7,4);
+  FloatSpinEdit1.Value := val;
 end;{TFreeRotateMDialog.FSetXValue}
 
-function TFreeRotateMDialog.FGetYValue:extended;
+function TFreeRotateMDialog.FGetYValue: extended;
 begin
-   if Edit2.Text='' then result:=0.0
-                    else Result:=StrToFloat(Edit2.Text);
+  Result:=FloatSpinEdit2.Value;
 end;{TFreeRotateMDialog.FGetYValue}
 
-procedure TFreeRotateMDialog.FSetYValue(val:extended);
+procedure TFreeRotateMDialog.FSetYValue(val: extended);
 begin
-   Edit2.Text:=FloatToStrF(Val,ffFixed,7,4);
+  FloatSpinEdit2.Value := val;
 end;{TFreeRotateMDialog.FSetYValue}
 
-function TFreeRotateMDialog.FGetZValue:extended;
+function TFreeRotateMDialog.FGetZValue: extended;
 begin
-   if Edit3.Text='' then result:=0.0
-                    else Result:=StrToFloat(Edit3.Text);
+  Result:=FloatSpinEdit3.Value;
 end;{TFreeRotateMDialog.FGetZValue}
 
-procedure TFreeRotateMDialog.FSetZValue(val:extended);
+procedure TFreeRotateMDialog.FSetZValue(val: extended);
 begin
-   Edit3.Text:=FloatToStrF(Val,ffFixed,7,4);
+  FloatSpinEdit3.Value := val;
 end;{TFreeRotateMDialog.FSetZValue}
 
-function TFreeRotateMDialog.Execute(aCaption,Units:String):Boolean;
+function TFreeRotateMDialog.Execute(aCaption, Units: string): boolean;
 begin
-   Self.Caption:=Caption;
-   Label3.Caption:=Units;
-   Label6.Caption:=Units;
-   Label9.Caption:=Units;
+  Self.Caption := Caption;
+  Label3.Caption := Units;
+  Label6.Caption := Units;
+  Label9.Caption := Units;
 
-   GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph,'Ok');
-   GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph,'Cancel');
-   ShowTranslatedValues(Self);
+  GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph, 'Ok');
+  GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph, 'Cancel');
+  ShowTranslatedValues(Self);
 
-   Showmodal;
-   Result:=ModalResult=mrOk;
+  Showmodal;
+  Result := ModalResult = mrOk;
 end;{TFreeRotateMDialog.Execute}
 
-procedure TFreeRotateMDialog.Edit1KeyPress(Sender: TObject; var Key: Char);
+procedure TFreeRotateMDialog.FloatSpinEdit1Resize(Sender: TObject);
 begin
-   if (Key in [#8,'1'..'9','0','-',#13]) or (Key=FormatSettings.DecimalSeparator) then else key:=#0;
-end;{TFreeRotateMDialog.Edit1KeyPress}
-
-procedure TFreeRotateMDialog.Edit1Exit(Sender: TObject);
-begin
-   XValue:=self.XValue;
-end;{TFreeRotateMDialog.Edit1Exit}
-
-procedure TFreeRotateMDialog.Edit1KeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
-begin
-   if Key=13 then SelectNext(Activecontrol,True,true);
-end;{TFreeRotateMDialog.Edit1KeyDown}
-
-procedure TFreeRotateMDialog.Edit2Exit(Sender: TObject);
-begin
-  inherited;
-   YValue:=self.YValue;
-end;{TFreeRotateMDialog.Edit2Exit}
-
-procedure TFreeRotateMDialog.Edit3Exit(Sender: TObject);
-begin
-   ZValue:=self.ZValue;
-end;{TFreeRotateMDialog.Edit3Exit}
+  Label14.Constraints.MinHeight:=FloatSpinEdit1.Height;
+  Label15.Constraints.MinHeight:=FloatSpinEdit1.Height;
+  Label16.Constraints.MinHeight:=FloatSpinEdit1.Height;
+end;
 
 procedure TFreeRotateMDialog.OKButtonClick(Sender: TObject);
 begin
-   ModalResult:=mrOk;
+  ModalResult := mrOk;
 end;{TFreeRotateMDialog.OKButtonClick}
 
 procedure TFreeRotateMDialog.CancelButtonClick(Sender: TObject);
 begin
-   ModalResult:=mrCancel;
+  ModalResult := mrCancel;
 end;{TFreeRotateMDialog.CancelButtonClick}
 
 end.

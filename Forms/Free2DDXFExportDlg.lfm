@@ -8,7 +8,6 @@ object DXFExport2DDialog: TDXFExport2DDialog
   Caption = 'Export intersections to DXF as 2D polylines.'
   ClientHeight = 161
   ClientWidth = 598
-  Color = clBtnFace
   ParentFont = True
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'

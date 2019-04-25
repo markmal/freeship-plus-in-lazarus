@@ -6,7 +6,6 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
   Caption = 'Add_Mass file generator.'
   ClientHeight = 539
   ClientWidth = 694
-  Color = clBtnFace
   OnResize = FormResize
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'

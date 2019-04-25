@@ -356,6 +356,7 @@ dat7=Velocity Vp
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/PROPOL.EXE'), '', [])
     else
       SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/fppcalc.EXE'), '', []);
+
     FileName := 'OUT.';
 
     //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен

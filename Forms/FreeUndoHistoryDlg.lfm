@@ -6,7 +6,6 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
   Caption = 'Undo history.'
   ClientHeight = 434
   ClientWidth = 684
-  Color = clBtnFace
   OnResize = FormResize
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'

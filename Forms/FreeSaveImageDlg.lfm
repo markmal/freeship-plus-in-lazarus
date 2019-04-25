@@ -1,147 +1,198 @@
 object SaveImageDialog: TSaveImageDialog
-  Left = 399
-  Height = 160
-  Top = 152
-  Width = 287
+  Left = 573
+  Height = 200
+  Top = 453
+  Width = 400
   BorderStyle = bsDialog
   Caption = 'Save image.'
-  ClientHeight = 160
-  ClientWidth = 287
-  Color = clBtnFace
+  ClientHeight = 200
+  ClientWidth = 400
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 123
+    Height = 176
     Top = 24
-    Width = 287
+    Width = 400
     Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 123
-    ClientWidth = 287
-    TabOrder = 0
-    object Label3: TLabel
-      Left = 152
-      Height = 13
-      Top = 40
-      Width = 41
-      Caption = '[pixels]'
-      ParentColor = False
-    end
-    object Label6: TLabel
-      Left = 152
-      Height = 13
-      Top = 70
-      Width = 41
-      Caption = '[pixels]'
-      ParentColor = False
-    end
-    object Label1: TLabel
-      Left = 3
-      Height = 13
-      Top = 40
-      Width = 32
-      Caption = 'Width'
-      ParentColor = False
-    end
-    object Label2: TLabel
-      Left = 3
-      Height = 13
-      Top = 70
-      Width = 36
-      Caption = 'Height'
-      ParentColor = False
-    end
-    object Label4: TLabel
-      Left = 3
-      Height = 13
-      Top = 100
-      Width = 82
-      Caption = 'Estimated size'
-      ParentColor = False
-    end
-    object _Label5: TLabel
-      Left = 98
-      Height = 13
-      Top = 100
-      Width = 43
-      Caption = '_Label5'
-      ParentColor = False
-    end
-    object Label7: TLabel
-      Left = 3
-      Height = 13
-      Top = 10
-      Width = 50
-      Caption = 'Filename'
-      ParentColor = False
-    end
-    object SpeedButton1: TSpeedButton
-      Left = 256
-      Height = 24
-      Top = 6
-      Width = 23
-      Glyph.Data = {
-        F6000000424DF600000000000000760000002800000010000000100000000100
-        04000000000080000000130B0000130B00001000000010000000000000000084
-        8400FF00FF0000FFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00222222222222
-        2222222222222222222200000000000222220011111111102222030111111111
-        0222043011111111102203430111111111020434300000000000034343434302
-        2222043434343402222203430000000222222000222222220002222222222222
-        2002222222220222020222222222200022222222222222222222
-      }
-      OnClick = SpeedButton1Click
-    end
-    object Edit1: TEdit
-      Left = 73
-      Height = 23
-      Top = 32
-      Width = 75
-      OnExit = Edit1Exit
-      OnKeyPress = Edit1KeyPress
-      TabOrder = 1
-    end
-    object Edit2: TEdit
-      Left = 73
-      Height = 23
-      Top = 62
-      Width = 75
-      OnExit = Edit2Exit
-      OnKeyPress = Edit1KeyPress
-      TabOrder = 2
-    end
-    object Edit3: TEdit
-      Left = 73
-      Height = 23
-      Top = 6
-      Width = 178
-      TabOrder = 0
-      Text = 'Edit3'
-    end
-  end
-  object Panel3: TPanel
-    Left = 0
-    Height = 13
-    Top = 147
-    Width = 287
-    Align = alBottom
+    BorderSpacing.InnerBorder = 10
     BevelOuter = bvNone
-    TabOrder = 1
+    ChildSizing.TopBottomSpacing = 10
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 176
+    ClientWidth = 400
+    TabOrder = 0
+    object Panel1: TPanel
+      Left = 0
+      Height = 25
+      Top = 10
+      Width = 400
+      AutoSize = True
+      BevelOuter = bvNone
+      ClientHeight = 25
+      ClientWidth = 400
+      TabOrder = 0
+      object Edit3: TEdit
+        Left = 75
+        Height = 25
+        Top = 0
+        Width = 295
+        Align = alClient
+        BorderSpacing.Left = 6
+        TabOrder = 0
+        Text = 'Edit3'
+      end
+      object SpeedButton1: TSpeedButton
+        Left = 370
+        Height = 25
+        Top = 0
+        Width = 20
+        Align = alRight
+        AutoSize = True
+        BorderSpacing.Right = 10
+        Glyph.Data = {
+          F6000000424DF600000000000000760000002800000010000000100000000100
+          04000000000080000000130B0000130B00001000000010000000000000000084
+          8400FF00FF0000FFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00222222222222
+          2222222222222222222200000000000222220011111111102222030111111111
+          0222043011111111102203430111111111020434300000000000034343434302
+          2222043434343402222203430000000222222000222222220002222222222222
+          2002222222220222020222222222200022222222222222222222
+        }
+        OnClick = SpeedButton1Click
+      end
+      object Label7: TLabel
+        Left = 10
+        Height = 25
+        Top = 0
+        Width = 59
+        Align = alLeft
+        BorderSpacing.Left = 10
+        Caption = 'Filename'
+        Layout = tlCenter
+        ParentColor = False
+      end
+    end
+    object Panel3: TPanel
+      Left = 0
+      Height = 99
+      Top = 35
+      Width = 400
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 3
+      ClientHeight = 99
+      ClientWidth = 400
+      TabOrder = 1
+      object Label1: TLabel
+        Left = 10
+        Height = 25
+        Top = 10
+        Width = 96
+        Caption = 'Width'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 10
+        Height = 25
+        Top = 37
+        Width = 96
+        Caption = 'Height'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 10
+        Height = 25
+        Top = 64
+        Width = 96
+        Caption = 'Estimated size'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object SpinEdit1: TSpinEdit
+        Left = 112
+        Height = 25
+        Top = 10
+        Width = 80
+        Constraints.MinWidth = 80
+        MaxValue = 100000
+        MinValue = 1
+        OnChange = SpinEdit1Change
+        TabOrder = 0
+        Value = 1
+      end
+      object SpinEdit2: TSpinEdit
+        Left = 112
+        Height = 25
+        Top = 37
+        Width = 80
+        Constraints.MinWidth = 80
+        MaxValue = 100000
+        MinValue = 1
+        OnChange = SpinEdit2Change
+        TabOrder = 1
+        Value = 1
+      end
+      object FloatSpinEdit1: TFloatSpinEdit
+        Left = 112
+        Height = 25
+        Top = 64
+        Width = 80
+        MinValue = 0
+        TabOrder = 2
+        Value = 0
+      end
+      object Label6: TLabel
+        Left = 198
+        Height = 25
+        Top = 10
+        Width = 49
+        Caption = '[pixels]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label3: TLabel
+        Left = 198
+        Height = 25
+        Top = 37
+        Width = 49
+        Caption = '[pixels]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label5: TLabel
+        Left = 198
+        Height = 25
+        Top = 64
+        Width = 49
+        Caption = 'KB'
+        Layout = tlCenter
+        ParentColor = False
+      end
+    end
   end
   object Panel4: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 287
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 287
-    TabOrder = 2
+    ClientWidth = 400
+    TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 123
+      Left = 236
       Height = 20
       Top = 2
       Width = 80
@@ -190,7 +241,7 @@ object SaveImageDialog: TSaveImageDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 205
+      Left = 318
       Height = 20
       Top = 2
       Width = 80
@@ -241,7 +292,6 @@ object SaveImageDialog: TSaveImageDialog
   end
   object SaveDialog: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist, ofEnableSizing]
-    left = 220
-    top = 62
+    left = 304
   end
 end

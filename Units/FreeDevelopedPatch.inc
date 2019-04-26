@@ -604,7 +604,8 @@ begin
 
     Viewport.FontColor := FDimFontColor;
     Viewport.FontName := FDimFontName;
-    Viewport.FontHeight := FDimFontSize;
+    //Viewport.FontHeight := FDimFontSize;
+    Viewport.FontSize := FDimFontSize;
 
     for I := 1 to FBoundaryEdges.Count do
     begin

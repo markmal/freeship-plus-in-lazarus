@@ -254,7 +254,6 @@ begin
     //FToolIconDirectory:=Dialog.EditToolIconsDir.Text;
     FToolIconSize := StrToInt(Dialog.SelectToolIconSize.Text);
 
-
     if Uppercase(Lang) <> Uppercase(FLanguage) then
       if FileExistsUTF8(FLanguagesDirectory + '/' + Lang + '.ini')
       { *Converted from FileExists* } then
@@ -554,6 +553,16 @@ begin
   params := TColorIniFile.Create(getThemeConfigFile(FThemeName));
   Result := params.ReadString('Theme', 'ParentTheme', '');
   params.Free;
+end;
+
+function TFreePreferences.GetToolIconDirectory: string;
+var S:string;
+begin
+ S:='/Themes/'+FThemeName+'/icons/'+IntToStr(FToolIconSize);
+ S:=StringReplace(S,'/',DirectorySeparator,[rfReplaceAll]);
+ if DirectoryExistsUTF8(FUserAppDataDirectory + S) then
+  result := FUserAppDataDirectory + S
+  else result := FGlobalAppDataDirectory + S;
 end;
 
 // finds IconFileName recursively from the current theme and its parents
@@ -920,6 +929,9 @@ begin
   FToolIconSize := params.ReadInteger('Graphic', 'ToolIconSize', FToolIconSize);
   FThemeName := params.ReadString('Graphic', 'Theme', FThemeName);
 
+  // made dynamic from theme and tool icon size
+  //ToolIconDirectory := params.ReadString('Directories', 'ToolIconDirectory', ToolIconDirectory);
+
   RecentFileNames := TStringList.Create;
   params.ReadSectionValues('RecentFiles', RecentFileNames);
 
@@ -1028,8 +1040,8 @@ begin
                         FUserAppDataDirectory + S );
 
   S:=StringReplace('/Themes/Default/icons/24','/',DS,[rfReplaceAll]);
-  FToolIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory + S,
-                        FUserAppDataDirectory + S);
+  //FToolIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory + S,
+  //                      FUserAppDataDirectory + S);
 
 end;
 
@@ -1178,7 +1190,7 @@ begin
   params.WriteString('Directories', 'TempDirectory', FTempDirectory);
 
   params.WriteString('Directories', 'MenuIconDirectory', FMenuIconDirectory);
-  params.WriteString('Directories', 'ToolIconDirectory', FToolIconDirectory);
+  //params.WriteString('Directories', 'ToolIconDirectory', FToolIconDirectory);
   params.WriteInteger('Graphic', 'MenuIconSize', FMenuIconSize);
   params.WriteInteger('Graphic', 'ToolIconSize', FToolIconSize);
   params.WriteString('Graphic', 'Theme', FThemeName);

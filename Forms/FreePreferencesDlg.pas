@@ -55,10 +55,10 @@ uses
 
 type
 
-{$IFNDEF Windows}
+{$IFDEF ZWindows}
   TTabSheet = class(ComCtrls.TTabSheet)
   protected
-    procedure PaintWindow(DC: HDC); override;
+    //procedure PaintWindow(DC: HDC); override;
   public
     ActualColor: TColor;
   end;
@@ -180,6 +180,7 @@ type
     Panel54: TPanel;
     Panel55: TPanel;
     Panel56: TPanel;
+    Panel57: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
     Panel8: TPanel;
@@ -212,10 +213,7 @@ type
     procedure ComboBoxThemesChange(Sender: TObject);
     procedure EditDirChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
-    procedure Panel1MouseEnter(Sender: TObject);
-    procedure Res(Sender: TObject);
     procedure SpeedButton12Click(Sender: TObject);
     procedure SpeedButton13Click(Sender: TObject);
     procedure SpeedButton14Click(Sender: TObject);
@@ -363,7 +361,7 @@ end;{TFreePreferencesDialog.BitBtn2Click}
 
 procedure TFreePreferencesDialog.Panel1Paint(Sender: TObject);
 begin
-  {$IFNDEF Windows}
+  {$IFDEF ZWindows}
   Panel53.Color := Tabsheet1.ActualColor;
   Panel51.Color := Tabsheet1.ActualColor;
   Panel.Color := Tabsheet1.ActualColor;
@@ -384,15 +382,6 @@ end;
 procedure TFreePreferencesDialog.EditDirChange(Sender: TObject);
 begin
   FConfigChanged := True;
-end;
-
-procedure TFreePreferencesDialog.Panel1MouseEnter(Sender: TObject);
-begin
-end;
-
-procedure TFreePreferencesDialog.Res(Sender: TObject);
-begin
-
 end;
 
 procedure TFreePreferencesDialog.PageControl1Change(Sender: TObject);
@@ -432,11 +421,6 @@ begin
   if self.Constraints.MinHeight < TxH then
     self.Constraints.MinHeight := TxH;
 end;
-
-procedure TFreePreferencesDialog.FormShow(Sender: TObject);
-begin
-end;
-
 
 procedure TFreePreferencesDialog.SpinEdit1Change(Sender: TObject);
 begin
@@ -548,7 +532,7 @@ begin
   end;
 end;
 
-{$IFNDEF Windows}
+{$IFDEF ZWindows}
 {In Windows child Panel with Color=clNone gets correct Parent color
    and looks "transparent".
  In GTK2 it is not. Parent.Color gives inactive tabsheet color.

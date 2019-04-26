@@ -9,7 +9,6 @@ object FreeControlPointForm: TFreeControlPointForm
   BorderStyle = bsToolWindow
   ClientHeight = 189
   ClientWidth = 308
-  Color = clBtnFace
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
   LCLVersion = '2.0.0.4'

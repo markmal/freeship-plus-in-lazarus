@@ -1,182 +1,226 @@
 object FreeCylinderDialog: TFreeCylinderDialog
   Left = 732
-  Height = 170
+  Height = 200
   Top = 436
-  Width = 301
+  Width = 400
   BorderStyle = bsDialog
   Caption = 'Add a cylinder.'
-  ClientHeight = 170
-  ClientWidth = 301
-  Color = clBtnFace
+  ClientHeight = 200
+  ClientWidth = 400
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 133
+    Height = 176
     Top = 24
-    Width = 301
+    Width = 400
     Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 133
-    ClientWidth = 301
+    BevelOuter = bvNone
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 176
+    ClientWidth = 400
     TabOrder = 0
-    object _Label3: TLabel
-      Left = 265
-      Height = 13
-      Top = 22
-      Width = 19
-      Caption = '[m]'
-      ParentColor = False
-    end
-    object _Label6: TLabel
-      Left = 265
-      Height = 13
-      Top = 48
-      Width = 19
-      Caption = '[m]'
-      ParentColor = False
-    end
-    object _Label9: TLabel
-      Left = 149
-      Height = 13
-      Top = 72
-      Width = 19
-      Caption = '[m]'
-      ParentColor = False
-    end
-    object Label1: TLabel
-      Left = 16
-      Height = 13
-      Top = 22
-      Width = 55
-      Caption = 'Startpoint'
-      ParentColor = False
-    end
-    object Label2: TLabel
-      Left = 16
-      Height = 13
-      Top = 48
-      Width = 49
-      Caption = 'Endpoint'
-      ParentColor = False
-    end
-    object Label4: TLabel
-      Left = 16
-      Height = 13
-      Top = 74
-      Width = 38
-      Caption = 'Radius'
-      ParentColor = False
-    end
-    object Label3: TLabel
-      Left = 16
-      Height = 13
-      Top = 100
-      Width = 57
-      Caption = 'No. points'
-      ParentColor = False
-    end
-    object Input1: TFloatSpinEdit
-      Left = 87
-      Height = 23
-      Top = 14
-      Width = 55
-      Alignment = taRightJustify
-      DecimalPlaces = 3
-      MinValue = 0
+    object Panel3: TPanel
+      Left = 0
+      Height = 72
+      Top = 0
+      Width = 371
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 5
+      ClientHeight = 72
+      ClientWidth = 371
       TabOrder = 0
-      Value = 0
+      object Label1: TLabel
+        Left = 10
+        Height = 25
+        Top = 10
+        Width = 64
+        Caption = 'Startpoint'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Input1: TFloatSpinEdit
+        Left = 80
+        Height = 25
+        Top = 10
+        Width = 80
+        Alignment = taRightJustify
+        Constraints.MinWidth = 80
+        DecimalPlaces = 3
+        MinValue = 0
+        TabOrder = 0
+        Value = 0
+      end
+      object Input2: TFloatSpinEdit
+        Left = 166
+        Height = 25
+        Top = 10
+        Width = 80
+        Alignment = taRightJustify
+        Constraints.MinWidth = 80
+        DecimalPlaces = 3
+        MinValue = 0
+        TabOrder = 1
+        Value = 0
+      end
+      object Input3: TFloatSpinEdit
+        Left = 252
+        Height = 25
+        Top = 10
+        Width = 80
+        Alignment = taRightJustify
+        Constraints.MinWidth = 80
+        DecimalPlaces = 3
+        MinValue = 0
+        TabOrder = 2
+        Value = 0
+      end
+      object _Label3: TLabel
+        Left = 338
+        Height = 25
+        Top = 10
+        Width = 23
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 10
+        Height = 25
+        Top = 37
+        Width = 64
+        Caption = 'Endpoint'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Input4: TFloatSpinEdit
+        Left = 80
+        Height = 25
+        Top = 37
+        Width = 80
+        Alignment = taRightJustify
+        DecimalPlaces = 3
+        MinValue = 0
+        TabOrder = 3
+        Value = 0
+      end
+      object Input5: TFloatSpinEdit
+        Left = 166
+        Height = 25
+        Top = 37
+        Width = 80
+        Alignment = taRightJustify
+        DecimalPlaces = 3
+        MinValue = 0
+        TabOrder = 4
+        Value = 0
+      end
+      object Input6: TFloatSpinEdit
+        Left = 252
+        Height = 25
+        Top = 37
+        Width = 80
+        Alignment = taRightJustify
+        DecimalPlaces = 3
+        MinValue = 0
+        TabOrder = 5
+        Value = 0
+      end
+      object _Label6: TLabel
+        Left = 338
+        Height = 25
+        Top = 37
+        Width = 23
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
     end
-    object Input2: TFloatSpinEdit
-      Left = 147
-      Height = 23
-      Top = 14
-      Width = 55
-      Alignment = taRightJustify
-      DecimalPlaces = 3
-      MinValue = 0
+    object Panel4: TPanel
+      Left = 0
+      Height = 72
+      Top = 72
+      Width = 371
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 2
+      ClientHeight = 72
+      ClientWidth = 371
       TabOrder = 1
-      Value = 0
-    end
-    object Input3: TFloatSpinEdit
-      Left = 207
-      Height = 23
-      Top = 14
-      Width = 55
-      Alignment = taRightJustify
-      DecimalPlaces = 3
-      MinValue = 0
-      TabOrder = 2
-      Value = 0
-    end
-    object Input4: TFloatSpinEdit
-      Left = 87
-      Height = 23
-      Top = 40
-      Width = 55
-      Alignment = taRightJustify
-      DecimalPlaces = 3
-      MinValue = 0
-      TabOrder = 3
-      Value = 0
-    end
-    object Input5: TFloatSpinEdit
-      Left = 147
-      Height = 23
-      Top = 40
-      Width = 55
-      Alignment = taRightJustify
-      DecimalPlaces = 3
-      MinValue = 0
-      TabOrder = 4
-      Value = 0
-    end
-    object Input6: TFloatSpinEdit
-      Left = 207
-      Height = 23
-      Top = 40
-      Width = 55
-      Alignment = taRightJustify
-      DecimalPlaces = 3
-      MinValue = 0
-      TabOrder = 5
-      Value = 0
-    end
-    object Input7: TFloatSpinEdit
-      Left = 87
-      Height = 23
-      Top = 66
-      Width = 55
-      Alignment = taRightJustify
-      DecimalPlaces = 3
-      MinValue = 0
-      TabOrder = 6
-      Value = 0
-    end
-    object Input8: TSpinEdit
-      Left = 87
-      Height = 23
-      Top = 92
-      Width = 55
-      Alignment = taRightJustify
-      MaxValue = 50
-      MinValue = 4
-      TabOrder = 7
-      Value = 4
+      object Label4: TLabel
+        Left = 10
+        Height = 25
+        Top = 10
+        Width = 66
+        Caption = 'Radius'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label3: TLabel
+        Left = 10
+        Height = 25
+        Top = 37
+        Width = 66
+        Caption = 'No. points'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Input7: TFloatSpinEdit
+        Left = 82
+        Height = 25
+        Top = 10
+        Width = 80
+        Alignment = taRightJustify
+        Constraints.MinWidth = 80
+        DecimalPlaces = 3
+        MinValue = 0
+        TabOrder = 0
+        Value = 0
+      end
+      object Input8: TSpinEdit
+        Left = 82
+        Height = 25
+        Top = 37
+        Width = 80
+        Alignment = taRightJustify
+        MaxValue = 50
+        MinValue = 4
+        TabOrder = 1
+        Value = 4
+      end
+      object _Label9: TLabel
+        Left = 168
+        Height = 25
+        Top = 10
+        Width = 23
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
     end
   end
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 301
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 301
+    ClientWidth = 400
     TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 137
+      Left = 236
       Height = 20
       Top = 2
       Width = 80
@@ -225,7 +269,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 219
+      Left = 318
       Height = 20
       Top = 2
       Width = 80
@@ -273,14 +317,5 @@ object FreeCylinderDialog: TFreeCylinderDialog
       }
       OnClick = BitBtn2Click
     end
-  end
-  object Panel3: TPanel
-    Left = 0
-    Height = 13
-    Top = 157
-    Width = 301
-    Align = alBottom
-    BevelOuter = bvNone
-    TabOrder = 2
   end
 end

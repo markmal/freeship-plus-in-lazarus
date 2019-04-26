@@ -6,7 +6,6 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   Caption = 'Cross curves.'
   ClientHeight = 739
   ClientWidth = 970
-  Color = clBtnFace
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
@@ -726,6 +725,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               Title.Caption = 'Power [kW]'
               Title.LabelBrush.Style = bsClear
             end>
+          BackColor = clWindow
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Visible = True
@@ -739,6 +739,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           )
           Title.Visible = True
           Align = alClient
+          ParentColor = True
         end
       end
       object TabSheet2: TTabSheet
@@ -803,6 +804,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               Title.Caption = 'Power [kW]'
               Title.LabelBrush.Style = bsClear
             end>
+          BackColor = clWindow
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Alignment = laTopCenter
@@ -818,6 +820,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           )
           Title.Visible = True
           Align = alClient
+          ParentColor = True
           object Series1: TLineSeries
             Marks.Visible = False
             Title = 'l(Teta)'
@@ -865,7 +868,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     end
   end
   object MenuImages: TImageList
-    left = 624
+    left = 720
     Bitmap = {
       4C69060000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1063,13 +1066,14 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     }
   end
   object PrintDialog: TPrintDialog
-    left = 704
+    left = 800
     top = 65533
   end
   object SaveDialog: TSaveDialog
     Filter = 'Text files (*.txt)|*.txt'
     FilterIndex = 2
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    left = 800
+    left = 872
+    top = 65533
   end
 end

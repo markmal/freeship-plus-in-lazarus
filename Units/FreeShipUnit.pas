@@ -862,7 +862,7 @@ type
     // 3-rd party executables write/read temp files
     FMenuIconDirectory: string;
     // Directory where menu icons are 'Themes/Default/icons/16';
-    FToolIconDirectory: string;
+    //FToolIconDirectory: string;
     // Directory where toolbar icons are 'Themes/Default/icons/24';
 
     FThemeName: string;
@@ -926,6 +926,7 @@ type
     procedure getThemesInDir(dir: string; ss: TStrings);
     function GetIconFileName(ThemeName, IconName: string;
       IconSize: integer): string;
+    function GetToolIconDirectory: string;
     procedure dumpIcons(ImageList: TImageList; ActionList: TActionList);
     procedure LoadImageIntoBitmap(Bitmap: TBitmap; Name: string);
     procedure LoadImageListByActions(ImageList: TImageList;
@@ -988,7 +989,7 @@ type
     property ZebraStripeColor: TColor read FZebraStripeColor write FZebraStripeColor;
 
     property MenuIconDirectory: string read FMenuIconDirectory write FMenuIconDirectory;
-    property ToolIconDirectory: string read FToolIconDirectory write FToolIconDirectory;
+    property ToolIconDirectory: string read GetToolIconDirectory;
     property MenuIconSize: integer read FMenuIconSize write FMenuIconSize;
     property ToolIconSize: integer read FToolIconSize write FToolIconSize;
     property Theme: string read FThemeName;

@@ -1,234 +1,282 @@
 object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
   Left = 494
-  Height = 583
-  Top = 236
-  Width = 816
-  ClientHeight = 583
-  ClientWidth = 816
-  Color = clBtnFace
+  Height = 800
+  Top = 154
+  Width = 1200
+  ClientHeight = 800
+  ClientWidth = 1200
   Position = poDefault
-  LCLVersion = '1.4.4.0'
-  object Splitter1: TSplitter
-    Left = 636
-    Height = 557
-    Top = 26
-    Width = 5
-    Align = alRight
-    Color = clRed
-    ParentColor = False
-    ResizeAnchor = akRight
-  end
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
-    Left = 641
-    Height = 557
-    Top = 26
-    Width = 175
+    Left = 955
+    Height = 773
+    Top = 27
+    Width = 245
     Align = alRight
+    AutoSize = True
     BevelOuter = bvLowered
-    ClientHeight = 557
-    ClientWidth = 175
+    ClientHeight = 773
+    ClientWidth = 245
     TabOrder = 0
     object Panel3: TPanel
       Left = 1
-      Height = 195
+      Height = 270
       Top = 1
-      Width = 173
+      Width = 243
       Align = alTop
+      AutoSize = True
       BevelOuter = bvNone
-      ClientHeight = 195
-      ClientWidth = 173
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 270
+      ClientWidth = 243
       TabOrder = 0
-      object Label1: TLabel
-        Left = 2
-        Height = 14
-        Top = 26
-        Width = 116
-        Caption = 'Minimum edge error'
-        ParentColor = False
-      end
-      object _Label2: TLabel
-        Left = 103
-        Height = 14
-        Top = 26
-        Width = 43
-        Caption = '_Label2'
-        ParentColor = False
-      end
-      object Label3: TLabel
-        Left = 2
-        Height = 14
-        Top = 42
-        Width = 120
-        Caption = 'Maximum edge error'
-        ParentColor = False
-      end
-      object _Label4: TLabel
-        Left = 103
-        Height = 14
-        Top = 42
-        Width = 37
-        Caption = 'Label2'
-        ParentColor = False
-      end
-      object Label5: TLabel
-        Left = 2
-        Height = 14
-        Top = 10
-        Width = 59
-        Caption = 'Part name'
-        ParentColor = False
-      end
-      object _Label6: TLabel
-        Left = 63
-        Height = 14
-        Top = 10
-        Width = 47
-        Caption = '_Label6'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label7: TLabel
-        Left = 2
-        Height = 14
-        Top = 110
-        Width = 47
-        Caption = 'Rotation'
-        ParentColor = False
-      end
-      object Label8: TLabel
-        Left = 2
-        Height = 14
-        Top = 90
-        Width = 76
-        Caption = 'No. iterations'
-        ParentColor = False
-      end
-      object _Label9: TLabel
-        Left = 103
-        Height = 14
-        Top = 90
-        Width = 37
-        Caption = 'Label2'
-        ParentColor = False
-      end
-      object Label10: TLabel
-        Left = 2
-        Height = 14
-        Top = 132
-        Width = 81
-        Caption = 'X grid spacing'
-        ParentColor = False
-      end
-      object Label11: TLabel
-        Left = 2
-        Height = 14
-        Top = 154
-        Width = 80
-        Caption = 'Y grid spacing'
-        ParentColor = False
-      end
-      object _Label12: TLabel
-        Left = 140
-        Height = 14
-        Top = 110
-        Width = 34
-        Caption = '[degr]'
-        ParentColor = False
-      end
-      object _Label13: TLabel
-        Left = 140
-        Height = 14
-        Top = 130
-        Width = 19
-        Caption = '[m]'
-        ParentColor = False
-      end
-      object _Label14: TLabel
-        Left = 140
-        Height = 14
-        Top = 150
-        Width = 19
-        Caption = '[m]'
-        ParentColor = False
-      end
-      object Label15: TLabel
-        Left = 2
-        Height = 14
-        Top = 58
-        Width = 118
-        Caption = 'Maximum area error'
-        ParentColor = False
-      end
-      object _Label16: TLabel
-        Left = 103
-        Height = 14
-        Top = 58
-        Width = 37
-        Caption = 'Label2'
-        ParentColor = False
-      end
-      object Label17: TLabel
-        Left = 2
-        Height = 14
-        Top = 74
-        Width = 89
-        Caption = 'Total area error'
-        ParentColor = False
-      end
-      object _Label18: TLabel
-        Left = 103
-        Height = 14
-        Top = 74
-        Width = 37
-        Caption = 'Label2'
-        ParentColor = False
-      end
-      object Edit1: TEdit
-        Left = 88
-        Height = 19
-        Top = 104
-        Width = 50
-        AutoSize = False
-        OnExit = Edit1Exit
-        OnKeyPress = Edit1KeyPress
+      object Panel1: TPanel
+        Left = 0
+        Height = 150
+        Top = 0
+        Width = 243
+        BevelOuter = bvNone
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 6
+        ChildSizing.VerticalSpacing = 8
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 150
+        ClientWidth = 243
         TabOrder = 0
+        object Label5: TLabel
+          Left = 10
+          Height = 15
+          Top = 10
+          Width = 136
+          Caption = 'Part name'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object _Label6: TLabel
+          Left = 152
+          Height = 15
+          Top = 10
+          Width = 55
+          Caption = '_Label6'
+          Font.Style = [fsBold]
+          Layout = tlCenter
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label1: TLabel
+          Left = 10
+          Height = 15
+          Top = 33
+          Width = 136
+          Caption = 'Minimum edge error'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object _Label2: TLabel
+          Left = 152
+          Height = 15
+          Top = 33
+          Width = 55
+          Caption = '_Label2'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 10
+          Height = 15
+          Top = 56
+          Width = 136
+          Caption = 'Maximum edge error'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object _Label4: TLabel
+          Left = 152
+          Height = 15
+          Top = 56
+          Width = 55
+          Caption = 'Label2'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Label15: TLabel
+          Left = 10
+          Height = 15
+          Top = 79
+          Width = 136
+          Caption = 'Maximum area error'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object _Label16: TLabel
+          Left = 152
+          Height = 15
+          Top = 79
+          Width = 55
+          Caption = 'Label2'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Label17: TLabel
+          Left = 10
+          Height = 15
+          Top = 102
+          Width = 136
+          Caption = 'Total area error'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object _Label18: TLabel
+          Left = 152
+          Height = 15
+          Top = 102
+          Width = 55
+          Caption = 'Label2'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Label8: TLabel
+          Left = 10
+          Height = 15
+          Top = 125
+          Width = 136
+          Caption = 'No. iterations'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object _Label9: TLabel
+          Left = 152
+          Height = 15
+          Top = 125
+          Width = 55
+          Caption = 'Label2'
+          Layout = tlCenter
+          ParentColor = False
+        end
       end
-      object Edit2: TEdit
-        Left = 88
-        Height = 19
-        Top = 126
-        Width = 50
-        AutoSize = False
-        OnExit = Edit2Exit
-        OnKeyPress = Edit2KeyPress
+      object Panel4: TPanel
+        Left = 0
+        Height = 99
+        Top = 150
+        Width = 243
+        BevelOuter = bvNone
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 6
+        ChildSizing.VerticalSpacing = 2
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 3
+        ClientHeight = 99
+        ClientWidth = 243
         TabOrder = 1
-      end
-      object Edit3: TEdit
-        Left = 88
-        Height = 19
-        Top = 148
-        Width = 50
-        AutoSize = False
-        OnExit = Edit3Exit
-        OnKeyPress = Edit3KeyPress
-        TabOrder = 2
+        object Label7: TLabel
+          Left = 10
+          Height = 25
+          Top = 10
+          Width = 92
+          Caption = 'Rotation'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object FloatSpinEdit1: TFloatSpinEdit
+          Left = 108
+          Height = 25
+          Top = 10
+          Width = 80
+          Constraints.MinWidth = 80
+          DecimalPlaces = 3
+          MaxValue = 180
+          MinValue = -180
+          OnChange = FloatSpinEdit1Change
+          TabOrder = 0
+          Value = 0
+        end
+        object _Label12: TLabel
+          Left = 194
+          Height = 25
+          Top = 10
+          Width = 39
+          Caption = '[degr]'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Label10: TLabel
+          Left = 10
+          Height = 25
+          Top = 37
+          Width = 92
+          Caption = 'X grid spacing'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object FloatSpinEdit2: TFloatSpinEdit
+          Left = 108
+          Height = 25
+          Top = 37
+          Width = 80
+          Increment = 0.1
+          MinValue = 0
+          OnChange = FloatSpinEdit2Change
+          TabOrder = 1
+          Value = 0
+        end
+        object _Label13: TLabel
+          Left = 194
+          Height = 25
+          Top = 37
+          Width = 39
+          Caption = '[m]'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Label11: TLabel
+          Left = 10
+          Height = 25
+          Top = 64
+          Width = 92
+          Caption = 'Y grid spacing'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object FloatSpinEdit3: TFloatSpinEdit
+          Left = 108
+          Height = 25
+          Top = 64
+          Width = 80
+          Increment = 0.1
+          MinValue = 0
+          OnChange = FloatSpinEdit3Change
+          TabOrder = 2
+          Value = 0
+        end
+        object _Label14: TLabel
+          Left = 194
+          Height = 25
+          Top = 64
+          Width = 39
+          Caption = '[m]'
+          Layout = tlCenter
+          ParentColor = False
+        end
       end
       object CheckBox1: TCheckBox
         Left = 0
         Height = 21
-        Top = 173
-        Width = 61
+        Top = 249
+        Width = 243
         Caption = 'Mirror'
         OnClick = CheckBox1Click
-        TabOrder = 3
+        TabOrder = 2
       end
     end
     object ListBox: TCheckListBox
       Left = 1
-      Height = 360
-      Top = 196
-      Width = 173
+      Height = 501
+      Top = 271
+      Width = 243
       Align = alClient
       ItemHeight = 0
       OnClickCheck = ListBoxClickCheck
@@ -238,12 +286,12 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 26
+    Height = 27
     Top = 0
-    Width = 816
+    Width = 1200
     AutoSize = True
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False
@@ -254,171 +302,195 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       Left = 5
       Top = 2
       Action = RotateCCW90
+      AutoSize = True
     end
     object ToolButton1: TToolButton
       Left = 28
       Top = 2
       Action = RotateCCW5
+      AutoSize = True
     end
     object ToolButton11: TToolButton
       Left = 51
       Top = 2
       Action = RotateCCW1
+      AutoSize = True
     end
     object ToolButton10: TToolButton
       Left = 74
       Height = 22
       Top = 2
-      Width = 10
+      AutoSize = True
       ImageIndex = 6
       Style = tbsSeparator
     end
     object ToolButton12: TToolButton
-      Left = 84
+      Left = 82
       Top = 2
       Action = RotateCW1
+      AutoSize = True
     end
     object ToolButton2: TToolButton
-      Left = 107
+      Left = 105
       Top = 2
       Action = RotateCW5
+      AutoSize = True
     end
     object ToolButton3: TToolButton
-      Left = 130
+      Left = 128
       Top = 2
       Action = RotateCW90
+      AutoSize = True
     end
     object _ToolButton4: TToolButton
-      Left = 153
+      Left = 151
       Height = 22
       Top = 2
-      Width = 10
+      AutoSize = True
       Caption = '_ToolButton4'
       ImageIndex = 5
       Style = tbsSeparator
     end
     object ToolButton5: TToolButton
-      Left = 163
+      Left = 159
       Top = 2
       Action = ZoomExtents
+      AutoSize = True
     end
     object ToolButton8: TToolButton
-      Left = 186
+      Left = 182
       Top = 2
       Action = ZoomIn
+      AutoSize = True
     end
     object ToolButton9: TToolButton
-      Left = 209
+      Left = 205
       Top = 2
       Action = ZoomOut
+      AutoSize = True
     end
     object _ToolButton6: TToolButton
-      Left = 272
+      Left = 268
       Height = 22
       Top = 2
-      Width = 10
+      AutoSize = True
       Caption = '_ToolButton6'
       ImageIndex = 1
       Style = tbsSeparator
     end
     object ToolButton19: TToolButton
-      Left = 282
+      Left = 276
       Top = 2
       Action = ShowFillColor
+      AutoSize = True
     end
     object ToolButton4: TToolButton
-      Left = 305
+      Left = 299
       Top = 2
       Action = ShowSubmergedArea
+      AutoSize = True
     end
     object ToolButton18: TToolButton
-      Left = 328
+      Left = 322
       Top = 2
       Action = ShowInteriorEdges
+      AutoSize = True
     end
     object ToolButton23: TToolButton
-      Left = 351
+      Left = 345
       Top = 2
       Action = ShowErrorEdges
+      AutoSize = True
     end
     object ToolButton26: TToolButton
-      Left = 374
+      Left = 368
       Hint = 'Show dimensions of the unfolded plates.'
       Top = 2
       Action = ShowDimensions
+      AutoSize = True
     end
     object ToolButton27: TToolButton
-      Left = 397
+      Left = 391
       Top = 2
       Action = ShowPartName
+      AutoSize = True
     end
     object ToolButton15: TToolButton
-      Left = 420
+      Left = 414
       Top = 2
       Action = ShowStations
+      AutoSize = True
       Style = tbsCheck
     end
     object ToolButton16: TToolButton
-      Left = 443
+      Left = 437
       Top = 2
       Action = ShowButtocks
+      AutoSize = True
     end
     object ToolButton17: TToolButton
-      Left = 466
+      Left = 460
       Top = 2
       Action = ShowWaterlines
+      AutoSize = True
     end
     object ToolButton24: TToolButton
-      Left = 489
+      Left = 483
       Top = 2
       Action = ShowDiagonals
+      AutoSize = True
     end
     object _ToolButton14: TToolButton
-      Left = 512
+      Left = 506
       Height = 22
       Top = 2
-      Width = 10
+      AutoSize = True
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 522
+      Left = 514
       Top = 2
       Action = Print
+      AutoSize = True
     end
     object ToolButton7: TToolButton
-      Left = 545
+      Left = 537
       Top = 2
       Action = SaveBitmap
+      AutoSize = True
     end
     object ToolButton13: TToolButton
-      Left = 568
+      Left = 560
       Top = 2
       Action = ExportDXF
+      AutoSize = True
     end
     object ToolButton6: TToolButton
-      Left = 591
+      Left = 583
       Top = 2
       Action = ExportTextFile
+      AutoSize = True
     end
     object _ToolButton21: TToolButton
-      Left = 614
+      Left = 606
       Height = 22
       Top = 2
-      Width = 15
+      AutoSize = True
       Caption = '_ToolButton21'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton22: TToolButton
-      Left = 629
+      Left = 614
       Top = 2
       Action = CloseDialog
+      AutoSize = True
     end
     object SpinEditFontSize: TSpinEdit
-      Left = 232
-      Height = 24
+      Left = 228
+      Height = 25
       Hint = 'Font Size'
       Top = 2
       Width = 40
@@ -609,8 +681,9 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     end
   end
   object MenuImages: TImageList
-    left = 112
-    top = 80
+    Scaled = True
+    left = 120
+    top = 48
     Bitmap = {
       4C691A0000001000000010000000000000FF000000FF1E1E1EFFD6D6D6FF0000
       000000000000000000000000000000000000000000000000000000000000D6D6
@@ -1448,7 +1521,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     }
   end
   object PrintDialog: TPrintDialog
-    left = 224
-    top = 56
+    left = 216
+    top = 48
   end
 end

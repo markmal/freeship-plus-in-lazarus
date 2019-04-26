@@ -62,17 +62,17 @@ type
 { TFreeEmptyModelChooserDialog }
 
  TFreeEmptyModelChooserDialog = class(TForm)
+   Label1: TLabel;
     LabelFileName: TLabel;
     Panel2: TPanel;
     Panel1: TPanel;
     Panel3: TPanel;
     OKbutton: TSpeedButton;
     CancelButton: TSpeedButton;
-    Label1: TLabel;
     RadioGroup1: TRadioGroup;
     RbCreateNew: TRadioButton;
-    RbLoadFile: TRadioButton;
     RbEmptyModel: TRadioButton;
+    RbLoadFile: TRadioButton;
     procedure OKbuttonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
  private   { Private declarations }

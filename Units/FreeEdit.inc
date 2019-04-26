@@ -6928,6 +6928,7 @@ begin
   for I := 1 to Owner.Surface.NumberOfControlEdges do
     if Owner.Surface.ControlEdge[I - 1].NumberOfFaces > 2 then
       Inc(NonManifold);
+
   if AllFaces.Count > 0 then
   begin
     NewGroup := TFasterListTFreeSubdivisionFace.Create;
@@ -6950,12 +6951,15 @@ begin
         for j := 1 to Face.NumberOfPoints do
         begin
           Pt := Face.Point[J - 1];
-          if Point = nil then
+          //if Point = nil then      //MM 04/26/2019: Why Point? Changed to Pt
+          if Pt = nil then
             Pt0 := Pt
-          else if Pt.Coordinate.Z < Point.Coordinate.Z then
+          //else if Pt.Coordinate.Z < Point.Coordinate.Z then //MM: same
+          else if Pt.Coordinate.Z < Pt.Coordinate.Z then
             Pt0 := Pt;
         end;
       end;
+
       if Pt0 <> nil then
       begin
         // select the a face connected to this point and also present in the
@@ -6992,6 +6996,7 @@ begin
           end;
       end;
     end;
+
     NewGroup.Destroy;
     if (Leaks.Count > 0) and (ShowResult) then
     begin

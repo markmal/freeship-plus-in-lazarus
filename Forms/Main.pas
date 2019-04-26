@@ -440,7 +440,6 @@ type
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure MainClientPanelClick(Sender: TObject);
     procedure PanelMainResize(Sender: TObject);
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
@@ -1439,28 +1438,11 @@ begin
    UpdateMenu;
 end;{TMainForm.FormShow}
 
-
-// TO testing - remove!
-procedure TMainForm.MainClientPanelClick(Sender: TObject);
-var f:TForm; p:TMDIPanel;
-begin
-  f:=TForm.Create(Application);
-  f.SetBounds(0,0,500,600);
-
-  p:=TMDIPanel.Create(f);
-  p.parent:= f;
-  p.SetBounds(10,10,400,300);
-
-  f.Show;
-
-end;
-
 procedure TMainForm.PanelMainResize(Sender: TObject);
 begin
   if PanelMain.IsResizing then exit;
   ArrangeRibbonPanel(PanelMain);
 end;
-
 
 procedure TMainForm.ShowControlNetExecute(Sender: TObject);
 begin
@@ -2254,7 +2236,13 @@ end;{TMainForm.AddPointExecute}
 
 procedure TMainForm.DevelopLayersExecute(Sender: TObject);
 begin
+   Screen.Cursor:= crHourglass;
+   Application.ProcessMessages;
+
    FreeShip.Edit.Layer_Develop;
+
+   Screen.Cursor:= crDefault;
+
    UpdateMenu;
 end;{TMainForm.DevelopLayersExecute}
 

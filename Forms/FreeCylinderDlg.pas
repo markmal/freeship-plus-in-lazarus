@@ -60,8 +60,13 @@ uses
     FreeShipUnit,
     FreeLanguageSupport;
 
-type TFreeCylinderDialog = class(TForm)
+type
+
+{ TFreeCylinderDialog }
+
+ TFreeCylinderDialog = class(TForm)
                               Panel2: TPanel;
+                              Panel4: TPanel;
                               _Label3: TLabel;
                               _Label6: TLabel;
                               _Label9: TLabel;

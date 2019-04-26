@@ -2384,7 +2384,7 @@ object FreeSplashWindow: TFreeSplashWindow
         Font.Style = [fsBold]
         Layout = tlCenter
         ParentColor = False
-        ParentFont = False
+
       end
     end
     object VersionPanel: TPanel
@@ -2415,7 +2415,7 @@ object FreeSplashWindow: TFreeSplashWindow
         Font.Height = -20
         Font.Style = [fsBold]
         ParentColor = False
-        ParentFont = False
+
       end
       object LabelRelease: TLabel
         Left = 10
@@ -2427,7 +2427,7 @@ object FreeSplashWindow: TFreeSplashWindow
         Font.Height = -15
         Font.Name = 'Arial'
         ParentColor = False
-        ParentFont = False
+
       end
       object LabelBuildInfo: TLabel
         Left = 10
@@ -2439,7 +2439,7 @@ object FreeSplashWindow: TFreeSplashWindow
         Font.Height = -15
         Font.Name = 'Arial'
         ParentColor = False
-        ParentFont = False
+
       end
     end
   end
@@ -2470,7 +2470,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Color = 15461355
       Font.Style = [fsBold]
       ParentColor = False
-      ParentFont = False
+
       OnClick = _Label2Click
     end
     object _Label5: TLabel
@@ -2485,7 +2485,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Height = -16
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
-      ParentFont = False
+
       OnClick = _Label5Click
     end
     object Label2: TLabel
@@ -2497,7 +2497,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Color = 15461355
       Font.Style = [fsBold]
       ParentColor = False
-      ParentFont = False
+
     end
     object _Label4: TLabel
       Cursor = crHandPoint
@@ -2512,7 +2512,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Name = 'Arial Black'
       Font.Style = [fsUnderline]
       ParentColor = False
-      ParentFont = False
+
       OnClick = _Label4Click
     end
     object _label8: TLabel
@@ -2527,7 +2527,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Name = 'Arial Narrow'
       Font.Style = [fsBold]
       ParentColor = False
-      ParentFont = False
+
       OnClick = _Label5Click
     end
   end
@@ -2557,7 +2557,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Height = -20
       Font.Name = 'Arial'
       ParentColor = False
-      ParentFont = False
+
       WordWrap = True
     end
     object LabelWarranty: TLabel
@@ -2572,7 +2572,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Height = -12
       Font.Name = 'Legal'
       ParentColor = False
-      ParentFont = False
+
       WordWrap = True
     end
     object LabelWarranty1: TLabel
@@ -2586,7 +2586,7 @@ object FreeSplashWindow: TFreeSplashWindow
       Font.Color = clBlack
       Font.Name = 'Arial Black'
       ParentColor = False
-      ParentFont = False
+
       WordWrap = True
     end
   end

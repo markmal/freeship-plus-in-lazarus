@@ -1,66 +1,31 @@
 object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
-  Left = 421
-  Height = 123
-  Top = 167
-  Width = 261
+  Left = 538
+  Height = 200
+  Top = 270
+  Width = 300
   BorderStyle = bsDialog
   Caption = 'Background blending.'
-  ClientHeight = 123
-  ClientWidth = 261
-  Color = clBtnFace
+  ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+  ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+  ChildSizing.Layout = cclLeftToRightThenTopToBottom
+  ChildSizing.ControlsPerLine = 1
+  ClientHeight = 200
+  ClientWidth = 300
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
-  object Panel2: TPanel
-    Left = 0
-    Height = 86
-    Top = 24
-    Width = 261
-    Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 86
-    ClientWidth = 261
-    TabOrder = 0
-    object Label1: TLabel
-      Left = 24
-      Height = 13
-      Top = 16
-      Width = 101
-      Caption = 'Visibility of image'
-      ParentColor = False
-    end
-    object _Label2: TLabel
-      Left = 124
-      Height = 13
-      Top = 16
-      Width = 43
-      Caption = '_Label2'
-      ParentColor = False
-    end
-    object TrackBar1: TTrackBar
-      Left = 16
-      Height = 37
-      Top = 44
-      Width = 233
-      Max = 255
-      OnChange = TrackBar1Change
-      Position = 255
-      TickStyle = tsNone
-      TabOrder = 0
-    end
-  end
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 261
+    Width = 300
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 261
-    TabOrder = 1
+    ClientWidth = 300
+    TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 97
+      Left = 136
       Height = 20
       Top = 2
       Width = 80
@@ -109,7 +74,7 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 179
+      Left = 218
       Height = 20
       Top = 2
       Width = 80
@@ -159,12 +124,69 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
     end
   end
   object Panel3: TPanel
-    Left = 0
-    Height = 13
-    Top = 110
-    Width = 261
-    Align = alBottom
+    Left = 53
+    Height = 71
+    Top = 65
+    Width = 195
+    AutoSize = True
     BevelOuter = bvNone
-    TabOrder = 2
+    ClientHeight = 71
+    ClientWidth = 195
+    TabOrder = 1
+    object Panel2: TPanel
+      Left = 0
+      Height = 71
+      Top = 0
+      Width = 195
+      AutoSize = True
+      BevelOuter = bvNone
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 71
+      ClientWidth = 195
+      TabOrder = 0
+      object Panel4: TPanel
+        Left = 0
+        Height = 35
+        Top = 0
+        Width = 195
+        BevelOuter = bvNone
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 6
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 35
+        ClientWidth = 195
+        TabOrder = 0
+        object Label1: TLabel
+          Left = 10
+          Height = 15
+          Top = 10
+          Width = 119
+          Caption = 'Visibility of image'
+          ParentColor = False
+        end
+        object _Label2: TLabel
+          Left = 135
+          Height = 15
+          Top = 10
+          Width = 50
+          Caption = '_Label2'
+          ParentColor = False
+        end
+      end
+      object TrackBar1: TTrackBar
+        Left = 0
+        Height = 36
+        Top = 35
+        Width = 195
+        Max = 255
+        OnChange = TrackBar1Change
+        Position = 255
+        TickStyle = tsNone
+        TabOrder = 1
+      end
+    end
   end
 end

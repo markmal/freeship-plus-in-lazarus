@@ -65,19 +65,31 @@ type
   { TFreeExpanedplatesDialog }
 
   TFreeExpanedplatesDialog = class(TForm)
+    CheckBox1: TCheckBox;
     CloseDialog: TAction;
+    FloatSpinEdit1: TFloatSpinEdit;
+    FloatSpinEdit2: TFloatSpinEdit;
+    FloatSpinEdit3: TFloatSpinEdit;
+    Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label15: TLabel;
+    Label17: TLabel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
-    Label1: TLabel;
+    Panel4: TPanel;
     SpinEditFontSize: TSpinEdit;
+    _Label12: TLabel;
+    _Label13: TLabel;
+    _Label14: TLabel;
+    _Label16: TLabel;
+    _Label18: TLabel;
     _Label2: TLabel;
-    Label3: TLabel;
-    _Label4: TLabel;
-    Label5: TLabel;
-    _Label6: TLabel;
-    Label7: TLabel;
-    Edit1: TEdit;
-    Splitter1: TSplitter;
     ToolBar1: TToolBar;
     ToolButton20: TToolButton;
     ActionList1: TActionList;
@@ -90,6 +102,9 @@ type
     RotateCW90: TAction;
     ToolButton3: TToolButton;
     ZoomExtents: TAction;
+    _Label4: TLabel;
+    _Label6: TLabel;
+    _Label9: TLabel;
     _ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     SaveBitmap: TAction;
@@ -119,8 +134,6 @@ type
     ToolButton18: TToolButton;
     ShowFillColor: TAction;
     ToolButton19: TToolButton;
-    Label8: TLabel;
-    _Label9: TLabel;
     _ToolButton21: TToolButton;
     ToolButton22: TToolButton;
     ShowErrorEdges: TAction;
@@ -132,39 +145,25 @@ type
     ToolButton25: TToolButton;
     ShowDimensions: TAction;
     ToolButton26: TToolButton;
-    Label10: TLabel;
-    Edit2: TEdit;
-    Label11: TLabel;
-    Edit3: TEdit;
-    _Label12: TLabel;
-    _Label13: TLabel;
-    _Label14: TLabel;
     ShowPartName: TAction;
     ToolButton27: TToolButton;
-    Label15: TLabel;
-    _Label16: TLabel;
-    Label17: TLabel;
-    _Label18: TLabel;
-    CheckBox1: TCheckBox;
     ShowSubmergedArea: TAction;
     ToolButton4: TToolButton;
     ExportTextFile: TAction;
     ToolButton6: TToolButton;
-    procedure CloseDialogExecute(
-      Sender: TObject);
-    procedure ListBoxClickCheck(
-      Sender: TObject);
-    procedure SpinEditFontSizeChange(
-      Sender: TObject);
-    procedure ViewportRequestExtents(Sender: TObject;
-      var Min, Max: T3DCoordinate);
+    procedure CloseDialogExecute(Sender: TObject);
+    procedure FloatSpinEdit1Change(Sender: TObject);
+    procedure FloatSpinEdit2Change(Sender: TObject);
+    procedure FloatSpinEdit3Change(Sender: TObject);
+    procedure ListBoxClickCheck(Sender: TObject);
+    procedure SpinEditFontSizeChange(Sender: TObject);
+    procedure ViewportRequestExtents(Sender: TObject; var Min, Max: T3DCoordinate);
     procedure ViewportRedraw(Sender: TObject);
-    procedure ViewportMouseMove(Sender: TObject;
+    procedure ViewportMouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
+    procedure ViewportMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
-    procedure ViewportMouseDown(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: integer);
-    procedure ViewportMouseUp(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: integer);
+    procedure ViewportMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: integer);
     procedure RotateCCW90Execute(Sender: TObject);
     procedure RotateCCW5Execute(Sender: TObject);
     procedure RotateCW5Execute(Sender: TObject);
@@ -179,38 +178,30 @@ type
     procedure ShowStationsExecute(Sender: TObject);
     procedure ShowButtocksExecute(Sender: TObject);
     procedure ShowWaterlinesExecute(Sender: TObject);
-    procedure ShowInteriorEdgesExecute(
-      Sender: TObject);
+    procedure ShowInteriorEdgesExecute(Sender: TObject);
     procedure ShowFillColorExecute(Sender: TObject);
     procedure ShowErrorEdgesExecute(Sender: TObject);
     procedure ShowDiagonalsExecute(Sender: TObject);
     procedure PrintExecute(Sender: TObject);
     procedure ShowDimensionsExecute(Sender: TObject);
-    procedure Edit2KeyPress(Sender: TObject;
-      var Key: char);
+    procedure Edit2KeyPress(Sender: TObject; var Key: char);
     procedure Edit2Exit(Sender: TObject);
-    procedure Edit3KeyPress(Sender: TObject;
-      var Key: char);
+    procedure Edit3KeyPress(Sender: TObject; var Key: char);
     procedure Edit3Exit(Sender: TObject);
-    procedure Edit1KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit1Exit(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure ShowPartNameExecute(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
-    procedure ShowSubmergedAreaExecute(
-      Sender: TObject);
+    procedure ShowSubmergedAreaExecute(Sender: TObject);
     procedure ExportTextFileExecute(Sender: TObject);
   private   { Private declarations }
-    FPlates:
-    TFasterListTFreeDevelopedPatch;
+    FPlates: TFasterListTFreeDevelopedPatch;
     FFreeShip: TFreeShip;
     FInitialPosition: TPoint;
     FAllowPanOrZoom: boolean;
     FXGridSpacing: TFloatType;
     FYGridSpacing: TFloatType;
     function FGetActivePatch: TFreeDevelopedPatch;
-    procedure FSetActivePatch(
-      Val: TFreeDevelopedPatch);
+    procedure FSetActivePatch(Val: TFreeDevelopedPatch);
     procedure FUpdateListBox;
     procedure InitViewPort;
   public    { Public declarations }
@@ -250,9 +241,7 @@ begin
   while OveralSize / Tmp > 20 do
     Tmp := Tmp * 2;
   if Tmp < OveralSize / 1000 then
-  begin
     Tmp := OveralSize / 1000;
-  end;
   Result := Tmp;
 end;{GetGridSpacing}
 
@@ -307,7 +296,7 @@ begin
     _Label9.Caption := '';
     _Label16.Caption := '';
     _Label18.Caption := '';
-    Edit1.Text := '';
+    FloatSpinEdit1.Value := 0;
     Checkbox1.Checked := False;
   end
   else
@@ -318,7 +307,7 @@ begin
     _Label18.Caption := ': ' + FloatToStrF(Val.TotalAreaError, ffFixed, 7, 6);
     _Label6.Caption := ': ' + Val.Name;
     _Label9.Caption := IntToStr(Val.NumberOfIterations);
-    Edit1.Text := Truncate(Val.Rotation, 3);
+    FloatSpinEdit1.Value := Val.Rotation;
     Checkbox1.Checked := Val.MirrorOnScreen;
   end;
   Viewport.Refresh;
@@ -387,6 +376,8 @@ begin
   ////Freeship.Preferences.dumpIcons(MenuImages,ActionList1);
 
   Freeship.Preferences.LoadImageListByActions(MenuImages, ActionList1);
+  ToolBar1.ButtonHeight:= MenuImages.Height + 4;
+  ToolBar1.ButtonWidth := MenuImages.Width  + 4;
 
   FUpdateListBox;
 
@@ -420,7 +411,8 @@ begin
     begin
       P2D.X := -Min.X;
       if odd(I) then
-        P2D.Y := MinT.Y - Max.Y - Clearance  // Odd(I) means portside plate, put at bottom
+        P2D.Y := MinT.Y - Max.Y -
+          Clearance  // Odd(I) means portside plate, put at bottom
       else
         P2D.Y := MaxT.Y - Min.Y + Clearance; // even(I) is starboard plate, put at top
       Patch.Translation := P2D;
@@ -453,8 +445,8 @@ begin
     Tmp := Max.Y - Min.Y;
   FXGridSpacing := GetGridSpacing(Tmp) / 2;
   FYGridSpacing := FXGridSpacing;
-  Edit2.Text := FloatToStrF(FXGridSpacing, ffFixed, 7, 3);
-  Edit3.Text := FloatToStrF(FYGridSpacing, ffFixed, 7, 3);
+  FloatSpinEdit2.Value := FXGridSpacing;
+  FloatSpinEdit3.Value := FYGridSpacing;
 
   SpinEditFontSizeChange(nil); //refresh font sizes
 
@@ -590,8 +582,8 @@ begin
   end;
 end;{TFreeExpanedplatesDialog.ViewportRedraw}
 
-procedure TFreeExpanedplatesDialog.ViewportMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: integer);
+procedure TFreeExpanedplatesDialog.ViewportMouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: integer);
 var
   P: TPoint;
   P1, P2: T2DCoordinate;
@@ -615,8 +607,6 @@ begin
       end;
     end
     else if ssRight in Shift then
-    begin
-      // Pan the window left, right, top or bottom
       if (abs(FInitialPosition.X - X) > 4) or (abs(FInitialPosition.Y - Y) > 4) then
       begin
         P.X := Viewport.Pan.X + X - FInitialPosition.X;
@@ -624,15 +614,13 @@ begin
         Viewport.Pan := P;
         FInitialPosition.X := X;
         FInitialPosition.Y := Y;
-      end;
-    end;
+      end// Pan the window left, right, top or bottom
+    ;
   end
   else
   begin
     Patch := ActivePatch;
     if (ssLeft in Shift) and (Patch <> nil) then
-    begin
-      // Translate the selected patch
       if (abs(FInitialPosition.X - X) > 0) or (abs(FInitialPosition.Y - Y) > 0) then
       begin
         P.X := X;
@@ -645,8 +633,8 @@ begin
         Viewport.Refresh;
         FInitialPosition.X := X;
         FInitialPosition.Y := Y;
-      end;
-    end;
+      end// Translate the selected patch
+    ;
   end;
 end;{TFreeExpanedplatesDialog.ViewportMouseMove}
 
@@ -716,8 +704,8 @@ begin
 end;
 
 
-procedure TFreeExpanedplatesDialog.ViewportMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: integer);
+procedure TFreeExpanedplatesDialog.ViewportMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: integer);
 begin
   if (not FAllowPanOrZoom) and (Viewport.Zoom = 1.0) then
     Viewport.ZoomExtents;
@@ -729,7 +717,7 @@ begin
   if ActivePatch <> nil then
   begin
     ActivePatch.Rotation := ActivePatch.Rotation + 90;
-    Edit1.Text := Truncate(ActivePatch.Rotation, 3);
+    FloatSpinEdit1.Value := ActivePatch.Rotation;
     if Viewport.Zoom = 1.0 then
       Viewport.ZoomExtents
     else
@@ -742,7 +730,7 @@ begin
   if ActivePatch <> nil then
   begin
     ActivePatch.Rotation := ActivePatch.Rotation + 5;
-    Edit1.Text := Truncate(ActivePatch.Rotation, 3);
+    FloatSpinEdit1.Value := ActivePatch.Rotation;
     if Viewport.Zoom = 1.0 then
       Viewport.ZoomExtents
     else
@@ -755,7 +743,7 @@ begin
   if ActivePatch <> nil then
   begin
     ActivePatch.Rotation := ActivePatch.Rotation - 5;
-    Edit1.Text := Truncate(ActivePatch.Rotation, 3);
+    FloatSpinEdit1.Value := ActivePatch.Rotation;
     if Viewport.Zoom = 1.0 then
       Viewport.ZoomExtents
     else
@@ -768,7 +756,7 @@ begin
   if ActivePatch <> nil then
   begin
     ActivePatch.Rotation := ActivePatch.Rotation - 90;
-    Edit1.Text := Truncate(ActivePatch.Rotation, 3);
+    FloatSpinEdit1.Value := ActivePatch.Rotation;
     if Viewport.Zoom = 1.0 then
       Viewport.ZoomExtents
     else
@@ -789,7 +777,8 @@ begin
   if Str[Length(Str)] <> '\' then
     Str := Str + '\';
   // Skip translation
-  Str := Str + ChangeFileExt(ExtractFilename(FFreeship.FileName), '') + '_developments.bmp';
+  Str := Str + ChangeFileExt(ExtractFilename(FFreeship.FileName), '') +
+    '_developments.bmp';
   // End Skip translation
   Viewport.SaveAsBitmap(Str);
 end;{TFreeExpanedplatesDialog.PrintExecute}
@@ -809,7 +798,7 @@ begin
   if ActivePatch <> nil then
   begin
     ActivePatch.Rotation := ActivePatch.Rotation + 1;
-    Edit1.Text := Truncate(ActivePatch.Rotation, 3);
+    FloatSpinEdit1.Value := ActivePatch.Rotation;
     if Viewport.Zoom = 1.0 then
       Viewport.ZoomExtents
     else
@@ -822,7 +811,7 @@ begin
   if ActivePatch <> nil then
   begin
     ActivePatch.Rotation := ActivePatch.Rotation - 1;
-    Edit1.Text := Truncate(ActivePatch.Rotation, 3);
+    FloatSpinEdit1.Value := ActivePatch.Rotation;
     if Viewport.Zoom = 1.0 then
       Viewport.ZoomExtents
     else
@@ -926,74 +915,104 @@ end;{TFreeExpanedplatesDialog.ShowDimensionsExecute}
 
 procedure TFreeExpanedplatesDialog.Edit2KeyPress(Sender: TObject; var Key: char);
 begin
-  if (Key in [#8, '1'..'9', '0', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-  if Key = #13 then
-    Edit2Exit(self);
-end;{TFreeExpanedplatesDialog.Edit2KeyPress}
+
+end;
 
 procedure TFreeExpanedplatesDialog.Edit2Exit(Sender: TObject);
-var
-  Value: TFloatType;
 begin
-  if Edit2.Text = '' then
-    Value := FXGridSpacing
-  else
-    Value := StrToFloat(Edit2.Text);
-  FXGridSpacing := Value;
-  Edit2.Text := FloatToStrF(FXGridSpacing, ffFixed, 7, 3);
-  Viewport.Refresh;
-end;{TFreeExpanedplatesDialog.Edit2Exit}
+
+end;
 
 procedure TFreeExpanedplatesDialog.Edit3KeyPress(Sender: TObject; var Key: char);
 begin
-  if (Key in [#8, '1'..'9', '0', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-  if Key = #13 then
-    Edit3Exit(self);
-end;{TFreeExpanedplatesDialog.Edit3KeyPress}
+
+end;
 
 procedure TFreeExpanedplatesDialog.Edit3Exit(Sender: TObject);
-var
-  Value: TFloatType;
 begin
-  if Edit3.Text = '' then
-    Value := FYGridSpacing
-  else
-    Value := StrToFloat(Edit3.Text);
-  FYGridSpacing := Value;
-  Edit3.Text := FloatToStrF(FYGridSpacing, ffFixed, 7, 3);
-  Viewport.Refresh;
-end;{TFreeExpanedplatesDialog.Edit3Exit}
+
+end;
 
 procedure TFreeExpanedplatesDialog.Edit1KeyPress(Sender: TObject; var Key: char);
 begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-  if Key = #13 then
-    Edit1Exit(self);
-end;{TFreeExpanedplatesDialog.Edit1KeyPress}
 
-procedure TFreeExpanedplatesDialog.Edit1Exit(Sender: TObject);
+end;
+
+procedure TFreeExpanedplatesDialog.FloatSpinEdit2Change(Sender: TObject);
 var
-  Value: TFloatType;
+  S, I: integer;
 begin
-  if ActivePatch <> nil then
-  begin
-    Value := StrToFloat(Edit1.Text);
-    if Value <> ActivePatch.Rotation then
-    begin
-      ActivePatch.Rotation := Value;
-      if Viewport.Zoom = 1.0 then
-        Viewport.ZoomExtents
-      else
-        Viewport.Refresh;
-    end;
+  FloatSpinEdit2.OnChange := nil; // detach to avoid looping
+  try
+    FXGridSpacing := FloatSpinEdit2.Value;
+
+    // Increment will automatically change from 0.01 to 10.0
+    // We calculate in hundreds ints to simplify comparisons
+    I := round(FloatSpinEdit2.Increment * 100);
+    S := round(FXGridSpacing * 100);
+    if (S < 1) then
+      S := 1;
+    if (S > 1000) then
+      S := 1000;
+
+    if (I > 1) and (S <= I) then
+      I := I div 10;
+    if (I < 1000) and (S >= (I * 10)) then
+      I := I * 10;
+    FloatSpinEdit2.Increment := 0.01 * I;
+
+    FXGridSpacing := 0.01 * S;
+    FloatSpinEdit2.Value := FXGridSpacing;
+
+    Viewport.Refresh;
+  finally
+    FloatSpinEdit2.OnChange := FloatSpinEdit2Change;
   end;
-end;{TFreeExpanedplatesDialog.Edit1Exit}
+end;
+
+procedure TFreeExpanedplatesDialog.FloatSpinEdit3Change(Sender: TObject);
+var
+  S, I: integer;
+begin
+  FloatSpinEdit3.OnChange := nil; // detach to avoid looping
+  try
+    FYGridSpacing := FloatSpinEdit3.Value;
+
+    // Increment will automatically change from 0.01 to 10.0
+    // We calculate in hundreds ints to simplify comparisons
+    I := round(FloatSpinEdit3.Increment * 100);
+    S := round(FYGridSpacing * 100);
+    if (S < 1) then
+      S := 1;
+    if (S > 1000) then
+      S := 1000;
+
+    if (I > 1) and (S <= I) then
+      I := I div 10;
+    if (I < 1000) and (S >= (I * 10)) then
+      I := I * 10;
+    FloatSpinEdit3.Increment := 0.01 * I;
+
+    FYGridSpacing := 0.01 * S;
+    FloatSpinEdit3.Value := FYGridSpacing;
+
+    Viewport.Refresh;
+  finally
+    FloatSpinEdit3.OnChange := FloatSpinEdit3Change;
+  end;
+end;
+
+procedure TFreeExpanedplatesDialog.FloatSpinEdit1Change(Sender: TObject);
+begin
+  if FloatSpinEdit1.Value <> ActivePatch.Rotation then
+  begin
+    ActivePatch.Rotation := FloatSpinEdit1.Value;
+    if Viewport.Zoom = 1.0 then
+      Viewport.ZoomExtents
+    else
+      Viewport.Refresh;
+  end;
+end;
 
 procedure TFreeExpanedplatesDialog.ShowPartNameExecute(Sender: TObject);
 begin
@@ -1004,7 +1023,6 @@ end;{TFreeExpanedplatesDialog.ShowPartNameExecute}
 procedure TFreeExpanedplatesDialog.CheckBox1Click(Sender: TObject);
 begin
   if ActivePatch <> nil then
-  begin
     if Checkbox1.Checked <> ActivePatch.MirrorOnScreen then
     begin
       ActivePatch.MirroronScreen := Checkbox1.Checked;
@@ -1013,14 +1031,12 @@ begin
       else
         Viewport.Refresh;
     end;
-  end;
 end;{TFreeExpanedplatesDialog.CheckBox1Click}
 
 procedure TFreeExpanedplatesDialog.ShowSubmergedAreaExecute(Sender: TObject);
 begin
   ShowSubmergedArea.Checked := not ShowSubmergedarea.Checked;
   Viewport.Refresh;
-  ;
 end;{TFreeExpanedplatesDialog.ShowSubmergedAreaExecute}
 
 procedure TFreeExpanedplatesDialog.ExportTextFileExecute(Sender: TObject);

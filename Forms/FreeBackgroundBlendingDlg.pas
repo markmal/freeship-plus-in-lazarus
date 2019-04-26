@@ -33,83 +33,92 @@ interface
 
 uses
     {$IFDEF Windows}
-    Windows,
+  Windows,
     {$ELSE}
          {$IFDEF VER3}
-      LazUTF8,
-      LazFileUtils,
+  LazUTF8,
+  LazFileUtils,
      {$ELSE}
-      FileUtil, //deprecated
+  FileUtil, //deprecated
      {$ENDIF}
 
     {$ENDIF}
-     Messages,
-     SysUtils,
-     Classes,
-     Graphics,
-     Controls,
-     Forms,
-     Dialogs,
-     StdCtrls,
-     Buttons,
-     ExtCtrls,
-     FreeGeometry,
-     ComCtrls,
-    FreeShipUnit,
-    FreeLanguageSupport;
+  Messages,
+  SysUtils,
+  Classes,
+  Graphics,
+  Controls,
+  Forms,
+  Dialogs,
+  StdCtrls,
+  Buttons,
+  ExtCtrls,
+  FreeGeometry,
+  ComCtrls,
+  FreeShipUnit,
+  FreeLanguageSupport;
 
-type TFreeBackgroundBlendDialog = class(TForm)
-                              Panel2: TPanel;
-                              Panel1: TPanel;
-                              Panel3: TPanel;
-                              BitBtn1: TSpeedButton;
-                              BitBtn2: TSpeedButton;
-                              TrackBar1: TTrackBar;
+type
+
+  { TFreeBackgroundBlendDialog }
+
+  TFreeBackgroundBlendDialog = class(TForm)
     Label1: TLabel;
+    Panel2: TPanel;
+    Panel1: TPanel;
+    BitBtn1: TSpeedButton;
+    BitBtn2: TSpeedButton;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    TrackBar1: TTrackBar;
     _Label2: TLabel;
-                              procedure BitBtn1Click(Sender: TObject);
-                              procedure BitBtn2Click(Sender: TObject);
-                              procedure TrackBar1Change(Sender: TObject);
-                           private   { Private declarations }
-                              FViewport: TFreeViewport;
-                           public    { Public declarations }
-                              function Execute(Viewport:TFreeViewport):Boolean;
-                        end;
-var FreeBackgroundBlendDialog:TFreeBackgroundBlendDialog;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure TrackBar1Change(Sender: TObject);
+  private   { Private declarations }
+    FViewport: TFreeViewport;
+  public    { Public declarations }
+    function Execute(Viewport: TFreeViewport): boolean;
+  end;
+
+var
+  FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog;
 
 implementation
+
 {$IFnDEF FPC}
   {$R *.dfm}
+
 {$ELSE}
   {$R *.lfm}
 {$ENDIF}
 
-function TFreeBackgroundBlendDialog.Execute(Viewport:TFreeViewport):Boolean;
+function TFreeBackgroundBlendDialog.Execute(Viewport: TFreeViewport): boolean;
 begin
-   FViewport:=Viewport;
-   Trackbar1.Position:=Viewport.BackgroundImage.Alpha;
-   TrackBar1Change(self);
-   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
-   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
-   ShowTranslatedValues(Self);
-   Showmodal;
-   Result:=ModalResult=mrOk;
+  FViewport := Viewport;
+  Trackbar1.Position := Viewport.BackgroundImage.Alpha;
+  TrackBar1Change(self);
+  GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
+  GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
+  ShowTranslatedValues(Self);
+  Showmodal;
+  Result := ModalResult = mrOk;
 end;{TFreeBackgroundBlendDialog.Execute}
 
 procedure TFreeBackgroundBlendDialog.BitBtn1Click(Sender: TObject);
 begin
-   ModalResult:=mrOk;
+  ModalResult := mrOk;
 end;{TFreeBackgroundBlendDialog.BitBtn1Click}
 
 procedure TFreeBackgroundBlendDialog.BitBtn2Click(Sender: TObject);
 begin
-   ModalResult:=mrCancel;
+  ModalResult := mrCancel;
 end;{TFreeBackgroundBlendDialog.BitBtn2Click}
 
 procedure TFreeBackgroundBlendDialog.TrackBar1Change(Sender: TObject);
 begin
-   FViewport.BackgroundImage.Alpha:=Trackbar1.Position;
-   _Label2.Caption:=IntToStr(Round(100*(Trackbar1.Position)/Trackbar1.Max))+'%';
+  FViewport.BackgroundImage.Alpha := Trackbar1.Position;
+  _Label2.Caption := IntToStr(Round(100 * (Trackbar1.Position) / Trackbar1.Max)) + '%';
 end;{TFreeBackgroundBlendDialog.TrackBar1Change}
 
 end.

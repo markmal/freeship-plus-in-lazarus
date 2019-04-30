@@ -234,6 +234,43 @@ begin
   FEndpoint := Tmp;
 end;{TFreeSubdivisionEdge.SwapData}
 
+function TFreeSubdivisionEdge.CheckIntegrity: boolean;
+var i:integer;
+begin
+  if FStartpoint = nil then
+  begin
+    logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: FStartpoint = nil',[I]));
+    result := false;
+  end
+  else
+  begin
+    if FStartpoint.FEdges.IndexOf(Self) = -1 then
+      begin
+        logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: Self not in Startpoint.Edges',[]));
+        result := false;
+      end;
+    FStartpoint.CheckIntegrity;
+  end;
+
+  if FEndpoint = nil then
+  begin
+    logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: FEndpoint = nil',[I]));
+    result := false;
+  end
+  else
+    begin
+      if FEndpoint.FEdges.IndexOf(Self) = -1 then
+        begin
+          logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: Self not in Endpoint.Edges',[]));
+          result := false;
+        end;
+      FEndpoint.CheckIntegrity;
+    end;
+
+  if FCurve <> nil then result := result and FCurve.CheckIntegrity;
+
+end;
+
 constructor TFreeSubdivisionEdge.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
@@ -268,10 +305,29 @@ begin
   end;
 end;{TFreeSubdivisionEdge.DeleteFace}
 
+procedure TFreeSubdivisionEdge.Dereference;
+var i,j: integer; F:TFreeSubdivisionFace;
+begin
+  if FStartPoint<>nil then
+     FStartPoint.FEdges.DeleteAll(Self);
+  if FEndPoint<>nil then
+     FEndPoint.FEdges.DeleteAll(Self);
+  if FFaces = nil then exit;
+  for i:=0 to FFaces.Count-1 do
+    begin
+    F:=FFaces[i];
+    if F = nil then continue;
+    if F.FPoints = nil then continue;
+    for j:=0 to F.FPoints.Count-1 do
+          F.FPoints[j].FEdges.DeleteAll(Self);
+    end;
+end;
+
 destructor TFreeSubdivisionEdge.Destroy;
 begin
   if self = nil then
     exit;
+  Dereference;
   Clear;
   FFaces.Free;
   FFaces := nil;

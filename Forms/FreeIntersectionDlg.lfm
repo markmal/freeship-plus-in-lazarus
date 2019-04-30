@@ -1,32 +1,31 @@
 object FreeIntersectionDialog: TFreeIntersectionDialog
   Left = 730
-  Height = 264
+  Height = 300
   Top = 330
-  Width = 226
+  Width = 300
   BorderStyle = bsDialog
   Caption = 'Intersections'
-  ClientHeight = 264
-  ClientWidth = 226
-  Color = clBtnFace
+  ClientHeight = 300
+  ClientWidth = 300
   ParentFont = True
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
-    Height = 240
+    Height = 276
     Top = 24
-    Width = 226
+    Width = 300
     Align = alClient
-    BevelOuter = bvLowered
+    BevelOuter = bvNone
     BorderWidth = 10
-    ClientHeight = 240
-    ClientWidth = 226
+    ClientHeight = 276
+    ClientWidth = 300
     TabOrder = 0
     object ListBox: TCheckListBox
-      Left = 11
-      Height = 218
-      Top = 11
-      Width = 204
+      Left = 10
+      Height = 256
+      Top = 10
+      Width = 280
       Align = alClient
       ItemHeight = 0
       OnClickCheck = ListBoxClickCheck
@@ -39,7 +38,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 226
+    Width = 300
     AutoSize = True
     Caption = 'ToolBar1'
     Color = clBtnFace

@@ -79,7 +79,20 @@ type
 { TFreeHydrodyn_Task1 }
 
  TFreeHydrodyn_Task1  = class(TForm)
+                                Label10: TLabel;
+                                Label11: TLabel;
+                                Label12: TLabel;
+                                Label2: TLabel;
+                                Label3: TLabel;
+                                Label4: TLabel;
+                                Label5: TLabel;
+                                Label6: TLabel;
+                                Label7: TLabel;
+                                Label8: TLabel;
+                                Label9: TLabel;
                                  MenuImages: TImageList;
+                                 Panel2: TPanel;
+                                 TabSheet3: TTabSheet;
                                  ToolBar1: TToolBar;
     _ToolButton10: TToolButton;
                                  PrintButton: TToolButton;
@@ -91,17 +104,6 @@ type
                                  TabSheet1: TTabSheet;
                                  Panel1: TPanel;
                                  Panel: TPanel;
-                                 Label2: TLabel;
-                                 Label3: TLabel;
-                                 Label4: TLabel;
-                                 Label5: TLabel;
-                                 Label6: TLabel;
-                                 Label7: TLabel;
-                                 Label8: TLabel;
-                                 Label9: TLabel;
-                                 Label10: TLabel;
-                                 Label11: TLabel;
-                                 Label12: TLabel;
                                  Edit2: TFloatSpinEdit;
                                  Edit3: TFloatSpinEdit;
                                  Edit4: TFloatSpinEdit;

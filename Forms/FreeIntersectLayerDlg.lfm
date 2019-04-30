@@ -1,82 +1,92 @@
 object FreeIntersectLayerDialog: TFreeIntersectLayerDialog
-  Left = 524
-  Height = 116
-  Top = 178
-  Width = 338
+  Left = 570
+  Height = 200
+  Top = 202
+  Width = 400
   Caption = 'Intersect two layers.'
-  ClientHeight = 116
-  ClientWidth = 338
-  Color = clBtnFace
+  ClientHeight = 200
+  ClientWidth = 400
   Position = poMainFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 79
+    Height = 176
     Top = 24
-    Width = 338
+    Width = 400
     Align = alClient
     BevelOuter = bvLowered
-    ClientHeight = 79
-    ClientWidth = 338
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 176
+    ClientWidth = 400
     TabOrder = 0
-    object Label1: TLabel
-      Left = 6
-      Height = 14
-      Top = 22
-      Width = 109
-      Caption = 'Insert new points in'
-      ParentColor = False
-    end
-    object Label2: TLabel
-      Left = 6
-      Height = 14
-      Top = 50
-      Width = 118
-      Caption = 'Find intersection with'
-      ParentColor = False
-    end
-    object ComboBox1: TComboBox
-      Left = 137
-      Height = 24
-      Top = 14
-      Width = 175
-      ItemHeight = 23
-      OnChange = ComboBox1Change
+    object Panel3: TPanel
+      Left = 78
+      Height = 52
+      Top = 62
+      Width = 245
+      BevelOuter = bvNone
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      ClientHeight = 52
+      ClientWidth = 245
       TabOrder = 0
-      Text = 'ComboBox1'
+      object Label1: TLabel
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 139
+        Caption = 'Insert new points in'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object ComboBox1: TComboBox
+        Left = 145
+        Height = 25
+        Top = 0
+        Width = 100
+        ItemHeight = 0
+        OnChange = ComboBox1Change
+        TabOrder = 0
+        Text = 'ComboBox1'
+      end
+      object Label2: TLabel
+        Left = 0
+        Height = 25
+        Top = 27
+        Width = 139
+        Caption = 'Find intersection with'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object ComboBox2: TComboBox
+        Left = 145
+        Height = 25
+        Top = 27
+        Width = 100
+        ItemHeight = 0
+        TabOrder = 1
+        Text = 'ComboBox2'
+      end
     end
-    object ComboBox2: TComboBox
-      Left = 137
-      Height = 24
-      Top = 42
-      Width = 175
-      ItemHeight = 23
-      TabOrder = 1
-      Text = 'ComboBox2'
-    end
-  end
-  object Panel3: TPanel
-    Left = 0
-    Height = 13
-    Top = 103
-    Width = 338
-    Align = alBottom
-    BevelOuter = bvNone
-    TabOrder = 1
   end
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 338
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 338
-    TabOrder = 2
+    ClientWidth = 400
+    TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 174
+      Left = 236
       Height = 20
       Top = 2
       Width = 80
@@ -125,7 +135,7 @@ object FreeIntersectLayerDialog: TFreeIntersectLayerDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 256
+      Left = 318
       Height = 20
       Top = 2
       Width = 80

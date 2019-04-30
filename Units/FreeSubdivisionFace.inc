@@ -127,6 +127,45 @@ begin
   end;
 end;{TFreeSubdivisionFace.CalculateFacePoint}
 
+function TFreeSubdivisionFace.CheckIntegrity: boolean;
+var  I, J: integer;
+  point: TFreeSubdivisionPoint;
+begin
+  result:=true;
+
+  if FPoints = nil then
+  begin
+    logger.Error(Format('TFreeSubdivisionFace.CheckIntegrity: FPoints = nil',[]));
+    result := false;
+    exit;
+  end;
+
+  if FPoints.Count < 1 then
+  begin
+    logger.Error(Format('TFreeSubdivisionFace.CheckIntegrity: FPoints empty',[]));
+    result := false;
+    exit;
+  end;
+
+  for I := 0 to FPoints.Count-1 do
+    if FPoints[i] <> nil then
+    begin
+      Point := FPoints[i];
+      if Point.FFaces.IndexOf(Self) = -1 then
+      begin
+        logger.Error(Format('TFreeSubdivisionFace.CheckIntegrity: not in Point[%d]',[I]));
+        result := false;
+      end;
+      result := result and Point.CheckIntegrity;
+    end
+  else
+  begin
+    logger.Error(Format('TFreeSubdivisionFace.CheckIntegrity: Edge.NumberOfFaces = 0',[I]));
+    result := false;
+  end;
+
+end;
+
 procedure TFreeSubdivisionFace.Clear;
 begin
   FPoints.Clear;
@@ -139,8 +178,16 @@ begin
   Clear;
 end;{TFreeSubdivisionFace.Create}
 
+procedure TFreeSubdivisionFace.Dereference;
+var i: integer;
+begin
+  for i:=0 to FPoints.Count-1 do
+    FPoints[i].FFaces.DeleteAll(Self);
+end;
+
 destructor TFreeSubdivisionFace.Destroy;
 begin
+  Dereference;
   Clear;
   FPoints.Destroy;
   FPoints := nil;
@@ -175,7 +222,7 @@ procedure TFreeSubdivisionFace.Subdivide(
     aControlEdges:TFasterListTFreeSubdivisionEdge; // Output. Here TFreeSubdivisionControlEdge edges will be added.
     aDest: TFasterListTFreeSubdivisionFace); // Output. Here new faces will be added.
 var
-  P2: TFreeSubdivisionPoint;
+  P1,P2: TFreeSubdivisionPoint;
   I, TmpIndex: integer;
   NewFace: TFreeSubdivisionFace;
   IndexPE, IndexCE, Index0, Index1, Index2, Index3, J, X: integer;
@@ -206,11 +253,11 @@ var
             then aControlEdges.Add(NewEdge)
             else aInteriorEdges.Add(NewEdge);
 
-        end else if NewEdge.FControlEdge
-            then
-              if NewEdge.FControlEdge then
-                 aControlEdges.Add(NewEdge)
-              else X:=0;
+        end
+        else
+        if NewEdge.FControlEdge
+          then aControlEdges.Add(NewEdge)
+          else aInteriorEdges.Add(NewEdge);
 
         if NewEdge.FControlEdge then
         begin
@@ -230,7 +277,8 @@ begin
     begin
       P2 := FPoints[I - 1];
       IndexPE := (I - 2 + FPoints.Count) mod FPoints.Count;
-      PrevEdge := aOwner.EdgeExists(P2, FPoints[IndexPE]);
+      P1 := FPoints[IndexPE];
+      PrevEdge := aOwner.EdgeExists(P2, P1);
       if PrevEdge = nil
         then raise Exception.Create('Subdivision error. Previous edge not found');
       IndexCE := (I + FPoints.Count) mod FPoints.Count;

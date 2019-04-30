@@ -107,6 +107,8 @@ type
     Series2: TLineSeries;
     Series3: TLineSeries;
     Series4: TLineSeries;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
     ToolBar1: TToolBar;
     _ToolButton10: TToolButton;
     PrintButton: TToolButton;
@@ -641,7 +643,6 @@ begin
   Chart.BottomAxis.Title.Caption := Userstring(697);
   Checkbox2.Enabled := False; //FFreeship.Surface.NumberOfControlFaces>1;
   CheckBox2.Checked := AutoExtract;
-  ResultsMemo2 := TMemo.Create(Self);
   Calculate;
   ShowModal;
   Result := modalResult = mrOk;

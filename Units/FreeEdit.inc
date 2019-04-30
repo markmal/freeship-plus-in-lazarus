@@ -6795,6 +6795,7 @@ var
     end;
   end;// FindConnectedFaces
 
+  var IsIntegrityOk, B:boolean;
 begin
   vUndo := self.CreateUndoObject(Userstring(148), False);
   Changed := False;
@@ -7053,6 +7054,24 @@ begin
     Leaks.Destroy;
   end;
   AllFaces.Destroy;
+
+  IsIntegrityOk:=true;
+  for i:=0 to Owner.Surface.NumberOfLayers-1 do
+    begin
+    B:=Owner.Layer[i].CheckIntegrity;
+    if not B then
+       logger.Error(Format('In Layer[%d]',[i]));
+    IsIntegrityOk := IsIntegrityOk and B;
+    end;
+
+  if not IsIntegrityOk then
+    ShowMessage('Layers integrity is not Ok. Enable logs and check logs output. Further processing is not safe.');
+{
+  for i:=0 to Owner.Surface.NumberOfControlFaces-1 do
+    IsIntegrityOk := IsIntegrityOk and Owner.Surface.ControlFace[i].CheckIntegrity;
+  if not IsIntegrityOk then
+    ShowMessage('ControlFaces integrity is not Ok. Enable logs and check logs output. Further processing is not safe.');
+}
 end;{TFreeEdit.Model_Check}
 
 // Start a new model (with a predefined surface)

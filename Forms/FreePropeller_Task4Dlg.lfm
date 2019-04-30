@@ -187,6 +187,7 @@ object FreePropeller_Task4: TFreePropeller_Task4
               Top = 54
               Width = 80
               Alignment = taRightJustify
+              DecimalPlaces = 0
               MaxValue = 2
               MinValue = 0
               OnExit = Edit1AfterSetValue
@@ -208,11 +209,12 @@ object FreePropeller_Task4: TFreePropeller_Task4
               Top = 81
               Width = 80
               Alignment = taRightJustify
+              DecimalPlaces = 0
               MaxValue = 7
-              MinValue = 0
+              MinValue = 3
               OnExit = Edit1AfterSetValue
               TabOrder = 3
-              Value = 0
+              Value = 3
             end
             object Label6: TLabel
               Left = 0
@@ -230,11 +232,11 @@ object FreePropeller_Task4: TFreePropeller_Task4
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
-              MaxValue = 2
-              MinValue = 0
+              MaxValue = 1.05
+              MinValue = 0.3
               OnExit = Edit1AfterSetValue
               TabOrder = 4
-              Value = 0
+              Value = 0.3
             end
             object Label7: TLabel
               Left = 0
@@ -252,11 +254,11 @@ object FreePropeller_Task4: TFreePropeller_Task4
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
-              MaxValue = 2
-              MinValue = 0
+              MaxValue = 1.5
+              MinValue = 0.5
               OnExit = Edit1AfterSetValue
               TabOrder = 5
-              Value = 0
+              Value = 0.5
             end
             object Label8: TLabel
               Left = 0
@@ -541,6 +543,37 @@ object FreePropeller_Task4: TFreePropeller_Task4
         ScrollBars = ssBoth
         TabOrder = 0
         Visible = False
+      end
+    end
+    object Help: TTabSheet
+      Caption = 'Help'
+      ClientHeight = 543
+      ClientWidth = 894
+      object Panel15: TPanel
+        Left = 0
+        Height = 543
+        Top = 0
+        Width = 894
+        Align = alClient
+        BevelOuter = bvLowered
+        ClientHeight = 543
+        ClientWidth = 894
+        ParentFont = False
+        TabOrder = 0
+        object Resultsmemo2: TMemo
+          Left = 1
+          Height = 541
+          Top = 1
+          Width = 892
+          Align = alClient
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          ParentFont = False
+          ScrollBars = ssBoth
+          TabOrder = 0
+          Visible = False
+        end
       end
     end
   end

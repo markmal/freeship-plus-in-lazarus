@@ -82,6 +82,7 @@ type
     procedure Clear; virtual;
     destructor Destroy; override;
     procedure Delete(Index: integer);
+    procedure DeleteAll(Item: TItemType);
     procedure Exchange(Index1, Index2: integer);
     function IndexOf(Item: TItemType): integer;
     // normal TList function
@@ -392,6 +393,18 @@ begin
       Move(FData[Index + 1], FData[Index], (FCount - Index) * SizeOf(Pointer));
   end;
 end;{TFasterList.Delete}
+
+procedure TFasterList.DeleteAll(Item: TItemType);
+var i: integer;
+begin
+  i := IndexOf(Item);
+  while i>0 do
+    begin
+    Delete(i);
+    i := IndexOf(Item);
+    end;
+end;{TFasterList.DeleteAll}
+
 
 procedure TFasterList.Exchange(Index1, Index2: integer);
 var

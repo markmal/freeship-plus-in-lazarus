@@ -1730,20 +1730,20 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
       ParentFont = False
       object Panel15: TPanel
         Left = 0
-        Height = 524
+        Height = 683
         Top = 0
-        Width = 844
+        Width = 1194
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 524
-        ClientWidth = 844
+        ClientHeight = 683
+        ClientWidth = 1194
         ParentFont = False
         TabOrder = 0
         object Resultsmemo2: TMemo
           Left = 1
-          Height = 522
+          Height = 681
           Top = 1
-          Width = 842
+          Width = 1192
           Align = alClient
           Font.Color = clBlack
           Font.Height = -13
@@ -1782,14 +1782,14 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
       Style = tbsSeparator
     end
     object ToolButton20: TToolButton
-      Left = 11
+      Left = 13
       Hint = 'Start the calculation.'
       Top = 2
       ImageIndex = 3
       OnClick = ToolButton20Click
     end
     object PrintButton: TToolButton
-      Left = 61
+      Left = 63
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'PrintButton'
@@ -1797,7 +1797,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 111
+      Left = 113
       Height = 22
       Top = 2
       Caption = '_ToolButton14'
@@ -1805,14 +1805,14 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 117
+      Left = 121
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 167
+      Left = 171
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0

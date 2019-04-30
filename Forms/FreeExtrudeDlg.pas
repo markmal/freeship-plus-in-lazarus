@@ -46,7 +46,7 @@ uses
      Dialogs,
      StdCtrls,
      Buttons,
-     ExtCtrls,
+     ExtCtrls, Spin,
      FreeShipUnit,
      FreeLanguageSupport
      ;
@@ -58,15 +58,15 @@ type
  TFreeExtrudeDialog = class(TForm)
                              BitBtn1: TSpeedButton;
                              BitBtn2: TSpeedButton;
+                             FloatSpinEdit1: TFloatSpinEdit;
+                             FloatSpinEdit2: TFloatSpinEdit;
+                             FloatSpinEdit3: TFloatSpinEdit;
                              Panel1: TPanel;
                               Panel2: TPanel;
+                              Panel4: TPanel;
     _Label3: TLabel;
     _Label6: TLabel;
     _Label9: TLabel;
-                              Edit1: TEdit;
-                              Edit2: TEdit;
-                              Edit3: TEdit;
-                              Panel3: TPanel;
                               Label1: TLabel;
                               Label2: TLabel;
                               Label4: TLabel;
@@ -106,35 +106,32 @@ implementation
 
 function TFreeExtrudeDialog.FGetXValue:extended;
 begin
-   if Edit1.Text='' then result:=0.0
-                    else Result:=StrToFloat(Edit1.Text);
+  Result:=FloatSpinEdit1.Value;
 end;{TFreeExtrudeDialog.FGetXValue}
 
 procedure TFreeExtrudeDialog.FSetXValue(val:extended);
 begin
-   Edit1.Text:=FloatToStrF(Val,ffFixed,7,4);
+   FloatSpinEdit1.Value:=Val;
 end;{TFreeExtrudeDialog.FSetXValue}
 
 function TFreeExtrudeDialog.FGetYValue:extended;
 begin
-   if Edit2.Text='' then result:=0.0
-                    else Result:=StrToFloat(Edit2.Text);
+   Result:=FloatSpinEdit2.Value;
 end;{TFreeExtrudeDialog.FGetYValue}
 
 procedure TFreeExtrudeDialog.FSetYValue(val:extended);
 begin
-   Edit2.Text:=FloatToStrF(Val,ffFixed,7,4);
+   FloatSpinEdit2.Value:=Val;
 end;{TFreeExtrudeDialog.FSetYValue}
 
 function TFreeExtrudeDialog.FGetZValue:extended;
 begin
-   if Edit3.Text='' then result:=0.0
-                    else Result:=StrToFloat(Edit3.Text);
+   Result:=FloatSpinEdit3.Value;
 end;{TFreeExtrudeDialog.FGetZValue}
 
 procedure TFreeExtrudeDialog.FSetZValue(val:extended);
 begin
-   Edit3.Text:=FloatToStrF(Val,ffFixed,7,4);
+   FloatSpinEdit3.Value:=Val;
 end;{TFreeExtrudeDialog.FSetZValue}
 
 function TFreeExtrudeDialog.Execute(Str:string):Boolean;

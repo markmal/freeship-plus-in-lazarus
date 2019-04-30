@@ -1,43 +1,42 @@
 object FreeKeelWizardDialog: TFreeKeelWizardDialog
   Left = 534
-  Height = 634
+  Height = 800
   Top = 153
-  Width = 1096
+  Width = 1000
   BorderStyle = bsDialog
   Caption = 'Keel and rudder wizard'
-  ClientHeight = 634
-  ClientWidth = 1096
-  Color = clBtnFace
+  ClientHeight = 800
+  ClientWidth = 1000
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 597
+    Height = 763
     Top = 24
-    Width = 1096
+    Width = 1000
     Align = alClient
     BorderWidth = 10
-    ClientHeight = 597
-    ClientWidth = 1096
+    ClientHeight = 763
+    ClientWidth = 1000
     TabOrder = 0
     object PageControl: TPageControl
       Left = 307
-      Height = 575
+      Height = 741
       Top = 11
-      Width = 778
-      ActivePage = TabSheet2
+      Width = 682
+      ActivePage = TabSheet1
       Align = alClient
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = '3D view'
-        ClientHeight = 542
-        ClientWidth = 772
+        ClientHeight = 708
+        ClientWidth = 676
         object ScrollBar1: TScrollBar
           Left = 0
           Height = 15
-          Top = 527
-          Width = 431
+          Top = 693
+          Width = 676
           Align = alBottom
           Max = 180
           Min = -180
@@ -46,8 +45,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           TabOrder = 1
         end
         object ScrollBar2: TScrollBar
-          Left = 416
-          Height = 527
+          Left = 661
+          Height = 693
           Top = 0
           Width = 15
           Align = alRight
@@ -61,8 +60,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Lift and drag'
-        ClientHeight = 542
-        ClientWidth = 772
+        ClientHeight = 708
+        ClientWidth = 676
         ImageIndex = 1
         object Chart: TChart
           Left = 0
@@ -95,6 +94,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               Title.Caption = 'Cy/Cx'
               Title.LabelBrush.Style = bsClear
             end>
+          BackColor = clWindow
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Alignment = laTopCenter
@@ -106,6 +106,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             'Chart'
           )
           Align = alClient
+          ParentColor = True
           object Series1: TLineSeries
             Marks.Visible = False
             Marks.Format = '%0:.9g'
@@ -145,7 +146,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     end
     object Panel7: TPanel
       Left = 11
-      Height = 575
+      Height = 741
       Top = 11
       Width = 296
       Align = alLeft
@@ -153,7 +154,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Caption = 'Panel7'
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 575
+      ClientHeight = 741
       ClientWidth = 296
       TabOrder = 1
       object PageControl1: TPageControl
@@ -1055,17 +1056,17 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Height = 188
+        Height = 220
         Top = 363
         Width = 295
         Caption = 'Properties'
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
         ChildSizing.HorizontalSpacing = 6
-        ChildSizing.VerticalSpacing = 2
+        ChildSizing.VerticalSpacing = 6
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 171
+        ClientHeight = 203
         ClientWidth = 291
         TabOrder = 1
         object Label18: TLabel
@@ -1087,7 +1088,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label20: TLabel
           Left = 10
           Height = 15
-          Top = 27
+          Top = 31
           Width = 149
           Caption = 'Volume COG'
           ParentColor = False
@@ -1095,7 +1096,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label21: TLabel
           Left = 165
           Height = 15
-          Top = 27
+          Top = 31
           Width = 58
           Caption = 'Label8'
           ParentColor = False
@@ -1103,7 +1104,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label22: TLabel
           Left = 10
           Height = 15
-          Top = 44
+          Top = 52
           Width = 149
           Caption = 'Wetted area'
           ParentColor = False
@@ -1111,7 +1112,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label23: TLabel
           Left = 165
           Height = 15
-          Top = 44
+          Top = 52
           Width = 58
           Caption = 'Label8'
           ParentColor = False
@@ -1119,7 +1120,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label7: TLabel
           Left = 10
           Height = 15
-          Top = 61
+          Top = 73
           Width = 149
           Caption = 'Planform area'
           ParentColor = False
@@ -1127,7 +1128,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label8: TLabel
           Left = 165
           Height = 15
-          Top = 61
+          Top = 73
           Width = 58
           Caption = '_Label8'
           ParentColor = False
@@ -1135,7 +1136,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label9: TLabel
           Left = 10
           Height = 15
-          Top = 78
+          Top = 94
           Width = 149
           Caption = 'Planform COG'
           ParentColor = False
@@ -1143,7 +1144,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label10: TLabel
           Left = 165
           Height = 15
-          Top = 78
+          Top = 94
           Width = 58
           Caption = '_Label10'
           ParentColor = False
@@ -1151,7 +1152,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label11: TLabel
           Left = 10
           Height = 15
-          Top = 95
+          Top = 115
           Width = 149
           Caption = 'Mean chord length'
           ParentColor = False
@@ -1159,7 +1160,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label12: TLabel
           Left = 165
           Height = 15
-          Top = 95
+          Top = 115
           Width = 58
           Caption = 'Label10'
           ParentColor = False
@@ -1167,7 +1168,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label24: TLabel
           Left = 10
           Height = 15
-          Top = 112
+          Top = 136
           Width = 149
           Caption = 'Thickness'
           ParentColor = False
@@ -1175,7 +1176,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label25: TLabel
           Left = 165
           Height = 15
-          Top = 112
+          Top = 136
           Width = 58
           Caption = 'Label10'
           ParentColor = False
@@ -1183,7 +1184,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label13: TLabel
           Left = 10
           Height = 15
-          Top = 129
+          Top = 157
           Width = 149
           Caption = 'Geometric aspect ratio'
           ParentColor = False
@@ -1191,7 +1192,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label14: TLabel
           Left = 165
           Height = 15
-          Top = 129
+          Top = 157
           Width = 58
           Caption = 'Label10'
           ParentColor = False
@@ -1199,7 +1200,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object Label15: TLabel
           Left = 10
           Height = 15
-          Top = 146
+          Top = 178
           Width = 149
           Caption = 'Effective aspect ratio'
           ParentColor = False
@@ -1207,7 +1208,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         object _Label16: TLabel
           Left = 165
           Height = 15
-          Top = 146
+          Top = 178
           Width = 58
           Caption = 'Label10'
           ParentColor = False
@@ -1218,8 +1219,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
   object Panel3: TPanel
     Left = 0
     Height = 13
-    Top = 621
-    Width = 1096
+    Top = 787
+    Width = 1000
     Align = alBottom
     TabOrder = 1
   end
@@ -1227,15 +1228,15 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 1096
+    Width = 1000
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 1096
+    ClientWidth = 1000
     TabOrder = 2
     object BitBtn1: TSpeedButton
-      Left = 932
+      Left = 836
       Height = 20
       Top = 2
       Width = 80
@@ -1284,7 +1285,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 1014
+      Left = 918
       Height = 20
       Top = 2
       Width = 80

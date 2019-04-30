@@ -469,6 +469,37 @@ begin
   end;
 end;{TFreeSubdivisionPoint.CalculateVertexPoint}
 
+function TFreeSubdivisionPoint.CheckIntegrity: boolean;
+var  I, J: integer;
+begin
+  result:=true;
+
+  if FFaces = nil then
+  begin
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FFaces = nil',[]));
+    result := false;
+  end;
+
+  if FEdges = nil then
+  begin
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FEdges = nil',[]));
+    result := false;
+  end;
+
+  if FFaces.Count < 1 then
+  begin
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FFaces empty',[]));
+    result := false;
+  end;
+
+  if FEdges.Count < 1 then
+  begin
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FEdges empty',[]));
+    result := false;
+  end;
+
+end; {TFreeSubdivisionPoint.CheckIntegrity}
+
 procedure TFreeSubdivisionPoint.Clear;
 begin
   FCoordinate.X := 0;
@@ -497,16 +528,30 @@ begin
 end;{TFreeSubdivisionPoint.DeleteEdge}
 
 procedure TFreeSubdivisionPoint.DeleteFace(Face: TFreeSubdivisionFace);
-var
-  Index: integer;
+var  Index: integer;
 begin
   index := FFaces.IndexOf(Face);
   if Index <> -1 then
     FFaces.Delete(Index);
 end;{TFreeSubdivisionPoint.DeleteFace}
 
+procedure TFreeSubdivisionPoint.Dereference;
+var i:integer;
+begin
+  for i:=0 to FEdges.Count-1 do
+    begin
+    if FEdges[i].StartPoint = Self then
+       FEdges[i].StartPoint := nil;
+    if FEdges[i].EndPoint = Self then
+       FEdges[i].EndPoint := nil;
+    end;
+  for i:=0 to FFaces.Count-1 do
+      FFaces[i].FPoints.DeleteAll(Self);
+end;
+
 destructor TFreeSubdivisionPoint.Destroy;
 begin
+  Dereference;
   Clear;
   FFaces.Destroy;
   FFaces := nil;

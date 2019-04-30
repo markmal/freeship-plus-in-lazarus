@@ -603,9 +603,10 @@ begin
     //Viewport.FontHeight:=round(DistPP3D(Viewport.Min3D,Viewport.Max3D)/150);
 
     Viewport.FontColor := FDimFontColor;
-    Viewport.FontName := FDimFontName;
-    //Viewport.FontHeight := FDimFontSize;
-    Viewport.FontSize := FDimFontSize;
+    //Viewport.FontName := FDimFontName;
+    Viewport.FontName := 'Arial';
+    Viewport.FontHeight := FDimFontSize;
+    //Viewport.FontSize := FDimFontSize;
 
     for I := 1 to FBoundaryEdges.Count do
     begin
@@ -692,6 +693,7 @@ begin
   begin
     P1 := ConvertTo3D(MidPoint);
     Pt := Viewport.Project(P1);
+    Viewport.FontHeight := FDimFontSize; //7
     Viewport.FontColor := clBlack;
     Viewport.PenColor := clBlack;
     Viewport.PenWidth := 1;
@@ -699,7 +701,6 @@ begin
     Viewport.BrushColor := clWhite;
     Viewport.BrushStyle := bsSolid;
     I := Owner.Owner.ControlPointSize;
-    Viewport.FontSize := 7;
     Viewport.Rectangle(Pt.X - I, Pt.Y - I, Pt.X + I, Pt.Y + I);
     Viewport.BrushStyle := bsClear;
     Viewport.TextOut(Pt.X - Viewport.TextWidth(Name) div 2, Pt.Y, Name);

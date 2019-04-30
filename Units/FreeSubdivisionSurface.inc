@@ -75,6 +75,80 @@ begin
   FControlPoints.Add(Result);
 end;{TFreeSubdivisionSurface.AddControlPoint}
 
+procedure TFreeSubdivisionSurface.DereferenceControlPoint(P: TFreeSubdivisionControlPoint);
+var i: integer;
+begin
+  FControlPoints.DeleteAll(P);
+  for i:=0 to FControlEdges.Count-1 do
+    begin
+    if FControlEdges[i].StartPoint = P then
+       FControlEdges[i].StartPoint := nil;
+    if FControlEdges[i].EndPoint = P then
+       FControlEdges[i].EndPoint := nil;
+    end;
+  for i:=0 to FControlFaces.Count-1 do
+      FControlFaces[i].FPoints.DeleteAll(P);
+  for i:=0 to FControlCurves.Count-1 do
+      FControlCurves[i].FControlPoints.DeleteAll(P);
+  P.Dereference;
+end;
+
+procedure TFreeSubdivisionSurface.DereferenceControlEdge(E: TFreeSubdivisionControlEdge);
+var i: integer;
+begin
+  FControlEdges.DeleteAll(E);
+  for i:=0 to FControlPoints.Count-1 do
+    FControlPoints[i].FEdges.DeleteAll(E);
+  E.Dereference;
+end;
+
+procedure TFreeSubdivisionSurface.DereferenceControlFace(F: TFreeSubdivisionControlFace);
+var i: integer;
+begin
+  FControlFaces.DeleteAll(F);
+  for i:=0 to F.FChildren.Count-1 do
+    F.FChildren[i].Dereference;
+  for i:=0 to F.FEdges.Count-1 do
+    F.FEdges[i].FFaces.DeleteAll(F);
+  for i:=0 to F.FPoints.Count-1 do
+    F.FPoints[i].FFaces.DeleteAll(F);
+  for i:=0 to FControlPoints.Count-1 do
+    FControlPoints[i].FFaces.DeleteAll(F);
+  for i:=0 to FLayers.Count-1 do
+    FLayers[i].DeleteControlFace(F);
+  F.Dereference;
+end;
+
+procedure TFreeSubdivisionSurface.DereferencePoint(P: TFreeSubdivisionPoint);
+var i: integer;
+begin
+  FPoints.DeleteAll(P);
+  for i:=0 to FEdges.Count-1 do
+    begin
+    if FEdges[i].StartPoint = P then
+       FEdges[i].StartPoint := nil;
+    if FEdges[i].EndPoint = P then
+       FEdges[i].EndPoint := nil;
+    end;
+  for i:=0 to FControlFaces.Count-1 do
+      FControlFaces[i].FPoints.DeleteAll(P);
+  P.Dereference;
+end;
+
+procedure TFreeSubdivisionSurface.DereferenceEdge(E: TFreeSubdivisionEdge);
+var i: integer;
+begin
+  FEdges.DeleteAll(E);
+  for i:=0 to FPoints.Count-1 do
+    FPoints[i].FEdges.DeleteAll(E);
+  E.Dereference;
+end;
+
+procedure TFreeSubdivisionSurface.DereferenceFace(F: TFreeSubdivisionFace);
+var i: integer;
+begin
+end;
+
 function TFreeSubdivisionSurface.AddNewLayer: TFreeSubdivisionLayer;
 begin
   Result := TFreeSubdivisionLayer.Create(Self);
@@ -1434,6 +1508,56 @@ begin
   Result := AddControlFace(Tmp, CheckEdges, nil);
   Tmp.Destroy;
 end;{TFreeSubdivisionSurface.AddControlFace}
+
+function TFreeSubdivisionSurface.CheckIntegrity:boolean;
+var  i: integer; b:boolean; layer:TFreeSubdivisionLayer;
+  CEdge:TFreeSubdivisionControlEdge;
+  Edge:TFreeSubdivisionEdge;
+  CPoint:TFreeSubdivisionControlPoint;
+  Point:TFreeSubdivisionPoint;
+begin
+  result:=true;
+  for i := 0 to NumberOfLayers-1 do
+    begin
+      layer := self.Layer[I];
+      if layer = nil then
+      begin
+        logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: Layer[%d] = nil',[I]));
+        result:= result and false;
+        continue;
+      end;
+      if not (layer is TFreeSubdivisionLayer) then
+      begin
+        logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: Layer[%d] not TFreeSubdivisionLayer',[I]));
+        result:= result and false;
+        continue;
+      end;
+      b:=Layer.CheckIntegrity;
+      if not b then logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: In Layer[%d]',[I]));
+      result:= result and b;
+    end;
+
+  // checking by edges
+  for i := 0 to NumberOfControlEdges-1 do
+    begin
+      CEdge := self.ControlEdge[I];
+      if CEdge = nil then
+      begin
+        logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: CEdge[%d] = nil',[I]));
+        result:= result and false;
+        continue;
+      end;
+      if not (CEdge is TFreeSubdivisionControlEdge) then
+      begin
+        logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: CEdge[%d] not TFreeSubdivisionControlEdge',[I]));
+        result:= result and false;
+        continue;
+      end;
+      b:=CEdge.CheckIntegrity;
+      if not b then logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: In CEdge[%d]',[I]));
+      result:= result and b;
+    end;
+end;
 
 procedure TFreeSubdivisionSurface.Clear;
 var
@@ -3487,6 +3611,10 @@ begin
 
   Build := False;
   FInitialized := True;
+
+  if not self.CheckIntegrity
+    then ShowMessage('Loaded Model integrity corruption');
+
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
   if assigned(FOnChangeActiveLayer) then
@@ -3705,6 +3833,10 @@ var
 begin
   if not FInitialized then
     Initialize(1, 1, 1);
+
+  if not self.CheckIntegrity
+    then ShowMessage('Before build Model integrity corruption');
+
   if self.NumberOfControlFaces > 0 then
   begin
     for I := 0 to NumberOfControlCurves - 1 do
@@ -3725,59 +3857,19 @@ begin
       Subdivide;
     end;
 
-    {
-    //MM 2019-04-21: convert ControlFace edges from ControlEdges list to TFreeSubdivisionControlEdge class
-      // MM not sure why hull subdivided edges are stored in FControlEdges, not in FEdges.
-      // but relocating them to FEdges causes fairures.
-      // Leave it as is.
-    for I := 0 to NumberOfControlFaces-1 do
+    {//cleanup
+    for I := 0 to FControlFaces.Count-1 do
     begin
-      for J := 0 to ControlFace[I].ControlEdgeCount-1 do
-      begin
-        if (ControlFace[I].ControlEdge[J] is TFreeSubdivisionEdge)
-        and ControlFace[I].ControlEdge[J].FControlEdge
-        then
+      for J := FControlFaces[I].FEdges.Count-1 downto 0 do
         begin
-          HEdge := ControlFace[I].ControlEdge[J];
-          //ControlFace[I].FEdges.AddSorted(HEdge); // cause crash
-          ControlFace[I].FControlEdges[J].FControlEdge:=false; // no impact
-
-          NewCEdge := TFreeSubdivisionControlEdge.Create(Self);
-          NewCEdge.FStartPoint := HEdge.FStartPoint;
-          NewCEdge.FEndPoint := HEdge.FEndPoint;
-
-          k := NewCEdge.FStartpoint.FEdges.IndexOf(HEdge);
-          if k<>-1 then
-             NewCEdge.FStartPoint.FEdges[k]:=NewCEdge
-          else
-             NewCEdge.FStartPoint.FEdges.Add(NewCEdge);
-
-          k := NewCEdge.FEndPoint.FEdges.IndexOf(HEdge);
-          if k<>-1 then
-             NewCEdge.FEndPoint.FEdges[k]:=NewCEdge
-          else
-             NewCEdge.FEndPoint.FEdges.Add(NewCEdge);
-
-          tmpFaces := NewCEdge.FFaces;
-          NewCEdge.FFaces := HEdge.FFaces;
-          //HEdge.FFaces := tmpFaces;
-
-          NewCEdge.FControlEdge := true;
-          NewCEdge.FCrease := HEdge.FCrease;
-
-          ControlFace[I].FControlEdges.Delete(J);
-          ControlFace[I].FEdges.Add(HEdge);
-          //ControlFace[I].FControlEdges[J]:=NewCEdge;
-
-          //k:=ControlFace[I].FEdges.IndexOf(HEdge);
-          //ControlFace[I].FEdges[J]:=HEdge;
-          //HEdge.Clear;
-          //HEdge.Free;
-
+        Edge1:= FControlFaces[I].FEdges[J];
+        if FControlFaces[I].FEdges[J] = nil
+          then FControlFaces[I].FEdges.Delete(J);
         end;
-      end;
-    end;
-    }
+    end;}
+
+    if not self.CheckIntegrity
+      then ShowMessage('After Subdivide Model integrity corruption');
 
     for I := 1 to NumberOfControlfaces do
     begin
@@ -4124,35 +4216,31 @@ begin
   end;
 
   // cleanup old mesh
+  // Here is danger that other references will becoe dangling.
+  // Edges can be referred by Points, ControlFaces
+
   for I := 0 to FEdges.Count-1 do
   begin
     Edge := FEdges[I];
-    Edge.Destroy;
+    if NewEdgeList.IndexOf(Edge) < 0 then
+      begin
+      DereferenceEdge(Edge);
+      Edge.Free;
+      end;
   end;
-  FEdges.Destroy;
-  //FEdges := TFasterListTFreeSubdivisionEdge.Create;
+  FEdges.Free;
 
-  FEdges := NewEdgeList; //ORIGINAL
-
-  { //added MM 2019-01-20
-  for I := 0 to FEdges.Count-1 do
-  begin
-    Edge:=FEdges[i];
-    if Edge is TFreeSubdivisionEdge then
-       Edge.FControlEdge:=false;
-    if Edge is TFreeSubdivisionControlEdge then
-       Edge.FControlEdge:=false;
-  end;
-  }
+  FEdges := NewEdgeList;
 
   for I := 0 to FPoints.Count-1 do
   begin
     Point := FPoints[I];
+    DereferencePoint(Point);
     Point.Destroy;
   end;
+  FPoints.Clear;
 
   // Add all new points int the point-list
-  FPoints.Clear;
   FPoints.Capacity := NewVertexPoints.Count + NewEdges.Count + NewFaces.Count;
   for I := 0 to NewVertexPoints.Count - 1 do
     if NewVertexPoints.Objects[I] <> nil then
@@ -4168,6 +4256,7 @@ begin
   NewVertexPoints.Destroy;
   NewEdges.Destroy;
   NewFaces.Destroy;
+
   // perform averaging procedure to smooth the new mesh
   Setlength(TmpPoints, FPoints.Count);
   for I := 0 to FPoints.Count - 1 do
@@ -4180,5 +4269,7 @@ begin
     Point := FPoints[I];
     Point.FCoordinate := TmpPoints[I];
   end;
+  Setlength(TmpPoints, 0);
+
 end;{TFreeSubdivisionSurface.SubDivide}
 

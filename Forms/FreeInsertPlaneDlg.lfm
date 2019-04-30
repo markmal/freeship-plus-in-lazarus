@@ -1,146 +1,184 @@
 object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
   Left = 604
-  Height = 233
+  Height = 300
   Top = 300
-  Width = 336
+  Width = 400
   BorderStyle = bsDialog
   Caption = 'Insert multiple points'
-  ClientHeight = 233
-  ClientWidth = 336
+  ClientHeight = 300
+  ClientWidth = 400
   Color = clBtnFace
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 196
+    Height = 276
     Top = 24
-    Width = 336
+    Width = 400
     Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 196
-    ClientWidth = 336
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 276
+    ClientWidth = 400
+    ParentColor = False
     TabOrder = 0
     object GroupBox1: TGroupBox
-      Left = 10
-      Height = 181
-      Top = 6
-      Width = 213
+      Left = 78
+      Height = 224
+      Top = 26
+      Width = 245
+      AutoSize = True
       Caption = 'Insert multiple vertices on a plane.  '
-      ClientHeight = 166
-      ClientWidth = 209
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 207
+      ClientWidth = 241
       TabOrder = 0
-      object Label1: TLabel
-        Left = 12
-        Height = 13
-        Top = 122
-        Width = 48
-        Caption = 'Distance'
-        ParentColor = False
-      end
-      object Label2: TLabel
-        Left = 12
-        Height = 13
-        Top = 78
-        Width = 58
-        Caption = 'Min. value'
-        ParentColor = False
-      end
-      object Label4: TLabel
-        Left = 94
-        Height = 13
-        Top = 96
-        Width = 4
-        Caption = '-'
-        ParentColor = False
-      end
-      object Label5: TLabel
-        Left = 12
-        Height = 13
-        Top = 96
-        Width = 62
-        Caption = 'Max. value'
-        ParentColor = False
-      end
-      object Label3: TLabel
-        Left = 94
-        Height = 13
-        Top = 78
-        Width = 4
-        Caption = '-'
-        ParentColor = False
-      end
-      object RadioButton1: TRadioButton
-        Left = 6
-        Height = 21
-        Top = 8
-        Width = 120
-        Caption = 'Transverse plane'
-        Checked = True
-        OnClick = RadioButton1Click
+      object Panel4: TPanel
+        Left = 0
+        Height = 87
+        Top = 0
+        Width = 241
+        BevelOuter = bvNone
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.VerticalSpacing = 2
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 1
+        ClientHeight = 87
+        ClientWidth = 241
         TabOrder = 0
-        TabStop = True
-      end
-      object RadioButton2: TRadioButton
-        Left = 6
-        Height = 21
-        Top = 30
-        Width = 115
-        Caption = 'Horizontal plane'
-        OnClick = RadioButton2Click
-        TabOrder = 1
-      end
-      object RadioButton3: TRadioButton
-        Left = 6
-        Height = 21
-        Top = 52
-        Width = 100
-        Caption = 'Vertical plane'
-        OnClick = RadioButton3Click
-        TabOrder = 2
-      end
-      object Edit1: TEdit
-        Left = 112
-        Height = 23
-        Top = 114
-        Width = 83
-        OnKeyPress = Edit1KeyPress
-        TabOrder = 3
-        Text = '0.000'
+        object RadioButton1: TRadioButton
+          Left = 0
+          Height = 21
+          Top = 10
+          Width = 133
+          Caption = 'Transverse plane'
+          Checked = True
+          OnClick = RadioButton1Click
+          TabOrder = 0
+          TabStop = True
+        end
+        object RadioButton2: TRadioButton
+          Left = 0
+          Height = 21
+          Top = 33
+          Width = 133
+          Caption = 'Horizontal plane'
+          OnClick = RadioButton2Click
+          TabOrder = 1
+        end
+        object RadioButton3: TRadioButton
+          Left = 0
+          Height = 21
+          Top = 56
+          Width = 133
+          Caption = 'Vertical plane'
+          OnClick = RadioButton3Click
+          TabOrder = 2
+        end
       end
       object CheckBox1: TCheckBox
-        Left = 10
+        Left = 0
         Height = 21
-        Top = 140
-        Width = 124
+        Top = 87
+        Width = 241
         Caption = 'Add control curve'
         Checked = True
         State = cbChecked
-        TabOrder = 4
+        TabOrder = 1
+      end
+      object Panel5: TPanel
+        Left = 0
+        Height = 99
+        Top = 108
+        Width = 241
+        BevelOuter = bvNone
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 6
+        ChildSizing.VerticalSpacing = 2
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 99
+        ClientWidth = 241
+        TabOrder = 2
+        object Label2: TLabel
+          Left = 0
+          Height = 25
+          Top = 10
+          Width = 71
+          Caption = 'Min. value'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Edit1: TEdit
+          Left = 77
+          Height = 25
+          Top = 10
+          Width = 80
+          Enabled = False
+          TabOrder = 0
+          Text = 'Edit1'
+        end
+        object Label5: TLabel
+          Left = 0
+          Height = 25
+          Top = 37
+          Width = 71
+          Caption = 'Max. value'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object Edit2: TEdit
+          Left = 77
+          Height = 25
+          Top = 37
+          Width = 80
+          Enabled = False
+          TabOrder = 1
+          Text = 'Edit2'
+        end
+        object Label1: TLabel
+          Left = 0
+          Height = 25
+          Top = 64
+          Width = 71
+          Caption = 'Distance'
+          Layout = tlCenter
+          ParentColor = False
+        end
+        object FloatSpinEdit1: TFloatSpinEdit
+          Left = 77
+          Height = 25
+          Top = 64
+          Width = 80
+          Constraints.MinWidth = 80
+          DecimalPlaces = 3
+          MinValue = 0
+          TabOrder = 2
+          Value = 0
+        end
       end
     end
-  end
-  object Panel3: TPanel
-    Left = 0
-    Height = 13
-    Top = 220
-    Width = 336
-    Align = alBottom
-    BevelOuter = bvNone
-    TabOrder = 1
   end
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 336
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 336
-    TabOrder = 2
+    ClientWidth = 400
+    Color = clForm
+    ParentColor = False
+    TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 172
+      Left = 236
       Height = 20
       Top = 2
       Width = 80
@@ -189,7 +227,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 254
+      Left = 318
       Height = 20
       Top = 2
       Width = 80

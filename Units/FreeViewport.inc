@@ -198,7 +198,8 @@ var
   Height: TFloatType;
   CurrentHeight: integer;
 begin
-  FDrawingCanvas.Font.Height := val;
+  if FDrawingCanvas.Font.Height <> val then
+     FDrawingCanvas.Font.Height := val;
   // Sets the fontheight to a height in modelspace
   {Height:=val*Self.Scale*Self.Zoom;
   FSetFontSize(8);

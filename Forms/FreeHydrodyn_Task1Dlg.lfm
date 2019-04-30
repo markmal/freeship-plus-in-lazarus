@@ -1,25 +1,24 @@
 object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
-  Left = 353
-  Height = 582
-  Top = 194
-  Width = 799
+  Left = 652
+  Height = 600
+  Top = 380
+  Width = 900
   BorderStyle = bsDialog
   Caption = 'Aerodynamic characteristics of a ship.'
-  ClientHeight = 582
-  ClientWidth = 799
-  Color = clBtnFace
+  ClientHeight = 600
+  ClientWidth = 900
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 799
+    Width = 900
     AutoSize = True
     ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False
@@ -74,345 +73,379 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 558
+    Height = 576
     Top = 24
-    Width = 799
+    Width = 900
     ActivePage = TabSheet1
     Align = alClient
     TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 527
-      ClientWidth = 793
+      ClientHeight = 543
+      ClientWidth = 894
       object Panel1: TPanel
         Left = 0
-        Height = 527
+        Height = 543
         Top = 0
-        Width = 793
+        Width = 894
         Align = alClient
         BorderWidth = 10
-        ClientHeight = 527
-        ClientWidth = 793
+        ClientHeight = 543
+        ClientWidth = 894
         TabOrder = 0
         object Panel: TPanel
           Left = 11
-          Height = 505
+          Height = 521
           Top = 11
-          Width = 771
-          Align = alClient
-          ClientHeight = 505
-          ClientWidth = 771
+          Width = 347
+          Align = alLeft
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.VerticalSpacing = 2
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 521
+          ClientWidth = 347
           TabOrder = 0
-          object Label2: TLabel
-            Left = 8
-            Height = 13
-            Top = 34
-            Width = 128
-            Caption = 'Length overall Loa [m]'
-            ParentColor = False
-          end
-          object Label3: TLabel
-            Left = 8
-            Height = 13
-            Top = 62
-            Width = 68
-            Caption = 'Breadth [m]'
-            ParentColor = False
-          end
-          object Label4: TLabel
-            Left = 8
-            Height = 13
-            Top = 90
-            Width = 186
-            Caption = 'Lateral projected wind area [m2]'
-            ParentColor = False
-          end
-          object Label5: TLabel
-            Left = 8
-            Height = 13
-            Top = 118
-            Width = 231
-            Caption = 'Lateral proj. area of superstructure [m2]'
-            ParentColor = False
-          end
-          object Label6: TLabel
-            Left = 8
-            Height = 13
-            Top = 146
-            Width = 209
-            Caption = 'Transverse projected wind area [m2]'
-            ParentColor = False
-          end
-          object Label7: TLabel
-            Left = 8
-            Height = 13
-            Top = 174
-            Width = 136
-            Caption = 'Length of perimeter [m]'
-            ParentColor = False
-          end
-          object Label8: TLabel
-            Left = 8
-            Height = 13
-            Top = 202
-            Width = 194
-            Caption = 'Distance from bow to centroid [m]'
-            ParentColor = False
-          end
-          object Label9: TLabel
-            Left = 8
-            Height = 13
-            Top = 230
-            Width = 189
-            Caption = 'Number of groups of masts, ETC.'
-            ParentColor = False
-          end
-          object Label10: TLabel
-            Left = 8
-            Height = 13
-            Top = 258
-            Width = 99
-            Caption = 'Ship speed, [m/s]'
-            ParentColor = False
-          end
-          object Label11: TLabel
-            Left = 8
-            Height = 13
-            Top = 286
-            Width = 103
-            Caption = 'Wind speed, [m/s]'
-            ParentColor = False
-          end
-          object Label12: TLabel
-            Left = 8
-            Height = 13
-            Top = 314
-            Width = 108
-            Caption = 'Wind angle, [degr.]'
-            ParentColor = False
-          end
-          object Edit2: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 26
-            Width = 50
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 600
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 0
-            Value = 0
-          end
-          object Edit3: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 54
-            Width = 50
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 55
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 1
-            Value = 0
-          end
-          object Edit4: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 82
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 10000
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 2
-            Value = 0
-          end
-          object Edit5: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 110
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 5000
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 3
-            Value = 0
-          end
-          object Edit6: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 138
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 5000
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 4
-            Value = 0
-          end
-          object Edit7: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 166
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 3000
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 5
-            Value = 0
-          end
-          object Edit8: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 194
-            Width = 50
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 3000
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 6
-            Value = 0
-          end
-          object Edit9: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 222
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 11
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 7
-            Value = 0
-          end
-          object Edit10: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 250
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 50
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-            Value = 0
-          end
-          object Edit11: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 278
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 50
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 9
-            Value = 0
-          end
-          object Edit12: TFloatSpinEdit
-            Left = 208
-            Height = 23
-            Top = 306
-            Width = 50
-            Alignment = taRightJustify
-            MaxValue = 180
-            MinValue = 0
-            OnExit = Edit1AfterSetValue
-            TabOrder = 10
-            Value = 0
-          end
-          object Chart: TChart
-            Left = 280
-            Height = 503
-            Top = 1
-            Width = 490
-            AxisList = <            
-              item
-                Marks.LabelBrush.Style = bsClear
-                Minors = <>
-                Title.LabelFont.Orientation = 900
-                Title.Visible = True
-                Title.Caption = 'Cx, Cy, 10*Cmz'
-                Title.LabelBrush.Style = bsClear
-              end            
-              item
-                Alignment = calBottom
-                Marks.LabelBrush.Style = bsClear
-                Minors = <>
-                Title.Visible = True
-                Title.Caption = 'Angle of rel wind off bow'
-                Title.LabelBrush.Style = bsClear
-              end            
-              item
-                Alignment = calRight
-                Marks.LabelBrush.Style = bsClear
-                Minors = <>
-                Title.LabelFont.Orientation = 900
-                Title.Visible = True
-                Title.Caption = ' '
-                Title.LabelBrush.Style = bsClear
-              end>
-            Foot.Brush.Color = clBtnFace
-            Foot.Font.Color = clBlue
-            Legend.Alignment = laTopCenter
-            Legend.ColumnCount = 3
-            Legend.Visible = True
-            Title.Brush.Color = clBtnFace
-            Title.Font.Color = clBlue
-            Title.Text.Strings = (
-              'Aerodynamic characteristics of a ship'
-            )
-            Title.Visible = True
-            Align = alRight
-            object Series1: TLineSeries
-              Marks.Visible = False
-              Title = 'Cx   '
-              LinePen.Color = clBlue
-              LinePen.Width = 2
-              Pointer.HorizSize = 2
-              Pointer.VertSize = 2
-            end
-            object Series2: TLineSeries
-              Marks.Visible = False
-              Title = 'Cy   '
-              LinePen.Color = clGreen
-              LinePen.Width = 2
-            end
-            object Series3: TLineSeries
-              Marks.Visible = False
-              Title = 'Cmz '
-              LinePen.Color = clRed
-              LinePen.Width = 2
-            end
-          end
           object CheckBox2: TCheckBox
-            Left = 9
+            Left = 0
             Height = 21
-            Top = 8
-            Width = 192
+            Top = 0
+            Width = 347
             Caption = 'Extract data from current hull'
             OnChange = CheckBox2Click
-            TabOrder = 12
+            TabOrder = 0
+          end
+          object Panel2: TPanel
+            Left = 0
+            Height = 295
+            Top = 23
+            Width = 347
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclTopToBottomThenLeftToRight
+            ChildSizing.ControlsPerLine = 11
+            ClientHeight = 295
+            ClientWidth = 347
+            TabOrder = 1
+            object Label2: TLabel
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 261
+              Caption = 'Length overall Loa [m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label3: TLabel
+              Left = 0
+              Height = 25
+              Top = 27
+              Width = 261
+              Caption = 'Breadth [m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label4: TLabel
+              Left = 0
+              Height = 25
+              Top = 54
+              Width = 261
+              Caption = 'Lateral projected wind area [m2]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label5: TLabel
+              Left = 0
+              Height = 25
+              Top = 81
+              Width = 261
+              Caption = 'Lateral proj. area of superstructure [m2]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label6: TLabel
+              Left = 0
+              Height = 25
+              Top = 108
+              Width = 261
+              Caption = 'Transverse projected wind area [m2]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label7: TLabel
+              Left = 0
+              Height = 25
+              Top = 135
+              Width = 261
+              Caption = 'Length of perimeter [m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label8: TLabel
+              Left = 0
+              Height = 25
+              Top = 162
+              Width = 261
+              Caption = 'Distance from bow to centroid [m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label9: TLabel
+              Left = 0
+              Height = 25
+              Top = 189
+              Width = 261
+              Caption = 'Number of groups of masts, ETC.'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label10: TLabel
+              Left = 0
+              Height = 25
+              Top = 216
+              Width = 261
+              Caption = 'Ship speed, [m/s]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label11: TLabel
+              Left = 0
+              Height = 25
+              Top = 243
+              Width = 261
+              Caption = 'Wind speed, [m/s]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label12: TLabel
+              Left = 0
+              Height = 25
+              Top = 270
+              Width = 261
+              Caption = 'Wind angle, [degr.]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit2: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 0
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 600
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 0
+              Value = 0
+            end
+            object Edit3: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 27
+              Width = 80
+              Alignment = taRightJustify
+              DecimalPlaces = 3
+              MaxValue = 55
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 1
+              Value = 0
+            end
+            object Edit4: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 54
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 10000
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 2
+              Value = 0
+            end
+            object Edit5: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 81
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 5000
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 3
+              Value = 0
+            end
+            object Edit6: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 108
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 5000
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 4
+              Value = 0
+            end
+            object Edit7: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 135
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 3000
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 5
+              Value = 0
+            end
+            object Edit8: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 162
+              Width = 80
+              Alignment = taRightJustify
+              DecimalPlaces = 3
+              MaxValue = 3000
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 6
+              Value = 0
+            end
+            object Edit9: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 189
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 11
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 7
+              Value = 0
+            end
+            object Edit10: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 216
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 50
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 8
+              Value = 0
+            end
+            object Edit11: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 243
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 50
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 9
+              Value = 0
+            end
+            object Edit12: TFloatSpinEdit
+              Left = 267
+              Height = 25
+              Top = 270
+              Width = 80
+              Alignment = taRightJustify
+              MaxValue = 180
+              MinValue = 0
+              OnExit = Edit1AfterSetValue
+              TabOrder = 10
+              Value = 0
+            end
+          end
+        end
+        object Chart: TChart
+          Left = 368
+          Height = 521
+          Top = 11
+          Width = 515
+          AxisList = <          
+            item
+              Marks.LabelBrush.Style = bsClear
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+              Title.Visible = True
+              Title.Caption = 'Cx, Cy, 10*Cmz'
+              Title.LabelBrush.Style = bsClear
+            end          
+            item
+              Alignment = calBottom
+              Marks.LabelBrush.Style = bsClear
+              Minors = <>
+              Title.Visible = True
+              Title.Caption = 'Angle of rel wind off bow'
+              Title.LabelBrush.Style = bsClear
+            end          
+            item
+              Alignment = calRight
+              Marks.LabelBrush.Style = bsClear
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+              Title.Visible = True
+              Title.Caption = ' '
+              Title.LabelBrush.Style = bsClear
+            end>
+          BackColor = clWindow
+          Foot.Brush.Color = clBtnFace
+          Foot.Font.Color = clBlue
+          Legend.Alignment = laTopCenter
+          Legend.ColumnCount = 3
+          Legend.Visible = True
+          Title.Brush.Color = clBtnFace
+          Title.Font.Color = clBlue
+          Title.Text.Strings = (
+            'Aerodynamic characteristics of a ship'
+          )
+          Title.Visible = True
+          Align = alClient
+          BorderSpacing.Left = 10
+          ParentColor = True
+          object Series1: TLineSeries
+            Marks.Visible = False
+            Title = 'Cx   '
+            LinePen.Color = clBlue
+            LinePen.Width = 2
+            Pointer.HorizSize = 2
+            Pointer.VertSize = 2
+          end
+          object Series2: TLineSeries
+            Marks.Visible = False
+            Title = 'Cy   '
+            LinePen.Color = clGreen
+            LinePen.Width = 2
+          end
+          object Series3: TLineSeries
+            Marks.Visible = False
+            Title = 'Cmz '
+            LinePen.Color = clRed
+            LinePen.Width = 2
           end
         end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 527
-      ClientWidth = 793
+      ClientHeight = 543
+      ClientWidth = 894
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0
-        Height = 526
+        Height = 543
         Top = 0
-        Width = 793
+        Width = 894
         Align = alClient
         Font.Color = clBlack
         Font.Height = -13
@@ -420,6 +453,37 @@ object FreeHydrodyn_Task1: TFreeHydrodyn_Task1
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 0
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Help'
+      ClientHeight = 543
+      ClientWidth = 894
+      object Panel15: TPanel
+        Left = 0
+        Height = 543
+        Top = 0
+        Width = 894
+        Align = alClient
+        BevelOuter = bvLowered
+        ClientHeight = 543
+        ClientWidth = 894
+        ParentFont = False
+        TabOrder = 0
+        object Resultsmemo2: TMemo
+          Left = 1
+          Height = 541
+          Top = 1
+          Width = 892
+          Align = alClient
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          ParentFont = False
+          ScrollBars = ssBoth
+          TabOrder = 0
+          Visible = False
+        end
       end
     end
   end

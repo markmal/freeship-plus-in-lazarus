@@ -61,6 +61,37 @@ begin
   Result := FControlPoints[index];
 end;{TFreeSubdivisionControlCurve.FGetControlPoint}
 
+function TFreeSubdivisionControlCurve.CheckIntegrity: boolean;
+var i:integer;
+begin
+  result := true;
+  for i:=0 to FControlPoints.Count-1 do
+  begin
+    if FControlPoints[i] = nil then
+    begin
+      logger.Error(Format('TFreeSubdivisionControlCurve.CheckIntegrity: ControlPoint[%d] = nil',[i]));
+      result := false;
+    end
+    else
+    begin
+      result := result and FControlPoints[i].CheckIntegrity;
+    end;
+  end;
+
+  for i:=0 to FSubdividedPoints.Count-1 do
+  begin
+    if FSubdividedPoints[i] = nil then
+    begin
+      logger.Error(Format('TFreeSubdivisionControlCurve.CheckIntegrity: SubdividedPoint[%d] = nil',[i]));
+      result := false;
+    end
+    else
+    begin
+      result := result and FControlPoints[i].CheckIntegrity;
+    end;
+  end;
+end; {TFreeSubdivisionControlCurve.CheckIntegrity}
+
 procedure TFreeSubdivisionControlCurve.Clear;
 begin
   FControlPoints.Clear;

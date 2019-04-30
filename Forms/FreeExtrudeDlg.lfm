@@ -1,122 +1,144 @@
 object FreeExtrudeDialog: TFreeExtrudeDialog
   Left = 771
-  Height = 151
+  Height = 200
   Top = 315
-  Width = 280
+  Width = 400
   BorderStyle = bsDialog
   Caption = 'Extrusion vector'
-  ClientHeight = 151
-  ClientWidth = 280
-  Color = clBtnFace
+  ClientHeight = 200
+  ClientWidth = 400
   LCLVersion = '2.0.0.4'
   object Panel2: TPanel
     Left = 0
-    Height = 114
+    Height = 176
     Top = 24
-    Width = 280
+    Width = 400
     Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 114
-    ClientWidth = 280
-    TabOrder = 0
-    object _Label3: TLabel
-      Left = 241
-      Height = 13
-      Top = 24
-      Width = 19
-      Caption = '[m]'
-      ParentColor = False
-    end
-    object _Label6: TLabel
-      Left = 241
-      Height = 13
-      Top = 54
-      Width = 19
-      Caption = '[m]'
-      ParentColor = False
-    end
-    object _Label9: TLabel
-      Left = 241
-      Height = 13
-      Top = 84
-      Width = 19
-      Caption = '[m]'
-      ParentColor = False
-    end
-    object Label1: TLabel
-      Left = 16
-      Height = 13
-      Top = 24
-      Width = 121
-      Caption = 'Longitudinal direction'
-      ParentColor = False
-    end
-    object Label2: TLabel
-      Left = 16
-      Height = 13
-      Top = 54
-      Width = 115
-      Caption = 'Transverse direction'
-      ParentColor = False
-    end
-    object Label4: TLabel
-      Left = 16
-      Height = 13
-      Top = 84
-      Width = 95
-      Caption = 'Vertical direction'
-      ParentColor = False
-    end
-    object Edit1: TEdit
-      Left = 160
-      Height = 23
-      Top = 16
-      Width = 75
-      OnExit = Edit1Exit
-      OnKeyPress = Edit1KeyPress
-      TabOrder = 0
-    end
-    object Edit2: TEdit
-      Left = 160
-      Height = 23
-      Top = 46
-      Width = 75
-      OnExit = Edit2Exit
-      OnKeyPress = Edit2KeyPress
-      TabOrder = 1
-    end
-    object Edit3: TEdit
-      Left = 160
-      Height = 23
-      Top = 76
-      Width = 75
-      OnExit = Edit3Exit
-      OnKeyPress = Edit3KeyPress
-      TabOrder = 2
-    end
-  end
-  object Panel3: TPanel
-    Left = 0
-    Height = 13
-    Top = 138
-    Width = 280
-    Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 1
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 176
+    ClientWidth = 400
+    TabOrder = 0
+    object Panel4: TPanel
+      Left = 62
+      Height = 99
+      Top = 39
+      Width = 276
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 3
+      ClientHeight = 99
+      ClientWidth = 276
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 10
+        Height = 25
+        Top = 10
+        Width = 141
+        Caption = 'Longitudinal direction'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 10
+        Height = 25
+        Top = 37
+        Width = 141
+        Caption = 'Transverse direction'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 10
+        Height = 25
+        Top = 64
+        Width = 141
+        Caption = 'Vertical direction'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object FloatSpinEdit1: TFloatSpinEdit
+        Left = 157
+        Height = 25
+        Top = 10
+        Width = 80
+        Constraints.MinWidth = 80
+        DecimalPlaces = 4
+        MinValue = 0
+        TabOrder = 0
+        Value = 0
+      end
+      object FloatSpinEdit2: TFloatSpinEdit
+        Left = 157
+        Height = 25
+        Top = 37
+        Width = 80
+        Constraints.MinWidth = 80
+        DecimalPlaces = 4
+        MinValue = 0
+        TabOrder = 1
+        Value = 0
+      end
+      object FloatSpinEdit3: TFloatSpinEdit
+        Left = 157
+        Height = 25
+        Top = 64
+        Width = 80
+        Constraints.MinWidth = 80
+        DecimalPlaces = 4
+        MinValue = 0
+        TabOrder = 2
+        Value = 0
+      end
+      object _Label3: TLabel
+        Left = 243
+        Height = 25
+        Top = 10
+        Width = 23
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object _Label6: TLabel
+        Left = 243
+        Height = 25
+        Top = 37
+        Width = 23
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object _Label9: TLabel
+        Left = 243
+        Height = 25
+        Top = 64
+        Width = 23
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+    end
   end
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 280
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 280
-    TabOrder = 2
+    ClientWidth = 400
+    TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 116
+      Left = 236
       Height = 20
       Top = 2
       Width = 80
@@ -165,7 +187,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 198
+      Left = 318
       Height = 20
       Top = 2
       Width = 80

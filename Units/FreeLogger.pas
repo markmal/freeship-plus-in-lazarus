@@ -35,6 +35,7 @@ implementation
 constructor TLogger.Create();
 begin
   FLogLevel := LOG_NONE;
+  DebugLogger.CloseLogFileBetweenWrites:=true;
 end;
 
 procedure TLogger.Info(S:String);

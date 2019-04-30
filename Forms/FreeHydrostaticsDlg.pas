@@ -40,108 +40,108 @@ uses
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
   Messages,
-     SysUtils,
-     Variants,
-     Classes,
-     Graphics,
-     Controls,
-     Forms,
-     Dialogs,
-     StdCtrls,
-     ComCtrls,
-     Buttons,
-     Printers,
-     ExtCtrls,
-     FreeShipUnit,
-     FreeLanguageSupport
-     ;
+  SysUtils,
+  Variants,
+  Classes,
+  Graphics,
+  Controls,
+  Forms,
+  Dialogs,
+  StdCtrls,
+  ComCtrls,
+  Buttons,
+  Printers,
+  ExtCtrls,
+  FreeShipUnit,
+  FreeLanguageSupport;
 
 type
 
-{ TFreeHydrostaticsDialog }
+  { TFreeHydrostaticsDialog }
 
- TFreeHydrostaticsDialog   = class(TForm)
-                                       Panel1: TPanel;
+  TFreeHydrostaticsDialog = class(TForm)
+    Panel1: TPanel;
     Edit: TMemo;
-                                       Panel22: TPanel;
-                                       ButtonClose: TSpeedButton;
-                                       ButtonPrint: TSpeedButton;
-                                       PrintDialog: TPrintDialog;
-                                       ButtonSave: TSpeedButton;
-                                       SaveDialog: TSaveDialog;
-                                       procedure ButtonCloseClick(Sender: TObject);
-                                       procedure ButtonPrintClick(Sender: TObject);
-                                       procedure ButtonSaveClick(Sender: TObject);
-                                       procedure FormShow(Sender: TObject);
-                                    private   { Private declarations }
-                                    public    { Public declarations }
-                                 end;
+    Panel22: TPanel;
+    ButtonClose: TSpeedButton;
+    ButtonPrint: TSpeedButton;
+    PrintDialog: TPrintDialog;
+    ButtonSave: TSpeedButton;
+    SaveDialog: TSaveDialog;
+    procedure ButtonCloseClick(Sender: TObject);
+    procedure ButtonPrintClick(Sender: TObject);
+    procedure ButtonSaveClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private   { Private declarations }
+  public    { Public declarations }
+  end;
 
-var FreeHydrostaticsDialog: TFreeHydrostaticsDialog;
+var
+  FreeHydrostaticsDialog: TFreeHydrostaticsDialog;
 
 implementation
 
 {$IFnDEF FPC}
   {$R *.dfm}
+
 {$ELSE}
   {$R *.lfm}
 {$ENDIF}
 
 procedure TFreeHydrostaticsDialog.ButtonCloseClick(Sender: TObject);
 begin
-   Close;
+  Close;
 end;{TFreeHydrostaticsDialog.Button1Click}
 
 procedure TFreeHydrostaticsDialog.ButtonPrintClick(Sender: TObject);
-var PrintText : TextFile;
-    Str       : AnsiString;
-    I         : Integer;
+var
+  PrintText: TextFile;
+  Str: ansistring;
+  I: integer;
 begin
-   if PrintDialog.Execute then
-   begin
+  if PrintDialog.Execute then
+  begin
 
-      AssignPrn(PrintText);
-      Rewrite(PrintText);
-      Printer.Canvas.Font.Assign(Edit.Font);
-      for I:=1 to Edit.Lines.Count do
-      begin
-         Str:=Edit.Lines[I-1];
-         Writeln(PrintText,Str);
-      end;
-      CloseFile(PrintText);
-   end;
+    AssignPrn(PrintText);
+    Rewrite(PrintText);
+    Printer.Canvas.Font.Assign(Edit.Font);
+    for I := 1 to Edit.Lines.Count do
+    begin
+      Str := Edit.Lines[I - 1];
+      Writeln(PrintText, Str);
+    end;
+    CloseFile(PrintText);
+  end;
 end;{TFreeHydrostaticsDialog.SpeedButton1Click}
 
 procedure TFreeHydrostaticsDialog.ButtonSaveClick(Sender: TObject);
 begin
-   // Skip translation
-   if SaveDialog.Execute then
-   begin
-      Case SaveDialog.FilterIndex of
-         1 : begin // save as plain text
-                Edit.Lines.SaveToFile(ChangeFileExt(SaveDialog.FileName,'.txt'));
-             end;
-      end;
-   end;
-   // End Skip translation
+  // Skip translation
+  if SaveDialog.Execute then
+    case SaveDialog.FilterIndex of
+      1: Edit.Lines.SaveToFile(ChangeFileExt(SaveDialog.FileName, '.txt'));
+        // save as plain text
+
+    end;
+  // End Skip translation
 end;{TFreeHydrostaticsDialog.SpeedButton2Click}
 
 procedure TFreeHydrostaticsDialog.FormShow(Sender: TObject);
 var
-    I       : integer;
-    S : string;
+  I: integer;
+  S: string;
 begin
-   I:=Edit.Lines.Count;
-   S := Edit.Lines.CommaText;
-   // Place cursor at beginning
-   Edit.CaretPos:=TPoint(Point(0,0));
-   I:=Edit.Lines.Count;
-   S := Edit.Lines.CommaText;
+  I := Edit.Lines.Count;
+  S := Edit.Lines.CommaText;
+  // Place cursor at beginning
+  Edit.CaretPos := TPoint(Point(0, 0));
+  I := Edit.Lines.Count;
+  S := Edit.Lines.CommaText;
 
-   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonPrint.Glyph,'Print');
-   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonSave.Glyph,'Save');
-   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonClose.Glyph,'Ok');
-   ShowTranslatedValues(Self);
+  GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonPrint.Glyph, 'Print');
+  GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonSave.Glyph, 'Save');
+  GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonClose.Glyph, 'Ok');
+  ShowTranslatedValues(Self);
 
 end;{TFreeHydrostaticsDialog.FormShow}
 

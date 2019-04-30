@@ -1013,6 +1013,7 @@ type
   TFreeSubdivisionBase = class
   private
     FOwner: TFreeSubdivisionSurface;
+    FId:integer;
   public
     constructor Create(Owner: TFreeSubdivisionSurface);
       virtual;
@@ -1044,6 +1045,7 @@ type
     procedure FSetSelected(val: boolean);
   public
     procedure AddPoint(P: TFreeSubdivisionControlPoint);
+    function CheckIntegrity: boolean;
     procedure Clear;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
@@ -1149,6 +1151,7 @@ type
       Layer: TFreeSubdivisionLayer): boolean;
     constructor Create(Owner: TFreeSubdivisionSurface);
     procedure Clear;
+    function CheckIntegrity: boolean;
     function Delete: boolean;
     procedure DeleteControlFace(
       ControlFace: TFreeSubdivisionControlFace);
@@ -1231,10 +1234,12 @@ type
     procedure AddFace(Face: TFreeSubdivisionFace);
     function Averaging: T3DCoordinate;
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
+    function CheckIntegrity: boolean;
     procedure Clear;
     constructor Create(Owner: TFreeSubdivisionSurface);override;
     procedure DeleteEdge(Edge: TFreeSubdivisionEdge);
     procedure DeleteFace(Face: TFreeSubdivisionFace);
+    procedure Dereference;
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
@@ -1331,10 +1336,12 @@ type
     procedure Assign(Edge: TFreeSubdivisionEdge);
       virtual;
     function CalculateEdgePoint: TFreeSubdivisionPoint;
+    function CheckIntegrity: boolean;
     procedure Clear;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
     procedure DeleteFace(Face: TFreeSubdivisionFace);
+    procedure Dereference; virtual;
     destructor Destroy;
       override;
     function DistanceToCursor(X, Y: integer;
@@ -1425,10 +1432,12 @@ type
   public
     procedure AddPoint(Point: TFreeSubdivisionPoint);
     function CalculateFacePoint: TFreeSubdivisionPoint;
+    function CheckIntegrity: boolean;
     procedure Clear;
       virtual;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
+    procedure Dereference; virtual;
     destructor Destroy;
       override;
     procedure FlipNormal;
@@ -1485,6 +1494,7 @@ type
     procedure FSetSelected(val: boolean);
   public
     procedure CalcExtents;
+    function CheckIntegrity: boolean;
     procedure Clear;
       override;
     procedure ClearChildren;
@@ -1493,6 +1503,7 @@ type
     function DistanceToCursor(X, Y: integer;
       var P: T3DCoordinate; Viewport: TFreeViewport): integer;
     procedure Delete;
+    procedure Dereference; override;
     destructor Destroy;
       override;
     procedure Draw(Viewport: TFreeViewport);
@@ -1554,7 +1565,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeSubdivisionSurface                                 }
   { This is the subdivision surface used for modelling the hull.                                      }
-  { This is actually a quad-triangle subdivision surface as publisehed in the articles:               }
+  { This is actually a quad-triangle subdivision surface as published in the articles:               }
   {   "Quad/triangle subdivision" by J. Stam & C. Loop http://research.microsoft.com/~cloop/qtEG.pdf  }
   {   "On C2 triangle/quad subdivision" by Scott Schaeffer & Joe Warren                               }
   {---------------------------------------------------------------------------------------------------}
@@ -1698,15 +1709,28 @@ type
     function AddControlPoint: TFreeSubdivisionControlPoint;
       reintroduce; overload;
     // Adds a new controlpoint at 0,0,0 without checking other points
+
+    // Delete all object's references from related objects
+    procedure DereferenceControlPoint(P: TFreeSubdivisionControlPoint);
+    procedure DereferenceControlEdge(E: TFreeSubdivisionControlEdge);
+    procedure DereferenceControlFace(F: TFreeSubdivisionControlFace);
+
+    procedure DereferencePoint(P: TFreeSubdivisionPoint);
+    procedure DereferenceEdge(E: TFreeSubdivisionEdge);
+    procedure DereferenceFace(F: TFreeSubdivisionFace);
+
     function AddNewLayer: TFreeSubdivisionLayer;
     procedure AssembleFacesToPatches(Layers: TFasterListTFreeSubdivisionLayer; Mode: TFreeAssembleMode;
       var AssembledPatches: TFreeFaceArray; var NAssembled: integer);
     procedure CalculateGaussCurvature;
     // Calculate Gauss. curvature in each point of the mesh and store it in a array
+
+    function CheckIntegrity:boolean;
+
     procedure Clear;
       override;
     procedure ClearFaces;
-    procedure Clearselection;
+    procedure ClearSelection;
     procedure ConvertToGrid(Input: TFreeFaceGrid; var Cols, Rows: integer;
       var Grid: TFreeSubdivisionGrid);
     procedure Edge_Connect;

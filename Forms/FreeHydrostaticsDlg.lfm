@@ -7,7 +7,6 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
   Caption = 'Hydrostatics results'
   ClientHeight = 573
   ClientWidth = 792
-  Color = clBtnFace
   OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'

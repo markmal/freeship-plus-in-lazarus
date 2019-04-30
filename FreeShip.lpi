@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="119"/>
+      <BuildNr Value="125"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -109,13 +109,13 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
+        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="1">
         <Mode0 Name="default">
           <local>
-            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
+            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
           </local>
         </Mode0>
       </Modes>
@@ -634,17 +634,21 @@
         <StackChecks Value="True"/>
       </Checks>
       <VerifyObjMethodCallValidity Value="True"/>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <DebugInfoType Value="dsDwarf2Set"/>
         <UseHeaptrc Value="True"/>
         <TrashVariables Value="True"/>
         <UseValgrind Value="True"/>
-        <UseExternalDbgSyms Value="True"/>
       </Debugging>
       <Options>
         <LinkerOptions Value="-vd"/>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
       </Options>
     </Linking>
     <Other>

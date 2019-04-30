@@ -1,12 +1,11 @@
 object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
   Left = 780
-  Height = 650
+  Height = 600
   Top = 215
-  Width = 848
+  Width = 900
   Caption = 'Hydrostatics'
-  ClientHeight = 650
-  ClientWidth = 848
-  Color = clBtnFace
+  ClientHeight = 600
+  ClientWidth = 900
   Font.Color = clBlack
   Font.Name = 'Arial'
   OnResize = FormResize
@@ -16,12 +15,12 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 848
+    Width = 900
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 848
+    ClientWidth = 900
     Font.Color = clBlack
     ParentFont = False
     TabOrder = 0
@@ -125,7 +124,7 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
       OnClick = ButtonSaveClick
     end
     object ButtonClose: TSpeedButton
-      Left = 766
+      Left = 818
       Height = 20
       Top = 2
       Width = 80
@@ -176,29 +175,29 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
   end
   object Panel2: TPanel
     Left = 0
-    Height = 626
+    Height = 576
     Top = 24
-    Width = 848
+    Width = 900
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 8
-    ClientHeight = 626
-    ClientWidth = 848
+    ClientHeight = 576
+    ClientWidth = 900
     TabOrder = 1
     object Splitter1: TSplitter
       Cursor = crVSplit
       Left = 9
       Height = 3
       Top = 181
-      Width = 830
+      Width = 882
       Align = alTop
       ResizeAnchor = akTop
     end
     object Grid: TStringGrid
       Left = 9
-      Height = 433
+      Height = 383
       Top = 184
-      Width = 830
+      Width = 882
       Align = alClient
       ColCount = 17
       DefaultColWidth = 49
@@ -220,7 +219,7 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
       Left = 9
       Height = 172
       Top = 9
-      Width = 830
+      Width = 882
       Align = alTop
       Font.Color = clBlack
       Font.Height = -12

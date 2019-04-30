@@ -119,6 +119,7 @@ type
     Label9: TLabel;
     MenuImages: TImageList;
     Panel1: TPanel;
+    TabSheet3: TTabSheet;
     ToolBar1: TToolBar;
     _ToolButton10: TToolButton;
     PrintButton: TToolButton;

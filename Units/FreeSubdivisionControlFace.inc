@@ -145,22 +145,17 @@ var
 begin
   if Assigned(FChildren) then
   begin
-    for I := 0 to Childcount-1 do
-      if assigned(Child[I]) then
-         Child[I].Free;
+    for I := 0 to FChildren.Count-1 do
+      if assigned(FChildren[I]) then
+         FChildren[I].Free;
     FChildren.Clear;
   end;
   if Assigned(FEdges) then
   begin
-    for I := 0 to EdgeCount-1 do
+    for I := 0 to FEdges.Count-1 do
       begin
-      ej := Edge[I];
-      if assigned(Edge[I]) then
-         try
-         Edge[I].Free;
-         except
-         FEdges[I]:=nil;
-         end;
+      if assigned(FEdges[I]) then
+         FEdges[I].Free;
       end;
     FEdges.Clear;
   end;
@@ -337,17 +332,112 @@ begin
   DelayedDestroyList.Add(Self);
 end;{TFreeSubdivisionControlFace.Delete}
 
+procedure TFreeSubdivisionControlFace.Dereference;
+var i: integer;
+begin
+  for i:=0 to FChildren.Count-1 do
+    FChildren[i].Dereference;
+  for i:=0 to FControlEdges.Count-1 do
+    FControlEdges[i].FFaces.DeleteAll(Self);
+  for i:=0 to FEdges.Count-1 do
+    FEdges[i].FFaces.DeleteAll(Self);
+  for i:=0 to FPoints.Count-1 do
+    FPoints[i].FFaces.DeleteAll(Self);
+  inherited;
+end;
+
 destructor TFreeSubdivisionControlFace.Destroy;
+var i:integer;
 begin
   logger.debug('TFreeSubdivisionControlFace.Destroy. $' + IntToStr(PtrUInt(Self)));
+  Dereference;
+  for i:=0 to FEdges.Count - 1 do
+    FEdges[i].FFaces.DeleteAll(Self);
   FEdges.Destroy;
   FEdges := nil;
+
+  for i:=0 to FEdges.Count - 1 do
+    FControlEdges[i].FFaces.DeleteAll(Self);
   FControlEdges.Destroy;
   FControlEdges := nil;
+
+  Delete;
+
   FChildren.Destroy;
   FChildren := nil;
   inherited Destroy;
 end;{TFreeSubdivisionControlFace.Destroy}
+
+function TFreeSubdivisionControlFace.CheckIntegrity: boolean;
+var  I, J: integer; IsFaceFound:boolean;
+  ChildFace: TFreeSubdivisionFace;
+  Edge: TFreeSubdivisionEdge;
+  Startpoint: TFreeSubdivisionPoint;
+  Endpoint: TFreeSubdivisionPoint;
+
+begin
+  result:=true;
+
+  for I := 0 to FChildren.Count-1 do
+    begin
+      ChildFace := FChildren[I];
+      result := result and ChildFace.CheckIntegrity;
+    end;
+
+  for I := 0 to FEdges.Count-1 do
+  begin
+    Edge := FEdges[J];
+
+    if Edge = nil then
+    begin
+      logger.Error(Format('TFreeSubdivisionControlFace.CheckIntegrity: Edge[%d] = nil',[I]));
+      result := false;
+      continue;
+    end;
+
+    result := result and Edge.CheckIntegrity;
+
+    if Edge.FFaces = nil then
+    begin
+      logger.Error(Format('TFreeSubdivisionControlFace.CheckIntegrity: Edge[%d].Faces = nil',[I]));
+      result := false;
+      continue;
+    end;
+
+    if Edge.FFaces.Count = 0 then
+    begin
+      logger.Error(Format('TFreeSubdivisionControlFace.CheckIntegrity: Edge[%d].NumberOfFaces = 0',[I]));
+      result := false;
+      continue;
+    end;
+
+    if Edge.FFaces.IndexOf(Self) = -1 then
+    begin
+      logger.Error(Format('TFreeSubdivisionControlFace.CheckIntegrity: Self not in Edge[%d].Faces',[I]));
+      result := false;
+    end;
+
+  end;
+
+  for i := 0 to FControlEdges.Count - 1 do
+    begin
+      Edge := FControlEdges[i];
+      if Edge.NumberOfFaces = 0 then
+      begin
+        logger.Error(Format('TFreeSubdivisionControlFace.CheckIntegrity: CEdge[%d].NumberOfFaces = 0',[I]));
+        result := false;
+      end;
+
+      if Edge.FFaces.IndexOf(Self) = -1 then
+      begin
+        logger.Error(Format('TFreeSubdivisionControlFace.CheckIntegrity: Self not in CEdge[%d].Faces',[I]));
+        result := false;
+      end;
+      result := result and Edge.CheckIntegrity;
+    end;
+
+end;
+
 
 procedure TFreeSubdivisionControlFace.Draw(Viewport: TFreeViewport);
 type
@@ -783,7 +873,7 @@ begin
       if capacity < 0 then
         exit;
     end
-    else
+    else // Wireframe
     begin
       for I := 1 to ChildCount do
       begin
@@ -1324,14 +1414,19 @@ var
   TmpEdges: TFasterListTFreeSubdivisionEdge;
   I,X: integer;
   ChildFace: TFreeSubdivisionFace;
+  NewControlEdges:TFasterListTFreeSubdivisionControlEdge;
 begin
-  FControlEdges.Clear;
+  NewControlEdges:=TFasterListTFreeSubdivisionControlEdge.Create;
+
+  //for i:=0 to FControlEdges.Count-1 do
+  //    FControlEdges[i].Free;
+  //FControlEdges.Clear;
   if FChildren.Count = 0 then
   begin
     FChildren.Capacity := NumberOfPoints;
     FEdges.Capacity := 4;
     inherited Subdivide(aOwner, True, aVertexPoints, aEdgePoints, aFacePoints,
-      FEdges, TFasterList(FControlEdges), FChildren);
+      FEdges, TFasterList(NewControlEdges), FChildren);
   end
   else
   begin
@@ -1344,25 +1439,31 @@ begin
     begin
       ChildFace := FChildren[I - 1];
       ChildFace.Subdivide(aOwner, False, aVertexPoints, aEdgePoints, aFacePoints,
-        TmpEdges, TFasterList(FControlEdges), TmpFaces);
+        TmpEdges, TFasterList(NewControlEdges), TmpFaces);
     end;
 
-    //for I := 0 to TmpEdges.Count-1 do
-    //    TmpEdges[i].PrintDebug;
-
     ClearChildren;
-    FEdges.Destroy;
+    for i:=0 to FEdges.Count-1 do
+        FEdges[i].Free;
+    FEdges.Free;
     FEdges := TmpEdges;
-    FChildren.Destroy;
+    for i:=0 to FChildren.Count-1 do
+        FChildren[i].Free;
+    FChildren.Free;
     FChildren := TmpFaces;
   end;
-  FControlEdges.Capacity := FControlEdges.Count;
+  FControlEdges.Clear;
+  FControlEdges.Capacity := NewControlEdges.Count;
   aControlEdges.Capacity := aControlEdges.Count + FControlEdges.Count;
-  for I := 0 to FControlEdges.Count - 1 do
+  for I := 0 to NewControlEdges.Count - 1 do
   begin
-    if aControlEdges.SortedIndexOf(FControlEdges[I]) = -1 then
-      aControlEdges.AddSorted(FControlEdges[I]);
+    if aControlEdges.SortedIndexOf(NewControlEdges[I]) = -1 then
+      begin
+      aControlEdges.AddSorted(NewControlEdges[I]);
+      FControlEdges.Add(NewControlEdges[I]);
+      end;
   end;
+  NewControlEdges.Clear;
   CalcExtents;
 end;{TFreeSubdivisionControlFace.Subdivide}
 

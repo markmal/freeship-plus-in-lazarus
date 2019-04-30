@@ -1077,7 +1077,6 @@ begin
   begin
     Parent := Self;
     Left := 0;
-    ;
     Height := 557;
     Top := 26;
     Width := 636;
@@ -1094,8 +1093,9 @@ begin
     BackgroundImage.Visible := True;
     CameraType := ftStandard;
     Color := clWhite;
-    DoubleBuffer := True;
+    DoubleBuffer := False;
     Elevation := 90;
+    ParentFont:=false;
     Margin := 4;
     ViewType := fvPlan;
     ViewportMode := vmWireFrame;

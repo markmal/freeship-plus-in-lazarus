@@ -851,6 +851,34 @@ begin
   inherited Destroy;
 end;{TFreeSubdivisionLayer.Destroy}
 
+function TFreeSubdivisionLayer.CheckIntegrity: boolean;
+var  I, J: integer;
+  CFace: TFreeSubdivisionControlface;
+begin
+  result:=true;
+  try
+  for I := 0 to Count - 1 do
+  begin
+    CFace := Items[I];
+    if CFace.Layer <> Self then
+    begin
+      logger.Error(Format('TFreeSubdivisionLayer.CheckIntegrity: CFace[%d].Layer <> Self',[I]));
+      result:= result and false;
+    end;
+    if not CFace.CheckIntegrity then
+      begin
+      logger.Error(Format('TFreeSubdivisionLayer.CheckIntegrity: In CFace[%d]',[I]));
+      result:= result and false;
+      end;
+  end;
+  except on E : Exception do
+    begin
+    logger.Error(Format('TFreeSubdivisionLayer.CheckIntegrity: Exception: %s',[E.Message]));
+    result := false;
+    end;
+  end;
+end;
+
 procedure TFreeSubdivisionLayer.Draw(Viewport: TFreeViewport);
 var
   I, J: integer;

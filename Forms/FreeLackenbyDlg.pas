@@ -84,10 +84,46 @@ type
     A, B, C, dCp, dp: TFloatType;
   end;
 
+  { TFreeLackenbyDialog }
+
   TFreeLackenbyDialog = class(TForm)
+    CheckBox1: TCheckBox;
+    Diff1: TFloatSpinEdit;
+    Diff2: TFloatSpinEdit;
+    Diff3: TFloatSpinEdit;
+    Diff4: TFloatSpinEdit;
+    Edit1: TFloatSpinEdit;
+    Edit2: TFloatSpinEdit;
+    Edit3: TFloatSpinEdit;
+    Edit4: TFloatSpinEdit;
+    Input1: TFloatSpinEdit;
+    Input2: TFloatSpinEdit;
+    Input3: TFloatSpinEdit;
+    Input4: TFloatSpinEdit;
+    IterationBox: TSpinEdit;
+    Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     Panel2: TPanel;
     Panel1: TPanel;
     Button1: TSpeedButton;
+    Panel3: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
     Viewport: TFreeViewport;
     SpeedButton1: TSpeedButton;
     BitBtn2: TSpeedButton;
@@ -97,37 +133,9 @@ type
     LayerBox: TCheckListBox;
     TopView: TFreeViewport;
     Panel5: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label7: TLabel;
-    Label6: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
     _Label12: TLabel;
-    Label13: TLabel;
     _Label14: TLabel;
-    Label15: TLabel;
     _Label16: TLabel;
-    Edit1: TFloatSpinEdit;
-    Input1: TFloatSpinEdit;
-    Edit2: TFloatSpinEdit;
-    Input2: TFloatSpinEdit;
-    Edit3: TFloatSpinEdit;
-    Input3: TFloatSpinEdit;
-    Diff1: TFloatSpinEdit;
-    Diff2: TFloatSpinEdit;
-    Diff3: TFloatSpinEdit;
-    Edit4: TFloatSpinEdit;
-    Input4: TFloatSpinEdit;
-    Diff4: TFloatSpinEdit;
-    IterationBox: TSpinEdit;
-    CheckBox1: TCheckBox;
-    Splitter3: TSplitter;
     procedure OKButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -319,7 +327,7 @@ begin
     SAC.Clear;
   ForeProperties := Aftproperties;
   TotalProp := Aftproperties;
-  ;
+
   FCalulateHydrostaticProperties(FWaterlinePlane, FMainArea, FAftShip, AftProperties, SAC);
   FCalulateHydrostaticProperties(FWaterlinePlane, FMainArea, FForeShip,
     ForeProperties, SAC);
@@ -787,7 +795,7 @@ end;
 
 function TFreeLackenbyDialog.Execute(Freeship: TFreeship; var Modified: boolean): boolean;
 var
-  I, Index: integer;
+  I, Index, E: integer;
   Value: TFloatType;
   MainLocation: TFloatType;
   Station: TFreeIntersection;
@@ -820,12 +828,16 @@ begin
   for I := 1 to FFreeship.NumberOfLayers do
   begin
     Layer := FFreeship.Layer[I - 1];
+    if not Layer.CheckIntegrity
+    then E:=1;
+
     if Layer.Count > 0 then
     begin
       Index := LayerBox.Items.AddObject(Layer.Name, Layer);
       Layerbox.Checked[index] := Layer.Visible;
     end;
   end;
+
   FWaterlinePlane.a := 0.0;
   FWaterlinePlane.b := 0.0;
   FWaterlinePlane.c := 1.0;

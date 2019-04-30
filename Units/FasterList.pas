@@ -122,7 +122,11 @@ end;{TFasterList.Destroy}
 procedure TFasterList.Add(Item: TItemType);
 var
   Cur, Prev: PtrUInt;
+  //szP, szT:integer;
 begin
+  //szT:=sizeOf(TItemType);
+  //szP:=sizeOf(Pointer);
+
   if FCount = FCapacity then
     FGrow;
 
@@ -199,7 +203,7 @@ begin
     //  Setlength(FData, FCapacity);
   end;
 
-  Move(List.FList[0], FList[FCount], List.FCount * SizeOf(Pointer));
+  Move(List.FList[0], FList[FCount], List.FCount * SizeOf(TItemType));
   if FUseUserData then
     Move(List.FData[0], FData[FCount], List.FCount * SizeOf(Pointer));
   FSorted := False;
@@ -228,7 +232,7 @@ begin
     if Address < PtrUInt(FList[0]) then
     begin
       // insert at start
-      Move(FList[0], FList[1], FCount * SizeOf(Pointer));
+      Move(FList[0], FList[1], FCount * SizeOf(TItemType));
       FList[0] := Item;
       if FUseUserData then
       begin
@@ -264,7 +268,7 @@ begin
         Mid := H
       else
         Mid := H + 1;
-      Move(FList[Mid], FList[Mid + 1], (FCount - Mid) * SizeOf(Pointer));
+      Move(FList[Mid], FList[Mid + 1], (FCount - Mid) * SizeOf(TItemType));
       FList[Mid] := Item;
       if FUseUserdata then
       begin
@@ -305,7 +309,7 @@ begin
     if Address < PtrUInt(FList[0]) then
     begin
       // insert at start
-      Move(FList[0], FList[1], FCount * SizeOf(Pointer));
+      Move(FList[0], FList[1], FCount * SizeOf(TItemType));
       FList[0] := Item;
       if FUseUserData then
       begin
@@ -341,7 +345,7 @@ begin
         Mid := H
       else
         Mid := H + 1;
-      Move(FList[Mid], FList[Mid + 1], (FCount - Mid) * SizeOf(Pointer));
+      Move(FList[Mid], FList[Mid + 1], (FCount - Mid) * SizeOf(TItemType));
       FList[Mid] := Item;
       if FUseUserdata then
       begin
@@ -358,7 +362,7 @@ procedure TFasterList.Assign(
 begin
   FUseUserdata := List.FUseUserData;
   Capacity := List.Count;
-  Move(List.FList[0], FList[0], List.Count * SizeOf(Pointer));
+  Move(List.FList[0], FList[0], List.Count * SizeOf(TItemType));
   if FUseUserdata then
     Move(List.FData[0], FData[0], List.Count * SizeOf(Pointer));
   FCount := List.Count;
@@ -388,7 +392,7 @@ begin
   Dec(FCount);
   if Index < FCount then
   begin
-    Move(FList[Index + 1], FList[Index], (FCount - Index) * SizeOf(Pointer));
+    Move(FList[Index + 1], FList[Index], (FCount - Index) * SizeOf(TItemType));
     if FUseUserData then
       Move(FData[Index + 1], FData[Index], (FCount - Index) * SizeOf(Pointer));
   end;
@@ -398,7 +402,7 @@ procedure TFasterList.DeleteAll(Item: TItemType);
 var i: integer;
 begin
   i := IndexOf(Item);
-  while i>0 do
+  while i >= 0 do
     begin
     Delete(i);
     i := IndexOf(Item);
@@ -446,7 +450,7 @@ begin
     SizeOf(integer) +           // fcount      : integer
     SizeOf(boolean) +           // FSorted     : Boolean
     SizeOf(boolean) +           // FUseUserdata: boolean
-    SizeOf(Pointer) * FCapacity;
+    SizeOf(TItemType) * FCapacity;
   if FUseUserData then
     Inc(Result, FCapacity * SizeOf(Pointer));
 end;{TFasterList.FGetMemory}
@@ -457,7 +461,7 @@ var
 begin
   if FCapacity > 64 then
   begin
-    Delta := FCapacity div SizeOf(Pointer);
+    Delta := FCapacity div SizeOf(TItemType);
     if Delta > 1024 then
       Delta := 1024;
   end
@@ -494,7 +498,7 @@ begin
     FGrow;
   if Index < FCount then
   begin
-    Move(FList[Index], FList[Index + 1], (FCount - Index) * SizeOf(Pointer));
+    Move(FList[Index], FList[Index + 1], (FCount - Index) * SizeOf(TItemType));
     if FUseUserData then
       Move(FData[Index], FData[Index + 1], (FCount - Index) * SizeOf(Pointer));
   end;

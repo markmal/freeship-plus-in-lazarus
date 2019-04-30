@@ -4212,13 +4212,12 @@ begin
   begin
     CtrlFace := ControlFace[I - 1];
     CtrlFace.Subdivide(Self, True, NewVertexPoints, NewEdges, NewFaces,
-      nil, TFasterList(NewEdgeList), nil);
+      nil, NewEdgeList, nil);
   end;
 
   // cleanup old mesh
   // Here is danger that other references will becoe dangling.
-  // Edges can be referred by Points, ControlFaces
-
+  // Edges can be referred by Points, ControlFaces and Surface itself
   for I := 0 to FEdges.Count-1 do
   begin
     Edge := FEdges[I];

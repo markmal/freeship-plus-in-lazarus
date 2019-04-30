@@ -316,8 +316,8 @@ begin
   for i:=0 to FFaces.Count-1 do
     begin
     F:=FFaces[i];
-    if F = nil then continue;
-    if F.FPoints = nil then continue;
+    if (F = nil) or not(F is TFreeSubdivisionFace) then continue;
+    if (F.FPoints = nil) or not(F.FPoints is TFasterListTFreeSubdivisionPoint) then continue;
     for j:=0 to F.FPoints.Count-1 do
           F.FPoints[j].FEdges.DeleteAll(Self);
     end;

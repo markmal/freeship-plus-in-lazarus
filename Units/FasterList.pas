@@ -94,6 +94,7 @@ type
     property Capacity: integer
       read FCapacity write FSetCapacity;
     property Count: integer read FCount;
+    property IsSorted: boolean read FSorted write FSorted;
     property Items[Index: integer]: TItemType
       read FGet write FSet; default;
     property Memory: integer read FGetMemory;

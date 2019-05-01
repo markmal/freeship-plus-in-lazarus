@@ -327,7 +327,7 @@ destructor TFreeSubdivisionEdge.Destroy;
 begin
   if self = nil then
     exit;
-  Dereference;
+  ///Dereference;
   Clear;
   FFaces.Free;
   FFaces := nil;

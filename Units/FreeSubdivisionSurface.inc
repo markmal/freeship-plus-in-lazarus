@@ -3855,6 +3855,8 @@ begin
       (FControlFaces.Count > 0) do
     begin
       Subdivide;
+      if not self.CheckIntegrity
+        then ShowMessage('Before build Model integrity corruption');
     end;
 
     {//cleanup
@@ -4157,9 +4159,9 @@ begin
   if FaceCnt = 0 then //first time when surface mesh is not created yet we use control mesh to start with
   begin
     NewFaces.Capacity := NumberOfControlFaces;
-    for I := 1 to NumberOfControlFaces do
+    for I := 0 to NumberOfControlFaces-1 do
     begin
-      CtrlFace := ControlFace[I - 1];
+      CtrlFace := ControlFace[I];
       NewFaces.AddObject(CtrlFace, CtrlFace.CalculateFacePoint);
       for J := 0 to CtrlFace.FControlEdges.Count-1 do
         begin
@@ -4208,9 +4210,9 @@ begin
   NewFaces.Sort;
 
   // finally create the refined mesh over the newly create vertexpoints, edgepoints and facepoints
-  for I := 1 to NumberOfControlFaces do
+  for I := 0 to FControlFaces.Count-1 do
   begin
-    CtrlFace := ControlFace[I - 1];
+    CtrlFace := ControlFace[I];
     CtrlFace.Subdivide(Self, True, NewVertexPoints, NewEdges, NewFaces,
       nil, NewEdgeList, nil);
   end;
@@ -4218,24 +4220,42 @@ begin
   // cleanup old mesh
   // Here is danger that other references will becoe dangling.
   // Edges can be referred by Points, ControlFaces and Surface itself
-  for I := 0 to FEdges.Count-1 do
+  {for I := 0 to FEdges.Count-1 do
   begin
     Edge := FEdges[I];
+    //if NewEdgeList.IndexOf(Edge) < 0 then
+      begin
+      //DereferenceEdge(Edge);
+      Edge.Destroy;
+      end;
+  end;
+  }
+  while FEdges.Count > 0 do
+  begin
+    Edge := FEdges[FEdges.Count-1];
     if NewEdgeList.IndexOf(Edge) < 0 then
       begin
-      DereferenceEdge(Edge);
+      //DereferenceEdge(Edge);
       Edge.Free;
       end;
+    FEdges.Delete(FEdges.Count-1);
   end;
   FEdges.Free;
 
   FEdges := NewEdgeList;
 
-  for I := 0 to FPoints.Count-1 do
+  {for I := 0 to FPoints.Count-1 do
   begin
     Point := FPoints[I];
     DereferencePoint(Point);
     Point.Destroy;
+  end;}
+  while FPoints.Count > 0 do
+  begin
+    Point := FPoints[FPoints.Count-1];
+    //DereferencePoint(Point);
+    Point.Free;
+    FPoints.Delete(FPoints.Count-1);
   end;
   FPoints.Clear;
 
@@ -4268,6 +4288,7 @@ begin
     Point := FPoints[I];
     Point.FCoordinate := TmpPoints[I];
   end;
+
   Setlength(TmpPoints, 0);
 
 end;{TFreeSubdivisionSurface.SubDivide}

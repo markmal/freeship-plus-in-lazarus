@@ -145,17 +145,27 @@ var
 begin
   if Assigned(FChildren) then
   begin
-    for I := 0 to FChildren.Count-1 do
-      if assigned(FChildren[I]) then
-         FChildren[I].Free;
+    //for I := 0 to FChildren.Count-1 do
+    //  if assigned(FChildren[I]) then
+    //     FChildren[I].Free;
+    while FChildren.Count > 0 do
+      begin
+      FChildren[FChildren.Count-1].Free;
+      FChildren.Delete(FChildren.Count-1);
+      end;
     FChildren.Clear;
   end;
   if Assigned(FEdges) then
   begin
-    for I := 0 to FEdges.Count-1 do
+    {for I := 0 to FEdges.Count-1 do
       begin
       if assigned(FEdges[I]) then
          FEdges[I].Free;
+      end;}
+    while FEdges.Count>0 do
+      begin
+      FEdges[FEdges.Count-1].Free;
+      FEdges.Delete(FEdges.Count-1);
       end;
     FEdges.Clear;
   end;
@@ -386,7 +396,7 @@ begin
 
   for I := 0 to FEdges.Count-1 do
   begin
-    Edge := FEdges[J];
+    Edge := FEdges[I];
 
     if Edge = nil then
     begin
@@ -1418,15 +1428,31 @@ var
 begin
   NewControlEdges:=TFasterListTFreeSubdivisionControlEdge.Create;
 
+  if not CheckIntegrity
+       then X:=0;
+
   //for i:=0 to FControlEdges.Count-1 do
   //    FControlEdges[i].Free;
   //FControlEdges.Clear;
+
   if FChildren.Count = 0 then
   begin
     FChildren.Capacity := NumberOfPoints;
     FEdges.Capacity := 4;
     inherited Subdivide(aOwner, True, aVertexPoints, aEdgePoints, aFacePoints,
       FEdges, TFasterList(NewControlEdges), FChildren);
+
+    for I := 0 to FEdges.Count-1 do
+      if not  FEdges[i].CheckIntegrity
+         then X:=0;
+
+    if not CheckIntegrity
+         then X:=0;
+
+    // investigation
+    for I := 0 to FChildren.Count-1 do
+      if not  FChildren[i].CheckIntegrity
+         then X:=0;
   end
   else
   begin
@@ -1443,27 +1469,63 @@ begin
     end;
 
     ClearChildren;
-    for i:=0 to FEdges.Count-1 do
-        FEdges[i].Free;
+
+    //for i:=0 to FEdges.Count-1 do
+    //    FEdges[i].Free;
+    while FEdges.Count>0 do
+      begin
+      FEdges[FEdges.Count-1].Free;
+      FEdges.Delete(FEdges.Count-1);
+      end;
     FEdges.Free;
     FEdges := TmpEdges;
-    for i:=0 to FChildren.Count-1 do
-        FChildren[i].Free;
+
+    //for i:=0 to FChildren.Count-1 do
+    //    FChildren[i].Free;
+    while FChildren.Count > 0 do
+      begin
+      FChildren[FChildren.Count-1].Free;
+      FChildren.Delete(FChildren.Count-1);
+      end;
     FChildren.Free;
     FChildren := TmpFaces;
   end;
+
+  // investigation
+  for I := 0 to FChildren.Count-1 do
+    if not  FChildren[i].CheckIntegrity
+       then X:=0;
+
+
   FControlEdges.Clear;
   FControlEdges.Capacity := NewControlEdges.Count;
   aControlEdges.Capacity := aControlEdges.Count + FControlEdges.Count;
   for I := 0 to NewControlEdges.Count - 1 do
   begin
+
+    // investigation
+    if not NewControlEdges[i].CheckIntegrity
+       then X:=0;
+
     if aControlEdges.SortedIndexOf(NewControlEdges[I]) = -1 then
       begin
       aControlEdges.AddSorted(NewControlEdges[I]);
       FControlEdges.Add(NewControlEdges[I]);
       end;
   end;
+
+  // investigation
+  for I := 0 to aControlEdges.Count - 1 do
+    if not aControlEdges[i].CheckIntegrity
+       then X:=0;
+
+  for I := 0 to FControlEdges.Count - 1 do
+    if not FControlEdges[i].CheckIntegrity
+       then X:=0;
+
+
   NewControlEdges.Clear;
+  NewControlEdges.Free;
   CalcExtents;
 end;{TFreeSubdivisionControlFace.Subdivide}
 

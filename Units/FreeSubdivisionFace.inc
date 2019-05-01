@@ -91,7 +91,9 @@ end;{TFreeSubdivisionFace.FGetPoint}
 
 procedure TFreeSubdivisionFace.AddPoint(Point: TFreeSubdivisionPoint);
 begin
+  FPoints.IsSorted:=false;
   FPoints.Add(Point);
+  FPoints.IsSorted:=false;
   Point.AddFace(self);
 end;{TFreeSubdivisionFace.AddPoint}
 
@@ -276,15 +278,17 @@ begin
     for I := 1 to FPoints.Count do
     begin
       P2 := FPoints[I - 1];
+
       IndexPE := (I - 2 + FPoints.Count) mod FPoints.Count;
       P1 := FPoints[IndexPE];
       PrevEdge := aOwner.EdgeExists(P2, P1);
       if PrevEdge = nil
         then raise Exception.Create('Subdivision error. Previous edge not found');
+
       IndexCE := (I + FPoints.Count) mod FPoints.Count;
       CurrEdge := aOwner.EdgeExists(P2, FPoints[IndexCE]);
       if CurrEdge = nil
-      then raise Exception.Create('Subdivision error. Current edge not found');
+         then raise Exception.Create('Subdivision error. Current edge not found');
 
       Index0 := (I - 1) mod 4;
       TmpIndex := aRefVertices.SortedIndexOf(P2);
@@ -297,21 +301,21 @@ begin
       TmpIndex := aRefEdges.SortedIndexOf(CurrEdge);
       Pts[index1] := aRefEdges.Objects[TmpIndex];//CurrEdge.FNewLocation;
       if Pts[Index1] = nil
-      then raise Exception.Create('Subdivision error. Point 1 not found');
+         then raise Exception.Create('Subdivision error. Point 1 not found');
       CurrEdgePoint := Pts[index1];
 
       Index2 := (Index1 + 1) mod 4;
       TmpIndex := aRefFaces.SortedIndexOf(self);
       Pts[index2] := aRefFaces.Objects[TmpIndex];//self.FNewLocation;
       if Pts[Index2] = nil
-      then raise Exception.Create('Subdivision error. Point 2 (face center) not found');
+         then raise Exception.Create('Subdivision error. Point 2 (face center) not found');
       NewLocation := Pts[index2];
 
       Index3 := (Index2 + 1) mod 4;
       TmpIndex := aRefEdges.SortedIndexOf(PrevEdge);
       Pts[index3] := aRefEdges.Objects[TmpIndex];// PrevEdge.FNewLocation;
       if Pts[Index3] = nil
-      then raise Exception.Create('Subdivision error. Point 3 not found');
+         then raise Exception.Create('Subdivision error. Point 3 not found');
       PrevEdgePoint := Pts[index3];
 
       // add the new face
@@ -333,7 +337,7 @@ begin
           Pts[J].FFaces.Add(NewFace);
           NewFace.FPoints.Add(Pts[J]);
         end
-      else X:=0;
+      else raise Exception.Create(format('Subdivision error. Pts[%d] is nil',[J]));
     end;
   end
   else if NumberOfPoints = 3 then

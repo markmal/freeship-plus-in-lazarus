@@ -65,6 +65,7 @@ function TFreeSubdivisionControlCurve.CheckIntegrity: boolean;
 var i:integer;
 begin
   result := true;
+
   for i:=0 to FControlPoints.Count-1 do
   begin
     if FControlPoints[i] = nil then
@@ -87,7 +88,7 @@ begin
     end
     else
     begin
-      result := result and FControlPoints[i].CheckIntegrity;
+      result := result and FSubdividedPoints[i].CheckIntegrity;
     end;
   end;
 end; {TFreeSubdivisionControlCurve.CheckIntegrity}

@@ -139,6 +139,8 @@ procedure TFreeSubdivisionSurface.DereferenceEdge(E: TFreeSubdivisionEdge);
 var i: integer;
 begin
   FEdges.DeleteAll(E);
+  //if E is TFreeSubdivisionControlEdge then
+  //  DereferenceEdge(E as TFreeSubdivisionControlEdge);
   for i:=0 to FPoints.Count-1 do
     FPoints[i].FEdges.DeleteAll(E);
   E.Dereference;
@@ -147,6 +149,12 @@ end;
 procedure TFreeSubdivisionSurface.DereferenceFace(F: TFreeSubdivisionFace);
 var i: integer;
 begin
+  for i:=0 to F.FPoints.Count-1 do
+    F.FPoints[i].FFaces.DeleteAll(F);
+  for i:=0 to FControlPoints.Count-1 do
+    FControlPoints[i].FFaces.DeleteAll(F);
+  if F is TFreeSubdivisionControlFace then
+     DereferenceControlFace(F as TFreeSubdivisionControlFace);
 end;
 
 function TFreeSubdivisionSurface.AddNewLayer: TFreeSubdivisionLayer;
@@ -4232,13 +4240,14 @@ begin
   }
   while FEdges.Count > 0 do
   begin
-    Edge := FEdges[FEdges.Count-1];
+    i := FEdges.Count-1;
+    Edge := FEdges[i];
+    FEdges.Delete(i);
     if NewEdgeList.IndexOf(Edge) < 0 then
       begin
-      //DereferenceEdge(Edge);
+      DereferenceEdge(Edge);
       Edge.Free;
       end;
-    FEdges.Delete(FEdges.Count-1);
   end;
   FEdges.Free;
 
@@ -4253,9 +4262,9 @@ begin
   while FPoints.Count > 0 do
   begin
     Point := FPoints[FPoints.Count-1];
-    //DereferencePoint(Point);
-    Point.Free;
     FPoints.Delete(FPoints.Count-1);
+    DereferencePoint(Point);
+    Point.Free;
   end;
   FPoints.Clear;
 

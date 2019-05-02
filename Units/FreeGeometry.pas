@@ -1451,7 +1451,7 @@ type
       aRefEdges:TFasterListTFreeSubdivisionEdge;
       aRefFaces:TFasterListTFreeSubdivisionFace;
       aInteriorEdges:TFasterListTFreeSubdivisionEdge;
-      aControlEdges:TFasterListTFreeSubdivisionEdge;
+      aControlEdges:TFasterListTFreeSubdivisionControlEdge;
       aDest: TFasterListTFreeSubdivisionFace);
     property Area: TFloatType
       read FGetArea;

@@ -547,6 +547,7 @@ begin
     end;
   for i:=0 to FFaces.Count-1 do
       FFaces[i].FPoints.DeleteAll(Self);
+  if FOwner <> nil then FOwner.DereferencePoint(Self);
 end;
 
 destructor TFreeSubdivisionPoint.Destroy;

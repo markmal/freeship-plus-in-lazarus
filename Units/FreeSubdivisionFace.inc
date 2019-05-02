@@ -185,6 +185,7 @@ var i: integer;
 begin
   for i:=0 to FPoints.Count-1 do
     FPoints[i].FFaces.DeleteAll(Self);
+  if FOwner <> nil then FOwner.DereferenceFace(Self);
 end;
 
 destructor TFreeSubdivisionFace.Destroy;
@@ -221,7 +222,7 @@ procedure TFreeSubdivisionFace.Subdivide(
     aRefEdges:TFasterListTFreeSubdivisionEdge;
     aRefFaces:TFasterListTFreeSubdivisionFace;
     aInteriorEdges:TFasterListTFreeSubdivisionEdge; // Output. Here TFreeSubdivisionEdge edges will be added.
-    aControlEdges:TFasterListTFreeSubdivisionEdge; // Output. Here TFreeSubdivisionControlEdge edges will be added.
+    aControlEdges:TFasterListTFreeSubdivisionControlEdge; // Output. Here TFreeSubdivisionControlEdge edges will be added.
     aDest: TFasterListTFreeSubdivisionFace); // Output. Here new faces will be added.
 var
   P1,P2: TFreeSubdivisionPoint;
@@ -243,7 +244,9 @@ var
         NewEdge:=aOwner.EdgeExists(P1,P2);
         if NewEdge=nil then
         begin
-          NewEdge := TFreeSubdivisionEdge.Create(aOwner);
+          if IsControledge
+            then NewEdge := TFreeSubdivisionControlEdge.Create(aOwner)
+            else NewEdge := TFreeSubdivisionEdge.Create(aOwner);
           NewEdge.FStartpoint:=P1;
           NewEdge.FEndpoint:=P2;
           NewEdge.FFaces.Capacity:=2;
@@ -252,13 +255,13 @@ var
           NewEdge.FControlEdge:=IsControlEdge;
           NewEdge.FCrease:=Crease;
           if NewEdge.FControlEdge
-            then aControlEdges.Add(NewEdge)
+            then aControlEdges.Add(NewEdge as TFreeSubdivisionControlEdge)
             else aInteriorEdges.Add(NewEdge);
 
         end
         else
         if NewEdge.FControlEdge
-          then aControlEdges.Add(NewEdge)
+          then aControlEdges.Add(NewEdge as TFreeSubdivisionControlEdge)
           else aInteriorEdges.Add(NewEdge);
 
         if NewEdge.FControlEdge then

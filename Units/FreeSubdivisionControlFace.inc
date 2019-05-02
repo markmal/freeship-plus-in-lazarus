@@ -150,11 +150,14 @@ begin
     //     FChildren[I].Free;
     while FChildren.Count > 0 do
       begin
-      FChildren[FChildren.Count-1].Free;
-      FChildren.Delete(FChildren.Count-1);
+      i := FChildren.Count-1;
+      ch := FChildren[i];
+      FChildren.Delete(i);
+      ch.Free;
       end;
     FChildren.Clear;
   end;
+
   if Assigned(FEdges) then
   begin
     {for I := 0 to FEdges.Count-1 do
@@ -164,8 +167,12 @@ begin
       end;}
     while FEdges.Count>0 do
       begin
-      FEdges[FEdges.Count-1].Free;
-      FEdges.Delete(FEdges.Count-1);
+      i:=FEdges.Count-1;
+      ej := FEdges[i];
+      ej.FFaces.DeleteAll(Self);
+      FEdges.Delete(i);
+      if (ej <> nil) and (ej.FFaces.Count = 0) then
+         ej.Free;
       end;
     FEdges.Clear;
   end;
@@ -353,6 +360,7 @@ begin
     FEdges[i].FFaces.DeleteAll(Self);
   for i:=0 to FPoints.Count-1 do
     FPoints[i].FFaces.DeleteAll(Self);
+  if FOwner <> nil then FOwner.DereferenceControlFace(self);
   inherited;
 end;
 
@@ -1439,7 +1447,7 @@ begin
   begin
     FChildren.Capacity := NumberOfPoints;
     FEdges.Capacity := 4;
-    inherited Subdivide(aOwner, True, aVertexPoints, aEdgePoints, aFacePoints,
+    inherited Subdivide(aOwner, {True}False, aVertexPoints, aEdgePoints, aFacePoints,
       FEdges, TFasterList(NewControlEdges), FChildren);
 
     for I := 0 to FEdges.Count-1 do
@@ -1495,7 +1503,6 @@ begin
   for I := 0 to FChildren.Count-1 do
     if not  FChildren[i].CheckIntegrity
        then X:=0;
-
 
   FControlEdges.Clear;
   FControlEdges.Capacity := NewControlEdges.Count;

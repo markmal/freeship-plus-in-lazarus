@@ -316,18 +316,22 @@ begin
   for i:=0 to FFaces.Count-1 do
     begin
     F:=FFaces[i];
-    if (F = nil) or not(F is TFreeSubdivisionFace) then continue;
+    if F = nil then continue;
+    if not(F is TFreeSubdivisionFace) then continue;
+    if F is TFreeSubdivisionControlFace then
+     (F as TFreeSubdivisionControlFace).FEdges.DeleteAll(Self);
     if (F.FPoints = nil) or not(F.FPoints is TFasterListTFreeSubdivisionPoint) then continue;
     for j:=0 to F.FPoints.Count-1 do
           F.FPoints[j].FEdges.DeleteAll(Self);
     end;
+    if FOwner <> nil then FOwner.DereferenceEdge(Self);
 end;
 
 destructor TFreeSubdivisionEdge.Destroy;
 begin
   if self = nil then
     exit;
-  ///Dereference;
+  Dereference;
   Clear;
   FFaces.Free;
   FFaces := nil;

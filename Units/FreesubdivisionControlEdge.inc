@@ -318,16 +318,18 @@ begin
     EndPoint.DeleteEdge(self);
     if EndPoint.NumberOfEdges = 0 then
     begin
-      Point := Endpoint as TFreeSubdivisionControlPoint;
+      Point := Endpoint;
       Point.Delete;
     end;
     // Remove startpoint from endpoint neighbours
     StartPoint.DeleteEdge(self);
     if StartPoint.NumberOfEdges = 0 then
     begin
-      Point := StartPoint as TFreeSubdivisionControlPoint;
+      Point := StartPoint;
       Point.Delete;
     end;
+    Dereference;
+    inherited;
     Destroy;
   end;
 end;{TFreesubdivisionControlEdge.Delete}

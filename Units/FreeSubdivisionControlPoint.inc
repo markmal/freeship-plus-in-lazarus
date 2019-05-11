@@ -297,7 +297,7 @@ var
 begin
   // delete from selection;
   Selected := False;
-
+  Dereference;
   if FEdges.Count > 0 then
   begin
     Index := Owner.FControlPoints.IndexOf(Self);

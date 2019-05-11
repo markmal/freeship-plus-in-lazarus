@@ -1060,9 +1060,9 @@ begin
       for J := 1 to Layer.Count do
       begin
         Face := Layer.Items[J - 1];
-        for K := 1 to Face.ControlEdgeCount do
+        for K := 1 to Face.ControlDescendantEdgeCount do
         begin
-          Edge := Face.ControlEdge[K - 1];
+          Edge := Face.ControlDescendantEdge[K - 1];
           if Edge.Crease then
           begin
             if First then
@@ -1131,9 +1131,9 @@ begin
         for J := 1 to Layer.Count do
         begin
           Face := Layer.Items[J - 1];
-          for K := 1 to Face.ControlEdgeCount do
-            if Face.ControlEdge[K - 1].Crease then
-              Face.ControlEdge[K - 1].Draw(False, Viewport);
+          for K := 1 to Face.ControlDescendantEdgeCount do
+            if Face.ControlDescendantEdge[K - 1].Crease then
+              Face.ControlDescendantEdge[K - 1].Draw(False, Viewport);
         end;
     end;
     for I := 1 to FNewStations.Count do
@@ -1182,9 +1182,9 @@ begin
       for J := 1 to Layer.Count do
       begin
         Face := Layer.Items[J - 1];
-        for K := 1 to Face.ControlEdgeCount do
+        for K := 1 to Face.ControlDescendantEdgeCount do
         begin
-          Edge := Face.ControlEdge[K - 1];
+          Edge := Face.ControlDescendantEdge[K - 1];
           if Edge.Crease then
           begin
             if First then
@@ -1259,9 +1259,9 @@ begin
           for J := 1 to Layer.Count do
           begin
             Face := Layer.Items[J - 1];
-            for K := 1 to Face.ControlEdgeCount do
-              if Face.ControlEdge[K - 1].Crease then
-                Face.ControlEdge[K - 1].Draw(False, TopView);
+            for K := 1 to Face.ControlDescendantEdgeCount do
+              if Face.ControlDescendantEdge[K - 1].Crease then
+                Face.ControlDescendantEdge[K - 1].Draw(False, TopView);
           end;
       end;
       Topview.PenStyle := psDot;

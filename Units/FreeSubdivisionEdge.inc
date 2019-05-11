@@ -195,7 +195,7 @@ begin
   FCurve:= edge.FCurve;
 end;{TFreeSubdivisionEdge.Assign}
 
-function TFreeSubdivisionEdge.CalculateEdgePoint: TFreeSubdivisionPoint;
+function TFreeSubdivisionEdge.CalculateEdgeCenterPoint: TFreeSubdivisionPoint;
 var
   Point: T3DCoordinate;
   SP, EP: TFreeSubdivisionPoint;
@@ -239,7 +239,7 @@ var i:integer;
 begin
   if FStartpoint = nil then
   begin
-    logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: FStartpoint = nil',[I]));
+    logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: FStartpoint = nil',[]));
     result := false;
   end
   else
@@ -254,7 +254,7 @@ begin
 
   if FEndpoint = nil then
   begin
-    logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: FEndpoint = nil',[I]));
+    logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: FEndpoint = nil',[]));
     result := false;
   end
   else
@@ -274,7 +274,7 @@ end;
 constructor TFreeSubdivisionEdge.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
-  FFaces := TFasterListTFreeSubdivisionFace.Create;
+  FFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
   Clear;
 end;{TFreeSubdivisionEdge.Create}
 
@@ -305,6 +305,40 @@ begin
   end;
 end;{TFreeSubdivisionEdge.DeleteFace}
 
+procedure TFreeSubdivisionEdge.Delete;
+var
+  I: integer;
+  Index: integer;
+  Face: TFreeSubdivisionControlFace;
+  Point: TFreeSubdivisionControlPoint;
+begin
+  Index := Owner.FEdges.IndexOf(self);
+  if Index <> -1 then
+  begin
+    Owner.FEdges.Delete(index);
+    for I := FFaces.Count-1 downto 0 do
+    begin
+      FFaces[I].Free;
+      FFaces.Delete(I);
+    end;
+    // Remove endpoint from startpoint neighbours
+    EndPoint.DeleteEdge(self);
+    if EndPoint.NumberOfEdges = 0 then
+    begin
+      Point := Endpoint as TFreeSubdivisionControlPoint;
+      Point.Delete;
+    end;
+    // Remove startpoint from endpoint neighbours
+    StartPoint.DeleteEdge(self);
+    if StartPoint.NumberOfEdges = 0 then
+    begin
+      Point := StartPoint as TFreeSubdivisionControlPoint;
+      Point.Delete;
+    end;
+    Destroy;
+  end;
+end;{TFreesubdivisionEdge.Delete}
+
 procedure TFreeSubdivisionEdge.Dereference;
 var i,j: integer; F:TFreeSubdivisionFace;
 begin
@@ -331,6 +365,8 @@ destructor TFreeSubdivisionEdge.Destroy;
 begin
   if self = nil then
     exit;
+  if FID=206 then
+    FID := 206;
   Dereference;
   Clear;
   FFaces.Free;

@@ -122,6 +122,9 @@ end;
 procedure TFreeSubdivisionSurface.DereferencePoint(P: TFreeSubdivisionPoint);
 var i: integer;
 begin
+  if InDereferencePoint then exit;
+  InDereferencePoint:=true; // anti loop
+
   FPoints.DeleteAll(P);
   for i:=0 to FEdges.Count-1 do
     begin
@@ -133,28 +136,35 @@ begin
   for i:=0 to FControlFaces.Count-1 do
       FControlFaces[i].FPoints.DeleteAll(P);
   P.Dereference;
+  InDereferencePoint := false;
 end;
 
 procedure TFreeSubdivisionSurface.DereferenceEdge(E: TFreeSubdivisionEdge);
 var i: integer;
 begin
+  if InDereferenceEdge then exit;
+  InDereferenceEdge:=true; // anti loop
   FEdges.DeleteAll(E);
   //if E is TFreeSubdivisionControlEdge then
   //  DereferenceEdge(E as TFreeSubdivisionControlEdge);
   for i:=0 to FPoints.Count-1 do
     FPoints[i].FEdges.DeleteAll(E);
   E.Dereference;
+  InDereferenceEdge:=false;
 end;
 
 procedure TFreeSubdivisionSurface.DereferenceFace(F: TFreeSubdivisionFace);
 var i: integer;
 begin
+  if InDereferenceFace then exit;
+  InDereferenceFace:=true; // anti loop
   for i:=0 to F.FPoints.Count-1 do
     F.FPoints[i].FFaces.DeleteAll(F);
   for i:=0 to FControlPoints.Count-1 do
     FControlPoints[i].FFaces.DeleteAll(F);
   if F is TFreeSubdivisionControlFace then
      DereferenceControlFace(F as TFreeSubdivisionControlFace);
+  InDereferenceFace:=false;
 end;
 
 function TFreeSubdivisionSurface.AddNewLayer: TFreeSubdivisionLayer;
@@ -1038,7 +1048,7 @@ begin
   if FPoints.Count > 0 then
     Result := FPoints.Count
   else
-    Result := FControlpoints.Count;
+    Result := FControlPoints.Count;
 end;{TFreeSubdivisionSurface.FGetNumberOfPoints}
 
 function TFreeSubdivisionSurface.FGetNumberOfSelectedControlCurves: integer;
@@ -1637,7 +1647,7 @@ begin
   end;
   if Assigned(FControlFaces) then
     for I := 1 to NumberOfControlFaces do
-      Controlface[I - 1].FControlEdges.Clear;
+      Controlface[I - 1].FControlDescendantEdges.Clear;
 end;{TFreeSubdivisionSurface.ClearFaces}
 
 procedure TFreeSubdivisionSurface.Clearselection;
@@ -2805,17 +2815,17 @@ end;{TFreeSubdivisionSurface.CalculateIntersections}
 constructor TFreeSubdivisionSurface.Create;
 begin
   inherited Create;
-  FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create;
-  FControlEdges := TFasterListTFreeSubdivisionControlEdge.Create;
-  FControlFaces := TFasterListTFreeSubdivisionControlFace.Create;
-  FPoints := TFasterListTFreeSubdivisionPoint.Create;
-  FEdges := TFasterListTFreeSubdivisionEdge.Create;
-  FLayers := TFasterListTFreeSubdivisionLayer.Create;
-  FControlCurves := TFasterListTFreeSubdivisionControlCurve.Create;
-  FSelectedControlPoints := TFasterListTFreeSubdivisionControlPoint.Create;
-  FSelectedControlEdges := TFasterListTFreeSubdivisionControlEdge.Create;
-  FSelectedControlFaces := TFasterListTFreeSubdivisionControlFace.Create;
-  FSelectedControlCurves := TFasterListTFreeSubdivisionControlCurve.Create;
+  FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  FControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(true,false);
+  FControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
+  FPoints := TFasterListTFreeSubdivisionPoint.Create(true,false);
+  FEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
+  FLayers := TFasterListTFreeSubdivisionLayer.Create(true,false);
+  FControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
+  FSelectedControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  FSelectedControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(true,false);
+  FSelectedControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
+  FSelectedControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
   FControlPointSize := 4;
   FEdgeColor := clDkGray;
   FSelectedcolor := clYellow;
@@ -2899,7 +2909,8 @@ function TFreeSubdivisionSurface.EdgeExists(P1, P2: TFreeSubdivisionPoint):
 TFreeSubdivisionEdge;
 var
   I: integer;
-  Edge: TFreeSubdivisionEdge;
+  Edge: TFreeSubdivisionEdge=nil;
+  Edge2: TFreeSubdivisionEdge=nil;
   P: TFreeSubdivisionPoint;
 begin
   Result := nil;
@@ -2908,6 +2919,8 @@ begin
   // with the smallest number of edges has to be checked
   if P1.FEdges.Count <= P2.FEdges.Count then
     P := P1 else P:=P2;
+
+  P := P1; // thorow check
   for I := 0 to P.FEdges.Count - 1 do
     begin
       Edge := P.FEdges[I];
@@ -2916,9 +2929,26 @@ begin
            ((Edge.FStartpoint = P2) and (Edge.FEndpoint = P1)) then
         begin
           Result := Edge;
-          exit;
+          break;
         end;
     end;
+
+  P := P2; // thorow check 2
+  for I := 0 to P.FEdges.Count - 1 do
+    begin
+      Edge2 := P.FEdges[I];
+      if assigned(Edge2) then
+        if ((Edge2.FStartpoint = P1) and (Edge2.FEndpoint = P2)) or
+           ((Edge2.FStartpoint = P2) and (Edge2.FEndpoint = P1)) then
+        begin
+          Result := Edge2;
+          break;
+        end;
+    end;
+
+  if (Result<>nil) and (Edge <> Edge2) then
+     Edge := Edge2;
+
 end;{TFreeSubdivisionSurface.EdgeExists}
 
 procedure TFreeSubdivisionSurface.ExtractAllEdgeLoops(
@@ -3839,6 +3869,9 @@ var
   NewCEdge:TFreeSubdivisionControlEdge;
   tmpFaces: TFasterListTFreeSubdivisionFace;
 begin
+  if not self.CheckIntegrity
+    then ShowMessage('Before Init Model integrity corruption');
+
   if not FInitialized then
     Initialize(1, 1, 1);
 
@@ -3862,9 +3895,11 @@ begin
     while (FCurrentSubdivisionLevel < FDesiredSubdivisionlevel) and
       (FControlFaces.Count > 0) do
     begin
+      if not self.CheckIntegrity
+        then ShowMessage('Bfore Subdivide Model integrity corruption');
       Subdivide;
       if not self.CheckIntegrity
-        then ShowMessage('Before build Model integrity corruption');
+        then ShowMessage('After Subdivide Model integrity corruption');
     end;
 
     {//cleanup
@@ -4131,7 +4166,7 @@ type
     Crease1, Crease2: boolean;
   end;
 var
-  I, J, FaceCnt, CFaceCnt: integer;
+  I, J, FaceCnt, CFaceCnt, X: integer;
   CtrlFace: TFreeSubdivisionControlFace;
   CtrlFaceChild: TFreeSubdivisionFace;
   Edge: TFreeSubdivisionEdge;
@@ -4141,87 +4176,92 @@ var
   //    NewPointList  : TFasterListTFreeSubdivisionControlPoint;
   NewEdgeList: TFasterListTFreeSubdivisionEdge;
   TmpPoints: array of T3DCoordinate;
-  NewVertexPoints: TFasterListTFreeSubdivisionPoint;
-  NewFaces: TFasterListTFreeSubdivisionFace;
-  NewEdges: TFasterListTFreeSubdivisionEdge;
+  RefVertexPoints: TFasterListTFreeSubdivisionPoint;
+  RefFaces: TFasterListTFreeSubdivisionFace;
+  RefEdges: TFasterListTFreeSubdivisionEdge;
 begin
   if NumberOfControlFaces < 1 then
     exit;
   Inc(FCurrentSubdivisionLevel, 1);
   //   NewPointList:=XXXXXXTFasterList.Create;
   //   NewPointlist.Capacity:=2*NumberOfPoints;
-  NewEdgeList := TFasterListTFreeSubdivisionEdge.Create;
+  NewEdgeList := TFasterListTFreeSubdivisionEdge.Create(true,false);
   I := Round(Power(2, FCurrentSubdivisionLevel));
   NewEdgelist.Capacity := NumberOfControlEdges * I;
   FaceCnt := NumberOfFaces;
   CFaceCnt := NumberOfControlFaces;
 
   // Create the list with new facepoints and a reference to the original face
-  NewFaces := TFasterListTFreeSubdivisionFace.Create;
+  RefFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
   // Create the list with new edgepoints and a reference to the original edge
-  NewEdges := TFasterListTFreeSubdivisionEdge.Create;
+  RefEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
   // Create the list with new vertexpoints and a reference to the original vertex
-  NewVertexPoints := TFasterListTFreeSubdivisionPoint.Create;
+  RefVertexPoints := TFasterListTFreeSubdivisionPoint.Create(true,false);
 
 
   if FaceCnt = 0 then //first time when surface mesh is not created yet we use control mesh to start with
   begin
-    NewFaces.Capacity := NumberOfControlFaces;
+    RefFaces.Capacity := NumberOfControlFaces;
     for I := 0 to NumberOfControlFaces-1 do
     begin
       CtrlFace := ControlFace[I];
-      NewFaces.AddObject(CtrlFace, CtrlFace.CalculateFacePoint);
-      for J := 0 to CtrlFace.FControlEdges.Count-1 do
+      RefFaces.AddObject(CtrlFace, CtrlFace.CalculateFaceCenterPoint);
+      for J := 0 to CtrlFace.FEdges.Count-1 do     // not needed. no edges at this stage
         begin
-        Edge := CtrlFace.Edge[J];
+        Edge := CtrlFace.FEdges[J];
         //Edge.PrintDebug;
-        NewEdges.AddObject(Edge, Edge.CalculateEdgePoint);
+        RefEdges.AddObject(Edge, Edge.CalculateEdgeCenterPoint);
+        end;
+      for J := 0 to CtrlFace.FControlDescendantEdges.Count-1 do // not needed.  no edges at this stage
+        begin
+        Edge := CtrlFace.FControlDescendantEdges[J];
+        //Edge.PrintDebug;
+        RefEdges.AddObject(Edge, Edge.CalculateEdgeCenterPoint);
         end;
     end;
   end
   else //next times we use control face children and control edges
   begin
-    NewFaces.Capacity := 4 * NumberOfControlFaces;
+    RefFaces.Capacity := 4 * NumberOfControlFaces;
     for I := 0 to NumberOfControlFaces-1 do
     begin
       CtrlFace := ControlFace[I];
       for J := 0 to CtrlFace.ChildCount-1 do
         begin
-          CtrlFaceChild := CtrlFace.Child[J];
-          NewFaces.AddObject(CtrlFaceChild, CtrlFaceChild.CalculateFacePoint);
+        CtrlFaceChild := CtrlFace.Child[J];
+        RefFaces.AddObject(CtrlFaceChild, CtrlFaceChild.CalculateFaceCenterPoint);
         end;
       for J := 0 to CtrlFace.EdgeCount-1 do
         begin
         Edge := CtrlFace.Edge[J];
-        //Edge.PrintDebug;
-        NewEdges.AddObject(Edge, Edge.CalculateEdgePoint);
+        RefEdges.AddObject(Edge, Edge.CalculateEdgeCenterPoint);
         end;
     end;
   end;
 
   // Calculate other edgepoints
-  NewEdges.Capacity := NewEdges.Count + NumberOfEdges;
+  RefEdges.Capacity := RefEdges.Count + NumberOfEdges;
   for I := 0 to NumberOfEdges-1 do
-    NewEdges.AddObject(self.Edge[I], self.Edge[I].CalculateEdgePoint);
+    RefEdges.AddObject(self.Edge[I], self.Edge[I].CalculateEdgeCenterPoint);
 
   // Calculate vertexpoints
-  NewVertexPoints.Capacity := NewVertexPoints.Count + NumberOfPoints;
-  for I := 0 to NumberOfpoints - 1 do
+  RefVertexPoints.Capacity := RefVertexPoints.Count + NumberOfPoints;
+  for I := 0 to NumberOfPoints - 1 do
     begin
       P:=Self.Point[I];
-      NewVertexPoints.AddObject(P, P.CalculateVertexPoint);
+      RefVertexPoints.AddObject(P, P.CalculateVertexPoint);
     end;
 
   // Sort the new points for faster acces
-  NewVertexPoints.Sort;
-  NewEdges.Sort;
-  NewFaces.Sort;
+  RefVertexPoints.Sort;
+  RefEdges.Sort;
+  RefFaces.Sort;
 
   // finally create the refined mesh over the newly create vertexpoints, edgepoints and facepoints
   for I := 0 to FControlFaces.Count-1 do
   begin
     CtrlFace := ControlFace[I];
-    CtrlFace.Subdivide(Self, True, NewVertexPoints, NewEdges, NewFaces,
+    CtrlFace.Subdivide(Self, True, RefVertexPoints, RefEdges, RefFaces,
       nil, NewEdgeList, nil);
   end;
 
@@ -4243,15 +4283,17 @@ begin
     i := FEdges.Count-1;
     Edge := FEdges[i];
     FEdges.Delete(i);
-    if NewEdgeList.IndexOf(Edge) < 0 then
+    //if NewEdgeList.IndexOf(Edge) < 0 then
       begin
-      DereferenceEdge(Edge);
+      //DereferenceEdge(Edge);
       Edge.Free;
-      end;
+      end ;
+    //else X:=1;
   end;
-  FEdges.Free;
 
-  FEdges := NewEdgeList;
+  //FEdges.Free;
+  //FEdges := NewEdgeList;
+  FEdges.Clear;
 
   {for I := 0 to FPoints.Count-1 do
   begin
@@ -4268,22 +4310,28 @@ begin
   end;
   FPoints.Clear;
 
+  for I := 0 to NewEdgeList.Count-1 do
+  begin
+    Edge := NewEdgeList[I];
+    FEdges.Add(Edge);
+  end;
+
   // Add all new points int the point-list
-  FPoints.Capacity := NewVertexPoints.Count + NewEdges.Count + NewFaces.Count;
-  for I := 0 to NewVertexPoints.Count - 1 do
-    if NewVertexPoints.Objects[I] <> nil then
-      FPoints.Add(NewVertexPoints.Objects[I]);
-  for I := 0 to NewEdges.Count - 1 do
-    if NewEdges.Objects[I] <> nil then
-      FPoints.Add(NewEdges.Objects[I]);
-  for I := 0 to NewFaces.Count - 1 do
-    if NewFaces.Objects[I] <> nil then
-      FPoints.Add(NewFaces.Objects[I]);
+  FPoints.Capacity := RefVertexPoints.Count + RefEdges.Count + RefFaces.Count;
+  for I := 0 to RefVertexPoints.Count - 1 do
+    if RefVertexPoints.Objects[I] <> nil then
+      FPoints.Add(RefVertexPoints.Objects[I]);
+  for I := 0 to RefEdges.Count - 1 do
+    if RefEdges.Objects[I] <> nil then
+      FPoints.Add(RefEdges.Objects[I]);
+  for I := 0 to RefFaces.Count - 1 do
+    if RefFaces.Objects[I] <> nil then
+      FPoints.Add(RefFaces.Objects[I]);
   FPoints.Capacity := FPoints.Count;
   // Cleanup temp. lists
-  NewVertexPoints.Destroy;
-  NewEdges.Destroy;
-  NewFaces.Destroy;
+  RefVertexPoints.Destroy;
+  RefEdges.Destroy;
+  RefFaces.Destroy;
 
   // perform averaging procedure to smooth the new mesh
   Setlength(TmpPoints, FPoints.Count);

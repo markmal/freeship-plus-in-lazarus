@@ -924,9 +924,9 @@ begin
           end;
         end;
         //MM 2019-04-21. added to draw boundary and crease edges
-        for J := 0 to Face.FControlEdges.Count - 1 do
+        for J := 0 to Face.FControlDescendantEdges.Count - 1 do
         begin
-          Edge := Face.FControlEdges[J];
+          Edge := Face.FControlDescendantEdges[J];
           if Edge.FCrease or (Edge.NumberOfFaces<2) then
           begin
             Edge.Draw(Owner.DrawMirror and Symmetric, Viewport);

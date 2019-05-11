@@ -513,8 +513,8 @@ end;{TFreeSubdivisionPoint.Clear}
 constructor TFreeSubdivisionPoint.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
-  FFaces := TFasterListTFreeSubdivisionFace.Create;
-  FEdges := TFasterListTFreeSubdivisionEdge.Create;
+  FFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
+  FEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
   Clear;
 end;{TFreeSubdivisionPoint.Create}
 
@@ -522,6 +522,7 @@ procedure TFreeSubdivisionPoint.DeleteEdge(Edge: TFreeSubdivisionEdge);
 var
   Index: integer;
 begin
+  FEdges.DeleteAll(Edge);
   index := FEdges.IndexOf(Edge);
   if Index <> -1 then
     FEdges.Delete(Index);
@@ -530,10 +531,38 @@ end;{TFreeSubdivisionPoint.DeleteEdge}
 procedure TFreeSubdivisionPoint.DeleteFace(Face: TFreeSubdivisionFace);
 var  Index: integer;
 begin
+  FFaces.DeleteAll(Face);
   index := FFaces.IndexOf(Face);
   if Index <> -1 then
     FFaces.Delete(Index);
 end;{TFreeSubdivisionPoint.DeleteFace}
+
+procedure TFreeSubdivisionPoint.Delete;
+var
+  Index: integer;
+  Edge: TFreesubdivisionEdge;
+begin
+  if FEdges.Count > 0 then
+  begin
+    Index := Owner.FPoints.IndexOf(Self);
+    if Index <> -1 then
+      Owner.FPoints.Delete(index);
+
+    while FEdges <> nil do //.Count>0 do
+    begin
+      Edge := self.Edge[NumberOfEdges - 1];
+      Edge.Delete;
+    end;
+  end
+  else
+  begin
+    Index := Owner.FPoints.IndexOf(Self);
+    if Index <> -1 then
+      Owner.FPoints.Delete(index);
+    Destroy;
+  end;
+end;{TFreeSubdivisionPoint.Delete}
+
 
 procedure TFreeSubdivisionPoint.Dereference;
 var i:integer;

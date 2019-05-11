@@ -1237,6 +1237,7 @@ type
     function CheckIntegrity: boolean;
     procedure Clear;
     constructor Create(Owner: TFreeSubdivisionSurface);override;
+    procedure Delete; virtual;
     procedure DeleteEdge(Edge: TFreeSubdivisionEdge);
     procedure DeleteFace(Face: TFreeSubdivisionFace);
     procedure Dereference;
@@ -1288,7 +1289,7 @@ type
       override;
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer;
-    procedure Delete;
+    procedure Delete; override;
     procedure Draw(Viewport: TFreeViewport);
     procedure LoadBinary(Source: TFreeFileBuffer);
     procedure LoadFromStream(
@@ -1335,11 +1336,12 @@ type
     procedure AddFace(Face: TFreeSubdivisionFace);
     procedure Assign(Edge: TFreeSubdivisionEdge);
       virtual;
-    function CalculateEdgePoint: TFreeSubdivisionPoint;
+    function CalculateEdgeCenterPoint: TFreeSubdivisionPoint;
     function CheckIntegrity: boolean;
     procedure Clear;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
+    procedure Delete; virtual;
     procedure DeleteFace(Face: TFreeSubdivisionFace);
     procedure Dereference; virtual;
     destructor Destroy;
@@ -1392,7 +1394,7 @@ type
     procedure Collapse;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
-    procedure Delete;
+    procedure Delete; override;
     function DistanceToCursor(X, Y: integer;
       var P: T3DCoordinate; Viewport: TFreeViewport): integer; override;
     procedure Draw(DrawMirror: boolean;
@@ -1431,12 +1433,13 @@ type
     function FGetPoint(Index: integer): TFreeSubdivisionPoint;
   public
     procedure AddPoint(Point: TFreeSubdivisionPoint);
-    function CalculateFacePoint: TFreeSubdivisionPoint;
+    function CalculateFaceCenterPoint: TFreeSubdivisionPoint;
     function CheckIntegrity: boolean;
     procedure Clear;
       virtual;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
+    procedure Delete; virtual;
     procedure Dereference; virtual;
     destructor Destroy;
       override;
@@ -1451,8 +1454,8 @@ type
       aRefEdges:TFasterListTFreeSubdivisionEdge;
       aRefFaces:TFasterListTFreeSubdivisionFace;
       aInteriorEdges:TFasterListTFreeSubdivisionEdge;
-      aControlEdges:TFasterListTFreeSubdivisionControlEdge;
-      aDest: TFasterListTFreeSubdivisionFace);
+      aControlDescendandEdges:TFasterListTFreeSubdivisionEdge;
+      aNewFaces: TFasterListTFreeSubdivisionFace);
     property Area: TFloatType
       read FGetArea;
     property FaceCenter:
@@ -1475,16 +1478,14 @@ type
     FChildren: TFasterListTFreeSubdivisionFace;
     FMin, FMax: T3DCoordinate;
     FEdges: TFasterListTFreeSubdivisionEdge;
-    FControlEdges: TFasterListTFreeSubdivisionControlEdge;
+    FControlDescendantEdges: TFasterListTFreeSubdivisionEdge; // here can be real ControlEdges and divided "children" of them. Do not why.
     function FGetChild(Index: integer):
       TFreeSubdivisionFace;
     function FGetChildCount: integer;
     function FGetColor: TColor;
-    function FGetControlEdge(
-      Index: integer): TFreeSubdivisionControlEdge;
-    function FGetControlEdgeCount: integer;
-    function FGetEdge(Index: integer):
-      TFreeSubdivisionEdge;
+    function FGetControlDescendantEdge(Index: integer): TFreeSubdivisionEdge;
+    function FGetControlDescendantEdgeCount: integer;
+    function FGetEdge(Index: integer): TFreeSubdivisionEdge;
     function FGetEdgeCount: integer;
     function FGetIndex: integer;
     function FGetPoint(Index: integer): TFreeSubdivisionControlPoint;
@@ -1502,7 +1503,7 @@ type
       override;
     function DistanceToCursor(X, Y: integer;
       var P: T3DCoordinate; Viewport: TFreeViewport): integer;
-    procedure Delete;
+    procedure Delete; override;
     procedure Dereference; override;
     destructor Destroy;
       override;
@@ -1533,10 +1534,10 @@ type
     // select all controlfaces connected to the current one that belong to the same layer and are not separated by a crease edge
     property Color: TColor
       read FGetColor;
-    property ControlEdge[index: integer]
-      : TFreeSubdivisionControlEdge read FGetControlEdge;
-    property ControlEdgeCount: integer
-      read FGetControlEdgeCount;
+    property ControlDescendantEdge[index: integer]
+      : TFreeSubdivisionEdge read FGetControlDescendantEdge;
+    property ControlDescendantEdgeCount: integer
+      read FGetControlDescendantEdgeCount;
     property Child[index: integer]
       : TFreeSubdivisionFace read FGetChild;
     property ChildCount: integer
@@ -1652,6 +1653,9 @@ type
     FMinGaussCurvature: TFloatType;
     FMaxGaussCurvature: TFloatType;
     FMainframeLocation: single;
+    InDereferenceFace:boolean;
+    InDereferenceEdge:boolean;
+    InDereferencePoint:boolean;
     function FGetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function FGetControlCurve(Index: integer): TFreesubdivisionControlCurve;
     function FGetControlEdge(Index: integer): TFreesubdivisionControlEdge;

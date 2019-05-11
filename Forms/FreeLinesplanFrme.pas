@@ -1285,9 +1285,9 @@ begin
           for J := 1 to Layer.Count do
           begin
             Face := layer.Items[J - 1];
-            for K := 1 to Face.ControlEdgeCount do
+            for K := 1 to Face.ControlDescendantEdgeCount do
             begin
-              Edge := Face.ControlEdge[K - 1];
+              Edge := Face.ControlDescendantEdge[K - 1];
               if Edge.Crease then
                 DrawLine(Edge.StartPoint.Coordinate, Edge.EndPoint.Coordinate);
             end;

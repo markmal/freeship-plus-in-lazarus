@@ -1653,6 +1653,9 @@ type
     FMinGaussCurvature: TFloatType;
     FMaxGaussCurvature: TFloatType;
     FMainframeLocation: single;
+    InDereferenceControlFace:boolean;
+    InDereferenceControlEdge:boolean;
+    InDereferenceControlPoint:boolean;
     InDereferenceFace:boolean;
     InDereferenceEdge:boolean;
     InDereferencePoint:boolean;

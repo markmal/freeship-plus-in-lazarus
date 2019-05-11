@@ -264,11 +264,6 @@ var
        // MM: we create regular edge that can inherit just some properties of Control Edge, like Curve
        // It is sort of Control Edge child called Control Descendant Edge.
        // But there are no real ControlEdges in subdivided faces
-       if P1.FID=122 then
-        X:=0;
-       if P2.FID=122 then
-        X:=0;
-
        NewEdge:=aOwner.EdgeExists(P1,P2);
        if NewEdge=nil then
         begin
@@ -301,11 +296,8 @@ var
          begin
             NewEdge.FCurve:=Curve;
          end;
-        NewEdge.FFaces.Add(NewFace); ////////////
+        NewEdge.FFaces.Add(NewFace);
 
-        Edge:=aOwner.EdgeExists(P1, P2);
-        if (Edge <> NewEdge) then
-         X:=0;
      end else
      begin
         Showmessage('Error in TFreeSubdivisionFace.Subdivide');
@@ -318,21 +310,9 @@ begin
     for I := 1 to FPoints.Count do
     begin
       P2 := FPoints[I - 1];
-      if P2.FID=122 then
-       X:=0;
-
       IndexPE := (I - 2 + FPoints.Count) mod FPoints.Count;
       P1 := FPoints[IndexPE];
-      if P1.FID=122 then
-       X:=0;
       PrevEdge := aOwner.EdgeExists(P2, P1);
-      if PrevEdge = nil then
-        begin
-          for j:=0 to aRefEdges.Count-1 do
-            if ((aRefEdges[j].StartPoint = P1) and (aRefEdges[j].EndPoint = P2))
-             or((aRefEdges[j].StartPoint = P2) and (aRefEdges[j].EndPoint = P1))
-            then begin PrevEdge := aRefEdges[j]; break; end;
-        end;
       if PrevEdge = nil
         then raise Exception.Create('Subdivision error. Previous edge not found');
 
@@ -421,21 +401,6 @@ begin
         aIsControlFace, CurrEdge.FCurve);
       EdgeCheck(Pts[2], Pts[0], False, False, nil);
 
-      {if PrevEdge.FControlEdge or aIsControlFace then
-         begin
-         CEdgeCheck(Pts[0], Pts[1], PrevEdge.Crease, PrevEdge.FCurve);
-         CEdgeCheck(Pts[1], Pts[2], CurrEdge.Crease, CurrEdge.FCurve);
-         end
-      else
-         begin
-         EdgeCheck(Pts[0], Pts[1], PrevEdge.Crease);
-         EdgeCheck(Pts[1], Pts[2], CurrEdge.Crease);
-         end;
-      EdgeCheck(Pts[2], Pts[0], False);
-
-      EdgeCheck(CurrEdgePoint, NewLocation, False);
-      EdgeCheck(PrevEdgePoint, NewLocation, False);} // experimental
-
       NewFace.FPoints.Capacity := 3;
       for J := 1 to 3 do
       begin
@@ -462,9 +427,6 @@ begin
     EdgeCheck(Pts[0],Pts[1],False,False,nil);
     EdgeCheck(Pts[1],Pts[2],False,False,nil);
     EdgeCheck(Pts[2],Pts[0],False,False,nil);
-    {EdgeCheck(Pts[0], Pts[1], False);
-    EdgeCheck(Pts[1], Pts[2], False);
-    EdgeCheck(Pts[2], Pts[0], False);} //experimental
 
     NewFace.FPoints.Capacity := 3;
     for J := 1 to 3 do

@@ -357,12 +357,16 @@ end;{TFreeSubdivisionControlFace.Delete}
 procedure TFreeSubdivisionControlFace.Dereference;
 var i: integer;
 begin
+  if FChildren<>nil then
   for i:=0 to FChildren.Count-1 do
     FChildren[i].Dereference;
+  if FControlDescendantEdges<>nil then
   for i:=0 to FControlDescendantEdges.Count-1 do
     FControlDescendantEdges[i].FFaces.DeleteAll(Self);
+  if FEdges<>nil then
   for i:=0 to FEdges.Count-1 do
     FEdges[i].FFaces.DeleteAll(Self);
+  if FPoints<>nil then
   for i:=0 to FPoints.Count-1 do
     FPoints[i].FFaces.DeleteAll(Self);
   if FOwner <> nil then FOwner.DereferenceControlFace(self);
@@ -374,17 +378,17 @@ var i:integer;
 begin
   logger.debug('TFreeSubdivisionControlFace.Destroy. $' + IntToStr(PtrUInt(Self)));
   Dereference;
+  Delete;
+
   for i:=0 to FEdges.Count - 1 do
     FEdges[i].FFaces.DeleteAll(Self);
   FEdges.Destroy;
   FEdges := nil;
 
-  for i:=0 to FEdges.Count - 1 do
+  for i:=0 to FControlDescendantEdges.Count - 1 do
     FControlDescendantEdges[i].FFaces.DeleteAll(Self);
   FControlDescendantEdges.Destroy;
   FControlDescendantEdges := nil;
-
-  Delete;
 
   FChildren.Destroy;
   FChildren := nil;
@@ -1492,7 +1496,7 @@ begin
     FChildren.Free;
     FChildren := TmpFaces;
 
-    // investigation
+{    // investigation
     for I := 0 to FEdges.Count-1 do
       if not  FEdges[i].CheckIntegrity
          then X:=0;
@@ -1500,7 +1504,7 @@ begin
     for I := 0 to FChildren.Count-1 do
       if not  FChildren[i].CheckIntegrity
          then X:=0;
-
+ }
   end;
 
   FControlDescendantEdges.Clear;
@@ -1514,16 +1518,6 @@ begin
       FControlDescendantEdges.Add(NewControlEdges[I]);
       end;
   end;
-
-  // investigation
-  for I := 0 to aControlEdges.Count - 1 do
-    if not aControlEdges[i].CheckIntegrity
-       then X:=0;
-
-  for I := 0 to FControlDescendantEdges.Count - 1 do
-    if not FControlDescendantEdges[i].CheckIntegrity
-       then X:=0;
-
 
   NewControlEdges.Clear;
   NewControlEdges.Free;

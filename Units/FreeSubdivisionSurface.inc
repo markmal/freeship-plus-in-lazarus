@@ -78,6 +78,9 @@ end;{TFreeSubdivisionSurface.AddControlPoint}
 procedure TFreeSubdivisionSurface.DereferenceControlPoint(P: TFreeSubdivisionControlPoint);
 var i: integer;
 begin
+  if InDereferenceControlPoint then exit;
+  InDereferenceControlPoint:=true; // anti loop
+
   FControlPoints.DeleteAll(P);
   for i:=0 to FControlEdges.Count-1 do
     begin
@@ -91,32 +94,40 @@ begin
   for i:=0 to FControlCurves.Count-1 do
       FControlCurves[i].FControlPoints.DeleteAll(P);
   P.Dereference;
+  InDereferenceControlPoint:=false;
 end;
 
 procedure TFreeSubdivisionSurface.DereferenceControlEdge(E: TFreeSubdivisionControlEdge);
 var i: integer;
 begin
+  if InDereferenceControlEdge then exit;
+  InDereferenceControlEdge:=true; // anti loop
   FControlEdges.DeleteAll(E);
   for i:=0 to FControlPoints.Count-1 do
     FControlPoints[i].FEdges.DeleteAll(E);
   E.Dereference;
+  InDereferenceControlEdge:=false;
 end;
 
 procedure TFreeSubdivisionSurface.DereferenceControlFace(F: TFreeSubdivisionControlFace);
 var i: integer;
 begin
+  if InDereferenceControlFace then exit;
+  InDereferenceControlFace:=true; // anti loop
+
   FControlFaces.DeleteAll(F);
-  for i:=0 to F.FChildren.Count-1 do
+  {for i:=0 to F.FChildren.Count-1 do
     F.FChildren[i].Dereference;
   for i:=0 to F.FEdges.Count-1 do
     F.FEdges[i].FFaces.DeleteAll(F);
   for i:=0 to F.FPoints.Count-1 do
-    F.FPoints[i].FFaces.DeleteAll(F);
+    F.FPoints[i].FFaces.DeleteAll(F); }
   for i:=0 to FControlPoints.Count-1 do
     FControlPoints[i].FFaces.DeleteAll(F);
   for i:=0 to FLayers.Count-1 do
     FLayers[i].DeleteControlFace(F);
   F.Dereference;
+  InDereferenceControlFace := false;
 end;
 
 procedure TFreeSubdivisionSurface.DereferencePoint(P: TFreeSubdivisionPoint);
@@ -1584,25 +1595,25 @@ var
 begin
   inherited Clear;
   for I := 1 to FControlPoints.Count do
-    ControlPoint[I - 1].Destroy;
+    ControlPoint[I - 1].Free;
   FControlPoints.Clear;
   for I := 1 to NumberOfControlFaces do
-    ControlFace[I - 1].Destroy;
+    ControlFace[I - 1].Free;
   FControlFaces.Clear;
   for I := 1 to NumberOfControlEdges do
-    ControlEdge[I - 1].Destroy;
+    ControlEdge[I - 1].Free;
   FControlEdges.Clear;
   for I := 1 to NumberOfControlCurves do
-    ControlCurve[I - 1].Destroy;
+    ControlCurve[I - 1].Free;
   FControlCurves.Clear;
-  for I := 1 to FEdges.Count do
-    Edge[I - 1].Destroy;
-  FEdges.Clear;
   for I := 1 to FPoints.Count do
-    Point[I - 1].Destroy;
+    Point[I - 1].Free;
   FPoints.Clear;
+  for I := 1 to FEdges.Count do
+    Edge[I - 1].Free;
+  FEdges.Clear;
   for i := 1 to NumberOfLayers do
-    self.Layer[I - 1].Destroy;
+    self.Layer[I - 1].Free;
   FLayers.Clear;
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
@@ -3875,8 +3886,8 @@ begin
   if not FInitialized then
     Initialize(1, 1, 1);
 
-  if not self.CheckIntegrity
-    then ShowMessage('Before build Model integrity corruption');
+  //if not self.CheckIntegrity
+  //  then ShowMessage('Before build Model integrity corruption');
 
   if self.NumberOfControlFaces > 0 then
   begin
@@ -3895,11 +3906,11 @@ begin
     while (FCurrentSubdivisionLevel < FDesiredSubdivisionlevel) and
       (FControlFaces.Count > 0) do
     begin
-      if not self.CheckIntegrity
-        then ShowMessage('Bfore Subdivide Model integrity corruption');
+      //if not self.CheckIntegrity
+        //then ShowMessage('Bfore Subdivide Model integrity corruption');
       Subdivide;
-      if not self.CheckIntegrity
-        then ShowMessage('After Subdivide Model integrity corruption');
+      //if not self.CheckIntegrity
+        //then ShowMessage('After Subdivide Model integrity corruption');
     end;
 
     {//cleanup
@@ -3913,8 +3924,8 @@ begin
         end;
     end;}
 
-    if not self.CheckIntegrity
-      then ShowMessage('After Subdivide Model integrity corruption');
+    //if not self.CheckIntegrity
+    //  then ShowMessage('After Subdivide Model integrity corruption');
 
     for I := 1 to NumberOfControlfaces do
     begin

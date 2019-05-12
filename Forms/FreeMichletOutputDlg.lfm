@@ -1,28 +1,27 @@
 object FreeMichletOutputDialog: TFreeMichletOutputDialog
   Left = 581
-  Height = 539
+  Height = 600
   Top = 158
-  Width = 474
+  Width = 800
   Caption = 'Michlet file generator.'
-  ClientHeight = 539
-  ClientWidth = 474
-  Color = clBtnFace
+  ClientHeight = 600
+  ClientWidth = 800
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 24
     Top = 0
-    Width = 474
+    Width = 800
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 474
+    ClientWidth = 800
     TabOrder = 0
     object OKbutton: TSpeedButton
-      Left = 392
+      Left = 718
       Height = 20
       Top = 2
       Width = 80
@@ -71,7 +70,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       OnClick = OKbuttonClick
     end
     object CancelButton: TSpeedButton
-      Left = 310
+      Left = 636
       Height = 20
       Top = 2
       Width = 80
@@ -122,198 +121,238 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
   end
   object Panel2: TPanel
     Left = 0
-    Height = 502
+    Height = 563
     Top = 24
-    Width = 474
+    Width = 800
     Align = alClient
     BevelOuter = bvLowered
-    ClientHeight = 502
-    ClientWidth = 474
+    ClientHeight = 563
+    ClientWidth = 800
     TabOrder = 1
     object PageControl1: TPageControl
       Left = 1
-      Height = 500
+      Height = 561
       Top = 1
-      Width = 472
+      Width = 798
       ActivePage = TabSheet1
       Align = alClient
       TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Hull geometry'
-        ClientHeight = 469
-        ClientWidth = 466
+        ClientHeight = 528
+        ClientWidth = 792
         object Panel4: TPanel
           Left = 0
-          Height = 135
+          Height = 173
           Top = 0
-          Width = 466
+          Width = 792
           Align = alTop
-          BevelOuter = bvLowered
-          ClientHeight = 135
-          ClientWidth = 466
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.HorizontalSpacing = 10
+          ChildSizing.VerticalSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 173
+          ClientWidth = 792
           TabOrder = 0
-          object Label1: TLabel
-            Left = 10
-            Height = 13
-            Top = 14
-            Width = 145
-            Caption = 'Number of stations (5-81)'
-            ParentColor = False
-          end
-          object Label2: TLabel
-            Left = 10
-            Height = 13
-            Top = 38
-            Width = 159
-            Caption = 'Number of waterlines (5-81)'
-            ParentColor = False
-          end
-          object Label3: TLabel
-            Left = 10
-            Height = 13
-            Top = 62
-            Width = 28
-            Caption = 'Draft'
-            ParentColor = False
-          end
-          object Label4: TLabel
-            Left = 10
-            Height = 13
-            Top = 86
-            Width = 38
-            Caption = 'Length'
-            ParentColor = False
-          end
-          object Label5: TLabel
-            Left = 10
-            Height = 13
-            Top = 110
-            Width = 42
-            Caption = 'Volume'
-            ParentColor = False
-          end
-          object _Label18: TLabel
-            Left = 214
-            Height = 13
-            Top = 62
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label19: TLabel
-            Left = 214
-            Height = 13
-            Top = 86
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object _Label20: TLabel
-            Left = 214
-            Height = 13
-            Top = 110
-            Width = 30
-            Caption = '[m/3]'
-            ParentColor = False
-          end
-          object Edit1: TFloatSpinEdit
-            Left = 150
-            Height = 23
-            Top = 6
-            Width = 61
-            Alignment = taRightJustify
-            MaxValue = 81
-            MinValue = 5
-            OnExit = Edit1AfterSetValue
+          object Panel9: TPanel
+            Left = 0
+            Height = 153
+            Top = 10
+            Width = 331
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclTopToBottomThenLeftToRight
+            ChildSizing.ControlsPerLine = 5
+            ClientHeight = 153
+            ClientWidth = 331
             TabOrder = 0
-            Value = 5
-          end
-          object Edit2: TFloatSpinEdit
-            Left = 150
-            Height = 23
-            Top = 30
-            Width = 61
-            Alignment = taRightJustify
-            MaxValue = 81
-            MinValue = 5
-            OnExit = Edit2AfterSetValue
-            TabOrder = 1
-            Value = 5
-          end
-          object Edit3: TFloatSpinEdit
-            Left = 150
-            Height = 23
-            Top = 54
-            Width = 61
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 10000000000
-            MinValue = 0
-            OnExit = Edit3AfterSetValue
-            TabOrder = 2
-            Value = 0
-          end
-          object Edit4: TFloatSpinEdit
-            Left = 150
-            Height = 23
-            Top = 78
-            Width = 61
-            Alignment = taRightJustify
-            Color = clBtnFace
-            DecimalPlaces = 3
-            MinValue = 0
-            OnExit = Edit4AfterSetValue
-            ParentFont = False
-            ReadOnly = True
-            TabOrder = 3
-            Value = 0
-          end
-          object Edit5: TFloatSpinEdit
-            Left = 150
-            Height = 23
-            Top = 102
-            Width = 61
-            Alignment = taRightJustify
-            Color = clBtnFace
-            DecimalPlaces = 3
-            MinValue = 0
-            OnExit = Edit5AfterSetValue
-            ParentFont = False
-            ReadOnly = True
-            TabOrder = 4
-            Value = 0
+            object Label1: TLabel
+              Left = 10
+              Height = 25
+              Top = 10
+              Width = 184
+              Caption = 'Number of stations (5-81)'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label2: TLabel
+              Left = 10
+              Height = 25
+              Top = 37
+              Width = 184
+              Caption = 'Number of waterlines (5-81)'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label3: TLabel
+              Left = 10
+              Height = 25
+              Top = 64
+              Width = 184
+              Caption = 'Draft'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label4: TLabel
+              Left = 10
+              Height = 25
+              Top = 91
+              Width = 184
+              Caption = 'Length'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label5: TLabel
+              Left = 10
+              Height = 25
+              Top = 118
+              Width = 184
+              Caption = 'Volume'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit1: TSpinEdit
+              Left = 200
+              Height = 25
+              Top = 10
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MaxValue = 81
+              MinValue = 5
+              OnEditingDone = Edit1AfterSetValue
+              TabOrder = 0
+              Value = 5
+            end
+            object Edit2: TSpinEdit
+              Left = 200
+              Height = 25
+              Top = 37
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MaxValue = 81
+              MinValue = 5
+              OnEditingDone = Edit2AfterSetValue
+              TabOrder = 1
+              Value = 5
+            end
+            object Edit3: TFloatSpinEdit
+              Left = 200
+              Height = 25
+              Top = 64
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 10000000000
+              MinValue = 0
+              OnEditingDone = Edit3AfterSetValue
+              TabOrder = 2
+              Value = 0
+            end
+            object Edit4: TFloatSpinEdit
+              Left = 200
+              Height = 25
+              Top = 91
+              Width = 80
+              Alignment = taRightJustify
+              Color = clBtnFace
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MinValue = 0
+              OnEditingDone = Edit4AfterSetValue
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 3
+              Value = 0
+            end
+            object Edit5: TFloatSpinEdit
+              Left = 200
+              Height = 25
+              Top = 118
+              Width = 80
+              Alignment = taRightJustify
+              Color = clBtnFace
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MinValue = 0
+              OnEditingDone = Edit5AfterSetValue
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 4
+              Value = 0
+            end
+            object Label8: TLabel
+              Left = 286
+              Height = 25
+              Top = 10
+              Width = 35
+              ParentColor = False
+            end
+            object Label9: TLabel
+              Left = 286
+              Height = 25
+              Top = 37
+              Width = 35
+              ParentColor = False
+            end
+            object _Label18: TLabel
+              Left = 286
+              Height = 25
+              Top = 64
+              Width = 35
+              Caption = '[m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object _Label19: TLabel
+              Left = 286
+              Height = 25
+              Top = 91
+              Width = 35
+              Caption = '[m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object _Label20: TLabel
+              Left = 286
+              Height = 25
+              Top = 118
+              Width = 35
+              Caption = '[m/3]'
+              Layout = tlCenter
+              ParentColor = False
+            end
           end
           object GroupBox3: TGroupBox
-            Left = 262
-            Height = 121
-            Top = 6
-            Width = 202
+            Left = 341
+            Height = 153
+            Top = 10
+            Width = 222
             Caption = 'Hullform configuration.  '
-            ClientHeight = 106
-            ClientWidth = 198
-            TabOrder = 5
-            object Label14: TLabel
-              Left = 3
-              Height = 13
-              Top = 62
-              Width = 189
-              Caption = 'Distance between center of hulls:'
-              ParentColor = False
-            end
-            object _Label15: TLabel
-              Left = 93
-              Height = 13
-              Top = 86
-              Width = 19
-              Caption = '[m]'
-              ParentColor = False
-            end
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 136
+            ClientWidth = 218
+            Color = clForm
+            ParentColor = False
+            ParentFont = False
+            TabOrder = 1
             object RadioButton1: TRadioButton
-              Left = 3
+              Left = 0
               Height = 21
-              Top = 2
-              Width = 73
+              Top = 10
+              Width = 218
               Caption = 'Monohull'
               Checked = True
               OnClick = RadioButton1Click
@@ -321,53 +360,84 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               TabStop = True
             end
             object RadioButton2: TRadioButton
-              Left = 3
+              Left = 0
               Height = 21
-              Top = 22
-              Width = 190
+              Top = 33
+              Width = 218
               Caption = 'Monohull, send as catamaran'
               OnClick = RadioButton1Click
               TabOrder = 1
             end
             object RadioButton3: TRadioButton
-              Left = 3
+              Left = 0
               Height = 21
-              Top = 42
-              Width = 86
+              Top = 56
+              Width = 218
               Caption = 'Catamaran'
               OnClick = RadioButton1Click
               TabOrder = 2
             end
-            object Distance: TFloatSpinEdit
-              Left = 6
-              Height = 23
-              Top = 78
-              Width = 85
-              Alignment = taRightJustify
-              DecimalPlaces = 3
-              Enabled = False
-              MinValue = 0
-              OnExit = DistanceAfterSetValue
+            object Label14: TLabel
+              Left = 0
+              Height = 15
+              Top = 79
+              Width = 218
+              Caption = 'Distance between center of hulls:'
+              ParentColor = False
+            end
+            object Panel10: TPanel
+              Left = 0
+              Height = 25
+              Top = 96
+              Width = 218
+              BevelOuter = bvNone
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 2
+              ClientHeight = 25
+              ClientWidth = 218
               TabOrder = 3
-              Value = 0
+              object Distance: TFloatSpinEdit
+                Left = 0
+                Height = 25
+                Top = 0
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                Enabled = False
+                MinValue = 0
+                OnEditingDone = DistanceAfterSetValue
+                TabOrder = 0
+                Value = 0
+              end
+              object _Label15: TLabel
+                Left = 86
+                Height = 25
+                Top = 0
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
             end
           end
         end
         object Panel6: TPanel
           Left = 0
-          Height = 334
-          Top = 135
-          Width = 466
+          Height = 355
+          Top = 173
+          Width = 792
           Align = alClient
-          BevelOuter = bvLowered
-          ClientHeight = 334
-          ClientWidth = 466
+          BevelOuter = bvNone
+          ClientHeight = 355
+          ClientWidth = 792
           TabOrder = 1
           object ScrollBar1: TScrollBar
-            Left = 1
+            Left = 0
             Height = 15
-            Top = 318
-            Width = 464
+            Top = 340
+            Width = 792
             Align = alBottom
             Max = 180
             Min = -180
@@ -376,9 +446,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             TabOrder = 0
           end
           object ScrollBar2: TScrollBar
-            Left = 450
-            Height = 317
-            Top = 1
+            Left = 777
+            Height = 340
+            Top = 0
             Width = 15
             Align = alRight
             Kind = sbVertical
@@ -392,894 +462,1047 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Environment'
-        ClientHeight = 469
-        ClientWidth = 466
+        ClientHeight = 528
+        ClientWidth = 792
         ImageIndex = 2
         object Panel7: TPanel
           Left = 0
-          Height = 469
+          Height = 528
           Top = 0
-          Width = 466
+          Width = 792
           Align = alClient
-          BevelOuter = bvLowered
-          ClientHeight = 469
-          ClientWidth = 466
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 528
+          ClientWidth = 792
           TabOrder = 0
-          object Label6: TLabel
+          object Panel11: TPanel
             Left = 10
-            Height = 13
-            Top = 14
-            Width = 157
-            Caption = 'Gravitational acceleration g'
-            ParentColor = False
-          end
-          object Label7: TLabel
-            Left = 10
-            Height = 13
-            Top = 62
-            Width = 78
-            Caption = 'Water density'
-            ParentColor = False
-          end
-          object _Label8: TLabel
-            Left = 328
-            Height = 13
-            Top = 62
-            Width = 34
-            Caption = '[t/m3]'
-            ParentColor = False
-          end
-          object _Label9: TLabel
-            Left = 328
-            Height = 13
-            Top = 14
-            Width = 36
-            Caption = '[m/s2]'
-            ParentColor = False
-          end
-          object Label10: TLabel
-            Left = 10
-            Height = 13
-            Top = 86
-            Width = 144
-            Caption = 'Water kinematic viscosity'
-            ParentColor = False
-          end
-          object _Label11: TLabel
-            Left = 328
-            Height = 13
-            Top = 86
-            Width = 75
-            Caption = '*10-6  [m2/s]'
-            ParentColor = False
-          end
-          object Label12: TLabel
-            Left = 10
-            Height = 13
-            Top = 110
-            Width = 69
-            Caption = 'Water depth'
-            ParentColor = False
-          end
-          object _Label13: TLabel
-            Left = 328
-            Height = 13
-            Top = 110
-            Width = 19
-            Caption = '[m]'
-            ParentColor = False
-          end
-          object Edit6: TFloatSpinEdit
-            Left = 248
-            Height = 23
-            Top = 6
-            Width = 78
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 9.9
-            MinValue = 9.6
-            OnExit = Edit6AfterSetValue
+            Height = 126
+            Top = 10
+            Width = 379
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 10
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclTopToBottomThenLeftToRight
+            ChildSizing.ControlsPerLine = 4
+            ClientHeight = 126
+            ClientWidth = 379
             TabOrder = 0
-            Value = 9.81
-          end
-          object Edit7: TFloatSpinEdit
-            Left = 248
-            Height = 23
-            Top = 54
-            Width = 78
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 1.03
-            MinValue = 0
-            OnExit = Edit7AfterSetValue
-            TabOrder = 1
-            Value = 1
-          end
-          object Edit8: TFloatSpinEdit
-            Left = 248
-            Height = 23
-            Top = 78
-            Width = 78
-            Alignment = taRightJustify
-            Color = clBtnFace
-            DecimalPlaces = 4
-            MaxValue = 1.31
-            MinValue = 0
-            ParentFont = False
-            ReadOnly = True
-            TabOrder = 2
-            Value = 0.8
-          end
-          object Edit9: TFloatSpinEdit
-            Left = 248
-            Height = 23
-            Top = 102
-            Width = 78
-            Alignment = taRightJustify
-            MaxValue = 10000
-            MinValue = 0
-            OnExit = Edit9AfterSetValue
-            TabOrder = 3
-            Value = 0
+            object Label6: TLabel
+              Left = 10
+              Height = 25
+              Top = 10
+              Width = 181
+              Caption = 'Gravitational acceleration g'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label7: TLabel
+              Left = 10
+              Height = 25
+              Top = 37
+              Width = 181
+              Caption = 'Water density'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label10: TLabel
+              Left = 10
+              Height = 25
+              Top = 64
+              Width = 181
+              Caption = 'Water kinematic viscosity'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label12: TLabel
+              Left = 10
+              Height = 25
+              Top = 91
+              Width = 181
+              Caption = 'Water depth'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit6: TFloatSpinEdit
+              Left = 197
+              Height = 25
+              Top = 10
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 9.9
+              MinValue = 9.6
+              OnEditingDone = Edit6AfterSetValue
+              TabOrder = 0
+              Value = 9.81
+            end
+            object Edit7: TFloatSpinEdit
+              Left = 197
+              Height = 25
+              Top = 37
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              DecimalPlaces = 3
+              MaxValue = 1.03
+              MinValue = 0
+              TabOrder = 1
+              Value = 1
+            end
+            object Edit8: TFloatSpinEdit
+              Left = 197
+              Height = 25
+              Top = 64
+              Width = 80
+              Alignment = taRightJustify
+              Color = clBtnFace
+              Constraints.MinWidth = 80
+              DecimalPlaces = 4
+              MaxValue = 1.31
+              MinValue = 0
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 2
+              Value = 0.8
+            end
+            object Edit9: TFloatSpinEdit
+              Left = 197
+              Height = 25
+              Top = 91
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MaxValue = 10000
+              MinValue = 0
+              OnEditingDone = Edit9AfterSetValue
+              TabOrder = 3
+              Value = 0
+            end
+            object _Label9: TLabel
+              Left = 283
+              Height = 25
+              Top = 10
+              Width = 86
+              Caption = '[m/s2]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object _Label8: TLabel
+              Left = 283
+              Height = 25
+              Top = 37
+              Width = 86
+              Caption = '[t/m3]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object _Label11: TLabel
+              Left = 283
+              Height = 25
+              Top = 64
+              Width = 86
+              Caption = '*10-6  [m2/s]'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object _Label13: TLabel
+              Left = 283
+              Height = 25
+              Top = 91
+              Width = 86
+              Caption = '[m]'
+              Layout = tlCenter
+              ParentColor = False
+            end
           end
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Resistance'
-        ClientHeight = 469
-        ClientWidth = 466
+        ClientHeight = 528
+        ClientWidth = 792
         ImageIndex = 1
         object Panel5: TPanel
           Left = 0
-          Height = 469
+          Height = 528
           Top = 0
-          Width = 466
+          Width = 792
           Align = alClient
-          BevelOuter = bvLowered
-          ClientHeight = 469
-          ClientWidth = 466
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 528
+          ClientWidth = 792
           TabOrder = 0
-          object Label21: TLabel
+          object Panel12: TPanel
             Left = 10
-            Height = 13
-            Top = 14
-            Width = 65
-            Caption = 'Start speed'
-            ParentColor = False
-          end
-          object Label22: TLabel
-            Left = 225
-            Height = 13
-            Top = 14
-            Width = 38
-            Caption = '[knots]'
-            ParentColor = False
-          end
-          object Label23: TLabel
-            Left = 10
-            Height = 13
-            Top = 38
-            Width = 59
-            Caption = 'End speed'
-            ParentColor = False
-          end
-          object Label24: TLabel
-            Left = 225
-            Height = 13
-            Top = 38
-            Width = 38
-            Caption = '[knots]'
-            ParentColor = False
-          end
-          object _Label25: TLabel
-            Left = 270
-            Height = 13
-            Top = 14
-            Width = 50
-            Caption = '_Label25'
-            ParentColor = False
-          end
-          object _Label26: TLabel
-            Left = 270
-            Height = 13
-            Top = 38
-            Width = 50
-            Caption = '_Label26'
-            ParentColor = False
-          end
-          object Label27: TLabel
-            Left = 10
-            Height = 13
-            Top = 62
-            Width = 148
-            Caption = 'Number of speeds (2-100)'
-            ParentColor = False
-          end
-          object Edit12: TFloatSpinEdit
-            Left = 161
-            Height = 23
-            Top = 6
-            Width = 61
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 77.56
-            MinValue = 0
-            OnExit = Edit12AfterSetValue
-            TabOrder = 0
-            Value = 0.02
-          end
-          object Edit13: TFloatSpinEdit
-            Left = 161
-            Height = 23
-            Top = 30
-            Width = 61
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MinValue = 0
-            OnExit = Edit13AfterSetValue
-            TabOrder = 1
-            Value = 0.1
-          end
-          object Edit14: TFloatSpinEdit
-            Left = 161
-            Height = 23
-            Top = 54
-            Width = 61
-            Alignment = taRightJustify
-            MinValue = 2
-            OnExit = Edit14AfterSetValue
-            TabOrder = 2
-            Value = 2
-          end
-          object Group1: TRadioGroup
-            Left = 10
-            Height = 85
-            Top = 86
-            Width = 141
-            AutoFill = True
-            Caption = 'Skin friction method. '
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
+            Height = 189
+            Top = 10
+            Width = 392
+            BevelOuter = bvNone
+            Caption = 'Panel12'
+            ChildSizing.VerticalSpacing = 10
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 70
-            ClientWidth = 137
-            ItemIndex = 1
-            Items.Strings = (
-              'None'
-              'ITTC 1957'
-              'Grigson'
-            )
-            TabOrder = 3
+            ClientHeight = 189
+            ClientWidth = 392
+            TabOrder = 0
+            object Panel13: TPanel
+              Left = 0
+              Height = 99
+              Top = 0
+              Width = 392
+              AutoSize = True
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.TopBottomSpacing = 10
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.VerticalSpacing = 2
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 4
+              ClientHeight = 99
+              ClientWidth = 392
+              TabOrder = 0
+              object Label21: TLabel
+                Left = 10
+                Height = 25
+                Top = 10
+                Width = 170
+                Caption = 'Start speed'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Edit12: TFloatSpinEdit
+                Left = 186
+                Height = 25
+                Top = 10
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MaxValue = 77.56
+                MinValue = 0
+                OnEditingDone = Edit12AfterSetValue
+                TabOrder = 0
+                Value = 0.02
+              end
+              object Label22: TLabel
+                Left = 272
+                Height = 25
+                Top = 10
+                Width = 46
+                Caption = '[knots]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label25: TLabel
+                Left = 324
+                Height = 25
+                Top = 10
+                Width = 58
+                Caption = '_Label25'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label23: TLabel
+                Left = 10
+                Height = 25
+                Top = 37
+                Width = 170
+                Caption = 'End speed'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Edit13: TFloatSpinEdit
+                Left = 186
+                Height = 25
+                Top = 37
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MinValue = 0
+                OnEditingDone = Edit13AfterSetValue
+                TabOrder = 1
+                Value = 0.1
+              end
+              object Label24: TLabel
+                Left = 272
+                Height = 25
+                Top = 37
+                Width = 46
+                Caption = '[knots]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label26: TLabel
+                Left = 324
+                Height = 25
+                Top = 37
+                Width = 58
+                Caption = '_Label26'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Label27: TLabel
+                Left = 10
+                Height = 25
+                Top = 64
+                Width = 170
+                Caption = 'Number of speeds (2-100)'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Edit14: TSpinEdit
+                Left = 186
+                Height = 25
+                Top = 64
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MinValue = 2
+                OnEditingDone = Edit14AfterSetValue
+                TabOrder = 2
+                Value = 2
+              end
+            end
+            object Group1: TRadioGroup
+              Left = 0
+              Height = 80
+              Top = 109
+              Width = 392
+              AutoFill = True
+              Caption = 'Skin friction method. '
+              ChildSizing.LeftRightSpacing = 6
+              ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+              ChildSizing.EnlargeVertical = crsHomogenousChildResize
+              ChildSizing.ShrinkHorizontal = crsScaleChilds
+              ChildSizing.ShrinkVertical = crsScaleChilds
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 1
+              ClientHeight = 63
+              ClientWidth = 388
+              Color = clForm
+              ItemIndex = 1
+              Items.Strings = (
+                'None'
+                'ITTC 1957'
+                'Grigson'
+              )
+              ParentColor = False
+              TabOrder = 1
+            end
           end
         end
       end
       object TabSheet4: TTabSheet
         Caption = 'Waves'
-        ClientHeight = 469
-        ClientWidth = 466
+        ClientHeight = 528
+        ClientWidth = 792
         ImageIndex = 3
         object Panel8: TPanel
           Left = 0
-          Height = 469
+          Height = 528
           Top = 0
-          Width = 466
+          Width = 792
           Align = alClient
-          BevelOuter = bvLowered
-          ClientHeight = 469
-          ClientWidth = 466
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.HorizontalSpacing = 10
+          ChildSizing.VerticalSpacing = 10
+          ChildSizing.Layout = cclTopToBottomThenLeftToRight
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 528
+          ClientWidth = 792
           TabOrder = 0
           object GroupBox1: TGroupBox
-            Left = 22
-            Height = 173
-            Top = 6
-            Width = 400
+            Left = 10
+            Height = 150
+            Top = 10
+            Width = 251
+            AutoSize = True
             Caption = 'Sectorial cut. '
-            ClientHeight = 158
-            ClientWidth = 396
+            ChildSizing.HorizontalSpacing = 10
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 133
+            ClientWidth = 247
             TabOrder = 0
-            object _Label28: TLabel
-              Left = 10
-              Height = 13
-              Top = 18
-              Width = 15
-              Caption = 'R0'
-              ParentColor = False
-            end
-            object _Label29: TLabel
-              Left = 10
-              Height = 13
-              Top = 42
-              Width = 15
-              Caption = 'R1'
-              ParentColor = False
-            end
-            object _Label30: TLabel
-              Left = 10
-              Height = 13
-              Top = 66
-              Width = 26
-              Caption = 'Beta'
-              ParentColor = False
-            end
-            object _Label31: TLabel
-              Left = 10
-              Height = 13
-              Top = 90
-              Width = 57
-              Caption = 'Nr (2-200)'
-              ParentColor = False
-            end
-            object _Label32: TLabel
-              Left = 10
-              Height = 13
-              Top = 114
-              Width = 81
-              Caption = 'N beta (2-200)'
-              ParentColor = False
-            end
-            object Image1: TImage
-              Left = 238
-              Height = 150
+            object Panel14: TPanel
+              Left = 0
+              Height = 133
               Top = 0
-              Width = 136
-              Center = True
-              Picture.Data = {
-                0A544A706567496D6167656E160000FFD8FFE000104A46494600010201006000
-                600000FFFE010290D66404FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFC00011080096008803012200021101031101FFDB00840001
-                0101010101010101010201010202040202020202050404030406050706060506
-                0607080A0807070A070606090C090A0A0B0B0B0B07080D0D0C0B0D0A0B0B0B01
-                010202020202050202050B070607070B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
-                0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
-                FFC401A20000010501010101010100000000000000000102030405060708090A
-                0B100002010303020403050504040000017D0102030004110512213141061351
-                6107227114328191A1082342B1C11552D1F02433627282090A161718191A2526
-                2728292A3435363738393A434445464748494A535455565758595A6364656667
-                68696A737475767778797A838485868788898A92939495969798999AA2A3A4A5
-                A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DA
-                E1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FA010003010101010101010101
-                0000000000000102030405060708090A0B110002010204040304070504040001
-                0277000102031104052131061241510761711322328108144291A1B1C1092333
-                52F0156272D10A162434E125F11718191A262728292A35363738393A43444546
-                4748494A535455565758595A636465666768696A737475767778797A82838485
-                868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BA
-                C2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6
-                F7F8F9FAFFDA000C03010002110311003F00FEFE2BE72D1FF6ACF825AE7ED11E
-                27FD96F4EF115D49F16748D2AD755B98DB49B85B27139B8DB6F1DDECF21EE156
-                CE776843EF0A8C70423EDFA36BE4BF08FF00C9F57ED05FF6497C1DFF00A73F10
-                D00677ECEDFB7BFECB1FB56F8C3C53E02F809E3CD4FC6DE27D09EFA1D72097C1
-                9AB59269D2D9DE1B29E0B896E6DA38E2984E922AC4EC24711C8C8AC91BB2FD8B
-                5F137EC71FB20FFC332EA1FB447C42F15F883C3DE30F8DBF15BC5E9E32F1AEAD
-                E15F0A3689A7CD711D941651886CDAE2E5A3CA5BF9B2334CE649E69DF8DE157E
-                D9A0028A28A002BE19F8F9FF00051EFD91FF00662F887E27F857F19FC63E25F0
-                E78CF45F045D7C48D521D3FE1A6BFA9416DA0DB155B9D41AE2D2CE583C888BA0
-                9183FC85806C66BEE6AFC19FF82927FC12F7F680FDB93F68AF1578FBC2DE37D1
-                BE1AFC3EB8F807ACFC27D3AF6D7C71AAD9DE3DEDDDDDBDF23DE5A5B5B886EF4F
-                77B416B3DA4B3324B05C48E46E8D63201FBA3A16B7A4789B44D1BC47E1FD422D
-                5B41D42D23BEB1BB81B724D0C8A191D4F7054823D8D6AD7E70FC28FDA63E2D69
-                9FB6E784FF00614F1DFC24F06F81347B4F8030FC476B8F09EB13DCC36F771EAB
-                FD9C6CA057B7802DB2C61190EC0D925700282DD37C2EFDBC7C03E36F8FFE2BF8
-                17A98B58F4A7D564D33C17E31B09D9B4FD7A644324D680301E5CF161D015678E
-                7F26464656CC2A01F7C5145140051451400514514005145140057C97E11FF93E
-                AFDA0BFEC92F83BFF4E7E21AFAD2BE4BF08FFC9F57ED05FF006497C1DFFA73F1
-                0D007D6945145001451450014515F8CBFB59FED6377F19EEF5CF82DF0675A92C
-                3E124123D8F8A3C51632947D5DD4ED92C2CE453910020ACB3AFDEE638CFDF600
-                14FF006B2FDA863F8D1ACEB7F0B3E0C5EAD8FC37B759348F14F8C2C582CDAC05
-                6C49A759CCBF30B60C0896653F3105233F79C7C7D7DE18D16FB46B5D07EC674E
-                D3EDBCA6B1FB048D6EF66F1106292078CAB42E8554A3A15642AA5482056B5959
-                59E9D6769A7E9F69158584112C30410461123451855551C00000001D2ACD007E
-                9FFEC4BFB566B3F14A4D5FE097C61D4A19BE3768B6AD7F637EB0A45FF091E949
-                E4A35FAC680224B1CB3A433226006314816349D117F426BF998D6E0F13DACBA2
-                F8B7E1EEB11F863E28681769AB786F539158A43749D2394290CD6F22EE8A6404
-                178A4914104823F7DBF673F8EDE19FDA3BE12F867E287872CE5D127B856B4D5F
-                46B970D36937F11D97165291F2B3C72065DCB957003292ACA4807B8D14514005
-                14514005145140057C97E11FF93EAFDA0BFEC92F83BFF4E7E21AFAD2BE4BF08F
-                FC9F57ED05FF006497C1DFFA73F10D007D69457CF5FB5A78CFC71F0D7F65EFDA
-                13E24FC34D5ECF41F1EF86FC19A8F88749B9BFD3FED502CD6B6CF3AABC5B9372
-                B797B4E18119C83C57E61FFC124FF6F3FDA1FF006CDF12789AC7E27CFA7EB7E1
-                5D37E10F82BC5BAA5C3F8464D0AF34FF0010EAF05C5D5C59A5B4B33BCD63F651
-                67243721763969543BB23AA007EE0D15C9F8DFC6BE1DF875E18D47C63E2CB993
-                4EF0D5918CDEDDA5BBC8B6D1B3AA19A4DA0EC85036F9243858D15DD8AAA923F2
-                37F6ABFDAEA4F8E126ABF087E06F889A1F83B1B3DA7897C5BA65CE0EB247CAF6
-                5652A9E20072B2CEA7E6C18E33F7DC004BFB597ED6577F19AEF5BF831F05F5C9
-                2C7E135BCAF63E28F14D84C51F57752564B1B39170440082B2CEA7E6F9A38CFD
-                F71F23595959E9B6769A769D6915869F6F12C10410461123451855551C000000
-                01D314B676767A759DA69FA7DA4561616F12C30410C61123451855551C000000
-                01D2ACD001451450015EB1FB257C5797E01FED2BA4E957573F65F853F13EE63D
-                1B588DCE22B4D792354B0BC18C00678E316721209765D3D415119DDE4F5C9F8D
-                FC2FFF00098786350D0A1D4A4D0B522D15DE9BA94281A4B0BC86459ADAE901E0
-                BC53471C8A0F19419E2803FA74A2BE7BFD94BE3549FB437ECEFF0009FE2EDFE9
-                F0E8BE24D534A58F5FD3ADDCB4763AA42C60BEB656206F58AEA29A30C0618206
-                1C115F42500145145001451450015F25F847FE4FABF682FF00B24BE0EFFD39F8
-                86BEB4AF92FC23FF0027D5FB417FD925F077FE9CFC43401EF9F127E1BF82BE2F
-                780FC53F0C7E22E86BE25F026B766DA7EABA73CD246B73037DE8D8A32B6D2382
-                01E4641E0915F9BBFB507FC1297E067C4CFD9FB54F867FB3EF85F48F82BE3F87
-                44D0BC2BA5EA92B5D4B6F2687A66B516A6344B9412FEF2CA555B9B7DAC1C471D
-                D4802B2FEECFEAD57CADA86A17FF00B4ADFDF786BC357B3697FB3DDACCD6BAD6
-                B56B29493C47229DAF676AE3056D410565994E6420C719C6F7A00F8FFF0061DF
-                D9E3C61E1CFD957E16FEC9779F119FC6FF00057C2715E587887C5562B2429E21
-                325E4D31D274F258B269B6EB28B6F3411BE385638C2286DBF3BFED39FB39697F
-                B24F8DFC3F3FC3ED16DFC3DFB32789274D3345D2EC6011DB785F51C7CB651A8E
-                12D26F98C283090BA98502A3C28BFBCBA769DA7E91A7D8E93A4D8C3A5E956B0A
-                5B5ADADB44123863501551540015400000060002BCFBE31FC24F07FC74F865E2
-                EF851E3BB7964F0D6B16C22796D5C24F6B2A3AC90DCC0E41093452A472C6F83B
-                5E3461D2803F0128AE17E1C6A1E28BBF0AC1A778F63B787E22E8D7975E1AF13A
-                598C42353B29DED2ECC5924F9467864284F250A1EF5DD5001451450014514500
-                7D95FF0004C1F17FF6378EBF6A8F8193B3456C97FA77C45D1E366C46B0DF42D6
-                971142B9006DB8D35E7902AE03DF07662D3607EBF57F3EBFB307881FC15FB73F
-                ECF3A8C85DB4FF0014E8BAEF803CA85416FB43DBC7AAC523E7A46B1E9172A4A9
-                DDBE48860A962BFD05500145145001451450015F25F847FE4FABF682FF00B24B
-                E0EFFD39F886BEB4AFC45FDA3BE2CFC42D0FFE0A59E2CF8351FC0EF1A78E3E13
-                F8A7E11785D751D47C1FA8E936EFA84F16A7AE94D29E6BEBEB5100955E46F90B
-                492A432AAED019A803F44751D4350FDA5750BEF0CF86AFA6D2FF0067BB599AD7
-                5AD6AD64292788E453B5ECED5C60ADA820ACB32F32731C671BDC7CD7FF00050B
-                F8C9F17BE06CBFB0C7C2FF00D9EAD75ED222F1DFC4F93C17A8D9F80AC745FED5
-                1A7C1E1CD5750586C46AB8B088892C20DC641FEA96454C315AF76D37F681F8A9
-                A3E9F61A4691FF0004EEF8AFA5E956B025B5ADADB6ABE0D8E3863501551146B6
-                02A8000000C00057807ED03A1697FB52DCFC1D6F8F7FF04BDF89FF0013747F03
-                F895FC59A368FABEA3E0BB8B192F1AC2E6C434F03EB4C932AC57931556180E11
-                BAA8A00F53FF008261FC71F885FB49FEC1BFB377C6DF8B1E2FD37C73F11F5ED1
-                A59B58D434CB136C04D1DCCB098268B622ADD45E588A708891F9F1CDE5AAA6D0
-                3EF3AF87BC17F16FC63F0DBC27E1FF0001FC3BFF008267FC4AF01781B49B55B1
-                D2B45D16EBC156B69670A8C2C51431EB4A91A01D154003D2BA7FF8692F8C9FF4
-                8FDF8BBFF83AF077FF002EE803F2B7F69EF0F41E08FDBAFF00684D22DC6E87C5
-                1E1FD03E213C81360134B0CDA4BC4064EE2A9A340E58638991768DBB9F83ACBF
-                DBE7E3C7C52BFF00DAFBE0E5DDD7EC55F13744B88FE1AEA7125A5D6ABE173248
-                A750B525C18F5764DA3001CB03923008C91E07FF000BC7E26FFD19BFC48FFC1A
-                7867FF0096B401F48515F37FFC2F1F89BFF466FF00123FF069E19FFE5AD1FF00
-                0BC7E26FFD19BFC48FFC1A7867FF0096B401F48515F37FFC2F1F89BFF466FF00
-                123FF069E19FFE5AD1FF000BC7E26FFD19BFC48FFC1A7867FF0096B401EE0FAA
-                C5E19F8B3FB2BF8B2E1A48ACEC7E2CE81692343F7C1BEBA1A6A05E9C192F5037
-                3F70BF5E87FA68AFE3B7C6BF1AFE24CBAA7C0CDFFB20FC44B4F2FE30F81A7412
-                6A7E1B3E63278A34E658971AA1F99CA845CE14332EE655CB0FE823E2C7ED87FB
-                40781BC3DA46AFE1DFF82797C54D57549B59B3D3D74D9F54F0AB3DDA4B288DD2
-                2316B4CCAEA85A4DC51902C6DBF626E91003F42A8A28A0028A28A002BE256F07
-                786BC7DFB62FED31E0FF00176931EB3E1DBEF843E0D8EE2DDD994F1AAF88195D
-                19486475655657521919559482011F6D57C97E11FF0093EAFDA0BFEC92F83BFF
-                004E7E21A00E9BC1DE31F12FC34F13693F08BE2DEAB26B505F4860F07F8BE755
-                51AA80A5859DCE0054BE54563C00B3A2174018491A7E78FF00C1613C65AC7862
-                F3FE09DBA35AF8AAD3C39E17D73E36CFA6EBB6DAAEAB7F69A75FC0BE15D6E78E
-                1BB36644CF109E28240A011E6471123E5C8FD76F18F837C33E3FF0CEADE0FF00
-                17E911EB7E1CBE8C47716F2315E8432B2B290C8EACAACAEA43232AB2904035F3
-                969296BE1BF1DFC38F87FF00B4069765E39D574BD4E4BEF863E3BD4EC227924B
-                936B2C0D13BEDC5BEA42DA5B88CB20517113C85319962400F1AFF8248C9E3D97
-                FE09C7FB2849F1465F164FF10CF875FF00B61FC6824FB619FED32EEF2CCBFBD3
-                67FF003EA65FDE1B5FB3993E7DD5FA314562F88FC45A1783FC3BAF78B3C4FAA4
-                1A178674AB29751D46F6E1F6C76F04485E4918F65555249F41401F84FF00B636
-                BC7C61FB7678F1527375A3F83FC03A47872DD19029B6BEB99EEAF6F00C72CAF6
-                EDA49C9C806360B83BF7794D70BE06D6F5AF1E8F167C69F1669B3693E33F881A
-                D4DE33D4ADAE942CD6C932AA5A5AC807CA1EDEC62B3B638E0FD9F24B1258F754
-                005145140051451401C9EB1A53788FE20FECCFE148A51692DF7C5FF0ADD2CCCB
-                9082CB56B7D45863FDA5B2641E85C1ED8AFE8E7E276857BE26F875E35F0EE9BE
-                1EB2F15DFDF69735AC3A5EA3ABCDA7DBDD332102392E618E4921539C1748DD97
-                A8538C57E0C7C05D07FE137FDB57F654F0AAC713DBE8B3EAFF00102FD2E13747
-                2C16960F6288060FEF05D6A9692AE4003C86390C141FE88A803F307FE094BFB2
-                BFED2FFB217ECF5AA7C27FDAA7C55A37C4EF8896DACCAB65E31D37C65A96AF73
-                AB69A8C52C85E0BC82110CF15B08613E502B2797BDBE7662DFA7D45140051451
-                40057C97E11FF93EAFDA0BFEC92F83BFF4E7E21AFAD2BE4BF08FFC9F57ED05FF
-                006497C1DFFA73F10D007D695CCF8C3C1BE19F1FF86755F07F8BF488F5AF0EDE
-                C6127B7762A72AC191D19486475655657521919559486008E9A8A00F9C7C1BE3
-                0F127C33F12691F08BE2E6ACFAD417AE6DFC1FE2F9D428D540048B3BAC00A97C
-                A809E30B3AAB3A005648E3FCFCFF0082807C70B6F8A7E255FD967C1D72B73E11
-                D1AF2D755F8857B19CABCF1BA5C5A6968C0904EE4496752384302F3E6B6DFD51
-                F8A7F0EF4BF8AFF0FBC4DF0EF58BC9B4CD3B548040F776B1C666B721832CB097
-                5654954A8647C128EAAC39515F83DF15BE02788BF64BF1458F81F5C9A5D7BE18
-                EAD7B29F0AF8B26E64BB99D9A57B5BE6C7FC7F125DBCC3FF001F386907CFE622
-                807314514500145145001451585E27F1168FE0EF0D7887C5BE20BA161A069561
-                36A37D391C470C485DDBF05526803EC9FF00826C78464F13FC7DFDA3FE2E5DC4
-                25D33C35A569DF0F34770C4186EA55FED2D44103860F14BA363392BE5B6DC6F6
-                CFECE57C75FB067C1BD5BE0B7ECC3F0F74BF1868FF00D8BF1435E47F1878C209
-                1732C5A9DE9F3E4B791FAC9F67568ED55B8FDDDB4602A2808BF62D0014514500
-                1451450015F25F847FE4FABF682FFB24BE0EFF00D39F886BEB4AF92FC23FF27D
-                5FB417FD925F077FE9CFC43401F5A51451400571FE3EF00783BE28F837C41F0F
-                BC7FE1F83C4FE0ED56DCDADF58DC0215D720820821959582B2BA90CACAACA410
-                08EC28A00FE7B7E33FC17F18FECC7E32B0F08F8B6FAE3C51F0E354B830784BC5
-                B3AAEE9DB69616377B4055BB555621800B32A965C30744E26BFA18F1F7803C1B
-                F147C1BAFF00C3FF00881E1EB7F14F83B54B7FB35F58DCA9DAEB90410460AB2B
-                05657521959559482011F839F19BE0BF8CBF663F18D87843C5B7D71E29F873AA
-                4FE4784BC5B3A0DD70D824595D950152ED55490D8559D4164018488801C55145
-                140056EFC1DF860DFB417ED1FF000BFE15794D2783FC3B7769F113C5F3C3C343
-                0D9DCACBA75BEEE88D3DF42879077436B74A3070EBC078ABC450785341BBD664
-                D3AEB59B8568EDACF4EB08BCCB8BEB995D6282DA14C8DD2CB2BC71A2E7E67751
-                DEBF6BFF00630FD9C6EBF675F85335AF8AE7B7D47E2EF896F0788BC657768E5E
-                117AD0A462DE062031B78638D224C804ED672033B5007D774514500145145001
-                451450015F25F847FE4FABF682FF00B24BE0EFFD39F886BEB4AF92FC23FF0027
-                D5FB417FD925F077FE9CFC43401F5A5145140051451400571DE3FF0087FE0DF8
-                A5E0DD7FE1F7C40F0F5BF8A3C1FAA41F67BDB1B853B5802195948C323AB2AB2B
-                A90C8CAACA41008EC68A00FE7AFE337C18F18FECC5E31B0F0878BAFA7F137C39
-                D52730784BC5B3A806E0F2458DD9002A5DAA8E1B859D559940659234E0EEAEAD
-                6C2D6E2F6F6E23B2B282369669A570A91A28C9624F00003935FD0FF8FF00E1FF
-                00837E29F833C41F0FBE20787E0F13783F54B736D7B653E4065C821959486475
-                60ACAEA43232AB290C011F919F0B3F60CF88B37ED29E21F097C63D3EE35DFD97
-                FC21716DAC785759BB9ED6493C5F295DCB6D7B0A31291DB3300DBA35FB4BA230
-                11A2B24A01D47EC29FB385F78DBC4B63FB4FFC4FD125B0F0ED86F87E1CE8B7B6
-                F8F391D232DAD4A8C372487F79140B80562324996FB42AC5FAF9451400514514
-                005145140051451400571563F0FF00C33A77C45F137C53B5B5913C61ABE8961E
-                1FBD98CC4A35AD9CD75340A13A021EFAE324727207F08AED68A0028A28A0028A
-                28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A00FFFD9
-              }
-            end
-            object _Label33: TLabel
-              Left = 162
-              Height = 13
-              Top = 18
-              Width = 19
-              Caption = '[m]'
-              ParentColor = False
-            end
-            object _Label34: TLabel
-              Left = 162
-              Height = 13
-              Top = 42
-              Width = 19
-              Caption = '[m]'
-              ParentColor = False
-            end
-            object _Label35: TLabel
-              Left = 162
-              Height = 13
-              Top = 66
-              Width = 35
-              Caption = '[Degr]'
-              ParentColor = False
-            end
-            object Edit15: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 10
-              Width = 61
-              Alignment = taRightJustify
-              MinValue = 0
-              OnExit = Edit15AfterSetValue
+              Width = 247
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.VerticalSpacing = 2
+              ChildSizing.Layout = cclTopToBottomThenLeftToRight
+              ChildSizing.ControlsPerLine = 5
+              ClientHeight = 129
+              ClientWidth = 243
               TabOrder = 0
-              Value = 0
-            end
-            object Edit16: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 34
-              Width = 61
-              Alignment = taRightJustify
-              MinValue = 0
-              OnExit = Edit16AfterSetValue
-              TabOrder = 1
-              Value = 0
-            end
-            object Edit17: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 58
-              Width = 61
-              Alignment = taRightJustify
-              MaxValue = 90
-              MinValue = 0
-              OnExit = Edit17AfterSetValue
-              TabOrder = 2
-              Value = 0
-            end
-            object Edit18: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 82
-              Width = 61
-              Alignment = taRightJustify
-              MaxValue = 200
-              MinValue = 2
-              OnExit = Edit18AfterSetValue
-              TabOrder = 3
-              Value = 2
-            end
-            object Edit19: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 106
-              Width = 61
-              Alignment = taRightJustify
-              MaxValue = 200
-              MinValue = 2
-              OnExit = Edit19AfterSetValue
-              TabOrder = 4
-              Value = 2
+              object _Label28: TLabel
+                Left = 10
+                Height = 25
+                Top = 0
+                Width = 94
+                Caption = 'R0'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label29: TLabel
+                Left = 10
+                Height = 25
+                Top = 27
+                Width = 94
+                Caption = 'R1'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label30: TLabel
+                Left = 10
+                Height = 25
+                Top = 54
+                Width = 94
+                Caption = 'Beta'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label31: TLabel
+                Left = 10
+                Height = 25
+                Top = 81
+                Width = 94
+                Caption = 'Nr (2-200)'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label32: TLabel
+                Left = 10
+                Height = 25
+                Top = 108
+                Width = 94
+                Caption = 'N beta (2-200)'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Edit15: TFloatSpinEdit
+                Left = 110
+                Height = 25
+                Top = 0
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MinValue = 0
+                OnExit = Edit15AfterSetValue
+                TabOrder = 0
+                Value = 0
+              end
+              object Edit16: TFloatSpinEdit
+                Left = 110
+                Height = 25
+                Top = 27
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MinValue = 0
+                OnExit = Edit16AfterSetValue
+                TabOrder = 1
+                Value = 0
+              end
+              object Edit17: TFloatSpinEdit
+                Left = 110
+                Height = 25
+                Top = 54
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 90
+                MinValue = 0
+                OnExit = Edit17AfterSetValue
+                TabOrder = 2
+                Value = 0
+              end
+              object Edit18: TSpinEdit
+                Left = 110
+                Height = 25
+                Top = 81
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 200
+                MinValue = 2
+                OnExit = Edit18AfterSetValue
+                TabOrder = 3
+                Value = 2
+              end
+              object Edit19: TSpinEdit
+                Left = 110
+                Height = 25
+                Top = 108
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 200
+                MinValue = 2
+                OnExit = Edit19AfterSetValue
+                TabOrder = 4
+                Value = 2
+              end
+              object _Label33: TLabel
+                Left = 196
+                Height = 25
+                Top = 0
+                Width = 41
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label34: TLabel
+                Left = 196
+                Height = 25
+                Top = 27
+                Width = 41
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label35: TLabel
+                Left = 196
+                Height = 25
+                Top = 54
+                Width = 41
+                Caption = '[Degr]'
+                Layout = tlCenter
+                ParentColor = False
+              end
             end
           end
           object GroupBox2: TGroupBox
-            Left = 22
-            Height = 171
-            Top = 194
-            Width = 400
+            Left = 10
+            Height = 177
+            Top = 170
+            Width = 251
+            AutoSize = True
             Caption = 'Rectangular cut. '
-            ClientHeight = 156
-            ClientWidth = 396
+            ChildSizing.HorizontalSpacing = 10
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 160
+            ClientWidth = 247
             TabOrder = 1
-            object _Label36: TLabel
-              Left = 10
-              Height = 13
-              Top = 18
-              Width = 15
-              Caption = 'X0'
-              ParentColor = False
-            end
-            object _Label37: TLabel
-              Left = 10
-              Height = 13
-              Top = 42
-              Width = 15
-              Caption = 'X1'
-              ParentColor = False
-            end
-            object _Label38: TLabel
-              Left = 10
-              Height = 13
-              Top = 66
-              Width = 14
-              Caption = 'Y0'
-              ParentColor = False
-            end
-            object _Label39: TLabel
-              Left = 10
-              Height = 13
-              Top = 90
-              Width = 14
-              Caption = 'Y1'
-              ParentColor = False
-            end
-            object _Label40: TLabel
-              Left = 10
-              Height = 13
-              Top = 114
-              Width = 19
-              Caption = 'N x'
-              ParentColor = False
-            end
-            object Image2: TImage
-              Left = 238
-              Height = 150
+            object Panel15: TPanel
+              Left = 0
+              Height = 160
               Top = 0
-              Width = 136
-              Center = True
-              Picture.Data = {
-                0A544A706567496D616765080F0000FFD8FFE000104A46494600010201006000
-                600000FFFE010208796E04020000000200000005000000070000000B0000000B
-                0000000B000000020000000200000002000000070000000B0000000B0000000B
-                0000000B0000000200000002000000060000000B0000000B0000000B0000000B
-                0000000B00000005000000070000000B0000000B0000000B0000000B0000000B
-                0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
-                0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
-                0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
-                0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
-                0000000B000000FFC00011080096008803012200021101031101FFDB00840001
-                0101010101010101010201010202040202020202050404030406050706060506
-                0607080A0807070A070606090C090A0A0B0B0B0B07080D0D0C0B0D0A0B0B0B01
-                010202020202050202050B070607070B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
-                0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
-                FFC401A20000010501010101010100000000000000000102030405060708090A
-                0B100002010303020403050504040000017D0102030004110512213141061351
-                6107227114328191A1082342B1C11552D1F02433627282090A161718191A2526
-                2728292A3435363738393A434445464748494A535455565758595A6364656667
-                68696A737475767778797A838485868788898A92939495969798999AA2A3A4A5
-                A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DA
-                E1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FA010003010101010101010101
-                0000000000000102030405060708090A0B110002010204040304070504040001
-                0277000102031104052131061241510761711322328108144291A1B1C1092333
-                52F0156272D10A162434E125F11718191A262728292A35363738393A43444546
-                4748494A535455565758595A636465666768696A737475767778797A82838485
-                868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BA
-                C2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6
-                F7F8F9FAFFDA000C03010002110311003F00FEFE28A2BE5DF837FB66FECDDF1F
-                FC65ADFC3FF847E3F9BC59E2CD32EB52B1D46D06817D6E2D67D3EE52D6F6191E
-                58511248A79123642436EC800ED3800CAF06FEDC7FB3478DEDBF688D434AF1E4
-                BA7E89F0B59DFC59A86A5A4DCDB40B6C9630DF35E5BBC8805CDA882E236F3A2D
-                C87208255919BD23E08FED21F03FF690D2350D7FE06FC43B2F88FA15A43653CD
-                79A7C7279412EED23BCB621994060F6F34320C67E59109C6457CEDE01B3F1CDF
-                EB1FF0541B0F86363A06A5F1127F8891C3A1DB78A84A74C96E9BC15A08892EC4
-                40C9E416203ED05B6E702BA9FF00827E7EC75E14FD83FF00652F869FB36784E6
-                17B068E2E2EAEEE0CCD2932CF3BCA21595C0924860468EDA1327CE20B7814FDD
-                00007D9F45145001451450014514500145145001451450014514500145145001
-                5F821F14BF65EFDAA3F630FD983FE0A37FB4E7ECD09A71FDBCFE2C78E748F18C
-                F67F0DBC24D7D6C1609ACEC9E382D2E565792492D96EE799981DB25C4A540D81
-                CFEF7D1401F077EC81A7FC47B2F8E3FF00051F7F1CF8AF43F1169D27C62B33A5
-                C3A4787A6B27B74FF845345216577BA984A7CA6B75CAAC7F3472360091638FEF
-                1AF917F66CFF0092C9FF000501FF00B2BB65FF00A876815F5D50015F9C3FB77F
-                ED37F1C7E05F8AFE04781BE074BE13D3352F1441AB5EDFDFF8AF40B9D4638E3B
-                316C15238A0BBB62198DD64B172004C6DE723F47ABF1CFFE0A65FF0025CBF640
-                FF00B0378A3F9E9B401E47FF000DA5FB7FFF00D0FBF077FF000D56ABFF00CBBA
-                3FE1B4BF6FFF00FA1F7E0EFF00E1AAD57FF9775E3F45007B07FC3697EDFF00FF
-                0043EFC1DFFC355AAFFF002EE8FF0086D2FDBFFF00E87DF83BFF0086AB55FF00
-                E5DD78FD1401EC1FF0DA5FB7FF00FD0FBF077FF0D56ABFFCBBA3FE1B4BF6FF00
-                FF00A1F7E0EFFE1AAD57FF009775E3F45007B07FC3697EDFFF00F43EFC1DFF00
-                C355AAFF00F2EE8FF86D2FDBFF00FE87DF83BFF86AB55FFE5DD78FD1401FB77F
-                B20FC5CF12FC7DFD95FF00678F8DBE33B2B0D3BC5DE2BF06E9DAFEA906970BC7
-                6C9713DBAC920895DDD953731C06762060163D6BE8DAF887FE09A5FF0028F8FD
-                8B7FEC99E8DFFA491D7DBD4005145140051451401F22FECD9FF2593FE0A03FF6
-                576CBFF50ED02BEBAAF917F66CFF0092C9FF000501FF00B2BB65FF00A876815F
-                5D50015F8E7FF0532FF92E5FB207FD81BC51FCF4DAFD8CAFC73FF82997FC972F
-                D903FEC0DE28FE7A6D007C8745145001451450014514500145145007EB57FC13
-                4BFE51F1FB16FF00D933D1BFF4923AFB7ABE21FF0082697FCA3E3F62DFFB267A
-                37FE92475F6F50014514500145145007C8BFB367FC964FF8280FFD95DB2FFD43
-                B40AFAEABE45FD9B3FE4B27FC1407FECAED97FEA1DA057D7540057E39FFC14CB
-                FE4B97EC81FF00606F147F3D36BF632BF1CFFE0A65FF0025CBF640FF00B0378A
-                3F9E9B401F21D1451400514514005145140051451401FAD5FF0004D2FF00947C
-                7EC5BFF64CF46FFD248EBEDEAF887FE09A5FF28F8FD8B7FEC99E8DFF00A491D7
-                DBD40051451400514556BB9A4B5B3B9B882CE4D4258E2674B784A87908190AA5
-                885C9E83240F522803E4EFD9B3FE4B27FC1407FECAED97FEA1DA057D755F933F
-                B3C7ED0DF172D7E2E7EDDB341FB08FC56BF92E3E2B59CD2C30EB1E120D6AC3C2
-                5A1208DF76B20162AAAFF2165DAEBCEE0CABF567FC3497C64FFA47EFC5DFFC1D
-                783BFF00977401F5D57E39FF00C14CBFE4B97EC81FF606F147F3D36BED2FF869
-                2F8C9FF48FDF8BBFF83AF077FF002EEBF23FFE0A39F1EFE2A6A3F1ABF64E9AEF
-                F625F89FA0490E8FE2558E1BBD5BC2CCD3063A764AF97ABBA80B819DC57EF0C6
-                79C0060D15F37FFC2F1F89BFF466FF00123FF069E19FFE5AD1FF000BC7E26FFD
-                19BFC48FFC1A7867FF0096B401F48515F37FFC2F1F89BFF466FF00123FF069E1
-                9FFE5AD1FF000BC7E26FFD19BFC48FFC1A7867FF0096B401F48515F37FFC2F1F
-                89BFF466FF00123FF069E19FFE5AD1FF000BC7E26FFD19BFC48FFC1A7867FF00
-                96B401F48515F37FFC2F1F89BFF466FF00123FF069E19FFE5AD1FF000BC7E26F
-                FD19BFC48FFC1A7867FF0096B401FBF5FF0004D2FF00947C7EC5BFF64CF46FFD
-                248EBEDEAFC78FF8274FED09F16F4CFD833F63DD3ACBF615F8A9E20B383E1CE9
-                11457D67ABF84D62B8516A803A09359470A7A8DC8A7D40E95EF9F183F6C4FDA0
-                3C05E0A93C47E1AFF8278FC54D57598EFAD6DE0D3AE354F0AB9BDF32748CC11F
-                95AD332C8C18ED62ACAA79701033000FD0BA2A3898BC513B44D033282636C657
-                D8E091F91A92800A28A2803E45FD9B3FE4B27FC1407FECAED97FEA1DA057D755
-                F22FECD9FF002593FE0A03FF006576CBFF0050ED02BEBAA002BF187FE0A9567F
-                DA1F173F654D3C5A5B5FF9FE1DF15C22DEF1374326E1A68DAE30728738231D33
-                5FB3D5F8E7FF000532FF0092E5FB207FD81BC51FCF4DA00FE51B50D37C5BFF00
-                046FF857F10BC7369E17F879E2ED33C69E33BDBCD2D94C9A647A1C5FD9779A9B
-                6982628ECD6DF69B5963B742721AF0753C37EE5FC3AF15CDE3BF87DE05F1C5CE
-                8571E16B8D6746B5D5A4D32EC625B369A2590C2FC0F99776D3C0E41E05765450
-                014514500145145007C89FB6FF00ECD571FB59FECFFAEFC14B23A369D7B7F7B0
-                5C5BEB1AB433349A4491B6E5BCB43132B2DD210361DC17960C194B23794FC03D
-                7FE23FC10F8CFF00007F626D5BC37E09D33C1D6DF05EFF00C4D7971E14D2A5B4
-                46D4AD352B4B62618B708E38644BB691976B37984FCD81F37E88D1401FAD5FF0
-                4D2FF947C7EC5BFF0064CF46FF00D248EBECBD66C86A3A3EABA71B2B5D416E2D
-                6480DBDEC7BA1977291B241839439C118E99AF8D3FE09A5FF28F8FD8B7FEC99E
-                8DFF00A491D7DBD401F93BFF0004C9FF0082776BBFB02EA3FB46DB5E8F025E78
-                5BC63E299BC4FE1F8FC33A1C96D71A0C1727CF9F47491F2CD611DDC9752C085B
-                E4FB430C57EB1514500145145007C8BFB367FC964FF8280FFD95DB2FFD43B40A
-                FAEABE45FD9B3FE4B27FC1407FECAED97FEA1DA057D7540057E39FFC14CBFE4B
-                97EC81FF00606F147F3D36BF632BF1CFFE0A65FF0025CBF640FF00B0378A3F9E
-                9B401F21D1451400514514005145140051451401FAD5FF0004D2FF00947C7EC5
-                BFF64CF46FFD248EBEDEAF887FE09A5FF28F8FD8B7FEC99E8DFF00A491D7DBD4
-                005145140189E257F1045E1BD7E4F08DBDA5CF8A92C656D2E2BE76581EE021F2
-                D642BC842DB724738CE2BF3BBFE09A5FB64FC67FDB3FE126B5F14FE35FC22D3B
-                E015CDBEAF2F8453C3B25D31BE8F5AD3E47B6D660752C418A1BC478236E1DCC3
-                2B1455285BF41BC67E0FF0F7C41F0778AFC03E2CB27D47C29AE6993E8FA9DB47
-                73242D2DBCD198E441246CAE84A330DCAC187504100D7E417ED01FF0477F097C
-                51FDA53F646F8D9F0D3E2358FC2EF047C2E8F498A3F0DDF78764D4E77363E25B
-                5D7DEE2DAF1EE55E1BABA96D5E1B99E4133CCB31672CD92C01F59FEC83F0E7C1
-                5E07F8E3FF000520D47C29A045A35EEA9F18ACE7BF9237626673E13D12624E49
-                03F793CADC63EF9F6AFBC2BE45FD9B3FE4B27FC1407FECAED97FEA1DA057D754
-                0057877C69FD9ABE02FED170786EDFE387C2AD1FE2647A3C92CBA51D52DB7B5A
-                B480093630C15DC117201C1DA3D057B8D1401F0BFF00C3B37F609FFA35BF0B7F
-                E02B7FF1547FC3B37F609FFA35BF0B7FE02B7FF155F7451401F0BFFC3B37F609
-                FF00A35BF0B7FE02B7FF001547FC3B37F609FF00A35BF0B7FE02B7FF00155F74
-                51401F0BFF00C3B37F609FFA35BF0B7FE02B7FF1547FC3B37F609FFA35BF0B7F
-                E02B7FF155F7451401F0BFFC3B37F609FF00A35BF0B7FE02B7FF001547FC3B37
-                F609FF00A35BF0B7FE02B7FF00155F7451401C9F813C0BE0EF861E0AF09FC38F
-                879E1AB3F06F81342D3A1D2346D274F8047059DB4481238A351C2AAAA8007A0A
-                EB28A2800A28A2800A28A2803E45FD9B3FE4B27FC1407FECAED97FEA1DA057D7
-                55E35F0BFE165D7C3EF1B7ED17E2CB8D5E3D4A1F1CF8CE0F14DBC11C254DA247
-                A2E9DA6F94C73F312DA7B3E4638900C7193ECB40051451400514514005145140
-                0514514005145140051451400514514005145140051451400514514005145140
-                05145140051451400514514005145140051451401FFFD9
-              }
-            end
-            object _Label41: TLabel
-              Left = 162
-              Height = 13
-              Top = 18
-              Width = 19
-              Caption = '[m]'
-              ParentColor = False
-            end
-            object _Label42: TLabel
-              Left = 162
-              Height = 13
-              Top = 42
-              Width = 19
-              Caption = '[m]'
-              ParentColor = False
-            end
-            object _Label44: TLabel
-              Left = 10
-              Height = 13
-              Top = 138
-              Width = 19
-              Caption = 'N y'
-              ParentColor = False
-            end
-            object _Label16: TLabel
-              Left = 162
-              Height = 13
-              Top = 66
-              Width = 19
-              Caption = '[m]'
-              ParentColor = False
-            end
-            object _Label17: TLabel
-              Left = 162
-              Height = 13
-              Top = 90
-              Width = 19
-              Caption = '[m]'
-              ParentColor = False
-            end
-            object Edit20: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 10
-              Width = 61
-              Alignment = taRightJustify
-              MinValue = 0
-              OnExit = Edit20AfterSetValue
+              Width = 157
+              AutoSize = True
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.VerticalSpacing = 2
+              ChildSizing.Layout = cclTopToBottomThenLeftToRight
+              ChildSizing.ControlsPerLine = 6
+              ClientHeight = 156
+              ClientWidth = 153
               TabOrder = 0
-              Value = 0
+              object _Label36: TLabel
+                Left = 10
+                Height = 25
+                Top = 0
+                Width = 22
+                Caption = 'X0'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label37: TLabel
+                Left = 10
+                Height = 25
+                Top = 27
+                Width = 22
+                Caption = 'X1'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label38: TLabel
+                Left = 10
+                Height = 25
+                Top = 54
+                Width = 22
+                Caption = 'Y0'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label39: TLabel
+                Left = 10
+                Height = 25
+                Top = 81
+                Width = 22
+                Caption = 'Y1'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label40: TLabel
+                Left = 10
+                Height = 25
+                Top = 108
+                Width = 22
+                Caption = 'N x'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label44: TLabel
+                Left = 10
+                Height = 25
+                Top = 135
+                Width = 22
+                Caption = 'N y'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object Edit20: TFloatSpinEdit
+                Left = 38
+                Height = 25
+                Top = 0
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MinValue = 0
+                OnExit = Edit20AfterSetValue
+                TabOrder = 0
+                Value = 0
+              end
+              object Edit21: TFloatSpinEdit
+                Left = 38
+                Height = 25
+                Top = 27
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MinValue = 0
+                OnExit = Edit21AfterSetValue
+                TabOrder = 1
+                Value = 0
+              end
+              object Edit22: TFloatSpinEdit
+                Left = 38
+                Height = 25
+                Top = 54
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MinValue = 0
+                OnExit = Edit22AfterSetValue
+                TabOrder = 2
+                Value = 0
+              end
+              object Edit23: TFloatSpinEdit
+                Left = 38
+                Height = 25
+                Top = 81
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MinValue = 0
+                OnExit = Edit23AfterSetValue
+                TabOrder = 3
+                Value = 0
+              end
+              object Edit24: TSpinEdit
+                Left = 38
+                Height = 25
+                Top = 108
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 200
+                MinValue = 2
+                OnExit = Edit24AfterSetValue
+                TabOrder = 4
+                Value = 2
+              end
+              object Edit25: TSpinEdit
+                Left = 38
+                Height = 25
+                Top = 135
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                MaxValue = 200
+                MinValue = 2
+                OnExit = Edit25AfterSetValue
+                TabOrder = 5
+                Value = 2
+              end
+              object _Label41: TLabel
+                Left = 124
+                Height = 25
+                Top = 0
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label42: TLabel
+                Left = 124
+                Height = 25
+                Top = 27
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label16: TLabel
+                Left = 124
+                Height = 25
+                Top = 54
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
+              object _Label17: TLabel
+                Left = 124
+                Height = 25
+                Top = 81
+                Width = 23
+                Caption = '[m]'
+                Layout = tlCenter
+                ParentColor = False
+              end
             end
-            object Edit21: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 34
-              Width = 61
-              Alignment = taRightJustify
-              MinValue = 0
-              OnExit = Edit21AfterSetValue
-              TabOrder = 1
-              Value = 0
-            end
-            object Edit22: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 58
-              Width = 61
-              Alignment = taRightJustify
-              MinValue = 0
-              OnExit = Edit22AfterSetValue
-              TabOrder = 2
-              Value = 0
-            end
-            object Edit23: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 82
-              Width = 61
-              Alignment = taRightJustify
-              MinValue = 0
-              OnExit = Edit23AfterSetValue
-              TabOrder = 3
-              Value = 0
-            end
-            object Edit24: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 106
-              Width = 61
-              Alignment = taRightJustify
-              MaxValue = 200
-              MinValue = 2
-              OnExit = Edit24AfterSetValue
-              TabOrder = 4
-              Value = 2
-            end
-            object Edit25: TFloatSpinEdit
-              Left = 98
-              Height = 23
-              Top = 130
-              Width = 61
-              Alignment = taRightJustify
-              MaxValue = 200
-              MinValue = 2
-              OnExit = Edit25AfterSetValue
-              TabOrder = 5
-              Value = 2
-            end
+          end
+          object Image1: TImage
+            Left = 271
+            Height = 150
+            Top = 10
+            Width = 136
+            Center = True
+            Picture.Data = {
+              0A544A706567496D6167656E160000FFD8FFE000104A46494600010201006000
+              600000FFFE010290D66404FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFC00011080096008803012200021101031101FFDB00840001
+              0101010101010101010201010202040202020202050404030406050706060506
+              0607080A0807070A070606090C090A0A0B0B0B0B07080D0D0C0B0D0A0B0B0B01
+              010202020202050202050B070607070B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
+              0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
+              FFC401A20000010501010101010100000000000000000102030405060708090A
+              0B100002010303020403050504040000017D0102030004110512213141061351
+              6107227114328191A1082342B1C11552D1F02433627282090A161718191A2526
+              2728292A3435363738393A434445464748494A535455565758595A6364656667
+              68696A737475767778797A838485868788898A92939495969798999AA2A3A4A5
+              A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DA
+              E1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FA010003010101010101010101
+              0000000000000102030405060708090A0B110002010204040304070504040001
+              0277000102031104052131061241510761711322328108144291A1B1C1092333
+              52F0156272D10A162434E125F11718191A262728292A35363738393A43444546
+              4748494A535455565758595A636465666768696A737475767778797A82838485
+              868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BA
+              C2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6
+              F7F8F9FAFFDA000C03010002110311003F00FEFE2BE72D1FF6ACF825AE7ED11E
+              27FD96F4EF115D49F16748D2AD755B98DB49B85B27139B8DB6F1DDECF21EE156
+              CE776843EF0A8C70423EDFA36BE4BF08FF00C9F57ED05FF6497C1DFF00A73F10
+              D00677ECEDFB7BFECB1FB56F8C3C53E02F809E3CD4FC6DE27D09EFA1D72097C1
+              9AB59269D2D9DE1B29E0B896E6DA38E2984E922AC4EC24711C8C8AC91BB2FD8B
+              5F137EC71FB20FFC332EA1FB447C42F15F883C3DE30F8DBF15BC5E9E32F1AEAD
+              E15F0A3689A7CD711D941651886CDAE2E5A3CA5BF9B2334CE649E69DF8DE157E
+              D9A0028A28A002BE19F8F9FF00051EFD91FF00662F887E27F857F19FC63E25F0
+              E78CF45F045D7C48D521D3FE1A6BFA9416DA0DB155B9D41AE2D2CE583C888BA0
+              9183FC85806C66BEE6AFC19FF82927FC12F7F680FDB93F68AF1578FBC2DE37D1
+              BE1AFC3EB8F807ACFC27D3AF6D7C71AAD9DE3DEDDDDDBDF23DE5A5B5B886EF4F
+              77B416B3DA4B3324B05C48E46E8D63201FBA3A16B7A4789B44D1BC47E1FD422D
+              5B41D42D23BEB1BB81B724D0C8A191D4F7054823D8D6AD7E70FC28FDA63E2D69
+              9FB6E784FF00614F1DFC24F06F81347B4F8030FC476B8F09EB13DCC36F771EAB
+              FD9C6CA057B7802DB2C61190EC0D925700282DD37C2EFDBC7C03E36F8FFE2BF8
+              17A98B58F4A7D564D33C17E31B09D9B4FD7A644324D680301E5CF161D015678E
+              7F26464656CC2A01F7C5145140051451400514514005145140057C97E11FF93E
+              AFDA0BFEC92F83BFF4E7E21AFAD2BE4BF08FFC9F57ED05FF006497C1DFFA73F1
+              0D007D6945145001451450014515F8CBFB59FED6377F19EEF5CF82DF0675A92C
+              3E124123D8F8A3C51632947D5DD4ED92C2CE453910020ACB3AFDEE638CFDF600
+              14FF006B2FDA863F8D1ACEB7F0B3E0C5EAD8FC37B759348F14F8C2C582CDAC05
+              6C49A759CCBF30B60C0896653F3105233F79C7C7D7DE18D16FB46B5D07EC674E
+              D3EDBCA6B1FB048D6EF66F1106292078CAB42E8554A3A15642AA5482056B5959
+              59E9D6769A7E9F69158584112C30410461123451855551C00000001D2ACD007E
+              9FFEC4BFB566B3F14A4D5FE097C61D4A19BE3768B6AD7F637EB0A45FF091E949
+              E4A35FAC680224B1CB3A433226006314816349D117F426BF998D6E0F13DACBA2
+              F8B7E1EEB11F863E28681769AB786F539158A43749D2394290CD6F22EE8A6404
+              178A4914104823F7DBF673F8EDE19FDA3BE12F867E287872CE5D127B856B4D5F
+              46B970D36937F11D97165291F2B3C72065DCB957003292ACA4807B8D14514005
+              14514005145140057C97E11FF93EAFDA0BFEC92F83BFF4E7E21AFAD2BE4BF08F
+              FC9F57ED05FF006497C1DFFA73F10D007D69457CF5FB5A78CFC71F0D7F65EFDA
+              13E24FC34D5ECF41F1EF86FC19A8F88749B9BFD3FED502CD6B6CF3AABC5B9372
+              B797B4E18119C83C57E61FFC124FF6F3FDA1FF006CDF12789AC7E27CFA7EB7E1
+              5D37E10F82BC5BAA5C3F8464D0AF34FF0010EAF05C5D5C59A5B4B33BCD63F651
+              67243721763969543BB23AA007EE0D15C9F8DFC6BE1DF875E18D47C63E2CB993
+              4EF0D5918CDEDDA5BBC8B6D1B3AA19A4DA0EC85036F9243858D15DD8AAA923F2
+              37F6ABFDAEA4F8E126ABF087E06F889A1F83B1B3DA7897C5BA65CE0EB247CAF6
+              5652A9E20072B2CEA7E6C18E33F7DC004BFB597ED6577F19AEF5BF831F05F5C9
+              2C7E135BCAF63E28F14D84C51F57752564B1B39170440082B2CEA7E6F9A38CFD
+              F71F23595959E9B6769A769D6915869F6F12C10410461123451855551C000000
+              01D314B676767A759DA69FA7DA4561616F12C30410C61123451855551C000000
+              01D2ACD001451450015EB1FB257C5797E01FED2BA4E957573F65F853F13EE63D
+              1B588DCE22B4D792354B0BC18C00678E316721209765D3D415119DDE4F5C9F8D
+              FC2FFF00098786350D0A1D4A4D0B522D15DE9BA94281A4B0BC86459ADAE901E0
+              BC53471C8A0F19419E2803FA74A2BE7BFD94BE3549FB437ECEFF0009FE2EDFE9
+              F0E8BE24D534A58F5FD3ADDCB4763AA42C60BEB656206F58AEA29A30C0618206
+              1C115F42500145145001451450015F25F847FE4FABF682FF00B24BE0EFFD39F8
+              86BEB4AF92FC23FF0027D5FB417FD925F077FE9CFC43401EF9F127E1BF82BE2F
+              780FC53F0C7E22E86BE25F026B766DA7EABA73CD246B73037DE8D8A32B6D2382
+              01E4641E0915F9BBFB507FC1297E067C4CFD9FB54F867FB3EF85F48F82BE3F87
+              44D0BC2BA5EA92B5D4B6F2687A66B516A6344B9412FEF2CA555B9B7DAC1C471D
+              D4802B2FEECFEAD57CADA86A17FF00B4ADFDF786BC357B3697FB3DDACCD6BAD6
+              B56B29493C47229DAF676AE3056D410565994E6420C719C6F7A00F8FFF0061DF
+              D9E3C61E1CFD957E16FEC9779F119FC6FF00057C2715E587887C5562B2429E21
+              325E4D31D274F258B269B6EB28B6F3411BE385638C2286DBF3BFED39FB39697F
+              B24F8DFC3F3FC3ED16DFC3DFB32789274D3345D2EC6011DB785F51C7CB651A8E
+              12D26F98C283090BA98502A3C28BFBCBA769DA7E91A7D8E93A4D8C3A5E956B0A
+              5B5ADADB44123863501551540015400000060002BCFBE31FC24F07FC74F865E2
+              EF851E3BB7964F0D6B16C22796D5C24F6B2A3AC90DCC0E41093452A472C6F83B
+              5E3461D2803F0128AE17E1C6A1E28BBF0AC1A778F63B787E22E8D7975E1AF13A
+              598C42353B29DED2ECC5924F9467864284F250A1EF5DD5001451450014514500
+              7D95FF0004C1F17FF6378EBF6A8F8193B3456C97FA77C45D1E366C46B0DF42D6
+              971142B9006DB8D35E7902AE03DF07662D3607EBF57F3EBFB307881FC15FB73F
+              ECF3A8C85DB4FF0014E8BAEF803CA85416FB43DBC7AAC523E7A46B1E9172A4A9
+              DDBE48860A962BFD05500145145001451450015F25F847FE4FABF682FF00B24B
+              E0EFFD39F886BEB4AFC45FDA3BE2CFC42D0FFE0A59E2CF8351FC0EF1A78E3E13
+              F8A7E11785D751D47C1FA8E936EFA84F16A7AE94D29E6BEBEB5100955E46F90B
+              492A432AAED019A803F44751D4350FDA5750BEF0CF86AFA6D2FF0067BB599AD7
+              5AD6AD64292788E453B5ECED5C60ADA820ACB32F32731C671BDC7CD7FF00050B
+              F8C9F17BE06CBFB0C7C2FF00D9EAD75ED222F1DFC4F93C17A8D9F80AC745FED5
+              1A7C1E1CD5750586C46AB8B088892C20DC641FEA96454C315AF76D37F681F8A9
+              A3E9F61A4691FF0004EEF8AFA5E956B025B5ADADB6ABE0D8E3863501551146B6
+              02A8000000C00057807ED03A1697FB52DCFC1D6F8F7FF04BDF89FF0013747F03
+              F895FC59A368FABEA3E0BB8B192F1AC2E6C434F03EB4C932AC57931556180E11
+              BAA8A00F53FF008261FC71F885FB49FEC1BFB377C6DF8B1E2FD37C73F11F5ED1
+              A59B58D434CB136C04D1DCCB098268B622ADD45E588A708891F9F1CDE5AAA6D0
+              3EF3AF87BC17F16FC63F0DBC27E1FF0001FC3BFF008267FC4AF01781B49B55B1
+              D2B45D16EBC156B69670A8C2C51431EB4A91A01D154003D2BA7FF8692F8C9FF4
+              8FDF8BBFF83AF077FF002EE803F2B7F69EF0F41E08FDBAFF00684D22DC6E87C5
+              1E1FD03E213C81360134B0CDA4BC4064EE2A9A340E58638991768DBB9F83ACBF
+              DBE7E3C7C52BFF00DAFBE0E5DDD7EC55F13744B88FE1AEA7125A5D6ABE173248
+              A750B525C18F5764DA3001CB03923008C91E07FF000BC7E26FFD19BFC48FFC1A
+              7867FF0096B401F48515F37FFC2F1F89BFF466FF00123FF069E19FFE5AD1FF00
+              0BC7E26FFD19BFC48FFC1A7867FF0096B401F48515F37FFC2F1F89BFF466FF00
+              123FF069E19FFE5AD1FF000BC7E26FFD19BFC48FFC1A7867FF0096B401EE0FAA
+              C5E19F8B3FB2BF8B2E1A48ACEC7E2CE81692343F7C1BEBA1A6A05E9C192F5037
+              3F70BF5E87FA68AFE3B7C6BF1AFE24CBAA7C0CDFFB20FC44B4F2FE30F81A7412
+              6A7E1B3E63278A34E658971AA1F99CA845CE14332EE655CB0FE823E2C7ED87FB
+              40781BC3DA46AFE1DFF82797C54D57549B59B3D3D74D9F54F0AB3DDA4B288DD2
+              2316B4CCAEA85A4DC51902C6DBF626E91003F42A8A28A0028A28A002BE256F07
+              786BC7DFB62FED31E0FF00176931EB3E1DBEF843E0D8EE2DDD994F1AAF88195D
+              19486475655657521919559482011F6D57C97E11FF0093EAFDA0BFEC92F83BFF
+              004E7E21A00E9BC1DE31F12FC34F13693F08BE2DEAB26B505F4860F07F8BE755
+              51AA80A5859DCE0054BE54563C00B3A2174018491A7E78FF00C1613C65AC7862
+              F3FE09DBA35AF8AAD3C39E17D73E36CFA6EBB6DAAEAB7F69A75FC0BE15D6E78E
+              1BB36644CF109E28240A011E6471123E5C8FD76F18F837C33E3FF0CEADE0FF00
+              17E911EB7E1CBE8C47716F2315E8432B2B290C8EACAACAEA43232AB2904035F3
+              969296BE1BF1DFC38F87FF00B4069765E39D574BD4E4BEF863E3BD4EC227924B
+              936B2C0D13BEDC5BEA42DA5B88CB20517113C85319962400F1AFF8248C9E3D97
+              FE09C7FB2849F1465F164FF10CF875FF00B61FC6824FB619FED32EEF2CCBFBD3
+              67FF003EA65FDE1B5FB3993E7DD5FA314562F88FC45A1783FC3BAF78B3C4FAA4
+              1A178674AB29751D46F6E1F6C76F04485E4918F65555249F41401F84FF00B636
+              BC7C61FB7678F1527375A3F83FC03A47872DD19029B6BEB99EEAF6F00C72CAF6
+              EDA49C9C806360B83BF7794D70BE06D6F5AF1E8F167C69F1669B3693E33F881A
+              D4DE33D4ADAE942CD6C932AA5A5AC807CA1EDEC62B3B638E0FD9F24B1258F754
+              005145140051451401C9EB1A53788FE20FECCFE148A51692DF7C5FF0ADD2CCCB
+              9082CB56B7D45863FDA5B2641E85C1ED8AFE8E7E276857BE26F875E35F0EE9BE
+              1EB2F15DFDF69735AC3A5EA3ABCDA7DBDD332102392E618E4921539C1748DD97
+              A8538C57E0C7C05D07FE137FDB57F654F0AAC713DBE8B3EAFF00102FD2E13747
+              2C16960F6288060FEF05D6A9692AE4003C86390C141FE88A803F307FE094BFB2
+              BFED2FFB217ECF5AA7C27FDAA7C55A37C4EF8896DACCAB65E31D37C65A96AF73
+              AB69A8C52C85E0BC82110CF15B08613E502B2797BDBE7662DFA7D45140051451
+              40057C97E11FF93EAFDA0BFEC92F83BFF4E7E21AFAD2BE4BF08FFC9F57ED05FF
+              006497C1DFFA73F10D007D695CCF8C3C1BE19F1FF86755F07F8BF488F5AF0EDE
+              C6127B7762A72AC191D19486475655657521919559486008E9A8A00F9C7C1BE3
+              0F127C33F12691F08BE2E6ACFAD417AE6DFC1FE2F9D428D540048B3BAC00A97C
+              A809E30B3AAB3A005648E3FCFCFF0082807C70B6F8A7E255FD967C1D72B73E11
+              D1AF2D755F8857B19CABCF1BA5C5A6968C0904EE4496752384302F3E6B6DFD51
+              F8A7F0EF4BF8AFF0FBC4DF0EF58BC9B4CD3B548040F776B1C666B721832CB097
+              5654954A8647C128EAAC39515F83DF15BE02788BF64BF1458F81F5C9A5D7BE18
+              EAD7B29F0AF8B26E64BB99D9A57B5BE6C7FC7F125DBCC3FF001F386907CFE622
+              807314514500145145001451585E27F1168FE0EF0D7887C5BE20BA161A069561
+              36A37D391C470C485DDBF05526803EC9FF00826C78464F13FC7DFDA3FE2E5DC4
+              25D33C35A569DF0F34770C4186EA55FED2D44103860F14BA363392BE5B6DC6F6
+              CFECE57C75FB067C1BD5BE0B7ECC3F0F74BF1868FF00D8BF1435E47F1878C209
+              1732C5A9DE9F3E4B791FAC9F67568ED55B8FDDDB4602A2808BF62D0014514500
+              1451450015F25F847FE4FABF682FFB24BE0EFF00D39F886BEB4AF92FC23FF27D
+              5FB417FD925F077FE9CFC43401F5A51451400571FE3EF00783BE28F837C41F0F
+              BC7FE1F83C4FE0ED56DCDADF58DC0215D720820821959582B2BA90CACAACA410
+              08EC28A00FE7B7E33FC17F18FECC7E32B0F08F8B6FAE3C51F0E354B830784BC5
+              B3AAEE9DB69616377B4055BB555621800B32A965C30744E26BFA18F1F7803C1B
+              F147C1BAFF00C3FF00881E1EB7F14F83B54B7FB35F58DCA9DAEB90410460AB2B
+              05657521959559482011F839F19BE0BF8CBF663F18D87843C5B7D71E29F873AA
+              4FE4784BC5B3A0DD70D824595D950152ED55490D8559D4164018488801C55145
+              140056EFC1DF860DFB417ED1FF000BFE15794D2783FC3B7769F113C5F3C3C343
+              0D9DCACBA75BEEE88D3DF42879077436B74A3070EBC078ABC450785341BBD664
+              D3AEB59B8568EDACF4EB08BCCB8BEB995D6282DA14C8DD2CB2BC71A2E7E67751
+              DEBF6BFF00630FD9C6EBF675F85335AF8AE7B7D47E2EF896F0788BC657768E5E
+              117AD0A462DE062031B78638D224C804ED672033B5007D774514500145145001
+              451450015F25F847FE4FABF682FF00B24BE0EFFD39F886BEB4AF92FC23FF0027
+              D5FB417FD925F077FE9CFC43401F5A5145140051451400571DE3FF0087FE0DF8
+              A5E0DD7FE1F7C40F0F5BF8A3C1FAA41F67BDB1B853B5802195948C323AB2AB2B
+              A90C8CAACA41008EC68A00FE7AFE337C18F18FECC5E31B0F0878BAFA7F137C39
+              D52730784BC5B3A806E0F2458DD9002A5DAA8E1B859D559940659234E0EEAEAD
+              6C2D6E2F6F6E23B2B282369669A570A91A28C9624F00003935FD0FF8FF00E1FF
+              00837E29F833C41F0FBE20787E0F13783F54B736D7B653E4065C821959486475
+              60ACAEA43232AB290C011F919F0B3F60CF88B37ED29E21F097C63D3EE35DFD97
+              FC21716DAC785759BB9ED6493C5F295DCB6D7B0A31291DB3300DBA35FB4BA230
+              11A2B24A01D47EC29FB385F78DBC4B63FB4FFC4FD125B0F0ED86F87E1CE8B7B6
+              F8F391D232DAD4A8C372487F79140B80562324996FB42AC5FAF9451400514514
+              005145140051451400571563F0FF00C33A77C45F137C53B5B5913C61ABE8961E
+              1FBD98CC4A35AD9CD75340A13A021EFAE324727207F08AED68A0028A28A0028A
+              28A0028A28A0028A28A0028A28A0028A28A0028A28A0028A28A00FFFD9
+            }
+          end
+          object Image2: TImage
+            Left = 271
+            Height = 177
+            Top = 170
+            Width = 136
+            Center = True
+            Picture.Data = {
+              0A544A706567496D616765080F0000FFD8FFE000104A46494600010201006000
+              600000FFFE010208796E04020000000200000005000000070000000B0000000B
+              0000000B000000020000000200000002000000070000000B0000000B0000000B
+              0000000B0000000200000002000000060000000B0000000B0000000B0000000B
+              0000000B00000005000000070000000B0000000B0000000B0000000B0000000B
+              0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
+              0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
+              0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
+              0000000B0000000B0000000B0000000B0000000B0000000B0000000B0000000B
+              0000000B000000FFC00011080096008803012200021101031101FFDB00840001
+              0101010101010101010201010202040202020202050404030406050706060506
+              0607080A0807070A070606090C090A0A0B0B0B0B07080D0D0C0B0D0A0B0B0B01
+              010202020202050202050B070607070B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
+              0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B
+              FFC401A20000010501010101010100000000000000000102030405060708090A
+              0B100002010303020403050504040000017D0102030004110512213141061351
+              6107227114328191A1082342B1C11552D1F02433627282090A161718191A2526
+              2728292A3435363738393A434445464748494A535455565758595A6364656667
+              68696A737475767778797A838485868788898A92939495969798999AA2A3A4A5
+              A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DA
+              E1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FA010003010101010101010101
+              0000000000000102030405060708090A0B110002010204040304070504040001
+              0277000102031104052131061241510761711322328108144291A1B1C1092333
+              52F0156272D10A162434E125F11718191A262728292A35363738393A43444546
+              4748494A535455565758595A636465666768696A737475767778797A82838485
+              868788898A92939495969798999AA2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BA
+              C2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6E7E8E9EAF2F3F4F5F6
+              F7F8F9FAFFDA000C03010002110311003F00FEFE28A2BE5DF837FB66FECDDF1F
+              FC65ADFC3FF847E3F9BC59E2CD32EB52B1D46D06817D6E2D67D3EE52D6F6191E
+              58511248A79123642436EC800ED3800CAF06FEDC7FB3478DEDBF688D434AF1E4
+              BA7E89F0B59DFC59A86A5A4DCDB40B6C9630DF35E5BBC8805CDA882E236F3A2D
+              C87208255919BD23E08FED21F03FF690D2350D7FE06FC43B2F88FA15A43653CD
+              79A7C7279412EED23BCB621994060F6F34320C67E59109C6457CEDE01B3F1CDF
+              EB1FF0541B0F86363A06A5F1127F8891C3A1DB78A84A74C96E9BC15A08892EC4
+              40C9E416203ED05B6E702BA9FF00827E7EC75E14FD83FF00652F869FB36784E6
+              17B068E2E2EAEEE0CCD2932CF3BCA21595C0924860468EDA1327CE20B7814FDD
+              00007D9F45145001451450014514500145145001451450014514500145145001
+              5F821F14BF65EFDAA3F630FD983FE0A37FB4E7ECD09A71FDBCFE2C78E748F18C
+              F67F0DBC24D7D6C1609ACEC9E382D2E565792492D96EE799981DB25C4A540D81
+              CFEF7D1401F077EC81A7FC47B2F8E3FF00051F7F1CF8AF43F1169D27C62B33A5
+              C3A4787A6B27B74FF845345216577BA984A7CA6B75CAAC7F3472360091638FEF
+              1AF917F66CFF0092C9FF000501FF00B2BB65FF00A876815F5D50015F9C3FB77F
+              ED37F1C7E05F8AFE04781BE074BE13D3352F1441AB5EDFDFF8AF40B9D4638E3B
+              316C15238A0BBB62198DD64B172004C6DE723F47ABF1CFFE0A65FF0025CBF640
+              FF00B0378A3F9E9B401E47FF000DA5FB7FFF00D0FBF077FF000D56ABFF00CBBA
+              3FE1B4BF6FFF00FA1F7E0EFF00E1AAD57FF9775E3F45007B07FC3697EDFF00FF
+              0043EFC1DFFC355AAFFF002EE8FF0086D2FDBFFF00E87DF83BFF0086AB55FF00
+              E5DD78FD1401EC1FF0DA5FB7FF00FD0FBF077FF0D56ABFFCBBA3FE1B4BF6FF00
+              FF00A1F7E0EFFE1AAD57FF009775E3F45007B07FC3697EDFFF00F43EFC1DFF00
+              C355AAFF00F2EE8FF86D2FDBFF00FE87DF83BFF86AB55FFE5DD78FD1401FB77F
+              B20FC5CF12FC7DFD95FF00678F8DBE33B2B0D3BC5DE2BF06E9DAFEA906970BC7
+              6C9713DBAC920895DDD953731C06762060163D6BE8DAF887FE09A5FF0028F8FD
+              8B7FEC99E8DFFA491D7DBD4005145140051451401F22FECD9FF2593FE0A03FF6
+              576CBFF50ED02BEBAAF917F66CFF0092C9FF000501FF00B2BB65FF00A876815F
+              5D50015F8E7FF0532FF92E5FB207FD81BC51FCF4DAFD8CAFC73FF82997FC972F
+              D903FEC0DE28FE7A6D007C8745145001451450014514500145145007EB57FC13
+              4BFE51F1FB16FF00D933D1BFF4923AFB7ABE21FF0082697FCA3E3F62DFFB267A
+              37FE92475F6F50014514500145145007C8BFB367FC964FF8280FFD95DB2FFD43
+              B40AFAEABE45FD9B3FE4B27FC1407FECAED97FEA1DA057D7540057E39FFC14CB
+              FE4B97EC81FF00606F147F3D36BF632BF1CFFE0A65FF0025CBF640FF00B0378A
+              3F9E9B401F21D1451400514514005145140051451401FAD5FF0004D2FF00947C
+              7EC5BFF64CF46FFD248EBEDEAF887FE09A5FF28F8FD8B7FEC99E8DFF00A491D7
+              DBD40051451400514556BB9A4B5B3B9B882CE4D4258E2674B784A87908190AA5
+              885C9E83240F522803E4EFD9B3FE4B27FC1407FECAED97FEA1DA057D755F933F
+              B3C7ED0DF172D7E2E7EDDB341FB08FC56BF92E3E2B59CD2C30EB1E120D6AC3C2
+              5A1208DF76B20162AAAFF2165DAEBCEE0CABF567FC3497C64FFA47EFC5DFFC1D
+              783BFF00977401F5D57E39FF00C14CBFE4B97EC81FF606F147F3D36BED2FF869
+              2F8C9FF48FDF8BBFF83AF077FF002EEBF23FFE0A39F1EFE2A6A3F1ABF64E9AEF
+              F625F89FA0490E8FE2558E1BBD5BC2CCD3063A764AF97ABBA80B819DC57EF0C6
+              79C0060D15F37FFC2F1F89BFF466FF00123FF069E19FFE5AD1FF000BC7E26FFD
+              19BFC48FFC1A7867FF0096B401F48515F37FFC2F1F89BFF466FF00123FF069E1
+              9FFE5AD1FF000BC7E26FFD19BFC48FFC1A7867FF0096B401F48515F37FFC2F1F
+              89BFF466FF00123FF069E19FFE5AD1FF000BC7E26FFD19BFC48FFC1A7867FF00
+              96B401F48515F37FFC2F1F89BFF466FF00123FF069E19FFE5AD1FF000BC7E26F
+              FD19BFC48FFC1A7867FF0096B401FBF5FF0004D2FF00947C7EC5BFF64CF46FFD
+              248EBEDEAFC78FF8274FED09F16F4CFD833F63DD3ACBF615F8A9E20B383E1CE9
+              11457D67ABF84D62B8516A803A09359470A7A8DC8A7D40E95EF9F183F6C4FDA0
+              3C05E0A93C47E1AFF8278FC54D57598EFAD6DE0D3AE354F0AB9BDF32748CC11F
+              95AD332C8C18ED62ACAA79701033000FD0BA2A3898BC513B44D033282636C657
+              D8E091F91A92800A28A2803E45FD9B3FE4B27FC1407FECAED97FEA1DA057D755
+              F22FECD9FF002593FE0A03FF006576CBFF0050ED02BEBAA002BF187FE0A9567F
+              DA1F173F654D3C5A5B5FF9FE1DF15C22DEF1374326E1A68DAE30728738231D33
+              5FB3D5F8E7FF000532FF0092E5FB207FD81BC51FCF4DA00FE51B50D37C5BFF00
+              046FF857F10BC7369E17F879E2ED33C69E33BDBCD2D94C9A647A1C5FD9779A9B
+              6982628ECD6DF69B5963B742721AF0753C37EE5FC3AF15CDE3BF87DE05F1C5CE
+              8571E16B8D6746B5D5A4D32EC625B369A2590C2FC0F99776D3C0E41E05765450
+              014514500145145007C89FB6FF00ECD571FB59FECFFAEFC14B23A369D7B7F7B0
+              5C5BEB1AB433349A4491B6E5BCB43132B2DD210361DC17960C194B23794FC03D
+              7FE23FC10F8CFF00007F626D5BC37E09D33C1D6DF05EFF00C4D7971E14D2A5B4
+              46D4AD352B4B62618B708E38644BB691976B37984FCD81F37E88D1401FAD5FF0
+              4D2FF947C7EC5BFF0064CF46FF00D248EBECBD66C86A3A3EABA71B2B5D416E2D
+              6480DBDEC7BA1977291B241839439C118E99AF8D3FE09A5FF28F8FD8B7FEC99E
+              8DFF00A491D7DBD401F93BFF0004C9FF0082776BBFB02EA3FB46DB5E8F025E78
+              5BC63E299BC4FE1F8FC33A1C96D71A0C1727CF9F47491F2CD611DDC9752C085B
+              E4FB430C57EB1514500145145007C8BFB367FC964FF8280FFD95DB2FFD43B40A
+              FAEABE45FD9B3FE4B27FC1407FECAED97FEA1DA057D7540057E39FFC14CBFE4B
+              97EC81FF00606F147F3D36BF632BF1CFFE0A65FF0025CBF640FF00B0378A3F9E
+              9B401F21D1451400514514005145140051451401FAD5FF0004D2FF00947C7EC5
+              BFF64CF46FFD248EBEDEAF887FE09A5FF28F8FD8B7FEC99E8DFF00A491D7DBD4
+              005145140189E257F1045E1BD7E4F08DBDA5CF8A92C656D2E2BE76581EE021F2
+              D642BC842DB724738CE2BF3BBFE09A5FB64FC67FDB3FE126B5F14FE35FC22D3B
+              E015CDBEAF2F8453C3B25D31BE8F5AD3E47B6D660752C418A1BC478236E1DCC3
+              2B1455285BF41BC67E0FF0F7C41F0778AFC03E2CB27D47C29AE6993E8FA9DB47
+              73242D2DBCD198E441246CAE84A330DCAC187504100D7E417ED01FF0477F097C
+              51FDA53F646F8D9F0D3E2358FC2EF047C2E8F498A3F0DDF78764D4E77363E25B
+              5D7DEE2DAF1EE55E1BABA96D5E1B99E4133CCB31672CD92C01F59FEC83F0E7C1
+              5E07F8E3FF000520D47C29A045A35EEA9F18ACE7BF9237626673E13D12624E49
+              03F793CADC63EF9F6AFBC2BE45FD9B3FE4B27FC1407FECAED97FEA1DA057D754
+              0057877C69FD9ABE02FED170786EDFE387C2AD1FE2647A3C92CBA51D52DB7B5A
+              B480093630C15DC117201C1DA3D057B8D1401F0BFF00C3B37F609FFA35BF0B7F
+              E02B7FF1547FC3B37F609FFA35BF0B7FE02B7FF155F7451401F0BFFC3B37F609
+              FF00A35BF0B7FE02B7FF001547FC3B37F609FF00A35BF0B7FE02B7FF00155F74
+              51401F0BFF00C3B37F609FFA35BF0B7FE02B7FF1547FC3B37F609FFA35BF0B7F
+              E02B7FF155F7451401F0BFFC3B37F609FF00A35BF0B7FE02B7FF001547FC3B37
+              F609FF00A35BF0B7FE02B7FF00155F7451401C9F813C0BE0EF861E0AF09FC38F
+              879E1AB3F06F81342D3A1D2346D274F8047059DB4481238A351C2AAAA8007A0A
+              EB28A2800A28A2800A28A2803E45FD9B3FE4B27FC1407FECAED97FEA1DA057D7
+              55E35F0BFE165D7C3EF1B7ED17E2CB8D5E3D4A1F1CF8CE0F14DBC11C254DA247
+              A2E9DA6F94C73F312DA7B3E4638900C7193ECB40051451400514514005145140
+              0514514005145140051451400514514005145140051451400514514005145140
+              05145140051451400514514005145140051451401FFFD9
+            }
           end
         end
       end
@@ -1288,15 +1511,14 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
   object Panel3: TPanel
     Left = 0
     Height = 13
-    Top = 526
-    Width = 474
+    Top = 587
+    Width = 800
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 2
   end
   object ActionList1: TActionList
-    left = 557
-    top = 55
+    left = 448
     object SaveFile: TAction
       Caption = 'Save'
     end

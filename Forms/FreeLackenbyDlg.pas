@@ -32,19 +32,14 @@ unit FreeLackenbyDlg;
 interface
 
 uses
-    {$IFDEF Windows}
+{$IFDEF Windows}
   Windows,
   shlobj,
-    {$ELSE}
+{$ELSE}
   LCLIntf, LCLType, LMessages,
-          {$IFDEF VER3}
+{$ENDIF}
   LazUTF8,
   LazFileUtils,
-     {$ELSE}
-  FileUtil, //deprecated
-     {$ENDIF}
-
-    {$ENDIF}
   Messages,
   SysUtils,
   Classes,
@@ -56,7 +51,7 @@ uses
   Buttons,
   FreeTypes,
   FreeGeometry,
-  FreeshipUnit,
+  FreeShipUnit,
   FreeLanguageSupport,
   ExtCtrls,
   FasterList,
@@ -165,7 +160,8 @@ type
     FOriginalSectionalAreaCurve: TFreeSpline;
     FNewSectionalAreaCurve: TFreeSpline;
     procedure FCalulateHydrostaticProperties(Wlplane: T3DPlane;
-      MainArea: TFloatType; Stations: TFasterListTFreeIntersection; var Prop: TBodyProp; SAC: TFreeSpline);
+      MainArea: TFloatType; Stations: TFasterListTFreeIntersection;
+      var Prop: TBodyProp; SAC: TFreeSpline);
     procedure FUpdateData(SAC: TFreeSpline);
     procedure FCopyValues;
     procedure FUpdateDifferences;
@@ -747,6 +743,7 @@ begin
     BackgroundImage.Visible := True;
     BorderStyle := bsSingle;
     CameraType := ftStandard;
+    Color:=clBackground;
     DoubleBuffer := True;
     Elevation := 0;
     Margin := 0;
@@ -782,6 +779,7 @@ begin
     BackgroundImage.Visible := True;
     BorderStyle := bsSingle;
     CameraType := ftStandard;
+    Color:=clBackground;
     DoubleBuffer := True;
     Elevation := 90;
     Margin := 0;

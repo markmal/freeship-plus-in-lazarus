@@ -8,7 +8,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   ClientHeight = 600
   ClientWidth = 1000
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Splitter2: TSplitter
     Cursor = crVSplit
     Left = 0
@@ -139,8 +139,9 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Alignment = taRightJustify
           Constraints.MinWidth = 80
           DecimalPlaces = 3
+          Increment = 0.1
           MinValue = 0
-          OnExit = Input1AfterSetValue
+          OnEditingDone = Input1AfterSetValue
           TabOrder = 1
           Value = 0
         end
@@ -196,8 +197,9 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
+          Increment = 0.01
           MinValue = 0
-          OnExit = Input2AfterSetValue
+          OnEditingDone = Input2AfterSetValue
           TabOrder = 4
           Value = 0
         end
@@ -250,8 +252,9 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
+          Increment = 0.01
           MinValue = 0
-          OnExit = Input3AfterSetValue
+          OnEditingDone = Input3AfterSetValue
           TabOrder = 7
           Value = 0
         end
@@ -304,6 +307,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 3
+          Increment = 0.1
           MinValue = 0
           TabOrder = 10
           Value = 0

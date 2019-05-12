@@ -61,56 +61,61 @@ type
 { TFreeLayerDialog }
 
  TFreeLayerDialog  = class(TForm)
+                         CheckBox1: TCheckBox;
+                         CheckBox2: TCheckBox;
+                         CheckBox3: TCheckBox;
+                         CheckBox4: TCheckBox;
+                         CheckBox5: TCheckBox;
+                         CheckBox6: TCheckBox;
+                         Edit1: TEdit;
+                         Edit2: TFloatSpinEdit;
+                         Edit3: TFloatSpinEdit;
+                         GroupBox1: TGroupBox;
+                         Label1: TLabel;
+                         Label2: TLabel;
+                         Label3: TLabel;
+                         Label4: TLabel;
+                         Label5: TLabel;
                          Label6_: TLabel;
+                         Label6_0: TLabel;
+                         Label6_1: TLabel;
+                         Label6_1_: TLabel;
+                         Label6_2: TLabel;
+                         Label6_3: TLabel;
+                         Label6_4: TLabel;
+                         Label7: TLabel;
+                         Label8: TLabel;
+                         Label9: TLabel;
                            Panel1: TPanel;
                            Panel2: TPanel;
-                           Edit1: TEdit;
-                           Label1: TLabel;
                            Panel3: TPanel;
-                           Label2: TLabel;
-                           CheckBox1: TCheckBox;
+                           Panel4: TPanel;
+                           Panel5: TPanel;
+                           Panel6: TPanel;
+                           Panel7: TPanel;
+                           Panel8: TPanel;
+                           Panel9: TPanel;
                            ToolBar1: TToolBar;
                            ToolButton20: TToolButton;
                            MenuImages: TImageList;
                            ColorDialog: TColorDialog;
                            ToolButton1: TToolButton;
-                           _ToolButton2: TToolButton;
-                           ToolButton3: TToolButton;
-                           CheckBox2: TCheckBox;
-                           CheckBox3: TCheckBox;
-                           Label3: TLabel;
-                           Edit2: TFloatSpinEdit;
-                           _Label4: TLabel;
-                           Label5: TLabel;
-                           Edit3: TFloatSpinEdit;
-                           _Label6: TLabel;
-                           LayerBox: TCheckListBox;
-                           MoveUp: TToolButton;
-                           MoveDown: TToolButton;
-                           GroupBox1: TGroupBox;
-                           Label7: TLabel;
-                           Label8: TLabel;
-                           Label9: TLabel;
-                           CheckBox6: TCheckBox; //Set weight and coord. of CoG manually
-                           WeightBox: TFloatSpinEdit; // Weight
-                           XgBox    : TFloatSpinEdit;
-						               YgBox    : TFloatSpinEdit;
-						               ZgBox    : TFloatSpinEdit;
-                           Label6_0: TLabel; // t
-                           Label6_1: TLabel; // Coordinates center of gravity,        :
-                           Label6_1_: TLabel; // m
-                           Label6_2: TLabel; // X:
-                           Label6_3: TLabel; // Y:
-                           Label6_4: TLabel; // Z:
+                           AlphaBar: TTrackBar;
+                           WeightBox: TFloatSpinEdit;
+                           XgBox: TFloatSpinEdit;
+                           YgBox: TFloatSpinEdit;
+                           ZgBox: TFloatSpinEdit;
                            _Label10: TLabel;
                            _Label11: TLabel;
                            _Label12: TLabel;
+                           _Label4: TLabel;
+                           _Label6: TLabel;
+                           _ToolButton2: TToolButton;
+                           ToolButton3: TToolButton;
+                           LayerBox: TCheckListBox;
+                           MoveUp: TToolButton;
+                           MoveDown: TToolButton;
                            _ToolButton4: TToolButton;
-                           CheckBox4: TCheckBox;
-                           CheckBox5: TCheckBox;
-                           Label4: TLabel;
-                           AlphaBar: TScrollBar;
-                           _Label1: TLabel;
                            procedure LayerBoxClick(Sender: TObject);
                            procedure LayerBoxClickCheck(Sender: TObject);
                            procedure LayerBoxDblClick(Sender: TObject);
@@ -330,8 +335,8 @@ begin
   _Label12.Caption:=Makelength(Prop.SurfaceCenterOfGravity.X,2,7)+','+
                   Makelength(Prop.SurfaceCenterOfGravity.Y,2,7)+', '+
                   Makelength(Prop.SurfaceCenterOfGravity.Z,2,7)+#32+LengthStr(FFreeship.ProjectSettings.ProjectUnits);
-  Alphabar.Position:=255-Layer.AlphaBlend;
-  _label1.Caption:=FloatToStrF(100*(255-Layer.AlphaBlend)/255,ffFixed,7,1)+'%';
+  AlphaBar.Position:=255-Layer.AlphaBlend;
+  //_label1.Caption:=FloatToStrF(100*(255-Layer.AlphaBlend)/255,ffFixed,7,1)+'%';
   UpdateMenu;
 end;{TFreeLayerDialog.LayerBoxClick}
 
@@ -554,11 +559,11 @@ end;{TFreeLayerDialog.CheckBox6Click}
 procedure TFreeLayerDialog.AlphaBarChange(Sender: TObject);
 var val:byte;
 begin
-   Val:=255-Alphabar.Position;
+   Val:=255-((Alphabar.Position*100) div 255);
    if SelectedLayer<>nil then if SelectedLayer.AlphaBlend<>val then
    begin
       SelectedLayer.AlphaBlend:=val;
-      _label1.Caption:=FloatToStrF(100*(255-SelectedLayer.AlphaBlend)/255,ffFixed,7,1)+'%';
+      //_label1.Caption:=FloatToStrF(100*(255-SelectedLayer.AlphaBlend)/255,ffFixed,7,1)+'%';
       FFreeShip.FileChanged:=true;
       FFreeShip.Redraw;
    end;

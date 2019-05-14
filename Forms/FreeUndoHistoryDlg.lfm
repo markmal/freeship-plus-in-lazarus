@@ -8,7 +8,7 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
   ClientWidth = 684
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel: TPanel
     Left = 0
     Height = 24
@@ -137,7 +137,6 @@ object FreeUndoHistoryDialog: TFreeUndoHistoryDialog
       Height = 392
       Top = 9
       Width = 5
-      Color = clBtnFace
       ParentColor = False
     end
     object UndoBox: TListBox

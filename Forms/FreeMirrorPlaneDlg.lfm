@@ -1,96 +1,118 @@
 object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
   Left = 671
-  Height = 191
+  Height = 300
   Top = 411
-  Width = 205
+  Width = 400
   BorderStyle = bsDialog
   Caption = 'Mirror'
-  ClientHeight = 191
-  ClientWidth = 205
-  Color = clBtnFace
+  ClientHeight = 300
+  ClientWidth = 400
   Position = poMainFormCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.2.0'
   object Panel2: TPanel
     Left = 0
-    Height = 154
+    Height = 263
     Top = 24
-    Width = 205
+    Width = 400
     Align = alClient
-    BevelOuter = bvLowered
-    ClientHeight = 154
-    ClientWidth = 205
+    BevelOuter = bvNone
+    ChildSizing.LeftRightSpacing = 10
+    ChildSizing.TopBottomSpacing = 10
+    ChildSizing.VerticalSpacing = 10
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 263
+    ClientWidth = 400
     TabOrder = 0
     object GroupBox1: TGroupBox
-      Left = 11
-      Height = 144
-      Top = 8
-      Width = 184
+      Left = 10
+      Height = 89
+      Top = 10
+      Width = 193
       Caption = '3D Mirror plane. '
-      ClientHeight = 126
-      ClientWidth = 176
+      ClientHeight = 72
+      ClientWidth = 189
+      Color = clForm
+      ParentColor = False
       TabOrder = 0
-      object Label1: TLabel
-        Left = 8
-        Height = 14
-        Top = 82
-        Width = 49
-        Caption = 'Distance'
-        ParentColor = False
-      end
       object RadioButton1: TRadioButton
         Left = 8
-        Height = 20
+        Height = 21
         Top = 7
-        Width = 122
+        Width = 133
         Caption = 'Transverse plane'
         TabOrder = 0
       end
       object RadioButton2: TRadioButton
         Left = 8
-        Height = 20
+        Height = 21
         Top = 29
-        Width = 120
+        Width = 130
         Caption = 'Horizontal plane'
         TabOrder = 1
       end
       object RadioButton3: TRadioButton
         Left = 8
-        Height = 20
+        Height = 21
         Top = 51
-        Width = 104
+        Width = 112
         Caption = 'Vertical plane'
         Checked = True
         TabOrder = 2
         TabStop = True
       end
+    end
+    object Panel4: TPanel
+      Left = 10
+      Height = 25
+      Top = 109
+      Width = 193
+      BevelOuter = bvNone
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      ClientHeight = 25
+      ClientWidth = 193
+      TabOrder = 1
+      object Label1: TLabel
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 57
+        Caption = 'Distance'
+        Layout = tlCenter
+        ParentColor = False
+      end
       object Edit1: TFloatSpinEdit
-        Left = 82
-        Height = 24
-        Top = 74
-        Width = 83
+        Left = 63
+        Height = 25
+        Top = 0
+        Width = 100
         Alignment = taRightJustify
+        Constraints.MinWidth = 100
         DecimalPlaces = 4
+        MinValue = 0
+        TabOrder = 0
         Value = 0
-        TabOrder = 3
       end
-      object CheckBox1: TCheckBox
-        Left = 6
-        Height = 20
-        Top = 103
-        Width = 173
-        Alignment = taLeftJustify
-        Caption = 'Connect to existing points'
-        Checked = True
-        State = cbChecked
-        TabOrder = 4
-      end
+    end
+    object CheckBox1: TCheckBox
+      Left = 10
+      Height = 21
+      Top = 144
+      Width = 193
+      Alignment = taLeftJustify
+      Caption = 'Connect to existing points'
+      Checked = True
+      State = cbChecked
+      TabOrder = 2
     end
   end
   object Panel3: TPanel
     Left = 0
     Height = 13
-    Top = 178
-    Width = 205
+    Top = 287
+    Width = 400
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
@@ -99,15 +121,15 @@ object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 205
+    Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 205
+    ClientWidth = 400
     TabOrder = 2
     object BitBtn1: TSpeedButton
-      Left = 41
+      Left = 236
       Height = 20
       Top = 2
       Width = 80
@@ -156,7 +178,7 @@ object FreeMirrorPlaneDialog: TFreeMirrorPlaneDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 123
+      Left = 318
       Height = 20
       Top = 2
       Width = 80

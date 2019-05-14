@@ -7,7 +7,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   ClientHeight = 739
   ClientWidth = 970
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -18,7 +18,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False

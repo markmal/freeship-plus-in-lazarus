@@ -59,15 +59,16 @@ type
  TFreeMirrorPlaneDialog  = class(TForm)
                                 BitBtn1: TSpeedButton;
                                 BitBtn2: TSpeedButton;
+                                CheckBox1: TCheckBox;
+                                Edit1: TFloatSpinEdit;
                                  GroupBox1: TGroupBox;
+                                 Label1: TLabel;
                                  Panel1: TPanel;
                                  Panel2: TPanel;
+                                 Panel4: TPanel;
                                  RadioButton1: TRadioButton;
                                  RadioButton2: TRadioButton;
                                  RadioButton3: TRadioButton;
-                                 Edit1: TFloatSpinEdit;
-                                 Label1: TLabel;
-                                 CheckBox1: TCheckBox;
                                  Panel3: TPanel;
                                  procedure BitBtn1Click(Sender: TObject);
                                  procedure BitBtn2Click(Sender: TObject);

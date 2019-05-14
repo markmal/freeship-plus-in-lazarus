@@ -486,13 +486,13 @@ begin
     result := false;
   end;
 
-  if FFaces.Count < 1 then
+  if (FFaces <> nil) and (FFaces.Count < 1) then
   begin
     logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FFaces empty',[]));
     result := false;
   end;
 
-  if FEdges.Count < 1 then
+  if (FEdges <> nil) and (FEdges.Count < 1) then
   begin
     logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FEdges empty',[]));
     result := false;

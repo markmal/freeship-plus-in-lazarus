@@ -10,7 +10,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
   ClientWidth = 598
   ParentFont = True
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 24
@@ -136,6 +136,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
     ChildSizing.ControlsPerLine = 2
     ClientHeight = 128
     ClientWidth = 598
+    ParentColor = False
     TabOrder = 1
     object Label7: TLabel
       Left = 10
@@ -163,7 +164,6 @@ object DXFExport2DDialog: TDXFExport2DDialog
         Height = 25
         Top = 0
         Width = 260
-        Color = clBtnFace
         Constraints.MinWidth = 260
         ReadOnly = True
         TabOrder = 0
@@ -247,7 +247,6 @@ object DXFExport2DDialog: TDXFExport2DDialog
   end
   object SaveDialog: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist, ofEnableSizing]
-    left = 360
-    top = 8
+    left = 376
   end
 end

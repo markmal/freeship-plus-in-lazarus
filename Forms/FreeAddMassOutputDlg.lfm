@@ -8,7 +8,7 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
   ClientWidth = 694
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 24
@@ -259,7 +259,6 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
               Top = 91
               Width = 80
               Alignment = taRightJustify
-              Color = clBtnFace
               DecimalPlaces = 3
               MinValue = 0
               OnExit = Edit4AfterSetValue
@@ -273,7 +272,6 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
               Top = 118
               Width = 80
               Alignment = taRightJustify
-              Color = clBtnFace
               DecimalPlaces = 3
               MinValue = 0
               OnExit = Edit5AfterSetValue
@@ -573,7 +571,6 @@ object FreeAddMassOutputDialog: TFreeAddMassOutputDialog
               Top = 37
               Width = 80
               Alignment = taRightJustify
-              Color = clBtnFace
               DecimalPlaces = 4
               MaxValue = 1.61
               MinValue = 0

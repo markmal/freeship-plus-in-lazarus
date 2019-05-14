@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="133"/>
+      <BuildNr Value="135"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -131,7 +131,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="77">
+    <Units Count="78">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -150,7 +150,7 @@
       <Unit3>
         <Filename Value="Forms/freehullformwindow_panel.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FreeHullWindow"/>
+        <ComponentName Value="FreeHullForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit3>
@@ -608,6 +608,13 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LightDialog"/>
       </Unit76>
+      <Unit77>
+        <Filename Value="Forms/FreeHydrodyn_ManeuvDlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeHydrodyn_Maneuv"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit77>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

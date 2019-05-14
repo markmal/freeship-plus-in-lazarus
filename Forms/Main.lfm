@@ -21,7 +21,7 @@ object MainForm: TMainForm
   OnWindowStateChange = FormWindowStateChange
   Position = poDefault
   ShowHint = True
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object StatusBar: TPanel
     Left = 0
     Height = 20

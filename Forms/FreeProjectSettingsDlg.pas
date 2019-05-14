@@ -51,20 +51,67 @@ uses
   FreeGeometry,
   FreeShipUnit,
   FreeLanguageSupport,
-  Buttons, ComCtrls;
+  Buttons, ComCtrls, Spin;
 
 type
 
   { TFREEProjectSettingsDialog }
 
   TFREEProjectSettingsDialog = class(TForm)
+    CheckBox11: TCheckBox;
+    CheckBox12: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox5: TCheckBox;
+    CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
+    CheckBox8: TCheckBox;
+    CheckBox9: TCheckBox;
+    ComboBox1: TComboBox;
+    Edit2: TFloatSpinEdit;
+    Edit25: TFloatSpinEdit;
+    Edit26: TFloatSpinEdit;
+    Edit27: TFloatSpinEdit;
+    Edit3: TFloatSpinEdit;
+    Edit4: TFloatSpinEdit;
+    Edit5: TFloatSpinEdit;
+    Edit6: TFloatSpinEdit;
+    Edit8: TFloatSpinEdit;
+    GroupBox1: TGroupBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label2: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
     Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label9: TLabel;
     Panel1: TPanel;
+    Panel10: TPanel;
+    Panel11: TPanel;
+    Panel12: TPanel;
+    Panel13: TPanel;
     Panel3: TPanel;
     ColorDialog: TColorDialog;
     BitBtn1: TSpeedButton;
     BitBtn2: TSpeedButton;
     PageControl1: TPageControl;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
     PrecisionBox: TComboBox;
     TabSheet1: TTabSheet;
     Panel: TPanel;
@@ -85,78 +132,22 @@ type
     Panel2: TPanel;
     TabSheet3: TTabSheet;
     Panel5: TPanel;
-    Label2: TLabel;
-    Edit2: TEdit;
-    Label9: TLabel;
-    Label10: TLabel;
-    Edit3: TEdit;
-    Label3: TLabel;
-    Label4: TLabel;
-    Edit4: TEdit;
-    Label11: TLabel;
-    Label13: TLabel;
-    Edit8: TEdit;
-    CheckBox2: TCheckBox;
-    Label14: TLabel;
-    GroupBox1: TGroupBox;
-    Label18: TLabel;
-    Label19: TLabel;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
-    CheckBox7: TCheckBox;
-    CheckBox8: TCheckBox;
-    CheckBox9: TCheckBox;
-    Label5: TLabel;
-    Edit5: TEdit;
-    Label12: TLabel;
-    Label6: TLabel;
-    Edit6: TEdit;
-    Label17: TLabel;
     Edit17: TEdit;
-    Label25: TLabel;
-    Edit25: TEdit;
-    Label20: TLabel;
-    Label21: TLabel;
-    Label22: TLabel;
-    Label23: TLabel;
-    Edit26: TEdit;
-    Edit27: TEdit;
-    CheckBox11: TCheckBox;
-    CheckBox12: TCheckBox;
-    ComboBox1: TComboBox;
     CheckBox10: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox13: TCheckBox;
     CheckBox14: TCheckBox;
-    procedure Edit2KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit2Exit(Sender: TObject);
-    procedure Edit3KeyPress(Sender: TObject;
-      var Key: char);
-    procedure EditExit(Sender: TObject);
-    procedure Edit4KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit4Exit(Sender: TObject);
-    procedure Edit5KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit5Exit(Sender: TObject);
-    procedure Edit25KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit25Exit(Sender: TObject);
-    procedure Edit6KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit6Exit(Sender: TObject);
+    procedure Edit2EditingDone(Sender: TObject);
+    procedure Edit3EditingDone(Sender: TObject);
+    procedure Edit4EditingDone(Sender: TObject);
+    procedure Edit5EditingDone(Sender: TObject);
+    procedure Edit25EditingDone(Sender: TObject);
+    procedure Edit6EditingDone(Sender: TObject);
     procedure Panel4Click(Sender: TObject);
-    procedure UnitboxClick(Sender: TObject);
-    procedure Edit8Exit(Sender: TObject);
-    procedure Edit8KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit26Exit(Sender: TObject);
-    procedure Edit26KeyPress(Sender: TObject;
-      var Key: char);
-    procedure Edit27Exit(Sender: TObject);
-    procedure Edit27KeyPress(Sender: TObject;
-      var Key: char);
+    procedure UnitboxChange(Sender: TObject);
+    procedure Edit8EditingDone(Sender: TObject);
+    procedure Edit26EditingDone(Sender: TObject);
+    procedure Edit27EditingDone(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
     procedure CheckBox11Click(Sender: TObject);
     procedure CheckBox12Click(Sender: TObject);
@@ -387,74 +378,32 @@ begin
   Result := Modalresult = mrOk;
 end;{TFREEProjectSettingsDialog.Execute}
 
-procedure TFREEProjectSettingsDialog.Edit2KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit2KeyPress}
-
-procedure TFREEProjectSettingsDialog.Edit2Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit2EditingDone(Sender: TObject);
 begin
   Length := Length; // force repaint
 end;{TFREEProjectSettingsDialog.Edit2Exit}
 
-procedure TFREEProjectSettingsDialog.Edit3KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit3KeyPress}
-
-procedure TFREEProjectSettingsDialog.EditExit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit3EditingDone(Sender: TObject);
 begin
   Beam := Beam;
 end;{TFREEProjectSettingsDialog.Edit3Exit}
 
-procedure TFREEProjectSettingsDialog.Edit4KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit4KeyPress}
-
-procedure TFREEProjectSettingsDialog.Edit4Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit4EditingDone(Sender: TObject);
 begin
   Draft := Draft;
 end;{TFREEProjectSettingsDialog.Edit4Exit}
 
-procedure TFREEProjectSettingsDialog.Edit5KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit5KeyPress}
-
-procedure TFREEProjectSettingsDialog.Edit5Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit5EditingDone(Sender: TObject);
 begin
   Density := Density;
 end;{TFREEProjectSettingsDialog.Edit5Exit}
 
-procedure TFREEProjectSettingsDialog.Edit25KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit25KeyPress}
-
-procedure TFREEProjectSettingsDialog.Edit25Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit25EditingDone(Sender: TObject);
 begin
   Temper := Temper;
 end;{TFREEProjectSettingsDialog.Edit25Exit}
 
-procedure TFREEProjectSettingsDialog.Edit6KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit6KeyPress}
-
-procedure TFREEProjectSettingsDialog.Edit6Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit6EditingDone(Sender: TObject);
 begin
   Coefficient := Coefficient;
 end;{TFREEProjectSettingsDialog.Edit6Exit}
@@ -468,8 +417,9 @@ begin
   end;
 end;{TFREEProjectSettingsDialog.Panel4Click}
 
-procedure TFREEProjectSettingsDialog.UnitboxClick(Sender: TObject);
+procedure TFREEProjectSettingsDialog.UnitboxChange(Sender: TObject);
 begin
+
   Length := Length / ConversionFactor;
   Beam := Beam / Conversionfactor;
   Draft := Draft / Conversionfactor;
@@ -480,7 +430,9 @@ begin
     Density := Density / WeightConversionFactor;
   if (Unitbox.ItemIndex = 1) and (Conversionfactor = 1) then
     Density := Density * WeightConversionFactor;
+
   Conversionfactor := FGetConversionFactor;
+
   Length := Length * ConversionFactor;
   Beam := Beam * Conversionfactor;
   Draft := Draft * Conversionfactor;
@@ -491,44 +443,27 @@ begin
   if not checkbox12.Checked then
     XWindAreaMax := XWindAreaMax * ConversionFactor;
   FSetUnitCaptions;
+
 end;{TFREEProjectSettingsDialog.UnitboxClick}
 
-procedure TFREEProjectSettingsDialog.Edit8Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit8EditingDone(Sender: TObject);
 begin
   Mainframe := Mainframe;
 end;{TFREEProjectSettingsDialog.Edit8Exit}
 
-procedure TFREEProjectSettingsDialog.Edit8KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit8KeyPress}
 
-procedure TFREEProjectSettingsDialog.Edit26Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit26EditingDone(Sender: TObject);
 begin
   YWindAreaMax := YWindAreaMax;
 end;{TFREEProjectSettingsDialog.Edit26Exit}
 
-procedure TFREEProjectSettingsDialog.Edit26KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit26KeyPress}
 
 
-procedure TFREEProjectSettingsDialog.Edit27Exit(Sender: TObject);
+procedure TFREEProjectSettingsDialog.Edit27EditingDone(Sender: TObject);
 begin
   XWindAreaMax := XWindAreaMax;
 end;{TFREEProjectSettingsDialog.Edit27Exit}
 
-procedure TFREEProjectSettingsDialog.Edit27KeyPress(Sender: TObject; var Key: char);
-begin
-  if (Key in [#8, '1'..'9', '0', '-', #13]) or (Key = FormatSettings.DecimalSeparator) then
-  else
-    key := #0;
-end;{TFREEProjectSettingsDialog.Edit27KeyPress}
 
 
 procedure TFREEProjectSettingsDialog.CheckBox2Click(Sender: TObject);

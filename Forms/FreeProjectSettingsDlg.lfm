@@ -1,581 +1,775 @@
 object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
-  Left = 488
-  Height = 416
-  Top = 272
-  Width = 573
+  Left = 519
+  Height = 600
+  Top = 277
+  Width = 800
   BorderStyle = bsDialog
   Caption = 'Project settings.'
-  ClientHeight = 416
-  ClientWidth = 573
-  Color = clBtnFace
+  ClientHeight = 600
+  ClientWidth = 800
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel1: TPanel
     Left = 0
-    Height = 392
+    Height = 576
     Top = 24
-    Width = 573
+    Width = 800
     Align = alClient
-    BevelOuter = bvLowered
+    Alignment = taRightJustify
+    BevelOuter = bvNone
     BorderWidth = 8
-    ClientHeight = 392
-    ClientWidth = 573
+    ClientHeight = 576
+    ClientWidth = 800
+    Constraints.MinWidth = 80
     TabOrder = 0
     object PageControl1: TPageControl
-      Left = 9
-      Height = 374
-      Top = 9
-      Width = 555
+      Left = 8
+      Height = 560
+      Top = 8
+      Width = 784
       ActivePage = TabSheet1
       Align = alClient
       TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
-        ClientHeight = 343
-        ClientWidth = 549
+        ClientHeight = 527
+        ClientWidth = 778
         object Panel: TPanel
           Left = 0
-          Height = 343
+          Height = 527
           Top = 0
-          Width = 549
+          Width = 778
           Align = alClient
-          BevelOuter = bvLowered
-          ClientHeight = 343
-          ClientWidth = 549
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.VerticalSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 527
+          ClientWidth = 778
           TabOrder = 0
-          object Label1: TLabel
-            Left = 8
-            Height = 13
-            Top = 16
-            Width = 75
-            Caption = 'Project name'
-            ParentColor = False
-          end
-          object Label7: TLabel
-            Left = 8
-            Height = 13
-            Top = 42
-            Width = 50
-            Caption = 'Designer'
-            ParentColor = False
-          end
-          object Label8: TLabel
-            Left = 8
-            Height = 13
-            Top = 120
-            Width = 28
-            Caption = 'Units'
-            ParentColor = False
-          end
-          object Label15: TLabel
-            Left = 8
-            Height = 13
-            Top = 68
-            Width = 55
-            Caption = 'Comment'
-            ParentColor = False
-          end
-          object Label16: TLabel
-            Left = 8
-            Height = 13
-            Top = 94
-            Width = 83
-            Caption = 'File created by'
-            ParentColor = False
-          end
-          object Edit1: TEdit
-            Left = 123
-            Height = 23
-            Top = 8
-            Width = 310
+          object Panel6: TPanel
+            Left = 10
+            Height = 106
+            Top = 10
+            Width = 301
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclTopToBottomThenLeftToRight
+            ChildSizing.ControlsPerLine = 4
+            ClientHeight = 106
+            ClientWidth = 301
             TabOrder = 0
+            object Label1: TLabel
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 95
+              Caption = 'Project name'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label7: TLabel
+              Left = 0
+              Height = 25
+              Top = 27
+              Width = 95
+              Caption = 'Designer'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label15: TLabel
+              Left = 0
+              Height = 25
+              Top = 54
+              Width = 95
+              Caption = 'Comment'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label16: TLabel
+              Left = 0
+              Height = 25
+              Top = 81
+              Width = 95
+              Caption = 'File created by'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit1: TEdit
+              Left = 101
+              Height = 25
+              Top = 0
+              Width = 200
+              Constraints.MinWidth = 200
+              TabOrder = 0
+            end
+            object Edit7: TEdit
+              Left = 101
+              Height = 25
+              Top = 27
+              Width = 200
+              TabOrder = 1
+            end
+            object Edit9: TEdit
+              Left = 101
+              Height = 25
+              Top = 54
+              Width = 200
+              TabOrder = 2
+            end
+            object Edit10: TEdit
+              Left = 101
+              Height = 25
+              Top = 81
+              Width = 200
+              TabOrder = 3
+            end
           end
-          object Edit7: TEdit
-            Left = 123
-            Height = 23
-            Top = 34
-            Width = 310
+          object Panel7: TPanel
+            Left = 10
+            Height = 52
+            Top = 126
+            Width = 301
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 52
+            ClientWidth = 301
             TabOrder = 1
+            object Label8: TLabel
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 59
+              Caption = 'Units'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Unitbox: TComboBox
+              Left = 65
+              Height = 25
+              Top = 0
+              Width = 100
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Metric'
+                'Imperial'
+              )
+              OnChange = UnitboxChange
+              TabOrder = 0
+              Text = 'Metric'
+            end
+            object Label24: TLabel
+              Left = 0
+              Height = 25
+              Top = 27
+              Width = 59
+              Caption = 'Precision'
+              ParentColor = False
+            end
+            object PrecisionBox: TComboBox
+              Left = 65
+              Height = 25
+              Hint = 'Change the precision of the model.'
+              Top = 27
+              Width = 100
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Low'
+                'Medium'
+                'High'
+                'Highest'
+              )
+              TabOrder = 1
+              Text = 'Low'
+            end
           end
-          object CheckBox1: TCheckBox
-            Left = 8
-            Height = 21
-            Top = 182
-            Width = 127
-            Caption = 'Shade underwater'
-            TabOrder = 5
-          end
-          object Panel4: TPanel
-            Left = 187
-            Height = 21
-            Top = 176
-            Width = 45
-            BevelOuter = bvLowered
-            TabOrder = 6
-            OnClick = Panel4Click
-          end
-          object Unitbox: TComboBox
-            Left = 123
-            Height = 25
-            Top = 112
-            Width = 100
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              'Metric'
-              'Imperial'
-            )
-            OnClick = UnitboxClick
-            TabOrder = 4
-            Text = 'Metric'
-          end
-          object Edit9: TEdit
-            Left = 123
-            Height = 23
-            Top = 60
-            Width = 310
+          object Panel8: TPanel
+            Left = 10
+            Height = 67
+            Top = 188
+            Width = 301
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclTopToBottomThenLeftToRight
+            ChildSizing.ControlsPerLine = 3
+            ClientHeight = 67
+            ClientWidth = 301
             TabOrder = 2
-          end
-          object Edit10: TEdit
-            Left = 123
-            Height = 23
-            Top = 86
-            Width = 310
-            TabOrder = 3
-          end
-          object CheckBox4: TCheckBox
-            Left = 8
-            Height = 21
-            Top = 206
-            Width = 139
-            Caption = 'Save preview image'
-            TabOrder = 7
-          end
-          object CheckBox10: TCheckBox
-            Left = 8
-            Height = 21
-            Top = 230
-            Width = 144
-            Caption = 'Simplify intersections'
-            TabOrder = 8
-          end
-          object PrecisionBox: TComboBox
-            Left = 123
-            Height = 25
-            Hint = 'Change the precision of the model.'
-            Top = 139
-            Width = 100
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              'Low'
-              'Medium'
-              'High'
-              'Highest'
-            )
-            TabOrder = 9
-            Text = 'Low'
-          end
-          object Label24: TLabel
-            Left = 8
-            Height = 13
-            Top = 144
-            Width = 51
-            Caption = 'Precision'
-            ParentColor = False
+            object CheckBox1: TCheckBox
+              Left = 0
+              Height = 21
+              Top = 0
+              Width = 165
+              Caption = 'Shade underwater'
+              TabOrder = 0
+            end
+            object CheckBox4: TCheckBox
+              Left = 0
+              Height = 21
+              Top = 23
+              Width = 165
+              Caption = 'Save preview image'
+              TabOrder = 1
+            end
+            object CheckBox10: TCheckBox
+              Left = 0
+              Height = 21
+              Top = 46
+              Width = 165
+              Caption = 'Simplify intersections'
+              TabOrder = 2
+            end
+            object Panel4: TPanel
+              Left = 171
+              Height = 21
+              Top = 0
+              Width = 40
+              BevelOuter = bvLowered
+              Constraints.MinWidth = 40
+              TabOrder = 3
+              OnClick = Panel4Click
+            end
           end
         end
       end
       object TabSheet3: TTabSheet
         Caption = 'Main dimensions'
-        ClientHeight = 343
-        ClientWidth = 549
+        ClientHeight = 527
+        ClientWidth = 778
         ImageIndex = 2
         object Panel5: TPanel
           Left = 0
-          Height = 343
+          Height = 527
           Top = 0
-          Width = 549
+          Width = 778
           Align = alClient
-          BevelOuter = bvLowered
-          ClientHeight = 343
-          ClientWidth = 549
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 527
+          ClientWidth = 778
           TabOrder = 0
-          object Label2: TLabel
-            Left = 8
-            Height = 13
-            Top = 16
-            Width = 42
-            Caption = 'Length '
-            ParentColor = False
-          end
-          object Label9: TLabel
-            Left = 203
-            Height = 13
-            Top = 16
-            Width = 37
-            Caption = 'Label9'
-            ParentColor = False
-          end
-          object Label10: TLabel
-            Left = 203
-            Height = 13
-            Top = 42
-            Width = 44
-            Caption = 'Label10'
-            ParentColor = False
-          end
-          object Label3: TLabel
-            Left = 8
-            Height = 13
-            Top = 42
-            Width = 33
-            Caption = 'Beam'
-            ParentColor = False
-          end
-          object Label4: TLabel
-            Left = 8
-            Height = 13
-            Top = 68
-            Width = 28
-            Caption = 'Draft'
-            ParentColor = False
-          end
-          object Label11: TLabel
-            Left = 203
-            Height = 13
-            Top = 68
-            Width = 44
-            Caption = 'Label11'
-            ParentColor = False
-          end
-          object Label13: TLabel
-            Left = 8
-            Height = 13
-            Top = 94
-            Width = 211
-            Caption = 'Midship or max. area station location'
-            ParentColor = False
-          end
-          object Label14: TLabel
-            Left = 343
-            Height = 13
-            Top = 94
-            Width = 44
-            Caption = 'Label14'
-            ParentColor = False
-          end
-          object Label20: TLabel
-            Left = 8
-            Height = 13
-            Top = 120
-            Width = 276
-            Caption = 'Y coord. of Longitudinal Max. Wind Area location'
-            ParentColor = False
-          end
-          object Label21: TLabel
-            Left = 343
-            Height = 13
-            Top = 120
-            Width = 11
-            Caption = 'm'
-            ParentColor = False
-          end
-          object Label22: TLabel
-            Left = 8
-            Height = 13
-            Top = 146
-            Width = 271
-            Caption = 'X coord. of Transverse Max. Wind Area location'
-            ParentColor = False
-          end
-          object Label23: TLabel
-            Left = 343
-            Height = 13
-            Top = 146
-            Width = 11
-            Caption = 'm'
-            ParentColor = False
-          end
-          object Edit2: TEdit
-            Left = 123
-            Height = 23
-            Top = 8
-            Width = 75
-            OnExit = Edit2Exit
-            OnKeyPress = Edit2KeyPress
+          object Panel9: TPanel
+            Left = 10
+            Height = 79
+            Top = 10
+            Width = 552
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 3
+            ClientHeight = 79
+            ClientWidth = 552
             TabOrder = 0
+            object Label2: TLabel
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 48
+              Caption = 'Length '
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit2: TFloatSpinEdit
+              Left = 54
+              Height = 25
+              Top = 0
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit2EditingDone
+              TabOrder = 0
+              Value = 0
+            end
+            object Label9: TLabel
+              Left = 140
+              Height = 25
+              Top = 0
+              Width = 13
+              Caption = 'm'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label3: TLabel
+              Left = 0
+              Height = 25
+              Top = 27
+              Width = 48
+              Caption = 'Beam'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit3: TFloatSpinEdit
+              Left = 54
+              Height = 25
+              Top = 27
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit3EditingDone
+              TabOrder = 1
+              Value = 0
+            end
+            object Label10: TLabel
+              Left = 140
+              Height = 25
+              Top = 27
+              Width = 13
+              Caption = 'm'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label4: TLabel
+              Left = 0
+              Height = 25
+              Top = 54
+              Width = 48
+              Caption = 'Draft'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit4: TFloatSpinEdit
+              Left = 54
+              Height = 25
+              Top = 54
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit4EditingDone
+              TabOrder = 2
+              Value = 0
+            end
+            object Label11: TLabel
+              Left = 140
+              Height = 25
+              Top = 54
+              Width = 13
+              Caption = 'm'
+              Layout = tlCenter
+              ParentColor = False
+            end
           end
-          object Edit3: TEdit
-            Left = 123
-            Height = 23
-            Top = 34
-            Width = 75
-            OnExit = EditExit
-            OnKeyPress = Edit3KeyPress
+          object Panel10: TPanel
+            Left = 10
+            Height = 79
+            Top = 89
+            Width = 552
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 4
+            ClientHeight = 79
+            ClientWidth = 552
             TabOrder = 1
-          end
-          object Edit4: TEdit
-            Left = 123
-            Height = 23
-            Top = 60
-            Width = 75
-            OnExit = Edit4Exit
-            OnKeyPress = Edit4KeyPress
-            TabOrder = 2
-          end
-          object Edit8: TEdit
-            Left = 263
-            Height = 23
-            Top = 86
-            Width = 75
-            OnExit = Edit8Exit
-            OnKeyPress = Edit8KeyPress
-            TabOrder = 5
-          end
-          object CheckBox2: TCheckBox
-            Left = 368
-            Height = 21
-            Top = 92
-            Width = 112
-            Caption = 'Default at 0.5*L'
-            OnClick = CheckBox2Click
-            TabOrder = 6
-          end
-          object Edit26: TEdit
-            Left = 263
-            Height = 23
-            Top = 112
-            Width = 75
-            OnExit = Edit26Exit
-            OnKeyPress = Edit26KeyPress
-            TabOrder = 7
-          end
-          object CheckBox11: TCheckBox
-            Left = 368
-            Height = 21
-            Top = 118
-            Width = 100
-            Caption = 'Default at 0.0'
-            OnClick = CheckBox11Click
-            TabOrder = 8
-          end
-          object Edit27: TEdit
-            Left = 263
-            Height = 23
-            Top = 140
-            Width = 75
-            OnExit = Edit27Exit
-            OnKeyPress = Edit27KeyPress
-            TabOrder = 3
-          end
-          object CheckBox12: TCheckBox
-            Left = 368
-            Height = 21
-            Top = 144
-            Width = 112
-            Caption = 'Default at 0.5*L'
-            OnClick = CheckBox12Click
-            TabOrder = 4
+            object Label13: TLabel
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 315
+              Caption = 'Midship or max. area station location'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit8: TFloatSpinEdit
+              Left = 321
+              Height = 25
+              Top = 0
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit8EditingDone
+              TabOrder = 0
+              Value = 0
+            end
+            object Label14: TLabel
+              Left = 407
+              Height = 25
+              Top = 0
+              Width = 13
+              Caption = 'm'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object CheckBox2: TCheckBox
+              Left = 426
+              Height = 25
+              Top = 0
+              Width = 126
+              Caption = 'Default at 0.5*L'
+              OnClick = CheckBox2Click
+              TabOrder = 1
+            end
+            object Label20: TLabel
+              Left = 0
+              Height = 25
+              Top = 27
+              Width = 315
+              Caption = 'Y coord. of Longitudinal Max. Wind Area location'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit26: TFloatSpinEdit
+              Left = 321
+              Height = 25
+              Top = 27
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit26EditingDone
+              TabOrder = 2
+              Value = 0
+            end
+            object Label21: TLabel
+              Left = 407
+              Height = 25
+              Top = 27
+              Width = 13
+              Caption = 'm'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object CheckBox11: TCheckBox
+              Left = 426
+              Height = 25
+              Top = 27
+              Width = 126
+              Caption = 'Default at 0.0'
+              OnClick = CheckBox11Click
+              TabOrder = 3
+            end
+            object Label22: TLabel
+              Left = 0
+              Height = 25
+              Top = 54
+              Width = 315
+              Caption = 'X coord. of Transverse Max. Wind Area location'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit27: TFloatSpinEdit
+              Left = 321
+              Height = 25
+              Top = 54
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit27EditingDone
+              TabOrder = 4
+              Value = 0
+            end
+            object Label23: TLabel
+              Left = 407
+              Height = 25
+              Top = 54
+              Width = 13
+              Caption = 'm'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object CheckBox12: TCheckBox
+              Left = 426
+              Height = 25
+              Top = 54
+              Width = 126
+              Caption = 'Default at 0.5*L'
+              OnClick = CheckBox12Click
+              TabOrder = 5
+            end
           end
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Hydrostatics'
-        ClientHeight = 343
-        ClientWidth = 549
+        ClientHeight = 527
+        ClientWidth = 778
         ImageIndex = 1
         object Panel2: TPanel
           Left = 0
-          Height = 343
+          Height = 527
           Top = 0
-          Width = 549
+          Width = 778
           Align = alClient
-          BevelOuter = bvLowered
-          ClientHeight = 343
-          ClientWidth = 549
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 10
+          ChildSizing.VerticalSpacing = 10
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 527
+          ClientWidth = 778
           TabOrder = 0
-          object Label5: TLabel
-            Left = 8
-            Height = 13
-            Top = 16
-            Width = 78
-            Caption = 'Water density'
-            ParentColor = False
+          object Panel11: TPanel
+            Left = 10
+            Height = 79
+            Top = 10
+            Width = 446
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 3
+            ClientHeight = 79
+            ClientWidth = 446
+            TabOrder = 0
+            object Label5: TLabel
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 145
+              Caption = 'Water density'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit5: TFloatSpinEdit
+              Left = 151
+              Height = 25
+              Top = 0
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit5EditingDone
+              TabOrder = 0
+              Value = 0
+            end
+            object Label12: TLabel
+              Left = 237
+              Height = 25
+              Top = 0
+              Width = 51
+              Caption = 'Label12'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label25: TLabel
+              Left = 0
+              Height = 25
+              Top = 27
+              Width = 145
+              Caption = 'Water temperature'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit25: TFloatSpinEdit
+              Left = 151
+              Height = 25
+              Top = 27
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit25EditingDone
+              TabOrder = 1
+              Value = 0
+            end
+            object Label26: TLabel
+              Left = 237
+              Height = 25
+              Top = 27
+              Width = 51
+              Caption = 'C'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Label6: TLabel
+              Left = 0
+              Height = 25
+              Top = 54
+              Width = 145
+              Caption = 'Appendage coefficient'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object Edit6: TFloatSpinEdit
+              Left = 151
+              Height = 25
+              Top = 54
+              Width = 80
+              Alignment = taRightJustify
+              Constraints.MinWidth = 80
+              MinValue = 0
+              OnEditingDone = Edit6EditingDone
+              TabOrder = 2
+              Value = 0
+            end
           end
-          object Label25: TLabel
-            Left = 288
-            Height = 13
-            Top = 16
-            Width = 108
-            Caption = 'Water temperature'
-            ParentColor = False
+          object Panel12: TPanel
+            Left = 10
+            Height = 25
+            Top = 99
+            Width = 446
+            BevelOuter = bvNone
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 25
+            ClientWidth = 446
+            TabOrder = 1
+            object Label17: TLabel
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 140
+              Caption = 'Coefficients based on'
+              Layout = tlCenter
+              ParentColor = False
+            end
+            object ComboBox1: TComboBox
+              Left = 146
+              Height = 25
+              Top = 0
+              Width = 300
+              Constraints.MinWidth = 300
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Dimensions from project settings'
+                'Actual dimensions of submerged body'
+              )
+              TabOrder = 0
+              Text = 'Dimensions from project settings'
+            end
           end
-          object Label12: TLabel
-            Left = 143
-            Height = 13
-            Top = 16
-            Width = 44
-            Caption = 'Label12'
-            ParentColor = False
-          end
-          object Label6: TLabel
-            Left = 8
-            Height = 13
-            Top = 42
-            Width = 126
-            Caption = 'Appendage coefficient'
-            ParentColor = False
-          end
-          object Label17: TLabel
-            Left = 8
-            Height = 13
-            Top = 68
-            Width = 122
-            Caption = 'Coefficients based on'
-            ParentColor = False
+          object Panel13: TPanel
+            Left = 10
+            Height = 67
+            Top = 134
+            Width = 446
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 3
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 67
+            ClientWidth = 446
+            TabOrder = 2
+            object CheckBox3: TCheckBox
+              Left = 3
+              Height = 21
+              Top = 0
+              Width = 262
+              Caption = 'Disable surface check'
+              TabOrder = 0
+            end
+            object CheckBox13: TCheckBox
+              Left = 3
+              Height = 21
+              Top = 23
+              Width = 262
+              Caption = 'Enable auto move model to baseline'
+              TabOrder = 1
+            end
+            object CheckBox14: TCheckBox
+              Left = 3
+              Height = 21
+              Top = 46
+              Width = 262
+              Caption = 'Save Bonjean scale and SAC in files'
+              TabOrder = 2
+            end
           end
           object GroupBox1: TGroupBox
             Left = 10
-            Height = 163
-            Top = 158
-            Width = 334
+            Height = 176
+            Top = 211
+            Width = 446
             Caption = 'Display hydrostatic features. '
-            ClientHeight = 148
-            ClientWidth = 330
+            ChildSizing.TopBottomSpacing = 6
+            ChildSizing.VerticalSpacing = 2
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 159
+            ClientWidth = 442
+            Color = clForm
             Font.Style = [fsBold]
+            ParentColor = False
             ParentFont = False
-            TabOrder = 0
+            TabOrder = 3
             object Label18: TLabel
-              Left = 4
-              Height = 13
-              Top = 4
-              Width = 290
+              Left = 0
+              Height = 15
+              Top = 6
+              Width = 335
               Caption = 'Select which of the following hydrostatic properties'
               ParentColor = False
               ParentFont = False
             end
             object Label19: TLabel
-              Left = 4
-              Height = 13
-              Top = 22
-              Width = 236
+              Left = 0
+              Height = 15
+              Top = 23
+              Width = 335
               Caption = 'you want to have displayed in the model:'
               ParentColor = False
               ParentFont = False
             end
             object CheckBox5: TCheckBox
-              Left = 38
+              Left = 0
               Height = 21
-              Top = 44
-              Width = 238
+              Top = 40
+              Width = 335
               Caption = 'Displacement and center of buoyancy'
               ParentFont = False
               TabOrder = 0
             end
             object CheckBox6: TCheckBox
-              Left = 38
+              Left = 0
               Height = 21
-              Top = 62
-              Width = 162
+              Top = 63
+              Width = 335
               Caption = 'Curve of sectional areas'
               ParentFont = False
               TabOrder = 1
             end
             object CheckBox7: TCheckBox
-              Left = 38
+              Left = 0
               Height = 21
-              Top = 80
-              Width = 127
+              Top = 86
+              Width = 335
               Caption = 'Metacentric height'
               ParentFont = False
               TabOrder = 2
             end
             object CheckBox8: TCheckBox
-              Left = 38
+              Left = 0
               Height = 21
-              Top = 98
-              Width = 203
+              Top = 109
+              Width = 335
               Caption = 'Longitudinal center of floatation'
               ParentFont = False
               TabOrder = 3
             end
             object CheckBox9: TCheckBox
-              Left = 38
+              Left = 0
               Height = 21
-              Top = 116
-              Width = 207
+              Top = 132
+              Width = 335
               Caption = 'Lateral area and center of effort'
               ParentFont = False
               TabOrder = 4
             end
-          end
-          object Edit5: TEdit
-            Left = 204
-            Height = 23
-            Top = 11
-            Width = 65
-            OnExit = Edit5Exit
-            OnKeyPress = Edit5KeyPress
-            TabOrder = 5
-          end
-          object Edit25: TEdit
-            Left = 403
-            Height = 23
-            Top = 11
-            Width = 70
-            OnExit = Edit25Exit
-            OnKeyPress = Edit25KeyPress
-            TabOrder = 1
-          end
-          object Edit6: TEdit
-            Left = 204
-            Height = 23
-            Top = 37
-            Width = 65
-            OnExit = Edit6Exit
-            OnKeyPress = Edit6KeyPress
-            TabOrder = 2
-          end
-          object ComboBox1: TComboBox
-            Left = 204
-            Height = 25
-            Top = 60
-            Width = 274
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              'Dimensions from project settings'
-              'Actual dimensions of submerged body'
-            )
-            TabOrder = 3
-            Text = 'Dimensions from project settings'
-          end
-          object CheckBox3: TCheckBox
-            Left = 6
-            Height = 21
-            Top = 90
-            Width = 146
-            Caption = 'Disable surface check'
-            TabOrder = 6
-          end
-          object CheckBox13: TCheckBox
-            Left = 6
-            Height = 21
-            Top = 112
-            Width = 231
-            Caption = 'Enable auto move model to baseline'
-            TabOrder = 7
-          end
-          object CheckBox14: TCheckBox
-            Left = 6
-            Height = 21
-            Top = 134
-            Width = 227
-            Caption = 'Save Bonjean scale and SAC in files'
-            TabOrder = 4
           end
         end
       end
@@ -585,15 +779,15 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
     Left = 0
     Height = 24
     Top = 0
-    Width = 573
+    Width = 800
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 24
-    ClientWidth = 573
+    ClientWidth = 800
     TabOrder = 1
     object BitBtn1: TSpeedButton
-      Left = 409
+      Left = 636
       Height = 20
       Top = 2
       Width = 80
@@ -642,7 +836,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 491
+      Left = 718
       Height = 20
       Top = 2
       Width = 80
@@ -715,7 +909,6 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 376
-    top = 272
+    left = 640
   end
 end

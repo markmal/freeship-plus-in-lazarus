@@ -264,7 +264,6 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               Top = 91
               Width = 80
               Alignment = taRightJustify
-              Color = clBtnFace
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               MinValue = 0
@@ -280,7 +279,6 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               Top = 118
               Width = 80
               Alignment = taRightJustify
-              Color = clBtnFace
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               MinValue = 0
@@ -564,7 +562,6 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               Top = 64
               Width = 80
               Alignment = taRightJustify
-              Color = clBtnFace
               Constraints.MinWidth = 80
               DecimalPlaces = 4
               MaxValue = 1.31

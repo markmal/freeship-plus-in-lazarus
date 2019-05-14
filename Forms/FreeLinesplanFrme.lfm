@@ -15,7 +15,7 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
     Width = 761
     AutoSize = True
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False

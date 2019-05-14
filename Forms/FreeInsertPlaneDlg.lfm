@@ -7,9 +7,8 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
   Caption = 'Insert multiple points'
   ClientHeight = 300
   ClientWidth = 400
-  Color = clBtnFace
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel2: TPanel
     Left = 0
     Height = 276

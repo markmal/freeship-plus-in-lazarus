@@ -9,7 +9,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
   ClientWidth = 300
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 276
@@ -41,7 +41,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
     Width = 300
     AutoSize = True
     Caption = 'ToolBar1'
-    Color = clBtnFace
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False

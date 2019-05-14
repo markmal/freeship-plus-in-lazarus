@@ -6,11 +6,10 @@ object FreeLinesplanForm: TFreeLinesplanForm
   Caption = 'Linesplan.'
   ClientHeight = 621
   ClientWidth = 828
-  Color = clBtnFace
   FormStyle = fsMDIChild
   OnClose = FormClose
   Position = poDefault
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   Visible = True
   inline LinesplanFrame: TFreeLinesplanFrame
     Height = 621

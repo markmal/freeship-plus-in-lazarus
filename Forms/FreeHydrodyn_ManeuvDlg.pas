@@ -70,8 +70,19 @@ uses
       const  clTeeColor = clTAColor;
      {$ENDIF}
 
-type TFreeHydrodyn_Maneuv  = class(TForm)
+type
+
+{ TFreeHydrodyn_Maneuv }
+
+ TFreeHydrodyn_Maneuv  = class(TForm)
+                                CheckBox3: TCheckBox;
+                                CheckBox4: TCheckBox;
+                                CheckBox5: TCheckBox;
+                                Label1: TLabel;
                                  MenuImages: TImageList;
+                                 Panel2: TPanel;
+                                 Panel3: TPanel;
+                                 Results2: TTabSheet;
                                  ToolBar1: TToolBar;
     _ToolButton10: TToolButton;
                                  PrintButton: TToolButton;
@@ -81,7 +92,6 @@ type TFreeHydrodyn_Maneuv  = class(TForm)
                                  ToolButton17: TToolButton;
                                  PageControl1: TPageControl;
                                  TabSheet1: TTabSheet;
-                                 Panel1: TPanel;
                                  Panel: TPanel;
                                  Label2: TLabel;
                                  Label3: TLabel;
@@ -127,9 +137,6 @@ type TFreeHydrodyn_Maneuv  = class(TForm)
                                  Resultsmemo2: TMemo; 
                                  PrintDialog: TPrintDialog;
                                  CheckBox2: TCheckBox;
-                                 CheckBox3: TCheckBox;
-                                 CheckBox4: TCheckBox;
-                                 CheckBox5: TCheckBox;								 
                                  procedure File_ExportData(dat:array of single);
                                  procedure ToolButton25Click(Sender: TObject);
                                  procedure ToolButton7Click(Sender: TObject);

@@ -1,27 +1,24 @@
 object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
-  Left = 282
-  Top = 104
+  Left = 556
+  Height = 500
+  Top = 280
+  Width = 800
   BorderStyle = bsDialog
   Caption = 'Evaluation of Turning Ability and Stability. Turning Prediction.'
-  ClientHeight = 452
-  ClientWidth = 740
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Style = []
-  OldCreateOrder = False
+  ClientHeight = 500
+  ClientWidth = 800
   Position = poOwnerFormCenter
-  PixelsPerInch = 96
-  TextHeight = 13
+  LCLVersion = '2.0.2.0'
   object ToolBar1: TToolBar
     Left = 0
-    Top = 0
-    Width = 739
     Height = 24
+    Top = 0
+    Width = 800
     AutoSize = True
+    ButtonHeight = 22
     ButtonWidth = 50
     Caption = 'ToolBar1'
-    Color = clBtnFace
-    Flat = True
+    Color = clForm
     Images = MenuImages
     Indent = 5
     ParentColor = False
@@ -30,479 +27,592 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
-      Top = 0
-      Width = 10
+      Height = 22
+      Top = 2
       Caption = '_ToolButton10'
       ImageIndex = 6
       Style = tbsSeparator
     end
     object PrintButton: TToolButton
-      Left = 15
-      Top = 0
+      Left = 13
       Hint = 'Print the results of the calculation.'
+      Top = 2
       Caption = 'PrintButton'
       ImageIndex = 2
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 65
-      Top = 0
-      Width = 10
+      Left = 63
+      Height = 22
+      Top = 2
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 75
-      Top = 0
+      Left = 71
       Hint = 'Close the window and save changes.'
+      Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 125
-      Top = 0
+      Left = 121
       Hint = 'Close window without saving changes.'
+      Top = 2
       ImageIndex = 0
       OnClick = ToolButton7Click
     end
     object ToolButton17: TToolButton
-      Left = 175
-      Top = 0
+      Left = 171
       Hint = 'Calculate'
+      Top = 2
       ImageIndex = 3
       OnClick = ToolButton17Click
     end
   end
   object PageControl1: TPageControl
     Left = 0
+    Height = 476
     Top = 24
-    Width = 739
-    Height = 458
+    Width = 800
     ActivePage = TabSheet1
     Align = alClient
+    TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      object Panel1: TPanel
+      ClientHeight = 443
+      ClientWidth = 794
+      object Panel: TPanel
         Left = 0
+        Height = 443
         Top = 0
-        Width = 731
-        Height = 430
+        Width = 794
         Align = alClient
-        BevelOuter = bvLowered
-        BorderWidth = 10
+        BevelOuter = bvNone
+        ChildSizing.LeftRightSpacing = 10
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 10
+        ChildSizing.VerticalSpacing = 10
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 443
+        ClientWidth = 794
         TabOrder = 0
-        object Panel: TPanel
-          Left = 11
-          Top = 11
-          Width = 709
-          Height = 408
-          Align = alClient
-          BevelOuter = bvLowered
+        object CheckBox2: TCheckBox
+          Left = 10
+          Height = 21
+          Top = 10
+          Width = 346
+          Caption = 'Extract data from current hull'
+          OnClick = CheckBox2Click
           TabOrder = 0
+        end
+        object Label1: TLabel
+          Left = 366
+          Height = 21
+          Top = 10
+          Width = 382
+          ParentColor = False
+        end
+        object Panel2: TPanel
+          Left = 10
+          Height = 295
+          Top = 41
+          Width = 346
+          BevelOuter = bvNone
+          ChildSizing.HorizontalSpacing = 6
+          ChildSizing.VerticalSpacing = 2
+          ChildSizing.Layout = cclTopToBottomThenLeftToRight
+          ChildSizing.ControlsPerLine = 11
+          ClientHeight = 295
+          ClientWidth = 346
+          TabOrder = 1
           object Label2: TLabel
-            Left = 8
-            Top = 34
-            Width = 78
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 0
+            Width = 260
             Caption = 'Length of Waterline LWL [m]'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label3: TLabel
-            Left = 8
-            Top = 62
-            Width = 72
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 27
+            Width = 260
             Caption = 'Maximum Beam on LWL [m]'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label4: TLabel
-            Left = 8
-            Top = 90
-            Width = 23
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 54
+            Width = 260
             Caption = 'Draft Forward [m]'
+            Layout = tlCenter
+            ParentColor = False
           end
-           object Label5: TLabel
-            Left = 8
-            Top = 118
-            Width = 97
-            Height = 13
+          object Label5: TLabel
+            Left = 0
+            Height = 25
+            Top = 81
+            Width = 260
             Caption = 'Draft Aft [m]'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label6: TLabel
-            Left = 8
-            Top = 146
-            Width = 13
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 108
+            Width = 260
             Caption = 'Block Coefficient on LWL Cb'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label7: TLabel
-            Left = 8
-            Top = 174
-            Width = 64
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 135
+            Width = 260
             Caption = 'Center of Gravity LCG (%LWL; + Fwd)'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label8: TLabel
-            Left = 8
-            Top = 202
-            Width = 93
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 162
+            Width = 260
             Caption = 'Midships to Rudder CE XR (%LWL; + Aft)'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label9: TLabel
-            Left = 8
-            Top = 230
-            Width = 20
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 189
+            Width = 260
             Caption = 'Initial Ship Speed [knots]'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label10: TLabel
-            Left = 8
-            Top = 258
-            Width = 93
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 216
+            Width = 260
             Caption = 'Water Density [kg/m^3]'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label11: TLabel
-            Left = 8
-            Top = 286
-            Width = 93
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 243
+            Width = 260
             Caption = 'Kinematic Viscosity [m^2/s]'
+            Layout = tlCenter
+            ParentColor = False
           end
           object Label12: TLabel
-            Left = 8
-            Top = 314
-            Width = 93
-            Height = 13
+            Left = 0
+            Height = 25
+            Top = 270
+            Width = 260
             Caption = 'Yaw Radius of Gyration K33/LWL'
+            Layout = tlCenter
+            ParentColor = False
           end
-          object Label13: TLabel
-            Left = 350
-            Top = 34
-            Width = 93
-            Height = 13
-            Caption = 'Water Depth to Ship Draft Ratio H/T'
-          end
-          object Label14: TLabel
-            Left = 350
-            Top = 62
-            Width = 93
-            Height = 13
-            Caption = 'Steering Gear Time Constant [s]'
-          end
-          object Label15: TLabel
-            Left = 350
-            Top = 90
-            Width = 93
-            Height = 13
-            Caption = 'Total Rudder Area - Fraction of LWL*T'
-          end
-          object Label16: TLabel
-            Left = 350
-            Top = 118
-            Width = 93
-            Height = 13
-            Caption = 'Submerged Bow Area - Fraction of LWL*T'
-          end
-          object Label17: TLabel
-            Left = 350
-            Top = 144
-            Width = 93
-            Height = 13
-            Caption = 'Number of Propellers (0...2)'
-          end
-          object Label18: TLabel
-            Left = 350
-            Top = 172
-            Width = 93
-            Height = 13
-            Caption = 'Type of Single Screw Stern (0-Close;1-Open;)'
-          end
-          object Label19: TLabel
-            Left = 350
-            Top = 200
-            Width = 93
-            Height = 13
-            Caption = 'Number of Rudders (0...2)'
-          end
-          object Label20: TLabel
-            Left = 350
-            Top = 228
-            Width = 93
-            Height = 13
-            Caption = 'Rudder Angle [degrees]'
-          end		  
           object Edit2: TFloatSpinEdit
-            Left = 280
-            Top = 26
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 0
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 0
+            Value = 0
           end
           object Edit3: TFloatSpinEdit
-            Left = 280
-            Top = 54
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 27
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 1
+            Value = 0
           end
           object Edit4: TFloatSpinEdit
-            Left = 280
-            Top = 82
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 54
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MaxValue = 2.
+            MaxValue = 2
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 2
+            Value = 0
           end
           object Edit5: TFloatSpinEdit
-            Left = 280
-            Top = 110
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 81
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MaxValue = 7.000000000000000000
+            MaxValue = 7
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 3
+            Value = 0
           end
           object Edit6: TFloatSpinEdit
-            Left = 280
-            Top = 138
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 108
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 4
-            MaxValue = 2.000000000000000000
-            Validate = True
+            MaxValue = 2
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 4
+            Value = 0
           end
           object Edit7: TFloatSpinEdit
-            Left = 280
-            Top = 166
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 135
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MaxValue = 6.000000000000000000
+            MaxValue = 6
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 5
+            Value = 0
           end
           object Edit8: TFloatSpinEdit
-            Left = 280
-            Top = 194
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 162
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MaxValue = 100
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 6
+            Value = 0
           end
           object Edit9: TFloatSpinEdit
-            Left = 280
-            Top = 222
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 189
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 48
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 7
+            Value = 0
           end
           object Edit10: TFloatSpinEdit
-            Left = 280
-            Top = 250
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 216
+            Width = 80
             Alignment = taRightJustify
-            DecimalPlaces = 2
+            Constraints.MinWidth = 80
             MaxValue = 2000
-            Validate = True
+            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 8
+            Value = 0
           end
           object Edit11: TFloatSpinEdit
-            Left = 280
-            Top = 278
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 243
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 4
             MaxValue = 3
-            Validate = True
+            MinValue = 0
             OnExit = Edit1AfterSetValue
-            TabOrder = 8
+            TabOrder = 9
+            Value = 0
           end
           object Edit12: TFloatSpinEdit
-            Left = 280
-            Top = 306
-            Width = 50
-            Height = 21
+            Left = 266
+            Height = 25
+            Top = 270
+            Width = 80
             Alignment = taRightJustify
+            Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MaxValue = 3.
-            Validate = True
+            MaxValue = 3
+            MinValue = 0
             OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit13: TFloatSpinEdit
-            Left = 620
-            Top = 26
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            DecimalPlaces = 2
-            MaxValue = 1000.
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit14: TFloatSpinEdit
-            Left = 620
-            Top = 54
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            DecimalPlaces = 2
-            MaxValue = 40
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit15: TFloatSpinEdit
-            Left = 620
-            Top = 82
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MaxValue = 1
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit16: TFloatSpinEdit
-            Left = 620
-            Top = 110
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            DecimalPlaces = 3
-            MinValue = -0.15
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit17: TFloatSpinEdit
-            Left = 620
-            Top = 138
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            MaxValue = 2
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit18: TFloatSpinEdit
-            Left = 620
-            Top = 166
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            MaxValue = 1
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit19: TFloatSpinEdit
-            Left = 620
-            Top = 194
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            MaxValue = 2
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end
-          object Edit20: TFloatSpinEdit
-            Left = 620
-            Top = 222
-            Width = 50
-            Height = 21
-            Alignment = taRightJustify
-            DecimalPlaces = 2
-            MaxValue = 35
-            Validate = True
-            OnExit = Edit1AfterSetValue
-            TabOrder = 8
-          end		  
-          object CheckBox2: TCheckBox
-            Left = 9
-            Top = 8
-            Width = 168
-            Height = 17
-            Caption = 'Extract data from current hull'
             TabOrder = 10
-            OnClick = CheckBox2Click
+            Value = 0
+          end
+        end
+        object Panel3: TPanel
+          Left = 366
+          Height = 295
+          Top = 41
+          Width = 382
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.VerticalSpacing = 2
+          ChildSizing.Layout = cclTopToBottomThenLeftToRight
+          ChildSizing.ControlsPerLine = 11
+          ClientHeight = 295
+          ClientWidth = 382
+          TabOrder = 2
+          object Label13: TLabel
+            Left = 6
+            Height = 25
+            Top = 0
+            Width = 290
+            Caption = 'Water Depth to Ship Draft Ratio H/T'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object Label14: TLabel
+            Left = 6
+            Height = 25
+            Top = 27
+            Width = 290
+            Caption = 'Steering Gear Time Constant [s]'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object Label15: TLabel
+            Left = 6
+            Height = 25
+            Top = 54
+            Width = 290
+            Caption = 'Total Rudder Area - Fraction of LWL*T'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object Label16: TLabel
+            Left = 6
+            Height = 25
+            Top = 81
+            Width = 290
+            Caption = 'Submerged Bow Area - Fraction of LWL*T'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object Label17: TLabel
+            Left = 6
+            Height = 25
+            Top = 108
+            Width = 290
+            Caption = 'Number of Propellers (0...2)'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object Label18: TLabel
+            Left = 6
+            Height = 25
+            Top = 135
+            Width = 290
+            Caption = 'Type of Single Screw Stern (0-Close;1-Open;)'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object Label19: TLabel
+            Left = 6
+            Height = 25
+            Top = 162
+            Width = 290
+            Caption = 'Number of Rudders (0...2)'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object Label20: TLabel
+            Left = 6
+            Height = 25
+            Top = 189
+            Width = 290
+            Caption = 'Rudder Angle [degrees]'
+            Layout = tlCenter
+            ParentColor = False
           end
           object CheckBox3: TCheckBox
-            Left = 350
-            Top = 254
-            Width = 268
-            Height = 17
+            Left = 6
+            Height = 21
+            Top = 216
+            Width = 290
             Caption = 'Linear Evaluation'
-            TabOrder = 10
             OnClick = CheckBox3Click
+            TabOrder = 0
           end
           object CheckBox4: TCheckBox
-            Left = 350
-            Top = 282
-            Width = 268
-            Height = 17
+            Left = 6
+            Height = 21
+            Top = 239
+            Width = 290
             Caption = 'Turning Prediction'
-            TabOrder = 10
             OnClick = CheckBox4Click
+            TabOrder = 1
           end
           object CheckBox5: TCheckBox
-            Left = 350
-            Top = 310
-            Width = 268
-            Height = 17
+            Left = 6
+            Height = 21
+            Top = 262
+            Width = 290
             Caption = 'State Variable Equations'
-            TabOrder = 10
             OnClick = CheckBox5Click
-          end		  
+            TabOrder = 2
+          end
+          object Edit13: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 0
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            MaxValue = 1000
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 3
+            Value = 0
+          end
+          object Edit14: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 27
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            MaxValue = 40
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 4
+            Value = 0
+          end
+          object Edit15: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 54
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            DecimalPlaces = 3
+            MaxValue = 1
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 5
+            Value = 0
+          end
+          object Edit16: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 81
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            DecimalPlaces = 3
+            MinValue = -0.15
+            OnExit = Edit1AfterSetValue
+            TabOrder = 6
+            Value = 0
+          end
+          object Edit17: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 108
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            MaxValue = 2
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 7
+            Value = 0
+          end
+          object Edit18: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 135
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            MaxValue = 1
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 8
+            Value = 0
+          end
+          object Edit19: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 162
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            MaxValue = 2
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 9
+            Value = 0
+          end
+          object Edit20: TFloatSpinEdit
+            Left = 296
+            Height = 25
+            Top = 189
+            Width = 80
+            Alignment = taRightJustify
+            Constraints.MinWidth = 80
+            MaxValue = 35
+            MinValue = 0
+            OnExit = Edit1AfterSetValue
+            TabOrder = 10
+            Value = 0
+          end
         end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
+      ClientHeight = 443
+      ClientWidth = 794
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0
+        Height = 443
         Top = 0
-        Width = 685
-        Height = 423
+        Width = 794
         Align = alClient
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 0
@@ -511,25 +621,27 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
     end
     object Results2: TTabSheet
       Caption = 'Help'
+      ClientHeight = 443
+      ClientWidth = 794
       object Panel15: TPanel
         Left = 0
+        Height = 443
         Top = 0
-        Width = 781
-        Height = 407
+        Width = 794
         Align = alClient
         BevelOuter = bvLowered
+        ClientHeight = 443
+        ClientWidth = 794
         TabOrder = 0
         object Resultsmemo2: TMemo
           Left = 1
+          Height = 441
           Top = 1
-          Width = 779
-          Height = 405
+          Width = 792
           Align = alClient
-          Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Courier New'
-          Font.Style = []
           ParentFont = False
           ScrollBars = ssBoth
           TabOrder = 0
@@ -539,413 +651,140 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
     end
   end
   object MenuImages: TImageList
-    Left = 292
+    left = 512
     Bitmap = {
-      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
-      0000000000003600000028000000400000003000000001002000000000000030
+      4C69040000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      80FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
+      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
+      80FF000080FF000000000000000000000000000000000000FFFF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
+      80FF808080FF000000000000000000000000000000000000FFFF000080FF0000
+      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF8080
+      80FF0000000000000000000000000000000000000000000000000000FFFF0000
+      80FF000080FF000080FF808080FF000080FF000080FF000080FF808080FF0000
       0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000080FF000080FF000080FF000080FF000080FF808080FF000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00000000FFFF000080FF000080FF000080FF000080FF808080FF000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      0000000080FF000080FF000080FF000080FF000080FF808080FF000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      FFFF000080FF000080FF000080FF000080FF000080FF000080FF808080FF0000
+      00000000000000000000000000000000000000000000000000000000FFFF0000
+      80FF000080FF000080FF000080FF000080FF000080FF000080FF000080FF8080
+      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
+      80FF000080FF000080FF808080FF000080FF000080FF000080FF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
+      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
+      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF8080
+      80FF000000000000000000000000000000000000FFFF000080FF000080FF8080
+      80FF00000000000000000000000000000000000000000000FFFF808080FF0000
+      00000000000000000000000000000000000000000000808080FF808080FF0000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000FF00FF00000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000808080008080
-      8000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000007F7F7F000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00007F7F7F00000000000000000000000000000000000000FF00000080000000
-      80008080800000000000000000000000000000000000000000000000FF008080
-      8000000000000000000000000000000000000000000000000000000000000000
-      0000800000008000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000000000BFBF
-      BF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBF
-      BF0000000000000000000000000000000000000000000000FF00000080000000
-      800000008000808080000000000000000000000000000000FF00000080000000
-      8000808080000000000000000000000000000000000000000000000000008000
-      0000008000000080000080000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000C6C6C600C6C6
-      C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C6000000
-      0000C6C6C600000000000000000000000000000000000000000000000000BFBF
-      BF0000000000BFBFBF0000000000BFBFBF000000FF000000FF000000FF00BFBF
-      BF0000000000000000000000000000000000000000000000FF00000080000000
-      8000000080000000800080808000000000000000FF0000008000000080000000
-      8000000080008080800000000000000000000000000000000000800000000080
-      0000008000000080000000800000800000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000C6C6C6000000000000000000000000000000000000000000BFBF
-      BF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBF
-      BF000000000000000000000000000000000000000000000000000000FF000000
-      8000000080000000800000008000808080000000800000008000000080000000
-      8000000080008080800000000000000000000000000080000000008000000080
-      0000008000000080000000800000008000008000000000000000000000000000
-      00000000000000000000000000000000000000000000C6C6C600C6C6C600C6C6
-      C600C6C6C600C6C6C600C6C6C60000FFFF0000FFFF0000FFFF00C6C6C600C6C6
-      C60000000000000000000000000000000000000000000000000000000000BFBF
-      BF0000000000BFBFBF0000000000BFBFBF0000000000BFBFBF0000000000BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      FF00000080000000800000008000000080000000800000008000000080000000
-      8000808080000000000000000000000000008000000000800000008000000080
-      000000FF00000080000000800000008000000080000080000000000000000000
-      00000000000000000000000000000000000000000000C6C6C600C6C6C600C6C6
-      C600C6C6C600C6C6C600C6C6C600848484008484840084848400C6C6C600C6C6
-      C60000000000C6C6C6000000000000000000000000000000000000000000BFBF
-      BF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      00000000FF000000800000008000000080000000800000008000000080008080
-      80000000000000000000000000000000000000800000008000000080000000FF
-      00000000000000FF000000800000008000000080000080000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000C6C6C600C6C6C60000000000000000000000000000000000BFBF
-      BF0000000000BFBFBF0000000000BFBFBF0000000000BFBFBF0000000000BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      0000000000000000800000008000000080000000800000008000808080000000
-      00000000000000000000000000000000000000FF00000080000000FF00000000
-      0000000000000000000000FF0000008000000080000000800000800000000000
-      00000000000000000000000000000000000000000000C6C6C600C6C6C600C6C6
-      C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C6000000
-      0000C6C6C60000000000C6C6C60000000000000000000000000000000000BFBF
-      BF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      0000000000000000FF0000008000000080000000800000008000808080000000
-      0000000000000000000000000000000000000000000000FF0000000000000000
-      000000000000000000000000000000FF00000080000000800000008000008000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000000000C6C6
-      C60000000000C6C6C6000000000000000000000000000000000000000000BFBF
-      BF0000000000BFBFBF0000000000BFBFBF0000000000BFBFBF0000000000BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      00000000FF000000800000008000000080000000800000008000808080000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000FF000000800000008000000080
-      000080000000000000000000000000000000000000000000000000000000FFFF
-      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
-      0000C6C6C60000000000C6C6C60000000000000000000000000000000000BFBF
-      BF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      FF00000080000000800000008000808080000000800000008000000080008080
-      8000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000FF0000008000000080
-      0000008000008000000000000000000000000000000000000000000000000000
-      0000FFFFFF000000000000000000000000000000000000000000FFFFFF000000
-      000000000000000000000000000000000000000000000000000000000000BFBF
-      BF0000000000000000000000000000000000000000000000000000000000BFBF
-      BF000000000000000000000000000000000000000000000000000000FF000000
-      8000000080000000800080808000000000000000FF0000008000000080000000
-      8000808080000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000FF00000080
-      0000008000000080000080000000000000000000000000000000000000000000
-      0000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-      FF0000000000000000000000000000000000000000000000000000000000BFBF
-      BF00000000000000000000000000FFFF000000000000FFFF000000000000BFBF
-      BF000000000000000000000000000000000000000000000000000000FF000000
-      800000008000808080000000000000000000000000000000FF00000080000000
-      8000000080008080800000000000000000000000000000000000000000000000
+      000000FF00FF008000FF008000FF000000000000000000000000000000000000
       00000000000000000000000000000000000000000000000000000000000000FF
-      0000008000000080000000800000800000000000000000000000000000000000
-      000000000000FFFFFF000000000000000000000000000000000000000000FFFF
-      FF0000000000000000000000000000000000000000000000000000000000BFBF
-      BF0000000000000000000000000000000000000000000000000000000000BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      FF000000800000000000000000000000000000000000000000000000FF000000
-      8000000080000000800000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000FF00000080000000800000800000000000000000000000000000000000
-      000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-      FF00FFFFFF00000000000000000000000000000000000000000000000000BFBF
-      BF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FF00000080000000FF0000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000FF000000800000008000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000000000BFBF
-      BF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBFBF00BFBF
-      BF00000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000FF0000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000007F7F7F000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00007F7F7F00000000000000000000000000424D3E000000000000003E000000
-      2800000040000000300000000100010000000000800100000000000000000000
-      000000000000000000000000FFFFFF0000000000000000000000000000000000
+      00FF008000FF008000FF800000FF000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000FF00FF0080
+      00FF008000FF008000FF800000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000FF00FF008000FF0080
+      00FF008000FF800000FF00000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000FF00FF008000FF008000FF0080
+      00FF800000FF0000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000FF00FF008000FF008000FF008000FF8000
+      00FF0000000000000000000000000000000000FF00FF00000000000000000000
+      0000000000000000000000FF00FF008000FF008000FF008000FF800000FF0000
+      000000000000000000000000000000FF00FF008000FF00FF00FF000000000000
+      00000000000000FF00FF008000FF008000FF008000FF800000FF000000000000
+      0000000000000000000000000000008000FF008000FF008000FF00FF00FF0000
+      000000FF00FF008000FF008000FF008000FF800000FF00000000000000000000
+      0000000000000000000000000000800000FF008000FF008000FF008000FF00FF
+      00FF008000FF008000FF008000FF008000FF800000FF00000000000000000000
+      000000000000000000000000000000000000800000FF008000FF008000FF0080
+      00FF008000FF008000FF008000FF800000FF0000000000000000000000000000
+      00000000000000000000000000000000000000000000800000FF008000FF0080
+      00FF008000FF008000FF800000FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000800000FF0080
+      00FF008000FF800000FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008000
+      00FF800000FF0000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF000000FF0000000000000000000000000000000000000000000000000000
+      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+      00FF000000000000000000000000000000000000000000000000000000FFFFFF
+      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
+      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C6
+      C6FF000000FFC6C6C6FF000000FF00000000000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C6C6FF0000
+      00FFC6C6C6FF000000FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
+      C6FF000000FFC6C6C6FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C6C6FFC6C6C6FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FF848484FF848484FF848484FFC6C6C6FFC6C6C6FF0000
+      00FFC6C6C6FF000000FF00000000000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FF00FFFFFF00FFFFFF00FFFFFFC6C6C6FFC6C6C6FF0000
+      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FFC6C6C6FF000000FF0000000000000000000000FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
+      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000CFFFFFFFFFFFC00787CFF3FFC007C007
-      8387E1FF8003C0078103C0FF0001C007C003807F0001C007E007003F0001C007
-      F00F083F0000C007F81F1C1F0000C007F81FBE0F8000C007F01FFF07C000C007
-      E00FFF83E001C007C107FFC1E007C007C383FFE0F007C007E7C3FFF0F003C007
-      FFE3FFF8F803C007FFFFFFFDFFFFC00700000000000000000000000000000000
-      000000000000}
+      000000000000000000000000000000000000000000007F7F7FFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
+      7FFF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
+      00FFBFBFBFFF000000FFBFBFBFFF0000FFFF0000FFFF0000FFFFBFBFBFFF0000
+      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
+      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
+      00FF00000000000000000000000000000000000000007F7F7FFF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
+      7FFF000000000000000000000000
+    }
   end
   object PrintDialog: TPrintDialog
-    Left = 193
-    Top = 3
+    left = 392
   end
 end

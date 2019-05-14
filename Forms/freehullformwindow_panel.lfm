@@ -6,7 +6,6 @@ object FreeHullForm: TFreeHullForm
   Caption = 'FreeHullWindow'
   ClientHeight = 285
   ClientWidth = 440
-  Color = clBtnFace
   FormStyle = fsMDIChild
   OnClose = FormClose
   OnCreate = FormCreate
@@ -14,7 +13,7 @@ object FreeHullForm: TFreeHullForm
   OnKeyUp = FormKeyUp
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object ScrollBar1: TScrollBar
     Left = 0
     Height = 15

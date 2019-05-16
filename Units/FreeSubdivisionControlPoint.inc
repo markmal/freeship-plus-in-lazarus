@@ -293,29 +293,25 @@ end;{TFreeSubdivisionControlPoint.Create}
 procedure TFreeSubdivisionControlPoint.Delete;
 var
   Index: integer;
-  Edge: TFreesubdivisionControlEdge;
+  Edge: TFreesubdivisionEdge; //TFreesubdivisionControlEdge;
 begin
   // delete from selection;
   Selected := False;
-  Dereference;
+
+  Owner.FControlPoints.DeleteAll(self);
+
   if FEdges.Count > 0 then
   begin
-    Index := Owner.FControlPoints.IndexOf(Self);
-    if Index <> -1 then
-      Owner.FControlPoints.Delete(index);
-
-    while FEdges <> nil do //.Count>0 do
+    while FEdges.Count>0 do
     begin
-      Edge := self.Edge[NumberOfEdges - 1] as TFreesubdivisionControlEdge;
+      Edge := self.Edge[NumberOfEdges - 1]; // as TFreesubdivisionControlEdge;
       Edge.Delete;
     end;
   end
   else
   begin
-    Index := Owner.FControlPoints.IndexOf(Self);
-    if Index <> -1 then
-      Owner.FControlPoints.Delete(index);
-    Destroy;
+    Unreference;
+    Destroy; //TODO: figure out why we do not delete Point if Edge exists
   end;
 end;{TFreeSubdivisionControlPoint.Delete}
 

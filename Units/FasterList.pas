@@ -427,7 +427,21 @@ end;{TFasterList.Create}
 
 
 procedure TFasterList.Clear;
+var l,s:integer;
 begin
+  if FCapacity > 0
+    then l:=0;
+  l:=Length(FList);
+  s:=SizeOf(TItemType);
+  if FCapacity > 0
+    then l:=0;
+
+  //s:=SizeOf(Pointer);
+  {FillByte(FList, FCapacity * SizeOf(TItemType), 0);
+  if FUseUserData then
+     FillByte(FData, FCapacity * SizeOf(Pointer), 0);
+  }
+
   FCount := 0;
   FSetCapacity(0);
   FSorted := False;

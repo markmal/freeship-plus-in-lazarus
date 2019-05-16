@@ -11,6 +11,8 @@ begin
   FOwner := Owner;
   inc(FIdSequence);
   FId:=FIdSequence;
+  InUnreference := false;
+  IsUnreferenceEnabled := true;
 end;{TFreeSubdivisionBase.Create}
 
 procedure TFreeSubdivisionBase.PrintDebug;

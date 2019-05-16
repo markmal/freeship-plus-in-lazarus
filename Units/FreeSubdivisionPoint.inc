@@ -476,25 +476,25 @@ begin
 
   if FFaces = nil then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FFaces = nil',[]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FFaces = nil',[self.FID]));
     result := false;
   end;
 
   if FEdges = nil then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FEdges = nil',[]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FEdges = nil',[self.FID]));
     result := false;
   end;
 
   if (FFaces <> nil) and (FFaces.Count < 1) then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FFaces empty',[]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FFaces empty',[self.FID]));
     result := false;
   end;
 
   if (FEdges <> nil) and (FEdges.Count < 1) then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity: FEdges empty',[]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FEdges empty',[self.FID]));
     result := false;
   end;
 
@@ -542,13 +542,14 @@ var
   Index: integer;
   Edge: TFreesubdivisionEdge;
 begin
+  Owner.FPoints.DeleteAll(Self);
+
   if FEdges.Count > 0 then
   begin
-    Index := Owner.FPoints.IndexOf(Self);
+    {Index := Owner.FPoints.IndexOf(Self);
     if Index <> -1 then
-      Owner.FPoints.Delete(index);
-
-    while FEdges <> nil do //.Count>0 do
+      Owner.FPoints.Delete(index);}
+    while FEdges.Count>0 do
     begin
       Edge := self.Edge[NumberOfEdges - 1];
       Edge.Delete;
@@ -556,17 +557,25 @@ begin
   end
   else
   begin
-    Index := Owner.FPoints.IndexOf(Self);
+    {Index := Owner.FPoints.IndexOf(Self);
     if Index <> -1 then
-      Owner.FPoints.Delete(index);
-    Destroy;
+      Owner.FPoints.Delete(index);}
+    Unreference;
+    Destroy; //TODO: figure out why we do not delete Point if Edge exists
   end;
 end;{TFreeSubdivisionPoint.Delete}
 
 
-procedure TFreeSubdivisionPoint.Dereference;
+procedure TFreeSubdivisionPoint.Unreference;
 var i:integer;
 begin
+  if not IsUnreferenceEnabled then exit;
+  if InUnreference then exit; // speed up
+  InUnreference := true;
+
+  {if FID=19729 then //DELETE
+     FID:=19729;}
+
   for i:=0 to FEdges.Count-1 do
     begin
     if FEdges[i].StartPoint = Self then
@@ -574,20 +583,26 @@ begin
     if FEdges[i].EndPoint = Self then
        FEdges[i].EndPoint := nil;
     end;
+
   for i:=0 to FFaces.Count-1 do
       FFaces[i].FPoints.DeleteAll(Self);
-  if FOwner <> nil then FOwner.DereferencePoint(Self);
+
+  if FOwner <> nil then FOwner.UnreferencePoint(Self);
+
+  InUnreference := false;
 end;
 
 destructor TFreeSubdivisionPoint.Destroy;
 begin
-  Dereference;
+  //Unreference;
   Clear;
   FFaces.Destroy;
   FFaces := nil;
   FEdges.Destroy;
   Fedges := nil;
   inherited Destroy;
+  if FID=19729 then //DELETE
+     FID:=19729;
 end;{TFreeSubdivisionPoint.Destroy}
 
 function TFreeSubdivisionPoint.IndexOfFace(Face: TFreeSubdivisionFace): integer;

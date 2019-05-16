@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="135"/>
+      <BuildNr Value="148"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -109,15 +109,20 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
+        <CommandLineParams Value="--nosplash --sync"/>
       </local>
       <FormatVersion Value="2"/>
-      <Modes Count="1">
+      <Modes Count="2">
         <Mode0 Name="default">
           <local>
             <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
           </local>
         </Mode0>
+        <Mode1 Name="no debug log">
+          <local>
+            <CommandLineParams Value="--nosplash --sync"/>
+          </local>
+        </Mode1>
       </Modes>
     </RunParams>
     <RequiredPackages Count="3">
@@ -131,7 +136,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="78">
+    <Units Count="79">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -615,6 +620,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit77>
+      <Unit78>
+        <Filename Value="Units/FreeGeometry.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit78>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -647,10 +656,8 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <DebugInfoType Value="dsDwarf2"/>
         <UseHeaptrc Value="True"/>
         <TrashVariables Value="True"/>
-        <UseValgrind Value="True"/>
       </Debugging>
       <Options>
         <LinkerOptions Value="-vd"/>

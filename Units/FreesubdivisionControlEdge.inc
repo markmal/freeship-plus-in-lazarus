@@ -303,34 +303,41 @@ var
 begin
   // delete from selection;
   Selected := False;
+
   if FCurve <> nil then
     FCurve.DeleteEdge(self);
-  Index := Owner.FControlEdges.IndexOf(self);
-  if Index <> -1 then
+
+  Owner.FControlEdges.DeleteAll(Self);
+
   begin
-    Owner.FControlEdges.Delete(index);
-    for I := FFaces.Count-1 downto 0 do
+    while FFaces.Count>0 do
     begin
-      FFaces[I].Free;
-      FFaces.Delete(I);
+      DeleteFace(FFaces[FFaces.Count-1]);
+      //FFaces[FFaces.Count-1].Delete;
+      //FFaces[I].Free;
+      //FFaces.Delete(I);
     end;
+    FFaces.Clear;
+
     // Remove endpoint from startpoint neighbours
     EndPoint.DeleteEdge(self);
-    if EndPoint.NumberOfEdges = 0 then
+    EndPoint := nil;
+    {if EndPoint.NumberOfEdges = 0 then
     begin
       Point := Endpoint;
-      Point.Delete;
-    end;
+      Point.Delete; //TODO: why we delete Point?
+    end;}
     // Remove startpoint from endpoint neighbours
     StartPoint.DeleteEdge(self);
-    if StartPoint.NumberOfEdges = 0 then
+    StartPoint := nil;
+    {if StartPoint.NumberOfEdges = 0 then
     begin
       Point := StartPoint;
-      Point.Delete;
-    end;
-    Dereference;
+      Point.Delete; //TODO: why we delete Point?
+    end;}
+    Unreference;
     inherited;
-    Destroy;
+    //Destroy; //destroyed in inherited
   end;
 end;{TFreesubdivisionControlEdge.Delete}
 

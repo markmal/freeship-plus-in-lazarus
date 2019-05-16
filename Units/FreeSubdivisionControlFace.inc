@@ -326,6 +326,7 @@ begin
   // delete from selection;
   Selected := False;
   // remove from layer
+  Layer.DeleteControlFace(self);
   Layer := nil;
   Index := Owner.FControlFaces.IndexOf(Self);
   if Index <> -1 then
@@ -351,15 +352,20 @@ begin
   Owner.Build := False;
   //Clear;
   //Destroy;
-  //DelayedDestroyList.Add(Self);
+  Unreference;
+  DelayedDestroyList.Add(Self);
 end;{TFreeSubdivisionControlFace.Delete}
 
-procedure TFreeSubdivisionControlFace.Dereference;
+procedure TFreeSubdivisionControlFace.Unreference;
 var i: integer;
 begin
+  if not IsUnreferenceEnabled then exit;
+  if InUnreference then exit; // speed up
+  InUnreference := true;
+  logger.Debug(format('TFreeSubdivisionFace.Unreference[%d]',[self.FID]));
   if FChildren<>nil then
   for i:=0 to FChildren.Count-1 do
-    FChildren[i].Dereference;
+    FChildren[i].Unreference;
   if FControlDescendantEdges<>nil then
   for i:=0 to FControlDescendantEdges.Count-1 do
     FControlDescendantEdges[i].FFaces.DeleteAll(Self);
@@ -369,27 +375,19 @@ begin
   if FPoints<>nil then
   for i:=0 to FPoints.Count-1 do
     FPoints[i].FFaces.DeleteAll(Self);
-  if FOwner <> nil then FOwner.DereferenceControlFace(self);
+  if FOwner <> nil then FOwner.UnreferenceControlFace(self);
   inherited;
+  InUnreference := false;
 end;
 
 destructor TFreeSubdivisionControlFace.Destroy;
 var i:integer;
 begin
-  logger.debug('TFreeSubdivisionControlFace.Destroy. $' + IntToStr(PtrUInt(Self)));
-  Dereference;
-  Delete;
-
-  for i:=0 to FEdges.Count - 1 do
-    FEdges[i].FFaces.DeleteAll(Self);
+  logger.Debug(format('TFreeSubdivisionControlFace.Destroy[%d]',[self.FID]));
   FEdges.Destroy;
   FEdges := nil;
-
-  for i:=0 to FControlDescendantEdges.Count - 1 do
-    FControlDescendantEdges[i].FFaces.DeleteAll(Self);
   FControlDescendantEdges.Destroy;
   FControlDescendantEdges := nil;
-
   FChildren.Destroy;
   FChildren := nil;
   inherited Destroy;
@@ -480,7 +478,7 @@ var
   Point: TFreeSubdivisionPoint;}
   Edge: TFreeSubdivisionEdge;
   Child: TFreeSubdivisionFace;
-  Point: TFreeSubdivisionControlPoint;
+  Point: TFreeSubdivisionPoint;
 
   P1, P2, P3: T3DCoordinate;
   Camera: T3DCoordinate;
@@ -493,7 +491,7 @@ var
   Na, Nb: integer;
   Intersections: array of TIntData;
   Capacity: integer;
-  Points: TFasterListTFreeSubdivisionControlPoint;
+  Points: TFasterListTFreeSubdivisionPoint;
 
   procedure DrawNormal(P, N: T3DCoordinate; color: TColor);
   var
@@ -974,13 +972,13 @@ begin
     begin
       // Draw normals
       // First assemble all points within this controlface
-      Points := TFasterListTFreeSubdivisionControlPoint.Create;
+      Points := TFasterListTFreeSubdivisionPoint.Create;
       for I := 1 to ChildCount do
       begin
         Child := Self.Child[I - 1];
         for J := 1 to Child.NumberOfpoints - 1 do
         begin
-          Point := Child.Point[J - 1] as TFreeSubdivisionControlPoint;
+          Point := Child.Point[J - 1];
           if Points.SortedIndexOf(Point) = -1 then
             Points.AddSorted(Point);
         end;
@@ -1443,7 +1441,7 @@ var
   ChildFace: TFreeSubdivisionFace;
   NewControlEdges:TFasterListTFreeSubdivisionEdge; // MM: not really control edges, just children of them
 begin
-  NewControlEdges:=TFasterListTFreeSubdivisionEdge.Create;
+  NewControlEdges:=TFasterListTFreeSubdivisionEdge.Create(true,false);
 
   if not CheckIntegrity
        then X:=0;
@@ -1519,8 +1517,8 @@ begin
       end;
   end;
 
-  NewControlEdges.Clear;
-  NewControlEdges.Free;
+  //NewControlEdges.Clear;
+  NewControlEdges.Destroy;
   CalcExtents;
 end;{TFreeSubdivisionControlFace.Subdivide}
 

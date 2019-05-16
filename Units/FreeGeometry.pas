@@ -189,6 +189,22 @@ type
   TFreeBackgroundImage = class;
   TFreeDevelopedPatch = class;
 
+  {   Reference integrity diagram
+
+  ControlPoint 1---* ControlEdge
+  ControlPoint 1---* ControlFace
+  ControlEdge  1---2  ControlPoint (StartPoint, EndPoint)
+  ControlEdge  1---+  ControlFace
+  ControlFace  1---2+ ControlPoint (usually 4, sometimes 3)
+
+  Point 1---* Edge
+  Point 1---* Face
+  Edge  1---2  Point (StartPoint, EndPoint)
+  Edge  1---+  Face
+  Face  1---2+ Point
+
+  }
+
 
   {---------------------------------------------------------------------------------------------------}
   {                                           FasterList specializations                                     }
@@ -1014,6 +1030,8 @@ type
   private
     FOwner: TFreeSubdivisionSurface;
     FId:integer;
+    InUnreference:boolean;
+    IsUnreferenceEnabled:boolean;
   public
     constructor Create(Owner: TFreeSubdivisionSurface);
       virtual;
@@ -1240,7 +1258,7 @@ type
     procedure Delete; virtual;
     procedure DeleteEdge(Edge: TFreeSubdivisionEdge);
     procedure DeleteFace(Face: TFreeSubdivisionFace);
-    procedure Dereference;
+    procedure Unreference;
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
@@ -1343,7 +1361,7 @@ type
       override;
     procedure Delete; virtual;
     procedure DeleteFace(Face: TFreeSubdivisionFace);
-    procedure Dereference; virtual;
+    procedure Unreference; virtual;
     destructor Destroy;
       override;
     function DistanceToCursor(X, Y: integer;
@@ -1440,7 +1458,7 @@ type
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
     procedure Delete; virtual;
-    procedure Dereference; virtual;
+    procedure Unreference; virtual;
     destructor Destroy;
       override;
     procedure FlipNormal;
@@ -1504,7 +1522,7 @@ type
     function DistanceToCursor(X, Y: integer;
       var P: T3DCoordinate; Viewport: TFreeViewport): integer;
     procedure Delete; override;
-    procedure Dereference; override;
+    procedure Unreference; override;
     destructor Destroy;
       override;
     procedure Draw(Viewport: TFreeViewport);
@@ -1653,12 +1671,12 @@ type
     FMinGaussCurvature: TFloatType;
     FMaxGaussCurvature: TFloatType;
     FMainframeLocation: single;
-    InDereferenceControlFace:boolean;
-    InDereferenceControlEdge:boolean;
-    InDereferenceControlPoint:boolean;
-    InDereferenceFace:boolean;
-    InDereferenceEdge:boolean;
-    InDereferencePoint:boolean;
+    InUnreferenceControlFace:boolean;
+    InUnreferenceControlEdge:boolean;
+    InUnreferenceControlPoint:boolean;
+    InUnreferenceFace:boolean;
+    InUnreferenceEdge:boolean;
+    InUnreferencePoint:boolean;
     function FGetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function FGetControlCurve(Index: integer): TFreesubdivisionControlCurve;
     function FGetControlEdge(Index: integer): TFreesubdivisionControlEdge;
@@ -1718,13 +1736,13 @@ type
     // Adds a new controlpoint at 0,0,0 without checking other points
 
     // Delete all object's references from related objects
-    procedure DereferenceControlPoint(P: TFreeSubdivisionControlPoint);
-    procedure DereferenceControlEdge(E: TFreeSubdivisionControlEdge);
-    procedure DereferenceControlFace(F: TFreeSubdivisionControlFace);
+    procedure UnreferenceControlPoint(P: TFreeSubdivisionControlPoint);
+    procedure UnreferenceControlEdge(E: TFreeSubdivisionControlEdge);
+    procedure UnreferenceControlFace(F: TFreeSubdivisionControlFace);
 
-    procedure DereferencePoint(P: TFreeSubdivisionPoint);
-    procedure DereferenceEdge(E: TFreeSubdivisionEdge);
-    procedure DereferenceFace(F: TFreeSubdivisionFace);
+    procedure UnreferencePoint(P: TFreeSubdivisionPoint);
+    procedure UnreferenceEdge(E: TFreeSubdivisionEdge);
+    procedure UnreferenceFace(F: TFreeSubdivisionFace);
 
     function AddNewLayer: TFreeSubdivisionLayer;
     procedure AssembleFacesToPatches(Layers: TFasterListTFreeSubdivisionLayer; Mode: TFreeAssembleMode;
@@ -2087,7 +2105,7 @@ const
 // -----------------------------------------------------------------------------
 constructor TFreeDestroyList.Create;
 begin
-  inherited Create;
+  inherited Create(true,false);
 end;
 
 procedure TFreeDestroyList.DestroyAll;
@@ -2095,15 +2113,22 @@ var
   O: TObject;
   I: integer;
 begin
-  while Count > 0 do
+  for I:=0 to Count-1 do
+  if Assigned(Items[I]) then
+    Items[I].Destroy;
+
+{  while Count > 0 do
   begin
-    O := TObject(Items[0]);
+    I:=Count-1;
+    O := TObject(Items[I]);
     if Assigned(O) then
     begin
       O.Destroy;
-      Delete(0);
+      Delete(I);
     end;
-  end;
+  end; }
+
+  Clear;
 end;
 // -----------------------------------------------------------------------------
 

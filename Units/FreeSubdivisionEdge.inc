@@ -312,36 +312,52 @@ var
   Face: TFreeSubdivisionControlFace;
   Point: TFreeSubdivisionControlPoint;
 begin
-  Index := Owner.FEdges.IndexOf(self);
+  {Index := Owner.FEdges.IndexOf(self);
   if Index <> -1 then
+    Owner.FEdges.Delete(index);}
+
   begin
-    Owner.FEdges.Delete(index);
     for I := FFaces.Count-1 downto 0 do
     begin
       FFaces[I].Free;
       FFaces.Delete(I);
     end;
     // Remove endpoint from startpoint neighbours
-    EndPoint.DeleteEdge(self);
-    if EndPoint.NumberOfEdges = 0 then
+    if EndPoint <> nil then
     begin
-      Point := Endpoint as TFreeSubdivisionControlPoint;
-      Point.Delete;
+      EndPoint.DeleteEdge(self);
+      if EndPoint.NumberOfEdges = 0 then
+      begin
+        Point := Endpoint as TFreeSubdivisionControlPoint;
+        Point.Delete;
+      end;
+      EndPoint := nil;
     end;
+
     // Remove startpoint from endpoint neighbours
-    StartPoint.DeleteEdge(self);
-    if StartPoint.NumberOfEdges = 0 then
+    if StartPoint <> nil then
     begin
-      Point := StartPoint as TFreeSubdivisionControlPoint;
-      Point.Delete;
+      StartPoint.DeleteEdge(self);
+      if StartPoint.NumberOfEdges = 0 then
+      begin
+        Point := StartPoint as TFreeSubdivisionControlPoint;
+        Point.Delete;
+      end;
+      StartPoint := nil;
     end;
-    Destroy;
+    //Destroy;
   end;
+  Unreference;
+  Destroy;
 end;{TFreesubdivisionEdge.Delete}
 
-procedure TFreeSubdivisionEdge.Dereference;
+procedure TFreeSubdivisionEdge.Unreference;
 var i,j: integer; F:TFreeSubdivisionFace;
 begin
+  if not IsUnreferenceEnabled then exit;
+  if InUnreference then exit; // speed up
+  InUnreference := true;
+
   if FStartPoint<>nil then
      FStartPoint.FEdges.DeleteAll(Self);
   if FEndPoint<>nil then
@@ -351,7 +367,8 @@ begin
     begin
     F:=FFaces[i];
     if F = nil then continue;
-    if not(F is TFreeSubdivisionFace) then continue;
+    if not(F is TFreeSubdivisionFace)
+       then continue;
     if (F is TFreeSubdivisionControlFace)
        and ((F as TFreeSubdivisionControlFace).FEdges <> nil) then
      (F as TFreeSubdivisionControlFace).FEdges.DeleteAll(Self);
@@ -360,14 +377,16 @@ begin
       if F.FPoints[j].FEdges <> nil then
           F.FPoints[j].FEdges.DeleteAll(Self);
     end;
-    if FOwner <> nil then FOwner.DereferenceEdge(Self);
+    if FOwner <> nil then FOwner.UnreferenceEdge(Self);
+
+    InUnreference := false;
 end;
 
 destructor TFreeSubdivisionEdge.Destroy;
 begin
   if self = nil then
     exit;
-  Dereference;
+  //Unreference;
   Clear;
   FFaces.Free;
   FFaces := nil;

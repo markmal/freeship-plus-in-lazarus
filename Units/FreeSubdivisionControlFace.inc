@@ -383,7 +383,7 @@ end;
 destructor TFreeSubdivisionControlFace.Destroy;
 var i:integer;
 begin
-  logger.Debug(format('TFreeSubdivisionControlFace.Destroy[%d]',[self.FID]));
+  //logger.Debug(format('TFreeSubdivisionControlFace.Destroy[%d]',[self.FID]));
   FEdges.Destroy;
   FEdges := nil;
   FControlDescendantEdges.Destroy;
@@ -399,15 +399,31 @@ var  I, J: integer; IsFaceFound:boolean;
   Edge: TFreeSubdivisionEdge;
   Startpoint: TFreeSubdivisionPoint;
   Endpoint: TFreeSubdivisionPoint;
-
+  Point: TFreeSubdivisionPoint;
 begin
   result:=true;
 
   for I := 0 to FChildren.Count-1 do
     begin
       ChildFace := FChildren[I];
-      result := result and ChildFace.CheckIntegrity;
+      if not ChildFace.CheckIntegrity then
+        begin
+        logger.Error(Format('TFreeSubdivisionControlFace(%d).CheckIntegrity: ChildFace[%d]',[FID,I]));
+        result := false;
+        end;
     end;
+
+  for I := 0 to FPoints.Count-1 do
+  begin
+    Point := FPoints[i];
+    if Point.FFaces.IndexOf(Self) = -1 then
+       logger.Error(Format('TFreeSubdivisionControlFace(%d).CheckIntegrity: Self not in Point[%d]',[FID,I]));
+    if not Point.CheckIntegrity then
+      begin
+        logger.Error(Format('TFreeSubdivisionControlFace(%d).CheckIntegrity: in Point[%d]',[FID,I]));
+        result := false;
+      end;
+  end;
 
   for I := 0 to FEdges.Count-1 do
   begin
@@ -436,11 +452,11 @@ begin
       continue;
     end;
 
-    if Edge.FFaces.IndexOf(Self) = -1 then
+    {if Edge.FFaces.IndexOf(Self) = -1 then
     begin
       logger.Error(Format('TFreeSubdivisionControlFace(%d).CheckIntegrity: Self not in Edge[%d].Faces',[FID,I]));
       result := false;
-    end;
+    end; }
 
   end;
 
@@ -453,11 +469,12 @@ begin
         result := false;
       end;
 
-      if Edge.FFaces.IndexOf(Self) = -1 then
+      {if Edge.FFaces.IndexOf(Self) = -1 then
       begin
         logger.Error(Format('TFreeSubdivisionControlFace(%d).CheckIntegrity: Self not in CEdge[%d].Faces',[FID,I]));
         result := false;
-      end;
+      end;}
+
       result := result and Edge.CheckIntegrity;
     end;
 
@@ -1180,6 +1197,7 @@ begin
     else
     begin
       Edge := Owner.AddControlEdge(P1, P2);
+      Edge.FFaces.Add(Self);
       Edge.Crease := True;
       MessageDlg('Could not find edge!', mtError, [mbOK], 0);
     end;
@@ -1443,8 +1461,8 @@ var
 begin
   NewControlEdges:=TFasterListTFreeSubdivisionEdge.Create(true,false);
 
-  if not CheckIntegrity
-       then X:=0;
+  //if not CheckIntegrity
+  //     then X:=0;
 
   //for i:=0 to FControlDescendantEdges.Count-1 do
   //    FControlDescendantEdges[i].Free;

@@ -839,6 +839,8 @@ procedure TFreeSubdivisionLayer.DeleteControlFace(
 var
   Index: integer;
 begin
+  FPatches.DeleteAll(ControlFace);
+
   Index := FPatches.IndexOf(ControlFace);
   if index <> -1 then
     FPatches.Delete(Index);

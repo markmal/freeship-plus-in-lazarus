@@ -3,12 +3,13 @@ object TileDialog: TTileDialog
   Height = 652
   Top = 188
   Width = 1023
+  ActiveControl = ButtonOpenFile
   ClientHeight = 652
   ClientWidth = 1023
   Font.Quality = fqAntialiased
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object TopPanel: TPanel
     Left = 0
     Height = 50

@@ -281,7 +281,7 @@ var
             end;
         end;
       end;
-      P1 := p2;
+      P1 := P2;
     end;
   end;{FindAttachedFaces}
 
@@ -914,8 +914,8 @@ var
   end;{AssembleFaces}
 
 begin
-  ToDoList := TFasterListTFreeSubdivisionControlFace.Create;
-  DoneList := TFasterListTFreeSubdivisionControlFace.Create;
+  ToDoList := TFasterListTFreeSubdivisionControlFace.Create(true,false);
+  DoneList := TFasterListTFreeSubdivisionControlFace.Create(true,false);
   NAssembled := 0;
   try
     // use all visible faces
@@ -937,7 +937,7 @@ begin
         Current := TFasterListTFreeSubdivisionControlFace.Create;
         Current.Add(Face);
         FindAttachedFaces(Current, Face);
-        DoneList.AddObject(Face,@Current);
+        DoneList.AddObject(Face,Current);
       end;
       Capacity := 50;
       setlength(AssembledPatches, Capacity);
@@ -950,8 +950,8 @@ begin
         Current.Destroy;
       end;
     end;
-    ToDoList.Destroy;
   finally
+    ToDoList.Destroy;
     DoneList.Destroy;
   end;
 end;{TFreeSubdivisionSurface.AssembleFacesToPatches}
@@ -3911,8 +3911,12 @@ var
   NewCEdge:TFreeSubdivisionControlEdge;
   tmpFaces: TFasterListTFreeSubdivisionFace;
 begin
-  if not self.CheckIntegrity
-    then X:=0; //ShowMessage('Before Init Model integrity corruption');
+  if FIsBuilding then exit; // no double entries
+  FIsBuilding:=true;
+  FBuild := false;
+
+  //if not self.CheckIntegrity
+  //  then X:=0; //ShowMessage('Before Init Model integrity corruption');
 
   if not FInitialized then
     Initialize(1, 1, 1);
@@ -3932,7 +3936,7 @@ begin
         Curve.FSubdividedPoints.AddList(TFasterList(Curve.FControlPoints));
       end;
     end;
-    FBuild := True;
+    //FBuild := True;
 
     while (FCurrentSubdivisionLevel < FDesiredSubdivisionlevel) and
       (FControlFaces.Count > 0) do
@@ -3977,6 +3981,7 @@ begin
     begin
       Curve := ControlCurve[I - 1];
       Curve.FCurve.Clear;
+      Curve.FBuild := False;
       Curve.FCurve.Capacity := Curve.FSubdividedPoints.Count;
       for J := 1 to Curve.FSubdividedPoints.Count do
       begin
@@ -4000,8 +4005,8 @@ begin
               Curve.FCurve.Knuckle[J - 1] := Point.VertexType = svCrease;
           end;
         end;
-        Curve.FBuild := True;
       end;
+      Curve.FBuild := True;
     end;
   end
   else if NumberOfControlPoints > 0 then
@@ -4024,7 +4029,12 @@ begin
     FMax.Y := 1.0;
     FMax.Z := 1.0;
   end;
-  build := true;
+
+  if not self.CheckIntegrity
+    then ShowMessage('After Build Model integrity corruption');
+
+  FIsBuilding:=false;
+  FBuild := true;
 end;{TFreeSubdivisionSurface.Rebuild}
 
 procedure TFreeSubdivisionSurface.SaveBinary(Destination: TFreeFileBuffer);

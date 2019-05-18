@@ -120,6 +120,8 @@ var
   Un, Qn: T3DCoordinate;
   DPar1, DPar2, DPar3: single;
 begin
+  if FIsBuilding then exit;
+  FIsBuilding := true;
   Build := False;
 
   // First attempt to eliminate double points
@@ -246,6 +248,7 @@ begin
   end;
   FFragments := FNoPoints * 1; //MM: just set
   inherited Rebuild;
+  FIsBuilding := false;
 end;{TFreeSpline.Rebuild}
 
 function TFreeSpline.SecondDerive(Parameter: TFloatType): T3DCoordinate;

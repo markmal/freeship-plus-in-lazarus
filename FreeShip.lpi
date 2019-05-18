@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="148"/>
+      <BuildNr Value="150"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -109,10 +109,10 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--nosplash --sync"/>
+        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
       </local>
       <FormatVersion Value="2"/>
-      <Modes Count="2">
+      <Modes Count="3">
         <Mode0 Name="default">
           <local>
             <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
@@ -123,6 +123,11 @@
             <CommandLineParams Value="--nosplash --sync"/>
           </local>
         </Mode1>
+        <Mode2 Name="debug log">
+          <local>
+            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
+          </local>
+        </Mode2>
       </Modes>
     </RunParams>
     <RequiredPackages Count="3">
@@ -655,10 +660,6 @@
       </Optimizations>
     </CodeGeneration>
     <Linking>
-      <Debugging>
-        <UseHeaptrc Value="True"/>
-        <TrashVariables Value="True"/>
-      </Debugging>
       <Options>
         <LinkerOptions Value="-vd"/>
         <Win32>

@@ -476,25 +476,41 @@ begin
 
   if FFaces = nil then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FFaces = nil',[self.FID]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): FFaces = nil',[self.FID]));
     result := false;
   end;
 
   if FEdges = nil then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FEdges = nil',[self.FID]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): FEdges = nil',[self.FID]));
     result := false;
   end;
 
   if (FFaces <> nil) and (FFaces.Count < 1) then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FFaces empty',[self.FID]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): FFaces empty',[self.FID]));
+    result := false;
+  end;
+
+  if (FFaces <> nil) then
+  for i:=0 to FFaces.Count-1 do
+  if FFaces[i].FPoints.IndexOf(Self) = -1 then
+  begin
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): Self not in FFaces[%d]',[self.FID,i]));
     result := false;
   end;
 
   if (FEdges <> nil) and (FEdges.Count < 1) then
   begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity[%d]: FEdges empty',[self.FID]));
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): FEdges empty',[self.FID]));
+    result := false;
+  end;
+
+  if (FEdges <> nil) then
+  for i:=0 to FEdges.Count-1 do
+  if (FEdges[i].StartPoint <> Self) and (FEdges[i].EndPoint <> Self) then
+  begin
+    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): Self not in FEdges[%d]',[self.FID,i]));
     result := false;
   end;
 

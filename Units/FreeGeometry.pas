@@ -816,8 +816,8 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeEntity = class
   private
-    FBuild: boolean;
-    // Flag to check if the entity has already been build
+    FBuild: boolean; // Flag to check if the entity has already been built
+    FIsBuilding: boolean; // Flag to check if the entity is building to exclude double entrance to building
     FMin, FMax: T3DCoordinate;
     // The min/max boundary coordinates of the entity after it has been build
     FPenWidth: byte;

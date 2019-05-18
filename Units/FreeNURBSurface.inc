@@ -404,8 +404,9 @@ end;{TFreeNURBSurface.NormalizeKnotVectors}
 
 procedure TFreeNURBSurface.Rebuild;
 begin
-  if Build then
-    Build := False;
+  if FIsBuilding then exit;
+  FIsBuilding := true;
+  FBuild := False;
   if FColDegree > FColcount - 1 then
     FColDegree := FColcount - 1;
   if FRowDegree > FRowcount - 1 then
@@ -414,5 +415,6 @@ begin
   SetDefaultRowKnotVector;
   Build := True;
   inherited Rebuild;
+  FIsBuilding := false;
 end;{TFreeNURBSurface.Rebuild}
 

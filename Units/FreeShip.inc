@@ -2077,8 +2077,8 @@ var
   PrevCursor: TCursor;
   I: integer;
 begin
-  PrevCursor := Screen.Cursor;
-  Screen.Cursor := crHourGlass;
+  //PrevCursor := Screen.Cursor;
+  //Screen.Cursor := crHourGlass;
   try
     Logger.Debug('SaveBinary');
     Destination.Encoding := Preferences.FbmEncoding;
@@ -2180,8 +2180,8 @@ begin
       end;
     end;
   finally
-    FileChanged := False;
-    Screen.Cursor := PrevCursor;
+    //FileChanged := False;
+    //Screen.Cursor := PrevCursor;
   end;
 end;{TFreeShip.SaveBinary}
 

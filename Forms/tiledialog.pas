@@ -49,6 +49,8 @@ type
     FTileHeight: integer;
     FSelectedFileName: string;
     FSelectedTile:TTile;
+  protected
+    procedure SetCursor(Value: TCursor); override;
   public
     constructor Create(AOwner: TComponent); override;
     procedure setTileSize(aWidth, aHeight: integer);
@@ -178,6 +180,23 @@ procedure TTileDialog.RemoveSelectedTile;
    FSelectedTile.Free;
    FSelectedTile:=nil;
  end;
+
+procedure TTileDialog.SetCursor(Value: TCursor);
+
+  procedure setCursorOnControls(parentCtl:TWinControl; cursr: TCursor);
+    var i:integer;
+  begin
+    for i:=0 to parentCtl.ControlCount-1 do
+      begin
+        parentCtl.Controls[i].Cursor:=cursr;
+        if parentCtl.Controls[i] is TWinControl then
+           setCursorOnControls(parentCtl.Controls[i] as TWinControl, cursr);
+      end;
+  end;
+begin
+  inherited;
+  setCursorOnControls(self, value);
+end;
 
 end.
 

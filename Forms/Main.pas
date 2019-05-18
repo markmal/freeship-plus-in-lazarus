@@ -1346,6 +1346,7 @@ var dlg: TTileDialog; i:integer; vFileName,sTime:string; jpg:TJPEGImage;
     pic:TPicture;
 begin
   dlg:= Sender as TTileDialog;
+  dlg.Cursor := crHourGlass;
   Screen.Cursor := crHourGlass;
   Application.ProcessMessages;
   for i:=0 to FreeShip.Edit.RecentFileCount-1 do
@@ -1354,6 +1355,7 @@ begin
     if not FileExists(vFileName) then continue;
     sTime:=FormatDateTime('YYYY-MM-DD hh:mm:ss',FileDateToDateTime(FileAgeUTF8(vFileName)));
     Screen.Cursor := crHourGlass;
+    dlg.Cursor := crHourGlass;
     Application.ProcessMessages;
     jpg:= Freeship.Edit.getPreviewImage(vFileName);
     if assigned(jpg) then
@@ -1365,6 +1367,7 @@ begin
     Application.ProcessMessages;
   end;
   Screen.Cursor := crDefault;
+  dlg.Cursor := crDefault;
 end;
 
 procedure TMainForm.ShowRecentFilesDialog;

@@ -106,7 +106,6 @@ begin
   FreeShip1:= TFreeShip.Create(Self);
   with FreeShip1 do
   begin
-    Parent:=Self;
     FileChanged := True;
     Filename := 'New model.fbm';
     FileVersion := fv230;
@@ -117,9 +116,9 @@ end;
 procedure TFreeUndoHistoryDialog.CreateViewPort;
 begin
   Viewport := TFreeViewport.Create(Self);
+  Viewport.Parent:=Panel1;
   with Viewport do
   begin
-    Parent:=Self;
     Left := 264;
     Height := 392;
     Top := 9;

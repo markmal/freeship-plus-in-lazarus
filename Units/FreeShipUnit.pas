@@ -579,7 +579,7 @@ type
 
     PreviewFrm: TForm;
     PreviewImg: TImage;
-
+    FProgressBar: TProgressBar;
     function FGetRecentFile(Index: integer): string;
     function FGetRecentFileCount: integer;
     procedure SaveDialogTypeChange(Sender: TObject);
@@ -798,7 +798,9 @@ type
     // Clear the undo history
     procedure Undo_ShowHistory; //Show the undo history
     procedure OnFilePreview(Sender: TObject; filename: string);
+    procedure OnFaceRebuilt (Sender: TObject; current:integer; total:integer);
     property Owner: TFreeShip read FOwner write FOwner;
+    property ProgressBar:TProgressBar read FProgressBar write FProgressBar;
     property RecentFiles: TStringList read FRecentFiles write FRecentFiles;
     property RecentFile[index: integer]: string read FGetRecentFile;
     // retrieve a filename from the recently used file list

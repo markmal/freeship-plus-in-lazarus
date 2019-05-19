@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 459
+  Left = 530
   Height = 640
-  Top = 161
+  Top = 153
   Width = 960
   Align = alTop
   ClientHeight = 621
@@ -24,62 +24,121 @@ object MainForm: TMainForm
   LCLVersion = '2.0.2.0'
   object StatusBar: TPanel
     Left = 0
-    Height = 20
-    Top = 601
+    Height = 26
+    Top = 595
     Width = 960
     Align = alBottom
+    AutoSize = True
     BevelOuter = bvLowered
-    ClientHeight = 20
+    ChildSizing.Layout = cclTopToBottomThenLeftToRight
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 26
     ClientWidth = 960
     Color = clMenuBar
-    Font.Height = -9
-    Font.Name = 'Courier New'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     TabOrder = 0
-    object Panel2: TPanel
-      Left = 1
-      Height = 18
+    object StatusPanel2: TPanel
+      Left = 0
+      Height = 25
       Top = 0
-      Width = 200
+      Width = 159
+      AutoSize = True
       BevelOuter = bvLowered
-      Caption = 'Undo memory : 0 kb.'
-      Font.Height = -12
-      Font.Name = 'Courier New'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 4
+      ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 25
+      ClientWidth = 159
       TabOrder = 0
+      object LabelUndoMemory: TLabel
+        Left = 11
+        Height = 15
+        Top = 5
+        Width = 137
+        Caption = 'Undo memory : 0 kb.'
+        Layout = tlCenter
+        ParentColor = False
+      end
     end
-    object Panel3: TPanel
-      Left = 201
-      Height = 18
+    object StatusPanel3: TPanel
+      Left = 159
+      Height = 25
       Top = 0
-      Width = 200
+      Width = 100
       BevelOuter = bvLowered
-      Caption = 'distance : '
-      Font.Height = -12
-      Font.Name = 'Courier New'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 4
+      ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 25
+      ClientWidth = 100
+      Constraints.MinWidth = 100
       TabOrder = 1
-      OnClick = Panel3Click
+      OnClick = StatusPanel3Click
+      object LabelDistance: TLabel
+        Left = 10
+        Height = 15
+        Top = 5
+        Width = 67
+        Caption = 'distance : '
+        Layout = tlCenter
+        ParentColor = False
+        OnClick = StatusPanel3Click
+      end
     end
-    object Panel4: TPanel
-      Left = 401
-      Height = 18
+    object StatusPanel4: TPanel
+      Left = 259
+      Height = 25
       Top = 0
-      Width = 583
+      Width = 115
       BevelOuter = bvLowered
-      Font.Height = -12
-      Font.Name = 'Courier New'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 4
+      ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 25
+      ClientWidth = 115
+      Constraints.MinWidth = 100
       TabOrder = 2
-      OnClick = Panel3Click
+      OnClick = StatusPanel3Click
+      object LabelNumbers: TLabel
+        Left = 10
+        Height = 15
+        Top = 5
+        Width = 94
+        Caption = 'LabelNumbers'
+        Layout = tlCenter
+        ParentColor = False
+        OnClick = StatusPanel3Click
+      end
+    end
+    object StatusPanel5: TPanel
+      Left = 374
+      Height = 25
+      Top = 0
+      Width = 171
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'StatusPanel5'
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 25
+      ClientWidth = 171
+      TabOrder = 3
+      object ProgressBar1: TProgressBar
+        Left = 10
+        Height = 20
+        Top = 3
+        Width = 150
+        Constraints.MinWidth = 150
+        TabOrder = 0
+      end
     end
   end
   object PanelMain: TPanel
@@ -530,7 +589,7 @@ object MainForm: TMainForm
   end
   object MainClientPanel: TPanel
     Left = 0
-    Height = 566
+    Height = 560
     Top = 35
     Width = 960
     Align = alClient

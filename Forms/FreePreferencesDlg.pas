@@ -204,6 +204,8 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
+    procedure FormResize(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure ResetColorsButtonClick(Sender: TObject);
     procedure ColorPanelClick(Sender: TObject);
     procedure OkButtonClick(Sender: TObject);
@@ -231,6 +233,7 @@ type
     FThemeChanged: boolean;
     procedure Updatedata;
     procedure ComboBoxEncodingFillItems;
+    function getPreferredSize:TRect;
   public    { Public declarations }
     property IsThemeChanged: boolean read FThemeChanged;
     property IsConfigChanged: boolean read FConfigChanged;
@@ -348,6 +351,18 @@ begin
   end;
 end;
 
+procedure TFreePreferencesDialog.FormResize(Sender: TObject);
+var sz:TRect;
+begin
+  sz:=getPreferredSize;
+end;
+
+procedure TFreePreferencesDialog.FormShow(Sender: TObject);
+var sz:TRect;
+begin
+  sz:=getPreferredSize;
+end;
+
 
 procedure TFreePreferencesDialog.OkButtonClick(Sender: TObject);
 begin
@@ -390,16 +405,23 @@ begin
 end;
 
 procedure TFreePreferencesDialog.FormActivate(Sender: TObject);
+var sz:TRect;
+begin
+  sz:=getPreferredSize;
+end;
+
+function TFreePreferencesDialog.getPreferredSize:TRect;
 var
   TxH, TbH, HdrHeight, BrdWidth, TbT, PgT, PnT, PGIB: integer;
   ScreenPoint: TPoint;
 begin
+  Invalidate;
   Application.ProcessMessages;
   ScreenPoint := ButtonPanel.ClientToScreen(Point(0, 0));
   HdrHeight := ScreenPoint.Y - self.Top;
   BrdWidth := ScreenPoint.X - self.Left;
   HdrHeight := HdrHeight - BrdWidth;
-  Tabsheet1.AdjustSize;
+  {Tabsheet1.AdjustSize;
   Tabsheet1.Repaint;
   //Tabsheet1.Invalidate;
 
@@ -408,7 +430,7 @@ begin
   Panel1.AdjustSize;
   ButtonPanel.AdjustSize;
   self.AdjustSize;
-  Application.ProcessMessages;
+  Application.ProcessMessages;}
 
   TbT := TabSheet2.ClientToParent(Point(0, 0), self).Y;
   PgT := PageControl1.ClientToParent(Point(0, 0), self).Y;
@@ -418,8 +440,9 @@ begin
   TxH := PGIB + TabSheet2.ChildSizing.TopBottomSpacing * 2 + //TbH +
     Panel1.BorderWidth * 2 + Panel1.BorderSpacing.InnerBorder * 2 +
     ButtonPanel.Height + HdrHeight + BrdWidth * 2;
-  if self.Constraints.MinHeight < TxH then
-    self.Constraints.MinHeight := TxH;
+  {if self.Constraints.MinHeight < TxH then
+    self.Constraints.MinHeight := TxH;}
+  result := Rect(0,0, Width, BitBtnResetDirs.Top + BitBtnResetDirs.Height + 16);
 end;
 
 procedure TFreePreferencesDialog.SpinEdit1Change(Sender: TObject);

@@ -1020,20 +1020,23 @@ begin
 
   FOpenDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');
-  FSaveDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');
+  {FSaveDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');}
+  FSaveDirectory := FUserAppDataDirectory + DS + 'Ships';
   FImportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Import', FUserAppDataDirectory + DS + 'Import');
-  FExportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Export', FUserAppDataDirectory + DS + 'Export');
+  {FExportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    DS + 'Export', FUserAppDataDirectory + DS + 'Export');}
+  FExportDirectory := FUserAppDataDirectory + DS + 'Export';
   FLanguagesDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Languages', FUserAppDataDirectory + DS + 'Languages');
   FExecDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Exec', FUserAppDataDirectory + DS + 'Exec');
   FManualsDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Manuals', FUserAppDataDirectory + DS + 'Manuals');
-  FTempDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Temp', FUserAppDataDirectory + DS + 'Temp');
+  {FTempDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    DS + 'Temp', FUserAppDataDirectory + DS + 'Temp');}
+  FTempDirectory := FUserAppDataDirectory + DS + 'Temp';
 
   S:=StringReplace('/Themes/Default/icons/16','/',DS,[rfReplaceAll]);
   FMenuIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory + S,

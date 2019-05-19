@@ -205,7 +205,6 @@ type
 
   }
 
-
   {---------------------------------------------------------------------------------------------------}
   {                                           FasterList specializations                                     }
   {---------------------------------------------------------------------------------------------------}
@@ -273,6 +272,9 @@ type
     First, Last: integer;
     Pixels: array of TAlphaBlendPixelArray;
   end;
+
+
+  TProgressEvent = procedure(Sender: TObject; current:integer; total:integer) of object;
 
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeAlphaBuffer                                        }
@@ -1671,6 +1673,7 @@ type
     FMinGaussCurvature: TFloatType;
     FMaxGaussCurvature: TFloatType;
     FMainframeLocation: single;
+    FOnFaceRebuilt: TProgressEvent;
     InUnreferenceControlFace:boolean;
     InUnreferenceControlEdge:boolean;
     InUnreferenceControlPoint:boolean;
@@ -1887,6 +1890,7 @@ type
       read FOnChangeLayerData write FOnChangeLayerData;
     property OnSelectItem: TNotifyEvent
       read FOnSelectItem write FOnSelectItem;
+    property OnFaceRebuilt: TProgressEvent read FOnFaceRebuilt write FOnFaceRebuilt;
     property Point[index: integer]: TFreeSubdivisionPoint
       read FGetpoint;
     property Edge[index: integer]: TFreeSubdivisionEdge

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, ActnList, Menus;
+  StdCtrls, ActnList, Menus, ComCtrls;
 
 type
 
@@ -34,7 +34,10 @@ type
     FlowPanel: TFlowPanel;
     MenuItemRemove: TMenuItem;
     MenuItemOpen: TMenuItem;
+    Panel1: TPanel;
+    Panel2: TPanel;
     PopupMenu1: TPopupMenu;
+    ProgressBar1: TProgressBar;
     TopPanel: TPanel;
     ScrollBox: TScrollBox;
     procedure ActionOpenAnotherExecute(Sender: TObject);

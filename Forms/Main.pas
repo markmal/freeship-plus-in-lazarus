@@ -91,9 +91,14 @@ type
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
+     LabelNumbers: TLabel;
+     LabelDistance: TLabel;
+     LabelUndoMemory: TLabel;
      MainClientPanel: TPanel;
+     StatusPanel5: TPanel;
      PanelActiveLayerColor: TPanel;
      PanelMain: TPanel;
+     ProgressBar1: TProgressBar;
      SelectLeakPoints: TAction;
     FreeShip                   : TFreeShip;
     ActionList1                : TActionList;
@@ -239,7 +244,7 @@ type
     Analyzesurface2: TMenuItem;
     Undo: TAction;
     Undo1: TMenuItem;
-    Panel2: TPanel;
+    StatusPanel2: TPanel;
     HydrostaticsDialog: TAction;
     Hydrostatics2: TMenuItem;
     ExportObj: TAction;
@@ -370,7 +375,7 @@ type
     HydrodynTask2: TMenuItem;
     HydrodynTask3: TMenuItem;
     HydrodynTask4: TMenuItem;
-    Panel3: TPanel;
+    StatusPanel3: TPanel;
     PointAlign: TAction;
     ToolButton45: TToolButton;
     Projectline1: TMenuItem;
@@ -385,7 +390,7 @@ type
     MirrorFace1: TMenuItem;
     ExportDXF2DPolylines: TAction;
     DXF2DPolylines1: TMenuItem;
-    Panel4: TPanel;
+    StatusPanel4: TPanel;
     TransformLackenby: TAction;
     Lackenby1: TMenuItem;
     ExportIGES: TAction;
@@ -549,7 +554,7 @@ type
     procedure HydrodynTask3Execute(Sender: TObject);
     procedure HydrodynTask4Execute(Sender: TObject);
     procedure FreeShipChangeCursorIncrement(Sender: TObject);
-    procedure Panel3Click(Sender: TObject);
+    procedure StatusPanel3Click(Sender: TObject);
     procedure PointAlignExecute(Sender: TObject);
     procedure ImportMichletWavesExecute(Sender: TObject);
     procedure ShowHydrostaticsExecute(Sender: TObject);
@@ -710,6 +715,7 @@ begin
  SortControlsByXY(ToolBarFaces);
  SortControlsByXY(ToolBarCurves);
  }
+
 end;
 
 destructor TMainForm.Destroy;
@@ -911,6 +917,7 @@ end;
 procedure TMainForm.InitiallyLoadModel;
 var FileExt: string;
 begin
+
 if FFileName = '' then
   LoadMostRecentFile;
 
@@ -958,20 +965,25 @@ begin
   if inActivation then exit;
   inActivation:=true;
 
+  //Freeship.Edit.ProgressBar := ProgressBar1;
+  //Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
+  { if Application.ProcessMessages happens during surface rebuild it causes errors during next rebuild.}
+  Freeship.Edit.ProgressBar := nil;
+  Freeship.Surface.OnFaceRebuilt:= nil;
+
   if not FModelInitallyLoaded then
     begin
        InitiallyLoadModel;
        FModelInitallyLoaded := true;
     end;
-  {
-  for i:=0 to FMDIChildList.Count -1 do begin
-    TFreeHullWindow(FMDIChildList.Items[i]).BringToFront;
-    Application.ProcessMessages;
-  end;
-  }
+
   BringToFront;
   Application.BringToFront;
   Application.ProcessMessages;
+  Freeship.Draw;
+
+  Freeship.Edit.ProgressBar := nil;
+  Freeship.Surface.OnFaceRebuilt:= nil;
 
   inActivation:=false;
 end;
@@ -1054,19 +1066,21 @@ var HullformWindow: TFreeHullWindow;
     I             : Integer;
     HullformActionList:TActionList;
 begin
-  Panel3.Destroy;
-  Panel3 := TPanel.Create(Self);
-  Panel3.Parent := StatusBar;
-  Panel3.Color := clWhite;
-  Panel3.Align := alLeft;
-  Panel3.Caption := 'Distance:';
+{  StatusPanel3.Destroy;
+  StatusPanel3 := TPanel.Create(Self);
+  StatusPanel3.Parent := StatusBar;
+  StatusPanel3.Color := clWhite;
+  StatusPanel3.Align := alLeft;
+  LabelDistance.Parent := StatusPanel3;
+  LabelDistance.Caption := 'Distance:';
 
-  Panel4.Destroy;
-  Panel4 := TPanel.Create(Self);
-  Panel4.Parent := StatusBar;
-  Panel4.Color := clWhite;
-  Panel4.Align := alLeft;
-
+  StatusPanel4.Destroy;
+  StatusPanel4 := TPanel.Create(Self);
+  StatusPanel4.Parent := StatusBar;
+  StatusPanel4.Color := clWhite;
+  StatusPanel4.Align := alLeft;
+  ProgressBar1.Parent := StatusPanel4;
+}
    if MDIChildCount=0 then
    begin
       for I:=0 to 3 do
@@ -1357,6 +1371,8 @@ begin
     Screen.Cursor := crHourGlass;
     dlg.Cursor := crHourGlass;
     Application.ProcessMessages;
+
+    Freeship.Edit.ProgressBar := dlg.ProgressBar1;
     jpg:= Freeship.Edit.getPreviewImage(vFileName);
     if assigned(jpg) then
       begin
@@ -1385,24 +1401,45 @@ begin
 
   vFileName:=dlg.FileName;
   dlg.Free;
+
+  Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
+  Freeship.Edit.ProgressBar := self.ProgressBar1;
+  //Freeship.Surface.OnFaceRebuilt:= nil;
+  //Freeship.Edit.ProgressBar := nil;
+
   if (vFileName<>'') and (vFileName<>'*') then
+    begin
+    FreeShip.ClearUndo;
+    FreeShip.Clear;
+    FreeShip.Surface.ClearSelection;
+    FreeShip.Surface.ClearFaces;
+    FreeShip.Surface.Clear;
     FreeShip.Edit.File_Load(vFileName);
+    //FreeShip.Surface.Rebuild;
+    //FreeShip.Draw;
+    end;
   if (vFileName = '*') then
     begin
     FreeShip.Edit.File_Load;
-    FOpenHullWindows;
-    SetCaption;
-    UpdateMenu;
+    //FreeShip.Surface.Rebuild;
+    //FreeShip.Draw;
+    //SetCaption;
+    //UpdateMenu;
     end;
+
+  Freeship.Surface.OnFaceRebuilt:=nil;
+  Freeship.Surface.OnFaceRebuilt:=nil;
 end;
 
 procedure TMainForm.LoadFileExecute(Sender: TObject);
 begin
-   ShowRecentFilesDialog;
-   //FreeShip.Edit.File_Load;
-   FOpenHullWindows;
-   SetCaption;
-   UpdateMenu;
+  FOpenHullWindows;
+  ShowRecentFilesDialog;
+  //FreeShip.Edit.File_Load;
+  Application.ProcessMessages;
+  FreeShip.Draw;
+  SetCaption;
+  UpdateMenu;
 end;{TMainForm.LoadFileExecute}
 
 procedure TMainForm.ExitProgramExecute(Sender: TObject);
@@ -1688,8 +1725,12 @@ begin
   FFilename := Filename;
   if FileExists(Filename)  then
     begin
-    Freeship.Edit.File_Load(Filename);
     FOpenHullWindows;
+    Application.ProcessMessages;
+    Freeship.Edit.ProgressBar := ProgressBar1;
+    Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
+    Freeship.Edit.File_Load(Filename);
+    //Freeship.Draw;
     SetCaption;
     UpdateMenu;
     end;
@@ -1702,6 +1743,8 @@ var Menu    : TMenuItem;
 begin
   if FileExists(Filename)  then
     begin
+    Freeship.Edit.ProgressBar := ProgressBar1;
+    Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
     Freeship.Edit.File_Load(Filename);
     FOpenHullWindows;
     SetCaption;
@@ -2160,8 +2203,8 @@ procedure TMainForm.FreeShipUpdateUndoData(Sender: TObject);
 var Memory : Integer;
 begin
    Memory:=Trunc(Freeship.UndoMemory/1024);
-   if Memory<1024 then Panel2.Caption:=Userstring(283)+' : '+IntToStr(Memory)+' Kb.'
-                  else Panel2.Caption:=Userstring(283)+' : '+Truncate(Memory/1024,3)+' Mb.';
+   if Memory<1024 then LabelUndoMemory.Caption:=Userstring(283)+' : '+IntToStr(Memory)+' Kb.'
+                  else LabelUndoMemory.Caption:=Userstring(283)+' : '+Truncate(Memory/1024,3)+' Mb.';
    Undo.Enabled:=FreeShip.UndoCount>0;
    SetCaption;
    UpdateMenu;
@@ -2557,10 +2600,10 @@ end;{TMainForm.ResistanceFungLeibExecute}
 procedure TMainForm.FreeShipChangeCursorIncrement(Sender: TObject);
 begin
   if (csdestroying in componentstate) then exit;
-  Panel3.Caption:=Userstring(284)+': '+Truncate(Freeship.Visibility.CursorIncrement,5);
+  LabelDistance.Caption:=Userstring(284)+': '+Truncate(Freeship.Visibility.CursorIncrement,5);
 end;{TMainForm.FreeShipChangeCursorIncrement}
 
-procedure TMainForm.Panel3Click(Sender: TObject);
+procedure TMainForm.StatusPanel3Click(Sender: TObject);
 var Str  : Ansistring;
     I    : integer;
     Value: TFloatType;
@@ -2606,7 +2649,7 @@ end;{TMainForm.ExportDXF2DPolylinesExecute}
 
 procedure TMainForm.FreeShipUpdateGeometryInfo(Sender: TObject);
 begin
-   Panel4.Caption:=IntToStr(Freeship.Surface.NumberOfControlFaces)+#32+Userstring(286)+', '+
+   LabelNumbers.Caption:=IntToStr(Freeship.Surface.NumberOfControlFaces)+#32+Userstring(286)+', '+
                    IntToStr(Freeship.Surface.NumberOfControlEdges)+#32+Userstring(287)+', '+
                    IntToStr(Freeship.Surface.NumberOfControlPoints)+#32+Userstring(288)+', '+
                    IntToStr(Freeship.Surface.NumberOfControlCurves)+#32+Userstring(289);

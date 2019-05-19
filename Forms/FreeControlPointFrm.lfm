@@ -7,6 +7,7 @@ object FreeControlPointForm: TFreeControlPointForm
   AlphaBlendValue = 210
   AutoSize = True
   BorderStyle = bsToolWindow
+  Caption = ' '
   ClientHeight = 192
   ClientWidth = 330
   FormStyle = fsStayOnTop

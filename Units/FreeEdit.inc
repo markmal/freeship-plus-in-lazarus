@@ -5041,6 +5041,14 @@ begin
   OpenDialog.Destroy;
 end;{TFreeEdit.File_ImportVRML}
 
+procedure TFreeEdit.OnFaceRebuilt (Sender: TObject; current:integer; total:integer);
+begin
+  if FProgressBar = nil then exit;
+  FProgressBar.Max := total;
+  FProgressBar.Position  := current;
+  //FProgressBar.Repaint;
+  Application.ProcessMessages;
+end;
 
 function TFreeEdit.getPreviewImage(aFileName: string): TJPegImage;
 var
@@ -5077,6 +5085,11 @@ begin
     TempFreeShip.Preferences.OpenDirectory := ExtractFilePath(aFileName);
     TempFreeShip.Filename := aFileName;
     TempFreeShip.LoadBinary(Source);    // Now read the information from memory
+
+    //TempFreeShip.Surface.DesiredSubdivisionLevel:=1; // no need to build it in preview
+    //if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
+    TempFreeShip.Surface.OnFaceRebuilt := @OnFaceRebuilt;
+
     TempFreeShip.ModelLoaded := True;
     //TempFreeShip.Preferences.Load;
 
@@ -5260,6 +5273,12 @@ begin
         end;
       end;
     end;
+
+    Owner.ClearUndo;
+    Owner.Clear;
+    Owner.Surface.ClearSelection;
+    Owner.Surface.ClearFaces;
+    Owner.Surface.Clear;
     File_Load(Opendialog.FileName);   // Load everything into memory
   end;
   //PreviewFrm.Close;
@@ -5287,6 +5306,7 @@ procedure TFreeEdit.File_Load(filename: string);
 var
   Source: TFreeFileBuffer;
   ext: string;
+  i:integer;
 begin
   Ext := LowerCase(ExtractFileExt(filename));
   if Ext = '.fbm' then
@@ -5298,6 +5318,10 @@ begin
     raise Exception.Create('Unsupported file format: ' + Ext);
 
   try
+    Owner.Surface.Clearselection;                // Make sure no items are selected
+    Owner.FSelectedFlowlines.Clear;
+    Owner.FSelectedMarkers.Clear;
+
     Owner.ModelLoaded := False;
     Source.LoadFromFile(FileName);                // Load everything into memory
     Owner.Preferences.OpenDirectory := ExtractFilePath(FileName);
@@ -5309,10 +5333,10 @@ begin
     // Now read the information from memory
     //My correction
     //      MessageDlg('Loading *.fbm ended',mtError,[mbOk],0);
-    Owner.Surface.Clearselection;                // Make sure no items are selected
-    Owner.FSelectedFlowlines.Clear;
-    Owner.FSelectedMarkers.Clear;
-    Owner.Draw;
+    //for i:=0 to Owner.NumberOfViewports-1 do
+    //    Owner.Viewport[i].ZoomExtents;
+    //Owner.Surface.Rebuild;
+    //Owner.Draw;
     Owner.FFilenameSet := True;
     Owner.FStopAskingForFileVersion := False;
     Owner.ModelLoaded := True;

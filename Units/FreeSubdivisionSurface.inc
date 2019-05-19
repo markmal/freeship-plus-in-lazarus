@@ -2917,8 +2917,11 @@ var
   I: integer;
   Edge: TFreeSubdivisionEdge;
 begin
+  if FIsBuilding then exit; // no double entries
+
   if not Build then
     Rebuild;
+
   if Viewport.ViewportMode <> vmWireframe then
   begin
     if Viewport.ViewportMode in [vmShadeGauss, vmShadeDevelopable] then
@@ -3999,6 +4002,7 @@ begin
               Curve.FSubdividedPoints[J]);
             if (Edge1 = nil) or (Edge2 = nil) then
             begin
+              x:=0;
               //if (Edge1.Crease=False) and (Edge2.Crease=False) then Curve.FCurve.Knuckle[J-1]:=Point.VertexType=svCrease;
             end
             else if (Edge1.Crease = False) and (Edge2.Crease = False) then
@@ -4316,6 +4320,7 @@ begin
     CtrlFace := ControlFace[I];
     CtrlFace.Subdivide(Self, True, RefVertexPoints, RefEdges, RefFaces,
       nil, NewEdgeList, nil);
+    if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
   end;
 
   // cleanup old mesh

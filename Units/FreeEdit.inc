@@ -5042,12 +5042,17 @@ begin
 end;{TFreeEdit.File_ImportVRML}
 
 procedure TFreeEdit.OnFaceRebuilt (Sender: TObject; current:integer; total:integer);
+var P:integer;
 begin
   if FProgressBar = nil then exit;
-  FProgressBar.Max := total;
-  FProgressBar.Position  := current;
-  //FProgressBar.Repaint;
-  Application.ProcessMessages;
+  P := current * 10 div total;
+  if P<>FProgressBar.Position then
+    begin
+    FProgressBar.Max := 10;
+    FProgressBar.Position  := P;
+    //FProgressBar.Repaint;
+    Application.ProcessMessages;
+    end;
 end;
 
 function TFreeEdit.getPreviewImage(aFileName: string): TJPegImage;

@@ -1497,7 +1497,7 @@ begin
     while FEdges.Count>0 do
       begin
       FEdges[FEdges.Count-1].Destroy;
-      FEdges.Delete(FEdges.Count-1);
+      //FEdges.Delete(FEdges.Count-1);
       end;
     FEdges.Free;
     FEdges := TmpEdges;
@@ -1507,7 +1507,7 @@ begin
     while FChildren.Count > 0 do
       begin
       FChildren[FChildren.Count-1].Free;
-      FChildren.Delete(FChildren.Count-1);
+      //FChildren.Delete(FChildren.Count-1);
       end;
     FChildren.Free;
     FChildren := TmpFaces;

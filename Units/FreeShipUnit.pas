@@ -1481,7 +1481,8 @@ uses Math,
   FreeCrosscurvesDlg,
   FreeLayerDlg,
   EnterThemeNameDlg,
-  Main;
+  Main,
+  freehullformwindow_panel;
 
 {$I FreeShipUnit_Functions.inc}
 {$I FreeUndoObject.inc}

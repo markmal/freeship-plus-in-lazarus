@@ -1281,6 +1281,11 @@ begin
   FDrawingCanvas.Polygon(points);
 end;
 
+function TFreeViewport.GetDrawingBuffer:TBitmap;
+begin
+  result := FDrawingBuffer;
+end;
+
 procedure TFreeViewport.SaveAsBitmap(Filename: string; const ShowDialog: boolean = True);
 var
   CanvasWidth: integer;
@@ -1344,7 +1349,7 @@ begin
       FPrinting := True;
       FDestinationWidth := CanvasWidth;
       FDestinationHeight := CanvasHeight;
-      refresh;
+      Refresh;
       Bitmap.SaveToFile(ChangeFileExt(filename, '.bmp'));
       Bitmap.Destroy;
     finally

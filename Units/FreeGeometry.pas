@@ -540,6 +540,9 @@ type
       virtual;
     procedure Polygon(const Points: array of TPoint);
       virtual;
+
+    function GetDrawingBuffer:TBitmap;
+
     procedure SaveAsBitmap(Filename: string;
       const ShowDialog: boolean = True); virtual;
 

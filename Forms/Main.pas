@@ -617,8 +617,9 @@ type
       FFileName : string;
       FModelInitallyLoaded : boolean;
       {$IFDEF FPC}
+      function  ActiveMDIChild: TFreeHullWindow; reintroduce;
       function  MDIChildCount: Integer; override;
-      function  GetMDIChildren(AIndex: Integer): TFreeHullWindow;
+      function  GetMDIChildren(AIndex: Integer): TFreeHullWindow; reintroduce;
       procedure AbandonMDIChildren(AIndex: Integer);
       procedure Tile;
       procedure Cascade;
@@ -1023,10 +1024,34 @@ begin
 end;{TMainForm.FOnselectItem}
 
 
+procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
+begin
+  FMDIChildList.Delete(AIndex);
+end;
+
+function TMainForm.ActiveMDIChild: TFreeHullWindow;
+var i:integer;
+begin
+  Result := nil;
+  for i:=0 to FMDIChildList.Count - 1 do
+    if TFreeHullWindow(FMDIChildList[i]).Active
+       then Result := TFreeHullWindow(FMDIChildList[i]);
+end;
+
 function TMainForm.MDIChildCount: Integer;
 begin
   Result := FMDIChildList.Count;
 end;
+
+function TMainForm.GetMDIChildren(AIndex: Integer): TFreeHullWindow;
+begin
+  Result := nil;
+  //if not (FormStyle in [fsMDIForm, fsMDIChild]) then
+  //  exit;
+  if AIndex > FMDIChildList.Count -1 then exit;
+  Result := TFreeHullWindow(FMDIChildList.Items[AIndex]) ;
+end;
+
 
 
 procedure TMainForm.HullformWindowOnActivate(Sender:TObject);
@@ -1514,19 +1539,6 @@ begin
   end;
 end;
 
-function TMainForm.GetMDIChildren(AIndex: Integer): TFreeHullWindow;
-begin
-  Result := nil;
-  //if not (FormStyle in [fsMDIForm, fsMDIChild]) then
-  //  exit;
-  if AIndex > FMDIChildList.Count -1 then exit;
-  Result := TFreeHullWindow(FMDIChildList.Items[AIndex]) ;
-end;
-
-procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
-begin
-  FMDIChildList.Delete(AIndex);
-end;
 
 procedure TMainForm.Tile;
 var T,L,MW,MH, X,Y,W,H, i, MCC, r,c,rows,cols : Integer;

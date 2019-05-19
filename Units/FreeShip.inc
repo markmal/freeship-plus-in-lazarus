@@ -580,7 +580,7 @@ function TFreeShip.FGetPreview: TJPEGImage;
  }
 var
   Tmp, thumbNail: TBitmap;
-  Frm: TCustomForm;
+  Frm: TFreeHullWindow;
   I, L, T, W, H: integer;
 begin
    {
@@ -599,21 +599,26 @@ begin
 
   for I := 0 to MainForm.MDIChildCount - 1 do
   begin
-    Frm := MainForm.GetMDIChildren(I);
+    Frm := (MainForm as TMainForm).GetMDIChildren(I);
     if not assigned(Frm) then
       continue;
     Frm.Repaint;
-    Tmp := Frm.GetFormImage;
+    Tmp := Frm.ViewPort.GetDrawingBuffer;
+
+    if Tmp = nil then continue;
+
+    H := Tmp.Height * 200 div Tmp.Width;
+
     case I of
       0:
       begin
         L := 0;
-        T := 0;
+        T := 150 - H;
       end;
       1:
       begin
         L := 200;
-        T := 0;
+        T := 150 - H;
       end;
       2:
       begin
@@ -626,12 +631,9 @@ begin
         T := 150;
       end;
     end;
-    if Assigned(tmp) then
-    begin
-      thumbNail.Canvas.StretchDraw(Rect(L, T, L + 200, T + 150), Tmp);
-      Tmp.Destroy;
-    end;
-  end;
+    thumbNail.Canvas.StretchDraw(Rect(L, T, L + 200, T + H), Tmp);
+  end; // for
+
   Result := TJPEGImage.Create;
   Result.Assign(thumbNail);
   Result.CompressionQuality := 90;

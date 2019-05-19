@@ -5050,7 +5050,9 @@ begin
     begin
     FProgressBar.Max := 10;
     FProgressBar.Position  := P;
-    //FProgressBar.Repaint;
+    //for some reason in GTK2 ProgressBar does not refresh unless Label is refreshed. weird.
+    Main.MainForm.LabelProgress.Caption:=format('%d / %d',[current,total]);
+    Main.MainForm.LabelProgress.Refresh;
     Application.ProcessMessages;
     end;
 end;

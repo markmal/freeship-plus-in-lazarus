@@ -120,24 +120,33 @@ object MainForm: TMainForm
       Left = 374
       Height = 25
       Top = 0
-      Width = 171
+      Width = 268
       BevelInner = bvLowered
       BevelOuter = bvNone
-      Caption = 'StatusPanel5'
       ChildSizing.LeftRightSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ChildSizing.ControlsPerLine = 1
+      ChildSizing.ControlsPerLine = 2
       ClientHeight = 25
-      ClientWidth = 171
+      ClientWidth = 268
       TabOrder = 3
-      object ProgressBar1: TProgressBar
+      object ProgressBarMain: TProgressBar
         Left = 10
         Height = 20
         Top = 3
         Width = 150
         Constraints.MinWidth = 150
         TabOrder = 0
+      end
+      object LabelProgress: TLabel
+        Left = 166
+        Height = 20
+        Top = 3
+        Width = 91
+        Caption = 'LabelProgress'
+        Layout = tlCenter
+        ParentColor = False
       end
     end
   end

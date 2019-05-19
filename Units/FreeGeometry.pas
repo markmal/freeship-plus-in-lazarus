@@ -1033,7 +1033,8 @@ type
     FOwner: TFreeSubdivisionSurface;
     FId:integer;
     InUnreference:boolean;
-    IsUnreferenceEnabled:boolean;
+    IsUnreferenceEnabled:boolean; // TODO - remove
+    SubdivisionLevel:integer; // for investigation
   public
     constructor Create(Owner: TFreeSubdivisionSurface);
       virtual;

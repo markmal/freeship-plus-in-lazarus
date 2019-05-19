@@ -125,6 +125,7 @@ begin
   begin
     Result := nil;
   end;
+  if FPoints.Count < 3 then raise Exception.Create('TFreeSubdivisionFace points count < 3');
 end;{TFreeSubdivisionFace.CalculateFacePoint}
 
 function TFreeSubdivisionFace.CheckIntegrity: boolean;
@@ -363,6 +364,7 @@ begin
 
       // add the new face
       NewFace := TFreeSubdivisionFace.Create(aOwner);
+      NewFace.SubdivisionLevel:=self.SubdivisionLevel+1;
       aNewFaces.Add(NewFace);
 
       EdgeCheck(PrevEdgePoint,P2Point,PrevEdge.Crease,PrevEdge.FControlEdge or aIsControlFace,PrevEdge.FCurve);
@@ -406,6 +408,7 @@ begin
 
       // add the new face
       NewFace := TFreeSubdivisionFace.Create(aOwner);
+      NewFace.SubdivisionLevel:=self.SubdivisionLevel+1;
       aNewFaces.Add(NewFace);
       EdgeCheck(Pts[0], Pts[1], PrevEdge.Crease, PrevEdge.FControlEdge or
         aIsControlFace, PrevEdge.FCurve);

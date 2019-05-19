@@ -91,6 +91,7 @@ type
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
      HelpAbout: TMenuItem;
+     LabelProgress: TLabel;
      LabelNumbers: TLabel;
      LabelDistance: TLabel;
      LabelUndoMemory: TLabel;
@@ -98,7 +99,7 @@ type
      StatusPanel5: TPanel;
      PanelActiveLayerColor: TPanel;
      PanelMain: TPanel;
-     ProgressBar1: TProgressBar;
+     ProgressBarMain: TProgressBar;
      SelectLeakPoints: TAction;
     FreeShip                   : TFreeShip;
     ActionList1                : TActionList;
@@ -965,11 +966,8 @@ begin
   if inActivation then exit;
   inActivation:=true;
 
-  //Freeship.Edit.ProgressBar := ProgressBar1;
-  //Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
-  { if Application.ProcessMessages happens during surface rebuild it causes errors during next rebuild.}
-  Freeship.Edit.ProgressBar := nil;
-  Freeship.Surface.OnFaceRebuilt:= nil;
+  Freeship.Edit.ProgressBar := ProgressBarMain;
+  Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
 
   if not FModelInitallyLoaded then
     begin
@@ -981,9 +979,6 @@ begin
   Application.BringToFront;
   Application.ProcessMessages;
   Freeship.Draw;
-
-  Freeship.Edit.ProgressBar := nil;
-  Freeship.Surface.OnFaceRebuilt:= nil;
 
   inActivation:=false;
 end;
@@ -1079,7 +1074,7 @@ begin
   StatusPanel4.Parent := StatusBar;
   StatusPanel4.Color := clWhite;
   StatusPanel4.Align := alLeft;
-  ProgressBar1.Parent := StatusPanel4;
+  ProgressBarMain.Parent := StatusPanel4;
 }
    if MDIChildCount=0 then
    begin
@@ -1395,6 +1390,8 @@ begin
 
   dlg.FileList := Freeship.Edit.RecentFiles;
   dlg.onActivate := RecentFilesDialogActivate;
+  Freeship.Edit.ProgressBar := dlg.ProgressBar1;
+  Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
 
   dlg.ShowModal;
   FreeShipUpdateRecentFileList(nil); //update just in case if items deleted
@@ -1403,9 +1400,7 @@ begin
   dlg.Free;
 
   Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
-  Freeship.Edit.ProgressBar := self.ProgressBar1;
-  //Freeship.Surface.OnFaceRebuilt:= nil;
-  //Freeship.Edit.ProgressBar := nil;
+  Freeship.Edit.ProgressBar := self.ProgressBarMain;
 
   if (vFileName<>'') and (vFileName<>'*') then
     begin
@@ -1415,20 +1410,18 @@ begin
     FreeShip.Surface.ClearFaces;
     FreeShip.Surface.Clear;
     FreeShip.Edit.File_Load(vFileName);
-    //FreeShip.Surface.Rebuild;
-    //FreeShip.Draw;
+    FreeShip.Surface.Rebuild;
+    FreeShip.Draw;
     end;
   if (vFileName = '*') then
     begin
     FreeShip.Edit.File_Load;
-    //FreeShip.Surface.Rebuild;
-    //FreeShip.Draw;
-    //SetCaption;
-    //UpdateMenu;
+    {FreeShip.Surface.Rebuild;
+    FreeShip.Draw;
+    SetCaption;
+    UpdateMenu;}
     end;
 
-  Freeship.Surface.OnFaceRebuilt:=nil;
-  Freeship.Surface.OnFaceRebuilt:=nil;
 end;
 
 procedure TMainForm.LoadFileExecute(Sender: TObject);
@@ -1727,7 +1720,7 @@ begin
     begin
     FOpenHullWindows;
     Application.ProcessMessages;
-    Freeship.Edit.ProgressBar := ProgressBar1;
+    Freeship.Edit.ProgressBar := ProgressBarMain;
     Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
     Freeship.Edit.File_Load(Filename);
     //Freeship.Draw;
@@ -1743,7 +1736,7 @@ var Menu    : TMenuItem;
 begin
   if FileExists(Filename)  then
     begin
-    Freeship.Edit.ProgressBar := ProgressBar1;
+    Freeship.Edit.ProgressBar := ProgressBarMain;
     Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
     Freeship.Edit.File_Load(Filename);
     FOpenHullWindows;

@@ -1171,6 +1171,8 @@ var
   I: integer;
 begin
   inherited FSetBuild(Val);
+
+  { moved to Rebuild. because it may cause corruption if called here during rebuilding
   if not Val then
   begin
     ClearFaces;
@@ -1180,7 +1182,7 @@ begin
     Setlength(FGausCurvature, 0);
     FMinGaussCurvature := 0.0;
     FMaxGaussCurvature := 0.0;
-  end;
+  end; }
 end;{TFreeSubdivisionSurface.FSetBuild}
 
 procedure TFreeSubdivisionSurface.FSetDesiredSubdivisionLevel(val: byte);
@@ -3918,6 +3920,15 @@ begin
   FIsBuilding:=true;
   FBuild := false;
 
+  // moved here from SetBuild
+  ClearFaces;
+  for I := 1 to NumberofControlCurves do
+      ControlCurve[I - 1].Build := False;
+  FCurrentSubdivisionLevel := 0;
+  Setlength(FGausCurvature, 0);
+  FMinGaussCurvature := 0.0;
+  FMaxGaussCurvature := 0.0;
+
   //if not self.CheckIntegrity
   //  then X:=0; //ShowMessage('Before Init Model integrity corruption');
 
@@ -4229,16 +4240,18 @@ var
   Edge: TFreeSubdivisionEdge;
   CtrlEdge: TFreeSubdivisionControlEdge;
   CtrlEdgeChild: TFreeSubdivisionEdge;
-  P,Point: TFreeSubdivisionPoint;
+  P,PSD,Point: TFreeSubdivisionPoint;
   //    NewPointList  : TFasterListTFreeSubdivisionControlPoint;
   NewEdgeList: TFasterListTFreeSubdivisionEdge;
   TmpPoints: array of T3DCoordinate;
   RefVertexPoints: TFasterListTFreeSubdivisionPoint;
   RefFaces: TFasterListTFreeSubdivisionFace;
   RefEdges: TFasterListTFreeSubdivisionEdge;
+  PrevCurrentSubdivisionLevel:integer;
 begin
   if NumberOfControlFaces < 1 then
     exit;
+  PrevCurrentSubdivisionLevel := FCurrentSubdivisionLevel;
   Inc(FCurrentSubdivisionLevel, 1);
   //   NewPointList:=XXXXXXTFasterList.Create;
   //   NewPointlist.Capacity:=2*NumberOfPoints;
@@ -4262,18 +4275,31 @@ begin
     for I := 0 to NumberOfControlFaces-1 do
     begin
       CtrlFace := ControlFace[I];
-      RefFaces.AddObject(CtrlFace, CtrlFace.CalculateFaceCenterPoint);
+      CtrlFace.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+      PSD:=CtrlFace.CalculateFaceCenterPoint;
+      //it is normal that triangle faces do not have centerpoint, it will be nil
+      if PSD<>nil then
+      begin
+        PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
+        RefFaces.AddObject(CtrlFace, PSD);
+      end;
       for J := 0 to CtrlFace.FEdges.Count-1 do     // not needed. no edges at this stage
         begin
         Edge := CtrlFace.FEdges[J];
+        Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
         //Edge.PrintDebug;
-        RefEdges.AddObject(Edge, Edge.CalculateEdgeCenterPoint);
+        PSD:=Edge.CalculateEdgeCenterPoint;
+        PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
+        RefEdges.AddObject(Edge, PSD);
         end;
       for J := 0 to CtrlFace.FControlDescendantEdges.Count-1 do // not needed.  no edges at this stage
         begin
         Edge := CtrlFace.FControlDescendantEdges[J];
+        Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
         //Edge.PrintDebug;
-        RefEdges.AddObject(Edge, Edge.CalculateEdgeCenterPoint);
+        PSD:=Edge.CalculateEdgeCenterPoint;
+        PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
+        RefEdges.AddObject(Edge, PSD);
         end;
     end;
   end
@@ -4283,15 +4309,26 @@ begin
     for I := 0 to NumberOfControlFaces-1 do
     begin
       CtrlFace := ControlFace[I];
+      CtrlFace.SubdivisionLevel := PrevCurrentSubdivisionLevel;
       for J := 0 to CtrlFace.ChildCount-1 do
         begin
         CtrlFaceChild := CtrlFace.Child[J];
-        RefFaces.AddObject(CtrlFaceChild, CtrlFaceChild.CalculateFaceCenterPoint);
+        CtrlFaceChild.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+        PSD:=CtrlFaceChild.CalculateFaceCenterPoint;
+        //it is normal that triangle faces do not have centerpoint, it will be nil
+        if PSD<>nil then
+        begin
+          PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
+          RefFaces.AddObject(CtrlFaceChild, PSD);
+        end;
         end;
       for J := 0 to CtrlFace.EdgeCount-1 do
         begin
         Edge := CtrlFace.Edge[J];
-        RefEdges.AddObject(Edge, Edge.CalculateEdgeCenterPoint);
+        Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+        PSD:=Edge.CalculateEdgeCenterPoint;
+        PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
+        RefEdges.AddObject(Edge, PSD);
         end;
     end;
   end;
@@ -4299,14 +4336,23 @@ begin
   // Calculate other edgepoints
   RefEdges.Capacity := RefEdges.Count + NumberOfEdges;
   for I := 0 to NumberOfEdges-1 do
-    RefEdges.AddObject(self.Edge[I], self.Edge[I].CalculateEdgeCenterPoint);
+    begin
+    Edge := self.Edge[I];
+    Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+    PSD:=Edge.CalculateEdgeCenterPoint;
+    PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
+    RefEdges.AddObject(Edge, PSD);
+    end;
 
   // Calculate vertexpoints
   RefVertexPoints.Capacity := RefVertexPoints.Count + NumberOfPoints;
   for I := 0 to NumberOfPoints - 1 do
     begin
       P:=Self.Point[I];
-      RefVertexPoints.AddObject(P, P.CalculateVertexPoint);
+      P.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+      PSD:=P.CalculateVertexPoint;
+      PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
+      RefVertexPoints.AddObject(P, PSD);
     end;
 
   // Sort the new points for faster acces
@@ -4314,10 +4360,18 @@ begin
   RefEdges.Sort;
   RefFaces.Sort;
 
+  {for I := 0 to RefFaces.Count - 1 do // investigation
+  begin
+    P:=TFreeSubdivisionPoint(RefFaces.Objects[I]);
+    if P.SubdivisionLevel <> FCurrentSubdivisionLevel
+    then X:=0;
+  end;  }
+
   // finally create the refined mesh over the newly create vertexpoints, edgepoints and facepoints
   for I := 0 to FControlFaces.Count-1 do
   begin
     CtrlFace := ControlFace[I];
+    CtrlFace.SubdivisionLevel := PrevCurrentSubdivisionLevel;
     CtrlFace.Subdivide(Self, True, RefVertexPoints, RefEdges, RefFaces,
       nil, NewEdgeList, nil);
     if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
@@ -4327,6 +4381,8 @@ begin
   for I:=0 to FEdges.Count-1 do
   begin
     Edge := FEdges[I];
+    if Edge.SubdivisionLevel <> PrevCurrentSubdivisionLevel
+      then X:=0;
     Edge.Destroy;
   end;
   FEdges.Destroy;
@@ -4335,9 +4391,34 @@ begin
   for I:=0 to FPoints.Count-1 do
   begin
     Point := FPoints[I];
+    if Point.SubdivisionLevel <> PrevCurrentSubdivisionLevel
+      then X:=0;
     Point.Destroy;
   end;
   FPoints.Clear;
+
+  {// investigation
+  for I := 0 to RefVertexPoints.Count - 1 do
+  begin
+    P:=TFreeSubdivisionPoint(RefVertexPoints.Objects[I]);
+    if P.SubdivisionLevel <> FCurrentSubdivisionLevel
+    then X:=0;
+  end;
+
+  for I := 0 to RefEdges.Count - 1 do
+  begin
+    P:=TFreeSubdivisionPoint(RefEdges.Objects[I]);
+    if P.SubdivisionLevel <> FCurrentSubdivisionLevel
+    then X:=0;
+  end;
+
+  for I := 0 to RefFaces.Count - 1 do
+  begin
+    P:=TFreeSubdivisionPoint(RefFaces.Objects[I]);
+    if P.SubdivisionLevel <> FCurrentSubdivisionLevel
+    then X:=0;
+  end;
+  }
 
   // Add all new points int the point-list
   FPoints.Capacity := RefVertexPoints.Count + RefEdges.Count + RefFaces.Count;
@@ -4356,12 +4437,18 @@ begin
   RefEdges.Destroy;
   RefFaces.Destroy;
 
+  // TODO: later make Averaging separate and call it without previous Rebuild
+  // when control points just moved, and no other structural changes,
+  // such as points/edges deleted/inserted/crease etc
+
   // perform averaging procedure to smooth the new mesh
   Setlength(TmpPoints, FPoints.Count);
   for I := 0 to FPoints.Count - 1 do
   begin
     Point := FPoints[I];
-    TmpPoints[I] := Point.Averaging; ///YESSSS!!!!
+    if Point.SubdivisionLevel <> FCurrentSubdivisionLevel
+      then X:=0;
+    TmpPoints[I] := Point.Averaging;
   end;
   for I := 0 to FPoints.Count - 1 do
   begin

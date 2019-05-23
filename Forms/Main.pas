@@ -446,6 +446,7 @@ type
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MainClientPanelClick(Sender: TObject);
     procedure PanelMainResize(Sender: TObject);
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
@@ -1495,6 +1496,11 @@ begin
    LoadToolIcons;
    UpdateMenu;
 end;{TMainForm.FormShow}
+
+procedure TMainForm.MainClientPanelClick(Sender: TObject);
+begin
+
+end;
 
 procedure TMainForm.PanelMainResize(Sender: TObject);
 begin

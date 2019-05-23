@@ -149,6 +149,7 @@ var K1,K2,M1,M2   : Integer;
     PROP          : array[1..10] of integer;
     EntityStr     : AnsiString;
     P             : T3DCoordinate;
+    U0,U1,V0,V1   : TFloatType;
 
     function CreateKnotvector(N,Degree:Integer;knots:TFloatArray) :AnsiString;
     var I:Integer;
@@ -186,19 +187,22 @@ begin
    Prop[4]:=0; // not periodic in u-dir
    Prop[5]:=0; // not periodic in v-dir
    C:=(1+K1)*(1+K2); // number of weights
-   EntityStr:=IntToStr(128)+ParameterDelimiter+
-              IntToStr(K1)+ParameterDelimiter+
-              IntToStr(K2)+ParameterDelimiter+
-              IntToStr(M1)+ParameterDelimiter+
-              IntToStr(M2)+ParameterDelimiter+
-              IntToStr(Prop[1])+ParameterDelimiter+
-              IntToStr(Prop[2])+ParameterDelimiter+
-              IntToStr(Prop[3])+ParameterDelimiter+
-              IntToStr(Prop[4])+ParameterDelimiter+
-              IntToStr(Prop[5])+
-              CreateKnotvector(K1,M1,Nurb.ColKnotVector)+
-              CreateKnotvector(K2,M2,Nurb.RowKnotVector)+
-              CreateWeightVector(C);
+   U0:=0.0; U1:=1.0; // Start and end first parameter values
+   V0:=0.0; V1:=1.0; // Start and end second parameter values
+
+   EntityStr:=IntToStr(128)+ParameterDelimiter+               // Rational B-Spline Surface (Type 128)
+              IntToStr(K1)+ParameterDelimiter+                // Upper index of first sum
+              IntToStr(K2)+ParameterDelimiter+                // Upper index of second sum
+              IntToStr(M1)+ParameterDelimiter+                // Degree of first basis functions
+              IntToStr(M2)+ParameterDelimiter+                // Degree of second basis functions
+              IntToStr(Prop[1])+ParameterDelimiter+           // 0=closed in first direction, 1=not closed
+              IntToStr(Prop[2])+ParameterDelimiter+           // 0=closed in second direction, 1=not closed
+              IntToStr(Prop[3])+ParameterDelimiter+           // 0=rational, 1=polynomial
+              IntToStr(Prop[4])+ParameterDelimiter+           // 0=nonperiodic in first direction , 1=periodic
+              IntToStr(Prop[5])+                              // 0=nonperiodic in second direction , 1=periodic
+              CreateKnotvector(K1,M1,Nurb.ColKnotVector)+     // knot sequence
+              CreateKnotvector(K2,M2,Nurb.RowKnotVector)+     // second knot sequence
+              CreateWeightVector(C);                          // weight sequence
 
    for I:=1 to Nurb.Rowcount do
    begin
@@ -213,6 +217,14 @@ begin
                                                  Truncate(P.Z,5);
       end;
    end;
+
+   EntityStr:=EntityStr     +ParameterDelimiter+
+              Truncate(U0,6)+ParameterDelimiter+      // Start first parameter value
+              Truncate(U1,6)+ParameterDelimiter+      // End first parameter value
+              Truncate(V0,6)+ParameterDelimiter+      // Start second parameter value
+              Truncate(V1,6);                         // End second parameter value
+
+
    FProcessParameterData(EntityStr,Param);
    // First line
    EntityStr:=IndexStr(128,8)+                        // entity nr
@@ -446,4 +458,4 @@ begin
 end;{TFreeIGESList.SaveToFile}
 
 
-end.
+end.

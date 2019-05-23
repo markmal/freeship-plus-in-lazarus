@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="159"/>
+      <BuildNr Value="161"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -141,7 +141,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="79">
+    <Units Count="80">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -629,6 +629,11 @@
         <Filename Value="Units/FreeGeometry.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit78>
+      <Unit79>
+        <Filename Value="Units/freecheckupdates.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FreeCheckUpdates"/>
+      </Unit79>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -643,7 +648,7 @@
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <SyntaxMode Value="fpc"/>
+        <SyntaxMode Value="FPC"/>
         <IncludeAssertionCode Value="True"/>
       </SyntaxOptions>
     </Parsing>

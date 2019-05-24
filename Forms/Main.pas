@@ -2095,13 +2095,13 @@ begin
   FLang := Freeship.Preferences.Language;
   FManDirectory := Freeship.Preferences.ManualsDirectory;
   man := FLang+'.pdf';
-  FileToFind := FileSearch(FManDirectory+'/'+man,FManDirectory);
+  FileToFind := FileSearch(FManDirectory+DirectorySeparator+man,FManDirectory);
   if (FileToFind='') and (FLang<>'English') then begin
      MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory'+EOL
                +'English manual will be opened.',mtInformation,[mbOk],0);
      man := 'English.pdf'
   end;
-  FileToFind := FileSearch(FManDirectory+'/'+man,FManDirectory);
+  FileToFind := FileSearch(FManDirectory+DirectorySeparator+man,FManDirectory);
   if FileToFind='' then begin
      MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory',mtInformation,[mbOk],0);
      exit;

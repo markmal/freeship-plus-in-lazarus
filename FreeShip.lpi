@@ -630,9 +630,8 @@
         <IsPartOfProject Value="True"/>
       </Unit78>
       <Unit79>
-        <Filename Value="Units/freecheckupdates.pas"/>
+        <Filename Value="Units/FreeCheckUpdates.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FreeCheckUpdates"/>
       </Unit79>
     </Units>
   </ProjectOptions>

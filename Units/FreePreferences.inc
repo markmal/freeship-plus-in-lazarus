@@ -147,6 +147,7 @@ var
   I: integer;
   Dir: string;
   StrList: TStringList;
+const DS = DirectorySeparator;
 
   procedure Browse(Dir: string);
   var
@@ -255,11 +256,11 @@ begin
     FToolIconSize := StrToInt(Dialog.SelectToolIconSize.Text);
 
     if Uppercase(Lang) <> Uppercase(FLanguage) then
-      if FileExistsUTF8(FLanguagesDirectory + '/' + Lang + '.ini')
+      if FileExistsUTF8(FLanguagesDirectory + DS + Lang + '.ini')
       { *Converted from FileExists* } then
       begin
-        LoadLanguage(FLanguagesDirectory + '/' + Lang + '.ini');
-        FLanguageFile := FLanguagesDirectory + '/' + Lang + '.ini';
+        LoadLanguage(FLanguagesDirectory + DS + Lang + '.ini');
+        FLanguageFile := FLanguagesDirectory + DS + Lang + '.ini';
         FLanguage := Lang;
 
         for I := 1 to Application.ComponentCount do
@@ -573,6 +574,7 @@ var
 begin
   subPath := '/Themes/' + ThemeName + '/icons/' + IntToStr(IconSize) +
     '/' + IconName + '.png';
+  subPath:=StringReplace(subPath,'/',DirectorySeparator,[rfReplaceAll]);
   if FileExistsUTF8(Self.FUserConfigDirectory + subPath) then
     Result := Self.FUserConfigDirectory + subPath
   else
@@ -652,7 +654,7 @@ begin
     II := A.ImageIndex;
     if (II > -1) and (II < ilcnt) then
     begin
-      IPath := 'icons/' + IntToStr(sz) + '/' + AName;
+      IPath := 'icons' + DirectorySeparator + IntToStr(sz) + DirectorySeparator + AName;
       //cil.GetBitmap(II, bmp);
       //bmp.LoadFromIntfImage(img);
       bmp.Canvas.Brush.Color :=
@@ -746,7 +748,7 @@ begin
         begin
           png.LoadFromFile(IconFile);
           img := png.CreateIntfImage;
-          //img.LoadFromFile(IPath+'/'+AName+'.png');
+          //img.LoadFromFile(IPath+DirectorySeparator+AName+'.png');
           bmp.LoadFromIntfImage(img);
           cil.Replace(II, bmp, nil);
           img.Free;
@@ -978,7 +980,7 @@ begin
   end;
 
   FLanguage := params.ReadString('General', 'Language', FLanguage);
-  FLanguageFile := FLanguagesDirectory + '/' + Flanguage + '.ini';
+  FLanguageFile := FLanguagesDirectory + DirectorySeparator + Flanguage + '.ini';
   if not FileExistsUTF8(FLanguageFile) { *Converted from FileExists* } then
     FLanguage := 'English';
   FFbmEncoding := params.ReadString('General', 'FbmEncoding', FbmEncoding);

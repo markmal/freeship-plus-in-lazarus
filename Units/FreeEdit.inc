@@ -1690,8 +1690,8 @@ begin
     Owner.Preferences.ExportDirectory := Dialog.ExportDirectory;
     if Length(Owner.Preferences.ExportDirectory) > 0 then
       if Owner.Preferences.ExportDirectory[Length(
-        Owner.Preferences.ExportDirectory)] <> '/' then
-        Owner.Preferences.ExportDirectory := Owner.Preferences.ExportDirectory + '/';
+        Owner.Preferences.ExportDirectory)] <> DirectorySeparator then
+        Owner.Preferences.ExportDirectory := Owner.Preferences.ExportDirectory + DirectorySeparator;
 
     ScaleFactor := 1.0;
     SegLength := Dialog.SegmentLength;

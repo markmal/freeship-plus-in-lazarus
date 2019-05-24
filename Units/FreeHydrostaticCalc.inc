@@ -1258,6 +1258,8 @@ var
   Total: TLayerProperties;
 
 begin
+  if not Owner.Build then exit;
+
   N := 0;
   if FileExistsUTF8('Weights.txt') { *Converted from FileExists* } then
     DeleteFileUTF8('Weights.txt'); { *Converted from DeleteFile* }
@@ -1434,6 +1436,8 @@ var
   end;{CheckSubmergedBody}
 
 begin
+  if not Owner.Build then exit;
+
   // Initial setup of data
    {
    Draft:=4.567;
@@ -2107,6 +2111,8 @@ var
   end;{ProcessTriangle}
 
 begin
+  if not Owner.Build then exit;
+
   // Initial setup of data
   CosHeel := Cos(DegToRad(-HeelingAngle));
   SinHeel := Sin(DegToRad(-HeelingAngle));

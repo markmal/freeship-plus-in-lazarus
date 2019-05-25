@@ -912,7 +912,7 @@ begin
       {$ifndef LCL}
         WinExec(PChar(FInitDirectory + 'Exec\OORTMERS.EXE'), 0);
       {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/OORTMERS.EXE'), '', []);
+        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'OORTMERS.EXE'), '', []);
       {$endif}
         Nser := 1;
       end;
@@ -922,7 +922,7 @@ begin
       {$ifndef LCL}
         WinExec(PChar(FInitDirectory + 'Exec\RNTSP.exe'), 0);
       {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/RNTSP.EXE'), '', []);
+        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RNTSP.EXE'), '', []);
       {$endif}
         Nser := 2;
       end;
@@ -932,7 +932,7 @@ begin
       {$ifndef LCL}
         WinExec(PChar(FInitDirectory + 'Exec\UBCRT.exe'), 0);
       {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/UBCRT.EXE'), '', []);
+        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'UBCRT.EXE'), '', []);
       {$endif}
         Nser := 3;
       end;
@@ -1045,7 +1045,7 @@ begin
       {$ifndef LCL}
         WinExec(PChar(FInitDirectory + 'Exec\SeaMargn.EXE'), 0);
       {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/SeaMargn.EXE'), '', []);
+        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
       {$endif}
         FileName := 'OUT.TXT';
         //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
@@ -2372,7 +2372,7 @@ var
 begin
   if FileExistsUTF8(PathFileOld + 'TMP6.tsk')
   { *Converted from FileExists* } then
-    DeleteFileUTF8(PChar(PathFile + '/TMP6.tsk')); { *Converted from DeleteFile* }
+    DeleteFileUTF8(PChar(PathFile + DirectorySeparator+'TMP6.tsk')); { *Converted from DeleteFile* }
   Assignfile(FFile, 'TMP6.tsk');
       {$I-}
   Rewrite(FFile);

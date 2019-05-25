@@ -528,7 +528,7 @@ dat16=EtaM
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec/PropPred.EXE '), 1);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/PropPred.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PropPred.EXE'), '', []);
       {$endif}
     FileName := 'OUT.';
     //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен
@@ -771,7 +771,7 @@ begin
       {$ifndef LCL}
   WinExec(PChar(FOpenDirectory + 'Engines\dbfview'), 0);
       {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/DBFview.EXE'), '', []);
+  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'DBFview.EXE'), '', []);
       {$endif}
   // Переходим назад в директорию открытого проекта
   L := SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }

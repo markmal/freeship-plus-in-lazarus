@@ -1079,14 +1079,14 @@ begin
       if FileExistsUTF8(PathFileOld + 'ostres.tmp')
       { *Converted from FileExists* } then
       begin
-        DeleteFileUTF8(PChar(PathFile + '/Resist.dat'));
+        DeleteFileUTF8(PChar(PathFile + DirectorySeparator+'Resist.dat'));
         { *Converted from DeleteFile* }
-        DeleteFileUTF8(PChar(PathFile + '/Resistp.dat'));
+        DeleteFileUTF8(PChar(PathFile + DirectorySeparator+'Resistp.dat'));
         { *Converted from DeleteFile* }
         L := RenameFileUTF8(PChar(PathFileOld + 'Resist.dat'), PChar(
-          PathFile + '/Resist.dat'));
+          PathFile + DirectorySeparator+'Resist.dat'));
         L := RenameFileUTF8(PChar(PathFileOld + 'Resistp.dat'), PChar(
-          PathFile + '/Resistp.dat'));
+          PathFile + DirectorySeparator+'Resistp.dat'));
         DeleteFileUTF8(PChar(PathFileOld + 'ostres.tmp'));
         { *Converted from DeleteFile* }
         DeleteFileUTF8(PChar(PathFileOld + 'Resist.dat'));
@@ -1485,7 +1485,7 @@ begin
         Writeln(FFile2, Res_[i, 1], Res_[i, 2], Res_[i, 3], Res_[i, 4], Res_[i, 5]);
       CloseFile(FFile2);
       L := RenameFileUTF8(PChar(PathFileOld + 'Resistp.dat'), PChar(
-        PathFile + '/Resistp.dat'));
+        PathFile + DirectorySeparator+'Resistp.dat'));
       //       DeleteFile(PChar(PathFileOld+'Resistp.dat'));
 
       if flag = 1 then
@@ -2257,7 +2257,7 @@ begin
    {$ifndef LCL}
   WinExec(PChar(FileToFind + 'Exec/hship.exe'), 0); // запускаем расчет
    {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/hship.EXE'), '', []);
+  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'hship.EXE'), '', []);
    {$endif}
   L := SetCurrentDirUTF8(PathFile);
   { *Converted from SetCurrentDir* }// возвращаемся в каталог проекта

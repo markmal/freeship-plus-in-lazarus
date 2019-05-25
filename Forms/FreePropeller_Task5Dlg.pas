@@ -355,9 +355,9 @@ dat7=Velocity Vp
 
     // Запускаем программу расчета
     if Combobox.ItemIndex = 0 then
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/PROPOL.EXE'), '', [])
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PROPOL.EXE'), '', [])
     else
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/fppcalc.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'fppcalc.EXE'), '', []);
 
     FileName := 'OUT.';
 

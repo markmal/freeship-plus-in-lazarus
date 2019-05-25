@@ -49,7 +49,7 @@ begin
     Result := FExportDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + '/Export';
+    Result := self.getUserAppDataDirectory + DirectorySeparator+'Export';
 end;{TFreePreferences.FGetExportDirectory}
 
 function TFreePreferences.FGetImportDirectory: string;
@@ -58,7 +58,7 @@ begin
     Result := FImportDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + '/Import';
+    Result := self.getUserAppDataDirectory + DirectorySeparator+'Import';
 end;{TFreePreferences.FGetImportDirectory}
 
 function TFreePreferences.FGetGlobalImportDirectory: string;
@@ -68,7 +68,7 @@ begin
     Result := FGlobalImportDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getGlobalAppDataDirectory + '/Import';
+    Result := self.getGlobalAppDataDirectory + DirectorySeparator+'Import';
 end;{TFreePreferences.FGetGlobalImportDirectory}
 
 function TFreePreferences.FGetOpenDirectory: string;
@@ -77,7 +77,7 @@ begin
     Result := FOpenDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + '/Ships';
+    Result := self.getUserAppDataDirectory + DirectorySeparator+'Ships';
 end;{TFreePreferences.FGetOpenDirectory}
 
 function TFreePreferences.FGetGlobalOpenDirectory: string;
@@ -87,7 +87,7 @@ begin
     Result := FGlobalOpenDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getGlobalAppDataDirectory + '/Ships';
+    Result := self.getGlobalAppDataDirectory + DirectorySeparator+'Ships';
 end;{TFreePreferences.FGetGlobalOpenDirectory}
 
 function TFreePreferences.FGetSaveDirectory: string;
@@ -96,7 +96,7 @@ begin
     Result := FSaveDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + '/Ships';
+    Result := self.getUserAppDataDirectory + DirectorySeparator+'Ships';
 end;{TFreePreferences.FGetSaveDirectory}
 
 function TFreePreferences.FGetInitDirectory: string;
@@ -478,12 +478,12 @@ begin
       else
         FLanguage := 'English';
       FLanguageFile := ExtractFilePath(Application.Exename) +
-        'Languages/' + Flanguage + '.ini';
+        'Languages'+DirectorySeparator+ Flanguage + '.ini';
       if not FileExists(FLanguageFile) then
       begin
         FLanguage := 'English';
         FLanguageFile := ExtractFilePath(Application.Exename) +
-          'Languages/' + FLanguage + '.ini';
+          'Languages'+DirectorySeparator + FLanguage + '.ini';
       end;
       if not EOF(FFile) then
         Readln(FFile, FMaxUndoMemory);
@@ -497,38 +497,40 @@ end;{TFreePreferences.LoadFromDta}
 // Only schemes that are saved in User Config are custom
 function TFreePreferences.IsThemeCustom(ThemeName: string): boolean;
 begin
-  Result := FileExistsUTF8(Self.FUserConfigDirectory + '/Themes/' +
-    ThemeName + '/theme.ini');
+  Result := FileExistsUTF8(Self.FUserConfigDirectory + DirectorySeparator+'Themes' +
+    DirectorySeparator + ThemeName + DirectorySeparator+'theme.ini');
 end;
 
 function TFreePreferences.getThemeConfigFile(ThemeName: string): string;
+const DS=DirectorySeparator;
 begin
-  if FileExistsUTF8(Self.FUserConfigDirectory + '/Themes/' + ThemeName +
-    '/theme.ini') then
-    Result := Self.FUserConfigDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  if FileExistsUTF8(Self.FUserConfigDirectory + 'Themes'+DS + ThemeName +
+    DS+'theme.ini') then
+    Result := Self.FUserConfigDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
   else
-  if FileExistsUTF8(Self.FGlobalConfigDirectory + '/Themes/' +
-    ThemeName + '/theme.ini') then
-    Result := Self.FGlobalConfigDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  if FileExistsUTF8(Self.FGlobalConfigDirectory + DS+'Themes'+DS +
+    ThemeName + DS+'theme.ini') then
+    Result := Self.FGlobalConfigDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
   else
-  if FileExistsUTF8(Self.FUserAppDataDirectory + '/Themes/' + ThemeName +
-    '/theme.ini') then
-    Result := Self.FUserAppDataDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  if FileExistsUTF8(Self.FUserAppDataDirectory + DS+'Themes'+DS + ThemeName +
+    DS+'theme.ini') then
+    Result := Self.FUserAppDataDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
   else
-  if FileExistsUTF8(Self.FGlobalAppDataDirectory + '/Themes/' +
-    ThemeName + '/theme.ini') then
-    Result := Self.FGlobalAppDataDirectory + '/Themes/' + ThemeName + '/theme.ini'
+  if FileExistsUTF8(Self.FGlobalAppDataDirectory + DS+'Themes'+DS +
+    ThemeName + DS+'theme.ini') then
+    Result := Self.FGlobalAppDataDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
   else
-    Result := Self.FGlobalAppDataDirectory + '/Themes/Default/theme.ini';
+    Result := Self.FGlobalAppDataDirectory + DS+'Themes'+DS+'Default'+DS+'theme.ini';
 end;
 
 procedure TFreePreferences.getAllThemes(ss: TStrings);
+const DS=DirectorySeparator;
 begin
   ss.Clear;
-  getThemesInDir(Self.FUserConfigDirectory + '/Themes', ss);
-  getThemesInDir(Self.FGlobalConfigDirectory + '/Themes', ss);
-  getThemesInDir(Self.FUserAppDataDirectory + '/Themes', ss);
-  getThemesInDir(Self.FGlobalAppDataDirectory + '/Themes', ss);
+  getThemesInDir(Self.FUserConfigDirectory + DS+'Themes', ss);
+  getThemesInDir(Self.FGlobalConfigDirectory + DS+'Themes', ss);
+  getThemesInDir(Self.FUserAppDataDirectory + DS+'Themes', ss);
+  getThemesInDir(Self.FGlobalAppDataDirectory + DS+'Themes', ss);
 end;
 
 procedure TFreePreferences.getThemesInDir(dir: string; ss: TStrings);
@@ -537,7 +539,7 @@ var
 begin
   if not DirectoryExists(dir) then
     exit;
-  if FindFirstUTF8(dir + '/*', faDirectory, sr) = 0 then
+  if FindFirstUTF8(dir + DirectorySeparator+'*', faDirectory, sr) = 0 then
     repeat
       if ((sr.Attr and faDirectory) = faDirectory) and (sr.Name <> '.') and
         (sr.Name <> '..') then
@@ -558,9 +560,9 @@ end;
 
 function TFreePreferences.GetToolIconDirectory: string;
 var S:string;
+const DS=DirectorySeparator;
 begin
- S:='/Themes/'+FThemeName+'/icons/'+IntToStr(FToolIconSize);
- S:=StringReplace(S,'/',DirectorySeparator,[rfReplaceAll]);
+ S:=DS+'Themes'+DS+FThemeName+DS+'icons'+DS+IntToStr(FToolIconSize);
  if DirectoryExistsUTF8(FUserAppDataDirectory + S) then
   result := FUserAppDataDirectory + S
   else result := FGlobalAppDataDirectory + S;
@@ -571,10 +573,10 @@ function TFreePreferences.GetIconFileName(ThemeName, IconName: string;
   IconSize: integer): string;
 var
   subPath, ptn: string;
+const DS=DirectorySeparator;
 begin
-  subPath := '/Themes/' + ThemeName + '/icons/' + IntToStr(IconSize) +
-    '/' + IconName + '.png';
-  subPath:=StringReplace(subPath,'/',DirectorySeparator,[rfReplaceAll]);
+  subPath := DS+'Themes'+DS+FThemeName+DS+'icons'+DS + IntToStr(IconSize) +
+    DS + IconName + '.png';
   if FileExistsUTF8(Self.FUserConfigDirectory + subPath) then
     Result := Self.FUserConfigDirectory + subPath
   else
@@ -1228,9 +1230,10 @@ procedure TFreePreferences.SaveTheme(ThemeName, ParentThemeName: string);
 var
   FileName, DirName: string;
   params: TColorIniFile;
+const DS=DirectorySeparator;
 begin
-  DirName := self.getUserConfigDirectory + '/Themes/' + ThemeName;
-  FileName := DirName + '/theme.ini';
+  DirName := self.getUserConfigDirectory + DS+'Themes'+DS + ThemeName;
+  FileName := DirName + DS+'theme.ini';
 
   if not DirectoryExistsUTF8(DirName) then
     ForceDirectoriesUTF8(DirName);

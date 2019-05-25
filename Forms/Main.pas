@@ -1159,6 +1159,7 @@ var I       : Integer;
 //    FileToFind         : string;
 // In this procedure all actions are set to enabled/disabled according to the current state
 // and selected items
+  const DS=DirectorySeparator;
 begin
    NLayers:=0;
    For I:=1 to Freeship.NumberOfLayers do if Freeship.Layer[I-1].Count>0 then inc(NLayers);
@@ -1231,25 +1232,25 @@ begin
    ResistanceRBHS.Enabled:=False;
    ResistanceMH.Enabled:=False;   
    // Detect existance of external modules and include executables into menu
-   if FileExists(FExecDirectory+'/ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
-   if FileExists(FExecDirectory+'/Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
-   if FileExists(FExecDirectory+'/Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
-   if FileExists(FExecDirectory+'/Rot_Ship.EXE') { *Converted from FileExists* } then HydrodynTask3_.Enabled:=True;
-   if FileExists(FExecDirectory+'/HOLLENBH.EXE') { *Converted from FileExists* } then ResistanceHollen.Enabled:=True;
-   if FileExists(FExecDirectory+'/OORTMERS.EXE') { *Converted from FileExists* } then ResistanceOortmer.Enabled:=True;
-   if FileExists(FExecDirectory+'/fungleib.EXE') { *Converted from FileExists* } then ResistanceFungLeib.Enabled:=True;
-   if FileExists(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceOST.Enabled:=True;
-   if FileExists(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceRBHS.Enabled:=True;
-   if FileExists(FExecDirectory+'/hship.EXE') { *Converted from FileExists* }    then ResistanceMH.Enabled:=True;
-   if FileExists(FExecDirectory+'/ManeuvPP.EXE') { *Converted from FileExists* } then HydrodynManeuv_.Enabled:=True;
-   if FileExists(FExecDirectory+'/CALCPROP.EXE') { *Converted from FileExists* } then begin
+   if FileExists(FExecDirectory+DS+'ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'Rot_Ship.EXE') { *Converted from FileExists* } then HydrodynTask3_.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'HOLLENBH.EXE') { *Converted from FileExists* } then ResistanceHollen.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'OORTMERS.EXE') { *Converted from FileExists* } then ResistanceOortmer.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'fungleib.EXE') { *Converted from FileExists* } then ResistanceFungLeib.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'hship.EXE') { *Converted from FileExists* }    then ResistanceOST.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'hship.EXE') { *Converted from FileExists* }    then ResistanceRBHS.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'hship.EXE') { *Converted from FileExists* }    then ResistanceMH.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'ManeuvPP.EXE') { *Converted from FileExists* } then HydrodynManeuv_.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'CALCPROP.EXE') { *Converted from FileExists* } then begin
       PropTask1_.Enabled:=True;
       PropTask2_.Enabled:=True;
       PropTask3_.Enabled:=True;
    end;
-   if FileExists(FExecDirectory+'/PropPred.EXE') { *Converted from FileExists* } then PropTask4_.Enabled:=True;
-   if FileExists(FExecDirectory+'/PROPOL.EXE') { *Converted from FileExists* }   then PropTask5_.Enabled:=True;
-   if FileExists(FExecDirectory+'/RVRSSHIP.EXE') { *Converted from FileExists* } then PropTaskRvrs_.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'PropPred.EXE') { *Converted from FileExists* } then PropTask4_.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'PROPOL.EXE') { *Converted from FileExists* }   then PropTask5_.Enabled:=True;
+   if FileExists(FExecDirectory+DS+'RVRSSHIP.EXE') { *Converted from FileExists* } then PropTaskRvrs_.Enabled:=True;
    if ExportAddMass.Enabled then ExportAddMass.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
 //   if HydrodynTask2_.Enabled then HydrodynTask2_.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
 //   HydrodynTask3_.Enabled:=False; //(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   

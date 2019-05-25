@@ -665,7 +665,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\rvrsship.exe'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/RVRSSHIP.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RVRSSHIP.EXE'), '', []);
       {$endif}
 
     FileName := 'RVRSRES.dat';

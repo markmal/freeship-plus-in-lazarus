@@ -2277,7 +2277,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\SeaMargn.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/SeaMargn.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
       {$endif}
     FileName := 'OUT.TXT';
     //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
@@ -2390,7 +2390,7 @@ begin
       {$ifNdef FPC}
     WinExec(PChar(FInitDirectory + 'Exec/PowerPrd.EXE '), 1);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/PowerPrd.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PowerPrd.EXE'), '', []);
       {$endif}
 
     FileName := 'OUT.';

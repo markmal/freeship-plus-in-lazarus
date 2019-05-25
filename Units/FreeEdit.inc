@@ -2240,7 +2240,7 @@ begin
     end;
 
     // Mark end of file
-    Strings.Add('/*');
+    Strings.Add(DirectorySeparator+'*');
     Str := ChangeFileExt(ExtractFilename(Savedialog.FileName), '.PAM');
     // no spaces allowed in filename
     repeat
@@ -2754,7 +2754,7 @@ begin
   // Запускаем программу расчета
   FileToFind := FileSearchUTF8('Add_Mass.EXE', FExecDirectory);
   { *Converted from FileSearch* }
-  if FileToFind <> FExecDirectory + '/Add_Mass.EXE' then
+  if FileToFind <> FExecDirectory + DirectorySeparator+'Add_Mass.EXE' then
   begin
     MessageDlg(Userstring(1138) + #13#10#13#10 + Userstring(1139) +
       ' Add_Mass.EXE ' + #13#10#13#10 + Userstring(1140) + #13#10#13#10 +
@@ -2767,7 +2767,7 @@ begin
       {$ifndef LCL}
   WinExec(PChar(FInitDirectory + 'Exec/Add_Mass.EXE '), 0);
       {$else}
-  SysUtils.ExecuteProcess(FExecDirectory + '/Add_Mass.EXE', '', []);
+  SysUtils.ExecuteProcess(FExecDirectory + DirectorySeparator+'Add_Mass.EXE', '', []);
       {$endif}
   // may be it needs to wait the out file and to rename it to something meningful?
   SetCurrentDirUTF8(OldDir);

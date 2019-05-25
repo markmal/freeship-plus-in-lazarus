@@ -847,7 +847,7 @@ begin
       {$ifndef LCL}
       WinExec(PChar(FInitDirectory + 'Exec\FungLeib.exe'), 0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/fungleib.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'fungleib.EXE'), '', []);
       {$endif}
 
       //  Определяем есть ли файл с результатами расчета FUNGLEIB.RES. Если fungdata.dat присутствует значит расчет не закончен
@@ -864,7 +864,7 @@ begin
         else
         begin
           MessageDlg(Userstring(1138) + #13#10#13#10 + Userstring(
-            1139) + ' ' + FExecDirectory + '/fungleib.EXE' + ' ' + #13#10#13#10 + Userstring(
+            1139) + ' ' + FExecDirectory + DirectorySeparator+'fungleib.EXE' + ' ' + #13#10#13#10 + Userstring(
             1140) + #13#10#13#10 + Userstring(1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
           if FileExistsUTF8('fungdata.dat') { *Converted from FileExists* } then
             DeleteFileUTF8('fungdata.dat'); { *Converted from DeleteFile* }
@@ -936,7 +936,7 @@ begin
       {$ifndef LCL}
         WinExec(PChar(FInitDirectory + 'Exec\SeaMargn.EXE'), 0);
       {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/SeaMargn.EXE'), '', []);
+        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
       {$endif}
         FileName := 'OUT.TXT';
         //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен

@@ -877,7 +877,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\CalcProp.exe 2'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/CALCPROP.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
       {$endif}
 
     FileName := 'RES2.tsk';

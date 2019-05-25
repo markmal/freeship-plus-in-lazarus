@@ -423,7 +423,7 @@ begin
       {$ifndef LCL}
       WinExec(PChar(FInitDirectory+'Exec/Ishercof.EXE'),0);
       {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+'/Ishercof.EXE'), '', []);
+      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+DirectorySeparator+'Ishercof.EXE'), '', []);
       {$endif}
       FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен

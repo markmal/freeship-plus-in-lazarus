@@ -1039,9 +1039,9 @@ begin
 
     FileName := 'ostres.tmp';
     NN := 0;
-    if FileExistsUTF8(FTempDirectory + '/ostres.tmp') then
+    if FileExistsUTF8(FTempDirectory + DirectorySeparator+'ostres.tmp') then
     begin
-      AssignFile(FFile, FTempDirectory + '/ostres.tmp');
+      AssignFile(FFile, FTempDirectory + DirectorySeparator+'ostres.tmp');
       {$I-}
       Reset(FFile);
 {$I+}
@@ -1077,10 +1077,10 @@ begin
     end;
 
     // Удаление временных файлов
-    if FileExistsUTF8(FTempDirectory + '/ostres.tmp') then
+    if FileExistsUTF8(FTempDirectory + DirectorySeparator+'ostres.tmp') then
     begin
-      DeleteFileUTF8(FTempDirectory + '/Resist.dat');
-      DeleteFileUTF8(FTempDirectory + '/ostres.tmp');
+      DeleteFileUTF8(FTempDirectory + DirectorySeparator+'Resist.dat');
+      DeleteFileUTF8(FTempDirectory + DirectorySeparator+'ostres.tmp');
     end;
 
 
@@ -1239,7 +1239,7 @@ begin
 
     Index := 0;
 
-    AssignFile(FFile2, FTempDirectory + '/Resistp.dat');
+    AssignFile(FFile2, FTempDirectory + DirectorySeparator+'Resistp.dat');
        {$I-}
     Rewrite(FFile2);
 {$I+}
@@ -1451,7 +1451,7 @@ begin
         nr := 1;
       end;
 
-      Assignfile(FFile2, FTempDirectory + '/Resistp.dat');
+      Assignfile(FFile2, FTempDirectory + DirectorySeparator+'Resistp.dat');
          {$I-}
       Rewrite(FFile2);
 {$I+}
@@ -2150,7 +2150,7 @@ begin
    {$ifndef LCL}
   WinExec(PChar(FileToFind + 'Exec/hship.exe'), 0); // запускаем расчет
    {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/hship.EXE'), '', []);
+  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'hship.EXE'), '', []);
    {$endif}
   L := SetCurrentDir(PathFile);
   // возвращаемся в каталог проекта
@@ -2165,10 +2165,10 @@ var
   I: integer;
   ffile: textfile;
 begin
-  if FileExistsUTF8(FFreeship.Preferences.TempDirectory + '/ostdat.tmp') then
-    DeleteFileUTF8(FFreeship.Preferences.TempDirectory + '/ostdat.tmp');
+  if FileExistsUTF8(FFreeship.Preferences.TempDirectory + DirectorySeparator+'ostdat.tmp') then
+    DeleteFileUTF8(FFreeship.Preferences.TempDirectory + DirectorySeparator+'ostdat.tmp');
 
-  Assignfile(FFile, FFreeship.Preferences.TempDirectory + '/ostdat.tmp');
+  Assignfile(FFile, FFreeship.Preferences.TempDirectory + DirectorySeparator+'ostdat.tmp');
       {$I-}
   Rewrite(FFile);
 {$I+}

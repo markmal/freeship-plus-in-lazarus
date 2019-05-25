@@ -1334,7 +1334,7 @@ begin
     File_ExportDataCP(dat);
 
 
-    if not FileExistsUTF8(FExecDirectory + '/CLEMPOUP.EXE')
+    if not FileExistsUTF8(FExecDirectory + DirectorySeparator+'CLEMPOUP.EXE')
     { *Converted from FileExists* } then
     begin
       MessageDlg(Userstring(1211) + ' CLEMPOUP.EXE', mtError, [mbOK], 0);
@@ -1350,7 +1350,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\CLEMPOUP.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys('Exec/CLEMPOUP.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys('Exec'+DirectorySeparator+'CLEMPOUP.EXE'), '', []);
       {$endif}
     FileName := 'clempoup.RES';
     i := 1;
@@ -1502,7 +1502,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\CLEMBLOU.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/CLEMBLOU.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CLEMBLOU.EXE'), '', []);
       {$endif}
     FileName := 'clemblou.res';
     i := 1;
@@ -1676,7 +1676,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\BUNKOV.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/BUNKOV.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'BUNKOV.EXE'), '', []);
       {$endif}
     FileName := 'BUNKOV00.RES';
     i := 1;
@@ -1824,7 +1824,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\COMPTON.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/COMPTON.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'COMPTON.EXE'), '', []);
       {$endif}
     FileName := 'COMPTON0.RES';
     i := 1;
@@ -1968,7 +1968,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\Wolfson.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/WOLFSON.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'WOLFSON.EXE'), '', []);
       {$endif}
     FileName := 'Wolfson0.res';
     i := 1;
@@ -2123,7 +2123,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\Radojcic.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/RADOJCIC.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RADOJCIC.EXE'), '', []);
       {$endif}
     FileName := 'Radojcic.res';
     i := 1;

@@ -715,7 +715,7 @@ begin
       {$ifndef LCL}
     WinExec(PChar(FInitDirectory + 'Exec\CalcProp.EXE'), 0);
       {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/CALCPROP.EXE'), '', []);
+    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
       {$endif}
 
     FileName := 'RES1.tsk';
@@ -963,7 +963,7 @@ begin
       {$ifndef LCL}
   WinExec(PChar(FInitDirectory + 'Exec\dbfview.EXE'), 0);
       {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + '/DBFview.EXE'), '', []);
+  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'DBFview.EXE'), '', []);
       {$endif}
   // Переходим назад в директорию открытого проекта
   L := SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }

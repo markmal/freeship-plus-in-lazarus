@@ -892,7 +892,7 @@ begin
     end;
     Strings.Add(Str);
   end;
-  Strings.Add('/*');
+  Strings.Add(DirectorySeparator+'*');
   Strings.SaveToFile(Filename);
   Strings.Destroy;
 end;{TFreeAddMassOutputDialog.SaveToFile}

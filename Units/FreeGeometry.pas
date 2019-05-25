@@ -854,6 +854,7 @@ type
       read FBuild write FSetBuild;
     property Color: TColor
       read FColor write FColor;
+    property IsBuilding: boolean read FIsBuilding;
     property Min: T3DCoordinate
       read FGetMin;
     property Max: T3DCoordinate

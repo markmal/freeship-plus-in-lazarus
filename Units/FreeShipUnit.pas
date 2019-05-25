@@ -1304,6 +1304,7 @@ type
     destructor Destroy;
       override;
     procedure Draw;
+    procedure ZoomFitAllViewports;
     procedure DrawToViewport(Viewport: TFreeViewport);
     procedure Extents(var Min, Max: T3DCoordinate);
     // calculate the bounding box coordinates of the model

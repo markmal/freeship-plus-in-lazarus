@@ -1457,7 +1457,8 @@ begin
   ShowRecentFilesDialog;
   //FreeShip.Edit.File_Load;
   Application.ProcessMessages;
-  FreeShip.Draw;
+  FreeShip.ZoomFitAllViewports;
+  //FreeShip.Draw;
   SetCaption;
   UpdateMenu;
 end;{TMainForm.LoadFileExecute}
@@ -1742,7 +1743,7 @@ begin
     Freeship.Edit.ProgressBar := ProgressBarMain;
     Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
     Freeship.Edit.File_Load(Filename);
-    //Freeship.Draw;
+    Freeship.ZoomFitAllViewports;
     SetCaption;
     UpdateMenu;
     end;
@@ -1759,6 +1760,7 @@ begin
     Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
     Freeship.Edit.File_Load(Filename);
     FOpenHullWindows;
+    Freeship.ZoomFitAllViewports;
     SetCaption;
     UpdateMenu;
     end

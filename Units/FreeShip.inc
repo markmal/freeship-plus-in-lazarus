@@ -891,7 +891,7 @@ begin
   inherited Destroy;
 end;{TFreeShip.Destroy}
 
-procedure TFreeShip.Draw;
+procedure TFreeShip.ZoomFitAllViewports;
 var
   I: integer;
 begin
@@ -900,6 +900,17 @@ begin
     Viewport[I - 1].ZoomExtents;
   if LinesplanFrame <> nil then
     TFreeLinesplanframe(LinesplanFrame).Viewport.ZoomExtents;
+end;{TFreeShip.Draw}
+
+procedure TFreeShip.Draw;
+var
+  I: integer;
+begin
+  for I := 1 to NumberOfViewports do
+    Viewport[I - 1].Invalidate ;
+  if LinesplanFrame <> nil then
+    TFreeLinesplanframe(LinesplanFrame).Viewport.Invalidate;
+
 end;{TFreeShip.Draw}
 
 procedure TFreeShip.DrawToViewport(Viewport: TFreeViewport);
@@ -1224,6 +1235,8 @@ var
   end;{DrawGrid}
 
 begin
+  if Surface.IsBuilding then exit; // no double entries
+
   if not Surface.Build then
     surface.Rebuild;
   // Draw intersectionlines BEFORE the surface is drawn,

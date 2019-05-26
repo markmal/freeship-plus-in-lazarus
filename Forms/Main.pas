@@ -968,7 +968,9 @@ begin
   if inActivation then exit;
   inActivation:=true;
 
-  Freeship.Edit.ProgressBar := ProgressBarMain;
+  //Freeship.Edit.ProgressBar := ProgressBarMain;
+  Freeship.Edit.ProgressBar := nil; // temporary turn off until empty VP resolved in Win10
+
   Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
 
   if not FModelInitallyLoaded then
@@ -1746,6 +1748,7 @@ begin
     Freeship.ZoomFitAllViewports;
     SetCaption;
     UpdateMenu;
+    Freeship.Edit.ProgressBar := nil; // temporary turn off until empty VP resolved in Win10
     end;
 end;{TMainForm.LoadMostRecentFile}
 
@@ -1778,8 +1781,8 @@ begin
            then LoadFileExecute(Self)
          end;
        FreeEmptyModelChooserDialog.Free;
-    end
-
+    end;
+  Freeship.Edit.ProgressBar := nil; // temporary turn off until empty VP resolved in Win10
 end;{TMainForm.LoadMostRecentFile}
 
 procedure TMainForm.FreeShipChangeLayerData(Sender: TObject);

@@ -822,7 +822,7 @@ type
   TFreeEntity = class
   private
     FBuild: boolean; // Flag to check if the entity has already been built
-    FIsBuilding: boolean; // Flag to check if the entity is building to exclude double entrance to building
+    FIsBuilding: boolean; // Flag to check if the entity structure is building to exclude double entrance to building
     FMin, FMax: T3DCoordinate;
     // The min/max boundary coordinates of the entity after it has been build
     FPenWidth: byte;
@@ -1622,8 +1622,8 @@ type
     // Currently active layer, may not be nil!
     FShowControlNet: boolean;
     // Flag to switch controlpoints and control-edges visibility
-    FInitialized: boolean;
-    // Flag to check if the surface has been initialised.
+    FInitialized: boolean; // Flag to check if the surface has been initialised.
+    FIsApproximated: boolean; // Flag to check if the surface has been approximated (smoothed).
     FShowInteriorEdges: boolean;
     // Switch to turn on drawing off all interior edges as well.
     FDrawMirror: boolean;
@@ -1803,8 +1803,8 @@ type
     procedure LoadFromStream(var LineNr: integer; Strings: TStringList);
     procedure LoadVRMLFile(Filename: string);
     function PointExists(P: TFreeSubdivisionControlPoint): boolean;
-    procedure Rebuild;
-      override;
+    procedure Approximate;
+    procedure Rebuild; override;
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);
     procedure Selection_Delete;

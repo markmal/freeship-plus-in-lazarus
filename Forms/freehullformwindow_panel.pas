@@ -638,7 +638,8 @@ begin
       exit;
    end;
    FPanned:=False;
-   if Viewport.ViewportMode=vmWireframe then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
+   if Viewport.ViewportMode=vmWireframe
+      then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
    FAllowPanOrZoom:=not select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
 end;{TFreeHullWindow.ViewportMouseDown}
 

@@ -32,12 +32,5 @@ Note that in Windows there is no console for GUI apps.
 Messages cannot be written to console even when FreShip is started from console/command line.
 You should use parameter --log-debug=<filename> to spool log to a file.
 
-Qt single click issue.
-It was noticed that in some Linuxes in Open File QT4 widgets files are open by single click 
-This prevents preview. It can be fixed by adding following text into .kde/share/config/kdeglobals file:
-[KDE]
-SingleClick=false
-
-
 
 

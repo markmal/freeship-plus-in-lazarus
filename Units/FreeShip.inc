@@ -910,7 +910,6 @@ begin
     Viewport[I - 1].Invalidate ;
   if LinesplanFrame <> nil then
     TFreeLinesplanframe(LinesplanFrame).Viewport.Invalidate;
-
 end;{TFreeShip.Draw}
 
 procedure TFreeShip.DrawToViewport(Viewport: TFreeViewport);

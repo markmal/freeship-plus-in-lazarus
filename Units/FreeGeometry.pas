@@ -1623,7 +1623,7 @@ type
     FShowControlNet: boolean;
     // Flag to switch controlpoints and control-edges visibility
     FInitialized: boolean; // Flag to check if the surface has been initialised.
-    FIsApproximated: boolean; // Flag to check if the surface has been approximated (smoothed).
+    FIsAveraged: boolean; // Flag to check if the surface has been averaged (smoothed).
     FShowInteriorEdges: boolean;
     // Switch to turn on drawing off all interior edges as well.
     FDrawMirror: boolean;
@@ -1803,7 +1803,7 @@ type
     procedure LoadFromStream(var LineNr: integer; Strings: TStringList);
     procedure LoadVRMLFile(Filename: string);
     function PointExists(P: TFreeSubdivisionControlPoint): boolean;
-    procedure Approximate;
+    procedure Average;
     procedure Rebuild; override;
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);

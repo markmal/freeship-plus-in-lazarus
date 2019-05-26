@@ -4052,12 +4052,12 @@ begin
   FBuild := true;
 end;{TFreeSubdivisionSurface.Rebuild}
 
-procedure TFreeSubdivisionSurface.Approximate;
+procedure TFreeSubdivisionSurface.Average;
 var Point: TFreeSubdivisionPoint;
   i:integer;
   TmpPoints: array of T3DCoordinate;
 begin
-  if FIsApproximated then exit;
+  if FIsAveraged then exit;
 
   //Subdivide;
   // perform averaging procedure to smooth the new mesh
@@ -4076,7 +4076,7 @@ begin
 
   SetLength(TmpPoints, 0);
 
-  FIsApproximated := true;
+  FIsAveraged := true;
 end;
 
 procedure TFreeSubdivisionSurface.SaveBinary(Destination: TFreeFileBuffer);
@@ -4467,7 +4467,7 @@ begin
   // TODO: later make Averaging separate and call it without previous Rebuild
   // when control points just moved, and no other structural changes,
   // such as points/edges deleted/inserted/crease etc
-{ /// EXPERIMENTAL. Moved Averaging to Approximate;
+{ /// EXPERIMENTAL. Moved Averaging to Average;
   // perform averaging procedure to smooth the new mesh
   Setlength(TmpPoints, FPoints.Count);
   for I := 0 to FPoints.Count - 1 do
@@ -4485,8 +4485,8 @@ begin
   SetLength(TmpPoints, 0);
 }
 
-  FIsApproximated:=false;
-  Approximate;
+  FIsAveraged:=false;
+  Average;
 
 end;{TFreeSubdivisionSurface.SubDivide}
 

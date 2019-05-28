@@ -1829,8 +1829,8 @@ end;{TFreeShip.ImportChines}
 procedure TFreeShip.LoadBinary(Source: TFreeFileBuffer);
 var
   PrevCursor: TCursor;
-  I, N: integer;
-  Str: string;
+  I, N, PointN: integer;
+  Str, PointName: string;
   Intersection: TFreeIntersection;
   vMarker: TFreeMarker;
   Data: TFreeBackgroundImageData;
@@ -1988,6 +1988,19 @@ begin
                   Source.Load(FResistanceRBHSData);
                   Source.Load(FResistanceMHData);
                 end;
+
+                if FileVersion >= fv421 then
+                begin
+                  Source.Load(N);
+                  Logger.Debug('ControlPoint Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+                  for I := 1 to N do
+                  begin
+                    Source.Load(PointN);
+                    Source.Load(PointName);
+                    self.Surface.ControlPoint[PointN].Name:=PointName;
+                  end;
+                end;
+
               end; //if FileVersion>=fv250
             end; //if FileVersion>=fv210
           end;  //if FileVersion>=fv191
@@ -2089,7 +2102,7 @@ end;{TFreeShip.Redraw}
 procedure TFreeShip.SaveBinary(Destination: TFreeFileBuffer);
 var
   PrevCursor: TCursor;
-  I: integer;
+  I,N: integer;
 begin
   //PrevCursor := Screen.Cursor;
   //Screen.Cursor := crHourGlass;
@@ -2190,6 +2203,22 @@ begin
             Destination.Add(FResistanceRBHSData);
             Destination.Add(FResistanceMHData);
           end;
+
+          if FileVersion >= fv421 then
+          begin
+            N:=0;
+            for i:=0 to Surface.NumberOfControlPoints-1 do
+                if Surface.ControlPoint[i].Name<>'' then inc(N);
+            Destination.Add(N);
+
+            for i:=0 to Surface.NumberOfControlPoints-1 do
+              if Surface.ControlPoint[i].Name<>'' then
+              begin
+                Destination.Add(i);
+                Destination.Add(Surface.ControlPoint[i].Name);
+              end;
+          end;
+
         end;
       end;
     end;

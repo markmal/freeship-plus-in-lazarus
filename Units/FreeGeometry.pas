@@ -827,8 +827,8 @@ type
     // The min/max boundary coordinates of the entity after it has been build
     FPenWidth: byte;
     // Pen thickness to use when drawing
-    FColor: TColor;
-    // Color when drawing
+    FColor: TColor; // Color when drawing
+    FName:string;
     FPenstyle: TPenStyle;
     // Pen style for drawing the line
     function FGetMin: T3DCoordinate;
@@ -859,6 +859,7 @@ type
       read FGetMin;
     property Max: T3DCoordinate
       read FGetMax;
+    property Name: String read FName write FName;
     property PenStyle: TPenStyle
       read FPenStyle write FPenStyle;        // Pen style
     property PenWidth: byte
@@ -1039,9 +1040,11 @@ type
     InUnreference:boolean;
     IsUnreferenceEnabled:boolean; // TODO - remove
     SubdivisionLevel:integer; // for investigation
+    FName:string;
   public
     constructor Create(Owner: TFreeSubdivisionSurface);
       virtual;
+    property Name: String read FName write FName;
     property Owner:
       TFreeSubdivisionSurface read FOwner write FOwner;
     procedure PrintDebug; virtual;
@@ -1298,6 +1301,8 @@ type
   {--------------------------------------------------------------------------------------------------}
   TFreeSubdivisionControlPoint = class(TFreeSubdivisionPoint)
   private
+    FLinearConstraintPoint1: TFreeSubdivisionPoint;
+    FLinearConstraintPoint2: TFreeSubdivisionPoint;
     FLocked: boolean;
     function FGetColor: TColor;
     function FGetIndex: integer;
@@ -1608,6 +1613,7 @@ type
     // List with points obtained by subdividing the surface
     FEdges: TFasterListTFreeSubdivisionEdge;
     // this list edges obtained by subdividing the controledges
+    FIdSequence:integer;
     FLayers: TFasterListTFreeSubdivisionLayer;
     // All layers are stored in this list
     FSelectedControlPoints: TFasterListTFreeSubdivisionControlPoint;

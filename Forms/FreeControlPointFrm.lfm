@@ -1,6 +1,6 @@
 object FreeControlPointForm: TFreeControlPointForm
   Left = 723
-  Height = 192
+  Height = 228
   Top = 165
   Width = 330
   AlphaBlend = True
@@ -8,7 +8,9 @@ object FreeControlPointForm: TFreeControlPointForm
   AutoSize = True
   BorderStyle = bsToolWindow
   Caption = ' '
-  ClientHeight = 192
+  ChildSizing.Layout = cclLeftToRightThenTopToBottom
+  ChildSizing.ControlsPerLine = 1
+  ClientHeight = 228
   ClientWidth = 330
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
@@ -282,6 +284,41 @@ object FreeControlPointForm: TFreeControlPointForm
       ReadOnly = True
       TabOrder = 2
       Value = 0
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Height = 37
+    Top = 179
+    Width = 330
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ChildSizing.LeftRightSpacing = 10
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.HorizontalSpacing = 6
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 37
+    ClientWidth = 330
+    TabOrder = 2
+    object LabelName: TLabel
+      Left = 10
+      Height = 25
+      Top = 6
+      Width = 39
+      Caption = 'Name'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object EditName: TEdit
+      Left = 55
+      Height = 25
+      Top = 6
+      Width = 150
+      Constraints.MinWidth = 150
+      OnEditingDone = EditNameEditingDone
+      TabOrder = 0
     end
   end
 end

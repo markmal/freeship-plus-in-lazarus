@@ -376,6 +376,18 @@ begin
       for I := 1 to Owner.ControlPointSize do
         Viewport.Rectangle(P.X - I, P.Y - I, P.X + I, P.Y + I);
     end;
+
+    if (FName > '') then
+    begin
+      Viewport.FontColor := Color;
+      ViewPort.TextOut(P.X + 2, P.Y + 2, FName)
+    end
+    else
+    begin  // temporary until Names completely implemented
+      Viewport.FontColor := Color;
+      ViewPort.TextOut(P.X + 2, P.Y + 2, IntToStr(FId));
+    end;
+
     //end;
   end;
 end;{TFreeSubdivisionControlPoint.Draw}

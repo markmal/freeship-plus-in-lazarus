@@ -55,6 +55,7 @@ type
 { TFreeControlPointForm }
 
  TFreeControlPointForm  = class(TForm)
+     EditName: TEdit;
     EditX: TFloatSpinEdit;
     EditAX: TFloatSpinEdit;
     EditAY: TFloatSpinEdit;
@@ -62,6 +63,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    LabelName: TLabel;
     LabelX: TLabel;
     EditY: TFloatSpinEdit;
     EditZ: TFloatSpinEdit;
@@ -78,7 +80,9 @@ type
     EditDistance: TFloatSpinEdit;
     Label5: TLabel;
     EditAngles: TFloatSpinEdit;
+    Panel3: TPanel;
     procedure CheckBoxCornerChange(Sender: TObject);
+    procedure EditNameEditingDone(Sender: TObject);
     procedure EditXChange(Sender: TObject);
     procedure EditXEditingDone(Sender: TObject);
     procedure EditYChange(Sender: TObject);
@@ -143,6 +147,7 @@ begin
       EditAY.Value:=0.0;
       EditAZ.Value:=0.0;
       CheckBoxCorner.Checked:=false;
+      EditName.Text := '';
    end else
    begin
       R:=0.0;
@@ -271,6 +276,9 @@ begin
       if EditY.Font.Color<>FCol then EditY.Font.Color:=FCol;
       if EditZ.Color<>BCol then EditZ.Color:=BCol;
       if EditZ.Font.Color<>FCol then EditZ.Font.Color:=FCol;}
+
+      EditName.Text := Val.Name;
+
    end;
    FActiveControlPointChanging := false;
 end;{TFreeControlPointForm.FSetActiveControlPoint}
@@ -494,6 +502,35 @@ procedure TFreeControlPointForm.CheckBoxCornerChange(Sender: TObject);
 begin
    if FSkipCheckbox1OnClick then exit;
    FSetActiveControlPointCorner(CheckBoxCorner.Checked);
+end;
+
+resourcestring rsPointNameChanged = 'Point Name Changed';
+
+procedure TFreeControlPointForm.EditNameEditingDone(Sender: TObject);
+var S: String;
+    saved: Boolean;
+begin
+   saved := false;
+   S:=trim(EditName.Text);
+   if (ActiveControlPoint<>nil) and (ActiveControlPoint.Name <> S)  then
+   begin
+     if not saved then
+       begin
+          TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointNameChanged,True);
+          saved := true;
+       end;
+
+     ActiveControlPoint.Name := S;
+     EditName.Text := S;
+
+     if saved then
+       begin
+          TFreeShip(FreeShip).Build:=False;
+          TFreeShip(FreeShip).FileChanged:=True;
+          TFreeShip(FreeShip).Redraw;
+          ActiveControlPoint:=ActiveControlPoint;
+       end;
+   end;
 end;
 
 procedure TFreeControlPointForm.FSetActiveControlPointCorner(isCorner: boolean);

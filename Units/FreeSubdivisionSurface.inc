@@ -1666,6 +1666,7 @@ begin
   FShowNormals := True;
   FShadeUnderWater := False;
   FMainframeLocation := 1e10;
+  FIdSequence := 0;
 end;{TFreeSubdivisionSurface.Clear}
 
 procedure TFreeSubdivisionSurface.ClearFaces;

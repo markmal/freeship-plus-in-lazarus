@@ -3,14 +3,12 @@
 { TFreeSubdivisionBase is the base class for all subdivision points, edges and faces                }
 {---------------------------------------------------------------------------------------------------}
 
-var FIdSequence:integer=0;
-
 constructor TFreeSubdivisionBase.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create;
   FOwner := Owner;
-  inc(FIdSequence);
-  FId:=FIdSequence;
+  inc(Owner.FIdSequence);
+  FId:=Owner.FIdSequence;
   InUnreference := false;
   IsUnreferenceEnabled := true;
 end;{TFreeSubdivisionBase.Create}

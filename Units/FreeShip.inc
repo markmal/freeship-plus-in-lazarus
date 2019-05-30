@@ -194,6 +194,16 @@ begin
     end;
 end;{TFreeShip.FBuildValidFrameTable}
 
+function TFreeShip.GetAllNamedPoints:TStringList;
+var i:integer;
+begin
+  result := TStringList.Create;
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+    if Surface.ControlPoint[i].Name <> '' then
+      result.AddObject(Surface.ControlPoint[i].Name, Surface.ControlPoint[i]);
+end;
+
+
 function TFreeShip.FGetActiveLayer: TFreeSubdivisionlayer;
 begin
   Result := Surface.ActiveLayer;
@@ -1826,7 +1836,7 @@ begin
   end;
 end;{TFreeShip.ImportChines}
 
-procedure TFreeShip.LoadBinary(Source: TFreeFileBuffer);
+procedure TFreeShip.LoadProject(Source: TFreeFileBuffer);
 var
   PrevCursor: TCursor;
   I, N, PointN: integer;
@@ -1991,14 +2001,10 @@ begin
 
                 if FileVersion >= fv421 then
                 begin
-                  Source.Load(N);
-                  Logger.Debug('ControlPoint Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
-                  for I := 1 to N do
-                  begin
-                    Source.Load(PointN);
-                    Source.Load(PointName);
-                    self.Surface.ControlPoint[PointN].Name:=PointName;
-                  end;
+                  LoadControlPointNames(Source);
+                  LoadControlEdgeNames(Source);
+                  LoadControlFaceNames(Source);
+                  LoadControlCurveNames(Source);
                 end;
 
               end; //if FileVersion>=fv250
@@ -2028,6 +2034,54 @@ begin
       OnUpdateGeometryInfo(self);
   end;
 end;{TFreeShip.LoadBinary}
+
+procedure TFreeShip.LoadControlPointNames(Source:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  Source.Load(N);
+  Logger.Debug('ControlPoint Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+  for I := 1 to N do
+  begin
+    Source.Load(NameData);
+    Surface.ControlPoint[NameData.N].Name:=NameData.Name;
+  end;
+end;
+
+procedure TFreeShip.LoadControlEdgeNames(Source:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  Source.Load(N);
+  Logger.Debug('ControlEdge Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+  for I := 1 to N do
+  begin
+    Source.Load(NameData);
+    Surface.ControlEdge[NameData.N].Name:=NameData.Name;
+  end;
+end;
+
+procedure TFreeShip.LoadControlFaceNames(Source:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  Source.Load(N);
+  Logger.Debug('ControlFace Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+  for I := 1 to N do
+  begin
+    Source.Load(NameData);
+    Surface.ControlFace[NameData.N].Name:=NameData.Name;
+  end;
+end;
+
+procedure TFreeShip.LoadControlCurveNames(Source:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  Source.Load(N);
+  Logger.Debug('ControlCurve Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+  for I := 1 to N do
+  begin
+    Source.Load(NameData);
+    Surface.ControlCurve[NameData.N].Name:=NameData.Name;
+  end;
+end;
 
 // loads the preview image from a file
 procedure TFreeShip.LoadPreview(Filename: string; Image: TJPegImage);
@@ -2099,7 +2153,7 @@ begin
     TFreeLinesplanframe(LinesplanFrame).Viewport.Refresh;
 end;{TFreeShip.Redraw}
 
-procedure TFreeShip.SaveBinary(Destination: TFreeFileBuffer);
+procedure TFreeShip.SaveProject(Destination: TFreeFileBuffer);
 var
   PrevCursor: TCursor;
   I,N: integer;
@@ -2107,7 +2161,7 @@ begin
   //PrevCursor := Screen.Cursor;
   //Screen.Cursor := crHourGlass;
   try
-    Logger.Debug('SaveBinary');
+    Logger.Debug('SaveProject');
     Destination.Encoding := Preferences.FbmEncoding;
     Destination.Add('FREE!ship');
     Destination.Add(FileVersion);
@@ -2206,17 +2260,10 @@ begin
 
           if FileVersion >= fv421 then
           begin
-            N:=0;
-            for i:=0 to Surface.NumberOfControlPoints-1 do
-                if Surface.ControlPoint[i].Name<>'' then inc(N);
-            Destination.Add(N);
-
-            for i:=0 to Surface.NumberOfControlPoints-1 do
-              if Surface.ControlPoint[i].Name<>'' then
-              begin
-                Destination.Add(i);
-                Destination.Add(Surface.ControlPoint[i].Name);
-              end;
+            SaveControlPointNames(Destination);
+            SaveControlEdgeNames(Destination);
+            SaveControlFaceNames(Destination);
+            SaveControlCurveNames(Destination);
           end;
 
         end;
@@ -2227,6 +2274,74 @@ begin
     //Screen.Cursor := PrevCursor;
   end;
 end;{TFreeShip.SaveBinary}
+
+procedure TFreeShip.SaveControlPointNames(Destination:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  N:=0;
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+      if Surface.ControlPoint[i].Name<>'' then inc(N);
+  Destination.Add(N);
+
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+    if Surface.ControlPoint[i].Name<>'' then
+    begin
+      NameData.N:=i;
+      NameData.Name:=Surface.ControlPoint[i].Name;
+      Destination.Add(NameData);
+    end;
+end;
+
+procedure TFreeShip.SaveControlEdgeNames(Destination:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  N:=0;
+  for i:=0 to Surface.NumberOfControlEdges-1 do
+      if Surface.ControlEdge[i].Name<>'' then inc(N);
+  Destination.Add(N);
+
+  for i:=0 to Surface.NumberOfControlEdges-1 do
+    if Surface.ControlEdge[i].Name<>'' then
+    begin
+      NameData.N:=i;
+      NameData.Name:=Surface.ControlEdge[i].Name;
+      Destination.Add(NameData);
+    end;
+end;
+
+procedure TFreeShip.SaveControlFaceNames(Destination:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  N:=0;
+  for i:=0 to Surface.NumberOfControlFaces-1 do
+      if Surface.ControlFace[i].Name<>'' then inc(N);
+  Destination.Add(N);
+
+  for i:=0 to Surface.NumberOfControlFaces-1 do
+    if Surface.ControlFace[i].Name<>'' then
+    begin
+      NameData.N:=i;
+      NameData.Name:=Surface.ControlFace[i].Name;
+      Destination.Add(NameData);
+    end;
+end;
+
+procedure TFreeShip.SaveControlCurveNames(Destination:TFreeFileBuffer);
+var I,N:integer; NameData:TNameData;
+begin
+  N:=0;
+  for i:=0 to Surface.NumberOfControlCurves-1 do
+      if Surface.ControlCurve[i].Name<>'' then inc(N);
+  Destination.Add(N);
+
+  for i:=0 to Surface.NumberOfControlCurves-1 do
+    if Surface.ControlCurve[i].Name<>'' then
+    begin
+      NameData.N:=i;
+      NameData.Name:=Surface.ControlCurve[i].Name;
+      Destination.Add(NameData);
+    end;
+end;
 
 procedure TFreeShip.SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
 var
@@ -2815,7 +2930,11 @@ begin
             end;
           end;
           Point.Coordinate := P;
+
+          Point.AdjustToLinearConstraint(Viewport); // adjusts to linear constraints if set
+
           ActiveControlPoint := Point;
+
           if ControlpointForm.Visible then
           begin
             // This lines updates the coordinate information in the controlpoint form

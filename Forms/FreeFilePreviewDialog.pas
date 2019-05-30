@@ -224,6 +224,8 @@ type
 
     procedure addIconsForFile(filename:string; item:TListItem);
 
+    function  getSelectedAbsoluteFileName:string;
+    procedure setSelectedAbsoluteFileName(fn:string);
     function  getSelectedFileName:string;
     procedure setSelectedFileName(fn:string);
     function  getCurrentPath:string;
@@ -261,6 +263,7 @@ type
     procedure Translate(ALang:string); // '' is default Lang from environment  published
 
     property AutoFit: boolean read FAutoFit write setAutoFit;
+    property AbsoluteFileName:string read getSelectedAbsoluteFileName write setSelectedAbsoluteFileName;
     property CurrentPath:string read getCurrentPath write setCurrentPath;
     property FileName:string read getSelectedFileName write setSelectedFileName;
     property Filter: String read getFilter write setFilter;
@@ -1620,6 +1623,25 @@ begin
   Handled := true;
 end;
 
+function  TFreeFilePreviewDialog.getSelectedAbsoluteFileName:string;
+var CurPath:String;
+begin
+  result :=  FFileName;
+  CurPath := getCurrentPath;
+  if CurPath > '' then begin
+     result := IncludeTrailingPathDelimiter(CurPath) + FFileName;
+  end;
+end;
+
+procedure TFreeFilePreviewDialog.setSelectedAbsoluteFileName(fn:string);
+var CurPath, fName:String;
+begin
+  CurPath := ExtractFilePath(fn);
+  fName := ExtractFileName(fn);
+  setCurrentPath(CurPath);
+  setSelectedFileName(fName);
+end;
+
 
 function  TFreeFilePreviewDialog.getSelectedFileName:string;
 begin
@@ -1648,7 +1670,10 @@ end;
 
 function  TFreeFilePreviewDialog.getCurrentPath:string;
 begin
-  result := ShellListView.GetPathFromItem(ShellListView.Selected);
+  if ShellListView.Selected <> nil then
+    result := ShellListView.GetPathFromItem(ShellListView.Selected)
+  else
+    result := ShellListView.Root;
 end;
 
 procedure TFreeFilePreviewDialog.setCurrentPath(p:string);

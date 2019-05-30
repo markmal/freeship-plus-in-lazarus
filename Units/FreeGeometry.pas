@@ -1301,8 +1301,8 @@ type
   {--------------------------------------------------------------------------------------------------}
   TFreeSubdivisionControlPoint = class(TFreeSubdivisionPoint)
   private
-    FLinearConstraintPoint1: TFreeSubdivisionPoint;
-    FLinearConstraintPoint2: TFreeSubdivisionPoint;
+    FLinearConstraintPointA: TFreeSubdivisionPoint; // if defined, the point can be locate on the line between these A and B points only
+    FLinearConstraintPointB: TFreeSubdivisionPoint;
     FLocked: boolean;
     function FGetColor: TColor;
     function FGetIndex: integer;
@@ -1317,6 +1317,7 @@ type
     procedure Collapse;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
+    procedure AdjustToLinearConstraint(Viewport: TFreeViewport);
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer;
     procedure Delete; override;
@@ -1330,6 +1331,8 @@ type
       read FGetColor;
     property IsLeak: boolean
       read FGetIsLeak;
+    property LinearConstraintPointA: TFreeSubdivisionPoint read FLinearConstraintPointA write FLinearConstraintPointA;
+    property LinearConstraintPointB: TFreeSubdivisionPoint read FLinearConstraintPointB write FLinearConstraintPointB;
     property Locked: boolean
       read FLocked write FSetLocked;
     property Selected: boolean

@@ -983,7 +983,7 @@ begin
   P3D := RotatedPoint(P);
   Dist := FCameralocation.X - P3D.X;
   // apply perspective correction
-  P2D.X := FCameralocation.X * P3D.Y / dist;
+  P2D.X := FCameralocation.X * P3D.Y / Dist;
   P2D.Y := FCameralocation.X * P3D.Z / Dist;
   Result.X := FPan.X + FScreencenter.X + Round(FZoom * FScale * P2D.X);
   Result.Y := FPan.Y + FScreencenter.Y - Round(FZoom * FScale * P2D.Y);
@@ -1080,7 +1080,7 @@ begin
   P3D := RotatedPoint(P);
   Dist := FCameralocation.X - P3D.X;
   // apply perspective correction
-  P2D.X := FCameralocation.X * P3D.Y / dist;
+  P2D.X := FCameralocation.X * P3D.Y / Dist;
   P2D.Y := FCameralocation.X * P3D.Z / Dist;
   Result.X := FPan.X + FScreencenter.X + Round(FZoom * FScale * P2D.X);
   Result.Y := FPan.Y + FScreencenter.Y - Round(FZoom * FScale * P2D.Y);

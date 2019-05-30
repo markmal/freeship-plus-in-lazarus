@@ -91,7 +91,7 @@ end;{TFreeUndoObject.Destroy}
 procedure TFreeUndoObject.Restore;
 begin
   try
-    Owner.LoadBinary(FUndoData);
+    Owner.LoadProject(FUndoData);
     Owner.FFileChanged := FFileChanged;
     Owner.FFilename := FFilename;
     Owner.FEditMode := FEditMode;

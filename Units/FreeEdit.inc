@@ -176,7 +176,7 @@ begin
     UndoObject.FEditMode := Owner.EditMode;
     UndoObject.FFilenameSet := Owner.FFilenameSet;
     UndoObject.FIsTempRedoObject := True;
-    Owner.SaveBinary(UndoObject.FUndoData);
+    Owner.SaveProject(UndoObject.FUndoData);
     UndoObject.Accept;
   finally
     // Restore the original fileversion
@@ -213,7 +213,7 @@ begin
     UndoObject.FFileName := Owner.Filename;
     UndoObject.FEditMode := Owner.EditMode;
     UndoObject.FFilenameSet := Owner.FFilenameSet;
-    Owner.SaveBinary(UndoObject.FUndoData);
+    Owner.SaveProject(UndoObject.FUndoData);
     if Accept then
       UndoObject.Accept;
   finally
@@ -5091,7 +5091,7 @@ begin
     Source.LoadFromFile(aFileName);     // Load everything into memory
     TempFreeShip.Preferences.OpenDirectory := ExtractFilePath(aFileName);
     TempFreeShip.Filename := aFileName;
-    TempFreeShip.LoadBinary(Source);    // Now read the information from memory
+    TempFreeShip.LoadProject(Source);    // Now read the information from memory
 
     //TempFreeShip.Surface.DesiredSubdivisionLevel:=1; // no need to build it in preview
     //if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
@@ -5336,7 +5336,7 @@ begin
     Owner.Filename := FileName;
     //My correction
     //      MessageDlg('Begin Loading *.fbm',mtError,[mbOk],0);
-    Owner.LoadBinary(Source);
+    Owner.LoadProject(Source);
     // Now read the information from memory
     //My correction
     //      MessageDlg('Loading *.fbm ended',mtError,[mbOk],0);
@@ -5399,7 +5399,7 @@ begin
   else
     Destination := TFreeTextBuffer.Create;
   Destination.Encoding := Owner.Preferences.FbmEncoding;
-  Owner.SaveBinary(Destination);
+  Owner.SaveProject(Destination);
   Destination.SaveToFile(Owner.Filename);
   Owner.Preferences.SaveDirectory := ExtractFilePath(Owner.FileName);
   AddToRecentFiles(Owner.FileName);
@@ -5455,12 +5455,12 @@ begin
   SaveDialog := TFreeFilePreviewDialog.Create(Owner);
   with SaveDialog do
   begin
-    CurrentPath := Preferences.OpenDirectory;
+    CurrentPath := Preferences.SaveDirectory;
     Filter := FileDialogFilterFreeship + '|' + FileDialogFilterFreeshipText +
       '|' + FileDialogFilterFreeshipBinary;
     FilterIndex := 0;
     OnPreview := @OnFilePreview;
-    addPlace(FileDialogPlaceMyShips, Preferences.OpenDirectory);
+    addPlace(FileDialogPlaceMyShips, Preferences.SaveDirectory);
     //addPlace(FileDialogPlaceMyImport, Preferences.ImportDirectory);
     //addPlace(FileDialogPlaceGlobalShips, Preferences.GlobalOpenDirectory);
     //addPlace(FileDialogPlaceGlobalImport, Preferences.GlobalImportDirectory);
@@ -5475,10 +5475,10 @@ begin
 
   if SaveDialog.Execute then
   begin
-    Owner.Preferences.SaveDirectory := ExtractFilePath(SaveDialog.FileName);
+    //Owner.Preferences.SaveDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);
     if CurrentVersion > Owner.FileVersion then
       Owner.FStopAskingForFileVersion := False;
-    Owner.Filename := Savedialog.Filename;
+    Owner.Filename := SaveDialog.AbsoluteFileName;
     Owner.FFilenameSet := True;
 {    I := SaveDialog.FilterIndex;
     case I of

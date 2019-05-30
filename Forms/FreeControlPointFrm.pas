@@ -48,18 +48,20 @@ uses
      Math,
      FreeTypes,
      FreeGeometry,
-     StdCtrls, Buttons, ExtCtrls, Spin;
+     StdCtrls, Buttons, ExtCtrls, Spin, FileCtrl;
 
 type
 
 { TFreeControlPointForm }
 
  TFreeControlPointForm  = class(TForm)
-     EditName: TEdit;
+    EditName: TEdit;
     EditX: TFloatSpinEdit;
     EditAX: TFloatSpinEdit;
     EditAY: TFloatSpinEdit;
     EditAZ: TFloatSpinEdit;
+    FilterComboBoxLinearConstraintA: TFilterComboBox;
+    FilterComboBoxLinearConstraintB: TFilterComboBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -81,7 +83,9 @@ type
     Label5: TLabel;
     EditAngles: TFloatSpinEdit;
     Panel3: TPanel;
+    Panel4: TPanel;
     procedure CheckBoxCornerChange(Sender: TObject);
+    procedure ComboBox1Enter(Sender: TObject);
     procedure EditNameEditingDone(Sender: TObject);
     procedure EditXChange(Sender: TObject);
     procedure EditXEditingDone(Sender: TObject);
@@ -89,6 +93,10 @@ type
     procedure EditYEditingDone(Sender: TObject);
     procedure EditZChange(Sender: TObject);
     procedure EditZEditingDone(Sender: TObject);
+    procedure FilterComboBoxLinearConstraintAChange(Sender: TObject);
+    procedure FilterComboBoxLinearConstraintAEnter(Sender: TObject);
+    procedure FilterComboBoxLinearConstraintBChange(Sender: TObject);
+    procedure FilterComboBoxLinearConstraintBEnter(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
@@ -278,6 +286,9 @@ begin
       if EditZ.Font.Color<>FCol then EditZ.Font.Color:=FCol;}
 
       EditName.Text := Val.Name;
+
+      FilterComboBoxLinearConstraintAEnter(nil);
+      FilterComboBoxLinearConstraintBEnter(nil);
 
    end;
    FActiveControlPointChanging := false;
@@ -498,10 +509,76 @@ begin
    end;
 end;{TFreeControlPointForm.Edit3Exit}
 
+procedure TFreeControlPointForm.FilterComboBoxLinearConstraintAChange(
+  Sender: TObject);
+var i:integer;
+begin
+  i := FilterComboBoxLinearConstraintA.ItemIndex;
+  FActiveControlPoint.LinearConstraintPointA := nil;
+  if i > -1 then
+    FActiveControlPoint.LinearConstraintPointA := TFreeSubdivisionControlPoint(
+        FilterComboBoxLinearConstraintA.Items.Objects[FilterComboBoxLinearConstraintA.ItemIndex]
+    );
+end;
+
+procedure TFreeControlPointForm.FilterComboBoxLinearConstraintAEnter(
+  Sender: TObject);
+var PL:TStringList; i:integer;
+begin
+   PL:=TFreeShip(FreeShip).GetAllNamedPoints;
+   PL.Sort;
+   FilterComboBoxLinearConstraintA.Clear;
+   FilterComboBoxLinearConstraintA.ClearSelection;
+   FilterComboBoxLinearConstraintA.AddItem('',nil);
+   for i:=0 to PL.Count-1 do
+     begin
+       FilterComboBoxLinearConstraintA.AddItem(PL[i],PL.Objects[i]);
+       if (FActiveControlPoint.LinearConstraintPointA <> nil)
+         and (PL[i] = FActiveControlPoint.LinearConstraintPointA.Name)
+         then FilterComboBoxLinearConstraintA.ItemIndex:=i+1;
+     end;
+   PL.Free;
+end;
+
+procedure TFreeControlPointForm.FilterComboBoxLinearConstraintBChange(
+  Sender: TObject);
+var i:integer;
+begin
+  i := FilterComboBoxLinearConstraintB.ItemIndex;
+  FActiveControlPoint.LinearConstraintPointB := nil;
+  if i > -1 then
+    FActiveControlPoint.LinearConstraintPointB := TFreeSubdivisionControlPoint(
+        FilterComboBoxLinearConstraintB.Items.Objects[FilterComboBoxLinearConstraintB.ItemIndex]
+    );
+end;
+
+procedure TFreeControlPointForm.FilterComboBoxLinearConstraintBEnter(
+  Sender: TObject);
+var PL:TStringList; i:integer;
+begin
+   PL:=TFreeShip(FreeShip).GetAllNamedPoints;
+   PL.Sort;
+   FilterComboBoxLinearConstraintB.Clear;
+   FilterComboBoxLinearConstraintB.ClearSelection;
+   FilterComboBoxLinearConstraintB.AddItem('',nil);
+   for i:=0 to PL.Count-1 do
+     begin
+       FilterComboBoxLinearConstraintB.AddItem(PL[i],PL.Objects[i]);
+       if (FActiveControlPoint.LinearConstraintPointB <> nil)
+         and (PL[i] = FActiveControlPoint.LinearConstraintPointB.Name)
+         then FilterComboBoxLinearConstraintB.ItemIndex:=i+1;
+     end;
+   PL.Free;
+end;
+
 procedure TFreeControlPointForm.CheckBoxCornerChange(Sender: TObject);
 begin
    if FSkipCheckbox1OnClick then exit;
    FSetActiveControlPointCorner(CheckBoxCorner.Checked);
+end;
+
+procedure TFreeControlPointForm.ComboBox1Enter(Sender: TObject);
+begin
 end;
 
 resourcestring rsPointNameChanged = 'Point Name Changed';

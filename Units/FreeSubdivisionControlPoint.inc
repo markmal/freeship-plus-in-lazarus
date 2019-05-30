@@ -317,7 +317,7 @@ end;{TFreeSubdivisionControlPoint.Delete}
 
 procedure TFreeSubdivisionControlPoint.Draw(Viewport: TFreeViewport);
 var
-  P: TPoint;
+  P, PA,PB: TPoint;
   Pz: TShadePoint;
   I: integer;
   P3D: T3DCoordinate;
@@ -377,20 +377,118 @@ begin
         Viewport.Rectangle(P.X - I, P.Y - I, P.X + I, P.Y + I);
     end;
 
+    if (FLinearConstraintPointA <> nil) and (FLinearConstraintPointB <> nil) then
+    begin
+      PA := Viewport.Project(FLinearConstraintPointA.Coordinate);
+      PB := Viewport.Project(FLinearConstraintPointB.Coordinate);
+      ViewPort.PenStyle := psDash;
+      ViewPort.Line(PA.x,PA.y,PB.x,PB.y);
+    end;
+
     if (FName > '') then
     begin
       Viewport.FontColor := Color;
-      ViewPort.TextOut(P.X + 2, P.Y + 2, FName)
-    end
-    else
+      ViewPort.TextOut(P.X + 2, P.Y + 2, FName);
+    end;
+    {else
     begin  // temporary until Names completely implemented
       Viewport.FontColor := Color;
       ViewPort.TextOut(P.X + 2, P.Y + 2, IntToStr(FId));
-    end;
+    end;}
 
     //end;
   end;
 end;{TFreeSubdivisionControlPoint.Draw}
+
+
+
+procedure TFreeSubdivisionControlPoint.AdjustToLinearConstraint(Viewport: TFreeViewport);
+var P,PN: TPoint;
+    I: integer;
+    CA,CB : T3DCoordinate;
+
+    // project point P on the ray through P1 and P2
+    function Project_PL_3D(P, P1, P2: T3DCoordinate): T3DCoordinate;
+    var
+      T: TFloatType;
+    begin
+      T := -((P1.X - P.X) * (P2.X - P1.X)
+           + (P1.Y - P.Y) * (P2.Y - P1.Y)
+           + (P2.Z - P.Z) * (P2.Z - P1.Z))
+           /
+        (sqr(P2.X - P1.X) + sqr(P2.Y - P1.Y) + sqr(P2.Z - P1.Z));
+      Result.X := P1.X + T * (P2.X - P1.X);
+      Result.Y := P1.Y + T * (P2.Y - P1.Y);
+      Result.Z := P1.Z + T * (P2.Z - P1.Z);
+    end;{Dist_PL_3D}
+
+    // project point P on the ray through P1 and P2 by X
+    function Project_PL_3D_X(P, P1, P2: T3DCoordinate): T3DCoordinate;
+    var
+      Kz,Ky, dX,pX: TFloatType;
+    begin
+      pX := (P.X - P1.X);
+      dX := (P2.X - P1.X);
+      Kz := (P2.Z - P1.Z) / dX;
+      Ky := (P2.Y - P1.Y) / dX;
+      Result.Z := P1.Z + Kz * pX;
+      Result.Y := P1.Y + Ky * pX;
+      Result.X := P.X;
+    end;{Dist_PL_3D}
+
+    // project point P on the ray through P1 and P2 by Y
+    function Project_PL_3D_Y(P, P1, P2: T3DCoordinate): T3DCoordinate;
+    var
+      Kz,Kx, dY,pY: TFloatType;
+    begin
+      pY := (P.Y - P1.Y);
+      dY := (P2.Y - P1.Y);
+      Kx := (P2.X - P1.X) / dY;
+      Kz := (P2.Z - P1.Z) / dY;
+      Result.X := P1.X + Kx * pY;
+      Result.Z := P1.Z + Kz * pY;
+      Result.Y := P.Y;
+    end;{Dist_PL_3D}
+
+    // project point P on the ray through P1 and P2 by Z
+    function Project_PL_3D_Z(P, P1, P2: T3DCoordinate): T3DCoordinate;
+    var
+      Kx,Ky, dZ,pZ: TFloatType;
+    begin
+      pZ := (P.Z - P1.Z);
+      dZ := (P2.Z - P1.Z);
+      Kx := (P2.X - P1.X) / dZ;
+      Ky := (P2.Y - P1.Y) / dZ;
+      Result.X := P1.X + Kx * pZ;
+      Result.Y := P1.Y + Ky * pZ;
+      Result.Z := P.Z;
+    end;{Dist_PL_3D}
+
+begin
+  if (FLinearConstraintPointA = nil) or (FLinearConstraintPointA = nil) then exit;
+  CA:=FLinearConstraintPointA.Coordinate;
+  CB:=FLinearConstraintPointB.Coordinate;
+
+  //fvBodyplan, fvProfile, fvPlan, fvPerspective
+  if Viewport.ViewType = fvProfile then
+    if abs(CA.X-CB.X) > abs(CA.Z-CB.Z) then
+       FCoordinate := Project_PL_3D_X(FCoordinate, CA, CB)
+    else
+       FCoordinate := Project_PL_3D_Z(FCoordinate, CA, CB)
+  else
+  if Viewport.ViewType = fvBodyplan then
+    if abs(CA.Y-CB.Y) > abs(CA.Z-CB.Z) then
+       FCoordinate := Project_PL_3D_Y(FCoordinate, CA, CB)
+    else
+       FCoordinate := Project_PL_3D_Z(FCoordinate, CA, CB)
+  else
+  if Viewport.ViewType = fvPlan then
+    if abs(CA.X-CB.X) > abs(CA.X-CB.Y) then
+       FCoordinate := Project_PL_3D_X(FCoordinate, CA, CB)
+    else
+       FCoordinate := Project_PL_3D_Y(FCoordinate, CA, CB);
+
+end;
 
 function TFreeSubdivisionControlPoint.DistanceToCursor(X, Y: integer;
   Viewport: TFreeViewport): integer;

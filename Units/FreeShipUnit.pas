@@ -1309,16 +1309,22 @@ type
     procedure Extents(var Min, Max: T3DCoordinate);
     // calculate the bounding box coordinates of the model
     function FindLowestHydrostaticsPoint: TFloatType;
+    function GetAllNamedPoints:TStringList;
     procedure ImportChines(Np: integer; Chines: TFasterListTFreeSpline);
     // imports a number of longitudinally lines and creates developable surfaces between each two subsequent chines
-    procedure LoadBinary(Source: TFreeFileBuffer);
-    procedure LoadPreview(Filename: string; Image: TJPegImage);
-    // loads the preview image from a file
-    procedure RebuildModel;
-    // Force to rebuild the entire ship and recalculate all data
-    procedure Redraw;
-    // Redraws the model on all viewports
-    procedure SaveBinary(Destination: TFreeFileBuffer);
+    procedure LoadProject(Source: TFreeFileBuffer);
+    procedure LoadControlPointNames(Source:TFreeFileBuffer);
+    procedure LoadControlEdgeNames(Source:TFreeFileBuffer);
+    procedure LoadControlFaceNames(Source:TFreeFileBuffer);
+    procedure LoadControlCurveNames(Source:TFreeFileBuffer);
+    procedure LoadPreview(Filename: string; Image: TJPegImage); // loads the preview image from a file
+    procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data
+    procedure Redraw;  // Redraws the model on all viewports
+    procedure SaveProject(Destination: TFreeFileBuffer);
+    procedure SaveControlPointNames(Destination:TFreeFileBuffer);
+    procedure SaveControlEdgeNames(Destination:TFreeFileBuffer);
+    procedure SaveControlFaceNames(Destination:TFreeFileBuffer);
+    procedure SaveControlCurveNames(Destination:TFreeFileBuffer);
     procedure SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
     procedure SubmergedHullExtents(Wlplane: T3DPlane; var Min, Max: T3DCoordinate);
     procedure KeyUp(Viewport: TfreeViewport; var Key: word; Shift: TShiftState);

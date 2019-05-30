@@ -20,6 +20,8 @@ const
 // used for reading and writing files using TFilebuffer
 
 type
+  TNameData = record N:integer; Name:String; end;
+
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeFileBuffer                                         }
 
@@ -50,6 +52,7 @@ type
     //procedure Add(WordValue:word);               overload;virtual;
     procedure Add(Version: TFreeFileVersion);  overload; virtual;
     procedure Add(Coordinate: T3DCoordinate);      overload; virtual;
+    procedure Add(NameData: TNameData);                overload; virtual;
     procedure Add(Plane: T3DPlane);                overload; virtual;
     procedure Add(Data: TFreeDelftSeriesResistanceData);      overload; virtual;
     procedure Add(Data: TFreeKAPERResistanceData);            overload; virtual;
@@ -78,6 +81,7 @@ type
     procedure Load(var Output: TFreeFileVersion);      overload; virtual;
     procedure Load(var Output: boolean);      overload; virtual;
     //procedure Load2(var Output:Boolean);          overload;virtual;
+    procedure Load(var NameData: TNameData); overload; virtual;
     procedure Load(var Output: TFloatType);      overload; virtual;
     //procedure Load(var Output: TColor);      overload; virtual;
     procedure Load(var Output: T3DCoordinate);      overload; virtual;
@@ -135,6 +139,7 @@ type
     procedure Add(BooleanValue: boolean); override; overload;
     procedure Add(FloatValue: TFloatType); override; overload;
     procedure Add(PVersion: TFreeFileVersion); override; overload;
+    procedure Add(NameData: TNameData); override; overload;
     procedure Add(Coordinate: T3DCoordinate); override; overload;
     procedure Add(Plane: T3DPlane); override; overload;
     //procedure Add(const source;Size:Integer);     override;
@@ -145,6 +150,7 @@ type
     procedure Load(var Output: TFreeFileVersion); override; overload;
     procedure Load(var Output: boolean); override; overload;
     procedure Load(var Output: TFloatType); override; overload;
+    procedure Load(var Output: TNameData); override; overload;
     //procedure Load(var Output: TColor); override; overload;
     procedure Load(var Output: T3DCoordinate); override; overload;
     procedure Load(var Output: T3DPlane); override; overload;
@@ -217,6 +223,12 @@ begin
     FGrow(Size);
   Move(NtoLE(IntegerValue), FData[FCount], Size);
   Inc(FCount, Size);
+end;{TFreeFileBuffer.Add}
+
+procedure TFreeFileBuffer.Add(NameData: TNameData);
+begin
+  Add(NameData.N);
+  Add(NameData.Name);
 end;{TFreeFileBuffer.Add}
 
 procedure TFreeFileBuffer.Add(Version: TFreeFileVersion);
@@ -1932,6 +1944,12 @@ begin
       +EOL+FFileName);
 end;}{TFreeFileBuffer.Load}
 
+procedure TFreeFileBuffer.Load(var NameData: TNameData);
+begin
+  Load(NameData.N);
+  Load(NameData.Name);
+end;
+
 procedure TFreeFileBuffer.Load(var Output: TFloatType);
 var
   Size: integer;
@@ -2232,6 +2250,13 @@ begin
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
 
+procedure TFreeTextBuffer.Add(NameData: TNameData);
+var S: string;
+begin
+  S := IntToStr(NameData.N) + ' ' + NameData.Name;
+  FLines.Add(S);
+  Inc(FPosition);
+end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(Coordinate: T3DCoordinate);
 var
@@ -2361,6 +2386,17 @@ begin
   Output := StrToInt(S);
   Inc(FPosition);
 end;}{TFreeTextBuffer.Load}
+
+procedure TFreeTextBuffer.Load(var Output: TNameData);
+var
+  p:integer; S: string;
+begin
+  S := FLines[FPosition];
+  p := pos(' ',S);
+  Output.N := StrToInt(copy(S,1,p-1));
+  Output.Name := copy(S,p+1,length(S));
+  Inc(FPosition);
+end;{TFreeTextBuffer.Load}
 
 procedure TFreeTextBuffer.Load(var Output: T3DCoordinate);
 var

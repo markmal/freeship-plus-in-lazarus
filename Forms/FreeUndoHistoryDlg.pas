@@ -194,7 +194,7 @@ begin
    if UndoBox.ItemIndex<>-1 then
    begin
       Undo:=UndoBox.Items.Objects[UndoBox.ItemIndex] as TFreeUndoObject;;
-      Freeship1.LoadBinary(Undo.Undodata);
+      Freeship1.LoadProject(Undo.Undodata);
       Viewport.ZoomExtents;
    end;
 end;{TFreeUndoHistoryDialog.UndoBoxClick}

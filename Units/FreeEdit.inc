@@ -5093,7 +5093,11 @@ begin
     TempFreeShip.Filename := aFileName;
     TempFreeShip.LoadProject(Source);    // Now read the information from memory
 
-    //TempFreeShip.Surface.DesiredSubdivisionLevel:=1; // no need to build it in preview
+    TempFreeShip.Surface.DesiredSubdivisionLevel:=0; // no need to build it in preview in very details
+    if not TempFreeShip.Visibility.ShowControlNet
+       and TempFreeShip.Visibility.ShowInteriorEdges
+       then TempFreeShip.Surface.DesiredSubdivisionLevel:=1;
+
     //if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
     TempFreeShip.Surface.OnFaceRebuilt := @OnFaceRebuilt;
 
@@ -5101,7 +5105,6 @@ begin
     //TempFreeShip.Preferences.Load;
 
     vp := TFreeViewPort.Create(nil);
-
     with vp do
     begin
         {Parent := Self.;

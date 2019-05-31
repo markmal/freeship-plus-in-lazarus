@@ -21,6 +21,7 @@ const
 
 type
   TNameData = record N:integer; Name:String; end;
+  TLinearConstraintData = record N, LinearConstraintPointA, LinearConstraintPointB:integer; end;
 
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeFileBuffer                                         }
@@ -53,6 +54,7 @@ type
     procedure Add(Version: TFreeFileVersion);  overload; virtual;
     procedure Add(Coordinate: T3DCoordinate);      overload; virtual;
     procedure Add(NameData: TNameData);                overload; virtual;
+    procedure Add(LCData: TLinearConstraintData);      overload; virtual;
     procedure Add(Plane: T3DPlane);                overload; virtual;
     procedure Add(Data: TFreeDelftSeriesResistanceData);      overload; virtual;
     procedure Add(Data: TFreeKAPERResistanceData);            overload; virtual;
@@ -82,6 +84,7 @@ type
     procedure Load(var Output: boolean);      overload; virtual;
     //procedure Load2(var Output:Boolean);          overload;virtual;
     procedure Load(var NameData: TNameData); overload; virtual;
+    procedure Load(var LCData: TLinearConstraintData); overload; virtual;
     procedure Load(var Output: TFloatType);      overload; virtual;
     //procedure Load(var Output: TColor);      overload; virtual;
     procedure Load(var Output: T3DCoordinate);      overload; virtual;
@@ -140,6 +143,7 @@ type
     procedure Add(FloatValue: TFloatType); override; overload;
     procedure Add(PVersion: TFreeFileVersion); override; overload;
     procedure Add(NameData: TNameData); override; overload;
+    procedure Add(LCData: TLinearConstraintData); override; overload;
     procedure Add(Coordinate: T3DCoordinate); override; overload;
     procedure Add(Plane: T3DPlane); override; overload;
     //procedure Add(const source;Size:Integer);     override;
@@ -151,7 +155,8 @@ type
     procedure Load(var Output: boolean); override; overload;
     procedure Load(var Output: TFloatType); override; overload;
     procedure Load(var Output: TNameData); override; overload;
-    //procedure Load(var Output: TColor); override; overload;
+    procedure Load(var Output: TLinearConstraintData); override; overload;
+        //procedure Load(var Output: TColor); override; overload;
     procedure Load(var Output: T3DCoordinate); override; overload;
     procedure Load(var Output: T3DPlane); override; overload;
     procedure Load(var JPegImage: TJPEGImage); override; overload;
@@ -229,7 +234,15 @@ procedure TFreeFileBuffer.Add(NameData: TNameData);
 begin
   Add(NameData.N);
   Add(NameData.Name);
-end;{TFreeFileBuffer.Add}
+end;
+
+procedure TFreeFileBuffer.Add(LCData: TLinearConstraintData);
+begin
+  Add(LCData.N);
+  Add(LCData.LinearConstraintPointA);
+  Add(LCData.LinearConstraintPointB);
+end;
+
 
 procedure TFreeFileBuffer.Add(Version: TFreeFileVersion);
 var
@@ -1950,6 +1963,14 @@ begin
   Load(NameData.Name);
 end;
 
+procedure TFreeFileBuffer.Load(var LCData: TLinearConstraintData);
+begin
+  Load(LCData.N);
+  Load(LCData.LinearConstraintPointA);
+  Load(LCData.LinearConstraintPointB);
+end;
+
+
 procedure TFreeFileBuffer.Load(var Output: TFloatType);
 var
   Size: integer;
@@ -2258,6 +2279,19 @@ begin
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
 
+procedure TFreeTextBuffer.Add(LCData: TLinearConstraintData);
+var
+  Size: integer;
+  S: string;
+begin
+  S := IntToStr(LCData.N)
+    + ' ' + IntToStr(LCData.LinearConstraintPointA)
+    + ' ' + IntToStr(LCData.LinearConstraintPointB);
+  FLines.Add(S);
+  Inc(FPosition);
+end;{TFreeTextBuffer.Add}
+
+
 procedure TFreeTextBuffer.Add(Coordinate: T3DCoordinate);
 var
   Size: integer;
@@ -2388,13 +2422,22 @@ begin
 end;}{TFreeTextBuffer.Load}
 
 procedure TFreeTextBuffer.Load(var Output: TNameData);
-var
-  p:integer; S: string;
+var  p:integer; S: string;
 begin
   S := FLines[FPosition];
   p := pos(' ',S);
   Output.N := StrToInt(copy(S,1,p-1));
   Output.Name := copy(S,p+1,length(S));
+  Inc(FPosition);
+end;{TFreeTextBuffer.Load}
+
+procedure TFreeTextBuffer.Load(var Output: TLinearConstraintData);
+var  p:integer; S: string;
+begin
+  S := FLines[FPosition];
+  Output.N := StrToInt(ExtractWord(1, S, [' ']));
+  Output.LinearConstraintPointA := StrToInt(ExtractWord(2, S, [' ']));
+  Output.LinearConstraintPointB := StrToInt(ExtractWord(3, S, [' ']));
   Inc(FPosition);
 end;{TFreeTextBuffer.Load}
 

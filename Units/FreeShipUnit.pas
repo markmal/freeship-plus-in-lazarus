@@ -1309,6 +1309,7 @@ type
     procedure Extents(var Min, Max: T3DCoordinate);
     // calculate the bounding box coordinates of the model
     function FindLowestHydrostaticsPoint: TFloatType;
+    function FindByName(aName:String):TFreeNamedObject;
     function GetAllNamedPoints:TStringList;
     procedure ImportChines(Np: integer; Chines: TFasterListTFreeSpline);
     // imports a number of longitudinally lines and creates developable surfaces between each two subsequent chines
@@ -1317,6 +1318,7 @@ type
     procedure LoadControlEdgeNames(Source:TFreeFileBuffer);
     procedure LoadControlFaceNames(Source:TFreeFileBuffer);
     procedure LoadControlCurveNames(Source:TFreeFileBuffer);
+    procedure LoadControlPointLinearConstraints(Source:TFreeFileBuffer);
     procedure LoadPreview(Filename: string; Image: TJPegImage); // loads the preview image from a file
     procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data
     procedure Redraw;  // Redraws the model on all viewports
@@ -1325,6 +1327,7 @@ type
     procedure SaveControlEdgeNames(Destination:TFreeFileBuffer);
     procedure SaveControlFaceNames(Destination:TFreeFileBuffer);
     procedure SaveControlCurveNames(Destination:TFreeFileBuffer);
+    procedure SaveControlPointLinearConstraints(Destination:TFreeFileBuffer);
     procedure SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
     procedure SubmergedHullExtents(Wlplane: T3DPlane; var Min, Max: T3DCoordinate);
     procedure KeyUp(Viewport: TfreeViewport; var Key: word; Shift: TShiftState);

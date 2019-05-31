@@ -62,6 +62,7 @@ type
     EditAZ: TFloatSpinEdit;
     FilterComboBoxLinearConstraintA: TFilterComboBox;
     FilterComboBoxLinearConstraintB: TFilterComboBox;
+    GroupBox1: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -74,7 +75,6 @@ type
     LabelAY: TLabel;
     LabelZ: TLabel;
     CheckBoxCorner: TCheckBox;
-    Label6: TLabel;
     LabelAZ: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -84,6 +84,7 @@ type
     EditAngles: TFloatSpinEdit;
     Panel3: TPanel;
     Panel4: TPanel;
+    Panel5: TPanel;
     procedure CheckBoxCornerChange(Sender: TObject);
     procedure ComboBox1Enter(Sender: TObject);
     procedure EditNameEditingDone(Sender: TObject);
@@ -286,6 +287,7 @@ begin
       if EditZ.Font.Color<>FCol then EditZ.Font.Color:=FCol;}
 
       EditName.Text := Val.Name;
+      EditName.Color:= clDefault;
 
       FilterComboBoxLinearConstraintAEnter(nil);
       FilterComboBoxLinearConstraintBEnter(nil);
@@ -523,20 +525,30 @@ end;
 
 procedure TFreeControlPointForm.FilterComboBoxLinearConstraintAEnter(
   Sender: TObject);
-var PL:TStringList; i:integer;
+var PL:TStringList; i:integer; N,PN,LCAN,LCBN:String;
 begin
+  LCAN:=''; LCBN:='';
+  if FActiveControlPoint.LinearConstraintPointA<>nil then
+    LCAN:=FActiveControlPoint.LinearConstraintPointA.Name;
+  if FActiveControlPoint.LinearConstraintPointB<>nil then
+    LCBN:=FActiveControlPoint.LinearConstraintPointB.Name;
+
    PL:=TFreeShip(FreeShip).GetAllNamedPoints;
    PL.Sort;
    FilterComboBoxLinearConstraintA.Clear;
    FilterComboBoxLinearConstraintA.ClearSelection;
    FilterComboBoxLinearConstraintA.AddItem('',nil);
    for i:=0 to PL.Count-1 do
+   begin
+     //N:=FActiveControlPoint.Name; PN:=PL[i];
+     if (PL[i]<>FActiveControlPoint.Name) and (PL[i]<>LCBN) then
      begin
        FilterComboBoxLinearConstraintA.AddItem(PL[i],PL.Objects[i]);
-       if (FActiveControlPoint.LinearConstraintPointA <> nil)
-         and (PL[i] = FActiveControlPoint.LinearConstraintPointA.Name)
-         then FilterComboBoxLinearConstraintA.ItemIndex:=i+1;
+       if (PL[i] = LCAN)
+         then FilterComboBoxLinearConstraintA.ItemIndex:=
+              FilterComboBoxLinearConstraintA.Items.Count-1;
      end;
+   end;
    PL.Free;
 end;
 
@@ -554,19 +566,26 @@ end;
 
 procedure TFreeControlPointForm.FilterComboBoxLinearConstraintBEnter(
   Sender: TObject);
-var PL:TStringList; i:integer;
+var PL:TStringList; i:integer; N,PN,LCAN,LCBN:String;
 begin
-   PL:=TFreeShip(FreeShip).GetAllNamedPoints;
+  LCAN:=''; LCBN:='';
+  if FActiveControlPoint.LinearConstraintPointA<>nil then
+    LCAN:=FActiveControlPoint.LinearConstraintPointA.Name;
+  if FActiveControlPoint.LinearConstraintPointB<>nil then
+    LCBN:=FActiveControlPoint.LinearConstraintPointB.Name;
+
+  PL:=TFreeShip(FreeShip).GetAllNamedPoints;
    PL.Sort;
    FilterComboBoxLinearConstraintB.Clear;
    FilterComboBoxLinearConstraintB.ClearSelection;
    FilterComboBoxLinearConstraintB.AddItem('',nil);
    for i:=0 to PL.Count-1 do
+     if (PL[i]<>FActiveControlPoint.Name) and (PL[i]<>LCAN) then
      begin
        FilterComboBoxLinearConstraintB.AddItem(PL[i],PL.Objects[i]);
-       if (FActiveControlPoint.LinearConstraintPointB <> nil)
-         and (PL[i] = FActiveControlPoint.LinearConstraintPointB.Name)
-         then FilterComboBoxLinearConstraintB.ItemIndex:=i+1;
+       if (PL[i] = LCBN)
+         then FilterComboBoxLinearConstraintB.ItemIndex:=
+              FilterComboBoxLinearConstraintB.Items.Count-1;
      end;
    PL.Free;
 end;
@@ -581,7 +600,9 @@ procedure TFreeControlPointForm.ComboBox1Enter(Sender: TObject);
 begin
 end;
 
-resourcestring rsPointNameChanged = 'Point Name Changed';
+resourcestring
+  rsPointNameChanged = 'Point Name Changed';
+  rsNameIsNotUnique = 'Name Is Not Unique';
 
 procedure TFreeControlPointForm.EditNameEditingDone(Sender: TObject);
 var S: String;
@@ -590,8 +611,10 @@ begin
    saved := false;
    S:=trim(EditName.Text);
    if (ActiveControlPoint<>nil) and (ActiveControlPoint.Name <> S)  then
+   if TFreeShip(FreeShip).FindByName(S) = nil then
    begin
-     if not saved then
+      EditName.Color:=clDefault;
+      if not saved then
        begin
           TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointNameChanged,True);
           saved := true;
@@ -607,6 +630,11 @@ begin
           TFreeShip(FreeShip).Redraw;
           ActiveControlPoint:=ActiveControlPoint;
        end;
+   end
+   else
+   begin
+     EditName.Color:=clYellow;
+     ShowMessage(rsNameIsNotUnique);
    end;
 end;
 

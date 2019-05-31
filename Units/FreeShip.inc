@@ -194,6 +194,33 @@ begin
     end;
 end;{TFreeShip.FBuildValidFrameTable}
 
+function TFreeShip.FindByName(aName:String):TFreeNamedObject;
+var i:integer;
+begin
+  result := nil;
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+    if Surface.ControlPoint[i].Name = aName then
+      begin
+        result := Surface.ControlPoint[i];
+        break;
+      end;
+  if result = nil then
+  for i:=0 to Surface.NumberOfControlEdges-1 do
+    if Surface.ControlEdge[i].Name = aName then
+      begin
+        result := Surface.ControlEdge[i];
+        break;
+      end;
+  if result = nil then
+  for i:=0 to Surface.NumberOfControlFaces-1 do
+    if Surface.ControlFace[i].Name = aName then
+      begin
+        result := Surface.ControlFace[i];
+        break;
+      end;
+end;
+
+
 function TFreeShip.GetAllNamedPoints:TStringList;
 var i:integer;
 begin
@@ -2005,6 +2032,7 @@ begin
                   LoadControlEdgeNames(Source);
                   LoadControlFaceNames(Source);
                   LoadControlCurveNames(Source);
+                  LoadControlPointLinearConstraints(Source);
                 end;
 
               end; //if FileVersion>=fv250
@@ -2082,6 +2110,24 @@ begin
     Surface.ControlCurve[NameData.N].Name:=NameData.Name;
   end;
 end;
+
+procedure TFreeShip.LoadControlPointLinearConstraints(Source:TFreeFileBuffer);
+var I,N:integer; LCData:TLinearConstraintData;
+begin
+  Source.Load(N);
+  Logger.Debug('ControlPoint Linear Constraints:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+  for I := 1 to N do
+  begin
+    Source.Load(LCData);
+    if LCData.LinearConstraintPointA > -1 then
+       Surface.ControlPoint[LCData.N].LinearConstraintPointA
+         := Surface.ControlPoint[LCData.LinearConstraintPointA];
+    if LCData.LinearConstraintPointB > -1 then
+       Surface.ControlPoint[LCData.N].LinearConstraintPointB
+         := Surface.ControlPoint[LCData.LinearConstraintPointB];
+  end;
+end;
+
 
 // loads the preview image from a file
 procedure TFreeShip.LoadPreview(Filename: string; Image: TJPegImage);
@@ -2264,6 +2310,7 @@ begin
             SaveControlEdgeNames(Destination);
             SaveControlFaceNames(Destination);
             SaveControlCurveNames(Destination);
+            SaveControlPointLinearConstraints(Destination);
           end;
 
         end;
@@ -2274,6 +2321,42 @@ begin
     //Screen.Cursor := PrevCursor;
   end;
 end;{TFreeShip.SaveBinary}
+
+procedure TFreeShip.SaveControlPointLinearConstraints(Destination:TFreeFileBuffer);
+var i,j,N:integer; LCData:TLinearConstraintData;
+begin
+  N:=0;
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+      if (Surface.ControlPoint[i].LinearConstraintPointA <> nil)
+       or(Surface.ControlPoint[i].LinearConstraintPointB <> nil)
+        then inc(N);
+  Destination.Add(N);
+
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+    if (Surface.ControlPoint[i].LinearConstraintPointA <> nil)
+       or(Surface.ControlPoint[i].LinearConstraintPointB <> nil)
+    then
+    begin
+      LCData.N:=i;
+      LCData.LinearConstraintPointA:=-1;
+      LCData.LinearConstraintPointB:=-1;
+      if Surface.ControlPoint[i].LinearConstraintPointA <> nil
+        then
+        begin
+          for j:=0 to Surface.NumberOfControlPoints-1 do
+          if Surface.ControlPoint[j] = Surface.ControlPoint[i].LinearConstraintPointA
+          then LCData.LinearConstraintPointA:=j;
+        end;
+      if Surface.ControlPoint[i].LinearConstraintPointB <> nil
+        then
+        begin
+          for j:=0 to Surface.NumberOfControlPoints-1 do
+          if Surface.ControlPoint[j] = Surface.ControlPoint[i].LinearConstraintPointB
+          then LCData.LinearConstraintPointB:=j;
+        end;
+      Destination.Add(LCData);
+    end;
+end;
 
 procedure TFreeShip.SaveControlPointNames(Destination:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;

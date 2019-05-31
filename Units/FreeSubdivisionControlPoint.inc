@@ -401,7 +401,7 @@ begin
 end;{TFreeSubdivisionControlPoint.Draw}
 
 
-
+// Adjust To Linear Constraint during editing/moving
 procedure TFreeSubdivisionControlPoint.AdjustToLinearConstraint(Viewport: TFreeViewport);
 var P,PN: TPoint;
     I: integer;

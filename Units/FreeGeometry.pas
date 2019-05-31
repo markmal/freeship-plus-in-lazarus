@@ -815,11 +815,23 @@ type
 
 
   {---------------------------------------------------------------------------------------------------}
+  {                                           TFreeNamedObject                                             }
+  { This is the base class of all named objects in the project                                        }
+  {---------------------------------------------------------------------------------------------------}
+  TFreeNamedObject = class
+  private
+    FId:integer;
+    FName:string;
+  public
+    property Name: String read FName write FName;
+  end;
+
+  {---------------------------------------------------------------------------------------------------}
   {                                           TFreeEntity                                             }
 
   { This is the base class of all 3D entities in the project                                          }
   {---------------------------------------------------------------------------------------------------}
-  TFreeEntity = class
+  TFreeEntity = class(TFreeNamedObject)
   private
     FBuild: boolean; // Flag to check if the entity has already been built
     FIsBuilding: boolean; // Flag to check if the entity structure is building to exclude double entrance to building
@@ -859,7 +871,6 @@ type
       read FGetMin;
     property Max: T3DCoordinate
       read FGetMax;
-    property Name: String read FName write FName;
     property PenStyle: TPenStyle
       read FPenStyle write FPenStyle;        // Pen style
     property PenWidth: byte
@@ -1033,18 +1044,15 @@ type
 
   { TFreeSubdivisionBase is the base class for all subdivision points, edges and faces                }
   {---------------------------------------------------------------------------------------------------}
-  TFreeSubdivisionBase = class
+  TFreeSubdivisionBase = class(TFreeNamedObject)
   private
     FOwner: TFreeSubdivisionSurface;
-    FId:integer;
     InUnreference:boolean;
     IsUnreferenceEnabled:boolean; // TODO - remove
     SubdivisionLevel:integer; // for investigation
-    FName:string;
   public
     constructor Create(Owner: TFreeSubdivisionSurface);
       virtual;
-    property Name: String read FName write FName;
     property Owner:
       TFreeSubdivisionSurface read FOwner write FOwner;
     procedure PrintDebug; virtual;

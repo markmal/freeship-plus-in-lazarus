@@ -1,19 +1,36 @@
 You can install FreeShip from ZIP file or from system package.
 Currently only Debian package is supported.
 
+Linux
+
 Installation from ZIP
 1. Create temporary directory
 2. Copy FreeShip*.zip file into it and unzip it.
 3. You can install FreeShip into user space (your home) or into system space to be shared by multiple users.
-3.a To install it into user space run `./install-user.sh'. In Windows run install-user.cmd
+3.a To install it into user space run `./install-user.sh'.
 3.b To install it into system space run `sudo ./install-system.sh'
 
 Uninstallation of FreeShip that has been installed from ZIP
-a. To uninstall it from user space `cd $HOME/FreeShip; ./uninstall-user.sh'. In Windows run uninstall-user.cmd
+a. To uninstall it from user space `cd $HOME/FreeShip; ./uninstall-user.sh'.
 b. To uninstall it from system space `cd /usr/share/FreeShip; sudo ./uninstall-system.sh'
 
 Installation from Debian package `sudo dpkg -i freeship_<***>.deb
 Only system space installation from .deb is currently supported
+
+
+Windows
+
+Installation from ZIP
+1. Create temporary directory
+2. Copy FreeShip*.zip file into it and unzip it.
+3. To install it into user space run install-user.cmd. Run it regular way. DO NOT "Run as Administrator".
+
+Uninstallation of FreeShip that has been installed from ZIP
+To uninstall it from user space, 
+1. Open C:/users/<yourself>/FreeShip folder
+2. Run uninstall-user.cmd. Run it regular way. DO NOT "Run as Administrator".
+
+
 
 You can run FreeShip with following parameters:
 

@@ -162,8 +162,11 @@ begin
       R:=0.0;
       EditDistance.Value:=0.0;
       Npoi:=TFreeShip(FreeShip).NumberOfSelectedControlPoints-1;
-      C0:=TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate;
-      CN:=TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate;;
+      if Npoi >= 0 then begin
+         C0:=TFreeShip(FreeShip).SelectedControlPoint[0].Coordinate;
+         CN:=TFreeShip(FreeShip).SelectedControlPoint[Npoi].Coordinate;;
+      end;
+
       if Npoi>= 1 then begin
           Label5.Caption:=Userstring(1477);
           R:=SQRT(Sqr(C0.X-CN.X)+Sqr(C0.Y-CN.Y)+Sqr(C0.Z-CN.Z));
@@ -249,7 +252,7 @@ begin
         if acos<-1 then acos:=-1; 
         EditAngles.Value := ArcCos(acos)*57.29578;
       end;
-	  
+
       EditX.Value:=FActiveControlPoint.Coordinate.X;
       EditY.Value:=FActiveControlPoint.Coordinate.Y;
       EditZ.Value:=FActiveControlPoint.Coordinate.Z;

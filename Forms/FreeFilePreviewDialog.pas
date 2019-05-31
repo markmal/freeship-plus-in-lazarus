@@ -1624,13 +1624,18 @@ begin
 end;
 
 function  TFreeFilePreviewDialog.getSelectedAbsoluteFileName:string;
-var CurPath:String;
+var fPath, fName:String;
 begin
   result :=  FFileName;
-  CurPath := getCurrentPath;
-  if CurPath > '' then begin
-     result := IncludeTrailingPathDelimiter(CurPath) + FFileName;
+  fPath:= ExtractFilePath(FFileName);
+  fName:= ExtractFileName(FFileName);
+  if fPath = '' then
+     fPath := getCurrentPath;
+
+  if fPath > '' then begin
+     result := IncludeTrailingPathDelimiter(fPath) + fName;
   end;
+
 end;
 
 procedure TFreeFilePreviewDialog.setSelectedAbsoluteFileName(fn:string);

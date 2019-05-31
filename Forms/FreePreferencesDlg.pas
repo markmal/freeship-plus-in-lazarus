@@ -233,7 +233,7 @@ type
     FThemeChanged: boolean;
     procedure Updatedata;
     procedure ComboBoxEncodingFillItems;
-    function getPreferredSize:TRect;
+    function getPreferredSize:TRect; reintroduce;
   public    { Public declarations }
     property IsThemeChanged: boolean read FThemeChanged;
     property IsConfigChanged: boolean read FConfigChanged;

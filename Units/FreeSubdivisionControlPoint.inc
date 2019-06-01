@@ -493,7 +493,7 @@ var P,PN: TPoint;
     end;{Dist_PL_3D}
 var OldCoordinate: T3DCoordinate;
 begin
-  if (FLinearConstraintPointA = nil) or (FLinearConstraintPointA = nil) then exit;
+  if (FLinearConstraintPointA = nil) or (FLinearConstraintPointB = nil) then exit;
   CA:=FLinearConstraintPointA.Coordinate;
   CB:=FLinearConstraintPointB.Coordinate;
   OldCoordinate := FCoordinate;

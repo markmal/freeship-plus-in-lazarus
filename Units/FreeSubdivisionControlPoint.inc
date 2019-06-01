@@ -498,7 +498,8 @@ begin
   CB:=FLinearConstraintPointB.Coordinate;
   OldCoordinate := FCoordinate;
   if Viewport = nil then
-     FCoordinate := Project_PL_3D(FCoordinate, CA, CB)
+     //FCoordinate := Project_PL_3D(FCoordinate, CA, CB)
+     FCoordinate := ProjectPointOnline(OldCoordinate, CA, CB)
   else
   //fvBodyplan, fvProfile, fvPlan, fvPerspective
   if Viewport.ViewType = fvProfile then

@@ -527,7 +527,9 @@ begin
     );
   if (FActiveControlPoint.LinearConstraintPointA <> nil)
   and(FActiveControlPoint.LinearConstraintPointB <> nil)
-  then FActiveControlPoint.AdjustToLinearConstraint(TFreeShip(FreeShip).GetFocusedViewport);
+  //then FActiveControlPoint.AdjustToLinearConstraint(TFreeShip(FreeShip).GetFocusedViewport);
+    then FActiveControlPoint.AdjustToLinearConstraint(nil);
+
 end;
 
 procedure TFreeControlPointForm.FilterComboBoxLinearConstraintAEnter(
@@ -572,7 +574,8 @@ begin
 
   if (FActiveControlPoint.LinearConstraintPointA <> nil)
   and(FActiveControlPoint.LinearConstraintPointB <> nil)
-  then FActiveControlPoint.AdjustToLinearConstraint(TFreeShip(FreeShip).GetFocusedViewport);
+  //then FActiveControlPoint.AdjustToLinearConstraint(TFreeShip(FreeShip).GetFocusedViewport);
+  then FActiveControlPoint.AdjustToLinearConstraint(nil);
 end;
 
 procedure TFreeControlPointForm.FilterComboBoxLinearConstraintBEnter(

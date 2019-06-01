@@ -320,7 +320,8 @@ var
   P, PA,PB: TPoint;
   Pz: TShadePoint;
   I: integer;
-  P3D: T3DCoordinate;
+  P3D, P3DA, P3DB, P3DA2, P3DB2 : T3DCoordinate;
+  MFL: TFloatType;
 begin
   if Viewport.ViewportMode <> vmWireframe then
   begin
@@ -379,8 +380,35 @@ begin
 
     if (FLinearConstraintPointA <> nil) and (FLinearConstraintPointB <> nil) then
     begin
-      PA := Viewport.Project(FLinearConstraintPointA.Coordinate);
-      PB := Viewport.Project(FLinearConstraintPointB.Coordinate);
+      P3DA := FLinearConstraintPointA.Coordinate;
+      P3DB := FLinearConstraintPointB.Coordinate;
+      MFL := Owner.MainframeLocation;
+      if (Viewport.ViewType = fvBodyplan) //TODO: check if both sides
+       then
+        begin
+         if (P3DA.X <= MFL) and (P3DB.X <= MFL)
+         then
+           begin
+           P3DA.Y := -P3DA.Y;
+           P3DB.Y := -P3DB.Y;
+           end;
+         if ((P3DA.X > MFL) and (P3DB.X <= MFL))
+          or((P3DA.X <= MFL) and (P3DB.X > MFL))
+         then // draw second time on the other side
+           begin
+           P3DA2 := P3DA;
+           P3DB2 := P3DB;
+           P3DA2.Y := -P3DA.Y;
+           P3DB2.Y := -P3DB.Y;
+           PA := Viewport.Project(P3DA2);
+           PB := Viewport.Project(P3DB2);
+           ViewPort.PenStyle := psDash;
+           ViewPort.Line(PA.x,PA.y,PB.x,PB.y);
+           end;
+        end;
+
+      PA := Viewport.Project(P3DA);
+      PB := Viewport.Project(P3DB);
       ViewPort.PenStyle := psDash;
       ViewPort.Line(PA.x,PA.y,PB.x,PB.y);
     end;
@@ -463,12 +491,15 @@ var P,PN: TPoint;
       Result.Y := P1.Y + Ky * pZ;
       Result.Z := P.Z;
     end;{Dist_PL_3D}
-
+var OldCoordinate: T3DCoordinate;
 begin
   if (FLinearConstraintPointA = nil) or (FLinearConstraintPointA = nil) then exit;
   CA:=FLinearConstraintPointA.Coordinate;
   CB:=FLinearConstraintPointB.Coordinate;
-
+  OldCoordinate := FCoordinate;
+  if Viewport = nil then
+     FCoordinate := Project_PL_3D(FCoordinate, CA, CB)
+  else
   //fvBodyplan, fvProfile, fvPlan, fvPerspective
   if Viewport.ViewType = fvProfile then
     if abs(CA.X-CB.X) > abs(CA.Z-CB.Z) then
@@ -488,6 +519,10 @@ begin
     else
        FCoordinate := Project_PL_3D_Y(FCoordinate, CA, CB);
 
+  if (OldCoordinate.X <> FCoordinate.X)
+   or(OldCoordinate.Y <> FCoordinate.Y)
+   or(OldCoordinate.Z <> FCoordinate.Z)
+  then Owner.Build:=false;
 end;
 
 function TFreeSubdivisionControlPoint.DistanceToCursor(X, Y: integer;

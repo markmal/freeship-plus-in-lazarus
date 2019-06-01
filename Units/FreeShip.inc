@@ -690,6 +690,14 @@ begin
   end;
 end;{TFreeShip.AddViewport}
 
+function TFreeShip.GetFocusedViewport: TFreeViewport;
+var i:integer;
+begin
+  result:=nil;
+  for i:=0 to FViewports.Count-1 do
+    if FViewports[i].Focused then result:=FViewports[i];
+end;
+
 function TFreeShip.AdjustMarkers: boolean;
 begin
   Result := False;
@@ -3016,6 +3024,10 @@ begin
 
           Point.AdjustToLinearConstraint(Viewport); // adjusts to linear constraints if set
 
+          // point can be linear constraint vertex, adjust all related points to it
+          if Point.Name > '' then
+             AdjustRelatedPointsToLinearConstraint(Viewport, Point);
+
           ActiveControlPoint := Point;
 
           if ControlpointForm.Visible then
@@ -3025,7 +3037,7 @@ begin
             // and forces a repaint of the form
             if not Viewport.Focused then
               Viewport.SetFocus;
-            application.ProcessMessages;
+            Application.ProcessMessages;
             TControl(Viewport.Owner).BringToFront;
           end;
           Build := False;
@@ -3038,6 +3050,19 @@ begin
         end;
   end;
 end;{TFreeShip.MouseMove}
+
+procedure TFreeShip.AdjustRelatedPointsToLinearConstraint(
+          Viewport: TFreeViewport; Point: TFreeSubdivisionControlPoint);
+var i:integer; P:TFreeSubdivisionControlPoint;
+begin
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+    begin
+      P:= Surface.ControlPoint[i];
+      if (P.LinearConstraintPointA = Point )
+       or(P.LinearConstraintPointB = Point )
+        then P.AdjustToLinearConstraint(Viewport);
+    end;
+end;
 
 procedure TFreeShip.MouseUp(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
 begin

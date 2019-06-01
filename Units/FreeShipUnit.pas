@@ -1290,6 +1290,7 @@ type
   protected   { Protected declarations }
     procedure ViewportRequestExtents(Sender: TObject; var Min, Max: T3DCoordinate);
   public      { Public declarations }
+    function GetFocusedViewport: TFreeViewport;
     procedure AddViewport(Viewport: TFreeViewport);
     // Add a viewport to the list of viewports connected to the model
     function AdjustMarkers: boolean;
@@ -1334,6 +1335,8 @@ type
     procedure MouseDown(Viewport: TFreeViewport; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer; var ItemSelected: boolean);
     procedure MouseMove(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
+    procedure AdjustRelatedPointsToLinearConstraint(
+              Viewport: TFreeViewport; Point: TFreeSubdivisionControlPoint);
     procedure MouseUp(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
 
     property MainForm: TForm read FMainForm write FMainForm;

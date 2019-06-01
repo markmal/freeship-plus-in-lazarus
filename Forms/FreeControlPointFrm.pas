@@ -115,6 +115,7 @@ type
    public   { Public declarations }
       property ActiveControlPoint   : TFreeSubdivisionControlPoint read FActiveControlPoint write FSetActiveControlPoint;
       property FreeShip             : TComponent read FFreeShip write FFreeShip;
+      //property FreeShip : TFreeShip read FFreeShip write FFreeShip;
 end;
 
 var FreeControlPointForm: TFreeControlPointForm;
@@ -524,6 +525,9 @@ begin
     FActiveControlPoint.LinearConstraintPointA := TFreeSubdivisionControlPoint(
         FilterComboBoxLinearConstraintA.Items.Objects[FilterComboBoxLinearConstraintA.ItemIndex]
     );
+  if (FActiveControlPoint.LinearConstraintPointA <> nil)
+  and(FActiveControlPoint.LinearConstraintPointB <> nil)
+  then FActiveControlPoint.AdjustToLinearConstraint(TFreeShip(FreeShip).GetFocusedViewport);
 end;
 
 procedure TFreeControlPointForm.FilterComboBoxLinearConstraintAEnter(
@@ -565,6 +569,10 @@ begin
     FActiveControlPoint.LinearConstraintPointB := TFreeSubdivisionControlPoint(
         FilterComboBoxLinearConstraintB.Items.Objects[FilterComboBoxLinearConstraintB.ItemIndex]
     );
+
+  if (FActiveControlPoint.LinearConstraintPointA <> nil)
+  and(FActiveControlPoint.LinearConstraintPointB <> nil)
+  then FActiveControlPoint.AdjustToLinearConstraint(TFreeShip(FreeShip).GetFocusedViewport);
 end;
 
 procedure TFreeControlPointForm.FilterComboBoxLinearConstraintBEnter(
@@ -614,7 +622,7 @@ begin
    saved := false;
    S:=trim(EditName.Text);
    if (ActiveControlPoint<>nil) and (ActiveControlPoint.Name <> S)  then
-   if TFreeShip(FreeShip).FindByName(S) = nil then
+   if (S='') or (TFreeShip(FreeShip).FindByName(S) = nil) then
    begin
       EditName.Color:=clDefault;
       if not saved then

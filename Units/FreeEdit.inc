@@ -3076,7 +3076,7 @@ var
         TopRight := FindFourtPoint(RightColumn[0], Grid[0][Cols - 1], TopRow[Cols - 1]);
       // find TopRight cornerpoint
 
-      NURB := TFreeNURBsurface.Create;
+      NURB := TFreeNURBsurface.Create(Owner.Surface);
       NURB.SetCapacity(Cols + 2, Rows + 2);
       NURB.ColCount := Nurb.ColCapacity;
       NURB.RowCount := Nurb.RowCapacity;
@@ -3198,7 +3198,7 @@ var
       IGESList.Add_Entity_128(NURB, ColorInd);
       if Owner.Visibility.ModelView = mvBoth then
       begin
-        NURB2 := TFreeNURBsurface.Create;
+        NURB2 := TFreeNURBsurface.Create(Owner.Surface);
         NURB2.SetCapacity(Nurb.ColCount, Nurb.RowCount);
         NURB2.ColCount := Nurb2.ColCapacity;
         NURB2.RowCount := Nurb2.RowCapacity;
@@ -4064,7 +4064,7 @@ begin
             end;
             if not EOF(FFile) then
             begin
-              Spline := TFreeSpline.Create;
+              Spline := TFreeSpline.Create(Owner.Surface);
               Chines.Add(Spline);
 
               repeat
@@ -4158,7 +4158,7 @@ begin
             Owner.ProjectSettings.ProjectUnits := TFreeUnitType(I)
           else
             MessageDlg(Userstring(108), mtError, [mbOK], 0);
-          Spline := TFreeSpline.Create;
+          Spline := TFreeSpline.Create(Owner.Surface);
           repeat
             Readln(FFile, Str);
             repeat
@@ -4182,7 +4182,7 @@ begin
                 Chines.Add(Spline)
               else
                 Spline.Destroy;
-              Spline := TFreeSpline.Create;
+              Spline := TFreeSpline.Create(Owner.Surface);
             end;
           until (Str = 'EOF') or (EOF(FFile));
           if Spline.NumberOfPoints > 1 then
@@ -4418,7 +4418,7 @@ begin
           P.X := -P.X + Max.X;
           Points[J - 1, I - 1] := P;
         end;
-        Spline := TFreeSpline.Create;
+        Spline := TFreeSpline.Create(Owner.Surface);
         Chines.Add(Spline);
         for J := 1 to NBulkheads do
         begin
@@ -5464,9 +5464,6 @@ begin
     FilterIndex := 0;
     OnPreview := @OnFilePreview;
     addPlace(FileDialogPlaceMyShips, Preferences.SaveDirectory);
-    //addPlace(FileDialogPlaceMyImport, Preferences.ImportDirectory);
-    //addPlace(FileDialogPlaceGlobalShips, Preferences.GlobalOpenDirectory);
-    //addPlace(FileDialogPlaceGlobalImport, Preferences.GlobalImportDirectory);
     FileDialogMode := fdmSave;
     ShellListView.ReadOnly := True;
   end;
@@ -5755,7 +5752,7 @@ begin
             readln(FFile);// Skip description of this line
             Inc(Nr);
             readln(FFile, NoPoints);
-            Spline := TFreeSpline.Create;
+            Spline := TFreeSpline.Create(Owner.Surface);
             Spline.Capacity := NoPoints;
             ValidStation := NoPoints > 1;
             for J := 1 to Nopoints do
@@ -5821,7 +5818,7 @@ begin
           MinZ := Spline.Point[0].Z;
         if Spline.Point[Spline.NumberOfPoints - 1].Z > MaxZ then
           MaxZ := Spline.Point[Spline.NumberOfPoints - 1].Z;
-        Marker := TFreeMarker.Create;
+        Marker := TFreeMarker.Create(Owner.Surface);
         Marker_Add(Marker);
         Marker.Capacity := Spline.NumberOfPoints;
         for J := 1 to Spline.NumberOfPoints do
@@ -5862,7 +5859,7 @@ begin
       for I := 1 to Frames.Count do
       begin
         Spline := Frames[I - 1];
-        NewSpline := TFreeSpline.Create;
+        NewSpline := TFreeSpline.Create(Owner.Surface);
         NewSpline.Capacity := NoPoints;
         for J := 1 to NoPoints do
         begin
@@ -6070,7 +6067,7 @@ begin
               UnitType := TFreeUnitType(I)
             else
               MessageDlg(Userstring(108), mtError, [mbOK], 0);
-            Spline := TFreeSpline.Create;
+            Spline := TFreeSpline.Create(Owner.Surface);
             repeat
               Readln(FFile, Str);
               repeat
@@ -6094,7 +6091,7 @@ begin
                   Curves.Add(Spline)
                 else
                   Spline.Destroy;
-                Spline := TFreeSpline.Create;
+                Spline := TFreeSpline.Create(Owner.Surface);
               end;
             until (Str = 'EOF') or (EOF(FFile));
             if Spline.NumberOfPoints > 1 then
@@ -6134,7 +6131,7 @@ begin
         LongCurves := TFasterListTFreeSpline.Create;
         for I := 1 to Rows do
         begin
-          NewSpline := TFreeSpline.Create;
+          NewSpline := TFreeSpline.Create(Owner.Surface);
           LongCurves.Add(NewSpline);
           Newspline.Capacity := Curves.Count;
           for J := 1 to Curves.Count do
@@ -6146,7 +6143,7 @@ begin
         for I := 1 to Curves.Count do
         begin
           Spline := Curves[I - 1];
-          Marker := TFreeMarker.Create;
+          Marker := TFreeMarker.Create(Owner.Surface);
           Marker.Capacity := Spline.NumberOfPoints;
           for J := 1 to Spline.NumberOfPoints do
             Marker.Add(Spline.Point[J - 1]);
@@ -6670,7 +6667,7 @@ begin
       Markers := TFasterListTFreeMarker.Create;
       try
         try
-          Marker := TFreeMarker.Create;
+          Marker := TFreeMarker.Create(Owner.Surface);
           repeat
             Readln(FFile, Str);
             repeat
@@ -6694,7 +6691,7 @@ begin
                 Markers.Add(Marker)
               else
                 Marker.Destroy;
-              Marker := TFreeMarker.Create;
+              Marker := TFreeMarker.Create(Owner.Surface);
             end;
           until (Str = 'EOF') or (EOF(FFile));
           if Marker.NumberOfPoints > 1 then
@@ -7216,7 +7213,7 @@ begin
     // First create tmp. splines in transverse direction
     for I := 0 to 6 do
     begin
-      Spline1 := TFreeSpline.Create;
+      Spline1 := TFreeSpline.Create(Owner.Surface);
       for J := 0 to 4 do
       begin
         P := Default[I, J];
@@ -7232,7 +7229,7 @@ begin
     for I := 0 to rows do
     begin
       Setlength(Pts[I], Cols + 1);
-      Spline2 := TFreeSpline.Create;
+      Spline2 := TFreeSpline.Create(Owner.Surface);
       for j := 0 to TrvSplines.Count - 1 do
       begin
         Spline1 := TrvSplines[J];

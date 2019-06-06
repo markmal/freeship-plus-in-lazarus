@@ -1057,7 +1057,7 @@ begin
     Plane.a := 0.0;
     Plane.b := 0.0;
     Plane.c := 1.0;
-    Spline := TFreeSpline.Create;
+    Spline := TFreeSpline.Create(FFreeship.Surface);
     Spline.Capacity := Nh;
     for I := 1 to Nh do
     begin
@@ -1536,7 +1536,7 @@ begin
   FFreeship := Freeship;
   Chart.BottomAxis.Title.Caption := UserString(933);
   Chart.LeftAxis.Title.Caption := UserString(934);
-  FProfile := TFreeSpline.Create;
+  FProfile := TFreeSpline.Create(FFreeship.Surface);
   ComboBoxClick(self);
   ComboBox1Click(self);
 
@@ -2370,7 +2370,7 @@ var
   Faces: TFasterListTFreeSubdivisionControlFace;
   I: integer;
 begin
-  Surface := TFreeSubdivisionSurface.Create;
+  Surface := TFreeSubdivisionSurface.Create(FFreeship.Surface);
   SendToSurface(Surface);
   Faces := TFasterListTFreeSubdivisionControlFace.Create;
   Faces.Capacity := Surface.NumberOfControlFaces;

@@ -622,7 +622,7 @@ end;
 
 procedure TFreeFilePreviewDialog.EditNameEditingDone(Sender: TObject);
 begin
-  FFileName := ShellListView.Root + DirectorySeparator + EditName.Text;
+  FFileName := trim(EditName.Text);
 end;
 
 procedure TFreeFilePreviewDialog.FilterComboBox1Change(Sender: TObject);

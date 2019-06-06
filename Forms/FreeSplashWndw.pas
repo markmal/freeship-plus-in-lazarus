@@ -171,6 +171,7 @@ var
   ABV: integer;
   ABD: integer;
 begin
+  if not Timer.Enabled then exit;
   TI := Timer.Interval;
   Inc(FCounter, TI);
   ABD := 255 div TI;
@@ -208,6 +209,7 @@ begin
     Application.ProcessMessages; // there maight be no message loop yet
   end;
 
+  if not Timer.Enabled then exit;
   ExpandToFit;
 
 end;{TFreeSplashWindow.TimerTimer}
@@ -236,6 +238,7 @@ begin
   AlphaBlendValue := 255;
   Update;
   Timer.Enabled := False;
+  Timer.OnTimer:=nil;
 end;
 
 procedure TFreeSplashWindow.Image1MouseUp(Sender: TObject; Button: TMouseButton;

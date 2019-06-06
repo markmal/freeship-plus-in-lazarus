@@ -129,7 +129,35 @@ end;
 
 var   TestForm1:TForm;  FMDIPanel:TMDIPanel;
 
+{
+procedure CatchUnhandledException(Obj: TObject; Addr: Pointer; FrameCount: Longint; Frames: PPointer);
+var
+  Message: string;
+  i: LongInt;
+  hstdout: ^Text;
 begin
+  hstdout := @stdout;
+  Writeln(hstdout^, 'An unhandled exception occurred at $', HexStr(PtrUInt(Addr), SizeOf(PtrUInt) * 2), ' :');
+  if Obj is Exception then
+   begin
+     Message := Exception(Obj).ClassName + ' : ' + Exception(Obj).Message;
+     Writeln(hstdout^, Message);
+     DumpExceptionCallStack(Exception(Obj));
+   end
+  else
+    Writeln(hstdout^, 'Exception object ', Obj.ClassName, ' is not of class Exception.');
+  Writeln(hstdout^, BackTraceStrFunc(Addr));
+  if (FrameCount > 0) then
+    begin
+      for i := 0 to FrameCount - 1 do
+        Writeln(hstdout^, BackTraceStrFunc(Frames[i]));
+    end;
+  Writeln(hstdout^,'');
+end;
+}
+
+begin
+ try
    Logger.LogLevel:=LOG_INFO;
    Logger.Info('FreeShip in Lazarus');
    Logger.Info('Compiled at '+COMPILE_DATE+' '+COMPILE_TIME);
@@ -274,4 +302,9 @@ begin
 
 
    Application.Run;
+
+ except
+   on E: Exception do
+     DumpExceptionCallStack(E);
+ end;
 end.

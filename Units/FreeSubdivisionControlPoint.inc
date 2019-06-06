@@ -298,6 +298,7 @@ begin
   // delete from selection;
   Selected := False;
 
+  Owner.FSelectedControlPoints.DeleteAll(self);
   Owner.FControlPoints.DeleteAll(self);
 
   if FEdges.Count > 0 then

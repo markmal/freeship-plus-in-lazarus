@@ -1,0 +1,68 @@
+object FreePointGroupForm: TFreePointGroupForm
+  Left = 686
+  Height = 298
+  Top = 373
+  Width = 299
+  Caption = 'Point Groups'
+  ClientHeight = 298
+  ClientWidth = 299
+  OnClose = FormClose
+  LCLVersion = '2.0.2.0'
+  object SpeedButtonAdd: TSpeedButton
+    Left = 21
+    Height = 22
+    Top = 10
+    Width = 23
+    Caption = '+'
+    OnClick = SpeedButtonAddClick
+  end
+  object EditNewGroupName: TEdit
+    Left = 53
+    Height = 25
+    Top = 10
+    Width = 227
+    TabOrder = 0
+    Text = 'New Group'
+  end
+  object BitBtnOk: TBitBtn
+    Left = 21
+    Height = 30
+    Top = 256
+    Width = 75
+    Caption = 'Ok'
+    ModalResult = 1
+    TabOrder = 1
+  end
+  object BitBtnCancel: TBitBtn
+    Left = 205
+    Height = 30
+    Top = 256
+    Width = 75
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 2
+  end
+  object CheckListBoxGroups: TCheckListBox
+    Left = 21
+    Height = 192
+    Top = 48
+    Width = 259
+    ItemHeight = 0
+    PopupMenu = PopupMenu1
+    Sorted = True
+    TabOrder = 3
+    TopIndex = -1
+  end
+  object PopupMenu1: TPopupMenu
+    left = 148
+    top = 250
+    object MenuItemDeleteGroup: TMenuItem
+      Caption = 'Delete Group'
+      OnClick = MenuItemDeleteGroupClick
+    end
+    object MenuItemRenameGroup: TMenuItem
+      Caption = 'Rename Group'
+      OnClick = MenuItemRenameGroupClick
+    end
+  end
+end

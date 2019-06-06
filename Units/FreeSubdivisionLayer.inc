@@ -883,9 +883,11 @@ end;
 
 procedure TFreeSubdivisionLayer.Draw(Viewport: TFreeViewport);
 var
-  I, J: integer;
-  Face: TFreeSubdivisionControlface;
+  i, j, k: integer;
+  Face: TFreeSubdivisionControlFace;
   Edge: TFreeSubdivisionEdge;
+  P: TFreeSubdivisionControlPoint;
+  G: TFreeSubdivisionControlPointGroup;
 begin
   if Visible and (Count > 0) then
   begin
@@ -925,6 +927,7 @@ begin
             Edge.Draw(Owner.DrawMirror and Symmetric, Viewport);
           end;
         end;
+
         //MM 2019-04-21. added to draw boundary and crease edges
         for J := 0 to Face.FControlDescendantEdges.Count - 1 do
         begin
@@ -935,6 +938,7 @@ begin
           end;
         end;
       end;
+
       Viewport.Canvas.AntialiasingMode:=amOff; // MM 04/22/2019 10:30:47 AM. added
     end;
   end;

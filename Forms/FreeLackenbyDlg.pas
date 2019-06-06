@@ -380,7 +380,7 @@ begin
       Station.Rebuild;
     for J := 1 to Station.Count do
     begin
-      Spline := TFreeSpline.Create;
+      Spline := TFreeSpline.Create(FFreeship.Surface);
       Spline.Assign(Station.Items[J - 1]);
       if Spline.Max.X <= FFreeship.ProjectSettings.ProjectMainframeLocation then
       begin
@@ -420,7 +420,7 @@ begin
     Waterline.Rebuild;
   for J := 1 to Waterline.Count do
   begin
-    Spline := TFreeSpline.Create;
+    Spline := TFreeSpline.Create(FFreeship.Surface);
     Spline.Assign(Waterline.Items[J - 1]);
     Dest.Add(Spline);
   end;
@@ -817,8 +817,8 @@ begin
   FOriginalWaterline := TFasterListTFreeSpline.Create;
   FNewWaterline := TFasterListTFreeSpline.Create;
   FExtractStations(FOriginalStations);
-  FOriginalSectionalAreaCurve := TFreeSpline.Create;
-  FNewSectionalAreaCurve := TFreeSpline.Create;
+  FOriginalSectionalAreaCurve := TFreeSpline.Create(FFreeship.Surface);
+  FNewSectionalAreaCurve := TFreeSpline.Create(FFreeship.Surface);
   FExtractWaterline(FOriginalWaterline);
   FModified := False;
 

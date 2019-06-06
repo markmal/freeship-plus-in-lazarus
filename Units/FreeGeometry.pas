@@ -180,6 +180,7 @@ type
   TFreeSubdivisionEdge = class;
   TFreeSubdivisionFace = class;
   TFreeSubdivisionControlPoint = class;
+  TFreeSubdivisionControlPointGroup = class;
   TFreeSubdivisionControlEdge = class;
   TFreeSubdivisionControlFace = class;
   TFreeSubdivisionControlCurve = class;
@@ -217,6 +218,7 @@ type
   //TFasterListTFreeSubdivisionCurve = TFasterList<TFreeSubdivisionCurve>;
 
   TFasterListTFreeSubdivisionControlPoint = TFasterList<TFreeSubdivisionControlPoint>;
+  TFasterListTFreeSubdivisionControlPointGroup = TFasterList<TFreeSubdivisionControlPointGroup>;
   TFasterListTFreeSubdivisionControlEdge = TFasterList<TFreeSubdivisionControlEdge>;
   TFasterListTFreeSubdivisionControlFace = TFasterList<TFreeSubdivisionControlFace>;
   TFasterListTFreeSubdivisionControlCurve = TFasterList<TFreeSubdivisionControlCurve>;
@@ -822,7 +824,11 @@ type
   private
     FId:integer;
     FName:string;
+    FOwner: TFreeSubdivisionSurface;
   public
+    constructor Create(Owner: TFreeSubdivisionSurface); virtual;
+    property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
+    procedure PrintDebug; virtual;
     property Name: String read FName write FName;
   end;
 
@@ -850,14 +856,10 @@ type
     procedure FSetBuild(Val: boolean);
       virtual;
   public
-    constructor Create;
-      virtual;
-    procedure Clear;
-      virtual;
-    destructor Destroy;
-      override;
-    procedure Extents(var Min, Max: T3DCoordinate);
-      virtual;
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
+    procedure Clear; virtual;
+    destructor Destroy; override;
+    procedure Extents(var Min, Max: T3DCoordinate); virtual;
     procedure Draw(Viewport: TFreeViewport);
       virtual;
     procedure Rebuild;
@@ -927,8 +929,7 @@ type
       Percentage: TFloatType): extended;
     procedure Clear;
       override;
-    constructor Create;
-      override;
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
     function Curvature(Parameter: TFloatType;
       var Value, Normal: T3DCoordinate): TFloatType;
     procedure DeletePoint(Index: integer);
@@ -1046,16 +1047,14 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeSubdivisionBase = class(TFreeNamedObject)
   private
-    FOwner: TFreeSubdivisionSurface;
+    //FOwner: TFreeSubdivisionSurface;
     InUnreference:boolean;
     IsUnreferenceEnabled:boolean; // TODO - remove
     SubdivisionLevel:integer; // for investigation
   public
-    constructor Create(Owner: TFreeSubdivisionSurface);
-      virtual;
-    property Owner:
-      TFreeSubdivisionSurface read FOwner write FOwner;
-    procedure PrintDebug; virtual;
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
+    //property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
+    procedure PrintDebug; override;
   end;
 
   {---------------------------------------------------------------------------------------------------}
@@ -1350,6 +1349,40 @@ type
       read FGetVisible;
   end;
 
+  {---------------------------------------------------------------------------------------------------}
+  {                                           TFreeSubdivisionControlPointGroup                       }
+  { TFreeSubdivisionBase is the base class for all subdivision points, edges and faces                }
+  {---------------------------------------------------------------------------------------------------}
+  TFreeSubdivisionControlPointGroup = class(TFreeNamedObject)
+  private
+    //FOwner: TFreeSubdivisionSurface;
+    FControlPoints: TFasterListTFreeSubdivisionControlPoint;
+    FLocked: boolean;
+    function CalculateCenterPoint: T3DCoordinate;
+    function FGetIndex: integer;
+    function FGetSelected: boolean;
+    function FGetVisible: boolean;
+    procedure FSetLocked(val: boolean);
+    procedure FSetSelected(val: boolean);
+  public
+    procedure AddControlPoint(cp:TFreeSubdivisionControlPoint);
+    procedure RemoveControlPoint(cp:TFreeSubdivisionControlPoint);
+    procedure BreakGroup; virtual;
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
+    procedure Delete;
+    procedure Draw(Viewport: TFreeViewport);
+    procedure LoadBinary(Source: TFreeFileBuffer);
+    procedure LoadFromStream(var LineNr: integer; Strings: TStringList);
+    procedure SaveBinary(Destination: TFreeFileBuffer);
+    procedure SaveToStream(Strings: TStringList);
+
+    property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
+    //procedure PrintDebug; virtual;
+    property Locked: boolean read FLocked write FSetLocked;
+    property Selected: boolean read FGetSelected write FSetSelected;
+    property Visible: boolean read FGetVisible;
+  end;
+
   {--------------------------------------------------------------------------------------------------}
   {                                           TFreeSubdivisionEdge                                   }
   {--------------------------------------------------------------------------------------------------}
@@ -1615,6 +1648,7 @@ type
   private
     FControlPoints: TFasterListTFreeSubdivisionControlPoint;
     // List with controlpoints, which can be changed by the user
+    FControlPointGroups: TFasterListTFreeSubdivisionControlPointGroup;
     FControlEdges: TFasterListTFreeSubdivisionControlEdge;
     // List with controledges, which can be changed by the user
     FControlFaces: TFasterListTFreeSubdivisionControlFace;
@@ -1629,6 +1663,7 @@ type
     // All layers are stored in this list
     FSelectedControlPoints: TFasterListTFreeSubdivisionControlPoint;
     // Controlpoints which are selected by the user are put in this list
+    FSelectedControlPointGroups: TFasterListTFreeSubdivisionControlPointGroup;
     FSelectedControlEdges: TFasterListTFreeSubdivisionControlEdge;
     // List with currently selected controledges
     FSelectedControlCurves: TFasterListTFreeSubdivisionControlCurve;
@@ -1703,12 +1738,14 @@ type
     InUnreferenceEdge:boolean;
     InUnreferencePoint:boolean;
     function FGetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
+    function FGetControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FGetControlCurve(Index: integer): TFreesubdivisionControlCurve;
     function FGetControlEdge(Index: integer): TFreesubdivisionControlEdge;
     function FGetControlFace(Index: integer): TFreeSubdivisionControlFace;
     function FGetGaussCurvatureCalculated: boolean;
     function FGetLayer(Index: integer): TFreeSubdivisionLayer;
     function FGetNumberOfControlPoints: integer;
+    function FGetNumberOfControlPointGroups: integer;
     function FGetNumberOfControlEdges: integer;
     function FGetNumberOfControlCurves: integer;
     function FGetNumberOfControlFaces: integer;
@@ -1722,6 +1759,7 @@ type
     function FGetNumberOfSelectedControlEdges: integer;
     function FGetNumberOfSelectedControlFaces: integer;
     function FGetNumberOfSelectedControlPoints: integer;
+    function FGetNumberOfSelectedControlPointGroups: integer;
     function FGetNumberOfSelectedLockedPoints: integer;
     function FGetNumberOfEdges: integer;
     function FGetSelectedControlCurve(Index: integer): TFreeSubdivisionControlCurve;
@@ -1793,7 +1831,7 @@ type
       reintroduce; overload;
     procedure CalculateIntersections(Plane: T3DPlane;
       Faces: TFasterListTFreeSubdivisionFace; Destination: TFasterListTFreeSpline);
-    constructor Create;
+    constructor Create(Owner: TFreeSubdivisionSurface);
       override;
     destructor Destroy;
       override;
@@ -1834,6 +1872,10 @@ type
       read FActiveLayer write FSetActiveLayer;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetControlpoint;
+    property ControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
+      read FGetControlpointGroup;
+    property ControlPoints: TFasterListTFreeSubdivisionControlPoint read FControlPoints;
+    property ControlPointGroups: TFasterListTFreeSubdivisionControlPointGroup read FControlPointGroups;
     property ControlPointSize: integer
       read FControlPointSize write FControlPointSize;
     property ControlCurve[index: integer]: TFreesubdivisionControlCurve
@@ -1846,6 +1888,8 @@ type
       read FCOntrolEdges;
     property ControlFace[index: integer]: TFreeSubdivisionControlFace
       read FGetControlFace;
+    property ControlFaces: TFasterListTFreeSubdivisionControlFace
+      read FCOntrolFaces;
     property CurrentSubdivisionLevel: byte
       read FCurrentSubdivisionLevel;
     property CurvatureColor: TColor
@@ -1890,6 +1934,8 @@ type
       read FGetNumberOfControlCurves;
     property NumberOfControlPoints: integer
       read FGetNumberOfControlPoints;
+    property NumberOfControlPointGroups: integer
+      read FGetNumberOfControlPointGroups;
     property NumberOfFaces: integer
       read FGetNumberOfFaces;
     property NumberOfLayers: integer
@@ -1904,6 +1950,8 @@ type
       read FGetNumberOfSelectedControlFaces;
     property NumberOfSelectedControlPoints: integer
       read FGetNumberOfSelectedControlPoints;
+    property NumberOfSelectedControlPointGroups: integer
+      read FGetNumberOfSelectedControlPointGroups;
     property NumberOfSelectedLockedPoints: integer
       read FGetNumberOfSelectedLockedPoints;
     property OnChangeActiveLayer: TChangeActiveLayerEvent
@@ -2116,12 +2164,14 @@ const
 {$I FreeDevelopedPatch.inc}
 {$I FreeEntity.inc}
 {$I FreeSpline.inc}
+{$I FreeNamedObject.inc}
 {$I FreeNURBSurface.inc}
 {$I FreeSubdivisionBase.inc}
 {$I FreeSubdivisionControlCurve.inc}
 {$I FreeSubdivisionLayer.inc}
 {$I FreeSubdivisionPoint.inc}
 {$I FreeSubdivisionControlPoint.inc}
+{$I FreeSubdivisionControlPointGroup.inc}
 {$I FreeSubdivisionEdge.inc}
 {$I FreesubdivisionControlEdge.inc}
 {$I FreeSubdivisionFace.inc}

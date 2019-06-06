@@ -860,7 +860,7 @@ begin
       end;
       if NoPoints > 1 then
       begin
-        Spline := TFreeSpline.Create;
+        Spline := TFreeSpline.Create(Owner.Owner);
         Spline.Color := Color;
         Spline.Capacity := NoPoints;
         for K := 1 to NoPoints do
@@ -908,7 +908,7 @@ begin
       FDiagonals.Add(Spline);
     if FMirror then
     begin
-      Copy := TFreeSpline.Create;
+      Copy := TFreeSpline.Create(Owner.Owner);
       Copy.Assign(Spline);
       for J := 1 to Spline.NumberOfPoints do
       begin

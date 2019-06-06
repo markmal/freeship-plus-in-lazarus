@@ -1279,6 +1279,7 @@ type
     function FGetNumberOfSelectedControlEdges: integer;
     function FGetNumberOfSelectedControlFaces: integer;
     function FGetNumberOfSelectedControlPoints: integer;
+    function FGetNumberOfSelectedControlPointGroups: integer;
     function FGetNumberOfselectedFlowlines: integer;
     function FGetNumberOfSelectedLockedPoints: integer;
     function FGetNumberOfselectedMarkers: integer;
@@ -1315,6 +1316,7 @@ type
     procedure ImportChines(Np: integer; Chines: TFasterListTFreeSpline);
     // imports a number of longitudinally lines and creates developable surfaces between each two subsequent chines
     procedure LoadProject(Source: TFreeFileBuffer);
+    procedure LoadControlPointGroups(Source:TFreeFileBuffer);
     procedure LoadControlPointNames(Source:TFreeFileBuffer);
     procedure LoadControlEdgeNames(Source:TFreeFileBuffer);
     procedure LoadControlFaceNames(Source:TFreeFileBuffer);
@@ -1324,6 +1326,7 @@ type
     procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data
     procedure Redraw;  // Redraws the model on all viewports
     procedure SaveProject(Destination: TFreeFileBuffer);
+    procedure SaveControlPointGroups(Destination:TFreeFileBuffer);
     procedure SaveControlPointNames(Destination:TFreeFileBuffer);
     procedure SaveControlEdgeNames(Destination:TFreeFileBuffer);
     procedure SaveControlFaceNames(Destination:TFreeFileBuffer);
@@ -1381,6 +1384,8 @@ type
       read FGetNumberOfSelectedControlFaces;
     property NumberOfSelectedControlPoints: integer
       read FGetNumberOfSelectedControlPoints;
+    property NumberOfSelectedControlPointGroups: integer
+      read FGetNumberOfSelectedControlPointGroups;
     property NumberOfselectedFlowlines: integer read FGetNumberOfselectedFlowlines;
     property NumberOfSelectedLockedPoints: integer
       read FGetNumberOfSelectedLockedPoints;

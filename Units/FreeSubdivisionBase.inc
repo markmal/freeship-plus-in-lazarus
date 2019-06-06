@@ -5,10 +5,8 @@
 
 constructor TFreeSubdivisionBase.Create(Owner: TFreeSubdivisionSurface);
 begin
-  inherited Create;
+  inherited Create(Owner);
   FOwner := Owner;
-  inc(Owner.FIdSequence);
-  FId:=Owner.FIdSequence;
   InUnreference := false;
   IsUnreferenceEnabled := true;
 end;{TFreeSubdivisionBase.Create}

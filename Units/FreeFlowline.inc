@@ -60,7 +60,7 @@ constructor TFreeFlowline.Create(Owner: TFreeShip);
 begin
   inherited Create;
   FOwner := owner;
-  FFlowLine := TFreespline.Create;
+  FFlowLine := TFreeSpline.Create(Owner.Surface);
   Clear;
 end;{TFreeFlowline.Create}
 

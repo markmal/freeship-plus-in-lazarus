@@ -43,8 +43,8 @@ const
  TARGET_CPU:string={$I %FPCTARGET%};
  TARGET_OS:string={$I %FPCTARGETOS%};
 
- FREESHIP_MAJOR_VERSION='4.2';   //Major version
- FREESHIP_VERSION='4.2.2.0';   //Major full version
+ FREESHIP_MAJOR_VERSION='4.3';   //Major version
+ FREESHIP_VERSION='4.3.2.0';   //Major full version
 
  //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
  GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits
@@ -53,9 +53,9 @@ const
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,
                              fv201,fv210,fv220,fv230,fv240,fv250,fv260,fv270,fv280,fv290,fv295,fv296,fv297,fv298,fv300,
                              fv302,fv303,fv305,fv309,fv310,fv313,fv314,fv317,fv327,fv332,fv335,
-                             fv421);
+                             fv421,fv430);
 //const CurrentVersion      = fv335;   // Current (latest) version of the FREE!ship project.
-const CurrentVersion      = fv421;   // Current (latest) version of the FREE!ship project.
+const CurrentVersion      = fv430;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
       ReleasedDate        = 'Apr 14, 2016';
 
@@ -117,6 +117,7 @@ begin
       fv332  : Result:='3.34+';
       fv335  : Result:='3.4';	  
       fv421  : Result:='4.2';
+      fv430  : Result:='4.3';
       else MessageDlg(Userstring(204)+'!',mtError,[mbok],0);
    end
 end;{VersionString}
@@ -165,6 +166,7 @@ begin
   if Version =	'3.34+'	 then Result:=	      fv332	 else
   if Version =	'3.4'	 then Result:=	      fv335	 else
   if Version =	'4.2'	 then Result:=	      fv421	 else
+  if Version =	'4.3'	 then Result:=	      fv430	 else
   raise Exception.Create(Userstring(204)+'! '+Version);
 end;{VersionString}
 

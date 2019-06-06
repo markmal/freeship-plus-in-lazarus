@@ -1362,6 +1362,11 @@ object MainForm: TMainForm
       Caption = 'AboutAction'
       OnExecute = About1Click
     end
+    object AddPointToGroup: TAction
+      Category = 'Point'
+      Caption = 'AddPointToGroup'
+      OnExecute = AddPointToGroupExecute
+    end
   end
   object MenuImages: TImageList
     left = 112
@@ -3481,6 +3486,10 @@ object MainForm: TMainForm
       end
       object PointCollapse1: TMenuItem
         Action = PointCollapse
+      end
+      object AddControlPointToGroup: TMenuItem
+        Action = AddPointToGroup
+        AutoCheck = True
       end
       object InsertPlane1: TMenuItem
         Action = InsertPlane

@@ -29,10 +29,10 @@ begin
   end;
 end;{TFreeEntity.FSetBuild}
 
-constructor TFreeEntity.Create;
+constructor TFreeEntity.Create(Owner: TFreeSubdivisionSurface);
   // Create and initialise all data
 begin
-  inherited Create;
+  inherited Create(Owner);
   //Clear;
   FBuild := False;
   FMin := ZERO;

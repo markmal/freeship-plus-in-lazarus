@@ -990,6 +990,12 @@ begin
   Result := TObject(FControlpoints[index]) as TFreeSubdivisionControlPoint;
 end;{TFreeSubdivisionSurface.FGetControlPoint}
 
+function TFreeSubdivisionSurface.FGetControlPointGroup(Index: integer):
+TFreeSubdivisionControlPointGroup;
+begin
+  Result := FControlpointGroups[index];
+end;{TFreeSubdivisionSurface.FGetControlPoint}
+
 function TFreeSubdivisionSurface.FGetControlEdge(Index: integer):
 TFreesubdivisionControlEdge;
 begin
@@ -1026,6 +1032,11 @@ end;{TFreeSubdivisionSurface.FGetLayer}
 function TFreeSubdivisionSurface.FGetNumberOfControlPoints: integer;
 begin
   Result := FControlPoints.Count;
+end;{TFreeSubdivisionSurface.FGetNumberOfControlPoints}
+
+function TFreeSubdivisionSurface.FGetNumberOfControlPointGroups: integer;
+begin
+  Result := FControlPointGroups.Count;
 end;{TFreeSubdivisionSurface.FGetNumberOfControlPoints}
 
 function TFreeSubdivisionSurface.FGetNumberOfControlEdges: integer;
@@ -1109,6 +1120,11 @@ end;{TFreeSubdivisionSurface.FGetNumberOfSelectedControlFaces}
 function TFreeSubdivisionSurface.FGetNumberOfSelectedControlPoints: integer;
 begin
   Result := FSelectedControlPoints.Count;
+end;{TFreeSubdivisionSurface.FGetNumberOfSelectedControlPoints}
+
+function TFreeSubdivisionSurface.FGetNumberOfSelectedControlPointGroups: integer;
+begin
+  Result := FSelectedControlPointGroups.Count;
 end;{TFreeSubdivisionSurface.FGetNumberOfSelectedControlPoints}
 
 function TFreeSubdivisionSurface.FGetNumberOfSelectedLockedPoints: integer;
@@ -2700,7 +2716,7 @@ begin
   begin
     if Spline = nil then
     begin
-      Spline := TFreeSpline.Create;
+      Spline := TFreeSpline.Create(Self);
       Spline.Capacity := NSegments;
       Destination.Add(Spline);
       Segment := Segments[NSegments - 1];
@@ -2859,8 +2875,9 @@ end;{TFreeSubdivisionSurface.CalculateIntersections}
 
 constructor TFreeSubdivisionSurface.Create;
 begin
-  inherited Create;
+  inherited Create(nil);
   FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  FControlPointGroups := TFasterListTFreeSubdivisionControlPointGroup.Create(true,false);
   FControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(true,false);
   FControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
   FPoints := TFasterListTFreeSubdivisionPoint.Create(true,false);
@@ -2868,6 +2885,7 @@ begin
   FLayers := TFasterListTFreeSubdivisionLayer.Create(true,false);
   FControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
   FSelectedControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  FSelectedControlPointGroups := TFasterListTFreeSubdivisionControlPointGroup.Create(true,false);
   FSelectedControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(true,false);
   FSelectedControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
   FSelectedControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
@@ -2903,11 +2921,13 @@ begin
   FLayers.Clear;
   FControlFaces.Free;
   FControlEdges.Free;
+  FControlPointGroups.Free;
   FControlPoints.Free;
   FEdges.Free;
   FPoints.Free;
   FLayers.Free;
   FControlCurves.Free;
+  FSelectedControlPointGroups.Free;
   FSelectedControlPoints.Free;
   FSelectedControlEdges.Free;
   FSelectedControlFaces.Free;
@@ -2939,14 +2959,19 @@ begin
 
   if ShowControlNet then
   begin
-    for I := 1 to NumberOfControlEdges do
+    for I := 0 to NumberOfControlEdges-1 do
     begin
-      Edge := ControlEdge[I - 1];
+      Edge := ControlEdge[I];
       Edge.Draw(False, Viewport);
     end;
-    for I := 1 to NumberOfControlPoints do
-      if ControlPoint[I - 1].Visible then
-        ControlPoint[I - 1].Draw(Viewport);
+
+    for I := 0 to NumberOfControlPoints-1 do
+      if ControlPoint[I].Visible then
+        ControlPoint[I].Draw(Viewport);
+
+    for i:=0 to FControlPointGroups.Count-1 do
+      if FControlPointGroups[i].Visible then
+         FControlPointGroups[i].Draw(ViewPort);
   end;
   for I := 1 to NumberOfControlCurves do
     if ControlCurve[I - 1].Visible then

@@ -1607,6 +1607,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           Width = 657
           BorderSpacing.Left = 8
           BorderSpacing.Right = 8
+          OnEditingDone = EditNameEditingDone
           TabOrder = 0
           Text = 'EditName'
         end

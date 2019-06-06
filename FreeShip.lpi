@@ -29,9 +29,9 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
-      <MinorVersionNr Value="2"/>
+      <MinorVersionNr Value="3"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="176"/>
+      <BuildNr Value="179"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -113,11 +113,7 @@
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="3">
-        <Mode0 Name="default">
-          <local>
-            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
-          </local>
-        </Mode0>
+        <Mode0 Name="default"/>
         <Mode1 Name="no debug log">
           <local>
             <CommandLineParams Value="--nosplash --sync"/>
@@ -130,18 +126,21 @@
         </Mode2>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="TAChartLazarusPkg"/>
+        <PackageName Value="LazControls"/>
       </Item1>
       <Item2>
-        <PackageName Value="Printer4Lazarus"/>
+        <PackageName Value="TAChartLazarusPkg"/>
       </Item2>
       <Item3>
-        <PackageName Value="LCL"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item3>
+      <Item4>
+        <PackageName Value="LCL"/>
+      </Item4>
     </RequiredPackages>
-    <Units Count="80">
+    <Units Count="83">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -633,6 +632,21 @@
         <Filename Value="Units/FreeCheckUpdates.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit79>
+      <Unit80>
+        <Filename Value="Units/FreeSubdivisionControlPointGroup.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit80>
+      <Unit81>
+        <Filename Value="Units/FreeNamedObject.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit81>
+      <Unit82>
+        <Filename Value="Forms/FreePointGroupForm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreePointGroupForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit82>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -549,9 +549,9 @@ begin
   end;
 end;{TFreeSpline.ChordlengthApproximation}
 
-constructor TFreeSpline.Create;
+constructor TFreeSpline.Create(Owner: TFreeSubdivisionSurface);
 begin
-  inherited Create;
+  inherited Create(Owner);
   Setlength(FPoints, 0);
   Setlength(FDerivatives, 0);
   Setlength(FParameters, 0);

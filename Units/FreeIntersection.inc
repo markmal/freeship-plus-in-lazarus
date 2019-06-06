@@ -323,7 +323,7 @@ begin
     FItems.Capacity := FItems.Count * 2;
     for I := Count downto 1 do
     begin
-      Spline := TFreeSpline.Create;
+      Spline := TFreeSpline.Create(FOwner.Surface);
       Spline.Assign(Items[I - 1]);
       for J := 1 to Spline.NumberOfPoints do
       begin
@@ -667,7 +667,7 @@ begin
   FItems.Capacity := N;
   for I := 1 to N do
   begin
-    Spline := TFreeSpline.Create;
+    Spline := TFreeSpline.Create(FOwner.Surface);
     FItems.Add(Spline);
     // Read number of points for this spline
     Source.Load(M);

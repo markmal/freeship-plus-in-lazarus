@@ -149,7 +149,7 @@ begin
     TmpList := TFasterListTFreeSpline.Create;
     for J := 1 to Intersection.Count do
     begin
-      Spline := TFreeSpline.Create;
+      Spline := TFreeSpline.Create(Surface);
       Spline.Assign(Intersection.Items[J - 1]);
       // Quick check to determine if the frame runs from bottom to top
       if Spline.Value(0.0).Z > Spline.Value(1.0).Z then
@@ -449,6 +449,11 @@ begin
   Result := Surface.NumberOfSelectedControlPoints;
 end;{TFreeShip.FGetNumberOfSelectedControlPoints}
 
+function TFreeShip.FGetNumberOfSelectedControlPointGroups: integer;
+begin
+  Result := Surface.NumberOfSelectedControlPointGroups;
+end;{TFreeShip.FGetNumberOfSelectedControlPoints}
+
 function TFreeShip.FGetNumberOfselectedFlowlines: integer;
 begin
   Result := FselectedFlowlines.Count;
@@ -724,7 +729,7 @@ begin
   FProjectSettings := TFreeProjectSettings.Create(self);
   FFileVersion := CurrentVersion;
   FActiveControlPoint := nil;
-  FSurface := TFreeSubdivisionSurface.Create;
+  FSurface := TFreeSubdivisionSurface.Create(nil);
   FSurface.LayerColor := FPreferences.LayerColor;
   FViewports := TFasterListTFreeViewPort.Create;
   FMarkers := TFasterListTFreeMarker.Create;
@@ -1448,7 +1453,7 @@ begin
         (Visibility.FShowHydrostSectionalAreas) then
       begin
         // draw sectionalarea curve
-        Curve := TFreespline.Create;
+        Curve := TFreespline.Create(Surface);
         for I := 1 to length(FDesignHydrostatics.FData.SAC) do
         begin
           P.X := FDesignHydrostatics.FData.SAC[I - 1].X;
@@ -1718,7 +1723,7 @@ begin
     for I := 1 to Chines.Count do
     begin
       Spline := Chines[I - 1];
-      vMarker := TFreeMarker.Create;
+      vMarker := TFreeMarker.Create(Surface);
       vMarker.FOwner := self;
       Edit.Marker_Add(vMarker);
       for J := 1 to Spline.NumberOfPoints do
@@ -1958,7 +1963,7 @@ begin
             FMarkers.Capacity := N;
             for I := 1 to N do
             begin
-              vMarker := TFreeMarker.Create;
+              vMarker := TFreeMarker.Create(Surface);
               vMarker.FOwner := Self;
               Edit.Marker_Add(vMarker);
               vMarker.LoadBinary(Source);
@@ -2043,6 +2048,11 @@ begin
                   LoadControlPointLinearConstraints(Source);
                 end;
 
+                if FileVersion >= fv430 then
+                begin
+                  LoadControlPointGroups(Source);
+                end;
+
               end; //if FileVersion>=fv250
             end; //if FileVersion>=fv210
           end;  //if FileVersion>=fv191
@@ -2080,6 +2090,19 @@ begin
   begin
     Source.Load(NameData);
     Surface.ControlPoint[NameData.N].Name:=NameData.Name;
+  end;
+end;
+
+procedure TFreeShip.LoadControlPointGroups(Source:TFreeFileBuffer);
+var I,N:integer; G:TFreeSubdivisionControlPointGroup;
+begin
+  Source.Load(N);
+  Logger.Debug('ControlPointGroups:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+  for I := 1 to N do
+  begin
+    G:=TFreeSubdivisionControlPointGroup.Create(Surface);
+    G.LoadBinary(Source);
+    Surface.ControlPointGroups.Add(G);
   end;
 end;
 
@@ -2321,6 +2344,11 @@ begin
             SaveControlPointLinearConstraints(Destination);
           end;
 
+          if FileVersion >= fv430 then
+          begin
+            SaveControlPointGroups(Destination);
+          end;
+
         end;
       end;
     end;
@@ -2382,6 +2410,20 @@ begin
       Destination.Add(NameData);
     end;
 end;
+
+procedure TFreeShip.SaveControlPointGroups(Destination:TFreeFileBuffer);
+  var I,N:integer; NameData:TNameData;
+  begin
+    N:=0;
+    for i:=0 to Surface.NumberOfControlPointGroups-1 do
+        if Surface.ControlPointGroup[i].Name<>'' then inc(N);
+    Destination.Add(N);
+
+    for i:=0 to Surface.NumberOfControlPointGroups-1 do
+      begin
+        Surface.ControlPointGroup[i].SaveBinary(Destination);
+      end;
+  end;
 
 procedure TFreeShip.SaveControlEdgeNames(Destination:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;
@@ -3060,7 +3102,7 @@ begin
       P:= Surface.ControlPoint[i];
       if (P.LinearConstraintPointA = Point )
        or(P.LinearConstraintPointB = Point )
-        then P.AdjustToLinearConstraint(Viewport);
+        then P.AdjustToLinearConstraint(Viewport); //TODO: consider recursive
     end;
 end;
 

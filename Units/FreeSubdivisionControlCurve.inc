@@ -107,7 +107,7 @@ begin
   inherited Create(Owner);
   FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create;
   FSubdividedPoints := TFasterListTFreeSubdivisionPoint.Create;
-  FCurve := TFreeSpline.Create;
+  FCurve := TFreeSpline.Create(Owner);
   Clear;
 end;{TFreeSubdivisionControlCurve.Create}
 

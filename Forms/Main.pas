@@ -87,6 +87,7 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     AddPointToGroup: TAction;
      FontDialog1: TFontDialog;
      HelpAction: THelpAction;
      HelpContents: TMenuItem;
@@ -96,6 +97,7 @@ type
      LabelDistance: TLabel;
      LabelUndoMemory: TLabel;
      MainClientPanel: TPanel;
+     AddControlPointToGroup: TMenuItem;
      StatusPanel5: TPanel;
      PanelActiveLayerColor: TPanel;
      PanelMain: TPanel;
@@ -438,6 +440,7 @@ type
 
     FMDIChildList : TList;
 
+    procedure AddPointToGroupExecute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -626,6 +629,7 @@ type
       procedure Cascade;
       {$ENDIF}
       constructor Create(AOwner: TComponent); override;
+      procedure CustomExceptionHandler(Sender: TObject; E: Exception);
       destructor Destroy; override;
 
       procedure SetCaption;
@@ -635,6 +639,8 @@ type
   end;
 
 var MainForm: TMainForm;
+
+procedure DumpExceptionCallStack(E: Exception);
 
 implementation
 
@@ -646,7 +652,8 @@ uses //FreeSplashWndw,
      FreeEmptyModelChooserDlg,
      RibbonToolBarMgr,
      TileDialog,
-     MDIPanel;
+     MDIPanel,
+     FreePointGroupForm;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -699,9 +706,30 @@ begin
     }
 end;
 
+procedure DumpExceptionCallStack(E: Exception);
+var
+  I: Integer;
+  Frames: PPointer;
+  Report: string;
+begin
+  Report := 'Program exception! ' + LineEnding +
+    'Stacktrace:' + LineEnding + LineEnding;
+  if E <> nil then begin
+    Report := Report + 'Exception class: ' + E.ClassName + LineEnding +
+    'Message: ' + E.Message + LineEnding;
+  end;
+  Report := Report + BackTraceStrFunc(ExceptAddr);
+  Frames := ExceptFrames;
+  for I := 0 to ExceptFrameCount - 1 do
+    Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
+  Writeln(Report);
+  ShowMessage(Report);
+  //Halt; // End of program execution
+end;
 
 constructor TMainForm.Create(AOwner: TComponent);
 begin
+ Application.OnException := CustomExceptionHandler;
  inherited Create(AOwner);
  FMDIChildList := TList.Create;
  FFileName:='';
@@ -720,6 +748,13 @@ begin
  }
 
 end;
+
+procedure TMainForm.CustomExceptionHandler(Sender: TObject; E: Exception);
+begin
+  DumpExceptionCallStack(E);
+  Halt; // End of program execution
+end;
+
 
 destructor TMainForm.Destroy;
 var i: Integer; thw:TFreeHullWindow;
@@ -987,6 +1022,17 @@ begin
   inActivation:=false;
 end;
 
+procedure TMainForm.AddPointToGroupExecute(Sender: TObject);
+var pgf:TFreePointGroupForm;
+begin
+  pgf:=TFreePointGroupForm.Create(Self);
+  pgf.FreeShip:=FreeShip;
+  pgf.LoadGroups;
+  if pgf.ShowModal = mrOk then
+    begin
+    end;
+end;
+
 procedure TMainForm.FOnselectItem(Sender:TObject);
 var Face1 : TFreeSubdivisionControlFace;
     Face2 : TFreeSubdivisionControlFace;
@@ -1190,7 +1236,7 @@ begin
 
    // File menu
    FileSaveas.Enabled:=(FreeShip.Surface.NumberOfControlPoints>0) or (Freeship.FileChanged) or (Freeship.FilenameSet);
-   FileSave.Enabled:=(FileSaveas.Enabled) and (Freeship.FilenameSet);
+   FileSave.Enabled:=(FileSaveas.Enabled);// and (Freeship.FilenameSet);
 
    ImportMichletWaves1.Enabled:=(MDIChildCount>0) and (Freeship.Surface.NumberOfControlFaces>1);
    ExportFEF.Enabled:=Freeship.Surface.NumberOfControlPoints>0;
@@ -2410,7 +2456,10 @@ end;{TMainForm.DecreaseCurvatureScaleExecute}
 
 procedure TMainForm.FileSaveExecute(Sender: TObject);
 begin
-   FreeShip.Edit.File_Save;
+  if Freeship.FilenameSet then
+     FreeShip.Edit.File_Save
+  else
+      FreeShip.Edit.File_SaveAs;
    UpdateMenu;
 end;{TMainForm.FileSaveExecute}
 

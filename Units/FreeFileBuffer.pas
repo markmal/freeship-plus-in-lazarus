@@ -50,6 +50,7 @@ type
     procedure Add(BooleanValue: boolean);      overload; virtual;
     //procedure Add2(BooleanValue:Boolean);        overload;virtual;
     procedure Add(FloatValue: TFloatType);     overload; virtual;
+    procedure Add(words: TStrings);            overload; virtual;
     //procedure Add(WordValue:word);               overload;virtual;
     procedure Add(Version: TFreeFileVersion);  overload; virtual;
     procedure Add(Coordinate: T3DCoordinate);      overload; virtual;
@@ -80,6 +81,7 @@ type
     procedure Load(var Output: integer);    virtual;overload;
     procedure Load(var Output: string);      overload; virtual;
     //procedure Load(var Output:Word);           overload;virtual;
+    procedure Load(var Output: TStrings);        overload; virtual;
     procedure Load(var Output: TFreeFileVersion);      overload; virtual;
     procedure Load(var Output: boolean);      overload; virtual;
     //procedure Load2(var Output:Boolean);          overload;virtual;
@@ -141,6 +143,7 @@ type
     procedure Add(Text: string); override; overload;
     procedure Add(BooleanValue: boolean); override; overload;
     procedure Add(FloatValue: TFloatType); override; overload;
+    procedure Add(words: TStrings); override; overload;
     procedure Add(PVersion: TFreeFileVersion); override; overload;
     procedure Add(NameData: TNameData); override; overload;
     procedure Add(LCData: TLinearConstraintData); override; overload;
@@ -154,6 +157,7 @@ type
     procedure Load(var Output: TFreeFileVersion); override; overload;
     procedure Load(var Output: boolean); override; overload;
     procedure Load(var Output: TFloatType); override; overload;
+    procedure Load(var Output: TStrings); override; overload;
     procedure Load(var Output: TNameData); override; overload;
     procedure Load(var Output: TLinearConstraintData); override; overload;
         //procedure Load(var Output: TColor); override; overload;
@@ -1904,6 +1908,18 @@ begin
   //MessageDlg(UserString(192)+'_1 !',mtError,[mbOk],0);
 end; {TFreeFileBuffer.Load}
 
+procedure TFreeFileBuffer.Load(var Output: TStrings);
+var i,c: integer; S:String;
+begin
+  Load(c);
+  for i:=1 to c do
+    begin
+    Load(S);
+    Output.Add(S);
+    end;
+end;{TFreeFileBuffer.Add}
+
+
 procedure TFreeFileBuffer.Load(var Output: TFreeFileVersion);
 var
   Size: integer;
@@ -2092,6 +2108,14 @@ begin
   Inc(FCount, Size);
 end;{TFreeFileBuffer.Add}
 
+procedure TFreeFileBuffer.Add(words: TStrings);
+var i: integer;
+begin
+  Add(words.Count);
+  for i:=0 to words.Count-1 do
+    Add(words[i]);
+end;{TFreeFileBuffer.Add}
+
 constructor TFreeFileBuffer.Create;
 begin
   inherited Create;
@@ -2255,6 +2279,20 @@ var
   S: string;
 begin
   S := IntToStr(IntegerValue);
+  FLines.Add(S);
+  Inc(FPosition);
+end;{TFreeTextBuffer.Add}
+
+procedure TFreeTextBuffer.Add(words: TStrings);
+var
+  i: integer;
+  S: string;
+begin
+  S:='';
+  if words.Count > 0 then
+    S := words[0];
+  for i:=1 to words.Count-1 do
+    S := S + ' ' + words[i];
   FLines.Add(S);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
@@ -2461,6 +2499,22 @@ begin
   Output.b := StrToFloat(ExtractWord(2, S, [' ']));
   Output.c := StrToFloat(ExtractWord(3, S, [' ']));
   Output.d := StrToFloat(ExtractWord(4, S, [' ']));
+  Inc(FPosition);
+end;{TFreeTextBuffer.Load}
+
+// load string of words separated by spaces
+procedure TFreeTextBuffer.Load(var Output: TStrings);
+var  i:integer; S,V: string; SS:TStrings;
+begin
+  S := FLines[FPosition];
+  i:=1;
+  while true do
+  begin
+    V:=ExtractWord(i, S, [' ']);
+    if V='' then break;
+    Output.Add(V);
+    inc(i);
+  end;
   Inc(FPosition);
 end;{TFreeTextBuffer.Load}
 

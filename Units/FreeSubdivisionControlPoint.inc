@@ -292,7 +292,7 @@ end;{TFreeSubdivisionControlPoint.Create}
 
 procedure TFreeSubdivisionControlPoint.Delete;
 var
-  Index: integer;
+  Index,i: integer;
   Edge: TFreesubdivisionEdge; //TFreesubdivisionControlEdge;
 begin
   // delete from selection;
@@ -300,6 +300,11 @@ begin
 
   Owner.FSelectedControlPoints.DeleteAll(self);
   Owner.FControlPoints.DeleteAll(self);
+
+  for i:=0 to Owner.FSelectedControlPointGroups.Count-1 do
+    Owner.FSelectedControlPointGroups[i].RemoveControlPoint(self);
+  for i:=0 to Owner.FControlPointGroups.Count-1 do
+    Owner.FControlPointGroups[i].RemoveControlPoint(self);
 
   if FEdges.Count > 0 then
   begin

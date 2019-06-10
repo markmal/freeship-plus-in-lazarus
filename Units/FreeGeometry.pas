@@ -1376,6 +1376,7 @@ type
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);
 
+    property ControlPoints:TFasterListTFreeSubdivisionControlPoint read FControlPoints;
     property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
     //procedure PrintDebug; virtual;
     property Locked: boolean read FLocked write FSetLocked;
@@ -1766,6 +1767,7 @@ type
     function FGetSelectedControlEdge(Index: integer): TFreeSubdivisionControlEdge;
     function FGetSelectedControlFace(Index: integer): TFreeSubdivisionControlFace;
     function FGetSelectedControlPoint(Index: integer): TFreeSubdivisionControlPoint;
+    function FGetSelectedControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FRequestNewLayerID: integer;
     procedure FSetActiveLayer(Val: TFreeSubdivisionLayer);
     procedure FSetBuild(Val: boolean);
@@ -1985,6 +1987,8 @@ type
       read FGetSelectedControlFace;
     property SelectedControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetSelectedControlPoint;
+    property SelectedControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
+      read FGetSelectedControlPointGroup;
     property ShowControlCurves: boolean
       read FShowControlCurves write FShowControlCurves;
     property ShowControlNet: boolean

@@ -40,10 +40,16 @@ begin
 end;{TFreeShip.FGetSelectedControlEdge}
 
 function TFreeShip.FGetSelectedControlPoint(Index: integer):
-TFreeSubdivisionControlPoint;
+  TFreeSubdivisionControlPoint;
 begin
   Result := Surface.SelectedControlPoint[index];
 end;{TFreeShip.FGetSelectedControlPoint}
+
+function TFreeShip.FGetSelectedControlPointGroup(Index: integer):
+  TFreeSubdivisionControlPointGroup;
+begin
+  Result := Surface.SelectedControlPointGroup[index];
+end;{TFreeShip.FGetSelectedControlPointGroup}
 
 function TFreeShip.FGetSelectedControlFace(Index: integer): TFreeSubdivisionControlFace;
 begin
@@ -2970,9 +2976,20 @@ begin
             if not (ssCtrl in shift) then
             begin
               if NumberOfSelectedControlPoints > 0 then
+                begin
                 for I := NumberOfSelectedControlPoints downto 1 do
                   SelectedControlPoint[I - 1].Selected := False;
+                for i:=0 to NumberOfSelectedControlPointGroups-1 do
+                  SelectedControlPointGroup[i].Selected := False;
+                end;
+
               Point.Selected := True;
+
+              // select all points in a group if there
+              for I:=0 to Surface.ControlPointGroups.Count-1 do
+                if Surface.ControlPointGroups[i].ControlPoints.IndexOf(Point)>=0 then
+                   Surface.ControlPointGroups[i].Selected:=true;
+
               for J := 1 to NumberOfViewports do
                 self.Viewport[J - 1].Refresh;
             end
@@ -3008,10 +3025,11 @@ procedure TFreeShip.MouseMove(Viewport: TFreeViewport; Shift: TShiftState;
   X, Y: integer);
 var
   P2D: T2DCoordinate;
-  P: T3DCoordinate;
+  P,gP: T3DCoordinate;
   Pt: TPoint;
-  Point: TFreeSubdivisionControlPoint;
-  I: integer;
+  Point, gPoint: TFreeSubdivisionControlPoint;
+  dX,dY,dZ:TFloatType;
+  I,j: integer;
 begin
   case EditMode of
     emSelectItems:
@@ -3062,9 +3080,27 @@ begin
               P.Z := P2D.Y;
             end;
           end;
-          Point.Coordinate := P;
 
+          dX:= P.X - Point.Coordinate.X;
+          dY:= P.Y - Point.Coordinate.Y;
+          dZ:= P.Z - Point.Coordinate.Z;
+
+          Point.Coordinate := P;
           Point.AdjustToLinearConstraint(Viewport); // adjusts to linear constraints if set
+
+          // move all points of selected groups if there
+          for I:=0 to NumberOfSelectedControlPointGroups-1 do
+            for j:=0 to SelectedControlPointGroup[i].ControlPoints.Count-1 do
+              if SelectedControlPointGroup[i].ControlPoints[j] <> Point then
+              begin
+                gPoint:=SelectedControlPointGroup[i].ControlPoints[j];
+                gP:=gPoint.Coordinate;
+                gP.X := gP.X + dX;
+                gP.Y := gP.Y + dY;
+                gP.Z := gP.Z + dZ;
+                gPoint.Coordinate := gP;
+                gPoint.AdjustToLinearConstraint(Viewport); // adjusts to linear constraints if set
+              end;
 
           // point can be linear constraint vertex, adjust all related points to it
           if Point.Name > '' then

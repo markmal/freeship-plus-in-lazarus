@@ -1257,6 +1257,7 @@ type
     function FGetOnChangeLayerData: TNotifyEvent;
     function FGetOnSelectItem: TNotifyEvent;
     function FGetSelectedControlPoint(Index: integer): TFreeSubdivisionControlPoint;
+    function FGetSelectedControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FGetSelectedControlEdge(Index: integer): TFreeSubdivisionControlEdge;
     function FGetSelectedControlCurve(Index: integer): TFreeSubdivisionControlCurve;
     function FGetSelectedControlFace(Index: integer): TFreeSubdivisionControlFace;
@@ -1402,6 +1403,8 @@ type
       read FGetSelectedControlCurve;
     property SelectedControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetSelectedControlPoint;
+    property SelectedControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
+      read FGetSelectedControlPointGroup;
     property SelectedControlEdge[index: integer]: TFreeSubdivisionControlEdge
       read FGetSelectedControlEdge;
     property SelectedControlFace[index: integer]: TFreeSubdivisionControlFace

@@ -1169,6 +1169,12 @@ begin
   Result := FSelectedControlPoints[index];
 end;{TFreeSubdivisionSurface.FGetSelectedControlPoint}
 
+function TFreeSubdivisionSurface.FGetSelectedControlPointGroup(
+  Index: integer): TFreeSubdivisionControlPointGroup;
+begin
+  Result := FSelectedControlPointGroups[index];
+end;{TFreeSubdivisionSurface.FGetSelectedControlPoint}
+
 function TFreeSubdivisionSurface.FRequestNewLayerID: integer;
 begin
   Inc(FLastusedLayerID);

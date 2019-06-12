@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="180"/>
+      <BuildNr Value="182"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
@@ -679,7 +679,6 @@
     </CodeGeneration>
     <Linking>
       <Options>
-        <LinkerOptions Value="-vd"/>
         <Win32>
           <GraphicApplication Value="True"/>
         </Win32>

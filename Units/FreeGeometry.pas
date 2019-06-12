@@ -1455,6 +1455,7 @@ type
   {--------------------------------------------------------------------------------------------------}
   TFreesubdivisionControlEdge = class(TFreeSubdivisionEdge)
   private
+    IsDeleting : boolean;
     function FGetColor: TColor;
     function FGetIndex: integer; override;
     function FGetIsBoundaryEdge: boolean; override;
@@ -1817,8 +1818,7 @@ type
 
     function CheckIntegrity:boolean;
 
-    procedure Clear;
-      override;
+    procedure Clear; override;
     procedure ClearFaces;
     procedure ClearSelection;
     procedure ConvertToGrid(Input: TFreeFaceGrid; var Cols, Rows: integer;

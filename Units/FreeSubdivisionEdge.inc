@@ -294,7 +294,7 @@ var
   Index: integer;
 begin
   Index := FFaces.IndexOf(Face);
-  if Index <> -1 then
+  if Index > -1 then
   begin
     FFaces.Delete(Index);
     if FFaces.Count = 1 then
@@ -315,7 +315,7 @@ begin
   {Index := Owner.FEdges.IndexOf(self);
   if Index <> -1 then
     Owner.FEdges.Delete(index);}
-
+  Owner.FEdges.DeleteAll(Self);
   begin
     for I := FFaces.Count-1 downto 0 do
     begin

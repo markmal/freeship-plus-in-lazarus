@@ -1650,6 +1650,9 @@ begin
   for I := 1 to FControlPoints.Count do
     ControlPoint[I - 1].Free;
   FControlPoints.Clear;
+  for I := 0 to FControlPointGroups.Count-1 do
+    FControlPointGroups[I].Free;
+  FControlPointGroups.Clear;
   for I := 1 to NumberOfControlFaces do
     ControlFace[I - 1].Free;
   FControlFaces.Clear;
@@ -1673,6 +1676,7 @@ begin
   FLastusedLayerID := -1;
   // delete lists with selected items
   FSelectedControlPoints.Clear;
+  FSelectedControlPointGroups.Clear;
   FSelectedControlEdges.Clear;
   FSelectedControlFaces.Clear;
   FSelectedControlCurves.Clear;

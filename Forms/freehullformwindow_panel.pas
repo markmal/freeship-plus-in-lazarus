@@ -770,11 +770,19 @@ begin
 end;{TFreeHullWindow.ShowDevelopablityExecute}
 
 procedure TFreeHullWindow.SaveAsBitmapExecute(Sender: TObject);
-var Str : string;
+var Str,vpt : string;
 begin
+  Case Viewport.ViewType of
+     fvBodyplan     : vpt:='_Bodyplan';
+     fvProfile      : vpt:='_Profile';
+     fvPlan         : vpt:='_Plan';
+     fvPerspective  : vpt:='_Perspective';
+     else vpt:='';
+  end;
    // Skip translation
-   Str:=Freeship.Preferences.ExportDirectory+ChangeFileExt(ExtractFilename(Freeship.Filename),'.bmp');
-   Viewport.SaveAsBitmap(Str);
+  Str := Freeship.Preferences.ExportDirectory + DirectorySeparator
+      + ChangeFileExt(ExtractFilename(Freeship.Filename)+vpt,'.png');
+  Viewport.SaveAsBitmap(Str, true);
    // End Skip translation
 end;{TFreeHullWindow.SaveAsBitmapExecute}
 

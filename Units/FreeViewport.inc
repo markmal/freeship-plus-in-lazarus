@@ -1300,6 +1300,7 @@ var
   Bitmap: TBitmap;
   Dialog: TSaveImageDialog;
   OK: boolean;
+  TargetImage:TImage;
 begin
   if ShowDialog then
   begin
@@ -1336,7 +1337,7 @@ begin
       Bitmap.PixelFormat := pf24bit;
       Bitmap.Width := CanvasWidth;
       Bitmap.Height := CanvasHeight;
-      FDrawingCanvas := Bitmap.Canvas;
+      ///FDrawingCanvas := Bitmap.Canvas;
       XScale := CanvasWidth / ClientWidth;
       YScale := CanvasHeight / ClientHeight;
       if XScale < YScale then
@@ -1346,12 +1347,21 @@ begin
       FScale := FScale * Scale;
       FScreencenter.X := round(XScale * FScreencenter.X);
       FScreencenter.Y := round(YScale * FScreencenter.Y);
-      FPrinting := True;
+      ///FPrinting := True;
       FDestinationWidth := CanvasWidth;
       FDestinationHeight := CanvasHeight;
       Refresh;
-      Bitmap.SaveToFile(ChangeFileExt(filename, '.bmp'));
+      //Bitmap.SaveToFile(ChangeFileExt(filename, '.bmp'));
+      //Bitmap.SaveToFile(filename);
       Bitmap.Destroy;
+
+      TargetImage:=TImage.Create(self);
+      TargetImage.Width:=FDestinationWidth;
+      TargetImage.Height:=FDestinationHeight;
+      TargetImage.Canvas.CopyRect(Rect(0,0,FDestinationWidth,FDestinationHeight),
+                             self.Canvas, Rect(0,0,CanvasWidth,CanvasHeight));
+      TargetImage.Picture.SaveToFile(filename);
+      TargetImage.Free;
     finally
       // Restore settings;
       FPrinting := False;

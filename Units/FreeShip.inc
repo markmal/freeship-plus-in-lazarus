@@ -3025,7 +3025,7 @@ procedure TFreeShip.MouseMove(Viewport: TFreeViewport; Shift: TShiftState;
   X, Y: integer);
 var
   P2D: T2DCoordinate;
-  P,gP: T3DCoordinate;
+  P,oP,gP: T3DCoordinate;
   Pt: TPoint;
   Point, gPoint: TFreeSubdivisionControlPoint;
   dX,dY,dZ:TFloatType;
@@ -3081,12 +3081,13 @@ begin
             end;
           end;
 
-          dX:= P.X - Point.Coordinate.X;
-          dY:= P.Y - Point.Coordinate.Y;
-          dZ:= P.Z - Point.Coordinate.Z;
-
+          oP := Point.Coordinate;
           Point.Coordinate := P;
           Point.AdjustToLinearConstraint(Viewport); // adjusts to linear constraints if set
+
+          dX:= Point.Coordinate.X - oP.X;
+          dY:= Point.Coordinate.Y - oP.Y;
+          dZ:= Point.Coordinate.Z - oP.Z;
 
           // move all points of selected groups if there
           for I:=0 to NumberOfSelectedControlPointGroups-1 do

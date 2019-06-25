@@ -909,7 +909,8 @@ begin
     if Proceed then
     begin
       Dialog := TFreeRotateMDialog.Create(Owner);
-      ShowTranslatedValues(Dialog);
+      Dialog.Caption := 'Rotate';
+      //ShowTranslatedValues(Dialog);
       Dialog.XValue := 0.0;
       Dialog.YValue := 0.0;
       Dialog.ZValue := 0.0;
@@ -1014,7 +1015,8 @@ begin
     if Proceed then
     begin
       Dialog := TFreeRotateDialog.Create(Owner);
-      ShowTranslatedValues(Dialog);
+      Dialog.Caption := 'Scale';
+      //ShowTranslatedValues(Dialog);
       Dialog.XValue := 1.0;
       Dialog.YValue := 1.0;
       Dialog.ZValue := 1.0;
@@ -1120,7 +1122,8 @@ begin
     if Proceed then
     begin
       Dialog := TFreeRotateDialog.Create(Owner);
-      ShowTranslatedValues(Dialog);
+      Dialog.Caption := 'Move';
+      //ShowTranslatedValues(Dialog);
       Dialog.XValue := 0.0;
       Dialog.YValue := 0.0;
       Dialog.ZValue := 0.0;
@@ -4995,7 +4998,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(Owner);
   OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'VRML files (*.wrl)|*.wrl';
+  OpenDialog.Filter := 'VRML files (*.wrl)|*.[Ww][Rr][Ll]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin

@@ -2207,16 +2207,18 @@ begin
 end;{TMainForm.DesignHydrostaticsExecute}
 
 procedure TMainForm.ImportVRMLExecute(Sender: TObject);
-var DateTime : TDateTime;
-    str_1,str_2 : string;
+//var DateTime : TDateTime;
+//    str_1,str_2 : string;
 begin
-      DateTime := Time;  // store the current date and time
-      str_1 := TimeToStr(DateTime); // convert the time into a string
+   //   DateTime := Time;  // store the current date and time
+   //   str_1 := TimeToStr(DateTime); // convert the time into a string
    FreeShip.Edit.File_ImportVRML;
    FOpenHullWindows;
-      DateTime := Time;  // store the current date and time
-      str_2 := TimeToStr(DateTime); // convert the time into a string
-      MessageDlg(('Time import='+str_2+' - '+str_1),mtInformation,[mbOK],0);
+   Application.ProcessMessages;
+   FreeShip.ZoomFitAllViewports;
+   //   DateTime := Time;  // store the current date and time
+   //   str_2 := TimeToStr(DateTime); // convert the time into a string
+   //   MessageDlg(('Time import='+str_2+' - '+str_1),mtInformation,[mbOK],0);
    UpdateMenu;
 end;{TMainForm.ImportVRMLExecute}
 

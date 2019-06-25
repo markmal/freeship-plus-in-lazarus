@@ -3827,19 +3827,20 @@ var
   VRMLList: TVRMLList;
   I, J, K, N: integer;
   Index: integer;
-  Data: TFasterList<TVRMLIndexedFaceSet>;
+  Data: TFasterListTVRMLIndexedFaceSet;
   CoordInfo: TVRMLCoordinate3;
   FaceInfo: TVRMLIndexedFaceSet;
   Points: TFasterListTFreeSubdivisionPoint;
   Face: TIntArray;
   Layer: TFreeSubdivisionLayer;
   FacePoints: TFasterListTFreeSubdivisionControlPoint;
-  AddedCtrlPts: TFasterList<TVRMLCoordinate3>;
+  AddedCtrlPts: TFasterListTVRMLCoordinate3;
   CtrPoint: TFreeSubdivisionControlpoint;
 begin
   if FileExists(Filename) then
   begin
     VRMLList := TVRMLList.Create;
+    try
     VRMLList.LoadFromFile(Filename);
     Data := VRMLList.ExtractFaceSetData;
     if Data <> nil then
@@ -3847,14 +3848,14 @@ begin
       Clear;
       try
 
-        AddedCtrlPts := TFasterListTVRMLCoordinate3.Create;
+        AddedCtrlPts := TFasterListTVRMLCoordinate3.Create(true,false);
         AddedCtrlPts.Capacity := Data.Count;
         // Assemble coordinate sets
         for I := 1 to Data.Count do
         begin
           FaceInfo := Data[I - 1];
           if AddedCtrlPts.SortedIndexOf(FaceInfo.Coordinates) = -1 then
-            AddedCtrlPts.AddSorted(FaceInfo.Coordinates);
+            AddedCtrlPts.Add(FaceInfo.Coordinates);
         end;
 
 
@@ -3862,7 +3863,7 @@ begin
         for I := 1 to AddedCtrlPts.Count do
         begin
           CoordInfo := AddedCtrlPts[I - 1];
-          Points := TFasterListTFreeSubdivisionPoint.Create;
+          Points := TFasterListTFreeSubdivisionPoint.Create(true,false);
           Points.Capacity := CoordInfo.Count;
           AddedCtrlPts.Objects[I - 1] := points;
           for J := 1 to CoordInfo.Count do
@@ -3873,11 +3874,11 @@ begin
 
 
         // Add controlfaces
-        FacePoints := TFasterListTFreeSubdivisionControlPoint.Create;
+        FacePoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
         for I := 1 to Data.Count do
         begin
           FaceInfo := Data[I - 1];
-          Index := AddedCtrlPts.SortedIndexOf(FaceInfo.Coordinates);
+          Index := AddedCtrlPts.IndexOf(FaceInfo.Coordinates);
           if Index <> -1 then
           begin
             Points := AddedCtrlPts.Objects[Index];
@@ -3929,6 +3930,10 @@ begin
     end
     else
       MessageDlg(Userstring(203) + '.', mtError, [mbOK], 0);
+    except
+      on E:Exception do
+         MessageDlg('Exception in VRML Load:'+#10+E.Message, mtError, [mbOK], 0);
+    end;
     VRMLList.Destroy;
   end;
 end;{TFreeSubdivisionSurface.LoadVRMLFile}

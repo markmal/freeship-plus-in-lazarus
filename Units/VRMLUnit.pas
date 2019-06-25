@@ -762,7 +762,7 @@ begin
   inherited Destroy;
 end;{TVRMLList.destroy}
 
-function TVRMLList.ExtractFaceSetData: specialize TFasterList<TVRMLIndexedFaceSet>;
+function TVRMLList.ExtractFaceSetData: TFasterListTVRMLIndexedFaceSet;
 var
   I: integer;
   FaceSet: TVRMLIndexedFaceSet;

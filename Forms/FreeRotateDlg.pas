@@ -129,14 +129,13 @@ end;{TFreeRotateDialog.FSetZValue}
 
 function TFreeRotateDialog.Execute(Caption, Units: string): boolean;
 begin
+  GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph, 'Ok');
+  GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph, 'Cancel');
+  ShowTranslatedValues(Self);
   Self.Caption := Caption;
   Label3.Caption := Units;
   Label6.Caption := Units;
   Label9.Caption := Units;
-
-  GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph, 'Ok');
-  GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
 
   Showmodal;
   Result := ModalResult = mrOk;

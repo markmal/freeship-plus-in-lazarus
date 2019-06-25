@@ -7,7 +7,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
   Caption = 'Extrusion vector'
   ClientHeight = 200
   ClientWidth = 400
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel2: TPanel
     Left = 0
     Height = 176
@@ -23,10 +23,10 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
     ClientWidth = 400
     TabOrder = 0
     object Panel4: TPanel
-      Left = 62
+      Left = 52
       Height = 99
       Top = 39
-      Width = 276
+      Width = 296
       BevelOuter = bvNone
       ChildSizing.LeftRightSpacing = 10
       ChildSizing.TopBottomSpacing = 10
@@ -35,7 +35,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
       ChildSizing.ControlsPerLine = 3
       ClientHeight = 99
-      ClientWidth = 276
+      ClientWidth = 296
       TabOrder = 0
       object Label1: TLabel
         Left = 10
@@ -68,10 +68,12 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         Left = 157
         Height = 25
         Top = 10
-        Width = 80
-        Constraints.MinWidth = 80
+        Width = 100
+        Alignment = taRightJustify
+        Constraints.MinWidth = 100
         DecimalPlaces = 4
-        MinValue = 0
+        MaxValue = 1000
+        MinValue = -1000
         TabOrder = 0
         Value = 0
       end
@@ -79,10 +81,12 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         Left = 157
         Height = 25
         Top = 37
-        Width = 80
+        Width = 100
+        Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 4
-        MinValue = 0
+        MaxValue = 1000
+        MinValue = -1000
         TabOrder = 1
         Value = 0
       end
@@ -90,15 +94,17 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         Left = 157
         Height = 25
         Top = 64
-        Width = 80
+        Width = 100
+        Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 4
-        MinValue = 0
+        MaxValue = 1000
+        MinValue = -1000
         TabOrder = 2
         Value = 0
       end
       object _Label3: TLabel
-        Left = 243
+        Left = 263
         Height = 25
         Top = 10
         Width = 23
@@ -107,7 +113,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         ParentColor = False
       end
       object _Label6: TLabel
-        Left = 243
+        Left = 263
         Height = 25
         Top = 37
         Width = 23
@@ -116,7 +122,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         ParentColor = False
       end
       object _Label9: TLabel
-        Left = 243
+        Left = 263
         Height = 25
         Top = 64
         Width = 23

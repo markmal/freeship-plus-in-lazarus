@@ -1,14 +1,14 @@
 object FreeRotateDialog: TFreeRotateDialog
-  Left = 551
+  Left = 631
   Height = 200
-  Top = 419
+  Top = 243
   Width = 400
   BorderStyle = bsDialog
   Caption = 'Rotation'
   ClientHeight = 200
   ClientWidth = 400
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 24

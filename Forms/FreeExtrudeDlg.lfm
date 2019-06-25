@@ -72,8 +72,8 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         Alignment = taRightJustify
         Constraints.MinWidth = 100
         DecimalPlaces = 4
-        MaxValue = 1000
-        MinValue = -1000
+        MaxValue = 0
+        MinValue = 0
         TabOrder = 0
         Value = 0
       end
@@ -85,8 +85,8 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 4
-        MaxValue = 1000
-        MinValue = -1000
+        MaxValue = 0
+        MinValue = 0
         TabOrder = 1
         Value = 0
       end
@@ -98,8 +98,8 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 4
-        MaxValue = 1000
-        MinValue = -1000
+        MaxValue = 0
+        MinValue = 0
         TabOrder = 2
         Value = 0
       end

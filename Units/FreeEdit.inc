@@ -4998,7 +4998,12 @@ var
 begin
   OpenDialog := TOpenDialog.Create(Owner);
   OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'VRML files (*.wrl)|*.[Ww][Rr][Ll]';
+  {$ifdef LCLGtk2 or LCLGtk3}
+  OpenDialog.Filter := 'VRML files (*.wrl)|*.[Ww][Rr][Ll]|All files|*.*';
+  {$else}
+  OpenDialog.Filter := 'VRML files (*.wrl)|*.wrl|All files|*.*';
+  {$endif}
+
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin

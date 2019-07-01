@@ -829,6 +829,7 @@ type
     constructor Create(Owner: TFreeSubdivisionSurface); virtual;
     property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
     procedure PrintDebug; virtual;
+    property Id: Integer read FId;
     property Name: String read FName write FName;
   end;
 
@@ -846,7 +847,7 @@ type
     FPenWidth: byte;
     // Pen thickness to use when drawing
     FColor: TColor; // Color when drawing
-    FName:string;
+    //FName:string;
     FPenstyle: TPenStyle;
     // Pen style for drawing the line
     function FGetMin: T3DCoordinate;

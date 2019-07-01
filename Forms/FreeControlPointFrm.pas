@@ -187,11 +187,11 @@ begin
       R:=0.0;
       EditDistance.Value:=0.0;
 
-      Self.Caption := 'Point['+IntToStr(FActiveControlPoint.Id) +']:'+FActiveControlPoint.Name
-                   + ' ('+FloatToStr(FActiveControlPoint.Coordinate.X)
+      Self.Caption := 'Point['+IntToStr(FActiveControlPoint.Id) +']:'+FActiveControlPoint.Name;
+                   {+ ' ('+FloatToStr(FActiveControlPoint.Coordinate.X)
                      +','+FloatToStr(FActiveControlPoint.Coordinate.Y)
                      +','+FloatToStr(FActiveControlPoint.Coordinate.Z)
-                     +')';
+                     +')';}
 
       Npoi:=TFreeShip(FreeShip).NumberOfSelectedControlPoints-1;
       if Npoi >= 0 then begin

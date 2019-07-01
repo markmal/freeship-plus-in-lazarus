@@ -31,19 +31,13 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="188"/>
+      <BuildNr Value="190"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
     </VersionInfo>
-    <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
-    </MacroValues>
     <BuildModes Count="2">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
-        <MacroValues Count="1">
-          <Macro2 Name="LCLWidgetType" Value="win32"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -116,7 +110,7 @@
         <Mode0 Name="default"/>
         <Mode1 Name="no debug log">
           <local>
-            <CommandLineParams Value="--nosplash --sync"/>
+            <CommandLineParams Value="--nosplash"/>
           </local>
         </Mode1>
         <Mode2 Name="debug log">

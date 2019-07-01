@@ -94,6 +94,8 @@ const
   FontheightFactor = 140;
 // used for calculating fontheight
 
+resourcestring rsPointMove = 'point move';
+
 type
   TFreeShip = class;                                                               // to be declared later
   TFreeIntersection = class;

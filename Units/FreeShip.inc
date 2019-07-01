@@ -351,6 +351,7 @@ begin
       end;
       if not FControlpointForm.Visible then
         FControlpointForm.Visible := True;
+      MainForm.SetFocus;
     end;
     FCurrentlyMoving := False;
     FPointHasBeenMoved := False;
@@ -3037,6 +3038,7 @@ begin
         (ssLeft in shift) and (Viewport.ViewType <> fvPerspective) then
         if (X <> FPrevCursorPosition.X) or (Y <> FPrevCursorPosition.Y) then
         begin
+          Logger.Debug('Point Move.'+IntToSTr(ActiveControlPoint.Id));
           if FPointHasBeenMoved = False then
           begin
             // This is the first time the vertex is moved
@@ -3050,6 +3052,7 @@ begin
               MessageDlg(Userstring(191) + '!', mtWarning, [mbOK], 0);
               exit;
             end;
+            Logger.Debug('Point Move. CreateUndoObject');
             Edit.CreateUndoObject(Userstring(190), True);
           end;
           Point := ActiveControlPoint;
@@ -3108,6 +3111,7 @@ begin
              AdjustRelatedPointsToLinearConstraint(Viewport, Point);
 
           ActiveControlPoint := Point;
+          Build := False;
 
           if ControlpointForm.Visible then
           begin
@@ -3116,10 +3120,10 @@ begin
             // and forces a repaint of the form
             if not Viewport.Focused then
               Viewport.SetFocus;
-            Application.ProcessMessages;
+            // Application.ProcessMessages;
             TControl(Viewport.Owner).BringToFront;
           end;
-          Build := False;
+
           for I := 1 to NumberOfViewports do
             self.Viewport[I - 1].Refresh;
           if LinesplanFrame <> nil then
@@ -3145,6 +3149,13 @@ end;
 
 procedure TFreeShip.MouseUp(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
 begin
+  if FCurrentlyMoving and FPointHasBeenMoved then
+     begin
+     Edit.CreateUndoObject(rsPointMove,True);
+     Build:=False;
+     FileChanged:=True;
+     Redraw;
+     end;
   FCurrentlyMoving := False;
   if not Viewport.Focused then
     Viewport.SetFocus;

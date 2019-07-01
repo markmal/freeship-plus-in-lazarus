@@ -1,8 +1,9 @@
 object FreeControlPointForm: TFreeControlPointForm
-  Left = 723
-  Height = 255
-  Top = 165
-  Width = 330
+  Left = 725
+  Height = 319
+  Top = 166
+  Width = 412
+  ActiveControl = EditName
   AlphaBlend = True
   AlphaBlendValue = 210
   AutoSize = True
@@ -10,16 +11,19 @@ object FreeControlPointForm: TFreeControlPointForm
   Caption = ' '
   ChildSizing.Layout = cclLeftToRightThenTopToBottom
   ChildSizing.ControlsPerLine = 1
-  ClientHeight = 255
-  ClientWidth = 330
+  ClientHeight = 319
+  ClientWidth = 412
+  DesignTimePPI = 120
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
+  OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '2.0.2.0'
   object Panel1: TPanel
     Left = 0
-    Height = 91
+    Height = 100
     Top = 0
-    Width = 330
+    Width = 412
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -29,192 +33,209 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.VerticalSpacing = 2
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 91
-    ClientWidth = 330
+    ClientHeight = 100
+    ClientWidth = 412
+    ParentFont = False
     TabOrder = 0
     object LabelX: TLabel
       Left = 10
-      Height = 25
+      Height = 28
       Top = 6
-      Width = 54
+      Width = 57
       Caption = 'X-coord.'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object LabelY: TLabel
       Left = 10
-      Height = 25
-      Top = 33
-      Width = 54
+      Height = 28
+      Top = 36
+      Width = 57
       Caption = 'Y-coord.'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object LabelZ: TLabel
       Left = 10
-      Height = 25
-      Top = 60
-      Width = 54
+      Height = 28
+      Top = 66
+      Width = 57
       Caption = 'Z-coord.'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object EditX: TFloatSpinEdit
-      Left = 70
-      Height = 25
+      Left = 73
+      Height = 28
       Top = 6
-      Width = 100
+      Width = 125
       Alignment = taRightJustify
-      Constraints.MinWidth = 100
+      Constraints.MinWidth = 125
       DecimalPlaces = 4
       Increment = 0.01
       MaxValue = 0
       MinValue = 0
       OnChange = EditXChange
       OnEditingDone = EditXEditingDone
+      OnEnter = EditEnter
+      OnExit = EditExit
+      ParentFont = False
       TabOrder = 0
       Value = 0
     end
     object EditY: TFloatSpinEdit
-      Left = 70
-      Height = 25
-      Top = 33
-      Width = 100
+      Left = 73
+      Height = 28
+      Top = 36
+      Width = 125
       Alignment = taRightJustify
-      Constraints.MinWidth = 100
+      Constraints.MinWidth = 125
       DecimalPlaces = 4
       Increment = 0.01
       MaxValue = 0
       MinValue = 0
       OnChange = EditYChange
       OnEditingDone = EditYEditingDone
+      ParentFont = False
       TabOrder = 1
       Value = 0
     end
     object EditZ: TFloatSpinEdit
-      Left = 70
-      Height = 25
-      Top = 60
-      Width = 100
+      Left = 73
+      Height = 28
+      Top = 66
+      Width = 125
       Alignment = taRightJustify
-      Constraints.MinWidth = 100
+      Constraints.MinWidth = 125
       DecimalPlaces = 4
       Increment = 0.01
       MaxValue = 0
       MinValue = 0
       OnChange = EditZChange
       OnEditingDone = EditZEditingDone
+      ParentFont = False
       TabOrder = 2
       Value = 0
     end
     object Label1: TLabel
-      Left = 176
-      Height = 25
+      Left = 206
+      Height = 28
       Top = 6
-      Width = 43
-      BorderSpacing.Left = 6
+      Width = 44
+      BorderSpacing.Left = 8
       Caption = 'Label1'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object Label2: TLabel
-      Left = 176
-      Height = 25
-      Top = 33
-      Width = 43
-      BorderSpacing.Left = 6
+      Left = 206
+      Height = 28
+      Top = 36
+      Width = 44
+      BorderSpacing.Left = 8
       Caption = 'Label2'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object Label3: TLabel
-      Left = 176
-      Height = 25
-      Top = 60
-      Width = 43
-      BorderSpacing.Left = 6
+      Left = 206
+      Height = 28
+      Top = 66
+      Width = 44
+      BorderSpacing.Left = 8
       Caption = 'Label3'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object EditAX: TFloatSpinEdit
-      Left = 225
-      Height = 25
+      Left = 256
+      Height = 28
       Top = 6
-      Width = 80
+      Width = 100
       Alignment = taRightJustify
-      Constraints.MinWidth = 80
+      Constraints.MinWidth = 100
       Increment = 0.01
       MaxValue = 0
       MinValue = 0
-      OnEditingDone = EditXEditingDone
+      ParentFont = False
       ReadOnly = True
       TabOrder = 3
       Value = 0
     end
     object EditAY: TFloatSpinEdit
-      Left = 225
-      Height = 25
-      Top = 33
-      Width = 80
+      Left = 256
+      Height = 28
+      Top = 36
+      Width = 100
       Alignment = taRightJustify
-      Constraints.MinWidth = 80
+      Constraints.MinWidth = 100
       Increment = 0.01
       MaxValue = 0
       MinValue = 0
       OnChange = EditYChange
+      ParentFont = False
       ReadOnly = True
       TabOrder = 4
       Value = 0
     end
     object EditAZ: TFloatSpinEdit
-      Left = 225
-      Height = 25
-      Top = 60
-      Width = 80
+      Left = 256
+      Height = 28
+      Top = 66
+      Width = 100
       Alignment = taRightJustify
-      Constraints.MinWidth = 80
+      Constraints.MinWidth = 100
       Increment = 0.01
       MaxValue = 0
       MinValue = 0
       OnChange = EditZChange
+      ParentFont = False
       ReadOnly = True
       TabOrder = 5
       Value = 0
     end
     object LabelAX: TLabel
-      Left = 311
-      Height = 25
+      Left = 362
+      Height = 28
       Top = 6
       Width = 6
       Caption = 'º'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object LabelAY: TLabel
-      Left = 311
-      Height = 25
-      Top = 33
+      Left = 362
+      Height = 28
+      Top = 36
       Width = 6
       Caption = 'º'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object LabelAZ: TLabel
-      Left = 311
-      Height = 25
-      Top = 60
+      Left = 362
+      Height = 28
+      Top = 66
       Width = 6
       Caption = 'º'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
   end
   object Panel2: TPanel
     Left = 0
-    Height = 64
-    Top = 91
-    Width = 330
+    Height = 70
+    Top = 100
+    Width = 412
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -224,71 +245,80 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.VerticalSpacing = 2
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 64
-    ClientWidth = 330
+    ClientHeight = 70
+    ClientWidth = 412
+    ParentFont = False
     TabOrder = 1
     object CheckBoxCorner: TCheckBox
       Left = 10
-      Height = 21
+      Height = 24
       Top = 2
-      Width = 292
+      Width = 339
       Caption = 'Corner'
       OnChange = CheckBoxCornerChange
+      OnEnter = EditEnter
+      OnExit = EditExit
+      ParentFont = False
       TabOrder = 0
     end
     object Panel5: TPanel
       Left = 10
-      Height = 37
-      Top = 25
-      Width = 292
+      Height = 40
+      Top = 28
+      Width = 339
       AutoSize = True
       BevelOuter = bvNone
       ChildSizing.TopBottomSpacing = 6
       ChildSizing.HorizontalSpacing = 6
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 4
-      ClientHeight = 37
-      ClientWidth = 292
+      ClientHeight = 40
+      ClientWidth = 339
+      ParentFont = False
       TabOrder = 1
       object Label4: TLabel
         Left = 0
-        Height = 25
+        Height = 28
         Top = 6
         Width = 57
         Caption = 'Distance'
         Layout = tlCenter
         ParentColor = False
+        ParentFont = False
       end
       object EditDistance: TFloatSpinEdit
         Left = 63
-        Height = 25
+        Height = 28
         Top = 6
-        Width = 100
+        Width = 125
         Alignment = taRightJustify
-        Constraints.MinWidth = 100
+        Constraints.MinWidth = 125
         DecimalPlaces = 4
         MinValue = 0
+        ParentFont = False
         ReadOnly = True
         TabOrder = 0
         Value = 0
       end
       object Label5: TLabel
-        Left = 169
-        Height = 25
+        Left = 194
+        Height = 28
         Top = 6
-        Width = 37
+        Width = 39
         Caption = 'Angle'
         Layout = tlCenter
         ParentColor = False
+        ParentFont = False
       end
       object EditAngles: TFloatSpinEdit
-        Left = 212
-        Height = 25
+        Left = 239
+        Height = 28
         Top = 6
-        Width = 80
+        Width = 100
         Alignment = taRightJustify
-        Constraints.MinWidth = 80
+        Constraints.MinWidth = 100
         MinValue = 0
+        ParentFont = False
         ReadOnly = True
         TabOrder = 1
         Value = 0
@@ -297,9 +327,9 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object Panel3: TPanel
     Left = 0
-    Height = 37
-    Top = 155
-    Width = 330
+    Height = 40
+    Top = 170
+    Width = 412
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -308,44 +338,50 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.HorizontalSpacing = 6
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
-    ClientHeight = 37
-    ClientWidth = 330
+    ClientHeight = 40
+    ClientWidth = 412
+    ParentFont = False
     TabOrder = 2
     object LabelName: TLabel
       Left = 10
-      Height = 25
+      Height = 28
       Top = 6
-      Width = 39
+      Width = 40
       Caption = 'Name'
       Layout = tlCenter
       ParentColor = False
+      ParentFont = False
     end
     object EditName: TEdit
-      Left = 55
-      Height = 25
+      Left = 56
+      Height = 28
       Top = 6
-      Width = 150
-      Constraints.MinWidth = 150
+      Width = 188
+      Constraints.MinWidth = 188
       OnEditingDone = EditNameEditingDone
+      OnEnter = EditEnter
+      OnExit = EditExit
+      ParentFont = False
       TabOrder = 0
     end
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Height = 54
-    Top = 192
-    Width = 330
+    Height = 65
+    Top = 210
+    Width = 412
     Align = alTop
     AutoSize = True
     Caption = 'Linear constraint'
-    ClientHeight = 37
-    ClientWidth = 326
+    ClientHeight = 40
+    ClientWidth = 408
+    ParentFont = False
     TabOrder = 3
     object Panel4: TPanel
       Left = 0
-      Height = 37
+      Height = 40
       Top = 0
-      Width = 326
+      Width = 408
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
@@ -355,26 +391,31 @@ object FreeControlPointForm: TFreeControlPointForm
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
-      ClientHeight = 37
-      ClientWidth = 326
+      ClientHeight = 40
+      ClientWidth = 408
+      ParentFont = False
       TabOrder = 0
       object FilterComboBoxLinearConstraintA: TFilterComboBox
         Left = 10
-        Height = 25
+        Height = 28
         Top = 6
-        Width = 150
+        Width = 191
+        ParentFont = False
         TabOrder = 0
         OnChange = FilterComboBoxLinearConstraintAChange
-        OnEnter = FilterComboBoxLinearConstraintAEnter
+        OnEnter = EditEnter
+        OnExit = EditExit
       end
       object FilterComboBoxLinearConstraintB: TFilterComboBox
-        Left = 166
-        Height = 25
+        Left = 207
+        Height = 28
         Top = 6
-        Width = 150
+        Width = 191
+        ParentFont = False
         TabOrder = 1
         OnChange = FilterComboBoxLinearConstraintBChange
-        OnEnter = FilterComboBoxLinearConstraintBEnter
+        OnEnter = EditEnter
+        OnExit = EditExit
       end
     end
   end

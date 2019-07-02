@@ -6,7 +6,9 @@ Unselect "Win32 gui application" because for time being some output goes to cons
 
 You do not need Qt4 anymore.
 
-In Windows you need git for Windows. Please set it to upload texts in Unix style.
+In Windows
+
+you need git for Windows. Please set it to upload texts in Unix style.
 Also you need: 
 - Cygwin with following packages: sed,grep,binutils,file,cut,git,zip,imagemagic
 - MinGW32 to build FreeShip
@@ -15,6 +17,15 @@ libstdc++-6.dll
 libwinpthread-1.dll
 
 copy these libraries into project root
+
+
+In Linux
+
+install packages:
+libmagic.dev
+
+
+Packaging
 
 If you want to package installation package you should run release.sh
 Some prerequisites have to be fulfilled first: 

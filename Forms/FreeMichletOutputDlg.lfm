@@ -644,7 +644,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           TabOrder = 0
           object Panel12: TPanel
             Left = 10
-            Height = 189
+            Height = 258
             Top = 10
             Width = 392
             BevelOuter = bvNone
@@ -652,7 +652,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             ChildSizing.VerticalSpacing = 10
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 189
+            ClientHeight = 258
             ClientWidth = 392
             TabOrder = 0
             object Panel13: TPanel
@@ -800,6 +800,31 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               ParentColor = False
               TabOrder = 1
             end
+            object Group2: TRadioGroup
+              Left = 0
+              Height = 59
+              Top = 199
+              Width = 392
+              AutoFill = True
+              Caption = 'Viscous Form Factor Method'
+              ChildSizing.LeftRightSpacing = 6
+              ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+              ChildSizing.EnlargeVertical = crsHomogenousChildResize
+              ChildSizing.ShrinkHorizontal = crsScaleChilds
+              ChildSizing.ShrinkVertical = crsScaleChilds
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 1
+              ClientHeight = 42
+              ClientWidth = 388
+              Color = clForm
+              ItemIndex = 1
+              Items.Strings = (
+                'None'
+                'Dual'
+              )
+              ParentColor = False
+              TabOrder = 2
+            end
           end
         end
       end
@@ -848,8 +873,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclTopToBottomThenLeftToRight
               ChildSizing.ControlsPerLine = 5
-              ClientHeight = 129
-              ClientWidth = 243
+              ClientHeight = 133
+              ClientWidth = 247
               TabOrder = 0
               object _Label28: TLabel
                 Left = 10
@@ -1013,8 +1038,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclTopToBottomThenLeftToRight
               ChildSizing.ControlsPerLine = 6
-              ClientHeight = 156
-              ClientWidth = 153
+              ClientHeight = 160
+              ClientWidth = 157
               TabOrder = 0
               object _Label36: TLabel
                 Left = 10
@@ -1077,6 +1102,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
+                MaxValue = 1000
                 MinValue = 0
                 OnExit = Edit20AfterSetValue
                 TabOrder = 0
@@ -1089,6 +1115,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
+                MaxValue = 1000
                 MinValue = 0
                 OnExit = Edit21AfterSetValue
                 TabOrder = 1
@@ -1101,7 +1128,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
-                MinValue = 0
+                MaxValue = 1000
+                MinValue = -1000
                 OnExit = Edit22AfterSetValue
                 TabOrder = 2
                 Value = 0
@@ -1113,7 +1141,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
-                MinValue = 0
+                MaxValue = 1000
+                MinValue = -1000
                 OnExit = Edit23AfterSetValue
                 TabOrder = 3
                 Value = 0

@@ -38,7 +38,7 @@
     <MacroValues Count="1">
       <Macro1 Name="LCLWidgetType" Value="gtk2"/>
     </MacroValues>
-    <BuildModes Count="2">
+    <BuildModes Count="3">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
         <MacroValues Count="1">
@@ -103,6 +103,64 @@
           </Other>
         </CompilerOptions>
       </Item2>
+      <Item3 Name="Gtk2 i386 Debug">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="FreeShip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
+            <OtherUnitFiles Value="Units;Forms"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <SyntaxMode Value="fpc"/>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
+            <TargetCPU Value="i386"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+              <ShoLineNum Value="True"/>
+              <ShowDebugInfo Value="True"/>
+              <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+            </Verbosity>
+            <ExecuteBefore>
+              <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
+              <ShowAllMessages Value="True"/>
+              <CompileReasons Run="False"/>
+            </ExecuteBefore>
+            <ExecuteAfter>
+              <ScanForFPCMsgs Value="True"/>
+              <ScanForMakeMsgs Value="True"/>
+              <ShowAllMessages Value="True"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item3>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>

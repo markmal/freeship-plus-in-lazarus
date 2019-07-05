@@ -60,6 +60,7 @@ type
 
   TFreeMichletOutputDialog = class(TForm)
     Distance: TFloatSpinEdit;
+    Group2: TRadioGroup;
     GroupBox3: TGroupBox;
     Image2: TImage;
     Label14: TLabel;
@@ -1040,6 +1041,12 @@ begin
   Strings.Add('1024');
   Strings.Add('# Skin Friction Method (0=None, 1=ITTC1957, 2=Grigson)');
   Strings.Add(IntToStr(Group1.ItemIndex));
+
+  // a number introduced in the later versions of Michlet.
+  Strings.Add('# Viscous Form Factor Method (0=None, 3=Dual)');
+  if Group2.ItemIndex = 0 then Strings.Add('0');
+  if Group2.ItemIndex = 1 then Strings.Add('3');
+
   Strings.Add('# Viscous Drag Form Factor');
   Strings.Add('1.0');
   Strings.Add('# Wave Drag Form Factor');

@@ -221,80 +221,92 @@ end;{TFREEProjectSettingsDialog.FGetConversionFactor}
 
 function TFREEProjectSettingsDialog.FGetBeam: double;
 begin
-  if Edit3.Text = '' then
+{  if Edit3.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit3.Text);
+    Result := StrToFloat(Edit3.Text); }
+ Result := Edit3.Value;
 end;{TFREEProjectSettingsDialog.FGetBeam}
 
 procedure TFREEProjectSettingsDialog.FSetBeam(Val: double);
 begin
-  Edit3.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit3.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit3.Value:=Val;
 end;{TFREEProjectSettingsDialog.FSetBeam}
 
 function TFREEProjectSettingsDialog.FGetCoefficient: double;
 begin
-  if Edit6.Text = '' then
+  {if Edit6.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit6.Text);
+    Result := StrToFloat(Edit6.Text); }
+  Result := Edit6.Value;
 end;{TFREEProjectSettingsDialog.FGetCoefficient}
 
 procedure TFREEProjectSettingsDialog.FSetCoefficient(Val: double);
 begin
-  Edit6.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit6.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit6.Value:=Val;
 end;{TFREEProjectSettingsDialog.FSetCoefficient}
 
 function TFREEProjectSettingsDialog.FGetDensity: double;
 begin
-  if Edit5.Text = '' then
+  {if Edit5.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit5.Text);
+    Result := StrToFloat(Edit5.Text);}
+  Result := Edit5.Value;
 end;{TFREEProjectSettingsDialog.FGetDensity}
 
 procedure TFREEProjectSettingsDialog.FSetDensity(Val: double);
 begin
-  Edit5.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit5.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit5.Value := Val;
 end;{TFREEProjectSettingsDialog.FSetDensity}
 
 function TFREEProjectSettingsDialog.FGetTemper: double;
 begin
-  if Edit25.Text = '' then
+  {if Edit25.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit25.Text);
+    Result := StrToFloat(Edit25.Text);}
+  Result := Edit25.Value;
 end;{TFREEProjectSettingsDialog.FGetTemper}
 
 procedure TFREEProjectSettingsDialog.FSetTemper(Val: double);
 begin
-  Edit25.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit25.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit25.Value := Val;
 end;{TFREEProjectSettingsDialog.FSetTemper}
 
 function TFREEProjectSettingsDialog.FGetDraft: double;
 begin
-  if Edit4.Text = '' then
+  {if Edit4.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit4.Text);
+   Result := StrToFloat(Edit4.Text);}
+  Result := Edit4.Value;
 end;{TFREEProjectSettingsDialog.FGetDraft}
 
 procedure TFREEProjectSettingsDialog.FSetDraft(Val: double);
 begin
-  Edit4.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit4.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit4.Value := Val;
 end;{TFREEProjectSettingsDialog.FSetDraft}
 
 function TFREEProjectSettingsDialog.FGetLength: double;
 begin
-  if Edit2.Text = '' then
+  {if Edit2.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit2.Text);
+    Result := StrToFloat(Edit2.Text);}
+  Result := Edit2.Value;
 end;{TFREEProjectSettingsDialog.FGetLength}
 
 procedure TFREEProjectSettingsDialog.FSetLength(Val: double);
 begin
-  Edit2.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit2.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit2.Value:=Val;
   if Checkbox2.Checked then
     Mainframe := 0.5 * Length;
   if Checkbox12.Checked then
@@ -303,41 +315,47 @@ end;{TFREEProjectSettingsDialog.FSetLength}
 
 function TFREEProjectSettingsDialog.FGetMainframe: double;
 begin
-  if Edit8.Text = '' then
+  {if Edit8.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit8.Text);
+    Result := StrToFloat(Edit8.Text);}
+  Result := Edit8.Value;
 end;{TFREEProjectSettingsDialog.FGetMainframe}
 
 procedure TFREEProjectSettingsDialog.FSetMainframe(Val: double);
 begin
-  Edit8.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit8.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit8.Value := Val;
 end;{TFREEProjectSettingsDialog.FSetMainframe}
 
 function TFREEProjectSettingsDialog.FGetYWindAreaMax: double;
 begin
-  if Edit26.Text = '' then
+  {if Edit26.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit26.Text);
+    Result := StrToFloat(Edit26.Text);}
+  Result := Edit26.Value;
 end;{TFREEProjectSettingsDialog.FGetYWindAreaMax}
 
 procedure TFREEProjectSettingsDialog.FSetYWindAreaMax(Val: double);
 begin
-  Edit26.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit26.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit26.Value := Val;
 end;{TFREEProjectSettingsDialog.FSetYWindAreaMax}
 
 function TFREEProjectSettingsDialog.FGetXWindAreaMax: double;
 begin
-  if Edit27.Text = '' then
+  {if Edit27.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit27.Text);
+    Result := StrToFloat(Edit27.Text); }
+  Result := Edit27.Value;
 end;{TFREEProjectSettingsDialog.FGetXWindAreaMax}
 
 procedure TFREEProjectSettingsDialog.FSetXWindAreaMax(Val: double);
 begin
-  Edit27.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  //Edit27.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  Edit27.Value := Val;
 end;{TFREEProjectSettingsDialog.FSetXWindAreaMax}
 
 procedure TFREEProjectSettingsDialog.FSetUnitCaptions;

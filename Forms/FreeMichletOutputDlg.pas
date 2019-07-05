@@ -52,7 +52,8 @@ uses
   FreeTypes,
   FreeGeometry,
   ActnList,
-  Spin;
+  Spin,
+  Math;
 
 type
 
@@ -490,9 +491,10 @@ end;{TFreeMichletOutputDialog.FGetX0}
 
 procedure TFreeMichletOutputDialog.FSetX0(val: single);
 begin
-  if Val < 1.5 * Length then
-    Val := 1.5 * Length;
+  {if Val < 1.5 * Length then
+    Val := 1.5 * Length;}
   Edit20.Value := val;
+  Edit21.MinValue := val + 1.0;
 end;{TFreeMichletOutputDialog.FSetX0}
 
 function TFreeMichletOutputDialog.FGetX1: single;
@@ -502,8 +504,8 @@ end;{TFreeMichletOutputDialog.FGetX1}
 
 procedure TFreeMichletOutputDialog.FSetX1(val: single);
 begin
-  if Val < 2.5 * Length then
-    Val := 2.5 * Length;
+  {if Val < 2.5 * Length then
+    Val := 2.5 * Length;}
   Edit21.Value := val;
 end;{TFreeMichletOutputDialog.FSetX1}
 
@@ -515,6 +517,7 @@ end;{TFreeMichletOutputDialog.FGetY0}
 procedure TFreeMichletOutputDialog.FSetY0(val: single);
 begin
   Edit22.Value := Val;
+  Edit23.MinValue := Val + 1.0;
 end;{TFreeMichletOutputDialog.FSetY0}
 
 function TFreeMichletOutputDialog.FGetY1: single;
@@ -563,6 +566,9 @@ begin
   if val < 0 then
     Val := 0;
   Edit4.Value := val;
+
+  Edit20.MinValue := val * 1.5;
+  Edit21.MinValue := max(val * 2.5, Edit20.Value);
 end;{TFreeMichletOutputDialog.FSetLength}
 
 function TFreeMichletOutputDialog.FGetWaterViscosity: single;
@@ -1214,6 +1220,8 @@ end;{TFreeMichletOutputDialog.Edit7AfterSetValue}
 procedure TFreeMichletOutputDialog.Edit4AfterSetValue(Sender: TObject);
 begin
   Length := Edit4.Value;
+  Edit20.MinValue := 1.5 * Length;
+  Edit21.MinValue := 2.5 * Length;
 end;{TFreeMichletOutputDialog.Edit4AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit5AfterSetValue(Sender: TObject);
@@ -1234,6 +1242,7 @@ end;{TFreeMichletOutputDialog.Edit9AfterSetValue}
 procedure TFreeMichletOutputDialog.Edit12AfterSetValue(Sender: TObject);
 begin
   StartSpeed := Edit12.Value;
+  Edit13.MinValue := StartSpeed;
 end;{TFreeMichletOutputDialog.Edit12AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit13AfterSetValue(Sender: TObject);
@@ -1249,6 +1258,7 @@ end;{TFreeMichletOutputDialog.Edit14AfterSetValue}
 procedure TFreeMichletOutputDialog.Edit15AfterSetValue(Sender: TObject);
 begin
   R0 := Edit15.Value;
+  Edit16.MinValue := R0 + 1.0;
 end;{TFreeMichletOutputDialog.Edit15AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit16AfterSetValue(Sender: TObject);
@@ -1274,6 +1284,8 @@ end;{TFreeMichletOutputDialog.Edit19AfterSetValue}
 procedure TFreeMichletOutputDialog.Edit20AfterSetValue(Sender: TObject);
 begin
   X0 := Edit20.Value;
+  Edit21.MinValue := max(Length * 2.5, X0 + 1.0);
+  X1 := X1;
 end;{TFreeMichletOutputDialog.Edit20AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit21AfterSetValue(Sender: TObject);
@@ -1284,6 +1296,8 @@ end;{TFreeMichletOutputDialog.Edit21AfterSetValue}
 procedure TFreeMichletOutputDialog.Edit22AfterSetValue(Sender: TObject);
 begin
   Y0 := Edit22.Value;
+  Edit23.MinValue := max(Length * 2.5, Y0 + 1.0);
+  Y1 := Y1;
 end;{TFreeMichletOutputDialog.Edit22AfterSetValue}
 
 procedure TFreeMichletOutputDialog.Edit23AfterSetValue(Sender: TObject);

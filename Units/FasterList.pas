@@ -139,25 +139,27 @@ begin
   if FCount = FCapacity then
     FGrow;
 
-  /// Dev test
+  { /// Dev test
   if //assigned(Item) and
   (Item <> nil)
     then
       Cur:=0
     else
       Prev:=0;
+  }
 
   FList[FCount] := Item;
   if FUseUserData then
     FData[FCount] := nil;
 
-  if FCount < 1 then
+  if FCount = 0 then
     FSorted := True
   else if FSorted then
   begin
-    Prev := PtrUInt(FList[FCount - 1]); //TODO eliminate local vars reassignments
+    {Prev := PtrUInt(FList[FCount - 1]); //TODO eliminate local vars reassignments
     Cur := PtrUInt(Item);
-    FSorted := Prev < Cur;
+    FSorted := Prev < Cur;}
+    FSorted := PtrUInt(FList[FCount - 1]) < PtrUInt(Item);
   end;
 
   Inc(FCount);
@@ -451,6 +453,8 @@ end;{TFasterList.Clear}
 
 procedure TFasterList.Delete(Index: integer);
 begin
+  if (Index<0) or (Index >= FCount) then
+     raise Exception.Create('Index out of bounds');
   Dec(FCount);
   if Index < FCount then
   begin
@@ -546,16 +550,18 @@ begin
    end;
 
   Result := -1;
-  for I := 1 to FCount do
-    if FList[I - 1] = Item then
+  for I := 0 to FCount-1 do
+    if FList[I] = Item then
     begin
-      Result := I - 1;
+      Result := I;
       break;
     end;
 end;{TFasterList.IndexOf}
 
 procedure TFasterList.Insert(Index: integer; Item: TItemType);
 begin
+  if (index<0) or (Index >= FCount) then
+    raise Exception.Create('Index out of bounds');
   if FUnique and (self.IndexOf(Item)>=0) then
     raise Exception.Create('Uniqueness violation');
   if FCount = FCapacity then
@@ -692,6 +698,8 @@ end;{TFasterList.SortedIndexOf}
 
 procedure TFasterList.FSet(Index: integer; Item: TItemType);
 begin
+  if (Index<0) or (Index>=FCount) then
+    raise Exception.Create('Index out of bounds');
   FList[Index] := Item;
   if FUseUserData then
     FData[index] := nil;
@@ -699,6 +707,8 @@ end;{TFasterList.FSet}
 
 procedure TFasterList.FSetObject(Index: integer; UserObject: Pointer);
 begin
+  if (Index<0) or (Index>=FCount) then
+    raise Exception.Create('Index out of bounds');
   if not FUseUserdata then
   begin
     Setlength(FData, FCapacity);

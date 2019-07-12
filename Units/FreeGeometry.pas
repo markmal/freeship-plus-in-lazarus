@@ -1524,6 +1524,7 @@ type
     // Inverts the point ordering of the face
     function IndexOfPoint(
       P: TFreeSubdivisionPoint): integer;
+    procedure PrintDebug; override;
     procedure Subdivide(
       aOwner: TFreeSubdivisionSurface;
       aIsControlFace: boolean;

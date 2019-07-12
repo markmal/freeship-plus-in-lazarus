@@ -35,4 +35,35 @@ Some prerequisites have to be fulfilled first:
    In Windows you need to install something like Cygwin, as it mentioned above, or Msys2.
    Good recent news: In Windows 10 these binaries can be installed natively (from Ubuntu) and you can use Bash as command line.
 
+
+Cross compilation from Linux smd64 to Linux i386
+
+
+Follow Lazarus Cross Compilation to make cross compilation till simple test.pas start working 
+
+Here is Ubuntu setup
+
+Install following packages:
+ sudo apt install gcc-multilib
+ sudo apt install libx11-dev:i386
+ sudo apt install pixbuf2.0-0:i386
+ sudo apt install libgtk2.0-0:i386
+ sudo apt install libpangocairo-1.0-0:i386
+ sudo apt install libmagic-dev:i386
+
+Create links:
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0 /usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0 /usr/lib/i386-linux-gnu/libgtk-x11-2.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0 /usr/lib/i386-linux-gnu/libgdk-x11-2.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libgobject-2.0.so.0 /usr/lib/i386-linux-gnu/libgobject-2.0.so
+ sudo ln -s -f /lib/i386-linux-gnu/libglib-2.0.so.0 /lib/i386-linux-gnu/libglib-2.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libgthread-2.0.so.0 /usr/lib/i386-linux-gnu/libgthread-2.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0 /usr/lib/i386-linux-gnu/libgmodule-2.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libpango-1.0.so.0 /usr/lib/i386-linux-gnu/libpango-1.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libcairo.so.2 /usr/lib/i386-linux-gnu/libcairo.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libatk-1.0.so.0 /usr/lib/i386-linux-gnu/libatk-1.0.so
+ sudo ln -s -f /usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0 /usr/lib/i386-linux-gnu/libpangocairo-1.0.so
+
+In project settings set target i386.
+
 Good luck!

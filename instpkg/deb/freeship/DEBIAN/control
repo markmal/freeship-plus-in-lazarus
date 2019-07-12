@@ -1,5 +1,5 @@
 Package: freeship
-Version: 4.3.2.191
+Version: 4.3.2.195
 Provides: freeship
 Architecture: amd64
 Depends: libatk1.0-0, libc6, libc6-i386, libc6-x32, libcairo2, libgdk-pixbuf2.0-0, libglib2.0-0, libgtk2.0-0, libmagic1, libpango-1.0-0, libpangocairo-1.0-0, libx11-6 

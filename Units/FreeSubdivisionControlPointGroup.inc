@@ -165,7 +165,7 @@ end;{TFreeSubdivisionControlPoint.LoadBinary}
 procedure TFreeSubdivisionControlPointGroup.LoadFromStream(
   var LineNr: integer; Strings: TStringList);
 var
-  Str: string;
+  Str: string; Strs:TStringArray;
   I,N,CPN: integer;
   sel: boolean;
 begin
@@ -173,9 +173,12 @@ begin
   FName := Strings[LineNr];
   Inc(LineNr);
   Str := Strings[LineNr];
-  for i:=1 to N do
+  Strs := Str.Split([#32]);
+  N:= length(Strs);
+  for i:=0 to N-1 do
     begin
-    CPN:=ReadIntFromStr(LineNr, Str);
+    //CPN:=ReadIntFromStr(LineNr, Str);
+    CPN:=StrToInt(Strs[i]);
     FControlPoints.Add(Owner.FControlPoints[CPN]);
     end;
 end;{TFreeSubdivisionControlPoint.LoadFromStream}
@@ -200,7 +203,7 @@ var I,N,CPN: integer;
   Str: string;
 begin
   Strings.Add(FName);
-  CPN:=Owner.FControlPoints.IndexOf(FControlPoints[i]);
+  CPN:=Owner.FControlPoints.IndexOf(FControlPoints[0]);
   Str:=IntToStr(CPN);
   for i:=1 to FControlPoints.Count-1 do
     begin

@@ -237,6 +237,7 @@ end;{TFreeSubdivisionEdge.SwapData}
 function TFreeSubdivisionEdge.CheckIntegrity: boolean;
 var i:integer;
 begin
+  result := true;
   if FStartpoint = nil then
   begin
     logger.Error(Format('TFreeSubdivisionEdge.CheckIntegrity: FStartpoint = nil',[]));
@@ -269,6 +270,7 @@ begin
 
   if FCurve <> nil then result := result and FCurve.CheckIntegrity;
 
+  if not result then self.PrintDebug;
 end;
 
 constructor TFreeSubdivisionEdge.Create(Owner: TFreeSubdivisionSurface);
@@ -282,11 +284,14 @@ procedure TFreeSubdivisionEdge.PrintDebug;
 var i:integer;
 begin
   inherited;
-  Logger.Debug('StartPoint:'+IntToHex(QWord(self.StartPoint),16));
-  Logger.Debug('EndPoint:'+IntToHex(QWord(self.EndPoint),16));
+  //Logger.Debug('StartPoint:'+IntToStr()+IntToHex(QWord(self.StartPoint),16));
+  //Logger.Debug('EndPoint:'+IntToHex(QWord(self.EndPoint),16));
+  Logger.Debug(Format(' StartPoint:%d %s',[self.StartPoint.Id, self.StartPoint.Name]));
+  Logger.Debug(Format(' EndPoint:%d %s',[self.EndPoint.Id, self.EndPoint.Name]));
   for i:=0 to FFaces.Count-1 do
-      Logger.Debug('Faces['+IntToStr(i)+']('+FFaces[i].ClassName+')'
-        + IntToHex(QWord(FFaces[i]),16));
+      //Logger.Debug('Faces['+IntToStr(i)+']('+FFaces[i].ClassName+')'
+      //  + IntToHex(QWord(FFaces[i]),16));
+      Logger.Debug(Format(' face[%d]:%d',[i,FFaces[i].Id]));
 end;
 
 procedure TFreeSubdivisionEdge.DeleteFace(Face: TFreeSubdivisionFace);

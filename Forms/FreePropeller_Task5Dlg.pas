@@ -270,8 +270,8 @@ var
   Jp, dJ, KT, KQ, Eta0: single;
   Jpr, K1, K2, Eta: single;
   Etam, Jp10, Jp20, Jpopt: single;
-label
-  NewSearch;
+//label
+  //NewSearch;
 begin
   Units := FFreeship.ProjectSettings.ProjectUnits;
 

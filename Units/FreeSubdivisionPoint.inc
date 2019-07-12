@@ -513,7 +513,7 @@ begin
     logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): Self not in FEdges[%d]',[self.FID,i]));
     result := false;
   end;
-
+  if not result then self.PrintDebug;
 end; {TFreeSubdivisionPoint.CheckIntegrity}
 
 procedure TFreeSubdivisionPoint.Clear;

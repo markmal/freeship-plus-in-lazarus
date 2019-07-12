@@ -3999,8 +3999,8 @@ begin
       //if not self.CheckIntegrity
         //then ShowMessage('Bfore Subdivide Model integrity corruption');
       Subdivide;
-      //if not self.CheckIntegrity
-        //then ShowMessage('After Subdivide Model integrity corruption');
+      if not self.CheckIntegrity
+        then ShowMessage('After Subdivide Model integrity corruption');
     end;
 
     {//cleanup
@@ -4464,6 +4464,7 @@ begin
     Point.Destroy;
   end;
   FPoints.Clear;
+
 
   {// investigation
   for I := 0 to RefVertexPoints.Count - 1 do

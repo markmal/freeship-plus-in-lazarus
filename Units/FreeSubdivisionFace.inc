@@ -247,6 +247,15 @@ begin
   Result := FPoints.IndexOf(P);
 end;{TFreeSubdivisionFace.IndexOfPoint}
 
+procedure TFreeSubdivisionFace.PrintDebug;
+var i:integer;
+begin
+  inherited;
+  for i:=0 to FPoints.Count-1 do
+    Logger.Debug(Format(' point[%d]:%d %s',[i,FPoints[i].Id, FPoints[i].Name]));
+end;
+
+
 procedure TFreeSubdivisionFace.Subdivide(
     aOwner: TFreeSubdivisionSurface;
     aIsControlFace: boolean; // All new edges will be Control Descendand

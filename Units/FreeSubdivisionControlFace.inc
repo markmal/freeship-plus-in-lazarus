@@ -34,6 +34,7 @@ begin
     // Only add if it is not already in the list
     if Index = -1 then
       Owner.FSelectedControlFaces.Add(self);
+    PrintDebug;
   end
   else
   begin
@@ -477,7 +478,7 @@ begin
 
       result := result and Edge.CheckIntegrity;
     end;
-
+  if not result then self.PrintDebug;
 end;
 
 

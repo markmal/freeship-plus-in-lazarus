@@ -1,0 +1,199 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: freefilepreviewdialog.hintdblclicktofitsize
+msgid "DblClick to fit size"
+msgstr ""
+
+#: freefilepreviewdialog.hintdblclicktofullsize
+msgctxt "freefilepreviewdialog.hintdblclicktofullsize"
+msgid "DblClick to full size"
+msgstr ""
+
+#: freefilepreviewdialog.statusfailedtorename
+msgid "Failed to rename \"%s\" to \"%s\""
+msgstr ""
+
+#: freefilepreviewdialog.statusnamealreadyexists
+msgid "Name \"%s\" already exists"
+msgstr ""
+
+#: freefilepreviewdialog.statuswrongname
+msgid "Wrong name \"%s\""
+msgstr ""
+
+#: tform1.button1.caption
+msgctxt "tform1.button1.caption"
+msgid "Open"
+msgstr ""
+
+#: tform1.button2.caption
+msgid "Save"
+msgstr ""
+
+#: tform1.button3.caption
+msgid "Button3"
+msgstr ""
+
+#: tform1.caption
+msgid "Form1"
+msgstr ""
+
+#: tform1.combobox1.text
+msgid "ComboBox1"
+msgstr ""
+
+#: tform1.combobox2.text
+msgid "ComboBox2"
+msgstr ""
+
+#: tform1.label1.caption
+msgid "Label1"
+msgstr ""
+
+#: tfreefilepreviewdialog.actionrefresh.caption
+msgid "ActionRefresh"
+msgstr ""
+
+#: tfreefilepreviewdialog.bitbtncancel.caption
+msgid "Cancel"
+msgstr ""
+
+#: tfreefilepreviewdialog.bitbtnopen.caption
+msgctxt "tfreefilepreviewdialog.bitbtnopen.caption"
+msgid "Open"
+msgstr ""
+
+#: tfreefilepreviewdialog.comboboxdir.text
+msgid "."
+msgstr ""
+
+#: tfreefilepreviewdialog.editname.text
+msgid "EditName"
+msgstr ""
+
+#: tfreefilepreviewdialog.labellocation.caption
+msgid "Location:"
+msgstr ""
+
+#: tfreefilepreviewdialog.labelname.caption
+msgid "Name:"
+msgstr ""
+
+#: tfreefilepreviewdialog.panel2.caption
+msgid "Panel2"
+msgstr ""
+
+#: tfreefilepreviewdialog.panel3.caption
+msgctxt "tfreefilepreviewdialog.panel3.caption"
+msgid "Panel3"
+msgstr ""
+
+#: tfreefilepreviewdialog.panel4.caption
+msgid "Panel4"
+msgstr ""
+
+#: tfreefilepreviewdialog.panel5.caption
+msgctxt "tfreefilepreviewdialog.panel5.caption"
+msgid "Panel3"
+msgstr ""
+
+#: tfreefilepreviewdialog.panel6.caption
+msgctxt "tfreefilepreviewdialog.panel6.caption"
+msgid "Panel6"
+msgstr ""
+
+#: tfreefilepreviewdialog.panel7.caption
+msgctxt "tfreefilepreviewdialog.panel7.caption"
+msgid "Panel6"
+msgstr ""
+
+#: tfreefilepreviewdialog.placesmenuitemdelete.caption
+msgctxt "tfreefilepreviewdialog.placesmenuitemdelete.caption"
+msgid "Delete"
+msgstr ""
+
+#: tfreefilepreviewdialog.placesmenuitemrename.caption
+msgctxt "tfreefilepreviewdialog.placesmenuitemrename.caption"
+msgid "Rename"
+msgstr ""
+
+#: tfreefilepreviewdialog.scrollboxpreview.hint
+msgctxt "tfreefilepreviewdialog.scrollboxpreview.hint"
+msgid "DblClick to full size"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemdelete.caption
+msgctxt "tfreefilepreviewdialog.shelllistviewitemdelete.caption"
+msgid "Delete"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemnewfolder.caption
+msgid "New Folder"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemrename.caption
+msgctxt "tfreefilepreviewdialog.shelllistviewitemrename.caption"
+msgid "Rename"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonaddplace.caption
+msgid "+"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonaddplace.hint
+msgid "Add place"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewdetails.hint
+msgid "Details"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistcompact.hint
+msgid "Icons"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlisthidden.hint
+msgid "View Hidden"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistlarge.hint
+msgid "Large Icons"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistsimple.hint
+msgid "List"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheetplaces.caption
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.caption"
+msgid "Places"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheetplaces.hint
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.hint"
+msgid "Places"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheettree.caption
+msgctxt "tfreefilepreviewdialog.tabsheettree.caption"
+msgid "Tree"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheettree.hint
+msgctxt "tfreefilepreviewdialog.tabsheettree.hint"
+msgid "Tree"
+msgstr ""
+
+#: tfreefilepreviewdialog.toolbarops.caption
+msgid "ToolBarOps"
+msgstr ""
+
+#: unit1.placehome
+msgid "Home"
+msgstr ""
+
+#: unit1.placepictures
+msgid "Pictures"
+msgstr ""
+

@@ -1,0 +1,135 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: freefilepreviewdialog.hintdblclicktofitsize
+msgid "DblClick to fit size"
+msgstr "Двойной щелчок - Уместить в размер"
+
+#: freefilepreviewdialog.hintdblclicktofullsize
+msgctxt "freefilepreviewdialog.hintdblclicktofullsize"
+msgid "DblClick to full size"
+msgstr "Двойной щелчок - Полный размер"
+
+#: freefilepreviewdialog.statusfailedtorename
+msgid "Failed to rename \"%s\" to \"%s\""
+msgstr "Ошибка переименования \"%s\" в \"%s\"
+
+#: freefilepreviewdialog.statusnamealreadyexists
+msgid "Name \"%s\" already exists"
+msgstr "Имя \"%s\" уже существует"
+
+#: freefilepreviewdialog.statuswrongname
+msgid "Wrong name \"%s\""
+msgstr "Неверное имя \"%s\""
+
+#: tfreefilepreviewdialog.actionrefresh.caption
+msgid "ActionRefresh"
+msgstr ""
+
+#: tfreefilepreviewdialog.bitbtncancel.caption
+msgid "Cancel"
+msgstr "Отменить"
+
+#: tfreefilepreviewdialog.bitbtnopen.caption
+msgctxt "tfreefilepreviewdialog.bitbtnopen.caption"
+msgid "Open"
+msgstr "Открыть"
+
+#: tfreefilepreviewdialog.labellocation.caption
+msgid "Location:"
+msgstr "Положение"
+
+#: tfreefilepreviewdialog.labelname.caption
+msgid "Name:"
+msgstr "Имя:"
+
+#: tfreefilepreviewdialog.placesmenuitemdelete.caption
+msgctxt "tfreefilepreviewdialog.placesmenuitemdelete.caption"
+msgid "Delete"
+msgstr "Удалить"
+
+#: tfreefilepreviewdialog.placesmenuitemrename.caption
+msgctxt "tfreefilepreviewdialog.placesmenuitemrename.caption"
+msgid "Rename"
+msgstr "Переименовать"
+
+#: tfreefilepreviewdialog.scrollboxpreview.hint
+msgctxt "tfreefilepreviewdialog.scrollboxpreview.hint"
+msgid "DblClick to full size"
+msgstr "Двойной щелчок - Полный размер"
+
+#: tfreefilepreviewdialog.shelllistviewitemdelete.caption
+msgctxt "tfreefilepreviewdialog.shelllistviewitemdelete.caption"
+msgid "Delete"
+msgstr "Удалить"
+
+#: tfreefilepreviewdialog.shelllistviewitemnewfolder.caption
+msgid "New Folder"
+msgstr "Новая Папка"
+
+#: tfreefilepreviewdialog.shelllistviewitemrename.caption
+msgctxt "tfreefilepreviewdialog.shelllistviewitemrename.caption"
+msgid "Rename"
+msgstr "Переименовать"
+
+#: tfreefilepreviewdialog.speedbuttonaddplace.hint
+msgid "Add place"
+msgstr "Добавить Место"
+
+#: tfreefilepreviewdialog.speedbuttonviewdetails.hint
+msgid "Details"
+msgstr "Детали"
+
+#: tfreefilepreviewdialog.speedbuttonviewlistcompact.hint
+msgid "Icons"
+msgstr "Значки"
+
+#: tfreefilepreviewdialog.speedbuttonviewlisthidden.hint
+msgid "View Hidden"
+msgstr "Показывать Скрытые"
+
+#: tfreefilepreviewdialog.speedbuttonviewlistlarge.hint
+msgid "Large Icons"
+msgstr "Большие Значки"
+
+#: tfreefilepreviewdialog.speedbuttonviewlistsimple.hint
+msgid "List"
+msgstr "Список"
+
+#: tfreefilepreviewdialog.tabsheetplaces.caption
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.caption"
+msgid "Places"
+msgstr "Места"
+
+#: tfreefilepreviewdialog.tabsheetplaces.hint
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.hint"
+msgid "Places"
+msgstr "Места"
+
+#: tfreefilepreviewdialog.tabsheettree.caption
+msgctxt "tfreefilepreviewdialog.tabsheettree.caption"
+msgid "Tree"
+msgstr "Дерево"
+
+#: tfreefilepreviewdialog.tabsheettree.hint
+msgctxt "tfreefilepreviewdialog.tabsheettree.hint"
+msgid "Tree"
+msgstr "Дерево"
+
+#: unit1.placehome
+msgid "Home"
+msgstr "Домашний"
+
+#: unit1.placepictures
+msgid "Pictures"
+msgstr "Картинки"

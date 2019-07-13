@@ -1,0 +1,254 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: freefilepreviewdialog.hintdblclicktofitsize
+msgid "DblClick to fit size"
+msgstr ""
+
+#: freefilepreviewdialog.hintdblclicktofullsize
+msgctxt "freefilepreviewdialog.hintdblclicktofullsize"
+msgid "DblClick to full size"
+msgstr ""
+
+#: freefilepreviewdialog.statusfailedtorename
+msgid "Failed to rename \"%s\" to \"%s\""
+msgstr ""
+
+#: freefilepreviewdialog.statusnamealreadyexists
+msgid "Name \"%s\" already exists"
+msgstr ""
+
+#: freefilepreviewdialog.statuswrongname
+msgid "Wrong name \"%s\""
+msgstr ""
+
+#: freefilepreviewdialog.unableopenfilemsg
+msgid "Unable open file \"%s\""
+msgstr ""
+
+#: tform1.button1.caption
+msgctxt "tform1.button1.caption"
+msgid "Open"
+msgstr ""
+
+#: tform1.button2.caption
+msgid "Save"
+msgstr ""
+
+#: tform1.button3.caption
+msgid "OpenDialog1"
+msgstr ""
+
+#: tform1.button4.caption
+msgid "OpenDialog"
+msgstr ""
+
+#: tform1.button5.caption
+msgid "ScrollPanel.showSelected"
+msgstr ""
+
+#: tform1.button6.caption
+msgctxt "tform1.button6.caption"
+msgid "Form2"
+msgstr ""
+
+#: tform1.caption
+msgid "Form1"
+msgstr ""
+
+#: tform1.combobox1.text
+msgid "ComboBox1"
+msgstr ""
+
+#: tform1.edit1.text
+msgid "/home/mark/MyProjects/Tst/LazQtDialog/locale/"
+msgstr ""
+
+#: tform1.label1.caption
+msgctxt "tform1.label1.caption"
+msgid "Label1"
+msgstr ""
+
+#: tform1.panel2.caption
+msgctxt "tform1.panel2.caption"
+msgid "Panel2"
+msgstr ""
+
+#: tform1.speedbutton4.caption
+msgctxt "tform1.speedbutton4.caption"
+msgid "TSpidButton"
+msgstr ""
+
+#: tform1.speedbutton5.caption
+msgctxt "tform1.speedbutton5.caption"
+msgid "TSpidButton"
+msgstr ""
+
+#: tform1.speedbutton7.caption
+msgid ">"
+msgstr ""
+
+#: tform2.bitbtn1.caption
+msgid "Open another"
+msgstr ""
+
+#: tform2.caption
+msgctxt "tform2.caption"
+msgid "Form2"
+msgstr ""
+
+#: tform2.flowpanel1.caption
+msgid "FlowPanel1"
+msgstr ""
+
+#: tform2.label1.caption
+msgctxt "tform2.label1.caption"
+msgid ""
+"Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,\n"
+"  StdCtrls\n"
+msgstr ""
+
+#: tform2.label2.caption
+msgctxt "tform2.label2.caption"
+msgid "Label1"
+msgstr ""
+
+#: tform2.panel1.caption
+msgid "Recent projects"
+msgstr ""
+
+#: tform2.panel2.caption
+msgctxt "tform2.panel2.caption"
+msgid "Panel2"
+msgstr ""
+
+#: tform2.panel3.caption
+msgid "Panel3"
+msgstr ""
+
+#: tfreefilepreviewdialog.actionrefresh.caption
+msgid "ActionRefresh"
+msgstr ""
+
+#: tfreefilepreviewdialog.bitbtncancel.caption
+msgid "Cancel"
+msgstr ""
+
+#: tfreefilepreviewdialog.bitbtnopen.caption
+msgctxt "tfreefilepreviewdialog.bitbtnopen.caption"
+msgid "Open"
+msgstr ""
+
+#: tfreefilepreviewdialog.comboboxdir.text
+msgid "."
+msgstr ""
+
+#: tfreefilepreviewdialog.editname.text
+msgid "EditName"
+msgstr ""
+
+#: tfreefilepreviewdialog.fitsize.caption
+msgid "Fit Size"
+msgstr ""
+
+#: tfreefilepreviewdialog.fullsize.caption
+msgid "Full Size"
+msgstr ""
+
+#: tfreefilepreviewdialog.labellocation.caption
+msgid "Location:"
+msgstr ""
+
+#: tfreefilepreviewdialog.labelname.caption
+msgid "Name:"
+msgstr ""
+
+#: tfreefilepreviewdialog.placesmenuitemdelete.caption
+msgctxt "tfreefilepreviewdialog.placesmenuitemdelete.caption"
+msgid "Delete"
+msgstr ""
+
+#: tfreefilepreviewdialog.placesmenuitemrename.caption
+msgctxt "tfreefilepreviewdialog.placesmenuitemrename.caption"
+msgid "Rename"
+msgstr ""
+
+#: tfreefilepreviewdialog.properties.caption
+msgid "Properties"
+msgstr ""
+
+#: tfreefilepreviewdialog.scrollboxpreview.hint
+msgctxt "tfreefilepreviewdialog.scrollboxpreview.hint"
+msgid "DblClick to full size"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemdelete.caption
+msgctxt "tfreefilepreviewdialog.shelllistviewitemdelete.caption"
+msgid "Delete"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemnewfolder.caption
+msgid "New Folder"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemrename.caption
+msgctxt "tfreefilepreviewdialog.shelllistviewitemrename.caption"
+msgid "Rename"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonaddplace.caption
+msgid "+"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonaddplace.hint
+msgid "Add place"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewdetails.hint
+msgid "Details"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistcompact.hint
+msgid "Icons"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlisthidden.hint
+msgid "View Hidden"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistlarge.hint
+msgid "Large Icons"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistsimple.hint
+msgid "List"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheetplaces.caption
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.caption"
+msgid "Places"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheetplaces.hint
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.hint"
+msgid "Places"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheettree.caption
+msgctxt "tfreefilepreviewdialog.tabsheettree.caption"
+msgid "Tree"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheettree.hint
+msgctxt "tfreefilepreviewdialog.tabsheettree.hint"
+msgid "Tree"
+msgstr ""
+
+#: unit1.placehome
+msgid "Home"
+msgstr ""
+
+#: unit1.placepictures
+msgid "Pictures"
+msgstr ""
+

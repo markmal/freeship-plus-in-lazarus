@@ -3999,8 +3999,8 @@ begin
       //if not self.CheckIntegrity
         //then ShowMessage('Bfore Subdivide Model integrity corruption');
       Subdivide;
-      if not self.CheckIntegrity
-        then ShowMessage('After Subdivide Model integrity corruption');
+      //if not self.CheckIntegrity
+        //then ShowMessage('After Subdivide Model integrity corruption');
     end;
 
     {//cleanup

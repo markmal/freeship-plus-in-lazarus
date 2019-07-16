@@ -48,9 +48,11 @@ uses
      Math,
      FreeTypes,
      FreeGeometry,
-     StdCtrls, Buttons, ExtCtrls, Spin, FileCtrl;
+     StdCtrls, Buttons, ExtCtrls, Spin, FileCtrl, Types;
 
 type
+
+ TEntryMethod = ( emNone, emTyping, emArrowKeys, emMouse, emPaste );
 
 { TFreeControlPointForm }
 
@@ -92,6 +94,12 @@ type
     procedure EditXEditingDone(Sender: TObject);
     procedure EditEnter(Sender: TObject);
     procedure EditExit(Sender: TObject);
+    procedure EditMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure EditMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+    procedure EditKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EditKeyPress(Sender: TObject; var Key: char);
     procedure EditYChange(Sender: TObject);
     procedure EditYEditingDone(Sender: TObject);
     procedure EditZChange(Sender: TObject);
@@ -115,7 +123,8 @@ type
       FSkipCheckbox1OnClick: boolean;
       FActiveControlPointChanging: boolean;
       FilterComboBoxLinearConstraintAPopulating, FilterComboBoxLinearConstraintBPopulating : boolean;
-      EnteredControl:TControl;
+      EnteredControl: TControl;
+      EntryMethod: TEntryMethod;
       procedure FSetActiveControlPoint(Val:TFreeSubdivisionControlPoint);
       procedure FSetActiveControlPointCorner(isCorner: boolean);
    public   { Public declarations }
@@ -383,17 +392,18 @@ begin
    if EnteredControl <> EditX then exit;
    if not(EditX.Focused and EditX.Enabled and not EditX.ReadOnly) then exit;
    if ActiveControlPoint<>nil then
-   begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointMove,True);
-      P:=ActiveControlPoint.Coordinate;
-      //P.X:=P.X+TFreeShip(FreeShip).Visibility.CursorIncrement;
-      P.X:=EditX.Value;
-      ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
-      TFreeShip(FreeShip).FileChanged:=True;
-      TFreeShip(FreeShip).Redraw;
-      //ActiveControlPoint:=ActiveControlPoint;
-   end;
+     if EntryMethod <> emTyping then
+     begin
+        TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointMove,True);
+        P:=ActiveControlPoint.Coordinate;
+        //P.X:=P.X+TFreeShip(FreeShip).Visibility.CursorIncrement;
+        P.X:=EditX.Value;
+        ActiveControlPoint.Coordinate:=P;
+        TFreeShip(FreeShip).Build:=False;
+        TFreeShip(FreeShip).FileChanged:=True;
+        TFreeShip(FreeShip).Redraw;
+        //ActiveControlPoint:=ActiveControlPoint;
+     end;
 end;
 
 procedure TFreeControlPointForm.EditYChange(Sender: TObject);
@@ -403,37 +413,39 @@ begin
    if EnteredControl <> EditY then exit;
    if not(EditY.Focused and EditY.Enabled and not EditY.ReadOnly) then exit;
    if ActiveControlPoint<>nil then
-   begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointMove,True);
-      P:=ActiveControlPoint.Coordinate;
-      //P.Y:=P.Y+TFreeShip(FreeShip).Visibility.CursorIncrement;
-      P.Y:=EditY.Value;
-      ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
-      TFreeShip(FreeShip).FileChanged:=True;
-      TFreeShip(FreeShip).Redraw;
-      ///ActiveControlPoint:=ActiveControlPoint;
-   end;
+     if EntryMethod <> emTyping then
+     begin
+        TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointMove,True);
+        P:=ActiveControlPoint.Coordinate;
+        //P.Y:=P.Y+TFreeShip(FreeShip).Visibility.CursorIncrement;
+        P.Y:=EditY.Value;
+        ActiveControlPoint.Coordinate:=P;
+        TFreeShip(FreeShip).Build:=False;
+        TFreeShip(FreeShip).FileChanged:=True;
+        TFreeShip(FreeShip).Redraw;
+        ///ActiveControlPoint:=ActiveControlPoint;
+     end;
 end;
 
 procedure TFreeControlPointForm.EditZChange(Sender: TObject);
 var P   : T3DCoordinate;
 begin
    if FActiveControlPointChanging then exit;
-   if EnteredControl <> EditY then exit;
+   if EnteredControl <> EditZ then exit;
    if not(EditZ.Focused and EditZ.Enabled and not EditZ.ReadOnly) then exit;
    if ActiveControlPoint<>nil then
-   begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointMove,True);
-      P:=ActiveControlPoint.Coordinate;
-      //P.Z:=P.Z+TFreeShip(FreeShip).Visibility.CursorIncrement;
-      P.Z:=EditZ.Value;
-      ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
-      TFreeShip(FreeShip).FileChanged:=True;
-      TFreeShip(FreeShip).Redraw;
-      //ActiveControlPoint:=ActiveControlPoint;
-   end;
+     if EntryMethod <> emTyping then
+     begin
+        TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointMove,True);
+        P:=ActiveControlPoint.Coordinate;
+        //P.Z:=P.Z+TFreeShip(FreeShip).Visibility.CursorIncrement;
+        P.Z:=EditZ.Value;
+        ActiveControlPoint.Coordinate:=P;
+        TFreeShip(FreeShip).Build:=False;
+        TFreeShip(FreeShip).FileChanged:=True;
+        TFreeShip(FreeShip).Redraw;
+        //ActiveControlPoint:=ActiveControlPoint;
+     end;
 end;
 
 procedure TFreeControlPointForm.EditXEditingDone(Sender: TObject);
@@ -445,21 +457,24 @@ begin
    saved := false;
    if Self.FActiveControlPointChanging then exit;
    if not Self.Active then exit;
-   if not Self.Focused then exit;
+   //if not Self.Focused then exit;
+   if EnteredControl <> EditX then exit;
 
    if ActiveControlPoint<>nil then
    begin
 // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
-      Val := ConvertCoordinate(EditX.Text, P.X);
-      if (abs(P.X-Val)>1e-4) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
+      //Val := ConvertCoordinate(EditX.Text, P.X);
+      Val := EditX.Value;
+      if (abs(P.X-Val)>1e-5) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
 // SAP change all selected points
          I := 1;
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
             P := TFreeShip(FreeShip).SelectedControlPoint[I-1].Coordinate;
-            Val:=ConvertCoordinate(EditX.Text, P.X);
+            //Val:=ConvertCoordinate(EditX.Text, P.X);
+            Val := EditX.Value;
             if abs(P.X-Val)>1e-5 then
             begin
                if not saved then
@@ -476,7 +491,8 @@ begin
          if EditX.Text<>'' then
          begin
             P:=ActiveControlPoint.Coordinate;
-            Val:= ConvertCoordinate(EditX.Text, P.X);
+            //Val:= ConvertCoordinate(EditX.Text, P.X);
+            Val := EditX.Value;
          end
          else Val:= 0;
          EditX.Text:=Truncate(Val,4); // update the field in case of input errors
@@ -495,11 +511,45 @@ end;{TFreeControlPointForm.Edit1Exit}
 procedure TFreeControlPointForm.EditEnter(Sender: TObject);
 begin
   EnteredControl := Sender as TControl;
+  EntryMethod := emNone;
 end;
 
 procedure TFreeControlPointForm.EditExit(Sender: TObject);
 begin
   EnteredControl := nil;
+  EntryMethod := emNone;
+end;
+
+procedure TFreeControlPointForm.EditMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  EntryMethod := emMouse;
+end;
+
+procedure TFreeControlPointForm.EditMouseWheel(Sender: TObject;
+  Shift: TShiftState; WheelDelta: Integer; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  EntryMethod := emMouse;
+end;
+
+procedure TFreeControlPointForm.EditKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  EntryMethod := emTyping;
+  if ((Key=38) or (Key=40) and ([] = Shift)) then
+   EntryMethod := emArrowKeys;
+  if ((Key=86) and ( ssCtrl in Shift)) then // Ctrl-V
+   EntryMethod := emPaste;
+  if ((Key=45) and ( ssShift in Shift)) then // Shift-Ins
+   EntryMethod := emPaste;
+end;
+
+procedure TFreeControlPointForm.EditKeyPress(Sender: TObject; var Key: char);
+begin
+  if ((Key >= '0') and (Key <= '9'))
+    or (Key=DecimalSeparator) or (Key='.') or (Key=',') or (Key='+') or (Key='-')
+    then EntryMethod := emTyping;
 end;
 
 procedure TFreeControlPointForm.EditYEditingDone(Sender: TObject);
@@ -511,21 +561,24 @@ begin
    saved := false;
    if Self.FActiveControlPointChanging then exit;
    if not Self.Active then exit;
-   if not Self.Focused then exit;
+   //if not Self.Focused then exit;
+   if EnteredControl <> EditY then exit;
 
    if ActiveControlPoint<>nil then
    begin
 // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
-      Val := ConvertCoordinate(EditY.Text, P.Y);
-      if (abs(P.Y-Val)>1e-4) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
+      //Val := ConvertCoordinate(EditY.Text, P.Y);
+      Val := EditY.Value;
+      if (abs(P.Y-Val)>1e-5) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
 // SAP change all selected points
         I := 1;
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
             P := TFreeShip(FreeShip).SelectedControlPoint[I-1].Coordinate;
-            Val:=ConvertCoordinate(EditY.Text, P.Y);
+            //Val:=ConvertCoordinate(EditY.Text, P.Y);
+            Val := EditY.Value;
             if abs(P.Y-Val)>1e-5 then
             begin
                if not saved then
@@ -543,7 +596,8 @@ begin
          if EditY.Text<>'' then
          begin
             P:=ActiveControlPoint.Coordinate;
-            Val:= ConvertCoordinate(EditY.Text, P.Y);
+            //Val:= ConvertCoordinate(EditY.Text, P.Y);
+            Val := EditY.Value;
          end
          else Val:= 0;
          EditY.Text:=Truncate(Val,4); // update the field in case of input errors
@@ -568,21 +622,24 @@ begin
    saved := false;
    if Self.FActiveControlPointChanging then exit;
    if not Self.Active then exit;
-   if not Self.Focused then exit;
+   //if not Self.Focused then exit;
+   if EnteredControl <> EditZ then exit;
 
    if ActiveControlPoint<>nil then
    begin
 // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
-      Val := ConvertCoordinate(EditZ.Text, P.Z);
-      if (abs(P.Z-Val)>1e-4) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
+      //Val := ConvertCoordinate(EditZ.Text, P.Z);
+      Val := EditZ.Value;
+      if (abs(P.Z-Val)>1e-5) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
 // SAP change all selected points
         I := 1;
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
             P := TFreeShip(FreeShip).SelectedControlPoint[I-1].Coordinate;
-            Val:=ConvertCoordinate(EditZ.Text, P.Z);
+            //Val:=ConvertCoordinate(EditZ.Text, P.Z);
+            Val := EditZ.Value;
             if abs(P.Z-Val)>1e-5 then
             begin
                if not saved then
@@ -600,7 +657,8 @@ begin
          if EditZ.Text<>'' then
          begin
             P:=ActiveControlPoint.Coordinate;
-            Val:=ConvertCoordinate(EditZ.Text, P.Z);
+            //Val:=ConvertCoordinate(EditZ.Text, P.Z);
+            Val := EditZ.Value;
          end
          else Val:= 0;
          EditZ.Text:=Truncate(Val,4); // update the field in case of input errors

@@ -26,6 +26,7 @@ TLeftSortedList = class(specialize TFPGObjectList<TControl>)
 end;
 }
 procedure ArrangeRibbonPanel(RibbonPanel: TPanel);
+procedure ArrangeRibbonPanel2(RibbonPanel: TPanel);
 
 {
 procedure AutoSetToolbarHeight(tlbar:TToolBar);
@@ -251,6 +252,42 @@ begin
   RibbonPanel.ReAlign;
 end;
 
+procedure ArrangeRibbonPanel2(RibbonPanel: TPanel);
+var i:integer; fpR:real; acW, pcW, mW:integer;
+
+  function getAllControlsWidth(W:TWinControl):integer;
+  var i:integer;
+  begin
+    result:=0;
+    for i:=0 to W.ControlCount-1 do
+      inc(result, W.Controls[i].Width);
+  end;
+
+  procedure adjustPanelWidth(pnl:TWinControl; maxW:integer);
+  var i,dw,acw:integer;
+  begin
+    dw := pnl.Width - pnl.ClientWidth;
+    acw:=4;
+    for i:=0 to pnl.ControlCount-1 do
+      if (acw + pnl.Controls[i].Width) <= maxW then
+         inc(acw, pnl.Controls[i].Width);
+    pnl.Constraints.MinWidth := acw;
+    //pnl.Constraints.MaxWidth := acw;
+  end;
+
+begin
+  acW:=0;
+  for i:=0 to RibbonPanel.ControlCount-1 do
+    inc(acW, getAllControlsWidth(RibbonPanel.Controls[i] as TWinControl));
+
+  for i:=0 to RibbonPanel.ControlCount-1 do
+    begin
+    pcW := getAllControlsWidth(RibbonPanel.Controls[i] as TWinControl);
+    fpR := pcW / acW;
+    mW := round(RibbonPanel.ClientWidth * fpR);
+    adjustPanelWidth(RibbonPanel.Controls[i] as TWinControl, mW);
+    end;
+end;
 
 end.
 

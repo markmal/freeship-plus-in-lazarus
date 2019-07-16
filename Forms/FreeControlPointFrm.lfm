@@ -81,6 +81,10 @@ object FreeControlPointForm: TFreeControlPointForm
       OnEditingDone = EditXEditingDone
       OnEnter = EditEnter
       OnExit = EditExit
+      OnKeyDown = EditKeyDown
+      OnKeyPress = EditKeyPress
+      OnMouseDown = EditMouseDown
+      OnMouseWheel = EditMouseWheel
       ParentFont = False
       TabOrder = 0
       Value = 0
@@ -98,6 +102,12 @@ object FreeControlPointForm: TFreeControlPointForm
       MinValue = 0
       OnChange = EditYChange
       OnEditingDone = EditYEditingDone
+      OnEnter = EditEnter
+      OnExit = EditExit
+      OnKeyDown = EditKeyDown
+      OnKeyPress = EditKeyPress
+      OnMouseDown = EditMouseDown
+      OnMouseWheel = EditMouseWheel
       ParentFont = False
       TabOrder = 1
       Value = 0
@@ -115,6 +125,12 @@ object FreeControlPointForm: TFreeControlPointForm
       MinValue = 0
       OnChange = EditZChange
       OnEditingDone = EditZEditingDone
+      OnEnter = EditEnter
+      OnExit = EditExit
+      OnKeyDown = EditKeyDown
+      OnKeyPress = EditKeyPress
+      OnMouseDown = EditMouseDown
+      OnMouseWheel = EditMouseWheel
       ParentFont = False
       TabOrder = 2
       Value = 0

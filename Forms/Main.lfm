@@ -1373,8 +1373,13 @@ object MainForm: TMainForm
     end
     object AddPointToGroup: TAction
       Category = 'Point'
-      Caption = 'AddPointToGroup'
+      Caption = 'Add Point To Group'
       OnExecute = AddPointToGroupExecute
+    end
+    object PointAlighnPermanently: TAction
+      Category = 'Point'
+      Caption = 'Point Alighn Permanently'
+      OnExecute = PointAlighnPermanentlyExecute
     end
   end
   object MenuImages: TImageList
@@ -3492,6 +3497,9 @@ object MainForm: TMainForm
       end
       object Projectline1: TMenuItem
         Action = PointAlign
+      end
+      object MenuItem1: TMenuItem
+        Action = PointAlighnPermanently
       end
       object PointCollapse1: TMenuItem
         Action = PointCollapse

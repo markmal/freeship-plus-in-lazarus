@@ -404,30 +404,58 @@ object FreeControlPointForm: TFreeControlPointForm
       ChildSizing.TopBottomSpacing = 6
       ChildSizing.HorizontalSpacing = 6
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-      ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ChildSizing.ControlsPerLine = 2
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 1
       ClientHeight = 37
       ClientWidth = 326
       ParentFont = False
       TabOrder = 0
-      object FilterComboBoxLinearConstraintA: TFilterComboBox
+      object EditLinearConstraintA: TEdit
         Left = 10
         Height = 25
         Top = 6
-        Width = 150
-        ParentFont = False
+        Width = 80
+        ReadOnly = True
         TabOrder = 0
+      end
+      object EditLinearConstraintB: TEdit
+        Left = 96
+        Height = 25
+        Top = 6
+        Width = 80
+        ReadOnly = True
+        TabOrder = 1
+      end
+      object SpeedButtonRemoveLinearConstraint: TSpeedButton
+        Left = 182
+        Height = 25
+        Hint = 'Remove linear constraint'
+        Top = 6
+        Width = 24
+        Constraints.MinWidth = 24
+        Caption = 'x'
+        OnClick = SpeedButtonRemoveLinearConstraintClick
+      end
+      object FilterComboBoxLinearConstraintA: TFilterComboBox
+        Left = 212
+        Height = 25
+        Top = 6
+        Width = 100
+        ParentFont = False
+        TabOrder = 2
+        Visible = False
         OnChange = FilterComboBoxLinearConstraintAChange
         OnEnter = EditEnter
         OnExit = EditExit
       end
       object FilterComboBoxLinearConstraintB: TFilterComboBox
-        Left = 166
+        Left = 318
         Height = 25
         Top = 6
-        Width = 150
+        Width = 100
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 3
+        Visible = False
         OnChange = FilterComboBoxLinearConstraintBChange
         OnEnter = EditEnter
         OnExit = EditExit

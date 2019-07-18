@@ -94,7 +94,9 @@ const
   FontheightFactor = 140;
 // used for calculating fontheight
 
-resourcestring rsPointMove = 'point move';
+resourcestring
+  rsPointMove = 'point move';
+  rsPointLinearConstraintChanged = 'ControlPoint Linear Constraint Changed';
 
 type
   TFreeShip = class;                                                               // to be declared later
@@ -742,6 +744,9 @@ type
     // Add a new point to the model with no edges/faces attached
     procedure Point_ProjectStraightLine;
     // Project all selected points onto a straight line through the first and last selected points
+    procedure Point_ProjectStraightLinePermanentConstraint;
+      // Project all selected points onto a straight line through the first and last selected points
+      // setting first and last selected points as linear constraint for all other selected points.
     procedure Point_Unlock;
     // Unlocks all selected locked points
     procedure Point_UnlockAll;
@@ -1336,6 +1341,7 @@ type
     procedure SaveControlCurveNames(Destination:TFreeFileBuffer);
     procedure SaveControlPointLinearConstraints(Destination:TFreeFileBuffer);
     procedure SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
+    procedure SelectPointsInFrame(Viewport: TfreeViewport; rect:TRect);
     procedure SubmergedHullExtents(Wlplane: T3DPlane; var Min, Max: T3DCoordinate);
     procedure KeyUp(Viewport: TfreeViewport; var Key: word; Shift: TShiftState);
     procedure MouseDown(Viewport: TFreeViewport; Button: TMouseButton;

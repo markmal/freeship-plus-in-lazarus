@@ -2801,6 +2801,38 @@ begin
       Visibility.CursorIncrement := Visibility.CursorIncrement / 1.1;
 end;{TFreeShip.KeyUp}
 
+procedure TFreeShip.SelectPointsInFrame(Viewport: TFreeViewport; rect:TRect);
+var I, J: integer;
+  Point: TFreeSubdivisionControlPoint;
+  P2D: TPoint;
+begin
+  case EditMode of
+    emSelectItems:
+    begin
+      I := 0;
+      while I < Surface.NumberOfControlPoints do
+      begin
+        if Surface.ControlPoint[I].Visible then
+        begin
+          Point := Surface.ControlPoint[I];
+          P2D := Viewport.Project(Point.Coordinate);
+          if (P2D.x >= rect.Left) and (P2D.x <= rect.Right)
+             and (P2D.y >= rect.Top) and (P2D.y <= rect.Bottom)
+          then
+            self.Surface.SelectedControlPoints.Add(Point);
+            //ItemSelected := True;
+            // Draw the selected point to all viewports
+            for J := 1 to NumberOfViewports do
+              if self.Viewport[J - 1].ViewportMode = vmWireframe then
+                Point.Draw(self.Viewport[J - 1]);
+        end;
+        Inc(I);
+      end;
+    end;
+  end;
+end;
+
+
 procedure TFreeShip.MouseDown(Viewport: TFreeViewport; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer; var ItemSelected: boolean);
 var
@@ -3022,6 +3054,7 @@ begin
     Viewport.SetFocus;
 end;{TFreeShip.MouseDown}
 
+
 procedure TFreeShip.MouseMove(Viewport: TFreeViewport; Shift: TShiftState;
   X, Y: integer);
 var
@@ -3107,8 +3140,8 @@ begin
               end;
 
           // point can be linear constraint vertex, adjust all related points to it
-          if Point.Name > '' then
-             AdjustRelatedPointsToLinearConstraint(Viewport, Point);
+          //if Point.Name > '' then
+          AdjustRelatedPointsToLinearConstraint(Viewport, Point);
 
           ActiveControlPoint := Point;
           Build := False;

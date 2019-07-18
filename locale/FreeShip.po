@@ -19,10 +19,6 @@ msgstr ""
 msgid "Name Is Not Unique"
 msgstr ""
 
-#: freecontrolpointfrm.rspointlinearconstraintchanged
-msgid "ControlPoint Linear Constraint Changed"
-msgstr ""
-
 #: freecontrolpointfrm.rspointnamechanged
 msgid "Point Name Changed"
 msgstr ""
@@ -118,6 +114,11 @@ msgstr ""
 
 #: freeshipunit.filedialogplacemyships
 msgid "My Ships"
+msgstr ""
+
+#: freeshipunit.rspointlinearconstraintchanged
+msgctxt "freeshipunit.rspointlinearconstraintchanged"
+msgid "ControlPoint Linear Constraint Changed"
 msgstr ""
 
 #: freeshipunit.rspointmove
@@ -573,6 +574,16 @@ msgstr ""
 #: tfreecontrolpointform.labelz.caption
 msgctxt "tfreecontrolpointform.labelz.caption"
 msgid "Z-coord."
+msgstr ""
+
+#: tfreecontrolpointform.speedbuttonremovelinearconstraint.caption
+msgctxt "tfreecontrolpointform.speedbuttonremovelinearconstraint.caption"
+msgid "x"
+msgstr ""
+
+#: tfreecontrolpointform.speedbuttonremovelinearconstraint.hint
+msgctxt "tfreecontrolpointform.speedbuttonremovelinearconstraint.hint"
+msgid "Remove linear constraint"
 msgstr ""
 
 #: tfreecrosscurvesdialog.button1.caption
@@ -8116,7 +8127,7 @@ msgid "Add a new controlpoint to the model."
 msgstr ""
 
 #: tmainform.addpointtogroup.caption
-msgid "AddPointToGroup"
+msgid "Add Point To Group"
 msgstr ""
 
 #: tmainform.bothsides.caption
@@ -8662,6 +8673,10 @@ msgstr ""
 
 #: tmainform.point1.caption
 msgid "Point"
+msgstr ""
+
+#: tmainform.pointalighnpermanently.caption
+msgid "Point Alighn Permanently"
 msgstr ""
 
 #: tmainform.pointalign.caption

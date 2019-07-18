@@ -9286,6 +9286,58 @@ begin
   end;
 end;{TFreeEdit.Point_ProjectStraightLine}
 
+// Project all selected points onto a straight line through the first and last selected points
+procedure TFreeEdit.Point_ProjectStraightLinePermanentConstraint;
+var
+  I: integer;
+  NLocked: integer;
+  NChanged: integer;
+  Point: TFreeSubdivisionControlPoint;
+  P1, P2: TFreeSubdivisionControlPoint;
+  P: T3DCoordinate;
+  vUndo: TFreeUndoObject;
+begin
+  if Owner.NumberOfSelectedControlPoints > 2 then
+  begin
+    // Determine if the number of points to be moved does not conatin locked controlpoints only
+    // however the first and last points (determining the linesegment) are allowed to be locked
+    NLocked := 0;
+    for I := 2 to Owner.NumberOfSelectedControlPoints - 1 do
+      if Owner.SelectedControlPoint[I - 1].Locked then
+        Inc(NLocked);
+    // Number of lovked points must be smaller then NumberOfSelectedControlPoints-2
+    if NLocked < Owner.NumberOfSelectedControlPoints - 2 then
+    begin
+      P1 := Owner.SelectedControlPoint[0];
+      P2 := Owner.SelectedControlPoint[Owner.NumberOfSelectedControlPoints - 1];
+      vUndo := CreateUndoObject(rsPointLinearConstraintChanged, False);
+      NChanged := 0;
+      for I := 2 to Owner.NumberOfSelectedControlPoints - 1 do
+      begin
+        Point := Owner.SelectedControlPoint[I - 1];
+        if not Point.Locked then
+        begin
+          Point.LinearConstraintPointA := P1;
+          Point.LinearConstraintPointB := P2;
+          Point.AdjustToLinearConstraint(self.Owner.GetFocusedViewport);
+          Inc(NChanged);
+        end;
+      end;
+      if NChanged > 0 then
+      begin
+        vUndo.Accept;
+        Owner.FileChanged := True;
+        Owner.Redraw;
+      end
+      else
+        vUndo.Delete;
+    end
+    else
+      MessageDlg(Userstring(172) + '.', mtError, [mbOK], 0);
+  end;
+end;{TFreeEdit.Point_ProjectStraightLine}
+
+
 // Deselect all selected items at once
 procedure TFreeEdit.Selection_Clear;
 begin

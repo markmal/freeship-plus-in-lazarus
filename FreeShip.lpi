@@ -29,11 +29,11 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
-      <MinorVersionNr Value="3"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="198"/>
-      <Attributes pvaDebug="True" pvaPreRelease="True"/>
-      <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="3.6"/>
+      <MinorVersionNr Value="4"/>
+      <RevisionNr Value="1"/>
+      <BuildNr Value="201"/>
+      <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
+      <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
     <MacroValues Count="1">
       <Macro1 Name="LCLWidgetType" Value="gtk2"/>

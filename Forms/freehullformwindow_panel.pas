@@ -641,6 +641,10 @@ begin
    if Viewport.ViewportMode=vmWireframe
       then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
    FAllowPanOrZoom:=not select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
+
+   if (Shift = [ssLeft,ssCtrl]) then
+      Viewport.SelectionFrameActive:=true;
+
 end;{TFreeHullWindow.ViewportMouseDown}
 
 procedure TFreeHullWindow.ViewportMouseMove(Sender: TObject;Shift: TShiftState; X, Y: Integer);
@@ -672,7 +676,7 @@ begin
       Caption:=Str;
    end;
                          
-   if (ssLeft in Shift) and (FAllowPanOrZoom) then
+   if (Shift = [ssLeft]) and (FAllowPanOrZoom) then
    begin
       // Zoom in or zoom out
       if abs(FInitialPosition.Y-Y)>4 then
@@ -687,7 +691,7 @@ begin
          FInitialPosition.X:=X;
          FInitialPosition.Y:=Y;
       end;
-   end else if (ssRight in Shift) and (FAllowPanOrZoom) then
+   end else if (Shift = [ssRight]) and (FAllowPanOrZoom) then
    begin
       // Pan the window left, right, top or bottom
       if (abs(FInitialPosition.X-X)>4) or (abs(FInitialPosition.Y-Y)>4)  then
@@ -700,6 +704,15 @@ begin
          FInitialPosition.Y:=Y;
       end;
    end
+   else if (Shift = [ssLeft,ssCtrl]) then
+    begin
+       // Draw selection frame
+       if (abs(FInitialPosition.X-X)>4) or (abs(FInitialPosition.Y-Y)>4)  then
+       begin
+          Viewport.SelectionFrameRect := Rect(FInitialPosition.X,FInitialPosition.Y, X,Y);
+          //Viewport.Rectangle(FInitialPosition.X,FInitialPosition.Y, X,Y);
+       end;
+    end
    else
      if Assigned(FFreeShip) then
        FFreeShip.MouseMove(Viewport,Shift,X,Y);
@@ -725,6 +738,11 @@ begin
    end;
    // Reset the pan/zoom flag
    FAllowPanOrZoom:=True;
+   if Viewport.SelectionFrameActive then
+     begin
+     Freeship.SelectPointsInFrame(Viewport, Viewport.SelectionFrameRect);
+     Viewport.SelectionFrameActive:=false;
+     end;
    Freeship.MouseUp(Viewport,Shift,X,Y);
 end;{TFreeHullWindow.ViewportMouseUp}
 

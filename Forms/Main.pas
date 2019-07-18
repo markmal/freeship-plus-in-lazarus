@@ -87,6 +87,7 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     PointAlighnPermanently: TAction;
      AddPointToGroup: TAction;
      FontDialog1: TFontDialog;
      HelpAction: THelpAction;
@@ -98,6 +99,7 @@ type
      LabelUndoMemory: TLabel;
      MainClientPanel: TPanel;
      AddControlPointToGroup: TMenuItem;
+     MenuItem1: TMenuItem;
      StatusPanel5: TPanel;
      PanelActiveLayerColor: TPanel;
      PanelMain: TPanel;
@@ -450,6 +452,7 @@ type
     procedure ExitProgramExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MainClientPanelClick(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure PanelMainResize(Sender: TObject);
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
@@ -561,6 +564,7 @@ type
     procedure FreeShipChangeCursorIncrement(Sender: TObject);
     procedure StatusPanel3Click(Sender: TObject);
     procedure PointAlignExecute(Sender: TObject);
+    procedure PointAlighnPermanentlyExecute(Sender: TObject);
     procedure ImportMichletWavesExecute(Sender: TObject);
     procedure ShowHydrostaticsExecute(Sender: TObject);
     procedure MirrorFaceExecute(Sender: TObject);
@@ -1548,6 +1552,11 @@ begin
 end;{TMainForm.FormShow}
 
 procedure TMainForm.MainClientPanelClick(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.MenuItem1Click(Sender: TObject);
 begin
 
 end;
@@ -2688,6 +2697,12 @@ end;{TMainForm.Panel3Click}
 procedure TMainForm.PointAlignExecute(Sender: TObject);
 begin
    Freeship.Edit.Point_ProjectStraightLine;
+   UpdateMenu;
+end;{TMainForm.PointProjectLineExecute}
+
+procedure TMainForm.PointAlighnPermanentlyExecute(Sender: TObject);
+begin
+   Freeship.Edit.Point_ProjectStraightLinePermanentConstraint;
    UpdateMenu;
 end;{TMainForm.PointProjectLineExecute}
 

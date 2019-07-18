@@ -448,6 +448,10 @@ type
     FLight: TFreeLight;
     FHorScrollbar: TScrollBar;
     FVertScrollbar: TScrollBar;
+
+    FSelectionFrameRect: TRect;
+    FSelectionFrameActive: boolean;
+
     FOnChangeBackgroundImage: TNotifyEvent;
     FUpdating: boolean;
     function FGetBrushColor: TColor;
@@ -479,6 +483,8 @@ type
     procedure FSetPenStyle(Val: TPenStyle);
     procedure FSetPenWidth(Val: integer);
     function FGetPrintScaleFactor: TFloatType;
+    procedure SetSelectionFrameRect(Rect: TRect);
+    procedure SetSelectionFrameActive(Val: boolean);
     procedure FSetViewType(Val: TFreeViewType);
     procedure FSetViewportMode(Val: TFreeViewportMode);
     procedure FHorScrollbarChange(Sender: TObject);
@@ -568,6 +574,7 @@ type
     procedure ZoomIn; virtual;
     procedure ZoomExtents; virtual;
     procedure ZoomOut; virtual;
+    procedure DrawSelectionFrame; virtual;
 
     property AlphaBuffer: TFreeAlphaBuffer read FAlphaBuffer;
     property BackgroundMode: TFreeViewportBackgroundMode
@@ -605,6 +612,8 @@ type
     property ZBuffer: TFreeZBuffer read FZBuffer;
     property Zoom: TFloatType read FZoom;
     property Pan: TPoint read FPan write FSetPan;
+    property SelectionFrameRect: TRect read FSelectionFrameRect write SetSelectionFrameRect;
+    property SelectionFrameActive: boolean read FSelectionFrameActive write SetSelectionFrameActive;
   published
     property Angle: TFloatType read FAngle write FSetAngle;
     property Align;
@@ -1989,6 +1998,7 @@ type
       read FGetSelectedControlFace;
     property SelectedControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetSelectedControlPoint;
+    property SelectedControlPoints: TFasterListTFreeSubdivisionControlPoint read FSelectedControlPoints;
     property SelectedControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
       read FGetSelectedControlPointGroup;
     property ShowControlCurves: boolean

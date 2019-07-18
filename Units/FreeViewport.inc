@@ -229,6 +229,29 @@ begin
   end;
 end;{TFreeViewport.FSetHorScrollbar}
 
+procedure TFreeViewport.SetSelectionFrameRect(Rect: TRect);
+begin
+  FSelectionFrameRect := Rect;
+  if FSelectionFrameActive then
+     refresh;
+end;
+
+procedure TFreeViewport.SetSelectionFrameActive(Val: boolean);
+begin
+  FSelectionFrameActive := Val;
+  if FSelectionFrameActive then
+     refresh;
+end;
+
+procedure TFreeViewport.DrawSelectionFrame;
+begin
+  if not FSelectionFrameActive then exit;
+  // draw it last
+  FDrawingcanvas.Pen.Style :=  psDash; //psInsideframe;
+  FDrawingcanvas.Pen.Color := clWhite;
+  FDrawingcanvas.Frame(FSelectionFrameRect);
+end;
+
 procedure TFreeViewport.FSetVertScrollbar(val: TScrollbar);
 begin
   if FVertScrollbar <> nil then
@@ -1230,6 +1253,10 @@ begin
         FDrawingCanvas := OldCanvas;
       end;
     end;
+
+    if FSelectionFrameActive then
+       DrawSelectionFrame;
+
   end;
 end;{TFreeViewport.Paint}
 

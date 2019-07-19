@@ -2809,6 +2809,15 @@ begin
   case EditMode of
     emSelectItems:
     begin
+      if rect.Left > rect.Right then
+        begin
+        I := rect.Left; rect.Left := rect.Right; rect.Right := I;
+        end;
+      if rect.Top > rect.Bottom then
+        begin
+        I := rect.Top; rect.Top := rect.Bottom; rect.Bottom := I;
+        end;
+
       I := 0;
       while I < Surface.NumberOfControlPoints do
       begin

@@ -643,8 +643,11 @@ begin
    FAllowPanOrZoom:=not select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
 
    if (Shift = [ssLeft,ssCtrl]) then
+      begin
+      Viewport.SelectionFrameRect := Rect(FInitialPosition.X,FInitialPosition.Y,
+                                          FInitialPosition.X,FInitialPosition.Y);
       Viewport.SelectionFrameActive:=true;
-
+      end;
 end;{TFreeHullWindow.ViewportMouseDown}
 
 procedure TFreeHullWindow.ViewportMouseMove(Sender: TObject;Shift: TShiftState; X, Y: Integer);

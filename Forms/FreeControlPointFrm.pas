@@ -58,6 +58,7 @@ type
 
  TFreeControlPointForm  = class(TForm)
      EditLinearConstraintA: TEdit;
+     EditAnchorPoint: TEdit;
      EditLinearConstraintB: TEdit;
     EditName: TEdit;
     EditX: TFloatSpinEdit;
@@ -66,7 +67,8 @@ type
     EditAZ: TFloatSpinEdit;
     FilterComboBoxLinearConstraintA: TFilterComboBox; //TODO delete if not used
     FilterComboBoxLinearConstraintB: TFilterComboBox; //TODO delete if not used
-    GroupBox1: TGroupBox;
+    GroupBoxLinearConstraint: TGroupBox;
+    GroupBoxAnchorConstraint: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -89,7 +91,9 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
+    Panel6: TPanel;
     SpeedButtonRemoveLinearConstraint: TSpeedButton;
+    SpeedButtonRemoveAnchorPoint: TSpeedButton;
     procedure CheckBoxCornerChange(Sender: TObject);
     procedure ComboBox1Enter(Sender: TObject);
     procedure EditNameEditingDone(Sender: TObject);
@@ -107,10 +111,11 @@ type
     procedure EditYEditingDone(Sender: TObject);
     procedure EditZChange(Sender: TObject);
     procedure EditZEditingDone(Sender: TObject);
-    procedure FilterComboBoxLinearConstraintAChange(Sender: TObject);  //TODO delete if not used
+    {procedure FilterComboBoxLinearConstraintAChange(Sender: TObject);  //TODO delete if not used
     procedure PopulateFilterComboBoxLinearConstraintA(Sender: TObject); //TODO delete if not used
     procedure FilterComboBoxLinearConstraintBChange(Sender: TObject); //TODO delete if not used
     procedure PopulateFilterComboBoxLinearConstraintB(Sender: TObject); //TODO delete if not used
+    }
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -120,6 +125,7 @@ type
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
+    procedure SpeedButtonRemoveAnchorPointClick(Sender: TObject);
     procedure SpeedButtonRemoveLinearConstraintClick(Sender: TObject);
    private  { Private declarations }
       FActiveControlPoint  : TFreeSubdivisionControlPoint;
@@ -380,20 +386,39 @@ begin
         EditName.Text := Val.Name;
         EditName.Color:= clDefault;
 
-        PopulateFilterComboBoxLinearConstraintA(nil);   //TODO delete if not used
-        PopulateFilterComboBoxLinearConstraintB(nil);   //TODO delete if not used
+        //PopulateFilterComboBoxLinearConstraintA(nil);   //TODO delete if not used
+        //PopulateFilterComboBoxLinearConstraintB(nil);   //TODO delete if not used
 
-        EditLinearConstraintA.Text:='';
-        EditLinearConstraintB.Text:='';
+        if (FActiveControlPoint.LinearConstraintPointA<>nil)
+           and (FActiveControlPoint.LinearConstraintPointB<>nil) then
+          begin
+            GroupBoxLinearConstraint.Visible := true;
+            EditLinearConstraintA.Text:='';
+            EditLinearConstraintB.Text:='';
 
-        if (FActiveControlPoint.LinearConstraintPointA<>nil) then
-          if (FActiveControlPoint.LinearConstraintPointA.Name > '') then
-           EditLinearConstraintA.Text := FActiveControlPoint.LinearConstraintPointA.Name
-           else EditLinearConstraintA.Text := 'Point['+IntToStr(FActiveControlPoint.LinearConstraintPointA.Id)+']';
-        if (FActiveControlPoint.LinearConstraintPointB<>nil) then
-          if (FActiveControlPoint.LinearConstraintPointB.Name > '') then
-           EditLinearConstraintB.Text := FActiveControlPoint.LinearConstraintPointB.Name
-           else EditLinearConstraintB.Text := 'Point['+IntToStr(FActiveControlPoint.LinearConstraintPointB.Id)+']';
+            if (FActiveControlPoint.LinearConstraintPointA<>nil) then
+              if (FActiveControlPoint.LinearConstraintPointA.Name > '') then
+               EditLinearConstraintA.Text := FActiveControlPoint.LinearConstraintPointA.Name
+               else EditLinearConstraintA.Text := 'Point['+IntToStr(FActiveControlPoint.LinearConstraintPointA.Id)+']';
+            if (FActiveControlPoint.LinearConstraintPointB<>nil) then
+              if (FActiveControlPoint.LinearConstraintPointB.Name > '') then
+               EditLinearConstraintB.Text := FActiveControlPoint.LinearConstraintPointB.Name
+               else EditLinearConstraintB.Text := 'Point['+IntToStr(FActiveControlPoint.LinearConstraintPointB.Id)+']';
+          end
+        else
+          GroupBoxLinearConstraint.Visible := false;
+
+
+        if (FActiveControlPoint.AnchorPoint<>nil) then
+          begin
+            GroupBoxAnchorConstraint.Visible := true;
+            EditAnchorPoint.Text := '';
+            if (FActiveControlPoint.AnchorPoint.Name > '') then
+             EditAnchorPoint.Text := FActiveControlPoint.AnchorPoint.Name
+             else EditAnchorPoint.Text := 'Point['+IntToStr(FActiveControlPoint.AnchorPoint.Id)+']';
+          end
+        else
+          GroupBoxAnchorConstraint.Visible := false;
 
       end;
 
@@ -690,6 +715,7 @@ begin
    end;
 end;{TFreeControlPointForm.Edit3Exit}
 
+{
 procedure TFreeControlPointForm.FilterComboBoxLinearConstraintAChange(
   Sender: TObject);
 var i:integer;   pLCP:TFreeSubdivisionPoint;
@@ -810,6 +836,7 @@ begin
    FilterComboBoxLinearConstraintBPopulating := false;
    PL.Free;
 end;
+}
 
 procedure TFreeControlPointForm.CheckBoxCornerChange(Sender: TObject);
 begin
@@ -1019,14 +1046,27 @@ begin
    end;
 end;{TFreeControlPointForm.SpeedButton6Click}
 
+procedure TFreeControlPointForm.SpeedButtonRemoveAnchorPointClick(
+  Sender: TObject);
+begin
+   if ActiveControlPoint<>nil then
+    begin
+       TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointAnchorConstraintChanged,True);
+       ActiveControlPoint.AnchorPoint:=nil;
+       EditAnchorPoint.Text:='';
+       TFreeShip(FreeShip).FileChanged:=True;
+       TFreeShip(FreeShip).Redraw;
+       ActiveControlPoint:=ActiveControlPoint;
+    end;
+end;
+
 procedure TFreeControlPointForm.SpeedButtonRemoveLinearConstraintClick(
   Sender: TObject);
 begin
   if ActiveControlPoint<>nil then
    begin
       TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointLinearConstraintChanged,True);
-      ActiveControlPoint.LinearConstraintPointA:=nil;
-      ActiveControlPoint.LinearConstraintPointB:=nil;
+      ActiveControlPoint.SetLinearConstraint(nil,nil);
       EditLinearConstraintA.Text:='';
       EditLinearConstraintB.Text:='';
       TFreeShip(FreeShip).FileChanged:=True;

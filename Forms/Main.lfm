@@ -1379,7 +1379,13 @@ object MainForm: TMainForm
     object PointAlighnPermanently: TAction
       Category = 'Point'
       Caption = 'Point Alighn Permanently'
+      ImageIndex = 48
       OnExecute = PointAlighnPermanentlyExecute
+    end
+    object PointAnchor: TAction
+      Category = 'Point'
+      Caption = 'Anchor'
+      OnExecute = PointAnchorExecute
     end
   end
   object MenuImages: TImageList
@@ -3498,8 +3504,12 @@ object MainForm: TMainForm
       object Projectline1: TMenuItem
         Action = PointAlign
       end
-      object MenuItem1: TMenuItem
+      object MenuItemPointAlignPermanently: TMenuItem
         Action = PointAlighnPermanently
+        Caption = 'Align Permanently'
+      end
+      object MenuItemPointAnchor: TMenuItem
+        Action = PointAnchor
       end
       object PointCollapse1: TMenuItem
         Action = PointCollapse

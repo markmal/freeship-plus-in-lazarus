@@ -97,6 +97,7 @@ const
 resourcestring
   rsPointMove = 'point move';
   rsPointLinearConstraintChanged = 'ControlPoint Linear Constraint Changed';
+  rsPointAnchorConstraintChanged = 'ControlPoint Anchor Constraint Changed';
 
 type
   TFreeShip = class;                                                               // to be declared later
@@ -742,6 +743,7 @@ type
     // Locks all selected points
     function Point_New: TFreeSubdivisionControlPoint;
     // Add a new point to the model with no edges/faces attached
+    procedure Point_AnchorToPoint;
     procedure Point_ProjectStraightLine;
     // Project all selected points onto a straight line through the first and last selected points
     procedure Point_ProjectStraightLinePermanentConstraint;

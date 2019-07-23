@@ -2157,12 +2157,11 @@ begin
   for I := 1 to N do
   begin
     Source.Load(LCData);
-    if LCData.LinearConstraintPointA > -1 then
-       Surface.ControlPoint[LCData.N].LinearConstraintPointA
-         := Surface.ControlPoint[LCData.LinearConstraintPointA];
-    if LCData.LinearConstraintPointB > -1 then
-       Surface.ControlPoint[LCData.N].LinearConstraintPointB
-         := Surface.ControlPoint[LCData.LinearConstraintPointB];
+    if (LCData.LinearConstraintPointA > -1)
+      and (LCData.LinearConstraintPointB > -1) then
+      Surface.ControlPoint[LCData.N].SetLinearConstraint(
+         Surface.ControlPoint[LCData.LinearConstraintPointA],
+         Surface.ControlPoint[LCData.LinearConstraintPointB]);
   end;
 end;
 
@@ -3073,6 +3072,26 @@ var
   Point, gPoint: TFreeSubdivisionControlPoint;
   dX,dY,dZ:TFloatType;
   I,j: integer;
+
+{  // recursive
+  procedure MoveAnchoredPoints(Point:TFreeSubdivisionControlPoint; dX,dY,dZ:TFloatType);
+  var i:integer; aPoint: TFreeSubdivisionControlPoint; aP: T3DCoordinate;
+  begin
+    // move all points anchored to Point if there
+    for i:=0 to Surface.ControlPoints.Count-1 do
+      if Surface.ControlPoints[i].AnchorPoint = Point then
+        begin
+          aPoint:=Surface.ControlPoints[i];
+          aP:=aPoint.Coordinate;
+          aP.X := aP.X + dX;
+          aP.Y := aP.Y + dY;
+          aP.Z := aP.Z + dZ;
+          aPoint.Coordinate := aP;
+          MoveAnchoredPoints(aPoint, dX,dY,dZ);
+        end;
+  end;
+}
+
 begin
   case EditMode of
     emSelectItems:
@@ -3127,12 +3146,33 @@ begin
           end;
 
           oP := Point.Coordinate;
-          Point.Coordinate := P;
+          {Point.Coordinate := P;
           Point.AdjustToLinearConstraint(Viewport); // adjusts to linear constraints if set
 
           dX:= Point.Coordinate.X - oP.X;
           dY:= Point.Coordinate.Y - oP.Y;
           dZ:= Point.Coordinate.Z - oP.Z;
+          }
+
+          {dX:= P.X - oP.X;
+          dY:= P.Y - oP.Y;
+          dZ:= P.Z - oP.Z;
+          Point.MoveBy(Viewport, dX,dY,dZ);}
+
+          Point.SetCoordinate(ViewPort, P);
+
+          // move all anchored points if there
+          //MoveAnchoredPoints(Point, dX,dY,dZ);
+          {for I:=0 to Surface.ControlPoints.Count-1 do
+            if Surface.ControlPoints[i].AnchorConstraintPoint = Point then
+              begin
+                gPoint:=Surface.ControlPoints[i];
+                gP:=gPoint.Coordinate;
+                gP.X := gP.X + dX;
+                gP.Y := gP.Y + dY;
+                gP.Z := gP.Z + dZ;
+                gPoint.Coordinate := gP;
+              end;}
 
           // move all points of selected groups if there
           for I:=0 to NumberOfSelectedControlPointGroups-1 do

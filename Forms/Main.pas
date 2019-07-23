@@ -87,6 +87,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     MenuItemPointAnchor: TMenuItem;
+     PointAnchor: TAction;
      PointAlighnPermanently: TAction;
      AddPointToGroup: TAction;
      FontDialog1: TFontDialog;
@@ -99,7 +101,7 @@ type
      LabelUndoMemory: TLabel;
      MainClientPanel: TPanel;
      AddControlPointToGroup: TMenuItem;
-     MenuItem1: TMenuItem;
+     MenuItemPointAlignPermanently: TMenuItem;
      StatusPanel5: TPanel;
      PanelActiveLayerColor: TPanel;
      PanelMain: TPanel;
@@ -454,6 +456,7 @@ type
     procedure MainClientPanelClick(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure PanelMainResize(Sender: TObject);
+    procedure PointAnchorExecute(Sender: TObject);
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
     procedure NewWindowExecute(Sender: TObject);
@@ -2703,6 +2706,12 @@ end;{TMainForm.PointProjectLineExecute}
 procedure TMainForm.PointAlighnPermanentlyExecute(Sender: TObject);
 begin
    Freeship.Edit.Point_ProjectStraightLinePermanentConstraint;
+   UpdateMenu;
+end;{TMainForm.PointProjectLineExecute}
+
+procedure TMainForm.PointAnchorExecute(Sender: TObject);
+begin
+   Freeship.Edit.Point_AnchorToPoint;
    UpdateMenu;
 end;{TMainForm.PointProjectLineExecute}
 

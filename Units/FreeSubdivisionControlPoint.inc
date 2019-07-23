@@ -115,11 +115,33 @@ end;{TFreeSubdivisionControlPoint.FSetLocked}
 
 procedure TFreeSubdivisionControlPoint.FSetCoordinate(Val: T3DCoordinate);
 begin
-  if not Locked then
-  begin
-    inherited FSetCoordinate(Val);
-    Owner.Build := False;
-  end;
+  if Locked then exit;
+  //if Locked and (FAnchorPoint = nil) then exit;
+  inherited FSetCoordinate(Val);
+  Owner.Build := False;
+end;{TFreeSubdivisionControlPoint.FSetCoordinate}
+
+procedure TFreeSubdivisionControlPoint.SetCoordinate(ViewPort:TFreeViewPort; Val: T3DCoordinate);
+var i:integer; dX,dY,dZ:TFloatType; oP:T3DCoordinate;
+begin
+  if FInSetCoordinate then exit;
+  FInSetCoordinate := true;
+  oP:=FCoordinate;
+
+  FSetCoordinate(Val);
+
+  AdjustToLinearConstraint(ViewPort);
+
+  dX:=FCoordinate.X - oP.X;
+  dY:=FCoordinate.Y - oP.Y;
+  dZ:=FCoordinate.Z - oP.Z;
+
+  for i:=0 to FAnchoredPoints.Count-1 do
+    FAnchoredPoints[i].MoveBy(Viewport,dX,dY,dZ);
+
+  for i:=0 to FLinearConstrainedPoints.Count-1 do
+    FLinearConstrainedPoints[i].SetCoordinate(ViewPort, FLinearConstrainedPoints[i].Coordinate);
+  FInSetCoordinate := false;
 end;{TFreeSubdivisionControlPoint.FSetCoordinate}
 
 procedure TFreeSubdivisionControlPoint.Collapse;
@@ -288,6 +310,15 @@ end;{TFreeSubdivisionControlPoint.Collapse}
 constructor TFreeSubdivisionControlPoint.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
+  FLinearConstrainedPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  FAnchoredPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+end;{TFreeSubdivisionControlPoint.Create}
+
+destructor TFreeSubdivisionControlPoint.Destroy;
+begin
+  FLinearConstrainedPoints.Free;
+  FAnchoredPoints.Free;
+  inherited;
 end;{TFreeSubdivisionControlPoint.Create}
 
 procedure TFreeSubdivisionControlPoint.Delete;
@@ -595,6 +626,19 @@ begin
     FVertextype := TFreeVertexType(0);
 end;{TFreeSubdivisionControlPoint.LoadFromStream}
 
+procedure TFreeSubdivisionControlPoint.MoveBy(Viewport:TFreeViewPort; dX,dY,dZ: TFloatType);
+var i:integer;
+begin
+  FCoordinate.X := FCoordinate.X + dX;
+  FCoordinate.Y := FCoordinate.Y + dY;
+  FCoordinate.Z := FCoordinate.Z + dZ;
+  AdjustToLinearConstraint(Viewport);
+  for i:=0 to FAnchoredPoints.Count-1 do
+    Self.FAnchoredPoints[i].MoveBy(Viewport,dX,dY,dZ);
+  for i:=0 to FLinearConstrainedPoints.Count-1 do
+    FLinearConstrainedPoints[i].AdjustToLinearConstraint(Viewport);
+end;
+
 procedure TFreeSubdivisionControlPoint.SaveBinary(Destination: TFreeFileBuffer);
 begin
   Destination.Add(FCoordinate);
@@ -616,4 +660,31 @@ begin
   Str := Str + #32 + BoolToStr(Selected);
   Strings.Add(Str);
 end;{TFreeSubdivisionControlPoint.SaveToStream}
+
+procedure TFreeSubdivisionControlPoint.SetLinearConstraint(pointA, pointB: TFreeSubdivisionControlPoint);
+begin
+  if pointA <> nil then
+     pointA.FLinearConstrainedPoints.DeleteAll(Self);
+  if pointB <> nil then
+     pointB.FLinearConstrainedPoints.DeleteAll(Self);
+
+  FLinearConstraintPointA := pointA;
+  FLinearConstraintPointB := pointB;
+
+  if pointA <> nil then
+     pointA.FLinearConstrainedPoints.Add(Self);
+  if pointB <> nil then
+     pointB.FLinearConstrainedPoints.Add(Self);
+end;
+
+procedure TFreeSubdivisionControlPoint.SetAnchorPoint(pointA: TFreeSubdivisionControlPoint);
+begin
+  if pointA <> nil then
+     pointA.FAnchoredPoints.DeleteAll(Self);
+
+  FAnchorPoint := pointA;
+
+  if pointA <> nil then
+     pointA.FAnchoredPoints.Add(Self);
+end;
 

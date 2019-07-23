@@ -116,6 +116,10 @@ msgstr ""
 msgid "My Ships"
 msgstr ""
 
+#: freeshipunit.rspointanchorconstraintchanged
+msgid "ControlPoint Anchor Constraint Changed"
+msgstr ""
+
 #: freeshipunit.rspointlinearconstraintchanged
 msgctxt "freeshipunit.rspointlinearconstraintchanged"
 msgid "ControlPoint Linear Constraint Changed"
@@ -513,7 +517,13 @@ msgctxt "tfreecontrolpointform.checkboxcorner.caption"
 msgid "Corner"
 msgstr ""
 
-#: tfreecontrolpointform.groupbox1.caption
+#: tfreecontrolpointform.groupboxanchorconstraint.caption
+msgctxt "tfreecontrolpointform.groupboxanchorconstraint.caption"
+msgid "Anchor point"
+msgstr ""
+
+#: tfreecontrolpointform.groupboxlinearconstraint.caption
+msgctxt "tfreecontrolpointform.groupboxlinearconstraint.caption"
 msgid "Linear constraint"
 msgstr ""
 
@@ -574,6 +584,16 @@ msgstr ""
 #: tfreecontrolpointform.labelz.caption
 msgctxt "tfreecontrolpointform.labelz.caption"
 msgid "Z-coord."
+msgstr ""
+
+#: tfreecontrolpointform.speedbuttonremoveanchorpoint.caption
+msgctxt "tfreecontrolpointform.speedbuttonremoveanchorpoint.caption"
+msgid "x"
+msgstr ""
+
+#: tfreecontrolpointform.speedbuttonremoveanchorpoint.hint
+msgctxt "tfreecontrolpointform.speedbuttonremoveanchorpoint.hint"
+msgid "Remove linear constraint"
 msgstr ""
 
 #: tfreecontrolpointform.speedbuttonremovelinearconstraint.caption
@@ -8604,6 +8624,10 @@ msgctxt "tmainform.markers2.caption"
 msgid "Markers"
 msgstr ""
 
+#: tmainform.menuitempointalignpermanently.caption
+msgid "Align Permanently"
+msgstr ""
+
 #: tmainform.mirrorface.caption
 msgid "Mirror..."
 msgstr ""
@@ -8685,6 +8709,10 @@ msgstr ""
 
 #: tmainform.pointalign.hint
 msgid "Project selected points on a straight line through the first and last selected point."
+msgstr ""
+
+#: tmainform.pointanchor.caption
+msgid "Anchor"
 msgstr ""
 
 #: tmainform.pointcollapse.caption

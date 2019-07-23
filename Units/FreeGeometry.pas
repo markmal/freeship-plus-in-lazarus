@@ -1318,9 +1318,13 @@ type
   {--------------------------------------------------------------------------------------------------}
   TFreeSubdivisionControlPoint = class(TFreeSubdivisionPoint)
   private
-    FLinearConstraintPointA: TFreeSubdivisionPoint; // if defined, the point can be locate on the line between these A and B points only
-    FLinearConstraintPointB: TFreeSubdivisionPoint;
+    FLinearConstraintPointA: TFreeSubdivisionControlPoint; // if defined, the point can be locate on the line between these A and B points only
+    FLinearConstraintPointB: TFreeSubdivisionControlPoint;
+    FLinearConstrainedPoints: TFasterListTFreeSubdivisionControlPoint; // backward link list
+    FAnchorPoint: TFreeSubdivisionControlPoint;  // if defined, the point will be moved parallel to FAnchorConstraintPoint when it moved
+    FAnchoredPoints: TFasterListTFreeSubdivisionControlPoint; // backward link list
     FLocked: boolean;
+    FInSetCoordinate: boolean;
     function FGetColor: TColor;
     function FGetIndex: integer;
       override;
@@ -1332,8 +1336,8 @@ type
     procedure FSetCoordinate(Val: T3DCoordinate); override;
   public
     procedure Collapse;
-    constructor Create(Owner: TFreeSubdivisionSurface);
-      override;
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
+    destructor Destroy; override;
     procedure AdjustToLinearConstraint(Viewport: TFreeViewport);
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer;
@@ -1342,14 +1346,19 @@ type
     procedure LoadBinary(Source: TFreeFileBuffer);
     procedure LoadFromStream(
       var LineNr: integer; Strings: TStringList);
+    procedure MoveBy(Viewport:TFreeViewPort; dX,dY,dZ: TFloatType);
+    procedure SetCoordinate(ViewPort:TFreeViewPort; Val: T3DCoordinate);
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);
+    procedure SetLinearConstraint(pointA, pointB: TFreeSubdivisionControlPoint);
+    procedure SetAnchorPoint(pointA: TFreeSubdivisionControlPoint);
     property Color: TColor
       read FGetColor;
     property IsLeak: boolean
       read FGetIsLeak;
-    property LinearConstraintPointA: TFreeSubdivisionPoint read FLinearConstraintPointA write FLinearConstraintPointA;
-    property LinearConstraintPointB: TFreeSubdivisionPoint read FLinearConstraintPointB write FLinearConstraintPointB;
+    property LinearConstraintPointA: TFreeSubdivisionControlPoint read FLinearConstraintPointA;
+    property LinearConstraintPointB: TFreeSubdivisionControlPoint read FLinearConstraintPointB;
+    property AnchorPoint: TFreeSubdivisionControlPoint read FAnchorPoint write SetAnchorPoint;
     property Locked: boolean
       read FLocked write FSetLocked;
     property Selected: boolean

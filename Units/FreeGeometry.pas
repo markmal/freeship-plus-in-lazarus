@@ -1324,6 +1324,7 @@ type
     FAnchorPoint: TFreeSubdivisionControlPoint;  // if defined, the point will be moved parallel to FAnchorConstraintPoint when it moved
     FAnchoredPoints: TFasterListTFreeSubdivisionControlPoint; // backward link list
     FLocked: boolean;
+    FIsAnchorHard:boolean;
     FInSetCoordinate: boolean;
     function FGetColor: TColor;
     function FGetIndex: integer;
@@ -1344,23 +1345,23 @@ type
     procedure Delete; override;
     procedure Draw(Viewport: TFreeViewport);
     procedure LoadBinary(Source: TFreeFileBuffer);
-    procedure LoadFromStream(
-      var LineNr: integer; Strings: TStringList);
-    procedure MoveBy(Viewport:TFreeViewPort; dX,dY,dZ: TFloatType);
-    procedure SetCoordinate(ViewPort:TFreeViewPort; Val: T3DCoordinate);
+    procedure LoadFromStream(var LineNr: integer; Strings: TStringList);
+    procedure MoveBy( Viewport:TFreeViewPort; dX,dY,dZ: TFloatType;
+                      vAnchor:TFreeSubdivisionControlPoint);
+    procedure SetCoordinate( ViewPort:TFreeViewPort; Val: T3DCoordinate;
+                             vAnchor:TFreeSubdivisionControlPoint);
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);
     procedure SetLinearConstraint(pointA, pointB: TFreeSubdivisionControlPoint);
     procedure SetAnchorPoint(pointA: TFreeSubdivisionControlPoint);
-    property Color: TColor
-      read FGetColor;
-    property IsLeak: boolean
-      read FGetIsLeak;
+    procedure SetIsAnchorHard(val: boolean);
+    property Color: TColor read FGetColor;
+    property IsLeak: boolean read FGetIsLeak;
     property LinearConstraintPointA: TFreeSubdivisionControlPoint read FLinearConstraintPointA;
     property LinearConstraintPointB: TFreeSubdivisionControlPoint read FLinearConstraintPointB;
     property AnchorPoint: TFreeSubdivisionControlPoint read FAnchorPoint write SetAnchorPoint;
-    property Locked: boolean
-      read FLocked write FSetLocked;
+    property Locked: boolean read FLocked write FSetLocked;
+    property IsAnchorHard:boolean read FIsAnchorHard write SetIsAnchorHard;
     property Selected: boolean
       read FGetSelected write FSetSelected;
     // Property to see if this point has been selected by the user

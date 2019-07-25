@@ -2,7 +2,7 @@ object FreeControlPointForm: TFreeControlPointForm
   Left = 725
   Height = 328
   Top = 166
-  Width = 481
+  Width = 349
   ActiveControl = EditName
   AlphaBlend = True
   AlphaBlendValue = 210
@@ -12,7 +12,7 @@ object FreeControlPointForm: TFreeControlPointForm
   ChildSizing.Layout = cclLeftToRightThenTopToBottom
   ChildSizing.ControlsPerLine = 1
   ClientHeight = 328
-  ClientWidth = 481
+  ClientWidth = 349
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
   OnCreate = FormCreate
@@ -22,7 +22,7 @@ object FreeControlPointForm: TFreeControlPointForm
     Left = 0
     Height = 91
     Top = 0
-    Width = 481
+    Width = 349
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -33,7 +33,7 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
     ClientHeight = 91
-    ClientWidth = 481
+    ClientWidth = 349
     ParentFont = False
     TabOrder = 0
     object LabelX: TLabel
@@ -250,7 +250,7 @@ object FreeControlPointForm: TFreeControlPointForm
     Left = 0
     Height = 64
     Top = 91
-    Width = 481
+    Width = 349
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -261,7 +261,7 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 64
-    ClientWidth = 481
+    ClientWidth = 349
     ParentFont = False
     TabOrder = 1
     object CheckBoxCorner: TCheckBox
@@ -344,7 +344,7 @@ object FreeControlPointForm: TFreeControlPointForm
     Left = 0
     Height = 37
     Top = 155
-    Width = 481
+    Width = 349
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -354,7 +354,7 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
     ClientHeight = 37
-    ClientWidth = 481
+    ClientWidth = 349
     ParentFont = False
     TabOrder = 2
     object LabelName: TLabel
@@ -371,8 +371,8 @@ object FreeControlPointForm: TFreeControlPointForm
       Left = 55
       Height = 25
       Top = 6
-      Width = 150
-      Constraints.MinWidth = 150
+      Width = 200
+      Constraints.MinWidth = 200
       OnEditingDone = EditNameEditingDone
       OnEnter = EditEnter
       OnExit = EditExit
@@ -384,19 +384,19 @@ object FreeControlPointForm: TFreeControlPointForm
     Left = 0
     Height = 54
     Top = 192
-    Width = 481
+    Width = 349
     Align = alTop
     AutoSize = True
     Caption = 'Linear constraint'
     ClientHeight = 37
-    ClientWidth = 477
+    ClientWidth = 345
     ParentFont = False
     TabOrder = 3
     object Panel4: TPanel
       Left = 0
       Height = 37
       Top = 0
-      Width = 477
+      Width = 345
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
@@ -407,56 +407,46 @@ object FreeControlPointForm: TFreeControlPointForm
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 37
-      ClientWidth = 477
+      ClientWidth = 345
       ParentFont = False
       TabOrder = 0
       object EditLinearConstraintA: TEdit
         Left = 10
         Height = 25
         Top = 6
-        Width = 90
+        Width = 123
         ReadOnly = True
         TabOrder = 0
       end
       object EditLinearConstraintB: TEdit
-        Left = 106
+        Left = 139
         Height = 25
         Top = 6
-        Width = 90
+        Width = 123
         ReadOnly = True
         TabOrder = 1
       end
-      object SpeedButtonRemoveLinearConstraint: TSpeedButton
-        Left = 202
-        Height = 25
-        Hint = 'Remove linear constraint'
-        Top = 6
-        Width = 34
-        Constraints.MinWidth = 24
-        Caption = 'x'
-        OnClick = SpeedButtonRemoveLinearConstraintClick
-      end
-      object FilterComboBoxLinearConstraintA: TFilterComboBox
-        Left = 242
+      object Panel7: TPanel
+        Left = 268
         Height = 25
         Top = 6
-        Width = 110
-        ParentFont = False
+        Width = 67
+        BevelOuter = bvNone
+        ClientHeight = 25
+        ClientWidth = 67
         TabOrder = 2
-        Visible = False
-        OnEnter = EditEnter
-        OnExit = EditExit
-      end
-      object FilterComboBoxLinearConstraintB: TFilterComboBox
-        Left = 358
-        Height = 25
-        Top = 6
-        Width = 109
-        ParentFont = False
-        TabOrder = 3
-        Visible = False
-        OnEnter = EditEnter
-        OnExit = EditExit
+        object SpeedButtonRemoveLinearConstraint: TSpeedButton
+          Left = 0
+          Height = 25
+          Hint = 'Remove linear constraint'
+          Top = 0
+          Width = 24
+          Align = alLeft
+          Constraints.MaxWidth = 24
+          Constraints.MinWidth = 24
+          Caption = 'x'
+          OnClick = SpeedButtonRemoveLinearConstraintClick
+        end
       end
     end
   end
@@ -464,19 +454,19 @@ object FreeControlPointForm: TFreeControlPointForm
     Left = 0
     Height = 54
     Top = 246
-    Width = 481
+    Width = 349
     Align = alTop
     AutoSize = True
     Caption = 'Anchor point'
     ClientHeight = 37
-    ClientWidth = 477
+    ClientWidth = 345
     ParentFont = False
     TabOrder = 4
     object Panel6: TPanel
       Left = 0
       Height = 37
       Top = 0
-      Width = 477
+      Width = 345
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
@@ -487,26 +477,49 @@ object FreeControlPointForm: TFreeControlPointForm
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 37
-      ClientWidth = 477
+      ClientWidth = 345
       ParentFont = False
       TabOrder = 0
       object EditAnchorPoint: TEdit
         Left = 10
         Height = 25
         Top = 6
-        Width = 254
+        Width = 157
         ReadOnly = True
         TabOrder = 0
       end
-      object SpeedButtonRemoveAnchorPoint: TSpeedButton
-        Left = 270
+      object Panel8: TPanel
+        Left = 173
         Height = 25
-        Hint = 'Remove linear constraint'
         Top = 6
-        Width = 197
-        Constraints.MinWidth = 24
-        Caption = 'x'
-        OnClick = SpeedButtonRemoveAnchorPointClick
+        Width = 162
+        BevelOuter = bvNone
+        ClientHeight = 25
+        ClientWidth = 162
+        TabOrder = 1
+        object SpeedButtonRemoveAnchorPoint: TSpeedButton
+          Left = 62
+          Height = 25
+          Hint = 'Remove anchoring'
+          Top = 0
+          Width = 24
+          Align = alLeft
+          BorderSpacing.Left = 8
+          Constraints.MinWidth = 24
+          Caption = 'x'
+          OnClick = SpeedButtonRemoveAnchorPointClick
+        end
+        object CheckBoxAnchorHard: TCheckBox
+          Left = 0
+          Height = 25
+          Top = 0
+          Width = 54
+          Align = alLeft
+          BorderSpacing.Right = 4
+          Caption = 'Hard'
+          OnChange = CheckBoxAnchorHardChange
+          TabOrder = 0
+        end
       end
     end
   end

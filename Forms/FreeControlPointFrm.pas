@@ -57,6 +57,7 @@ type
 { TFreeControlPointForm }
 
  TFreeControlPointForm  = class(TForm)
+     CheckBoxAnchorHard: TCheckBox;
      EditLinearConstraintA: TEdit;
      EditAnchorPoint: TEdit;
      EditLinearConstraintB: TEdit;
@@ -65,8 +66,6 @@ type
     EditAX: TFloatSpinEdit;
     EditAY: TFloatSpinEdit;
     EditAZ: TFloatSpinEdit;
-    FilterComboBoxLinearConstraintA: TFilterComboBox; //TODO delete if not used
-    FilterComboBoxLinearConstraintB: TFilterComboBox; //TODO delete if not used
     GroupBoxLinearConstraint: TGroupBox;
     GroupBoxAnchorConstraint: TGroupBox;
     Label1: TLabel;
@@ -92,8 +91,11 @@ type
     Panel4: TPanel;
     Panel5: TPanel;
     Panel6: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
     SpeedButtonRemoveLinearConstraint: TSpeedButton;
     SpeedButtonRemoveAnchorPoint: TSpeedButton;
+    procedure CheckBoxAnchorHardChange(Sender: TObject);
     procedure CheckBoxCornerChange(Sender: TObject);
     procedure ComboBox1Enter(Sender: TObject);
     procedure EditNameEditingDone(Sender: TObject);
@@ -412,6 +414,8 @@ begin
         if (FActiveControlPoint.AnchorPoint<>nil) then
           begin
             GroupBoxAnchorConstraint.Visible := true;
+            CheckBoxAnchorHard.Checked := FActiveControlPoint.IsAnchorHard;
+
             EditAnchorPoint.Text := '';
             if (FActiveControlPoint.AnchorPoint.Name > '') then
              EditAnchorPoint.Text := FActiveControlPoint.AnchorPoint.Name
@@ -842,6 +846,11 @@ procedure TFreeControlPointForm.CheckBoxCornerChange(Sender: TObject);
 begin
    if FSkipCheckbox1OnClick then exit;
    FSetActiveControlPointCorner(CheckBoxCorner.Checked);
+end;
+
+procedure TFreeControlPointForm.CheckBoxAnchorHardChange(Sender: TObject);
+begin
+  ActiveControlPoint.IsAnchorHard := CheckBoxAnchorHard.Checked;
 end;
 
 procedure TFreeControlPointForm.ComboBox1Enter(Sender: TObject);

@@ -3159,7 +3159,11 @@ begin
           dZ:= P.Z - oP.Z;
           Point.MoveBy(Viewport, dX,dY,dZ);}
 
-          Point.SetCoordinate(ViewPort, P);
+          Point.SetCoordinate(ViewPort, P, nil);
+
+          dX:= Point.Coordinate.X - oP.X;
+          dY:= Point.Coordinate.Y - oP.Y;
+          dZ:= Point.Coordinate.Z - oP.Z;
 
           // move all anchored points if there
           //MoveAnchoredPoints(Point, dX,dY,dZ);
@@ -3181,16 +3185,12 @@ begin
               begin
                 gPoint:=SelectedControlPointGroup[i].ControlPoints[j];
                 gP:=gPoint.Coordinate;
-                gP.X := gP.X + dX;
-                gP.Y := gP.Y + dY;
-                gP.Z := gP.Z + dZ;
-                gPoint.Coordinate := gP;
-                gPoint.AdjustToLinearConstraint(Viewport); // adjusts to linear constraints if set
+                gPoint.MoveBy(Viewport, dX, dY, dZ, nil);
               end;
 
           // point can be linear constraint vertex, adjust all related points to it
           //if Point.Name > '' then
-          AdjustRelatedPointsToLinearConstraint(Viewport, Point);
+          //AdjustRelatedPointsToLinearConstraint(Viewport, Point);
 
           ActiveControlPoint := Point;
           Build := False;

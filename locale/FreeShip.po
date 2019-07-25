@@ -512,6 +512,10 @@ msgstr ""
 msgid " "
 msgstr ""
 
+#: tfreecontrolpointform.checkboxanchorhard.caption
+msgid "Hard"
+msgstr ""
+
 #: tfreecontrolpointform.checkboxcorner.caption
 msgctxt "tfreecontrolpointform.checkboxcorner.caption"
 msgid "Corner"
@@ -593,7 +597,7 @@ msgstr ""
 
 #: tfreecontrolpointform.speedbuttonremoveanchorpoint.hint
 msgctxt "tfreecontrolpointform.speedbuttonremoveanchorpoint.hint"
-msgid "Remove linear constraint"
+msgid "Remove anchoring"
 msgstr ""
 
 #: tfreecontrolpointform.speedbuttonremovelinearconstraint.caption

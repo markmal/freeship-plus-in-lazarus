@@ -20,11 +20,11 @@ if [ -x "$(which dpkg-query 2>/dev/null)" ]; then
   RP=$(dpkg-query -S $RL |cut -d: -f1|sort -u)
   if [ "$1" = "-a" ] || [ "$1" = "-i" ]; 
     then 
-	echo "All packages that are required"
+	echo "All packages that are required: "
 	dpkg-query -l $RP | grep amd64
     else 
-	echo $RP
-	echo "Required packages that are not installed"
+	echo "All packages that are required: "$RP
+	echo "Required packages that are not installed: "
 	dpkg-query -l $RP | grep amd64 | grep -v '^ii' ;
   fi
 fi

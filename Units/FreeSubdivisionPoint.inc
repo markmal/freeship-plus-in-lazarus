@@ -534,23 +534,17 @@ begin
   Clear;
 end;{TFreeSubdivisionPoint.Create}
 
-procedure TFreeSubdivisionPoint.DeleteEdge(Edge: TFreeSubdivisionEdge);
-var
-  Index: integer;
+procedure TFreeSubdivisionPoint.UnreferenceEdge(Edge: TFreeSubdivisionEdge);
 begin
-  FEdges.DeleteAll(Edge);
-  index := FEdges.IndexOf(Edge);
-  if Index <> -1 then
-    FEdges.Delete(Index);
+  FEdges.DeleteItem(Edge);
 end;{TFreeSubdivisionPoint.DeleteEdge}
 
-procedure TFreeSubdivisionPoint.DeleteFace(Face: TFreeSubdivisionFace);
-var  Index: integer;
+procedure TFreeSubdivisionPoint.UnreferenceFace(Face: TFreeSubdivisionFace);
+var i: integer;
 begin
-  FFaces.DeleteAll(Face);
-  index := FFaces.IndexOf(Face);
-  if Index <> -1 then
-    FFaces.Delete(Index);
+  FFaces.DeleteItem(Face);
+  for i:=0 to FEdges.Count-1 do
+    FEdges[i].UnreferenceFace(Face);
 end;{TFreeSubdivisionPoint.DeleteFace}
 
 procedure TFreeSubdivisionPoint.Delete;
@@ -558,7 +552,7 @@ var
   Index: integer;
   Edge: TFreesubdivisionEdge;
 begin
-  Owner.FPoints.DeleteAll(Self);
+  Owner.FPoints.DeleteItem(Self);
 
   if FEdges.Count > 0 then
   begin
@@ -601,7 +595,7 @@ begin
     end;
 
   for i:=0 to FFaces.Count-1 do
-      FFaces[i].FPoints.DeleteAll(Self);
+      FFaces[i].FPoints.DeleteItem(Self);
 
   if FOwner <> nil then FOwner.UnreferencePoint(Self);
 

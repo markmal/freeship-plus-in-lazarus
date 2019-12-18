@@ -1706,7 +1706,8 @@ begin
       //Time := FileAge(CurFilePath);
       // Forth column - Time
       NewItem.SubItems.Add( FormatDateTime('YYYY-DD-MM hh:mm:ss',FileDateToDateTime(Time)));
-      if Assigned(FOnFileAdded) then FOnFileAdded(Self,NewItem);
+      if Assigned(FOnFileAdded)
+         then FOnFileAdded(Self,NewItem);
     end;
     Sort;
   finally

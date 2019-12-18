@@ -30,7 +30,8 @@ begin
   begin
     Face := FFaces[I];
     if Face is TFreeSubdivisionControlFace then
-       if (Face as TFreeSubdivisionControlFace).Layer.UseInHydrostatics then
+       if ((Face as TFreeSubdivisionControlFace).Layer <> nil)
+         and (Face as TFreeSubdivisionControlFace).Layer.UseInHydrostatics then
           Inc(N);
   end;
 
@@ -194,10 +195,10 @@ begin
         end;
         // Remove all references to Face1
         for I := 1 to Face1.NumberOfpoints do
-          Face1.Point[I - 1].DeleteFace(Face1);
+          Face1.Point[I - 1].UnreferenceFace(Face1);
         // Remove all references to Face2
         for I := 1 to Face2.NumberOfpoints do
-          Face2.Point[I - 1].DeleteFace(Face2);
+          Face2.Point[I - 1].UnreferenceFace(Face2);
         // Add the new face                                        f
 
         NewFace := TFreeSubdivisionControlFace.Create(Owner);
@@ -260,8 +261,8 @@ begin
         Layer.AddControlFace(NewFace);
         if Crease then
           Crease := False;
-        StartPoint.DeleteEdge(self);
-        Endpoint.DeleteEdge(self);
+        StartPoint.UnreferenceEdge(self);
+        Endpoint.UnreferenceEdge(self);
         Ind1 := Owner.FControlEdges.IndexOf(self);
         if Ind1 <> -1 then
           Owner.FControlEdges.Delete(Ind1);
@@ -298,34 +299,34 @@ procedure TFreesubdivisionControlEdge.Delete;
 var
   I: integer;
   Index: integer;
-  Face: TFreeSubdivisionControlFace;
+  Face: TFreeSubdivisionFace;
+  CFace: TFreeSubdivisionControlFace;
   Point: TFreeSubdivisionControlPoint;
 begin
   if IsDeleting then exit;
   IsDeleting := true;
   // delete from selection;
   Selected := False;
-  Owner.FSelectedControlEdges.DeleteAll(Self);
+  Owner.FSelectedControlEdges.DeleteItem(Self);
 
   if FCurve <> nil then
     FCurve.DeleteEdge(self);
 
-  Owner.FControlEdges.DeleteAll(Self);
+  Owner.FControlEdges.DeleteItem(Self);
 
   begin
     while FFaces.Count>0 do
     begin
       //DeleteFace(FFaces[FFaces.Count-1]);
-      I:=FFaces.Count-1;
-      FFaces[I].Delete;
-      //FFaces[I].Free;
-      //FFaces.Delete(I);
+      Face := FFaces[0];
+      FFaces.Delete(0);
+      Face.Delete;
     end;
     FFaces.Clear;
 
     // Remove endpoint from startpoint neighbours
     if EndPoint <> nil then
-       EndPoint.DeleteEdge(self);
+       EndPoint.UnreferenceEdge(self);
     EndPoint := nil;
     {if EndPoint.NumberOfEdges = 0 then
     begin
@@ -334,7 +335,7 @@ begin
     end;}
     // Remove startpoint from endpoint neighbours
     if StartPoint <> nil then
-       StartPoint.DeleteEdge(self);
+       StartPoint.UnreferenceEdge(self);
     StartPoint := nil;
     {if StartPoint.NumberOfEdges = 0 then
     begin
@@ -573,7 +574,7 @@ begin
       Result.AddFace(Face);
     end;
   end;
-  FEndpoint.DeleteEdge(self);
+  FEndpoint.UnreferenceEdge(self);
   Edge := FOwner.AddControlEdge(Result, FEndPoint as TFreeSubdivisionControlPoint);
   Edge.FCrease := FCrease;
   Edge.FCurve := FCurve;

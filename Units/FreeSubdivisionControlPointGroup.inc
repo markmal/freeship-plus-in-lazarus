@@ -74,7 +74,7 @@ end;
 
 procedure TFreeSubdivisionControlPointGroup.RemoveControlPoint(cp:TFreeSubdivisionControlPoint);
 begin
- FControlPoints.DeleteAll(cp);
+ FControlPoints.DeleteItem(cp);
 end;
 
 procedure TFreeSubdivisionControlPointGroup.BreakGroup;
@@ -88,8 +88,8 @@ var
   Edge: TFreesubdivisionEdge; //TFreesubdivisionControlEdge;
 begin
   Selected := False;
-  Owner.FSelectedControlPointGroups.DeleteAll(self);
-  Owner.FControlPointGroups.DeleteAll(self);
+  Owner.FSelectedControlPointGroups.DeleteItem(self);
+  Owner.FControlPointGroups.DeleteItem(self);
   FControlPoints.Clear;
   Destroy;
 end;{TFreeSubdivisionControlPoint.Delete}

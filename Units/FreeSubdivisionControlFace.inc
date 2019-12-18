@@ -173,7 +173,7 @@ begin
       if (ej<>nil) and (ej.FFaces<>nil) then
         begin
         x:=ej.FFaces.Count;
-        ej.FFaces.DeleteAll(Self);
+        ej.FFaces.DeleteItem(Self);
         end;
       FEdges.Delete(i);
       if (ej <> nil) then
@@ -326,23 +326,31 @@ var
 begin
   // delete from selection;
   Selected := False;
+
+  //delete children?
+  for i:=0 to FChildren.Count-1 do
+    FChildren[i].Delete;
+
+  Unreference;
+
   // remove from layer
-  Layer.DeleteControlFace(self);
-  Layer := nil;
+  if Layer<>nil then
+     Layer.DeleteControlFace(self);
+  //Layer := nil;
   Index := Owner.FControlFaces.IndexOf(Self);
   if Index <> -1 then
   begin
     Owner.FControlFaces.Delete(Index);
     P1 := Point[NumberOfPoints - 1];
-    P1.DeleteFace(Self);
+    P1.UnreferenceFace(Self);
     for I := 1 to NumberOfPoints do
     begin
       P2 := Point[I - 1];
       Edge := Owner.EdgeExists(P1, P2);
-      P2.DeleteFace(Self);
+      P2.UnreferenceFace(Self);
       if Edge <> nil then
       begin
-        Edge.DeleteFace(Self);
+        Edge.UnreferenceFace(Self);
         if Edge.NumberOfFaces = 0 then
           Edge.Delete;
       end;
@@ -353,7 +361,6 @@ begin
   Owner.Build := False;
   //Clear;
   //Destroy;
-  Unreference;
   DelayedDestroyList.Add(Self);
 end;{TFreeSubdivisionControlFace.Delete}
 
@@ -363,19 +370,19 @@ begin
   if not IsUnreferenceEnabled then exit;
   if InUnreference then exit; // speed up
   InUnreference := true;
-  logger.Debug(format('TFreeSubdivisionFace.Unreference[%d]',[self.FID]));
+  logger.Debug(format('TFreeSubdivisionControlFace.Unreference[%d]',[self.FID]));
   if FChildren<>nil then
   for i:=0 to FChildren.Count-1 do
     FChildren[i].Unreference;
   if FControlDescendantEdges<>nil then
   for i:=0 to FControlDescendantEdges.Count-1 do
-    FControlDescendantEdges[i].FFaces.DeleteAll(Self);
+    FControlDescendantEdges[i].FFaces.DeleteItem(Self);
   if FEdges<>nil then
   for i:=0 to FEdges.Count-1 do
-    FEdges[i].FFaces.DeleteAll(Self);
+    FEdges[i].UnreferenceFace(Self);
   if FPoints<>nil then
   for i:=0 to FPoints.Count-1 do
-    FPoints[i].FFaces.DeleteAll(Self);
+    FPoints[i].UnreferenceFace(Self);
   if FOwner <> nil then FOwner.UnreferenceControlFace(self);
   inherited;
   InUnreference := false;
@@ -1281,11 +1288,11 @@ begin
   for I := 1 to FPoints.Count do
   begin
     P2 := FPoints[I - 1];
-    P2.DeleteFace(self);
+    P2.UnreferenceFace(self);
     Edge := FOwner.EdgeExists(P1, P2);
     if Edge <> nil then
     begin
-      Edge.DeleteFace(self);
+      Edge.UnreferenceFace(self);
     end;
     P1 := p2;
   end;

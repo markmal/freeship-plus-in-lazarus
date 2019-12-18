@@ -839,11 +839,12 @@ procedure TFreeSubdivisionLayer.DeleteControlFace(
 var
   Index: integer;
 begin
-  FPatches.DeleteAll(ControlFace);
-
+  FPatches.DeleteItem(ControlFace);
+ {
   Index := FPatches.IndexOf(ControlFace);
   if index <> -1 then
     FPatches.Delete(Index);
+ }
 end;{TFreeSubdivisionLayer.DeleteControlFace}
 
 destructor TFreeSubdivisionLayer.Destroy;

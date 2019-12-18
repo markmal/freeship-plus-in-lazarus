@@ -286,19 +286,29 @@ begin
   inherited;
   //Logger.Debug('StartPoint:'+IntToStr()+IntToHex(QWord(self.StartPoint),16));
   //Logger.Debug('EndPoint:'+IntToHex(QWord(self.EndPoint),16));
-  Logger.Debug(Format(' StartPoint:%d %s',[self.StartPoint.Id, self.StartPoint.Name]));
-  Logger.Debug(Format(' EndPoint:%d %s',[self.EndPoint.Id, self.EndPoint.Name]));
+  if self.StartPoint <> nil then
+     Logger.Debug(Format(' StartPoint:%d %s',[self.StartPoint.Id, self.StartPoint.Name]));
+  if self.EndPoint <> nil then
+     Logger.Debug(Format(' EndPoint:%d %s',[self.EndPoint.Id, self.EndPoint.Name]));
   for i:=0 to FFaces.Count-1 do
       //Logger.Debug('Faces['+IntToStr(i)+']('+FFaces[i].ClassName+')'
       //  + IntToHex(QWord(FFaces[i]),16));
       Logger.Debug(Format(' face[%d]:%d',[i,FFaces[i].Id]));
 end;
 
-procedure TFreeSubdivisionEdge.DeleteFace(Face: TFreeSubdivisionFace);
+procedure TFreeSubdivisionEdge.UnreferenceFace(Face: TFreeSubdivisionFace);
 var
   Index: integer;
 begin
-  Index := FFaces.IndexOf(Face);
+  FFaces.DeleteItem(Face);
+  //Crease := (FFaces.Count = 1);
+  if FFaces.Count = 1 then
+    FCrease := True
+  else
+  if FFaces.Count = 0 then
+    FCrease := False;
+
+  {Index := FFaces.IndexOf(Face);
   if Index > -1 then
   begin
     FFaces.Delete(Index);
@@ -307,30 +317,31 @@ begin
     else
     if FFaces.Count = 0 then
       Crease := False;
-  end;
+  end;}
 end;{TFreeSubdivisionEdge.DeleteFace}
 
 procedure TFreeSubdivisionEdge.Delete;
 var
   I: integer;
   Index: integer;
-  Face: TFreeSubdivisionControlFace;
+  Face: TFreeSubdivisionFace;
+  CFace: TFreeSubdivisionControlFace;
   Point: TFreeSubdivisionControlPoint;
 begin
-  {Index := Owner.FEdges.IndexOf(self);
-  if Index <> -1 then
-    Owner.FEdges.Delete(index);}
-  Owner.FEdges.DeleteAll(Self);
+  Owner.FEdges.DeleteItem(Self);
+
   begin
     for I := FFaces.Count-1 downto 0 do
     begin
-      FFaces[I].Free;
+      Face:=FFaces[I];
       FFaces.Delete(I);
+      Face.Delete;
     end;
+
     // Remove endpoint from startpoint neighbours
     if EndPoint <> nil then
     begin
-      EndPoint.DeleteEdge(self);
+      EndPoint.UnreferenceEdge(self);
       if EndPoint.NumberOfEdges = 0 then
       begin
         Point := Endpoint as TFreeSubdivisionControlPoint;
@@ -342,7 +353,7 @@ begin
     // Remove startpoint from endpoint neighbours
     if StartPoint <> nil then
     begin
-      StartPoint.DeleteEdge(self);
+      StartPoint.UnreferenceEdge(self);
       if StartPoint.NumberOfEdges = 0 then
       begin
         Point := StartPoint as TFreeSubdivisionControlPoint;
@@ -364,9 +375,9 @@ begin
   InUnreference := true;
 
   if FStartPoint<>nil then
-     FStartPoint.FEdges.DeleteAll(Self);
+     FStartPoint.FEdges.DeleteItem(Self);
   if FEndPoint<>nil then
-     FEndPoint.FEdges.DeleteAll(Self);
+     FEndPoint.FEdges.DeleteItem(Self);
   if FFaces = nil then exit;
   for i:=0 to FFaces.Count-1 do
     begin
@@ -376,11 +387,11 @@ begin
        then continue;
     if (F is TFreeSubdivisionControlFace)
        and ((F as TFreeSubdivisionControlFace).FEdges <> nil) then
-     (F as TFreeSubdivisionControlFace).FEdges.DeleteAll(Self);
+     (F as TFreeSubdivisionControlFace).FEdges.DeleteItem(Self);
     if (F.FPoints = nil) or not(F.FPoints is TFasterListTFreeSubdivisionPoint) then continue;
     for j:=0 to F.FPoints.Count-1 do
       if F.FPoints[j].FEdges <> nil then
-          F.FPoints[j].FEdges.DeleteAll(Self);
+          F.FPoints[j].FEdges.DeleteItem(Self);
     end;
     if FOwner <> nil then FOwner.UnreferenceEdge(Self);
 

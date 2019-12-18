@@ -205,7 +205,7 @@ end;
 function findToolbarWithGreatestRatio(rbn:TPanel): TToolBar;
 var i, w, ClW, TCW : integer; contr: TToolBar; r: double;
 begin
-  w:=0; r:=0.0;
+  w:=0; r:=-1.0;
   result := nil;
   for i:=0 to rbn.ControlCount-1 do
     if rbn.Controls[i] is TToolBar then

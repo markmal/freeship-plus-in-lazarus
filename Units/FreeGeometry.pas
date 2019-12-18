@@ -1283,9 +1283,9 @@ type
     procedure Clear;
     constructor Create(Owner: TFreeSubdivisionSurface);override;
     procedure Delete; virtual;
-    procedure DeleteEdge(Edge: TFreeSubdivisionEdge);
-    procedure DeleteFace(Face: TFreeSubdivisionFace);
-    procedure Unreference;
+    procedure UnreferenceEdge(Edge: TFreeSubdivisionEdge);
+    procedure UnreferenceFace(Face: TFreeSubdivisionFace);
+    procedure Unreference; virtual;
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
@@ -1355,6 +1355,7 @@ type
     procedure SetLinearConstraint(pointA, pointB: TFreeSubdivisionControlPoint);
     procedure SetAnchorPoint(pointA: TFreeSubdivisionControlPoint);
     procedure SetIsAnchorHard(val: boolean);
+    procedure Unreference; override;
     property Color: TColor read FGetColor;
     property IsLeak: boolean read FGetIsLeak;
     property LinearConstraintPointA: TFreeSubdivisionControlPoint read FLinearConstraintPointA;
@@ -1437,7 +1438,7 @@ type
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
     procedure Delete; virtual;
-    procedure DeleteFace(Face: TFreeSubdivisionFace);
+    procedure UnreferenceFace(Face: TFreeSubdivisionFace);
     procedure Unreference; virtual;
     destructor Destroy;
       override;

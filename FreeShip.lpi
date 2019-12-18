@@ -31,14 +31,14 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="210"/>
+      <BuildNr Value="224"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
     <MacroValues Count="1">
       <Macro1 Name="LCLWidgetType" Value="gtk2"/>
     </MacroValues>
-    <BuildModes Count="3">
+    <BuildModes Count="4">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
         <MacroValues Count="1">
@@ -161,6 +161,69 @@
           </Other>
         </CompilerOptions>
       </Item3>
+      <Item4 Name="Gtk3 Debug">
+        <MacroValues Count="1">
+          <Macro1 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="FreeShip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
+            <OtherUnitFiles Value="Units;Forms"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <SyntaxMode Value="fpc"/>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+              <ShoLineNum Value="True"/>
+              <ShowDebugInfo Value="True"/>
+              <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+            </Verbosity>
+            <ExecuteBefore>
+              <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
+              <ShowAllMessages Value="True"/>
+              <CompileReasons Run="False"/>
+            </ExecuteBefore>
+            <ExecuteAfter>
+              <ScanForFPCMsgs Value="True"/>
+              <ScanForMakeMsgs Value="True"/>
+              <ShowAllMessages Value="True"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item4>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="107324517234" Modes="Gtk3 Debug" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+      </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -198,7 +261,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="113">
+    <Units Count="118">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -825,6 +888,26 @@
         <Filename Value="Units/FreeVisibility.inc"/>
         <IsPartOfProject Value="True"/>
       </Unit112>
+      <Unit113>
+        <Filename Value="Units/freedesktopHelper.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit113>
+      <Unit114>
+        <Filename Value="Units/FileIconGtk3.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit114>
+      <Unit115>
+        <Filename Value="Units/FileIconGtk.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit115>
+      <Unit116>
+        <Filename Value="Units/FileIcon.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit116>
+      <Unit117>
+        <Filename Value="Units/FileIconWin.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit117>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -834,7 +917,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Units;Forms"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.6/lcl/interfaces/gtk3/gtk3bindings/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
@@ -882,4 +965,11 @@
       </ExecuteAfter>
     </Other>
   </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="1">
+      <Item1>
+        <Name Value="Exception"/>
+      </Item1>
+    </Exceptions>
+  </Debugging>
 </CONFIG>

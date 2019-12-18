@@ -81,7 +81,7 @@ begin
   if InUnreferenceControlPoint then exit;
   InUnreferenceControlPoint:=true; // anti loop
 
-  FControlPoints.DeleteAll(P);
+  FControlPoints.DeleteItem(P);
   for i:=0 to FControlEdges.Count-1 do
     begin
     if FControlEdges[i].StartPoint = P then
@@ -90,9 +90,9 @@ begin
        FControlEdges[i].EndPoint := nil;
     end;
   for i:=0 to FControlFaces.Count-1 do
-      FControlFaces[i].FPoints.DeleteAll(P);
+      FControlFaces[i].FPoints.DeleteItem(P);
   for i:=0 to FControlCurves.Count-1 do
-      FControlCurves[i].FControlPoints.DeleteAll(P);
+      FControlCurves[i].FControlPoints.DeleteItem(P);
   P.Unreference;
   InUnreferenceControlPoint:=false;
 end;
@@ -102,9 +102,9 @@ var i: integer;
 begin
   if InUnreferenceControlEdge then exit;
   InUnreferenceControlEdge:=true; // anti loop
-  FControlEdges.DeleteAll(E);
+  FControlEdges.DeleteItem(E);
   for i:=0 to FControlPoints.Count-1 do
-    FControlPoints[i].FEdges.DeleteAll(E);
+    FControlPoints[i].FEdges.DeleteItem(E);
   E.Unreference;
   InUnreferenceControlEdge:=false;
 end;
@@ -115,15 +115,15 @@ begin
   if InUnreferenceControlFace then exit;
   InUnreferenceControlFace:=true; // anti loop
 
-  FControlFaces.DeleteAll(F);
+  FControlFaces.DeleteItem(F);
   {for i:=0 to F.FChildren.Count-1 do
     F.FChildren[i].Unreference;
   for i:=0 to F.FEdges.Count-1 do
-    F.FEdges[i].FFaces.DeleteAll(F);
+    F.FEdges[i].FFaces.DeleteItem(F);
   for i:=0 to F.FPoints.Count-1 do
-    F.FPoints[i].FFaces.DeleteAll(F); }
+    F.FPoints[i].FFaces.DeleteItem(F); }
   for i:=0 to FControlPoints.Count-1 do
-    FControlPoints[i].FFaces.DeleteAll(F);
+    FControlPoints[i].FFaces.DeleteItem(F);
   for i:=0 to FLayers.Count-1 do
     FLayers[i].DeleteControlFace(F);
   F.Unreference;
@@ -136,7 +136,7 @@ begin
   if InUnreferencePoint then exit;
   InUnreferencePoint:=true; // anti loop
 
-  FPoints.DeleteAll(P);
+  FPoints.DeleteItem(P);
 
   for i:=0 to FEdges.Count-1 do
     begin
@@ -172,7 +172,7 @@ begin
              cface.FControlDescendantEdges[j].EndPoint := nil;
         end;
 
-      FControlFaces[i].FPoints.DeleteAll(P);
+      FControlFaces[i].FPoints.DeleteItem(P);
       end;
 
   P.Unreference;
@@ -184,11 +184,11 @@ var i: integer;
 begin
   if InUnreferenceEdge then exit;
   InUnreferenceEdge:=true; // anti loop
-  FEdges.DeleteAll(E);
+  FEdges.DeleteItem(E);
   //if E is TFreeSubdivisionControlEdge then
   //  UnreferenceEdge(E as TFreeSubdivisionControlEdge);
   for i:=0 to FPoints.Count-1 do
-    FPoints[i].FEdges.DeleteAll(E);
+    FPoints[i].FEdges.DeleteItem(E);
   E.Unreference;
   InUnreferenceEdge:=false;
 end;
@@ -199,9 +199,9 @@ begin
   if InUnreferenceFace then exit;
   InUnreferenceFace:=true; // anti loop
   for i:=0 to F.FPoints.Count-1 do
-    F.FPoints[i].FFaces.DeleteAll(F);
+    F.FPoints[i].FFaces.DeleteItem(F);
   for i:=0 to FControlPoints.Count-1 do
-    FControlPoints[i].FFaces.DeleteAll(F);
+    FControlPoints[i].FFaces.DeleteItem(F);
   if F is TFreeSubdivisionControlFace then
      UnreferenceControlFace(F as TFreeSubdivisionControlFace);
   InUnreferenceFace:=false;
@@ -999,7 +999,8 @@ end;{TFreeSubdivisionSurface.FGetControlPoint}
 function TFreeSubdivisionSurface.FGetControlEdge(Index: integer):
 TFreesubdivisionControlEdge;
 begin
-  Result := TObject(FControlEdges[index]) as TFreesubdivisionControlEdge;
+  //Result := TObject(FControlEdges[index]) as TFreesubdivisionControlEdge;
+  Result := FControlEdges[index];
 end;{TFreeSubdivisionSurface.FGetControlEdge}
 
 function TFreeSubdivisionSurface.FGetControlCurve(Index: integer):
@@ -1008,10 +1009,10 @@ begin
   Result := TObject(FControlCurves[index]) as TFreesubdivisionControlCurve;
 end;{TFreeSubdivisionSurface.FGetControlCurve}
 
-function TFreeSubdivisionSurface.FGetControlFace(Index: integer):
-TFreeSubdivisionControlFace;
+function TFreeSubdivisionSurface.FGetControlFace(Index: integer):TFreeSubdivisionControlFace;
 begin
-  Result := TObject(FControlFaces[index]) as TFreeSubdivisionControlFace;
+  //Result := TObject(FControlFaces[index]) as TFreeSubdivisionControlFace;
+  Result := FControlFaces[index];
 end;{TFreeSubdivisionSurface.FGetControlFace}
 
 function TFreeSubdivisionSurface.FGetGaussCurvatureCalculated: boolean;
@@ -1321,18 +1322,18 @@ begin
       // Delete invalid controlfaces
       for J := 1 to Result.NumberOfpoints do
       begin
-        Result.Point[J - 1].DeleteFace(Result);
+        Result.Point[J - 1].UnreferenceFace(Result);
         if J = 1 then
           Edge := EdgeExists(Result.Point[Result.NumberOfPoints - 1], Result.Point[J - 1])
         else
           Edge := EdgeExists(Result.Point[J - 2], Result.Point[J - 1]);
         if Edge <> nil then
         begin
-          Edge.DeleteFace(Result);
-          Edge.StartPoint.DeleteEdge(Edge);
-          Edge.StartPoint.DeleteFace(Result);
-          Edge.EndPoint.DeleteEdge(Edge);
-          Edge.EndPoint.DeleteFace(Result);
+          Edge.UnreferenceFace(Result);
+          Edge.StartPoint.UnreferenceEdge(Edge);
+          Edge.StartPoint.UnreferenceFace(Result);
+          Edge.EndPoint.UnreferenceEdge(Edge);
+          Edge.EndPoint.UnreferenceFace(Result);
         end;
       end;
       Result.Destroy;
@@ -3396,8 +3397,8 @@ begin
       Edge := ControlEdge[I - 1];
       if Edge.NumberOfFaces = 0 then
       begin
-        Edge.StartPoint.DeleteEdge(Edge);
-        Edge.EndPoint.DeleteEdge(Edge);
+        Edge.StartPoint.UnreferenceEdge(Edge);
+        Edge.EndPoint.UnreferenceEdge(Edge);
         Edge.Crease := False;
       end
       else if Edge.NumberOfFaces <> 2 then

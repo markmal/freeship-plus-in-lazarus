@@ -328,32 +328,54 @@ end;{TFreeSubdivisionControlPoint.Create}
 procedure TFreeSubdivisionControlPoint.Delete;
 var
   Index,i: integer;
+  Face: TFreesubdivisionFace;
   Edge: TFreesubdivisionEdge; //TFreesubdivisionControlEdge;
+  EdgesToDelete: TFasterListTFreesubdivisionEdge;
+  FacesToDelete: TFasterListTFreesubdivisionFace;
 begin
   // delete from selection;
   Selected := False;
 
-  Owner.FSelectedControlPoints.DeleteAll(self);
-  Owner.FControlPoints.DeleteAll(self);
+  Owner.FSelectedControlPoints.DeleteItem(self);
+  Owner.FControlPoints.DeleteItem(self);
 
   for i:=0 to Owner.FSelectedControlPointGroups.Count-1 do
     Owner.FSelectedControlPointGroups[i].RemoveControlPoint(self);
   for i:=0 to Owner.FControlPointGroups.Count-1 do
     Owner.FControlPointGroups[i].RemoveControlPoint(self);
 
-  if FEdges.Count > 0 then
+  FacesToDelete:= TFasterListTFreesubdivisionFace.Create(true,false);
+  while FFaces.Count > 0 do
   begin
-    while FEdges.Count>0 do
-    begin
-      Edge := self.Edge[NumberOfEdges - 1]; // as TFreesubdivisionControlEdge;
-      Edge.Delete;
-    end;
-  end
-  else
-  begin
-    Unreference;
-    Destroy; //TODO: figure out why we do not delete Point if Edge exists
+    Face := FFaces[0];
+    FFaces.Delete(0);
+    FacesToDelete.Add(Face);
+    //Edge.Delete;
   end;
+  //FacesToDelete.AddList(FFaces);
+  FFaces.Clear;
+
+  EdgesToDelete:= TFasterListTFreesubdivisionEdge.Create(true,false);
+  while FEdges.Count>0 do
+    begin
+      Edge := self.Edge[0];
+      FEdges.Delete(0);
+      EdgesToDelete.Add(Edge);
+      //Edge.Delete;
+    end;
+  FEdges.Clear;
+
+  for i:=0 to FacesToDelete.Count-1 do
+    FacesToDelete[i].Delete;
+  FacesToDelete.Destroy;
+
+  for i:=0 to EdgesToDelete.Count-1 do
+    EdgesToDelete[i].Delete;
+  EdgesToDelete.Destroy;
+
+  Unreference;
+  Destroy; //TODO: figure out why we do not delete Point if Edge exists
+
 end;{TFreeSubdivisionControlPoint.Delete}
 
 procedure TFreeSubdivisionControlPoint.Draw(Viewport: TFreeViewport);
@@ -678,9 +700,9 @@ begin
   if (FLinearConstraintPointA = pointA) and (FLinearConstraintPointB = pointB) then exit;
 
   if FLinearConstraintPointA <> nil then
-     FLinearConstraintPointA.FLinearConstrainedPoints.DeleteAll(Self);
+     FLinearConstraintPointA.FLinearConstrainedPoints.DeleteItem(Self);
   if FLinearConstraintPointB <> nil then
-     FLinearConstraintPointB.FLinearConstrainedPoints.DeleteAll(Self);
+     FLinearConstraintPointB.FLinearConstrainedPoints.DeleteItem(Self);
 
   FLinearConstraintPointA := pointA;
   FLinearConstraintPointB := pointB;
@@ -696,7 +718,7 @@ begin
   if FAnchorPoint = pointA then exit;
 
   if FAnchorPoint <> nil then
-     FAnchorPoint.FAnchoredPoints.DeleteAll(Self);
+     FAnchorPoint.FAnchoredPoints.DeleteItem(Self);
 
   FAnchorPoint := pointA;
   FIsAnchorHard := false;
@@ -709,3 +731,33 @@ procedure TFreeSubdivisionControlPoint.SetIsAnchorHard(val: boolean);
 begin
   FIsAnchorHard := val;
 end;
+
+procedure TFreeSubdivisionControlPoint.Unreference;
+var i:integer;
+begin
+
+  for i:=0 to FLinearConstrainedPoints.Count-1 do
+    begin
+    if FLinearConstrainedPoints[i].FLinearConstraintPointA = Self then
+       FLinearConstrainedPoints[i].FLinearConstraintPointA := nil;
+    if FLinearConstrainedPoints[i].FLinearConstraintPointB = Self then
+       FLinearConstrainedPoints[i].FLinearConstraintPointB := nil;
+    end;
+  if FLinearConstraintPointA <> nil then
+     FLinearConstraintPointA.FLinearConstrainedPoints.DeleteItem(self);
+  if FLinearConstraintPointB <> nil then
+     FLinearConstraintPointB.FLinearConstrainedPoints.DeleteItem(self);
+
+  for i:=0 to FAnchoredPoints.Count-1 do
+    begin
+    if FAnchoredPoints[i].FAnchorPoint = Self then
+       FAnchoredPoints[i].FAnchorPoint := nil;
+    if FAnchoredPoints[i].FAnchorPoint = Self then
+       FAnchoredPoints[i].FAnchorPoint := nil;
+    end;
+  if FAnchorPoint <> nil then
+     FAnchorPoint.FAnchoredPoints.DeleteItem(Self);
+
+  inherited;
+end;
+

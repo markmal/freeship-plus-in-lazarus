@@ -194,7 +194,7 @@ begin
 end;{TFreeSubdivisionFace.Delete}
 
 procedure TFreeSubdivisionFace.Unreference;
-var i,j: integer; E:TFreeSubdivisionEdge;
+var i,j: integer; E:TFreeSubdivisionEdge; P:TFreeSubdivisionPoint;
 begin
   if not IsUnreferenceEnabled then exit;
   if InUnreference then exit; // speed up
@@ -204,16 +204,20 @@ begin
    then FID:=99;
   if FPoints = nil then // debug
      FID:=FID;}
+
   if FPoints <> nil then
   for i:=0 to FPoints.Count-1 do
     begin
-    FPoints[i].FFaces.DeleteAll(Self);
-    for j:=0 to FPoints[i].FEdges.Count-1 do
+    P:=FPoints[i];
+    P.UnreferenceFace(Self);
+    {for j:=0 to FPoints[i].FEdges.Count-1 do
       begin
       E:=FPoints[i].FEdges[j];
-      if E.FFaces <> nil then
-         E.FFaces.DeleteAll(Self);
-      end;
+      if (E<>nil)
+        and ((E is TFreeSubdivisionEdge)or(E is TFreeSubdivisionControlEdge) )
+        and (E.FFaces <> nil) then
+         E.FFaces.DeleteItem(Self);
+      end;}
     end;
   if FOwner <> nil then FOwner.UnreferenceFace(Self);
   InUnreference := false;

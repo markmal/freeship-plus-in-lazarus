@@ -1212,7 +1212,6 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
         ItemIndex = 3
         ShellListView = ShellListView
         TabOrder = 0
-        OnChange = FilterComboBox1Change
         OnSelect = FilterComboBox1Select
       end
     end

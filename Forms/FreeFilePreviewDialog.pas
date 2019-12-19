@@ -8,10 +8,10 @@ interface
 uses
   Classes, SysUtils, LazFileUtils, Forms, Controls, Graphics,
   Dialogs, ComCtrls, EditBtn,
-  //ShellCtrls,
+  //ShellCtrls, FileCtrl,
   FreeShellCtrls,
   StdCtrls, Buttons,
-  ExtCtrls, PairSplitter, FileCtrl, Menus, ActnList, Math,
+  ExtCtrls, PairSplitter, Menus, ActnList, Math,
   FileIcon,
   {$IFDEF WINDOWS}
   FileIconWin,
@@ -131,7 +131,6 @@ type
       Shift: TShiftState);
     procedure ComboBoxDirKeyPress(Sender: TObject; var Key: char);
     procedure EditNameEditingDone(Sender: TObject);
-    procedure FilterComboBox1Change(Sender: TObject);
     procedure FilterComboBox1Select(Sender: TObject);
     procedure FitSizeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -623,11 +622,6 @@ begin
   FFileName := trim(EditName.Text);
 end;
 
-procedure TFreeFilePreviewDialog.FilterComboBox1Change(Sender: TObject);
-begin
-
-end;
-
 function ExtractFileNameExt(const AFilename: string): string; // extracts extention with dot
 var
   p: Integer;
@@ -830,6 +824,8 @@ end;
 procedure TFreeFilePreviewDialog.FormResize(Sender: TObject);
 begin
   StatusBar.Panels[0].Text := IntToStr(Self.ClientWidth)+' x '+IntToStr(Self.ClientHeight);
+  ShellListView.Constraints.MaxWidth:=Width - self.ShellTreeView.Width - 100;
+  FitPreviewImage;
 end;
 
 procedure TFreeFilePreviewDialog.FormShow(Sender: TObject);
@@ -1842,6 +1838,8 @@ begin
       PreviewImage.AutoSize := false;
     end;
 
+    if (ShellListView.ClientWidth > cw) and (lvw > self.ClientWidth)
+      then ShellListView.ClientWidth := cw;
 end;
 
 
@@ -1882,6 +1880,7 @@ begin
   finally
         ShellListView.Cursor := crDefault;
         Cursor := crDefault;
+        Screen.Cursor := crDefault;
   end;
 end;
 

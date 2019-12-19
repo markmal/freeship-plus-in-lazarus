@@ -25,6 +25,7 @@ uses
   Classes, SysUtils, Laz_AVL_Tree,
   // LCL
   Forms, Graphics, ComCtrls, LCLProc, LCLStrConsts,
+  StdCtrls,
   // LazUtils
   FileUtil, LazFileUtils, LazUTF8,
   ScrollPanel;
@@ -387,6 +388,91 @@ type
 
   EShellCtrl = class(Exception);
   EInvalidPath = class(EShellCtrl);
+
+
+  { TCustomFilterComboBox }
+
+  TCustomFilterComboBox = class(TCustomComboBox)
+  private
+    FFilter: string;
+    FShellListView: TShellListView;
+    function GetMask: string;
+    procedure SetFilter(const AValue: string);
+    procedure SetShellListView(const AValue: TShellListView);
+  protected
+    procedure Select; override;
+    procedure Notification(AComponent: TComponent; Operation: TOperation);
+      override;
+  public
+    { Base methods }
+    constructor Create(TheOwner: TComponent); override;
+    destructor Destroy; override;
+    { Externally available methods }
+    class procedure ConvertFilterToStrings(AFilter: string;
+      AStrings: TStrings; AClearStrings, AAddDescription, AAddFilter: Boolean);
+    { properties }
+    property Mask: string read GetMask; // Can be used to conect to other controls
+    property ShellListView: TShellListView read FShellListView write SetShellListView;
+  end;
+
+  TFilterComboBox = class(TCustomFilterComboBox)
+  published
+    { properties }
+    property Align;
+    property Anchors;
+    property AutoComplete;
+    property AutoDropDown;
+    property AutoSize;// Note: windows has a fixed height in some styles
+    property BidiMode;
+    property BorderSpacing;
+    property Color;
+    property Constraints;
+    property DragCursor;
+    property DragKind;
+    property DragMode;
+    property Enabled;
+    // property FileList: TFileList
+    property Filter: string read FFilter write SetFilter;
+    property Font;
+    property ItemIndex;
+    property ParentBidiMode;
+    property ParentColor;
+    property ParentFont;
+    property ParentShowHint;
+    property PopupMenu;
+    property ShellListView;
+    property ShowHint;
+    property TabOrder;
+    property TabStop;
+    property Visible;
+    { events }
+    property OnChange;
+    property OnClick;
+    property OnCloseUp;
+    property OnContextPopup;
+    property OnDblClick;
+    property OnDragDrop;
+    property OnDragOver;
+    property OnEndDrag;
+    property OnDropDown;
+    property OnEnter;
+    property OnExit;
+    property OnKeyDown;
+    property OnKeyPress;
+    property OnKeyUp;
+    property OnMouseDown;
+    property OnMouseEnter;
+    property OnMouseLeave;
+    property OnMouseMove;
+    property OnMouseUp;
+    property OnMouseWheel;
+    property OnMouseWheelDown;
+    property OnMouseWheelUp;
+    property OnStartDrag;
+    property OnSelect;
+    property OnUTF8KeyPress;
+  end;
+
 
 function DbgS(OT: TObjectTypes): String; overload;
 
@@ -1588,12 +1674,12 @@ begin
     exit;
     end;
 
-  if Self.SortDirection = sdDescending then
+  {if Self.SortDirection = sdDescending then
     begin // swap items
     Item0 := Item2;
     Item2 := Item1;
     Item1 := Item0;
-    end;
+    end;}
 
   colName := Columns[Self.SortColumn].Caption;
   if colName = sShellCtrlsName then
@@ -1608,6 +1694,9 @@ begin
   if colName = sShellCtrlsTime then
     Compare := CompareText(Item1.SubItems[2], Item2.SubItems[2])
   ;
+
+  if Self.SortDirection = sdDescending then
+    Compare := Compare * -1;
 end;
 
 function TCustomShellListView.GetAllColumnsWidth:integer;
@@ -1731,6 +1820,146 @@ begin
   {$endif}
 
 end;
+
+
+
+  { TCustomFilterComboBox }
+
+  function TCustomFilterComboBox.GetMask: string;
+  var
+    FilterList: TStrings;
+  begin
+    Result := '';
+
+    FilterList := TStringList.Create;
+    try
+      TCustomFilterComboBox.ConvertFilterToStrings(FFilter, FilterList, True, False, True);
+
+      if (ItemIndex >= 0) and (ItemIndex < FilterList.Count) then
+      begin
+        Result := FilterList[ItemIndex];
+      end;
+    finally
+      FilterList.Free;
+    end;
+  end;
+
+  procedure TCustomFilterComboBox.SetFilter(const AValue: string);
+  begin
+    if AValue = FFilter then Exit;
+
+    FFilter := AValue;
+
+    TFilterComboBox.ConvertFilterToStrings(AValue, Items, True, True, False);
+
+    ItemIndex := 0;
+  end;
+
+  procedure TCustomFilterComboBox.SetShellListView(const AValue: TShellListView);
+  begin
+    if FShellListView=AValue then exit;
+
+    FShellListView:=AValue;
+
+    if FShellListView <> nil then begin
+      FShellListView.Mask := Mask;
+      FreeNotification(FShellListView);
+    end;
+  end;
+
+  procedure TCustomFilterComboBox.Select;
+  begin
+    if FShellListView <> nil then
+      FShellListView.Mask := Mask;
+
+    inherited Select;
+  end;
+
+  procedure TCustomFilterComboBox.Notification(AComponent: TComponent;
+    Operation: TOperation);
+  begin
+    inherited Notification(AComponent, Operation);
+    if Operation=opRemove then
+    begin
+      if FShellListView=AComponent then
+        FShellListView:=nil;
+    end;
+  end;
+
+  {------------------------------------------------------------------------------
+  This is a parser that converts LCL filter strings to a TStringList
+
+  The parses states are:
+
+  0 - Initial state, is reading a string to be displayed on the filter
+  1 - Is reading the extensions
+
+  A LCL filter string looks like this:
+
+  Text files (*.txt *.pas)|*.txt;*.pas|Binaries (*.exe)|*.exe
+  or
+  Text files (*.txt *.pas)|*.txt;*.pas|Binaries (*.exe)|*.exe|
+
+  The TStrings will contain the following strings if
+  AAddDescription = True, AAddFilter = False
+
+  Text files (*.txt *.pas)
+  Binaries (*.exe)
+
+  Adapted from the converter initially created for QtWSDialogs.pas
+  ------------------------------------------------------------------------------}
+  class procedure TCustomFilterComboBox.ConvertFilterToStrings(AFilter: string;
+    AStrings: TStrings; AClearStrings, AAddDescription, AAddFilter: Boolean);
+  var
+    ParserState, Position, i: Integer;
+  begin
+    if AStrings = nil then Exit;
+
+    if AClearStrings then AStrings.Clear;
+
+    ParserState := 0;
+    Position := 1;
+    AFilter := AFilter + '|'; // to prevent ignoring of last filter
+
+    for i := 1 to Length(AFilter) do
+    begin
+      if AFilter[i] = '|' then
+      begin
+        case ParserState of
+        0:
+        begin
+          if AAddDescription then
+            AStrings.Add(Copy(AFilter, Position, i - Position));
+          ParserState := 1;
+        end;
+        1:
+        begin
+          if AAddFilter then
+            AStrings.Add(Copy(AFilter, Position, i - Position));
+          ParserState := 0;
+        end;
+        end;// case
+
+        Position := i + 1;
+      end;
+    end;
+  end;
+
+  constructor TCustomFilterComboBox.Create(TheOwner: TComponent);
+  begin
+    inherited Create(TheOwner);
+
+    Text := '';
+  end;
+
+  destructor TCustomFilterComboBox.Destroy;
+  begin
+
+    inherited Destroy;
+  end;
+
+  // ------------------------------------
+
 
 function TCustomShellListView.GetPathFromItem(ANode: TListItem): string;
 begin

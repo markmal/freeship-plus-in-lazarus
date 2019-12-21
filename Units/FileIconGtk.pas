@@ -12,10 +12,11 @@ uses
 type TFileIconGtk = class(TFileIconAdapter)
 protected
   function getIconByNameGtk2(icon_name:Pgchar; size:integer):TIcon;
-public
-  function getIconByName( iconName:string; size:integer):TIcon; override;
+  function getIconByName( iconName:string; size:integer):TIcon;
   function getIconNameForFile(filename:string; size:integer):string; override;
-  function getIconForFile(filename:string; size:integer):TIcon;override;
+  function getIconForFile(filename:string; size:integer):TIcon; override;
+public
+  function addIconsForFile(filename:string):integer; override;
 end;
 
 implementation
@@ -81,8 +82,8 @@ function TFileIconGtk.addIconsForFile(filename:string):integer;
 var mimeType:string; iconName:string; i,i1,i2,iconIndex:integer;
     smallIcon, largeIcon: TIcon;
 begin
-  result:=-1;
-  iconName:=FFileIcon.getIconNameForFile(filename,16);
+  result := -1;
+  iconName := getIconNameForFile(filename,16);
 
   // check if icon is registered in iconName to IconIndex map
   i := FIconNamesMap.IndexOf(iconName);
@@ -94,8 +95,8 @@ begin
   else
     begin
     iconIndex := -1;
-    smallIcon := FFileIcon.getIconByName(iconName,16);
-    largeIcon := FFileIcon.getIconByName(iconName,32);
+    smallIcon := getIconByName(iconName,16);
+    largeIcon := getIconByName(iconName,32);
     if assigned(smallIcon) and assigned(largeIcon) then
       begin
       i1 := FSmallImageList.AddIcon(smallIcon);
@@ -106,7 +107,6 @@ begin
       end;
     end;
 end;
-
 
 
 end.

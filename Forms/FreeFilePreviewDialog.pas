@@ -722,9 +722,9 @@ begin
     FFileIcon:=TFileIconWin.Create(SmallImageList, LargeImageList);
   {$ELSE}
     {$IFDEF Magic}
-      FFileIcon:=TFileMimeIcon.Create;
+      FFileIcon:=TFileMimeIcon.Create(SmallImageList, LargeImageList);
     {$ELSE}
-      FFileIcon:=TFileIconGtk.Create;
+      FFileIcon:=TFileIconGtk.Create(SmallImageList, LargeImageList);
     {$ENDIF}
   {$ENDIF}
 

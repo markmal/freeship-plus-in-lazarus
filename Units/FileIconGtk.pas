@@ -9,7 +9,7 @@ uses
   GTK2, GLib2,
   FileIconGtk3;
 
-type TFileIconGtk = class(TFileIcon)
+type TFileIconGtk = class(TFileIconAdapter)
 protected
   function getIconByNameGtk2(icon_name:Pgchar; size:integer):TIcon;
 public
@@ -74,6 +74,40 @@ begin
         end;
 
 end;
+
+// checks if icon is already cached and adds an icon if it is not cached,
+// returns icon index in LargeIconList and SmallIconList
+function TFileIconGtk.addIconsForFile(filename:string):integer;
+var mimeType:string; iconName:string; i,i1,i2,iconIndex:integer;
+    smallIcon, largeIcon: TIcon;
+begin
+  result:=-1;
+  iconName:=FFileIcon.getIconNameForFile(filename,16);
+
+  // check if icon is registered in iconName to IconIndex map
+  i := FIconNamesMap.IndexOf(iconName);
+  if (i>-1) then
+    begin
+    iconIndex := PtrUInt(FIconNamesMap.Objects[i]);
+    result := iconIndex;
+    end
+  else
+    begin
+    iconIndex := -1;
+    smallIcon := FFileIcon.getIconByName(iconName,16);
+    largeIcon := FFileIcon.getIconByName(iconName,32);
+    if assigned(smallIcon) and assigned(largeIcon) then
+      begin
+      i1 := FSmallImageList.AddIcon(smallIcon);
+      i2 := FLargeImageList.AddIcon(largeIcon);
+      iconIndex := i1;
+      FIconNamesMap.AddObject(iconName, TObject(PtrUint(iconIndex)));
+      result := iconIndex;
+      end;
+    end;
+end;
+
+
 
 end.
 

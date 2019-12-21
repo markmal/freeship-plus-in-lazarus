@@ -205,7 +205,7 @@ type
     FOnPreview: TSelectFileEvent;
     FHistoryStack: TStringList;
     FFileDialogMode : TFileDialogMode;
-    FFileIcon:TFileIcon;
+    FFileIcon:TFileIconAdapter;
     FMouseDownTime:TDateTime;
     FInAutoSearchListBox:boolean;
     FListBox1ControlledByKeys:boolean;
@@ -218,7 +218,7 @@ type
     FLang:string; // short name like 'ru', 'de'
     FListHidden:boolean;
 
-    function addAnyIconsForFile(filename:string):integer;
+    //function addAnyIconsForFile(filename:string):integer;
     procedure addIconsForFile(filename:string; item:TListItem);
 
     function  getSelectedAbsoluteFileName:string;
@@ -719,7 +719,7 @@ begin
   {$IFDEF WINDOWS}
     SmallImageList.Clear;
     LargeImageList.Clear;
-    FFileIcon:=TFileIconWin.Create;
+    FFileIcon:=TFileIconWin.Create(SmallImageList, LargeImageList);
   {$ELSE}
     {$IFDEF Magic}
       FFileIcon:=TFileMimeIcon.Create;
@@ -1329,28 +1329,20 @@ procedure TFreeFilePreviewDialog.ShellTreeViewGetImageIndex(Sender: TObject;
 var path:string; stNode:TShellTreeNode;
 begin
  path:=TShellTreeView(Sender).GetPathFromNode(Node);
-{$IFDEF WINDOWS}
- Node.ImageIndex := GetWinIconForFile(path, false, SmallImageList);
-{$ELSE}
  stNode := nil;
  if Node is TShellTreeNode then
    stNode := TShellTreeNode(Node);
 
- if assigned(stNode) and stNode.IsDirectory and DirectoryExists(path)
- //then addMagicIconForFile(path,Node);
- then Node.ImageIndex :=  addAnyIconsForFile(path);
-
- if assigned(stNode) and not stNode.IsDirectory and FileExists(path)
- //then addMagicIconForFile(path,Node);
- then Node.ImageIndex :=  addAnyIconsForFile(path);
-
- //Node.ImageIndex := 0; //folder
- //addMagicIconsForFile(path, Node);
-{$ENDIF}
+ if assigned(stNode) then
+    if stNode.IsDirectory and DirectoryExists(path)
+    then Node.ImageIndex := FFileIcon.addIconsForFile(path)
+    else
+    if not stNode.IsDirectory and FileExists(path)
+    then Node.ImageIndex :=  FFileIcon.addIconsForFile(path);
 end;
 
 
-{$IFDEF WINDOWS}
+{$IFDEF WINDOWS_DONT_USE}
 function TFreeFilePreviewDialog.GetWinIconForFile(filename:string; isLarge: boolean;
   imageList:TImageList): integer;
   var
@@ -1399,7 +1391,7 @@ begin
 end;
 {$ENDIF}
 
-{$IFNDEF WINDOWS}
+//{$IFNDEF WINDOWS}
 {$IFDEF useMagic}
 procedure TFreeFilePreviewDialog.addMagicIconsForFile(filename:string; Item:TListItem);
 var mimeType:string; iconName:string; i,i1,i2,iconIndex:integer;
@@ -1465,8 +1457,9 @@ begin
     end;
 end;
 {$ENDIF}
-{$ENDIF}
+//{$ENDIF}
 
+{ // moved to FileIconAdapter
 function TFreeFilePreviewDialog.addAnyIconsForFile(filename:string):integer;
 var mimeType:string; iconName:string; i,i1,i2,iconIndex:integer;
     smallIcon, largeIcon: TIcon;
@@ -1496,11 +1489,11 @@ begin
       end;
     end;
 end;
-
+}
 
 procedure TFreeFilePreviewDialog.addIconsForFile(filename:string; Item:TListItem);
 begin
- {$IFDEF WINDOWS}
+{$IFDEF WINDOWS_NOUSE}
  Item.ImageIndex := GetWinIconForFile(filename, true, Self.LargeImageList);
  Item.ImageIndex := GetWinIconForFile(filename, false, Self.SmallImageList);
 {$ELSE}
@@ -1511,7 +1504,7 @@ addMagicIconsForFile(filename, Item);
  addMagicIconsForFile(filename, Item);
 {$ENDIF}
 {$ENDIF}
-  Item.ImageIndex := addAnyIconsForFile(filename);
+  Item.ImageIndex := FFileIcon.addIconsForFile(filename);
 end;
 
 procedure TFreeFilePreviewDialog.setStatusText(AValue:String);

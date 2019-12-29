@@ -198,6 +198,7 @@ type
     FAutoFit: boolean;
     FIsShowing: boolean;
     FRoot : String;
+    FPath : String;
     FFileName : string;
     FIconNamesMap: TStringList;
     FMousePos: TPoint;
@@ -236,7 +237,7 @@ type
     function  getPreviewPicture:TPicture;
     procedure setPreviewPicture(pic:TPicture);
     procedure DefaultPreview(fn:string);
-    procedure ShellListViewSetWordWrap(slv: TCustomShellListView);
+    procedure ShellListViewSetWordWrap(slv: TCustomShellListView; AWordWrap:boolean);
     procedure setSpeedButtonGoUpEnabled(path:String);
     procedure setFileDialogMode(const AValue: TFileDialogMode);
     procedure setLang(ALang:string);
@@ -284,8 +285,10 @@ uses LCLType,
   ,qtwidgets  ,qt4
   //  ,qt5
   {$EndIf}
+  {$ifdef LCLGTK2}
+  ,WSProc, Gtk2, GLib2, Pango, Gtk2WSComCtrls, Gtk2Def, Gtk2Proc
+  {$endif}
   ;
-
 
 {$R *.lfm}
 
@@ -301,10 +304,149 @@ end;
 
 { TFreeFilePreviewDialog }
 
-procedure TFreeFilePreviewDialog.ShellListViewSetWordWrap(slv:TCustomShellListView);
+{$ifdef LCLGTK2}
+
+// this was not published in LCL. Copied here.
+procedure GetCommonTreeViewWidgets(ATreeViewHandle: PGtkWidget;
+  out TVWidgets: PTVWidgets);
+var
+  WidgetInfo: PWidgetInfo;
+begin
+  WidgetInfo := GetWidgetInfo(ATreeViewHandle);
+  TVWidgets := PTVWidgets(WidgetInfo^.UserData);
+end;
+
+// this was not defined in LCL
+function gtk_cell_layout_get_cells(cell_layout:PGtkCellLayout):PGlist;
+          cdecl; external gtklib name 'gtk_cell_layout_get_cells';
+
+procedure gtk_cell_renderer_set_alignment(cell: PGtkCellRenderer;
+          xalign: gfloat; yalign: gfloat); cdecl; external;
+
+procedure gtk_cell_renderer_set_padding(cell:PGtkCellRenderer; xpad:gint; ypad:gint);
+          cdecl; external gtklib;
+
+function Gtk2_GtkIconView_GetTextRenderer(icon_view:PGtkIconView):PGtkCellRendererText;
+var renderers, renderers_list: PGList;
+  renderer: PGtkCellRenderer;
+begin
+  renderers_list := gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(icon_view));
+  renderers := renderers_list;
+  while (renderers <> nil) and (renderers^.data <> nil) do
+  begin
+     renderer := renderers^.data;
+     if GTK_IS_CELL_RENDERER_TEXT(renderer) then
+     begin
+       result := GTK_CELL_RENDERER_TEXT(renderer);
+       break;
+     end;
+     if renderers^.next = nil then break;
+     renderers := renderers^.next;
+  end;
+  g_list_free(renderers_list);
+end;
+
+function Gtk2_GtkIconView_GetPixRenderer(icon_view:PGtkIconView):PGtkCellRenderer;
+var renderers, renderers_list: PGList;
+  renderer: PGtkCellRenderer;
+begin
+  renderers_list := gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(icon_view));
+  renderers := renderers_list;
+  while (renderers <> nil) and (renderers^.data <> nil) do
+  begin
+     renderer := renderers^.data;
+     if GTK_IS_CELL_RENDERER(renderer) then
+     begin
+       result := GTK_CELL_RENDERER(renderer);
+       break;
+     end;
+     if renderers^.next = nil then break;
+     renderers := renderers^.next;
+  end;
+  g_list_free(renderers_list);
+end;
+
+procedure Gtk2WSCustomListView_IconView_SetWordWrap(const ALV: TCustomListView;
+  const AWordWrap: Boolean; AWrapWidth:integer );
+var
+  Widgets: PTVWidgets;
+  icon_view: PGtkIconView;
+  text_renderer : PGtkCellRendererText;
+  pix_renderer : PGtkCellRenderer;
+  gfXAlign: Gfloat; iw,giXPad:Gint;
+begin
+ if not WSCheckHandleAllocated(ALV, 'TListViewTestForm')
+  then Exit;
+
+  GetCommonTreeViewWidgets({%H-}PGtkWidget(ALV.Handle), Widgets);
+  if not GTK_IS_ICON_VIEW(Widgets^.MainView)
+  then Exit;
+
+  icon_view := PGtkIconView(Widgets^.MainView);
+
+  text_renderer := Gtk2_GtkIconView_GetTextRenderer(icon_view);
+  pix_renderer  := Gtk2_GtkIconView_GetPixRenderer(icon_view);
+
+  if text_renderer = nil then exit;
+
+  if AWordWrap then
+    begin
+    gtk_icon_view_set_item_width(icon_view, AWrapWidth);
+    gtk_cell_renderer_set_alignment(GTK_CELL_RENDERER(text_renderer), 0.5, 0.5);
+
+    g_object_set(G_OBJECT(text_renderer),
+      PChar('alignment'), [gpointer(ptrint(PANGO_ALIGN_CENTER)),
+      PChar('wrap-mode'),  gpointer(ptrint(PANGO_WRAP_WORD_CHAR)),
+      PChar('wrap-width'), gpointer(ptrint(AWrapWidth)), nil]);
+
+    //g_object_set(G_OBJECT(text_renderer), PChar('background'), [PChar('lightgray'),nil]);
+    //g_object_set(G_OBJECT(text_renderer), PChar('width'), [gpointer(ptrint(160)),nil]); // CAUSES Memory ERROR
+    //gtk_cell_renderer_set_fixed_size(GTK_CELL_RENDERER(text_renderer), AWrapWidth, -1); // CAUSES Memory ERROR
+    //gtk_cell_renderer_set_padding(GTK_CELL_RENDERER(text_renderer), 0,0);
+
+    gtk_cell_renderer_set_alignment(pix_renderer, 0.5, 0.0);
+    gtk_cell_renderer_set_fixed_size(pix_renderer, AWrapWidth, -1);
+    gtk_cell_renderer_set_padding(pix_renderer, 0,0);
+    end
+  else
+    begin
+    iw:=gtk_icon_view_get_item_width(icon_view);
+    gtk_icon_view_set_item_width(icon_view, -1);
+    gtk_cell_renderer_set_alignment(GTK_CELL_RENDERER(text_renderer), 0.0, 0.0);
+    g_object_set(G_OBJECT(text_renderer),
+      PChar('alignment'), [gpointer(ptrint(PANGO_ALIGN_LEFT)),
+      PChar('wrap-mode'),  gpointer(ptrint(PANGO_WRAP_CHAR)),
+      PChar('wrap-width'), gpointer(ptrint(-1)), nil]);
+    end;
+end;
+
+{$endif}
+
+procedure TFreeFilePreviewDialog.ShellListViewSetWordWrap(slv:TCustomShellListView; AWordWrap:boolean);
 var gSz : TSize; ih,fh:integer; fd: TFontData;
   {$IfDef QT}  QtListWidget: TQtListWidget;  {$EndIf}
+  AWrapWidth:integer = 200;
+  c:TListColumn;
 begin
+  if AWordWrap then
+    begin
+    c:=slv.Column[0];
+    c.Alignment:=taCenter;
+    c.Width:=AWrapWidth;
+    c.MaxWidth:=AWrapWidth;
+    end
+  else
+    begin
+    c:=slv.Column[0];
+    c.Alignment:=taLeftJustify;
+    c.Width:=0;
+    c.MaxWidth:=0;
+    end;
+
+  {$IfDef LCLGTK2}
+  Gtk2WSCustomListView_IconView_SetWordWrap(slv, AWordWrap, 160);
+  {$EndIf}
+
   {$IfDef QT}
   QtListWidget := TQtListWidget(slv.Handle);
   if ShellListView.ViewStyle=vsSmallIcon then
@@ -318,7 +460,7 @@ begin
   fh := 20;
   {$ENDIF}
   if fh=0 then fh:=16;
-  if FIconViewCellWidth = 0 then FIconViewCellWidth := 128;
+  if FIconViewCellWidth = 0 then FIconViewCellWidth := 160;
   if FIconVIewCellHeight = 0 then FIconVIewCellHeight := ih + fh + 4;
   gSz := Size(FIconVIewCellWidth, FIconVIewCellHeight);
   //gSz := Size(128, ih + fh + 4);
@@ -326,12 +468,17 @@ begin
   QtListWidget.setWrapping(true);
   QtListWidget.setWordWrap(true);
   {$EndIf}
+
+  slv.Invalidate;
+  slv.Refresh;
 end;
 
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewDetailsClick(Sender: TObject);
 begin
   ShellListView.ViewStyle:=vsReport;
+  ShellListView.Column[0].MaxWidth:=1000;
+  ShellListViewSetWordWrap(ShellListView, false);
   setTooltips;
 end;
 
@@ -367,20 +514,23 @@ end;
 procedure TFreeFilePreviewDialog.SpeedButtonViewListSimpleClick(Sender: TObject);
 begin
   ShellListView.ViewStyle:=vsList;
+  ShellListView.Column[0].MaxWidth:=1000;
+  ShellListViewSetWordWrap(ShellListView, false);
   setTooltips;
 end;
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewListCompactClick(Sender: TObject);
 begin
     ShellListView.ViewStyle:=vsSmallIcon;
-    ShellListViewSetWordWrap(ShellListView);
+    ShellListViewSetWordWrap(ShellListView, true);
     setTooltips;
 end;
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewListLargeClick(Sender: TObject);
 begin
   ShellListView.ViewStyle:=vsIcon;
-  ShellListViewSetWordWrap(ShellListView);
+  //ShellListView.Column[0].MaxWidth:=100;
+  ShellListViewSetWordWrap(ShellListView, true);
   setTooltips;
 end;
 
@@ -839,9 +989,33 @@ begin
   LabelName.Constraints.MinWidth := LabelLocation.Width;
 end;
 
-
 procedure TFreeFilePreviewDialog.LeftPageControlChange(Sender: TObject);
+var item:TListItem; i:integer;
 begin
+  {for i:=0 to ListViewPlaces.Items.Count-1 do
+     begin
+     ListViewPlaces.Items[i].Selected := false;
+     ListViewPlaces.Items[i].Focused := false;
+     end;
+  ListViewPlaces.Selected := nil;}
+  ListViewPlaces.ItemFocused := nil;
+  ListViewPlaces.ClearSelection;
+  LeftPageControl.ActivePage.SetFocus;
+  Application.ProcessMessages;
+
+if LeftPageControl.ActivePage = TabSheetPlaces then
+ begin
+ for i:=0 to ListViewPlaces.Items.Count-1 do
+   if TDir(ListViewPlaces.Items[i].Data).fDir = FPath
+   then
+    begin
+    ListViewPlaces.Selected := ListViewPlaces.Items[i];
+    ListViewPlaces.Items[i].Selected := true;
+    ListViewPlaces.Items[i].Focused := true;
+    ListViewPlaces.ItemFocused := ListViewPlaces.Items[i];
+    end;
+ end;
+
 end;
 
 procedure TFreeFilePreviewDialog.ListViewPlacesClick(Sender: TObject);
@@ -1041,12 +1215,14 @@ begin
 
      if curPath <> '' then AddToHistory(curPath);
 
+     FPath := dir;
      FRoot := ExtractFileRoot(dir);
 
      if not FIsShowing
        then exit;
 
-     if ShellTreeView.Root <> FRoot then ShellTreeView.Root := FRoot;
+     if ShellTreeView.Root <> FRoot
+       then ShellTreeView.Root := FRoot;
 
      Self.Cursor := crHourGlass;
      ShellListView.Cursor := crHourGlass;
@@ -1059,7 +1235,7 @@ begin
      Self.Cursor := crDefault;
 
      ComboBoxDir.Text := dir;
-     ShellPathPanel.Path:=dir;
+     ShellPathPanel.Path := dir;
      setSpeedButtonGoUpEnabled(dir);
 
      FFileName := '';
@@ -1161,7 +1337,6 @@ begin
     FIconVIewCellWidth:=FIconVIewCellWidth + d;
     FIconVIewCellHeight:=FIconVIewCellWidth + d;
     Handled:=true;
-    ShellListViewSetWordWrap(ShellListView);
     end;
 end;
 
@@ -1303,6 +1478,7 @@ begin
   FInShellTreeViewChange:=true;
   if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
     then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
+  FPath := ShellListView.Root;
   ComboBoxDir.Text := ShellListView.Root;
   if ShellTreeView.Focused then ShellPathPanel.Path:=ShellListView.Root;
   setSpeedButtonGoUpEnabled(ShellListView.Root);
@@ -1663,16 +1839,16 @@ begin
 end;
 
 function  TFreeFilePreviewDialog.getSelectedAbsoluteFileName:string;
-var fPath, fName:String;
+var lPath, lName:String;
 begin
   result :=  FFileName;
-  fPath:= ExtractFilePath(FFileName);
-  fName:= ExtractFileName(FFileName);
-  if fPath = '' then
-     fPath := getCurrentPath;
+  lPath:= ExtractFilePath(FFileName);
+  lName:= ExtractFileName(FFileName);
+  if lPath = '' then
+     lPath := getCurrentPath;
 
-  if fPath > '' then begin
-     result := IncludeTrailingPathDelimiter(fPath) + fName;
+  if lPath > '' then begin
+     result := IncludeTrailingPathDelimiter(lPath) + lName;
   end;
 
 end;
@@ -1725,9 +1901,9 @@ begin
   //ComboBoxDir.Text:=p;
   if TCustomShellTreeView.PathContainsHiddenDir(p) then
      setListHidden(true);
-  FRoot := CleanAndExpandDirectory(p);
+  FPath := CleanAndExpandDirectory(p);
   if FIsShowing then
-     ChangeDir(FRoot);
+     ChangeDir(FPath);
 end;
 
 function TFreeFilePreviewDialog.getPreviewText:string;
@@ -1909,7 +2085,8 @@ procedure TFreeFilePreviewDialog.Activate;
 begin
   Application.ProcessMessages;
   FIsShowing:=true;
-  ShellTreeView.Path:=FRoot;
+  //ShellTreeView.Path:=FPath;
+  self.ChangeDir(FPath);
   //self.ShellListView.Refresh;
   inherited;
 end;

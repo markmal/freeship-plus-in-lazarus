@@ -29,9 +29,9 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
-      <MinorVersionNr Value="4"/>
+      <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="227"/>
+      <BuildNr Value="239"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -710,6 +710,7 @@
       <Unit72>
         <Filename Value="Units/scrollpanel.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ScrollPanel"/>
       </Unit72>
       <Unit73>
         <Filename Value="Forms/tiledialog.pas"/>

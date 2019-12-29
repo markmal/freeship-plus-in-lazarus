@@ -511,7 +511,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
                 ParentFont = False
                 object ShellTreeView: TShellTreeView
                   Left = 0
-                  Height = 206
+                  Height = 192
                   Top = 0
                   Width = 194
                   Align = alClient
@@ -532,7 +532,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           end
           object PairSplitterSide2: TPairSplitterSide
             Cursor = crArrow
-            Left = 204
+            Left = 205
             Height = 232
             Top = 0
             Width = 400
@@ -576,11 +576,11 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
       end
       object PairSplitterSidePreview: TPairSplitterSide
         Cursor = crArrow
-        Left = 504
+        Left = 505
         Height = 232
         Top = 0
-        Width = 294
-        ClientWidth = 294
+        Width = 293
+        ClientWidth = 293
         ClientHeight = 232
         Constraints.MinWidth = 40
         object ScrollBoxPreview: TScrollBox
@@ -588,12 +588,12 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           Height = 208
           Hint = 'DblClick to full size'
           Top = 24
-          Width = 294
+          Width = 293
           HorzScrollBar.Page = 160
           VertScrollBar.Page = 128
           Align = alClient
           ClientHeight = 206
-          ClientWidth = 292
+          ClientWidth = 291
           ParentFont = False
           ParentShowHint = False
           PopupMenu = PreviewPopupMenu
@@ -621,7 +621,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
           Left = 0
           Height = 24
           Top = 0
-          Width = 294
+          Width = 293
           Align = alTop
           BevelOuter = bvNone
           ParentFont = False

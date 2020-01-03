@@ -1238,11 +1238,15 @@ begin
      ShellPathPanel.Path := dir;
      setSpeedButtonGoUpEnabled(dir);
 
-     FFileName := '';
      if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
         then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
 
+     if (FileDialogMode = fdmOpen) then
+       FFileName := '';
      BitBtnOpen.Enabled:=false;
+     if (FileDialogMode = fdmSave) and (self.FFileName <> '') then
+       BitBtnOpen.Enabled:=true;
+
      end;
 end;
 

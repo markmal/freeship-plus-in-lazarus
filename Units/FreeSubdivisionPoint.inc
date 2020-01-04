@@ -542,9 +542,12 @@ end;{TFreeSubdivisionPoint.DeleteEdge}
 procedure TFreeSubdivisionPoint.UnreferenceFace(Face: TFreeSubdivisionFace);
 var i: integer;
 begin
-  FFaces.DeleteItem(Face);
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionPoint[%d].UnreferenceFace',[self.FID]));
   for i:=0 to FEdges.Count-1 do
     FEdges[i].UnreferenceFace(Face);
+  FFaces.DeleteItem(Face);
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionPoint.DeleteFace}
 
 procedure TFreeSubdivisionPoint.Delete;
@@ -552,6 +555,9 @@ var
   Index: integer;
   Edge: TFreesubdivisionEdge;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionPoint[%d].Delete',[self.FID]));
+
   Owner.FPoints.DeleteItem(Self);
 
   if FEdges.Count > 0 then
@@ -573,6 +579,7 @@ begin
     Unreference;
     Destroy; //TODO: figure out why we do not delete Point if Edge exists
   end;
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionPoint.Delete}
 
 
@@ -604,6 +611,8 @@ end;
 
 destructor TFreeSubdivisionPoint.Destroy;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionPoint[%d].Destroy',[self.FID]));
   //Unreference;
   Clear;
   FFaces.Destroy;
@@ -611,8 +620,9 @@ begin
   FEdges.Destroy;
   Fedges := nil;
   inherited Destroy;
-  if FID=19729 then //DELETE
-     FID:=19729;
+  if FID=343 then //DELETE
+     FID:=343;
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionPoint.Destroy}
 
 function TFreeSubdivisionPoint.IndexOfFace(Face: TFreeSubdivisionFace): integer;

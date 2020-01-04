@@ -300,6 +300,9 @@ procedure TFreeSubdivisionEdge.UnreferenceFace(Face: TFreeSubdivisionFace);
 var
   Index: integer;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionEdge[%d].UnreferenceFace',[self.FID]));
+
   FFaces.DeleteItem(Face);
   //Crease := (FFaces.Count = 1);
   if FFaces.Count = 1 then
@@ -318,6 +321,7 @@ begin
     if FFaces.Count = 0 then
       Crease := False;
   end;}
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionEdge.DeleteFace}
 
 procedure TFreeSubdivisionEdge.Delete;
@@ -328,6 +332,9 @@ var
   CFace: TFreeSubdivisionControlFace;
   Point: TFreeSubdivisionControlPoint;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionEdge[%d].Delete',[self.FId]));
+
   Owner.FEdges.DeleteItem(Self);
 
   begin
@@ -365,6 +372,7 @@ begin
   end;
   Unreference;
   Destroy;
+  logger.DecreaseIndent;
 end;{TFreesubdivisionEdge.Delete}
 
 procedure TFreeSubdivisionEdge.Unreference;
@@ -400,6 +408,8 @@ end;
 
 destructor TFreeSubdivisionEdge.Destroy;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionEdge[%d].Destroy',[self.FID]));
   if self = nil then
     exit;
   //Unreference;
@@ -407,6 +417,7 @@ begin
   FFaces.Free;
   FFaces := nil;
   inherited Destroy;
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionEdge.Destroy}
 
 function TFreeSubdivisionEdge.DistanceToCursor(X, Y: integer;

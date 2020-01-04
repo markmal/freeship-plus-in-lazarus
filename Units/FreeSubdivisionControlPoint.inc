@@ -320,9 +320,12 @@ end;{TFreeSubdivisionControlPoint.Create}
 
 destructor TFreeSubdivisionControlPoint.Destroy;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionControlPoint[%d].Destroy',[self.FID]));
   FLinearConstrainedPoints.Free;
   FAnchoredPoints.Free;
   inherited;
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionControlPoint.Create}
 
 procedure TFreeSubdivisionControlPoint.Delete;
@@ -333,6 +336,8 @@ var
   EdgesToDelete: TFasterListTFreesubdivisionEdge;
   FacesToDelete: TFasterListTFreesubdivisionFace;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionControlPoint[%d].Delete',[self.FID]));
   // delete from selection;
   Selected := False;
 
@@ -375,7 +380,7 @@ begin
 
   Unreference;
   Destroy; //TODO: figure out why we do not delete Point if Edge exists
-
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionControlPoint.Delete}
 
 procedure TFreeSubdivisionControlPoint.Draw(Viewport: TFreeViewport);

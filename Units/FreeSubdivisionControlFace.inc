@@ -174,10 +174,10 @@ begin
         begin
         x:=ej.FFaces.Count;
         ej.FFaces.DeleteItem(Self);
+        if (ej.FFaces.Count=0) and (ej.FEndpoint=nil) and (ej.FStartpoint=nil) then
+            ej.Free;
         end;
       FEdges.Delete(i);
-      if (ej <> nil) then
-         ej.Free;
       end;
     FEdges.Clear;
   end;
@@ -324,6 +324,7 @@ var
   Edge: TFreesubdivisionEdge;
   P1, P2: TFreeSubdivisionPoint;
 begin
+  logger.Debug(format('TFreeSubdivisionControlFace[%d].Delete',[self.FID]));
   // delete from selection;
   Selected := False;
 
@@ -370,7 +371,8 @@ begin
   if not IsUnreferenceEnabled then exit;
   if InUnreference then exit; // speed up
   InUnreference := true;
-  logger.Debug(format('TFreeSubdivisionControlFace.Unreference[%d]',[self.FID]));
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionControlFace[%d].Unreference',[self.FID]));
   if FChildren<>nil then
   for i:=0 to FChildren.Count-1 do
     FChildren[i].Unreference;
@@ -386,6 +388,7 @@ begin
   if FOwner <> nil then FOwner.UnreferenceControlFace(self);
   inherited;
   InUnreference := false;
+  logger.DecreaseIndent;
 end;
 
 destructor TFreeSubdivisionControlFace.Destroy;

@@ -186,11 +186,14 @@ var
   Edge: TFreesubdivisionEdge;
   P1, P2: TFreeSubdivisionPoint;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionFace[%d].Delete',[self.FID]));
   Unreference;
   Owner.Build := False;
   Clear;
   //Destroy;
   DelayedDestroyList.Add(Self);
+  logger.DecreaseIndent;
 end;{TFreeSubdivisionFace.Delete}
 
 procedure TFreeSubdivisionFace.Unreference;
@@ -199,7 +202,8 @@ begin
   if not IsUnreferenceEnabled then exit;
   if InUnreference then exit; // speed up
   InUnreference := true;
-  logger.Debug(format('TFreeSubdivisionFace.Unreference[%d]',[self.FID]));
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreeSubdivisionFace[%d].Unreference',[self.FID]));
   {if FID=99
    then FID:=99;
   if FPoints = nil then // debug
@@ -221,6 +225,7 @@ begin
     end;
   if FOwner <> nil then FOwner.UnreferenceFace(Self);
   InUnreference := false;
+  logger.DecreaseIndent;
 end;
 
 destructor TFreeSubdivisionFace.Destroy;

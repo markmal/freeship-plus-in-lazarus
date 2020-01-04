@@ -109,6 +109,7 @@ type
   end;
 
 implementation
+uses FreeLogger;
 
 {--------------------------------------------------------------------------------------------------}
 {                                       TFasterList                                                }
@@ -467,12 +468,15 @@ end;{TFasterList.Delete}
 procedure TFasterList.DeleteItem(Item: TItemType);
 var i: integer;
 begin
+  //logger.IncreaseIndent;
+  //logger.Debug(format('TFasterList.DeleteItem[%d]',[(<TItemType>(Item)).FId]));
   i := IndexOf(Item);
   while i >= 0 do
     begin
     Delete(i);
     i := IndexOf(Item);
     end;
+  //logger.DecreaseIndent;
 end;{TFasterList.DeleteAll}
 
 

@@ -15,7 +15,7 @@ const
   LOG_INFO = 3;
   LOG_DEBUG = 4;
 Type
-  TLogger = class
+  TLogger = class(TLazLoggerFile)
     private
       FLogLevel : integer;
     public
@@ -25,6 +25,8 @@ Type
       procedure Error(S:String);
       procedure Debug(S:String);
       procedure SetLogLevel(L:integer);
+      procedure IncreaseIndent; override;
+      procedure DecreaseIndent; override;
       property LogLevel : integer read FLogLevel write SetLogLevel;
   end;
 
@@ -34,8 +36,9 @@ implementation
 
 constructor TLogger.Create();
 begin
+  inherited Create;
   FLogLevel := LOG_NONE;
-  DebugLogger.CloseLogFileBetweenWrites:=true;
+  CloseLogFileBetweenWrites:=true;
 end;
 
 procedure TLogger.Info(S:String);
@@ -85,6 +88,17 @@ begin
     raise Exception.Create('Log level is out of range');
   FLogLevel := L;
 end;
+
+procedure TLogger.IncreaseIndent;
+begin
+ inherited IncreaseIndent;
+end;
+
+procedure TLogger.DecreaseIndent;
+begin
+ inherited DecreaseIndent;
+end;
+
 
 begin
   Logger := TLogger.Create;

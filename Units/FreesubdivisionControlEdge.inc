@@ -303,6 +303,8 @@ var
   CFace: TFreeSubdivisionControlFace;
   Point: TFreeSubdivisionControlPoint;
 begin
+  logger.IncreaseIndent;
+  logger.Debug(format('TFreesubdivisionControlEdge[%d].Delete',[self.FID]));
   if IsDeleting then exit;
   IsDeleting := true;
   // delete from selection;
@@ -346,6 +348,7 @@ begin
     inherited;
     //Destroy; //destroyed in inherited
   end;
+  logger.DecreaseIndent;
 end;{TFreesubdivisionControlEdge.Delete}
 
 function TFreesubdivisionControlEdge.DistanceToCursor(X, Y: integer;

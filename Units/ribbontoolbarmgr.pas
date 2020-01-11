@@ -44,13 +44,16 @@ implementation
 uses GraphType;
 
 procedure autoSetToolbarHeight(tlbar:TToolBar);
-var i, h, b: integer; contr: TControl; tb: TToolButton;
+var i, h, b, l: integer; contr: TControl; tb: TToolButton;
     rawimg:TRawImage; bmp:TCustomBitmap;
+    n:String;
 begin
   h:=0;
   for i:=0 to tlbar.ControlCount-1 do
     begin
       contr := tlbar.Controls[i];
+      n:=contr.Name;
+      l:=contr.Left;
       b := contr.BorderSpacing.Top + contr.BorderSpacing.Around
            + contr.Top + contr.Height
            + contr.BorderSpacing.Around + contr.BorderSpacing.Bottom;

@@ -9,7 +9,7 @@
 {    FREE!ship project page  : http://freeship-plus.pisem.su                                  }
 {    FREE!ship homepage      : http://freeship-plus.pisem.su                                  }
 {                                                                                             }
-{    Copyright © 2015-2015, Conversion to FPC/Lazarus by Mark Malakanov.                      }
+{    Copyright © 2015-2020, Conversion to FPC/Lazarus by Mark Malakanov.                      }
 {                                                                                             }
 {    This program is free software; you can redistribute it and/or modify it under            }
 {    the terms of the GNU General Public License as published by the                          }
@@ -87,6 +87,7 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     ColorButton1: TColorButton;
      MenuItemPointAnchor: TMenuItem;
      PointAnchor: TAction;
      PointAlighnPermanently: TAction;
@@ -103,7 +104,6 @@ type
      AddControlPointToGroup: TMenuItem;
      MenuItemPointAlignPermanently: TMenuItem;
      StatusPanel5: TPanel;
-     PanelActiveLayerColor: TPanel;
      PanelMain: TPanel;
      ProgressBarMain: TProgressBar;
      SelectLeakPoints: TAction;
@@ -445,6 +445,7 @@ type
     FMDIChildList : TList;
 
     procedure AddPointToGroupExecute(Sender: TObject);
+    procedure ColorButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -897,11 +898,9 @@ var AllW, lft, gap:integer;
           bw := b.Width;
           end;
 
-
       // leave some space (bw+4)*cnt
       w:=round((wdth) * ((tbcw - gap) / (FAllToolbarsControlsWidth)));
 
-      //tb.Width := w;
       r:=getToolbarXtrunc(tb,w);
       if (lft+r)>(wdth-(bw+4)*cnt)
         then r:=getToolbarXtrunc(tb,r-bw);
@@ -931,8 +930,6 @@ begin
   if FAllToolbarsControlsWidth=0
    then FAllToolbarsControlsWidth:=getAllToolbarsControlWidth;
   lft:=gap;
-
-  //PanelMain.Width := ToolBarMain.Width - 2; // for some reason PanelMain does not autosize
   PanelMain.Height := 20;
   pnlWidth := PanelMain.Width;
   lft := alignToolbar(ToolBarFile, FToolBarFileControlsWidth, lft+gap, pnlWidth, 7);
@@ -943,20 +940,6 @@ begin
   lft := alignToolbar(ToolBarEdges, FToolBarEdgesControlsWidth, lft+gap, pnlWidth, 2);
   lft := alignToolbar(ToolBarFaces, FToolBarFacesControlsWidth, lft+gap, pnlWidth, 1);
   lft := alignToolbar(ToolBarCurves, FToolBarCurvesControlsWidth, lft+gap, pnlWidth, 0);
-
-
-  {
-  //make all toolbars uniform height
-  ToolBarFile.Height:=PanelMain.Height-2;
-  ToolBarEdit.Height:=PanelMain.Height-2;
-  ToolBarVisibility.Height:=PanelMain.Height-2;
-  ToolBarLayers.Height:=PanelMain.Height-2;
-  ToolBarPoints.Height:=PanelMain.Height-2;
-  ToolBarEdges.Height:=PanelMain.Height-2;
-  ToolBarFaces.Height:=PanelMain.Height-2;
-  ToolBarCurves.Height:=PanelMain.Height-2;
-   }
-  //ToolBarMain.Height:=PanelMain.Height;
 end;
 
 procedure TMainForm.InitiallyLoadModel;
@@ -1038,6 +1021,11 @@ begin
   if pgf.ShowModal = mrOk then
     begin
     end;
+end;
+
+procedure TMainForm.ColorButton1Click(Sender: TObject);
+begin
+  ActiveLayerColorExecute(self);
 end;
 
 procedure TMainForm.FOnselectItem(Sender:TObject);
@@ -1873,12 +1861,14 @@ begin
       begin
          Index:=-1;
          Layerbox.ItemIndex:=Index;
-         PanelActiveLayerColor.Color:=clBtnface;
+         //PanelActiveLayerColor.Color:=clBtnface;
+         ColorButton1.ButtonColor:=clBtnface;
       end else
       begin
          Index:=Layerbox.Items.IndexOfObject(Layer);
          Layerbox.ItemIndex:=Index;
-         PanelActiveLayerColor.Color:=Layer.Color;
+         //PanelActiveLayerColor.Color:=Layer.Color;
+         ColorButton1.ButtonColor:=Layer.Color;
       end;
    end;
 end;{TMainForm.FreeShipChangeActiveLayer}
@@ -2874,25 +2864,76 @@ end;
 
 // loads icons from FMenuIconDirectory that is set according to theme and icon size
 procedure TMainForm.LoadToolIcons;
-var i, II, sz, ilcnt:integer;
+var i, II, sz, w, ww, ilcnt:integer;
     A: TAction; AName, IName, IPath, IconFile:String;
     cil: TCustomImageList;
     bmp:TBitmap; png: TPortableNetworkGraphic; img: TLazIntfImage;
 
-    procedure setToolBarButtonSize(ToolBar: TToolBar; sz: integer);
-    var i:integer;
+  procedure orderToolButtons(ToolBar: TToolBar);
+  var i,l,sz:integer; tb:TControl; n:string;
+      tba : array of TControl;
+  begin
+    sz:=ToolBar.ControlCount;
+    setLength(tba, sz);
+    w := 4;
+    for i:=0 to sz-1 do
+    begin
+      tb:=ToolBar.Controls[i];
+      tba[tb.Tag] := tb;
+      tb.Hint:= inttostr(tb.Tag) +' '+ tb.Hint;
+      w := w + tb.Width + 1;
+    end;
+
+    for i:=0 to sz-1 do
+      ToolBar.RemoveControl(tba[i]);
+
+    ww:=ToolBar.Width;
+    ToolBar.Width := w + 4;
+    w := 4;
+    for i:=0 to sz-1 do
+    begin
+      tb:=tba[i];
+      tb.Left := w;
+      ToolBar.InsertControl(tba[i],i);
+      w := w + tb.Width;
+    end;
+    ToolBar.Width:=ww;
+    setLength(tba, 0);
+  end;
+
+  procedure setToolBarButtonSize(ToolBar: TToolBar; sz: integer);
+    var i,l:integer; tb:TToolButton; c:TControl; n:string;
     begin
       ToolBar.ButtonHeight:= sz + (sz div 16)*2;
       ToolBar.ButtonWidth := sz + (sz div 16)*2;
-      for i:=0 to ToolBar.ButtonCount-1 do
+      for i:=0 to ToolBar.ControlCount-1 do
         begin
-          ToolBar.Buttons[i].Height := ToolBar.ButtonHeight;
-          ToolBar.Buttons[i].Width := ToolBar.ButtonWidth;
+          c:=ToolBar.Controls[i];
+          n:=c.Name;
+          l:=c.Left;
+          if c is TToolButton then
+             begin
+             c.Height := ToolBar.ButtonHeight;
+             c.Width := ToolBar.ButtonWidth;
+             end
+          else if c is TColorButton then
+             begin
+             c.Height := ToolBar.ButtonHeight;
+             c.Width := ToolBar.ButtonWidth;
+             end
+          else if c is TPanel then
+             begin
+             c.Height := ToolBar.ButtonHeight;
+             c.Width := ToolBar.ButtonWidth;
+             end
+          else
+             begin
+             c.Constraints.MinWidth := ToolBar.ButtonWidth;
+             end;
         end;
-
-      //ToolBar.Parent.Width := ToolBar.Width;
-      //ToolBar.Parent.Height := ToolBar.Height;
+      orderToolButtons(ToolBar);
     end;
+
 
 begin
   FreeShip.preferences.LoadImageListByActions(MenuImages, ActionList1);

@@ -8126,6 +8126,7 @@ msgid "Active layer color"
 msgstr ""
 
 #: tmainform.activelayercolor.hint
+msgctxt "tmainform.activelayercolor.hint"
 msgid "Change the color of the currently active layer."
 msgstr ""
 
@@ -8173,6 +8174,11 @@ msgstr ""
 #: tmainform.clearundo.caption
 msgctxt "tmainform.clearundo.caption"
 msgid "Clear"
+msgstr ""
+
+#: tmainform.colorbutton1.hint
+msgctxt "tmainform.colorbutton1.hint"
+msgid "Change the color of the currently active layer."
 msgstr ""
 
 #: tmainform.crosscurves.caption
@@ -8685,10 +8691,6 @@ msgstr ""
 
 #: tmainform.ools1.caption
 msgid "Tools"
-msgstr ""
-
-#: tmainform.panelactivelayercolor.caption
-msgid "PanelActiveLayerColor"
 msgstr ""
 
 #: tmainform.point1.caption

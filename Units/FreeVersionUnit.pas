@@ -40,15 +40,15 @@ uses Classes,SysUtils,Dialogs;
 const
  COMPILE_DATE:string={$I %DATE%};
  COMPILE_TIME:string={$I %TIME%};
- TARGET_CPU:string={$I %FPCTARGET%};
+ TARGET_CPU:string={$I %FPCTARGETCPU%};
  TARGET_OS:string={$I %FPCTARGETOS%};
+ FPCVERSION:string={$I %FPCVERSION%};
 
- FREESHIP_MAJOR_VERSION='4.3';   //Major version
- FREESHIP_VERSION='4.3.2.0';   //Major full version
+ FREESHIP_MAJOR_VERSION='4.5';   //Major version
+ FREESHIP_VERSION='4.5.1.0';   //Major full version
 
  //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
  GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits
- FPCVERSION:string={$I %FPCVERSION%};
 
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,
                              fv201,fv210,fv220,fv230,fv240,fv250,fv260,fv270,fv280,fv290,fv295,fv296,fv297,fv298,fv300,
@@ -57,13 +57,11 @@ type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv1
 //const CurrentVersion      = fv335;   // Current (latest) version of the FREE!ship project.
 const CurrentVersion      = fv430;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
-      ReleasedDate        = 'Apr 14, 2016';
+      ReleasedDate        = {$I %DATE%};
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;
 function ResourceVersionInfo: String;
-
-
 
 implementation
 

@@ -1540,6 +1540,7 @@ begin
    SetCaption;
    LoadToolIcons;
    UpdateMenu;
+   ArrangeRibbonPanel(PanelMain);
 end;{TMainForm.FormShow}
 
 procedure TMainForm.MainClientPanelClick(Sender: TObject);
@@ -2880,7 +2881,7 @@ var i, II, sz, w, ww, ilcnt:integer;
     begin
       tb:=ToolBar.Controls[i];
       tba[tb.Tag] := tb;
-      tb.Hint:= inttostr(tb.Tag) +' '+ tb.Hint;
+      //tb.Hint:= inttostr(tb.Tag) +' '+ tb.Hint;
       w := w + tb.Width + 1;
     end;
 

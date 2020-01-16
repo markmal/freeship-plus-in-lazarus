@@ -9446,6 +9446,22 @@ begin
   Owner.Redraw;
 end;{TFreeEdit.Selection_SelectAll}
 
+// Select all control points
+procedure TFreeEdit.Selection_SelectAllControlPoints;
+var
+  I, J: integer;
+begin
+  {for I := 1 to Owner.NumberOfLayers do
+    if Owner.Layer[I - 1].Visible then
+      for J := 1 to Owner.Layer[I - 1].Count do
+        Owner.Layer[I - 1].Items[J - 1].Selected := True;}
+  for I := 1 to Owner.Surface.NumberOfControlPoints do
+    if Owner.Surface.ControlPoint[I - 1].Visible then
+      Owner.Surface.ControlPoint[I - 1].Selected := True;
+  Owner.Redraw;
+end;{TFreeEdit.Selection_SelectAll}
+
+
 procedure TFreeEdit.Selection_SelectLeakPoints;
 var
   I: integer;

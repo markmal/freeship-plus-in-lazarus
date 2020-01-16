@@ -2258,7 +2258,7 @@ var
   S: string;
 begin
   //if BooleanValue then S:='True' else S:='False';
-  S := BoolToStr(BooleanValue);
+  S := BoolToStr(BooleanValue,'1','0');
   FLines.Add(S);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}

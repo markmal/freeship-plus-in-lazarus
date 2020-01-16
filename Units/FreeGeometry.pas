@@ -1363,8 +1363,7 @@ type
     property AnchorPoint: TFreeSubdivisionControlPoint read FAnchorPoint write SetAnchorPoint;
     property Locked: boolean read FLocked write FSetLocked;
     property IsAnchorHard:boolean read FIsAnchorHard write SetIsAnchorHard;
-    property Selected: boolean
-      read FGetSelected write FSetSelected;
+    property Selected: boolean read FGetSelected write FSetSelected;
     // Property to see if this point has been selected by the user
     property Visible: boolean
       read FGetVisible;

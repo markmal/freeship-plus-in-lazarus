@@ -799,6 +799,7 @@ type
     // Delete all selected items
     procedure Selection_SelectAll;
     // Select all visible items
+    procedure Selection_SelectAllControlPoints;
     procedure Selection_SelectLeakPoints;
     // Select all leakpoints
     procedure Undo;

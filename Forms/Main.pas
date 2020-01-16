@@ -87,7 +87,9 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     SelectAllControlPoints: TAction;
      ColorButton1: TColorButton;
+     SelectAllControlPoints1: TMenuItem;
      MenuItemPointAnchor: TMenuItem;
      PointAnchor: TAction;
      PointAlighnPermanently: TAction;
@@ -458,6 +460,8 @@ type
     procedure MenuItem1Click(Sender: TObject);
     procedure PanelMainResize(Sender: TObject);
     procedure PointAnchorExecute(Sender: TObject);
+    procedure SelectAllControlPoints1Click(Sender: TObject);
+    procedure SelectAllControlPointsExecute(Sender: TObject);
     procedure ShowControlNetExecute(Sender: TObject);
     procedure ShowInteriorEdgesExecute(Sender: TObject);
     procedure NewWindowExecute(Sender: TObject);
@@ -2705,6 +2709,16 @@ begin
    Freeship.Edit.Point_AnchorToPoint;
    UpdateMenu;
 end;{TMainForm.PointProjectLineExecute}
+
+procedure TMainForm.SelectAllControlPoints1Click(Sender: TObject);
+begin
+end;
+
+procedure TMainForm.SelectAllControlPointsExecute(Sender: TObject);
+begin
+  Freeship.Edit.Selection_SelectAllControlPoints;
+  UpdateMenu;
+end;
 
 procedure TMainForm.ImportMichletWavesExecute(Sender: TObject);
 begin

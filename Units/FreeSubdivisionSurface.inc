@@ -3662,7 +3662,14 @@ var
   Face: TFreeSubdivisionControlFace;
   Curve: TFreeSubdivisionControlCurve;
   Layer: TFreeSubdivisionLayer;
+  saveOnSelectItem:TNotifyEvent=nil;
 begin
+  if Assigned(FOnSelectItem) then
+    begin
+    saveOnSelectItem := FOnSelectItem;
+    FOnSelectItem := nil;
+    end;
+
   // First load layerdata
   Source.Load(N);
   if N <> 0 then
@@ -3741,6 +3748,11 @@ begin
     FOnChangeLayerData(self);
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, self.Layer[0]);
+
+  if Assigned(saveOnSelectItem) then
+    begin
+    FOnSelectItem := saveOnSelectItem;
+    end;
 end;{TFreeSubdivisionSurface.LoadBinary}
 
 procedure TFreeSubdivisionSurface.LoadFromStream(var LineNr: integer; Strings: TStringList);

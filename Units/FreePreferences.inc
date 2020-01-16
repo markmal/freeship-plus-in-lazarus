@@ -577,6 +577,9 @@ const DS=DirectorySeparator;
 begin
   subPath := DS+'Themes'+DS+FThemeName+DS+'icons'+DS + IntToStr(IconSize) +
     DS + IconName + '.png';
+  if FileExistsUTF8(GetCurrentDirUTF8 + subPath) then
+    Result := GetCurrentDirUTF8 + subPath
+  else
   if FileExistsUTF8(Self.FUserConfigDirectory + subPath) then
     Result := Self.FUserConfigDirectory + subPath
   else

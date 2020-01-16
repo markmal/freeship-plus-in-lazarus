@@ -29,7 +29,7 @@ md5sum ${FreeShip} >FreeShip.md5
 
 rm ${NAME}.zip ${NAME}.md5 2>/dev/null
 
-zip -r ${NAME}.zip Exec Languages Manuals Ships Themes install ${FreeShip} ${MISCFILES} FreeShip.md5 Whatsnew.txt \
+zip -r ${NAME}.zip Exec Languages Manuals Ships Themes install locale ${FreeShip} ${MISCFILES} FreeShip.md5 Whatsnew.txt \
  ${INST_SCRIPTS} install-HOWTO.txt \
  "GNU General Public License (GPL).txt" copyright
 

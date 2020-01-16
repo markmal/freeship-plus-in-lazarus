@@ -37,7 +37,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Controls,
-  Forms,
+  Forms, Dialogs, StdCtrls,
   SysUtils,
      {$IFDEF VER3}
       LazUTF8,
@@ -156,6 +156,40 @@ begin
 end;
 }
 
+{$ifdef Windows}
+const INSTSCRIPT_EXT='cmd';
+{$else}
+const INSTSCRIPT_EXT='sh';
+{$endif}
+
+resourcestring InstallMeMessage='You run FreeShip from installation directory.'+#10
+  +' FreeShip is not installed.'+#10
+  +' It will work but it may experince issues with finding various files and directories.'+#10
+  +' Please exit and install FreeShip.'+#10
+  +' There are two installation options:'+#10
+  +' 1 - run install-user.'+INSTSCRIPT_EXT+' to install it into your user home'+#10
+  +' 2 - run install-system.'+INSTSCRIPT_EXT+' to install it into system.'
+  +' It requires Administrator privileges.';
+
+
+procedure checkInstallation;
+var MsgForm:TForm; Lbl:TLabel;
+begin
+  with Mainform.Freeship.Preferences do
+   begin
+     if (not DirectoryExistsUTF8(ExportDirectory))
+     or (not DirectoryExistsUTF8(ImportDirectory))
+     or (not DirectoryExistsUTF8(ManualsDirectory))
+     or (not DirectoryExistsUTF8(ToolIconDirectory))
+     or (not DirectoryExistsUTF8(ExecDirectory))
+     //or True
+     then
+       begin
+        MessageDlg('Warning', InstallMeMessage, mtWarning,[mbClose],0)
+       end;
+   end;
+end;
+
 begin
  try
    Logger.LogLevel:=LOG_INFO;
@@ -168,7 +202,6 @@ begin
    Logger.Info('FreeShip Program version: '+ResourceVersionInfo);
    Logger.Info('Last Git Change Revision: '+IntToStr(GITVERSION_REVISION));
    Logger.LogLevel:=LOG_ERROR;
-
 
    ShowSplash:=true;
    InDebugger:=false;
@@ -200,6 +233,9 @@ begin
 
 
    Application.CreateForm(TMainForm, MainForm);
+
+   checkInstallation;
+
    MainForm.SplashWindow:=FreeSplashWindow;
    FreeSplashWindow.Position:=poMainFormCenter;
    Application.ProcessMessages;

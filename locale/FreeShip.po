@@ -83,6 +83,17 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
+#: freeship.installmemessage
+msgid ""
+"You run FreeShip from installation directory.\n"
+" FreeShip is not installed.\n"
+" It will work but it may experince issues with finding various files and directories.\n"
+" Please exit and install FreeShip.\n"
+" There are two installation options:\n"
+" 1 - run install-user.sh to install it into your user home\n"
+" 2 - run install-system.sh to install it into system. It requires Administrator privileges.\n"
+msgstr ""
+
 #: freeshipunit.filedialogfilterall
 msgid "All|*"
 msgstr ""
@@ -8886,6 +8897,16 @@ msgstr ""
 
 #: tmainform.selectall.caption
 msgid "Select all"
+msgstr ""
+
+#: tmainform.selectallcontrolpoints.caption
+msgctxt "tmainform.selectallcontrolpoints.caption"
+msgid "Select All Control Points"
+msgstr ""
+
+#: tmainform.selectallcontrolpoints.hint
+msgctxt "tmainform.selectallcontrolpoints.hint"
+msgid "Select All Control Points"
 msgstr ""
 
 #: tmainform.selection1.caption

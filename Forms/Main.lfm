@@ -1394,11 +1394,6 @@ object MainForm: TMainForm
       Caption = 'Cross curves'
       OnExecute = CrossCurvesExecute
     end
-    object SelectLeakPoints: TAction
-      Category = 'Selection'
-      Caption = 'SelectLeakPoints'
-      OnExecute = SelectLeakPointsExecute
-    end
     object HelpAction: THelpAction
       Category = 'Help'
       Caption = 'HelpAction'
@@ -1423,6 +1418,17 @@ object MainForm: TMainForm
       Category = 'Point'
       Caption = 'Anchor'
       OnExecute = PointAnchorExecute
+    end
+    object SelectAllControlPoints: TAction
+      Category = 'Selection'
+      Caption = 'Select All Control Points'
+      Hint = 'Select All Control Points'
+      OnExecute = SelectAllControlPointsExecute
+    end
+    object SelectLeakPoints: TAction
+      Category = 'Selection'
+      Caption = 'SelectLeakPoints'
+      OnExecute = SelectLeakPointsExecute
     end
   end
   object MenuImages: TImageList
@@ -3683,6 +3689,9 @@ object MainForm: TMainForm
       end
       object Clearselection1: TMenuItem
         Action = DeselectAll
+      end
+      object SelectAllControlPoints1: TMenuItem
+        Action = SelectAllControlPoints
       end
       object SelectionSeparator1: TMenuItem
         Caption = '-'

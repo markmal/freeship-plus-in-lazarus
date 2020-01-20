@@ -100,7 +100,7 @@ begin
    if Name='' then exit; // leave with default English language
    //Filename:=ChangeFileExt(extractFileDir(application.exeName)+'/Languages/'+Name,'.ini');
    Filename:=Name;
-   if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+   if FileExistsUTF8(Filename) then
    begin
       if CurrentLanguage<>nil then CurrentLanguage.Free;
       CurrentLanguage:=TMemIniFile.create(Filename);

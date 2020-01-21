@@ -2142,7 +2142,7 @@ begin
               break;
             end;
           end;
-        DelayedDestroyList.DestroyAll;
+        //DelayedDestroyList.DestroyAll;    //we did not populate it
       end
       else if NumberOfSelectedControlPoints = 2 then
         MessageDlg(Userstring(202) + '!', mtWarning, [mbOK], 0);

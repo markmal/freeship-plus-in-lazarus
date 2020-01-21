@@ -1132,7 +1132,7 @@ type
 
   { TFreeSubdivisionLayer is a layer-type class                                                       }
 
-  { All individual controlfaces can be assigned to a leyer. Properties such as color,                 }
+  { All individual controlfaces can be assigned to a layer. Properties such as color,                 }
   { visibility etc. are common for all controlfaces belonging the the same layer                      }
   {---------------------------------------------------------------------------------------------------}
   TFreeSubdivisionLayer = class
@@ -2217,18 +2217,21 @@ var
 begin
   for I:=0 to Count-1 do
   if Assigned(Items[I]) then
-    Items[I].Destroy;
+    try
+       Items[I].Free;
 
-{  while Count > 0 do
-  begin
-    I:=Count-1;
-    O := TObject(Items[I]);
-    if Assigned(O) then
-    begin
-      O.Destroy;
-      Delete(I);
+    {  while Count > 0 do
+      begin
+        I:=Count-1;
+        O := TObject(Items[I]);
+        if Assigned(O) then
+        begin
+          O.Destroy;
+          Delete(I);
+        end;
+      end; }
+    finally
     end;
-  end; }
 
   Clear;
 end;

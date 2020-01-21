@@ -882,6 +882,8 @@ begin
 
   FListBox1ControlledByKeys:=false;
 
+  ShellTreeView.PopulateWithbaseFiles();
+
   //ShellListView.AutoWidthLastColumn:=false;
   ShellListView.SortColumn := -1;
   ShellListView.OnFileAdded:=@ShellListViewFileAdded;
@@ -1221,8 +1223,9 @@ begin
      if not FIsShowing
        then exit;
 
-     if ShellTreeView.Root <> FRoot
-       then ShellTreeView.Root := FRoot;
+     //commented because it removes other drives in Windows, like D: etc
+     //if ShellTreeView.Root <> FRoot
+     //  then ShellTreeView.Root := FRoot;
 
      Self.Cursor := crHourGlass;
      ShellListView.Cursor := crHourGlass;

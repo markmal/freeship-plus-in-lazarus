@@ -3646,6 +3646,7 @@ begin
       if TmpPts <> nil then
         begin
         DstFace:=TFreeSubdivisionFace.Create(nil);
+        DstFace.FPoints.IsUnique := false;  //MM: otherwise it makes horseshoo spline for cycle-connected edges
         DstFace.FPoints.AddList(TmpPts);
         Destination.Add(DstFace);
         end;
@@ -4292,7 +4293,7 @@ var
 begin
   if Edges.Count > 0 then
   begin
-    Points := TFasterListTFreeSubdivisionPoint.Create;
+    Points := TFasterListTFreeSubdivisionPoint.Create(false,false);
     Points.Capacity := Edges.Count + 1;
     SortEdges(Edges);
     for I := 1 to Edges.Count do

@@ -442,7 +442,8 @@ begin
   FPoints[FNoPoints] := P;
   FKnuckles[FNoPoints] := False;
   Inc(FNoPoints);
-  FFragments := FNoPoints - 1;
+  if FFragments < FNoPoints - 1 then
+     FFragments := FNoPoints - 1;
   Build := False;  // Curve needs to be rebuild
 end;{TFreeSpline.Add}
 
@@ -460,7 +461,12 @@ begin
   // copy knuckles
   Move(Spline.FKnuckles[0], FKnuckles[0], Spline.NumberOfPoints * SizeOf(boolean));
   FNoPoints := Spline.NumberOfPoints;
-  FFragments := FNoPoints - 1;
+
+  //FFragments := FNoPoints - 1;
+  FFragments := Spline.Fragments;
+  if FFragments < FNoPoints - 1 then
+     FFragments := FNoPoints - 1;
+
   FShowCurvature := Spline.ShowCurvature;
   FCurvatureScale := Spline.FCurvatureScale;
   FCurvatureColor := Spline.FCurvatureColor;
@@ -599,7 +605,9 @@ begin
   if NumberOfPoints > 0 then
   begin
     Dec(FNoPoints);
-    FFragments := FNoPoints - 1;
+    //FFragments := FNoPoints - 1;
+    if FFragments < FNoPoints - 1 then
+       FFragments := FNoPoints - 1;
     for I := Index to NumberOfPoints - 1 do
     begin
       FPoints[I] := FPoints[I + 1];
@@ -675,7 +683,9 @@ begin
     FPoints[Index] := P;
     FKnuckles[Index] := False;
     Inc(FNoPoints);
-    FFragments := FNoPoints - 1;
+    //FFragments := FNoPoints - 1;
+    if FFragments < FNoPoints - 1 then
+       FFragments := FNoPoints - 1;
     Build := False;
   end
   else
@@ -733,6 +743,14 @@ begin
     Viewport.PenColor := Color;
     Viewport.PenStyle := FPenstyle;
     Viewport.Polyline(PArray1);
+
+    // test
+    Pt := PArray1[0];
+    Viewport.Ellipse(Pt.X - 3, Pt.Y - 3, Pt.X + 3, Pt.Y + 3);
+    Pt := PArray1[FFragments-1];
+    Viewport.Ellipse(Pt.X - 2, Pt.Y - 2, Pt.X + 2, Pt.Y + 2);
+
+
     if ShowPoints then
     begin
       Viewport.Fontname := 'small fonts';
@@ -791,7 +809,9 @@ begin
       end;
     end;
     FNoPoints := Source.NumberOfpoints;
-    FFragments := FNoPoints - 1;
+    //FFragments := FNoPoints - 1;
+    if FFragments < FNoPoints - 1 then
+       FFragments := FNoPoints - 1;
     Build := False;
   end
   else
@@ -859,7 +879,9 @@ begin
       end;
     end;
     Inc(FNoPoints, NoNewPoints);
-    FFragments := FNoPoints - 1;
+    //FFragments := FNoPoints - 1;
+    if FFragments < FNoPoints - 1 then
+       FFragments := FNoPoints - 1;
     if not DuplicatePoint then
       Fknuckles[index] := True;
     Build := False;

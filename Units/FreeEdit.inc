@@ -247,7 +247,7 @@ begin
   if Edges.Count > 0 then
   begin
     Self.CreateUndoObject(Userstring(72), True);
-    SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
+    SortedPointLists := TFasterListTFreeSubdivisionFace.Create(false,true);
     Owner.Surface.IsolateEdges(TFasterList(Edges), SortedPointLists);
     for I := 1 to SortedPointLists.Count do
     begin

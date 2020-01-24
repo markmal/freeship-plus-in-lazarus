@@ -959,7 +959,8 @@ var
 begin
   FProfile.Clear;
   FProfile.Color := clBlack;
-  FProfile.Fragments := 500;
+  //FProfile.Fragments := 500;  // MM: Spline.Fragments needs to be set after all points added
+
   InputPoints.Enabled := False;
 
   _label8.Caption := '';
@@ -1035,6 +1036,7 @@ begin
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     FProfile.Add(FProfile.Point[0]);
   end;
+  FProfile.Fragments := 500;
 
   Area := 0;
   COG.X := 0.0;
@@ -1130,12 +1132,6 @@ begin
       end;
     end;
     Spline.Destroy;
-
-    //---------------------------------------
-    IsUptoDate := True;           ///
-    Viewport.ZoomExtents;         ///
-    EXIT;                         ///
-    //---------------------------------------
 
     // calculate volume, center of bouyancy and wetted area
     begin

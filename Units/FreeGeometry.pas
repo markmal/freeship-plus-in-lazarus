@@ -891,9 +891,7 @@ type
 
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeSpline                                             }
-
   { 3D CSpline                                                                                        }
-
   { Copied from page 107 of the book: "Numerical recipes in fortan 77"                                }
   { Url: http://www.library.cornell.edu/nr/bookfpdf/f3-3.pdf                                          }
   { Modified to use centripetal parametrisation for smoother interpolation and to accept              }
@@ -945,10 +943,8 @@ type
     procedure DeletePoint(Index: integer);
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer; virtual;
-    procedure Draw(Viewport: TFreeViewport);
-      override;
-    function FirstDerive(
-      Parameter: TFloatType): T3DCoordinate;
+    procedure Draw(Viewport: TFreeViewport); override;
+    function FirstDerive(Parameter: TFloatType): T3DCoordinate;
     procedure Insert(Index: integer; P: T3DCoordinate);
     procedure InsertSpline(Index: integer;
       Invert, DuplicatePoint: boolean; Source: TFreeSpline);
@@ -964,8 +960,7 @@ type
       virtual;
     procedure SaveToDXF(Strings: TStringList;
       Layername: string; SendMirror: boolean);
-    function SecondDerive(
-      Parameter: TFloatType): T3DCoordinate;
+    function SecondDerive(Parameter: TFloatType): T3DCoordinate;
     function Simplify(Criterium: TFloatType): boolean;
     // Remove points that do not contribute significantly to the shape
     function Value(Parameter: extended): T3DCoordinate;
@@ -1278,6 +1273,7 @@ type
     procedure AddEdge(Edge: TFreeSubdivisionEdge);
     procedure AddFace(Face: TFreeSubdivisionFace);
     function Averaging: T3DCoordinate;
+    function Averaging_my: T3DCoordinate;
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
     function CheckIntegrity: boolean;
     procedure Clear;
@@ -1891,6 +1887,7 @@ type
     procedure SortEdges(Edges: TFasterListTFreeSubdivisionEdge;
       var Points: TFasterListTFreeSubdivisionPoint); reintroduce; overload;
     procedure SubDivide;
+    procedure SubDivide_my;
     property ActiveLayer: TFreeSubdivisionLayer
       read FActiveLayer write FSetActiveLayer;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint

@@ -246,7 +246,7 @@ begin
         MinMax(FPoints[I - 1], FMin, FMax);
     end;
   end;
-  FFragments := FNoPoints * 1; //MM: just set
+  //FFragments := FNoPoints * 1; //MM: just set. Causes wrong drawing
   inherited Rebuild;
   FIsBuilding := false;
 end;{TFreeSpline.Rebuild}

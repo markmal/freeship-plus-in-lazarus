@@ -327,7 +327,110 @@ begin
   end;
 end;{TFreeSubdivisionPoint.AddFace}
 
-function TFreeSubdivisionPoint.Averaging: T3DCoordinate;
+function TFreeSubdivisionPoint.Averaging:T3DCoordinate;
+var I,J,Nt,Nq     : Integer;
+    a             : TFloatType;
+    Weight,TotalWeight:TFloatType;
+    Center        : T3DCoordinate;
+    Face          : TFreeSubdivisionFace;
+    Edge          : TFreeSubdivisionEdge;
+    P             : TFreeSubdivisionPoint;
+begin
+   if (NumberOfedges=0) or (FVertexType=svCorner) then Result:=FCoordinate else
+   begin
+      if FVertexType=svCrease then
+      begin
+         Result.X:=FCoordinate.X*0.50;
+         Result.Y:=FCoordinate.Y*0.50;
+         Result.Z:=FCoordinate.Z*0.50;
+         for I:=1 to FEdges.Count do
+         begin
+            Edge:=FEdges[I-1];
+            if (Edge.FFaces.Count=1) or (Edge.FCrease) then
+            begin
+               if Edge.FStartpoint=self then P:=Edge.FEndpoint
+                                        else P:=Edge.FStartpoint;
+               Result.X:=Result.X+0.25*P.FCoordinate.X;
+               Result.Y:=Result.Y+0.25*P.FCoordinate.Y;
+               Result.Z:=Result.Z+0.25*P.FCoordinate.Z;
+            end;
+         end;
+      end else
+      begin
+         TotalWeight:=0.0;
+         Result:=ZERO;
+         Nt:=0;
+         for I:=1 to FFaces.Count do
+         begin
+            Face:=FFaces[I-1];
+            Center:=ZERO;
+            if Face.NumberOfpoints=3 then
+            begin
+               inc(Nt);
+               // Calculate centerpoint
+               for j:=1 to Face.NumberOfpoints do
+               begin
+                  P:=Face.FPoints[J-1];
+                  if P=self then Weight:=1/4
+                            else Weight:=3/8;
+                  Center.X:=Center.X+Weight*P.FCoordinate.X;
+                  Center.Y:=Center.Y+Weight*P.FCoordinate.Y;
+                  Center.Z:=Center.Z+Weight*P.FCoordinate.Z;
+               end;
+               Weight:=Pi/3;
+            end else if Face.NumberOfpoints=4 then
+            begin
+               // Calculate centerpoint
+               for j:=1 to Face.NumberOfpoints do
+               begin
+                  P:=Face.FPoints[J-1];
+                  Weight:=1/4;
+                  Center.X:=Center.X+Weight*P.FCoordinate.X;
+                  Center.Y:=Center.Y+Weight*P.FCoordinate.Y;
+                  Center.Z:=Center.Z+Weight*P.FCoordinate.Z;
+               end;
+               Weight:=Pi/2;
+            end else Raise exception.Create('Invalid number of points in TFreeSubdivisionPoint.Averaging');
+            Result.X:=Result.X+Weight*Center.X;
+            Result.Y:=Result.Y+Weight*Center.Y;
+            Result.Z:=Result.Z+Weight*Center.Z;
+            TotalWeight:=TotalWeight+Weight;
+         end;
+         if TotalWeight<>0 then
+         begin
+            Result.X:=Result.X/TotalWeight;
+            Result.Y:=Result.Y/TotalWeight;
+            Result.Z:=Result.Z/TotalWeight;
+         end;
+         Nq:=FFaces.Count-Nt;
+
+         if Nt=FFaces.Count then
+         begin
+            // apply averaging in case of vertex surrounded by triangles
+            a:=5/3-8/3*sqr(3/8+1/4*cos(2*Pi/FFaces.Count));
+         end else if Nq=FFaces.Count then
+         begin
+            // apply averaging in case of vertex surrounded by quads
+            a:=4/FFaces.Count;
+         end else
+         begin
+            // apply averaging in case of vertex on boundary of quads and triangles
+            if (Nq=0) and (Nt=3) then
+            begin
+               a:=1.5;
+            end else a:=12/(3*Nq+2*Nt);
+         end;
+         if a<>1.0 then
+         begin
+            Result.X:=FCoordinate.X+a*(Result.X-FCoordinate.X);
+            Result.Y:=FCoordinate.Y+a*(Result.Y-FCoordinate.Y);
+            Result.Z:=FCoordinate.Z+a*(Result.Z-FCoordinate.Z);
+         end;
+      end;
+   end;
+end;{TFreeSubdivisionPoint.Averaging}
+
+function TFreeSubdivisionPoint.Averaging_my: T3DCoordinate;
 var
   I, J, Nt, Nq, NoP: integer;
   a: TFloatType;

@@ -9227,6 +9227,7 @@ begin
   Owner.Surface.AddControlPoint(Result);
   Result.Coordinate := ZERO;
   Owner.ActiveControlPoint := Result;
+  Owner.Surface.SelectedControlPoints.Add(Result);
   Owner.FileChanged := True;
   Owner.Redraw;
   if Assigned(Owner.OnUpdateGeometryInfo) then

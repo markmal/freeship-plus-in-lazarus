@@ -1790,9 +1790,12 @@ var kI, kS : real;
 begin
  if FAutoFit then doAutoFit
  else begin
+  if FPreviewImage.Picture = nil then exit;
+  if FPreviewImage.Picture.Height = 0 then exit;
+  if ScrollBoxPreview.ClientHeight = 0 then exit;
   kI := FPreviewImage.Picture.Width / FPreviewImage.Picture.Height;
   kS := ScrollBoxPreview.ClientWidth / ScrollBoxPreview.ClientHeight;
-  if kI > kS
+  if  kI > kS
     then FPreviewImage.Width := ScrollBoxPreview.ClientWidth
     else FPreviewImage.Height := ScrollBoxPreview.ClientHeight;
  end;

@@ -19,6 +19,9 @@ Type
   T3DCoordinate                 = record                         // 3D coordinate type
                                      X,Y,Z:TFloatType;
                                   end;
+  T3DLine                        = record                         // 3D line type
+                                     A,B:T3DCoordinate;
+                                  end;
   T3DPlane                      = record
                                      a,b,c,d:TFloatType;         // Description of a 3D plane: a*x + b*y + c*z -d = 0.0;
                                   end;

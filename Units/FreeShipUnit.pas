@@ -882,13 +882,14 @@ type
     FMenuIconSize: integer;
     FToolIconSize: integer;
 
+    FLastDirectory: string;   // directory of last Open/Save
     FInitDirectory: string;
     // Default directory where freeship.exe started
     FOpenDirectory: string;
     // Default directory to open existing files
     FSaveDirectory: string;   // Default directory to save files
-    FImportDirectory: string;   // Default directory to import files
-    FExportDirectory: string;   // Default directory to export files
+    FImportDirectory: string; // Default directory to import files
+    FExportDirectory: string; // Default directory to export files
 
     FGlobalOpenDirectory: string;
     // Default Global directory to open existing files
@@ -917,6 +918,11 @@ type
 
     function FGetGlobalImportDirectory: string;
     function FGetGlobalOpenDirectory: string;
+
+    function FGetLastDirectory: string;
+
+    procedure FSetOpenDirectory(val: string);
+    procedure FSetLastDirectory(val: string);
 
     procedure FSetViewportColor(Val: TColor);
   public
@@ -982,7 +988,8 @@ type
     property ImportDirectory: string read FGetImportDirectory write FImportDirectory;
     property GlobalImportDirectory: string
       read FGetGlobalImportDirectory write FGlobalImportDirectory;
-    property OpenDirectory: string read FGetOpenDirectory write FOpenDirectory;
+    property LastDirectory: string read FGetLastDirectory write FSetLastDirectory;
+    property OpenDirectory: string read FGetOpenDirectory write FSetOpenDirectory;
     property GlobalOpenDirectory: string read FGetGlobalOpenDirectory
       write FGlobalOpenDirectory;
     property SaveDirectory: string read FGetSaveDirectory write FSaveDirectory;

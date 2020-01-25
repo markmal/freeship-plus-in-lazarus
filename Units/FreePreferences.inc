@@ -71,6 +71,14 @@ begin
     Result := self.getGlobalAppDataDirectory + DirectorySeparator+'Import';
 end;{TFreePreferences.FGetGlobalImportDirectory}
 
+function TFreePreferences.FGetLastDirectory: string;
+begin
+  if DirectoryExistsUTF8(FLastDirectory) then
+    Result := FLastDirectory
+  else
+    Result := self.getUserAppDataDirectory + DirectorySeparator+'Ships';
+end;{TFreePreferences.FGetOpenDirectory}
+
 function TFreePreferences.FGetOpenDirectory: string;
 begin
   if DirectoryExistsUTF8(FOpenDirectory) { *Converted from DirectoryExists* } then
@@ -79,6 +87,16 @@ begin
   else
     Result := self.getUserAppDataDirectory + DirectorySeparator+'Ships';
 end;{TFreePreferences.FGetOpenDirectory}
+
+procedure TFreePreferences.FSetOpenDirectory(val: string);
+begin
+  FOpenDirectory := val;
+end;{TFreePreferences.FSetOpenDirectory}
+
+procedure TFreePreferences.FSetLastDirectory(val: string);
+begin
+  FLastDirectory := val;
+end;{TFreePreferences.FSetOpenDirectory}
 
 function TFreePreferences.FGetGlobalOpenDirectory: string;
 begin
@@ -120,6 +138,7 @@ procedure TFreePreferences.Clear;
 begin
   ResetColors;
   FPointSize := 2;
+  FLastDirectory := '';
   FOpenDirectory := '';
   FSaveDirectory := '';
   FImportDirectory := '';
@@ -912,6 +931,7 @@ begin
 
   params := TColorIniFile.Create(Filename, False);
 
+  FLastDirectory := params.ReadString('Directories', 'LastDirectory', FLastDirectory);
   FOpenDirectory := params.ReadString('Directories', 'OpenDirectory', FOpenDirectory);
   FGlobalOpenDirectory := params.ReadString('Directories',
     'GlobalOpenDirectory', FGlobalOpenDirectory);
@@ -1188,6 +1208,7 @@ begin
 
   params := TColorIniFile.Create(Filename, False);
 
+  params.WriteString('Directories', 'LastDirectory', FLastDirectory);
   params.WriteString('Directories', 'OpenDirectory', FOpenDirectory);
   params.WriteString('Directories', 'GlobalOpenDirectory', FGlobalOpenDirectory);
   params.WriteString('Directories', 'SaveDirectory', FSaveDirectory);

@@ -5097,7 +5097,7 @@ begin
 
     TempFreeShip.ModelLoaded := False;
     Source.LoadFromFile(aFileName);     // Load everything into memory
-    TempFreeShip.Preferences.OpenDirectory := ExtractFilePath(aFileName);
+    //TempFreeShip.Preferences.OpenDirectory := ExtractFilePath(aFileName);
     TempFreeShip.Filename := aFileName;
     TempFreeShip.LoadProject(Source);    // Now read the information from memory
 
@@ -5237,6 +5237,7 @@ resourcestring
   FileDialogFilterFreeshipText = 'FreeShip Text (*.ftm)|*.ftm';
   FileDialogFilterFreeshipBinary = 'FreeShip Binary (*.fbm)|*.fbm';
   FileDialogFilterAll = 'All|*';
+  FileDialogPlaceLast = 'Last';
   FileDialogPlaceMyShips = 'My Ships';
   FileDialogPlaceMyImport = 'My Import';
   FileDialogPlaceGlobalShips = 'Global Ships';
@@ -5256,6 +5257,7 @@ begin
   OpenDialog.FilterIndex := 0;
   //Opendialog.Options:=[ofHideReadOnly];
   Opendialog.OnPreview := @OnFilePreview;
+  Opendialog.addPlace(FileDialogPlaceLast, Owner.Preferences.LastDirectory);
   Opendialog.addPlace(FileDialogPlaceMyShips, Owner.Preferences.OpenDirectory);
   Opendialog.addPlace(FileDialogPlaceMyImport, Owner.Preferences.ImportDirectory);
   Opendialog.addPlace(FileDialogPlaceGlobalShips, Owner.Preferences.GlobalOpenDirectory);
@@ -5266,7 +5268,7 @@ begin
   //Opendialog.ShellListView.AutoWidthLastColumn := True;
   Opendialog.ShellListView.AutoWidthLastColumn := False;
   Opendialog.AutoFit := True;
-  OpenDialog.CurrentPath := Owner.Preferences.OpenDirectory;
+  OpenDialog.CurrentPath := Owner.Preferences.LastDirectory;
 
   //Places:=Opendialog.GetPlaces;
   if OpenDialog.Execute then
@@ -5298,6 +5300,7 @@ begin
     Owner.Surface.ClearFaces;
     Owner.Surface.Clear;
     File_Load(Opendialog.FileName);   // Load everything into memory
+    Owner.Preferences.LastDirectory := ExtractFilePath(Opendialog.FileName);
   end;
   //PreviewFrm.Close;
   //PreviewFrm.Free;
@@ -5342,7 +5345,7 @@ begin
 
     Owner.ModelLoaded := False;
     Source.LoadFromFile(FileName);                // Load everything into memory
-    Owner.Preferences.OpenDirectory := ExtractFilePath(FileName);
+    //Owner.Preferences.OpenDirectory := ExtractFilePath(FileName);
     //Owner.Filename:=ChangeFileExt(FileName,'.fbm');
     Owner.Filename := FileName;
     //My correction
@@ -5412,7 +5415,7 @@ begin
   Destination.Encoding := Owner.Preferences.FbmEncoding;
   Owner.SaveProject(Destination);
   Destination.SaveToFile(Owner.Filename);
-  Owner.Preferences.SaveDirectory := ExtractFilePath(Owner.FileName);
+  Owner.Preferences.LastDirectory := ExtractFilePath(Owner.FileName);
   AddToRecentFiles(Owner.FileName);
   Destination.Destroy;
 end;{TFreeEdit.File_Save}
@@ -5459,7 +5462,7 @@ var
   Preferences: TFreePreferences;
 begin
   Preferences := Owner.Preferences;
-  Dir := Preferences.SaveDirectory;
+  Dir := Preferences.LastDirectory;
   if not DirectoryExistsUTF8(Dir) and not ForceDirectoriesUTF8(Dir) then
     MessageDlg(tl8('Cannot create directory: ') + Dir, mtWarning, [mbOK], 0);
 
@@ -5471,6 +5474,7 @@ begin
       '|' + FileDialogFilterFreeshipBinary;
     FilterIndex := 0;
     OnPreview := @OnFilePreview;
+    addPlace(FileDialogPlaceLast, Preferences.LastDirectory);
     addPlace(FileDialogPlaceMyShips, Preferences.SaveDirectory);
     FileDialogMode := fdmSave;
     ShellListView.ReadOnly := True;
@@ -5494,6 +5498,7 @@ begin
       2: Owner.Filename := ChangeFileExt(Savedialog.Filename, '.fbm');
     end; }
     File_Save;
+    Owner.Preferences.LastDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);
   end;
   SaveDialog.Destroy;
 end;{TFreeEdit.File_SaveAs}

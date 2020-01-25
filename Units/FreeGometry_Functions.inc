@@ -124,6 +124,54 @@ begin
     Result := '0';
 end;{BoolToStr}
 
+// outer box of 3 points
+function Box3P(P1, P2, P3: T3DCoordinate): T3DLine;
+begin
+  Result.A.X := MaxFloat;
+  Result.A.Y := MaxFloat;
+  Result.A.Z := MaxFloat;
+  Result.B.X := MinFloat;
+  Result.B.Y := MinFloat;
+  Result.B.Z := MinFloat;
+
+  if Result.A.X > P1.X then Result.A.X := P1.X;
+  if Result.A.X > P2.X then Result.A.X := P2.X;
+  if Result.A.X > P3.X then Result.A.X := P3.X;
+
+  if Result.A.Y > P1.Y then Result.A.Y := P1.Y;
+  if Result.A.Y > P2.Y then Result.A.Y := P2.Y;
+  if Result.A.Y > P3.Y then Result.A.Y := P3.Y;
+
+  if Result.A.Z > P1.Z then Result.A.Z := P1.Z;
+  if Result.A.Z > P2.Z then Result.A.Z := P2.Z;
+  if Result.A.Z > P3.Z then Result.A.Z := P3.Z;
+
+  if Result.B.X < P1.X then Result.B.X := P1.X;
+  if Result.B.X < P2.X then Result.B.X := P2.X;
+  if Result.B.X < P3.X then Result.B.X := P3.X;
+
+  if Result.B.Y < P1.Y then Result.B.Y := P1.Y;
+  if Result.B.Y < P2.Y then Result.B.Y := P2.Y;
+  if Result.B.Y < P3.Y then Result.B.Y := P3.Y;
+
+  if Result.B.Z < P1.Z then Result.B.Z := P1.Z;
+  if Result.B.Z < P2.Z then Result.B.Z := P2.Z;
+  if Result.B.Z < P3.Z then Result.B.Z := P3.Z;
+end;
+
+// longest line of 3 points on same ray
+function Line3P(P1, P2, P3: T3DCoordinate): T3DLine;
+var d12,d23,d13: TFloatType;
+begin
+  d12 := SquaredDistPP(P1, P2);
+  d23 := SquaredDistPP(P2, P3);
+  d13 := SquaredDistPP(P1, P3);
+  if (d12 > d23) and (d12 > d13) then begin Result.A:=P1; Result.B:=P2; end;
+  if (d23 > d13) and (d23 > d12) then begin Result.A:=P2; Result.B:=P3; end;
+  if (d13 > d12) and (d13 > d23) then begin Result.A:=P1; Result.B:=P3; end;
+end;
+
+
 procedure ClipTriangle(P1, P2, P3: T3DCoordinate; s1, s2, s3: TFloatType;
   var Nf, Nb: integer; var Front, Back: TFreeCoordinateArray); overload;
 var
@@ -983,7 +1031,7 @@ begin
 end;{ProjectPointOnPlane}
 
 // Projects point P on the linesegment through P1 and P2
-function ProjectPointOnLine(P, P1, P2: T3DCoordinate): T3DCoordinate;
+{function ProjectPointOnLine(P, P1, P2: T3DCoordinate): T3DCoordinate;
 var
   V1, V2: T3DCoordinate;
   L, T: TFloatType;
@@ -1005,7 +1053,32 @@ begin
   end
   else
     Result := P;
+end;}{ProjectPointOnLine}
+
+function ProjectPointOnLine(P, P1, P2: T3DCoordinate): T3DCoordinate;
+var
+  d1, d2: T3DCoordinate;
+  L, T: TFloatType;
+begin
+  d1.X := P.X - P1.X;
+  d1.Y := P.Y - P1.Y;
+  d1.Z := P.Z - P1.Z;
+  d2.X := P2.X - P1.X;
+  d2.Y := P2.Y - P1.Y;
+  d2.Z := P2.Z - P1.Z;
+  L := Sqr(d2.X) + Sqr(d2.Y) + Sqr(d2.Z);
+
+  if L > 1e-6 then
+  begin
+    T := ((d1.X * d2.X) + (d1.Y * d2.Y) + (d1.Z * d2.Z)) / L;
+    Result.X := P1.X + T * d2.X;
+    Result.Y := P1.Y + T * d2.Y;
+    Result.Z := P1.Z + T * d2.Z;
+  end
+  else
+    Result := P;
 end;{ProjectPointOnLine}
+
 
 function RandomColor: TColor;
 const

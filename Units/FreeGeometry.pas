@@ -1273,7 +1273,6 @@ type
     procedure AddEdge(Edge: TFreeSubdivisionEdge);
     procedure AddFace(Face: TFreeSubdivisionFace);
     function Averaging: T3DCoordinate;
-    function Averaging_my: T3DCoordinate;
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
     function CheckIntegrity: boolean;
     procedure Clear;
@@ -1887,7 +1886,6 @@ type
     procedure SortEdges(Edges: TFasterListTFreeSubdivisionEdge;
       var Points: TFasterListTFreeSubdivisionPoint); reintroduce; overload;
     procedure SubDivide;
-    procedure SubDivide_my;
     property ActiveLayer: TFreeSubdivisionLayer
       read FActiveLayer write FSetActiveLayer;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint

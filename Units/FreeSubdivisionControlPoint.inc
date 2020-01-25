@@ -390,6 +390,7 @@ var
   I: integer;
   P3D, P3DA, P3DB, P3DA2, P3DB2 : T3DCoordinate;
   MFL: TFloatType;
+  B3D: T3DLine;
 begin
   if Viewport.ViewportMode <> vmWireframe then
   begin
@@ -448,8 +449,11 @@ begin
 
     if (FLinearConstraintPointA <> nil) and (FLinearConstraintPointB <> nil) then
     begin
-      P3DA := FLinearConstraintPointA.Coordinate;
-      P3DB := FLinearConstraintPointB.Coordinate;
+      B3D := Line3P(self.Coordinate,
+          FLinearConstraintPointA.Coordinate,
+          FLinearConstraintPointB.Coordinate);
+      P3DA := B3D.A;
+      P3DB := B3D.B;
       MFL := Owner.MainframeLocation;
       if (Viewport.ViewType = fvBodyplan) //TODO: check if both sides
        then
@@ -506,16 +510,26 @@ var P,PN: TPoint;
     // project point P on the ray through P1 and P2
     function Project_PL_3D(P, P1, P2: T3DCoordinate): T3DCoordinate;
     var
-      T: TFloatType;
+      T, L: TFloatType; d1, d2: T3DCoordinate;
     begin
-      T := -((P1.X - P.X) * (P2.X - P1.X)
-           + (P1.Y - P.Y) * (P2.Y - P1.Y)
-           + (P2.Z - P.Z) * (P2.Z - P1.Z))
-           /
-        (sqr(P2.X - P1.X) + sqr(P2.Y - P1.Y) + sqr(P2.Z - P1.Z));
-      Result.X := P1.X + T * (P2.X - P1.X);
-      Result.Y := P1.Y + T * (P2.Y - P1.Y);
-      Result.Z := P1.Z + T * (P2.Z - P1.Z);
+      d1.X := P.X - P1.X;
+      d1.Y := P.Y - P1.Y;
+      d1.Z := P.Z - P1.Z;
+      d2.X := P2.X - P1.X;
+      d2.Y := P2.Y - P1.Y;
+      d2.Z := P2.Z - P1.Z;
+      L := Sqr(d2.X) + Sqr(d2.Y) + Sqr(d2.Z);
+
+      if L > 1e-6 then
+        begin
+        T := ((d1.X * d2.X) + (d1.Y * d2.Y) + (d1.Z * d2.Z)) / L;
+        Result.X := P1.X + T * d2.X;
+        Result.Y := P1.Y + T * d2.Y;
+        Result.Z := P1.Z + T * d2.Z;
+        end
+      else
+        Result := P;
+
     end;{Dist_PL_3D}
 
     // project point P on the ray through P1 and P2 by X
@@ -565,6 +579,8 @@ begin
   CA:=FLinearConstraintPointA.Coordinate;
   CB:=FLinearConstraintPointB.Coordinate;
   OldCoordinate := FCoordinate;
+  FCoordinate := ProjectPointOnline(OldCoordinate, CA, CB);
+{ // simplifying
   if Viewport = nil then
      //FCoordinate := Project_PL_3D(FCoordinate, CA, CB)
      FCoordinate := ProjectPointOnline(OldCoordinate, CA, CB)
@@ -587,7 +603,7 @@ begin
        FCoordinate := Project_PL_3D_X(FCoordinate, CA, CB)
     else
        FCoordinate := Project_PL_3D_Y(FCoordinate, CA, CB);
-
+}
   if (OldCoordinate.X <> FCoordinate.X)
    or(OldCoordinate.Y <> FCoordinate.Y)
    or(OldCoordinate.Z <> FCoordinate.Z)

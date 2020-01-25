@@ -891,9 +891,7 @@ type
 
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeSpline                                             }
-
   { 3D CSpline                                                                                        }
-
   { Copied from page 107 of the book: "Numerical recipes in fortan 77"                                }
   { Url: http://www.library.cornell.edu/nr/bookfpdf/f3-3.pdf                                          }
   { Modified to use centripetal parametrisation for smoother interpolation and to accept              }
@@ -945,10 +943,8 @@ type
     procedure DeletePoint(Index: integer);
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer; virtual;
-    procedure Draw(Viewport: TFreeViewport);
-      override;
-    function FirstDerive(
-      Parameter: TFloatType): T3DCoordinate;
+    procedure Draw(Viewport: TFreeViewport); override;
+    function FirstDerive(Parameter: TFloatType): T3DCoordinate;
     procedure Insert(Index: integer; P: T3DCoordinate);
     procedure InsertSpline(Index: integer;
       Invert, DuplicatePoint: boolean; Source: TFreeSpline);
@@ -964,8 +960,7 @@ type
       virtual;
     procedure SaveToDXF(Strings: TStringList;
       Layername: string; SendMirror: boolean);
-    function SecondDerive(
-      Parameter: TFloatType): T3DCoordinate;
+    function SecondDerive(Parameter: TFloatType): T3DCoordinate;
     function Simplify(Criterium: TFloatType): boolean;
     // Remove points that do not contribute significantly to the shape
     function Value(Parameter: extended): T3DCoordinate;
@@ -1132,7 +1127,7 @@ type
 
   { TFreeSubdivisionLayer is a layer-type class                                                       }
 
-  { All individual controlfaces can be assigned to a leyer. Properties such as color,                 }
+  { All individual controlfaces can be assigned to a layer. Properties such as color,                 }
   { visibility etc. are common for all controlfaces belonging the the same layer                      }
   {---------------------------------------------------------------------------------------------------}
   TFreeSubdivisionLayer = class
@@ -1278,6 +1273,7 @@ type
     procedure AddEdge(Edge: TFreeSubdivisionEdge);
     procedure AddFace(Face: TFreeSubdivisionFace);
     function Averaging: T3DCoordinate;
+    function Averaging_my: T3DCoordinate;
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
     function CheckIntegrity: boolean;
     procedure Clear;
@@ -1891,6 +1887,7 @@ type
     procedure SortEdges(Edges: TFasterListTFreeSubdivisionEdge;
       var Points: TFasterListTFreeSubdivisionPoint); reintroduce; overload;
     procedure SubDivide;
+    procedure SubDivide_my;
     property ActiveLayer: TFreeSubdivisionLayer
       read FActiveLayer write FSetActiveLayer;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint
@@ -2217,18 +2214,21 @@ var
 begin
   for I:=0 to Count-1 do
   if Assigned(Items[I]) then
-    Items[I].Destroy;
+    try
+       Items[I].Free;
 
-{  while Count > 0 do
-  begin
-    I:=Count-1;
-    O := TObject(Items[I]);
-    if Assigned(O) then
-    begin
-      O.Destroy;
-      Delete(I);
+    {  while Count > 0 do
+      begin
+        I:=Count-1;
+        O := TObject(Items[I]);
+        if Assigned(O) then
+        begin
+          O.Destroy;
+          Delete(I);
+        end;
+      end; }
+    finally
     end;
-  end; }
 
   Clear;
 end;

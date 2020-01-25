@@ -247,7 +247,7 @@ begin
   if Edges.Count > 0 then
   begin
     Self.CreateUndoObject(Userstring(72), True);
-    SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
+    SortedPointLists := TFasterListTFreeSubdivisionFace.Create(false,false);
     Owner.Surface.IsolateEdges(TFasterList(Edges), SortedPointLists);
     for I := 1 to SortedPointLists.Count do
     begin
@@ -9227,6 +9227,7 @@ begin
   Owner.Surface.AddControlPoint(Result);
   Result.Coordinate := ZERO;
   Owner.ActiveControlPoint := Result;
+  Owner.Surface.SelectedControlPoints.Add(Result);
   Owner.FileChanged := True;
   Owner.Redraw;
   if Assigned(Owner.OnUpdateGeometryInfo) then

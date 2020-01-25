@@ -204,6 +204,7 @@ begin
       Self.Caption := '';
    end else
    begin
+      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
       R:=0.0;
       EditDistance.Value:=0.0;
 
@@ -507,13 +508,14 @@ begin
 
    if ActiveControlPoint<>nil then
    begin
-// do only something, if the value has really been changed:
+      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
+      // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
       //Val := ConvertCoordinate(EditX.Text, P.X);
       Val := EditX.Value;
       if (abs(P.X-Val)>1e-5) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
-// SAP change all selected points
+         // SAP change all selected points
          I := 1;
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
@@ -611,13 +613,14 @@ begin
 
    if ActiveControlPoint<>nil then
    begin
-// do only something, if the value has really been changed:
+      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
+      // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
       //Val := ConvertCoordinate(EditY.Text, P.Y);
       Val := EditY.Value;
       if (abs(P.Y-Val)>1e-5) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
-// SAP change all selected points
+      // SAP change all selected points
         I := 1;
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin
@@ -672,13 +675,14 @@ begin
 
    if ActiveControlPoint<>nil then
    begin
-// do only something, if the value has really been changed:
+      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
+      // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
       //Val := ConvertCoordinate(EditZ.Text, P.Z);
       Val := EditZ.Value;
       if (abs(P.Z-Val)>1e-5) or (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
       begin
-// SAP change all selected points
+      // SAP change all selected points
         I := 1;
          while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
          begin

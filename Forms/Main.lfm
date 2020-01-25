@@ -258,8 +258,8 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton10: TToolButton
-        Tag = 9
-        Left = 184
+        Tag = 10
+        Left = 204
         Top = 0
         Action = BothSides
         AutoSize = True
@@ -272,30 +272,30 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton21: TToolButton
-        Tag = 7
-        Left = 144
+        Tag = 8
+        Left = 164
         Top = 0
         Action = ShowStations
         AllowAllUp = True
         AutoSize = True
       end
       object ToolButton22: TToolButton
-        Tag = 5
-        Left = 104
+        Tag = 6
+        Left = 124
         Top = 0
         Action = ShowButtocks
         AutoSize = True
       end
       object ToolButton23: TToolButton
-        Tag = 6
-        Left = 124
+        Tag = 7
+        Left = 144
         Top = 0
         Action = ShowWaterlines
         AutoSize = True
       end
       object ToolButton35: TToolButton
-        Tag = 8
-        Left = 164
+        Tag = 9
+        Left = 184
         Top = 0
         Action = ShowDiagonals
         AutoSize = True
@@ -322,15 +322,15 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton37: TToolButton
-        Tag = 10
-        Left = 204
+        Tag = 4
+        Left = 84
         Top = 0
         Action = Showcurvature
         AutoSize = True
       end
       object ToolButton36: TToolButton
-        Tag = 4
-        Left = 84
+        Tag = 5
+        Left = 104
         Top = 0
         Action = ShowMarkers
         AutoSize = True

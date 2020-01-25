@@ -877,21 +877,21 @@ implementation
 function TFreeKeelWizardDialog.FGetCols: integer;
 begin
   Result := Input6.Value;
-  if Result < 3 then
+{  if Result < 3 then
   begin
     Result := 3;
     Input6.Value := 3;
-  end;
+  end; }
 end;{TFreeKeelWizardDialog.FGetCols}
 
 function TFreeKeelWizardDialog.FGetRows: integer;
 begin
   Result := Input5.Value;
-  if Result < 2 then
+{  if Result < 2 then
   begin
     Result := 2;
     Input5.Value := 2;
-  end;
+  end; }
 end;{TFreeKeelWizardDialog.FGetRows}
 
 procedure TFreeKeelWizardDialog.UpdateData;
@@ -904,6 +904,8 @@ var
   P: T3DCoordinate;
   P_1, P_2: T3DCoordinate;
   P_3, P_4: T3DCoordinate;
+  RootChordLength,TipChordLength,DeltaTip,Span,VCompression: TFloatType;
+  VpointsNum,HpointsNum: integer;
   Angle: TFloatType;
   Height: TFloatType;
   Chord: TFloatType;
@@ -957,7 +959,8 @@ var
 begin
   FProfile.Clear;
   FProfile.Color := clBlack;
-  FProfile.Fragments := 500;
+  //FProfile.Fragments := 500;  // MM: Spline.Fragments needs to be set after all points added
+
   InputPoints.Enabled := False;
 
   _label8.Caption := '';
@@ -977,28 +980,36 @@ begin
 
   Factor := 1 + Trackbar1.Position / Trackbar1.Max;
 
+  RootChordLength := Input1.Value;
+  TipChordLength := Input2.Value;
+  DeltaTip := Input4.Value;
+  Span :=  Input3.Value;
+  VpointsNum := Input5.Value;
+  HpointsNum := Input6.Value;
+  VCompression := Trackbar1.Position;
+
   if Combobox1.ItemIndex = 0 then
   begin
     FProfile.Add(SetPoint(0, 0, 0));
-    FProfile.Add(SetPoint(Input4.Value, 0, -Input3.Value));
+    FProfile.Add(SetPoint(DeltaTip, 0, -Span));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-    FProfile.Add(SetPoint(Input4.Value + Input2.Value, 0, -Input3.Value));
+    FProfile.Add(SetPoint(DeltaTip + TipChordLength, 0, -Span));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-    FProfile.Add(SetPoint(Input1.Value, 0, 0));
+    FProfile.Add(SetPoint(RootChordLength, 0, 0));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     FProfile.Add(FProfile.Point[0]);
   end
   else
   begin
-    L := Input3.Value;
+    L := Span;
     case combobox1.ItemIndex of
-      1: a := 0.50 * input1.Value;
+      1: a := 0.50 * RootChordLength;
       2: a := 0.0;
-      3: a := 0.75 * input1.Value;
+      3: a := 0.75 * RootChordLength;
       else
         a := 0.0;
     end;
-    b := Input1.Value - a;
+    b := RootChordLength - a;
     if a > 0 then
       for I := 0 to 10 do
       begin
@@ -1025,12 +1036,13 @@ begin
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     FProfile.Add(FProfile.Point[0]);
   end;
+  FProfile.Fragments := 500;
 
   Area := 0;
   COG.X := 0.0;
   COG.Y := 0.0;
   MeanChord := 0.0;
-  Span := Input3.Value;
+  Span := Span;
   GeomAspectRatio := 0.0;
   EffAspectRatio := 0.0;
   Volume := 0.0;
@@ -1041,8 +1053,8 @@ begin
   if FProfile.NumberOfPoints > 1 then
   begin
     Setlength(Mesh, Rows);
-    for I := 1 to Rows do
-      setlength(Mesh[I - 1], Cols);
+    for I := 0 to Rows-1 do
+      SetLength(Mesh[I], Cols);
 
     // Vertical spacing between rows increases from bottom to top
     VertInd := 0;
@@ -1089,21 +1101,21 @@ begin
       end
       else if I = Rows - 1 then
       begin
-        Chord := Input1.Value;
+        Chord := RootChordLength;
         Start := 0.0;
       end
       else
       if ComboBox1.ItemIndex = 0 then
       begin
-        Chord := Input2.Value;
-        Start := Input4.Value;
+        Chord := TipChordLength;
+        Start := DeltaTip;
       end
       else
       begin
         chord := 0.0;
         case ComboBox1.ItemIndex of
-          1: Start := 0.5 * Input1.Value;
-          3: start := 0.75 * Input1.Value;
+          1: Start := 0.5 * RootChordLength;
+          3: start := 0.75 * RootChordLength;
           else
             Start := 0;
         end;
@@ -1234,7 +1246,7 @@ begin
       //       V=h/3*(S1+sqrt(S1*S2)+S2)
       //       S1=SUM[(r1+r2)*dh]*Input1.Value**2/2
       //       S2=SUM[(r1+r2)*dh]*Input2.Value**2/2
-      //       V=SUM[(r1+r2)*dh]*Input3.Value/3/2*(Input1.Value**2+Input1.Value*Input2.Value+Input2.Value**2)
+      //       V=SUM[(r1+r2)*dh]*Span/3/2*(Input1.Value**2+Input1.Value*Input2.Value+Input2.Value**2)
       for I := 2 to Nh do
       begin
         dh := (NacaProfiles[0, I] - NacaProfiles[0, I - 1]);
@@ -1242,8 +1254,10 @@ begin
         r2 := NacaProfiles[_ComboBox2.ItemIndex + 1, I - 1];
         Volume := Volume + dh * (r1 + r2);
       end;
-      Volume := Volume * Input3.Value / 3 *
-        (Input1.Value * Input1.Value + Input1.Value * Input2.Value + Input2.Value * Input2.Value);
+      Volume := Volume * Span / 3 *
+        (RootChordLength * RootChordLength
+        + RootChordLength * TipChordLength
+        + TipChordLength * TipChordLength);
     end;
     if InputShape.ItemIndex = 0 then
     begin
@@ -1299,10 +1313,10 @@ begin
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     FProfile.add(FProfile.Point[FProfile.NumberOfPoints - 3]);
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-    FProfile.Add(SetPoint(Input4.Value + Input2.Value, 0, -Input3.Value));
+    FProfile.Add(SetPoint(DeltaTip + TipChordLength, 0, -Span));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-    FProfile.Add(SetPoint(Input4.Value + Input2.Value + InputDelta.Value -
-      InputLength.Value, 0, -Input3.Value));
+    FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputDelta.Value -
+      InputLength.Value, 0, -Span));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
 
     // для кругового бульба и бульб-крыла
@@ -1311,10 +1325,10 @@ begin
 
       for I := Nh downto 1 do
       begin
-        P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
           InputLength.Value;
         P.Y := -NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value / 1.4142 - wng;
-        P.Z := -Input3.Value;
+        P.Z := -Span;
         FProfile.Add(P);
         if I > Nh - 2 then
           FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
@@ -1322,49 +1336,49 @@ begin
 
       for I := 1 to Nh do
       begin
-        P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
           InputLength.Value;
         P.Y := NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value / 1.4142 + wng;
-        P.Z := -Input3.Value;
+        P.Z := -Span;
         FProfile.Add(P);
       end;
       FProfile.Knuckle[FProfile.NumberOfPoints - 2] := True;
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-      FProfile.Add(SetPoint(Input4.Value + Input2.Value + InputDelta.Value -
-        InputLength.Value, 0, -Input3.Value));
+      FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputDelta.Value -
+        InputLength.Value, 0, -Span));
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     end;
 
     for I := Nh downto 1 do
     begin
-      P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+      P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
         InputLength.Value;
       P.Y := 0;
-      P.Z := -Input3.Value - NacaProfiles[InputWing.ItemIndex + 1, I] *
+      P.Z := -Span - NacaProfiles[InputWing.ItemIndex + 1, I] *
         InputLength.Value * 14.14 / (20 + TrackBar2.Position);
       FProfile.Add(P);
     end;
     for I := 1 to Nh do
     begin
-      P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+      P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
         InputLength.Value;
       P.Y := 0;
-      P.Z := -Input3.Value + NacaProfiles[InputWing.ItemIndex + 1, I] *
+      P.Z := -Span + NacaProfiles[InputWing.ItemIndex + 1, I] *
         InputLength.Value * 14.14 / (20 + TrackBar2.Position);
       FProfile.Add(P);
     end;
-    FProfile.Add(SetPoint(Input4.Value + Input2.Value + InputDelta.Value -
-      InputLength.Value, 0, -Input3.Value));
+    FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputDelta.Value -
+      InputLength.Value, 0, -Span));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
 
     if InputShape.ItemIndex > 1 then
     begin
       for I := Nh downto 1 do
       begin
-        P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
           InputLength.Value;
         P.Y := -wng;
-        P.Z := -Input3.Value - NacaProfiles[InputWing.ItemIndex + 1, I] *
+        P.Z := -Span - NacaProfiles[InputWing.ItemIndex + 1, I] *
           InputLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
         if I > Nh - 2 then
@@ -1372,24 +1386,24 @@ begin
       end;
       for I := 1 to Nh do
       begin
-        P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
           InputLength.Value;
         P.Y := -wng;
-        P.Z := -Input3.Value + NacaProfiles[InputWing.ItemIndex + 1, I] *
+        P.Z := -Span + NacaProfiles[InputWing.ItemIndex + 1, I] *
           InputLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
       end;
       FProfile.Knuckle[FProfile.NumberOfPoints - 2] := True;
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-      FProfile.Add(SetPoint(Input4.Value + Input2.Value + InputDelta.Value -
-        InputLength.Value, 0, -Input3.Value));
+      FProfile.Add(SetPoint(DeltaTip + Input2.Value + InputDelta.Value -
+        InputLength.Value, 0, -Span));
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
       for I := Nh downto 1 do
       begin
-        P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+        P.X := Input2.Value + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
           InputLength.Value;
         P.Y := wng;
-        P.Z := -Input3.Value - NacaProfiles[InputWing.ItemIndex + 1, I] *
+        P.Z := -Span - NacaProfiles[InputWing.ItemIndex + 1, I] *
           InputLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
         if I > Nh - 2 then
@@ -1397,17 +1411,17 @@ begin
       end;
       for I := 1 to Nh do
       begin
-        P.X := Input2.Value + Input4.Value + InputDelta.Value - NacaProfiles[0, I] *
+        P.X := Input2.Value + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
           InputLength.Value;
         P.Y := wng;
-        P.Z := -Input3.Value + NacaProfiles[InputWing.ItemIndex + 1, I] *
+        P.Z := -Span + NacaProfiles[InputWing.ItemIndex + 1, I] *
           InputLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
       end;
       FProfile.Knuckle[FProfile.NumberOfPoints - 2] := True;
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-      FProfile.Add(SetPoint(Input4.Value + Input2.Value + InputDelta.Value -
-        InputLength.Value, 0, -Input3.Value));
+      FProfile.Add(SetPoint(DeltaTip + Input2.Value + InputDelta.Value -
+        InputLength.Value, 0, -Span));
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     end;
 

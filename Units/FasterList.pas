@@ -91,21 +91,23 @@ type
     procedure Insert(Index: integer; Item: TItemType);
     function CheckUnique:boolean;
     procedure MakeUnique;
+    procedure SetUnique(val:boolean);
     procedure Swap(I, J: integer); inline;
     procedure QuickSort(L, R: integer); inline;
     procedure Sort;
+    procedure SetSorted(val:boolean);
     function SortedIndexOf(Item: TItemType): integer;
     property Capacity: integer
       read FCapacity write FSetCapacity;
     property Count: integer read FCount;
-    property IsSorted: boolean read FSorted write FSorted;
+    property IsSorted: boolean read FSorted write SetSorted;
     property Items[Index: integer]: TItemType
       read FGet write FSet; default;
     property Memory: integer read FGetMemory;
     property Objects[Index: integer]: Pointer
       read FGetObject write FSetObject;
     property PtrUintLst: TAoPtrUInt read getPtrUintLst;
-    property IsUnique: boolean read FUnique; // for now it must be set before population
+    property IsUnique: boolean read FUnique write SetUnique; // for now it must be set before population
   end;
 
 implementation
@@ -597,6 +599,13 @@ begin
     end;
 end;
 
+procedure TFasterList.SetUnique(val:boolean);
+begin
+  if val then
+     begin if not FUnique then MakeUnique; end
+  else FUnique := false;
+end;
+
 function TFasterList.CheckUnique:boolean;
 var I, J: integer;
 begin
@@ -659,6 +668,14 @@ begin
     FSorted := True;
   end;
 end;{TFasterList.Sort}
+
+procedure TFasterList.SetSorted(val:boolean);
+begin
+  if val then
+    begin if not FSorted then Sort; end
+  else
+    FSorted := false;
+end;
 
 function TFasterList.SortedIndexOf(Item: TItemType): integer;
 var

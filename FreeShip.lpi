@@ -31,13 +31,19 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="246"/>
+      <BuildNr Value="248"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
+    <MacroValues Count="1">
+      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
+    </MacroValues>
     <BuildModes Count="4">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="win32"/>
+        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -912,7 +918,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.6/lcl/interfaces/gtk3/gtk3bindings"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.6/lcl/interfaces/gtk3/gtk3bindings/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

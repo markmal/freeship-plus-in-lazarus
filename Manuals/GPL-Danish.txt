@@ -1,0 +1,692 @@
+  This is an unofficial translation of the GNU General Public License into
+danish. It was not published by the Free Software Foundation, and does not
+legally state the distribution terms for software that uses the GNU GPL—only
+the original English text of the GNU GPL does that. However, we hope that
+this translation will help danish speakers understand the GNU GPL better.
+
+  You may publish this translation, modified or unmodified, only under the terms
+at http://www.gnu.org/licenses/translations.html.
+-------------------------------------------------------------------------------
+  Dette er en uofficiel dansk oversættelse af GNU General Public License.
+Den er ikke udgivet af Free Software Foundation, og erklærer ikke
+de juridiske distributionsvilkår til software som bruger GNU GPL—det
+gør kun den originale engelske tekst af GNU GPL. Vi håber dog, at
+denne oversættelse vil hjælpe dansktalende til bedre at forstå GNU GPL.
+
+  Du må kun udgive denne oversættelse, modificeret eller umodificeret, under
+vilkårene på http://www.gnu.org/licenses/translations.html.
+-------------------------------------------------------------------------------
+                          GNU GENERAL PUBLIC LICENSE
+                           Version 3, 29. juni 2007
+
+ Ophavsret (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Alle har tilladelse til at kopierer og distribuerer ordrette kopier
+ af dette licensdokument, men det er ikke tilladt at ændre det.
+
+                                  Indledning
+
+  GNU General Public License er en fri, copyleft-licens til
+software og andre slags værker.
+
+  Licenserne til det meste software og andre praktiske værker er designet
+til at fratage dig din frihed til at dele og ændre værkerne. Modsat har,
+GNU General Public License til hensigt at garanterer din frihed til at
+dele og ændre alle versioner af et program - for at sikre at det forbliver fri
+software for alle dets brugere. Vi, Free Software Foundation, bruger
+GNU General Public License til størstedelen af vores software; det gælder også
+ethvert andet værk udgivet på denne måde af dets forfattere. Du kan ligeså
+anvende den til dine programmer.
+
+  Når vi taler om fri software, refererer vi til frihed, ikke
+pris. Vores General Public License'er er designet til at sikre at du
+har friheden til at distribuerer kopier af fri software (og tage betaling for
+dem hvis du ønsker), at du modtager kildekode eller kan få den hvis du
+vil have den, at du kan ændre softwaren eller bruge dele af den i nye
+frie programmer, og at du er bekendt med at du kan gøre disse ting.
+
+  For at beskytte dine rettigheder, har vi brug for at forhindre andre i at
+nægte dig disse rettigheder eller spørge dig om at give afkald på rettighederne.
+Derfor, har du visse ansvar hvis du distribuerer kopier af softwaren, eller
+hvis du modificerer den: ansvar til at respektere andres frihed.
+
+  F.eks. hvis du distribuerer kopier af et sådan program, hvad enten det foregå
+gratis eller mod et gebyr, skal du videregive de samme friheder,
+til modtageren, som du har modtaget. Du skal sikre dig at, også de, modtager
+eller kan få kildekoden. Og du skal vise dem disse vilkår så de
+kender deres rettigheder.
+
+  Udviklere som bruger GNU GPL beskytter dine rettigheder med to trin:
+(1) hævd ophavsret på softwaren, og (2) tilbyder dig denne Licens som giver dig
+juridisk tilladelse til at kopiere, distribuere og/eller modificere den.
+
+  For udviklernes og forfatternes beskyttelse, forklarer GPL tydeligt at der
+ikke er nogen garanti til dette frie software. Af hensyn til både brugerne og
+forfatterne, kræver GPL at modificerede versioner mærkes som ændret, således at
+deres problemer ikke fejlagtigt bliver tilskrevet forfattere af tidligere
+versioner.
+
+  Nogle enheder er designet til at nægte brugere adgang til at installere eller
+køre modificerede versioner af softwaren inden i dem, selvom producenten kan
+gøre det. Dette er grundlæggende uforeneligt med målet om at beskytte brugernes
+frihed til at ændre softwaren. Det systematiske mønster af sådan misbrug
+forekommer i området af produkter som enkeltpersoner bruger, hvilket præcist er
+der hvor det er mest uacceptabelt. Derfor, har vi designet denne version af GPL
+til at forbyde praksissen for sådanne produkter. Hvis sådanne problemer opstår
+væsentligt inden for andre områder, står vi klar til at udvide denne
+bestemmelse til sådanne områder i fremtidige versioner af GPL, efterhånden som
+der bliver brug for det for at beskytte brugernes frihed.
+
+  Afslutningsvist, er alle programmer konstant truet af softwarepatenter.
+Stater bør ikke tillade patenter at begrænse udvikling og anvendelse af
+software på computere til almen brug, men i dem der gør, ønsker vi at
+undgå den specielle fare hvor patenter anvendt på et frit program
+kunne gøre det proprietært. For at forhindre dette, sikre GPL at
+patenter ikke kan bruges til at gøre programmet ikke-frit.
+
+  De præcise vilkår og betingelser for kopiering, distribution og
+modifikation følger.
+
+                            VILKÅR OG BETINGELSER
+
+  0. Definitioner.
+
+  "Denne Licens" refererer til version 3 af GNU General Public License.
+
+  "Ophavsret" betyder også ophavsretslignende love som gælder til andre slags
+værker, såsom halvledermasker.
+
+  "Programmet" refererer til ethvert værk som der kan anvendes ophavsret på
+licenseret under denne Licens. Hver licenstager er adresseret som "dig".
+"Licenstagere" og "modtagere" kan være enkeltpersoner eller organisationer.
+
+  At "modificerer" et værk betyder at kopierer fra eller tilpasse hele eller
+dele af værket på en måde som kræver ophavsret-tilladelse, udover fremstillingen
+af en identisk kopi. Det resulterende værk kaldes en "modificeret version" af
+det tidligere værk eller et værk "baseret på" det tidligere værk.
+
+  Et "omfattet værk" betyder enten det umodificeret program eller et værk
+baseret på programmet.
+
+  At "udbrede" et værk betyder at gøre hvad som helst med det som, uden
+tilladelse, vil gøre dig direkte eller sekundært ansvarlig for krænkelse i
+henhold til gældende lov om ophavsret, undtagen eksekvering af det på en
+computer eller modificering af en privat kopi. Udbredelse inkluderer kopiering,
+distribution (med eller uden modifikation), stille til rådighed for
+offentligheden, og i nogle lande også andre aktiviteter.
+
+  At "formidle" et værk betyder enhver slags udbredelse der gør det muligt for
+andre parter at fremstille eller modtage kopier. Interaktion alene med en bruger
+gennem et computernetværk, uden nogen overdragelse af en kopi, er ikke formidling.
+
+  En interaktiv brugergrænseflade viser "passende juridiske notitser"
+i det omfang den inkluderer en bekvem og fremtrædende synlig
+funktionalitet som (1) viser en passende ophavsret-notits, og (2)
+fortæller brugeren at der ikke er nogen garanti til værket (undtagen i det
+omfang der gives garantier), at licenstagere må formidle
+værket under denne Licens, og hvordan en kopi af denne Licens vises. Hvis
+grænsefladen fremviser en liste med brugerkommandoer eller valgmuligheder,
+såsom en menu, opfylder et fremstående punkt i listen dette kriterium.
+
+  1. Kildekode.
+
+  "Kildekoden" for et værk betyder den foretrukne form af værket
+til at fremstille modifikationer til det. "Objektkode" betyder enhver
+ikke-kilde-form af et værk.
+
+  En "Standardgrænseflade" betyder en grænseflade som enten er en officiel
+standard defineret af et anerkendt standardiseringsorgan, eller, i tilfælde af
+grænseflader specificeret til et bestemt programmeringssprog, et som
+er bredt anvendt blandt udviklere som arbejder i det pågældende sprog.
+
+  "Systembibliotekerne" af et eksekverbart værk inkluderer alt, andet end
+værket som en helhed, som (a) er inkluderet i den normale form af indpakningen
+af en større komponent, men som ikke er del af den større komponent, og (b) kun
+tjener til at gøre det muligt at bruge værket med den større komponent, eller
+til at implementerer en Standardgrænseflade for hvilke en implementering er
+tilgængelig for offentligheden i kildekode-form. En "større komponent" betyder,
+i dette sammenhæng, en større essentiel komponent (kernel, vinduessystem, osv.)
+af det specifikke operativsystem (hvis der er noget) på hvilke det eksekverbare
+værk køre, eller en kompiler brugt til at producerer værket, eller en
+objektkode-fortolker brugt til at køre det.
+
+  Den "Korresponderende Kilde" for et værk i objektkode-form betyder al den
+kildekode der er nødvendig for at generere, installere, og (for et eksekverbart
+værk) køre objektkoden og at modificere værket, inklusiv scripts til at
+styre sådanne aktiviteter. Det inkluderer dog ikke værkets
+systembiblioteker, eller almene værktøjer eller alment tilgængelige frie
+programmer som er brugt umodificeret i udførsel af sådanne aktiviteter men
+som ikke er del af værket. F.eks. Korresponderende Kilde
+inkluderer grænsefladedefinitionsfiler tilknyttet med kildefiler til
+værket, og kildekoden til delte biblioteker og dynamisk
+linket underprogrammer som værket er specifikt designet til at kræve,
+såsom ved følsom datakommunikation eller kontrolstyring mellem sådanne
+underprogrammer og andre dele af værket.
+
+  Den Korresponderende Kilde behøver ikke at inkludere noget som brugere
+automatisk kan regenerere fra andre dele af den Korresponderende
+Kilde.
+
+  Den Korresponderende Kilde for et værk i kildekode-form er det
+samme værk.
+
+  2. Grundlæggende tilladelser.
+
+  Alle rettigheder givet under denne Licens er givet for varigheden af
+ophavsret på Programmet, og er uigenkaldeligt på forudsætning af at de
+fremsatte betingelser er opfyldt. Denne Licens bekræfter udtrykkeligt din
+ubegrænset tilladelse til at køre det modificerede Program. Outputtet fra
+kørsel af et omfattet værk er kun omfattet af denne Licens hvis outputtet,
+givet sit indhold, udgør et omfattet værk. Denne Licens tilkendegiver dine
+rettigheder af fair brug eller andet tilsvarende, som givet af lov om ophavsret.
+
+  Du må fremstille, køre og udbrede omfattede værker som du ikke formidler,
+uden betingelser så længe din licens ellers forbliver i kraft. Du må formidle
+omfattede værker til andre med det ene formål at få dem til at fremstille
+modifikationer udelukkende til dig, eller give dig faciliteter til at køre
+sådanne værker, på forudsætning af at du efterlever vilkårene i denne Licens i
+at formidle alt materiale for hvilke du ikke kontrollere ophavsret. De som
+således fremstiller eller kører de omfattede værker for dig skal gøre det
+udelukkende på dine vegne, under din anvisning og kontrol, på vilkår som
+forbyder at fremstille nogen kopier af dit ophavsretsbeskyttede materiale
+uden for deres forhold med dig.
+
+  Formidling under enhver anden omstændighed er udelukkende tilladt under
+betingelserne fremsat nedenfor. Underlicensering er ikke tilladt; afsnit 10
+gør det overflødigt.
+
+  3. Beskytte brugernes juridiske rettigheder mod Anti-Omgående Lov.
+
+  Intet omfattet værk skal anses som værende del af en effektiv teknologisk
+foranstaltning i henhold til nogen gældende lov opfylder forpligtelser under
+artikel 11 i WIPO-ophavsretstraktaten adopteret den 20. december 1996, eller
+tilsvarende love som forbyder eller indskrænker omgåelse af sådanne
+foranstaltninger.
+
+  Når du formidler et omfattet værk, giver du afkald på enhver juridisk magt
+til at forbyde omgåelse af teknologiske foranstaltninger i det omfang sådanne
+omgåelser er påvirket af udøvelse af rettigheder under denne Licens når der er
+tale om det omfattede værk, og du fraskriver enhver hensigt til at begrænse
+drift eller modifikation af værket som en måde at håndhæve, mod værkets
+brugere, dine eller tredjeparters juridiske rettigheder til at forbyde omgåelse
+af teknologiske foranstaltninger.
+
+  4. Formidle ordrette kopier.
+
+  Du må formidle ordrette kopier af Programmet's kildekode som du
+modtager det, på ethvert medie, på forudsætning af at du tydeligt og
+passende udgiver en passende ophavsret-notits på hver kopi;
+bevar alle notitser intakte erklærer at denne Licens og ethvert
+ikke-eftergivende vilkår tilføjet i henhold til afsnit 7 gælder til koden;
+bevar alle notitser intakte af fraværet af enhver garanti; og giv alle
+modtagere en kopi af denne Licens sammen med Programmet.
+
+  Du må opkræve enhver pris eller ingen pris for hver kopi som du formidler,
+og du må tilbyde support eller garantibeskyttelse mod et gebyr.
+
+  5. Formidle modificerede kildeversioner.
+
+  Du må formidle et værk baseret på Programmet, eller modifikationerne til
+at producerer det fra Programmet, i form af kildekode under vilkårene i
+afsnit 4, på forudsætning af at du også opfylder alle disse betingelser:
+
+    a) Værket skal bære fremstående notitser som erklærer at du modificerede
+    det, og give en relevant dato.
+
+    b) Værket skal bære fremstående notitser som erklærer at det er
+    udgivet under denne Licens og betingelser tilføjet under afsnit
+    7. Dette krav modificerer kravene i afsnit 4 til
+    "bevar alle notitser intakte".
+
+    c) Du skal licensere hele værket, som en helhed, under denne
+    Licens til enhver som kommer i besiddelse af en kopi. Denne
+    Licens vil derfor gælde, sammen med nogen gældende afsnit 7
+    yderligere vilkår, til helheden af værket, og alle dets dele,
+    uanset hvordan de er pakket. Denne Licens giver ingen
+    tilladelse til at licensere værket på nogen anden måde, men den
+    ugyldiggør ikke sådan tilladelse hvis du har modtaget den separat.
+
+    d) Hvis værket har interaktive brugergrænseflader, skal hver vise
+    passende juridiske notitser; hvis Programmet har interaktive
+    grænseflader som ikke viser passende juridiske notitser, behøver
+    dit værk dog ikke at få dem til at gøre det.
+
+  En kompilering af et omfattet værk med andre separate og selvstændige
+værker, hvilket ikke af deres natur er udvidelser af det omfattede værk,
+og hvilket ikke er kombineret med det for at forme et større program,
+i eller på en del af et lagrings- eller distributionsmedie, kaldes en
+"indsamling" hvis kompileringen og dens resulterende ophavsret ikke er
+brugt til at begrænse adgangen eller juridiske rettigheder af kompileringens
+brugere udover hvad de individuelle værker tillader. Inkludering af et omfattet
+værk i en indsamlingen forårsager ikke denne Licens at gælde til de andre dele
+af indsamlingen.
+
+  6. Formidle Ikke-Kilde-Forme.
+
+  Du må formidle et omfattet værk i objektkode-form under vilkårene
+i afsnit 4 og 5, på forudsætning af at du også formidler den
+maskinlæsbare Korresponderende Kilde under vilkårene i denne Licens,
+på en af disse måder:
+
+    a) Formidl objektkoden i, eller indbefattet i, et fysisk produkt
+    (inklusiv et fysisk distributionsmedie), ledsaget af den
+    Korresponderende Kilde fikseret på et holdbart fysisk medie
+    sædvanligvis brugt til softwareudveksling.
+
+    b) Formidl objektkoden i, eller indbefattet i, et fysisk produkt
+    (inklusiv et fysisk distributionsmedie), ledsaget af et
+    skriftligt tilbud, gyldig i mindst tre år og gyldig så
+    længe som du tilbyder reservedele eller kundesupport til den
+    produktmodel, at give enhver som besidder objektkoden enten (1) en
+    kopi af den Korresponderende Kilde til al softwaren i
+    produktet som er omfattet af denne Licens, på et holdbart fysisk
+    medie sædvanligvis brugt til softwareudveksling, til en pris som ikke
+    er over dine rimelige udgifter af fysisk at udføre denne
+    formidling af kilde, eller (2) adgang til at kopierer den
+    Korresponderende Kilde fra en netværksserver uden betaling.
+
+    c) Formidl individuelle kopier af objektkoden med en kopi af det
+    skriftlige tilbud til at levere den Korresponderende Kilde. Dette
+    alternativ er kun tilladt lejlighedsvist og ikkekommercielt, og
+    kun hvis du modtog objektkoden med sådan et tilbud, i henhold
+    til underafsnit 6b.
+
+    d) Formidl objektkoden ved at tilbyde adgang fra et udpeget
+    sted (gratis eller mod betaling), og tilbyd tilsvarende adgang til den
+    Korresponderende Kilde på den samme måde gennem det samme sted uden
+    yderligere betaling. Du behøver ikke kræve at modtagerne kopierer den
+    Korresponderende Kilde sammen med objektkoden. Hvis stedet til at
+    kopierer objektkoden er en netværksserver, kan den Korresponderende Kilde
+    være på en anden server (drevet af dig eller en tredjepart) der
+    understøtter tilsvarende kopieringsfaciliteter, på forudsætning af at du
+    fastholder tydelige anvisninger ved siden af objektkoden som fortæller hvor
+    den Korresponderende Kilde er at finde. Uanset hvilken server der er vært
+    for den Korresponderende Kilde, forbliver du forpligtet til at sikre at den
+    er tilgængelig så længde som nødvendigt for at tilfredsstille disse krav.
+
+    e) Formidl objektkoden ved brug af peer-to-peer-transmission, på
+    forudsætning af at du informerer andre peers hvor objektkoden og den
+    Korresponderende Kilde af værket tilbydes til den almene offentlighed uden
+    betaling under underafsnit 6d.
+
+  En adskillelig del af objektkoden, hvis kildekode er ekskluderet
+fra den Korresponderende Kilde som et Systembibliotek, behøver ikke være
+inkluderet i formidling af objektkode-værket.
+
+  Et "Brugerprodukt" er enten (1) et "forbrugerprodukt", hvilket betyder enhver
+rørlig personlig ejendom som normalt er brugt til personlig-, familie-, eller
+husholdningsformål, eller (2) alt som er designet eller solgt til inkorporation
+i en bolig. I beslutning om hvorvidt et produkt er et forbrugerprodukt,
+skal tvivlstilfælde løses til fordel for dækning. Til et bestemt
+produkt modtaget af en bestemt bruger, refererer "normalt brugt" til en
+typisk eller almindelig brug af den klasse af produkt, uanset statussen
+af den bestemte bruger eller af måden hvor på den bestemte bruger
+faktisk bruger, eller forventer eller er forventede at bruge produktet.
+Et produkt er et forbrugerprodukt uanset om produktet har betydelig
+kommerciel-, industriel- eller ikke-forbruger anvendelser, med mindre sådanne
+anvendelser repræsentere den eneste betydelige måde at bruge produktet.
+
+  "Installationsinformation" for et Brugerprodukt betyder metoder, procedurer,
+godkendelsesnøgler, eller anden information krævet for at installere og
+eksekvere modificerede versioner af et omfattet værk i det Brugerprodukt fra
+en modificeret version af dets Korresponderende Kilde. Informationen skal
+være tilstrækkelig til at sikre at den fortsatte funktion af den modificerede
+objektkode på ingen måde er forhindret eller foretager indgreb med udelukkende
+fordi modifikation er foretaget.
+
+  Hvis du formidler et objektkode-værk under dette afsnit i, eller med, eller
+specielt til brug i, et Brugerprodukt, og formidlingen forekommer som
+del af en transaktion i hvilken retten til besiddelse og brug af
+Brugerproduktet er overdraget til modtageren i al fremtid eller i en
+fastsat periode (uanset hvordan transaktionen karakteriseres), skal den
+Korresponderende Kilde formidlet under dette afsnit være ledsaget
+af Installationsinformationen. Men dette krav gælder ikke
+hvis hverken du eller nogen tredjepart bibeholder evnen til at installere
+modificeret objektkode på Brugerproduktet (f.eks. at værket er
+blevet installeret i ROM).
+
+  Kravet om at levere Installationsinformation inkludere ikke et krav til at
+fortsætte med at levere support service, garanti, eller opdateringer til et
+værk som er blevet modificeret eller installeret af modtageren, eller til
+Brugerproduktet i hvilke det er blevet modificeret eller installeret. Adgang
+til et netværk kan blive nægtet når modifikationen i sig selv materielt og
+negativt påvirker driften af netværket eller overtræder reglerne og
+protokoller til kommunikation hen over netværket.
+
+  Korresponderende Kilde formidlet, og Installationsinformation givet,
+i henhold til dette afsnit skal være i et format som er offentligt
+dokumenteret (og med en implementering som er tilgængelig for offentligheden i
+kildekode-form), og skal ikke kræve nogen speciel adgangskode eller nøgle for
+udpakning, læsning eller kopiering.
+
+  7. Yderligere vilkår.
+
+  "Yderligere tilladelser" er vilkår som supplerer vilkårene i denne
+Licens ved at gøre undtagelser fra en eller flere af dens betingelser.
+Yderligere tilladelser som er gældende til det samlede Program skal
+behandles som var de inkluderet i denne Licens, i det omfang
+de er gyldige i henhold til gældende lov. Hvis yderligere tilladelser
+kun gælder til del af Programmet, kan den del blive brugt separat
+under sådanne tilladelser, men det samlede Program forbliver reguleret af
+denne Licens uden hensyntagen til de yderligere tilladelser.
+
+  Når du formidler en kopi af et omfattet værk, må du efter eget valg
+fjerne yderligere tilladelser fra den kopi, eller fra enhver del af
+den. (Yderligere tilladelser kan skrives for at kræve deres egen
+fjernelse i bestemte tilfælde når du modificere værket.) Du må placere
+yderligere tilladelser på materiale, tilføjet af dig til et omfattet værk,
+til hvilken du har eller kan give passende ophavsret-tilladelse.
+
+  Uanset andre bestemmelse i denne Licens, for materiale du
+tilføjer til et omfattet værk, må du (hvis godkendt af rettighedshaverne af
+det materiale) supplere vilkårene i denne Licens med vilkår:
+
+    a) Fraskrivelse af Garanti eller begrænse retsligt ansvar forskellig fra
+    vilkårene i afsnit 15 og 16 i denne Licens; eller
+
+    b) Kræve bevarelse af angivet rimelige juridiske notitser eller
+    forfatter krediteringer i det materiale eller i de passende juridiske
+    notitser vist af værker som indeholder det; eller
+
+    c) Forbyde vildledning af oprindelsen af det materiale, eller
+    kræve at modificerede versioner af sådan materiale mærkes på
+    rimelige måder som forskellig fra den originale version; eller
+
+    d) Begrænse brugen for offentliggørende formål af navne på licensgivere
+    eller forfattere af materialet; eller
+
+    e) Afvise at tildele rettigheder i henhold til lov om varemærke for brug af
+    nogle handelsnavne, varemærker, eller servicemærker; eller
+
+    f) Kræve erstatning af licensgivere og forfattere af det
+    materiale af enhver som formidler materialet (eller modificerede versioner
+    af det) med kontraktlig formodninger af retsligt ansvar til modtageren, for
+    retsligt ansvar som disse kontraktlige formodninger direkte pålægger
+    sådanne licensgivere og forfattere.
+
+  Alle andre ikke-eftergivende yderligere vilkår betragtes "yderligere
+restriktioner" inden for betydningen i afsnit 10. Hvis Programmet som du
+modtog det, eller nogen del af det, indeholder en notits som erklærer at det er
+reguleret af denne Licens sammen med et vilkår som er en yderligere
+restriktion, må du fjerne det vilkår. Hvis et licensdokument indeholder
+en yderligere restriktion men tillader genlicensering eller formidling under
+denne Licens, må du til et omfattet værk tilføje materiale reguleret af
+vilkårene i det licensdokument, på forudsætning af at den yderligere
+restriktion ikke overlever sådan genlicensering eller formidling.
+
+  Hvis du tilføjer vilkår til et omfattet værk i henhold til dette afsnit, skal
+du, i de relevante kildefiler, placere en erklæring af de
+yderligere vilkår som gælder til sådanne filer, eller en notits som indikere
+hvor de gældende vilkår kan findes.
+
+  Yderligere vilkår, eftergivende eller ikke-eftergivende, kan erklæres i
+form af en separat skriftlig licens, eller erklæret som undtagelser;
+kravene ovenfor gælder i begge tilfælde.
+
+  8. Ophør.
+
+  Du må ikke udbrede eller modificere et omfattet værk undtagen som
+udtrykkeligt givet under denne Licens. Ethvert forsøg på ellers at udbrede
+eller modificere det er ugyldigt, og vil automatisk ophøre dine rettigheder
+under denne Licens (inklusiv enhver patentlicenser givet under den tredje
+paragraf i afsnit 11).
+
+  Dog, hvis du ophører al overtrædelse af denne Licens, så din licens fra en
+bestemt rettighedshaver er genindsat (a) foreløbigt, medmindre og indtil
+rettighedshaveren udtrykkeligt og endeligt ophører din licens, og
+(b) permanent, hvis rettighedshaveren undlader at underrette dig om
+overtrædelsen på nogen rimelig måde inden for 60 dage efter ophøret.
+
+  Desuden, genindsættes din licens fra en bestemt rettighedshaver
+permanent hvis rettighedshaveren underretter dig om
+overtrædelsen på nogen rimelig måde, dette er den første gang du har
+modtaget underrettelse om overtrædelse af denne Licens (til ethvert værk) fra
+den rettighedshaver, og du retter op på overtrædelsen inden for 30 dage efter
+du modtog underretningen.
+
+  Ophør af dine rettigheder under dette afsnit ophører ikke
+licenserne af parter som har modtaget kopier eller rettigheder fra dig under
+denne Licens. Hvis dine rettigheder er blevet ophørt og ikke permanent
+genindsat, kvalificerer du ikke til at modtage nye licenser for det samme
+materiale under afsnit 10.
+
+  9. Accept ikke krævet for at have kopier.
+
+  Du er ikke krævet at accepterer denne Licens for at modtage eller
+køre en kopi af Programmet. Supplerende udbredelse af et omfattet værk
+forekommer udelukkende som en konsekvens af at bruge peer-to-peer-transmission
+til at modtage en kopi kræver ligeså ikke accept. Dog,
+tildeler intet andet end denne Licens dig tilladelse til at udbrede eller
+modificere ethvert omfattet værk. Disse handlinger krænker ophavsret hvis du
+ikke accepterer denne Licens. Derfor, ved modificering eller udbredning af et
+omfattet værk, indikere du din accept af denne Licens at gøre sådan.
+
+  10. Automatisk Licensering af Downstream-modtagere.
+
+  Hver gang du formidler et omfattet værk, modtager modtageren automatisk
+en licens fra de originale licensgivere, til at køre, modificere og
+udbrede det værk, underlagt denne Licens. Du er ikke ansvarlig
+for at håndhæve overholdelse af tredjeparter med denne Licens.
+
+  En "entitet transaktion" er en transaktion som overdrager kontrol af en
+organisation, eller væsentligt alle aktiver af en, eller underopdele en
+organisation, eller fusionerende organisationer. Hvis udbredelse af et omfattet
+værk resultere fra en entitet transaktion, hver part til den
+transaktion som modtager en kopi af værket modtager også de
+licenser til værket som den pågældende parternes forgænger havde eller kunne
+give under den forrige paragraf, plus en ret til besiddelse af den
+Korresponderende Kilde of værket fra den pågældende forgænger, hvis
+forgængeren har den eller kan få den rimeligt let.
+
+  Du må ikke pålægge yderligere restriktioner på udøvelsen af
+rettighederne givet eller fastslået under denne Licens. F.eks. må du ikke
+pålægge et licensgebyr, licensafgift, eller anden omkostning for udøvelse af
+rettigheder givet under denne Licens, og du må ikke igangsætte sagsanlæg
+(inklusiv et krydskrav eller modkrav i et søgsmål) påstående at
+ethvert patentkrav er krænket ved at fremstille, bruge, sælge, tilbyde til
+salg, eller importere Programmet eller nogen del af det.
+
+  11. Patenter.
+
+  En "bidragyder" er en rettighedshaver som godkender brug under denne
+Licens af Programmet eller et værk som Programmet er baseret på.
+Det licenseret værk kaldes så bidragyderens "bidragyderversion".
+
+  En bidragyders "essentielle patentkrav" er alle patentkrav
+ejet eller kontrolleret af bidragyderen, hvad enten allerede erhvervet eller
+efterfølgende erhvervet, som vil være krænket på nogen måde, tilladt
+af denne Licens, af fremstille, bruge, eller sælge dens bidragyderversion,
+men inkluderer ikke krav som kun ville blive krænket som en
+konsekvens af yderligere modifikation af bidragyderversionen. Til
+formål af denne definition, "kontrollere" inkludere retten til at tildele
+patent-underlicenser på en måde overensstemmende med kravene af
+denne Licens.
+
+  Hver bidragyder tildeler dig en ikke-eksklusiv, verdensomspændende,
+licensafgift-fri patentlicens under bidragyderens essentielle patentkrav,
+til at fremstille, bruge, sælge, tilbyde til salg, importere og på anden måde
+køre, modificere og udbrede indholdet af dens bidragyderversion.
+
+  I de følgende tre paragraffer, er en "patentlicens" enhver udtrykkelig
+aftale eller engagement, uanset benævnt, ikke at håndhæve en patent
+(såsom en udtrykkelig tilladelse til at praktisere en patent eller pagt ikke at
+sagsøge for patentkrænkelse). At "tildele" sådan en patentlicens til en
+part betyder at lave sådan en aftale eller engagement ikke at håndhæve en
+patent mod parten.
+
+  Hvis du formidler et omfattet værk, bevidst beroende på en patentlicens,
+og den Korresponderende Kilde af værket ikke er tilgængelig for nogen
+at kopierer, uden betaling og under vilkårene i denne Licens, gennem en
+offentlig tilgængelig netværksserver eller andre lettilgængelige måder,
+så skal du enten (1) gøre den Korresponderende Kilde sådan
+tilgængelig, eller (2) arrangere at fratage dig selv fordelene af
+patentlicensen til lige præcis dette værk, eller (3) arrangere, på en måde
+overensstemmende med kravene i denne Licens, at udvide
+patentlicensen til downstream-modtagere. "Bevidst beroende" betyder du har
+konkret viden at, men til patentlicensen, du formidler det
+omfattede værk i et land, eller dine modtageres brug af det omfattede værk
+i et land, ville krænke en eller flere identificerbare patenter i det
+land som du har grund til at tror er gyldig.
+
+  Hvis du, i medhør af eller i forbindelse med en enkel transaktion eller
+aftale, formidler, eller udbreder ved at tilvejebringe befordring af, et
+omfattet værk, og tildele en patentlicens til nogle af parterne
+modtager det omfattede værk godkender dem til at bruge, udbrede, modificere
+eller formidle en bestemt kopi af det omfattede værk, end patentlicensen
+du tildeler er automatisk udvidet til alle modtagere af det omfattede
+værk og værker baseret på det.
+
+  En patentlicens er "diskriminerende" hvis ikke den inkludere, inden for
+dens område af dækning, forbyder udøvelsen af, eller er
+betinget på ikke-udøvelsen af en eller flere af rettighederne som er
+specielt givet under denne Licens. Du må ikke formidle et omfattet
+værk hvis du er en part til en aftale med en tredjepart som
+arbejder med at distribuere software, under hvilken du foretager betaling
+til tredjeparten baseret på omfanget af din aktivitet af formidle
+værket, og under hvilken tredjeparten tildeler, til nogen af
+parternes som ville modtage det omfattede værk fra dig, en diskriminerende
+patentlicens (a) i forbindelse med kopier af det omfattede værk
+formidlet af dig (eller kopier lavet fra sådanne kopier), eller (b) primært
+for og i forbindelse med bestemte produkter eller kompileringer som
+indeholder det omfattede værk, medmindre du indtastede i den aftale,
+eller den patentlicens blev givet, før 28. marts 2007.
+
+  Intet i denne Licens skal konstrueres som udelukkende eller begrænse
+nogen underforstået licens eller andre forsvar til krænkelse som
+ellers kan være tilgængelig for dig i henhold til gældende patentlov.
+
+  12. Ingen Afkald af Andres frihed.
+
+  Hvis betingelser pålægges dig (enten ved retskendelse, aftale eller
+på anden måde) som strider imod betingelserne i denne Licens,
+fritager de dig ikke betingelserne i denne Licens. Hvis du ikke kan formidle et
+omfattet værk for samtidigt at tilfredsstille dine forpligtelser under denne
+Licens og andre relevante forpligtelser, så som en konsekvens må du
+slet ikke formidle det. F.eks. hvis du accepterer vilkår som forpligter dig
+til at indsamle en licensafgift for yderligere formidling fra dem du formidler
+Programmet til, den eneste måde du kunne tilfredsstille begge sådanne vilkår
+og denne Licens ville være helt at afholde fra at formidle Programmet.
+
+  13. Brug med GNU Affero General Public License.
+
+  Uanset andre bestemmelse i denne Licens, har du
+tilladelse til at linke eller kombinere ethvert omfattet værk med et værk
+licenseret under version 3 af GNU Affero General Public License til et enkelt
+kombineret værk, og at formidle det resulterende værk. Vilkårene i denne
+Licens vil fortsat gælde til delen som er det omfattede værk,
+men de specielle krav af GNU Affero General Public License,
+afsnit 13, omhandlende interaktion gennem et netværk vil gælde til
+kombinationen som sådan.
+
+  14. Reviderede Versioner af denne Licens.
+
+  Free Software Foundation kan udgive reviderede og/eller nye versioner af
+GNU General Public License fra tid til anden. Sådanne nye versioner vil
+være tilsvarende i ånd med den nuværende version, men kan adskille sig i
+detaljer for at adressere nye problemer eller bekymringer.
+
+  Hver version gives et særligt versionsnummer. Hvis
+Programmet specificerer at en bestemt nummereret version af GNU General
+Public License "eller enhver senere version" gælder til det, har du
+valget af at følge vilkårene og betingelserne af enten den nummereret
+version eller af enhver senere version udgivet af Free Software
+Foundation. Hvis ikke Programmet angiver et versionsnummer af
+GNU General Public License, må du vælge enhver version som nogensinde er
+udgivet af Free Software Foundation.
+
+  Hvis Programmet specificerer at en proxy kan beslutte hvilke fremtidige
+versioner af GNU General Public License der kan bruges, godkender den proxy's
+offentlige erklæring af accept af en version dig permanent
+til at vælge den version for Programmet.
+
+  Senere licensversioner kan give dig yderligere eller anderledes
+tilladelser. Dog pålægges ingen yderligere forpligtelser på nogen
+forfatter eller rettighedshaver som et resultat af at du vælger at følge en
+senere version.
+
+  15. Fraskrivelse af Garanti.
+
+  DER ER INGEN GARANTI TIL PROGRAMMET, I DET OMFANG DET ER TILLADT AF GÆLDENDE
+LOV. UNDTAGEN NÅR DET ELLERS SKRIFTLIGT ER ERKLÆRET RETTIGHEDSHAVERNE OG/ELLER
+ANDRE PARTER LEVERE PROGRAMMET "SOM ER" UDEN GARANTI AF NOGEN SLAGS, ENTEN
+UDTRYKKELIGT ELLER UNDERFORSTÅET, INKLUSIV, MEN IKKE BEGRÆNSET TIL, DE
+UNDERFORSTÅET GARANTIER VEDRØRENDE SALGBARHED OG EGNETHED TIL ET BESTEMT
+FORMÅL. DEN FULDE RISIKO HVAD ANGÅR KVALITETEN OG YDEEVNEN AF PROGRAMMET LIGGER
+HOS DIG. VISER PROGRAMMET SIG AT VÆRE DEFEKT, PÅTAGER DU DIG OMKOSTNINGEN AF AL
+NØDVENDIG SERVICERING, REPARATION ELLER KORREKTION.
+
+  16. Begrænsning af retsligt ansvar.
+
+  UNDER INGEN OMSTÆNDIGHED, MED MINDRE KRÆVET AF GÆLDENDE LOV ELLER AFTALT
+SKRIFTLIGT, VIL NOGEN RETTIGHEDSHAVER, ELLER NOGEN ANDEN PART SOM MODIFICERER
+OG/ELLER FORMIDLER PROGRAMMET SOM TILLADT OVENFOR, VÆRE ANSVARLIG OVERFOR DIG
+FOR SKADER, INKLUSIV ENHVER ALMENE-, SPECIELLE-, HÆNDELIGE- ELLER FØLGESKADER
+SOM OPSTÅR UD FRA BRUGEN ELLER MANGLENDE EVNE TIL AT BRUGE PROGRAMMET (INKLUSIV
+MEN IKKE BEGRÆNSET TIL TAB AF DATA ELLER DATA SOM ER BLEVET UNØJAGTIGE ELLER
+TAB PÅFØRT AF DIG ELLER TREDJEPARTER ELLER PROGRAMMETS MANGLENDE EVNE TIL AT
+FUNGERE MED ANDRE PROGRAMMER), SELV HVIS SÅDANNE INDEHAVER ELLER ANDEN PART ER
+BLEVET RÅDGIVET OM MULIGHEDEN AF SÅDANNE SKADER.
+
+  17. Fortolkning af afsnit 15 og 16.
+
+  Hvis fraskrivelsen af garanti og begrænsning af retsligt ansvar givet ovenfor
+ikke kan gives lokal juridisk virkning i henhold til deres vilkår, skal
+gennemgående domstole anvende lokal lov som tilnærmelsesvis kommer nærmest et
+absolut afkald af alle civilretslige ansvar i forbindelse med Programmet, med
+mindre en garanti eller formodning af retsligt ansvar ledsager en kopi af
+Programmet til gengæld mod et gebyr.
+
+                        SLUT PÅ VILKÅR OG BETINGELSER
+
+            Hvordan disse vilkår anvendes til dine nye programmer.
+
+  Hvis du udvikler et nyt program, og du vil have at det skal have den størst
+mulige anvendelse for offentligheden, er den bedste måde at opnå dette at gøre
+det fri software som alle kan videredistribuere og ændre under disse vilkår.
+
+  For at gøre det, skal du vedhæfte de følgende notitser til programmet. Det er
+sikrest at vedhæfte dem i begyndelsen af hver kildefil for mest effektivt at
+erklære udelukkelsen af garanti; og hver fil bør som minimum have
+"ophavsret"-linjen og en ledetråd til hvor den fulde notits er at finde.
+
+    <en linje til at give programmets navn og en kortfattet ide om hvad det gør.>
+    Ophavsret (C) <år> <navn på forfatter>
+
+    Dette program er fri software: du kan videredistribuere det og/eller
+    modificere det under vilkårene i GNU General Public License som udgivet af
+    Free Software Foundation, enten version 3 af Licensen, eller
+    (efter eget valg) enhver senere version.
+
+    Dette program er distribueret i håbet om at det vil være nyttigt,
+    men UDEN NOGEN GARANTI; uden selv den underforstået garanti vedrørende
+    SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se
+    GNU General Public License for flere detaljer.
+
+    Du skulle have modtaget en kopi af GNU General Public License
+    sammen med dette program. Hvis ikke, se <http://www.gnu.org/licenses/>.
+
+Tilføj også information om hvordan du kontaktes via elektronisk- og papirpost.
+
+  Hvis programmet foretager terminal interaktion, få det til at output en kort
+notits som denne når det starter i en interaktiv tilstand:
+
+    <program> Ophavsret (C) <år> <navn på forfatter>
+    Dette program kommer med ABSOLUT INGEN GARANTI; for detaljer skriv `show w'.
+    Dette er fri software, og du er velkommen til at videredistribuere det
+    under bestemte betingelser; skriv `show c' for detaljer.
+
+De hypotetiske kommandoer `show w' og `show c' bør vise de fornødne
+dele af General Public License. Selvfølgelig, kan dit programs kommandoer
+være anderledes; for en GUI-grænseflade, ville du bruge en "om-boks".
+
+  Du bør også få din arbejdsgiver (hvis du arbejder som en programmør) eller
+skole, hvis nogen, til at underskrive en "fraskrivelse af ophavsret" for
+programmet, hvis det er nødvendigt.
+For mere information om dette, og hvordan GNU GPL anvendes og følges, se
+<http://www.gnu.org/licenses/>.
+
+  GNU General Public License tillader ikke inkorporering af dit program i
+proprietære programmer. Hvis dit program er et underrutine-bibliotek, kan du
+overveje om det er mere nyttigt at tillade linkning af proprietære
+applikationer med biblioteket. Hvis dette er hvad du vil gøre, så brug GNU
+Lesser General Public License i stedet for denne Licens. Men læs venligst først
+<http://www.gnu.org/philosophy/why-not-lgpl.html>.

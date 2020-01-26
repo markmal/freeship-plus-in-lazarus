@@ -455,6 +455,7 @@ type
 
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
+    procedure ShowSplashWindow;
     procedure FormShow(Sender: TObject);
     procedure MainClientPanelClick(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
@@ -632,6 +633,7 @@ type
    public     { Public declarations }
       FFileName : string;
       FModelInitallyLoaded : boolean;
+      FShowSplash : boolean;
       {$IFDEF FPC}
       function  ActiveMDIChild: TFreeHullWindow; reintroduce;
       function  MDIChildCount: Integer; override;
@@ -1002,16 +1004,20 @@ begin
 
   Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
 
+  BringToFront;
+  Application.BringToFront;
+  Application.ProcessMessages;
+  Freeship.Draw;
+
+  if FShowSplash then
+    ShowSplashWindow;
+  self.FShowSplash:=false; // show splash on first activate only
+
   if not FModelInitallyLoaded then
     begin
        InitiallyLoadModel;
        FModelInitallyLoaded := true;
     end;
-
-  BringToFront;
-  Application.BringToFront;
-  Application.ProcessMessages;
-  Freeship.Draw;
 
   inActivation:=false;
 end;
@@ -1524,6 +1530,23 @@ begin
   Close;
 end;{TMainForm.ExitProgramExecute}
 
+
+procedure TMainForm.ShowSplashWindow;
+begin
+  if FShowSplash then
+  begin
+   //ShowTranslatedValues(FreeSplashWindow);
+   FreeSplashWindow:=TFreeSplashWindow.Create(Application);
+   SplashWindow := FreeSplashWindow;
+   FreeSplashWindow.FreeShip:=FreeShip;
+   FreeSplashWindow.Position:=poMainFormCenter;
+   FreeSplashWindow.ShowModal;
+   if FreeSplashWindow.ModalResult <> mrOk
+     then self.Close;
+   FreeSplashWindow.Free;
+  end;
+end;
+
 procedure TMainForm.FormShow(Sender: TObject);
 var FileExt: string; L,T,W,H:integer;
 begin
@@ -1545,6 +1568,7 @@ begin
    LoadToolIcons;
    UpdateMenu;
    ArrangeRibbonPanel(PanelMain);
+
 end;{TMainForm.FormShow}
 
 procedure TMainForm.MainClientPanelClick(Sender: TObject);
@@ -2039,7 +2063,7 @@ begin
    GlobalFreeship := Freeship;
    FModelInitallyLoaded := false;
    //dumpIcons;
-
+   FShowSplash := true;
 
 end;{TMainForm.FormCreate}
 

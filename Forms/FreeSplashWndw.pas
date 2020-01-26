@@ -50,7 +50,9 @@ uses
   FreeGeometry,
   FreeVersionUnit,
   StdCtrls,
-  FreeLogger;
+  FreeLogger,
+  FreeShipUnit,
+  FreeTYpes;
 
 const
   SPLASH_TIME = 5000;
@@ -60,12 +62,18 @@ type
   { TFreeSplashWindow }
 
   TFreeSplashWindow = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    CheckBox1: TCheckBox;
     Image1: TImage;
+    Image2: TImage;
     Label2: TLabel;
     LabelCondition: TLabel;
     LabelBuildInfo: TLabel;
     LabelWarranty: TLabel;
     LabelWarranty1: TLabel;
+    ButtonPanel: TPanel;
+    Panel1: TPanel;
     PanelWarranty: TPanel;
     PanelCopyrights: TPanel;
     VersionPanel: TPanel;
@@ -79,6 +87,9 @@ type
     _Label4: TLabel;
     _Label5: TLabel;
     _label8: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure CheckBox1Change(Sender: TObject);
     procedure Image1MouseDown(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState;
       X, Y: integer);
@@ -100,6 +111,8 @@ type
     //                                  FOwner         : TFreeship;
     FCounter: integer;
   public    { Public declarations }
+    FreeShip: TFreeShip;
+    procedure ShowGPL;
     procedure ExpandToFit;
 
     //                                  FExeDirectory :string;
@@ -241,6 +254,25 @@ begin
   Timer.OnTimer:=nil;
 end;
 
+procedure TFreeSplashWindow.CheckBox1Change(Sender: TObject);
+begin
+  ModalResult := mrOk;
+  AlphaBlendValue := 255;
+  Update;
+  Timer.Enabled := False;
+  Timer.OnTimer:=nil;
+end;
+
+procedure TFreeSplashWindow.Button1Click(Sender: TObject);
+begin
+  ShowGPL;
+end;
+
+procedure TFreeSplashWindow.Button2Click(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
 procedure TFreeSplashWindow.Image1MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
 begin
@@ -323,5 +355,32 @@ begin
   { *Converted from ShellExecute* }
   // End Skip translation
 end;{TFreeSplashWindow.Label4Click}
+
+procedure TFreeSplashWindow.ShowGPL;
+var FLang, FManDirectory, man, FileToFind:string;
+begin
+  FLang := Freeship.Preferences.Language;
+  FManDirectory := Freeship.Preferences.ManualsDirectory;
+  man := 'GPL-'+FLang;
+  FileToFind := FileSearch(FManDirectory+DirectorySeparator+man+'.html',FManDirectory);
+  if (FileToFind='') then
+     FileToFind := FileSearch(FManDirectory+DirectorySeparator+man+'.pdf',FManDirectory);
+  if (FileToFind='') then
+     FileToFind := FileSearch(FManDirectory+DirectorySeparator+man+'.txt',FManDirectory);
+
+  if (FileToFind='') and (FLang<>'English') then begin
+     MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory'+EOL
+               +'You can visit https://www.gnu.org/licenses/translations.html'+EOL
+               +'English GPL will be opened.',mtInformation,[mbOk],0);
+     man := 'GPL-English.html';
+     FileToFind := FileSearch(FManDirectory+DirectorySeparator+man,FManDirectory);
+  end;
+  if FileToFind='' then begin
+     MessageDlg('Manual file "'+man+'" not found in "'+FManDirectory+'" directory',mtInformation,[mbOk],0);
+     exit;
+  end;
+
+  OpenDocument(FileToFind); { *Converted from ShellExecute* }
+end;
 
 end.

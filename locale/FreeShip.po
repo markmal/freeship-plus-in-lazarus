@@ -242,7 +242,7 @@ msgid "Credits"
 msgstr ""
 
 #: tfreeaboutdlg.label3.caption
-msgid "License: GPL v2"
+msgid "License: GPL v3+"
 msgstr ""
 
 #: tfreeaboutdlg.label4.caption
@@ -8033,9 +8033,22 @@ msgstr ""
 msgid "Include points that are shared with unselected layers"
 msgstr ""
 
+#: tfreesplashwindow.button1.caption
+msgid "Read GPL"
+msgstr ""
+
+#: tfreesplashwindow.button2.caption
+msgctxt "tfreesplashwindow.button2.caption"
+msgid "Close"
+msgstr ""
+
 #: tfreesplashwindow.caption
 msgctxt "tfreesplashwindow.caption"
 msgid "FREE!ship Plus"
+msgstr ""
+
+#: tfreesplashwindow.checkbox1.caption
+msgid "I agree"
 msgstr ""
 
 #: tfreesplashwindow.label2.caption
@@ -8053,7 +8066,7 @@ msgid "Build"
 msgstr ""
 
 #: tfreesplashwindow.labelcondition.caption
-msgid "This is free software, and you are welcome to redistribute it under the conditions of the GNU General Public License (GPL) Version 2, June 1991"
+msgid "This is free software, and you are welcome to redistribute it under the conditions of the GNU General Public License (GPL) Version 3,  29 June 2007 or later"
 msgstr ""
 
 #: tfreesplashwindow.labelrelease.caption

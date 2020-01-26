@@ -7303,6 +7303,7 @@ begin
     Owner.draw;
     Owner.FileChanged := True;
     Owner.ModelLoaded := True;
+    Owner.Filename:='New Model.ftm';
     if Assigned(Owner.OnUpdateGeometryInfo) then
       Owner.OnUpdateGeometryInfo(self);
     Result := True;

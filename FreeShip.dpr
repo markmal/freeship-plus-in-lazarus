@@ -214,6 +214,7 @@ begin
    Application.Scaled:=True;
    Application.Initialize;
 
+   {
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);
 
    if ShowSplash then
@@ -224,7 +225,8 @@ begin
       //FreeSplashWindow.FormStyle:=fsNormal;
       //FreeSplashWindow.BorderStyle:=bsSizeable;
       end;
-    FreeSplashWindow.ShowOnTop;
+    //FreeSplashWindow.ShowOnTop;
+    FreeSplashWindow.ShowModal;
     Application.ProcessMessages;
     Application.ProcessMessages;
     //sleep(SPLASH_TIME);
@@ -239,7 +241,12 @@ begin
    MainForm.SplashWindow:=FreeSplashWindow;
    FreeSplashWindow.Position:=poMainFormCenter;
    Application.ProcessMessages;
+   }
 
+   Application.CreateForm(TMainForm, MainForm);
+
+   checkInstallation;
+   MainForm.FShowSplash := ShowSplash;
 
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
 

@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="250"/>
+      <BuildNr Value="253"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -230,7 +230,7 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
+        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="3">
@@ -242,7 +242,7 @@
         </Mode1>
         <Mode2 Name="debug log">
           <local>
-            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log --nosplash"/>
+            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
           </local>
         </Mode2>
       </Modes>

@@ -57,6 +57,11 @@ uses
 const
   SPLASH_TIME = 5000;
 
+resourcestring
+  rsVersion = 'Version';
+  rsRelease = 'Release';
+  rsBuild = 'Build';
+
 type
 
   { TFreeSplashWindow }
@@ -90,12 +95,14 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure Image1MouseDown(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState;
       X, Y: integer);
     procedure Image1MouseUp(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState;
       X, Y: integer);
+    procedure Image2Click(Sender: TObject);
     procedure PanelCopyrightsClick(
       Sender: TObject);
     procedure TopPanelClick(Sender: TObject);
@@ -198,10 +205,12 @@ begin
     if (ABV > 255) then
       ABV := 255;
 
+    { do not make it disappear
     if (FCounter >= (SPLASH_TIME - 1000)) then
       Dec(ABV, ABD);
     if (ABV < 1) then
       ABV := 1;
+    }
 
     //LabelCondition.Caption:=IntToStr(ABV);
     //Label2.Update;
@@ -219,6 +228,7 @@ begin
   begin
     //Visible:=false;
     ////Close;
+    Timer.Enabled:=false;
     Application.ProcessMessages; // there maight be no message loop yet
   end;
 
@@ -256,11 +266,44 @@ end;
 
 procedure TFreeSplashWindow.CheckBox1Change(Sender: TObject);
 begin
-  ModalResult := mrOk;
+  if CheckBox1.Checked then
+    ModalResult := mrOk
+  else
+    ModalResult := mrCancel;
+
   AlphaBlendValue := 255;
   Update;
   Timer.Enabled := False;
   Timer.OnTimer:=nil;
+end;
+
+procedure TFreeSplashWindow.FormCreate(Sender: TObject);
+var
+  Str: string;
+begin
+  LabelVersion.Caption := rsVersion + ': ' + FREESHIP_MAJOR_VERSION;
+  LabelRelease.Caption := rsRelease + ': ' + ReleasedDate;
+  LabelBuildInfo.Caption := rsBuild + ': ' + ResourceVersionInfo + ' ' +
+    COMPILE_DATE + ' ' + COMPILE_TIME + ' ' + TARGET_CPU + ' ' + TARGET_OS;
+  Str := '';
+  if CurrentLanguage <> nil then
+  begin
+    Str := CurrentLanguage.ReadString('Translation', 'Author', '');
+    if Uppercase(Str) = Uppercase('Translation: <Your name>') then
+      str := '';
+    _Label8.Caption := Str;
+  end;
+  _Label8.Visible := Str <> '';
+
+  FCounter := 0;
+  //AlphaBlend := false;
+  Timer.Enabled := True;
+  //Caption := '';
+
+  if AlphaBlend then
+    AlphaBlendValue := 1
+  else
+    AlphaBlendValue := 255;
 end;
 
 procedure TFreeSplashWindow.Button1Click(Sender: TObject);
@@ -278,6 +321,11 @@ procedure TFreeSplashWindow.Image1MouseUp(Sender: TObject; Button: TMouseButton;
 begin
   // close splash window when mouse button released
   Close;
+end;
+
+procedure TFreeSplashWindow.Image2Click(Sender: TObject);
+begin
+  OpenURL('https://www.gnu.org/licenses/');
 end;
 
 procedure TFreeSplashWindow.PanelCopyrightsClick(Sender: TObject);
@@ -302,11 +350,6 @@ begin
   //Close;
 end;{TFreeSplashWindow.Image1Click}
 
-resourcestring
-  rsVersion = 'Version';
-  rsRelease = 'Release';
-  rsBuild = 'Build';
-
 procedure TFreeSplashWindow.FormShow(Sender: TObject);
 var
   Str: string;
@@ -325,8 +368,9 @@ begin
   end;
   _Label8.Visible := Str <> '';
   FCounter := 0;
+  //AlphaBlend := false;
   Timer.Enabled := True;
-  Caption := '';
+  //Caption := '';
 
   if AlphaBlend then
     AlphaBlendValue := 1

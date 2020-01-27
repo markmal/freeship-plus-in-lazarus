@@ -1,8 +1,8 @@
 object FreeSplashWindow: TFreeSplashWindow
-  Left = 666
-  Height = 674
-  Top = 178
-  Width = 560
+  Left = 595
+  Height = 842
+  Top = 58
+  Width = 700
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   AlphaBlend = True
@@ -10,24 +10,25 @@ object FreeSplashWindow: TFreeSplashWindow
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'FREE!ship Plus'
-  ClientHeight = 674
-  ClientWidth = 560
+  ClientHeight = 842
+  ClientWidth = 700
   Color = clSilver
   DefaultMonitor = dmMainForm
+  DesignTimePPI = 120
   FormStyle = fsSystemStayOnTop
   OnClose = FormClose
-  OnShow = FormShow
+  OnCreate = FormCreate
   Position = poWorkAreaCenter
+  ShowInTaskBar = stAlways
   LCLVersion = '2.0.6.0'
   object Image1: TImage
     Left = 0
-    Height = 358
-    Top = 62
-    Width = 560
+    Height = 414
+    Top = 74
+    Width = 700
     Align = alClient
     AutoSize = True
     Center = True
-    OnMouseUp = Image1MouseUp
     Picture.Data = {
       0A544A706567496D616765C1200100FFD8FFE000104A46494600010201006000
       600000FFFE01027073AC047C2B00007C2B0000C03C00009C240000C03C000094
@@ -2345,40 +2346,40 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object TopPanel: TPanel
     Left = 0
-    Height = 62
+    Height = 74
     Top = 0
-    Width = 560
+    Width = 700
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 62
-    ClientWidth = 560
+    ClientHeight = 74
+    ClientWidth = 700
     ParentFont = False
     TabOrder = 0
     OnClick = TopPanelClick
     object TopLeftPanel: TPanel
       Left = 0
-      Height = 62
+      Height = 74
       Top = 0
-      Width = 444
+      Width = 563
       Align = alClient
       AutoSize = True
-      BorderSpacing.InnerBorder = 8
+      BorderSpacing.InnerBorder = 10
       BevelOuter = bvNone
-      ClientHeight = 62
-      ClientWidth = 444
+      ClientHeight = 74
+      ClientWidth = 563
       ParentFont = False
       TabOrder = 0
       object LabelAppName: TLabel
         Left = 0
-        Height = 62
+        Height = 74
         Top = 0
-        Width = 444
+        Width = 563
         Align = alClient
         Alignment = taCenter
         Caption = 'FREE!ship Plus'
         Font.Color = clWhite
-        Font.Height = -26
+        Font.Height = -33
         Font.Name = 'Arial Black'
         Font.Style = [fsBold]
         Layout = tlCenter
@@ -2387,10 +2388,10 @@ object FreeSplashWindow: TFreeSplashWindow
       end
     end
     object VersionPanel: TPanel
-      Left = 444
-      Height = 62
+      Left = 563
+      Height = 74
       Top = 0
-      Width = 116
+      Width = 137
       Align = alRight
       AutoSize = True
       BevelOuter = bvNone
@@ -2399,44 +2400,44 @@ object FreeSplashWindow: TFreeSplashWindow
       ChildSizing.VerticalSpacing = 2
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 62
-      ClientWidth = 116
+      ClientHeight = 74
+      ClientWidth = 137
       Color = clSilver
       ParentColor = False
       ParentFont = False
       TabOrder = 1
       object LabelVersion: TLabel
         Left = 10
-        Height = 22
+        Height = 28
         Top = 4
-        Width = 96
+        Width = 117
         Caption = 'Version 0.00'
         Font.Color = clWhite
-        Font.Height = -16
+        Font.Height = -20
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
       end
       object LabelRelease: TLabel
         Left = 10
-        Height = 14
-        Top = 28
-        Width = 96
+        Height = 17
+        Top = 34
+        Width = 117
         Caption = 'Release'
         Font.Color = clWhite
-        Font.Height = -12
+        Font.Height = -15
         Font.Name = 'Arial'
         ParentColor = False
         ParentFont = False
       end
       object LabelBuildInfo: TLabel
         Left = 10
-        Height = 14
-        Top = 44
-        Width = 96
+        Height = 17
+        Top = 53
+        Width = 117
         Caption = 'Build'
         Font.Color = clWhite
-        Font.Height = -12
+        Font.Height = -15
         Font.Name = 'Arial'
         ParentColor = False
         ParentFont = False
@@ -2445,9 +2446,9 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object PanelCopyrights: TPanel
     Left = 0
-    Height = 67
-    Top = 420
-    Width = 560
+    Height = 71
+    Top = 488
+    Width = 700
     Align = alBottom
     AutoSize = True
     BevelOuter = bvNone
@@ -2457,16 +2458,15 @@ object FreeSplashWindow: TFreeSplashWindow
     ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
-    ClientHeight = 67
-    ClientWidth = 560
+    ClientHeight = 71
+    ClientWidth = 700
     ParentFont = False
     TabOrder = 1
-    OnClick = PanelCopyrightsClick
     object _Label2: TLabel
       Left = 10
-      Height = 22
+      Height = 21
       Top = 4
-      Width = 367
+      Width = 409
       Caption = 'Copyright © 2005-2006, M v. Engeland'
       Font.Color = 15461355
       Font.Style = [fsBold]
@@ -2476,14 +2476,14 @@ object FreeSplashWindow: TFreeSplashWindow
     end
     object _Label5: TLabel
       Cursor = crHandPoint
-      Left = 387
-      Height = 22
+      Left = 429
+      Height = 21
       Top = 4
-      Width = 163
+      Width = 261
       Alignment = taRightJustify
       Caption = 'Hydronship.net'
       Font.Color = clYellow
-      Font.Height = -13
+      Font.Height = -16
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
@@ -2492,8 +2492,8 @@ object FreeSplashWindow: TFreeSplashWindow
     object Label2: TLabel
       Left = 10
       Height = 22
-      Top = 26
-      Width = 367
+      Top = 25
+      Width = 409
       Caption = 'Copyright © 2007-2013,Timoshenko V.F.'
       Font.Color = 15461355
       Font.Style = [fsBold]
@@ -2502,14 +2502,14 @@ object FreeSplashWindow: TFreeSplashWindow
     end
     object _Label4: TLabel
       Cursor = crHandPoint
-      Left = 387
+      Left = 429
       Height = 22
-      Top = 26
-      Width = 163
+      Top = 25
+      Width = 261
       Alignment = taRightJustify
       Caption = 'vftim@rambler.ru'
       Font.Color = clYellow
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'Arial Black'
       Font.Style = [fsUnderline]
       ParentColor = False
@@ -2519,12 +2519,12 @@ object FreeSplashWindow: TFreeSplashWindow
     object _label8: TLabel
       Cursor = crHandPoint
       Left = 10
-      Height = 15
-      Top = 48
-      Width = 367
+      Height = 20
+      Top = 47
+      Width = 409
       Caption = 'Translated by: M. van Engeland'
       Font.Color = clAqua
-      Font.Height = -13
+      Font.Height = -16
       Font.Name = 'Arial Narrow'
       Font.Style = [fsBold]
       ParentColor = False
@@ -2534,29 +2534,29 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object PanelWarranty: TPanel
     Left = 0
-    Height = 147
-    Top = 487
-    Width = 560
+    Height = 233
+    Top = 559
+    Width = 700
     Align = alBottom
     AutoSize = True
     BevelOuter = bvNone
     ChildSizing.LeftRightSpacing = 10
     ChildSizing.TopBottomSpacing = 4
     ChildSizing.VerticalSpacing = 2
-    ClientHeight = 147
-    ClientWidth = 560
+    ClientHeight = 233
+    ClientWidth = 700
     ParentFont = False
     TabOrder = 2
     object LabelCondition: TLabel
       Left = 10
-      Height = 51
-      Top = 92
-      Width = 540
+      Height = 69
+      Top = 160
+      Width = 680
       Align = alBottom
       Alignment = taCenter
       Caption = 'This is free software, and you are welcome to redistribute it under the conditions of the GNU General Public License (GPL) Version 3,  29 June 2007 or later'
       Font.Color = clBlack
-      Font.Height = -16
+      Font.Height = -20
       Font.Name = 'Arial'
       ParentColor = False
       ParentFont = False
@@ -2564,14 +2564,14 @@ object FreeSplashWindow: TFreeSplashWindow
     end
     object LabelWarranty: TLabel
       Left = 10
-      Height = 66
-      Top = 24
-      Width = 540
+      Height = 96
+      Top = 62
+      Width = 680
       Align = alBottom
       Alignment = taCenter
       Caption = 'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'
       Font.Color = clBlack
-      Font.Height = -10
+      Font.Height = -13
       Font.Name = 'Legal'
       ParentColor = False
       ParentFont = False
@@ -2579,9 +2579,9 @@ object FreeSplashWindow: TFreeSplashWindow
     end
     object LabelWarranty1: TLabel
       Left = 10
-      Height = 18
+      Height = 56
       Top = 4
-      Width = 540
+      Width = 680
       Align = alBottom
       Alignment = taCenter
       Caption = 'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.'
@@ -2594,9 +2594,9 @@ object FreeSplashWindow: TFreeSplashWindow
   end
   object ButtonPanel: TPanel
     Left = 0
-    Height = 40
-    Top = 634
-    Width = 560
+    Height = 50
+    Top = 792
+    Width = 700
     Align = alBottom
     AutoSize = True
     ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
@@ -2604,20 +2604,22 @@ object FreeSplashWindow: TFreeSplashWindow
     ChildSizing.ShrinkHorizontal = crsHomogenousSpaceResize
     ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
     ChildSizing.ControlsPerLine = 4
-    ClientHeight = 40
-    ClientWidth = 560
+    ClientHeight = 50
+    ClientWidth = 700
+    ParentFont = False
     TabOrder = 3
     object Image2: TImage
-      Left = 11
-      Height = 38
+      Left = 13
+      Height = 48
       Top = 1
-      Width = 90
+      Width = 112
       Align = alLeft
-      BorderSpacing.Left = 10
-      Constraints.MaxHeight = 38
-      Constraints.MaxWidth = 90
-      Constraints.MinHeight = 38
-      Constraints.MinWidth = 90
+      BorderSpacing.Left = 12
+      Constraints.MaxHeight = 48
+      Constraints.MaxWidth = 112
+      Constraints.MinHeight = 48
+      Constraints.MinWidth = 112
+      OnClick = Image2Click
       Picture.Data = {
         1754506F727461626C654E6574776F726B477261706869638D0E000089504E47
         0D0A1A0A0000000D494844520000005A00000026080600000044488CB8000000
@@ -2740,33 +2742,35 @@ object FreeSplashWindow: TFreeSplashWindow
       }
     end
     object Panel1: TPanel
-      Left = 101
-      Height = 38
+      Left = 125
+      Height = 48
       Top = 1
-      Width = 458
+      Width = 574
       Align = alClient
       ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 3
-      ClientHeight = 38
-      ClientWidth = 458
+      ClientHeight = 48
+      ClientWidth = 574
+      ParentFont = False
       TabOrder = 0
       object Button1: TButton
-        Left = 62
-        Height = 32
-        Top = 3
-        Width = 82
+        Left = 88
+        Height = 30
+        Top = 9
+        Width = 89
         AutoSize = True
         Caption = 'Read GPL'
         OnClick = Button1Click
+        ParentFont = False
         TabOrder = 0
       end
       object CheckBox1: TCheckBox
-        Left = 206
-        Height = 32
-        Top = 3
-        Width = 78
+        Left = 265
+        Height = 30
+        Top = 9
+        Width = 72
         Caption = 'I agree'
         Font.Style = [fsBold]
         OnChange = CheckBox1Change
@@ -2774,13 +2778,14 @@ object FreeSplashWindow: TFreeSplashWindow
         TabOrder = 1
       end
       object Button2: TButton
-        Left = 346
-        Height = 32
-        Top = 3
-        Width = 51
+        Left = 425
+        Height = 30
+        Top = 9
+        Width = 62
         AutoSize = True
         Caption = 'Close'
         OnClick = Button2Click
+        ParentFont = False
         TabOrder = 2
       end
     end
@@ -2789,7 +2794,7 @@ object FreeSplashWindow: TFreeSplashWindow
     Enabled = False
     Interval = 5
     OnTimer = TimerTimer
-    left = 110
-    top = 63
+    left = 138
+    top = 79
   end
 end

@@ -375,21 +375,22 @@ begin
 end;
 
 function TFreePreferences.getGlobalAppDataDirectory: string;
-var
-  D: string;
 begin
   {$ifdef UNIX}
-  D := '/usr/share/FreeShip';
-  {$else}
-    {$ifdef Windows}
-  //D:=GetEnvironmentVariableUTF8('ALLUSERSPROFILE')+'\Application Data\FreeShip';
-  D := SysUtils.GetEnvironmentVariable('ALLUSERSPROFILE') + '\Application Data\FreeShip';
-    {$endif}
+  Result := '/usr/share/FreeShip';
+  if DirectoryExists(Result) then exit;
+  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
+  if DirectoryExists(Result) then exit;
+  Result := ExtractFilePath(Application.Exename);
   {$endif}
-  if DirectoryExists(D) then
-    Result := D
-  else
-    ExtractFilePath(Application.Exename); //deprecated. for old Win app compatibility
+
+  {$ifdef Windows}
+  Result := SysUtils.GetEnvironmentVariable('ALLUSERSPROFILE') + '\Application Data\FreeShip';
+  if DirectoryExists(Result) then exit;
+  Result := SysUtils.GetEnvironmentVariable('USERPROFILE')+'\FreeShip';
+  if DirectoryExists(Result) then exit;
+  Result := ExtractFilePath(Application.Exename);
+  {$endif}
 end;
 
 function TFreePreferences.getUserAppDataDirectory: string;
@@ -1064,6 +1065,9 @@ begin
   {FTempDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Temp', FUserAppDataDirectory + DS + 'Temp');}
   FTempDirectory := FUserAppDataDirectory + DS + 'Temp';
+
+  FGlobalOpenDirectory:=FGlobalAppDataDirectory + DS + 'Ships';
+  FGlobalImportDirectory:=FGlobalAppDataDirectory + DS + 'Import';
 
   S:=StringReplace('/Themes/Default/icons/16','/',DS,[rfReplaceAll]);
   FMenuIconDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory + S,

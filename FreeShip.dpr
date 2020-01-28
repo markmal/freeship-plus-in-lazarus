@@ -177,18 +177,41 @@ var MsgForm:TForm; Lbl:TLabel;
 begin
   with Mainform.Freeship.Preferences do
    begin
-     if (not DirectoryExistsUTF8(ExportDirectory))
-     or (not DirectoryExistsUTF8(ImportDirectory))
-     or (not DirectoryExistsUTF8(ManualsDirectory))
+     if (not DirectoryExistsUTF8(ManualsDirectory))
      or (not DirectoryExistsUTF8(ToolIconDirectory))
      or (not DirectoryExistsUTF8(ExecDirectory))
+     or (not DirectoryExistsUTF8(GlobalOpenDirectory))
+     or (not DirectoryExistsUTF8(GlobalImportDirectory))
      //or True
      then
        begin
+        logger.Error('GlobalOpenDirectory: '+GlobalOpenDirectory);
+        logger.Error('GlobalImportDirectory: '+GlobalImportDirectory);
+        logger.Error('ManualsDirectory: '+ManualsDirectory);
+        logger.Error('ToolIconDirectory: '+ToolIconDirectory);
+        logger.Error('ExecDirectory: '+ExecDirectory);
         MessageDlg('Warning', InstallMeMessage, mtWarning,[mbClose],0)
        end;
    end;
 end;
+
+procedure createUserDirectories;
+begin
+  with Mainform.Freeship.Preferences do
+  begin
+    if (not DirectoryExistsUTF8(SaveDirectory))
+    then ForceDirectoriesUTF8(SaveDirectory);
+    if (not DirectoryExistsUTF8(ImportDirectory))
+    then ForceDirectoriesUTF8(ImportDirectory);
+    if (not DirectoryExistsUTF8(ExportDirectory))
+    then ForceDirectoriesUTF8(ExportDirectory);
+    if (not DirectoryExistsUTF8(SaveDirectory))
+    then ForceDirectoriesUTF8(SaveDirectory);
+    if (not DirectoryExistsUTF8(TempDirectory))
+    then ForceDirectoriesUTF8(TempDirectory);
+  end;
+end;
+
 
 begin
  try
@@ -246,6 +269,7 @@ begin
    Application.CreateForm(TMainForm, MainForm);
 
    checkInstallation;
+   createUserDirectories;
    MainForm.FShowSplash := ShowSplash;
 
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);

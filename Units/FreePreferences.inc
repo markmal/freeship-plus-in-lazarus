@@ -140,8 +140,10 @@ begin
   FPointSize := 2;
   FLastDirectory := '';
   FOpenDirectory := '';
+  FGlobalOpenDirectory := '';
   FSaveDirectory := '';
   FImportDirectory := '';
+  FGlobalImportDirectory := '';
   FExportDirectory := '';
   FExecDirectory := '';
   FManualsDirectory := '';
@@ -273,6 +275,8 @@ begin
     FExportDirectory := Dialog.EditExportDir.Text;
     //FToolIconDirectory:=Dialog.EditToolIconsDir.Text;
     FToolIconSize := StrToInt(Dialog.SelectToolIconSize.Text);
+    FGlobalOpenDirectory := Dialog.EditGlobalOpenDir.Text;
+    FGlobalImportDirectory := Dialog.EditGlobalImportDir.Text;
 
     if Uppercase(Lang) <> Uppercase(FLanguage) then
       if FileExistsUTF8(FLanguagesDirectory + DS + Lang + '.ini')
@@ -1025,6 +1029,7 @@ begin
   FThemeName := 'Default';
   FParentThemeName := '';
   FFbmEncoding := 'cp1252';
+  ResetDirectories;
 end;
 
 procedure TFreePreferences.ResetDirectories;
@@ -1051,8 +1056,9 @@ begin
   {FSaveDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');}
   FSaveDirectory := FUserAppDataDirectory + DS + 'Ships';
-  FImportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Import', FUserAppDataDirectory + DS + 'Import');
+  {FImportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
+    DS + 'Import', FUserAppDataDirectory + DS + 'Import');}
+  FImportDirectory := FUserAppDataDirectory + DS + 'Import';
   {FExportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Export', FUserAppDataDirectory + DS + 'Export');}
   FExportDirectory := FUserAppDataDirectory + DS + 'Export';

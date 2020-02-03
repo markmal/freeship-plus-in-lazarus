@@ -2219,16 +2219,18 @@ msgctxt "tfreekeelwizarddialog.groupbox1.caption"
 msgid "Properties"
 msgstr ""
 
-#: tfreekeelwizarddialog.inputmaterial.text
-msgid "Plumbum"
-msgstr ""
-
-#: tfreekeelwizarddialog.inputshape.text
+#: tfreekeelwizarddialog.inputbulbshape.text
+msgctxt "tfreekeelwizarddialog.inputbulbshape.text"
 msgid "No bullb"
 msgstr ""
 
-#: tfreekeelwizarddialog.inputwing.text
+#: tfreekeelwizarddialog.inputbulbwing.text
+msgctxt "tfreekeelwizarddialog.inputbulbwing.text"
 msgid "NACA0020"
+msgstr ""
+
+#: tfreekeelwizarddialog.inputmaterial.text
+msgid "Plumbum"
 msgstr ""
 
 #: tfreekeelwizarddialog.label1.caption

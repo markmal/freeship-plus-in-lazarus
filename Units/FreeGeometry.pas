@@ -929,6 +929,7 @@ type
 
   public
     procedure Add(P: T3DCoordinate);
+    procedure AddKnuckle(P: T3DCoordinate);
     // add a new point to the curve
     procedure Assign(Spline: TFreeSpline);
     // Copy all data from another spline

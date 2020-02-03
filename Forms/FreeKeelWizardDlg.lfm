@@ -20,10 +20,10 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     ClientWidth = 1000
     TabOrder = 0
     object PageControl: TPageControl
-      Left = 330
+      Left = 326
       Height = 735
       Top = 11
-      Width = 659
+      Width = 663
       ActivePage = TabSheet1
       Align = alClient
       TabIndex = 0
@@ -31,12 +31,12 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       object TabSheet1: TTabSheet
         Caption = '3D view'
         ClientHeight = 695
-        ClientWidth = 653
+        ClientWidth = 657
         object ScrollBar1: TScrollBar
           Left = 0
           Height = 15
           Top = 680
-          Width = 653
+          Width = 657
           Align = alBottom
           Max = 180
           Min = -180
@@ -45,7 +45,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           TabOrder = 1
         end
         object ScrollBar2: TScrollBar
-          Left = 638
+          Left = 642
           Height = 680
           Top = 0
           Width = 15
@@ -61,7 +61,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       object TabSheet2: TTabSheet
         Caption = 'Lift and drag'
         ClientHeight = 695
-        ClientWidth = 653
+        ClientWidth = 657
         ImageIndex = 1
         object Chart: TChart
           Left = 0
@@ -148,29 +148,29 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Left = 11
       Height = 735
       Top = 11
-      Width = 319
+      Width = 315
       Align = alLeft
       AutoSize = True
       Caption = 'Panel7'
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 735
-      ClientWidth = 319
+      ClientWidth = 315
       TabOrder = 1
       object PageControl1: TPageControl
         Left = 0
-        Height = 447
+        Height = 437
         Top = 0
-        Width = 318
-        ActivePage = TabSheet3
-        TabIndex = 0
+        Width = 314
+        ActivePage = TabSheet4
+        TabIndex = 1
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Keel'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 407
-          ClientWidth = 312
+          ClientHeight = 397
+          ClientWidth = 308
           object Panel4: TPanel
             Left = 0
             Height = 120
@@ -586,8 +586,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Caption = 'Bulb'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 407
-          ClientWidth = 312
+          ClientHeight = 397
+          ClientWidth = 308
           ImageIndex = 1
           object Panel8: TPanel
             Left = 0
@@ -613,7 +613,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               Caption = 'Planform shape'
               ParentColor = False
             end
-            object InputShape: TComboBox
+            object InputBulbShape: TComboBox
               Left = 172
               Height = 30
               Top = 10
@@ -626,7 +626,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 'Wing'
                 'Round wing'
               )
-              OnChange = InputShapeClick
+              OnChange = InputBulbShapeClick
               Style = csDropDownList
               TabOrder = 0
               Text = 'No bullb'
@@ -639,7 +639,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               Caption = 'Wing section'
               ParentColor = False
             end
-            object InputWing: TComboBox
+            object InputBulbWing: TComboBox
               Left = 172
               Height = 30
               Top = 42
@@ -807,7 +807,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 Enabled = False
                 TabOrder = 0
               end
-              object InputLength: TFloatSpinEdit
+              object InputBulbLength: TFloatSpinEdit
                 Left = 59
                 Height = 32
                 Top = 1
@@ -841,7 +841,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               ClientHeight = 34
               ClientWidth = 125
               TabOrder = 3
-              object InputDelta: TFloatSpinEdit
+              object InputBulbDelta: TFloatSpinEdit
                 Left = 59
                 Height = 32
                 Top = 1
@@ -875,7 +875,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               ClientHeight = 34
               ClientWidth = 125
               TabOrder = 4
-              object InputWingWidth: TFloatSpinEdit
+              object InputBulbWingWidth: TFloatSpinEdit
                 Left = 59
                 Height = 32
                 Top = 1
@@ -937,7 +937,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               ClientHeight = 34
               ClientWidth = 125
               TabOrder = 6
-              object InputDensity: TFloatSpinEdit
+              object InputBulbDensity: TFloatSpinEdit
                 Left = 59
                 Height = 32
                 Top = 1
@@ -972,7 +972,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               ClientHeight = 34
               ClientWidth = 125
               TabOrder = 7
-              object InputWeight: TFloatSpinEdit
+              object InputBulbWeight: TFloatSpinEdit
                 Left = 59
                 Height = 32
                 Top = 1
@@ -1016,7 +1016,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               ClientHeight = 34
               ClientWidth = 125
               TabOrder = 8
-              object InputPoints: TSpinEdit
+              object InputBulbPoints: TSpinEdit
                 Left = 59
                 Height = 32
                 Top = 1
@@ -1067,8 +1067,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       object GroupBox1: TGroupBox
         Left = 0
         Height = 290
-        Top = 447
-        Width = 318
+        Top = 437
+        Width = 314
         Caption = 'Properties'
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
@@ -1077,7 +1077,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
         ClientHeight = 266
-        ClientWidth = 314
+        ClientWidth = 310
         TabOrder = 1
         object Label18: TLabel
           Left = 10

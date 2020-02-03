@@ -693,6 +693,7 @@ const
 
 
 
+
 type
 
   { TFreeKeelWizardDialog }
@@ -711,15 +712,15 @@ type
     Input4: TFloatSpinEdit;
     Input5: TSpinEdit;
     Input6: TSpinEdit;
-    InputDelta: TFloatSpinEdit;
-    InputDensity: TFloatSpinEdit;
-    InputLength: TFloatSpinEdit;
+    InputBulbDelta: TFloatSpinEdit;
+    InputBulbDensity: TFloatSpinEdit;
+    InputBulbLength: TFloatSpinEdit;
     InputMaterial: TComboBox;
-    InputPoints: TSpinEdit;
-    InputShape: TComboBox;
-    InputWeight: TFloatSpinEdit;
-    InputWing: TComboBox;
-    InputWingWidth: TFloatSpinEdit;
+    InputBulbPoints: TSpinEdit;
+    InputBulbShape: TComboBox;
+    InputBulbWeight: TFloatSpinEdit;
+    InputBulbWing: TComboBox;
+    InputBulbWingWidth: TFloatSpinEdit;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -825,7 +826,7 @@ type
     procedure Input6AfterSetValue(Sender: TObject);
     procedure TrackBar1Change(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
-    procedure InputShapeClick(Sender: TObject);
+    procedure InputBulbShapeClick(Sender: TObject);
     procedure InputMaterialChange(Sender: TObject);
     procedure InputWingClick(Sender: TObject);
     procedure InputDeltaAfterSetValue(Sender: TObject);
@@ -899,7 +900,7 @@ const
   Cl2D = 0.10;
 var
   L, a, b: TFloatType;
-  I, J, Index: integer;
+  I, J, Index, N: integer;
   VertInd: double;
   P: T3DCoordinate;
   P_1, P_2: T3DCoordinate;
@@ -961,7 +962,7 @@ begin
   FProfile.Color := clBlack;
   //FProfile.Fragments := 500;  // MM: Spline.Fragments needs to be set after all points added
 
-  InputPoints.Enabled := False;
+  InputBulbPoints.Enabled := False;
 
   _label8.Caption := '';
   _label10.Caption := '';
@@ -991,12 +992,9 @@ begin
   if Combobox1.ItemIndex = 0 then
   begin
     FProfile.Add(SetPoint(0, 0, 0));
-    FProfile.Add(SetPoint(DeltaTip, 0, -Span));
-    FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-    FProfile.Add(SetPoint(DeltaTip + TipChordLength, 0, -Span));
-    FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-    FProfile.Add(SetPoint(RootChordLength, 0, 0));
-    FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
+    FProfile.AddKnuckle(SetPoint(DeltaTip, 0, -Span));
+    FProfile.AddKnuckle(SetPoint(DeltaTip + TipChordLength, 0, -Span));
+    FProfile.AddKnuckle(SetPoint(RootChordLength, 0, 0));
     FProfile.Add(FProfile.Point[0]);
   end
   else
@@ -1037,6 +1035,7 @@ begin
     FProfile.Add(FProfile.Point[0]);
   end;
   FProfile.Fragments := 500;
+
 
   Area := 0;
   COG.X := 0.0;
@@ -1259,7 +1258,7 @@ begin
         + RootChordLength * TipChordLength
         + TipChordLength * TipChordLength);
     end;
-    if InputShape.ItemIndex = 0 then
+    if InputBulbShape.ItemIndex = 0 then
     begin
       if Combobox.ItemIndex = 0 then
         GroupBox1.Caption := UserString(1119) + ':'
@@ -1301,33 +1300,52 @@ begin
   // end Victor T correction
 
   // Bulb wizard
-  if InputShape.ItemIndex > 0 then
+  if InputBulbShape.ItemIndex > 0 then
   begin
 
-    if InputShape.ItemIndex > 1 then
-      wng := InputWingWidth.Value / 2
+    if InputBulbShape.ItemIndex > 1 then
+      wng := InputBulbWingWidth.Value / 2
     else
       wng := 0;
+
     // для кругового бульба
+    {
     FProfile.add(FProfile.Point[FProfile.NumberOfPoints - 1]);
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     FProfile.add(FProfile.Point[FProfile.NumberOfPoints - 3]);
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     FProfile.Add(SetPoint(DeltaTip + TipChordLength, 0, -Span));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-    FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputDelta.Value -
-      InputLength.Value, 0, -Span));
-    FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
+    FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputBulbDelta.Value -
+      InputBulbLength.Value, 0, -Span));
+    FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;}
+
+    { for ref
+    FProfile.Add(SetPoint(0, 0, 0));
+    FProfile.AddKnuckle(SetPoint(DeltaTip, 0, -Span));
+    FProfile.AddKnuckle(SetPoint(DeltaTip + TipChordLength, 0, -Span));
+    FProfile.AddKnuckle(SetPoint(RootChordLength, 0, 0));
+    FProfile.Add(FProfile.Point[0]); }
+
+    FProfile.Color:=clRed;
+    N := FProfile.NumberOfPoints;
+    FProfile.addKnuckle(FProfile.Point[N - 1]);
+    FProfile.addKnuckle(FProfile.Point[N - 2]);
+    FProfile.addKnuckle(SetPoint(DeltaTip + TipChordLength, 0, -Span));
+    FProfile.addKnuckle(SetPoint(DeltaTip + TipChordLength
+                                          + InputBulbDelta.Value
+                                          - InputBulbLength.Value, 0, -Span));
+
 
     // для кругового бульба и бульб-крыла
-    if (InputShape.ItemIndex = 1) or (InputShape.ItemIndex = 3) then
+    if (InputBulbShape.ItemIndex = 1) or (InputBulbShape.ItemIndex = 3) then
     begin
 
       for I := Nh downto 1 do
       begin
-        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-          InputLength.Value;
-        P.Y := -NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value / 1.4142 - wng;
+        P.X := TipChordLength + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+          InputBulbLength.Value;
+        P.Y := -NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value / 1.4142 - wng;
         P.Z := -Span;
         FProfile.Add(P);
         if I > Nh - 2 then
@@ -1336,108 +1354,109 @@ begin
 
       for I := 1 to Nh do
       begin
-        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-          InputLength.Value;
-        P.Y := NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value / 1.4142 + wng;
+        P.X := TipChordLength + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+          InputBulbLength.Value;
+        P.Y := NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value / 1.4142 + wng;
         P.Z := -Span;
         FProfile.Add(P);
       end;
       FProfile.Knuckle[FProfile.NumberOfPoints - 2] := True;
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-      FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputDelta.Value -
-        InputLength.Value, 0, -Span));
+      FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputBulbDelta.Value -
+        InputBulbLength.Value, 0, -Span));
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     end;
 
     for I := Nh downto 1 do
     begin
-      P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-        InputLength.Value;
+      P.X := TipChordLength + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+        InputBulbLength.Value;
       P.Y := 0;
-      P.Z := -Span - NacaProfiles[InputWing.ItemIndex + 1, I] *
-        InputLength.Value * 14.14 / (20 + TrackBar2.Position);
+      P.Z := -Span - NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+        InputBulbLength.Value * 14.14 / (20 + TrackBar2.Position);
       FProfile.Add(P);
     end;
     for I := 1 to Nh do
     begin
-      P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-        InputLength.Value;
+      P.X := TipChordLength + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+        InputBulbLength.Value;
       P.Y := 0;
-      P.Z := -Span + NacaProfiles[InputWing.ItemIndex + 1, I] *
-        InputLength.Value * 14.14 / (20 + TrackBar2.Position);
+      P.Z := -Span + NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+        InputBulbLength.Value * 14.14 / (20 + TrackBar2.Position);
       FProfile.Add(P);
     end;
-    FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputDelta.Value -
-      InputLength.Value, 0, -Span));
+    FProfile.Add(SetPoint(DeltaTip + TipChordLength + InputBulbDelta.Value -
+      InputBulbLength.Value, 0, -Span));
     FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
 
-    if InputShape.ItemIndex > 1 then
+    if InputBulbShape.ItemIndex > 1 then
     begin
       for I := Nh downto 1 do
       begin
-        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-          InputLength.Value;
+        P.X := TipChordLength + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+          InputBulbLength.Value;
         P.Y := -wng;
-        P.Z := -Span - NacaProfiles[InputWing.ItemIndex + 1, I] *
-          InputLength.Value * 14.14 / (20 + TrackBar2.Position);
+        P.Z := -Span - NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+          InputBulbLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
         if I > Nh - 2 then
           FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
       end;
       for I := 1 to Nh do
       begin
-        P.X := TipChordLength + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-          InputLength.Value;
+        P.X := TipChordLength + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+          InputBulbLength.Value;
         P.Y := -wng;
-        P.Z := -Span + NacaProfiles[InputWing.ItemIndex + 1, I] *
-          InputLength.Value * 14.14 / (20 + TrackBar2.Position);
+        P.Z := -Span + NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+          InputBulbLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
       end;
       FProfile.Knuckle[FProfile.NumberOfPoints - 2] := True;
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-      FProfile.Add(SetPoint(DeltaTip + Input2.Value + InputDelta.Value -
-        InputLength.Value, 0, -Span));
+      FProfile.Add(SetPoint(DeltaTip + Input2.Value + InputBulbDelta.Value -
+        InputBulbLength.Value, 0, -Span));
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
       for I := Nh downto 1 do
       begin
-        P.X := Input2.Value + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-          InputLength.Value;
+        P.X := Input2.Value + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+          InputBulbLength.Value;
         P.Y := wng;
-        P.Z := -Span - NacaProfiles[InputWing.ItemIndex + 1, I] *
-          InputLength.Value * 14.14 / (20 + TrackBar2.Position);
+        P.Z := -Span - NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+          InputBulbLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
         if I > Nh - 2 then
           FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
       end;
       for I := 1 to Nh do
       begin
-        P.X := Input2.Value + DeltaTip + InputDelta.Value - NacaProfiles[0, I] *
-          InputLength.Value;
+        P.X := Input2.Value + DeltaTip + InputBulbDelta.Value - NacaProfiles[0, I] *
+          InputBulbLength.Value;
         P.Y := wng;
-        P.Z := -Span + NacaProfiles[InputWing.ItemIndex + 1, I] *
-          InputLength.Value * 14.14 / (20 + TrackBar2.Position);
+        P.Z := -Span + NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+          InputBulbLength.Value * 14.14 / (20 + TrackBar2.Position);
         FProfile.Add(P);
       end;
       FProfile.Knuckle[FProfile.NumberOfPoints - 2] := True;
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
-      FProfile.Add(SetPoint(DeltaTip + Input2.Value + InputDelta.Value -
-        InputLength.Value, 0, -Span));
+      FProfile.Add(SetPoint(DeltaTip + Input2.Value + InputBulbDelta.Value -
+        InputBulbLength.Value, 0, -Span));
       FProfile.Knuckle[FProfile.NumberOfPoints - 1] := True;
     end;
+    FProfile.Fragments := 500;
 
     // begin calculate bulbous volume
     Volbulb := 0;
     //  расчет объема бульба
-    if (InputShape.ItemIndex = 1) or (InputShape.ItemIndex = 3) then
+    if (InputBulbShape.ItemIndex = 1) or (InputBulbShape.ItemIndex = 3) then
     begin
       for I := 2 to Nh do
       begin
-        dh := (NacaProfiles[0, I] - NacaProfiles[0, I - 1]) * InputLength.Value;
+        dh := (NacaProfiles[0, I] - NacaProfiles[0, I - 1]) * InputBulbLength.Value;
         ;
-        r1 := NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value;
-        r2 := NacaProfiles[InputWing.ItemIndex + 1, I - 1] * InputLength.Value;
+        r1 := NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value;
+        r2 := NacaProfiles[InputBulbWing.ItemIndex + 1, I - 1] * InputBulbLength.Value;
         Volbulb := Volbulb + dh * (r1 * r1 + r1 * r2 + r2 * r2);
-        //         P.Z:=NacaProfiles[InputWing.ItemIndex+1,I]*InputLength.Value*20/(20+TrackBar2.Position);
+        //         P.Z:=NacaProfiles[InputBulbWing.ItemIndex+1,I]*InputBulbLength.Value*20/(20+TrackBar2.Position);
       end;
       Volbulb := Volbulb * 3.1415926 / 3;
       Volbulb := Volbulb * (20 - Trackbar2.Position / 2) / Trackbar2.Max * 2;
@@ -1449,10 +1468,10 @@ begin
     begin
       for I := 2 to Nh do
       begin
-        dh := (NacaProfiles[0, I] - NacaProfiles[0, I - 1]) * InputLength.Value;
+        dh := (NacaProfiles[0, I] - NacaProfiles[0, I - 1]) * InputBulbLength.Value;
         ;
-        r1 := NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value;
-        r2 := NacaProfiles[InputWing.ItemIndex + 1, I - 1] * InputLength.Value;
+        r1 := NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value;
+        r2 := NacaProfiles[InputBulbWing.ItemIndex + 1, I - 1] * InputBulbLength.Value;
         Volwing := Volwing + dh * (r1 + r2) * 2;
       end;
       Volwing := Volwing * wng * (20 - Trackbar2.Position / 2) / Trackbar2.Max;
@@ -1474,12 +1493,12 @@ begin
     else
       _Label19.Caption := FloatToStrF(Volume, ffFixed, 8, 6) + #32 + VolStr(
         FFreeship.ProjectSettings.ProjectUnits);
-    if VolBulb * InputDensity.Value >= 0.05 then
+    if VolBulb * InputBulbDensity.Value >= 0.05 then
     begin
       _Label21.Caption :=
         FloatToStrF(VolBulb, ffFixed, 8, 4) + #32 + VolStr(FFreeship.ProjectSettings.ProjectUnits);
       _Label23.Caption :=
-        FloatToStrF(VolBulb * InputDensity.Value, ffFixed, 8, 3) + #32 + WeightStr(
+        FloatToStrF(VolBulb * InputBulbDensity.Value, ffFixed, 8, 3) + #32 + WeightStr(
         FFreeship.ProjectSettings.ProjectUnits);
     end
     else
@@ -1487,7 +1506,7 @@ begin
       _Label21.Caption :=
         FloatToStrF(VolBulb, ffFixed, 8, 6) + #32 + VolStr(FFreeship.ProjectSettings.ProjectUnits);
       _Label23.Caption :=
-        FloatToStrF(VolBulb * InputDensity.Value, ffFixed, 8, 6) + #32 + WeightStr(
+        FloatToStrF(VolBulb * InputBulbDensity.Value, ffFixed, 8, 6) + #32 + WeightStr(
         FFreeship.ProjectSettings.ProjectUnits);
     end;
   end;
@@ -1804,26 +1823,26 @@ begin
         DrawPoint(SetPoint(COG.X, 0, COG.Y), '');
         //Bulb intersections
         Viewport.PenColor := clGray;
-        if InputShape.ItemIndex > 0 then
+        if InputBulbShape.ItemIndex > 0 then
         begin
-          if InputShape.ItemIndex > 1 then
-            wng := InputWingWidth.Value / 2
+          if InputBulbShape.ItemIndex > 1 then
+            wng := InputBulbWingWidth.Value / 2
           else
             wng := 0;
 
 
           for i := 2 to Nh - 1 do
           begin
-            P1.X := Input2.Value + Input4.Value + InputDelta.Value -
-              NacaProfiles[0, I] * InputLength.Value;
-            if (InputShape.ItemIndex = 1) or (InputShape.ItemIndex = 3) then
+            P1.X := Input2.Value + Input4.Value + InputBulbDelta.Value -
+              NacaProfiles[0, I] * InputBulbLength.Value;
+            if (InputBulbShape.ItemIndex = 1) or (InputBulbShape.ItemIndex = 3) then
             begin
               for j := 0 to 24 do
               begin
-                dy := Cos(Pi / 48 * j) * NacaProfiles[InputWing.ItemIndex + 1, I] *
-                  InputLength.Value / 1.4142;
-                dz := Sin(Pi / 48 * j) * NacaProfiles[InputWing.ItemIndex + 1, I] *
-                  InputLength.Value * 14.14 / (20 + TrackBar2.Position);
+                dy := Cos(Pi / 48 * j) * NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+                  InputBulbLength.Value / 1.4142;
+                dz := Sin(Pi / 48 * j) * NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+                  InputBulbLength.Value * 14.14 / (20 + TrackBar2.Position);
 
                 P1.Y := -dy - wng;
                 P1.Z := -Input3.Value - dz;
@@ -1841,10 +1860,10 @@ begin
               Viewport.Polyline(Pts100);
             end
             else
-            if (InputShape.ItemIndex = 2) then
+            if (InputBulbShape.ItemIndex = 2) then
             begin
               SetLength(Pts, 5);
-              dz := NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value * 14.14 /
+              dz := NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * 14.14 /
                 (20 + TrackBar2.Position);
               P1.Y := -wng;
               P1.Z := -Input3.Value - dz;
@@ -1946,7 +1965,7 @@ var
   begin
 
     Layer.UseInHydrostatics := False;
-    dX := Input4.Value + Input2.Value + InputDelta.Value;
+    dX := Input4.Value + Input2.Value + InputBulbDelta.Value;
     dY := 0;
     dZ := -Input3.Value;
     kZ := 14.14 / (20 + TrackBar2.Position);
@@ -1958,36 +1977,36 @@ var
 
     P2 := TFreeSubdivisionControlPoint.Create(Surface);
     Surface.AddControlPoint(P2);
-    P2.Coordinate := SetPoint(dX - InputLength.Value, 0, dZ);
+    P2.Coordinate := SetPoint(dX - InputBulbLength.Value, 0, dZ);
 
     for i := 2 to Nh - 1 do
     begin
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
         NacaProfiles[0, I], dY, dZ + kZ *
-        NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value * kR);
+        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[0, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
-        NacaProfiles[0, I], dY + NacaProfiles[InputWing.ItemIndex + 1, I] *
-        InputLength.Value * kR / 1.4142, dZ);
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
+        NacaProfiles[0, I], dY + NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+        InputBulbLength.Value * kR / 1.4142, dZ);
       PP[1, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
         NacaProfiles[0, I], dY, dZ - kZ *
-        NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value * kR);
+        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[2, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
-        NacaProfiles[0, I], dY - NacaProfiles[InputWing.ItemIndex + 1, I] *
-        InputLength.Value * kR / 1.4142, dZ);
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
+        NacaProfiles[0, I], dY - NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+        InputBulbLength.Value * kR / 1.4142, dZ);
       PP[3, i] := P;
 
     end;
@@ -2092,13 +2111,13 @@ var
   begin
 
     Layer.UseInHydrostatics := True;
-    dX := Input4.Value + Input2.Value + InputDelta.Value;
+    dX := Input4.Value + Input2.Value + InputBulbDelta.Value;
     dY := 0;
     dZ := -Input3.Value;
     kZ := 14.14 / (20 + TrackBar2.Position);
     kR := sqrt(2);
-    if InputShape.ItemIndex > 1 then
-      wng := InputWingWidth.Value / 2
+    if InputBulbShape.ItemIndex > 1 then
+      wng := InputBulbWingWidth.Value / 2
     else
       wng := 0;
 
@@ -2108,7 +2127,7 @@ var
 
     P2 := TFreeSubdivisionControlPoint.Create(Surface);
     Surface.AddControlPoint(P2);
-    P2.Coordinate := SetPoint(dX - InputLength.Value, wng, dZ);
+    P2.Coordinate := SetPoint(dX - InputBulbLength.Value, wng, dZ);
 
     P3 := TFreeSubdivisionControlPoint.Create(Surface);
     Surface.AddControlPoint(P3);
@@ -2116,48 +2135,48 @@ var
 
     P4 := TFreeSubdivisionControlPoint.Create(Surface);
     Surface.AddControlPoint(P4);
-    P4.Coordinate := SetPoint(dX - InputLength.Value, 0, dZ);
+    P4.Coordinate := SetPoint(dX - InputBulbLength.Value, 0, dZ);
 
     for i := 2 to Nh - 1 do
     begin
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
         NacaProfiles[0, I], dY, dZ + kZ *
-        NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value * kR);
+        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[0, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
         NacaProfiles[0, I], dY + Wng, dZ + kZ *
-        NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value * kR);
+        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[1, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      if InputShape.ItemIndex = 3 then
-        P.Coordinate := SetPoint(dX - InputLength.Value *
-          NacaProfiles[0, I], dY + NacaProfiles[InputWing.ItemIndex + 1, I] *
-          InputLength.Value * kR + wng, dZ)
+      if InputBulbShape.ItemIndex = 3 then
+        P.Coordinate := SetPoint(dX - InputBulbLength.Value *
+          NacaProfiles[0, I], dY + NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
+          InputBulbLength.Value * kR + wng, dZ)
       else
-        P.Coordinate := SetPoint(dX - InputLength.Value *
+        P.Coordinate := SetPoint(dX - InputBulbLength.Value *
           NacaProfiles[0, I], dY + Wng, dZ);
       PP[2, i] := P;
 
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
         NacaProfiles[0, I], dY + Wng, dZ - kZ *
-        NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value * kR);
+        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[3, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputLength.Value *
+      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
         NacaProfiles[0, I], dY, dZ - kZ *
-        NacaProfiles[InputWing.ItemIndex + 1, I] * InputLength.Value * kR);
+        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[4, i] := P;
     end;
 
@@ -2362,12 +2381,12 @@ begin
         Edge.Crease := True;
     end;
     Layer.SelectAll;
-    if InputShape.ItemIndex > 0 then
+    if InputBulbShape.ItemIndex > 0 then
     begin
       Layer := Surface.AddNewLayer;
-      Layer.Name := InputShape.Text + '_' + InputWing.Text;
+      Layer.Name := InputBulbShape.Text + '_' + InputBulbWing.Text;
       Layer.Color := FFreeship.Preferences.LayerColor;
-      if InputShape.ItemIndex = 1 then
+      if InputBulbShape.ItemIndex = 1 then
         AddRoundBulb
       else
         AddWingBulb;
@@ -2395,21 +2414,21 @@ begin
   Surface.Destroy;
 end;{TFreeKeelWizardDialog.SendToSurface}
 
-procedure TFreeKeelWizardDialog.InputShapeClick(Sender: TObject);
+procedure TFreeKeelWizardDialog.InputBulbShapeClick(Sender: TObject);
 begin
   UpdateData;
-  InputWingWidth.Enabled := InputShape.ItemIndex > 1;
+  InputBulbWingWidth.Enabled := InputBulbShape.ItemIndex > 1;
 end;
 
 procedure TFreeKeelWizardDialog.InputMaterialChange(Sender: TObject);
 begin
-  InputDensity.Enabled := False;
+  InputBulbDensity.Enabled := False;
   case InputMaterial.ItemIndex of
-    0: InputDensity.Value := 11.35;
-    1: InputDensity.Value := 7.2;
-    2: InputDensity.Value := 19.3;
+    0: InputBulbDensity.Value := 11.35;
+    1: InputBulbDensity.Value := 7.2;
+    2: InputBulbDensity.Value := 19.3;
     else
-      InputDensity.Enabled := True
+      InputBulbDensity.Enabled := True
   end;
   UpdateData;
 end;

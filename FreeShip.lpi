@@ -31,7 +31,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="256"/>
+      <BuildNr Value="257"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -261,7 +261,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="118">
+    <Units Count="119">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -909,6 +909,10 @@
         <Filename Value="Units/FileIconWin.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit117>
+      <Unit118>
+        <Filename Value="Units/naca.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit118>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -923,7 +927,7 @@
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <SyntaxMode Value="fpc"/>
+        <SyntaxMode Value="FPC"/>
         <IncludeAssertionCode Value="True"/>
       </SyntaxOptions>
     </Parsing>

@@ -37,7 +37,7 @@ interface
 
 uses SysUtils,// this declaration must be at the start, before the FreeGeometry unit
      {$ifdef windows}
-  Windows,
+  Windows, Windirs, shellapi, shfolder,
      {$ifndef LCL} JPeg,{$endif}
      {$endif}
      {$ifdef LCL}
@@ -861,11 +861,13 @@ type
     FGlobalConfigDirectory: string;
     // Default directory where FreeShip.ini file is stored
     FGlobalAppDataDirectory: string;
-    // Default directory where FreeShip data and resource files stored
+    // Default directory where FreeShip programs, r/o data and resource files stored
     FUserConfigDirectory: string;
     // Default directory where users FreeShip.ini file is stored
     FUserAppDataDirectory: string;
-    // Default directory where users FreeShip data and resource files stored
+    // Default directory where users FreeShip programs and r/o resource files stored
+    FUserDataDirectory: string;
+    // Default directory where users FreeShip r/w data (projects etc) stored
 
     FExecDirectory: string;
     // directory where users FreeShip 3-rd party executables located
@@ -906,9 +908,11 @@ type
     FFbmEncoding: string;
     //encoding that is used to convert national strings from/to FBM files
     function getGlobalConfigDirectory: string;
-    function getUserAppDataDirectory: string;
-    function getGlobalAppDataDirectory: string;
+    function getGlobalAppDataDirectory: string; // dir for per-machine install
     function getUserConfigDirectory: string;
+    function getUserAppDataDirectory: string; // dir for per-user install
+    function getUserDataDirectory: string; // dir for your projects
+    function getTempDirectory: string;
 
     function FGetExportDirectory: string;
     function FGetImportDirectory: string;

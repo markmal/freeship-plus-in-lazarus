@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="APPLICATIONFOLDER">
+            <Directory Id="Ships" Name="Ships">
+                <Component Id="_5415_Tc_5_deck_symm_30.fbm" Guid="{BA6A928D-2C4F-4345-8376-9B06C6E8986B}">
+                    <File Id="_5415_Tc_5_deck_symm_30.fbm" KeyPath="yes" Source="$(var.Ships)\5415_Tc=5+deck symm 30.fbm" />
+                </Component>
+                <Component Id="_5415_Tc_5_deck_symm.fbm" Guid="{EA309381-6547-4DF8-9B5A-9124CB3ECF78}">
+                    <File Id="_5415_Tc_5_deck_symm.fbm" KeyPath="yes" Source="$(var.Ships)\5415_Tc=5+deck symm.fbm" />
+                </Component>
+                <Component Id="_5415_Tc_5_deck.fbm" Guid="{EB19C66A-A645-4100-8BE8-D42F72694029}">
+                    <File Id="_5415_Tc_5_deck.fbm" KeyPath="yes" Source="$(var.Ships)\5415_Tc=5+deck.fbm" />
+                </Component>
+                <Component Id="_730.fbm" Guid="{A09AAA17-7B79-4F06-99DE-9C3F6E136F0E}">
+                    <File Id="_730.fbm" KeyPath="yes" Source="$(var.Ships)\730.fbm" />
+                </Component>
+                <Component Id="board.fbm" Guid="{255D60C4-4707-407B-8A47-C968056013A2}">
+                    <File Id="board.fbm" KeyPath="yes" Source="$(var.Ships)\board.fbm" />
+                </Component>
+                <Component Id="board.ftm" Guid="{9B7C1963-9C57-4460-967F-F17543BCC0E9}">
+                    <File Id="board.ftm" KeyPath="yes" Source="$(var.Ships)\board.ftm" />
+                </Component>
+                <Component Id="ellipsoid321.fbm" Guid="{D15AAD22-DE9B-4050-98B9-86986FD98A5E}">
+                    <File Id="ellipsoid321.fbm" KeyPath="yes" Source="$(var.Ships)\ellipsoid321.fbm" />
+                </Component>
+                <Component Id="Ferries_deck.fbm" Guid="{F278EB60-5D1A-41C6-96D8-E1915C18E18A}">
+                    <File Id="Ferries_deck.fbm" KeyPath="yes" Source="$(var.Ships)\Ferries+deck.fbm" />
+                </Component>
+                <Component Id="Loyalist_60_2_3_mod.fbm" Guid="{E06A3E4F-C9F3-47D4-AA6E-387F9188CFD4}">
+                    <File Id="Loyalist_60_2_3_mod.fbm" KeyPath="yes" Source="$(var.Ships)\Loyalist+60-2-3+mod.fbm" />
+                </Component>
+                <Component Id="Parent_22_Oort.fbm" Guid="{DB9963DC-6E33-43B6-BCB4-26D68A167699}">
+                    <File Id="Parent_22_Oort.fbm" KeyPath="yes" Source="$(var.Ships)\Parent 22_Oort.fbm" />
+                </Component>
+                <Component Id="pdock_weght_symm.fbm" Guid="{564C6CB8-88CD-4FE6-B0D0-8142AF7AC99B}">
+                    <File Id="pdock_weght_symm.fbm" KeyPath="yes" Source="$(var.Ships)\pdock+weght_symm.fbm" />
+                </Component>
+                <Component Id="Tug_25m_modT_parus.fbm" Guid="{92F97828-4998-4396-B3DC-3AD80B67A0D4}">
+                    <File Id="Tug_25m_modT_parus.fbm" KeyPath="yes" Source="$(var.Ships)\Tug 25m_modT+parus.fbm" />
+                </Component>
+                <Component Id="Tug_25m_modT_parus_symm5.fbm" Guid="{C203C664-600B-4FC9-A160-7EF8D486A42F}">
+                    <File Id="Tug_25m_modT_parus_symm5.fbm" KeyPath="yes" Source="$(var.Ships)\Tug 25m_modT+parus_symm5.fbm" />
+                </Component>
+                <Component Id="Yacht_heel_20_keel.fbm" Guid="{B217B543-0E94-4CA4-828A-93B11BA0EE28}">
+                    <File Id="Yacht_heel_20_keel.fbm" KeyPath="yes" Source="$(var.Ships)\Yacht_heel=20+keel.fbm" />
+                </Component>
+                <Directory Id="Database" Name="Database">
+                    <Component Id="FREE_ship_demo_1.fbm" Guid="{B7953EFE-14C9-4105-BE77-4A9752307626}">
+                        <File Id="FREE_ship_demo_1.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 1.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_1_weght.fbm" Guid="{F2D2FB5E-3DAA-4FD8-8556-E9DDAF33607F}">
+                        <File Id="FREE_ship_demo_1_weght.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 1_weght.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_2.fbm" Guid="{F85355CC-5C32-404B-BE94-09C2609616E8}">
+                        <File Id="FREE_ship_demo_2.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 2.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_2__deck.fbm" Guid="{D39B1528-9232-4AAE-A2F6-2B2EA456FA69}">
+                        <File Id="FREE_ship_demo_2__deck.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 2_+deck.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_2_.fbm" Guid="{C22B9474-1BD2-494E-9F16-543E3AE874FB}">
+                        <File Id="FREE_ship_demo_2_.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 2_.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_2_H.fbm" Guid="{CD4A7F00-89B9-4631-AF8B-2FC92DDA4DA3}">
+                        <File Id="FREE_ship_demo_2_H.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 2_H.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck_gruz_Zg.fbm" Guid="{959D4B45-931D-4603-AA68-D1CE7DBBC51E}">
+                        <File Id="FREE_ship_demo_3_deck_gruz_Zg.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+deck+gruz+Zg.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck_gruz.fbm" Guid="{B5D37AF4-31E7-4CBB-BF31-F18285BF3905}">
+                        <File Id="FREE_ship_demo_3_deck_gruz.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+deck+gruz.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck_gruz_man.fbm" Guid="{F40854C1-A107-4275-A4A9-8048FF1729E0}">
+                        <File Id="FREE_ship_demo_3_deck_gruz_man.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+deck+gruz_man.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck_gruz_man_symm.fbm" Guid="{AF11CE00-9FBF-442E-BEAA-47AC74F43138}">
+                        <File Id="FREE_ship_demo_3_deck_gruz_man_symm.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+deck+gruz_man_symm.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck_heel30.fbm" Guid="{45EED068-99F4-413C-ABEA-CB741372AC00}">
+                        <File Id="FREE_ship_demo_3_deck_heel30.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+deck+heel30.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck.fbm" Guid="{0C363963-622C-4AA3-B312-8D3BBA04F47F}">
+                        <File Id="FREE_ship_demo_3_deck.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+deck.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck_RVRSdemo.fbm" Guid="{66BA12DD-68B7-4691-BBFA-22B5F12FD5F8}">
+                        <File Id="FREE_ship_demo_3_deck_RVRSdemo.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+deck_RVRSdemo.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_Hollenbach.fbm" Guid="{CBB8B54D-0356-437B-A6E1-B5F6393B35D1}">
+                        <File Id="FREE_ship_demo_3_Hollenbach.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+Hollenbach.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_RVRSdemo.fbm" Guid="{476B0B21-B961-4F50-8D9B-19EDFD488B19}">
+                        <File Id="FREE_ship_demo_3_RVRSdemo.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3+RVRSdemo.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3.fbm" Guid="{C51B2A74-FC53-4A50-A0CA-438A18B24573}">
+                        <File Id="FREE_ship_demo_3.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_.fbm" Guid="{28FE0569-8592-40E9-9406-4FCC19A25935}">
+                        <File Id="FREE_ship_demo_3_.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3_.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_H_O_Hollen_F_L.fbm" Guid="{55EAE4CD-C0B3-47D0-B92C-39D32DCB6682}">
+                        <File Id="FREE_ship_demo_3_H_O_Hollen_F_L.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3_H&amp;O&amp;Hollen&amp;F_L.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_H_O.fbm" Guid="{C5DC25CB-7AFB-44AB-99BE-199E4F32A7D1}">
+                        <File Id="FREE_ship_demo_3_H_O.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3_H&amp;O.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_H_O_84.fbm" Guid="{6792D8BD-5A90-43BF-90FC-5D1251BD5196}">
+                        <File Id="FREE_ship_demo_3_H_O_84.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 3_H&amp;O_84.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_4_deck.fbm" Guid="{B64D1704-CD85-4951-B9DC-CB068D23E9BD}">
+                        <File Id="FREE_ship_demo_4_deck.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 4+deck.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_4.fbm" Guid="{3293F1C7-0CB2-4211-AE23-82224FF3BB80}">
+                        <File Id="FREE_ship_demo_4.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 4.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_4_RvrsDemo.fbm" Guid="{2E5BD900-DB61-465C-86D0-35C7037388DC}">
+                        <File Id="FREE_ship_demo_4_RvrsDemo.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 4_RvrsDemo.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_5.fbm" Guid="{90C8338E-5837-430A-A00F-D5AE714E4805}">
+                        <File Id="FREE_ship_demo_5.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 5.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_5_.fbm" Guid="{49B275CE-BD35-47D0-BFC4-55DCD913258E}">
+                        <File Id="FREE_ship_demo_5_.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 5_.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_5_1.fbm" Guid="{2E411602-8F8D-45E3-ABA4-C3AC3B35C53F}">
+                        <File Id="FREE_ship_demo_5_1.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 5_1.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_6.fbm" Guid="{AC2A5F8A-7234-4DD8-A2F7-40DCD058C8F8}">
+                        <File Id="FREE_ship_demo_6.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 6.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_6_.fbm" Guid="{BBAE78D4-B279-4F8E-BA1A-F5C3017CF490}">
+                        <File Id="FREE_ship_demo_6_.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 6_.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_7_back.fbm" Guid="{DC2B38D6-1F77-4BAC-B0EB-4A4697A3A767}">
+                        <File Id="FREE_ship_demo_7_back.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 7+back.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_7_kil.fbm" Guid="{D04E69FA-33EE-42FA-AC2A-4A79BAB6A524}">
+                        <File Id="FREE_ship_demo_7_kil.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 7+kil.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_7.fbm" Guid="{0AF039A0-A587-491E-878B-7263DD1A98FC}">
+                        <File Id="FREE_ship_demo_7.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 7.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_7opt.fbm" Guid="{C29318B1-0657-4AF9-8BFD-DDFAEBA447AC}">
+                        <File Id="FREE_ship_demo_7opt.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 7opt.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_8.fbm" Guid="{BF380402-D231-4DCB-AA5A-17EB1D179F4B}">
+                        <File Id="FREE_ship_demo_8.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 8.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_8_.fbm" Guid="{90D9C571-CF62-47C4-A6E3-41716CDA664F}">
+                        <File Id="FREE_ship_demo_8_.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo 8_.fbm" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_tug.fbm" Guid="{7D465B6F-4628-4F9F-9CF7-694E5C9AD2FE}">
+                        <File Id="FREE_ship_demo_tug.fbm" KeyPath="yes" Source="$(var.Ships)\Database\FREE!ship demo tug.fbm" />
+                    </Component>
+                    <Component Id="Motorboat_deck.fbm" Guid="{AAF1DBE4-2C2E-468E-8611-0CD88AD4D7D9}">
+                        <File Id="Motorboat_deck.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat+deck.fbm" />
+                    </Component>
+                    <Component Id="Motorboat.fbm" Guid="{9164DD0F-5CCD-418F-BD5D-A584E4A0519A}">
+                        <File Id="Motorboat.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat.fbm" />
+                    </Component>
+                    <Component Id="Motorboat16t.fbm" Guid="{5B4DF2F3-30DE-42A3-AF7F-359B0B036AA1}">
+                        <File Id="Motorboat16t.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat16t.fbm" />
+                    </Component>
+                    <Component Id="Motorboat2.fbm" Guid="{2467D36C-354B-42A6-8C51-E05783EA3258}">
+                        <File Id="Motorboat2.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat2.fbm" />
+                    </Component>
+                    <Component Id="Motorboat3.fbm" Guid="{D3727F62-CCA2-4294-A5C5-79F2DE198C7E}">
+                        <File Id="Motorboat3.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat3.fbm" />
+                    </Component>
+                    <Component Id="Motorboat3_2tonnes.fbm" Guid="{C92A8809-6C4B-4EF2-9B32-23FFED4EAC41}">
+                        <File Id="Motorboat3_2tonnes.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat3_2tonnes.fbm" />
+                    </Component>
+                    <Component Id="Motorboat4.fbm" Guid="{05BE6AA3-4F14-43D9-B85E-2F032CFDBF36}">
+                        <File Id="Motorboat4.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat4.fbm" />
+                    </Component>
+                    <Component Id="Motorboat_6_75tonnes.fbm" Guid="{36C23D39-259C-455A-8DA3-664D4852C235}">
+                        <File Id="Motorboat_6_75tonnes.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat_6,75tonnes.fbm" />
+                    </Component>
+                    <Component Id="Motorboat_imp.fbm" Guid="{1E05035B-0F5B-4B1E-98EA-E1CBE33371F5}">
+                        <File Id="Motorboat_imp.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Motorboat_imp.fbm" />
+                    </Component>
+                    <Component Id="OUT.GEO" Guid="{6488E185-C4F6-44B7-BD63-AADAED1FDB2D}">
+                        <File Id="OUT.GEO" KeyPath="yes" Source="$(var.Ships)\Database\OUT.GEO" />
+                    </Component>
+                    <Component Id="Parent_22_Oort.fbm_1" Guid="{C0B89492-C890-41A4-84C5-EB1A70D006B0}">
+                        <File Id="Parent_22_Oort.fbm_1" KeyPath="yes" Source="$(var.Ships)\Database\Parent 22_Oort.fbm" />
+                    </Component>
+                    <Component Id="Savitsky_imperial.fbm" Guid="{C3060682-2EC7-4689-B1DD-7EBC0EF552D6}">
+                        <File Id="Savitsky_imperial.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Savitsky_imperial.fbm" />
+                    </Component>
+                    <Component Id="Savitsky_metric.fbm" Guid="{CEABA238-DEC7-481E-A08E-79DFC5FF038B}">
+                        <File Id="Savitsky_metric.fbm" KeyPath="yes" Source="$(var.Ships)\Database\Savitsky_metric.fbm" />
+                    </Component>
+                </Directory>
+                <Directory Id="From_multisurf" Name="From multisurf">
+                    <Component Id="Dragger1.WRL" Guid="{BE78CD13-B4C1-4816-831B-95AE685DCAB1}">
+                        <File Id="Dragger1.WRL" KeyPath="yes" Source="$(var.Ships)\From multisurf\Dragger1.WRL" />
+                    </Component>
+                </Directory>
+                <Directory Id="FromFastship" Name="FromFastship">
+                    <Component Id="_27mpatrol.fbm" Guid="{B609C4AA-18C9-4A50-B9A8-F0567EB55FC3}">
+                        <File Id="_27mpatrol.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\27mpatrol.fbm" />
+                    </Component>
+                    <Component Id="_27mpatrol.WRL" Guid="{1EE5185E-E4C8-4812-A42A-45C7B9E7B725}">
+                        <File Id="_27mpatrol.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\27mpatrol.WRL" />
+                    </Component>
+                    <Component Id="_35mtug.fbm" Guid="{33A1760E-7993-45EF-B4C5-ABAEBEEEBB05}">
+                        <File Id="_35mtug.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\35mtug.fbm" />
+                    </Component>
+                    <Component Id="_35mtug.WRL" Guid="{6B1E56F2-2F96-445B-8C5F-99EB4D6D8171}">
+                        <File Id="_35mtug.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\35mtug.WRL" />
+                    </Component>
+                    <Component Id="_35mtug_LB.fbm" Guid="{8D3C14CD-4052-432E-92BB-419C441A2D66}">
+                        <File Id="_35mtug_LB.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\35mtug_LB.fbm" />
+                    </Component>
+                    <Component Id="_50dragger.fbm" Guid="{12ECE90C-4B40-405B-9961-1267DD157AAD}">
+                        <File Id="_50dragger.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\50dragger.fbm" />
+                    </Component>
+                    <Component Id="_50dragger.WRL" Guid="{77E9A992-A48A-4738-9117-F8098BB6345C}">
+                        <File Id="_50dragger.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\50dragger.WRL" />
+                    </Component>
+                    <Component Id="_70ktanker.fbm" Guid="{EA85E830-7ABA-4CB7-A026-6F3523F25670}">
+                        <File Id="_70ktanker.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\70ktanker.fbm" />
+                    </Component>
+                    <Component Id="_70ktanker.WRL" Guid="{401D279C-C7F6-4EF3-8DD8-DB6C8FE7D66A}">
+                        <File Id="_70ktanker.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\70ktanker.WRL" />
+                    </Component>
+                    <Component Id="Auxiliary.fbm" Guid="{175F78E9-2E6F-44F4-BD9B-0FA792CAE583}">
+                        <File Id="Auxiliary.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\Auxiliary.fbm" />
+                    </Component>
+                    <Component Id="Auxiliary.WRL" Guid="{5362009F-7074-45B9-8CF4-B2840FE1E7EC}">
+                        <File Id="Auxiliary.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\Auxiliary.WRL" />
+                    </Component>
+                    <Component Id="cont.WRL" Guid="{B898F235-FCB3-4FF6-9DCE-31EFBF8A5DCC}">
+                        <File Id="cont.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\cont.WRL" />
+                    </Component>
+                    <Component Id="cont2.WRL" Guid="{F1A763C9-15C1-4263-AA35-0232CB568D5B}">
+                        <File Id="cont2.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\cont2.WRL" />
+                    </Component>
+                    <Component Id="containerships2.WRL" Guid="{B691D46E-494D-4940-9708-C20233DBD97C}">
+                        <File Id="containerships2.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\containerships2.WRL" />
+                    </Component>
+                    <Component Id="Ferries.fbm" Guid="{821B1884-C577-4B8B-B74A-C298DF5D9271}">
+                        <File Id="Ferries.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\Ferries.fbm" />
+                    </Component>
+                    <Component Id="Ferries.WRL" Guid="{EF78AD5D-1CC9-4FEE-ACD3-27B231A39A9A}">
+                        <File Id="Ferries.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\Ferries.WRL" />
+                    </Component>
+                    <Component Id="OUT.GEO_1" Guid="{08D66927-2E69-4071-B915-2CAA09D421F4}">
+                        <File Id="OUT.GEO_1" KeyPath="yes" Source="$(var.Ships)\FromFastship\OUT.GEO" />
+                    </Component>
+                    <Component Id="vlcc300k.fbm" Guid="{1C6DAD87-3351-4437-B382-03351B30A3BA}">
+                        <File Id="vlcc300k.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\vlcc300k.fbm" />
+                    </Component>
+                    <Component Id="vlcc300k.WRL" Guid="{261EFF7F-4C41-4CE3-A7A8-8302BBDCA391}">
+                        <File Id="vlcc300k.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\vlcc300k.WRL" />
+                    </Component>
+                    <Component Id="Workboat.fbm" Guid="{2350DFC2-121E-4D5A-86CB-DA0B69C2AA42}">
+                        <File Id="Workboat.fbm" KeyPath="yes" Source="$(var.Ships)\FromFastship\Workboat.fbm" />
+                    </Component>
+                    <Component Id="Workboat.WRL" Guid="{15D1CC93-446F-430B-B508-28423EDF7126}">
+                        <File Id="Workboat.WRL" KeyPath="yes" Source="$(var.Ships)\FromFastship\Workboat.WRL" />
+                    </Component>
+                </Directory>
+                <Directory Id="FromRhino" Name="FromRhino">
+                    <Component Id="BigTanker.fbm" Guid="{B6AB3DAC-6962-4AAA-B8B9-748245E7573D}">
+                        <File Id="BigTanker.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\BigTanker.fbm" />
+                    </Component>
+                    <Component Id="BigTanker.wrl" Guid="{A5CD4E65-FE32-4B30-8A93-ECE72C068B12}">
+                        <File Id="BigTanker.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\BigTanker.wrl" />
+                    </Component>
+                    <Component Id="Containership_130m.fbm" Guid="{8D6B8E02-D94B-4C81-9644-0C5976C781E6}">
+                        <File Id="Containership_130m.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\Containership-130m.fbm" />
+                    </Component>
+                    <Component Id="Containership_150m.fbm" Guid="{DA1BD579-8B43-4157-9908-E36B967ED0F3}">
+                        <File Id="Containership_150m.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\Containership-150m.fbm" />
+                    </Component>
+                    <Component Id="Containership.fbm" Guid="{9898C52B-DC58-4360-8B73-F2624F227645}">
+                        <File Id="Containership.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\Containership.fbm" />
+                    </Component>
+                    <Component Id="Containership.wrl" Guid="{FB3A04DE-E126-4D76-BA02-511E63B52024}">
+                        <File Id="Containership.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Containership.wrl" />
+                    </Component>
+                    <Component Id="Containership1.wrl" Guid="{1480C65B-3DD2-41B3-A4B8-573C194D2A43}">
+                        <File Id="Containership1.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Containership1.wrl" />
+                    </Component>
+                    <Component Id="Containership2.wrl" Guid="{29DC8561-19A6-458B-88FD-81AB244713AE}">
+                        <File Id="Containership2.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Containership2.wrl" />
+                    </Component>
+                    <Component Id="Containership_2.fbm" Guid="{9CFB80B5-4E31-4F32-B2E3-C83C6589A808}">
+                        <File Id="Containership_2.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\Containership_2.fbm" />
+                    </Component>
+                    <Component Id="Fast_ferry.wrl" Guid="{36CC5578-1417-4830-99F0-48B287C2FE7A}">
+                        <File Id="Fast_ferry.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Fast ferry.wrl" />
+                    </Component>
+                    <Component Id="Fishing_boat50ft.wrl" Guid="{37078965-60A4-4030-9F7F-423D5D6898B7}">
+                        <File Id="Fishing_boat50ft.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Fishing boat50ft.wrl" />
+                    </Component>
+                    <Component Id="NavalAuxiliary.wrl" Guid="{67EF15F9-59E4-41C7-B605-2E81C4E3A29B}">
+                        <File Id="NavalAuxiliary.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\NavalAuxiliary.wrl" />
+                    </Component>
+                    <Component Id="Patrolboat.wrl" Guid="{A8EFC561-45E8-4DD2-BF78-5309F3ABE9DE}">
+                        <File Id="Patrolboat.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Patrolboat.wrl" />
+                    </Component>
+                    <Component Id="Planing_ship_2.wrl" Guid="{938224CB-A614-4D9D-A2FD-26774077D83A}">
+                        <File Id="Planing_ship_2.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Planing ship 2.wrl" />
+                    </Component>
+                    <Component Id="Planing_ship_3.wrl" Guid="{B1A5D977-BCD7-40FB-B9E5-F497ADFC74C8}">
+                        <File Id="Planing_ship_3.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Planing ship 3.wrl" />
+                    </Component>
+                    <Component Id="Planing_ship_4.wrl" Guid="{32AC11E9-372D-4B36-96B1-5506F5946073}">
+                        <File Id="Planing_ship_4.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Planing ship 4.wrl" />
+                    </Component>
+                    <Component Id="Planing_ship.wrl" Guid="{D90A51CF-3685-4CF6-BFCE-0FDA9AFA9B85}">
+                        <File Id="Planing_ship.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Planing ship.wrl" />
+                    </Component>
+                    <Component Id="RacingCatamaran.fbm" Guid="{D276995B-84B6-4B2C-9DC7-4FB4F9066E65}">
+                        <File Id="RacingCatamaran.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\RacingCatamaran.fbm" />
+                    </Component>
+                    <Component Id="RacingCatamaran.wrl" Guid="{9F98A3CA-8F14-44AF-984D-A5D24D7F3A7F}">
+                        <File Id="RacingCatamaran.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\RacingCatamaran.wrl" />
+                    </Component>
+                    <Component Id="RESIST.dat" Guid="{2153C5EC-5A61-4F35-BEDC-63B58BE125A1}">
+                        <File Id="RESIST.dat" KeyPath="yes" Source="$(var.Ships)\FromRhino\RESIST.dat" />
+                    </Component>
+                    <Component Id="RESISTp.dat" Guid="{D3F47B0F-B599-49AD-89A8-E54FCA709047}">
+                        <File Id="RESISTp.dat" KeyPath="yes" Source="$(var.Ships)\FromRhino\RESISTp.dat" />
+                    </Component>
+                    <Component Id="Sailboat.wrl" Guid="{EA7139D7-F0AD-4A3C-919B-23D8BC120D68}">
+                        <File Id="Sailboat.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Sailboat.wrl" />
+                    </Component>
+                    <Component Id="Sailboat_30ft.wrl" Guid="{847E6BC6-F45E-4FF7-AC3F-73E76B65918A}">
+                        <File Id="Sailboat_30ft.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Sailboat_30ft.wrl" />
+                    </Component>
+                    <Component Id="Ship_Forebody.wrl" Guid="{F61C1064-D2D2-4AFC-A430-1E7E71A5D669}">
+                        <File Id="Ship_Forebody.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Ship Forebody.wrl" />
+                    </Component>
+                    <Component Id="Tanker_300000.wrl" Guid="{5B656415-CD14-45F4-BEF2-C197583BA555}">
+                        <File Id="Tanker_300000.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Tanker-300000.wrl" />
+                    </Component>
+                    <Component Id="Tanker_70000.wrl" Guid="{0E17C1DD-36C2-49E5-8AA7-3A1B8B5EDCEB}">
+                        <File Id="Tanker_70000.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Tanker-70000.wrl" />
+                    </Component>
+                    <Component Id="Tugboat_35m.fbm" Guid="{EE81A9DB-DFF6-4390-8526-C59349154631}">
+                        <File Id="Tugboat_35m.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\Tugboat 35m.fbm" />
+                    </Component>
+                    <Component Id="Tugboat_35m.wrl" Guid="{928FB93A-D61F-4CB4-A62D-D0BD83EC5C96}">
+                        <File Id="Tugboat_35m.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Tugboat 35m.wrl" />
+                    </Component>
+                    <Component Id="Workboat_70m.fbm" Guid="{890B9F9E-5E6A-475A-A9AC-0CA7BD26D6FA}">
+                        <File Id="Workboat_70m.fbm" KeyPath="yes" Source="$(var.Ships)\FromRhino\Workboat 70m.fbm" />
+                    </Component>
+                    <Component Id="Workboat_70m.wrl" Guid="{1CE22422-77AC-490A-B531-DDDD70071211}">
+                        <File Id="Workboat_70m.wrl" KeyPath="yes" Source="$(var.Ships)\FromRhino\Workboat 70m.wrl" />
+                    </Component>
+                </Directory>
+                <Directory Id="Part" Name="Part">
+                    <Component Id="_30mm_Hub.part" Guid="{9DDD37B1-84D5-4E2D-9B80-B60C7E1053FE}">
+                        <File Id="_30mm_Hub.part" KeyPath="yes" Source="$(var.Ships)\Part\30mm_Hub.part" />
+                    </Component>
+                    <Component Id="Fly_10f_m.part" Guid="{D9E90818-5BCF-4749-A371-12C6CB6D28D0}">
+                        <File Id="Fly_10f_m.part" KeyPath="yes" Source="$(var.Ships)\Part\Fly-10f-m.part" />
+                    </Component>
+                    <Component Id="M_183_70_sitting.part" Guid="{4DA5AFF6-33A3-407F-90E9-4D40B2CF5470}">
+                        <File Id="M_183_70_sitting.part" KeyPath="yes" Source="$(var.Ships)\Part\M-183-70-sitting.part" />
+                    </Component>
+                    <Component Id="Man_Sitting.part" Guid="{86E8E243-3843-4DA8-A22C-2A4E2C1ACEB3}">
+                        <File Id="Man_Sitting.part" KeyPath="yes" Source="$(var.Ships)\Part\Man Sitting.part" />
+                    </Component>
+                    <Component Id="Man_Standing.part" Guid="{F3AE466D-C261-4514-8F90-60044F685E67}">
+                        <File Id="Man_Standing.part" KeyPath="yes" Source="$(var.Ships)\Part\Man Standing.part" />
+                    </Component>
+                    <Component Id="Man183_70.part" Guid="{26326D8F-BEF4-4BF2-ADAE-BB3E08B283B4}">
+                        <File Id="Man183_70.part" KeyPath="yes" Source="$(var.Ships)\Part\Man183-70.part" />
+                    </Component>
+                    <Component Id="man183_70.part_1" Guid="{07B0F953-76C8-4D87-BFE4-A233FCC3E768}">
+                        <File Id="man183_70.part_1" KeyPath="yes" Source="$(var.Ships)\Part\man183_70.part" />
+                    </Component>
+                    <Component Id="outboardEngine.part" Guid="{B9E319C3-7ABE-4FFB-8271-FC5BB6569AEF}">
+                        <File Id="outboardEngine.part" KeyPath="yes" Source="$(var.Ships)\Part\outboardEngine.part" />
+                    </Component>
+                    <Component Id="V11A_Prop_Blade.part" Guid="{476058FF-F1E3-4CFD-B09A-9F1389DF9916}">
+                        <File Id="V11A_Prop_Blade.part" KeyPath="yes" Source="$(var.Ships)\Part\V11A_Prop_Blade.part" />
+                    </Component>
+                </Directory>
+                <Directory Id="Parts" Name="Parts">
+                    <Component Id="_1.part" Guid="{E3CE6A6F-8104-4912-9962-D68D6CE74B71}">
+                        <File Id="_1.part" KeyPath="yes" Source="$(var.Ships)\Parts\1.part" />
+                    </Component>
+                    <Component Id="_2.part" Guid="{D032F9A6-DCA5-4111-B177-DDFE37D111B7}">
+                        <File Id="_2.part" KeyPath="yes" Source="$(var.Ships)\Parts\2.part" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3_deck_gruz_man.part" Guid="{27EA5857-C897-4627-A930-A18E4A203872}">
+                        <File Id="FREE_ship_demo_3_deck_gruz_man.part" KeyPath="yes" Source="$(var.Ships)\Parts\FREE!ship demo 3+deck+gruz_man.part" />
+                    </Component>
+                    <Component Id="FREE_ship_demo_3.part" Guid="{65806F96-2FF3-4A0D-8E0D-66B8B9C1C39F}">
+                        <File Id="FREE_ship_demo_3.part" KeyPath="yes" Source="$(var.Ships)\Parts\FREE!ship demo 3.part" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="Ships">
+            <ComponentRef Id="_5415_Tc_5_deck_symm_30.fbm" />
+            <ComponentRef Id="_5415_Tc_5_deck_symm.fbm" />
+            <ComponentRef Id="_5415_Tc_5_deck.fbm" />
+            <ComponentRef Id="_730.fbm" />
+            <ComponentRef Id="board.fbm" />
+            <ComponentRef Id="board.ftm" />
+            <ComponentRef Id="ellipsoid321.fbm" />
+            <ComponentRef Id="Ferries_deck.fbm" />
+            <ComponentRef Id="Loyalist_60_2_3_mod.fbm" />
+            <ComponentRef Id="Parent_22_Oort.fbm" />
+            <ComponentRef Id="pdock_weght_symm.fbm" />
+            <ComponentRef Id="Tug_25m_modT_parus.fbm" />
+            <ComponentRef Id="Tug_25m_modT_parus_symm5.fbm" />
+            <ComponentRef Id="Yacht_heel_20_keel.fbm" />
+            <ComponentRef Id="FREE_ship_demo_1.fbm" />
+            <ComponentRef Id="FREE_ship_demo_1_weght.fbm" />
+            <ComponentRef Id="FREE_ship_demo_2.fbm" />
+            <ComponentRef Id="FREE_ship_demo_2__deck.fbm" />
+            <ComponentRef Id="FREE_ship_demo_2_.fbm" />
+            <ComponentRef Id="FREE_ship_demo_2_H.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_deck_gruz_Zg.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_deck_gruz.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_deck_gruz_man.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_deck_gruz_man_symm.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_deck_heel30.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_deck.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_deck_RVRSdemo.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_Hollenbach.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_RVRSdemo.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_H_O_Hollen_F_L.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_H_O.fbm" />
+            <ComponentRef Id="FREE_ship_demo_3_H_O_84.fbm" />
+            <ComponentRef Id="FREE_ship_demo_4_deck.fbm" />
+            <ComponentRef Id="FREE_ship_demo_4.fbm" />
+            <ComponentRef Id="FREE_ship_demo_4_RvrsDemo.fbm" />
+            <ComponentRef Id="FREE_ship_demo_5.fbm" />
+            <ComponentRef Id="FREE_ship_demo_5_.fbm" />
+            <ComponentRef Id="FREE_ship_demo_5_1.fbm" />
+            <ComponentRef Id="FREE_ship_demo_6.fbm" />
+            <ComponentRef Id="FREE_ship_demo_6_.fbm" />
+            <ComponentRef Id="FREE_ship_demo_7_back.fbm" />
+            <ComponentRef Id="FREE_ship_demo_7_kil.fbm" />
+            <ComponentRef Id="FREE_ship_demo_7.fbm" />
+            <ComponentRef Id="FREE_ship_demo_7opt.fbm" />
+            <ComponentRef Id="FREE_ship_demo_8.fbm" />
+            <ComponentRef Id="FREE_ship_demo_8_.fbm" />
+            <ComponentRef Id="FREE_ship_demo_tug.fbm" />
+            <ComponentRef Id="Motorboat_deck.fbm" />
+            <ComponentRef Id="Motorboat.fbm" />
+            <ComponentRef Id="Motorboat16t.fbm" />
+            <ComponentRef Id="Motorboat2.fbm" />
+            <ComponentRef Id="Motorboat3.fbm" />
+            <ComponentRef Id="Motorboat3_2tonnes.fbm" />
+            <ComponentRef Id="Motorboat4.fbm" />
+            <ComponentRef Id="Motorboat_6_75tonnes.fbm" />
+            <ComponentRef Id="Motorboat_imp.fbm" />
+            <ComponentRef Id="OUT.GEO" />
+            <ComponentRef Id="Parent_22_Oort.fbm_1" />
+            <ComponentRef Id="Savitsky_imperial.fbm" />
+            <ComponentRef Id="Savitsky_metric.fbm" />
+            <ComponentRef Id="Dragger1.WRL" />
+            <ComponentRef Id="_27mpatrol.fbm" />
+            <ComponentRef Id="_27mpatrol.WRL" />
+            <ComponentRef Id="_35mtug.fbm" />
+            <ComponentRef Id="_35mtug.WRL" />
+            <ComponentRef Id="_35mtug_LB.fbm" />
+            <ComponentRef Id="_50dragger.fbm" />
+            <ComponentRef Id="_50dragger.WRL" />
+            <ComponentRef Id="_70ktanker.fbm" />
+            <ComponentRef Id="_70ktanker.WRL" />
+            <ComponentRef Id="Auxiliary.fbm" />
+            <ComponentRef Id="Auxiliary.WRL" />
+            <ComponentRef Id="cont.WRL" />
+            <ComponentRef Id="cont2.WRL" />
+            <ComponentRef Id="containerships2.WRL" />
+            <ComponentRef Id="Ferries.fbm" />
+            <ComponentRef Id="Ferries.WRL" />
+            <ComponentRef Id="OUT.GEO_1" />
+            <ComponentRef Id="vlcc300k.fbm" />
+            <ComponentRef Id="vlcc300k.WRL" />
+            <ComponentRef Id="Workboat.fbm" />
+            <ComponentRef Id="Workboat.WRL" />
+            <ComponentRef Id="BigTanker.fbm" />
+            <ComponentRef Id="BigTanker.wrl" />
+            <ComponentRef Id="Containership_130m.fbm" />
+            <ComponentRef Id="Containership_150m.fbm" />
+            <ComponentRef Id="Containership.fbm" />
+            <ComponentRef Id="Containership.wrl" />
+            <ComponentRef Id="Containership1.wrl" />
+            <ComponentRef Id="Containership2.wrl" />
+            <ComponentRef Id="Containership_2.fbm" />
+            <ComponentRef Id="Fast_ferry.wrl" />
+            <ComponentRef Id="Fishing_boat50ft.wrl" />
+            <ComponentRef Id="NavalAuxiliary.wrl" />
+            <ComponentRef Id="Patrolboat.wrl" />
+            <ComponentRef Id="Planing_ship_2.wrl" />
+            <ComponentRef Id="Planing_ship_3.wrl" />
+            <ComponentRef Id="Planing_ship_4.wrl" />
+            <ComponentRef Id="Planing_ship.wrl" />
+            <ComponentRef Id="RacingCatamaran.fbm" />
+            <ComponentRef Id="RacingCatamaran.wrl" />
+            <ComponentRef Id="RESIST.dat" />
+            <ComponentRef Id="RESISTp.dat" />
+            <ComponentRef Id="Sailboat.wrl" />
+            <ComponentRef Id="Sailboat_30ft.wrl" />
+            <ComponentRef Id="Ship_Forebody.wrl" />
+            <ComponentRef Id="Tanker_300000.wrl" />
+            <ComponentRef Id="Tanker_70000.wrl" />
+            <ComponentRef Id="Tugboat_35m.fbm" />
+            <ComponentRef Id="Tugboat_35m.wrl" />
+            <ComponentRef Id="Workboat_70m.fbm" />
+            <ComponentRef Id="Workboat_70m.wrl" />
+            <ComponentRef Id="_30mm_Hub.part" />
+            <ComponentRef Id="Fly_10f_m.part" />
+            <ComponentRef Id="M_183_70_sitting.part" />
+            <ComponentRef Id="Man_Sitting.part" />
+            <ComponentRef Id="Man_Standing.part" />
+            <ComponentRef Id="Man183_70.part" />
+            <ComponentRef Id="man183_70.part_1" />
+            <ComponentRef Id="outboardEngine.part" />
+            <ComponentRef Id="V11A_Prop_Blade.part" />
+            <ComponentRef Id="_1.part" />
+            <ComponentRef Id="_2.part" />
+            <ComponentRef Id="FREE_ship_demo_3_deck_gruz_man.part" />
+            <ComponentRef Id="FREE_ship_demo_3.part" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

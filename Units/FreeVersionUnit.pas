@@ -45,7 +45,7 @@ const
  FPCVERSION:string={$I %FPCVERSION%};
 
  FREESHIP_MAJOR_VERSION='4.5';   //Major version
- FREESHIP_VERSION='4.5.1.0';   //Major full version
+ FREESHIP_VERSION='4.5.2.0';   //Major full version
 
  //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
  GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits

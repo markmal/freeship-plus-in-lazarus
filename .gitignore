@@ -49,3 +49,8 @@ lib/
 
 # Application bundle for Mac OS
 *.app/
+
+# WIX installer temp files
+*.wixpdb
+*.wixobj
+*.msi

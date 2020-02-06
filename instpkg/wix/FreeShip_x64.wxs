@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Name="FreeShip" 
+	Id="B475C49D-EF12-4B2A-9CB7-02C6125CCDDF" 
+	UpgradeCode="5F29620E-69DF-48C2-B3E8-B94FC3A09746"
+	Version="4.5.1"
+	Manufacturer="FreeWerf"
+	Language="1033" Codepage="1252" >
+
+    <Package Id="*" Keywords="Installer"
+      Description="FreeShip Installer"
+      Comments="FREE!ship Plus is designed for the full parametric analysis of resistance and power prediction for a ship and other calculations of hydrodynamics of vessels and underwater vehicles." Manufacturer="FreeWerf"
+      InstallerVersion="300" Compressed="yes"
+	  Platform="x64"
+      Languages="1033"  SummaryCodepage="1252" />
+
+	<UIRef Id="WixUI_ErrorProgressText" />
+
+    <UIRef Id="WixUI_Advanced"/>
+    <Property Id="ApplicationFolderName" Value="FreeShip" />
+	<!-- This property sets the default selected value of the radio button 
+		on the install scope dialog in the setup UI where the user can choose 
+		whether to install the product per-machine or per-user. -->
+	<!--Property Id="WixAppFolder" Value="WixPerUserFolder" /-->
+	<Property Id="WixAppFolder" Value="WixPerMachineFolder" />
+
+	<!-- Fix for WixUI_Advanced to set properties correctly -->
+	<Property Id="ALLUSERS" Value="2" />
+    <Property Id="MSIINSTALLPERUSER" Value="{}"/>
+	<UI>
+      <UIRef Id="WixUI_Advanced" />
+       <Publish Dialog="InstallDirDlg" Control="Next" Event="DoAction" Value="FindRelatedProducts">1</Publish>      
+       <Publish Dialog="InstallScopeDlg" Control="Next" Property="MSIINSTALLPERUSER" Value="1" Order="3">WixAppFolder = "WixPerUserFolder"</Publish>
+       <Publish Dialog="InstallScopeDlg" Control="Next" Property="MSIINSTALLPERUSER" Value="{}" Order="2">WixAppFolder = "WixPerMachineFolder"</Publish>
+       <Publish Dialog="InstallScopeDlg" Control="Next" Event="DoAction" Value="MySetDefaultPerMachineFolder" Order="3">WixAppFolder = "WixPerMachineFolder"</Publish>
+       <Publish Dialog="InstallScopeDlg" Control="Next" Event="DoAction" Value="MySetDefaultPerUserFolder" Order="3">WixAppFolder = "WixPerUserFolder"</Publish>
+    </UI>
+	<!-- fix for Program File (x86) -->
+	<CustomAction Id="MySetDefaultPerMachineFolder" Execute="immediate"
+		Property="WixPerMachineFolder" Value="[ProgramFiles64Folder][ApplicationFolderName]" />
+	<CustomAction Id="MySetDefaultPerUserFolder" Execute="immediate"
+		Property="WixPerUserFolder" Value="[LocalAppDataFolder]\Programs\[ApplicationFolderName]" />
+
+	<Property Id="APPLICATIONFOLDER" Secure="yes">
+    <RegistrySearch Id="FindInstallLocation"
+        Root="HKLM"
+        Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[WIX_UPGRADE_DETECTED]"
+        Name="InstallLocation"
+        Type="raw"
+        Win64="yes" />
+	</Property>
+
+	<SetDirectory Id="APPLICATIONFOLDER" Value="[ProgramFiles64Folder][ApplicationFolderName]">APPLICATIONFOLDER=""</SetDirectory>
+	<SetDirectory Id="GlobalFreeShipIniFolder" Value="[APPLICATIONFOLDER]"/>
+	
+	<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="APPLICATIONFOLDER" Name="FreeShip">
+
+            <Component Id="MainExecutable" Guid="E307F106-23F4-4F25-A71A-C590FB28258D" Win64="yes">
+              <File Id="FreeShip.exe" Name="FreeShip.exe" Source="$(var.SrcPath)\FreeShip.exe" KeyPath="yes" >
+                <Shortcut Id="startmenuFreeShip" Directory="ProgramMenuDir" Name="FreeShip" 
+					WorkingDirectory="APPLICATIONFOLDER" Icon="FreeShip.ico" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="desktopFreeShip" Directory="DesktopFolder" Name="FreeShip" 
+					WorkingDirectory="APPLICATIONFOLDER" Icon="FreeShip.ico" IconIndex="0" Advertise="yes" />
+              </File>
+            </Component>
+			<Component Id="COPYING" Guid="F530E308-C30C-4AF6-841D-E7984CCB0BA6" Win64="yes">
+              <File Id="COPYING" Name="COPYING" Source="$(var.SrcPath)\COPYING" KeyPath="yes" />
+            </Component>
+			<Component Id="copyright" Guid="21CD7DCB-5BA2-459C-8CB8-349E074BE6B9" Win64="yes">
+              <File Id="copyright" Name="copyright" Source="$(var.SrcPath)\copyright" KeyPath="yes" />
+            </Component>
+			<Component Id="README.txt" Guid="7D59E7E7-5AFC-48E1-8DE7-0583B70FC2C7" Win64="yes">
+              <File Id="README.txt" Name="README.txt" Source="$(var.SrcPath)\README.txt" KeyPath="yes" />
+            </Component>
+
+			<Directory Id="GlobalImportFolder" Name="Import">
+				<Component Id="GlobalImportFolder" Guid="5CDF4CAA-2B2C-4051-B759-E2E628FE3DD6" 
+					KeyPath="yes" NeverOverwrite="no" Permanent="no" Win64="yes" Location="local">
+					<CreateFolder/>
+				</Component>
+			</Directory> 
+		  
+			<Directory Id="GlobalFreeShipIniFolder" Name="GlobalFreeShipIniFolder"/>
+			
+            <Component Id="GlobalFreeShipIni" Guid="C1EB4CA6-FEE0-431A-B50C-F158F1AE112A" KeyPath="yes">
+				<CreateFolder />
+
+				<IniFile Id="ini_GlobalOpenDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Directories" Key="GlobalOpenDirectory" Value="[APPLICATIONFOLDER]Ships" />
+				<IniFile Id="ini_GlobalImportDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Directories" Key="GlobalImportDirectory" Value="[APPLICATIONFOLDER]Import" />
+				<IniFile Id="ini_LanguagesDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Directories" Key="LanguagesDirectory" Value="[APPLICATIONFOLDER]Languages" />
+				<IniFile Id="ini_ExecDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Directories" Key="ExecDirectory" Value="[APPLICATIONFOLDER]Exec" />
+				<IniFile Id="ini_ManualsDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Directories" Key="ManualsDirectory" Value="[APPLICATIONFOLDER]Manuals" />
+				<IniFile Id="ini_MenuIconDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Directories" Key="MenuIconDirectory" Value="[APPLICATIONFOLDER]Themes\Default\icons\24" />
+				
+				<IniFile Id="ini_MenuIconSize" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Graphic" Key="MenuIconSize" Value="16" />
+				<IniFile Id="ini_ToolIconSize" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Graphic" Key="ToolIconSize" Value="24" />
+				<IniFile Id="ini_Theme" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Graphic" Key="Theme" Value="Default" />
+						 
+				<IniFile Id="ini_Language" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="General" Key="Language" Value="English" />
+				<IniFile Id="ini_FbmEncoding" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="General" Key="FbmEncoding" Value="cp1252" />
+				<IniFile Id="ini_MaxUndoMemory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="General" Key="MaxUndoMemory" Value="32" />
+				
+			</Component>
+
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="FreeShip">
+          <Component Id="ProgramMenuDir" Guid="27463A64-A679-468F-995E-5DAA59282B00">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" 
+				Type="string" Value="" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+	  <Directory Id="WindowsFolder" Name="WindowsDir" />
+    </Directory>
+	
+	
+    <Feature Id="Complete" Title="FreeShip" Description="The complete package."
+      Display="expand" Level="1" ConfigurableDirectory="APPLICATIONFOLDER">
+      <Feature Id="MainProgram" Title="Program" Description="The main executable." Level="1">
+        <ComponentRef Id="MainExecutable" />
+		<ComponentRef Id="COPYING" />
+		<ComponentRef Id="copyright" />
+		<ComponentRef Id="README.txt" />
+		<ComponentGroupRef Id="Languages" />
+		<ComponentGroupRef Id="locale" />
+		<ComponentGroupRef Id="Manuals" />
+		<ComponentGroupRef Id="Ships" />
+		<ComponentGroupRef Id="Themes" />
+		<ComponentRef Id="GlobalImportFolder" />
+        <ComponentRef Id="ProgramMenuDir" />
+		<ComponentRef Id="GlobalFreeShipIni" />
+	    <Feature Id="Modules" Title="Modules" Description="3-rd party modules for hydrodynamic and hydrostatic calculations." 
+		  InstallDefault="followParent">
+		  <ComponentGroupRef Id="Exec" />
+	    </Feature>
+	  </Feature>
+      	
+
+    </Feature>
+
+    <Icon Id="FreeShip.ico" SourceFile="$(var.SrcPath)\FreeShip.ico" />
+
+  </Product>
+</Wix>

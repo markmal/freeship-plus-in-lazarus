@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="APPLICATIONFOLDER">
+            <Directory Id="Languages" Name="Languages">
+                <Component Id="Chinese.ini" Guid="{6FDDB33A-21D1-4A7C-BC0A-374B0ECEDAD8}">
+                    <File Id="Chinese.ini" KeyPath="yes" Source="$(var.Languages)\Chinese.ini" />
+                </Component>
+                <Component Id="Czech.ini" Guid="{53939EC2-0C93-4843-B683-B05D399AF715}">
+                    <File Id="Czech.ini" KeyPath="yes" Source="$(var.Languages)\Czech.ini" />
+                </Component>
+                <Component Id="Deutsch.ini" Guid="{E8D2D1C8-7B4F-4904-A10A-D72A9EB19FA2}">
+                    <File Id="Deutsch.ini" KeyPath="yes" Source="$(var.Languages)\Deutsch.ini" />
+                </Component>
+                <Component Id="English.ini" Guid="{08ACF484-DD10-496A-BCFE-ABEB3F4FE351}">
+                    <File Id="English.ini" KeyPath="yes" Source="$(var.Languages)\English.ini" />
+                </Component>
+                <Component Id="Francais.ini" Guid="{16C611FF-1C87-4F77-B3A9-F6E60465585A}">
+                    <File Id="Francais.ini" KeyPath="yes" Source="$(var.Languages)\Francais.ini" />
+                </Component>
+                <Component Id="Italiano.ini" Guid="{BA867496-A6FF-4930-8E97-DB3826E76BA9}">
+                    <File Id="Italiano.ini" KeyPath="yes" Source="$(var.Languages)\Italiano.ini" />
+                </Component>
+                <Component Id="Nederlands.ini" Guid="{C9DB8C45-F8D0-4FF1-9CC7-4F599CFF7A9F}">
+                    <File Id="Nederlands.ini" KeyPath="yes" Source="$(var.Languages)\Nederlands.ini" />
+                </Component>
+                <Component Id="Norsk.ini" Guid="{0B7A135B-46D1-47FB-96B3-A1655CCA4061}">
+                    <File Id="Norsk.ini" KeyPath="yes" Source="$(var.Languages)\Norsk.ini" />
+                </Component>
+                <Component Id="Russian.ini" Guid="{0EB9CB0B-173C-43E5-8B03-30A1855D7008}">
+                    <File Id="Russian.ini" KeyPath="yes" Source="$(var.Languages)\Russian.ini" />
+                </Component>
+                <Component Id="Spanish.ini" Guid="{FF293190-FFF5-4288-B1C6-B8BE3E655AF2}">
+                    <File Id="Spanish.ini" KeyPath="yes" Source="$(var.Languages)\Spanish.ini" />
+                </Component>
+                <Component Id="Suomi.ini" Guid="{D2771D39-DCCC-4E33-B510-45D960EC3EBD}">
+                    <File Id="Suomi.ini" KeyPath="yes" Source="$(var.Languages)\Suomi.ini" />
+                </Component>
+                <Component Id="Ukrainian.ini" Guid="{45967060-7E0B-4141-8F49-89B84F232E13}">
+                    <File Id="Ukrainian.ini" KeyPath="yes" Source="$(var.Languages)\Ukrainian.ini" />
+                </Component>
+                <Component Id="Vietnamese.ini" Guid="{C7C9F2EC-D98C-48E5-8380-62D8392F09BD}">
+                    <File Id="Vietnamese.ini" KeyPath="yes" Source="$(var.Languages)\Vietnamese.ini" />
+                </Component>
+                <Directory Id="windows" Name="windows">
+                    <Component Id="Chinese.ini_1" Guid="{6306823E-F4F9-4E66-ABF3-3CBFBA239C72}">
+                        <File Id="Chinese.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Chinese.ini" />
+                    </Component>
+                    <Component Id="Czech.ini_1" Guid="{28E8D024-A6B6-41FC-8825-ED92B9C80989}">
+                        <File Id="Czech.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Czech.ini" />
+                    </Component>
+                    <Component Id="Deutsch.ini_1" Guid="{0A26531E-A082-416A-90DC-B932F8478A89}">
+                        <File Id="Deutsch.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Deutsch.ini" />
+                    </Component>
+                    <Component Id="English.ini_1" Guid="{2B6B5CF6-F0C2-43EE-A6E4-8978D589C636}">
+                        <File Id="English.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\English.ini" />
+                    </Component>
+                    <Component Id="Francais.ini_1" Guid="{D8B5D157-5AF1-4446-A485-4D78863CF6D9}">
+                        <File Id="Francais.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Francais.ini" />
+                    </Component>
+                    <Component Id="Italiano.ini_1" Guid="{494F0F32-5CD2-4F97-8602-78257F496C99}">
+                        <File Id="Italiano.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Italiano.ini" />
+                    </Component>
+                    <Component Id="Nederlands.ini_1" Guid="{BFF5A3DF-0AC4-4530-A7F4-635514FEDBB6}">
+                        <File Id="Nederlands.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Nederlands.ini" />
+                    </Component>
+                    <Component Id="Norsk.ini_1" Guid="{E25B2F1E-3B78-4C2C-A4EE-309D59365CF7}">
+                        <File Id="Norsk.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Norsk.ini" />
+                    </Component>
+                    <Component Id="Russian.ini_1" Guid="{2A4FEB12-924A-4654-8535-1A6DF879D5B4}">
+                        <File Id="Russian.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Russian.ini" />
+                    </Component>
+                    <Component Id="Spanish.ini_1" Guid="{19F3713B-B8A8-4609-965B-45475618E50D}">
+                        <File Id="Spanish.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Spanish.ini" />
+                    </Component>
+                    <Component Id="Suomi.ini_1" Guid="{67A3CDC6-40E6-4268-A694-A5ACE0DBBC51}">
+                        <File Id="Suomi.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Suomi.ini" />
+                    </Component>
+                    <Component Id="Ukrainian.ini_1" Guid="{F66B91D3-A141-4F3D-B8F4-F9DA97E3CF88}">
+                        <File Id="Ukrainian.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Ukrainian.ini" />
+                    </Component>
+                    <Component Id="Vietnamese.ini_1" Guid="{32D90275-A2EF-438F-9CDF-D59DD12CE289}">
+                        <File Id="Vietnamese.ini_1" KeyPath="yes" Source="$(var.Languages)\windows\Vietnamese.ini" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="Languages">
+            <ComponentRef Id="Chinese.ini" />
+            <ComponentRef Id="Czech.ini" />
+            <ComponentRef Id="Deutsch.ini" />
+            <ComponentRef Id="English.ini" />
+            <ComponentRef Id="Francais.ini" />
+            <ComponentRef Id="Italiano.ini" />
+            <ComponentRef Id="Nederlands.ini" />
+            <ComponentRef Id="Norsk.ini" />
+            <ComponentRef Id="Russian.ini" />
+            <ComponentRef Id="Spanish.ini" />
+            <ComponentRef Id="Suomi.ini" />
+            <ComponentRef Id="Ukrainian.ini" />
+            <ComponentRef Id="Vietnamese.ini" />
+            <ComponentRef Id="Chinese.ini_1" />
+            <ComponentRef Id="Czech.ini_1" />
+            <ComponentRef Id="Deutsch.ini_1" />
+            <ComponentRef Id="English.ini_1" />
+            <ComponentRef Id="Francais.ini_1" />
+            <ComponentRef Id="Italiano.ini_1" />
+            <ComponentRef Id="Nederlands.ini_1" />
+            <ComponentRef Id="Norsk.ini_1" />
+            <ComponentRef Id="Russian.ini_1" />
+            <ComponentRef Id="Spanish.ini_1" />
+            <ComponentRef Id="Suomi.ini_1" />
+            <ComponentRef Id="Ukrainian.ini_1" />
+            <ComponentRef Id="Vietnamese.ini_1" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

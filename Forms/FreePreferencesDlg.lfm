@@ -1,7 +1,7 @@
 object FreePreferencesDialog: TFreePreferencesDialog
-  Left = 640
+  Left = 731
   Height = 750
-  Top = 203
+  Top = 190
   Width = 750
   AutoSize = True
   Caption = '|Preferences.|'

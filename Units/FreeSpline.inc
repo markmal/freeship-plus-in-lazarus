@@ -428,7 +428,7 @@ begin
    }
 
   Capacity := NumberOfPoints;
-  Fragments := NumberOfPoints - 1;
+  ///Fragments := NumberOfPoints - 1;
   Build := False;
 end;{TFreeSpline.Simplify}
 
@@ -446,6 +446,12 @@ begin
      FFragments := FNoPoints - 1;
   Build := False;  // Curve needs to be rebuild
 end;{TFreeSpline.Add}
+
+procedure TFreeSpline.AddKnuckle(P: T3DCoordinate);
+begin
+  Add(P);
+  Knuckle[NumberOfPoints - 1] := True;
+end;
 
 // Copy all data from another spline
 procedure TFreeSpline.Assign(Spline: TFreeSpline);
@@ -733,10 +739,10 @@ begin
     else
     begin
       SetLength(PArray1, Fragments);
-      for I := 1 to Fragments do
+      for I := 0 to Fragments-1 do
       begin
-        P1 := Value((I - 1) / (Fragments - 1));
-        PArray1[I - 1] := Viewport.Project(P1);
+        P1 := Value((I) / (Fragments - 1));
+        PArray1[I] := Viewport.Project(P1);
       end;
     end;
     Viewport.SetPenWidth(1);

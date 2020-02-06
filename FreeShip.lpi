@@ -30,8 +30,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="5"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="256"/>
+      <RevisionNr Value="2"/>
+      <BuildNr Value="258"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -227,7 +227,7 @@
         <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
       </local>
       <FormatVersion Value="2"/>
-      <Modes Count="3">
+      <Modes Count="4">
         <Mode0 Name="default"/>
         <Mode1 Name="no debug log">
           <local>
@@ -239,6 +239,12 @@
             <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
           </local>
         </Mode2>
+        <Mode3 Name="debug log from Program Files">
+          <local>
+            <HostApplicationFilename Value="C:/Program Files/FreeShip/FreeShip.exe"/>
+            <CommandLineParams Value="--debug --log-debug --debug-log=C:/Users/mmalakanov/AppData/Local/Temp/FreeShip.log"/>
+          </local>
+        </Mode3>
       </Modes>
     </RunParams>
     <RequiredPackages Count="4">
@@ -255,7 +261,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="118">
+    <Units Count="119">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -903,6 +909,10 @@
         <Filename Value="Units/FileIconWin.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit117>
+      <Unit118>
+        <Filename Value="Units/naca.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit118>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -917,7 +927,7 @@
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <SyntaxMode Value="fpc"/>
+        <SyntaxMode Value="FPC"/>
         <IncludeAssertionCode Value="True"/>
       </SyntaxOptions>
     </Parsing>

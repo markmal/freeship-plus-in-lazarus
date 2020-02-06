@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="APPLICATIONFOLDER">
+            <Directory Id="locale" Name="locale">
+                <Component Id="FreeFilePreviewDialog.po" Guid="{ECB926B9-62B0-420A-88BB-8B81A016DF60}">
+                    <File Id="FreeFilePreviewDialog.po" KeyPath="yes" Source="$(var.locale)\FreeFilePreviewDialog.po" />
+                </Component>
+                <Component Id="FreeFilePreviewDialog.ru.mo" Guid="{61034F7D-B934-46C1-A4E4-3AB4152B4C73}">
+                    <File Id="FreeFilePreviewDialog.ru.mo" KeyPath="yes" Source="$(var.locale)\FreeFilePreviewDialog.ru.mo" />
+                </Component>
+                <Component Id="FreeFilePreviewDialog.ru.po" Guid="{0F255D94-4AEB-477C-9075-A3D3C6B094DA}">
+                    <File Id="FreeFilePreviewDialog.ru.po" KeyPath="yes" Source="$(var.locale)\FreeFilePreviewDialog.ru.po" />
+                </Component>
+                <Component Id="FreeShip.po" Guid="{EA7B5730-0649-4946-898F-1E00451BE805}">
+                    <File Id="FreeShip.po" KeyPath="yes" Source="$(var.locale)\FreeShip.po" />
+                </Component>
+                <Component Id="project1.po" Guid="{B029D5B4-9C2C-4102-A5AD-7455D05C45F4}">
+                    <File Id="project1.po" KeyPath="yes" Source="$(var.locale)\project1.po" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="locale">
+            <ComponentRef Id="FreeFilePreviewDialog.po" />
+            <ComponentRef Id="FreeFilePreviewDialog.ru.mo" />
+            <ComponentRef Id="FreeFilePreviewDialog.ru.po" />
+            <ComponentRef Id="FreeShip.po" />
+            <ComponentRef Id="project1.po" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

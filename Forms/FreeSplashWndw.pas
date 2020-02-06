@@ -72,13 +72,18 @@ type
     CheckBox1: TCheckBox;
     Image1: TImage;
     Image2: TImage;
+    Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     LabelCondition: TLabel;
     LabelBuildInfo: TLabel;
     LabelWarranty: TLabel;
     LabelWarranty1: TLabel;
     ButtonPanel: TPanel;
     Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    RightPanel: TPanel;
     PanelWarranty: TPanel;
     PanelCopyrights: TPanel;
     VersionPanel: TPanel;
@@ -94,6 +99,7 @@ type
     _label8: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure ButtonPanelClick(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1MouseDown(Sender: TObject;
@@ -103,6 +109,15 @@ type
       Button: TMouseButton; Shift: TShiftState;
       X, Y: integer);
     procedure Image2Click(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+    procedure LabelAppNameClick(Sender: TObject);
+    procedure LabelReleaseClick(Sender: TObject);
+    procedure LabelVersionClick(Sender: TObject);
+    procedure LabelWarranty1Click(Sender: TObject);
+    procedure LabelWarrantyClick(Sender: TObject);
+    procedure Panel3Click(Sender: TObject);
+    procedure RightPanelClick(Sender: TObject);
     procedure PanelCopyrightsClick(
       Sender: TObject);
     procedure TopPanelClick(Sender: TObject);
@@ -241,6 +256,7 @@ procedure TFreeSplashWindow.ExpandToFit;
 var
   diff: integer;
 begin
+  exit;
   diff := LabelCondition.BoundsRect.Bottom - self.Height;
   diff := TopPanel.Height + Image1.Picture.Bitmap.Height
     + PanelCopyrights.Height + PanelWarranty .Height
@@ -316,6 +332,11 @@ begin
   ModalResult := mrCancel;
 end;
 
+procedure TFreeSplashWindow.ButtonPanelClick(Sender: TObject);
+begin
+
+end;
+
 procedure TFreeSplashWindow.Image1MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
 begin
@@ -326,6 +347,51 @@ end;
 procedure TFreeSplashWindow.Image2Click(Sender: TObject);
 begin
   OpenURL('https://www.gnu.org/licenses/');
+end;
+
+procedure TFreeSplashWindow.Label1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.Label2Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.LabelAppNameClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.LabelReleaseClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.LabelVersionClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.LabelWarranty1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.LabelWarrantyClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.Panel3Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeSplashWindow.RightPanelClick(Sender: TObject);
+begin
+
 end;
 
 procedure TFreeSplashWindow.PanelCopyrightsClick(Sender: TObject);

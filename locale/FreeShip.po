@@ -4476,6 +4476,10 @@ msgstr ""
 msgid "Copyright © 2007-2013,Timoshenko V.F."
 msgstr ""
 
+#: tfreesplashwindow.label3.caption
+msgid "Copyright © 2015+, Mark Malakanov"
+msgstr ""
+
 #: tfreesplashwindow.labelappname.caption
 msgctxt "tfreesplashwindow.labelappname.caption"
 msgid "FREE!ship Plus"
@@ -4506,6 +4510,10 @@ msgstr ""
 
 #: tfreesplashwindow.labelwarranty1.caption
 msgid "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND."
+msgstr ""
+
+#: tfreesplashwindow.panel2.caption
+msgid "Panel2"
 msgstr ""
 
 #: tfreesplashwindow._label2.caption

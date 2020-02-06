@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="APPLICATIONFOLDER">
+            <Directory Id="Manuals" Name="Manuals">
+                <Component Id="English.pdf" Guid="{8DCFAD35-553B-40E0-A878-E53D272DD693}">
+                    <File Id="English.pdf" KeyPath="yes" Source="$(var.Manuals)\English.pdf" />
+                </Component>
+                <Component Id="Francais.pdf" Guid="{1FA7E338-66EE-43AA-B3C1-EF8038492DFF}">
+                    <File Id="Francais.pdf" KeyPath="yes" Source="$(var.Manuals)\Francais.pdf" />
+                </Component>
+                <Component Id="GPL_Arabic.pdf" Guid="{9AFE6ED1-45AC-4EC9-BA90-0876B535AFAE}">
+                    <File Id="GPL_Arabic.pdf" KeyPath="yes" Source="$(var.Manuals)\GPL-Arabic.pdf" />
+                </Component>
+                <Component Id="GPL_Chinese.html" Guid="{CEC4F9D0-3595-43DB-9676-D260E0ACB368}">
+                    <File Id="GPL_Chinese.html" KeyPath="yes" Source="$(var.Manuals)\GPL-Chinese.html" />
+                </Component>
+                <Component Id="GPL_Czech.html" Guid="{32165CBD-1A36-42CA-829C-83C1AC5C0609}">
+                    <File Id="GPL_Czech.html" KeyPath="yes" Source="$(var.Manuals)\GPL-Czech.html" />
+                </Component>
+                <Component Id="GPL_Danish.txt" Guid="{0A8C3E16-EFD1-4775-8DF3-E0CCD00DD237}">
+                    <File Id="GPL_Danish.txt" KeyPath="yes" Source="$(var.Manuals)\GPL-Danish.txt" />
+                </Component>
+                <Component Id="GPL_Dutch.pdf" Guid="{99EC715C-9006-4A09-97C8-8E8DF254EA96}">
+                    <File Id="GPL_Dutch.pdf" KeyPath="yes" Source="$(var.Manuals)\GPL-Dutch.pdf" />
+                </Component>
+                <Component Id="GPL_English.html" Guid="{238A95E2-1BD6-4D00-903E-5A9354E31B34}">
+                    <File Id="GPL_English.html" KeyPath="yes" Source="$(var.Manuals)\GPL-English.html" />
+                </Component>
+                <Component Id="GPL_Francais.pdf" Guid="{6558E820-66AE-4567-90A8-60424F567EE5}">
+                    <File Id="GPL_Francais.pdf" KeyPath="yes" Source="$(var.Manuals)\GPL-Francais.pdf" />
+                </Component>
+                <Component Id="GPL_German.html" Guid="{2A0FB018-980B-4760-91D1-AF69DFFF5DEF}">
+                    <File Id="GPL_German.html" KeyPath="yes" Source="$(var.Manuals)\GPL-German.html" />
+                </Component>
+                <Component Id="GPL_Hungarian.html" Guid="{F24D503A-2B00-4DE3-AB5A-76301C432851}">
+                    <File Id="GPL_Hungarian.html" KeyPath="yes" Source="$(var.Manuals)\GPL-Hungarian.html" />
+                </Component>
+                <Component Id="GPL_Italian.html" Guid="{F67AC4B1-B6F3-4D88-BBA6-3D02D39FE7AD}">
+                    <File Id="GPL_Italian.html" KeyPath="yes" Source="$(var.Manuals)\GPL-Italian.html" />
+                </Component>
+                <Component Id="GPL_Japanese.html" Guid="{A05E0EF6-E015-42CB-A93B-AA6ADCFEC453}">
+                    <File Id="GPL_Japanese.html" KeyPath="yes" Source="$(var.Manuals)\GPL-Japanese.html" />
+                </Component>
+                <Component Id="GPL_Russian.pdf" Guid="{67DFFFF9-DD81-4A5D-992C-2D73A071E583}">
+                    <File Id="GPL_Russian.pdf" KeyPath="yes" Source="$(var.Manuals)\GPL-Russian.pdf" />
+                </Component>
+                <Component Id="GPL_Serbian.html" Guid="{5BD9FE31-3AFD-4312-87DF-92FE2F1921A2}">
+                    <File Id="GPL_Serbian.html" KeyPath="yes" Source="$(var.Manuals)\GPL-Serbian.html" />
+                </Component>
+                <Component Id="GPL_Slovak.html" Guid="{B38642B7-46E8-4848-BCCB-4B5A89622664}">
+                    <File Id="GPL_Slovak.html" KeyPath="yes" Source="$(var.Manuals)\GPL-Slovak.html" />
+                </Component>
+                <Component Id="ReadMe1st.txt" Guid="{483A7D6D-22AF-42A8-A4E6-162311F429E9}">
+                    <File Id="ReadMe1st.txt" KeyPath="yes" Source="$(var.Manuals)\ReadMe1st.txt" />
+                </Component>
+                <Component Id="Russian.pdf" Guid="{01256298-FF31-41D0-BDFF-5A06B1A08414}">
+                    <File Id="Russian.pdf" KeyPath="yes" Source="$(var.Manuals)\Russian.pdf" />
+                </Component>
+                <Component Id="Spanish.pdf" Guid="{C6BABE40-561D-4B45-BD5B-5325D42FD836}">
+                    <File Id="Spanish.pdf" KeyPath="yes" Source="$(var.Manuals)\Spanish.pdf" />
+                </Component>
+                <Component Id="Ukrainian.pdf" Guid="{DA929C50-BC1F-4D93-BD21-97D04865F2AF}">
+                    <File Id="Ukrainian.pdf" KeyPath="yes" Source="$(var.Manuals)\Ukrainian.pdf" />
+                </Component>
+                <Component Id="Vietnamese.pdf" Guid="{5732F571-173E-4F8F-BA0B-E9C61BF16E46}" Win64="yes">
+                    <File Id="Vietnamese.pdf" KeyPath="yes" Source="$(var.Manuals)\Vietnamese.pdf" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="Manuals">
+            <ComponentRef Id="English.pdf" />
+            <ComponentRef Id="Francais.pdf" />
+            <ComponentRef Id="GPL_Arabic.pdf" />
+            <ComponentRef Id="GPL_Chinese.html" />
+            <ComponentRef Id="GPL_Czech.html" />
+            <ComponentRef Id="GPL_Danish.txt" />
+            <ComponentRef Id="GPL_Dutch.pdf" />
+            <ComponentRef Id="GPL_English.html" />
+            <ComponentRef Id="GPL_Francais.pdf" />
+            <ComponentRef Id="GPL_German.html" />
+            <ComponentRef Id="GPL_Hungarian.html" />
+            <ComponentRef Id="GPL_Italian.html" />
+            <ComponentRef Id="GPL_Japanese.html" />
+            <ComponentRef Id="GPL_Russian.pdf" />
+            <ComponentRef Id="GPL_Serbian.html" />
+            <ComponentRef Id="GPL_Slovak.html" />
+            <ComponentRef Id="ReadMe1st.txt" />
+            <ComponentRef Id="Russian.pdf" />
+            <ComponentRef Id="Spanish.pdf" />
+            <ComponentRef Id="Ukrainian.pdf" />
+            <ComponentRef Id="Vietnamese.pdf" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

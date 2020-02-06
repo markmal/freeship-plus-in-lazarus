@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="APPLICATIONFOLDER">
+            <Directory Id="Exec" Name="Exec">
+                <Component Id="ADD_MASS.EXE" Guid="{F2B627C4-6758-4D11-9D15-1352A11BC774}">
+                    <File Id="ADD_MASS.EXE" KeyPath="yes" Source="$(var.Exec)\ADD_MASS.EXE" />
+                </Component>
+                <Component Id="BUNKOV.EXE" Guid="{2F938D83-E9C1-490C-8AE8-CB3342AC4034}">
+                    <File Id="BUNKOV.EXE" KeyPath="yes" Source="$(var.Exec)\BUNKOV.EXE" />
+                </Component>
+                <Component Id="CALCPROP.EXE" Guid="{E7BC0C72-1660-4F17-87BD-AF36FD6BB712}">
+                    <File Id="CALCPROP.EXE" KeyPath="yes" Source="$(var.Exec)\CALCPROP.EXE" />
+                </Component>
+                <Component Id="CLEMBLOU.EXE" Guid="{142CBC4E-1A22-4409-9435-CFB7BA24D304}">
+                    <File Id="CLEMBLOU.EXE" KeyPath="yes" Source="$(var.Exec)\CLEMBLOU.EXE" />
+                </Component>
+                <Component Id="CLEMPOUP.EXE" Guid="{7D4D1CC6-24E1-4161-BAB2-56F2CB260135}">
+                    <File Id="CLEMPOUP.EXE" KeyPath="yes" Source="$(var.Exec)\CLEMPOUP.EXE" />
+                </Component>
+                <Component Id="COMPTON.EXE" Guid="{2F7DE7C5-4213-421E-A612-9E5970D82DBA}">
+                    <File Id="COMPTON.EXE" KeyPath="yes" Source="$(var.Exec)\COMPTON.EXE" />
+                </Component>
+                <Component Id="CONF.PRO" Guid="{A26A73D0-0BCF-40BB-B962-7C023D8C8B12}">
+                    <File Id="CONF.PRO" KeyPath="yes" Source="$(var.Exec)\CONF.PRO" />
+                </Component>
+                <Component Id="fppcalc.EXE" Guid="{5EC5B019-478E-4244-96C4-D003303EAF94}">
+                    <File Id="fppcalc.EXE" KeyPath="yes" Source="$(var.Exec)\fppcalc.EXE" />
+                </Component>
+                <Component Id="fungleib.EXE" Guid="{D3E1D711-F805-41F9-BD1F-84EFCEC846AB}">
+                    <File Id="fungleib.EXE" KeyPath="yes" Source="$(var.Exec)\fungleib.EXE" />
+                </Component>
+                <Component Id="HOLLENBH.EXE" Guid="{5776B2C8-7099-42B4-9ABC-A55BA70B8ECC}">
+                    <File Id="HOLLENBH.EXE" KeyPath="yes" Source="$(var.Exec)\HOLLENBH.EXE" />
+                </Component>
+                <Component Id="hship.EXE" Guid="{8C23B62C-A21A-42D9-8BB7-9CBCB106AA45}">
+                    <File Id="hship.EXE" KeyPath="yes" Source="$(var.Exec)\hship.EXE" />
+                </Component>
+                <Component Id="Ishercof.EXE" Guid="{E5567F47-770E-44F3-A76A-45A2EB26BD4B}">
+                    <File Id="Ishercof.EXE" KeyPath="yes" Source="$(var.Exec)\Ishercof.EXE" />
+                </Component>
+                <Component Id="ManeuvPP.EXE" Guid="{EC0E0BEA-3D8E-49EC-B792-AE7E2BFD59E5}">
+                    <File Id="ManeuvPP.EXE" KeyPath="yes" Source="$(var.Exec)\ManeuvPP.EXE" />
+                </Component>
+                <Component Id="OORTMERS.EXE" Guid="{B120D621-4A93-4F00-8770-1F64AB2F2CA0}">
+                    <File Id="OORTMERS.EXE" KeyPath="yes" Source="$(var.Exec)\OORTMERS.EXE" />
+                </Component>
+                <Component Id="PowerPrd.EXE" Guid="{00402769-A028-4F1F-A25A-1DD8032AAAC6}">
+                    <File Id="PowerPrd.EXE" KeyPath="yes" Source="$(var.Exec)\PowerPrd.EXE" />
+                </Component>
+                <Component Id="PROPCALC.EXE" Guid="{76D14272-AAE6-4ADF-AFF6-3D92BC3747E6}">
+                    <File Id="PROPCALC.EXE" KeyPath="yes" Source="$(var.Exec)\PROPCALC.EXE" />
+                </Component>
+                <Component Id="PROPOL.EXE" Guid="{DD792A0E-360F-4B91-A307-015D17116B0C}">
+                    <File Id="PROPOL.EXE" KeyPath="yes" Source="$(var.Exec)\PROPOL.EXE" />
+                </Component>
+                <Component Id="PropPred.EXE" Guid="{F6AABB5B-A0EB-44F2-B231-03CC2251F290}">
+                    <File Id="PropPred.EXE" KeyPath="yes" Source="$(var.Exec)\PropPred.EXE" />
+                </Component>
+                <Component Id="RADOJCIC.EXE" Guid="{8DA02331-562A-4F3B-A017-EEF34583950C}">
+                    <File Id="RADOJCIC.EXE" KeyPath="yes" Source="$(var.Exec)\RADOJCIC.EXE" />
+                </Component>
+                <Component Id="ReadMe1st.txt_2" Guid="{1035E1C1-121C-40C0-BDFD-D27933B68D1E}">
+                    <File Id="ReadMe1st.txt_2" KeyPath="yes" Source="$(var.Exec)\ReadMe1st.txt" />
+                </Component>
+                <Component Id="RESIST.CNF" Guid="{AED1ED8F-3F1A-44D3-BC41-5F5482876B96}">
+                    <File Id="RESIST.CNF" KeyPath="yes" Source="$(var.Exec)\RESIST.CNF" />
+                </Component>
+                <Component Id="RNTSP.EXE" Guid="{2BAA33C5-887C-45CE-9D34-8BB08C3A797D}">
+                    <File Id="RNTSP.EXE" KeyPath="yes" Source="$(var.Exec)\RNTSP.EXE" />
+                </Component>
+                <Component Id="RVRSSHIP.EXE" Guid="{FC0B9F52-7AB2-46BE-86AB-C44D420E490F}">
+                    <File Id="RVRSSHIP.EXE" KeyPath="yes" Source="$(var.Exec)\RVRSSHIP.EXE" />
+                </Component>
+                <Component Id="SeaMargn.EXE" Guid="{46FDA074-3763-4B1A-84FB-997BBAB0CDA9}">
+                    <File Id="SeaMargn.EXE" KeyPath="yes" Source="$(var.Exec)\SeaMargn.EXE" />
+                </Component>
+                <Component Id="UBCRT.EXE" Guid="{01AD479D-D57C-43C3-BCB9-082A4F828EA3}">
+                    <File Id="UBCRT.EXE" KeyPath="yes" Source="$(var.Exec)\UBCRT.EXE" />
+                </Component>
+                <Component Id="WOLFSON.EXE" Guid="{2958594C-B372-43C1-910C-8499CEF2B633}">
+                    <File Id="WOLFSON.EXE" KeyPath="yes" Source="$(var.Exec)\WOLFSON.EXE" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="Exec">
+            <ComponentRef Id="ADD_MASS.EXE" />
+            <ComponentRef Id="BUNKOV.EXE" />
+            <ComponentRef Id="CALCPROP.EXE" />
+            <ComponentRef Id="CLEMBLOU.EXE" />
+            <ComponentRef Id="CLEMPOUP.EXE" />
+            <ComponentRef Id="COMPTON.EXE" />
+            <ComponentRef Id="CONF.PRO" />
+            <ComponentRef Id="fppcalc.EXE" />
+            <ComponentRef Id="fungleib.EXE" />
+            <ComponentRef Id="HOLLENBH.EXE" />
+            <ComponentRef Id="hship.EXE" />
+            <ComponentRef Id="Ishercof.EXE" />
+            <ComponentRef Id="ManeuvPP.EXE" />
+            <ComponentRef Id="OORTMERS.EXE" />
+            <ComponentRef Id="PowerPrd.EXE" />
+            <ComponentRef Id="PROPCALC.EXE" />
+            <ComponentRef Id="PROPOL.EXE" />
+            <ComponentRef Id="PropPred.EXE" />
+            <ComponentRef Id="RADOJCIC.EXE" />
+            <ComponentRef Id="ReadMe1st.txt_2" />
+            <ComponentRef Id="RESIST.CNF" />
+            <ComponentRef Id="RNTSP.EXE" />
+            <ComponentRef Id="RVRSSHIP.EXE" />
+            <ComponentRef Id="SeaMargn.EXE" />
+            <ComponentRef Id="UBCRT.EXE" />
+            <ComponentRef Id="WOLFSON.EXE" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

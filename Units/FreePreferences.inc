@@ -1,40 +1,56 @@
 {---------------------------------------------------------------------------------------------------}
 {                                       TFreePreferences                                            }
-
 {   Container class for all program settings                                                        }
 {---------------------------------------------------------------------------------------------------}
 { Due to migration into multiplatform environment config files and directories will be stored
 in diffrent locations for different config areas.
+
+  For per-machine and per-user installation in Linux all pathes are predefined. See below.
+
+  Per-machine installation in Windows is done into so called FreeShipHome
+  that by default is CIDL_PROGRAM_FILES\FreeShip
+
+  Per-user installation in Windows is done into so called FreeShipHome
+  that is always CIDL_LOCAL_APPDATA\Programs\FreeShip
+
+  ref: https://docs.microsoft.com/en-us/windows/win32/msi/single-package-authoring
+
   Global Config: the default config for all users. Users have read-only privileges.
     In Linux: /etc/FreeShip/FreeShip.ini
-    In Windows: C:\Documents and Settings\All Users\Application Data\FreeShip\FreeShip.ini
+    In Windows: [FreeShipHome]\FreeShip.ini
+
+  Because per-machine installation in Windows can be other than CIDL_PROGRAM_FILES
+  Global Config is found from the app start location.
 
   User Config: config for current user. User have full privileges.
     In Linux: $HOME/.config/FreeShip/FreeShip.ini
-    In Windows: C:\Documents and Settings\user\Local Settings\Application Data\FreeShip\FreeShip.ini
+    In Windows: [FreeShipHome]\FreeShip.ini
+
+  First is loaded Global Config, then User Config that may override all or some settings.
+  Global and User config is same file for per-User installation.
 
   Executables:
     In Linux: /usr/local/bin/FreeShip
-    In Windows: C:\Program Files\FreeShip\FreeShip.exe
+    In Windows: [FreeShipHome]\FreeShip.exe
 
   External Executables:
     In Linux: /usr/local/bin/FreeShip/Exec/*
-    In Windows: C:\Program Files\FreeShip\Exec\*.exe
+    In Windows: [FreeShipHome]\Exec\*.exe
 
-  All data and resource files (such as Languages, Manuals) can be stored globally or locally
+  All data and resource files (such as Languages, Manuals) can be stored globally
+  and locally if you want customization
   Globally:
     In Linux: /usr/share/FreeShip/
-    In Windows: defined by CSIDL_COMMON_APPDATA C:\Users\Public\Application Data\FreeShip\FreeShip.exe
+    In Windows: defined by [FreeShipHome]\
 
   Locally:
     In Linux: $HOME/FreeShip/
-    In Windows: defined by CSIDL_APPDATA C:\Users\user\Application Data\FreeShip\
-    CSIDL_APPDATA
+    In Windows: defined by [FreeShipHome]\
 
   Note: Paths from Config have piority over default paths.
   Default Local config and data paths have piority over global ones.
 
-  Application defines paths following way:
+  Application defines default paths following way:
   1. Try to get from local config, if exists
   2. Try to get from global config, if exists
   3. Try to get from default local location, if exists
@@ -49,7 +65,7 @@ begin
     Result := FExportDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + DirectorySeparator+'Export';
+    Result := self.getUserDataDirectory + DirectorySeparator+'Export';
 end;{TFreePreferences.FGetExportDirectory}
 
 function TFreePreferences.FGetImportDirectory: string;
@@ -58,7 +74,7 @@ begin
     Result := FImportDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + DirectorySeparator+'Import';
+    Result := self.getUserDataDirectory + DirectorySeparator+'Import';
 end;{TFreePreferences.FGetImportDirectory}
 
 function TFreePreferences.FGetGlobalImportDirectory: string;
@@ -76,7 +92,7 @@ begin
   if DirectoryExistsUTF8(FLastDirectory) then
     Result := FLastDirectory
   else
-    Result := self.getUserAppDataDirectory + DirectorySeparator+'Ships';
+    Result := self.getUserDataDirectory + DirectorySeparator+'Ships';
 end;{TFreePreferences.FGetOpenDirectory}
 
 function TFreePreferences.FGetOpenDirectory: string;
@@ -85,7 +101,7 @@ begin
     Result := FOpenDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + DirectorySeparator+'Ships';
+    Result := self.getUserDataDirectory + DirectorySeparator+'Ships';
 end;{TFreePreferences.FGetOpenDirectory}
 
 procedure TFreePreferences.FSetOpenDirectory(val: string);
@@ -114,7 +130,7 @@ begin
     Result := FSaveDirectory
   //else Result:=ExtractFilePath(Application.ExeName);
   else
-    Result := self.getUserAppDataDirectory + DirectorySeparator+'Ships';
+    Result := self.getUserDataDirectory + DirectorySeparator+'Ships';
 end;{TFreePreferences.FGetSaveDirectory}
 
 function TFreePreferences.FGetInitDirectory: string;
@@ -363,11 +379,16 @@ function TFreePreferences.getGlobalConfigDirectory: string;
 var
   D: string;
 begin
-  D := ExcludeTrailingPathDelimiter(GetAppConfigDir(True));
-  if DirectoryExistsUTF8(D) then
-    Result := D
-  else
-    ExtractFilePath(Application.Exename); //deprecated. for old Win app compatibility
+  {$ifdef UNIX}
+  Result := '/etc/FreeShip';
+  if DirectoryExists(Result) then exit;
+  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
+  if DirectoryExists(Result) then exit;
+  Result := ExtractFilePath(Application.Exename);
+  {$endif}
+  {$ifdef Windows}
+  result := ExcludeTrailingPathDelimiter(ExtractFilePath(Application.Exename));
+  {$endif}
 end;
 
 
@@ -387,26 +408,50 @@ begin
   if DirectoryExists(Result) then exit;
   Result := ExtractFilePath(Application.Exename);
   {$endif}
+  {$ifdef Windows}
+  //Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES) + 'FreeShip';
+  //if DirectoryExists(Result) then exit;
+  Result := ExcludeTrailingPathDelimiter(ExtractFilePath(Application.Exename));
+  {$endif}
+end;
+
+function TFreePreferences.getUserDataDirectory: string;
+begin
+  {$ifdef UNIX}
+  //according to /etc/xdg/user-dirs.defaults
+  Result := SysUtils.GetEnvironmentVariable('HOME') + '/Documents/FreeShip';
+  {$endif}
 
   {$ifdef Windows}
-  Result := SysUtils.GetEnvironmentVariable('ALLUSERSPROFILE') + '\Application Data\FreeShip';
-  if DirectoryExists(Result) then exit;
-  Result := SysUtils.GetEnvironmentVariable('USERPROFILE')+'\FreeShip';
-  if DirectoryExists(Result) then exit;
-  Result := ExtractFilePath(Application.Exename);
+  Result := windirs.GetWindowsSpecialDir(CSIDL_PERSONAL) + 'FreeShip';
   {$endif}
 end;
 
 function TFreePreferences.getUserAppDataDirectory: string;
 begin
   {$ifdef UNIX}
-  Result := SysUtils.GetEnvironmentVariable('HOME') + DirectorySeparator+'FreeShip';
-  {$else}
-    {$ifdef Windows}
-  Result := SysUtils.GetEnvironmentVariable('APPDATA') + DirectorySeparator+'FreeShip';
-    {$endif}
+  Result := SysUtils.GetEnvironmentVariable('HOME') + +'/FreeShip';
+  {$endif}
+
+  {$ifdef Windows}
+  Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA) + 'FreeShip';
   {$endif}
 end;
+
+
+function TFreePreferences.getTempDirectory: string;
+begin
+  {$ifdef UNIX}
+  Result := SysUtils.GetEnvironmentVariable('TEMP') + '/FreeShip';
+  {$endif}
+
+  {$ifdef Windows}
+  Result := SysUtils.GetEnvironmentVariable('TEMP') + '\FreeShip';
+  if Result = '' then
+     Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'Temp\FreeShip';
+  {$endif}
+end;
+
 
 procedure TFreePreferences.LoadFromDta(Filename: string);
 var
@@ -1048,20 +1093,16 @@ var
 begin
   FUserConfigDirectory := getUserConfigDirectory;
   FGlobalConfigDirectory := getGlobalConfigDirectory;
+  FUserDataDirectory := getUserDataDirectory;
   FUserAppDataDirectory := getUserAppDataDirectory;
   FGlobalAppDataDirectory := getGlobalAppDataDirectory;
+  FTempDirectory := getTempDirectory;
 
-  FOpenDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');
-  {FSaveDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Ships', FUserAppDataDirectory + DS + 'Ships');}
-  FSaveDirectory := FUserAppDataDirectory + DS + 'Ships';
-  {FImportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Import', FUserAppDataDirectory + DS + 'Import');}
-  FImportDirectory := FUserAppDataDirectory + DS + 'Import';
-  {FExportDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Export', FUserAppDataDirectory + DS + 'Export');}
-  FExportDirectory := FUserAppDataDirectory + DS + 'Export';
+  FOpenDirectory := FUserDataDirectory + DS + 'Ships';
+  FSaveDirectory := FUserDataDirectory + DS + 'Ships';
+  FImportDirectory := FUserDataDirectory + DS + 'Import';
+  FExportDirectory := FUserDataDirectory + DS + 'Export';
+
   FLanguagesDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Languages', FUserAppDataDirectory + DS + 'Languages');
   FExecDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
@@ -1070,7 +1111,7 @@ begin
     DS + 'Manuals', FUserAppDataDirectory + DS + 'Manuals');
   {FTempDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Temp', FUserAppDataDirectory + DS + 'Temp');}
-  FTempDirectory := FUserAppDataDirectory + DS + 'Temp';
+  //FTempDirectory := FUserAppDataDirectory + DS + 'Temp';
 
   FGlobalOpenDirectory:=FGlobalAppDataDirectory + DS + 'Ships';
   FGlobalImportDirectory:=FGlobalAppDataDirectory + DS + 'Import';
@@ -1100,6 +1141,7 @@ begin
   FGlobalAppDataDirectory := self.getGlobalAppDataDirectory;
   FUserConfigDirectory := self.getUserConfigDirectory;
   FUserAppDataDirectory := self.getUserAppDataDirectory;
+  FUserDataDirectory := self.getUserDataDirectory;
 
   GlobalConfigFileName := FGlobalConfigDirectory + DirectorySeparator+'FreeShip.ini';
   UserConfigFileName := FUserConfigDirectory + DirectorySeparator+'FreeShip.ini';

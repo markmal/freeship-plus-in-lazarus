@@ -179,7 +179,7 @@ begin
    begin
      if (not DirectoryExistsUTF8(ManualsDirectory))
      or (not DirectoryExistsUTF8(ToolIconDirectory))
-     or (not DirectoryExistsUTF8(ExecDirectory))
+     //or (not DirectoryExistsUTF8(ExecDirectory))
      or (not DirectoryExistsUTF8(GlobalOpenDirectory))
      or (not DirectoryExistsUTF8(GlobalImportDirectory))
      //or True
@@ -189,7 +189,7 @@ begin
         logger.Error('GlobalImportDirectory: '+GlobalImportDirectory);
         logger.Error('ManualsDirectory: '+ManualsDirectory);
         logger.Error('ToolIconDirectory: '+ToolIconDirectory);
-        logger.Error('ExecDirectory: '+ExecDirectory);
+        //logger.Error('ExecDirectory: '+ExecDirectory);
         MessageDlg('Warning', InstallMeMessage, mtWarning,[mbClose],0)
        end;
    end;

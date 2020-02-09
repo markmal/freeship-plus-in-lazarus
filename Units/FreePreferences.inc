@@ -430,7 +430,7 @@ end;
 function TFreePreferences.getUserAppDataDirectory: string;
 begin
   {$ifdef UNIX}
-  Result := SysUtils.GetEnvironmentVariable('HOME') + +'/FreeShip';
+  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
   {$endif}
 
   {$ifdef Windows}

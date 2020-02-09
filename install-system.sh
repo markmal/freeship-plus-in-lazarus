@@ -29,9 +29,8 @@ cp -r Manuals ${FS_APP}/
 cp -r Ships ${FS_APP}/
 cp -r Themes ${FS_APP}/
 cp -r install ${FS_APP}/
-cp "GNU General Public License (GPL).txt" ${FS_APP}/
 
-for F in Whatsnew.txt uninstall-system.sh install-HOWTO.txt copyright
+for F in uninstall-system.sh install-HOWTO.txt copyright COPYING
 do
  cp $F ${FS_APP}/
 done
@@ -76,7 +75,6 @@ else
  echo "Warning: Icons not installed. xdg-icon-resource not found."
 fi
 
-
 if [ -x "`which update-desktop-database 2>/dev/null`" ]; then
     echo "  Update Desktop database"
     update-desktop-database /usr/share/applications
@@ -105,6 +103,6 @@ echo "Done"
 echo "FreeShip is installed into $FS_APP"
 echo "  to uninstall enter into $FS_APP and execute uninstall-system.sh"
 
-if ldd FreeShip|grep "libQt4Pas\.so\.5.*not found" >/dev/null
-then echo "Warning! Free Pascal Qt4 Binding is not installed. Install package libqt4pas5"
-fi
+#if ldd FreeShip|grep "libQt4Pas\.so\.5.*not found" >/dev/null
+#then echo "Warning! Free Pascal Qt4 Binding is not installed. Install package libqt4pas5"
+#fi

@@ -115,7 +115,7 @@ begin
   for p:=1 to ParamCount do
   begin
     S := ParamStr(p);
-    if S = '--nosplash' then ShowSplash:=False
+    if S = '--nosplash-I-ACCEPT-GPLv3' then ShowSplash:=False
     else if S = '--debug' then InDebugger:=True
     else if S = '--log-info' then Logger.LogLevel:=LOG_INFO
     else if S = '--log-error' then Logger.LogLevel:=LOG_ERROR

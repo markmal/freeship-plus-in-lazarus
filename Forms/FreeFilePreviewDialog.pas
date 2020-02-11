@@ -484,6 +484,7 @@ end;
 
 procedure TFreeFilePreviewDialog.setListHidden(val:boolean);
   var ottv,otlv: TObjectTypes;
+    P:string;
 begin
   if FListHidden = val then exit;
   FListHidden := val;
@@ -883,6 +884,7 @@ begin
   FListBox1ControlledByKeys:=false;
 
   ShellTreeView.PopulateWithbaseFiles();
+  ShellTreeView.FileSortType:=fstAlphabet; //, fstFoldersFirst);
 
   //ShellListView.AutoWidthLastColumn:=false;
   ShellListView.SortColumn := -1;
@@ -1207,7 +1209,7 @@ end;
 
 
 procedure TFreeFilePreviewDialog.ChangeDir(dir:string);
-var curPath: String;
+var curPath, nodePath: String;
 begin
   if DirPathExists(dir) then
      begin
@@ -1233,6 +1235,17 @@ begin
 
      //ShellListView.Root := dir;
      ShellTreeView.Path := dir;
+     {If there is hidden dir in path, the ShellTreeView.Path will be
+      the parent of a hidden dir. It will be selected.
+      The node needs to be collapsed and Path re-assigned }
+     if ShellTreeView.Path <> dir then
+     begin
+       ShellTreeView.Selected.Collapse(false);
+       ShellTreeView.Path := dir;
+     end;
+
+     //if otHidden in ShellTreeView.ObjectTypes
+     //  then SpeedButtonViewListHidden.Down:=true
 
      ShellListView.Cursor := crDefault;
      Self.Cursor := crDefault;

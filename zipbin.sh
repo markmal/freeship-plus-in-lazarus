@@ -12,7 +12,7 @@ case ${OSTYPE} in
  linux-gnu )
    versinfo=versinfo
    FreeShip=FreeShip
-   INST_SCRIPTS="install-system.sh uninstall-system.sh uninstall-user.sh install-user.sh"
+   INST_SCRIPTS="install-FreeShip.sh uninstall-FreeShip.sh"
    MISCFILES=""
    ARCH=$(file -b ${FreeShip}|cut -f5 -d' '|sed 's/,//')
    OS=linux

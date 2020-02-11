@@ -86,12 +86,9 @@ msgstr ""
 #: freeship.installmemessage
 msgid ""
 "You run FreeShip from installation directory.\n"
-" FreeShip is not installed.\n"
-" It will work but it may experince issues with finding various files and directories.\n"
-" Please exit and install FreeShip.\n"
-" There are two installation options:\n"
-" 1 - run install-user.sh to install it into your user home\n"
-" 2 - run install-system.sh to install it into system. It requires Administrator privileges.\n"
+"FreeShip is not installed.\n"
+"It will work but it may experince issues with finding various files and directories.\n"
+"Please exit and run install-FreeShip.sh\n"
 msgstr ""
 
 #: freeshipunit.filedialogfilterall
@@ -262,7 +259,7 @@ msgid "http://www.hydronship.net"
 msgstr ""
 
 #: tfreeaboutdlg.labelfreeshipprojectlink.caption
-msgid "https://code.google.com/p/freeship-plus-in-lazarus/"
+msgid "https://github.com/markmal/freeship-plus-in-lazarus"
 msgstr ""
 
 #: tfreeaboutdlg.labelproductversion.caption
@@ -282,6 +279,10 @@ msgstr ""
 #: tfreeaboutdlg.panel2.caption
 msgctxt "tfreeaboutdlg.panel2.caption"
 msgid "Panel2"
+msgstr ""
+
+#: tfreeaboutdlg.panel5.caption
+msgid "Panel5"
 msgstr ""
 
 #: tfreeaboutdlg.stringgridcopyrights.columns[0].title.caption
@@ -8048,11 +8049,23 @@ msgid "FREE!ship Plus"
 msgstr ""
 
 #: tfreesplashwindow.checkbox1.caption
-msgid "I agree"
+msgid "I accept"
+msgstr ""
+
+#: tfreesplashwindow.checkbox1.hint
+msgid "I accept License terms and conditions"
 msgstr ""
 
 #: tfreesplashwindow.label2.caption
 msgid "Copyright © 2007-2013,Timoshenko V.F."
+msgstr ""
+
+#: tfreesplashwindow.label3.caption
+msgid "Copyright © 2015+, Mark Malakanov"
+msgstr ""
+
+#: tfreesplashwindow.label4.caption
+msgid "Please accept License terms and conditions"
 msgstr ""
 
 #: tfreesplashwindow.labelappname.caption
@@ -8083,20 +8096,8 @@ msgstr ""
 msgid "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
 msgstr ""
 
-#: tfreesplashwindow.labelwarranty1.caption
-msgid "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND."
-msgstr ""
-
 #: tfreesplashwindow._label2.caption
 msgid "Copyright © 2005-2006, M v. Engeland"
-msgstr ""
-
-#: tfreesplashwindow._label4.caption
-msgid "vftim@rambler.ru"
-msgstr ""
-
-#: tfreesplashwindow._label5.caption
-msgid "Hydronship.net"
 msgstr ""
 
 #: tfreesplashwindow._label8.caption

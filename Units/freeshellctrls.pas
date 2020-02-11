@@ -1450,12 +1450,19 @@ begin
   debugln(['RelPath = ',RelPath]);
   {$endif}
 
+  if not (otHidden in FObjectTypes) and ContainsHiddenDir(AValue) then
+  ///  Raise EInvalidPath.CreateFmt(sShellCtrlsInvalidPath,[AValue, FQRootPath]);
+    include(FObjectTypes, otHidden);
+
   if (RelPath = '') then
   begin
     {$ifdef debug_shellctrls}
     debugln('Root selected');
     {$endif}
-    Node := Items.GetFirstVisibleNode;
+    //Node := Items.GetFirstVisibleNode;
+    if not(otHidden in FObjectTypes) // MM
+    then Node := Items.GetFirstVisibleNode
+    else Node := Items.GetFirstNode;
     if Assigned(Node) then
     begin
       Node.Expanded := True;
@@ -1463,10 +1470,6 @@ begin
     end;
     Exit;
   end;
-
-  if not (otHidden in FObjectTypes) and ContainsHiddenDir(AValue) then
-  ///  Raise EInvalidPath.CreateFmt(sShellCtrlsInvalidPath,[AValue, FQRootPath]);
-      include(FObjectTypes, otHidden);
 
   sl := TStringList.Create;
   sl.Delimiter := PathDelim;
@@ -1489,7 +1492,10 @@ begin
 
   BeginUpdate;
   try
-    Node := Items.GetFirstVisibleNode;
+    if not(otHidden in FObjectTypes) // MM
+    then Node := Items.GetFirstVisibleNode
+    else Node := Items.GetFirstNode;
+
     {$ifdef debug_shellctrls}
     if assigned(node) then debugln(['GetFirstVisibleNode = ',GetAdjustedNodeText(Node)]);
     {$endif}
@@ -1499,7 +1505,9 @@ begin
       {$ifdef debug_shellctrls}
       debugln('Root node doesn''t have Siblings');
       {$endif}
-      Node := Node.GetFirstVisibleChild;
+      if not(otHidden in FObjectTypes) // MM
+      then Node := Node.GetFirstVisibleChild
+      else Node := Node.GetFirstChild;
       {$ifdef debug_shellctrls}
       debugln(['Node = ',GetAdjustedNodeText(Node)]);
       {$endif}
@@ -1527,7 +1535,9 @@ begin
               {$ifdef debug_shellctrls}
               DbgOut(['  i=',i,' "',GetAdjustedNodeText(Node),' <> ',sl[i],' -> GetNextVisibleSibling -> ']);
               {$endif}
-              Node := Node.GetNextVisibleSibling;
+              if not(otHidden in FObjectTypes) // MM
+              then Node := Node.GetNextVisibleSibling
+              else Node := Node.GetNextSibling;
               {$ifdef debug_shellctrls}
               if Node <> nil then DbgOut(['GetAdjustedNodeText = ',GetAdjustedNodeText(Node)])
               else DbgOut('Node = NIL');
@@ -1538,7 +1548,9 @@ begin
       begin
         Node.Expanded := True;
         Node.Selected := True;
-        Node := Node.GetFirstVisibleChild;
+        if not(otHidden in FObjectTypes) then // MM
+        Node := Node.GetFirstVisibleChild
+        else Node := Node.GetFirstChild
       end
       else
         Break;

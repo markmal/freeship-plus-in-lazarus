@@ -44,8 +44,6 @@ const
  TARGET_OS:string={$I %FPCTARGETOS%};
  FPCVERSION:string={$I %FPCVERSION%};
 
- FREESHIP_MAJOR_VERSION='4.5';   //Major version
- FREESHIP_VERSION='4.5.2.0';   //Major full version
 
  //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
  GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits
@@ -58,6 +56,10 @@ type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv1
 const CurrentVersion      = fv430;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
       ReleasedDate        = {$I %DATE%};
+
+var
+FREESHIP_MAJOR_VERSION : string ='4.6';   //Major version
+FREESHIP_VERSION : string ='4.6.1.0';   //Major full version
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;
@@ -193,8 +195,12 @@ BEGIN
       TRY
         vr.SetCustomRawDataStream(Stream);
         fi:= vr.FixedInfo;
+
         RESULT := IntToStr(fi.FileVersion[0]) + '.' + IntToStr(fi.FileVersion[1]) +
                '.' + IntToStr(fi.FileVersion[2]) + '.' + IntToStr(fi.FileVersion[3]);
+        FREESHIP_MAJOR_VERSION := IntToStr(fi.FileVersion[0]) + '.' + IntToStr(fi.FileVersion[1]);
+        FREESHIP_VERSION := FREESHIP_MAJOR_VERSION + '.' + IntToStr(fi.FileVersion[2]);
+
         vr.SetCustomRawDataStream(nil)
       FINALLY
         vr.Free

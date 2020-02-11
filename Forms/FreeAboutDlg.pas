@@ -62,17 +62,21 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
+    Panel5: TPanel;
     StringGridCopyrights: TStringGrid;
     StringGridVersionInfo: TStringGrid;
     StringGridCredits: TStringGrid;
     procedure FormCreate(Sender: TObject);
     procedure LabelFreeShipHomeLinkClick(Sender: TObject);
     procedure LabelFreeShipProjectLinkClick(Sender: TObject);
+    procedure StringGridCopyrightsClick(Sender: TObject);
+    procedure StringGridCopyrightsSelectCell(Sender: TObject; aCol,
+      aRow: Integer; var CanSelect: Boolean);
   private
     { private declarations }
     procedure AddVersionInfo(sName,sValue:String);
     procedure AddCredits(sName,sNote:String);
-    procedure AddCopyrights(sLine:String);
+    procedure AddCopyrights(sLine,sContact:String);
   public
     { public declarations }
   end;
@@ -106,12 +110,13 @@ begin
    end;
 end;
 
-procedure TFreeAboutDlg.AddCopyrights(sLine:String);
+procedure TFreeAboutDlg.AddCopyrights(sLine,sContact:String);
 begin
    with StringGridCopyrights do
    begin
    RowCount := RowCount + 1;
    Cells[0,RowCount-1]:=sLine;
+   Cells[1,RowCount-1]:=sContact;
    end;
 end;
 
@@ -138,9 +143,9 @@ begin
   AddCredits('New scalable icons','Tom (https://github.com/tvld), from 2015');
   AddCredits('Improvements, fixing issues','Sönke J. Peters, from 2015');
 
-  AddCopyrights('Copyright © 2005, by Martijn van Engeland');
-  AddCopyrights('Copyright © 2007-2012, by Timoshenko Victor F.');
-  AddCopyrights('Copyright © 2015, by Mark Malakanov');
+  AddCopyrights('Copyright © 2005, by Martijn van Engeland','');
+  AddCopyrights('Copyright © 2007-2012, by Timoshenko Victor F.','vftim@rambler.ru');
+  AddCopyrights('Copyright © 2015, by Mark Malakanov','markmal@github.com');
 
 end;
 
@@ -152,6 +157,26 @@ end;
 procedure TFreeAboutDlg.LabelFreeShipProjectLinkClick(Sender: TObject);
 begin
   OpenURL(LabelFreeShipProjectLink.Caption);
+end;
+
+var SelectedCellColumn,SelectedCellRow: integer;
+procedure TFreeAboutDlg.StringGridCopyrightsClick(Sender: TObject);
+var email:string;
+begin
+  if SelectedCellColumn = 1 then
+  begin
+    email:=StringGridCopyrights.Cells[1,SelectedCellRow];
+    if email = 'vftim@rambler.ru' then
+      OpenDocument('mailto:'+email+'?subject=FREE!ship+');
+    if email = 'markmal@github.com' then
+      OpenDocument('mailto:'+email+'?subject=FreeShip in Lazarus');
+  end;
+end;
+
+procedure TFreeAboutDlg.StringGridCopyrightsSelectCell(Sender: TObject; aCol,
+  aRow: Integer; var CanSelect: Boolean);
+begin
+  SelectedCellRow:=aRow; SelectedCellColumn:=aCol;
 end;
 
 end.

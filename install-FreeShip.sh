@@ -163,9 +163,10 @@ if [ -d "${FS_HOME}" ]; then
     D=$(date +'%Y-%m-%d_%T')
     (find . -type f) | while read FN; do
       if [ -f "${FS_HOME}/$FN" ]; then
-        S0=$(md5sum "${FS_HOME}/$FN")
-        S1=$(md5sum "$FN")
-        if [ "${S0:0:32}" != "${S1:0:32}" ]; then
+        #S0=$(md5sum "${FS_HOME}/$FN")
+        #S1=$(md5sum "$FN")
+        #if [ "${S0:0:32}" != "${S1:0:32}" ]; then
+        if ! diff -q "${FS_HOME}/$FN" "$FN" &>/dev/null ; then
           B="${FN}~$D"
           echo "    rename '${FS_HOME}/$FN' to '$B'"
           mv "${FS_HOME}/$FN" "${FS_HOME}/$B"

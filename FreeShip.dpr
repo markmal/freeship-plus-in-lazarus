@@ -163,13 +163,9 @@ const INSTSCRIPT_EXT='sh';
 {$endif}
 
 resourcestring InstallMeMessage='You run FreeShip from installation directory.'+#10
-  +' FreeShip is not installed.'+#10
-  +' It will work but it may experince issues with finding various files and directories.'+#10
-  +' Please exit and install FreeShip.'+#10
-  +' There are two installation options:'+#10
-  +' 1 - run install-user.'+INSTSCRIPT_EXT+' to install it into your user home'+#10
-  +' 2 - run install-system.'+INSTSCRIPT_EXT+' to install it into system.'
-  +' It requires Administrator privileges.';
+  +'FreeShip is not installed.'+#10
+  +'It will work but it may experince issues with finding various files and directories.'+#10
+  +'Please exit and run install-FreeShip.sh';
 
 
 procedure checkInstallation;

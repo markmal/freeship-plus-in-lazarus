@@ -824,6 +824,9 @@ type
 
   {   Container class for all program settings                                                        }
   {---------------------------------------------------------------------------------------------------}
+
+  TApplicationScope = (asMachine,asUser);
+
   TFreePreferences = class(TPersistent)
   private
     FOwner: TFreeShip;
@@ -907,6 +910,9 @@ type
     // Max. amount of allowable undo memory in megabytes
     FFbmEncoding: string;
     //encoding that is used to convert national strings from/to FBM files
+    FApplicationScope : TApplicationScope ; // can be 'machine' or 'user'
+
+    procedure detectApplicationScope;
     function getGlobalConfigDirectory: string;
     function getGlobalAppDataDirectory: string; // dir for per-machine install
     function getUserConfigDirectory: string;

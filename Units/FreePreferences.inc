@@ -375,22 +375,53 @@ begin
   t.Free;
 end;
 
-function TFreePreferences.getGlobalConfigDirectory: string;
-var
-  D: string;
+procedure TFreePreferences.detectApplicationScope;
+var appPath:string;
 begin
+  appPath := ExtractFilePath(Application.Exename);
   {$ifdef UNIX}
-  Result := '/etc/FreeShip';
-  if DirectoryExists(Result) then exit;
-  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
-  if DirectoryExists(Result) then exit;
-  Result := ExtractFilePath(Application.Exename);
+  if appPath.StartsWith(GetUserDir)
+  then FApplicationScope := asUser
+  else FApplicationScope := asMachine;
   {$endif}
   {$ifdef Windows}
-  result := ExcludeTrailingPathDelimiter(ExtractFilePath(Application.Exename));
+  if appPath.StartsWith(windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA))
+     or appPath.StartsWith(windirs.GetWindowsSpecialDir(CSIDL_PROFILE))
+  then FApplicationScope := asUser
+  else FApplicationScope := asMachine;
   {$endif}
 end;
 
+function TFreePreferences.getGlobalConfigDirectory: string;
+var
+  D,GACD,LACD,UD,TD: string;
+begin
+  GACD:=GetAppConfigDir(true);
+  LACD:=GetAppConfigDir(false);
+  UD:=GetUserDir;
+  TD:=GetTempDir;
+  {$ifdef UNIX}
+  if FApplicationScope = asUser then
+  begin
+    Result := GetUserDir + '.local/share/FreeShip';
+  end
+  else
+  begin
+    Result := GetAppConfigDir(true);
+  end;
+  {$endif}
+  {$ifdef Windows}
+  if FApplicationScope = asUser then
+  begin
+    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'\FreeShip';
+  end
+  else
+  begin
+    Result := GetAppConfigDir(true);
+    Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES)+'\FreeShip';
+  end;
+  {$endif}
+end;
 
 function TFreePreferences.getUserConfigDirectory: string;
 var
@@ -402,16 +433,24 @@ end;
 function TFreePreferences.getGlobalAppDataDirectory: string;
 begin
   {$ifdef UNIX}
-  Result := '/usr/share/FreeShip';
-  if DirectoryExists(Result) then exit;
-  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
-  if DirectoryExists(Result) then exit;
-  Result := ExtractFilePath(Application.Exename);
+  if FApplicationScope = asUser then
+  begin
+    Result := GetUserDir + '.local/share/FreeShip';
+  end
+  else
+  begin
+    Result := '/usr/share/FreeShip';
+  end;
   {$endif}
   {$ifdef Windows}
-  //Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES) + 'FreeShip';
-  //if DirectoryExists(Result) then exit;
-  Result := ExcludeTrailingPathDelimiter(ExtractFilePath(Application.Exename));
+  if FApplicationScope = asUser then
+  begin
+    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'\FreeShip';
+  end
+  else
+  begin
+    Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES)+'\FreeShip';
+  end;
   {$endif}
 end;
 
@@ -429,22 +468,27 @@ end;
 
 function TFreePreferences.getUserAppDataDirectory: string;
 begin
-  {$ifdef UNIX}
-  Result := SysUtils.GetEnvironmentVariable('HOME') + '/FreeShip';
-  {$endif}
-
-  {$ifdef Windows}
-  Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA) + 'FreeShip';
-  {$endif}
+  Result := getGlobalAppDataDirectory;
 end;
 
 
 function TFreePreferences.getTempDirectory: string;
 begin
   {$ifdef UNIX}
-  Result := SysUtils.GetEnvironmentVariable('TEMP') + '/FreeShip';
+  // we will use XDG_RUNTIME_DIR first
+  Result:=GetEnvironmentVariable('XDG_RUNTIME_DIR');
+  if DirectoryExists(Result) then
+     Result := ExcludeTrailingPathDelimiter(Result)+'/FreeShip'
+  else
+  begin
+    Result := GetTempDir(False);
+    if Result = '' then Result:=GetEnvironmentVariable('TMPDIR'); //POSIX
+    if Result = '' then Result:=GetEnvironmentVariable('TEMP');
+    if Result = '' then Result:=GetEnvironmentVariable('TMP');
+    if Result = '' then Result := '/tmp';
+    Result := ExcludeTrailingPathDelimiter(Result)+'/'+GetEnvironmentVariable('USER')+'/FreeShip';
+  end;
   {$endif}
-
   {$ifdef Windows}
   Result := SysUtils.GetEnvironmentVariable('TEMP') + '\FreeShip';
   if Result = '' then
@@ -1066,15 +1110,14 @@ procedure TFreePreferences.setDefaults;
 begin
   FPointSize := 2;
   FLanguage := 'English';
-  FMaxUndoMemory := 20;
-  ResetColors;
-  ResetDirectories;
+  FFbmEncoding := 'cp1252';
+  FMaxUndoMemory := 32;
   FMenuIconSize := 16;
   FToolIconSize := 24;
   FThemeName := 'Default';
   FParentThemeName := '';
-  FFbmEncoding := 'cp1252';
   ResetDirectories;
+  ResetColors;
 end;
 
 procedure TFreePreferences.ResetDirectories;
@@ -1135,13 +1178,13 @@ var
   params: TColorIniFile;
   RecentFileNames: TStrings;
 begin
+  detectApplicationScope;
   setDefaults;
-
-  FGlobalConfigDirectory := self.getGlobalConfigDirectory;
+  {FGlobalConfigDirectory := self.getGlobalConfigDirectory;
   FGlobalAppDataDirectory := self.getGlobalAppDataDirectory;
   FUserConfigDirectory := self.getUserConfigDirectory;
   FUserAppDataDirectory := self.getUserAppDataDirectory;
-  FUserDataDirectory := self.getUserDataDirectory;
+  FUserDataDirectory := self.getUserDataDirectory;}
 
   GlobalConfigFileName := FGlobalConfigDirectory + DirectorySeparator+'FreeShip.ini';
   UserConfigFileName := FUserConfigDirectory + DirectorySeparator+'FreeShip.ini';

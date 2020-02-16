@@ -1,5 +1,0 @@
-E: freeship: unstripped-binary-or-object usr/bin/FreeShip
-W: freeship: hardening-no-relro usr/bin/FreeShip
-W: freeship: package-contains-timestamped-gzip usr/share/FreeShip/install/FreeShip.1.gz
-W: freeship: package-contains-timestamped-gzip usr/share/doc/freeship/changelog.gz
-W: freeship: package-contains-timestamped-gzip usr/share/man/man1/FreeShip.1.gz

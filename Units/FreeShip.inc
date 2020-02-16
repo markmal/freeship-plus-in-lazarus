@@ -825,7 +825,8 @@ begin
   FPrecision := fpLow;
   FFileVersion := CurrentVersion;
   FFileChanged := False;
-  FModelLoaded := False;
+  FModelIsLoaded := False;
+  FFileIsReadOnly := False;
   FSurface.Clear;
   FFilename := Userstring(179);
   FVisibility.Clear;
@@ -2072,7 +2073,7 @@ begin
     else
       MessageDlg(Userstring(189), mtError, [mbOK], 0);
     FileChanged := False;
-    ModelLoaded := True;
+    ModelIsLoaded := True;
   except
     Surface.Clear;
   end;

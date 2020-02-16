@@ -955,10 +955,10 @@ begin
 if FFileName = '' then
   LoadMostRecentFile;
 
-if (FFileName = '') and not FreeShip.ModelLoaded then  //default behaviour if no recent file defined
+if (FFileName = '') and not FreeShip.ModelIsLoaded then  //default behaviour if no recent file defined
   NewModelExecute(Self)
 else
-if (FFileName <> '') and not FreeShip.ModelLoaded then
+if (FFileName <> '') and not FreeShip.ModelIsLoaded then
 begin
    // Skip translation
    FileExt := Uppercase(ExtractFileExt(FFileName));
@@ -1240,8 +1240,10 @@ begin
     }
 
    // File menu
-   FileSaveas.Enabled:=(FreeShip.Surface.NumberOfControlPoints>0) or (Freeship.FileChanged) or (Freeship.FilenameSet);
-   FileSave.Enabled:=(FileSaveas.Enabled);// and (Freeship.FilenameSet);
+   FileSaveas.Enabled := (FreeShip.Surface.NumberOfControlPoints>0)
+       or (Freeship.FileChanged) or (Freeship.FilenameSet);
+   FileSave.Enabled:= FileSaveas.Enabled and Freeship.FileChanged
+     and not Freeship.FileIsReadOnly;
 
    ImportMichletWaves1.Enabled:=(MDIChildCount>0) and (Freeship.Surface.NumberOfControlFaces>1);
    ExportFEF.Enabled:=Freeship.Surface.NumberOfControlPoints>0;
@@ -1361,7 +1363,7 @@ begin
    PointCollapse.Enabled:=Freeship.NumberOfSelectedControlPoints>0;
    DeleteEmptyLayers.Enabled:=False;
    for I:=1 to Freeship.NumberOfLayers do
-     if (FreeShip.ModelLoaded) and (FreeShip.Layer[I-1].Count=0) and (FreeShip.NumberOfLayers>0) then
+     if (FreeShip.ModelIsLoaded) and (FreeShip.Layer[I-1].Count=0) and (FreeShip.NumberOfLayers>0) then
        begin
           DeleteEmptyLayers.Enabled:=True;
           break;
@@ -2489,10 +2491,10 @@ end;{TMainForm.DecreaseCurvatureScaleExecute}
 
 procedure TMainForm.FileSaveExecute(Sender: TObject);
 begin
-  if Freeship.FilenameSet then
+  if Freeship.FilenameSet and not Freeship.FileIsReadOnly then
      FreeShip.Edit.File_Save
   else
-      FreeShip.Edit.File_SaveAs;
+     FreeShip.Edit.File_SaveAs;
    UpdateMenu;
 end;{TMainForm.FileSaveExecute}
 

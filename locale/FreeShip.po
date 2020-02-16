@@ -35,11 +35,6 @@ msgstr ""
 msgid "Z Coordinate"
 msgstr ""
 
-#: freefilepreviewdialog.cancelbuttoncaptioncancel
-msgctxt "freefilepreviewdialog.cancelbuttoncaptioncancel"
-msgid "Cancel"
-msgstr ""
-
 #: freefilepreviewdialog.hintdblclicktofitsize
 msgid "DblClick to fit size"
 msgstr ""
@@ -59,6 +54,24 @@ msgctxt "freefilepreviewdialog.okbuttoncaptionsave"
 msgid "Save"
 msgstr ""
 
+#: freefilepreviewdialog.rscancelbuttoncaptioncancel
+msgctxt "freefilepreviewdialog.rscancelbuttoncaptioncancel"
+msgid "Cancel"
+msgstr ""
+
+#: freefilepreviewdialog.rsclicktoedit
+msgid "Click to edit"
+msgstr ""
+
+#: freefilepreviewdialog.rslocation_does_not_exist
+msgid "Location does not exist"
+msgstr ""
+
+#: freefilepreviewdialog.rsunableopenfilemsg
+msgctxt "freefilepreviewdialog.rsunableopenfilemsg"
+msgid "Unable open file \"%s\""
+msgstr ""
+
 #: freefilepreviewdialog.statusfailedtorename
 msgid "Failed to rename \"%s\" to \"%s\""
 msgstr ""
@@ -69,10 +82,6 @@ msgstr ""
 
 #: freefilepreviewdialog.statuswrongname
 msgid "Wrong name \"%s\""
-msgstr ""
-
-#: freefilepreviewdialog.unableopenfilemsg
-msgid "Unable open file \"%s\""
 msgstr ""
 
 #: freepropeller_task5dlg.rsnoresultfile
@@ -139,6 +148,26 @@ msgstr ""
 
 #: freeshipunit.rspointmove
 msgid "point move"
+msgstr ""
+
+#: freeshipunit.rssavefile
+msgid "Save file"
+msgstr ""
+
+#: freeshipunit.rssavewithhigherfileversion
+msgid "The current fileversion is version %s.%sDo you want to save the file as version %s ?"
+msgstr ""
+
+#: freeshipunit.rsunablecreatebackupfile
+msgid "Unable to create backup file"
+msgstr ""
+
+#: freeshipunit.rsunabledeletebackupfile
+msgid "Unable to delete backup file"
+msgstr ""
+
+#: freeshipunit.rsunabletosavefile
+msgid "Unable to save file"
 msgstr ""
 
 #: freesplashwndw.rsbuild

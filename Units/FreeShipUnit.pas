@@ -579,7 +579,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeEdit = class
   private
-    FOwner: TFreeShip;
+    FFreeShip: TFreeShip;
     FRecentFiles: TStringList;
 
     PreviewFrm: TForm;
@@ -595,7 +595,7 @@ type
     // Delete the backgrundimage associated with this view
     procedure BackgroundImage_Open(Viewport: TFreeViewport);
     // browse for and open a backgroundimage
-    constructor Create(Owner: TFreeShip);
+    constructor Create(FreeShip: TFreeShip);
     function CreateRedoObject: TFreeUndoObject;
     // Creates redo data before an undo is done
     function CreateUndoObject(UndoText: string; Accept: boolean): TFreeUndoObject;
@@ -685,9 +685,9 @@ type
     // Load a FREE!ship file by showing an opendialog
     procedure File_Load(filename: string); reintroduce; overload;
     // Loads the given filename quietly
-    procedure File_Save;
+    function File_Save:boolean;
     // save as FREE!ship file without prompting for a filename (must already been set)
-    procedure File_SaveAs;
+    function File_SaveAs:boolean;
     // Ask for filename and save as FREE!ship file
     procedure Flowline_Add(Source: T2DCoordinate; View: TFreeviewType);
     procedure Geometry_AddCylinder;
@@ -809,7 +809,7 @@ type
     procedure Undo_ShowHistory; //Show the undo history
     procedure OnFilePreview(Sender: TObject; filename: string);
     procedure OnFaceRebuilt (Sender: TObject; current:integer; total:integer);
-    property Owner: TFreeShip read FOwner write FOwner;
+    property FreeShip: TFreeShip read FFreeShip write FFreeShip;
     property ProgressBar:TProgressBar read FProgressBar write FProgressBar;
     property RecentFiles: TStringList read FRecentFiles write FRecentFiles;
     property RecentFile[index: integer]: string read FGetRecentFile;
@@ -1207,10 +1207,9 @@ type
     FOnUpdateGeometryInfo: TNotifyEvent;
     // This event is raised whenever items are added or deleted from the surface
     FFreeLinesplanFrme: TFrame;
-    FFilenameSet: boolean;
-    // Flag to determine if the filename already has been set
-    FModelLoaded: boolean;
-    // Flag to determine if the model is created new or loaded.
+    FFilenameSet: boolean; // Flag to determine if the filename already has been set
+    FModelIsLoaded: boolean; // Flag to determine if the model is created new or loaded.
+    FFileIsReadOnly: boolean;
     // The folowing private variables are for moving controlpoints with the mouse
     FCurrentlyMoving: boolean;
     FPointHasBeenMoved: boolean;
@@ -1389,7 +1388,8 @@ type
     // Containerclass for all editing commands
     property EditMode: TFreeEditMode read FEditMode write FSetEditMode;
     property FilenameSet: boolean read FFilenameSet write FFilenameSet;
-    property ModelLoaded: boolean read FModelLoaded write FModelLoaded;
+    property ModelIsLoaded: boolean read FModelIsLoaded write FModelIsLoaded;
+    property FileIsReadOnly: boolean read FFileIsReadOnly write FFileIsReadOnly;
     property Flowline[index: integer]: TFreeFlowline read FGetFlowline;
     property HydrostaticCalculation[index: integer]: TFreeHydrostaticCalc
       read FGetHydrostaticCalculation;

@@ -18,6 +18,8 @@
       <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
+        <TextName Value="FreeShip"/>
+        <TextDesc Value="FreeShip - free program for ship development"/>
       </XPManifest>
       <Icon Value="0"/>
     </General>
@@ -31,7 +33,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="261"/>
+      <BuildNr Value="262"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv2" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -267,7 +269,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="119">
+    <Units Count="118">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -286,7 +288,7 @@
       <Unit3>
         <Filename Value="Forms/freehullformwindow_panel.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FreeHullForm"/>
+        <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit3>
@@ -896,29 +898,25 @@
         <IsPartOfProject Value="True"/>
       </Unit112>
       <Unit113>
-        <Filename Value="Units/freedesktopHelper.pas"/>
+        <Filename Value="Units/FileIconGtk3.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit113>
       <Unit114>
-        <Filename Value="Units/FileIconGtk3.pas"/>
+        <Filename Value="Units/FileIconGtk.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit114>
       <Unit115>
-        <Filename Value="Units/FileIconGtk.pas"/>
+        <Filename Value="Units/FileIcon.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit115>
       <Unit116>
-        <Filename Value="Units/FileIcon.pas"/>
+        <Filename Value="Units/FileIconWin.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit116>
       <Unit117>
-        <Filename Value="Units/FileIconWin.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit117>
-      <Unit118>
         <Filename Value="Units/naca.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit118>
+      </Unit117>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

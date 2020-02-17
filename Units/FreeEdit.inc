@@ -5401,59 +5401,6 @@ begin
   FreeShip.FileChanged := False;
 end;{TFreeEdit.File_Load}
 
-{
-// save as FREE!ship file without prompting for a filename (must already been set)
-procedure TFreeEdit.File_Save;
-var
-  Backup: string;
-  Destination: TFreeFileBuffer;
-  Str, Ext: string;
-  Answer: word;
-begin
-  if not FreeShip.FilenameSet then
-    File_SaveAs;
-  if not FreeShip.FilenameSet then
-    exit;
-
-  if (FreeShip.FileVersion < CurrentVersion) and (not FreeShip.FStopAskingForFileVersion) then
-  begin
-    Str := Userstring(126) + VersionString(FreeShip.FileVersion) + EOL +
-      Userstring(127) + #32 + VersionString(CurrentVersion) + '?';
-    Answer := MessageDlg(Str, mtInformation, [mbYes, mbNo], 0);
-    if Answer = mrYes then
-      FreeShip.FileVersion := CurrentVersion
-    else
-      FreeShip.FStopAskingForFileVersion := True;
-  end;
-
-  FreeShip.FFilenameSet := True;
-  // Check if the file already exists
-  if FileExistsUTF8(FreeShip.Filename) { *Converted from FileExists* } then
-  begin
-    Backup := ChangeFileExt(FreeShip.Filename, '.Bak');
-    // First check for a backup, and delete when present
-    if FileExistsUTF8(Backup) { *Converted from FileExists* } then
-      if not DeleteFileUTF8(Backup) { *Converted from DeleteFile* } then
-        MessageDlg(Userstring(128), mtError, [mbOK], 0);
-    // Then create a backup of the old file
-    if not RenameFileUTF8(FreeShip.Filename, Backup)
-    { *Converted from RenameFile* } then
-      MessageDlg(Userstring(129), mtError, [mbOK], 0);
-  end;
-  Ext := ExtractFileExt(FreeShip.Filename);
-  if Ext = '.fbm' then
-    Destination := TFreeFileBuffer.Create
-  else
-    Destination := TFreeTextBuffer.Create;
-  Destination.Encoding := FreeShip.Preferences.FbmEncoding;
-  FreeShip.SaveProject(Destination);
-  Destination.SaveToFile(FreeShip.Filename);
-  FreeShip.Preferences.LastDirectory := ExtractFilePath(FreeShip.FileName);
-  AddToRecentFiles(FreeShip.FileName);
-  Destination.Destroy;
-end;{TFreeEdit.File_Save}
-}
-
 resourcestring
   rsUnableDeleteBackupFile='Unable to delete backup file';
   rsUnableCreateBackupFile='Unable to create backup file';

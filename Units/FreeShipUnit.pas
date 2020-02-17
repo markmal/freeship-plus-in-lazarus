@@ -1207,10 +1207,10 @@ type
     FOnUpdateGeometryInfo: TNotifyEvent;
     // This event is raised whenever items are added or deleted from the surface
     FFreeLinesplanFrme: TFrame;
-    FFilenameSet: boolean;
-    // Flag to determine if the filename already has been set
-    FModelLoaded: boolean;
-    // Flag to determine if the model is created new or loaded.
+    FFilenameSet: boolean; // Flag to determine if the filename already has been set
+    FModelLoaded: boolean; // Flag to determine if the model is created new or loaded.
+    FModelReadOnly: boolean;
+
     // The folowing private variables are for moving controlpoints with the mouse
     FCurrentlyMoving: boolean;
     FPointHasBeenMoved: boolean;
@@ -1390,6 +1390,7 @@ type
     property EditMode: TFreeEditMode read FEditMode write FSetEditMode;
     property FilenameSet: boolean read FFilenameSet write FFilenameSet;
     property ModelLoaded: boolean read FModelLoaded write FModelLoaded;
+    property ModelReadOnly: boolean read FModelReadOnly write FModelReadOnly;
     property Flowline[index: integer]: TFreeFlowline read FGetFlowline;
     property HydrostaticCalculation[index: integer]: TFreeHydrostaticCalc
       read FGetHydrostaticCalculation;

@@ -413,12 +413,12 @@ begin
   {$ifdef Windows}
   if FApplicationScope = asUser then
   begin
-    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'\FreeShip';
+    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'FreeShip';
   end
   else
   begin
     Result := GetAppConfigDir(true);
-    Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES)+'\FreeShip';
+    Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES)+'FreeShip';
   end;
   {$endif}
 end;
@@ -445,11 +445,11 @@ begin
   {$ifdef Windows}
   if FApplicationScope = asUser then
   begin
-    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'\FreeShip';
+    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'FreeShip';
   end
   else
   begin
-    Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES)+'\FreeShip';
+    Result := windirs.GetWindowsSpecialDir(CSIDL_PROGRAM_FILES)+'FreeShip';
   end;
   {$endif}
 end;
@@ -492,7 +492,8 @@ begin
   {$ifdef Windows}
   Result := SysUtils.GetEnvironmentVariable('TEMP') + '\FreeShip';
   if Result = '' then
-     Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'Temp\FreeShip';
+     Result := GetTempDir;
+     //Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'Temp\FreeShip';
   {$endif}
 end;
 

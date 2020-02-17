@@ -5369,6 +5369,11 @@ begin
   Owner.FileChanged := False;
 end;{TFreeEdit.File_Load}
 
+resourcestring
+  rsUnableDeleteBackupFile='Unable to delete backup file';
+  rsUnableCreateBackupFile='Unable to create backup file';
+  rsSaveWithHigherFileVersion='The current fileversion is version %s.%sDo you want to save the file as version %s ?';
+
 // save as FREE!ship file without prompting for a filename (must already been set)
 procedure TFreeEdit.File_Save;
 var
@@ -5376,16 +5381,34 @@ var
   Destination: TFreeFileBuffer;
   Str, Ext: string;
   Answer: word;
+  fAttr:longint;  fh:THandle;
 begin
-  if not Owner.FilenameSet then
+  if FileExistsUTF8(Owner.Filename) then
+  begin
+    fh:=FileOpenUTF8(Owner.Filename, fmOpenWrite);
+    if fh = 0 then Owner.ModelReadOnly := true;
+    FileClose(fh);
+  end
+  else
+  begin
+    fh:=FileCreateUTF8(Owner.Filename);
+    if fh = 0 then Owner.ModelReadOnly := true;
+    FileClose(fh);
+  end;
+
+  if not Owner.FilenameSet or Owner.ModelReadOnly then
+  begin
+    Owner.FilenameSet := false;
     File_SaveAs;
+  end;
   if not Owner.FilenameSet then
     exit;
 
   if (Owner.FileVersion < CurrentVersion) and (not Owner.FStopAskingForFileVersion) then
   begin
-    Str := Userstring(126) + VersionString(Owner.FileVersion) + EOL +
-      Userstring(127) + #32 + VersionString(CurrentVersion) + '?';
+    {Str := Userstring(126) + VersionString(Owner.FileVersion) + EOL +
+      Userstring(127) + #32 + VersionString(CurrentVersion) + '?';}
+    Str := format(rsSaveWithHigherFileVersion,[VersionString(Owner.FileVersion),EOL,VersionString(CurrentVersion)]);
     Answer := MessageDlg(Str, mtInformation, [mbYes, mbNo], 0);
     if Answer = mrYes then
       Owner.FileVersion := CurrentVersion
@@ -5395,17 +5418,24 @@ begin
 
   Owner.FFilenameSet := True;
   // Check if the file already exists
-  if FileExistsUTF8(Owner.Filename) { *Converted from FileExists* } then
+  if FileExistsUTF8(Owner.Filename) then
   begin
     Backup := ChangeFileExt(Owner.Filename, '.Bak');
     // First check for a backup, and delete when present
-    if FileExistsUTF8(Backup) { *Converted from FileExists* } then
-      if not DeleteFileUTF8(Backup) { *Converted from DeleteFile* } then
-        MessageDlg(Userstring(128), mtError, [mbOK], 0);
+    if FileExistsUTF8(Backup)  then
+      if not DeleteFileUTF8(Backup) then
+      begin
+        MessageDlg(rsUnableDeleteBackupFile+' '+Backup, mtError, [mbOK], 0);
+        Owner.ModelReadOnly:=true;
+        exit;
+      end;
     // Then create a backup of the old file
-    if not RenameFileUTF8(Owner.Filename, Backup)
-    { *Converted from RenameFile* } then
-      MessageDlg(Userstring(129), mtError, [mbOK], 0);
+    if not RenameFileUTF8(Owner.Filename, Backup) then
+    begin
+      MessageDlg(rsUnableCreateBackupFile+' '+Backup, mtError, [mbOK], 0);
+      Owner.ModelReadOnly:=true;
+      exit;
+    end;
   end;
   Ext := ExtractFileExt(Owner.Filename);
   if Ext = '.fbm' then

@@ -1241,7 +1241,7 @@ begin
 
    // File menu
    FileSaveas.Enabled:=(FreeShip.Surface.NumberOfControlPoints>0) or (Freeship.FileChanged) or (Freeship.FilenameSet);
-   FileSave.Enabled:=(FileSaveas.Enabled);// and (Freeship.FilenameSet);
+   FileSave.Enabled:=(FileSaveas.Enabled) and (not FreeShip.ModelReadOnly);// and (Freeship.FilenameSet);
 
    ImportMichletWaves1.Enabled:=(MDIChildCount>0) and (Freeship.Surface.NumberOfControlFaces>1);
    ExportFEF.Enabled:=Freeship.Surface.NumberOfControlPoints>0;
@@ -1507,8 +1507,13 @@ end;
 procedure TMainForm.LoadFileExecute(Sender: TObject);
 begin
   FOpenHullWindows;
-  ShowRecentFilesDialog;
-  //FreeShip.Edit.File_Load;
+  if self.RecentFiles.Count > 0 then
+    ShowRecentFilesDialog
+  else FreeShip.Edit.File_Load;
+
+  if FileExists(FreeShip.Filename) and FileIsReadOnly(FreeShip.Filename)
+  then FreeShip.ModelReadOnly := true;
+
   Application.ProcessMessages;
   FreeShip.ZoomFitAllViewports;
   //FreeShip.Draw;
@@ -2016,6 +2021,7 @@ end;{TMainForm.LayerDialogExecute}
 procedure TMainForm.NewModelExecute(Sender: TObject);
 begin
    if FreeShip.Edit.Model_New then FOpenHullWindows;
+   FreeShip.ModelReadOnly := false;
    Updatemenu;
 end;{TMainForm.NewModelExecute}
 
@@ -2489,7 +2495,7 @@ end;{TMainForm.DecreaseCurvatureScaleExecute}
 
 procedure TMainForm.FileSaveExecute(Sender: TObject);
 begin
-  if Freeship.FilenameSet then
+  if Freeship.FilenameSet and (not FreeShip.ModelReadOnly) then
      FreeShip.Edit.File_Save
   else
       FreeShip.Edit.File_SaveAs;

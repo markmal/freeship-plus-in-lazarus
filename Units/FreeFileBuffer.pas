@@ -117,7 +117,7 @@ type
     procedure LoadFromFile(Filename: string);      virtual;
     procedure Reset; virtual;
     // reset the data before reading
-    procedure SaveToFile(Filename: string); virtual;
+    function SaveToFile(Filename: string):boolean; virtual;
     function GetPosition:integer; virtual;
     destructor Destroy; override;
     property Capacity: integer read FGetCapacity write FSetCapacity;
@@ -170,7 +170,7 @@ type
     procedure LoadFromFile(Filename: string); override;
     procedure Reset; override;
     // reset the data before reading
-    procedure SaveToFile(Filename: string); override;
+    function SaveToFile(Filename: string):boolean; override;
     function GetPosition:integer; override;
     destructor Destroy; override;
     property Capacity: integer read FGetCapacity write FSetCapacity;
@@ -2175,30 +2175,35 @@ begin
   FPosition := 0;
 end;{TFreeFileBuffer.Reset}
 
-procedure TFreeFileBuffer.SaveToFile(Filename: string);
+function TFreeFileBuffer.SaveToFile(Filename: string):boolean;
 var
   DataWritten: integer;
   DataLeft: integer;
   Tmp: integer;
   Size: integer;
 begin
+  result:=false;
   FFileName := Filename;
-  AssignFile(FFile, Filename);
-  Rewrite(FFile, 1);
-  DataWritten := 0;
-  DataLeft := Count;
-  while DataWritten < Count do
-  begin
-    if DataLeft < FileBufferBlockSize then
-      Size := DataLeft
-    else
-      Size := FileBufferBlockSize;
-    BlockWrite(FFile, FData[DataWritten], Size, Tmp);
-    Dec(DataLeft, Tmp);
-    Inc(DataWritten, Tmp);
+  try
+    AssignFile(FFile, Filename);
+    Rewrite(FFile, 1);
+    DataWritten := 0;
+    DataLeft := Count;
+    while DataWritten < Count do
+    begin
+      if DataLeft < FileBufferBlockSize then
+        Size := DataLeft
+      else
+        Size := FileBufferBlockSize;
+      BlockWrite(FFile, FData[DataWritten], Size, Tmp);
+      Dec(DataLeft, Tmp);
+      Inc(DataWritten, Tmp);
+    end;
+  finally
+    Closefile(FFile);
   end;
-  Closefile(FFile);
   FFileName := '';
+  result:=true;
 end;{TFreeFileBuffer.SaveToFile}
 
 function TFreeFileBuffer.GetPosition:integer;
@@ -2537,15 +2542,17 @@ begin
   FPosition := 0;
 end;{TFreeTextBuffer.Reset}
 
-procedure TFreeTextBuffer.SaveToFile(Filename: string);
+function TFreeTextBuffer.SaveToFile(Filename: string):boolean;
 var
   DataWritten: integer;
   DataLeft: integer;
   Tmp: integer;
   Size: integer;
 begin
+  result:=false;
   FFileName := Filename;
   FLines.SaveToFile(Filename);
+  result:=true;
 end;{TFreeTextBuffer.SaveToFile}
 
 function TFreeTextBuffer.GetPosition:integer;

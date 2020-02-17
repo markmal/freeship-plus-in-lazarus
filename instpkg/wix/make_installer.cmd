@@ -11,6 +11,6 @@ candle.exe -v -pedantic -arch x64 -dSrcPath="%SRCPATH%" FreeShip_x64.wxs -dLangu
 
 light.exe -ext WixUIExtension -cultures:en-us -dWixUILicenseRtf="%SRCPATH%\Manuals\gpl-3.0.rtf" FreeShip_x64.wixobj languages.wixobj locale.wixobj manuals.wixobj ships.wixobj themes.wixobj exec.wixobj -out FreeShip_x64.msi
 
-copy FreeShip_x64.msi C:\D\
+rem copy FreeShip_x64.msi C:\D\
 
 endlocal

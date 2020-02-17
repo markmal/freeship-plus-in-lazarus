@@ -100,6 +100,8 @@ type
     FShellListView: TCustomShellListView;
     FFileSortType: TFileSortType;
     FInitialRoot: String;
+    FIsLoading: boolean;
+    FAbortLoading : boolean;
     { Setters and getters }
     function GetPath: string;
     procedure SetFileSortType(const AValue: TFileSortType);
@@ -122,6 +124,7 @@ type
     destructor Destroy; override;
 
     { Methods specific to Lazarus - useful for other classes }
+    procedure AbortLoading;
     class function  GetBasePath: string;
     function  GetRootPath: string;
     class function PathContainsHiddenDir(path: String): Boolean;
@@ -138,6 +141,8 @@ type
     property FileSortType: TFileSortType read FFileSortType write SetFileSortType;
     property Root: string read FRoot write SetRoot;
     property Path: string read GetPath write SetPath;
+
+    property IsLoading: boolean read FIsLoading;
 
     { Protected properties which users may want to access, see bug 15374 }
     property Items;
@@ -239,11 +244,15 @@ type
     FRoot: string;
     FShellTreeView: TCustomShellTreeView;
     FOnFileAdded: TCSLVFileAddedEvent;
+    FOnLoaded: TNotifyEvent;
 
     FNameColumn : TListColumn;
     FSizeColumn : TListColumn;
     FTypeColumn : TListColumn;
     FTimeColumn : TListColumn;
+
+    FAbortLoading : boolean;
+    FIsLoading : boolean;
 
     { Setters and getters }
     procedure SetMask(const AValue: string);
@@ -258,14 +267,17 @@ type
     procedure defaultFileCompare(Sender: TObject; Item1, Item2: TListItem;
                                    Data: Integer; var Compare: Integer);
     property OnFileAdded: TCSLVFileAddedEvent read FOnFileAdded write FOnFileAdded;
+    property OnLoaded: TNotifyEvent read FOnLoaded write FOnLoaded;
   public
     { Basic methods }
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     { Methods specific to Lazarus }
     function GetPathFromItem(ANode: TListItem): string;
+    procedure AbortLoading;
     procedure Reload;
     { Properties }
+    property IsLoading: boolean read FIsLoading;
     property Mask: string read FMask write SetMask; // Can be used to conect to other controls
     property ObjectTypes: TObjectTypes read FObjectTypes write FObjectTypes;
     property Root: string read FRoot write SetRoot;
@@ -364,6 +376,7 @@ type
     property OnStartDrag;
     property OnUTF8KeyPress;
     property OnFileAdded;
+    property OnLoaded;
     { TCustomShellListView properties }
     property ObjectTypes;
     property Root;
@@ -647,11 +660,13 @@ end;
 
 procedure TCustomShellTreeView.Loaded;
 begin
+  FIsLoading := true;
   inherited Loaded;
   if (FInitialRoot = '') then
     PopulateWithBaseFiles()
   else
     SetRoot(FInitialRoot);
+  FIsLoading := false;
 end;
 
 function TCustomShellTreeView.CreateNode: TTreeNode;
@@ -1253,7 +1268,10 @@ begin
   end;
 end;
 
-
+procedure TCustomShellTreeView.AbortLoading;
+begin
+  FAbortLoading:=true;
+end;
 
 {
 SetPath: Path can be
@@ -1266,7 +1284,7 @@ SetPath: Path can be
 procedure TCustomShellTreeView.SetPath(AValue: string);
 var
   sl: TStringList;
-  Node: TTreeNode;
+  Node, LastNode: TTreeNode;
   i: integer;
   FQRootPath, RelPath: String;
   RootIsAbsolute: Boolean;
@@ -1382,6 +1400,11 @@ var
 
 begin
   RelPath := '';
+
+  LastNode := Selected;
+  if LastNode <> nil then LastNode.Selected := false;
+  LastNode := Selected;
+  LastNode := nil;
 
   {$ifdef debug_shellctrls}
   debugln(['SetPath: GetRootPath = "',getrootpath,'"',' AValue=',AValue]);
@@ -1515,7 +1538,7 @@ begin
       //for the time being (2015-12-05: BB)
       //if RootIsAbsolute then sl.Delete(0);
     end;
-
+    FAbortLoading := false;
     for i := 0 to sl.Count-1 do
     begin
       {$ifdef debug_shellctrls}
@@ -1532,6 +1555,7 @@ begin
             {$ENDIF}
             do
             begin
+              if FAbortLoading then break;
               {$ifdef debug_shellctrls}
               DbgOut(['  i=',i,' "',GetAdjustedNodeText(Node),' <> ',sl[i],' -> GetNextVisibleSibling -> ']);
               {$endif}
@@ -1547,7 +1571,9 @@ begin
       if Node <> Nil then
       begin
         Node.Expanded := True;
-        Node.Selected := True;
+        LastNode := Node;
+        //Node.Selected := True;
+        writeln(Node.Text);
         if not(otHidden in FObjectTypes) then // MM
         Node := Node.GetFirstVisibleChild
         else Node := Node.GetFirstChild
@@ -1555,6 +1581,7 @@ begin
       else
         Break;
     end;
+    LastNode.Selected := true;
   finally
     sl.free;
     EndUpdate;
@@ -1624,7 +1651,13 @@ procedure TCustomShellListView.Reload;
 begin
   Clear;
   Items.Clear;
+  FAbortLoading := false;
   PopulateWithRoot();
+end;
+
+procedure TCustomShellListView.AbortLoading;
+begin
+  FAbortLoading:=true;
 end;
 
 constructor TCustomShellListView.Create(AOwner: TComponent);
@@ -1653,12 +1686,13 @@ begin
   FTimeColumn.MaxWidth:=100;
 
   AutoWidthLastColumn:=false;
+  FAbortLoading := false;
+  FIsLoading := false;
 
   Resize;
 
   if Self.OnCompare = nil then
      Self.OnCompare := @defaultFileCompare;
-
 end;
 
 destructor TCustomShellListView.Destroy;
@@ -1760,6 +1794,9 @@ begin
   // Check inputs
   if Trim(FRoot) = '' then Exit;
 
+  if FIsLoading then exit;
+  FIsLoading := true;
+
   Files := TStringList.Create;
   try
     Files.OwnsObjects := True;
@@ -1773,9 +1810,10 @@ begin
 
     TCustomShellTreeView.GetFilesInDir(FRoot, '*',   DirObjectTypes, Files, fstAlphabet);
     TCustomShellTreeView.GetFilesInDir(FRoot, FMask, FileObjectTypes, Files, fstAlphabet);
-
+    FAbortLoading := false;
     for i := 0 to Files.Count - 1 do
     begin
+      if FAbortLoading then break;
       NewItem := Items.Add;
       CurFileName := Files.Strings[i];
       CurFilePath := IncludeTrailingPathDelimiter(FRoot) + CurFileName;
@@ -1813,6 +1851,9 @@ begin
     Sort;
   finally
     Files.Free;
+    FIsLoading := false;
+    if Assigned(FOnLoaded)
+       then FOnLoaded(Self);
   end;
 end;
 

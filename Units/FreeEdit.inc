@@ -49,8 +49,8 @@ begin
   // delete items until no more than 10 are left
   while FRecentFiles.Count > 10 do
     FRecentFiles.Delete(FRecentFiles.Count - 1);
-  if assigned(Owner.FOnUpdateRecentFileList) then
-    Owner.FOnUpdateRecentFileList(self);
+  if assigned(FreeShip.FOnUpdateRecentFileList) then
+    FreeShip.FOnUpdateRecentFileList(self);
 end;{TFreeEdit.AddToRecentFiles}
 
 // Delete the backgrundimage associated with this view
@@ -60,19 +60,19 @@ var
 begin
   if MessageDlg(Userstring(68), mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
-    for I := FOwner.NumberofBackgroundImages downto 1 do
-      if FOwner.BackgroundImage[I - 1].AssignedView = Viewport.ViewType then
+    for I := FFreeShip.NumberofBackgroundImages downto 1 do
+      if FFreeShip.BackgroundImage[I - 1].AssignedView = Viewport.ViewType then
       begin
-        FOwner.BackgroundImage[I - 1].Destroy;
-        FOwner.FBackgroundImages.Delete(I - 1);
-        FOwner.FileChanged := True;
+        FFreeShip.BackgroundImage[I - 1].Destroy;
+        FFreeShip.FBackgroundImages.Delete(I - 1);
+        FFreeShip.FileChanged := True;
         break;
       end;
-    for I := 1 to FOwner.NumberOfViewports do
-      if Owner.Viewport[I - 1].ViewType = Viewport.ViewType then
+    for I := 1 to FFreeShip.NumberOfViewports do
+      if FreeShip.Viewport[I - 1].ViewType = Viewport.ViewType then
       begin
-        Owner.Viewport[I - 1].BackgroundImage.Clear;
-        Owner.Viewport[I - 1].Refresh;
+        FreeShip.Viewport[I - 1].BackgroundImage.Clear;
+        FreeShip.Viewport[I - 1].Refresh;
       end;
 
   end;
@@ -89,16 +89,16 @@ var
   Bmp: TBitmap;
 begin
   Data := nil;
-  for I := 1 to Owner.NumberofBackgroundImages do
-    if Owner.BackgroundImage[I - 1].AssignedView = Viewport.ViewType then
-      Data := Owner.BackgroundImage[I - 1];
+  for I := 1 to FreeShip.NumberofBackgroundImages do
+    if FreeShip.BackgroundImage[I - 1].AssignedView = Viewport.ViewType then
+      Data := FreeShip.BackgroundImage[I - 1];
   if Data <> nil then
     if MessageDlg(Userstring(69) + EOL + Userstring(70), mtConfirmation,
       [mbYes, mbNo], 0) = mrNo then
       exit;
 
   Dialog := TOpenDialog.Create(Viewport);
-  Dialog.InitialDir := Owner.Preferences.ImportDirectory;
+  Dialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   Dialog.Filter :=
     'All files (*.jpg;*.bmp)|*.jpg; *.bmp|Jpeg images (*.jpg)|*.jpg|Bitmap files (*.bmp)|*.bmp|';
   Dialog.Options := [ofHideReadOnly];
@@ -106,8 +106,8 @@ begin
   begin
     if Data = nil then
     begin
-      Data := TFreeBackgroundImageData.Create(FOwner);
-      FOwner.FBackgroundImages.Add(Data);
+      Data := TFreeBackgroundImageData.Create(FFreeShip);
+      FFreeShip.FBackgroundImages.Add(Data);
     end;
     Data.Clear;
     if Uppercase(ExtractFileExt(Dialog.Filename)) = '.JPG' then
@@ -128,8 +128,8 @@ begin
       Data.FAssignedView := Viewport.ViewType;
       Data.FOrigin.X := 0;
       Data.FOrigin.Y := Data.FImageData.Height;
-      if Owner.NumberofBackgroundImages > 1 then
-        Data.FScale := Owner.BackgroundImage[Owner.NumberofBackgroundImages -
+      if FreeShip.NumberofBackgroundImages > 1 then
+        Data.FScale := FreeShip.BackgroundImage[FreeShip.NumberofBackgroundImages -
           2].FScale// use same scale as previous images
 
       else
@@ -142,16 +142,16 @@ begin
       end;
       Data.UpdateViews;
     end;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 
 end;{TFreeEdit.BackgroundImage_Open}
 
-constructor TFreeEdit.Create(Owner: TFreeShip);
+constructor TFreeEdit.Create(FreeShip: TFreeShip);
 begin
   inherited Create;
-  FOwner := Owner;
+  FFreeShip := FreeShip;
   FRecentFiles := TStringList.Create;
 end;{TFreeEdit.Create}
 
@@ -161,29 +161,29 @@ var
   Version: TFreeFileVersion;
   Preview: boolean;
 begin
-  UndoObject := TFreeUndoObject.Create(Owner);
+  UndoObject := TFreeUndoObject.Create(FreeShip);
   Result := UndoObject;
   UndoObject.FUndoText := UserString(71);
-  Version := Owner.FileVersion;
-  Preview := Owner.ProjectSettings.SavePreview;
+  Version := FreeShip.FileVersion;
+  Preview := FreeShip.ProjectSettings.SavePreview;
   try
     // Temp. set to the latest fileversion so that no data will be lost
-    Owner.FFileVersion := Currentversion;
+    FreeShip.FFileVersion := Currentversion;
     // Temp. disable saving of preview image
-    Owner.ProjectSettings.SavePreview := False;
-    UndoObject.FFileChanged := Owner.FileChanged;
-    UndoObject.FFileName := Owner.Filename;
-    UndoObject.FEditMode := Owner.EditMode;
-    UndoObject.FFilenameSet := Owner.FFilenameSet;
+    FreeShip.ProjectSettings.SavePreview := False;
+    UndoObject.FFileChanged := FreeShip.FileChanged;
+    UndoObject.FFileName := FreeShip.Filename;
+    UndoObject.FEditMode := FreeShip.EditMode;
+    UndoObject.FFilenameSet := FreeShip.FFilenameSet;
     UndoObject.FIsTempRedoObject := True;
-    Owner.SaveProject(UndoObject.FUndoData);
+    FreeShip.SaveProject(UndoObject.FUndoData);
     UndoObject.Accept;
   finally
     // Restore the original fileversion
-    Owner.FileVersion := Version;
-    Owner.ProjectSettings.SavePreview := Preview;
-    if Assigned(Owner.FOnUpdateUndoData) then
-      Owner.FOnUpdateUndoData(Owner);
+    FreeShip.FileVersion := Version;
+    FreeShip.ProjectSettings.SavePreview := Preview;
+    if Assigned(FreeShip.FOnUpdateUndoData) then
+      FreeShip.FOnUpdateUndoData(FreeShip);
   end;
 end;{TFreeEdit.CreateRedoObject}
 
@@ -195,33 +195,33 @@ var
   Preview: boolean;
   I: integer;
 begin
-  UndoObject := TFreeUndoObject.Create(Owner);
+  UndoObject := TFreeUndoObject.Create(FreeShip);
   Result := UndoObject;
   //if UndoText<>'' then UndoText[1]:=Lowercase(UndoText[1]);
   UndoObject.FUndoText := UndoText;
-  Version := Owner.FileVersion;
-  Preview := Owner.ProjectSettings.SavePreview;
+  Version := FreeShip.FileVersion;
+  Preview := FreeShip.ProjectSettings.SavePreview;
   try
     // delete all undo objects after the current one
-    for I := FOwner.FUndoObjects.Count downto Owner.FUndoPosition + 1 do
-      Owner.UndoObject[I - 1].Delete;
+    for I := FFreeShip.FUndoObjects.Count downto FreeShip.FUndoPosition + 1 do
+      FreeShip.UndoObject[I - 1].Delete;
     // Temp. set to the latest fileversion so that no data will be lost
-    Owner.FFileVersion := Currentversion;
+    FreeShip.FFileVersion := Currentversion;
     // Temp. disable saving of preview image
-    Owner.ProjectSettings.SavePreview := False;
-    UndoObject.FFileChanged := Owner.FileChanged;
-    UndoObject.FFileName := Owner.Filename;
-    UndoObject.FEditMode := Owner.EditMode;
-    UndoObject.FFilenameSet := Owner.FFilenameSet;
-    Owner.SaveProject(UndoObject.FUndoData);
+    FreeShip.ProjectSettings.SavePreview := False;
+    UndoObject.FFileChanged := FreeShip.FileChanged;
+    UndoObject.FFileName := FreeShip.Filename;
+    UndoObject.FEditMode := FreeShip.EditMode;
+    UndoObject.FFilenameSet := FreeShip.FFilenameSet;
+    FreeShip.SaveProject(UndoObject.FUndoData);
     if Accept then
       UndoObject.Accept;
   finally
     // Restore the original fileversion
-    Owner.FileVersion := Version;
-    Owner.ProjectSettings.SavePreview := Preview;
-    if Assigned(Owner.FOnUpdateUndoData) then
-      Owner.FOnUpdateUndoData(Owner);
+    FreeShip.FileVersion := Version;
+    FreeShip.ProjectSettings.SavePreview := Preview;
+    if Assigned(FreeShip.FOnUpdateUndoData) then
+      FreeShip.FOnUpdateUndoData(FreeShip);
   end;
 end;{TFreeEdit.CreateUndoObject}
 
@@ -237,10 +237,10 @@ var
   Curve: TFreesubdivisionControlCurve;
 begin
   Edges := TFasterListTFreeSubdivisionControlEdge.Create;
-  Edges.Capacity := Owner.NumberOfSelectedControlEdges;
-  for I := 1 to Owner.NumberOfSelectedControlEdges do
+  Edges.Capacity := FreeShip.NumberOfSelectedControlEdges;
+  for I := 1 to FreeShip.NumberOfSelectedControlEdges do
   begin
-    Edge := Owner.SelectedControlEdge[I - 1];
+    Edge := FreeShip.SelectedControlEdge[I - 1];
     if Edge.Curve = nil then
       Edges.Add(Edge);
   end;
@@ -248,14 +248,14 @@ begin
   begin
     Self.CreateUndoObject(Userstring(72), True);
     SortedPointLists := TFasterListTFreeSubdivisionFace.Create(false,false);
-    Owner.Surface.IsolateEdges(TFasterList(Edges), SortedPointLists);
+    FreeShip.Surface.IsolateEdges(TFasterList(Edges), SortedPointLists);
     for I := 1 to SortedPointLists.Count do
     begin
       Points := SortedPointLists[I - 1].Points;
       if Points.Count > 1 then
       begin
-        Curve := TFreeSubdivisionControlCurve.Create(Owner.Surface);
-        Owner.Surface.AddControlCurve(Curve);
+        Curve := TFreeSubdivisionControlCurve.Create(FreeShip.Surface);
+        FreeShip.Surface.AddControlCurve(Curve);
         for J := 1 to Points.Count do
         begin
           Point := Points[J - 1] as TFreeSubdivisionControlPoint;
@@ -272,19 +272,19 @@ begin
       end;
       Points.Destroy;
     end;
-    for I := Owner.NumberOfSelectedControlEdges downto 1 do
+    for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
     begin
-      Edge := Owner.SelectedControlEdge[I - 1];
+      Edge := FreeShip.SelectedControlEdge[I - 1];
       Edge.Selected := False;
     end;
     SortedPointLists.Destroy;
-    if Owner.Visibility.ShowControlCurves = False then
-      Owner.Visibility.ShowControlCurves := True
+    if FreeShip.Visibility.ShowControlCurves = False then
+      FreeShip.Visibility.ShowControlCurves := True
     else
-      Owner.Redraw;
-    Owner.FileChanged := True;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+      FreeShip.Redraw;
+    FreeShip.FileChanged := True;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
   end;
   Edges.Destroy;
 end;{TFreeEdit.Curve_Add}
@@ -306,15 +306,15 @@ var
   //    str_1,str_2 : string;
 
 begin
-  //   MessageDlg(('Numb of edges='+IntToStr(Owner.NumberOfSelectedControlEdges)),mtError,[mbOK],0);
+  //   MessageDlg(('Numb of edges='+IntToStr(FreeShip.NumberOfSelectedControlEdges)),mtError,[mbOK],0);
   //      DateTime := Time;  // store the current date and time
   //      str_1 := TimeToStr(DateTime); // convert the time into a string
 
   N := 0;
   vUndo := CreateUndoObject(Userstring(73), False);
-  for I := Owner.NumberOfSelectedControlEdges downto 1 do
+  for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
   begin
-    Edge := Owner.SelectedControlEdge[I - 1];
+    Edge := FreeShip.SelectedControlEdge[I - 1];
     if Edge.NumberOfFaces > 1 then
     begin
       Edge.Collapse;
@@ -325,11 +325,11 @@ begin
   if N > 0 then
   begin
     vUndo.Accept;
-    Owner.Build := False;
-    Owner.Redraw;
-    Owner.FileChanged := True;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.Build := False;
+    FreeShip.Redraw;
+    FreeShip.FileChanged := True;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
   end
   else
     vUndo.Delete;
@@ -346,17 +346,17 @@ var
   vUndo: TFreeUndoObject;
   N: integer;
 begin
-  N := Owner.Surface.NumberOfControlEdges;
+  N := FreeShip.Surface.NumberOfControlEdges;
   vUndo := CreateUndoObject(Userstring(74), False);
-  Owner.Surface.Edge_Connect;
-  if Owner.Surface.NumberOfControlEdges > N then
+  FreeShip.Surface.Edge_Connect;
+  if FreeShip.Surface.NumberOfControlEdges > N then
   begin
     vUndo.Accept;
-    Owner.FileChanged := True;
-    Owner.Build := False;
-    Owner.Redraw;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.FileChanged := True;
+    FreeShip.Build := False;
+    FreeShip.Redraw;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
   end
   else
     vUndo.Delete;
@@ -368,12 +368,12 @@ var
   I: integer;
 begin
   CreateUndoObject(Userstring(75), True);
-  for I := Owner.NumberOfSelectedControlEdges downto 1 do
-    Owner.SelectedControlEdge[I - 1].Crease :=
-      not Owner.SelectedControlEdge[I - 1].Crease;
-  Owner.Build := False;
-  Owner.Redraw;
-  Owner.FileChanged := True;
+  for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
+    FreeShip.SelectedControlEdge[I - 1].Crease :=
+      not FreeShip.SelectedControlEdge[I - 1].Crease;
+  FreeShip.Build := False;
+  FreeShip.Redraw;
+  FreeShip.FileChanged := True;
 end;{TFreeEdit.Edge_Crease}
 
 // Create new controlfaces by extruding selected boundary edges (eg edges with only 1 controlface connected to it)
@@ -387,12 +387,12 @@ var
   Str: string;
   vUndo: TFreeUndoObject;
 begin
-  Dialog := TFreeExtrudeDialog.Create(Owner);
+  Dialog := TFreeExtrudeDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
   Dialog.XValue := 0.0;
   Dialog.YValue := 0.0;
   Dialog.ZValue := 0.0;
-  Str := LengthStr(Owner.ProjectSettings.ProjectUnits);
+  Str := LengthStr(FreeShip.ProjectSettings.ProjectUnits);
   if Dialog.Execute(Str) then
   begin
     vUndo := CreateUndoObject(Userstring(76), False);
@@ -401,9 +401,9 @@ begin
     Vector.Z := Dialog.ZValue;
     // Assemble edges in a list
     Edges := TFasterListTFreeSubdivisionEdge.Create;
-    for I := Owner.NumberOfSelectedControlEdges downto 1 do
+    for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
     begin
-      Edge := Owner.Surface.SelectedControlEdge[I - 1];
+      Edge := FreeShip.Surface.SelectedControlEdge[I - 1];
       // only boundary edges are allowed!!
       if Edge.NumberOfFaces = 1 then
         Edges.Add(Edge);
@@ -411,7 +411,7 @@ begin
     end;
     if Edges.Count > 0 then
     begin
-      Owner.Surface.ExtrudeEdges(Edges, Vector);
+      FreeShip.Surface.ExtrudeEdges(Edges, Vector);
       // New edges are returned in the edges-list, select them
       for I := 1 to Edges.Count do
       begin
@@ -419,11 +419,11 @@ begin
         Edge.Selected := True;
       end;
       vUndo.Accept;
-      Owner.Build := False;
-      Owner.FileChanged := True;
-      Owner.Redraw;
-      if Assigned(Owner.OnUpdateGeometryInfo) then
-        Owner.OnUpdateGeometryInfo(self);
+      FreeShip.Build := False;
+      FreeShip.FileChanged := True;
+      FreeShip.Redraw;
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
     end
     else
     begin
@@ -447,9 +447,9 @@ begin
   N := 0;
   Last := nil;
   vUndo := CreateUndoObject(Userstring(78), False);
-  for I := Owner.NumberOfSelectedControlEdges downto 1 do
+  for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
   begin
-    Edge := Owner.Surface.SelectedControlEdge[I - 1];
+    Edge := FreeShip.Surface.SelectedControlEdge[I - 1];
     Edge.Selected := False;
     Point := Edge.InsertControlPoint(
       MidPoint(Edge.StartPoint.Coordinate, Edge.EndPoint.Coordinate));
@@ -461,15 +461,15 @@ begin
     end;
   end;
   if Last <> nil then
-    Owner.ActiveControlPoint := Last;
+    FreeShip.ActiveControlPoint := Last;
   if N > 0 then
   begin
     vUndo.Accept;
-    Owner.Build := False;
-    Owner.FileChanged := True;
-    Owner.Redraw;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.Build := False;
+    FreeShip.FileChanged := True;
+    FreeShip.Redraw;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
   end
   else
     vUndo.Delete;
@@ -486,16 +486,16 @@ var
   Face: TFreeSubdivisionControlFace;
 begin
   Layers := TFasterListTFreeSubdivisionLayer.Create;
-  for I := 1 to Owner.Surface.NumberOfLayers do
-    Layers.Add(Owner.Surface.Layer[I - 1]);
-  Owner.Visibility.ShowInteriorEdges := True;
-  Owner.Surface.AssembleFacesToPatches(Layers, amNurbs, Assembled, NAssembled);
+  for I := 1 to FreeShip.Surface.NumberOfLayers do
+    Layers.Add(FreeShip.Surface.Layer[I - 1]);
+  FreeShip.Visibility.ShowInteriorEdges := True;
+  FreeShip.Surface.AssembleFacesToPatches(Layers, amNurbs, Assembled, NAssembled);
   if NAssembled > 0 then
   begin
     // assign all patches to new layers
     for I := 1 to NAssembled do
     begin
-      Layer := Owner.Surface.AddNewLayer;
+      Layer := FreeShip.Surface.AddNewLayer;
       Layer.Color := RandomColor;
       AssFace := Assembled[I - 1];
       for J := 1 to AssFace.NRows do
@@ -507,7 +507,7 @@ begin
         end;
     end;
     Layer_DeleteEmpty(True);
-    Owner.Redraw;
+    FreeShip.Redraw;
     ShowMessage('Assembled ' + IntToStr(NAssembled) + ' patches');
   end;
   Layers.Destroy;
@@ -532,9 +532,9 @@ begin
   Screen.Cursor := crHourglass;
   vUndo := CreateUndoObject(Userstring(79), False);
   try
-    for I := Owner.Surface.NumberOfControlFaces downto 1 do
+    for I := FreeShip.Surface.NumberOfControlFaces downto 1 do
     begin
-      Face := Owner.Surface.ControlFace[I - 1];
+      Face := FreeShip.Surface.ControlFace[I - 1];
       if face.NumberOfpoints > 2 then
       begin
         IsNegative := True;
@@ -550,9 +550,9 @@ begin
         Inc(RemovedF);
       end;
     end;
-    for I := Owner.Surface.NumberOfControlPoints downto 1 do
+    for I := FreeShip.Surface.NumberOfControlPoints downto 1 do
     begin
-      Point := Owner.Surface.ControlPoint[I - 1];
+      Point := FreeShip.Surface.ControlPoint[I - 1];
       if (Point.NumberOfFaces = 0) and (Point.Coordinate.Y < -1e-4) then
       begin
         Point.Delete;
@@ -572,11 +572,11 @@ begin
       end;
       MessageDlg(Str, mtInformation, [mbOK], 0);
       vUndo.Accept;
-      Owner.FileChanged := True;
-      Owner.Build := False;
-      Owner.Redraw;
-      if Assigned(Owner.OnUpdateGeometryInfo) then
-        Owner.OnUpdateGeometryInfo(self);
+      FreeShip.FileChanged := True;
+      FreeShip.Build := False;
+      FreeShip.Redraw;
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
     end
     else
     begin
@@ -594,11 +594,11 @@ var
   I: integer;
 begin
   CreateUndoObject(Userstring(83), True);
-  for I := 1 to Owner.NumberOfSelectedControlFaces do
-    Owner.SelectedControlFace[I - 1].FlipNormal;
-  Owner.Build := False;
-  Owner.FileChanged := True;
-  Owner.Redraw;
+  for I := 1 to FreeShip.NumberOfSelectedControlFaces do
+    FreeShip.SelectedControlFace[I - 1].FlipNormal;
+  FreeShip.Build := False;
+  FreeShip.FileChanged := True;
+  FreeShip.Redraw;
 end;{TFreeEdit.Face_Flip}
 
 // Mirrors all selected faces in a 3D plane
@@ -617,29 +617,29 @@ var
   SelectDlg: TFreeSelectLayersDialog;
 begin
   Faces := TFasterListTFreeSubdivisionControlFace.Create;
-  if Owner.NumberOfSelectedControlFaces = 0 then
+  if FreeShip.NumberOfSelectedControlFaces = 0 then
   begin
-    SelectDlg := TFreeSelectLayersDialog.Create(Owner);
+    SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
     ShowTranslatedValues(SelectDlg);
-    if SelectDlg.Execute(Owner, fsFaces) then
+    if SelectDlg.Execute(FFreeShip, fsFaces) then
       SelectDlg.ExtractSelectedFaces(Faces)
     else
     begin
-      for I := Owner.NumberOfSelectedControlFaces downto 1 do
-        Owner.SelectedControlFace[I - 1].Selected := False;
-      Owner.Redraw;
+      for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
+        FreeShip.SelectedControlFace[I - 1].Selected := False;
+      FreeShip.Redraw;
     end;
     SelectDlg.Destroy;
   end
   else
   begin
-    Faces.Capacity := Faces.Count + Owner.NumberOfSelectedControlFaces;
-    for I := 1 to Owner.NumberOfSelectedControlFaces do
-      Faces.Add(Owner.SelectedControlFace[I - 1]);
+    Faces.Capacity := Faces.Count + FreeShip.NumberOfSelectedControlFaces;
+    for I := 1 to FreeShip.NumberOfSelectedControlFaces do
+      Faces.Add(FreeShip.SelectedControlFace[I - 1]);
   end;
   if Faces.Count > 0 then
   begin
-    Dialog := TFreeMirrorPlaneDialog.Create(Owner);
+    Dialog := TFreeMirrorPlaneDialog.Create(FreeShip);
     ShowTranslatedValues(Dialog);
     if Dialog.Execute then
     begin
@@ -726,7 +726,7 @@ begin
             if Index <> -1 then
             begin
               // Edge is part of the selected faces
-              Edge2 := Owner.Surface.EdgeExists(
+              Edge2 := FreeShip.Surface.EdgeExists(
                 TFreeSubdivisionControlPoint(Vertices.Objects[I - 1]),
                 TFreeSubdivisionControlPoint(Vertices.Objects[index]));
               if (Edge2 <> nil) and (Edge2 <> Edge1) then
@@ -747,13 +747,13 @@ begin
           end;
         end;
         Vertices.Destroy;
-        for I := Owner.NumberOfSelectedControlFaces downto 1 do
-          Owner.SelectedControlFace[I - 1].Selected := False;
+        for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
+          FreeShip.SelectedControlFace[I - 1].Selected := False;
       finally
-        Owner.Build := False;
-        Owner.Draw;
-        if Assigned(Owner.OnUpdateGeometryInfo) then
-          Owner.OnUpdateGeometryInfo(self);
+        FreeShip.Build := False;
+        FreeShip.Draw;
+        if Assigned(FreeShip.OnUpdateGeometryInfo) then
+          FreeShip.OnUpdateGeometryInfo(self);
         Screen.Cursor := PrevCursor;
       end;
     end;
@@ -778,21 +778,21 @@ var
   Marker: TFreeMarker;
 begin
   Points := TFasterListTFreeSubdivisionControlPoint.Create;
-  if Owner.ActiveControlPoint <> nil then
-    Points.Add(Owner.ActiveControlPoint);
-  Owner.Surface.ExtractPointsFromSelection(Points, NLocked);
+  if FreeShip.ActiveControlPoint <> nil then
+    Points.Add(FreeShip.ActiveControlPoint);
+  FreeShip.Surface.ExtractPointsFromSelection(Points, NLocked);
   if Points.Count = 0 then
   begin
-    SelectDlg := TFreeSelectLayersDialog.Create(Owner);
+    SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
     ShowTranslatedValues(SelectDlg);
-    if SelectDlg.Execute(Owner, fsPoints) then
+    if SelectDlg.Execute(FFreeShip, fsPoints) then
       SelectDlg.ExtractSelectedPoints(Points)
     else
     begin
-      for I := Owner.NumberOfSelectedControlPoints downto 1 do
-        Owner.SelectedControlPoint[I - 1].Selected := False;
-      for I := 1 to Owner.NumberOfViewports do
-        Owner.Viewport[I - 1].Refresh;
+      for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+        FreeShip.SelectedControlPoint[I - 1].Selected := False;
+      for I := 1 to FreeShip.NumberOfViewports do
+        FreeShip.Viewport[I - 1].Refresh;
     end;
     SelectDlg.Destroy;
   end;
@@ -805,7 +805,7 @@ begin
       Proceed := True;
     if Proceed then
     begin
-      Dialog := TFreeRotateDialog.Create(Owner);
+      Dialog := TFreeRotateDialog.Create(FreeShip);
       ShowTranslatedValues(Dialog);
       Dialog.XValue := 0.0;
       Dialog.YValue := 0.0;
@@ -830,40 +830,40 @@ begin
               Point.Coordinate :=
                 RotateVector(Point.Coordinate, SinX, CosX, SinY, CosY, SinZ, CosZ);
           end;
-          if Points.Count = Owner.Surface.NumberOfControlPoints then
-            if Owner.AdjustMarkers then
-              for I := 1 to Owner.NumberofMarkers do
+          if Points.Count = FreeShip.Surface.NumberOfControlPoints then
+            if FreeShip.AdjustMarkers then
+              for I := 1 to FreeShip.NumberofMarkers do
               begin
-                Marker := Owner.Marker[I - 1];
+                Marker := FreeShip.Marker[I - 1];
                 for J := 1 to Marker.NumberOfPoints do
                   Marker.Point[J - 1] :=
                     RotateVector(Marker.Point[J - 1], SinX, CosX,
                     SinY, CosY, SinZ, CosZ);
               end;
-          Owner.Build := False;
-          Owner.Redraw;
+          FreeShip.Build := False;
+          FreeShip.Redraw;
         finally
           // Refresh controlpoint data
-          if Points.SortedIndexOf(Owner.ActiveControlPoint) <> -1 then
-            Owner.ActiveControlPoint := Owner.ActiveControlPoint;
+          if Points.SortedIndexOf(FreeShip.ActiveControlPoint) <> -1 then
+            FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
           Screen.Cursor := PrevCursor;
         end;
       end
       else
       begin
-        for I := Owner.NumberOfSelectedControlPoints downto 1 do
-          Owner.SelectedControlPoint[I - 1].Selected := False;
-        for I := 1 to Owner.NumberOfViewports do
-          Owner.Viewport[I - 1].Refresh;
+        for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+          FreeShip.SelectedControlPoint[I - 1].Selected := False;
+        for I := 1 to FreeShip.NumberOfViewports do
+          FreeShip.Viewport[I - 1].Refresh;
       end;
       Dialog.Destroy;
     end
     else
     begin
-      for I := Owner.NumberOfSelectedControlPoints downto 1 do
-        Owner.SelectedControlPoint[I - 1].Selected := False;
-      for I := 1 to Owner.NumberOfViewports do
-        Owner.Viewport[I - 1].Refresh;
+      for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+        FreeShip.SelectedControlPoint[I - 1].Selected := False;
+      for I := 1 to FreeShip.NumberOfViewports do
+        FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
   Points.Destroy;
@@ -885,20 +885,20 @@ var
   Marker: TFreeMarker;
 begin
   Points := TFasterListTFreeSubdivisionControlPoint.Create;
-  if Owner.ActiveControlPoint <> nil then
-    Points.Add(Owner.ActiveControlPoint);
-  Owner.Surface.ExtractPointsFromSelection(Points, NLocked);
+  if FreeShip.ActiveControlPoint <> nil then
+    Points.Add(FreeShip.ActiveControlPoint);
+  FreeShip.Surface.ExtractPointsFromSelection(Points, NLocked);
   if Points.Count = 0 then
   begin
-    for I := 1 to Owner.NumberOfLayers do
-      if Owner.Layer[I - 1].Visible then
-        for J := 1 to Owner.Surface.NumberOfControlPoints do
-          if Owner.Surface.ControlPoint[J - 1].Visible then
-            Owner.Surface.ControlPoint[J - 1].Selected := True;
-    Owner.Redraw;
+    for I := 1 to FreeShip.NumberOfLayers do
+      if FreeShip.Layer[I - 1].Visible then
+        for J := 1 to FreeShip.Surface.NumberOfControlPoints do
+          if FreeShip.Surface.ControlPoint[J - 1].Visible then
+            FreeShip.Surface.ControlPoint[J - 1].Selected := True;
+    FreeShip.Redraw;
   end;
 
-  Owner.Surface.ExtractPointsFromSelection(Points, NLocked);
+  FreeShip.Surface.ExtractPointsFromSelection(Points, NLocked);
   if Points.Count > 0 then
   begin
     if NLocked > 0 then
@@ -908,7 +908,7 @@ begin
       Proceed := True;
     if Proceed then
     begin
-      Dialog := TFreeRotateMDialog.Create(Owner);
+      Dialog := TFreeRotateMDialog.Create(FreeShip);
       Dialog.Caption := 'Rotate';
       //ShowTranslatedValues(Dialog);
       Dialog.XValue := 0.0;
@@ -934,40 +934,40 @@ begin
               Point.Coordinate :=
                 RotateVector(Point.Coordinate, SinX, CosX, SinY, CosY, SinZ, CosZ);
           end;
-          if Points.Count = Owner.Surface.NumberOfControlPoints then
-            if Owner.AdjustMarkers then
-              for I := 1 to Owner.NumberofMarkers do
+          if Points.Count = FreeShip.Surface.NumberOfControlPoints then
+            if FreeShip.AdjustMarkers then
+              for I := 1 to FreeShip.NumberofMarkers do
               begin
-                Marker := Owner.Marker[I - 1];
+                Marker := FreeShip.Marker[I - 1];
                 for J := 1 to Marker.NumberOfPoints do
                   Marker.Point[J - 1] :=
                     RotateVector(Marker.Point[J - 1], SinX, CosX,
                     SinY, CosY, SinZ, CosZ);
               end;
-          Owner.Build := False;
-          Owner.Redraw;
+          FreeShip.Build := False;
+          FreeShip.Redraw;
         finally
           // Refresh controlpoint data
-          if Points.SortedIndexOf(Owner.ActiveControlPoint) <> -1 then
-            Owner.ActiveControlPoint := Owner.ActiveControlPoint;
+          if Points.SortedIndexOf(FreeShip.ActiveControlPoint) <> -1 then
+            FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
           Screen.Cursor := PrevCursor;
         end;
       end
       else
       begin
-        for I := Owner.NumberOfSelectedControlPoints downto 1 do
-          Owner.SelectedControlPoint[I - 1].Selected := False;
-        for I := 1 to Owner.NumberOfViewports do
-          Owner.Viewport[I - 1].Refresh;
+        for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+          FreeShip.SelectedControlPoint[I - 1].Selected := False;
+        for I := 1 to FreeShip.NumberOfViewports do
+          FreeShip.Viewport[I - 1].Refresh;
       end;
       Dialog.Destroy;
     end
     else
     begin
-      for I := Owner.NumberOfSelectedControlPoints downto 1 do
-        Owner.SelectedControlPoint[I - 1].Selected := False;
-      for I := 1 to Owner.NumberOfViewports do
-        Owner.Viewport[I - 1].Refresh;
+      for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+        FreeShip.SelectedControlPoint[I - 1].Selected := False;
+      for I := 1 to FreeShip.NumberOfViewports do
+        FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
   Points.Destroy;
@@ -987,21 +987,21 @@ var
   Markers: boolean;
 begin
   Points := TFasterListTFreeSubdivisionControlPoint.Create;
-  if Owner.ActiveControlPoint <> nil then
-    Points.Add(Owner.ActiveControlPoint);
-  Owner.Surface.ExtractPointsFromSelection(Points, NLocked);
+  if FreeShip.ActiveControlPoint <> nil then
+    Points.Add(FreeShip.ActiveControlPoint);
+  FreeShip.Surface.ExtractPointsFromSelection(Points, NLocked);
   if Points.Count = 0 then
   begin
-    SelectDlg := TFreeSelectLayersDialog.Create(Owner);
+    SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
     ShowTranslatedValues(SelectDlg);
-    if SelectDlg.Execute(Owner, fsPoints) then
+    if SelectDlg.Execute(FFreeShip, fsPoints) then
       SelectDlg.ExtractSelectedPoints(Points)
     else
     begin
-      for I := Owner.NumberOfSelectedControlPoints downto 1 do
-        Owner.SelectedControlPoint[I - 1].Selected := False;
-      for I := 1 to Owner.NumberOfViewports do
-        Owner.Viewport[I - 1].Refresh;
+      for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+        FreeShip.SelectedControlPoint[I - 1].Selected := False;
+      for I := 1 to FreeShip.NumberOfViewports do
+        FreeShip.Viewport[I - 1].Refresh;
     end;
     SelectDlg.Destroy;
   end;
@@ -1014,7 +1014,7 @@ begin
       Proceed := True;
     if Proceed then
     begin
-      Dialog := TFreeRotateDialog.Create(Owner);
+      Dialog := TFreeRotateDialog.Create(FreeShip);
       Dialog.Caption := 'Scale';
       //ShowTranslatedValues(Dialog);
       Dialog.XValue := 1.0;
@@ -1030,10 +1030,10 @@ begin
           Scale.X := Dialog.XValue;
           Scale.Y := Dialog.YValue;
           Scale.Z := Dialog.ZValue;
-          if Points.Count = Owner.Surface.NumberOfControlPoints then
+          if Points.Count = FreeShip.Surface.NumberOfControlPoints then
           begin
             // Scale the entire model
-            Markers := Owner.AdjustMarkers;
+            Markers := FreeShip.AdjustMarkers;
             Model_Scale(Scale, False, Markers);
           end
           else
@@ -1050,31 +1050,31 @@ begin
                 Point.Coordinate := NewP;
               end;
             end;
-            Owner.Build := False;
-            Owner.Redraw;
+            FreeShip.Build := False;
+            FreeShip.Redraw;
           end;
         finally
           // Refresh controlpoint data
-          if Points.SortedIndexOf(Owner.ActiveControlPoint) <> -1 then
-            Owner.ActiveControlPoint := Owner.ActiveControlPoint;
+          if Points.SortedIndexOf(FreeShip.ActiveControlPoint) <> -1 then
+            FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
           Screen.Cursor := PrevCursor;
         end;
       end
       else
       begin
-        for I := Owner.NumberOfSelectedControlPoints downto 1 do
-          Owner.SelectedControlPoint[I - 1].Selected := False;
-        for I := 1 to Owner.NumberOfViewports do
-          Owner.Viewport[I - 1].Refresh;
+        for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+          FreeShip.SelectedControlPoint[I - 1].Selected := False;
+        for I := 1 to FreeShip.NumberOfViewports do
+          FreeShip.Viewport[I - 1].Refresh;
       end;
       Dialog.Destroy;
     end
     else
     begin
-      for I := Owner.NumberOfSelectedControlPoints downto 1 do
-        Owner.SelectedControlPoint[I - 1].Selected := False;
-      for I := 1 to Owner.NumberOfViewports do
-        Owner.Viewport[I - 1].Refresh;
+      for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+        FreeShip.SelectedControlPoint[I - 1].Selected := False;
+      for I := 1 to FreeShip.NumberOfViewports do
+        FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
   Points.Destroy;
@@ -1094,21 +1094,21 @@ var
   Marker: TFreeMarker;
 begin
   Points := TFasterListTFreeSubdivisionControlPoint.Create;
-  if Owner.ActiveControlPoint <> nil then
-    Points.Add(Owner.ActiveControlPoint);
-  Owner.Surface.ExtractPointsFromSelection(Points, NLocked);
+  if FreeShip.ActiveControlPoint <> nil then
+    Points.Add(FreeShip.ActiveControlPoint);
+  FreeShip.Surface.ExtractPointsFromSelection(Points, NLocked);
   if Points.Count = 0 then
   begin
-    SelectDlg := TFreeSelectLayersDialog.Create(Owner);
+    SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
     ShowTranslatedValues(SelectDlg);
-    if SelectDlg.Execute(Owner, fsPoints) then
+    if SelectDlg.Execute(FFreeShip, fsPoints) then
       SelectDlg.ExtractSelectedPoints(Points)
     else
     begin
-      for I := Owner.NumberOfSelectedControlPoints downto 1 do
-        Owner.SelectedControlPoint[I - 1].Selected := False;
-      for I := 1 to Owner.NumberOfViewports do
-        Owner.Viewport[I - 1].Refresh;
+      for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+        FreeShip.SelectedControlPoint[I - 1].Selected := False;
+      for I := 1 to FreeShip.NumberOfViewports do
+        FreeShip.Viewport[I - 1].Refresh;
     end;
     SelectDlg.Destroy;
   end;
@@ -1121,14 +1121,14 @@ begin
       Proceed := True;
     if Proceed then
     begin
-      Dialog := TFreeRotateDialog.Create(Owner);
+      Dialog := TFreeRotateDialog.Create(FreeShip);
       Dialog.Caption := 'Move';
       //ShowTranslatedValues(Dialog);
       Dialog.XValue := 0.0;
       Dialog.YValue := 0.0;
       Dialog.ZValue := 0.0;
       if Dialog.Execute(Userstring(92), LengthStr(
-        Owner.ProjectSettings.ProjectUnits)) then
+        FreeShip.ProjectSettings.ProjectUnits)) then
       begin
         CreateUndoObject(Userstring(93), True);
         Translate.X := Dialog.XValue;
@@ -1149,27 +1149,27 @@ begin
               Point.Coordinate := P;
             end;
           end;
-          if Points.Count = Owner.Surface.NumberOfControlPoints then
+          if Points.Count = FreeShip.Surface.NumberOfControlPoints then
           begin
             // Update main dimensions
-            if not Owner.ProjectSettings.FUseDefaultMainframeLocation then
-              Owner.ProjectSettings.ProjectMainframeLocation :=
-                Owner.ProjectSettings.ProjectMainframeLocation + Translate.X;
+            if not FreeShip.ProjectSettings.FUseDefaultMainframeLocation then
+              FreeShip.ProjectSettings.ProjectMainframeLocation :=
+                FreeShip.ProjectSettings.ProjectMainframeLocation + Translate.X;
             // Update stations, buttcks and waterlines
-            for I := 1 to Owner.NumberofStations do
-              Owner.Station[I - 1].FPlane.d :=
-                Owner.Station[I - 1].FPlane.d - Translate.X;
-            for I := 1 to Owner.NumberofButtocks do
-              Owner.Buttock[I - 1].FPlane.d :=
-                Owner.Buttock[I - 1].FPlane.d - Translate.Y;
-            for I := 1 to Owner.NumberofWaterlines do
-              Owner.Waterline[I - 1].FPlane.d :=
-                Owner.Waterline[I - 1].FPlane.d - Translate.Z;
+            for I := 1 to FreeShip.NumberofStations do
+              FreeShip.Station[I - 1].FPlane.d :=
+                FreeShip.Station[I - 1].FPlane.d - Translate.X;
+            for I := 1 to FreeShip.NumberofButtocks do
+              FreeShip.Buttock[I - 1].FPlane.d :=
+                FreeShip.Buttock[I - 1].FPlane.d - Translate.Y;
+            for I := 1 to FreeShip.NumberofWaterlines do
+              FreeShip.Waterline[I - 1].FPlane.d :=
+                FreeShip.Waterline[I - 1].FPlane.d - Translate.Z;
             // Update markers
-            if Owner.AdjustMarkers then
-              for I := 1 to Owner.NumberofMarkers do
+            if FreeShip.AdjustMarkers then
+              for I := 1 to FreeShip.NumberofMarkers do
               begin
-                Marker := Owner.Marker[I - 1];
+                Marker := FreeShip.Marker[I - 1];
                 for J := 1 to Marker.NumberOfPoints do
                 begin
                   P := Marker.Point[J - 1];
@@ -1180,30 +1180,30 @@ begin
                 end;
               end;
           end;
-          Owner.Build := False;
-          Owner.Redraw;
+          FreeShip.Build := False;
+          FreeShip.Redraw;
         finally
           // Refresh controlpoint data
-          if Points.SortedIndexOf(Owner.ActiveControlPoint) <> -1 then
-            Owner.ActiveControlPoint := Owner.ActiveControlPoint;
+          if Points.SortedIndexOf(FreeShip.ActiveControlPoint) <> -1 then
+            FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
           Screen.Cursor := PrevCursor;
         end;
       end
       else
       begin
-        for I := Owner.NumberOfSelectedControlPoints downto 1 do
-          Owner.SelectedControlPoint[I - 1].Selected := False;
-        for I := 1 to Owner.NumberOfViewports do
-          Owner.Viewport[I - 1].Refresh;
+        for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+          FreeShip.SelectedControlPoint[I - 1].Selected := False;
+        for I := 1 to FreeShip.NumberOfViewports do
+          FreeShip.Viewport[I - 1].Refresh;
       end;
       Dialog.Destroy;
     end
     else
     begin
-      for I := Owner.NumberOfSelectedControlPoints downto 1 do
-        Owner.SelectedControlPoint[I - 1].Selected := False;
-      for I := 1 to Owner.NumberOfViewports do
-        Owner.Viewport[I - 1].Refresh;
+      for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+        FreeShip.SelectedControlPoint[I - 1].Selected := False;
+      for I := 1 to FreeShip.NumberOfViewports do
+        FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
   Points.Destroy;
@@ -1219,27 +1219,27 @@ var
   I: integer;
   vUndo: TFreeUndoObject;
 begin
-  if Owner.NumberOfSelectedControlPoints > 2 then
+  if FreeShip.NumberOfSelectedControlPoints > 2 then
   begin
     Tmp := TFasterListTFreeSubdivisionControlPoint.Create;
     vUndo := CreateUndoObject(Userstring(94), False);
     // Remember the number of faces, edges and points
     // Assemble all points in a temp. list
-    for I := 1 to Owner.Surface.NumberOfSelectedControlPoints do
-      Tmp.Add(Owner.Surface.SelectedControlPoint[I - 1]);
+    for I := 1 to FreeShip.Surface.NumberOfSelectedControlPoints do
+      Tmp.Add(FreeShip.Surface.SelectedControlPoint[I - 1]);
     // Deselect the controlpoints
-    for I := Owner.Surface.NumberOfSelectedControlPoints downto 1 do
-      Owner.Surface.SelectedControlPoint[I - 1].Selected := False;
+    for I := FreeShip.Surface.NumberOfSelectedControlPoints downto 1 do
+      FreeShip.Surface.SelectedControlPoint[I - 1].Selected := False;
     // Add the new face
-    Face := Owner.Surface.AddControlFace(Tmp, True, Owner.ActiveLayer);
+    Face := FreeShip.Surface.AddControlFace(Tmp, True, FreeShip.ActiveLayer);
     if Face <> nil then
     begin
       vUndo.Accept;
-      Owner.Build := False;
-      Owner.FileChanged := True;
-      Owner.Redraw;
-      if Assigned(Owner.OnUpdateGeometryInfo) then
-        Owner.OnUpdateGeometryInfo(self);
+      FreeShip.Build := False;
+      FreeShip.FileChanged := True;
+      FreeShip.Redraw;
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
     end
     else
       vUndo.Delete;
@@ -1262,26 +1262,26 @@ var
   Strings: TStringList;
 
 begin
-  if not Owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
     MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
     exit;
   end;
   Frames := TFasterListTFreeSpline.Create;
-  Owner.FBuildValidFrameTable(Frames, True);
+  FreeShip.FBuildValidFrameTable(Frames, True);
   if Frames.Count > 0 then
   begin
-    SaveDialog := TSaveDialog.Create(Owner);
+    SaveDialog := TSaveDialog.Create(FreeShip);
 
-    SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-    SaveDialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '');
+    SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+    SaveDialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '');
     SaveDialog.Filter :=
       'ArchimedesMB multi body hull data(*.hll)|*.hll|Archimedes single body hull data(*.app)|*.app';
     SaveDialog.FilterIndex := 1;
     Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
     if SaveDialog.Execute then
     begin
-      Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+      FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
       if SaveDialog.FilterIndex = 2 then
       begin
         // Single body Archimedes
@@ -1309,20 +1309,20 @@ begin
           + #10);
         // Hull name
         Write(FFile, 'APPENDAGE_NAME' + #10);
-        if Owner.ProjectSettings.ProjectName <> '' then
-          Tmp := Owner.ProjectSettings.ProjectName
+        if FreeShip.ProjectSettings.ProjectName <> '' then
+          Tmp := FreeShip.ProjectSettings.ProjectName
         else
-          Tmp := ChangeFileExt(ExtractFilename(Owner.Filename), '');
+          Tmp := ChangeFileExt(ExtractFilename(FreeShip.Filename), '');
         Write(FFile, Tmp + #10);
         // Aft perpendicular
         Write(FFile, 'AP' + #10);
         Write(FFile, '0.0' + #10);
         // Forward perpendicular
         Write(FFile, 'FP' + #10);
-        Write(FFile, Truncate(Owner.ProjectSettings.ProjectLength, 4) + #10);
+        Write(FFile, Truncate(FreeShip.ProjectSettings.ProjectLength, 4) + #10);
         // Water density
         Write(FFile, 'DENSITY' + #10);
-        Write(FFile, Truncate(Owner.ProjectSettings.ProjectWaterDensity, 3) + #10);
+        Write(FFile, Truncate(FreeShip.ProjectSettings.ProjectWaterDensity, 3) + #10);
         // Now send the frames
         Write(FFile, 'NUMBER_OF_FRAMES' + #10);
         Write(FFile, IntToStr(Frames.Count) + #10);
@@ -1375,27 +1375,27 @@ begin
         Strings.Add('<HULL>');
         // Hull name
         Strings.Add('<HULL_NAME>');
-        if Owner.ProjectSettings.ProjectName <> '' then
-          Str := Owner.ProjectSettings.ProjectName
+        if FreeShip.ProjectSettings.ProjectName <> '' then
+          Str := FreeShip.ProjectSettings.ProjectName
         else
-          Str := ChangeFileExt(ExtractFilename(Owner.Filename), '');
+          Str := ChangeFileExt(ExtractFilename(FreeShip.Filename), '');
         Strings.Add(Str);
         Strings.Add('</HULL_NAME>');
         // Water density
         Strings.Add('<DENSITY>' + #32 + Truncate(
-          Owner.ProjectSettings.ProjectWaterDensity, 3) + #32 + '</DENSITY>');
+          FreeShip.ProjectSettings.ProjectWaterDensity, 3) + #32 + '</DENSITY>');
         // Aft perpendicular
         Strings.Add('<AP> 0.0 </AP>');
         // Forward perpendicular
-        Strings.Add('<FP>' + #32 + Truncate(Owner.ProjectSettings.ProjectLength, 4) +
+        Strings.Add('<FP>' + #32 + Truncate(FreeShip.ProjectSettings.ProjectLength, 4) +
           #32 + '</FP>');
         // Draught marks
         Strings.Add('<FWD_DRAUGHT_MARK>' + #32 + Truncate(
-          Owner.ProjectSettings.ProjectDraft, 4) + #32 + '</FWD_DRAUGHT_MARK>');
+          FreeShip.ProjectSettings.ProjectDraft, 4) + #32 + '</FWD_DRAUGHT_MARK>');
         Strings.Add('<MID_DRAUGHT_MARK>' + #32 + Truncate(
-          Owner.ProjectSettings.ProjectDraft, 4) + #32 + '</MID_DRAUGHT_MARK>');
+          FreeShip.ProjectSettings.ProjectDraft, 4) + #32 + '</MID_DRAUGHT_MARK>');
         Strings.Add('<AFT_DRAUGHT_MARK>' + #32 + Truncate(
-          Owner.ProjectSettings.ProjectDraft, 4) + #32 + '</AFT_DRAUGHT_MARK>');
+          FreeShip.ProjectSettings.ProjectDraft, 4) + #32 + '</AFT_DRAUGHT_MARK>');
         // Number of appendages (only 1, the main hull)
         Strings.Add('<APPENDAGE_COUNT> 1 </APPENDAGE_COUNT>');
         Strings.Add('<APPENDAGE>');
@@ -1465,9 +1465,9 @@ var
   SaveDialog: TSaveDialog;
   ffile: textfile;
 begin
-  SaveDialog := TSaveDialog.Create(Owner);
-  SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-  SaveDialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '');
+  SaveDialog := TSaveDialog.Create(FreeShip);
+  SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  SaveDialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '');
   SaveDialog.Filter := 'Text file(*.txt)|*.txt';
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
@@ -1478,21 +1478,21 @@ begin
 {$I+}
     if IOResult = 0 then
     begin
-      Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+      FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
          {
-         for I:=1 to Owner.Surface.NumberOfControlPoints do
+         for I:=1 to FreeShip.Surface.NumberOfControlPoints do
          begin
-            Point:=Owner.Surface.ControlPoint[I-1];
+            Point:=FreeShip.Surface.ControlPoint[I-1];
             Writeln(FFile,MakeLength(Point.Coordinate.X,6,12),#32,
                           MakeLength(Point.Coordinate.Y,6,12),#32,
                           MakeLength(Point.Coordinate.Z,6,12));
          end;
          }
-      //         MessageDlg(FloatToStrF(Owner.Surface.NumberOfControlPoints,ffFixed,6,0),mtError,[mbOk],0);
-      //         MessageDlg(FloatToStrF(Owner.Surface.NumberOfPoints,ffFixed,6,0),mtError,[mbOk],0);
-      for I := 1 to Owner.Surface.NumberOfPoints do
+      //         MessageDlg(FloatToStrF(FreeShip.Surface.NumberOfControlPoints,ffFixed,6,0),mtError,[mbOk],0);
+      //         MessageDlg(FloatToStrF(FreeShip.Surface.NumberOfPoints,ffFixed,6,0),mtError,[mbOk],0);
+      for I := 1 to FreeShip.Surface.NumberOfPoints do
       begin
-        Point := Owner.Surface.Point[I - 1];
+        Point := FreeShip.Surface.Point[I - 1];
         Writeln(FFile, MakeLength(Point.Coordinate.X, 6, 12), #32,
           MakeLength(Point.Coordinate.Y, 6, 12), #32,
           MakeLength(Point.Coordinate.Z, 6, 12));
@@ -1619,7 +1619,7 @@ var
         end;
         Strings.Add('0' + EOL + 'SEQEND');
         if (Intersectiontype in [fiStation, fiWaterline]) and
-          (Owner.Visibility.ModelView = mvBoth) then
+          (FreeShip.Visibility.ModelView = mvBoth) then
         begin
           // send the other half
           Strings.Add('0' + EOL + 'POLYLINE');
@@ -1669,7 +1669,7 @@ var
           exit;
         end;
       end;
-      Filename := Owner.Preferences.ExportDirectory + Intersection.Description + '.dxf';
+      Filename := FreeShip.Preferences.ExportDirectory + Intersection.Description + '.dxf';
       for I := 1 to Intersection.Count do
       begin
         Intersection.Items[I - 1].Color := Intersection.Color;
@@ -1679,26 +1679,26 @@ var
   end;
 
 begin
-  Dialog := TDXFExport2DDialog.Create(Owner);
+  Dialog := TDXFExport2DDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.ExportDirectory := Owner.Preferences.ExportDirectory;
-  if Owner.ProjectSettings.ProjectUnits = fuMetric then
+  Dialog.ExportDirectory := FreeShip.Preferences.ExportDirectory;
+  if FreeShip.ProjectSettings.ProjectUnits = fuMetric then
     Dialog.ComboBox1.ItemIndex := 0
   else
-  if Owner.ProjectSettings.ProjectUnits = fuImperial then
+  if FreeShip.ProjectSettings.ProjectUnits = fuImperial then
     Dialog.ComboBox1.ItemIndex := 3;
 
   if Dialog.Execute then
   begin
-    Owner.Preferences.ExportDirectory := Dialog.ExportDirectory;
-    if Length(Owner.Preferences.ExportDirectory) > 0 then
-      if Owner.Preferences.ExportDirectory[Length(
-        Owner.Preferences.ExportDirectory)] <> DirectorySeparator then
-        Owner.Preferences.ExportDirectory := Owner.Preferences.ExportDirectory + DirectorySeparator;
+    FreeShip.Preferences.ExportDirectory := Dialog.ExportDirectory;
+    if Length(FreeShip.Preferences.ExportDirectory) > 0 then
+      if FreeShip.Preferences.ExportDirectory[Length(
+        FreeShip.Preferences.ExportDirectory)] <> DirectorySeparator then
+        FreeShip.Preferences.ExportDirectory := FreeShip.Preferences.ExportDirectory + DirectorySeparator;
 
     ScaleFactor := 1.0;
     SegLength := Dialog.SegmentLength;
-    if Owner.ProjectSettings.ProjectUnits = fuMetric then
+    if FreeShip.ProjectSettings.ProjectUnits = fuMetric then
       case Dialog.ComboBox1.ItemIndex of
         0: ScaleFactor := 1.0;         // Scale from meters to meters
         1: ScaleFactor := 100;         // Scale from meters to centimeters
@@ -1706,7 +1706,7 @@ begin
         3: ScaleFactor := 1 / Foot;      // Scale from meters to feet
         4: ScaleFactor := 12 / Foot;     // Scale from meters to inches
       end
-    else if Owner.ProjectSettings.ProjectUnits = fuImperial then
+    else if FreeShip.ProjectSettings.ProjectUnits = fuImperial then
       case Dialog.ComboBox1.ItemIndex of
         0: ScaleFactor := Foot;        // Scale from feet to meters
         1: ScaleFactor := 100 * foot;    // Scale from feet to centimeters
@@ -1723,12 +1723,12 @@ begin
       begin
         // send each intersection to an individual dxf file
         Intersections := TFasterListTFreeIntersection.Create;
-        if Owner.Visibility.ShowStations then
-          Intersections.AddList(Owner.FStations);
-        if Owner.Visibility.ShowButtocks then
-          Intersections.AddList(Owner.FButtocks);
-        if Owner.Visibility.ShowWaterlines then
-          Intersections.AddList(Owner.FWaterlines);
+        if FreeShip.Visibility.ShowStations then
+          Intersections.AddList(FreeShip.FStations);
+        if FreeShip.Visibility.ShowButtocks then
+          Intersections.AddList(FreeShip.FButtocks);
+        if FreeShip.Visibility.ShowWaterlines then
+          Intersections.AddList(FreeShip.FWaterlines);
         for I := 1 to Intersections.Count do
         begin
           Strings.Clear;
@@ -1743,40 +1743,40 @@ begin
       end
       else
       begin
-        if (Owner.Visibility.ShowStations) and (Owner.NumberofStations > 0) then
+        if (FreeShip.Visibility.ShowStations) and (FreeShip.NumberofStations > 0) then
         begin
           Strings.Clear;
           Strings.Add('0' + EOL + 'SECTION');
           Strings.Add('2' + EOL + 'ENTITIES');
-          for I := 1 to Owner.NumberofStations do
-            CreateDXFData(Owner.Station[I - 1], Strings, ScaleFactor, Filename);
+          for I := 1 to FreeShip.NumberofStations do
+            CreateDXFData(FreeShip.Station[I - 1], Strings, ScaleFactor, Filename);
           Strings.Add('0' + EOL + 'ENDSEC');
           Strings.Add('0' + EOL + 'EOF');
-          Filename := Owner.Preferences.ExportDirectory + 'stations.dxf';
+          Filename := FreeShip.Preferences.ExportDirectory + 'stations.dxf';
           Strings.SaveToFile(Filename);
         end;
-        if (Owner.Visibility.ShowButtocks) and (Owner.NumberofButtocks > 0) then
+        if (FreeShip.Visibility.ShowButtocks) and (FreeShip.NumberofButtocks > 0) then
         begin
           Strings.Clear;
           Strings.Add('0' + EOL + 'SECTION');
           Strings.Add('2' + EOL + 'ENTITIES');
-          for I := 1 to Owner.NumberofButtocks do
-            CreateDXFData(Owner.Buttock[I - 1], Strings, ScaleFactor, Filename);
+          for I := 1 to FreeShip.NumberofButtocks do
+            CreateDXFData(FreeShip.Buttock[I - 1], Strings, ScaleFactor, Filename);
           Strings.Add('0' + EOL + 'ENDSEC');
           Strings.Add('0' + EOL + 'EOF');
-          Filename := Owner.Preferences.ExportDirectory + 'buttocks.dxf';
+          Filename := FreeShip.Preferences.ExportDirectory + 'buttocks.dxf';
           Strings.SaveToFile(Filename);
         end;
-        if (Owner.Visibility.ShowWaterlines) and (Owner.NumberofWaterlines > 0) then
+        if (FreeShip.Visibility.ShowWaterlines) and (FreeShip.NumberofWaterlines > 0) then
         begin
           Strings.Clear;
           Strings.Add('0' + EOL + 'SECTION');
           Strings.Add('2' + EOL + 'ENTITIES');
-          for I := 1 to Owner.NumberofWaterlines do
-            CreateDXFData(Owner.Waterline[I - 1], Strings, ScaleFactor, Filename);
+          for I := 1 to FreeShip.NumberofWaterlines do
+            CreateDXFData(FreeShip.Waterline[I - 1], Strings, ScaleFactor, Filename);
           Strings.Add('0' + EOL + 'ENDSEC');
           Strings.Add('0' + EOL + 'EOF');
-          Filename := Owner.Preferences.ExportDirectory + 'waterlines.dxf';
+          Filename := FreeShip.Preferences.ExportDirectory + 'waterlines.dxf';
           Strings.SaveToFile(Filename);
         end;
       end;
@@ -1799,37 +1799,37 @@ var
   Point: TFreeSubdivisionPoint;
   Layername: string;
 begin
-  Dialog := TSaveDialog.Create(Owner);
-  Dialog.InitialDir := Owner.Preferences.ExportDirectory;
-  Dialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.dxf');
+  Dialog := TSaveDialog.Create(FreeShip);
+  Dialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  Dialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.dxf');
   Dialog.Filter := 'Autocad dxf file (*.dxf)|*.dxf';
   dialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if Dialog.Execute then
   begin
-    Owner.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
+    FreeShip.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
     Strings := TStringList.Create;
     Strings.Add('0' + EOL + 'SECTION');
     Strings.Add('2' + EOL + 'ENTITIES');
-    if Owner.Visibility.ShowStations then
-      for I := 1 to Owner.NumberofStations do
-        Owner.Station[I - 1].SaveToDXF(Strings);
-    if Owner.Visibility.ShowButtocks then
-      for I := 1 to Owner.NumberofButtocks do
-        Owner.Buttock[I - 1].SaveToDXF(Strings);
-    if Owner.Visibility.ShowWaterlines then
-      for I := 1 to Owner.NumberofWaterlines do
-        Owner.Waterline[I - 1].SaveToDXF(Strings);
-    if Owner.Visibility.ShowDiagonals then
-      for I := 1 to Owner.NumberofDiagonals do
-        Owner.Diagonal[I - 1].SaveToDXF(Strings);
-    if Owner.Visibility.ShowControlCurves then
-      for I := 1 to Owner.NumberofControlCurves do
-        Owner.ControlCurve[I - 1].SaveToDXF(Strings);
+    if FreeShip.Visibility.ShowStations then
+      for I := 1 to FreeShip.NumberofStations do
+        FreeShip.Station[I - 1].SaveToDXF(Strings);
+    if FreeShip.Visibility.ShowButtocks then
+      for I := 1 to FreeShip.NumberofButtocks do
+        FreeShip.Buttock[I - 1].SaveToDXF(Strings);
+    if FreeShip.Visibility.ShowWaterlines then
+      for I := 1 to FreeShip.NumberofWaterlines do
+        FreeShip.Waterline[I - 1].SaveToDXF(Strings);
+    if FreeShip.Visibility.ShowDiagonals then
+      for I := 1 to FreeShip.NumberofDiagonals do
+        FreeShip.Diagonal[I - 1].SaveToDXF(Strings);
+    if FreeShip.Visibility.ShowControlCurves then
+      for I := 1 to FreeShip.NumberofControlCurves do
+        FreeShip.ControlCurve[I - 1].SaveToDXF(Strings);
 
     Edges := TFasterListTFreeSubdivisionEdge.Create;
-    Owner.Surface.ExtractAllEdgeLoops(Edges);
+    FreeShip.Surface.ExtractAllEdgeLoops(Edges);
     Layername := 'Edges';
-    ind := FindDXFColorIndex(Owner.Preferences.EdgeColor);
+    ind := FindDXFColorIndex(FreeShip.Preferences.EdgeColor);
     Points := TFasterListTFreeSubdivisionPoint.Create;
     for I := 1 to Edges.Count do
     begin
@@ -1852,7 +1852,7 @@ begin
         Strings.Add('70' + EOL + '32');    // 3D polyline mesh vertex
       end;
       Strings.Add('0' + EOL + 'SEQEND');
-      if Owner.Visibility.ModelView = mvBoth then
+      if FreeShip.Visibility.ModelView = mvBoth then
       begin
         Strings.Add('0' + EOL + 'POLYLINE');
         Strings.Add('8' + EOL + LayerName);   // layername
@@ -1890,9 +1890,9 @@ var
   Dialog: TSaveDialog;
   Prev: TCursor;
 begin
-  Dialog := TSaveDialog.Create(Owner);
-  Dialog.InitialDir := Owner.Preferences.ExportDirectory;
-  Dialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.dxf');
+  Dialog := TSaveDialog.Create(FreeShip);
+  Dialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  Dialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.dxf');
   Dialog.Filter := 'Autocad dxf file (*.dxf)|*.dxf';
   dialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if Dialog.Execute then
@@ -1900,12 +1900,12 @@ begin
     Prev := Screen.Cursor;
     Screen.Cursor := crHourglass;
     try
-      Owner.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
+      FreeShip.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
       Strings := TStringList.Create;
       Strings.Add('0' + EOL + 'SECTION');
       Strings.Add('2' + EOL + 'ENTITIES');
-      for I := 1 to Owner.Surface.NumberOfLayers do
-        Owner.Surface.Layer[I - 1].SaveToDXF(Strings);
+      for I := 1 to FreeShip.Surface.NumberOfLayers do
+        FreeShip.Surface.Layer[I - 1].SaveToDXF(Strings);
       Strings.Add('0' + EOL + 'ENDSEC');
       Strings.Add('0' + EOL + 'EOF');
       try
@@ -1927,29 +1927,29 @@ var
   SaveDialog: TSaveDialog;
   Strings: TStringList;
 begin
-  SaveDialog := TSaveDialog.Create(Owner);
-  SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-  SaveDialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.fef');
+  SaveDialog := TSaveDialog.Create(FreeShip);
+  SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  SaveDialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.fef');
   SaveDialog.Filter := 'FREE!ship Exchange Format (*.Fef)|*.fef';
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin
-    Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+    FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
     Strings := TStringList.Create;
     // Add general info and mainparticulars
-    Strings.Add(Owner.ProjectSettings.ProjectName);
-    Strings.Add(Owner.ProjectSettings.ProjectDesigner);
-    Strings.Add(Owner.ProjectSettings.ProjectFileCreatedBy);
-    Strings.Add(Owner.ProjectSettings.ProjectComment);
-    Strings.Add(Truncate(Owner.ProjectSettings.ProjectLength, 4) +
-      #32 + Truncate(Owner.ProjectSettings.ProjectBeam, 4) + #32 +
-      Truncate(Owner.ProjectSettings.ProjectDraft, 4) + #32 +
-      Truncate(Owner.ProjectSettings.ProjectWaterDensity, 5) + #32 +
-      Truncate(Owner.ProjectSettings.ProjectAppendageCoefficient, 5) +
-      #32 + IntToStr(Ord(Owner.ProjectSettings.ProjectUnits)) + #32 +
-      BoolToStr(Owner.ProjectSettings.MainparticularsHasBeenset) +
-      #32 + IntToStr(Ord(Owner.Precision)));
-    Owner.Surface.ExportFeFFile(Strings);
+    Strings.Add(FreeShip.ProjectSettings.ProjectName);
+    Strings.Add(FreeShip.ProjectSettings.ProjectDesigner);
+    Strings.Add(FreeShip.ProjectSettings.ProjectFileCreatedBy);
+    Strings.Add(FreeShip.ProjectSettings.ProjectComment);
+    Strings.Add(Truncate(FreeShip.ProjectSettings.ProjectLength, 4) +
+      #32 + Truncate(FreeShip.ProjectSettings.ProjectBeam, 4) + #32 +
+      Truncate(FreeShip.ProjectSettings.ProjectDraft, 4) + #32 +
+      Truncate(FreeShip.ProjectSettings.ProjectWaterDensity, 5) + #32 +
+      Truncate(FreeShip.ProjectSettings.ProjectAppendageCoefficient, 5) +
+      #32 + IntToStr(Ord(FreeShip.ProjectSettings.ProjectUnits)) + #32 +
+      BoolToStr(FreeShip.ProjectSettings.MainparticularsHasBeenset) +
+      #32 + IntToStr(Ord(FreeShip.Precision)));
+    FreeShip.Surface.ExportFeFFile(Strings);
     Strings.SaveToFile(ChangeFileExt(Savedialog.FileName, '.fef'));
     Strings.Destroy;
   end;
@@ -1971,14 +1971,14 @@ var
   NParams: integer;
   Params: TFloatArray;
 begin
-  if not owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
     MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
     exit;
   end;
-  SaveDialog := TSaveDialog.Create(owner);
-  SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-  Str := ChangeFileExt(ExtractFilename(Owner.Filename), '.GF');
+  SaveDialog := TSaveDialog.Create(FreeShip);
+  SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  Str := ChangeFileExt(ExtractFilename(FreeShip.Filename), '.GF');
   // no spaces allowed in filename
   repeat
     I := Pos(#32, Str);
@@ -1993,32 +1993,32 @@ begin
     Savedialog.Destroy;
     exit;
   end;
-  Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+  FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
   PrevCursor := Screen.Cursor;
   Screen.Cursor := crHourGlass;
   Strings := TStringList.Create;
   Frames := TFasterListTFreeSpline.Create;
   try
-    Owner.FBuildValidFrameTable(Frames, True);
+    FreeShip.FBuildValidFrameTable(Frames, True);
     Scale := 1.0;
-    //      if Owner.ProjectSettings.ProjectUnits=fuMetric then Scale:=1.0
+    //      if FreeShip.ProjectSettings.ProjectUnits=fuMetric then Scale:=1.0
     //                                                     else Scale:=1/Foot;
-    Str := Owner.ProjectSettings.ProjectName;
+    Str := FreeShip.ProjectSettings.ProjectName;
     if Length(Str) > 58 then
       Str := Copy(Str, 1, 58);
     Strings.Add(Str);
     // ProjectDescription, max 58 characters
-    Strings.Add('L:' + FloatToStrF(Scale * Owner.ProjectSettings.ProjectLength,
+    Strings.Add('L:' + FloatToStrF(Scale * FreeShip.ProjectSettings.ProjectLength,
       ffFixed, 7, 3));
     // Length
-    Strings.Add('W:' + FloatToStrF(Scale * Owner.ProjectSettings.ProjectBeam,
+    Strings.Add('W:' + FloatToStrF(Scale * FreeShip.ProjectSettings.ProjectBeam,
       ffFixed, 7, 3));
     // Beam
     Strings.Add('OL:Frame 0');
     Strings.Add('OT:Centerplane');
     Strings.Add('OV:Baseline');
     // Units preference
-    if Owner.ProjectSettings.ProjectUnits = fuMetric then
+    if FreeShip.ProjectSettings.ProjectUnits = fuMetric then
       Strings.Add('P:M')
     else
       Strings.Add('P:F');
@@ -2094,11 +2094,11 @@ begin
     Strings.Add('HULL');          // Partname and description
     Strings.Add('WATER');                  // FluidName
     strings.Add('1');                      // part type (displacement)
-    if Owner.ProjectSettings.ProjectUnits = fuMetric then
-      Strings.Add(FloatToStrF(Owner.ProjectSettings.ProjectWaterDensity, ffFixed, 7, 3))
+    if FreeShip.ProjectSettings.ProjectUnits = fuMetric then
+      Strings.Add(FloatToStrF(FreeShip.ProjectSettings.ProjectWaterDensity, ffFixed, 7, 3))
     // specific gravity of water
     else
-      Strings.Add(FloatToStrF(Owner.ProjectSettings.ProjectWaterDensity /
+      Strings.Add(FloatToStrF(FreeShip.ProjectSettings.ProjectWaterDensity /
         WeightConversionFactor, ffFixed, 7, 3));
     Strings.Add('0,0,0');      // ReferencePoint
     Strings.Add('1');          // Number of components
@@ -2140,15 +2140,15 @@ var
   NParams: integer;
   Params: TFloatArray;
 begin
-  if not owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
     MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
     exit;
   end;
 
-  SaveDialog := TSaveDialog.Create(owner);
-  SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-  Str := ChangeFileExt(ExtractFilename(Owner.Filename), '.PAM');
+  SaveDialog := TSaveDialog.Create(FreeShip);
+  SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  Str := ChangeFileExt(ExtractFilename(FreeShip.Filename), '.PAM');
   // no spaces allowed in filename
   repeat
     I := Pos(#32, Str);
@@ -2163,34 +2163,34 @@ begin
     Savedialog.Destroy;
     exit;
   end;
-  Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+  FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
   PrevCursor := Screen.Cursor;
   Screen.Cursor := crHourGlass;
   Strings := TStringList.Create;
   Frames := TFasterListTFreeSpline.Create;
   try
-    Owner.FBuildValidFrameTable(Frames, True);
-    if Owner.ProjectSettings.ProjectUnits = fuMetric then
+    FreeShip.FBuildValidFrameTable(Frames, True);
+    if FreeShip.ProjectSettings.ProjectUnits = fuMetric then
       Scale := 1.0
     else
       Scale := 1 / Foot;
-    Str := Owner.ProjectSettings.ProjectName + ' L=' + FloatToStrF(
-      Scale * Owner.ProjectSettings.ProjectLength, ffFixed, 7, 3) +
-      ' B=' + FloatToStrF(Scale * Owner.ProjectSettings.ProjectBeam, ffFixed, 7, 3) +
-      ' T=' + FloatToStrF(Scale * Owner.ProjectSettings.ProjectDraft, ffFixed, 7, 3);
+    Str := FreeShip.ProjectSettings.ProjectName + ' L=' + FloatToStrF(
+      Scale * FreeShip.ProjectSettings.ProjectLength, ffFixed, 7, 3) +
+      ' B=' + FloatToStrF(Scale * FreeShip.ProjectSettings.ProjectBeam, ffFixed, 7, 3) +
+      ' T=' + FloatToStrF(Scale * FreeShip.ProjectSettings.ProjectDraft, ffFixed, 7, 3);
     if Length(Str) > 58 then
       Str := Copy(Str, 1, 58);
     Strings.Add(Str);       // ProjectDescription, max 58 characters
 
-    if Owner.ProjectSettings.ProjectUnits = fuMetric then
-      Strings.Add(FloatToStrF(Owner.ProjectSettings.ProjectWaterDensity *
+    if FreeShip.ProjectSettings.ProjectUnits = fuMetric then
+      Strings.Add(FloatToStrF(FreeShip.ProjectSettings.ProjectWaterDensity *
         1000, ffFixed, 7, 1) + ' 1600 100 .2 2. 1000 0') // specific gravity of water
     else
-      Strings.Add(FloatToStrF(Owner.ProjectSettings.ProjectWaterDensity /
+      Strings.Add(FloatToStrF(FreeShip.ProjectSettings.ProjectWaterDensity /
         WeightConversionFactor * 1000, ffFixed, 7, 1) + ' 1600 100 .2 2. 1000 0');
     Strings.Add('0 0 0 0 0 0 0 0 0 0');
-    LppHalf := Scale * Owner.ProjectSettings.ProjectLength / 2.;
-    Draft := Scale * Owner.ProjectSettings.ProjectDraft;
+    LppHalf := Scale * FreeShip.ProjectSettings.ProjectLength / 2.;
+    Draft := Scale * FreeShip.ProjectSettings.ProjectDraft;
     Strings.Add(IntToStr(Frames.Count) + ' 1. 0.'); // Number of sections
 
     for I := Frames.Count downto 1 do
@@ -2270,25 +2270,25 @@ var
   I: integer;
 begin
   Faces := TFasterListTFreeSubdivisionControlFace.Create;
-  if Owner.NumberOfSelectedControlFaces = 0 then
+  if FreeShip.NumberOfSelectedControlFaces = 0 then
   begin
-    SelectDlg := TFreeSelectLayersDialog.Create(Owner);
+    SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
     ShowTranslatedValues(SelectDlg);
-    if SelectDlg.Execute(Owner, fsFaces) then
+    if SelectDlg.Execute(FFreeShip, fsFaces) then
       SelectDlg.ExtractSelectedFaces(Faces);
-    for I := Owner.NumberOfSelectedControlFaces downto 1 do
-      Owner.SelectedControlFace[I - 1].Selected := False;
-    Owner.Redraw;
+    for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
+      FreeShip.SelectedControlFace[I - 1].Selected := False;
+    FreeShip.Redraw;
     SelectDlg.Destroy;
   end
   else
   begin
-    Faces.Capacity := Faces.Count + Owner.NumberOfSelectedControlFaces;
-    for I := 1 to Owner.NumberOfSelectedControlFaces do
-      Faces.Add(Owner.SelectedControlFace[I - 1]);
+    Faces.Capacity := Faces.Count + FreeShip.NumberOfSelectedControlFaces;
+    for I := 1 to FreeShip.NumberOfSelectedControlFaces do
+      Faces.Add(FreeShip.SelectedControlFace[I - 1]);
   end;
   if Faces.Count > 0 then
-    Owner.SavePart(Faces);
+    FreeShip.SavePart(Faces);
   Faces.Destroy;
 end;{TFreeEdit.File_ExportPart}
 
@@ -2309,31 +2309,31 @@ var
 label
   NewSearch, NewCalc, NewSearch1, exit0, exit1;
 begin
-  if not Owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
     MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
     exit;
   end;
   // temporarily switch to metric units for AddMass export
-  if Owner.ProjectSettings.ProjectUnits = fuImperial then
+  if FreeShip.ProjectSettings.ProjectUnits = fuImperial then
   begin
     UndoObject := CreateUndoObject(Userstring(101), False);
-    Owner.ProjectSettings.ProjectUnits := fuMetric;
+    FreeShip.ProjectSettings.ProjectUnits := fuMetric;
   end
   else
     UndoObject := nil;
   try
-    if not Owner.ProjectSettings.DisableModelCheck then
+    if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
-    Dialog := TFreeAddMassOutputDialog.Create(Owner);
+    Dialog := TFreeAddMassOutputDialog.Create(FreeShip);
     ShowTranslatedValues(Dialog);
     // Hull
     Dialog.NumberOfStations := 21;
     Dialog.NumberOfWaterlines := 11;
-    L := Owner.ProjectSettings.ProjectLength;
-    T := Owner.ProjectSettings.ProjectDraft;
-    B := Owner.ProjectSettings.ProjectBeam;
-    HydObject := TFreeHydrostaticCalc.Create(Owner);
+    L := FreeShip.ProjectSettings.ProjectLength;
+    T := FreeShip.ProjectSettings.ProjectDraft;
+    B := FreeShip.ProjectSettings.ProjectBeam;
+    HydObject := TFreeHydrostaticCalc.Create(FreeShip);
     HydObject.Draft := T;
     HydObject.Calculate;
     Cb := HydObject.Data.Volume / HydObject.Data.LengthWaterLine /
@@ -2344,8 +2344,8 @@ begin
     Dialog.Length := L;
     // Environment
     Dialog.Angle := 0.0;
-    Dialog.WaterDensity := Owner.ProjectSettings.ProjectWaterDensity;
-    //      Dialog.WaterTemper:=Owner.ProjectSettings.ProjectWaterTemper;
+    Dialog.WaterDensity := FreeShip.ProjectSettings.ProjectWaterDensity;
+    //      Dialog.WaterTemper:=FreeShip.ProjectSettings.ProjectWaterTemper;
     if Dialog.WaterDepth <= T then
       Dialog.WaterDepth := 1000;
     H := Dialog.WaterDepth;
@@ -2367,10 +2367,10 @@ begin
 
 
     NewCalc:
-      if Dialog.Execute(Owner) then
+      if Dialog.Execute(FreeShip) then
       begin
-        SaveDialog := TSaveDialog.Create(Owner);
-        SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
+        SaveDialog := TSaveDialog.Create(FreeShip);
+        SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
         SaveDialog.FileName := 'INA.';
         Dialog.SaveToFile(SaveDialog.FileName);
         SaveDialog.Destroy;
@@ -2541,10 +2541,10 @@ begin
           Space(5) + 'Copyright (c) 2008-2009, Timoshenko V.F.');
           Dialog.ResultsMemo.Visible := True;
 
-          if Dialog.Execute(Owner) then
+          if Dialog.Execute(FreeShip) then
           begin
-            SaveDialog := TSaveDialog.Create(Owner);
-            SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
+            SaveDialog := TSaveDialog.Create(FreeShip);
+            SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
             SaveDialog.FileName := 'INA.';
             Dialog.SaveToFile(SaveDialog.FileName);
             SaveDialog.Destroy;
@@ -2739,11 +2739,11 @@ var
   FExecDirectory, FTempDirectory, OldDir: string;
 begin
   OldDir := GetCurrentDirUTF8;
-  FTempDirectory := Owner.Preferences.TempDirectory;
+  FTempDirectory := FreeShip.Preferences.TempDirectory;
   SetCurrentDirUTF8(FTempDirectory);
   DeleteFileUTF8('OUTA.'); { *Converted from DeleteFile* }
   //  Определяем каталог с программой Add_Mass.EXE
-  FExecDirectory := Owner.Preferences.ExecDirectory;
+  FExecDirectory := FreeShip.Preferences.ExecDirectory;
 
   //  Определяем текущий каталог с проектами и с данными для расчета INA.
   FileToFind := FileSearchUTF8('INA.', FTempDirectory);
@@ -2847,7 +2847,7 @@ var
   begin
     OppPoint2 := nil;
     OppPoint3 := nil;
-    Edge := Owner.Surface.EdgeExists(P2, P3);
+    Edge := FreeShip.Surface.EdgeExists(P2, P3);
     if Edge <> nil then
       if not Edge.Crease then
         for I := 1 to Edge.NumberOfFaces do
@@ -3079,7 +3079,7 @@ var
         TopRight := FindFourtPoint(RightColumn[0], Grid[0][Cols - 1], TopRow[Cols - 1]);
       // find TopRight cornerpoint
 
-      NURB := TFreeNURBsurface.Create(Owner.Surface);
+      NURB := TFreeNURBsurface.Create(FreeShip.Surface);
       NURB.SetCapacity(Cols + 2, Rows + 2);
       NURB.ColCount := Nurb.ColCapacity;
       NURB.RowCount := Nurb.RowCapacity;
@@ -3199,9 +3199,9 @@ var
       Nurb.Point[0, Rows + 1] := Grid[Rows - 1][0].LimitPoint;
       Nurb.Point[Cols + 1, Rows + 1] := Grid[Rows - 1][Cols - 1].LimitPoint;
       IGESList.Add_Entity_128(NURB, ColorInd);
-      if Owner.Visibility.ModelView = mvBoth then
+      if FreeShip.Visibility.ModelView = mvBoth then
       begin
-        NURB2 := TFreeNURBsurface.Create(Owner.Surface);
+        NURB2 := TFreeNURBsurface.Create(FreeShip.Surface);
         NURB2.SetCapacity(Nurb.ColCount, Nurb.RowCount);
         NURB2.ColCount := Nurb2.ColCapacity;
         NURB2.RowCount := Nurb2.RowCapacity;
@@ -3226,33 +3226,33 @@ var
   end;{ProcessGrid}
 
 begin
-  Dialog := TSaveDialog.Create(Owner);
-  Dialog.InitialDir := Owner.Preferences.ExportDirectory;
-  Dialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.igs');
+  Dialog := TSaveDialog.Create(FreeShip);
+  Dialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  Dialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.igs');
   Dialog.Filter := 'IGES files (*.igs)|*.igs';
   dialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if Dialog.Execute then
   begin
     Prev := Screen.Cursor;
     Screen.Cursor := crHourglass;
-    PrevLevel := Owner.Surface.DesiredSubdivisionLevel;
+    PrevLevel := FreeShip.Surface.DesiredSubdivisionLevel;
     NSurfaces := 0;
     try
-      Owner.Surface.DesiredSubdivisionLevel := 1;
-      Owner.Surface.SubdivisionMode := fmCatmullClark;
-      if not Owner.Surface.Build then
-        Owner.Surface.Rebuild;
-      Owner.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
+      FreeShip.Surface.DesiredSubdivisionLevel := 1;
+      FreeShip.Surface.SubdivisionMode := fmCatmullClark;
+      if not FreeShip.Surface.Build then
+        FreeShip.Surface.Rebuild;
+      FreeShip.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
       IGESList := TFreeIGESList.Create;
-      IGESList.IGESUnits := Owner.ProjectSettings.ProjectUnits;
+      IGESList.IGESUnits := FreeShip.ProjectSettings.ProjectUnits;
       IGESList.SystemID := 'FREE!ship' + #32 + VersionString(CurrentVersion);
-      IGESList.FileCreatedBy := Owner.ProjectSettings.ProjectFileCreatedBy;
+      IGESList.FileCreatedBy := FreeShip.ProjectSettings.ProjectFileCreatedBy;
       IGESList.FileName := Dialog.FileName;
       // Build color table
       Layers := TFasterListTFreeSubdivisionLayer.Create;
-      for I := 1 to Owner.NumberOfLayers do
-        if (Owner.Layer[I - 1].Visible) and (Owner.Layer[I - 1].Count > 0) then
-          Layers.Add(Owner.Layer[I - 1]);
+      for I := 1 to FreeShip.NumberOfLayers do
+        if (FreeShip.Layer[I - 1].Visible) and (FreeShip.Layer[I - 1].Count > 0) then
+          Layers.Add(FreeShip.Layer[I - 1]);
       Layers.Sort;
       Setlength(ColorIndices, Layers.Count);
       for I := 1 to Layers.Count do
@@ -3262,7 +3262,7 @@ begin
       end;
       if MinimizeFaces then
       begin
-        Owner.Surface.AssembleFacesToPatches(Layers, amNURBS, Assembled, NAssembled);
+        FreeShip.Surface.AssembleFacesToPatches(Layers, amNURBS, Assembled, NAssembled);
         CheckFaces := TFasterListTFreeSubdivisionFace.Create;
         for I := 1 to NAssembled do
         begin
@@ -3283,7 +3283,7 @@ begin
                 ColorIndex := ColorIndices[Layers.SortedIndexOf(Ctrlface.Layer)]
               else
                 Colorindex := 0;
-              Owner.Surface.ConvertToGrid(FaceData, Cols, Rows, Grid);
+              FreeShip.Surface.ConvertToGrid(FaceData, Cols, Rows, Grid);
               ProcessGrid(Cols, Rows, Grid, ColorIndex);
             end
             else
@@ -3321,9 +3321,9 @@ begin
         CheckFaces.Destroy;
       end
       else
-        for I := 1 to Owner.Surface.NumberOfControlFaces do
+        for I := 1 to FreeShip.Surface.NumberOfControlFaces do
         begin
-          CtrlFace := Owner.Surface.ControlFace[I - 1];
+          CtrlFace := FreeShip.Surface.ControlFace[I - 1];
           if Layers.SortedIndexOf(Ctrlface.Layer) <> -1 then
             ColorIndex := ColorIndices[Layers.SortedIndexOf(Ctrlface.Layer)]
           else
@@ -3335,7 +3335,7 @@ begin
             Setlength(FaceData.Faces, 1);
             Setlength(FaceData.Faces[0], 1);
             FaceData.Faces[0][0] := Ctrlface;
-            Owner.Surface.ConvertToGrid(FaceData, Cols, Rows, Grid);
+            FreeShip.Surface.ConvertToGrid(FaceData, Cols, Rows, Grid);
             ProcessGrid(Cols, Rows, Grid, ColorIndex);
           end
           else
@@ -3367,12 +3367,12 @@ begin
       IGESList.Destroy;
       Layers.Destroy;
     finally
-      Owner.Surface.DesiredSubdivisionLevel := PrevLevel;
-      Owner.Surface.SubdivisionMode := fmQuadTriangle;
-      if not Owner.Surface.Build then
-        Owner.Surface.Rebuild;
+      FreeShip.Surface.DesiredSubdivisionLevel := PrevLevel;
+      FreeShip.Surface.SubdivisionMode := fmQuadTriangle;
+      if not FreeShip.Surface.Build then
+        FreeShip.Surface.Rebuild;
       Screen.Cursor := Prev;
-      Owner.Redraw;
+      FreeShip.Redraw;
     end;
   end;
   Dialog.Destroy;
@@ -3385,29 +3385,29 @@ var
   SaveDialog: TSaveDialog;
   UndoObject: TFreeUndoObject;
 begin
-  if not Owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
     MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
     exit;
   end;
   // temporarily switch to metric units for michlet export
-  if Owner.ProjectSettings.ProjectUnits = fuImperial then
+  if FreeShip.ProjectSettings.ProjectUnits = fuImperial then
   begin
     UndoObject := CreateUndoObject(Userstring(101), False);
-    Owner.ProjectSettings.ProjectUnits := fuMetric;
+    FreeShip.ProjectSettings.ProjectUnits := fuMetric;
   end
   else
     UndoObject := nil;
   try
-    if not Owner.ProjectSettings.DisableModelCheck then
+    if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
-    Dialog := TFreeMichletOutputDialog.Create(Owner);
+    Dialog := TFreeMichletOutputDialog.Create(FreeShip);
     ShowTranslatedValues(Dialog);
     // Hull
     Dialog.NumberOfStations := 31;
     Dialog.NumberOfWaterlines := 21;
-    Dialog.Draft := Owner.ProjectSettings.ProjectDraft;
-    Dialog.Length := Owner.ProjectSettings.ProjectLength;
+    Dialog.Draft := FreeShip.ProjectSettings.ProjectDraft;
+    Dialog.Length := FreeShip.ProjectSettings.ProjectLength;
     // Resistance
     Dialog.StartSpeed := 1;
     Dialog.EndSpeed := 5;
@@ -3415,8 +3415,8 @@ begin
 
     // Environment
     Dialog.G := 9.80665;
-    Dialog.WaterDensity := Owner.ProjectSettings.ProjectWaterDensity;
-    //      Dialog.WaterTemper:=Owner.ProjectSettings.ProjectWaterTemper;
+    Dialog.WaterDensity := FreeShip.ProjectSettings.ProjectWaterDensity;
+    //      Dialog.WaterTemper:=FreeShip.ProjectSettings.ProjectWaterTemper;
     Dialog.WaterDepth := 10000;
     // Waves
     Dialog.R0 := 1.5 * Dialog.Length;
@@ -3431,11 +3431,11 @@ begin
     Dialog.Nx := 100;
     Dialog.Ny := 100;
 
-    if Dialog.Execute(Owner) then
+    if Dialog.Execute(FreeShip) then
     begin
-      SaveDialog := TSaveDialog.Create(Owner);
-      SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-      SaveDialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.mlt');
+      SaveDialog := TSaveDialog.Create(FreeShip);
+      SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+      SaveDialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.mlt');
       SaveDialog.Filter := 'Michlet input file (*.mlt)|*.mlt';
       Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
       if SaveDialog.Execute then
@@ -3470,8 +3470,8 @@ var
   OpenDialog: TOpenDialog;
   PrevCursor: TCursor;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'Michlet wave elevations file (*.mlt)|*.mlt';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
@@ -3687,7 +3687,7 @@ begin
     begin
       PrevCursor := Screen.Cursor;
       Screen.Cursor := crHourglass;
-      Owner.Extents(Min, Max);
+      FreeShip.Extents(Min, Max);
       // Search grid for strips wit zero wave-elevation height and leave these out
       MultFact := 1.0;
 
@@ -3718,7 +3718,7 @@ begin
         Setlength(CtrlGrid[I - 1], Nx);
         for J := 1 to Nx do
         begin
-          if Owner.ProjectSettings.ProjectUnits = fuImperial then
+          if FreeShip.ProjectSettings.ProjectUnits = fuImperial then
           begin
             // scale to feet
             Grid[I - 1][J - 1].X := Grid[I - 1][J - 1].X / Foot;
@@ -3726,17 +3726,17 @@ begin
             Grid[I - 1][J - 1].Z := Grid[I - 1][J - 1].Z / Foot;
           end;
           Grid[I - 1][J - 1].X :=
-            0.5 * Owner.ProjectSettings.ProjectLength - Grid[I - 1][J - 1].X;
+            0.5 * FreeShip.ProjectSettings.ProjectLength - Grid[I - 1][J - 1].X;
           Grid[I - 1][J - 1].Z :=
-            Min.Z + Owner.ProjectSettings.ProjectDraft + Grid[I - 1][J - 1].Z;
-          CtrlGrid[I - 1][J - 1] := TFreeSubdivisionControlPoint.Create(Owner.Surface);
-          Owner.Surface.AddControlPoint(CtrlGrid[I - 1][J - 1]);
+            Min.Z + FreeShip.ProjectSettings.ProjectDraft + Grid[I - 1][J - 1].Z;
+          CtrlGrid[I - 1][J - 1] := TFreeSubdivisionControlPoint.Create(FreeShip.Surface);
+          FreeShip.Surface.AddControlPoint(CtrlGrid[I - 1][J - 1]);
           CtrlGrid[I - 1][J - 1].Coordinate := Grid[I - 1][J - 1];
         end;
       end;
 
       Pts := TFasterListTFreeSubdivisionControlPoint.Create;
-      Layer := Owner.Surface.AddNewLayer;
+      Layer := FreeShip.Surface.AddNewLayer;
       if Speed <> '' then
         Layer.Name := 'Michlet waves, speed=' + speed + ' m/s'
       else
@@ -3756,7 +3756,7 @@ begin
           Pts.Add(CtrlGrid[I - 1][J - 2]);
           Pts.Add(CtrlGrid[I - 2][J - 2]);
           Pts.Add(CtrlGrid[I - 2][J - 1]);
-          Owner.Surface.AddControlFace(Pts, True, Layer);
+          FreeShip.Surface.AddControlFace(Pts, True, Layer);
         end;
       end;
       // set cornerpoints
@@ -3765,15 +3765,15 @@ begin
           if CtrlGrid[I - 1][J - 1].NumberOfFaces = 1 then
             CtrlGrid[I - 1][J - 1].VertexType := svCorner;
       Pts.Destroy;
-      Owner.Draw;
+      FreeShip.Draw;
       Screen.Cursor := PrevCursor;
     end
     else
       MessageDlg(Userstring(102), mtError, [mbOK], 0);
     CloseFile(FFile);
-    Owner.FileChanged := True;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.FileChanged := True;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
   end;
   OpenDialog.Destroy;
 end;{TFreeEdit.File_Import_MichletWaves}
@@ -3783,17 +3783,17 @@ var
   SaveDialog: TSaveDialog;
   Strings: TStringList;
 begin
-  SaveDialog := TSaveDialog.Create(Owner);
-  SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-  SaveDialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.obj');
+  SaveDialog := TSaveDialog.Create(FreeShip);
+  SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  SaveDialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.obj');
   SaveDialog.Filter :=
     'Wavefront file (*.Obj)|*.Obj|Controlnet to wavefront file (*.obj)|*.obj';
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin
-    Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+    FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
     Strings := TStringList.Create;
-    Owner.Surface.ExportObjFile(SaveDialog.FilterIndex = 2, Strings);
+    FreeShip.Surface.ExportObjFile(SaveDialog.FilterIndex = 2, Strings);
     Strings.SaveToFile(ChangeFileExt(Savedialog.FileName, '.obj'));
     Strings.Destroy;
   end;
@@ -3849,27 +3849,27 @@ var
   end;{SendIntersection}
 
 begin
-  SaveDialog := TSaveDialog.Create(Owner);
-  SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-  SaveDialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.txt');
+  SaveDialog := TSaveDialog.Create(FreeShip);
+  SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  SaveDialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.txt');
   SaveDialog.Filter := 'Offsets as 3D points (*.Txt)|*.txt';
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin
-    Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+    FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
     Strings := TStringList.Create;
-    for I := 1 to Owner.NumberofStations do
-      SendIntersection(Owner.Station[I - 1]);
-    for I := 1 to Owner.NumberofButtocks do
-      SendIntersection(Owner.Buttock[I - 1]);
-    for I := 1 to Owner.NumberofWaterlines do
-      SendIntersection(Owner.Waterline[I - 1]);
-    for I := 1 to Owner.NumberofDiagonals do
-      SendIntersection(Owner.Diagonal[I - 1]);
-    for I := 1 to Owner.NumberOfControlCurves do
+    for I := 1 to FreeShip.NumberofStations do
+      SendIntersection(FreeShip.Station[I - 1]);
+    for I := 1 to FreeShip.NumberofButtocks do
+      SendIntersection(FreeShip.Buttock[I - 1]);
+    for I := 1 to FreeShip.NumberofWaterlines do
+      SendIntersection(FreeShip.Waterline[I - 1]);
+    for I := 1 to FreeShip.NumberofDiagonals do
+      SendIntersection(FreeShip.Diagonal[I - 1]);
+    for I := 1 to FreeShip.NumberOfControlCurves do
     begin
       Strings.Add('CONTROLCURVE');
-      SendSpline(Owner.ControlCurve[I - 1].Curve);
+      SendSpline(FreeShip.ControlCurve[I - 1].Curve);
     end;
     Strings.SaveToFile(ChangeFileExt(Savedialog.FileName, '.txt'));
     Strings.Destroy;
@@ -3942,14 +3942,14 @@ var
   end;{Addfacet}
 
 begin
-  SaveDialog := TSaveDialog.Create(Owner);
-  SaveDialog.InitialDir := Owner.Preferences.ExportDirectory;
-  SaveDialog.FileName := ChangeFileExt(ExtractFilename(Owner.FileName), '.stl');
+  SaveDialog := TSaveDialog.Create(FreeShip);
+  SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
+  SaveDialog.FileName := ChangeFileExt(ExtractFilename(FreeShip.FileName), '.stl');
   SaveDialog.Filter := 'STL file (*.stl)|*.stl';
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin
-    Owner.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
+    FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
     AssignFile(FFile, Changefileext(SaveDialog.FileName, '.stl'));
       {$I-}
     Rewrite(FFile);
@@ -3958,11 +3958,11 @@ begin
     begin
       // perform modelcheck to ensure normals point outward
       writeln(FFile, 'solid');
-      if not Owner.ProjectSettings.DisableModelCheck then
+      if not FreeShip.ProjectSettings.DisableModelCheck then
         Model_Check(False);
-      for I := 1 to Owner.Surface.NumberOfLayers do
+      for I := 1 to FreeShip.Surface.NumberOfLayers do
       begin
-        Layer := owner.Surface.Layer[I - 1];
+        Layer := FreeShip.Surface.Layer[I - 1];
         if Layer.Visible then
           for J := 1 to Layer.Count do
           begin
@@ -4009,13 +4009,13 @@ var
   Chines: TFasterListTFreeSpline;
   Spline: TFreeSpline;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'Carene XYZ files (*.xyz)|*.xyz';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if Owner.FileChanged then
+    if FreeShip.FileChanged then
     begin
       Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -4027,7 +4027,7 @@ begin
       if Answer = mrYes then
       begin
         File_SaveAs;
-        if Owner.FileChanged then
+        if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
           OpenDialog.Destroy;
@@ -4036,21 +4036,21 @@ begin
       end;
     end;
     CreateUndoObject(Userstring(105), True);
-    Owner.Clear;
+    FreeShip.Clear;
     assignFile(FFile, ChangeFileExt(Opendialog.FileName, '.xyz'));
       {$I-}
     Reset(FFile);
 {$I+}
     if IOResult = 0 then
     begin
-      Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       try
         LineNr := 1;
         Readln(FFile, Str);
         // first 18 characters are description
         Str := Copy(Str, 1, 18);
         Str := Trim(Str);
-        Owner.ProjectSettings.ProjectName := Str;
+        FreeShip.ProjectSettings.ProjectName := Str;
         Chines := TFasterListTFreeSpline.Create;
         while not EOF(FFile) do
         begin
@@ -4067,7 +4067,7 @@ begin
             end;
             if not EOF(FFile) then
             begin
-              Spline := TFreeSpline.Create(Owner.Surface);
+              Spline := TFreeSpline.Create(FreeShip.Surface);
               Chines.Add(Spline);
 
               repeat
@@ -4090,11 +4090,11 @@ begin
             end;
           end;
         end;
-        Owner.ImportChines(8, Chines);
+        FreeShip.ImportChines(8, Chines);
         Chines.Destroy;
       finally
         CloseFile(FFile);
-        Owner.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
+        FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
       end;
     end
     else
@@ -4116,13 +4116,13 @@ var
   Chines: TFasterListTFreeSpline;
   Spline: TFreeSpline;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'Text files (*.txt)|*.txt';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if Owner.FileChanged then
+    if FreeShip.FileChanged then
     begin
       Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -4134,7 +4134,7 @@ begin
       if Answer = mrYes then
       begin
         File_SaveAs;
-        if Owner.FileChanged then
+        if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
           OpenDialog.Destroy;
@@ -4143,14 +4143,14 @@ begin
       end;
     end;
     CreateUndoObject(Userstring(107), True);
-    Owner.Clear;
+    FreeShip.Clear;
     assignFile(FFile, ChangeFileExt(Opendialog.FileName, '.txt'));
       {$I-}
     Reset(FFile);
 {$I+}
     if IOResult = 0 then
     begin
-      Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       LineNr := 1;
       Chines := TFasterListTFreeSpline.Create;
       try
@@ -4158,10 +4158,10 @@ begin
           // first read unit information; 0=metric, 1=imperial
           readln(FFile, I);
           if I in [0, 1] then
-            Owner.ProjectSettings.ProjectUnits := TFreeUnitType(I)
+            FreeShip.ProjectSettings.ProjectUnits := TFreeUnitType(I)
           else
             MessageDlg(Userstring(108), mtError, [mbOK], 0);
-          Spline := TFreeSpline.Create(Owner.Surface);
+          Spline := TFreeSpline.Create(FreeShip.Surface);
           repeat
             Readln(FFile, Str);
             repeat
@@ -4185,7 +4185,7 @@ begin
                 Chines.Add(Spline)
               else
                 Spline.Destroy;
-              Spline := TFreeSpline.Create(Owner.Surface);
+              Spline := TFreeSpline.Create(FreeShip.Surface);
             end;
           until (Str = 'EOF') or (EOF(FFile));
           if Spline.NumberOfPoints > 1 then
@@ -4196,13 +4196,13 @@ begin
           MessageDlg('Error on line ' + IntToStr(LineNr) + ' in file ' +
             Opendialog.Filename, mtError, [mbOK], 0);
         end;
-        Owner.ImportChines(8, Chines);
+        FreeShip.ImportChines(8, Chines);
         Chines.Destroy;
       finally
         CloseFile(FFile);
-        Owner.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
-        if Assigned(Owner.OnUpdateGeometryInfo) then
-          Owner.OnUpdateGeometryInfo(self);
+        FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
+        if Assigned(FreeShip.OnUpdateGeometryInfo) then
+          FreeShip.OnUpdateGeometryInfo(self);
       end;
     end
     else
@@ -4220,13 +4220,13 @@ var
   Str: string;
   LineNr, I: integer;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'FREE!ship Exchange Format file (*.Fef)|*.Fef';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if Owner.FileChanged then
+    if FreeShip.FileChanged then
     begin
       Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -4238,7 +4238,7 @@ begin
       if Answer = mrYes then
       begin
         File_SaveAs;
-        if Owner.FileChanged then
+        if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
           OpenDialog.Destroy;
@@ -4246,41 +4246,41 @@ begin
         end;
       end;
     end;
-    Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+    FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
     CreateUndoObject(Userstring(109), True);
-    Owner.Clear;
+    FreeShip.Clear;
     Strings := TStringList.Create;
     Strings.LoadFromFile(OpenDialog.Filename);
     LineNr := -1;
     // Read general information and mainparticulars
     Inc(LineNr);
-    Owner.ProjectSettings.ProjectName := Strings[LineNr];
+    FreeShip.ProjectSettings.ProjectName := Strings[LineNr];
     Inc(LineNr);
-    Owner.ProjectSettings.ProjectDesigner := Strings[LineNr];
+    FreeShip.ProjectSettings.ProjectDesigner := Strings[LineNr];
     Inc(LineNr);
-    Owner.ProjectSettings.FProjectFileCreatedBy := Strings[LineNr];
+    FreeShip.ProjectSettings.FProjectFileCreatedBy := Strings[LineNr];
     Inc(LineNr);
-    Owner.ProjectSettings.FProjectComment := Strings[LineNr];
+    FreeShip.ProjectSettings.FProjectComment := Strings[LineNr];
     Inc(LineNr);
     Str := Strings[LineNr];
-    Owner.ProjectSettings.ProjectLength := ReadFloatfromStr(LineNr, Str);
-    Owner.ProjectSettings.ProjectBeam := ReadFloatfromStr(LineNr, Str);
-    Owner.ProjectSettings.ProjectDraft := ReadFloatfromStr(LineNr, Str);
-    Owner.ProjectSettings.ProjectWaterDensity := ReadFloatfromStr(LineNr, Str);
-    //      Owner.ProjectSettings.ProjectWaterTemper:=ReadFloatfromStr(LineNr,Str);
-    Owner.ProjectSettings.ProjectAppendageCoefficient := ReadFloatfromStr(LineNr, Str);
+    FreeShip.ProjectSettings.ProjectLength := ReadFloatfromStr(LineNr, Str);
+    FreeShip.ProjectSettings.ProjectBeam := ReadFloatfromStr(LineNr, Str);
+    FreeShip.ProjectSettings.ProjectDraft := ReadFloatfromStr(LineNr, Str);
+    FreeShip.ProjectSettings.ProjectWaterDensity := ReadFloatfromStr(LineNr, Str);
+    //      FreeShip.ProjectSettings.ProjectWaterTemper:=ReadFloatfromStr(LineNr,Str);
+    FreeShip.ProjectSettings.ProjectAppendageCoefficient := ReadFloatfromStr(LineNr, Str);
     I := ReadIntfromStr(LineNr, Str);
-    Owner.ProjectSettings.FProjectUnits := TFreeUnitType(I);
-    Owner.ProjectSettings.FMainparticularsHasBeenset := ReadBoolfromStr(LineNr, Str);
+    FreeShip.ProjectSettings.FProjectUnits := TFreeUnitType(I);
+    FreeShip.ProjectSettings.FMainparticularsHasBeenset := ReadBoolfromStr(LineNr, Str);
     I := ReadIntfromStr(LineNr, Str);
-    Owner.FPrecision := TFreePrecisionType(I);
-    Owner.Surface.ImportFEFFile(Strings, LineNr);
+    FreeShip.FPrecision := TFreePrecisionType(I);
+    FreeShip.Surface.ImportFEFFile(Strings, LineNr);
     Strings.Destroy;
-    Owner.FileName := Opendialog.FileName;
-    Owner.Build := False;
-    Owner.RebuildModel;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.FileName := Opendialog.FileName;
+    FreeShip.Build := False;
+    FreeShip.RebuildModel;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
   end;
   OpenDialog.Destroy;
 end;{TFreeEdit.File_ImportFEF}
@@ -4291,13 +4291,13 @@ var
   OpenDialog: TOpenDialog;
   Answer: word;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'Carlsson Hull files (*.hul)|*.hul';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if Owner.FileChanged then
+    if FreeShip.FileChanged then
     begin
       Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -4309,7 +4309,7 @@ begin
       if Answer = mrYes then
       begin
         File_SaveAs;
-        if Owner.FileChanged then
+        if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
           OpenDialog.Destroy;
@@ -4319,7 +4319,7 @@ begin
     end;
     CreateUndoObject(UserString(110), True);
     File_ImportHull(OpenDialog.FileName, False);
-    Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+    FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
   end;
   OpenDialog.Destroy;
 end;{TFreeEdit.File_ImportHull}
@@ -4338,7 +4338,7 @@ var
   Str: string;
   Skip: boolean;
 begin
-  Owner.Clear;
+  FreeShip.Clear;
   assignFile(FFile, ChangeFileExt(FileName, '.hul'));
    {$I-}
   Reset(FFile);
@@ -4421,7 +4421,7 @@ begin
           P.X := -P.X + Max.X;
           Points[J - 1, I - 1] := P;
         end;
-        Spline := TFreeSpline.Create(Owner.Surface);
+        Spline := TFreeSpline.Create(FreeShip.Surface);
         Chines.Add(Spline);
         for J := 1 to NBulkheads do
         begin
@@ -4430,7 +4430,7 @@ begin
           Spline.Knuckle[J - 1] := False;
         end;
       end;
-      Owner.ImportChines(NBulkheads, Chines);
+      FreeShip.ImportChines(NBulkheads, Chines);
       Chines.Destroy;
       // read stations
       for I := 1 to 8 do
@@ -4445,16 +4445,16 @@ begin
 
       // Read designer info
       Readln(FFile, Str);
-      Owner.ProjectSettings.ProjectDesigner := Str;
+      FreeShip.ProjectSettings.ProjectDesigner := Str;
       Readln(FFile, Str);
-      Owner.ProjectSettings.ProjectName := Str;
+      FreeShip.ProjectSettings.ProjectName := Str;
     finally
       CloseFile(FFile);
-      Owner.ProjectSettings.ProjectWaterDensity := 1.0;
-      Owner.ProjectSettings.ProjectUnits := fuImperial;
-      Owner.ProjectSettings.ProjectDraft := 1.0;
-      Owner.FileName := ChangeFileExt(FileName, '');
-      Owner.Draw;
+      FreeShip.ProjectSettings.ProjectWaterDensity := 1.0;
+      FreeShip.ProjectSettings.ProjectUnits := fuImperial;
+      FreeShip.ProjectSettings.ProjectDraft := 1.0;
+      FreeShip.FileName := ChangeFileExt(FileName, '');
+      FreeShip.Draw;
     end;
   end
   else
@@ -4487,14 +4487,14 @@ var
   PrevCursor: TCursor;
 
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'FREE!ship geometry part (*.Part)|*.part';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
     PartFile := TFreeFileBuffer.Create;
-    Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+    FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
     Changed := False;
     vUndo := CreateUndoObject(Userstring(112), False);
     Partfile.LoadFromFile(ChangeFileExt(OpenDialog.FileName, '.part'));
@@ -4516,7 +4516,7 @@ begin
           // Load units
           Partfile.Load(I);
           PartUnits := TFreeUnitType(I);
-          if PartUnits <> Owner.ProjectSettings.ProjectUnits then
+          if PartUnits <> FreeShip.ProjectSettings.ProjectUnits then
           begin
             if PartUnits = fuMetric then
               Scale := 1 / Foot
@@ -4532,7 +4532,7 @@ begin
           Layers.Capacity := N;
           for I := 1 to N do
           begin
-            Layer := Owner.Surface.AddNewLayer;
+            Layer := FreeShip.Surface.AddNewLayer;
             LayerID := Layer.LayerID;
             Layer.LoadBinary(Partfile);
             Layer.LayerID := LayerID;
@@ -4544,8 +4544,8 @@ begin
           Points.Capacity := N;
           for I := 1 to N do
           begin
-            P2 := TFreeSubdivisionControlPoint.Create(Owner.Surface);
-            Owner.Surface.AddControlPoint(P2);
+            P2 := TFreeSubdivisionControlPoint.Create(FreeShip.Surface);
+            FreeShip.Surface.AddControlPoint(P2);
             P2.LoadBinary(PartFile);
             P2.Coordinate := ScalePoint(Scale, P2.Coordinate);
             Points.Add(P2);
@@ -4562,7 +4562,7 @@ begin
             begin
               P1 := Points[ind1];
               P2 := Points[ind2];
-              Edge := Owner.Surface.AddControlEdge(P1, P2);
+              Edge := FreeShip.Surface.AddControlEdge(P1, P2);
             end
             else
               Edge := nil;
@@ -4587,7 +4587,7 @@ begin
             end;
             Partfile.Load(Ind2);
             Layer := Layers[ind2];
-            Owner.Surface.AddControlFace(FacePoints, False, Layer);
+            FreeShip.Surface.AddControlFace(FacePoints, False, Layer);
           end;
           for I := 1 to Edges.Count do
           begin
@@ -4602,8 +4602,8 @@ begin
             Partfile.Load(Np);
             if Np > 1 then
             begin
-              Curve := TFreeSubdivisionControlCurve.Create(Owner.Surface);
-              Owner.Surface.AddControlCurve(Curve);
+              Curve := TFreeSubdivisionControlCurve.Create(FreeShip.Surface);
+              FreeShip.Surface.AddControlCurve(Curve);
               for J := 1 to Np do
               begin
                 Partfile.Load(Ind1);
@@ -4612,7 +4612,7 @@ begin
                 if J > 1 then
                 begin
                   P1 := Curve.ControlPoint[J - 2];
-                  Edge := Owner.Surface.EdgeExists(P1, P2) as
+                  Edge := FreeShip.Surface.EdgeExists(P1, P2) as
                     TFreeSubdivisionControlEdge;
                   if Edge <> nil then
                     edge.Curve := Curve;
@@ -4629,14 +4629,14 @@ begin
         end;
         if Changed then
         begin
-          if Assigned(Owner.Surface.OnChangeLayerData) then
-            Owner.Surface.OnChangeLayerData(Owner.Surface);
+          if Assigned(FreeShip.Surface.OnChangeLayerData) then
+            FreeShip.Surface.OnChangeLayerData(FreeShip.Surface);
           vUndo.Accept;
-          Owner.Build := False;
-          Owner.Draw;
-          Owner.FileChanged := True;
-          if assigned(Owner.OnUpdateGeometryInfo) then
-            Owner.OnUpdateGeometryInfo(Owner);
+          FreeShip.Build := False;
+          FreeShip.Draw;
+          FreeShip.FileChanged := True;
+          if assigned(FreeShip.OnUpdateGeometryInfo) then
+            FreeShip.OnUpdateGeometryInfo(FreeShip);
         end;
       end
       else
@@ -4743,13 +4743,13 @@ var
   end;{NextParameter}
 
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'PolyCad files (*.geo)|*.geo';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if Owner.FileChanged then
+    if FreeShip.FileChanged then
     begin
       Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -4761,7 +4761,7 @@ begin
       if Answer = mrYes then
       begin
         File_SaveAs;
-        if Owner.FileChanged then
+        if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
           OpenDialog.Destroy;
@@ -4793,8 +4793,8 @@ begin
       if NSurfaces > 0 then
       begin
         CreateUndoObject(Userstring(118), True);
-        Owner.Clear;
-        Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+        FreeShip.Clear;
+        FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
         I := 1;
         Abort := False;
         while (I <= NSurfaces) and (not Abort) do
@@ -4805,18 +4805,18 @@ begin
           begin
             // Read loa
             Str := NextLine;
-            Owner.ProjectSettings.ProjectLength := GetFloat(Str);
+            FreeShip.ProjectSettings.ProjectLength := GetFloat(Str);
             NextLine;
             NextLine;
             // read beam over all
             Str := NextLine;
-            Owner.ProjectSettings.ProjectBeam := GetFloat(Str);
+            FreeShip.ProjectSettings.ProjectBeam := GetFloat(Str);
             NextLine;
             NextLine;
             // Read draft
             Str := NextLine;
-            Owner.ProjectSettings.ProjectDraft := GetFloat(Str);
-            Owner.ProjectSettings.FMainparticularsHasBeenset := True;
+            FreeShip.ProjectSettings.ProjectDraft := GetFloat(Str);
+            FreeShip.ProjectSettings.FMainparticularsHasBeenset := True;
             for J := 1 to 12 do
               NextLine;
           end
@@ -4825,16 +4825,16 @@ begin
             NextLine;
             // Read length
             Str := NextLine;
-            Owner.ProjectSettings.ProjectLength := GetFloat(Str);
+            FreeShip.ProjectSettings.ProjectLength := GetFloat(Str);
             // read beam
             Str := NextLine;
-            Owner.ProjectSettings.ProjectBeam := GetFloat(Str);
+            FreeShip.ProjectSettings.ProjectBeam := GetFloat(Str);
             // skip depth
             NextLine;
             // Read draft
             Str := NextLine;
-            Owner.ProjectSettings.ProjectDraft := GetFloat(Str);
-            Owner.ProjectSettings.FMainparticularsHasBeenset := True;
+            FreeShip.ProjectSettings.ProjectDraft := GetFloat(Str);
+            FreeShip.ProjectSettings.FMainparticularsHasBeenset := True;
             for J := 1 to 22 do
               NextLine;
           end;
@@ -4919,7 +4919,7 @@ begin
                 break;
             end;
             if not Abort then
-              Owner.Surface.ImportGrid(Points, Cols, Rows, nil);
+              FreeShip.Surface.ImportGrid(Points, Cols, Rows, nil);
           end;
           Inc(i);
         end;
@@ -4967,11 +4967,11 @@ begin
                 end;
               break;
             end;
-          Owner.Precision := fpMedium;
-          Owner.FileName := ChangeFileExt(Opendialog.FileName, '');
-          Owner.Build := False;
-          Owner.RebuildModel;
-          Owner.FileChanged := True;
+          FreeShip.Precision := fpMedium;
+          FreeShip.FileName := ChangeFileExt(Opendialog.FileName, '');
+          FreeShip.Build := False;
+          FreeShip.RebuildModel;
+          FreeShip.FileChanged := True;
         end
         else
           MessageDlg(UserString(123), mtInformation, [mbOK], 0);
@@ -4980,8 +4980,8 @@ begin
         MessageDlg(UserString(124), mtInformation, [mbOK], 0);
     finally
       Strings.Destroy;
-      if Assigned(Owner.OnUpdateGeometryInfo) then
-        Owner.OnUpdateGeometryInfo(self);
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
       Screen.Cursor := PrevCursor;
     end;
 
@@ -4996,8 +4996,8 @@ var
   Answer: word;
   PrevCursor: TCursor;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   {$ifdef LCLGtk2 or LCLGtk3}
   OpenDialog.Filter := 'VRML files (*.wrl)|*.[Ww][Rr][Ll]|All files|*.*';
   {$else}
@@ -5007,7 +5007,7 @@ begin
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if Owner.FileChanged then
+    if FreeShip.FileChanged then
     begin
       Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -5019,7 +5019,7 @@ begin
       if Answer = mrYes then
       begin
         File_SaveAs;
-        if Owner.FileChanged then
+        if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
           OpenDialog.Destroy;
@@ -5032,17 +5032,17 @@ begin
 
     try
       CreateUndoObject(Userstring(125), True);
-      Owner.Clear;
-      Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
-      Owner.Surface.LoadVRMLFile(Opendialog.FileName);
-      Owner.FileName := ChangeFileExt(Opendialog.FileName, '');
-      Owner.Build := False;
-      Owner.RebuildModel;
-      Owner.FileChanged := True;
+      FreeShip.Clear;
+      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      FreeShip.Surface.LoadVRMLFile(Opendialog.FileName);
+      FreeShip.FileName := ChangeFileExt(Opendialog.FileName, '');
+      FreeShip.Build := False;
+      FreeShip.RebuildModel;
+      FreeShip.FileChanged := True;
 
     finally
-      if Assigned(Owner.OnUpdateGeometryInfo) then
-        Owner.OnUpdateGeometryInfo(self);
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
       Screen.Cursor := PrevCursor;
     end;
   end;
@@ -5095,7 +5095,7 @@ begin
     else
       raise Exception.Create('Unsupported file format: ' + Ext);
 
-    TempFreeShip.ModelLoaded := False;
+    TempFreeShip.ModelIsLoaded := False;
     Source.LoadFromFile(aFileName);     // Load everything into memory
     //TempFreeShip.Preferences.OpenDirectory := ExtractFilePath(aFileName);
     TempFreeShip.Filename := aFileName;
@@ -5109,7 +5109,7 @@ begin
     //if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
     TempFreeShip.Surface.OnFaceRebuilt := @OnFaceRebuilt;
 
-    TempFreeShip.ModelLoaded := True;
+    TempFreeShip.ModelIsLoaded := True;
     //TempFreeShip.Preferences.Load;
 
     vp := TFreeViewPort.Create(nil);
@@ -5198,9 +5198,9 @@ var
   rect: TRect;
 begin
   Dlg := TFreeFilePreviewDialog(Sender);
-  FN := Dlg.FileName;
-  if FN = '' then
-    exit;
+  FN := filename; //Dlg.AbsoluteFileName;
+  if FN = '' then exit;
+  if not FileExistsUTF8(FN) then exit;
   //ShowMessage(FN);
   Img := Dlg.PreviewImage;
 
@@ -5250,30 +5250,31 @@ var
   //Places:TListItems;
   w, h: integer;
 begin
-  OpenDialog := TFreeFilePreviewDialog.Create(Owner);
+  OpenDialog := TFreeFilePreviewDialog.Create(FreeShip);
+  OpenDialog.Caption := 'FreeShip: Open file';
   OpenDialog.Filter := FileDialogFilterFreeship + '|' +
     FileDialogFilterFreeshipText + '|' + FileDialogFilterFreeshipBinary +
     '|' + FileDialogFilterAll;
   OpenDialog.FilterIndex := 0;
   //Opendialog.Options:=[ofHideReadOnly];
   Opendialog.OnPreview := @OnFilePreview;
-  Opendialog.addPlace(FileDialogPlaceLast, Owner.Preferences.LastDirectory);
-  Opendialog.addPlace(FileDialogPlaceMyShips, Owner.Preferences.OpenDirectory);
-  Opendialog.addPlace(FileDialogPlaceMyImport, Owner.Preferences.ImportDirectory);
-  Opendialog.addPlace(FileDialogPlaceGlobalShips, Owner.Preferences.GlobalOpenDirectory);
+  Opendialog.addPlace(FileDialogPlaceLast, FreeShip.Preferences.LastDirectory);
+  Opendialog.addPlace(FileDialogPlaceMyShips, FreeShip.Preferences.OpenDirectory);
+  Opendialog.addPlace(FileDialogPlaceMyImport, FreeShip.Preferences.ImportDirectory);
+  Opendialog.addPlace(FileDialogPlaceGlobalShips, FreeShip.Preferences.GlobalOpenDirectory);
   Opendialog.addPlace(FileDialogPlaceGlobalImport,
-    Owner.Preferences.GlobalImportDirectory);
+    FreeShip.Preferences.GlobalImportDirectory);
   Opendialog.FileDialogMode := fdmOpen;
   Opendialog.ShellListView.ReadOnly := True;
   //Opendialog.ShellListView.AutoWidthLastColumn := True;
   Opendialog.ShellListView.AutoWidthLastColumn := False;
   Opendialog.AutoFit := True;
-  OpenDialog.CurrentPath := Owner.Preferences.LastDirectory;
+  OpenDialog.CurrentPath := FreeShip.Preferences.LastDirectory;
 
   //Places:=Opendialog.GetPlaces;
   if OpenDialog.Execute then
   begin
-    if Owner.FileChanged then
+    if FreeShip.FileChanged then
     begin
       Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -5285,7 +5286,7 @@ begin
       if Answer = mrYes then
       begin
         File_SaveAs;
-        if Owner.FileChanged then
+        if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
           OpenDialog.Destroy;
@@ -5294,13 +5295,13 @@ begin
       end;
     end;
 
-    Owner.ClearUndo;
-    Owner.Clear;
-    Owner.Surface.ClearSelection;
-    Owner.Surface.ClearFaces;
-    Owner.Surface.Clear;
-    File_Load(Opendialog.FileName);   // Load everything into memory
-    Owner.Preferences.LastDirectory := ExtractFilePath(Opendialog.FileName);
+    FreeShip.ClearUndo;
+    FreeShip.Clear;
+    FreeShip.Surface.ClearSelection;
+    FreeShip.Surface.ClearFaces;
+    FreeShip.Surface.Clear;
+    File_Load(Opendialog.AbsoluteFileName);   // Load everything into memory
+    FreeShip.Preferences.LastDirectory := ExtractFilePath(Opendialog.AbsoluteFileName);
   end;
   //PreviewFrm.Close;
   //PreviewFrm.Free;
@@ -5328,6 +5329,35 @@ var
   Source: TFreeFileBuffer;
   ext: string;
   i:integer;
+
+  function IsSaveable(fn:string):boolean;
+  var dir, tmpFileName:string; fh:THandle;
+    buf:array of byte; sz:integer=1024; rsz:integer=0;
+    r1,r2,r3:boolean;
+  begin
+    result:=false;
+    if not FileExistsUTF8(fn) then exit;
+    dir := ExtractFilePath(fn);
+    tmpFileName := SysUtils.GetTempFileName(dir,'.tmp~');
+    fh:=FileCreateUTF8(tmpFileName);
+    if fh = INVALID_HANDLE_VALUE then exit;
+    try
+       setLength(buf,sz);
+       rsz:=FileWrite(fh,buf,sz);
+       r1 := (rsz >= sz);
+       setLength(buf,0);
+       FileClose(fh);
+       r2 := DeleteFileUTF8(tmpFileName);
+       result:= r1 and r2;
+    except on E:Exception do
+      begin
+        setLength(buf,0);
+        FileClose(fh);
+        DeleteFileUTF8(tmpFileName);
+      end;
+    end;
+  end;
+
 begin
   Ext := LowerCase(ExtractFileExt(filename));
   if Ext = '.fbm' then
@@ -5339,43 +5369,46 @@ begin
     raise Exception.Create('Unsupported file format: ' + Ext);
 
   try
-    Owner.Surface.Clearselection;                // Make sure no items are selected
-    Owner.FSelectedFlowlines.Clear;
-    Owner.FSelectedMarkers.Clear;
+    FreeShip.Surface.Clearselection;  // Make sure no items are selected
+    FreeShip.FSelectedFlowlines.Clear;
+    FreeShip.FSelectedMarkers.Clear;
 
-    Owner.ModelLoaded := False;
-    Source.LoadFromFile(FileName);                // Load everything into memory
-    //Owner.Preferences.OpenDirectory := ExtractFilePath(FileName);
-    //Owner.Filename:=ChangeFileExt(FileName,'.fbm');
-    Owner.Filename := FileName;
+    FreeShip.ModelIsLoaded := False;
+    FreeShip.FileIsReadOnly := True;
+    Source.LoadFromFile(FileName);    // Load everything into memory
+    //FreeShip.Preferences.OpenDirectory := ExtractFilePath(FileName);
+    //FreeShip.Filename:=ChangeFileExt(FileName,'.fbm');
+    FreeShip.Filename := FileName;
     //My correction
     //      MessageDlg('Begin Loading *.fbm',mtError,[mbOk],0);
-    Owner.LoadProject(Source);
+    FreeShip.LoadProject(Source);
     // Now read the information from memory
     //My correction
     //      MessageDlg('Loading *.fbm ended',mtError,[mbOk],0);
-    //for i:=0 to Owner.NumberOfViewports-1 do
-    //    Owner.Viewport[i].ZoomExtents;
-    //Owner.Surface.Rebuild;
-    //Owner.Draw;
-    Owner.FFilenameSet := True;
-    Owner.FStopAskingForFileVersion := False;
-    Owner.ModelLoaded := True;
+    //for i:=0 to FreeShip.NumberOfViewports-1 do
+    //    FreeShip.Viewport[i].ZoomExtents;
+    //FreeShip.Surface.Rebuild;
+    //FreeShip.Draw;
+    FreeShip.FFilenameSet := True;
+    FreeShip.FStopAskingForFileVersion := False;
+    FreeShip.ModelIsLoaded := True;
+    FreeShip.FileIsReadOnly := not IsSaveable(FileName);
   finally
     Source.Destroy;
     AddToRecentFiles(FileName);
     Undo_Clear;
   end;
-  Owner.FileChanged := False;
+  FreeShip.FileChanged := False;
 end;{TFreeEdit.File_Load}
 
 resourcestring
   rsUnableDeleteBackupFile='Unable to delete backup file';
   rsUnableCreateBackupFile='Unable to create backup file';
   rsSaveWithHigherFileVersion='The current fileversion is version %s.%sDo you want to save the file as version %s ?';
+  rsUnableToSaveFile='Unable to save file';
 
 // save as FREE!ship file without prompting for a filename (must already been set)
-procedure TFreeEdit.File_Save;
+function TFreeEdit.File_Save:boolean;
 var
   Backup: string;
   Destination: TFreeFileBuffer;
@@ -5383,73 +5416,88 @@ var
   Answer: word;
   fAttr:longint;  fh:THandle;
 begin
-  if FileExistsUTF8(Owner.Filename) then
+  result := false;
+{  if FileExistsUTF8(FreeShip.Filename) then
   begin
-    fh:=FileOpenUTF8(Owner.Filename, fmOpenWrite);
-    if fh = 0 then Owner.ModelReadOnly := true;
+    fh:=FileOpenUTF8(FreeShip.Filename, fmOpenWrite);
+    if fh = 0 then FreeShip.ModelIsReadOnly := true;
     FileClose(fh);
   end
   else
   begin
-    fh:=FileCreateUTF8(Owner.Filename);
-    if fh = 0 then Owner.ModelReadOnly := true;
+    fh:=FileCreateUTF8(FreeShip.Filename);
+    if fh = 0 then FreeShip.ModelIsReadOnly := true;
     FileClose(fh);
-  end;
+  end; }
 
-  if not Owner.FilenameSet or Owner.ModelReadOnly then
+  if not FreeShip.FilenameSet or FreeShip.FileIsReadOnly then
   begin
-    Owner.FilenameSet := false;
-    File_SaveAs;
+    FreeShip.FilenameSet := false;
+    result := File_SaveAs;
+    exit;
   end;
-  if not Owner.FilenameSet then
+  if not FreeShip.FilenameSet then
     exit;
 
-  if (Owner.FileVersion < CurrentVersion) and (not Owner.FStopAskingForFileVersion) then
+  if (FreeShip.FileVersion < CurrentVersion) and (not FreeShip.FStopAskingForFileVersion) then
   begin
-    {Str := Userstring(126) + VersionString(Owner.FileVersion) + EOL +
+    {Str := Userstring(126) + VersionString(FreeShip.FileVersion) + EOL +
       Userstring(127) + #32 + VersionString(CurrentVersion) + '?';}
-    Str := format(rsSaveWithHigherFileVersion,[VersionString(Owner.FileVersion),EOL,VersionString(CurrentVersion)]);
+    Str := format(rsSaveWithHigherFileVersion,[VersionString(FreeShip.FileVersion),EOL,VersionString(CurrentVersion)]);
     Answer := MessageDlg(Str, mtInformation, [mbYes, mbNo], 0);
     if Answer = mrYes then
-      Owner.FileVersion := CurrentVersion
+      FreeShip.FileVersion := CurrentVersion
     else
-      Owner.FStopAskingForFileVersion := True;
+      FreeShip.FStopAskingForFileVersion := True;
   end;
 
-  Owner.FFilenameSet := True;
+  FreeShip.FFilenameSet := True;
   // Check if the file already exists
-  if FileExistsUTF8(Owner.Filename) then
+  if FileExistsUTF8(FreeShip.Filename) then
   begin
-    Backup := ChangeFileExt(Owner.Filename, '.Bak');
+    Backup := ChangeFileExt(FreeShip.Filename, '.Bak');
     // First check for a backup, and delete when present
     if FileExistsUTF8(Backup)  then
       if not DeleteFileUTF8(Backup) then
       begin
         MessageDlg(rsUnableDeleteBackupFile+' '+Backup, mtError, [mbOK], 0);
-        Owner.ModelReadOnly:=true;
+        FreeShip.FileIsReadOnly:=true;
+        result := false;
         exit;
       end;
     // Then create a backup of the old file
-    if not RenameFileUTF8(Owner.Filename, Backup) then
+    if not RenameFileUTF8(FreeShip.Filename, Backup) then
     begin
       MessageDlg(rsUnableCreateBackupFile+' '+Backup, mtError, [mbOK], 0);
-      Owner.ModelReadOnly:=true;
+      FreeShip.FileIsReadOnly:=true;
+      result := false;
       exit;
     end;
   end;
-  Ext := ExtractFileExt(Owner.Filename);
+  Ext := ExtractFileExt(FreeShip.Filename);
   if Ext = '.fbm' then
     Destination := TFreeFileBuffer.Create
   else
     Destination := TFreeTextBuffer.Create;
-  Destination.Encoding := Owner.Preferences.FbmEncoding;
-  Owner.SaveProject(Destination);
-  Destination.SaveToFile(Owner.Filename);
-  Owner.Preferences.LastDirectory := ExtractFilePath(Owner.FileName);
-  AddToRecentFiles(Owner.FileName);
-  Destination.Destroy;
+  Destination.Encoding := FreeShip.Preferences.FbmEncoding;
+  FreeShip.SaveProject(Destination);
+  try
+    result := Destination.SaveToFile(FreeShip.Filename);
+    FreeShip.FileChanged:=false;
+    Destination.Destroy;
+    FreeShip.Preferences.LastDirectory := ExtractFilePath(FreeShip.FileName);
+    AddToRecentFiles(FreeShip.FileName);
+  except on E:Exception do
+    begin
+    Destination.Destroy;
+    result := false;
+    MessageDlg(rsUnableToSaveFile+' '+FreeShip.Filename+'\n'
+    +'Exception class: ' + E.ClassName+'\n'
+    +'Message: ' + E.Message+'\n'
+    , mtError, [mbOK], 0);
+    end;
+  end;
 end;{TFreeEdit.File_Save}
-
 
 procedure TFreeEdit.SaveDialogTypeChange(Sender: TObject);
 var
@@ -5482,7 +5530,9 @@ begin
   end;
 end;
 
-procedure TFreeEdit.File_SaveAs;
+resourcestring rsSaveFile = 'Save file';
+
+function TFreeEdit.File_SaveAs:boolean;
 var
   I: integer;
   Dir: string;
@@ -5491,14 +5541,16 @@ var
   w, h: integer;
   Preferences: TFreePreferences;
 begin
-  Preferences := Owner.Preferences;
+  result := false;
+  Preferences := FreeShip.Preferences;
   Dir := Preferences.LastDirectory;
   if not DirectoryExistsUTF8(Dir) and not ForceDirectoriesUTF8(Dir) then
     MessageDlg(tl8('Cannot create directory: ') + Dir, mtWarning, [mbOK], 0);
 
-  SaveDialog := TFreeFilePreviewDialog.Create(Owner);
+  SaveDialog := TFreeFilePreviewDialog.Create(FreeShip);
   with SaveDialog do
   begin
+    Caption := 'FreeShip:'+rsSaveFile;
     CurrentPath := Preferences.SaveDirectory;
     Filter := FileDialogFilterFreeship + '|' + FileDialogFilterFreeshipText +
       '|' + FileDialogFilterFreeshipBinary;
@@ -5510,25 +5562,27 @@ begin
     ShellListView.ReadOnly := True;
   end;
 
-  //Owner.Filename := ChangeFileExt(Owner.Filename, '.ftm');
-  Savedialog.FileName := ExtractFilename(ChangeFileExt(Owner.Filename, '.ftm'));
+  //FreeShip.Filename := ChangeFileExt(FreeShip.Filename, '.ftm');
+  Savedialog.FileName := ExtractFilename(ChangeFileExt(FreeShip.Filename, '.ftm'));
   //Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   //Savedialog.OnTypeChange := SaveDialogTypeChange;
 
   if SaveDialog.Execute then
   begin
-    //Owner.Preferences.SaveDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);
-    if CurrentVersion > Owner.FileVersion then
-      Owner.FStopAskingForFileVersion := False;
-    Owner.Filename := SaveDialog.AbsoluteFileName;
-    Owner.FFilenameSet := True;
+    //FreeShip.Preferences.SaveDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);
+    if CurrentVersion > FreeShip.FileVersion then
+      FreeShip.FStopAskingForFileVersion := False;
+    FFreeShip.Filename := SaveDialog.AbsoluteFileName;
+    FFreeShip.FFilenameSet := True;
+    FFreeShip.FileIsReadOnly := False;
 {    I := SaveDialog.FilterIndex;
     case I of
-      1: Owner.Filename := ChangeFileExt(Savedialog.Filename, '.ftm');
-      2: Owner.Filename := ChangeFileExt(Savedialog.Filename, '.fbm');
+      1: FreeShip.Filename := ChangeFileExt(Savedialog.Filename, '.ftm');
+      2: FreeShip.Filename := ChangeFileExt(Savedialog.Filename, '.fbm');
     end; }
-    File_Save;
-    Owner.Preferences.LastDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);
+    result := File_Save;
+    if result then
+       FreeShip.Preferences.LastDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);
   end;
   SaveDialog.Destroy;
 end;{TFreeEdit.File_SaveAs}
@@ -5539,17 +5593,17 @@ var
   vUndo: TFreeUndoObject;
 begin
   vUndo := CreateUndoObject(Userstring(130), False);
-  Flowline := TFreeflowline.Create(Owner);
-  Owner.FFlowLines.Add(Flowline);
+  Flowline := TFreeflowline.Create(FreeShip);
+  FreeShip.FFlowLines.Add(Flowline);
   Flowline.FProjectionPoint := Source;
   Flowline.FProjectionView := View;
   //   Flowline.FMethodNew:=True;
   Flowline.Rebuild;
   if Flowline.FFlowLine.NumberOfPoints > 0 then
   begin
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
     vUndo.Accept;
-    Owner.Redraw;
+    FreeShip.Redraw;
   end
   else
   begin
@@ -5573,17 +5627,17 @@ var
   Dialog: TFreeCylinderDialog;
   NewLayer: TFreeSubdivisionLayer;
 begin
-  Dialog := TFreeCylinderDialog.Create(Owner);
+  Dialog := TFreeCylinderDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
   Dialog.StartPoint := SetPoint(0.0, 0.0, 0.0);
   Dialog.EndPoint := SetPoint(0.0, 1.0, 0.0);
   Dialog.Input7.Value := 1.0;
   Dialog.Input8.Value := Dialog.Input8.MinValue + 2;
 
-  if Dialog.Execute(LengthStr(Owner.ProjectSettings.ProjectUnits)) then
+  if Dialog.Execute(LengthStr(FreeShip.ProjectSettings.ProjectUnits)) then
   begin
     CreateUndoObject(Userstring(131), True);
-    NewLayer := Owner.Surface.AddNewLayer;
+    NewLayer := FreeShip.Surface.AddNewLayer;
     StartPoint := Dialog.StartPoint;
     EndPoint := Dialog.EndPoint;
     Radius := Dialog.Input7.Value;
@@ -5644,11 +5698,11 @@ begin
     Inv.Destroy;
     OrgPts.Destroy;
     NewPts.Destroy;
-    Ne := Owner.Surface.NumberOfControlEdges;
-    Owner.Surface.ImportGrid(Points, NPoints + 1, 2, NewLayer);
-    for I := Ne + 1 to Owner.Surface.NumberOfControlEdges do
-      Owner.Surface.ControlEdge[I - 1].Crease := False;
-    Owner.Redraw;
+    Ne := FreeShip.Surface.NumberOfControlEdges;
+    FreeShip.Surface.ImportGrid(Points, NPoints + 1, 2, NewLayer);
+    for I := Ne + 1 to FreeShip.Surface.NumberOfControlEdges do
+      FreeShip.Surface.ControlEdge[I - 1].Crease := False;
+    FreeShip.Redraw;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Geometry_AddCylinder}
@@ -5657,7 +5711,7 @@ end;{TFreeEdit.Geometry_AddCylinder}
 function TFreeEdit.Hydrostatics_Calculate(Draft, AngleOfHeel, Trim: TFloatType):
 TFreeHydrostaticCalc;
 begin
-  if not Owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
     MessageDlg(UserString(196), mtError, [mbOK], 0);
     Result := nil;
@@ -5665,9 +5719,9 @@ begin
   else
   begin
     // Check model for inconsistencies
-    if not Owner.ProjectSettings.DisableModelCheck then
+    if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
-    Result := TFreeHydrostaticCalc.Create(Owner);
+    Result := TFreeHydrostaticCalc.Create(FreeShip);
     Result.Trim := Trim;
     Result.HeelingAngle := AngleOfHeel;
     Result.Draft := Draft;
@@ -5681,37 +5735,37 @@ procedure TFreeEdit.Hydrostatics_Crosscurves;
 var
   Dialog: TFreeCrosscurvesDialog;
 begin
-  if not Owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
     MessageDlg(UserString(196), mtError, [mbOK], 0)
   else
   begin
     // Check model for inconsistencies
-    if not Owner.ProjectSettings.DisableModelCheck then
+    if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
-    Dialog := TFreeCrosscurvesDialog.Create(Owner);
+    Dialog := TFreeCrosscurvesDialog.Create(FreeShip);
     ShowTranslatedValues(Dialog);
-    Dialog.SetDisplacements(Owner.ProjectSettings.FDisplacements,
-      Owner.ProjectSettings.FNoDisplacements);
-    Dialog.FreeNumInput2.Value := Owner.ProjectSettings.FMinimumDisplacement;
-    Dialog.FreeNumInput3.Value := Owner.ProjectSettings.FMaximumDisplacement;
-    Dialog.FreeNumInput4.Value := Owner.ProjectSettings.FDisplIncrement;
-    Dialog.CheckBox1.Checked := Owner.ProjectSettings.FUseDisplIncrements;
-    Dialog.SetHeelingAngles(Owner.ProjectSettings.FAngles,
-      Owner.ProjectSettings.FNoAngles);
-    if Dialog.Execute(Owner) then
+    Dialog.SetDisplacements(FreeShip.ProjectSettings.FDisplacements,
+      FreeShip.ProjectSettings.FNoDisplacements);
+    Dialog.FreeNumInput2.Value := FreeShip.ProjectSettings.FMinimumDisplacement;
+    Dialog.FreeNumInput3.Value := FreeShip.ProjectSettings.FMaximumDisplacement;
+    Dialog.FreeNumInput4.Value := FreeShip.ProjectSettings.FDisplIncrement;
+    Dialog.CheckBox1.Checked := FreeShip.ProjectSettings.FUseDisplIncrements;
+    Dialog.SetHeelingAngles(FreeShip.ProjectSettings.FAngles,
+      FreeShip.ProjectSettings.FNoAngles);
+    if Dialog.Execute(FreeShip) then
     begin
       CreateUndoObject('crosscurves settings', True);
-      Owner.ProjectSettings.FMinimumDisplacement := Dialog.FreeNumInput2.Value;
-      Owner.ProjectSettings.FMaximumDisplacement := Dialog.FreeNumInput3.Value;
+      FreeShip.ProjectSettings.FMinimumDisplacement := Dialog.FreeNumInput2.Value;
+      FreeShip.ProjectSettings.FMaximumDisplacement := Dialog.FreeNumInput3.Value;
       ;
-      Owner.ProjectSettings.FDisplIncrement := Dialog.FreeNumInput4.Value;
-      Dialog.GetDisplacements(Owner.ProjectSettings.FDisplacements,
-        Owner.ProjectSettings.FNoDisplacements);
-      Owner.ProjectSettings.FUseDisplIncrements := Dialog.CheckBox1.Checked;
-      Dialog.GetHeelingAngles(Owner.ProjectSettings.FAngles,
-        Owner.ProjectSettings.FNoAngles);
+      FreeShip.ProjectSettings.FDisplIncrement := Dialog.FreeNumInput4.Value;
+      Dialog.GetDisplacements(FreeShip.ProjectSettings.FDisplacements,
+        FreeShip.ProjectSettings.FNoDisplacements);
+      FreeShip.ProjectSettings.FUseDisplIncrements := Dialog.CheckBox1.Checked;
+      Dialog.GetHeelingAngles(FreeShip.ProjectSettings.FAngles,
+        FreeShip.ProjectSettings.FNoAngles);
 
-      Owner.FileChanged := True;
+      FreeShip.FileChanged := True;
 
     end;
     Dialog.Destroy;
@@ -5724,18 +5778,18 @@ procedure TFreeEdit.Hydrostatics_Dialog;
 var
   HydrostaticsForm: TFreeHydrostaticsForm;
 begin
-  HydrostaticsForm := TFreeHydrostaticsForm.Create(Owner);
+  HydrostaticsForm := TFreeHydrostaticsForm.Create(FreeShip);
   ShowTranslatedValues(HydrostaticsForm);
-  Hydrostaticsform.StartDraft := Owner.ProjectSettings.Hydrostatics_Startdraft;
-  Hydrostaticsform.EndDraft := Owner.ProjectSettings.Hydrostatics_Enddraft;
-  Hydrostaticsform.DraftStep := Owner.ProjectSettings.Hydrostatics_DraftStep;
-  Hydrostaticsform.Trim := Owner.ProjectSettings.Hydrostatics_Trim;
-  if TFreeHydrostaticsForm(HydrostaticsForm).Execute(Owner) then
+  Hydrostaticsform.StartDraft := FreeShip.ProjectSettings.Hydrostatics_Startdraft;
+  Hydrostaticsform.EndDraft := FreeShip.ProjectSettings.Hydrostatics_Enddraft;
+  Hydrostaticsform.DraftStep := FreeShip.ProjectSettings.Hydrostatics_DraftStep;
+  Hydrostaticsform.Trim := FreeShip.ProjectSettings.Hydrostatics_Trim;
+  if TFreeHydrostaticsForm(HydrostaticsForm).Execute(FreeShip) then
   begin
-    Owner.ProjectSettings.Hydrostatics_Startdraft := HydrostaticsForm.StartDraft;
-    Owner.ProjectSettings.Hydrostatics_Enddraft := HydrostaticsForm.EndDraft;
-    Owner.ProjectSettings.Hydrostatics_DraftStep := HydrostaticsForm.DraftStep;
-    Owner.ProjectSettings.Hydrostatics_Trim := HydrostaticsForm.Trim;
+    FreeShip.ProjectSettings.Hydrostatics_Startdraft := HydrostaticsForm.StartDraft;
+    FreeShip.ProjectSettings.Hydrostatics_Enddraft := HydrostaticsForm.EndDraft;
+    FreeShip.ProjectSettings.Hydrostatics_DraftStep := HydrostaticsForm.DraftStep;
+    FreeShip.ProjectSettings.Hydrostatics_Trim := HydrostaticsForm.Trim;
   end;
 end;{TFreeEdit.Hydrostatics_Dialog}
 
@@ -5769,7 +5823,7 @@ var
   Points: TFasterListTFreeSubdivisionControlPoint;
   Marker: TFreeMarker;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
+  OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := ExtractFilepath(Application.ExeName);
   OpenDialog.Filter := '3D text file (*.Txt)|*.txt';
   Opendialog.Options := [ofHideReadOnly];
@@ -5795,7 +5849,7 @@ begin
             readln(FFile);// Skip description of this line
             Inc(Nr);
             readln(FFile, NoPoints);
-            Spline := TFreeSpline.Create(Owner.Surface);
+            Spline := TFreeSpline.Create(FreeShip.Surface);
             Spline.Capacity := NoPoints;
             ValidStation := NoPoints > 1;
             for J := 1 to Nopoints do
@@ -5832,10 +5886,10 @@ begin
     end;
     if Frames.Count > 1 then
     begin
-      Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       CreateUndoObject(Userstring(133), True);
-      Owner.Clear;
-      Owner.Filename := Opendialog.FileName;
+      FreeShip.Clear;
+      FreeShip.Filename := Opendialog.FileName;
       MinZ := 0.0;
       MaxZ := 0.0;
       // first sort the stations from aft to front
@@ -5861,7 +5915,7 @@ begin
           MinZ := Spline.Point[0].Z;
         if Spline.Point[Spline.NumberOfPoints - 1].Z > MaxZ then
           MaxZ := Spline.Point[Spline.NumberOfPoints - 1].Z;
-        Marker := TFreeMarker.Create(Owner.Surface);
+        Marker := TFreeMarker.Create(FreeShip.Surface);
         Marker_Add(Marker);
         Marker.Capacity := Spline.NumberOfPoints;
         for J := 1 to Spline.NumberOfPoints do
@@ -5902,7 +5956,7 @@ begin
       for I := 1 to Frames.Count do
       begin
         Spline := Frames[I - 1];
-        NewSpline := TFreeSpline.Create(Owner.Surface);
+        NewSpline := TFreeSpline.Create(FreeShip.Surface);
         NewSpline.Capacity := NoPoints;
         for J := 1 to NoPoints do
         begin
@@ -5932,7 +5986,7 @@ begin
         Setlength(ControlPoints[I - 1], NewSpline.NumberOfPoints);
         for J := 1 to NewSpline.NumberOfPoints do
           ControlPoints[I - 1][J - 1] :=
-            Owner.Surface.AddControlPoint(NewSpline.Point[J - 1]);
+            FreeShip.Surface.AddControlPoint(NewSpline.Point[J - 1]);
       end;
       // Add the new controlfaces
       Points := TFasterListTFreeSubdivisionControlPoint.Create;
@@ -5944,7 +5998,7 @@ begin
           Points.Add(ControlPoints[I - 1][J - 2]);
           Points.Add(ControlPoints[I - 2][J - 2]);
           Points.Add(ControlPoints[I - 2][J - 1]);
-          Owner.Surface.AddControlFace(Points, True);
+          FreeShip.Surface.AddControlFace(Points, True);
         end;
 
       Points.Clear;
@@ -5971,7 +6025,7 @@ begin
             Points.Add(ControlPoints[I - 1][J - 1]);// store to be deleted later
         if (P1 <> nil) and (P2 <> nil) then
         begin
-          Edge := Owner.Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+          Edge := FreeShip.Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
           if Edge <> nil then
             Edge.Crease := True
           else
@@ -6012,7 +6066,7 @@ begin
           end;
         if (P1 <> nil) and (P2 <> nil) then
         begin
-          Edge := Owner.Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+          Edge := FreeShip.Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
           if Edge <> nil then
             Edge.Crease := True
           else
@@ -6036,18 +6090,18 @@ begin
       for J := 1 to Points.Count do
       begin
         P1 := Points[J - 1];
-        if Owner.Surface.PointExists(P1) then
+        if FreeShip.Surface.PointExists(P1) then
           P1.Delete;
       end;
-      for I := 1 to Owner.Surface.NumberOfControlPoints do
-        if Owner.Surface.ControlPoint[I - 1].NumberOfFaces = 1 then
-          Owner.Surface.ControlPoint[I - 1].VertexType := svCorner;
+      for I := 1 to FreeShip.Surface.NumberOfControlPoints do
+        if FreeShip.Surface.ControlPoint[I - 1].NumberOfFaces = 1 then
+          FreeShip.Surface.ControlPoint[I - 1].VertexType := svCorner;
       Points.Destroy;
-      Owner.FileChanged := True;
+      FreeShip.FileChanged := True;
     end;
-    Owner.Draw;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.Draw;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
     // Destroy allocated stations
     for I := 1 to Frames.Count do
     begin
@@ -6085,8 +6139,8 @@ var
   Marker: TFreeMarker;
   PrevCursor: TCursor;
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := '3D text file (*.Txt)|*.txt';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
@@ -6110,7 +6164,7 @@ begin
               UnitType := TFreeUnitType(I)
             else
               MessageDlg(Userstring(108), mtError, [mbOK], 0);
-            Spline := TFreeSpline.Create(Owner.Surface);
+            Spline := TFreeSpline.Create(FreeShip.Surface);
             repeat
               Readln(FFile, Str);
               repeat
@@ -6134,7 +6188,7 @@ begin
                   Curves.Add(Spline)
                 else
                   Spline.Destroy;
-                Spline := TFreeSpline.Create(Owner.Surface);
+                Spline := TFreeSpline.Create(FreeShip.Surface);
               end;
             until (Str = 'EOF') or (EOF(FFile));
             if Spline.NumberOfPoints > 1 then
@@ -6153,11 +6207,11 @@ begin
     if Curves.Count > 1 then
     begin
       PrevCursor := Screen.Cursor;
-      Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       CreateUndoObject(Userstring(136), True);
-      Owner.Clear;
-      Owner.ProjectSettings.ProjectUnits := UnitType;
-      Owner.Filename := Opendialog.FileName;
+      FreeShip.Clear;
+      FreeShip.ProjectSettings.ProjectUnits := UnitType;
+      FreeShip.Filename := Opendialog.FileName;
       try
 
         Cols := Curves.Count;
@@ -6174,7 +6228,7 @@ begin
         LongCurves := TFasterListTFreeSpline.Create;
         for I := 1 to Rows do
         begin
-          NewSpline := TFreeSpline.Create(Owner.Surface);
+          NewSpline := TFreeSpline.Create(FreeShip.Surface);
           LongCurves.Add(NewSpline);
           Newspline.Capacity := Curves.Count;
           for J := 1 to Curves.Count do
@@ -6186,7 +6240,7 @@ begin
         for I := 1 to Curves.Count do
         begin
           Spline := Curves[I - 1];
-          Marker := TFreeMarker.Create(Owner.Surface);
+          Marker := TFreeMarker.Create(FreeShip.Surface);
           Marker.Capacity := Spline.NumberOfPoints;
           for J := 1 to Spline.NumberOfPoints do
             Marker.Add(Spline.Point[J - 1]);
@@ -6298,10 +6352,10 @@ begin
           for J := 1 to Cols do
           begin
             ControlPoints[I - 1][J - 1] :=
-              TFreesubdivisionControlPoint.Create(Owner.Surface);
-            Owner.Surface.AddControlPoint(ControlPoints[I - 1][J - 1]);
+              TFreesubdivisionControlPoint.Create(FreeShip.Surface);
+            FreeShip.Surface.AddControlPoint(ControlPoints[I - 1][J - 1]);
             ControlPoints[I - 1][J - 1].Coordinate := Points[I - 1][J - 1];
-            //ControlPoints[I-1][J-1]:=Owner.Surface.AddControlPoint(Points[I-1][J-1]);
+            //ControlPoints[I-1][J-1]:=FreeShip.Surface.AddControlPoint(Points[I-1][J-1]);
           end;
         end;
         Pts := TFasterListTFreeSubdivisionControlPoint.Create;
@@ -6321,19 +6375,19 @@ begin
             if Pts.IndexOf(P1) = -1 then
               Pts.Add(P1);
             if Pts.Count > 2 then
-              Owner.Surface.AddControlFace(Pts, True);
+              FreeShip.Surface.AddControlFace(Pts, True);
           end;
         Pts.Destroy;
-        Owner.FileChanged := True;
+        FreeShip.FileChanged := True;
       finally
-        if Assigned(Owner.OnUpdateGeometryInfo) then
-          Owner.OnUpdateGeometryInfo(self);
+        if Assigned(FreeShip.OnUpdateGeometryInfo) then
+          FreeShip.OnUpdateGeometryInfo(self);
         Screen.Cursor := PrevCursor;
       end;
     end;
-    Owner.Build := False;
-    Owner.Precision := fpMedium;
-    Owner.Draw;
+    FreeShip.Build := False;
+    FreeShip.Precision := fpMedium;
+    FreeShip.Draw;
   end;
   OpenDialog.Destroy;
 end;{TFreeEdit.ImportFrames}
@@ -6345,10 +6399,10 @@ var
   Int1, Int2: TFreeIntersection;
 begin
   case Intersection.IntersectionType of
-    fiStation: TargetList := Owner.FStations;
-    fiButtock: TargetList := Owner.FButtocks;
-    fiWaterline: TargetList := Owner.FWaterlines;
-    fiDiagonal: TargetList := Owner.FDiagonals;
+    fiStation: TargetList := FreeShip.FStations;
+    fiButtock: TargetList := FreeShip.FButtocks;
+    fiWaterline: TargetList := FreeShip.FWaterlines;
+    fiDiagonal: TargetList := FreeShip.FDiagonals;
     else
       TargetList := nil;
   end;
@@ -6378,12 +6432,12 @@ procedure TFreeEdit.Intersection_Dialog;
 var
   Dialog: TFreeIntersectionDialog;
 begin
-  Dialog := Owner.FIntersectionDialog as TFreeIntersectionDialog;
+  Dialog := FreeShip.FIntersectionDialog as TFreeIntersectionDialog;
   ShowTranslatedValues(Dialog);
-  Dialog.Execute(Owner);
-  Owner.FDesignHydrostatics.Calculated := False;
-  if Owner.Visibility.ShowHydrostaticData then
-    Owner.Redraw;
+  Dialog.Execute(FreeShip);
+  FreeShip.FDesignHydrostatics.Calculated := False;
+  if FreeShip.Visibility.ShowHydrostaticData then
+    FreeShip.Redraw;
 end;{TFreeEdit.Intersection_Dialog}
 
 // All connected patches surrounded by crease edges are grouped together into a new layer
@@ -6431,20 +6485,20 @@ begin
   ToDoList := TList.Create;
   DoneList := TList.Create;
   try
-    if Owner.NumberOfSelectedControlFaces > 0 then
+    if FreeShip.NumberOfSelectedControlFaces > 0 then
       // Use only the selected ones
     begin
-      ToDoList.Capacity := ToDoList.Count + Owner.NumberOfSelectedControlFaces;
-      for I := 1 to Owner.NumberOfSelectedControlFaces do
+      ToDoList.Capacity := ToDoList.Count + FreeShip.NumberOfSelectedControlFaces;
+      for I := 1 to FreeShip.NumberOfSelectedControlFaces do
       begin
-        Face := Owner.SelectedControlFace[I - 1];
+        Face := FreeShip.SelectedControlFace[I - 1];
         ToDoList.Add(Face);
       end;
     end
     else
-      for I := 1 to Owner.NumberOfLayers do
+      for I := 1 to FreeShip.NumberOfLayers do
       begin
-        Layer := Owner.Layer[I - 1];
+        Layer := FreeShip.Layer[I - 1];
         if Layer.Visible then
         begin
           ToDoList.Capacity := ToDoList.Count + Layer.Count;
@@ -6490,7 +6544,7 @@ begin
             else
             begin
               // a subset of face.layer is selected, copy properties from that layer
-              Layer := Owner.Surface.AddNewLayer;
+              Layer := FreeShip.Surface.AddNewLayer;
               Layer.AssignProperties(Face.Layer);
             end;
           end
@@ -6509,15 +6563,15 @@ begin
         end;
         Current.Destroy;
       end;
-      Owner.ActiveLayer := Owner.Layer[Owner.NumberOfLayers - 1];
+      FreeShip.ActiveLayer := FreeShip.Layer[FreeShip.NumberOfLayers - 1];
       // Delete empty layers
       Layer_DeleteEmpty(True);
-      Owner.Redraw;
-      Owner.FileChanged := True;
+      FreeShip.Redraw;
+      FreeShip.FileChanged := True;
     end;
   finally
-    if assigned(Owner.OnChangeLayerData) then
-      Owner.OnChangeLayerData(self);
+    if assigned(FreeShip.OnChangeLayerData) then
+      FreeShip.OnChangeLayerData(self);
     ToDoList.Destroy;
     DoneList.Destroy;
   end;
@@ -6538,28 +6592,28 @@ begin
   Plates := TFasterListTFreeDevelopedPatch.Create;
   try
     // perform a quiet test to check normal directions
-    if not Owner.ProjectSettings.DisableModelCheck then
+    if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
-    for I := 1 to Owner.NumberOfLayers do
+    for I := 1 to FreeShip.NumberOfLayers do
     begin
-      Layer := Owner.Layer[I - 1];
+      Layer := FreeShip.Layer[I - 1];
       if Layer.Developable then
         Layer.Unroll(Plates);
     end;
 
-    Patch := TFreeDevelopedPatch.Create(Owner.ActiveLayer);
+    Patch := TFreeDevelopedPatch.Create(FreeShip.ActiveLayer);
 
     for I := 1 to Plates.Count do
     begin
       Patch := Plates[I - 1]; // How Plate assigned to Patch?
-      for J := 1 to Owner.NumberofStations do
-        Patch.IntersectPlane(Owner.Station[J - 1].Plane, Owner.Station[J - 1].Color);
-      for J := 1 to Owner.NumberofWaterlines do
-        Patch.IntersectPlane(Owner.Waterline[J - 1].Plane, Owner.Waterline[J - 1].Color);
-      for J := 1 to Owner.NumberofButtocks do
-        Patch.IntersectPlane(Owner.Buttock[J - 1].Plane, Owner.Buttock[J - 1].Color);
-      for J := 1 to Owner.NumberofDiagonals do
-        Patch.IntersectPlane(Owner.Diagonal[J - 1].Plane, Owner.Diagonal[J - 1].Color);
+      for J := 1 to FreeShip.NumberofStations do
+        Patch.IntersectPlane(FreeShip.Station[J - 1].Plane, FreeShip.Station[J - 1].Color);
+      for J := 1 to FreeShip.NumberofWaterlines do
+        Patch.IntersectPlane(FreeShip.Waterline[J - 1].Plane, FreeShip.Waterline[J - 1].Color);
+      for J := 1 to FreeShip.NumberofButtocks do
+        Patch.IntersectPlane(FreeShip.Buttock[J - 1].Plane, FreeShip.Buttock[J - 1].Color);
+      for J := 1 to FreeShip.NumberofDiagonals do
+        Patch.IntersectPlane(FreeShip.Diagonal[J - 1].Plane, FreeShip.Diagonal[J - 1].Color);
     end;
   finally
     Screen.Cursor := Prev;
@@ -6567,9 +6621,9 @@ begin
 
   if Plates.Count > 0 then
   begin
-    Dlg := TFreeExpanedplatesDialog.Create(owner);
+    Dlg := TFreeExpanedplatesDialog.Create(FreeShip);
     ShowTranslatedValues(Dlg);
-    Dlg.Execute(Owner, Plates);
+    Dlg.Execute(FreeShip, Plates);
     Dlg.Destroy;
   end;
   for I := 1 to Plates.Count do
@@ -6591,17 +6645,17 @@ begin
     vUndo := nil
   else
     vUndo := CreateUndoObject(Userstring(140), False);
-  for I := Owner.NumberOfLayers downto 1 do
-    if (Owner.Layer[I - 1].Count = 0) and (Owner.NumberOfLayers > 1) then
+  for I := FreeShip.NumberOfLayers downto 1 do
+    if (FreeShip.Layer[I - 1].Count = 0) and (FreeShip.NumberOfLayers > 1) then
     begin
-      Owner.Layer[I - 1].Delete;
+      FreeShip.Layer[I - 1].Delete;
       Inc(N);
-      Owner.FileChanged := True;
+      FreeShip.FileChanged := True;
     end;
-  if Owner.ActiveLayer = nil then
-    Owner.ActiveLayer := Owner.Layer[Owner.NumberOfLayers - 1]
+  if FreeShip.ActiveLayer = nil then
+    FreeShip.ActiveLayer := FreeShip.Layer[FreeShip.NumberOfLayers - 1]
   else
-    Owner.ActiveLayer := Owner.ActiveLayer;
+    FreeShip.ActiveLayer := FreeShip.ActiveLayer;
   if (N > 0) and (not Quiet) then
   begin
     vUndo.Accept;
@@ -6616,25 +6670,25 @@ procedure TFreeEdit.Layer_Dialog;
 var
   LayerDialog: TFreeLayerDialog;
 begin
-  LayerDialog := TFreeLayerDialog.Create(Owner);
+  LayerDialog := TFreeLayerDialog.Create(FreeShip);
   ShowTranslatedValues(LayerDialog);
-  LayerDialog.Execute(Owner);
+  LayerDialog.Execute(FreeShip);
   LayerDialog.Free;
 end;{TFreeEdit.Layer_Dialog}
 
 function TFreeEdit.Layer_New: TFreeSubdivisionLayer;
 begin
   CreateUndoObject(Userstring(142), True);
-  Result := Owner.Surface.AddNewLayer;
-  Result.Color := Owner.Preferences.LayerColor;
-  Owner.FileChanged := True;
+  Result := FreeShip.Surface.AddNewLayer;
+  Result.Color := FreeShip.Preferences.LayerColor;
+  FreeShip.FileChanged := True;
 end;{TFreeEdit.Layer_New}
 
 // Adds a marker to the list with markers
 procedure TFreeEdit.Marker_Add(Marker: TFreeMarker);
 begin
-  Owner.FMarkers.Add(Marker);
-  Marker.FOwner := Owner;
+  FreeShip.FMarkers.Add(Marker);
+  Marker.FOwner := FreeShip;
 end;{TFreeEdit.Marker_Add}
 
 // Delete all markers from the model
@@ -6645,15 +6699,15 @@ begin
   if MessageDlg(Userstring(143), mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     CreateUndoObject(Userstring(144), True);
-    for I := 1 to Owner.NumberofMarkers do
-      Owner.Marker[I - 1].Destroy;
-    Owner.FMarkers.Clear;
-    Owner.FileChanged := True;
-    for I := 1 to Owner.NumberOfViewports do
-      if Owner.Viewport[I - 1].Zoom = 1.0 then
-        Owner.Viewport[I - 1].ZoomExtents
+    for I := 1 to FreeShip.NumberofMarkers do
+      FreeShip.Marker[I - 1].Destroy;
+    FreeShip.FMarkers.Clear;
+    FreeShip.FileChanged := True;
+    for I := 1 to FreeShip.NumberOfViewports do
+      if FreeShip.Viewport[I - 1].Zoom = 1.0 then
+        FreeShip.Viewport[I - 1].ZoomExtents
       else
-        Owner.Viewport[I - 1].Refresh;
+        FreeShip.Viewport[I - 1].Refresh;
   end;
 end;{TFreeEdit.Marker_Delete}
 
@@ -6680,19 +6734,19 @@ var
       Marker := Markers[I - 1];
       Marker_Add(Marker);
     end;
-    Owner.FileChanged := True;
-    Owner.Visibility.ShowMarkers := True;
-    for I := 1 to Owner.NumberOfViewports do
-      if Owner.Viewport[I - 1].Zoom = 1.0 then
-        Owner.Viewport[I - 1].ZoomExtents
+    FreeShip.FileChanged := True;
+    FreeShip.Visibility.ShowMarkers := True;
+    for I := 1 to FreeShip.NumberOfViewports do
+      if FreeShip.Viewport[I - 1].Zoom = 1.0 then
+        FreeShip.Viewport[I - 1].ZoomExtents
       else
-        Owner.Viewport[I - 1].Refresh;
-    Owner.Redraw;
+        FreeShip.Viewport[I - 1].Refresh;
+    FreeShip.Redraw;
   end;{import}
 
 begin
-  OpenDialog := TOpenDialog.Create(Owner);
-  OpenDialog.InitialDir := Owner.Preferences.ImportDirectory;
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := 'Text files (*.txt)|*.txt';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
@@ -6703,14 +6757,14 @@ begin
 {$I+}
     if IOResult = 0 then
     begin
-      Owner.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       LineNr := 1;
       // skip the first line of the file
       readln(FFile);
       Markers := TFasterListTFreeMarker.Create;
       try
         try
-          Marker := TFreeMarker.Create(Owner.Surface);
+          Marker := TFreeMarker.Create(FreeShip.Surface);
           repeat
             Readln(FFile, Str);
             repeat
@@ -6734,7 +6788,7 @@ begin
                 Markers.Add(Marker)
               else
                 Marker.Destroy;
-              Marker := TFreeMarker.Create(Owner.Surface);
+              Marker := TFreeMarker.Create(FreeShip.Surface);
             end;
           until (Str = 'EOF') or (EOF(FFile));
           if Marker.NumberOfPoints > 1 then
@@ -6749,7 +6803,7 @@ begin
       end;
       if Markers.Count > 0 then
       begin
-        if Owner.NumberofMarkers > 0 then
+        if FreeShip.NumberofMarkers > 0 then
         begin
           Answer := MessageDlg(Userstring(145), mtConfirmation,
             [mbYes, mbNo, mbCancel], 0);
@@ -6758,9 +6812,9 @@ begin
             CreateUndoObject(Userstring(146), True);
             if Answer = mrYes then
             begin
-              for I := 1 to Owner.NumberofMarkers do
-                Owner.Marker[I - 1].Destroy;
-              Owner.FMarkers.Clear;
+              for I := 1 to FreeShip.NumberofMarkers do
+                FreeShip.Marker[I - 1].Destroy;
+              FreeShip.FMarkers.Clear;
             end;
             Import(Markers);
           end
@@ -6834,7 +6888,7 @@ var
       for J := 1 to F1.NumberOfPoints do
       begin
         P2 := F1.Point[J - 1];
-        Edge := Owner.Surface.EdgeExists(P1, P2);
+        Edge := FreeShip.Surface.EdgeExists(P1, P2);
         if Edge <> nil then
           if Edge.NumberOfFaces > 1 then
             for K := 1 to Edge.NumberOfFaces do
@@ -6882,9 +6936,9 @@ begin
   begin
     // Find double edges
     DoubleEdges := TFasterListTFreeSubdivisionControlEdge.Create;
-    for I := 1 to Owner.Surface.NumberOfControlEdges do
+    for I := 1 to FreeShip.Surface.NumberOfControlEdges do
     begin
-      Edge1 := Owner.Surface.ControlEdge[I - 1];
+      Edge1 := FreeShip.Surface.ControlEdge[I - 1];
       if Edge1.NumberOfFaces = 1 then
         if DoubleEdges.SortedIndexOf(Edge1) = -1 then
           for J := 1 to Edge1.StartPoint.NumberOfEdges do
@@ -6906,8 +6960,8 @@ begin
     begin
       Edge1 := DoubleEdges[I - 1];
       Edge2 := TFreeSubdivisionControlEdge(DoubleEdges.Objects[I - 1]);
-      if (Owner.Surface.ControlEdges.IndexOf(Edge1) <> -1) and
-        (Owner.Surface.ControlEdges.IndexOf(Edge2) <> -1) then
+      if (FreeShip.Surface.ControlEdges.IndexOf(Edge1) <> -1) and
+        (FreeShip.Surface.ControlEdges.IndexOf(Edge2) <> -1) then
       begin
         // remove the face connected to edge2 and rebuild it
         // by connecting it to edge1
@@ -6948,7 +7002,7 @@ begin
         if Points.Count > 2 then
         begin
           NewLayer := Ctrlface.Layer;
-          Owner.Surface.AddControlFace(TFasterList(Points), False, NewLayer);
+          FreeShip.Surface.AddControlFace(TFasterList(Points), False, NewLayer);
           CtrlFace.Delete;
           Changed := True;
           Inc(DblEdges);
@@ -6963,17 +7017,17 @@ begin
   // First assemble all controlfaces and extract
   // isolated groups (not physically connected)
   AllFaces := TFasterListTFreeSubdivisionFace.Create;
-  AllFaces.Capacity := Owner.Surface.NumberOfControlFaces;
-  for I := 1 to Owner.Surface.NumberOfControlFaces do
-    AllFaces.Add(Owner.Surface.ControlFace[I - 1]);
+  AllFaces.Capacity := FreeShip.Surface.NumberOfControlFaces;
+  for I := 1 to FreeShip.Surface.NumberOfControlFaces do
+    AllFaces.Add(FreeShip.Surface.ControlFace[I - 1]);
   AllFaces.Sort; // Sort list for faster object search
 
   Leaks := TFasterListTFreeSubdivisionControlPoint.Create;
   // assemble leaks
   Z_min := 0;
-  for I := 1 to Owner.Surface.NumberOfControlPoints do
+  for I := 1 to FreeShip.Surface.NumberOfControlPoints do
   begin
-    CtrlPoint := Owner.Surface.ControlPoint[I - 1];
+    CtrlPoint := FreeShip.Surface.ControlPoint[I - 1];
     if CtrlPoint.Coordinate.Z < Z_min then
       Z_min := CtrlPoint.Coordinate.Z;
     // Определяем наинизшую точку
@@ -7000,8 +7054,8 @@ begin
         Leaks.Exchange(I - 1, J - 1);
     end;
 
-  for I := 1 to Owner.Surface.NumberOfControlEdges do
-    if Owner.Surface.ControlEdge[I - 1].NumberOfFaces > 2 then
+  for I := 1 to FreeShip.Surface.NumberOfControlEdges do
+    if FreeShip.Surface.ControlEdge[I - 1].NumberOfFaces > 2 then
       Inc(NonManifold);
 
   if AllFaces.Count > 0 then
@@ -7091,7 +7145,7 @@ begin
       MessageDlg(Str, mtWarning, [mbOK], 0);
       ///////////// begin Victor T
       Point := Leaks[0];
-      if Point.Coordinate.Z - Z_min < Owner.ProjectSettings.ProjectDraft then
+      if Point.Coordinate.Z - Z_min < FreeShip.ProjectSettings.ProjectDraft then
         MessageDlg(Userstring(899), mtWarning, [mbOK], 0);
       ;
       ///////////// end Victor T
@@ -7100,9 +7154,9 @@ begin
     if (Changed) or (Inconsistent > 0) or (NonManifold > 0) or (DblEdges > 0) then
     begin
       vUndo.Accept;
-      Owner.Build := False;
-      Owner.Redraw;
-      Owner.FileChanged := True;
+      FreeShip.Build := False;
+      FreeShip.Redraw;
+      FreeShip.FileChanged := True;
       if ShowResult then
       begin
         Str := Userstring(152) + ':';
@@ -7115,8 +7169,8 @@ begin
         if NonManifold > 0 then
           Str := Str + EOL + IntToStr(NonManifold) + ' ' + Userstring(155);
         MessageDlg(Str, mtInformation, [mbOK], 0);
-        if assigned(Owner.FOnUpdateGeometryInfo) then
-          Owner.FOnUpdateGeometryInfo(self);
+        if assigned(FreeShip.FOnUpdateGeometryInfo) then
+          FreeShip.FOnUpdateGeometryInfo(self);
       end;
     end
     else
@@ -7130,9 +7184,9 @@ begin
   AllFaces.Destroy;
 
   IsIntegrityOk:=true;
-  for i:=0 to Owner.Surface.NumberOfLayers-1 do
+  for i:=0 to FreeShip.Surface.NumberOfLayers-1 do
     begin
-    B:=Owner.Layer[i].CheckIntegrity;
+    B:=FreeShip.Layer[i].CheckIntegrity;
     if not B then
        logger.Error(Format('In Layer[%d]',[i]));
     IsIntegrityOk := IsIntegrityOk and B;
@@ -7141,8 +7195,8 @@ begin
   if not IsIntegrityOk then
     ShowMessage('Layers integrity is not Ok. Enable logs and check logs output. Further processing is not safe.');
 {
-  for i:=0 to Owner.Surface.NumberOfControlFaces-1 do
-    IsIntegrityOk := IsIntegrityOk and Owner.Surface.ControlFace[i].CheckIntegrity;
+  for i:=0 to FreeShip.Surface.NumberOfControlFaces-1 do
+    IsIntegrityOk := IsIntegrityOk and FreeShip.Surface.ControlFace[i].CheckIntegrity;
   if not IsIntegrityOk then
     ShowMessage('ControlFaces integrity is not Ok. Enable logs and check logs output. Further processing is not safe.');
 }
@@ -7176,7 +7230,7 @@ var
 
 begin
   Result := False;
-  if Owner.FileChanged then
+  if FreeShip.FileChanged then
   begin
     Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
       mtConfirmation, [mbYes, mbNo, mbCancel], 0);
@@ -7184,17 +7238,17 @@ begin
       exit;
     if Answer = mrYes then
     begin
-      Owner.Edit.File_SaveAs;
-      if Owner.FileChanged then
+      FreeShip.Edit.File_SaveAs;
+      if FreeShip.FileChanged then
         exit// Apparently saving was not successfull, abort
       ;
     end;
   end;
-  FreeNewModelDialog := TFreeNewModelDialog.Create(Owner);
+  FreeNewModelDialog := TFreeNewModelDialog.Create(FreeShip);
   ShowTranslatedValues(FreeNewModelDialog);
   if FreeNewModelDialog.Execute then
   begin
-    Owner.ModelLoaded := False;
+    FreeShip.ModelIsLoaded := False;
     CreateUndoObject(Userstring(157), True);
     Cols := FreeNewModelDialog.NCols - 1;
     Rows := FreeNewModelDialog.NRows - 1;
@@ -7243,20 +7297,20 @@ begin
     Default[6, 2] := Point3D(0.93387, 0.00000, 1.44618);
     Default[6, 3] := Point3D(0.97668, 0.00000, 3.03482);
     Default[6, 4] := Point3D(1.00000, 0.00000, 3.91366);
-    Owner.Clear;
+    FreeShip.Clear;
 
-    Owner.ProjectSettings.ProjectUnits :=
+    FreeShip.ProjectSettings.ProjectUnits :=
       TFreeUnitType(FreeNewModelDialog.ComboBox1.ItemIndex);
-    Owner.ProjectSettings.ProjectLength := L;
-    Owner.ProjectSettings.ProjectBeam := B;
-    Owner.ProjectSettings.ProjectDraft := D;
+    FreeShip.ProjectSettings.ProjectLength := L;
+    FreeShip.ProjectSettings.ProjectBeam := B;
+    FreeShip.ProjectSettings.ProjectDraft := D;
 
     TrvSplines := TFasterListTFreeSpline.Create;
     StemPoint := nil;
     // First create tmp. splines in transverse direction
     for I := 0 to 6 do
     begin
-      Spline1 := TFreeSpline.Create(Owner.Surface);
+      Spline1 := TFreeSpline.Create(FreeShip.Surface);
       for J := 0 to 4 do
       begin
         P := Default[I, J];
@@ -7272,7 +7326,7 @@ begin
     for I := 0 to rows do
     begin
       Setlength(Pts[I], Cols + 1);
-      Spline2 := TFreeSpline.Create(Owner.Surface);
+      Spline2 := TFreeSpline.Create(FreeShip.Surface);
       for j := 0 to TrvSplines.Count - 1 do
       begin
         Spline1 := TrvSplines[J];
@@ -7283,8 +7337,8 @@ begin
       for J := 0 to Cols do
       begin
         P := Spline2.Value(J / Cols);
-        Pts[I, J] := TFreeSubdivisionControlPoint.Create(Owner.Surface);
-        Owner.Surface.AddControlPoint(Pts[I, J]);
+        Pts[I, J] := TFreeSubdivisionControlPoint.Create(FreeShip.Surface);
+        FreeShip.Surface.AddControlPoint(Pts[I, J]);
         Pts[I, J].Coordinate := P;
         if (I = 0) and (J = Cols) then
           StemPoint := Pts[I, J];
@@ -7308,34 +7362,34 @@ begin
         TrvPoints.Add(Pts[I, J]);
         TrvPoints.Add(Pts[I - 1, J]);
         TrvPoints.Add(Pts[I - 1, J - 1]);
-        Owner.Surface.AddControlFace(TrvPoints, True);
+        FreeShip.Surface.AddControlFace(TrvPoints, True);
       end;
 
-    Owner.Precision := fpMedium;
-    Owner.Surface.Initialize(1, 1, 1);
+    FreeShip.Precision := fpMedium;
+    FreeShip.Surface.Initialize(1, 1, 1);
     // Collapse stempoint to mage the grid irregular in order to demonstrate subdivision-surface capabilities
     if StemPoint <> nil then
       if StemPoint.VertexType = svCorner then
         stempoint.VertexType := svCrease;
-    Owner.Build := False;
+    FreeShip.Build := False;
 
     // Add 21 stations
     for I := 0 to 20 do
-      Intersection_Add(fiStation, I / 20 * (Owner.Surface.Max.X - Owner.Surface.Min.X));
+      Intersection_Add(fiStation, I / 20 * (FreeShip.Surface.Max.X - FreeShip.Surface.Min.X));
     // Add 7 buttocks
     for I := 1 to 6 do
-      Intersection_Add(fiButtock, I / 7 * (Owner.Surface.Max.Y - Owner.Surface.Min.Y));
+      Intersection_Add(fiButtock, I / 7 * (FreeShip.Surface.Max.Y - FreeShip.Surface.Min.Y));
     // Add 11 waterlines
     for I := 0 to 10 do
-      Intersection_Add(fiWaterline, I / 10 * (Owner.Surface.Max.Z -
-        Owner.Surface.Min.Z));
+      Intersection_Add(fiWaterline, I / 10 * (FreeShip.Surface.Max.Z -
+        FreeShip.Surface.Min.Z));
 
-    Owner.draw;
-    Owner.FileChanged := True;
-    Owner.ModelLoaded := True;
-    Owner.Filename:='New Model.ftm';
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.draw;
+    FreeShip.FileChanged := True;
+    FreeShip.ModelIsLoaded := True;
+    FreeShip.Filename:='New Model.ftm';
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
     Result := True;
     TrvSplines.Destroy;
     TrvPoints.Free;
@@ -7352,19 +7406,19 @@ var
   I: integer;
   Modified: boolean;
 begin
-  if not Owner.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
     MessageDlg(Userstring(96), mtError, [mbOK], 0);
     exit;
   end;
-  Dialog := TFreeLackenbyDialog.Create(Owner);
+  Dialog := TFreeLackenbyDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
   vUndo := CreateUndoObject(Userstring(159), False);
-  UndoIndex := Owner.UndoCount;
-  if Dialog.Execute(Owner, Modified) then
+  UndoIndex := FreeShip.UndoCount;
+  if Dialog.Execute(FreeShip, Modified) then
   begin
-    for I := Owner.UndoCount downto UndoIndex + 1 do
-      Owner.UndoObject[I - 1].Delete;
+    for I := FreeShip.UndoCount downto UndoIndex + 1 do
+      FreeShip.UndoObject[I - 1].Delete;
     if not Modified then
       vUndo.Delete
     else
@@ -7372,8 +7426,8 @@ begin
   end
   else
   begin
-    for I := Owner.UndoCount downto UndoIndex + 1 do
-      Owner.UndoObject[I - 1].Delete;
+    for I := FreeShip.UndoCount downto UndoIndex + 1 do
+      FreeShip.UndoObject[I - 1].Delete;
     if Modified then
       vUndo.Restore;
     vUndo.Delete;
@@ -7390,9 +7444,9 @@ var
   P: T3DCoordinate;
   Marker: TFreeMarker;
 begin
-  for I := 1 to Owner.Surface.NumberOfControlPoints do
+  for I := 1 to FreeShip.Surface.NumberOfControlPoints do
   begin
-    Point := Owner.Surface.ControlPoint[I - 1];
+    Point := FreeShip.Surface.ControlPoint[I - 1];
     if (not Point.Locked) or (OverrideLock) then
     begin
       P := Point.Coordinate;
@@ -7413,20 +7467,20 @@ begin
     end;
   end;
   // Update Mainparticulars
-  Owner.ProjectSettings.ProjectLength :=
-    abs(Owner.ProjectSettings.ProjectLength * Scalevector.X);
-  Owner.ProjectSettings.ProjectBeam :=
-    abs(Owner.ProjectSettings.ProjectBeam * Scalevector.Y);
-  Owner.ProjectSettings.ProjectDraft :=
-    abs(Owner.ProjectSettings.ProjectDraft * Scalevector.Z);
-  if not Owner.ProjectSettings.FUseDefaultMainframeLocation then
-    Owner.ProjectSettings.ProjectMainframeLocation :=
-      abs(Owner.ProjectSettings.ProjectMainframeLocation * ScaleVector.X);
+  FreeShip.ProjectSettings.ProjectLength :=
+    abs(FreeShip.ProjectSettings.ProjectLength * Scalevector.X);
+  FreeShip.ProjectSettings.ProjectBeam :=
+    abs(FreeShip.ProjectSettings.ProjectBeam * Scalevector.Y);
+  FreeShip.ProjectSettings.ProjectDraft :=
+    abs(FreeShip.ProjectSettings.ProjectDraft * Scalevector.Z);
+  if not FreeShip.ProjectSettings.FUseDefaultMainframeLocation then
+    FreeShip.ProjectSettings.ProjectMainframeLocation :=
+      abs(FreeShip.ProjectSettings.ProjectMainframeLocation * ScaleVector.X);
   // Update markers
   if AdjustMarkers then
-    for I := 1 to Owner.NumberOfMarkers do
+    for I := 1 to FreeShip.NumberOfMarkers do
     begin
-      Marker := Owner.Marker[I - 1];
+      Marker := FreeShip.Marker[I - 1];
       for j := 1 to Marker.NumberOfPoints do
       begin
         P := Marker.Point[J - 1];
@@ -7437,26 +7491,26 @@ begin
       end;
     end;
   // Update stations, buttcks and waterlines
-  for I := 1 to Owner.NumberofStations do
-    Owner.Station[I - 1].FPlane.d := Owner.Station[I - 1].FPlane.d * ScaleVector.X;
-  for I := 1 to Owner.NumberofButtocks do
-    Owner.Buttock[I - 1].FPlane.d := Owner.Buttock[I - 1].FPlane.d * ScaleVector.Y;
-  for I := 1 to Owner.NumberofWaterlines do
-    Owner.Waterline[I - 1].FPlane.d := Owner.Waterline[I - 1].FPlane.d * ScaleVector.Z;
+  for I := 1 to FreeShip.NumberofStations do
+    FreeShip.Station[I - 1].FPlane.d := FreeShip.Station[I - 1].FPlane.d * ScaleVector.X;
+  for I := 1 to FreeShip.NumberofButtocks do
+    FreeShip.Buttock[I - 1].FPlane.d := FreeShip.Buttock[I - 1].FPlane.d * ScaleVector.Y;
+  for I := 1 to FreeShip.NumberofWaterlines do
+    FreeShip.Waterline[I - 1].FPlane.d := FreeShip.Waterline[I - 1].FPlane.d * ScaleVector.Z;
   // Refresh controlpoint data
-  Owner.ActiveControlPoint := Owner.ActiveControlPoint;
+  FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
   // Reset any present hydrostatic calculations
-  for I := 1 to Owner.NumberOfHydrostaticCalculations do
+  for I := 1 to FreeShip.NumberOfHydrostaticCalculations do
   begin
-    Owner.HydrostaticCalculation[I - 1].Draft :=
-      abs(Owner.HydrostaticCalculation[I - 1].Draft * ScaleVector.Z);
-    Owner.HydrostaticCalculation[I - 1].Trim :=
-      Owner.HydrostaticCalculation[I - 1].Trim * ScaleVector.Z;
-    Owner.HydrostaticCalculation[I - 1].Calculated := False;
+    FreeShip.HydrostaticCalculation[I - 1].Draft :=
+      abs(FreeShip.HydrostaticCalculation[I - 1].Draft * ScaleVector.Z);
+    FreeShip.HydrostaticCalculation[I - 1].Trim :=
+      FreeShip.HydrostaticCalculation[I - 1].Trim * ScaleVector.Z;
+    FreeShip.HydrostaticCalculation[I - 1].Calculated := False;
   end;
 
 {   // scale data used for Task1 for propeller calc
-   with Owner.FPropellerTask1Data do
+   with FreeShip.FPropellerTask1Data do
    begin
       Draft:=Draft*ScaleVector.Z;
       Lwl:=Lwl*ScaleVector.X;
@@ -7466,7 +7520,7 @@ begin
    end;
 
    // scale data used for Task2 for propeller calc
-   with Owner.FPropellerTask2Data do
+   with FreeShip.FPropellerTask2Data do
    begin
       Draft:=Draft*ScaleVector.Z;
       Lwl:=Lwl*ScaleVector.X;
@@ -7476,7 +7530,7 @@ begin
    end;
 
    // scale data used for Task3 for propeller calc
-   with Owner.FPropellerTask3Data do
+   with FreeShip.FPropellerTask3Data do
    begin
       Draft:=Draft*ScaleVector.Z;
       Lwl:=Lwl*ScaleVector.X;
@@ -7486,7 +7540,7 @@ begin
    end;
 }
   // scale data used for KAPER series resistance calculations
-  with Owner.FResistanceKaperData do
+  with FreeShip.FResistanceKaperData do
   begin
     Draft := Draft * ScaleVector.Z;
     Lwl := Lwl * ScaleVector.X;
@@ -7496,7 +7550,7 @@ begin
   end;
 
   // scale data used for planing resistance calculations
-  with Owner.FResistancePlaningData do
+  with FreeShip.FResistancePlaningData do
   begin
     Draft := Draft * ScaleVector.Z;
     Lwl := Lwl * ScaleVector.X;
@@ -7506,7 +7560,7 @@ begin
   end;
 
   // scale data used for DELFT series resistance calculations
-  with FOwner.FResistanceDelftData do
+  with FFreeShip.FResistanceDelftData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7522,7 +7576,7 @@ begin
   end;
 
   // scale data used for HOLTR series resistance calculations
-  with FOwner.FResistanceHoltrData do
+  with FFreeShip.FResistanceHoltrData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7538,7 +7592,7 @@ begin
   end;
 
   // scale data used for HOLLENBACH series resistance calculations
-  with FOwner.FResistanceHollenData do
+  with FFreeShip.FResistanceHollenData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7554,7 +7608,7 @@ begin
   end;
 
   // scale data used for VAN OORTMERSSEN series resistance calculations
-  with FOwner.FResistanceOortmerData do
+  with FFreeShip.FResistanceOortmerData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7570,7 +7624,7 @@ begin
   end;
 
   // scale data used for FUNG series resistance calculations
-  with FOwner.FResistanceFungData do
+  with FFreeShip.FResistanceFungData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7586,7 +7640,7 @@ begin
   end;
 
   // scale data used for OST series resistance calculations
-  with FOwner.FResistanceOSTData do
+  with FFreeShip.FResistanceOSTData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7602,7 +7656,7 @@ begin
   end;
 
   // scale data used for RBHS series resistance calculations
-  with FOwner.FResistanceRBHSData do
+  with FFreeShip.FResistanceRBHSData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7618,7 +7672,7 @@ begin
   end;
 
   // scale data used for multihull ships resistance calculations
-  with FOwner.FResistanceMHData do
+  with FFreeShip.FResistanceMHData do
   begin
     Bwl := Bwl * ScaleVector.Y;
     Displacement := Displacement * ScaleVector.X * ScaleVector.Y * ScaleVector.Z;
@@ -7634,10 +7688,10 @@ begin
   end;
 
   // Initialize all other data
-  Owner.Build := False;
+  FreeShip.Build := False;
   // Redraw
-  Owner.FileChanged := True;
-  Owner.Draw;
+  FreeShip.FileChanged := True;
+  FreeShip.Draw;
 end;{TFreeEdit.Model_Scale}
 
 // Merge two selected edges by removing their common controlpoint.
@@ -7649,9 +7703,9 @@ var
 begin
   N := 0;
   vUndo := CreateUndoObject(Userstring(160), False);
-  for I := Owner.NumberOfSelectedControlPoints downto 1 do
+  for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
   begin
-    Point := Owner.SelectedControlPoint[I - 1];
+    Point := FreeShip.SelectedControlPoint[I - 1];
     if (not Point.Locked) and (Point.NumberOfEdges = 2) then
     begin
       Point.Collapse;
@@ -7661,11 +7715,11 @@ begin
   if N > 0 then
   begin
     vUndo.Accept;
-    Owner.Build := False;
-    Owner.Redraw;
-    Owner.FileChanged := True;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.Build := False;
+    FreeShip.Redraw;
+    FreeShip.FileChanged := True;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
   end
   else
     vUndo.Delete;
@@ -7680,9 +7734,9 @@ var
 begin
   N := 0;
   vUndo := CreateUndoObject(Userstring(161), False);
-  for I := Owner.Surface.NumberOfControlPoints downto 1 do
+  for I := FreeShip.Surface.NumberOfControlPoints downto 1 do
   begin
-    Point := Owner.Surface.ControlPoint[I - 1];
+    Point := FreeShip.Surface.ControlPoint[I - 1];
     if Point.NumberOfFaces = 0 then
     begin
       Point.Delete;
@@ -7692,11 +7746,11 @@ begin
   if N > 0 then
   begin
     vUndo.Accept;
-    Owner.Build := False;
-    Owner.Redraw;
-    Owner.FileChanged := True;
-    if Assigned(Owner.OnUpdateGeometryInfo) then
-      Owner.OnUpdateGeometryInfo(self);
+    FreeShip.Build := False;
+    FreeShip.Redraw;
+    FreeShip.FileChanged := True;
+    if Assigned(FreeShip.OnUpdateGeometryInfo) then
+      FreeShip.OnUpdateGeometryInfo(self);
     MessageDlg(IntToStr(N) + #32 + Userstring(162), mtInformation, [mbOK], 0);
   end
   else
@@ -7711,24 +7765,24 @@ var
   vUndo: TFreeUndoObject;
   N: integer;
 begin
-  Owner.Extents(Min, Max);
-  Dialog := TFreeInsertPlaneDialog.Create(Owner);
+  FreeShip.Extents(Min, Max);
+  Dialog := TFreeInsertPlaneDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
   Dialog.Max := Max;
   Dialog.Min := min;
   if Dialog.Execute then
   begin
     vUndo := CreateUndoObject(UserString(163), False);
-    N := Owner.Surface.NumberOfControlPoints;
-    Owner.Surface.InsertPlane(Dialog.Plane, Dialog.CreateControlCurve);
-    if N < Owner.Surface.NumberOfControlPoints then
+    N := FreeShip.Surface.NumberOfControlPoints;
+    FreeShip.Surface.InsertPlane(Dialog.Plane, Dialog.CreateControlCurve);
+    if N < FreeShip.Surface.NumberOfControlPoints then
     begin
       vUndo.Accept;
-      Owner.FileChanged := True;
-      Owner.Build := False;
-      Owner.Redraw;
-      if Assigned(Owner.OnUpdateGeometryInfo) then
-        Owner.OnUpdateGeometryInfo(self);
+      FreeShip.FileChanged := True;
+      FreeShip.Build := False;
+      FreeShip.Redraw;
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
     end
     else
       vUndo.Delete; // nothis has been changed
@@ -7745,12 +7799,12 @@ var
   Dialog: TFreeIntersectLayerDialog;
 begin
   Layers := TFasterListTFreeSubdivisionLayer.Create;
-  for I := 1 to Owner.NumberOfLayers do
-    if Owner.Layer[I - 1].Count > 0 then
-      Layers.Add(Owner.Layer[I - 1]);
+  for I := 1 to FreeShip.NumberOfLayers do
+    if FreeShip.Layer[I - 1].Count > 0 then
+      Layers.Add(FreeShip.Layer[I - 1]);
   if Layers.Count > 1 then
   begin
-    Dialog := TFreeIntersectLayerDialog.Create(Owner);
+    Dialog := TFreeIntersectLayerDialog.Create(FreeShip);
     ShowTranslatedValues(Dialog);
     if Dialog.Execute(Layers) then
       if assigned(Dialog.Layer1) and assigned(Dialog.Layer2) then
@@ -7759,11 +7813,11 @@ begin
         if Dialog.Layer1.CalculateIntersectionPoints(Dialog.Layer2) then
         begin
           vUndo.Accept;
-          Owner.FileChanged := True;
-          Owner.Build := False;
-          Owner.Redraw;
-          if Assigned(Owner.OnUpdateGeometryInfo) then
-            Owner.OnUpdateGeometryInfo(self);
+          FreeShip.FileChanged := True;
+          FreeShip.Build := False;
+          FreeShip.Redraw;
+          if Assigned(FreeShip.OnUpdateGeometryInfo) then
+            FreeShip.OnUpdateGeometryInfo(self);
         end
         else
         begin
@@ -7783,14 +7837,14 @@ procedure TFreeEdit.Point_Lock;
 var
   I: integer;
 begin
-  if Owner.NumberOfSelectedLockedPoints < Owner.NumberOfSelectedControlPoints then
+  if FreeShip.NumberOfSelectedLockedPoints < FreeShip.NumberOfSelectedControlPoints then
   begin
     self.CreateUndoObject(UserString(167), True);
-    for I := 1 to Owner.NumberOfSelectedControlPoints do
-      Owner.SelectedControlPoint[I - 1].Locked := True;
-    Owner.ActiveControlPoint := Owner.ActiveControlPoint;
-    Owner.Redraw;
-    Owner.FileChanged := True;
+    for I := 1 to FreeShip.NumberOfSelectedControlPoints do
+      FreeShip.SelectedControlPoint[I - 1].Locked := True;
+    FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
+    FreeShip.Redraw;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeEdit.Point_Lock}
 
@@ -7799,14 +7853,14 @@ procedure TFreeEdit.Point_Unlock;
 var
   I: integer;
 begin
-  if Owner.NumberOfSelectedLockedPoints > 0 then
+  if FreeShip.NumberOfSelectedLockedPoints > 0 then
   begin
     self.CreateUndoObject(Userstring(168), True);
-    for I := 1 to Owner.NumberOfSelectedControlPoints do
-      Owner.SelectedControlPoint[I - 1].Locked := False;
-    Owner.ActiveControlPoint := Owner.ActiveControlPoint;
-    Owner.Redraw;
-    Owner.FileChanged := True;
+    for I := 1 to FreeShip.NumberOfSelectedControlPoints do
+      FreeShip.SelectedControlPoint[I - 1].Locked := False;
+    FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
+    FreeShip.Redraw;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeEdit.Point_Unlock}
 
@@ -7815,23 +7869,23 @@ procedure TFreeEdit.Point_UnlockAll;
 var
   I, N: integer;
 begin
-  if Owner.NumberOfLockedPoints > 0 then
+  if FreeShip.NumberOfLockedPoints > 0 then
   begin
     CreateUndoObject(Userstring(169), True);
-    N := Owner.NumberOfLockedPoints;
-    for I := 1 to Owner.Surface.NumberOfControlPoints do
-      Owner.Surface.ControlPoint[I - 1].Locked := False;
-    Owner.ActiveControlPoint := Owner.ActiveControlPoint;
-    Owner.Redraw;
+    N := FreeShip.NumberOfLockedPoints;
+    for I := 1 to FreeShip.Surface.NumberOfControlPoints do
+      FreeShip.Surface.ControlPoint[I - 1].Locked := False;
+    FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
+    FreeShip.Redraw;
     MessageDlg(IntToStr(N) + #32 + Userstring(170) + '.', mtInformation, [mbOK], 0);
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeEdit.Point_UnlockAll}
 
 // Function that shows a warning when certain edit commands are invoked and the model contains locked points
 function TFreeEdit.ProceedWhenLockedPoints: boolean;
 begin
-  if Owner.NumberOfLockedPoints > 0 then
+  if FreeShip.NumberOfLockedPoints > 0 then
     Result := MessageDlg(Userstring(86) + EOL + Userstring(87),
       mtWarning, [mbYes, mbNo], 0) = mrYes
   else
@@ -7843,49 +7897,49 @@ procedure TFreeEdit.Resistance_Delft;
 var
   Dialog: TFreeResistance_Delft;
 begin
-  Dialog := TFreeResistance_Delft.Create(Owner);
+  Dialog := TFreeResistance_Delft.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceDelftData.Bwl;
-  Dialog.Cp := Owner.FResistanceDelftData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceDelftData.Displacement;
-  Dialog.Draft := Owner.FResistanceDelftData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceDelftData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceDelftData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceDelftData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceDelftData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceDelftData.KeelArea;
-  Dialog.LCB := Owner.FResistanceDelftData.LCB;
-  Dialog.Lwl := Owner.FResistanceDelftData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceDelftData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceDelftData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceDelftData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceDelftData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceDelftData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceDelftData.WettedSurface;
-  Dialog.WlArea := Owner.FResistanceDelftData.WlArea;
-  if Dialog.Execute(Owner, Owner.FResistanceDelftData.Extract) then
+  Dialog.Bwl := FreeShip.FResistanceDelftData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceDelftData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceDelftData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceDelftData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceDelftData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceDelftData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceDelftData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceDelftData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceDelftData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceDelftData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceDelftData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceDelftData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceDelftData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceDelftData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceDelftData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceDelftData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceDelftData.WettedSurface;
+  Dialog.WlArea := FreeShip.FResistanceDelftData.WlArea;
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceDelftData.Extract) then
   begin
-    Owner.FResistanceDelftData.Bwl := Dialog.Bwl;
-    Owner.FResistanceDelftData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceDelftData.Displacement := Dialog.Displacement;
-    Owner.FResistanceDelftData.Draft := Dialog.Draft;
-    Owner.FResistanceDelftData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceDelftData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceDelftData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceDelftData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceDelftData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceDelftData.LCB := Dialog.LCB;
-    Owner.FResistanceDelftData.Lwl := Dialog.Lwl;
-    Owner.FResistanceDelftData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceDelftData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceDelftData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceDelftData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceDelftData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceDelftData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceDelftData.WlArea := Dialog.WlArea;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceDelftData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceDelftData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceDelftData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceDelftData.Draft := Dialog.Draft;
+    FreeShip.FResistanceDelftData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceDelftData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceDelftData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceDelftData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceDelftData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceDelftData.LCB := Dialog.LCB;
+    FreeShip.FResistanceDelftData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceDelftData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceDelftData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceDelftData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceDelftData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceDelftData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceDelftData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceDelftData.WlArea := Dialog.WlArea;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_Delft}
@@ -7895,101 +7949,101 @@ procedure TFreeEdit.Resistance_Holtr;
 var
   Dialog: TFreeResistance_Holtr;
 begin
-  Dialog := TFreeResistance_Holtr.Create(Owner);
+  Dialog := TFreeResistance_Holtr.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceHoltrData.Bwl;
-  Dialog.Cp := Owner.FResistanceHoltrData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceHoltrData.Displacement;
-  Dialog.Draft := Owner.FResistanceHoltrData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceHoltrData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceHoltrData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceHoltrData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceHoltrData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceHoltrData.KeelArea;
-  Dialog.LCB := Owner.FResistanceHoltrData.LCB;
-  Dialog.Lwl := Owner.FResistanceHoltrData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceHoltrData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceHoltrData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceHoltrData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceHoltrData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceHoltrData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceHoltrData.WettedSurface;
-  Dialog.WlArea := Owner.FResistanceHoltrData.WlArea;
-  Dialog.Ke := Owner.FResistanceHoltrData.Ke;
-  Dialog.BA := Owner.FResistanceHoltrData.BA;
-  Dialog.KBulb := Owner.FResistanceHoltrData.KBulb;
-  Dialog.ZBulb := Owner.FResistanceHoltrData.ZBulb;
-  Dialog.Cstrn := Owner.FResistanceHoltrData.Cstrn;
-  Dialog.Np := Owner.FResistanceHoltrData.Np;
-  Dialog.Dp := Owner.FResistanceHoltrData.Dp;
-  Dialog.Ks := Owner.FResistanceHoltrData.Ks;
-  Dialog.K1 := Owner.FResistanceHoltrData.K1;
-  Dialog.K2 := Owner.FResistanceHoltrData.K2;
-  Dialog.K3 := Owner.FResistanceHoltrData.K3;
-  Dialog.K4 := Owner.FResistanceHoltrData.K4;
-  Dialog.K5 := Owner.FResistanceHoltrData.K5;
-  Dialog.K6 := Owner.FResistanceHoltrData.K6;
-  Dialog.K7 := Owner.FResistanceHoltrData.K7;
-  Dialog.A1 := Owner.FResistanceHoltrData.A1;
-  Dialog.A2 := Owner.FResistanceHoltrData.A2;
-  Dialog.A3 := Owner.FResistanceHoltrData.A3;
-  Dialog.A4 := Owner.FResistanceHoltrData.A4;
-  Dialog.A5 := Owner.FResistanceHoltrData.A5;
-  Dialog.A6 := Owner.FResistanceHoltrData.A6;
-  Dialog.A7 := Owner.FResistanceHoltrData.A7;
-  Dialog.A8 := Owner.FResistanceHoltrData.A8;
-  Dialog.A9 := Owner.FResistanceHoltrData.A9;
-  Dialog.A10 := Owner.FResistanceHoltrData.A10;
-  Dialog.A11 := round(Owner.FResistanceHoltrData.A11);
-  if Dialog.Execute(Owner, Owner.FResistanceHoltrData.Extract) then
+  Dialog.Bwl := FreeShip.FResistanceHoltrData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceHoltrData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceHoltrData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceHoltrData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceHoltrData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceHoltrData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceHoltrData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceHoltrData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceHoltrData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceHoltrData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceHoltrData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceHoltrData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceHoltrData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceHoltrData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceHoltrData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceHoltrData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceHoltrData.WettedSurface;
+  Dialog.WlArea := FreeShip.FResistanceHoltrData.WlArea;
+  Dialog.Ke := FreeShip.FResistanceHoltrData.Ke;
+  Dialog.BA := FreeShip.FResistanceHoltrData.BA;
+  Dialog.KBulb := FreeShip.FResistanceHoltrData.KBulb;
+  Dialog.ZBulb := FreeShip.FResistanceHoltrData.ZBulb;
+  Dialog.Cstrn := FreeShip.FResistanceHoltrData.Cstrn;
+  Dialog.Np := FreeShip.FResistanceHoltrData.Np;
+  Dialog.Dp := FreeShip.FResistanceHoltrData.Dp;
+  Dialog.Ks := FreeShip.FResistanceHoltrData.Ks;
+  Dialog.K1 := FreeShip.FResistanceHoltrData.K1;
+  Dialog.K2 := FreeShip.FResistanceHoltrData.K2;
+  Dialog.K3 := FreeShip.FResistanceHoltrData.K3;
+  Dialog.K4 := FreeShip.FResistanceHoltrData.K4;
+  Dialog.K5 := FreeShip.FResistanceHoltrData.K5;
+  Dialog.K6 := FreeShip.FResistanceHoltrData.K6;
+  Dialog.K7 := FreeShip.FResistanceHoltrData.K7;
+  Dialog.A1 := FreeShip.FResistanceHoltrData.A1;
+  Dialog.A2 := FreeShip.FResistanceHoltrData.A2;
+  Dialog.A3 := FreeShip.FResistanceHoltrData.A3;
+  Dialog.A4 := FreeShip.FResistanceHoltrData.A4;
+  Dialog.A5 := FreeShip.FResistanceHoltrData.A5;
+  Dialog.A6 := FreeShip.FResistanceHoltrData.A6;
+  Dialog.A7 := FreeShip.FResistanceHoltrData.A7;
+  Dialog.A8 := FreeShip.FResistanceHoltrData.A8;
+  Dialog.A9 := FreeShip.FResistanceHoltrData.A9;
+  Dialog.A10 := FreeShip.FResistanceHoltrData.A10;
+  Dialog.A11 := round(FreeShip.FResistanceHoltrData.A11);
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceHoltrData.Extract) then
   begin
-    Owner.FResistanceHoltrData.Bwl := Dialog.Bwl;
-    Owner.FResistanceHoltrData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceHoltrData.Displacement := Dialog.Displacement;
-    Owner.FResistanceHoltrData.Draft := Dialog.Draft;
-    Owner.FResistanceHoltrData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceHoltrData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceHoltrData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceHoltrData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceHoltrData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceHoltrData.LCB := Dialog.LCB;
-    Owner.FResistanceHoltrData.Lwl := Dialog.Lwl;
-    Owner.FResistanceHoltrData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceHoltrData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceHoltrData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceHoltrData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceHoltrData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceHoltrData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceHoltrData.WlArea := Dialog.WlArea;
-    Owner.FResistanceHoltrData.Ke := Dialog.Ke;
-    Owner.FResistanceHoltrData.BA := Dialog.BA;
-    Owner.FResistanceHoltrData.KBulb := Dialog.KBulb;
-    Owner.FResistanceHoltrData.ZBulb := Dialog.ZBulb;
-    Owner.FResistanceHoltrData.Cstrn := Dialog.Cstrn;
-    Owner.FResistanceHoltrData.Np := Dialog.Np;
-    Owner.FResistanceHoltrData.Dp := Dialog.Dp;
-    Owner.FResistanceHoltrData.Ks := Dialog.Ks;
-    Owner.FResistanceHoltrData.K1 := Dialog.K1;
-    Owner.FResistanceHoltrData.K2 := Dialog.K2;
-    Owner.FResistanceHoltrData.K3 := Dialog.K3;
-    Owner.FResistanceHoltrData.K4 := Dialog.K4;
-    Owner.FResistanceHoltrData.K5 := Dialog.K5;
-    Owner.FResistanceHoltrData.K6 := Dialog.K6;
-    Owner.FResistanceHoltrData.K7 := Dialog.K7;
-    Owner.FResistanceHoltrData.A1 := Dialog.A1;
-    Owner.FResistanceHoltrData.A2 := Dialog.A2;
-    Owner.FResistanceHoltrData.A3 := Dialog.A3;
-    Owner.FResistanceHoltrData.A4 := Dialog.A4;
-    Owner.FResistanceHoltrData.A5 := Dialog.A5;
-    Owner.FResistanceHoltrData.A6 := Dialog.A6;
-    Owner.FResistanceHoltrData.A7 := Dialog.A7;
-    Owner.FResistanceHoltrData.A8 := Dialog.A8;
-    Owner.FResistanceHoltrData.A9 := Dialog.A9;
-    Owner.FResistanceHoltrData.A10 := Dialog.A10;
-    Owner.FResistanceHoltrData.A11 := Dialog.A11;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceHoltrData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceHoltrData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceHoltrData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceHoltrData.Draft := Dialog.Draft;
+    FreeShip.FResistanceHoltrData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceHoltrData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceHoltrData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceHoltrData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceHoltrData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceHoltrData.LCB := Dialog.LCB;
+    FreeShip.FResistanceHoltrData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceHoltrData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceHoltrData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceHoltrData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceHoltrData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceHoltrData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceHoltrData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceHoltrData.WlArea := Dialog.WlArea;
+    FreeShip.FResistanceHoltrData.Ke := Dialog.Ke;
+    FreeShip.FResistanceHoltrData.BA := Dialog.BA;
+    FreeShip.FResistanceHoltrData.KBulb := Dialog.KBulb;
+    FreeShip.FResistanceHoltrData.ZBulb := Dialog.ZBulb;
+    FreeShip.FResistanceHoltrData.Cstrn := Dialog.Cstrn;
+    FreeShip.FResistanceHoltrData.Np := Dialog.Np;
+    FreeShip.FResistanceHoltrData.Dp := Dialog.Dp;
+    FreeShip.FResistanceHoltrData.Ks := Dialog.Ks;
+    FreeShip.FResistanceHoltrData.K1 := Dialog.K1;
+    FreeShip.FResistanceHoltrData.K2 := Dialog.K2;
+    FreeShip.FResistanceHoltrData.K3 := Dialog.K3;
+    FreeShip.FResistanceHoltrData.K4 := Dialog.K4;
+    FreeShip.FResistanceHoltrData.K5 := Dialog.K5;
+    FreeShip.FResistanceHoltrData.K6 := Dialog.K6;
+    FreeShip.FResistanceHoltrData.K7 := Dialog.K7;
+    FreeShip.FResistanceHoltrData.A1 := Dialog.A1;
+    FreeShip.FResistanceHoltrData.A2 := Dialog.A2;
+    FreeShip.FResistanceHoltrData.A3 := Dialog.A3;
+    FreeShip.FResistanceHoltrData.A4 := Dialog.A4;
+    FreeShip.FResistanceHoltrData.A5 := Dialog.A5;
+    FreeShip.FResistanceHoltrData.A6 := Dialog.A6;
+    FreeShip.FResistanceHoltrData.A7 := Dialog.A7;
+    FreeShip.FResistanceHoltrData.A8 := Dialog.A8;
+    FreeShip.FResistanceHoltrData.A9 := Dialog.A9;
+    FreeShip.FResistanceHoltrData.A10 := Dialog.A10;
+    FreeShip.FResistanceHoltrData.A11 := Dialog.A11;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_Holtr}
@@ -7999,101 +8053,101 @@ procedure TFreeEdit.Resistance_Hollen;
 var
   Dialog: TFreeResistance_Hollen;
 begin
-  Dialog := TFreeResistance_Hollen.Create(Owner);
+  Dialog := TFreeResistance_Hollen.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceHollenData.Bwl;
-  Dialog.Cp := Owner.FResistanceHollenData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceHollenData.Displacement;
-  Dialog.Draft := Owner.FResistanceHollenData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceHollenData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceHollenData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceHollenData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceHollenData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceHollenData.KeelArea;
-  Dialog.LCB := Owner.FResistanceHollenData.LCB;
-  Dialog.Lwl := Owner.FResistanceHollenData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceHollenData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceHollenData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceHollenData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceHollenData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceHollenData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceHollenData.WettedSurface;
-  Dialog.Los := Owner.FResistanceHollenData.Los;
-  Dialog.Ke := Owner.FResistanceHollenData.Ke;
-  Dialog.BA := Owner.FResistanceHollenData.BA;
-  Dialog.KBulb := Owner.FResistanceHollenData.KBulb;
-  Dialog.ZBulb := Owner.FResistanceHollenData.ZBulb;
-  Dialog.Cstrn := Owner.FResistanceHollenData.Cstrn;
-  Dialog.Np := Owner.FResistanceHollenData.Np;
-  Dialog.Dp := Owner.FResistanceHollenData.Dp;
-  Dialog.Ks := Owner.FResistanceHollenData.Ks;
-  Dialog.K1 := Owner.FResistanceHollenData.K1;
-  Dialog.K2 := Owner.FResistanceHollenData.K2;
-  Dialog.K3 := Owner.FResistanceHollenData.K3;
-  Dialog.K4 := Owner.FResistanceHollenData.K4;
-  Dialog.K5 := Owner.FResistanceHollenData.K5;
-  Dialog.K6 := Owner.FResistanceHollenData.K6;
-  Dialog.K7 := Owner.FResistanceHollenData.K7;
-  Dialog.A1 := Owner.FResistanceHollenData.A1;
-  Dialog.A2 := Owner.FResistanceHollenData.A2;
-  Dialog.A3 := Owner.FResistanceHollenData.A3;
-  Dialog.A4 := Owner.FResistanceHollenData.A4;
-  Dialog.A5 := Owner.FResistanceHollenData.A5;
-  Dialog.A6 := Owner.FResistanceHollenData.A6;
-  Dialog.A7 := Owner.FResistanceHollenData.A7;
-  Dialog.A8 := Owner.FResistanceHollenData.A8;
-  Dialog.A9 := Owner.FResistanceHollenData.A9;
-  Dialog.A10 := Owner.FResistanceHollenData.A10;
-  Dialog.A11 := round(Owner.FResistanceHollenData.A11);
-  if Dialog.Execute(Owner, Owner.FResistanceHollenData.Extract) then
+  Dialog.Bwl := FreeShip.FResistanceHollenData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceHollenData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceHollenData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceHollenData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceHollenData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceHollenData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceHollenData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceHollenData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceHollenData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceHollenData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceHollenData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceHollenData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceHollenData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceHollenData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceHollenData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceHollenData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceHollenData.WettedSurface;
+  Dialog.Los := FreeShip.FResistanceHollenData.Los;
+  Dialog.Ke := FreeShip.FResistanceHollenData.Ke;
+  Dialog.BA := FreeShip.FResistanceHollenData.BA;
+  Dialog.KBulb := FreeShip.FResistanceHollenData.KBulb;
+  Dialog.ZBulb := FreeShip.FResistanceHollenData.ZBulb;
+  Dialog.Cstrn := FreeShip.FResistanceHollenData.Cstrn;
+  Dialog.Np := FreeShip.FResistanceHollenData.Np;
+  Dialog.Dp := FreeShip.FResistanceHollenData.Dp;
+  Dialog.Ks := FreeShip.FResistanceHollenData.Ks;
+  Dialog.K1 := FreeShip.FResistanceHollenData.K1;
+  Dialog.K2 := FreeShip.FResistanceHollenData.K2;
+  Dialog.K3 := FreeShip.FResistanceHollenData.K3;
+  Dialog.K4 := FreeShip.FResistanceHollenData.K4;
+  Dialog.K5 := FreeShip.FResistanceHollenData.K5;
+  Dialog.K6 := FreeShip.FResistanceHollenData.K6;
+  Dialog.K7 := FreeShip.FResistanceHollenData.K7;
+  Dialog.A1 := FreeShip.FResistanceHollenData.A1;
+  Dialog.A2 := FreeShip.FResistanceHollenData.A2;
+  Dialog.A3 := FreeShip.FResistanceHollenData.A3;
+  Dialog.A4 := FreeShip.FResistanceHollenData.A4;
+  Dialog.A5 := FreeShip.FResistanceHollenData.A5;
+  Dialog.A6 := FreeShip.FResistanceHollenData.A6;
+  Dialog.A7 := FreeShip.FResistanceHollenData.A7;
+  Dialog.A8 := FreeShip.FResistanceHollenData.A8;
+  Dialog.A9 := FreeShip.FResistanceHollenData.A9;
+  Dialog.A10 := FreeShip.FResistanceHollenData.A10;
+  Dialog.A11 := round(FreeShip.FResistanceHollenData.A11);
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceHollenData.Extract) then
   begin
-    Owner.FResistanceHollenData.Bwl := Dialog.Bwl;
-    Owner.FResistanceHollenData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceHollenData.Displacement := Dialog.Displacement;
-    Owner.FResistanceHollenData.Draft := Dialog.Draft;
-    Owner.FResistanceHollenData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceHollenData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceHollenData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceHollenData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceHollenData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceHollenData.LCB := Dialog.LCB;
-    Owner.FResistanceHollenData.Lwl := Dialog.Lwl;
-    Owner.FResistanceHollenData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceHollenData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceHollenData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceHollenData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceHollenData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceHollenData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceHollenData.Los := Dialog.Los;
-    Owner.FResistanceHollenData.Ke := Dialog.Ke;
-    Owner.FResistanceHollenData.BA := Dialog.BA;
-    Owner.FResistanceHollenData.KBulb := Dialog.KBulb;
-    Owner.FResistanceHollenData.ZBulb := Dialog.ZBulb;
-    Owner.FResistanceHollenData.Cstrn := Dialog.Cstrn;
-    Owner.FResistanceHollenData.Np := Dialog.Np;
-    Owner.FResistanceHollenData.Dp := Dialog.Dp;
-    Owner.FResistanceHollenData.Ks := Dialog.Ks;
-    Owner.FResistanceHollenData.K1 := Dialog.K1;
-    Owner.FResistanceHollenData.K2 := Dialog.K2;
-    Owner.FResistanceHollenData.K3 := Dialog.K3;
-    Owner.FResistanceHollenData.K4 := Dialog.K4;
-    Owner.FResistanceHollenData.K5 := Dialog.K5;
-    Owner.FResistanceHollenData.K6 := Dialog.K6;
-    Owner.FResistanceHollenData.K7 := Dialog.K7;
-    Owner.FResistanceHollenData.A1 := Dialog.A1;
-    Owner.FResistanceHollenData.A2 := Dialog.A2;
-    Owner.FResistanceHollenData.A3 := Dialog.A3;
-    Owner.FResistanceHollenData.A4 := Dialog.A4;
-    Owner.FResistanceHollenData.A5 := Dialog.A5;
-    Owner.FResistanceHollenData.A6 := Dialog.A6;
-    Owner.FResistanceHollenData.A7 := Dialog.A7;
-    Owner.FResistanceHollenData.A8 := Dialog.A8;
-    Owner.FResistanceHollenData.A9 := Dialog.A9;
-    Owner.FResistanceHollenData.A10 := Dialog.A10;
-    Owner.FResistanceHollenData.A11 := Dialog.A11;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceHollenData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceHollenData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceHollenData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceHollenData.Draft := Dialog.Draft;
+    FreeShip.FResistanceHollenData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceHollenData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceHollenData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceHollenData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceHollenData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceHollenData.LCB := Dialog.LCB;
+    FreeShip.FResistanceHollenData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceHollenData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceHollenData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceHollenData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceHollenData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceHollenData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceHollenData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceHollenData.Los := Dialog.Los;
+    FreeShip.FResistanceHollenData.Ke := Dialog.Ke;
+    FreeShip.FResistanceHollenData.BA := Dialog.BA;
+    FreeShip.FResistanceHollenData.KBulb := Dialog.KBulb;
+    FreeShip.FResistanceHollenData.ZBulb := Dialog.ZBulb;
+    FreeShip.FResistanceHollenData.Cstrn := Dialog.Cstrn;
+    FreeShip.FResistanceHollenData.Np := Dialog.Np;
+    FreeShip.FResistanceHollenData.Dp := Dialog.Dp;
+    FreeShip.FResistanceHollenData.Ks := Dialog.Ks;
+    FreeShip.FResistanceHollenData.K1 := Dialog.K1;
+    FreeShip.FResistanceHollenData.K2 := Dialog.K2;
+    FreeShip.FResistanceHollenData.K3 := Dialog.K3;
+    FreeShip.FResistanceHollenData.K4 := Dialog.K4;
+    FreeShip.FResistanceHollenData.K5 := Dialog.K5;
+    FreeShip.FResistanceHollenData.K6 := Dialog.K6;
+    FreeShip.FResistanceHollenData.K7 := Dialog.K7;
+    FreeShip.FResistanceHollenData.A1 := Dialog.A1;
+    FreeShip.FResistanceHollenData.A2 := Dialog.A2;
+    FreeShip.FResistanceHollenData.A3 := Dialog.A3;
+    FreeShip.FResistanceHollenData.A4 := Dialog.A4;
+    FreeShip.FResistanceHollenData.A5 := Dialog.A5;
+    FreeShip.FResistanceHollenData.A6 := Dialog.A6;
+    FreeShip.FResistanceHollenData.A7 := Dialog.A7;
+    FreeShip.FResistanceHollenData.A8 := Dialog.A8;
+    FreeShip.FResistanceHollenData.A9 := Dialog.A9;
+    FreeShip.FResistanceHollenData.A10 := Dialog.A10;
+    FreeShip.FResistanceHollenData.A11 := Dialog.A11;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_Hollen}
@@ -8103,101 +8157,101 @@ procedure TFreeEdit.Resistance_Oortmer;
 var
   Dialog: TFreeResistance_Oortmer;
 begin
-  Dialog := TFreeResistance_Oortmer.Create(Owner);
+  Dialog := TFreeResistance_Oortmer.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceOortmerData.Bwl;
-  Dialog.Cp := Owner.FResistanceOortmerData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceOortmerData.Displacement;
-  Dialog.Draft := Owner.FResistanceOortmerData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceOortmerData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceOortmerData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceOortmerData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceOortmerData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceOortmerData.KeelArea;
-  Dialog.LCB := Owner.FResistanceOortmerData.LCB;
-  Dialog.Lwl := Owner.FResistanceOortmerData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceOortmerData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceOortmerData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceOortmerData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceOortmerData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceOortmerData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceOortmerData.WettedSurface;
-  Dialog.Los := Owner.FResistanceOortmerData.Los;
-  Dialog.Ke := Owner.FResistanceOortmerData.Ke;
-  Dialog.BA := Owner.FResistanceOortmerData.BA;
-  Dialog.KBulb := Owner.FResistanceOortmerData.KBulb;
-  Dialog.ZBulb := Owner.FResistanceOortmerData.ZBulb;
-  Dialog.Cstrn := Owner.FResistanceOortmerData.Cstrn;
-  Dialog.Np := Owner.FResistanceOortmerData.Np;
-  Dialog.Dp := Owner.FResistanceOortmerData.Dp;
-  Dialog.Ks := Owner.FResistanceOortmerData.Ks;
-  Dialog.K1 := Owner.FResistanceOortmerData.K1;
-  Dialog.K2 := Owner.FResistanceOortmerData.K2;
-  Dialog.K3 := Owner.FResistanceOortmerData.K3;
-  Dialog.K4 := Owner.FResistanceOortmerData.K4;
-  Dialog.K5 := Owner.FResistanceOortmerData.K5;
-  Dialog.K6 := Owner.FResistanceOortmerData.K6;
-  Dialog.K7 := Owner.FResistanceOortmerData.K7;
-  Dialog.A1 := Owner.FResistanceOortmerData.A1;
-  Dialog.A2 := Owner.FResistanceOortmerData.A2;
-  Dialog.A3 := Owner.FResistanceOortmerData.A3;
-  Dialog.A4 := Owner.FResistanceOortmerData.A4;
-  Dialog.A5 := Owner.FResistanceOortmerData.A5;
-  Dialog.A6 := Owner.FResistanceOortmerData.A6;
-  Dialog.A7 := Owner.FResistanceOortmerData.A7;
-  Dialog.A8 := Owner.FResistanceOortmerData.A8;
-  Dialog.A9 := Owner.FResistanceOortmerData.A9;
-  Dialog.A10 := Owner.FResistanceOortmerData.A10;
-  Dialog.A11 := round(Owner.FResistanceOortmerData.A11);
-  if Dialog.Execute(Owner, Owner.FResistanceOortmerData.Extract) then
+  Dialog.Bwl := FreeShip.FResistanceOortmerData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceOortmerData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceOortmerData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceOortmerData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceOortmerData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceOortmerData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceOortmerData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceOortmerData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceOortmerData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceOortmerData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceOortmerData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceOortmerData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceOortmerData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceOortmerData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceOortmerData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceOortmerData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceOortmerData.WettedSurface;
+  Dialog.Los := FreeShip.FResistanceOortmerData.Los;
+  Dialog.Ke := FreeShip.FResistanceOortmerData.Ke;
+  Dialog.BA := FreeShip.FResistanceOortmerData.BA;
+  Dialog.KBulb := FreeShip.FResistanceOortmerData.KBulb;
+  Dialog.ZBulb := FreeShip.FResistanceOortmerData.ZBulb;
+  Dialog.Cstrn := FreeShip.FResistanceOortmerData.Cstrn;
+  Dialog.Np := FreeShip.FResistanceOortmerData.Np;
+  Dialog.Dp := FreeShip.FResistanceOortmerData.Dp;
+  Dialog.Ks := FreeShip.FResistanceOortmerData.Ks;
+  Dialog.K1 := FreeShip.FResistanceOortmerData.K1;
+  Dialog.K2 := FreeShip.FResistanceOortmerData.K2;
+  Dialog.K3 := FreeShip.FResistanceOortmerData.K3;
+  Dialog.K4 := FreeShip.FResistanceOortmerData.K4;
+  Dialog.K5 := FreeShip.FResistanceOortmerData.K5;
+  Dialog.K6 := FreeShip.FResistanceOortmerData.K6;
+  Dialog.K7 := FreeShip.FResistanceOortmerData.K7;
+  Dialog.A1 := FreeShip.FResistanceOortmerData.A1;
+  Dialog.A2 := FreeShip.FResistanceOortmerData.A2;
+  Dialog.A3 := FreeShip.FResistanceOortmerData.A3;
+  Dialog.A4 := FreeShip.FResistanceOortmerData.A4;
+  Dialog.A5 := FreeShip.FResistanceOortmerData.A5;
+  Dialog.A6 := FreeShip.FResistanceOortmerData.A6;
+  Dialog.A7 := FreeShip.FResistanceOortmerData.A7;
+  Dialog.A8 := FreeShip.FResistanceOortmerData.A8;
+  Dialog.A9 := FreeShip.FResistanceOortmerData.A9;
+  Dialog.A10 := FreeShip.FResistanceOortmerData.A10;
+  Dialog.A11 := round(FreeShip.FResistanceOortmerData.A11);
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceOortmerData.Extract) then
   begin
-    Owner.FResistanceOortmerData.Bwl := Dialog.Bwl;
-    Owner.FResistanceOortmerData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceOortmerData.Displacement := Dialog.Displacement;
-    Owner.FResistanceOortmerData.Draft := Dialog.Draft;
-    Owner.FResistanceOortmerData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceOortmerData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceOortmerData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceOortmerData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceOortmerData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceOortmerData.LCB := Dialog.LCB;
-    Owner.FResistanceOortmerData.Lwl := Dialog.Lwl;
-    Owner.FResistanceOortmerData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceOortmerData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceOortmerData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceOortmerData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceOortmerData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceOortmerData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceOortmerData.Los := Dialog.Los;
-    Owner.FResistanceOortmerData.Ke := Dialog.Ke;
-    Owner.FResistanceOortmerData.BA := Dialog.BA;
-    Owner.FResistanceOortmerData.KBulb := Dialog.KBulb;
-    Owner.FResistanceOortmerData.ZBulb := Dialog.ZBulb;
-    Owner.FResistanceOortmerData.Cstrn := Dialog.Cstrn;
-    Owner.FResistanceOortmerData.Np := Dialog.Np;
-    Owner.FResistanceOortmerData.Dp := Dialog.Dp;
-    Owner.FResistanceOortmerData.Ks := Dialog.Ks;
-    Owner.FResistanceOortmerData.K1 := Dialog.K1;
-    Owner.FResistanceOortmerData.K2 := Dialog.K2;
-    Owner.FResistanceOortmerData.K3 := Dialog.K3;
-    Owner.FResistanceOortmerData.K4 := Dialog.K4;
-    Owner.FResistanceOortmerData.K5 := Dialog.K5;
-    Owner.FResistanceOortmerData.K6 := Dialog.K6;
-    Owner.FResistanceOortmerData.K7 := Dialog.K7;
-    Owner.FResistanceOortmerData.A1 := Dialog.A1;
-    Owner.FResistanceOortmerData.A2 := Dialog.A2;
-    Owner.FResistanceOortmerData.A3 := Dialog.A3;
-    Owner.FResistanceOortmerData.A4 := Dialog.A4;
-    Owner.FResistanceOortmerData.A5 := Dialog.A5;
-    Owner.FResistanceOortmerData.A6 := Dialog.A6;
-    Owner.FResistanceOortmerData.A7 := Dialog.A7;
-    Owner.FResistanceOortmerData.A8 := Dialog.A8;
-    Owner.FResistanceOortmerData.A9 := Dialog.A9;
-    Owner.FResistanceOortmerData.A10 := Dialog.A10;
-    Owner.FResistanceOortmerData.A11 := Dialog.A11;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceOortmerData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceOortmerData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceOortmerData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceOortmerData.Draft := Dialog.Draft;
+    FreeShip.FResistanceOortmerData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceOortmerData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceOortmerData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceOortmerData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceOortmerData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceOortmerData.LCB := Dialog.LCB;
+    FreeShip.FResistanceOortmerData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceOortmerData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceOortmerData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceOortmerData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceOortmerData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceOortmerData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceOortmerData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceOortmerData.Los := Dialog.Los;
+    FreeShip.FResistanceOortmerData.Ke := Dialog.Ke;
+    FreeShip.FResistanceOortmerData.BA := Dialog.BA;
+    FreeShip.FResistanceOortmerData.KBulb := Dialog.KBulb;
+    FreeShip.FResistanceOortmerData.ZBulb := Dialog.ZBulb;
+    FreeShip.FResistanceOortmerData.Cstrn := Dialog.Cstrn;
+    FreeShip.FResistanceOortmerData.Np := Dialog.Np;
+    FreeShip.FResistanceOortmerData.Dp := Dialog.Dp;
+    FreeShip.FResistanceOortmerData.Ks := Dialog.Ks;
+    FreeShip.FResistanceOortmerData.K1 := Dialog.K1;
+    FreeShip.FResistanceOortmerData.K2 := Dialog.K2;
+    FreeShip.FResistanceOortmerData.K3 := Dialog.K3;
+    FreeShip.FResistanceOortmerData.K4 := Dialog.K4;
+    FreeShip.FResistanceOortmerData.K5 := Dialog.K5;
+    FreeShip.FResistanceOortmerData.K6 := Dialog.K6;
+    FreeShip.FResistanceOortmerData.K7 := Dialog.K7;
+    FreeShip.FResistanceOortmerData.A1 := Dialog.A1;
+    FreeShip.FResistanceOortmerData.A2 := Dialog.A2;
+    FreeShip.FResistanceOortmerData.A3 := Dialog.A3;
+    FreeShip.FResistanceOortmerData.A4 := Dialog.A4;
+    FreeShip.FResistanceOortmerData.A5 := Dialog.A5;
+    FreeShip.FResistanceOortmerData.A6 := Dialog.A6;
+    FreeShip.FResistanceOortmerData.A7 := Dialog.A7;
+    FreeShip.FResistanceOortmerData.A8 := Dialog.A8;
+    FreeShip.FResistanceOortmerData.A9 := Dialog.A9;
+    FreeShip.FResistanceOortmerData.A10 := Dialog.A10;
+    FreeShip.FResistanceOortmerData.A11 := Dialog.A11;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_Oortmer}
@@ -8207,101 +8261,101 @@ procedure TFreeEdit.Resistance_FungLeib;
 var
   Dialog: TFreeResistance_FungLeib;
 begin
-  Dialog := TFreeResistance_FungLeib.Create(Owner);
+  Dialog := TFreeResistance_FungLeib.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceFungData.Bwl;
-  Dialog.Cp := Owner.FResistanceFungData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceFungData.Displacement;
-  Dialog.Draft := Owner.FResistanceFungData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceFungData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceFungData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceFungData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceFungData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceFungData.KeelArea;
-  Dialog.LCB := Owner.FResistanceFungData.LCB;
-  Dialog.Lwl := Owner.FResistanceFungData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceFungData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceFungData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceFungData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceFungData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceFungData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceFungData.WettedSurface;
-  Dialog.Los := Owner.FResistanceFungData.Los;
-  Dialog.Ke := Owner.FResistanceFungData.Ke;
-  Dialog.BA := Owner.FResistanceFungData.BA;
-  Dialog.KBulb := Owner.FResistanceFungData.KBulb;
-  Dialog.ZBulb := Owner.FResistanceFungData.ZBulb;
-  Dialog.Cstrn := Owner.FResistanceFungData.Cstrn;
-  Dialog.Np := Owner.FResistanceFungData.Np;
-  Dialog.Dp := Owner.FResistanceFungData.Dp;
-  Dialog.Ks := Owner.FResistanceFungData.Ks;
-  Dialog.K1 := Owner.FResistanceFungData.K1;
-  Dialog.K2 := Owner.FResistanceFungData.K2;
-  Dialog.K3 := Owner.FResistanceFungData.K3;
-  Dialog.K4 := Owner.FResistanceFungData.K4;
-  Dialog.K5 := Owner.FResistanceFungData.K5;
-  Dialog.K6 := Owner.FResistanceFungData.K6;
-  Dialog.K7 := Owner.FResistanceFungData.K7;
-  Dialog.A1 := Owner.FResistanceFungData.A1;
-  Dialog.A2 := Owner.FResistanceFungData.A2;
-  Dialog.A3 := Owner.FResistanceFungData.A3;
-  Dialog.A4 := Owner.FResistanceFungData.A4;
-  Dialog.A5 := Owner.FResistanceFungData.A5;
-  Dialog.A6 := Owner.FResistanceFungData.A6;
-  Dialog.A7 := Owner.FResistanceFungData.A7;
-  Dialog.A8 := Owner.FResistanceFungData.A8;
-  Dialog.A9 := Owner.FResistanceFungData.A9;
-  Dialog.A10 := Owner.FResistanceFungData.A10;
-  Dialog.A11 := round(Owner.FResistanceFungData.A11);
-  if Dialog.Execute(Owner, Owner.FResistanceFungData.Extract) then
+  Dialog.Bwl := FreeShip.FResistanceFungData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceFungData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceFungData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceFungData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceFungData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceFungData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceFungData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceFungData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceFungData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceFungData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceFungData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceFungData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceFungData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceFungData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceFungData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceFungData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceFungData.WettedSurface;
+  Dialog.Los := FreeShip.FResistanceFungData.Los;
+  Dialog.Ke := FreeShip.FResistanceFungData.Ke;
+  Dialog.BA := FreeShip.FResistanceFungData.BA;
+  Dialog.KBulb := FreeShip.FResistanceFungData.KBulb;
+  Dialog.ZBulb := FreeShip.FResistanceFungData.ZBulb;
+  Dialog.Cstrn := FreeShip.FResistanceFungData.Cstrn;
+  Dialog.Np := FreeShip.FResistanceFungData.Np;
+  Dialog.Dp := FreeShip.FResistanceFungData.Dp;
+  Dialog.Ks := FreeShip.FResistanceFungData.Ks;
+  Dialog.K1 := FreeShip.FResistanceFungData.K1;
+  Dialog.K2 := FreeShip.FResistanceFungData.K2;
+  Dialog.K3 := FreeShip.FResistanceFungData.K3;
+  Dialog.K4 := FreeShip.FResistanceFungData.K4;
+  Dialog.K5 := FreeShip.FResistanceFungData.K5;
+  Dialog.K6 := FreeShip.FResistanceFungData.K6;
+  Dialog.K7 := FreeShip.FResistanceFungData.K7;
+  Dialog.A1 := FreeShip.FResistanceFungData.A1;
+  Dialog.A2 := FreeShip.FResistanceFungData.A2;
+  Dialog.A3 := FreeShip.FResistanceFungData.A3;
+  Dialog.A4 := FreeShip.FResistanceFungData.A4;
+  Dialog.A5 := FreeShip.FResistanceFungData.A5;
+  Dialog.A6 := FreeShip.FResistanceFungData.A6;
+  Dialog.A7 := FreeShip.FResistanceFungData.A7;
+  Dialog.A8 := FreeShip.FResistanceFungData.A8;
+  Dialog.A9 := FreeShip.FResistanceFungData.A9;
+  Dialog.A10 := FreeShip.FResistanceFungData.A10;
+  Dialog.A11 := round(FreeShip.FResistanceFungData.A11);
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceFungData.Extract) then
   begin
-    Owner.FResistanceFungData.Bwl := Dialog.Bwl;
-    Owner.FResistanceFungData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceFungData.Displacement := Dialog.Displacement;
-    Owner.FResistanceFungData.Draft := Dialog.Draft;
-    Owner.FResistanceFungData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceFungData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceFungData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceFungData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceFungData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceFungData.LCB := Dialog.LCB;
-    Owner.FResistanceFungData.Lwl := Dialog.Lwl;
-    Owner.FResistanceFungData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceFungData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceFungData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceFungData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceFungData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceFungData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceFungData.Los := Dialog.Los;
-    Owner.FResistanceFungData.Ke := Dialog.Ke;
-    Owner.FResistanceFungData.BA := Dialog.BA;
-    Owner.FResistanceFungData.KBulb := Dialog.KBulb;
-    Owner.FResistanceFungData.ZBulb := Dialog.ZBulb;
-    Owner.FResistanceFungData.Cstrn := Dialog.Cstrn;
-    Owner.FResistanceFungData.Np := Dialog.Np;
-    Owner.FResistanceFungData.Dp := Dialog.Dp;
-    Owner.FResistanceFungData.Ks := Dialog.Ks;
-    Owner.FResistanceFungData.K1 := Dialog.K1;
-    Owner.FResistanceFungData.K2 := Dialog.K2;
-    Owner.FResistanceFungData.K3 := Dialog.K3;
-    Owner.FResistanceFungData.K4 := Dialog.K4;
-    Owner.FResistanceFungData.K5 := Dialog.K5;
-    Owner.FResistanceFungData.K6 := Dialog.K6;
-    Owner.FResistanceFungData.K7 := Dialog.K7;
-    Owner.FResistanceFungData.A1 := Dialog.A1;
-    Owner.FResistanceFungData.A2 := Dialog.A2;
-    Owner.FResistanceFungData.A3 := Dialog.A3;
-    Owner.FResistanceFungData.A4 := Dialog.A4;
-    Owner.FResistanceFungData.A5 := Dialog.A5;
-    Owner.FResistanceFungData.A6 := Dialog.A6;
-    Owner.FResistanceFungData.A7 := Dialog.A7;
-    Owner.FResistanceFungData.A8 := Dialog.A8;
-    Owner.FResistanceFungData.A9 := Dialog.A9;
-    Owner.FResistanceFungData.A10 := Dialog.A10;
-    Owner.FResistanceFungData.A11 := Dialog.A11;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceFungData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceFungData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceFungData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceFungData.Draft := Dialog.Draft;
+    FreeShip.FResistanceFungData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceFungData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceFungData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceFungData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceFungData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceFungData.LCB := Dialog.LCB;
+    FreeShip.FResistanceFungData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceFungData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceFungData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceFungData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceFungData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceFungData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceFungData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceFungData.Los := Dialog.Los;
+    FreeShip.FResistanceFungData.Ke := Dialog.Ke;
+    FreeShip.FResistanceFungData.BA := Dialog.BA;
+    FreeShip.FResistanceFungData.KBulb := Dialog.KBulb;
+    FreeShip.FResistanceFungData.ZBulb := Dialog.ZBulb;
+    FreeShip.FResistanceFungData.Cstrn := Dialog.Cstrn;
+    FreeShip.FResistanceFungData.Np := Dialog.Np;
+    FreeShip.FResistanceFungData.Dp := Dialog.Dp;
+    FreeShip.FResistanceFungData.Ks := Dialog.Ks;
+    FreeShip.FResistanceFungData.K1 := Dialog.K1;
+    FreeShip.FResistanceFungData.K2 := Dialog.K2;
+    FreeShip.FResistanceFungData.K3 := Dialog.K3;
+    FreeShip.FResistanceFungData.K4 := Dialog.K4;
+    FreeShip.FResistanceFungData.K5 := Dialog.K5;
+    FreeShip.FResistanceFungData.K6 := Dialog.K6;
+    FreeShip.FResistanceFungData.K7 := Dialog.K7;
+    FreeShip.FResistanceFungData.A1 := Dialog.A1;
+    FreeShip.FResistanceFungData.A2 := Dialog.A2;
+    FreeShip.FResistanceFungData.A3 := Dialog.A3;
+    FreeShip.FResistanceFungData.A4 := Dialog.A4;
+    FreeShip.FResistanceFungData.A5 := Dialog.A5;
+    FreeShip.FResistanceFungData.A6 := Dialog.A6;
+    FreeShip.FResistanceFungData.A7 := Dialog.A7;
+    FreeShip.FResistanceFungData.A8 := Dialog.A8;
+    FreeShip.FResistanceFungData.A9 := Dialog.A9;
+    FreeShip.FResistanceFungData.A10 := Dialog.A10;
+    FreeShip.FResistanceFungData.A11 := Dialog.A11;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_FungLeib}
@@ -8313,120 +8367,120 @@ procedure TFreeEdit.Resistance_OST;
 var
   Dialog: TFreeResistance_OST;
 begin
-  Dialog := TFreeResistance_OST.Create(Owner);
+  Dialog := TFreeResistance_OST.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceOSTData.Bwl;
-  Dialog.Cp := Owner.FResistanceOSTData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceOSTData.Displacement;
-  Dialog.Draft := Owner.FResistanceOSTData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceOSTData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceOSTData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceOSTData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceOSTData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceOSTData.KeelArea;
-  Dialog.LCB := Owner.FResistanceOSTData.LCB;
-  Dialog.Lwl := Owner.FResistanceOSTData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceOSTData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceOSTData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceOSTData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceOSTData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceOSTData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceOSTData.WettedSurface;
-  Dialog.WlArea := Owner.FResistanceOSTData.WlArea;
-  Dialog.Ks := Owner.FResistanceOSTData.Ks;
-  Dialog.Ke := Owner.FResistanceOSTData.Ke;
-  Dialog.Dp := Owner.FResistanceOSTData.Dp;
-  Dialog.Nser := Owner.FResistanceOSTData.Nser;
-  Dialog.Np := Owner.FResistanceOSTData.Np;
-  Dialog.Na := Owner.FResistanceOSTData.Na;
-  Dialog.Nf := Owner.FResistanceOSTData.Nf;
-  Dialog.K1 := Owner.FResistanceOSTData.K1;
-  Dialog.K2 := Owner.FResistanceOSTData.K2;
-  Dialog.K3 := Owner.FResistanceOSTData.K3;
-  Dialog.K4 := Owner.FResistanceOSTData.K4;
-  Dialog.K5 := Owner.FResistanceOSTData.K5;
-  Dialog.K6 := Owner.FResistanceOSTData.K6;
-  Dialog.K7 := Owner.FResistanceOSTData.K7;
-  Dialog.A1 := Owner.FResistanceOSTData.A1;
-  Dialog.A2 := Owner.FResistanceOSTData.A2;
-  Dialog.A3 := Owner.FResistanceOSTData.A3;
-  Dialog.A4 := Owner.FResistanceOSTData.A4;
-  Dialog.A5 := Owner.FResistanceOSTData.A5;
-  Dialog.A6 := Owner.FResistanceOSTData.A6;
-  Dialog.A7 := Owner.FResistanceOSTData.A7;
-  Dialog.A8 := Owner.FResistanceOSTData.A8;
-  Dialog.A9 := Owner.FResistanceOSTData.A9;
-  Dialog.A10 := Owner.FResistanceOSTData.A10;
-  Dialog.A11 := round(Owner.FResistanceOSTData.A11);
-  Dialog.Dat17_1 := Owner.FResistanceOSTData.Dat17_1;
-  Dialog.Dat17_2 := Owner.FResistanceOSTData.Dat17_2;
-  Dialog.Dat17_3 := Owner.FResistanceOSTData.Dat17_3;
-  Dialog.Dat17_4 := Owner.FResistanceOSTData.Dat17_4;
-  Dialog.Dat17_5 := Owner.FResistanceOSTData.Dat17_5;
-  Dialog.Dat18_1 := Owner.FResistanceOSTData.Dat18_1;
-  Dialog.Dat18_2 := Owner.FResistanceOSTData.Dat18_2;
-  Dialog.Dat18_3 := Owner.FResistanceOSTData.Dat18_3;
-  Dialog.Dat18_4 := Owner.FResistanceOSTData.Dat18_4;
-  Dialog.Dat18_5 := Owner.FResistanceOSTData.Dat18_5;
+  Dialog.Bwl := FreeShip.FResistanceOSTData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceOSTData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceOSTData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceOSTData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceOSTData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceOSTData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceOSTData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceOSTData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceOSTData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceOSTData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceOSTData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceOSTData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceOSTData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceOSTData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceOSTData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceOSTData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceOSTData.WettedSurface;
+  Dialog.WlArea := FreeShip.FResistanceOSTData.WlArea;
+  Dialog.Ks := FreeShip.FResistanceOSTData.Ks;
+  Dialog.Ke := FreeShip.FResistanceOSTData.Ke;
+  Dialog.Dp := FreeShip.FResistanceOSTData.Dp;
+  Dialog.Nser := FreeShip.FResistanceOSTData.Nser;
+  Dialog.Np := FreeShip.FResistanceOSTData.Np;
+  Dialog.Na := FreeShip.FResistanceOSTData.Na;
+  Dialog.Nf := FreeShip.FResistanceOSTData.Nf;
+  Dialog.K1 := FreeShip.FResistanceOSTData.K1;
+  Dialog.K2 := FreeShip.FResistanceOSTData.K2;
+  Dialog.K3 := FreeShip.FResistanceOSTData.K3;
+  Dialog.K4 := FreeShip.FResistanceOSTData.K4;
+  Dialog.K5 := FreeShip.FResistanceOSTData.K5;
+  Dialog.K6 := FreeShip.FResistanceOSTData.K6;
+  Dialog.K7 := FreeShip.FResistanceOSTData.K7;
+  Dialog.A1 := FreeShip.FResistanceOSTData.A1;
+  Dialog.A2 := FreeShip.FResistanceOSTData.A2;
+  Dialog.A3 := FreeShip.FResistanceOSTData.A3;
+  Dialog.A4 := FreeShip.FResistanceOSTData.A4;
+  Dialog.A5 := FreeShip.FResistanceOSTData.A5;
+  Dialog.A6 := FreeShip.FResistanceOSTData.A6;
+  Dialog.A7 := FreeShip.FResistanceOSTData.A7;
+  Dialog.A8 := FreeShip.FResistanceOSTData.A8;
+  Dialog.A9 := FreeShip.FResistanceOSTData.A9;
+  Dialog.A10 := FreeShip.FResistanceOSTData.A10;
+  Dialog.A11 := round(FreeShip.FResistanceOSTData.A11);
+  Dialog.Dat17_1 := FreeShip.FResistanceOSTData.Dat17_1;
+  Dialog.Dat17_2 := FreeShip.FResistanceOSTData.Dat17_2;
+  Dialog.Dat17_3 := FreeShip.FResistanceOSTData.Dat17_3;
+  Dialog.Dat17_4 := FreeShip.FResistanceOSTData.Dat17_4;
+  Dialog.Dat17_5 := FreeShip.FResistanceOSTData.Dat17_5;
+  Dialog.Dat18_1 := FreeShip.FResistanceOSTData.Dat18_1;
+  Dialog.Dat18_2 := FreeShip.FResistanceOSTData.Dat18_2;
+  Dialog.Dat18_3 := FreeShip.FResistanceOSTData.Dat18_3;
+  Dialog.Dat18_4 := FreeShip.FResistanceOSTData.Dat18_4;
+  Dialog.Dat18_5 := FreeShip.FResistanceOSTData.Dat18_5;
 
-  if Dialog.Execute(Owner, Owner.FResistanceOSTData.Extract) then
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceOSTData.Extract) then
   begin
-    Owner.FResistanceOSTData.Bwl := Dialog.Bwl;
-    Owner.FResistanceOSTData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceOSTData.Displacement := Dialog.Displacement;
-    Owner.FResistanceOSTData.Draft := Dialog.Draft;
-    Owner.FResistanceOSTData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceOSTData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceOSTData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceOSTData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceOSTData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceOSTData.LCB := Dialog.LCB;
-    Owner.FResistanceOSTData.Lwl := Dialog.Lwl;
-    Owner.FResistanceOSTData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceOSTData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceOSTData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceOSTData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceOSTData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceOSTData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceOSTData.WlArea := Dialog.WlArea;
-    Owner.FResistanceOSTData.Ks := Dialog.Ks;
-    Owner.FResistanceOSTData.Ke := Dialog.Ke;
-    Owner.FResistanceOSTData.Dp := Dialog.Dp;
-    Owner.FResistanceOSTData.Nser := Dialog.Nser;
-    Owner.FResistanceOSTData.Np := Dialog.Np;
-    Owner.FResistanceOSTData.Na := Dialog.Na;
-    Owner.FResistanceOSTData.Nf := Dialog.Nf;
-    Owner.FResistanceOSTData.K1 := Dialog.K1;
-    Owner.FResistanceOSTData.K2 := Dialog.K2;
-    Owner.FResistanceOSTData.K3 := Dialog.K3;
-    Owner.FResistanceOSTData.K4 := Dialog.K4;
-    Owner.FResistanceOSTData.K5 := Dialog.K5;
-    Owner.FResistanceOSTData.K6 := Dialog.K6;
-    Owner.FResistanceOSTData.K7 := Dialog.K7;
-    Owner.FResistanceOSTData.A1 := Dialog.A1;
-    Owner.FResistanceOSTData.A2 := Dialog.A2;
-    Owner.FResistanceOSTData.A3 := Dialog.A3;
-    Owner.FResistanceOSTData.A4 := Dialog.A4;
-    Owner.FResistanceOSTData.A5 := Dialog.A5;
-    Owner.FResistanceOSTData.A6 := Dialog.A6;
-    Owner.FResistanceOSTData.A7 := Dialog.A7;
-    Owner.FResistanceOSTData.A8 := Dialog.A8;
-    Owner.FResistanceOSTData.A9 := Dialog.A9;
-    Owner.FResistanceOSTData.A10 := Dialog.A10;
-    Owner.FResistanceOSTData.A11 := Dialog.A11;
-    Owner.FResistanceOSTData.Dat17_1 := Dialog.Dat17_1;
-    Owner.FResistanceOSTData.Dat17_2 := Dialog.Dat17_2;
-    Owner.FResistanceOSTData.Dat17_3 := Dialog.Dat17_3;
-    Owner.FResistanceOSTData.Dat17_4 := Dialog.Dat17_4;
-    Owner.FResistanceOSTData.Dat17_5 := Dialog.Dat17_5;
-    Owner.FResistanceOSTData.Dat18_1 := Dialog.Dat18_1;
-    Owner.FResistanceOSTData.Dat18_2 := Dialog.Dat18_2;
-    Owner.FResistanceOSTData.Dat18_3 := Dialog.Dat18_3;
-    Owner.FResistanceOSTData.Dat18_4 := Dialog.Dat18_4;
-    Owner.FResistanceOSTData.Dat18_5 := Dialog.Dat18_5;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceOSTData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceOSTData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceOSTData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceOSTData.Draft := Dialog.Draft;
+    FreeShip.FResistanceOSTData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceOSTData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceOSTData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceOSTData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceOSTData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceOSTData.LCB := Dialog.LCB;
+    FreeShip.FResistanceOSTData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceOSTData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceOSTData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceOSTData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceOSTData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceOSTData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceOSTData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceOSTData.WlArea := Dialog.WlArea;
+    FreeShip.FResistanceOSTData.Ks := Dialog.Ks;
+    FreeShip.FResistanceOSTData.Ke := Dialog.Ke;
+    FreeShip.FResistanceOSTData.Dp := Dialog.Dp;
+    FreeShip.FResistanceOSTData.Nser := Dialog.Nser;
+    FreeShip.FResistanceOSTData.Np := Dialog.Np;
+    FreeShip.FResistanceOSTData.Na := Dialog.Na;
+    FreeShip.FResistanceOSTData.Nf := Dialog.Nf;
+    FreeShip.FResistanceOSTData.K1 := Dialog.K1;
+    FreeShip.FResistanceOSTData.K2 := Dialog.K2;
+    FreeShip.FResistanceOSTData.K3 := Dialog.K3;
+    FreeShip.FResistanceOSTData.K4 := Dialog.K4;
+    FreeShip.FResistanceOSTData.K5 := Dialog.K5;
+    FreeShip.FResistanceOSTData.K6 := Dialog.K6;
+    FreeShip.FResistanceOSTData.K7 := Dialog.K7;
+    FreeShip.FResistanceOSTData.A1 := Dialog.A1;
+    FreeShip.FResistanceOSTData.A2 := Dialog.A2;
+    FreeShip.FResistanceOSTData.A3 := Dialog.A3;
+    FreeShip.FResistanceOSTData.A4 := Dialog.A4;
+    FreeShip.FResistanceOSTData.A5 := Dialog.A5;
+    FreeShip.FResistanceOSTData.A6 := Dialog.A6;
+    FreeShip.FResistanceOSTData.A7 := Dialog.A7;
+    FreeShip.FResistanceOSTData.A8 := Dialog.A8;
+    FreeShip.FResistanceOSTData.A9 := Dialog.A9;
+    FreeShip.FResistanceOSTData.A10 := Dialog.A10;
+    FreeShip.FResistanceOSTData.A11 := Dialog.A11;
+    FreeShip.FResistanceOSTData.Dat17_1 := Dialog.Dat17_1;
+    FreeShip.FResistanceOSTData.Dat17_2 := Dialog.Dat17_2;
+    FreeShip.FResistanceOSTData.Dat17_3 := Dialog.Dat17_3;
+    FreeShip.FResistanceOSTData.Dat17_4 := Dialog.Dat17_4;
+    FreeShip.FResistanceOSTData.Dat17_5 := Dialog.Dat17_5;
+    FreeShip.FResistanceOSTData.Dat18_1 := Dialog.Dat18_1;
+    FreeShip.FResistanceOSTData.Dat18_2 := Dialog.Dat18_2;
+    FreeShip.FResistanceOSTData.Dat18_3 := Dialog.Dat18_3;
+    FreeShip.FResistanceOSTData.Dat18_4 := Dialog.Dat18_4;
+    FreeShip.FResistanceOSTData.Dat18_5 := Dialog.Dat18_5;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_OST}
@@ -8436,120 +8490,120 @@ procedure TFreeEdit.Resistance_RBHS;
 var
   Dialog: TFreeResistance_RBHS;
 begin
-  Dialog := TFreeResistance_RBHS.Create(Owner);
+  Dialog := TFreeResistance_RBHS.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceRBHSData.Bwl;
-  Dialog.Cp := Owner.FResistanceRBHSData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceRBHSData.Displacement;
-  Dialog.Draft := Owner.FResistanceRBHSData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceRBHSData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceRBHSData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceRBHSData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceRBHSData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceRBHSData.KeelArea;
-  Dialog.LCB := Owner.FResistanceRBHSData.LCB;
-  Dialog.Lwl := Owner.FResistanceRBHSData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceRBHSData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceRBHSData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceRBHSData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceRBHSData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceRBHSData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceRBHSData.WettedSurface;
-  Dialog.WlArea := Owner.FResistanceRBHSData.WlArea;
-  Dialog.Ks := Owner.FResistanceRBHSData.Ks;
-  Dialog.Ke := Owner.FResistanceRBHSData.Ke;
-  Dialog.Dp := Owner.FResistanceRBHSData.Dp;
-  Dialog.Nser := Owner.FResistanceRBHSData.Nser;
-  Dialog.Np := Owner.FResistanceRBHSData.Np;
-  Dialog.Na := Owner.FResistanceRBHSData.Na;
-  Dialog.Nf := Owner.FResistanceRBHSData.Nf;
-  Dialog.K1 := Owner.FResistanceRBHSData.K1;
-  Dialog.K2 := Owner.FResistanceRBHSData.K2;
-  Dialog.K3 := Owner.FResistanceRBHSData.K3;
-  Dialog.K4 := Owner.FResistanceRBHSData.K4;
-  Dialog.K5 := Owner.FResistanceRBHSData.K5;
-  Dialog.K6 := Owner.FResistanceRBHSData.K6;
-  Dialog.K7 := Owner.FResistanceRBHSData.K7;
-  Dialog.A1 := Owner.FResistanceRBHSData.A1;
-  Dialog.A2 := Owner.FResistanceRBHSData.A2;
-  Dialog.A3 := Owner.FResistanceRBHSData.A3;
-  Dialog.A4 := Owner.FResistanceRBHSData.A4;
-  Dialog.A5 := Owner.FResistanceRBHSData.A5;
-  Dialog.A6 := Owner.FResistanceRBHSData.A6;
-  Dialog.A7 := Owner.FResistanceRBHSData.A7;
-  Dialog.A8 := Owner.FResistanceRBHSData.A8;
-  Dialog.A9 := Owner.FResistanceRBHSData.A9;
-  Dialog.A10 := Owner.FResistanceRBHSData.A10;
-  Dialog.A11 := round(Owner.FResistanceRBHSData.A11);
-  Dialog.Dat17_1 := Owner.FResistanceRBHSData.Dat17_1;
-  Dialog.Dat17_2 := Owner.FResistanceRBHSData.Dat17_2;
-  Dialog.Dat17_3 := Owner.FResistanceRBHSData.Dat17_3;
-  Dialog.Dat17_4 := Owner.FResistanceRBHSData.Dat17_4;
-  Dialog.Dat17_5 := Owner.FResistanceRBHSData.Dat17_5;
-  Dialog.Dat18_1 := Owner.FResistanceRBHSData.Dat18_1;
-  Dialog.Dat18_2 := Owner.FResistanceRBHSData.Dat18_2;
-  Dialog.Dat18_3 := Owner.FResistanceRBHSData.Dat18_3;
-  Dialog.Dat18_4 := Owner.FResistanceRBHSData.Dat18_4;
-  Dialog.Dat18_5 := Owner.FResistanceRBHSData.Dat18_5;
+  Dialog.Bwl := FreeShip.FResistanceRBHSData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceRBHSData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceRBHSData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceRBHSData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceRBHSData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceRBHSData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceRBHSData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceRBHSData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceRBHSData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceRBHSData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceRBHSData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceRBHSData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceRBHSData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceRBHSData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceRBHSData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceRBHSData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceRBHSData.WettedSurface;
+  Dialog.WlArea := FreeShip.FResistanceRBHSData.WlArea;
+  Dialog.Ks := FreeShip.FResistanceRBHSData.Ks;
+  Dialog.Ke := FreeShip.FResistanceRBHSData.Ke;
+  Dialog.Dp := FreeShip.FResistanceRBHSData.Dp;
+  Dialog.Nser := FreeShip.FResistanceRBHSData.Nser;
+  Dialog.Np := FreeShip.FResistanceRBHSData.Np;
+  Dialog.Na := FreeShip.FResistanceRBHSData.Na;
+  Dialog.Nf := FreeShip.FResistanceRBHSData.Nf;
+  Dialog.K1 := FreeShip.FResistanceRBHSData.K1;
+  Dialog.K2 := FreeShip.FResistanceRBHSData.K2;
+  Dialog.K3 := FreeShip.FResistanceRBHSData.K3;
+  Dialog.K4 := FreeShip.FResistanceRBHSData.K4;
+  Dialog.K5 := FreeShip.FResistanceRBHSData.K5;
+  Dialog.K6 := FreeShip.FResistanceRBHSData.K6;
+  Dialog.K7 := FreeShip.FResistanceRBHSData.K7;
+  Dialog.A1 := FreeShip.FResistanceRBHSData.A1;
+  Dialog.A2 := FreeShip.FResistanceRBHSData.A2;
+  Dialog.A3 := FreeShip.FResistanceRBHSData.A3;
+  Dialog.A4 := FreeShip.FResistanceRBHSData.A4;
+  Dialog.A5 := FreeShip.FResistanceRBHSData.A5;
+  Dialog.A6 := FreeShip.FResistanceRBHSData.A6;
+  Dialog.A7 := FreeShip.FResistanceRBHSData.A7;
+  Dialog.A8 := FreeShip.FResistanceRBHSData.A8;
+  Dialog.A9 := FreeShip.FResistanceRBHSData.A9;
+  Dialog.A10 := FreeShip.FResistanceRBHSData.A10;
+  Dialog.A11 := round(FreeShip.FResistanceRBHSData.A11);
+  Dialog.Dat17_1 := FreeShip.FResistanceRBHSData.Dat17_1;
+  Dialog.Dat17_2 := FreeShip.FResistanceRBHSData.Dat17_2;
+  Dialog.Dat17_3 := FreeShip.FResistanceRBHSData.Dat17_3;
+  Dialog.Dat17_4 := FreeShip.FResistanceRBHSData.Dat17_4;
+  Dialog.Dat17_5 := FreeShip.FResistanceRBHSData.Dat17_5;
+  Dialog.Dat18_1 := FreeShip.FResistanceRBHSData.Dat18_1;
+  Dialog.Dat18_2 := FreeShip.FResistanceRBHSData.Dat18_2;
+  Dialog.Dat18_3 := FreeShip.FResistanceRBHSData.Dat18_3;
+  Dialog.Dat18_4 := FreeShip.FResistanceRBHSData.Dat18_4;
+  Dialog.Dat18_5 := FreeShip.FResistanceRBHSData.Dat18_5;
 
-  if Dialog.Execute(Owner, Owner.FResistanceRBHSData.Extract) then
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceRBHSData.Extract) then
   begin
-    Owner.FResistanceRBHSData.Bwl := Dialog.Bwl;
-    Owner.FResistanceRBHSData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceRBHSData.Displacement := Dialog.Displacement;
-    Owner.FResistanceRBHSData.Draft := Dialog.Draft;
-    Owner.FResistanceRBHSData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceRBHSData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceRBHSData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceRBHSData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceRBHSData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceRBHSData.LCB := Dialog.LCB;
-    Owner.FResistanceRBHSData.Lwl := Dialog.Lwl;
-    Owner.FResistanceRBHSData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceRBHSData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceRBHSData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceRBHSData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceRBHSData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceRBHSData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceRBHSData.WlArea := Dialog.WlArea;
-    Owner.FResistanceRBHSData.Ks := Dialog.Ks;
-    Owner.FResistanceRBHSData.Ke := Dialog.Ke;
-    Owner.FResistanceRBHSData.Dp := Dialog.Dp;
-    Owner.FResistanceRBHSData.Nser := Dialog.Nser;
-    Owner.FResistanceRBHSData.Np := Dialog.Np;
-    Owner.FResistanceRBHSData.Na := Dialog.Na;
-    Owner.FResistanceRBHSData.Nf := Dialog.Nf;
-    Owner.FResistanceRBHSData.K1 := Dialog.K1;
-    Owner.FResistanceRBHSData.K2 := Dialog.K2;
-    Owner.FResistanceRBHSData.K3 := Dialog.K3;
-    Owner.FResistanceRBHSData.K4 := Dialog.K4;
-    Owner.FResistanceRBHSData.K5 := Dialog.K5;
-    Owner.FResistanceRBHSData.K6 := Dialog.K6;
-    Owner.FResistanceRBHSData.K7 := Dialog.K7;
-    Owner.FResistanceRBHSData.A1 := Dialog.A1;
-    Owner.FResistanceRBHSData.A2 := Dialog.A2;
-    Owner.FResistanceRBHSData.A3 := Dialog.A3;
-    Owner.FResistanceRBHSData.A4 := Dialog.A4;
-    Owner.FResistanceRBHSData.A5 := Dialog.A5;
-    Owner.FResistanceRBHSData.A6 := Dialog.A6;
-    Owner.FResistanceRBHSData.A7 := Dialog.A7;
-    Owner.FResistanceRBHSData.A8 := Dialog.A8;
-    Owner.FResistanceRBHSData.A9 := Dialog.A9;
-    Owner.FResistanceRBHSData.A10 := Dialog.A10;
-    Owner.FResistanceRBHSData.A11 := Dialog.A11;
-    Owner.FResistanceRBHSData.Dat17_1 := Dialog.Dat17_1;
-    Owner.FResistanceRBHSData.Dat17_2 := Dialog.Dat17_2;
-    Owner.FResistanceRBHSData.Dat17_3 := Dialog.Dat17_3;
-    Owner.FResistanceRBHSData.Dat17_4 := Dialog.Dat17_4;
-    Owner.FResistanceRBHSData.Dat17_5 := Dialog.Dat17_5;
-    Owner.FResistanceRBHSData.Dat18_1 := Dialog.Dat18_1;
-    Owner.FResistanceRBHSData.Dat18_2 := Dialog.Dat18_2;
-    Owner.FResistanceRBHSData.Dat18_3 := Dialog.Dat18_3;
-    Owner.FResistanceRBHSData.Dat18_4 := Dialog.Dat18_4;
-    Owner.FResistanceRBHSData.Dat18_5 := Dialog.Dat18_5;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceRBHSData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceRBHSData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceRBHSData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceRBHSData.Draft := Dialog.Draft;
+    FreeShip.FResistanceRBHSData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceRBHSData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceRBHSData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceRBHSData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceRBHSData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceRBHSData.LCB := Dialog.LCB;
+    FreeShip.FResistanceRBHSData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceRBHSData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceRBHSData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceRBHSData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceRBHSData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceRBHSData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceRBHSData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceRBHSData.WlArea := Dialog.WlArea;
+    FreeShip.FResistanceRBHSData.Ks := Dialog.Ks;
+    FreeShip.FResistanceRBHSData.Ke := Dialog.Ke;
+    FreeShip.FResistanceRBHSData.Dp := Dialog.Dp;
+    FreeShip.FResistanceRBHSData.Nser := Dialog.Nser;
+    FreeShip.FResistanceRBHSData.Np := Dialog.Np;
+    FreeShip.FResistanceRBHSData.Na := Dialog.Na;
+    FreeShip.FResistanceRBHSData.Nf := Dialog.Nf;
+    FreeShip.FResistanceRBHSData.K1 := Dialog.K1;
+    FreeShip.FResistanceRBHSData.K2 := Dialog.K2;
+    FreeShip.FResistanceRBHSData.K3 := Dialog.K3;
+    FreeShip.FResistanceRBHSData.K4 := Dialog.K4;
+    FreeShip.FResistanceRBHSData.K5 := Dialog.K5;
+    FreeShip.FResistanceRBHSData.K6 := Dialog.K6;
+    FreeShip.FResistanceRBHSData.K7 := Dialog.K7;
+    FreeShip.FResistanceRBHSData.A1 := Dialog.A1;
+    FreeShip.FResistanceRBHSData.A2 := Dialog.A2;
+    FreeShip.FResistanceRBHSData.A3 := Dialog.A3;
+    FreeShip.FResistanceRBHSData.A4 := Dialog.A4;
+    FreeShip.FResistanceRBHSData.A5 := Dialog.A5;
+    FreeShip.FResistanceRBHSData.A6 := Dialog.A6;
+    FreeShip.FResistanceRBHSData.A7 := Dialog.A7;
+    FreeShip.FResistanceRBHSData.A8 := Dialog.A8;
+    FreeShip.FResistanceRBHSData.A9 := Dialog.A9;
+    FreeShip.FResistanceRBHSData.A10 := Dialog.A10;
+    FreeShip.FResistanceRBHSData.A11 := Dialog.A11;
+    FreeShip.FResistanceRBHSData.Dat17_1 := Dialog.Dat17_1;
+    FreeShip.FResistanceRBHSData.Dat17_2 := Dialog.Dat17_2;
+    FreeShip.FResistanceRBHSData.Dat17_3 := Dialog.Dat17_3;
+    FreeShip.FResistanceRBHSData.Dat17_4 := Dialog.Dat17_4;
+    FreeShip.FResistanceRBHSData.Dat17_5 := Dialog.Dat17_5;
+    FreeShip.FResistanceRBHSData.Dat18_1 := Dialog.Dat18_1;
+    FreeShip.FResistanceRBHSData.Dat18_2 := Dialog.Dat18_2;
+    FreeShip.FResistanceRBHSData.Dat18_3 := Dialog.Dat18_3;
+    FreeShip.FResistanceRBHSData.Dat18_4 := Dialog.Dat18_4;
+    FreeShip.FResistanceRBHSData.Dat18_5 := Dialog.Dat18_5;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_RBHS}
@@ -8559,120 +8613,120 @@ procedure TFreeEdit.Resistance_MH;
 var
   Dialog: TFreeResistance_MH;
 begin
-  Dialog := TFreeResistance_MH.Create(Owner);
+  Dialog := TFreeResistance_MH.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Bwl := Owner.FResistanceMHData.Bwl;
-  Dialog.Cp := Owner.FResistanceMHData.Cp;
-  Dialog.Density := Owner.ProjectSettings.ProjectWaterDensity;
-  Dialog.Displacement := Owner.FResistanceMHData.Displacement;
-  Dialog.Draft := Owner.FResistanceMHData.Draft;
-  Dialog.DraftTotal := Owner.FResistanceMHData.DraftTotal;
-  Dialog.EndSpeed := Owner.FResistanceMHData.EndSpeed;
-  Dialog.ExtractFromHull := Owner.FResistanceMHData.Extract;
-  Dialog.KeelChordLength := Owner.FResistanceMHData.KeelChordLength;
-  Dialog.KeelArea := Owner.FResistanceMHData.KeelArea;
-  Dialog.LCB := Owner.FResistanceMHData.LCB;
-  Dialog.Lwl := Owner.FResistanceMHData.Lwl;
-  Dialog.RudderChordLength := Owner.FResistanceMHData.RudderChordLength;
-  Dialog.RudderArea := Owner.FResistanceMHData.RudderArea;
-  Dialog.StartSpeed := Owner.FResistanceMHData.StartSpeed;
-  Dialog.StepSpeed := Owner.FResistanceMHData.StepSpeed;
-  Dialog.Viscosity := Owner.FResistanceMHData.Viscosity;
-  Dialog.WettedSurface := Owner.FResistanceMHData.WettedSurface;
-  Dialog.WlArea := Owner.FResistanceMHData.WlArea;
-  Dialog.Ks := Owner.FResistanceMHData.Ks;
-  Dialog.Ke := Owner.FResistanceMHData.Ke;
-  Dialog.Dp := Owner.FResistanceMHData.Dp;
-  Dialog.Nser := Owner.FResistanceMHData.Nser;
-  Dialog.Np := Owner.FResistanceMHData.Np;
-  Dialog.Na := Owner.FResistanceMHData.Na;
-  Dialog.Nf := Owner.FResistanceMHData.Nf;
-  Dialog.K1 := Owner.FResistanceMHData.K1;
-  Dialog.K2 := Owner.FResistanceMHData.K2;
-  Dialog.K3 := Owner.FResistanceMHData.K3;
-  Dialog.K4 := Owner.FResistanceMHData.K4;
-  Dialog.K5 := Owner.FResistanceMHData.K5;
-  Dialog.K6 := Owner.FResistanceMHData.K6;
-  Dialog.K7 := Owner.FResistanceMHData.K7;
-  Dialog.A1 := Owner.FResistanceMHData.A1;
-  Dialog.A2 := Owner.FResistanceMHData.A2;
-  Dialog.A3 := Owner.FResistanceMHData.A3;
-  Dialog.A4 := Owner.FResistanceMHData.A4;
-  Dialog.A5 := Owner.FResistanceMHData.A5;
-  Dialog.A6 := Owner.FResistanceMHData.A6;
-  Dialog.A7 := Owner.FResistanceMHData.A7;
-  Dialog.A8 := Owner.FResistanceMHData.A8;
-  Dialog.A9 := Owner.FResistanceMHData.A9;
-  Dialog.A10 := Owner.FResistanceMHData.A10;
-  Dialog.A11 := round(Owner.FResistanceMHData.A11);
-  Dialog.Dat17_1 := Owner.FResistanceMHData.Dat17_1;
-  Dialog.Dat17_2 := Owner.FResistanceMHData.Dat17_2;
-  Dialog.Dat17_3 := Owner.FResistanceMHData.Dat17_3;
-  Dialog.Dat17_4 := Owner.FResistanceMHData.Dat17_4;
-  Dialog.Dat17_5 := Owner.FResistanceMHData.Dat17_5;
-  Dialog.Dat18_1 := Owner.FResistanceMHData.Dat18_1;
-  Dialog.Dat18_2 := Owner.FResistanceMHData.Dat18_2;
-  Dialog.Dat18_3 := Owner.FResistanceMHData.Dat18_3;
-  Dialog.Dat18_4 := Owner.FResistanceMHData.Dat18_4;
-  Dialog.Dat18_5 := Owner.FResistanceMHData.Dat18_5;
+  Dialog.Bwl := FreeShip.FResistanceMHData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceMHData.Cp;
+  Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
+  Dialog.Displacement := FreeShip.FResistanceMHData.Displacement;
+  Dialog.Draft := FreeShip.FResistanceMHData.Draft;
+  Dialog.DraftTotal := FreeShip.FResistanceMHData.DraftTotal;
+  Dialog.EndSpeed := FreeShip.FResistanceMHData.EndSpeed;
+  Dialog.ExtractFromHull := FreeShip.FResistanceMHData.Extract;
+  Dialog.KeelChordLength := FreeShip.FResistanceMHData.KeelChordLength;
+  Dialog.KeelArea := FreeShip.FResistanceMHData.KeelArea;
+  Dialog.LCB := FreeShip.FResistanceMHData.LCB;
+  Dialog.Lwl := FreeShip.FResistanceMHData.Lwl;
+  Dialog.RudderChordLength := FreeShip.FResistanceMHData.RudderChordLength;
+  Dialog.RudderArea := FreeShip.FResistanceMHData.RudderArea;
+  Dialog.StartSpeed := FreeShip.FResistanceMHData.StartSpeed;
+  Dialog.StepSpeed := FreeShip.FResistanceMHData.StepSpeed;
+  Dialog.Viscosity := FreeShip.FResistanceMHData.Viscosity;
+  Dialog.WettedSurface := FreeShip.FResistanceMHData.WettedSurface;
+  Dialog.WlArea := FreeShip.FResistanceMHData.WlArea;
+  Dialog.Ks := FreeShip.FResistanceMHData.Ks;
+  Dialog.Ke := FreeShip.FResistanceMHData.Ke;
+  Dialog.Dp := FreeShip.FResistanceMHData.Dp;
+  Dialog.Nser := FreeShip.FResistanceMHData.Nser;
+  Dialog.Np := FreeShip.FResistanceMHData.Np;
+  Dialog.Na := FreeShip.FResistanceMHData.Na;
+  Dialog.Nf := FreeShip.FResistanceMHData.Nf;
+  Dialog.K1 := FreeShip.FResistanceMHData.K1;
+  Dialog.K2 := FreeShip.FResistanceMHData.K2;
+  Dialog.K3 := FreeShip.FResistanceMHData.K3;
+  Dialog.K4 := FreeShip.FResistanceMHData.K4;
+  Dialog.K5 := FreeShip.FResistanceMHData.K5;
+  Dialog.K6 := FreeShip.FResistanceMHData.K6;
+  Dialog.K7 := FreeShip.FResistanceMHData.K7;
+  Dialog.A1 := FreeShip.FResistanceMHData.A1;
+  Dialog.A2 := FreeShip.FResistanceMHData.A2;
+  Dialog.A3 := FreeShip.FResistanceMHData.A3;
+  Dialog.A4 := FreeShip.FResistanceMHData.A4;
+  Dialog.A5 := FreeShip.FResistanceMHData.A5;
+  Dialog.A6 := FreeShip.FResistanceMHData.A6;
+  Dialog.A7 := FreeShip.FResistanceMHData.A7;
+  Dialog.A8 := FreeShip.FResistanceMHData.A8;
+  Dialog.A9 := FreeShip.FResistanceMHData.A9;
+  Dialog.A10 := FreeShip.FResistanceMHData.A10;
+  Dialog.A11 := round(FreeShip.FResistanceMHData.A11);
+  Dialog.Dat17_1 := FreeShip.FResistanceMHData.Dat17_1;
+  Dialog.Dat17_2 := FreeShip.FResistanceMHData.Dat17_2;
+  Dialog.Dat17_3 := FreeShip.FResistanceMHData.Dat17_3;
+  Dialog.Dat17_4 := FreeShip.FResistanceMHData.Dat17_4;
+  Dialog.Dat17_5 := FreeShip.FResistanceMHData.Dat17_5;
+  Dialog.Dat18_1 := FreeShip.FResistanceMHData.Dat18_1;
+  Dialog.Dat18_2 := FreeShip.FResistanceMHData.Dat18_2;
+  Dialog.Dat18_3 := FreeShip.FResistanceMHData.Dat18_3;
+  Dialog.Dat18_4 := FreeShip.FResistanceMHData.Dat18_4;
+  Dialog.Dat18_5 := FreeShip.FResistanceMHData.Dat18_5;
 
-  if Dialog.Execute(Owner, Owner.FResistanceMHData.Extract) then
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceMHData.Extract) then
   begin
-    Owner.FResistanceMHData.Bwl := Dialog.Bwl;
-    Owner.FResistanceMHData.Cp := Dialog.Cp;
-    Owner.ProjectSettings.ProjectWaterDensity := Dialog.Density;
-    Owner.FResistanceMHData.Displacement := Dialog.Displacement;
-    Owner.FResistanceMHData.Draft := Dialog.Draft;
-    Owner.FResistanceMHData.DraftTotal := Dialog.DraftTotal;
-    Owner.FResistanceMHData.EndSpeed := Dialog.EndSpeed;
-    Owner.FResistanceMHData.Extract := Dialog.ExtractFromHull;
-    Owner.FResistanceMHData.KeelChordLength := Dialog.KeelChordLength;
-    Owner.FResistanceMHData.KeelArea := Dialog.KeelArea;
-    Owner.FResistanceMHData.LCB := Dialog.LCB;
-    Owner.FResistanceMHData.Lwl := Dialog.Lwl;
-    Owner.FResistanceMHData.RudderChordLength := Dialog.RudderChordLength;
-    Owner.FResistanceMHData.RudderArea := Dialog.RudderArea;
-    Owner.FResistanceMHData.StartSpeed := Dialog.StartSpeed;
-    Owner.FResistanceMHData.StepSpeed := Dialog.StepSpeed;
-    Owner.FResistanceMHData.Viscosity := Dialog.Viscosity;
-    Owner.FResistanceMHData.WettedSurface := Dialog.WettedSurface;
-    Owner.FResistanceMHData.WlArea := Dialog.WlArea;
-    Owner.FResistanceMHData.Ks := Dialog.Ks;
-    Owner.FResistanceMHData.Ke := Dialog.Ke;
-    Owner.FResistanceMHData.Dp := Dialog.Dp;
-    Owner.FResistanceMHData.Nser := Dialog.Nser;
-    Owner.FResistanceMHData.Np := Dialog.Np;
-    Owner.FResistanceMHData.Na := Dialog.Na;
-    Owner.FResistanceMHData.Nf := Dialog.Nf;
-    Owner.FResistanceMHData.K1 := Dialog.K1;
-    Owner.FResistanceMHData.K2 := Dialog.K2;
-    Owner.FResistanceMHData.K3 := Dialog.K3;
-    Owner.FResistanceMHData.K4 := Dialog.K4;
-    Owner.FResistanceMHData.K5 := Dialog.K5;
-    Owner.FResistanceMHData.K6 := Dialog.K6;
-    Owner.FResistanceMHData.K7 := Dialog.K7;
-    Owner.FResistanceMHData.A1 := Dialog.A1;
-    Owner.FResistanceMHData.A2 := Dialog.A2;
-    Owner.FResistanceMHData.A3 := Dialog.A3;
-    Owner.FResistanceMHData.A4 := Dialog.A4;
-    Owner.FResistanceMHData.A5 := Dialog.A5;
-    Owner.FResistanceMHData.A6 := Dialog.A6;
-    Owner.FResistanceMHData.A7 := Dialog.A7;
-    Owner.FResistanceMHData.A8 := Dialog.A8;
-    Owner.FResistanceMHData.A9 := Dialog.A9;
-    Owner.FResistanceMHData.A10 := Dialog.A10;
-    Owner.FResistanceMHData.A11 := Dialog.A11;
-    Owner.FResistanceMHData.Dat17_1 := Dialog.Dat17_1;
-    Owner.FResistanceMHData.Dat17_2 := Dialog.Dat17_2;
-    Owner.FResistanceMHData.Dat17_3 := Dialog.Dat17_3;
-    Owner.FResistanceMHData.Dat17_4 := Dialog.Dat17_4;
-    Owner.FResistanceMHData.Dat17_5 := Dialog.Dat17_5;
-    Owner.FResistanceMHData.Dat18_1 := Dialog.Dat18_1;
-    Owner.FResistanceMHData.Dat18_2 := Dialog.Dat18_2;
-    Owner.FResistanceMHData.Dat18_3 := Dialog.Dat18_3;
-    Owner.FResistanceMHData.Dat18_4 := Dialog.Dat18_4;
-    Owner.FResistanceMHData.Dat18_5 := Dialog.Dat18_5;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceMHData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceMHData.Cp := Dialog.Cp;
+    FreeShip.ProjectSettings.ProjectWaterDensity := Dialog.Density;
+    FreeShip.FResistanceMHData.Displacement := Dialog.Displacement;
+    FreeShip.FResistanceMHData.Draft := Dialog.Draft;
+    FreeShip.FResistanceMHData.DraftTotal := Dialog.DraftTotal;
+    FreeShip.FResistanceMHData.EndSpeed := Dialog.EndSpeed;
+    FreeShip.FResistanceMHData.Extract := Dialog.ExtractFromHull;
+    FreeShip.FResistanceMHData.KeelChordLength := Dialog.KeelChordLength;
+    FreeShip.FResistanceMHData.KeelArea := Dialog.KeelArea;
+    FreeShip.FResistanceMHData.LCB := Dialog.LCB;
+    FreeShip.FResistanceMHData.Lwl := Dialog.Lwl;
+    FreeShip.FResistanceMHData.RudderChordLength := Dialog.RudderChordLength;
+    FreeShip.FResistanceMHData.RudderArea := Dialog.RudderArea;
+    FreeShip.FResistanceMHData.StartSpeed := Dialog.StartSpeed;
+    FreeShip.FResistanceMHData.StepSpeed := Dialog.StepSpeed;
+    FreeShip.FResistanceMHData.Viscosity := Dialog.Viscosity;
+    FreeShip.FResistanceMHData.WettedSurface := Dialog.WettedSurface;
+    FreeShip.FResistanceMHData.WlArea := Dialog.WlArea;
+    FreeShip.FResistanceMHData.Ks := Dialog.Ks;
+    FreeShip.FResistanceMHData.Ke := Dialog.Ke;
+    FreeShip.FResistanceMHData.Dp := Dialog.Dp;
+    FreeShip.FResistanceMHData.Nser := Dialog.Nser;
+    FreeShip.FResistanceMHData.Np := Dialog.Np;
+    FreeShip.FResistanceMHData.Na := Dialog.Na;
+    FreeShip.FResistanceMHData.Nf := Dialog.Nf;
+    FreeShip.FResistanceMHData.K1 := Dialog.K1;
+    FreeShip.FResistanceMHData.K2 := Dialog.K2;
+    FreeShip.FResistanceMHData.K3 := Dialog.K3;
+    FreeShip.FResistanceMHData.K4 := Dialog.K4;
+    FreeShip.FResistanceMHData.K5 := Dialog.K5;
+    FreeShip.FResistanceMHData.K6 := Dialog.K6;
+    FreeShip.FResistanceMHData.K7 := Dialog.K7;
+    FreeShip.FResistanceMHData.A1 := Dialog.A1;
+    FreeShip.FResistanceMHData.A2 := Dialog.A2;
+    FreeShip.FResistanceMHData.A3 := Dialog.A3;
+    FreeShip.FResistanceMHData.A4 := Dialog.A4;
+    FreeShip.FResistanceMHData.A5 := Dialog.A5;
+    FreeShip.FResistanceMHData.A6 := Dialog.A6;
+    FreeShip.FResistanceMHData.A7 := Dialog.A7;
+    FreeShip.FResistanceMHData.A8 := Dialog.A8;
+    FreeShip.FResistanceMHData.A9 := Dialog.A9;
+    FreeShip.FResistanceMHData.A10 := Dialog.A10;
+    FreeShip.FResistanceMHData.A11 := Dialog.A11;
+    FreeShip.FResistanceMHData.Dat17_1 := Dialog.Dat17_1;
+    FreeShip.FResistanceMHData.Dat17_2 := Dialog.Dat17_2;
+    FreeShip.FResistanceMHData.Dat17_3 := Dialog.Dat17_3;
+    FreeShip.FResistanceMHData.Dat17_4 := Dialog.Dat17_4;
+    FreeShip.FResistanceMHData.Dat17_5 := Dialog.Dat17_5;
+    FreeShip.FResistanceMHData.Dat18_1 := Dialog.Dat18_1;
+    FreeShip.FResistanceMHData.Dat18_2 := Dialog.Dat18_2;
+    FreeShip.FResistanceMHData.Dat18_3 := Dialog.Dat18_3;
+    FreeShip.FResistanceMHData.Dat18_4 := Dialog.Dat18_4;
+    FreeShip.FResistanceMHData.Dat18_5 := Dialog.Dat18_5;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_MH}
@@ -8682,30 +8736,30 @@ procedure TFreeEdit.Resistance_Kaper;
 var
   Dialog: TFreeResistance_Kaper;
 begin
-  Dialog := TFreeResistance_Kaper.Create(Owner);
+  Dialog := TFreeResistance_Kaper.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Ewl := Owner.FResistanceKaperData.Lwl;
-  Dialog.Bwl := Owner.FResistanceKaperData.Bwl;
-  Dialog.Cp := Owner.FResistanceKaperData.Cp;
-  Dialog.Displ := Owner.FResistanceKaperData.Displacement;
-  Dialog.H := Owner.FResistanceKaperData.Draft;
-  Dialog.LCB := Owner.FResistanceKaperData.LCB;
-  Dialog.Ws := Owner.FResistanceKaperData.WettedSurface;
-  Dialog.At_Ax := Owner.FResistanceKaperData.At_Ax;
-  Dialog.Ie := Owner.FResistanceKaperData.EntranceAngle;
-  if Dialog.Execute(Owner, Owner.FResistanceKaperData.Extract) then
+  Dialog.Ewl := FreeShip.FResistanceKaperData.Lwl;
+  Dialog.Bwl := FreeShip.FResistanceKaperData.Bwl;
+  Dialog.Cp := FreeShip.FResistanceKaperData.Cp;
+  Dialog.Displ := FreeShip.FResistanceKaperData.Displacement;
+  Dialog.H := FreeShip.FResistanceKaperData.Draft;
+  Dialog.LCB := FreeShip.FResistanceKaperData.LCB;
+  Dialog.Ws := FreeShip.FResistanceKaperData.WettedSurface;
+  Dialog.At_Ax := FreeShip.FResistanceKaperData.At_Ax;
+  Dialog.Ie := FreeShip.FResistanceKaperData.EntranceAngle;
+  if Dialog.Execute(FreeShip, FreeShip.FResistanceKaperData.Extract) then
   begin
-    Owner.FResistanceKaperData.Lwl := Dialog.Ewl;
-    Owner.FResistanceKaperData.Bwl := Dialog.Bwl;
-    Owner.FResistanceKaperData.Cp := Dialog.Cp;
-    Owner.FResistanceKaperData.Displacement := Dialog.Displ;
-    Owner.FResistanceKaperData.Draft := Dialog.H;
-    Owner.FResistanceKaperData.LCB := Dialog.LCB;
-    Owner.FResistanceKaperData.WettedSurface := Dialog.Ws;
-    Owner.FResistanceKaperData.At_Ax := Dialog.At_Ax;
-    Owner.FResistanceKaperData.EntranceAngle := Dialog.Ie;
-    Owner.FResistanceKaperData.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FResistanceKaperData.Lwl := Dialog.Ewl;
+    FreeShip.FResistanceKaperData.Bwl := Dialog.Bwl;
+    FreeShip.FResistanceKaperData.Cp := Dialog.Cp;
+    FreeShip.FResistanceKaperData.Displacement := Dialog.Displ;
+    FreeShip.FResistanceKaperData.Draft := Dialog.H;
+    FreeShip.FResistanceKaperData.LCB := Dialog.LCB;
+    FreeShip.FResistanceKaperData.WettedSurface := Dialog.Ws;
+    FreeShip.FResistanceKaperData.At_Ax := Dialog.At_Ax;
+    FreeShip.FResistanceKaperData.EntranceAngle := Dialog.Ie;
+    FreeShip.FResistanceKaperData.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_Kaper}
@@ -8715,38 +8769,38 @@ procedure TFreeEdit.Resistance_Planing;
 var
   Dialog: TFreeResistance_Planing;
 begin
-  Dialog := TFreeResistance_Planing.Create(Owner);
+  Dialog := TFreeResistance_Planing.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Ewl := Owner.FResistancePlaningData.Lwl;
-  Dialog.Bwl := Owner.FResistancePlaningData.Bwl;
-  Dialog.Cp := Owner.FResistancePlaningData.Cp;
-  Dialog.Displ := Owner.FResistancePlaningData.Displacement;
-  Dialog.H := Owner.FResistancePlaningData.Draft;
-  Dialog.LCB := Owner.FResistancePlaningData.LCB;
-  Dialog.Ws := Owner.FResistancePlaningData.WettedSurface;
-  Dialog.At_Ax := Owner.FResistancePlaningData.At_Ax;
-  Dialog.Ie := Owner.FResistancePlaningData.EntranceAngle;
-  Dialog.Sa := Owner.FResistancePlaningData.Sa;
-  Dialog.Caa := Owner.FResistancePlaningData.Caa;
-  Dialog.Angle := Owner.FResistancePlaningData.Angle;
-  Dialog.K := Owner.FResistancePlaningData.K;
-  if Dialog.Execute(Owner, Owner.FResistancePlaningData.Extract) then
+  Dialog.Ewl := FreeShip.FResistancePlaningData.Lwl;
+  Dialog.Bwl := FreeShip.FResistancePlaningData.Bwl;
+  Dialog.Cp := FreeShip.FResistancePlaningData.Cp;
+  Dialog.Displ := FreeShip.FResistancePlaningData.Displacement;
+  Dialog.H := FreeShip.FResistancePlaningData.Draft;
+  Dialog.LCB := FreeShip.FResistancePlaningData.LCB;
+  Dialog.Ws := FreeShip.FResistancePlaningData.WettedSurface;
+  Dialog.At_Ax := FreeShip.FResistancePlaningData.At_Ax;
+  Dialog.Ie := FreeShip.FResistancePlaningData.EntranceAngle;
+  Dialog.Sa := FreeShip.FResistancePlaningData.Sa;
+  Dialog.Caa := FreeShip.FResistancePlaningData.Caa;
+  Dialog.Angle := FreeShip.FResistancePlaningData.Angle;
+  Dialog.K := FreeShip.FResistancePlaningData.K;
+  if Dialog.Execute(FreeShip, FreeShip.FResistancePlaningData.Extract) then
   begin
-    Owner.FResistancePlaningData.Lwl := Dialog.Ewl;
-    Owner.FResistancePlaningData.Bwl := Dialog.Bwl;
-    Owner.FResistancePlaningData.Cp := Dialog.Cp;
-    Owner.FResistancePlaningData.Displacement := Dialog.Displ;
-    Owner.FResistancePlaningData.Draft := Dialog.H;
-    Owner.FResistancePlaningData.LCB := Dialog.LCB;
-    Owner.FResistancePlaningData.WettedSurface := Dialog.Ws;
-    Owner.FResistancePlaningData.At_Ax := Dialog.At_Ax;
-    Owner.FResistancePlaningData.EntranceAngle := Dialog.Ie;
-    Owner.FResistancePlaningData.Sa := Dialog.Sa;
-    Owner.FResistancePlaningData.Caa := Dialog.Caa;
-    Owner.FResistancePlaningData.Angle := Dialog.Angle;
-    Owner.FResistancePlaningData.K := Dialog.K;
-    Owner.FResistancePlaningData.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FResistancePlaningData.Lwl := Dialog.Ewl;
+    FreeShip.FResistancePlaningData.Bwl := Dialog.Bwl;
+    FreeShip.FResistancePlaningData.Cp := Dialog.Cp;
+    FreeShip.FResistancePlaningData.Displacement := Dialog.Displ;
+    FreeShip.FResistancePlaningData.Draft := Dialog.H;
+    FreeShip.FResistancePlaningData.LCB := Dialog.LCB;
+    FreeShip.FResistancePlaningData.WettedSurface := Dialog.Ws;
+    FreeShip.FResistancePlaningData.At_Ax := Dialog.At_Ax;
+    FreeShip.FResistancePlaningData.EntranceAngle := Dialog.Ie;
+    FreeShip.FResistancePlaningData.Sa := Dialog.Sa;
+    FreeShip.FResistancePlaningData.Caa := Dialog.Caa;
+    FreeShip.FResistancePlaningData.Angle := Dialog.Angle;
+    FreeShip.FResistancePlaningData.K := Dialog.K;
+    FreeShip.FResistancePlaningData.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Resistance_Planing}
@@ -8757,42 +8811,42 @@ procedure TFreeEdit.Propeller_Task1;
 var
   Dialog: TFreePropeller_Task1;
 begin
-  Dialog := TFreePropeller_Task1.Create(Owner);
+  Dialog := TFreePropeller_Task1.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FPropellerTask1Data.Dat2;
-  Dialog.Dat3 := Owner.FPropellerTask1Data.Dat3;
-  Dialog.Dat4 := Owner.FPropellerTask1Data.Dat4;
-  Dialog.Dat5 := Owner.FPropellerTask1Data.Dat5;
-  Dialog.Dat6 := Owner.FPropellerTask1Data.Dat6;
-  Dialog.Dat7 := Owner.FPropellerTask1Data.Dat7;
-  Dialog.Dat8 := Owner.FPropellerTask1Data.Dat8;
-  Dialog.Dat9 := Owner.FPropellerTask1Data.Dat9;
-  Dialog.Dat10 := Owner.FPropellerTask1Data.Dat10;
-  Dialog.Dat11 := Owner.FPropellerTask1Data.Dat11;
-  Dialog.Dat12 := Owner.FPropellerTask1Data.Dat12;
-  Dialog.Dat13 := Owner.FPropellerTask1Data.Dat13;
-  Dialog.Dat14 := Owner.FPropellerTask1Data.Dat14;
-  Dialog.Dat15 := Owner.FPropellerTask1Data.Dat15;
-  Dialog.Dat16 := Owner.FPropellerTask1Data.Dat16;
-  if Dialog.Execute(Owner, Owner.FPropellerTask1Data.Extract) then
+  Dialog.Dat2 := FreeShip.FPropellerTask1Data.Dat2;
+  Dialog.Dat3 := FreeShip.FPropellerTask1Data.Dat3;
+  Dialog.Dat4 := FreeShip.FPropellerTask1Data.Dat4;
+  Dialog.Dat5 := FreeShip.FPropellerTask1Data.Dat5;
+  Dialog.Dat6 := FreeShip.FPropellerTask1Data.Dat6;
+  Dialog.Dat7 := FreeShip.FPropellerTask1Data.Dat7;
+  Dialog.Dat8 := FreeShip.FPropellerTask1Data.Dat8;
+  Dialog.Dat9 := FreeShip.FPropellerTask1Data.Dat9;
+  Dialog.Dat10 := FreeShip.FPropellerTask1Data.Dat10;
+  Dialog.Dat11 := FreeShip.FPropellerTask1Data.Dat11;
+  Dialog.Dat12 := FreeShip.FPropellerTask1Data.Dat12;
+  Dialog.Dat13 := FreeShip.FPropellerTask1Data.Dat13;
+  Dialog.Dat14 := FreeShip.FPropellerTask1Data.Dat14;
+  Dialog.Dat15 := FreeShip.FPropellerTask1Data.Dat15;
+  Dialog.Dat16 := FreeShip.FPropellerTask1Data.Dat16;
+  if Dialog.Execute(FreeShip, FreeShip.FPropellerTask1Data.Extract) then
   begin
-    Owner.FPropellerTask1Data.Dat2 := Dialog.Dat2;
-    Owner.FPropellerTask1Data.Dat3 := Dialog.Dat3;
-    Owner.FPropellerTask1Data.Dat4 := Dialog.Dat4;
-    Owner.FPropellerTask1Data.Dat5 := Dialog.Dat5;
-    Owner.FPropellerTask1Data.Dat6 := Dialog.Dat6;
-    Owner.FPropellerTask1Data.Dat7 := Dialog.Dat7;
-    Owner.FPropellerTask1Data.Dat8 := Dialog.Dat8;
-    Owner.FPropellerTask1Data.Dat9 := Dialog.Dat9;
-    Owner.FPropellerTask1Data.Dat10 := Dialog.Dat10;
-    Owner.FPropellerTask1Data.Dat11 := Dialog.Dat11;
-    Owner.FPropellerTask1Data.Dat12 := Dialog.Dat12;
-    Owner.FPropellerTask1Data.Dat13 := Dialog.Dat13;
-    Owner.FPropellerTask1Data.Dat14 := Dialog.Dat14;
-    Owner.FPropellerTask1Data.Dat15 := Dialog.Dat15;
-    Owner.FPropellerTask1Data.Dat16 := Dialog.Dat16;
-    Owner.FPropellerTask1Data.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FPropellerTask1Data.Dat2 := Dialog.Dat2;
+    FreeShip.FPropellerTask1Data.Dat3 := Dialog.Dat3;
+    FreeShip.FPropellerTask1Data.Dat4 := Dialog.Dat4;
+    FreeShip.FPropellerTask1Data.Dat5 := Dialog.Dat5;
+    FreeShip.FPropellerTask1Data.Dat6 := Dialog.Dat6;
+    FreeShip.FPropellerTask1Data.Dat7 := Dialog.Dat7;
+    FreeShip.FPropellerTask1Data.Dat8 := Dialog.Dat8;
+    FreeShip.FPropellerTask1Data.Dat9 := Dialog.Dat9;
+    FreeShip.FPropellerTask1Data.Dat10 := Dialog.Dat10;
+    FreeShip.FPropellerTask1Data.Dat11 := Dialog.Dat11;
+    FreeShip.FPropellerTask1Data.Dat12 := Dialog.Dat12;
+    FreeShip.FPropellerTask1Data.Dat13 := Dialog.Dat13;
+    FreeShip.FPropellerTask1Data.Dat14 := Dialog.Dat14;
+    FreeShip.FPropellerTask1Data.Dat15 := Dialog.Dat15;
+    FreeShip.FPropellerTask1Data.Dat16 := Dialog.Dat16;
+    FreeShip.FPropellerTask1Data.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Propeller_Task1}
@@ -8802,62 +8856,62 @@ procedure TFreeEdit.Propeller_Task2;
 var
   Dialog: TFreePropeller_Task2;
 begin
-  Dialog := TFreePropeller_Task2.Create(Owner);
+  Dialog := TFreePropeller_Task2.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FPropellerTask2Data.Dat2;
-  Dialog.Dat3 := Owner.FPropellerTask2Data.Dat3;
-  Dialog.Dat4 := Owner.FPropellerTask2Data.Dat4;
-  Dialog.Dat5 := Owner.FPropellerTask2Data.Dat5;
-  Dialog.Dat6 := Owner.FPropellerTask2Data.Dat6;
-  Dialog.Dat7 := Owner.FPropellerTask2Data.Dat7;
-  Dialog.Dat8 := Owner.FPropellerTask2Data.Dat8;
-  Dialog.Dat9 := Owner.FPropellerTask2Data.Dat9;
-  Dialog.Dat10 := Owner.FPropellerTask2Data.Dat10;
-  Dialog.Dat11 := Owner.FPropellerTask2Data.Dat11;
-  Dialog.Dat12 := Owner.FPropellerTask2Data.Dat12;
-  Dialog.Dat13 := Owner.FPropellerTask2Data.Dat13;
-  Dialog.Dat14 := Owner.FPropellerTask2Data.Dat14;
-  Dialog.Dat15 := Owner.FPropellerTask2Data.Dat15;
-  Dialog.Dat16 := Owner.FPropellerTask2Data.Dat16;
-  Dialog.Dat17_1 := Owner.FPropellerTask2Data.Dat17_1;
-  Dialog.Dat17_2 := Owner.FPropellerTask2Data.Dat17_2;
-  Dialog.Dat17_3 := Owner.FPropellerTask2Data.Dat17_3;
-  Dialog.Dat17_4 := Owner.FPropellerTask2Data.Dat17_4;
-  Dialog.Dat17_5 := Owner.FPropellerTask2Data.Dat17_5;
-  Dialog.Dat18_1 := Owner.FPropellerTask2Data.Dat18_1;
-  Dialog.Dat18_2 := Owner.FPropellerTask2Data.Dat18_2;
-  Dialog.Dat18_3 := Owner.FPropellerTask2Data.Dat18_3;
-  Dialog.Dat18_4 := Owner.FPropellerTask2Data.Dat18_4;
-  Dialog.Dat18_5 := Owner.FPropellerTask2Data.Dat18_5;
-  if Dialog.Execute(Owner, Owner.FPropellerTask2Data.Extract) then
+  Dialog.Dat2 := FreeShip.FPropellerTask2Data.Dat2;
+  Dialog.Dat3 := FreeShip.FPropellerTask2Data.Dat3;
+  Dialog.Dat4 := FreeShip.FPropellerTask2Data.Dat4;
+  Dialog.Dat5 := FreeShip.FPropellerTask2Data.Dat5;
+  Dialog.Dat6 := FreeShip.FPropellerTask2Data.Dat6;
+  Dialog.Dat7 := FreeShip.FPropellerTask2Data.Dat7;
+  Dialog.Dat8 := FreeShip.FPropellerTask2Data.Dat8;
+  Dialog.Dat9 := FreeShip.FPropellerTask2Data.Dat9;
+  Dialog.Dat10 := FreeShip.FPropellerTask2Data.Dat10;
+  Dialog.Dat11 := FreeShip.FPropellerTask2Data.Dat11;
+  Dialog.Dat12 := FreeShip.FPropellerTask2Data.Dat12;
+  Dialog.Dat13 := FreeShip.FPropellerTask2Data.Dat13;
+  Dialog.Dat14 := FreeShip.FPropellerTask2Data.Dat14;
+  Dialog.Dat15 := FreeShip.FPropellerTask2Data.Dat15;
+  Dialog.Dat16 := FreeShip.FPropellerTask2Data.Dat16;
+  Dialog.Dat17_1 := FreeShip.FPropellerTask2Data.Dat17_1;
+  Dialog.Dat17_2 := FreeShip.FPropellerTask2Data.Dat17_2;
+  Dialog.Dat17_3 := FreeShip.FPropellerTask2Data.Dat17_3;
+  Dialog.Dat17_4 := FreeShip.FPropellerTask2Data.Dat17_4;
+  Dialog.Dat17_5 := FreeShip.FPropellerTask2Data.Dat17_5;
+  Dialog.Dat18_1 := FreeShip.FPropellerTask2Data.Dat18_1;
+  Dialog.Dat18_2 := FreeShip.FPropellerTask2Data.Dat18_2;
+  Dialog.Dat18_3 := FreeShip.FPropellerTask2Data.Dat18_3;
+  Dialog.Dat18_4 := FreeShip.FPropellerTask2Data.Dat18_4;
+  Dialog.Dat18_5 := FreeShip.FPropellerTask2Data.Dat18_5;
+  if Dialog.Execute(FreeShip, FreeShip.FPropellerTask2Data.Extract) then
   begin
-    Owner.FPropellerTask2Data.Dat2 := Dialog.Dat2;
-    Owner.FPropellerTask2Data.Dat3 := Dialog.Dat3;
-    Owner.FPropellerTask2Data.Dat4 := Dialog.Dat4;
-    Owner.FPropellerTask2Data.Dat5 := Dialog.Dat5;
-    Owner.FPropellerTask2Data.Dat6 := Dialog.Dat6;
-    Owner.FPropellerTask2Data.Dat7 := Dialog.Dat7;
-    Owner.FPropellerTask2Data.Dat8 := Dialog.Dat8;
-    Owner.FPropellerTask2Data.Dat9 := Dialog.Dat9;
-    Owner.FPropellerTask2Data.Dat10 := Dialog.Dat10;
-    Owner.FPropellerTask2Data.Dat11 := Dialog.Dat11;
-    Owner.FPropellerTask2Data.Dat12 := Dialog.Dat12;
-    Owner.FPropellerTask2Data.Dat13 := Dialog.Dat13;
-    Owner.FPropellerTask2Data.Dat14 := Dialog.Dat14;
-    Owner.FPropellerTask2Data.Dat15 := Dialog.Dat15;
-    Owner.FPropellerTask2Data.Dat16 := Dialog.Dat16;
-    Owner.FPropellerTask2Data.Dat17_1 := Dialog.Dat17_1;
-    Owner.FPropellerTask2Data.Dat17_2 := Dialog.Dat17_2;
-    Owner.FPropellerTask2Data.Dat17_3 := Dialog.Dat17_3;
-    Owner.FPropellerTask2Data.Dat17_4 := Dialog.Dat17_4;
-    Owner.FPropellerTask2Data.Dat17_5 := Dialog.Dat17_5;
-    Owner.FPropellerTask2Data.Dat18_1 := Dialog.Dat18_1;
-    Owner.FPropellerTask2Data.Dat18_2 := Dialog.Dat18_2;
-    Owner.FPropellerTask2Data.Dat18_3 := Dialog.Dat18_3;
-    Owner.FPropellerTask2Data.Dat18_4 := Dialog.Dat18_4;
-    Owner.FPropellerTask2Data.Dat18_5 := Dialog.Dat18_5;
-    Owner.FPropellerTask2Data.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FPropellerTask2Data.Dat2 := Dialog.Dat2;
+    FreeShip.FPropellerTask2Data.Dat3 := Dialog.Dat3;
+    FreeShip.FPropellerTask2Data.Dat4 := Dialog.Dat4;
+    FreeShip.FPropellerTask2Data.Dat5 := Dialog.Dat5;
+    FreeShip.FPropellerTask2Data.Dat6 := Dialog.Dat6;
+    FreeShip.FPropellerTask2Data.Dat7 := Dialog.Dat7;
+    FreeShip.FPropellerTask2Data.Dat8 := Dialog.Dat8;
+    FreeShip.FPropellerTask2Data.Dat9 := Dialog.Dat9;
+    FreeShip.FPropellerTask2Data.Dat10 := Dialog.Dat10;
+    FreeShip.FPropellerTask2Data.Dat11 := Dialog.Dat11;
+    FreeShip.FPropellerTask2Data.Dat12 := Dialog.Dat12;
+    FreeShip.FPropellerTask2Data.Dat13 := Dialog.Dat13;
+    FreeShip.FPropellerTask2Data.Dat14 := Dialog.Dat14;
+    FreeShip.FPropellerTask2Data.Dat15 := Dialog.Dat15;
+    FreeShip.FPropellerTask2Data.Dat16 := Dialog.Dat16;
+    FreeShip.FPropellerTask2Data.Dat17_1 := Dialog.Dat17_1;
+    FreeShip.FPropellerTask2Data.Dat17_2 := Dialog.Dat17_2;
+    FreeShip.FPropellerTask2Data.Dat17_3 := Dialog.Dat17_3;
+    FreeShip.FPropellerTask2Data.Dat17_4 := Dialog.Dat17_4;
+    FreeShip.FPropellerTask2Data.Dat17_5 := Dialog.Dat17_5;
+    FreeShip.FPropellerTask2Data.Dat18_1 := Dialog.Dat18_1;
+    FreeShip.FPropellerTask2Data.Dat18_2 := Dialog.Dat18_2;
+    FreeShip.FPropellerTask2Data.Dat18_3 := Dialog.Dat18_3;
+    FreeShip.FPropellerTask2Data.Dat18_4 := Dialog.Dat18_4;
+    FreeShip.FPropellerTask2Data.Dat18_5 := Dialog.Dat18_5;
+    FreeShip.FPropellerTask2Data.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Propeller_Task2}
@@ -8867,44 +8921,44 @@ procedure TFreeEdit.Propeller_Task3;
 var
   Dialog: TFreePropeller_Task3;
 begin
-  Dialog := TFreePropeller_Task3.Create(Owner);
+  Dialog := TFreePropeller_Task3.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FPropellerTask3Data.Dat2;
-  Dialog.Dat3 := Owner.FPropellerTask3Data.Dat3;
-  Dialog.Dat4 := Owner.FPropellerTask3Data.Dat4;
-  Dialog.Dat5 := Owner.FPropellerTask3Data.Dat5;
-  Dialog.Dat6 := Owner.FPropellerTask3Data.Dat6;
-  Dialog.Dat7 := Owner.FPropellerTask3Data.Dat7;
-  Dialog.Dat8 := Owner.FPropellerTask3Data.Dat8;
-  Dialog.Dat9 := Owner.FPropellerTask3Data.Dat9;
-  Dialog.Dat10 := Owner.FPropellerTask3Data.Dat10;
-  Dialog.Dat11 := Owner.FPropellerTask3Data.Dat11;
-  Dialog.Dat12 := Owner.FPropellerTask3Data.Dat12;
-  Dialog.Dat13 := Owner.FPropellerTask3Data.Dat13;
-  Dialog.Dat14 := Owner.FPropellerTask3Data.Dat14;
-  Dialog.Dat15 := Owner.FPropellerTask3Data.Dat15;
-  Dialog.Dat16 := Owner.FPropellerTask3Data.Dat16;
-  Dialog.Dat17 := Owner.FPropellerTask3Data.Dat17;
-  if Dialog.Execute(Owner, Owner.FPropellerTask3Data.Extract) then
+  Dialog.Dat2 := FreeShip.FPropellerTask3Data.Dat2;
+  Dialog.Dat3 := FreeShip.FPropellerTask3Data.Dat3;
+  Dialog.Dat4 := FreeShip.FPropellerTask3Data.Dat4;
+  Dialog.Dat5 := FreeShip.FPropellerTask3Data.Dat5;
+  Dialog.Dat6 := FreeShip.FPropellerTask3Data.Dat6;
+  Dialog.Dat7 := FreeShip.FPropellerTask3Data.Dat7;
+  Dialog.Dat8 := FreeShip.FPropellerTask3Data.Dat8;
+  Dialog.Dat9 := FreeShip.FPropellerTask3Data.Dat9;
+  Dialog.Dat10 := FreeShip.FPropellerTask3Data.Dat10;
+  Dialog.Dat11 := FreeShip.FPropellerTask3Data.Dat11;
+  Dialog.Dat12 := FreeShip.FPropellerTask3Data.Dat12;
+  Dialog.Dat13 := FreeShip.FPropellerTask3Data.Dat13;
+  Dialog.Dat14 := FreeShip.FPropellerTask3Data.Dat14;
+  Dialog.Dat15 := FreeShip.FPropellerTask3Data.Dat15;
+  Dialog.Dat16 := FreeShip.FPropellerTask3Data.Dat16;
+  Dialog.Dat17 := FreeShip.FPropellerTask3Data.Dat17;
+  if Dialog.Execute(FreeShip, FreeShip.FPropellerTask3Data.Extract) then
   begin
-    Owner.FPropellerTask3Data.Dat2 := Dialog.Dat2;
-    Owner.FPropellerTask3Data.Dat3 := Dialog.Dat3;
-    Owner.FPropellerTask3Data.Dat4 := Dialog.Dat4;
-    Owner.FPropellerTask3Data.Dat5 := Dialog.Dat5;
-    Owner.FPropellerTask3Data.Dat6 := Dialog.Dat6;
-    Owner.FPropellerTask3Data.Dat7 := Dialog.Dat7;
-    Owner.FPropellerTask3Data.Dat8 := Dialog.Dat8;
-    Owner.FPropellerTask3Data.Dat9 := Dialog.Dat9;
-    Owner.FPropellerTask3Data.Dat10 := Dialog.Dat10;
-    Owner.FPropellerTask3Data.Dat11 := Dialog.Dat11;
-    Owner.FPropellerTask3Data.Dat12 := Dialog.Dat12;
-    Owner.FPropellerTask3Data.Dat13 := Dialog.Dat13;
-    Owner.FPropellerTask3Data.Dat14 := Dialog.Dat14;
-    Owner.FPropellerTask3Data.Dat15 := Dialog.Dat15;
-    Owner.FPropellerTask3Data.Dat16 := Dialog.Dat16;
-    Owner.FPropellerTask3Data.Dat17 := Dialog.Dat17;
-    Owner.FPropellerTask3Data.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FPropellerTask3Data.Dat2 := Dialog.Dat2;
+    FreeShip.FPropellerTask3Data.Dat3 := Dialog.Dat3;
+    FreeShip.FPropellerTask3Data.Dat4 := Dialog.Dat4;
+    FreeShip.FPropellerTask3Data.Dat5 := Dialog.Dat5;
+    FreeShip.FPropellerTask3Data.Dat6 := Dialog.Dat6;
+    FreeShip.FPropellerTask3Data.Dat7 := Dialog.Dat7;
+    FreeShip.FPropellerTask3Data.Dat8 := Dialog.Dat8;
+    FreeShip.FPropellerTask3Data.Dat9 := Dialog.Dat9;
+    FreeShip.FPropellerTask3Data.Dat10 := Dialog.Dat10;
+    FreeShip.FPropellerTask3Data.Dat11 := Dialog.Dat11;
+    FreeShip.FPropellerTask3Data.Dat12 := Dialog.Dat12;
+    FreeShip.FPropellerTask3Data.Dat13 := Dialog.Dat13;
+    FreeShip.FPropellerTask3Data.Dat14 := Dialog.Dat14;
+    FreeShip.FPropellerTask3Data.Dat15 := Dialog.Dat15;
+    FreeShip.FPropellerTask3Data.Dat16 := Dialog.Dat16;
+    FreeShip.FPropellerTask3Data.Dat17 := Dialog.Dat17;
+    FreeShip.FPropellerTask3Data.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Propeller_Task3}
@@ -8914,42 +8968,42 @@ procedure TFreeEdit.Propeller_Task4;
 var
   Dialog: TFreePropeller_Task4;
 begin
-  Dialog := TFreePropeller_Task4.Create(Owner);
+  Dialog := TFreePropeller_Task4.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FPropellerTask4Data.Dat2;
-  Dialog.Dat3 := Owner.FPropellerTask4Data.Dat3;
-  Dialog.Dat4 := Owner.FPropellerTask4Data.Dat4;
-  Dialog.Dat5 := Owner.FPropellerTask4Data.Dat5;
-  Dialog.Dat6 := Owner.FPropellerTask4Data.Dat6;
-  Dialog.Dat7 := Owner.FPropellerTask4Data.Dat7;
-  Dialog.Dat8 := Owner.FPropellerTask4Data.Dat8;
-  Dialog.Dat9 := Owner.FPropellerTask4Data.Dat9;
-  Dialog.Dat10 := Owner.FPropellerTask4Data.Dat10;
-  Dialog.Dat11 := Owner.FPropellerTask4Data.Dat11;
-  Dialog.Dat12 := Owner.FPropellerTask4Data.Dat12;
-  Dialog.Dat13 := Owner.FPropellerTask4Data.Dat13;
-  Dialog.Dat14 := Owner.FPropellerTask4Data.Dat14;
-  Dialog.Dat15 := Owner.FPropellerTask4Data.Dat15;
-  Dialog.Dat16 := Owner.FPropellerTask4Data.Dat16;
-  if Dialog.Execute(Owner, Owner.FPropellerTask4Data.Extract) then
+  Dialog.Dat2 := FreeShip.FPropellerTask4Data.Dat2;
+  Dialog.Dat3 := FreeShip.FPropellerTask4Data.Dat3;
+  Dialog.Dat4 := FreeShip.FPropellerTask4Data.Dat4;
+  Dialog.Dat5 := FreeShip.FPropellerTask4Data.Dat5;
+  Dialog.Dat6 := FreeShip.FPropellerTask4Data.Dat6;
+  Dialog.Dat7 := FreeShip.FPropellerTask4Data.Dat7;
+  Dialog.Dat8 := FreeShip.FPropellerTask4Data.Dat8;
+  Dialog.Dat9 := FreeShip.FPropellerTask4Data.Dat9;
+  Dialog.Dat10 := FreeShip.FPropellerTask4Data.Dat10;
+  Dialog.Dat11 := FreeShip.FPropellerTask4Data.Dat11;
+  Dialog.Dat12 := FreeShip.FPropellerTask4Data.Dat12;
+  Dialog.Dat13 := FreeShip.FPropellerTask4Data.Dat13;
+  Dialog.Dat14 := FreeShip.FPropellerTask4Data.Dat14;
+  Dialog.Dat15 := FreeShip.FPropellerTask4Data.Dat15;
+  Dialog.Dat16 := FreeShip.FPropellerTask4Data.Dat16;
+  if Dialog.Execute(FreeShip, FreeShip.FPropellerTask4Data.Extract) then
   begin
-    Owner.FPropellerTask4Data.Dat2 := Dialog.Dat2;
-    Owner.FPropellerTask4Data.Dat3 := Dialog.Dat3;
-    Owner.FPropellerTask4Data.Dat4 := Dialog.Dat4;
-    Owner.FPropellerTask4Data.Dat5 := Dialog.Dat5;
-    Owner.FPropellerTask4Data.Dat6 := Dialog.Dat6;
-    Owner.FPropellerTask4Data.Dat7 := Dialog.Dat7;
-    Owner.FPropellerTask4Data.Dat8 := Dialog.Dat8;
-    Owner.FPropellerTask4Data.Dat9 := Dialog.Dat9;
-    Owner.FPropellerTask4Data.Dat10 := Dialog.Dat10;
-    Owner.FPropellerTask4Data.Dat11 := Dialog.Dat11;
-    Owner.FPropellerTask4Data.Dat12 := Dialog.Dat12;
-    Owner.FPropellerTask4Data.Dat13 := Dialog.Dat13;
-    Owner.FPropellerTask4Data.Dat14 := Dialog.Dat14;
-    Owner.FPropellerTask4Data.Dat15 := Dialog.Dat15;
-    Owner.FPropellerTask4Data.Dat16 := Dialog.Dat16;
-    Owner.FPropellerTask4Data.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FPropellerTask4Data.Dat2 := Dialog.Dat2;
+    FreeShip.FPropellerTask4Data.Dat3 := Dialog.Dat3;
+    FreeShip.FPropellerTask4Data.Dat4 := Dialog.Dat4;
+    FreeShip.FPropellerTask4Data.Dat5 := Dialog.Dat5;
+    FreeShip.FPropellerTask4Data.Dat6 := Dialog.Dat6;
+    FreeShip.FPropellerTask4Data.Dat7 := Dialog.Dat7;
+    FreeShip.FPropellerTask4Data.Dat8 := Dialog.Dat8;
+    FreeShip.FPropellerTask4Data.Dat9 := Dialog.Dat9;
+    FreeShip.FPropellerTask4Data.Dat10 := Dialog.Dat10;
+    FreeShip.FPropellerTask4Data.Dat11 := Dialog.Dat11;
+    FreeShip.FPropellerTask4Data.Dat12 := Dialog.Dat12;
+    FreeShip.FPropellerTask4Data.Dat13 := Dialog.Dat13;
+    FreeShip.FPropellerTask4Data.Dat14 := Dialog.Dat14;
+    FreeShip.FPropellerTask4Data.Dat15 := Dialog.Dat15;
+    FreeShip.FPropellerTask4Data.Dat16 := Dialog.Dat16;
+    FreeShip.FPropellerTask4Data.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Propeller_Task4}
@@ -8960,22 +9014,22 @@ procedure TFreeEdit.Propeller_Task5;
 var
   Dialog: TFreePropeller_Task5;
 begin
-  Dialog := TFreePropeller_Task5.Create(Owner);
+  Dialog := TFreePropeller_Task5.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FPropellerTask5Data.Dat2;
-  Dialog.Dat3 := Owner.FPropellerTask5Data.Dat3;
-  Dialog.Dat4 := Owner.FPropellerTask5Data.Dat4;
-  Dialog.Dat5 := Owner.FPropellerTask5Data.Dat5;
-  Dialog.Dat6 := Owner.FPropellerTask5Data.Dat6;
-  if Dialog.Execute(Owner, Owner.FPropellerTask5Data.Extract) then
+  Dialog.Dat2 := FreeShip.FPropellerTask5Data.Dat2;
+  Dialog.Dat3 := FreeShip.FPropellerTask5Data.Dat3;
+  Dialog.Dat4 := FreeShip.FPropellerTask5Data.Dat4;
+  Dialog.Dat5 := FreeShip.FPropellerTask5Data.Dat5;
+  Dialog.Dat6 := FreeShip.FPropellerTask5Data.Dat6;
+  if Dialog.Execute(FreeShip, FreeShip.FPropellerTask5Data.Extract) then
   begin
-    Owner.FPropellerTask5Data.Dat2 := Dialog.Dat2;
-    Owner.FPropellerTask5Data.Dat3 := Dialog.Dat3;
-    Owner.FPropellerTask5Data.Dat4 := Dialog.Dat4;
-    Owner.FPropellerTask5Data.Dat5 := Dialog.Dat5;
-    Owner.FPropellerTask5Data.Dat6 := Dialog.Dat6;
-    Owner.FPropellerTask5Data.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FPropellerTask5Data.Dat2 := Dialog.Dat2;
+    FreeShip.FPropellerTask5Data.Dat3 := Dialog.Dat3;
+    FreeShip.FPropellerTask5Data.Dat4 := Dialog.Dat4;
+    FreeShip.FPropellerTask5Data.Dat5 := Dialog.Dat5;
+    FreeShip.FPropellerTask5Data.Dat6 := Dialog.Dat6;
+    FreeShip.FPropellerTask5Data.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Propeller_Task5}
@@ -8985,44 +9039,44 @@ procedure TFreeEdit.Hydrodyn_Rvrs;
 var
   Dialog: TFreeHydrodyn_Rvrs;
 begin
-  Dialog := TFreeHydrodyn_Rvrs.Create(Owner);
+  Dialog := TFreeHydrodyn_Rvrs.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FPropellerRvrsData.Dat2;
-  Dialog.Dat3 := Owner.FPropellerRvrsData.Dat3;
-  Dialog.Dat4 := Owner.FPropellerRvrsData.Dat4;
-  Dialog.Dat5 := Owner.FPropellerRvrsData.Dat5;
-  Dialog.Dat6 := Owner.FPropellerRvrsData.Dat6;
-  Dialog.Dat7 := Owner.FPropellerRvrsData.Dat7;
-  Dialog.Dat8 := Owner.FPropellerRvrsData.Dat8;
-  Dialog.Dat9 := Owner.FPropellerRvrsData.Dat9;
-  Dialog.Dat10 := Owner.FPropellerRvrsData.Dat10;
-  Dialog.Dat11 := Owner.FPropellerRvrsData.Dat11;
-  Dialog.Dat12 := Owner.FPropellerRvrsData.Dat12;
-  Dialog.Dat13 := Owner.FPropellerRvrsData.Dat13;
-  Dialog.Dat14 := Owner.FPropellerRvrsData.Dat14;
-  Dialog.Dat15 := Owner.FPropellerRvrsData.Dat15;
-  Dialog.Dat16 := Owner.FPropellerRvrsData.Dat16;
-  Dialog.Dat17 := Owner.FPropellerRvrsData.Dat17;
-  if Dialog.Execute(Owner, Owner.FPropellerRvrsData.Extract) then
+  Dialog.Dat2 := FreeShip.FPropellerRvrsData.Dat2;
+  Dialog.Dat3 := FreeShip.FPropellerRvrsData.Dat3;
+  Dialog.Dat4 := FreeShip.FPropellerRvrsData.Dat4;
+  Dialog.Dat5 := FreeShip.FPropellerRvrsData.Dat5;
+  Dialog.Dat6 := FreeShip.FPropellerRvrsData.Dat6;
+  Dialog.Dat7 := FreeShip.FPropellerRvrsData.Dat7;
+  Dialog.Dat8 := FreeShip.FPropellerRvrsData.Dat8;
+  Dialog.Dat9 := FreeShip.FPropellerRvrsData.Dat9;
+  Dialog.Dat10 := FreeShip.FPropellerRvrsData.Dat10;
+  Dialog.Dat11 := FreeShip.FPropellerRvrsData.Dat11;
+  Dialog.Dat12 := FreeShip.FPropellerRvrsData.Dat12;
+  Dialog.Dat13 := FreeShip.FPropellerRvrsData.Dat13;
+  Dialog.Dat14 := FreeShip.FPropellerRvrsData.Dat14;
+  Dialog.Dat15 := FreeShip.FPropellerRvrsData.Dat15;
+  Dialog.Dat16 := FreeShip.FPropellerRvrsData.Dat16;
+  Dialog.Dat17 := FreeShip.FPropellerRvrsData.Dat17;
+  if Dialog.Execute(FreeShip, FreeShip.FPropellerRvrsData.Extract) then
   begin
-    Owner.FPropellerRvrsData.Dat2 := Dialog.Dat2;
-    Owner.FPropellerRvrsData.Dat3 := Dialog.Dat3;
-    Owner.FPropellerRvrsData.Dat4 := Dialog.Dat4;
-    Owner.FPropellerRvrsData.Dat5 := Dialog.Dat5;
-    Owner.FPropellerRvrsData.Dat6 := Dialog.Dat6;
-    Owner.FPropellerRvrsData.Dat7 := Dialog.Dat7;
-    Owner.FPropellerRvrsData.Dat8 := Dialog.Dat8;
-    Owner.FPropellerRvrsData.Dat9 := Dialog.Dat9;
-    Owner.FPropellerRvrsData.Dat10 := Dialog.Dat10;
-    Owner.FPropellerRvrsData.Dat11 := Dialog.Dat11;
-    Owner.FPropellerRvrsData.Dat12 := Dialog.Dat12;
-    Owner.FPropellerRvrsData.Dat13 := Dialog.Dat13;
-    Owner.FPropellerRvrsData.Dat14 := Dialog.Dat14;
-    Owner.FPropellerRvrsData.Dat15 := Dialog.Dat15;
-    Owner.FPropellerRvrsData.Dat16 := Dialog.Dat16;
-    Owner.FPropellerRvrsData.Dat17 := Dialog.Dat17;
-    Owner.FPropellerRvrsData.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FPropellerRvrsData.Dat2 := Dialog.Dat2;
+    FreeShip.FPropellerRvrsData.Dat3 := Dialog.Dat3;
+    FreeShip.FPropellerRvrsData.Dat4 := Dialog.Dat4;
+    FreeShip.FPropellerRvrsData.Dat5 := Dialog.Dat5;
+    FreeShip.FPropellerRvrsData.Dat6 := Dialog.Dat6;
+    FreeShip.FPropellerRvrsData.Dat7 := Dialog.Dat7;
+    FreeShip.FPropellerRvrsData.Dat8 := Dialog.Dat8;
+    FreeShip.FPropellerRvrsData.Dat9 := Dialog.Dat9;
+    FreeShip.FPropellerRvrsData.Dat10 := Dialog.Dat10;
+    FreeShip.FPropellerRvrsData.Dat11 := Dialog.Dat11;
+    FreeShip.FPropellerRvrsData.Dat12 := Dialog.Dat12;
+    FreeShip.FPropellerRvrsData.Dat13 := Dialog.Dat13;
+    FreeShip.FPropellerRvrsData.Dat14 := Dialog.Dat14;
+    FreeShip.FPropellerRvrsData.Dat15 := Dialog.Dat15;
+    FreeShip.FPropellerRvrsData.Dat16 := Dialog.Dat16;
+    FreeShip.FPropellerRvrsData.Dat17 := Dialog.Dat17;
+    FreeShip.FPropellerRvrsData.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Hydrodyn_Rvrs}
@@ -9032,50 +9086,50 @@ procedure TFreeEdit.Hydrodyn_Maneuv;
 var
   Dialog: TFreeHydrodyn_Maneuv;
 begin
-  Dialog := TFreeHydrodyn_Maneuv.Create(Owner);
+  Dialog := TFreeHydrodyn_Maneuv.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FHydrodynManeuvData.Dat2;
-  Dialog.Dat3 := Owner.FHydrodynManeuvData.Dat3;
-  Dialog.Dat4 := Owner.FHydrodynManeuvData.Dat4;
-  Dialog.Dat5 := Owner.FHydrodynManeuvData.Dat5;
-  Dialog.Dat6 := Owner.FHydrodynManeuvData.Dat6;
-  Dialog.Dat7 := Owner.FHydrodynManeuvData.Dat7;
-  Dialog.Dat8 := Owner.FHydrodynManeuvData.Dat8;
-  Dialog.Dat9 := Owner.FHydrodynManeuvData.Dat9;
-  Dialog.Dat10 := Owner.FHydrodynManeuvData.Dat10;
-  Dialog.Dat11 := Owner.FHydrodynManeuvData.Dat11;
-  Dialog.Dat12 := Owner.FHydrodynManeuvData.Dat12;
-  Dialog.Dat13 := Owner.FHydrodynManeuvData.Dat13;
-  Dialog.Dat14 := Owner.FHydrodynManeuvData.Dat14;
-  Dialog.Dat15 := Owner.FHydrodynManeuvData.Dat15;
-  Dialog.Dat16 := Owner.FHydrodynManeuvData.Dat16;
-  Dialog.Dat17 := Owner.FHydrodynManeuvData.Dat17;
-  Dialog.Dat18 := Owner.FHydrodynManeuvData.Dat18;
-  Dialog.Dat19 := Owner.FHydrodynManeuvData.Dat19;
-  Dialog.Dat20 := Owner.FHydrodynManeuvData.Dat20;
-  if Dialog.Execute(Owner, Owner.FHydrodynManeuvData.Extract) then
+  Dialog.Dat2 := FreeShip.FHydrodynManeuvData.Dat2;
+  Dialog.Dat3 := FreeShip.FHydrodynManeuvData.Dat3;
+  Dialog.Dat4 := FreeShip.FHydrodynManeuvData.Dat4;
+  Dialog.Dat5 := FreeShip.FHydrodynManeuvData.Dat5;
+  Dialog.Dat6 := FreeShip.FHydrodynManeuvData.Dat6;
+  Dialog.Dat7 := FreeShip.FHydrodynManeuvData.Dat7;
+  Dialog.Dat8 := FreeShip.FHydrodynManeuvData.Dat8;
+  Dialog.Dat9 := FreeShip.FHydrodynManeuvData.Dat9;
+  Dialog.Dat10 := FreeShip.FHydrodynManeuvData.Dat10;
+  Dialog.Dat11 := FreeShip.FHydrodynManeuvData.Dat11;
+  Dialog.Dat12 := FreeShip.FHydrodynManeuvData.Dat12;
+  Dialog.Dat13 := FreeShip.FHydrodynManeuvData.Dat13;
+  Dialog.Dat14 := FreeShip.FHydrodynManeuvData.Dat14;
+  Dialog.Dat15 := FreeShip.FHydrodynManeuvData.Dat15;
+  Dialog.Dat16 := FreeShip.FHydrodynManeuvData.Dat16;
+  Dialog.Dat17 := FreeShip.FHydrodynManeuvData.Dat17;
+  Dialog.Dat18 := FreeShip.FHydrodynManeuvData.Dat18;
+  Dialog.Dat19 := FreeShip.FHydrodynManeuvData.Dat19;
+  Dialog.Dat20 := FreeShip.FHydrodynManeuvData.Dat20;
+  if Dialog.Execute(FreeShip, FreeShip.FHydrodynManeuvData.Extract) then
   begin
-    Owner.FHydrodynManeuvData.Dat2 := Dialog.Dat2;
-    Owner.FHydrodynManeuvData.Dat3 := Dialog.Dat3;
-    Owner.FHydrodynManeuvData.Dat4 := Dialog.Dat4;
-    Owner.FHydrodynManeuvData.Dat5 := Dialog.Dat5;
-    Owner.FHydrodynManeuvData.Dat6 := Dialog.Dat6;
-    Owner.FHydrodynManeuvData.Dat7 := Dialog.Dat7;
-    Owner.FHydrodynManeuvData.Dat8 := Dialog.Dat8;
-    Owner.FHydrodynManeuvData.Dat9 := Dialog.Dat9;
-    Owner.FHydrodynManeuvData.Dat10 := Dialog.Dat10;
-    Owner.FHydrodynManeuvData.Dat11 := Dialog.Dat11;
-    Owner.FHydrodynManeuvData.Dat12 := Dialog.Dat12;
-    Owner.FHydrodynManeuvData.Dat13 := Dialog.Dat13;
-    Owner.FHydrodynManeuvData.Dat14 := Dialog.Dat14;
-    Owner.FHydrodynManeuvData.Dat15 := Dialog.Dat15;
-    Owner.FHydrodynManeuvData.Dat16 := Dialog.Dat16;
-    Owner.FHydrodynManeuvData.Dat17 := Dialog.Dat17;
-    Owner.FHydrodynManeuvData.Dat18 := Dialog.Dat18;
-    Owner.FHydrodynManeuvData.Dat19 := Dialog.Dat19;
-    Owner.FHydrodynManeuvData.Dat20 := Dialog.Dat20;
-    Owner.FHydrodynManeuvData.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FHydrodynManeuvData.Dat2 := Dialog.Dat2;
+    FreeShip.FHydrodynManeuvData.Dat3 := Dialog.Dat3;
+    FreeShip.FHydrodynManeuvData.Dat4 := Dialog.Dat4;
+    FreeShip.FHydrodynManeuvData.Dat5 := Dialog.Dat5;
+    FreeShip.FHydrodynManeuvData.Dat6 := Dialog.Dat6;
+    FreeShip.FHydrodynManeuvData.Dat7 := Dialog.Dat7;
+    FreeShip.FHydrodynManeuvData.Dat8 := Dialog.Dat8;
+    FreeShip.FHydrodynManeuvData.Dat9 := Dialog.Dat9;
+    FreeShip.FHydrodynManeuvData.Dat10 := Dialog.Dat10;
+    FreeShip.FHydrodynManeuvData.Dat11 := Dialog.Dat11;
+    FreeShip.FHydrodynManeuvData.Dat12 := Dialog.Dat12;
+    FreeShip.FHydrodynManeuvData.Dat13 := Dialog.Dat13;
+    FreeShip.FHydrodynManeuvData.Dat14 := Dialog.Dat14;
+    FreeShip.FHydrodynManeuvData.Dat15 := Dialog.Dat15;
+    FreeShip.FHydrodynManeuvData.Dat16 := Dialog.Dat16;
+    FreeShip.FHydrodynManeuvData.Dat17 := Dialog.Dat17;
+    FreeShip.FHydrodynManeuvData.Dat18 := Dialog.Dat18;
+    FreeShip.FHydrodynManeuvData.Dat19 := Dialog.Dat19;
+    FreeShip.FHydrodynManeuvData.Dat20 := Dialog.Dat20;
+    FreeShip.FHydrodynManeuvData.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.HydrodynManeuv}
@@ -9085,34 +9139,34 @@ procedure TFreeEdit.Hydrodyn_Task1;
 var
   Dialog: TFreeHydrodyn_Task1;
 begin
-  Dialog := TFreeHydrodyn_Task1.Create(Owner);
+  Dialog := TFreeHydrodyn_Task1.Create(FreeShip);
   ShowTranslatedValues(Dialog);
-  Dialog.Dat2 := Owner.FHydrodynTask1Data.Dat2;
-  Dialog.Dat3 := Owner.FHydrodynTask1Data.Dat3;
-  Dialog.Dat4 := Owner.FHydrodynTask1Data.Dat4;
-  Dialog.Dat5 := Owner.FHydrodynTask1Data.Dat5;
-  Dialog.Dat6 := Owner.FHydrodynTask1Data.Dat6;
-  Dialog.Dat7 := Owner.FHydrodynTask1Data.Dat7;
-  Dialog.Dat8 := Owner.FHydrodynTask1Data.Dat8;
-  Dialog.Dat9 := Owner.FHydrodynTask1Data.Dat9;
-  Dialog.Dat10 := Owner.FHydrodynTask1Data.Dat10;
-  Dialog.Dat11 := Owner.FHydrodynTask1Data.Dat11;
-  Dialog.Dat12 := Owner.FHydrodynTask1Data.Dat12;
-  if Dialog.Execute(Owner, Owner.FHydrodynTask1Data.Extract) then
+  Dialog.Dat2 := FreeShip.FHydrodynTask1Data.Dat2;
+  Dialog.Dat3 := FreeShip.FHydrodynTask1Data.Dat3;
+  Dialog.Dat4 := FreeShip.FHydrodynTask1Data.Dat4;
+  Dialog.Dat5 := FreeShip.FHydrodynTask1Data.Dat5;
+  Dialog.Dat6 := FreeShip.FHydrodynTask1Data.Dat6;
+  Dialog.Dat7 := FreeShip.FHydrodynTask1Data.Dat7;
+  Dialog.Dat8 := FreeShip.FHydrodynTask1Data.Dat8;
+  Dialog.Dat9 := FreeShip.FHydrodynTask1Data.Dat9;
+  Dialog.Dat10 := FreeShip.FHydrodynTask1Data.Dat10;
+  Dialog.Dat11 := FreeShip.FHydrodynTask1Data.Dat11;
+  Dialog.Dat12 := FreeShip.FHydrodynTask1Data.Dat12;
+  if Dialog.Execute(FreeShip, FreeShip.FHydrodynTask1Data.Extract) then
   begin
-    Owner.FHydrodynTask1Data.Dat2 := Dialog.Dat2;
-    Owner.FHydrodynTask1Data.Dat3 := Dialog.Dat3;
-    Owner.FHydrodynTask1Data.Dat4 := Dialog.Dat4;
-    Owner.FHydrodynTask1Data.Dat5 := Dialog.Dat5;
-    Owner.FHydrodynTask1Data.Dat6 := Dialog.Dat6;
-    Owner.FHydrodynTask1Data.Dat7 := Dialog.Dat7;
-    Owner.FHydrodynTask1Data.Dat8 := Dialog.Dat8;
-    Owner.FHydrodynTask1Data.Dat9 := Dialog.Dat9;
-    Owner.FHydrodynTask1Data.Dat10 := Dialog.Dat10;
-    Owner.FHydrodynTask1Data.Dat11 := Dialog.Dat11;
-    Owner.FHydrodynTask1Data.Dat12 := Dialog.Dat12;
-    Owner.FHydrodynTask1Data.Extract := Dialog.CheckBox2.Checked;
-    Owner.FileChanged := True;
+    FreeShip.FHydrodynTask1Data.Dat2 := Dialog.Dat2;
+    FreeShip.FHydrodynTask1Data.Dat3 := Dialog.Dat3;
+    FreeShip.FHydrodynTask1Data.Dat4 := Dialog.Dat4;
+    FreeShip.FHydrodynTask1Data.Dat5 := Dialog.Dat5;
+    FreeShip.FHydrodynTask1Data.Dat6 := Dialog.Dat6;
+    FreeShip.FHydrodynTask1Data.Dat7 := Dialog.Dat7;
+    FreeShip.FHydrodynTask1Data.Dat8 := Dialog.Dat8;
+    FreeShip.FHydrodynTask1Data.Dat9 := Dialog.Dat9;
+    FreeShip.FHydrodynTask1Data.Dat10 := Dialog.Dat10;
+    FreeShip.FHydrodynTask1Data.Dat11 := Dialog.Dat11;
+    FreeShip.FHydrodynTask1Data.Dat12 := Dialog.Dat12;
+    FreeShip.FHydrodynTask1Data.Extract := Dialog.CheckBox2.Checked;
+    FreeShip.FileChanged := True;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.HydrodynTask1}
@@ -9123,42 +9177,42 @@ end;{TFreeEdit.HydrodynTask1}
 procedure TFreeEdit.Hydrodyn_Task2;
 var Dialog : TFreeHydrodyn_Task2;
 begin
-   Dialog:=TFreeHydrodyn_Task2.Create(Owner);
+   Dialog:=TFreeHydrodyn_Task2.Create(FreeShip);
    ShowTranslatedValues(Dialog);
-   Dialog.Dat2:=Owner.FHydrodynTask2Data.Dat2;
-   Dialog.Dat3:=Owner.FHydrodynTask2Data.Dat3;
-   Dialog.Dat4:=Owner.FHydrodynTask2Data.Dat4;
-   Dialog.Dat5:=Owner.FHydrodynTask2Data.Dat5;
-   Dialog.Dat6:=Owner.FHydrodynTask2Data.Dat6;
-   Dialog.Dat7:=Owner.FHydrodynTask2Data.Dat7;
-   Dialog.Dat8:=Owner.FHydrodynTask2Data.Dat8;
-   Dialog.Dat9:=Owner.FHydrodynTask2Data.Dat9;
-   Dialog.Dat10:=Owner.FHydrodynTask2Data.Dat10;
-   Dialog.Dat11:=Owner.FHydrodynTask2Data.Dat11;
-   Dialog.Dat12:=Owner.FHydrodynTask2Data.Dat12;
-   Dialog.Dat13:=Owner.FHydrodynTask2Data.Dat13;
-   Dialog.Dat14:=Owner.FHydrodynTask2Data.Dat14;
-   Dialog.Dat15:=Owner.FHydrodynTask2Data.Dat15;
-   Dialog.Dat16:=Owner.FHydrodynTask2Data.Dat16;
-   if Dialog.Execute(Owner,Owner.FHydrodynTask2Data.Extract) then
+   Dialog.Dat2:=FreeShip.FHydrodynTask2Data.Dat2;
+   Dialog.Dat3:=FreeShip.FHydrodynTask2Data.Dat3;
+   Dialog.Dat4:=FreeShip.FHydrodynTask2Data.Dat4;
+   Dialog.Dat5:=FreeShip.FHydrodynTask2Data.Dat5;
+   Dialog.Dat6:=FreeShip.FHydrodynTask2Data.Dat6;
+   Dialog.Dat7:=FreeShip.FHydrodynTask2Data.Dat7;
+   Dialog.Dat8:=FreeShip.FHydrodynTask2Data.Dat8;
+   Dialog.Dat9:=FreeShip.FHydrodynTask2Data.Dat9;
+   Dialog.Dat10:=FreeShip.FHydrodynTask2Data.Dat10;
+   Dialog.Dat11:=FreeShip.FHydrodynTask2Data.Dat11;
+   Dialog.Dat12:=FreeShip.FHydrodynTask2Data.Dat12;
+   Dialog.Dat13:=FreeShip.FHydrodynTask2Data.Dat13;
+   Dialog.Dat14:=FreeShip.FHydrodynTask2Data.Dat14;
+   Dialog.Dat15:=FreeShip.FHydrodynTask2Data.Dat15;
+   Dialog.Dat16:=FreeShip.FHydrodynTask2Data.Dat16;
+   if Dialog.Execute(FreeShip,FreeShip.FHydrodynTask2Data.Extract) then
    begin
-      Owner.FHydrodynTask2Data.Dat2:=Dialog.Dat2;
-      Owner.FHydrodynTask2Data.Dat3:=Dialog.Dat3;
-      Owner.FHydrodynTask2Data.Dat4:=Dialog.Dat4;
-      Owner.FHydrodynTask2Data.Dat5:=Dialog.Dat5;
-      Owner.FHydrodynTask2Data.Dat6:=Dialog.Dat6;
-      Owner.FHydrodynTask2Data.Dat7:=Dialog.Dat7;
-      Owner.FHydrodynTask2Data.Dat8:=Dialog.Dat8;
-      Owner.FHydrodynTask2Data.Dat9:=Dialog.Dat9;
-      Owner.FHydrodynTask2Data.Dat10:=Dialog.Dat10;
-      Owner.FHydrodynTask2Data.Dat11:=Dialog.Dat11;
-      Owner.FHydrodynTask2Data.Dat12:=Dialog.Dat12;
-      Owner.FHydrodynTask2Data.Dat13:=Dialog.Dat13;
-      Owner.FHydrodynTask2Data.Dat14:=Dialog.Dat14;
-      Owner.FHydrodynTask2Data.Dat15:=Dialog.Dat15;
-      Owner.FHydrodynTask2Data.Dat16:=Dialog.Dat16;
-      Owner.FHydrodynTask2Data.Extract:=Dialog.CheckBox2.Checked;
-      Owner.FileChanged:=True;
+      FreeShip.FHydrodynTask2Data.Dat2:=Dialog.Dat2;
+      FreeShip.FHydrodynTask2Data.Dat3:=Dialog.Dat3;
+      FreeShip.FHydrodynTask2Data.Dat4:=Dialog.Dat4;
+      FreeShip.FHydrodynTask2Data.Dat5:=Dialog.Dat5;
+      FreeShip.FHydrodynTask2Data.Dat6:=Dialog.Dat6;
+      FreeShip.FHydrodynTask2Data.Dat7:=Dialog.Dat7;
+      FreeShip.FHydrodynTask2Data.Dat8:=Dialog.Dat8;
+      FreeShip.FHydrodynTask2Data.Dat9:=Dialog.Dat9;
+      FreeShip.FHydrodynTask2Data.Dat10:=Dialog.Dat10;
+      FreeShip.FHydrodynTask2Data.Dat11:=Dialog.Dat11;
+      FreeShip.FHydrodynTask2Data.Dat12:=Dialog.Dat12;
+      FreeShip.FHydrodynTask2Data.Dat13:=Dialog.Dat13;
+      FreeShip.FHydrodynTask2Data.Dat14:=Dialog.Dat14;
+      FreeShip.FHydrodynTask2Data.Dat15:=Dialog.Dat15;
+      FreeShip.FHydrodynTask2Data.Dat16:=Dialog.Dat16;
+      FreeShip.FHydrodynTask2Data.Extract:=Dialog.CheckBox2.Checked;
+      FreeShip.FileChanged:=True;
    end;
    Dialog.Destroy;
 end;
@@ -9170,42 +9224,42 @@ end;
 {procedure TFreeEdit.Hydrodyn_Task3;
 var Dialog : TFreeHydrodyn_Task3;
 begin
-   Dialog:=TFreeHydrodyn_Task3.Create(Owner);
+   Dialog:=TFreeHydrodyn_Task3.Create(FreeShip);
    ShowTranslatedValues(Dialog);
-   Dialog.Dat2:=Owner.FHydrodynTask3Data.Dat2;
-   Dialog.Dat3:=Owner.FHydrodynTask3Data.Dat3;
-   Dialog.Dat4:=Owner.FHydrodynTask3Data.Dat4;
-   Dialog.Dat5:=Owner.FHydrodynTask3Data.Dat5;
-   Dialog.Dat6:=Owner.FHydrodynTask3Data.Dat6;
-   Dialog.Dat7:=Owner.FHydrodynTask3Data.Dat7;
-   Dialog.Dat8:=Owner.FHydrodynTask3Data.Dat8;
-   Dialog.Dat9:=Owner.FHydrodynTask3Data.Dat9;
-   Dialog.Dat10:=Owner.FHydrodynTask3Data.Dat10;
-   Dialog.Dat11:=Owner.FHydrodynTask3Data.Dat11;
-   Dialog.Dat12:=Owner.FHydrodynTask3Data.Dat12;
-   Dialog.Dat13:=Owner.FHydrodynTask3Data.Dat13;
-   Dialog.Dat14:=Owner.FHydrodynTask3Data.Dat14;
-   Dialog.Dat15:=Owner.FHydrodynTask3Data.Dat15;
-   Dialog.Dat16:=Owner.FHydrodynTask3Data.Dat16;
-   if Dialog.Execute(Owner,Owner.FHydrodynTask3Data.Extract) then
+   Dialog.Dat2:=FreeShip.FHydrodynTask3Data.Dat2;
+   Dialog.Dat3:=FreeShip.FHydrodynTask3Data.Dat3;
+   Dialog.Dat4:=FreeShip.FHydrodynTask3Data.Dat4;
+   Dialog.Dat5:=FreeShip.FHydrodynTask3Data.Dat5;
+   Dialog.Dat6:=FreeShip.FHydrodynTask3Data.Dat6;
+   Dialog.Dat7:=FreeShip.FHydrodynTask3Data.Dat7;
+   Dialog.Dat8:=FreeShip.FHydrodynTask3Data.Dat8;
+   Dialog.Dat9:=FreeShip.FHydrodynTask3Data.Dat9;
+   Dialog.Dat10:=FreeShip.FHydrodynTask3Data.Dat10;
+   Dialog.Dat11:=FreeShip.FHydrodynTask3Data.Dat11;
+   Dialog.Dat12:=FreeShip.FHydrodynTask3Data.Dat12;
+   Dialog.Dat13:=FreeShip.FHydrodynTask3Data.Dat13;
+   Dialog.Dat14:=FreeShip.FHydrodynTask3Data.Dat14;
+   Dialog.Dat15:=FreeShip.FHydrodynTask3Data.Dat15;
+   Dialog.Dat16:=FreeShip.FHydrodynTask3Data.Dat16;
+   if Dialog.Execute(FreeShip,FreeShip.FHydrodynTask3Data.Extract) then
    begin
-      Owner.FHydrodynTask3Data.Dat2:=Dialog.Dat2;
-      Owner.FHydrodynTask3Data.Dat3:=Dialog.Dat3;
-      Owner.FHydrodynTask3Data.Dat4:=Dialog.Dat4;
-      Owner.FHydrodynTask3Data.Dat5:=Dialog.Dat5;
-      Owner.FHydrodynTask3Data.Dat6:=Dialog.Dat6;
-      Owner.FHydrodynTask3Data.Dat7:=Dialog.Dat7;
-      Owner.FHydrodynTask3Data.Dat8:=Dialog.Dat8;
-      Owner.FHydrodynTask3Data.Dat9:=Dialog.Dat9;
-      Owner.FHydrodynTask3Data.Dat10:=Dialog.Dat10;
-      Owner.FHydrodynTask3Data.Dat11:=Dialog.Dat11;
-      Owner.FHydrodynTask3Data.Dat12:=Dialog.Dat12;
-      Owner.FHydrodynTask3Data.Dat13:=Dialog.Dat13;
-      Owner.FHydrodynTask3Data.Dat14:=Dialog.Dat14;
-      Owner.FHydrodynTask3Data.Dat15:=Dialog.Dat15;
-      Owner.FHydrodynTask3Data.Dat16:=Dialog.Dat16;
-      Owner.FHydrodynTask3Data.Extract:=Dialog.CheckBox2.Checked;
-      Owner.FileChanged:=True;
+      FreeShip.FHydrodynTask3Data.Dat2:=Dialog.Dat2;
+      FreeShip.FHydrodynTask3Data.Dat3:=Dialog.Dat3;
+      FreeShip.FHydrodynTask3Data.Dat4:=Dialog.Dat4;
+      FreeShip.FHydrodynTask3Data.Dat5:=Dialog.Dat5;
+      FreeShip.FHydrodynTask3Data.Dat6:=Dialog.Dat6;
+      FreeShip.FHydrodynTask3Data.Dat7:=Dialog.Dat7;
+      FreeShip.FHydrodynTask3Data.Dat8:=Dialog.Dat8;
+      FreeShip.FHydrodynTask3Data.Dat9:=Dialog.Dat9;
+      FreeShip.FHydrodynTask3Data.Dat10:=Dialog.Dat10;
+      FreeShip.FHydrodynTask3Data.Dat11:=Dialog.Dat11;
+      FreeShip.FHydrodynTask3Data.Dat12:=Dialog.Dat12;
+      FreeShip.FHydrodynTask3Data.Dat13:=Dialog.Dat13;
+      FreeShip.FHydrodynTask3Data.Dat14:=Dialog.Dat14;
+      FreeShip.FHydrodynTask3Data.Dat15:=Dialog.Dat15;
+      FreeShip.FHydrodynTask3Data.Dat16:=Dialog.Dat16;
+      FreeShip.FHydrodynTask3Data.Extract:=Dialog.CheckBox2.Checked;
+      FreeShip.FileChanged:=True;
    end;
    Dialog.Destroy;
 end;{TFreeEdit.HydrodynTask3}
@@ -9215,42 +9269,42 @@ end;{TFreeEdit.HydrodynTask3}
 {procedure TFreeEdit.Hydrodyn_Task4;
 var Dialog : TFreeHydrodyn_Task4;
 begin
-   Dialog:=TFreeHydrodyn_Task4.Create(Owner);
+   Dialog:=TFreeHydrodyn_Task4.Create(FreeShip);
    ShowTranslatedValues(Dialog);
-   Dialog.Dat2:=Owner.FHydrodynTask4Data.Dat2;
-   Dialog.Dat3:=Owner.FHydrodynTask4Data.Dat3;
-   Dialog.Dat4:=Owner.FHydrodynTask4Data.Dat4;
-   Dialog.Dat5:=Owner.FHydrodynTask4Data.Dat5;
-   Dialog.Dat6:=Owner.FHydrodynTask4Data.Dat6;
-   Dialog.Dat7:=Owner.FHydrodynTask4Data.Dat7;
-   Dialog.Dat8:=Owner.FHydrodynTask4Data.Dat8;
-   Dialog.Dat9:=Owner.FHydrodynTask4Data.Dat9;
-   Dialog.Dat10:=Owner.FHydrodynTask4Data.Dat10;
-   Dialog.Dat11:=Owner.FHydrodynTask4Data.Dat11;
-   Dialog.Dat12:=Owner.FHydrodynTask4Data.Dat12;
-   Dialog.Dat13:=Owner.FHydrodynTask4Data.Dat13;
-   Dialog.Dat14:=Owner.FHydrodynTask4Data.Dat14;
-   Dialog.Dat15:=Owner.FHydrodynTask4Data.Dat15;
-   Dialog.Dat16:=Owner.FHydrodynTask4Data.Dat16;
-   if Dialog.Execute(Owner,Owner.FHydrodynTask4Data.Extract) then
+   Dialog.Dat2:=FreeShip.FHydrodynTask4Data.Dat2;
+   Dialog.Dat3:=FreeShip.FHydrodynTask4Data.Dat3;
+   Dialog.Dat4:=FreeShip.FHydrodynTask4Data.Dat4;
+   Dialog.Dat5:=FreeShip.FHydrodynTask4Data.Dat5;
+   Dialog.Dat6:=FreeShip.FHydrodynTask4Data.Dat6;
+   Dialog.Dat7:=FreeShip.FHydrodynTask4Data.Dat7;
+   Dialog.Dat8:=FreeShip.FHydrodynTask4Data.Dat8;
+   Dialog.Dat9:=FreeShip.FHydrodynTask4Data.Dat9;
+   Dialog.Dat10:=FreeShip.FHydrodynTask4Data.Dat10;
+   Dialog.Dat11:=FreeShip.FHydrodynTask4Data.Dat11;
+   Dialog.Dat12:=FreeShip.FHydrodynTask4Data.Dat12;
+   Dialog.Dat13:=FreeShip.FHydrodynTask4Data.Dat13;
+   Dialog.Dat14:=FreeShip.FHydrodynTask4Data.Dat14;
+   Dialog.Dat15:=FreeShip.FHydrodynTask4Data.Dat15;
+   Dialog.Dat16:=FreeShip.FHydrodynTask4Data.Dat16;
+   if Dialog.Execute(FreeShip,FreeShip.FHydrodynTask4Data.Extract) then
    begin
-      Owner.FHydrodynTask4Data.Dat2:=Dialog.Dat2;
-      Owner.FHydrodynTask4Data.Dat3:=Dialog.Dat3;
-      Owner.FHydrodynTask4Data.Dat4:=Dialog.Dat4;
-      Owner.FHydrodynTask4Data.Dat5:=Dialog.Dat5;
-      Owner.FHydrodynTask4Data.Dat6:=Dialog.Dat6;
-      Owner.FHydrodynTask4Data.Dat7:=Dialog.Dat7;
-      Owner.FHydrodynTask4Data.Dat8:=Dialog.Dat8;
-      Owner.FHydrodynTask4Data.Dat9:=Dialog.Dat9;
-      Owner.FHydrodynTask4Data.Dat10:=Dialog.Dat10;
-      Owner.FHydrodynTask4Data.Dat11:=Dialog.Dat11;
-      Owner.FHydrodynTask4Data.Dat12:=Dialog.Dat12;
-      Owner.FHydrodynTask4Data.Dat13:=Dialog.Dat13;
-      Owner.FHydrodynTask4Data.Dat14:=Dialog.Dat14;
-      Owner.FHydrodynTask4Data.Dat15:=Dialog.Dat15;
-      Owner.FHydrodynTask4Data.Dat16:=Dialog.Dat16;
-      Owner.FHydrodynTask4Data.Extract:=Dialog.CheckBox2.Checked;
-      Owner.FileChanged:=True;
+      FreeShip.FHydrodynTask4Data.Dat2:=Dialog.Dat2;
+      FreeShip.FHydrodynTask4Data.Dat3:=Dialog.Dat3;
+      FreeShip.FHydrodynTask4Data.Dat4:=Dialog.Dat4;
+      FreeShip.FHydrodynTask4Data.Dat5:=Dialog.Dat5;
+      FreeShip.FHydrodynTask4Data.Dat6:=Dialog.Dat6;
+      FreeShip.FHydrodynTask4Data.Dat7:=Dialog.Dat7;
+      FreeShip.FHydrodynTask4Data.Dat8:=Dialog.Dat8;
+      FreeShip.FHydrodynTask4Data.Dat9:=Dialog.Dat9;
+      FreeShip.FHydrodynTask4Data.Dat10:=Dialog.Dat10;
+      FreeShip.FHydrodynTask4Data.Dat11:=Dialog.Dat11;
+      FreeShip.FHydrodynTask4Data.Dat12:=Dialog.Dat12;
+      FreeShip.FHydrodynTask4Data.Dat13:=Dialog.Dat13;
+      FreeShip.FHydrodynTask4Data.Dat14:=Dialog.Dat14;
+      FreeShip.FHydrodynTask4Data.Dat15:=Dialog.Dat15;
+      FreeShip.FHydrodynTask4Data.Dat16:=Dialog.Dat16;
+      FreeShip.FHydrodynTask4Data.Extract:=Dialog.CheckBox2.Checked;
+      FreeShip.FileChanged:=True;
    end;
    Dialog.Destroy;
 end;{TFreeEdit.HydrodynTask4}
@@ -9259,15 +9313,15 @@ end;{TFreeEdit.HydrodynTask4}
 // Add a new point to the model with no edges/faces attached
 function TFreeEdit.Point_New: TFreeSubdivisionControlPoint;
 begin
-  Result := TFreeSubdivisionControlPoint.Create(Owner.Surface);
-  Owner.Surface.AddControlPoint(Result);
+  Result := TFreeSubdivisionControlPoint.Create(FreeShip.Surface);
+  FreeShip.Surface.AddControlPoint(Result);
   Result.Coordinate := ZERO;
-  Owner.ActiveControlPoint := Result;
-  Owner.Surface.SelectedControlPoints.Add(Result);
-  Owner.FileChanged := True;
-  Owner.Redraw;
-  if Assigned(Owner.OnUpdateGeometryInfo) then
-    Owner.OnUpdateGeometryInfo(self);
+  FreeShip.ActiveControlPoint := Result;
+  FreeShip.Surface.SelectedControlPoints.Add(Result);
+  FreeShip.FileChanged := True;
+  FreeShip.Redraw;
+  if Assigned(FreeShip.OnUpdateGeometryInfo) then
+    FreeShip.OnUpdateGeometryInfo(self);
 end;{TFreeEdit.Point_New}
 
 // Anchor all selected points onto the first point
@@ -9281,21 +9335,21 @@ var
   P: T3DCoordinate;
   vUndo: TFreeUndoObject;
 begin
-  if Owner.NumberOfSelectedControlPoints > 1 then
+  if FreeShip.NumberOfSelectedControlPoints > 1 then
   begin
     NLocked := 0;
-    for I := 1 to Owner.NumberOfSelectedControlPoints-1 do
-      if Owner.SelectedControlPoint[I].Locked then
+    for I := 1 to FreeShip.NumberOfSelectedControlPoints-1 do
+      if FreeShip.SelectedControlPoint[I].Locked then
         Inc(NLocked);
     // Number of lovked points must be smaller then NumberOfSelectedControlPoints-2
-    if NLocked < Owner.NumberOfSelectedControlPoints - 1 then
+    if NLocked < FreeShip.NumberOfSelectedControlPoints - 1 then
     begin
-      P1 := Owner.SelectedControlPoint[0];
+      P1 := FreeShip.SelectedControlPoint[0];
       vUndo := CreateUndoObject(rsPointAnchorConstraintChanged, False);
       NChanged := 0;
-      for I := 1 to Owner.NumberOfSelectedControlPoints-1 do
+      for I := 1 to FreeShip.NumberOfSelectedControlPoints-1 do
       begin
-        Point := Owner.SelectedControlPoint[I];
+        Point := FreeShip.SelectedControlPoint[I];
         if not Point.Locked then
         begin
           Point.AnchorPoint := P1;
@@ -9305,8 +9359,8 @@ begin
       if NChanged > 0 then
       begin
         vUndo.Accept;
-        Owner.FileChanged := True;
-        Owner.Redraw;
+        FreeShip.FileChanged := True;
+        FreeShip.Redraw;
       end
       else
         vUndo.Delete;
@@ -9327,24 +9381,24 @@ var
   P: T3DCoordinate;
   vUndo: TFreeUndoObject;
 begin
-  if Owner.NumberOfSelectedControlPoints > 2 then
+  if FreeShip.NumberOfSelectedControlPoints > 2 then
   begin
     // Determine if the number of points to be moved does not conatin locked controlpoints only
     // however the first and last points (determining the linesegment) are allowed to be locked
     NLocked := 0;
-    for I := 2 to Owner.NumberOfSelectedControlPoints - 1 do
-      if Owner.SelectedControlPoint[I - 1].Locked then
+    for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do
+      if FreeShip.SelectedControlPoint[I - 1].Locked then
         Inc(NLocked);
     // Number of lovked points must be smaller then NumberOfSelectedControlPoints-2
-    if NLocked < Owner.NumberOfSelectedControlPoints - 2 then
+    if NLocked < FreeShip.NumberOfSelectedControlPoints - 2 then
     begin
-      P1 := Owner.SelectedControlPoint[0];
-      P2 := Owner.SelectedControlPoint[Owner.NumberOfSelectedControlPoints - 1];
+      P1 := FreeShip.SelectedControlPoint[0];
+      P2 := FreeShip.SelectedControlPoint[FreeShip.NumberOfSelectedControlPoints - 1];
       vUndo := CreateUndoObject(userstring(171), False);
       NChanged := 0;
-      for I := 2 to Owner.NumberOfSelectedControlPoints - 1 do
+      for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do
       begin
-        Point := Owner.SelectedControlPoint[I - 1];
+        Point := FreeShip.SelectedControlPoint[I - 1];
         if not Point.Locked then
         begin
           P := ProjectPointOnline(Point.Coordinate, P1.Coordinate, P2.Coordinate);
@@ -9358,8 +9412,8 @@ begin
       if NChanged > 0 then
       begin
         vUndo.Accept;
-        Owner.FileChanged := True;
-        Owner.Redraw;
+        FreeShip.FileChanged := True;
+        FreeShip.Redraw;
       end
       else
         vUndo.Delete;
@@ -9380,36 +9434,36 @@ var
   P: T3DCoordinate;
   vUndo: TFreeUndoObject;
 begin
-  if Owner.NumberOfSelectedControlPoints > 2 then
+  if FreeShip.NumberOfSelectedControlPoints > 2 then
   begin
     // Determine if the number of points to be moved does not conatin locked controlpoints only
     // however the first and last points (determining the linesegment) are allowed to be locked
     NLocked := 0;
-    for I := 2 to Owner.NumberOfSelectedControlPoints - 1 do
-      if Owner.SelectedControlPoint[I - 1].Locked then
+    for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do
+      if FreeShip.SelectedControlPoint[I - 1].Locked then
         Inc(NLocked);
     // Number of lovked points must be smaller then NumberOfSelectedControlPoints-2
-    if NLocked < Owner.NumberOfSelectedControlPoints - 2 then
+    if NLocked < FreeShip.NumberOfSelectedControlPoints - 2 then
     begin
-      P1 := Owner.SelectedControlPoint[0];
-      P2 := Owner.SelectedControlPoint[Owner.NumberOfSelectedControlPoints - 1];
+      P1 := FreeShip.SelectedControlPoint[0];
+      P2 := FreeShip.SelectedControlPoint[FreeShip.NumberOfSelectedControlPoints - 1];
       vUndo := CreateUndoObject(rsPointLinearConstraintChanged, False);
       NChanged := 0;
-      for I := 2 to Owner.NumberOfSelectedControlPoints - 1 do
+      for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do
       begin
-        Point := Owner.SelectedControlPoint[I - 1];
+        Point := FreeShip.SelectedControlPoint[I - 1];
         if not Point.Locked then
         begin
           Point.SetLinearConstraint(P1,P2);
-          Point.AdjustToLinearConstraint(self.Owner.GetFocusedViewport);
+          Point.AdjustToLinearConstraint(self.FreeShip.GetFocusedViewport);
           Inc(NChanged);
         end;
       end;
       if NChanged > 0 then
       begin
         vUndo.Accept;
-        Owner.FileChanged := True;
-        Owner.Redraw;
+        FreeShip.FileChanged := True;
+        FreeShip.Redraw;
       end
       else
         vUndo.Delete;
@@ -9423,36 +9477,36 @@ end;{TFreeEdit.Point_ProjectStraightLine}
 // Deselect all selected items at once
 procedure TFreeEdit.Selection_Clear;
 begin
-  Owner.Surface.Clearselection;
-  Owner.ActiveControlPoint := nil;
-  Owner.FSelectedFlowlines.Clear;
-  Owner.FSelectedMarkers.Clear;
-  Owner.Redraw;
+  FreeShip.Surface.Clearselection;
+  FreeShip.ActiveControlPoint := nil;
+  FreeShip.FSelectedFlowlines.Clear;
+  FreeShip.FSelectedMarkers.Clear;
+  FreeShip.Redraw;
 end;{TFreeEdit.Selection_Clear}
 
 procedure TFreeEdit.Selection_Delete;
 var
   I, N: integer;
 begin
-  N := Owner.NumberOfSelectedControlPoints + Owner.NumberOfSelectedControlEdges +
-    Owner.NumberOfSelectedControlFaces + Owner.NumberOfSelectedControlCurves +
-    Owner.NumberOfselectedMarkers + Owner.NumberOfselectedFlowlines;
+  N := FreeShip.NumberOfSelectedControlPoints + FreeShip.NumberOfSelectedControlEdges +
+    FreeShip.NumberOfSelectedControlFaces + FreeShip.NumberOfSelectedControlCurves +
+    FreeShip.NumberOfselectedMarkers + FreeShip.NumberOfselectedFlowlines;
   if N > 0 then
     if MessageDlg(Userstring(173) + #32 + IntToStr(N) + #32 + Userstring(
       174) + '?', mtWarning, [mbYes, mbNo], 0) = mrYes then
     begin
       CreateUndoObject(Userstring(175), True);
-      for I := Owner.NumberOfselectedFlowlines downto 1 do
-        Owner.SelectedFlowline[I - 1].Delete;
-      for I := Owner.NumberOfselectedMarkers downto 1 do
-        Owner.SelectedMarker[I - 1].Delete;
-      Owner.Surface.Selection_Delete;
-      Owner.ActiveControlPoint := nil;
-      Owner.Build := False;
-      Owner.FileChanged := True;
-      Owner.Redraw;
-      if Assigned(Owner.OnUpdateGeometryInfo) then
-        Owner.OnUpdateGeometryInfo(self);
+      for I := FreeShip.NumberOfselectedFlowlines downto 1 do
+        FreeShip.SelectedFlowline[I - 1].Delete;
+      for I := FreeShip.NumberOfselectedMarkers downto 1 do
+        FreeShip.SelectedMarker[I - 1].Delete;
+      FreeShip.Surface.Selection_Delete;
+      FreeShip.ActiveControlPoint := nil;
+      FreeShip.Build := False;
+      FreeShip.FileChanged := True;
+      FreeShip.Redraw;
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
     end;
 end;{TFreeEdit.Selection_Delete}
 
@@ -9461,26 +9515,26 @@ procedure TFreeEdit.Selection_SelectAll;
 var
   I, J: integer;
 begin
-  for I := 1 to Owner.NumberOfLayers do
-    if Owner.Layer[I - 1].Visible then
-      for J := 1 to Owner.Layer[I - 1].Count do
-        Owner.Layer[I - 1].Items[J - 1].Selected := True;
-  for I := 1 to Owner.Surface.NumberOfControlEdges do
-    if Owner.Surface.ControlEdge[I - 1].Visible then
-      Owner.Surface.ControlEdge[I - 1].Selected := True;
-  for I := 1 to Owner.Surface.NumberOfControlPoints do
-    if Owner.Surface.ControlPoint[I - 1].Visible then
-      Owner.Surface.ControlPoint[I - 1].Selected := True;
-  for I := 1 to Owner.Surface.NumberOfControlCurves do
-    if Owner.Surface.ControlCurve[I - 1].Visible then
-      Owner.Surface.ControlCurve[I - 1].Selected := True;
-  for I := 1 to Owner.NumberofMarkers do
-    if Owner.Marker[I - 1].Visible then
-      Owner.Marker[I - 1].Selected := True;
-  for I := 1 to Owner.NumberofFlowlines do
-    if Owner.Flowline[I - 1].Visible then
-      Owner.Flowline[I - 1].Selected := True;
-  Owner.Redraw;
+  for I := 1 to FreeShip.NumberOfLayers do
+    if FreeShip.Layer[I - 1].Visible then
+      for J := 1 to FreeShip.Layer[I - 1].Count do
+        FreeShip.Layer[I - 1].Items[J - 1].Selected := True;
+  for I := 1 to FreeShip.Surface.NumberOfControlEdges do
+    if FreeShip.Surface.ControlEdge[I - 1].Visible then
+      FreeShip.Surface.ControlEdge[I - 1].Selected := True;
+  for I := 1 to FreeShip.Surface.NumberOfControlPoints do
+    if FreeShip.Surface.ControlPoint[I - 1].Visible then
+      FreeShip.Surface.ControlPoint[I - 1].Selected := True;
+  for I := 1 to FreeShip.Surface.NumberOfControlCurves do
+    if FreeShip.Surface.ControlCurve[I - 1].Visible then
+      FreeShip.Surface.ControlCurve[I - 1].Selected := True;
+  for I := 1 to FreeShip.NumberofMarkers do
+    if FreeShip.Marker[I - 1].Visible then
+      FreeShip.Marker[I - 1].Selected := True;
+  for I := 1 to FreeShip.NumberofFlowlines do
+    if FreeShip.Flowline[I - 1].Visible then
+      FreeShip.Flowline[I - 1].Selected := True;
+  FreeShip.Redraw;
 end;{TFreeEdit.Selection_SelectAll}
 
 // Select all control points
@@ -9488,14 +9542,14 @@ procedure TFreeEdit.Selection_SelectAllControlPoints;
 var
   I, J: integer;
 begin
-  {for I := 1 to Owner.NumberOfLayers do
-    if Owner.Layer[I - 1].Visible then
-      for J := 1 to Owner.Layer[I - 1].Count do
-        Owner.Layer[I - 1].Items[J - 1].Selected := True;}
-  for I := 1 to Owner.Surface.NumberOfControlPoints do
-    if Owner.Surface.ControlPoint[I - 1].Visible then
-      Owner.Surface.ControlPoint[I - 1].Selected := True;
-  Owner.Redraw;
+  {for I := 1 to FreeShip.NumberOfLayers do
+    if FreeShip.Layer[I - 1].Visible then
+      for J := 1 to FreeShip.Layer[I - 1].Count do
+        FreeShip.Layer[I - 1].Items[J - 1].Selected := True;}
+  for I := 1 to FreeShip.Surface.NumberOfControlPoints do
+    if FreeShip.Surface.ControlPoint[I - 1].Visible then
+      FreeShip.Surface.ControlPoint[I - 1].Selected := True;
+  FreeShip.Redraw;
 end;{TFreeEdit.Selection_SelectAll}
 
 
@@ -9503,9 +9557,9 @@ procedure TFreeEdit.Selection_SelectLeakPoints;
 var
   I: integer;
 begin
-  for I := 0 to Owner.Surface.NumberOfControlPoints - 1 do
-    Owner.Surface.ControlPoint[I].Selected := Owner.Surface.ControlPoint[I].IsLeak;
-  Owner.Redraw;
+  for I := 0 to FreeShip.Surface.NumberOfControlPoints - 1 do
+    FreeShip.Surface.ControlPoint[I].Selected := FreeShip.Surface.ControlPoint[I].IsLeak;
+  FreeShip.Redraw;
 end;
 
 procedure TFreeEdit.Undo;
@@ -9513,23 +9567,23 @@ var
   UndoObject: TFreeUndoObject;
   Preview: boolean;
 begin
-  if Owner.FUndoObjects.Count > 0 then
+  if FreeShip.FUndoObjects.Count > 0 then
   begin
-    Preview := Owner.ProjectSettings.SavePreview;
+    Preview := FreeShip.ProjectSettings.SavePreview;
     try
-      if Owner.FUndoPosition = owner.UndoCount then
-        if Owner.UndoObject[Owner.UndoCount - 1].FIsTempRedoObject then
+      if FreeShip.FUndoPosition = FreeShip.UndoCount then
+        if FreeShip.UndoObject[FreeShip.UndoCount - 1].FIsTempRedoObject then
 
         else
           CreateRedoObject;
-      if Owner.FPreviousUndoPosition < Owner.FUndoPosition then
-        Dec(Owner.FUndoPosition);
-      Owner.FPreviousUndoPosition := Owner.FUndoPosition;
-      Dec(Owner.FUndoPosition);
-      UndoObject := Owner.FUndoObjects[Owner.FUndoPosition];
+      if FreeShip.FPreviousUndoPosition < FreeShip.FUndoPosition then
+        Dec(FreeShip.FUndoPosition);
+      FreeShip.FPreviousUndoPosition := FreeShip.FUndoPosition;
+      Dec(FreeShip.FUndoPosition);
+      UndoObject := FreeShip.FUndoObjects[FreeShip.FUndoPosition];
       UndoObject.Restore;
     finally
-      Owner.ProjectSettings.SavePreview := Preview;
+      FreeShip.ProjectSettings.SavePreview := Preview;
     end;
   end;
 end;{TFreeEdit.Undo}
@@ -9537,7 +9591,7 @@ end;{TFreeEdit.Undo}
 // Clear the undo history
 procedure TFreeEdit.Undo_Clear;
 begin
-  Owner.ClearUndo;
+  FreeShip.ClearUndo;
 end;{TFreeEdit.Undo_Clear}
 
 // Show the undo history
@@ -9548,28 +9602,28 @@ var
   Index: integer;
   vRedo: TFreeUndoObject;
 begin
-  Dialog := TFreeUndoHistoryDialog.Create(Owner);
+  Dialog := TFreeUndoHistoryDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
   vRedo := nil;
-  if (Owner.FUndoPosition = owner.UndoCount) and (Owner.UndoCount > 0) then
-    if not Owner.UndoObject[Owner.UndoCount - 1].FIsTempRedoObject then
+  if (FreeShip.FUndoPosition = FreeShip.UndoCount) and (FreeShip.UndoCount > 0) then
+    if not FreeShip.UndoObject[FreeShip.UndoCount - 1].FIsTempRedoObject then
     begin
       vRedo := CreateRedoObject;
-      Dec(Owner.FUndoPosition);
+      Dec(FreeShip.FUndoPosition);
     end;
 
-  if Dialog.Execute(Owner) then
+  if Dialog.Execute(FreeShip) then
   begin
     if Dialog.UndoBox.ItemIndex <> -1 then
     begin
       vUndo := Dialog.UndoBox.Items.Objects[Dialog.UndoBox.ItemIndex] as
         TFreeUndoObject;
       ;
-      Index := Owner.FUndoObjects.IndexOf(vUndo);
+      Index := FreeShip.FUndoObjects.IndexOf(vUndo);
       if Index <> -1 then
       begin
-        //Owner.FPreviousUndoPosition:=Index+1;
-        Owner.FUndoPosition := Index;
+        //FreeShip.FPreviousUndoPosition:=Index+1;
+        FreeShip.FUndoPosition := Index;
         vUndo.Restore;
       end;
     end;
@@ -9584,18 +9638,18 @@ var
   UndoObject: TFreeUndoObject;
   Preview: boolean;
 begin
-  if Owner.FUndoObjects.Count > 0 then
+  if FreeShip.FUndoObjects.Count > 0 then
   begin
-    Preview := Owner.ProjectSettings.SavePreview;
+    Preview := FreeShip.ProjectSettings.SavePreview;
     try
-      if Owner.FPreviousUndoPosition > Owner.FUndoPosition then
-        Inc(Owner.FUndoPosition);
-      Owner.FPreviousUndoPosition := Owner.FUndoPosition;
-      Inc(Owner.FUndoPosition);
-      UndoObject := Owner.FUndoObjects[Owner.FUndoPosition - 1];
+      if FreeShip.FPreviousUndoPosition > FreeShip.FUndoPosition then
+        Inc(FreeShip.FUndoPosition);
+      FreeShip.FPreviousUndoPosition := FreeShip.FUndoPosition;
+      Inc(FreeShip.FUndoPosition);
+      UndoObject := FreeShip.FUndoObjects[FreeShip.FUndoPosition - 1];
       UndoObject.Restore;
     finally
-      Owner.ProjectSettings.SavePreview := Preview;
+      FreeShip.ProjectSettings.SavePreview := Preview;
     end;
   end;
 end;{TFreeEdit.Redo}
@@ -9610,10 +9664,10 @@ var
 begin
   TargetList := nil;
   case IntType of
-    fiStation: TargetList := Owner.FStations;
-    fiButtock: TargetList := Owner.FButtocks;
-    fiWaterline: TargetList := Owner.FWaterlines;
-    fiDiagonal: TargetList := Owner.FDiagonals;
+    fiStation: TargetList := FreeShip.FStations;
+    fiButtock: TargetList := FreeShip.FButtocks;
+    fiWaterline: TargetList := FreeShip.FWaterlines;
+    fiDiagonal: TargetList := FreeShip.FDiagonals;
   end;
   // First check if an intersection already exists at this location;
   for I := 1 to TargetList.Count do
@@ -9627,7 +9681,7 @@ begin
     end;
   end;
   // Once here, a new intersection can be added
-  Intersection := TFreeIntersection.Create(Owner);
+  Intersection := TFreeIntersection.Create(FreeShip);
   Intersection.FIntersectionType := IntType;
   Intersection.FPlane.a := 0.0;
   Intersection.FPlane.b := 0.0;

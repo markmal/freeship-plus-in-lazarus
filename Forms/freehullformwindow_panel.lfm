@@ -1,4 +1,4 @@
-object FreeHullForm: TFreeHullForm
+object FreeHullWindow: TFreeHullWindow
   Left = 807
   Height = 285
   Top = 201

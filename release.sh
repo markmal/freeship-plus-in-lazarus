@@ -25,7 +25,14 @@ then
   git tag -a v$VERS -m "Test Release. $ARCH $OS Qt. ver $VERS"
 fi
 
-./zipbin.sh
+[ $OS = linux ] && ./zipbin.sh
+
+if [ $OS = windows ]; then
+  cd instpkg/wix/
+  cmd.exe /C make_installer.cmd
+  cd -
+  mv instpkg/wix/FreeShip_x64.msi ./"FreeShip-${VERS}_x64.msi"
+fi
 
 # if we have tools for .deb creation
 if [ -x /usr/bin/lintian ] ; then

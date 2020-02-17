@@ -3,7 +3,7 @@ unit FreeFilePreviewDialog;
 {$mode objfpc}{$H+}
 interface
 
-{$UNdefine Magic}
+//{$define Magic}
 
 uses
   Classes, SysUtils, LazFileUtils, Forms, Controls, Graphics,
@@ -11,7 +11,7 @@ uses
   //ShellCtrls, FileCtrl,
   FreeShellCtrls,
   StdCtrls, Buttons,
-  ExtCtrls, PairSplitter, Menus, ActnList, Math,
+  ExtCtrls, PairSplitter, Menus, ActnList, FileCtrl, Math,
   FileIcon,
   {$IFDEF WINDOWS}
   FileIconWin,
@@ -55,6 +55,7 @@ type
     ComboBoxDir: TComboBox;
     FullSize: TMenuItem;
     FitSize: TMenuItem;
+    Panel7: TPanel;
     Properties: TMenuItem;
     PreviewPopupMenu: TPopupMenu;
     ShellPathPanel: TShellPathPanel;
@@ -93,7 +94,7 @@ type
     LeftPageControl: TPageControl;
     CenterPanel: TPanel;
     ScrollBoxPreview: TScrollBox;
-    ShellTreeView: TShellTreeView;
+    ShellTreeView: FreeShellCtrls.TShellTreeView;
     LocationPanel: TPanel;
     SmallImageList: TImageList;
     LargeImageList: TImageList;
@@ -112,6 +113,7 @@ type
     StatusBar: TStatusBar;
     TabSheetPlaces: TTabSheet;
     TabSheetTree: TTabSheet;
+    ReloadTimer: TTimer;
     ToolBarOps: TToolBar;
 
     procedure ActionRefreshExecute(Sender: TObject);
@@ -127,6 +129,7 @@ type
     procedure AutoSearchListBoxSelectionChange(Sender: TObject; User: boolean);
     procedure ComboBoxDirChange(Sender: TObject);
     procedure ComboBoxDirEditingDone(Sender: TObject);
+    procedure ComboBoxDirExit(Sender: TObject);
     procedure ComboBoxDirKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure ComboBoxDirKeyPress(Sender: TObject; var Key: char);
@@ -146,7 +149,10 @@ type
       Selected: Boolean);
     procedure ListViewPlacesShowHint(Sender: TObject; HintInfo: PHintInfo);
     procedure FullSizeClick(Sender: TObject);
+    procedure LocationEditorPanelClick(Sender: TObject);
     procedure PropertiesClick(Sender: TObject);
+    procedure ReloadTimerTimer(Sender: TObject);
+    procedure ShellListViewClick(Sender: TObject);
     procedure ShellListViewItemDeleteClick(Sender: TObject);
     procedure ShellListViewItemNewFolderClick(Sender: TObject);
     procedure NavigationPanelResize(Sender: TObject);
@@ -160,6 +166,7 @@ type
       Data: Integer; var Compare: Integer);
     procedure ShellListViewDblClick(Sender: TObject);
     procedure ShellListViewFileAdded(Sender: TObject; Item: TListItem);
+    procedure ShellListViewLoaded(Sender: TObject);
     procedure ShellListViewItemRenameClick(Sender: TObject);
     procedure ShellListViewKeyPress(Sender: TObject; var Key: char);
     procedure ShellListViewMouseDown(Sender: TObject; Button: TMouseButton;
@@ -193,6 +200,13 @@ type
     procedure ShellListViewEdited(Sender: TObject; Item: TListItem; var AValue: string);
     procedure ShellListViewShowHint(Sender: TObject; HintInfo: PHintInfo);
     procedure ShellPathPanelOnSelectionChanged(Sender: TObject);
+    procedure ShellPathPanelOnClick(Sender: TObject);
+
+//     self.ComboBoxDir.Visible:=false;
+// self.ShellPathPanel.Visible:=true;
+
+    //procedure Timer1StopTimer(Sender: TObject);
+    //procedure Timer1Timer(Sender: TObject);
  private
     { private declarations }
     FAutoFit: boolean;
@@ -218,7 +232,9 @@ type
     FLocaleDir:string;
     FLang:string; // short name like 'ru', 'de'
     FListHidden:boolean;
-
+    FPendingDir:string;
+    FNeedsReload:boolean;
+    FIsInReload:boolean;
     //function addAnyIconsForFile(filename:string):integer;
     procedure addIconsForFile(filename:string; item:TListItem);
 
@@ -259,6 +275,8 @@ type
     procedure ReplaceLabels(aControl:TControl; fromText:String; toText:String); // search and replace a label for control and its children
     procedure SetStatusText(AValue:String);
     procedure Translate(ALang:string); // '' is default Lang from environment  published
+    procedure ScheduleReload(aDir:string); // schedules asynchronous reload
+    procedure Reload; // reloads TreeView, ListView and ButtonPath. called from timer when scheduled
 
     property AutoFit: boolean read FAutoFit write setAutoFit;
     property AbsoluteFileName:string read getSelectedAbsoluteFileName write setSelectedAbsoluteFileName;
@@ -288,6 +306,7 @@ uses LCLType,
   {$ifdef LCLGTK2}
   ,WSProc, Gtk2, GLib2, Pango, Gtk2WSComCtrls, Gtk2Def, Gtk2Proc
   {$endif}
+  ,FreeLogger
   ;
 
 {$R *.lfm}
@@ -473,6 +492,74 @@ begin
   slv.Refresh;
 end;
 
+procedure TFreeFilePreviewDialog.Reload;
+var old,dir:string;
+begin
+  FIsInReload := true;
+  FNeedsReload := false;
+  dir:=FPath;
+  old:=ShellTreeView.Path;
+  ShellTreeView.Path:=FPath;
+  ShellTreeView.Selected;
+  sleep(100); // to prevent racing with ShellTreeView.TreeView.Timer
+  {If there is hidden dir in path, the ShellTreeView.Path will be
+  the parent of a hidden dir. It will be selected.
+  The node needs to be collapsed and Path re-assigned }
+  if ShellTreeView.Path <> dir then
+  begin
+   ShellTreeView.Selected.Collapse(false);
+   ShellTreeView.Path := dir;
+   sleep(100); // to prevent racing with ShellTreeView.TreeView.Timer
+  end;
+
+  //if FFileName <> '' then
+     FileName := FFileName;
+
+  FIsInReload := false;
+end;
+
+procedure TFreeFilePreviewDialog.ScheduleReload(aDir:string);
+begin
+  if ShellListView.IsLoading and (FPath <> aDir) then
+  begin
+     ShellListView.AbortLoading;
+     ShellTreeView.AbortLoading;
+  end;
+  FNeedsReload := true;
+  FPath := aDir;
+end;
+
+procedure TFreeFilePreviewDialog.ReloadTimerTimer(Sender: TObject);
+begin
+  if FNeedsReload then
+    begin
+    if not ShellListView.IsLoading then
+        Reload;
+    end;
+
+  if ShellListView.IsLoading then
+    begin
+    //Screen.Cursor := crHourGlass;
+    //Self.Cursor := crHourGlass;
+    ShellListView.Cursor := crHourGlass;
+    application.processmessages;
+    end
+  else
+    begin
+    //Screen.Cursor := crDefault;
+    //Self.Cursor := crDefault;
+    ShellListView.Cursor := crDefault;
+    application.processmessages;
+    end;
+
+end;
+
+procedure TFreeFilePreviewDialog.ShellListViewClick(Sender: TObject);
+var i:integer;
+begin
+ i:=10;
+end;
+
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewDetailsClick(Sender: TObject);
 begin
@@ -483,7 +570,7 @@ begin
 end;
 
 procedure TFreeFilePreviewDialog.setListHidden(val:boolean);
-  var ottv,otlv: TObjectTypes;
+  var ottv,otlv: FreeShellCtrls.TObjectTypes;
     P:string;
 begin
   if FListHidden = val then exit;
@@ -502,7 +589,8 @@ begin
 
   ShellTreeView.ObjectTypes:=ottv;
   ShellListView.ObjectTypes:=otlv;
-  ShellListView.Reload;
+  //ShellListView.Reload;
+  ScheduleReload(FPath);
 end;
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewListHiddenClick(Sender: TObject
@@ -543,7 +631,8 @@ begin
     bkDir := FHistoryStack[0];
     FHistoryStack.Delete(0);
 
-    self.ChangeDir(bkDir);
+    //self.ChangeDir(bkDir);
+    ScheduleReload(bkDir);
 
     if FHistoryStack.Count > 0 then
        FHistoryStack.Delete(0);
@@ -565,20 +654,53 @@ procedure TFreeFilePreviewDialog.SpeedButtonGoUpClick(Sender: TObject);
 var parentDir, parentDir2 : string;
 begin
     parentDir := ExpandFileName(IncludeTrailingPathDelimiter(ShellListView.Root) + '..');
-    ChangeDir(parentDir);
+    //ChangeDir(parentDir);
+    ScheduleReload(parentDir);
 
     parentDir2 := ExpandFileName(IncludeTrailingPathDelimiter(ShellListView.Root) + '..');
 
     SpeedButtonGoUp.Enabled := (parentDir <> parentDir2);
 end;
 
+resourcestring rsLocation_does_not_exist = 'Location does not exist';
 
 procedure TFreeFilePreviewDialog.ComboBoxDirEditingDone(Sender: TObject);
+var loc,dir,fil:string;
 begin
   if not ComboBoxDir.Focused then exit;
   if FInAutoSearchListBox then exit;
   AutoSearchListBox.Visible:=false;
-  ChangeDir( ComboBoxDir.Text );
+  //ChangeDir( ComboBoxDir.Text );
+  //TODO clean and check path
+  loc := ComboBoxDir.Text;
+  dir := ExtractFilePath(loc);
+  fil := ExtractFileName(loc);
+  if (fil='') then
+    if DirectoryExistsUTF8(dir) then
+      begin
+      dir := CleanAndExpandDirectory(dir);
+      ScheduleReload(dir)
+      end
+    else ShowMessage(rsLocation_does_not_exist)
+  else
+    if FileExistsUTF8(loc) then
+      begin
+      dir := CleanAndExpandDirectory(dir);
+      FFileName := fil;
+      ScheduleReload(dir);
+      //ComboBoxDir.Text := dir;
+      //loc := CleanAndExpandFilename(loc);
+      //EditName.Text:=fil;
+      //FileName := fil;
+      end
+    else ShowMessage(rsLocation_does_not_exist);
+end;
+
+procedure TFreeFilePreviewDialog.ComboBoxDirExit(Sender: TObject);
+begin
+ if SpeedButtonEditLocation.Down then exit;
+ self.ComboBoxDir.Visible:=false;
+ self.ShellPathPanel.Visible:=true;
 end;
 
 procedure TFreeFilePreviewDialog.AutoSearchListBoxSelectionChange(
@@ -643,6 +765,16 @@ end;
 procedure TFreeFilePreviewDialog.ComboBoxDirKeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);
 begin
+  if (Key = VK_ESCAPE) then
+    begin
+    ComboBoxDirExit(Sender);
+    Key := VK_UNKNOWN;
+    end;
+  if (Key = VK_RETURN) then
+    begin
+    ComboBoxDirEditingDone(sender);
+    end;
+
   if (Key = VK_DOWN) and (AutoSearchListBox.Items.Count > 0)
      then begin
      key:=0;
@@ -677,9 +809,17 @@ var nm,s,cd:string; sl,sel: TStringList;
     lb:TListBox; fi:TFileItem;
     P1:TPoint;
 begin
- //if not ComboBoxDir.Focused then exit;
-
+  if FIsInReload then exit;
+  //if not ComboBoxDir.Focused then exit;
+  //if trim(ComboBoxDir.Text)='' then exit;
   sl := split(ComboBoxDir.Text, {System.}DirectorySeparator);
+  if sl.count = 0 then
+    begin
+    AutoSearchListBox.Clear;
+    AutoSearchListBox.Visible:=false;
+    exit;
+    end;
+
   nm := sl[sl.Count-1];
   cd := '';
   // reconstruct path to compare with current path
@@ -800,6 +940,7 @@ begin
   ext:=ExtractFileNameExt(mask);
   if (pos(';',mask)>0) or (pos(';',ext)>0) or (pos('*',ext)>0) or (pos('?',ext)>0) then exit;
   EditName.Text := ExtractFileNameWithoutExt(EditName.Text) + ext;
+  FileName := EditName.Text;
 end;
 
 procedure TFreeFilePreviewDialog.FitSizeClick(Sender: TObject);
@@ -855,7 +996,9 @@ begin
  AutoSearchListBox.Visible:=false;}
 end;
 
-resourcestring CancelButtonCaptionCancel = 'Cancel';
+resourcestring
+  rsCancelButtonCaptionCancel = 'Cancel';
+  rsClickToEdit = 'Click to edit';
 
 procedure TFreeFilePreviewDialog.FormCreate(Sender: TObject);
 var GlobalTranslator: TAbstractTranslator; LocalTranslator: TPOTranslator;
@@ -889,6 +1032,7 @@ begin
   //ShellListView.AutoWidthLastColumn:=false;
   ShellListView.SortColumn := -1;
   ShellListView.OnFileAdded:=@ShellListViewFileAdded;
+  ShellListView.OnLoaded:=@ShellListViewLoaded;
   ShellListView.OnEdited:=@ShellListViewEdited;
   ShellListView.OnShowHint:=@ShellListViewShowHint;
   FHistoryStack := TStringList.Create;
@@ -896,7 +1040,7 @@ begin
   SpeedButtonViewListHidden.GroupIndex := 2;
   SpeedButtonViewListHidden.Down:=false;
 
-  BitBtnCancel.Caption:= CancelButtonCaptionCancel;
+  BitBtnCancel.Caption:= rsCancelButtonCaptionCancel;
 
   ShellPathPanel := TShellPathPanel.Create(Self);
   with ShellPathPanel do
@@ -908,8 +1052,12 @@ begin
     TabOrder := 0;
     ControlBorderSpacing.InnerBorder := 4;
     BevelOuter:=bvNone;
+    ControlPanel.Hint := rsClickToEdit;
+    ControlPanel.ShowHint:=true;
+    //Color:=clLime;
   end;
   ShellPathPanel.OnSelectionChanged := @ShellPathPanelOnSelectionChanged;
+  ShellPathPanel.ControlPanel.onClick := @ShellPathPanelOnClick;
   ComboBoxDir.Visible:=false;
 
   //ChangeDir( CleanAndExpandDirectory('.') );
@@ -1022,9 +1170,6 @@ if LeftPageControl.ActivePage = TabSheetPlaces then
 
 end;
 
-procedure TFreeFilePreviewDialog.ListViewPlacesClick(Sender: TObject);
-begin
-end;
 
 procedure TFreeFilePreviewDialog.ListViewPlacesDragDrop(Sender,
   Source: TObject; X, Y: Integer);
@@ -1062,14 +1207,24 @@ begin
   ;
 end;
 
+procedure TFreeFilePreviewDialog.ListViewPlacesClick(Sender: TObject);
+var Item: TListItem; dir:TDir;
+begin
+  Item:=ListViewPlaces.Selected;
+  if Item = nil then exit;
+  dir := TDir(Item.Data);
+  ScheduleReload(dir.fDir);
+end;
+
 procedure TFreeFilePreviewDialog.ListViewPlacesSelectItem(Sender: TObject;
   Item: TListItem; Selected: Boolean);
 var dir:TDir;
 begin
  if not Selected then exit;
  dir := TDir(Item.Data);
- ChangeDir(dir.fDir);
+ ScheduleReload(dir.fDir);
 end;
+
 
 procedure TFreeFilePreviewDialog.ListViewPlacesShowHint(Sender: TObject;
   HintInfo: PHintInfo);
@@ -1099,6 +1254,7 @@ begin
    end;
 end;
 
+
 procedure TFreeFilePreviewDialog.PropertiesClick(Sender: TObject);
 var fn,dn,mime,iconName, msg:string;
 begin
@@ -1119,6 +1275,7 @@ begin
   if FileIsHardLink(fn) then msg:=msg+#10+'HardLink';
   ShowMessage(msg);
 end;
+
 
 procedure TFreeFilePreviewDialog.ShellListViewItemDeleteClick(Sender: TObject);
 begin
@@ -1196,7 +1353,6 @@ begin
 
 end;
 
-
 procedure TFreeFilePreviewDialog.AddToHistory(dir:string);
 begin
   if FHistoryStack.Count = 0
@@ -1207,86 +1363,121 @@ begin
   SpeedButtonGoBack.Enabled:=true;
 end;
 
+{
+procedure TFreeFilePreviewDialog.Timer1Timer(Sender: TObject);
+begin
+   if not ShellListView.IsLoading then
+     Timer1.Enabled:=false;
+end;
+
+procedure TFreeFilePreviewDialog.Timer1StopTimer(Sender: TObject);
+begin
+   ChangeDir(FPendingDir);
+end;
+}
 
 procedure TFreeFilePreviewDialog.ChangeDir(dir:string);
 var curPath, nodePath: String;
 begin
-  if DirPathExists(dir) then
-     begin
-     dir := CleanAndExpandDirectory(dir);
-     curPath := ShellTreeView.Path;
-     if curPath = dir then exit;
+  if not DirPathExists(dir) then exit;
+  dir := CleanAndExpandDirectory(dir);
+  curPath := ShellTreeView.Path;
+  if curPath = dir then exit;
 
-     if curPath <> '' then AddToHistory(curPath);
+  { When current dir is loading and user changed it to an another dir
+   the new dir is saved in FPendingDir and the current loading is set to be
+   aborted.
+   Then Timer1 is started and this flow exits.
+   Timer1 is running until the current loading is actually aborted.
+   Then the timer calls ChangeDir(FPendingDir)
+  if ShellListView.IsLoading then
+   begin
+   FPendingDir:=dir;
+   ShellListView.AbortLoading;
+   Timer1.Enabled:=true;
+   exit;
+   end;
+   }
 
-     FPath := dir;
-     FRoot := ExtractFileRoot(dir);
+  if curPath <> '' then AddToHistory(curPath);
 
-     if not FIsShowing
-       then exit;
+  FPath := dir;
+  FRoot := ExtractFileRoot(dir);
 
-     //commented because it removes other drives in Windows, like D: etc
-     //if ShellTreeView.Root <> FRoot
-     //  then ShellTreeView.Root := FRoot;
+  if not FIsShowing
+   then exit;
 
-     Self.Cursor := crHourGlass;
-     ShellListView.Cursor := crHourGlass;
-     Application.ProcessMessages;
+  ScheduleReload(dir);
 
-     //ShellListView.Root := dir;
-     ShellTreeView.Path := dir;
-     {If there is hidden dir in path, the ShellTreeView.Path will be
-      the parent of a hidden dir. It will be selected.
-      The node needs to be collapsed and Path re-assigned }
-     if ShellTreeView.Path <> dir then
-     begin
-       ShellTreeView.Selected.Collapse(false);
-       ShellTreeView.Path := dir;
-     end;
+  exit;
 
-     //if otHidden in ShellTreeView.ObjectTypes
-     //  then SpeedButtonViewListHidden.Down:=true
 
-     ShellListView.Cursor := crDefault;
-     Self.Cursor := crDefault;
+  //commented because it removes other drives in Windows, like D: etc
+  //if ShellTreeView.Root <> FRoot
+  //  then ShellTreeView.Root := FRoot;
 
-     ComboBoxDir.Text := dir;
-     ShellPathPanel.Path := dir;
-     setSpeedButtonGoUpEnabled(dir);
+  Self.Cursor := crHourGlass;
+  ShellListView.Cursor := crHourGlass;
+  Application.ProcessMessages;
 
-     if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
-        then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
+  //ShellListView.Root := dir;
+  ShellTreeView.Path := dir;
+  {If there is hidden dir in path, the ShellTreeView.Path will be
+  the parent of a hidden dir. It will be selected.
+  The node needs to be collapsed and Path re-assigned }
+  if ShellTreeView.Path <> dir then
+  begin
+   ShellTreeView.Selected.Collapse(false);
+   ShellTreeView.Path := dir;
+  end;
 
-     if (FileDialogMode = fdmOpen) then
-       FFileName := '';
-     BitBtnOpen.Enabled:=false;
-     if (FileDialogMode = fdmSave) and (self.FFileName <> '') then
-       BitBtnOpen.Enabled:=true;
+  //if otHidden in ShellTreeView.ObjectTypes
+  //  then SpeedButtonViewListHidden.Down:=true
 
-     end;
+  ShellListView.Cursor := crDefault;
+  Self.Cursor := crDefault;
+
+  ComboBoxDir.Text := dir;
+  ShellPathPanel.Path := dir;
+  setSpeedButtonGoUpEnabled(dir);
+
+  if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
+    then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
+
+  if (FileDialogMode = fdmOpen) then
+   FFileName := '';
+  BitBtnOpen.Enabled:=false;
+  if (FileDialogMode = fdmSave) and (self.FFileName <> '') then
+   BitBtnOpen.Enabled:=true;
+
 end;
 
 procedure TFreeFilePreviewDialog.selectFile;
-var fullName : string;
+var fullName, fil, dir : string; item:TListItem; fileItem:TFileItem;
 begin
   if not Assigned(ShellListView.Selected) then
      begin
      FFileName := '';
      exit;
      end;
+  item:=ShellListView.Selected;
+  fileItem:=TFileItem(item.Data);
   fullName := ShellListView.GetPathFromItem(ShellListView.Selected);
-  if DirPathExists(fullName)
+  if not fileItem.isFolder
   then
-    begin
-    //ShellTreeView.Path:=fullName;
-    ChangeDir(fullName);
-    FFileName := '';
-    end
+     begin
+     if not FileExistsUTF8(fullName) then exit;
+     FPath := fileItem.BasePath;
+     FFileName := fileItem.FileName;
+     self.ModalResult := mrOk;
+     //Close;
+     end
   else
-    begin
-      FFileName := fullName;
-      Close;
-    end;
+     begin
+     if not DirectoryExistsUTF8(fullName) then exit;
+     FFileName := '';
+     ScheduleReload(fullName);
+     end;
 end;
 
 procedure TFreeFilePreviewDialog.ShellListViewDblClick(Sender: TObject);
@@ -1464,53 +1655,74 @@ end;
 
 procedure TFreeFilePreviewDialog.ShellListViewSelectItem(Sender: TObject;
   Item: TListItem; Selected: Boolean);
-var isDir: boolean;
+var isFile,isDir: boolean; pat, dir, fil: string; fileItem:TFileItem;
 begin
   if not Selected then exit;
-  FFileName := ShellListView.GetPathFromItem(Item);
-  isDir:=DirectoryExistsUTF8(FFileName);
+  pat := ShellListView.GetPathFromItem(Item);
+  if not FileExistsUTF8(pat) then exit;
+  fileItem := TFileItem(Item.Data);
+  isFile := (not fileItem.isFolder);
 
-  if Assigned(FOnSelectFile) then FOnSelectFile(Sender, FFilename);
-  if not isDir then
+  if Assigned(FOnSelectFile) then FOnSelectFile(Sender, pat);
+
+  if isFile then
     if Assigned(FOnPreview)
       then
         try
-           FOnPreview(Self, FFilename);
+           FOnPreview(Self, pat);
         except
            on e: Exception do
-              DefaultPreview(FFilename);
+              DefaultPreview(pat);
         end
-      else DefaultPreview(FFilename);
+      else DefaultPreview(pat);
 
-  if not isDir then
+  if isFile then
     begin
-    EditName.Text := Item.Caption;
+    FFileName := fileItem.FileName;
+    EditName.Text := fileItem.FileName;
     BitBtnOpen.Enabled:=true;
     end
   else
     BitBtnOpen.Enabled:=false;
+
  end;
 
 procedure TFreeFilePreviewDialog.ShellTreeViewChange(Sender: TObject;
   Node: TTreeNode);
+var SelNode: TTreeNode; t,p:string;
 begin
   if FInShellTreeViewChange then exit;
   FInShellTreeViewChange:=true;
+  if ShellTreeView.IsLoading then exit;
   if ComboBoxDir.Items.IndexOf(ComboBoxDir.Text) = -1
     then ComboBoxDir.AddItem(ComboBoxDir.Text, nil);
-  FPath := ShellListView.Root;
-  ComboBoxDir.Text := ShellListView.Root;
-  if ShellTreeView.Focused then ShellPathPanel.Path:=ShellListView.Root;
-  setSpeedButtonGoUpEnabled(ShellListView.Root);
+  //logger.Debug('FPathB:'+FPath);
+  SelNode := ShellTreeView.Selected;
+  if SelNode<>nil then t:=SelNode.text;
+  p:=ShellTreeView.Path;
+  if not FIsInReload and (SelNode<>nil) then
+    begin
+     //FPath := ShellTreeView.Path;
+     ShellPathPanel.Path := FPath;
+     ComboBoxDir.Text := ShellListView.Root;
+     //if ShellTreeView.Focused then ShellPathPanel.Path:=ShellListView.Root;
+     setSpeedButtonGoUpEnabled(FPath);
+    end;
   FInShellTreeViewChange:=false;
 end;
 
+// this is called when user selects a node in ShellTreeView
 procedure TFreeFilePreviewDialog.ShellTreeViewSelectionChanged(Sender: TObject);
+var Node: TTreeNode;
 begin
   if FInShellTreeViewSelectionChanged then exit;
   FInShellTreeViewSelectionChanged:=true;
-  ShellListView.ClearSelection;
-  setSpeedButtonGoUpEnabled(ShellListView.Root);
+  Node := ShellTreeView.Selected;
+  if Node <> nil then
+    begin
+    ShellListView.ClearSelection;
+    setSpeedButtonGoUpEnabled(ShellListView.Root);
+    end;
   FInShellTreeViewSelectionChanged:=false;
 end;
 
@@ -1700,7 +1912,8 @@ addMagicIconsForFile(filename, Item);
  addMagicIconsForFile(filename, Item);
 {$ENDIF}
 {$ENDIF}
-  Item.ImageIndex := FFileIcon.addIconsForFile(filename);
+ if item <> nil then
+    Item.ImageIndex := FFileIcon.addIconsForFile(filename);
 end;
 
 procedure TFreeFilePreviewDialog.setStatusText(AValue:String);
@@ -1722,11 +1935,15 @@ begin
   addIconsForFile(fullName, Item);
 end;
 
+procedure TFreeFilePreviewDialog.ShellListViewLoaded(Sender: TObject);
+begin
+  setStatusText('');
+end;
+
 procedure TFreeFilePreviewDialog.ShellListViewItemRenameClick(Sender: TObject);
 begin
   ShellListView.Selected.EditCaption;
 end;
-
 
 /// Places
 procedure TFreeFilePreviewDialog.addPlace(placeName:string; dirName:string);
@@ -1862,18 +2079,9 @@ begin
 end;
 
 function  TFreeFilePreviewDialog.getSelectedAbsoluteFileName:string;
-var lPath, lName:String;
 begin
-  result :=  FFileName;
-  lPath:= ExtractFilePath(FFileName);
-  lName:= ExtractFileName(FFileName);
-  if lPath = '' then
-     lPath := getCurrentPath;
-
-  if lPath > '' then begin
-     result := IncludeTrailingPathDelimiter(lPath) + lName;
-  end;
-
+  result := CreateAbsolutePath(FFileName,FPath);
+  result := CleanAndExpandFilename(result);
 end;
 
 procedure TFreeFilePreviewDialog.setSelectedAbsoluteFileName(fn:string);
@@ -1907,26 +2115,37 @@ begin
       EditName.Text := FFileName;
       itm.Selected:=true;
       ShellListView.Selected:=itm;
-      end;
+      end
+    else
+      begin
+      FFileName := '';
+      EditName.Text := '';
+      ShellListView.Selected:=nil;
+      PreviewToolPanel.Caption:='';
+      FPreviewImage.Picture.Clear;
+      end
+
     end;
 end;
 
 function  TFreeFilePreviewDialog.getCurrentPath:string;
 begin
-  if ShellListView.Selected <> nil then
+  {if ShellListView.Selected <> nil then
     result := ShellListView.GetPathFromItem(ShellListView.Selected)
-  else
+  else}
     result := ShellListView.Root;
 end;
 
 procedure TFreeFilePreviewDialog.setCurrentPath(p:string);
 begin
+  if getCurrentPath = p then exit;
   //ComboBoxDir.Text:=p;
   if TCustomShellTreeView.PathContainsHiddenDir(p) then
      setListHidden(true);
   FPath := CleanAndExpandDirectory(p);
-  if FIsShowing then
-     ChangeDir(FPath);
+  //if FIsShowing then
+     //ChangeDir(FPath);
+  ScheduleReload(FPath);
 end;
 
 function TFreeFilePreviewDialog.getPreviewText:string;
@@ -2035,7 +2254,7 @@ begin
 end;
 
 
-resourcestring UnableOpenFileMsg = 'Unable open file "%s"';
+resourcestring rsUnableOpenFileMsg = 'Unable open file "%s"';
 
 procedure TFreeFilePreviewDialog.DefaultPreview(fn:string);
 begin
@@ -2044,6 +2263,9 @@ begin
        Cursor := crHourGlass;
        ShellListView.Cursor := crHourGlass;
        Application.ProcessMessages;
+
+       PreviewToolPanel.Caption:='';
+       FPreviewImage.Picture.Clear;
 
        FPreviewImage.Picture.LoadFromFile(fn);
 
@@ -2063,7 +2285,7 @@ begin
           FPreviewImage.Picture.Clear;
           end;
        on EFOpenError do
-         ShowMessage(Format(UnableOpenFileMsg,[fn]));
+         ShowMessage(Format(rsUnableOpenFileMsg,[fn]));
        on E: Exception do
           DumpExceptionCallStack(E);
        else
@@ -2109,7 +2331,8 @@ begin
   Application.ProcessMessages;
   FIsShowing:=true;
   //ShellTreeView.Path:=FPath;
-  self.ChangeDir(FPath);
+  //self.ChangeDir(FPath);
+  ScheduleReload(FPath);
   //self.ShellListView.Refresh;
   inherited;
 end;
@@ -2121,8 +2344,10 @@ end;
 
 
 function TFreeFilePreviewDialog.Execute: boolean;
+var mr:integer;
 begin
-  result := (self.ShowModal = mrOK);
+  mr := self.ShowModal;
+  result := (mr = mrOK);
 end;
 
 resourcestring
@@ -2174,8 +2399,24 @@ begin
  //ChangeDir(ShellPathPanel.SelectedPath); // this causes unknown errors
  //ShellListView.Root:=ShellPathPanel.SelectedPath;
  AddToHistory(ShellListView.Root);
- ShellTreeView.Path:=ShellPathPanel.SelectedPath;
+ //ShellTreeView.Path:=ShellPathPanel.SelectedPath;
+ FPath := ShellPathPanel.SelectedPath;
+ ScheduleReload(FPath);
  FInShellPathPanelOnSelectionChanged := false;
+end;
+
+procedure TFreeFilePreviewDialog.ShellPathPanelOnClick(Sender: TObject);
+begin
+ self.ComboBoxDir.Visible:=true;
+ self.ComboBoxDir.SetFocus;
+ self.ShellPathPanel.Visible:=false;
+end;
+
+procedure TFreeFilePreviewDialog.LocationEditorPanelClick(Sender: TObject);
+begin
+ self.ShellPathPanel.Visible:=false;
+ self.ComboBoxDir.Visible:=true;
+ self.ComboBoxDir.SetFocus;
 end;
 
 end.

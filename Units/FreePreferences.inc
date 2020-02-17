@@ -413,7 +413,7 @@ begin
   {$ifdef Windows}
   if FApplicationScope = asUser then
   begin
-    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'FreeShip';
+    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'Programs\FreeShip';
   end
   else
   begin
@@ -445,7 +445,7 @@ begin
   {$ifdef Windows}
   if FApplicationScope = asUser then
   begin
-    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'FreeShip';
+    Result := windirs.GetWindowsSpecialDir(CSIDL_LOCAL_APPDATA)+'Programs\FreeShip';
   end
   else
   begin

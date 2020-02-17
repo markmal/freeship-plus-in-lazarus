@@ -164,7 +164,7 @@ const INSTSCRIPT_EXT='sh';
 
 resourcestring InstallMeMessage='You run FreeShip from installation directory.'+#10
   +'FreeShip is not installed.'+#10
-  +'It will work but it may experince issues with finding various files and directories.'+#10
+  +'It will work but it may experience issues with finding various files and directories.'+#10
   +'Please exit and run install-FreeShip.sh';
 
 

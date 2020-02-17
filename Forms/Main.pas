@@ -955,10 +955,10 @@ begin
 if FFileName = '' then
   LoadMostRecentFile;
 
-if (FFileName = '') and not FreeShip.ModelLoaded then  //default behaviour if no recent file defined
+if (FFileName = '') and not FreeShip.ModelIsLoaded then  //default behaviour if no recent file defined
   NewModelExecute(Self)
 else
-if (FFileName <> '') and not FreeShip.ModelLoaded then
+if (FFileName <> '') and not FreeShip.ModelIsLoaded then
 begin
    // Skip translation
    FileExt := Uppercase(ExtractFileExt(FFileName));
@@ -1240,8 +1240,10 @@ begin
     }
 
    // File menu
-   FileSaveas.Enabled:=(FreeShip.Surface.NumberOfControlPoints>0) or (Freeship.FileChanged) or (Freeship.FilenameSet);
-   FileSave.Enabled:=(FileSaveas.Enabled) and (not FreeShip.ModelReadOnly);// and (Freeship.FilenameSet);
+   FileSaveas.Enabled := (FreeShip.Surface.NumberOfControlPoints>0)
+       or (Freeship.FileChanged) or (Freeship.FilenameSet);
+   FileSave.Enabled:= FileSaveas.Enabled and Freeship.FileChanged
+     and not Freeship.FileIsReadOnly;
 
    ImportMichletWaves1.Enabled:=(MDIChildCount>0) and (Freeship.Surface.NumberOfControlFaces>1);
    ExportFEF.Enabled:=Freeship.Surface.NumberOfControlPoints>0;
@@ -1361,7 +1363,7 @@ begin
    PointCollapse.Enabled:=Freeship.NumberOfSelectedControlPoints>0;
    DeleteEmptyLayers.Enabled:=False;
    for I:=1 to Freeship.NumberOfLayers do
-     if (FreeShip.ModelLoaded) and (FreeShip.Layer[I-1].Count=0) and (FreeShip.NumberOfLayers>0) then
+     if (FreeShip.ModelIsLoaded) and (FreeShip.Layer[I-1].Count=0) and (FreeShip.NumberOfLayers>0) then
        begin
           DeleteEmptyLayers.Enabled:=True;
           break;
@@ -1512,7 +1514,7 @@ begin
   else FreeShip.Edit.File_Load;
 
   if FileExists(FreeShip.Filename) and FileIsReadOnly(FreeShip.Filename)
-  then FreeShip.ModelReadOnly := true;
+  then FreeShip.FileIsReadOnly := true;
 
   Application.ProcessMessages;
   FreeShip.ZoomFitAllViewports;
@@ -1542,13 +1544,16 @@ begin
   begin
    //ShowTranslatedValues(FreeSplashWindow);
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);
+   try
    SplashWindow := FreeSplashWindow;
    FreeSplashWindow.FreeShip:=FreeShip;
    FreeSplashWindow.Position:=poMainFormCenter;
    FreeSplashWindow.ShowModal;
-   if FreeSplashWindow.ModalResult <> mrOk
-     then self.Close;
-   FreeSplashWindow.Free;
+   if FreeSplashWindow.ModalResult <> mrOk then
+       self.Close;
+   finally
+      FreeSplashWindow.Free;
+   end;
   end;
 end;
 
@@ -2021,7 +2026,7 @@ end;{TMainForm.LayerDialogExecute}
 procedure TMainForm.NewModelExecute(Sender: TObject);
 begin
    if FreeShip.Edit.Model_New then FOpenHullWindows;
-   FreeShip.ModelReadOnly := false;
+   FreeShip.FileIsReadOnly := false;
    Updatemenu;
 end;{TMainForm.NewModelExecute}
 
@@ -2037,21 +2042,6 @@ begin
    {$endif}
 
    // Removed from LFM, moved here
-{ object FreeShip: TFreeShip
-    FileChanged = True
-    Filename = 'New model.fbm'
-    FileVersion = fv140
-    OnChangeCursorIncrement = FreeShipChangeCursorIncrement
-    OnFileChanged = FreeShipFileChanged
-    OnUpdateGeometryInfo = FreeShipUpdateGeometryInfo
-    OnUpdateRecentFileList = FreeShipUpdateRecentFileList
-    OnUpdateUndoData = FreeShipUpdateUndoData
-    Precision = fpLow
-    FontSize = 0
-    left = 32
-    top = 72
-  end
-  }
    FreeShip := TFreeShip.Create(self) ;
    FreeShip.MainForm := self;
    FreeShip.FileChanged := true;
@@ -2070,7 +2060,6 @@ begin
    FModelInitallyLoaded := false;
    //dumpIcons;
    FShowSplash := true;
-
 end;{TMainForm.FormCreate}
 
 procedure TMainForm.ShowStationsExecute(Sender: TObject);
@@ -2495,10 +2484,10 @@ end;{TMainForm.DecreaseCurvatureScaleExecute}
 
 procedure TMainForm.FileSaveExecute(Sender: TObject);
 begin
-  if Freeship.FilenameSet and (not FreeShip.ModelReadOnly) then
+  if Freeship.FilenameSet and not Freeship.FileIsReadOnly then
      FreeShip.Edit.File_Save
   else
-      FreeShip.Edit.File_SaveAs;
+     FreeShip.Edit.File_SaveAs;
    UpdateMenu;
 end;{TMainForm.FileSaveExecute}
 

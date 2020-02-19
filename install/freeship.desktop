@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FreeShip Plus
+Comment=FREE!ship Plus for Linux
+Icon=freeship
+Exec=/usr/bin/FreeShip %f
+Path=/usr/share/FreeShip
+NoDisplay=false
+Categories=Engineering;
+Keywords=Engineering;FreeShip;Designer;Vessel;
+MimeType=application/freeship-model-ftm;application/freeship-model-fbm;
+StartupWMClass=FreeShip
+StartupNotify=false
+Terminal=false

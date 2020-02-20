@@ -560,10 +560,8 @@ type
 
     procedure SetFocus; override;
 
-    procedure SetPenWidth(Width: integer);
-      virtual;
-    procedure StretchDraw(DestRect: TRect; bmp: TBitmap);
-      virtual;
+    procedure SetPenWidth(Width: integer); virtual;
+    procedure StretchDraw(DestRect: TRect; bmp: TBitmap); virtual;
     procedure ShadedColor(Dp: single; R, G, B: byte;
       var ROut, GOut, BOut: byte); virtual;
     procedure ShadeTriangle(P_1, P_2, P_3: T3DCoordinate; R, G, B: byte; Alpha: byte);

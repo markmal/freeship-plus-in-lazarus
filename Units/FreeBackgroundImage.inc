@@ -179,7 +179,7 @@ var
   I, J: integer;
   Scan: PRGBTripleArray;
   Rt, Gt, Bt: byte;
-  //TmpBmp: TBitmap;
+  TmpBmp: TBitmap;
   DrawingToprinter: boolean;
   Backgr: TRGBTriple;
   TmpVal: byte;
@@ -197,13 +197,13 @@ begin
     begin
       // this means that the background is already prepared and we can
       // just draw it and exit
-      FOwner.StretchDraw(DestRect, FTmpBmp);
+      FOwner.StretchDraw(DestRect, FTmpBmp); // TODO - replace on same-size draw, hopefully it should be faster
       exit;
     end;
 
 
-    FTmpBmp := TBitmap.Create;
-    FTmpBmp.Assign(FBitmap);
+    TmpBmp := TBitmap.Create;
+    TmpBmp.Assign(FBitmap);
     //if TmpBmp.PixelFormat<>pf24bit then TmpBmp.PixelFormat:=pf24bit;
     BitmapFormatHelper := TFreeBitmapFormatHelper.Create(FTmpBmp);
 
@@ -229,14 +229,14 @@ begin
     Gt := GetGValue(FTransparentColor);
     Bt := GetBValue(FTransparentColor);
     TmpVal := 255 - FAlpha;
-    FTmpBmp.BeginUpdate(True);
+    TmpBmp.BeginUpdate(True);
     if (Transparent) or (Alpha<>255) then
-    for I := 0 to FTmpBmp.Height - 1 do
+    for I := 0 to TmpBmp.Height - 1 do
     begin
       //Scan:=TmpBmp.ScanLine[I];
-      pRow := FTmpBmp.RawImage.GetLineStart(I);
+      pRow := TmpBmp.RawImage.GetLineStart(I);
 
-      for J := 0 to FTmpBmp.Width - 1 do
+      for J := 0 to TmpBmp.Width - 1 do
       begin
         pPixel := pRow + BitmapFormatHelper.BytesPerPixel * J;
         Pixel := BitmapFormatHelper.ToTRGBTriple(pPixel);
@@ -274,14 +274,18 @@ begin
         //TmpBmp.Canvas.Pixels[J,I]:= RGBtoColor(Pixel.rgbtRed,Pixel.rgbtGreen,Pixel.rgbtBlue);
       end;
     end;  //for I
-    FTmpBmp.EndUpdate(True);
+    TmpBmp.EndUpdate(True);
 
     //StretchBlt(FOwner.DrawingCanvas.Handle,DestRect.Left,DestRect.Top,DestRect.Right-DestRect.Left,DestRect.Bottom-DestRect.Top,TmpBmp.Canvas.Handle,0,0,TmpBmp.Width,TmpBmp.Height,SRCCOPY);
     //FOwner.DrawingCanvas.StretchDraw(DestRect,TmpBmp);
+    FTmpBmp := TBitmap.Create;
+    FTmpBmp.SetSize(DestRect.Width, DestRect.Height); // bring bitmap to target size
+    FTmpBmp.Canvas.StretchDraw(DestRect, TmpBmp);
+
     FOwner.StretchDraw(DestRect, FTmpBmp);
     BitmapFormatHelper.Destroy;
     BitmapFormatHelper := nil;
-    //TmpBmp.Destroy;
+    TmpBmp.Destroy;
   end;
 end;{TFreeBackgroundImage.Draw}
 

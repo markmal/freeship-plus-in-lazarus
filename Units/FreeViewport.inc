@@ -86,7 +86,6 @@ begin
   FDrawingCanvas.StretchDraw(DestRect, bmp);
 end;
 
-
 function TFreeViewport.TextWidth(val: string): integer;
 begin
   Result := FDrawingCanvas.TextWidth(val);

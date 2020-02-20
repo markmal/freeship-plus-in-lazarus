@@ -1,3 +1,66 @@
+Test only Version 4.6.1 in Lazarus
+Released: Build date	2020/02/17
+New features and fixes:
+
+Fixed couple of issues, such as fatal exception on save file, and others.
+New things:
+
+    Native Windows installation MSI file. See "Windows installation notes" below.
+    For Linux that does not support .deb, use install-FreeShip.sh instead of previous install-system.sh install-user.sh
+    New files layout. See "Files layout notes" below.
+    GPLv3+ licensing. Splash window is adjusted.
+    Fixes and improvements in File Preview Dialog
+
+Windows installation notes
+
+    In Windows 7 and later FreeShip can be installed per-Machine or per-User. Per-Machine is default and is more secure in general, because per-User files will be installed into user profile and are vulnerable to modifications thet can be done by malware. Per-User installation does not require escalation to "Run as Administrator".
+    The installation MSI file is currently capable for install/uninstall only, no updates/patches. You will have to uninstall current version to install new version.
+    Backup your projects, models, exports, imports ... etc, just in case.
+    Backup and remove FreeShip.ini files because file layout is changed. See below.
+
+Files layout notes
+
+Application files are located according their purpose:
+
+    Application files: binary files, manual files, language/localization files, themes and icons, example projects.
+    Global configuration files: FreeShip.ini not modifiable by user.
+    User configuration files: FreeShip.ini modifiable by user.
+    User projects, exports, imports.
+
+Linux, per-Machine installation:
+
+    Application files:
+    -- executable/library file(s): /usr/bin/, /usr/lib/
+    -- manual files, language/localization files, themes and icons, example projects : /usr/share/FreeShip/
+    Global configuration files: /etc/FreeShip/FreeShip.ini
+    User configuration files: $HOME/.config/FreeShip/FreeShip.ini
+    User projects, exports, imports: $HOME/Documents/FreeShip/
+
+Linux, per-User installation:
+
+    Application files:
+    -- executable/library file(s): $HOME/.local/bin/, $HOME/.local/lib/
+    -- manual files, language/localization files, themes and icons, example projects : $HOME/.local/share/FreeShip/
+    Global configuration files: $HOME/.local/share/FreeShip/
+    User configuration files: $HOME/.config/FreeShip/FreeShip.ini
+    User projects, exports, imports: $HOME/Documents/FreeShip/
+
+Windows, per-Machine installation:
+
+    Application files:
+    -- executable/library file(s), manual files, language/localization files, themes and icons, example projects : C:\Program Files\FreeShip\
+    Global configuration files: C:\Program Files\FreeShip\FreeShip.ini
+    User configuration files: C:\users<USER>\AppData\FreeShip\FreeShip.ini
+    User projects, exports, imports: C:\users<USER>/[My ]Documents\FreeShip\
+
+Linux, per-User installation:
+
+    Application files:
+    -- executable/library file(s), manual files, language/localization files, themes and icons, example projects : C:\users<USER>\AppData\Programs\FreeShip\
+    Global configuration files: C:\users<USER>\AppData\Programs\FreeShip\FreeShip.ini
+    User configuration files: C:\users<USER>\AppData\FreeShip\FreeShip.ini
+    User projects, exports, imports: C:\users<USER>/[My ]Documents\FreeShip\
+
 Test only Version 3.5.5.21 in Lazarus
 Released: Build date	2015/12/24 10:50:00
 New features and fixes:

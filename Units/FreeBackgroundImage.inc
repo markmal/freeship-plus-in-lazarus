@@ -38,6 +38,7 @@ begin
   FTolerance := Tolerance;
   if Changed and (not Quiet) then
     Owner.Refresh;
+  Invalidate;
 end;{TFreeBackgroundImage.AssignData}
 
 procedure TFreeBackgroundImage.Clear;
@@ -60,6 +61,8 @@ begin
   FQuality := 100;
   FAlpha := 255;
   FTolerance := 5;
+  FTmpBmp.Free;
+  FTmpBmp := nil;
 end;{TFreeBackgroundImage.Clear}
 
 procedure TFreeBackgroundImage.FSetAlpha(val: byte);
@@ -67,6 +70,7 @@ begin
   if val <> FAlpha then
   begin
     FAlpha := val;
+    Invalidate;
     if (FVisible) and (FBitmap <> nil) then
       FOwner.Refresh;
   end;
@@ -77,6 +81,7 @@ begin
   if (Val.X <> Forigin.X) or (Val.Y <> FOrigin.Y) then
   begin
     FOrigin := Val;
+    Invalidate;
     if (FVisible) and (FBitmap <> nil) then
       FOwner.Refresh;
     if (not (csdestroying in owner.componentstate)) then
@@ -90,6 +95,7 @@ begin
   if Val <> FTolerance then
   begin
     FTolerance := val;
+    Invalidate;
     if (FVisible) and (FBitmap <> nil) and (FTransparent) then
       FOwner.Refresh;
     if (not (csdestroying in owner.componentstate)) then
@@ -103,6 +109,7 @@ begin
   if Val <> FTransparent then
   begin
     FTransparent := val;
+    Invalidate;
     if (FVisible) and (FBitmap <> nil) then
       FOwner.Refresh;
     if (not (csdestroying in owner.componentstate)) then
@@ -116,6 +123,7 @@ begin
   if Val <> FTransparentColor then
   begin
     FTransparentColor := val;
+    Invalidate;
     if (FVisible) and (FBitmap <> nil) and (Transparent) then
     begin
       if FTransparentColor = Owner.Color then
@@ -148,6 +156,7 @@ begin
   inherited Create;
   FOwner := Viewport;
   FBitmap := nil;
+  FTmpBmp := nil;
   Clear;
 end;{TFreeBackgroundImage.Create}
 
@@ -157,13 +166,20 @@ begin
   inherited Destroy;
 end;{TFreeBackgroundImage.Destroy}
 
+procedure TFreeBackgroundImage.Invalidate;
+begin
+  if assigned(FTmpBmp) then
+     FTmpBmp.Free;
+  FTmpBmp := nil;
+end;
+
 procedure TFreeBackgroundImage.Draw;
 var
   DestRect: TRect;
   I, J: integer;
   Scan: PRGBTripleArray;
   Rt, Gt, Bt: byte;
-  TmpBmp: TBitmap;
+  //TmpBmp: TBitmap;
   DrawingToprinter: boolean;
   Backgr: TRGBTriple;
   TmpVal: byte;
@@ -176,10 +192,20 @@ begin
   begin
     DestRect := TargetRect;
 
-    TmpBmp := TBitmap.Create;
-    TmpBmp.Assign(FBitmap);
+    // performance improvement
+    if assigned(FTmpBmp) then
+    begin
+      // this means that the background is already prepared and we can
+      // just draw it and exit
+      FOwner.StretchDraw(DestRect, FTmpBmp);
+      exit;
+    end;
+
+
+    FTmpBmp := TBitmap.Create;
+    FTmpBmp.Assign(FBitmap);
     //if TmpBmp.PixelFormat<>pf24bit then TmpBmp.PixelFormat:=pf24bit;
-    BitmapFormatHelper := TFreeBitmapFormatHelper.Create(TmpBmp);
+    BitmapFormatHelper := TFreeBitmapFormatHelper.Create(FTmpBmp);
 
     //DrawingToprinter:=False;
     //if Printer<>nil then DrawingToPrinter:=(FOwner.DrawingCanvas=Printer.Canvas) and (Fowner.FPrinting);
@@ -203,14 +229,14 @@ begin
     Gt := GetGValue(FTransparentColor);
     Bt := GetBValue(FTransparentColor);
     TmpVal := 255 - FAlpha;
-    TmpBmp.BeginUpdate(True);
-    //if (Transparent) or (Alpha<>255) then
-    for I := 0 to TmpBmp.Height - 1 do
+    FTmpBmp.BeginUpdate(True);
+    if (Transparent) or (Alpha<>255) then
+    for I := 0 to FTmpBmp.Height - 1 do
     begin
       //Scan:=TmpBmp.ScanLine[I];
-      pRow := TmpBmp.RawImage.GetLineStart(I);
+      pRow := FTmpBmp.RawImage.GetLineStart(I);
 
-      for J := 0 to TmpBmp.Width - 1 do
+      for J := 0 to FTmpBmp.Width - 1 do
       begin
         pPixel := pRow + BitmapFormatHelper.BytesPerPixel * J;
         Pixel := BitmapFormatHelper.ToTRGBTriple(pPixel);
@@ -248,14 +274,14 @@ begin
         //TmpBmp.Canvas.Pixels[J,I]:= RGBtoColor(Pixel.rgbtRed,Pixel.rgbtGreen,Pixel.rgbtBlue);
       end;
     end;  //for I
-    TmpBmp.EndUpdate(True);
+    FTmpBmp.EndUpdate(True);
 
     //StretchBlt(FOwner.DrawingCanvas.Handle,DestRect.Left,DestRect.Top,DestRect.Right-DestRect.Left,DestRect.Bottom-DestRect.Top,TmpBmp.Canvas.Handle,0,0,TmpBmp.Width,TmpBmp.Height,SRCCOPY);
     //FOwner.DrawingCanvas.StretchDraw(DestRect,TmpBmp);
-    FOwner.StretchDraw(DestRect, TmpBmp);
+    FOwner.StretchDraw(DestRect, FTmpBmp);
     BitmapFormatHelper.Destroy;
     BitmapFormatHelper := nil;
-    TmpBmp.Destroy;
+    //TmpBmp.Destroy;
   end;
 end;{TFreeBackgroundImage.Draw}
 

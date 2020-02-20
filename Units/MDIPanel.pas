@@ -5,7 +5,7 @@ unit MDIPanel;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics,
+  Classes, SysUtils, Forms, Controls, StdCtrls, Graphics,
   ExtCtrls, ComCtrls, Buttons, Menus; //, ActnList;
 
 type
@@ -33,6 +33,7 @@ type
 type
   TMDIPanel = class(TCustomPanel)
     CaptionPanel: TPanel;
+    CaptionLabel: TLabel;
     ClientPanel: TMDIClientPanel; //TScrollBox;
     SystemButton: TImage;
     CloseButton: TSpeedButton;
@@ -66,6 +67,11 @@ type
     FClickProxies: TFPList;
     FCaptionButtons: TCaptionButtons;
     FWindowResizingSide: TWindowResizingSide;
+
+    FLastResizeWidth:integer;
+    FLastResizeHeight:integer;
+    FLastResizeClientWidth:integer;
+    FLastResizeClientHeight:integer;
 
   private
 
@@ -135,6 +141,7 @@ type
     procedure SetInactiveBorderColor(AValue: TColor);
     procedure SetParent(NewParent: TWinControl); override;
     procedure AdjustClientRect(var ARect: TRect); override;
+    procedure Resize; override;
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -402,16 +409,17 @@ begin
     Parent := Self;
     Name := 'CaptionPanel';
     //Height := 26;
-    AutoSize := True;
+    //AutoSize := True;
     Align := alTop;
     BevelOuter := bvNone;
     BevelInner := bvNone;
     BorderStyle := bsNone; //bsSingle;
     BorderWidth := 0;
-    Caption := 'MDIPanel';
+    Caption := '';
     Color := clInactiveCaption;
     Font.Color := clCaptionText;
     Font.Style := [fsBold];
+    Height := Font.Height + 8;
     ParentColor := False;
     ParentFont := False;
     TabStop := False;
@@ -419,6 +427,15 @@ begin
     OnMouseMove := @CaptionPanelMouseMove;
     OnMouseUp := @CaptionPanelMouseUp;
   end;
+
+  CaptionLabel := TLabel.Create(Self);
+  CaptionLabel.Parent := CaptionPanel;
+  CaptionLabel.ParentFont := true;
+  CaptionLabel.Align := alClient;
+  CaptionLabel.Alignment := taCenter;
+  CaptionLabel.Layout := tlCenter;
+  CaptionLabel.Caption := 'MDIPanel';
+
 
   CaptionPanel.Constraints.MinHeight := deriveCaptionHeight;
   SetCaptionButtons(FCaptionButtons);
@@ -597,6 +614,23 @@ begin
   if self.BevelInner <> bvNone then ibw:=BevelWidth;
   InflateRect(IRect, -ibw, -ibw);
   Canvas.Frame3d(IRect, BorderColor, BorderColor, BorderWidth);
+end;
+
+procedure TMDIPanel.Resize;
+begin
+  if ([csLoading,csDestroying]*ComponentState<>[]) then exit;
+  if AutoSizeDelayed then exit;
+
+  if (FLastResizeWidth<>Width) or (FLastResizeHeight<>Height)
+  or (FLastResizeClientWidth<>ClientWidth)
+  or (FLastResizeClientHeight<>ClientHeight) then
+  begin
+    inherited Resize;
+    FLastResizeWidth:=Width;
+    FLastResizeHeight:=Height;
+    FLastResizeClientWidth:=ClientWidth;
+    FLastResizeClientHeight:=ClientHeight;
+  end;
 end;
 
 function TMDIPanel.GetBorderColor: TColor;
@@ -1014,12 +1048,14 @@ end;
 
 procedure TMDIPanel.SetCaption(const Value: TCaption);
 begin
-  CaptionPanel.Caption := Value;
+  //CaptionPanel.Caption := Value;
+  CaptionLabel.Caption := Value;
 end;
 
 function TMDIPanel.GetCaption: TCaption;
 begin
-  Result := CaptionPanel.Caption;
+  //Result := CaptionPanel.Caption;
+  Result := CaptionLabel.Caption;
 end;
 
 procedure TMDIPanel.DoClose(CloseAction: TCloseAction);

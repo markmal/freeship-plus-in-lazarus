@@ -332,6 +332,7 @@ type
     FQuality: byte;
     FAlpha: byte;
     FTolerance: byte;
+    FTmpBmp: TBitmap;
     procedure FSetAlpha(val: byte);
     procedure FSetOrigin(val: TPoint);
     procedure FSetTolerance(val: byte);
@@ -345,6 +346,7 @@ type
     procedure Clear;
     constructor Create(Viewport: TFreeViewport);
     destructor Destroy; override;
+    procedure Invalidate;
     procedure Draw;
     function ImageCoordinate(X, Y: integer): TPoint;
     function TargetRect: TRect;
@@ -454,6 +456,12 @@ type
 
     FOnChangeBackgroundImage: TNotifyEvent;
     FUpdating: boolean;
+
+    FLastResizeWidth:integer;
+    FLastResizeHeight:integer;
+    FLastResizeClientWidth:integer;
+    FLastResizeClientHeight:integer;
+
     function FGetBrushColor: TColor;
     function FGetBrushStyle: TBrushStyle;
     function FGetFontColor: TColor;
@@ -492,16 +500,12 @@ type
     procedure WMMouseEnter(var Message: TMessage); message CM_MOUSEENTER;
     procedure WMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
   protected
-    procedure Paint;
-      override;
-    procedure Resize;
-      override;
-    procedure KeyPress(var Key: char);
-      override;
+    procedure Paint; override;
+    procedure Resize; override;
+    procedure KeyPress(var Key: char); override;
     procedure MouseDown(Button: TMouseButton; Shift: TShiftState; X, Y: integer);
       override;
-    procedure MouseMove(Shift: TShiftState; X, Y: integer);
-      override;
+    procedure MouseMove(Shift: TShiftState; X, Y: integer); override;
     procedure MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: integer);
       override;
     function DoMouseWheel(Shift: TShiftState; WheelDelta: integer;

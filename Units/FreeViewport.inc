@@ -790,6 +790,8 @@ begin
   // Remember the min/max values
   FMin3D := Min;
   FMax3D := Max;
+  if assigned(BackgroundImage) then
+     BackgroundImage.Invalidate;
   // Now force a complete repaint
   Invalidate;
 end;{TFreeViewport.InitializeViewport}
@@ -1405,8 +1407,20 @@ end;{TFreeViewport.SaveAsBitmap}
 
 procedure TFreeViewport.Resize;
 begin
-  inherited Resize;
-  InitializeViewport(FMin3D, FMax3D);
+  if ([csLoading,csDestroying]*ComponentState<>[]) then exit;
+  if AutoSizeDelayed then exit;
+
+  if (FLastResizeWidth<>Width) or (FLastResizeHeight<>Height)
+  or (FLastResizeClientWidth<>ClientWidth)
+  or (FLastResizeClientHeight<>ClientHeight) then
+  begin
+    inherited Resize;
+    FLastResizeWidth:=Width;
+    FLastResizeHeight:=Height;
+    FLastResizeClientWidth:=ClientWidth;
+    FLastResizeClientHeight:=ClientHeight;
+    InitializeViewport(FMin3D, FMax3D);
+  end;
 end;{TFreeViewport.Resize}
 
 procedure TFreeViewport.KeyPress(var Key: char);

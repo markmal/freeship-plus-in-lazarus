@@ -54,7 +54,7 @@ uses
      StdCtrls,
      Menus,
      ActnList,
-     Printers,
+     Printers, ExtDlgs,
 {$IFDEF USEOPENGL}
     ,FreeViewPortOpenGL
 {$ENDIF}
@@ -66,6 +66,10 @@ type
 { TFreeHullWindow }
 
  TFreeHullWindow   = class(TMDIPanel)
+  ActionList1: TActionList;
+  Images: TImageList;
+  PopupMenu1: TPopupMenu;
+  PrintDialog: TPrintDialog;
    ScrollBar1: TScrollBar;
    ScrollBar2: TScrollBar;
    Viewport  : TFreeViewport;
@@ -125,7 +129,7 @@ type
    BackgroundScale: TAction;
    Setscale1: TMenuItem;
    BackgroundTransparentColor: TAction;
-   ransparentcolor1: TMenuItem;
+   Transparentcolor1: TMenuItem;
    Backgroundclear: TAction;
    Clear1: TMenuItem;
    BackgroundBlending: TAction;
@@ -147,7 +151,7 @@ type
    procedure FormActivate(Sender: TObject);
    procedure FormCreate(Sender: TObject);
    procedure FormClose(Sender: TObject; var aAction: TCloseAction);
-   procedure PopupMenuPopup(Sender: TObject);
+   procedure PopupMenu1Popup(Sender: TObject);
    procedure StandardLensExecute(Sender: TObject);
    procedure WideLensExecute(Sender: TObject);
    procedure ShortTeleLensExecute(Sender: TObject);
@@ -331,7 +335,7 @@ begin
   BackgroundScale := FreeHullForm.BackgroundScale;
   Setscale1 := FreeHullForm.Setscale1;
   BackgroundTransparentColor := FreeHullForm.BackgroundTransparentColor;
-  ransparentcolor1 := FreeHullForm.ransparentcolor1;
+  Transparentcolor1 := FreeHullForm.ransparentcolor1;
   Backgroundclear := FreeHullForm.Backgroundclear;
   Clear1 := FreeHullForm.Clear1;
   BackgroundBlending := FreeHullForm.BackgroundBlending;
@@ -481,7 +485,7 @@ begin
     Elevation := 20;
     HorScrollbar := ScrollBar1;
     Margin := 1;
-    PopupMenu := PopupMenu;
+    PopupMenu1 := PopupMenu1;
     VertScrollbar := ScrollBar2;
     ViewType := fvPerspective;
     ViewportMode := vmWireFrame;
@@ -548,7 +552,7 @@ begin
    aAction:=caFree;
 end;{TFreeHullWindow.FormClose}
 
-procedure TFreeHullWindow.PopupMenuPopup(Sender: TObject);
+procedure TFreeHullWindow.PopupMenu1Popup(Sender: TObject);
 begin
    UpdateMenu;
 end;{TFreeHullWindow.PopupMenu1Popup}

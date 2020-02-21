@@ -2111,12 +2111,6 @@ end;{TMainForm.EdgeExtrudeExecute}
 procedure TMainForm.About1Click(Sender: TObject);
 var FreeAboutDlg : TFreeAboutDlg;
 begin
-   // Show splash screen again
-   {FreeSplashWindow:=TFreeSplashWindow.Create(Application);
-   ShowTranslatedValues(FreeSplashWindow);
-   FreeSplashWindow.Show;
-   FreeSplashWindow.Refresh;}
-
  FreeAboutDlg := TFreeAboutDlg.Create(Self);
  FreeAboutDlg.ShowModal;
  FreeAboutDlg.Destroy;

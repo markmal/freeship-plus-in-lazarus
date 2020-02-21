@@ -83,7 +83,7 @@ procedure TFreeEdit.BackgroundImage_Open(Viewport: TFreeViewport);
 var
   I: integer;
   Data: TFreebackgroundImagedata;
-  Dialog: TOpenDialog;
+  Dialog: TOpenPictureDialog;
   Pt: TPoint;
   P2D: T2DCoordinate;
   Bmp: TBitmap;
@@ -97,11 +97,12 @@ begin
       [mbYes, mbNo], 0) = mrNo then
       exit;
 
-  Dialog := TOpenDialog.Create(Viewport);
+  Dialog := TOpenPictureDialog.Create(Viewport);
   Dialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   Dialog.Filter :=
     'All files (*.jpg;*.bmp)|*.jpg; *.bmp|Jpeg images (*.jpg)|*.jpg|Bitmap files (*.bmp)|*.bmp|';
-  Dialog.Options := [ofHideReadOnly];
+
+    //Dialog.Options := [ofHideReadOnly];
   if Dialog.Execute then
   begin
     if Data = nil then

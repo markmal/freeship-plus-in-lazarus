@@ -59,6 +59,7 @@ uses
   FreeVersionUnit,
   FreeFileBuffer,
   ExtCtrls,
+  ExtDlgs,
 {$IFDEF VER3}
   LazUTF8,
   LazFileUtils,
@@ -353,6 +354,7 @@ type
     procedure Open(InitialDir: string);
     procedure Save;
     procedure SetBlendingValue;
+    procedure SetToleranceValue;
     property Origin: TPoint
       read FOrigin write FSetOrigin;
   published
@@ -2170,6 +2172,7 @@ implementation
 uses FreeLanguageSupport,
   VRMLUnit,
   FreeBackgroundBlendingDlg,
+  FreeBackgroundToleranceDlg,
   FreeSaveImageDlg,
   FreeLogger;
 

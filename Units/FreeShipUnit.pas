@@ -64,6 +64,7 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
   Classes,
   StdCtrls,
   ExtCtrls,
+  ExtDlgs,
   ComCtrls,
   ColorIniFile,
   ActnList,

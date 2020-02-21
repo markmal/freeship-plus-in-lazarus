@@ -198,14 +198,14 @@ begin
     begin
       // this means that the background is already prepared and we can
       // just draw it and exit
-      FOwner.StretchDraw(DestRect, FCachedBmp); // TODO - replace on same-size draw, hopefully it should be faster
+      FOwner.StretchDraw(DestRect, FCachedBmp);
       exit;
     end;
 
     FCachedBmp := TBitmap.Create;
     //TmpBmp.Assign(FBitmap);
     FCachedBmp.SetSize(DestRect.Width, DestRect.Height); // bring bitmap to target size
-    //FCachedBmp.PixelFormat:=pf32bit;
+    //Make bitmap same-size with destination - draw is faster.
     DestRectC:=Rect(0, 0, DestRect.Width-1, DestRect.Height-1);
     FCachedBmp.Canvas.StretchDraw(DestRectC, FBitmap);
 
@@ -234,69 +234,47 @@ begin
     Gt := GetGValue(FTransparentColor);
     Bt := GetBValue(FTransparentColor);
     TmpVal := 255 - FAlpha;
-    FCachedBmp.BeginUpdate(True);
-    if (Transparent) or (FAlpha<>255) then
-    for I := 0 to FCachedBmp.Height - 1 do
-    begin
-      //Scan:=TmpBmp.ScanLine[I];
-      pRow := FCachedBmp.RawImage.GetLineStart(I);
 
-      for J := 0 to FCachedBmp.Width - 1 do
+    if (Transparent) or (FAlpha<>255) then
+    begin
+      FCachedBmp.BeginUpdate(False);
+      for I := 0 to FCachedBmp.Height - 1 do
       begin
-        pPixel := pRow + BitmapFormatHelper.BytesPerPixel * J;
-        Pixel := BitmapFormatHelper.ToTRGBTriple(pPixel);
-        {C := FCachedBmp.Canvas.Pixels[J,I];
-        Pixel.rgbtRed := Red(C);
-        Pixel.rgbtGreen:=Green(C);
-        Pixel.rgbtBlue:=Blue(C);}
-        if Transparent then
+        //Scan:=TmpBmp.ScanLine[I];
+        pRow := FCachedBmp.RawImage.GetLineStart(I);
+
+        for J := 0 to FCachedBmp.Width - 1 do
         begin
+          pPixel := pRow + BitmapFormatHelper.BytesPerPixel * J;
+          Pixel := BitmapFormatHelper.ToTRGBTriple(pPixel);
+
           // Replace transparent pixels with the viewport color
-          if (abs(Pixel.rgbtRed - Rt) <= FTolerance) and
-            (abs(Pixel.rgbtGreen - Gt) <= FTolerance) and
-            (abs(Pixel.rgbtBlue - Bt) <= FTolerance) then
+          if Transparent and
+              (abs(Pixel.rgbtRed - Rt) <= FTolerance) and
+              (abs(Pixel.rgbtGreen - Gt) <= FTolerance) and
+              (abs(Pixel.rgbtBlue - Bt) <= FTolerance) then
           begin
             Pixel := Backgr;
           end
           else
+          if (FAlpha<>255) then
           begin
-            // Blend non-transparent pixels with the viewport
+            // Blend all pixels with the viewport
             Pixel.rgbtRed := (Tmpval * Backgr.rgbtRed + FAlpha * Pixel.rgbtRed) shr 8;
-            Pixel.rgbtGreen :=
-              (Tmpval * Backgr.rgbtGreen + FAlpha * Pixel.rgbtGreen) shr 8;
+            Pixel.rgbtGreen := (Tmpval * Backgr.rgbtGreen + FAlpha * Pixel.rgbtGreen) shr 8;
             Pixel.rgbtBlue := (Tmpval * Backgr.rgbtBlue + FAlpha * Pixel.rgbtBlue) shr 8;
           end;
-        end
-        else
-        if (FAlpha<>255) then
-        begin
-          // Blend all pixels with the viewport
-          Pixel.rgbtRed := (Tmpval * Backgr.rgbtRed + FAlpha * Pixel.rgbtRed) shr 8;
-          Pixel.rgbtGreen := (Tmpval * Backgr.rgbtGreen + FAlpha * Pixel.rgbtGreen) shr 8;
-          Pixel.rgbtBlue := (Tmpval * Backgr.rgbtBlue + FAlpha * Pixel.rgbtBlue) shr 8;
+
+          BitmapFormatHelper.FromTRGBTriple(Pixel, pPixel);
+          //FCachedBmp.Canvas.Pixels[J,I]:= RGBtoColor(Pixel.rgbtRed,Pixel.rgbtGreen,Pixel.rgbtBlue);
         end;
-
-        //Pixel.rgbtRed := 0;
-        //Pixel.rgbtBlue := 0;
-        //Pixel.rgbtGreen := 0;
-
-        BitmapFormatHelper.FromTRGBTriple(Pixel, pPixel);
-        //FCachedBmp.Canvas.Pixels[J,I]:= RGBtoColor(Pixel.rgbtRed,Pixel.rgbtGreen,Pixel.rgbtBlue);
-      end;
-    end;  //for I
-    FCachedBmp.EndUpdate(True);
-
-    //StretchBlt(FOwner.DrawingCanvas.Handle,DestRect.Left,DestRect.Top,DestRect.Right-DestRect.Left,DestRect.Bottom-DestRect.Top,TmpBmp.Canvas.Handle,0,0,TmpBmp.Width,TmpBmp.Height,SRCCOPY);
-    //FOwner.DrawingCanvas.StretchDraw(DestRect,TmpBmp);
-    {FCachedBmp := TBitmap.Create;
-    FCachedBmp.SetSize(DestRect.Width, DestRect.Height); // bring bitmap to target size
-    DestRectC:=Rect(0, 0, DestRect.Width-1, DestRect.Height-1);
-    FCachedBmp.Canvas.StretchDraw(DestRectC, TmpBmp);}
+      end;  //for I
+      FCachedBmp.EndUpdate(False);
+    end;
 
     FOwner.StretchDraw(DestRect, FCachedBmp);
     BitmapFormatHelper.Destroy;
     BitmapFormatHelper := nil;
-    //TmpBmp.Destroy;
   end;
 end;{TFreeBackgroundImage.Draw}
 
@@ -327,7 +305,7 @@ var
   P2D: T2DCoordinate;
   JPEGImage: TJPEGImage;
 begin
-  Dialog := TOpenDialog.Create(Application);
+  Dialog := TOpenPictureDialog.Create(Application);
   Dialog.InitialDir := InitialDir;
   Dialog.Filter :=
     'All files (*.jpg;*.bmp)|*.jpg; *.bmp|Jpeg images (*.jpg)|*.jpg|Bitmap files (*.bmp)|*.bmp|';
@@ -401,6 +379,24 @@ begin
   end
   else
     Alpha := Old;
+  Dialog.Destroy;
+end;{TFreeBackgroundImage.SetBlendingValue}
+
+procedure TFreeBackgroundImage.SetToleranceValue;
+var
+  Dialog: TFreeBackgroundToleranceDialog;
+  Old: byte;
+begin
+  Dialog := TFreeBackgroundToleranceDialog.Create(Owner);
+  ShowTranslatedValues(Dialog);
+  Old := FTolerance;
+  if Dialog.Execute(Owner) then
+  begin
+    if assigned(Owner.FOnChangeBackgroundImage) then
+      Owner.FOnChangeBackgroundImage(Owner);
+  end
+  else
+    Tolerance := Old;
   Dialog.Destroy;
 end;{TFreeBackgroundImage.SetBlendingValue}
 

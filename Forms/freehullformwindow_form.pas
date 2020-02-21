@@ -703,7 +703,7 @@ begin
    Viewport.BackgroundMode:=emSetTransparentColor;
 end;{TFreeHullForm.BackgroundTransparentColorExecute}
 
-procedure TFreeHullForm.BackgroundclearExecute(Sender: TObject);
+procedure TFreeHullForm.BackgroundClearExecute(Sender: TObject);
 begin
    if (Viewport.BackgroundImage.Bitmap<>nil) and (Viewport.BackgroundImage.Visible) then
    begin
@@ -756,7 +756,9 @@ procedure TFreeHullForm.BackgroundToleranceExecute(Sender: TObject);
 var Str:Ansistring;
     Value,I:Integer;
 begin
-   Str:=IntToStr(Viewport.BackgroundImage.Tolerance);
+  Viewport.BackgroundImage.SetToleranceValue;
+
+{  Str:=IntToStr(Viewport.BackgroundImage.Tolerance);
    if InputQuery(Userstring(220),Userstring(221)+' (0-255)',Str) then
    begin
       val(Str,Value,I);
@@ -766,7 +768,7 @@ begin
             if Value>255 then value:=255;
          Viewport.BackgroundImage.Tolerance:=Value;
       end else MessageDlg(Userstring(222)+'!',mtError,[mbok],0)
-   end;
+   end;}
 end;{TFreeHullForm.BackgroundToleranceExecute}
 
 procedure TFreeHullForm.BackgroundVisibleExecute(Sender: TObject);

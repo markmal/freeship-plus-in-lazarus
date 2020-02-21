@@ -13,7 +13,7 @@ object FreeHullWindow: TFreeHullWindow
   OnKeyUp = FormKeyUp
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object ScrollBar1: TScrollBar
     Left = 0
     Height = 15
@@ -40,12 +40,12 @@ object FreeHullWindow: TFreeHullWindow
     Position = 20
     TabOrder = 1
   end
-  object PopupMenu: TPopupMenu
+  object PopupMenu1: TPopupMenu
     Images = Images
     AutoPopup = False
-    OnPopup = PopupMenuPopup
-    left = 128
-    top = 40
+    OnPopup = PopupMenu1Popup
+    left = 40
+    top = 136
     object Deselectall1: TMenuItem
       Action = DeselectAll
     end
@@ -135,10 +135,10 @@ object FreeHullWindow: TFreeHullWindow
       object Setscale1: TMenuItem
         Action = BackgroundScale
       end
-      object ransparentcolor1: TMenuItem
+      object Transparentcolor1: TMenuItem
         Action = BackgroundTransparentColor
       end
-      object olerance1: TMenuItem
+      object Tolerance1: TMenuItem
         Action = BackgroundTolerance
       end
       object Blending1: TMenuItem
@@ -645,7 +645,7 @@ object FreeHullWindow: TFreeHullWindow
     }
   end
   object PrintDialog: TPrintDialog
-    left = 280
-    top = 40
+    left = 208
+    top = 136
   end
 end

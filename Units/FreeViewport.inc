@@ -2556,6 +2556,7 @@ begin
   FZoom := FZoom * Zoomfactor;
   FPan.X := round(Zoomfactor * FPan.X);
   FPan.Y := round(Zoomfactor * FPan.Y);
+  BackgroundImage.invalidate;
   Refresh;
 end;{TFreeViewport.ZoomIn}
 
@@ -2564,6 +2565,7 @@ begin
   FZoom := FZoom / Zoomfactor;
   FPan.X := round(FPan.X / Zoomfactor);
   FPan.Y := round(FPan.Y / Zoomfactor);
+  BackgroundImage.invalidate;
   Refresh;
 end;{TFreeViewport.ZoomOut}
 

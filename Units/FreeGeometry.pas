@@ -332,7 +332,7 @@ type
     FQuality: byte;
     FAlpha: byte;
     FTolerance: byte;
-    FTmpBmp: TBitmap;
+    FCachedBmp: TBitmap;
     procedure FSetAlpha(val: byte);
     procedure FSetOrigin(val: TPoint);
     procedure FSetTolerance(val: byte);

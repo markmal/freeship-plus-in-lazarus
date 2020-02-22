@@ -137,6 +137,12 @@ msgstr ""
 msgid "My Ships"
 msgstr ""
 
+#: freeshipunit.rsglobalconfigloaderrormessage
+msgid ""
+"Unable to load per-machine configuration. Skipping. There may be further problems with finding directories and files.\n"
+"Error:\n"
+msgstr ""
+
 #: freeshipunit.rspointanchorconstraintchanged
 msgid "ControlPoint Anchor Constraint Changed"
 msgstr ""
@@ -158,6 +164,12 @@ msgstr ""
 msgid "The current fileversion is version %s.%sDo you want to save the file as version %s ?"
 msgstr ""
 
+#: freeshipunit.rsthemeloaderrormessage
+msgid ""
+"Unable to load theme %s\n"
+"Error:\n"
+msgstr ""
+
 #: freeshipunit.rsunablecreatebackupfile
 msgid "Unable to create backup file"
 msgstr ""
@@ -168,6 +180,12 @@ msgstr ""
 
 #: freeshipunit.rsunabletosavefile
 msgid "Unable to save file"
+msgstr ""
+
+#: freeshipunit.rsuserconfigloaderrormessage
+msgid ""
+"Unable to load per-user configuration. There may be further problems with finding directories and files. Using defaults.\n"
+"Error:\n"
 msgstr ""
 
 #: freesplashwndw.rsbuild

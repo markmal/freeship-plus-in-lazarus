@@ -36,7 +36,8 @@ fi
 
 # if we have tools for .deb creation
 if [ -x /usr/bin/lintian ] ; then
-  # create deb package
+  echo
+  echo Create deb package
   cd instpkg/deb/
   ./prep.sh
   ./build.sh

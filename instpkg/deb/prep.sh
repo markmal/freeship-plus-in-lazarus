@@ -9,7 +9,8 @@ rm -rf freeship/usr
 umask 0022
 
 mkdir -p freeship/usr/bin
-cp -r $PRJ_HOME/FreeShip freeship/usr/bin/
+cp $PRJ_HOME/FreeShip freeship/usr/bin/
+#strip --only-keep-debug --keep-file-symbols --keep-symbol=Version freeship/usr/bin/FreeShip
 
 mkdir -p freeship/etc/FreeShip
 cp -r $PRJ_HOME/install/FreeShip.ini freeship/etc/FreeShip/
@@ -31,7 +32,7 @@ mkdir -p freeship/usr/share/pixmaps
 mkdir -p freeship/usr/share/man/man1/
 
 cp $PRJ_HOME/Whatsnew.txt freeship/usr/share/doc/freeship/changelog
-gzip -9 freeship/usr/share/doc/freeship/changelog
+gzip -n -9 freeship/usr/share/doc/freeship/changelog
 grep -v '^# ' $PRJ_HOME/copyright > freeship/usr/share/doc/freeship/copyright
 cp $PRJ_HOME/install/menu freeship/usr/share/menu/freeship/menu
 convert $PRJ_HOME/Themes/Default/icons/32/00-freeship.png freeship/usr/share/pixmaps/freeship.xpm

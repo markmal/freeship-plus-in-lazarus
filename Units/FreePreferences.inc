@@ -1170,6 +1170,10 @@ begin
 
 end;
 
+resourcestring
+rsGlobalConfigLoadErrorMessage = 'Unable to load per-machine configuration. Skipping. There may be further problems with finding directories and files.'+#10+'Error:';
+rsUserConfigLoadErrorMessage = 'Unable to load per-user configuration. There may be further problems with finding directories and files. Using defaults.'+#10+'Error:';
+rsThemeLoadErrorMessage = 'Unable to load theme %s'+#10+'Error:';
 
 procedure TFreePreferences.Load;
 var
@@ -1202,10 +1206,24 @@ begin
     end;
   end;
 
-  LoadFromIni(GlobalConfigFileName);
-  LoadFromIni(UserConfigFileName);
-  LoadTheme(FThemeName);
+  try
+    LoadFromIni(GlobalConfigFileName);
+  except on E:Exception do
+    ShowMessage(rsGlobalConfigLoadErrorMessage + E.Message);
+  end;
+  try
+    LoadFromIni(UserConfigFileName);
+  except on E:Exception do
+    ShowMessage(rsUserConfigLoadErrorMessage + E.Message);
+  end;
+
+  try
+    LoadTheme(FThemeName);
+  except on E:Exception do
+    ShowMessage(format(rsThemeLoadErrorMessage,[FThemeName]) + E.Message);
+  end;
 end;{TFreePreferences.Load}
+
 
 procedure TFreePreferences.ResetColors;
 begin

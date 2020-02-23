@@ -454,6 +454,8 @@ begin
       Spline := Items[I - 1];
       Spline.Color := Color;
       Spline.PenStyle := psSolid;
+      Spline.PenWidth := 1;
+
       if IntersectionType = fiStation then
         if Viewport.ViewType in [fvProfile, fvPlan] then
           Spline.PenStyle := psDot;
@@ -469,7 +471,7 @@ begin
       Spline.CurvatureColor := Owner.Preferences.CurvaturePlotColor;
       Spline.CurvatureScale := Owner.Visibility.CurvatureScale;
       Spline.ShowCurvature := (Owner.Visibility.ShowCurvature) and (ShowCurvature);
-      ;
+
       if Spline.ShowCurvature then
         Spline.Fragments := 800
       else
@@ -484,6 +486,10 @@ begin
       end;
       if Spline.ShowCurvature then
         Setlength(CPts, Spline.Fragments + 1);
+
+      if (IntersectionType = fiWaterline) and (Viewport.ViewType in [fvPlan])
+      then R:=0; // debug catch
+
       // Draw portside
       DrawIt := IntersectionType in [fiButtock, fiWaterline, fiDiagonal];
       if IntersectionType = fiStation then
@@ -540,6 +546,7 @@ begin
             end;
           Viewport.Polyline(CPts);
         end;
+        Viewport.PenWidth := Spline.PenWidth;
         Viewport.PenColor := Spline.Color;
         Viewport.PenStyle := Spline.PenStyle;
         Viewport.Polyline(Pts);
@@ -585,6 +592,7 @@ begin
             end;
           Viewport.Polyline(CPts);
         end;
+        Viewport.PenWidth := Spline.PenWidth;
         Viewport.PenColor := Spline.Color;
         Viewport.PenStyle := Spline.PenStyle;
         Viewport.Polyline(Pts);

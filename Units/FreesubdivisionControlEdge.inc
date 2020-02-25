@@ -468,7 +468,7 @@ begin
       if Crease then
         Viewport.SetPenWidth(2)
       else
-        Viewport.SetPenWidth(1);
+        Viewport.SetPenWidth(2);   // MM 2020-02-23: Make non-crease controledges thicker
       if Viewport.ViewType = fvBodyplan then
       begin
         if ((P1.X < Owner.MainframeLocation) and (P2.X > Owner.MainframeLocation)) or

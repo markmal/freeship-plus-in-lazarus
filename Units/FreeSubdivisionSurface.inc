@@ -2948,7 +2948,7 @@ end;{TFreeSubdivisionSurface.Destroy}
 
 procedure TFreeSubdivisionSurface.Draw(Viewport: TFreeViewport);
 var
-  I: integer;
+  I: integer; t:DWord;
   Edge: TFreeSubdivisionEdge;
 begin
   if FIsBuilding then exit; // no double entries
@@ -2965,8 +2965,10 @@ begin
   else
     inherited Draw(Viewport);
 
-  for I := 1 to NumberOfLayers do
-    Layer[I - 1].Draw(Viewport);
+  //t := LclIntf.GetTickCount;
+  for i := 0 to NumberOfLayers-1 do
+    Layer[i].Draw(Viewport);
+  //t := LclIntf.GetTickCount - t;
 
   if ShowControlNet then
   begin
@@ -3002,7 +3004,7 @@ begin
   // in both the points, therefore only the point
   // with the smallest number of edges has to be checked
   if P1.FEdges.Count <= P2.FEdges.Count then
-    P := P1 else P:=P2;
+    P := P1 else P := P2;
 
   P := P1; // thorow check
   for I := 0 to P.FEdges.Count - 1 do

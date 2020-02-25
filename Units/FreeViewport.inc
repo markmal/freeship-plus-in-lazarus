@@ -1237,6 +1237,9 @@ begin
       begin
         ZBuffer.Initialize;
         AlphaBuffer.Initialize;
+        // this prevents black background to appear at large pans and zooms
+        SetPixel(FDestinationWidth, FDestinationHeight,
+                 GetRValue(Color), GetGValue(Color), GetBValue(Color));
       end;
 
       if Assigned(OnRedraw) //and (ViewportMode=vmWireframe)
@@ -1827,23 +1830,14 @@ var
       // Use scanline property for faster pixel access
       //Row:=FDrawingBuffer.Scanline[y];
       pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
-      while X1 <= X2 do
+      while (X1 <= X2) do
       begin
         if Z1 > FZBuffer.FBuffer[Y][X1] then
         begin
           if Alpha = 255 then
           begin
-                 {
-                 pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * X1;
-                 Pixel := FBitmapFormatHelper.ToTRGBTriple(pPixel);
-                 Pixel.rgbtRed:=R;
-                 Pixel.rgbtGreen:=G;
-                 Pixel.rgbtBlue:=B;
-                 FBitmapFormatHelper.FromTRGBTriple(Pixel,pPixel);
-                 }
-
             // temporary draw via canvas
-            ///FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 widget DCSetPixel (qtobject.inc) calling QPen_create5
+            //FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 widget DCSetPixel (qtobject.inc) calling QPen_create5
 
             SetPixel(X1, Y, R, G, B);
 
@@ -1876,9 +1870,12 @@ begin
   LSourceDirection.Y := Center.Y - FLight.Position.Y;
   LSourceDirection.Z := Center.Z - FLight.Position.Z;
   LSourceDirection := Normalize(LSourceDirection);
-  LIntensityRatio := Dotproduct(Normal, LSourceDirection);
+  LIntensityRatio := DotProduct(Normal, LSourceDirection);
 
   ShadedColor(LIntensityRatio, R, G, B, R, G, B);
+  Pt1.R:=R;   Pt1.G:=G;   Pt1.B:=B;
+  Pt2.R:=R;   Pt2.G:=G;   Pt2.B:=B;
+  Pt3.R:=R;   Pt3.G:=G;   Pt3.B:=B;
 
   // Sort points according to Y-value
   if Pt2.Y < Pt1.Y then

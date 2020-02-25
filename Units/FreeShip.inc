@@ -1338,7 +1338,7 @@ begin
       for I := 1 to NumberOfDiagonals do
         Diagonal[I - 1].Draw(Viewport);
   end
-  else
+  else  // Viewport.Viewtype = fvPerspective
   begin
     if Visibility.ShowStations then
       for I := 1 to NumberOfStations do
@@ -1395,7 +1395,7 @@ begin
   else
     Surface.ShadeUnderWater := False;
 
-  Surface.Draw(Viewport);
+  Surface.Draw(Viewport);  // Main Draw
 
   if (Viewport.Viewtype <> fvPerspective) and (Viewport.ViewportMode <> vmWireframe) and
     (Visibility.ShowGrid) then

@@ -1602,10 +1602,8 @@ type
       var P: T3DCoordinate; Viewport: TFreeViewport): integer;
     procedure Delete; override;
     procedure Unreference; override;
-    destructor Destroy;
-      override;
-    procedure Draw(Viewport: TFreeViewport);
-      overload; virtual;
+    destructor Destroy;  override;
+    procedure Draw(Viewport: TFreeViewport); overload; virtual;
     procedure Draw(Viewport: TFreeViewport;
       MinCurvature, MaxCurvature: TFloatType); reintroduce; overload;
     function InsertEdge(

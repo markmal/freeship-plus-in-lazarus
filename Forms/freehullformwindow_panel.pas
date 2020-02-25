@@ -642,10 +642,9 @@ begin
       exit;
    end;
    FPanned:=False;
-   Select := false;
    if Viewport.ViewportMode=vmWireframe
       then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
-   FAllowPanOrZoom:=not Select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
+   FAllowPanOrZoom:=not select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
 
    if (Shift = [ssLeft,ssCtrl]) then
       begin
@@ -683,7 +682,7 @@ begin
       end;
       Caption:=Str;
    end;
-
+                         
    if (Shift = [ssLeft]) and (FAllowPanOrZoom) then
    begin
       // Zoom in or zoom out

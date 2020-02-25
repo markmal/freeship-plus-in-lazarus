@@ -895,12 +895,13 @@ begin
     if Viewport.ViewportMode <> vmWireframe then
     begin
       if Viewport.ViewportMode = vmShadeGauss then
-        for I := 1 to Count do
-          Items[I - 1].Draw(Viewport, Owner.FMinGaussCurvature,
+        for i := 0 to Count-1 do
+          Items[i].Draw(Viewport, Owner.FMinGaussCurvature,
             Owner.FMaxGaussCurvature)
       else
-        for I := 1 to Count do
-          Items[I - 1].Draw(Viewport);
+        for i := 0 to Count-1 do
+          if items[i] is TFreeSubdivisionControlFace then
+          Items[i].Draw(Viewport)
     end
     else
     begin

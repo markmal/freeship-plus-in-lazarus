@@ -172,20 +172,20 @@ begin
     // check for this special case
     Edge1 := nil;
     Edge2 := nil;
-    for i := 1 to NumberOfEdges do
-      if Edge[I - 1].NumberOfFaces = 1 then
+    for i := 0 to NumberOfEdges-1 do
+      if Edge[i].NumberOfFaces = 1 then
       begin
         if Edge1 = nil then
-          Edge1 := Edge[I - 1] as TFreesubdivisionControlEdge
+          Edge1 := Edge[i] as TFreesubdivisionControlEdge
         else
-          Edge2 := Edge[I - 1] as TFreesubdivisionControlEdge;
+          Edge2 := Edge[i] as TFreesubdivisionControlEdge;
       end;
     if (Edge1 <> nil) and (Edge2 <> nil) then
     begin
-      for I := NumberOfEdges downto 1 do
-        if Edge[I - 1].NumberOfFaces > 1 then
+      for I := NumberOfEdges-1 downto 0 do
+        if Edge[i].NumberOfFaces > 1 then
         begin
-          Edge1 := Edge[I - 1] as TFreesubdivisionControlEdge;
+          Edge1 := Edge[i] as TFreesubdivisionControlEdge;
           Edge1.Collapse;
         end;
     end;
@@ -210,13 +210,14 @@ begin
       Crease := False;
       EdgeCollapse := False;
     end;
-    for I := NumberOfFaces downto 1 do
+
+    for i := NumberOfFaces-1 downto 0 do
     begin
-      Face := FFaces[I - 1] as TFreeSubdivisionControlFace;
+      Face := FFaces[i] as TFreeSubdivisionControlFace;
       Points := TFasterListTFreeSubdivisionPoint.Create;
-      for J := 1 to Face.FPoints.Count do
-        if Face.FPoints[J - 1] <> self then
-          Points.Add(Face.FPoints[J - 1]);
+      for j := 0 to Face.FPoints.Count-1 do
+        if Face.FPoints[j] <> self then
+          Points.Add(Face.FPoints[j]);
       FOwner.AddControlFace(TFasterList(Points), False, Face.Layer);
       Points.Destroy;
       Face.Delete;
@@ -230,6 +231,8 @@ begin
         Edge1.Crease := Crease;// or (Edge1.NumberOfFaces=1);
       end;
     end;
+
+    Delete;
 
   end
   else
@@ -264,10 +267,10 @@ begin
       SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
       Fowner.IsolateEdges(TFasterList(Edges), SortedPointLists);
       Edges.Destroy;
-      for I := 1 to SortedPointLists.Count do
+      for i := 0 to SortedPointLists.Count-1 do
       begin
         // was Points := Sorted[I - 1]; ??? Points := ControlEdges?
-        sPointList := SortedPointLists[I - 1];
+        sPointList := SortedPointLists[i];
         Points:= sPointList.FPoints;
         if Points.Count > 2 then
         begin
@@ -275,9 +278,9 @@ begin
           if Face <> nil then
           begin
             P1 := Face.FPoints[Face.FPoints.Count - 1] as TFreeSubdivisionControlPoint;
-            for J := 1 to Face.FPoints.Count do
+            for j := 0 to Face.FPoints.Count-1 do
             begin
-              P2 := face.FPoints[J - 1] as TFreeSubdivisionControlPoint;
+              P2 := face.FPoints[j] as TFreeSubdivisionControlPoint;
               //                     Edge1:=fowner.EdgeExists(p1,p2) as TFreesubdivisionControlEdge;
               //                     if edge1<>nil then
               //                     begin
@@ -297,17 +300,18 @@ begin
     end
     else
       Edges.Destroy;
+
     Delete;
 
-    for i := Checklist.Count downto 1 do
+    for i := Checklist.Count-1 downto 0 do
     begin
-      P1 := Checklist[I - 1];
+      P1 := Checklist[i];
       if (P1.NumberOfFaces > 1) and (P1.NumberOfEdges = 2) then
       begin
         P1.Collapse;
       end;
     end;
-    checklist.Destroy;
+    Checklist.Destroy;
   end;
 end;{TFreeSubdivisionControlPoint.Collapse}
 

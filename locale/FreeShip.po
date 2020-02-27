@@ -202,6 +202,29 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
+#: main.rsexitconfirmation
+msgid ""
+"The current model has been changed\n"
+"Are you sure you want to exit?\n"
+msgstr ""
+
+#: mdipanel.rsclose
+msgctxt "mdipanel.rsclose"
+msgid "Close"
+msgstr ""
+
+#: mdipanel.rsmaximize
+msgid "Maximize"
+msgstr ""
+
+#: mdipanel.rsminimize
+msgid "Minimize"
+msgstr ""
+
+#: mdipanel.rsrestore
+msgid "Restore"
+msgstr ""
+
 #: tdxfexport2ddialog.bitbtn1.caption
 msgctxt "tdxfexport2ddialog.bitbtn1.caption"
 msgid "OK"

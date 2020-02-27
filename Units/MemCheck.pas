@@ -1,16 +1,16 @@
 (*
 MemCheck: the ultimate memory troubles hunter
-Created by: Jean Marc Eber & Vincent Mahon, SociÐ¹tÐ¹ GÐ¹nÐ¹rale, INFI/SGOP/R&D
-Version 2.67	-> Also update OutputFileHeader when changing the version #
+Created by: Jean Marc Eber & Vincent Mahon, Société Générale, INFI/SGOP/R&D
+Version 2.75	-> Also update OutputFileHeader when changing the version #
 
 Contact...
 	Vincent.Mahon@free.fr
 	http://v.mahon.free.fr/pro/freeware/memcheck
 
 Mail address:
-	Tour SociÐ¹tÐ¹ GÐ¹nÐ¹rale
+	Tour Société Générale
 	Sgib/Sgop/R&D
-	92987 Paris - La DÐ¹fense cedex
+	92987 Paris - La Défense cedex
 	France
 
 Copyrights...
@@ -26,7 +26,7 @@ Reuse of this code in a commercial application is not permitted. The portions ar
 > Clive Turvey <clive@tbcnet.com> http://www.tbcnet.com/~clive/vcomwinp.html
 
 Disclaimer...
-You use MemCheck at your own risks. This means that you cannot hold the authors or SociÐ¹tÐ¹ GÐ¹nÐ¹rale to be
+You use MemCheck at your own risks. This means that you cannot hold the authors or Société Générale to be
 responsible for any software\hardware problems you may encounter while using this module.
 
 General information...
@@ -85,16 +85,28 @@ reported by MemCheck which is not correct because the memory would have been fre
 In the procedure ChangeFinalizationsOrder I make sure that only these four units are finalized after MemCheck (I could have decided for
 the fifteen, but this would be more work, and I know it is useless).
 *)
-
-// Skip translation
-
 unit MemCheck;
 {$A+}
 {$H+}
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
+{$IFDEF VER170}
+  //VER170 = Delphi 2005 for Win32
+  //Don't define DELPHI71_OR_LATER for Delphi 2005 for Win32.
+  {$UNDEF DELPHI71_OR_LATER}
+  {$DEFINE DELPHI6_OR_LATER}
+  {$DEFINE DELPHI7_OR_LATER}
+{$ENDIF}
 {$IFDEF VER150}
-	{$DEFINE DELPHI6_OR_LATER}
-	{$DEFINE DELPHI7_OR_LATER}
-	{$WARNINGS OFF}	//We probably don't want to hear about warnings - Not sure about that
+  {$IFNDEF DELPHI70_MODE}
+    {$DEFINE DELPHI71_OR_LATER}
+    //If you are using Delphi 7.0 (not 7.1), then specify DELPHI70_MODE symbol in "Project/Options/Conditional defines" - Delphi 7.1 has build no. 4.453
+  {$ENDIF}
+  {$DEFINE DELPHI7_OR_LATER}
+  {$DEFINE DELPHI6_OR_LATER}
+  {$WARNINGS OFF}	//We probably don't want to hear about warnings - Not sure about that
 {$ENDIF}
 {$IFDEF VER140}
 	{$DEFINE DELPHI6_OR_LATER}
@@ -168,8 +180,11 @@ function CallStackTextualRepresentation(const S: TCallStack; const LineHeader: s
 implementation
 
 uses
+    {$ifdef Windows}
 	Windows,							{Windows has no finalization, so is OK to use with no care}
-	Classes,
+    {$endif}
+    System,
+    Classes,
 	Math,
 	SyncObjs,
 	{$IFDEF USE_JEDI_JCL}JclDebug,{$ENDIF}
@@ -238,6 +253,12 @@ const
 
 	UseDebugInfos = True;
 	//Should use the debug informations which are in the executable ?
+
+	RaiseExceptionsOnEnd = true;
+	//Should we use exceptions to show memory leak information ?
+
+	NotepadApp = 'notepad';
+	//The application launched to show the log file
 
    (**************** END OF MEMCHECK OPTIONS ********************)
 
@@ -463,7 +484,7 @@ var
 	RoutinesCount: integer;
 	Units: array of TUnitDebugInfos;
 	UnitsCount: integer;
-	OutputFileHeader: string = 'MemCheck version 2.67'#13#10;
+	OutputFileHeader: string = 'MemCheck version 2.75'#13#10;
 	HeapStatusSynchro : TSynchroObject;
 
 {$IFDEF USE_JEDI_JCL}
@@ -663,7 +684,7 @@ const
 	AddressOfNewInstance: pointer = @TObject.NewInstance;
 	AddressOfTObjectCreate: pointer = @TObject.Create;
 
-function CallerOfCaller: pointer;	//with stack frames !
+function CallerOfCaller: pointer;  	//with stack frames !
 asm
 	cmp ebp, 0	//this can happen when there are no stack frames
 	je @@EndOfStack
@@ -693,7 +714,11 @@ asm
 	cmp ebp, 0	//this can happen when there are no stack frames
 	je @@EndOfStack
 	{$IFDEF DELPHI6_OR_LATER}
-	mov eax, [ebp + 12]
+		{$IFNDEF DELPHI71_OR_LATER}
+		mov eax, [ebp + 12]
+		{$ELSE}
+		mov eax, [ebp + 16]
+		{$ENDIF}
 	{$ELSE}
 	mov eax, [ebp + 8]
 	{$ENDIF}
@@ -738,8 +763,13 @@ asm
 	mov eax, [ebp + 8]
 	sub eax, 9
 	{$ELSE}
-	mov eax, [EBP + 12]
-	sub eax, 15
+		{$IFNDEF DELPHI71_OR_LATER}
+		mov eax, [EBP + 12]
+		sub eax, 15
+		{$ELSE}
+		mov eax, [EBP + 16]
+		sub eax, 15
+		{$ENDIF}
 	{$ENDIF}
 	cmp eax, AddressOfNewInstance
 	je @@yes
@@ -780,7 +810,11 @@ function ltgmCallerOfGetMemIsTObjectCreate: boolean;
 asm
 	cmp ebp, 0	//this can happen when there are no stack frames
 	je @@EndOfStack
-	mov eax, [ebp + 36]
+		{$IFNDEF DELPHI71_OR_LATER}
+		mov eax, [ebp + 36]
+		{$ELSE}
+		mov eax, [ebp + 40]
+		{$ENDIF}
 	sub eax, 12
 	cmp eax, AddressOfTObjectCreate
 	jne @@no
@@ -796,7 +830,11 @@ function ltgmCallerOfTObjectCreate: pointer;
 asm
 	cmp ebp, 0	//this can happen when there are no stack frames
 	je @@EndOfStack
-	mov eax, [EBP + 56]
+		{$IFNDEF DELPHI71_OR_LATER}
+		mov eax, [EBP + 56]
+		{$ELSE}
+		mov eax, [EBP + 60]
+		{$ENDIF}
 	ret
 	@@EndOfStack:
 	mov eax, $FFFF
@@ -807,7 +845,11 @@ function ltgmCallerIsNewAnsiString: boolean;
 asm
 	cmp ebp, 0	//this can happen when there are no stack frames
 	je @@no
-	mov eax, [ebp + 12]
+		{$IFNDEF DELPHI71_OR_LATER}
+		mov eax, [EBP + 12]
+		{$ELSE}
+		mov eax, [EBP + 16]
+		{$ENDIF}
 	sub eax, 17
 	cmp eax, offset System.@NewAnsiString
 	je @@yes
@@ -817,15 +859,17 @@ asm
 	@@yes:
 	mov eax, 1
 end;
-{$ENDIF}
 
-{$IFDEF DELPHI6_OR_LATER}
 function CallerIsDynamicArrayAllocation: boolean;
 asm
 	cmp ebp, 0	//this can happen when there are no stack frames
 	je @@no
-	mov eax, [ebp + 12]
+	mov eax, [EBP + 12]
+	{$IFNDEF DELPHI71_OR_LATER}
 	add eax, 204
+	{$ELSE}
+	add eax, 216
+	{$ENDIF}
 	cmp eax, offset System.@DynArraySetLength
 	je @@yes
 	@@no:
@@ -848,7 +892,7 @@ begin
 		if i in [1..8] then
 			FeedBackStr:= 'Call ' + TObjectVirtualMethodNames[i]
 		else
-			FeedBackStr:= 'Call ' + IntToStr(i) + 'Â° virtual method';
+			FeedBackStr:= 'Call ' + IntToStr(i) + '° virtual method';
 		FeedBackStr:= FeedBackStr + ' on a FREED instance of ' + T.VMT.ClassName + ' (destroyed at ' + TextualDebugInfoForAddress(Cardinal(T.DestructionAdress)) + ' - had been created at ' + TextualDebugInfoForAddress(Cardinal(T.CallerAddress[0])) + ')';
 		raise EBadInstance.Create(FeedBackStr) at Caller;
 	except
@@ -1207,7 +1251,7 @@ asm
 		@@3:	POP	 EBX
 				MOV	 ECX,[EBX].TInterfaceTable.EntryCount
 				ADD	 EBX,4
-		@@4:	LEA	 ESI, BadInterfaceVMT // mettre dans ESI l'adresse du dÐ¹but de MyInterfaceVMT: correct ?????
+		@@4:	LEA	 ESI, BadInterfaceVMT // mettre dans ESI l'adresse du début de MyInterfaceVMT: correct ?????
 				MOV	 EDI,[EBX].TInterfaceEntry.IOffset
 				MOV	 [EAX+EDI],ESI
 				ADD	 EBX,TYPE TInterfaceEntry
@@ -1422,57 +1466,60 @@ var
 	i: integer;
 	S: ShortString;
 begin
-	UnMemChk;
-	Block := LastBlock;	//note: no thread safety issue here
-	ShowCallStack := False;			 {for first block}
-	while Block <> nil do
-		begin
-			if BlocksToShow[Block.KindOfBlock] then
-				begin
-					if not MemoryBlockFreed(Block) then
-						{this is a leak}
-						begin
-							case Block.KindOfBlock of
-								MClass:
-									S := TObject(PChar(Block) + SizeOf(TMemoryBlocHeader)).ClassName;
-								MUser:
-									S := 'User';
-								MReallocedUser:
-									S := 'Realloc';
-							end;
+        if RaiseExceptionsOnEnd then
+			begin
+				UnMemChk;
+				Block := LastBlock;	//note: no thread safety issue here
+				ShowCallStack := False;			 {for first block}
+				while Block <> nil do
+					  begin
+							  if BlocksToShow[Block.KindOfBlock] then
+									  begin
+											  if not MemoryBlockFreed(Block) then
+													  {this is a leak}
+													  begin
+															  case Block.KindOfBlock of
+																	  MClass:
+																			  S := TObject(PChar(Block) + SizeOf(TMemoryBlocHeader)).ClassName;
+																	  MUser:
+																			  S := 'User';
+																	  MReallocedUser:
+																			  S := 'Realloc';
+															  end;
 
-							if (BlocksToShow[Block.KindOfBlock]) and ((Block.KindOfBlock <> MClass) or (TObject(PChar(Block) + SizeOf(TMemoryBlocHeader)) is InstancesConformingToForReporting)) then
-								try
-									raise EMemoryLeak.Create(S + ' allocated at ' + TextualDebugInfoForAddress(Cardinal(Block.CallerAddress[0])))at Block.CallerAddress[0];
-								except
-									on EMemoryLeak do ;
-								end;
+															  if (BlocksToShow[Block.KindOfBlock]) and ((Block.KindOfBlock <> MClass) or (TObject(PChar(Block) + SizeOf(TMemoryBlocHeader)) is InstancesConformingToForReporting)) then
+																	  try
+																			  raise EMemoryLeak.Create(S + ' allocated at ' + TextualDebugInfoForAddress(Cardinal(Block.CallerAddress[0])))at Block.CallerAddress[0];
+																	  except
+																			  on EMemoryLeak do ;
+																	  end;
 
-							if ShowCallStack then
-								for i := 1 to StoredCallStackDepth do
-									if Integer(Block.CallerAddress[i]) > 0 then
-										try
-											raise EStackUnwinding.Create(S + ' unwinding level ' + chr(ord('0') + i))at Block.CallerAddress[i]
-										except
-											on EStackUnwinding do ;
-										end;
+															  if ShowCallStack then
+																	  for i := 1 to StoredCallStackDepth do
+																			  if Integer(Block.CallerAddress[i]) > 0 then
+																					  try
+																							  raise EStackUnwinding.Create(S + ' unwinding level ' + chr(ord('0') + i))at Block.CallerAddress[i]
+																					  except
+																							  on EStackUnwinding do ;
+																					  end;
 
-							ShowCallStack := False;
-						end			 {Block.DestructionAdress = Nil}
-					else
-						{this is not a leak}
-						if CheckWipedBlocksOnTermination and (Block.AllocatedSize > 5) and (Block.AllocatedSize <= DoNotCheckWipedBlocksBiggerThan) and (not IsMemFilledWithChar(pchar(Block) + SizeOf(TMemoryBlocHeader) + 4, Block.AllocatedSize - 5, CharToUseToWipeOut)) then
-							begin
-								try
-									raise EFreedBlockDamaged.Create('Destroyed block damaged - Block allocated at ' + TextualDebugInfoForAddress(Cardinal(Block.CallerAddress[0])) + ' - destroyed at ' + TextualDebugInfoForAddress(Cardinal(Block.DestructionAdress)))at Block.CallerAddress[0]
-								except
-									on EFreedBlockDamaged do ;
-								end;
-							end;
-				end;
+															  ShowCallStack := False;
+													  end			 {Block.DestructionAdress = Nil}
+											  else
+													  {this is not a leak}
+													  if CheckWipedBlocksOnTermination and (Block.AllocatedSize > 5) and (Block.AllocatedSize <= DoNotCheckWipedBlocksBiggerThan) and (not IsMemFilledWithChar(pchar(Block) + SizeOf(TMemoryBlocHeader) + 4, Block.AllocatedSize - 5, CharToUseToWipeOut)) then
+															  begin
+																	  try
+																			  raise EFreedBlockDamaged.Create('Destroyed block damaged - Block allocated at ' + TextualDebugInfoForAddress(Cardinal(Block.CallerAddress[0])) + ' - destroyed at ' + TextualDebugInfoForAddress(Cardinal(Block.DestructionAdress)))at Block.CallerAddress[0]
+																	  except
+																			  on EFreedBlockDamaged do ;
+																	  end;
+															  end;
+									  end;
 
-			Block := Block.PreceedingBlock;
-		end;
+							  Block := Block.PreceedingBlock;
+					  end;
+			end;
 end;
 
 procedure dummy; forward;
@@ -1494,10 +1541,14 @@ var
 const
 	DummyToFinalizationOffset = {$IFOPT I+}356{$ELSE}352{$ENDIF};
 begin
-	{$IFNDEF DELPHI7_OR_LATER}
-	UnitsInfo:= PackageInfo(pointer(Pointer(PChar(@AllocMemSize) + 31 * 4 + 8)^));	//Hacky, no ? I learnt to count on my fingers ! (this stuff is not exported by system.pas)
-	{$ELSE}
-	UnitsInfo := PInitContext(PChar(@AllocMemSize) + 128).InitTable;
+  {$IFDEF VER180} // BDS 2006
+  UnitsInfo := PInitContext(PChar(@AllocMemSize) + 8728).InitTable;
+  {$ELSE}
+    {$IFNDEF DELPHI7_OR_LATER}
+    UnitsInfo:= PackageInfo(pointer(Pointer(PChar(@AllocMemSize) + 31 * 4 + 8)^));	//Hacky, no ? I learnt to count on my fingers ! (this stuff is not exported by system.pas)
+    {$ELSE}
+    UnitsInfo := PInitContext(PChar(@AllocMemSize) + 128).InitTable;
+    {$ENDIF}
 	{$ENDIF}
 	NewUnitsInfoOrder:= TList.Create;
 	for i:= 0 to UnitsInfo.UnitCount - 1 do
@@ -1505,21 +1556,18 @@ begin
 			CurrentUnitInfo:= UnitsInfo.UnitInfo^[i];
 			GetMem(CurrentUnitInfoCopy, SizeOf(PackageUnitEntry));
 			CurrentUnitInfoCopy^:= CurrentUnitInfo;
-			if {$IFNDEF DELPHI6_OR_LATER}@{$ENDIF}CurrentUnitInfo.Init = @System.System then
+			if {$IFNDEF DELPHI6_OR_LATER}@{$ENDIF}CurrentUnitInfo.Init = @System.InitProc then
 				NewUnitsInfoOrder.Insert(0, CurrentUnitInfoCopy)
 			else
-				if {$IFNDEF DELPHI6_OR_LATER}@{$ENDIF}CurrentUnitInfo.Init = @SysUtils.SysUtils then
-					NewUnitsInfoOrder.Insert(1, CurrentUnitInfoCopy)
+				{$IFDEF DELPHI6_OR_LATER}
+				if CurrentUnitInfo.Init = @Variants.Variants then
+					NewUnitsInfoOrder.Insert(2, CurrentUnitInfoCopy)
 				else
-					{$IFDEF DELPHI6_OR_LATER}
-					if CurrentUnitInfo.Init = @Variants.Variants then
-						NewUnitsInfoOrder.Insert(2, CurrentUnitInfoCopy)
+				{$ENDIF}
+					if {$IFNDEF DELPHI6_OR_LATER}@{$ENDIF}CurrentUnitInfo.Init = Pointer(PChar(@Dummy) + DummyToFinalizationOffset) then
+						NewUnitsInfoOrder.Insert(4, CurrentUnitInfoCopy)
 					else
-					{$ENDIF}
-						if {$IFNDEF DELPHI6_OR_LATER}@{$ENDIF}CurrentUnitInfo.Init = Pointer(PChar(@Dummy) + DummyToFinalizationOffset) then
-							NewUnitsInfoOrder.Insert(4, CurrentUnitInfoCopy)
-						else
-							NewUnitsInfoOrder.Add(CurrentUnitInfoCopy);
+						NewUnitsInfoOrder.Add(CurrentUnitInfoCopy);
 		end;
 	ProcessHandle:= openprocess(PROCESS_ALL_ACCESS, True, GetCurrentProcessId);
 	for i:= 0 to NewUnitsInfoOrder.Count - 1 do
@@ -1982,6 +2030,7 @@ type
 		property OtherIsDestroyed: Boolean read fOtherIsDestroyed;
 		procedure OutputToFile(const F: Text);
 		procedure OutputOneLineToFile(const F: Text);
+    function TotalSize: integer;
 	end;
 
 	TLeakList = class
@@ -2048,6 +2097,13 @@ begin
 	WriteLn(F, CallStackTextualRepresentation(Block.CallerAddress, #9));
 end;
 
+function TLeak.TotalSize: integer;
+begin
+  Result := 0;
+  if Assigned(fBlock) then
+    Result := fOccurences*fBlock^.AllocatedSize;
+end;
+
 procedure TLeak.OutputOneLineToFile(const F: Text);
 begin
 	case Block.KindOfBlock of
@@ -2107,7 +2163,7 @@ end;
 
 function TLeakList.Item(const I: integer): TLeak;
 begin
-	Assert((i >= 0) and (i < fCount), 'TLeakList.Item: out of bounds');
+	Assert((i >= 0) and (i < fCount), Format('TLeakList.Item: out of bounds (%d)', [I]));
 
 	Result := fItems[i]
 end;
@@ -2218,7 +2274,13 @@ begin
 		StoppedDueToMaxBlock := True;
 end;
 
-procedure OutputAllCollectedInformation;
+ function SortTLeaks(Item1, Item2: Pointer): Integer;
+ begin
+   // sort descending
+   Result := TLeak(Item2).TotalSize - TLeak(Item1).TotalSize;
+ end;
+ 
+ procedure OutputAllCollectedInformation;
 var
 	OutputFile: Text;
 	LeaksList: TLeakList;			   //Contains all instances of TLeak
@@ -2228,6 +2290,8 @@ var
 	i, j: integer;
 	LastDisplayedTimeStamp: integer;
 	BadBlocks: TBlockList;
+  TopLeakRefs: TList;
+  MinIdx: integer;
 begin
 	//Initalize
 	InitializeOnce;
@@ -2236,12 +2300,41 @@ begin
 	ChronogicalInfo := TLeakList.Create;
 
 	//Prepare the output file
+	if (IOResult <> 0) then ;	//Clears the internal IO error flag
 	AssignFile(OutputFile, MemCheckLogFileName + '.$$$');
 	Rewrite(OutputFile);
 	WriteLn(OutputFile, OutputFileHeader);
 
 	//We collect the list of allocated blocks
 	GetLeaks(LeaksList, ChronogicalInfo, MaxLeak, StoppedDueToMax);
+
+  TopLeakRefs := TList.Create;
+  try
+	for i := 0 to Min(9, LeaksList.Count - 1) do
+	  TopLeakRefs.Add(LeaksList.Item(i));
+
+    for i := 9 + 1 to LeaksList.Count - 1 do
+    begin
+      MinIdx := 0;
+      for j := 0 to TopLeakRefs.Count - 1 do
+      begin
+        if TLeak(TopLeakRefs[j]).TotalSize < TLeak(TopLeakRefs[MinIdx]).TotalSize then
+          MinIdx := j;
+	  end;//for
+
+      if LeaksList.Item(i).TotalSize > TLeak(TopLeakRefs[MinIdx]).TotalSize then
+        TopLeakRefs[MinIdx] := LeaksList.Item(i);
+    end;//for
+
+    TopLeakRefs.Sort(SortTLeaks);
+
+    WriteLn(OutputFile, 'TOP 10 Leaks: begin');
+    for i := 0 to TopLeakRefs.Count - 1 do
+      TLeak(TopLeakRefs[i]).OutputToFile(OutputFile);
+    WriteLn(OutputFile, 'TOP 10 Leaks: end'#13#10);
+  finally
+    TopLeakRefs.Free;
+  end;
 
 	//Improve the header
 	TotalLeak := 0;
@@ -2328,7 +2421,7 @@ begin
 		DeleteFile(MemCheckLogFileName);
 	Rename(OutputFile, MemCheckLogFileName);
 	if ShowLogFileWhenUseful and (LeaksList.Count > 0) or CollectStatsAboutObjectAllocation or ComputeMemoryUsageStats or KeepMaxMemoryUsage then
-		WinExec(PChar('notepad ' + MemCheckLogFileName), sw_Show);
+		WinExec(PChar(NotepadApp + ' ' + MemCheckLogFileName), sw_Show);
 
 	//Release the memory
 	for i := 0 to LeaksList.Count - 1 do
@@ -2524,4 +2617,5 @@ finalization
 				DeleteFile(MemCheckLogFileName);
 		end;
 end.
+
 

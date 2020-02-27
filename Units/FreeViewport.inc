@@ -474,8 +474,23 @@ begin
 
 end;{TFreeViewport.Create}
 
+procedure TFreeViewport.DetachEventHandlers;
+begin
+  FOnChangeBackgroundImage := nil;
+  OnMouseDown := nil;
+  OnMouseUp := nil;
+  OnMouseEnter := nil;
+  OnMouseMove := nil;
+  OnMouseLeave := nil;
+  OnRedraw := nil;
+  OnChangeViewType := nil;
+  OnRequestBackgroundImage := nil;
+  OnRequestExtents := nil;
+end;
+
 destructor TFreeViewport.Destroy;
 begin
+  DetachEventHandlers;
   if Assigned(FDrawingBuffer) then
     FDrawingBuffer.Destroy;
   FDrawingBuffer := nil;
@@ -1238,7 +1253,7 @@ begin
         ZBuffer.Initialize;
         AlphaBuffer.Initialize;
         // this prevents black background to appear at large pans and zooms
-        SetPixel(FDestinationWidth, FDestinationHeight,
+        SetPixel(FDestinationWidth-1, FDestinationHeight-1,
                  GetRValue(Color), GetGValue(Color), GetBValue(Color));
       end;
 
@@ -1839,7 +1854,8 @@ var
             // temporary draw via canvas
             //FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 widget DCSetPixel (qtobject.inc) calling QPen_create5
 
-            SetPixel(X1, Y, R, G, B);
+            //SetPixel(X1, Y, R, G, B);
+            FBitmapFormatHelper.SetPixelInLine(pRow, X1, R, G, B, Alpha);
 
             FZBuffer.FBuffer[Y][X1] := Z1;
           end

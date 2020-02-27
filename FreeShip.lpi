@@ -33,7 +33,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="270"/>
+      <BuildNr Value="277"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -269,7 +269,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="119">
+    <Units Count="121">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -923,6 +923,14 @@
         <ComponentName Value="FreeBackgroundToleranceDialog"/>
         <ResourceBaseClass Value="Form"/>
       </Unit118>
+      <Unit119>
+        <Filename Value="Units/DbgMemMgr.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit119>
+      <Unit120>
+        <Filename Value="Units/MDIPanel.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit120>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -936,6 +944,7 @@
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
+      <Style Value="1"/>
       <SyntaxOptions>
         <SyntaxMode Value="fpc"/>
         <IncludeAssertionCode Value="True"/>
@@ -955,7 +964,7 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <DebugInfoType Value="dsDwarf2"/>
+        <UseValgrind Value="True"/>
       </Debugging>
       <Options>
         <PassLinkerOptions Value="True"/>

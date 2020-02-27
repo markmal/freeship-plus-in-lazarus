@@ -432,6 +432,7 @@ type
     FDrawingBuffer: TBitmap;
     // Drawingbuffer to prevent flickering. Everything is drawn on this bitmap, and then copied to the screen
     FBitmapFormatHelper: TFreeBitmapFormatHelper;
+    FOnChangeBackgroundImage: TNotifyEvent;
     FOnMouseDown: TMouseEvent;
     FOnMouseUp: TMouseEvent;
     FOnMouseEnter: TNotifyEvent;
@@ -456,7 +457,6 @@ type
     FSelectionFrameRect: TRect;
     FSelectionFrameActive: boolean;
 
-    FOnChangeBackgroundImage: TNotifyEvent;
     FUpdating: boolean;
 
     FLastResizeWidth:integer;
@@ -515,14 +515,12 @@ type
     procedure GetPixel(X, Y: integer; out R, G, B: byte);
     procedure SetPixel(X, Y: integer; R, G, B: byte);
   public
-    constructor Create(AOwner: TComponent);
-      override;
-    destructor Destroy;
-      override;
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure DetachEventHandlers;
     procedure DrawLineToZBuffer(Point1, Point2: T3DCoordinate; R, G, B: byte);
       virtual;
-    procedure InitializeViewport(Min, Max: T3DCoordinate);
-      virtual;
+    procedure InitializeViewport(Min, Max: T3DCoordinate); virtual;
     procedure Print(Units: TFreeUnitType; AskPrintScale: boolean; Jobname: string);
       virtual;
     function Project(P: T3DCoordinate): TPoint;

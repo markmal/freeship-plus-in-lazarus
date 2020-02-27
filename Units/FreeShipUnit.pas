@@ -684,7 +684,7 @@ type
     // Import a VRML 1.0 file
     procedure File_Load; overload; virtual;
     // Load a FREE!ship file by showing an opendialog
-    procedure File_Load(filename: string); reintroduce; overload;
+    procedure File_Load(FileName: string); reintroduce; overload;
     // Loads the given filename quietly
     function File_Save:boolean;
     // save as FREE!ship file without prompting for a filename (must already been set)

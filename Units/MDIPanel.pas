@@ -1283,8 +1283,11 @@ begin
   for i := 0 to FClickProxies.Count - 1 do
   begin
     L := TMouseClickProxy(FClickProxies[i]);
-    L.FOwner.OnClick := L.FOwnerOnClick;
-    L.Free;
+    if assigned(L) and assigned(L.FOwner) then
+    begin
+      L.FOwner.OnClick := L.FOwnerOnClick;
+      L.Free;
+    end;
   end;
   FClickProxies.Clear;
 end;
@@ -1355,7 +1358,7 @@ end;
   with its OnClick method.
   When the OnClick called it will call first a ProxyOnClick method
   then the original Owner OnClick method.
-  Here in MDIPanel it is used for intersept OnClick to children controls of
+  Here in MDIPanel it is used for interseption of OnClick to children controls of
   inactive MDIPanel, so activating it before calling OnClick of the clicked
   children control.
  }
@@ -1373,10 +1376,13 @@ end;
 destructor TMouseClickProxy.Destroy;
 begin
   FDestroyed := True;
-  FOwner.onClick := FOwnerOnClick;
-  FOwnerOnClick := nil;
-  FProxyOnClick := nil;
-  FOwner := nil;
+  if assigned(FOwner) then
+  begin
+    FOwner.onClick := FOwnerOnClick;
+    FOwnerOnClick := nil;
+    FProxyOnClick := nil;
+    FOwner := nil;
+  end;
   inherited Destroy;
 end;
 

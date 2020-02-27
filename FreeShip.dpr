@@ -26,6 +26,9 @@
 {                                                                                             }
 {#############################################################################################}
 
+{$UNDEFINE DBGMEMMGR}
+{$UNDEFINE MEMCHECK}
+
 program FreeShip;
 
 {$mode objfpc}{$H+}
@@ -33,6 +36,12 @@ program FreeShip;
 //{$DEFINE CREATE_TRANSLATION}
 
 uses
+  {$IFDEF DBGMEMMGR}
+  DbgMemMgr,
+  {$ENDIF}
+  {$IFDEF MEMCHECK}
+     MemCheck,     // Memcheck is used for memory-leak tracking (debugging all)
+  {$ENDIF}
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
@@ -210,6 +219,11 @@ end;
 
 
 begin
+   {$IFDEF MEMCHECK}
+      // Initialize memcheck, for memory-leak tracking
+      MemChk;
+   {$ENDIF}
+
  try
    Logger.LogLevel:=LOG_INFO;
    Logger.Info('FreeShip in Lazarus');

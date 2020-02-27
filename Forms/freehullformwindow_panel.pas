@@ -258,8 +258,6 @@ begin
   OnKeyPress := @FormKeyPress;
   OnKeyUp := @FormKeyUp;
   OnShow := @FormShow;
-
-
 end;
 
 destructor TFreeHullWindow.Destroy;

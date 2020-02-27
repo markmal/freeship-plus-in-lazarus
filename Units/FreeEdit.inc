@@ -5325,34 +5325,33 @@ begin
     DeleteFileUTF8('Sterns.txt'); { *Converted from DeleteFile* }
 end;{TFreeEdit.File_Load}
 
-procedure TFreeEdit.File_Load(filename: string);
+procedure TFreeEdit.File_Load(FileName: string);
 var
   Source: TFreeFileBuffer;
   ext: string;
   i:integer;
+  b:boolean;
 
   function IsSaveable(fn:string):boolean;
   var dir, tmpFileName:string; fh:THandle;
-    buf:array of byte; sz:integer=1024; rsz:integer=0;
+    buf:array[0..1023] of byte; sz:integer=1024; rsz:integer=0;
     r1,r2,r3:boolean;
   begin
     result:=false;
     if not FileExistsUTF8(fn) then exit;
     dir := ExtractFilePath(fn);
     tmpFileName := SysUtils.GetTempFileName(dir,'.tmp~');
-    fh:=FileCreateUTF8(tmpFileName);
+    fh := FileCreateUTF8(tmpFileName);
     if fh = INVALID_HANDLE_VALUE then exit;
     try
-       setLength(buf,sz);
-       rsz:=FileWrite(fh,buf,sz);
+       fillChar(buf,sz,0);
+       rsz:=FileWrite(fh, buf, sz);
        r1 := (rsz >= sz);
-       setLength(buf,0);
        FileClose(fh);
        r2 := DeleteFileUTF8(tmpFileName);
        result:= r1 and r2;
     except on E:Exception do
       begin
-        setLength(buf,0);
         FileClose(fh);
         DeleteFileUTF8(tmpFileName);
       end;
@@ -5360,7 +5359,8 @@ var
   end;
 
 begin
-  Ext := LowerCase(ExtractFileExt(filename));
+  if FileName = '' then exit;
+  Ext := LowerCase(ExtractFileExt(FileName));
   if Ext = '.fbm' then
     Source := TFreeFileBuffer.Create
   else
@@ -5393,7 +5393,8 @@ begin
     FreeShip.FFilenameSet := True;
     FreeShip.FStopAskingForFileVersion := False;
     FreeShip.ModelIsLoaded := True;
-    FreeShip.FileIsReadOnly := not IsSaveable(FileName);
+    b:=IsSaveable(FileName);
+    FreeShip.FileIsReadOnly := not b;
   finally
     Source.Destroy;
     AddToRecentFiles(FileName);

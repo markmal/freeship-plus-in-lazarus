@@ -90,6 +90,7 @@ TSetPixelProc = procedure(P: pointer; R,G,B,A: byte) of object;
 
 TFreeBitmapFormatHelper = class
   private
+    FBitmap : TBitmap;
     FBytesPerPixel : integer;
     FGetPixelProc : TGetPixelProc;
     FSetPixelProc : TSetPixelProc;
@@ -161,7 +162,9 @@ TFreeBitmapFormatHelper = class
     procedure FromTRGBTriple(c:TRGBTriple; p:pointer);
     property BytesPerPixel : integer read FBytesPerPixel;
     procedure GetPixel(const BM:TBitmap; X,Y: integer; out R, G, B, A: byte);
+    procedure GetPixelInLine(pLineStart:pByte; X: integer; out R, G, B, A: byte);
     procedure SetPixel(const BM:TBitmap; X,Y: integer; R, G, B, A: byte);
+    procedure SetPixelInLine(pLineStart:pByte; X: integer; R, G, B, A: byte);
     function AsString:String;
 end;
 
@@ -418,11 +421,26 @@ begin
   FSetPixelProc(pPixel, R, G, B, A);
 end;
 
+procedure TFreeBitmapFormatHelper.SetPixelInLine(pLineStart:pByte; X: integer; R, G, B, A: byte);
+var pPixel : pointer;
+begin
+  pPixel := pLineStart + Self.BytesPerPixel * X;
+  FSetPixelProc(pPixel, R, G, B, A);
+end;
+
+
 procedure TFreeBitmapFormatHelper.GetPixel(const BM:TBitmap; X,Y: integer; out R, G, B, A: byte);
 var pRow, pPixel : pointer;
 begin
   pRow := BM.RawImage.GetLineStart(Y);
   pPixel := pRow + Self.BytesPerPixel * X;
+  FGetPixelProc(pPixel, R, G, B, A);
+end;
+
+procedure TFreeBitmapFormatHelper.GetPixelInLine(pLineStart:pByte; X: integer; out R, G, B, A: byte);
+var pRow, pPixel : pointer;
+begin
+  pPixel := pLineStart + Self.BytesPerPixel * X;
   FGetPixelProc(pPixel, R, G, B, A);
 end;
 

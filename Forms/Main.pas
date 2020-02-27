@@ -629,6 +629,7 @@ type
       procedure HullformWindowOnDeactivate(Sender:TObject);
       procedure HullformWindowOnClose(Sender:TObject; var CloseAction: TCloseAction);
 
+      procedure CloseHullWindows;
       procedure FOpenHullWindows;   // Creates 4 different views on the hullform
    public     { Public declarations }
       FFileName : string;
@@ -775,6 +776,7 @@ var i: Integer; thw:TFreeHullWindow;
 begin
  FDestroying := true;
  FActionListHull := nil;
+ if assigned(FMDIChildList) then
  for i:=0 to FMDIChildList.Count -1 do
    if assigned(FMDIChildList.Items[i]) then
       begin
@@ -1132,6 +1134,21 @@ procedure TMainForm.HullformWindowOnClose(Sender:TObject; var CloseAction: TClos
 begin
   HullformWindowOnDeactivate(Sender);
   FMDIChildList.Remove(Sender);
+end;
+
+procedure TMainForm.CloseHullWindows;
+var thw: TFreeHullWindow;
+begin
+   if assigned(FMDIChildList) then
+    while FMDIChildList.Count>0 do
+      begin
+         thw:=TFreeHullWindow(FMDIChildList.Items[0]);
+         if assigned(thw) and assigned(thw.FreeHullForm)
+           and assigned(thw.FreeHullForm.ActionListHull)
+           then self.RemoveComponent(thw.FreeHullForm.ActionListHull);
+         if assigned(thw) then thw.Free;
+       FMDIChildList.Delete(0);
+       end;
 end;
 
 // Creates 4 different views on the hullform
@@ -1914,6 +1931,7 @@ end;{TMainForm.FreeShipChangeActiveLayer}
 
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+   CloseHullWindows;
    FreeShip.Preferences.Save;
    FreeShip.OnChangeActiveLayer:=nil;
    Freeship.OnChangeLayerData:=nil;
@@ -2080,13 +2098,18 @@ begin
    UpdateMenu;
 end;{TMainForm.ShowWaterlinesExecute}
 
+resourcestring
+ rsExitConfirmation = 'The current model has been changed'+#10
+   +'Are you sure you want to exit?';
+
 procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var Answer:word;
 begin
    if Freeship.FileChanged then
    begin
-      Answer:=MessageDlg(Userstring(103)+EOL+Userstring(282)+'?',mtWarning,[mbYes,mbNo],0);
-      CanClose:=Answer=mrYes;
+      //Answer:=MessageDlg(Userstring(103)+EOL+Userstring(282)+'?',mtWarning,[mbYes,mbNo],0);
+   Answer:=MessageDlg(rsExitConfirmation, mtWarning, [mbNo, mbYes],0);
+   CanClose:=Answer=mrYes;
    end;
 end;{TMainForm.FormCloseQuery}
 

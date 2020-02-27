@@ -2373,7 +2373,7 @@ begin
   Stream.Position := 0;
   Add(Size);
 
-  S := StrAlloc(Size * 2 + 1);
+  S := StrAlloc(Size * 2 + 2);
   S[Size * 2] := #0;
   S[Size * 2 + 1] := #0;
   P := Stream.Memory;

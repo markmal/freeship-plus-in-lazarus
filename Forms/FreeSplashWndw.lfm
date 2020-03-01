@@ -5,8 +5,6 @@ object FreeSplashWindow: TFreeSplashWindow
   Width = 900
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
-  AlphaBlend = True
-  AlphaBlendValue = 0
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'FREE!ship Plus'
@@ -17,6 +15,7 @@ object FreeSplashWindow: TFreeSplashWindow
   FormStyle = fsSystemStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poWorkAreaCenter
   ShowInTaskBar = stAlways
   LCLVersion = '2.0.6.0'
@@ -28,7 +27,6 @@ object FreeSplashWindow: TFreeSplashWindow
     Align = alLeft
     BorderSpacing.Around = 8
     Center = True
-    OnClick = Image1Click
     Picture.Data = {
       0A544A706567496D616765C1200100FFD8FFE000104A46494600010201006000
       600000FFFE01027073AC047C2B00007C2B0000C03C00009C240000C03C000094
@@ -2402,9 +2400,9 @@ object FreeSplashWindow: TFreeSplashWindow
       end
       object Label1: TLabel
         Left = 10
-        Height = 18
+        Height = 1
         Top = 48
-        Width = 298
+        Width = 1
         ParentColor = False
         ParentFont = False
       end
@@ -2822,12 +2820,5 @@ object FreeSplashWindow: TFreeSplashWindow
         end
       end
     end
-  end
-  object Timer: TTimer
-    Enabled = False
-    Interval = 5
-    OnTimer = TimerTimer
-    left = 110
-    top = 63
   end
 end

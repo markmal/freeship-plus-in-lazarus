@@ -447,7 +447,8 @@ end;
 
 procedure TFreeHullWindow.ViewportRedraw(Sender: TObject);
 begin
-   if FreeShip<>nil then FreeShip.DrawToViewport(Viewport);
+   if (FreeShip<>nil) and FreeShip.ModelIsLoaded
+      then FreeShip.DrawToViewport(Viewport);
 end;{TFreeHullWindow.ViewportRedraw}
 
 procedure TFreeHullWindow.CreateFreeViewport();

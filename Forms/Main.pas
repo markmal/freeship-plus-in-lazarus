@@ -456,7 +456,7 @@ type
 
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
-    procedure ShowSplashWindow;
+    function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
     procedure MainClientPanelClick(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
@@ -1002,7 +1002,7 @@ end;
 var inActivation: boolean = false;
 
 procedure TMainForm.FormActivate(Sender: TObject);
-var i:integer;
+var i:integer; splashResult:TModalResult;
 begin
   if inActivation then exit;
   inActivation:=true;
@@ -1015,10 +1015,14 @@ begin
   BringToFront;
   Application.BringToFront;
   Application.ProcessMessages;
-  Freeship.Draw;
 
   if FShowSplash then
-    ShowSplashWindow;
+    splashResult:=ShowSplashWindow;
+  if splashResult <> mrOk then
+    begin
+        self.Close;
+        exit;
+    end;
   self.FShowSplash:=false; // show splash on first activate only
 
   if not FModelInitallyLoaded then
@@ -1026,7 +1030,7 @@ begin
        InitiallyLoadModel;
        FModelInitallyLoaded := true;
     end;
-
+  Freeship.Draw;
   inActivation:=false;
 end;
 
@@ -1536,8 +1540,8 @@ begin
     ShowRecentFilesDialog
   else FreeShip.Edit.File_Load;
 
-  if FileExists(FreeShip.Filename) and FileIsReadOnly(FreeShip.Filename)
-  then FreeShip.FileIsReadOnly := true;
+  if FileExists(FreeShip.Filename) then
+     FreeShip.FileIsReadOnly := FileIsReadOnly(FreeShip.Filename);
 
   Application.ProcessMessages;
   FreeShip.ZoomFitAllViewports;
@@ -1561,7 +1565,7 @@ begin
 end;{TMainForm.ExitProgramExecute}
 
 
-procedure TMainForm.ShowSplashWindow;
+function TMainForm.ShowSplashWindow:TModalResult;
 begin
   if FShowSplash then
   begin
@@ -1572,10 +1576,11 @@ begin
    FreeSplashWindow.FreeShip:=FreeShip;
    FreeSplashWindow.Position:=poMainFormCenter;
    FreeSplashWindow.ShowModal;
-   if FreeSplashWindow.ModalResult <> mrOk then
-       self.Close;
+   result:=FreeSplashWindow.ModalResult;
    finally
       FreeSplashWindow.Free;
+      FreeSplashWindow:=nil;
+      SplashWindow:=nil;
    end;
   end;
 end;

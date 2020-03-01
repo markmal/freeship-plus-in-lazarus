@@ -54,3 +54,6 @@ lib/
 *.wixpdb
 *.wixobj
 *.msi
+
+# Valgring log trace
+*.trc

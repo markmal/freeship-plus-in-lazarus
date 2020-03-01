@@ -89,7 +89,6 @@ type
     VersionPanel: TPanel;
     TopLeftPanel: TPanel;
     TopPanel: TPanel;
-    Timer: TTimer;
     LabelVersion: TLabel;
     _Label2: TLabel;
     LabelRelease: TLabel;
@@ -106,10 +105,9 @@ type
       Button: TMouseButton; Shift: TShiftState;
       X, Y: integer);
     procedure Image2Click(Sender: TObject);
-    procedure TimerTimer(Sender: TObject);
+    //procedure TimerTimer(Sender: TObject);
     procedure FormClose(Sender: TObject;
       var Action: TCloseAction);
-    procedure Image1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure _Label2Click(Sender: TObject);
     procedure Label5Click(Sender: TObject);
@@ -185,6 +183,7 @@ end;
 
 {$ENDIF}
 
+{$IFDEF TFreeSplashWindowTimerTimer}
 procedure TFreeSplashWindow.TimerTimer(Sender: TObject);
 var
   TI: integer;
@@ -215,13 +214,14 @@ begin
     //LabelCondition.Caption:=IntToStr(ABV);
     //Label2.Update;
     AlphaBlendValue := ABV;
+    Invalidate;
     //Update;
     //Application.ProcessMessages;
   end;
   //Self.SetFocus;
   //Self.SetZOrder(true);
   //Update;
-  Application.ProcessMessages; // there maight be no message loop yet
+  //Application.ProcessMessages; // there maight be no message loop yet
   //Logger.Debug('in TFreeSplashWindow.TimerTimer: ABV='+IntToStr(ABV));
 
   if FCounter > SPLASH_TIME then
@@ -229,13 +229,15 @@ begin
     //Visible:=false;
     ////Close;
     Timer.Enabled:=false;
-    Application.ProcessMessages; // there maight be no message loop yet
+    //Application.ProcessMessages; // there maight be no message loop yet
   end;
 
   if not Timer.Enabled then exit;
+
   ExpandToFit;
 
-end;{TFreeSplashWindow.TimerTimer}
+end; {TFreeSplashWindow.TimerTimer}
+{$ENDIF}
 
 procedure TFreeSplashWindow.ExpandToFit;
 var
@@ -261,8 +263,8 @@ begin
   // This should hold splash window until mouse button released
   AlphaBlendValue := 255;
   Update;
-  Timer.Enabled := False;
-  Timer.OnTimer:=nil;
+  //Timer.Enabled := False;
+  //Timer.OnTimer:=nil;
 end;
 
 procedure TFreeSplashWindow.CheckBox1Change(Sender: TObject);
@@ -274,8 +276,8 @@ begin
 
   AlphaBlendValue := 255;
   Update;
-  Timer.Enabled := False;
-  Timer.OnTimer:=nil;
+  //Timer.Enabled := False;
+  //Timer.OnTimer:=nil;
 end;
 
 procedure TFreeSplashWindow.FormCreate(Sender: TObject);
@@ -298,7 +300,7 @@ begin
 
   FCounter := 0;
   //AlphaBlend := false;
-  Timer.Enabled := True;
+  //Timer.Enabled := True;
   //Caption := '';
 
   if AlphaBlend then
@@ -321,7 +323,7 @@ procedure TFreeSplashWindow.Image1MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
 begin
   // close splash window when mouse button released
-  Close;
+  //Close;
 end;
 
 procedure TFreeSplashWindow.Image2Click(Sender: TObject);
@@ -331,42 +333,15 @@ end;
 
 procedure TFreeSplashWindow.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  Timer.Enabled := False;
+  //Timer.Enabled := False;
   Release;
 end;{TFreeSplashWindow.FormClose}
 
-procedure TFreeSplashWindow.Image1Click(Sender: TObject);
-begin
-  //Timer.Enabled:=False;
-  //Close;
-end;{TFreeSplashWindow.Image1Click}
 
 procedure TFreeSplashWindow.FormShow(Sender: TObject);
-var
-  Str: string;
 begin
-  LabelVersion.Caption := rsVersion + ': ' + FREESHIP_MAJOR_VERSION;
-  LabelRelease.Caption := rsRelease + ': ' + ReleasedDate;
-  LabelBuildInfo.Caption := rsBuild + ': ' + ResourceVersionInfo + ' ' +
-    COMPILE_DATE + ' ' + COMPILE_TIME + ' ' + TARGET_CPU + ' ' + TARGET_OS;
-  Str := '';
-  if CurrentLanguage <> nil then
-  begin
-    Str := CurrentLanguage.ReadString('Translation', 'Author', '');
-    if Uppercase(Str) = Uppercase('Translation: <Your name>') then
-      str := '';
-    _Label8.Caption := Str;
-  end;
-  _Label8.Visible := Str <> '';
   FCounter := 0;
-  //AlphaBlend := false;
-  Timer.Enabled := True;
-  //Caption := '';
-
-  if AlphaBlend then
-    AlphaBlendValue := 1
-  else
-    AlphaBlendValue := 255;
+  //Timer.Enabled := True;
 end;{TFreeSplashWindow.FormShow}
 
 procedure TFreeSplashWindow._Label2Click(Sender: TObject);

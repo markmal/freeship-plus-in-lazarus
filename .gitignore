@@ -15,6 +15,7 @@ Utils/lib
 instpkg/deb/control.tmp
 instpkg/deb/freeship/usr/
 instpkg/rpm/freeship/BUILDROOT/
+instpkg/deb/lintian.out
 
 # Lazarus compiler-generated binaries (safe to delete)
 *.exe

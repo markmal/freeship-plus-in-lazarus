@@ -1017,13 +1017,15 @@ begin
   Application.ProcessMessages;
 
   if FShowSplash then
+  begin
     splashResult:=ShowSplashWindow;
-  if splashResult <> mrOk then
-    begin
-        self.Close;
-        exit;
-    end;
-  self.FShowSplash:=false; // show splash on first activate only
+    if splashResult <> mrOk then
+      begin
+          self.Close;
+          exit;
+      end;
+    self.FShowSplash:=false; // show splash on first activate only
+  end;
 
   if not FModelInitallyLoaded then
     begin

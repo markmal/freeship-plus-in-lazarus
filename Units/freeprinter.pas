@@ -7,8 +7,12 @@ unit FreePrinter;
 interface
 uses
 {$IFDEF FPC}
-  LCLIntf, LCLType, LMessages, LResources,
-  PrintersDlgs, Printer4Lazarus,
+  LCLIntf,
+  LCLType,
+  //LMessages,
+  LResources,
+  //PrintersDlgs,
+  Printer4Lazarus,
 {$ENDIF}
 Classes,
 SysUtils,

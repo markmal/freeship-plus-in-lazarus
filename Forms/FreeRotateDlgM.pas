@@ -34,10 +34,12 @@ uses
   Windows,
   RichEdit,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
-  PrintersDlgs, Printer4Lazarus, FreePrinter,
+  LCLIntf, LCLType,
+  //LMessages, PrintersDlgs,
+  Printer4Lazarus,
+  //FreePrinter,
 {$ENDIF}
-  Messages,
+  //Messages,
   SysUtils,
   Classes,
   Graphics,

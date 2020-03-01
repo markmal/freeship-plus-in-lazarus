@@ -29,7 +29,7 @@ unit FreeMatrices;
 
 interface
 
-uses Grids,
+uses //Grids,
      Dialogs,
      Classes,
      SysUtils;

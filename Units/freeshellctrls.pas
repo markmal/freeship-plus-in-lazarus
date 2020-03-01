@@ -1306,8 +1306,8 @@ var
   //Fn should be fully qualified
   var
     Attr: LongInt;
-    Dirs: TStringList;
-    i: Integer;
+    //Dirs: TStringList;
+    //i: Integer;
   begin
     Result := False;
     Attr := FileGetAttrUtf8(Fn);
@@ -1703,7 +1703,7 @@ end;
 
 procedure TCustomShellListView.defaultFileCompare(Sender: TObject;
           Item1, Item2: TListItem; Data: Integer; var Compare: Integer);
-var sz1,sz2: integer; Item0:TListItem; type1,type2, colName:String;
+var type1,type2, colName:String;
 begin
   Compare := 0;
   type1:=Item1.SubItems[1];
@@ -1760,7 +1760,8 @@ begin
 end;
 
 procedure TCustomShellListView.AdjustColumnSizes;
-var ncw:integer; cw:integer = 0;
+var //ncw:integer;
+  cw:integer = 0;
 begin
   // Initial sizes, necessary under Windows CE
   {cw := GetAllColumnsWidth;
@@ -1776,7 +1777,7 @@ begin
 end;
 
 procedure TCustomShellListView.PopulateWithRoot();
-type PSearchRec = ^TSearchRec;
+//type PSearchRec = ^TSearchRec;
 var
   i: Integer;
   Files: TStringList;

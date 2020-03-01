@@ -35,10 +35,10 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
-  PrintersDlgs, Printer4Lazarus, FreePrinter,
+  LCLIntf, LCLType, //LMessages,
+  PrintersDlgs, Printer4Lazarus, //FreePrinter,
 {$ENDIF}
-  Messages,
+  //Messages,
   SysUtils,
   Variants,
   Classes,
@@ -51,7 +51,7 @@ uses
   FreeGeometry,
   ExtCtrls,
   ComCtrls,
-  ToolWin,
+  //ToolWin,
   Printers,
   Math,
   ImgList,
@@ -142,8 +142,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport,
-  FasterList;
+uses FreeLanguageSupport;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -409,8 +408,8 @@ var
   Mainframe: TFloatType;
   Tmp, Space: TFloatType;
   Min, Max: TFloatType;
-  ResFactor: TFloatType;
-  ScaleFactor: TFloatType;
+  //ResFactor: TFloatType;
+  //ScaleFactor: TFloatType;
   WlPlane: T3DPlane;
   MainPlane: T3DPlane;
   Plane: T3DPlane;
@@ -421,7 +420,7 @@ var
   Spline: TFreeSpline;
   P, P1, P2: T3DCoordinate;
   Pts: array of TPoint;
-  Pt: TPoint;
+  //Pt: TPoint;
   Steps: integer;
   PenwidthFactor: integer;
   Str: string;

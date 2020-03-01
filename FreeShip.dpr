@@ -26,8 +26,8 @@
 {                                                                                             }
 {#############################################################################################}
 
-{$UNDEFINE DBGMEMMGR}
-{$UNDEFINE MEMCHECK}
+{$DEFINE NoDBGMEMMGR}
+{$DEFINE NoMEMCHECK}
 
 program FreeShip;
 
@@ -136,8 +136,6 @@ begin
   end;
 end;
 
-var   TestForm1:TForm;  FMDIPanel:TMDIPanel;
-
 {
 procedure CatchUnhandledException(Obj: TObject; Addr: Pointer; FrameCount: Longint; Frames: PPointer);
 var
@@ -166,9 +164,9 @@ end;
 }
 
 {$ifdef Windows}
-const INSTSCRIPT_EXT='cmd';
+//const INSTSCRIPT_EXT='cmd';
 {$else}
-const INSTSCRIPT_EXT='sh';
+//const INSTSCRIPT_EXT='sh';
 {$endif}
 
 resourcestring InstallMeMessage='You run FreeShip from installation directory.'+#10
@@ -178,7 +176,7 @@ resourcestring InstallMeMessage='You run FreeShip from installation directory.'+
 
 
 procedure checkInstallation;
-var MsgForm:TForm; Lbl:TLabel;
+//var MsgForm:TForm; Lbl:TLabel;
 begin
   with Mainform.Freeship.Preferences do
    begin

@@ -450,6 +450,7 @@ type
     procedure ColorButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
 
@@ -643,8 +644,8 @@ type
       procedure Tile;
       procedure Cascade;
       {$ENDIF}
-      constructor Create(AOwner: TComponent); override;
       procedure CustomExceptionHandler(Sender: TObject; E: Exception);
+      constructor Create(AOwner: TComponent); override;
       destructor Destroy; override;
 
       procedure SetCaption;
@@ -677,7 +678,7 @@ uses //FreeSplashWndw,
 {$ENDIF}
 
 procedure SortControlsByXY(tb:TWinControl);
-var c1,c2: TControl; i,j, t1,t2, l1,l2:integer;
+var c1,c2: TControl; i,j :integer;
 begin
   {
   Writeln();
@@ -694,8 +695,8 @@ begin
       begin
       c1 := tb.Controls[j-1];
       c2 := tb.Controls[j];
-      t1:=c1.Top; t2:=c2.Top;
-      l1:=c1.Left; l2:=c2.Left;
+      //t1:=c1.Top; t2:=c2.Top;
+      //l1:=c1.Left; l2:=c2.Left;
       if c1.Top > c2.Top then
         begin
           tb.RemoveControl(c2);
@@ -738,7 +739,8 @@ begin
   for I := 0 to ExceptFrameCount - 1 do
     Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
   Writeln(Report);
-  ShowMessage(Report);
+  //ShowMessage(Report);
+  MessageDlg('Program exception!', Report, mtError, [mbClose],0);
   //Halt; // End of program execution
 end;
 
@@ -790,6 +792,10 @@ begin
 end;
 
 procedure TMainForm.FormChangeBounds(Sender: TObject);
+begin
+end;
+
+procedure TMainForm.FormDestroy(Sender: TObject);
 begin
 end;
 
@@ -1931,11 +1937,15 @@ end;{TMainForm.FreeShipChangeActiveLayer}
 
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  if Action = caFree then
+  begin
    CloseHullWindows;
    FreeShip.Preferences.Save;
    FreeShip.OnChangeActiveLayer:=nil;
    Freeship.OnChangeLayerData:=nil;
    FreeShip.OnSelectItem:=nil;
+   FreeShip.Free;
+  end;
 end;{TMainForm.FormClose}
 
 procedure TMainForm.NewLayerExecute(Sender: TObject);

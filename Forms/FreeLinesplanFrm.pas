@@ -34,18 +34,18 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, //LMessages,
 {$ENDIF}
-  Messages,
-     SysUtils,
-     Variants,
-     Classes,
-     Graphics,
-     Controls,
-     Forms,
-     Dialogs, ComCtrls,
-     FreeGeometry,
-     FreeLinesplanFrme;
+  //Messages,
+   SysUtils,
+   Variants,
+   Classes,
+   Graphics,
+   Controls,
+   Forms,
+   Dialogs, ComCtrls,
+   FreeGeometry,
+   FreeLinesplanFrme;
 
 type
 

@@ -38,7 +38,9 @@ unit FasterList;
 
 interface
 
-uses Math, SysUtils;
+uses
+  //Math,
+  SysUtils;
 
 type
   {---------------------------------------------------------------------------------------------------}
@@ -130,7 +132,8 @@ end;{TFasterList.Destroy}
 
 procedure TFasterList.Add(Item: TItemType);
 var
-  Cur, Prev: PtrUInt; i:integer;
+  //Cur, Prev: PtrUInt;
+  i:integer;
 begin
   i := self.IndexOf(Item);
   if FUnique and (i >= 0) then
@@ -681,7 +684,7 @@ function TFasterList.SortedIndexOf(Item: TItemType): integer;
 var
   MemAddr: PtrUInt;
   MidVal: PtrUInt;
-  L, H, Mid, M: integer;
+  L, H, Mid : integer;
 begin
   if not FSorted then
      begin

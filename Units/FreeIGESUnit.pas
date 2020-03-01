@@ -35,7 +35,7 @@ uses
      {$ifdef Windows}
       Windows,
      {$else}
-     LCLIntf, LCLType, LMessages,
+     LCLIntf, LCLType, //LMessages,
      {$endif}
 
      classes,

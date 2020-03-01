@@ -2044,7 +2044,7 @@ end;{TFreeFileBuffer.Load}
 procedure TFreeFileBuffer.Load(var Output: T3DPlane);
 var
   Size: integer;
-  PLE: T3DPlane;
+  //PLE: T3DPlane;
 begin
   Size := SizeOf(Output);
   if FPosition + Size <= FCount then
@@ -2230,16 +2230,11 @@ begin
 end;{TFreeTextBuffer.FSetCapacity}
 
 procedure TFreeTextBuffer.FSetCapacity(val: integer);
-var
-  I: integer;
 begin
   FLines.Capacity := val;
 end;{TFreeTextBuffer.FSetCapacity}
 
 procedure TFreeTextBuffer.Clear;
-var
-  Size: integer;
-  S: string;
 begin
   if FLines <> nil then
     FLines.Clear;
@@ -2248,7 +2243,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(Text: string);
 var
-  Size: integer;
   S: string;
 begin
   S := ReplaceStr(Text, '\', '\\');
@@ -2259,7 +2253,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(BooleanValue: boolean);
 var
-  Size: integer;
   S: string;
 begin
   //if BooleanValue then S:='True' else S:='False';
@@ -2270,7 +2263,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(FloatValue: TFloatType);
 var
-  Size: integer;
   S: string;
 begin
   S := FloatToStr(FloatValue);
@@ -2280,7 +2272,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(IntegerValue: integer);
 var
-  Size: integer;
   S: string;
 begin
   S := IntToStr(IntegerValue);
@@ -2305,7 +2296,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(PVersion: TFreeFileVersion);
 var
-  Size: integer;
   S: string;
 begin
   FVersion := PVersion;
@@ -2324,7 +2314,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(LCData: TLinearConstraintData);
 var
-  Size: integer;
   S: string;
 begin
   S := IntToStr(LCData.N)
@@ -2337,7 +2326,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(Coordinate: T3DCoordinate);
 var
-  Size: integer;
   S: string;
 begin
   S := FloatToStr(Coordinate.X) + ' ' + FloatToStr(Coordinate.Y) + ' ' + FloatToStr(Coordinate.Z);
@@ -2347,7 +2335,6 @@ end;{TFreeTextBuffer.Add}
 
 procedure TFreeTextBuffer.Add(Plane: T3DPlane);
 var
-  Size: integer;
   S: string;
 begin
   S := FloatToStr(Plane.a) + ' ' + FloatToStr(Plane.b) + ' '
@@ -2475,7 +2462,7 @@ begin
 end;{TFreeTextBuffer.Load}
 
 procedure TFreeTextBuffer.Load(var Output: TLinearConstraintData);
-var  p:integer; S: string;
+var  S: string;
 begin
   S := FLines[FPosition];
   Output.N := StrToInt(ExtractWord(1, S, [' ']));
@@ -2509,7 +2496,7 @@ end;{TFreeTextBuffer.Load}
 
 // load string of words separated by spaces
 procedure TFreeTextBuffer.Load(var Output: TStrings);
-var  i:integer; S,V: string; SS:TStrings;
+var  i:integer; S,V: string; //SS:TStrings;
 begin
   S := FLines[FPosition];
   i:=1;
@@ -2543,11 +2530,6 @@ begin
 end;{TFreeTextBuffer.Reset}
 
 function TFreeTextBuffer.SaveToFile(Filename: string):boolean;
-var
-  DataWritten: integer;
-  DataLeft: integer;
-  Tmp: integer;
-  Size: integer;
 begin
   result:=false;
   FFileName := Filename;

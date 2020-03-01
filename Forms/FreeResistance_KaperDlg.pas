@@ -39,11 +39,11 @@ uses
   TeeProcs,
   Chart,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, //LMessages,
   TATools, TASeries, TACustomSeries, TAGraph,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
-  Messages,
+  //Messages,
   SysUtils,
   Variants,
   Classes,
@@ -59,7 +59,7 @@ uses
   FreeShipUnit,
   Spin,
   ComCtrls,
-  ToolWin,
+  //ToolWin,
   ImgList;
 
 type
@@ -381,7 +381,7 @@ type
   TTable = array[0..16, 0..13] of single;
 
 var
-  I, J, K: integer;
+  I, J: integer;
   Ind1: integer;
   Ind2: integer;
   Speed: single;

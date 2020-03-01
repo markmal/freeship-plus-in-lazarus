@@ -79,7 +79,8 @@ end;
 // checks if icon is already cached and adds an icon if it is not cached,
 // returns icon index in LargeIconList and SmallIconList
 function TFileIconGtk.addIconsForFile(filename:string):integer;
-var mimeType:string; iconName:string; i,i1,i2,iconIndex:integer;
+var //mimeType:string;
+    iconName:string; i,i1,i2,iconIndex:integer;
     smallIcon, largeIcon: TIcon;
 begin
   result := -1;

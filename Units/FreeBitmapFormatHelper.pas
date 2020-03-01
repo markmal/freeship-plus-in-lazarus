@@ -438,7 +438,7 @@ begin
 end;
 
 procedure TFreeBitmapFormatHelper.GetPixelInLine(pLineStart:pByte; X: integer; out R, G, B, A: byte);
-var pRow, pPixel : pointer;
+var pPixel : pointer;
 begin
   pPixel := pLineStart + Self.BytesPerPixel * X;
   FGetPixelProc(pPixel, R, G, B, A);

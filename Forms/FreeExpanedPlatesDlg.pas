@@ -35,10 +35,10 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
-  PrintersDlgs, Printer4Lazarus, FreePrinter,
+  LCLIntf, LCLType, //LMessages,
+  PrintersDlgs, Printer4Lazarus, //FreePrinter,
 {$ENDIF}
-  Messages,
+  //Messages,
   SysUtils,
   Variants,
   Classes,
@@ -49,11 +49,11 @@ uses
   ExtCtrls,
   FreeTypes,
   FreeGeometry,
-  FasterList,
+  //FasterList,
   StdCtrls,
   ActnList,
   ComCtrls,
-  ToolWin,
+  //ToolWin,
   FreeShipUnit,
   Printers,
   ImgList,
@@ -687,12 +687,12 @@ end;
 
 procedure TFreeExpanedplatesDialog.SpinEditFontSizeChange(Sender: TObject);
 var
-  I, Index: integer;
+  I: integer;
   Patch: TFreeDevelopedPatch;
 begin
-  for I := 1 to FPlates.Count do
+  for I := 0 to FPlates.Count - 1 do
   begin
-    Patch := FPlates[I - 1];
+    Patch := FPlates[I];
     Patch.DimFontSize := SpinEditFontSize.Value;
   end;
   Viewport.Refresh;

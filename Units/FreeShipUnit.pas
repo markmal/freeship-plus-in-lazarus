@@ -1325,14 +1325,12 @@ type
     function AdjustMarkers: boolean;
     procedure Clear;
     procedure ClearUndo;
-    constructor Create(AOwner: TComponent);
-      override;
+    constructor Create(AOwner: TComponent); override;
     procedure CreateOutputHeader(CalcHeader: string; Strings: TStrings);
     // Creates a header with all relevant project data
     procedure DeleteViewport(Viewport: TFreeViewport);
     // Delete a viewport from the list of viewports connected to the model
-    destructor Destroy;
-      override;
+    destructor Destroy;  override;
     procedure Draw;
     procedure ZoomFitAllViewports;
     procedure DrawToViewport(Viewport: TFreeViewport);

@@ -1595,9 +1595,9 @@ end;{TFreeSubdivisionSurface.AddControlFace}
 function TFreeSubdivisionSurface.CheckIntegrity:boolean;
 var  i: integer; b:boolean; layer:TFreeSubdivisionLayer;
   CEdge:TFreeSubdivisionControlEdge;
-  Edge:TFreeSubdivisionEdge;
-  CPoint:TFreeSubdivisionControlPoint;
-  Point:TFreeSubdivisionPoint;
+  //Edge:TFreeSubdivisionEdge;
+  //CPoint:TFreeSubdivisionControlPoint;
+  //Point:TFreeSubdivisionPoint;
 begin
   result:=true;
   for i := 0 to NumberOfLayers-1 do
@@ -1698,27 +1698,27 @@ end;{TFreeSubdivisionSurface.Clear}
 
 procedure TFreeSubdivisionSurface.ClearFaces;
 var
-  I,J: integer;
+  I: integer;
 begin
   if Assigned(FControlFaces) then
-    for I := 1 to NumberOfControlFaces do
-      Controlface[I - 1].ClearChildren; // deletes children and rendermesh
+    for I := 0 to NumberOfControlFaces - 1 do
+      Controlface[I].ClearChildren; // deletes children and rendermesh
   if Assigned(FEdges) then
   begin
-    for I := 1 to FEdges.Count do
-      Edge[I - 1].Free;
+    for I := 0 to FEdges.Count - 1 do
+      Edge[I].Free;
     FEdges.Clear;
   end;
   if Assigned(FPoints) then
   begin
-    for I := 1 to FPoints.Count do
-      Point[I - 1].Free;
+    for I := 0 to FPoints.Count - 1 do
+      Point[I].Free;
     FPoints.Clear;
   end;
   if Assigned(FControlFaces) then
-    for I := 1 to NumberOfControlFaces do
+    for I := 0 to NumberOfControlFaces - 1 do
       begin
-      ControlFace[I - 1].FControlDescendantEdges.Clear;
+      ControlFace[I].FControlDescendantEdges.Clear;
       end;
 end;{TFreeSubdivisionSurface.ClearFaces}
 
@@ -2523,15 +2523,15 @@ var
   Edge: TFreeSubdivisionEdge;
   P1, P2, P3: TFreeSubdivisionPoint;
   CtrlFace: TFreesubdivisionControlFace;
-  Skip: boolean;
+  //Skip: boolean;
   Side1: TFloatType;
   Side2: TFloatType;
-  AbsSide1: TFloatType;
-  AbsSide2: TFloatType;
+  //AbsSide1: TFloatType;
+  //AbsSide2: TFloatType;
   Parameter: TFloatType;
   Output: T3DCoordinate;
   Spline: TFreeSpline;
-  Copy: TFreeSpline;
+  //Copy: TFreeSpline;
   Face, F2: TFreeSubdivisionface;
   IntArray: array of IntersectionData;
   ArrayLength: integer;
@@ -2540,7 +2540,7 @@ var
   CenterPlane: boolean;
   Edges: TFasterListTFreeSubdivisionEdge;
   AddEdge: boolean;
-  InPlane: boolean;
+  //InPlane: boolean;
   Segments: array of TSegment;
   StartP, EndP: IntersectionData;
   Segment: TSegment;
@@ -2948,7 +2948,7 @@ end;{TFreeSubdivisionSurface.Destroy}
 
 procedure TFreeSubdivisionSurface.Draw(Viewport: TFreeViewport);
 var
-  I: integer; t:DWord;
+  I: integer; //t:DWord;
   Edge: TFreeSubdivisionEdge;
 begin
   if FIsBuilding then exit; // no double entries

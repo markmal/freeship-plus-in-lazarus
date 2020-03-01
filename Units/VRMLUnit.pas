@@ -25,7 +25,7 @@ uses
   Dialogs,
   Graphics,
   FreeTypes,
-  FreeGeometry,
+  //FreeGeometry,
   FasterList;
 
 type

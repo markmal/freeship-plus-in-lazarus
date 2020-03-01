@@ -35,9 +35,10 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType,
+  //LMessages,
 {$ENDIF}
-  Messages,
+  //Messages,
   SysUtils,
   Variants,
   Classes,
@@ -50,7 +51,7 @@ uses
   ExtCtrls,
   FreeShipUnit,
   ComCtrls,
-  Spin, ValEdit,
+  Spin, //ValEdit,
   FreeLanguageSupport;
 
 type
@@ -412,7 +413,7 @@ end;
 
 function TFreePreferencesDialog.getPreferredSize:TRect;
 var
-  TxH, TbH, HdrHeight, BrdWidth, TbT, PgT, PnT, PGIB: integer;
+  TxH, HdrHeight, BrdWidth, TbT, PgT, PnT, PGIB: integer;
   ScreenPoint: TPoint;
 begin
   Invalidate;

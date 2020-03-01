@@ -36,9 +36,9 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, //LMessages,
 {$ENDIF}
-  Messages,
+  //Messages,
   SysUtils,
   Variants,
   Classes,

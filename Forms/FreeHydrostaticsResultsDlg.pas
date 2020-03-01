@@ -36,10 +36,11 @@ uses
      Windows,
      {$endif}
      {$ifdef LCL}
-     LCLIntf, LCLType, LMessages, LResources,
+     LCLIntf, LCLType, //LMessages,
+     LResources,
      PrintersDlgs, Printer4Lazarus, FreePrinter,
      {$endif}
-     Messages,
+     //Messages,
      SysUtils,
      Variants,
      Classes,

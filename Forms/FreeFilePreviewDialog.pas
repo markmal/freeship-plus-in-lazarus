@@ -215,7 +215,7 @@ type
     FPath : String;
     FFileName : string;
     FIconNamesMap: TStringList;
-    FMousePos: TPoint;
+    //FMousePos: TPoint;
     FOnSelectFile: TSelectFileEvent;
     FOnPreview: TSelectFileEvent;
     FHistoryStack: TStringList;
@@ -232,7 +232,7 @@ type
     FLocaleDir:string;
     FLang:string; // short name like 'ru', 'de'
     FListHidden:boolean;
-    FPendingDir:string;
+    //FPendingDir:string;
     FNeedsReload:boolean;
     FIsInReload:boolean;
     //function addAnyIconsForFile(filename:string):integer;
@@ -392,7 +392,9 @@ var
   icon_view: PGtkIconView;
   text_renderer : PGtkCellRendererText;
   pix_renderer : PGtkCellRenderer;
-  gfXAlign: Gfloat; iw,giXPad:Gint;
+  //gfXAlign: Gfloat;
+  iw:Gint;
+  //giXPad:Gint;
 begin
  if not WSCheckHandleAllocated(ALV, 'TListViewTestForm')
   then Exit;
@@ -442,7 +444,7 @@ end;
 {$endif}
 
 procedure TFreeFilePreviewDialog.ShellListViewSetWordWrap(slv:TCustomShellListView; AWordWrap:boolean);
-var gSz : TSize; ih,fh:integer; fd: TFontData;
+var //gSz : TSize; ih,fh:integer; fd: TFontData;
   {$IfDef QT}  QtListWidget: TQtListWidget;  {$EndIf}
   AWrapWidth:integer = 200;
   c:TListColumn;
@@ -571,7 +573,7 @@ end;
 
 procedure TFreeFilePreviewDialog.setListHidden(val:boolean);
   var ottv,otlv: FreeShellCtrls.TObjectTypes;
-    P:string;
+    //P:string;
 begin
   if FListHidden = val then exit;
   FListHidden := val;
@@ -595,7 +597,7 @@ end;
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewListHiddenClick(Sender: TObject
   );
-var ot: TObjectTypes;
+//var ot: TObjectTypes;
 begin
   setListHidden(SpeedButtonViewListHidden.Down)
 end;
@@ -740,7 +742,7 @@ end;
 
 procedure TFreeFilePreviewDialog.AutoSearchListBoxMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var s:string;
+//var s:string;
 begin
   //s:=AutoSearchListBox.GetSelectedText;
   //Self.setStatusText(s);
@@ -804,9 +806,10 @@ begin
 end;
 
 procedure TFreeFilePreviewDialog.ComboBoxDirChange(Sender: TObject);
-var nm,s,cd:string; sl,sel: TStringList;
+var nm,s,cd:string; sl: TStringList;
     item:TListItem; i,h:integer;
-    lb:TListBox; fi:TFileItem;
+    //lb:TListBox;
+    fi:TFileItem;
     P1:TPoint;
 begin
   if FIsInReload then exit;
@@ -868,9 +871,10 @@ end;
 
 procedure TFreeFilePreviewDialog.ComboBoxDirKeyPress(Sender: TObject;
   var Key: char);
-var nm,s:string; sl,sel: TStringList;
+var nm,s:string; sl: TStringList;
     item:TListItem; i,h:integer;
-    lb:TListBox; fi:TFileItem;
+    //lb:TListBox;
+    fi:TFileItem;
 begin
   //inherited KeyPress(Key);
   sl := split(ComboBoxDir.Text, {System.}DirectorySeparator);
@@ -1001,7 +1005,7 @@ resourcestring
   rsClickToEdit = 'Click to edit';
 
 procedure TFreeFilePreviewDialog.FormCreate(Sender: TObject);
-var GlobalTranslator: TAbstractTranslator; LocalTranslator: TPOTranslator;
+//var GlobalTranslator: TAbstractTranslator;  LocalTranslator: TPOTranslator;
 begin
   FInShellTreeViewChange:=false;
   FInShellPathPanelOnSelectionChanged:=false;
@@ -1142,7 +1146,8 @@ begin
 end;
 
 procedure TFreeFilePreviewDialog.LeftPageControlChange(Sender: TObject);
-var item:TListItem; i:integer;
+var //item:TListItem;
+  i:integer;
 begin
   {for i:=0 to ListViewPlaces.Items.Count-1 do
      begin
@@ -1228,7 +1233,8 @@ end;
 
 procedure TFreeFilePreviewDialog.ListViewPlacesShowHint(Sender: TObject;
   HintInfo: PHintInfo);
-var dir : TDir; i: integer; item: TListItem;
+var dir : TDir; //i: integer;
+  item: TListItem;
 begin
  if ListViewPlaces.Items.Count = 0 then exit;
  item := ListViewPlaces.GetItemAt(HintInfo^.CursorPos.x,HintInfo^.CursorPos.y);
@@ -1256,16 +1262,19 @@ end;
 
 
 procedure TFreeFilePreviewDialog.PropertiesClick(Sender: TObject);
-var fn,dn,mime,iconName, msg:string;
+var fn,dn, msg:string;
+  {$ifdef USEMIME}iconName, mime:string;{$endif}
 begin
   fn:=ShellListView.Selected.Caption;
   dn:=ShellListView.Root;
   fn:=dn+fn;
   msg:=Format('FileName:%s'+#10,[fn]);
   {$IFNDEF WINDOWS}
-  //mime:=FFileMimeIcon.getMimeTypeForFile(fn);
-  //iconName:=FFileMimeIcon.getMimeToIconName(mime);
-  //msg:=msg + Format('MIME:%s'+#10+'IconName:%s',[mime,iconName]);
+    {$ifdef USEMIME}
+    mime:=FFileMimeIcon.getMimeTypeForFile(fn);
+    iconName:=FFileMimeIcon.getMimeToIconName(mime);
+    msg:=msg + Format('MIME:%s'+#10+'IconName:%s',[mime,iconName]);
+    {$endif}
   {$ENDIF}
   if FileIsReadable(fn) then msg:=msg+#10+'Readable';
   if FileIsWritable(fn) then msg:=msg+#10+'Writable';
@@ -1289,12 +1298,11 @@ end;
 
 procedure TFreeFilePreviewDialog.ShellListViewShowHint(Sender: TObject;
   HintInfo: PHintInfo);
-var dir : TDir; i: integer; item: TListItem;
+var item: TListItem;
 begin
  if ShellListView.Items.Count = 0 then exit;
  item := ShellListView.GetItemAt(HintInfo^.CursorPos.x,HintInfo^.CursorPos.y);
  if not assigned(item) then exit;
- //dir := TDir(item.Data);
  hintInfo^.HintStr:=item.Caption;
 end;
 
@@ -1377,7 +1385,7 @@ end;
 }
 
 procedure TFreeFilePreviewDialog.ChangeDir(dir:string);
-var curPath, nodePath: String;
+var curPath: String;
 begin
   if not DirPathExists(dir) then exit;
   dir := CleanAndExpandDirectory(dir);
@@ -1453,7 +1461,7 @@ begin
 end;
 
 procedure TFreeFilePreviewDialog.selectFile;
-var fullName, fil, dir : string; item:TListItem; fileItem:TFileItem;
+var fullName: string; item:TListItem; fileItem:TFileItem;
 begin
   if not Assigned(ShellListView.Selected) then
      begin
@@ -1494,14 +1502,15 @@ end;
 
 procedure TFreeFilePreviewDialog.ShellListViewMouseMove(Sender: TObject;
   Shift: TShiftState; X, Y: Integer);
-var item:TListItem;
+//var item:TListItem;
   {$IfDef QT}
+  var
   QtTreeWidget: TQtTreeWidget;
   TWI : QTreeWidgetItemH;
   //QtListWidget: TQtListWidget;
   //LWI : QListWidgetItemH;
   {$EndIf}
-  wtooltip: widestring;
+  //wtooltip: widestring;
 begin
   {$IfDef QT}
   // for some reason tooltip is not assigned in setTooltips
@@ -1655,7 +1664,7 @@ end;
 
 procedure TFreeFilePreviewDialog.ShellListViewSelectItem(Sender: TObject;
   Item: TListItem; Selected: Boolean);
-var isFile,isDir: boolean; pat, dir, fil: string; fileItem:TFileItem;
+var isFile: boolean; pat: string; fileItem:TFileItem;
 begin
   if not Selected then exit;
   pat := ShellListView.GetPathFromItem(Item);
@@ -1968,7 +1977,7 @@ begin
 end;
 
 procedure TFreeFilePreviewDialog.CreateNewFolder;
-var curPath, newDir: String; item:TListItem; n:integer;
+var newDir: String; item:TListItem; n:integer;
 begin
  //curPath := ShellTreeView.Path;
  {
@@ -2207,7 +2216,7 @@ end;
 
 procedure TFreeFilePreviewDialog.doAutoFit;
 var
-  omd: TFreeFilePreviewDialog;
+  //omd: TFreeFilePreviewDialog;
   bmw,bmh, cw, tvw, lvw, pvpw,pvph, ppw, psp: integer;
 begin
     bmw:=PreviewPicture.Bitmap.Width;
@@ -2391,7 +2400,6 @@ begin
 end;
 
 procedure TFreeFilePreviewDialog.ShellPathPanelOnSelectionChanged(Sender: TObject);
-var s:string;
 begin
  if FInShellPathPanelOnSelectionChanged then exit;
  if not ShellPathPanel.IsSelectionInteractive then exit;

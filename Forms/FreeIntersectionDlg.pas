@@ -35,7 +35,7 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, //LMessages,
 {$ENDIF}
   SysUtils,
   Classes,
@@ -53,7 +53,7 @@ uses
   CheckLst,
   ImgList,
   ComCtrls,
-  ToolWin,
+  //ToolWin,
   ActnList;
 
 type

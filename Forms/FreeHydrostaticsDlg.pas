@@ -36,10 +36,10 @@ uses
   Windows,
   RichEdit,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, //LMessages,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
-  Messages,
+  //Messages,
   SysUtils,
   Variants,
   Classes,

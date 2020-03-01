@@ -171,7 +171,7 @@ end;
 
 procedure TScrollPanel.insertSpeedButton(aCaption:string; Index: integer);
 var sb:TSpeedButton; tw, fw:integer;
-  fd: TFontData; bmp: TBitmap;
+  bmp: TBitmap;
 begin
   sb:=TSpeedButton.Create(FControlPanel);
   sb.Caption:=aCaption;
@@ -227,7 +227,7 @@ begin
 end;
 
 procedure TScrollPanel.DoOnRightButtonActionExecute(Sender: TObject);
-var lc, lcr : integer;
+var lc: integer;
 begin
   lc := FControlPanel.ControlCount-1;
   inc(FStartControl);

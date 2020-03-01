@@ -43,7 +43,7 @@ uses
 {$ELSE}
   LCLIntf, LCLType,
   LCLProc,
-  LMessages,
+  //LMessages,
 {$ENDIF}
   ActnList,
      SysUtils,
@@ -199,9 +199,9 @@ It can be multiline too, EOLs in key and value will be replaced by \n.
 function tl8(Key:String):String;
 var Str     : string;
     Section : String;
-    val     : string;
+    //val     : string;
     idx     : string;
-    I,N     : Integer;
+    //N     : Integer;
 begin
    Result:=Key;
    if CurrentLanguage<>nil then

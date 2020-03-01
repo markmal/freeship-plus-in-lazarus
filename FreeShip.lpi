@@ -33,7 +33,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="277"/>
+      <BuildNr Value="302"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -963,11 +963,7 @@
       </Optimizations>
     </CodeGeneration>
     <Linking>
-      <Debugging>
-        <UseValgrind Value="True"/>
-      </Debugging>
       <Options>
-        <PassLinkerOptions Value="True"/>
         <LinkerOptions Value="-z relro"/>
         <Win32>
           <GraphicApplication Value="True"/>
@@ -976,12 +972,19 @@
     </Linking>
     <Other>
       <Verbosity>
-        <ShowNotes Value="False"/>
-        <ShowHints Value="False"/>
         <ShoLineNum Value="True"/>
         <ShowDebugInfo Value="True"/>
         <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+        <ShowHintsForSenderNotUsed Value="True"/>
       </Verbosity>
+      <CompilerMessages>
+        <IgnoredMessages idx5091="True" idx5057="True" idx5030="True" idx5027="True" idx5026="True" idx5024="True"/>
+      </CompilerMessages>
+      <ConfigFile>
+        <DontUseConfigFile Value="True"/>
+        <CustomConfigFile Value="True"/>
+        <ConfigFilePath Value="debugfpc.cfg"/>
+      </ConfigFile>
       <ExecuteBefore>
         <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
         <ShowAllMessages Value="True"/>

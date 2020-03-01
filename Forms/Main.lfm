@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 495
+  Left = 643
   Height = 641
-  Top = 139
+  Top = 221
   Width = 1132
   Align = alTop
   ClientHeight = 615
@@ -16,6 +16,7 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnResize = FormResize
   OnShow = FormShow
   OnWindowStateChange = FormWindowStateChange

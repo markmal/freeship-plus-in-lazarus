@@ -1,7 +1,15 @@
 Test only Version 4.6.1 in Lazarus
-Released: Build date	2020/02/17
-New features and fixes:
 
+4.6.1.305 Released: Build date	2020/03/01
+Fixed couple of issues and memory bugs with using Valgrind debugger
+New things:
+  - added caching of bitmap of background image for performance improving.
+  - new Tolerance dialog.
+  - delete control point after Point Collapse
+
+
+New features and fixes:
+4.6.1.266 Released: Build date	2020/02/17
 Fixed couple of issues, such as fatal exception on save file, and others.
 New things:
 

@@ -114,7 +114,7 @@ begin
     end
     else c.Left:=2;
   end;
-
+  sortedList.Free;
 end;
 
 function GetToolbarControlsTotalWidth(tlbar:TToolBar): integer;

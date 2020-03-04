@@ -1133,6 +1133,7 @@ procedure TMainForm.HullformWindowOnDeactivate(Sender:TObject);
 begin
   // remove Action List to free place for another MDI action list
   if not assigned(FActionListHull) then exit;
+  if not assigned(Sender) then exit;
   if not assigned(TFreeHullWindow(Sender).FreeHullForm) then exit;
   if not assigned(TFreeHullWindow(Sender).FreeHullForm.ActionListHull) then exit;
   if FActionListHull <> TFreeHullWindow(Sender).FreeHullForm.ActionListHull
@@ -1458,6 +1459,8 @@ begin
    PointsUnlockAll.Enabled:=Freeship.NumberOfLockedPoints>0;
    PointAlign.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
    TransformLackenby.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
+
+   FreeShip.ControlpointForm.Reload;
 end;{TMainForm.UpdateMenu}
 
 
@@ -1946,6 +1949,7 @@ procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if Action = caFree then
   begin
+   FDestroying := true;
    CloseHullWindows;
    FreeShip.Preferences.Save;
    FreeShip.OnChangeActiveLayer:=nil;

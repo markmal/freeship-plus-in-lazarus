@@ -140,6 +140,7 @@ type
       procedure FSetActiveControlPoint(Val:TFreeSubdivisionControlPoint);
       procedure FSetActiveControlPointCorner(isCorner: boolean);
    public   { Public declarations }
+      procedure Reload;
       property ActiveControlPoint   : TFreeSubdivisionControlPoint read FActiveControlPoint write FSetActiveControlPoint;
       property FreeShip             : TComponent read FFreeShip write FFreeShip;
       //property FreeShip : TFreeShip read FFreeShip write FFreeShip;
@@ -347,7 +348,7 @@ begin
       EditY.Value:=FActiveControlPoint.Coordinate.Y;
       EditZ.Value:=FActiveControlPoint.Coordinate.Z;
 
-      if IsPointDifferent then
+      if true or IsPointDifferent then
       begin
         if  Npoi<2 then Label5.Caption:=rsAngles;
         if  Npoi=2 then Label5.Caption:=rsAngle;
@@ -430,6 +431,11 @@ begin
    end;
    FActiveControlPointChanging := false;
 end;{TFreeControlPointForm.FSetActiveControlPoint}
+
+procedure TFreeControlPointForm.Reload;
+begin
+  FSetActiveControlPoint(ActiveControlPoint);
+end;
 
 procedure TFreeControlPointForm.EditXChange(Sender: TObject);
 var P   : T3DCoordinate;

@@ -960,10 +960,8 @@ end;
 
 procedure TFreePreferences.LoadThemeIni(FileName: string);
 var
-  I, N: integer;
-  T, L, W, H, S: integer;
   params: TColorIniFile;
-  RecentFileNames: TStringList;
+  //RecentFileNames: TStringList;
 begin
   if not FileExistsUTF8(Filename) then
     exit;
@@ -1005,6 +1003,7 @@ begin
     'Graphic', 'HydrostaticsFontColor', FHydrostaticsFontColor);
   FZebraStripeColor := params.ReadColor('Graphic', 'ZebraStripeColor',
     FZebraStripeColor);
+  params.Free;
 end;
 
 procedure TFreePreferences.LoadFromIni(FileName: string);
@@ -1105,6 +1104,7 @@ begin
     FLanguage := 'English';
   FFbmEncoding := params.ReadString('General', 'FbmEncoding', FbmEncoding);
   FMaxUndoMemory := params.ReadInteger('General', 'MaxUndoMemory', FMaxUndoMemory);
+  params.Free;
 end;
 
 procedure TFreePreferences.setDefaults;

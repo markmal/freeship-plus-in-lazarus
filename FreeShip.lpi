@@ -33,7 +33,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="305"/>
+      <BuildNr Value="308"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -957,11 +957,11 @@
       </Optimizations>
     </CodeGeneration>
     <Linking>
+      <Debugging>
+        <UseValgrind Value="True"/>
+      </Debugging>
       <Options>
         <LinkerOptions Value="-z relro"/>
-        <Win32>
-          <GraphicApplication Value="True"/>
-        </Win32>
       </Options>
     </Linking>
     <Other>

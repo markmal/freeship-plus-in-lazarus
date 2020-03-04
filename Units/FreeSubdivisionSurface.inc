@@ -3647,7 +3647,7 @@ begin
       SortEdges(TmpEdges, TmpPts);
       if TmpPts <> nil then
         begin
-        DstFace:=TFreeSubdivisionFace.Create(nil);
+        DstFace:=TFreeSubdivisionFace.Create(Self);   //MM: changed from nil to Self
         DstFace.FPoints.IsUnique := false;  //MM: otherwise it makes horseshoe spline for cycle-connected edges
         DstFace.FPoints.AddList(TmpPts);
         Destination.Add(DstFace);

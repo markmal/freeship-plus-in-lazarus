@@ -627,7 +627,7 @@ begin
 end;{TFreeHullWindow.ZoomOutExecute}
 
 procedure TFreeHullWindow.ViewportMouseDown(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var Select  : Boolean;
+var Select  : Boolean = False;
     P:T2DCoordinate;
 begin
    FInitialPosition.X:=X;
@@ -643,7 +643,7 @@ begin
    FPanned:=False;
    if Viewport.ViewportMode=vmWireframe
       then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
-   FAllowPanOrZoom:=not select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
+   FAllowPanOrZoom:=not Select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
 
    if (Shift = [ssLeft,ssCtrl]) then
       begin

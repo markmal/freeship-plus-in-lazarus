@@ -61,12 +61,24 @@
         <Directory Id="APPLICATIONFOLDER" Name="FreeShip">
 
             <Component Id="MainExecutable" Guid="E307F106-23F4-4F25-A71A-C590FB28258D" Win64="yes">
-              <File Id="FreeShip.exe" Name="FreeShip.exe" Source="$(var.SrcPath)\FreeShip.exe" KeyPath="yes" >
-                <Shortcut Id="startmenuFreeShip" Directory="ProgramMenuDir" Name="FreeShip" 
-					WorkingDirectory="APPLICATIONFOLDER" Icon="FreeShip.ico" IconIndex="0" Advertise="yes" />
-                <Shortcut Id="desktopFreeShip" Directory="DesktopFolder" Name="FreeShip" 
-					WorkingDirectory="APPLICATIONFOLDER" Icon="FreeShip.ico" IconIndex="0" Advertise="yes" />
-              </File>
+				<File Id="FreeShip.exe" Name="FreeShip.exe" Source="$(var.SrcPath)\FreeShip.exe" KeyPath="yes" >
+					<Shortcut Id="startmenuFreeShip" Directory="ProgramMenuDir" Name="FreeShip" 
+						WorkingDirectory="APPLICATIONFOLDER" Icon="FreeShip.ico" IconIndex="0" Advertise="yes" />
+					<Shortcut Id="desktopFreeShip" Directory="DesktopFolder" Name="FreeShip" 
+						WorkingDirectory="APPLICATIONFOLDER" Icon="FreeShip.ico" IconIndex="0" Advertise="yes" />
+				</File>
+
+				<ProgId Id='FreeShip.ftmfile' Description='FreeShip project text file'>
+					<Extension Id='ftm' ContentType='application/ftm'>
+						<Verb Id="open" Command="open" TargetFile="FreeShip.exe" Argument="&quot;%1&quot;"/>
+					</Extension>
+				</ProgId>
+				<ProgId Id='FreeShip.fbmfile' Description='FreeShip project binary file'>
+					<Extension Id='fbm' ContentType='application/fbm'>
+						<Verb Id="open" Command="open" TargetFile="FreeShip.exe" Argument="&quot;%1&quot;"/>
+					</Extension>
+				</ProgId>
+
             </Component>
 			<Component Id="COPYING" Guid="F530E308-C30C-4AF6-841D-E7984CCB0BA6" Win64="yes">
               <File Id="COPYING" Name="COPYING" Source="$(var.SrcPath)\COPYING" KeyPath="yes" />
@@ -156,12 +168,14 @@
 		  InstallDefault="followParent">
 		  <ComponentGroupRef Id="Exec" />
 	    </Feature>
+		<!-- ComponentRef Id="RegistryEntries" / -->
 	  </Feature>
       	
 
     </Feature>
 
     <Icon Id="FreeShip.ico" SourceFile="$(var.SrcPath)\FreeShip.ico" />
-
+	<Property Id="ARPPRODUCTICON" Value="FreeShip.ico" />
+	
   </Product>
 </Wix>

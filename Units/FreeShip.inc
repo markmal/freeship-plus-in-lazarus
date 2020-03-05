@@ -2861,8 +2861,28 @@ begin
       emSelectItems:
       begin
         Entity := nil;
-        // First check the vertices
+
+        // First check the selected vertices
+        for i := Surface.SelectedControlPoints.Count - 1 downto 0 do
+          begin
+            Point := Surface.SelectedControlPoints[i];
+            if not Point.Visible then continue;
+            Tmp := Point.DistanceToCursor(X, Y, Viewport);
+            if Tmp <= SelectDistance then
+            begin
+              Entity := Point;
+              ItemSelected := True;
+              // Draw the selected point to all viewports
+              for J := 0 to NumberOfViewports - 1 do
+                if self.Viewport[J].ViewportMode = vmWireframe then
+                  Point.Draw(self.Viewport[J]);
+              break;
+            end;
+          end;
+
+        // Second check the vertices
         I := 1;
+        if Entity = nil then
         while I <= Surface.NumberOfControlPoints do
         begin
           if Surface.ControlPoint[I - 1].Visible then

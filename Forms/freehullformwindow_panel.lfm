@@ -1,12 +1,11 @@
 object FreeHullWindow: TFreeHullWindow
   Left = 807
-  Height = 356
+  Height = 358
   Top = 201
-  Width = 550
+  Width = 537
   Caption = 'FreeHullWindow'
-  ClientHeight = 356
-  ClientWidth = 550
-  DesignTimePPI = 120
+  ClientHeight = 358
+  ClientWidth = 537
   FormStyle = fsMDIChild
   OnClose = FormClose
   OnCreate = FormCreate
@@ -17,9 +16,9 @@ object FreeHullWindow: TFreeHullWindow
   LCLVersion = '2.0.6.0'
   object ScrollBar1: TScrollBar
     Left = 0
-    Height = 19
-    Top = 337
-    Width = 550
+    Height = 15
+    Top = 343
+    Width = 537
     Align = alBottom
     LargeChange = 5
     Max = 180
@@ -29,10 +28,10 @@ object FreeHullWindow: TFreeHullWindow
     TabOrder = 0
   end
   object ScrollBar2: TScrollBar
-    Left = 531
-    Height = 337
+    Left = 522
+    Height = 343
     Top = 0
-    Width = 19
+    Width = 15
     Align = alRight
     Kind = sbVertical
     Max = 180
@@ -45,8 +44,8 @@ object FreeHullWindow: TFreeHullWindow
     Images = Images
     AutoPopup = False
     OnPopup = PopupMenu1Popup
-    left = 50
-    top = 170
+    left = 40
+    top = 136
     object Deselectall1: TMenuItem
       Action = DeselectAll
     end
@@ -155,8 +154,8 @@ object FreeHullWindow: TFreeHullWindow
   end
   object ActionList1: TActionList
     Images = Images
-    left = 60
-    top = 50
+    left = 48
+    top = 40
     object StandardLens: TAction
       Category = 'Camera'
       Caption = 'Standard lens 50mm.'
@@ -319,8 +318,8 @@ object FreeHullWindow: TFreeHullWindow
     end
   end
   object Images: TImageList
-    left = 260
-    top = 50
+    left = 208
+    top = 40
     Bitmap = {
       4C690A0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000B8B8C0FF9292
@@ -646,7 +645,7 @@ object FreeHullWindow: TFreeHullWindow
     }
   end
   object PrintDialog: TPrintDialog
-    left = 260
-    top = 170
+    left = 208
+    top = 136
   end
 end

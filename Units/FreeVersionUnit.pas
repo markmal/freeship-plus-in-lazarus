@@ -51,15 +51,20 @@ const
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,
                              fv201,fv210,fv220,fv230,fv240,fv250,fv260,fv270,fv280,fv290,fv295,fv296,fv297,fv298,fv300,
                              fv302,fv303,fv305,fv309,fv310,fv313,fv314,fv317,fv327,fv332,fv335,
-                             fv421,fv430);
-//const CurrentVersion      = fv335;   // Current (latest) version of the FREE!ship project.
-const CurrentVersion      = fv430;   // Current (latest) version of the FREE!ship project.
+                             fv421,{ControlPointNames, ControlEdgeNames,
+                                    ControlFaceNames, ControlCurveNames,
+                                    ControlPointLinearConstraints}
+                             fv430, // ControlPointGroups
+                             fv462  // Anchors
+                             );
+
+const CurrentVersion      = fv462;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
       ReleasedDate        = {$I %DATE%};
 
 var
 FREESHIP_MAJOR_VERSION : string ='4.6';   //Major version
-FREESHIP_VERSION : string ='4.6.1.0';   //Major full version
+FREESHIP_VERSION : string ='4.6.2.0';   //Major full version
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;
@@ -118,6 +123,7 @@ begin
       fv335  : Result:='3.4';	  
       fv421  : Result:='4.2';
       fv430  : Result:='4.3';
+      fv462  : Result:='4.6.2';
       else MessageDlg(Userstring(204)+'!',mtError,[mbok],0);
    end
 end;{VersionString}
@@ -167,6 +173,7 @@ begin
   if Version =	'3.4'	 then Result:=	      fv335	 else
   if Version =	'4.2'	 then Result:=	      fv421	 else
   if Version =	'4.3'	 then Result:=	      fv430	 else
+  if Version =	'4.6.2'	 then Result:=	      fv462	 else
   raise Exception.Create(Userstring(204)+'! '+Version);
 end;{VersionString}
 

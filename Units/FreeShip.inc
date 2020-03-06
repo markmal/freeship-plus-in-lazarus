@@ -2061,6 +2061,11 @@ begin
                   LoadControlPointGroups(Source);
                 end;
 
+                if FileVersion >= fv462 then
+                begin
+                  LoadControlPointAnchors(Source);
+                end;
+
               end; //if FileVersion>=fv250
             end; //if FileVersion>=fv210
           end;  //if FileVersion>=fv191
@@ -2150,6 +2155,26 @@ begin
   end;
 end;
 
+procedure TFreeShip.LoadControlPointAnchors(Source:TFreeFileBuffer);
+var I,N:integer; AnchorData:TAnchorData;
+  Point,AnchorPoint:TFreeSubdivisionControlPoint;
+begin
+  Source.Load(N);
+  Logger.Debug('Anchors:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
+  for I := 1 to N do
+  begin
+    Source.Load(AnchorData);
+    if (AnchorData.AnchorPoint > -1) then
+      begin
+        Point := Surface.ControlPoint[AnchorData.N];
+        AnchorPoint := Surface.ControlPoint[AnchorData.AnchorPoint];
+        Point.SetAnchorPoint(AnchorPoint);
+        Point.IsAnchorHard:=AnchorData.IsAnchorHard;
+      end;
+  end;
+end;
+
+
 procedure TFreeShip.LoadControlPointLinearConstraints(Source:TFreeFileBuffer);
 var I,N:integer; LCData:TLinearConstraintData;
 begin
@@ -2237,6 +2262,85 @@ begin
     TFreeLinesplanframe(LinesplanFrame).Viewport.Refresh;
 end;{TFreeShip.Redraw}
 
+// Detect Minimal File Version depneding on features used
+procedure TFreeShip.DetectMinFileVersion;
+var I: integer;
+begin
+  FileVersion := fv180;
+
+  if NumberOfDiagonals > 0 then FileVersion := fv180;
+  if NumberOfMarkers > 0 then FileVersion := fv191;
+
+  if (FResistanceDelftData.EndSpeed>0) or (FResistanceKaperData.Draft>0)
+  then FileVersion := fv210;
+
+  if (NumberOfbackgroundImages>0) or (NumberOfFlowlines>0)
+  then FileVersion := fv250;
+
+  if (FResistanceHoltrData.EndSpeed>0) or (FResistanceOSTData.EndSpeed>0)
+     or (FPropellerTask1Data.Dat2>0) or (FPropellerTask2Data.Dat2>0)
+     or (FPropellerTask3Data.Dat2>0)
+  then FileVersion := fv270;
+
+  if (FResistancePlaningData.WettedSurface>0) then FileVersion := fv280;
+  if (FPropellerRvrsData.Dat2>0) then FileVersion := fv290;
+  if (FResistanceHollenData.EndSpeed>0) then FileVersion := fv295;
+  if (FPropellerTask4Data.Dat2>0) then FileVersion := fv296;
+  if (FPropellerTask5Data.Dat2>0) then FileVersion := fv302;
+  if (FResistanceOortmerData.EndSpeed>0) then FileVersion := fv309;
+  if (FResistanceFungData.EndSpeed>0) then FileVersion := fv313;
+  if (FHydrodynManeuvData.Dat2>0) then FileVersion := fv327;
+  if (FHydrodynTask1Data.Dat2>0) then FileVersion := fv327;
+  if (FResistanceRBHSData.EndSpeed>0) then FileVersion := fv335;
+  if (FResistanceMHData.EndSpeed>0) then FileVersion := fv335;
+
+  for i:=0 to Surface.ControlPoints.Count-1 do
+  if Surface.ControlPoints[i].Name<>'' then
+  begin
+    FileVersion := fv421;
+    break;
+  end;
+
+  for i:=0 to Surface.ControlEdges.Count-1 do
+  if Surface.ControlEdges[i].Name<>'' then
+  begin
+    FileVersion := fv421;
+    break;
+  end;
+
+  for i:=0 to Surface.ControlFaces.Count-1 do
+  if Surface.ControlFaces[i].Name<>'' then
+  begin
+    FileVersion := fv421;
+    break;
+  end;
+
+  for i:=0 to Surface.ControlCurves.Count-1 do
+  if Surface.ControlCurves[i].Name<>'' then
+  begin
+    FileVersion := fv421;
+    break;
+  end;
+
+  for i:=0 to Surface.ControlPoints.Count-1 do
+    if (Surface.ControlPoints[i].LinearConstraintPointA<>nil)
+    or (Surface.ControlPoints[i].LinearConstraintPointB<>nil) then
+  begin
+    FileVersion := fv421;
+    break;
+  end;
+
+  if Surface.ControlPointGroups.Count>0 then FileVersion := fv430;
+
+  for i:=0 to Surface.ControlPoints.Count-1 do
+    if Surface.ControlPoints[i].AnchorPoint <> nil then
+    begin
+      FileVersion := fv462;
+      break;
+    end;
+
+end;{TFreeShip.DetectMinFileVersion}
+
 procedure TFreeShip.SaveProject(Destination: TFreeFileBuffer);
 var
   PrevCursor: TCursor;
@@ -2246,6 +2350,7 @@ begin
   //Screen.Cursor := crHourGlass;
   try
     Logger.Debug('SaveProject');
+    DetectMinFileVersion;
     Destination.Encoding := Preferences.FbmEncoding;
     Destination.Add('FREE!ship');
     Destination.Add(FileVersion);
@@ -2356,6 +2461,11 @@ begin
             SaveControlPointGroups(Destination);
           end;
 
+          if FileVersion >= fv462 then
+          begin
+            SaveControlPointAnchors(Destination);
+          end;
+
         end;
       end;
     end;
@@ -2418,8 +2528,29 @@ begin
     end;
 end;
 
+procedure TFreeShip.SaveControlPointAnchors(Destination:TFreeFileBuffer);
+var I,N:integer; AnchorData:TAnchorData;
+  Point, AnchorPoint:TFreeSubdivisionControlPoint;
+begin
+  N:=0;
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+      if Surface.ControlPoint[i].AnchorPoint <> nil then inc(N);
+  Destination.Add(N);
+
+  for i:=0 to Surface.NumberOfControlPoints-1 do
+    if Surface.ControlPoint[i].AnchorPoint <> nil then
+    begin
+      AnchorData.N:=i;
+      Point := Surface.ControlPoint[i];
+      AnchorData.AnchorPoint := Surface.ControlPoints.IndexOf(Point.AnchorPoint);
+      AnchorData.IsAnchorHard := Point.IsAnchorHard;
+      Destination.Add(AnchorData);
+    end;
+end;
+
+
 procedure TFreeShip.SaveControlPointGroups(Destination:TFreeFileBuffer);
-  var I,N:integer; NameData:TNameData;
+  var I,N:integer;
   begin
     N:=0;
     for i:=0 to Surface.NumberOfControlPointGroups-1 do
@@ -2431,6 +2562,7 @@ procedure TFreeShip.SaveControlPointGroups(Destination:TFreeFileBuffer);
         Surface.ControlPointGroup[i].SaveBinary(Destination);
       end;
   end;
+
 
 procedure TFreeShip.SaveControlEdgeNames(Destination:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;

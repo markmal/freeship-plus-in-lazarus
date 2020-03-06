@@ -22,6 +22,7 @@ const
 type
   TNameData = record N:integer; Name:String; end;
   TLinearConstraintData = record N, LinearConstraintPointA, LinearConstraintPointB:integer; end;
+  TAnchorData = record N, AnchorPoint:integer; IsAnchorHard:boolean; end;
 
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeFileBuffer                                         }
@@ -55,6 +56,7 @@ type
     procedure Add(Version: TFreeFileVersion);  overload; virtual;
     procedure Add(Coordinate: T3DCoordinate);      overload; virtual;
     procedure Add(NameData: TNameData);                overload; virtual;
+    procedure Add(AnchorData: TAnchorData);                overload; virtual;
     procedure Add(LCData: TLinearConstraintData);      overload; virtual;
     procedure Add(Plane: T3DPlane);                overload; virtual;
     procedure Add(Data: TFreeDelftSeriesResistanceData);      overload; virtual;
@@ -86,6 +88,7 @@ type
     procedure Load(var Output: boolean);      overload; virtual;
     //procedure Load2(var Output:Boolean);          overload;virtual;
     procedure Load(var NameData: TNameData); overload; virtual;
+    procedure Load(var AnchorData: TAnchorData); overload; virtual;
     procedure Load(var LCData: TLinearConstraintData); overload; virtual;
     procedure Load(var Output: TFloatType);      overload; virtual;
     //procedure Load(var Output: TColor);      overload; virtual;
@@ -238,6 +241,13 @@ procedure TFreeFileBuffer.Add(NameData: TNameData);
 begin
   Add(NameData.N);
   Add(NameData.Name);
+end;
+
+procedure TFreeFileBuffer.Add(AnchorData: TAnchorData);
+begin
+  Add(AnchorData.N);
+  Add(AnchorData.AnchorPoint);
+  Add(AnchorData.IsAnchorHard);
 end;
 
 procedure TFreeFileBuffer.Add(LCData: TLinearConstraintData);
@@ -1979,13 +1989,19 @@ begin
   Load(NameData.Name);
 end;
 
+procedure TFreeFileBuffer.Load(var AnchorData: TAnchorData);
+begin
+  Load(AnchorData.N);
+  Load(AnchorData.AnchorPoint);
+  Load(AnchorData.IsAnchorHard);
+end;
+
 procedure TFreeFileBuffer.Load(var LCData: TLinearConstraintData);
 begin
   Load(LCData.N);
   Load(LCData.LinearConstraintPointA);
   Load(LCData.LinearConstraintPointB);
 end;
-
 
 procedure TFreeFileBuffer.Load(var Output: TFloatType);
 var

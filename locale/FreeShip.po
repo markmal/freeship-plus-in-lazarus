@@ -161,7 +161,7 @@ msgid "Save file"
 msgstr ""
 
 #: freeshipunit.rssavewithhigherfileversion
-msgid "The current fileversion is version %s.%sDo you want to save the file as version %s ?"
+msgid "The current file version is %s.%sDo you want to save the file as version %s ?"
 msgstr ""
 
 #: freeshipunit.rsthemeloaderrormessage

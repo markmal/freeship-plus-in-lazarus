@@ -1347,16 +1347,19 @@ type
     procedure LoadControlEdgeNames(Source:TFreeFileBuffer);
     procedure LoadControlFaceNames(Source:TFreeFileBuffer);
     procedure LoadControlCurveNames(Source:TFreeFileBuffer);
+    procedure LoadControlPointAnchors(Source:TFreeFileBuffer);
     procedure LoadControlPointLinearConstraints(Source:TFreeFileBuffer);
     procedure LoadPreview(Filename: string; Image: TJPegImage); // loads the preview image from a file
     procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data
     procedure Redraw;  // Redraws the model on all viewports
+    procedure DetectMinFileVersion;
     procedure SaveProject(Destination: TFreeFileBuffer);
     procedure SaveControlPointGroups(Destination:TFreeFileBuffer);
     procedure SaveControlPointNames(Destination:TFreeFileBuffer);
     procedure SaveControlEdgeNames(Destination:TFreeFileBuffer);
     procedure SaveControlFaceNames(Destination:TFreeFileBuffer);
     procedure SaveControlCurveNames(Destination:TFreeFileBuffer);
+    procedure SaveControlPointAnchors(Destination:TFreeFileBuffer);
     procedure SaveControlPointLinearConstraints(Destination:TFreeFileBuffer);
     procedure SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
     procedure SelectPointsInFrame(Viewport: TfreeViewport; rect:TRect);

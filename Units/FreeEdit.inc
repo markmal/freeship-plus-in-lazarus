@@ -5406,7 +5406,7 @@ end;{TFreeEdit.File_Load}
 resourcestring
   rsUnableDeleteBackupFile='Unable to delete backup file';
   rsUnableCreateBackupFile='Unable to create backup file';
-  rsSaveWithHigherFileVersion='The current fileversion is version %s.%sDo you want to save the file as version %s ?';
+  rsSaveWithHigherFileVersion='The current file version is %s.%sDo you want to save the file as version %s ?';
   rsUnableToSaveFile='Unable to save file';
 
 // save as FREE!ship file without prompting for a filename (must already been set)
@@ -5441,6 +5441,7 @@ begin
   if not FreeShip.FilenameSet then
     exit;
 
+  {
   if (FreeShip.FileVersion < CurrentVersion) and (not FreeShip.FStopAskingForFileVersion) then
   begin
     {Str := Userstring(126) + VersionString(FreeShip.FileVersion) + EOL +
@@ -5452,6 +5453,7 @@ begin
     else
       FreeShip.FStopAskingForFileVersion := True;
   end;
+  }
 
   FreeShip.FFilenameSet := True;
   // Check if the file already exists

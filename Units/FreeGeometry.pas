@@ -175,6 +175,7 @@ type
   end;
 
 type
+  TFreeNamedObject = class;
   TFreeSubdivisionBase = class;
   TFreeSubdivisionSurface = class;
   TFreesubdivisionPoint = class;
@@ -211,6 +212,7 @@ type
   {                                           FasterList specializations                                     }
   {---------------------------------------------------------------------------------------------------}
 
+  TFasterListTFreeNamedObject = TFasterList<TFreeNamedObject>;
   TFasterListTFreeSpline = TFasterList<TFreeSpline>;
 
   TFasterListTFreeSubdivisionPoint = TFasterList<TFreeSubdivisionPoint>;
@@ -1899,6 +1901,8 @@ type
       read FControlPointSize write FControlPointSize;
     property ControlCurve[index: integer]: TFreesubdivisionControlCurve
       read FGetControlCurve;
+    property ControlCurves: TFasterListTFreesubdivisionControlCurve
+      read FControlCurves;
     property ControlCurveColor: TColor
       read FControlCurveColor write FControlCurveColor;
     property ControlEdge[index: integer]: TFreesubdivisionControlEdge

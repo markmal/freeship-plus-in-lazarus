@@ -661,7 +661,21 @@ const
   ZERO : T3DCoordinate  = (X:0.0;Y:0.0;Z:0.0);
   EOL                           = #13#10;
 
+function isEmpty(rec:TFreePlaningResistanceData):boolean; overload;
+function isEmpty(rec:TFreeRvrsPropellerData):boolean; overload;
+function isEmpty(rec:TFreeTask4PropellerData):boolean; overload;
+function isEmpty(rec:TFreeTask5PropellerData):boolean; overload;
+function isEmpty(rec:TFreeHydrodynManeuvData):boolean; overload;
+function isEmpty(rec:TFreeHydrodynTask1Data):boolean; overload;
+function isEmpty(rec:TFreeHollenSeriesResistanceData):boolean; overload;
+function isEmpty(rec:TFreeOortmerSeriesResistanceData):boolean; overload;
+function isEmpty(rec:TFreeFungSeriesResistanceData):boolean; overload;
+function isEmpty(rec:TFreeRBHSSeriesResistanceData):boolean; overload;
+function isEmpty(rec:TFreeMHSeriesResistanceData):boolean; overload;
+
 implementation
+
+{$I FreeTypes.inc}
 
 end.
 

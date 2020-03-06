@@ -54,11 +54,15 @@ uses
      {$ELSE}
       FileUtil, //deprecated
      {$ENDIF}
-  DefaultTranslator,
   Interfaces, // this includes the LCL widgetset
 
+  DefaultTranslator,
   FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
   Main in 'Forms/Main.pas' {MainForm},
+  FreeVersionUnit in 'Units/FreeVersionUnit.pas',
+  FreeLogger in 'Units/FreeLogger.pas'
+
+  {$IFDEF exclude}
   freehullformwindow_panel in 'Forms/FreeHullformWindow.pas' {FreeHullWindow},
   FreeLayerDlg in 'Forms/FreeLayerDlg.pas' {FreeLayerDialog},
   FreeNewModelDlg in 'Forms/FreeNewModelDlg.pas' {FreeNewModelDialog},
@@ -110,10 +114,10 @@ uses
   Free2DDXFExportDlg in 'Forms/Free2DDXFExportDlg.pas' {DXFExport2DDialog},
   FreeCrosscurvesDlg in 'Forms/FreeCrosscurvesDlg.pas' {FreeCrosscurvesDialog},
   FreeAboutDlg in 'Forms/FreeAboutDlg.pas' {FreeAboutDlg},
-  FreeLogger in 'Units/FreeLogger.pas',
   LightDialog in 'Forms/lightdialog.pas',
-  MDIPanel;
-
+  MDIPanel
+{$endif exclude}
+;
 {$R *.res}
 
 var ShowSplash, InDebugger : boolean; sOpenFile:string='';

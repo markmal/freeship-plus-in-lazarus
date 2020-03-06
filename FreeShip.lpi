@@ -7,7 +7,6 @@
         <MainUnitHasUsesSectionForAllUnits Value="False"/>
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
-        <AlwaysBuild Value="True"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
@@ -32,8 +31,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="6"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="309"/>
+      <RevisionNr Value="2"/>
+      <BuildNr Value="311"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -269,7 +268,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="121">
+    <Units Count="122">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -931,6 +930,10 @@
         <Filename Value="Units/MDIPanel.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit120>
+      <Unit121>
+        <Filename Value="Units/FreeTypes.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit121>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

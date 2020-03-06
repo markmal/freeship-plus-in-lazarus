@@ -81,6 +81,16 @@ begin
   if InUnreferenceControlPoint then exit;
   InUnreferenceControlPoint:=true; // anti loop
 
+  for i:=0 to FControlPoints.Count-1 do
+    begin
+    if FControlPoints[i].AnchorPoint = P then
+       FControlPoints[i].AnchorPoint := nil;
+    if FControlPoints[i].LinearConstraintPointA = P then
+       FControlPoints[i].SetLinearConstraint(nil,nil);
+    if FControlPoints[i].LinearConstraintPointB = P then
+       FControlPoints[i].SetLinearConstraint(nil,nil);
+    end;
+
   FControlPoints.DeleteItem(P);
   for i:=0 to FControlEdges.Count-1 do
     begin
@@ -93,6 +103,9 @@ begin
       FControlFaces[i].FPoints.DeleteItem(P);
   for i:=0 to FControlCurves.Count-1 do
       FControlCurves[i].FControlPoints.DeleteItem(P);
+
+  UnreferencePoint(P);
+
   P.Unreference;
   InUnreferenceControlPoint:=false;
 end;
@@ -105,6 +118,7 @@ begin
   FControlEdges.DeleteItem(E);
   for i:=0 to FControlPoints.Count-1 do
     FControlPoints[i].FEdges.DeleteItem(E);
+  UnreferenceEdge(E);
   E.Unreference;
   InUnreferenceControlEdge:=false;
 end;
@@ -126,6 +140,7 @@ begin
     FControlPoints[i].FFaces.DeleteItem(F);
   for i:=0 to FLayers.Count-1 do
     FLayers[i].DeleteControlFace(F);
+  UnreferenceFace(F);
   F.Unreference;
   InUnreferenceControlFace := false;
 end;

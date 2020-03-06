@@ -1352,7 +1352,7 @@ type
     procedure LoadPreview(Filename: string; Image: TJPegImage); // loads the preview image from a file
     procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data
     procedure Redraw;  // Redraws the model on all viewports
-    procedure DetectMinFileVersion;
+    function  DetectMinFileVersion:TFreeFileVersion;
     procedure SaveProject(Destination: TFreeFileBuffer);
     procedure SaveControlPointGroups(Destination:TFreeFileBuffer);
     procedure SaveControlPointNames(Destination:TFreeFileBuffer);

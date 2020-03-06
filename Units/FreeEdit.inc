@@ -5417,6 +5417,7 @@ var
   Str, Ext: string;
   Answer: word;
   fAttr:longint;  fh:THandle;
+  MinFileVersion: TFreeFileVersion;
 begin
   result := false;
 {  if FileExistsUTF8(FreeShip.Filename) then
@@ -5441,19 +5442,23 @@ begin
   if not FreeShip.FilenameSet then
     exit;
 
-  {
-  if (FreeShip.FileVersion < CurrentVersion) and (not FreeShip.FStopAskingForFileVersion) then
+  MinFileVersion := FreeShip.DetectMinFileVersion;
+
+  if (FreeShip.FileVersion < MinFileVersion) //and (not FreeShip.FStopAskingForFileVersion)
+  then
   begin
-    {Str := Userstring(126) + VersionString(FreeShip.FileVersion) + EOL +
-      Userstring(127) + #32 + VersionString(CurrentVersion) + '?';}
-    Str := format(rsSaveWithHigherFileVersion,[VersionString(FreeShip.FileVersion),EOL,VersionString(CurrentVersion)]);
+    Str := format(rsSaveWithHigherFileVersion,
+        [VersionString(FreeShip.FileVersion),
+         EOL,VersionString(MinFileVersion)]);
     Answer := MessageDlg(Str, mtInformation, [mbYes, mbNo], 0);
     if Answer = mrYes then
-      FreeShip.FileVersion := CurrentVersion
+      FreeShip.FileVersion := MinFileVersion
     else
-      FreeShip.FStopAskingForFileVersion := True;
-  end;
-  }
+      //FreeShip.FStopAskingForFileVersion := True;
+      exit;
+  end
+  else FreeShip.FileVersion := MinFileVersion;
+  ;
 
   FreeShip.FFilenameSet := True;
   // Check if the file already exists

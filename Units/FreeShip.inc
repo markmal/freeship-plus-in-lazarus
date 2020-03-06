@@ -2263,62 +2263,62 @@ begin
 end;{TFreeShip.Redraw}
 
 // Detect Minimal File Version depneding on features used
-procedure TFreeShip.DetectMinFileVersion;
+function TFreeShip.DetectMinFileVersion:TFreeFileVersion;
 var I: integer;
 begin
-  FileVersion := fv180;
+  result := fv180;
 
-  if NumberOfDiagonals > 0 then FileVersion := fv180;
-  if NumberOfMarkers > 0 then FileVersion := fv191;
+  if NumberOfDiagonals > 0 then result := fv180;
+  if NumberOfMarkers > 0 then result := fv191;
 
   if (FResistanceDelftData.EndSpeed>0) or (FResistanceKaperData.Draft>0)
-  then FileVersion := fv210;
+  then result := fv210;
 
   if (NumberOfbackgroundImages>0) or (NumberOfFlowlines>0)
-  then FileVersion := fv250;
+  then result := fv250;
 
   if (FResistanceHoltrData.EndSpeed>0) or (FResistanceOSTData.EndSpeed>0)
      or (FPropellerTask1Data.Dat2>0) or (FPropellerTask2Data.Dat2>0)
      or (FPropellerTask3Data.Dat2>0)
-  then FileVersion := fv270;
+  then result := fv270;
 
-  if (FResistancePlaningData.WettedSurface>0) then FileVersion := fv280;
-  if (FPropellerRvrsData.Dat2>0) then FileVersion := fv290;
-  if (FResistanceHollenData.EndSpeed>0) then FileVersion := fv295;
-  if (FPropellerTask4Data.Dat2>0) then FileVersion := fv296;
-  if (FPropellerTask5Data.Dat2>0) then FileVersion := fv302;
-  if (FResistanceOortmerData.EndSpeed>0) then FileVersion := fv309;
-  if (FResistanceFungData.EndSpeed>0) then FileVersion := fv313;
-  if (FHydrodynManeuvData.Dat2>0) then FileVersion := fv327;
-  if (FHydrodynTask1Data.Dat2>0) then FileVersion := fv327;
-  if (FResistanceRBHSData.EndSpeed>0) then FileVersion := fv335;
-  if (FResistanceMHData.EndSpeed>0) then FileVersion := fv335;
+  if not isEmpty(FResistancePlaningData) then result := fv280;
+  if not isEmpty(FPropellerRvrsData) then result := fv290;
+  if not isEmpty(FResistanceHollenData) then result := fv295;
+  if not isEmpty(FPropellerTask4Data) then result := fv296;
+  if not isEmpty(FPropellerTask5Data) then result := fv302;
+  if not isEmpty(FResistanceOortmerData) then result := fv309;
+  if not isEmpty(FResistanceFungData) then result := fv313;
+  if not isEmpty(FHydrodynManeuvData) then result := fv327;
+  if not isEmpty(FHydrodynTask1Data) then result := fv327;
+  if not isEmpty(FResistanceRBHSData) then result := fv335;
+  if not isEmpty(FResistanceMHData) then result := fv335;
 
   for i:=0 to Surface.ControlPoints.Count-1 do
   if Surface.ControlPoints[i].Name<>'' then
   begin
-    FileVersion := fv421;
+    result := fv421;
     break;
   end;
 
   for i:=0 to Surface.ControlEdges.Count-1 do
   if Surface.ControlEdges[i].Name<>'' then
   begin
-    FileVersion := fv421;
+    result := fv421;
     break;
   end;
 
   for i:=0 to Surface.ControlFaces.Count-1 do
   if Surface.ControlFaces[i].Name<>'' then
   begin
-    FileVersion := fv421;
+    result := fv421;
     break;
   end;
 
   for i:=0 to Surface.ControlCurves.Count-1 do
   if Surface.ControlCurves[i].Name<>'' then
   begin
-    FileVersion := fv421;
+    result := fv421;
     break;
   end;
 
@@ -2326,20 +2326,20 @@ begin
     if (Surface.ControlPoints[i].LinearConstraintPointA<>nil)
     or (Surface.ControlPoints[i].LinearConstraintPointB<>nil) then
   begin
-    FileVersion := fv421;
+    result := fv421;
     break;
   end;
 
-  if Surface.ControlPointGroups.Count>0 then FileVersion := fv430;
+  if Surface.ControlPointGroups.Count>0 then result := fv430;
 
   for i:=0 to Surface.ControlPoints.Count-1 do
     if Surface.ControlPoints[i].AnchorPoint <> nil then
     begin
-      FileVersion := fv462;
+      result := fv462;
       break;
     end;
 
-end;{TFreeShip.DetectMinFileVersion}
+end;{TFreeShip.DetectMinresult}
 
 procedure TFreeShip.SaveProject(Destination: TFreeFileBuffer);
 var

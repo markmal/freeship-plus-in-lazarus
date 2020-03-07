@@ -3861,12 +3861,13 @@ var
   Data: TFasterListTVRMLIndexedFaceSet;
   CoordInfo: TVRMLCoordinate3;
   FaceInfo: TVRMLIndexedFaceSet;
-  Points: TFasterListTFreeSubdivisionPoint;
+  V3Point: T3DCoordinate;
   Face: TIntArray;
   Layer: TFreeSubdivisionLayer;
   FacePoints: TFasterListTFreeSubdivisionControlPoint;
   AddedCtrlPts: TFasterListTVRMLCoordinate3;
-  CtrPoint: TFreeSubdivisionControlpoint;
+  CtrPoint: TFreeSubdivisionControlPoint;
+  Points: TFasterListTFreeSubdivisionControlPoint;
 begin
   if FileExists(Filename) then
   begin
@@ -3891,15 +3892,17 @@ begin
 
 
         // now add actual controlPoints
-        for I := 1 to AddedCtrlPts.Count do
+        for I := 0 to AddedCtrlPts.Count-1 do
         begin
-          CoordInfo := AddedCtrlPts[I - 1];
-          Points := TFasterListTFreeSubdivisionPoint.Create(true,false);
+          CoordInfo := AddedCtrlPts[I];
+          Points := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
           Points.Capacity := CoordInfo.Count;
-          AddedCtrlPts.Objects[I - 1] := points;
-          for J := 1 to CoordInfo.Count do
+          AddedCtrlPts.Objects[I] := Points;
+          for J := 0 to CoordInfo.Count-1 do
           begin
-            Points.Add(AddControlPoint(CoordInfo.Point[J - 1]));
+            V3Point := CoordInfo.Point[J];
+            CtrPoint := AddControlPoint(V3Point);
+            Points.Add(CtrPoint);
           end;
         end;
 
@@ -3923,10 +3926,10 @@ begin
                 FacePoints.Clear;
                 for K := 1 to N do
                 begin
-                  Index := face[K - 1];
+                  Index := Face[K - 1];
                   if (Index >= 0) and (Index < Points.Count) then
                   begin
-                    CtrPoint := Points[index] as TFreeSubdivisionControlpoint;
+                    CtrPoint := Points[Index] as TFreeSubdivisionControlpoint;
                     if FacePoints.IndexOf(CtrPoint) = -1 then
                       FacePoints.Add(CtrPoint);
                   end;
@@ -3955,7 +3958,7 @@ begin
         end;
         ActiveLayer := self.Layer[NumberOfLayers - 1];
       finally
-        build := False;
+        Build := False;
         Data.Destroy;
       end;
     end

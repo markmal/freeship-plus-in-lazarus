@@ -158,9 +158,10 @@ begin
   if FUseUserData then
     FData[FCount] := nil;
 
-  if FCount = 0 then
-    FSorted := True
-  else if FSorted then
+  //if FCount = 0 then     // do not force Sorted
+  //  FSorted := True
+  //else
+  if FSorted then
   begin
     {Prev := PtrUInt(FList[FCount - 1]); //TODO eliminate local vars reassignments
     Cur := PtrUInt(Item);

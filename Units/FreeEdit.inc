@@ -3473,7 +3473,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Michlet wave elevations file (*.mlt)|*.mlt';
+  OpenDialog.Filter := 'Michlet wave elevations file (*.mlt)|*.[Mm][Ll][Tt]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4012,7 +4012,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Carene XYZ files (*.xyz)|*.xyz';
+  OpenDialog.Filter := 'Carene XYZ files (*.xyz)|*.[Xx][Yy][Zz]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4044,7 +4044,7 @@ begin
 {$I+}
     if IOResult = 0 then
     begin
-      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       try
         LineNr := 1;
         Readln(FFile, Str);
@@ -4096,6 +4096,8 @@ begin
       finally
         CloseFile(FFile);
         FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
+        FreeShip.ModelIsLoaded:=True;
+        FreeShip.RebuildModel;
       end;
     end
     else
@@ -4119,7 +4121,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Text files (*.txt)|*.txt';
+  OpenDialog.Filter := 'Text files (*.txt)|*.[Tt][Xx][Tt]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4151,7 +4153,7 @@ begin
 {$I+}
     if IOResult = 0 then
     begin
-      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       LineNr := 1;
       Chines := TFasterListTFreeSpline.Create;
       try
@@ -4204,6 +4206,8 @@ begin
         FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
         if Assigned(FreeShip.OnUpdateGeometryInfo) then
           FreeShip.OnUpdateGeometryInfo(self);
+        FreeShip.ModelIsLoaded:=True;
+        FreeShip.RebuildModel;
       end;
     end
     else
@@ -4223,7 +4227,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'FREE!ship Exchange Format file (*.Fef)|*.Fef';
+  OpenDialog.Filter := 'FREE!ship Exchange Format file (*.Fef)|*.[Ff][Ee][Ff]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4278,6 +4282,7 @@ begin
     FreeShip.Surface.ImportFEFFile(Strings, LineNr);
     Strings.Destroy;
     FreeShip.FileName := Opendialog.FileName;
+    FreeShip.ModelIsLoaded := True;
     FreeShip.Build := False;
     FreeShip.RebuildModel;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
@@ -4294,7 +4299,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Carlsson Hull files (*.hul)|*.hul';
+  OpenDialog.Filter := 'Carlsson Hull files (*.hul)|*.[Hh][Uu][Ll]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4455,7 +4460,9 @@ begin
       FreeShip.ProjectSettings.ProjectUnits := fuImperial;
       FreeShip.ProjectSettings.ProjectDraft := 1.0;
       FreeShip.FileName := ChangeFileExt(FileName, '');
-      FreeShip.Draw;
+      FreeShip.ModelIsLoaded:=True;
+      FreeShip.RebuildModel;
+      //FreeShip.Draw;
     end;
   end
   else
@@ -4490,15 +4497,16 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'FREE!ship geometry part (*.Part)|*.part';
+  OpenDialog.Filter := 'FREE!ship geometry part (*.Part)|*.[Pp][Aa][Rr][Tt]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
     PartFile := TFreeFileBuffer.Create;
-    FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+    //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
     Changed := False;
     vUndo := CreateUndoObject(Userstring(112), False);
-    Partfile.LoadFromFile(ChangeFileExt(OpenDialog.FileName, '.part'));
+    //Partfile.LoadFromFile(ChangeFileExt(OpenDialog.FileName, '.part'));
+    Partfile.LoadFromFile(OpenDialog.FileName);
     Partfile.Load(Str);
     if Str = 'FREE!ship partfile' then
     begin
@@ -4746,7 +4754,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'PolyCad files (*.geo)|*.geo';
+  OpenDialog.Filter := 'PolyCad files (*.geo)|*.[Gg][Ee][Oo]';
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4970,7 +4978,7 @@ begin
             end;
           FreeShip.Precision := fpMedium;
           FreeShip.FileName := ChangeFileExt(Opendialog.FileName, '');
-          FreeShip.Build := False;
+          FreeShip.ModelIsLoaded:=True;
           FreeShip.RebuildModel;
           FreeShip.FileChanged := True;
         end
@@ -5034,10 +5042,10 @@ begin
     try
       CreateUndoObject(Userstring(125), True);
       FreeShip.Clear;
-      FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
+      //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       FreeShip.Surface.LoadVRMLFile(Opendialog.FileName);
+      FreeShip.ModelIsLoaded := True;
       FreeShip.FileName := ChangeFileExt(Opendialog.FileName, '');
-      FreeShip.Build := False;
       FreeShip.RebuildModel;
       FreeShip.FileChanged := True;
 
@@ -6394,6 +6402,7 @@ begin
         Screen.Cursor := PrevCursor;
       end;
     end;
+    FreeShip.ModelIsLoaded := True;
     FreeShip.Build := False;
     FreeShip.Precision := fpMedium;
     FreeShip.Draw;

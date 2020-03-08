@@ -638,7 +638,6 @@ type
    public     { Public declarations }
       FFileName : string;
       FModelInitallyLoaded : boolean;
-      FShowSplash : boolean;
       {$IFDEF FPC}
       function  ActiveMDIChild: TFreeHullWindow; reintroduce;
       function  MDIChildCount: Integer; override;
@@ -658,6 +657,7 @@ type
   end;
 
 var MainForm: TMainForm;
+var GShowSplash : boolean = true;
 
 procedure DumpExceptionCallStack(E: Exception);
 
@@ -679,6 +679,7 @@ uses //FreeSplashWndw,
 {$ELSE}
   {$R *.lfm}
 {$ENDIF}
+
 
 procedure SortControlsByXY(tb:TWinControl);
 var c1,c2: TControl; i,j :integer;
@@ -1019,15 +1020,16 @@ begin
   Application.BringToFront;
   Application.ProcessMessages;
 
-  if FShowSplash then
+  if GShowSplash then
   begin
     splashResult:=ShowSplashWindow;
     if splashResult <> mrOk then
       begin
-          self.Close;
-          exit;
+      GShowSplash:=false;
+      self.Close;
+      exit;
       end;
-    self.FShowSplash:=false; // show splash on first activate only
+    GShowSplash:=false; // show splash on first activate only
   end;
 
   if not FModelInitallyLoaded then
@@ -1581,7 +1583,7 @@ end;{TMainForm.ExitProgramExecute}
 
 function TMainForm.ShowSplashWindow:TModalResult;
 begin
-  if FShowSplash then
+  if GShowSplash then
   begin
    //ShowTranslatedValues(FreeSplashWindow);
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);
@@ -2107,7 +2109,7 @@ begin
    GlobalFreeship := Freeship;
    FModelInitallyLoaded := false;
    //dumpIcons;
-   FShowSplash := true;
+   //FShowSplash := true;
 end;{TMainForm.FormCreate}
 
 procedure TMainForm.ShowStationsExecute(Sender: TObject);

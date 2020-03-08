@@ -1432,6 +1432,11 @@ object MainForm: TMainForm
       Caption = 'SelectLeakPoints'
       OnExecute = SelectLeakPointsExecute
     end
+    object AddFlowLine: TAction
+      Category = 'Tools'
+      Caption = 'Add flow line'
+      OnExecute = AddFlowLineExecute
+    end
   end
   object MenuImages: TImageList
     left = 112
@@ -3730,6 +3735,9 @@ object MainForm: TMainForm
       end
       object AddCylinder1: TMenuItem
         Action = AddCylinder
+      end
+      object MenuItem1: TMenuItem
+        Caption = 'Add flow line'
       end
     end
     object ransform1: TMenuItem

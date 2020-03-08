@@ -400,6 +400,7 @@ begin
 end;{TFreeViewport.WMMouseLeave}
 
 constructor TFreeViewport.Create(AOwner: TComponent);
+var curRes:string;
 begin
   inherited Create(AOwner);
 
@@ -459,12 +460,18 @@ begin
   FLight.Luminance := 140;
 
   FViewportmode := vmWireFrame;
+
   // Load cursors from resource file
-  Screen.Cursors[crRotate] := LoadCursor(hInstance, 'ROTATEVIEWPORT');
-  Screen.Cursors[crPan] := LoadCursor(hInstance, 'PANVIEWPORT');
-  Screen.Cursors[crSetOrigin] := LoadCursor(hInstance, 'SETORIGIN');
-  Screen.Cursors[crSetScale] := LoadCursor(hInstance, 'SETSCALE');
-  Screen.Cursors[crTranspCol] := LoadCursor(hInstance, 'TRANSPARENTCOLOR');
+  curRes:='32';
+  if Forms.Screen.PixelsPerInch >= 144 then curRes:='48';
+  Screen.Cursors[crRotate] := LoadCursor(hInstance, pchar('ROTATE_'+curRes));
+  Screen.Cursors[crSetOrigin] := LoadCursor(hInstance, pchar('SETORIGIN_'+curRes));
+  Screen.Cursors[crSetScale] := LoadCursor(hInstance, pchar('SETSCALE_'+curRes));
+  Screen.Cursors[crTranspCol] := LoadCursor(hInstance, pchar('COLORPICKER_'+curRes));
+  Screen.Cursors[crSetPoint] := LoadCursor(hInstance, pchar('SETPOINT_'+curRes));
+  Screen.Cursors[crSetLine] := LoadCursor(hInstance, pchar('SETLINE_'+curRes));
+  Screen.Cursors[crSetSpline] := LoadCursor(hInstance, pchar('SETSPLINE_'+curRes));
+  //Screen.Cursors[crPan] := LoadCursor(hInstance, 'PANVIEWPORT');
 
   FontName := 'Courier';
   FontSize := 8;

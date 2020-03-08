@@ -5610,7 +5610,7 @@ var
   vUndo: TFreeUndoObject;
 begin
   vUndo := CreateUndoObject(Userstring(130), False);
-  Flowline := TFreeflowline.Create(FreeShip);
+  Flowline := TFreeFlowline.Create(FreeShip);
   FreeShip.FFlowLines.Add(Flowline);
   Flowline.FProjectionPoint := Source;
   Flowline.FProjectionView := View;
@@ -9334,6 +9334,20 @@ begin
   Result := TFreeSubdivisionControlPoint.Create(FreeShip.Surface);
   FreeShip.Surface.AddControlPoint(Result);
   Result.Coordinate := ZERO;
+  FreeShip.ActiveControlPoint := Result;
+  FreeShip.Surface.SelectedControlPoints.Add(Result);
+  FreeShip.FileChanged := True;
+  FreeShip.Redraw;
+  if Assigned(FreeShip.OnUpdateGeometryInfo) then
+    FreeShip.OnUpdateGeometryInfo(self);
+end;{TFreeEdit.Point_New}
+
+// Add a new point with XYZ to the model with no edges/faces attached
+function TFreeEdit.Point_New(coord:T3DCoordinate): TFreeSubdivisionControlPoint;
+begin
+  Result := TFreeSubdivisionControlPoint.Create(FreeShip.Surface);
+  FreeShip.Surface.AddControlPoint(Result);
+  Result.Coordinate := coord;
   FreeShip.ActiveControlPoint := Result;
   FreeShip.Surface.SelectedControlPoints.Add(Result);
   FreeShip.FileChanged := True;

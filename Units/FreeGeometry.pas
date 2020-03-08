@@ -68,6 +68,36 @@ uses
 {$ENDIF}
   FreeBitmapFormatHelper;
 
+const // Cursors
+{  crCOLORPICKER_32 = 1;
+  crCOLORPICKER_48 = 2;
+  crROTATE_32 = 3;
+  crROTATE_48 = 4;
+  crSETLINE_32 = 5;
+  crSETLINE_48 = 6;
+  crSETORIGIN_32 = 7;
+  crSETORIGIN_48 = 8;
+  crSETPOINT_32 = 9;
+  crSETPOINT_48 = 10;
+  crSETSCALE_32 = 11;
+  crSETSCALE_48 = 12;
+  crSETSPLINE_32 = 13;
+  crSETSPLINE_48 = 14;
+  crSMALLCROSS_32 = 15;
+  crSMALLCROSS_48 = 16; }
+
+  // Currently using 32x32 cursors. TODO use 48x48 if high res 144dpi
+  crRotate = 1; // Rotation cursor
+  crPan = crSize; // Pan cursor
+  crSetOrigin = 3; // Cursor used when setting the origin of a background image
+  crSetScale = 4; // Cursor used when setting the scale of a background image
+  crTranspCol = 5;
+  crSetPoint = 6;
+  crSetLine = 7;
+  crSetSpline = 8;
+
+// Cursor used when setting the transparent color of a background image
+
 const
   Foot = 0.3048;
   Lbs = 0.44642857;
@@ -2166,7 +2196,8 @@ procedure Register;
 
 implementation
 
-{$R ViewportCursors.res}
+//{$R ViewportCursors.res}
+{$R cursors.res}         // new nice cursors with antialiasing
 
 
 uses FreeLanguageSupport,
@@ -2175,14 +2206,6 @@ uses FreeLanguageSupport,
   FreeBackgroundToleranceDlg,
   FreeSaveImageDlg,
   FreeLogger;
-
-const
-  crRotate = 1; // Rotation cursor
-  crPan = 2; // Pan cursor
-  crSetOrigin = 3; // Cursor used when setting the origin of a background image
-  crSetScale = 4; // Cursor used when setting the scale of a background image
-  crTranspCol = 5;
-// Cursor used when setting the transparent color of a background image
 
 {$I FreeGometry_Functions.inc}
 {$I FreeAlphaBuffer.inc}

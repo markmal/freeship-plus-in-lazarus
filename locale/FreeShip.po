@@ -8432,6 +8432,11 @@ msgstr ""
 msgid "Add cylinder..."
 msgstr ""
 
+#: tmainform.addflowline.caption
+msgctxt "tmainform.addflowline.caption"
+msgid "Add flow line"
+msgstr ""
+
 #: tmainform.addpoint.caption
 msgctxt "tmainform.addpoint.caption"
 msgid "Add"
@@ -8922,6 +8927,11 @@ msgstr ""
 #: tmainform.markers2.caption
 msgctxt "tmainform.markers2.caption"
 msgid "Markers"
+msgstr ""
+
+#: tmainform.menuitem1.caption
+msgctxt "tmainform.menuitem1.caption"
+msgid "Add flow line"
 msgstr ""
 
 #: tmainform.menuitempointalignpermanently.caption

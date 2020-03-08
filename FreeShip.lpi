@@ -268,7 +268,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="122">
+    <Units Count="123">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -934,6 +934,10 @@
         <Filename Value="Units/FreeTypes.inc"/>
         <IsPartOfProject Value="True"/>
       </Unit121>
+      <Unit122>
+        <Filename Value="Utils/cursors.rc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit122>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -629,9 +629,11 @@ end;{TFreeHullWindow.ZoomOutExecute}
 procedure TFreeHullWindow.ViewportMouseDown(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var Select  : Boolean = False;
     P:T2DCoordinate;
+    Point:T3DCoordinate;
 begin
    FInitialPosition.X:=X;
    FInitialPosition.Y:=Y;
+{
    if (ssAlt in Shift) and (Viewport.Viewtype<>fvPerspective) then
    begin
       P:=Viewport.ProjectBackTo2D(FInitialPosition);
@@ -640,6 +642,7 @@ begin
       TMainform(Application.MainForm).UpdateMenu;
       exit;
    end;
+}
    FPanned:=False;
    if Viewport.ViewportMode = vmWireframe
       then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);

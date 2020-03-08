@@ -87,6 +87,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     AddFlowLine: TAction;
+     MenuItem1: TMenuItem;
      SelectAllControlPoints: TAction;
      ColorButton1: TColorButton;
      SelectAllControlPoints1: TMenuItem;
@@ -446,6 +448,7 @@ type
 
     FMDIChildList : TList;
 
+    procedure AddFlowLineExecute(Sender: TObject);
     procedure AddPointToGroupExecute(Sender: TObject);
     procedure ColorButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -1045,6 +1048,12 @@ begin
   if pgf.ShowModal = mrOk then
     begin
     end;
+end;
+
+procedure TMainForm.AddFlowLineExecute(Sender: TObject);
+begin
+  FreeShip.EditMode := emAddFlowLine;
+  UpdateMenu;
 end;
 
 procedure TMainForm.ColorButton1Click(Sender: TObject);
@@ -2405,7 +2414,8 @@ end;{TMainForm.MoveModelExecute}
 
 procedure TMainForm.AddPointExecute(Sender: TObject);
 begin
-   Freeship.Edit.Point_New;
+   Freeship.EditMode := emAddPoint;
+   //Freeship.Edit.Point_New;
    UpdateMenu;
 end;{TMainForm.AddPointExecute}
 

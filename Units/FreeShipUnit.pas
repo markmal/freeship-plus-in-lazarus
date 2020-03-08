@@ -742,8 +742,8 @@ type
     // Calculates the intersection points of two layers
     procedure Point_Lock;
     // Locks all selected points
-    function Point_New: TFreeSubdivisionControlPoint;
-    // Add a new point to the model with no edges/faces attached
+    function Point_New: TFreeSubdivisionControlPoint; // Add a new point to the model with no edges/faces attached
+    function Point_New(coord:T3DCoordinate): TFreeSubdivisionControlPoint; overload;
     procedure Point_AnchorToPoint;
     procedure Point_ProjectStraightLine;
     // Project all selected points onto a straight line through the first and last selected points
@@ -1365,6 +1365,15 @@ type
     procedure SelectPointsInFrame(Viewport: TfreeViewport; rect:TRect);
     procedure SubmergedHullExtents(Wlplane: T3DPlane; var Min, Max: T3DCoordinate);
     procedure KeyUp(Viewport: TfreeViewport; var Key: word; Shift: TShiftState);
+    procedure DoSelectItems(const Viewport: TFreeViewport; const X, Y: integer;
+      const Button: TMouseButton;  const Shift: TShiftState;
+      var ItemSelected: boolean);
+    procedure DoAddPoint(const Viewport: TFreeViewport; const X, Y: integer;
+      const Button: TMouseButton;  const Shift: TShiftState;
+      var ItemSelected: boolean);
+    procedure DoAddFlowLine(const Viewport: TFreeViewport; const X, Y: integer;
+      const Button: TMouseButton;  const Shift: TShiftState;
+      var ItemSelected: boolean);
     procedure MouseDown(Viewport: TFreeViewport; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer; var ItemSelected: boolean);
     procedure MouseMove(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
@@ -1450,6 +1459,7 @@ type
     property UndoObject[index: integer]: TFreeUndoObject read FGetUndoObject;
     property UndoPosition: integer read FUndoPosition;
     property Viewport[index: integer]: TFreeViewport read FGetViewport;
+    property Viewports: TFasterListTFreeViewPort read FViewports;
     property Waterline[index: integer]: TFreeIntersection read FGetWaterline;
     property Surface: TFreeSubdivisionSurface read FSurface;
   published   { Published declarations }

@@ -1,0 +1,16 @@
+colorpicker_32 CURSOR colorpicker-32.cur
+colorpicker_48 CURSOR colorpicker-48.cur
+rotate_32 CURSOR rotate-32.cur
+rotate_48 CURSOR rotate-48.cur
+setline_32 CURSOR setline-32.cur
+setline_48 CURSOR setline-48.cur
+setorigin_32 CURSOR setorigin-32.cur
+setorigin_48 CURSOR setorigin-48.cur
+setpoint_32 CURSOR setpoint-32.cur
+setpoint_48 CURSOR setpoint-48.cur
+setscale_32 CURSOR setscale-32.cur
+setscale_48 CURSOR setscale-48.cur
+setspline_32 CURSOR setspline-32.cur
+setspline_48 CURSOR setspline-48.cur
+smallcross_32 CURSOR smallcross-32.cur
+smallcross_48 CURSOR smallcross-48.cur

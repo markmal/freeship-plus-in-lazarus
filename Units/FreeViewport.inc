@@ -1502,6 +1502,7 @@ begin
       Diff.X := Pt.X - X;
       Diff.Y := Pt.Y - Y;
     end;
+    //TODO - change InputQuery to a dialog with TFloatSpinEdit fields
     Str := Truncate(-BackgroundImage.Scale * Diff.X, 4) + ', ' + Truncate(
       BackgroundImage.Scale * Diff.Y, 4);
     if InputQuery(Userstring(91), Userstring(196) + ':', str) then

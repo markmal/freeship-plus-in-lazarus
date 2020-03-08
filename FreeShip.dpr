@@ -278,11 +278,11 @@ begin
    Application.ProcessMessages;
    }
 
+   Main.GShowSplash := ShowSplash;
    Application.CreateForm(TMainForm, MainForm);
 
    checkInstallation;
    createUserDirectories;
-   MainForm.FShowSplash := ShowSplash;
 
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
 

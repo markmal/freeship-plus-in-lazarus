@@ -3223,7 +3223,7 @@ begin
   if (Visibility.ModelView=mvBoth) and (Viewport.ViewType=fvBodyplan)
      then P2D.X:=abs(P2D.X);
   if Viewport.ViewType=fvBodyplan then
-  begin P3D.X:=0; P3D.Y:=P2D.X; P3D.Z:=P2D.Y; end;
+  begin P3D.X:=Surface.Max.X; P3D.Y:=P2D.X; P3D.Z:=P2D.Y; end;
   if Viewport.ViewType=fvProfile then
   begin P3D.X:=P2D.X; P3D.Y:=0; P3D.Z:=P2D.Y; end;
   if Viewport.ViewType=fvPlan then

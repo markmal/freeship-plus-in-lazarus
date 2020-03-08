@@ -32,19 +32,13 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="312"/>
+      <BuildNr Value="311"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
-    <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
-    </MacroValues>
     <BuildModes Count="4">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
-        <MacroValues Count="1">
-          <Macro2 Name="LCLWidgetType" Value="win32"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -230,9 +224,6 @@
       <Version Value="2"/>
     </PublishOptions>
     <RunParams>
-      <local>
-        <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
-      </local>
       <FormatVersion Value="2"/>
       <Modes Count="4">
         <Mode0 Name="default"/>

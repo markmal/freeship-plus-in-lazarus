@@ -78,7 +78,7 @@ uses
      Menus,
      ToolWin,
      Buttons, StdActns, Spin, ExtDlgs,
-     DefaultTranslator
+     DefaultTranslator, ComboEx
 ;
 
 type
@@ -88,6 +88,7 @@ type
  TMainForm         = class(TForm)
      AboutAction: TAction;
      AddFlowLine: TAction;
+     LayerBox: TComboBox;
      MenuItem1: TMenuItem;
      SelectAllControlPoints: TAction;
      ColorButton1: TColorButton;
@@ -166,7 +167,6 @@ type
     ToolButton3: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
-    LayerBox: TComboBox;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     ToolButton10: TToolButton;
@@ -459,6 +459,7 @@ type
 
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
+    procedure LayerBoxPanelClick(Sender: TObject);
     function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
     procedure MainClientPanelClick(Sender: TObject);
@@ -1579,6 +1580,11 @@ begin
   if FileExists('Sterns.txt')  then DeleteFile('Sterns.txt');
   Close;
 end;{TMainForm.ExitProgramExecute}
+
+procedure TMainForm.LayerBoxPanelClick(Sender: TObject);
+begin
+
+end;
 
 
 function TMainForm.ShowSplashWindow:TModalResult;
@@ -2956,18 +2962,23 @@ var i, II, sz, w, ww, ilcnt:integer;
   procedure orderToolButtons(ToolBar: TToolBar);
   var i,l,sz:integer; tb:TControl; n:string;
       tba : array of TControl;
+      needsReinsert:boolean = false;
   begin
     sz:=ToolBar.ControlCount;
     setLength(tba, sz);
     w := 4;
+    if ToolBar.Name = 'ToolBarLayers'
+      then exit;
     for i:=0 to sz-1 do
     begin
       tb:=ToolBar.Controls[i];
       tba[tb.Tag] := tb;
+      if tb.Tag<>i then needsReinsert := true;
       //tb.Hint:= inttostr(tb.Tag) +' '+ tb.Hint;
       w := w + tb.Width + 1;
     end;
 
+    if needsReinsert then
     for i:=0 to sz-1 do
       ToolBar.RemoveControl(tba[i]);
 
@@ -2978,10 +2989,13 @@ var i, II, sz, w, ww, ilcnt:integer;
     begin
       tb:=tba[i];
       tb.Left := w;
-      ToolBar.InsertControl(tba[i],i);
+      if tb.name='LayerBoxPanel'
+        then w:=w;
+      if needsReinsert then
+         ToolBar.InsertControl(tba[i],i);
       w := w + tb.Width;
     end;
-    ToolBar.Width:=ww;
+    ToolBar.Width:=w;
     setLength(tba, 0);
   end;
 

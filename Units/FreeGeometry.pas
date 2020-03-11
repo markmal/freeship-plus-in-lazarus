@@ -979,6 +979,8 @@ type
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer; virtual;
     procedure Draw(Viewport: TFreeViewport); override;
+    function GetValues: T3DCoordinateArray;
+    function GetValuesProjected(Viewport: TFreeViewport): TPointArray;
     function FirstDerive(Parameter: TFloatType): T3DCoordinate;
     procedure Insert(Index: integer; P: T3DCoordinate);
     procedure InsertSpline(Index: integer;
@@ -998,7 +1000,11 @@ type
     function SecondDerive(Parameter: TFloatType): T3DCoordinate;
     function Simplify(Criterium: TFloatType): boolean;
     // Remove points that do not contribute significantly to the shape
-    function Value(Parameter: extended): T3DCoordinate;
+
+    // PointNo1, PointNo2 are points the Parameter is between
+    function Value(Parameter: extended): T3DCoordinate; overload;
+    function Value(Parameter: extended; var PointNo1, PointNo2: integer): T3DCoordinate; overload;
+
     property Capacity: integer
       read FCapacity write FSetCapacity;
     property CurvatureColor: TColor
@@ -2118,6 +2124,7 @@ function LengthStr(Units: TFreeUnitType): string;
 function MakeLength(Value: TFloatType; Decimals, DesLength: integer): string; overload;
 function MakeLength(Value: string; DesLength: integer): string; overload;
 procedure MinMax(P: T3DCoordinate; var Min, Max: T3DCoordinate);
+function Point3D(x,y,z: TFloatType): T3DCoordinate;
 function Midpoint(P1, P2: T3DCoordinate): T3DCoordinate;
 // Calculate the mid-point between P1 and P2
 function MirrorPlane(P: T3DCoordinate; Plane: T3DPLane): T3DCoordinate;

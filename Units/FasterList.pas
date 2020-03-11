@@ -135,6 +135,12 @@ var
   //Cur, Prev: PtrUInt;
   i:integer;
 begin
+  if FSorted then
+  begin
+    AddSorted(Item);
+    exit;
+  end;
+
   i := self.IndexOf(Item);
   if FUnique and (i >= 0) then
     begin
@@ -145,29 +151,17 @@ begin
   if FCount = FCapacity then
     FGrow;
 
-  { /// Dev test
-  if //assigned(Item) and
-  (Item <> nil)
-    then
-      Cur:=0
-    else
-      Prev:=0;
-  }
-
   FList[FCount] := Item;
   if FUseUserData then
     FData[FCount] := nil;
 
-  //if FCount = 0 then     // do not force Sorted
-  //  FSorted := True
-  //else
-  if FSorted then
+  {// only try to maintain sorted if it was sorted
+  if FSorted and (FCount > 1) then
   begin
-    {Prev := PtrUInt(FList[FCount - 1]); //TODO eliminate local vars reassignments
+    Prev := PtrUInt(FList[FCount - 1]);
     Cur := PtrUInt(Item);
-    FSorted := Prev < Cur;}
-    FSorted := PtrUInt(FList[FCount - 1]) < PtrUInt(Item);
-  end;
+    FSorted := Prev < Cur;
+  end;}
 
   Inc(FCount);
 end;{TFasterList.Add}
@@ -176,6 +170,12 @@ procedure TFasterList.AddObject(Item: TItemType; UserObject: Pointer);
 var
   Cur, Prev: PtrUInt; i:integer;
 begin
+  if FSorted then
+  begin
+    AddSortedObject(Item, UserObject);
+    exit;
+  end;
+
   i := self.IndexOf(Item);
   if FUnique and (i >= 0) then
     begin
@@ -196,14 +196,7 @@ begin
   FList[FCount] := Item;
   FData[FCount] := UserObject;
 
-  {if FCount < 1 then
-    FSorted := True
-  else if FSorted then
-  begin
-    Prev := PtrUInt(FList[FCount - 1]);
-    Cur := PtrUInt(Item);
-    FSorted := Prev < Cur;
-  end;}
+  {
   // only try to maintain sorted if it was sorted
   if FSorted and (FCount > 1) then
   begin
@@ -211,6 +204,7 @@ begin
     Cur := PtrUInt(Item);
     FSorted := Prev < Cur;
   end;
+  }
 
   Inc(FCount);
 end;{TFasterList.Add}

@@ -3,7 +3,7 @@ unit FreeTypes;
 {$mode delphi}
 
 interface
-
+uses Classes;
 
 const
   PixelCountMax                 = 32768;                         // used for faster pixel acces when shading to viewport
@@ -33,7 +33,8 @@ Type
                                   end;
   pRGBTripleArray               = ^TRGBTripleArray;
   TRGBTripleArray               = array[0..PixelCountMax-1] of TRGBTriple;
-
+  T3DCoordinateArray            = array of T3DCoordinate;
+  TPointArray                   = array of TPoint;
 
   TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);                                  // Precision of the ship-model
   TFreeIntersectionType        = (fiFree,fiStation,fiButtock,fiWaterline,fiDiagonal);                 // Different types of intersectionlines, stations, buttocks, waterlines and lines orientated in random planes

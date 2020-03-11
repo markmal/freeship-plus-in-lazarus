@@ -158,9 +158,7 @@ begin
       FParameters[FNoPoints - 1] := 1.0;
     end;
 
-    FDerivatives[0].X := 0;
-    FDerivatives[0].Y := 0;
-    FDerivatives[0].Z := 0;
+    FDerivatives[0] := ZERO;
     U[0] := FDerivatives[0];
 
     for I := 2 to FNoPoints - 1 do
@@ -169,12 +167,8 @@ begin
       I2 := I - 2;
       if Knuckle[I1] then
       begin
-        U[I1].X := 0;
-        U[I1].Y := 0;
-        U[I1].Z := 0;
-        FDerivatives[I1].X := 0;
-        FDerivatives[I1].Y := 0;
-        FDerivatives[I1].Z := 0;
+        U[I1] := ZERO;
+        FDerivatives[I1] := ZERO;
       end
       else
       begin
@@ -223,9 +217,13 @@ begin
     for K := FNoPoints - 1 downto 1 do
     begin
       K1 := K - 1;
-      FDerivatives[K1].X := FDerivatives[K1].X * FDerivatives[K].X + U[K1].X;
-      FDerivatives[K1].Y := FDerivatives[K1].Y * FDerivatives[K].Y + U[K1].Y;
-      FDerivatives[K1].Z := FDerivatives[K1].Z * FDerivatives[K].Z + U[K1].Z;
+      if Knuckle[K1] then FDerivatives[K1]:=ZERO
+      else
+        begin
+        FDerivatives[K1].X := FDerivatives[K1].X * FDerivatives[K].X + U[K1].X;
+        FDerivatives[K1].Y := FDerivatives[K1].Y * FDerivatives[K].Y + U[K1].Y;
+        FDerivatives[K1].Z := FDerivatives[K1].Z * FDerivatives[K].Z + U[K1].Z;
+        end;
     end;
   end;
   // MM: Suspicious setting of FBuild before inherited Rebuild.
@@ -698,16 +696,64 @@ begin
     raise Exception.Create('Index out of range' + EOL + IntToStr(Index) + #32 + IntToStr(FNoPoints));
 end;{TFreeSpline.Insert}
 
+// Get all points of the spline, also embeds knuckles
+function TFreeSpline.GetValues: T3DCoordinateArray;
+var I,J: integer;
+  P1, P2, Pkn: T3DCoordinate;
+  Pn, Pn1,Pn2: integer;
+begin
+  SetLength(Result, FFragments + FNoPoints);
+  J:=0; Pn1:=0;
+  for I := 0 to Fragments-1 do
+  begin
+    P1 := Value(I / (FFragments-1), Pn1,Pn2);
+    if (Pn<>Pn1) and Knuckle[Pn1] then // add knuckle
+    begin
+      Pn:=Pn1;
+      Result[J] := self.Point[Pn1];
+      inc(J);
+    end;
+    Result[J] := P1;
+    inc(J);
+  end;
+  SetLength(Result, J);
+end;
+
+// Get all projected points of the spline, also embeds knuckles
+function TFreeSpline.GetValuesProjected(Viewport: TFreeViewport): TPointArray;
+var I,J: integer;
+  P1, P2, Pkn: T3DCoordinate;
+  P:TPoint;
+  Pn, Pn1,Pn2: integer;
+begin
+  SetLength(Result, FFragments + FNoPoints);
+  J:=0; Pn:=0;
+  for I := 0 to Fragments-1 do
+  begin
+    P1 := Value(I / (FFragments-1), Pn1,Pn2);
+    if (Pn<>Pn1) and Knuckle[Pn1] then // add knuckle
+    begin
+      Pn:=Pn1;
+      Result[J] := Viewport.Project(self.Point[Pn1]);
+      inc(J);
+    end;
+    Result[J] := Viewport.Project(P1);
+    inc(J);
+  end;
+  SetLength(Result, J);
+end;
+
 procedure TFreeSpline.Draw(Viewport: TFreeViewport);
 var
-  I: integer;
-  P1, P2: T3DCoordinate;
+  I,J: integer;
+  P1, P2, Pkn: T3DCoordinate;
   PArray1: array of TPoint;
   PArray2: array of TPoint;
   Pt: TPoint;
   C: TFloatType;
   Normal: T3DCoordinate;
   R, G, B: integer;
+  Pn,Pn1,Pn2:integer;
 begin
   if not Build then
     Rebuild;
@@ -717,14 +763,14 @@ begin
     begin
       SetLength(PArray1, Fragments);
       SetLength(PArray2, Fragments);
-      for I := 1 to Fragments do
+      for I := 0 to Fragments-1 do
       begin
         C := Curvature((I - 1) / (Fragments - 1), P1, Normal);
-        PArray1[I - 1] := Viewport.Project(P1);
+        PArray1[I] := Viewport.Project(P1);
         P2.X := P1.X - C * 2 * CurvatureScale * Normal.X;
         P2.Y := P1.Y - C * 2 * CurvatureScale * Normal.Y;
         P2.Z := P1.Z - C * 2 * CurvatureScale * Normal.Z;
-        PArray2[I - 1] := Viewport.Project(P2);
+        PArray2[I] := Viewport.Project(P2);
       end;
       Viewport.SetPenWidth(1);
       Viewport.PenColor := CurvatureColor;
@@ -738,24 +784,12 @@ begin
     end
     else
     begin
-      SetLength(PArray1, Fragments);
-      for I := 0 to Fragments-1 do
-      begin
-        P1 := Value((I) / (Fragments - 1));
-        PArray1[I] := Viewport.Project(P1);
-      end;
+      PArray1 := GetValuesProjected(Viewport);
     end;
     Viewport.SetPenWidth(1);
     Viewport.PenColor := Color;
     Viewport.PenStyle := FPenstyle;
     Viewport.Polyline(PArray1);
-
-    // test
-    Pt := PArray1[0];
-    Viewport.Ellipse(Pt.X - 3, Pt.Y - 3, Pt.X + 3, Pt.Y + 3);
-    Pt := PArray1[FFragments-1];
-    Viewport.Ellipse(Pt.X - 2, Pt.Y - 2, Pt.X + 2, Pt.Y + 2);
-
 
     if ShowPoints then
     begin
@@ -1087,6 +1121,12 @@ begin
 end;{TFreeSpline.Clear}
 
 function TFreeSpline.Value(Parameter: extended): T3DCoordinate;
+var Pn1,Pn2:integer;
+begin
+  result:=Value(Parameter,Pn1,Pn2);
+end;
+
+function TFreeSpline.Value(Parameter: extended; var PointNo1, PointNo2: integer): T3DCoordinate;
 var
   Lo, Hi: integer;
   K: integer;
@@ -1104,6 +1144,7 @@ begin
   if (length(FDerivatives) < FNoPoints) then
     Rebuild;
 
+  PointNo1:=0; PointNo2:=0;
   if FNoPoints < 2 then
     exit;
   if FNoPoints = 2 then
@@ -1156,17 +1197,29 @@ begin
   end
   else
   begin
-    a := (FParameters[Hi] - Parameter) / H;
-    b := (Parameter - FParameters[Lo]) / H;
-    a3 := a * a * a - a;
-    b3 := b * b * b - b;
-    h2 := h * h / 6.0;
-    Result.X := A * FPoints[Lo].X + B * FPoints[Hi].X +
-      (a3 * FDerivatives[Lo].X + b3 * (Fderivatives[Hi].X)) * h2;
-    Result.Y := A * FPoints[Lo].Y + B * FPoints[Hi].Y +
-      (a3 * FDerivatives[Lo].Y + b3 * (Fderivatives[Hi].Y)) * h2;
-    Result.Z := A * FPoints[Lo].Z + B * FPoints[Hi].Z +
-      (a3 * FDerivatives[Lo].Z + b3 * (Fderivatives[Hi].Z)) * h2;
+    if Knuckle[Lo] and Knuckle[Hi] then
+    begin
+      A := (FParameters[Hi] - Parameter) / H;
+      B := (Parameter - FParameters[Lo]) / H;
+      Result.X := A * FPoints[Lo].X + B * FPoints[Hi].X;
+      Result.Y := A * FPoints[Lo].Y + B * FPoints[Hi].Y;
+      Result.Z := A * FPoints[Lo].Z + B * FPoints[Hi].Z;
+    end
+    else
+    begin
+      A := (FParameters[Hi] - Parameter) / H;
+      B := (Parameter - FParameters[Lo]) / H;
+      a3 := a * a * a - a;
+      b3 := b * b * b - b;
+      h2 := h * h / 6.0;
+      Result.X := A * FPoints[Lo].X + B * FPoints[Hi].X +
+        (a3 * FDerivatives[Lo].X + b3 * (Fderivatives[Hi].X)) * h2;
+      Result.Y := A * FPoints[Lo].Y + B * FPoints[Hi].Y +
+        (a3 * FDerivatives[Lo].Y + b3 * (Fderivatives[Hi].Y)) * h2;
+      Result.Z := A * FPoints[Lo].Z + B * FPoints[Hi].Z +
+        (a3 * FDerivatives[Lo].Z + b3 * (Fderivatives[Hi].Z)) * h2;
+    end;
   end;
+  PointNo1:=Lo; PointNo2:=Hi;
 end;{TFreeSpline.Value}
 

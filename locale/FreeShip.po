@@ -2479,7 +2479,8 @@ msgctxt "tfreekeelwizarddialog.combobox.text"
 msgid "Keel"
 msgstr ""
 
-#: tfreekeelwizarddialog.combobox1.text
+#: tfreekeelwizarddialog.comboboxplanformshape.text
+msgctxt "tfreekeelwizarddialog.comboboxplanformshape.text"
 msgid "Trapezoidal"
 msgstr ""
 
@@ -8896,8 +8897,8 @@ msgstr ""
 msgid "Automatic grouping of connected controlfaces into a new layer."
 msgstr ""
 
-#: tmainform.layerbox.hint
-msgid "Assign selected faces to a new layer or change the currently active layer."
+#: tmainform.layerbox.text
+msgid "LayerBox"
 msgstr ""
 
 #: tmainform.layerdialog.caption

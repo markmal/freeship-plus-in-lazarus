@@ -1,15 +1,14 @@
 object MainForm: TMainForm
   Left = 643
-  Height = 801
+  Height = 641
   Top = 221
-  Width = 1415
+  Width = 1132
   Align = alTop
-  ClientHeight = 776
-  ClientWidth = 1415
+  ClientHeight = 615
+  ClientWidth = 1132
   Color = clAppWorkspace
-  Constraints.MinHeight = 250
-  Constraints.MinWidth = 375
-  DesignTimePPI = 120
+  Constraints.MinHeight = 200
+  Constraints.MinWidth = 300
   FormStyle = fsMDIForm
   Menu = MainMenu1
   OnActivate = FormActivate
@@ -26,40 +25,40 @@ object MainForm: TMainForm
   LCLVersion = '2.0.6.0'
   object StatusBar: TPanel
     Left = 0
-    Height = 31
-    Top = 745
-    Width = 1415
+    Height = 33
+    Top = 582
+    Width = 1132
     Align = alBottom
     AutoSize = True
     BevelOuter = bvLowered
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 31
-    ClientWidth = 1415
+    ClientHeight = 33
+    ClientWidth = 1132
     Color = clMenuBar
     ParentColor = False
     ParentFont = False
     TabOrder = 0
     object StatusPanel2: TPanel
       Left = 0
-      Height = 30
+      Height = 32
       Top = 0
-      Width = 159
+      Width = 180
       AutoSize = True
       BevelOuter = bvLowered
       ChildSizing.LeftRightSpacing = 10
       ChildSizing.TopBottomSpacing = 4
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 30
-      ClientWidth = 159
+      ClientHeight = 32
+      ClientWidth = 180
       ParentFont = False
       TabOrder = 0
       object LabelUndoMemory: TLabel
         Left = 11
-        Height = 20
+        Height = 22
         Top = 5
-        Width = 137
+        Width = 158
         Caption = 'Undo memory : 0 kb.'
         Layout = tlCenter
         ParentColor = False
@@ -67,27 +66,27 @@ object MainForm: TMainForm
       end
     end
     object StatusPanel3: TPanel
-      Left = 159
-      Height = 30
+      Left = 180
+      Height = 32
       Top = 0
-      Width = 125
+      Width = 100
       BevelOuter = bvLowered
       ChildSizing.LeftRightSpacing = 10
       ChildSizing.TopBottomSpacing = 4
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 30
-      ClientWidth = 125
-      Constraints.MinWidth = 125
+      ClientHeight = 32
+      ClientWidth = 100
+      Constraints.MinWidth = 100
       ParentFont = False
       TabOrder = 1
       OnClick = StatusPanel3Click
       object LabelDistance: TLabel
         Left = 10
-        Height = 20
+        Height = 22
         Top = 5
-        Width = 66
+        Width = 76
         Caption = 'distance : '
         Layout = tlCenter
         ParentColor = False
@@ -96,27 +95,27 @@ object MainForm: TMainForm
       end
     end
     object StatusPanel4: TPanel
-      Left = 284
-      Height = 30
+      Left = 280
+      Height = 32
       Top = 0
-      Width = 125
+      Width = 132
       BevelOuter = bvLowered
       ChildSizing.LeftRightSpacing = 10
       ChildSizing.TopBottomSpacing = 4
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 30
-      ClientWidth = 125
-      Constraints.MinWidth = 125
+      ClientHeight = 32
+      ClientWidth = 132
+      Constraints.MinWidth = 100
       ParentFont = False
       TabOrder = 2
       OnClick = StatusPanel3Click
       object LabelNumbers: TLabel
         Left = 10
-        Height = 20
+        Height = 22
         Top = 5
-        Width = 96
+        Width = 111
         Caption = 'LabelNumbers'
         Layout = tlCenter
         ParentColor = False
@@ -125,10 +124,10 @@ object MainForm: TMainForm
       end
     end
     object StatusPanel5: TPanel
-      Left = 409
-      Height = 30
+      Left = 412
+      Height = 32
       Top = 0
-      Width = 307
+      Width = 286
       BevelInner = bvLowered
       BevelOuter = bvNone
       ChildSizing.LeftRightSpacing = 10
@@ -136,24 +135,24 @@ object MainForm: TMainForm
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
-      ClientHeight = 30
-      ClientWidth = 307
+      ClientHeight = 32
+      ClientWidth = 286
       ParentFont = False
       TabOrder = 3
       object ProgressBarMain: TProgressBar
         Left = 10
-        Height = 25
-        Top = 3
-        Width = 188
-        Constraints.MinWidth = 188
+        Height = 22
+        Top = 5
+        Width = 150
+        Constraints.MinWidth = 150
         ParentFont = False
         TabOrder = 0
       end
       object LabelProgress: TLabel
-        Left = 204
-        Height = 25
-        Top = 3
-        Width = 92
+        Left = 166
+        Height = 22
+        Top = 5
+        Width = 109
         Caption = 'LabelProgress'
         Layout = tlCenter
         ParentColor = False
@@ -163,15 +162,15 @@ object MainForm: TMainForm
   end
   object PanelMain: TPanel
     Left = 0
-    Height = 42
+    Height = 34
     Top = 0
-    Width = 1415
+    Width = 1132
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     BorderWidth = 1
-    ClientHeight = 42
-    ClientWidth = 1415
+    ClientHeight = 34
+    ClientWidth = 1132
     Color = clMenuBar
     ParentColor = False
     ParentFont = False
@@ -179,12 +178,12 @@ object MainForm: TMainForm
     OnResize = PanelMainResize
     object ToolBarFile: TToolBar
       Left = 1
-      Height = 34
+      Height = 27
       Top = 1
-      Width = 105
+      Width = 84
       Align = alNone
-      ButtonHeight = 20
-      ButtonWidth = 20
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
@@ -222,13 +221,13 @@ object MainForm: TMainForm
       end
     end
     object ToolBarVisibility: TToolBar
-      Left = 200
-      Height = 39
+      Left = 160
+      Height = 31
       Top = 2
-      Width = 414
+      Width = 331
       Align = alNone
-      ButtonHeight = 20
-      ButtonWidth = 20
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarFile'
       Color = clMenuBar
       EdgeBorders = [ebLeft]
@@ -340,10 +339,10 @@ object MainForm: TMainForm
       object SpinEditFontSize: TSpinEdit
         Tag = 14
         Left = 284
-        Height = 28
+        Height = 32
         Hint = 'Font Size'
         Top = 0
-        Width = 45
+        Width = 36
         MaxValue = 20
         MinValue = 3
         OnChange = SpinEditFontSizeChange
@@ -353,14 +352,14 @@ object MainForm: TMainForm
       end
     end
     object ToolBarLayers: TToolBar
-      Left = 630
-      Height = 34
+      Left = 504
+      Height = 27
       Top = 1
-      Width = 330
+      Width = 264
       Align = alNone
-      BorderSpacing.Left = 12
-      ButtonHeight = 20
-      ButtonWidth = 20
+      BorderSpacing.Left = 10
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
@@ -388,55 +387,53 @@ object MainForm: TMainForm
         Action = LayerDialog
         AutoSize = True
       end
-      object ToolButton6: TToolButton
-        Tag = 6
-        Left = 265
-        Top = 0
-        Action = LayerAutoGroup
-        AutoSize = True
-      end
-      object ToolButton26: TToolButton
-        Tag = 5
-        Left = 245
-        Top = 0
-        Action = IntersectionDialog
-        AutoSize = True
-      end
-      object LayerBox: TComboBox
-        Tag = 4
-        Left = 94
-        Height = 28
-        Hint = 'Assign selected faces to a new layer or change the currently active layer.'
-        Top = 0
-        Width = 151
-        ItemHeight = 20
-        OnChange = LayerBoxChange
-        ParentFont = False
-        Style = csDropDownList
-        TabOrder = 0
-      end
       object ColorButton1: TColorButton
         Tag = 3
         Left = 63
-        Height = 20
+        Height = 16
         Hint = 'Change the color of the currently active layer.'
         Top = 0
-        Width = 31
+        Width = 25
         BorderWidth = 2
         ButtonColorSize = 16
         ButtonColor = clLime
         OnClick = ColorButton1Click
         ParentFont = False
       end
+      object ToolButton26: TToolButton
+        Tag = 5
+        Left = 108
+        Top = 0
+        Action = IntersectionDialog
+        AutoSize = True
+      end
+      object ToolButton6: TToolButton
+        Tag = 6
+        Left = 88
+        Top = 0
+        Action = LayerAutoGroup
+        AutoSize = True
+      end
+      object LayerBox: TComboBox
+        Tag = 4
+        Left = 128
+        Height = 32
+        Top = 0
+        Width = 100
+        ItemHeight = 0
+        OnChange = LayerBoxChange
+        TabOrder = 0
+        Text = 'LayerBox'
+      end
     end
     object ToolBarPoints: TToolBar
-      Left = 1000
-      Height = 34
+      Left = 800
+      Height = 27
       Top = 1
-      Width = 179
+      Width = 143
       Align = alNone
-      ButtonHeight = 20
-      ButtonWidth = 20
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarPoints'
       Color = clMenuBar
       EdgeBorders = [ebLeft]
@@ -496,13 +493,13 @@ object MainForm: TMainForm
       end
     end
     object ToolBarEdit: TToolBar
-      Left = 100
-      Height = 34
+      Left = 80
+      Height = 27
       Top = 1
-      Width = 104
+      Width = 83
       Align = alNone
-      ButtonHeight = 20
-      ButtonWidth = 20
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
@@ -540,13 +537,13 @@ object MainForm: TMainForm
       end
     end
     object ToolBarEdges: TToolBar
-      Left = 1180
-      Height = 34
+      Left = 944
+      Height = 27
       Top = 1
-      Width = 129
+      Width = 103
       Align = alNone
-      ButtonHeight = 20
-      ButtonWidth = 20
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarFile'
       Color = clMenuBar
       EdgeBorders = [ebLeft]
@@ -592,13 +589,13 @@ object MainForm: TMainForm
       end
     end
     object ToolBarFaces: TToolBar
-      Left = 1310
-      Height = 34
+      Left = 1048
+      Height = 27
       Top = 1
-      Width = 54
+      Width = 43
       Align = alNone
-      ButtonHeight = 20
-      ButtonWidth = 20
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarFile'
       EdgeBorders = [ebLeft]
       EdgeOuter = esRaised
@@ -621,13 +618,13 @@ object MainForm: TMainForm
       end
     end
     object ToolBarCurves: TToolBar
-      Left = 1370
-      Height = 34
+      Left = 1096
+      Height = 27
       Top = 1
-      Width = 24
+      Width = 19
       Align = alNone
-      ButtonHeight = 20
-      ButtonWidth = 20
+      ButtonHeight = 16
+      ButtonWidth = 16
       Caption = 'ToolBarFile'
       Color = clMenuBar
       EdgeBorders = [ebLeft]
@@ -647,9 +644,9 @@ object MainForm: TMainForm
   end
   object MainClientPanel: TPanel
     Left = 0
-    Height = 703
-    Top = 42
-    Width = 1415
+    Height = 548
+    Top = 34
+    Width = 1132
     Align = alClient
     BevelOuter = bvNone
     ParentFont = False
@@ -658,8 +655,8 @@ object MainForm: TMainForm
   end
   object ActionList1: TActionList
     Images = MenuImages
-    left = 140
-    top = 250
+    left = 112
+    top = 200
     object ExportFEF: TAction
       Category = 'Export'
       Caption = 'FEF file...'
@@ -1440,8 +1437,8 @@ object MainForm: TMainForm
     end
   end
   object MenuImages: TImageList
-    left = 140
-    top = 170
+    left = 112
+    top = 136
     Bitmap = {
       4C693D0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3400,8 +3397,8 @@ object MainForm: TMainForm
   end
   object MainMenu1: TMainMenu
     Images = MenuImages
-    left = 140
-    top = 90
+    left = 112
+    top = 72
     object File1: TMenuItem
       Caption = 'File'
       object New3: TMenuItem
@@ -3905,13 +3902,13 @@ object MainForm: TMainForm
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 300
-    top = 90
+    left = 240
+    top = 72
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
-    left = 300
-    top = 170
+    left = 240
+    top = 136
   end
 end

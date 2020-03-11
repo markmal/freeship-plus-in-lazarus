@@ -400,7 +400,7 @@ type
     Triangles: array of TriangleData;
   end;
 var
-  I, J, N, K: integer;
+  I, J, N, K, L: integer;
   Edge: TFreeSubdivisionEdge;
   Layer: TFreeSubdivisionLayer;
   Face: TFreeSubdivisionControlface;
@@ -418,14 +418,16 @@ var
   Done: boolean;
   Diagonal: TFreeIntersection;
   Spline: TFreeSpline;
-  P, P1, P2: T3DCoordinate;
+  P, P1, P2, Pkn: T3DCoordinate;
   Pts: array of TPoint;
+  Pts3D: array of T3DCoordinate;
   //Pt: TPoint;
   Steps: integer;
   PenwidthFactor: integer;
   Str: string;
   Prevcursor: TCursor;
   SubmColor: TColor;
+  Pn, Pn1,Pn2: integer;
 
   procedure DrawLineAtt(Attachpoint, P1, P2: T3DCoordinate; Text: string; CenterText: boolean);
   var
@@ -564,90 +566,124 @@ var
 
   procedure DrawSpline(Spline: TFreeSpline; Views: TLinesplanViews; Style: TPenStyle);
   var
-    I: integer;
+    I,J,L: integer;
+    Pn,Pn1,Pn2:integer;
     P, Pr: T3DCoordinate;
     Pts: array of TPoint;
+    YSign:integer;
   begin
-    Setlength(Pts, Steps + 1);
+    Setlength(Pts, Steps + 1 + Spline.NumberOfPoints);
     Viewport.PenStyle := Style;
+
     if lvProfile in views then
     begin
+      Pn:=0; J:=0;
       for I := 0 to steps do
       begin
-        P := Spline.Value(I / steps);
-        Pr.X := FProfileOrigin.X + P.X;
-        Pr.Y := FProfileOrigin.Y + P.Z;
-        Pr.Z := 0.0;
-        Pts[I] := Viewport.Project(Pr);
+        P := Spline.Value(I / steps, Pn1, Pn2);
+        // if the current step entered next rib and the Pn1 of it is knuckle
+        if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
+        begin
+          // add knuckle
+          P := Spline.Point[Pn1];
+          Pr := Point3D(FProfileOrigin.X + P.X, FProfileOrigin.Y + P.Z, 0);
+          Pts[J] := Viewport.Project(Pr);
+          Pn:=Pn1;
+          inc(J);
+        end;
+        Pr := Point3D(FProfileOrigin.X + P.X, FProfileOrigin.Y + P.Z, 0);
+        Pts[J] := Viewport.Project(Pr);
+        inc(J);
       end;
+      Setlength(Pts, J);
       Viewport.Polyline(Pts);
     end;
+
     if (lvAftBody in views) and (Spline.Max.X <= MainFrame) then
     begin
-      for I := 0 to steps do
-      begin
-        P := Spline.Value(I / steps);
-        Pr.X := FAftOrigin.X - P.Y;
-        Pr.Y := FAftOrigin.Y + P.Z;
-        Pr.Z := 0.0;
-        Pts[I] := Viewport.Project(Pr);
-      end;
-      Viewport.Polyline(Pts);
-      for I := 0 to steps do
-      begin
-        P := Spline.Value(I / steps);
-        Pr.X := FAftOrigin.X + P.Y;
-        Pr.Y := FAftOrigin.Y + P.Z;
-        Pr.Z := 0.0;
-        Pts[I] := Viewport.Project(Pr);
-      end;
-      Viewport.Polyline(Pts);
+      for YSign:=-1 to +1 do
+        if YSign <> 0 then
+        begin
+          Pn:=0; J:=0;
+          for I := 0 to steps do
+          begin
+            P := Spline.Value(I / steps, Pn1, Pn2);
+            if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
+            begin
+              // add knuckle
+              P := Spline.Point[Pn1];
+              Pr := Point3D(FAftOrigin.X + YSign * P.Y, FAftOrigin.Y + P.Z, 0);
+              Pts[J] := Viewport.Project(Pr);
+              Pn:=Pn1;
+              inc(J);
+            end;
+            Pr := Point3D(FAftOrigin.X + YSign * P.Y, FAftOrigin.Y + P.Z, 0);
+            Pts[J] := Viewport.Project(Pr);
+            inc(J);
+          end;
+          Setlength(Pts, J);
+          Viewport.Polyline(Pts);
+        end;
     end;
+
     if (lvFrontBody in views) and (Spline.Min.X >= MainFrame) then
     begin
-      for I := 0 to steps do
-      begin
-        P := Spline.Value(I / steps);
-        Pr.X := FFrontOrigin.X - P.Y;
-        Pr.Y := FFrontOrigin.Y + P.Z;
-        Pr.Z := 0.0;
-        Pts[I] := Viewport.Project(Pr);
-      end;
-      Viewport.Polyline(Pts);
-      for I := 0 to steps do
-      begin
-        P := Spline.Value(I / steps);
-        Pr.X := FFrontOrigin.X + P.Y;
-        Pr.Y := FFrontOrigin.Y + P.Z;
-        Pr.Z := 0.0;
-        Pts[I] := Viewport.Project(Pr);
-      end;
-      Viewport.Polyline(Pts);
+      for YSign:=-1 to +1 do
+        if YSign <> 0 then
+        begin
+          Pn:=0; J:=0;
+          for I := 0 to steps do
+          begin
+            P := Spline.Value(I / steps, Pn1, Pn2);
+            if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
+            begin
+              // add knuckle
+              P := Spline.Point[Pn1];
+              Pr := Point3D(FFrontOrigin.X + YSign * P.Y, FFrontOrigin.Y + P.Z, 0);
+              Pts[J] := Viewport.Project(Pr);
+              Pn:=Pn1;
+              inc(J);
+            end;
+            Pr := Point3D(FFrontOrigin.X + YSign * P.Y, FFrontOrigin.Y + P.Z, 0);
+            Pts[J] := Viewport.Project(Pr);
+            inc(J);
+          end;
+          Setlength(Pts, J);
+          Viewport.Polyline(Pts);
+        end;
     end;
+
     if lvPLan in views then
     begin
-      for I := 0 to steps do
-      begin
-        P := Spline.Value(I / steps);
-        Pr.X := FPlanOrigin.X + P.X;
-        Pr.Y := FPlanOrigin.Y + P.Y;
-        Pr.Z := 0.0;
-        Pts[I] := Viewport.Project(Pr);
-      end;
-      Viewport.Polyline(Pts);
-      if (Freeship.NumberofDiagonals = 0) and (MirrorPlanview.Checked) then
-      begin
-        for I := 0 to steps do
+      for YSign:=-1 to +1 do
+        if (YSign=1)
+          or ((YSign=0) and (Freeship.NumberofDiagonals = 0)
+             and (MirrorPlanview.Checked))
+        then
         begin
-          P := Spline.Value(I / steps);
-          Pr.X := FPlanOrigin.X + P.X;
-          Pr.Y := FPlanOrigin.Y - P.Y;
-          Pr.Z := 0.0;
-          Pts[I] := Viewport.Project(Pr);
+          Pn:=0; J:=0;
+          for I := 0 to steps do
+          begin
+            P := Spline.Value(I / steps, Pn1, Pn2);
+            if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
+            begin
+              // add knuckle
+              P := Spline.Point[Pn1];
+              Pr := Point3D(FPlanOrigin.X + YSign * P.Y, FPlanOrigin.Y + P.Y, 0);
+              Pr.Z := 0.0;
+              Pts[J] := Viewport.Project(Pr);
+              Pn:=Pn1;
+              inc(J);
+            end;
+            Pr := Point3D(FPlanOrigin.X + YSign * P.Y, FPlanOrigin.Y + P.Y, 0);
+            Pts[J] := Viewport.Project(Pr);
+            inc(J);
+          end;
+          Setlength(Pts, J);
+          Viewport.Polyline(Pts);
         end;
-        Viewport.Polyline(Pts);
-      end;
     end;
+
   end;{DrawSpline}
 
   procedure DrawIntersection(Intersection: TFreeIntersection;
@@ -1336,13 +1372,18 @@ begin
           Viewport.PenColor := clBlack
         else
           Viewport.PenColor := Freeship.Preferences.DiagonalColor;
+
         Spline := Diagonal.Items[J - 1];
-        Setlength(Pts, Steps + 1);
+        Spline.Fragments:=Steps;
+        Pts3D := Spline.GetValues;
+        Setlength(Pts, length(Pts3D));
+
         Min := 0;
         Max := 0;
-        for k := 0 to steps do
+        L:=0; Pn:=0;
+        for K := 0 to length(Pts3D)-1 do
         begin
-          P := Spline.Value(K / steps);
+          P := Pts3D[K];
           Tmp := abs(Plane.A * P.x + Plane.B * P.y + Plane.C * P.z + Plane.D);
           if K = 0 then
           begin
@@ -1356,11 +1397,56 @@ begin
             if Tmp > max then
               Max := Tmp;
           end;
-          P.X := FPlanOrigin.X + P.X;
-          P.Y := FPlanOrigin.Y - abs(Tmp);
-          P.Z := 0.0;
+          P:=Point3D(FPlanOrigin.X + P.X, FPlanOrigin.Y - abs(Tmp), 0.0);
           Pts[K] := Viewport.Project(P);
         end;
+
+       {  // changed to above
+        for K := 0 to steps do
+        begin
+          P := Spline.Value(K / steps, Pn1, Pn2);
+          if (Pn<>Pn1) and Spline.Knuckle[Pn1] then // add knuckle
+          begin
+            Pkn := Spline.Point[Pn1];
+            Pn:=Pn1;
+            Tmp := abs(Plane.A * Pkn.x + Plane.B * Pkn.y + Plane.C * Pkn.z + Plane.D);
+            if K = 0 then
+            begin
+              Min := Tmp;
+              Max := Tmp;
+            end
+            else
+            begin
+              if Tmp < min then
+                Min := Tmp;
+              if Tmp > max then
+                Max := Tmp;
+            end;
+            P:=Point3D(FPlanOrigin.X + Pkn.X, FPlanOrigin.Y - abs(Tmp), 0.0);
+            Pts[L] := Viewport.Project(P);
+            inc(L);
+          end;
+
+          Tmp := abs(Plane.A * P.x + Plane.B * P.y + Plane.C * P.z + Plane.D);
+          if K = 0 then
+          begin
+            Min := Tmp;
+            Max := Tmp;
+          end
+          else
+          begin
+            if Tmp < min then
+              Min := Tmp;
+            if Tmp > max then
+              Max := Tmp;
+          end;
+          P:=Point3D(FPlanOrigin.X + P.X, FPlanOrigin.Y - abs(Tmp), 0.0);
+          Pts[L] := Viewport.Project(P);
+          inc(L);
+        end;
+        SetLength(Pts, L);
+        }
+
         Viewport.Polyline(Pts);
         // draw as grid in bodyplan views
         Viewport.SetPenWidth(PenwidthFactor);
@@ -1502,6 +1588,7 @@ var
   Spline: TFreeSpline;
   Edges: TFasterListTFreeSubdivisionEdge;
   Points: TFasterListTFreeSubdivisionPoint;
+  SplineValues: T3DCoordinateArray;
 
   procedure WriteDXFPoint(N: integer; P: T3DCoordinate);
   begin
@@ -1562,9 +1649,10 @@ var
   var
     Points: array of T3DCoordinate;
     P: T3DCoordinate;
-    I: integer;
+    I,J: integer;
     Params: TFloatArray;
     NParams: integer;
+    Pn, Pn1, Pn2: integer;
   begin
     NParams := 0;
     Setlength(Params, Spline.NumberOfPoints);
@@ -1588,9 +1676,23 @@ var
     end;
     SortFloatArray(Params, NParams);
 
-    Setlength(Points, NParams);
+    {Setlength(Points, NParams + Spline.NumberOfPoints);
+    J:=0; Pn:=0;
     for I := 0 to NParams - 1 do
-      Points[I] := Spline.Value(Params[I]);
+    begin
+      P:=Spline.Value(Params[I], Pn1, Pn2);
+      if (Pn<>Pn1) and Spline.Knuckle[Pn1] then
+      begin
+        Points[J] := Spline.Point[Pn1];
+        Pn:=Pn1;
+        inc(J);
+      end;
+      Points[J] := P;
+    end;
+    Setlength(Points, J+1);
+    }
+    Points := Spline.GetValues;
+
     Strings.Add('0' + EOL + 'POLYLINE');
     Strings.Add('8' + EOL + LayerName);   // layername
     Strings.Add('62' + EOL + IntToStr(FindDXFColorIndex(Color)));
@@ -1956,9 +2058,12 @@ begin
           Freeship.Preferences.DiagonalColor)));
         Strings.Add('66' + EOL + '1');    // vertices follow
 
-        for k := 0 to 100 do
+        Spline.Fragments:=100;
+        SplineValues := Spline.GetValues;
+        for k := 0 to length(SplineValues)-1 do
         begin
-          P1 := Spline.Value(K / 100);
+          //P1 := Spline.Value(K / 100, Pn1, Pn2);
+          P1:=SplineValues[k];
           Tmp := abs(Plane.A * P1.x + Plane.B * P1.y + Plane.C * P1.z + Plane.D);
           if K = 0 then
           begin

@@ -806,6 +806,13 @@ begin
    }
 end;{Lines3DIntersect}
 
+function Point3D(x,y,z: TFloatType): T3DCoordinate;
+begin
+  Result.X := x;
+  Result.Y := y;
+  Result.Z := z;
+end;
+
 // Calculate the mid-point between P1 and P2
 function Midpoint(P1, P2: T3DCoordinate): T3DCoordinate;
 begin

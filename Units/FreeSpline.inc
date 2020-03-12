@@ -761,24 +761,37 @@ begin
   begin
     if ShowCurvature then
     begin
-      SetLength(PArray1, Fragments);
-      SetLength(PArray2, Fragments);
-      for I := 0 to Fragments-1 do
+      SetLength(PArray1, Fragments + self.NumberOfPoints);
+      SetLength(PArray2, Fragments + self.NumberOfPoints);
+      J:=0; Pn:=0;
+      for I := 0 to Fragments - 1 do
       begin
-        C := Curvature((I - 1) / (Fragments - 1), P1, Normal);
-        PArray1[I] := Viewport.Project(P1);
+        C := Curvature( I / (Fragments - 1), P1, Normal);
+        Pkn := Value( I / (Fragments - 1), Pn1, Pn2); // to get Pn1
+        if (Pn<>Pn1) and Knuckle[Pn1] then // add knuckle
+        begin
+          Pn:=Pn1;
+          Pkn:=self.Point[Pn1];
+          PArray1[J] := Viewport.Project(Pkn);
+          PArray2[J] := Viewport.Project(Pkn);
+          inc(J);
+        end;
+        PArray1[J] := Viewport.Project(P1);
         P2.X := P1.X - C * 2 * CurvatureScale * Normal.X;
         P2.Y := P1.Y - C * 2 * CurvatureScale * Normal.Y;
         P2.Z := P1.Z - C * 2 * CurvatureScale * Normal.Z;
-        PArray2[I] := Viewport.Project(P2);
+        PArray2[J] := Viewport.Project(P2);
+        inc(J);
       end;
+      SetLength(PArray1, J);
+      SetLength(PArray2, J);
       Viewport.SetPenWidth(1);
       Viewport.PenColor := CurvatureColor;
-      for I := 1 to Fragments do
+      for I := 0 to J - 1 do
         if (I mod 4 = 0) or (I = 1) or (I = Fragments) then
         begin
-          Viewport.MoveTo(PArray1[I - 1].X, PArray1[I - 1].Y);
-          Viewport.LineTo(PArray2[I - 1].X, PArray2[I - 1].Y);
+          Viewport.MoveTo(PArray1[I].X, PArray1[I].Y);
+          Viewport.LineTo(PArray2[I].X, PArray2[I].Y);
         end;
       Viewport.Polyline(PArray2);
     end

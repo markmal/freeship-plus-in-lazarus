@@ -1797,6 +1797,8 @@ begin
       if FProfile.NumberOfPoints > 1 then
       begin
         //FProfile.ShowPoints:=true;
+        FProfile.ShowCurvature:=true;
+        FProfile.CurvatureColor:=clBlue;
         FProfile.Draw(Viewport);
 
         Setlength(Pts, Cols);

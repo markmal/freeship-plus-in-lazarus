@@ -637,6 +637,7 @@ begin
     P1 := Viewport.Project(Value(0.0));
     P := Value(0);
     V1 := P;
+    //We could analyze it with knuckles but we do not need this precision here
     for I := 1 to Fragments do
     begin
       V2 := Value((I - 1) / (Fragments - 1));
@@ -829,6 +830,7 @@ begin
     B := GetBValue(Color);
 
     { replaced to code below, coz it draws knuckles correctly
+      TODO remove
     P1 := Value(0.0);
     for I := 1 to Fragments do
     begin

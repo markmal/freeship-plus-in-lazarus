@@ -50,6 +50,7 @@ begin
       V1 := Value(0.0);
       if V1.X < Owner.ProjectSettings.ProjectMainframeLocation then
         V1.Y := -V1.Y;
+      //We could analyze it with knuckles but we do not need this precision here
       for I := 1 to Fragments do
       begin
         V2 := Value((I - 1) / (Fragments - 1));
@@ -73,6 +74,7 @@ begin
   end
   else
     Result := inherited DistanceToCursor(X, Y, Viewport);
+
   if Owner.Visibility.ModelView = mvBoth then
   begin
     for I := 1 to NumberOfPoints do

@@ -484,6 +484,7 @@ begin
         Spline.Fragments := frags;
 
       {
+      TODO remove
       try
         //writeln('Try to allocate ',Spline.Fragments+1,' TPoints');
         Setlength(Pts, Spline.Fragments + 1);
@@ -504,6 +505,7 @@ begin
           (Owner.Visibility.ModelView = mvBoth) or (Spline.Max.X >=
           Owner.ProjectSettings.ProjectMainframeLocation);
          {
+         TODO remove
          if IntersectionType=fiStation then
          begin
             P:=Spline.Value(0.0);
@@ -526,6 +528,7 @@ begin
       if DrawIt then
       begin
         { // replaced to Spline.Draw
+        TODO remove
         for J := 0 to Spline.Fragments do
           if Spline.ShowCurvature then
           begin
@@ -572,6 +575,7 @@ begin
       begin
         // Draw starboard side
         { replaced to code below
+        TODO remove
         for J := 0 to Spline.Fragments do
           if Spline.ShowCurvature then
           begin

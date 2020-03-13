@@ -1534,7 +1534,49 @@ var
       I, Ind: integer;
       Length: double;
       T: double;
-      P1, P2: T3DCoordinate;
+      P1, P2, Pkn: T3DCoordinate;
+      Pn, Pn1, Pn2: integer;
+
+      procedure SaveVertex(P:T3DCoordinate); // port side
+      begin
+        Strings.Add('0' + EOL + 'VERTEX');
+        Strings.Add('8' + EOL + LayerName);
+        case IntersectionType of
+          fiStation:
+          begin
+            Strings.Add('10' + EOL + Truncate(Scale * P.Y, 5));
+            Strings.Add('20' + EOL + Truncate(Scale * P.Z, 5));
+          end;
+          fiButtock:
+          begin
+            Strings.Add('10' + EOL + Truncate(Scale * P.X, 5));
+            Strings.Add('20' + EOL + Truncate(Scale * P.Z, 5));
+          end;
+          fiWaterline:
+          begin
+            Strings.Add('10' + EOL + Truncate(Scale * P.X, 5));
+            Strings.Add('20' + EOL + Truncate(Scale * P.Y, 5));
+          end;
+        end;
+      end;
+
+      procedure SaveVertexSB(P:T3DCoordinate); // starboard side
+      begin
+        Strings.Add('0' + EOL + 'VERTEX');
+        Strings.Add('8' + EOL + LayerName);
+        case IntersectionType of
+          fiStation:
+          begin
+            Strings.Add('10' + EOL + Truncate(Scale * -P.Y, 5));
+            Strings.Add('20' + EOL + Truncate(Scale * P.Z, 5));
+          end;
+          fiWaterline:
+          begin
+            Strings.Add('10' + EOL + Truncate(Scale * P.X, 5));
+            Strings.Add('20' + EOL + Truncate(Scale * -P.Y, 5));
+          end;
+        end;
+      end;
 
     begin
       Ind := FindDXFColorIndex(Spline.Color);
@@ -1594,30 +1636,19 @@ var
         Strings.Add('8' + EOL + LayerName);   // layername
         Strings.Add('62' + EOL + IntToStr(Ind));  // color by layer
         Strings.Add('66' + EOL + '1');    // vertices follow
-        for I := 1 to NParams do
+        Pn:=0;
+        for I := 0 to NParams - 1 do
         begin
-          P1 := Spline.Value(Params[I - 1]);
-          Strings.Add('0' + EOL + 'VERTEX');
-          Strings.Add('8' + EOL + LayerName);
-
-          case IntersectionType of
-            fiStation:
-            begin
-              Strings.Add('10' + EOL + Truncate(Scale * P1.Y, 5));
-              Strings.Add('20' + EOL + Truncate(Scale * P1.Z, 5));
-            end;
-            fiButtock:
-            begin
-              Strings.Add('10' + EOL + Truncate(Scale * P1.X, 5));
-              Strings.Add('20' + EOL + Truncate(Scale * P1.Z, 5));
-            end;
-            fiWaterline:
-            begin
-              Strings.Add('10' + EOL + Truncate(Scale * P1.X, 5));
-              Strings.Add('20' + EOL + Truncate(Scale * P1.Y, 5));
-            end;
+          P1 := Spline.Value(Params[I], Pn1, Pn2);
+          if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
+          begin
+            Pn := Pn1;
+            Pkn := Spline.Point[Pn1];
+            SaveVertex(Pkn);
           end;
+          SaveVertex(Pkn);
         end;
+
         Strings.Add('0' + EOL + 'SEQEND');
         if (Intersectiontype in [fiStation, fiWaterline]) and
           (FreeShip.Visibility.ModelView = mvBoth) then
@@ -1627,23 +1658,17 @@ var
           Strings.Add('8' + EOL + LayerName);   // layername
           Strings.Add('62' + EOL + IntToStr(Ind));  // color by layer
           Strings.Add('66' + EOL + '1');    // vertices follow
-          for I := 1 to NParams do
+          Pn:=0;
+          for I := 0 to NParams - 1 do
           begin
-            P1 := Spline.Value(Params[I - 1]);
-            Strings.Add('0' + EOL + 'VERTEX');
-            Strings.Add('8' + EOL + LayerName);
-            case IntersectionType of
-              fiStation:
-              begin
-                Strings.Add('10' + EOL + Truncate(Scale * -P1.Y, 5));
-                Strings.Add('20' + EOL + Truncate(Scale * P1.Z, 5));
-              end;
-              fiWaterline:
-              begin
-                Strings.Add('10' + EOL + Truncate(Scale * P1.X, 5));
-                Strings.Add('20' + EOL + Truncate(Scale * -P1.Y, 5));
-              end;
+            P1 := Spline.Value(Params[I], Pn1, Pn2);
+            if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
+            begin
+              Pn := Pn1;
+              Pkn := Spline.Point[Pn1];
+              SaveVertexSB(Pkn);
             end;
+            SaveVertexSB(P1);
           end;
           Strings.Add('0' + EOL + 'SEQEND');
         end;
@@ -1968,9 +1993,10 @@ var
   Scale: TFloatType;
   Frames: TFasterListTFreeSpline;
   Str: string;
-  P: T3DCoordinate;
+  P, Pkn: T3DCoordinate;
   NParams: integer;
   Params: TFloatArray;
+  Pn, Pn1, Pn2: integer;
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
@@ -2071,9 +2097,16 @@ begin
       end;
       SortFloatArray(Params, NParams);
       Strings.Add(Truncate(-Scale * Section.Min.X, 4) + ',' + IntToStr(NParams));
-      for J := 1 to NParams do
+      Pn:=0;
+      for J := 0 to NParams - 1 do
       begin
-        P := Section.Value(Params[J - 1]);
+        P := Section.Value(Params[J], Pn1, Pn2);
+        if (Pn <> Pn1) and Section.Knuckle[Pn1] then
+        begin
+          Pn := Pn1;
+          Pkn := Section.Point[Pn1];
+          Strings.Add(Truncate(Scale * Pkn.Y, 4) + ',' + Truncate(Scale * Pkn.Z, 4));
+        end;
         Strings.Add(Truncate(Scale * P.Y, 4) + ',' + Truncate(Scale * P.Z, 4));
       end;
       Section.Destroy;
@@ -6168,9 +6201,9 @@ begin
       1:
       begin // 3D textfile containing a number of curves to be interpolated
         AssignFile(FFile, Opendialog.FileName);
-               {$I-}
+        {$I-}
         Reset(FFile);
-{$I+}
+        {$I+}
         if IOResult = 0 then
         begin
           Nr := 0;

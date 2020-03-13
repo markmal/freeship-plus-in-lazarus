@@ -754,6 +754,7 @@ var
   Normal: T3DCoordinate;
   R, G, B: integer;
   Pn,Pn1,Pn2:integer;
+  PArray3dc: array of T3DCoordinate;
 begin
   if not Build then
     Rebuild;
@@ -826,12 +827,22 @@ begin
     R := GetRValue(Color);
     G := GetGValue(Color);
     B := GetBValue(Color);
+
+    { replaced to code below, coz it draws knuckles correctly
     P1 := Value(0.0);
     for I := 1 to Fragments do
     begin
       P2 := Value(I / Fragments);
       Viewport.DrawLineToZBuffer(P1, P2, R, G, B);
       P1 := P2;
+    end;
+    }
+    PArray3dc := self.GetValues;
+    for I := 1 to length(PArray3dc) - 1 do
+    begin
+      P1:=PArray3dc[i - 1];
+      P2:=PArray3dc[i];
+      Viewport.DrawLineToZBuffer(P1, P2, R, G, B);
     end;
   end;
 end;{TFreeSpline.Draw}

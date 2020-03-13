@@ -435,8 +435,8 @@ end;{TFreeIntersection.Destroy}
 
 procedure TFreeIntersection.Draw(Viewport: TFreeViewport);
 var
-  I, J: integer;
-  Spline: TFreeSpline;
+  I, J, frags: integer;
+  Spline, SplineSB: TFreeSpline;
   P, P2, N: T3DCoordinate;
   Pts: array of TPoint;
   CPts: array of TPoint;
@@ -472,11 +472,18 @@ begin
       Spline.CurvatureScale := Owner.Visibility.CurvatureScale;
       Spline.ShowCurvature := (Owner.Visibility.ShowCurvature) and (ShowCurvature);
 
+      case self.Owner.Precision of
+        fpLow: frags:=256;
+        fpMedium: frags:=512;
+        fpHigh: frags:=1024;
+        fpVeryHigh: frags:=2048;
+      end;
       if Spline.ShowCurvature then
-        Spline.Fragments := 800
+        Spline.Fragments := (frags * 3) div 2
       else
-        Spline.Fragments := 600;
+        Spline.Fragments := frags;
 
+      {
       try
         //writeln('Try to allocate ',Spline.Fragments+1,' TPoints');
         Setlength(Pts, Spline.Fragments + 1);
@@ -486,9 +493,9 @@ begin
       end;
       if Spline.ShowCurvature then
         Setlength(CPts, Spline.Fragments + 1);
-
       if (IntersectionType = fiWaterline) and (Viewport.ViewType in [fvPlan])
       then R:=0; // debug catch
+      }
 
       // Draw portside
       DrawIt := IntersectionType in [fiButtock, fiWaterline, fiDiagonal];
@@ -518,6 +525,7 @@ begin
          }
       if DrawIt then
       begin
+        { // replaced to Spline.Draw
         for J := 0 to Spline.Fragments do
           if Spline.ShowCurvature then
           begin
@@ -550,6 +558,8 @@ begin
         Viewport.PenColor := Spline.Color;
         Viewport.PenStyle := Spline.PenStyle;
         Viewport.Polyline(Pts);
+        }
+        Spline.Draw(Viewport);
       end;
 
       DrawIt := False;
@@ -561,6 +571,7 @@ begin
       if DrawIt then
       begin
         // Draw starboard side
+        { replaced to code below
         for J := 0 to Spline.Fragments do
           if Spline.ShowCurvature then
           begin
@@ -596,6 +607,17 @@ begin
         Viewport.PenColor := Spline.Color;
         Viewport.PenStyle := Spline.PenStyle;
         Viewport.Polyline(Pts);
+        }
+        SplineSB := TFreeSpline.Create(self.Owner.Surface);
+        SplineSB.Assign(Spline);
+        for J := 0 to SplineSB.NumberOfPoints-1 do
+          begin
+          P := SplineSB.Point[J];
+          P.Y := -P.Y;
+          SplineSB.Point[J] := P;
+          end;
+        SplineSB.Draw(Viewport);
+        SplineSB.Free;
       end;
 
     end;
@@ -605,14 +627,23 @@ begin
     // draw to z-buffer
     if not Build then
       Rebuild;
-    R := GetRValue(Color);
+    {R := GetRValue(Color);
     G := GetGValue(Color);
-    B := GetBValue(Color);
+    B := GetBValue(Color);}
+
+    case self.Owner.Precision of
+      fpLow: frags:=128;
+      fpMedium: frags:=256;
+      fpHigh: frags:=512;
+      fpVeryHigh: frags:=1024;
+    end;
+
     Viewport.BeginUpdate;
-    for I := 1 to Count do
+    for I := 0 to Count-1 do
     begin
-      Spline := Items[I - 1];
-      Spline.Fragments := 250;
+      Spline := Items[I];
+      Spline.Fragments := frags;
+      {
       P := Spline.Value(0.0);
       for J := 1 to Spline.Fragments do
       begin
@@ -620,9 +651,14 @@ begin
         Viewport.DrawLineToZBuffer(P, P2, R, G, B);
         P := P2;
       end;
+      }
+      Spline.Color := Color;
+      Spline.Draw(Viewport);
+
       if Owner.Visibility.ModelView = mvBoth then
       begin
         // Draw starboardside as well
+        {
         P := Spline.Value(0.0);
         P.Y := -P.Y;
         for J := 1 to Spline.Fragments do
@@ -632,6 +668,8 @@ begin
           Viewport.DrawLineToZBuffer(P, P2, R, G, B);
           P := P2;
         end;
+        }
+        Spline.Draw(Viewport);
       end;
     end;
     Viewport.EndUpdate;

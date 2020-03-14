@@ -782,10 +782,10 @@ destructor TMainForm.Destroy;
 var i: Integer; thw:TFreeHullWindow;   ptr:pointer; al:TActionList;
 begin
  FDestroying := true;
- al:=FActionListHull;
+ {al:=FActionListHull;
  ptr:=pointer(FActionListHull);
  if assigned(FActionListHull)
-    then FreeAndNil(FActionListHull);
+    then FreeAndNil(FActionListHull);}
  if assigned(FMDIChildList) then
  for i:=0 to FMDIChildList.Count -1 do
    if assigned(FMDIChildList.Items[i]) then

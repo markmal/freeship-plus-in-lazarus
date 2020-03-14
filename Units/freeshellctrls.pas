@@ -799,7 +799,7 @@ end;
 
 destructor TCustomShellTreeView.Destroy;
 begin
-  FreeAndNil(FShellListView);
+  FShellListView:=nil;
   inherited Destroy;
 end;
 
@@ -1697,7 +1697,7 @@ end;
 
 destructor TCustomShellListView.Destroy;
 begin
-  FreeAndNil(FShellTreeView);
+  FShellTreeView:=nil;
   inherited Destroy;
 end;
 

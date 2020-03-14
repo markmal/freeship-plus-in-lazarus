@@ -5634,8 +5634,8 @@ begin
     if result then
        FreeShip.Preferences.LastDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);
   end;
-  SaveDialog.Destroy;
-end;{TFreeEdit.File_SaveAs}
+  SaveDialog.Free;
+end;{TFreeEdit.FileDestroy_SaveAs}
 
 procedure TFreeEdit.Flowline_Add(Source: T2DCoordinate; View: TFreeviewType);
 var

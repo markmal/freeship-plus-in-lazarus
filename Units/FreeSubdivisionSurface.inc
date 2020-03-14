@@ -2945,19 +2945,19 @@ begin
   for I := 1 to NumberOfLayers do
     Layer[I - 1].Destroy;
   FLayers.Clear;
-  FControlFaces.Free;
-  FControlEdges.Free;
-  FControlPointGroups.Free;
-  FControlPoints.Free;
-  FEdges.Free;
-  FPoints.Free;
-  FLayers.Free;
-  FControlCurves.Free;
-  FSelectedControlPointGroups.Free;
-  FSelectedControlPoints.Free;
-  FSelectedControlEdges.Free;
-  FSelectedControlFaces.Free;
-  FSelectedControlCurves.Free;
+  FreeAndNil(FControlFaces);
+  FreeAndNil(FControlEdges);
+  FreeAndNil(FControlPointGroups);
+  FreeAndNil(FControlPoints);
+  FreeAndNil(FEdges);
+  FreeAndNil(FPoints);
+  FreeAndNil(FLayers);
+  FreeAndNil(FControlCurves);
+  FreeAndNil(FSelectedControlPointGroups);
+  FreeAndNil(FSelectedControlPoints);
+  FreeAndNil(FSelectedControlEdges);
+  FreeAndNil(FSelectedControlFaces);
+  FreeAndNil(FSelectedControlCurves);
   inherited Destroy;
 end;{TFreeSubdivisionSurface.Destroy}
 

@@ -246,24 +246,15 @@ begin
   Clear;
   Fillchar(FMirrorplane, SizeOf(FMirrorplane), 0);
   FMirror := False;
-  FPoints.Destroy;
-  FPoints := nil;
-  FEdges.Destroy;
-  FEdges := nil;
-  FDoneList.Destroy;
-  FDoneList := nil;
-  FBoundaryEdges.Destroy;
-  FBoundaryEdges := nil;
-  FStations.Destroy;
-  FStations := nil;
-  FWaterlines.Destroy;
-  FWaterlines := nil;
-  FButtocks.Destroy;
-  FButtocks := nil;
-  FDiagonals.Destroy;
-  FDiagonals := nil;
-  FCorners.Destroy;
-  FCorners := nil;
+  FreeAndNil(FPoints);
+  FreeAndNil(FEdges);
+  FreeAndNil(FDoneList);
+  FreeAndNil(FBoundaryEdges);
+  FreeAndNil(FStations);
+  FreeAndNil(FWaterlines);
+  FreeAndNil(FButtocks);
+  FreeAndNil(FDiagonals);
+  FreeAndNil(FCorners);
   inherited Destroy;
 end;{TFreeDevelopedPatch.Destroy}
 

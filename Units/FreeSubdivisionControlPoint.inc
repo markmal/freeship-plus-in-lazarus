@@ -326,8 +326,8 @@ destructor TFreeSubdivisionControlPoint.Destroy;
 begin
   logger.IncreaseIndent;
   logger.Debug(format('TFreeSubdivisionControlPoint[%d].Destroy',[self.FID]));
-  FLinearConstrainedPoints.Free;
-  FAnchoredPoints.Free;
+  FreeAndNil(FLinearConstrainedPoints);
+  FreeAndNil(FAnchoredPoints);
   inherited;
   logger.DecreaseIndent;
 end;{TFreeSubdivisionControlPoint.Create}

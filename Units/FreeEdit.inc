@@ -292,7 +292,7 @@ end;{TFreeEdit.Curve_Add}
 
 destructor TFreeEdit.Destroy;
 begin
-  FRecentFiles.Destroy;
+  FreeAndNil(FRecentFiles);
   inherited Destroy;
 end;{TFreeEdit.Destroy}
 

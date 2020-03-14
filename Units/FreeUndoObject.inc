@@ -84,7 +84,7 @@ end;{TFreeUndoObject.Delete}
 
 destructor TFreeUndoObject.Destroy;
 begin
-  FUndoData.Destroy;
+  FreeAndNil(FUndoData);
   inherited Destroy;
 end;{TFreeUndoObject.Destroy}
 

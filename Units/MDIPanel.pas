@@ -228,7 +228,7 @@ end;
 destructor TMDIPanel.Destroy;
 begin
   unsetMouseClickProxies;
-  FClickProxies.Free;
+  FreeAndNil(FClickProxies);
   if assigned(onDestroy) then onDestroy(Self);
   inherited Destroy;
 end;

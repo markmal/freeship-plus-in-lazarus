@@ -615,13 +615,9 @@ begin
   logger.Debug(format('TFreeSubdivisionPoint[%d].Destroy',[self.FID]));
   //Unreference;
   Clear;
-  FFaces.Destroy;
-  FFaces := nil;
-  FEdges.Destroy;
-  Fedges := nil;
+  FreeAndNil(FFaces);
+  FreeAndNil(FEdges);
   inherited Destroy;
-  if FID=343 then //DELETE
-     FID:=343;
   logger.DecreaseIndent;
 end;{TFreeSubdivisionPoint.Destroy}
 

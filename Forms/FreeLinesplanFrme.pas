@@ -564,11 +564,12 @@ var
     end;
   end;{DrawLine}
 
+  {$ifdef NOUSE}
   procedure DrawSpline(Spline: TFreeSpline; Views: TLinesplanViews; Style: TPenStyle);
   var
     I,J,L: integer;
     Pn,Pn1,Pn2:integer;
-    P, Pr: T3DCoordinate;
+    P, Pr, Pkn: T3DCoordinate;
     Pts: array of TPoint;
     YSign:integer;
   begin
@@ -582,11 +583,10 @@ var
       begin
         P := Spline.Value(I / steps, Pn1, Pn2);
         // if the current step entered next rib and the Pn1 of it is knuckle
-        if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
+        if (Pn <> Pn1) and Spline.Knuckle[Pn1] then // add knuckle
         begin
-          // add knuckle
-          P := Spline.Point[Pn1];
-          Pr := Point3D(FProfileOrigin.X + P.X, FProfileOrigin.Y + P.Z, 0);
+          Pkn := Spline.Point[Pn1];
+          Pr := Point3D(FProfileOrigin.X + Pkn.X, FProfileOrigin.Y + Pkn.Z, 0);
           Pts[J] := Viewport.Project(Pr);
           Pn:=Pn1;
           inc(J);
@@ -611,8 +611,8 @@ var
             if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
             begin
               // add knuckle
-              P := Spline.Point[Pn1];
-              Pr := Point3D(FAftOrigin.X + YSign * P.Y, FAftOrigin.Y + P.Z, 0);
+              Pkn := Spline.Point[Pn1];
+              Pr := Point3D(FAftOrigin.X + YSign * Pkn.Y, FAftOrigin.Y + Pkn.Z, 0);
               Pts[J] := Viewport.Project(Pr);
               Pn:=Pn1;
               inc(J);
@@ -638,8 +638,8 @@ var
             if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
             begin
               // add knuckle
-              P := Spline.Point[Pn1];
-              Pr := Point3D(FFrontOrigin.X + YSign * P.Y, FFrontOrigin.Y + P.Z, 0);
+              Pkn := Spline.Point[Pn1];
+              Pr := Point3D(FFrontOrigin.X + YSign * Pkn.Y, FFrontOrigin.Y + Pkn.Z, 0);
               Pts[J] := Viewport.Project(Pr);
               Pn:=Pn1;
               inc(J);
@@ -668,8 +668,8 @@ var
             if (Pn <> Pn1) and Spline.Knuckle[Pn1] then
             begin
               // add knuckle
-              P := Spline.Point[Pn1];
-              Pr := Point3D(FPlanOrigin.X + YSign * P.Y, FPlanOrigin.Y + P.Y, 0);
+              Pkn := Spline.Point[Pn1];
+              Pr := Point3D(FPlanOrigin.X + YSign * Pkn.Y, FPlanOrigin.Y + Pkn.Y, 0);
               Pr.Z := 0.0;
               Pts[J] := Viewport.Project(Pr);
               Pn:=Pn1;
@@ -685,6 +685,79 @@ var
     end;
 
   end;{DrawSpline}
+  {$endif NOUSE}
+
+  procedure DrawSpline(Spline: TFreeSpline; Views: TLinesplanViews; Style: TPenStyle);
+  var
+    i: integer;
+    P, Pr: T3DCoordinate;
+    VPs: array of T3DCoordinate;
+    Pts: array of TPoint;
+    YSign:integer;
+  begin
+    VPs := Spline.GetValues;
+    Setlength(Pts, length(VPs));
+    if lvProfile in views then
+    begin
+      for i := 0 to length(VPs)-1 do
+        begin
+          P := VPs[i];
+          Pr := Point3D(FProfileOrigin.X + P.X, FProfileOrigin.Y + P.Z, 0);
+          Pts[i] := Viewport.Project(Pr);
+        end;
+      Viewport.Polyline(Pts);
+    end;
+
+    if (lvAftBody in views) and (Spline.Max.X <= MainFrame) then
+    begin
+      for YSign:=-1 to +1 do
+        if YSign <> 0 then
+        begin
+          for i := 0 to length(VPs)-1 do
+            begin
+              P := VPs[i];
+              Pr := Point3D(FAftOrigin.X + YSign * P.Y, FAftOrigin.Y + P.Z, 0);
+              Pts[i] := Viewport.Project(Pr);
+            end;
+          Viewport.Polyline(Pts);
+        end;
+    end;
+
+    if (lvFrontBody in views) and (Spline.Min.X >= MainFrame) then
+    begin
+      for YSign:=-1 to +1 do
+        if YSign <> 0 then
+        begin
+          for i := 0 to length(VPs)-1 do
+            begin
+              P := VPs[i];
+              Pr := Point3D(FFrontOrigin.X + YSign * P.Y, FFrontOrigin.Y + P.Z, 0);
+              Pts[i] := Viewport.Project(Pr);
+            end;
+          Viewport.Polyline(Pts);
+        end;
+    end;
+
+    if lvPLan in views then
+    begin
+      for YSign:=-1 to +1 do
+        if (YSign=1)
+          or ((YSign=0) and (Freeship.NumberofDiagonals = 0)
+             and (MirrorPlanview.Checked))
+        then
+        begin
+          for i := 0 to length(VPs)-1 do
+            begin
+              P := VPs[i];
+              Pr := Point3D(FPlanOrigin.X + YSign * P.Y, FPlanOrigin.Y + P.Y, 0);
+              Pts[i] := Viewport.Project(Pr);
+            end;
+          Viewport.Polyline(Pts);
+        end;
+    end;
+
+  end;{DrawSpline}
+
 
   procedure DrawIntersection(Intersection: TFreeIntersection;
     Views: TLinesplanViews; Style: TPenStyle);

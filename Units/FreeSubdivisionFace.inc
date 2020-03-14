@@ -233,8 +233,7 @@ begin
   //logger.Debug(format('TFreeSubdivisionFace.Destroy[%d]',[self.FID]));
   //Unreference;
   Clear;
-  FPoints.Destroy;
-  FPoints := nil;
+  FreeAndNil(FPoints);
   inherited Destroy;
 end;{TFreeSubdivisionFace.Destroy}
 

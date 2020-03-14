@@ -1238,7 +1238,6 @@ var
   Spline: TFreeSpline;
   Layer: TFreeSubdivisionLayer;
   Face: TFreeSubdivisionControlface;
-  Pn1,Pn2: integer;
 begin
   if FFreeship <> nil then
     if FOriginalSectionalAreaCurve.NumberOfPoints > 0 then
@@ -1292,7 +1291,7 @@ begin
       FOriginalSectionalAreaCurve.Draw(TopView);
       if FOriginalSectionalAreaCurve.NumberOfPoints > 0 then
       begin
-        Pt := TopView.Project(FOriginalSectionalAreaCurve.Value(0.5,Pn1,Pn2));
+        Pt := TopView.Project(FOriginalSectionalAreaCurve.Value(0.5));
         TopView.TextOut(Pt.X, Pt.Y, 'SAC');
       end;
       for I := 1 to FOriginalWaterline.Count do
@@ -1304,7 +1303,7 @@ begin
         Spline.Draw(TopView);
         if Spline.NumberOfPoints > 0 then
         begin
-          Pt := TopView.Project(Spline.Value(0.5,Pn1,Pn2));
+          Pt := TopView.Project(Spline.Value(0.5));
           TopView.TextOut(Pt.X, Pt.Y, 'DWL');
         end;
       end;

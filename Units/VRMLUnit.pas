@@ -430,8 +430,8 @@ end;{TVRMLSeparator.Clear}
 
 destructor TVRMLSeparator.Destroy;
 begin
+  FreeAndNil(FObjects);
   inherited Destroy;
-  FObjects.Destroy;
 end;{TVRMLSeparator.Destroy}
 
 procedure TVRMLSeparator.Load(var LineNr: integer; Strings: TStringList);
@@ -543,8 +543,8 @@ end;{TVRMLCoordinate3.Create}
 
 destructor TVRMLCoordinate3.Destroy;
 begin
+  FreeAndNil(FFaceSets);
   inherited Destroy;
-  FFaceSets.Destroy;
 end;{TVRMLCoordinate3.Destroy}
 
 procedure TVRMLCoordinate3.Load(var LineNr: integer; Strings: TStringList);
@@ -757,8 +757,8 @@ end;{TVRMLList.Create}
 destructor TVRMLList.Destroy;
 begin
   Clear;
-  FObjects.Destroy;
-  FFaceSets.Destroy;
+  FreeAndNil(FObjects);
+  FreeAndNil(FFaceSets);
   inherited Destroy;
 end;{TVRMLList.destroy}
 

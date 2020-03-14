@@ -395,12 +395,9 @@ destructor TFreeSubdivisionControlFace.Destroy;
 var i:integer;
 begin
   //logger.Debug(format('TFreeSubdivisionControlFace.Destroy[%d]',[self.FID]));
-  FEdges.Destroy;
-  FEdges := nil;
-  FControlDescendantEdges.Destroy;
-  FControlDescendantEdges := nil;
-  FChildren.Destroy;
-  FChildren := nil;
+  FreeAndNil(FEdges);
+  FreeAndNil(FControlDescendantEdges);
+  FreeAndNil(FChildren);
   inherited Destroy;
 end;{TFreeSubdivisionControlFace.Destroy}
 

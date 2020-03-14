@@ -166,7 +166,7 @@ end;{TFreeNumInput.Create}
 
 destructor TFreeNumInput.Destroy;
 begin
-   FCanvas.Destroy;
+   FreeAndNil(FCanvas);
    inherited Destroy;
 end;{TFreeNumInput.Destroy}
 

@@ -981,16 +981,20 @@ var
 
       // Calculate planform area
   procedure calculate_planform_area;
-  var i:integer; Pn1,Pn2:integer;
+  var i:integer;
+    VPs: array of T3DCoordinate;
   begin
     if Span <> 0.0 then
     begin
-      P := FProfile.Value(1.0,Pn1,Pn2);
+      VPs := FProfile.GetValues;
+
+      P := VPs[length(VPs)-1];
       P1.X := P.X;
       P1.Y := P.Z;
-      for I := 0 to FProfile.Fragments do
+
+      for I := 0 to length(VPs)-1 do
       begin
-        P := FProfile.Value(I / FProfile.Fragments, Pn1, Pn2);
+        P:=VPs[i];
         P2.X := P.X;
         P2.Y := P.Z;
         DeltaA := 0.5 * (P2.X + P1.X) * (P2.Y - P1.Y);
@@ -1201,7 +1205,7 @@ begin
     FProfile.Add(FProfile.Point[0]);
   end;
   FProfile.Fragments := 50;
-  FProfile.Color:=clRed;
+  //FProfile.Color:=clRed;
 
   MaxY := 0;
 
@@ -1279,7 +1283,7 @@ begin
       Spline.Fragments:=500;
       for J := 0 to Cols - 1 do
       begin
-        P := Spline.Value(J / (Cols - 1), Pn1,Pn2);
+        P := Spline.Value(J / (Cols - 1));
         Mesh[I, J].X := Start + Chord - P.X * Chord;
         Mesh[I, J].Y := P.Y * Chord;
         Mesh[I, J].Z := -Height;
@@ -1348,7 +1352,7 @@ begin
     FProfile.AddKnuckle(SetPoint(RootChordLength, 0, 0));
     FProfile.Add(FProfile.Point[0]); }
 
-    FProfile.Color:=clRed;
+    //FProfile.Color:=clRed;
     N := FProfile.NumberOfPoints;
 
     FProfile.addKnuckle(FProfile.Point[N - 1]);
@@ -1605,8 +1609,7 @@ begin
   ShowTranslatedValues(Self);
 
   ShowModal;
-  FProfile.Destroy;
-  FProfile := nil;
+  FreeAndNil(FProfile);
   Result := ModalResult = mrOk;
 end;{TFreeKeelWizardDialog.Execute}
 

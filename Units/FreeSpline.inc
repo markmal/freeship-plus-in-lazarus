@@ -704,7 +704,7 @@ var I,J: integer;
   Pn, Pn1,Pn2: integer;
 begin
   SetLength(Result, FFragments + FNoPoints);
-  J:=0; Pn1:=0;
+  J:=0; Pn:=0;
   for I := 0 to Fragments-1 do
   begin
     P1 := Value(I / (FFragments-1), Pn1,Pn2);

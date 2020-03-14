@@ -429,7 +429,7 @@ end;{TFreeIntersection.Delete}
 destructor TFreeIntersection.Destroy;
 begin
   Clear;
-  FItems.Destroy;
+  FreeAndNil(FItems);
   inherited Destroy;
 end;{TFreeIntersection.Destroy}
 

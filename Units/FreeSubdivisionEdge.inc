@@ -414,8 +414,7 @@ begin
     exit;
   //Unreference;
   Clear;
-  FFaces.Free;
-  FFaces := nil;
+  FreeAndNil(FFaces);
   inherited Destroy;
   logger.DecreaseIndent;
 end;{TFreeSubdivisionEdge.Destroy}

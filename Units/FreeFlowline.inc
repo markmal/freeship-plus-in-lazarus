@@ -80,7 +80,7 @@ end;{TFreeFlowline.Delete}
 destructor TFreeFlowline.Destroy;
 begin
   Clear;
-  FFlowLine.Destroy;
+  FreeAndNil(FFlowLine);
   inherited Destroy;
 end;{TFreeFlowline.Destroy}
 

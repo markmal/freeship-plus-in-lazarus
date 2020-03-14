@@ -86,7 +86,7 @@ end;
 destructor TFreeViewportOpenGL.Destroy;
 begin
   if Assigned(OpenGLControl) then
-    OpenGLControl.Destroy;
+    FreeAndNil(OpenGLControl);
   inherited Destroy;
 end;
 

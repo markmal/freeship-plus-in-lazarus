@@ -256,12 +256,9 @@ end;{TFreeSubdivisionControlCurve.DeleteEdge}
 destructor TFreeSubdivisionControlCurve.Destroy;
 begin
   Clear;
-  FControlPoints.Destroy;
-  FControlPoints := nil;
-  FSubdividedPoints.Destroy;
-  FSubdividedPoints := nil;
-  FCurve.Destroy;
-  FCurve := nil;
+  FreeAndNil(FControlPoints);
+  FreeAndNil(FSubdividedPoints);
+  FreeAndNil(FCurve);
   inherited Destroy;
 end;{TFreeSubdivisionControlCurve.Destroy}
 

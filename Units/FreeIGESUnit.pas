@@ -328,11 +328,12 @@ end;{TFreeIGESList.Create}
 destructor TFreeIGESList.Destroy;
 begin
    Clear;
-   FStartSection.Destroy;
-   FGlobalSection.Destroy;
-   FDirectorySection.Destroy;
-   FParameterSection.Destroy;
-   FTerminateSection.Destroy;
+   FreeAndNil(FStartSection);
+   FreeAndNil(FGlobalSection);
+   FreeAndNil(FDirectorySection);
+   FreeAndNil(FParameterSection);
+   FreeAndNil(FTerminateSection);
+   inherited Destroy;
 end;{TFreeIGESList.Destroy}
 
 procedure TFreeIGESList.SaveToFile(Filename:String);

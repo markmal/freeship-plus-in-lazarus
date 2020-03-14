@@ -262,8 +262,8 @@ end;
 
 destructor TFreeHullWindow.Destroy;
 begin
-  if assigned(ViewPort) then ViewPort.Free;
-  if assigned(FreeHullForm) then FreeHullForm.Free;
+  if assigned(ViewPort) then FreeAndNil(ViewPort);
+  if assigned(FreeHullForm) then FreeAndNil(FreeHullForm);
   inherited;
 end;
 

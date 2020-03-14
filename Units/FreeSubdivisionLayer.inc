@@ -849,8 +849,7 @@ end;{TFreeSubdivisionLayer.DeleteControlFace}
 
 destructor TFreeSubdivisionLayer.Destroy;
 begin
-  FPatches.Destroy;
-  FPatches := nil;
+  FreeAndNil(FPatches);
   inherited Destroy;
 end;{TFreeSubdivisionLayer.Destroy}
 

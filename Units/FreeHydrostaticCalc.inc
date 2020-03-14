@@ -2339,7 +2339,7 @@ begin
   Index := Owner.FHydrostaticCalculations.IndexOf(self);
   if Index <> -1 then
     Owner.FHydrostaticCalculations.Delete(Index);
-  FMainframe.Destroy;
+  FreeAndNil(FMainframe);
   inherited Destroy;
 end;{TFreeHydrostaticCalc.Destroy}
 

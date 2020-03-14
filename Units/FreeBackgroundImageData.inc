@@ -31,7 +31,7 @@ end;{TFreeBackgroundImageData.Create}
 destructor TFreeBackgroundImageData.Destroy;
 begin
   Clear;
-  FImageData.Destroy;
+  FreeAndNil(FImageData);
   inherited Destroy;
 end;{TFreeBackgroundImageData.Destroy}
 

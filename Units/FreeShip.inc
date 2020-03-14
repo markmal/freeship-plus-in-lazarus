@@ -932,27 +932,27 @@ begin
   Clear;
   ClearUndo;
   if Assigned(FControlpointForm) then
-    FControlpointForm.Free;
-  FMarkers.Free;
-  FStations.Free;
-  FButtocks.Free;
-  FWaterlines.Free;
-  FDiagonals.Free;
-  FVisibility.Free;
-  FViewports.Free;
-  FSurface.Free;
-  FEdit.Free;
-  FProjectSettings.Free;
-  FDesignHydrostatics.Free;
-  FHydrostaticCalculations.Free;
-  FUndoObjects.Free;
-  FPreferences.Free;
+    FreeAndNil(FControlpointForm);
+  FreeAndNil(FMarkers);
+  FreeAndNil(FStations);
+  FreeAndNil(FButtocks);
+  FreeAndNil(FWaterlines);
+  FreeAndNil(FDiagonals);
+  FreeAndNil(FVisibility);
+  FreeAndNil(FViewports);
+  FreeAndNil(FSurface);
+  FreeAndNil(FEdit);
+  FreeAndNil(FProjectSettings);
+  FreeAndNil(FDesignHydrostatics);
+  FreeAndNil(FHydrostaticCalculations);
+  FreeAndNil(FUndoObjects);
+  FreeAndNil(FPreferences);
   if Assigned(FIntersectionDialog) then
-    FIntersectionDialog.Free;
-  FBackgroundImages.Free;
-  FFlowlines.Free;
-  FSelectedFlowlines.Free;
-  FSelectedMarkers.Free;
+    FreeAndNil(FIntersectionDialog);
+  FreeAndNil(FBackgroundImages);
+  FreeAndNil(FFlowlines);
+  FreeAndNil(FSelectedFlowlines);
+  FreeAndNil(FSelectedMarkers);
   inherited Destroy;
 end;{TFreeShip.Destroy}
 

@@ -782,7 +782,7 @@ destructor TMainForm.Destroy;
 var i: Integer; thw:TFreeHullWindow;
 begin
  FDestroying := true;
- FActionListHull := nil;
+ FreeAndNil(FActionListHull);
  if assigned(FMDIChildList) then
  for i:=0 to FMDIChildList.Count -1 do
    if assigned(FMDIChildList.Items[i]) then
@@ -792,7 +792,7 @@ begin
         then self.RemoveComponent(thw.FreeHullForm.ActionListHull);
       thw.Free;
       end;
- FMDIChildList.Free;
+ FreeAndNil(FMDIChildList);
  inherited;
 end;
 

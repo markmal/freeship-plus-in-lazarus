@@ -3903,7 +3903,7 @@ begin
     for I := 1 to FreeShip.NumberOfControlCurves do
     begin
       Strings.Add('CONTROLCURVE');
-      SendSpline(FreeShip.ControlCurve[I - 1].Curve);
+      SendSpline(FreeShip.ControlCurve[I - 1].Spline);
     end;
     Strings.SaveToFile(ChangeFileExt(Savedialog.FileName, '.txt'));
     Strings.Destroy;

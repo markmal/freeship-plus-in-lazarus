@@ -97,7 +97,7 @@ procedure TFreeSubdivisionControlCurve.Clear;
 begin
   FControlPoints.Clear;
   FVisible := True;
-  FCurve.Clear;
+  FSpline.Clear;
   FSubdividedPoints.Clear;
   FBuild := False;
 end;{TFreeSubdivisionControlCurve.Clear}
@@ -107,7 +107,7 @@ begin
   inherited Create(Owner);
   FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create;
   FSubdividedPoints := TFasterListTFreeSubdivisionPoint.Create;
-  FCurve := TFreeSpline.Create(Owner);
+  FSpline := TFreeSpline.Create(Owner);
   Clear;
 end;{TFreeSubdivisionControlCurve.Create}
 
@@ -170,7 +170,7 @@ begin
       ((FControlPoints[I - 2] = Edge.EndPoint) and
       (FControlPoints[I - 1] = Edge.FStartPoint)) then
     begin
-      // Remove references to this curve from control edges
+      // Remove references to this Spline from control edges
       for J := 2 to FControlPoints.Count do
       begin
         CP1 := FControlPoints[J - 2];
@@ -194,7 +194,7 @@ begin
 
       if I - 2 > 0 then
       begin
-        // build first new curve
+        // build first new Spline
         NewCurve := TFreeSubdivisionControlCurve.Create(Owner);
         NewCurve.FControlPoints.Capacity := I - 1;
         Owner.AddControlCurve(Newcurve);
@@ -215,7 +215,7 @@ begin
       end;
       if I - 1 < FControlPoints.Count - 1 then
       begin
-        // build second new curve
+        // build second new Spline
         NewCurve := TFreeSubdivisionControlCurve.Create(Owner);
         NewCurve.FControlPoints.Capacity := FControlPoints.Count - (I - 1);
         Owner.AddControlCurve(Newcurve);
@@ -258,7 +258,7 @@ begin
   Clear;
   FreeAndNil(FControlPoints);
   FreeAndNil(FSubdividedPoints);
-  FreeAndNil(FCurve);
+  FreeAndNil(FSpline);
   inherited Destroy;
 end;{TFreeSubdivisionControlCurve.Destroy}
 
@@ -279,12 +279,12 @@ begin
     if (Pt.X >= 0) and (Pt.X <= Viewport.Width) and (Pt.Y >= 0) and
       (Pt.Y <= Viewport.Height) then
     begin
-      V1 := FCurve.Value(0.0);
+      V1 := FSpline.Value(0.0);
       if V1.X < Owner.MainframeLocation then
         V1.Y := -V1.Y;
-      for I := 1 to FCurve.Fragments do
+      for I := 1 to FSpline.Fragments do
       begin
-        V2 := FCurve.Value((I - 1) / (FCurve.Fragments - 1));
+        V2 := FSpline.Value((I - 1) / (FSpline.Fragments - 1));
         if V2.X < Owner.MainframeLocation then
           V2.Y := -V2.Y;
         if ((V1.X < Owner.MainframeLocation) and (V2.X < Owner.MainframeLocation)) or
@@ -302,25 +302,25 @@ begin
     end;
   end
   else
-    Result := FCurve.DistanceToCursor(X, Y, Viewport);
+    Result := FSpline.DistanceToCursor(X, Y, Viewport);
   if Owner.DrawMirror then
   begin
-    for I := 1 to FCurve.NumberOfPoints do
+    for I := 1 to FSpline.NumberOfPoints do
     begin
-      V1 := FCurve.Point[I - 1];
+      V1 := FSpline.Point[I - 1];
       V1.Y := -V1.Y;
-      FCurve.Point[I - 1] := V1;
+      FSpline.Point[I - 1] := V1;
     end;
     try
-      Tmp := FCurve.DistanceToCursor(X, Y, Viewport);
+      Tmp := FSpline.DistanceToCursor(X, Y, Viewport);
       if Tmp < Result then
         Result := Tmp;
     finally
-      for I := 1 to FCurve.NumberOfPoints do
+      for I := 1 to FSpline.NumberOfPoints do
       begin
-        V1 := FCurve.Point[I - 1];
+        V1 := FSpline.Point[I - 1];
         V1.Y := -V1.Y;
-        FCurve.Point[I - 1] := V1;
+        FSpline.Point[I - 1] := V1;
       end;
     end;
   end;
@@ -345,17 +345,17 @@ var
   Normal: T3DCoordinate;
   C, T, C2: TFloatType;
 begin
-  if FCurve.NumberOfPoints > 1 then
+  if FSpline.NumberOfPoints > 1 then
   begin
-    FCurve.Color := Color;
+    FSpline.Color := Color;
     Sel := Selected;
-    FCurve.ShowCurvature := (Sel) and (Owner.FShowCurvature);
-    if FCurve.ShowCurvature then
-      FCurve.Fragments := 600
+    FSpline.ShowCurvature := (Sel) and (Owner.FShowCurvature);
+    if FSpline.ShowCurvature then
+      FSpline.Fragments := 600
     else
-      FCurve.Fragments := 250;
-    FCurve.CurvatureColor := Owner.FCurvatureColor;
-    FCurve.CurvatureScale := Owner.FCurvatureScale;
+      FSpline.Fragments := 250;
+    FSpline.CurvatureColor := Owner.FCurvatureColor;
+    FSpline.CurvatureScale := Owner.FCurvatureScale;
     if not Owner.ShowControlNet and (Sel) then
     begin
       for I := 2 to FControlPoints.Count do
@@ -378,7 +378,7 @@ begin
       Setlength(Param, NParam);
       Param[0] := 0.0;
       Param[1] := 1.0;
-      if FCurve.IntersectPlane(Plane, Output) then
+      if FSpline.IntersectPlane(Plane, Output) then
       begin
         Setlength(Param, NParam + Output.NumberOfIntersections);
         for I := 1 to Output.NumberOfIntersections do
@@ -392,15 +392,15 @@ begin
       begin
         I1 := I - 1;
         I2 := I - 2;
-        P3D := FCurve.Value(0.5 * (Param[I2] + Param[I1]));
+        P3D := FSpline.Value(0.5 * (Param[I2] + Param[I1]));
         if P3D.X < Owner.MainframeLocation then
           Scale := -1
         else
           scale := 1;
-        Fragm := Round((Param[I1] - Param[I2]) * FCurve.Fragments);
+        Fragm := Round((Param[I1] - Param[I2]) * FSpline.Fragments);
         if Fragm < 10 then
           Fragm := 10;
-        if FCurve.ShowCurvature then
+        if FSpline.ShowCurvature then
         begin
           SetLength(PArray1, Fragm);
           SetLength(PArray2, Fragm);
@@ -408,8 +408,8 @@ begin
           begin
             J1 := J - 1;
             T := Param[I2] + (Param[I1] - Param[I2]) * (J1) / (Fragm - 1);
-            C := FCurve.Curvature(T, P3D, Normal);
-            C2 := C * 2 * FCurve.CurvatureScale;
+            C := FSpline.Curvature(T, P3D, Normal);
+            C2 := C * 2 * FSpline.CurvatureScale;
             P3D.Y := P3D.Y * Scale;
             Normal.Y := Normal.Y * Scale;
             PArray1[J1] := Viewport.Project(P3D);
@@ -419,7 +419,7 @@ begin
             PArray2[J1] := Viewport.Project(P3D2);
           end;
           Viewport.SetPenWidth(1);
-          Viewport.PenColor := FCurve.CurvatureColor;
+          Viewport.PenColor := FSpline.CurvatureColor;
           for J := 1 to Fragm do
             if (J mod 4 = 0) or (J = 1) or (J = Fragm) then
             begin
@@ -436,33 +436,33 @@ begin
           begin
             J1 := J - 1;
             T := Param[I2] + (Param[I1] - Param[I2]) * (J1) / (Fragm - 1);
-            P3D := FCurve.Value(T);
+            P3D := FSpline.Value(T);
             P3D.Y := P3D.Y * Scale;
             PArray1[J1] := Viewport.Project(P3D);
           end;
         end;
         Viewport.SetPenWidth(1);
         Viewport.PenColor := Color;
-        Viewport.PenStyle := FCurve.Penstyle;
+        Viewport.PenStyle := FSpline.Penstyle;
         Viewport.Polyline(PArray1);
       end;
     end
     else
-      FCurve.Draw(Viewport);
+      FSpline.Draw(Viewport);
     if Owner.DrawMirror then
     begin
-      for I := 1 to FCurve.NumberOfPoints do
+      for I := 1 to FSpline.NumberOfPoints do
       begin
-        P3D := FCurve.Point[I - 1];
+        P3D := FSpline.Point[I - 1];
         P3D.Y := -P3D.Y;
-        FCurve.Point[I - 1] := P3D;
+        FSpline.Point[I - 1] := P3D;
       end;
-      FCurve.Draw(Viewport);
-      for I := 1 to FCurve.NumberOfPoints do
+      FSpline.Draw(Viewport);
+      for I := 1 to FSpline.NumberOfPoints do
       begin
-        P3D := FCurve.Point[I - 1];
+        P3D := FSpline.Point[I - 1];
         P3D.Y := -P3D.Y;
-        FCurve.Point[I - 1] := P3D;
+        FSpline.Point[I - 1] := P3D;
       end;
     end;
   end
@@ -548,7 +548,7 @@ begin
     if FSubdividedPoints[I - 1] = old then
     begin
       FSubdividedPoints[I - 1] := New;
-      FCurve.Clear;
+      FSpline.Clear;
     end;
 end;{TFreeSubdivisionControlCurve.ReplaceVertexPoint}
 
@@ -572,7 +572,7 @@ var
   Layer: string;
 begin
   Layer := 'Control_curves';
-  FCurve.Fragments := FCurve.NumberOfPoints;
-  FCurve.SaveToDXF(Strings, Layer, Owner.DrawMirror);
+  FSpline.Fragments := FSpline.NumberOfPoints;
+  FSpline.SaveToDXF(Strings, Layer, Owner.DrawMirror);
 end;{TFreeSubdivisionControlCurve.SaveToDXF}
 

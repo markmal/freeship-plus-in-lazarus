@@ -293,6 +293,7 @@ begin
     FToolIconSize := StrToInt(Dialog.SelectToolIconSize.Text);
     FGlobalOpenDirectory := Dialog.EditGlobalOpenDir.Text;
     FGlobalImportDirectory := Dialog.EditGlobalImportDir.Text;
+    FThemeName := Dialog.ComboBoxThemes.Text;
 
     if Uppercase(Lang) <> Uppercase(FLanguage) then
       if FileExistsUTF8(FLanguagesDirectory + DS + Lang + '.ini')
@@ -332,7 +333,9 @@ begin
 
     if Dialog.IsThemeChanged then
       if IsThemeCustom(Dialog.ComboBoxThemes.Text) then
-        SaveCustomTheme(Dialog)
+        begin
+        SaveCustomTheme;
+        end
       else
         SaveThemeAsCustom(Dialog);
 
@@ -345,11 +348,8 @@ end;{TFreePreferences.Edit}
 
 
 
-procedure TFreePreferences.SaveCustomTheme(Dialog: TForm);
-var
-  d: TFreePreferencesDialog;
+procedure TFreePreferences.SaveCustomTheme;
 begin
-  d := TFreePreferencesDialog(dialog);
   SaveTheme(FThemeName, FParentThemeName);
 end;
 
@@ -371,6 +371,7 @@ begin
     FParentThemeName := FThemeName;
     FThemeName := t.EditCustomSchemeName.Text;
     SaveTheme(FThemeName, FParentThemeName);
+    Save;
   end;
   t.Free;
 end;
@@ -617,24 +618,22 @@ end;
 
 function TFreePreferences.getThemeConfigFile(ThemeName: string): string;
 const DS=DirectorySeparator;
+var themePath:string;
 begin
-  if FileExistsUTF8(Self.FUserConfigDirectory + 'Themes'+DS + ThemeName +
-    DS+'theme.ini') then
-    Result := Self.FUserConfigDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
+  themePath := DS+'Themes'+DS+ThemeName+DS+'theme.ini';
+  if FileExistsUTF8(Self.FUserConfigDirectory + themePath) then
+    Result := Self.FUserConfigDirectory + themePath
   else
-  if FileExistsUTF8(Self.FGlobalConfigDirectory + DS+'Themes'+DS +
-    ThemeName + DS+'theme.ini') then
-    Result := Self.FGlobalConfigDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
+  if FileExistsUTF8(Self.FGlobalConfigDirectory + themePath) then
+    Result := Self.FGlobalConfigDirectory + themePath
   else
-  if FileExistsUTF8(Self.FUserAppDataDirectory + DS+'Themes'+DS + ThemeName +
-    DS+'theme.ini') then
-    Result := Self.FUserAppDataDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
+  if FileExistsUTF8(Self.FUserAppDataDirectory + themePath) then
+    Result := Self.FUserAppDataDirectory + themePath
   else
-  if FileExistsUTF8(Self.FGlobalAppDataDirectory + DS+'Themes'+DS +
-    ThemeName + DS+'theme.ini') then
-    Result := Self.FGlobalAppDataDirectory + DS+'Themes'+DS + ThemeName + DS+'theme.ini'
+  if FileExistsUTF8(Self.FGlobalAppDataDirectory + themePath) then
+    Result := Self.FGlobalAppDataDirectory + themePath
   else
-    Result := Self.FGlobalAppDataDirectory + DS+'Themes'+DS+'Default'+DS+'theme.ini';
+    Result := Self.FGlobalAppDataDirectory + themePath;
 end;
 
 procedure TFreePreferences.getAllThemes(ss: TStrings);
@@ -672,6 +671,7 @@ begin
   params.Free;
 end;
 
+{
 function TFreePreferences.GetToolIconDirectory: string;
 var S:string;
 const DS=DirectorySeparator;
@@ -681,6 +681,7 @@ begin
   result := FUserAppDataDirectory + S
   else result := FGlobalAppDataDirectory + S;
 end;
+}
 
 // finds IconFileName recursively from the current theme and its parents
 function TFreePreferences.GetIconFileName(ThemeName, IconName: string;
@@ -689,7 +690,7 @@ var
   subPath, ptn: string;
 const DS=DirectorySeparator;
 begin
-  subPath := DS+'Themes'+DS+FThemeName+DS+'icons'+DS + IntToStr(IconSize) +
+  subPath := DS+'Themes'+DS+ThemeName+DS+'icons'+DS + IntToStr(IconSize) +
     DS + IconName + '.png';
   if FileExistsUTF8(GetCurrentDirUTF8 + subPath) then
     Result := GetCurrentDirUTF8 + subPath
@@ -952,9 +953,15 @@ end;
 
 procedure TFreePreferences.LoadTheme(ThemeName: string);
 var
-  IniFile: string;
+  IniFile, ParentIniFile, ParentThemeName: string;
+  params: TColorIniFile;
 begin
   IniFile := self.getThemeConfigFile(ThemeName);
+  params := TColorIniFile.Create(IniFile, False);
+  ParentThemeName := params.ReadString('Theme', 'ParentTheme', FParentThemeName);
+  params.Free;
+  ParentIniFile := self.getThemeConfigFile(ParentThemeName);
+  LoadThemeIni(ParentIniFile);
   LoadThemeIni(IniFile);
 end;
 
@@ -972,7 +979,7 @@ begin
   FParentThemeName := params.ReadString('Theme', 'ParentTheme', FParentThemeName);
 
   FPointSize := params.ReadInteger('Graphic', 'PointSize', FPointSize);
-  FButtockColor := params.ReadColor('Graphic', 'PointSize', FButtockColor);
+  FButtockColor := params.ReadColor('Graphic', 'ButtockColor', FButtockColor);
   FWaterlineColor := params.ReadColor('Graphic', 'WaterlineColor', FWaterlineColor);
   FStationColor := params.ReadColor('Graphic', 'StationColor', FStationColor);
   FCreaseColor := params.ReadColor('Graphic', 'CreaseColor', FCreaseColor);
@@ -1381,7 +1388,7 @@ begin
   params.WriteString('Theme', 'Name', ThemeName);
   params.WriteString('Theme', 'ParentTheme', ParentThemeName);
 
-  params.WriteColor('Graphic', 'PointSize', FPointSize);
+  params.WriteInteger('Graphic', 'PointSize', FPointSize);
   params.WriteColor('Graphic', 'ButtockColor', FButtockColor);
   params.WriteColor('Graphic', 'WaterlineColor', FWaterlineColor);
   params.WriteColor('Graphic', 'StationColor', FStationColor);

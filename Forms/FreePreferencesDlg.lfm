@@ -1103,20 +1103,20 @@ object FreePreferencesDialog: TFreePreferencesDialog
         ParentFont = False
         object Panel: TPanel
           Left = 0
-          Height = 481
+          Height = 595
           Top = 0
-          Width = 554
+          Width = 574
           Align = alClient
           BevelOuter = bvNone
-          ClientHeight = 481
-          ClientWidth = 554
+          ClientHeight = 595
+          ClientWidth = 574
           ParentFont = False
           TabOrder = 0
           object Panel37: TPanel
             Left = 0
-            Height = 33
+            Height = 40
             Top = 10
-            Width = 554
+            Width = 574
             Align = alTop
             AutoSize = True
             BorderSpacing.Top = 10
@@ -1127,23 +1127,23 @@ object FreePreferencesDialog: TFreePreferencesDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 33
-            ClientWidth = 554
+            ClientHeight = 40
+            ClientWidth = 574
             ParentFont = False
             TabOrder = 0
             object Label38: TLabel
               Left = 10
-              Height = 25
+              Height = 32
               Top = 4
-              Width = 45
+              Width = 52
               Caption = 'Theme'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object ComboBoxThemes: TComboBox
-              Left = 61
-              Height = 28
+              Left = 68
+              Height = 32
               Top = 4
               Width = 200
               Constraints.MinWidth = 200
@@ -1157,9 +1157,9 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel46: TPanel
             Left = 0
-            Height = 60
-            Top = 43
-            Width = 554
+            Height = 74
+            Top = 50
+            Width = 574
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -1169,23 +1169,23 @@ object FreePreferencesDialog: TFreePreferencesDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 60
-            ClientWidth = 554
+            ClientHeight = 74
+            ClientWidth = 574
             ParentFont = False
             TabOrder = 1
             object Label37: TLabel
               Left = 10
-              Height = 25
+              Height = 32
               Top = 4
-              Width = 110
+              Width = 130
               Caption = 'Tool icon size'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object SelectToolIconSize: TComboBox
-              Left = 126
-              Height = 28
+              Left = 146
+              Height = 32
               Top = 4
               Width = 100
               ItemHeight = 0
@@ -1206,17 +1206,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label17: TLabel
               Left = 10
-              Height = 25
-              Top = 31
-              Width = 110
+              Height = 32
+              Top = 38
+              Width = 130
               Caption = 'Controlpoint size'
               ParentColor = False
               ParentFont = False
             end
             object SpinEdit1: TSpinEdit
-              Left = 126
-              Height = 25
-              Top = 31
+              Left = 146
+              Height = 32
+              Top = 38
               Width = 100
               MaxValue = 5
               MinValue = 1
@@ -1228,21 +1228,21 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel50: TPanel
             Left = 0
-            Height = 292
-            Top = 103
-            Width = 554
+            Height = 348
+            Top = 124
+            Width = 574
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 292
-            ClientWidth = 554
+            ClientHeight = 348
+            ClientWidth = 574
             ParentFont = False
             TabOrder = 2
             object Panel27: TPanel
               Left = 0
-              Height = 292
+              Height = 348
               Top = 0
-              Width = 220
+              Width = 244
               Align = alLeft
               AutoSize = True
               BevelOuter = bvNone
@@ -1252,22 +1252,22 @@ object FreePreferencesDialog: TFreePreferencesDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 2
-              ClientHeight = 292
-              ClientWidth = 220
+              ClientHeight = 348
+              ClientWidth = 244
               ParentFont = False
               TabOrder = 0
               object Label1: TLabel
                 Left = 10
-                Height = 18
+                Height = 22
                 Top = 4
-                Width = 149
+                Width = 173
                 Caption = 'Viewport background'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel4: TPanel
-                Left = 165
-                Height = 18
+                Left = 189
+                Height = 22
                 Top = 4
                 Width = 45
                 BevelOuter = bvLowered
@@ -1279,17 +1279,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label12: TLabel
                 Left = 10
-                Height = 18
-                Top = 24
-                Width = 149
+                Height = 22
+                Top = 28
+                Width = 173
                 Caption = 'Viewport grid'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel14: TPanel
-                Left = 165
-                Height = 18
-                Top = 24
+                Left = 189
+                Height = 22
+                Top = 28
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MaxWidth = 45
@@ -1300,17 +1300,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label13: TLabel
                 Left = 10
-                Height = 18
-                Top = 44
-                Width = 149
+                Height = 22
+                Top = 52
+                Width = 173
                 Caption = 'Grid font'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel15: TPanel
-                Left = 165
-                Height = 18
-                Top = 44
+                Left = 189
+                Height = 22
+                Top = 52
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MaxWidth = 45
@@ -1321,17 +1321,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label2: TLabel
                 Left = 10
-                Height = 18
-                Top = 70
-                Width = 149
+                Height = 22
+                Top = 82
+                Width = 173
                 Caption = 'New surfaces'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel2: TPanel
-                Left = 165
-                Height = 18
-                Top = 70
+                Left = 189
+                Height = 22
+                Top = 82
                 Width = 45
                 BorderSpacing.Top = 8
                 BevelOuter = bvLowered
@@ -1343,17 +1343,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label3: TLabel
                 Left = 10
-                Height = 18
-                Top = 90
-                Width = 149
+                Height = 22
+                Top = 106
+                Width = 173
                 Caption = 'Submerged surfaces'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel5: TPanel
-                Left = 165
-                Height = 18
-                Top = 90
+                Left = 189
+                Height = 22
+                Top = 106
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MaxWidth = 45
@@ -1364,17 +1364,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label18: TLabel
                 Left = 10
-                Height = 18
-                Top = 110
-                Width = 149
+                Height = 22
+                Top = 130
+                Width = 173
                 Caption = 'Surface normals'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel19: TPanel
-                Left = 165
-                Height = 18
-                Top = 110
+                Left = 189
+                Height = 22
+                Top = 130
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1385,17 +1385,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label23: TLabel
                 Left = 10
-                Height = 15
-                Top = 134
-                Width = 149
+                Height = 22
+                Top = 158
+                Width = 173
                 Caption = 'Control curves'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel24: TPanel
-                Left = 165
-                Height = 15
-                Top = 134
+                Left = 189
+                Height = 22
+                Top = 158
                 Width = 45
                 BorderSpacing.Top = 6
                 BevelOuter = bvLowered
@@ -1405,17 +1405,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label4: TLabel
                 Left = 10
-                Height = 18
-                Top = 151
-                Width = 149
+                Height = 22
+                Top = 182
+                Width = 173
                 Caption = 'Regular control edges'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel6: TPanel
-                Left = 165
-                Height = 18
-                Top = 151
+                Left = 189
+                Height = 22
+                Top = 182
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1426,17 +1426,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label5: TLabel
                 Left = 10
-                Height = 18
-                Top = 171
-                Width = 149
+                Height = 22
+                Top = 206
+                Width = 173
                 Caption = 'Crease edges (control)'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel7: TPanel
-                Left = 165
-                Height = 18
-                Top = 171
+                Left = 189
+                Height = 22
+                Top = 206
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1447,17 +1447,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label6: TLabel
                 Left = 10
-                Height = 18
-                Top = 191
-                Width = 149
+                Height = 22
+                Top = 230
+                Width = 173
                 Caption = 'Crease edges (interior)'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel8: TPanel
-                Left = 165
-                Height = 18
-                Top = 191
+                Left = 189
+                Height = 22
+                Top = 230
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1468,10 +1468,10 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
             end
             object Panel36: TPanel
-              Left = 220
-              Height = 292
+              Left = 244
+              Height = 348
               Top = 0
-              Width = 219
+              Width = 246
               Align = alLeft
               AutoSize = True
               BevelOuter = bvNone
@@ -1481,22 +1481,22 @@ object FreePreferencesDialog: TFreePreferencesDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 2
-              ClientHeight = 292
-              ClientWidth = 219
+              ClientHeight = 348
+              ClientWidth = 246
               ParentFont = False
               TabOrder = 1
               object Label7: TLabel
                 Left = 10
-                Height = 18
+                Height = 22
                 Top = 4
-                Width = 148
+                Width = 175
                 Caption = 'Regular control points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel9: TPanel
-                Left = 164
-                Height = 18
+                Left = 191
+                Height = 22
                 Top = 4
                 Width = 45
                 BevelOuter = bvLowered
@@ -1508,17 +1508,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label8: TLabel
                 Left = 10
-                Height = 18
-                Top = 24
-                Width = 148
+                Height = 22
+                Top = 28
+                Width = 175
                 Caption = 'Crease points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel10: TPanel
-                Left = 164
-                Height = 18
-                Top = 24
+                Left = 191
+                Height = 22
+                Top = 28
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1529,17 +1529,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label9: TLabel
                 Left = 10
-                Height = 18
-                Top = 44
-                Width = 148
+                Height = 22
+                Top = 52
+                Width = 175
                 Caption = 'Corner points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel11: TPanel
-                Left = 164
-                Height = 18
-                Top = 44
+                Left = 191
+                Height = 22
+                Top = 52
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1550,17 +1550,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label10: TLabel
                 Left = 10
-                Height = 18
-                Top = 64
-                Width = 148
+                Height = 22
+                Top = 76
+                Width = 175
                 Caption = 'Dart points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel12: TPanel
-                Left = 164
-                Height = 18
-                Top = 64
+                Left = 191
+                Height = 22
+                Top = 76
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1571,17 +1571,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label20: TLabel
                 Left = 10
-                Height = 18
-                Top = 84
-                Width = 148
+                Height = 22
+                Top = 100
+                Width = 175
                 Caption = 'Leak points'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel21: TPanel
-                Left = 164
-                Height = 18
-                Top = 84
+                Left = 191
+                Height = 22
+                Top = 100
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1592,17 +1592,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label11: TLabel
                 Left = 10
-                Height = 18
-                Top = 110
-                Width = 148
+                Height = 22
+                Top = 130
+                Width = 175
                 Caption = 'Selected items'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel13: TPanel
-                Left = 164
-                Height = 18
-                Top = 110
+                Left = 191
+                Height = 22
+                Top = 130
                 Width = 45
                 BorderSpacing.Top = 8
                 BevelOuter = bvLowered
@@ -1614,17 +1614,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label22: TLabel
                 Left = 10
-                Height = 18
-                Top = 130
-                Width = 148
+                Height = 22
+                Top = 154
+                Width = 175
                 Caption = 'Curvature plots'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel23: TPanel
-                Left = 164
-                Height = 18
-                Top = 130
+                Left = 191
+                Height = 22
+                Top = 154
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1635,17 +1635,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label21: TLabel
                 Left = 10
-                Height = 18
-                Top = 150
-                Width = 148
+                Height = 22
+                Top = 178
+                Width = 175
                 Caption = 'Markers'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel22: TPanel
-                Left = 164
-                Height = 18
-                Top = 150
+                Left = 191
+                Height = 22
+                Top = 178
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1656,17 +1656,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label14: TLabel
                 Left = 10
-                Height = 18
-                Top = 170
-                Width = 148
+                Height = 22
+                Top = 202
+                Width = 175
                 Caption = 'Stations'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel16: TPanel
-                Left = 164
-                Height = 18
-                Top = 170
+                Left = 191
+                Height = 22
+                Top = 202
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1677,17 +1677,17 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label15: TLabel
                 Left = 10
-                Height = 18
-                Top = 190
-                Width = 148
+                Height = 22
+                Top = 226
+                Width = 175
                 Caption = 'Buttocks'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel17: TPanel
-                Left = 164
-                Height = 18
-                Top = 190
+                Left = 191
+                Height = 22
+                Top = 226
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1698,18 +1698,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label16: TLabel
                 Left = 10
-                Height = 18
-                Top = 210
-                Width = 148
+                Height = 22
+                Top = 250
+                Width = 175
                 AutoSize = False
                 Caption = 'Waterlines'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel18: TPanel
-                Left = 164
-                Height = 18
-                Top = 210
+                Left = 191
+                Height = 22
+                Top = 250
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1720,18 +1720,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label19: TLabel
                 Left = 10
-                Height = 18
-                Top = 230
-                Width = 148
+                Height = 22
+                Top = 274
+                Width = 175
                 AutoSize = False
                 Caption = 'Diagonals'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel20: TPanel
-                Left = 164
-                Height = 18
-                Top = 230
+                Left = 191
+                Height = 22
+                Top = 274
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1742,18 +1742,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label24: TLabel
                 Left = 10
-                Height = 18
-                Top = 250
-                Width = 148
+                Height = 22
+                Top = 298
+                Width = 175
                 AutoSize = False
                 Caption = 'Hydrostatics font color'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel25: TPanel
-                Left = 164
-                Height = 18
-                Top = 250
+                Left = 191
+                Height = 22
+                Top = 298
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1764,18 +1764,18 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object Label25: TLabel
                 Left = 10
-                Height = 18
-                Top = 270
-                Width = 148
+                Height = 22
+                Top = 322
+                Width = 175
                 AutoSize = False
                 Caption = 'Zebra stripes color'
                 ParentColor = False
                 ParentFont = False
               end
               object Panel26: TPanel
-                Left = 164
-                Height = 18
-                Top = 270
+                Left = 191
+                Height = 22
+                Top = 322
                 Width = 45
                 BevelOuter = bvLowered
                 Constraints.MinHeight = 18
@@ -1789,20 +1789,20 @@ object FreePreferencesDialog: TFreePreferencesDialog
           object Panel56: TPanel
             Left = 0
             Height = 34
-            Top = 395
-            Width = 554
+            Top = 472
+            Width = 574
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
             ClientHeight = 34
-            ClientWidth = 554
+            ClientWidth = 574
             ParentFont = False
             TabOrder = 3
             object BitBtnResetColors: TSpeedButton
               Left = 3
               Height = 28
               Top = 3
-              Width = 100
+              Width = 80
               Align = alLeft
               AutoSize = True
               BorderSpacing.Around = 3

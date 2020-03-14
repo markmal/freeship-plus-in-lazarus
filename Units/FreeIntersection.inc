@@ -472,6 +472,8 @@ begin
       Spline.CurvatureScale := Owner.Visibility.CurvatureScale;
       Spline.ShowCurvature := (Owner.Visibility.ShowCurvature) and (ShowCurvature);
 
+      //Spline.ShowPoints:=true; //TODO remove/ debug
+
       case self.Owner.Precision of
         fpLow: frags:=256;
         fpMedium: frags:=512;

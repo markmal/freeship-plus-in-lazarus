@@ -1114,7 +1114,7 @@ type
     FVisible: boolean;
     FControlPoints: TFasterListTFreeSubdivisionControlPoint;
     FSubdividedPoints: TFasterListTFreeSubdivisionPoint;
-    FCurve: TFreeSpline;
+    FSpline: TFreeSpline;
     FBuild: boolean;
     function FGetColor: TColor;
     function FGetNumberOfControlPoints: integer;
@@ -1150,8 +1150,10 @@ type
       read FBuild write FSetBuild;
     property Color: TColor
       read FGetColor;
-    property Curve: TFreeSpline
-      read FCurve;
+    property Spline: TFreeSpline
+      read FSpline;
+    property SubdividedPoints: TFasterListTFreeSubdivisionPoint
+      read FSubdividedPoints;
     property NumberOfControlPoints: integer
       read FGetNumberOfControlPoints;
     property ControlPoint[index: integer]:

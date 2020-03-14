@@ -4066,37 +4066,37 @@ begin
       end;
     end;
 
-    for I := 1 to NumberOfControlCurves do
+    for I := 0 to NumberOfControlCurves - 1 do
     begin
-      Curve := ControlCurve[I - 1];
-      Curve.FCurve.Clear;
-      Curve.FBuild := False;
-      Curve.FCurve.Capacity := Curve.FSubdividedPoints.Count;
-      for J := 1 to Curve.FSubdividedPoints.Count do
+      Curve := ControlCurve[I];
+      Curve.Spline.Clear;
+      Curve.Build := False;
+      Curve.Spline.Capacity := Curve.SubdividedPoints.Count;
+      for J := 0 to Curve.SubdividedPoints.Count - 1 do
       begin
-        Point := Curve.FSubdividedPoints[J - 1];
-        Curve.FCurve.Add(Point.Coordinate);
-        if (J > 1) and (J < Curve.FSubdividedPoints.Count) then
+        Point := Curve.SubdividedPoints[J];
+        Curve.Spline.Add(Point.Coordinate);
+        if (J > 0) and (J < Curve.SubdividedPoints.Count - 1) then
         begin
           if Point.VertexType = svCorner then
-            Curve.FCurve.Knuckle[J - 1] := True
+            Curve.Spline.Knuckle[J] := True
           else
           begin
-            Edge1 := EdgeExists(Curve.FSubdividedPoints[J - 2],
-              Curve.FSubdividedPoints[J - 1]);
-            Edge2 := EdgeExists(Curve.FSubdividedPoints[J - 1],
-              Curve.FSubdividedPoints[J]);
+            Edge1 := EdgeExists(Curve.SubdividedPoints[J - 1],
+              Curve.SubdividedPoints[J]);
+            Edge2 := EdgeExists(Curve.SubdividedPoints[J],
+              Curve.SubdividedPoints[J + 1]);
             if (Edge1 = nil) or (Edge2 = nil) then
             begin
               x:=0;
-              //if (Edge1.Crease=False) and (Edge2.Crease=False) then Curve.FCurve.Knuckle[J-1]:=Point.VertexType=svCrease;
+              //if (Edge1.Crease=False) and (Edge2.Crease=False) then Curve.FSpline.Knuckle[J-1]:=Point.VertexType=svCrease;
             end
             else if (Edge1.Crease = False) and (Edge2.Crease = False) then
-              Curve.FCurve.Knuckle[J - 1] := Point.VertexType = svCrease;
+              Curve.Spline.Knuckle[J] := Point.VertexType = svCrease;
           end;
         end;
       end;
-      Curve.FBuild := True;
+      Curve.Build := True;
     end;
   end
   else if NumberOfControlPoints > 0 then

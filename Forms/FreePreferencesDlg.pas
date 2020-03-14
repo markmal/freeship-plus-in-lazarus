@@ -323,6 +323,7 @@ begin
   Freeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
   ShowTranslatedValues(Self);
   Showmodal;
+  if FThemeChanged then FConfigChanged := true;
   Result := ModalResult = mrOk;
 end;{TFreePreferencesDialog.Execute}
 

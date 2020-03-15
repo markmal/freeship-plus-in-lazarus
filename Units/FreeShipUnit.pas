@@ -512,6 +512,8 @@ type
     // Show normals of selected surface patches
     FShowGrid: boolean;
     // Show the grid of intersections in the plan,profile and bodyplan view
+    FShowBothSides: boolean; // show both sides
+
     FShowMarkers: boolean;
     FShowControlCurves: boolean;
     FShowCurvature: boolean;
@@ -542,6 +544,7 @@ type
     procedure FSetShowWaterlines(Val: boolean);
     procedure FSetShowControlCurves(Val: boolean);
     procedure FSetShowHydrostaticData(Val: boolean);
+    procedure FSetShowBothSides(Val: boolean);
   public
     constructor Create(Owner: TFreeShip);
     procedure Clear;
@@ -571,6 +574,7 @@ type
     property ShowNormals: boolean read FShowNormals write FSetShowNormals;
     property ShowStations: boolean read FShowStations write FSetShowStations;
     property ShowWaterlines: boolean read FShowWaterlines write FSetShowWaterlines;
+    property ShowBothSides: boolean read FShowBothSides write FSetShowBothSides;
   end;
 
   {---------------------------------------------------------------------------------------------------}

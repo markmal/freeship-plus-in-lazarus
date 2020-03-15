@@ -1,12 +1,14 @@
 object FreeKeelWizardDialog: TFreeKeelWizardDialog
-  Left = 559
+  Left = 799
   Height = 800
-  Top = 151
+  Top = 190
   Width = 1000
   BorderStyle = bsDialog
   Caption = 'Keel and rudder wizard'
   ClientHeight = 800
   ClientWidth = 1000
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poMainFormCenter
   LCLVersion = '2.0.6.0'
   object Panel2: TPanel
@@ -32,6 +34,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         Caption = '3D view'
         ClientHeight = 695
         ClientWidth = 653
+        OnContextPopup = TabSheet1ContextPopup
         object ScrollBar1: TScrollBar
           Left = 0
           Height = 15
@@ -46,8 +49,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object ScrollBar2: TScrollBar
           Left = 638
-          Height = 680
-          Top = 0
+          Height = 659
+          Top = 21
           Width = 15
           Align = alRight
           Kind = sbVertical
@@ -56,6 +59,80 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           PageSize = 0
           Position = 20
           TabOrder = 0
+        end
+        object ViewToolbar: TPanel
+          Left = 0
+          Height = 21
+          Top = 0
+          Width = 653
+          Align = alTop
+          AutoSize = True
+          ChildSizing.HorizontalSpacing = 1
+          ChildSizing.Layout = cclTopToBottomThenLeftToRight
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 21
+          ClientWidth = 653
+          TabOrder = 2
+          object sbShowControlNet: TSpeedButton
+            Left = 0
+            Height = 20
+            Hint = 'Show Control Net'
+            Top = 0
+            Width = 20
+            Action = ActionShowControlNet
+            AutoSize = True
+            Flat = True
+            Images = MainForm.MenuImages
+            ImageIndex = 2
+            ShowCaption = False
+            ShowHint = True
+            ParentShowHint = False
+          end
+          object sbShowInteriorEdges: TSpeedButton
+            Left = 21
+            Height = 20
+            Hint = 'Show Interior Edges'
+            Top = 0
+            Width = 20
+            Action = ActionShowInteriorEdges
+            AllowAllUp = True
+            AutoSize = True
+            Flat = True
+            Images = MainForm.MenuImages
+            ImageIndex = 3
+            ShowCaption = False
+            ShowHint = True
+            ParentShowHint = False
+          end
+          object sbShowBothSides: TSpeedButton
+            Left = 42
+            Height = 20
+            Hint = 'Show Both Sides'
+            Top = 0
+            Width = 20
+            Action = ActionShowBothSides
+            AllowAllUp = True
+            AutoSize = True
+            Flat = True
+            Images = MainForm.MenuImages
+            ImageIndex = 4
+            ShowCaption = False
+            ShowHint = True
+            ParentShowHint = False
+          end
+          object LayerColorButton: TColorButton
+            Left = 63
+            Height = 20
+            Hint = 'Set Layer Color'
+            Top = 0
+            Width = 20
+            BorderWidth = 2
+            ButtonColorSize = 16
+            ButtonColor = clGradientActiveCaption
+            OnColorChanged = ActionSetLayerColorExecute
+            ShowHint = True
+            ParentShowHint = False
+          end
         end
       end
       object TabSheet2: TTabSheet
@@ -1368,6 +1445,48 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       Caption = 'Save as part'
       Flat = True
       OnClick = SpeedButton2Click
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    AutoPopup = False
+    left = 510
+    top = 306
+    object MenuItem1: TMenuItem
+      Action = ActionModeShade
+    end
+    object MenuItem2: TMenuItem
+      Action = ActionModeWireframe
+    end
+  end
+  object ActionList1: TActionList
+    left = 508
+    top = 200
+    object ActionModeShade: TAction
+      Caption = 'Shade'
+      GroupIndex = 1
+      OnExecute = ActionModeShadeExecute
+    end
+    object ActionModeWireframe: TAction
+      Caption = 'Wireframe'
+      GroupIndex = 1
+      OnExecute = ActionModeWireframeExecute
+    end
+    object ActionShowControlNet: TAction
+      Caption = 'Show Control Net'
+      OnExecute = ActionShowControlNetExecute
+    end
+    object ActionShowInteriorEdges: TAction
+      Caption = 'Show Interior Edges'
+      OnExecute = ActionShowInteriorEdgesExecute
+    end
+    object ActionShowBothSides: TAction
+      Caption = 'Show Both Sides'
+      OnExecute = ActionShowBothSidesExecute
+    end
+    object ActionSetLayerColor: TAction
+      Caption = 'Set Layer Color'
+      Hint = 'Set Layer Color'
+      OnExecute = ActionSetLayerColorExecute
     end
   end
 end

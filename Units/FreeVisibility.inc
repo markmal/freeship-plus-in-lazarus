@@ -53,6 +53,13 @@ begin
   end;
 end;{TFreeVisibility.FSetShowInteriorEdges}
 
+procedure TFreeVisibility.FSetShowBothSides(Val: boolean);
+begin
+  if val = FShowBothSides then exit;
+  Owner.FileChanged := True;
+  Owner.Redraw;
+end;
+
 procedure TFreeVisibility.FSetShowControlNet(Val: boolean);
 var
   I: integer;

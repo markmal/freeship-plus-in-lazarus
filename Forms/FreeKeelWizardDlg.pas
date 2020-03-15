@@ -71,7 +71,7 @@ uses
   ExtCtrls,
   ImgList,
   ToolWin,
-  Menus;
+  Menus, ActnList, Types;
 
 
 {$IFDEF FPC}
@@ -699,10 +699,18 @@ type
   { TFreeKeelWizardDialog }
 
   TFreeKeelWizardDialog = class(TForm)
+    ActionSetLayerColor: TAction;
+    ActionShowBothSides: TAction;
+    ActionShowInteriorEdges: TAction;
+    ActionShowControlNet: TAction;
+    ActionModeWireframe: TAction;
+    ActionModeShade: TAction;
+    ActionList1: TActionList;
     BitBtn1: TSpeedButton;
     BitBtn2: TSpeedButton;
     Button1: TButton;
     Button2: TButton;
+    LayerColorButton: TColorButton;
     ComboBox: TComboBox;
     ComboBoxPlanformShape: TComboBox;
     GroupBox1: TGroupBox;
@@ -750,6 +758,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel10: TPanel;
@@ -758,6 +768,10 @@ type
     Panel13: TPanel;
     Panel14: TPanel;
     Panel15: TPanel;
+    sbShowControlNet: TSpeedButton;
+    sbShowInteriorEdges: TSpeedButton;
+    sbShowBothSides: TSpeedButton;
+    ViewToolbar: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
@@ -766,6 +780,7 @@ type
     Panel7: TPanel;
     Panel8: TPanel;
     Panel9: TPanel;
+    PopupMenu1: TPopupMenu;
     ScrollBar1: TScrollBar;
     ScrollBar2: TScrollBar;
     TabSheet3: TTabSheet;
@@ -794,10 +809,18 @@ type
     _Label23: TLabel;
     _Label25: TLabel;
     _Label8: TLabel;
+    procedure ActionModeShadeExecute(Sender: TObject);
+    procedure ActionModeWireframeExecute(Sender: TObject);
+    procedure ActionSetLayerColorExecute(Sender: TObject);
+    procedure ActionShowBothSidesExecute(Sender: TObject);
+    procedure ActionShowControlNetExecute(Sender: TObject);
+    procedure ActionShowInteriorEdgesExecute(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure ComboBoxClick(Sender: TObject);
     procedure ComboBoxPlanformShapeClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure Input1AfterSetValue(Sender: TObject);
     procedure Input1ChangeValue(Sender: TObject);
     procedure Input1KeyDown(Sender: TObject;
@@ -818,9 +841,12 @@ type
     procedure Input6KeyDown(Sender: TObject;
       var Key: word; Shift: TShiftState);
     procedure Panel8Resize(Sender: TObject);
+    procedure TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
     procedure ViewportRequestExtents(Sender: TObject;
       var Min, Max: T3DCoordinate);
     procedure ViewportRedraw(Sender: TObject);
+    procedure ViewportRedraw2(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure Input5AfterSetValue(Sender: TObject);
     procedure Input6AfterSetValue(Sender: TObject);
@@ -833,6 +859,8 @@ type
     procedure InputLengthAfterSetValue(Sender: TObject);
     procedure InputDensityAfterSetValue(Sender: TObject);
     procedure ViewportMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: integer);
+    procedure ViewportMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
     procedure ViewportMouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
 
@@ -848,7 +876,14 @@ type
     VolCOG: T3DCoordinate;
     WettedArea: TFloatType;
     fDragBegin: TPoint;
+    fMouseDownLoc: TPoint;
     IsUptoDate: boolean;
+    FKeelSurface: TFreeSubdivisionsurface;
+    FShowInteriorEdges: boolean;
+    FShowControlNet: boolean;
+    FShowBothSides: boolean;
+    FLayerColor:TColor;
+    FBgColor:TColor;
     function FGetCols: integer;
     function FGetRows: integer;
     procedure UpdateData;
@@ -1539,13 +1574,28 @@ begin
 
   end;
 
+  if not assigned(FKeelSurface) then
+     FKeelSurface.Free;
+  FKeelSurface:=TFreeSubdivisionsurface.Create(nil);
 
+  SendToSurface(FKeelSurface);
+  FKeelSurface.DesiredSubdivisionLevel := 1;
+  FKeelSurface.Rebuild;
+  FKeelSurface.ClearSelection;
+  FKeelSurface.ShadeUnderWater:=false;
+  FKeelSurface.ShowControlNet:=FShowControlNet;
+  FKeelSurface.ShowInteriorEdges:=FShowInteriorEdges;
+  FKeelSurface.DrawMirror:=FShowBothSides;
+  FKeelSurface.UnderWaterColor:=FFreeship.Preferences.UnderWaterColor;
+  FKeelSurface.ControlPointSize := FFreeship.Preferences.PointSize;
 
   IsUptoDate := True;
   Viewport.ZoomExtents;
+
 end;{TFreeKeelWizardDialog.UpdateData}
 
 procedure TFreeKeelWizardDialog.createViewport();
+var VpLight:TFreeLight;
 begin
   if assigned(Viewport) then
     exit;
@@ -1570,7 +1620,7 @@ begin
     BackgroundImage.Visible := True;
     BorderStyle := bsSingle;
     CameraType := ftFarTele;
-    Color := clWhite;
+    Color := clGray;
     DoubleBuffer := True;
     Elevation := 20;
     HorScrollbar := ScrollBar1;
@@ -1579,9 +1629,14 @@ begin
     ViewType := fvPerspective;
     ViewportMode := vmWireFrame;
     OnMouseDown := ViewportMouseDown;
+    OnMouseUp := ViewportMouseUp;
     OnMouseMove := ViewportMouseMove;
-    OnRedraw := ViewportRedraw;
+    OnRedraw := ViewportRedraw2;
     OnRequestExtents := ViewportRequestExtents;
+    PopupMenu := PopupMenu1;
+    VpLight := Light;
+    VpLight.Position := Point3D(-180,180,180);
+    Light := VpLight;
   end;
 end;
 
@@ -1607,8 +1662,11 @@ begin
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
   ShowTranslatedValues(Self);
+  FLayerColor := FFreeship.Preferences.LayerColor;
+  LayerColorButton.ButtonColor := FLayerColor;
 
   ShowModal;
+
   FreeAndNil(FProfile);
   Result := ModalResult = mrOk;
 end;{TFreeKeelWizardDialog.Execute}
@@ -1617,6 +1675,54 @@ procedure TFreeKeelWizardDialog.BitBtn1Click(Sender: TObject);
 begin
   Modalresult := mrOk;
 end;{TFreeKeelWizardDialog.BitBtn1Click}
+
+procedure TFreeKeelWizardDialog.ActionModeShadeExecute(Sender: TObject);
+begin
+  Viewport.ViewportMode:=vmShade;
+end;
+
+procedure TFreeKeelWizardDialog.ActionModeWireframeExecute(Sender: TObject);
+begin
+  Viewport.ViewportMode:=vmWireframe;
+end;
+
+procedure TFreeKeelWizardDialog.ActionSetLayerColorExecute(Sender: TObject);
+var i:integer;
+begin
+  FLayerColor := LayerColorButton.ButtonColor;
+  if not assigned(FKeelSurface) then exit;
+  for i:=0 to FKeelSurface.NumberOfLayers-1 do
+    FKeelSurface.Layer[i].Color:=FLayerColor;
+  ViewPort.Invalidate;
+end;
+
+procedure TFreeKeelWizardDialog.ActionShowControlNetExecute(Sender: TObject);
+begin
+  FShowControlNet := not FShowControlNet;
+  sbShowControlNet.GroupIndex:=1;
+  sbShowControlNet.Down := FShowControlNet;
+  FKeelSurface.ShowControlNet:=FShowControlNet;
+  ViewPort.Invalidate;
+end;
+
+procedure TFreeKeelWizardDialog.ActionShowInteriorEdgesExecute(Sender: TObject);
+begin
+  FShowInteriorEdges := not FShowInteriorEdges;
+  sbShowInteriorEdges.GroupIndex:=2;
+  sbShowInteriorEdges.Down := FShowInteriorEdges;
+  FKeelSurface.ShowInteriorEdges:=FShowInteriorEdges;
+  ViewPort.Invalidate;
+end;
+
+procedure TFreeKeelWizardDialog.ActionShowBothSidesExecute(Sender: TObject);
+begin
+  FShowBothSides := not FShowBothSides;
+  sbShowBothSides.GroupIndex:=3;
+  sbShowBothSides.Down := FShowBothSides;
+  FKeelSurface.DrawMirror := FShowBothSides;
+  ViewPort.Invalidate;
+end;
+
 
 procedure TFreeKeelWizardDialog.BitBtn2Click(Sender: TObject);
 begin
@@ -1636,6 +1742,21 @@ begin
     Input2.Value := 0.0;
   UpdateData;
 end;{TFreeKeelWizardDialog.ComboBox1Click}
+
+procedure TFreeKeelWizardDialog.FormCreate(Sender: TObject);
+begin
+  FShowControlNet:=true;
+  FShowInteriorEdges:=false;
+  FShowBothSides:=false;
+  FLayerColor := clSilver;
+  FBgColor:=clGray;
+end;
+
+procedure TFreeKeelWizardDialog.FormDestroy(Sender: TObject);
+begin
+  if assigned(FKeelSurface) then
+       FreeAndNil(FKeelSurface);
+end;
 
 procedure TFreeKeelWizardDialog.Input1AfterSetValue(Sender: TObject);
 begin
@@ -1714,6 +1835,12 @@ begin
   //PageControl1.Contraints.MinWidth := Panel8.Width + 10;
 end;
 
+procedure TFreeKeelWizardDialog.TabSheet1ContextPopup(Sender: TObject;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+
+end;
+
 procedure TFreeKeelWizardDialog.ViewportRequestExtents(Sender: TObject;
   var Min, Max: T3DCoordinate);
 var
@@ -1787,9 +1914,10 @@ var
   Pts: array of TPoint;
   P1, P2: T3DCoordinate;
   P3, P4: T3DCoordinate;
-  I, J, R, C: integer;
+  I, J, Rn, C: integer;
   Pts100: array [0..99] of TPoint;
   dy, dz, wng: extended;
+  R,G,B,A:Byte;
 begin
   if not IsUptoDate then
     UpdateData;
@@ -1799,19 +1927,16 @@ begin
     begin
       if FProfile.NumberOfPoints > 1 then
       begin
-        //FProfile.ShowPoints:=true;
-        FProfile.ShowCurvature:=true;
-        FProfile.CurvatureColor:=clBlue;
         FProfile.Draw(Viewport);
 
         Setlength(Pts, Cols);
         //Setlength(Mesh,Cols*Rows);
-        R := Rows;
+        Rn := Rows;
         if not IsUptoDate then
           UpdateData;
-        for I := 1 to R do //if (I=0) or (I=Rows) then
+        for I := 1 to Rn do //if (I=0) or (I=Rows) then
         begin
-          if I in [1, R] then
+          if I in [1, Rn] then
             Viewport.PenColor := clBlack
           else
             Viewport.PenColor := clSilver;
@@ -1827,7 +1952,7 @@ begin
           end;
           Viewport.Polyline(Pts);
         end;
-        Setlength(Pts, R);
+        Setlength(Pts, Rn);
         //Setlength(Mesh,Cols*Rows);
         C := Cols;
         if not IsUptoDate then
@@ -1841,10 +1966,10 @@ begin
           for I := 1 to Rows do
             Pts[I - 1] := Viewport.Project(Mesh[I - 1, J - 1]);
           Viewport.Polyline(Pts);
-          R := Rows;
+          Rn := Rows;
           if not IsUptoDate then
             UpdateData;
-          for I := 1 to R do
+          for I := 1 to Rn do
           begin
             P1 := Mesh[I - 1, J - 1];
             P1.Y := -P1.Y;
@@ -1917,6 +2042,12 @@ begin
       end;
     end
     else
+    begin
+      R := GetRValue(FFreeship.Preferences.LayerColor);
+      G := GetGValue(FFreeship.Preferences.LayerColor);
+      B := GetBValue(FFreeship.Preferences.LayerColor);
+      A:=255;
+      Viewport.BeginUpdate;
       for I := 2 to Rows do
         for J := 2 to Cols do
         begin
@@ -1924,25 +2055,26 @@ begin
           P2 := Mesh[I - 1][J - 2];
           P3 := Mesh[I - 2][J - 2];
           P4 := Mesh[I - 2][J - 1];
-          Viewport.ShadeTriangle(P1, P2, P3, GetRValue(
-            FFreeship.Preferences.LayerColor), GetGValue(FFreeship.Preferences.LayerColor),
-            GetBValue(FFreeship.Preferences.LayerColor));
-          Viewport.ShadeTriangle(P1, P3, P4, GetRValue(
-            FFreeship.Preferences.LayerColor), GetGValue(FFreeship.Preferences.LayerColor),
-            GetBValue(FFreeship.Preferences.LayerColor));
+          Viewport.ShadeTriangle(P1, P2, P3, R, G, B, A);
+          Viewport.ShadeTriangle(P1, P3, P4, R, G, B, A);
           P1.Y := -P1.Y;
           P2.Y := -P2.Y;
           P3.Y := -P3.Y;
           P4.Y := -P4.Y;
-          Viewport.ShadeTriangle(P1, P2, P3, GetRValue(
-            FFreeship.Preferences.LayerColor), GetGValue(FFreeship.Preferences.LayerColor),
-            GetBValue(FFreeship.Preferences.LayerColor));
-          Viewport.ShadeTriangle(P1, P3, P4, GetRValue(
-            FFreeship.Preferences.LayerColor), GetGValue(FFreeship.Preferences.LayerColor),
-            GetBValue(FFreeship.Preferences.LayerColor));
+          Viewport.ShadeTriangle(P1, P2, P3, R, G, B, A);
+          Viewport.ShadeTriangle(P1, P3, P4, R, G, B, A);
         end;
+      Viewport.EndUpdate;
+    end;
 
 end;{TFreeKeelWizardDialog.ViewportRedraw}
+
+procedure TFreeKeelWizardDialog.ViewportRedraw2(Sender: TObject);
+begin
+  ViewPort.PenWidth:=1;
+  self.FKeelSurface.Draw(Viewport);
+end;
+
 
 procedure TFreeKeelWizardDialog.SpeedButton1Click(Sender: TObject);
 var
@@ -2016,30 +2148,34 @@ var
     begin
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY, dZ + kZ *
-        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
+      P.Coordinate := SetPoint(
+        dX - InputBulbLength.Value * NacaProfiles[0, I],
+        dY,
+        dZ + kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[0, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY + NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
-        InputBulbLength.Value * kR / 1.4142, dZ);
+      P.Coordinate := SetPoint(
+        dX - InputBulbLength.Value * NacaProfiles[0, I],
+        dY + NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR / 1.4142,
+        dZ + kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[1, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY, dZ - kZ *
-        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
+      P.Coordinate := SetPoint(
+        dX - InputBulbLength.Value * NacaProfiles[0, I],
+        dY + NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR / 1.4142,
+        dZ - kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[2, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY - NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
-        InputBulbLength.Value * kR / 1.4142, dZ);
+      P.Coordinate := SetPoint(
+      dX - InputBulbLength.Value * NacaProfiles[0, I],
+      dY,
+      dZ - kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[3, i] := P;
 
     end;
@@ -2064,13 +2200,13 @@ var
       FacePoints.Add(PP[3, 2]);
       Surface.AddControlFace(FacePoints, True, Layer);
 
+      {
       FacePoints.Clear;
       FacePoints.Add(P1);
       FacePoints.Add(PP[3, 2]);
       FacePoints.Add(PP[0, 2]);
-      Surface.AddControlFace(FacePoints, True, Layer);
-
-
+      ///Surface.AddControlFace(FacePoints, True, Layer);
+      }
 
       for i := 2 to Nh - 2 do
       begin
@@ -2095,13 +2231,14 @@ var
         FacePoints.Add(PP[3, i]);
         Surface.AddControlFace(FacePoints, True, Layer);
 
+        {
         FacePoints.Clear;
         FacePoints.Add(PP[3, i]);
         FacePoints.Add(PP[3, i + 1]);
         FacePoints.Add(PP[0, i + 1]);
         FacePoints.Add(PP[0, i]);
-        Surface.AddControlFace(FacePoints, True, Layer);
-
+        ///Surface.AddControlFace(FacePoints, True, Layer);
+        }
       end;
 
       FacePoints.Clear;
@@ -2122,12 +2259,13 @@ var
       FacePoints.Add(PP[3, Nh - 1]);
       Surface.AddControlFace(FacePoints, True, Layer);
 
+      {
       FacePoints.Clear;
       FacePoints.Add(P2);
       FacePoints.Add(PP[3, Nh - 1]);
       FacePoints.Add(PP[0, Nh - 1]);
-      Surface.AddControlFace(FacePoints, True, Layer);
-
+      ///Surface.AddControlFace(FacePoints, True, Layer);
+      }
     end;
     FacePoints.Destroy;
 
@@ -2174,42 +2312,49 @@ var
     begin
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY, dZ + kZ *
-        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
+      P.Coordinate := SetPoint(
+        dX - InputBulbLength.Value * NacaProfiles[0, I],
+        dY,
+        dZ + kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[0, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY + Wng, dZ + kZ *
-        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
+      P.Coordinate := SetPoint(
+        dX - InputBulbLength.Value * NacaProfiles[0, I],
+        dY + Wng,
+        dZ + kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[1, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
       if InputBulbShape.ItemIndex = 3 then
-        P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-          NacaProfiles[0, I], dY + NacaProfiles[InputBulbWing.ItemIndex + 1, I] *
-          InputBulbLength.Value * kR + wng, dZ)
+        P.Coordinate := SetPoint(
+          dX - InputBulbLength.Value * NacaProfiles[0, I],
+          dY + NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR + wng,
+          dZ)
       else
-        P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-          NacaProfiles[0, I], dY + Wng, dZ);
+        P.Coordinate := SetPoint(
+          dX - InputBulbLength.Value * NacaProfiles[0, I],
+          dY + Wng,
+          dZ);
       PP[2, i] := P;
 
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY + Wng, dZ - kZ *
-        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
+      P.Coordinate := SetPoint(
+        dX - InputBulbLength.Value * NacaProfiles[0, I],
+        dY + Wng,
+        dZ - kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[3, i] := P;
 
       P := TFreeSubdivisionControlPoint.Create(Surface);
       Surface.AddControlPoint(P);
-      P.Coordinate := SetPoint(dX - InputBulbLength.Value *
-        NacaProfiles[0, I], dY, dZ - kZ *
-        NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
+      P.Coordinate := SetPoint(
+        dX - InputBulbLength.Value * NacaProfiles[0, I],
+        dY,
+        dZ - kZ * NacaProfiles[InputBulbWing.ItemIndex + 1, I] * InputBulbLength.Value * kR);
       PP[4, i] := P;
     end;
 
@@ -2315,6 +2460,9 @@ begin
     Str := ComboBoxPlanformShape.Text + ' ' + UTF8Lowercase(ComboBox.Text) + ' ' + _ComboBox2.Text;
     Layer.Name := Str;
     Layer.Color := FFreeship.Preferences.LayerColor;
+    Layer.Color := FLayerColor;
+    Layer.AlphaBlend:=255;
+
     Setlength(Grid, Rows + 2);
     for I := 1 to Rows + 2 do
       Setlength(Grid[I - 1], Cols);
@@ -2418,7 +2566,9 @@ begin
     begin
       Layer := Surface.AddNewLayer;
       Layer.Name := InputBulbShape.Text + '_' + InputBulbWing.Text;
-      Layer.Color := FFreeship.Preferences.LayerColor;
+      Layer.Color := FLayerColor; //FFreeship.Preferences.LayerColor;
+      Layer.AlphaBlend:=255;
+
       if InputBulbShape.ItemIndex = 1 then
         AddRoundBulb
       else
@@ -2493,7 +2643,16 @@ begin
   begin
     fDragBegin.X := X;
     fDragBegin.Y := Y;
+    fMouseDownLoc := fDragBegin;
   end;
+end;
+
+procedure TFreeKeelWizardDialog.ViewportMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: integer);
+begin
+  if (Button = mbRight) and (fMouseDownLoc.X = X) and (fMouseDownLoc.Y = Y)
+  then
+    PopupMenu1.PopUp;
 end;
 
 procedure TFreeKeelWizardDialog.ViewportMouseMove(Sender: TObject;
@@ -2505,7 +2664,6 @@ begin
       Viewport.Pan.Y + Y - fDragBegin.Y);
     fDragBegin.X := X;
     fDragBegin.Y := Y;
-
   end;
 end;
 

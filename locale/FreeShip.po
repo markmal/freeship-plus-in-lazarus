@@ -2449,6 +2449,41 @@ msgstr ""
 msgid "Find intersection with"
 msgstr ""
 
+#: tfreekeelwizarddialog.actionmodeshade.caption
+msgctxt "tfreekeelwizarddialog.actionmodeshade.caption"
+msgid "Shade"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionmodewireframe.caption
+msgctxt "tfreekeelwizarddialog.actionmodewireframe.caption"
+msgid "Wireframe"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionsetlayercolor.caption
+msgctxt "tfreekeelwizarddialog.actionsetlayercolor.caption"
+msgid "Set Layer Color"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionsetlayercolor.hint
+msgctxt "tfreekeelwizarddialog.actionsetlayercolor.hint"
+msgid "Set Layer Color"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionshowbothsides.caption
+msgctxt "tfreekeelwizarddialog.actionshowbothsides.caption"
+msgid "Show Both Sides"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionshowcontrolnet.caption
+msgctxt "tfreekeelwizarddialog.actionshowcontrolnet.caption"
+msgid "Show Control Net"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionshowinterioredges.caption
+msgctxt "tfreekeelwizarddialog.actionshowinterioredges.caption"
+msgid "Show Interior Edges"
+msgstr ""
+
 #: tfreekeelwizarddialog.bitbtn1.caption
 msgctxt "tfreekeelwizarddialog.bitbtn1.caption"
 msgid "OK"
@@ -2632,8 +2667,28 @@ msgstr ""
 msgid "Planform COG"
 msgstr ""
 
+#: tfreekeelwizarddialog.layercolorbutton.hint
+msgctxt "tfreekeelwizarddialog.layercolorbutton.hint"
+msgid "Set Layer Color"
+msgstr ""
+
 #: tfreekeelwizarddialog.panel7.caption
 msgid "Panel7"
+msgstr ""
+
+#: tfreekeelwizarddialog.sbshowbothsides.hint
+msgctxt "tfreekeelwizarddialog.sbshowbothsides.hint"
+msgid "Show Both Sides"
+msgstr ""
+
+#: tfreekeelwizarddialog.sbshowcontrolnet.hint
+msgctxt "tfreekeelwizarddialog.sbshowcontrolnet.hint"
+msgid "Show Control Net"
+msgstr ""
+
+#: tfreekeelwizarddialog.sbshowinterioredges.hint
+msgctxt "tfreekeelwizarddialog.sbshowinterioredges.hint"
+msgid "Show Interior Edges"
 msgstr ""
 
 #: tfreekeelwizarddialog.speedbutton1.caption

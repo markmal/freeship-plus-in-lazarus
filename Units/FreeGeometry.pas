@@ -201,7 +201,7 @@ type
     Position: T3DCoordinate;
     // position of light in world
     Luminance: byte;           // brightness
-    Ambient: byte
+    Ambient: byte;
   end;
 
 type
@@ -617,7 +617,7 @@ type
       read FGetBrushColor write FSetBrushColor;
     property BrushStyle: TBrushStyle
       read FGetBrushStyle write FSetBrushStyle;
-    property CameraLocation: T3DCoordinate read FCameraLocation;
+    property CameraLocation: T3DCoordinate read FCameraLocation write FCameraLocation;
     property DrawingCanvas: TCanvas
       read FDrawingCanvas write FDrawingCanvas;
     property FieldOfView: TFloatType read FFieldOfView;

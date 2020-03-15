@@ -1249,7 +1249,7 @@ begin
       // Clear buffer
       FDrawingCanvas.Brush.Color := Color;
       FDrawingCanvas.Brush.Style := bsSolid;
-      FDrawingCanvas.Rectangle(-1, -1, FDestinationWidth + 2, FDestinationHeight + 2);
+      FDrawingCanvas.FillRect(-1, -1, FDestinationWidth + 2, FDestinationHeight + 2);
 
       if BackgroundImage.Bitmap <> nil then
         BackgroundImage.Draw;

@@ -1,7 +1,7 @@
 object FreeHullWindow: TFreeHullWindow
-  Left = 807
+  Left = 609
   Height = 358
-  Top = 201
+  Top = 199
   Width = 537
   Caption = 'FreeHullWindow'
   ClientHeight = 358

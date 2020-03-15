@@ -64,7 +64,7 @@ const CurrentVersion      = fv462;   // Current (latest) version of the FREE!shi
 
 var
 FREESHIP_MAJOR_VERSION : string ='4.6';   //Major version
-FREESHIP_VERSION : string ='4.6.2.0';   //Major full version
+FREESHIP_VERSION : string ='4.6.3.0';   //Major full version
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;

@@ -9,36 +9,36 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
   ClientWidth = 800
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
-    Height = 576
-    Top = 24
+    Height = 570
+    Top = 30
     Width = 800
     Align = alClient
     Alignment = taRightJustify
     BevelOuter = bvNone
     BorderWidth = 8
-    ClientHeight = 576
+    ClientHeight = 570
     ClientWidth = 800
     Constraints.MinWidth = 80
     TabOrder = 0
     object PageControl1: TPageControl
       Left = 8
-      Height = 560
+      Height = 554
       Top = 8
       Width = 784
-      ActivePage = TabSheet3
+      ActivePage = TabSheet1
       Align = alClient
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
-        ClientHeight = 527
+        ClientHeight = 514
         ClientWidth = 778
         object Panel: TPanel
           Left = 0
-          Height = 527
+          Height = 514
           Top = 0
           Width = 778
           Align = alClient
@@ -48,113 +48,113 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           ChildSizing.VerticalSpacing = 10
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 527
+          ClientHeight = 514
           ClientWidth = 778
           TabOrder = 0
           object Panel6: TPanel
             Left = 10
-            Height = 106
+            Height = 134
             Top = 10
-            Width = 301
+            Width = 315
             BevelOuter = bvNone
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclTopToBottomThenLeftToRight
             ChildSizing.ControlsPerLine = 4
-            ClientHeight = 106
-            ClientWidth = 301
+            ClientHeight = 134
+            ClientWidth = 315
             TabOrder = 0
             object Label1: TLabel
               Left = 0
-              Height = 25
+              Height = 32
               Top = 0
-              Width = 95
+              Width = 109
               Caption = 'Project name'
               Layout = tlCenter
               ParentColor = False
             end
             object Label7: TLabel
               Left = 0
-              Height = 25
-              Top = 27
-              Width = 95
+              Height = 32
+              Top = 34
+              Width = 109
               Caption = 'Designer'
               Layout = tlCenter
               ParentColor = False
             end
             object Label15: TLabel
               Left = 0
-              Height = 25
-              Top = 54
-              Width = 95
+              Height = 32
+              Top = 68
+              Width = 109
               Caption = 'Comment'
               Layout = tlCenter
               ParentColor = False
             end
             object Label16: TLabel
               Left = 0
-              Height = 25
-              Top = 81
-              Width = 95
+              Height = 32
+              Top = 102
+              Width = 109
               Caption = 'File created by'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit1: TEdit
-              Left = 101
-              Height = 25
+              Left = 115
+              Height = 32
               Top = 0
               Width = 200
               Constraints.MinWidth = 200
               TabOrder = 0
             end
             object Edit7: TEdit
-              Left = 101
-              Height = 25
-              Top = 27
+              Left = 115
+              Height = 32
+              Top = 34
               Width = 200
               TabOrder = 1
             end
             object Edit9: TEdit
-              Left = 101
-              Height = 25
-              Top = 54
+              Left = 115
+              Height = 32
+              Top = 68
               Width = 200
               TabOrder = 2
             end
             object Edit10: TEdit
-              Left = 101
-              Height = 25
-              Top = 81
+              Left = 115
+              Height = 32
+              Top = 102
               Width = 200
               TabOrder = 3
             end
           end
           object Panel7: TPanel
             Left = 10
-            Height = 52
-            Top = 126
-            Width = 301
+            Height = 66
+            Top = 154
+            Width = 315
             BevelOuter = bvNone
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 52
-            ClientWidth = 301
+            ClientHeight = 66
+            ClientWidth = 315
             TabOrder = 1
             object Label8: TLabel
               Left = 0
-              Height = 25
+              Height = 32
               Top = 0
-              Width = 59
+              Width = 70
               Caption = 'Units'
               Layout = tlCenter
               ParentColor = False
             end
             object Unitbox: TComboBox
-              Left = 65
-              Height = 25
+              Left = 76
+              Height = 32
               Top = 0
               Width = 100
               ItemHeight = 0
@@ -169,17 +169,17 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
             end
             object Label24: TLabel
               Left = 0
-              Height = 25
-              Top = 27
-              Width = 59
+              Height = 32
+              Top = 34
+              Width = 70
               Caption = 'Precision'
               ParentColor = False
             end
             object PrecisionBox: TComboBox
-              Left = 65
-              Height = 25
+              Left = 76
+              Height = 32
               Hint = 'Change the precision of the model.'
-              Top = 27
+              Top = 34
               Width = 100
               ItemHeight = 0
               ItemIndex = 0
@@ -195,44 +195,44 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Panel8: TPanel
             Left = 10
-            Height = 67
-            Top = 188
-            Width = 301
+            Height = 76
+            Top = 230
+            Width = 315
             BevelOuter = bvNone
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclTopToBottomThenLeftToRight
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 67
-            ClientWidth = 301
+            ClientHeight = 76
+            ClientWidth = 315
             TabOrder = 2
             object CheckBox1: TCheckBox
               Left = 0
-              Height = 21
+              Height = 24
               Top = 0
-              Width = 165
+              Width = 186
               Caption = 'Shade underwater'
               TabOrder = 0
             end
             object CheckBox4: TCheckBox
               Left = 0
-              Height = 21
-              Top = 23
-              Width = 165
+              Height = 24
+              Top = 26
+              Width = 186
               Caption = 'Save preview image'
               TabOrder = 1
             end
             object CheckBox10: TCheckBox
               Left = 0
-              Height = 21
-              Top = 46
-              Width = 165
+              Height = 24
+              Top = 52
+              Width = 186
               Caption = 'Simplify intersections'
               TabOrder = 2
             end
             object Panel4: TPanel
-              Left = 171
-              Height = 21
+              Left = 192
+              Height = 24
               Top = 0
               Width = 40
               BevelOuter = bvLowered
@@ -245,12 +245,12 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Main dimensions'
-        ClientHeight = 527
+        ClientHeight = 514
         ClientWidth = 778
         ImageIndex = 2
         object Panel5: TPanel
           Left = 0
-          Height = 527
+          Height = 514
           Top = 0
           Width = 778
           Align = alClient
@@ -259,34 +259,34 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           ChildSizing.TopBottomSpacing = 10
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 527
+          ClientHeight = 514
           ClientWidth = 778
           TabOrder = 0
           object Panel9: TPanel
             Left = 10
-            Height = 79
+            Height = 100
             Top = 10
-            Width = 552
+            Width = 622
             BevelOuter = bvNone
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 79
-            ClientWidth = 552
+            ClientHeight = 100
+            ClientWidth = 622
             TabOrder = 0
             object Label2: TLabel
               Left = 0
-              Height = 25
+              Height = 32
               Top = 0
-              Width = 48
+              Width = 57
               Caption = 'Length '
               Layout = tlCenter
               ParentColor = False
             end
             object Edit2: TFloatSpinEdit
-              Left = 54
-              Height = 25
+              Left = 63
+              Height = 32
               Top = 0
               Width = 80
               Alignment = taRightJustify
@@ -297,27 +297,27 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Value = 0
             end
             object Label9: TLabel
-              Left = 140
-              Height = 25
+              Left = 149
+              Height = 32
               Top = 0
-              Width = 13
+              Width = 15
               Caption = 'm'
               Layout = tlCenter
               ParentColor = False
             end
             object Label3: TLabel
               Left = 0
-              Height = 25
-              Top = 27
-              Width = 48
+              Height = 32
+              Top = 34
+              Width = 57
               Caption = 'Beam'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit3: TFloatSpinEdit
-              Left = 54
-              Height = 25
-              Top = 27
+              Left = 63
+              Height = 32
+              Top = 34
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -327,27 +327,27 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Value = 0
             end
             object Label10: TLabel
-              Left = 140
-              Height = 25
-              Top = 27
-              Width = 13
+              Left = 149
+              Height = 32
+              Top = 34
+              Width = 15
               Caption = 'm'
               Layout = tlCenter
               ParentColor = False
             end
             object Label4: TLabel
               Left = 0
-              Height = 25
-              Top = 54
-              Width = 48
+              Height = 32
+              Top = 68
+              Width = 57
               Caption = 'Draft'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit4: TFloatSpinEdit
-              Left = 54
-              Height = 25
-              Top = 54
+              Left = 63
+              Height = 32
+              Top = 68
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -357,10 +357,10 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Value = 0
             end
             object Label11: TLabel
-              Left = 140
-              Height = 25
-              Top = 54
-              Width = 13
+              Left = 149
+              Height = 32
+              Top = 68
+              Width = 15
               Caption = 'm'
               Layout = tlCenter
               ParentColor = False
@@ -368,29 +368,29 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
           end
           object Panel10: TPanel
             Left = 10
-            Height = 79
-            Top = 89
-            Width = 552
+            Height = 100
+            Top = 110
+            Width = 622
             BevelOuter = bvNone
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 4
-            ClientHeight = 79
-            ClientWidth = 552
+            ClientHeight = 100
+            ClientWidth = 622
             TabOrder = 1
             object Label13: TLabel
               Left = 0
-              Height = 25
+              Height = 32
               Top = 0
-              Width = 315
+              Width = 368
               Caption = 'Midship or max. area station location'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit8: TFloatSpinEdit
-              Left = 321
-              Height = 25
+              Left = 374
+              Height = 32
               Top = 0
               Width = 80
               Alignment = taRightJustify
@@ -401,36 +401,36 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Value = 0
             end
             object Label14: TLabel
-              Left = 407
-              Height = 25
+              Left = 460
+              Height = 32
               Top = 0
-              Width = 13
+              Width = 15
               Caption = 'm'
               Layout = tlCenter
               ParentColor = False
             end
             object CheckBox2: TCheckBox
-              Left = 426
-              Height = 25
+              Left = 481
+              Height = 32
               Top = 0
-              Width = 126
+              Width = 141
               Caption = 'Default at 0.5*L'
               OnClick = CheckBox2Click
               TabOrder = 1
             end
             object Label20: TLabel
               Left = 0
-              Height = 25
-              Top = 27
-              Width = 315
+              Height = 32
+              Top = 34
+              Width = 368
               Caption = 'Y coord. of Longitudinal Max. Wind Area location'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit26: TFloatSpinEdit
-              Left = 321
-              Height = 25
-              Top = 27
+              Left = 374
+              Height = 32
+              Top = 34
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -440,36 +440,36 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Value = 0
             end
             object Label21: TLabel
-              Left = 407
-              Height = 25
-              Top = 27
-              Width = 13
+              Left = 460
+              Height = 32
+              Top = 34
+              Width = 15
               Caption = 'm'
               Layout = tlCenter
               ParentColor = False
             end
             object CheckBox11: TCheckBox
-              Left = 426
-              Height = 25
-              Top = 27
-              Width = 126
+              Left = 481
+              Height = 32
+              Top = 34
+              Width = 141
               Caption = 'Default at 0.0'
               OnClick = CheckBox11Click
               TabOrder = 3
             end
             object Label22: TLabel
               Left = 0
-              Height = 25
-              Top = 54
-              Width = 315
+              Height = 32
+              Top = 68
+              Width = 368
               Caption = 'X coord. of Transverse Max. Wind Area location'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit27: TFloatSpinEdit
-              Left = 321
-              Height = 25
-              Top = 54
+              Left = 374
+              Height = 32
+              Top = 68
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -479,19 +479,19 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Value = 0
             end
             object Label23: TLabel
-              Left = 407
-              Height = 25
-              Top = 54
-              Width = 13
+              Left = 460
+              Height = 32
+              Top = 68
+              Width = 15
               Caption = 'm'
               Layout = tlCenter
               ParentColor = False
             end
             object CheckBox12: TCheckBox
-              Left = 426
-              Height = 25
-              Top = 54
-              Width = 126
+              Left = 481
+              Height = 32
+              Top = 68
+              Width = 141
               Caption = 'Default at 0.5*L'
               OnClick = CheckBox12Click
               TabOrder = 5
@@ -501,7 +501,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Hydrostatics'
-        ClientHeight = 527
+        ClientHeight = 514
         ClientWidth = 778
         ImageIndex = 1
         object Panel2: TPanel
@@ -700,7 +700,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 159
+            ClientHeight = 152
             ClientWidth = 442
             Color = clForm
             Font.Style = [fsBold]
@@ -777,18 +777,18 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
   end
   object Panel3: TPanel
     Left = 0
-    Height = 24
+    Height = 30
     Top = 0
     Width = 800
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 30
     ClientWidth = 800
     TabOrder = 1
     object BitBtn1: TSpeedButton
       Left = 636
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight
@@ -837,7 +837,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
     end
     object BitBtn2: TSpeedButton
       Left = 718
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight

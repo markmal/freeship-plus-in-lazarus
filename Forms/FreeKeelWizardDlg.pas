@@ -710,6 +710,7 @@ type
     BitBtn2: TSpeedButton;
     Button1: TButton;
     Button2: TButton;
+    ComboBoxSubdivisionLevel: TComboBox;
     LayerColorButton: TColorButton;
     ComboBox: TComboBox;
     ComboBoxPlanformShape: TComboBox;
@@ -758,8 +759,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
+    MenuItemShade: TMenuItem;
+    MenuItemWireframe: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel10: TPanel;
@@ -819,6 +820,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure ComboBoxClick(Sender: TObject);
     procedure ComboBoxPlanformShapeClick(Sender: TObject);
+    procedure ComboBoxSubdivisionLevelChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Input1AfterSetValue(Sender: TObject);
@@ -887,6 +889,7 @@ type
     function FGetCols: integer;
     function FGetRows: integer;
     procedure UpdateData;
+    procedure Rebuild3dView;
     procedure createViewport();
   public    { Public declarations }
     str: array [0..9] of string;
@@ -1574,12 +1577,20 @@ begin
 
   end;
 
+  IsUptoDate := True;
+
+  Rebuild3dView;
+  Viewport.ZoomExtents;
+end;{TFreeKeelWizardDialog.UpdateData}
+
+procedure TFreeKeelWizardDialog.Rebuild3dView;
+begin
   if not assigned(FKeelSurface) then
      FKeelSurface.Free;
   FKeelSurface:=TFreeSubdivisionsurface.Create(nil);
 
   SendToSurface(FKeelSurface);
-  FKeelSurface.DesiredSubdivisionLevel := 1;
+  FKeelSurface.DesiredSubdivisionLevel := ComboBoxSubdivisionLevel.ItemIndex + 1;
   FKeelSurface.Rebuild;
   FKeelSurface.ClearSelection;
   FKeelSurface.ShadeUnderWater:=false;
@@ -1589,10 +1600,9 @@ begin
   FKeelSurface.UnderWaterColor:=FFreeship.Preferences.UnderWaterColor;
   FKeelSurface.ControlPointSize := FFreeship.Preferences.PointSize;
 
-  IsUptoDate := True;
-  Viewport.ZoomExtents;
-
-end;{TFreeKeelWizardDialog.UpdateData}
+  Viewport.Color := FFreeship.Preferences.ViewportColor;
+  Viewport.Invalidate;
+end;
 
 procedure TFreeKeelWizardDialog.createViewport();
 var VpLight:TFreeLight;
@@ -1620,7 +1630,7 @@ begin
     BackgroundImage.Visible := True;
     BorderStyle := bsSingle;
     CameraType := ftFarTele;
-    Color := clGray;
+    Color := clGray; //FFreeship.Preferences.ViewportColor;
     DoubleBuffer := True;
     Elevation := 20;
     HorScrollbar := ScrollBar1;
@@ -1664,6 +1674,7 @@ begin
   ShowTranslatedValues(Self);
   FLayerColor := FFreeship.Preferences.LayerColor;
   LayerColorButton.ButtonColor := FLayerColor;
+  ComboBoxSubdivisionLevel.ItemIndex := Ord(FFreeship.Precision);
 
   ShowModal;
 
@@ -1742,6 +1753,11 @@ begin
     Input2.Value := 0.0;
   UpdateData;
 end;{TFreeKeelWizardDialog.ComboBox1Click}
+
+procedure TFreeKeelWizardDialog.ComboBoxSubdivisionLevelChange(Sender: TObject);
+begin
+  Rebuild3dView;
+end;
 
 procedure TFreeKeelWizardDialog.FormCreate(Sender: TObject);
 begin

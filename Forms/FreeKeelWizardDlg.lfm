@@ -49,8 +49,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object ScrollBar2: TScrollBar
           Left = 638
-          Height = 659
-          Top = 21
+          Height = 647
+          Top = 33
           Width = 15
           Align = alRight
           Kind = sbVertical
@@ -62,7 +62,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object ViewToolbar: TPanel
           Left = 0
-          Height = 21
+          Height = 33
           Top = 0
           Width = 653
           Align = alTop
@@ -70,12 +70,12 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           ChildSizing.HorizontalSpacing = 1
           ChildSizing.Layout = cclTopToBottomThenLeftToRight
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 21
+          ClientHeight = 33
           ClientWidth = 653
           TabOrder = 2
           object sbShowControlNet: TSpeedButton
             Left = 0
-            Height = 20
+            Height = 32
             Hint = 'Show Control Net'
             Top = 0
             Width = 20
@@ -90,7 +90,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object sbShowInteriorEdges: TSpeedButton
             Left = 21
-            Height = 20
+            Height = 32
             Hint = 'Show Interior Edges'
             Top = 0
             Width = 20
@@ -106,7 +106,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object sbShowBothSides: TSpeedButton
             Left = 42
-            Height = 20
+            Height = 32
             Hint = 'Show Both Sides'
             Top = 0
             Width = 20
@@ -122,7 +122,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object LayerColorButton: TColorButton
             Left = 63
-            Height = 20
+            Height = 32
             Hint = 'Set Layer Color'
             Top = 0
             Width = 20
@@ -132,6 +132,27 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             OnColorChanged = ActionSetLayerColorExecute
             ShowHint = True
             ParentShowHint = False
+          end
+          object ComboBoxSubdivisionLevel: TComboBox
+            Left = 84
+            Height = 32
+            Hint = 'Desired Subdivision Level'
+            Top = 0
+            Width = 100
+            ItemHeight = 0
+            ItemIndex = 1
+            Items.Strings = (
+              'Low'
+              'Medium'
+              'High'
+              'Very High'
+            )
+            OnChange = ComboBoxSubdivisionLevelChange
+            ParentShowHint = False
+            ShowHint = True
+            Style = csDropDownList
+            TabOrder = 0
+            Text = 'Medium'
           end
         end
       end
@@ -1451,11 +1472,13 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     AutoPopup = False
     left = 510
     top = 306
-    object MenuItem1: TMenuItem
+    object MenuItemShade: TMenuItem
       Action = ActionModeShade
+      ShortCut = 16454
     end
-    object MenuItem2: TMenuItem
+    object MenuItemWireframe: TMenuItem
       Action = ActionModeWireframe
+      ShortCut = 16471
     end
   end
   object ActionList1: TActionList

@@ -2519,6 +2519,14 @@ msgctxt "tfreekeelwizarddialog.comboboxplanformshape.text"
 msgid "Trapezoidal"
 msgstr ""
 
+#: tfreekeelwizarddialog.comboboxsubdivisionlevel.hint
+msgid "Desired Subdivision Level"
+msgstr ""
+
+#: tfreekeelwizarddialog.comboboxsubdivisionlevel.text
+msgid "Medium"
+msgstr ""
+
 #: tfreekeelwizarddialog.groupbox1.caption
 msgctxt "tfreekeelwizarddialog.groupbox1.caption"
 msgid "Properties"

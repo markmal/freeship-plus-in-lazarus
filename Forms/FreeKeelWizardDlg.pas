@@ -843,6 +843,7 @@ type
     procedure Input6KeyDown(Sender: TObject;
       var Key: word; Shift: TShiftState);
     procedure Panel8Resize(Sender: TObject);
+    procedure sbShowBothSidesChangeBounds(Sender: TObject);
     procedure TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
     procedure ViewportRequestExtents(Sender: TObject;
@@ -1666,8 +1667,6 @@ begin
   Chart.BottomAxis.Title.Caption := UserString(933);
   Chart.LeftAxis.Title.Caption := UserString(934);
   FProfile := TFreeSpline.Create(FFreeship.Surface);
-  ComboBoxClick(self);
-  ComboBoxPlanformShapeClick(self);
 
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
@@ -1675,6 +1674,9 @@ begin
   FLayerColor := FFreeship.Preferences.LayerColor;
   LayerColorButton.ButtonColor := FLayerColor;
   ComboBoxSubdivisionLevel.ItemIndex := Ord(FFreeship.Precision);
+
+  ComboBoxClick(self);
+  ComboBoxPlanformShapeClick(self);
 
   ShowModal;
 
@@ -1849,6 +1851,11 @@ procedure TFreeKeelWizardDialog.Panel8Resize(Sender: TObject);
 begin
   //PageControl1.Contraints.MinHeight := Panel8.Height + 30;
   //PageControl1.Contraints.MinWidth := Panel8.Width + 10;
+end;
+
+procedure TFreeKeelWizardDialog.sbShowBothSidesChangeBounds(Sender: TObject);
+begin
+  LayerColorButton.Constraints.MinWidth:=sbShowBothSides.Width;
 end;
 
 procedure TFreeKeelWizardDialog.TabSheet1ContextPopup(Sender: TObject;

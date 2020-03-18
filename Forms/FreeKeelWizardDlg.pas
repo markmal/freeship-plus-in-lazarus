@@ -711,6 +711,9 @@ type
     Button1: TButton;
     Button2: TButton;
     ComboBoxSubdivisionLevel: TComboBox;
+    TrackBarHorizontalCompression: TSpinEdit;
+    TrackBarVerticalCompression: TSpinEdit;
+    Label30: TLabel;
     LayerColorButton: TColorButton;
     ComboBox: TComboBox;
     ComboBoxPlanformShape: TComboBox;
@@ -786,7 +789,6 @@ type
     ScrollBar2: TScrollBar;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
-    TrackBar1: TTrackBar;
     TrackBar2: TTrackBar;
     _ComboBox2: TComboBox;
     SpeedButton1: TSpeedButton;
@@ -846,6 +848,7 @@ type
     procedure sbShowBothSidesChangeBounds(Sender: TObject);
     procedure TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
+    procedure TrackBarHorizontalCompressionChange(Sender: TObject);
     procedure ViewportRequestExtents(Sender: TObject;
       var Min, Max: T3DCoordinate);
     procedure ViewportRedraw(Sender: TObject);
@@ -853,7 +856,7 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure Input5AfterSetValue(Sender: TObject);
     procedure Input6AfterSetValue(Sender: TObject);
-    procedure TrackBar1Change(Sender: TObject);
+    procedure TrackBarVerticalCompressionChange(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure InputBulbShapeClick(Sender: TObject);
     procedure InputMaterialChange(Sender: TObject);
@@ -940,14 +943,14 @@ const
 var
   L, a, b: TFloatType;
   I, J, Index, N: integer;
-  VertInd: double;
-  P: T3DCoordinate;
+  VertInd, HorInd: double;
+  P,P0: T3DCoordinate;
   P_1, P_2: T3DCoordinate;
   P_3, P_4: T3DCoordinate;
-  RootChordLength,TipChordLength,DeltaTip,Span,VCompression: TFloatType;
+  RootChordLength,TipChordLength,DeltaTip,Span,VCompression,HCompression: TFloatType;
   VpointsNum,HpointsNum: integer;
   Angle: TFloatType;
-  Height: TFloatType;
+  Height,Width, FullWidth, W: TFloatType;
   Chord: TFloatType;
   Start: TFloatType;
   DeltaA: TFloatType;
@@ -956,9 +959,9 @@ var
   Results: TFreeIntersectionData;
   Plane: T3DPlane;
   Spline: TFreeSpline;
-  VertDist: double;
+  VertDist, HorDist: double;
   //  Begin Victor T correction
-  Factor, Cl, Cd, wng: double;
+  VFactor, HFactor, Cl, Cd, wng: double;
   r1, r2, dh, VolBulb, VolWing: double;
   Cx, Cy, Cn, Ct, C_d, mz, Kach, x, Cf0, Re: double;
   sina, cosa, Cx0, Cya, aa, am, ama, ak: double;
@@ -1188,7 +1191,8 @@ begin
   Series4.Clear;
   Series5.Clear;
 
-  Factor := 1 + Trackbar1.Position / Trackbar1.Max;
+  VFactor := 1 + TrackBarVerticalCompression.Value / TrackBarVerticalCompression.MaxValue;
+  HFactor := 1 + TrackBarHorizontalCompression.Value / TrackBarHorizontalCompression.MaxValue;
 
   RootChordLength := Input1.Value;
   TipChordLength := Input2.Value;
@@ -1196,7 +1200,7 @@ begin
   Span :=  Input3.Value;
   VpointsNum := Input5.Value;
   HpointsNum := Input6.Value;
-  VCompression := Trackbar1.Position;
+  VCompression := TrackBarVerticalCompression.Value;
 
   if ComboBoxPlanformShape.ItemIndex = 0 then
   begin
@@ -1260,7 +1264,7 @@ begin
       if I = 0 then
         VertInd := 0
       else
-        VertInd := VertInd + Power(Factor, I - 1);
+        VertInd := VertInd + Power(VFactor, I - 1);
     VertDist := Span / VertInd;
 
     Index := _ComboBox2.ItemIndex + 1;
@@ -1277,7 +1281,7 @@ begin
       Spline.Add(P);
     end;
 
-    VertInd := 0;
+    VertInd := 0;  HorInd := 0;
     for I := 0 to Rows - 1 do
     begin
       Chord := 0.0;
@@ -1285,7 +1289,7 @@ begin
       if I = 0 then
         VertInd := 0
       else
-        VertInd := VertInd + Power(Factor, I - 1);
+        VertInd := VertInd + Power(VFactor, I - 1);
       Height := Span - VertInd * VertDist;
       if (I > 0) and (I < Rows - 1) then
       begin
@@ -1319,10 +1323,36 @@ begin
         end;
       end;
 
+
+      // Horizontal spacing between columns increases from front to aft
+      HorInd := 0;
+      for J := 0 to Cols - 1 do
+        if J = 0 then
+          HorInd := 0
+        else
+          HorInd := HorInd + Power(HFactor, J - 1);
+      HorDist := RootChordLength / HorInd;
+
+      HorInd := 0; FullWidth:=0;
+      for J := 0 to Cols - 1 do
+      begin
+        if J = 0
+        then HorInd := 0
+        else HorInd := HorInd + Power(HFactor, J - 1);
+        FullWidth := HorInd * HorDist;
+      end;
+
+      HorInd := 0;
       Spline.Fragments:=500;
       for J := 0 to Cols - 1 do
       begin
-        P := Spline.Value(J / (Cols - 1));
+        if J = 0 then
+          HorInd := 0
+        else
+          HorInd := HorInd + Power(HFactor, J - 1);
+        //P := Spline.Value(J / (Cols - 1));
+        Width := HorInd * HorDist;
+        P := Spline.Value(Width / FullWidth);
         Mesh[I, J].X := Start + Chord - P.X * Chord;
         Mesh[I, J].Y := P.Y * Chord;
         Mesh[I, J].Z := -Height;
@@ -1331,7 +1361,6 @@ begin
       end;
     end;
     Spline.Destroy;
-
 
     Area := 0;
     COG.X := 0.0;
@@ -1864,6 +1893,12 @@ begin
 
 end;
 
+procedure TFreeKeelWizardDialog.TrackBarHorizontalCompressionChange(
+  Sender: TObject);
+begin
+  UpdateData;
+end;
+
 procedure TFreeKeelWizardDialog.ViewportRequestExtents(Sender: TObject;
   var Min, Max: T3DCoordinate);
 var
@@ -2124,7 +2159,7 @@ begin
   UpdateData;
 end;{TFreeKeelWizardDialog.Input6AfterSetValue}
 
-procedure TFreeKeelWizardDialog.TrackBar1Change(Sender: TObject);
+procedure TFreeKeelWizardDialog.TrackBarVerticalCompressionChange(Sender: TObject);
 begin
   UpdateData;
 end;{TFreeKeelWizardDialog.TrackBar1Change}

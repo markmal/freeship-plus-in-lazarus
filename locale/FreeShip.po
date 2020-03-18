@@ -2649,6 +2649,10 @@ msgstr ""
 msgid "Root chord length"
 msgstr ""
 
+#: tfreekeelwizarddialog.label30.caption
+msgid "Horizontal compression"
+msgstr ""
+
 #: tfreekeelwizarddialog.label4.caption
 msgid "Tip chord length"
 msgstr ""

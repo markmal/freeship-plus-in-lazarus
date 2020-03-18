@@ -1435,6 +1435,11 @@ object MainForm: TMainForm
       Caption = 'Add flow line'
       OnExecute = AddFlowLineExecute
     end
+    object ActionCheckUpdates: TAction
+      Category = 'Help'
+      Caption = 'ActionCheckUpdates'
+      OnExecute = ActionCheckUpdatesExecute
+    end
   end
   object MenuImages: TImageList
     left = 112
@@ -3871,6 +3876,10 @@ object MainForm: TMainForm
         Action = HelpAction
         Caption = 'Contents'
         ShortCut = 112
+      end
+      object CheckUpdates: TMenuItem
+        Action = ActionCheckUpdates
+        Caption = 'Check updates'
       end
       object HelpAbout: TMenuItem
         Action = AboutAction

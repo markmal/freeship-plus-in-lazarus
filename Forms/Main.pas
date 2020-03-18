@@ -87,9 +87,11 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     ActionCheckUpdates: TAction;
      AddFlowLine: TAction;
      LayerBox: TComboBox;
      MenuItem1: TMenuItem;
+     CheckUpdates: TMenuItem;
      SelectAllControlPoints: TAction;
      ColorButton1: TColorButton;
      SelectAllControlPoints1: TMenuItem;
@@ -448,6 +450,7 @@ type
 
     FMDIChildList : TList;
 
+    procedure ActionCheckUpdatesExecute(Sender: TObject);
     procedure AddFlowLineExecute(Sender: TObject);
     procedure AddPointToGroupExecute(Sender: TObject);
     procedure ColorButton1Click(Sender: TObject);
@@ -673,7 +676,8 @@ uses //FreeSplashWndw,
      RibbonToolBarMgr,
      TileDialog,
      MDIPanel,
-     FreePointGroupForm;
+     FreePointGroupForm,
+     FreeUpdateDlg;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1060,6 +1064,14 @@ procedure TMainForm.AddFlowLineExecute(Sender: TObject);
 begin
   FreeShip.EditMode := emAddFlowLine;
   UpdateMenu;
+end;
+
+procedure TMainForm.ActionCheckUpdatesExecute(Sender: TObject);
+var UpdateForm: TFreeUpdateForm;
+begin
+  UpdateForm := TFreeUpdateForm.Create(self);
+  UpdateForm.ShowModal;
+  UpdateForm.Free;
 end;
 
 procedure TMainForm.ColorButton1Click(Sender: TObject);

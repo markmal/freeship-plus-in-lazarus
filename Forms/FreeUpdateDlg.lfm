@@ -4,56 +4,61 @@ object FreeUpdateForm: TFreeUpdateForm
   Height = 480
   Top = 204
   Width = 640
-  Caption = 'FreeUpdateForm'
+  Caption = 'Check updates'
   ClientHeight = 480
   ClientWidth = 640
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnShow = FormShow
+  Position = poScreenCenter
   LCLVersion = '2.0.6.0'
   object Label1: TLabel
-    Left = 184
+    Left = 224
     Height = 22
     Top = 8
-    Width = 131
+    Width = 125
     Caption = 'Current Version:'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object LabelCurrentVersion: TLabel
-    Left = 344
+    Left = 352
     Height = 22
     Top = 9
-    Width = 51
+    Width = 48
     Caption = '1.2.3.4'
+    ParentColor = False
+    ParentFont = False
+  end
+  object LabelNewVersionAvailable: TLabel
+    Left = 56
+    Height = 22
+    Top = 48
+    Width = 181
+    Caption = 'New version available:'
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
-  object Label2: TLabel
-    Left = 80
-    Height = 22
-    Top = 48
-    Width = 100
-    Caption = 'New Version:'
-    ParentColor = False
-  end
   object LabelNewVersion: TLabel
-    Left = 216
+    Left = 248
     Height = 22
     Top = 48
-    Width = 132
+    Width = 139
     Caption = 'LabelNewVersion'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
   object LabelNewVersionDate: TLabel
     Left = 403
     Height = 22
     Top = 48
-    Width = 168
+    Width = 177
     Caption = 'LabelNewVersionDate'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
   object Memo1: TMemo
     Left = 16

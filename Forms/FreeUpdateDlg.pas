@@ -56,7 +56,7 @@ type
     ActionList1: TActionList;
     BitBtn2: TBitBtn;
     Label1: TLabel;
-    Label2: TLabel;
+    LabelNewVersionAvailable: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     LabelDownloadLink: TLabel;
@@ -76,8 +76,10 @@ type
     procedure LabelDownloadPageClick(Sender: TObject);
   private
     FCurrentVersion:string;
+    FUpdatesAvailable: boolean;
   public
     procedure GetGitHubReleases;
+    property UpdatesAvailable: boolean read FUpdatesAvailable;
   end;
 
 var
@@ -125,11 +127,11 @@ procedure TFreeUpdateForm.FormCreate(Sender: TObject);
 begin
   FCurrentVersion := ResourceVersionInfo;
   LabelCurrentVersion.Caption:=FCurrentVersion;
+  GetGitHubReleases;
 end;
 
 procedure TFreeUpdateForm.FormShow(Sender: TObject);
 begin
-  GetGitHubReleases;
 end;
 
 // versions must be in format of <int>.<int>.<int>.<int>
@@ -195,6 +197,11 @@ begin
   LabelDownloadPage.Enabled:=true;
   LabelDownloadPage.Cursor:=crHandPoint;
 
+  LabelNewVersionAvailable.Visible:=false;
+  LabelNewVersion.Visible:=false;
+  LabelNewVersionDate.Visible:=false;
+
+  FUpdatesAvailable := false;
 
   havedpkg := false;
   {$ifdef linux}
@@ -253,7 +260,12 @@ begin
        LabelDownloadPage.Hint := GitHubRelease.html_url;
        LabelDownloadPage.Enabled:=true;
        Memo1.Text := GitHubRelease.body;
+       FUpdatesAvailable := true;
+       LabelNewVersionAvailable.Visible:=true;
+       LabelNewVersion.Visible:=true;
+       LabelNewVersionDate.Visible:=true;
      end;
+
    finally
      jData.Free;
      if assigned(DeStreamer) then DeStreamer.Free;

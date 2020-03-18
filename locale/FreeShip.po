@@ -8460,15 +8460,12 @@ msgid "Close"
 msgstr ""
 
 #: tfreeupdateform.caption
-msgid "FreeUpdateForm"
+msgctxt "tfreeupdateform.caption"
+msgid "Check updates"
 msgstr ""
 
 #: tfreeupdateform.label1.caption
 msgid "Current Version:"
-msgstr ""
-
-#: tfreeupdateform.label2.caption
-msgid "New Version:"
 msgstr ""
 
 #: tfreeupdateform.label3.caption
@@ -8497,6 +8494,10 @@ msgstr ""
 
 #: tfreeupdateform.labelnewversion.caption
 msgid "LabelNewVersion"
+msgstr ""
+
+#: tfreeupdateform.labelnewversionavailable.caption
+msgid "New version available:"
 msgstr ""
 
 #: tfreeupdateform.labelnewversiondate.caption
@@ -8600,6 +8601,7 @@ msgid "Check the model for errors and inconsitencies."
 msgstr ""
 
 #: tmainform.checkupdates.caption
+msgctxt "tmainform.checkupdates.caption"
 msgid "Check updates"
 msgstr ""
 

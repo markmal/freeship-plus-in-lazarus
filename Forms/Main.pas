@@ -1037,8 +1037,15 @@ begin
       self.Close;
       exit;
       end;
+
+    if not assigned(FreeUpdateForm) then
+      FreeUpdateForm := TFreeUpdateForm.Create(self);
+    if FreeUpdateForm.UpdatesAvailable then
+      FreeUpdateForm.ShowModal;
+
     GShowSplash:=false; // show splash on first activate only
   end;
+
 
   if not FModelInitallyLoaded then
     begin
@@ -1067,11 +1074,10 @@ begin
 end;
 
 procedure TMainForm.ActionCheckUpdatesExecute(Sender: TObject);
-var UpdateForm: TFreeUpdateForm;
 begin
-  UpdateForm := TFreeUpdateForm.Create(self);
-  UpdateForm.ShowModal;
-  UpdateForm.Free;
+  if not assigned(FreeUpdateForm) then
+     FreeUpdateForm := TFreeUpdateForm.Create(self);
+  FreeUpdateForm.ShowModal;
 end;
 
 procedure TMainForm.ColorButton1Click(Sender: TObject);

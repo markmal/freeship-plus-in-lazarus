@@ -32,7 +32,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="6"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="323"/>
+      <BuildNr Value="324"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>

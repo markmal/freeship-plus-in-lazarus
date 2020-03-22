@@ -3472,61 +3472,60 @@ procedure TFreeSubdivisionSurface.InsertPlane(Plane: T3DPlane; AddCurves: boolea
 var
   I, J, K: integer;
   S1, S2, T: TFloatType;
-  P: T3DCoordinate;
+  P, StartPoint, EndPoint: T3DCoordinate;
   face: TFreeSubdivisionControlface;
   Edge: TFreeSubdivisionControlEdge;
   NewP: TFreeSubdivisionControlpoint;
   P1, P2: TFreeSubdivisionControlPoint;
   Curve: TFreeSubdivisionControlCurve;
+  CPoints: TFasterListTFreeSubdivisionControlPoint;
   Points: TFasterListTFreeSubdivisionPoint;
   Edges: TFasterListTFreeSubdivisionControlEdge;
   SortedPointLists: TFasterListTFreeSubdivisionFace; // as a list for Point lists
   sPointList: TFreeSubdivisionFace;
   Inserted: boolean;
+
 begin
-  I := 1;
-  Points := TFasterListTFreeSubdivisionPoint.Create;
-  while I <= NumberOfControlEdges do
+  CPoints := TFasterListTFreeSubdivisionControlPoint.Create;
+  for I:=0 to NumberOfControlEdges - 1 do
   begin
-    Edge := self.ControlEdge[I - 1];
+    Edge := self.ControlEdge[I];
+    StartPoint := Edge.Startpoint.Coordinate;
+    EndPoint := Edge.Endpoint.Coordinate;
     if Edge.Visible then
     begin
-      S1 := Plane.a * Edge.Startpoint.Coordinate.x + Plane.b *
-        Edge.Startpoint.Coordinate.y + Plane.c * Edge.Startpoint.Coordinate.z + Plane.d;
-      S2 := Plane.a * Edge.Endpoint.Coordinate.x + Plane.b * Edge.Endpoint.Coordinate.y +
-        Plane.c * Edge.Endpoint.Coordinate.z + Plane.d;
+      S1 := Plane.a * StartPoint.x
+          + Plane.b * StartPoint.y
+          + Plane.c * StartPoint.z
+          + Plane.d;
+      S2 := Plane.a * EndPoint.x
+          + Plane.b * EndPoint.y
+          + Plane.c * EndPoint.z
+          + Plane.d;
       if ((S1 < -1e-5) and (S2 > 1e-5)) or ((S1 > 1e-5) and (S2 < -1e-5)) then
       begin
         if S1 = S2 then
-        begin
-          T := 0.5;
-        end
+          T := 0.5
         else
-          T := -s1 / (s2 - s1);
-        P.X := Edge.Startpoint.Coordinate.X + T *
-          (Edge.Endpoint.Coordinate.X - Edge.Startpoint.Coordinate.X);
-        P.Y := Edge.Startpoint.Coordinate.Y + T *
-          (Edge.Endpoint.Coordinate.Y - Edge.Startpoint.Coordinate.Y);
-        P.Z := Edge.Startpoint.Coordinate.Z + T *
-          (Edge.Endpoint.Coordinate.Z - Edge.Startpoint.Coordinate.Z);
+          T := -S1 / (S2 - S1);
+        P.X := StartPoint.X + T * (EndPoint.X - StartPoint.X);
+        P.Y := StartPoint.Y + T * (EndPoint.Y - StartPoint.Y);
+        P.Z := StartPoint.Z + T * (EndPoint.Z - StartPoint.Z);
         NewP := Edge.InsertControlPoint(P);
-
-        Points.Add(NewP);
+        CPoints.Add(NewP);
       end;
     end;
-    Inc(I);
   end;
-  if Points.Count > 0 then
-  begin
 
+  if CPoints.Count > 0 then
+  begin
     // Try to find multiple points belonging to the same face and insert an edge
-    I := 1;
-    Points.Sort;
+    CPoints.Sort;
 
     Edges := TFasterListTFreeSubdivisionControlEdge.Create;
-    while I <= Points.Count do
+    for I:=0 to CPoints.Count - 1 do
     begin
-      P1 := Points[I - 1] as TFreeSubdivisionControlPoint;
+      P1 := CPoints[I] as TFreeSubdivisionControlPoint;
       //writeln('InsertPlane: Point[',I,'].NumberOfFaces=',P1.NumberOfFaces);
       J := 1;
       while J <= P1.NumberOfFaces do
@@ -3538,7 +3537,7 @@ begin
         begin
           //writeln('InsertPlane:  K=',K);
           P2 := Face.Point[K - 1] as TFreeSubdivisionControlPoint;
-          if (P1 <> P2) and (Points.SortedIndexOf(P2) <> -1) then
+          if (P1 <> P2) and (CPoints.SortedIndexOf(P2) <> -1) then
           begin
             // this is also a new point, first check if an edge already exists between P1 and P2
             if EdgeExists(P1, P2) = nil then
@@ -3553,16 +3552,15 @@ begin
           end;
           Inc(K);
         end;
-        DelayedDestroyList.DestroyAll;
+        //DelayedDestroyList.DestroyAll;
         if not Inserted then
           Inc(J);
       end;
-      Inc(I);
     end;
+    FreeAndNil(CPoints);
 
     if AddCurves then
     begin
-      Points.Destroy;
       SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
       IsolateEdges(TFasterList(Edges), SortedPointLists);
       for I := 1 to SortedPointLists.Count do
@@ -3591,14 +3589,12 @@ begin
         Points.Destroy;
       end;
       SortedPointLists.Destroy;
-    end
-    else
-      Points.Destroy;
+    end;
     Edges.Destroy;
     Build := False;
   end
   else
-    Points.Destroy;
+    FreeAndNil(CPoints);
 end;{TFreeSubdivisionSurface.InsertPlane}
 
 {  gets set of edges and returns list of cycled point chains as TFreeSubdivisionFace }

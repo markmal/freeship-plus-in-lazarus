@@ -123,31 +123,34 @@ begin
     Result.c := 1.0;
   if RadioButton3.Checked then
     Result.b := 1.0;
-  Result.d := -StrToFloat(Edit1.Text);
+  //Result.d := -StrToFloat(Edit1.Text);
+  Result.d := -FloatSpinEdit1.Value;
 end;{TFreeInsertPlaneDialog.FGetPlane}
 
 procedure TFreeInsertPlaneDialog.FUpdate;
+var MinV,MaxV:TFloatType;
 begin
   if RadioButton1.Checked then
-    Edit1.Caption := FloatToStrF(Min.X + 1e-4, ffFixed, 7, 4)
-  else
+    begin
+    MinV := Min.X;
+    MaxV := Max.X;
+    end;
   if RadioButton2.Checked then
-    Edit1.Caption := FloatToStrF(Min.Z + 1e-4, ffFixed, 7, 4)
-  else
+    begin
+    MinV := Min.Z;
+    MaxV := Max.Z;
+    end;
   if RadioButton3.Checked then
-    Edit1.Caption := FloatToStrF(Min.Y + 1e-4, ffFixed, 7, 4)
-  else
-    Edit1.Caption := '';
-  if RadioButton1.Checked then
-    Edit2.Caption := FloatToStrF(Max.X + 1e-4, ffFixed, 7, 4)
-  else
-  if RadioButton2.Checked then
-    Edit2.Caption := FloatToStrF(Max.Z + 1e-4, ffFixed, 7, 4)
-  else
-  if RadioButton3.Checked then
-    Edit2.Caption := FloatToStrF(Max.Y + 1e-4, ffFixed, 7, 4)
-  else
-    Edit2.Caption := '';
+    begin
+    MinV := Min.Y;
+    MaxV := Max.Y;
+    end;
+  MinV := MinV + 1e-4;
+  MaxV := MaxV - 1e-4;
+  FloatSpinEdit1.MinValue:=MinV;
+  FloatSpinEdit1.MaxValue:=MaxV;
+  Edit1.Caption := FloatToStrF(MinV, ffFixed, 7, 4);
+  Edit2.Caption := FloatToStrF(MaxV, ffFixed, 7, 4);
 end;{TFreeInsertPlaneDialog.FUpdate}
 
 function TFreeInsertPlaneDialog.Execute: boolean;

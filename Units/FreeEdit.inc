@@ -7820,7 +7820,7 @@ begin
   Dialog := TFreeInsertPlaneDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
   Dialog.Max := Max;
-  Dialog.Min := min;
+  Dialog.Min := Min;
   if Dialog.Execute then
   begin
     vUndo := CreateUndoObject(UserString(163), False);

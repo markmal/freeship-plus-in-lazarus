@@ -8,11 +8,11 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
   ClientHeight = 300
   ClientWidth = 400
   Position = poMainFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object Panel2: TPanel
     Left = 0
-    Height = 276
-    Top = 24
+    Height = 270
+    Top = 30
     Width = 400
     Align = alClient
     BevelOuter = bvNone
@@ -20,41 +20,41 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
     ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 276
+    ClientHeight = 270
     ClientWidth = 400
     ParentColor = False
     TabOrder = 0
     object GroupBox1: TGroupBox
-      Left = 78
-      Height = 224
-      Top = 26
-      Width = 245
+      Left = 61
+      Height = 264
+      Top = 3
+      Width = 279
       AutoSize = True
       Caption = 'Insert multiple vertices on a plane.  '
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 207
-      ClientWidth = 241
+      ClientHeight = 240
+      ClientWidth = 275
       TabOrder = 0
       object Panel4: TPanel
         Left = 0
-        Height = 87
+        Height = 96
         Top = 0
-        Width = 241
+        Width = 275
         BevelOuter = bvNone
         ChildSizing.TopBottomSpacing = 10
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 87
-        ClientWidth = 241
+        ClientHeight = 96
+        ClientWidth = 275
         TabOrder = 0
         object RadioButton1: TRadioButton
           Left = 0
-          Height = 21
+          Height = 24
           Top = 10
-          Width = 133
+          Width = 153
           Caption = 'Transverse plane'
           Checked = True
           OnClick = RadioButton1Click
@@ -63,18 +63,18 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
         end
         object RadioButton2: TRadioButton
           Left = 0
-          Height = 21
-          Top = 33
-          Width = 133
+          Height = 24
+          Top = 36
+          Width = 153
           Caption = 'Horizontal plane'
           OnClick = RadioButton2Click
           TabOrder = 1
         end
         object RadioButton3: TRadioButton
           Left = 0
-          Height = 21
-          Top = 56
-          Width = 133
+          Height = 24
+          Top = 62
+          Width = 153
           Caption = 'Vertical plane'
           OnClick = RadioButton3Click
           TabOrder = 2
@@ -82,9 +82,9 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       end
       object CheckBox1: TCheckBox
         Left = 0
-        Height = 21
-        Top = 87
-        Width = 241
+        Height = 24
+        Top = 96
+        Width = 275
         Caption = 'Add control curve'
         Checked = True
         State = cbChecked
@@ -92,70 +92,75 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
       end
       object Panel5: TPanel
         Left = 0
-        Height = 99
-        Top = 108
-        Width = 241
+        Height = 120
+        Top = 120
+        Width = 275
         BevelOuter = bvNone
         ChildSizing.TopBottomSpacing = 10
         ChildSizing.HorizontalSpacing = 6
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 99
-        ClientWidth = 241
+        ClientHeight = 120
+        ClientWidth = 275
         TabOrder = 2
         object Label2: TLabel
           Left = 0
-          Height = 25
+          Height = 32
           Top = 10
-          Width = 71
+          Width = 80
           Caption = 'Min. value'
           Layout = tlCenter
           ParentColor = False
         end
         object Edit1: TEdit
-          Left = 77
-          Height = 25
+          Left = 86
+          Height = 32
           Top = 10
-          Width = 80
-          Enabled = False
+          Width = 120
+          Alignment = taRightJustify
+          ReadOnly = True
+          TabStop = False
           TabOrder = 0
           Text = 'Edit1'
         end
         object Label5: TLabel
           Left = 0
-          Height = 25
-          Top = 37
-          Width = 71
+          Height = 32
+          Top = 44
+          Width = 80
           Caption = 'Max. value'
           Layout = tlCenter
           ParentColor = False
         end
         object Edit2: TEdit
-          Left = 77
-          Height = 25
-          Top = 37
-          Width = 80
-          Enabled = False
+          Left = 86
+          Height = 32
+          Top = 44
+          Width = 120
+          Alignment = taRightJustify
+          ReadOnly = True
+          TabStop = False
           TabOrder = 1
           Text = 'Edit2'
         end
         object Label1: TLabel
           Left = 0
-          Height = 25
-          Top = 64
-          Width = 71
+          Height = 32
+          Top = 78
+          Width = 80
           Caption = 'Distance'
           Layout = tlCenter
           ParentColor = False
         end
         object FloatSpinEdit1: TFloatSpinEdit
-          Left = 77
-          Height = 25
-          Top = 64
-          Width = 80
-          Constraints.MinWidth = 80
-          DecimalPlaces = 3
+          Left = 86
+          Height = 32
+          Top = 78
+          Width = 120
+          Alignment = taRightJustify
+          Constraints.MinWidth = 120
+          DecimalPlaces = 4
           MinValue = 0
           TabOrder = 2
           Value = 0
@@ -165,20 +170,20 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 24
+    Height = 30
     Top = 0
     Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 30
     ClientWidth = 400
     Color = clForm
     ParentColor = False
     TabOrder = 1
     object BitBtn1: TSpeedButton
       Left = 236
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight
@@ -227,7 +232,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
     end
     object BitBtn2: TSpeedButton
       Left = 318
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight

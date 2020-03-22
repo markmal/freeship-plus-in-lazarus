@@ -544,7 +544,7 @@ begin
   Result := nil;
   ds := DistPP3D(P, FStartPoint.Coordinate);
   de := DistPP3D(P, FEndPoint.Coordinate);
-  if (abs(ds) <= 1e-3) or (abs(de) <= 1e-3) then
+  if (abs(ds) < 1e-4) or (abs(de) < 1e-4) then
     exit; //such point exists
 
   Result := TFreeSubdivisionControlpoint.Create(FOwner);

@@ -30,9 +30,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
-      <MinorVersionNr Value="6"/>
-      <RevisionNr Value="3"/>
-      <BuildNr Value="328"/>
+      <MinorVersionNr Value="7"/>
+      <BuildNr Value="329"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -951,7 +950,7 @@
     <Parsing>
       <Style Value="1"/>
       <SyntaxOptions>
-        <SyntaxMode Value="FPC"/>
+        <SyntaxMode Value="fpc"/>
         <IncludeAssertionCode Value="True"/>
       </SyntaxOptions>
     </Parsing>

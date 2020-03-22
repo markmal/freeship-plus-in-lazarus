@@ -1594,9 +1594,9 @@ begin
       OnMouseDown(Self, Button, Shift, X, Y);
     if not focused then
       SetFocus;
-    if (ssMiddle in shift) and (Viewtype = fvPerspective) then
+    if (ssLeft in shift) and (Viewtype = fvPerspective) then
     begin
-      Cursor := crRotate;
+      //Cursor := crRotate;
     end;
   end;
 end;{TFreeViewport.MouseDown}
@@ -1643,9 +1643,10 @@ begin
     if Cursor <> Desired then
       Cursor := Desired;
   end
-  else if (ssmiddle in shift) and (Viewtype = fvPerspective) then
+  else if (ssLeft in shift) and (Viewtype = fvPerspective) then
   begin
-    // rotation using middle mousebutton
+    // rotation using Left mousebutton
+    Cursor := crRotate;
     FAngle := Self.FAngle + (X - FPreviousPosition.X) / 4;
     while FAngle > 180 do
       FAngle := FAngle - 360;

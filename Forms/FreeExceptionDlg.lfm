@@ -1,0 +1,41 @@
+object Form1: TExceptionDlg
+  Left = 529
+  Height = 493
+  Top = 183
+  Width = 544
+  Caption = 'Exception'
+  ClientHeight = 493
+  ClientWidth = 544
+  LCLVersion = '2.0.6.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 443
+    Width = 544
+    Align = alBottom
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ClientHeight = 50
+    ClientWidth = 544
+    TabOrder = 0
+    object Button1: TButton
+      Left = 247
+      Height = 32
+      Top = 9
+      Width = 51
+      AutoSize = True
+      Caption = 'Close'
+      ModalResult = 11
+      TabOrder = 0
+    end
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 443
+    Top = 0
+    Width = 544
+    Align = alClient
+    TabOrder = 1
+  end
+end

@@ -83,18 +83,18 @@ type
 
   TFreeLackenbyDialog = class(TForm)
     CheckBox1: TCheckBox;
-    Diff1: TFloatSpinEdit;
-    Diff2: TFloatSpinEdit;
-    Diff3: TFloatSpinEdit;
-    Diff4: TFloatSpinEdit;
-    Edit1: TFloatSpinEdit;
-    Edit2: TFloatSpinEdit;
-    Edit3: TFloatSpinEdit;
-    Edit4: TFloatSpinEdit;
-    Input1: TFloatSpinEdit;
-    Input2: TFloatSpinEdit;
-    Input3: TFloatSpinEdit;
-    Input4: TFloatSpinEdit;
+    DisplacementDiff: TFloatSpinEdit;
+    BlockCoeffDiff: TFloatSpinEdit;
+    PrismCoeffDiff: TFloatSpinEdit;
+    LongCoBDiff: TFloatSpinEdit;
+    DisplacementCurrent: TFloatSpinEdit;
+    BlockCoeffCurrent: TFloatSpinEdit;
+    PrismCoeffCurrent: TFloatSpinEdit;
+    LongCoBCurrent: TFloatSpinEdit;
+    DisplacementNew: TFloatSpinEdit;
+    BlockCoeffNew: TFloatSpinEdit;
+    PrismCoeffNew: TFloatSpinEdit;
+    LongCoBNew: TFloatSpinEdit;
     IterationBox: TSpinEdit;
     Label1: TLabel;
     Label10: TLabel;
@@ -159,14 +159,14 @@ type
     FModified: boolean;
     FOriginalSectionalAreaCurve: TFreeSpline;
     FNewSectionalAreaCurve: TFreeSpline;
-    procedure FCalulateHydrostaticProperties(Wlplane: T3DPlane;
+    procedure CalulateHydrostaticProperties(Wlplane: T3DPlane;
       MainArea: TFloatType; Stations: TFasterListTFreeIntersection;
       var Prop: TBodyProp; SAC: TFreeSpline);
-    procedure FUpdateData(SAC: TFreeSpline);
-    procedure FCopyValues;
-    procedure FUpdateDifferences;
-    procedure FExtractStations(Dest: TFasterListTFreeSpline);
-    procedure FExtractWaterline(Dest: TFasterListTFreeSpline);
+    procedure UpdateData(SAC: TFreeSpline);
+    procedure CopyValues;
+    procedure UpdateDifferences;
+    procedure ExtractStations(Dest: TFasterListTFreeSpline);
+    procedure ExtractWaterline(Dest: TFasterListTFreeSpline);
     procedure createViewport();
     procedure createTopView();
   public    { Public declarations }
@@ -190,8 +190,9 @@ uses Math;
   {$R *.lfm}
 {$ENDIF}
 
-procedure TFreeLackenbyDialog.FCalulateHydrostaticProperties(Wlplane: T3DPlane;
-  MainArea: TFloatType; Stations: TFasterListTFreeIntersection; var Prop: TBodyProp; SAC: TFreeSpline);
+procedure TFreeLackenbyDialog.CalulateHydrostaticProperties(Wlplane: T3DPlane;
+  MainArea: TFloatType; Stations: TFasterListTFreeIntersection;
+  var Prop: TBodyProp; SAC: TFreeSpline);
 var
   I, N: integer;
   Station: TFreeIntersection;
@@ -274,43 +275,43 @@ begin
   else
     Prop.Cp := 0.0;
   Stations.Capacity := Stations.Capacity;
-end;{TFreeLackenbyDialog.FCalulateHydrostaticProperties}
+end;{TFreeLackenbyDialog.CalulateHydrostaticProperties}
 
-procedure TFreeLackenbyDialog.FCopyValues;
+procedure TFreeLackenbyDialog.CopyValues;
 begin
-  Input1.Value := Edit1.Value;
-  Input2.Value := Edit2.Value;
-  Input3.Value := Edit3.Value;
-  Input4.Value := Edit4.Value;
-  Input1.DecimalPlaces := Edit1.DecimalPlaces;
-end;{TFreeLackenbyDialog.FCopyValues}
+  DisplacementNew.Value := DisplacementCurrent.Value;
+  BlockCoeffNew.Value := BlockCoeffCurrent.Value;
+  PrismCoeffNew.Value := PrismCoeffCurrent.Value;
+  LongCoBNew.Value := LongCoBCurrent.Value;
+  DisplacementNew.DecimalPlaces := DisplacementCurrent.DecimalPlaces;
+end;{TFreeLackenbyDialog.CopyValues}
 
-procedure TFreeLackenbyDialog.FUpdateDifferences;
+procedure TFreeLackenbyDialog.UpdateDifferences;
 begin
-  Diff1.Value := Input1.Value - Edit1.Value;
-  if abs(Diff1.Value) > 1e-3 then
-    Diff1.Font.Color := clred
+  DisplacementDiff.Value := DisplacementNew.Value - DisplacementCurrent.Value;
+  if abs(DisplacementDiff.Value) > 1e-3 then
+    DisplacementDiff.Font.Color := clred
   else
-    Diff1.Font.Color := clGreen;
-  Diff2.Value := Input2.Value - Edit2.Value;
-  if abs(Diff2.Value) > 1e-4 then
-    Diff2.Font.Color := clred
+    DisplacementDiff.Font.Color := clGreen;
+  BlockCoeffDiff.Value := BlockCoeffNew.Value - BlockCoeffCurrent.Value;
+  if abs(BlockCoeffDiff.Value) > 1e-4 then
+    BlockCoeffDiff.Font.Color := clred
   else
-    Diff2.Font.Color := clGreen;
-  Diff3.Value := Input3.Value - Edit3.Value;
-  if abs(Diff3.Value) > 1e-4 then
-    Diff3.Font.Color := clred
+    BlockCoeffDiff.Font.Color := clGreen;
+  PrismCoeffDiff.Value := PrismCoeffNew.Value - PrismCoeffCurrent.Value;
+  if abs(PrismCoeffDiff.Value) > 1e-4 then
+    PrismCoeffDiff.Font.Color := clred
   else
-    Diff3.Font.Color := clGreen;
-  Diff4.Value := Input4.Value - Edit4.Value;
-  if abs(Diff4.Value) > 1e-3 then
-    Diff4.Font.Color := clred
+    PrismCoeffDiff.Font.Color := clGreen;
+  LongCoBDiff.Value := LongCoBNew.Value - LongCoBCurrent.Value;
+  if abs(LongCoBDiff.Value) > 1e-3 then
+    LongCoBDiff.Font.Color := clred
   else
-    Diff4.Font.Color := clGreen;
-  Diff1.DecimalPlaces := NumberOfdecimals(Diff1.Value);
-end;{TFreeLackenbyDialog.FUpdateDifferences}
+    LongCoBDiff.Font.Color := clGreen;
+  DisplacementDiff.DecimalPlaces := NumberOfdecimals(DisplacementDiff.Value);
+end;{TFreeLackenbyDialog.UpdateDifferences}
 
-procedure TFreeLackenbyDialog.FUpdateData;
+procedure TFreeLackenbyDialog.UpdateData(SAC: TFreeSpline);
 var
   AftProperties: TBodyprop;
   ForeProperties: TBodyProp;
@@ -324,8 +325,9 @@ begin
   ForeProperties := Aftproperties;
   TotalProp := Aftproperties;
 
-  FCalulateHydrostaticProperties(FWaterlinePlane, FMainArea, FAftShip, AftProperties, SAC);
-  FCalulateHydrostaticProperties(FWaterlinePlane, FMainArea, FForeShip,
+  CalulateHydrostaticProperties(FWaterlinePlane, FMainArea, FAftShip,
+    AftProperties, SAC);
+  CalulateHydrostaticProperties(FWaterlinePlane, FMainArea, FForeShip,
     ForeProperties, SAC);
 
   TotalProp.Displacement := AftProperties.Displacement + ForeProperties.Displacement;
@@ -340,13 +342,13 @@ begin
       TotalProp.Cp := 0.0;
   end;
   with FFreeship.ProjectSettings do
-    Edit1.Value := VolumeToDisplacement(Totalprop.Displacement,
+    DisplacementCurrent.Value := VolumeToDisplacement(Totalprop.Displacement,
       ProjectWaterDensity, ProjectAppendageCoefficient, ProjectUnits);
-  Edit1.DecimalPlaces := NumberOfDecimals(Edit1.Value);
-  ////   Edit2.Value:=Totalprop.Displacement/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
-  Edit2.Value := Totalprop.Displacement / ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
-  Edit3.Value := Totalprop.Cp;
-  Edit4.Value := TotalProp.LCB;
+  DisplacementCurrent.DecimalPlaces := NumberOfDecimals(DisplacementCurrent.Value);
+  ////   BlockCoeffCurrent.Value:=Totalprop.Displacement/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
+  BlockCoeffCurrent.Value := Totalprop.Displacement / ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
+  PrismCoeffCurrent.Value := Totalprop.Cp;
+  LongCoBCurrent.Value := TotalProp.LCB;
   Label4.Caption := WeightStr(FFreeship.ProjectSettings.ProjectUnits);
   Label9.Caption := LengthStr(FFreeship.ProjectSettings.ProjectUnits);
   _Label12.Caption := ': ' + FloatToStrF(AftProperties.Cp, ffFixed, 7, 4);
@@ -357,9 +359,9 @@ begin
     FFreeship.ProjectSettings.ProjectUnits);
   _Label16.Caption := ': ' + FloatToStrF(MaxDispl, ffFixed, 7, NumberOfDecimals(MaxDispl)) +
     #32 + WeightStr(FFreeship.ProjectSettings.ProjectUnits);
-end;{TFreeLackenbyDialog.FUpdateData}
+end;{TFreeLackenbyDialog.UpdateData}
 
-procedure TFreeLackenbyDialog.FExtractStations(Dest: TFasterListTFreeSpline);
+procedure TFreeLackenbyDialog.ExtractStations(Dest: TFasterListTFreeSpline);
 var
   I, J, K: integer;
   P: T3DCoordinate;
@@ -394,9 +396,9 @@ begin
       Dest.Add(Spline);
     end;
   end;
-end;{TFreeLackenbyDialog.FExtractStations}
+end;{TFreeLackenbyDialog.ExtractStations}
 
-procedure TFreeLackenbyDialog.FExtractWaterline(Dest: TFasterListTFreeSpline);
+procedure TFreeLackenbyDialog.ExtractWaterline(Dest: TFasterListTFreeSpline);
 var
   I, J: integer;
   Waterline: TFreeIntersection;
@@ -425,7 +427,7 @@ begin
     Dest.Add(Spline);
   end;
   Waterline.Destroy;
-end;{TFreeLackenbyDialog.FExtractWaterline}
+end;{TFreeLackenbyDialog.ExtractWaterline}
 
 procedure TFreeLackenbyDialog.Transform(NewDispl: TFloatType;
   MaxIterations: integer; UpdateWindows: boolean; var Succeeded: boolean);
@@ -532,9 +534,9 @@ begin
       ;
       DesiredData := Aftproperties;
       ;
-      FCalulateHydrostaticProperties(FWaterlinePlane, FMainArea,
+      CalulateHydrostaticProperties(FWaterlinePlane, FMainArea,
         FAftShip, AftProperties, nil);
-      FCalulateHydrostaticProperties(FWaterlinePlane, FMainArea,
+      CalulateHydrostaticProperties(FWaterlinePlane, FMainArea,
         FForeShip, ForeProperties, nil);
       // perform a check
       TotalProp.Displacement := AftProperties.Displacement + ForeProperties.Displacement;
@@ -552,7 +554,7 @@ begin
         DesiredData := TotalProp;
         DesiredData.Displacement := NewDispl;
         DesiredData.Cp := DesiredData.Displacement / (DesiredData.Length * FMainArea);
-        Desireddata.LCB := Input4.Value;
+        Desireddata.LCB := LongCoBNew.Value;
         DisplError := abs((DesiredData.Displacement - TotalProp.Displacement) /
           DesiredData.Displacement);
         if abs(Desireddata.LCB - TotalProp.LCB) <= 2e-3 then
@@ -640,8 +642,8 @@ begin
           if UpdateWindows then
             FFreeship.Redraw;
           Inc(Iteration);
-          FUpdateData(nil);
-          FUpdateDifferences;
+          UpdateData(nil);
+          UpdateDifferences;
           Application.ProcessMessages;
         end;
       end
@@ -706,9 +708,9 @@ begin
       end;
 
 
-      FUpdatedata(nil);
+      UpdateData(nil);
 
-      FUpdateDifferences;
+      UpdateDifferences;
       Modified := False;
     end;
     Points.Destroy;
@@ -816,10 +818,10 @@ begin
   FNewStations := TFasterListTFreeSpline.Create;
   FOriginalWaterline := TFasterListTFreeSpline.Create;
   FNewWaterline := TFasterListTFreeSpline.Create;
-  FExtractStations(FOriginalStations);
+  ExtractStations(FOriginalStations);
   FOriginalSectionalAreaCurve := TFreeSpline.Create(FFreeship.Surface);
   FNewSectionalAreaCurve := TFreeSpline.Create(FFreeship.Surface);
-  FExtractWaterline(FOriginalWaterline);
+  ExtractWaterline(FOriginalWaterline);
   FModified := False;
 
   // setup layers
@@ -888,11 +890,11 @@ begin
     FForeship.Add(Station);
   end;
 
-  FUpdateData(FOriginalSectionalAreaCurve);
-  FCopyValues;
-  FUpdateDifferences;
-  Input1.Value := Edit1.Value;
-  Input2.Value := Edit2.Value;
+  UpdateData(FOriginalSectionalAreaCurve);
+  CopyValues;
+  UpdateDifferences;
+  DisplacementNew.Value := DisplacementCurrent.Value;
+  BlockCoeffNew.Value := BlockCoeffCurrent.Value;
   Viewport.ZoomExtents;
   TopView.ZoomExtents;
 
@@ -969,19 +971,19 @@ var
   NewDispl: TFloatType;
   Succeeded: boolean;
 begin
-  if Input1.Value > 0 then
+  if DisplacementNew.Value > 0 then
   begin
     NewDispl := DisplacementToVolume(
-      Input1.Value, FFreeship.ProjectSettings.ProjectWaterDensity,
+      DisplacementNew.Value, FFreeship.ProjectSettings.ProjectWaterDensity,
       FFreeship.ProjectSettings.ProjectAppendageCoefficient,
       FFreeship.ProjectSettings.ProjectUnits);
     Transform(NewDispl, IterationBox.Value, Checkbox1.Checked, Succeeded);
     if Succeeded then
     begin
-      FExtractStations(FNewStations);
-      FExtractWaterline(FNewWaterline);
+      ExtractStations(FNewStations);
+      ExtractWaterline(FNewWaterline);
       Viewport.ZoomExtents;
-      FUpdateData(FNewSectionalAreaCurve);
+      UpdateData(FNewSectionalAreaCurve);
       TopView.ZoomExtents;
     end;
   end
@@ -993,50 +995,50 @@ procedure TFreeLackenbyDialog.Input1AfterSetValue(Sender: TObject);
 var
   NewDispl: TFloatType;
 begin
-  if Input1.Value > 0 then
+  if DisplacementNew.Value > 0 then
   begin
     // New displacement set, update otherboxes
     with FFreeship.ProjectSettings do
-      NewDispl := DisplacementToVolume(Input1.Value, ProjectWaterDensity,
+      NewDispl := DisplacementToVolume(DisplacementNew.Value, ProjectWaterDensity,
         ProjectAppendageCoefficient, ProjectUnits);
-    ////      Input2.Value:=NewDispl/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
-    Input2.Value := NewDispl / ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
-    Input3.Value := NewDispl / (FMainArea * (FMax.X - FMin.X));
+    ////      BlockCoeffNew.Value:=NewDispl/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
+    BlockCoeffNew.Value := NewDispl / ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
+    PrismCoeffNew.Value := NewDispl / (FMainArea * (FMax.X - FMin.X));
   end
   else
   begin
-    Input2.Value := 0;
-    Input3.Value := 0;
+    BlockCoeffNew.Value := 0;
+    PrismCoeffNew.Value := 0;
   end;
-  FUpdateDifferences;
+  UpdateDifferences;
 end;{TFreeLackenbyDialog.Input1AfterSetValue}
 
 procedure TFreeLackenbyDialog.Input2AfterSetValue(Sender: TObject);
 var
   NewDispl: TFloatType;
 begin
-  ////   NewDispl:=Input2.Value*((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
-  NewDispl := Input2.Value * ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
-  Input1.Value := VolumeToDisplacement(
+  ////   NewDispl:=BlockCoeffNew.Value*((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
+  NewDispl := BlockCoeffNew.Value * ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
+  DisplacementNew.Value := VolumeToDisplacement(
     NewDispl, FFreeship.ProjectSettings.ProjectWaterDensity,
     FFreeship.ProjectSettings.ProjectAppendageCoefficient,
     FFreeship.ProjectSettings.ProjectUnits);
-  Input3.Value := NewDispl / (FMainArea * (FMax.X - FMin.X));
-  FUpdateDifferences;
+  PrismCoeffNew.Value := NewDispl / (FMainArea * (FMax.X - FMin.X));
+  UpdateDifferences;
 end;{TFreeLackenbyDialog.Input2AfterSetValue}
 
 procedure TFreeLackenbyDialog.Input3AfterSetValue(Sender: TObject);
 var
   NewDispl: TFloatType;
 begin
-  NewDispl := Input3.Value * FMainArea * (FMax.X - FMin.X);
-  Input1.Value := VolumeToDisplacement(
+  NewDispl := PrismCoeffNew.Value * FMainArea * (FMax.X - FMin.X);
+  DisplacementNew.Value := VolumeToDisplacement(
     NewDispl, FFreeship.ProjectSettings.ProjectWaterDensity,
     FFreeship.ProjectSettings.ProjectAppendageCoefficient,
     FFreeship.ProjectSettings.ProjectUnits);
-  ////   Input2.Value:=NewDispl/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
-  Input2.Value := NewDispl / ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
-  FUpdateDifferences;
+  ////   BlockCoeffNew.Value:=NewDispl/((FMax.X-FMin.X)*(FMax.Y-FMin.Y)*(FMax.Z-FMin.Z));
+  BlockCoeffNew.Value := NewDispl / ((FMax.X - FMin.X) * (FMax.Y - FMin.Y) * FMax.Z);
+  UpdateDifferences;
 end;{TFreeLackenbyDialog.Input3AfterSetValue}
 
 procedure TFreeLackenbyDialog.ViewportRequestExtents(Sender: TObject;
@@ -1270,12 +1272,13 @@ begin
         Topview.Max3D.Y, 0));
       Topview.LineTo(Pt.X, Pt.Y);
 
-
-
       FNewSectionalAreaCurve.Color := clRed;
       FNewSectionalAreaCurve.Fragments := 400;
       FNewSectionalAreaCurve.PenStyle := psDot;
-      FNewSectionalAreaCurve.Draw(TopView);
+      FNewSectionalAreaCurve.Rebuild;
+      if FNewSectionalAreaCurve.NumberOfPoints>0 then
+         FNewSectionalAreaCurve.Draw(TopView);
+
       for I := 1 to FNewWaterline.Count do
       begin
         Spline := FNewWaterline[I - 1];

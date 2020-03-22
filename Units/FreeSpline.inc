@@ -60,16 +60,21 @@ end;{TFreeSpline.FGetFragments}
 
 function TFreeSpline.FGetKnuckle(Index: integer): boolean;
 begin
+  Result := FKnuckles[Index];
+  { // will capture with debugger
   if (Index >= 0) and (Index < FNoPoints) then
     Result := FKnuckles[Index]
   else
     raise Exception.Create('List index out of bounds in ' + ClassName +
       '.FGetKnuckle. (' + IntToStr(Index) + ').');
+   }
 end;{TFreeSpline.FGetKnuckle}
 
 procedure TFreeSpline.FSetKnuckle(Index: integer; Value: boolean);
 begin
-  if (Index >= 0) and (Index < FNoPoints) then
+  FKnuckles[Index] := Value;
+  Build := False;
+{  if (Index >= 0) and (Index < FNoPoints) then
   begin
     FKnuckles[Index] := Value;
     Build := False;
@@ -77,10 +82,14 @@ begin
   else
     raise Exception.Create('List index out of bounds in ' + ClassName +
       '.FSetKnuckle. (' + IntToStr(Index) + ').');
+}
 end;{TFreeSpline.FSetKnuckle}
 
 procedure TFreeSpline.FSetPoint(Index: integer; P: T3DCoordinate);
 begin
+  FPoints[index] := P;
+  Build := False;
+{
   if (Index >= 0) and (Index < NumberOfPoints) then
   begin
     FPoints[index] := P;
@@ -88,11 +97,16 @@ begin
   end
   else
     raise Exception.Create('Point index out of bounds!');
+}
 end;{TFreeSpline.FSetPoint}
 
 function TFreeSpline.FGetParameter(Index: integer): TFloatType;
 begin
-  if (Index >= 0) and (Index < FNoPoints) then
+  if not build then
+     rebuild;
+  Result := FParameters[Index];
+
+{  if (Index >= 0) and (Index < FNoPoints) then
   begin
     if not build then
       rebuild;
@@ -101,14 +115,16 @@ begin
   else
     raise Exception.Create('List index out of bounds in ' + ClassName +
       '.FGetParameter. (' + IntToStr(Index) + ').');
+}
 end;{TFreeSpline.FGetParameter}
 
 function TFreeSpline.FGetPoint(Index: integer): T3DCoordinate;
 begin
-  if (Index >= 0) and (Index < NumberOfPoints) then
+  Result := FPoints[index];
+{  if (Index >= 0) and (Index < NumberOfPoints) then
     Result := FPoints[index]
   else
-    raise Exception.Create('Point index out of bounds!');
+    raise Exception.Create('Point index out of bounds!'); }
 end;{TFreeSpline.FGetPoint}
 
 procedure TFreeSpline.Rebuild;
@@ -414,16 +430,11 @@ begin
     Result := False;
   end;
 
-  // MM: Useless code? Commenting out.
-   {
-   for I:=1 to numberofpoints do
-      if Knuckle[I-1]
+  for I:=1 to numberofpoints do
+    if Knuckle[I-1]
          then inc(N2);
-   if N1<>N2 then
-   begin
+  if N1<>N2 then
       Build:=false;
-   end;
-   }
 
   Capacity := NumberOfPoints;
   ///Fragments := NumberOfPoints - 1;
@@ -1161,9 +1172,11 @@ begin
   Result.X := 0;
   Result.Y := 0;
   Result.Z := 0;
-  if FNoPoints < 2 then
-    exit;
+  PointNo1 := 0;
+  PointNo2 := 0;
   if not FBuild then
+    Rebuild;
+  if FNoPoints < 2 then
     Rebuild;
   if (length(FParameters) < FNoPoints) then
     Rebuild;

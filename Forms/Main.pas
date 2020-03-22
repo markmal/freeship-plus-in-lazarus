@@ -677,7 +677,9 @@ uses //FreeSplashWndw,
      RibbonToolBarMgr,
      TileDialog,
      FreePointGroupForm,
-     FreeUpdateDlg;
+     FreeUpdateDlg,
+     FreeLogger,
+     FreeExceptionDlg;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -731,6 +733,8 @@ begin
     }
 end;
 
+var ExceptionDlg : TExceptionDlg;
+
 procedure DumpExceptionCallStack(E: Exception);
 var
   I: Integer;
@@ -747,10 +751,13 @@ begin
   Frames := ExceptFrames;
   for I := 0 to ExceptFrameCount - 1 do
     Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
-  Writeln(Report);
+  logger.Error(Report);
   //ShowMessage(Report);
-  MessageDlg('Program exception!', Report, mtError, [mbClose],0);
-  //Halt; // End of program execution
+  //MessageDlg('Program exception!', Report, mtError, [mbClose],0);
+  //InputBox('Program exception!', 'You can copy exception stack', Report);
+  ExceptionDlg.Memo1.Text := Report;
+  ExceptionDlg.Showmodal;
+  Halt; // End of program execution
 end;
 
 constructor TMainForm.Create(AOwner: TComponent);
@@ -3080,5 +3087,7 @@ begin
   }
 end;
 
+initialization
+  ExceptionDlg := TExceptionDlg.create(nil);
 
 end.

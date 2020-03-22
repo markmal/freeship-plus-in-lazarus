@@ -123,17 +123,17 @@ uses
 var ParametersHelp, ShowSplash, InDebugger : boolean; sOpenFile:string='';
 
 resourcestring
-  usageLine01 = ('Usage: FreeShip [parameter]* [model]');
-  usageLine02 = ('Where parameter is:');
-  usageLine03 = ('--help        : this screen');
-  usageLine04 = ('--log-error   : log level is Error. Only Error messages logged');
-  usageLine05 = ('--log-warning : log level is Warning. Only Error and Warning messages logged');
-  usageLine06 = ('--log-info    : log level is Info. Error, Warning and Info messages logged');
-  usageLine07 = ('--log-debug   : log level is Debug. All messages logged.');
-  usageLine08 = ('--log-file=<logfile> : filename of the log file');
-  usageLine09 = ('--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS : turn off splash screen.');
-  usageLine10 = ('--debug       : for development, use only when run in debugger');
-  usageLine11 = ('model         : model file .ftm or .fbm');
+  usageLine01 = 'Usage: FreeShip [parameter]* [model]';
+  usageLine02 = 'Where parameter is:';
+  usageLine03 = '--help        : this screen';
+  usageLine04 = '--log-error   : log level is Error. Only Error messages logged';
+  usageLine05 = '--log-warning : log level is Warning. Only Error and Warning messages logged';
+  usageLine06 = '--log-info    : log level is Info. Error, Warning and Info messages logged';
+  usageLine07 = '--log-debug   : log level is Debug. All messages logged.';
+  usageLine08 = '--log-file=<logfile> : filename of the log file';
+  usageLine09 = '--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS : turn off splash screen.';
+  usageLine10 = '--debug       : for development, use only when run in debugger';
+  usageLine11 = 'model         : model file .ftm or .fbm';
 
 
 procedure PrintParametersHelp;

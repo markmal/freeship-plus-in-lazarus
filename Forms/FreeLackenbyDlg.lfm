@@ -1,19 +1,19 @@
 object FreeLackenbyDialog: TFreeLackenbyDialog
-  Left = 684
+  Left = 668
   Height = 600
-  Top = 217
+  Top = 229
   Width = 1000
   BorderStyle = bsSingle
   Caption = 'Lackenby hullform transformation.'
   ClientHeight = 600
   ClientWidth = 1000
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object Splitter2: TSplitter
     Cursor = crVSplit
     Left = 0
     Height = 3
-    Top = 304
+    Top = 310
     Width = 1000
     Align = alTop
     Color = clRed
@@ -23,7 +23,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   object Panel2: TPanel
     Left = 0
     Height = 280
-    Top = 24
+    Top = 30
     Width = 1000
     Align = alTop
     BevelOuter = bvLowered
@@ -34,20 +34,20 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       Left = 1
       Height = 278
       Top = 1
-      Width = 499
+      Width = 534
       Align = alLeft
       AutoSize = True
       BevelOuter = bvNone
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 278
-      ClientWidth = 499
+      ClientWidth = 534
       TabOrder = 0
       object Panel3: TPanel
         Left = 0
-        Height = 169
+        Height = 207
         Top = 0
-        Width = 499
+        Width = 534
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
@@ -55,19 +55,19 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 5
-        ClientHeight = 169
-        ClientWidth = 499
+        ClientHeight = 207
+        ClientWidth = 534
         TabOrder = 0
         object Label12: TLabel
           Left = 10
-          Height = 14
+          Height = 17
           Top = 10
-          Width = 172
+          Width = 201
           ParentColor = False
         end
         object Label2: TLabel
-          Left = 188
-          Height = 14
+          Left = 217
+          Height = 17
           Top = 10
           Width = 80
           Caption = 'Current'
@@ -78,8 +78,8 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           ParentFont = False
         end
         object Label3: TLabel
-          Left = 274
-          Height = 14
+          Left = 303
+          Height = 17
           Top = 10
           Width = 80
           Caption = 'Desired'
@@ -90,8 +90,8 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           ParentFont = False
         end
         object Label8: TLabel
-          Left = 360
-          Height = 14
+          Left = 389
+          Height = 17
           Top = 10
           Width = 80
           Caption = 'Difference'
@@ -102,25 +102,25 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           ParentFont = False
         end
         object Label14: TLabel
-          Left = 446
-          Height = 14
+          Left = 475
+          Height = 17
           Top = 10
-          Width = 43
+          Width = 49
           ParentColor = False
         end
         object Label1: TLabel
           Left = 10
-          Height = 25
-          Top = 26
-          Width = 172
+          Height = 32
+          Top = 29
+          Width = 201
           Caption = 'Displacement'
           Layout = tlCenter
           ParentColor = False
         end
-        object Edit1: TFloatSpinEdit
-          Left = 188
-          Height = 25
-          Top = 26
+        object DisplacementCurrent: TFloatSpinEdit
+          Left = 217
+          Height = 32
+          Top = 29
           Width = 80
           Alignment = taRightJustify
           Constraints.MinWidth = 80
@@ -131,10 +131,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 0
           Value = 0
         end
-        object Input1: TFloatSpinEdit
-          Left = 274
-          Height = 25
-          Top = 26
+        object DisplacementNew: TFloatSpinEdit
+          Left = 303
+          Height = 32
+          Top = 29
           Width = 80
           Alignment = taRightJustify
           Constraints.MinWidth = 80
@@ -145,10 +145,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 1
           Value = 0
         end
-        object Diff1: TFloatSpinEdit
-          Left = 360
-          Height = 25
-          Top = 26
+        object DisplacementDiff: TFloatSpinEdit
+          Left = 389
+          Height = 32
+          Top = 29
           Width = 80
           Alignment = taRightJustify
           Constraints.MinWidth = 80
@@ -160,27 +160,27 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Value = 0
         end
         object Label4: TLabel
-          Left = 446
-          Height = 25
-          Top = 26
-          Width = 43
+          Left = 475
+          Height = 32
+          Top = 29
+          Width = 49
           Caption = 'Label4'
           Layout = tlCenter
           ParentColor = False
         end
         object Label5: TLabel
           Left = 10
-          Height = 25
-          Top = 53
-          Width = 172
+          Height = 32
+          Top = 63
+          Width = 201
           Caption = 'Block coefficient'
           Layout = tlCenter
           ParentColor = False
         end
-        object Edit2: TFloatSpinEdit
-          Left = 188
-          Height = 25
-          Top = 53
+        object BlockCoeffCurrent: TFloatSpinEdit
+          Left = 217
+          Height = 32
+          Top = 63
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
@@ -190,10 +190,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 3
           Value = 0
         end
-        object Input2: TFloatSpinEdit
-          Left = 274
-          Height = 25
-          Top = 53
+        object BlockCoeffNew: TFloatSpinEdit
+          Left = 303
+          Height = 32
+          Top = 63
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
@@ -203,10 +203,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 4
           Value = 0
         end
-        object Diff2: TFloatSpinEdit
-          Left = 360
-          Height = 25
-          Top = 53
+        object BlockCoeffDiff: TFloatSpinEdit
+          Left = 389
+          Height = 32
+          Top = 63
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
@@ -217,25 +217,25 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Value = 0
         end
         object Label16: TLabel
-          Left = 446
-          Height = 25
-          Top = 53
-          Width = 43
+          Left = 475
+          Height = 32
+          Top = 63
+          Width = 49
           ParentColor = False
         end
         object Label7: TLabel
           Left = 10
-          Height = 25
-          Top = 80
-          Width = 172
+          Height = 32
+          Top = 97
+          Width = 201
           Caption = 'Prismatic coefficient'
           Layout = tlCenter
           ParentColor = False
         end
-        object Edit3: TFloatSpinEdit
-          Left = 188
-          Height = 25
-          Top = 80
+        object PrismCoeffCurrent: TFloatSpinEdit
+          Left = 217
+          Height = 32
+          Top = 97
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
@@ -245,10 +245,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 6
           Value = 0
         end
-        object Input3: TFloatSpinEdit
-          Left = 274
-          Height = 25
-          Top = 80
+        object PrismCoeffNew: TFloatSpinEdit
+          Left = 303
+          Height = 32
+          Top = 97
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
@@ -258,10 +258,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 7
           Value = 0
         end
-        object Diff3: TFloatSpinEdit
-          Left = 360
-          Height = 25
-          Top = 80
+        object PrismCoeffDiff: TFloatSpinEdit
+          Left = 389
+          Height = 32
+          Top = 97
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 4
@@ -272,25 +272,25 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Value = 0
         end
         object Label17: TLabel
-          Left = 446
-          Height = 25
-          Top = 80
-          Width = 43
+          Left = 475
+          Height = 32
+          Top = 97
+          Width = 49
           ParentColor = False
         end
         object Label6: TLabel
           Left = 10
-          Height = 25
-          Top = 107
-          Width = 172
+          Height = 32
+          Top = 131
+          Width = 201
           Caption = 'Long. center of buoyancy'
           Layout = tlCenter
           ParentColor = False
         end
-        object Edit4: TFloatSpinEdit
-          Left = 188
-          Height = 25
-          Top = 107
+        object LongCoBCurrent: TFloatSpinEdit
+          Left = 217
+          Height = 32
+          Top = 131
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 3
@@ -300,10 +300,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 9
           Value = 0
         end
-        object Input4: TFloatSpinEdit
-          Left = 274
-          Height = 25
-          Top = 107
+        object LongCoBNew: TFloatSpinEdit
+          Left = 303
+          Height = 32
+          Top = 131
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 3
@@ -312,10 +312,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           TabOrder = 10
           Value = 0
         end
-        object Diff4: TFloatSpinEdit
-          Left = 360
-          Height = 25
-          Top = 107
+        object LongCoBDiff: TFloatSpinEdit
+          Left = 389
+          Height = 32
+          Top = 131
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 3
@@ -326,27 +326,27 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
           Value = 0
         end
         object Label9: TLabel
-          Left = 446
-          Height = 25
-          Top = 107
-          Width = 43
+          Left = 475
+          Height = 32
+          Top = 131
+          Width = 49
           Caption = 'Label9'
           Layout = tlCenter
           ParentColor = False
         end
         object Label10: TLabel
           Left = 10
-          Height = 25
-          Top = 134
-          Width = 172
+          Height = 32
+          Top = 165
+          Width = 201
           Caption = 'Maximum no. of iterations'
           Layout = tlCenter
           ParentColor = False
         end
         object IterationBox: TSpinEdit
-          Left = 188
-          Height = 25
-          Top = 134
+          Left = 217
+          Height = 32
+          Top = 165
           Width = 80
           Alignment = taRightJustify
           MaxValue = 50
@@ -356,21 +356,21 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Panel7: TPanel
         Left = 0
-        Height = 21
-        Top = 169
-        Width = 499
+        Height = 24
+        Top = 207
+        Width = 534
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 21
-        ClientWidth = 499
+        ClientHeight = 24
+        ClientWidth = 534
         TabOrder = 1
         object CheckBox1: TCheckBox
           Left = 10
-          Height = 21
+          Height = 24
           Top = 0
-          Width = 200
+          Width = 231
           Alignment = taLeftJustify
           Caption = 'Redraw after each iteration'
           Checked = True
@@ -380,9 +380,9 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
       end
       object Panel6: TPanel
         Left = 0
-        Height = 85
-        Top = 190
-        Width = 499
+        Height = 106
+        Top = 231
+        Width = 534
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
@@ -390,59 +390,59 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
         ChildSizing.VerticalSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 85
-        ClientWidth = 499
+        ClientHeight = 106
+        ClientWidth = 534
         TabOrder = 2
         object Label11: TLabel
           Left = 10
-          Height = 15
+          Height = 22
           Top = 10
-          Width = 158
+          Width = 186
           Caption = 'Prismatic coeff. aftship'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label12: TLabel
-          Left = 174
-          Height = 15
+          Left = 202
+          Height = 22
           Top = 10
-          Width = 58
+          Width = 65
           Caption = '_Label12'
           Layout = tlCenter
           ParentColor = False
         end
         object Label13: TLabel
           Left = 10
-          Height = 15
-          Top = 35
-          Width = 158
+          Height = 22
+          Top = 42
+          Width = 186
           Caption = 'Prismatic coeff. foreship'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label14: TLabel
-          Left = 174
-          Height = 15
-          Top = 35
-          Width = 58
+          Left = 202
+          Height = 22
+          Top = 42
+          Width = 65
           Caption = 'Label12'
           Layout = tlCenter
           ParentColor = False
         end
         object Label15: TLabel
           Left = 10
-          Height = 15
-          Top = 60
-          Width = 158
+          Height = 22
+          Top = 74
+          Width = 186
           Caption = 'Maximum displacement'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label16: TLabel
-          Left = 174
-          Height = 15
-          Top = 60
-          Width = 58
+          Left = 202
+          Height = 22
+          Top = 74
+          Width = 65
           Caption = 'Label12'
           Layout = tlCenter
           ParentColor = False
@@ -452,13 +452,13 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 24
+    Height = 30
     Top = 0
     Width = 1000
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 30
     ClientWidth = 1000
     Constraints.MinWidth = 60
     ParentShowHint = False
@@ -466,10 +466,10 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     TabOrder = 1
     object Button1: TSpeedButton
       Left = 4
-      Height = 20
+      Height = 26
       Hint = 'Start the hullform transformation.'
       Top = 2
-      Width = 89
+      Width = 105
       Align = alLeft
       AutoSize = True
       BorderSpacing.Left = 4
@@ -495,7 +495,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object SpeedButton1: TSpeedButton
       Left = 832
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight
@@ -547,7 +547,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object BitBtn2: TSpeedButton
       Left = 916
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight
@@ -600,18 +600,18 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
   end
   object Panel4: TPanel
     Left = 0
-    Height = 293
-    Top = 307
+    Height = 287
+    Top = 313
     Width = 1000
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel4'
-    ClientHeight = 293
+    ClientHeight = 287
     ClientWidth = 1000
     TabOrder = 2
     object Splitter1: TSplitter
       Left = 163
-      Height = 293
+      Height = 287
       Top = 0
       Width = 5
       Color = clRed
@@ -619,7 +619,7 @@ object FreeLackenbyDialog: TFreeLackenbyDialog
     end
     object LayerBox: TCheckListBox
       Left = 0
-      Height = 293
+      Height = 287
       Top = 0
       Width = 163
       Align = alLeft

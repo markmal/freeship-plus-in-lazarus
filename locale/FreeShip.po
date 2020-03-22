@@ -335,6 +335,15 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
+#: texceptiondlg.button1.caption
+msgctxt "texceptiondlg.button1.caption"
+msgid "Close"
+msgstr ""
+
+#: texceptiondlg.caption
+msgid "Exception"
+msgstr ""
+
 #: tfreeaboutdlg.button1.caption
 msgctxt "tfreeaboutdlg.button1.caption"
 msgid "Close"

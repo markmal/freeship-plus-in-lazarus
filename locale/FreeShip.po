@@ -100,6 +100,50 @@ msgid ""
 "Please exit and run install-FreeShip.sh\n"
 msgstr ""
 
+#: freeship.usageline01
+msgid "Usage: FreeShip [parameter]* [model]"
+msgstr ""
+
+#: freeship.usageline02
+msgid "Where parameter is:"
+msgstr ""
+
+#: freeship.usageline03
+msgid "--help        : this screen"
+msgstr ""
+
+#: freeship.usageline04
+msgid "--log-error   : log level is Error. Only Error messages logged"
+msgstr ""
+
+#: freeship.usageline05
+msgid "--log-warning : log level is Warning. Only Error and Warning messages logged"
+msgstr ""
+
+#: freeship.usageline06
+msgid "--log-info    : log level is Info. Error, Warning and Info messages logged"
+msgstr ""
+
+#: freeship.usageline07
+msgid "--log-debug   : log level is Debug. All messages logged."
+msgstr ""
+
+#: freeship.usageline08
+msgid "--log-file=<logfile> : filename of the log file"
+msgstr ""
+
+#: freeship.usageline09
+msgid "--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS : turn off splash screen."
+msgstr ""
+
+#: freeship.usageline10
+msgid "--debug       : for development, use only when run in debugger"
+msgstr ""
+
+#: freeship.usageline11
+msgid "model         : model file .ftm or .fbm"
+msgstr ""
+
 #: freeshipunit.filedialogfilterall
 msgid "All|*"
 msgstr ""

@@ -219,6 +219,7 @@ begin
   FHorScrollbar := Val;
   if FHorScrollbar <> nil then
   begin
+    FOriginalHorScrollbarChange:=val.OnChange;
     FHorScrollbar.OnChange := FHorScrollbarChange;
     FHorScrollbar.Min := -180;
     FHorScrollbar.Max := 180;
@@ -258,6 +259,7 @@ begin
   FVertScrollbar := Val;
   if FVertScrollbar <> nil then
   begin
+    FOriginalVertScrollbarChange := val.OnChange;
     FVertScrollbar.OnChange := FVertScrollbarChange;
     FVertScrollbar.Min := -180;
     FVertScrollbar.Max := 180;
@@ -370,6 +372,8 @@ begin
   begin
     if Round(Angle) <> FHorScrollbar.Position then
       Angle := FHorScrollbar.Position;
+    if @FOriginalHorScrollbarChange <> nil then
+      FOriginalHorScrollbarChange(Sender);
   end;
 end;{TFreeViewport.FHorScrollbarChange}
 
@@ -379,6 +383,8 @@ begin
   begin
     if Round(Elevation) <> FVertScrollbar.Position then
       Elevation := FVertScrollbar.Position;
+    if @FOriginalVertScrollbarChange <> nil then
+      FOriginalVertScrollbarChange(Sender);
   end;
 end;{TFreeViewport.FVertScrollbarChange}
 

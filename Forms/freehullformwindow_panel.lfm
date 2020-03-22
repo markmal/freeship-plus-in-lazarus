@@ -1,24 +1,25 @@
 object FreeHullWindow: TFreeHullWindow
-  Left = 609
-  Height = 358
-  Top = 199
-  Width = 537
+  Left = 589
+  Height = 262
+  Top = 173
+  Width = 469
   Caption = 'FreeHullWindow'
-  ClientHeight = 358
-  ClientWidth = 537
+  ClientHeight = 262
+  ClientWidth = 469
   FormStyle = fsMDIChild
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   OnKeyUp = FormKeyUp
   OnShow = FormShow
+  PopupMenu = PopupMenuHull
   Position = poDefault
   LCLVersion = '2.0.6.0'
   object ScrollBar1: TScrollBar
     Left = 0
     Height = 15
-    Top = 343
-    Width = 537
+    Top = 247
+    Width = 469
     Align = alBottom
     LargeChange = 5
     Max = 180
@@ -26,10 +27,12 @@ object FreeHullWindow: TFreeHullWindow
     PageSize = 0
     Position = 20
     TabOrder = 0
+    OnChange = ScrollBar1Change
+    OnEnter = ScrollBar1Enter
   end
   object ScrollBar2: TScrollBar
-    Left = 522
-    Height = 343
+    Left = 454
+    Height = 247
     Top = 0
     Width = 15
     Align = alRight
@@ -39,12 +42,14 @@ object FreeHullWindow: TFreeHullWindow
     PageSize = 0
     Position = 20
     TabOrder = 1
+    OnChange = ScrollBar2Change
+    OnEnter = ScrollBar2Enter
   end
-  object PopupMenu1: TPopupMenu
-    Images = Images
+  object PopupMenuHull: TPopupMenu
+    Images = ImagesHull
     AutoPopup = False
-    OnPopup = PopupMenu1Popup
-    left = 40
+    OnPopup = PopupMenuHullPopup
+    left = 72
     top = 136
     object Deselectall1: TMenuItem
       Action = DeselectAll
@@ -152,9 +157,9 @@ object FreeHullWindow: TFreeHullWindow
       Action = SaveAsBitmap
     end
   end
-  object ActionList1: TActionList
-    Images = Images
-    left = 48
+  object ActionListHull: TActionList
+    Images = ImagesHull
+    left = 72
     top = 40
     object StandardLens: TAction
       Category = 'Camera'
@@ -317,7 +322,7 @@ object FreeHullWindow: TFreeHullWindow
       OnExecute = BackgroundVisibleExecute
     end
   end
-  object Images: TImageList
+  object ImagesHull: TImageList
     left = 208
     top = 40
     Bitmap = {
@@ -644,7 +649,7 @@ object FreeHullWindow: TFreeHullWindow
       0000000000000000000000000000
     }
   end
-  object PrintDialog: TPrintDialog
+  object PrintDialogHull: TPrintDialog
     left = 208
     top = 136
   end

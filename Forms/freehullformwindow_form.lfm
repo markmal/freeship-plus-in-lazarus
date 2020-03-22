@@ -1,7 +1,7 @@
 object FreeHullForm: TFreeHullForm
-  Left = 1098
+  Left = 1136
   Height = 285
-  Top = 285
+  Top = 176
   Width = 440
   Caption = 'FreeHullWindow'
   ClientHeight = 285
@@ -13,7 +13,7 @@ object FreeHullForm: TFreeHullForm
   OnKeyUp = FormKeyUp
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object ScrollBar1: TScrollBar
     Left = 0
     Height = 15
@@ -44,8 +44,8 @@ object FreeHullForm: TFreeHullForm
     Images = ImagesHull
     AutoPopup = False
     OnPopup = PopupMenuHullPopup
-    left = 128
-    top = 40
+    left = 64
+    top = 128
     object Deselectall1: TMenuItem
       Action = DeselectAll
     end
@@ -158,8 +158,8 @@ object FreeHullForm: TFreeHullForm
   end
   object ActionListHull: TActionList
     Images = ImagesHull
-    left = 128
-    top = 112
+    left = 64
+    top = 32
     object StandardLens: TAction
       Category = 'Camera'
       Caption = 'Standard lens 50mm.'
@@ -327,8 +327,8 @@ object FreeHullForm: TFreeHullForm
     end
   end
   object ImagesHull: TImageList
-    left = 128
-    top = 192
+    left = 248
+    top = 32
     Bitmap = {
       4C690A0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000B8B8C0FF9292
@@ -654,7 +654,7 @@ object FreeHullForm: TFreeHullForm
     }
   end
   object PrintDialogHull: TPrintDialog
-    left = 280
-    top = 40
+    left = 248
+    top = 128
   end
 end

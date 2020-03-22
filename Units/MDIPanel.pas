@@ -5,8 +5,17 @@ unit MDIPanel;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, Graphics,
-  ExtCtrls, ComCtrls, Buttons, Menus; //, ActnList;
+Classes, SysUtils, Types, TypInfo, Math, CustApp,
+// LCL
+LCLStrConsts, LCLType, LCLProc, LCLIntf, LCLVersion, LCLClasses, InterfaceBase,
+LResources, GraphType, Graphics, Menus, LMessages, CustomTimer, ActnList,
+ClipBrd, HelpIntfs, Controls, ImgList, Themes,
+// LazUtils
+LazFileUtils, LazUTF8, Maps, IntegerList, LazMethodList, LazLoggerBase,
+LazUtilities, UITypes
+{$ifndef wince},gettext{$endif}// remove ifdefs when gettext is fixed and a new fpc is released
+,Forms, StdCtrls,
+ExtCtrls, ComCtrls, Buttons;
 
 type
   TWindowPositionState = (wpsNone, wpsMoving, wpsResizing);
@@ -29,21 +38,44 @@ type
     public
       procedure ActiveDefaultControlChanged(NewControl: TControl); override;
   end;
+{$ifdef Use_MouseClickProxy}
+  TMouseClickProxy = class
+  private
+    FDestroyed: boolean;
+    FOwner: TControl;
+    FOwnerOnClick: TNotifyEvent;
+    FProxyOnClick: TNotifyEvent;
+  public
+    constructor Create(TheOwner: TControl);
+    destructor Destroy; override;
+    procedure OnClick(Sender: TObject);
+    property OwnerOnClick: TNotifyEvent read FOwnerOnClick;
+    property ProxyOnClick: TNotifyEvent read FProxyOnClick write FProxyOnClick;
+    class function IsOnClick(P: TNotifyEvent): boolean;
+  end;
+{$endif}
+type  TMDIPanelManager = class;
 
 type
-  TMDIPanel = class(TCustomPanel)
-    CaptionPanel: TPanel;
-    CaptionLabel: TLabel;
-    ClientPanel: TMDIClientPanel; //TScrollBox;
-    SystemButton: TImage;
-    CloseButton: TSpeedButton;
-    MaximizeButton: TSpeedButton;
-    MinimizeButton: TSpeedButton;
-    RestoreButton: TSpeedButton;
-    SystemPopupMenu: TPopupMenu;
-    MenuItemMinimize: TMenuItem;
-    MenuItemMaximize: TMenuItem;
-    MenuItemRestore: TMenuItem;
+  { TCustomMDIPanel }
+
+  TCustomMDIPanel = class(TCustomPanel)
+  private
+    FClientControls:TFPList;
+    FCaptionPanel: TPanel;
+    FCaptionLabel: TLabel;
+    FClientPanel: TMDIClientPanel; //TScrollBox;
+    FSystemButton: TImage;
+    FCloseButton: TSpeedButton;
+    FMaximizeButton: TSpeedButton;
+    FMinimizeButton: TSpeedButton;
+    FRestoreButton: TSpeedButton;
+    FSystemPopupMenu: TPopupMenu;
+    FMenuItemMinimize: TMenuItem;
+    FMenuItemMaximize: TMenuItem;
+    FMenuItemRestore: TMenuItem;
+    FMenuItemClose: TMenuItem;
+    FMDIPanelManager: TMDIPanelManager;
   private
     FOnActivate: TNotifyEvent;
     FOnDeactivate: TNotifyEvent;
@@ -58,7 +90,7 @@ type
     FNormalBounds: Trect; // bounds when not maximized, minimized or hidden
     FWindowState: TWindowState;
     FCornerSize: integer;
-    FBorderColor: TColor;
+    //FBorderColor: TColor;
     FActiveBorderColor: TColor;
     FInactiveBorderColor: TColor;
     FActive: boolean;
@@ -68,20 +100,30 @@ type
     FCaptionButtons: TCaptionButtons;
     FWindowResizingSide: TWindowResizingSide;
 
-    FLastResizeWidth:integer;
-    FLastResizeHeight:integer;
-    FLastResizeClientWidth:integer;
-    FLastResizeClientHeight:integer;
+    //FLastResizeWidth:integer;
+    //FLastResizeHeight:integer;
+    //FLastResizeClientWidth:integer;
+    //FLastResizeClientHeight:integer;
 
+    FClosing: boolean;
+    FFormState:TFormState;
+    FFormStyle:TFormStyle;
+    FPosition: TPosition;
+
+    FActionClose: TAction;
+    FActionList: TActionList;
+    procedure FActionCloseOnExecute(sender:TObject);
   private
 
     WindowPositionState: TWindowPositionState;
     WindowCaptionMouseX, WindowCaptionMouseY: integer;
 
     function getUniqueName(nameBase: string): string;
-    procedure CreateCaptionPanel;
+    procedure CreateCaptionPanel(aCaptionButtons:TCaptionButtons);
     procedure CreateClientPanel;
+    procedure PopulateClientPanel;
     procedure CreateSystemPopupMenu;
+    procedure DeleteSystemPopupMenu;
     //procedure CreateSystemActions;
     procedure setDefaultSystemIcon;
 
@@ -126,1297 +168,275 @@ type
     function GetControl(const Index: integer): TControl;
     function GetControlCount: integer;
 
+    {$ifdef Use_MouseClickProxy}
     procedure setMouseClickProxiesRecursively(Ctrl: TControl);
     procedure unsetMouseClickProxiesRecursively(Ctrl: TControl);
     procedure setMouseClickProxies;
     procedure unsetMouseClickProxies;
+    {$endif Use_MouseClickProxy}
     procedure PassivePanelOnClick(Sender: TObject);
-
-
+    procedure ScreenOnActiveControlChanged(Sender: TObject; LastControl: TControl);
+    procedure ClientPanelOnMouseDown(Sender: TObject; Button: TMouseButton;
+              Shift: TShiftState; X, Y: Integer);
   protected
+    procedure LMSysCommand(var message: TLMessage); message LM_SYSCOMMAND;
+    procedure Release;
     procedure Deactivate; virtual;
     procedure Paint; override;
     function  GetBorderColor: TColor;
+    procedure SetActive(val: boolean);
     procedure SetActiveBorderColor(AValue: TColor);
     procedure SetInactiveBorderColor(AValue: TColor);
     procedure SetParent(NewParent: TWinControl); override;
     procedure AdjustClientRect(var ARect: TRect); override;
-    procedure Resize; override;
+    procedure SetName(const Value: TComponentName); override;
+    procedure WndProc(var TheMessage: TLMessage); override;
+    //procedure Resize; override;
+  private
+    function IsIconStored: Boolean;
+    procedure ProcessResource;
+    procedure SetMDIPanelManager(AValue: TMDIPanelManager);
+    procedure InactivateSiblings;
   public
-    constructor Create(TheOwner: TComponent); override;
+    constructor CreateNew(AOwner: TComponent); virtual;
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    procedure Close;
 
     procedure InsertControl(AControl: TControl);
     procedure InsertControl(AControl: TControl; Index: integer); override;
     procedure RemoveControl(AControl: TControl); override;
 
-    procedure setActive(val: boolean);
-    procedure InactivateSiblings;
+    function  GetIcon :TIcon;
+    procedure SetIcon(val:TIcon);
 
-    function  getIcon :TIcon;
-    procedure setIcon(val:TIcon);
     property Controls[Index: integer]: TControl read GetControl;
     property ControlCount: integer read GetControlCount;
-    property CaptionButtons:TCaptionButtons read FCaptionButtons write SetCaptionButtons;
 
-  published
+    property CaptionButtons:TCaptionButtons read FCaptionButtons write SetCaptionButtons;
+    property FormStyle:TFormStyle read FFormStyle write FFormStyle default fsMDIChild;
+    property MDIPanelManager:TMDIPanelManager read FMDIPanelManager write SetMDIPanelManager;
+    property Position: TPosition read FPosition write FPosition default poDesigned;
+
     property Active: boolean read FActive write setActive;
     property BorderColor: TColor read GetBorderColor;
     property ActiveBorderColor: TColor read FActiveBorderColor write SetActiveBorderColor default clDefault;
     property InactiveBorderColor: TColor read FInactiveBorderColor write SetInactiveBorderColor default clDefault;
     property Caption: TCaption read GetCaption write SetCaption;
-    property Icon: TIcon read getIcon write setIcon;
+    property CaptionPanel: TPanel read FCaptionPanel;
+    property Icon: TIcon read getIcon write setIcon stored IsIconStored;
     property OnActivate: TNotifyEvent read FOnActivate write FOnActivate;
     property OnDeactivate: TNotifyEvent read FOnDeactivate write FOnDeactivate;
     property OnClose: TCloseEvent read FOnClose write FOnClose;
     property OnCreate: TNotifyEvent read FOnCreate write FOnCreate;
     property OnDestroy: TNotifyEvent read FOnDestroy write FOnDestroy;
     property OnShow: TNotifyEvent read FOnShow write FOnShow;
+
+
+    // unused plugs from TCustomForm just to satisfy IDE save/read properties
+    private
+        FActiveControl: TControl;
+        FAllowDropFiles: Boolean;
+        FAlphaBlend: Boolean;
+        FAlphaBlendValue: Byte;
+        FAutoScroll: Boolean;
+        FBorderIcons: TBorderIcons;
+        FDesignTimePPI: Integer;
+        FDefaultMonitor: TDefaultMonitor;
+        FHelpFile: string;
+        FKeyPreview: Boolean;
+        //FMDIChildren: array of TCustomMDIPanel;
+        FMenu : TMainMenu;
+        FOnCloseQuery : TCloseQueryEvent;
+        FOnDropFiles: TDropFilesEvent;
+        //FOnShowModalFinished: TModalDialogFinished;
+        FOnWindowStateChange: TNotifyEvent;
+        FPixelsPerInch: Integer;
+        FScaled: Boolean;
+        FPopupMode: TPopupMode;
+        FPopupParent: TCustomForm;
+        FShowInTaskBar: TShowInTaskbar;
+    public
+      property ActiveControl: TControl read FActiveControl write FActiveControl;
+      property AllowDropFiles: Boolean read FAllowDropFiles write FAllowDropFiles default False;
+      property AlphaBlend: Boolean read FAlphaBlend write FAlphaBlend;
+      property AlphaBlendValue: Byte read FAlphaBlendValue write FAlphaBlendValue;
+      property AutoScroll: Boolean read FAutoScroll write FAutoScroll default False;// auto show/hide scrollbars
+      property BorderIcons: TBorderIcons read FBorderIcons write FBorderIcons
+        default [biSystemMenu, biMinimize, biMaximize];
+      property DefaultMonitor: TDefaultMonitor read FDefaultMonitor
+        write FDefaultMonitor default dmActiveForm;
+      property DesignTimePPI: Integer read FDesignTimePPI write FDesignTimePPI default 96;
+      property HelpFile: string read FHelpFile write FHelpFile;
+      property KeyPreview: Boolean read FKeyPreview write FKeyPreview default False;
+      property Menu : TMainMenu read FMenu write FMenu;
+      property OnCloseQuery : TCloseQueryEvent
+                       read FOnCloseQuery write FOnCloseQuery stored True;
+      property OnDropFiles: TDropFilesEvent read FOnDropFiles write FOnDropFiles;
+      property OnHelp: THelpEvent read FOnHelp write FOnHelp;
+      property OnHide: TNotifyEvent read FOnHide write FOnHide;
+      property OnResize stored True;
+      property OnShortcut: TShortcutEvent read FOnShortcut write FOnShortcut;
+      //property OnShowModalFinished: TModalDialogFinished read FOnShowModalFinished write FOnShowModalFinished;
+      property OnWindowStateChange: TNotifyEvent
+                           read FOnWindowStateChange write FOnWindowStateChange;
+      {property ParentFont default False;
+      property Position: TPosition read FPosition write SetPosition default poDesigned;
+      property RestoredLeft: integer read FRestoredLeft;
+      property RestoredTop: integer read FRestoredTop;
+      property RestoredWidth: integer read FRestoredWidth;
+      property RestoredHeight: integer read FRestoredHeight;
+      property Visible stored VisibleIsStored default false;
+      }
+      property PixelsPerInch: Integer read FPixelsPerInch write FPixelsPerInch stored False;
+      property Scaled: Boolean read FScaled write FScaled default True;
+      property PopupMode: TPopupMode read FPopupMode write FPopupMode default pmNone;
+      property PopupParent: TCustomForm read FPopupParent write FPopupParent;
+      property ShowInTaskBar: TShowInTaskbar read FShowInTaskbar write FShowInTaskBar
+                                      default stDefault;
+      property WindowState: TWindowState read FWindowState write FWindowState
+                                         default wsNormal;
+
   end;
 
-  TMouseClickProxy = class
+  TMDIPanel = class(TCustomMDIPanel)
   private
-    FDestroyed: boolean;
-    FOwner: TControl;
-    FOwnerOnClick: TNotifyEvent;
-    FProxyOnClick: TNotifyEvent;
-  public
-    constructor Create(TheOwner: TControl);
-    destructor Destroy; override;
-    procedure OnClick(Sender: TObject);
-    property OwnerOnClick: TNotifyEvent read FOwnerOnClick;
-    property ProxyOnClick: TNotifyEvent read FProxyOnClick write FProxyOnClick;
-    class function IsOnClick(P: TNotifyEvent): boolean;
+    FLCLVersion: string;
+    function LCLVersionIsStored: boolean;
+  published
+    property Active;
+    property BorderColor;
+    property ActiveBorderColor;
+    property InactiveBorderColor;
+    property Caption;
+    property CaptionPanel;
+    property Icon;
+    property OnActivate;
+    property OnDeactivate;
+    property OnClose;
+    property OnCreate;
+    property OnDestroy;
+    property OnShow;
+
+    // from TForm
+    property Action;
+    property ActiveControl;
+    property Align;
+    property AllowDropFiles;
+    property AlphaBlend default False;
+    property AlphaBlendValue default 255;
+    property Anchors;
+    property AutoScroll;
+    property AutoSize;
+    property BiDiMode;
+    property BorderIcons;
+    property BorderStyle;
+    property BorderWidth;
+    property ChildSizing;
+    property ClientHeight;
+    property ClientWidth;
+    property Color;
+    property Constraints;
+    property DefaultMonitor;
+    property DesignTimePPI;
+    property DockSite;
+    property DoubleBuffered;
+    property DragKind;
+    property DragMode;
+    property Enabled;
+    property Font;
+    property FormStyle;
+    property HelpFile;
+    property KeyPreview;
+    property Menu;
+    property OnChangeBounds;
+    property OnClick;
+    property OnCloseQuery;
+    property OnConstrainedResize;
+    property OnContextPopup;
+    property OnDblClick;
+    property OnDockDrop;
+    property OnDockOver;
+    property OnDragDrop;
+    property OnDragOver;
+    property OnDropFiles;
+    property OnEndDock;
+    property OnGetSiteInfo;
+    property OnHelp;
+    property OnHide;
+    property OnKeyDown;
+    property OnKeyPress;
+    property OnKeyUp;
+    property OnMouseDown;
+    property OnMouseEnter;
+    property OnMouseLeave;
+    property OnMouseMove;
+    property OnMouseUp;
+    property OnMouseWheel;
+    property OnMouseWheelDown;
+    property OnMouseWheelUp;
+    property OnMouseWheelHorz;
+    property OnMouseWheelLeft;
+    property OnMouseWheelRight;
+    property OnPaint;
+    property OnResize;
+    property OnShortCut;
+    property OnShowHint;
+    property OnStartDock;
+    property OnUnDock;
+    property OnUTF8KeyPress;
+    property OnWindowStateChange;
+    property ParentBiDiMode;
+    property ParentDoubleBuffered;
+    property ParentFont;
+    property PixelsPerInch;
+    property PopupMenu;
+    property PopupMode;
+    property PopupParent;
+    property Position;
+    property SessionProperties;
+    property ShowHint;
+    property ShowInTaskBar;
+    property UseDockManager;
+    property LCLVersion: string read FLCLVersion write FLCLVersion stored LCLVersionIsStored;
+    property Scaled;
+    property Visible;
+    property WindowState;
+  end;
+
+
+  { TMDIPanelManager }
+
+  TMDIPanelManager = class
+    private
+      FMDIPanels: TFPList;
+      function GetMDIPanel(Index: Integer): TCustomMDIPanel;
+      function GetPanelCount: integer;
+    public
+      constructor Create; virtual;
+      destructor Destroy; override;
+
+      function  IndexOf(APanel: TCustomMDIPanel):integer;
+      procedure Add(APanel: TCustomMDIPanel);
+      procedure Insert(APanel: TCustomMDIPanel);
+      procedure Insert(APanel: TCustomMDIPanel; Index: integer);
+      procedure Remove(APanel: TCustomMDIPanel);
+      procedure Delete(Index:integer);
+
+      function  FindActivePanel: TCustomMDIPanel;
+
+      procedure Tile;
+      procedure Cascade;
+
+    public
+      property MDIPanels[Index: Integer]: TCustomMDIPanel read GetMDIPanel;
+      property PanelCount:integer read GetPanelCount;
   end;
 
 implementation
+uses  intfgraphics, lazcanvas, FPImage, lcl;
 
-uses  graphtype, intfgraphics, lazcanvas, LCLType, FPImage,
-  types, lclproc, lcl;
-
-constructor TMDIPanel.Create(TheOwner: TComponent);
-begin
-  inherited Create(TheOwner);
-  //UpdateSysColorMap();
-
-  FClickProxies := TFPList.Create;
-  Name := getUniqueName('MDIPanel');
-  Color := clForm;
-  FActive:=false;
-  BevelOuter := bvNone;
-  BevelInner := bvNone;
-  BevelWidth := 1;
-
-  BorderStyle := bsNone; //bsSingle;
-  BorderWidth := 4;
-  FActiveBorderColor := clDefault;
-  FInactiveBorderColor := clDefault;
-
-  FCornerSize := 10;
-  FWindowState := wsNormal;
-  WindowPositionState := wpsNone;
-  FCaptionButtons := [cbSystemMenu, cbMinimize, cbMaximize, cbRestore, cbClose];
-  CreateClientPanel;
-  CreateCaptionPanel;
-  CreateSystemPopupMenu;
-  OrderButtons;
-  SetActive(false);
-  SetMouseClickProxies;
-  Invalidate;
-end;
-
-destructor TMDIPanel.Destroy;
-begin
-  unsetMouseClickProxies;
-  FreeAndNil(FClickProxies);
-  if assigned(onDestroy) then onDestroy(Self);
-  inherited Destroy;
-end;
-
-function TMDIPanel.getUniqueName(nameBase: string): string;
-var
-  i: integer;
-begin
-  i := 1;
-  while assigned(Owner.FindComponent(nameBase + IntToStr(i))) do
-    Inc(i);
-  Result := nameBase + IntToStr(i);
-end;
-
-function createCompatibleBpp32LazCanvas(w,h: integer):TLazCanvas;
-var AlphaShift: integer;
-  AImage: TLazIntfImage;
-  ACanvas: TLazCanvas;
-  lRawImage: TRawImage;
-begin
-  lRawImage.Description:=GetDescriptionFromDevice(0);
-  AlphaShift := lRawImage.Description.AlphaShift;
-  lRawImage.Init;
-  if AlphaShift = 0 then
-    lRawImage.Description.Init_BPP32_A8R8G8B8_BIO_TTB(w, h) // linux
-  else
-    lRawImage.Description.Init_BPP32_B8G8R8A8_BIO_TTB(w, h); // windows
-  lRawImage.CreateData(True);
-  AImage := TLazIntfImage.Create(0, 0);
-  AImage.SetRawImage(lRawImage);
-  ACanvas := TLazCanvas.Create(AImage);
-  result:=ACanvas;
-end;
-
-function TMDIPanel.drawCloseIcon(size: integer): TBitmap;
-var
-  scale, i, r, k: integer;
-  ACanvas: TLazCanvas;
-  ImgHandle, ImgMaskHandle: HBitmap;
-begin
-  ACanvas := createCompatibleBpp32LazCanvas(size, size);
-
-  scale := size div 8;
-  ACanvas.Pen.FPColor := FPColor(0, 0, 0, $FFFF);
-  i := scale * 2;
-  r := size - i;
-  ACanvas.Pen.Width := 1;
-
-  ACanvas.Line(i, i, r, r);
-  for k := 0 to scale do
-  begin
-    ACanvas.Line(i + k, i, r, r - k);
-    ACanvas.Line(i, i + k, r - k, r);
-  end;
-
-  ACanvas.Line(i, r, r, i);
-  for k := 0 to scale do
-  begin
-    ACanvas.Line(i, r - k, r - k, i);
-    ACanvas.Line(i + k, r, r, i + k);
-  end;
-
-  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
-  Result := TBitmap.Create;
-  Result.Handle := ImgHandle;
-  Result.MaskHandle := ImgMaskHandle;
-
-  ACanvas.Image.Free;
-  ACanvas.Free;
-end;
-
-function TMDIPanel.drawMaximizeIcon(size: integer): TBitmap;
-var
-  scale, i, r: integer;
-  ACanvas: TLazCanvas;
-  ImgHandle, ImgMaskHandle: HBitmap;
-begin
-  ACanvas := createCompatibleBpp32LazCanvas(size, size);
-
-  scale := size div 8;
-  i := scale;
-  r := size - i;
-  ACanvas.Pen.FPColor := FPColor(0, 0, 0, $FFFF);
-  ACanvas.Pen.Width := scale;
-  ACanvas.Rectangle(i, i, r, r);
-
-  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
-  Result := TBitmap.Create;
-  Result.Handle := ImgHandle;
-  Result.MaskHandle := ImgMaskHandle;
-
-  ACanvas.Image.Free;
-  ACanvas.Free;
-end;
-
-function TMDIPanel.drawMinimizeIcon(size: integer): TBitmap;
-var
-  scale, i, r : integer;
-  ACanvas: TLazCanvas;
-  ImgHandle, ImgMaskHandle: HBitmap;
-begin
-  ACanvas := createCompatibleBpp32LazCanvas(size, size);
-
-  scale := size div 8;
-  ACanvas.Pen.FPColor := FPColor(0, 0, 0, $FFFF);
-  i := scale * 2;
-  r := size - i;
-  ACanvas.Pen.Width := scale;
-  ACanvas.Line(i, size div 2, r, size div 2);
-
-  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
-  Result := TBitmap.Create;
-  Result.Handle := ImgHandle;
-  Result.MaskHandle := ImgMaskHandle;
-
-  ACanvas.Image.Free;
-  ACanvas.Free;
-end;
-
-function TMDIPanel.drawRestoreIcon(size: integer): TBitmap;
-var
-  scale, i, r : integer;
-  ACanvas: TLazCanvas;
-  ImgHandle, ImgMaskHandle: HBitmap;
-begin
-  ACanvas := createCompatibleBpp32LazCanvas(size, size);
-
-  scale := size div 8;
-  ACanvas.Brush.FPColor := FPColor(0, 0, 0, 0);
-  ACanvas.FillRect(0, 0, size, size);
-  ACanvas.Pen.FPColor := FPColor(0, 0, 0, $FFFF);
-  i := scale * 2;
-  r := size - i;
-  ACanvas.Pen.Width := scale;
-  ACanvas.Rectangle(i, i, r, r);
-
-  TLazIntfImage(ACanvas.Image).CreateBitmaps(ImgHandle, ImgMaskHandle, False);
-  Result := TBitmap.Create;
-  Result.Handle := ImgHandle;
-  Result.MaskHandle := ImgMaskHandle;
-
-  ACanvas.Image.Free;
-  ACanvas.Free;
-end;
-
-function TMDIPanel.deriveCaptionHeight:integer;
-var h:integer; fd:TFontData;
-begin
-  //detect default font height to derive caption height
-  fd := GetFontData(CaptionPanel.Font.Handle);
-  // TFontData.Height is in logical units, convert it to pixels
-  h := abs(round(1.0 * fd.Height * Font.PixelsPerInch / 72.0));
-  result := h + 4; // add 4 so font does not touch borders
-end;
-
-function TMDIPanel.deriveCaptionIconHeight:integer;
-var h:integer;
-begin
-  h:=deriveCaptionHeight;
-  if (h < 24) then
-    result := 16
-  else if (h < 34) then
-    result := 22
-  else
-    result := 32;
-end;
-
-procedure TMDIPanel.CreateCaptionPanel;
-begin
-  OnMouseMove := @BorderMouseMove;
-  OnMouseDown := @BorderMouseDown;
-  OnMouseMove := @BorderMouseMove;
-  OnMouseUp := @BorderMouseUp;
-
-  CaptionPanel := TPanel.Create(Self);
-  with CaptionPanel do
-  begin
-    Parent := Self;
-    Name := 'CaptionPanel';
-    //Height := 26;
-    //AutoSize := True;
-    Align := alTop;
-    BevelOuter := bvNone;
-    BevelInner := bvNone;
-    BorderStyle := bsNone; //bsSingle;
-    BorderWidth := 0;
-    Caption := '';
-    Color := clInactiveCaption;
-    Font.Color := clCaptionText;
-    Font.Style := [fsBold];
-    Height := Font.Height + 8;
-    ParentColor := False;
-    ParentFont := False;
-    TabStop := False;
-    OnMouseDown := @CaptionPanelMouseDown;
-    OnMouseMove := @CaptionPanelMouseMove;
-    OnMouseUp := @CaptionPanelMouseUp;
-  end;
-
-  CaptionLabel := TLabel.Create(Self);
-  CaptionLabel.Parent := CaptionPanel;
-  CaptionLabel.ParentFont := true;
-  CaptionLabel.Align := alClient;
-  CaptionLabel.Alignment := taCenter;
-  CaptionLabel.Layout := tlCenter;
-  CaptionLabel.Caption := 'MDIPanel';
-
-
-  CaptionPanel.Constraints.MinHeight := deriveCaptionHeight;
-  SetCaptionButtons(FCaptionButtons);
-end;
-
-procedure TMDIPanel.SetCaptionButtons(aVal:TCaptionButtons);
-var pic: TPicture;
-hx, fppi, IconSize: integer;
-IconSizeString: string;
-icn: TIcon;
-begin
-  if aVal = FCaptionButtons then exit;
-  FCaptionButtons := aVal;
-
-  IconSize:=deriveCaptionIconHeight;
-  IconSizeString := IntToStr(IconSize) + 'x' + IntToStr(IconSize);
-  IconSizeString := 'X';
-
-  if not (cbSystemMenu in FCaptionButtons) and assigned(SystemButton)
-     then SystemButton.Free;
-  if not (cbClose in FCaptionButtons) and assigned(CloseButton)
-     then CloseButton.Free;
-  if not (cbMinimize in FCaptionButtons) and assigned(MinimizeButton)
-     then MinimizeButton.Free;
-  if not (cbMaximize in FCaptionButtons) and assigned(MaximizeButton)
-     then MaximizeButton.Free;
-  if not (cbRestore in FCaptionButtons) and assigned(RestoreButton)
-     then RestoreButton.Free;
-
-
-  //h:=deriveCaptionIconHeight;
-  if cbSystemMenu in FCaptionButtons then
-  begin
-    SystemButton := TImage.Create(Self);
-    with SystemButton do
-    begin
-      onClick := @SystemButtonClick;
-      setDefaultSystemIcon;
-    end;
-  end;
-
-  if cbClose in FCaptionButtons then
-  begin
-    CloseButton := TSpeedButton.Create(Self);
-    with CloseButton do
-    begin
-      Parent := CaptionPanel;
-      Left := 200;
-      Align := alRight;
-      onClick := @CloseButtonClick;
-      {pic:=TPicture.Create;
-      try
-        pic.LoadFromFile('Images/'+IconSizeString+'/window-close.png');
-        Glyph.Assign(pic.Bitmap);
-      except
-      end;
-      pic.Free;}
-      AutoSize := True;
-      ParentFont := False;
-      Font.Color := clWindowText;
-      Font.Style := [fsBold];
-      if not assigned(Glyph) or (Glyph.Height = 0)
-      //then Caption := ' x ';
-      then
-        Glyph.Assign(drawCloseIcon(IconSize));
-    end;
-  end;
-
-  if cbMaximize in FCaptionButtons then
-  begin
-    MaximizeButton := TSpeedButton.Create(Self);
-    with MaximizeButton do
-    begin
-      Parent := CaptionPanel;
-      Left := 100;
-      Align := alRight;
-      AutoSize := True;
-      AllowAllUp := True;
-      onClick := @MaximizeButtonClick;
-      {pic:=TPicture.Create;
-      try
-        pic.LoadFromFile('Images/'+IconSizeString+'/view-fullscreen.png');
-        Glyph.Assign(pic.Bitmap);
-      except
-      end;
-      pic.Free;}
-      Font.Color := clWindowText;
-      Font.Style := [fsBold];
-      ParentFont := False;
-      if not assigned(Glyph) or (Glyph.Height = 0)
-      //then Caption := '[ ]';
-      then
-        Glyph.Assign(drawMaximizeIcon(IconSize));
-    end;
-  end;
-
-  if cbMinimize in FCaptionButtons then
-  begin
-    MinimizeButton := TSpeedButton.Create(Self);
-    with MinimizeButton do
-    begin
-      Parent := CaptionPanel;
-      Left := 80;
-      Align := alRight;
-      AutoSize := True;
-      AllowAllUp := True;
-      onClick := @MinimizeButtonClick;
-      {pic:=TPicture.Create;
-      try
-        pic.LoadFromFile('Images/'+IconSizeString+'/window-minimize.png');
-        Glyph.Assign(pic.Bitmap);
-      except
-      end;
-      pic.Free;}
-      Font.Color := clWindowText;
-      Font.Style := [fsBold];
-      ParentFont := False;
-      if not assigned(Glyph) or (Glyph.Height = 0) then
-        Glyph.Assign(drawMinimizeIcon(IconSize));
-    end;
-  end;
-
-  if cbRestore in FCaptionButtons then
-  begin
-    RestoreButton := TSpeedButton.Create(Self);
-    with RestoreButton do
-    begin
-      Parent := CaptionPanel;
-      Left := 60;
-      Align := alRight;
-      AutoSize := True;
-      AllowAllUp := True;
-      onClick := @RestoreButtonClick;
-      {pic:=TPicture.Create;
-      try
-        pic.LoadFromFile('Images/'+IconSizeString+'/window-restore.png');
-        Glyph.Assign(pic.Bitmap);
-      except
-      end;
-      pic.Free;}
-      Font.Color := clWindowText;
-      Font.Style := [fsBold];
-      ParentFont := False;
-      if not assigned(Glyph) or (Glyph.Height = 0) then
-        Glyph.Assign(drawRestoreIcon(IconSize));
-      Visible := False;
-    end;
-  end;
-
-end;
-
-
-procedure TMDIPanel.Deactivate;
-begin
-  setActive(False);
-end;
-
-function TMDIPanel.getIcon :TIcon;
-begin
-  result := TIcon.Create;
-  result.Assign(SystemButton.Picture.Icon);
-end;
-
-procedure TMDIPanel.setIcon(val:TIcon);
-begin
-  SystemButton.Picture.Icon.Assign(val);
-end;
-
-procedure TMDIPanel.Paint;
-var
-  IRect: TRect; ibw:integer;
-begin
-  inherited Paint;
-  IRect := GetClientRect;
-  ibw:=0;
-  if self.BevelInner <> bvNone then ibw:=BevelWidth;
-  InflateRect(IRect, -ibw, -ibw);
-  Canvas.Frame3d(IRect, BorderColor, BorderColor, BorderWidth);
-end;
-
-procedure TMDIPanel.Resize;
-begin
-  if ([csLoading,csDestroying]*ComponentState<>[]) then exit;
-  if AutoSizeDelayed then exit;
-
-  if (FLastResizeWidth<>Width) or (FLastResizeHeight<>Height)
-  or (FLastResizeClientWidth<>ClientWidth)
-  or (FLastResizeClientHeight<>ClientHeight) then
-  begin
-    inherited Resize;
-    FLastResizeWidth:=Width;
-    FLastResizeHeight:=Height;
-    FLastResizeClientWidth:=ClientWidth;
-    FLastResizeClientHeight:=ClientHeight;
-  end;
-end;
-
-function TMDIPanel.GetBorderColor: TColor;
-begin
-  if Active then
-    if FActiveBorderColor <> clDefault
-      then result := FActiveBorderColor
-      else if ColorToRGB(clActiveBorder)<>ColorToRGB(clInactiveBorder)
-         then result := clActiveBorder
-         else result := clActiveCaption
-  else
-    if FInactiveBorderColor <> clDefault
-      then result := FInactiveBorderColor
-      else if ColorToRGB(clActiveBorder)<>ColorToRGB(clInactiveBorder)
-         then result := clInactiveBorder
-         else result := clInactiveCaption;
-end;
-
-procedure TMDIPanel.SetActiveBorderColor(AValue: TColor);
-begin
-  if FActiveBorderColor <> AValue then
-  begin
-    FActiveBorderColor := AValue;
-    Invalidate;
-  end;
-end;
-
-procedure TMDIPanel.SetInactiveBorderColor(AValue: TColor);
-begin
-  if FInactiveBorderColor <> AValue then
-  begin
-    FInactiveBorderColor := AValue;
-    Invalidate;
-  end;
-end;
-
-procedure TMDIPanel.AdjustClientRect(var ARect: TRect);
-begin
-  inherited AdjustClientRect(ARect);
-  self.FCornerSize:=10;
-  if ClientRect.Left > 10 then self.FCornerSize:=ClientRect.Left;
-end;
-
-
-procedure TMDIPanel.setDefaultSystemIcon;
-  var icn:TIcon; sz,ch:integer; pf:TCustomForm;
- {
-  function getParentForm(c:TControl):TCustomForm;
-  begin
-    result:=nil;
-    if assigned(c.Parent) then
-       if (c.Parent is TCustomForm)
-       then result:=TCustomForm(c.Parent)
-       else getParentForm(c.Parent);
-  end;
-  }
-begin
-  pf:=getParentForm(Self);
-  if assigned(pf) and assigned(TCustomForm(pf).Icon)
-  then icn:=TCustomForm(pf).Icon
-  else icn:=Application.Icon;
-
-  SystemButton.Parent:=nil;
-  SystemButton.Picture.Icon.Assign(Application.Icon);
-  SystemButton.Stretch:=true;
-  ch:=CaptionPanel.ClientHeight;
-  sz:=deriveCaptionIconHeight;
-  SystemButton.Constraints.MaxHeight:=sz;
-  SystemButton.Constraints.MaxWidth:=sz;
-  SystemButton.BorderSpacing.Around:=(ch-sz)div 2;
-  SystemButton.Parent:=CaptionPanel;
-end;
-
-
-procedure TMDIPanel.SetParent(NewParent: TWinControl);
-var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
-begin
-  if Parent = NewParent then exit;
-  inherited SetParent(NewParent);
-  FParentForm := GetParentForm(Self);
-
-  bv:=BevelOuter;
-  bv:=BevelInner;
-  bw:=BevelWidth;
-  bs:=BorderStyle;
-  bw:=BorderWidth;
-
-
-  if assigned(SystemButton) then
-    with SystemButton do
-    begin
-      setDefaultSystemIcon;
-      {
-      Transparent:=true;
-      if assigned(FParentForm) then
-         Glyph.Assign(FParentForm.Icon);
-      if not assigned(Glyph) or (Glyph.Height = 0) then
-        begin
-        h:=deriveCaptionIconHeight;
-        if Application.Icon.Height = h then
-          Glyph.Assign(Application.Icon)
-        else
-          begin
-            bm := TBitmap.Create;
-            bm.SetSize(h,h);
-            bm.Canvas.AntialiasingMode:=amOn;
-            bm.Canvas.StretchDraw(Rect(0,0,h,h),Application.Icon);
-            Glyph.Assign(bm);
-            bm.free;
-          end;
-        end;
-      if not assigned(Glyph) or (Glyph.Height = 0) then
-        Caption := ' $ ';
-      if assigned(Glyph) and (Glyph.Height > 0) then
-        Constraints.MinWidth := Height;
-      }
-    end;
-
-  Invalidate;
-
-  CaptionPanel.AdjustSize;
-  H := CaptionPanel.Height + 2*BorderWidth;
-  if BevelInner<>bvNone then H := H + 2*BevelWidth;
-  if BevelOuter<>bvNone then H := H + 2*BevelWidth;
-  Constraints.MinHeight := H + 4; // +4 - to prevent lower border disappear
-  Constraints.MinWidth  := 200;
-end;
-
-procedure TMDIPanel.CreateClientPanel;
-var Image1:TImage;
-begin
-  ClientPanel := TMDIClientPanel.Create(Self);
-  with ClientPanel do
-  begin
-    Parent := Self;
-    Name := 'ClientPanel';
-    //HorzScrollBar.Page := 1;
-    //VertScrollBar.Page := 1;
-    Align := alClient;
-    TabStop := False;
-    BevelOuter := bvNone;
-    BevelInner := bvNone;
-    BorderStyle := bsNone; //bsSingle;
-    BorderWidth := 0;
-  end;
-end;
-
-resourcestring
-  rsMaximize = 'Maximize';
-  rsMinimize = 'Minimize';
-  rsRestore = 'Restore';
-  rsClose = 'Close';
-
-procedure TMDIPanel.CreateSystemPopupMenu;
-var
-  MenuItem: TMenuItem;
-begin
-  SystemPopupMenu := TPopupMenu.Create(Self);
-
-  MenuItemMaximize := TMenuItem.Create(Self);
-  MenuItemMaximize.Name := rsMaximize;
-  MenuItemMaximize.OnClick := @MaximizeButtonClick;
-  SystemPopupMenu.Items.Add(MenuItemMaximize);
-
-  MenuItemMinimize := TMenuItem.Create(Self);
-  MenuItemMinimize.Name := rsMinimize;
-  MenuItemMinimize.OnClick := @MinimizeButtonClick;
-  SystemPopupMenu.Items.Add(MenuItemMinimize);
-
-  MenuItemRestore := TMenuItem.Create(Self);
-  MenuItemRestore.Name := rsRestore;
-  MenuItemRestore.OnClick := @RestoreButtonClick;
-  SystemPopupMenu.Items.Add(MenuItemRestore);
-
-  MenuItem := TMenuItem.Create(Self);
-  MenuItem.Caption := '-';
-  MenuItem.Name := 'Separator';
-  SystemPopupMenu.Items.Add(MenuItem);
-
-  MenuItem := TMenuItem.Create(Self);
-  MenuItem.Name := rsClose;
-  MenuItem.OnClick := @CloseButtonClick;
-  SystemPopupMenu.Items.Add(MenuItem);
-
-  self.CaptionPanel.PopupMenu := SystemPopupMenu;
-end;
-
-{
-procedure TMDIPanel.ActionActionSystemMenuExecute(Sender: TObject);
-begin
-
-end;
-
-procedure TMDIPanel.CreateSystemActions;
-var Act:TAction;
-begin
-   FActionList:=TActionList.Create(Self);
-   FActionList.name:='ActionList';
-
-   Act:=TAction.Create(Self);
-   Act.ActionList:=FActionList;
-   Act.Name:='ActionSystemMenu';
-   Act.ShortCut:=TextToShortCut('Alt+Space');
-   Act.OnExecute:=@ActionActionSystemMenuExecute;
-
-   Act:=TAction.Create(Self);
-   Act.ActionList:=FActionList;
-   Act.Name:='ActionSystemMenu';
-   Act.ShortCut:=TextToShortCut('Alt+F4');
-   Act.OnExecute:=@CloseButtonClick;
-
-end;
-}
-
-procedure TMDIPanel.SetBorderCursor(X, Y: integer);
-begin
-  FWindowResizingSide := wrszsZ;
-  Cursor := crDefault;
-  if X <= FCornerSize then
-  begin
-    if Y <= FCornerSize then
-    begin
-      FWindowResizingSide := wrszsNW;
-      Cursor := crSizeNW;
-    end
-    else if Y >= Height - FCornerSize then
-    begin
-      FWindowResizingSide := wrszsSW;
-      Cursor := crSizeSW;
-    end
-    else
-    begin
-      FWindowResizingSide := wrszsW;
-      Cursor := crSizeWE;
-    end;
-  end
-  else if X >= Width - FCornerSize then
-  begin
-    if Y <= FCornerSize then
-    begin
-      FWindowResizingSide := wrszsNE;
-      Cursor := crSizeNE;
-    end
-    else if Y >= Height - FCornerSize then
-    begin
-      FWindowResizingSide := wrszsSE;
-      Cursor := crSizeSE;
-    end
-    else
-    begin
-      FWindowResizingSide := wrszsE;
-      Cursor := crSizeWE;
-    end;
-  end
-  else   // X in mid
-  begin
-    if Y <= FCornerSize then
-    begin
-      FWindowResizingSide := wrszsN;
-      Cursor := crSizeNS;
-    end
-    else if Y >= Height - FCornerSize then
-    begin
-      FWindowResizingSide := wrszsS;
-      Cursor := crSizeNS;
-    end
-    else
-    begin
-      FWindowResizingSide := wrszsZ;
-      Cursor := crSizeNS;
-    end;
-  end;
-end;
-
-procedure TMDIPanel.BorderMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: integer);
-var
-  TL: TPoint;
-begin
-  if (Button = mbLeft) and (Shift = [ssLeft]) then
-  begin
-    WindowPositionState := wpsResizing;
-    TL := Parent.ClientToScreen(BoundsRect.TopLeft);
-    //writeln('d:',Mouse.CursorPos.X, ':', Mouse.CursorPos.Y);
-    WindowCaptionMouseX := Mouse.CursorPos.X - TL.X;
-    WindowCaptionMouseY := Mouse.CursorPos.Y - TL.Y;
-    setActive(True);
-  end;
-end;
-
-procedure TMDIPanel.BorderMouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
-var
-  TL, SL: TPoint;
-  L, T, W, H: integer;
-begin
-  if not (WindowPositionState = wpsResizing) then
-    SetBorderCursor(X, Y);
-
-  if (Shift = [ssLeft]) and (WindowPositionState = wpsResizing) then
-  begin
-    //writeln('m:', Mouse.CursorPos.X, ':', Mouse.CursorPos.Y, ' sender:',
-      //TControl(Sender).Name);
-    L := Left;
-    T := Top;
-    W := Width;
-    H := Height;
-    case FWindowResizingSide of
-      wrszsNW:
-      begin
-        SL := Point(Mouse.CursorPos.X - WindowCaptionMouseX,
-          Mouse.CursorPos.Y - WindowCaptionMouseY);
-        TL := Parent.ScreenToClient(SL);
-        H := H - (TL.Y - T);
-        W := W - (TL.X - L);
-        L := TL.X;
-        T := TL.Y;
-      end;
-      wrszsN:
-      begin
-        SL := Point(Mouse.CursorPos.X - WindowCaptionMouseX,
-          Mouse.CursorPos.Y - WindowCaptionMouseY);
-        TL := Parent.ScreenToClient(SL);
-        H := H - (TL.Y - T);
-        T := TL.Y;
-      end;
-      wrszsNE:
-      begin
-        W := X;
-        SL := Point(Mouse.CursorPos.X - WindowCaptionMouseX,
-          Mouse.CursorPos.Y - WindowCaptionMouseY);
-        TL := Parent.ScreenToClient(SL);
-        H := H - (TL.Y - T);
-        T := TL.Y;
-      end;
-      wrszsE: W := X;
-      wrszsSE:
-      begin
-        W := X;
-        H := Y;
-      end;
-      wrszsS: H := Y;
-      wrszsSW:
-      begin
-        H := Y;
-        SL := Point(Mouse.CursorPos.X - WindowCaptionMouseX,
-          Mouse.CursorPos.Y - WindowCaptionMouseY);
-        TL := Parent.ScreenToClient(SL);
-        W := W - (TL.X - L);
-        L := TL.X;
-      end;
-      wrszsW:
-      begin
-        SL := Point(Mouse.CursorPos.X - WindowCaptionMouseX,
-          Mouse.CursorPos.Y - WindowCaptionMouseY);
-        TL := Parent.ScreenToClient(SL);
-        W := W - (TL.X - L);
-        L := TL.X;
-      end;
-    end;
-
-    //writeln('setBounds(', L, ',', T, ',', W, ',', H, ')');
-    setBounds(L, T, W, H);
-  end;
-end;
-
-procedure TMDIPanel.BorderMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: integer);
-begin
-  if (WindowPositionState = wpsResizing) then
-    WindowPositionState := wpsNone;
-end;
-
-
-
-procedure TMDIPanel.CaptionPanelMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: integer);
-var
-  TL: TPoint;
-begin
-  if (Button = mbLeft) and (Shift = [ssLeft]) then
-  begin
-    WindowPositionState := wpsMoving;
-    //TL:=ClientToScreen(TPanel(TPanel(Sender).Parent).BoundsRect.TopLeft);
-    TL := Parent.ClientToScreen(BoundsRect.TopLeft);
-    //writeln('d:',Mouse.CursorPos.X, ':', Mouse.CursorPos.Y);
-    WindowCaptionMouseX := Mouse.CursorPos.X - TL.X;
-    WindowCaptionMouseY := Mouse.CursorPos.Y - TL.Y;
-    setActive(True);
-  end;
-end;
-
-procedure TMDIPanel.CaptionPanelMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: integer);
-var
-  TL, SL: TPoint;
-begin
-  if (Shift = [ssLeft]) and (WindowPositionState = wpsMoving) then
-  begin
-    //writeln('m:',Mouse.CursorPos.X, ':', Mouse.CursorPos.Y);
-    SL := Point(Mouse.CursorPos.X - WindowCaptionMouseX, Mouse.CursorPos.Y -
-      WindowCaptionMouseY);
-    TL := Parent.ScreenToClient(SL);
-    Left := TL.X;
-    Top := TL.Y;
-    //writeln('w:',TL.X, ':', TL.Y);
-  end;
-end;
-
-procedure TMDIPanel.CaptionPanelMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: integer);
-begin
-  if (WindowPositionState = wpsMoving) then
-    WindowPositionState := wpsNone;
-end;
-
-procedure TMDIPanel.SetCaption(const Value: TCaption);
-begin
-  //CaptionPanel.Caption := Value;
-  CaptionLabel.Caption := Value;
-end;
-
-function TMDIPanel.GetCaption: TCaption;
-begin
-  //Result := CaptionPanel.Caption;
-  Result := CaptionLabel.Caption;
-end;
-
-procedure TMDIPanel.DoClose(CloseAction: TCloseAction);
-begin
-  if not assigned(self) then exit;
-  if assigned(FOnClose) then
-     FOnClose(self,CloseAction);
-
-  self.unsetMouseClickProxies;
-
-  SystemPopupMenu.Close;
-  Application.ProcessMessages;
-
-  if CloseAction = caHide then
-    Visible := False;
-  if CloseAction = caMinimize then
-    doMinimize;
-  if CloseAction = caFree then
-    Free;
-end;
-
-procedure TMDIPanel.SystemButtonClick(Sender: TObject);
-begin
-  SystemPopupMenu.PopUp;
-end;
-
-procedure TMDIPanel.CloseButtonClick(Sender: TObject);
-begin
-  DoClose(caFree);
-end;
-
-
-procedure TMDIPanel.OrderButtons;
-begin
-  if assigned(RestoreButton) then
-    RestoreButton.Visible := (FWindowState <> wsNormal);
-  if assigned(MaximizeButton) then
-    MaximizeButton.Visible := (FWindowState <> wsMaximized);
-  if assigned(MinimizeButton) then
-    MinimizeButton.Visible := (FWindowState <> wsMinimized);
-
-  MenuItemMinimize.Enabled := (FWindowState <> wsMinimized);
-  MenuItemMaximize.Enabled := (FWindowState <> wsMaximized);
-  MenuItemRestore.Enabled  := (FWindowState <> wsNormal);
-
-  if assigned(CloseButton) then
-    CloseButton.Left := 120;
-  if assigned(MaximizeButton) then
-    MaximizeButton.Left := 100;
-  if assigned(RestoreButton) then
-    RestoreButton.Left := 80;
-  if assigned(MinimizeButton) then
-    MinimizeButton.Left := 60;
-end;
-
-procedure TMDIPanel.DoMaximize;
-begin
-  if FWindowState = wsNormal then
-    FNormalBounds := Self.BoundsRect;
-  Self.setBounds(0, 0, Parent.ClientWidth, Parent.ClientHeight);
-  FWindowState := wsMaximized;
-  OrderButtons;
-end;
-
-procedure TMDIPanel.DoMinimize;
-begin
-  if FWindowState = wsNormal then
-    FNormalBounds := Self.BoundsRect;
-  Self.setBounds(0, 0, 200, CaptionPanel.Height + BevelWidth * 2);
-  FWindowState := wsMinimized;
-  OrderButtons;
-end;
-
-procedure TMDIPanel.DoRestore;
-begin
-  Self.BoundsRect := FNormalBounds;
-  FWindowState := wsNormal;
-  OrderButtons;
-end;
-
-procedure TMDIPanel.MaximizeButtonClick(Sender: TObject);
-begin
-  DoMaximize;
-end;
-
-procedure TMDIPanel.MinimizeButtonClick(Sender: TObject);
-begin
-  DoMinimize;
-end;
-
-procedure TMDIPanel.RestoreButtonClick(Sender: TObject);
-begin
-  DoRestore;
-end;
-
-
-function TMDIPanel.GetControl(const Index: integer): TControl;
-begin
-  Result := ClientPanel.Controls[Index];
-end;
-
-function TMDIPanel.GetControlCount: integer;
-begin
-  Result := ClientPanel.ControlCount;
-end;
-
-procedure TMDIPanel.InsertControl(AControl: TControl);
-begin
-  if (AControl = CaptionPanel) or (AControl = ClientPanel)
-  //or (AControl = FPassiveBevel)
-  then
-    inherited InsertControl(AControl)
-  else
-    ClientPanel.InsertControl(AControl);
-end;
-
-procedure TMDIPanel.InsertControl(AControl: TControl; Index: integer);
-begin
-  if (AControl = CaptionPanel) or (AControl = ClientPanel)
-  //or (AControl = FPassiveBevel)
-  then
-    inherited InsertControl(AControl, Index)
-  else
-    begin
-    ClientPanel.InsertControl(AControl, Index - 2); // -2 because ClientPanel and CaptionPanel
-    if not FActive then
-      setMouseClickProxiesRecursively(AControl);
-    end;
-end;
-
-procedure TMDIPanel.RemoveControl(AControl: TControl);
-begin
-  if (AControl = CaptionPanel) or (AControl = ClientPanel) or
-    (AControl = FPassiveBevel) then
-    inherited RemoveControl(AControl)
-  else
-    begin
-    ClientPanel.RemoveControl(AControl);
-    if not Active then
-      unsetMouseClickProxiesRecursively(AControl);
-    end;
-end;
-
-procedure TMDIPanel.unsetMouseClickProxiesRecursively(Ctrl: TControl);
-var
-  i: integer;
-  C: TControl;
-
-  procedure unsetProxyFor(C: TControl);
-  var i: integer;
-    L: TMouseClickProxy;
-  begin
-    if not assigned(C) then exit;
-    if TMouseClickProxy.IsOnClick(C.OnClick) then
-    begin
-      i:=0;
-      repeat
-        L:=TMouseClickProxy(FClickProxies.Items[i]);
-        inc(i);
-      until L.FOwner = C;
-      C.OnClick := L.FOwnerOnClick;
-      FClickProxies.Remove(L);
-      L.Free;
-    end;
-  end;
-
-begin
-  if not assigned(Ctrl) then exit;
-  if Ctrl is TWinControl then
-    for i := 0 to TWinControl(Ctrl).ControlCount - 1 do
-    begin
-      C := TWinControl(Ctrl).Controls[i];
-      unsetMouseClickProxiesRecursively(C);
-    end;
-  unsetProxyFor(Ctrl);
-end;
-
-procedure TMDIPanel.setMouseClickProxiesRecursively(Ctrl: TControl);
-var
-  i: integer;
-  C: TControl;
-
-  procedure setProxyFor(C: TControl);
-  var
-    L: TMouseClickProxy;
-  begin
-    if not assigned(C) then exit;
-    if not TMouseClickProxy.IsOnClick(C.OnClick) then
-    begin
-      L := TMouseClickProxy.Create(C);
-      L.ProxyOnClick := @PassivePanelOnClick;
-      FClickProxies.Add(L);
-    end;
-  end;
-
-begin
-  if not assigned(Ctrl) then exit;
-  setProxyFor(Ctrl);
-  if Ctrl is TWinControl then
-    for i := 0 to TWinControl(Ctrl).ControlCount - 1 do
-    begin
-      C := TWinControl(Ctrl).Controls[i];
-      setMouseClickProxiesRecursively(C);
-    end;
-end;
-
-procedure TMDIPanel.setMouseClickProxies;
-var
-  i: integer;
-  C: TControl;
-  L: TMouseClickProxy;
-  M, MP: TMethod;
-begin
-  setMouseClickProxiesRecursively(CaptionPanel);
-  unsetMouseClickProxiesRecursively(self.CloseButton);
-  setMouseClickProxiesRecursively(ClientPanel);
-end;
-
-procedure TMDIPanel.unsetMouseClickProxies;
-var
-  i: integer;
-  C: TControl;
-  L: TMouseClickProxy;
-begin
-  for i := 0 to FClickProxies.Count - 1 do
-  begin
-    L := TMouseClickProxy(FClickProxies[i]);
-    if assigned(L) and assigned(L.FOwner) then
-    begin
-      L.FOwner.OnClick := L.FOwnerOnClick;
-      L.Free;
-    end;
-  end;
-  FClickProxies.Clear;
-end;
-
-procedure TMDIPanel.InactivateSiblings;
-var
-  i: integer;
-  C: TControl;
-begin
-  if not assigned(Parent) then
-    exit;
-  for i := 0 to Parent.ControlCount - 1 do
-  begin
-    C := Parent.Controls[i];
-    if (C is TMDIPanel) and (C <> Self) then
-      TMDIPanel(C).setActive(False);
-  end;
-end;
-
-
-procedure TMDIPanel.setActive(val: boolean);
-var H:integer; bm:TBitmap; bv:TPanelBevel; bw:integer;  bs:TBorderStyle;
-begin
-
-  bv:=BevelOuter;
-  bv:=BevelInner;
-  bw:=BevelWidth;
-  bs:=BorderStyle;
-  bw:=BorderWidth;
-
-  if FActive = val then exit;
-  FActive := val;
-  if val then
-  begin
-    //BevelColor := clActiveBorder;
-    //BevelColor := clRed;
-    //Color := clActiveBorder;
-    //Color := clActiveCaption;
-    //BorderColor:=clActiveBorder;
-    //BorderColor:=clRed;
-    CaptionPanel.Color := clActiveCaption;
-    setZOrder(True);
-    InactivateSiblings;
-    unsetMouseClickProxies;
-    if assigned(FOnActivate) then FOnActivate(Self);
-  end
-  else
-  begin
-    //BevelColor := clInactiveBorder;
-    //Color := clInactiveBorder;
-    //Color := clInactiveCaption;
-    //BorderColor:=clInactiveBorder;
-    CaptionPanel.Color := clInactiveCaption;
-    setMouseClickProxies;
-    if assigned(FOnDeactivate) then FOnDeactivate(Self);
-  end;
-  invalidate;
-end;
-
-procedure TMDIPanel.PassivePanelOnClick(Sender: TObject);
-begin
-  setActive(True);
-end;
-
-
-{----------------------  TMouseClickProxy -------------------------
-  This object substitutes OnClick method of a TheOwner control
-  with its OnClick method.
-  When the OnClick called it will call first a ProxyOnClick method
-  then the original Owner OnClick method.
-  Here in MDIPanel it is used for interseption of OnClick to children controls of
-  inactive MDIPanel, so activating it before calling OnClick of the clicked
-  children control.
- }
-constructor TMouseClickProxy.Create(TheOwner: TControl);
-var
-  N: string;
-begin
-  FDestroyed := False;
-  FOwner := TheOwner;
-  N := FOwner.Name;
-  FOwnerOnClick := FOwner.onClick;
-  FOwner.onClick := @OnClick;
-end;
-
-destructor TMouseClickProxy.Destroy;
-begin
-  FDestroyed := True;
-  if assigned(FOwner) then
-  begin
-    FOwner.onClick := FOwnerOnClick;
-    FOwnerOnClick := nil;
-    FProxyOnClick := nil;
-    FOwner := nil;
-  end;
-  inherited Destroy;
-end;
-
-procedure TMouseClickProxy.OnClick(Sender: TObject);
-var
-  vOwnerOnClick: TNotifyEvent;
-begin
-  if FDestroyed then
-    exit;
-  vOwnerOnClick := FOwnerOnClick;
-  if assigned(FProxyOnClick) then
-    FProxyOnClick(Sender);
-  if assigned(vOwnerOnClick) then
-    vOwnerOnClick(Sender);
-end;
-
-class function TMouseClickProxy.IsOnClick(P: TNotifyEvent): boolean;
-var
-  PM: TMethod;
-begin
-  Result := TMethod(P).Code = TMethod(@OnClick).Code;
-end;
-
-procedure TMDIClientPanel.ActiveDefaultControlChanged(NewControl: TControl);
-begin
-  if assigned(NewControl) and assigned(Parent)
-     and (Parent is TMDIPanel)
-  then
-    TMDIPanel(Parent).setActive(true);
-end;
-
-procedure Register;
-begin
-  RegisterComponents('MDIPanel', [TMDIPanel]);
-end;
+{$I MDIPanel.inc}
+{$I MDIPanelManager.inc}
 
 end.

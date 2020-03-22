@@ -54,11 +54,13 @@ uses
      StdCtrls,
      Menus,
      ActnList,
-     Printers, ExtDlgs,
+     Printers, ExtDlgs, ExtCtrls
 {$IFDEF USEOPENGL}
     ,FreeViewPortOpenGL
 {$ENDIF}
-     freehullformwindow_form
+ {$IFDEF USE_freehullformwindow_form}
+     ,freehullformwindow_form
+ {$ENDIF}
 ;
 
 type
@@ -66,15 +68,13 @@ type
 { TFreeHullWindow }
 
  TFreeHullWindow   = class(TMDIPanel)
-  ActionList1: TActionList;
-  Images: TImageList;
-  PopupMenu1: TPopupMenu;
-  PrintDialog: TPrintDialog;
+  ActionListHull: TActionList;
+  ImagesHull: TImageList;
+  PopupMenuHull: TPopupMenu;
+  PrintDialogHull: TPrintDialog;
    ScrollBar1: TScrollBar;
    ScrollBar2: TScrollBar;
    Viewport  : TFreeViewport;
-   PopupMenuHull: TPopupMenu;
-   ActionListHull: TActionList;
    StandardLens: TAction;
    WideLens: TAction;
    Camera1: TMenuItem;
@@ -104,7 +104,6 @@ type
    All1: TMenuItem;
    DeselectAll: TAction;
    Deselectall1: TMenuItem;
-   ImagesHull: TImageList;
    Print: TAction;
    ShowWireFrame: TAction;
    Mode1: TMenuItem;
@@ -116,7 +115,6 @@ type
    ShowDevelopablity: TAction;
    Developablitycheck1: TMenuItem;
    Print1: TMenuItem;
-   PrintDialogHull: TPrintDialog;
    SaveAsBitmap: TAction;
    Saveimage1: TMenuItem;
    ShadeZebra: TAction;
@@ -141,17 +139,21 @@ type
    BackgroundVisible: TAction;
    Visible1: TMenuItem;
 
-   FreeHullForm: TFreeHullForm;
+   //FreeHullForm: TFreeHullForm;
 
    procedure FormDestroy(Sender: TObject);
    procedure FormKeyPress(Sender: TObject; var Key: char);
    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+   procedure ScrollBar1Change(Sender: TObject);
+   procedure ScrollBar1Enter(Sender: TObject);
+   procedure ScrollBar2Change(Sender: TObject);
+   procedure ScrollBar2Enter(Sender: TObject);
    procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
    procedure ViewportRedraw(Sender: TObject);
    procedure FormActivate(Sender: TObject);
    procedure FormCreate(Sender: TObject);
    procedure FormClose(Sender: TObject; var aAction: TCloseAction);
-   procedure PopupMenu1Popup(Sender: TObject);
+   procedure PopupMenuHullPopup(Sender: TObject);
    procedure StandardLensExecute(Sender: TObject);
    procedure WideLensExecute(Sender: TObject);
    procedure ShortTeleLensExecute(Sender: TObject);
@@ -194,32 +196,54 @@ type
 
 private    { Private declarations }
    //FOnClose: TCloseEvent;
+   FLCLVersion : string;
+   FFormState : TFormState;
    FFreeShip         : TFreeShip;
    FPanned           : Boolean;  // Private variable from which can be seen if the popup menu has to be shown or not
    FInitialPosition  : TPoint;   // Initial position of the mouse cursor when the left or right button was pressed
    FAllowPanOrZoom   : Boolean;  // Flag to check whether panning or zooming is allowed or not (not when an item has just been selected)
+
    procedure FSetFreeShip(Val:TFreeShip);
    function FCaptionText:string;
    procedure CreateFreeViewport();
    procedure CreateComponents;
-   procedure CopyComponentsFromFreeHullForm;
+   ///procedure CopyComponentsFromFreeHullForm;
+//protected
+ // procedure ProcessResource; virtual;
 public     { Public declarations }
    constructor Create(AOwner: TComponent); override;
+   //constructor CreateNew(AOwner: TComponent); virtual;
    destructor Destroy; override;
+
    procedure SetCaption;
    procedure UpdateMenu;
    property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
    //property OnClose: TCloseEvent read FOnClose write FOnClose;
-  end;
+published
+  property Caption;
+  property Color;
+  property LCLVersion:string read FLCLVersion write FLCLVersion;
+  property PopupMenu;
+  property ClientHeight;
+  property ClientWidth;
+  property FormStyle;
+  property OnClose;
+  property OnCreate;
+  property OnKeyPress;
+  property OnKeyUp;
+  property OnShow;
+  property Position;
+end;
 
 var FreeHullWindow: TFreeHullWindow;
 
 implementation
 
-uses FreeLanguageSupport,
-     Main ;
+uses LResources, LazLoggerBase, LCLStrConsts,
+     FreeLanguageSupport, Main
+     ,fpjsonrtti;
 
-{ $ R *.lfm}
+{$R *.lfm}
 
 function Hex2Bin(hex:PChar):Pchar;
 var len:integer;
@@ -231,7 +255,8 @@ end;
 
 {$I freehullformwindow_panel.inc}
 
-constructor TFreeHullWindow.Create(AOwner: TComponent);
+{
+constructor TFreeHullWindow.CreateNew(AOwner: TComponent);
 var bm:TBitmap;
 begin
   inherited Create(AOwner);
@@ -240,11 +265,6 @@ begin
   PopupMenuHull:=MainForm.PopupMenuHull;
   ActionListHull:=MainForm.ActionListHull;}
 
-  CreateComponents;
-
-  CreateFreeViewport();
-  CopyComponentsFromFreeHullForm;
-  FormCreate(Self);
   //FormCreate(Self);
   self.BorderWidth:=4;
   self.InactiveBorderColor:=clWindowFrame;
@@ -260,13 +280,104 @@ begin
   OnShow := @FormShow;
 end;
 
+procedure StreamObj(o: TObject);
+var
+  Streamer: TJSONStreamer;
+  JSONString: String;
+begin
+  WriteLn('Stream object');
+  WriteLn('======================================');
+  Streamer := TJSONStreamer.Create(nil);
+  try
+    Streamer.Options := Streamer.Options + [jsoUseFormatString,jsoStreamChildren]; // Save strings as JSON array
+    JSONString := Streamer.ObjectToJSONString(o);
+    WriteLn(JSONString);
+    WriteLn('======================================');
+  finally
+    Streamer.Destroy;
+  end;
+end;
+
+
+// this constructor load the properties and components from resource
+constructor TFreeHullWindow.Create(AOwner: TComponent);
+var b:boolean; p:TControlAutosizePhases;
+begin
+  GlobalNameSpace.BeginWrite;
+  try
+    CreateNew(AOwner);
+    //StreamObj(self);
+    if (ClassType <> TForm) and not (csDesigning in ComponentState) then
+    begin
+      Include(FFormState, fsCreating);
+      try
+        ///ProcessResource;
+        //StreamObj(self);
+
+        CreateFreeViewport();
+        CreateComponents;
+        FormCreate(Self);
+
+        b:=self.AutoSizingAll;
+        b:=self.AutoSizeDelayed;
+        p:=self.AutoSizePhases;
+        b:=self.AutoSizeDelayedHandle;
+
+        FormStyle := fsNormal;
+        Position := poDesigned;
+        Left:=0; Top:=0;
+        ClientWidth:=Width;
+        ClientHeight:=Height;
+      finally
+        Exclude(FFormState, fsCreating);
+      end;
+      b:=self.AutoSizingAll;
+      b:=self.AutoSizeDelayed;
+      p:=self.AutoSizePhases;
+      b:=self.AutoSizeDelayedHandle;
+      {self.ClientPanel.Align:=alClient;
+      self.ClientPanel.Width:=500;
+      self.ClientPanel.Height:=400;
+      self.CaptionPanel.SetBounds(0,0,500,32);}
+    end;
+  finally
+    GlobalNameSpace.EndWrite;
+  end;
+  self.InvalidateBoundsRealized;
+end;
+
+procedure TFreeHullWindow.ProcessResource;
+begin
+  if not InitResourceComponent(Self, TMDIPanel) then
+    if RequireDerivedFormResource then
+      raise EResNotFound.CreateFmt(
+        rsFormResourceSNotFoundForResourcelessFormsCreateNew, [ClassName])
+    else
+      DebugLn(Format(rsFormResourceSNotFoundForResourcelessFormsCreateNew, [ClassName]));
+end;
+
 destructor TFreeHullWindow.Destroy;
 begin
   if assigned(ViewPort) then FreeAndNil(ViewPort);
-  if assigned(FreeHullForm) then FreeAndNil(FreeHullForm);
+  ///if assigned(FreeHullForm) then FreeAndNil(FreeHullForm);
+  inherited;
+end;
+}
+
+constructor TFreeHullWindow.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  if assigned(OnCreate) then
+     OnCreate(Self);
+end;
+
+destructor TFreeHullWindow.Destroy;
+begin
+  if assigned(ViewPort) then FreeAndNil(ViewPort);
   inherited;
 end;
 
+{
 procedure TFreeHullWindow.CopyComponentsFromFreeHullForm;
 begin
   // create the form just to load components from .lfm
@@ -347,6 +458,7 @@ begin
 
   FreeHullForm.Visible:=false;
 end;
+}
 
 function TFreeHullWindow.FCaptionText:string;
 begin
@@ -380,7 +492,7 @@ begin
          FFreeShip.AddViewport(Viewport);
       end;
    end;
-   FreeHullForm.FreeShip := FreeShip;
+   ///FreeHullForm.FreeShip := FreeShip;
 end;{TFreeHullWindow.FSetFreeShip}
 
 procedure TFreeHullWindow.UpdateMenu;
@@ -445,6 +557,26 @@ begin
   ViewportKeyUp(Sender, Key, Shift);
 end;
 
+procedure TFreeHullWindow.ScrollBar1Change(Sender: TObject);
+begin
+  SetActive(true);
+end;
+
+procedure TFreeHullWindow.ScrollBar1Enter(Sender: TObject);
+begin
+  SetActive(true);
+end;
+
+procedure TFreeHullWindow.ScrollBar2Change(Sender: TObject);
+begin
+  SetActive(true);
+end;
+
+procedure TFreeHullWindow.ScrollBar2Enter(Sender: TObject);
+begin
+  SetActive(true);
+end;
+
 procedure TFreeHullWindow.ViewportRedraw(Sender: TObject);
 begin
    if (FreeShip<>nil) and FreeShip.ModelIsLoaded
@@ -456,7 +588,7 @@ begin
   Viewport := TFreeViewport.Create(Self);
   with Viewport do
   begin
-    Parent := Self.ClientPanel;
+    Parent := Self; //.ClientPanel;
     Cursor := crCross;
     Left := 0;
     Height := 270;
@@ -484,7 +616,7 @@ begin
     Elevation := 20;
     HorScrollbar := ScrollBar1;
     Margin := 1;
-    PopupMenu1 := PopupMenu1;
+    PopupMenuHull := PopupMenuHull;
     VertScrollbar := ScrollBar2;
     ViewType := fvPerspective;
     ViewportMode := vmWireFrame;
@@ -512,11 +644,21 @@ procedure TFreeHullWindow.FormCreate(Sender: TObject);
 {$IFDEF USEOPENGL}
 var VP: TFreeViewportOpenGL;
 {$ENDIF}
+var o:TObject;
 begin
+  CreateFreeViewport;
+  //CreateComponents;
    ScrollBar1.Position:=Round(Viewport.Angle);
    ScrollBar2.Position:=Round(Viewport.Elevation);
+   if ScrollBar1.OnEnter = nil
+      then ScrollBar1.OnEnter := @ScrollBar1Enter;
+
    FAllowPanOrZoom:=False;
    FreeShip:=GlobalFreeShip;
+   o:=self.PopupMenuHull;
+   o:=self.ActionListHull;
+   o:=self.ImagesHull;
+   o:=self.PrintDialogHull;
    {$IFDEF USEOPENGL}
    VP := TFreeViewportOpenGL.Create(Self);
    VP.Parent := ViewPort.Parent;
@@ -546,12 +688,12 @@ begin
    {$ENDIF}
    Freeship:=nil;
 
-   if assigned(FreeHullForm) then FreeHullForm.Free;
+   //if assigned(FreeHullForm) then FreeHullForm.Free;
 
    aAction:=caFree;
 end;{TFreeHullWindow.FormClose}
 
-procedure TFreeHullWindow.PopupMenu1Popup(Sender: TObject);
+procedure TFreeHullWindow.PopupMenuHullPopup(Sender: TObject);
 begin
    UpdateMenu;
 end;{TFreeHullWindow.PopupMenu1Popup}
@@ -919,5 +1061,6 @@ procedure TFreeHullWindow.BackgroundVisibleExecute(Sender: TObject);
 begin
    Viewport.BackgroundImage.Visible:=not Viewport.BackgroundImage.Visible;
 end;{TFreeHullWindow.BackgroundVisibleExecute}
+
 
 end.

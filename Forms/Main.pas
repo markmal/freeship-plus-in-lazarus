@@ -72,7 +72,7 @@ uses
      FreeGeometry,
      FreeShipUnit,
      FreeVersionUnit,
-     freehullformwindow_panel,
+     freehullformwindow_panel, MDIPanel,
      FreeAboutDlg,
      FreeSplashWndw,
      Menus,
@@ -448,7 +448,8 @@ type
     SelectionSeparator1: TMenuItem;
     Select_LeakPoints: TMenuItem;
 
-    FMDIChildList : TList;
+    //FMDIChildList : TList;
+    FMDIPanelManager: TMDIPanelManager;
 
     procedure ActionCheckUpdatesExecute(Sender: TObject);
     procedure AddFlowLineExecute(Sender: TObject);
@@ -675,7 +676,6 @@ uses //FreeSplashWndw,
      FreeEmptyModelChooserDlg,
      RibbonToolBarMgr,
      TileDialog,
-     MDIPanel,
      FreePointGroupForm,
      FreeUpdateDlg;
 
@@ -757,7 +757,7 @@ constructor TMainForm.Create(AOwner: TComponent);
 begin
  Application.OnException := CustomExceptionHandler;
  inherited Create(AOwner);
- FMDIChildList := TList.Create;
+ FMDIPanelManager := TMDIPanelManager.Create;
  FFileName:='';
 
  //FreeShip.Preferences.SetDefaults;
@@ -790,16 +790,16 @@ begin
  ptr:=pointer(FActionListHull);
  if assigned(FActionListHull)
     then FreeAndNil(FActionListHull);}
- if assigned(FMDIChildList) then
- for i:=0 to FMDIChildList.Count -1 do
-   if assigned(FMDIChildList.Items[i]) then
+ if assigned(FMDIPanelManager) then
+ for i:=0 to FMDIPanelManager.PanelCount - 1 do
+   if assigned(FMDIPanelManager.MDIPanels[i]) then
       begin
-      thw:=TFreeHullWindow(FMDIChildList.Items[i]);
-      if assigned(thw.FreeHullForm) and assigned(thw.FreeHullForm.ActionListHull)
-        then self.RemoveComponent(thw.FreeHullForm.ActionListHull);
+      thw:=TFreeHullWindow(FMDIPanelManager.MDIPanels[i]);
+      //if assigned(thw.FreeHullForm) and assigned(thw.FreeHullForm.ActionListHull)
+      //  then self.RemoveComponent(thw.FreeHullForm.ActionListHull);
       thw.Free;
       end;
- FreeAndNil(FMDIChildList);
+ FreeAndNil(FMDIPanelManager);
  inherited;
 end;
 
@@ -1127,21 +1127,17 @@ end;{TMainForm.FOnselectItem}
 
 procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
 begin
-  FMDIChildList.Delete(AIndex);
+  FMDIPanelManager.Delete(AIndex);
 end;
 
 function TMainForm.ActiveMDIChild: TFreeHullWindow;
-var i:integer;
 begin
-  Result := nil;
-  for i:=0 to FMDIChildList.Count - 1 do
-    if TFreeHullWindow(FMDIChildList[i]).Active
-       then Result := TFreeHullWindow(FMDIChildList[i]);
+  Result := FMDIPanelManager.FindActivePanel as TFreeHullWindow;
 end;
 
 function TMainForm.MDIChildCount: Integer;
 begin
-  Result := FMDIChildList.Count;
+  Result := FMDIPanelManager.PanelCount;
 end;
 
 function TMainForm.GetMDIChildren(AIndex: Integer): TFreeHullWindow;
@@ -1149,8 +1145,8 @@ begin
   Result := nil;
   //if not (FormStyle in [fsMDIForm, fsMDIChild]) then
   //  exit;
-  if AIndex > FMDIChildList.Count -1 then exit;
-  Result := TFreeHullWindow(FMDIChildList.Items[AIndex]) ;
+  if AIndex > FMDIPanelManager.PanelCount - 1 then exit;
+  Result := TFreeHullWindow(FMDIPanelManager.MDIPanels[AIndex]) ;
 end;
 
 
@@ -1158,42 +1154,42 @@ end;
 procedure TMainForm.HullformWindowOnActivate(Sender:TObject);
 begin
   // bring Action List here to process keys and shortcuts
-  FActionListHull := TFreeHullWindow(Sender).FreeHullForm.ActionListHull;
-  self.InsertComponent(FActionListHull);
+  //FActionListHull := TFreeHullWindow(Sender).FreeHullForm.ActionListHull;
+  //self.InsertComponent(FActionListHull);
 end;
 
 procedure TMainForm.HullformWindowOnDeactivate(Sender:TObject);
 begin
   // remove Action List to free place for another MDI action list
-  if not assigned(FActionListHull) then exit;
-  if not assigned(Sender) then exit;
-  if not assigned(TFreeHullWindow(Sender).FreeHullForm) then exit;
-  if not assigned(TFreeHullWindow(Sender).FreeHullForm.ActionListHull) then exit;
-  if FActionListHull <> TFreeHullWindow(Sender).FreeHullForm.ActionListHull
-     then exit;
-  if not FDestroying then
-     RemoveComponent(FActionListHull);
-  FActionListHull:=nil;
+  ///if not assigned(FActionListHull) then exit;
+  ///if not assigned(Sender) then exit;
+  ///if not assigned(TFreeHullWindow(Sender).FreeHullForm) then exit;
+  ///if not assigned(TFreeHullWindow(Sender).FreeHullForm.ActionListHull) then exit;
+  ///if FActionListHull <> TFreeHullWindow(Sender).FreeHullForm.ActionListHull
+     ///then exit;
+  ///if not FDestroying then
+  ///   RemoveComponent(FActionListHull);
+  ///FActionListHull:=nil;
 end;
 
 procedure TMainForm.HullformWindowOnClose(Sender:TObject; var CloseAction: TCloseAction);
 begin
   HullformWindowOnDeactivate(Sender);
-  FMDIChildList.Remove(Sender);
+  FMDIPanelManager.Remove(Sender as TFreeHullWindow);
 end;
 
 procedure TMainForm.CloseHullWindows;
 var thw: TFreeHullWindow;
 begin
-   if assigned(FMDIChildList) then
-    while FMDIChildList.Count>0 do
+   if assigned(FMDIPanelManager) then
+    while FMDIPanelManager.PanelCount>0 do
       begin
-         thw:=TFreeHullWindow(FMDIChildList.Items[0]);
-         if assigned(thw) and assigned(thw.FreeHullForm)
-           and assigned(thw.FreeHullForm.ActionListHull)
-           then self.RemoveComponent(thw.FreeHullForm.ActionListHull);
-         if assigned(thw) then thw.Free;
-       FMDIChildList.Delete(0);
+         thw:=TFreeHullWindow(FMDIPanelManager.MDIPanels[0]);
+         ///if assigned(thw) and assigned(thw.FreeHullForm)
+         ///  and assigned(thw.FreeHullForm.ActionListHull)
+         ///  then self.RemoveComponent(thw.FreeHullForm.ActionListHull);
+         if assigned(thw) then thw.Close;
+       FMDIPanelManager.Remove(thw);
        end;
 end;
 
@@ -1228,7 +1224,7 @@ begin
          HullformWindow.Name:='HullformWindow'+IntToStr(I);    // helps in debugging
          HullformWindow.Viewport.Name :='Viewport'+IntToStr(I);
          HullformWindow.FreeShip:=FreeShip;
-         FMDIChildList.Add(HullformWindow);
+         FMDIPanelManager.Add(HullformWindow);
          HullformWindow.Parent:=MainClientPanel;
          HullformWindow.OnActivate:=HullformWindowOnActivate;
          HullformWindow.OnDeactivate:=HullformWindowOnDeactivate;
@@ -1684,8 +1680,9 @@ procedure TMainForm.NewWindowExecute(Sender: TObject);
 var HullformWindow : TFreeHullWindow;
 begin
    // open a new window
-   HullformWindow:=TFreeHullWindow.Create(self);
-   FMDIChildList.Add(HullformWindow);
+   HullformWindow:=TFreeHullWindow.CreateNew(self);
+   //FMDIChildList.Add(HullformWindow);
+   FMDIPanelManager.Add(HullformWindow);
    // Connect viewport to freeship component
    HullformWindow.FreeShip:=FreeShip;
    HullformWindow.Viewport.ViewType:=fvPerspective;
@@ -1698,9 +1695,9 @@ procedure TMainForm.SpinEditFontSizeChange(Sender: TObject);
 var w: integer;  vp:TFreeViewport;
 begin
   FreeShip.FontSize := SpinEditFontSize.value;
-  for w:=0 to FMDIChildList.Count-1 do
+  for w:=0 to FMDIPanelManager.PanelCount-1 do
   begin
-    vp := TFreeHullWindow(FMDIChildList.Items[w]).Viewport;
+    vp := TFreeHullWindow(FMDIPanelManager.MDIPanels[w]).Viewport;
     vp.invalidate;
   end;
 end;
@@ -1787,7 +1784,8 @@ begin
   {$ifndef LCL}{$ifndef CLX}
   TileMode := tbHorizontal;
   {$endif}{$endif}
-  Tile;
+  //Tile;
+  FMDIPanelManager.Tile;
 end;{TMainForm.TileWindowExecute}
 
 procedure TMainForm.CascadeWindowExecute(Sender: TObject);
@@ -1795,7 +1793,7 @@ begin
   {$ifndef LCL}{$ifndef CLX}
   TileMode := tbHorizontal;
   {$endif}{$endif}
-  Cascade;
+  FMDIPanelManager.Cascade;
 end;{TMainForm.CascadeWindowExecute}
 
 procedure TMainForm.BothSidesExecute(Sender: TObject);

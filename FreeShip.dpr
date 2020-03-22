@@ -120,7 +120,49 @@ uses
 ;
 {$R *.res}
 
-var ShowSplash, InDebugger : boolean; sOpenFile:string='';
+var ParametersHelp, ShowSplash, InDebugger : boolean; sOpenFile:string='';
+
+resourcestring
+  usageLine01 = ('Usage: FreeShip [parameter]* [model]');
+  usageLine02 = ('Where parameter is:');
+  usageLine03 = ('--help        : this screen');
+  usageLine04 = ('--log-error   : log level is Error. Only Error messages logged');
+  usageLine05 = ('--log-warning : log level is Warning. Only Error and Warning messages logged');
+  usageLine06 = ('--log-info    : log level is Info. Error, Warning and Info messages logged');
+  usageLine07 = ('--log-debug   : log level is Debug. All messages logged.');
+  usageLine08 = ('--log-file=<logfile> : filename of the log file');
+  usageLine09 = ('--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS : turn off splash screen.');
+  usageLine10 = ('--debug       : for development, use only when run in debugger');
+  usageLine11 = ('model         : model file .ftm or .fbm');
+
+
+procedure PrintParametersHelp;
+var S: string; p: integer;
+begin
+  Logger.Info(usageLine01);
+  Logger.Info(usageLine02);
+  Logger.Info(usageLine03);
+  Logger.Info(usageLine04);
+  Logger.Info(usageLine05);
+  Logger.Info(usageLine06);
+  Logger.Info(usageLine07);
+  Logger.Info(usageLine08);
+  Logger.Info(usageLine09);
+  Logger.Info(usageLine10);
+  Logger.Info(usageLine11);
+
+  ShowMessage( usageLine01+#10
+              +usageLine02+#10
+              +usageLine03+#10
+              +usageLine04+#10
+              +usageLine05+#10
+              +usageLine06+#10
+              +usageLine07+#10
+              +usageLine08+#10
+              +usageLine09+#10
+              +usageLine10+#10
+              +usageLine11 );
+end;
 
 procedure InitByParameters;
 var S: string; p: integer;
@@ -128,13 +170,14 @@ begin
   for p:=1 to ParamCount do
   begin
     S := ParamStr(p);
-    if S = '--nosplash-I-ACCEPT-GPLv3' then ShowSplash:=False
+    if S = '--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS' then ShowSplash:=False
+    else if S = '--help' then ParametersHelp:=True
     else if S = '--debug' then InDebugger:=True
     else if S = '--log-info' then Logger.LogLevel:=LOG_INFO
     else if S = '--log-error' then Logger.LogLevel:=LOG_ERROR
     else if S = '--log-warning' then Logger.LogLevel:=LOG_WARNING
     else if S = '--log-debug' then Logger.LogLevel:=LOG_DEBUG
-    else if UTF8LeftStr(S,12) = '--debug-log=' then
+    else if UTF8LeftStr(S,11) = '--log-file=' then
          // skip LazLogger param
     else sOpenFile:=S;
   end;
@@ -238,11 +281,19 @@ begin
    Logger.Info('Last Git Change Revision: '+IntToStr(GITVERSION_REVISION));
    Logger.LogLevel:=LOG_ERROR;
 
+   ParametersHelp:=false;
    ShowSplash:=true;
    InDebugger:=false;
    sOpenFile := '';
 
    InitByParameters;
+
+   if ParametersHelp then
+     begin
+      Logger.LogLevel:=LOG_INFO;
+      PrintParametersHelp;
+      exit;
+     end;
 
    RequireDerivedFormResource:=True; // new
    FormatSettings.DecimalSeparator:='.';

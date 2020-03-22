@@ -495,6 +495,8 @@ type
     FLastResizeHeight:integer;
     FLastResizeClientWidth:integer;
     FLastResizeClientHeight:integer;
+    FOriginalVertScrollbarChange:TNotifyEvent;
+    FOriginalHorScrollbarChange:TNotifyEvent;
 
     function FGetBrushColor: TColor;
     function FGetBrushStyle: TBrushStyle;
@@ -529,8 +531,8 @@ type
     procedure SetSelectionFrameActive(Val: boolean);
     procedure FSetViewType(Val: TFreeViewType);
     procedure FSetViewportMode(Val: TFreeViewportMode);
-    procedure FHorScrollbarChange(Sender: TObject);
     procedure FVertScrollbarChange(Sender: TObject);
+    procedure FHorScrollbarChange(Sender: TObject);
     procedure WMMouseEnter(var Message: TMessage); message CM_MOUSEENTER;
     procedure WMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
   protected

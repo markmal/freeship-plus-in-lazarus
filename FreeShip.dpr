@@ -435,6 +435,6 @@ begin
 
  except
    on E: Exception do
-     DumpExceptionCallStack(E);
+     logger.DumpExceptionCallStack(E);
  end;
 end.

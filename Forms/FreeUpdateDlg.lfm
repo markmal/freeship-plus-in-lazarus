@@ -158,7 +158,7 @@ object FreeUpdateForm: TFreeUpdateForm
     Top = 48
     Width = 23
     Action = ActionCheckUpdate
-    ShowCaption = False
+    Caption = 'R'
     ShowHint = True
     ParentShowHint = False
   end

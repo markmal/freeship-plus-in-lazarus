@@ -664,8 +664,6 @@ type
 var MainForm: TMainForm;
 var GShowSplash : boolean = true;
 
-procedure DumpExceptionCallStack(E: Exception);
-
 implementation
 
 uses //FreeSplashWndw,
@@ -733,32 +731,6 @@ begin
     }
 end;
 
-var ExceptionDlg : TExceptionDlg;
-
-procedure DumpExceptionCallStack(E: Exception);
-var
-  I: Integer;
-  Frames: PPointer;
-  Report: string;
-begin
-  Report := 'Program exception! ' + LineEnding +
-    'Stacktrace:' + LineEnding + LineEnding;
-  if E <> nil then begin
-    Report := Report + 'Exception class: ' + E.ClassName + LineEnding +
-    'Message: ' + E.Message + LineEnding;
-  end;
-  Report := Report + BackTraceStrFunc(ExceptAddr);
-  Frames := ExceptFrames;
-  for I := 0 to ExceptFrameCount - 1 do
-    Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
-  logger.Error(Report);
-  //ShowMessage(Report);
-  //MessageDlg('Program exception!', Report, mtError, [mbClose],0);
-  //InputBox('Program exception!', 'You can copy exception stack', Report);
-  ExceptionDlg.Memo1.Text := Report;
-  ExceptionDlg.Showmodal;
-  Halt; // End of program execution
-end;
 
 constructor TMainForm.Create(AOwner: TComponent);
 begin
@@ -784,7 +756,7 @@ end;
 
 procedure TMainForm.CustomExceptionHandler(Sender: TObject; E: Exception);
 begin
-  DumpExceptionCallStack(E);
+  logger.DumpExceptionCallStack(E);
   Halt; // End of program execution
 end;
 

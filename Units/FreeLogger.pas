@@ -5,7 +5,7 @@ unit FreeLogger;
 interface
 
 uses
-  Classes, SysUtils
+  Classes, SysUtils, FreeExceptionDlg
   {$ifdef LCL}, LazLogger{$endif};
 
 const
@@ -27,6 +27,7 @@ Type
       procedure SetLogLevel(L:integer);
       procedure IncreaseIndent; override;
       procedure DecreaseIndent; override;
+      procedure DumpExceptionCallStack(E: Exception);
       property LogLevel : integer read FLogLevel write SetLogLevel;
   end;
 
@@ -99,8 +100,38 @@ begin
  inherited DecreaseIndent;
 end;
 
+var ExceptionDlg : TExceptionDlg;
 
+procedure TLogger.DumpExceptionCallStack(E: Exception);
+var
+  I: Integer;
+  Frames: PPointer;
+  Report: string;
 begin
+  Report := 'Program exception! ' + LineEnding +
+    'Stacktrace:' + LineEnding + LineEnding;
+  if E <> nil then begin
+    Report := Report + 'Exception class: ' + E.ClassName + LineEnding +
+    'Message: ' + E.Message + LineEnding;
+  end;
+  Report := Report + BackTraceStrFunc(ExceptAddr);
+  Frames := ExceptFrames;
+  for I := 0 to ExceptFrameCount - 1 do
+    Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
+  logger.Error(Report);
+  //ShowMessage(Report);
+  //MessageDlg('Program exception!', Report, mtError, [mbClose],0);
+  //InputBox('Program exception!', 'You can copy exception stack', Report);
+  if ExceptionDlg<>nil then
+  begin
+    ExceptionDlg.Memo1.Text := Report;
+    ExceptionDlg.Showmodal;
+  end;
+  //Halt; // End of program execution
+end;
+
+initialization
   Logger := TLogger.Create;
+  ExceptionDlg := TExceptionDlg.Create(nil);
 end.
 

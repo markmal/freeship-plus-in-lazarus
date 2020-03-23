@@ -8377,6 +8377,10 @@ msgstr ""
 msgid "LabelNewVersionDate"
 msgstr ""
 
+#: tfreeupdateform.speedbutton1.caption
+msgid "R"
+msgstr ""
+
 #: tfreeupdateform.speedbutton1.hint
 msgid "Refresh"
 msgstr ""

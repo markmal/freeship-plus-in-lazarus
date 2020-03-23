@@ -90,9 +90,9 @@ implementation
 {$R *.lfm}
 
 uses
-  fpjson, jsonparser, fphttpclient,
+  fpjson, jsonparser, fphttpclient, OpenSSL, ssockets,
   LazFileUtils, strutils, lclintf,
-  FreeVersionUnit;
+  FreeVersionUnit, FreeLogger;
 
 constructor TGitHubRelease.Create;
 begin
@@ -212,64 +212,80 @@ begin
   Http.AllowRedirect := true;
   Http.AddHeader('User-Agent','Mozilla/5.0 (compatible; fpweb)');
   try
-    Content:=Http.Get('https://api.github.com/repos/markmal/freeship-plus-in-lazarus/releases');
-   jData:=GetJSON(Content);
    try
-     jghReleaseData := jData.Items[0]; //0 - get last release
-     DeStreamer := TJSONDeStreamer.Create(nil);
-     GitHubRelease:=TGitHubRelease.Create;
-     DeStreamer.JSONToObject(TJSONObject(jghReleaseData), GitHubRelease);
+     InitSSLInterface;
+     Content:=Http.Get('https://api.github.com/repos/markmal/freeship-plus-in-lazarus/releases');
+     jData:=GetJSON(Content);
+     try
+       jghReleaseData := jData.Items[0]; //0 - get last release
+       DeStreamer := TJSONDeStreamer.Create(nil);
+       GitHubRelease:=TGitHubRelease.Create;
+       DeStreamer.JSONToObject(TJSONObject(jghReleaseData), GitHubRelease);
 
-     download_asset := -1;
-     for i:=0 to GitHubRelease.assets.Count-1 do
-     begin
-       GitHubAsset:= GitHubRelease.assets.Items[i] as TGitHubAsset;
-       fext:=ExtractFileExt(GitHubAsset.name);
-       {$ifdef Windows}
-       if //(GitHubAsset.content_type = 'chemical/x-msi-msi')
-          lowercase(fext) = '.msi'
-          then downlad_asset := i;
-       {$else}
-       if not havedpkg //and (GitHubAsset.content_type = 'application/zip')
-          and (lowercase(fext) = '.zip')
-          then download_asset := i;
-       if havedpkg //and (GitHubAsset.content_type = 'application/vnd.debian.binary-package')
-          and (lowercase(fext) = '.deb')
-          then download_asset := i;
-       {$endif}
-       vers := extractVersion(GitHubAsset.name);
-       if compareVersions(vers,FCurrentVersion) <= 0 then
+       download_asset := -1;
+       for i:=0 to GitHubRelease.assets.Count-1 do
        begin
-         Memo1.Text := 'FreeShip is up to date';
-         download_asset := -1;
+         GitHubAsset:= GitHubRelease.assets.Items[i] as TGitHubAsset;
+         fext:=ExtractFileExt(GitHubAsset.name);
+         {$ifdef Windows}
+         if //(GitHubAsset.content_type = 'chemical/x-msi-msi')
+            lowercase(fext) = '.msi'
+            then downlad_asset := i;
+         {$else}
+         if not havedpkg //and (GitHubAsset.content_type = 'application/zip')
+            and (lowercase(fext) = '.zip')
+            then download_asset := i;
+         if havedpkg //and (GitHubAsset.content_type = 'application/vnd.debian.binary-package')
+            and (lowercase(fext) = '.deb')
+            then download_asset := i;
+         {$endif}
+         vers := extractVersion(GitHubAsset.name);
+         if compareVersions(vers,FCurrentVersion) <= 0 then
+         begin
+           Memo1.Text := 'FreeShip is up to date';
+           download_asset := -1;
+         end;
        end;
+       if download_asset > -1 then
+       begin
+         GitHubAsset:= GitHubRelease.assets.Items[download_asset] as TGitHubAsset;
+
+         LabelNewVersion.Caption := vers;
+         LabelNewVersionDate.Caption := GitHubAsset.updated_at;
+
+         LabelDownloadLink.Caption := GitHubAsset.name;
+         LabelDownloadLink.Hint := GitHubAsset.browser_download_url;
+         LabelDownloadLink.Enabled:=true;
+         LabelDownloadLink.Cursor:=crHandPoint;
+
+         LabelDownloadPage.Caption := GitHubRelease.name;
+         LabelDownloadPage.Hint := GitHubRelease.html_url;
+         LabelDownloadPage.Enabled:=true;
+         Memo1.Text := GitHubRelease.body;
+         FUpdatesAvailable := true;
+         LabelNewVersionAvailable.Visible:=true;
+         LabelNewVersion.Visible:=true;
+         LabelNewVersionDate.Visible:=true;
+       end;
+
+     finally
+       jData.Free;
+       if assigned(DeStreamer) then DeStreamer.Free;
+       if assigned(GitHubRelease) then GitHubRelease.Free;
      end;
-     if download_asset > -1 then
+   except
+     on e:EHTTPClient do
      begin
-       GitHubAsset:= GitHubRelease.assets.Items[download_asset] as TGitHubAsset;
-
-       LabelNewVersion.Caption := vers;
-       LabelNewVersionDate.Caption := GitHubAsset.updated_at;
-
-       LabelDownloadLink.Caption := GitHubAsset.name;
-       LabelDownloadLink.Hint := GitHubAsset.browser_download_url;
-       LabelDownloadLink.Enabled:=true;
-       LabelDownloadLink.Cursor:=crHandPoint;
-
-       LabelDownloadPage.Caption := GitHubRelease.name;
-       LabelDownloadPage.Hint := GitHubRelease.html_url;
-       LabelDownloadPage.Enabled:=true;
-       Memo1.Text := GitHubRelease.body;
-       FUpdatesAvailable := true;
-       LabelNewVersionAvailable.Visible:=true;
-       LabelNewVersion.Visible:=true;
-       LabelNewVersionDate.Visible:=true;
+       logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
+       Memo1.Text:='Network issue: '+E.Message;
      end;
-
-   finally
-     jData.Free;
-     if assigned(DeStreamer) then DeStreamer.Free;
-     if assigned(GitHubRelease) then GitHubRelease.Free;
+     on e:ESocketError do
+     begin
+       logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
+       Memo1.Text:='Network issue: '+E.Message;
+     end;
+     on e:Exception do
+       logger.DumpExceptionCallStack(e);
    end;
   finally
     Http.Free;

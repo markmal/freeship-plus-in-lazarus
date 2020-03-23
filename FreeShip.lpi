@@ -31,7 +31,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="329"/>
+      <BuildNr Value="330"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -939,6 +939,7 @@
         <Filename Value="Forms/FreeExceptionDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ExceptionDlg"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit123>
     </Units>

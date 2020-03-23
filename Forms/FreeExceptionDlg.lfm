@@ -1,4 +1,4 @@
-object Form1: TExceptionDlg
+object ExceptionDlg: TExceptionDlg
   Left = 529
   Height = 493
   Top = 183
@@ -36,6 +36,7 @@ object Form1: TExceptionDlg
     Top = 0
     Width = 544
     Align = alClient
+    ReadOnly = True
     TabOrder = 1
   end
 end

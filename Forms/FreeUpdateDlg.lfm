@@ -7,7 +7,6 @@ object FreeUpdateForm: TFreeUpdateForm
   Caption = 'Check updates'
   ClientHeight = 480
   ClientWidth = 640
-  OnActivate = FormActivate
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter

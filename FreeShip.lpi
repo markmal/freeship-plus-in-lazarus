@@ -31,7 +31,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="330"/>
+      <BuildNr Value="332"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -227,7 +227,7 @@
         <CommandLineParams Value="--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
       </local>
       <FormatVersion Value="2"/>
-      <Modes Count="4">
+      <Modes Count="5">
         <Mode0 Name="default">
           <local>
             <CommandLineParams Value="--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
@@ -249,6 +249,12 @@
             <CommandLineParams Value="--debug --log-debug --debug-log=C:/Users/mmalakanov/AppData/Local/Temp/FreeShip.log"/>
           </local>
         </Mode3>
+        <Mode4 Name="ssh lubuntu">
+          <local>
+            <HostApplicationFilename Value="/usr/local/bin/FreeShip"/>
+            <CommandLineParams Value="--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+          </local>
+        </Mode4>
       </Modes>
     </RunParams>
     <RequiredPackages Count="4">
@@ -957,7 +963,7 @@
     <Parsing>
       <Style Value="1"/>
       <SyntaxOptions>
-        <SyntaxMode Value="FPC"/>
+        <SyntaxMode Value="fpc"/>
         <IncludeAssertionCode Value="True"/>
       </SyntaxOptions>
     </Parsing>
@@ -994,7 +1000,7 @@
       <ConfigFile>
         <DontUseConfigFile Value="True"/>
         <CustomConfigFile Value="True"/>
-        <ConfigFilePath Value="debugfpc.cfg"/>
+        <ConfigFilePath Value="/etc/debugfpc.cfg"/>
       </ConfigFile>
       <ExecuteBefore>
         <Command Value="bash $(ProjPath)/gitlastrev.sh"/>

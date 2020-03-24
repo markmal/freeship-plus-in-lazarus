@@ -73,7 +73,6 @@ type
     SpeedButton1: TSpeedButton;
     TopPanel2: TPanel;
     procedure ActionCheckUpdateExecute(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure LabelDownloadLinkClick(Sender: TObject);
@@ -121,10 +120,6 @@ end;
 procedure TFreeUpdateForm.ActionCheckUpdateExecute(Sender: TObject);
 begin
   GetGitHubReleases;
-end;
-
-procedure TFreeUpdateForm.FormActivate(Sender: TObject);
-begin
 end;
 
 resourcestring rsCurrentVersion = 'Current Version';
@@ -289,6 +284,20 @@ begin
      begin
        logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
        Memo1.Text:='Network issue: '+E.Message;
+     end;
+     on e:EInOutError do
+     begin
+       if e.Message.Contains('OpenSSL') then //known issue with libssl1.1
+       begin
+         logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
+         Memo1.Text:='Exception class: '+E.ClassName+' Message: '+E.Message+#10
+           +'Possible libssl v1.1 compatibility issue.'+#10
+           +'libssl v1.1 is found'+#10
+           +'FreeShip is currently compatible with libssl v1.0 only.'+#10
+           +'You have to check for updates traditional way at Download page.'+#10
+           +'Click link below.';
+       end
+         else logger.DumpExceptionCallStack(e);
      end;
      on e:Exception do
        logger.DumpExceptionCallStack(e);

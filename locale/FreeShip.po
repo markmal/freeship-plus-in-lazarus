@@ -246,6 +246,10 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
+#: freeupdatedlg.rscurrentversion
+msgid "Current Version"
+msgstr ""
+
 #: main.rsexitconfirmation
 msgid ""
 "The current model has been changed\n"
@@ -8337,11 +8341,8 @@ msgctxt "tfreeupdateform.caption"
 msgid "Check updates"
 msgstr ""
 
-#: tfreeupdateform.label1.caption
-msgid "Current Version:"
-msgstr ""
-
-#: tfreeupdateform.label3.caption
+#: tfreeupdateform.groupbox1.caption
+msgctxt "tfreeupdateform.groupbox1.caption"
 msgid "What's new"
 msgstr ""
 
@@ -8377,12 +8378,12 @@ msgstr ""
 msgid "LabelNewVersionDate"
 msgstr ""
 
-#: tfreeupdateform.speedbutton1.caption
-msgid "R"
-msgstr ""
-
 #: tfreeupdateform.speedbutton1.hint
 msgid "Refresh"
+msgstr ""
+
+#: tfreeupdateform.toppanel1.caption
+msgid "TopPanel1"
 msgstr ""
 
 #: tlightdialog.caption

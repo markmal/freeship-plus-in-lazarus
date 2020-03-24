@@ -12,75 +12,7 @@ object FreeUpdateForm: TFreeUpdateForm
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.6.0'
-  object Label1: TLabel
-    Left = 224
-    Height = 22
-    Top = 8
-    Width = 125
-    Caption = 'Current Version:'
-    ParentColor = False
-    ParentFont = False
-  end
-  object LabelCurrentVersion: TLabel
-    Left = 352
-    Height = 22
-    Top = 9
-    Width = 48
-    Caption = '1.2.3.4'
-    ParentColor = False
-    ParentFont = False
-  end
-  object LabelNewVersionAvailable: TLabel
-    Left = 56
-    Height = 22
-    Top = 48
-    Width = 181
-    Caption = 'New version available:'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-  end
-  object LabelNewVersion: TLabel
-    Left = 248
-    Height = 22
-    Top = 48
-    Width = 139
-    Caption = 'LabelNewVersion'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-  end
-  object LabelNewVersionDate: TLabel
-    Left = 403
-    Height = 22
-    Top = 48
-    Width = 177
-    Caption = 'LabelNewVersionDate'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-  end
-  object Memo1: TMemo
-    Left = 16
-    Height = 235
-    Top = 109
-    Width = 608
-    Lines.Strings = (
-      'Memo1'
-    )
-    ReadOnly = True
-    ScrollBars = ssAutoBoth
-    TabOrder = 0
-  end
-  object Label3: TLabel
-    Left = 19
-    Height = 22
-    Top = 80
-    Width = 88
-    Caption = 'What''s new'
-    ParentColor = False
-  end
-  object Panel1: TPanel
+  object BottomPanel: TPanel
     Left = 0
     Height = 50
     Top = 430
@@ -94,77 +26,294 @@ object FreeUpdateForm: TFreeUpdateForm
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 50
     ClientWidth = 640
-    TabOrder = 1
+    TabOrder = 0
     object BitBtn2: TBitBtn
-      Left = 295
+      Left = 280
       Height = 32
       Top = 9
-      Width = 51
+      Width = 80
       Caption = 'Close'
+      Constraints.MinWidth = 80
       ModalResult = 11
       TabOrder = 0
     end
   end
-  object Label4: TLabel
-    Left = 16
-    Height = 22
-    Top = 360
-    Width = 113
-    Caption = 'Download link:'
-    ParentColor = False
+  object TopPanel: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 640
+    Align = alTop
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 50
+    ClientWidth = 640
+    TabOrder = 1
+    object LabelCurrentVersion: TLabel
+      Left = 296
+      Height = 22
+      Top = 14
+      Width = 48
+      Caption = '1.2.3.4'
+      ParentColor = False
+      ParentFont = False
+    end
   end
-  object LabelDownloadLink: TLabel
-    Left = 152
-    Height = 22
-    Top = 360
-    Width = 149
-    Caption = 'LabelDownloadLink'
-    Enabled = False
-    Font.Color = clMenuHighlight
-    Font.Style = [fsUnderline]
-    ParentColor = False
-    ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
-    OnClick = LabelDownloadLinkClick
+  object TopPanel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 50
+    Width = 640
+    Align = alTop
+    BevelOuter = bvNone
+    Caption = 'TopPanel1'
+    ClientHeight = 50
+    ClientWidth = 640
+    TabOrder = 2
+    object TopPanel2: TPanel
+      Left = 56
+      Height = 50
+      Top = 0
+      Width = 584
+      Align = alClient
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+      ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 3
+      ClientHeight = 50
+      ClientWidth = 584
+      TabOrder = 0
+      object LabelNewVersionAvailable: TLabel
+        Left = 22
+        Height = 22
+        Top = 14
+        Width = 181
+        Caption = 'New version available:'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object LabelNewVersion: TLabel
+        Left = 225
+        Height = 22
+        Top = 14
+        Width = 139
+        Caption = 'LabelNewVersion'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object LabelNewVersionDate: TLabel
+        Left = 386
+        Height = 22
+        Top = 14
+        Width = 177
+        Caption = 'LabelNewVersionDate'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object Panel1: TPanel
+      Left = 0
+      Height = 50
+      Top = 0
+      Width = 56
+      Align = alLeft
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+      ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 50
+      ClientWidth = 56
+      TabOrder = 1
+      object SpeedButton1: TSpeedButton
+        Left = 14
+        Height = 28
+        Hint = 'Refresh'
+        Top = 11
+        Width = 28
+        Action = ActionCheckUpdate
+        Glyph.Data = {
+          36090000424D3609000000000000360000002800000018000000180000000100
+          2000000000000009000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000C1C1C1C2FFFF
+          FFFFFFFFFFFFFFFFFFFFC1C1C1C2000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000C1C1C1C2FFFFFFFFFFFFFFFFF7F7F7FFD8D8
+          D8FFCCCCCCFFCECECEFFF7F7F7FFFFFFFFFFFFFFFFFFC1C1C1C2000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000C1C1C1C2FFFFFFFFD6D6D6FF5B5B5BFF0C0C0CFFA54B
+          0BFFA54B0BFFA54B0BFF070707FF4F4F4FFFC1C1C1FFFFFFFFFFC1C1C1C20000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000C1C1C1C2FFFFFFFF898989FF050505FFA54B0BFFA54B0BFFA54B
+          0BFFA54B0BFFA54B0BFFA54B0BFFA54B0BFFA54B0BFF666666FFF4F4F4FFC1C1
+          C1C2000000000000000000000000000000000000000000000000000000000000
+          0000C1C1C1C2FFFFFFFF7C7C7CFFA54B0BFFA54B0BFFA54B0BFF0F0F0FFF5454
+          54FF757575FF636363FF1E1E1EFFA54B0BFFA54B0BFFA54B0BFF474747FFF7F7
+          F7FFC1C1C1C20000000000000000000000000000000000000000000000000000
+          0000FFFFFFFFBABABAFFA54B0BFFA54B0BFFA54B0BFF777777FFF4F4F4FFFFFF
+          FFFFFFFFFFFFFFFFFFFFFCFCFCFFA3A3A3FF0C0C0CFFA54B0BFFA54B0BFF9E9E
+          9EFFFFFFFFFF000000000000000000000000000000000000000000000000C1C1
+          C1C2FFFFFFFF333333FFA54B0BFFA54B0BFF939393FFFFFFFFFFBFBFBFC10000
+          00000000000000000000C1C1C1C2FFFFFFFFC4C4C4FF0C0C0CFFA54B0BFF7C7C
+          7CFFFFFFFFFF000000000000000000000000000000000000000000000000FFFF
+          FFFFC9C9C9FFA54B0BFFA54B0BFF3F3F3FFFFFFFFFFFBFBFBFC1000000000000
+          0000000000000000000000000000C1C1C1C2FFFFFFFFE8E8E8FFBCBCBCFFDBDB
+          DBFFFFFFFFFF000000000000000000000000000000000000000000000000FFFF
+          FFFF898989FFA54B0BFFA54B0BFFA3A3A3FFFFFFFFFF00000000000000000000
+          00000000000000000000000000000000000000000000C1C1C1C2FFFFFFFFFFFF
+          FFFFBFBFBFC1000000000000000000000000000000000000000000000000FFFF
+          FFFF6B6B6BFFA54B0BFFA54B0BFFD3D3D3FFFFFFFFFF00000000000000000000
+          000000000000C1C1C1C2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFC1C1C1C2000000000000000000000000FFFF
+          FFFF666666FFA54B0BFFA54B0BFFD3D3D3FFFFFFFFFF00000000000000000000
+          000000000000FFFFFFFFA54B0BFFA54B0BFFA54B0BFFA54B0BFFA54B0BFFA54B
+          0BFFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF000000000000000000000000FFFF
+          FFFF878787FFA54B0BFFA54B0BFFA5A5A5FFFFFFFFFF00000000000000000000
+          000000000000FFFFFFFF070707FFA54B0BFFA54B0BFFA54B0BFFA54B0BFFA54B
+          0BFFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF000000000000000000000000FFFF
+          FFFFC6C6C6FFA54B0BFFA54B0BFF3D3D3DFFFCFCFCFFC1C1C1C2000000000000
+          000000000000FFFFFFFFA0A0A0FF3A3A3AFF333333FF0C0C0CFFA54B0BFFA54B
+          0BFFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF000000000000000000000000C1C1
+          C1C2FFFFFFFF2B2B2BFFA54B0BFFA54B0BFF919191FFFFFFFFFFC1C1C1C20000
+          000000000000C1C1C1C2FFFFFFFFFFFFFFFFC4C4C4FF050505FFA54B0BFFA54B
+          0BFFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF0000000000000000000000000000
+          0000FFFFFFFFB7B7B7FFA54B0BFFA54B0BFF020202FF828282FFF7F7F7FFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFA0A0A0FF0C0C0CFFA54B0BFFA54B0BFF1111
+          11FFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF0000000000000000000000000000
+          0000C1C1C1C2FFFFFFFF7F7F7FFFA54B0BFFA54B0BFFA54B0BFF191919FF5B5B
+          5BFF757575FF6B6B6BFF262626FFA54B0BFFA54B0BFFA54B0BFF3F3F3FFF7A7A
+          7AFFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF0000000000000000000000000000
+          000000000000C1C1C1C2FFFFFFFF939393FF070707FFA54B0BFFA54B0BFFA54B
+          0BFFA54B0BFFA54B0BFFA54B0BFFA54B0BFFA54B0BFF595959FFF4F4F4FF7F7F
+          7FFFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF0000000000000000000000000000
+          00000000000000000000C1C1C1C2FFFFFFFFDDDDDDFF6B6B6BFF141414FFA54B
+          0BFFA54B0BFFA54B0BFF020202FF4C4C4CFFBCBCBCFFFFFFFFFFFFFFFFFFAAAA
+          AAFFA54B0BFFA54B0BFFBCBCBCFFFFFFFFFF0000000000000000000000000000
+          0000000000000000000000000000C1C1C1C2FFFFFFFFFFFFFFFFFCFCFCFFD6D6
+          D6FFBCBCBCFFC1C1C1FFF4F4F4FFFFFFFFFFFFFFFFFFBFBFBFC1C1C1C1C2FFFF
+          FFFFCCCCCCFFBABABAFFEDEDEDFFBFBFBFC10000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000C1C1C1C2FFFF
+          FFFFFFFFFFFFFFFFFFFFBFBFBFC100000000000000000000000000000000C1C1
+          C1C2FFFFFFFFFFFFFFFFBFBFBFC1000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        ShowCaption = False
+        ShowHint = True
+        ParentShowHint = False
+      end
+    end
   end
-  object Label6: TLabel
-    Left = 16
-    Height = 22
-    Top = 392
-    Width = 124
-    Caption = 'Download page:'
-    ParentColor = False
+  object GroupBox1: TGroupBox
+    Left = 10
+    Height = 274
+    Top = 100
+    Width = 620
+    Align = alClient
+    BorderSpacing.Left = 10
+    BorderSpacing.Right = 10
+    Caption = 'What''s new'
+    ClientHeight = 250
+    ClientWidth = 616
+    TabOrder = 3
+    object Memo1: TMemo
+      Left = 0
+      Height = 250
+      Top = 0
+      Width = 616
+      Align = alClient
+      Lines.Strings = (
+        'Memo1'
+      )
+      ReadOnly = True
+      ScrollBars = ssAutoBoth
+      TabOrder = 0
+    end
   end
-  object LabelDownloadPage: TLabel
-    Left = 152
-    Height = 22
-    Top = 392
-    Width = 156
-    Caption = 'LabelDownloadPage'
-    Enabled = False
-    Font.Color = clMenuHighlight
-    Font.Style = [fsUnderline]
-    ParentColor = False
-    ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
-    OnClick = LabelDownloadPageClick
-  end
-  object SpeedButton1: TSpeedButton
-    Left = 19
-    Height = 22
-    Hint = 'Refresh'
-    Top = 48
-    Width = 23
-    Action = ActionCheckUpdate
-    Caption = 'R'
-    ShowHint = True
-    ParentShowHint = False
+  object Panel2: TPanel
+    Left = 0
+    Height = 56
+    Top = 374
+    Width = 640
+    Align = alBottom
+    AutoSize = True
+    BevelOuter = bvNone
+    ChildSizing.LeftRightSpacing = 10
+    ChildSizing.TopBottomSpacing = 4
+    ChildSizing.HorizontalSpacing = 4
+    ChildSizing.VerticalSpacing = 4
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 56
+    ClientWidth = 640
+    TabOrder = 4
+    object Label4: TLabel
+      Left = 10
+      Height = 22
+      Top = 4
+      Width = 124
+      Caption = 'Download link:'
+      ParentColor = False
+    end
+    object LabelDownloadLink: TLabel
+      Left = 138
+      Height = 22
+      Top = 4
+      Width = 156
+      Caption = 'LabelDownloadLink'
+      Enabled = False
+      Font.Color = clMenuHighlight
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = LabelDownloadLinkClick
+    end
+    object Label6: TLabel
+      Left = 10
+      Height = 22
+      Top = 30
+      Width = 124
+      Caption = 'Download page:'
+      ParentColor = False
+    end
+    object LabelDownloadPage: TLabel
+      Left = 138
+      Height = 22
+      Top = 30
+      Width = 156
+      Caption = 'LabelDownloadPage'
+      Enabled = False
+      Font.Color = clMenuHighlight
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = LabelDownloadPageClick
+    end
   end
   object ActionList1: TActionList
-    left = 97
-    top = 146
+    left = 424
+    top = 376
     object ActionCheckUpdate: TAction
       Caption = 'Check Update'
       OnExecute = ActionCheckUpdateExecute

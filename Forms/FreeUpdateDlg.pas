@@ -55,9 +55,8 @@ type
     ActionCheckUpdate: TAction;
     ActionList1: TActionList;
     BitBtn2: TBitBtn;
-    Label1: TLabel;
+    GroupBox1: TGroupBox;
     LabelNewVersionAvailable: TLabel;
-    Label3: TLabel;
     Label4: TLabel;
     LabelDownloadLink: TLabel;
     Label6: TLabel;
@@ -66,8 +65,13 @@ type
     LabelNewVersion: TLabel;
     LabelCurrentVersion: TLabel;
     Memo1: TMemo;
+    BottomPanel: TPanel;
     Panel1: TPanel;
+    Panel2: TPanel;
+    TopPanel1: TPanel;
+    TopPanel: TPanel;
     SpeedButton1: TSpeedButton;
+    TopPanel2: TPanel;
     procedure ActionCheckUpdateExecute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -123,10 +127,12 @@ procedure TFreeUpdateForm.FormActivate(Sender: TObject);
 begin
 end;
 
+resourcestring rsCurrentVersion = 'Current Version';
+
 procedure TFreeUpdateForm.FormCreate(Sender: TObject);
 begin
   FCurrentVersion := ResourceVersionInfo;
-  LabelCurrentVersion.Caption:=FCurrentVersion;
+  LabelCurrentVersion.Caption:=rsCurrentVersion+' : '+FCurrentVersion;
   GetGitHubReleases;
 end;
 

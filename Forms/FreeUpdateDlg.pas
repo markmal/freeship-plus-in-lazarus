@@ -231,7 +231,7 @@ begin
          {$ifdef Windows}
          if //(GitHubAsset.content_type = 'chemical/x-msi-msi')
             lowercase(fext) = '.msi'
-            then downlad_asset := i;
+            then download_asset := i;
          {$else}
          if not havedpkg //and (GitHubAsset.content_type = 'application/zip')
             and (lowercase(fext) = '.zip')

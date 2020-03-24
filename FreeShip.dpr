@@ -288,17 +288,17 @@ begin
 
    InitByParameters;
 
+   RequireDerivedFormResource:=True; // new
+   FormatSettings.DecimalSeparator:='.';
+   Application.Scaled:=True;
+   Application.Initialize;
+
    if ParametersHelp then
      begin
       Logger.LogLevel:=LOG_INFO;
       PrintParametersHelp;
       exit;
      end;
-
-   RequireDerivedFormResource:=True; // new
-   FormatSettings.DecimalSeparator:='.';
-   Application.Scaled:=True;
-   Application.Initialize;
 
    {
    FreeSplashWindow:=TFreeSplashWindow.Create(Application);

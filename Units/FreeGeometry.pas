@@ -269,6 +269,7 @@ type
   end;
   TFreeFaceArray = array of TFreeFaceGrid;
   TFreeSubdivisionGrid = array of array of TFreeSubdivisionPoint;
+  TFreeSubdivisionControlGrid = array of array of TFreeSubdivisionControlPoint;
   TFreeZBufferRow = TFloatArray;
   TFreeCoordinateArray = array of T3DCoordinate;
   TFreeCoordinateGrid = array of array of T3DCoordinate;

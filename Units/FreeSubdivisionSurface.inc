@@ -3336,7 +3336,7 @@ end;{TFreeSubdivisionSurface.ImportFsile}
 procedure TFreeSubdivisionSurface.ImportGrid(Points: TFreeCoordinateGrid;
   Cols, Rows: integer; Layer: TFreesubdivisionLayer);
 var
-  Grid: TFreeSubdivisionGrid;
+  Grid: TFreeSubdivisionControlGrid;
   P11,P12,P22,P21:TFreeSubdivisionControlPoint;
   FacePoints: TFasterListTFreeSubdivisionControlPoint;
   Edge: TFreeSubdivisionEdge;
@@ -3351,15 +3351,15 @@ begin
   end;
 
   FacePoints := TFasterListTFreeSubdivisionControlPoint.Create;
-  for I := 2 to Rows do
+  for I := 1 to Rows-1 do
   begin
-    for J := 2 to Cols do
+    for J := 1 to Cols-1 do
     begin
       FacePoints.Clear;
-      P11:=Grid[I - 1, J - 1] as TFreeSubdivisionControlPoint;
-      P12:=Grid[I - 1, J - 1] as TFreeSubdivisionControlPoint;
-      P22:=Grid[I - 1, J - 1] as TFreeSubdivisionControlPoint;
-      P21:=Grid[I - 1, J - 1] as TFreeSubdivisionControlPoint;
+      P11:=Grid[I - 1, J - 1];
+      P12:=Grid[I - 1, J];
+      P22:=Grid[I, J];
+      P21:=Grid[I, J - 1];
 
       if FacePoints.IndexOf(P11) = -1 then FacePoints.Add(P11);
       if FacePoints.IndexOf(P21) = -1 then FacePoints.Add(P21);

@@ -292,7 +292,7 @@ begin
          logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
          Memo1.Text:='Exception class: '+E.ClassName+' Message: '+E.Message+#10
            +'Possible libssl v1.1 compatibility issue.'+#10
-           +'libssl v1.1 is found'+#10
+           +'libssl v1.1 is found.'+#10
            +'FreeShip is currently compatible with libssl v1.0 only.'+#10
            +'You have to check for updates traditional way at Download page.'+#10
            +'Click link below.';

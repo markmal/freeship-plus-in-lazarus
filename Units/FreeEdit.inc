@@ -5681,8 +5681,8 @@ begin
   ShowTranslatedValues(Dialog);
   Dialog.StartPoint := SetPoint(0.0, 0.0, 0.0);
   Dialog.EndPoint := SetPoint(0.0, 1.0, 0.0);
-  Dialog.Input7.Value := 1.0;
-  Dialog.Input8.Value := Dialog.Input8.MinValue + 2;
+  Dialog.Radius.Value := 1.0;
+  Dialog.NoOfPoints.Value := Dialog.NoOfPoints.MinValue + 2;
 
   if Dialog.Execute(LengthStr(FreeShip.ProjectSettings.ProjectUnits)) then
   begin
@@ -5690,8 +5690,8 @@ begin
     NewLayer := FreeShip.Surface.AddNewLayer;
     StartPoint := Dialog.StartPoint;
     EndPoint := Dialog.EndPoint;
-    Radius := Dialog.Input7.Value;
-    NPoints := Dialog.Input8.Value;
+    Radius := Dialog.Radius.Value;
+    NPoints := Dialog.NoOfPoints.Value;
     Setlength(Points, 2);
     setlength(Points[0], NPoints + 1);
     setlength(Points[1], NPoints + 1);

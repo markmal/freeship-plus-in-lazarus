@@ -262,7 +262,7 @@ begin
   end;
 end;
 
-
+var ver:string;
 begin
    {$IFDEF MEMCHECK}
       // Initialize memcheck, for memory-leak tracking
@@ -276,8 +276,9 @@ begin
    Logger.Info('Compiler version: '+FPCVERSION);
    Logger.Info('Target CPU: '+TARGET_CPU);
    Logger.Info('Target OS: '+TARGET_OS);
+   ver := ResourceVersionInfo;
    Logger.Info('FreeShip Product version: '+FREESHIP_VERSION);
-   Logger.Info('FreeShip Program version: '+ResourceVersionInfo);
+   Logger.Info('FreeShip Program version: '+ver);
    Logger.Info('Last Git Change Revision: '+IntToStr(GITVERSION_REVISION));
    Logger.LogLevel:=LOG_ERROR;
 

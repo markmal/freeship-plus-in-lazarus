@@ -1481,7 +1481,7 @@ begin
       begin
         Edge.AddFace(Result);
         if CheckEdges then
-          Edge.Crease := Edge.NumberOfFaces < 2;
+          Edge.Crease := Edge.Crease or (Edge.NumberOfFaces < 2);
       end;
       P1 := P2;
     end;
@@ -3362,9 +3362,9 @@ begin
       P21:=Grid[I, J - 1];
 
       if FacePoints.IndexOf(P11) = -1 then FacePoints.Add(P11);
-      if FacePoints.IndexOf(P21) = -1 then FacePoints.Add(P21);
-      if FacePoints.IndexOf(P22) = -1 then FacePoints.Add(P22);
       if FacePoints.IndexOf(P12) = -1 then FacePoints.Add(P12);
+      if FacePoints.IndexOf(P22) = -1 then FacePoints.Add(P22);
+      if FacePoints.IndexOf(P21) = -1 then FacePoints.Add(P21);
 
       if FacePoints.Count >= 3 then
         if Layer <> nil then

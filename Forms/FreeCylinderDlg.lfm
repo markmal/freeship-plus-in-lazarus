@@ -52,6 +52,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 3
+        Increment = 0.1
         MinValue = 0
         TabOrder = 0
         Value = 0
@@ -64,6 +65,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 3
+        Increment = 0.1
         MinValue = 0
         TabOrder = 1
         Value = 0
@@ -76,6 +78,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 3
+        Increment = 0.1
         MinValue = 0
         TabOrder = 2
         Value = 0
@@ -113,6 +116,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Width = 80
         Alignment = taRightJustify
         DecimalPlaces = 3
+        Increment = 0.1
         MinValue = 0
         TabOrder = 4
         Value = 0
@@ -124,6 +128,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Width = 80
         Alignment = taRightJustify
         DecimalPlaces = 3
+        Increment = 0.1
         MinValue = 0
         TabOrder = 5
         Value = 0
@@ -135,6 +140,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Width = 80
         Alignment = taRightJustify
         DecimalPlaces = 3
+        Increment = 0.1
         MinValue = 0
         TabOrder = 6
         Value = 0
@@ -198,9 +204,10 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 3
-        MinValue = 0
+        Increment = 0.1
+        MinValue = 0.001
         TabOrder = 0
-        Value = 0
+        Value = 0.001
       end
       object NoOfPoints: TSpinEdit
         Left = 94
@@ -208,7 +215,7 @@ object FreeCylinderDialog: TFreeCylinderDialog
         Top = 44
         Width = 80
         Alignment = taRightJustify
-        MaxValue = 50
+        MaxValue = 60
         MinValue = 4
         TabOrder = 1
         Value = 4

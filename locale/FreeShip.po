@@ -975,6 +975,14 @@ msgstr ""
 msgid "Add a cylinder."
 msgstr ""
 
+#: tfreecylinderdialog.closeenddisk.caption
+msgid "Close End Disk"
+msgstr ""
+
+#: tfreecylinderdialog.closestartdisk.caption
+msgid "Close Start Disk"
+msgstr ""
+
 #: tfreecylinderdialog.label1.caption
 msgid "Startpoint"
 msgstr ""

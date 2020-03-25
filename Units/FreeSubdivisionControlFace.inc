@@ -1322,7 +1322,7 @@ var
   LayerName: string;
   ColorIndex: integer;
   P: T3DCoordinate;
-  Grid: TFreeSubdivisionGrid;
+  Grid: TFreeSubdivisionPointGrid;
   FaceData: TFreeFaceGrid;
 begin
   LayerName := self.Layer.Name;

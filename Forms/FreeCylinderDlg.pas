@@ -64,6 +64,8 @@ type
   { TFreeCylinderDialog }
 
   TFreeCylinderDialog = class(TForm)
+    CloseEndDisk: TCheckBox;
+    CloseStartDisk: TCheckBox;
     Panel2: TPanel;
     Panel4: TPanel;
     _Label3: TLabel;

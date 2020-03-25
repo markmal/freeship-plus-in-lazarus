@@ -1069,7 +1069,7 @@ var
   Cols, Rows: integer;
   AssFace: TFreeFaceGrid;
   Face: TFreeSubdivisionControlFace;
-  Grid: TFreeSubdivisionGrid;
+  Grid: TFreeSubdivisionPointGrid;
   P: T3DCoordinate;
   DXFName: string;
 

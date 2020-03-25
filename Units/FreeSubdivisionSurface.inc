@@ -322,7 +322,7 @@ var
     NCols: integer;
     NRows: integer;
     Face: TFreeSubdivisionControlFace;
-    Grid: TFreeSubdivisionGrid;
+    Grid: TFreeSubdivisionPointGrid;
     NewFace: TFreeFaceGrid;
     CheckFaces: TFasterListTFreeSubdivisionControlFace;
     // temporary list with all controlfaces that is used to check if a crease vertex is
@@ -377,7 +377,7 @@ var
       Assembled[NAssembled - 1] := Face;
     end;{AddFace}
 
-    procedure DoAssemble(var Grid: TFreeSubdivisionGrid;
+    procedure DoAssemble(var Grid: TFreeSubdivisionPointGrid;
     var Cols, Rows: integer; Faces: TFasterListTFreeSubdivisionFace);
     var
       SearchBottom: boolean;
@@ -1749,7 +1749,7 @@ begin
 end;{TFreeSubdivisionSurface.Clearselection}
 
 procedure TFreeSubdivisionSurface.ConvertToGrid(Input: TFreeFaceGrid;
-  var Cols, Rows: integer; var Grid: TFreeSubdivisionGrid);
+  var Cols, Rows: integer; var Grid: TFreeSubdivisionPointGrid);
 var
   CtrlFace: TFreeSubdivisionControlFace;
   Faces: TFasterListTFreeSubdivisionFace;
@@ -1757,7 +1757,7 @@ var
   Face: TFreeSubdivisionFace;
   I, J, N, Ind: integer;
 
-  procedure DoAssemble(var Grid: TFreeSubdivisionGrid;
+  procedure DoAssemble(var Grid: TFreeSubdivisionPointGrid;
   var Cols, Rows: integer; Faces: TFasterListTFreeSubdivisionFace);
   var
     SearchBottom: boolean;
@@ -3333,23 +3333,14 @@ begin
     FOnChangeActiveLayer(self, self.Layer[0]);
 end;{TFreeSubdivisionSurface.ImportFsile}
 
-procedure TFreeSubdivisionSurface.ImportGrid(Points: TFreeCoordinateGrid;
-  Cols, Rows: integer; Layer: TFreesubdivisionLayer);
+procedure TFreeSubdivisionSurface.ImportControlPointGrid(Grid: TFreeSubdivisionControlPointGrid; Cols, Rows: integer;
+  Layer: TFreesubdivisionLayer);
 var
-  Grid: TFreeSubdivisionControlGrid;
   P11,P12,P22,P21:TFreeSubdivisionControlPoint;
   FacePoints: TFasterListTFreeSubdivisionControlPoint;
   Edge: TFreeSubdivisionEdge;
   I, J: integer;
 begin
-  Setlength(Grid, Rows);
-  for I := 1 to Rows do
-  begin
-    Setlength(Grid[I - 1], Cols);
-    for J := 1 to Cols do
-      Grid[I - 1][J - 1] := AddControlPoint(Points[I - 1][J - 1]);
-  end;
-
   FacePoints := TFasterListTFreeSubdivisionControlPoint.Create;
   for I := 1 to Rows-1 do
   begin
@@ -3399,7 +3390,26 @@ begin
         Grid[I - 1][J - 1].VertexType := svCorner;
 
   FacePoints.Destroy;
-end;{TFreeSubdivisionSurface.ImportGrid}
+end;
+
+procedure TFreeSubdivisionSurface.ImportCoordGrid(Points: TFreeCoordinateGrid;
+  Cols, Rows: integer; Layer: TFreesubdivisionLayer);
+var
+  Grid: TFreeSubdivisionControlPointGrid;
+  P11,P12,P22,P21:TFreeSubdivisionControlPoint;
+  FacePoints: TFasterListTFreeSubdivisionControlPoint;
+  Edge: TFreeSubdivisionEdge;
+  I, J: integer;
+begin
+  Setlength(Grid, Rows);
+  for I := 0 to Rows - 1 do
+  begin
+    Setlength(Grid[I], Cols);
+    for J := 0 to Cols - 1 do
+      Grid[I][J] := AddControlPoint(Points[I][J]);
+  end;
+  ImportControlPointGrid(Grid, Cols, Rows,  Layer);
+end;{TFreeSubdivisionSurface.ImportCoordGrid}
 
 procedure TFreeSubdivisionSurface.Initialize(
   PointStartIndex, EdgeStartIndex, FaceStartIndex: integer);

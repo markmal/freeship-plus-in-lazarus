@@ -268,8 +268,10 @@ type
     NRows: integer
   end;
   TFreeFaceArray = array of TFreeFaceGrid;
-  TFreeSubdivisionGrid = array of array of TFreeSubdivisionPoint;
-  TFreeSubdivisionControlGrid = array of array of TFreeSubdivisionControlPoint;
+  TFreeSubdivisionPointArray = array of array of TFreeSubdivisionPoint;
+  TFreeSubdivisionControlPointArray = array of TFreeSubdivisionControlPoint;
+  TFreeSubdivisionPointGrid = array of array of TFreeSubdivisionPoint;
+  TFreeSubdivisionControlPointGrid = array of array of TFreeSubdivisionControlPoint;
   TFreeZBufferRow = TFloatArray;
   TFreeCoordinateArray = array of T3DCoordinate;
   TFreeCoordinateGrid = array of array of T3DCoordinate;
@@ -1882,7 +1884,7 @@ type
     procedure ClearFaces;
     procedure ClearSelection;
     procedure ConvertToGrid(Input: TFreeFaceGrid; var Cols, Rows: integer;
-      var Grid: TFreeSubdivisionGrid);
+      var Grid: TFreeSubdivisionPointGrid);
     procedure Edge_Connect;
     function CanInsertEdge: boolean;
     procedure ExportFeFFile(Strings: TStringList);
@@ -1907,7 +1909,9 @@ type
     procedure ExtractPointsFromSelection(SelectedPoints: TFasterListTFreeSubdivisionControlPoint;
       var LockedPoints: integer);
     procedure ImportFEFFile(Strings: TStringList; var LineNr: integer);
-    procedure ImportGrid(Points: TFreeCoordinateGrid; Cols, Rows: integer;
+    procedure ImportCoordGrid(Points: TFreeCoordinateGrid; Cols, Rows: integer;
+      Layer: TFreesubdivisionLayer);
+    procedure ImportControlPointGrid(Grid: TFreeSubdivisionControlPointGrid; Cols, Rows: integer;
       Layer: TFreesubdivisionLayer);
     procedure Initialize(PointStartIndex, EdgeStartIndex, FaceStartIndex: integer);
     function IntersectPlane(Plane: T3DPlane; HydrostaticsLayersOnly: boolean;

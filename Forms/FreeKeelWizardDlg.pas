@@ -2169,7 +2169,7 @@ var
   I, J: integer;
   FacePoints: TFasterListTFreeSubdivisionPoint;
   ControlPoints: TFasterListTFreeSubdivisionControlPoint;
-  Grid: TFreeSubdivisionGrid;
+  Grid: TFreeSubdivisionPointGrid;
   P: TFreeSubdivisionControlPoint;
   Edge: TFreeSubdivisionedge;
   Layer: TFreeSubdivisionLayer;

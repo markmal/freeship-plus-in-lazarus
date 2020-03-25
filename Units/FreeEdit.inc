@@ -2827,7 +2827,7 @@ var
   Assembled: TFreeFaceArray;
   NAssembled: integer;
   IGESList: TFreeIGESList;
-  Grid: TFreeSubdivisionGrid;
+  Grid: TFreeSubdivisionPointGrid;
   CtrlFace: TFreeSubdivisionControlFace;
   Face: TFreeSubdivisionFace;
   PrevLevel: integer;
@@ -2924,7 +2924,7 @@ var
         end;
   end;{FindOpposingPoints}
 
-  procedure AssembleTriangle(var Cols, Rows: integer; var Grid: TFreeSubdivisionGrid;
+  procedure AssembleTriangle(var Cols, Rows: integer; var Grid: TFreeSubdivisionPointGrid;
     Face: TFreeSubdivisionControlface);
   var
     I, J, N: integer;
@@ -3004,7 +3004,7 @@ var
     Points.Destroy;
   end;{AssembleTriangle}
 
-  procedure ProcessGrid(Cols, Rows: integer; Grid: TFreeSubdivisionGrid;
+  procedure ProcessGrid(Cols, Rows: integer; Grid: TFreeSubdivisionPointGrid;
     ColorInd: integer);
   // convert grid to a NURB
   var
@@ -4961,7 +4961,7 @@ begin
                 break;
             end;
             if not Abort then
-              FreeShip.Surface.ImportGrid(Points, Cols, Rows, nil);
+              FreeShip.Surface.ImportCoordGrid(Points, Cols, Rows, nil);
           end;
           Inc(i);
         end;
@@ -5667,8 +5667,9 @@ var
   StartPoint: T3DCoordinate;
   EndPoint: T3DCoordinate;
   P1, P2: T3DCoordinate;
-  I, NPoints, Ne: integer;
+  I,J, NPoints, Ne: integer;
   Points: TFreeCoordinateGrid;
+  CPoints:TFasterListTFreeSubdivisionControlPoint;
   Radius: TFloatType;
   Angle: TFloatType;
   Matrix: TFreeMatrix;
@@ -5676,6 +5677,7 @@ var
   NewPts: TFreeMatrix;
   Dialog: TFreeCylinderDialog;
   NewLayer: TFreeSubdivisionLayer;
+  Grid: TFreeSubdivisionControlPointGrid;
 begin
   Dialog := TFreeCylinderDialog.Create(FreeShip);
   ShowTranslatedValues(Dialog);
@@ -5749,9 +5751,38 @@ begin
     OrgPts.Destroy;
     NewPts.Destroy;
     Ne := FreeShip.Surface.NumberOfControlEdges;
-    FreeShip.Surface.ImportGrid(Points, NPoints + 1, 2, NewLayer);
+
+    Setlength(Grid, 2);
+    for I := 0 to 1 do
+    begin
+      Setlength(Grid[I], NPoints + 1);
+      for J := 0 to NPoints do
+        Grid[I][J] := FreeShip.Surface.AddControlPoint(Points[I][J]);
+    end;
+
+    FreeShip.Surface.ImportControlPointGrid(Grid, NPoints + 1, 2, NewLayer);
+
     for I := Ne + 1 to FreeShip.Surface.NumberOfControlEdges do
       FreeShip.Surface.ControlEdge[I - 1].Crease := False;
+
+
+    if Dialog.CloseStartDisk.Checked then
+      begin
+      CPoints:=TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+      for I := NPoints - 1  downto 0 do
+        CPoints.Add(Grid[0][I]);
+      FreeShip.Surface.AddControlFaceN(CPoints, true, NewLayer);
+      CPoints.Free;
+      end;
+    if Dialog.CloseEndDisk.Checked then
+      begin
+      CPoints:=TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+      for I := 0 to NPoints - 1 do
+        CPoints.Add(Grid[1][I]);
+      FreeShip.Surface.AddControlFaceN(CPoints, true, NewLayer);
+      CPoints.Free;
+      end;
+
     FreeShip.Redraw;
   end;
   Dialog.Destroy;

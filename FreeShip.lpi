@@ -31,7 +31,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="334"/>
+      <RevisionNr Value="1"/>
+      <BuildNr Value="335"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -556,9 +557,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit42>
       <Unit43>
-        <Filename Value="Forms/FreeCylinderDlg.pas"/>
+        <Filename Value="Forms/FreeGridDlg.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FreeCylinderDialog"/>
+        <ComponentName Value="FreeGridDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit43>

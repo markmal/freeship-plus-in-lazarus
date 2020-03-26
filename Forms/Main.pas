@@ -87,11 +87,13 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     AddGridPanel: TAction;
      ActionCheckUpdates: TAction;
      AddFlowLine: TAction;
      LayerBox: TComboBox;
      MenuItem1: TMenuItem;
      CheckUpdates: TMenuItem;
+     miAddGridPanel: TMenuItem;
      SelectAllControlPoints: TAction;
      ColorButton1: TColorButton;
      SelectAllControlPoints1: TMenuItem;
@@ -453,6 +455,7 @@ type
 
     procedure ActionCheckUpdatesExecute(Sender: TObject);
     procedure AddFlowLineExecute(Sender: TObject);
+    procedure AddGridPanelExecute(Sender: TObject);
     procedure AddPointToGroupExecute(Sender: TObject);
     procedure ColorButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -1049,6 +1052,12 @@ end;
 procedure TMainForm.AddFlowLineExecute(Sender: TObject);
 begin
   FreeShip.EditMode := emAddFlowLine;
+  UpdateMenu;
+end;
+
+procedure TMainForm.AddGridPanelExecute(Sender: TObject);
+begin
+  Freeship.Edit.Geometry_AddGridPanel;
   UpdateMenu;
 end;
 

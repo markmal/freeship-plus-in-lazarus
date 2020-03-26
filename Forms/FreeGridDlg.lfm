@@ -1,0 +1,373 @@
+object FreeGridDialog: TFreeGridDialog
+  Left = 1020
+  Height = 270
+  Top = 419
+  Width = 554
+  BorderStyle = bsDialog
+  Caption = 'Add a grid'
+  ClientHeight = 270
+  ClientWidth = 554
+  LCLVersion = '2.0.6.0'
+  object Panel2: TPanel
+    Left = 0
+    Height = 240
+    Top = 30
+    Width = 554
+    Align = alClient
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+    ChildSizing.ShrinkHorizontal = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 240
+    ClientWidth = 554
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 33
+      Height = 52
+      Top = 0
+      Width = 489
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 5
+      ClientHeight = 52
+      ClientWidth = 489
+      TabOrder = 0
+      object lbStartpoint: TLabel
+        Left = 10
+        Height = 32
+        Top = 10
+        Width = 120
+        Caption = 'Startpoint'
+        Constraints.MinWidth = 120
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object StartPointX: TFloatSpinEdit
+        Left = 136
+        Height = 32
+        Top = 10
+        Width = 100
+        Alignment = taRightJustify
+        Constraints.MinWidth = 100
+        DecimalPlaces = 3
+        Increment = 0.1
+        MinValue = 0
+        TabOrder = 0
+        Value = 0
+      end
+      object StartPointY: TFloatSpinEdit
+        Left = 242
+        Height = 32
+        Top = 10
+        Width = 100
+        Alignment = taRightJustify
+        Constraints.MinWidth = 100
+        DecimalPlaces = 3
+        Increment = 0.1
+        MinValue = 0
+        TabOrder = 1
+        Value = 0
+      end
+      object StartPointZ: TFloatSpinEdit
+        Left = 348
+        Height = 32
+        Top = 10
+        Width = 100
+        Alignment = taRightJustify
+        Constraints.MinWidth = 100
+        DecimalPlaces = 3
+        Increment = 0.1
+        MinValue = 0
+        TabOrder = 2
+        Value = 0
+      end
+      object lbUnit1: TLabel
+        Left = 454
+        Height = 32
+        Top = 10
+        Width = 25
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+    end
+    object Panel5: TPanel
+      Left = 33
+      Height = 52
+      Top = 52
+      Width = 489
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 5
+      ClientHeight = 52
+      ClientWidth = 489
+      TabOrder = 1
+      object lbDimensions: TLabel
+        Left = 10
+        Height = 32
+        Top = 10
+        Width = 120
+        Caption = 'Dimensions'
+        Constraints.MinWidth = 120
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object SizeA: TFloatSpinEdit
+        Left = 136
+        Height = 32
+        Top = 10
+        Width = 100
+        Alignment = taRightJustify
+        Constraints.MinWidth = 100
+        DecimalPlaces = 3
+        Increment = 0.1
+        MinValue = 0.001
+        TabOrder = 0
+        Value = 1
+      end
+      object SizeB: TFloatSpinEdit
+        Left = 242
+        Height = 32
+        Top = 10
+        Width = 100
+        Alignment = taRightJustify
+        Constraints.MinWidth = 100
+        DecimalPlaces = 3
+        Increment = 0.1
+        MinValue = 0.001
+        TabOrder = 1
+        Value = 1
+      end
+      object lbUnit2: TLabel
+        Left = 348
+        Height = 32
+        Top = 10
+        Width = 25
+        Caption = '[m]'
+        Layout = tlCenter
+        ParentColor = False
+      end
+    end
+    object Panel6: TPanel
+      Left = 33
+      Height = 50
+      Top = 104
+      Width = 489
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 5
+      ClientHeight = 50
+      ClientWidth = 489
+      TabOrder = 2
+      object lbPlane: TLabel
+        Left = 10
+        Height = 30
+        Top = 10
+        Width = 120
+        Caption = 'Plane'
+        Constraints.MinWidth = 120
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object Plane: TComboBox
+        Left = 136
+        Height = 30
+        Top = 10
+        Width = 200
+        Constraints.MinWidth = 200
+        ItemHeight = 0
+        ItemIndex = 0
+        Items.Strings = (
+          'Horizontal (X,Y)'
+          'Lateral (X,Z)'
+          'Transverse (Y,Z)'
+        )
+        Style = csDropDownList
+        TabOrder = 0
+        Text = 'Horizontal (X,Y)'
+      end
+    end
+    object Panel4: TPanel
+      Left = 33
+      Height = 52
+      Top = 154
+      Width = 489
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 10
+      ChildSizing.HorizontalSpacing = 6
+      ChildSizing.VerticalSpacing = 2
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 52
+      ClientWidth = 489
+      TabOrder = 3
+      object lbNoPoints: TLabel
+        Left = 10
+        Height = 32
+        Top = 10
+        Width = 120
+        Caption = 'No points'
+        Constraints.MinWidth = 120
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object ColumnPoints: TSpinEdit
+        Left = 136
+        Height = 32
+        Top = 10
+        Width = 80
+        Alignment = taRightJustify
+        Constraints.MinWidth = 80
+        MaxValue = 1000
+        MinValue = 1
+        TabOrder = 0
+        Value = 4
+      end
+      object Label5: TLabel
+        Left = 222
+        Height = 32
+        Top = 10
+        Width = 8
+        Caption = 'x'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object RowPoints: TSpinEdit
+        Left = 236
+        Height = 32
+        Top = 10
+        Width = 80
+        Alignment = taRightJustify
+        Constraints.MinWidth = 80
+        MaxValue = 1000
+        MinValue = 1
+        TabOrder = 1
+        Value = 4
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 30
+    Top = 0
+    Width = 554
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 30
+    ClientWidth = 554
+    TabOrder = 1
+    object BitBtn1: TSpeedButton
+      Left = 390
+      Height = 26
+      Top = 2
+      Width = 80
+      Align = alRight
+      AutoSize = True
+      BorderSpacing.Around = 2
+      Constraints.MinWidth = 80
+      Caption = 'OK'
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        00000000000000000000000000000EA628FF0EA628FF00000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000EA628FF0EA628FF00000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000EA628FF0EA628FF0EA628FF000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000EA628FF0EA628FF0EA628FF0EA628FF000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000EA628FF0EA628FF0EA628FF0EA628FF000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA628FF0EA6
+        28FF000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF00000000000000000EA628FF0EA628FF0EA6
+        28FF000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000000000000EA628FF0EA628FF0EA6
+        28FF0EA628FF0000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000000000000EA628FF0EA6
+        28FF0EA628FF0EA628FF00000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000EA6
+        28FF0EA628FF0EA628FF00000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000EA6
+        28FF0EA628FF0EA628FF0EA628FF000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000EA628FF0EA628FF0EA628FF0EA628FF0000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000EA628FF0EA628FF0EA628FF0000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000EA628FF0EA628FF0EA628FF0000000000000000
+      }
+      OnClick = BitBtn1Click
+    end
+    object BitBtn2: TSpeedButton
+      Left = 472
+      Height = 26
+      Top = 2
+      Width = 80
+      Align = alRight
+      AutoSize = True
+      BorderSpacing.Around = 2
+      Constraints.MinWidth = 80
+      Caption = 'Cancel'
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF00000000000000000000000000000000000000000000
+        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF000000000000000000000000000000000000
+        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF000000002110C0FF2110
+        C0FF2110C0FF2110C0FF00000000000000000000000000000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF00000000000000000000000000000000000000002110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF000000000000000000000000000000002110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF0000000000000000000000002110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF00000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF00000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF0000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000
+        00000000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF000000000000
+        00000000000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000000000
+        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000000000
+        0000000000002110C0FF2110C0FF2110C0FF2110C0FF00000000000000002110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF00000000000000000000
+        00002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF2110C0FF2110C0FF0000000000000000000000000000
+        000000000000000000002110C0FF2110C0FF2110C0FF2110C0FF2110C0FF2110
+        C0FF2110C0FF2110C0FF00000000000000000000000000000000
+      }
+      OnClick = BitBtn2Click
+    end
+  end
+end

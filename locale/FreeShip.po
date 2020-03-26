@@ -961,59 +961,6 @@ msgctxt "tfreecrosscurvesdialog._toolbutton14.caption"
 msgid "_ToolButton14"
 msgstr ""
 
-#: tfreecylinderdialog.bitbtn1.caption
-msgctxt "tfreecylinderdialog.bitbtn1.caption"
-msgid "OK"
-msgstr ""
-
-#: tfreecylinderdialog.bitbtn2.caption
-msgctxt "tfreecylinderdialog.bitbtn2.caption"
-msgid "Cancel"
-msgstr ""
-
-#: tfreecylinderdialog.caption
-msgid "Add a cylinder."
-msgstr ""
-
-#: tfreecylinderdialog.closeenddisk.caption
-msgid "Close End Disk"
-msgstr ""
-
-#: tfreecylinderdialog.closestartdisk.caption
-msgid "Close Start Disk"
-msgstr ""
-
-#: tfreecylinderdialog.label1.caption
-msgid "Startpoint"
-msgstr ""
-
-#: tfreecylinderdialog.label2.caption
-msgid "Endpoint"
-msgstr ""
-
-#: tfreecylinderdialog.label3.caption
-msgid "No. points"
-msgstr ""
-
-#: tfreecylinderdialog.label4.caption
-msgid "Radius"
-msgstr ""
-
-#: tfreecylinderdialog._label3.caption
-msgctxt "tfreecylinderdialog._label3.caption"
-msgid "[m]"
-msgstr ""
-
-#: tfreecylinderdialog._label6.caption
-msgctxt "tfreecylinderdialog._label6.caption"
-msgid "[m]"
-msgstr ""
-
-#: tfreecylinderdialog._label9.caption
-msgctxt "tfreecylinderdialog._label9.caption"
-msgid "[m]"
-msgstr ""
-
 #: tfreeemptymodelchooserdialog.cancelbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.cancelbutton.caption"
 msgid "Cancel"
@@ -1544,6 +1491,59 @@ msgstr ""
 #: tfreefilepreviewdialog.tabsheettree.hint
 msgctxt "tfreefilepreviewdialog.tabsheettree.hint"
 msgid "Tree"
+msgstr ""
+
+#: tfreegriddialog.bitbtn1.caption
+msgctxt "tfreegriddialog.bitbtn1.caption"
+msgid "OK"
+msgstr ""
+
+#: tfreegriddialog.bitbtn2.caption
+msgctxt "tfreegriddialog.bitbtn2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfreegriddialog.caption
+msgid "Add a grid"
+msgstr ""
+
+#: tfreegriddialog.label5.caption
+msgctxt "tfreegriddialog.label5.caption"
+msgid "x"
+msgstr ""
+
+#: tfreegriddialog.lbdimensions.caption
+msgctxt "tfreegriddialog.lbdimensions.caption"
+msgid "Dimensions"
+msgstr ""
+
+#: tfreegriddialog.lbnopoints.caption
+msgctxt "tfreegriddialog.lbnopoints.caption"
+msgid "No points"
+msgstr ""
+
+#: tfreegriddialog.lbplane.caption
+msgctxt "tfreegriddialog.lbplane.caption"
+msgid "Plane"
+msgstr ""
+
+#: tfreegriddialog.lbstartpoint.caption
+msgctxt "tfreegriddialog.lbstartpoint.caption"
+msgid "Startpoint"
+msgstr ""
+
+#: tfreegriddialog.lbunit1.caption
+msgctxt "tfreegriddialog.lbunit1.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreegriddialog.lbunit2.caption
+msgctxt "tfreegriddialog.lbunit2.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreegriddialog.plane.text
+msgid "Horizontal (X,Y)"
 msgstr ""
 
 #: tfreehullwindow.backgroundblending.caption
@@ -8447,6 +8447,10 @@ msgstr ""
 #: tmainform.addflowline.caption
 msgctxt "tmainform.addflowline.caption"
 msgid "Add flow line"
+msgstr ""
+
+#: tmainform.addgridpanel.caption
+msgid "Add grid panel"
 msgstr ""
 
 #: tmainform.addpoint.caption

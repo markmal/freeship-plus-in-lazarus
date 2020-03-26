@@ -5676,7 +5676,7 @@ var
   Inv, OrgPts: TFreeMatrix;
   NewPts: TFreeMatrix;
   Dialog: TFreeCylinderDialog;
-  NewLayer: TFreeSubdivisionLayer;
+  Layer: TFreeSubdivisionLayer;
   Grid: TFreeSubdivisionControlPointGrid;
 begin
   Dialog := TFreeCylinderDialog.Create(FreeShip);
@@ -5689,7 +5689,7 @@ begin
   if Dialog.Execute(LengthStr(FreeShip.ProjectSettings.ProjectUnits)) then
   begin
     CreateUndoObject(Userstring(131), True);
-    NewLayer := FreeShip.Surface.AddNewLayer;
+    Layer := FreeShip.Surface.ActiveLayer;
     StartPoint := Dialog.StartPoint;
     EndPoint := Dialog.EndPoint;
     Radius := Dialog.Radius.Value;
@@ -5760,7 +5760,7 @@ begin
         Grid[I][J] := FreeShip.Surface.AddControlPoint(Points[I][J]);
     end;
 
-    FreeShip.Surface.ImportControlPointGrid(Grid, NPoints + 1, 2, NewLayer);
+    FreeShip.Surface.ImportControlPointGrid(Grid, NPoints + 1, 2, Layer);
 
     for I := Ne + 1 to FreeShip.Surface.NumberOfControlEdges do
       FreeShip.Surface.ControlEdge[I - 1].Crease := False;
@@ -5771,7 +5771,7 @@ begin
       CPoints:=TFasterListTFreeSubdivisionControlPoint.Create(true,false);
       for I := NPoints - 1  downto 0 do
         CPoints.Add(Grid[0][I]);
-      FreeShip.Surface.AddControlFaceN(CPoints, true, NewLayer);
+      FreeShip.Surface.AddControlFaceN(CPoints, true, Layer);
       CPoints.Free;
       end;
     if Dialog.CloseEndDisk.Checked then
@@ -5779,7 +5779,7 @@ begin
       CPoints:=TFasterListTFreeSubdivisionControlPoint.Create(true,false);
       for I := 0 to NPoints - 1 do
         CPoints.Add(Grid[1][I]);
-      FreeShip.Surface.AddControlFaceN(CPoints, true, NewLayer);
+      FreeShip.Surface.AddControlFaceN(CPoints, true, Layer);
       CPoints.Free;
       end;
 
@@ -5787,6 +5787,73 @@ begin
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Geometry_AddCylinder}
+
+
+procedure TFreeEdit.Geometry_AddGridPanel;
+var
+  StartPoint: T3DCoordinate;
+  Point: T3DCoordinate;
+  P1, P2: T3DCoordinate;
+  I,J, Cols,Rows, Plane, Ne: integer;
+  CPoints:TFasterListTFreeSubdivisionControlPoint;
+  SizeA,SizeB, x,y,z, dX,dY,dZ: TFloatType;
+  Dialog: TFreeGridDialog;
+  Layer: TFreeSubdivisionLayer;
+  Grid: TFreeSubdivisionControlPointGrid;
+begin
+  Dialog := TFreeGridDialog.Create(FreeShip);
+  Dialog.StartPoint := SetPoint(0.0, 0.0, 0.0);
+
+  if Dialog.Execute(LengthStr(FreeShip.ProjectSettings.ProjectUnits)) then
+  begin
+    CreateUndoObject(Userstring(131), True);
+    Layer := FreeShip.Surface.ActiveLayer;
+    StartPoint := Dialog.StartPoint;
+    SizeA := Dialog.SizeA.Value;
+    SizeB := Dialog.SizeB.Value;
+    Cols := Dialog.ColumnPoints.Value;
+    Rows := Dialog.RowPoints.Value;
+    Plane :=  Dialog.Plane.ItemIndex;
+
+    Setlength(Grid, Cols);
+    for i:=0 to Cols - 1 do
+      begin
+      SetLength(Grid[i], Rows);
+      for j:=0 to Rows - 1 do
+        begin
+        case Plane of
+          0: // Horizontal
+            begin
+            x := StartPoint.X + i * SizeA / Cols;
+            y := StartPoint.Y + j * SizeB / Rows;
+            z := 0;
+            end;
+          1: // Lateral
+            begin
+            x := StartPoint.X + i * SizeA / Cols;
+            y := 0;
+            z := StartPoint.Z + j * SizeB / Rows;
+            end;
+          2: // Transverse
+            begin
+            x := 0;
+            y := StartPoint.Y + i * SizeA / Cols;
+            z := StartPoint.Z + j * SizeB / Rows;
+            end;
+        end;
+
+        Point := Point3D(x,y,z);
+        Grid[I][J] := FreeShip.Surface.AddControlPoint(Point);
+        end;
+      end;
+
+    FreeShip.Surface.ImportControlPointGrid(Grid, Cols, Rows, Layer);
+
+    FreeShip.Redraw;
+  end;
+  Dialog.Destroy;
+end;{TFreeEdit.Geometry_AddGridPanel}
+
 
 // Creates and calculates a hydrostatics calculation
 function TFreeEdit.Hydrostatics_Calculate(Draft, AngleOfHeel, Trim: TFloatType):

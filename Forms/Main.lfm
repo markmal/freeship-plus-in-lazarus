@@ -1440,6 +1440,11 @@ object MainForm: TMainForm
       Caption = 'ActionCheckUpdates'
       OnExecute = ActionCheckUpdatesExecute
     end
+    object AddGridPanel: TAction
+      Category = 'Tools'
+      Caption = 'Add grid panel'
+      OnExecute = AddGridPanelExecute
+    end
   end
   object MenuImages: TImageList
     left = 112
@@ -3738,6 +3743,9 @@ object MainForm: TMainForm
       end
       object AddCylinder1: TMenuItem
         Action = AddCylinder
+      end
+      object miAddGridPanel: TMenuItem
+        Action = AddGridPanel
       end
       object MenuItem1: TMenuItem
         Caption = 'Add flow line'

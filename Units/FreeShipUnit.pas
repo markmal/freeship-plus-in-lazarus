@@ -696,6 +696,7 @@ type
     // Ask for filename and save as FREE!ship file
     procedure Flowline_Add(Source: T2DCoordinate; View: TFreeviewType);
     procedure Geometry_AddCylinder;
+    procedure Geometry_AddGridPanel;
     function Hydrostatics_Calculate(Draft, AngleOfHeel, Trim: TFloatType):
       TFreeHydrostaticCalc;// Creates and calculates a hydrostatics calculation
     procedure Hydrostatics_Crosscurves;
@@ -1546,7 +1547,8 @@ uses Math,
   FreeLayerDlg,
   EnterThemeNameDlg,
   Main,
-  freehullformwindow_panel;
+  freehullformwindow_panel,
+  FreeGridDlg;
 
 {$I FreeShipUnit_Functions.inc}
 {$I FreeUndoObject.inc}

@@ -62,7 +62,7 @@ begin
   if FControlPoints.IndexOf(P) = -1 then
   begin
     FControlPoints.Add(P);
-    P.FOwner := self;
+    P.FSurface := self;
   end;
   Build := False;
 end;{TFreeSubdivisionSurface.AddControlPoint}
@@ -1388,7 +1388,7 @@ end;{TFreeSubdivisionSurface.AddControlEdge}
 procedure TFreeSubdivisionSurface.AddControlCurve(Curve: TFreesubdivisionControlCurve);
 begin
   FControlCurves.Add(Curve);
-  Curve.FOwner := self;
+  Curve.FSurface := self;
   Build := False;
 end;{TFreeSubdivisionSurface.AddControlCurve}
 

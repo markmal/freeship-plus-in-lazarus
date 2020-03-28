@@ -547,7 +547,7 @@ begin
   if (abs(ds) < 1e-4) or (abs(de) < 1e-4) then
     exit; //such point exists
 
-  Result := TFreeSubdivisionControlpoint.Create(FOwner);
+  Result := TFreeSubdivisionControlpoint.Create(FSurface);
   Result.FCoordinate := P;
   if FCurve <> nil then
   begin
@@ -555,7 +555,7 @@ begin
     FCurve.InsertControlPoint(TFreeSubdivisionControlPoint(
       FStartPoint), TFreeSubdivisionControlPoint(FEndPoint), Result);
   end;
-  FOwner.FControlPoints.Add(Result);
+  FSurface.FControlPoints.Add(Result);
   for I := 1 to NumberOfFaces do
   begin
     Face := FFaces[I - 1];
@@ -578,7 +578,7 @@ begin
     end;
   end;
   FEndpoint.UnreferenceEdge(self);
-  Edge := FOwner.AddControlEdge(Result, FEndPoint as TFreeSubdivisionControlPoint);
+  Edge := FSurface.AddControlEdge(Result, FEndPoint as TFreeSubdivisionControlPoint);
   Edge.FCrease := FCrease;
   Edge.FCurve := FCurve;
   if FCrease then

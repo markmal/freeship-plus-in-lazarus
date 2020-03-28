@@ -604,7 +604,7 @@ begin
   for i:=0 to FFaces.Count-1 do
       FFaces[i].FPoints.DeleteItem(Self);
 
-  if FOwner <> nil then FOwner.UnreferencePoint(Self);
+  if FSurface <> nil then FSurface.UnreferencePoint(Self);
 
   InUnreference := false;
 end;

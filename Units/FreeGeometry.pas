@@ -872,10 +872,11 @@ type
   private
     FId:integer;
     FName:string;
-    FOwner: TFreeSubdivisionSurface;
+    FSurface: TFreeSubdivisionSurface;
   public
     constructor Create(Owner: TFreeSubdivisionSurface); virtual;
-    property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
+    property Owner: TFreeSubdivisionSurface read FSurface write FSurface;
+    property Surface: TFreeSubdivisionSurface read FSurface write FSurface;
     procedure PrintDebug; virtual;
     property Id: Integer read FId;
     property Name: String read FName write FName;
@@ -1098,13 +1099,13 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeSubdivisionBase = class(TFreeNamedObject)
   private
-    //FOwner: TFreeSubdivisionSurface;
+    //FSurface: TFreeSubdivisionSurface;
     InUnreference:boolean;
     IsUnreferenceEnabled:boolean; // TODO - remove
     SubdivisionLevel:integer; // for investigation
   public
     constructor Create(Owner: TFreeSubdivisionSurface); override;
-    //property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
+    //property Owner: TFreeSubdivisionSurface read FSurface write FSurface;
     procedure PrintDebug; override;
   end;
 
@@ -1418,7 +1419,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeSubdivisionControlPointGroup = class(TFreeNamedObject)
   private
-    //FOwner: TFreeSubdivisionSurface;
+    //FSurface: TFreeSubdivisionSurface;
     FControlPoints: TFasterListTFreeSubdivisionControlPoint;
     FLocked: boolean;
     function CalculateCenterPoint: T3DCoordinate;
@@ -1440,7 +1441,7 @@ type
     procedure SaveToStream(Strings: TStringList);
 
     property ControlPoints:TFasterListTFreeSubdivisionControlPoint read FControlPoints;
-    property Owner: TFreeSubdivisionSurface read FOwner write FOwner;
+    property Owner: TFreeSubdivisionSurface read FSurface write FSurface;
     //procedure PrintDebug; virtual;
     property Locked: boolean read FLocked write FSetLocked;
     property Selected: boolean read FGetSelected write FSetSelected;

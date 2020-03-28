@@ -223,7 +223,7 @@ begin
          E.FFaces.DeleteItem(Self);
       end;}
     end;
-  if FOwner <> nil then FOwner.UnreferenceFace(Self);
+  if FSurface <> nil then FSurface.UnreferenceFace(Self);
   InUnreference := false;
   logger.DecreaseIndent;
 end;

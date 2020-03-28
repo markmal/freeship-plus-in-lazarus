@@ -385,7 +385,7 @@ begin
   if FPoints<>nil then
   for i:=0 to FPoints.Count-1 do
     FPoints[i].UnreferenceFace(Self);
-  if FOwner <> nil then FOwner.UnreferenceControlFace(self);
+  if FSurface <> nil then FSurface.UnreferenceControlFace(self);
   inherited;
   InUnreference := false;
   logger.DecreaseIndent;
@@ -1140,11 +1140,11 @@ begin
       Delete;
       ///MM ??? Why it suicide itself? It does not makes sence. I comment it. No does not work without it.
     end;
-    Result := Fowner.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
+    Result := FSurface.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
     if Result <> nil then
       Result.Crease := False;
   except
-    Result := Fowner.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
+    Result := FSurface.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
   end;
 end;{TFreeSubdivisionControlFace.InsertEdge}
 
@@ -1289,7 +1289,7 @@ begin
   begin
     P2 := FPoints[I - 1];
     P2.UnreferenceFace(self);
-    Edge := FOwner.EdgeExists(P1, P2);
+    Edge := FSurface.EdgeExists(P1, P2);
     if Edge <> nil then
     begin
       Edge.UnreferenceFace(self);

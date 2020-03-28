@@ -1,7 +1,7 @@
 
 constructor TFreeNamedObject.Create(Owner: TFreeSubdivisionSurface);
 begin
-  FOwner:=Owner;
+  FSurface:=Owner;
   FId:=-1;
   if Owner <> nil then
   begin

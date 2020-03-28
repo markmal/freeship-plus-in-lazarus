@@ -123,7 +123,8 @@ end;{TFreeSubdivisionControlPoint.FSetCoordinate}
 
 procedure TFreeSubdivisionControlPoint.SetCoordinate( ViewPort:TFreeViewPort; Val: T3DCoordinate;
                                                       vAnchor:TFreeSubdivisionControlPoint);
-var i:integer; dX,dY,dZ:TFloatType; oP:T3DCoordinate;
+var i,j:integer; dX,dY,dZ:TFloatType; oP:T3DCoordinate;
+  gPoint:TFreeSubdivisionControlPoint;
 begin
   if FLocked then exit;
   if (vAnchor = nil) and IsAnchorHard then exit;
@@ -143,7 +144,19 @@ begin
     FAnchoredPoints[i].MoveBy(Viewport,dX,dY,dZ, Self);
 
   for i:=0 to FLinearConstrainedPoints.Count-1 do
-    FLinearConstrainedPoints[i].SetCoordinate(ViewPort, FLinearConstrainedPoints[i].Coordinate, Self);
+    FLinearConstrainedPoints[i].SetCoordinate(ViewPort,
+         FLinearConstrainedPoints[i].Coordinate, Self);
+
+  // move all points of selected groups if there
+  for I:=0 to Surface.NumberOfSelectedControlPointGroups-1 do
+    for j:=0 to Surface.SelectedControlPointGroup[i].ControlPoints.Count-1 do
+      if Surface.SelectedControlPointGroup[i].ControlPoints[j] <> Self then
+      begin
+        gPoint:=Surface.SelectedControlPointGroup[i].ControlPoints[j];
+        // do not move anchored points - they already moved
+        if FAnchoredPoints.IndexOf(gPoint) < 0 then
+          gPoint.MoveBy(Viewport, dX, dY, dZ, nil);
+      end;
 
   FInSetCoordinate := false;
 end;{TFreeSubdivisionControlPoint.FSetCoordinate}
@@ -218,14 +231,14 @@ begin
       for j := 0 to Face.FPoints.Count-1 do
         if Face.FPoints[j] <> self then
           Points.Add(Face.FPoints[j]);
-      FOwner.AddControlFace(TFasterList(Points), False, Face.Layer);
+      FSurface.AddControlFace(TFasterList(Points), False, Face.Layer);
       Points.Destroy;
       Face.Delete;
     end;
 
     if EdgeCollapse then
     begin
-      Edge1 := FOwner.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
+      Edge1 := FSurface.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
       if Edge1 <> nil then
       begin
         Edge1.Crease := Crease;// or (Edge1.NumberOfFaces=1);
@@ -253,7 +266,7 @@ begin
         P2 := face.FPoints[J - 1] as TFreeSubdivisionControlPoint;
         if (P1 <> self) and (P2 <> self) then
         begin
-          Edge1 := FOwner.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
+          Edge1 := FSurface.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
           if Edge1 <> nil then
             if Edges.IndexOf(Edge1) = -1 then
               Edges.Add(Edge1);
@@ -265,7 +278,7 @@ begin
     if Edges.Count > 2 then
     begin
       SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
-      Fowner.IsolateEdges(TFasterList(Edges), SortedPointLists);
+      FSurface.IsolateEdges(TFasterList(Edges), SortedPointLists);
       Edges.Destroy;
       for i := 0 to SortedPointLists.Count-1 do
       begin
@@ -274,14 +287,14 @@ begin
         Points:= sPointList.FPoints;
         if Points.Count > 2 then
         begin
-          Face := FOwner.AddControlFace(TFasterList(Points), False);
+          Face := FSurface.AddControlFace(TFasterList(Points), False);
           if Face <> nil then
           begin
             P1 := Face.FPoints[Face.FPoints.Count - 1] as TFreeSubdivisionControlPoint;
             for j := 0 to Face.FPoints.Count-1 do
             begin
               P2 := face.FPoints[j] as TFreeSubdivisionControlPoint;
-              //                     Edge1:=fowner.EdgeExists(p1,p2) as TFreesubdivisionControlEdge;
+              //                     Edge1:=FSurface.EdgeExists(p1,p2) as TFreesubdivisionControlEdge;
               //                     if edge1<>nil then
               //                     begin
               //                        {
@@ -681,21 +694,10 @@ procedure TFreeSubdivisionControlPoint.MoveBy( Viewport:TFreeViewPort; dX,dY,dZ:
                                                vAnchor:TFreeSubdivisionControlPoint);
 var i:integer; C:T3DCoordinate;
 begin
-  {FCoordinate.X := FCoordinate.X + dX;
-  FCoordinate.Y := FCoordinate.Y + dY;
-  FCoordinate.Z := FCoordinate.Z + dZ;}
-
   C.X := FCoordinate.X + dX;
   C.Y := FCoordinate.Y + dY;
   C.Z := FCoordinate.Z + dZ;
-
   SetCoordinate(Viewport, C, vAnchor);
-
-  {AdjustToLinearConstraint(Viewport);
-  for i:=0 to FAnchoredPoints.Count-1 do
-    Self.FAnchoredPoints[i].MoveBy(Viewport,dX,dY,dZ);
-  for i:=0 to FLinearConstrainedPoints.Count-1 do
-    FLinearConstrainedPoints[i].AdjustToLinearConstraint(Viewport);}
 end;
 
 procedure TFreeSubdivisionControlPoint.SaveBinary(Destination: TFreeFileBuffer);

@@ -93,7 +93,7 @@ begin
         FEndpoint.VertexType := svCorner;
     end;
 
-    FStartPoint.FOwner.Build := False;
+    FStartPoint.FSurface.Build := False;
   end;
 end;{TFreesubdivisionEdge.FSetCrease}
 
@@ -401,7 +401,7 @@ begin
       if F.FPoints[j].FEdges <> nil then
           F.FPoints[j].FEdges.DeleteItem(Self);
     end;
-    if FOwner <> nil then FOwner.UnreferenceEdge(Self);
+    if FSurface <> nil then FSurface.UnreferenceEdge(Self);
 
     InUnreference := false;
 end;

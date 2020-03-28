@@ -6,14 +6,14 @@
 constructor TFreeSubdivisionBase.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
-  FOwner := Owner;
+  FSurface := Owner;
   InUnreference := false;
   IsUnreferenceEnabled := true;
 end;{TFreeSubdivisionBase.Create}
 
 procedure TFreeSubdivisionBase.PrintDebug;
 begin
-  //Logger.Debug( self.ClassName+'.FOwner:'+ IntToHex(QWord(FOwner),16));
+  //Logger.Debug( self.ClassName+'.FOwner:'+ IntToHex(QWord(FSurface),16));
   Logger.Debug( self.ClassName+':'+IntToStr(Id));
 end;
 

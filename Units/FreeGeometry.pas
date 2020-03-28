@@ -1477,8 +1477,7 @@ type
     procedure Delete; virtual;
     procedure UnreferenceFace(Face: TFreeSubdivisionFace);
     procedure Unreference; virtual;
-    destructor Destroy;
-      override;
+    destructor Destroy; override;
     function DistanceToCursor(X, Y: integer;
       var P: T3DCoordinate; Viewport: TFreeViewport): integer; virtual;
     procedure Draw(DrawMirror: boolean;

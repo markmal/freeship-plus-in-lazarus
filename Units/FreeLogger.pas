@@ -133,5 +133,8 @@ end;
 initialization
   Logger := TLogger.Create;
   ExceptionDlg := TExceptionDlg.Create(nil);
+finalization
+  ExceptionDlg.Free;
+  Logger.Free;
 end.
 

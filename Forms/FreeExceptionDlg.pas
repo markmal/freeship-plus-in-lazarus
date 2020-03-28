@@ -21,8 +21,7 @@ type
 
   end;
 
-var
-  ExceptionDlg: TExceptionDlg;
+//var ExceptionDlg: TExceptionDlg;
 
 implementation
 

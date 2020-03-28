@@ -782,6 +782,7 @@ begin
       thw.Free;
       end;
  FreeAndNil(FMDIPanelManager);
+ FreeAndNil(FreeShip);
  inherited;
 end;
 
@@ -1979,7 +1980,6 @@ begin
    FreeShip.OnChangeActiveLayer:=nil;
    Freeship.OnChangeLayerData:=nil;
    FreeShip.OnSelectItem:=nil;
-   FreeShip.Free;
   end;
 end;{TMainForm.FormClose}
 
@@ -3068,7 +3068,6 @@ begin
   }
 end;
 
-initialization
-  ExceptionDlg := TExceptionDlg.create(nil);
-
+//initialization
+  //ExceptionDlg := TExceptionDlg.create(nil);
 end.

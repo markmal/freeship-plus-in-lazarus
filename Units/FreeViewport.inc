@@ -1031,14 +1031,21 @@ var
   P3D: T3DCoordinate;
   P2D: T2DCoordinate;
   Dist: TFloatType;
+  dX,dY:double;
 begin
   P3D := RotatedPoint(P);
   Dist := FCameralocation.X - P3D.X;
   // apply perspective correction
   P2D.X := FCameralocation.X * P3D.Y / Dist;
   P2D.Y := FCameralocation.X * P3D.Z / Dist;
-  Result.X := FPan.X + FScreencenter.X + Round(FZoom * FScale * P2D.X);
-  Result.Y := FPan.Y + FScreencenter.Y - Round(FZoom * FScale * P2D.Y);
+  dX:=FPan.X + FScreencenter.X + (FZoom * FScale * P2D.X);
+  dY:=FPan.Y + FScreencenter.Y - (FZoom * FScale * P2D.Y);
+  if dX > MAXINT then dX := MAXINT;
+  if dX < -MAXINT-1 then dX := -MAXINT-1;
+  if dY > MAXINT then dY := MAXINT;
+  if dY < -MAXINT-1 then dY := -MAXINT-1;
+  Result.X := Round(dX);
+  Result.Y := Round(dY);
 end;{TFreeViewport.Project}
 
 function TFreeViewport.ProjectBack(P: TPoint; Input: T3DCoordinate): T3DCoordinate;

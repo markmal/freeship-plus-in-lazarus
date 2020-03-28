@@ -1934,9 +1934,9 @@ begin
    LayerBox.Items.BeginUpdate;
    LayerBox.Items.Clear;
    try
-      for I:=1 to Freeship.NumberOfLayers do
+      for I:=0 to Freeship.NumberOfLayers-1 do
       begin
-         Layerbox.Items.AddObject(FreeShip.Layer[I-1].Name,FreeShip.Layer[I-1]);
+         Layerbox.Items.AddObject(FreeShip.Layer[I].Name,FreeShip.Layer[I]);
       end;
    finally
       LayerBox.Items.EndUpdate;

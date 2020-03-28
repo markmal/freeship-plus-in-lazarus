@@ -189,7 +189,7 @@ begin
   logger.IncreaseIndent;
   logger.Debug(format('TFreeSubdivisionFace[%d].Delete',[self.FID]));
   Unreference;
-  Owner.Build := False;
+  Owner.Built := False;
   Clear;
   //Destroy;
   DelayedDestroyList.Add(Self);
@@ -313,10 +313,14 @@ var
         else
         begin
           // just in case one of points is not associated with the edge
-          P1.FEdges.Add(NewEdge);
-          P2.FEdges.Add(NewEdge);
-          NewEdge.FStartpoint.FEdges.Add(NewEdge);
-          NewEdge.FEndpoint.FEdges.Add(NewEdge);
+          if P1.FEdges.IndexOf(NewEdge) = -1 then
+            P1.FEdges.Add(NewEdge);
+          if P2.FEdges.IndexOf(NewEdge) = -1 then
+            P2.FEdges.Add(NewEdge);
+          if NewEdge.FStartpoint.FEdges.IndexOf(NewEdge) = -1 then
+            NewEdge.FStartpoint.FEdges.Add(NewEdge);
+          if NewEdge.FEndpoint.FEdges.IndexOf(NewEdge) = -1 then
+            NewEdge.FEndpoint.FEdges.Add(NewEdge);
 
           if IsControlEdge
             then aControlDescendandEdges.Add(NewEdge)

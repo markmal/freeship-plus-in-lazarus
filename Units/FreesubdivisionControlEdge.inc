@@ -137,7 +137,7 @@ begin
           Selected := False;
         S := Startpoint as TFreeSubdivisionControlPoint;
         E := Endpoint as TFreeSubdivisionControlPoint;
-        Owner.Build := False;
+        Owner.Built := False;
         Face1 := Face[0] as TFreeSubdivisionControlFace;
         Face2 := Face[1] as TFreeSubdivisionControlFace;
         // Check faces for consistent ordering of the points (same normal direction)
@@ -284,7 +284,7 @@ begin
         begin
           E.Collapse;
         end;
-        Owner.Build := False;
+        Owner.Built := False;
         Destroy;
       end;
     end;

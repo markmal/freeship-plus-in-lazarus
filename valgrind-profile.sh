@@ -8,3 +8,4 @@ OPTS="$OPTS --log-file=callgrind.trc"
 
 echo valgrind $OPTS $* ./FreeShip
 valgrind $OPTS $* ./FreeShip
+echo use kcachegrind with last callgrind.out.

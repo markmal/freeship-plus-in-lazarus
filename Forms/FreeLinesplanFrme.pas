@@ -1730,7 +1730,7 @@ var
     NParams := 0;
     Setlength(Params, Spline.NumberOfPoints);
     // count number of knucklepoints
-    if not Spline.Build then
+    if not Spline.Built then
       Spline.Rebuild;
     for I := 2 to Spline.NumberOfPoints - 1 do
     begin

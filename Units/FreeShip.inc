@@ -249,7 +249,7 @@ end;{TFreeShip.FGetBackgroundImage}
 
 function TFreeShip.FGetBuild: boolean;
 begin
-  Result := Surface.Build;
+  Result := Surface.Built;
 end;{TFreeShip.FGetBuild}
 
 function TFreeShip.FGetFilename: string;
@@ -371,7 +371,7 @@ procedure TFreeShip.FSetBuild(Val: boolean);
 var
   I: integer;
 begin
-  Surface.Build := Val;
+  Surface.Built := Val;
   if not Build then
   begin
     for I := 1 to NumberOfStations do
@@ -1301,7 +1301,7 @@ var
 begin
   if Surface.IsBuilding then exit; // no double entries
 
-  if not Surface.Build then
+  if not Surface.Built then
     surface.Rebuild;
   // Draw intersectionlines BEFORE the surface is drawn,
   // so that the controlnet appears on top
@@ -1397,7 +1397,7 @@ begin
     G := GetGValue(ProjectSettings.ProjectUnderWaterColor);
     B := GetBValue(ProjectSettings.ProjectUnderWaterColor);
     Surface.UnderWaterColor := ProjectSettings.ProjectUnderWaterColor;
-    Surface.ShadeUnderWater := True;
+    //Surface.ShadeUnderWater := True;
   end
   else
     Surface.ShadeUnderWater := False;
@@ -2084,6 +2084,10 @@ begin
     end //if Str='FREE!ship' then
     else
       MessageDlg(Userstring(189), mtError, [mbOK], 0);
+
+    Surface.UnderWaterColor := ProjectSettings.ProjectUnderWaterColor;
+    Surface.ShadeUnderWater := ProjectSettings.ProjectShadeUnderwaterShip;
+
     FileChanged := False;
     ModelIsLoaded := True;
   except

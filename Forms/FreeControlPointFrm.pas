@@ -206,11 +206,13 @@ begin
       Self.Caption := '';
    end else
    begin
-      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
-      R:=0.0;
-      EditDistance.Value:=0.0;
+     if TFreeShip(FreeShip).Surface.SelectedControlPoints.IndexOf(ActiveControlPoint)=-1
+     then TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
 
-      Self.Caption := 'Point['+IntToStr(FActiveControlPoint.Id) +']:'+FActiveControlPoint.Name;
+     R:=0.0;
+     EditDistance.Value:=0.0;
+
+     Self.Caption := 'Point['+IntToStr(FActiveControlPoint.Id) +']:'+FActiveControlPoint.Name;
                    {+ ' ('+FloatToStr(FActiveControlPoint.Coordinate.X)
                      +','+FloatToStr(FActiveControlPoint.Coordinate.Y)
                      +','+FloatToStr(FActiveControlPoint.Coordinate.Z)

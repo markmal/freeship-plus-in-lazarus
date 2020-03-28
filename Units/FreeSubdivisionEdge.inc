@@ -93,7 +93,7 @@ begin
         FEndpoint.VertexType := svCorner;
     end;
 
-    FStartPoint.FSurface.Build := False;
+    FStartPoint.FSurface.Built := False;
   end;
 end;{TFreesubdivisionEdge.FSetCrease}
 
@@ -276,7 +276,7 @@ end;
 constructor TFreeSubdivisionEdge.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
-  FFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
+  FFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
   Clear;
 end;{TFreeSubdivisionEdge.Create}
 
@@ -408,15 +408,15 @@ end;
 
 destructor TFreeSubdivisionEdge.Destroy;
 begin
-  logger.IncreaseIndent;
-  logger.Debug(format('TFreeSubdivisionEdge[%d].Destroy',[self.FID]));
+  //logger.IncreaseIndent;
+  //logger.Debug(format('TFreeSubdivisionEdge[%d].Destroy',[self.FID]));
   if self = nil then
     exit;
   //Unreference;
   Clear;
   FreeAndNil(FFaces);
   inherited Destroy;
-  logger.DecreaseIndent;
+  //logger.DecreaseIndent;
 end;{TFreeSubdivisionEdge.Destroy}
 
 function TFreeSubdivisionEdge.DistanceToCursor(X, Y: integer;

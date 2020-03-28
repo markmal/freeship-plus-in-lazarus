@@ -30,11 +30,9 @@
 {    for details.                                                                             }
 {#############################################################################################}
 
-unit FasterList;
+{$MODE ObjFPC}{$H+}
 
-{$IFDEF FPC}
-  {$MODE ObjFPC}{$H+}
-{$ENDIF}
+unit FasterList;
 
 interface
 
@@ -141,12 +139,14 @@ begin
     exit;
   end;
 
-  i := self.IndexOf(Item);
-  if FUnique and (i >= 0) then
-    begin
-    //raise Exception.Create('Uniqueness violation');
-    exit;
-    end;
+  if FUnique then
+  begin
+    i := self.IndexOf(Item);
+    if (i >= 0) then
+      begin
+      exit; //raise Exception.Create('Uniqueness violation');
+      end;
+  end;
 
   if FCount = FCapacity then
     FGrow;
@@ -170,28 +170,32 @@ procedure TFasterList.AddObject(Item: TItemType; UserObject: Pointer);
 var
   Cur, Prev: PtrUInt; i:integer;
 begin
+  if not FUseUserData then
+  begin
+    SetLength(FData, FCapacity);
+    FUseUserdata := True;
+  end;
+
   if FSorted then
   begin
     AddSortedObject(Item, UserObject);
     exit;
   end;
 
-  i := self.IndexOf(Item);
-  if FUnique and (i >= 0) then
-    begin
-    //raise Exception.Create('Uniqueness violation');
-    if FUseUserData and (UserObject <> FData[i]) then
-       FData[i] := UserObject;
-    exit;
-    end;
+  if FUnique then
+  begin
+    i := self.IndexOf(Item);
+    if (i >= 0) then
+      begin
+      //raise Exception.Create('Uniqueness violation');
+      if UserObject <> FData[i] then
+         FData[i] := UserObject;
+      exit;
+      end;
+  end;
 
   if FCount = FCapacity then
     FGrow;
-  if not FUseUserData then
-  begin
-    SetLength(FData, FCapacity);
-    FUseUserdata := True;
-  end;
 
   FList[FCount] := Item;
   FData[FCount] := UserObject;
@@ -321,14 +325,24 @@ end;{TFasterList.AddSorted}
 procedure TFasterList.AddSortedObject(Item: TItemType; UserObject: Pointer);
 var
   Address: PtrUInt;
-  L, H, Mid: integer;
+  L, H, Mid, i: integer;
 begin
-  if FUnique and (self.IndexOf(Item)>=0) then
-    raise Exception.Create('Uniqueness violation');
   if not FUseUserData then
   begin
     FUseUserData := True;
     Setlength(FData, FCapacity);
+  end;
+
+  if FUnique then
+  begin
+    i := self.IndexOf(Item);
+    if (i >= 0) then
+      begin
+      //raise Exception.Create('Uniqueness violation');
+      if UserObject <> FData[i] then
+         FData[i] := UserObject;
+      exit;
+      end;
   end;
 
   if FCount = FCapacity then
@@ -567,7 +581,7 @@ begin
   if (index<0) or (Index >= FCount) then
     raise Exception.Create('Index out of bounds');
   if FUnique and (self.IndexOf(Item)>=0) then
-    raise Exception.Create('Uniqueness violation');
+    exit; //raise Exception.Create('Uniqueness violation');
   if FCount = FCapacity then
     FGrow;
   if Index < FCount then
@@ -660,6 +674,8 @@ end;{QuickSort}
 
 procedure TFasterList.Sort;
 begin
+  if (FCount = 0) then
+    FSorted := True;
   if (FCount > 1) and (not FSorted) then
   begin
     QuickSort(0, FCount - 1);
@@ -670,7 +686,10 @@ end;{TFasterList.Sort}
 procedure TFasterList.SetSorted(val:boolean);
 begin
   if val then
-    begin if not FSorted then Sort; end
+    begin
+      if not FSorted
+        then Sort;
+    end
   else
     FSorted := false;
 end;
@@ -719,6 +738,8 @@ procedure TFasterList.FSet(Index: integer; Item: TItemType);
 begin
   if (Index<0) or (Index>=FCount) then
     raise Exception.Create('Index out of bounds');
+  if FUnique and (IndexOf(Item)>=0) then
+    raise Exception.Create('Uniqueness violation');
   FList[Index] := Item;
   if FUseUserData then
     FData[index] := nil;
@@ -738,6 +759,7 @@ end;{TFasterList.FSetObject}
 
 procedure TFasterList.FSetCapacity(NewCapacity: integer);
 begin
+  if FCapacity = NewCapacity then exit;
   Setlength(FList, NewCapacity);
   if FUseUserData then
     Setlength(FData, NewCapacity);

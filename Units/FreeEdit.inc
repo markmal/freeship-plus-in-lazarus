@@ -1583,7 +1583,7 @@ var
       NParams := 0;
       Setlength(Params, Spline.NumberOfPoints);
       // count number of knucklepoints
-      if not Spline.Build then
+      if not Spline.Built then
         Spline.Rebuild;
       for I := 2 to Spline.NumberOfPoints - 1 do
         if Spline.Knuckle[I - 1] then
@@ -3274,7 +3274,7 @@ begin
     try
       FreeShip.Surface.DesiredSubdivisionLevel := 1;
       FreeShip.Surface.SubdivisionMode := fmCatmullClark;
-      if not FreeShip.Surface.Build then
+      if not FreeShip.Surface.Built then
         FreeShip.Surface.Rebuild;
       FreeShip.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
       IGESList := TFreeIGESList.Create;
@@ -3403,7 +3403,7 @@ begin
     finally
       FreeShip.Surface.DesiredSubdivisionLevel := PrevLevel;
       FreeShip.Surface.SubdivisionMode := fmQuadTriangle;
-      if not FreeShip.Surface.Build then
+      if not FreeShip.Surface.Built then
         FreeShip.Surface.Rebuild;
       Screen.Cursor := Prev;
       FreeShip.Redraw;

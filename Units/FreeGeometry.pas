@@ -28,9 +28,7 @@
 
 unit FreeGeometry;
 
-{$IFDEF FPC}
-  {$MODE Delphi} {$H+}
-{$ENDIF}
+{$MODE Delphi} {$H+}
 
 interface
 
@@ -889,7 +887,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeEntity = class(TFreeNamedObject)
   private
-    FBuild: boolean; // Flag to check if the entity has already been built
+    FBuilt: boolean; // Flag to check if the entity has already been built
     FIsBuilding: boolean; // Flag to check if the entity structure is building to exclude double entrance to building
     FMin, FMax: T3DCoordinate;
     // The min/max boundary coordinates of the entity after it has been build
@@ -899,12 +897,9 @@ type
     //FName:string;
     FPenstyle: TPenStyle;
     // Pen style for drawing the line
-    function FGetMin: T3DCoordinate;
-      virtual;
-    function FGetMax: T3DCoordinate;
-      virtual;
-    procedure FSetBuild(Val: boolean);
-      virtual;
+    function GetMin: T3DCoordinate; virtual;
+    function GetMax: T3DCoordinate; virtual;
+    procedure SetBuilt(Val: boolean); virtual;
   public
     constructor Create(Owner: TFreeSubdivisionSurface); override;
     procedure Clear; virtual;
@@ -914,15 +909,15 @@ type
       virtual;
     procedure Rebuild;
       virtual;
-    property Build: boolean
-      read FBuild write FSetBuild;
+    property Built: boolean
+      read FBuilt write SetBuilt;
     property Color: TColor
       read FColor write FColor;
     property IsBuilding: boolean read FIsBuilding;
     property Min: T3DCoordinate
-      read FGetMin;
+      read GetMin;
     property Max: T3DCoordinate
-      read FGetMax;
+      read GetMax;
     property PenStyle: TPenStyle
       read FPenStyle write FPenStyle;        // Pen style
     property PenWidth: byte
@@ -960,8 +955,7 @@ type
     function FGetKnuckle(Index: integer): boolean;
     function FGetParameter(Index: integer): TFloatType;
     function FGetPoint(Index: integer): T3DCoordinate;
-    procedure FSetBuild(val: boolean);
-      override;
+    procedure SetBuilt(val: boolean); override;
     procedure FSetCapacity(Val: integer);
     procedure FSetFragments(Val: integer);
     procedure FSetKnuckle(Index: integer; Value: boolean);
@@ -1833,13 +1827,13 @@ type
     function FGetSelectedControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function FGetSelectedControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FRequestNewLayerID: integer;
-    procedure FSetActiveLayer(Val: TFreeSubdivisionLayer);
-    procedure FSetBuild(Val: boolean);
-      override;
-    procedure FSetDesiredSubdivisionLevel(val: byte);
-    procedure FSetFShowControlNet(Val: boolean);
-    procedure FSetSubdivisionMode(val: TFreeSubdivisionMode);
-    procedure FSetUnderwaterColor(Val: TColor);
+    procedure SetActiveLayer(Val: TFreeSubdivisionLayer);
+    procedure SetBuilt(Val: boolean); override;
+    procedure SetDesiredSubdivisionLevel(val: byte);
+    procedure SetFShowControlNet(Val: boolean);
+    procedure SetSubdivisionMode(val: TFreeSubdivisionMode);
+    procedure SetUnderwaterColor(Val: TColor);
+    procedure SetShadeUnderWater(Val: boolean);
   protected
   public
     procedure AddControlCurve(Curve: TFreesubdivisionControlCurve);
@@ -1936,7 +1930,7 @@ type
       var Points: TFasterListTFreeSubdivisionPoint); reintroduce; overload;
     procedure SubDivide;
     property ActiveLayer: TFreeSubdivisionLayer
-      read FActiveLayer write FSetActiveLayer;
+      read FActiveLayer write SetActiveLayer;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetControlpoint;
     property ControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
@@ -1974,7 +1968,7 @@ type
     property DartPointColor: TColor
       read FDartPointColor write FDartPointColor;
     property DesiredSubdivisionLevel: byte
-      read FDesiredSubdivisionLevel write FSetDesiredSubdivisionLevel;
+      read FDesiredSubdivisionLevel write SetDesiredSubdivisionLevel;
     property DrawMirror: boolean
       read FDrawMirror write FDrawMirror;
     property GaussCurvatureCalculated: boolean
@@ -2043,7 +2037,7 @@ type
     property NumberOfPoints: integer
       read FGetNumberOfPoints;
     property ShadeUnderWater: boolean
-      read FShadeUnderWater write FShadeUnderWater;
+      read FShadeUnderWater write SetShadeUnderWater;
     property Selectedcolor: TColor
       read FSelectedcolor write FSelectedcolor;
     property SelectedControlCurve[index: integer]: TFreeSubdivisionControlCurve
@@ -2060,7 +2054,7 @@ type
     property ShowControlCurves: boolean
       read FShowControlCurves write FShowControlCurves;
     property ShowControlNet: boolean
-      read FShowControlNet write FSetFShowControlNet;
+      read FShowControlNet write SetFShowControlNet;
     property ShowCurvature: boolean
       read FShowCurvature write FShowCurvature;
     property ShowInteriorEdges: boolean
@@ -2068,9 +2062,9 @@ type
     property ShowNormals: boolean
       read FShowNormals write FShowNormals;
     property SubdivisionMode: TFreeSubdivisionMode
-      read FSubdivisionMode write FSetSubdivisionMode;
+      read FSubdivisionMode write SetSubdivisionMode;
     property UnderWaterColor: TColor
-      read FUnderWaterColor write FSetUnderWaterColor;
+      read FUnderWaterColor write SetUnderwaterColor;
     property WaterlinePlane: T3DPlane
       read FWaterlinePlane write FWaterlinePlane;
     property ZebraColor: TColor

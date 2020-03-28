@@ -118,7 +118,7 @@ begin
   if Locked then exit;
   //if Locked and (FAnchorPoint = nil) then exit;
   inherited FSetCoordinate(Val);
-  Owner.Build := False;
+  Owner.Built := False;
 end;{TFreeSubdivisionControlPoint.FSetCoordinate}
 
 procedure TFreeSubdivisionControlPoint.SetCoordinate( ViewPort:TFreeViewPort; Val: T3DCoordinate;
@@ -331,18 +331,18 @@ end;{TFreeSubdivisionControlPoint.Collapse}
 constructor TFreeSubdivisionControlPoint.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
-  FLinearConstrainedPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
-  FAnchoredPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  FLinearConstrainedPoints := TFasterListTFreeSubdivisionControlPoint.Create(false,false);
+  FAnchoredPoints := TFasterListTFreeSubdivisionControlPoint.Create(false,false);
 end;{TFreeSubdivisionControlPoint.Create}
 
 destructor TFreeSubdivisionControlPoint.Destroy;
 begin
-  logger.IncreaseIndent;
-  logger.Debug(format('TFreeSubdivisionControlPoint[%d].Destroy',[self.FID]));
+  //logger.IncreaseIndent;
+  //logger.Debug(format('TFreeSubdivisionControlPoint[%d].Destroy',[self.FID]));
   FreeAndNil(FLinearConstrainedPoints);
   FreeAndNil(FAnchoredPoints);
   inherited;
-  logger.DecreaseIndent;
+  //logger.DecreaseIndent;
 end;{TFreeSubdivisionControlPoint.Create}
 
 procedure TFreeSubdivisionControlPoint.Delete;
@@ -624,7 +624,7 @@ begin
   if (OldCoordinate.X <> FCoordinate.X)
    or(OldCoordinate.Y <> FCoordinate.Y)
    or(OldCoordinate.Z <> FCoordinate.Z)
-  then Owner.Build:=false;
+  then Owner.Built:=false;
 end;
 
 function TFreeSubdivisionControlPoint.DistanceToCursor(X, Y: integer;

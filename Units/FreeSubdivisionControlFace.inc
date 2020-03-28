@@ -146,16 +146,16 @@ var
 begin
   if Assigned(FChildren) then
   begin
-    //for I := 0 to FChildren.Count-1 do
-    //  if assigned(FChildren[I]) then
-    //     FChildren[I].Free;
-    while FChildren.Count > 0 do
+    for I := 0 to FChildren.Count-1 do
+      if assigned(FChildren[I]) then
+        begin FChildren[I].Free; FChildren[I]:=nil; end;
+    {while FChildren.Count > 0 do
       begin
       i := FChildren.Count-1;
       ch := FChildren[i];
       FChildren.Delete(i);
       ch.Free;
-      end;
+      end;}
     FChildren.Clear;
   end;
 
@@ -186,9 +186,9 @@ end;{TFreeSubdivisionControlFace.ClearChildren}
 constructor TFreeSubdivisionControlFace.Create(Owner: TFreeSubdivisionSurface);
 begin
   FLayer := nil;
-  FChildren := TFasterListTFreeSubdivisionFace.Create(true,true);
-  FEdges := TFasterListTFreeSubdivisionEdge.Create(true,true);  // is this for speed only?
-  FControlDescendantEdges := TFasterListTFreeSubdivisionEdge.Create(true,true);
+  FChildren := TFasterListTFreeSubdivisionFace.Create(false,false);
+  FEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);  // is this for speed only?
+  FControlDescendantEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
   inherited Create(Owner);
 end;{TFreeSubdivisionControlFace.Create}
 
@@ -359,7 +359,7 @@ begin
     end;
   end;
   inherited;
-  Owner.Build := False;
+  Owner.Built := False;
   //Clear;
   //Destroy;
   DelayedDestroyList.Add(Self);
@@ -997,7 +997,7 @@ begin
     begin
       // Draw normals
       // First assemble all points within this controlface
-      Points := TFasterListTFreeSubdivisionPoint.Create;
+      Points := TFasterListTFreeSubdivisionPoint.Create(false,true);
       for I := 1 to ChildCount do
       begin
         Child := Self.Child[I - 1];
@@ -1467,7 +1467,7 @@ var
   ChildFace: TFreeSubdivisionFace;
   NewControlEdges:TFasterListTFreeSubdivisionEdge; // MM: not really control edges, just children of them
 begin
-  NewControlEdges:=TFasterListTFreeSubdivisionEdge.Create(true,false);
+  NewControlEdges:=TFasterListTFreeSubdivisionEdge.Create(false,false);
 
   //if not CheckIntegrity
   //     then X:=0;
@@ -1485,9 +1485,9 @@ begin
   end
   else
   begin
-    TmpFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
+    TmpFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
     TmpFaces.Capacity := 4 * ChildCount;
-    TmpEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
+    TmpEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
     I := Round(Power(2, aOwner.FCurrentSubdivisionLevel));
     TmpEdges.Capacity := 2 * (I * (I - 1));
 
@@ -1534,6 +1534,7 @@ begin
   FControlDescendantEdges.Clear;
   FControlDescendantEdges.Capacity := NewControlEdges.Count;
   aControlEdges.Capacity := aControlEdges.Count + FControlDescendantEdges.Count;
+  aControlEdges.Sort;
   for I := 0 to NewControlEdges.Count - 1 do
   begin
     if aControlEdges.SortedIndexOf(NewControlEdges[I]) = -1 then

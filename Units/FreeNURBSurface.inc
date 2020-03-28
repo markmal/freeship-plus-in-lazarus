@@ -26,7 +26,7 @@ begin
   if Val <> FColDegree then
   begin
     FColDegree := Val;
-    Build := False;
+    Built := False;
   end;
 end;{TFreeNURBSurface.FSetColDegree}
 
@@ -37,7 +37,7 @@ begin
   if Val <> FRowDegree then
   begin
     FRowDegree := Val;
-    Build := False;
+    Built := False;
   end;
 end;{TFreeNURBSurface.FSetRowDegree}
 
@@ -140,7 +140,7 @@ begin
   if Row > RowCapacity then
     SetCapacity(ColCapacity, Row);
   FControlPoints[Row][Col] := Val;
-  Build := False;
+  Built := False;
 end;{TFreeNURBSurface.FSetPoint}
 
 procedure TFreeNURBSurface.FSetColCapacity(Val: integer);
@@ -157,7 +157,7 @@ end;{TFreeNURBSurface.FSetVCapacity}
 
 procedure TFreeNURBSurface.Clear;
 begin
-  Build := False;
+  Built := False;
   inherited Clear;
   SetCapacity(0, 0);
   FColCount := 0;
@@ -178,7 +178,7 @@ begin
       (Colcount - Col - 1) * SizeOf(T3DCoordinate));
   end;
   Dec(FColCount);
-  Build := False;
+  Built := False;
 end;{TFreeNURBSurface.DeleteColumn}
 
 procedure TFreeNURBSurface.DeleteRow(Row: integer);
@@ -188,7 +188,7 @@ begin
   for I := Row + 1 to Rowcount - 1 do
     Move(FControlpoints[I][0], FControlpoints[I - 1][0], (Colcount) * SizeOf(T3DCoordinate));
   Dec(FRowCount);
-  Build := False;
+  Built := False;
 end;{TFreeNURBSurface.DeleteColumn}
 
 procedure TFreeNURBSurface.InsertColKnot(U: TFloatType);
@@ -201,7 +201,7 @@ var
 begin
   if Length(FColKnots) = 0 then
     SetDefaultColKnotvector;
-  FBuild := True;
+  FBuilt := True;
   // Find lowest index
   Index := 0;
   for J := 1 to Length(FColknots) - 1 do
@@ -290,7 +290,7 @@ begin
 
   if Length(FRowKnots) = 0 then
     SetDefaultRowKnotvector;
-  FBuild := True;
+  FBuilt := True;
   // Find lowest index
   Index := -1;
   for J := 1 to Length(FRowknots) - 1 do
@@ -406,14 +406,14 @@ procedure TFreeNURBSurface.Rebuild;
 begin
   if FIsBuilding then exit;
   FIsBuilding := true;
-  FBuild := False;
+  FBuilt := False;
   if FColDegree > FColcount - 1 then
     FColDegree := FColcount - 1;
   if FRowDegree > FRowcount - 1 then
     FRowDegree := FRowcount - 1;
   SetDefaultColKnotVector;
   SetDefaultRowKnotVector;
-  Build := True;
+  Built := True;
   inherited Rebuild;
   FIsBuilding := false;
 end;{TFreeNURBSurface.Rebuild}

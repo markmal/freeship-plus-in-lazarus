@@ -6,7 +6,7 @@
 { Modified to use chordlength parametrisation for smoother interpolation and to accept              }
 { knuckles in the controlpoints                                                                     }
 {---------------------------------------------------------------------------------------------------}
-procedure TFreeSpline.FSetBuild(val: boolean);
+procedure TFreeSpline.SetBuilt(val: boolean);
 begin
   if not val then
   begin
@@ -21,7 +21,7 @@ begin
     Fmax.Z := 1;
     FTotalLength := 0.0;
   end;
-  inherited FSetBuild(Val);
+  inherited SetBuilt(Val);
 end;{TFreeSpline.FSetBuild}
 
 procedure TFreeSpline.FSetCapacity(Val: integer);
@@ -31,13 +31,13 @@ begin
     FCapacity := Val;
     Setlength(FPoints, FCapacity);
     Setlength(FKnuckles, FCapacity);
-      { // MM: this logic may cause Build not set in case of decrease of Capacity.
-        // MM: Replacing it with unconditional Build:=false;}
+      { // MM: this logic may cause Built not set in case of decrease of Capacity.
+        // MM: Replacing it with unconditional Built:=false;}
     if FNoPoints>FCapacity then
       begin
          // Make sure that number of points does not exceed the capacity of the curve
          FNoPoints:=FCapacity;
-         Build:=false;
+         Built:=false;
       end;
   end;
 end;{TFreeSpline.FSetCapacity}
@@ -47,13 +47,13 @@ begin
   if Val <> FFragments then
   begin
     FFragments := val;
-    Build := False;
+    Built := False;
   end;
 end;{TFreeSpline.FSetFragments}
 
 function TFreeSpline.FGetFragments: integer;
 begin
-  if not Build then
+  if not Built then
     Rebuild;
   Result := FFragments;
 end;{TFreeSpline.FGetFragments}
@@ -73,11 +73,11 @@ end;{TFreeSpline.FGetKnuckle}
 procedure TFreeSpline.FSetKnuckle(Index: integer; Value: boolean);
 begin
   FKnuckles[Index] := Value;
-  Build := False;
+  Built := False;
 {  if (Index >= 0) and (Index < FNoPoints) then
   begin
     FKnuckles[Index] := Value;
-    Build := False;
+    Built := False;
   end
   else
     raise Exception.Create('List index out of bounds in ' + ClassName +
@@ -88,12 +88,12 @@ end;{TFreeSpline.FSetKnuckle}
 procedure TFreeSpline.FSetPoint(Index: integer; P: T3DCoordinate);
 begin
   FPoints[index] := P;
-  Build := False;
+  Built := False;
 {
   if (Index >= 0) and (Index < NumberOfPoints) then
   begin
     FPoints[index] := P;
-    Build := False;
+    Built := False;
   end
   else
     raise Exception.Create('Point index out of bounds!');
@@ -102,13 +102,13 @@ end;{TFreeSpline.FSetPoint}
 
 function TFreeSpline.FGetParameter(Index: integer): TFloatType;
 begin
-  if not build then
+  if not Built then
      rebuild;
   Result := FParameters[Index];
 
 {  if (Index >= 0) and (Index < FNoPoints) then
   begin
-    if not build then
+    if not Built then
       rebuild;
     Result := FParameters[Index];
   end
@@ -138,7 +138,7 @@ var
 begin
   if FIsBuilding then exit;
   FIsBuilding := true;
-  Build := False;
+  Built := False;
 
   // First attempt to eliminate double points
   I := 2;
@@ -242,9 +242,9 @@ begin
         end;
     end;
   end;
-  // MM: Suspicious setting of FBuild before inherited Rebuild.
-  // MM: FBuild:=true; is moved to TFreeEntity.Rebuild;
-  //FBuild:=true;
+  // MM: Suspicious setting of FBuilt before inherited Rebuild.
+  // MM: FBuilt:=true; is moved to TFreeEntity.Rebuild;
+  //FBuilt:=true;
 
   // Determine min/max values
   if FNoPoints > 0 then
@@ -275,7 +275,7 @@ begin
   Result.Z := 0;
   if FNoPoints < 2 then
     exit;
-  if not FBuild then
+  if not FBuilt then
     Rebuild;
   if FNoPoints < 2 then
     exit;
@@ -434,11 +434,11 @@ begin
     if Knuckle[I-1]
          then inc(N2);
   if N1<>N2 then
-      Build:=false;
+      Built:=false;
 
   Capacity := NumberOfPoints;
   ///Fragments := NumberOfPoints - 1;
-  Build := False;
+  Built := False;
 end;{TFreeSpline.Simplify}
 
 procedure TFreeSpline.Add(P: T3DCoordinate);
@@ -453,7 +453,7 @@ begin
   Inc(FNoPoints);
   if FFragments < FNoPoints - 1 then
      FFragments := FNoPoints - 1;
-  Build := False;  // Curve needs to be rebuild
+  Built := False;  // Curve needs to be rebuild
 end;{TFreeSpline.Add}
 
 procedure TFreeSpline.AddKnuckle(P: T3DCoordinate);
@@ -485,7 +485,7 @@ begin
   FShowCurvature := Spline.ShowCurvature;
   FCurvatureScale := Spline.FCurvatureScale;
   FCurvatureColor := Spline.FCurvatureColor;
-  Build := False;
+  Built := False;
 end;{TFreeSpline.Assign}
 
 function TFreeSpline.CoordLength(T1, T2: TFloatType): TFloatType;
@@ -498,9 +498,9 @@ begin
   P1.X := 0;
   P1.Y := 0;
   P1.Z := 0;
-  if not build then
+  if not Built then
     Rebuild;
-  if not Build then
+  if not Built then
     exit;
   for I := 0 to Fragments do
   begin
@@ -628,7 +628,7 @@ begin
       FPoints[I] := FPoints[I + 1];
       FKnuckles[I] := FKnuckles[I + 1];
     end;
-    Build := False;
+    Built := False;
   end;
 end;{TFreeSpline.DeletePoint}
 
@@ -702,7 +702,7 @@ begin
     //FFragments := FNoPoints - 1;
     if FFragments < FNoPoints - 1 then
        FFragments := FNoPoints - 1;
-    Build := False;
+    Built := False;
   end
   else
     raise Exception.Create('Index out of range' + EOL + IntToStr(Index) + #32 + IntToStr(FNoPoints));
@@ -768,7 +768,7 @@ var
   Pn,Pn1,Pn2:integer;
   PArray3dc: array of T3DCoordinate;
 begin
-  if not Build then
+  if not Built then
     Rebuild;
   if Viewport.ViewportMode = vmWireFrame then
   begin
@@ -834,7 +834,7 @@ begin
   else
   begin
     // draw to z-buffer
-    if not Build then
+    if not Built then
       Rebuild;
     R := GetRValue(Color);
     G := GetGValue(Color);
@@ -889,7 +889,7 @@ begin
     //FFragments := FNoPoints - 1;
     if FFragments < FNoPoints - 1 then
        FFragments := FNoPoints - 1;
-    Build := False;
+    Built := False;
   end
   else
   begin
@@ -898,7 +898,7 @@ begin
     else
       NoNewPoints := Source.NumberOfPoints;
     Capacity := NumberOfPoints + NoNewPoints;
-    Build := False;
+    Built := False;
     if Index < NumberOfPoints then
     begin
       // insert space for new points
@@ -961,7 +961,7 @@ begin
        FFragments := FNoPoints - 1;
     if not DuplicatePoint then
       Fknuckles[index] := True;
-    Build := False;
+    Built := False;
   end;
 end;{TFreeSpline.InsertSpline}
 
@@ -1036,7 +1036,7 @@ begin
     FKnuckles[I] := FKnuckles[FNoPoints - I - 1];
     FKnuckles[FNoPoints - I - 1] := K;
   end;
-  Build := False;
+  Built := False;
 end;{TFreeSpline.InvertDirection}
 
 procedure TFreeSpline.LoadBinary(Source: TFreeFileBuffer);
@@ -1083,7 +1083,7 @@ begin
   NParams := 0;
   Setlength(Params, NumberOfPoints);
   // count number of knucklepoints
-  if not Build then
+  if not Built then
     Rebuild;
   for I := 2 to NumberOfPoints - 1 do
   begin
@@ -1146,7 +1146,7 @@ begin
   FTotalLength := 0.0;
   FNoPoints := 0;
   inherited Clear;
-  Build := False;
+  Built := False;
   Setlength(FPoints, 0);
   FCapacity := 0;
   FNoPoints := 0;
@@ -1174,7 +1174,7 @@ begin
   Result.Z := 0;
   PointNo1 := 0;
   PointNo2 := 0;
-  if not FBuild then
+  if not FBuilt then
     Rebuild;
   if FNoPoints < 2 then
     Rebuild;

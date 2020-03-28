@@ -529,8 +529,8 @@ end;{TFreeSubdivisionPoint.Clear}
 constructor TFreeSubdivisionPoint.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
-  FFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
-  FEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
+  FFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
+  FEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
   Clear;
 end;{TFreeSubdivisionPoint.Create}
 
@@ -611,14 +611,14 @@ end;
 
 destructor TFreeSubdivisionPoint.Destroy;
 begin
-  logger.IncreaseIndent;
-  logger.Debug(format('TFreeSubdivisionPoint[%d].Destroy',[self.FID]));
+  //logger.IncreaseIndent;
+  //logger.Debug(format('TFreeSubdivisionPoint[%d].Destroy',[self.FID]));
   //Unreference;
   Clear;
   FreeAndNil(FFaces);
   FreeAndNil(FEdges);
   inherited Destroy;
-  logger.DecreaseIndent;
+  //logger.DecreaseIndent;
 end;{TFreeSubdivisionPoint.Destroy}
 
 function TFreeSubdivisionPoint.IndexOfFace(Face: TFreeSubdivisionFace): integer;

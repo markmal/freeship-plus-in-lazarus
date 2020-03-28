@@ -64,7 +64,7 @@ begin
     FControlPoints.Add(P);
     P.FSurface := self;
   end;
-  Build := False;
+  Built := False;
 end;{TFreeSubdivisionSurface.AddControlPoint}
 
 // Adds a new controlpoint at 0,0,0 without checking other points
@@ -977,7 +977,7 @@ var
   I: integer;
   Point: TFreeSubdivisionPoint;
 begin
-  if not build then
+  if not Built then
     Rebuild;
   setlength(FGausCurvature, FPoints.Count);
   FPoints.Sort;
@@ -1032,7 +1032,7 @@ end;{TFreeSubdivisionSurface.FGetControlFace}
 
 function TFreeSubdivisionSurface.FGetGaussCurvatureCalculated: boolean;
 begin
-  Result := Build and (length(FGausCurvature) = FPoints.Count);
+  Result := Built and (length(FGausCurvature) = FPoints.Count);
 end;{TFreeSubdivisionSurface.FGetGaussCurvatureCalculated}
 
 function TFreeSubdivisionSurface.FGetLayer(Index: integer): TFreeSubdivisionLayer;
@@ -1197,18 +1197,18 @@ begin
   Result := FLastusedLayerID;
 end;{TFreeSubdivisionSurface.FRequestNewLayerID}
 
-procedure TFreeSubdivisionSurface.FSetActiveLayer(Val: TFreeSubdivisionLayer);
+procedure TFreeSubdivisionSurface.SetActiveLayer(Val: TFreeSubdivisionLayer);
 begin
   FActiveLayer := Val;
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, FActiveLayer);
-end;{TFreeSubdivisionSurface.FSetActiveLayer}
+end;{TFreeSubdivisionSurface.SetActiveLayer}
 
-procedure TFreeSubdivisionSurface.FSetBuild(Val: boolean);
+procedure TFreeSubdivisionSurface.SetBuilt(Val: boolean);
 var
   I: integer;
 begin
-  inherited FSetBuild(Val);
+  inherited SetBuilt(Val);
 
   { moved to Rebuild. because it may cause corruption if called here during rebuilding
   if not Val then
@@ -1221,44 +1221,52 @@ begin
     FMinGaussCurvature := 0.0;
     FMaxGaussCurvature := 0.0;
   end; }
-end;{TFreeSubdivisionSurface.FSetBuild}
+end;{TFreeSubdivisionSurface.SetBuild}
 
-procedure TFreeSubdivisionSurface.FSetDesiredSubdivisionLevel(val: byte);
+procedure TFreeSubdivisionSurface.SetDesiredSubdivisionLevel(val: byte);
 begin
   if Val > 4 then
     Val := 4;
   if Val <> FDesiredSubdivisionLevel then
   begin
     FDesiredSubdivisionLevel := val;
-    Build := False;
+    Built := False;
   end;
-end;{TFreeSubdivisionSurface.FSetDesiredSubdivisionLevel}
+end;{TFreeSubdivisionSurface.SetDesiredSubdivisionLevel}
 
-procedure TFreeSubdivisionSurface.FSetFShowControlNet(Val: boolean);
+procedure TFreeSubdivisionSurface.SetFShowControlNet(Val: boolean);
 begin
   if Val <> FShowControlNet then
   begin
     FShowControlNet := Val;
   end;
-end;{TFreeSubdivisionSurface.FSetFShowControlNet}
+end;{TFreeSubdivisionSurface.SetFShowControlNet}
 
-procedure TFreeSubdivisionSurface.FSetSubdivisionMode(val: TFreeSubdivisionMode);
+procedure TFreeSubdivisionSurface.SetSubdivisionMode(val: TFreeSubdivisionMode);
 begin
   if val <> FSubdivisionMode then
   begin
     FSubdivisionMode := val;
-    Build := False;
+    Built := False;
   end;
-end;{TFreeSubdivisionSurface.FSetSubdivisionMode}
+end;{TFreeSubdivisionSurface.SetSubdivisionMode}
 
-procedure TFreeSubdivisionSurface.FSetUnderwaterColor(Val: TColor);
+procedure TFreeSubdivisionSurface.SetShadeUnderWater(Val: boolean);
+begin
+  if val <> FShadeUnderWater then
+  begin
+    FShadeUnderWater := val;
+    Built := False;
+  end;
+end;{TFreeSubdivisionSurface.SetShadeUnderWater}
+
+procedure TFreeSubdivisionSurface.SetUnderwaterColor(Val: TColor);
 begin
   if val <> FUnderwaterColor then
   begin
     FUnderwaterColor := val;
-    Build := False;
   end;
-end;{TFreeSubdivisionSurface.FSetSubdivisionMode}
+end;{TFreeSubdivisionSurface.SetSubdivisionMode}
 
 
 function TFreeSubdivisionSurface.AddControlFace(Points: array of T3DCoordinate;
@@ -1361,7 +1369,7 @@ begin
   end
   else
     Result := nil;
-  Build := False;
+  Built := False;
 end;{TFreeSubdivisionSurface.AddControlFace}
 
 function TFreeSubdivisionSurface.AddControlEdge(P1, P2: TFreeSubdivisionControlPoint):
@@ -1389,7 +1397,7 @@ procedure TFreeSubdivisionSurface.AddControlCurve(Curve: TFreesubdivisionControl
 begin
   FControlCurves.Add(Curve);
   Curve.FSurface := self;
-  Build := False;
+  Built := False;
 end;{TFreeSubdivisionSurface.AddControlCurve}
 
 function TFreeSubdivisionSurface.AddControlFace(Points: TFasterListTFreeSubdivisionControlPoint;
@@ -1489,7 +1497,7 @@ begin
     //      begin
     //         Result.Destroy;
     //         Result:=nil;
-    //      end else Build:=False;
+    //      end else Built:=False;
   end;
 end;{TFreeSubdivisionSurface.AddControlFace}
 
@@ -1699,7 +1707,7 @@ begin
   // Add one default layer and set it to active
   Layer := AddNewLayer;
   ActiveLayer := Layer;
-  Build := False;
+  Built := False;
   FDrawMirror := False;
   FShowControlNet := True;
   FShowInteriorEdges := False;
@@ -2153,7 +2161,7 @@ begin
             begin
               Face.InsertEdge(V1, V2);
               V2.Selected := False;
-              Build := False;
+              Built := False;
               break;
             end;
           end;
@@ -2262,7 +2270,7 @@ begin
   begin
     // export subdivided surface
 
-    if not build then
+    if not Built then
       rebuild;
     // first sort controlpoints for faster acces of function (Indexof())
     Strings.Add('# FREE!ship model');
@@ -2335,7 +2343,7 @@ begin
   else
   begin
     // export the controlnet only
-    if not build then
+    if not Built then
       rebuild;
     // first sort controlpoints for faster acces of function (Indexof())
     Strings.Add('# FREE!ship model');
@@ -2406,7 +2414,7 @@ procedure TFreeSubdivisionSurface.Extents(var Min, Max: T3DCoordinate);
 var
   I: integer;
 begin
-  if not build then
+  if not Built then
     Rebuild;
   if NumberOfControlFaces > 0 then
   begin
@@ -2516,7 +2524,7 @@ begin
   finally
     Vertices.Destroy;
     Initialize(NoVertices + 1, NoEdges + 1, NumberOfControlFaces + 1);
-    Build := False;
+    Built := False;
   end;
 end;{TFreeSubdivisionSurface.ExtrudeEdges}
 
@@ -2564,7 +2572,7 @@ var
 
 begin
   // first assemble all edges belonging to this set of faces
-  Edges := TFasterListTFreeSubdivisionEdge.Create;
+  Edges := TFasterListTFreeSubdivisionEdge.Create(false,true);
   Edges.Capacity := Faces.Count + 100;
   ArrayLength := 10;
   Setlength(IntArray, ArrayLength);
@@ -2902,14 +2910,14 @@ end;{TFreeSubdivisionSurface.CalculateIntersections}
 constructor TFreeSubdivisionSurface.Create;
 begin
   inherited Create(nil);
-  FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
-  FControlPointGroups := TFasterListTFreeSubdivisionControlPointGroup.Create(true,false);
-  FControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(true,false);
-  FControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
-  FPoints := TFasterListTFreeSubdivisionPoint.Create(true,false);
-  FEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
-  FLayers := TFasterListTFreeSubdivisionLayer.Create(true,false);
-  FControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
+  FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(false,false);
+  FControlPointGroups := TFasterListTFreeSubdivisionControlPointGroup.Create(false,false);
+  FControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(false,false);
+  FControlFaces := TFasterListTFreeSubdivisionControlFace.Create(false,false);
+  FPoints := TFasterListTFreeSubdivisionPoint.Create(false,false);
+  FEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
+  FLayers := TFasterListTFreeSubdivisionLayer.Create(false,false);
+  FControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(false,false);
   FSelectedControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
   FSelectedControlPointGroups := TFasterListTFreeSubdivisionControlPointGroup.Create(true,false);
   FSelectedControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(true,false);
@@ -2968,7 +2976,7 @@ var
 begin
   if FIsBuilding then exit; // no double entries
 
-  if not Build then
+  if not Built then
     Rebuild;
 
   if Viewport.ViewportMode <> vmWireframe then
@@ -3325,7 +3333,7 @@ begin
     Layer := FLayers[Index];
     Layer.AddControlFace(Face);
   end;
-  Build := False;
+  Built := False;
   FInitialized := True;
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
@@ -3450,7 +3458,7 @@ var
   Layer: TFreeSubdivisionLayer;
 begin
   Result := False;
-  if not build then
+  if not Built then
     Rebuild;
   if not PlaneIntersectsBox(self.Min, self.Max, Plane) then
     exit;
@@ -3601,7 +3609,7 @@ begin
       SortedPointLists.Destroy;
     end;
     Edges.Destroy;
-    Build := False;
+    Built := False;
   end
   else
     FreeAndNil(CPoints);
@@ -3762,7 +3770,7 @@ begin
     FControlFaces.Add(Face);
   end;
 
-  Build := False;
+  Built := False;
   FInitialized := True;
 
   if not self.CheckIntegrity
@@ -3851,7 +3859,7 @@ begin
     FControlFaces.Add(Face);
     Face.LoadFromStream(LineNr, Strings);
   end;
-  Build := False;
+  Built := False;
   FInitialized := True;
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
@@ -3964,7 +3972,7 @@ begin
         end;
         ActiveLayer := self.Layer[NumberOfLayers - 1];
       finally
-        Build := False;
+        Built := False;
         Data.Destroy;
       end;
     end
@@ -3999,7 +4007,7 @@ var
 begin
   if FIsBuilding then exit; // no double entries
   FIsBuilding:=true;
-  FBuild := false;
+  FBuilt := false;
 
   // moved here from SetBuild
   ClearFaces;
@@ -4031,7 +4039,7 @@ begin
         Curve.FSubdividedPoints.AddList(TFasterList(Curve.FControlPoints));
       end;
     end;
-    //FBuild := True;
+    //FBuilt := True;
 
     while (FCurrentSubdivisionLevel < FDesiredSubdivisionlevel) and
       (FControlFaces.Count > 0) do
@@ -4130,7 +4138,7 @@ begin
     then ShowMessage('After Build Model integrity corruption');
 
   FIsBuilding:=false;
-  FBuild := true;
+  FBuilt := true;
 end;{TFreeSubdivisionSurface.Rebuild}
 
 procedure TFreeSubdivisionSurface.Average;
@@ -4259,7 +4267,7 @@ begin
       I := NumberOfSelectedControlPoints;
     end;
   end;
-  Build := False;
+  Built := False;
 end;{TFreeSubdivisionSurface.Selection_Delete}
 
 procedure TFreeSubdivisionSurface.SortEdges(Edges: TFasterListTFreeSubdivisionEdge);
@@ -4356,24 +4364,28 @@ var
   RefFaces: TFasterListTFreeSubdivisionFace;
   RefEdges: TFasterListTFreeSubdivisionEdge;
   PrevCurrentSubdivisionLevel:integer;
+  t1,t2:TTimeStamp;
 begin
   if NumberOfControlFaces < 1 then exit;
   PrevCurrentSubdivisionLevel := FCurrentSubdivisionLevel;
   Inc(FCurrentSubdivisionLevel, 1);
   //   NewPointList:=XXXXXXTFasterList.Create;
   //   NewPointlist.Capacity:=2*NumberOfPoints;
-  NewEdgeList := TFasterListTFreeSubdivisionEdge.Create(true,false);
+  NewEdgeList := TFasterListTFreeSubdivisionEdge.Create(false,false);
   I := Round(Power(2, FCurrentSubdivisionLevel));
   NewEdgelist.Capacity := NumberOfControlEdges * I;
   FaceCnt := NumberOfFaces;
   CFaceCnt := NumberOfControlFaces;
 
+  t1:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide : FCurrentSubdivisionLevel:'+inttostr(FCurrentSubdivisionLevel));
+
   // Create the list with new facepoints and a reference to the original face
-  RefFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
+  RefFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
   // Create the list with new edgepoints and a reference to the original edge
-  RefEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
+  RefEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
   // Create the list with new vertexpoints and a reference to the original vertex
-  RefVertexPoints := TFasterListTFreeSubdivisionPoint.Create(true,false);
+  RefVertexPoints := TFasterListTFreeSubdivisionPoint.Create(false,false);
 
 
   if FaceCnt = 0 then //first time when surface mesh is not created yet we use control mesh to start with
@@ -4440,6 +4452,10 @@ begin
     end;
   end;
 
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 2:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
+
   // Calculate other edgepoints
   RefEdges.Capacity := RefEdges.Count + NumberOfEdges;
   for I := 0 to NumberOfEdges-1 do
@@ -4450,6 +4466,10 @@ begin
     PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
     RefEdges.AddObject(Edge, PSD);
     end;
+
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 3:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
 
   // Calculate vertexpoints
   RefVertexPoints.Capacity := RefVertexPoints.Count + NumberOfPoints;
@@ -4462,10 +4482,14 @@ begin
       RefVertexPoints.AddObject(P, PSD);
     end;
 
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 4:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
+
   // Sort the new points for faster acces
-  RefVertexPoints.Sort;
-  RefEdges.Sort;
-  RefFaces.Sort;
+  //RefVertexPoints.Sort;
+  //RefEdges.Sort;
+  //RefFaces.Sort;
 
   {for I := 0 to RefFaces.Count - 1 do // investigation
   begin
@@ -4474,7 +4498,11 @@ begin
     then X:=0;
   end;  }
 
+  RefVertexPoints.Sort;
+  RefEdges.Sort;
+  RefFaces.Sort;
   // finally create the refined mesh over the newly create vertexpoints, edgepoints and facepoints
+  i:=0;
   for I := 0 to FControlFaces.Count-1 do
   begin
     CtrlFace := ControlFace[I];
@@ -4484,7 +4512,12 @@ begin
     if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
   end;
 
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 5:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
+
   // cleanup old mesh
+  i:=0;
   for I:=0 to FEdges.Count-1 do
   begin
     Edge := FEdges[I];
@@ -4495,6 +4528,7 @@ begin
   FEdges.Destroy;
   FEdges := NewEdgeList;
 
+  i:=0;
   for I:=0 to FPoints.Count-1 do
   begin
     Point := FPoints[I];
@@ -4528,17 +4562,38 @@ begin
   end;
   }
 
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 6:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
+
   // Add all new points int the point-list
   FPoints.Capacity := RefVertexPoints.Count + RefEdges.Count + RefFaces.Count;
+  //FPoints.IsUnique:=true;
+  //FPoints.IsSorted:=true;
   for I := 0 to RefVertexPoints.Count - 1 do
     if RefVertexPoints.Objects[I] <> nil then
       FPoints.Add(RefVertexPoints.Objects[I]);
+
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 7:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
+
   for I := 0 to RefEdges.Count - 1 do
     if RefEdges.Objects[I] <> nil then
       FPoints.Add(RefEdges.Objects[I]);
+
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 8:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
+
   for I := 0 to RefFaces.Count - 1 do
     if RefFaces.Objects[I] <> nil then
       FPoints.Add(RefFaces.Objects[I]);
+
+  t2:=DateTimeToTimestamp(Now);
+  logger.Debug('Surface.SubDivide 9:'+inttostr(t2.Time - t1.Time));
+  t1:=t2;
+
   FPoints.Capacity := FPoints.Count;
   // Cleanup temp. lists
   RefVertexPoints.Destroy;
@@ -4568,6 +4623,5 @@ begin
 
   FIsAveraged:=false;
   Average;
-
 end;{TFreeSubdivisionSurface.SubDivide}
 

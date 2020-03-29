@@ -89,20 +89,20 @@ procedure TFreeSubdivisionControlPoint.FSetSelected(val: boolean);
 var
   Index: integer;
 begin
-  Index := Owner.FSelectedControlPoints.IndexOf(self);
+  Index := Surface.FSelectedControlPoints.IndexOf(self);
   if Val then
   begin
     // Only add if it is not already in the list
     if Index = -1 then
-      Owner.FSelectedControlPoints.Add(self);
+      Surface.FSelectedControlPoints.Add(self);
   end
   else
   begin
     if Index <> -1 then
-      Owner.FSelectedControlPoints.Delete(index);
+      Surface.FSelectedControlPoints.Delete(index);
   end;
-  if Assigned(Owner.FOnSelectItem) then
-    Owner.FOnSelectItem(self);
+  if Assigned(Surface.FOnSelectItem) then
+    Surface.FOnSelectItem(self);
 end;{TFreeSubdivisionControlPoint.FSetSelected}
 
 procedure TFreeSubdivisionControlPoint.FSetLocked(val: boolean);
@@ -148,7 +148,7 @@ begin
          FLinearConstrainedPoints[i].Coordinate, Self);
 
   // move all points of selected groups if there
-  if Self = (Surface.FreeShip as TFreeShip).ActiveControlPoint then
+  if Self = Surface.ActiveControlPoint then
     for I:=0 to Surface.NumberOfSelectedControlPointGroups-1 do
       for j:=0 to Surface.SelectedControlPointGroup[i].ControlPoints.Count-1 do
         if Surface.SelectedControlPointGroup[i].ControlPoints[j] <> Self then

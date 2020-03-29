@@ -635,7 +635,8 @@ type
       procedure FLoadRecentFile(sender:TObject);
       procedure FreeShipChangeLayerData(Sender: TObject);
       procedure FreeShipChangeActiveLayer(Sender: TObject;Layer: TFreeSubdivisionLayer);
-      procedure FOnSelectItem(Sender:TObject);
+      procedure OnSelectItem(Sender:TObject);
+      procedure OnChangeActiveControlPoint(Sender:TObject);
 
       procedure HullformWindowOnActivate(Sender:TObject);
       procedure HullformWindowOnDeactivate(Sender:TObject);
@@ -1074,22 +1075,25 @@ begin
   ActiveLayerColorExecute(self);
 end;
 
-procedure TMainForm.FOnselectItem(Sender:TObject);
+procedure TMainForm.OnSelectItem(Sender:TObject);
 var Face1 : TFreeSubdivisionControlFace;
     Face2 : TFreeSubdivisionControlFace;
     Diff  : Boolean;
     I     : Integer;
 
 begin
-   if (Sender is TFreeSubdivisionControlPoint)
+{
+  if (Sender is TFreeSubdivisionControlPoint)
      and (Sender=FreeShip.ActiveControlPoint)
-     and (FreeShip.ActiveControlPoint.Selected=false)
+     and (not FreeShip.ActiveControlPoint.Selected)
    then
      begin
         // The active controlpoint was deselected, probably internally by the subdivision surface.
         // Set the FreeShip.ActiveControlPoint to nil (which also closes the controlpoint window)
         FreeShip.ActiveControlPoint:=nil;
      end;
+}
+
    if FreeShip.NumberOfSelectedControlFaces>0 then
    begin
       // set the layerbox itemindex to the index of the layer of the selected controlfaces
@@ -1113,6 +1117,14 @@ begin
    UpdateMenu;
 end;{TMainForm.FOnselectItem}
 
+procedure TMainForm.OnChangeActiveControlPoint(Sender: TObject);
+begin
+   if (Sender = nil) then
+     FreeShip.ControlpointForm.ActiveControlPoint := nil;
+   if (Sender is TFreeSubdivisionControlPoint) then
+     FreeShip.ControlpointForm.ActiveControlPoint := Sender as TFreeSubdivisionControlPoint;
+   UpdateMenu;
+end;
 
 procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
 begin
@@ -1478,6 +1490,8 @@ begin
    PointAlign.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
    TransformLackenby.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
 
+   if FreeShip.ActiveControlPoint <> nil then
+      FreeShip.ControlpointForm.Visible:=true;
    FreeShip.ControlpointForm.Reload;
 end;{TMainForm.UpdateMenu}
 
@@ -1619,7 +1633,8 @@ begin
    // Initialize some data
    FreeShip.OnChangeActiveLayer:=FreeShipChangeActiveLayer;
    Freeship.OnChangeLayerData:=FreeShipChangeLayerData;
-   FreeShip.OnSelectItem:=FOnSelectItem;
+   FreeShip.OnSelectItem:=OnSelectItem;
+   FreeShip.OnChangeActiveControlPoint:=OnChangeActiveControlPoint;
    FreeShip.Clear;
 
    // fit to screen

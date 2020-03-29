@@ -206,8 +206,8 @@ begin
       Self.Caption := '';
    end else
    begin
-     if TFreeShip(FreeShip).Surface.SelectedControlPoints.IndexOf(ActiveControlPoint)=-1
-     then TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
+     {if TFreeShip(FreeShip).Surface.SelectedControlPoints.IndexOf(ActiveControlPoint)=-1
+     then TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);}
 
      R:=0.0;
      EditDistance.Value:=0.0;

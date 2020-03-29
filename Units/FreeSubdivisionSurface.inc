@@ -1197,6 +1197,15 @@ begin
   Result := FLastusedLayerID;
 end;{TFreeSubdivisionSurface.FRequestNewLayerID}
 
+procedure TFreeSubdivisionSurface.SetActiveControlPoint(
+  AValue: TFreeSubdivisionControlPoint);
+begin
+  if FActiveControlPoint=AValue then Exit;
+  FActiveControlPoint:=AValue;
+  if assigned(FOnChangeActiveControlPoint) then
+     FOnChangeActiveControlPoint(FActiveControlPoint);
+end;
+
 procedure TFreeSubdivisionSurface.SetActiveLayer(Val: TFreeSubdivisionLayer);
 begin
   FActiveLayer := Val;
@@ -1754,6 +1763,9 @@ begin
   FSelectedControlCurves.Clear;
   if Assigned(FOnSelectItem) then
     FOnSelectItem(nil);
+  FActiveControlPoint:=nil;
+  if Assigned(FOnChangeActiveControlPoint) then
+    FOnChangeActiveControlPoint(nil);
 end;{TFreeSubdivisionSurface.Clearselection}
 
 procedure TFreeSubdivisionSurface.ConvertToGrid(Input: TFreeFaceGrid;

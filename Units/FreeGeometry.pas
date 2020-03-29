@@ -1720,6 +1720,7 @@ type
     FIdSequence:integer;
     FLayers: TFasterListTFreeSubdivisionLayer;
     // All layers are stored in this list
+    FActiveControlPoint : TFreeSubdivisionControlPoint;
     FSelectedControlPoints: TFasterListTFreeSubdivisionControlPoint;
     // Controlpoints which are selected by the user are put in this list
     FSelectedControlPointGroups: TFasterListTFreeSubdivisionControlPointGroup;
@@ -1752,6 +1753,7 @@ type
     // Event which is raised when layer-data has been changed
     FOnChangeActiveLayer: TChangeActiveLayerEvent;
     // Event raised when the active layer is changed
+    FOnChangeActiveControlPoint: TNotifyEvent;
     FOnSelectItem: TNotifyEvent;
     // This event is raised whenever an item (such as controlpoint, controledge or controlface) is selected or deselected
 
@@ -1827,6 +1829,7 @@ type
     function FGetSelectedControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function FGetSelectedControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FRequestNewLayerID: integer;
+    procedure SetActiveControlPoint(AValue: TFreeSubdivisionControlPoint);
     procedure SetActiveLayer(Val: TFreeSubdivisionLayer);
     procedure SetBuilt(Val: boolean); override;
     procedure SetDesiredSubdivisionLevel(val: byte);
@@ -1931,6 +1934,8 @@ type
     procedure SubDivide;
     property ActiveLayer: TFreeSubdivisionLayer
       read FActiveLayer write SetActiveLayer;
+    property ActiveControlPoint : TFreeSubdivisionControlPoint
+      read FActiveControlPoint write SetActiveControlPoint;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetControlpoint;
     property ControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
@@ -2021,6 +2026,8 @@ type
       read FGetNumberOfSelectedLockedPoints;
     property OnChangeActiveLayer: TChangeActiveLayerEvent
       read FOnChangeActiveLayer write FOnChangeActiveLayer;
+    property OnChangeActiveControlPoint: TNotifyEvent
+      read FOnChangeActiveControlPoint write FOnChangeActiveControlPoint;
     property OnChangeLayerData: TNotifyEvent
       read FOnChangeLayerData write FOnChangeLayerData;
     property OnSelectItem: TNotifyEvent

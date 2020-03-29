@@ -242,6 +242,21 @@ begin
   Result := Surface.ActiveLayer;
 end;{TFreeShip.FGetActiveLayer}
 
+function TFreeShip.GetActiveControlPoint: TFreeSubdivisionControlPoint;
+begin
+  Result := Surface.ActiveControlPoint;
+end;
+
+function TFreeShip.GetOnChangeActiveControlPoint: TNotifyEvent;
+begin
+  result := Surface.OnChangeActiveControlPoint;
+end;
+
+procedure TFreeShip.SetActiveControlPoint(aControlPoint: TFreeSubdivisionControlPoint);
+begin
+  Surface.ActiveControlPoint := aControlPoint;
+end;
+
 function TFreeShip.FGetBackgroundImage(Index: integer): TFreeBackgroundImageData;
 begin
   Result := FBackgroundImages[index];
@@ -696,6 +711,11 @@ begin
   //Result.SaveToFile('saved_screenshot.jpg');
   thumbNail.Destroy;
 end;{TFreeShip.FGetPreview}
+
+procedure TFreeShip.SetOnChangeActiveControlPoint(AValue: TNotifyEvent);
+begin
+  Surface.OnChangeActiveControlPoint := AValue;
+end;
 
 procedure TFreeShip.AddViewport(Viewport: TFreeViewport);
 // Add a viewport to the list of viewports connected to the model
@@ -2947,7 +2967,7 @@ begin
       Visibility.CursorIncrement := Visibility.CursorIncrement / 1.1;
 end;{TFreeShip.KeyUp}
 
-procedure TFreeShip.SelectPointsInFrame(Viewport: TFreeViewport; rect:TRect);
+procedure TFreeShip.SelectPointsInFrame(Viewport: TfreeViewport; rect: TRect);
 var I, J: integer;
   Point: TFreeSubdivisionControlPoint;
   P2D: TPoint;
@@ -3192,6 +3212,8 @@ begin
         for I:=0 to Surface.ControlPointGroups.Count-1 do
           if Surface.ControlPointGroups[i].ControlPoints.IndexOf(Point)>=0 then
              Surface.ControlPointGroups[i].Selected:=true;
+
+        ActiveControlPoint := Point;
 
         for J := 1 to NumberOfViewports do
           self.Viewport[J - 1].Refresh;

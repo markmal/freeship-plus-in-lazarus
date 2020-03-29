@@ -1712,6 +1712,7 @@ type
     FControlFaces: TFasterListTFreeSubdivisionControlFace;
     // List with controlfaces, which can be changed by the user
     FControlCurves: TFasterListTFreeSubdivisionControlCurve;          // list with mastercurves
+    FFreeShip: TObject;
     FPoints: TFasterListTFreeSubdivisionPoint;
     // List with points obtained by subdividing the surface
     FEdges: TFasterListTFreeSubdivisionEdge;
@@ -1974,6 +1975,8 @@ type
       read FGetGaussCurvatureCalculated;
     property CreasePointColor: TColor
       read FCreasePointColor write FCreasePointColor;
+    property FreeShip: TObject
+      read FFreeShip write FFreeShip;
     property RegularPointColor: TColor
       read FRegularPointColor write FRegularPointColor;
     property Layer[index: integer]: TFreeSubdivisionLayer
@@ -2209,9 +2212,9 @@ implementation
 //{$R ViewportCursors.res}
 {$R cursors.res}         // new nice cursors with antialiasing
 
-
 uses FreeLanguageSupport,
   VRMLUnit,
+  FreeShipUnit,
   FreeBackgroundBlendingDlg,
   FreeBackgroundToleranceDlg,
   FreeSaveImageDlg,

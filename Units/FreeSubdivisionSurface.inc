@@ -1745,7 +1745,7 @@ begin
       end;
 end;{TFreeSubdivisionSurface.ClearFaces}
 
-procedure TFreeSubdivisionSurface.Clearselection;
+procedure TFreeSubdivisionSurface.ClearSelection;
 // Deselect all selected items at once
 begin
   FSelectedControlPoints.Clear;
@@ -2222,7 +2222,7 @@ begin
 end;{TFreeSubdivisionSurface.Edge_Connect}
 
 
-procedure TFreeSubdivisionSurface.ExportFEFFile(Strings: TStringList);
+procedure TFreeSubdivisionSurface.ExportFeFFile(Strings: TStringList);
 var
   I: integer;
 begin
@@ -2907,9 +2907,9 @@ begin
   Edges.Destroy;
 end;{TFreeSubdivisionSurface.CalculateIntersections}
 
-constructor TFreeSubdivisionSurface.Create;
+constructor TFreeSubdivisionSurface.Create(Owner: TFreeSubdivisionSurface);
 begin
-  inherited Create(nil);
+  inherited Create(Owner);
   FControlPoints := TFasterListTFreeSubdivisionControlPoint.Create(false,false);
   FControlPointGroups := TFasterListTFreeSubdivisionControlPointGroup.Create(false,false);
   FControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(false,false);

@@ -725,6 +725,8 @@ begin
 end;{TFreeShip.AdjustMarkers}
 
 constructor TFreeShip.Create(AOwner: TComponent);
+var
+  FreeShip: TFreeShip;
 begin
   inherited Create(AOwner);
   if AOwner is TMainForm then
@@ -744,6 +746,7 @@ begin
   FFileVersion := CurrentVersion;
   FActiveControlPoint := nil;
   FSurface := TFreeSubdivisionSurface.Create(nil);
+  FSurface.FreeShip:= Self;
   FSurface.LayerColor := FPreferences.LayerColor;
   FViewports := TFasterListTFreeViewPort.Create;
   FMarkers := TFasterListTFreeMarker.Create;

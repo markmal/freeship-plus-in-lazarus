@@ -148,15 +148,16 @@ begin
          FLinearConstrainedPoints[i].Coordinate, Self);
 
   // move all points of selected groups if there
-  for I:=0 to Surface.NumberOfSelectedControlPointGroups-1 do
-    for j:=0 to Surface.SelectedControlPointGroup[i].ControlPoints.Count-1 do
-      if Surface.SelectedControlPointGroup[i].ControlPoints[j] <> Self then
-      begin
-        gPoint:=Surface.SelectedControlPointGroup[i].ControlPoints[j];
-        // do not move anchored points - they already moved
-        if FAnchoredPoints.IndexOf(gPoint) < 0 then
-          gPoint.MoveBy(Viewport, dX, dY, dZ, nil);
-      end;
+  if Self = (Surface.FreeShip as TFreeShip).ActiveControlPoint then
+    for I:=0 to Surface.NumberOfSelectedControlPointGroups-1 do
+      for j:=0 to Surface.SelectedControlPointGroup[i].ControlPoints.Count-1 do
+        if Surface.SelectedControlPointGroup[i].ControlPoints[j] <> Self then
+        begin
+          gPoint:=Surface.SelectedControlPointGroup[i].ControlPoints[j];
+          // do not move anchored points - they already moved
+          if FAnchoredPoints.IndexOf(gPoint) < 0 then
+            gPoint.MoveBy(Viewport, dX, dY, dZ, nil);
+        end;
 
   FInSetCoordinate := false;
 end;{TFreeSubdivisionControlPoint.FSetCoordinate}

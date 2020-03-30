@@ -121,8 +121,8 @@ type
     FFaceSets: TFasterListTVRMLIndexedFaceSet;
     FFileType: TVRMLFileType;
     FLastAddedCoordinates: TVRMLCoordinate3;
-    function FGetCount: integer;
-    function FGetItems(Index: integer): TVRMLObject;
+    function GetCount: integer;
+    function GetItems(Index: integer): TVRMLObject;
   public
     procedure Add(VRMLObject: TVRMLObject);
     procedure Clear;
@@ -131,9 +131,9 @@ type
     function ExtractFaceSetData: TFasterListTVRMLIndexedFaceSet;
     procedure LoadFromFile(Filename: string);
     property Count: integer
-      read FGetCount;
+      read GetCount;
     property Items[index: integer]: TVRMLObject
-      read FGetItems;
+      read GetItems;
   end;
 
 implementation
@@ -375,7 +375,7 @@ end;{TVRMLobject.Clear}
 
 destructor TVRMLobject.Destroy;
 begin
-  Clear;
+  //Clear;
   inherited Destroy;
 end;{TVRMLobject.Destroy}
 
@@ -710,15 +710,15 @@ begin
 end;{TVRMLIndexedFaceSet.Load}
 
 // ##################################### VRML list #####################################
-function TVRMLList.FGetCount: integer;
+function TVRMLList.GetCount: integer;
 begin
   Result := FObjects.Count;
-end;{TVRMLList.FGetCount}
+end;{TVRMLList.GetCount}
 
-function TVRMLList.FGetItems(Index: integer): TVRMLObject;
+function TVRMLList.GetItems(Index: integer): TVRMLObject;
 begin
   Result := FObjects[index];
-end;{TVRMLList.FGetItems}
+end;{TVRMLList.GetItems}
 
 procedure TVRMLList.Add(VRMLObject: TVRMLObject);
 begin
@@ -739,8 +739,8 @@ procedure TVRMLList.Clear;
 var
   I: integer;
 begin
-  for I := 1 to Count do
-    Items[I - 1].Destroy;
+  for I := 0 to Count - 1 do
+    begin FObjects[I].Free; FObjects[I]:=nil; end;
   FObjects.Clear;
   FFaceSets.Clear;
   FLastAddedCoordinates := nil;

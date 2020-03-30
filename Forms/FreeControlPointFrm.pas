@@ -538,14 +538,12 @@ begin
       if (OrdEdit = EditX) and (abs(P.X-Val) < 1e-5) then exit;
       if (OrdEdit = EditY) and (abs(P.Y-Val) < 1e-5) then exit;
       if (OrdEdit = EditZ) and (abs(P.Z-Val) < 1e-5) then exit;
-      if (TFreeShip(FreeShip).NumberOfSelectedControlPoints>1) then
+      if (TFreeShip(FreeShip).NumberOfSelectedControlPoints>0) then
       begin
          // SAP change all selected points
-         I := 1;
-         while I <= TFreeShip(FreeShip).NumberOfSelectedControlPoints do
+         for I := 0 to TFreeShip(FreeShip).NumberOfSelectedControlPoints - 1 do
          begin
-            P := TFreeShip(FreeShip).SelectedControlPoint[I-1].Coordinate;
-            Val := OrdEdit.Value;
+            P := TFreeShip(FreeShip).SelectedControlPoint[I].Coordinate;
             //if abs(P.X-Val)>1e-5 then
             begin
                if not saved then
@@ -556,9 +554,8 @@ begin
                if (OrdEdit = EditX) then P.X:=Val;
                if (OrdEdit = EditY) then P.Y:=Val;
                if (OrdEdit = EditZ) then P.Z:=Val;
-               TFreeShip(FreeShip).SelectedControlPoint[I-1].SetCoordinate(nil,P,nil);
+               TFreeShip(FreeShip).SelectedControlPoint[I].SetCoordinate(nil,P,nil);
             end;
-            Inc(I);
          end;
          { // this is for old FreeTextEdit component
          //  finally update the text field:

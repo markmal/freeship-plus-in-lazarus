@@ -2817,7 +2817,7 @@ const
   MinimizeFaces = True;
   SendTriangles = False;//true;
 var
-  I, J, K: integer;
+  I, J, K, LI: integer;
   Cols, Rows: integer;
   Dialog: TSaveDialog;
   Prev: TCursor;
@@ -3005,7 +3005,7 @@ var
   end;{AssembleTriangle}
 
   procedure ProcessGrid(Cols, Rows: integer; Grid: TFreeSubdivisionPointGrid;
-    ColorInd: integer);
+    ColorInd: integer; LayerIsSymmetric: boolean);
   // convert grid to a NURB
   var
     NURB, NURB2: TFreeNURBsurface;
@@ -3233,7 +3233,8 @@ var
       Nurb.Point[0, Rows + 1] := Grid[Rows - 1][0].LimitPoint;
       Nurb.Point[Cols + 1, Rows + 1] := Grid[Rows - 1][Cols - 1].LimitPoint;
       IGESList.Add_Entity_128(NURB, ColorInd);
-      if FreeShip.Visibility.ModelView = mvBoth then
+      if (FreeShip.Visibility.ModelView = mvBoth)
+         and LayerIsSymmetric then
       begin
         NURB2 := TFreeNURBsurface.Create(FreeShip.Surface);
         NURB2.SetCapacity(Nurb.ColCount, Nurb.RowCount);
@@ -3284,15 +3285,15 @@ begin
       IGESList.FileName := Dialog.FileName;
       // Build color table
       Layers := TFasterListTFreeSubdivisionLayer.Create;
-      for I := 1 to FreeShip.NumberOfLayers do
-        if (FreeShip.Layer[I - 1].Visible) and (FreeShip.Layer[I - 1].Count > 0) then
-          Layers.Add(FreeShip.Layer[I - 1]);
+      for I := 0 to FreeShip.NumberOfLayers - 1 do
+        if (FreeShip.Layer[I].Visible) and (FreeShip.Layer[I].Count > 0) then
+          Layers.Add(FreeShip.Layer[I]);
       Layers.Sort;
       Setlength(ColorIndices, Layers.Count);
-      for I := 1 to Layers.Count do
+      for I := 0 to Layers.Count - 1 do
       begin
-        Layer := Layers[I - 1];
-        ColorIndices[I - 1] := IGESList.Add_Entity_314(Layer.Color);
+        Layer := Layers[I];
+        ColorIndices[I] := IGESList.Add_Entity_314(Layer.Color);
       end;
       if MinimizeFaces then
       begin
@@ -3313,12 +3314,10 @@ begin
               (FaceData.Faces[0][0].NumberOfPoints = 4)) then
             begin
               CtrlFace := FaceData.Faces[0][0];
-              if Layers.SortedIndexOf(Ctrlface.Layer) <> -1 then
-                ColorIndex := ColorIndices[Layers.SortedIndexOf(Ctrlface.Layer)]
-              else
-                Colorindex := 0;
+              LI := Layers.SortedIndexOf(Ctrlface.Layer);
+              ColorIndex := ColorIndices[LI];
               FreeShip.Surface.ConvertToGrid(FaceData, Cols, Rows, Grid);
-              ProcessGrid(Cols, Rows, Grid, ColorIndex);
+              ProcessGrid(Cols, Rows, Grid, ColorIndex, Ctrlface.Layer.Symmetric);
             end
             else
             begin
@@ -3331,7 +3330,7 @@ begin
               begin
                 AssembleTriangle(Cols, Rows, Grid, CtrlFace);
                 if (Cols > 0) and (Rows > 0) then
-                  ProcessGrid(Cols, Rows, Grid, ColorIndex);
+                  ProcessGrid(Cols, Rows, Grid, ColorIndex, Ctrlface.Layer.Symmetric);
               end
               else
               begin
@@ -3347,7 +3346,7 @@ begin
                   Grid[0][0] := Face.Point[1];
                   Grid[1][0] := Face.Point[2];
                   Grid[1][1] := Face.Point[3];
-                  ProcessGrid(Cols, Rows, Grid, ColorIndex);
+                  ProcessGrid(Cols, Rows, Grid, ColorIndex, Ctrlface.Layer.Symmetric);
                 end;
               end;
             end;
@@ -3370,7 +3369,7 @@ begin
             Setlength(FaceData.Faces[0], 1);
             FaceData.Faces[0][0] := Ctrlface;
             FreeShip.Surface.ConvertToGrid(FaceData, Cols, Rows, Grid);
-            ProcessGrid(Cols, Rows, Grid, ColorIndex);
+            ProcessGrid(Cols, Rows, Grid, ColorIndex, Ctrlface.Layer.Symmetric);
           end
           else
           begin
@@ -3386,7 +3385,7 @@ begin
               Grid[0][0] := Face.Point[1];
               Grid[1][0] := Face.Point[2];
               Grid[1][1] := Face.Point[3];
-              ProcessGrid(Cols, Rows, Grid, ColorIndex);
+              ProcessGrid(Cols, Rows, Grid, ColorIndex, Ctrlface.Layer.Symmetric);
             end;
           end;
         end;

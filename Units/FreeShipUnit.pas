@@ -750,6 +750,7 @@ type
     function Point_New: TFreeSubdivisionControlPoint; // Add a new point to the model with no edges/faces attached
     function Point_New(coord:T3DCoordinate): TFreeSubdivisionControlPoint; overload;
     procedure Point_AnchorToPoint;
+    procedure Point_CoinsideToPoint;
     procedure Point_ProjectStraightLine;
     // Project all selected points onto a straight line through the first and last selected points
     procedure Point_ProjectStraightLinePermanentConstraint;

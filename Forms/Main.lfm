@@ -1445,6 +1445,12 @@ object MainForm: TMainForm
       Caption = 'Add grid panel'
       OnExecute = AddGridPanelExecute
     end
+    object PointsCoincide: TAction
+      Category = 'Point'
+      Caption = 'Coincide points'
+      Hint = 'Coincide points to the first selected one'
+      OnExecute = PointsCoincideExecute
+    end
   end
   object MenuImages: TImageList
     left = 112
@@ -3568,6 +3574,9 @@ object MainForm: TMainForm
       end
       object MenuItemPointAnchor: TMenuItem
         Action = PointAnchor
+      end
+      object MenuItem2: TMenuItem
+        Action = PointsCoincide
       end
       object PointCollapse1: TMenuItem
         Action = PointCollapse

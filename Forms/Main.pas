@@ -87,6 +87,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     MenuItem2: TMenuItem;
+     PointsCoincide: TAction;
      AddGridPanel: TAction;
      ActionCheckUpdates: TAction;
      AddFlowLine: TAction;
@@ -467,6 +469,7 @@ type
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
     procedure LayerBoxPanelClick(Sender: TObject);
+    procedure PointsCoincideExecute(Sender: TObject);
     function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
     procedure MainClientPanelClick(Sender: TObject);
@@ -1488,6 +1491,8 @@ begin
    PointsUnlock.Enabled:=Freeship.NumberOfSelectedLockedPoints>0;
    PointsUnlockAll.Enabled:=Freeship.NumberOfLockedPoints>0;
    PointAlign.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
+   PointAnchor.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
+   PointsCoincide.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
    TransformLackenby.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
 
    if FreeShip.ActiveControlPoint <> nil then
@@ -1604,6 +1609,13 @@ end;{TMainForm.ExitProgramExecute}
 procedure TMainForm.LayerBoxPanelClick(Sender: TObject);
 begin
 
+end;
+
+procedure TMainForm.PointsCoincideExecute(Sender: TObject);
+begin
+  // get multiple selected points to the location of a first selected one
+  Freeship.Edit.Point_CoinsideToPoint;
+  UpdateMenu;
 end;
 
 

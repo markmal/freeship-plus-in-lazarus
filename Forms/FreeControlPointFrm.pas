@@ -453,7 +453,8 @@ begin
    if ActiveControlPoint<>nil then
      if EntryMethod <> emTyping then
      begin
-        P:=ActiveControlPoint.Coordinate;
+        OrdinateEditorEditingDone(Sender);
+        {P:=ActiveControlPoint.Coordinate;
         if OrdEdit = EditX then P.X:=OrdEdit.Value;
         if OrdEdit = EditY then P.Y:=OrdEdit.Value;
         if OrdEdit = EditZ then P.Z:=OrdEdit.Value;
@@ -463,7 +464,7 @@ begin
         TFreeShip(FreeShip).Build:=False;
         TFreeShip(FreeShip).FileChanged:=True;
         TFreeShip(FreeShip).Redraw;
-        //ActiveControlPoint:=ActiveControlPoint;
+        //ActiveControlPoint:=ActiveControlPoint; }
      end;
    FPointEditorChanging:=false;
 end;

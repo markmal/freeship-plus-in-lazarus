@@ -9530,7 +9530,63 @@ begin
     else
       MessageDlg(Userstring(172) + '.', mtError, [mbOK], 0);
   end;
-end;{TFreeEdit.Point_ProjectStraightLine}
+end;{TFreeEdit.Point_AnchorToPoint}
+
+// get selected points together to the first one
+procedure TFreeEdit.Point_CoinsideToPoint;
+var
+  I: integer;
+  NLocked: integer;
+  NChanged: integer;
+  Point: TFreeSubdivisionControlPoint;
+  P1, P2: TFreeSubdivisionControlPoint;
+  P: T3DCoordinate;
+  vUndo: TFreeUndoObject;
+begin
+  if FreeShip.NumberOfSelectedControlPoints > 1 then
+  begin
+    NLocked := 0;
+    // Determine if the number of points to be moved does not conatin locked
+    // or hard anchored controlpoints.
+    // However the first and last points (determining the linesegment) are
+    // allowed to be locked or hard anchored
+    NLocked := 0;
+    for I := 1 to FreeShip.NumberOfSelectedControlPoints-1 do
+      begin
+      Point := FreeShip.SelectedControlPoint[I];
+      if Point.Locked or ((Point.AnchorPoint<>nil) and Point.IsAnchorHard)
+        then
+        Inc(NLocked);
+      end;
+    // Number of locked or hard anchored points must be smaller then NumberOfSelectedControlPoints-2
+    if NLocked < FreeShip.NumberOfSelectedControlPoints - 1 then
+    begin
+      P1 := FreeShip.SelectedControlPoint[0];
+      vUndo := CreateUndoObject(rsPointAnchorConstraintChanged, False);
+      NChanged := 0;
+      for I := 1 to FreeShip.NumberOfSelectedControlPoints-1 do
+      begin
+        Point := FreeShip.SelectedControlPoint[I];
+        if not Point.Locked
+          and not((Point.AnchorPoint<>nil) and Point.IsAnchorHard) then
+        begin
+          Point.Coordinate := P1.Coordinate;
+          Inc(NChanged);
+        end;
+      end;
+      if NChanged > 0 then
+      begin
+        vUndo.Accept;
+        FreeShip.FileChanged := True;
+        FreeShip.Redraw;
+      end
+      else
+        vUndo.Delete;
+    end
+    else
+      MessageDlg(Userstring(172) + '.', mtError, [mbOK], 0);
+  end;
+end;{TFreeEdit.Point_CoinsideToPoint}
 
 // Project all selected points onto a straight line through the first and last selected points
 procedure TFreeEdit.Point_ProjectStraightLine;
@@ -9545,13 +9601,19 @@ var
 begin
   if FreeShip.NumberOfSelectedControlPoints > 2 then
   begin
-    // Determine if the number of points to be moved does not conatin locked controlpoints only
-    // however the first and last points (determining the linesegment) are allowed to be locked
+    // Determine if the number of points to be moved does not conatin locked
+    // or hard anchored controlpoints.
+    // However the first and last points (determining the linesegment) are
+    // allowed to be locked or hard anchored
     NLocked := 0;
-    for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do
-      if FreeShip.SelectedControlPoint[I - 1].Locked then
+    for I := 1 to FreeShip.NumberOfSelectedControlPoints-1 do
+      begin
+      Point := FreeShip.SelectedControlPoint[I];
+      if Point.Locked or ((Point.AnchorPoint<>nil) and Point.IsAnchorHard)
+        then
         Inc(NLocked);
-    // Number of lovked points must be smaller then NumberOfSelectedControlPoints-2
+      end;
+    // Number of locked or hard anchored points must be smaller then NumberOfSelectedControlPoints-2
     if NLocked < FreeShip.NumberOfSelectedControlPoints - 2 then
     begin
       P1 := FreeShip.SelectedControlPoint[0];
@@ -9561,7 +9623,8 @@ begin
       for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do
       begin
         Point := FreeShip.SelectedControlPoint[I - 1];
-        if not Point.Locked then
+        if not Point.Locked
+          and not((Point.AnchorPoint<>nil) and Point.IsAnchorHard)  then
         begin
           P := ProjectPointOnline(Point.Coordinate, P1.Coordinate, P2.Coordinate);
           if DistPP3D(P, Point.Coordinate) > 1e-7 then

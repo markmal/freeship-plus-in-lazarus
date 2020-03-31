@@ -1122,7 +1122,9 @@ end;{TMainForm.FOnselectItem}
 
 procedure TMainForm.OnChangeActiveControlPoint(Sender: TObject);
 begin
-   if (Sender = nil) then
+   if (Sender = nil)
+      and assigned(FreeShip)
+      and assigned(FreeShip.ControlpointForm) then
      FreeShip.ControlpointForm.ActiveControlPoint := nil;
    if (Sender is TFreeSubdivisionControlPoint) then
      FreeShip.ControlpointForm.ActiveControlPoint := Sender as TFreeSubdivisionControlPoint;

@@ -1492,7 +1492,7 @@ begin
         P2.AddEdge(Edge);
         FControlEdges.Add(Edge);
         Edge.AddFace(Result);
-        Edge.Crease := True;
+        Edge.Crease := False;
       end
       else
       begin
@@ -1502,6 +1502,7 @@ begin
       end;
       P1 := P2;
     end;
+
     //      if Result.NumberOfpoints<3 then
     //      begin
     //         Result.Destroy;
@@ -3357,14 +3358,15 @@ procedure TFreeSubdivisionSurface.ImportControlPointGrid(Grid: TFreeSubdivisionC
   Layer: TFreesubdivisionLayer);
 var
   P11,P12,P22,P21:TFreeSubdivisionControlPoint;
-  FacePoints: TFasterListTFreeSubdivisionControlPoint;
+  GridPoints, FacePoints: TFasterListTFreeSubdivisionControlPoint;
   Edge: TFreeSubdivisionEdge;
   I, J: integer;
 begin
+  GridPoints := TFasterListTFreeSubdivisionControlPoint.Create;
   FacePoints := TFasterListTFreeSubdivisionControlPoint.Create;
-  for I := 1 to Rows-1 do
+  for I := 1 to Cols-1 do
   begin
-    for J := 1 to Cols-1 do
+    for J := 1 to Rows-1 do
     begin
       FacePoints.Clear;
       P11:=Grid[I - 1, J - 1];
@@ -3382,9 +3384,10 @@ begin
           AddControlFace(FacePoints, True, Layer)
         else
           AddControlFace(FacePoints, True);
+      GridPoints.AddList(FacePoints);
     end;
   end;
-  // set crease edges
+  {// set crease edges
   for I := 2 to Cols do
   begin
     Edge := EdgeExists(Grid[0][I - 2], Grid[0][I - 1]);
@@ -3403,9 +3406,14 @@ begin
     if Edge <> nil then
       Edge.Crease := True;
   end;
+  }
+  for i:=0 to GridPoints.Count-1 do
+    for j:=0 to GridPoints[i].Edges.Count-1 do
+       GridPoints[i].Edge[j].Crease:=false;
+
   // set cornerpoints
-  for I := 1 to Rows do
-    for J := 1 to Cols do
+  for I := 1 to Cols do
+    for J := 1 to Rows do
       if Grid[I - 1][J - 1].NumberOfFaces < 2 then
         Grid[I - 1][J - 1].VertexType := svCorner;
 

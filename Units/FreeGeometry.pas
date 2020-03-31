@@ -1329,7 +1329,9 @@ type
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
     property Coordinate:T3DCoordinate read FGetCoordinate write FSetCoordinate;
     property Curvature: extended read FGetCurvature;
+    property Edges: TFasterListTFreeSubdivisionEdge read FEdges;
     property Edge[index: integer]: TFreeSubdivisionEdge read FGetEdge;
+    property Faces: TFasterListTFreeSubdivisionFace read FFaces;
     property Face[index: integer]: TFreeSubdivisionFace read FGetFace;
     property IsBoundaryVertex: boolean
       read FGetIsBoundaryVertex;

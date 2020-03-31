@@ -861,6 +861,7 @@ begin
   FFilename := Userstring(179);
   FVisibility.Clear;
   FEditMode := emSelectItems;// Set editmode to select items
+
   ActiveControlPoint := nil;
   // delete Markers
   for I := 1 to NumberOfMarkers do
@@ -952,6 +953,14 @@ end;{TFreeShip.ClearUndo}
 
 destructor TFreeShip.Destroy;
 begin
+  self.OnChangeActiveControlPoint:=nil;
+  self.OnChangeActiveLayer:=nil;
+  self.OnChangeCursorIncrement:=nil;
+  self.OnChangeLayerData:=nil;
+  self.OnFileChanged:=nil;
+  self.OnSelectItem:=nil;
+  self.OnUpdateGeometryInfo:=nil;
+  self.FOnUpdateRecentFileList:=nil;
   Clear;
   ClearUndo;
   if Assigned(FControlpointForm) then

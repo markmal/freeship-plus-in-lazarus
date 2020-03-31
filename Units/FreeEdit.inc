@@ -7512,6 +7512,9 @@ begin
         TrvPoints.Add(Pts[I - 1, J - 1]);
         FreeShip.Surface.AddControlFace(TrvPoints, True);
       end;
+    // recheck edges crease after all faces added.
+    for i:=0 to FreeShip.Surface.ControlEdges.Count - 1 do
+       FreeShip.Surface.ControlEdge[i].Crease := false;
 
     FreeShip.Precision := fpMedium;
     FreeShip.Surface.Initialize(1, 1, 1);

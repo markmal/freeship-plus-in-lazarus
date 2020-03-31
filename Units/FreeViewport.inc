@@ -1650,7 +1650,8 @@ begin
     if Cursor <> Desired then
       Cursor := Desired;
   end
-  else if (ssLeft in shift) and (Viewtype = fvPerspective) then
+  else if (Viewtype = fvPerspective)
+       and (ssLeft in Shift) and not(ssCtrl in Shift) then
   begin
     // rotation using Left mousebutton
     Cursor := crRotate;

@@ -110,9 +110,14 @@ var
   Ind1, Ind2: integer;
   Ind3, Ind4: integer;
   P1, P2: TFreeSubdivisionPoint;
-  S, E: TFreeSubdivisionControlPoint;
-  I: integer;
+  SP, EP: TFreeSubdivisionControlPoint;
+  I, J, Ln: integer;
   Layer: TFreeSubdivisionLayer;
+  NewPoints: TFasterListTFreeSubdivisionControlPoint;
+  CL1,CL2: array of TFreeSubdivisionControlPoint;
+  OldEdgeCreases: TFasterListTFreeSubdivisionEdge;
+  ptr: Pointer;
+
 
   procedure Swap(var Ind1, Ind2: integer);
   var
@@ -133,13 +138,28 @@ begin
         if FCurve <> nil then
           FCurve.DeleteEdge(self);
 
-        if selected then
+        if Selected then
           Selected := False;
-        S := Startpoint as TFreeSubdivisionControlPoint;
-        E := Endpoint as TFreeSubdivisionControlPoint;
+        SP := Startpoint as TFreeSubdivisionControlPoint;
+        EP := Endpoint as TFreeSubdivisionControlPoint;
         Owner.Built := False;
         Face1 := Face[0] as TFreeSubdivisionControlFace;
         Face2 := Face[1] as TFreeSubdivisionControlFace;
+
+        //Face1.PrintDebug;
+        //Face2.PrintDebug;
+
+        // save current creases
+        OldEdgeCreases := TFasterListTFreeSubdivisionEdge.Create;
+        for i:=0 to Face1.Points.Count-1 do
+          for j:=0 to Face1.Point[i].Edges.Count-1 do
+            begin
+            Edge := Face1.Point[i].Edge[j];
+            ptr := nil;
+            if Edge.Crease then ptr:=pointer(1);
+            OldEdgeCreases.AddObject(Edge, ptr);
+            end;
+
         // Check faces for consistent ordering of the points (same normal direction)
         // because inconsistent ordering can lead to access violations
         P1 := Face1.Point[Face1.NumberOfPoints - 1];
@@ -168,8 +188,8 @@ begin
 
         Layer := Face1.Layer;
         // Remove the controlfaces from the layers which they belong to
-        Face1.Layer.DeleteControlFace(Face1);
-        Face2.Layer.DeleteControlFace(Face2);
+        //Face1.Layer.DeleteControlFace(Face1);
+        //Face2.Layer.DeleteControlFace(Face2);
         Ind1 := Face1.FPoints.IndexOf(FStartPoint);
         Ind2 := Face1.FPoints.IndexOf(FEndPoint);
         if (Ind2 < Ind1) and (abs(Ind2 - Ind1) = 1) then
@@ -193,16 +213,18 @@ begin
         begin
           Swap(Ind3, Ind4);
         end;
-        // Remove all references to Face1
+
+        {// Remove all references to Face1
         for I := 1 to Face1.NumberOfpoints do
           Face1.Point[I - 1].UnreferenceFace(Face1);
         // Remove all references to Face2
         for I := 1 to Face2.NumberOfpoints do
           Face2.Point[I - 1].UnreferenceFace(Face2);
-        // Add the new face                                        f
+        // Add the new face}
 
-        NewFace := TFreeSubdivisionControlFace.Create(Owner);
-        NewFace.FLayer := layer;
+        //NewFace := TFreeSubdivisionControlFace.Create(Owner);
+        //NewFace.FLayer := Layer;
+        {
         Owner.FControlFaces.Add(NewFace);
         for I := 0 to Ind1 do
         begin
@@ -257,13 +279,76 @@ begin
           end;
           P1 := p2;
         end;
+        }
+
+        NewPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+
+        //make "cycled" list 1
+        Ln:=Face1.Points.Count+1;
+        //Move(Face1.Points.FList, CL1, Ln-1);
+        SetLength(CL1, Ln);
+        for i:=0 to Face1.Points.Count-1 do CL1[i]:=Face1.Point[i];
+        CL1[Ln-1] := Face1.Point[0];
+        {19,6,17,7,19}
+
+        // find edge next to collapsing one
+        i:=0;
+        while not((CL1[i]=SP) and (CL1[i+1]=EP))
+           and not((CL1[i]=EP) and (CL1[i+1]=SP))
+          do inc(i);
+        {i=0}
+
+        // add points after i
+        for j:=i+1 to Ln-1 do
+          NewPoints.Add(CL1[j]); //add unique
+        {6,17,7,19}
+
+        // add points before i
+        for j:=0 to i do
+          NewPoints.Add(CL1[j]); //add unique
+        {6,17,7,19}
+
+        //make "cycled" list 2
+        Ln:=Face2.Points.Count+1;
+        SetLength(CL2, Ln);
+        for i:=0 to Face2.Points.Count-1 do CL2[i]:=Face2.Point[i];
+        CL2[Ln-1] := Face2.Point[0];
+        {5,28,6,19,5}
+
+        // find edge next to collapsing one
+        i:=0;
+        while not((CL2[i]=SP) and (CL2[i+1]=EP))
+           and not((CL2[i]=EP) and (CL2[i+1]=SP))
+          do inc(i);
+        {i=2}
+
+        // add points after i
+        for j:=i+1 to Ln-1 do
+          NewPoints.Add(CL2[j]);
+        //{6,17,7,19} + {19,5} = {6,17,7,19,5}
+
+        // add points before i
+        for j:=0 to i do
+          NewPoints.Add(CL2[j]);
+        //{6,17,7,19,5} + {5,28,6} = {6,17,7,19,5,28}
+
+        Face1.PrintDebug;
+        Face2.PrintDebug;
+        logger.Debug('NewPoints');
+        for i:=0 to NewPoints.Count-1 do
+          logger.Debug(format(' %d',[NewPoints[i].Id]));
+
+        NewFace := Owner.AddControlFace(NewPoints, False, Layer);
+        NewFace.PrintDebug;
+
         // connect the new face to a layer
-        Layer.AddControlFace(NewFace);
-        if Crease then
-          Crease := False;
-        StartPoint.UnreferenceEdge(self);
-        Endpoint.UnreferenceEdge(self);
-        Ind1 := Owner.FControlEdges.IndexOf(self);
+        //Layer.AddControlFace(NewFace);
+
+        //if Crease then
+        //  Crease := False; // ?
+
+
+        {Ind1 := Owner.FControlEdges.IndexOf(self);
         if Ind1 <> -1 then
           Owner.FControlEdges.Delete(Ind1);
         Ind1 := Owner.FControlFaces.IndexOf(Face1);
@@ -271,21 +356,54 @@ begin
           Owner.FControlFaces.Delete(Ind1);
         Ind1 := Owner.FControlFaces.IndexOf(Face2);
         if Ind1 <> -1 then
-          Owner.FControlFaces.Delete(Ind1);
-        Face1.Destroy;
-        face2.Destroy;
+          Owner.FControlFaces.Delete(Ind1);}
+
+        Face1.ClearChildren;
+        Face1.Unreference;
+
+        Face2.ClearChildren;
+        Face2.Unreference;
+
+        Self.Unreference;
+        Face1.Free;
+        Face2.Free;
 
         // check if startpoint and endpoint can be collapsed aswell
-        if (S.NumberOfFaces > 1) and (S.NumberOfEdges = 2) then
+        if (SP.NumberOfFaces > 1) and (SP.NumberOfEdges = 2) then
         begin
-          S.Collapse;
+          NewFace.Points.DeleteItem(SP);
+          SP.Collapse;
         end;
-        if (E.NumberOfFaces > 1) and (E.NumberOfEdges = 2) then
+        if (EP.NumberOfFaces > 1) and (EP.NumberOfEdges = 2) then
         begin
-          E.Collapse;
+          NewFace.Points.DeleteItem(EP);
+          EP.Collapse;
         end;
+
+        // restore edges creases
+        for i:=0 to NewFace.Points.Count-1 do
+          for j:=0 to NewFace.Point[i].Edges.Count-1 do
+            begin
+            Edge := NewFace.Point[i].Edge[j];
+            Ind1 := OldEdgeCreases.IndexOf(Edge);
+            if Ind1>-1 then
+              begin
+              ptr := OldEdgeCreases.Objects[Ind1];
+              Edge.Crease := ptr<>nil;
+              end;
+            end;
+        OldEdgeCreases.Free;
+
+        // recheck creases
+        for i:=0 to NewFace.Points.Count-1 do
+          for j:=0 to NewFace.Point[i].Edges.Count-1 do
+            begin
+            Edge := NewFace.Point[i].Edge[j];
+            Edge.Crease := Edge.Crease or (Edge.FFaces.Count < 2);
+            end;
+
         Owner.Built := False;
-        Destroy;
+        Free;
       end;
     end;
 end;{TFreesubdivisionControlEdge.Collapse}
@@ -350,6 +468,13 @@ begin
   end;
   logger.DecreaseIndent;
 end;{TFreesubdivisionControlEdge.Delete}
+
+procedure TFreesubdivisionControlEdge.Unreference;
+begin
+  inherited Unreference;
+  if FCurve<>nil then FCurve.DeleteEdge(Self);
+  if Surface<>nil then Surface.UnreferenceControlEdge(Self);
+end;
 
 function TFreesubdivisionControlEdge.DistanceToCursor(X, Y: integer;
   var P: T3DCoordinate; Viewport: TFreeViewport): integer;
@@ -532,8 +657,8 @@ begin
   end;
 end;{TFreesubdivisionControlEdge.Draw}
 
-function TFreeSubdivisionControlEdge.InsertControlPoint(
-  P: T3DCoordinate): TFreeSubdivisionControlpoint;
+function TFreesubdivisionControlEdge.InsertControlPoint(P: T3DCoordinate
+  ): TFreeSubdivisionControlpoint;
 var
   I: integer;
   I1, I2: integer;

@@ -772,6 +772,10 @@ destructor TMainForm.Destroy;
 var i: Integer; thw:TFreeHullWindow;   ptr:pointer; al:TActionList;
 begin
  FDestroying := true;
+ FreeShip.OnChangeActiveLayer:=nil;
+ Freeship.OnChangeLayerData:=nil;
+ FreeShip.OnSelectItem:=nil;
+ FreeShip.OnChangeActiveControlPoint:=nil;
  {al:=FActionListHull;
  ptr:=pointer(FActionListHull);
  if assigned(FActionListHull)

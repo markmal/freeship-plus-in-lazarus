@@ -90,6 +90,7 @@ var
   Index: integer;
 begin
   Index := Surface.FSelectedControlPoints.IndexOf(self);
+  if Index = -1 then PrintDebug;
   if Val then
   begin
     // Only add if it is not already in the list
@@ -162,7 +163,7 @@ begin
   FInSetCoordinate := false;
 end;{TFreeSubdivisionControlPoint.FSetCoordinate}
 
-procedure TFreeSubdivisionControlPoint.Collapse;
+procedure TFreeSubdivisionControlPoint.Collapse0;
 var
   I, J: integer;
   Face: TFreeSubdivisionControlFace;
@@ -236,6 +237,7 @@ begin
       Points.Destroy;
       Face.Delete;
     end;
+
 
     if EdgeCollapse then
     begin
@@ -315,6 +317,7 @@ begin
     else
       Edges.Destroy;
 
+
     Delete;
 
     for i := Checklist.Count-1 downto 0 do
@@ -328,6 +331,46 @@ begin
     Checklist.Destroy;
   end;
 end;{TFreeSubdivisionControlPoint.Collapse}
+
+procedure TFreeSubdivisionControlPoint.Collapse;
+var i,j:integer;
+  NewEdge,Edge1,Edge2: TFreeSubdivisionControlEdge;
+
+  cEdges: TFasterListTFreeSubdivisionControlEdge;
+  cPoints: TFasterListTFreeSubdivisionPoint;
+begin
+  if NumberOfEdges>2 then exit;
+  Surface.Built:=false;
+  for i:=0 to FFaces.Count-1 do
+    (FFaces.Items[i] as TFreeSubdivisionControlFace).ClearChildren;
+
+  for i:=0 to FFaces.Count-1 do
+    FFaces.Items[i].Points.DeleteItem(Self);
+
+  Edge1 := Edge[0] as TFreeSubdivisionControlEdge;
+  Edge2 := Edge[1] as TFreeSubdivisionControlEdge;
+  if (Edge1.EndPoint = self) and (Edge2.EndPoint <> self) then
+     Edge1.EndPoint:=Edge2.EndPoint;
+  if (Edge1.EndPoint = self) and (Edge2.StartPoint <> self) then
+     Edge1.EndPoint:=Edge2.StartPoint;
+  if (Edge1.StartPoint = self) and (Edge2.EndPoint <> self) then
+     Edge1.StartPoint:=Edge2.EndPoint;
+  if (Edge1.StartPoint = self) and (Edge2.StartPoint <> self) then
+     Edge1.StartPoint:=Edge2.StartPoint;
+
+  Edge2.Unreference;
+  Edge2.Free;
+
+  if Edge1.StartPoint.Edges.IndexOf(Edge1) < 0 then
+     Edge1.StartPoint.Edges.Add(Edge1);
+  if Edge1.EndPoint.Edges.IndexOf(Edge1) < 0 then
+     Edge1.EndPoint.Edges.Add(Edge1);
+
+  Unreference;
+  FFaces.Clear;
+  FEdges.Clear;
+  Delete;
+end;
 
 constructor TFreeSubdivisionControlPoint.Create(Owner: TFreeSubdivisionSurface);
 begin
@@ -358,9 +401,12 @@ begin
   logger.Debug(format('TFreeSubdivisionControlPoint[%d].Delete',[self.FID]));
   // delete from selection;
   Selected := False;
+  if Surface.ActiveControlPoint = self then
+    Surface.ActiveControlPoint := nil;
 
   Owner.FSelectedControlPoints.DeleteItem(self);
   Owner.FControlPoints.DeleteItem(self);
+  Unreference;
 
   for i:=0 to Owner.FSelectedControlPointGroups.Count-1 do
     Owner.FSelectedControlPointGroups[i].RemoveControlPoint(self);
@@ -760,6 +806,25 @@ begin
   FIsAnchorHard := val;
 end;
 
+procedure TFreeSubdivisionControlPoint.PrintDebug;
+var i:integer; svt:string;
+begin
+  inherited;
+  case FVertexType of
+    svRegular: svt:='svRegular';
+    svCrease: svt:='svCrease';
+    svDart: svt:='svDart';
+    svCorner: svt:='svCorner';
+  end;
+  Logger.Debug(Format(' VertexType:%s',[svt]));
+  if self <> nil then
+     Logger.Debug(Format('TFreeSubdivisionControlPoint:%d %s',[self.Id, self.Name]));
+  for i:=0 to FFaces.Count-1 do
+      Logger.Debug(Format(' face[%d]:%d',[i,FFaces[i].Id]));
+  for i:=0 to FEdges.Count-1 do
+      Logger.Debug(Format(' edge[%d]:%d',[i,FEdges[i].Id]));
+end;
+
 procedure TFreeSubdivisionControlPoint.Unreference;
 var i:integer;
 begin
@@ -786,6 +851,7 @@ begin
   if FAnchorPoint <> nil then
      FAnchorPoint.FAnchoredPoints.DeleteItem(Self);
 
+  if FSurface <> nil then FSurface.UnreferenceControlPoint(Self);
   inherited;
 end;
 

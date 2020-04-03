@@ -38,6 +38,7 @@ uses
 {$ELSE}
   LCLIntf, LCLType, LCLProc, LMessages,
 {$ENDIF}
+  GMap, GUtil,
   FasterList,
   Messages,
   SysUtils,
@@ -1376,6 +1377,7 @@ type
     procedure FSetSelected(val: boolean);
     procedure FSetCoordinate(Val: T3DCoordinate); override;
   public
+    procedure Collapse0;
     procedure Collapse;
     constructor Create(Owner: TFreeSubdivisionSurface); override;
     destructor Destroy; override;
@@ -1395,6 +1397,7 @@ type
     procedure SetLinearConstraint(pointA, pointB: TFreeSubdivisionControlPoint);
     procedure SetAnchorPoint(pointA: TFreeSubdivisionControlPoint);
     procedure SetIsAnchorHard(val: boolean);
+    procedure PrintDebug;
     procedure Unreference; override;
     property Color: TColor read FGetColor;
     property IsLeak: boolean read FGetIsLeak;
@@ -1467,6 +1470,7 @@ type
     function FGetPreviousEdge: TFreeSubdivisionEdge;
     function FGetNextEdge: TFreeSubdivisionEdge;
     procedure PrintDebug; override;
+    procedure SetCurve(AValue: TFreeSubdivisionControlCurve);
   public
     procedure AddFace(Face: TFreeSubdivisionFace);
     procedure Assign(Edge: TFreeSubdivisionEdge);
@@ -1489,7 +1493,7 @@ type
     property Crease: boolean
       read FCrease write FSetCrease;
     property Curve:
-      TFreeSubdivisionControlCurve read FCurve write FCurve;
+      TFreeSubdivisionControlCurve read FCurve write SetCurve;
     property EdgeIndex: integer
       read FGetIndex;
     property EndPoint:
@@ -1530,6 +1534,7 @@ type
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
     procedure Delete; override;
+    procedure Unreference; override;
     function DistanceToCursor(X, Y: integer;
       var P: T3DCoordinate; Viewport: TFreeViewport): integer; override;
     procedure Draw(DrawMirror: boolean;

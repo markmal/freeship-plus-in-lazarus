@@ -191,8 +191,9 @@ begin
   Unreference;
   Owner.Built := False;
   Clear;
+  Free;
   //Destroy;
-  DelayedDestroyList.Add(Self);
+  //DelayedDestroyList.Add(Self);
   logger.DecreaseIndent;
 end;{TFreeSubdivisionFace.Delete}
 
@@ -274,7 +275,7 @@ procedure TFreeSubdivisionFace.Subdivide(
     aControlDescendandEdges:TFasterListTFreeSubdivisionEdge; // Output. Here boundary edges will be added.
     aNewFaces: TFasterListTFreeSubdivisionFace); // Output. Here new faces will be added.
 var
-  P1,P2: TFreeSubdivisionPoint;
+  P1,P2, P: TFreeSubdivisionPoint;
   I, TmpIndex: integer;
   NewFace: TFreeSubdivisionFace;
   IndexPE, IndexCE, Index0, Index1, Index2, Index3, J, X: integer;
@@ -351,6 +352,7 @@ begin
         then raise Exception.Create('Subdivision error. Previous edge not found');
 
       IndexCE := (I + FPoints.Count) mod FPoints.Count;
+      P := FPoints[IndexCE];
       CurrEdge := aOwner.EdgeExists(P2, FPoints[IndexCE]);
       if CurrEdge = nil
          then raise Exception.Create('Subdivision error. Current edge not found');

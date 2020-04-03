@@ -2962,6 +2962,10 @@ var
   I: integer;
 begin
   Clear;
+  FOnChangeLayerData:=nil;
+  FOnChangeActiveLayer:=nil;
+  FOnChangeActiveControlPoint:=nil;
+  FOnSelectItem:=nil;
   // Make sure to also destroy the default layer (layer 0)
   for I := 1 to NumberOfLayers do
     Layer[I - 1].Destroy;

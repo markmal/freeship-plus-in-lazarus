@@ -953,14 +953,12 @@ end;{TFreeShip.ClearUndo}
 
 destructor TFreeShip.Destroy;
 begin
-  self.OnChangeActiveControlPoint:=nil;
-  self.OnChangeActiveLayer:=nil;
-  self.OnChangeCursorIncrement:=nil;
-  self.OnChangeLayerData:=nil;
-  self.OnFileChanged:=nil;
-  self.OnSelectItem:=nil;
-  self.OnUpdateGeometryInfo:=nil;
-  self.FOnUpdateRecentFileList:=nil;
+  FOnChangeCursorIncrement:=nil;
+  FOnFileChanged:=nil;
+  FOnUpdateGeometryInfo:=nil;
+  FOnUpdateRecentFileList:=nil;
+  FOnUpdateUndoData:=nil;
+
   Clear;
   ClearUndo;
   if Assigned(FControlpointForm) then

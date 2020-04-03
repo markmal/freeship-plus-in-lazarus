@@ -9,4 +9,4 @@ OPTS="$OPTS --suppressions=valgrind-suppress.cfg"
 OPTS="$OPTS --vgdb-error=0"
 
 echo valgrind $OPTS $* ./FreeShip
-valgrind $OPTS $* ./FreeShip & (sleep 2; vgdb --port=33333)
+valgrind $OPTS $* ./FreeShip & (sleep 2; vgdb --port=2345)

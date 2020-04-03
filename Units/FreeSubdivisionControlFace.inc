@@ -331,6 +331,7 @@ begin
   //delete children?
   for i:=0 to FChildren.Count-1 do
     FChildren[i].Delete;
+  FChildren.Clear;
 
   Unreference;
 
@@ -373,6 +374,8 @@ begin
   InUnreference := true;
   logger.IncreaseIndent;
   logger.Debug(format('TFreeSubdivisionControlFace[%d].Unreference',[self.FID]));
+  if FLayer<>nil then
+     FLayer.DeleteControlFace(Self);
   if FChildren<>nil then
   for i:=0 to FChildren.Count-1 do
     FChildren[i].Unreference;

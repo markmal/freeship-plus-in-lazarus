@@ -490,15 +490,15 @@ end;{TFreeViewport.Create}
 procedure TFreeViewport.DetachEventHandlers;
 begin
   FOnChangeBackgroundImage := nil;
-  OnMouseDown := nil;
-  OnMouseUp := nil;
-  OnMouseEnter := nil;
-  OnMouseMove := nil;
-  OnMouseLeave := nil;
-  OnRedraw := nil;
-  OnChangeViewType := nil;
-  OnRequestBackgroundImage := nil;
-  OnRequestExtents := nil;
+  FOnMouseDown := nil;
+  FOnMouseUp := nil;
+  FOnMouseEnter := nil;
+  FOnMouseMove := nil;
+  FOnMouseLeave := nil;
+  FOnRedraw := nil;
+  FOnChangeViewType := nil;
+  FOnRequestBackgroundImage := nil;
+  FOnRequestExtents := nil;
 end;
 
 destructor TFreeViewport.Destroy;

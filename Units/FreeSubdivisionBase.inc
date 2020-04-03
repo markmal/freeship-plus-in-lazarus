@@ -14,6 +14,6 @@ end;{TFreeSubdivisionBase.Create}
 procedure TFreeSubdivisionBase.PrintDebug;
 begin
   //Logger.Debug( self.ClassName+'.FOwner:'+ IntToHex(QWord(FSurface),16));
-  Logger.Debug( self.ClassName+':'+IntToStr(Id));
+  Logger.Debug(self.ClassName+':'+IntToStr(Id)+' '+Name);
 end;
 

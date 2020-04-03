@@ -29,7 +29,7 @@ begin
   Result := FFaces.Count;
 end;{TFreeSubdivisionEdge.FGetNumberOfFaces}
 
-procedure TFreesubdivisionEdge.FSetCrease(Val: boolean);
+procedure TFreeSubdivisionEdge.FSetCrease(Val: boolean);
 var
   I, N: integer;
   Edge: TFreeSubdivisionEdge;
@@ -97,7 +97,7 @@ begin
   end;
 end;{TFreesubdivisionEdge.FSetCrease}
 
-function TFreesubdivisionEdge.FGetPreviousEdge: TFreeSubdivisionEdge;
+function TFreeSubdivisionEdge.FGetPreviousEdge: TFreeSubdivisionEdge;
 var
   P: TFreeSubdivisionPoint;
   Edge: TFreeSubdivisionEdge;
@@ -137,7 +137,7 @@ begin
   end;
 end;{TFreesubdivisionEdge.FGetPreviousEdge}
 
-function TFreesubdivisionEdge.FGetNextEdge: TFreeSubdivisionEdge;
+function TFreeSubdivisionEdge.FGetNextEdge: TFreeSubdivisionEdge;
 var
   P: TFreeSubdivisionPoint;
   Edge: TFreeSubdivisionEdge;
@@ -284,16 +284,19 @@ procedure TFreeSubdivisionEdge.PrintDebug;
 var i:integer;
 begin
   inherited;
-  //Logger.Debug('StartPoint:'+IntToStr()+IntToHex(QWord(self.StartPoint),16));
-  //Logger.Debug('EndPoint:'+IntToHex(QWord(self.EndPoint),16));
+  Logger.Debug(Format(' Crease:%s ControlEdge:%s',[boolTostr(FCrease), boolTostr(FControlEdge)]));
   if self.StartPoint <> nil then
      Logger.Debug(Format(' StartPoint:%d %s',[self.StartPoint.Id, self.StartPoint.Name]));
   if self.EndPoint <> nil then
      Logger.Debug(Format(' EndPoint:%d %s',[self.EndPoint.Id, self.EndPoint.Name]));
   for i:=0 to FFaces.Count-1 do
-      //Logger.Debug('Faces['+IntToStr(i)+']('+FFaces[i].ClassName+')'
-      //  + IntToHex(QWord(FFaces[i]),16));
-      Logger.Debug(Format(' face[%d]:%d',[i,FFaces[i].Id]));
+     Logger.Debug(Format(' face[%d]:%d',[i,FFaces[i].Id]));
+end;
+
+procedure TFreeSubdivisionEdge.SetCurve(AValue: TFreeSubdivisionControlCurve);
+begin
+  if FCurve=AValue then Exit;
+  FCurve:=AValue;
 end;
 
 procedure TFreeSubdivisionEdge.UnreferenceFace(Face: TFreeSubdivisionFace);
@@ -386,7 +389,8 @@ begin
      FStartPoint.FEdges.DeleteItem(Self);
   if FEndPoint<>nil then
      FEndPoint.FEdges.DeleteItem(Self);
-  if FFaces = nil then exit;
+
+  if FFaces <> nil then
   for i:=0 to FFaces.Count-1 do
     begin
     F:=FFaces[i];
@@ -401,9 +405,13 @@ begin
       if F.FPoints[j].FEdges <> nil then
           F.FPoints[j].FEdges.DeleteItem(Self);
     end;
-    if FSurface <> nil then FSurface.UnreferenceEdge(Self);
 
-    InUnreference := false;
+  if FCurve <> nil then
+     FCurve.DeleteEdge(Self as TFreeSubdivisionControlEdge);
+
+  if FSurface <> nil then FSurface.UnreferenceEdge(Self);
+
+  InUnreference := false;
 end;
 
 destructor TFreeSubdivisionEdge.Destroy;

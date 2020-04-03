@@ -40,6 +40,15 @@ uses
   //Math,
   SysUtils;
 
+var
+  FStat_SortedIndexOf_calls:QWord;
+  FStat_SortedIndexOf_loops:QWord;
+  FStat_SortedIndexOf_items:QWord;
+
+  FStat_IndexOf_calls:QWord;
+  FStat_IndexOf_loops:QWord;
+  FStat_IndexOf_items:QWord;
+
 type
   {---------------------------------------------------------------------------------------------------}
   {                                       TFasterList                                                 }
@@ -567,13 +576,26 @@ begin
      exit;
    end;
 
+  inc(FStat_IndexOf_calls);
+  inc(FStat_IndexOf_items,FCount);
+  {$ifdef CPU64} // not reliable
+  //Result := IndexQWord(FList,FCount,PtrUInt(Item));
+  {$endif CPU64}
+  {$ifdef CPU32}
+  //Result := IndexDWord(FList,FCount,PtrUInt(Item));
+  {$endif CPU32}
+
   Result := -1;
   for I := 0 to FCount-1 do
-    if FList[I] = Item then
     begin
+    inc(FStat_IndexOf_loops);
+    if FList[I] = Item then
+      begin
       Result := I;
       break;
+      end;
     end;
+
 end;{TFasterList.IndexOf}
 
 procedure TFasterList.Insert(Index: integer; Item: TItemType);
@@ -633,7 +655,8 @@ end;
 
 procedure TFasterList.Swap(I, J: integer);
 var
-  Tmp: TItemType; TmpDt:Pointer;
+  Tmp: TItemType;
+  TmpDt:Pointer;
 begin
   Tmp := FList[I];
   FList[I] := FList[J];
@@ -706,12 +729,20 @@ begin
        exit;
      end;
 
+  //if FCount>1024
+  //then
+  //  L:=0; //catch long search
+
+  inc(FStat_SortedIndexOf_calls);
+  inc(FStat_SortedIndexOf_items,FCount);
+
   Result := -1;
   MemAddr := PtrUInt(Item);
   L := 0;
   H := FCount - 1;
   while L <= H do
   begin
+    inc(FStat_SortedIndexOf_loops);
     //Mid := Floor(0.5 * (L + H));
     Mid := (L + H) div 2;
     MidVal := PtrUInt(FList[Mid]);
@@ -768,4 +799,18 @@ begin
     FCount := Fcapacity;
 end;{TFasterList.FSetCapacity}
 
+initialization
+  FStat_SortedIndexOf_calls:=0;
+  FStat_SortedIndexOf_loops:=0;
+  FStat_SortedIndexOf_items:=0;
+  FStat_IndexOf_calls:=0;
+  FStat_IndexOf_loops:=0;
+  FStat_IndexOf_items:=0;
+finalization
+  logger.debug('FasterList Stat_SortedIndexOf_calls: '+inttostr(FStat_SortedIndexOf_calls));
+  logger.debug('FasterList Stat_SortedIndexOf_loops: '+inttostr(FStat_SortedIndexOf_loops));
+  logger.debug('FasterList Stat_SortedIndexOf_items: '+inttostr(FStat_SortedIndexOf_items));
+  logger.debug('FasterList Stat_IndexOf_calls: '+inttostr(FStat_IndexOf_calls));
+  logger.debug('FasterList Stat_IndexOf_loops: '+inttostr(FStat_IndexOf_loops));
+  logger.debug('FasterList Stat_IndexOf_items: '+inttostr(FStat_IndexOf_items));
 end.

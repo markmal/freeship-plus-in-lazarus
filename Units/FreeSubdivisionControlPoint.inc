@@ -473,6 +473,7 @@ begin
       begin
         // yes, the point is visible
         Viewport.ZBuffer.FBuffer[Pz.Y][Pz.X] := Pz.Z;
+
         if Viewport.PenWidth <> 1 then
           Viewport.PenWidth := 1;
         Viewport.PenColor := Color;

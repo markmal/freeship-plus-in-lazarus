@@ -1326,6 +1326,8 @@ var
         end;
       end;
     end;
+    Viewport.PenColor := clRed;
+    Viewport.Rectangle(5,5,15,15);
   end;{DrawGrid}
 
 begin
@@ -1390,6 +1392,7 @@ begin
       for I := 1 to NumberOfDiagonals do
         Diagonal[I - 1].Draw(Viewport);
   end;
+
   if (Visibility.ShowMarkers) and (Viewport.ViewportMode = vmWireframe) then
     for I := 1 to NumberOfMarkers do
       Marker[I - 1].Draw(Viewport);
@@ -1433,6 +1436,8 @@ begin
     Surface.ShadeUnderWater := False;
 
   Surface.Draw(Viewport);  // Main Draw
+
+  //Viewport.AlphaBuffer.Draw;
 
   if (Viewport.Viewtype <> fvPerspective) and (Viewport.ViewportMode <> vmWireframe) and
     (Visibility.ShowGrid) then

@@ -60,108 +60,112 @@ type
 
 { TFreeLayerDialog }
 
- TFreeLayerDialog  = class(TForm)
-                         CheckBox1: TCheckBox;
-                         CheckBox2: TCheckBox;
-                         CheckBox3: TCheckBox;
-                         CheckBox4: TCheckBox;
-                         CheckBox5: TCheckBox;
-                         CheckBox6: TCheckBox;
-                         Edit1: TEdit;
-                         Edit2: TFloatSpinEdit;
-                         Edit3: TFloatSpinEdit;
-                         GroupBox1: TGroupBox;
-                         Label1: TLabel;
-                         Label2: TLabel;
-                         Label3: TLabel;
-                         Label4: TLabel;
-                         Label5: TLabel;
-                         Label6_: TLabel;
-                         Label6_0: TLabel;
-                         Label6_1: TLabel;
-                         Label6_1_: TLabel;
-                         Label6_2: TLabel;
-                         Label6_3: TLabel;
-                         Label6_4: TLabel;
-                         Label7: TLabel;
-                         Label8: TLabel;
-                         Label9: TLabel;
-                           Panel1: TPanel;
-                           Panel2: TPanel;
-                           Panel3: TPanel;
-                           Panel4: TPanel;
-                           Panel5: TPanel;
-                           Panel6: TPanel;
-                           Panel7: TPanel;
-                           Panel8: TPanel;
-                           Panel9: TPanel;
-                           ToolBar1: TToolBar;
-                           ToolButton20: TToolButton;
-                           MenuImages: TImageList;
-                           ColorDialog: TColorDialog;
-                           ToolButton1: TToolButton;
-                           AlphaBar: TTrackBar;
-                           WeightBox: TFloatSpinEdit;
-                           XgBox: TFloatSpinEdit;
-                           YgBox: TFloatSpinEdit;
-                           ZgBox: TFloatSpinEdit;
-                           _Label10: TLabel;
-                           _Label11: TLabel;
-                           _Label12: TLabel;
-                           _Label4: TLabel;
-                           _Label6: TLabel;
-                           _ToolButton2: TToolButton;
-                           ToolButton3: TToolButton;
-                           LayerBox: TCheckListBox;
-                           MoveUp: TToolButton;
-                           MoveDown: TToolButton;
-                           _ToolButton4: TToolButton;
-                           procedure LayerBoxClick(Sender: TObject);
-                           procedure LayerBoxClickCheck(Sender: TObject);
-                           procedure LayerBoxDblClick(Sender: TObject);
-                           procedure Edit1Change(Sender: TObject);
-                           procedure LayerBoxItemClick(Sender: TObject;
-                             Index: integer);
-                           procedure MenuImagesChange(Sender: TObject);
-                           procedure Panel3Click(Sender: TObject);
-                           procedure CheckBox1Click(Sender: TObject);
-                           procedure ToolButton20Click(Sender: TObject);
-                           procedure ToolButton1Click(Sender: TObject);
-                           procedure ToolButton3Click(Sender: TObject);
-                           procedure CheckBox2Click(Sender: TObject);
-                           procedure CheckBox3Click(Sender: TObject);
-                           procedure Edit2KeyPress(Sender: TObject; var Key: Char);
-                           procedure Edit2Exit(Sender: TObject);
-                           procedure Edit3KeyPress(Sender: TObject; var Key: Char);
-                           procedure Edit3Exit(Sender: TObject);
-                           procedure MoveUpClick(Sender: TObject);
-                           procedure MoveDownClick(Sender: TObject);
-                           procedure CheckBox4Click(Sender: TObject);
-                           procedure CheckBox5Click(Sender: TObject);
-                           procedure CheckBox6Click(Sender: TObject);
-                           procedure AlphaBarChange(Sender: TObject);
-                       private
-                           FFreeShip : TFreeShip;
-                           procedure FFillBox;
-                           function FGetSelectedLayer:TFreeSubdivisionLayer;
-                           function FGetWeight:single;
-                           procedure FSetWeight(val:single);
-                           function FGetXg:single;
-                           procedure FSetXg(val:single);
-						   function FGetYg:single;
-                           procedure FSetYg(val:single);
-						   function FGetZg:single;
-                           procedure FSetZg(val:single);
-                        public
-                           WeightS,XgS,YgS,ZgS : single;
-                           function Execute(FreeShip:TFreeShip):Boolean;
-                           procedure UpdateMenu;
-                           property SelectedLayer:TFreeSubdivisionLayer read FGetSelectedLayer;
-                           property Weight  : single read FGetWeight write FSetWeight;
-						   property Xg  : single read FGetXg write FSetXg;
-						   property Yg  : single read FGetYg write FSetYg;
-						   property Zg  : single read FGetZg write FSetZg;
-                     end;
+  TFreeLayerDialog  = class(TForm)
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
+    CheckBox6: TCheckBox;
+    Edit1: TEdit;
+    Edit2: TFloatSpinEdit;
+    Edit3: TFloatSpinEdit;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6_: TLabel;
+    Label6_0: TLabel;
+    Label6_1: TLabel;
+    Label6_1_: TLabel;
+    Label6_2: TLabel;
+    Label6_3: TLabel;
+    Label6_4: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
+    ToolBar1: TToolBar;
+    ToolButton20: TToolButton;
+    MenuImages: TImageList;
+    ColorDialog: TColorDialog;
+    ToolButton1: TToolButton;
+    AlphaBar: TTrackBar;
+    WeightBox: TFloatSpinEdit;
+    XgBox: TFloatSpinEdit;
+    YgBox: TFloatSpinEdit;
+    ZgBox: TFloatSpinEdit;
+    _Label10: TLabel;
+    _Label11: TLabel;
+    _Label12: TLabel;
+    _Label4: TLabel;
+    _Label6: TLabel;
+    _ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    LayerBox: TCheckListBox;
+    MoveUp: TToolButton;
+    MoveDown: TToolButton;
+    _ToolButton4: TToolButton;
+    procedure LayerBoxClick(Sender: TObject);
+    procedure LayerBoxClickCheck(Sender: TObject);
+    procedure LayerBoxDblClick(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
+    procedure LayerBoxItemClick(Sender: TObject;
+    Index: integer);
+    procedure LayerBoxSelectionChange(Sender: TObject;
+    User: boolean);
+    procedure MenuImagesChange(Sender: TObject);
+    procedure Panel3Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
+    procedure ToolButton20Click(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
+    procedure ToolButton3Click(Sender: TObject);
+    procedure CheckBox2Click(Sender: TObject);
+    procedure CheckBox3Click(Sender: TObject);
+    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit2Exit(Sender: TObject);
+    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit3Exit(Sender: TObject);
+    procedure MoveUpClick(Sender: TObject);
+    procedure MoveDownClick(Sender: TObject);
+    procedure CheckBox4Click(Sender: TObject);
+    procedure CheckBox5Click(Sender: TObject);
+    procedure CheckBox6Click(Sender: TObject);
+    procedure AlphaBarChange(Sender: TObject);
+  private
+    FFreeShip : TFreeShip;
+    FProgrammaticalChange: Boolean;
+    procedure SelectLayer(Index: integer);
+    procedure FFillBox;
+    function FGetSelectedLayer:TFreeSubdivisionLayer;
+    function FGetWeight:single;
+    procedure FSetWeight(val:single);
+    function FGetXg:single;
+    procedure FSetXg(val:single);
+    function FGetYg:single;
+    procedure FSetYg(val:single);
+    function FGetZg:single;
+    procedure FSetZg(val:single);
+  public
+    WeightS,XgS,YgS,ZgS : single;
+    function Execute(FreeShip:TFreeShip):Boolean;
+    procedure UpdateMenu;
+    property SelectedLayer:TFreeSubdivisionLayer read FGetSelectedLayer;
+    property Weight  : single read FGetWeight write FSetWeight;
+    property Xg  : single read FGetXg write FSetXg;
+    property Yg  : single read FGetYg write FSetYg;
+    property Zg  : single read FGetZg write FSetZg;
+  end;
 
 var FreeLayerDialog : TFreeLayerDialog;
 
@@ -276,12 +280,11 @@ begin
   LayerBoxItemClick(Sender, Index);
 end;
 
-
-
-procedure TFreeLayerDialog.LayerBoxItemClick(Sender: TObject; Index: integer);
+procedure TFreeLayerDialog.SelectLayer(Index: integer);
 var Layer   : TFreeSubdivisionLayer;
     Prop    : TLayerProperties;
 begin
+  FProgrammaticalChange := true;
   index := Layerbox.ItemIndex;
   if index = -1 then exit;
 
@@ -310,10 +313,10 @@ begin
     XgS:=Prop.SurfaceCenterOfGravity.X*Prop.Weight+Xg*Weight*1000.;
     YgS:=Prop.SurfaceCenterOfGravity.Y*Prop.Weight+Yg*Weight*1000.;
     ZgS:=Prop.SurfaceCenterOfGravity.Z*Prop.Weight+Zg*Weight*1000.;
-           Prop.SurfaceCenterOfGravity.X:=XgS/WeightS;
-           Prop.SurfaceCenterOfGravity.Z:=YgS/WeightS;
-           Prop.SurfaceCenterOfGravity.Z:=ZgS/WeightS;
-           Prop.Weight:=WeightS;
+    Prop.SurfaceCenterOfGravity.X:=XgS/WeightS;
+    Prop.SurfaceCenterOfGravity.Z:=YgS/WeightS;
+    Prop.SurfaceCenterOfGravity.Z:=ZgS/WeightS;
+    Prop.Weight:=WeightS;
     end
   else
     begin
@@ -335,10 +338,26 @@ begin
   _Label12.Caption:=Makelength(Prop.SurfaceCenterOfGravity.X,2,7)+','+
                   Makelength(Prop.SurfaceCenterOfGravity.Y,2,7)+', '+
                   Makelength(Prop.SurfaceCenterOfGravity.Z,2,7)+#32+LengthStr(FFreeship.ProjectSettings.ProjectUnits);
-  AlphaBar.Position:=255-Layer.AlphaBlend;
+
+  AlphaBar.Position:=round((255-Layer.AlphaBlend) * 100 / 255);
   //_label1.Caption:=FloatToStrF(100*(255-Layer.AlphaBlend)/255,ffFixed,7,1)+'%';
   UpdateMenu;
+  FProgrammaticalChange := false;
 end;{TFreeLayerDialog.LayerBoxClick}
+
+
+procedure TFreeLayerDialog.LayerBoxItemClick(Sender: TObject; Index: integer);
+begin
+  index := Layerbox.ItemIndex;
+  if index = -1 then exit;
+  SelectLayer(Index);
+end;{TFreeLayerDialog.LayerBoxClick}
+
+procedure TFreeLayerDialog.LayerBoxSelectionChange(Sender: TObject;
+  User: boolean);
+begin
+  SelectLayer(LayerBox.ItemIndex);
+end;
 
 procedure TFreeLayerDialog.LayerBoxDblClick(Sender: TObject);
 var Layer : TFreeSubdivisionLayer;
@@ -559,7 +578,8 @@ end;{TFreeLayerDialog.CheckBox6Click}
 procedure TFreeLayerDialog.AlphaBarChange(Sender: TObject);
 var val:byte;
 begin
-   Val:=255-((Alphabar.Position*100) div 255);
+   if FProgrammaticalChange then exit;
+   Val:=round(255 - Alphabar.Position * 255 / 100);
    if SelectedLayer<>nil then if SelectedLayer.AlphaBlend<>val then
    begin
       SelectedLayer.AlphaBlend:=val;

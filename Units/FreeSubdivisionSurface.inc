@@ -3010,6 +3010,8 @@ begin
     Layer[i].Draw(Viewport);
   //t := LclIntf.GetTickCount - t;
 
+  Viewport.AlphaBuffer.Draw;
+
   if ShowControlNet then
   begin
     for I := 0 to NumberOfControlEdges-1 do
@@ -3026,9 +3028,11 @@ begin
       if FControlPointGroups[i].Visible then
          FControlPointGroups[i].Draw(ViewPort);
   end;
+
   for I := 1 to NumberOfControlCurves do
     if ControlCurve[I - 1].Visible then
       ControlCurve[I - 1].Draw(Viewport);
+
 end;{TFreeSubdivisionSurface.Draw}
 
 function TFreeSubdivisionSurface.EdgeExists(P1, P2: TFreeSubdivisionPoint):

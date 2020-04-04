@@ -3,11 +3,18 @@
 {---------------------------------------------------------------------------------------------------}
 {                                           TFreeAlphaBuffer                                        }
 
+constructor TFreeAlphaBuffer.Create;
+begin
+  inherited Create;
+  FFirstRow := 0;
+  FLastRow := -1;
+end;
+
 { Alpha-buffer class used in the shading algorithm                                                  }
 {---------------------------------------------------------------------------------------------------}
 procedure TFreeAlphaBuffer.AddPixelData(X, Y: integer; R, G, B, Alpha: byte; Z: single);
 var
-  Data: TAlphaBlendData;
+  Data, DataU: TAlphaBlendData; i,N:integer; t:byte; s:single;
 begin
   if (X >= 0) and (X < FWidth) and (Y >= 0) and (Y < FHeight) then
   begin
@@ -30,48 +37,44 @@ begin
     Data.G := G;
     Data.B := B;
     Data.Alpha := Alpha;
-    Data.zvalue := Z;
-    try
-      FBuffer[Y].Pixels[X].Data[FBuffer[Y].Pixels[X].Number] := Data;
-    except
-      FBuffer[Y].Pixels[X].Data[FBuffer[Y].Pixels[X].Number] := Data;
+    Data.ZValue := Z;
+
+
+    // search duplicates
+    t:=0; fillchar(DataU, sizeof(DataU), 0);
+    N:=FBuffer[Y].Pixels[X].Number;
+    for i:=FBuffer[Y].Pixels[X].Number-1 downto 0 do
+    begin
+      DataU := FBuffer[Y].Pixels[X].Data[i];
+      s:=abs(DataU.ZValue - Data.ZValue);
+      if //(DataU.R = Data.R)and(DataU.G = Data.G)and(DataU.B = Data.B)
+          (DataU.Alpha = Data.Alpha)
+          and(s < 0.001)
+      then
+        inc(t);
+      if (DataU.R <> Data.R)and (t>0)
+        then t:=t;
     end;
+
+    // add unique data only to eliminate grid artefact
+    if t = 0 then
+    begin
+      if (DataU.R = Data.R)and(DataU.G = Data.G)and(DataU.B = Data.B)
+          and(DataU.Alpha = Data.Alpha)and(s < 0.01)
+          then t:=0;
+      FBuffer[Y].Pixels[X].Data[FBuffer[Y].Pixels[X].Number] := Data
+    end
+    else
+      t:=0;
+
     if FBuffer[Y].Pixels[X].Number < 250 then
       Inc(FBuffer[Y].Pixels[X].Number);
   end;
 end;{TFreeAlphaBuffer.AddPixelData}
 
-procedure TFreeAlphaBuffer.Initialize;
-var
-  I, J: integer;
-begin
-  if (FWidth <> FViewport.FDestinationWidth) or
-    (FHeight <> FViewport.FDestinationheight) then
-  begin
-    FHeight := FViewport.FDestinationheight;
-    FWidth := FViewport.FDestinationWidth;
-    FFirstRow := 0;
-    FLastRow := -1;
-    Setlength(FBuffer, FHeight);
-    for I := 0 to FHeight - 1 do
-    begin
-      Setlength(FBuffer[I].Pixels, FWidth);
-      FBuffer[I].First := 0;
-      FBuffer[I].Last := -1;
-      for J := 0 to FWidth - 1 do
-      begin
-        Setlength(FBuffer[I].Pixels[J].Data, 0);
-        FBuffer[I].Pixels[J].Number := 0;
-        FBuffer[I].Pixels[J].Capacity := 0;
-      end;
-    end;
-  end;
-end;{TFreeAlphaBuffer.Initialize}
-
 procedure TFreeAlphaBuffer.Draw;
 var
-  I, J: integer;
-
+  Y, X: integer;
 
   procedure ProcessPixel(X, Y: integer; PixData: TAlphaBlendPixelArray);
 
@@ -131,11 +134,10 @@ var
       Data := PixData.Data[I];
       if Data.zvalue > FViewport.ZBuffer.FBuffer[Y][X] then
       begin
-        dA := Data.Alpha;
-        R := R + ((dA * (Data.R - R)) div 256);
         // Use div because Negative shr 8 causes range error
-        G := G + ((dA * (Data.G - G)) div 256);
-        B := B + ((dA * (Data.B - B)) div 256);
+        R := R + ((Data.Alpha * (Data.R - R)) div 256);
+        G := G + ((Data.Alpha * (Data.G - G)) div 256);
+        B := B + ((Data.Alpha * (Data.B - B)) div 256);
       end;
     end;
 
@@ -145,16 +147,16 @@ var
   {ProcessPixel}
 begin
   //FViewport.BeginUpdate; // doing that before working via Canvas causes black Canvas
-  for I := FFirstRow to FLastRow do
+  for Y := FFirstRow to FLastRow do
   begin
-    for J := FBuffer[I].First to FBuffer[I].Last do
+    for X := FBuffer[Y].First to FBuffer[Y].Last do
     begin
-      if FBuffer[I].Pixels[J].Number > 0 then
+      if FBuffer[Y].Pixels[X].Number > 0 then
       begin
-        ProcessPixel(J, I, FBuffer[I].Pixels[J]);
-        FBuffer[I].Pixels[J].Number := 0;
-        FBuffer[I].Pixels[J].Capacity := 0;
-        Setlength(FBuffer[I].Pixels[J].Data, 0);
+        ProcessPixel(X, Y, FBuffer[Y].Pixels[X]);
+        FBuffer[Y].Pixels[X].Number := 0;
+        FBuffer[Y].Pixels[X].Capacity := 0;
+        Setlength(FBuffer[Y].Pixels[X].Data, 0);
       end;
     end;
   end;
@@ -162,6 +164,34 @@ begin
   FLastRow := -1;
   //FViewport.EndUpdate; // doing that after working via Canvas causes black Canvas
 end;{TFreeAlphaBuffer.Draw}
+
+procedure TFreeAlphaBuffer.Initialize(aViewport: TFreeViewport);
+var
+  I, J: integer;
+begin
+  FViewport := aViewport;
+  if (FWidth <> FViewport.FDestinationWidth) or
+    (FHeight <> FViewport.FDestinationheight) then
+  begin
+    FHeight := FViewport.FDestinationHeight;
+    FWidth := FViewport.FDestinationWidth;
+    FFirstRow := 0;
+    FLastRow := -1;
+    Setlength(FBuffer, FHeight);
+    for I := 0 to FHeight - 1 do
+    begin
+      SetLength(FBuffer[I].Pixels, FWidth);
+      FBuffer[I].First := MaxInt;
+      FBuffer[I].Last := -MaxInt;
+      for J := 0 to FWidth - 1 do
+      begin
+        Setlength(FBuffer[I].Pixels[J].Data, 0);
+        FBuffer[I].Pixels[J].Number := 0;
+        FBuffer[I].Pixels[J].Capacity := 0;
+      end;
+    end;
+  end;
+end;{TFreeAlphaBuffer.Initialize}
 
 
 {---------------------------------------------------------------------------------------------------}

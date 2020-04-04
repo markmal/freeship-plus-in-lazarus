@@ -327,9 +327,10 @@ type
     FFirstRow: integer;
     FLastRow: integer;
   public
+    constructor Create;
     procedure AddPixelData(X, Y: integer;
       R, G, B, Alpha: byte; Z: single);
-    procedure Initialize;
+    procedure Initialize(aViewport: TFreeViewport);
     procedure Draw;
   end;
 
@@ -552,8 +553,6 @@ type
       override;
     function DoMouseWheel(Shift: TShiftState; WheelDelta: integer;
       MousePos: TPoint): boolean; override;
-    procedure GetPixel(X, Y: integer; out R, G, B: byte);
-    procedure SetPixel(X, Y: integer; R, G, B: byte);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -656,6 +655,8 @@ type
     property Pan: TPoint read FPan write FSetPan;
     property SelectionFrameRect: TRect read FSelectionFrameRect write SetSelectionFrameRect;
     property SelectionFrameActive: boolean read FSelectionFrameActive write SetSelectionFrameActive;
+    procedure GetPixel(X, Y: integer; out R, G, B: byte);
+    procedure SetPixel(X, Y: integer; R, G, B: byte);
   published
     property Angle: TFloatType read FAngle write FSetAngle;
     property Align;

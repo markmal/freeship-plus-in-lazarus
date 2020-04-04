@@ -9,7 +9,7 @@ object FreeLayerDialog: TFreeLayerDialog
   ClientHeight = 600
   ClientWidth = 800
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
     Height = 576
@@ -22,44 +22,44 @@ object FreeLayerDialog: TFreeLayerDialog
     ClientWidth = 800
     TabOrder = 0
     object Panel2: TPanel
-      Left = 468
+      Left = 465
       Height = 564
       Top = 6
-      Width = 326
+      Width = 329
       Align = alRight
       AutoSize = True
       BevelOuter = bvNone
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 564
-      ClientWidth = 326
+      ClientWidth = 329
       TabOrder = 0
       object Panel4: TPanel
         Left = 0
-        Height = 85
+        Height = 101
         Top = 0
-        Width = 326
+        Width = 329
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.HorizontalSpacing = 6
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 85
-        ClientWidth = 326
+        ClientHeight = 101
+        ClientWidth = 329
         TabOrder = 0
         object Label1: TLabel
           Left = 10
-          Height = 25
+          Height = 32
           Top = 0
-          Width = 86
+          Width = 104
           Caption = 'Name'
           Layout = tlCenter
           ParentColor = False
         end
         object Edit1: TEdit
-          Left = 102
-          Height = 25
+          Left = 120
+          Height = 32
           Top = 0
           Width = 150
           OnChange = Edit1Change
@@ -67,26 +67,26 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Label2: TLabel
           Left = 10
-          Height = 20
-          Top = 27
-          Width = 86
+          Height = 22
+          Top = 34
+          Width = 104
           Caption = 'Color'
           Layout = tlCenter
           ParentColor = False
         end
         object Panel5: TPanel
-          Left = 102
-          Height = 20
-          Top = 27
+          Left = 120
+          Height = 22
+          Top = 34
           Width = 150
           AutoSize = True
           BevelOuter = bvNone
-          ClientHeight = 20
+          ClientHeight = 22
           ClientWidth = 150
           TabOrder = 1
           object Panel3: TPanel
             Left = 0
-            Height = 20
+            Height = 22
             Top = 0
             Width = 40
             Align = alLeft
@@ -98,17 +98,17 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Label4: TLabel
           Left = 10
-          Height = 36
-          Top = 49
-          Width = 86
+          Height = 43
+          Top = 58
+          Width = 104
           Caption = 'Transparency'
           Layout = tlCenter
           ParentColor = False
         end
         object AlphaBar: TTrackBar
-          Left = 102
-          Height = 36
-          Top = 49
+          Left = 120
+          Height = 43
+          Top = 58
           Width = 150
           Max = 100
           OnChange = AlphaBarChange
@@ -120,67 +120,67 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Panel6: TPanel
         Left = 0
-        Height = 136
-        Top = 85
-        Width = 326
+        Height = 154
+        Top = 101
+        Width = 329
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 136
-        ClientWidth = 326
+        ClientHeight = 154
+        ClientWidth = 329
         TabOrder = 1
         object CheckBox3: TCheckBox
           Left = 10
-          Height = 21
+          Height = 24
           Top = 0
-          Width = 216
+          Width = 245
           Caption = 'Use for hydrostatics'
           OnClick = CheckBox3Click
           TabOrder = 0
         end
         object CheckBox5: TCheckBox
           Left = 10
-          Height = 21
-          Top = 23
-          Width = 216
+          Height = 24
+          Top = 26
+          Width = 245
           Caption = 'Symmetric'
           OnClick = CheckBox5Click
           TabOrder = 1
         end
         object CheckBox2: TCheckBox
           Left = 10
-          Height = 21
-          Top = 46
-          Width = 216
+          Height = 24
+          Top = 52
+          Width = 245
           Caption = 'Intersection curves'
           OnClick = CheckBox2Click
           TabOrder = 2
         end
         object CheckBox1: TCheckBox
           Left = 10
-          Height = 21
-          Top = 69
-          Width = 216
+          Height = 24
+          Top = 78
+          Width = 245
           Caption = 'Developable'
           OnClick = CheckBox1Click
           TabOrder = 3
         end
         object CheckBox4: TCheckBox
           Left = 10
-          Height = 21
-          Top = 92
-          Width = 216
+          Height = 24
+          Top = 104
+          Width = 245
           Caption = 'Show in linesplan'
           OnClick = CheckBox4Click
           TabOrder = 4
         end
         object CheckBox6: TCheckBox
           Left = 10
-          Height = 21
-          Top = 115
-          Width = 216
+          Height = 24
+          Top = 130
+          Width = 245
           Caption = 'Set weigth and CoG manually'
           OnClick = CheckBox3Click
           TabOrder = 5
@@ -188,9 +188,9 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Panel7: TPanel
         Left = 0
-        Height = 99
-        Top = 221
-        Width = 326
+        Height = 120
+        Top = 255
+        Width = 329
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
@@ -198,21 +198,21 @@ object FreeLayerDialog: TFreeLayerDialog
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 3
-        ClientHeight = 99
-        ClientWidth = 326
+        ClientHeight = 120
+        ClientWidth = 329
         TabOrder = 2
         object Label3: TLabel
           Left = 10
-          Height = 25
+          Height = 32
           Top = 10
-          Width = 98
+          Width = 114
           Caption = 'Specific weight'
           Layout = tlCenter
           ParentColor = False
         end
         object Edit2: TFloatSpinEdit
-          Left = 114
-          Height = 25
+          Left = 130
+          Height = 32
           Top = 10
           Width = 80
           Alignment = taRightJustify
@@ -227,27 +227,27 @@ object FreeLayerDialog: TFreeLayerDialog
           Value = 0
         end
         object _Label4: TLabel
-          Left = 200
-          Height = 25
+          Left = 216
+          Height = 32
           Top = 10
-          Width = 51
+          Width = 55
           Caption = '[t/m^3]'
           Layout = tlCenter
           ParentColor = False
         end
         object Label5: TLabel
           Left = 10
-          Height = 25
-          Top = 37
-          Width = 98
+          Height = 32
+          Top = 44
+          Width = 114
           Caption = 'Thickness'
           Layout = tlCenter
           ParentColor = False
         end
         object Edit3: TFloatSpinEdit
-          Left = 114
-          Height = 25
-          Top = 37
+          Left = 130
+          Height = 32
+          Top = 44
           Width = 80
           Alignment = taRightJustify
           AutoSize = False
@@ -259,27 +259,27 @@ object FreeLayerDialog: TFreeLayerDialog
           Value = 0
         end
         object _Label6: TLabel
-          Left = 200
-          Height = 25
-          Top = 37
-          Width = 51
+          Left = 216
+          Height = 32
+          Top = 44
+          Width = 55
           Caption = '[mm]'
           Layout = tlCenter
           ParentColor = False
         end
         object Label6_: TLabel
           Left = 10
-          Height = 25
-          Top = 64
-          Width = 98
+          Height = 32
+          Top = 78
+          Width = 114
           Caption = 'Weight'
           Layout = tlCenter
           ParentColor = False
         end
         object WeightBox: TFloatSpinEdit
-          Left = 114
-          Height = 25
-          Top = 64
+          Left = 130
+          Height = 32
+          Top = 78
           Width = 80
           Alignment = taRightJustify
           DecimalPlaces = 3
@@ -289,10 +289,10 @@ object FreeLayerDialog: TFreeLayerDialog
           Value = 0
         end
         object Label6_0: TLabel
-          Left = 200
-          Height = 25
-          Top = 64
-          Width = 51
+          Left = 216
+          Height = 32
+          Top = 78
+          Width = 55
           Caption = '[t]'
           Layout = tlCenter
           ParentColor = False
@@ -300,9 +300,9 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Panel8: TPanel
         Left = 0
-        Height = 19
-        Top = 330
-        Width = 326
+        Height = 26
+        Top = 385
+        Width = 329
         BorderSpacing.Top = 10
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -311,23 +311,23 @@ object FreeLayerDialog: TFreeLayerDialog
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 19
-        ClientWidth = 326
+        ClientHeight = 26
+        ClientWidth = 329
         TabOrder = 3
         object Label6_1: TLabel
           Left = 10
-          Height = 15
+          Height = 22
           Top = 2
-          Width = 190
+          Width = 222
           Caption = 'Coordinates center of gravity'
           Layout = tlCenter
           ParentColor = False
         end
         object Label6_1_: TLabel
-          Left = 206
-          Height = 15
+          Left = 238
+          Height = 22
           Top = 2
-          Width = 23
+          Width = 25
           Caption = '[m]'
           Layout = tlCenter
           ParentColor = False
@@ -335,21 +335,21 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object Panel9: TPanel
         Left = 0
-        Height = 25
-        Top = 349
-        Width = 326
+        Height = 32
+        Top = 411
+        Width = 329
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.HorizontalSpacing = 6
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 6
-        ClientHeight = 25
-        ClientWidth = 326
+        ClientHeight = 32
+        ClientWidth = 329
         TabOrder = 4
         object Label6_2: TLabel
           Left = 10
-          Height = 25
+          Height = 32
           Top = 0
           Width = 13
           Caption = 'X:'
@@ -358,7 +358,7 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object XgBox: TFloatSpinEdit
           Left = 29
-          Height = 25
+          Height = 32
           Top = 0
           Width = 80
           Alignment = taRightJustify
@@ -371,16 +371,16 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Label6_3: TLabel
           Left = 115
-          Height = 25
+          Height = 32
           Top = 0
-          Width = 10
+          Width = 13
           Caption = 'Y:'
           Layout = tlCenter
           ParentColor = False
         end
         object YgBox: TFloatSpinEdit
-          Left = 131
-          Height = 25
+          Left = 134
+          Height = 32
           Top = 0
           Width = 80
           Alignment = taRightJustify
@@ -391,8 +391,8 @@ object FreeLayerDialog: TFreeLayerDialog
           Value = 0
         end
         object Label6_4: TLabel
-          Left = 217
-          Height = 25
+          Left = 220
+          Height = 32
           Top = 0
           Width = 13
           Caption = 'Z:'
@@ -400,8 +400,8 @@ object FreeLayerDialog: TFreeLayerDialog
           ParentColor = False
         end
         object ZgBox: TFloatSpinEdit
-          Left = 236
-          Height = 25
+          Left = 239
+          Height = 32
           Top = 0
           Width = 80
           Alignment = taRightJustify
@@ -415,9 +415,9 @@ object FreeLayerDialog: TFreeLayerDialog
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Height = 94
-        Top = 384
-        Width = 326
+        Height = 122
+        Top = 453
+        Width = 329
         BorderSpacing.Top = 10
         Caption = 'Surface properties. '
         ChildSizing.LeftRightSpacing = 10
@@ -426,14 +426,14 @@ object FreeLayerDialog: TFreeLayerDialog
         ChildSizing.VerticalSpacing = 8
         ChildSizing.Layout = cclTopToBottomThenLeftToRight
         ChildSizing.ControlsPerLine = 3
-        ClientHeight = 77
-        ClientWidth = 322
+        ClientHeight = 98
+        ClientWidth = 325
         TabOrder = 5
         object Label7: TLabel
           Left = 10
-          Height = 15
+          Height = 22
           Top = 8
-          Width = 110
+          Width = 127
           Alignment = taRightJustify
           Caption = 'Area'
           Layout = tlCenter
@@ -441,9 +441,9 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Label8: TLabel
           Left = 10
-          Height = 15
-          Top = 31
-          Width = 110
+          Height = 22
+          Top = 38
+          Width = 127
           Alignment = taRightJustify
           Caption = 'Weight'
           Layout = tlCenter
@@ -451,17 +451,17 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Label9: TLabel
           Left = 10
-          Height = 15
-          Top = 54
-          Width = 110
+          Height = 22
+          Top = 68
+          Width = 127
           Alignment = taRightJustify
           Caption = 'Center of gravity'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label10: TLabel
-          Left = 126
-          Height = 15
+          Left = 143
+          Height = 22
           Top = 8
           Width = 10
           Caption = '--'
@@ -469,18 +469,18 @@ object FreeLayerDialog: TFreeLayerDialog
           ParentColor = False
         end
         object _Label11: TLabel
-          Left = 126
-          Height = 15
-          Top = 31
+          Left = 143
+          Height = 22
+          Top = 38
           Width = 10
           Caption = '--'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label12: TLabel
-          Left = 126
-          Height = 15
-          Top = 54
+          Left = 143
+          Height = 22
+          Top = 68
           Width = 10
           Caption = '--'
           Layout = tlCenter
@@ -492,13 +492,14 @@ object FreeLayerDialog: TFreeLayerDialog
       Left = 6
       Height = 564
       Top = 6
-      Width = 462
+      Width = 459
       Align = alClient
       ItemHeight = 0
       OnClick = LayerBoxClick
       OnClickCheck = LayerBoxClickCheck
       OnDblClick = LayerBoxDblClick
       OnItemClick = LayerBoxItemClick
+      OnSelectionChange = LayerBoxSelectionChange
       TabOrder = 1
       TopIndex = -1
     end

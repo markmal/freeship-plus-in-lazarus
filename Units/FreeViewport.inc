@@ -459,7 +459,7 @@ begin
   FZBuffer := TFreeZBuffer.Create;
   FZBuffer.FViewport := self;
   FAlphaBuffer := TFreeAlphaBuffer.Create;
-  FAlphaBuffer.FViewport := self;
+  FAlphaBuffer.FViewport := Self;
 
   FLight.Position.X := 50;
   FLight.Position.Y := 20;
@@ -1276,11 +1276,14 @@ begin
       if ViewportMode <> vmWireframe then
       begin
         ZBuffer.Initialize;
-        AlphaBuffer.Initialize;
+        AlphaBuffer.Initialize(Self);
         // this prevents black background to appear at large pans and zooms
+        SetPixel(0, 0, GetRValue(Color), GetGValue(Color), GetBValue(Color));
         SetPixel(FDestinationWidth-1, FDestinationHeight-1,
                  GetRValue(Color), GetGValue(Color), GetBValue(Color));
       end;
+
+      SetPixel(10, 10, 255, 127, 0);
 
       if Assigned(OnRedraw) //and (ViewportMode=vmWireframe)
       then
@@ -1288,6 +1291,8 @@ begin
 
       if ViewportMode <> vmWireframe then
         AlphaBuffer.Draw;
+
+      SetPixel(10, 10, 255, 0, 0);
 
       if (FDoubleBuffer) or (ViewportMode <> vmWireframe) then
       begin
@@ -1898,8 +1903,8 @@ var
             // temporary draw via canvas
             //FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 widget DCSetPixel (qtobject.inc) calling QPen_create5
 
-            //SetPixel(X1, Y, R, G, B);
-            FBitmapFormatHelper.SetPixelInLine(pRow, X1, R, G, B, Alpha);
+            SetPixel(X1, Y, R, G, B);
+            ///FBitmapFormatHelper.SetPixelInLine(pRow, X1, R, G, B, Alpha);
 
             FZBuffer.FBuffer[Y][X1] := Z1;
           end

@@ -199,7 +199,7 @@ type
   TFreeLight = record
     Position: T3DCoordinate;
     // position of light in world
-    Luminance: byte;           // brightness
+    Intensity: byte;           // brightness
     Ambient: byte;
   end;
 
@@ -537,6 +537,10 @@ type
     procedure FHorScrollbarChange(Sender: TObject);
     procedure WMMouseEnter(var Message: TMessage); message CM_MOUSEENTER;
     procedure WMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
+
+  private
+    FLightIntensity:single;
+    FAmbientIntencity:single;
   protected
     procedure Paint; override;
     procedure Resize; override;
@@ -598,7 +602,7 @@ type
 
     procedure SetPenWidth(Width: integer); virtual;
     procedure StretchDraw(DestRect: TRect; bmp: TBitmap); virtual;
-    procedure ShadedColor(Dp: single; R, G, B: byte;
+    procedure ShadedColor(aIntensityRatio: single; R, G, B: byte;
       var ROut, GOut, BOut: byte); virtual;
     procedure ShadeTriangle(P_1, P_2, P_3: T3DCoordinate; R, G, B: byte; Alpha: byte);
       overload; virtual;

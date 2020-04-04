@@ -141,9 +141,11 @@ procedure TFreeViewport.FSetLight(val: TFreeLight);
 begin
   if (FLight.Position.X = Val.Position.X) and
     (FLight.Position.Y = Val.Position.Y) and (FLight.Position.Z = Val.Position.Z) and
-    (FLight.Ambient = Val.Ambient) and (FLight.Luminance = Val.Luminance) then
+    (FLight.Ambient = Val.Ambient) and (FLight.Intensity = Val.Intensity) then
     exit;
   FLight := Val;
+  FLightIntensity := FLight.Intensity / 255.0;
+  FAmbientIntencity := FLight.Ambient / 255.0;
   Refresh;
 end;
 
@@ -462,8 +464,8 @@ begin
   FLight.Position.X := 50;
   FLight.Position.Y := 20;
   FLight.Position.Z := 50;
-  FLight.Ambient := 75;
-  FLight.Luminance := 140;
+  FLight.Ambient := 64;
+  FLight.Intensity := 192;
 
   FViewportmode := vmWireFrame;
 
@@ -740,6 +742,9 @@ begin
   FCameraLocation.X := FMax3D.X + FDistance;
   FCameraLocation.Y := FMidPoint.Y;
   FCameraLocation.Z := FMidPoint.Z;
+
+  FLightIntensity := FLight.Intensity / 256.0;
+  FAmbientIntencity := FLight.Ambient / 256.0;
 
   FCosAngle := Cos(DegToRad(FAngle));
   FSinAngle := sin(DegToRad(FAngle));
@@ -1764,39 +1769,55 @@ begin
     FDrawingCanvas.Pen.Width := Width;
 end;{TFreeViewport.SetPenWidth}
 
-procedure TFreeViewport.ShadedColor(Dp: single; R, G, B: byte; var ROut, GOut, BOut: byte);
+procedure TFreeViewport.ShadedColor(aIntensityRatio: single; R, G, B: byte; var ROut, GOut, BOut: byte);
 const
-  Ambient: single = 0.20;
+  AmbientStrength: single = 0.20;
   s255: single = 255;
 var
-  C, Tmp: single;
+  C,Ap,Tmp: single;
 begin
-  if Dp < 0.0 then
-    Dp := -Dp
-  else if Dp > 1.0 then
-    Dp := 1.0;
-  if Dp >= 0.80 then
+  if aIntensityRatio < 0.0 then
+    aIntensityRatio := -aIntensityRatio
+  else if aIntensityRatio > 1.0 then
+    aIntensityRatio := 1.0;
+
+  C := FLightIntensity * aIntensityRatio + FAmbientIntencity;
+  if C > 1.0 then C:=1.0;
+
+  ROut := Round(R * C);
+  GOut := Round(G * C);
+  BOut := Round(B * C);
+
+  {
+  if aIntensityRatio >= 0.80 then
   begin
-    Tmp := 5.0 - 5.0 * Dp;
+    Tmp := 5.0 - 5.0 * aIntensityRatio;
     if Tmp < 0 then
       C := 0
     else
       C := Sqrt(Tmp);
-    ROut := Round(s255 - (s255 - Dp * R) * C);
-    GOut := Round(s255 - (s255 - Dp * G) * C);
-    BOut := Round(s255 - (s255 - Dp * B) * C);
+    ROut := Round(s255 - (s255 - aIntensityRatio * R) * C);
+    GOut := Round(s255 - (s255 - aIntensityRatio * G) * C);
+    BOut := Round(s255 - (s255 - aIntensityRatio * B) * C);
   end
   else
   begin
-    Dp := Dp - Ambient;
-    if Dp < 0.0 then
-      Dp := 0.0;
-    C := Dp / (0.8 - Ambient);
-    C := Ambient + (0.8 - Ambient) * C * C;
-    ROut := Round(C * R);
-    GOut := Round(C * G);
-    BOut := Round(C * B);
+    AmbientStrength := self.FLight.Ambient / s255;
+    aIntensityRatio := aIntensityRatio - AmbientStrength;
+    if aIntensityRatio < 0.0 then
+      aIntensityRatio := 0.0;
+    Ap := (0.8 - AmbientStrength);
+    if abs(Ap) < 1e-6 then Ap:=1e-6;
+    C := aIntensityRatio / Ap;
+    C := AmbientStrength + Ap * C * C;
+
+    C := Sqrt(aIntensityRatio * AmbientStrength);
+    ROut := Round(s255 - (s255 - aIntensityRatio * R) * C);
+    GOut := Round(s255 - (s255 - aIntensityRatio * G) * C);
+    BOut := Round(s255 - (s255 - aIntensityRatio * B) * C);
   end;
+  }
+
 end;{TFreeViewport.ShadedColor}
 
 procedure TFreeViewport.ShadeTriangle(P_1, P_2, P_3: T3DCoordinate; R, G, B: byte; Alpha: byte);
@@ -1805,7 +1826,7 @@ var
   Pt1, Pt2, Pt3, T: TShadePoint;
   LSourceDirection: T3DCoordinate;
   Center: T3DCoordinate;
-  LIntensityRatio: TFloatType;
+  LIntensityRatio, LIntensity: TFloatType;
   Y: integer;
   XLeft, dXLeft: integer;
   XRight, dXRight: integer;

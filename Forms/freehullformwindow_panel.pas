@@ -54,7 +54,8 @@ uses
      StdCtrls,
      Menus,
      ActnList,
-     Printers, ExtDlgs, ExtCtrls
+     Printers, ExtDlgs, ExtCtrls,
+     LightDialog
 {$IFDEF USEOPENGL}
     ,FreeViewPortOpenGL
 {$ENDIF}
@@ -68,8 +69,10 @@ type
 { TFreeHullWindow }
 
  TFreeHullWindow   = class(TMDIPanel)
+  SetLight: TAction;
   ActionListHull: TActionList;
   ImagesHull: TImageList;
+  Light: TMenuItem;
   PopupMenuHull: TPopupMenu;
   PrintDialogHull: TPrintDialog;
    ScrollBar1: TScrollBar;
@@ -148,6 +151,7 @@ type
    procedure ScrollBar1Enter(Sender: TObject);
    procedure ScrollBar2Change(Sender: TObject);
    procedure ScrollBar2Enter(Sender: TObject);
+   procedure SetLightExecute(Sender: TObject);
    procedure ViewportRequestExtents(Sender: TObject; var Min,Max: T3DCoordinate);
    procedure ViewportRedraw(Sender: TObject);
    procedure FormActivate(Sender: TObject);
@@ -211,14 +215,14 @@ private    { Private declarations }
 //protected
  // procedure ProcessResource; virtual;
 public     { Public declarations }
-   constructor Create(AOwner: TComponent); override;
-   //constructor CreateNew(AOwner: TComponent); virtual;
-   destructor Destroy; override;
-
-   procedure SetCaption;
-   procedure UpdateMenu;
-   property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
-   //property OnClose: TCloseEvent read FOnClose write FOnClose;
+  LightDialog:TLightDialog;
+  constructor Create(AOwner: TComponent); override;
+  //constructor CreateNew(AOwner: TComponent); virtual;
+  destructor Destroy; override;
+  procedure SetCaption;
+  procedure UpdateMenu;
+  property FreeShip:TFreeShip read FFreeShip write FSetFreeShip;
+  //property OnClose: TCloseEvent read FOnClose write FOnClose;
 published
   property Caption;
   property Color;
@@ -575,6 +579,23 @@ end;
 procedure TFreeHullWindow.ScrollBar2Enter(Sender: TObject);
 begin
   SetActive(true);
+end;
+
+procedure TFreeHullWindow.SetLightExecute(Sender: TObject);
+begin
+  if not assigned(LightDialog) then
+    begin
+    LightDialog:=TLightDialog.Create(self);
+    LightDialog.ViewPort := self.Viewport;
+    LightDialog.Show;
+    end
+  else
+     begin
+     if not LightDialog.IsVisible then
+       LightDialog.Show;
+     LightDialog.BringToFront;
+     LightDialog.SetFocus;
+     end;
 end;
 
 procedure TFreeHullWindow.ViewportRedraw(Sender: TObject);

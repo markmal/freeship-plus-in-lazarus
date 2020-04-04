@@ -1636,6 +1636,11 @@ msgctxt "tfreehullwindow.saveasbitmap.caption"
 msgid "Save image"
 msgstr ""
 
+#: tfreehullwindow.setlight.caption
+msgctxt "tfreehullwindow.setlight.caption"
+msgid "Light"
+msgstr ""
+
 #: tfreehullwindow.shadezebra.caption
 msgctxt "tfreehullwindow.shadezebra.caption"
 msgid "Zebra shading"

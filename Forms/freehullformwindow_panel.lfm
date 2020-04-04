@@ -119,6 +119,9 @@ object FreeHullWindow: TFreeHullWindow
         Action = ShowDevelopablity
       end
     end
+    object Light: TMenuItem
+      Action = SetLight
+    end
     object Backgroundimage2: TMenuItem
       Caption = 'Background image'
       ImageIndex = 7
@@ -320,6 +323,11 @@ object FreeHullWindow: TFreeHullWindow
       Category = 'Background'
       Caption = 'Visible'
       OnExecute = BackgroundVisibleExecute
+    end
+    object SetLight: TAction
+      Category = 'Light'
+      Caption = 'Light'
+      OnExecute = SetLightExecute
     end
   end
   object ImagesHull: TImageList

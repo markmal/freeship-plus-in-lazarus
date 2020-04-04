@@ -1185,7 +1185,7 @@ begin
         Destination.Add(FShowInLinesplan);
         if Destination.Version >= fv260 then
         begin
-          Destination.Add(FalphaBlend);
+          Destination.Add(FAlphaBlend);
         end;
       end;
     end;

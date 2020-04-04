@@ -2323,6 +2323,10 @@ begin
   if (NumberOfbackgroundImages>0) or (NumberOfFlowlines>0)
   then result := fv250;
 
+  for i:=0 to Surface.NumberOfLayers-1 do
+    if Surface.Layer[i].AlphaBlend < 255 then
+      result := fv260;
+
   if (FResistanceHoltrData.EndSpeed>0) or (FResistanceOSTData.EndSpeed>0)
      or (FPropellerTask1Data.Dat2>0) or (FPropellerTask2Data.Dat2>0)
      or (FPropellerTask3Data.Dat2>0)

@@ -31,11 +31,12 @@ object ExceptionDlg: TExceptionDlg
     end
   end
   object Message: TMemo
-    Left = 0
-    Height = 443
-    Top = 0
-    Width = 544
+    Left = 10
+    Height = 423
+    Top = 10
+    Width = 524
     Align = alClient
+    BorderSpacing.Around = 10
     ReadOnly = True
     TabOrder = 1
   end

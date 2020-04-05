@@ -9,6 +9,7 @@ object FreeHullWindow: TFreeHullWindow
   FormStyle = fsMDIChild
   OnClose = FormClose
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnKeyUp = FormKeyUp
   OnShow = FormShow

@@ -1899,8 +1899,10 @@ type
     function CanInsertEdge: boolean;
     procedure ExportFeFFile(Strings: TStringList);
     procedure ExportObjFile(ExportControlNet: boolean; Strings: TStringList);
-    procedure Extents(var Min, Max: T3DCoordinate);
-      override;
+    procedure Extents(var Min, Max: T3DCoordinate);     override;
+    function ExtrudeControlPoints(
+               Points: TFasterListTFreeSubdivisionControlPoint;
+               Direction: T3DCoordinate): TFasterListTFreeSubdivisionControlPoint;
     procedure ExtrudeEdges(Edges: TFasterListTFreeSubdivisionEdge; Direction: T3DCoordinate);
       reintroduce; overload;
     procedure CalculateIntersections(Plane: T3DPlane;

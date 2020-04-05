@@ -377,6 +377,67 @@ begin
   FreeShip.FileChanged := True;
 end;{TFreeEdit.Edge_Crease}
 
+
+// Create new controlPoints by extruding selected points
+procedure TFreeEdit.Point_Extrude;
+var
+  Dialog: TFreeExtrudeDialog;
+  Point: TFreeSubdivisionControlPoint;
+  Vector: T3DCoordinate;
+  Points, NewPoints: TFasterListTFreeSubdivisionControlPoint;
+  I: integer;
+  Str: string;
+  vUndo: TFreeUndoObject;
+begin
+  Dialog := TFreeExtrudeDialog.Create(FreeShip);
+  ShowTranslatedValues(Dialog);
+  Dialog.XValue := 0.0;
+  Dialog.YValue := 0.0;
+  Dialog.ZValue := 0.0;
+  Str := LengthStr(FreeShip.ProjectSettings.ProjectUnits);
+  if Dialog.Execute(Str) then
+  begin
+    vUndo := CreateUndoObject(Userstring(76), False);
+    Vector.X := Dialog.XValue;
+    Vector.Y := Dialog.YValue;
+    Vector.Z := Dialog.ZValue;
+    // Assemble Points in a list
+    Points := TFasterListTFreeSubdivisionControlPoint.Create;
+    for i:=0 to FreeShip.NumberOfSelectedControlPoints-1 do
+    begin
+      Point := FreeShip.Surface.SelectedControlPoint[i];
+      Points.Add(Point);
+    end;
+    if Points.Count > 0 then
+    begin
+      for i:=0 to Points.Count-1 do
+        Points[i].Selected:=false;
+
+      NewPoints := FreeShip.Surface.ExtrudeControlPoints(Points, Vector);
+
+      for i:=0 to NewPoints.Count-1 do
+      begin
+        Point := NewPoints[i];
+        Point.Selected := True;
+      end;
+
+      vUndo.Accept;
+      FreeShip.Build := False;
+      FreeShip.FileChanged := True;
+      FreeShip.Redraw;
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
+    end
+    else
+    begin
+      MessageDlg(Userstring(77), mtError, [mbOK], 0);
+      vUndo.Delete;
+    end;
+    Points.Destroy;
+  end;
+  Dialog.Destroy;
+end;{TFreeEdit.Point_Extrude}
+
 // Create new controlfaces by extruding selected boundary edges (eg edges with only 1 controlface connected to it)
 procedure TFreeEdit.Edge_Extrude;
 var

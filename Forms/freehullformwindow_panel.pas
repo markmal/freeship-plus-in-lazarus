@@ -145,6 +145,7 @@ type
    //FreeHullForm: TFreeHullForm;
 
    procedure FormDestroy(Sender: TObject);
+   procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
    procedure FormKeyPress(Sender: TObject; var Key: char);
    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
    procedure ScrollBar1Change(Sender: TObject);
@@ -183,6 +184,7 @@ type
    procedure ShowGaussCurvatureExecute(Sender: TObject);
    procedure ShowDevelopablityExecute(Sender: TObject);
    procedure SaveAsBitmapExecute(Sender: TObject);
+   procedure ViewportKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
    procedure ViewportKeyUp(Sender: TObject; var Key: Word;Shift: TShiftState);
    procedure ViewportKeyPress(Sender: TObject; var Key: Char);
    procedure ShadeZebraExecute(Sender: TObject);
@@ -550,6 +552,12 @@ procedure TFreeHullWindow.FormDestroy(Sender: TObject);
 begin
 end;
 
+procedure TFreeHullWindow.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  ViewportKeyDown(Sender, Key, Shift);
+end;
+
 procedure TFreeHullWindow.FormKeyPress(Sender: TObject; var Key: char);
 begin
   ViewportKeyPress(Sender, Key);
@@ -609,7 +617,7 @@ begin
   Viewport := TFreeViewport.Create(Self);
   with Viewport do
   begin
-    Parent := Self; //.ClientPanel;
+    Parent := Self; // redirected to ClientPanel;
     Cursor := crCross;
     Left := 0;
     Height := 270;
@@ -645,6 +653,7 @@ begin
     OnChangeBackground := @ViewportChangeBackground;
     OnChangeViewType := @ViewportChangeViewType;
     OnKeyPress := @ViewportKeyPress;
+    OnKeyDown := @ViewportKeyDown;
     OnKeyUp := @ViewportKeyUp;
     OnMouseDown := @ViewportMouseDown;
     OnMouseUp := @ViewportMouseUp;
@@ -976,9 +985,17 @@ begin
    // End Skip translation
 end;{TFreeHullWindow.SaveAsBitmapExecute}
 
+procedure TFreeHullWindow.ViewportKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   if not Viewport.Focused then
+         Viewport.SetFocus;
+   Freeship.KeyDown(Sender,Key,Shift);
+end;
+
 procedure TFreeHullWindow.ViewportKeyUp(Sender: TObject; var Key: Word;Shift: TShiftState);
 begin
-   Freeship.KeyUp(Viewport,Key,Shift);
+  Freeship.KeyUp(Sender,Key,Shift);
 end;{TFreeHullWindow.ViewportKeyUp}
 
 procedure TFreeHullWindow.ViewportKeyPress(Sender: TObject; var Key: Char);

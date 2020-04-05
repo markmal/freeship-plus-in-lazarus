@@ -745,8 +745,8 @@ type
     // Finds all intersection of VISIBLE edges and a 3D plane, and inserts a point on each of these edges
     procedure Point_IntersectLayer;
     // Calculates the intersection points of two layers
-    procedure Point_Lock;
-    // Locks all selected points
+    procedure Point_Lock;  // Locks all selected points
+    procedure Point_Extrude; // Create new controlPoints by extruding selected points
     function Point_New: TFreeSubdivisionControlPoint; // Add a new point to the model with no edges/faces attached
     function Point_New(coord:T3DCoordinate): TFreeSubdivisionControlPoint; overload;
     procedure Point_AnchorToPoint;
@@ -1373,7 +1373,8 @@ type
     procedure SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
     procedure SelectPointsInFrame(Viewport: TfreeViewport; rect:TRect);
     procedure SubmergedHullExtents(Wlplane: T3DPlane; var Min, Max: T3DCoordinate);
-    procedure KeyUp(Viewport: TfreeViewport; var Key: word; Shift: TShiftState);
+    procedure KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure KeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure DoSelectItems(const Viewport: TFreeViewport; const X, Y: integer;
       const Button: TMouseButton;  const Shift: TShiftState;
       var ItemSelected: boolean);

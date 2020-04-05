@@ -2915,25 +2915,27 @@ begin
   end;
 end;{TFreeShip.SubmergedHullExtents}
 
-procedure TFreeShip.KeyUp(Viewport: TfreeViewport; var Key: word; Shift: TShiftState);
+procedure TFreeShip.KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 const
   Left = 37;
   Right = 39;
   Up = 38;
   Down = 40;
 var
+  vViewport: TFreeViewport;
   Point: TFreeSubdivisionControlPoint;
   P: T3DCoordinate;
 begin
-  if (Key in [Left..Down]) and (Viewport.ViewType <> fvPerspective) and
-    (ActiveControlPoint <> nil) then
+  vViewport := (Sender as TFreeHullWindow).Viewport;
+  if (Key in [Left..Down]) and (vViewport.ViewType <> fvPerspective)
+     and (ActiveControlPoint <> nil) then
   begin
     Edit.CreateUndoObject(Userstring(190), True);
     Point := ActiveControlPoint;
     FileChanged := True;
     Build := False;
     P := Point.Coordinate;
-    case Viewport.Viewtype of
+    case vViewport.Viewtype of
       fvProfile: case Key of
           Left: P.X := P.X - Visibility.CursorIncrement;
           Up: P.Z := P.Z + Visibility.CursorIncrement;
@@ -2962,25 +2964,80 @@ begin
         end;
     end;
     Point.Coordinate := P;
-    ActiveControlPoint := Point;
+    //ActiveControlPoint := Point;
     if ControlpointForm.Visible then
     begin
       // This lines updates the coordinate information in the controlpoint form
       ControlPointform.ActiveControlPoint := Point;
       // and forces a repaint of the form
-      if not Viewport.Focused then
-        Viewport.SetFocus;
+      if not vViewport.Focused then
+        vViewport.SetFocus;
       application.ProcessMessages;
     end;
     Build := False;
     Redraw;
+    Key:=0;  //disable further processing
+  end;
 
-  end
-  else if (Key in [187, 189, 107, 109]) and (Viewport.ViewType <> fvPerspective) then
-    if Key in [107, 187] then
-      Visibility.CursorIncrement := 1.1 * Visibility.CursorIncrement
-    else
-      Visibility.CursorIncrement := Visibility.CursorIncrement / 1.1;
+end;
+
+procedure TFreeShip.KeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
+var
+  vViewport: TFreeViewport;
+  I,R,D,N:double; S,E,M:integer;
+begin
+  vViewport := (Sender as TFreeHullWindow).Viewport;
+  if (vViewport.ViewType = fvPerspective) then exit;
+
+ I:=Visibility.CursorIncrement;
+ N:=I;
+{ R := log10(I);
+ E := ceil(abs(R))*sign(R); //dec exponent
+ M := round(I * power(10,-E)); // dec mantiss x 10
+ N := M * power(10,E);
+ if E<>0 then
+   D := power(10,E)
+ else
+   if R<0 then D := 0.1
+   else D:=1;
+ }
+
+ if (I < 1e-6) then D:=0;
+ if (I >= 1e-6)and(I < 1e-5) then D := 1e-6;
+ if (I >= 1e-5)and(I < 1e-4) then D := 1e-5;
+ if (I >= 1e-4)and(I < 1e-3) then D := 1e-4;
+ if (I >= 1e-3)and(I < 1e-2) then D := 1e-3;
+ if (I >= 1e-2)and(I < 1e-1) then D := 1e-2;
+ if (I >= 1e-1)and(I < 1) then D := 1e-1;
+ if (I >= 1)and(I < 1e+1) then D := 1;
+ if (I >= 1e+1)and(I < 1e+2) then D := 1e+1;
+ if (I >= 1e+2)and(I < 1e+3) then D := 1e+2;
+ if (I >= 1e+3) then D:=0;
+
+ if (Key = VK_SUBTRACT)
+   or ((Key = VK_OEM_MINUS) and not(ssShift in Shift)) then
+    S := -1
+ else
+ if (Key = VK_ADD)
+     or ((Key = VK_OEM_PLUS) and (ssShift in Shift)) then
+      S := 1;
+
+ if (S<0) then
+   if (I < 1e+3) then
+     if (I-D>1e-6) then
+       N := N - D
+     else
+       N := N - D/10
+   else
+     N := N - 1e+2
+ else
+   if (I >= 1e-6) then
+     N := N + D
+   else
+     N := N + 1e-6;
+
+ if N>0 then
+   Visibility.CursorIncrement := N;
 end;{TFreeShip.KeyUp}
 
 procedure TFreeShip.SelectPointsInFrame(Viewport: TfreeViewport; rect: TRect);

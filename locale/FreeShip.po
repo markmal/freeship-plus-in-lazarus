@@ -9055,6 +9055,10 @@ msgstr ""
 msgid "Merge two selected edges by removing their common controlpoint."
 msgstr ""
 
+#: tmainform.pointextrude.caption
+msgid "Extrude points"
+msgstr ""
+
 #: tmainform.pointscoincide.caption
 msgid "Coincide points"
 msgstr ""

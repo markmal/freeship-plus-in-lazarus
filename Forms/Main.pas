@@ -87,6 +87,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     miPointExtrude: TMenuItem;
+     PointExtrude: TAction;
      MenuItem2: TMenuItem;
      PointsCoincide: TAction;
      AddGridPanel: TAction;
@@ -469,6 +471,7 @@ type
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
     procedure LayerBoxPanelClick(Sender: TObject);
+    procedure PointExtrudeExecute(Sender: TObject);
     procedure PointsCoincideExecute(Sender: TObject);
     function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
@@ -1497,8 +1500,9 @@ begin
    PointsUnlock.Enabled:=Freeship.NumberOfSelectedLockedPoints>0;
    PointsUnlockAll.Enabled:=Freeship.NumberOfLockedPoints>0;
    PointAlign.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
-   PointAnchor.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
-   PointsCoincide.Enabled:=Freeship.NumberOfSelectedControlPoints>2;
+   PointAnchor.Enabled:=Freeship.NumberOfSelectedControlPoints>1;
+   PointsCoincide.Enabled:=Freeship.NumberOfSelectedControlPoints>1;
+   PointExtrude.Enabled:=Freeship.NumberOfSelectedControlPoints>0;
    TransformLackenby.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
 
    if FreeShip.ActiveControlPoint <> nil then
@@ -1615,6 +1619,12 @@ end;{TMainForm.ExitProgramExecute}
 procedure TMainForm.LayerBoxPanelClick(Sender: TObject);
 begin
 
+end;
+
+procedure TMainForm.PointExtrudeExecute(Sender: TObject);
+begin
+  Freeship.Edit.Point_Extrude;
+  UpdateMenu;
 end;
 
 procedure TMainForm.PointsCoincideExecute(Sender: TObject);

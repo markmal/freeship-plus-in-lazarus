@@ -7,11 +7,11 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
   Caption = 'Extrusion vector'
   ClientHeight = 200
   ClientWidth = 400
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object Panel2: TPanel
     Left = 0
-    Height = 176
-    Top = 24
+    Height = 170
+    Top = 30
     Width = 400
     Align = alClient
     BevelOuter = bvNone
@@ -19,14 +19,14 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
     ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 176
+    ClientHeight = 170
     ClientWidth = 400
     TabOrder = 0
     object Panel4: TPanel
-      Left = 52
-      Height = 99
-      Top = 39
-      Width = 296
+      Left = 38
+      Height = 120
+      Top = 25
+      Width = 324
       BevelOuter = bvNone
       ChildSizing.LeftRightSpacing = 10
       ChildSizing.TopBottomSpacing = 10
@@ -34,98 +34,101 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
       ChildSizing.VerticalSpacing = 2
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
       ChildSizing.ControlsPerLine = 3
-      ClientHeight = 99
-      ClientWidth = 296
+      ClientHeight = 120
+      ClientWidth = 324
       TabOrder = 0
       object Label1: TLabel
         Left = 10
-        Height = 25
+        Height = 32
         Top = 10
-        Width = 141
+        Width = 167
         Caption = 'Longitudinal direction'
         Layout = tlCenter
         ParentColor = False
       end
       object Label2: TLabel
         Left = 10
-        Height = 25
-        Top = 37
-        Width = 141
+        Height = 32
+        Top = 44
+        Width = 167
         Caption = 'Transverse direction'
         Layout = tlCenter
         ParentColor = False
       end
       object Label4: TLabel
         Left = 10
-        Height = 25
-        Top = 64
-        Width = 141
+        Height = 32
+        Top = 78
+        Width = 167
         Caption = 'Vertical direction'
         Layout = tlCenter
         ParentColor = False
       end
       object FloatSpinEdit1: TFloatSpinEdit
-        Left = 157
-        Height = 25
+        Left = 183
+        Height = 32
         Top = 10
         Width = 100
         Alignment = taRightJustify
         Constraints.MinWidth = 100
         DecimalPlaces = 4
+        Increment = 0.1
         MaxValue = 0
         MinValue = 0
         TabOrder = 0
         Value = 0
       end
       object FloatSpinEdit2: TFloatSpinEdit
-        Left = 157
-        Height = 25
-        Top = 37
+        Left = 183
+        Height = 32
+        Top = 44
         Width = 100
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 4
+        Increment = 0.1
         MaxValue = 0
         MinValue = 0
         TabOrder = 1
         Value = 0
       end
       object FloatSpinEdit3: TFloatSpinEdit
-        Left = 157
-        Height = 25
-        Top = 64
+        Left = 183
+        Height = 32
+        Top = 78
         Width = 100
         Alignment = taRightJustify
         Constraints.MinWidth = 80
         DecimalPlaces = 4
+        Increment = 0.1
         MaxValue = 0
         MinValue = 0
         TabOrder = 2
         Value = 0
       end
       object _Label3: TLabel
-        Left = 263
-        Height = 25
+        Left = 289
+        Height = 32
         Top = 10
-        Width = 23
+        Width = 25
         Caption = '[m]'
         Layout = tlCenter
         ParentColor = False
       end
       object _Label6: TLabel
-        Left = 263
-        Height = 25
-        Top = 37
-        Width = 23
+        Left = 289
+        Height = 32
+        Top = 44
+        Width = 25
         Caption = '[m]'
         Layout = tlCenter
         ParentColor = False
       end
       object _Label9: TLabel
-        Left = 263
-        Height = 25
-        Top = 64
-        Width = 23
+        Left = 289
+        Height = 32
+        Top = 78
+        Width = 25
         Caption = '[m]'
         Layout = tlCenter
         ParentColor = False
@@ -134,18 +137,18 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 24
+    Height = 30
     Top = 0
     Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 30
     ClientWidth = 400
     TabOrder = 1
     object BitBtn1: TSpeedButton
       Left = 236
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight
@@ -194,7 +197,7 @@ object FreeExtrudeDialog: TFreeExtrudeDialog
     end
     object BitBtn2: TSpeedButton
       Left = 318
-      Height = 20
+      Height = 26
       Top = 2
       Width = 80
       Align = alRight

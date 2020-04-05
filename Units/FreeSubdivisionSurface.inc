@@ -2446,6 +2446,27 @@ begin
   end;
 end;{TFreeSubdivisionSurface.Extents}
 
+function TFreeSubdivisionSurface.ExtrudeControlPoints(
+  Points: TFasterListTFreeSubdivisionControlPoint;
+  Direction: T3DCoordinate): TFasterListTFreeSubdivisionControlPoint;
+var
+  I: integer;
+  Point: TFreeSubdivisionControlPoint;
+  P3d:T3DCoordinate;
+begin
+  if (Points = nil) then exit;
+  if (Points.Count = 0) then exit;
+  result:= TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  for i:=0 to Points.Count-1 do
+  begin
+    Built := False;
+    P3d := Points.Items[i].Coordinate;
+    P3d := AddPointSymm(P3d, Direction);
+    Point := Self.AddControlPoint(P3d);
+    result.Add(Point);
+  end;
+end;{TFreeSubdivisionSurface.ExtrudePoints}
+
 procedure TFreeSubdivisionSurface.ExtrudeEdges(Edges: TFasterListTFreeSubdivisionEdge;
   Direction: T3DCoordinate);
 var

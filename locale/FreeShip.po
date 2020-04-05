@@ -5968,16 +5968,6 @@ msgstr ""
 msgid "Transom wetted area, m^2"
 msgstr ""
 
-#: tfreeresistance_holtr.printbutton.caption
-msgctxt "tfreeresistance_holtr.printbutton.caption"
-msgid "PrintButton"
-msgstr ""
-
-#: tfreeresistance_holtr.printbutton.hint
-msgctxt "tfreeresistance_holtr.printbutton.hint"
-msgid "Print the results of the calculation."
-msgstr ""
-
 #: tfreeresistance_holtr.results.caption
 msgctxt "tfreeresistance_holtr.results.caption"
 msgid "Results"
@@ -5988,24 +5978,33 @@ msgctxt "tfreeresistance_holtr.results2.caption"
 msgid "Help"
 msgstr ""
 
-#: tfreeresistance_holtr.toolbar1.caption
-msgctxt "tfreeresistance_holtr.toolbar1.caption"
-msgid "ToolBar1"
-msgstr ""
-
-#: tfreeresistance_holtr.toolbutton20.hint
-msgctxt "tfreeresistance_holtr.toolbutton20.hint"
+#: tfreeresistance_holtr.tbcalculate.hint
+msgctxt "tfreeresistance_holtr.tbcalculate.hint"
 msgid "Start the calculation."
 msgstr ""
 
-#: tfreeresistance_holtr.toolbutton25.hint
-msgctxt "tfreeresistance_holtr.toolbutton25.hint"
+#: tfreeresistance_holtr.tbclose.hint
+msgctxt "tfreeresistance_holtr.tbclose.hint"
+msgid "Close window without saving changes."
+msgstr ""
+
+#: tfreeresistance_holtr.tbclosesave.hint
+msgctxt "tfreeresistance_holtr.tbclosesave.hint"
 msgid "Close the window and save changes."
 msgstr ""
 
-#: tfreeresistance_holtr.toolbutton7.hint
-msgctxt "tfreeresistance_holtr.toolbutton7.hint"
-msgid "Close window without saving changes."
+#: tfreeresistance_holtr.tbprint.caption
+msgid "tbPrint"
+msgstr ""
+
+#: tfreeresistance_holtr.tbprint.hint
+msgctxt "tfreeresistance_holtr.tbprint.hint"
+msgid "Print the results of the calculation."
+msgstr ""
+
+#: tfreeresistance_holtr.toolbar1.caption
+msgctxt "tfreeresistance_holtr.toolbar1.caption"
+msgid "ToolBar1"
 msgstr ""
 
 #: tfreeresistance_holtr._label10.caption

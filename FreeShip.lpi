@@ -31,7 +31,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="8"/>
-      <BuildNr Value="368"/>
+      <BuildNr Value="369"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -225,12 +225,14 @@
     <RunParams>
       <local>
         <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+        <WorkingDirectory Value="/usr/bin/"/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="5">
         <Mode0 Name="default">
           <local>
             <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+            <WorkingDirectory Value="/usr/bin/"/>
           </local>
         </Mode0>
         <Mode1 Name="no debug log">

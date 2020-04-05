@@ -30,7 +30,7 @@ object ExceptionDlg: TExceptionDlg
       TabOrder = 0
     end
   end
-  object Memo1: TMemo
+  object Message: TMemo
     Left = 0
     Height = 443
     Top = 0

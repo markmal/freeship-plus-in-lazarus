@@ -15,6 +15,9 @@ const
   LOG_INFO = 3;
   LOG_DEBUG = 4;
 Type
+
+  { TLogger }
+
   TLogger = class(TLazLoggerFile)
     private
       FLogLevel : integer;
@@ -27,11 +30,13 @@ Type
       procedure SetLogLevel(L:integer);
       procedure IncreaseIndent; override;
       procedure DecreaseIndent; override;
+      function GetExceptionCallStack(E: Exception): string;
       procedure DumpExceptionCallStack(E: Exception);
       property LogLevel : integer read FLogLevel write SetLogLevel;
   end;
 
 var Logger : TLogger;
+var ExceptionDlg : TExceptionDlg;
 
 implementation
 
@@ -100,7 +105,22 @@ begin
  inherited DecreaseIndent;
 end;
 
-var ExceptionDlg : TExceptionDlg;
+function TLogger.GetExceptionCallStack(E: Exception):string;
+var
+  I: Integer;
+  Frames: PPointer;
+begin
+  Result := 'Program exception! ' + LineEnding +
+    'Stacktrace:' + LineEnding + LineEnding;
+  if E <> nil then begin
+    Result := Result + 'Exception class: ' + E.ClassName + LineEnding +
+    'Message: ' + E.Message + LineEnding;
+  end;
+  Result := Result + BackTraceStrFunc(ExceptAddr);
+  Frames := ExceptFrames;
+  for I := 0 to ExceptFrameCount - 1 do
+    Result := Result + LineEnding + BackTraceStrFunc(Frames[I]);
+end;
 
 procedure TLogger.DumpExceptionCallStack(E: Exception);
 var
@@ -108,23 +128,13 @@ var
   Frames: PPointer;
   Report: string;
 begin
-  Report := 'Program exception! ' + LineEnding +
-    'Stacktrace:' + LineEnding + LineEnding;
-  if E <> nil then begin
-    Report := Report + 'Exception class: ' + E.ClassName + LineEnding +
-    'Message: ' + E.Message + LineEnding;
-  end;
-  Report := Report + BackTraceStrFunc(ExceptAddr);
-  Frames := ExceptFrames;
+  Report := GetExceptionCallStack(E);
   for I := 0 to ExceptFrameCount - 1 do
     Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
   logger.Error(Report);
-  //ShowMessage(Report);
-  //MessageDlg('Program exception!', Report, mtError, [mbClose],0);
-  //InputBox('Program exception!', 'You can copy exception stack', Report);
   if ExceptionDlg<>nil then
   begin
-    ExceptionDlg.Memo1.Text := Report;
+    ExceptionDlg.Message.Text := Report;
     ExceptionDlg.Showmodal;
   end;
   //Halt; // End of program execution

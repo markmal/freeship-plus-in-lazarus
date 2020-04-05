@@ -217,7 +217,7 @@ type
     Series3: TLineSeries;
     Series4: TLineSeries;
     ToolBar1: TToolBar;
-    ToolButton20: TToolButton;
+    tbCalculate: TToolButton;
     ZBulbBox: TFloatSpinEdit;
     _Label10: TLabel;
     _Label11: TLabel;
@@ -233,10 +233,10 @@ type
     _Label9: TLabel;
     _ToolButton10: TToolButton;
     _ToolButton14: TToolButton;
-    ToolButton25: TToolButton;
-    ToolButton7: TToolButton;
+    tbCloseSave: TToolButton;
+    tbClose: TToolButton;
     MenuImages: TImageList;
-    PrintButton: TToolButton;
+    tbPrint: TToolButton;
     _Label17: TLabel;
     _Label18: TLabel;
     _Label19: TLabel;
@@ -247,10 +247,10 @@ type
     procedure File_ExportData84(dat, dan: array of single);
 
     procedure CheckBox2Click(Sender: TObject);
-    procedure ToolButton25Click(Sender: TObject);
-    procedure ToolButton7Click(Sender: TObject);
-    procedure ToolButton20Click(Sender: TObject);
-    procedure PrintButtonClick(Sender: TObject);
+    procedure tbCloseSaveClick(Sender: TObject);
+    procedure tbCloseClick(Sender: TObject);
+    procedure tbCalculateClick(Sender: TObject);
+    procedure tbPrintClick(Sender: TObject);
     procedure DraftTotalBoxAfterSetValue(
       Sender: TObject);
     procedure StartSpeedBoxAfterSetValue(
@@ -269,6 +269,7 @@ type
     Ae0, P_D0, Nver, Z0, Tc: single;
     iflag, iflag1: integer;
     jspeed: integer;
+    FTmpFileName:string;
     function OptimumCPH(Speed: single): single;
     function OptimumLCBH(Speed: single): single;
 
@@ -371,6 +372,7 @@ type
   public
     function CorrectInputdata: boolean;
     procedure Calculate;
+    procedure CalculateWrapper;
     function Execute(Freeship: TFreeship;
       AutoExtract: boolean): boolean;
     property Bwl: single
@@ -470,7 +472,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeLogger, FreeLanguageSupport;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -573,11 +575,10 @@ var
   Stop: boolean;
   ispeed, iii: integer;
   I, II, J, JJ, J3: integer;
-  ffile: textfile;
+  FFile: textfile;
   Vs: array[1..10] of single;
   STR_: array[1..125] of string;
   STR0: array[1..40] of string;
-
 begin
   if Estimate3Box.Checked then
     iflag := 1
@@ -606,7 +607,7 @@ begin
   ResultsMemo.Visible := False;
   ResultsMemo.Visible := True;
   ResultsMemo2.Visible := True;
-  PrintButton.Enabled := False;
+  tbPrint.Enabled := False;
   // Вывод помощи для метода Холтроп
   ResultsMemo2.Text := '';
   //      ResultsMemo2.Lines.Add(Userstring(332));
@@ -883,106 +884,111 @@ begin
     StepSpeed1 := (Vs[10] - Vs[1]) / 20;
     Speed := Vs[1];
 
+    FTmpFileName:='RESISTp.dat';
     Assignfile(FFile, 'RESISTp.dat');
-         {$I-}
     Rewrite(FFile);
-{$I+}
-    Writeln(FFile,
-      '#     Nser      Np       Wt        t       Eta_R       Dp');
-    Write(FFile, '       51 ');
-    Write(FFile, Np: 10: 0);
-    Write(FFile, w: 10: 4);
-    Write(FFile, t0: 10: 4);
-    Write(FFile, nr: 10: 4);
-    Writeln(FFile, Dp: 10: 4);
-    Writeln(FFile, '#      Vs       Rt        Rte       Pe       Pee');
+    try
+      Writeln(FFile,
+        '#     Nser      Np       Wt        t       Eta_R       Dp');
+      Write(FFile, '       51 ');
+      Write(FFile, Np: 10: 0);
+      Write(FFile, w: 10: 4);
+      Write(FFile, t0: 10: 4);
+      Write(FFile, nr: 10: 4);
+      Writeln(FFile, Dp: 10: 4);
+      Writeln(FFile, '#      Vs       Rt        Rte       Pe       Pee');
 
-    for ispeed := 1 to 20 do
-    begin
-      Speed := Speed + StepSpeed1;
-      ConvertedSpeed := Speed * 1852 / 3600;
-      if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
-        FroudeNumber := ConvertedSpeed / SQRT(9.81 * Foot * Lwl)
-      else
-        FroudeNumber := ConvertedSpeed / SQRT(9.81 * Lwl);
-      if (FroudeNumber > 1.0) or (FroudeNumber < 0.05) then
-        ResultsMemo.Lines.Add(Space(10) + 'Fr ' + Userstring(476) + ' 0,05 ... 1,0');
-      CalculateResistanceHoltr(ConvertedSpeed, LCB, Cp, Rf, Rr, w, t0, nr);
-
-      Series1.AddXY(Speed, (Rf + Rr) / flag, '', clTeeColor);
-      Series2.AddXY(Speed, (Rf + Rr) / flag * ke, '', clTeeColor);
-      Series3.AddXY(Speed, (Rf + Rr) / flag * ConvertedSpeed, '', clTeeColor);
-      Series4.AddXY(Speed, (Rf + Rr) / flag * ConvertedSpeed * ke, '', clTeeColor);
-      //               inc(Index);
-      Write(FFile, Speed: 10: 2);
-      Write(FFile, Rf + Rr: 10: 2);
-      Write(FFile, (Rf + Rr) * ke: 10: 2);
-      Write(FFile, (Rf + Rr) * ConvertedSpeed: 10: 2);
-      Writeln(FFile, (Rf + Rr) * ke * ConvertedSpeed: 10: 2);
-    end;
-    CloseFile(FFile);
-    Assignfile(FFile, 'RESIST.dat');
-          {$I-}
-    Rewrite(FFile);
-{$I+}
-
-    for ispeed := 1 to 10 do
-    begin
-      jspeed := ispeed;
-      Speed := Vs[ispeed];
-      ConvertedSpeed := Speed * 1852 / 3600;
-      if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
-        FroudeNumber := ConvertedSpeed / SQRT(9.81 * Foot * Lwl)
-      else
-        FroudeNumber := ConvertedSpeed / SQRT(9.81 * Lwl);
-
-      CalculateResistanceHoltr(ConvertedSpeed, LCB, Cp, Rf, Rr, w, t0, nr);
-
-
-      Str(Speed: 6: 2, Line);
-      Line := '|' + Line + ' |';
-      Str(ConvertedSpeed: 6: 2, Tmp);
-      Line := Line + Tmp + ' |';
-      Str(FroudeNumber: 6: 3, Tmp);
-      Line := Line + Tmp + ' |';
-      Str(Rf / flag: 7: 1, Tmp);
-      Line := Line + Tmp + ' |';
-
-      if ((FroudeNumber >= 0.05) and (FroudeNumber <= 1)) then
+      for ispeed := 1 to 20 do
       begin
-        Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(630);
+        Speed := Speed + StepSpeed1;
+        ConvertedSpeed := Speed * 1852 / 3600;
+        if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
+          FroudeNumber := ConvertedSpeed / SQRT(9.81 * Foot * Lwl)
+        else
+          FroudeNumber := ConvertedSpeed / SQRT(9.81 * Lwl);
+        if (FroudeNumber > 1.0) or (FroudeNumber < 0.05) then
+          ResultsMemo.Lines.Add(Space(10) + 'Fr ' + Userstring(476) + ' 0,05 ... 1,0');
+        CalculateResistanceHoltr(ConvertedSpeed, LCB, Cp, Rf, Rr, w, t0, nr);
+
+        Series1.AddXY(Speed, (Rf + Rr) / flag, '', clTeeColor);
+        Series2.AddXY(Speed, (Rf + Rr) / flag * ke, '', clTeeColor);
+        Series3.AddXY(Speed, (Rf + Rr) / flag * ConvertedSpeed, '', clTeeColor);
+        Series4.AddXY(Speed, (Rf + Rr) / flag * ConvertedSpeed * ke, '', clTeeColor);
         //               inc(Index);
-        //               CPopt[index]:=OptimumCPH(ConvertedSpeed);
-        //               LCBopt[index]:=OptimumLCBH(ConvertedSpeed);
-        Str(Rr / flag: 7: 1, Tmp);
+        Write(FFile, Speed: 10: 2);
+        Write(FFile, Rf + Rr: 10: 2);
+        Write(FFile, (Rf + Rr) * ke: 10: 2);
+        Write(FFile, (Rf + Rr) * ConvertedSpeed: 10: 2);
+        Writeln(FFile, (Rf + Rr) * ke * ConvertedSpeed: 10: 2);
+      end;
+    finally
+      CloseFile(FFile);
+    end;
+
+    FTmpFileName:='RESIST.dat';
+    Assignfile(FFile, 'RESIST.dat');
+    Rewrite(FFile);
+    try
+      for ispeed := 1 to 10 do
+      begin
+        jspeed := ispeed;
+        Speed := Vs[ispeed];
+        ConvertedSpeed := Speed * 1852 / 3600;
+        if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
+          FroudeNumber := ConvertedSpeed / SQRT(9.81 * Foot * Lwl)
+        else
+          FroudeNumber := ConvertedSpeed / SQRT(9.81 * Lwl);
+
+        CalculateResistanceHoltr(ConvertedSpeed, LCB, Cp, Rf, Rr, w, t0, nr);
+
+
+        Str(Speed: 6: 2, Line);
+        Line := '|' + Line + ' |';
+        Str(ConvertedSpeed: 6: 2, Tmp);
         Line := Line + Tmp + ' |';
-        Str((Rf + Rr) / flag: 7: 1, Tmp);
+        Str(FroudeNumber: 6: 3, Tmp);
         Line := Line + Tmp + ' |';
-        Str((Rf + Rr) / flag * ConvertedSpeed: 8: 1, Tmp);
+        Str(Rf / flag: 7: 1, Tmp);
         Line := Line + Tmp + ' |';
-        Str((Rf + Rr) / flag * ke: 7: 1, Tmp);
-        Line := Line + Tmp + ' |';
-        Str((Rf + Rr) / flag * ConvertedSpeed * ke: 8: 1, Tmp);
-        Line := Line + Tmp + ' |';
-        if (ispeed = 1) or (ispeed = 4) or (ispeed = 6) or (ispeed = 8) or (ispeed = 10) then
+
+        if ((FroudeNumber >= 0.05) and (FroudeNumber <= 1)) then
         begin
-          Write(FFile, Speed: 10: 2);
-          Write(FFile, Rf + Rr: 10: 2);
-          Write(FFile, (Rf + Rr) * ke: 10: 2);
-          Write(FFile, (Rf + Rr) * ConvertedSpeed: 10: 2);
-          Writeln(FFile, (Rf + Rr) * ke * ConvertedSpeed: 10: 2);
+          Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(630);
+          //               inc(Index);
+          //               CPopt[index]:=OptimumCPH(ConvertedSpeed);
+          //               LCBopt[index]:=OptimumLCBH(ConvertedSpeed);
+          Str(Rr / flag: 7: 1, Tmp);
+          Line := Line + Tmp + ' |';
+          Str((Rf + Rr) / flag: 7: 1, Tmp);
+          Line := Line + Tmp + ' |';
+          Str((Rf + Rr) / flag * ConvertedSpeed: 8: 1, Tmp);
+          Line := Line + Tmp + ' |';
+          Str((Rf + Rr) / flag * ke: 7: 1, Tmp);
+          Line := Line + Tmp + ' |';
+          Str((Rf + Rr) / flag * ConvertedSpeed * ke: 8: 1, Tmp);
+          Line := Line + Tmp + ' |';
+          if (ispeed = 1) or (ispeed = 4) or (ispeed = 6) or (ispeed = 8) or (ispeed = 10) then
+          begin
+            Write(FFile, Speed: 10: 2);
+            Write(FFile, Rf + Rr: 10: 2);
+            Write(FFile, (Rf + Rr) * ke: 10: 2);
+            Write(FFile, (Rf + Rr) * ConvertedSpeed: 10: 2);
+            Writeln(FFile, (Rf + Rr) * ke * ConvertedSpeed: 10: 2);
+          end;
+        end;
+        ResultsMemo.Lines.Add(Space(10) + Line);
+        if ispeed < 8 then
+          Tb := 0.01;
+        if ispeed = 8 then
+        begin
+          Tb := (Rf + Rr) * ke / (1 - t0);
+          Vms := ConvertedSpeed;
         end;
       end;
-      ResultsMemo.Lines.Add(Space(10) + Line);
-      if ispeed < 8 then
-        Tb := 0.01;
-      if ispeed = 8 then
-      begin
-        Tb := (Rf + Rr) * ke / (1 - t0);
-        Vms := ConvertedSpeed;
-      end;
+    finally
+      CloseFile(FFile);
     end;
-    CloseFile(FFile);
+
     ResultsMemo.Lines.Add(
       Space(10) + '+-------+-------+-------+--------+--------+--------+---------+--------+---------+');
     ResultsMemo.Lines.Add('');
@@ -1125,17 +1131,20 @@ begin
         '----------------------------------------------------------------------------------');
       if FileExistsUTF8('OUT.') { *Converted from FileExists* } then
       begin
+        FTmpFileName:='OUT.';
         Assignfile(FFile, 'OUT.');
-      {$I-}
         Reset(FFile);
-{$I+}
-        II := 0;
-        while not EOF(FFile) do
-        begin
-          II := II + 1;
-          Readln(FFile, str_[II]);
+        try
+          II := 0;
+          while not EOF(FFile) do
+          begin
+            II := II + 1;
+            Readln(FFile, str_[II]);
+          end;
+        finally
+          CloseFile(FFile);
         end;
-        CloseFile(FFile);
+
         // Задание строк для замены
         STR0[1] := ' Input Verification:';
         STR0[2] := '      Length of Waterline LWL (m)            =';
@@ -1304,7 +1313,7 @@ begin
 
     // Сделать результаты видимыми и печатаемыми
     ResultsMemo.Visible := True;
-    PrintButton.Enabled := True;
+    tbPrint.Enabled := True;
   end;
 end;{TFreeResistance_Delft.Calculate}
 
@@ -1856,7 +1865,7 @@ begin
     _Label36.Caption := ' ' + Userstring(471);
   // End Skip translation
   Viscosity := FindWaterViscosity(Temper, Units);
-  Calculate;
+  CalculateWrapper;
   ShowModal;
   Result := ModalResult = mrOk;
 end;{TFreeResistance_Holtr.Execute}
@@ -1952,22 +1961,51 @@ begin
   end;
 end;{TFreeResistance_Holtr.CheckBox2Click}
 
-procedure TFreeResistance_Holtr.ToolButton25Click(Sender: TObject);
+procedure TFreeResistance_Holtr.tbCloseSaveClick(Sender: TObject);
 begin
   ModalResult := mrOk;
 end;{TFreeResistance_Holtr.ToolButton25Click}
 
-procedure TFreeResistance_Holtr.ToolButton7Click(Sender: TObject);
+procedure TFreeResistance_Holtr.tbCloseClick(Sender: TObject);
 begin
   ModalResult := mrCancel;
 end;{TFreeResistance_Holtr.ToolButton7Click}
 
-procedure TFreeResistance_Holtr.ToolButton20Click(Sender: TObject);
+
+procedure TFreeResistance_Holtr.CalculateWrapper;
+var CurDir, ErrMsg:string;
 begin
-  Calculate;
+  try
+    CurDir:=GetCurrentDir;
+    try
+      SetCurrentDir(FFreeShip.Preferences.TempDirectory);
+      Calculate;
+    except
+      on E:EInOutError do
+        begin
+        ErrMsg := format(
+          'I/O Error(%d): %s'#10'Current dir: %s'#10#10,
+          [E.ErrorCode,FTmpFileName,GetCurrentDirUTF8])
+          +logger.GetExceptionCallStack(E);
+        logger.Error(ErrMsg);
+        ExceptionDlg.Message.Text:=ErrMsg;
+        ExceptionDlg.ShowModal;
+        exit;
+        end;
+      on E:Exception do
+        logger.DumpExceptionCallStack(E);
+    end;
+  finally
+    SetCurrentDir(CurDir);
+  end;
+end;{TFreeResistance_Holtr.CalculateWrapper}
+
+procedure TFreeResistance_Holtr.tbCalculateClick(Sender: TObject);
+begin
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.ToolButton20Click}
 
-procedure TFreeResistance_Holtr.PrintButtonClick(Sender: TObject);
+procedure TFreeResistance_Holtr.tbPrintClick(Sender: TObject);
 var
   Line: integer;
   PrintText: TextFile;
@@ -2018,28 +2056,28 @@ begin
     end;
     HydObject.Destroy;
   end;
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.DraftTotalBoxAfterSetValue}
 
 procedure TFreeResistance_Holtr.StartSpeedBoxAfterSetValue(Sender: TObject);
 begin
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.StartSpeedBoxAfterSetValue}
 
 procedure TFreeResistance_Holtr.LwlBoxAfterSetValue(Sender: TObject);
 begin
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.LwlBoxAfterSetValue}
 
 procedure TFreeResistance_Holtr.KeelChordLengthboxAfterSetValue(Sender: TObject);
 begin
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.KeelChordLengthboxAfterSetValue}
 
 procedure TFreeResistance_Holtr.EstimateBoxClick(Sender: TObject);
 begin
   WettedSurfaceBox.Enabled := not EstimateBox.Checked;
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.EstimateBoxClick}
 
 procedure TFreeResistance_Holtr.Estimate2BoxClick(Sender: TObject);
@@ -2061,17 +2099,17 @@ begin
   A10 := Cm * Bwl * Tc;
   if A11 = 0 then
     A11 := 2;
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.Estimate2BoxClick}
 
 procedure TFreeResistance_Holtr.Estimate3BoxClick(Sender: TObject);
 begin
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.Estimate3BoxClick}
 
 procedure TFreeResistance_Holtr.Estimate4BoxClick(Sender: TObject);
 begin
-  Calculate;
+  CalculateWrapper;
 end;{TFreeResistance_Holtr.Estimate4BoxClick}
 
 procedure TFreeResistance_Holtr.CalculateResistanceHoltr(ConvertedSpeed, LCB, Cp: single;
@@ -2303,12 +2341,14 @@ begin
       end;
     end;
 
+    FTmpFileName:='OUT.TXT';
     Assignfile(FFile, 'OUT.TXT');
-      {$I-}
     Reset(FFile);
-{$I+}
-    Readln(FFile, Ke_);
-    CloseFile(FFile);
+    try
+      Readln(FFile, Ke_);
+    finally
+      CloseFile(FFile);
+    end;
     if FileExistsUTF8('OUT.TXT') { *Converted from FileExists* } then
       DeleteFileUTF8('OUT.TXT'); { *Converted from DeleteFile* }
     Ke := Ke_;
@@ -2672,19 +2712,21 @@ var
   I: integer;
   ffile: textfile;
 begin
+  FTmpFileName:='TMPke.txt';
   Assignfile(FFile, 'TMPke.txt');
-      {$I-}
   Rewrite(FFile);
-{$I+}
-  for I := 0 to 29 do
-  begin
-    Writeln(FFile, dat[I]);
+  try
+    for I := 0 to 29 do
+    begin
+      Writeln(FFile, dat[I]);
+    end;
+    for I := 0 to 14 do
+    begin
+      Writeln(FFile, dan[I]);
+    end;
+  finally
+    CloseFile(FFile);
   end;
-  for I := 0 to 14 do
-  begin
-    Writeln(FFile, dan[I]);
-  end;
-  CloseFile(FFile);
 end;{TFreePropeller_Task1.File_ExportData}
 
 procedure TFreeResistance_Holtr.File_ExportData84(dat, dan: array of single);
@@ -2692,26 +2734,28 @@ var
   I: integer;
   ffile: textfile;
 begin
+  FTmpFileName:='IN.';
   Assignfile(FFile, 'IN.');
-      {$I-}
   Rewrite(FFile);
-{$I+}
-  for I := 0 to 4 do
-    Write(FFile, dat[I]: 9: 4);
-  Write(FFile, dat[I]: 9: 3);
-  for I := 6 to 8 do
-    Write(FFile, dat[I]: 10: 6);
-  Writeln(FFile, dat[9]: 10: 6);
-  for I := 10 to 15 do
-    Write(FFile, dat[I]: 9: 4);
-  Writeln(FFile, dat[16]: 2: 0);
-  for I := 17 to 22 do
-    Write(FFile, dat[I]: 11: 4);
-  Writeln(FFile, dat[23]: 2: 0);
-  for I := 24 to 26 do
-    Write(FFile, dat[I]: 10: 3);
-  Writeln(FFile, dat[27]: 14: 11);
-  CloseFile(FFile);
+  try
+    for I := 0 to 4 do
+      Write(FFile, dat[I]: 9: 4);
+    Write(FFile, dat[I]: 9: 3);
+    for I := 6 to 8 do
+      Write(FFile, dat[I]: 10: 6);
+    Writeln(FFile, dat[9]: 10: 6);
+    for I := 10 to 15 do
+      Write(FFile, dat[I]: 9: 4);
+    Writeln(FFile, dat[16]: 2: 0);
+    for I := 17 to 22 do
+      Write(FFile, dat[I]: 11: 4);
+    Writeln(FFile, dat[23]: 2: 0);
+    for I := 24 to 26 do
+      Write(FFile, dat[I]: 10: 3);
+    Writeln(FFile, dat[27]: 14: 11);
+  finally
+    CloseFile(FFile);
+  end;
 end;{TFreePropeller_Task1.File_ExportData}
 
 {

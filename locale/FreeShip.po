@@ -3830,11 +3830,6 @@ msgctxt "tfreeprojectsettingsdialog.label11.caption"
 msgid "m"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.label12.caption
-msgctxt "tfreeprojectsettingsdialog.label12.caption"
-msgid "Label12"
-msgstr ""
-
 #: tfreeprojectsettingsdialog.label13.caption
 msgid "Midship or max. area station location"
 msgstr ""
@@ -3929,6 +3924,10 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label9.caption
 msgctxt "tfreeprojectsettingsdialog.label9.caption"
 msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.lbwaterdensity.caption
+msgid "lbWaterDensity"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.precisionbox.hint

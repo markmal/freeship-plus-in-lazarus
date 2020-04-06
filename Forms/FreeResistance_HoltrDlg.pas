@@ -371,8 +371,8 @@ type
 
   public
     function CorrectInputdata: boolean;
+    procedure doCalculate;
     procedure Calculate;
-    procedure CalculateWrapper;
     function Execute(Freeship: TFreeship;
       AutoExtract: boolean): boolean;
     property Bwl: single
@@ -559,7 +559,7 @@ begin
   Result := True;
 end;{TFreeResistance_Holtr.CorrectInputdata}
 
-procedure TFreeResistance_Holtr.Calculate;
+procedure TFreeResistance_Holtr.doCalculate;
 var
   ConvertedSpeed: single;
   FroudeNumber: single;
@@ -1865,7 +1865,7 @@ begin
     _Label36.Caption := ' ' + Userstring(471);
   // End Skip translation
   Viscosity := FindWaterViscosity(Temper, Units);
-  CalculateWrapper;
+  Calculate;
   ShowModal;
   Result := ModalResult = mrOk;
 end;{TFreeResistance_Holtr.Execute}
@@ -1972,14 +1972,14 @@ begin
 end;{TFreeResistance_Holtr.ToolButton7Click}
 
 
-procedure TFreeResistance_Holtr.CalculateWrapper;
+procedure TFreeResistance_Holtr.Calculate;
 var CurDir, ErrMsg:string;
 begin
   try
     CurDir:=GetCurrentDir;
     try
       SetCurrentDir(FFreeShip.Preferences.TempDirectory);
-      Calculate;
+      doCalculate;
     except
       on E:EInOutError do
         begin
@@ -1998,11 +1998,11 @@ begin
   finally
     SetCurrentDir(CurDir);
   end;
-end;{TFreeResistance_Holtr.CalculateWrapper}
+end;{TFreeResistance_Holtr.Calculate}
 
 procedure TFreeResistance_Holtr.tbCalculateClick(Sender: TObject);
 begin
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.ToolButton20Click}
 
 procedure TFreeResistance_Holtr.tbPrintClick(Sender: TObject);
@@ -2056,28 +2056,28 @@ begin
     end;
     HydObject.Destroy;
   end;
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.DraftTotalBoxAfterSetValue}
 
 procedure TFreeResistance_Holtr.StartSpeedBoxAfterSetValue(Sender: TObject);
 begin
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.StartSpeedBoxAfterSetValue}
 
 procedure TFreeResistance_Holtr.LwlBoxAfterSetValue(Sender: TObject);
 begin
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.LwlBoxAfterSetValue}
 
 procedure TFreeResistance_Holtr.KeelChordLengthboxAfterSetValue(Sender: TObject);
 begin
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.KeelChordLengthboxAfterSetValue}
 
 procedure TFreeResistance_Holtr.EstimateBoxClick(Sender: TObject);
 begin
   WettedSurfaceBox.Enabled := not EstimateBox.Checked;
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.EstimateBoxClick}
 
 procedure TFreeResistance_Holtr.Estimate2BoxClick(Sender: TObject);
@@ -2099,17 +2099,17 @@ begin
   A10 := Cm * Bwl * Tc;
   if A11 = 0 then
     A11 := 2;
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.Estimate2BoxClick}
 
 procedure TFreeResistance_Holtr.Estimate3BoxClick(Sender: TObject);
 begin
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.Estimate3BoxClick}
 
 procedure TFreeResistance_Holtr.Estimate4BoxClick(Sender: TObject);
 begin
-  CalculateWrapper;
+  Calculate;
 end;{TFreeResistance_Holtr.Estimate4BoxClick}
 
 procedure TFreeResistance_Holtr.CalculateResistanceHoltr(ConvertedSpeed, LCB, Cp: single;

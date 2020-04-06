@@ -371,8 +371,10 @@ type
     ResTot: array[1..3, 1..11] of single;
     Vsres: array[1..3, 1..11] of single;
     PathFile, PathFileOld, FileToFind, FileName: string;
+    FTmpFileName: string;
     function CorrectInputdata: boolean;
     procedure Calculate;
+    procedure doCalculate;
     function Execute(Freeship: TFreeship;
       AutoExtract: boolean): boolean;
     property Bwl: single
@@ -472,7 +474,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeLogger, FreeLanguageSupport;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -559,6 +561,34 @@ begin
 end;{TFreeResistance_Oortmer.CorrectInputdata}
 
 procedure TFreeResistance_Oortmer.Calculate;
+var CurDir, ErrMsg:string;
+begin
+  try
+    CurDir:=GetCurrentDir;
+    try
+      SetCurrentDir(FFreeShip.Preferences.TempDirectory);
+      doCalculate;
+    except
+      on E:EInOutError do
+        begin
+        ErrMsg := format(
+          'I/O Error(%d): %s'#10'Current dir: %s'#10#10,
+          [E.ErrorCode,FTmpFileName,GetCurrentDirUTF8])
+          +logger.GetExceptionCallStack(E);
+        logger.Error(ErrMsg);
+        ExceptionDlg.Message.Text:=ErrMsg;
+        ExceptionDlg.ShowModal;
+        exit;
+        end;
+      on E:Exception do
+        logger.DumpExceptionCallStack(E);
+    end;
+  finally
+    SetCurrentDir(CurDir);
+  end;
+end;
+
+procedure TFreeResistance_Oortmer.doCalculate;
 var
   ConvertedSpeed: single;
   FroudeNumber: single;
@@ -912,7 +942,8 @@ begin
       {$ifndef LCL}
         WinExec(PChar(FInitDirectory + 'Exec\OORTMERS.EXE'), 0);
       {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'OORTMERS.EXE'), '', []);
+        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'OORTMERS.EXE'),
+          '', []);
       {$endif}
         Nser := 1;
       end;
@@ -982,32 +1013,34 @@ begin
 
       if FileExistsUTF8('oortmers.res') then
       begin
+        FTmpFileName := 'oortmers.res';
         Assignfile(FFile, 'oortmers.res');
-      {$I-}
         Reset(FFile);
-{$I+}
-        II := 0;
-        while (not EOF(FFile)) and (II < 10) do
-        begin
-          II := II + 1;
-          for I := 1 to 8 do
-            Read(FFile, res[I, II]);
-          ResTot[Nser, ii] := res[7, ii] * 10;
-          VsRes[Nser, ii] := res[1, ii];
-          if res[6, II] < 0 then
+        try
+          II := 0;
+          while (not EOF(FFile)) and (II < 10) do
           begin
-            ResultsMemo.Lines.Add(Space(14) + Userstring(487));
-            MessageDlg(Userstring(487), mtError, [mbOK], 0);
-            ResultsMemo.Visible := True;
-            CloseFile(FFile);
-            if FileExistsUTF8('oortmers.res')
-            { *Converted from FileExists* } then
-              DeleteFileUTF8('oortmers.res'); { *Converted from DeleteFile* }
-            exit;
-          end;
+            II := II + 1;
+            for I := 1 to 8 do
+              Read(FFile, res[I, II]);
+            ResTot[Nser, ii] := res[7, ii] * 10;
+            VsRes[Nser, ii] := res[1, ii];
+            if res[6, II] < 0 then
+            begin
+              ResultsMemo.Lines.Add(Space(14) + Userstring(487));
+              MessageDlg(Userstring(487), mtError, [mbOK], 0);
+              ResultsMemo.Visible := True;
+              CloseFile(FFile);
+              if FileExistsUTF8('oortmers.res')
+              { *Converted from FileExists* } then
+                DeleteFileUTF8('oortmers.res'); { *Converted from DeleteFile* }
+              exit;
+            end;
 
+          end;
+        finally
+          CloseFile(FFile);
         end;
-        CloseFile(FFile);
         DeleteFileUTF8('oortmers.res'); { *Converted from DeleteFile* }
       end;
 
@@ -1070,12 +1103,14 @@ begin
           end;
         end;
 
+        FTmpFileName := 'OUT.TXT';
         Assignfile(FFile, 'OUT.TXT');
-      {$I-}
         Reset(FFile);
-{$I+}
-        Readln(FFile, Ke_);
-        CloseFile(FFile);
+        try
+          Readln(FFile, Ke_);
+        finally
+          CloseFile(FFile);
+        end;
         if FileExistsUTF8('OUT.TXT') { *Converted from FileExists* } then
           DeleteFileUTF8('OUT.TXT'); { *Converted from DeleteFile* }
         Ke := Ke_;
@@ -1104,51 +1139,55 @@ begin
       end;
     end;
     // Записываем результаты расчета в Resistp.dat для 10 скоростей
+    FTmpFileName := 'RESISTp.dat';
     Assignfile(FFile, 'RESISTp.dat');
-         {$I-}
     Rewrite(FFile);
-{$I+}
-    Writeln(FFile, '#     Nser      Np       Wt        t       Eta_R     Dp');
-    Write(FFile, '       53 ');
-    Write(FFile, Np: 10: 0);
-    Write(FFile, w: 10: 4);
-    Write(FFile, t0: 10: 4);
-    Write(FFile, nr: 10: 4);
-    Writeln(FFile, Dp: 10: 4);
-    Writeln(FFile, '#      Vs       Rt        Rte       Pe       Pee');
-    for ii := 2 to 10 do
-    begin
-      Write(FFile, res[1, II]: 10: 2);
-      Write(FFile, res[7, II]: 10: 2);
-      Write(FFile, res[9, II]: 10: 2);
-      Write(FFile, res[8, II]: 10: 2);
-      Writeln(FFile, res[10, II]: 10: 2);
+    try
+      Writeln(FFile, '#     Nser      Np       Wt        t       Eta_R     Dp');
+      Write(FFile, '       53 ');
+      Write(FFile, Np: 10: 0);
+      Write(FFile, w: 10: 4);
+      Write(FFile, t0: 10: 4);
+      Write(FFile, nr: 10: 4);
+      Writeln(FFile, Dp: 10: 4);
+      Writeln(FFile, '#      Vs       Rt        Rte       Pe       Pee');
+      for ii := 2 to 10 do
+      begin
+        Write(FFile, res[1, II]: 10: 2);
+        Write(FFile, res[7, II]: 10: 2);
+        Write(FFile, res[9, II]: 10: 2);
+        Write(FFile, res[8, II]: 10: 2);
+        Writeln(FFile, res[10, II]: 10: 2);
+      end;
+    finally
+      CloseFile(FFile);
     end;
-    CloseFile(FFile);
     // Записываем результаты расчета в Resist.dat для 5 скоростей
+    FTmpFileName := 'RESIST.dat';
     Assignfile(FFile, 'RESIST.dat');
-          {$I-}
     Rewrite(FFile);
-{$I+}
-    for I := 1 to 5 do
-    begin
-      if i = 1 then
-        II := 2;
-      if i = 2 then
-        II := 4;
-      if i = 3 then
-        II := 6;
-      if i = 4 then
-        II := 9;
-      if i = 5 then
-        II := 10;
-      Write(FFile, res[1, II]: 10: 2);
-      Write(FFile, res[7, II]: 10: 2);
-      Write(FFile, res[9, II]: 10: 2);
-      Write(FFile, res[8, II]: 10: 2);
-      Writeln(FFile, res[10, II]: 10: 2);
+    try
+      for I := 1 to 5 do
+      begin
+        if i = 1 then
+          II := 2;
+        if i = 2 then
+          II := 4;
+        if i = 3 then
+          II := 6;
+        if i = 4 then
+          II := 9;
+        if i = 5 then
+          II := 10;
+        Write(FFile, res[1, II]: 10: 2);
+        Write(FFile, res[7, II]: 10: 2);
+        Write(FFile, res[9, II]: 10: 2);
+        Write(FFile, res[8, II]: 10: 2);
+        Writeln(FFile, res[10, II]: 10: 2);
+      end;
+    finally
+      CloseFile(FFile);
     end;
-    CloseFile(FFile);
 
     // Определяем масштабный коэффициент для вывода
     flag := 0.001;
@@ -2373,13 +2412,15 @@ begin
   if FileExistsUTF8(PathFileOld + 'TMP6.tsk')
   { *Converted from FileExists* } then
     DeleteFileUTF8(PChar(PathFile + DirectorySeparator+'TMP6.tsk')); { *Converted from DeleteFile* }
+  FTmpFileName := 'TMP6.tsk';
   Assignfile(FFile, 'TMP6.tsk');
-      {$I-}
-  Rewrite(FFile);
-{$I+}
-  for I := 0 to 29 do
-    Writeln(FFile, dat[I]);
-  CloseFile(FFile);
+  try
+    Rewrite(FFile);
+    for I := 0 to 29 do
+      Writeln(FFile, dat[I]);
+  finally
+    CloseFile(FFile);
+  end;
 end;{TFreeResistance_Oortmer.File_ExportData}
 
 procedure TFreeResistance_Oortmer.File_ExportDataKe(dat, dan: array of single);
@@ -2387,15 +2428,17 @@ var
   I: integer;
   ffile: textfile;
 begin
+  FTmpFileName := 'TMPke.txt';
   Assignfile(FFile, 'TMPke.txt');
-      {$I-}
   Rewrite(FFile);
-{$I+}
-  for I := 0 to 29 do
-    Writeln(FFile, dat[I]);
-  for I := 0 to 14 do
-    Writeln(FFile, dan[I]);
-  CloseFile(FFile);
+  try
+    for I := 0 to 29 do
+      Writeln(FFile, dat[I]);
+    for I := 0 to 14 do
+      Writeln(FFile, dan[I]);
+  finally
+    CloseFile(FFile);
+  end;
 end;{TFreeResistance_Oortmer.File_ExportDataKe}
 
 procedure TFreeResistance_Oortmer.ComboBoxClick(Sender: TObject);

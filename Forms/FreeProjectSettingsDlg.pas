@@ -79,7 +79,7 @@ type
     GroupBox1: TGroupBox;
     Label10: TLabel;
     Label11: TLabel;
-    Label12: TLabel;
+    lbWaterDensity: TLabel;
     Label13: TLabel;
     Label14: TLabel;
     Label17: TLabel;
@@ -376,7 +376,7 @@ begin
     Str := DensityStr(fuImperial)
   else
     Str := DensityStr(fuMetric);
-  Label12.Caption := Str;
+  lbWaterDensity.Caption := Str;
 end;{TFREEProjectSettingsDialog.FSetUnitCaptions}
 
 function TFREEProjectSettingsDialog.Execute: boolean;

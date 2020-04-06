@@ -544,8 +544,7 @@ begin
     ResultsMemo.Lines.Add(Space(10) + Userstring(949));
   ResultsMemo.Lines.Add(Space(10) + Userstring(947));
 
-
-  Speed := 1.5;
+  Speed := 0.4 * Power(EffectiveLengthWaterline, 0.5); //this is a lowest speed
   while Speed <= MaxSpeed do
   begin
 
@@ -571,7 +570,8 @@ begin
       ResultsMemo.Lines.Add('Error: SpeedLengthRatio is ' + FloatToStrF(
         SpeedLengthRatio, ffFixed, 6, 3) + ', must be greater than 0.4');
       ResultsMemo.Visible := True;
-      exit;
+      continue;
+      ///exit;
     end;
 
     if Ind1 >= 13 then

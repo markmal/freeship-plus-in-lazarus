@@ -1326,8 +1326,6 @@ var
         end;
       end;
     end;
-    Viewport.PenColor := clRed;
-    Viewport.Rectangle(5,5,15,15);
   end;{DrawGrid}
 
 begin

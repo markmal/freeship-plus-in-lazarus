@@ -206,7 +206,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
             ClientHeight = 76
             ClientWidth = 315
             TabOrder = 2
-            object CheckBox1: TCheckBox
+            object cbShadeUnderwater: TCheckBox
               Left = 0
               Height = 24
               Top = 0
@@ -214,7 +214,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Caption = 'Shade underwater'
               TabOrder = 0
             end
-            object CheckBox4: TCheckBox
+            object cbSavePreviewImage: TCheckBox
               Left = 0
               Height = 24
               Top = 26
@@ -222,7 +222,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Caption = 'Save preview image'
               TabOrder = 1
             end
-            object CheckBox10: TCheckBox
+            object cbSimplifyIntersections: TCheckBox
               Left = 0
               Height = 24
               Top = 52

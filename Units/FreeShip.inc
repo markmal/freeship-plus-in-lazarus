@@ -1428,7 +1428,7 @@ begin
     G := GetGValue(ProjectSettings.ProjectUnderWaterColor);
     B := GetBValue(ProjectSettings.ProjectUnderWaterColor);
     Surface.UnderWaterColor := ProjectSettings.ProjectUnderWaterColor;
-    //Surface.ShadeUnderWater := True;
+    Surface.ShadeUnderWater := True;
   end
   else
     Surface.ShadeUnderWater := False;

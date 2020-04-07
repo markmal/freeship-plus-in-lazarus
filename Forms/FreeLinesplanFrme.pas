@@ -1143,7 +1143,7 @@ begin
         if Freeship.Layer[I - 1].ShowInLinesplan then
         begin
           Layer := Freeship.Surface.Layer[I - 1];
-          if Freeship.ProjectSettings.ProjectShadeUnderwaterShip then
+                    if Freeship.ProjectSettings.ProjectShadeUnderwaterShip then
             SubmColor := Freeship.ProjectSettings.ProjectUnderWaterColor
           else
             SubmColor := Layer.Color;

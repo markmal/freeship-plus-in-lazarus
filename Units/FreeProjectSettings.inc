@@ -386,12 +386,12 @@ begin
   Dialog.Density := ProjectWaterDensity;
   Dialog.Temper := ProjectWaterTemper;
   Dialog.Coefficient := ProjectAppendageCoefficient;
-  Dialog.CheckBox1.Checked := ProjectShadeUnderwaterShip;
+  Dialog.cbShadeUnderwater.Checked := ProjectShadeUnderwaterShip;
   Dialog.Panel4.Color := ProjectUnderWaterColor;
   Dialog.Mainframe := ProjectMainframeLocation;
   Dialog.CheckBox2.Checked := UseDefaultMainframeLocation;
   Dialog.CheckBox3.Checked := DisableModelCheck;
-  Dialog.CheckBox4.Checked := SavePreview;
+  Dialog.cbSavePreviewImage.Checked := SavePreview;
   Dialog.CheckBox13.Checked := EnableModelAutoMove;
   Dialog.CheckBox14.Checked := EnableBonjeanSAC;
   Dialog.ComboBox1.ItemIndex := Ord(ProjectCoefficients);
@@ -401,7 +401,7 @@ begin
   Dialog.CheckBox7.Checked := Owner.Visibility.FShowHydrostMetacentricHeight;
   Dialog.CheckBox8.Checked := Owner.Visibility.FShowHydrostLCF;
   Dialog.CheckBox9.Checked := Owner.Visibility.FShowHydrostLateralArea;
-  Dialog.CheckBox10.Checked := ProjectSimplifyIntersections;
+  Dialog.cbSimplifyIntersections.Checked := ProjectSimplifyIntersections;
   ShowTranslatedValues(Dialog);
 
   if Dialog.Execute then
@@ -420,14 +420,14 @@ begin
     ProjectWaterDensity := Dialog.Density;
     ProjectWaterTemper := Dialog.Temper;
     ProjectAppendageCoefficient := Dialog.Coefficient;
-    ProjectShadeUnderwaterShip := Dialog.CheckBox1.Checked;
+    ProjectShadeUnderwaterShip := Dialog.cbShadeUnderwater.Checked;
     ProjectUnderWaterColor := Dialog.Panel4.Color;
     ProjectMainframeLocation := Dialog.Mainframe;
     UseDefaultMainframeLocation := Dialog.CheckBox2.Checked;
     DisableModelCheck := Dialog.CheckBox3.Checked;
     EnableModelAutoMove := Dialog.CheckBox13.Checked;
     EnableBonjeanSAC := Dialog.CheckBox14.Checked;
-    SavePreview := Dialog.CheckBox4.Checked;
+    SavePreview := Dialog.cbSavePreviewImage.Checked;
     ProjectCoefficients := TFreeHydrostaticCoeff(Dialog.ComboBox1.ItemIndex);
 
     Owner.Visibility.FShowHydrostDisplacement := Dialog.CheckBox5.Checked;
@@ -435,7 +435,7 @@ begin
     Owner.Visibility.FShowHydrostMetacentricHeight := Dialog.CheckBox7.Checked;
     Owner.Visibility.FShowHydrostLCF := Dialog.CheckBox8.Checked;
     Owner.Visibility.FShowHydrostLateralArea := Dialog.CheckBox9.Checked;
-    ProjectSimplifyIntersections := Dialog.CheckBox10.Checked;
+    ProjectSimplifyIntersections := Dialog.cbSimplifyIntersections.Checked;
     Owner.FileChanged := True;
     Owner.Precision := ProjectPrecision;   //TODO: save and load precision
     Owner.Redraw;

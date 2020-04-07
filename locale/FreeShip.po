@@ -2414,6 +2414,7 @@ msgid "Desired Subdivision Level"
 msgstr ""
 
 #: tfreekeelwizarddialog.comboboxsubdivisionlevel.text
+msgctxt "tfreekeelwizarddialog.comboboxsubdivisionlevel.text"
 msgid "Medium"
 msgstr ""
 
@@ -3754,11 +3755,18 @@ msgstr ""
 msgid "Project settings."
 msgstr ""
 
-#: tfreeprojectsettingsdialog.checkbox1.caption
+#: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
+msgctxt "tfreeprojectsettingsdialog.cbsavepreviewimage.caption"
+msgid "Save preview image"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.cbshadeunderwater.caption
+msgctxt "tfreeprojectsettingsdialog.cbshadeunderwater.caption"
 msgid "Shade underwater"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.checkbox10.caption
+#: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
+msgctxt "tfreeprojectsettingsdialog.cbsimplifyintersections.caption"
 msgid "Simplify intersections"
 msgstr ""
 
@@ -3786,10 +3794,6 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr ""
-
-#: tfreeprojectsettingsdialog.checkbox4.caption
-msgid "Save preview image"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
@@ -3886,6 +3890,7 @@ msgid "m"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.label24.caption
+msgctxt "tfreeprojectsettingsdialog.label24.caption"
 msgid "Precision"
 msgstr ""
 
@@ -8487,6 +8492,16 @@ msgstr ""
 
 #: tmainform.cascadewindow.caption
 msgid "Cascade"
+msgstr ""
+
+#: tmainform.cbprecision.hint
+msgctxt "tmainform.cbprecision.hint"
+msgid "Precision"
+msgstr ""
+
+#: tmainform.cbprecision.text
+msgctxt "tmainform.cbprecision.text"
+msgid "Medium"
 msgstr ""
 
 #: tmainform.checkmodel.caption

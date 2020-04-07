@@ -87,6 +87,7 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     cbPrecision: TComboBox;
      miPointExtrude: TMenuItem;
      PointExtrude: TAction;
      MenuItem2: TMenuItem;
@@ -461,6 +462,7 @@ type
     procedure AddFlowLineExecute(Sender: TObject);
     procedure AddGridPanelExecute(Sender: TObject);
     procedure AddPointToGroupExecute(Sender: TObject);
+    procedure cbPrecisionChange(Sender: TObject);
     procedure ColorButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
@@ -1061,6 +1063,14 @@ begin
     end;
 end;
 
+procedure TMainForm.cbPrecisionChange(Sender: TObject);
+begin
+  if cbPrecision.ItemIndex = ord(FreeShip.Precision) then exit;
+  FreeShip.Precision := TFreePrecisionType(cbPrecision.ItemIndex);
+  FreeShip.RebuildModel;
+  UpdateMenu;
+end;
+
 procedure TMainForm.AddFlowLineExecute(Sender: TObject);
 begin
   FreeShip.EditMode := emAddFlowLine;
@@ -1504,6 +1514,9 @@ begin
    PointsCoincide.Enabled:=Freeship.NumberOfSelectedControlPoints>1;
    PointExtrude.Enabled:=Freeship.NumberOfSelectedControlPoints>0;
    TransformLackenby.Enabled:=Freeship.Surface.NumberOfControlFaces>0;
+
+   if cbPrecision.ItemIndex <> ord(FreeShip.Precision) then
+      cbPrecision.ItemIndex := ord(FreeShip.Precision);
 
    if FreeShip.ActiveControlPoint <> nil then
       FreeShip.ControlpointForm.Visible:=true;

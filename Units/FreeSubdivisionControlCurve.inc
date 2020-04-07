@@ -515,12 +515,12 @@ var
   Edge: TFreeSubdivisionEdge;
   Sel: boolean;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   FControlPoints.Capacity := N;
   CP1 := nil;
   for I := 1 to N do
   begin
-    Source.Load(Ind);
+    Source.LoadInteger(Ind);
     CP2 := Owner.FControlPoints[ind];
     FControlPoints.Add(CP2);
     if I > 1 then
@@ -535,7 +535,7 @@ begin
   end;
   FSubdividedPoints.AddList(TFasterList(FControlPoints));
   //TODO copy CPs to Ps
-  Source.Load(Sel);
+  Source.LoadBoolean(Sel);
   if Sel then
     selected := True;
 end;{TFreeSubdivisionControlCurve.LoadBinary}

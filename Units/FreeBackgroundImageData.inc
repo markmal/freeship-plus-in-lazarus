@@ -39,18 +39,18 @@ procedure TFreeBackgroundImageData.LoadBinary(Source: TFreeFileBuffer);
 var
   I: integer;
 begin
-  Source.Load(I);
+  Source.LoadInteger(I);
   FAssignedView := TFreeViewType(I);
-  Source.Load(FVisible);
-  Source.Load(FQuality);
-  Source.Load(FOrigin.X);
-  Source.Load(FOrigin.Y);
-  Source.Load(FScale);
-  Source.Load(FBlendingValue);
-  Source.Load(FTransparent);
-  Source.Load(FTransparentColor);
-  Source.Load(FTolerance);
-  Source.Load(FImageData);
+  Source.LoadBoolean(FVisible);
+  Source.LoadInteger(FQuality);
+  Source.LoadInteger(FOrigin.X);
+  Source.LoadInteger(FOrigin.Y);
+  Source.LoadTFloatType(FScale);
+  Source.LoadInteger(FBlendingValue);
+  Source.LoadBoolean(FTransparent);
+  Source.LoadTColor(FTransparentColor);
+  Source.LoadInteger(FTolerance);
+  Source.LoadTJPEGImage(FImageData);
 end;{TFreeBackgroundImageData.LoadBinary}
 
 procedure TFreeBackgroundImageData.SaveBinary(Destination: TFreeFileBuffer);

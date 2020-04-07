@@ -697,15 +697,15 @@ var
   I: integer;
   Sel: boolean;
 begin
-  Source.Load(FCoordinate);
-  Source.Load(I);
+  Source.LoadT3DCoordinate(FCoordinate);
+  Source.LoadInteger(I);
   FVertextype := TFreeVertexType(I);
-  Source.Load(Sel);
+  Source.LoadBoolean(Sel);
   if Sel then
     Selected := True;
   if Source.Version >= fv198 then
   begin
-    Source.Load(FLocked);
+    Source.LoadBoolean(FLocked);
   end;
 end;{TFreeSubdivisionControlPoint.LoadBinary}
 

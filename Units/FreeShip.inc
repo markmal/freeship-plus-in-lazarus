@@ -1949,14 +1949,14 @@ begin
     Logger.Debug('LoadBinary');
     Source.Reset;
     Source.Encoding := Preferences.FbmEncoding;
-    Source.Load(Str);
+    Source.LoadString(Str);
     if Str = 'FREE!ship' then
     begin
-      Source.Load(FFileVersion);
+      Source.LoadTFreeFileVersion(FFileVersion);
       Source.Version := FFileVersion;
       if (FFileVersion <= CurrentVersion) or (FFileVersion <= High(FFileVersion)) then
       begin
-        Source.Load(I);
+        Source.LoadInteger(I);
         FPrecision := TFreePrecisionType(I);
         Visibility.LoadBinary(Source);
         ProjectSettings.LoadBinary(Source, nil);
@@ -1964,7 +1964,7 @@ begin
         Surface.LoadBinary(Source);
         CF0:=Surface.ControlFace[0];
         // Load stations
-        Source.Load(N);
+        Source.LoadInteger(N);
         Logger.Debug('Stations:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
         FStations.Capacity := N;
         for I := 1 to N do
@@ -1974,7 +1974,7 @@ begin
           Intersection.LoadBinary(Source);
         end;
         // Load Buttocks
-        Source.Load(N);
+        Source.LoadInteger(N);
         FButtocks.Capacity := N;
         Logger.Debug('Buttocks:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
         for I := 1 to N do
@@ -1984,7 +1984,7 @@ begin
           Intersection.LoadBinary(Source);
         end;
         // Load Waterlines
-        Source.Load(N);
+        Source.LoadInteger(N);
         FWaterlines.Capacity := N;
         Logger.Debug('Waterlines:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
         for I := 1 to N do
@@ -1996,7 +1996,7 @@ begin
         if FileVersion >= fv180 then
         begin
           // Load Diagonals
-          Source.Load(N);
+          Source.LoadInteger(N);
           Logger.Debug('Diagonals:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
           FDiagonals.Capacity := N;
           for I := 1 to N do
@@ -2008,7 +2008,7 @@ begin
           if FileVersion >= fv191 then
           begin
             // Load markers
-            Source.Load(N);
+            Source.LoadInteger(N);
             Logger.Debug('Markers:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
             FMarkers.Capacity := N;
             for I := 1 to N do
@@ -2022,13 +2022,13 @@ begin
             begin
               Logger.Debug('FResistanceDelftData:' + ' pos:' +
                 IntToStr(Source.Position));
-              Source.Load(FResistanceDelftData);
+              Source.LoadTFreeDelftSeriesResistanceData(FResistanceDelftData);
               Logger.Debug('FResistanceKaperData:' + ' pos:' +
                 IntToStr(Source.Position));
-              Source.Load(FResistanceKaperData);
+              Source.LoadTFreeKAPERResistanceData(FResistanceKaperData);
               if FileVersion >= fv250 then
               begin
-                Source.Load(N);
+                Source.LoadInteger(N);
                 Logger.Debug('BackgroundImages:' + IntToStr(
                   N) + ' pos:' + IntToStr(Source.Position));
                 for I := 1 to N do
@@ -2037,7 +2037,7 @@ begin
                   FBackgroundImages.Add(Data);
                   Data.LoadBinary(Source);
                 end;
-                Source.Load(N);
+                Source.LoadInteger(N);
                 Logger.Debug('Flowlines:' + IntToStr(N) + ' pos:' +
                   IntToStr(Source.Position));
                 FFlowlines.Capacity := N;
@@ -2050,43 +2050,43 @@ begin
                 if FileVersion >= fv270 then
                 begin
                           {
-                          Source.Load(FResistanceHoltrData,SizeOf(FResistanceHoltrData));
-                          Source.Load(FResistanceOSTData,SizeOf(FResistanceOSTData));
-                          Source.Load(FPropellerTask1Data,SizeOf(TFreeTask1PropellerData));
-                          Source.Load(FPropellerTask2Data,SizeOf(TFreeTask2PropellerData));
-                          Source.Load(FPropellerTask3Data,SizeOf(TFreeTask3PropellerData));
+                          Source.LoadTFreeMHSeriesResistanceData(FResistanceHoltrData,SizeOf(FResistanceHoltrData));
+                          Source.LoadTFreeMHSeriesResistanceData(FResistanceOSTData,SizeOf(FResistanceOSTData));
+                          Source.LoadTFreeMHSeriesResistanceData(FPropellerTask1Data,SizeOf(TFreeTask1PropellerData));
+                          Source.LoadTFreeMHSeriesResistanceData(FPropellerTask2Data,SizeOf(TFreeTask2PropellerData));
+                          Source.LoadTFreeMHSeriesResistanceData(FPropellerTask3Data,SizeOf(TFreeTask3PropellerData));
                           }
-                  Source.Load(FResistanceHoltrData);
-                  Source.Load(FResistanceOSTData);
-                  Source.Load(FPropellerTask1Data);
-                  Source.Load(FPropellerTask2Data);
-                  Source.Load(FPropellerTask3Data);
+                  Source.LoadTFreeHoltrSeriesResistanceData(FResistanceHoltrData);
+                  Source.LoadTFreeOSTSeriesResistanceData(FResistanceOSTData);
+                  Source.LoadTFreeTask1PropellerData(FPropellerTask1Data);
+                  Source.LoadTFreeTask2PropellerData(FPropellerTask2Data);
+                  Source.LoadTFreeTask3PropellerData(FPropellerTask3Data);
                 end;
 
                 if FileVersion >= fv280 then
-                  Source.Load(FResistancePlaningData);
+                  Source.LoadTFreePlaningResistanceData(FResistancePlaningData);
                 if FileVersion >= fv290 then
-                  Source.Load(FPropellerRvrsData);
+                  Source.LoadTFreeRvrsPropellerData(FPropellerRvrsData);
                 if FileVersion >= fv295 then
-                  Source.Load(FResistanceHollenData);
+                  Source.LoadTFreeHollenSeriesResistanceData(FResistanceHollenData);
                 if FileVersion >= fv296 then
-                  Source.Load(FPropellerTask4Data);
+                  Source.LoadTFreeTask4PropellerData(FPropellerTask4Data);
                 if FileVersion >= fv302 then
-                  Source.Load(FPropellerTask5Data);
+                  Source.LoadTFreeTask5PropellerData(FPropellerTask5Data);
                 if FileVersion >= fv309 then
-                  Source.Load(FResistanceOortmerData);
+                  Source.LoadTFreeOortmerSeriesResistanceData(FResistanceOortmerData);
                 if FileVersion >= fv313 then
-                  Source.Load(FResistanceFungData);
+                  Source.LoadTFreeFungSeriesResistanceData(FResistanceFungData);
 
                 if FileVersion >= fv327 then
                 begin
-                  Source.Load(FHydrodynManeuvData);
-                  Source.Load(FHydrodynTask1Data);
+                  Source.LoadTFreeHydrodynManeuvData(FHydrodynManeuvData);
+                  Source.LoadTFreeHydrodynTask1Data(FHydrodynTask1Data);
                 end;
                 if FileVersion >= fv335 then
                 begin
-                  Source.Load(FResistanceRBHSData);
-                  Source.Load(FResistanceMHData);
+                  Source.LoadTFreeRBHSSeriesResistanceData(FResistanceRBHSData);
+                  Source.LoadTFreeMHSeriesResistanceData(FResistanceMHData);
                 end;
 
                 if FileVersion >= fv421 then
@@ -2143,11 +2143,11 @@ end;{TFreeShip.LoadBinary}
 procedure TFreeShip.LoadControlPointNames(Source:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   Logger.Debug('ControlPoint Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
   for I := 1 to N do
   begin
-    Source.Load(NameData);
+    Source.LoadTNameData(NameData);
     Surface.ControlPoint[NameData.N].Name:=NameData.Name;
   end;
 end;
@@ -2155,7 +2155,7 @@ end;
 procedure TFreeShip.LoadControlPointGroups(Source:TFreeFileBuffer);
 var I,N:integer; G:TFreeSubdivisionControlPointGroup;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   Logger.Debug('ControlPointGroups:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
   for I := 1 to N do
   begin
@@ -2168,11 +2168,11 @@ end;
 procedure TFreeShip.LoadControlEdgeNames(Source:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   Logger.Debug('ControlEdge Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
   for I := 1 to N do
   begin
-    Source.Load(NameData);
+    Source.LoadTNameData(NameData);
     Surface.ControlEdge[NameData.N].Name:=NameData.Name;
   end;
 end;
@@ -2180,11 +2180,11 @@ end;
 procedure TFreeShip.LoadControlFaceNames(Source:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   Logger.Debug('ControlFace Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
   for I := 1 to N do
   begin
-    Source.Load(NameData);
+    Source.LoadTNameData(NameData);
     Surface.ControlFace[NameData.N].Name:=NameData.Name;
   end;
 end;
@@ -2192,11 +2192,11 @@ end;
 procedure TFreeShip.LoadControlCurveNames(Source:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   Logger.Debug('ControlCurve Names:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
   for I := 1 to N do
   begin
-    Source.Load(NameData);
+    Source.LoadTNameData(NameData);
     Surface.ControlCurve[NameData.N].Name:=NameData.Name;
   end;
 end;
@@ -2205,11 +2205,11 @@ procedure TFreeShip.LoadControlPointAnchors(Source:TFreeFileBuffer);
 var I,N:integer; AnchorData:TAnchorData;
   Point,AnchorPoint:TFreeSubdivisionControlPoint;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   Logger.Debug('Anchors:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
   for I := 1 to N do
   begin
-    Source.Load(AnchorData);
+    Source.LoadTAnchorData(AnchorData);
     if (AnchorData.AnchorPoint > -1) then
       begin
         Point := Surface.ControlPoint[AnchorData.N];
@@ -2224,11 +2224,11 @@ end;
 procedure TFreeShip.LoadControlPointLinearConstraints(Source:TFreeFileBuffer);
 var I,N:integer; LCData:TLinearConstraintData;
 begin
-  Source.Load(N);
+  Source.LoadInteger(N);
   Logger.Debug('ControlPoint Linear Constraints:' + IntToStr(N) + ' pos:' + IntToStr(Source.Position));
   for I := 1 to N do
   begin
-    Source.Load(LCData);
+    Source.LoadTLinearConstraintData(LCData);
     if (LCData.LinearConstraintPointA > -1)
       and (LCData.LinearConstraintPointB > -1) then
       Surface.ControlPoint[LCData.N].SetLinearConstraint(
@@ -2258,14 +2258,14 @@ begin
     Source.LoadFromFile(FileName);                // Load everything into memory
     Source.Reset;
     Source.Encoding := Preferences.FbmEncoding;
-    Source.Load(Str);
+    Source.LoadString(Str);
     if Str = 'FREE!ship' then
     begin
-      Source.Load(FFileVersion);
+      Source.LoadTFreeFileVersion(FFileVersion);
       Source.Version := FFileVersion;
       if FFileVersion >= fv210 then
       begin
-        Source.Load(I);
+        Source.LoadInteger(I);
         FPrecision := TFreePrecisionType(I);
         Visibility.LoadBinary(Source);
         ProjectSettings.LoadBinary(Source, Image);
@@ -2984,60 +2984,52 @@ end;
 procedure TFreeShip.KeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 var
   vViewport: TFreeViewport;
-  I,R,D,N:double; S,E,M:integer;
+  I,R,D,N,P,E:UInt64; S,M:integer;
 begin
   vViewport := (Sender as TFreeHullWindow).Viewport;
   if (vViewport.ViewType = fvPerspective) then exit;
 
- I:=Visibility.CursorIncrement;
+  if (Key = VK_SUBTRACT)
+    or ((Key = VK_OEM_MINUS) and not(ssShift in Shift)) then
+     S := -1
+  else
+  if (Key = VK_ADD)
+      or ((Key = VK_OEM_PLUS) and (ssShift in Shift)) then
+       S := 1
+  else
+    exit;
+
+ // use integers to eliminate issues with dirt at the end of floats
+ I:=round(Visibility.CursorIncrement * 1000000);
+ M:=trunc(log10(Visibility.CursorIncrement));
  N:=I;
-{ R := log10(I);
- E := ceil(abs(R))*sign(R); //dec exponent
- M := round(I * power(10,-E)); // dec mantiss x 10
- N := M * power(10,E);
- if E<>0 then
-   D := power(10,E)
- else
-   if R<0 then D := 0.1
-   else D:=1;
- }
-
- if (I < 1e-6) then D:=0;
- if (I >= 1e-6)and(I < 1e-5) then D := 1e-6;
- if (I >= 1e-5)and(I < 1e-4) then D := 1e-5;
- if (I >= 1e-4)and(I < 1e-3) then D := 1e-4;
- if (I >= 1e-3)and(I < 1e-2) then D := 1e-3;
- if (I >= 1e-2)and(I < 1e-1) then D := 1e-2;
- if (I >= 1e-1)and(I < 1) then D := 1e-1;
- if (I >= 1)and(I < 1e+1) then D := 1;
- if (I >= 1e+1)and(I < 1e+2) then D := 1e+1;
- if (I >= 1e+2)and(I < 1e+3) then D := 1e+2;
- if (I >= 1e+3) then D:=0;
-
- if (Key = VK_SUBTRACT)
-   or ((Key = VK_OEM_MINUS) and not(ssShift in Shift)) then
-    S := -1
- else
- if (Key = VK_ADD)
-     or ((Key = VK_OEM_PLUS) and (ssShift in Shift)) then
-      S := 1;
+ D:=0; E:=1;
+ for P:=0 to 10 do
+   begin
+   if (I >= E)and(I < E*10) then
+     D := E;
+   E:=E*10;
+   end;
 
  if (S<0) then
-   if (I < 1e+3) then
-     if (I-D>1e-6) then
+   if (I < 1000000000) then
+     if (I > D) then
        N := N - D
      else
-       N := N - D/10
+       N := N - D div 10
    else
-     N := N - 1e+2
+     N := N - 100000000
  else
-   if (I >= 1e-6) then
+   if (I >= 1) then
      N := N + D
    else
-     N := N + 1e-6;
+     N := N + 1;
 
+ if N > 1000000000 then N:=1000000000;
  if N>0 then
-   Visibility.CursorIncrement := N;
+   Visibility.CursorIncrement := N / 1000000
+ else
+   Visibility.CursorIncrement := 1e-6;
 end;{TFreeShip.KeyUp}
 
 procedure TFreeShip.SelectPointsInFrame(Viewport: TfreeViewport; rect: TRect);

@@ -1,5 +1,5 @@
 Package: freeship
-Version: 4.9.1.372
+Version: 4.9.1.376
 Provides: freeship
 Architecture: amd64
 Depends:  libatk1.0-0, libc6, libcairo2, libgdk-pixbuf2.0-0, libglib2.0-0, libgtk2.0-0, libpango-1.0-0, libpangocairo-1.0-0, libx11-6
@@ -10,7 +10,7 @@ Priority: optional
 Maintainer: markmal <markmal@github.com>
 #Build-Depends: debhelper (>= 8.0.0), lazarus (>=1.4.0), libqt4pas-dev, git, libgl1-mesa-dev, inkscape, imagemagick
 #Standards-Version: 3.9.4
-Installed-Size: 113008
+Installed-Size: 113020
 Homepage: https://github.com/markmal/freeship-plus-in-lazarus
 Origin: https://github.com/markmal/freeship-plus-in-lazarus
 #Vcs-Git: git://github.com/markmal/freeship-plus-in-lazarus.git

@@ -270,20 +270,20 @@ var
   P: T3DCoordinate;
   K: boolean;
 begin
-  Source.Load(FProjectionPoint.X);
-  Source.Load(FProjectionPoint.Y);
-  Source.Load(I);
+  Source.LoadTFloatType(FProjectionPoint.X);
+  Source.LoadTFloatType(FProjectionPoint.Y);
+  Source.LoadInteger(I);
   FProjectionView := TFreeviewType(I);
-  Source.Load(FBuild);
-  Source.load(K);
+  Source.LoadBoolean(FBuild);
+  Source.LoadBoolean(K);
   if K then
     Owner.FSelectedFlowlines.AddSorted(self);
-  Source.Load(N);
+  Source.LoadInteger(N);
   FFlowline.Capacity := N;
   for I := 1 to N do
   begin
-    Source.Load(P);
-    Source.Load(K);
+    Source.LoadT3DCoordinate(P);
+    Source.LoadBoolean(K);
     FFlowline.Add(P);
     FFlowline.Knuckle[FFlowline.NumberOfPoints - 1] := K;
   end;

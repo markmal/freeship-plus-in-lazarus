@@ -973,14 +973,14 @@ procedure TFreeSubdivisionLayer.LoadBinary(Source: TFreeFileBuffer);
 var
   I: integer;
 begin
-  Source.Load(FDescription);
-  Source.Load(FLayerID);
+  Source.LoadString(FDescription);
+  Source.LoadInteger(FLayerID);
   if FLayerID > Owner.FLastusedLayerID then
     Owner.FLastusedLayerID := FLayerID;
-  Source.Load(FColor);
-  Source.Load(FVisible);
-  Source.Load(FSymmetric);
-  Source.Load(FDevelopable);
+  Source.LoadTColor(FColor);
+  Source.LoadBoolean(FVisible);
+  Source.LoadBoolean(FSymmetric);
+  Source.LoadBoolean(FDevelopable);
   FMaterialDensity := 0.0;
   FThickness := 0.0;
   FUseForIntersections := True;
@@ -988,18 +988,18 @@ begin
   FShowInLinesplan := True;
   if Source.Version >= fv180 then
   begin
-    Source.Load(FUseForIntersections);
-    Source.Load(FUseInHydrostatics);
+    Source.LoadBoolean(FUseForIntersections);
+    Source.LoadBoolean(FUseInHydrostatics);
     if Source.Version >= fv191 then
     begin
-      Source.Load(FMaterialDensity);
-      Source.Load(FThickness);
+      Source.LoadTFloatType(FMaterialDensity);
+      Source.LoadTFloatType(FThickness);
       if Source.Version >= fv201 then
       begin
-        Source.Load(FShowInLinesplan);
+        Source.LoadBoolean(FShowInLinesplan);
         if Source.Version >= fv260 then
         begin
-          Source.Load(I);
+          Source.LoadInteger(I);
           FAlphaBlend := I;
         end;
       end;

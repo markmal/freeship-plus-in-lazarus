@@ -2800,7 +2800,7 @@ end;{TMainForm.ResistanceFungLeibExecute}
 procedure TMainForm.FreeShipChangeCursorIncrement(Sender: TObject);
 begin
   if (csdestroying in componentstate) then exit;
-  LabelDistance.Caption:=Userstring(284)+': '+Truncate(Freeship.Visibility.CursorIncrement,5);
+  LabelDistance.Caption:=Userstring(284)+': '+Truncate(Freeship.Visibility.CursorIncrement,7);
 end;{TMainForm.FreeShipChangeCursorIncrement}
 
 procedure TMainForm.StatusPanel3Click(Sender: TObject);

@@ -720,7 +720,7 @@ var
   Sel: boolean;
 begin
   // Read startpoint
-  Source.Load(Index);
+  Source.LoadInteger(Index);
   if Index = -1 then
     Index := 0;
   if Index <> -1 then
@@ -729,7 +729,7 @@ begin
     FStartPoint.FEdges.Add(Self);
   end;
   // Read endpoint
-  Source.Load(Index);
+  Source.LoadInteger(Index);
   if Index = -1 then
     Index := 0;
   if Index <> -1 then
@@ -737,8 +737,8 @@ begin
     FEndPoint := Owner.FControlPoints[Index];
     FEndPoint.FEdges.Add(Self);
   end;
-  Source.Load(FCrease);
-  Source.Load(Sel);
+  Source.LoadBoolean(FCrease);
+  Source.LoadBoolean(Sel);
   if Sel then
     selected := True;
 end;{TFreesubdivisionControlEdge.LoadBinary}

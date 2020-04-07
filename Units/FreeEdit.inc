@@ -4600,11 +4600,11 @@ begin
     vUndo := CreateUndoObject(Userstring(112), False);
     //Partfile.LoadFromFile(ChangeFileExt(OpenDialog.FileName, '.part'));
     Partfile.LoadFromFile(OpenDialog.FileName);
-    Partfile.Load(Str);
+    Partfile.LoadString(Str);
     if Str = 'FREE!ship partfile' then
     begin
       // Load fileversion
-      Partfile.Load(I);
+      Partfile.LoadInteger(I);
       if I <= Ord(CurrentVersion) then
       begin
         PrevCursor := Screen.Cursor;
@@ -4616,7 +4616,7 @@ begin
           Edges := TFasterListTFreeSubdivisionControlEdge.Create;
           Layers := TFasterListTFreeSubdivisionLayer.Create;
           // Load units
-          Partfile.Load(I);
+          Partfile.LoadInteger(I);
           PartUnits := TFreeUnitType(I);
           if PartUnits <> FreeShip.ProjectSettings.ProjectUnits then
           begin
@@ -4630,7 +4630,7 @@ begin
           else
             Scale := 1.0;
           // Load number of layers
-          Partfile.Load(N);
+          Partfile.LoadInteger(N);
           Layers.Capacity := N;
           for I := 1 to N do
           begin
@@ -4642,7 +4642,7 @@ begin
             Changed := True;
           end;
           // Number of controlpoints
-          Partfile.Load(N);
+          Partfile.LoadInteger(N);
           Points.Capacity := N;
           for I := 1 to N do
           begin
@@ -4654,12 +4654,12 @@ begin
             Changed := True;
           end;
           // Load control edges
-          Partfile.Load(N);
+          Partfile.LoadInteger(N);
           Edges.Capacity := N;
           for I := 1 to N do
           begin
-            Partfile.Load(Ind1);
-            Partfile.Load(Ind2);
+            Partfile.LoadInteger(Ind1);
+            Partfile.LoadInteger(Ind2);
             if (Ind1 <> -1) and (Ind2 <> -1) then
             begin
               P1 := Points[ind1];
@@ -4668,26 +4668,26 @@ begin
             end
             else
               Edge := nil;
-            Partfile.Load(Crease);
+            Partfile.LoadBoolean(Crease);
             if Edge <> nil then
               Edge.Crease := Crease;
             Changed := True;
           end;
           // Load controlfaces
-          Partfile.Load(N);
+          Partfile.LoadInteger(N);
           FacePoints := TFasterListTFreeSubdivisionControlPoint.Create;
           for I := 1 to N do
           begin
-            Partfile.Load(Np);
+            Partfile.LoadInteger(Np);
             FacePoints.Clear;
             FacePoints.Capacity := N;
             for J := 1 to Np do
             begin
-              Partfile.Load(Ind1);
+              Partfile.LoadInteger(Ind1);
               P2 := Points[ind1];
               FacePoints.Add(P2);
             end;
-            Partfile.Load(Ind2);
+            Partfile.LoadInteger(Ind2);
             Layer := Layers[ind2];
             FreeShip.Surface.AddControlFace(FacePoints, False, Layer);
           end;
@@ -4698,17 +4698,17 @@ begin
               Edge.Crease := True;
           end;
           // Load controlcurves
-          Partfile.Load(N);
+          Partfile.LoadInteger(N);
           for I := 1 to N do
           begin
-            Partfile.Load(Np);
+            Partfile.LoadInteger(Np);
             if Np > 1 then
             begin
               Curve := TFreeSubdivisionControlCurve.Create(FreeShip.Surface);
               FreeShip.Surface.AddControlCurve(Curve);
               for J := 1 to Np do
               begin
-                Partfile.Load(Ind1);
+                Partfile.LoadInteger(Ind1);
                 P2 := Points[ind1];
                 Curve.AddPoint(P2);
                 if J > 1 then

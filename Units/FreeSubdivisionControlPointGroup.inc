@@ -151,9 +151,9 @@ var
   I, N, CPN: integer; SS:TStrings;
   Sel: boolean;
 begin
-  Source.Load(FName);
+  Source.LoadString(FName);
   SS:=TStringList.Create;
-  Source.Load(SS);
+  Source.LoadTStrings(SS);
   for i:=0 to SS.Count-1 do
     begin
     CPN:=StrToInt(SS[i]);

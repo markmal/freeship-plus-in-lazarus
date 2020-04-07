@@ -3752,7 +3752,7 @@ begin
     end;
 
   // First load layerdata
-  Source.Load(N);
+  Source.LoadInteger(N);
   if N <> 0 then
   begin
     // Delete current layers and load new ones
@@ -3773,12 +3773,12 @@ begin
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
   // Read index of active layer
-  Source.Load(N);
+  Source.LoadInteger(N);
   ActiveLayer := self.Layer[N];
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, self.Layer[0]);
   // Read controlpoints
-  Source.Load(N);
+  Source.LoadInteger(N);
   FControlPoints.Capacity := N;
   for I := 1 to N do
   begin
@@ -3787,7 +3787,7 @@ begin
     FControlPoints.Add(Point);
   end;
   // Read controlEdges
-  Source.Load(N);
+  Source.LoadInteger(N);
   FControlEdges.Capacity := N;
   for I := 1 to N do
   begin
@@ -3799,7 +3799,7 @@ begin
   if Source.Version >= fv195 then
   begin
     // Load controlcurves
-    Source.Load(N);
+    Source.LoadInteger(N);
     FControlCurves.Capacity := N;
     for I := 1 to N do
     begin
@@ -3810,7 +3810,7 @@ begin
   end;
 
   // Read controlFaces
-  Source.Load(N);
+  Source.LoadInteger(N);
   FControlFaces.Capacity := N;
   for I := 1 to N do
   begin

@@ -707,22 +707,22 @@ var
   P: T3DCoordinate;
   Bool: boolean;
 begin
-  Source.Load(I);
+  Source.LoadInteger(I);
   FIntersectionType := TFreeIntersectionType(I);
   if Owner.FileVersion >= fv191 then
-    Source.Load(FShowCurvature)
+    Source.LoadBoolean(FShowCurvature)
   else
     FShowCurvature := False;
-  Source.Load(FPlane);
-  Source.Load(FBuild);
-  Source.Load(N);
+  Source.LoadT3DPlane(FPlane);
+  Source.LoadBoolean(FBuild);
+  Source.LoadInteger(N);
   FItems.Capacity := N;
   for I := 1 to N do
   begin
     Spline := TFreeSpline.Create(FOwner.Surface);
     FItems.Add(Spline);
     // Read number of points for this spline
-    Source.Load(M);
+    Source.LoadInteger(M);
     // Read actual 3D coordinates
     Spline.Capacity := M;
     for J := 1 to M do
@@ -732,28 +732,28 @@ begin
         if IntersectionType = fiStation then
         begin
           P.X := -FPlane.d;
-          Source.Load(P.Y);
-          Source.Load(P.Z);
+          Source.LoadTFloatType(P.Y);
+          Source.LoadTFloatType(P.Z);
         end
         else if IntersectionType = fiButtock then
         begin
-          Source.Load(P.X);
+          Source.LoadTFloatType(P.X);
           P.Y := -FPlane.d;
-          Source.Load(P.Z);
+          Source.LoadTFloatType(P.Z);
         end
         else if IntersectionType = fiWaterline then
         begin
-          Source.Load(P.X);
-          Source.Load(P.Y);
+          Source.LoadTFloatType(P.X);
+          Source.LoadTFloatType(P.Y);
           P.Z := -FPlane.d;
         end
         else
-          Source.Load(P);
+          Source.LoadT3DCoordinate(P);
       end
       else
-        Source.Load(P);
+        Source.LoadT3DCoordinate(P);
       Spline.Add(P);
-      Source.Load(Bool);
+      Source.LoadBoolean(Bool);
       Spline.Knuckle[J - 1] := Bool;
     end;
   end;

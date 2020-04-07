@@ -1045,15 +1045,15 @@ var
   P: T3DCoordinate;
   K: boolean;
 begin
-  Source.Load(FShowCurvature);
-  Source.Load(FCurvatureScale);
-  Source.Load(N);
+  Source.LoadBoolean(FShowCurvature);
+  Source.LoadTFloatType(FCurvatureScale);
+  Source.LoadInteger(N);
   Capacity := N;
   for I := 1 to N do
   begin
-    Source.Load(P);
+    Source.LoadT3DCoordinate(P);
     Add(P);
-    Source.Load(K);
+    Source.LoadBoolean(K);
     Knuckle[I - 1] := K;
   end;
 end;{TFreeSpline.LoadBinary}

@@ -1160,12 +1160,12 @@ var
   Sel: boolean;
 begin
   // Read controlpoint data
-  Source.Load(N);
+  Source.LoadInteger(N);
   FPoints.Clear;
   FPoints.Capacity := N;
   for I := 1 to N do
   begin
-    Source.Load(Index);
+    Source.LoadInteger(Index);
     if Index = -1 then
       Index := 0;
     if Index <> -1 then
@@ -1176,7 +1176,7 @@ begin
     end;
   end;
   // Read layer-index
-  Source.Load(Index);
+  Source.LoadInteger(Index);
   if (Index >= 0) and (Index < Owner.FLayers.Count) then
   begin
     FLayer := Owner.Layer[Index];
@@ -1192,7 +1192,7 @@ begin
     raise Exception.Create(
       'Invalid layer reference in procedure TFreeSubdivisionControlFace.LoadBinary!');
 
-  Source.Load(Sel);
+  Source.LoadBoolean(Sel);
   if sel then
     Selected := True;
   P1 := FPoints[NumberOfPoints - 1] as TFreeSubdivisionControlPoint;

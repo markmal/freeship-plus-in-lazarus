@@ -35,6 +35,10 @@ msgstr ""
 msgid "Z Coordinate"
 msgstr ""
 
+#: freefilebuffer.rsparsingerroroutoffilesize
+msgid "Error parsing of file \"%s\". Reading %s of size %d at position %d that is out of file size %d."
+msgstr ""
+
 #: freefilepreviewdialog.hintdblclicktofitsize
 msgid "DblClick to fit size"
 msgstr ""

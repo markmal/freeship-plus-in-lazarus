@@ -255,39 +255,39 @@ var
   I: integer;
 begin
   Clear;
-  Source.Load(I);
+  Source.LoadInteger(I);
   FModelView := TFreeModelView(I);
-  Source.Load(FShowControlNet);
-  Source.Load(FShowInteriorEdges);
-  Source.Load(FShowStations);
-  Source.Load(FShowButtocks);
-  Source.Load(FShowWaterlines);
-  Source.Load(FShowNormals);
-  Source.Load(FShowGrid);
-  Source.Load(FShowDiagonals);
-  Source.Load(FShowMarkers);
-  Source.Load(FShowCurvature);
-  Source.Load(FCurvatureScale);
+  Source.LoadBoolean(FShowControlNet);
+  Source.LoadBoolean(FShowInteriorEdges);
+  Source.LoadBoolean(FShowStations);
+  Source.LoadBoolean(FShowButtocks);
+  Source.LoadBoolean(FShowWaterlines);
+  Source.LoadBoolean(FShowNormals);
+  Source.LoadBoolean(FShowGrid);
+  Source.LoadBoolean(FShowDiagonals);
+  Source.LoadBoolean(FShowMarkers);
+  Source.LoadBoolean(FShowCurvature);
+  Source.LoadTFloatType(FCurvatureScale);
   if Owner.FileVersion >= fv195 then
   begin
-    Source.Load(FShowControlCurves);
+    Source.LoadBoolean(FShowControlCurves);
     if Owner.FileVersion >= fv210 then
     begin
-      Source.Load(FCursorIncrement);
+      Source.LoadTFloatType(FCursorIncrement);
       if abs(FCursorIncrement) < 1e-7 then
         FCursorIncrement := 0.1;
       if assigned(Owner.FOnChangeCursorIncrement) then
         Owner.FOnChangeCursorIncrement(self);
       if Owner.FileVersion >= fv220 then
       begin
-        Source.Load(FShowHydrostaticData);
-        Source.Load(FShowHydrostDisplacement);
-        Source.Load(FShowHydrostLateralArea);
-        Source.Load(FShowHydrostSectionalAreas);
-        Source.Load(FShowHydrostMetacentricHeight);
-        Source.Load(FShowHydrostLCF);
+        Source.LoadBoolean(FShowHydrostaticData);
+        Source.LoadBoolean(FShowHydrostDisplacement);
+        Source.LoadBoolean(FShowHydrostLateralArea);
+        Source.LoadBoolean(FShowHydrostSectionalAreas);
+        Source.LoadBoolean(FShowHydrostMetacentricHeight);
+        Source.LoadBoolean(FShowHydrostLCF);
         if Owner.FileVersion >= fv250 then
-          Source.Load(FShowFlowlines);
+          Source.LoadBoolean(FShowFlowlines);
       end;
     end;
   end;

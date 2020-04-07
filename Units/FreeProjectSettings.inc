@@ -449,73 +449,73 @@ var
   Jpg: TJPEGImage;
 begin
   Clear;
-  Source.Load(FProjectName);
-  Source.Load(FProjectDesigner);
-  Source.Load(FProjectlength);
-  Source.Load(FProjectBeam);
-  Source.Load(FProjectDraft);
-  Source.Load(FMainparticularsHasBeenset);
-  Source.Load(FProjectWaterDensity);
-  //   Source.Load(FProjectWaterTemper);
-  Source.Load(FProjectAppendageCoefficient);
-  Source.Load(FProjectShadeUnderwaterShip);
-  Source.Load(FProjectUnderWaterColor);
-  Source.Load(I);
+  Source.LoadString(FProjectName);
+  Source.LoadString(FProjectDesigner);
+  Source.LoadTFloatType(FProjectlength);
+  Source.LoadTFloatType(FProjectBeam);
+  Source.LoadTFloatType(FProjectDraft);
+  Source.LoadBoolean(FMainparticularsHasBeenset);
+  Source.LoadTFloatType(FProjectWaterDensity);
+  //   Source.LoadTFloatType(FProjectWaterTemper);
+  Source.LoadTFloatType(FProjectAppendageCoefficient);
+  Source.LoadBoolean(FProjectShadeUnderwaterShip);
+  Source.LoadTColor(FProjectUnderWaterColor);
+  Source.LoadInteger(I);
   FProjectUnits := TFreeUnitType(I);
-  Source.Load(FUseDefaultMainframeLocation);
-  Source.Load(FProjectMainframeLocation);
-  Source.Load(FDisableModelCheck);
-  Source.Load(FProjectComment);
-  Source.Load(FProjectFileCreatedBy);
+  Source.LoadBoolean(FUseDefaultMainframeLocation);
+  Source.LoadTFloatType(FProjectMainframeLocation);
+  Source.LoadBoolean(FDisableModelCheck);
+  Source.LoadString(FProjectComment);
+  Source.LoadString(FProjectFileCreatedBy);
   FSavePreview := True;
   if Owner.FileVersion >= fv210 then
   begin
-    Source.Load(I);
+    Source.LoadInteger(I);
     FFreeHydrostaticCoefficients := TFreeHydrostaticCoeff(I);
-    Source.Load(FSavePreview);
+    Source.LoadBoolean(FSavePreview);
     if FSavePreview then
     begin
       Jpg := TJPEGImage.Create;
-      Source.Load(Jpg);
+      Source.LoadTJPEGImage(Jpg);
       if Image <> nil then
         Image.Assign(JPG);
       Jpg.Destroy;
     end;
     if Owner.FileVersion >= fv230 then
-      Source.Load(FProjectSimplifyIntersections);
+      Source.LoadBoolean(FProjectSimplifyIntersections);
     if Owner.Fileversion >= fv250 then
     begin
       // save settings for hydrostatics and crosscurves
 
       // hydrostatics
-      Source.Load(FStartdraft);
-      Source.Load(FEndDraft);
-      Source.Load(FDraftStep);
-      Source.Load(FTrim);
+      Source.LoadTFloatType(FStartdraft);
+      Source.LoadTFloatType(FEndDraft);
+      Source.LoadTFloatType(FDraftStep);
+      Source.LoadTFloatType(FTrim);
       // Crosscurves settings
-      Source.Load(FNoDisplacements);
+      Source.LoadInteger(FNoDisplacements);
       Setlength(FDisplacements, FNoDisplacements);
       for I := 1 to FNoDisplacements do
-        Source.Load(FDisplacements[I - 1]);
-      Source.Load(FMinimumDisplacement);
-      Source.Load(FMaximumDisplacement);
-      Source.Load(FDisplIncrement);
-      Source.Load(FUseDisplIncrements);
-      Source.Load(FNoAngles);
+        Source.LoadTFloatType(FDisplacements[I - 1]);
+      Source.LoadTFloatType(FMinimumDisplacement);
+      Source.LoadTFloatType(FMaximumDisplacement);
+      Source.LoadTFloatType(FDisplIncrement);
+      Source.LoadBoolean(FUseDisplIncrements);
+      Source.LoadInteger(FNoAngles);
       Setlength(FAngles, FNoAngles);
       for I := 1 to FNoAngles do
-        Source.Load(FAngles[I - 1]);
-      Source.Load(FNoStabTrims);
+        Source.LoadTFloatType(FAngles[I - 1]);
+      Source.LoadInteger(FNoStabTrims);
       Setlength(FStabTrims, FNoStabTrims);
       for I := 1 to FNoStabTrims do
-        Source.Load(FStabTrims[I - 1]);
-      Source.Load(FFreeTrim);
-      Source.Load(FVCG);
+        Source.LoadTFloatType(FStabTrims[I - 1]);
+      Source.LoadBoolean(FFreeTrim);
+      Source.LoadTFloatType(FVCG);
     end;
     if Owner.Fileversion >= fv317 then
-      Source.Load(FEnableModelAutoMove);
+      Source.LoadBoolean(FEnableModelAutoMove);
     if Owner.Fileversion >= fv332 then
-      Source.Load(FEnableBonjeanSAC);
+      Source.LoadBoolean(FEnableBonjeanSAC);
   end;
 end;{TFreeProjectSettings.LoadBinary}
 

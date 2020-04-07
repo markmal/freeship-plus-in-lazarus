@@ -244,10 +244,10 @@ procedure TFreeMarker.LoadBinary(Source: TFreeFileBuffer);
 var
   sel: boolean;
 begin
-  Source.Load(FVisible);
+  Source.LoadBoolean(FVisible);
   if Owner.FileVersion >= fv260 then
   begin
-    Source.Load(Sel);
+    Source.LoadBoolean(Sel);
     if sel then
       Owner.FSelectedMarkers.AddSorted(self);
   end;

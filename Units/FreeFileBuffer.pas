@@ -80,39 +80,38 @@ type
     //procedure Add(const source;Size:Integer);    overload;virtual;
     procedure Add(JPegImage: TJPEGImage);      overload; virtual;
 
-    procedure Load(var Output: integer);    virtual;overload;
-    procedure Load(var Output: string);      overload; virtual;
-    //procedure Load(var Output:Word);           overload;virtual;
-    procedure Load(var Output: TStrings);        overload; virtual;
-    procedure Load(var Output: TFreeFileVersion);      overload; virtual;
-    procedure Load(var Output: boolean);      overload; virtual;
-    //procedure Load2(var Output:Boolean);          overload;virtual;
-    procedure Load(var NameData: TNameData); overload; virtual;
-    procedure Load(var AnchorData: TAnchorData); overload; virtual;
-    procedure Load(var LCData: TLinearConstraintData); overload; virtual;
-    procedure Load(var Output: TFloatType);      overload; virtual;
-    //procedure Load(var Output: TColor);      overload; virtual;
-    procedure Load(var Output: T3DCoordinate);      overload; virtual;
-    procedure Load(var Output: T3DPlane);      overload; virtual;
-    procedure Load(var JPegImage: TJPEGImage);      overload; virtual;
-    procedure Load(var Data: TFreeKAPERResistanceData);      overload; virtual;
-    procedure Load(var Data: TFreeDelftSeriesResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeHoltrSeriesResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeOSTSeriesResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeTask1PropellerData);      overload; virtual;
-    procedure Load(var Data: TFreeTask2PropellerData);      overload; virtual;
-    procedure Load(var Data: TFreeTask3PropellerData);      overload; virtual;
-    procedure Load(var Data: TFreePlaningResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeRvrsPropellerData);      overload; virtual;
-    procedure Load(var Data: TFreeHollenSeriesResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeTask4PropellerData);      overload; virtual;
-    procedure Load(var Data: TFreeTask5PropellerData);      overload; virtual;
-    procedure Load(var Data: TFreeOortmerSeriesResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeFungSeriesResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeHydrodynManeuvData);overload; virtual;
-    procedure Load(var Data: TFreeHydrodynTask1Data);      overload; virtual;
-    procedure Load(var Data: TFreeRBHSSeriesResistanceData); overload; virtual;
-    procedure Load(var Data: TFreeMHSeriesResistanceData); overload; virtual;
+    procedure LoadInteger(var Output: integer);    virtual;
+    procedure LoadString(var Output: string);      virtual;
+    //procedure Load(var Output:Word);           virtual;
+    procedure LoadTStrings(var Output: TStrings);        virtual;
+    procedure LoadTFreeFileVersion(var Output: TFreeFileVersion);      virtual;
+    procedure LoadBoolean(var Output: boolean);      virtual;
+    procedure LoadTColor(var Output: TColor); virtual;
+    procedure LoadTNameData(var NameData: TNameData); virtual;
+    procedure LoadTAnchorData(var AnchorData: TAnchorData);  virtual;
+    procedure LoadTLinearConstraintData(var LCData: TLinearConstraintData);  virtual;
+    procedure LoadTFloatType(var Output: TFloatType);       virtual;
+    procedure LoadT3DCoordinate(var Output: T3DCoordinate);       virtual;
+    procedure LoadT3DPlane(var Output: T3DPlane);       virtual;
+    procedure LoadTJPEGImage(var JPegImage: TJPEGImage);       virtual;
+    procedure LoadTFreeKAPERResistanceData(var Data: TFreeKAPERResistanceData);       virtual;
+    procedure LoadTFreeDelftSeriesResistanceData(var Data: TFreeDelftSeriesResistanceData);  virtual;
+    procedure LoadTFreeHoltrSeriesResistanceData(var Data: TFreeHoltrSeriesResistanceData);  virtual;
+    procedure LoadTFreeOSTSeriesResistanceData(var Data: TFreeOSTSeriesResistanceData);  virtual;
+    procedure LoadTFreeTask1PropellerData(var Data: TFreeTask1PropellerData);       virtual;
+    procedure LoadTFreeTask2PropellerData(var Data: TFreeTask2PropellerData);       virtual;
+    procedure LoadTFreeTask3PropellerData(var Data: TFreeTask3PropellerData);       virtual;
+    procedure LoadTFreePlaningResistanceData(var Data: TFreePlaningResistanceData);  virtual;
+    procedure LoadTFreeRvrsPropellerData(var Data: TFreeRvrsPropellerData);       virtual;
+    procedure LoadTFreeHollenSeriesResistanceData(var Data: TFreeHollenSeriesResistanceData);  virtual;
+    procedure LoadTFreeTask4PropellerData(var Data: TFreeTask4PropellerData);       virtual;
+    procedure LoadTFreeTask5PropellerData(var Data: TFreeTask5PropellerData);       virtual;
+    procedure LoadTFreeOortmerSeriesResistanceData(var Data: TFreeOortmerSeriesResistanceData);  virtual;
+    procedure LoadTFreeFungSeriesResistanceData(var Data: TFreeFungSeriesResistanceData);  virtual;
+    procedure LoadTFreeHydrodynManeuvData(var Data: TFreeHydrodynManeuvData); virtual;
+    procedure LoadTFreeHydrodynTask1Data(var Data: TFreeHydrodynTask1Data);       virtual;
+    procedure LoadTFreeRBHSSeriesResistanceData(var Data: TFreeRBHSSeriesResistanceData);  virtual;
+    procedure LoadTFreeMHSeriesResistanceData(var Data: TFreeMHSeriesResistanceData);  virtual;
 
     //procedure Load(var Dest;Size:Integer);       overload;virtual;
     constructor Create;
@@ -155,19 +154,20 @@ type
     //procedure Add(const source;Size:Integer);     override;
     procedure Add(JPegImage: TJPEGImage); override; overload;
 
-    procedure Load(var Output: integer); override; overload;
-    procedure Load(var Output: string); override; overload;
-    procedure Load(var Output: TFreeFileVersion); override; overload;
-    procedure Load(var Output: boolean); override; overload;
-    procedure Load(var Output: TFloatType); override; overload;
-    procedure Load(var Output: TStrings); override; overload;
-    procedure Load(var Output: TNameData); override; overload;
-    procedure Load(var Output: TLinearConstraintData); override; overload;
-        //procedure Load(var Output: TColor); override; overload;
-    procedure Load(var Output: T3DCoordinate); override; overload;
-    procedure Load(var Output: T3DPlane); override; overload;
-    procedure Load(var JPegImage: TJPEGImage); override; overload;
-    //procedure Load(var Dest;Size:Integer);        override;
+    procedure LoadInteger(var Output: integer); override;
+    procedure LoadString(var Output: string); override;
+    procedure LoadTFreeFileVersion(var Output: TFreeFileVersion); override;
+    procedure LoadBoolean(var Output: boolean); override;
+    procedure LoadTColor(var Output: TColor); override;
+    procedure LoadTFloatType(var Output: TFloatType); override;
+    procedure LoadTStrings(var Output: TStrings); override;
+    procedure LoadTNameData(var Output: TNameData); override;
+    procedure LoadTLinearConstraintData(var Output: TLinearConstraintData); override;
+        //procedure LoadTFreeMHSeriesResistanceData(var Output: TColor); override;
+    procedure LoadT3DCoordinate(var Output: T3DCoordinate); override;
+    procedure LoadT3DPlane(var Output: T3DPlane); override;
+    procedure LoadTJPEGImage(var JPegImage: TJPEGImage); override;
+    //procedure LoadTFreeMHSeriesResistanceData(var Dest;Size:Integer);        override;
 
     procedure Clear; override;
     procedure LoadFromFile(Filename: string); override;
@@ -328,14 +328,14 @@ begin
   Stream.Destroy;
 end;{TFreeFileBuffer.Add}
 
-procedure TFreeFileBuffer.Load(var JPegImage: TJPEGImage);
+procedure TFreeFileBuffer.LoadTJPEGImage(var JPegImage: TJPEGImage);
 var
   Stream: TMemoryStream;
   W, H, Size: integer;
 begin
-  Load(W);
-  Load(H);
-  Load(Size);
+  LoadInteger(W);
+  LoadInteger(H);
+  LoadInteger(Size);
   Stream := TMemoryStream.Create;
   Stream.SetSize(Size);
   Stream.Write(FData[FPosition], Size);
@@ -346,7 +346,7 @@ begin
 end;{TFreeFileBuffer.Add}
 
 {
-procedure TFreeFileBuffer.Load(var Dest;Size:Integer);
+procedure TFreeFileBuffer.LoadTFreeMHSeriesResistanceData(var Dest;Size:Integer);
 var D : PChar;
     I : Integer;
 begin
@@ -365,721 +365,721 @@ begin
       D[I]:=Char(FData[FPosition]);
       Inc(FPosition);
    end;
-end;}{TFreeFileBuffer.Load}
+end;}{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeDelftSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeDelftSeriesResistanceData(var Data: TFreeDelftSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(WlArea);
-    Load(EstimateWetSurf);
-    // Structures are aligned to 2 bytes, so load Boolean as Word
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(WlArea);
+    LoadBoolean(EstimateWetSurf);
+    // Structures are aligned to 2 bytes, so LoadTFreeMHSeriesResistanceData Boolean as Word
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeKAPERResistanceData);
+procedure TFreeFileBuffer.LoadTFreeKAPERResistanceData(var Data: TFreeKAPERResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Draft);
-    Load(Lwl);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(LCB);
-    Load(WettedSurface);
-    Load(At_Ax);
-    Load(EntranceAngle);
-    Load(Extract);
+    LoadTFloatType(Draft);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(LCB);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(At_Ax);
+    LoadTFloatType(EntranceAngle);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeHoltrSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeHoltrSeriesResistanceData(var Data: TFreeHoltrSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(WlArea);
-    Load(Ke);
-    Load(BA);
-    Load(KBulb);
-    Load(ZBulb);
-    Load(Cstrn);
-    Load(Np);
-    Load(Dp);
-    Load(Ks);
-    Load(K1);
-    Load(K2);
-    Load(K3);
-    Load(K4);
-    Load(K5);
-    Load(K6);
-    Load(K7);
-    Load(A1);
-    Load(A2);
-    Load(A3);
-    Load(A4);
-    Load(A5);
-    Load(A6);
-    Load(A7);
-    Load(A8);
-    Load(A9);
-    Load(A10);
-    Load(A11);
-    Load(EstimateWetSurf);
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(WlArea);
+    LoadTFloatType(Ke);
+    LoadTFloatType(BA);
+    LoadTFloatType(KBulb);
+    LoadTFloatType(ZBulb);
+    LoadTFloatType(Cstrn);
+    LoadTFloatType(Np);
+    LoadTFloatType(Dp);
+    LoadTFloatType(Ks);
+    LoadTFloatType(K1);
+    LoadTFloatType(K2);
+    LoadTFloatType(K3);
+    LoadTFloatType(K4);
+    LoadTFloatType(K5);
+    LoadTFloatType(K6);
+    LoadTFloatType(K7);
+    LoadTFloatType(A1);
+    LoadTFloatType(A2);
+    LoadTFloatType(A3);
+    LoadTFloatType(A4);
+    LoadTFloatType(A5);
+    LoadTFloatType(A6);
+    LoadTFloatType(A7);
+    LoadTFloatType(A8);
+    LoadTFloatType(A9);
+    LoadTFloatType(A10);
+    LoadTFloatType(A11);
+    LoadBoolean(EstimateWetSurf);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeOSTSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeOSTSeriesResistanceData(var Data: TFreeOSTSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(WlArea);
-    Load(Ke);
-    Load(Ks);
-    Load(Nser);
-    Load(Na);
-    Load(Nf);
-    Load(Np);
-    Load(Dp);
-    Load(K1);
-    Load(K2);
-    Load(K3);
-    Load(K4);
-    Load(K5);
-    Load(K6);
-    Load(K7);
-    Load(A1);
-    Load(A2);
-    Load(A3);
-    Load(A4);
-    Load(A5);
-    Load(A6);
-    Load(A7);
-    Load(A8);
-    Load(A9);
-    Load(A10);
-    Load(A11);
-    Load(Dat17_1);
-    Load(Dat17_2);
-    Load(Dat17_3);
-    Load(Dat17_4);
-    Load(Dat17_5);
-    Load(Dat18_1);
-    Load(Dat18_2);
-    Load(Dat18_3);
-    Load(Dat18_4);
-    Load(Dat18_5);
-    Load(EstimateWetSurf);
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(WlArea);
+    LoadTFloatType(Ke);
+    LoadTFloatType(Ks);
+    LoadTFloatType(Nser);
+    LoadTFloatType(Na);
+    LoadTFloatType(Nf);
+    LoadTFloatType(Np);
+    LoadTFloatType(Dp);
+    LoadTFloatType(K1);
+    LoadTFloatType(K2);
+    LoadTFloatType(K3);
+    LoadTFloatType(K4);
+    LoadTFloatType(K5);
+    LoadTFloatType(K6);
+    LoadTFloatType(K7);
+    LoadTFloatType(A1);
+    LoadTFloatType(A2);
+    LoadTFloatType(A3);
+    LoadTFloatType(A4);
+    LoadTFloatType(A5);
+    LoadTFloatType(A6);
+    LoadTFloatType(A7);
+    LoadTFloatType(A8);
+    LoadTFloatType(A9);
+    LoadTFloatType(A10);
+    LoadTFloatType(A11);
+    LoadTFloatType(Dat17_1);
+    LoadTFloatType(Dat17_2);
+    LoadTFloatType(Dat17_3);
+    LoadTFloatType(Dat17_4);
+    LoadTFloatType(Dat17_5);
+    LoadTFloatType(Dat18_1);
+    LoadTFloatType(Dat18_2);
+    LoadTFloatType(Dat18_3);
+    LoadTFloatType(Dat18_4);
+    LoadTFloatType(Dat18_5);
+    LoadBoolean(EstimateWetSurf);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeTask1PropellerData);
+procedure TFreeFileBuffer.LoadTFreeTask1PropellerData(var Data: TFreeTask1PropellerData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Dat7);
-    Load(Dat8);
-    Load(Dat9);
-    Load(Dat10);
-    Load(Dat11);
-    Load(Dat12);
-    Load(Dat13);
-    Load(Dat14);
-    Load(Dat15);
-    Load(Dat16);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadTFloatType(Dat7);
+    LoadTFloatType(Dat8);
+    LoadTFloatType(Dat9);
+    LoadTFloatType(Dat10);
+    LoadTFloatType(Dat11);
+    LoadTFloatType(Dat12);
+    LoadTFloatType(Dat13);
+    LoadTFloatType(Dat14);
+    LoadTFloatType(Dat15);
+    LoadTFloatType(Dat16);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeTask2PropellerData);
+procedure TFreeFileBuffer.LoadTFreeTask2PropellerData(var Data: TFreeTask2PropellerData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Dat7);
-    Load(Dat8);
-    Load(Dat9);
-    Load(Dat10);
-    Load(Dat11);
-    Load(Dat12);
-    Load(Dat13);
-    Load(Dat14);
-    Load(Dat15);
-    Load(Dat16);
-    Load(Dat17_1);
-    Load(Dat17_2);
-    Load(Dat17_3);
-    Load(Dat17_4);
-    Load(Dat17_5);
-    Load(Dat18_1);
-    Load(Dat18_2);
-    Load(Dat18_3);
-    Load(Dat18_4);
-    Load(Dat18_5);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadTFloatType(Dat7);
+    LoadTFloatType(Dat8);
+    LoadTFloatType(Dat9);
+    LoadTFloatType(Dat10);
+    LoadTFloatType(Dat11);
+    LoadTFloatType(Dat12);
+    LoadTFloatType(Dat13);
+    LoadTFloatType(Dat14);
+    LoadTFloatType(Dat15);
+    LoadTFloatType(Dat16);
+    LoadTFloatType(Dat17_1);
+    LoadTFloatType(Dat17_2);
+    LoadTFloatType(Dat17_3);
+    LoadTFloatType(Dat17_4);
+    LoadTFloatType(Dat17_5);
+    LoadTFloatType(Dat18_1);
+    LoadTFloatType(Dat18_2);
+    LoadTFloatType(Dat18_3);
+    LoadTFloatType(Dat18_4);
+    LoadTFloatType(Dat18_5);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeTask3PropellerData);
+procedure TFreeFileBuffer.LoadTFreeTask3PropellerData(var Data: TFreeTask3PropellerData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Dat7);
-    Load(Dat8);
-    Load(Dat9);
-    Load(Dat10);
-    Load(Dat11);
-    Load(Dat12);
-    Load(Dat13);
-    Load(Dat14);
-    Load(Dat15);
-    Load(Dat16);
-    Load(Dat17);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadTFloatType(Dat7);
+    LoadTFloatType(Dat8);
+    LoadTFloatType(Dat9);
+    LoadTFloatType(Dat10);
+    LoadTFloatType(Dat11);
+    LoadTFloatType(Dat12);
+    LoadTFloatType(Dat13);
+    LoadTFloatType(Dat14);
+    LoadTFloatType(Dat15);
+    LoadTFloatType(Dat16);
+    LoadTFloatType(Dat17);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreePlaningResistanceData);
+procedure TFreeFileBuffer.LoadTFreePlaningResistanceData(var Data: TFreePlaningResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Draft);
-    Load(Lwl);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(LCB);
-    Load(WettedSurface);
-    Load(At_Ax);
-    Load(EntranceAngle);
-    Load(Sa);
-    Load(Caa);
-    Load(Angle);
-    Load(K);
-    Load(Extract);
+    LoadTFloatType(Draft);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(LCB);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(At_Ax);
+    LoadTFloatType(EntranceAngle);
+    LoadTFloatType(Sa);
+    LoadTFloatType(Caa);
+    LoadTFloatType(Angle);
+    LoadTFloatType(K);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeRvrsPropellerData);
+procedure TFreeFileBuffer.LoadTFreeRvrsPropellerData(var Data: TFreeRvrsPropellerData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Dat7);
-    Load(Dat8);
-    Load(Dat9);
-    Load(Dat10);
-    Load(Dat11);
-    Load(Dat12);
-    Load(Dat13);
-    Load(Dat14);
-    Load(Dat15);
-    Load(Dat16);
-    Load(Dat17);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadTFloatType(Dat7);
+    LoadTFloatType(Dat8);
+    LoadTFloatType(Dat9);
+    LoadTFloatType(Dat10);
+    LoadTFloatType(Dat11);
+    LoadTFloatType(Dat12);
+    LoadTFloatType(Dat13);
+    LoadTFloatType(Dat14);
+    LoadTFloatType(Dat15);
+    LoadTFloatType(Dat16);
+    LoadTFloatType(Dat17);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeHollenSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeHollenSeriesResistanceData(var Data: TFreeHollenSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(Los);
-    Load(Ke);
-    Load(BA);
-    Load(KBulb);
-    Load(ZBulb);
-    Load(Cstrn);
-    Load(Np);
-    Load(Dp);
-    Load(Ks);
-    Load(K1);
-    Load(K2);
-    Load(K3);
-    Load(K4);
-    Load(K5);
-    Load(K6);
-    Load(K7);
-    Load(A1);
-    Load(A2);
-    Load(A3);
-    Load(A4);
-    Load(A5);
-    Load(A6);
-    Load(A7);
-    Load(A8);
-    Load(A9);
-    Load(A10);
-    Load(A11);
-    Load(EstimateWetSurf);
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(Los);
+    LoadTFloatType(Ke);
+    LoadTFloatType(BA);
+    LoadTFloatType(KBulb);
+    LoadTFloatType(ZBulb);
+    LoadTFloatType(Cstrn);
+    LoadTFloatType(Np);
+    LoadTFloatType(Dp);
+    LoadTFloatType(Ks);
+    LoadTFloatType(K1);
+    LoadTFloatType(K2);
+    LoadTFloatType(K3);
+    LoadTFloatType(K4);
+    LoadTFloatType(K5);
+    LoadTFloatType(K6);
+    LoadTFloatType(K7);
+    LoadTFloatType(A1);
+    LoadTFloatType(A2);
+    LoadTFloatType(A3);
+    LoadTFloatType(A4);
+    LoadTFloatType(A5);
+    LoadTFloatType(A6);
+    LoadTFloatType(A7);
+    LoadTFloatType(A8);
+    LoadTFloatType(A9);
+    LoadTFloatType(A10);
+    LoadTFloatType(A11);
+    LoadBoolean(EstimateWetSurf);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeTask4PropellerData);
+procedure TFreeFileBuffer.LoadTFreeTask4PropellerData(var Data: TFreeTask4PropellerData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Dat7);
-    Load(Dat8);
-    Load(Dat9);
-    Load(Dat10);
-    Load(Dat11);
-    Load(Dat12);
-    Load(Dat13);
-    Load(Dat14);
-    Load(Dat15);
-    Load(Dat16);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadTFloatType(Dat7);
+    LoadTFloatType(Dat8);
+    LoadTFloatType(Dat9);
+    LoadTFloatType(Dat10);
+    LoadTFloatType(Dat11);
+    LoadTFloatType(Dat12);
+    LoadTFloatType(Dat13);
+    LoadTFloatType(Dat14);
+    LoadTFloatType(Dat15);
+    LoadTFloatType(Dat16);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeTask5PropellerData);
+procedure TFreeFileBuffer.LoadTFreeTask5PropellerData(var Data: TFreeTask5PropellerData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeOortmerSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeOortmerSeriesResistanceData(var Data: TFreeOortmerSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(Los);
-    Load(Ke);
-    Load(BA);
-    Load(KBulb);
-    Load(ZBulb);
-    Load(Cstrn);
-    Load(Np);
-    Load(Dp);
-    Load(Ks);
-    Load(K1);
-    Load(K2);
-    Load(K3);
-    Load(K4);
-    Load(K5);
-    Load(K6);
-    Load(K7);
-    Load(A1);
-    Load(A2);
-    Load(A3);
-    Load(A4);
-    Load(A5);
-    Load(A6);
-    Load(A7);
-    Load(A8);
-    Load(A9);
-    Load(A10);
-    Load(A11);
-    Load(EstimateWetSurf);
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(Los);
+    LoadTFloatType(Ke);
+    LoadTFloatType(BA);
+    LoadTFloatType(KBulb);
+    LoadTFloatType(ZBulb);
+    LoadTFloatType(Cstrn);
+    LoadTFloatType(Np);
+    LoadTFloatType(Dp);
+    LoadTFloatType(Ks);
+    LoadTFloatType(K1);
+    LoadTFloatType(K2);
+    LoadTFloatType(K3);
+    LoadTFloatType(K4);
+    LoadTFloatType(K5);
+    LoadTFloatType(K6);
+    LoadTFloatType(K7);
+    LoadTFloatType(A1);
+    LoadTFloatType(A2);
+    LoadTFloatType(A3);
+    LoadTFloatType(A4);
+    LoadTFloatType(A5);
+    LoadTFloatType(A6);
+    LoadTFloatType(A7);
+    LoadTFloatType(A8);
+    LoadTFloatType(A9);
+    LoadTFloatType(A10);
+    LoadTFloatType(A11);
+    LoadBoolean(EstimateWetSurf);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeFungSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeFungSeriesResistanceData(var Data: TFreeFungSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(Los);
-    Load(Ke);
-    Load(BA);
-    Load(KBulb);
-    Load(ZBulb);
-    Load(Cstrn);
-    Load(Np);
-    Load(Dp);
-    Load(Ks);
-    Load(K1);
-    Load(K2);
-    Load(K3);
-    Load(K4);
-    Load(K5);
-    Load(K6);
-    Load(K7);
-    Load(A1);
-    Load(A2);
-    Load(A3);
-    Load(A4);
-    Load(A5);
-    Load(A6);
-    Load(A7);
-    Load(A8);
-    Load(A9);
-    Load(A10);
-    Load(A11);
-    Load(EstimateWetSurf);
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(Los);
+    LoadTFloatType(Ke);
+    LoadTFloatType(BA);
+    LoadTFloatType(KBulb);
+    LoadTFloatType(ZBulb);
+    LoadTFloatType(Cstrn);
+    LoadTFloatType(Np);
+    LoadTFloatType(Dp);
+    LoadTFloatType(Ks);
+    LoadTFloatType(K1);
+    LoadTFloatType(K2);
+    LoadTFloatType(K3);
+    LoadTFloatType(K4);
+    LoadTFloatType(K5);
+    LoadTFloatType(K6);
+    LoadTFloatType(K7);
+    LoadTFloatType(A1);
+    LoadTFloatType(A2);
+    LoadTFloatType(A3);
+    LoadTFloatType(A4);
+    LoadTFloatType(A5);
+    LoadTFloatType(A6);
+    LoadTFloatType(A7);
+    LoadTFloatType(A8);
+    LoadTFloatType(A9);
+    LoadTFloatType(A10);
+    LoadTFloatType(A11);
+    LoadBoolean(EstimateWetSurf);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeHydrodynManeuvData);
+procedure TFreeFileBuffer.LoadTFreeHydrodynManeuvData(var Data: TFreeHydrodynManeuvData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Dat7);
-    Load(Dat8);
-    Load(Dat9);
-    Load(Dat10);
-    Load(Dat11);
-    Load(Dat12);
-    Load(Dat13);
-    Load(Dat14);
-    Load(Dat15);
-    Load(Dat16);
-    Load(Dat17);
-    Load(Dat18);
-    Load(Dat19);
-    Load(Dat20);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadTFloatType(Dat7);
+    LoadTFloatType(Dat8);
+    LoadTFloatType(Dat9);
+    LoadTFloatType(Dat10);
+    LoadTFloatType(Dat11);
+    LoadTFloatType(Dat12);
+    LoadTFloatType(Dat13);
+    LoadTFloatType(Dat14);
+    LoadTFloatType(Dat15);
+    LoadTFloatType(Dat16);
+    LoadTFloatType(Dat17);
+    LoadTFloatType(Dat18);
+    LoadTFloatType(Dat19);
+    LoadTFloatType(Dat20);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeHydrodynTask1Data);
+procedure TFreeFileBuffer.LoadTFreeHydrodynTask1Data(var Data: TFreeHydrodynTask1Data);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(Dat2);
-    Load(Dat3);
-    Load(Dat4);
-    Load(Dat5);
-    Load(Dat6);
-    Load(Dat7);
-    Load(Dat8);
-    Load(Dat9);
-    Load(Dat10);
-    Load(Dat11);
-    Load(Dat12);
-    Load(Extract);
+    LoadTFloatType(Dat2);
+    LoadTFloatType(Dat3);
+    LoadTFloatType(Dat4);
+    LoadTFloatType(Dat5);
+    LoadTFloatType(Dat6);
+    LoadTFloatType(Dat7);
+    LoadTFloatType(Dat8);
+    LoadTFloatType(Dat9);
+    LoadTFloatType(Dat10);
+    LoadTFloatType(Dat11);
+    LoadTFloatType(Dat12);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeRBHSSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeRBHSSeriesResistanceData(var Data: TFreeRBHSSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(WlArea);
-    Load(Ke);
-    Load(Ks);
-    Load(Nser);
-    Load(Na);
-    Load(Nf);
-    Load(Np);
-    Load(Dp);
-    Load(K1);
-    Load(K2);
-    Load(K3);
-    Load(K4);
-    Load(K5);
-    Load(K6);
-    Load(K7);
-    Load(A1);
-    Load(A2);
-    Load(A3);
-    Load(A4);
-    Load(A5);
-    Load(A6);
-    Load(A7);
-    Load(A8);
-    Load(A9);
-    Load(A10);
-    Load(A11);
-    Load(Dat17_1);
-    Load(Dat17_2);
-    Load(Dat17_3);
-    Load(Dat17_4);
-    Load(Dat17_5);
-    Load(Dat18_1);
-    Load(Dat18_2);
-    Load(Dat18_3);
-    Load(Dat18_4);
-    Load(Dat18_5);
-    Load(EstimateWetSurf);
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(WlArea);
+    LoadTFloatType(Ke);
+    LoadTFloatType(Ks);
+    LoadTFloatType(Nser);
+    LoadTFloatType(Na);
+    LoadTFloatType(Nf);
+    LoadTFloatType(Np);
+    LoadTFloatType(Dp);
+    LoadTFloatType(K1);
+    LoadTFloatType(K2);
+    LoadTFloatType(K3);
+    LoadTFloatType(K4);
+    LoadTFloatType(K5);
+    LoadTFloatType(K6);
+    LoadTFloatType(K7);
+    LoadTFloatType(A1);
+    LoadTFloatType(A2);
+    LoadTFloatType(A3);
+    LoadTFloatType(A4);
+    LoadTFloatType(A5);
+    LoadTFloatType(A6);
+    LoadTFloatType(A7);
+    LoadTFloatType(A8);
+    LoadTFloatType(A9);
+    LoadTFloatType(A10);
+    LoadTFloatType(A11);
+    LoadTFloatType(Dat17_1);
+    LoadTFloatType(Dat17_2);
+    LoadTFloatType(Dat17_3);
+    LoadTFloatType(Dat17_4);
+    LoadTFloatType(Dat17_5);
+    LoadTFloatType(Dat18_1);
+    LoadTFloatType(Dat18_2);
+    LoadTFloatType(Dat18_3);
+    LoadTFloatType(Dat18_4);
+    LoadTFloatType(Dat18_5);
+    LoadBoolean(EstimateWetSurf);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var Data: TFreeMHSeriesResistanceData);
+procedure TFreeFileBuffer.LoadTFreeMHSeriesResistanceData(var Data: TFreeMHSeriesResistanceData);
 var
   bp: integer;
 begin
   bp := FPosition;
   with Data do
   begin
-    Load(StartSpeed);
-    Load(EndSpeed);
-    Load(StepSpeed);
-    Load(Bwl);
-    Load(Cp);
-    Load(Displacement);
-    Load(Draft);
-    Load(DraftTotal);
-    Load(KeelChordLength);
-    Load(KeelArea);
-    Load(LCB);
-    Load(Lwl);
-    Load(RudderChordLength);
-    Load(RudderArea);
-    Load(Viscosity);
-    Load(WettedSurface);
-    Load(WlArea);
-    Load(Ke);
-    Load(Ks);
-    Load(Nser);
-    Load(Na);
-    Load(Nf);
-    Load(Np);
-    Load(Dp);
-    Load(K1);
-    Load(K2);
-    Load(K3);
-    Load(K4);
-    Load(K5);
-    Load(K6);
-    Load(K7);
-    Load(A1);
-    Load(A2);
-    Load(A3);
-    Load(A4);
-    Load(A5);
-    Load(A6);
-    Load(A7);
-    Load(A8);
-    Load(A9);
-    Load(A10);
-    Load(A11);
-    Load(Dat17_1);
-    Load(Dat17_2);
-    Load(Dat17_3);
-    Load(Dat17_4);
-    Load(Dat17_5);
-    Load(Dat18_1);
-    Load(Dat18_2);
-    Load(Dat18_3);
-    Load(Dat18_4);
-    Load(Dat18_5);
-    Load(EstimateWetSurf);
-    Load(Extract);
+    LoadTFloatType(StartSpeed);
+    LoadTFloatType(EndSpeed);
+    LoadTFloatType(StepSpeed);
+    LoadTFloatType(Bwl);
+    LoadTFloatType(Cp);
+    LoadTFloatType(Displacement);
+    LoadTFloatType(Draft);
+    LoadTFloatType(DraftTotal);
+    LoadTFloatType(KeelChordLength);
+    LoadTFloatType(KeelArea);
+    LoadTFloatType(LCB);
+    LoadTFloatType(Lwl);
+    LoadTFloatType(RudderChordLength);
+    LoadTFloatType(RudderArea);
+    LoadTFloatType(Viscosity);
+    LoadTFloatType(WettedSurface);
+    LoadTFloatType(WlArea);
+    LoadTFloatType(Ke);
+    LoadTFloatType(Ks);
+    LoadTFloatType(Nser);
+    LoadTFloatType(Na);
+    LoadTFloatType(Nf);
+    LoadTFloatType(Np);
+    LoadTFloatType(Dp);
+    LoadTFloatType(K1);
+    LoadTFloatType(K2);
+    LoadTFloatType(K3);
+    LoadTFloatType(K4);
+    LoadTFloatType(K5);
+    LoadTFloatType(K6);
+    LoadTFloatType(K7);
+    LoadTFloatType(A1);
+    LoadTFloatType(A2);
+    LoadTFloatType(A3);
+    LoadTFloatType(A4);
+    LoadTFloatType(A5);
+    LoadTFloatType(A6);
+    LoadTFloatType(A7);
+    LoadTFloatType(A8);
+    LoadTFloatType(A9);
+    LoadTFloatType(A10);
+    LoadTFloatType(A11);
+    LoadTFloatType(Dat17_1);
+    LoadTFloatType(Dat17_2);
+    LoadTFloatType(Dat17_3);
+    LoadTFloatType(Dat17_4);
+    LoadTFloatType(Dat17_5);
+    LoadTFloatType(Dat18_1);
+    LoadTFloatType(Dat18_2);
+    LoadTFloatType(Dat18_3);
+    LoadTFloatType(Dat18_4);
+    LoadTFloatType(Dat18_5);
+    LoadBoolean(EstimateWetSurf);
+    LoadBoolean(Extract);
   end;
   FPosition := bp + sizeof(Data); //record data can be aligned
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 
 ////////// Add
@@ -1114,7 +1114,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeKAPERResistanceData);
 var
@@ -1197,7 +1197,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeOSTSeriesResistanceData);
 var
@@ -1265,7 +1265,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask1PropellerData);
 var
@@ -1295,7 +1295,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask2PropellerData);
 var
@@ -1335,7 +1335,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask3PropellerData);
 var
@@ -1366,7 +1366,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreePlaningResistanceData);
 var
@@ -1394,7 +1394,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeRvrsPropellerData);
 var
@@ -1425,7 +1425,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeHollenSeriesResistanceData);
 var
@@ -1484,7 +1484,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask4PropellerData);
 var
@@ -1514,7 +1514,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask5PropellerData);
 var
@@ -1534,7 +1534,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeOortmerSeriesResistanceData);
 var
@@ -1593,7 +1593,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeFungSeriesResistanceData);
 var
@@ -1652,7 +1652,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeHydrodynManeuvData);
 var
@@ -1686,7 +1686,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeHydrodynTask1Data);
 var
@@ -1712,7 +1712,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeRBHSSeriesResistanceData);
 var
@@ -1780,7 +1780,7 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeMHSeriesResistanceData);
 var
@@ -1848,39 +1848,39 @@ begin
     Add(Extract);
   end;
   FCount := bp + Size;
-end;{TFreeFileBuffer.Load}
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 
 //////////
+resourcestring
+rsParsingErrorOutOfFileSize =
+  'Error parsing of file "%s". Reading %s of size %d at position %d that is out of file size %d.';
 
 
-procedure TFreeFileBuffer.Load(var Output: string);
+procedure TFreeFileBuffer.LoadString(var Output: string);
 var
   I, Size: integer;
   Ch: char;   S: string;
 begin
-  Load(Size);
+  LoadInteger(Size);
   Output := '';
-  if FPosition + Size <= FCount then
+
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'String',Size,FPosition,FCount]) );
+
+  for I := 1 to Size do
   begin
-    for I := 1 to Size do
-    begin
-      Ch := char(FData[FPosition]);
-      Inc(FPosition);
-      Output := Output + Ch;
-    end;
-    S:=Output;
-    Output := ConvertEncoding(S,FEncoding,'utf8');
-  end
-  else
-    raise Exception.Create(UserString(192) + '_0 ! Load String' + EOL
-      + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' + IntToStr(
-      FCount) + EOL + FFileName);
-  //MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
-end;{TFreeFileBuffer.Load}
+    Ch := char(FData[FPosition]);
+    Inc(FPosition);
+    Output := Output + Ch;
+  end;
+  S:=Output;
+  Output := ConvertEncoding(S,FEncoding,'utf8');
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 {
-procedure TFreeFileBuffer.Load(var Output:Word);
+procedure TFreeFileBuffer.LoadTFreeMHSeriesResistanceData(var Output:Word);
 var Size : Integer;
 begin
    Size:=2;
@@ -1896,73 +1896,81 @@ begin
       +' > '+IntToStr(FCount)
       +EOL+FFileName);
    //MessageDlg(UserString(192)+'_1 !',mtError,[mbOk],0);
-end;}{TFreeFileBuffer.Load}
+end;}{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-
-procedure TFreeFileBuffer.Load(var Output: integer);
+procedure TFreeFileBuffer.LoadInteger(var Output: integer);
 var
   Size: integer;
 begin
   Size := 4;
   Output := 0;
-  if FPosition + Size <= FCount then
-  begin
-    Move(FData[FPosition], Output, Size);
-    Output := LEtoN(Output);
-    Inc(FPosition, Size);
-  end
-  else
-    raise Exception.Create(UserString(192) + '_1 ! Load Integer' + EOL
-      + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' + IntToStr(
-      FCount) + EOL + FFileName);
-  //MessageDlg(UserString(192)+'_1 !',mtError,[mbOk],0);
-end; {TFreeFileBuffer.Load}
 
-procedure TFreeFileBuffer.Load(var Output: TStrings);
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'Integer',Size,FPosition,FCount]) );
+
+  Move(FData[FPosition], Output, Size);
+  Output := LEtoN(Output);
+  Inc(FPosition, Size);
+end; {TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
+
+procedure TFreeFileBuffer.LoadTColor(var Output: TColor);
+var
+  Size: integer;
+begin
+  Size := 4;
+  Output := 0;
+
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'TColor',Size,FPosition,FCount]) );
+
+  Move(FData[FPosition], Output, Size);
+  Output := LEtoN(Output);
+  Inc(FPosition, Size);
+end; {TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
+
+
+procedure TFreeFileBuffer.LoadTStrings(var Output: TStrings);
 var i,c: integer; S:String;
 begin
-  Load(c);
+  LoadInteger(c);
   for i:=1 to c do
     begin
-    Load(S);
+    LoadString(S);
     Output.Add(S);
     end;
 end;{TFreeFileBuffer.Add}
 
 
-procedure TFreeFileBuffer.Load(var Output: TFreeFileVersion);
+procedure TFreeFileBuffer.LoadTFreeFileVersion(var Output: TFreeFileVersion);
 var
   Size: integer;
 begin
   Size := SizeOf(Output);
-  if FPosition + Size <= FCount then
-  begin
-    Move(FData[FPosition], Output, Size);
-    Inc(FPosition, Size);
-  end
-  else
-    raise Exception.Create(UserString(192) + '_2 ! Load TFreeFileVersion' +
-      EOL + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' +
-      IntToStr(FCount) + EOL + FFileName);
-  //MessageDlg(UserString(192)+'_2 !',mtError,[mbOk],0);
-end;{TFreeFileBuffer.Load}
 
-procedure TFreeFileBuffer.Load(var Output: boolean);
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'TFreeFileVersion',Size,FPosition,FCount]) );
+
+  Move(FData[FPosition], Output, Size);
+  Inc(FPosition, Size);
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
+
+procedure TFreeFileBuffer.LoadBoolean(var Output: boolean);
 var
   Size: integer;
 begin
   Size := 1;
   Output := False;
-  if FPosition + Size <= FCount then
-  begin
-    Move(FData[FPosition], Output, Size);
-    Inc(FPosition, Size);
-  end
-  else //MessageDlg(UserString(192)+'_3 !',mtError,[mbOk],0);
-    raise Exception.Create(UserString(192) + '_3 ! Load Boolean' + EOL
-      + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' + IntToStr(
-      FCount) + EOL + FFileName);
-end;{TFreeFileBuffer.Load}
+
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'Boolean',Size,FPosition,FCount]) );
+
+  Move(FData[FPosition], Output, Size);
+  Inc(FPosition, Size);
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 {
 procedure TFreeFileBuffer.Load2(var Output:Boolean);
@@ -1981,47 +1989,45 @@ begin
       +'Position+Size:'+IntToStr(FPosition+Size)
       +' > '+IntToStr(FCount)
       +EOL+FFileName);
-end;}{TFreeFileBuffer.Load}
+end;}{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
-procedure TFreeFileBuffer.Load(var NameData: TNameData);
+procedure TFreeFileBuffer.LoadTNameData(var NameData: TNameData);
 begin
-  Load(NameData.N);
-  Load(NameData.Name);
+  LoadInteger(NameData.N);
+  LoadString(NameData.Name);
 end;
 
-procedure TFreeFileBuffer.Load(var AnchorData: TAnchorData);
+procedure TFreeFileBuffer.LoadTAnchorData(var AnchorData: TAnchorData);
 begin
-  Load(AnchorData.N);
-  Load(AnchorData.AnchorPoint);
-  Load(AnchorData.IsAnchorHard);
+  LoadInteger(AnchorData.N);
+  LoadInteger(AnchorData.AnchorPoint);
+  LoadBoolean(AnchorData.IsAnchorHard);
 end;
 
-procedure TFreeFileBuffer.Load(var LCData: TLinearConstraintData);
+procedure TFreeFileBuffer.LoadTLinearConstraintData(var LCData: TLinearConstraintData);
 begin
-  Load(LCData.N);
-  Load(LCData.LinearConstraintPointA);
-  Load(LCData.LinearConstraintPointB);
+  LoadInteger(LCData.N);
+  LoadInteger(LCData.LinearConstraintPointA);
+  LoadInteger(LCData.LinearConstraintPointB);
 end;
 
-procedure TFreeFileBuffer.Load(var Output: TFloatType);
+procedure TFreeFileBuffer.LoadTFloatType(var Output: TFloatType);
 var
   Size: integer;
 begin
   Size := SizeOf(Output);
   Output := 0.0;
-  if FPosition + Size <= FCount then
-  begin
-    Move(FData[FPosition], Output, Size);
-    Inc(FPosition, Size);
-  end
-  else //MessageDlg(UserString(192)+'_4 !',mtError,[mbOk],0);
-    raise Exception.Create(UserString(192) + '_4 ! Load TFloatType' +
-      EOL + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' +
-      IntToStr(FCount) + EOL + FFileName);
-end;{TFreeFileBuffer.Load}
+
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'TFloatType',Size,FPosition,FCount]) );
+
+  Move(FData[FPosition], Output, Size);
+  Inc(FPosition, Size);
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 {
-procedure TFreeFileBuffer.Load(var Output: TColor);
+procedure TFreeFileBuffer.LoadTFreeMHSeriesResistanceData(var Output: TColor);
 var
   Size: integer;
 begin
@@ -2036,43 +2042,37 @@ begin
     raise Exception.Create(UserString(192) + '_5 ! Load TColor' + EOL
       + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' + IntToStr(
       FCount) + EOL + FFileName);
-end;}{TFreeFileBuffer.Load}
+end;}{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 
-procedure TFreeFileBuffer.Load(var Output: T3DCoordinate);
+procedure TFreeFileBuffer.LoadT3DCoordinate(var Output: T3DCoordinate);
 var
   Size: integer;
 begin
   Size := SizeOf(Output);
   Output := ZERO;
-  if FPosition + Size <= FCount then
-  begin
-    Move(FData[FPosition], Output, Size);
-    Inc(FPosition, Size);
-  end
-  else //MessageDlg(UserString(192)+'_6 !',mtError,[mbOk],0);
-    raise Exception.Create(UserString(192) + '_6 Load T3DCoordinate!' +
-      EOL + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' +
-      IntToStr(FCount) + EOL + FFileName);
 
-end;{TFreeFileBuffer.Load}
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'TFloatType',Size,FPosition,FCount]) );
 
-procedure TFreeFileBuffer.Load(var Output: T3DPlane);
+  Move(FData[FPosition], Output, Size);
+  Inc(FPosition, Size);
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
+
+procedure TFreeFileBuffer.LoadT3DPlane(var Output: T3DPlane);
 var
   Size: integer;
-  //PLE: T3DPlane;
 begin
   Size := SizeOf(Output);
-  if FPosition + Size <= FCount then
-  begin
-    Move(FData[FPosition], Output, Size);
-    Inc(FPosition, Size);
-  end
-  else //MessageDlg(UserString(192)+'_7 !',mtError,[mbOk],0);
-    raise Exception.Create(UserString(192) + '_7 ! Load T3DPlane' + EOL
-      + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' + IntToStr(
-      FCount) + EOL + FFileName);
-end;{TFreeFileBuffer.Load}
+
+  if FPosition + Size > FCount then
+    raise Exception.Create(format(rsParsingErrorOutOfFileSize,
+       [FFileName,'TFloatType',Size,FPosition,FCount]) );
+
+  Move(FData[FPosition], Output, Size);
+  Inc(FPosition, Size);
+end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Text: string);
 var
@@ -2163,25 +2163,28 @@ begin
   FFileName := Filename;
   AssignFile(FFile, Filename);
   //TheStream:=TFileStream.Create(FileName,fmOpenRead or fmShareDenyWrite);
-  system.FileMode := fmOpenRead;
-  system.Reset(FFile,1);
-  FCount := 0;
-  DataLeft := FileSize(FFile);
-  Capacity := DataLeft;
-  FPosition := 0;
-  if DataLeft < 0 then
-    exit;
-  while DataLeft > 0 do
-  begin
-    if DataLeft < FileBufferBlockSize then
-      Size := DataLeft
-    else
-      Size := FileBufferBlockSize;
-    BlockRead(FFile, FData[FCount], Size, Tmp);
-    Dec(DataLeft, Tmp);
-    Inc(FCount, Tmp);
+  try
+    system.FileMode := fmOpenRead;
+    system.Reset(FFile,1);
+    FCount := 0;
+    DataLeft := FileSize(FFile);
+    Capacity := DataLeft;
+    FPosition := 0;
+    if DataLeft < 0 then
+      exit;
+    while DataLeft > 0 do
+    begin
+      if DataLeft < FileBufferBlockSize then
+        Size := DataLeft
+      else
+        Size := FileBufferBlockSize;
+      BlockRead(FFile, FData[FCount], Size, Tmp);
+      Dec(DataLeft, Tmp);
+      Inc(FCount, Tmp);
+    end;
+  finally
+    Closefile(FFile);
   end;
-  Closefile(FFile);
   FFileName := '';
 end;{TFreeFileBuffer.LoadFromFile}
 
@@ -2388,15 +2391,15 @@ begin
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
 
-procedure TFreeTextBuffer.Load(var JPegImage: TJPEGImage);
+procedure TFreeTextBuffer.LoadTJPEGImage(var JPegImage: TJPEGImage);
 var
   Stream: TMemoryStream;
   W, H, Size: integer;
   PData: PChar;
 begin
-  Load(W);
-  Load(H);
-  Load(Size);
+  LoadInteger(W);
+  LoadInteger(H);
+  LoadInteger(Size);
   PData := StrAlloc(Size);
   Stream := TMemoryStream.Create;
   Stream.SetSize(Size);
@@ -2409,16 +2412,25 @@ begin
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
 
-procedure TFreeTextBuffer.Load(var Output: integer);
+procedure TFreeTextBuffer.LoadInteger(var Output: integer);
 var
   S: string;
 begin
   S := FLines[FPosition];
   Output := StrToInt(S);
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;
 
-procedure TFreeTextBuffer.Load(var Output: string);
+procedure TFreeTextBuffer.LoadTColor(var Output: TColor);
+var
+  S: string;
+begin
+  S := FLines[FPosition];
+  Output := StrToInt(S);
+  Inc(FPosition);
+end;
+
+procedure TFreeTextBuffer.LoadString(var Output: string);
 var
   S: string;
 begin
@@ -2428,46 +2440,46 @@ begin
   Output := S;
   //Output := ConvertEncoding(S,FEncoding,'utf8');
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
-procedure TFreeTextBuffer.Load(var Output: TFreeFileVersion);
+procedure TFreeTextBuffer.LoadTFreeFileVersion(var Output: TFreeFileVersion);
 var
   S: string;
 begin
   S := FLines[FPosition];
   Output := VersionBinary(S);
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
-procedure TFreeTextBuffer.Load(var Output: boolean);
+procedure TFreeTextBuffer.LoadBoolean(var Output: boolean);
 var
   S: string;
 begin
   S := FLines[FPosition];
   Output := StrToBool(S);
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
-procedure TFreeTextBuffer.Load(var Output: TFloatType);
+procedure TFreeTextBuffer.LoadTFloatType(var Output: TFloatType);
 var
   S: string;
 begin
   S := FLines[FPosition];
   Output := StrToFloat(S);
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
 {
-procedure TFreeTextBuffer.Load(var Output: TColor);
+procedure TFreeTextBuffer.LoadTJPEGImage(var Output: TColor);
 var
   S: string;
 begin
   S := FLines[FPosition];
   Output := StrToInt(S);
   Inc(FPosition);
-end;}{TFreeTextBuffer.Load}
+end;}{TFreeTextBuffer.LoadTJPEGImage}
 
-procedure TFreeTextBuffer.Load(var Output: TNameData);
+procedure TFreeTextBuffer.LoadTNameData(var Output: TNameData);
 var  p:integer; S: string;
 begin
   S := FLines[FPosition];
@@ -2475,9 +2487,9 @@ begin
   Output.N := StrToInt(copy(S,1,p-1));
   Output.Name := copy(S,p+1,length(S));
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
-procedure TFreeTextBuffer.Load(var Output: TLinearConstraintData);
+procedure TFreeTextBuffer.LoadTLinearConstraintData(var Output: TLinearConstraintData);
 var  S: string;
 begin
   S := FLines[FPosition];
@@ -2485,9 +2497,9 @@ begin
   Output.LinearConstraintPointA := StrToInt(ExtractWord(2, S, [' ']));
   Output.LinearConstraintPointB := StrToInt(ExtractWord(3, S, [' ']));
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
-procedure TFreeTextBuffer.Load(var Output: T3DCoordinate);
+procedure TFreeTextBuffer.LoadT3DCoordinate(var Output: T3DCoordinate);
 var
   S: string;
 begin
@@ -2496,9 +2508,9 @@ begin
   Output.Y := StrToFloat(ExtractWord(2, S, [' ']));
   Output.Z := StrToFloat(ExtractWord(3, S, [' ']));
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
-procedure TFreeTextBuffer.Load(var Output: T3DPlane);
+procedure TFreeTextBuffer.LoadT3DPlane(var Output: T3DPlane);
 var
   S: string;
 begin
@@ -2508,10 +2520,10 @@ begin
   Output.c := StrToFloat(ExtractWord(3, S, [' ']));
   Output.d := StrToFloat(ExtractWord(4, S, [' ']));
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
 // load string of words separated by spaces
-procedure TFreeTextBuffer.Load(var Output: TStrings);
+procedure TFreeTextBuffer.LoadTStrings(var Output: TStrings);
 var  i:integer; S,V: string; //SS:TStrings;
 begin
   S := FLines[FPosition];
@@ -2524,7 +2536,7 @@ begin
     inc(i);
   end;
   Inc(FPosition);
-end;{TFreeTextBuffer.Load}
+end;{TFreeTextBuffer.LoadTJPEGImage}
 
 destructor TFreeTextBuffer.Destroy;
 begin

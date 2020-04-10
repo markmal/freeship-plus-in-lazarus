@@ -103,7 +103,7 @@ var
 begin
   Result := nil;
   Centre := ZERO;
-  if (FPoints.Count > 3) or (Owner.FSubdivisionMode = fmCatmullClark) then
+  if (FPoints.Count > 3) or (Surface.FSubdivisionMode = fmCatmullClark) then
   begin
     if FPoints.Count > 0 then
     begin
@@ -118,7 +118,7 @@ begin
       Centre.Y := Centre.Y / FPoints.Count;
       Centre.Z := Centre.Z / FPoints.Count;
     end;
-    Result := TFreeSubdivisionPoint.Create(Owner);
+    Result := TFreeSubdivisionPoint.Create(Surface);
     Result.FCoordinate := Centre;
   end
   else if FPoints.Count = 3 then
@@ -189,7 +189,7 @@ begin
   logger.IncreaseIndent;
   logger.Debug(format('TFreeSubdivisionFace[%d].Delete',[self.FID]));
   Unreference;
-  Owner.Built := False;
+  Surface.Built := False;
   Clear;
   Free;
   //Destroy;

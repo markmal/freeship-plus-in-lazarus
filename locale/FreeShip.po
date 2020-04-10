@@ -9320,6 +9320,14 @@ msgstr ""
 msgid "Show flowlines around the hull."
 msgstr ""
 
+#: tmainform.showfreeobjects.caption
+msgid "ShowFreeObjects"
+msgstr ""
+
+#: tmainform.showfreeobjects.hint
+msgid "Show objects not associated with any layer"
+msgstr ""
+
 #: tmainform.showgrid.caption
 msgid "Grid"
 msgstr ""

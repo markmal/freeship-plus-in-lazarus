@@ -4,20 +4,20 @@
 function TFreesubdivisionControlEdge.FGetColor: TColor;
 begin
   if Selected then
-    Result := Owner.Selectedcolor
+    Result := Surface.Selectedcolor
   else
   if NumberOfFaces > 2 then
     Result := clLime
   else
   if Crease then
-    Result := Owner.CreaseEdgeColor
+    Result := Surface.CreaseEdgeColor
   else
-    Result := Owner.EdgeColor;
+    Result := Surface.EdgeColor;
 end;{TFreesubdivisionControlEdge.FGetColor}
 
 function TFreesubdivisionControlEdge.FGetIndex: integer;
 begin
-  Result := Owner.FControlEdges.IndexOf(self);
+  Result := Surface.FControlEdges.IndexOf(self);
 end;{TFreesubdivisionControlEdge.FGetIndex}
 
 function TFreesubdivisionControlEdge.FGetIsBoundaryEdge: boolean;
@@ -45,7 +45,7 @@ procedure TFreesubdivisionControlEdge.FSetSelected(val: boolean);
 var
   Index: integer;
 begin
-  Index := Owner.FSelectedControlEdges.IndexOf(self);
+  Index := Surface.FSelectedControlEdges.IndexOf(self);
 
   if Index = -1 then PrintDebug;
 
@@ -53,20 +53,20 @@ begin
   begin
     // Only add if it is not already in the list
     if Index = -1 then
-      Owner.FSelectedControlEdges.Add(self);
+      Surface.FSelectedControlEdges.Add(self);
   end
   else
   begin
     if Index <> -1 then
-      Owner.FSelectedControlEdges.Delete(index);
+      Surface.FSelectedControlEdges.Delete(index);
   end;
-  if Assigned(Owner.FOnSelectItem) then
-    Owner.FOnSelectItem(self);
+  if Assigned(Surface.FOnSelectItem) then
+    Surface.FOnSelectItem(self);
 end;{TFreesubdivisionControlEdge.FSetSelected}
 
 function TFreesubdivisionControlEdge.FGetSelected: boolean;
 begin
-  Result := Owner.FSelectedControlEdges.IndexOf(self) <> -1;
+  Result := Surface.FSelectedControlEdges.IndexOf(self) <> -1;
 end;{TFreesubdivisionControlEdge.FGetSelected}
 
 function TFreesubdivisionControlEdge.FGetVisible: boolean;
@@ -78,8 +78,9 @@ begin
   // a controledge is visible if at least one of it's
   // neighbouring controlfaces belongs to a visible layer
   Result := False;
-  if Owner.ShowControlNet then
+  if Surface.ShowControlNet then
   begin
+    Result := Surface.ShowFreeObjects; // show edges without faces/layers
     for I := 0 to FFaces.Count-1 do
       if Face[I] is TFreeSubdivisionControlFace then
       begin
@@ -97,7 +98,7 @@ begin
   // Finally check if the edge is selected.
   // Selected edges must be visible at all times
   if not Result then
-    Result := Selected;
+    Result := Selected or Surface.ShowFreeObjects;
   if (not Result) and (FCurve <> nil) then
     Result := FCurve.Selected;
 end;{TFreesubdivisionControlEdge.FGetVisible}
@@ -142,7 +143,7 @@ begin
           Selected := False;
         SP := Startpoint as TFreeSubdivisionControlPoint;
         EP := Endpoint as TFreeSubdivisionControlPoint;
-        Owner.Built := False;
+        Surface.Built := False;
         Face1 := Face[0] as TFreeSubdivisionControlFace;
         Face2 := Face[1] as TFreeSubdivisionControlFace;
 
@@ -222,10 +223,10 @@ begin
           Face2.Point[I - 1].UnreferenceFace(Face2);
         // Add the new face}
 
-        //NewFace := TFreeSubdivisionControlFace.Create(Owner);
+        //NewFace := TFreeSubdivisionControlFace.Create(Surface);
         //NewFace.FLayer := Layer;
         {
-        Owner.FControlFaces.Add(NewFace);
+        Surface.FControlFaces.Add(NewFace);
         for I := 0 to Ind1 do
         begin
           if NewFace.FPoints.IndexOf(Face1.Point[I]) = -1 then
@@ -264,7 +265,7 @@ begin
         for I := 1 to Newface.NumberOfPoints do
         begin
           P2 := NewFace.Point[I - 1];
-          Edge := Owner.EdgeExists(P1, P2);
+          Edge := Surface.EdgeExists(P1, P2);
           if Edge <> nil then
           begin
             Ind1 := Edge.FFaces.IndexOf(Face1);
@@ -338,7 +339,7 @@ begin
         for i:=0 to NewPoints.Count-1 do
           logger.Debug(format(' %d',[NewPoints[i].Id]));
 
-        NewFace := Owner.AddControlFace(NewPoints, False, Layer);
+        NewFace := Surface.AddControlFace(NewPoints, False, Layer);
         NewFace.PrintDebug;
 
         // connect the new face to a layer
@@ -348,15 +349,15 @@ begin
         //  Crease := False; // ?
 
 
-        {Ind1 := Owner.FControlEdges.IndexOf(self);
+        {Ind1 := Surface.FControlEdges.IndexOf(self);
         if Ind1 <> -1 then
-          Owner.FControlEdges.Delete(Ind1);
-        Ind1 := Owner.FControlFaces.IndexOf(Face1);
+          Surface.FControlEdges.Delete(Ind1);
+        Ind1 := Surface.FControlFaces.IndexOf(Face1);
         if Ind1 <> -1 then
-          Owner.FControlFaces.Delete(Ind1);
-        Ind1 := Owner.FControlFaces.IndexOf(Face2);
+          Surface.FControlFaces.Delete(Ind1);
+        Ind1 := Surface.FControlFaces.IndexOf(Face2);
         if Ind1 <> -1 then
-          Owner.FControlFaces.Delete(Ind1);}
+          Surface.FControlFaces.Delete(Ind1);}
 
         Face1.ClearChildren;
         Face1.Unreference;
@@ -402,7 +403,7 @@ begin
             Edge.Crease := Edge.Crease or (Edge.FFaces.Count < 2);
             end;
 
-        Owner.Built := False;
+        Surface.Built := False;
         Free;
       end;
     end;
@@ -427,12 +428,12 @@ begin
   IsDeleting := true;
   // delete from selection;
   Selected := False;
-  Owner.FSelectedControlEdges.DeleteItem(Self);
+  Surface.FSelectedControlEdges.DeleteItem(Self);
 
   if FCurve <> nil then
     FCurve.DeleteEdge(self);
 
-  Owner.FControlEdges.DeleteItem(Self);
+  Surface.FControlEdges.DeleteItem(Self);
 
   begin
     while FFaces.Count>0 do
@@ -491,15 +492,15 @@ begin
   begin
     P1 := StartPoint.FCoordinate;
     P2 := FEndPoint.FCoordinate;
-    if (((P1.X < Owner.MainframeLocation) and (P2.X > Owner.MainframeLocation)) or
-      ((P1.X > Owner.MainframeLocation) and (P2.X < Owner.MainframeLocation))) and
-      (not Owner.DrawMirror) then
+    if (((P1.X < Surface.MainframeLocation) and (P2.X > Surface.MainframeLocation)) or
+      ((P1.X > Surface.MainframeLocation) and (P2.X < Surface.MainframeLocation))) and
+      (not Surface.DrawMirror) then
     begin
       if P2.X - P1.X <> 0 then
-        M := Interpolate(P1, P2, (Owner.MainframeLocation - P1.X) / (P2.X - P1.X))
+        M := Interpolate(P1, P2, (Surface.MainframeLocation - P1.X) / (P2.X - P1.X))
       else
         M := MidPoint(P1, P2);
-      if P1.X <= Owner.MainframeLocation then
+      if P1.X <= Surface.MainframeLocation then
       begin
         // P2 lies on port
         Pt1 := Viewport.Project(P2);
@@ -548,9 +549,9 @@ begin
     end
     else
     begin
-      if P1.X <= Owner.MainframeLocation then
+      if P1.X <= Surface.MainframeLocation then
         P1.Y := -P1.Y;
-      if P2.X <= Owner.MainframeLocation then
+      if P2.X <= Surface.MainframeLocation then
         P2.Y := -P2.Y;
       Pt1 := Viewport.Project(P1);
       Pt2 := Viewport.Project(P2);
@@ -596,14 +597,14 @@ begin
         Viewport.SetPenWidth(2);   // MM 2020-02-23: Make non-crease controledges thicker
       if Viewport.ViewType = fvBodyplan then
       begin
-        if ((P1.X < Owner.MainframeLocation) and (P2.X > Owner.MainframeLocation)) or
-          ((P1.X > Owner.MainframeLocation) and (P2.X < Owner.MainframeLocation)) then
+        if ((P1.X < Surface.MainframeLocation) and (P2.X > Surface.MainframeLocation)) or
+          ((P1.X > Surface.MainframeLocation) and (P2.X < Surface.MainframeLocation)) then
         begin
           if P2.X - P1.X <> 0 then
-            M := Interpolate(P1, P2, (Owner.MainframeLocation - P1.X) / (P2.X - P1.X))
+            M := Interpolate(P1, P2, (Surface.MainframeLocation - P1.X) / (P2.X - P1.X))
           else
             M := MidPoint(P1, P2);
-          if P1.X <= Owner.MainframeLocation then
+          if P1.X <= Surface.MainframeLocation then
           begin
             // P2 lies on port
             Pt1 := Viewport.Project(P2);
@@ -636,9 +637,9 @@ begin
         end
         else
         begin
-          if P1.X <= Owner.MainframeLocation then
+          if P1.X <= Surface.MainframeLocation then
             P1.Y := -P1.Y;
-          if P2.X <= Owner.MainframeLocation then
+          if P2.X <= Surface.MainframeLocation then
             P2.Y := -P2.Y;
           Pt1 := Viewport.Project(P1);
           Pt2 := Viewport.Project(P2);
@@ -725,7 +726,7 @@ begin
     Index := 0;
   if Index <> -1 then
   begin
-    FStartPoint := Owner.FControlPoints[Index];
+    FStartPoint := Surface.FControlPoints[Index];
     FStartPoint.FEdges.Add(Self);
   end;
   // Read endpoint
@@ -734,7 +735,7 @@ begin
     Index := 0;
   if Index <> -1 then
   begin
-    FEndPoint := Owner.FControlPoints[Index];
+    FEndPoint := Surface.FControlPoints[Index];
     FEndPoint.FEdges.Add(Self);
   end;
   Source.LoadBoolean(FCrease);
@@ -758,7 +759,7 @@ begin
     index := 0;
   if Index <> -1 then
   begin
-    FStartPoint := Owner.FControlPoints[Index];
+    FStartPoint := Surface.FControlPoints[Index];
     FStartPoint.FEdges.Add(Self);
   end;
   // FEndpoint
@@ -767,7 +768,7 @@ begin
     index := 0;
   if Index <> -1 then
   begin
-    FEndPoint := Owner.FControlPoints[Index];
+    FEndPoint := Surface.FControlPoints[Index];
     FEndPoint.FEdges.Add(Self);
   end;
   // FCrease
@@ -782,16 +783,16 @@ end;{TFreesubdivisionControlEdge.LoadFromStream}
 
 procedure TFreesubdivisionControlEdge.SaveBinary(Destination: TFreeFileBuffer);
 begin
-  Destination.Add(Owner.FControlPoints.SortedIndexOf(FStartpoint as TFreesubdivisionControlPoint) );
-  Destination.Add(Owner.FControlPoints.SortedIndexOf(FEndpoint as TFreesubdivisionControlPoint) );
+  Destination.Add(Surface.FControlPoints.SortedIndexOf(FStartpoint as TFreesubdivisionControlPoint) );
+  Destination.Add(Surface.FControlPoints.SortedIndexOf(FEndpoint as TFreesubdivisionControlPoint) );
   Destination.Add(FCrease);
   Destination.Add(Selected);
 end;{TFreesubdivisionControlEdge.SaveBinary}
 
 procedure TFreesubdivisionControlEdge.SaveToStream(Strings: TStringList);
 begin
-  Strings.Add(IntToStr(Owner.FControlPoints.SortedIndexOf(FStartpoint as TFreesubdivisionControlPoint)) + #32 +
-    IntToStr(Owner.FControlPoints.SortedIndexOf(FEndpoint as TFreesubdivisionControlPoint)) + ' ' +
+  Strings.Add(IntToStr(Surface.FControlPoints.SortedIndexOf(FStartpoint as TFreesubdivisionControlPoint)) + #32 +
+    IntToStr(Surface.FControlPoints.SortedIndexOf(FEndpoint as TFreesubdivisionControlPoint)) + ' ' +
     IntToStr(Ord(FCrease)) + ' ' + BoolToStr(Selected));
 end;{TFreesubdivisionControlEdge.SaveToStream}
 
@@ -819,7 +820,7 @@ end;
 
 function TFreesubdivisionControlEdge.ConvertToFreeSubdivisionEdge:TFreeSubdivisionEdge;
 begin
-  result:=TFreeSubdivisionEdge.Create(owner);
+  result:=TFreeSubdivisionEdge.Create(Surface);
   result.FStartpoint:= FStartpoint;
   result.FEndpoint:= FEndpoint;
   result.FFaces := FFaces;

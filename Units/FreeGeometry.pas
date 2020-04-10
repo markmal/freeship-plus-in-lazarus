@@ -879,8 +879,8 @@ type
     FSurface: TFreeSubdivisionSurface;
   public
     constructor Create(Owner: TFreeSubdivisionSurface); virtual;
-    property Owner: TFreeSubdivisionSurface read FSurface write FSurface;
     property Surface: TFreeSubdivisionSurface read FSurface write FSurface;
+    //property Surface: TFreeSubdivisionSurface read FSurface write FSurface;
     procedure PrintDebug; virtual;
     property Id: Integer read FId;
     property Name: String read FName write FName;
@@ -1105,7 +1105,7 @@ type
     SubdivisionLevel:integer; // for investigation
   public
     constructor Create(Owner: TFreeSubdivisionSurface); override;
-    //property Owner: TFreeSubdivisionSurface read FSurface write FSurface;
+    //property Surface: TFreeSubdivisionSurface read FSurface write FSurface;
     procedure PrintDebug; override;
   end;
 
@@ -1748,6 +1748,7 @@ type
     // Flag to switch controlpoints and control-edges visibility
     FInitialized: boolean; // Flag to check if the surface has been initialised.
     FIsAveraged: boolean; // Flag to check if the surface has been averaged (smoothed).
+    FShowFreeObjects: boolean;
     FShowInteriorEdges: boolean;
     // Switch to turn on drawing off all interior edges as well.
     FDrawMirror: boolean;
@@ -1846,6 +1847,7 @@ type
     procedure SetBuilt(Val: boolean); override;
     procedure SetDesiredSubdivisionLevel(val: byte);
     procedure SetFShowControlNet(Val: boolean);
+    procedure SetFShowFreeObjects(AValue: boolean);
     procedure SetSubdivisionMode(val: TFreeSubdivisionMode);
     procedure SetUnderwaterColor(Val: TColor);
     procedure SetShadeUnderWater(Val: boolean);
@@ -2078,6 +2080,8 @@ type
       read FShowControlCurves write FShowControlCurves;
     property ShowControlNet: boolean
       read FShowControlNet write SetFShowControlNet;
+    property ShowFreeObjects: boolean
+      read FShowFreeObjects write SetFShowFreeObjects;
     property ShowCurvature: boolean
       read FShowCurvature write FShowCurvature;
     property ShowInteriorEdges: boolean

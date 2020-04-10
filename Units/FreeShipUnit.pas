@@ -494,8 +494,9 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeVisibility = class(TPersistent)
   private
-    FOwner: TFreeShip;
+    FFreeShip: TFreeShip;
     FShowControlNet: boolean;
+    FShowFreeObjects: boolean;
     FShowInteriorEdges: boolean;
     // Show the surface edges
     FShowStations: boolean;
@@ -535,6 +536,7 @@ type
     procedure FSetShowCurvature(Val: boolean);
     procedure FSetShowDiagonals(Val: boolean);
     procedure FSetShowFlowlines(Val: boolean);
+    procedure FSetShowFreeObjects(Val: boolean);
     procedure FSetShowGrid(Val: boolean);
     procedure FSetModelView(Val: TFreeModelView);
     procedure FSetShowInteriorEdges(Val: boolean);
@@ -552,7 +554,7 @@ type
     procedure IncreaseCurvatureScale;
     procedure LoadBinary(Source: TFreeFilebuffer);
     procedure SaveBinary(Destination: TFreeFileBuffer);
-    property Owner: TFreeShip read FOwner write FOwner;
+    property FreeShip: TFreeShip read FFreeShip write FFreeShip;
   published
     property CursorIncrement: TFloatType read FCursorIncrement
       write FSetCursorIncrement;
@@ -565,6 +567,7 @@ type
     property ShowCurvature: boolean read FShowCurvature write FSetShowCurvature;
     property ShowDiagonals: boolean read FShowDiagonals write FSetShowDiagonals;
     property ShowFlowlines: boolean read FShowFlowlines write FSetShowFlowlines;
+    property ShowFreeObjects: boolean read FShowFreeObjects write FSetShowFreeObjects;
     property ShowGrid: boolean read FShowGrid write FSetShowGrid;
     property ShowHydrostaticData: boolean read FShowHydrostaticData
       write FSetShowHydrostaticData;

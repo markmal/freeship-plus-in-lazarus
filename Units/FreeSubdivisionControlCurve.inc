@@ -10,20 +10,20 @@ procedure TFreeSubdivisionControlCurve.FSetSelected(val: boolean);
 var
   Index: integer;
 begin
-  Index := Owner.FSelectedControlCurves.IndexOf(self);
+  Index := Surface.FSelectedControlCurves.IndexOf(self);
   if Val then
   begin
     // Only add if it is not already in the list
     if Index = -1 then
-      Owner.FSelectedControlCurves.Add(self);
+      Surface.FSelectedControlCurves.Add(self);
   end
   else
   begin
     if Index <> -1 then
-      Owner.FSelectedControlCurves.Delete(index);
+      Surface.FSelectedControlCurves.Delete(index);
   end;
-  if Assigned(Owner.FOnSelectItem) then
-    Owner.FOnSelectItem(self);
+  if Assigned(Surface.FOnSelectItem) then
+    Surface.FOnSelectItem(self);
 end;{TFreeSubdivisionControlCurve.FSetSelected}
 
 procedure TFreeSubdivisionControlCurve.AddPoint(P: TFreesubdivisionControlPoint);
@@ -35,19 +35,19 @@ end;{TFreeSubdivisionControlCurve.AddPoint}
 function TFreeSubdivisionControlCurve.FGetColor: TColor;
 begin
   if Selected then
-    Result := Owner.Selectedcolor
+    Result := Surface.Selectedcolor
   else
-    Result := Owner.ControlCurveColor;
+    Result := Surface.ControlCurveColor;
 end;{TFreeSubdivisionControlCurve.FGetColor}
 
 function TFreeSubdivisionControlCurve.FGetSelected: boolean;
 begin
-  Result := Owner.FSelectedControlCurves.IndexOf(self) <> -1;
+  Result := Surface.FSelectedControlCurves.IndexOf(self) <> -1;
 end;{TFreeSubdivisionControlCurve.FGetSelected}
 
 function TFreeSubdivisionControlCurve.FGetVisible: boolean;
 begin
-  Result := Owner.ShowControlCurves;
+  Result := Surface.ShowControlCurves;
 end;{TFreeSubdivisionControlCurve.FGetVisible}
 
 function TFreeSubdivisionControlCurve.FGetNumberOfControlPoints: integer;
@@ -118,18 +118,18 @@ var
   P1, P2: TFreeSubdivisionPoint;
   Edge: TFreeSubdivisionEdge;
 begin
-  Index := Owner.FSelectedControlCurves.IndexOf(self);
+  Index := Surface.FSelectedControlCurves.IndexOf(self);
   if Index <> -1 then
-    Owner.FSelectedControlCurves.Delete(Index);
-  Index := Owner.FControlCurves.IndexOf(self);
+    Surface.FSelectedControlCurves.Delete(Index);
+  Index := Surface.FControlCurves.IndexOf(self);
   if Index <> -1 then
-    Owner.FControlCurves.Delete(Index);
+    Surface.FControlCurves.Delete(Index);
   // Remove references from control edges
   for I := 2 to FControlPoints.Count do
   begin
     P1 := FControlPoints[I - 2];
     P2 := FControlPoints[I - 1];
-    Edge := Owner.EdgeExists(P1, P2);
+    Edge := Surface.EdgeExists(P1, P2);
     if Edge <> nil then
     begin
       Edge.FCurve := nil;
@@ -141,7 +141,7 @@ begin
   begin
     P1 := FSubdividedPoints[I - 2];
     P2 := FSubdividedPoints[I - 1];
-    Edge := Owner.EdgeExists(P1, P2);
+    Edge := Surface.EdgeExists(P1, P2);
     if Edge <> nil then
     begin
       Edge.FCurve := nil;
@@ -175,7 +175,7 @@ begin
       begin
         CP1 := FControlPoints[J - 2];
         CP2 := FControlPoints[J - 1];
-        AnEdge := Owner.EdgeExists(CP1, CP2);
+        AnEdge := Surface.EdgeExists(CP1, CP2);
         if AnEdge <> nil then
           AnEdge.FCurve := nil;
       end;
@@ -185,7 +185,7 @@ begin
         begin
           P1 := FSubdividedPoints[J - 2];
           P2 := FSubdividedPoints[J - 1];
-          AnEdge := Owner.EdgeExists(P1, P2);
+          AnEdge := Surface.EdgeExists(P1, P2);
           if AnEdge <> nil then
             AnEdge.FCurve := nil;
         end;
@@ -195,9 +195,9 @@ begin
       if I - 2 > 0 then
       begin
         // build first new Spline
-        NewCurve := TFreeSubdivisionControlCurve.Create(Owner);
+        NewCurve := TFreeSubdivisionControlCurve.Create(Surface);
         NewCurve.FControlPoints.Capacity := I - 1;
-        Owner.AddControlCurve(Newcurve);
+        Surface.AddControlCurve(Newcurve);
         CP1 := nil;
         for J := 0 to I - 2 do
         begin
@@ -205,7 +205,7 @@ begin
           NewCurve.FControlPoints.Add(CP2);
           if J > 0 then
           begin
-            AnEdge := Owner.EdgeExists(CP1, CP2);
+            AnEdge := Surface.EdgeExists(CP1, CP2);
             if AnEdge <> nil then
               AnEdge.FCurve := NewCurve;
           end;
@@ -216,9 +216,9 @@ begin
       if I - 1 < FControlPoints.Count - 1 then
       begin
         // build second new Spline
-        NewCurve := TFreeSubdivisionControlCurve.Create(Owner);
+        NewCurve := TFreeSubdivisionControlCurve.Create(Surface);
         NewCurve.FControlPoints.Capacity := FControlPoints.Count - (I - 1);
-        Owner.AddControlCurve(Newcurve);
+        Surface.AddControlCurve(Newcurve);
         CP1 := nil;
         for J := I - 1 to FControlPoints.Count - 1 do
         begin
@@ -226,7 +226,7 @@ begin
           NewCurve.FControlPoints.Add(CP2);
           if J > I - 1 then
           begin
-            AnEdge := Owner.EdgeExists(CP1, CP2);
+            AnEdge := Surface.EdgeExists(CP1, CP2);
             if AnEdge <> nil then
               AnEdge.FCurve := NewCurve;
           end;
@@ -242,12 +242,12 @@ begin
   if DelCurve then
   begin
     FControlPoints.Clear;
-    J := Owner.FSelectedControlCurves.IndexOf(self);
+    J := Surface.FSelectedControlCurves.IndexOf(self);
     if J <> -1 then
-      Owner.FSelectedControlCurves.Delete(J);
-    J := Owner.FControlCurves.IndexOf(self);
+      Surface.FSelectedControlCurves.Delete(J);
+    J := Surface.FControlCurves.IndexOf(self);
     if J <> -1 then
-      Owner.FControlCurves.Delete(J);
+      Surface.FControlCurves.Delete(J);
     Destroy;
   end;
 
@@ -270,7 +270,7 @@ var
   V1, V2: T3DCoordinate;
   Param: TFloatType;
 begin
-  if (Viewport.ViewType = fvBodyPlan) and (not Owner.DrawMirror) then
+  if (Viewport.ViewType = fvBodyPlan) and (not Surface.DrawMirror) then
   begin
     Result := 1000000;
     // Check if cursor position lies within the boundaries
@@ -280,15 +280,15 @@ begin
       (Pt.Y <= Viewport.Height) then
     begin
       V1 := FSpline.Value(0.0);
-      if V1.X < Owner.MainframeLocation then
+      if V1.X < Surface.MainframeLocation then
         V1.Y := -V1.Y;
       for I := 1 to FSpline.Fragments do
       begin
         V2 := FSpline.Value((I - 1) / (FSpline.Fragments - 1));
-        if V2.X < Owner.MainframeLocation then
+        if V2.X < Surface.MainframeLocation then
           V2.Y := -V2.Y;
-        if ((V1.X < Owner.MainframeLocation) and (V2.X < Owner.MainframeLocation)) or
-          ((V1.X > Owner.MainframeLocation) and (V2.X > Owner.MainframeLocation)) then
+        if ((V1.X < Surface.MainframeLocation) and (V2.X < Surface.MainframeLocation)) or
+          ((V1.X > Surface.MainframeLocation) and (V2.X > Surface.MainframeLocation)) then
         begin
           P1 := Viewport.Project(V1);
           P2 := Viewport.Project(V2);
@@ -303,7 +303,7 @@ begin
   end
   else
     Result := FSpline.DistanceToCursor(X, Y, Viewport);
-  if Owner.DrawMirror then
+  if Surface.DrawMirror then
   begin
     for I := 1 to FSpline.NumberOfPoints do
     begin
@@ -349,20 +349,20 @@ begin
   begin
     FSpline.Color := Color;
     Sel := Selected;
-    FSpline.ShowCurvature := (Sel) and (Owner.FShowCurvature);
+    FSpline.ShowCurvature := (Sel) and (Surface.FShowCurvature);
     if FSpline.ShowCurvature then
       FSpline.Fragments := 600
     else
       FSpline.Fragments := 250;
-    FSpline.CurvatureColor := Owner.FCurvatureColor;
-    FSpline.CurvatureScale := Owner.FCurvatureScale;
-    if not Owner.ShowControlNet and (Sel) then
+    FSpline.CurvatureColor := Surface.FCurvatureColor;
+    FSpline.CurvatureScale := Surface.FCurvatureScale;
+    if not Surface.ShowControlNet and (Sel) then
     begin
       for I := 2 to FControlPoints.Count do
       begin
         P1 := FControlPoints[I - 2];
         P2 := FControlPoints[I - 1];
-        Edge := Owner.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
+        Edge := Surface.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
         if Edge <> nil then
           Edge.Draw(False, Viewport);
         if I = 2 then
@@ -371,9 +371,9 @@ begin
       end;
     end;
 
-    if (Viewport.ViewType = fvBodyPlan) and (not Owner.DrawMirror) then
+    if (Viewport.ViewType = fvBodyPlan) and (not Surface.DrawMirror) then
     begin
-      Plane := SetPlane(1.0, 0.0, 0.0, -Owner.MainframeLocation);
+      Plane := SetPlane(1.0, 0.0, 0.0, -Surface.MainframeLocation);
       NParam := 2;
       Setlength(Param, NParam);
       Param[0] := 0.0;
@@ -393,7 +393,7 @@ begin
         I1 := I - 1;
         I2 := I - 2;
         P3D := FSpline.Value(0.5 * (Param[I2] + Param[I1]));
-        if P3D.X < Owner.MainframeLocation then
+        if P3D.X < Surface.MainframeLocation then
           Scale := -1
         else
           scale := 1;
@@ -449,7 +449,7 @@ begin
     end
     else
       FSpline.Draw(Viewport);
-    if Owner.DrawMirror then
+    if Surface.DrawMirror then
     begin
       for I := 1 to FSpline.NumberOfPoints do
       begin
@@ -521,11 +521,11 @@ begin
   for I := 1 to N do
   begin
     Source.LoadInteger(Ind);
-    CP2 := Owner.FControlPoints[ind];
+    CP2 := Surface.FControlPoints[ind];
     FControlPoints.Add(CP2);
     if I > 1 then
     begin
-      Edge := Owner.EdgeExists(CP1, CP2);
+      Edge := Surface.EdgeExists(CP1, CP2);
       if Edge <> nil then
       begin
         Edge.FCurve := Self;
@@ -561,7 +561,7 @@ begin
   for I := 1 to NumberOfControlPoints do
   begin
     P := FControlPoints[I - 1];
-    Ind := Owner.FControlPoints.SortedIndexOf(P);
+    Ind := Surface.FControlPoints.SortedIndexOf(P);
     Destination.Add(Ind);
   end;
   Destination.Add(Selected);
@@ -573,6 +573,6 @@ var
 begin
   Layer := 'Control_curves';
   FSpline.Fragments := FSpline.NumberOfPoints;
-  FSpline.SaveToDXF(Strings, Layer, Owner.DrawMirror);
+  FSpline.SaveToDXF(Strings, Layer, Surface.DrawMirror);
 end;{TFreeSubdivisionControlCurve.SaveToDXF}
 

@@ -87,6 +87,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     miShowFreeObjects: TMenuItem;
+     ShowFreeObjects: TAction;
      cbPrecision: TComboBox;
      miPointExtrude: TMenuItem;
      PointExtrude: TAction;
@@ -148,6 +150,7 @@ type
     ToolBarPoints: TToolBar;
     ToolBarVisibility: TToolBar;
     ToolBarLayers: TToolBar;
+    tbShowFreeObjects: TToolButton;
     ToolButtonSelect: TToolButton;
     ToolButtonRedo: TToolButton;
     ToolButtonUndo: TToolButton;
@@ -475,6 +478,7 @@ type
     procedure LayerBoxPanelClick(Sender: TObject);
     procedure PointExtrudeExecute(Sender: TObject);
     procedure PointsCoincideExecute(Sender: TObject);
+    procedure ShowFreeObjectsExecute(Sender: TObject);
     function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
     procedure MainClientPanelClick(Sender: TObject);
@@ -1399,6 +1403,11 @@ begin
    // Show controledges and controlpoints
    ShowControlNet.Enabled:=FreeShip.Surface.NumberOfControlPoints>0;
    ShowControlNet.Checked:=FreeShip.Visibility.ShowControlNet;
+
+   // Show free (not having faces) points and edges
+   ShowFreeObjects.Enabled:=(FreeShip.Surface.NumberOfControlPoints>0);
+   ShowFreeObjects.Checked:=FreeShip.Visibility.ShowFreeObjects;
+
    // Show interior edges
    ShowInteriorEdges.Enabled:=FreeShip.Surface.NumberOfControlFaces>0;
    ShowInteriorEdges.Checked:=FreeShip.Visibility.ShowInteriorEdges;
@@ -1644,6 +1653,12 @@ procedure TMainForm.PointsCoincideExecute(Sender: TObject);
 begin
   // get multiple selected points to the location of a first selected one
   Freeship.Edit.Point_CoinsideToPoint;
+  UpdateMenu;
+end;
+
+procedure TMainForm.ShowFreeObjectsExecute(Sender: TObject);
+begin
+  FreeShip.Visibility.ShowFreeObjects:=not FreeShip.Visibility.ShowFreeObjects;
   UpdateMenu;
 end;
 

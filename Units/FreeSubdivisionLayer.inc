@@ -1234,7 +1234,7 @@ var
     for I := 1 to Face.NumberOfpoints do
     begin
       P2 := Face.Point[I - 1];
-      Edge := Face.Owner.EdgeExists(P1, P2);
+      Edge := Face.Surface.EdgeExists(P1, P2);
       if Edge <> nil then
       begin
         for J := 1 to Edge.NumberOfFaces do

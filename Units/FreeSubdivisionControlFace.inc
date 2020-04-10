@@ -14,7 +14,7 @@ end;{TFreeSubdivisionControlFace.FGetChildCount}
 function TFreeSubdivisionControlFace.FGetColor: TColor;
 begin
   if Selected then
-    Result := Owner.Selectedcolor
+    Result := Surface.Selectedcolor
   else
     Result := Layer.Color;
 end;{TFreeSubdivisionControlFace.FGetColor}
@@ -28,21 +28,21 @@ procedure TFreeSubdivisionControlFace.FSetSelected(val: boolean);
 var
   Index: integer;
 begin
-  Index := Owner.FSelectedControlFaces.IndexOf(self);
+  Index := Surface.FSelectedControlFaces.IndexOf(self);
   if Val then
   begin
     // Only add if it is not already in the list
     if Index = -1 then
-      Owner.FSelectedControlFaces.Add(self);
+      Surface.FSelectedControlFaces.Add(self);
     PrintDebug;
   end
   else
   begin
     if Index <> -1 then
-      Owner.FSelectedControlFaces.Delete(index);
+      Surface.FSelectedControlFaces.Delete(index);
   end;
-  if Assigned(Owner.FOnSelectItem) then
-    Owner.FOnSelectItem(self);
+  if Assigned(Surface.FOnSelectItem) then
+    Surface.FOnSelectItem(self);
 end;{TFreeSubdivisionControlFace.FSetSelected}
 
 function TFreeSubdivisionControlFace.FGetPoint(Index: integer): TFreeSubdivisionControlPoint;
@@ -52,7 +52,7 @@ end;{TFreeSubdivisionControlFace.FGetSelected}
 
 function TFreeSubdivisionControlFace.FGetSelected: boolean;
 begin
-  Result := Owner.FSelectedControlFaces.IndexOf(self) <> -1;
+  Result := Surface.FSelectedControlFaces.IndexOf(self) <> -1;
 end;{TFreeSubdivisionControlFace.FGetSelected}
 
 function TFreeSubdivisionControlFace.FGetControlDescendantEdgeCount: integer;
@@ -72,7 +72,7 @@ end;{TFreeSubdivisionControlFace.FGetEdgeCount}
 
 function TFreeSubdivisionControlFace.FGetIndex: integer;
 begin
-  Result := Owner.FControlFaces.IndexOf(self);
+  Result := Surface.FControlFaces.IndexOf(self);
 end;{TFreeSubdivisionControlFace.FGetIndex}
 
 function TFreeSubdivisionControlFace.FGetVisible: boolean;
@@ -204,7 +204,7 @@ var
 begin
   Result := 1000000;
   P := ZERO;
-  if Owner.ShowInteriorEdges then
+  if Surface.ShowInteriorEdges then
   begin
     // check distance to all interior edges
     for I := 1 to FEdges.Count do
@@ -213,16 +213,16 @@ begin
       P1 := Edge.Startpoint.Coordinate;
       P2 := Edge.FEndpoint.Coordinate;
 
-      if (Viewport.ViewType = fvBodyplan) and (not Owner.DrawMirror) then
+      if (Viewport.ViewType = fvBodyplan) and (not Surface.DrawMirror) then
       begin
-        if ((P1.X < Owner.MainframeLocation) and (P2.X > Owner.MainframeLocation)) or
-          ((P1.X > Owner.MainframeLocation) and (P2.X < Owner.MainframeLocation)) then
+        if ((P1.X < Surface.MainframeLocation) and (P2.X > Surface.MainframeLocation)) or
+          ((P1.X > Surface.MainframeLocation) and (P2.X < Surface.MainframeLocation)) then
         begin
           if P2.X - P1.X <> 0 then
-            M := Interpolate(P1, P2, (Owner.MainframeLocation - P1.X) / (P2.X - P1.X))
+            M := Interpolate(P1, P2, (Surface.MainframeLocation - P1.X) / (P2.X - P1.X))
           else
             M := MidPoint(P1, P2);
-          if P1.X <= Owner.MainframeLocation then
+          if P1.X <= Surface.MainframeLocation then
           begin
             // P2 lies on port
             Pt1 := Viewport.Project(P2);
@@ -271,9 +271,9 @@ begin
         end
         else
         begin
-          if P1.X <= Owner.MainframeLocation then
+          if P1.X <= Surface.MainframeLocation then
             P1.Y := -P1.Y;
-          if P2.X <= Owner.MainframeLocation then
+          if P2.X <= Surface.MainframeLocation then
             P2.Y := -P2.Y;
           Pt1 := Viewport.Project(P1);
           Pt2 := Viewport.Project(P2);
@@ -300,7 +300,7 @@ begin
           Result := Dist;
           P := Interpolate(P1, P2, Param);
         end;
-        if (Layer.Symmetric) and (Owner.DrawMirror) then
+        if (Layer.Symmetric) and (Surface.DrawMirror) then
         begin
           P1.Y := -P1.Y;
           P2.Y := -P2.Y;
@@ -339,16 +339,16 @@ begin
   if Layer<>nil then
      Layer.DeleteControlFace(self);
   //Layer := nil;
-  Index := Owner.FControlFaces.IndexOf(Self);
+  Index := Surface.FControlFaces.IndexOf(Self);
   if Index <> -1 then
   begin
-    Owner.FControlFaces.Delete(Index);
+    Surface.FControlFaces.Delete(Index);
     P1 := Point[NumberOfPoints - 1];
     P1.UnreferenceFace(Self);
     for I := 1 to NumberOfPoints do
     begin
       P2 := Point[I - 1];
-      Edge := Owner.EdgeExists(P1, P2);
+      Edge := Surface.EdgeExists(P1, P2);
       P2.UnreferenceFace(Self);
       if Edge <> nil then
       begin
@@ -360,7 +360,7 @@ begin
     end;
   end;
   inherited;
-  Owner.Built := False;
+  Surface.Built := False;
   //Clear;
   //Destroy;
   DelayedDestroyList.Add(Self);
@@ -527,8 +527,8 @@ var
     V: T3DCoordinate;
     L, Ldes: TFloatType;
   begin
-    if (Viewport.ViewType = fvBodyplan) and (not Owner.DrawMirror) and
-      (P.X <= Owner.MainframeLocation) then
+    if (Viewport.ViewType = fvBodyplan) and (not Surface.DrawMirror) and
+      (P.X <= Surface.MainframeLocation) then
     begin
       P.Y := -P.Y;
       N.Y := -N.Y;
@@ -723,7 +723,7 @@ var
         end;
       end;
     end;
-    if (Owner.DrawMirror) and (Layer.Symmetric) then
+    if (Surface.DrawMirror) and (Layer.Symmetric) then
     begin
       P1.Y := -P1.Y;
       P2.Y := -P2.Y;
@@ -811,13 +811,13 @@ begin
     B := GetBValue(Layer.Color);
     Alpha := Layer.AlphaBlend;
     Viewport.BeginUpdate;
-    if (Owner.ShadeUnderWater) and (Viewport.ViewportMode = vmShade) and
+    if (Surface.ShadeUnderWater) and (Viewport.ViewportMode = vmShade) and
       (Layer.UseInHydrostatics) then
     begin
       // Clip all triangles against the waterline plane
-      Ru := GetRValue(Owner.UnderWaterColor);
-      Gu := GetGValue(Owner.UnderWaterColor);
-      Bu := GetBValue(Owner.UnderWaterColor);
+      Ru := GetRValue(Surface.UnderWaterColor);
+      Gu := GetGValue(Surface.UnderWaterColor);
+      Bu := GetBValue(Surface.UnderWaterColor);
 
       Setlength(Above, 6);
       setlength(Below, 6);
@@ -831,17 +831,17 @@ begin
           P3 := Child.Point[J].Coordinate;
 
           // Check if clipping is required
-          Min := Owner.WaterlinePlane.a * P1.x + Owner.WaterlinePlane.b *
-            P1.y + Owner.WaterlinePlane.c * P1.z + Owner.WaterlinePlane.d;
+          Min := Surface.WaterlinePlane.a * P1.x + Surface.WaterlinePlane.b *
+            P1.y + Surface.WaterlinePlane.c * P1.z + Surface.WaterlinePlane.d;
           Max := Min;
-          Tmp := Owner.WaterlinePlane.a * P2.x + Owner.WaterlinePlane.b *
-            P2.y + Owner.WaterlinePlane.c * P2.z + Owner.WaterlinePlane.d;
+          Tmp := Surface.WaterlinePlane.a * P2.x + Surface.WaterlinePlane.b *
+            P2.y + Surface.WaterlinePlane.c * P2.z + Surface.WaterlinePlane.d;
           if Tmp < Min then
             Min := Tmp
           else if Tmp > Max then
             Max := Tmp;
-          Tmp := Owner.WaterlinePlane.a * P3.x + Owner.WaterlinePlane.b *
-            P3.y + Owner.WaterlinePlane.c * P3.z + Owner.WaterlinePlane.d;
+          Tmp := Surface.WaterlinePlane.a * P3.x + Surface.WaterlinePlane.b *
+            P3.y + Surface.WaterlinePlane.c * P3.z + Surface.WaterlinePlane.d;
           if Tmp < Min then
             Min := Tmp
           else if Tmp > Max then
@@ -859,29 +859,29 @@ begin
           else
           begin
             // pierces water, clip triangle
-            ClipTriangle(P1, P2, P3, Owner.WaterlinePlane, Na, Nb, Above, Below);
+            ClipTriangle(P1, P2, P3, Surface.WaterlinePlane, Na, Nb, Above, Below);
             for K := 3 to Na do
               Viewport.ShadeTriangle(Above[0], Above[K - 2], Above[K - 1], R, G, B, Alpha);
             for K := 3 to Nb do
               Viewport.ShadeTriangle(Below[0], Below[K - 2], Below[K - 1], Ru, Gu, Bu, Alpha);
           end;
-          if (Owner.DrawMirror) and (Layer.Symmetric) then
+          if (Surface.DrawMirror) and (Layer.Symmetric) then
           begin
             P1.Y := -P1.Y;
             P2.Y := -P2.Y;
             P3.Y := -P3.Y;
             // Check if clipping is required
-            Min := Owner.WaterlinePlane.a * P1.x + Owner.WaterlinePlane.b *
-              P1.y + Owner.WaterlinePlane.c * P1.z + Owner.WaterlinePlane.d;
+            Min := Surface.WaterlinePlane.a * P1.x + Surface.WaterlinePlane.b *
+              P1.y + Surface.WaterlinePlane.c * P1.z + Surface.WaterlinePlane.d;
             Max := Min;
-            Tmp := Owner.WaterlinePlane.a * P2.x + Owner.WaterlinePlane.b *
-              P2.y + Owner.WaterlinePlane.c * P2.z + Owner.WaterlinePlane.d;
+            Tmp := Surface.WaterlinePlane.a * P2.x + Surface.WaterlinePlane.b *
+              P2.y + Surface.WaterlinePlane.c * P2.z + Surface.WaterlinePlane.d;
             if Tmp < Min then
               Min := Tmp
             else if Tmp > Max then
               Max := Tmp;
-            Tmp := Owner.WaterlinePlane.a * P3.x + Owner.WaterlinePlane.b *
-              P3.y + Owner.WaterlinePlane.c * P3.z + Owner.WaterlinePlane.d;
+            Tmp := Surface.WaterlinePlane.a * P3.x + Surface.WaterlinePlane.b *
+              P3.y + Surface.WaterlinePlane.c * P3.z + Surface.WaterlinePlane.d;
             if Tmp < Min then
               Min := Tmp
             else if Tmp > Max then
@@ -899,7 +899,7 @@ begin
             else
             begin
               // pierces water, clip triangle
-              ClipTriangle(P1, P2, P3, Owner.WaterlinePlane, Na, Nb, Above, Below);
+              ClipTriangle(P1, P2, P3, Surface.WaterlinePlane, Na, Nb, Above, Below);
               for K := 3 to Na do
                 Viewport.ShadeTriangle(Above[0], Above[K - 2], Above[K - 1], R, G, B, Alpha);
               for K := 3 to Nb do
@@ -911,9 +911,9 @@ begin
     end
     else if Viewport.ViewportMode = vmShadeZebra then
     begin
-      Ru := GetRValue(Owner.ZebraColor);
-      Gu := GetGValue(Owner.ZebraColor);
-      Bu := GetBValue(Owner.ZebraColor);
+      Ru := GetRValue(Surface.ZebraColor);
+      Gu := GetGValue(Surface.ZebraColor);
+      Bu := GetBValue(Surface.ZebraColor);
       Camera := Viewport.RotatedPointBack(Viewport.FCameraLocation);
       Capacity := 10;
       Setlength(Intersections, Capacity);
@@ -938,14 +938,14 @@ begin
           P3 := Child.Point[J].Coordinate;
           if Viewport.ViewportMode <> vmShade then
           begin
-            Index := Owner.FPoints.SortedIndexOf(Child.Point[0]);
-            C1 := Owner.FGausCurvature[index];
-            Index := Owner.FPoints.SortedIndexOf(Child.Point[J - 1]);
-            C2 := Owner.FGausCurvature[index];
-            Index := Owner.FPoints.SortedIndexOf(Child.Point[J]);
-            C3 := Owner.FGausCurvature[index];
+            Index := Surface.FPoints.SortedIndexOf(Child.Point[0]);
+            C1 := Surface.FGausCurvature[index];
+            Index := Surface.FPoints.SortedIndexOf(Child.Point[J - 1]);
+            C2 := Surface.FGausCurvature[index];
+            Index := Surface.FPoints.SortedIndexOf(Child.Point[J]);
+            C3 := Surface.FGausCurvature[index];
             Viewport.ShadeTriangle(P1, P2, P3, C1, C2, C3);
-            if (Owner.DrawMirror) and (Layer.Symmetric) then
+            if (Surface.DrawMirror) and (Layer.Symmetric) then
             begin
               P1.Y := -P1.Y;
               P2.Y := -P2.Y;
@@ -956,7 +956,7 @@ begin
           else
           begin
             Viewport.ShadeTriangle(P1, P2, P3, R, G, B, Alpha);
-            if (Owner.DrawMirror) and (Layer.Symmetric) then
+            if (Surface.DrawMirror) and (Layer.Symmetric) then
             begin
               P1.Y := -P1.Y;
               P2.Y := -P2.Y;
@@ -975,13 +975,13 @@ begin
     Viewport.PenStyle := psSolid;
     Viewport.PenWidth := 1;
     if Selected then
-      Viewport.PenColor := Owner.Selectedcolor
+      Viewport.PenColor := Surface.Selectedcolor
     else
       Viewport.PenColor := Layer.Color;
     for I := 1 to FEdges.Count do
     begin
       Edge := FEdges[I - 1];
-      Edge.Draw(Owner.DrawMirror and Layer.Symmetric, Viewport);
+      Edge.Draw(Surface.DrawMirror and Layer.Symmetric, Viewport);
     end;
     // Draw edges descending from controledges, but slighly darker then interior edges
     if not Selected then
@@ -994,9 +994,9 @@ begin
     for I := 1 to FControlDescendantEdges.Count do
     begin
       Edge := FControlDescendantEdges[I - 1];
-      Edge.Draw(Owner.DrawMirror and Layer.Symmetric, Viewport);
+      Edge.Draw(Surface.DrawMirror and Layer.Symmetric, Viewport);
     end;
-    if (Selected) and (Owner.ShowNormals) then
+    if (Selected) and (Surface.ShowNormals) then
     begin
       // Draw normals
       // First assemble all points within this controlface
@@ -1016,12 +1016,12 @@ begin
         Point := Points[I - 1];
         P1 := Point.Coordinate;
         P2 := Point.Normal;
-        DrawNormal(P1, P2, Owner.NormalColor);
-        if (Layer.Symmetric) and (Owner.DrawMirror) then
+        DrawNormal(P1, P2, Surface.NormalColor);
+        if (Layer.Symmetric) and (Surface.DrawMirror) then
         begin
           P1.Y := -P1.Y;
           P2.Y := -P2.Y;
-          DrawNormal(P1, P2, Owner.NormalColor);
+          DrawNormal(P1, P2, Surface.NormalColor);
         end;
       end;
       Points.Destroy;
@@ -1075,19 +1075,19 @@ begin
     for J := 2 to ChildPointsCnt - 1 do
     begin
       P1 := Child.Point[0].Coordinate;
-      Index := Owner.FPoints.SortedIndexOf(Child.Point[0]);
-      Curv := Owner.FGausCurvature[index];
+      Index := Surface.FPoints.SortedIndexOf(Child.Point[0]);
+      Curv := Surface.FGausCurvature[index];
       FillColor(Fragment(Curv), R1, G1, B1);
       P2 := Child.Point[J - 1].Coordinate;
-      Index := Owner.FPoints.SortedIndexOf(Child.Point[J - 1]);
-      Curv := Owner.FGausCurvature[index];
+      Index := Surface.FPoints.SortedIndexOf(Child.Point[J - 1]);
+      Curv := Surface.FGausCurvature[index];
       FillColor(Fragment(Curv), R2, G2, B2);
       P3 := Child.Point[J].Coordinate;
-      Index := Owner.FPoints.SortedIndexOf(Child.Point[J]);
-      Curv := Owner.FGausCurvature[index];
+      Index := Surface.FPoints.SortedIndexOf(Child.Point[J]);
+      Curv := Surface.FGausCurvature[index];
       FillColor(Fragment(Curv), R3, G3, B3);
       Viewport.ShadeTriangle(P1, P2, P3, R1, G1, B1, R2, G2, B2, R3, G3, B3);
-      if (Owner.DrawMirror) and (Layer.Symmetric) then
+      if (Surface.DrawMirror) and (Layer.Symmetric) then
       begin
         P1.Y := -P1.Y;
         P2.Y := -P2.Y;
@@ -1109,7 +1109,7 @@ begin
   try
     if (P1.FFaces.IndexOf(self) <> -1) and (P2.FFaces.IndexOf(self) <> -1) then
     begin
-      if Owner.EdgeExists(P1, P2) <> nil then
+      if Surface.EdgeExists(P1, P2) <> nil then
         exit;
       Tmp := IndexOfPoint(P1);
       Pts := TFasterListTFreeSubdivisionControlPoint.Create;
@@ -1123,7 +1123,7 @@ begin
       end;
       if Pts.Count > 2 then
       begin
-        Owner.AddControlFace(Pts, False, Layer);
+        Surface.AddControlFace(Pts, False, Layer);
       end;
       Tmp := IndexOfPoint(P2);
       Pts.Clear;
@@ -1137,7 +1137,7 @@ begin
       end;
       if Pts.Count > 2 then
       begin
-        Owner.AddControlFace(Pts, False, Layer);
+        Surface.AddControlFace(Pts, False, Layer);
       end;
       Pts.Destroy;
       Delete;
@@ -1170,20 +1170,20 @@ begin
       Index := 0;
     if Index <> -1 then
     begin
-      P1 := Owner.FControlPoints[Index];
+      P1 := Surface.FControlPoints[Index];
       FPoints.Add(P1);
       P1.FFaces.Add(Self);
     end;
   end;
   // Read layer-index
   Source.LoadInteger(Index);
-  if (Index >= 0) and (Index < Owner.FLayers.Count) then
+  if (Index >= 0) and (Index < Surface.FLayers.Count) then
   begin
-    FLayer := Owner.Layer[Index];
+    FLayer := Surface.Layer[Index];
   end
   else
   begin
-    FLayer := Owner.Layer[0];
+    FLayer := Surface.Layer[0];
     // Reference to an invalid layer. Assign to owners default layer
   end;
   if FLayer <> nil then
@@ -1199,7 +1199,7 @@ begin
   for I := 1 to NumberOfPoints do
   begin
     P2 := FPoints[I - 1] as TFreeSubdivisionControlPoint;
-    Edge := Owner.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+    Edge := Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
     if Edge <> nil then
     begin
       Edge.FFaces.Add(Self);
@@ -1207,7 +1207,7 @@ begin
     end
     else
     begin
-      Edge := Owner.AddControlEdge(P1, P2);
+      Edge := Surface.AddControlEdge(P1, P2);
       Edge.FFaces.Add(Self);
       Edge.Crease := True;
       MessageDlg('Could not find edge!', mtError, [mbOK], 0);
@@ -1239,20 +1239,20 @@ begin
       Index := 0;
     if Index <> -1 then
     begin
-      P1 := Owner.FControlPoints[Index];
+      P1 := Surface.FControlPoints[Index];
       FPoints.Add(P1);
       P1.FFaces.Add(Self);
     end;
   end;
   // Read layer-index
   Index := ReadIntFromStr(LineNr, Str);
-  if (Index >= 0) and (Index < Owner.FLayers.Count) then
+  if (Index >= 0) and (Index < Surface.FLayers.Count) then
   begin
-    FLayer := Owner.Layer[Index];
+    FLayer := Surface.Layer[Index];
   end
   else
   begin
-    FLayer := Owner.Layer[0];
+    FLayer := Surface.Layer[0];
     // Reference to an invalid layer. Assign to owners default layer
   end;
   if FLayer <> nil then
@@ -1272,7 +1272,7 @@ begin
   for I := 1 to NumberOfPoints do
   begin
     P2 := Point[I - 1];
-    Edge := Owner.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+    Edge := Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
     if Edge <> nil then
       Edge.FFaces.Add(Self)
     else
@@ -1307,10 +1307,10 @@ var
 begin
   Destination.Add(NumberOfPoints);
   for I := 1 to NumberOfPoints do
-    Destination.Add(Owner.FControlPoints.SortedIndexOf(Point[I - 1]));
+    Destination.Add(Surface.FControlPoints.SortedIndexOf(Point[I - 1]));
   // Add layer index
   if Layer <> nil then
-    Index := Owner.FLayers.IndexOf(Layer)
+    Index := Surface.FLayers.IndexOf(Layer)
   else
     Index := -1;
   Destination.Add(Index);
@@ -1338,7 +1338,7 @@ begin
     Setlength(FaceData.Faces, FaceData.NRows);
     Setlength(FaceData.Faces[0], FaceData.NCols);
     FaceData.Faces[0][0] := Self;
-    Owner.ConvertToGrid(FaceData, Cols, Rows, Grid);
+    Surface.ConvertToGrid(FaceData, Cols, Rows, Grid);
     if (Rows > 0) and (Cols > 0) then
     begin
       Strings.Add('0' + EOL + 'POLYLINE');
@@ -1362,7 +1362,7 @@ begin
         end;
       end;
       Strings.add('0' + EOL + 'SEQEND');
-      if (Layer.Symmetric) and (Owner.DrawMirror) then
+      if (Layer.Symmetric) and (Surface.DrawMirror) then
       begin
         Strings.Add('0' + EOL + 'POLYLINE');
         Strings.Add('8' + EOL + LayerName);
@@ -1411,7 +1411,7 @@ begin
         Strings.Add(IntToStr(23) + EOL + Truncate(P.Y, 4));
         Strings.Add(IntToStr(33) + EOL + Truncate(P.Z, 4));
       end;
-      if (Layer.Symmetric) and (Owner.DrawMirror) then
+      if (Layer.Symmetric) and (Surface.DrawMirror) then
       begin
         // send starboard side also
         Strings.Add('0' + EOL + '3DFACE');
@@ -1444,10 +1444,10 @@ var
 begin
   Str := IntToStr(NumberOfPoints);
   for I := 1 to NumberOfPoints do
-    Str := Str + #32 + IntToStr(Owner.FControlPoints.SortedIndexOf(Point[I - 1]));
+    Str := Str + #32 + IntToStr(Surface.FControlPoints.SortedIndexOf(Point[I - 1]));
   // Add layer index
   if Layer <> nil then
-    Index := Owner.FLayers.IndexOf(Layer)
+    Index := Surface.FLayers.IndexOf(Layer)
   else
     Index := -1;
   Str := Str + #32 + IntToStr(Index) + #32 + BoolToStr(Selected);
@@ -1572,7 +1572,7 @@ var
     for I := 1 to Face.NumberOfpoints do
     begin
       P2 := Face.Point[I - 1];
-      Edge := Face.Owner.EdgeExists(P1, P2);
+      Edge := Face.Surface.EdgeExists(P1, P2);
       if Edge <> nil then
         if not Edge.Crease then
         begin

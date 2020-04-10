@@ -3,10 +3,10 @@
 {--------------------------------------------------------------------------------------------------}
 function TFreeSubdivisionEdge.FGetIndex: integer;
 begin
-  Result := Owner.FEdges.IndexOf(self);
+  Result := Surface.FEdges.IndexOf(self);
   if Result = -1 then
   begin
-    Result := Owner.FControlEdges.IndexOf(self as TFreeSubdivisionControlEdge);
+    Result := Surface.FControlEdges.IndexOf(self as TFreeSubdivisionControlEdge);
     if Result = -1 then
       Result := 0;
   end;
@@ -205,7 +205,7 @@ begin
   Point.X := 0.5 * (SP.FCoordinate.X + EP.FCoordinate.X);
   Point.Y := 0.5 * (SP.FCoordinate.Y + EP.FCoordinate.Y);
   Point.Z := 0.5 * (SP.FCoordinate.Z + EP.FCoordinate.Z);
-  Result := TFreeSubdivisionPoint.Create(FStartPoint.Owner);
+  Result := TFreeSubdivisionPoint.Create(FStartPoint.Surface);
   Result.FCoordinate := Point;
   if FCrease then
     Result.FVertexType := svCrease;
@@ -338,7 +338,7 @@ begin
   logger.IncreaseIndent;
   logger.Debug(format('TFreeSubdivisionEdge[%d].Delete',[self.FId]));
 
-  Owner.FEdges.DeleteItem(Self);
+  Surface.FEdges.DeleteItem(Self);
 
   begin
     for I := FFaces.Count-1 downto 0 do
@@ -442,14 +442,14 @@ begin
   begin
     P1 := StartPoint.FCoordinate;
     P2 := FEndPoint.FCoordinate;
-    if ((P1.X < Owner.MainframeLocation) and (P2.X > Owner.MainframeLocation)) or
-      ((P1.X > Owner.MainframeLocation) and (P2.X < Owner.MainframeLocation)) then
+    if ((P1.X < Surface.MainframeLocation) and (P2.X > Surface.MainframeLocation)) or
+      ((P1.X > Surface.MainframeLocation) and (P2.X < Surface.MainframeLocation)) then
     begin
       if P2.X - P1.X <> 0 then
-        M := Interpolate(P1, P2, (Owner.MainframeLocation - P1.X) / (P2.X - P1.X))
+        M := Interpolate(P1, P2, (Surface.MainframeLocation - P1.X) / (P2.X - P1.X))
       else
         M := MidPoint(P1, P2);
-      if P1.X <= Owner.MainframeLocation then
+      if P1.X <= Surface.MainframeLocation then
       begin
         // P2 lies on port
         Pt1 := Viewport.Project(P2);
@@ -498,9 +498,9 @@ begin
     end
     else
     begin
-      if P1.X <= Owner.MainframeLocation then
+      if P1.X <= Surface.MainframeLocation then
         P1.Y := -P1.Y;
-      if P2.X <= Owner.MainframeLocation then
+      if P2.X <= Surface.MainframeLocation then
         P2.Y := -P2.Y;
       Pt1 := Viewport.Project(P1);
       Pt2 := Viewport.Project(P2);
@@ -533,14 +533,14 @@ begin
 
   if (DrawMirror = False) and (Viewport.ViewType = fvBodyplan) then
   begin
-    if ((P1.X < Owner.MainframeLocation) and (P2.X > Owner.MainframeLocation)) or
-      ((P1.X > Owner.MainframeLocation) and (P2.X < Owner.MainframeLocation)) then
+    if ((P1.X < Surface.MainframeLocation) and (P2.X > Surface.MainframeLocation)) or
+      ((P1.X > Surface.MainframeLocation) and (P2.X < Surface.MainframeLocation)) then
     begin
       if abs(P2.X - P1.X) > 1e-6 then
-        M := Interpolate(P1, P2, (Owner.MainframeLocation - P1.X) / (P2.X - P1.X))
+        M := Interpolate(P1, P2, (Surface.MainframeLocation - P1.X) / (P2.X - P1.X))
       else
         M := MidPoint(P1, P2);
-      if P1.X <= Owner.MainframeLocation then
+      if P1.X <= Surface.MainframeLocation then
       begin
         // P2 lies on port
         Pt1 := Viewport.Project(P2);
@@ -574,9 +574,9 @@ begin
     end
     else
     begin
-      if P1.X <= Owner.MainframeLocation then
+      if P1.X <= Surface.MainframeLocation then
         P1.Y := -P1.Y;
-      if P2.X <= Owner.MainframeLocation then
+      if P2.X <= Surface.MainframeLocation then
         P2.Y := -P2.Y;
       Pt1 := Viewport.Project(P1);
       Pt2 := Viewport.Project(P2);

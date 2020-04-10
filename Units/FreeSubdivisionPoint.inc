@@ -85,7 +85,7 @@ end;{TFreeSubdivisionPoint.FGetFace}
 
 function TFreeSubdivisionPoint.FGetIndex: integer;
 begin
-  Result := Owner.FPoints.IndexOf(Self);
+  Result := Surface.FPoints.IndexOf(Self);
 end;{TFreeSubdivisionPoint.FGetIndex}
 
 function TFreeSubdivisionPoint.FGetIsBoundaryVertex: boolean;
@@ -456,7 +456,7 @@ var
   I: integer;
 begin
   Point := FCoordinate;
-  Result := TFreeSubdivisionPoint.Create(Owner);
+  Result := TFreeSubdivisionPoint.Create(Surface);
   Result.FVertexType := FVertexType;
   Result.FCoordinate := Point;
   for I := 1 to FEdges.Count do
@@ -558,13 +558,13 @@ begin
   logger.IncreaseIndent;
   logger.Debug(format('TFreeSubdivisionPoint[%d].Delete',[self.FID]));
 
-  Owner.FPoints.DeleteItem(Self);
+  Surface.FPoints.DeleteItem(Self);
 
   if FEdges.Count > 0 then
   begin
-    {Index := Owner.FPoints.IndexOf(Self);
+    {Index := Surface.FPoints.IndexOf(Self);
     if Index <> -1 then
-      Owner.FPoints.Delete(index);}
+      Surface.FPoints.Delete(index);}
     while FEdges.Count>0 do
     begin
       Edge := self.Edge[NumberOfEdges - 1];
@@ -573,9 +573,9 @@ begin
   end
   else
   begin
-    {Index := Owner.FPoints.IndexOf(Self);
+    {Index := Surface.FPoints.IndexOf(Self);
     if Index <> -1 then
-      Owner.FPoints.Delete(index);}
+      Surface.FPoints.Delete(index);}
     Unreference;
     Destroy; //TODO: figure out why we do not delete Point if Edge exists
   end;

@@ -277,7 +277,7 @@ var
     for I := 1 to Face.NumberOfpoints do
     begin
       P2 := Face.Point[I - 1];
-      Edge := Face.Owner.EdgeExists(P1, P2);
+      Edge := Face.Surface.EdgeExists(P1, P2);
       if Edge <> nil then
       begin
         if not Edge.Crease then
@@ -1250,6 +1250,12 @@ begin
     FShowControlNet := Val;
   end;
 end;{TFreeSubdivisionSurface.SetFShowControlNet}
+
+procedure TFreeSubdivisionSurface.SetFShowFreeObjects(AValue: boolean);
+begin
+  if FShowFreeObjects=AValue then Exit;
+  FShowFreeObjects:=AValue;
+end;
 
 procedure TFreeSubdivisionSurface.SetSubdivisionMode(val: TFreeSubdivisionMode);
 begin
@@ -3661,7 +3667,7 @@ begin
             Curve.AddPoint(P1);
             if J > 1 then
             begin
-              Edge := Curve.Owner.EdgeExists(
+              Edge := Curve.Surface.EdgeExists(
                 Curve.ControlPoint[J - 2], Curve.ControlPoint[J - 1]) as TFreeSubdivisionControlEdge;
               if Edge <> nil then
               begin

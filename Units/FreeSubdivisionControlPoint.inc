@@ -4,7 +4,7 @@
 function TFreeSubdivisionControlPoint.FGetColor: TColor;
 begin
   if Selected then
-    Result := Owner.Selectedcolor
+    Result := Surface.Selectedcolor
   else
   begin
     if Locked then
@@ -12,13 +12,13 @@ begin
     else
     begin
       if IsLeak then
-        Result := Owner.LeakColor
+        Result := Surface.LeakColor
       else
         case FVertexType of
-          svRegular: Result := Owner.RegularPointColor;
-          svCorner: Result := Owner.CornerPointColor;
-          svDart: Result := Owner.DartPointColor;
-          svCrease: Result := Owner.CreasePointColor;
+          svRegular: Result := Surface.RegularPointColor;
+          svCorner: Result := Surface.CornerPointColor;
+          svDart: Result := Surface.DartPointColor;
+          svCrease: Result := Surface.CreasePointColor;
           else
             Result := clRed;
         end;
@@ -28,7 +28,7 @@ end;{TFreeSubdivisionControlPoint.FGetColor}
 
 function TFreeSubdivisionControlPoint.FGetIndex: integer;
 begin
-  Result := Owner.FControlPoints.IndexOf(Self);
+  Result := Surface.FControlPoints.IndexOf(Self);
 end;{TFreeSubdivisionControlPoint.FGetIndex}
 
 function TFreeSubdivisionControlPoint.FGetIsLeak: boolean;
@@ -38,7 +38,7 @@ end;{TFreeSubdivisionControlPoint.FGetIsLeak}
 
 function TFreeSubdivisionControlPoint.FGetSelected: boolean;
 begin
-  Result := Owner.FSelectedControlPoints.IndexOf(self) <> -1;
+  Result := Surface.FSelectedControlPoints.IndexOf(self) <> -1;
 end;{TFreeSubdivisionControlPoint.FGetSelected}
 
 function TFreeSubdivisionControlPoint.FGetVisible: boolean;
@@ -50,8 +50,9 @@ begin
   // a controlpoint is visible if at least one of it's
   // neighbouring controlfaces belongs to a visible layer
   Result := False;
-  if Owner.ShowControlNet then
+  if Surface.ShowControlNet then
   begin
+    Result := Surface.ShowFreeObjects; // show points without faces/layers
     for i := 0 to FFaces.Count-1 do
       if FFaces[I] is TFreeSubdivisionControlFace then
       begin
@@ -68,10 +69,11 @@ begin
   end;
   // Finally check if the point is selected.
   // Selected points must be visible at all times
-  // Points with no faces connected also!
+  // Points with no faces connected are visible when ShowFreeObjects enabled
   if not Result then
-    Result := (Selected) or (NumberOfFaces = 0);
-  if (not Result) and (Owner.NumberOfControlCurves > 0) then
+    Result := (Selected) or (Surface.ShowFreeObjects and (NumberOfFaces = 0));
+
+  if (not Result) and (Surface.NumberOfControlCurves > 0) then
   begin
     for I := 1 to NumberOfEdges do
       if Edge[I - 1].FCurve <> nil then
@@ -119,7 +121,7 @@ begin
   if Locked then exit;
   //if Locked and (FAnchorPoint = nil) then exit;
   inherited FSetCoordinate(Val);
-  Owner.Built := False;
+  Surface.Built := False;
 end;{TFreeSubdivisionControlPoint.FSetCoordinate}
 
 procedure TFreeSubdivisionControlPoint.SetCoordinate( ViewPort:TFreeViewPort; Val: T3DCoordinate;
@@ -404,14 +406,14 @@ begin
   if Surface.ActiveControlPoint = self then
     Surface.ActiveControlPoint := nil;
 
-  Owner.FSelectedControlPoints.DeleteItem(self);
-  Owner.FControlPoints.DeleteItem(self);
+  Surface.FSelectedControlPoints.DeleteItem(self);
+  Surface.FControlPoints.DeleteItem(self);
   Unreference;
 
-  for i:=0 to Owner.FSelectedControlPointGroups.Count-1 do
-    Owner.FSelectedControlPointGroups[i].RemoveControlPoint(self);
-  for i:=0 to Owner.FControlPointGroups.Count-1 do
-    Owner.FControlPointGroups[i].RemoveControlPoint(self);
+  for i:=0 to Surface.FSelectedControlPointGroups.Count-1 do
+    Surface.FSelectedControlPointGroups[i].RemoveControlPoint(self);
+  for i:=0 to Surface.FControlPointGroups.Count-1 do
+    Surface.FControlPointGroups[i].RemoveControlPoint(self);
 
   FacesToDelete:= TFasterListTFreesubdivisionFace.Create(true,false);
   while FFaces.Count > 0 do
@@ -460,7 +462,7 @@ begin
   begin
     P3D := FCoordinate;
     if Viewport.ViewType = fvBodyplan then
-      if P3D.X <= Owner.MainframeLocation then
+      if P3D.X <= Surface.MainframeLocation then
         P3D.Y := -P3D.Y;
     P := Viewport.Project(P3D);
     Pz := Viewport.ProjectToZBuffer(1.002 * ZBufferScaleFactor, P3D);
@@ -479,7 +481,7 @@ begin
         Viewport.PenColor := Color;
         Viewport.BrushStyle := bsClear;
         Viewport.PenStyle := psSolid;
-        for I := 1 to Owner.ControlPointSize do
+        for I := 1 to Surface.ControlPointSize do
           Viewport.Rectangle(Pz.X - I, Pz.Y - I, Pz.X + I, Pz.Y + I);
       end;
     end;
@@ -490,7 +492,7 @@ begin
     //begin
     P3D := FCoordinate;
     if Viewport.ViewType = fvBodyplan then
-      if P3D.X <= Owner.MainframeLocation then
+      if P3D.X <= Surface.MainframeLocation then
         P3D.Y := -P3D.Y;
     P := Viewport.Project(P3D);
     if Viewport.PenWidth <> 1 then
@@ -501,14 +503,14 @@ begin
     if Selected then
     begin
       //FInitializeCanvas(Viewport,1,Color,Mode);
-      for I := 1 to Owner.ControlPointSize do
+      for I := 1 to Surface.ControlPointSize do
         Viewport.Rectangle(P.X - I, P.Y - I, P.X + I, P.Y + I);
-      Viewport.Rectangle(P.X - Owner.ControlPointSize - 2, P.Y -
-        Owner.ControlPointSize - 2, P.X + Owner.ControlPointSize + 2, P.Y + Owner.ControlPointSize + 2);
+      Viewport.Rectangle(P.X - Surface.ControlPointSize - 2, P.Y -
+        Surface.ControlPointSize - 2, P.X + Surface.ControlPointSize + 2, P.Y + Surface.ControlPointSize + 2);
     end
     else
     begin
-      for I := 1 to Owner.ControlPointSize do
+      for I := 1 to Surface.ControlPointSize do
         Viewport.Rectangle(P.X - I, P.Y - I, P.X + I, P.Y + I);
     end;
 
@@ -519,7 +521,7 @@ begin
           FLinearConstraintPointB.Coordinate);
       P3DA := B3D.A;
       P3DB := B3D.B;
-      MFL := Owner.MainframeLocation;
+      MFL := Surface.MainframeLocation;
       if (Viewport.ViewType = fvBodyplan) //TODO: check if both sides
        then
         begin
@@ -672,7 +674,7 @@ begin
   if (OldCoordinate.X <> FCoordinate.X)
    or(OldCoordinate.Y <> FCoordinate.Y)
    or(OldCoordinate.Z <> FCoordinate.Z)
-  then Owner.Built:=false;
+  then Surface.Built:=false;
 end;
 
 function TFreeSubdivisionControlPoint.DistanceToCursor(X, Y: integer;
@@ -683,7 +685,7 @@ var
 begin
   // Check if cursor position lies within the boundaries
   P := FCoordinate;
-  if (Viewport.ViewType = fvBodyplan) and (P.X <= Owner.MainframeLocation) then
+  if (Viewport.ViewType = fvBodyplan) and (P.X <= Surface.MainframeLocation) then
     P.Y := -P.Y;
   Pt := Viewport.Project(P);
   if (Pt.X >= 0) and (Pt.X <= Viewport.Width) and (Pt.Y >= 0) and (Pt.Y <= Viewport.Height) then

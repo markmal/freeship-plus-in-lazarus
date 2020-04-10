@@ -859,6 +859,8 @@ begin
   begin
     A := TAction(ActionList.Actions[i]);
     AName := A.Name;
+    if Aname = 'ShowFreeObjects' then
+      II:=0;
     II := A.ImageIndex;
     if (II > -1) then
     begin

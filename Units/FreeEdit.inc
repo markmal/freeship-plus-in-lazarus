@@ -263,7 +263,7 @@ begin
           Curve.AddPoint(Point);
           if J > 1 then
           begin
-            Edge := Curve.Owner.EdgeExists(
+            Edge := Curve.Surface.EdgeExists(
               Curve.ControlPoint[J - 2], Curve.ControlPoint[J - 1]) as
               TFreeSubdivisionControlEdge;
             if Edge <> nil then
@@ -733,12 +733,12 @@ begin
           begin
             // Do NOT try to connect the points to any existing point
             // create always a new point
-            P2 := TFreeSubdivisionControlPoint.Create(P1.Owner);
-            P1.Owner.AddControlPoint(P2);
+            P2 := TFreeSubdivisionControlPoint.Create(P1.Surface);
+            P1.Surface.AddControlPoint(P2);
             P2.Coordinate := FreeGeometry.MirrorPlane(P1.Coordinate, MirrorPlane);
           end
           else
-            P2 := P1.Owner.AddControlPoint(
+            P2 := P1.Surface.AddControlPoint(
               FreeGeometry.MirrorPlane(P1.Coordinate, MirrorPlane))
             // Try to connect ALL new points to existing ones
           ;
@@ -767,7 +767,7 @@ begin
           end;
           if Points.Count > 2 then
           begin
-            NewFace := Face.Owner.AddControlFace(Points, False);
+            NewFace := Face.Surface.AddControlFace(Points, False);
             if Newface <> nil then
               NewFace.Layer := Face.Layer;
           end;
@@ -6671,7 +6671,7 @@ var
     for I := 1 to Face.NumberOfpoints do
     begin
       P2 := Face.Point[I - 1];
-      Edge := Face.Owner.EdgeExists(P1, P2);
+      Edge := Face.Surface.EdgeExists(P1, P2);
       if Edge <> nil then
         if not Edge.Crease then
           for J := 1 to Edge.NumberOfFaces do

@@ -1395,6 +1395,7 @@ begin
       Marker[I - 1].Draw(Viewport);
   Surface.Color := clDkGray;
   Surface.ShowControlNet := Visibility.ShowControlNet;
+  Surface.ShowFreeObjects := Visibility.ShowFreeObjects;
   Surface.ShowInteriorEdges := Visibility.ShowInteriorEdges;
   Surface.DrawMirror := Visibility.ModelView = mvBoth;
   Surface.ShowNormals := Visibility.ShowNormals;
@@ -2684,7 +2685,7 @@ begin
   if Faces.Count > 0 then
   begin
     Face := Faces[0];
-    vSurface := Face.Owner;
+    vSurface := Face.Surface;
   end;
   if vSurface = nil then
     exit;
@@ -2714,7 +2715,7 @@ begin
         P2 := Face.Point[J - 1] as TFreeSubdivisionControlPoint;
         if Points.SortedIndexOf(P2) = -1 then
           Points.AddSorted(P2);
-        Edge := P1.Owner.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+        Edge := P1.Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
         if Edge <> nil then
           if Edges.SortedIndexOf(Edge) = -1 then
             Edges.AddSorted(Edge);
@@ -2983,6 +2984,7 @@ var
   vViewport: TFreeViewport;
   I,R,D,N,P,E:UInt64; S,M:integer;
 begin
+  if not (Sender is TFreeHullWindow) then exit;
   vViewport := (Sender as TFreeHullWindow).Viewport;
   if (vViewport.ViewType = fvPerspective) then exit;
 

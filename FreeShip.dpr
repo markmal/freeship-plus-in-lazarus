@@ -280,6 +280,7 @@ begin
    Logger.Info('FreeShip Product version: '+FREESHIP_VERSION);
    Logger.Info('FreeShip Program version: '+ver);
    Logger.Info('Last Git Change Revision: '+IntToStr(GITVERSION_REVISION));
+   Logger.Info('Last Git Commit: '+IntToStr(GITCOMMIT));
    Logger.LogLevel:=LOG_ERROR;
 
    ParametersHelp:=false;

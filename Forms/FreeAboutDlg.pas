@@ -129,7 +129,7 @@ begin
   AddVersionInfo('Product version',FREESHIP_VERSION);
   AddVersionInfo('Program version',ResourceVersionInfo);
   AddVersionInfo('Git Revision',IntToStr(GITVERSION_REVISION));
-  AddVersionInfo('Git Commit',IntToStr(GITCOMMIT));
+  AddVersionInfo('Git Commit',GITCOMMIT);
   AddVersionInfo('Build date',COMPILE_DATE+' '+COMPILE_TIME);
   AddVersionInfo('Compiler version',{$I %FPCVERSION%});
   AddVersionInfo('Target CPU',TARGET_CPU);

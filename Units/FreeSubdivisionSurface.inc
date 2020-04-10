@@ -2480,12 +2480,13 @@ var
   Face: TFreeSubdivisionControlFace;
   NoEdges: integer;
   NoVertices: integer;
+  //OrigStartPointVertexType, OrigEndPointVertexType: TFreeVertexType;
 begin
-  Vertices := TFasterListTFreeSubdivisionControlPoint.Create;
+  Vertices := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
   // first assemble all points
-  for I := 1 to Edges.Count do
+  for I := 0 to Edges.Count - 1 do
   begin
-    Edge := Edges[I - 1] as TFreeSubdivisionControlEdge;
+    Edge := Edges[I] as TFreeSubdivisionControlEdge;
     if Vertices.IndexOf(Edge.StartPoint) = -1 then
       Vertices.Add(Edge.StartPoint);
     if Vertices.IndexOf(Edge.EndPoint) = -1 then
@@ -2496,18 +2497,21 @@ begin
   try
     NewEdges := TFasterListTFreeSubdivisionControlEdge.Create;
     // create all new extruded points
-    for I := 1 to Vertices.Count do
+    for I := 0 to Vertices.Count - 1 do
     begin
-      Point1 := Vertices[I - 1];
+      Point1 := Vertices[I];
       Point2 := TFreeSubdivisionControlPoint.Create(self);
       FControlPoints.Add(Point2);
       Point2.Coordinate := AddPointSymm(Point1.Coordinate, Direction);
-      Vertices.Objects[I - 1] := Point2;
+      Point2.VertexType:=Point1.VertexType;
+      Vertices.Objects[I] := Point2;
     end;
     Points := TFasterListTFreeSubdivisionControlPoint.Create;
-    for I := 1 to Edges.Count do
+    for I := 0 to Edges.Count - 1 do
     begin
-      Edge := Edges[I - 1] as TFreeSubdivisionControlEdge;
+      Edge := Edges[I] as TFreeSubdivisionControlEdge;
+      //OrigStartPointVertexType := Edge.StartPoint.VertexType;
+      //OrigEndPointVertexType := Edge.EndPoint.VertexType;
       Points.Clear;
       Points.Add(Edge.EndPoint);
       Points.Add(Edge.StartPoint);
@@ -2526,27 +2530,40 @@ begin
         Point2 := Vertices.Objects[index];
         Points.Add(Point2);
       end;
-      Face := AddControlFace(Points, True);
+
+      Face := AddControlFace(Points, false);
       Face.Layer := self.ActiveLayer;
+
+      Tmp := EdgeExists(Edge.StartPoint, Point1) as TFreeSubdivisionControlEdge;
+      if Tmp <> nil then
+        Tmp.Crease := False;
+
+      Tmp := EdgeExists(Edge.EndPoint, Point2) as TFreeSubdivisionControlEdge;
+      if Tmp <> nil then
+        Tmp.Crease := False;
+     {
       if (Point1 <> nil) and (Point2 <> nil) then
       begin
         Tmp := EdgeExists(Point1, Point2) as TFreeSubdivisionControlEdge;
         if Tmp <> nil then
           NewEdges.Add(Tmp);
       end;
-      if (Edge.StartPoint.VertexType = svCorner) and (Point1 <> nil) then
+
+      if (OrigStartPointVertexType = svCorner) and (Point1 <> nil) then
       begin
         Tmp := EdgeExists(Edge.StartPoint, Point1) as TFreeSubdivisionControlEdge;
         if Tmp <> nil then
           Tmp.Crease := True;
       end;
-      if (Edge.EndPoint.VertexType = svCorner) and (Point2 <> nil) then
+
+      if (OrigEndPointVertexType = svCorner) and (Point2 <> nil) then
       begin
         Tmp := EdgeExists(Edge.EndPoint, Point2) as TFreeSubdivisionControlEdge;
         if Tmp <> nil then
           Tmp.Crease := True;
       end;
-      Edge.Crease := True;
+      }
+      ///Edge.Crease := True;
     end;
     Points.Destroy;
 

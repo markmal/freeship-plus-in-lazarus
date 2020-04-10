@@ -860,7 +860,8 @@ begin
    if (Shift = [ssLeft]) and (FAllowPanOrZoom) then
    begin
       // Zoom in or zoom out
-      if abs(FInitialPosition.Y-Y)>4 then
+      if (Viewport.ViewType<>fvPerspective)
+         and (abs(FInitialPosition.Y-Y)>4) then
       begin
          if Y<FInitialPosition.Y then
          begin

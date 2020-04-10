@@ -1283,16 +1283,12 @@ begin
                  GetRValue(Color), GetGValue(Color), GetBValue(Color));
       end;
 
-      SetPixel(10, 10, 255, 127, 0);
-
       if Assigned(OnRedraw) //and (ViewportMode=vmWireframe)
       then
         OnRedraw(Self);
 
       if ViewportMode <> vmWireframe then
         AlphaBuffer.Draw;
-
-      SetPixel(10, 10, 255, 0, 0);
 
       if (FDoubleBuffer) or (ViewportMode <> vmWireframe) then
       begin

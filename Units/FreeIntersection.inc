@@ -631,6 +631,8 @@ begin
   else
   begin
     // draw to z-buffer
+    // Three is no visible diffrence with z-buffer vs regular lineto.
+    // So we go with lineto (Spline.Draw)
     if not Build then
       Rebuild;
     {R := GetRValue(Color);
@@ -644,7 +646,7 @@ begin
       fpVeryHigh: frags:=1024;
     end;
 
-    Viewport.BeginUpdate;
+    //Viewport.BeginUpdate;
     for I := 0 to Count-1 do
     begin
       Spline := Items[I];
@@ -675,10 +677,19 @@ begin
           P := P2;
         end;
         }
-        Spline.Draw(Viewport);
+        SplineSB := TFreeSpline.Create(self.Owner.Surface);
+        SplineSB.Assign(Spline);
+        for J := 0 to SplineSB.NumberOfPoints-1 do
+          begin
+          P := SplineSB.Point[J];
+          P.Y := -P.Y;
+          SplineSB.Point[J] := P;
+          end;
+        SplineSB.Draw(Viewport);
+        SplineSB.Free;
       end;
     end;
-    Viewport.EndUpdate;
+    //Viewport.EndUpdate;
   end;
 end;{TFreeIntersection.Draw}
 

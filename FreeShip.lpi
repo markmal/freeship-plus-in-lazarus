@@ -36,9 +36,15 @@
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
+    <MacroValues Count="1">
+      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
+    </MacroValues>
     <BuildModes Count="4">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="win32"/>
+        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -225,8 +231,8 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
-        <WorkingDirectory Value="/usr/bin/"/>
+        <CommandLineParams Value="--debug --log-debug"/>
+        <WorkingDirectory Value="/usr/bin"/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="5">
@@ -243,7 +249,8 @@
         </Mode1>
         <Mode2 Name="debug log">
           <local>
-            <CommandLineParams Value="--debug --log-debug --debug-log=FreeShip.log"/>
+            <CommandLineParams Value="--debug --log-debug"/>
+            <WorkingDirectory Value="/usr/bin"/>
           </local>
         </Mode2>
         <Mode3 Name="debug log from Program Files">

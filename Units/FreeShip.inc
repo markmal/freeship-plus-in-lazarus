@@ -1342,7 +1342,6 @@ begin
   begin
     if Visibility.ShowGrid then
       Drawgrid// Draws a rectangular grid with measurements, bigger then the hull
-
     else
     begin
       // draws the actual splines as a dashed line

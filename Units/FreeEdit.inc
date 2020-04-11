@@ -239,9 +239,9 @@ var
 begin
   Edges := TFasterListTFreeSubdivisionControlEdge.Create;
   Edges.Capacity := FreeShip.NumberOfSelectedControlEdges;
-  for I := 1 to FreeShip.NumberOfSelectedControlEdges do
+  for I := 0 to FreeShip.NumberOfSelectedControlEdges - 1 do
   begin
-    Edge := FreeShip.SelectedControlEdge[I - 1];
+    Edge := FreeShip.SelectedControlEdge[I];
     if Edge.Curve = nil then
       Edges.Add(Edge);
   end;

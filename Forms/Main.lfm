@@ -245,35 +245,35 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton2: TToolButton
-        Tag = 3
-        Left = 64
+        Tag = 4
+        Left = 84
         Top = 0
         Action = ShowControlCurves
         AutoSize = True
       end
       object ToolButton9: TToolButton
-        Tag = 1
-        Left = 24
+        Tag = 2
+        Left = 44
         Top = 0
         Action = ShowInteriorEdges
         AutoSize = True
       end
       object ToolButton10: TToolButton
-        Tag = 10
+        Tag = 11
         Left = 224
         Top = 0
         Action = BothSides
         AutoSize = True
       end
       object ToolButton31: TToolButton
-        Tag = 13
+        Tag = 14
         Left = 284
         Top = 0
         Action = ShowGrid
         AutoSize = True
       end
       object ToolButton21: TToolButton
-        Tag = 8
+        Tag = 9
         Left = 184
         Top = 0
         Action = ShowStations
@@ -281,63 +281,63 @@ object MainForm: TMainForm
         AutoSize = True
       end
       object ToolButton22: TToolButton
-        Tag = 6
-        Left = 124
+        Tag = 7
+        Left = 144
         Top = 0
         Action = ShowButtocks
         AutoSize = True
       end
       object ToolButton23: TToolButton
-        Tag = 7
+        Tag = 8
         Left = 164
         Top = 0
         Action = ShowWaterlines
         AutoSize = True
       end
       object ToolButton35: TToolButton
-        Tag = 9
+        Tag = 10
         Left = 204
         Top = 0
         Action = ShowDiagonals
         AutoSize = True
       end
       object ToolButton46: TToolButton
-        Tag = 12
+        Tag = 13
         Left = 264
         Top = 0
         Action = ShowHydrostatics
         AutoSize = True
       end
       object ToolButton48: TToolButton
-        Tag = 11
+        Tag = 12
         Left = 244
         Top = 0
         Action = ShowFlowlines
         AutoSize = True
       end
       object ToolButton30: TToolButton
-        Tag = 2
-        Left = 44
+        Tag = 3
+        Left = 64
         Top = 0
         Action = ShowNormals
         AutoSize = True
       end
       object ToolButton37: TToolButton
-        Tag = 4
-        Left = 84
+        Tag = 5
+        Left = 104
         Top = 0
         Action = Showcurvature
         AutoSize = True
       end
       object ToolButton36: TToolButton
-        Tag = 5
-        Left = 104
+        Tag = 6
+        Left = 124
         Top = 0
         Action = ShowMarkers
         AutoSize = True
       end
       object SpinEditFontSize: TSpinEdit
-        Tag = 14
+        Tag = 15
         Left = 4
         Height = 32
         Hint = 'Font Size'
@@ -351,7 +351,7 @@ object MainForm: TMainForm
         Value = 8
       end
       object cbPrecision: TComboBox
-        Tag = 15
+        Tag = 16
         Left = 40
         Height = 30
         Hint = 'Precision'
@@ -371,8 +371,8 @@ object MainForm: TMainForm
         Text = 'Medium'
       end
       object tbShowFreeObjects: TToolButton
-        Tag = 16
-        Left = 144
+        Tag = 1
+        Left = 24
         Top = 0
         Action = ShowFreeObjects
         Marked = True
@@ -1486,7 +1486,7 @@ object MainForm: TMainForm
     end
     object ShowFreeObjects: TAction
       Category = 'Visibility'
-      Caption = 'ShowFreeObjects'
+      Caption = 'Show free objects'
       Hint = 'Show objects not associated with any layer'
       ImageIndex = 61
       OnExecute = ShowFreeObjectsExecute

@@ -1121,17 +1121,18 @@ type
     FControlPoints: TFasterListTFreeSubdivisionControlPoint;
     FSubdividedPoints: TFasterListTFreeSubdivisionPoint;
     FSpline: TFreeSpline;
-    FBuild: boolean;
-    function FGetColor: TColor;
-    function FGetNumberOfControlPoints: integer;
-    function FGetControlPoint(
-      Index: integer): TFreeSubdivisionControlPoint;
-    function FGetSelected: boolean;
-    function FGetVisible: boolean;
-    procedure FSetBuild(Val: boolean);
-    procedure FSetSelected(val: boolean);
+    FBuilt: boolean;
+    function GetColor: TColor;
+    function GetNumberOfControlPoints: integer;
+    function GetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
+    function GetSelected: boolean;
+    function GetVisible: boolean;
+    procedure Rebuild;
+    procedure SetBuilt(Val: boolean);
+    procedure SetSelected(val: boolean);
   public
     procedure AddPoint(P: TFreeSubdivisionControlPoint);
+    procedure DeletePoint(P: TFreeSubdivisionControlPoint);
     function CheckIntegrity: boolean;
     procedure Clear;
     constructor Create(Owner: TFreeSubdivisionSurface);
@@ -1152,23 +1153,25 @@ type
     procedure ReplaceVertexPoint(Old, New: TFreeSubdivisionPoint);
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToDXF(Strings: TStringList);
-    property Build: boolean
-      read FBuild write FSetBuild;
+    property Built: boolean
+      read FBuilt write SetBuilt;
     property Color: TColor
-      read FGetColor;
+      read GetColor;
     property Spline: TFreeSpline
       read FSpline;
     property SubdividedPoints: TFasterListTFreeSubdivisionPoint
       read FSubdividedPoints;
+    property ControlPoints: TFasterListTFreeSubdivisionControlPoint
+      read FControlPoints;
     property NumberOfControlPoints: integer
-      read FGetNumberOfControlPoints;
+      read GetNumberOfControlPoints;
     property ControlPoint[index: integer]:
-      TFreeSubdivisionControlPoint read FGetControlPoint;
+      TFreeSubdivisionControlPoint read GetControlPoint;
     property Selected: boolean
-      read FGetSelected write FSetSelected;
+      read GetSelected write SetSelected;
     // Property to see if this edge has been selected by the user
     property Visible: boolean
-      read FGetVisible write FVisible;
+      read GetVisible write FVisible;
   end;
 
   {---------------------------------------------------------------------------------------------------}
@@ -1476,6 +1479,8 @@ type
     function FGetNextEdge: TFreeSubdivisionEdge;
     procedure PrintDebug; override;
     procedure SetCurve(AValue: TFreeSubdivisionControlCurve);
+    procedure SetStartPoint(aPoint:TFreeSubdivisionPoint);
+    procedure SetEndPoint(aPoint:TFreeSubdivisionPoint);
   public
     procedure AddFace(Face: TFreeSubdivisionFace);
     procedure Assign(Edge: TFreeSubdivisionEdge);
@@ -1502,7 +1507,7 @@ type
     property EdgeIndex: integer
       read FGetIndex;
     property EndPoint:
-      TFreeSubdivisionPoint read FEndPoint write FEndPoint;
+      TFreeSubdivisionPoint read FEndPoint write SetEndPoint;
     property Face[index: integer]
       : TFreeSubdivisionFace read FGetFace;
     property IsBoundaryEdge: boolean
@@ -1514,7 +1519,7 @@ type
     property PreviousEdge:
       TFreeSubdivisionEdge read FGetPreviousEdge;
     property StartPoint:
-      TFreeSubdivisionPoint read FStartPoint write FStartPoint;
+      TFreeSubdivisionPoint read FStartPoint write SetStartPoint;
     //property Points:TFasterListTFreeSubdivisionPoint read getPoints;
   end;
 
@@ -1531,9 +1536,9 @@ type
     function FGetSelected: boolean;
     function FGetVisible: boolean;
     function GetStartPoint:TFreeSubdivisionControlPoint;
-    procedure SetStartPoint(val:TFreeSubdivisionControlPoint);
+    procedure SetStartPoint(aPoint:TFreeSubdivisionControlPoint);
     function GetEndPoint:TFreeSubdivisionControlPoint;
-    procedure SetEndPoint(val:TFreeSubdivisionControlPoint);
+    procedure SetEndPoint(aPoint:TFreeSubdivisionControlPoint);
   public
     procedure Collapse;
     constructor Create(Owner: TFreeSubdivisionSurface);

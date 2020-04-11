@@ -1,12 +1,14 @@
 {---------------------------------------------------------------------------------------------------}
 {                                           TFreeSubdivisionControlCurve                            }
 {---------------------------------------------------------------------------------------------------}
-procedure TFreeSubdivisionControlCurve.FSetBuild(Val: boolean);
+procedure TFreeSubdivisionControlCurve.SetBuilt(Val: boolean);
 begin
-  FBuild := Val;
-end;{TFreeSubdivisionControlCurve.FSetBuild}
+  FBuilt := Val;
+  //if not FBuilt then
+    // FSubdividedPoints.Clear;
+end;{TFreeSubdivisionControlCurve.SetBuilt}
 
-procedure TFreeSubdivisionControlCurve.FSetSelected(val: boolean);
+procedure TFreeSubdivisionControlCurve.SetSelected(val: boolean);
 var
   Index: integer;
 begin
@@ -24,42 +26,70 @@ begin
   end;
   if Assigned(Surface.FOnSelectItem) then
     Surface.FOnSelectItem(self);
-end;{TFreeSubdivisionControlCurve.FSetSelected}
+end;{TFreeSubdivisionControlCurve.SetSelected}
 
-procedure TFreeSubdivisionControlCurve.AddPoint(P: TFreesubdivisionControlPoint);
+procedure TFreeSubdivisionControlCurve.AddPoint(P: TFreeSubdivisionControlPoint);
 begin
   FControlPoints.Add(P);
-  Build := False;
+  Built := False;
 end;{TFreeSubdivisionControlCurve.AddPoint}
 
-function TFreeSubdivisionControlCurve.FGetColor: TColor;
+procedure TFreeSubdivisionControlCurve.Rebuild;
+var i:integer; P:TFreeSubdivisionPoint;
+begin
+  FSubdividedPoints.Clear;
+  FSpline.Clear;
+  FSpline.Capacity:=FControlPoints.Count;
+  for i:=0 to FControlPoints.Count-1 do      // TODO subdivide
+  begin
+    P:=TFreeSubdivisionPoint.Create(Surface);
+    P.FSetCoordinate(FControlPoints[i].Coordinate);
+    P.VertexType:=FControlPoints[i].VertexType;
+    if P.VertexType =  svCorner then //(svRegular, svCrease, svDart, svCorner)
+      FSpline.AddKnuckle(P.Coordinate)
+    else
+      FSpline.Add(P.Coordinate);
+  end;
+  FSpline.Rebuild;
+
+  Built := True;
+end;
+
+procedure TFreeSubdivisionControlCurve.DeletePoint(
+  P: TFreeSubdivisionControlPoint);
+begin
+  FControlPoints.DeleteItem(P);
+  Built := False;
+end;
+
+function TFreeSubdivisionControlCurve.GetColor: TColor;
 begin
   if Selected then
     Result := Surface.Selectedcolor
   else
     Result := Surface.ControlCurveColor;
-end;{TFreeSubdivisionControlCurve.FGetColor}
+end;{TFreeSubdivisionControlCurve.GetColor}
 
-function TFreeSubdivisionControlCurve.FGetSelected: boolean;
+function TFreeSubdivisionControlCurve.GetSelected: boolean;
 begin
   Result := Surface.FSelectedControlCurves.IndexOf(self) <> -1;
-end;{TFreeSubdivisionControlCurve.FGetSelected}
+end;{TFreeSubdivisionControlCurve.GetSelected}
 
-function TFreeSubdivisionControlCurve.FGetVisible: boolean;
+function TFreeSubdivisionControlCurve.GetVisible: boolean;
 begin
   Result := Surface.ShowControlCurves;
-end;{TFreeSubdivisionControlCurve.FGetVisible}
+end;{TFreeSubdivisionControlCurve.GetVisible}
 
-function TFreeSubdivisionControlCurve.FGetNumberOfControlPoints: integer;
+function TFreeSubdivisionControlCurve.GetNumberOfControlPoints: integer;
 begin
   Result := FControlPoints.Count;
-end;{TFreeSubdivisionControlCurve.FGetNumberOfControlPoints}
+end;{TFreeSubdivisionControlCurve.GetNumberOfControlPoints}
 
-function TFreeSubdivisionControlCurve.FGetControlPoint(Index: integer):
+function TFreeSubdivisionControlCurve.GetControlPoint(Index: integer):
 TFreeSubdivisionControlPoint;
 begin
   Result := FControlPoints[index];
-end;{TFreeSubdivisionControlCurve.FGetControlPoint}
+end;{TFreeSubdivisionControlCurve.GetControlPoint}
 
 function TFreeSubdivisionControlCurve.CheckIntegrity: boolean;
 var i:integer;
@@ -99,7 +129,7 @@ begin
   FVisible := True;
   FSpline.Clear;
   FSubdividedPoints.Clear;
-  FBuild := False;
+  FBuilt := False;
 end;{TFreeSubdivisionControlCurve.Clear}
 
 constructor TFreeSubdivisionControlCurve.Create(Owner: TFreeSubdivisionSurface);
@@ -180,7 +210,7 @@ begin
           AnEdge.FCurve := nil;
       end;
       // Remove references from subdivided edges
-      if Build then
+      if Built then
         for J := 2 to FSubdividedPoints.Count do
         begin
           P1 := FSubdividedPoints[J - 2];
@@ -194,7 +224,7 @@ begin
 
       if I - 2 > 0 then
       begin
-        // build first new Spline
+        // Built first new Spline
         NewCurve := TFreeSubdivisionControlCurve.Create(Surface);
         NewCurve.FControlPoints.Capacity := I - 1;
         Surface.AddControlCurve(Newcurve);
@@ -215,10 +245,10 @@ begin
       end;
       if I - 1 < FControlPoints.Count - 1 then
       begin
-        // build second new Spline
+        // Built second new Spline
         NewCurve := TFreeSubdivisionControlCurve.Create(Surface);
         NewCurve.FControlPoints.Capacity := FControlPoints.Count - (I - 1);
-        Surface.AddControlCurve(Newcurve);
+        Surface.AddControlCurve(NewCurve);
         CP1 := nil;
         for J := I - 1 to FControlPoints.Count - 1 do
         begin
@@ -345,6 +375,10 @@ var
   Normal: T3DCoordinate;
   C, T, C2: TFloatType;
 begin
+  if FSpline.NumberOfPoints = 0 then
+    FSpline.Rebuild;
+  if FSpline.NumberOfPoints = 0 then
+    Rebuild;
   if FSpline.NumberOfPoints > 1 then
   begin
     FSpline.Color := Color;
@@ -487,6 +521,7 @@ begin
     end;
     Inc(I);
   end;
+  Built:=false;
 end;{TFreeSubdivisionControlCurve.InsertControlPoint}
 
 procedure TFreeSubdivisionControlCurve.InsertEdgePoint(P1, P2, New: TFreeSubdivisionPoint);
@@ -506,6 +541,7 @@ begin
     end;
     Inc(I);
   end;
+  Built:=false;
 end;{TFreeSubdivisionControlCurve.InsertEdgePoint}
 
 procedure TFreeSubdivisionControlCurve.LoadBinary(Source: TFreeFileBuffer);

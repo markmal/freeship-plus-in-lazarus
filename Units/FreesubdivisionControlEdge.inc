@@ -802,9 +802,21 @@ begin
   result := FStartPoint as TFreeSubdivisionControlPoint;
 end;
 
-procedure TFreesubdivisionControlEdge.SetStartPoint(val:TFreeSubdivisionControlPoint);
+procedure TFreesubdivisionControlEdge.SetStartPoint(aPoint:TFreeSubdivisionControlPoint);
+var i: integer;
 begin
-  FStartPoint := val;
+  if aPoint = FStartPoint then exit;
+  if FCurve<>nil then
+    begin
+    i := FCurve.ControlPoints.Indexof(FStartPoint as TFreesubdivisionControlPoint);
+    if i > -1 then
+      if aPoint <> nil then
+         FCurve.ReplaceVertexPoint(FStartPoint, aPoint as TFreesubdivisionPoint)
+      else
+         FCurve.DeletePoint(FStartPoint as TFreesubdivisionControlPoint);
+    FCurve.Built:=false;
+    end;
+  FStartPoint := aPoint;
 end;
 
 function TFreesubdivisionControlEdge.GetEndPoint:TFreeSubdivisionControlPoint;
@@ -812,9 +824,21 @@ begin
   result := FEndPoint as TFreeSubdivisionControlPoint;
 end;
 
-procedure TFreesubdivisionControlEdge.SetEndPoint(val:TFreeSubdivisionControlPoint);
+procedure TFreesubdivisionControlEdge.SetEndPoint(aPoint:TFreeSubdivisionControlPoint);
+var i: integer;
 begin
-  FEndPoint := val;
+  if aPoint = FEndPoint then exit;
+  if FCurve<>nil then
+    begin
+    i := FCurve.ControlPoints.Indexof(FEndPoint as TFreesubdivisionControlPoint);
+    if i > -1 then
+      if aPoint <> nil then
+        FCurve.ReplaceVertexPoint(FEndPoint,aPoint as TFreesubdivisionControlPoint)
+      else
+        FCurve.DeletePoint(FEndPoint as TFreesubdivisionControlPoint);
+    FCurve.Built:=false;
+    end;
+  FEndPoint := aPoint;
 end;
 
 

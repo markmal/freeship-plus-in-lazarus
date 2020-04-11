@@ -291,12 +291,48 @@ begin
      Logger.Debug(Format(' EndPoint:%d %s',[self.EndPoint.Id, self.EndPoint.Name]));
   for i:=0 to FFaces.Count-1 do
      Logger.Debug(Format(' face[%d]:%d',[i,FFaces[i].Id]));
+  if Curve<>nil then
+    Logger.Debug(Format(' curve:%d',[Curve.Id]));
 end;
 
 procedure TFreeSubdivisionEdge.SetCurve(AValue: TFreeSubdivisionControlCurve);
 begin
   if FCurve=AValue then Exit;
   FCurve:=AValue;
+end;
+
+procedure TFreeSubdivisionEdge.SetStartPoint(aPoint: TFreeSubdivisionPoint);
+var i: integer;
+begin
+  if aPoint = FStartPoint then exit;
+  if FCurve<>nil then
+    begin
+    i := FCurve.ControlPoints.Indexof(FStartPoint as TFreesubdivisionControlPoint);
+    if i > -1 then
+      if aPoint <> nil then
+         FCurve.ReplaceVertexPoint(FStartPoint, aPoint as TFreesubdivisionPoint)
+      else
+         FCurve.DeletePoint(FStartPoint as TFreesubdivisionControlPoint);
+    FCurve.Built:=false;
+    end;
+  FStartPoint := aPoint;
+end;
+
+procedure TFreeSubdivisionEdge.SetEndPoint(aPoint: TFreeSubdivisionPoint);
+var i: integer;
+begin
+  if aPoint = FStartPoint then exit;
+  if FCurve<>nil then
+    begin
+    i := FCurve.ControlPoints.Indexof(FEndPoint as TFreesubdivisionControlPoint);
+    if i > -1 then
+      if aPoint <> nil then
+         FCurve.ReplaceVertexPoint(FEndPoint, aPoint)
+      else
+         FCurve.DeletePoint(FStartPoint as TFreesubdivisionControlPoint);
+    FCurve.Built:=false;
+    end;
+  FEndPoint := aPoint;
 end;
 
 procedure TFreeSubdivisionEdge.UnreferenceFace(Face: TFreeSubdivisionFace);

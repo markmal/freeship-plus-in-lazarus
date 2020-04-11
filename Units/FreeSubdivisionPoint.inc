@@ -486,11 +486,13 @@ begin
     result := false;
   end;
 
+  { // Free points are ok
   if (FFaces <> nil) and (FFaces.Count < 1) then
   begin
     logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): FFaces empty',[self.FID]));
     result := false;
   end;
+  }
 
   if (FFaces <> nil) then
   for i:=0 to FFaces.Count-1 do
@@ -500,11 +502,13 @@ begin
     result := false;
   end;
 
+  { // Free points are ok
   if (FEdges <> nil) and (FEdges.Count < 1) then
   begin
     logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): FEdges empty',[self.FID]));
     result := false;
   end;
+  }
 
   if (FEdges <> nil) then
   for i:=0 to FEdges.Count-1 do
@@ -585,20 +589,19 @@ end;{TFreeSubdivisionPoint.Delete}
 
 procedure TFreeSubdivisionPoint.Unreference;
 var i:integer;
+  E: TFreeSubdivisionEdge;
 begin
   if not IsUnreferenceEnabled then exit;
   if InUnreference then exit; // speed up
   InUnreference := true;
 
-  {if FID=19729 then //DELETE
-     FID:=19729;}
-
   for i:=0 to FEdges.Count-1 do
     begin
-    if FEdges[i].StartPoint = Self then
-       FEdges[i].StartPoint := nil;
-    if FEdges[i].EndPoint = Self then
-       FEdges[i].EndPoint := nil;
+    E := FEdges[i];
+    if E.StartPoint = Self then
+       E.StartPoint := nil;
+    if E.EndPoint = Self then
+       E.EndPoint := nil;
     end;
 
   for i:=0 to FFaces.Count-1 do

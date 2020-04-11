@@ -9321,7 +9321,7 @@ msgid "Show flowlines around the hull."
 msgstr ""
 
 #: tmainform.showfreeobjects.caption
-msgid "ShowFreeObjects"
+msgid "Show free objects"
 msgstr ""
 
 #: tmainform.showfreeobjects.hint

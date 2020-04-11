@@ -1224,7 +1224,7 @@ begin
   begin
     ClearFaces;
     for I := 1 to NumberofControlCurves do
-      ControlCurve[I - 1].Build := False;
+      ControlCurve[I - 1].Built := False;
     FCurrentSubdivisionLevel := 0;
     Setlength(FGausCurvature, 0);
     FMinGaussCurvature := 0.0;
@@ -1737,7 +1737,7 @@ end;{TFreeSubdivisionSurface.Clear}
 
 procedure TFreeSubdivisionSurface.ClearFaces;
 var
-  I: integer;
+  I,j: integer;
 begin
   if Assigned(FControlFaces) then
     for I := 0 to NumberOfControlFaces - 1 do
@@ -1751,7 +1751,11 @@ begin
   if Assigned(FPoints) then
   begin
     for I := 0 to FPoints.Count - 1 do
+      begin
+      if Point[I].Id=1 then
+         j:=0;
       Point[I].Free;
+      end;
     FPoints.Clear;
   end;
   if Assigned(FControlFaces) then
@@ -4076,6 +4080,7 @@ var
   NewEdge:TFreeSubdivisionEdge;
   NewCEdge:TFreeSubdivisionControlEdge;
   tmpFaces: TFasterListTFreeSubdivisionFace;
+  P1,P2,P3:TFreeSubdivisionPoint;
 begin
   if FIsBuilding then exit; // no double entries
   FIsBuilding:=true;
@@ -4083,8 +4088,7 @@ begin
 
   // moved here from SetBuild
   ClearFaces;
-  for I := 1 to NumberofControlCurves do
-      ControlCurve[I - 1].Build := False;
+
   FCurrentSubdivisionLevel := 0;
   Setlength(FGausCurvature, 0);
   FMinGaussCurvature := 0.0;
@@ -4096,22 +4100,28 @@ begin
   if not FInitialized then
     Initialize(1, 1, 1);
 
-  //if not self.CheckIntegrity
-  //  then ShowMessage('Before build Model integrity corruption');
+  if (self.NumberOfControlFaces = 0) then
+  for I := 0 to NumberOfControlCurves - 1 do
+  begin
+    Curve := ControlCurve[I];
+    Curve.Rebuild;
+  end;
 
-  if self.NumberOfControlFaces > 0 then
+  if (self.NumberOfControlFaces > 0) then
   begin
     for I := 0 to NumberOfControlCurves - 1 do
     begin
       Curve := ControlCurve[I];
       if FCurrentSubdivisionLevel = 0 then
       begin
-        Curve.FBuild := False;
-        Curve.FSubdividedPoints.Clear;
-        Curve.FSubdividedPoints.AddList(TFasterList(Curve.FControlPoints));
+        Curve.Built := False;
+        Curve.SubdividedPoints.Clear;
+        Curve.SubdividedPoints.AddList(TFasterList(Curve.FControlPoints));
       end;
     end;
-    //FBuilt := True;
+
+    if not self.CheckIntegrity
+      then ShowMessage('Before build Model integrity corruption');
 
     while (FCurrentSubdivisionLevel < FDesiredSubdivisionlevel) and
       (FControlFaces.Count > 0) do
@@ -4122,17 +4132,6 @@ begin
       //if not self.CheckIntegrity
         //then ShowMessage('After Subdivide Model integrity corruption');
     end;
-
-    {//cleanup
-    for I := 0 to FControlFaces.Count-1 do
-    begin
-      for J := FControlFaces[I].FEdges.Count-1 downto 0 do
-        begin
-        Edge1:= FControlFaces[I].FEdges[J];
-        if FControlFaces[I].FEdges[J] = nil
-          then FControlFaces[I].FEdges.Delete(J);
-        end;
-    end;}
 
     //if not self.CheckIntegrity
     //  then ShowMessage('After Subdivide Model integrity corruption');
@@ -4156,7 +4155,7 @@ begin
     begin
       Curve := ControlCurve[I];
       Curve.Spline.Clear;
-      Curve.Build := False;
+      Curve.Built := False;
       Curve.Spline.Capacity := Curve.SubdividedPoints.Count;
       for J := 0 to Curve.SubdividedPoints.Count - 1 do
       begin
@@ -4168,10 +4167,11 @@ begin
             Curve.Spline.Knuckle[J] := True
           else
           begin
-            Edge1 := EdgeExists(Curve.SubdividedPoints[J - 1],
-              Curve.SubdividedPoints[J]);
-            Edge2 := EdgeExists(Curve.SubdividedPoints[J],
-              Curve.SubdividedPoints[J + 1]);
+            P1:=Curve.SubdividedPoints[J - 1];
+            P2:=Curve.SubdividedPoints[J];
+            P3:=Curve.SubdividedPoints[J + 1];
+            Edge1 := EdgeExists(P1,P2);
+            Edge2 := EdgeExists(P2,P3);
             if (Edge1 = nil) or (Edge2 = nil) then
             begin
               x:=0;
@@ -4182,7 +4182,7 @@ begin
           end;
         end;
       end;
-      Curve.Build := True;
+      Curve.Built := True;
     end;
   end
   else if NumberOfControlPoints > 0 then

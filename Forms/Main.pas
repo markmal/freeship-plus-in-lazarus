@@ -1409,15 +1409,19 @@ begin
    ShowFreeObjects.Checked:=FreeShip.Visibility.ShowFreeObjects;
 
    // Show interior edges
-   ShowInteriorEdges.Enabled:=FreeShip.Surface.NumberOfControlFaces>0;
+   ShowInteriorEdges.Enabled:=FreeShip.Surface.NumberOfControlFaces
+                             +FreeShip.NumberofControlcurves > 0;
    ShowInteriorEdges.Checked:=FreeShip.Visibility.ShowInteriorEdges;
    // Show both sides
    BothSides.Checked:=Freeship.Visibility.ModelView=mvBoth;
    BothSides.Enabled:=FreeShip.Surface.NumberOfControlFaces>0;
    // Delete
-   Delete.Enabled:=Freeship.NumberOfSelectedControlPoints+FreeShip.NumberOfSelectedControlEdges+
-                   Freeship.NumberOfSelectedControlFaces+Freeship.NumberOfSelectedControlCurves+
-                   Freeship.NumberOfSelectedFlowLines+Freeship.NumberOfselectedMarkers>0;
+   Delete.Enabled := Freeship.NumberOfSelectedControlPoints
+                    +FreeShip.NumberOfSelectedControlEdges
+                    +Freeship.NumberOfSelectedControlFaces
+                    +Freeship.NumberOfSelectedControlCurves
+                    +Freeship.NumberOfSelectedFlowLines
+                    +Freeship.NumberOfselectedMarkers > 0;
    // Window menu actions
    TileWindow.Enabled:=MDIChildCount>0;
    CascadeWindow.Enabled:=MDIChildCount>0;

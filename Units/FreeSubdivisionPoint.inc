@@ -530,9 +530,9 @@ begin
   FVertexType := svRegular;
 end;{TFreeSubdivisionPoint.Clear}
 
-constructor TFreeSubdivisionPoint.Create(Owner: TFreeSubdivisionSurface);
+constructor TFreeSubdivisionPoint.Create(aSurface: TFreeSubdivisionSurface);
 begin
-  inherited Create(Owner);
+  inherited Create(aSurface);
   FFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
   FEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
   Clear;

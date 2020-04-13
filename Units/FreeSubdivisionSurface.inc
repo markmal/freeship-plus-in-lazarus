@@ -1687,30 +1687,38 @@ var
   Layer: TFreeSubdivisionLayer;
 begin
   inherited Clear;
-  for I := 1 to FControlPoints.Count do
-    ControlPoint[I - 1].Free;
-  FControlPoints.Clear;
   for I := 0 to FControlPointGroups.Count-1 do
     FControlPointGroups[I].Free;
   FControlPointGroups.Clear;
+  FControlPointGroups.IsSorted:=false;
   for I := 1 to NumberOfControlFaces do
     ControlFace[I - 1].Free;
   FControlFaces.Clear;
+  FControlFaces.IsSorted:=false;
   for I := 1 to NumberOfControlEdges do
     ControlEdge[I - 1].Free;
   FControlEdges.Clear;
+  FControlEdges.IsSorted:=false;
   for I := 1 to NumberOfControlCurves do
     ControlCurve[I - 1].Free;
   FControlCurves.Clear;
+  FControlCurves.IsSorted:=false;
+  for I := 1 to FControlPoints.Count do
+    ControlPoint[I - 1].Free;
+  FControlPoints.Clear;
+  FControlPoints.IsSorted:=false;
   for I := 1 to FPoints.Count do
     Point[I - 1].Free;
   FPoints.Clear;
+  FPoints.IsSorted:=false;
   for I := 1 to FEdges.Count do
     Edge[I - 1].Free;
   FEdges.Clear;
+  FEdges.IsSorted:=false;
   for i := 1 to NumberOfLayers do
     self.Layer[I - 1].Free;
   FLayers.Clear;
+  FLayers.IsSorted:=false;
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
   FLastusedLayerID := -1;
@@ -4100,13 +4108,6 @@ begin
   if not FInitialized then
     Initialize(1, 1, 1);
 
-  if (self.NumberOfControlFaces = 0) then
-  for I := 0 to NumberOfControlCurves - 1 do
-  begin
-    Curve := ControlCurve[I];
-    Curve.Rebuild;
-  end;
-
   if (self.NumberOfControlFaces > 0) then
   begin
     for I := 0 to NumberOfControlCurves - 1 do
@@ -4152,38 +4153,12 @@ begin
     end;
 
     for I := 0 to NumberOfControlCurves - 1 do
-    begin
-      Curve := ControlCurve[I];
-      Curve.Spline.Clear;
-      Curve.Built := False;
-      Curve.Spline.Capacity := Curve.SubdividedPoints.Count;
-      for J := 0 to Curve.SubdividedPoints.Count - 1 do
+      if not ControlCurve[I].IsFreeStanding then
       begin
-        Point := Curve.SubdividedPoints[J];
-        Curve.Spline.Add(Point.Coordinate);
-        if (J > 0) and (J < Curve.SubdividedPoints.Count - 1) then
-        begin
-          if Point.VertexType = svCorner then
-            Curve.Spline.Knuckle[J] := True
-          else
-          begin
-            P1:=Curve.SubdividedPoints[J - 1];
-            P2:=Curve.SubdividedPoints[J];
-            P3:=Curve.SubdividedPoints[J + 1];
-            Edge1 := EdgeExists(P1,P2);
-            Edge2 := EdgeExists(P2,P3);
-            if (Edge1 = nil) or (Edge2 = nil) then
-            begin
-              x:=0;
-              //if (Edge1.Crease=False) and (Edge2.Crease=False) then Curve.FSpline.Knuckle[J-1]:=Point.VertexType=svCrease;
-            end
-            else if (Edge1.Crease = False) and (Edge2.Crease = False) then
-              Curve.Spline.Knuckle[J] := Point.VertexType = svCrease;
-          end;
-        end;
+        Curve := ControlCurve[I];
+        Curve.Rebuild;
       end;
-      Curve.Built := True;
-    end;
+
   end
   else if NumberOfControlPoints > 0 then
   begin
@@ -4204,6 +4179,13 @@ begin
     FMax.X := 1.0;
     FMax.Y := 1.0;
     FMax.Z := 1.0;
+  end;
+
+  for I := 0 to NumberOfControlCurves - 1 do
+  if ControlCurve[I].IsFreeStanding then
+  begin
+    Curve := ControlCurve[I];
+    Curve.RebuildFreeStanding;
   end;
 
   if not self.CheckIntegrity

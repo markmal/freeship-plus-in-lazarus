@@ -995,10 +995,8 @@ type
       var Output: TFreeIntersectionData): boolean;
     procedure InvertDirection;
     // invert the direction of the controlpoints and knuckles
-    procedure LoadBinary(Source: TFreeFileBuffer);
-      virtual;
-    procedure Rebuild;
-      override;
+    procedure LoadBinary(Source: TFreeFileBuffer); virtual;
+    procedure Rebuild; override;
     procedure SaveBinary(Destination: TFreeFileBuffer);
       virtual;
     procedure SaveToDXF(Strings: TStringList;
@@ -1122,26 +1120,25 @@ type
     FSubdividedPoints: TFasterListTFreeSubdivisionPoint;
     FSpline: TFreeSpline;
     FBuilt: boolean;
+    procedure AveragePoint(PrevPoint, Point, NextPoint: TFreeSubdivisionPoint);
     function GetColor: TColor;
     function GetNumberOfControlPoints: integer;
     function GetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function GetSelected: boolean;
     function GetVisible: boolean;
-    procedure Rebuild;
     procedure SetBuilt(Val: boolean);
     procedure SetSelected(val: boolean);
+    procedure SubdivideFreeStanding(level: integer);
   public
     procedure AddPoint(P: TFreeSubdivisionControlPoint);
     procedure DeletePoint(P: TFreeSubdivisionControlPoint);
     function CheckIntegrity: boolean;
     procedure Clear;
-    constructor Create(Owner: TFreeSubdivisionSurface);
-      override;
+    constructor Create(aSurface: TFreeSubdivisionSurface); override;
     procedure Delete;
     procedure DeleteEdge(
       Edge: TFreeSubdivisionControlEdge);
-    destructor Destroy;
-      override;
+    destructor Destroy; override;
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer;
     procedure Draw(Viewport: TFreeViewport);
@@ -1149,7 +1146,10 @@ type
       P1, P2, New: TFreeSubdivisionControlPoint);
     procedure InsertEdgePoint(
       P1, P2, New: TFreeSubdivisionPoint);
+    function IsFreeStanding:boolean;
     procedure LoadBinary(Source: TFreeFileBuffer);
+    procedure Rebuild;
+    procedure RebuildFreeStanding;
     procedure ReplaceVertexPoint(Old, New: TFreeSubdivisionPoint);
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToDXF(Strings: TStringList);
@@ -1328,7 +1328,7 @@ type
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
     function CheckIntegrity: boolean;
     procedure Clear;
-    constructor Create(Owner: TFreeSubdivisionSurface);override;
+    constructor Create(aSurface: TFreeSubdivisionSurface);override;
     procedure Delete; virtual;
     procedure UnreferenceEdge(Edge: TFreeSubdivisionEdge);
     procedure UnreferenceFace(Face: TFreeSubdivisionFace);

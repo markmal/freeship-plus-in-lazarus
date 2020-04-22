@@ -260,6 +260,7 @@ procedure TFreeSubdivisionFace.PrintDebug;
 var i:integer;
 begin
   inherited;
+  Logger.Debug(Format(' SubdivisionLevel:%d',[SubdivisionLevel]));
   for i:=0 to FPoints.Count-1 do
     Logger.Debug(Format(' point[%d]:%d %s',[i,FPoints[i].Id, FPoints[i].Name]));
 end;

@@ -461,7 +461,7 @@ begin
         //TFreeShip(FreeShip).Edit.CreateUndoObject(rsPointMove,True);
         //P.X:=P.X+TFreeShip(FreeShip).Visibility.CursorIncrement;
         ActiveControlPoint.SetCoordinate(nil, P, nil);
-        TFreeShip(FreeShip).Build:=False;
+        TFreeShip(FreeShip).Built:=False;
         TFreeShip(FreeShip).FileChanged:=True;
         TFreeShip(FreeShip).Redraw;
         //ActiveControlPoint:=ActiveControlPoint; }
@@ -485,7 +485,7 @@ begin
         //P.Y:=P.Y+TFreeShip(FreeShip).Visibility.CursorIncrement;
         P.Y:=EditY.Value;
         ActiveControlPoint.SetCoordinate(nil, P, nil);
-        TFreeShip(FreeShip).Build:=False;
+        TFreeShip(FreeShip).Built:=False;
         TFreeShip(FreeShip).FileChanged:=True;
         TFreeShip(FreeShip).Redraw;
         ///ActiveControlPoint:=ActiveControlPoint;
@@ -509,7 +509,7 @@ begin
         //P.Z:=P.Z+TFreeShip(FreeShip).Visibility.CursorIncrement;
         P.Z:=EditZ.Value;
         ActiveControlPoint.SetCoordinate(nil, P, nil);
-        TFreeShip(FreeShip).Build:=False;
+        TFreeShip(FreeShip).Built:=False;
         TFreeShip(FreeShip).FileChanged:=True;
         TFreeShip(FreeShip).Redraw;
         //ActiveControlPoint:=ActiveControlPoint;
@@ -571,7 +571,7 @@ begin
          }
          if saved then
          begin
-            TFreeShip(FreeShip).Build:=False;
+            TFreeShip(FreeShip).Built:=False;
             TFreeShip(FreeShip).FileChanged:=True;
             TFreeShip(FreeShip).Redraw;
             ActiveControlPoint:=ActiveControlPoint;
@@ -686,7 +686,7 @@ begin
 
          if saved then
          begin
-            TFreeShip(FreeShip).Build:=False;
+            TFreeShip(FreeShip).Built:=False;
             TFreeShip(FreeShip).FileChanged:=True;
             TFreeShip(FreeShip).Redraw;
             ActiveControlPoint:=ActiveControlPoint;
@@ -749,7 +749,7 @@ begin
 
          if saved then
          begin
-            TFreeShip(FreeShip).Build:=False;
+            TFreeShip(FreeShip).Built:=False;
             TFreeShip(FreeShip).FileChanged:=True;
             TFreeShip(FreeShip).Redraw;
             ActiveControlPoint:=ActiveControlPoint;
@@ -922,7 +922,7 @@ begin
 
      if saved then
        begin
-          TFreeShip(FreeShip).Build:=False;
+          TFreeShip(FreeShip).Built:=False;
           TFreeShip(FreeShip).FileChanged:=True;
           TFreeShip(FreeShip).Redraw;
           ActiveControlPoint:=ActiveControlPoint;
@@ -967,7 +967,7 @@ begin
       if ActiveControlPoint.VertexType<>OldType then
       begin
          Undo.Accept;
-         TFreeShip(FreeShip).Build:=False;
+         TFreeShip(FreeShip).Built:=False;
          TFreeShip(FreeShip).FileChanged:=True;
          TFreeShip(FreeShip).Redraw;
          ActiveControlPoint:=ActiveControlPoint;
@@ -1007,7 +1007,7 @@ begin
       P:=ActiveControlPoint.Coordinate;
       P.X:=P.X+TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).Built:=False;
       TFreeShip(FreeShip).FileChanged:=True;
       TFreeShip(FreeShip).Redraw;
       ActiveControlPoint:=ActiveControlPoint;
@@ -1023,7 +1023,7 @@ begin
       P:=ActiveControlPoint.Coordinate;
       P.X:=P.X-TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).Built:=False;
       TFreeShip(FreeShip).FileChanged:=True;
       TFreeShip(FreeShip).Redraw;
       ActiveControlPoint:=ActiveControlPoint;
@@ -1039,7 +1039,7 @@ begin
       P:=ActiveControlPoint.Coordinate;
       P.Y:=P.Y+TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).Built:=False;
       TFreeShip(FreeShip).FileChanged:=True;
       TFreeShip(FreeShip).Redraw;
       ActiveControlPoint:=ActiveControlPoint;
@@ -1055,7 +1055,7 @@ begin
       P:=ActiveControlPoint.Coordinate;
       P.Y:=P.Y-TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).Built:=False;
       TFreeShip(FreeShip).FileChanged:=True;
       TFreeShip(FreeShip).Redraw;
       ActiveControlPoint:=ActiveControlPoint;
@@ -1071,7 +1071,7 @@ begin
       P:=ActiveControlPoint.Coordinate;
       P.Z:=P.Z+TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).Built:=False;
       TFreeShip(FreeShip).FileChanged:=True;
       TFreeShip(FreeShip).Redraw;
       ActiveControlPoint:=ActiveControlPoint;
@@ -1087,7 +1087,7 @@ begin
       P:=ActiveControlPoint.Coordinate;
       P.Z:=P.Z-TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
-      TFreeShip(FreeShip).Build:=False;
+      TFreeShip(FreeShip).Built:=False;
       TFreeShip(FreeShip).FileChanged:=True;
       TFreeShip(FreeShip).Redraw;
       ActiveControlPoint:=ActiveControlPoint;

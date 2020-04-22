@@ -638,7 +638,7 @@ begin
             end;
           end;
           Modified := True;
-          FFreeship.Build := False;
+          FFreeship.Built := False;
           if UpdateWindows then
             FFreeship.Redraw;
           Inc(Iteration);

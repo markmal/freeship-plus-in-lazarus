@@ -1222,7 +1222,8 @@ begin
   if (not (csDestroying in ComponentState)) and
     (not (csLoading in ComponentState)) and
     (not (csReading in ComponentState)) and
-    (not (csWriting in ComponentState)) and (Parent <> nil) then
+    (not (csWriting in ComponentState))
+    and (Parent <> nil) then
   begin
     // See if the contents is drawn to the printer
     if ViewportMode <> vmWireframe then

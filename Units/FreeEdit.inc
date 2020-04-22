@@ -270,9 +270,11 @@ begin
               Edge.Curve := Curve;
           end;
         end;
+        Freeship.Built:=false;
       end;
       Points.Destroy;
     end;
+    Freeship.RebuildModel;
     for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
     begin
       Edge := FreeShip.SelectedControlEdge[I - 1];
@@ -282,7 +284,7 @@ begin
     if FreeShip.Visibility.ShowControlCurves = False then
       FreeShip.Visibility.ShowControlCurves := True
     else
-      FreeShip.Redraw;
+      Freeship.RebuildModel;
     FreeShip.FileChanged := True;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
@@ -326,8 +328,8 @@ begin
   if N > 0 then
   begin
     vUndo.Accept;
-    FreeShip.Build := False;
-    FreeShip.Redraw;
+    FreeShip.Built := False;
+    Freeship.RebuildModel;
     FreeShip.FileChanged := True;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
@@ -354,8 +356,8 @@ begin
   begin
     vUndo.Accept;
     FreeShip.FileChanged := True;
-    FreeShip.Build := False;
-    FreeShip.Redraw;
+    FreeShip.Built := False;
+    Freeship.RebuildModel;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
   end
@@ -372,8 +374,8 @@ begin
   for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
     FreeShip.SelectedControlEdge[I - 1].Crease :=
       not FreeShip.SelectedControlEdge[I - 1].Crease;
-  FreeShip.Build := False;
-  FreeShip.Redraw;
+  FreeShip.Built := False;
+  Freeship.RebuildModel;
   FreeShip.FileChanged := True;
 end;{TFreeEdit.Edge_Crease}
 
@@ -422,9 +424,9 @@ begin
       end;
 
       vUndo.Accept;
-      FreeShip.Build := False;
+      FreeShip.Built := False;
       FreeShip.FileChanged := True;
-      FreeShip.Redraw;
+      Freeship.RebuildModel;
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
     end
@@ -466,8 +468,8 @@ begin
     for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
     begin
       Edge := FreeShip.Surface.SelectedControlEdge[I - 1];
-      // only boundary edges are allowed!!
-      if Edge.NumberOfFaces = 1 then
+      // only boundary and freestanding edges are allowed!!
+      if Edge.NumberOfFaces <= 1 then
         Edges.Add(Edge);
       Edge.Selected := False;
     end;
@@ -481,9 +483,9 @@ begin
         Edge.Selected := True;
       end;
       vUndo.Accept;
-      FreeShip.Build := False;
+      FreeShip.Built := False;
       FreeShip.FileChanged := True;
-      FreeShip.Redraw;
+      Freeship.RebuildModel;
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
     end
@@ -527,9 +529,9 @@ begin
   if N > 0 then
   begin
     vUndo.Accept;
-    FreeShip.Build := False;
+    FreeShip.Built := False;
     FreeShip.FileChanged := True;
-    FreeShip.Redraw;
+    Freeship.RebuildModel;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
   end
@@ -569,7 +571,7 @@ begin
         end;
     end;
     Layer_DeleteEmpty(True);
-    FreeShip.Redraw;
+    Freeship.RebuildModel;
     ShowMessage('Assembled ' + IntToStr(NAssembled) + ' patches');
   end;
   Layers.Destroy;
@@ -635,8 +637,8 @@ begin
       MessageDlg(Str, mtInformation, [mbOK], 0);
       vUndo.Accept;
       FreeShip.FileChanged := True;
-      FreeShip.Build := False;
-      FreeShip.Redraw;
+      FreeShip.Built := False;
+      Freeship.RebuildModel;
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
     end
@@ -658,9 +660,9 @@ begin
   CreateUndoObject(Userstring(83), True);
   for I := 1 to FreeShip.NumberOfSelectedControlFaces do
     FreeShip.SelectedControlFace[I - 1].FlipNormal;
-  FreeShip.Build := False;
+  FreeShip.Built := False;
   FreeShip.FileChanged := True;
-  FreeShip.Redraw;
+  Freeship.RebuildModel;
 end;{TFreeEdit.Face_Flip}
 
 // Mirrors all selected faces in a 3D plane
@@ -689,7 +691,7 @@ begin
     begin
       for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
         FreeShip.SelectedControlFace[I - 1].Selected := False;
-      FreeShip.Redraw;
+      Freeship.RebuildModel;
     end;
     SelectDlg.Destroy;
   end
@@ -812,7 +814,7 @@ begin
         for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
           FreeShip.SelectedControlFace[I - 1].Selected := False;
       finally
-        FreeShip.Build := False;
+        FreeShip.Built := False;
         FreeShip.Draw;
         if Assigned(FreeShip.OnUpdateGeometryInfo) then
           FreeShip.OnUpdateGeometryInfo(self);
@@ -902,8 +904,8 @@ begin
                     RotateVector(Marker.Point[J - 1], SinX, CosX,
                     SinY, CosY, SinZ, CosZ);
               end;
-          FreeShip.Build := False;
-          FreeShip.Redraw;
+          FreeShip.Built := False;
+          Freeship.RebuildModel;
         finally
           // Refresh controlpoint data
           if Points.SortedIndexOf(FreeShip.ActiveControlPoint) <> -1 then
@@ -957,7 +959,7 @@ begin
         for J := 1 to FreeShip.Surface.NumberOfControlPoints do
           if FreeShip.Surface.ControlPoint[J - 1].Visible then
             FreeShip.Surface.ControlPoint[J - 1].Selected := True;
-    FreeShip.Redraw;
+    Freeship.RebuildModel;
   end;
 
   FreeShip.Surface.ExtractPointsFromSelection(Points, NLocked);
@@ -1006,8 +1008,8 @@ begin
                     RotateVector(Marker.Point[J - 1], SinX, CosX,
                     SinY, CosY, SinZ, CosZ);
               end;
-          FreeShip.Build := False;
-          FreeShip.Redraw;
+          FreeShip.Built := False;
+          Freeship.RebuildModel;
         finally
           // Refresh controlpoint data
           if Points.SortedIndexOf(FreeShip.ActiveControlPoint) <> -1 then
@@ -1112,8 +1114,8 @@ begin
                 Point.Coordinate := NewP;
               end;
             end;
-            FreeShip.Build := False;
-            FreeShip.Redraw;
+            FreeShip.Built := False;
+            Freeship.RebuildModel;
           end;
         finally
           // Refresh controlpoint data
@@ -1242,8 +1244,8 @@ begin
                 end;
               end;
           end;
-          FreeShip.Build := False;
-          FreeShip.Redraw;
+          FreeShip.Built := False;
+          Freeship.RebuildModel;
         finally
           // Refresh controlpoint data
           if Points.SortedIndexOf(FreeShip.ActiveControlPoint) <> -1 then
@@ -1297,9 +1299,10 @@ begin
     if Face <> nil then
     begin
       vUndo.Accept;
-      FreeShip.Build := False;
+      FreeShip.Built := False;
+      FreeShip.RebuildModel;
       FreeShip.FileChanged := True;
-      FreeShip.Redraw;
+      Freeship.RebuildModel;
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
     end
@@ -1552,9 +1555,9 @@ begin
          }
       //         MessageDlg(FloatToStrF(FreeShip.Surface.NumberOfControlPoints,ffFixed,6,0),mtError,[mbOk],0);
       //         MessageDlg(FloatToStrF(FreeShip.Surface.NumberOfPoints,ffFixed,6,0),mtError,[mbOk],0);
-      for I := 1 to FreeShip.Surface.NumberOfPoints do
+      for I := 1 to FreeShip.Surface.NumberOfSubDivPoints do
       begin
-        Point := FreeShip.Surface.Point[I - 1];
+        Point := FreeShip.Surface.SubDivPoint[I - 1];
         Writeln(FFile, MakeLength(Point.Coordinate.X, 6, 12), #32,
           MakeLength(Point.Coordinate.Y, 6, 12), #32,
           MakeLength(Point.Coordinate.Z, 6, 12));
@@ -2373,7 +2376,7 @@ begin
       SelectDlg.ExtractSelectedFaces(Faces);
     for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
       FreeShip.SelectedControlFace[I - 1].Selected := False;
-    FreeShip.Redraw;
+    Freeship.ReDraw;
     SelectDlg.Destroy;
   end
   else
@@ -3466,7 +3469,7 @@ begin
       if not FreeShip.Surface.Built then
         FreeShip.Surface.Rebuild;
       Screen.Cursor := Prev;
-      FreeShip.Redraw;
+      Freeship.ReDraw;
     end;
   end;
   Dialog.Destroy;
@@ -4376,7 +4379,7 @@ begin
     Strings.Destroy;
     FreeShip.FileName := Opendialog.FileName;
     FreeShip.ModelIsLoaded := True;
-    FreeShip.Build := False;
+    FreeShip.Built := False;
     FreeShip.RebuildModel;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
@@ -4734,7 +4737,7 @@ begin
           if Assigned(FreeShip.Surface.OnChangeLayerData) then
             FreeShip.Surface.OnChangeLayerData(FreeShip.Surface);
           vUndo.Accept;
-          FreeShip.Build := False;
+          FreeShip.Built := False;
           FreeShip.Draw;
           FreeShip.FileChanged := True;
           if assigned(FreeShip.OnUpdateGeometryInfo) then
@@ -5713,7 +5716,7 @@ begin
   begin
     FreeShip.FileChanged := True;
     vUndo.Accept;
-    FreeShip.Redraw;
+    Freeship.RebuildModel;
   end
   else
   begin
@@ -5843,7 +5846,7 @@ begin
       CPoints.Free;
       end;
 
-    FreeShip.Redraw;
+    Freeship.RebuildModel;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Geometry_AddCylinder}
@@ -5909,7 +5912,7 @@ begin
 
     FreeShip.Surface.ImportControlPointGrid(Grid, Cols, Rows, Layer);
 
-    FreeShip.Redraw;
+    Freeship.RebuildModel;
   end;
   Dialog.Destroy;
 end;{TFreeEdit.Geometry_AddGridPanel}
@@ -6594,7 +6597,7 @@ begin
       end;
     end;
     FreeShip.ModelIsLoaded := True;
-    FreeShip.Build := False;
+    FreeShip.Built := False;
     FreeShip.Precision := fpMedium;
     FreeShip.Draw;
   end;
@@ -6646,7 +6649,7 @@ begin
   Dialog.Execute(FreeShip);
   FreeShip.FDesignHydrostatics.Calculated := False;
   if FreeShip.Visibility.ShowHydrostaticData then
-    FreeShip.Redraw;
+    Freeship.ReDraw;
 end;{TFreeEdit.Intersection_Dialog}
 
 // All connected patches surrounded by crease edges are grouped together into a new layer
@@ -6775,7 +6778,7 @@ begin
       FreeShip.ActiveLayer := FreeShip.Layer[FreeShip.NumberOfLayers - 1];
       // Delete empty layers
       Layer_DeleteEmpty(True);
-      FreeShip.Redraw;
+      Freeship.ReDraw;
       FreeShip.FileChanged := True;
     end;
   finally
@@ -6950,7 +6953,7 @@ var
         FreeShip.Viewport[I - 1].ZoomExtents
       else
         FreeShip.Viewport[I - 1].Refresh;
-    FreeShip.Redraw;
+    Freeship.RebuildModel;
   end;{import}
 
 begin
@@ -7363,8 +7366,8 @@ begin
     if (Changed) or (Inconsistent > 0) or (NonManifold > 0) or (DblEdges > 0) then
     begin
       vUndo.Accept;
-      FreeShip.Build := False;
-      FreeShip.Redraw;
+      FreeShip.Built := False;
+      Freeship.RebuildModel;
       FreeShip.FileChanged := True;
       if ShowResult then
       begin
@@ -7583,7 +7586,7 @@ begin
     if StemPoint <> nil then
       if StemPoint.VertexType = svCorner then
         stempoint.VertexType := svCrease;
-    FreeShip.Build := False;
+    FreeShip.Built := False;
 
     // Add 21 stations
     for I := 0 to 20 do
@@ -7900,7 +7903,7 @@ begin
   end;
 
   // Initialize all other data
-  FreeShip.Build := False;
+  FreeShip.Built := False;
   // Redraw
   FreeShip.FileChanged := True;
   FreeShip.Draw;
@@ -7927,8 +7930,8 @@ begin
   if N > 0 then
   begin
     vUndo.Accept;
-    FreeShip.Build := False;
-    FreeShip.Redraw;
+    FreeShip.Built := False;
+    Freeship.RebuildModel;
     FreeShip.FileChanged := True;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
@@ -7958,8 +7961,8 @@ begin
   if N > 0 then
   begin
     vUndo.Accept;
-    FreeShip.Build := False;
-    FreeShip.Redraw;
+    FreeShip.Built := False;
+    Freeship.RebuildModel;
     FreeShip.FileChanged := True;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
@@ -7991,8 +7994,8 @@ begin
     begin
       vUndo.Accept;
       FreeShip.FileChanged := True;
-      FreeShip.Build := False;
-      FreeShip.Redraw;
+      FreeShip.Built := False;
+      Freeship.RebuildModel;
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
     end
@@ -8026,8 +8029,8 @@ begin
         begin
           vUndo.Accept;
           FreeShip.FileChanged := True;
-          FreeShip.Build := False;
-          FreeShip.Redraw;
+          FreeShip.Built := False;
+          Freeship.RebuildModel;
           if Assigned(FreeShip.OnUpdateGeometryInfo) then
             FreeShip.OnUpdateGeometryInfo(self);
         end
@@ -8055,7 +8058,7 @@ begin
     for I := 1 to FreeShip.NumberOfSelectedControlPoints do
       FreeShip.SelectedControlPoint[I - 1].Locked := True;
     FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
-    FreeShip.Redraw;
+    Freeship.ReDraw;
     FreeShip.FileChanged := True;
   end;
 end;{TFreeEdit.Point_Lock}
@@ -8071,7 +8074,7 @@ begin
     for I := 1 to FreeShip.NumberOfSelectedControlPoints do
       FreeShip.SelectedControlPoint[I - 1].Locked := False;
     FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
-    FreeShip.Redraw;
+    Freeship.ReDraw;
     FreeShip.FileChanged := True;
   end;
 end;{TFreeEdit.Point_Unlock}
@@ -8088,7 +8091,7 @@ begin
     for I := 1 to FreeShip.Surface.NumberOfControlPoints do
       FreeShip.Surface.ControlPoint[I - 1].Locked := False;
     FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
-    FreeShip.Redraw;
+    Freeship.ReDraw;
     MessageDlg(IntToStr(N) + #32 + Userstring(170) + '.', mtInformation, [mbOK], 0);
     FreeShip.FileChanged := True;
   end;
@@ -9531,7 +9534,7 @@ begin
   FreeShip.ActiveControlPoint := Result;
   FreeShip.Surface.SelectedControlPoints.Add(Result);
   FreeShip.FileChanged := True;
-  FreeShip.Redraw;
+  Freeship.ReDraw; // we do not rebuild model because no impact on subdivision yet
   if Assigned(FreeShip.OnUpdateGeometryInfo) then
     FreeShip.OnUpdateGeometryInfo(self);
 end;{TFreeEdit.Point_New}
@@ -9544,8 +9547,9 @@ begin
   Result.Coordinate := coord;
   FreeShip.ActiveControlPoint := Result;
   FreeShip.Surface.SelectedControlPoints.Add(Result);
-  FreeShip.FileChanged := True;
-  FreeShip.Redraw;
+  FreeShip.FileChanged := true;
+  FreeShip.Surface.Changed:=true;
+  Freeship.ReDraw;
   if Assigned(FreeShip.OnUpdateGeometryInfo) then
     FreeShip.OnUpdateGeometryInfo(self);
 end;{TFreeEdit.Point_New}
@@ -9586,7 +9590,7 @@ begin
       begin
         vUndo.Accept;
         FreeShip.FileChanged := True;
-        FreeShip.Redraw;
+        Freeship.RebuildModel;
       end
       else
         vUndo.Delete;
@@ -9642,7 +9646,7 @@ begin
       begin
         vUndo.Accept;
         FreeShip.FileChanged := True;
-        FreeShip.Redraw;
+        Freeship.RebuildModel;
       end
       else
         vUndo.Delete;
@@ -9702,7 +9706,7 @@ begin
       begin
         vUndo.Accept;
         FreeShip.FileChanged := True;
-        FreeShip.Redraw;
+        Freeship.RebuildModel;
       end
       else
         vUndo.Delete;
@@ -9752,7 +9756,7 @@ begin
       begin
         vUndo.Accept;
         FreeShip.FileChanged := True;
-        FreeShip.Redraw;
+        Freeship.RebuildModel;
       end
       else
         vUndo.Delete;
@@ -9770,7 +9774,7 @@ begin
   FreeShip.ActiveControlPoint := nil;
   FreeShip.FSelectedFlowlines.Clear;
   FreeShip.FSelectedMarkers.Clear;
-  FreeShip.Redraw;
+  Freeship.ReDraw;
 end;{TFreeEdit.Selection_Clear}
 
 procedure TFreeEdit.Selection_Delete;
@@ -9791,9 +9795,9 @@ begin
         FreeShip.SelectedMarker[I - 1].Delete;
       FreeShip.Surface.Selection_Delete;
       FreeShip.ActiveControlPoint := nil;
-      FreeShip.Build := False;
       FreeShip.FileChanged := True;
-      FreeShip.Redraw;
+      FreeShip.Built := False;
+      //Freeship.ReDraw;
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
     end;
@@ -9823,7 +9827,7 @@ begin
   for I := 1 to FreeShip.NumberofFlowlines do
     if FreeShip.Flowline[I - 1].Visible then
       FreeShip.Flowline[I - 1].Selected := True;
-  FreeShip.Redraw;
+  Freeship.ReDraw;
 end;{TFreeEdit.Selection_SelectAll}
 
 // Select all control points
@@ -9838,7 +9842,7 @@ begin
   for I := 1 to FreeShip.Surface.NumberOfControlPoints do
     if FreeShip.Surface.ControlPoint[I - 1].Visible then
       FreeShip.Surface.ControlPoint[I - 1].Selected := True;
-  FreeShip.Redraw;
+  Freeship.ReDraw;
 end;{TFreeEdit.Selection_SelectAll}
 
 
@@ -9848,7 +9852,7 @@ var
 begin
   for I := 0 to FreeShip.Surface.NumberOfControlPoints - 1 do
     FreeShip.Surface.ControlPoint[I].Selected := FreeShip.Surface.ControlPoint[I].IsLeak;
-  FreeShip.Redraw;
+  Freeship.ReDraw;
 end;
 
 procedure TFreeEdit.Undo;

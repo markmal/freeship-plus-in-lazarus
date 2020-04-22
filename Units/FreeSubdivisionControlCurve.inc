@@ -34,6 +34,55 @@ begin
   Built := False;
 end;{TFreeSubdivisionControlCurve.AddPoint}
 
+procedure TFreeSubdivisionControlCurve.ClearSubdivision;
+var i:integer; P:TFreeSubdivisionPoint;
+begin
+  FSubdividedPoints.Clear;
+  FSpline.Clear;
+  Built := false;
+end;
+
+procedure TFreeSubdivisionControlCurve.DeleteSubdivision;
+var i,j:integer; P:TFreeSubdivisionPoint;
+  edgesToDel:TFasterListTFreeSubdivisionEdge;
+begin
+  if self.IsFreeStanding then
+  begin
+    edgesToDel:=TFasterListTFreeSubdivisionEdge.Create(true,true);
+    for i:=0 to FSubdividedPoints.Count-1 do
+    begin
+      P:=FSubdividedPoints[i];
+      if not (P is TFreeSubdivisionControlPoint) then
+      begin
+        edgesToDel.AddList(P.Edges);
+        P.Free;
+      end;
+    end;
+    for i:=0 to edgesToDel.Count-1 do
+       edgesToDel[i].Free;
+    edgesToDel.Free;
+  end;
+  ClearSubdivision;
+end;
+
+procedure TFreeSubdivisionControlCurve.RebuildSpline;
+var i:integer; P:TFreeSubdivisionPoint;
+begin
+  FSpline.Clear;
+  FSpline.Capacity:=FSubdividedPoints.Count;
+  for i:=0 to FSubdividedPoints.Count-1 do      // TODO SubdivideFreeStanding
+  begin
+    P:=FSubdividedPoints[i];
+    if P.VertexType =  svCorner then //(svRegular, svCrease, svDart, svCorner)
+      FSpline.AddKnuckle(P.Coordinate)
+    else
+      FSpline.Add(P.Coordinate);
+  end;
+  FSpline.Rebuild;
+  Built := True;
+end;
+
+
 procedure TFreeSubdivisionControlCurve.RebuildFreeStanding;
 var i:integer; P:TFreeSubdivisionPoint;
 begin
@@ -43,7 +92,16 @@ begin
 
   for i:=0 to Surface.DesiredSubdivisionLevel-1 do
     SubdivideFreeStanding(i);
-
+  {
+  for i:=1 to FSubdividedPoints.Count-2 do
+    begin
+    P:=FSubdividedPoints[i];
+    //if P.SubdivisionLevel = Surface.DesiredSubdivisionLevel then
+      LastAveragePoint( FSubdividedPoints[i-1],
+                        P,
+                        FSubdividedPoints[i+1]);
+    end;
+  }
   for i:=0 to FSubdividedPoints.Count-1 do      // TODO SubdivideFreeStanding
   begin
     P:=FSubdividedPoints[i];
@@ -76,6 +134,13 @@ function TFreeSubdivisionControlCurve.GetSelected: boolean;
 begin
   Result := Surface.FSelectedControlCurves.IndexOf(self) <> -1;
 end;{TFreeSubdivisionControlCurve.GetSelected}
+
+procedure TFreeSubdivisionControlCurve.CopySubdividedEdges(const aEdges: TFasterListTFreeSubdivisionEdge);
+var i:integer;
+begin
+  for i:=0 to FSubdividedPoints.Count-1 do
+    aEdges.AddList(FSubdividedPoints[i].Edges);
+end;
 
 function TFreeSubdivisionControlCurve.GetVisible: boolean;
 begin
@@ -379,10 +444,10 @@ var
   iP1, iP2: TFreeSubdivisionPoint;
   p02, p01: TPoint;
 begin
+  if not Surface.Built then exit;
+  if not FBuilt then exit;
   if FSpline.NumberOfPoints = 0 then
     FSpline.Rebuild;
-  if FSpline.NumberOfPoints = 0 then
-    RebuildFreeStanding;
   if FSpline.NumberOfPoints > 1 then
   begin
     FSpline.Color := Color;
@@ -413,6 +478,8 @@ begin
     begin
       for I := 1 to FSubdividedPoints.Count-1 do
       begin
+        if Surface.DesiredSubdivisionLevel=2 then
+          iP1:=nil;     //dbg catch
         iP1 := FSubdividedPoints[I - 1];
         iP2 := FSubdividedPoints[I];
         ViewPort.PenColor:=clGreen;
@@ -579,6 +646,7 @@ var
   Edge: TFreeSubdivisionEdge;
   Sel: boolean;
 begin
+  ClearSubdivision;
   Source.LoadInteger(N);
   FControlPoints.Capacity := N;
   CP1 := nil;
@@ -597,7 +665,7 @@ begin
     end;
     CP1 := CP2;
   end;
-  FSubdividedPoints.AddList(TFasterList(FControlPoints));
+  //FSubdividedPoints.AddList(TFasterList(FControlPoints));
   //TODO copy CPs to Ps
   Source.LoadBoolean(Sel);
   if Sel then
@@ -607,11 +675,13 @@ end;{TFreeSubdivisionControlCurve.LoadBinary}
 procedure TFreeSubdivisionControlCurve.Rebuild;
 var
   i,j,x:integer;
+  CP: TFreeSubdivisionControlPoint;
   Point, P1,P2,P3:TFreeSubdivisionPoint;
   Edge1,Edge2: TFreeSubdivisionEdge;
 begin
   Spline.Clear;
   Built := False;
+
   Spline.Capacity := SubdividedPoints.Count;
   for J := 0 to SubdividedPoints.Count - 1 do
   begin
@@ -638,6 +708,7 @@ begin
       end;
     end;
   end;
+  Spline.Rebuild;
   Built := True;
 end;
 
@@ -676,6 +747,37 @@ begin
   FSpline.Fragments := FSpline.NumberOfPoints;
   FSpline.SaveToDXF(Strings, Layer, Surface.DrawMirror);
 end;{TFreeSubdivisionControlCurve.SaveToDXF}
+
+
+procedure TFreeSubdivisionControlCurve.LastAveragePoint(
+  PrevPoint, Point, NextPoint:TFreeSubdivisionPoint );
+var
+  C:T3DCoordinate;
+begin
+  if Point.Faces.Count>0 then
+  begin
+    //C:=Point.FCoordinate;
+    C:=Point.LastAveraging;
+    if (PrevPoint.Faces.Count = 0) and (NextPoint.Faces.Count = 0) then
+    begin
+      C.X := (PrevPoint.FCoordinate.X + 4.0*C.X + NextPoint.FCoordinate.X)/6.0 ;
+      C.Y := (PrevPoint.FCoordinate.Y + 4.0*C.Y + NextPoint.FCoordinate.Y)/6.0 ;
+      C.Z := (PrevPoint.FCoordinate.Z + 4.0*C.Z + NextPoint.FCoordinate.Z)/6.0 ;
+    end;
+  end
+  else
+  if (Point.VertexType <> svCorner) then
+  begin
+    C:=Point.FCoordinate;
+    C.X := (PrevPoint.FCoordinate.X + 4.0*C.X + NextPoint.FCoordinate.X)/6.0 ;
+    C.Y := (PrevPoint.FCoordinate.Y + 4.0*C.Y + NextPoint.FCoordinate.Y)/6.0 ;
+    C.Z := (PrevPoint.FCoordinate.Z + 4.0*C.Z + NextPoint.FCoordinate.Z)/6.0 ;
+  end
+  else
+    C:=Point.FCoordinate;
+
+  Point.FCoordinate := C;
+end;
 
 procedure TFreeSubdivisionControlCurve.AveragePoint(
   PrevPoint, Point, NextPoint:TFreeSubdivisionPoint );
@@ -727,8 +829,10 @@ end;
 // Subdivides freestanding curves. Curves that have face should be subdivided by surface
 procedure TFreeSubdivisionControlCurve.SubdivideFreeStanding(level:integer);
 var i:integer;
+  V1,V2:TFreeSubdivisionControlPoint;
   P1,P2,CP:TFreeSubdivisionPoint;
   tmpPoints: TFasterListTFreeSubdivisionPoint;
+  E0,E1,E2: TFreeSubdivisionEdge;
 
   function CreateCenterPoint(SP, EP: TFreeSubdivisionPoint): TFreeSubdivisionPoint;
   var Point: T3DCoordinate;
@@ -744,35 +848,124 @@ begin
   if level = 0 then
   begin
     Self.FSubdividedPoints.Clear;
-    for i:=0 to FControlPoints.Count-1 do
+    for i:=1 to FControlPoints.Count-1 do
     begin
-      P1 := FControlPoints[i];
-      CP:=TFreeSubdivisionPoint.Create(Surface);
-      CP.Coordinate := P1.Coordinate;
-      CP.VertexType:=P1.VertexType;
-      if (i=0) or (i=FControlPoints.Count-1) then
-        CP.VertexType:=svCorner;
-      CP.SubdivisionLevel:=level;
-      FSubdividedPoints.Add(CP);
+      V1 := FControlPoints[i-1];
+      V2 := FControlPoints[i];
+      E0 := Surface.EdgeExists(V1,V2);
+
+      // fix crease. free standing edge is always Creased
+      E0.Crease:=true;
+      if (i=1) then // fix vertex type
+        V1.VertexType := svCorner;
+      if (i=FControlPoints.Count-1) then // fix vertex type
+        V2.VertexType := svCorner;
+      if V1.VertexType <> svCorner then V1.VertexType := svCrease;
+      if V2.VertexType <> svCorner then V2.VertexType := svCrease;
+
+      if i=1 then
+      begin
+        P1:=TFreeSubdivisionPoint.Create(Surface);
+        P1.Coordinate := V1.Coordinate;
+        P1.VertexType := V1.VertexType;
+        P1.SubdivisionLevel := level;
+        FSubdividedPoints.Add(P1);
+        Surface.FFreeStandingPoints.Add(P1);
+      end;
+
+      P2:=TFreeSubdivisionPoint.Create(Surface);
+      P2.Coordinate := V2.Coordinate;
+      P2.VertexType := V2.VertexType;
+      P2.SubdivisionLevel := level;
+      FSubdividedPoints.Add(P2);
+      Surface.FFreeStandingPoints.Add(P2);
+
+      E1 := TFreeSubdivisionEdge.Create(Surface);
+      E1.FCrease := true;
+      E1.Curve := Self;
+      E1.SubdivisionLevel := level;
+      if V1 = E0.StartPoint then
+      begin
+        E1.StartPoint := P1;
+        E1.EndPoint := P2;
+      end
+      else
+      begin
+        E1.StartPoint := P2;
+        E1.EndPoint := P1;
+      end;
+      P1.AddEdge(E1);
+      P2.AddEdge(E1);
+      Surface.FFreeStandingEdges.Add(E1);
+      P1 := P2;
     end;
   end;
 
   if level > 0 then
   begin
     tmpPoints := TFasterListTFreeSubdivisionPoint.Create;
+    //tmpEdges := TFasterListTFreeSubdivisionEdge.Create;
     for i:=1 to FSubdividedPoints.Count-1 do
     begin
       P1 := FSubdividedPoints[i-1];
       P2 := FSubdividedPoints[i];
+      E0 := Surface.EdgeExists(P1,P2);
       CP := CreateCenterPoint(P1,P2);
+      CP.VertexType:=svCrease;
       CP.SubdivisionLevel:=level;
+
+      E1 := TFreeSubdivisionEdge.Create(Surface);
+      E1.FCrease:=true;
+      if E0.StartPoint = P1 then
+      begin
+        E1.StartPoint := P1;
+        E1.EndPoint := CP;
+      end
+      else
+      begin
+        E1.StartPoint := CP;
+        E1.EndPoint := P1;
+      end;
+      E1.Curve := Self;
+      E1.SubdivisionLevel:=level;
+      P1.AddEdge(E1);
+      CP.AddEdge(E1);
+
+      E2 := TFreeSubdivisionEdge.Create(Surface);
+      E2.FCrease:=true;
+      if E0.EndPoint = P2 then
+      begin
+        E2.StartPoint := CP;
+        E2.EndPoint := P2;
+      end
+      else
+      begin
+        E2.StartPoint := P2;
+        E2.EndPoint := CP;
+      end;
+      E2.Curve := Self;
+      E2.SubdivisionLevel:=level;
+      P2.AddEdge(E2);
+      CP.AddEdge(E2);
+
+      if E0 <> nil then
+        begin
+        E0.Unreference;
+        E0.Free;
+        end;
+
+      Surface.FFreeStandingPoints.Add(CP);
+      Surface.FFreeStandingEdges.DeleteItem(E0);
+      Surface.FFreeStandingEdges.Add(E1);
+      Surface.FFreeStandingEdges.Add(E2);
+
       tmpPoints.Add(P1);
       tmpPoints.Add(CP);
     end;
     tmpPoints.Add(P2);
     FSubdividedPoints.Assign(tmpPoints);
     tmpPoints.Free;
-
+    {
     for i:=1 to FSubdividedPoints.Count-2 do
     begin
       P1 := FSubdividedPoints[i-1];
@@ -781,8 +974,26 @@ begin
       if CP.SubdivisionLevel < level then
         AveragePoint(P1,CP,P2);
     end;
-
+    }
   end;
 
+end;
+
+procedure TFreeSubdivisionControlCurve.PrintDebug;
+var i:integer;
+begin
+  inherited;
+  logger.IncreaseIndent;
+  logger.Debug('ControlPoints:');
+  for i:=0 to FControlPoints.Count-1 do
+  begin
+    FControlPoints[i].PrintDebug;
+  end;
+  logger.Debug('SubdividedPoints:');
+  for i:=0 to FSubdividedPoints.Count-1 do
+  begin
+    FSubdividedPoints[i].PrintDebug;
+  end;
+  logger.DecreaseIndent;
 end;
 

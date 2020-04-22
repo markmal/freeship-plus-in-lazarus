@@ -588,7 +588,7 @@ begin
 
   //wlheight:=owner.surface.max.z;
 
-  if Owner.surface.NumberOfPoints < 0 then
+  if Owner.surface.NumberOfSubDivPoints < 0 then
     exit;
   for I := 1 to Owner.Surface.NumberOfLayers do
     if Owner.Surface.Layer[I - 1].UseInHydrostatics then
@@ -601,7 +601,7 @@ begin
           for K := 1 to Face.ChildCount do
           begin
             Child := Face.Child[K - 1];
-            for L := 1 to Child.NumberOfpoints do
+            for L := 1 to Child.NumberOfPoints do
               if Child.Point[L - 1].Coordinate.Z <= WlHeight then
               begin
                 // Face is (partially) submerged;

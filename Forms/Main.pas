@@ -1963,6 +1963,7 @@ begin
     Freeship.Edit.ProgressBar := ProgressBarMain;
     Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
     Freeship.Edit.File_Load(Filename);
+    Freeship.RebuildModel;
     Freeship.ZoomFitAllViewports;
     SetCaption;
     UpdateMenu;
@@ -1980,6 +1981,7 @@ begin
     Freeship.Edit.ProgressBar := ProgressBarMain;
     Freeship.Surface.OnFaceRebuilt:=Freeship.Edit.OnFaceRebuilt;
     Freeship.Edit.File_Load(Filename);
+    Freeship.RebuildModel;
     FOpenHullWindows;
     Freeship.ZoomFitAllViewports;
     SetCaption;
@@ -2907,6 +2909,8 @@ begin
                    IntToStr(Freeship.Surface.NumberOfControlEdges)+#32+Userstring(287)+', '+
                    IntToStr(Freeship.Surface.NumberOfControlPoints)+#32+Userstring(288)+', '+
                    IntToStr(Freeship.Surface.NumberOfControlCurves)+#32+Userstring(289);
+   if Freeship.Surface.Changed then
+     UpdateMenu;
 end;{TMainForm.FreeShipUpdateGeometryInfo}
 
 procedure TMainForm.TransformLackenbyExecute(Sender: TObject);

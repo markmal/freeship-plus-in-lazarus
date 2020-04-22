@@ -262,10 +262,10 @@ begin
   Result := FBackgroundImages[index];
 end;{TFreeShip.FGetBackgroundImage}
 
-function TFreeShip.FGetBuild: boolean;
+function TFreeShip.FGetBuilt: boolean;
 begin
   Result := Surface.Built;
-end;{TFreeShip.FGetBuild}
+end;{TFreeShip.FGetBuilt}
 
 function TFreeShip.FGetFilename: string;
 var
@@ -382,12 +382,18 @@ begin
   Surface.ActiveLayer := Val;
 end;{TFreeShip.FSetActiveLayer}
 
-procedure TFreeShip.FSetBuild(Val: boolean);
+procedure TFreeShip.FSetBuilt(Val: boolean);
 var
   I: integer;
 begin
+  if not Val and not Surface.RebuildRequested then
+  begin
+    Application.QueueAsyncCall(@RebuildAsync, 0);
+    Surface.RebuildRequested := true;
+  end;
+  if Built = Val then exit;
   Surface.Built := Val;
-  if not Build then
+  if not Built then
   begin
     for I := 1 to NumberOfStations do
       Station[I - 1].Build := False;
@@ -402,7 +408,7 @@ begin
     for I := 1 to NumberOfFlowlines do
       Flowline[I - 1].Build := False;
   end;
-end;{TFreeShip.FSetBuild}
+end;{TFreeShip.FSetBuilt}
 
 procedure TFreeShip.FSetEditMode(Val: TFreeEditMode);
 var i:integer;
@@ -522,7 +528,7 @@ begin
     FPrecision := Val;
     Surface.DesiredSubdivisionLevel := Ord(Precision) + 1;
     FileChanged := True;
-    Build := False;
+    Built := False;
     Redraw;
   end;
 end;{TFreeShip.FSetPrecision}
@@ -1333,6 +1339,8 @@ begin
 
   if not Surface.Built then
     surface.Rebuild;
+    //exit; // do not rebuild in painting cycle
+
   // Draw intersectionlines BEFORE the surface is drawn,
   // so that the controlnet appears on top
   // But the intersections that should be drawn last depends on the view
@@ -1912,7 +1920,7 @@ begin
     ProjectSettings.ProjectBeam := 2 * Max.Y;
     ProjectSettings.ProjectLength := Max.X - Min.X;
     ProjectSettings.ProjectDraft := 1.0;
-    Build := False;
+    Built := False;
     Precision := fpHigh;
     Draw;
     FileChanged := True;
@@ -2274,6 +2282,12 @@ begin
   end;
 end;{TFreeShip.LoadPreview}
 
+procedure TFreeShip.RebuildAsync(Data: PtrInt);
+begin
+  Surface.Rebuild;
+  Draw;
+end;
+
 procedure TFreeShip.RebuildModel;
 var
   PrevCursor: TCursor;
@@ -2282,7 +2296,6 @@ begin
   if Screen.Cursor <> crHourglass then
     Screen.Cursor := crHourglass;
   try
-    Build := False;
     Surface.DesiredSubdivisionLevel := Ord(Precision) + 1;
     Surface.Rebuild;
     Draw;
@@ -2291,6 +2304,12 @@ begin
       Screen.Cursor := PrevCursor;
   end;
 end;{TFreeShip.RebuildModel}
+
+procedure TFreeShip.RebuildModelIfRequired;
+begin
+  if not Built then
+    RebuildModel;
+end;
 
 procedure TFreeShip.Redraw;
 var
@@ -2924,14 +2943,17 @@ var
   Point: TFreeSubdivisionControlPoint;
   P: T3DCoordinate;
 begin
-  vViewport := (Sender as TFreeHullWindow).Viewport;
+  if Sender is TFreeViewport then
+     vViewport := Sender as TFreeViewport;
+  if Sender is TFreeHullWindow then
+     vViewport := (Sender as TFreeHullWindow).Viewport;
   if (Key in [Left..Down]) and (vViewport.ViewType <> fvPerspective)
      and (ActiveControlPoint <> nil) then
   begin
     Edit.CreateUndoObject(Userstring(190), True);
     Point := ActiveControlPoint;
     FileChanged := True;
-    Build := False;
+    Built := False;
     P := Point.Coordinate;
     case vViewport.Viewtype of
       fvProfile: case Key of
@@ -2972,11 +2994,14 @@ begin
         vViewport.SetFocus;
       application.ProcessMessages;
     end;
-    Build := False;
+    Built := False;
+    RebuildModel;
     Redraw;
     Key:=0;  //disable further processing
   end;
 
+  if Key in [66{b}] then
+    RebuildModel;
 end;
 
 procedure TFreeShip.KeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -3404,7 +3429,7 @@ begin
           end;
           Point := ActiveControlPoint;
           FileChanged := True;
-          Build := False;
+          Built := False;
           FPointHasBeenMoved := True;
           Pt.X := X;
           Pt.Y := Y;
@@ -3453,7 +3478,7 @@ begin
           }
 
           ActiveControlPoint := Point;
-          Build := False;
+          Built := False;
 
           if ControlpointForm.Visible then
           begin
@@ -3494,7 +3519,7 @@ begin
   if FCurrentlyMoving and FPointHasBeenMoved then
      begin
      Edit.CreateUndoObject(rsPointMove,True);
-     Build:=False;
+     Built:=False;
      FileChanged:=True;
      Redraw;
      end;

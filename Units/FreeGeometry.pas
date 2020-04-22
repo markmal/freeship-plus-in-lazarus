@@ -911,12 +911,9 @@ type
     procedure Clear; virtual;
     destructor Destroy; override;
     procedure Extents(var Min, Max: T3DCoordinate); virtual;
-    procedure Draw(Viewport: TFreeViewport);
-      virtual;
-    procedure Rebuild;
-      virtual;
-    property Built: boolean
-      read FBuilt write SetBuilt;
+    procedure Draw(Viewport: TFreeViewport); virtual;
+    procedure Rebuild; virtual;
+    property Built: boolean read FBuilt write SetBuilt;
     property Color: TColor
       read FColor write FColor;
     property IsBuilding: boolean read FIsBuilding;
@@ -1121,11 +1118,16 @@ type
     FSpline: TFreeSpline;
     FBuilt: boolean;
     procedure AveragePoint(PrevPoint, Point, NextPoint: TFreeSubdivisionPoint);
+    procedure ClearSubdivision;
+    procedure DeleteSubdivision;
     function GetColor: TColor;
     function GetNumberOfControlPoints: integer;
     function GetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function GetSelected: boolean;
     function GetVisible: boolean;
+    procedure LastAveragePoint(PrevPoint, Point,
+      NextPoint: TFreeSubdivisionPoint);
+    procedure RebuildSpline;
     procedure SetBuilt(Val: boolean);
     procedure SetSelected(val: boolean);
     procedure SubdivideFreeStanding(level: integer);
@@ -1142,12 +1144,14 @@ type
     function DistanceToCursor(X, Y: integer;
       Viewport: TFreeViewport): integer;
     procedure Draw(Viewport: TFreeViewport);
+    procedure CopySubdividedEdges(const aEdges: TFasterListTFreeSubdivisionEdge);
     procedure InsertControlPoint(
       P1, P2, New: TFreeSubdivisionControlPoint);
     procedure InsertEdgePoint(
       P1, P2, New: TFreeSubdivisionPoint);
     function IsFreeStanding:boolean;
     procedure LoadBinary(Source: TFreeFileBuffer);
+    procedure PrintDebug; override;
     procedure Rebuild;
     procedure RebuildFreeStanding;
     procedure ReplaceVertexPoint(Old, New: TFreeSubdivisionPoint);
@@ -1321,10 +1325,13 @@ type
     function FGetRegularPoint: boolean;
     function FGetLimitPoint: T3DCoordinate;
     procedure FSetCoordinate(Val: T3DCoordinate);virtual;
+    procedure PrintDebug; override;
+    procedure SetVertexType(AValue: TFreeVertexType);
   public
     procedure AddEdge(Edge: TFreeSubdivisionEdge);
     procedure AddFace(Face: TFreeSubdivisionFace);
     function Averaging: T3DCoordinate;
+    function LastAveraging: T3DCoordinate;
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
     function CheckIntegrity: boolean;
     procedure Clear;
@@ -1359,7 +1366,7 @@ type
     property VertexIndex: integer
       read FGetIndex;
     property VertexType:
-      TFreeVertexType read FVertexType write FVertexType;
+      TFreeVertexType read FVertexType write SetVertexType;
   end;
 
   {--------------------------------------------------------------------------------------------------}
@@ -1405,7 +1412,7 @@ type
     procedure SetLinearConstraint(pointA, pointB: TFreeSubdivisionControlPoint);
     procedure SetAnchorPoint(pointA: TFreeSubdivisionControlPoint);
     procedure SetIsAnchorHard(val: boolean);
-    procedure PrintDebug;
+    procedure PrintDebug; override;
     procedure Unreference; override;
     property Color: TColor read FGetColor;
     property IsLeak: boolean read FGetIsLeak;
@@ -1466,15 +1473,12 @@ type
     FCrease: boolean;
     FControlEdge: boolean;
     FCurve: TFreeSubdivisionControlCurve;
-    function FGetIndex: integer;
-      virtual;
-    function FGetIsBoundaryEdge: boolean;
-      virtual;
+    function FGetIndex: integer; virtual;
+    function FGetIsBoundaryEdge: boolean; virtual;
     function FGetFace(Index: integer):
       TFreeSubdivisionFace;
     function FGetNumberOfFaces: integer;
-    procedure FSetCrease(Val: boolean);
-      virtual;
+    procedure FSetCrease(Val: boolean); virtual;
     function FGetPreviousEdge: TFreeSubdivisionEdge;
     function FGetNextEdge: TFreeSubdivisionEdge;
     procedure PrintDebug; override;
@@ -1500,8 +1504,7 @@ type
       Viewport: TFreeViewport); virtual;
     procedure SwapData;
     //function getPoints:TFasterListTFreeSubdivisionPoint;
-    property Crease: boolean
-      read FCrease write FSetCrease;
+    property Crease: boolean read FCrease write FSetCrease;
     property Curve:
       TFreeSubdivisionControlCurve read FCurve write SetCurve;
     property EdgeIndex: integer
@@ -1721,6 +1724,8 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeSubdivisionSurface = class(TFreeEntity)
   private
+    FChanged: boolean; // Model is changed
+    FRebuildRequested: boolean; // Flag tells that async rebuild is requested
     FControlPoints: TFasterListTFreeSubdivisionControlPoint;
     // List with controlpoints, which can be changed by the user
     FControlPointGroups: TFasterListTFreeSubdivisionControlPointGroup;
@@ -1733,6 +1738,10 @@ type
     FPoints: TFasterListTFreeSubdivisionPoint;
     // List with points obtained by subdividing the surface
     FEdges: TFasterListTFreeSubdivisionEdge;
+    // this list edges obtained by subdividing the controledges
+    FFreeStandingPoints: TFasterListTFreeSubdivisionPoint;
+    // List with points obtained by subdividing the surface
+    FFreeStandingEdges: TFasterListTFreeSubdivisionEdge;
     // this list edges obtained by subdividing the controledges
     FIdSequence:integer;
     FLayers: TFasterListTFreeSubdivisionLayer;
@@ -1833,14 +1842,14 @@ type
     function FGetNumberOfLockedPoints: integer;
     function FGetPoint(Index: integer): TFreeSubdivisionPoint;
     function FGetEdge(Index: integer): TFreeSubdivisionEdge;
-    function FGetNumberOfPoints: integer;
+    function FGetNumberOfSubDivPoints: integer;
     function FGetNumberOfSelectedControlCurves: integer;
     function FGetNumberOfSelectedControlEdges: integer;
     function FGetNumberOfSelectedControlFaces: integer;
     function FGetNumberOfSelectedControlPoints: integer;
     function FGetNumberOfSelectedControlPointGroups: integer;
     function FGetNumberOfSelectedLockedPoints: integer;
-    function FGetNumberOfEdges: integer;
+    function FGetNumberOfSubDivEdges: integer;
     function FGetSelectedControlCurve(Index: integer): TFreeSubdivisionControlCurve;
     function FGetSelectedControlEdge(Index: integer): TFreeSubdivisionControlEdge;
     function FGetSelectedControlFace(Index: integer): TFreeSubdivisionControlFace;
@@ -1872,7 +1881,7 @@ type
       Layer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace; reintroduce; overload;
     function AddControlFaceN(Points: TFasterListTFreeSubdivisionControlPoint; CheckEdges: boolean;
       Layer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace; reintroduce; overload;
-    function AddControlPoint(P: T3DCoordinate): TFreeSubdivisionControlPoint;
+    function AddControlPoint(P: T3DCoordinate; aTolerance:double=1e-6): TFreeSubdivisionControlPoint;
       overload; virtual;
     procedure AddControlPoint(P: TFreeSubdivisionControlPoint);
       reintroduce; overload;
@@ -1914,12 +1923,11 @@ type
       reintroduce; overload;
     procedure CalculateIntersections(Plane: T3DPlane;
       Faces: TFasterListTFreeSubdivisionFace; Destination: TFasterListTFreeSpline);
-    constructor Create(Owner: TFreeSubdivisionSurface);
-      override;
-    destructor Destroy;
-      override;
-    procedure Draw(Viewport: TFreeViewport);
-      override;
+
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
+    destructor Destroy; override;
+
+    procedure Draw(Viewport: TFreeViewport); override;
     function EdgeExists(P1, P2: TFreeSubdivisionPoint): TFreeSubdivisionEdge;
     procedure ExtractAllEdgeLoops(var Destination: TFasterListTFreeSubdivisionEdge);
     procedure ExtractPointsFromFaces(  SelectedFaces : TFasterListTFreeSubdivisionFace;
@@ -1957,6 +1965,7 @@ type
       read FActiveLayer write SetActiveLayer;
     property ActiveControlPoint : TFreeSubdivisionControlPoint
       read FActiveControlPoint write SetActiveControlPoint;
+    property Changed: boolean read FChanged write FChanged;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetControlpoint;
     property ControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
@@ -2054,18 +2063,19 @@ type
     property OnSelectItem: TNotifyEvent
       read FOnSelectItem write FOnSelectItem;
     property OnFaceRebuilt: TProgressEvent read FOnFaceRebuilt write FOnFaceRebuilt;
-    property Point[index: integer]: TFreeSubdivisionPoint
+    property SubDivPoint[index: integer]: TFreeSubdivisionPoint
       read FGetpoint;
-    property Edge[index: integer]: TFreeSubdivisionEdge
+    property SubDivEdge[index: integer]: TFreeSubdivisionEdge
       read FGetEdge;
     property EdgeColor: TColor
       read FEdgeColor write FEdgeColor;
     property NormalColor: TColor
       read FNormalColor write FNormalColor;
-    property NumberOfEdges: integer
-      read FGetNumberOfEdges;
-    property NumberOfPoints: integer
-      read FGetNumberOfPoints;
+    property NumberOfSubDivEdges: integer
+      read FGetNumberOfSubDivEdges;
+    property NumberOfSubDivPoints: integer
+      read FGetNumberOfSubDivPoints;
+    property RebuildRequested: boolean read FRebuildRequested write FRebuildRequested;
     property ShadeUnderWater: boolean
       read FShadeUnderWater write SetShadeUnderWater;
     property Selectedcolor: TColor

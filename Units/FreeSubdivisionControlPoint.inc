@@ -813,19 +813,7 @@ procedure TFreeSubdivisionControlPoint.PrintDebug;
 var i:integer; svt:string;
 begin
   inherited;
-  case FVertexType of
-    svRegular: svt:='svRegular';
-    svCrease: svt:='svCrease';
-    svDart: svt:='svDart';
-    svCorner: svt:='svCorner';
-  end;
-  Logger.Debug(Format(' VertexType:%s',[svt]));
-  if self <> nil then
-     Logger.Debug(Format('TFreeSubdivisionControlPoint:%d %s',[self.Id, self.Name]));
-  for i:=0 to FFaces.Count-1 do
-      Logger.Debug(Format(' face[%d]:%d',[i,FFaces[i].Id]));
-  for i:=0 to FEdges.Count-1 do
-      Logger.Debug(Format(' edge[%d]:%d',[i,FEdges[i].Id]));
+  Logger.Debug(Format(' Locked:%d',[byte(FLocked)]));
 end;
 
 procedure TFreeSubdivisionControlPoint.Unreference;

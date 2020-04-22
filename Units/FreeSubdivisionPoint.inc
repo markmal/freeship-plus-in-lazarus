@@ -350,7 +350,7 @@ begin
       for I := 0 to FEdges.Count-1 do
       begin
         Edge := FEdges[I];
-        if (Edge.FFaces.Count = 1) or (Edge.FCrease) then    //MM 20190418: not sure why to average on surface edge. Commented.
+        if (Edge.FFaces.Count = 1) or (Edge.FCrease) then
         begin
           if Edge.FStartPoint = self then
             P := Edge.FEndPoint
@@ -448,6 +448,63 @@ begin
     end;
   end;
 end;{TFreeSubdivisionPoint.Averaging}
+
+// Last Averaging, even on low subdivision levels, it gives coordinates lying on
+// a curve that almost perfectly matches a "target" curve that would be created
+// from points we got on high subdivision levels.
+// You call it once, just after all subdivision iterations done.
+// It calculates coordinates using a_max linear formula: b' = (a + 4b + c)/6
+// translated to surfacial by MM: P' = Sum((4P + Pe)/6)by e,
+//   where Pe is opposite point of edge e P also belongs to.
+{
+C.X := (PrevPoint.FCoordinate.X + 4.0*C.X + NextPoint.FCoordinate.X)/6.0 ;
+C.Y := (PrevPoint.FCoordinate.Y + 4.0*C.Y + NextPoint.FCoordinate.Y)/6.0 ;
+C.Z := (PrevPoint.FCoordinate.Z + 4.0*C.Z + NextPoint.FCoordinate.Z)/6.0 ;
+}
+function TFreeSubdivisionPoint.LastAveraging:T3DCoordinate;
+var
+  I, J, Nt, Nq, NoP: integer;
+  a: TFloatType;
+  Weight, TotalWeight: TFloatType;
+  Center: T3DCoordinate;
+  Face: TFreeSubdivisionFace;
+  Edge: TFreeSubdivisionEdge;
+  P: TFreeSubdivisionPoint;
+begin
+  Result := FCoordinate;
+  if (NumberOfEdges = 0) or (FVertexType = svCorner) then
+    Result := FCoordinate
+  else
+  begin
+    if FVertexType = svCrease then
+    begin
+      Center := ZERO;
+      for I := 0 to FEdges.Count-1 do
+      begin
+        Edge := FEdges[I];
+        if (Edge.FFaces.Count = 1) or (Edge.FCrease) then
+        begin
+          if Edge.FStartPoint = Self then
+            P := Edge.FEndPoint
+          else
+            P := Edge.FStartpoint;
+          Center.X := Center.X + P.FCoordinate.X;
+          Center.Y := Center.Y + P.FCoordinate.Y;
+          Center.Z := Center.Z + P.FCoordinate.Z;
+        end;
+      end;
+      Center.X := (4.0 * Result.X + Center.X) / 6.0;
+      Center.Y := (4.0 * Result.Y + Center.Y) / 6.0;
+      Center.Z := (4.0 * Result.Z + Center.Z) / 6.0;
+
+      a:=0;
+      Result.X := Center.X + a*(power(Center.X - Result.X, 1)/power(Self.SubdivisionLevel+1, 1));
+      Result.Y := Center.Y + a*(power(Center.Y - Result.Y, 1)/power(Self.SubdivisionLevel+1, 1));
+      Result.Z := Center.Z + a*(power(Center.Z - Result.Z, 1)/power(Self.SubdivisionLevel+1, 1));
+    end
+  end;
+end;
+
 
 function TFreeSubdivisionPoint.CalculateVertexPoint: TFreeSubdivisionPoint;
 var
@@ -628,4 +685,31 @@ function TFreeSubdivisionPoint.IndexOfFace(Face: TFreeSubdivisionFace): integer;
 begin
   Result := FFaces.IndexOf(Face);
 end;{TFreeSubdivisionPoint.IndexOfFace}
+
+procedure TFreeSubdivisionPoint.PrintDebug;
+var i:integer; svt:string;
+begin
+  inherited;
+  Logger.Debug(Format(' Coordinate: %8.5f,%8.5f,%8.5f',[FCoordinate.X,FCoordinate.Y,FCoordinate.Z]));
+  case FVertexType of
+    svRegular: svt:='svRegular';
+    svCrease: svt:='svCrease';
+    svDart: svt:='svDart';
+    svCorner: svt:='svCorner';
+  end;
+  Logger.Debug(Format(' SubdivisionLevel:%d',[SubdivisionLevel]));
+  Logger.Debug(Format(' VertexType:%s',[svt]));
+  Logger.IncreaseIndent;
+  for i:=0 to FFaces.Count-1 do
+      FFaces[i].PrintDebug;
+  for i:=0 to FEdges.Count-1 do
+      FEdges[i].PrintDebug;
+  Logger.DecreaseIndent;
+end;
+
+procedure TFreeSubdivisionPoint.SetVertexType(AValue: TFreeVertexType);
+begin
+  if FVertexType=AValue then Exit;
+  FVertexType:=AValue;
+end;
 

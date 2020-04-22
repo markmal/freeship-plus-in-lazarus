@@ -32,7 +32,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="382"/>
+      <BuildNr Value="386"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -231,7 +231,7 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug"/>
+        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
         <WorkingDirectory Value="/usr/bin"/>
       </local>
       <FormatVersion Value="2"/>
@@ -249,7 +249,7 @@
         </Mode1>
         <Mode2 Name="debug log">
           <local>
-            <CommandLineParams Value="--debug --log-debug"/>
+            <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
             <WorkingDirectory Value="/usr/bin"/>
           </local>
         </Mode2>
@@ -991,11 +991,9 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <DebugInfoType Value="dsDwarf2"/>
         <UseValgrind Value="True"/>
       </Debugging>
-      <Options>
-        <LinkerOptions Value="-z relro"/>
-      </Options>
     </Linking>
     <Other>
       <Verbosity>

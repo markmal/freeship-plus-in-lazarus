@@ -26,7 +26,8 @@ uses
   Graphics,
   FreeTypes,
   //FreeGeometry,
-  FasterList;
+  FasterList,
+  Math;
 
 type
   TIntArray = array of integer;
@@ -75,6 +76,7 @@ type
     FCount: integer;
     FFaceSets: specialize TFasterList<TVRMLIndexedFaceSet>;
     FCoordinates: array of T3DCoordinate;
+    FPrecision: double;
     function FGetNumberOfFacesets: integer;
     function FGetPoint(Index: integer): T3DCoordinate;
     procedure FSetCapacity(val: integer);
@@ -93,6 +95,7 @@ type
       read FGetNumberOfFacesets;
     property Point[index: integer]: T3DCoordinate
       read FGetPoint;
+    property Precision: double read FPrecision;
   end;
 
   TVRMLIndexedFaceSet = class(TVRMLobject)
@@ -558,7 +561,30 @@ var
   Points: TStringList;
   P: T3DCoordinate;
 
+  procedure detectPrecision(D:string);
+  var i:integer; dc, code:integer; ss:string;
+  begin
+    if D.IndexOf('e') < 0 then
+    begin
+      i:=D.IndexOf('.');
+      if i > -1 then
+        dc:=D.length - i - 1;
+      if FPrecision > power(10,-dc) then
+        FPrecision := power(10,-dc);
+    end
+    else
+    begin //scientific
+      i:=D.IndexOf('e');
+      ss:=D.Substring(i+1,32);
+      val(ss,dc,code);
+      if code = 0 then
+        if FPrecision > power(10,dc) then
+          FPrecision := power(10,dc);
+    end
+  end;
+
 begin
+  FPrecision := 1.0;
   Data := Strings.Text;
   Index := Pos('POINT', Data);
   if Index <> 0 then
@@ -591,6 +617,9 @@ begin
         begin
           P := ZERO;
           OK := True;
+
+          detectPrecision(Points[I - 1]);
+
           Val(Points[I - 1], P.X, Flag);
           if Flag <> 0 then
             OK := False;

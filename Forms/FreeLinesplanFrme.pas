@@ -2015,9 +2015,9 @@ begin
         AddIntersection(Freeship.Station[I - 1], [lvAftBody], 'stations',
           Freeship.Preferences.StationColor);
     // Add knuckle lines
-    for I := 1 to FreeShip.Surface.NumberOfEdges do
+    for I := 1 to FreeShip.Surface.NumberOfSubDivEdges do
     begin
-      Edge := FreeShip.Surface.Edge[I - 1];
+      Edge := FreeShip.Surface.SubDivEdge[I - 1];
       if (Edge.Crease) and (Edge.StartPoint.Coordinate.X <= Mainframe) and
         (Edge.EndPoint.Coordinate.X <= Mainframe) then
       begin
@@ -2063,9 +2063,9 @@ begin
         AddIntersection(Freeship.Station[I - 1], [lvFrontBody], 'stations',
           Freeship.Preferences.StationColor);
     // Add knuckle lines
-    for I := 1 to FreeShip.Surface.NumberOfEdges do
+    for I := 1 to FreeShip.Surface.NumberOfSubDivEdges do
     begin
-      Edge := FreeShip.Surface.Edge[I - 1];
+      Edge := FreeShip.Surface.SubDivEdge[I - 1];
       if (Edge.Crease) and (Edge.StartPoint.Coordinate.X >= Mainframe) and
         (Edge.EndPoint.Coordinate.X >= Mainframe) then
       begin

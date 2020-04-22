@@ -950,7 +950,7 @@ begin
         end;
       end;
     end;
-    Owner.Build := False;
+    Owner.Built := False;
     Owner.Redraw;
   finally
     // Refresh controlpoint data
@@ -1258,7 +1258,7 @@ var
   Total: TLayerProperties;
 
 begin
-  if not Owner.Build then exit;
+  if not Owner.Built then exit;
 
   N := 0;
   if FileExistsUTF8('Weights.txt') { *Converted from FileExists* } then
@@ -1436,7 +1436,7 @@ var
   end;{CheckSubmergedBody}
 
 begin
-  if not Owner.Build then exit;
+  if not Owner.Built then exit;
 
   // Initial setup of data
    {
@@ -2111,7 +2111,7 @@ var
   end;{ProcessTriangle}
 
 begin
-  if not Owner.Build then exit;
+  if not Owner.Built then exit;
 
   // Initial setup of data
   CosHeel := Cos(DegToRad(-HeelingAngle));

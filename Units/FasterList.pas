@@ -94,6 +94,8 @@ type
     destructor Destroy; override;
     procedure Delete(Index: integer);
     procedure DeleteItem(Item: TItemType);  //deletes all instances of the item
+    //deletes all instances of the aList from Self
+    procedure DeleteList(const aList: TFasterList);
     procedure Exchange(Index1, Index2: integer);
     function IndexOf(Item: TItemType): integer;
     // normal TList function
@@ -493,6 +495,13 @@ begin
   //logger.DecreaseIndent;
 end;{TFasterList.DeleteAll}
 
+procedure TFasterList.DeleteList(const aList: TFasterList);
+var i, idx: integer;
+begin
+  for i:=0 to aList.Count-1 do
+    DeleteItem(aList[i]);
+end;
+
 
 procedure TFasterList.Exchange(Index1, Index2: integer);
 var
@@ -519,7 +528,7 @@ begin
     Result := nil;
 end;{TFasterList.FGet}
 
-function TFasterList.FGetObject(Index: integer): TItemType;
+function TFasterList.FGetObject(Index: integer): Pointer;
 begin
   if (Index >= 0) and (Index < FCount) and (FUseUserData) then
     Result := FData[Index]

@@ -31,11 +31,11 @@ end;{TFreeSubdivisionEdge.FGetNumberOfFaces}
 
 procedure TFreeSubdivisionEdge.FSetCrease(Val: boolean);
 var
-  I, N: integer;
+  I, N, FN: integer;
   Edge: TFreeSubdivisionEdge;
 begin
-  if NumberOfFaces = 1 then
-    Val := True;  // Boundary edges must ALWAYS be crease edges
+  if NumberOfFaces <= 1 then
+    Val := True;  // Boundary and freestanding edges must ALWAYS be crease edges
   if (Val <> FCrease) then
   begin
     FCrease := Val;
@@ -48,11 +48,12 @@ begin
     end;
     if FStartpoint.VertexType = svCorner then
     begin
-      if (FStartPoint.NumberOfFaces > 1) and (N = 2) then
+      if (FStartPoint.FFaces.Count > 1) and (N = 2) then
         FStartpoint.VertexType := svCrease;
     end
     else
     begin
+      FN := FStartPoint.FFaces.Count;
       if N = 0 then
         FStartpoint.VertexType := svRegular
       else
@@ -442,9 +443,10 @@ begin
           F.FPoints[j].FEdges.DeleteItem(Self);
     end;
 
+  { // edges are not memorized in Curve
   if FCurve <> nil then
      FCurve.DeleteEdge(Self as TFreeSubdivisionControlEdge);
-
+  }
   if FSurface <> nil then FSurface.UnreferenceEdge(Self);
 
   InUnreference := false;

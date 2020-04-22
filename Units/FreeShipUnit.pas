@@ -1270,7 +1270,7 @@ type
     function GetOnChangeActiveControlPoint: TNotifyEvent;
     procedure SetActiveControlPoint(aControlPoint: TFreeSubdivisionControlPoint);
     function FGetBackgroundImage(Index: integer): TFreeBackgroundImageData;
-    function FGetBuild: boolean;
+    function FGetBuilt: boolean;
     function FGetButtock(Index: integer): TFreeIntersection;
     function FGetControlCurve(Index: integer): TFreeSubdivisionControlCurve;
     function FGetDiagonal(Index: integer): TFreeIntersection;
@@ -1309,7 +1309,7 @@ type
     function FGetWaterline(Index: integer): TFreeIntersection;
     procedure FSetActiveControlPoint(Val: TFreeSubdivisionControlPoint);
     procedure FSetActiveLayer(Val: TFreeSubdivisionLayer);
-    procedure FSetBuild(Val: boolean);
+    procedure FSetBuilt(Val: boolean);
     procedure FSetEditMode(Val: TFreeEditMode);
     procedure FSetFileChanged(Val: boolean);
     procedure FSetFileName(Val: string);
@@ -1362,7 +1362,9 @@ type
     procedure LoadControlPointAnchors(Source:TFreeFileBuffer);
     procedure LoadControlPointLinearConstraints(Source:TFreeFileBuffer);
     procedure LoadPreview(Filename: string; Image: TJPegImage); // loads the preview image from a file
+    procedure RebuildAsync(Data: PtrInt);
     procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data
+    procedure RebuildModelIfRequired;
     procedure Redraw;  // Redraws the model on all viewports
     function  DetectMinFileVersion:TFreeFileVersion;
     procedure SaveProject(Destination: TFreeFileBuffer);
@@ -1401,7 +1403,7 @@ type
       read FGetActiveLayer write FSetActiveLayer;
     property BackgroundImage[index: integer]: TFreeBackgroundImageData
       read FGetBackgroundImage;
-    property Build: boolean read FGetBuild write FSetBuild;
+    property Built: boolean read FGetBuilt write FSetBuilt;
     property Buttock[index: integer]: TFreeIntersection read FGetButtock;
     property ControlCurve[index: integer]: TFreeSubdivisionControlCurve
       read FGetControlCurve;

@@ -1338,7 +1338,7 @@ begin
   if Surface.IsBuilding then exit; // no double entries
 
   if not Surface.Built then
-    surface.Rebuild;
+    surface.Rebuild;   // temporary rebuilding here. TODO - dont
     //exit; // do not rebuild in painting cycle
 
   // Draw intersectionlines BEFORE the surface is drawn,

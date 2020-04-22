@@ -2,6 +2,8 @@ setlocal
 set WIX="C:\Program Files (x86)\WiX Toolset v3.11\bin"
 set PATH=%WIX%;%PATH%
 
+:: if icons need to be rebulid call in cmd from project dir `instpkg\wix\harvest_dir.cmd Themes themes'
+
 del *.wixobj *.wixpdb
 del FreeShip_x64.msi
 

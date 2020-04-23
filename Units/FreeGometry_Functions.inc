@@ -408,6 +408,12 @@ begin
     myFracInch / (12 * InchFractions));
 end;{ConvertCoordinate}
 
+function DistPoint2D(P1, P2: TPoint): TFloatType;
+  // Calculates the distance between two points
+begin
+  Result := Sqrt(Sqr(P2.X - P1.X) + Sqr(P2.Y - P1.Y));
+end;{DistPP3D}
+
 function DistPP3D(P1, P2: T3DCoordinate): TFloatType;
   // Calculates the distance between two points
 begin

@@ -46,15 +46,19 @@ procedure TFreeSubdivisionControlCurve.DeleteSubdivision;
 var i,j:integer; P:TFreeSubdivisionPoint;
   edgesToDel:TFasterListTFreeSubdivisionEdge;
 begin
-  if self.IsFreeStanding then
+  //if self.IsFreeStanding then
   begin
     edgesToDel:=TFasterListTFreeSubdivisionEdge.Create(true,true);
     for i:=0 to FSubdividedPoints.Count-1 do
     begin
       P:=FSubdividedPoints[i];
-      if not (P is TFreeSubdivisionControlPoint) then
+      if not (P is TFreeSubdivisionControlPoint)
+         and (P.Faces.Count = 0) then
       begin
         edgesToDel.AddList(P.Edges);
+        j := Surface.FPoints.IndexOf(P);
+        if  j >= 0 then
+          Surface.FPoints.Delete(j);
         P.Free;
       end;
     end;
@@ -64,6 +68,7 @@ begin
   end;
   ClearSubdivision;
 end;
+
 
 procedure TFreeSubdivisionControlCurve.RebuildSpline;
 var i:integer; P:TFreeSubdivisionPoint;
@@ -440,7 +445,7 @@ var
   PArray2: array of TPoint;
   P3D, P3D2: T3DCoordinate;
   Normal: T3DCoordinate;
-  C, T, C2: TFloatType;
+  C, T, C2, L: TFloatType;
   iP1, iP2: TFreeSubdivisionPoint;
   p02, p01: TPoint;
 begin
@@ -453,10 +458,27 @@ begin
     FSpline.Color := Color;
     Sel := Selected;
     FSpline.ShowCurvature := (Sel) and (Surface.FShowCurvature);
+
+    // get length of the subdivided PLine to set Fragments
+    L:=FSpline.TotalLength;
+    T := L * Viewport.Zoom * Viewport.Scale; // approx len in screen pixels
+    L:=0; T:=0;
+    for I := 1 to FSubdividedPoints.Count-1 do
+    begin
+      iP1 := FSubdividedPoints[I-1];
+      iP2 := FSubdividedPoints[I];
+      //L := L + (DistPP3D(iP1.Coordinate,iP2.Coordinate));
+      p01:=ViewPort.Project(iP1.Coordinate);
+      p02:=ViewPort.Project(iP2.Coordinate);
+      T := T + (DistPoint2D(p01,p02));
+    end;
     if FSpline.ShowCurvature then
-      FSpline.Fragments := 600
+      FSpline.Fragments := round(T / (30.0 / (Surface.DesiredSubdivisionLevel)) )
     else
-      FSpline.Fragments := 250;
+      FSpline.Fragments := round(T / (15.0 / (Surface.DesiredSubdivisionLevel)));
+    if FSpline.Fragments < 10 then FSpline.Fragments := 10;  //safety
+
+
     FSpline.CurvatureColor := Surface.FCurvatureColor;
     FSpline.CurvatureScale := Surface.FCurvatureScale;
     if not Surface.ShowControlNet and (Sel) then
@@ -478,8 +500,6 @@ begin
     begin
       for I := 1 to FSubdividedPoints.Count-1 do
       begin
-        if Surface.DesiredSubdivisionLevel=2 then
-          iP1:=nil;     //dbg catch
         iP1 := FSubdividedPoints[I - 1];
         iP2 := FSubdividedPoints[I];
         ViewPort.PenColor:=clGreen;

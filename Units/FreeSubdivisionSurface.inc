@@ -1749,6 +1749,20 @@ begin
   FIdSequence := 0;
 end;{TFreeSubdivisionSurface.Clear}
 
+procedure TFreeSubdivisionSurface.ClearCurvesSubdivision;
+var i,j:integer; Curve:TFreeSubdivisionControlCurve;
+begin
+  // clear curves subdivision
+  FFreeStandingEdges.Clear;
+  FFreeStandingPoints.Clear;
+  for I := 0 to NumberOfControlCurves - 1 do
+  begin
+    Curve := ControlCurve[I];
+    Curve.DeleteSubdivision;
+    //Curve.PrintDebug;
+  end;
+end;
+
 procedure TFreeSubdivisionSurface.ClearFaces;
 var
   I,j: integer;
@@ -1769,7 +1783,8 @@ begin
     for I := 0 to FPoints.Count - 1 do
       begin
         P:=FPoints[I];
-        if not (P is TFreeSubdivisionControlPoint) then
+        if not (P is TFreeSubdivisionControlPoint)
+           and (P.Faces.Count > 0) then
            P.Free;
       end;
     FPoints.Clear;
@@ -4149,6 +4164,7 @@ begin
   FIsBuilding:=true;
   FBuilt := false;
 
+  ClearCurvesSubdivision; //this should be called before ClearFaces
   // moved here from SetBuild
   ClearFaces;
 
@@ -4166,34 +4182,11 @@ begin
   //if (self.NumberOfControlFaces > 0) then
   begin
 
-    // clear curves subdivision
-    FFreeStandingEdges.Clear;
-    FFreeStandingPoints.Clear;
     for I := 0 to NumberOfControlCurves - 1 do
     begin
       Curve := ControlCurve[I];
-      if Curve.IsFreeStanding then
-      begin
-        Curve.PrintDebug;
-        Curve.DeleteSubdivision;
-      end
-      else
-      begin
-        Curve.DeleteSubdivision;
-        // TODO: investigate why we add ControlPoints as Points, later they can be deleted.
-        Curve.FSubdividedPoints.AddList(TFasterList(Curve.FControlPoints));
-        {for j:=0 to Curve.FControlPoints.Count-1 do
-        begin
-          Cpoint := Curve.FControlPoints[j];
-          Point := TFreeSubdivisionPoint.Create(Surface);
-          Point.Coordinate := CPoint.Coordinate;
-          Point.VertexType := Cpoint.VertexType;
-          Point.SubdivisionLevel := 0;
-          Point.Edges.AddList(CPoint.Edges);
-          Point.Faces.AddList(CPoint.Faces);
-          Curve.FSubdividedPoints.Add(Point);
-        end;}
-       end;
+      // TODO: investigate why we add ControlPoints as Points, later they can be deleted.
+      Curve.FSubdividedPoints.AddList(TFasterList(Curve.FControlPoints));
     end;
 
     if not self.CheckIntegrity
@@ -4236,18 +4229,10 @@ begin
     CalcFacesExtents;
 
     for I := 0 to NumberOfControlCurves - 1 do
-      if not ControlCurve[I].IsFreeStanding then
-      begin
-        Curve := ControlCurve[I];
-        Curve.Rebuild;
-      end;
-
-    for I := 0 to NumberOfControlCurves - 1 do
-      if ControlCurve[I].IsFreeStanding then
-      begin
-        Curve := ControlCurve[I];
-        Curve.RebuildSpline;
-      end;
+    begin
+      Curve := ControlCurve[I];
+      Curve.RebuildSpline;
+    end;
 
   end ;
   {else if NumberOfControlPoints > 0 then

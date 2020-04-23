@@ -1127,7 +1127,6 @@ type
     function GetVisible: boolean;
     procedure LastAveragePoint(PrevPoint, Point,
       NextPoint: TFreeSubdivisionPoint);
-    procedure RebuildSpline;
     procedure SetBuilt(Val: boolean);
     procedure SetSelected(val: boolean);
     procedure SubdivideFreeStanding(level: integer);
@@ -1138,21 +1137,18 @@ type
     procedure Clear;
     constructor Create(aSurface: TFreeSubdivisionSurface); override;
     procedure Delete;
-    procedure DeleteEdge(
-      Edge: TFreeSubdivisionControlEdge);
+    procedure DeleteEdge(Edge: TFreeSubdivisionControlEdge);
     destructor Destroy; override;
-    function DistanceToCursor(X, Y: integer;
-      Viewport: TFreeViewport): integer;
+    function DistanceToCursor(X, Y: integer; Viewport: TFreeViewport): integer;
     procedure Draw(Viewport: TFreeViewport);
     procedure CopySubdividedEdges(const aEdges: TFasterListTFreeSubdivisionEdge);
-    procedure InsertControlPoint(
-      P1, P2, New: TFreeSubdivisionControlPoint);
-    procedure InsertEdgePoint(
-      P1, P2, New: TFreeSubdivisionPoint);
+    procedure InsertControlPoint(P1, P2, New: TFreeSubdivisionControlPoint);
+    procedure InsertEdgePoint(P1, P2, New: TFreeSubdivisionPoint);
     function IsFreeStanding:boolean;
     procedure LoadBinary(Source: TFreeFileBuffer);
     procedure PrintDebug; override;
     procedure Rebuild;
+    procedure RebuildSpline;
     procedure RebuildFreeStanding;
     procedure ReplaceVertexPoint(Old, New: TFreeSubdivisionPoint);
     procedure SaveBinary(Destination: TFreeFileBuffer);
@@ -1825,6 +1821,7 @@ type
     InUnreferenceFace:boolean;
     InUnreferenceEdge:boolean;
     InUnreferencePoint:boolean;
+    procedure ClearCurvesSubdivision;
     function FGetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function FGetControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FGetControlCurve(Index: integer): TFreesubdivisionControlCurve;

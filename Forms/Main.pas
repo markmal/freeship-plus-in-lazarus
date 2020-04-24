@@ -87,6 +87,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     miSetMainframe: TMenuItem;
+     SetMainframe: TAction;
      miShowFreeObjects: TMenuItem;
      ShowFreeObjects: TAction;
      cbPrecision: TComboBox;
@@ -151,6 +153,7 @@ type
     ToolBarVisibility: TToolBar;
     ToolBarLayers: TToolBar;
     tbShowFreeObjects: TToolButton;
+    ToolButton39: TToolButton;
     ToolButtonSelect: TToolButton;
     ToolButtonRedo: TToolButton;
     ToolButtonUndo: TToolButton;
@@ -478,6 +481,7 @@ type
     procedure LayerBoxPanelClick(Sender: TObject);
     procedure PointExtrudeExecute(Sender: TObject);
     procedure PointsCoincideExecute(Sender: TObject);
+    procedure SetMainframeExecute(Sender: TObject);
     procedure ShowFreeObjectsExecute(Sender: TObject);
     function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
@@ -647,6 +651,7 @@ type
       procedure FLoadRecentFile(sender:TObject);
       procedure FreeShipChangeLayerData(Sender: TObject);
       procedure FreeShipChangeActiveLayer(Sender: TObject;Layer: TFreeSubdivisionLayer);
+      procedure OnMainframeLocationChange(Sender: TObject; aValue: TFloatType);
       procedure OnSelectItem(Sender:TObject);
       procedure OnChangeActiveControlPoint(Sender:TObject);
 
@@ -693,7 +698,8 @@ uses //FreeSplashWndw,
      FreePointGroupForm,
      FreeUpdateDlg,
      FreeLogger,
-     FreeExceptionDlg;
+     FreeExceptionDlg,
+     FreeMainframeDlg;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1658,6 +1664,34 @@ begin
   // get multiple selected points to the location of a first selected one
   Freeship.Edit.Point_CoinsideToPoint;
   UpdateMenu;
+end;
+
+procedure TMainForm.SetMainframeExecute(Sender: TObject);
+var mfDialog:TFreeMainframeDialog;
+begin
+  mfDialog:=TFreeMainframeDialog.Create(Self);
+  mfDialog.SetDimensions(FreeShip.Surface.Max.X,
+                         FreeShip.Surface.Max.X/2, //TODO replace with real Widest
+                         FreeShip.Surface.Max.X/2);
+  if FreeShip.ProjectSettings.ProjectMainframeLocation > 0 then
+     mfDialog.MainframeLocation := FreeShip.ProjectSettings.ProjectMainframeLocation
+  else
+     mfDialog.MainframeLocation := FreeShip.Surface.Max.X/2;
+  mfDialog.OnMainframeLocationChange:=OnMainframeLocationChange;
+  FreeShip.ProjectSettings.UseDefaultMainframeLocation := false;
+  mfDialog.ShowModal;
+  FreeShip.ProjectSettings.ProjectMainframeLocation:=mfDialog.MainframeLocation;
+  mfDialog.Free;
+  FreeShip.FileChanged := True;
+  FreeShip.Redraw;
+  UpdateMenu;
+end;
+
+procedure TMainForm.OnMainframeLocationChange(Sender: TObject; aValue: TFloatType);
+begin
+  FreeShip.ProjectSettings.ProjectMainframeLocation:=aValue;
+  FreeShip.FileChanged := True;
+  FreeShip.Redraw;
 end;
 
 procedure TMainForm.ShowFreeObjectsExecute(Sender: TObject);

@@ -28,9 +28,9 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       Height = 554
       Top = 8
       Width = 784
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
@@ -394,7 +394,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Layout = tlCenter
               ParentColor = False
             end
-            object Edit8: TFloatSpinEdit
+            object fseMainframeLocation: TFloatSpinEdit
               Left = 374
               Height = 32
               Top = 0
@@ -403,7 +403,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Constraints.MinWidth = 120
               DecimalPlaces = 4
               MinValue = 0
-              OnEditingDone = Edit8EditingDone
+              OnEditingDone = MainframeLocationEditingDone
               TabOrder = 0
               Value = 0
             end

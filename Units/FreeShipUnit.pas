@@ -525,6 +525,7 @@ type
     FShowHydrostMetacentricHeight: boolean;
     FShowHydrostLCF: boolean;
     FShowFlowlines: boolean;
+    FMainframeLocation: TFloatType;
     FCurvatureScale: TFloatType;
     // Scalefactor used to increase or decrease the size of the curvature plot
     FCursorIncrement: TFloatType;
@@ -1041,7 +1042,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeProjectSettings = class
   private
-    FOwner: TFreeShip;
+    FFreeShip: TFreeShip;
     FMainparticularsHasBeenset: boolean;
     // Flag to check if the main particulars have been set before hydrostatic calculationss are being performed
     FDisableModelCheck: boolean;
@@ -1134,7 +1135,7 @@ type
     property Hydrostatics_DraftStep: TFloatType read FDraftStep write FSetDraftStep;
     property Hydrostatics_Trim: TFloatType read FTrim write FSetTrim;
     property MainparticularsHasBeenset: boolean read FMainparticularsHasBeenset;
-    property Owner: TFreeShip read FOwner write FOwner;
+    property FreeShip: TFreeShip read FFreeShip write FFreeShip;
     property ProjectAppendageCoefficient: TFloatType
       read FProjectAppendageCoefficient write FSetProjectAppendageCoefficient;
     property ProjectBeam: TFloatType read FProjectBeam write FSetProjectBeam;

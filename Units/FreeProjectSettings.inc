@@ -14,9 +14,9 @@ begin
   if val <> FFreeHydrostaticCoefficients then
   begin
     FFreeHydrostaticCoefficients := val;
-    Owner.FileChanged := True;
-    for I := 1 to Owner.NumberOfHydrostaticCalculations do
-      Owner.HydrostaticCalculation[I - 1].Calculated := False;
+    FreeShip.FileChanged := True;
+    for I := 1 to FreeShip.NumberOfHydrostaticCalculations do
+      FreeShip.HydrostaticCalculation[I - 1].Calculated := False;
   end;
 end;{TFreeProjectSettings.FSetFreeHydrostaticCoefficients}
 
@@ -25,7 +25,7 @@ begin
   if val <> FDisableModelCheck then
   begin
     FDisableModelCheck := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetDisableModelCheck}
 
@@ -34,7 +34,7 @@ begin
   if val <> FEnableModelAutoMove then
   begin
     FEnableModelAutoMove := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetEnableModelAutoMove}
 
@@ -43,7 +43,7 @@ begin
   if val <> FEnableBonjeanSAC then
   begin
     FEnableBonjeanSAC := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetEnableBonjeanSAC}
 
@@ -60,7 +60,7 @@ begin
   if abs(Val - FProjectAppendageCoefficient) > 1e-7 then
   begin
     FProjectAppendageCoefficient := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectAppendageCoefficient}
 
@@ -70,7 +70,7 @@ begin
   begin
     FProjectBeam := Val;
     FMainparticularsHasBeenset := True;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectBeam}
 
@@ -82,9 +82,9 @@ begin
   begin
     FProjectDraft := Val;
     FMainparticularsHasBeenset := True;
-    Owner.FileChanged := True;
-    for I := 1 to Owner.NumberOfFlowLines do
-      Owner.Flowline[I - 1].Build := False;
+    FreeShip.FileChanged := True;
+    for I := 1 to FreeShip.NumberOfFlowLines do
+      FreeShip.Flowline[I - 1].Build := False;
   end;
 end;{TFreeProjectSettings.FSetProjectDraft}
 
@@ -94,7 +94,7 @@ begin
   begin
     FProjectLength := Val;
     FMainparticularsHasBeenset := True;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectLength}
 
@@ -103,7 +103,7 @@ begin
   if Val <> FProjectMainframeLocation then
   begin
     FProjectMainframeLocation := val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectMainframeLocation}
 
@@ -112,7 +112,7 @@ begin
   if abs(Val - FProjectWaterDensity) > 1e-6 then
   begin
     FProjectWaterDensity := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectWaterDensity}
 
@@ -121,7 +121,7 @@ begin
   if abs(Val - FProjectWaterTemper) > 1e-6 then
   begin
     FProjectWaterTemper := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectWaterTemper}
 
@@ -130,7 +130,7 @@ begin
   if val <> FSavePreview then
   begin
     FSavePreview := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetSavePreview}
 
@@ -139,7 +139,7 @@ begin
   if Val <> FStartDraft then
   begin
     FStartdraft := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetStartDraft}
 
@@ -148,7 +148,7 @@ begin
   if Val <> FTrim then
   begin
     FTrim := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetTrim}
 
@@ -157,7 +157,7 @@ begin
   if Val <> FEndDraft then
   begin
     FEnddraft := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetEndDraft}
 
@@ -166,7 +166,7 @@ begin
   if Val <> FDraftStep then
   begin
     FDraftStep := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetDraftStep}
 
@@ -175,7 +175,7 @@ begin
   if val <> FUseDefaultMainframeLocation then
   begin
     FUseDefaultMainframeLocation := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetUseDefaultMainframeLocation}
 
@@ -184,7 +184,7 @@ begin
   if val <> FProjectName then
   begin
     FProjectName := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectName}
 
@@ -193,7 +193,7 @@ begin
   if val <> FProjectDesigner then
   begin
     FProjectDesigner := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectDesigner}
 
@@ -202,7 +202,7 @@ begin
   if val <> FProjectComment then
   begin
     FProjectComment := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectComment}
 
@@ -211,7 +211,7 @@ begin
   if val <> FProjectFileCreatedBy then
   begin
     FProjectFileCreatedBy := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectFileCreatedBy}
 
@@ -220,7 +220,7 @@ begin
   if val <> FProjectShadeUnderwaterShip then
   begin
     FProjectShadeUnderwaterShip := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectShadeUnderwaterShip}
 
@@ -231,16 +231,16 @@ begin
   if val <> FProjectSimplifyIntersections then
   begin
     FProjectSimplifyIntersections := val;
-    for I := 1 to Owner.NumberofStations do
-      Owner.Station[I - 1].Build := False;
-    for I := 1 to Owner.NumberofButtocks do
-      Owner.Buttock[I - 1].Build := False;
-    for I := 1 to Owner.NumberofWaterlines do
-      Owner.Waterline[I - 1].Build := False;
-    for I := 1 to Owner.NumberofDiagonals do
-      Owner.Diagonal[I - 1].Build := False;
-    for I := 1 to Owner.NumberOfHydrostaticCalculations do
-      Owner.HydrostaticCalculation[I - 1].Calculated := False;
+    for I := 1 to FreeShip.NumberofStations do
+      FreeShip.Station[I - 1].Build := False;
+    for I := 1 to FreeShip.NumberofButtocks do
+      FreeShip.Buttock[I - 1].Build := False;
+    for I := 1 to FreeShip.NumberofWaterlines do
+      FreeShip.Waterline[I - 1].Build := False;
+    for I := 1 to FreeShip.NumberofDiagonals do
+      FreeShip.Diagonal[I - 1].Build := False;
+    for I := 1 to FreeShip.NumberOfHydrostaticCalculations do
+      FreeShip.HydrostaticCalculation[I - 1].Calculated := False;
   end;
 end;{TFreeProjectSettings.FSetProjectSimplifyIntersections}
 
@@ -249,7 +249,7 @@ begin
   if Val <> FProjectUnderWaterColor then
   begin
     FProjectUnderWaterColor := Val;
-    Owner.FileChanged := True;
+    FreeShip.FileChanged := True;
   end;
 end;{TFreeProjectSettings.FSetProjectUnderWaterColor}
 
@@ -280,16 +280,16 @@ begin
       ThicknessFactor := 25.4;
     end;
     FProjectWaterDensity := FProjectWaterDensity * WeightFactor;
-    for I := 1 to Owner.Surface.NumberOfLayers do
+    for I := 1 to FreeShip.Surface.NumberOfLayers do
     begin
-      Layer := Owner.Surface.Layer[I - 1];
+      Layer := FreeShip.Surface.Layer[I - 1];
       Layer.MaterialDensity := Layer.MaterialDensity * WeightFactor;
       Layer.Thickness := Layer.Thickness * ThicknessFactor;
     end;
     ScaleVector.X := UnitConversionFactor;
     ScaleVector.Y := UnitConversionFactor;
     ScaleVector.Z := UnitConversionFactor;
-    Owner.Edit.Model_Scale(Scalevector, True, True); // Scale and redraw
+    FreeShip.Edit.Model_Scale(Scalevector, True, True); // Scale and redraw
   end;
 end;{TFreeProjectSettings.FSetProjectUnits}
 
@@ -309,7 +309,7 @@ begin
   FMainparticularsHasBeenset := False;
   FProjectShadeUnderwaterShip := True;
   // Shades the underwaterpart of the hull in a different color
-  FProjectUnderWaterColor := Owner.Preferences.UnderWaterColor;
+  FProjectUnderWaterColor := FreeShip.Preferences.UnderWaterColor;
   FProjectUnits := TFreeUnitType(0); // Default is metric units
   FUseDefaultMainframeLocation := True;
   FProjectMainframeLocation := 0.0;
@@ -363,7 +363,7 @@ end;{TFreeProjectSettings.Clear}
 constructor TFreeProjectSettings.Create(Owner: TFreeShip);
 begin
   inherited Create;
-  FOwner := Owner;
+  FFreeShip := Owner;
   Clear;
 end;{TFreeProjectSettings.Create}
 
@@ -372,8 +372,8 @@ procedure TFreeProjectSettings.Edit;
 var
   Dialog: TFreeProjectSettingsDialog;
 begin
-  ProjectPrecision := Owner.Precision;
-  Dialog := TFreeProjectSettingsDialog.Create(Owner);
+  ProjectPrecision := FreeShip.Precision;
+  Dialog := TFreeProjectSettingsDialog.Create(FreeShip);
   Dialog.Edit1.Text := ProjectName;
   Dialog.UnitBox.ItemIndex := Ord(ProjectUnits);
   Dialog.PrecisionBox.ItemIndex := Ord(ProjectPrecision);
@@ -396,17 +396,17 @@ begin
   Dialog.CheckBox14.Checked := EnableBonjeanSAC;
   Dialog.ComboBox1.ItemIndex := Ord(ProjectCoefficients);
 
-  Dialog.CheckBox5.Checked := Owner.Visibility.FShowHydrostDisplacement;
-  Dialog.CheckBox6.Checked := Owner.Visibility.FShowHydrostSectionalAreas;
-  Dialog.CheckBox7.Checked := Owner.Visibility.FShowHydrostMetacentricHeight;
-  Dialog.CheckBox8.Checked := Owner.Visibility.FShowHydrostLCF;
-  Dialog.CheckBox9.Checked := Owner.Visibility.FShowHydrostLateralArea;
+  Dialog.CheckBox5.Checked := FreeShip.Visibility.FShowHydrostDisplacement;
+  Dialog.CheckBox6.Checked := FreeShip.Visibility.FShowHydrostSectionalAreas;
+  Dialog.CheckBox7.Checked := FreeShip.Visibility.FShowHydrostMetacentricHeight;
+  Dialog.CheckBox8.Checked := FreeShip.Visibility.FShowHydrostLCF;
+  Dialog.CheckBox9.Checked := FreeShip.Visibility.FShowHydrostLateralArea;
   Dialog.cbSimplifyIntersections.Checked := ProjectSimplifyIntersections;
   ShowTranslatedValues(Dialog);
 
   if Dialog.Execute then
   begin
-    Owner.Edit.CreateUndoObject(Userstring(178), True);
+    FreeShip.Edit.CreateUndoObject(Userstring(178), True);
     ProjectName := Dialog.Edit1.Text;
     ProjectDesigner := Dialog.Edit7.Text;
     ProjectComment := Dialog.Edit9.Text;
@@ -430,15 +430,15 @@ begin
     SavePreview := Dialog.cbSavePreviewImage.Checked;
     ProjectCoefficients := TFreeHydrostaticCoeff(Dialog.ComboBox1.ItemIndex);
 
-    Owner.Visibility.FShowHydrostDisplacement := Dialog.CheckBox5.Checked;
-    Owner.Visibility.FShowHydrostSectionalAreas := Dialog.CheckBox6.Checked;
-    Owner.Visibility.FShowHydrostMetacentricHeight := Dialog.CheckBox7.Checked;
-    Owner.Visibility.FShowHydrostLCF := Dialog.CheckBox8.Checked;
-    Owner.Visibility.FShowHydrostLateralArea := Dialog.CheckBox9.Checked;
+    FreeShip.Visibility.FShowHydrostDisplacement := Dialog.CheckBox5.Checked;
+    FreeShip.Visibility.FShowHydrostSectionalAreas := Dialog.CheckBox6.Checked;
+    FreeShip.Visibility.FShowHydrostMetacentricHeight := Dialog.CheckBox7.Checked;
+    FreeShip.Visibility.FShowHydrostLCF := Dialog.CheckBox8.Checked;
+    FreeShip.Visibility.FShowHydrostLateralArea := Dialog.CheckBox9.Checked;
     ProjectSimplifyIntersections := Dialog.cbSimplifyIntersections.Checked;
-    Owner.FileChanged := True;
-    Owner.Precision := ProjectPrecision;   //TODO: save and load precision
-    Owner.Redraw;
+    FreeShip.FileChanged := True;
+    FreeShip.Precision := ProjectPrecision;   //TODO: save and load precision
+    FreeShip.Redraw;
   end;
   Dialog.Destroy;
 end;{TFreeProjectSettings.Edit}
@@ -468,7 +468,7 @@ begin
   Source.LoadString(FProjectComment);
   Source.LoadString(FProjectFileCreatedBy);
   FSavePreview := True;
-  if Owner.FileVersion >= fv210 then
+  if FreeShip.FileVersion >= fv210 then
   begin
     Source.LoadInteger(I);
     FFreeHydrostaticCoefficients := TFreeHydrostaticCoeff(I);
@@ -481,9 +481,9 @@ begin
         Image.Assign(JPG);
       Jpg.Destroy;
     end;
-    if Owner.FileVersion >= fv230 then
+    if FreeShip.FileVersion >= fv230 then
       Source.LoadBoolean(FProjectSimplifyIntersections);
-    if Owner.Fileversion >= fv250 then
+    if FreeShip.Fileversion >= fv250 then
     begin
       // save settings for hydrostatics and crosscurves
 
@@ -512,9 +512,9 @@ begin
       Source.LoadBoolean(FFreeTrim);
       Source.LoadTFloatType(FVCG);
     end;
-    if Owner.Fileversion >= fv317 then
+    if FreeShip.Fileversion >= fv317 then
       Source.LoadBoolean(FEnableModelAutoMove);
-    if Owner.Fileversion >= fv332 then
+    if FreeShip.Fileversion >= fv332 then
       Source.LoadBoolean(FEnableBonjeanSAC);
   end;
 end;{TFreeProjectSettings.LoadBinary}
@@ -524,7 +524,7 @@ var
   Jpg: TJPegImage;
   I: integer;
 begin
-  if Owner.FileVersion >= fv120 then
+  if FreeShip.FileVersion >= fv120 then
   begin
     Destination.Add(ProjectName);
     Destination.Add(ProjectDesigner);
@@ -538,28 +538,28 @@ begin
     Destination.Add(FProjectShadeUnderwaterShip);
     Destination.Add(FProjectUnderWaterColor);
     Destination.Add(Ord(FProjectUnits));
-    if Owner.FileVersion >= fv160 then
+    if FreeShip.FileVersion >= fv160 then
     begin
       Destination.Add(FUseDefaultMainframeLocation);
       Destination.Add(FProjectMainframeLocation);
-      if Owner.FileVersion >= fv165 then
+      if FreeShip.FileVersion >= fv165 then
         Destination.Add(DisableModelCheck);
     end;
     Destination.Add(FProjectComment);
     Destination.Add(FProjectFileCreatedBy);
-    if Owner.FileVersion >= fv210 then
+    if FreeShip.FileVersion >= fv210 then
     begin
       Destination.Add(Ord(ProjectCoefficients));
       Destination.Add(FSavePreview);
       if FSavePreview then
       begin
-        Jpg := Owner.FGetPreview;
+        Jpg := FreeShip.FGetPreview;
         Destination.Add(Jpg);
         Jpg.Destroy;
       end;
-      if Owner.FileVersion >= fv230 then
+      if FreeShip.FileVersion >= fv230 then
         Destination.Add(FProjectSimplifyIntersections);
-      if Owner.Fileversion >= fv250 then
+      if FreeShip.Fileversion >= fv250 then
       begin
         // save settings for hydrostatics
         Destination.Add(FStartdraft);
@@ -583,9 +583,9 @@ begin
         Destination.Add(FFreeTrim);
         Destination.Add(FVCG);
       end;
-      if Owner.Fileversion >= fv317 then
+      if FreeShip.Fileversion >= fv317 then
         Destination.Add(EnableModelAutoMove);
-      if Owner.Fileversion >= fv332 then
+      if FreeShip.Fileversion >= fv332 then
         Destination.Add(EnableBonjeanSAC);
     end;
   end;

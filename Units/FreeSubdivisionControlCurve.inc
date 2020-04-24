@@ -459,17 +459,15 @@ begin
     Sel := Selected;
     FSpline.ShowCurvature := (Sel) and (Surface.FShowCurvature);
 
+    // adaptive Spline fragmentation
     // get length of the subdivided PLine to set Fragments
-    L:=FSpline.TotalLength;
-    T := L * Viewport.Zoom * Viewport.Scale; // approx len in screen pixels
-    L:=0; T:=0;
+    T:=0;
     for I := 1 to FSubdividedPoints.Count-1 do
     begin
       iP1 := FSubdividedPoints[I-1];
       iP2 := FSubdividedPoints[I];
-      //L := L + (DistPP3D(iP1.Coordinate,iP2.Coordinate));
-      p01:=ViewPort.Project(iP1.Coordinate);
-      p02:=ViewPort.Project(iP2.Coordinate);
+      p01 := ViewPort.Project(iP1.Coordinate);
+      p02 := ViewPort.Project(iP2.Coordinate);
       T := T + (DistPoint2D(p01,p02));
     end;
     if FSpline.ShowCurvature then

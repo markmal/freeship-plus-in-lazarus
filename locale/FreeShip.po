@@ -3054,6 +3054,30 @@ msgctxt "tfreelinesplanframe.zoomout.hint"
 msgid "Zoom out."
 msgstr ""
 
+#: tfreemainframedialog.bitbtn1.caption
+msgctxt "tfreemainframedialog.bitbtn1.caption"
+msgid "Close"
+msgstr ""
+
+#: tfreemainframedialog.caption
+msgctxt "tfreemainframedialog.caption"
+msgid "Mainfame location"
+msgstr ""
+
+#: tfreemainframedialog.speedbutton1.hint
+msgctxt "tfreemainframedialog.speedbutton1.hint"
+msgid "Medium"
+msgstr ""
+
+#: tfreemainframedialog.speedbutton2.hint
+msgctxt "tfreemainframedialog.speedbutton2.hint"
+msgid "Widest"
+msgstr ""
+
+#: tfreemainframedialog.speedbutton3.hint
+msgid "Spaciest"
+msgstr ""
+
 #: tfreemichletoutputdialog.cancelbutton.caption
 msgctxt "tfreemichletoutputdialog.cancelbutton.caption"
 msgid "Cancel"
@@ -9267,6 +9291,14 @@ msgstr ""
 
 #: tmainform.selectleakpoints.caption
 msgid "SelectLeakPoints"
+msgstr ""
+
+#: tmainform.setmainframe.caption
+msgid "Set Mainframe"
+msgstr ""
+
+#: tmainform.setmainframe.hint
+msgid "Set Mainframe location in Body Plan"
 msgstr ""
 
 #: tmainform.showbuttocks.caption

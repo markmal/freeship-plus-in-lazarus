@@ -75,7 +75,7 @@ type
     Edit4: TFloatSpinEdit;
     Edit5: TFloatSpinEdit;
     Edit6: TFloatSpinEdit;
-    Edit8: TFloatSpinEdit;
+    fseMainframeLocation: TFloatSpinEdit;
     GroupBox1: TGroupBox;
     Label10: TLabel;
     Label11: TLabel;
@@ -145,7 +145,7 @@ type
     procedure Edit6EditingDone(Sender: TObject);
     procedure Panel4Click(Sender: TObject);
     procedure UnitboxChange(Sender: TObject);
-    procedure Edit8EditingDone(Sender: TObject);
+    procedure MainframeLocationEditingDone(Sender: TObject);
     procedure Edit26EditingDone(Sender: TObject);
     procedure Edit27EditingDone(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
@@ -315,17 +315,17 @@ end;{TFREEProjectSettingsDialog.FSetLength}
 
 function TFREEProjectSettingsDialog.FGetMainframe: double;
 begin
-  {if Edit8.Text = '' then
+  {if fseMainframeLocation.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(Edit8.Text);}
-  Result := Edit8.Value;
+    Result := StrToFloat(fseMainframeLocation.Text);}
+  Result := fseMainframeLocation.Value;
 end;{TFREEProjectSettingsDialog.FGetMainframe}
 
 procedure TFREEProjectSettingsDialog.FSetMainframe(Val: double);
 begin
-  //Edit8.Text := FloatToStrF(Val, ffFixed, 7, 4);
-  Edit8.Value := Val;
+  //fseMainframeLocation.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  fseMainframeLocation.Value := Val;
 end;{TFREEProjectSettingsDialog.FSetMainframe}
 
 function TFREEProjectSettingsDialog.FGetYWindAreaMax: double;
@@ -464,7 +464,7 @@ begin
 
 end;{TFREEProjectSettingsDialog.UnitboxClick}
 
-procedure TFREEProjectSettingsDialog.Edit8EditingDone(Sender: TObject);
+procedure TFREEProjectSettingsDialog.MainframeLocationEditingDone(Sender: TObject);
 begin
   Mainframe := Mainframe;
 end;{TFREEProjectSettingsDialog.Edit8Exit}
@@ -490,17 +490,17 @@ begin
   begin
     //      Label13.Enabled:=False;
     //      Label14.Enabled:=False;
-    Edit8.Color := clBtnFace;
-    Edit8.Font.Color := clDkGray;
-    Edit8.Enabled := False;
+    fseMainframeLocation.Color := clBtnFace;
+    fseMainframeLocation.Font.Color := clDkGray;
+    fseMainframeLocation.Enabled := False;
   end
   else
   begin
     //      Label13.Enabled:=True;
     //      Label14.Enabled:=True;
-    Edit8.Color := clWindow;
-    Edit8.Font.Color := clBlack;
-    Edit8.Enabled := True;
+    fseMainframeLocation.Color := clWindow;
+    fseMainframeLocation.Font.Color := clBlack;
+    fseMainframeLocation.Enabled := True;
   end;
 end;{TFREEProjectSettingsDialog.CheckBox2Click}
 

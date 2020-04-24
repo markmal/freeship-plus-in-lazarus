@@ -162,14 +162,14 @@ object MainForm: TMainForm
   end
   object PanelMain: TPanel
     Left = 0
-    Height = 34
+    Height = 47
     Top = 0
     Width = 1132
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     BorderWidth = 1
-    ClientHeight = 34
+    ClientHeight = 47
     ClientWidth = 1132
     Color = clMenuBar
     ParentColor = False
@@ -222,7 +222,7 @@ object MainForm: TMainForm
     end
     object ToolBarVisibility: TToolBar
       Left = 160
-      Height = 31
+      Height = 44
       Top = 2
       Width = 331
       Align = alNone
@@ -377,6 +377,13 @@ object MainForm: TMainForm
         Action = ShowFreeObjects
         Marked = True
         Style = tbsCheck
+      end
+      object ToolButton39: TToolButton
+        Tag = 17
+        Left = 140
+        Top = 16
+        Action = SetMainframe
+        AutoSize = True
       end
     end
     object ToolBarLayers: TToolBar
@@ -672,8 +679,8 @@ object MainForm: TMainForm
   end
   object MainClientPanel: TPanel
     Left = 0
-    Height = 548
-    Top = 34
+    Height = 535
+    Top = 47
     Width = 1132
     Align = alClient
     BevelOuter = bvNone
@@ -1490,6 +1497,12 @@ object MainForm: TMainForm
       Hint = 'Show objects not associated with any layer'
       ImageIndex = 61
       OnExecute = ShowFreeObjectsExecute
+    end
+    object SetMainframe: TAction
+      Category = 'Visibility'
+      Caption = 'Set Mainframe'
+      Hint = 'Set Mainframe location in Body Plan'
+      OnExecute = SetMainframeExecute
     end
   end
   object MenuImages: TImageList
@@ -3773,6 +3786,9 @@ object MainForm: TMainForm
       end
       object Markers1: TMenuItem
         Action = ShowMarkers
+      end
+      object miSetMainframe: TMenuItem
+        Action = SetMainframe
       end
       object N5: TMenuItem
         Caption = '-'

@@ -32,7 +32,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="387"/>
+      <BuildNr Value="388"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -962,6 +962,7 @@
         <Filename Value="Forms/FreeMainframeDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FreeMainframeDialog"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit124>
     </Units>

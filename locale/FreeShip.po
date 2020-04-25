@@ -191,6 +191,10 @@ msgid ""
 "Error:\n"
 msgstr ""
 
+#: freeshipunit.rsmainframe
+msgid "Mainframe"
+msgstr ""
+
 #: freeshipunit.rspointanchorconstraintchanged
 msgid "ControlPoint Anchor Constraint Changed"
 msgstr ""

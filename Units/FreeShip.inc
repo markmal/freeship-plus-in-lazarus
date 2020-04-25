@@ -1013,6 +1013,8 @@ begin
     TFreeLinesplanframe(LinesplanFrame).Viewport.Invalidate;
 end;{TFreeShip.Draw}
 
+resourcestring rsMainframe = 'Mainframe';
+
 procedure TFreeShip.DrawToViewport(Viewport: TFreeViewport);
 var
   I, Size: integer;
@@ -1331,6 +1333,26 @@ var
           Viewport.TextOut(Pt2.X - Width div 2, Pt2.Y - Height, str);
         end;
       end;
+
+      // Draw Mainframe
+      if not (Viewport.Viewtype in [fvBodyplan,fvPerspective]) then
+      begin
+        Viewport.FontColor := clBlue;
+        Viewport.PenColor := clBlue;
+        Viewport.PenWidth := 1;
+        P1 := Point3D(Surface.MainframeLocation, Min.Y, Min.Z);
+        P2 := Point3D(Surface.MainframeLocation, Max.Y, Max.Z);;
+        Position := Surface.MainframeLocation;
+        Str := rsMainframe +':' + ConvertDimension(Position, ProjectSettings.ProjectUnits);
+        Pt1 := Viewport.Project(P1);
+        Pt2 := Viewport.Project(P2);
+        Viewport.MoveTo(Pt1.X, Pt1.Y+30);
+        Viewport.LineTo(Pt2.X, Pt2.Y-20);
+        Width := Viewport.TextWidth(Str);
+        Viewport.TextOut(Pt1.X, Pt1.Y - Height+30, Str);
+        Viewport.TextOut(Pt2.X - Width, Pt2.Y - Height-20, str);
+      end;
+
     end;
   end;{DrawGrid}
 

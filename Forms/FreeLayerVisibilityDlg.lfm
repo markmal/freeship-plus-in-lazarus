@@ -1,0 +1,61 @@
+object FreeLayerVisibilityDialog: TFreeLayerVisibilityDialog
+  Left = 531
+  Height = 240
+  Top = 185
+  Width = 225
+  Caption = 'Layer visibility'
+  ClientHeight = 240
+  ClientWidth = 225
+  FormStyle = fsStayOnTop
+  OnShow = FormShow
+  ShowHint = True
+  LCLVersion = '2.0.6.0'
+  object pTools: TPanel
+    Left = 0
+    Height = 40
+    Top = 0
+    Width = 225
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 40
+    ClientWidth = 225
+    TabOrder = 0
+    object bbClose: TBitBtn
+      Left = 170
+      Height = 32
+      Top = 4
+      Width = 51
+      Align = alRight
+      AutoSize = True
+      BorderSpacing.Around = 4
+      Caption = 'Close'
+      ModalResult = 11
+      OnClick = bbCloseClick
+      TabOrder = 0
+    end
+    object cbFreeStanding: TCheckBox
+      Left = 4
+      Height = 32
+      Top = 4
+      Width = 127
+      Align = alLeft
+      BorderSpacing.Around = 4
+      Caption = 'Free standing'
+      OnChange = cbFreeStandingChange
+      TabOrder = 1
+    end
+  end
+  object clbLayers: TCheckListBox
+    Left = 4
+    Height = 192
+    Top = 44
+    Width = 217
+    Align = alClient
+    BorderSpacing.Around = 4
+    ItemHeight = 0
+    OnClickCheck = clbLayersClickCheck
+    TabOrder = 1
+    TopIndex = -1
+  end
+end

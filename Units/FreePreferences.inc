@@ -690,6 +690,7 @@ var
   subPath, ptn: string;
 const DS=DirectorySeparator;
 begin
+  Result:='';
   subPath := DS+'Themes'+DS+ThemeName+DS+'icons'+DS + IntToStr(IconSize) +
     DS + IconName + '.png';
   if FileExistsUTF8(GetCurrentDirUTF8 + subPath) then
@@ -710,9 +711,8 @@ begin
   begin
     ptn := getParentThemeName(ThemeName);
     if (ptn > '') and (ptn <> ThemeName) then
-      Result := GetIconFileName(ptn, IconName, IconSize)
-    else
-      Result := '';
+      Result := GetIconFileName(ptn, IconName, IconSize);
+    //else  Result := '';
   end;
 end;
 
@@ -859,7 +859,7 @@ begin
   begin
     A := TAction(ActionList.Actions[i]);
     AName := A.Name;
-    if Aname = 'ShowFreeObjects' then
+    if Aname = 'LayerVisibilityDialog' then
       II:=0;
     II := A.ImageIndex;
     if (II > -1) then

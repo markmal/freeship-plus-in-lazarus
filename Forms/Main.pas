@@ -89,6 +89,7 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     SplitSection50pct: TAction;
      miShowLayerVisibilityDialog: TMenuItem;
      LayerVisibilityDialog: TAction;
      miSetSplitSection: TMenuItem;

@@ -8367,14 +8367,9 @@ msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
 msgid "Medium"
 msgstr ""
 
-#: tfreesplitsectiondialog.speedbutton2.hint
-msgctxt "tfreesplitsectiondialog.speedbutton2.hint"
-msgid "Widest"
-msgstr ""
-
 #: tfreesplitsectiondialog.speedbutton3.hint
 msgctxt "tfreesplitsectiondialog.speedbutton3.hint"
-msgid "Spaciest"
+msgid "From hydrostatics"
 msgstr ""
 
 #: tfreeundohistorydialog.caption
@@ -9453,6 +9448,14 @@ msgstr ""
 #: tmainform.spineditfontsize.hint
 msgctxt "tmainform.spineditfontsize.hint"
 msgid "Font Size"
+msgstr ""
+
+#: tmainform.splitsection50pct.caption
+msgid "Split Section middle location"
+msgstr ""
+
+#: tmainform.splitsection50pct.hint
+msgid "Set Split Section location to middle of length"
 msgstr ""
 
 #: tmainform.splitsectiondialog.caption

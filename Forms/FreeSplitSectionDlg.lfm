@@ -75,6 +75,7 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
         BorderSpacing.Right = 2
         BorderSpacing.Bottom = 4
         Images = MainForm.MenuImages
+        ImageIndex = 64
         OnClick = SpeedButton1Click
         ShowHint = True
         ParentShowHint = False

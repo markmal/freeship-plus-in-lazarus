@@ -75,7 +75,7 @@ type
     Edit4: TFloatSpinEdit;
     Edit5: TFloatSpinEdit;
     Edit6: TFloatSpinEdit;
-    fseMainframeLocation: TFloatSpinEdit;
+    fseSplitSectionLocation: TFloatSpinEdit;
     GroupBox1: TGroupBox;
     Label10: TLabel;
     Label11: TLabel;
@@ -145,7 +145,7 @@ type
     procedure Edit6EditingDone(Sender: TObject);
     procedure Panel4Click(Sender: TObject);
     procedure UnitboxChange(Sender: TObject);
-    procedure MainframeLocationEditingDone(Sender: TObject);
+    procedure SplitSectionLocationEditingDone(Sender: TObject);
     procedure Edit26EditingDone(Sender: TObject);
     procedure Edit27EditingDone(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
@@ -169,8 +169,8 @@ type
     procedure FSetDraft(Val: double);
     function FGetLength: double;
     procedure FSetLength(Val: double);
-    function FGetMainframe: double;
-    procedure FSetMainframe(Val: double);
+    function FGetSplitSectionLocation: double;
+    procedure FSetSplitSectionLocation(Val: double);
     function FGetYWindAreaMax: double;
     procedure FSetYWindAreaMax(Val: double);
     function FGetXWindAreaMax: double;
@@ -190,8 +190,8 @@ type
       read FGetDraft write FSetDraft;
     property Length: double
       read FGetLength write FSetLength;
-    property Mainframe: double
-      read FGetMainframe write FSetMainframe;
+    property SplitSectionLocation: double
+      read FGetSplitSectionLocation write FSetSplitSectionLocation;
     property YWindAreaMax: double
       read FGetYWindAreaMax write FSetYWindAreaMax;
     property XWindAreaMax: double
@@ -308,25 +308,25 @@ begin
   //Edit2.Text := FloatToStrF(Val, ffFixed, 7, 4);
   Edit2.Value:=Val;
   if Checkbox2.Checked then
-    Mainframe := 0.5 * Length;
+    SplitSectionLocation := 0.5 * Length;
   if Checkbox12.Checked then
     XWindAreaMax := 0.5 * Length;
 end;{TFREEProjectSettingsDialog.FSetLength}
 
-function TFREEProjectSettingsDialog.FGetMainframe: double;
+function TFREEProjectSettingsDialog.FGetSplitSectionLocation: double;
 begin
-  {if fseMainframeLocation.Text = '' then
+  {if fseSplitSectionLocation.Text = '' then
     Result := 0.0
   else
-    Result := StrToFloat(fseMainframeLocation.Text);}
-  Result := fseMainframeLocation.Value;
-end;{TFREEProjectSettingsDialog.FGetMainframe}
+    Result := StrToFloat(fseSplitSectionLocation.Text);}
+  Result := fseSplitSectionLocation.Value;
+end;{TFREEProjectSettingsDialog.FGetSplitSectionLocation}
 
-procedure TFREEProjectSettingsDialog.FSetMainframe(Val: double);
+procedure TFREEProjectSettingsDialog.FSetSplitSectionLocation(Val: double);
 begin
-  //fseMainframeLocation.Text := FloatToStrF(Val, ffFixed, 7, 4);
-  fseMainframeLocation.Value := Val;
-end;{TFREEProjectSettingsDialog.FSetMainframe}
+  //fseSplitSectionLocation.Text := FloatToStrF(Val, ffFixed, 7, 4);
+  fseSplitSectionLocation.Value := Val;
+end;{TFREEProjectSettingsDialog.FSetSplitSectionLocation}
 
 function TFREEProjectSettingsDialog.FGetYWindAreaMax: double;
 begin
@@ -441,7 +441,7 @@ begin
   Length := Length / ConversionFactor;
   Beam := Beam / Conversionfactor;
   Draft := Draft / Conversionfactor;
-  Mainframe := MainFrame / ConversionFactor;
+  SplitSectionLocation := SplitSectionLocation / ConversionFactor;
   YWindAreaMax := YWindAreaMax / ConversionFactor;
   XWindAreaMax := XWindAreaMax / ConversionFactor;
   if (Unitbox.ItemIndex = 0) and (Conversionfactor > 1) then
@@ -455,7 +455,7 @@ begin
   Beam := Beam * Conversionfactor;
   Draft := Draft * Conversionfactor;
   if not checkbox2.Checked then
-    Mainframe := MainFrame * ConversionFactor;
+    SplitSectionLocation := SplitSectionLocation * ConversionFactor;
   if not checkbox11.Checked then
     YWindAreaMax := YWindAreaMax * ConversionFactor;
   if not checkbox12.Checked then
@@ -464,9 +464,9 @@ begin
 
 end;{TFREEProjectSettingsDialog.UnitboxClick}
 
-procedure TFREEProjectSettingsDialog.MainframeLocationEditingDone(Sender: TObject);
+procedure TFREEProjectSettingsDialog.SplitSectionLocationEditingDone(Sender: TObject);
 begin
-  Mainframe := Mainframe;
+  SplitSectionLocation := SplitSectionLocation;
 end;{TFREEProjectSettingsDialog.Edit8Exit}
 
 
@@ -490,17 +490,17 @@ begin
   begin
     //      Label13.Enabled:=False;
     //      Label14.Enabled:=False;
-    fseMainframeLocation.Color := clBtnFace;
-    fseMainframeLocation.Font.Color := clDkGray;
-    fseMainframeLocation.Enabled := False;
+    fseSplitSectionLocation.Color := clBtnFace;
+    fseSplitSectionLocation.Font.Color := clDkGray;
+    fseSplitSectionLocation.Enabled := False;
   end
   else
   begin
     //      Label13.Enabled:=True;
     //      Label14.Enabled:=True;
-    fseMainframeLocation.Color := clWindow;
-    fseMainframeLocation.Font.Color := clBlack;
-    fseMainframeLocation.Enabled := True;
+    fseSplitSectionLocation.Color := clWindow;
+    fseSplitSectionLocation.Font.Color := clBlack;
+    fseSplitSectionLocation.Enabled := True;
   end;
 end;{TFREEProjectSettingsDialog.CheckBox2Click}
 

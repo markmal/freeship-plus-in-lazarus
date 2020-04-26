@@ -512,7 +512,7 @@ begin
       if IntersectionType = fiStation then
         Drawit := (Viewport.ViewType <> fvBodyplan) or
           (FreeShip.Visibility.ModelView = mvBoth) or (Spline.Max.X >=
-          FreeShip.ProjectSettings.ProjectMainframeLocation);
+          FreeShip.ProjectSettings.ProjectSplitSectionLocation);
          {
          TODO remove
          if IntersectionType=fiStation then
@@ -578,7 +578,7 @@ begin
       if (FreeShip.Visibility.ModelView = mvBoth) then
         DrawIt := True
       else if (Viewport.ViewType = fvBodyplan) and
-        (Spline.Max.X <= FreeShip.ProjectSettings.ProjectMainframeLocation) then
+        (Spline.Max.X <= FreeShip.ProjectSettings.ProjectSplitSectionLocation) then
         DrawIt := True;
       if DrawIt then
       begin

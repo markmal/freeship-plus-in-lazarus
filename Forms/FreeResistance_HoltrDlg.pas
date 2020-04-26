@@ -2040,7 +2040,7 @@ begin
     Tc := DraftTotal + Z0;
     WettedSurface := HydObject.Data.WettedSurface;
     WlArea := HydObject.Data.Waterplanearea;
-    Am := HydObject.Data.MainframeArea;
+    Am := HydObject.Data.MidshipArea;
     Displacement := HydObject.Data.Volume;
     //      if Lwl<>0 then LCB:=100*(HydObject.Data.CenterOfBuoyancy.X-FFreeship.ProjectSettings.ProjectLength*0.5)/Lwl
     if Lwl <> 0 then

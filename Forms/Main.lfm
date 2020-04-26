@@ -382,7 +382,7 @@ object MainForm: TMainForm
         Tag = 17
         Left = 140
         Top = 16
-        Action = SetMainframe
+        Action = SplitSectionDialog
         AutoSize = True
       end
     end
@@ -436,22 +436,22 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object ToolButton26: TToolButton
-        Tag = 5
+        Tag = 6
         Left = 108
         Top = 0
         Action = IntersectionDialog
         AutoSize = True
       end
       object ToolButton6: TToolButton
-        Tag = 6
-        Left = 88
+        Tag = 7
+        Left = 128
         Top = 0
         Action = LayerAutoGroup
         AutoSize = True
       end
       object LayerBox: TComboBox
-        Tag = 4
-        Left = 128
+        Tag = 5
+        Left = 148
         Height = 32
         Top = 0
         Width = 100
@@ -459,6 +459,12 @@ object MainForm: TMainForm
         OnChange = LayerBoxChange
         TabOrder = 0
         Text = 'LayerBox'
+      end
+      object ToolButton1: TToolButton
+        Tag = 4
+        Left = 88
+        Top = 0
+        Action = LayerVisibilityDialog
       end
     end
     object ToolBarPoints: TToolBar
@@ -1498,11 +1504,18 @@ object MainForm: TMainForm
       ImageIndex = 61
       OnExecute = ShowFreeObjectsExecute
     end
-    object SetMainframe: TAction
+    object SplitSectionDialog: TAction
       Category = 'Visibility'
-      Caption = 'Set Mainframe'
-      Hint = 'Set Mainframe location in Body Plan'
-      OnExecute = SetMainframeExecute
+      Caption = 'Split Section location'
+      Hint = 'Set Split Section location in Body Plan'
+      OnExecute = SplitSectionDialogExecute
+    end
+    object LayerVisibilityDialog: TAction
+      Category = 'Layer'
+      Caption = 'Show Layer visibility dialog'
+      Hint = 'Show Layer visibility dialog'
+      ImageIndex = 24
+      OnExecute = LayerVisibilityDialogExecute
     end
   end
   object MenuImages: TImageList
@@ -3739,6 +3752,9 @@ object MainForm: TMainForm
       object Deleteempty2: TMenuItem
         Action = LayerDialog
       end
+      object miShowLayerVisibilityDialog: TMenuItem
+        Action = LayerVisibilityDialog
+      end
     end
     object Visibility1: TMenuItem
       Caption = 'Visibility'
@@ -3787,8 +3803,8 @@ object MainForm: TMainForm
       object Markers1: TMenuItem
         Action = ShowMarkers
       end
-      object miSetMainframe: TMenuItem
-        Action = SetMainframe
+      object miSetSplitSection: TMenuItem
+        Action = SplitSectionDialog
       end
       object N5: TMenuItem
         Caption = '-'

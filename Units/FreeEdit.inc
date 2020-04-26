@@ -1216,9 +1216,9 @@ begin
           if Points.Count = FreeShip.Surface.NumberOfControlPoints then
           begin
             // Update main dimensions
-            if not FreeShip.ProjectSettings.FUseDefaultMainframeLocation then
-              FreeShip.ProjectSettings.ProjectMainframeLocation :=
-                FreeShip.ProjectSettings.ProjectMainframeLocation + Translate.X;
+            if not FreeShip.ProjectSettings.FUseDefaultSplitSectionLocation then
+              FreeShip.ProjectSettings.ProjectSplitSectionLocation :=
+                FreeShip.ProjectSettings.ProjectSplitSectionLocation + Translate.X;
             // Update stations, buttcks and waterlines
             for I := 1 to FreeShip.NumberofStations do
               FreeShip.Station[I - 1].FPlane.d :=
@@ -7688,9 +7688,9 @@ begin
     abs(FreeShip.ProjectSettings.ProjectBeam * Scalevector.Y);
   FreeShip.ProjectSettings.ProjectDraft :=
     abs(FreeShip.ProjectSettings.ProjectDraft * Scalevector.Z);
-  if not FreeShip.ProjectSettings.FUseDefaultMainframeLocation then
-    FreeShip.ProjectSettings.ProjectMainframeLocation :=
-      abs(FreeShip.ProjectSettings.ProjectMainframeLocation * ScaleVector.X);
+  if not FreeShip.ProjectSettings.FUseDefaultSplitSectionLocation then
+    FreeShip.ProjectSettings.ProjectSplitSectionLocation :=
+      abs(FreeShip.ProjectSettings.ProjectSplitSectionLocation * ScaleVector.X);
   // Update markers
   if AdjustMarkers then
     for I := 1 to FreeShip.NumberOfMarkers do

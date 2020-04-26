@@ -1745,7 +1745,7 @@ begin
   FDesiredSubdivisionLevel := 1;
   FShowNormals := True;
   FShadeUnderWater := False;
-  FMainframeLocation := 1e10;
+  FSplitSectionLocation := 1e10;
   FIdSequence := 0;
 end;{TFreeSubdivisionSurface.Clear}
 

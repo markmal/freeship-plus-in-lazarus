@@ -79,7 +79,8 @@ uses
      ToolWin,
      Buttons, StdActns, Spin, ExtDlgs,
      DefaultTranslator, ComboEx,
-     FreeMainframeDlg
+     FreeSplitSectionDlg,
+     FreeLayerVisibilityDlg
 ;
 
 type
@@ -88,8 +89,10 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
-     miSetMainframe: TMenuItem;
-     SetMainframe: TAction;
+     miShowLayerVisibilityDialog: TMenuItem;
+     LayerVisibilityDialog: TAction;
+     miSetSplitSection: TMenuItem;
+     SplitSectionDialog: TAction;
      miShowFreeObjects: TMenuItem;
      ShowFreeObjects: TAction;
      cbPrecision: TComboBox;
@@ -154,6 +157,7 @@ type
     ToolBarVisibility: TToolBar;
     ToolBarLayers: TToolBar;
     tbShowFreeObjects: TToolButton;
+    ToolButton1: TToolButton;
     ToolButton39: TToolButton;
     ToolButtonSelect: TToolButton;
     ToolButtonRedo: TToolButton;
@@ -482,8 +486,9 @@ type
     procedure LayerBoxPanelClick(Sender: TObject);
     procedure PointExtrudeExecute(Sender: TObject);
     procedure PointsCoincideExecute(Sender: TObject);
-    procedure SetMainframeExecute(Sender: TObject);
+    procedure SplitSectionDialogExecute(Sender: TObject);
     procedure ShowFreeObjectsExecute(Sender: TObject);
+    procedure LayerVisibilityDialogExecute(Sender: TObject);
     function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
     procedure MainClientPanelClick(Sender: TObject);
@@ -648,13 +653,14 @@ type
       FToolBarCurvesControlsWidth : integer;
       FActionListHull : TActionList;
       FDestroying: boolean;
-      FMainframeDialog: TFreeMainframeDialog;
+      FSplitSectionDialog: TFreeSplitSectionDialog;
 
 
       procedure FLoadRecentFile(sender:TObject);
+      procedure FreeLayerVisibilityDialogChange(Sender: TObject);
       procedure FreeShipChangeLayerData(Sender: TObject);
       procedure FreeShipChangeActiveLayer(Sender: TObject;Layer: TFreeSubdivisionLayer);
-      procedure OnMainframeLocationChange(Sender: TObject; aValue: TFloatType);
+      procedure OnSplitSectionLocationChange(Sender: TObject; aValue: TFloatType);
       procedure OnSelectItem(Sender:TObject);
       procedure OnChangeActiveControlPoint(Sender:TObject);
 
@@ -1668,30 +1674,30 @@ begin
   UpdateMenu;
 end;
 
-procedure TMainForm.SetMainframeExecute(Sender: TObject);
+procedure TMainForm.SplitSectionDialogExecute(Sender: TObject);
 begin
-  if FMainframeDialog = nil then
-     FMainframeDialog:=TFreeMainframeDialog.Create(Self);
-  FMainframeDialog.SetDimensions(FreeShip.Surface.Max.X,
+  if FSplitSectionDialog = nil then
+     FSplitSectionDialog:=TFreeSplitSectionDialog.Create(Self);
+  FSplitSectionDialog.SetDimensions(FreeShip.Surface.Max.X,
                          FreeShip.Surface.Max.X/2, //TODO replace with real Widest
                          FreeShip.Surface.Max.X/2);
-  if FreeShip.ProjectSettings.ProjectMainframeLocation > 0 then
-     FMainframeDialog.MainframeLocation := FreeShip.ProjectSettings.ProjectMainframeLocation
+  if FreeShip.ProjectSettings.ProjectSplitSectionLocation > 0 then
+     FSplitSectionDialog.SplitSectionLocation := FreeShip.ProjectSettings.ProjectSplitSectionLocation
   else
-     FMainframeDialog.MainframeLocation := FreeShip.Surface.Max.X/2;
-  FMainframeDialog.OnMainframeLocationChange:=OnMainframeLocationChange;
-  FreeShip.ProjectSettings.UseDefaultMainframeLocation := false;
-  FMainframeDialog.Show;
-  FreeShip.ProjectSettings.ProjectMainframeLocation:=FMainframeDialog.MainframeLocation;
-  //FMainframeDialog.Free;
+     FSplitSectionDialog.SplitSectionLocation := FreeShip.Surface.Max.X/2;
+  FSplitSectionDialog.OnSplitSectionLocationChange:=OnSplitSectionLocationChange;
+  FreeShip.ProjectSettings.UseDefaultSplitSectionLocation := false;
+  FSplitSectionDialog.Show;
+  FreeShip.ProjectSettings.ProjectSplitSectionLocation:=FSplitSectionDialog.SplitSectionLocation;
+  //FSplitSectionDialog.Free;
   //FreeShip.FileChanged := True;
   //FreeShip.Redraw;
   //UpdateMenu;
 end;
 
-procedure TMainForm.OnMainframeLocationChange(Sender: TObject; aValue: TFloatType);
+procedure TMainForm.OnSplitSectionLocationChange(Sender: TObject; aValue: TFloatType);
 begin
-  FreeShip.ProjectSettings.ProjectMainframeLocation:=aValue;
+  FreeShip.ProjectSettings.ProjectSplitSectionLocation:=aValue;
   FreeShip.FileChanged := True;
   FreeShip.Redraw;
 end;
@@ -1702,6 +1708,19 @@ begin
   UpdateMenu;
 end;
 
+procedure TMainForm.LayerVisibilityDialogExecute(Sender: TObject);
+begin
+  if FreeLayerVisibilityDialog = nil then
+    FreeLayerVisibilityDialog:= TFreeLayerVisibilityDialog.Create(Self);
+  FreeLayerVisibilityDialog.FreeShip := FreeShip;
+  FreeLayerVisibilityDialog.OnChange := FreeLayerVisibilityDialogChange;
+  FreeLayerVisibilityDialog.Show;
+end;
+
+procedure TMainForm.FreeLayerVisibilityDialogChange(Sender:TObject);
+begin
+  UpdateMenu;
+end;
 
 function TMainForm.ShowSplashWindow:TModalResult;
 begin

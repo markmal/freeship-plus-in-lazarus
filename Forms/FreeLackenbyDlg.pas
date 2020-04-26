@@ -384,7 +384,7 @@ begin
     begin
       Spline := TFreeSpline.Create(FFreeship.Surface);
       Spline.Assign(Station.Items[J - 1]);
-      if Spline.Max.X <= FFreeship.ProjectSettings.ProjectMainframeLocation then
+      if Spline.Max.X <= FFreeship.ProjectSettings.ProjectSplitSectionLocation then
       begin
         for K := 1 to Spline.NumberOfPoints do
         begin
@@ -521,7 +521,7 @@ begin
   LCBError := 1;
   PrevCursor := Screen.Cursor;
   Screen.Cursor := crHourGlass;
-  MainLoc := FFreeship.ProjectSettings.ProjectMainframeLocation;
+  MainLoc := FFreeship.ProjectSettings.ProjectSplitSectionLocation;
   ConvFactor := 2.5;
   try
     while ((DisplError > MaxDisplError) or (LCBError > MaxLCBError)) and
@@ -797,7 +797,7 @@ function TFreeLackenbyDialog.Execute(Freeship: TFreeship; var Modified: boolean)
 var
   I, Index, E: integer;
   Value: TFloatType;
-  MainLocation: TFloatType;
+  MidshipLocation: TFloatType;
   Station: TFreeIntersection;
   Plane: T3DPlane;
   P: T3DCoordinate;
@@ -845,15 +845,19 @@ begin
     FFreeship.ProjectSettings.ProjectDraft);
   FFreeship.SubmergedHullExtents(FWaterlinePlane, FMin, FMax);
 
-  // mainframe properties
-  MainLocation := FFreeship.ProjectSettings.ProjectMainframeLocation;
+  // midship/mainframe properties
+  if not FFreeship.HydrostaticCalculation[0].Calculated then
+    FFreeship.HydrostaticCalculation[0].Calculate;
+  // TODO validate getting MidshipLocation from HydrostaticCalculation[0].
+  MidshipLocation := //FFreeship.ProjectSettings.ProjectSplitSectionLocation;
+                     FFreeship.HydrostaticCalculation[0].MidshipLocation;
   Station := TFreeIntersection.Create(FFreeship);
   Station.IntersectionType := fiStation;
   Station.UseHydrostaticsSurfacesOnly := True;
   Plane.a := 1.0;
   Plane.b := 0.0;
   Plane.c := 0.0;
-  Plane.d := -MainLocation;
+  Plane.d := -MidshipLocation;
   Station.Plane := Plane;
   Station.CalculateArea(FWaterlinePlane, FMainArea, P, P2D);
   Station.Destroy;
@@ -862,7 +866,7 @@ begin
   FAftShip.Capacity := NStations + 1;
   for I := 0 to NStations do
   begin
-    Value := (FMin.X + (I / NStations) * (MainLocation - FMin.X));
+    Value := (FMin.X + (I / NStations) * (MidshipLocation - FMin.X));
     Station := TFreeIntersection.Create(FFreeship);
     Station.IntersectionType := fiStation;
     Station.UseHydrostaticsSurfacesOnly := True;
@@ -878,7 +882,7 @@ begin
   FForeship.Capacity := NStations + 1;
   for I := 0 to NStations do
   begin
-    Value := (MainLocation + (I / NStations) * (FMax.X - MainLocation));
+    Value := (MidshipLocation + (I / NStations) * (FMax.X - MidshipLocation));
     Station := TFreeIntersection.Create(FFreeship);
     Station.IntersectionType := fiStation;
     Station.UseHydrostaticsSurfacesOnly := True;
@@ -1265,10 +1269,10 @@ begin
           end;
       end;
       Topview.PenStyle := psDot;
-      Pt := Topview.Project(SetPoint(FFreeship.ProjectSettings.ProjectMainframeLocation,
+      Pt := Topview.Project(SetPoint(FFreeship.ProjectSettings.ProjectSplitSectionLocation,
         Topview.Min3D.Y, 0));
       Topview.MoveTo(Pt.X, Pt.Y);
-      Pt := Topview.Project(SetPoint(FFreeship.ProjectSettings.ProjectMainframeLocation,
+      Pt := Topview.Project(SetPoint(FFreeship.ProjectSettings.ProjectSplitSectionLocation,
         Topview.Max3D.Y, 0));
       Topview.LineTo(Pt.X, Pt.Y);
 

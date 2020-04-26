@@ -382,15 +382,15 @@ begin
       (Pt.Y <= Viewport.Height) then
     begin
       V1 := FSpline.Value(0.0);
-      if V1.X < Surface.MainframeLocation then
+      if V1.X < Surface.SplitSectionLocation then
         V1.Y := -V1.Y;
       for I := 1 to FSpline.Fragments do
       begin
         V2 := FSpline.Value((I - 1) / (FSpline.Fragments - 1));
-        if V2.X < Surface.MainframeLocation then
+        if V2.X < Surface.SplitSectionLocation then
           V2.Y := -V2.Y;
-        if ((V1.X < Surface.MainframeLocation) and (V2.X < Surface.MainframeLocation)) or
-          ((V1.X > Surface.MainframeLocation) and (V2.X > Surface.MainframeLocation)) then
+        if ((V1.X < Surface.SplitSectionLocation) and (V2.X < Surface.SplitSectionLocation)) or
+          ((V1.X > Surface.SplitSectionLocation) and (V2.X > Surface.SplitSectionLocation)) then
         begin
           P1 := Viewport.Project(V1);
           P2 := Viewport.Project(V2);
@@ -512,7 +512,7 @@ begin
 
     if (Viewport.ViewType = fvBodyPlan) and (not Surface.DrawMirror) then
     begin
-      Plane := SetPlane(1.0, 0.0, 0.0, -Surface.MainframeLocation);
+      Plane := SetPlane(1.0, 0.0, 0.0, -Surface.SplitSectionLocation);
       NParam := 2;
       Setlength(Param, NParam);
       Param[0] := 0.0;
@@ -532,7 +532,7 @@ begin
         I1 := I - 1;
         I2 := I - 2;
         P3D := FSpline.Value(0.5 * (Param[I2] + Param[I1]));
-        if P3D.X < Surface.MainframeLocation then
+        if P3D.X < Surface.SplitSectionLocation then
           Scale := -1
         else
           scale := 1;

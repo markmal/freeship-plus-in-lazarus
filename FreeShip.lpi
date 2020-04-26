@@ -32,7 +32,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="388"/>
+      <BuildNr Value="391"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -281,7 +281,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="125">
+    <Units Count="126">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -959,12 +959,19 @@
         <ResourceBaseClass Value="Form"/>
       </Unit123>
       <Unit124>
-        <Filename Value="Forms/FreeMainframeDlg.pas"/>
+        <Filename Value="Forms/FreeSplitSectionDlg.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FreeMainframeDialog"/>
+        <ComponentName Value="FreeSplitSectionDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit124>
+      <Unit125>
+        <Filename Value="Forms/FreeLayerVisibilityDlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeLayerVisibilityDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit125>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -980,7 +987,6 @@
     <Parsing>
       <Style Value="1"/>
       <SyntaxOptions>
-        <SyntaxMode Value="FPC"/>
         <IncludeAssertionCode Value="True"/>
       </SyntaxOptions>
     </Parsing>

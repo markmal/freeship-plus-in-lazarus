@@ -215,14 +215,14 @@ begin
 
       if (Viewport.ViewType = fvBodyplan) and (not Surface.DrawMirror) then
       begin
-        if ((P1.X < Surface.MainframeLocation) and (P2.X > Surface.MainframeLocation)) or
-          ((P1.X > Surface.MainframeLocation) and (P2.X < Surface.MainframeLocation)) then
+        if ((P1.X < Surface.SplitSectionLocation) and (P2.X > Surface.SplitSectionLocation)) or
+          ((P1.X > Surface.SplitSectionLocation) and (P2.X < Surface.SplitSectionLocation)) then
         begin
           if P2.X - P1.X <> 0 then
-            M := Interpolate(P1, P2, (Surface.MainframeLocation - P1.X) / (P2.X - P1.X))
+            M := Interpolate(P1, P2, (Surface.SplitSectionLocation - P1.X) / (P2.X - P1.X))
           else
             M := MidPoint(P1, P2);
-          if P1.X <= Surface.MainframeLocation then
+          if P1.X <= Surface.SplitSectionLocation then
           begin
             // P2 lies on port
             Pt1 := Viewport.Project(P2);
@@ -271,9 +271,9 @@ begin
         end
         else
         begin
-          if P1.X <= Surface.MainframeLocation then
+          if P1.X <= Surface.SplitSectionLocation then
             P1.Y := -P1.Y;
-          if P2.X <= Surface.MainframeLocation then
+          if P2.X <= Surface.SplitSectionLocation then
             P2.Y := -P2.Y;
           Pt1 := Viewport.Project(P1);
           Pt2 := Viewport.Project(P2);
@@ -528,7 +528,7 @@ var
     L, Ldes: TFloatType;
   begin
     if (Viewport.ViewType = fvBodyplan) and (not Surface.DrawMirror) and
-      (P.X <= Surface.MainframeLocation) then
+      (P.X <= Surface.SplitSectionLocation) then
     begin
       P.Y := -P.Y;
       N.Y := -N.Y;

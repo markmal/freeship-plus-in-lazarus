@@ -48,18 +48,18 @@ begin
       (Pt.Y <= Viewport.Height) then
     begin
       V1 := Value(0.0);
-      if V1.X < Owner.ProjectSettings.ProjectMainframeLocation then
+      if V1.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
         V1.Y := -V1.Y;
       //We could analyze it with knuckles but we do not need this precision here
       for I := 1 to Fragments do
       begin
         V2 := Value((I - 1) / (Fragments - 1));
-        if V2.X < Owner.ProjectSettings.ProjectMainframeLocation then
+        if V2.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
           V2.Y := -V2.Y;
-        if ((V1.X < Owner.ProjectSettings.ProjectMainframeLocation) and
-          (V2.X < Owner.ProjectSettings.ProjectMainframeLocation)) or
-          ((V1.X > Owner.ProjectSettings.ProjectMainframeLocation) and
-          (V2.X > Owner.ProjectSettings.ProjectMainframeLocation)) then
+        if ((V1.X < Owner.ProjectSettings.ProjectSplitSectionLocation) and
+          (V2.X < Owner.ProjectSettings.ProjectSplitSectionLocation)) or
+          ((V1.X > Owner.ProjectSettings.ProjectSplitSectionLocation) and
+          (V2.X > Owner.ProjectSettings.ProjectSplitSectionLocation)) then
         begin
           P1 := Viewport.Project(V1);
           P2 := Viewport.Project(V2);
@@ -146,7 +146,7 @@ begin
     Fragments := 250;
     if (Viewport.ViewType = fvBodyPlan) and (Owner.Visibility.ModelView <> mvBoth) then
     begin
-      Plane := SetPlane(1.0, 0.0, 0.0, -Owner.ProjectSettings.ProjectMainframeLocation);
+      Plane := SetPlane(1.0, 0.0, 0.0, -Owner.ProjectSettings.ProjectSplitSectionLocation);
       NParam := 2;
       Setlength(Param, NParam);
       Param[0] := 0.0;
@@ -164,7 +164,7 @@ begin
       for I := 2 to NParam do
       begin
         P3D := Value(0.5 * (Param[I - 2] + Param[I - 1]));
-        if P3D.X < Owner.ProjectSettings.ProjectMainframeLocation then
+        if P3D.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
           Scale := -1
         else
           scale := 1;
@@ -216,7 +216,7 @@ begin
       for I := 1 to NumberOfPoints do
       begin
         P3D := Point[I - 1];
-        if P3D.X < Owner.ProjectSettings.ProjectMainframeLocation then
+        if P3D.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
           P3D.Y := -P3D.Y;
         Pt := Viewport.Project(P3D);
         Viewport.MoveTo(Pt.X - Size, Pt.Y - Size);

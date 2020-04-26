@@ -292,13 +292,13 @@ begin
           Zmin := HydObject.Data.ModelMin.Z;
           Cb := HydObject.Data.BlockCoefficient * HydObject.Draft /
             (HydObject.Draft + HydObject.Data.ModelMin.Z);
-          Cm := HydObject.Data.MainframeCoeff * HydObject.Draft /
+          Cm := HydObject.Data.MidshipCoeff * HydObject.Draft /
             (HydObject.Draft + HydObject.Data.ModelMin.Z);
         end
         else
         begin
           Cb := HydObject.Data.BlockCoefficient;
-          Cm := HydObject.Data.MainframeCoeff;
+          Cm := HydObject.Data.MidshipCoeff;
         end;
         if Cm > 0 then
         begin
@@ -320,7 +320,7 @@ begin
             FloatToStrF(HydObject.Data.CenterOfBuoyancy.Z + Zmin, ffFixed, 7, 3);
           ResultsDlg.Grid.Cells[8, I] := FloatToStrF(Cb, ffFixed, 7, 4);
           ResultsDlg.Grid.Cells[9, I] :=
-            FloatToStrF(HydObject.Data.Mainframearea, ffFixed, 7, 3);
+            FloatToStrF(HydObject.Data.MidshipArea, ffFixed, 7, 3);
           ResultsDlg.Grid.Cells[10, I] := FloatToStrF(Cm, ffFixed, 7, 4);
           ResultsDlg.Grid.Cells[11, I] :=
             FloatToStrF(HydObject.Data.Waterplanearea, ffFixed, 7, NumberOfDecimals(

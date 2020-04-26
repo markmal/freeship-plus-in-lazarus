@@ -149,26 +149,26 @@ begin
         FData.BlockCoefficient :=
           FData.BlockCoefficient * FData.AbsoluteDraft /
           (FData.AbsoluteDraft + FData.ModelMin.Z);
-        FData.MainframeCoeff :=
-          FData.MainframeCoeff * FData.AbsoluteDraft /
+        FData.MidshipCoeff :=
+          FData.MidshipCoeff * FData.AbsoluteDraft /
           (FData.AbsoluteDraft + FData.ModelMin.Z);
-        if FData.MainframeCoeff > 0 then
+        if FData.MidshipCoeff > 0 then
         begin
-          FData.PrismCoefficient := FData.BlockCoefficient / FData.MainframeCoeff;
+          FData.PrismCoefficient := FData.BlockCoefficient / FData.MidshipCoeff;
           FData.VertPrismCoefficient :=
             FData.BlockCoefficient / FData.WaterplaneCoeff;
         end
         else
         begin
           Strings.Add(Space(4) + MakeLength(Userstring(15), 43) +
-            ' : ' + Separator + MakeLength(FData.MainframeCoeff, 4, 12));
+            ' : ' + Separator + MakeLength(FData.MidshipCoeff, 4, 12));
           Strings.Add(Space(4) + 'ATTENTION!!! Cm<=0');
         end;
       end;
 
       Strings.Add(Space(4) + MakeLength(Userstring(7), 43) + ' : ' +
         Separator + MakeLength(FData.BlockCoefficient, 4, 12));
-      if FData.MainframeCoeff > 0.01 then
+      if FData.MidshipCoeff > 0.01 then
         Strings.Add(Space(4) + MakeLength(Userstring(8), 43) + ' : ' +
           Separator + MakeLength(FData.PrismCoefficient, 4, 12));
       if FData.WaterplaneCoeff > 0.01 then
@@ -188,18 +188,18 @@ begin
       Strings.Add(Space(4) + MakeLength(Userstring(12), 43) + ' : ' +
         Separator + MakeLength(FData.CenterOfBuoyancy.Z + FData.ModelMin.Z, -1, 12) +
         Separator + LengthStr(Owner.ProjectSettings.ProjectUnits));
-      if FData.MainframeCoeff > 0.01 then
+      if FData.MidshipCoeff > 0.01 then
       begin
         Strings.Add(Userstring(13) + ':');
         Strings.Add(Space(4) + MakeLength('Midship location', 43) + ' : ' +
           Separator + MakeLength(FMidshipLocation, 4, 12) +
           Separator + LengthStr(Owner.ProjectSettings.ProjectUnits));
         Strings.Add(Space(4) + MakeLength(Userstring(14), 43) + ' : ' +
-          Separator + MakeLength(FData.MainframeArea, -1, 12) + Separator +
+          Separator + MakeLength(FData.MidshipArea, -1, 12) + Separator +
           Areastr(Owner.ProjectSettings.ProjectUnits));
         Strings.Add(Space(4) + MakeLength(Userstring(15), 43) + ' : ' +
-          Separator + MakeLength(FData.MainframeCoeff, 4, 12));
-        //         if FData.MainframeCoeff=0 then Strings.Add('ATTENTION!!! There are many leak points or invalid Main dimensions in Project settings!');
+          Separator + MakeLength(FData.MidshipCoeff, 4, 12));
+        //         if FData.MidshipCoeff=0 then Strings.Add('ATTENTION!!! There are many leak points or invalid Main dimensions in Project settings!');
       end;
       Strings.Add(Userstring(16) + ':');
       Strings.Add(Space(4) + MakeLength(Userstring(17), 43) + ' : ' +
@@ -398,10 +398,10 @@ begin
         FData.BlockCoefficient :=
           FData.BlockCoefficient * FData.AbsoluteDraft /
           (FData.AbsoluteDraft + FData.ModelMin.Z);
-        FData.MainframeCoeff :=
-          FData.MainframeCoeff * FData.AbsoluteDraft /
+        FData.MidshipCoeff :=
+          FData.MidshipCoeff * FData.AbsoluteDraft /
           (FData.AbsoluteDraft + FData.ModelMin.Z);
-        FData.PrismCoefficient := FData.BlockCoefficient / FData.MainframeCoeff;
+        FData.PrismCoefficient := FData.BlockCoefficient / FData.MidshipCoeff;
       end;
       Strings.Add(' | ' + Makelength(Draft, 3, 6) + ' | ' +
         Makelength(Trim, 3, 7) + ' | ' + Makelength(FData.LengthWaterline,
@@ -411,8 +411,8 @@ begin
         MakeLength(FData.CenterOfBuoyancy.X, -1, 7) + ' | ' +
         MakeLength(FData.CenterOfBuoyancy.Z + FData.ModelMin.Z, -1, 6) +
         ' | ' + MakeLength(FData.BlockCoefficient, 4, 6) + ' | ' +
-        MakeLength(FData.MainframeArea, -1, 6) + ' | ' +
-        MakeLength(FData.MainframeCoeff, 4, 6) + ' | ' +
+        MakeLength(FData.MidshipArea, -1, 6) + ' | ' +
+        MakeLength(FData.MidshipCoeff, 4, 6) + ' | ' +
         MakeLength(FData.WaterplaneArea, -1, 6) + ' | ' +
         MakeLength(FData.WaterplaneCoeff, 4, 6) + ' | ' +
         MakeLength(FData.PrismCoefficient, 4, 6) + ' | ' +
@@ -839,10 +839,10 @@ begin
           Strings.Add(Space(4) + MakeLength(Userstring(941), 38) +
             ' : ' + Separator + MakeLength(FData.BulbSectionCOG.Z, -1, 12) +
             Separator + LengthStr(Owner.ProjectSettings.ProjectUnits));
-          if FData.MainframeArea > 0.01 then
+          if FData.MidshipArea > 0.01 then
             Strings.Add(Space(4) + MakeLength(Userstring(943), 38) +
               ' : ' + Separator + MakeLength(FData.BulbSectionArea /
-              FData.MainframeArea, -1, 12));
+              FData.MidshipArea, -1, 12));
           Strings.Add(' ');
         end;
 
@@ -884,7 +884,7 @@ begin
     Owner.ProjectSettings.Projectdraft + FData.ModelMin.Z, -1, 10) +
     #32 + LengthStr(Owner.ProjectSettings.ProjectUnits));
   Strings.Add(MakeLength(Userstring(49), 21) + ' : ' + MakeLength(
-//    Owner.ProjectSettings.ProjectMainframeLocation, -1, 10) + #32 +
+//    Owner.ProjectSettings.ProjectSplitSectionLocation, -1, 10) + #32 +
     FMidshipLocation, -1, 10) + #32 +
     LengthStr(Owner.ProjectSettings.ProjectUnits));
   Strings.Add(MakeLength(Userstring(50), 21) + ' : ' + MakeLength(
@@ -1794,40 +1794,40 @@ begin
   end;
 
   if (FData.Volume > 0) and (Errors = []) and
-    ((hcMainframe in Calculations) or (hcAll in Calculations)) then
+    ((hcMidship in Calculations) or (hcAll in Calculations)) then
   begin
     CalculateMidshipLocation;
-    // Calculate mainframe properties - Расчет параметров мидельшпангоута до КВЛ
+    // Calculate midship/mainframe properties - Расчет параметров мидельшпангоута до КВЛ
     FMidshipSection.FIntersectionType := fiStation;
     FMidshipSection.FUseHydrostaticsSurfacesOnly := True;
     FMidshipSection.FPlane.a := 1.0;
     FMidshipSection.FPlane.b := 0.0;
     FMidshipSection.FPlane.c := 0.0;
-    FMidshipSection.FPlane.d := -FMidshipLocation; //Owner.ProjectSettings.ProjectMainframeLocation;
-    FMidshipSection.CalculateArea(FData.WaterlinePlane, FData.MainframeArea,
-      FData.MainframeCOG, TmpP2D);
-    FData.MainframeCOG.Z := FData.MainframeCOG.Z - FData.ModelMin.Z;
-    Smid_ := FData.MainframeArea;
-    Zmid_ := FData.MainframeCOG.Z;
+    FMidshipSection.FPlane.d := -FMidshipLocation; //Owner.ProjectSettings.ProjectSplitSectionLocation;
+    FMidshipSection.CalculateArea(FData.WaterlinePlane, FData.MidshipArea,
+      FData.MidshipCOG, TmpP2D);
+    FData.MidshipCOG.Z := FData.MidshipCOG.Z - FData.ModelMin.Z;
+    Smid_ := FData.MidshipArea;
+    Zmid_ := FData.MidshipCOG.Z;
     if Owner.ProjectSettings.ProjectCoefficients = fcActualData then
     begin
       if SubmergedWidth * Draft <> 0.0 then
-        FData.MainframeCoeff := FData.Mainframearea / (SubmergedWidth * Draft);
-      if FData.MainframeCoeff > 1.01 then
+        FData.MidshipCoeff := FData.MidshipArea / (SubmergedWidth * Draft);
+      if FData.MidshipCoeff > 1.01 then
       begin
-        FData.MainframeCoeff := FData.MainframeCoeff / 2.0;
-        FData.Mainframearea := FData.Mainframearea / 2.0;
+        FData.MidshipCoeff := FData.MidshipCoeff / 2.0;
+        FData.MidshipArea := FData.MidshipArea / 2.0;
         isymm := 1;
       end;
     end
     else if Owner.ProjectSettings.ProjectBeam * Draft <> 0.0 then
-      FData.MainframeCoeff := FData.Mainframearea /
+      FData.MidshipCoeff := FData.MidshipArea /
         (Owner.ProjectSettings.ProjectBeam * Draft);
   end;
 
   //*************************************************
   if (FData.Volume > 0) and (Errors = []) and
-    ((hcMainframe in Calculations) or (hcAll in Calculations)) then
+    ((hcMidship in Calculations) or (hcAll in Calculations)) then
   begin
     // Calculate bulb and transom section properties - Расчет параметров бульба  и транца
     FBulbSection := TFreeIntersection.Create(Owner);
@@ -1925,8 +1925,8 @@ begin
         FData.BlockCoefficient :=
           FData.Volume / (SubmergedWidth * SubmergedLength * Draft);
       // Prismatic coefficient based on length and beam measured on the waterline
-      if FData.Mainframearea * SubmergedLength <> 0.0 then
-        FData.PrismCoefficient := FData.Volume / (FData.MainframeArea * SubmergedLength);
+      if FData.MidshipArea * SubmergedLength <> 0.0 then
+        FData.PrismCoefficient := FData.Volume / (FData.MidshipArea * SubmergedLength);
     end
     else
     begin
@@ -1937,9 +1937,9 @@ begin
           FData.Volume / (Owner.ProjectSettings.ProjectLength *
           Owner.ProjectSettings.ProjectBeam * Draft);
       // Prismatic coefficient based on length from project settings
-      if FData.Mainframearea * Owner.ProjectSettings.ProjectLength <> 0.0 then
+      if FData.MidshipArea * Owner.ProjectSettings.ProjectLength <> 0.0 then
         FData.PrismCoefficient :=
-          FData.Volume / (FData.Mainframearea * Owner.ProjectSettings.ProjectLength);
+          FData.Volume / (FData.MidshipArea * Owner.ProjectSettings.ProjectLength);
     end;
     if FData.WaterplaneCoeff <> 0 then
       FData.VertPrismCoefficient := FData.BlockCoefficient / FData.WaterplaneCoeff;
@@ -1986,7 +1986,7 @@ begin
           end;
 
 
-          if (Fdata.Sac[Trunc(Owner.NumberofStations / 2)].Y > FData.Mainframearea) and
+          if (Fdata.Sac[Trunc(Owner.NumberofStations / 2)].Y > FData.MidshipArea) and
             (isymm = 1) then
             for I := 0 to Owner.NumberofStations - 1 do
               Fdata.Sac[I].Y := Fdata.Sac[I].Y / 2.0;
@@ -2036,7 +2036,7 @@ begin
         Frame.CalculateArea(FData.WaterlinePlane, FData.Sac[I].Y, P1, TmpP2D);
         Frame.Destroy;
       end;
-      if (Fdata.Sac[Trunc(Owner.NumberofStations / 2)].Y > FData.Mainframearea) and
+      if (Fdata.Sac[Trunc(Owner.NumberofStations / 2)].Y > FData.MidshipArea) and
         (isymm = 1) then
         for I := 0 to Owner.NumberofStations - 1 do
           Fdata.Sac[I].Y := Fdata.Sac[I].Y / 2.0;
@@ -2380,7 +2380,7 @@ begin
     CalculateMidshipLocation;
     if FData.LengthWaterline <> 0 then
       FData.LCBPerc := 100 * ((FData.CenterOfBuoyancy.X -
-        //Owner.ProjectSettings.ProjectMainframeLocation) / FData.LengthWaterline);
+        //Owner.ProjectSettings.ProjectSplitSectionLocation) / FData.LengthWaterline);
         FMidshipLocation) / FData.LengthWaterline);
     // Apply appendage coeff.
     FData.Displacement := VolumeToDisplacement(FData.Volume,

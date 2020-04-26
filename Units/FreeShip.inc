@@ -829,7 +829,7 @@ begin
       MakeLength(ProjectSettings.Projectdraft, -1, 10) + #32 + LengthStr(
       ProjectSettings.ProjectUnits));
     Strings.Add(MakeLength(Space(10) + Userstring(49), 31) + ' : ' +
-      MakeLength(ProjectSettings.ProjectMainframeLocation, -1, 10) +
+      MakeLength(ProjectSettings.ProjectSplitSectionLocation, -1, 10) +
       #32 + LengthStr(ProjectSettings.ProjectUnits));
     Strings.Add(MakeLength(Space(10) + Userstring(50), 31) + ' : ' +
       MakeLength(ProjectSettings.ProjectWaterDensity, 3, 10) + #32 +
@@ -1013,7 +1013,7 @@ begin
     TFreeLinesplanframe(LinesplanFrame).Viewport.Invalidate;
 end;{TFreeShip.Draw}
 
-resourcestring rsMainframe = 'Mainframe';
+resourcestring rsSplitSection = 'Split Section';
 
 procedure TFreeShip.DrawToViewport(Viewport: TFreeViewport);
 var
@@ -1334,16 +1334,16 @@ var
         end;
       end;
 
-      // Draw Mainframe
+      // Draw Split Section (formerly Mainframe)
       if not (Viewport.Viewtype in [fvBodyplan,fvPerspective]) then
       begin
         Viewport.FontColor := clBlue;
         Viewport.PenColor := clBlue;
         Viewport.PenWidth := 1;
-        P1 := Point3D(Surface.MainframeLocation, Min.Y, Min.Z);
-        P2 := Point3D(Surface.MainframeLocation, Max.Y, Max.Z);;
-        Position := Surface.MainframeLocation;
-        Str := rsMainframe +':' + ConvertDimension(Position, ProjectSettings.ProjectUnits);
+        P1 := Point3D(Surface.SplitSectionLocation, Min.Y, Min.Z);
+        P2 := Point3D(Surface.SplitSectionLocation, Max.Y, Max.Z);;
+        Position := Surface.SplitSectionLocation;
+        Str := rsSplitSection +':' + ConvertDimension(Position, ProjectSettings.ProjectUnits);
         Pt1 := Viewport.Project(P1);
         Pt2 := Viewport.Project(P2);
         Viewport.MoveTo(Pt1.X, Pt1.Y+30);
@@ -1367,7 +1367,7 @@ begin
   // so that the controlnet appears on top
   // But the intersections that should be drawn last depends on the view
 
-  Surface.MainframeLocation := Projectsettings.ProjectMainframeLocation;
+  Surface.SplitSectionLocation := Projectsettings.ProjectSplitSectionLocation;
   if Viewport.Viewtype <> fvPerspective then
   begin
     if Visibility.ShowGrid then
@@ -1566,7 +1566,7 @@ begin
           Viewport.MoveTo(Pt.X - Size, Pt.Y);
           Viewport.LineTo(Pt.X + Size, Pt.Y);
           Str := FloatToStrF(FDesignHydrostatics.FData.SAC[I - 1].Y, ffFixed, 7, 2);
-          if P.X < FProjectsettings.ProjectMainframeLocation then
+          if P.X < FProjectsettings.ProjectSplitSectionLocation then
             Viewport.TextOut(Pt.X - Viewport.TextWidth(str), Pt.Y -
               Viewport.TextHeight(str), Str)
           else
@@ -2992,13 +2992,13 @@ begin
         end;
       fvBodyplan: case Key of
           Left:
-            if P.X <= self.ProjectSettings.ProjectMainframeLocation then
+            if P.X <= self.ProjectSettings.ProjectSplitSectionLocation then
               P.Y := P.Y + Visibility.CursorIncrement
             else
               P.Y := P.Y - Visibility.CursorIncrement;
           Up: P.Z := P.Z + Visibility.CursorIncrement;
           Right:
-            if P.X <= self.ProjectSettings.ProjectMainframeLocation then
+            if P.X <= self.ProjectSettings.ProjectSplitSectionLocation then
               P.Y := P.Y - Visibility.CursorIncrement
             else
               P.Y := P.Y + Visibility.CursorIncrement;
@@ -3470,7 +3470,7 @@ begin
             end;
             fvBodyplan:
             begin
-              if P.X <= ProjectSettings.ProjectMainframeLocation then
+              if P.X <= ProjectSettings.ProjectSplitSectionLocation then
                 P.Y := -P2D.X
               else
                 P.Y := P2D.X;

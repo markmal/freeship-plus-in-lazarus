@@ -390,11 +390,11 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Height = 32
               Top = 0
               Width = 368
-              Caption = 'Mainframe section location'
+              Caption = 'Split Section location'
               Layout = tlCenter
               ParentColor = False
             end
-            object fseMainframeLocation: TFloatSpinEdit
+            object fseSplitSectionLocation: TFloatSpinEdit
               Left = 374
               Height = 32
               Top = 0
@@ -403,7 +403,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Constraints.MinWidth = 120
               DecimalPlaces = 4
               MinValue = 0
-              OnEditingDone = MainframeLocationEditingDone
+              OnEditingDone = SplitSectionLocationEditingDone
               ReadOnly = True
               TabOrder = 0
               Value = 0

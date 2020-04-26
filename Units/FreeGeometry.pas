@@ -1813,7 +1813,7 @@ type
     // list with precalculated values of gauss. curvature in each point, used for shading
     FMinGaussCurvature: TFloatType;
     FMaxGaussCurvature: TFloatType;
-    FMainframeLocation: single;
+    FSplitSectionLocation: single;
     FOnFaceRebuilt: TProgressEvent;
     InUnreferenceControlFace:boolean;
     InUnreferenceControlEdge:boolean;
@@ -2017,8 +2017,8 @@ type
       read FLayerColor write FLayerColor;
     property LeakColor: TColor
       read FLeakColor write FLeakColor;
-    property MainframeLocation: TFloatType
-      read FMainframeLocation write FMainframeLocation;
+    property SplitSectionLocation: TFloatType
+      read FSplitSectionLocation write FSplitSectionLocation;
     property MaxGaussCurvature: TFloatType
       read FMaxGaussCurvature;
     property MinGaussCurvature: TFloatType

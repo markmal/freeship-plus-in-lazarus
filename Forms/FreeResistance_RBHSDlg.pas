@@ -1727,7 +1727,7 @@ begin
       LCB := 0;
     Cp := HydObject.Data.PrismCoefficient;
     Cb := HydObject.Data.BlockCoefficient;
-    Cm := HydObject.Data.MainframeCoeff;
+    Cm := HydObject.Data.MidshipCoeff;
     Cwp := HydObject.Data.WaterplaneCoeff;
     HydObject.Destroy;
   end;

@@ -130,7 +130,7 @@ begin
       P3D := CalculateCenterPoint;
 
       if (Viewport.ViewType = fvBodyplan) then
-        if P3D.X <= Owner.MainframeLocation then
+        if P3D.X <= Owner.SplitSectionLocation then
           P3D.Y := -P3D.Y;
 
       P := Viewport.Project(P3D);

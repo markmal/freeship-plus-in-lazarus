@@ -102,17 +102,17 @@ begin
       (Pt.Y <= Viewport.Height) then
     begin
       V1 := FFlowline.Value(0.0);
-      if V1.X < Owner.ProjectSettings.ProjectMainframeLocation then
+      if V1.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
         V1.Y := -V1.Y;
       for I := 1 to FFlowline.Fragments do
       begin
         V2 := FFlowline.Value((I - 1) / (FFlowline.Fragments - 1));
-        if V2.X < Owner.ProjectSettings.ProjectMainframeLocation then
+        if V2.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
           V2.Y := -V2.Y;
-        if ((V1.X < Owner.ProjectSettings.ProjectMainframeLocation) and
-          (V2.X < Owner.ProjectSettings.ProjectMainframeLocation)) or
-          ((V1.X > Owner.ProjectSettings.ProjectMainframeLocation) and
-          (V2.X > Owner.ProjectSettings.ProjectMainframeLocation)) then
+        if ((V1.X < Owner.ProjectSettings.ProjectSplitSectionLocation) and
+          (V2.X < Owner.ProjectSettings.ProjectSplitSectionLocation)) or
+          ((V1.X > Owner.ProjectSettings.ProjectSplitSectionLocation) and
+          (V2.X > Owner.ProjectSettings.ProjectSplitSectionLocation)) then
         begin
           P1 := Viewport.Project(V1);
           P2 := Viewport.Project(V2);
@@ -174,7 +174,7 @@ begin
     // draw flowline source
     P3D := FFlowline.Point[0];
     if (Viewport.ViewType = fvBodyplan) and (Owner.Visibility.ModelView <> mvBoth) and
-      (P3D.X < Owner.ProjectSettings.ProjectMainframeLocation) then
+      (P3D.X < Owner.ProjectSettings.ProjectSplitSectionLocation) then
       P3D.Y := -P3D.Y;
     Pt := Viewport.Project(P3D);
     Size := Round(Sqrt(Viewport.Zoom) * (Owner.Preferences.PointSize + 1));
@@ -200,7 +200,7 @@ begin
 
   if (Viewport.ViewType = fvBodyPlan) and (Owner.Visibility.ModelView <> mvBoth) then
   begin
-    Plane := SetPlane(1.0, 0.0, 0.0, -Owner.ProjectSettings.ProjectMainframeLocation);
+    Plane := SetPlane(1.0, 0.0, 0.0, -Owner.ProjectSettings.ProjectSplitSectionLocation);
     NParam := 2;
     Setlength(Param, NParam);
     Param[0] := 0.0;
@@ -218,7 +218,7 @@ begin
     for I := 2 to NParam do
     begin
       P3D := FFlowline.Value(0.5 * (Param[I - 2] + Param[I - 1]));
-      if P3D.X < Owner.ProjectSettings.ProjectMainframeLocation then
+      if P3D.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
         Scale := -1
       else
         scale := 1;

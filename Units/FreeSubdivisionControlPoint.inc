@@ -462,7 +462,7 @@ begin
   begin
     P3D := FCoordinate;
     if Viewport.ViewType = fvBodyplan then
-      if P3D.X <= Surface.MainframeLocation then
+      if P3D.X <= Surface.SplitSectionLocation then
         P3D.Y := -P3D.Y;
     P := Viewport.Project(P3D);
     Pz := Viewport.ProjectToZBuffer(1.002 * ZBufferScaleFactor, P3D);
@@ -492,7 +492,7 @@ begin
     //begin
     P3D := FCoordinate;
     if Viewport.ViewType = fvBodyplan then
-      if P3D.X <= Surface.MainframeLocation then
+      if P3D.X <= Surface.SplitSectionLocation then
         P3D.Y := -P3D.Y;
     P := Viewport.Project(P3D);
     if Viewport.PenWidth <> 1 then
@@ -521,7 +521,7 @@ begin
           FLinearConstraintPointB.Coordinate);
       P3DA := B3D.A;
       P3DB := B3D.B;
-      MFL := Surface.MainframeLocation;
+      MFL := Surface.SplitSectionLocation;
       if (Viewport.ViewType = fvBodyplan) //TODO: check if both sides
        then
         begin
@@ -685,7 +685,7 @@ var
 begin
   // Check if cursor position lies within the boundaries
   P := FCoordinate;
-  if (Viewport.ViewType = fvBodyplan) and (P.X <= Surface.MainframeLocation) then
+  if (Viewport.ViewType = fvBodyplan) and (P.X <= Surface.SplitSectionLocation) then
     P.Y := -P.Y;
   Pt := Viewport.Project(P);
   if (Pt.X >= 0) and (Pt.X <= Viewport.Width) and (Pt.Y >= 0) and (Pt.Y <= Viewport.Height) then

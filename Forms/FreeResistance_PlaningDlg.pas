@@ -2658,7 +2658,7 @@ begin
     Bwl := HydObject.Data.BeamWaterline;
     Ws := HydObject.Data.WettedSurface;
     Cp := HydObject.Data.PrismCoefficient;
-    Cm := HydObject.Data.MainframeCoeff;
+    Cm := HydObject.Data.MidshipCoeff;
     Displ := HydObject.Data.Displacement;
     if Ewl <> 0 then
       LCB := HydObject.Data.CenterOfBuoyancy.X

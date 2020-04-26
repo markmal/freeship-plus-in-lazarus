@@ -42,7 +42,7 @@ Type
   TFreeEditMode                = (emSelectItems,emAddPoint,emAddFlowLine);                                                     // The program responds differnt to mouse actions depending on the editmode of the component
   TFreeHydrostaticType         = (fhShort,fhExtensive);                                               // Determines how calculations are performed: short, extensive etc.
   TFreeHydrostaticsMode        = (fhSingleCalculation,fhMultipleCalculations);                        // Used when creating hydrostatic reports
-  TFreeHydrostaticsCalculation = (hcAll,hcVolume,hcMainframe,hcWaterline,hcSAC,hcLateralArea,hcBulbSection);        //
+  TFreeHydrostaticsCalculation = (hcAll,hcVolume,hcMidship,hcWaterline,hcSAC,hcLateralArea,hcBulbSection);        //
   TFreeHydrostaticsCalculate   = set of TFreeHydrostaticsCalculation;                                 // Set with all calculations to be performed
   TFreeHydrostaticsCalculateGravity   = set of TFreeHydrostaticsCalculation;
   TFreeHydrostaticError        = (feNothingSubmerged,feMakingWater,feNotEnoughBuoyancy);              // Errors that may occur when calculating hydrostatics

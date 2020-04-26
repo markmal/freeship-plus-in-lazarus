@@ -130,10 +130,10 @@ type
     WettedSurface: TFloatType;
     Leak: T3DCoordinate;
     // Coordinate encountered where the ship is making water
-    // Mainframe properties
-    Mainframearea: TFloatType;
-    MainFrameCOG: T3DCoordinate;
-    MainframeCoeff: TFloatType;
+    // Midship (aka Mainframe) properties
+    MidshipArea: TFloatType;
+    MidshipCOG: T3DCoordinate;
+    MidshipCoeff: TFloatType;
     // Waterplane properties
     Waterplanearea: TFloatType;
     WaterplaneCOG: T3DCoordinate;
@@ -366,6 +366,7 @@ type
     property HydrostaticType: TFreeHydrostaticType
       read FHydrostaticType write FSetHydrostaticType;
     // Determines how calculations are performed: short, extensive etc.
+    property MidshipLocation: TFloatType read FMidshipLocation;
     property Owner: TFreeShip read FOwner;
     property Trim: TFloatType read FTrim write FSetTrim;
     property TrimAngle: TFloatType read FGetTrimAngle;
@@ -389,7 +390,7 @@ type
     FBuilt: boolean;
     FShowCurvature: boolean;
     FUseHydrostaticsSurfacesOnly: boolean;
-    // used for lateral area, mainframe and waterplane properties
+    // used for lateral area, midship/mainframe and waterplane properties
     FSelected: boolean;
     function FGetColor: TColor;
     function FGetPlane: T3DPlane;
@@ -529,7 +530,6 @@ type
     FShowHydrostMetacentricHeight: boolean;
     FShowHydrostLCF: boolean;
     FShowFlowlines: boolean;
-    FMainframeLocation: TFloatType;
     FCurvatureScale: TFloatType;
     // Scalefactor used to increase or decrease the size of the curvature plot
     FCursorIncrement: TFloatType;
@@ -1061,9 +1061,9 @@ type
     FProjectLength: TFloatType;
     FProjectWaterDensity: TFloatType;
     FProjectWaterTemper: TFloatType;
-    FProjectMainframeLocation: TFloatType;
-    FUseDefaultMainframeLocation: boolean;
-    // If set to true, the mainframe location is set to 0.5*project length, if false then value in FProjectMainframeLocation is used
+    FProjectSplitSectionLocation: TFloatType;
+    FUseDefaultSplitSectionLocation: boolean;
+    // If set to true, the midship/mainframe location is set to 0.5*project length, if false then value in FProjectMainframeLocation is used
     FProjectName: string;
     FProjectDesigner: string;
     FProjectComment: string;
@@ -1098,14 +1098,14 @@ type
     procedure FSetDisableModelCheck(Val: boolean);
     procedure FSetEnableModelAutoMove(Val: boolean);
     procedure FSetEnableBonjeanSAC(Val: boolean);
-    function FGetProjectMainframeLocation: TFloatType;
+    function FGetProjectSplitSectionLocation: TFloatType;
     procedure FSetProjectAppendageCoefficient(Val: TFloatType);
     procedure FSetProjectBeam(Val: TFloatType);
     procedure FSetProjectComment(Val: string);
     procedure FSetProjectDraft(Val: TFloatType);
     procedure FSetProjectFileCreatedBy(Val: string);
     procedure FSetProjectLength(Val: TFloatType);
-    procedure FSetProjectMainframeLocation(val: TFloatType);
+    procedure FSetProjectSplitSectionLocation(val: TFloatType);
     procedure FSetProjectName(Val: string);
     procedure FSetProjectDesigner(Val: string);
     procedure FSetProjectShadeUnderwaterShip(Val: boolean);
@@ -1119,7 +1119,7 @@ type
     procedure FSetEndDraft(Val: TFloatType);
     procedure FSetDraftStep(Val: TFloatType);
     procedure FSetTrim(Val: TFloatType);
-    procedure FSetUseDefaultMainframeLocation(Val: boolean);
+    procedure FSetUseDefaultSplitSectionLocation(Val: boolean);
   public
     procedure Clear;
     constructor Create(Owner: TFreeShip);
@@ -1150,8 +1150,8 @@ type
     property ProjectFileCreatedBy: string read FProjectFileCreatedBy
       write FSetProjectFileCreatedBy;
     property ProjectLength: TFloatType read FProjectLength write FSetProjectLength;
-    property ProjectMainframeLocation: TFloatType
-      read FGetProjectMainframeLocation write FSetProjectMainframeLocation;
+    property ProjectSplitSectionLocation: TFloatType
+      read FGetProjectSplitSectionLocation write FSetProjectSplitSectionLocation;
     property ProjectName: string read FProjectName write FSetProjectName;
     property ProjectDesigner: string read FProjectDesigner write FSetProjectDesigner;
     property ProjectShadeUnderwaterShip: boolean
@@ -1168,8 +1168,8 @@ type
     property ProjectWaterTemper: TFloatType
       read FProjectWaterTemper write FSetProjectWaterTemper;
     property SavePreview: boolean read FSavePreview write FSetSavePreview;
-    property UseDefaultMainframeLocation: boolean
-      read FUseDefaultMainframeLocation write FSetUseDefaultMainframeLocation;
+    property UseDefaultSplitSectionLocation: boolean
+      read FUseDefaultSplitSectionLocation write FSetUseDefaultSplitSectionLocation;
   end;
 
   TFasterListTFreeViewPort = specialize TFasterList<TFreeViewPort>;

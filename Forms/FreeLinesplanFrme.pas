@@ -405,7 +405,7 @@ var
   Layer: TFreeSubdivisionLayer;
   Face: TFreeSubdivisionControlface;
   Child: TFreeSubdivisionFace;
-  Mainframe: TFloatType;
+  MidshipLocation: TFloatType;
   Tmp, Space: TFloatType;
   Min, Max: TFloatType;
   //ResFactor: TFloatType;
@@ -508,7 +508,7 @@ var
     Viewport.Polyline(Pts);
 
     // Draw in aft view of bodyplan
-    if (P1.X <= Mainframe) and (P2.X < Mainframe) then
+    if (P1.X <= MidshipLocation) and (P2.X < MidshipLocation) then
     begin
       Proj1.X := FAftOrigin.X - P1.Y;
       Proj1.Y := FAftOrigin.Y + P1.Z;
@@ -527,7 +527,7 @@ var
     end;
 
     // Draw in front view of bodyplan
-    if (P1.X >= Mainframe) and (P2.X > Mainframe) then
+    if (P1.X >= MidshipLocation) and (P2.X > MidshipLocation) then
     begin
       Proj1.X := FFrontOrigin.X - P1.Y;
       Proj1.Y := FFrontOrigin.Y + P1.Z;
@@ -708,7 +708,7 @@ var
       Viewport.Polyline(Pts);
     end;
 
-    if (lvAftBody in views) and (Spline.Max.X <= MainFrame) then
+    if (lvAftBody in views) and (Spline.Max.X <= MidshipLocation) then
     begin
       for YSign:=-1 to +1 do
         if YSign <> 0 then
@@ -723,7 +723,7 @@ var
         end;
     end;
 
-    if (lvFrontBody in views) and (Spline.Min.X >= MainFrame) then
+    if (lvFrontBody in views) and (Spline.Min.X >= MidshipLocation) then
     begin
       for YSign:=-1 to +1 do
         if YSign <> 0 then
@@ -1111,11 +1111,15 @@ begin
   WlPlane.b := 0.0;
   WlPlane.c := 1.0;
   WlPlane.d := -(Freeship.Surface.Min.Z + Freeship.ProjectSettings.ProjectDraft);
-  Mainframe := Freeship.ProjectSettings.ProjectMainframeLocation;
+  //MidshipLocation := Freeship.ProjectSettings.ProjectSplitSectionLocation;
+  if not FFreeship.HydrostaticCalculation[0].Calculated then
+    FFreeship.HydrostaticCalculation[0].Calculate;
+  MidshipLocation := //FFreeship.ProjectSettings.ProjectSplitSectionLocation;
+                     FFreeship.HydrostaticCalculation[0].MidshipLocation;
   Mainplane.a := 1.0;
   Mainplane.b := 0.0;
   Mainplane.c := 0.0;
-  Mainplane.d := -Mainframe;
+  Mainplane.d := -MidshipLocation;
 
   Viewport.BrushStyle := bsSolid;
   Below.Count := 0;
@@ -1404,7 +1408,7 @@ begin
     end;
 
     Viewport.SetPenWidth(PenwidthFactor);
-    Mainframe := Freeship.ProjectSettings.ProjectMainframeLocation;
+    MidshipLocation := Freeship.ProjectSettings.ProjectSplitSectionLocation;
     // Draw stations
     if ShowMonochrome.Checked then
       Viewport.PenColor := clBlack
@@ -1651,7 +1655,7 @@ var
   Strings: TStringList;
   Str: string;
   Space, Tmp: TFloatType;
-  Mainframe: TFloatType;
+  SplitSectionLocation: TFloatType;
   Min, Max: TFloatType;
   I, J, K: integer;
   Edge: TFreeSubdivisionEdge;
@@ -1939,7 +1943,7 @@ begin
   if SaveDialog.Execute then
   begin
     Freeship.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
-    Mainframe := Freeship.ProjectSettings.ProjectMainframeLocation;
+    SplitSectionLocation := Freeship.ProjectSettings.ProjectSplitSectionLocation;
 
     Edges := TFasterListTFreeSubdivisionEdge.Create;
     Freeship.Surface.ExtractAllEdgeLoops(Edges);
@@ -2011,15 +2015,15 @@ begin
     end;
     // draw stations
     for I := 1 to Freeship.NumberofStations do
-      if -Freeship.Station[I - 1].Plane.d <= Mainframe then
+      if -Freeship.Station[I - 1].Plane.d <= SplitSectionLocation then
         AddIntersection(Freeship.Station[I - 1], [lvAftBody], 'stations',
           Freeship.Preferences.StationColor);
     // Add knuckle lines
     for I := 1 to FreeShip.Surface.NumberOfSubDivEdges do
     begin
       Edge := FreeShip.Surface.SubDivEdge[I - 1];
-      if (Edge.Crease) and (Edge.StartPoint.Coordinate.X <= Mainframe) and
-        (Edge.EndPoint.Coordinate.X <= Mainframe) then
+      if (Edge.Crease) and (Edge.StartPoint.Coordinate.X <= SplitSectionLocation) and
+        (Edge.EndPoint.Coordinate.X <= SplitSectionLocation) then
       begin
         P1 := Edge.StartPoint.Coordinate;
         P2 := Edge.EndPoint.Coordinate;
@@ -2059,15 +2063,15 @@ begin
     end;
     // draw stations
     for I := 1 to Freeship.NumberofStations do
-      if -Freeship.Station[I - 1].Plane.d >= Mainframe then
+      if -Freeship.Station[I - 1].Plane.d >= SplitSectionLocation then
         AddIntersection(Freeship.Station[I - 1], [lvFrontBody], 'stations',
           Freeship.Preferences.StationColor);
     // Add knuckle lines
     for I := 1 to FreeShip.Surface.NumberOfSubDivEdges do
     begin
       Edge := FreeShip.Surface.SubDivEdge[I - 1];
-      if (Edge.Crease) and (Edge.StartPoint.Coordinate.X >= Mainframe) and
-        (Edge.EndPoint.Coordinate.X >= Mainframe) then
+      if (Edge.Crease) and (Edge.StartPoint.Coordinate.X >= SplitSectionLocation) and
+        (Edge.EndPoint.Coordinate.X >= SplitSectionLocation) then
       begin
         P1 := Edge.StartPoint.Coordinate;
         P2 := Edge.EndPoint.Coordinate;

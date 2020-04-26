@@ -191,10 +191,6 @@ msgid ""
 "Error:\n"
 msgstr ""
 
-#: freeshipunit.rsmainframe
-msgid "Mainframe"
-msgstr ""
-
 #: freeshipunit.rspointanchorconstraintchanged
 msgid "ControlPoint Anchor Constraint Changed"
 msgstr ""
@@ -214,6 +210,10 @@ msgstr ""
 
 #: freeshipunit.rssavewithhigherfileversion
 msgid "The current file version is %s.%sDo you want to save the file as version %s ?"
+msgstr ""
+
+#: freeshipunit.rssplitsection
+msgid "Split Section"
 msgstr ""
 
 #: freeshipunit.rsthemeloaderrormessage
@@ -933,6 +933,7 @@ msgid "ToolBar1"
 msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton1.caption
+msgctxt "tfreecrosscurvesdialog.toolbutton1.caption"
 msgid "ToolButton1"
 msgstr ""
 
@@ -2940,6 +2941,19 @@ msgctxt "tfreelayerdialog._toolbutton4.caption"
 msgid "_ToolButton4"
 msgstr ""
 
+#: tfreelayervisibilitydialog.bbclose.caption
+msgctxt "tfreelayervisibilitydialog.bbclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tfreelayervisibilitydialog.caption
+msgid "Layer visibility"
+msgstr ""
+
+#: tfreelayervisibilitydialog.cbfreestanding.caption
+msgid "Free standing"
+msgstr ""
+
 #: tfreelinesplanform.caption
 msgid "Linesplan."
 msgstr ""
@@ -3056,30 +3070,6 @@ msgstr ""
 #: tfreelinesplanframe.zoomout.hint
 msgctxt "tfreelinesplanframe.zoomout.hint"
 msgid "Zoom out."
-msgstr ""
-
-#: tfreemainframedialog.bitbtn1.caption
-msgctxt "tfreemainframedialog.bitbtn1.caption"
-msgid "Close"
-msgstr ""
-
-#: tfreemainframedialog.caption
-msgctxt "tfreemainframedialog.caption"
-msgid "Mainfame location"
-msgstr ""
-
-#: tfreemainframedialog.speedbutton1.hint
-msgctxt "tfreemainframedialog.speedbutton1.hint"
-msgid "Medium"
-msgstr ""
-
-#: tfreemainframedialog.speedbutton2.hint
-msgctxt "tfreemainframedialog.speedbutton2.hint"
-msgid "Widest"
-msgstr ""
-
-#: tfreemainframedialog.speedbutton3.hint
-msgid "Spaciest"
 msgstr ""
 
 #: tfreemichletoutputdialog.cancelbutton.caption
@@ -3867,7 +3857,8 @@ msgid "m"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.label13.caption
-msgid "Mainframe section location"
+msgctxt "tfreeprojectsettingsdialog.label13.caption"
+msgid "Split Section location"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.label14.caption
@@ -8362,6 +8353,30 @@ msgstr ""
 msgid "Translated by: M. van Engeland"
 msgstr ""
 
+#: tfreesplitsectiondialog.bitbtn1.caption
+msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
+msgid "Close"
+msgstr ""
+
+#: tfreesplitsectiondialog.caption
+msgid "Split section location"
+msgstr ""
+
+#: tfreesplitsectiondialog.speedbutton1.hint
+msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
+msgid "Medium"
+msgstr ""
+
+#: tfreesplitsectiondialog.speedbutton2.hint
+msgctxt "tfreesplitsectiondialog.speedbutton2.hint"
+msgid "Widest"
+msgstr ""
+
+#: tfreesplitsectiondialog.speedbutton3.hint
+msgctxt "tfreesplitsectiondialog.speedbutton3.hint"
+msgid "Spaciest"
+msgstr ""
+
 #: tfreeundohistorydialog.caption
 msgid "Undo history."
 msgstr ""
@@ -8987,6 +9002,16 @@ msgstr ""
 msgid "Find the intersection of two layers."
 msgstr ""
 
+#: tmainform.layervisibilitydialog.caption
+msgctxt "tmainform.layervisibilitydialog.caption"
+msgid "Show Layer visibility dialog"
+msgstr ""
+
+#: tmainform.layervisibilitydialog.hint
+msgctxt "tmainform.layervisibilitydialog.hint"
+msgid "Show Layer visibility dialog"
+msgstr ""
+
 #: tmainform.loadfile.caption
 msgid "Open..."
 msgstr ""
@@ -9297,14 +9322,6 @@ msgstr ""
 msgid "SelectLeakPoints"
 msgstr ""
 
-#: tmainform.setmainframe.caption
-msgid "Set Mainframe"
-msgstr ""
-
-#: tmainform.setmainframe.hint
-msgid "Set Mainframe location in Body Plan"
-msgstr ""
-
 #: tmainform.showbuttocks.caption
 msgctxt "tmainform.showbuttocks.caption"
 msgid "Buttocks"
@@ -9436,6 +9453,15 @@ msgstr ""
 #: tmainform.spineditfontsize.hint
 msgctxt "tmainform.spineditfontsize.hint"
 msgid "Font Size"
+msgstr ""
+
+#: tmainform.splitsectiondialog.caption
+msgctxt "tmainform.splitsectiondialog.caption"
+msgid "Split Section location"
+msgstr ""
+
+#: tmainform.splitsectiondialog.hint
+msgid "Set Split Section location in Body Plan"
 msgstr ""
 
 #: tmainform.tilewindow.caption

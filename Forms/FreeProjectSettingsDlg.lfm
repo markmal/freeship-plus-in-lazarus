@@ -390,7 +390,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Height = 32
               Top = 0
               Width = 368
-              Caption = 'Midship or max. area station location'
+              Caption = 'Mainframe section location'
               Layout = tlCenter
               ParentColor = False
             end
@@ -404,6 +404,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               DecimalPlaces = 4
               MinValue = 0
               OnEditingDone = MainframeLocationEditingDone
+              ReadOnly = True
               TabOrder = 0
               Value = 0
             end
@@ -422,6 +423,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 0
               Width = 141
               Caption = 'Default at 0.5*L'
+              Enabled = False
               OnClick = CheckBox2Click
               TabOrder = 1
             end

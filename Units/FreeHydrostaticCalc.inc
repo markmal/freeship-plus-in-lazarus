@@ -43,7 +43,7 @@ begin
   begin
     Errors := [];
     Fillchar(FData, SizeOf(FData), 0);
-    FMainframe.Clear;
+    FMidshipSection.Clear;
   end;
 end;{TFreeHydrostaticCalc.FSetCalculated}
 
@@ -119,8 +119,8 @@ begin
   // масса балласта принята 2% от водоизмещения порожнем [кг/тонн]
   h_min := 0;
   Separator := #32;
-  if not Calculated then
-    Calculate;
+  //if not Calculated then
+  Calculate;
   if Errors = [] then
   begin
     if Mode = fhSingleCalculation then
@@ -191,6 +191,9 @@ begin
       if FData.MainframeCoeff > 0.01 then
       begin
         Strings.Add(Userstring(13) + ':');
+        Strings.Add(Space(4) + MakeLength('Midship location', 43) + ' : ' +
+          Separator + MakeLength(FMidshipLocation, 4, 12) +
+          Separator + LengthStr(Owner.ProjectSettings.ProjectUnits));
         Strings.Add(Space(4) + MakeLength(Userstring(14), 43) + ' : ' +
           Separator + MakeLength(FData.MainframeArea, -1, 12) + Separator +
           Areastr(Owner.ProjectSettings.ProjectUnits));
@@ -881,7 +884,8 @@ begin
     Owner.ProjectSettings.Projectdraft + FData.ModelMin.Z, -1, 10) +
     #32 + LengthStr(Owner.ProjectSettings.ProjectUnits));
   Strings.Add(MakeLength(Userstring(49), 21) + ' : ' + MakeLength(
-    Owner.ProjectSettings.ProjectMainframeLocation, -1, 10) + #32 +
+//    Owner.ProjectSettings.ProjectMainframeLocation, -1, 10) + #32 +
+    FMidshipLocation, -1, 10) + #32 +
     LengthStr(Owner.ProjectSettings.ProjectUnits));
   Strings.Add(MakeLength(Userstring(50), 21) + ' : ' + MakeLength(
     Owner.ProjectSettings.ProjectWaterDensity, 3, 10) + #32 + DensityStr(
@@ -1311,6 +1315,82 @@ begin
   FData.CenterOfGravity_.Z := Total.SurfaceCenterOfGravity.Z;
 end;{TFreeHydrostaticCalc.CalculateGravity}
 
+procedure TFreeHydrostaticCalc.CalculateMidshipLocation;
+var i:integer; Frame: TFreeIntersection;
+  X,X1,X2, Step, MaxArea, Area :TFloatType;
+  MOI: T2DCoordinate;
+  COG: T3DCoordinate;
+  MaxStation: integer;
+begin
+  FMidshipLocation := 0.5 * FData.ModelMax.X;
+
+  Frame := TFreeIntersection.Create(Owner);
+  Frame.FUseHydrostaticsSurfacesOnly := True;
+  Frame.FIntersectionType := fiStation;
+  MaxArea := 0.0;
+  for I := 0 to Owner.NumberofStations - 1 do
+  begin
+    Frame.Plane := Owner.Station[I].Plane;
+    X := -Frame.Plane.d;
+    Frame.Built := false;
+    Frame.CalculateArea(FData.WaterlinePlane, Area, COG, MOI);
+    if MaxArea < Area then
+    begin
+      FMidshipLocation := X;
+      MaxArea := Area;
+      MaxStation := i;
+    end;
+  end;
+
+  // find precise location up to 0.1 of length unit
+  Step := 0.1;
+  if MaxStation > 0 then // search between MaxStation-1 and MaxStation
+  begin
+    X1 := - Owner.Station[MaxStation - 1].Plane.d;
+    X2 := - Owner.Station[MaxStation].Plane.d;
+    Frame.FPlane.a := 1.0;
+    Frame.FPlane.b := 0.0;
+    Frame.FPlane.c := 0.0;
+    X := X1;
+    while X < X2 do
+    begin
+      Frame.FPlane.d := -X;
+      Frame.Built := false;
+      Frame.CalculateArea(FData.WaterlinePlane, Area, COG, MOI);
+      if MaxArea < Area then
+      begin
+        FMidshipLocation := X;
+        MaxArea := Area;
+      end;
+      X := X + Step;
+    end;
+  end;
+
+  if MaxStation < Owner.NumberofStations-1 then // search between MaxStation and MaxStation+1
+  begin
+    X1 := - Owner.Station[MaxStation].Plane.d;
+    X2 := - Owner.Station[MaxStation+1].Plane.d;
+    Frame.FPlane.a := 1.0;
+    Frame.FPlane.b := 0.0;
+    Frame.FPlane.c := 0.0;
+    X := X1;
+    while X < X2 do
+    begin
+      Frame.FPlane.d := -X;
+      Frame.Built := false;
+      Frame.CalculateArea(FData.WaterlinePlane, Area, COG, MOI);
+      if MaxArea < Area then
+      begin
+        FMidshipLocation := X;
+        MaxArea := Area;
+      end;
+      X := X + Step;
+    end;
+  end;
+
+  Frame.Destroy;
+end;
+
 
 // The actual calculation of the hydrostatics finds place in this procedure
 procedure TFreeHydrostaticCalc.Calculate;
@@ -1716,14 +1796,15 @@ begin
   if (FData.Volume > 0) and (Errors = []) and
     ((hcMainframe in Calculations) or (hcAll in Calculations)) then
   begin
+    CalculateMidshipLocation;
     // Calculate mainframe properties - Расчет параметров мидельшпангоута до КВЛ
-    FMainframe.FIntersectionType := fiStation;
-    FMainframe.FUseHydrostaticsSurfacesOnly := True;
-    FMainframe.FPlane.a := 1.0;
-    FMainframe.FPlane.b := 0.0;
-    FMainframe.FPlane.c := 0.0;
-    FMainframe.FPlane.d := -Owner.ProjectSettings.ProjectMainframeLocation;
-    FMainframe.CalculateArea(FData.WaterlinePlane, FData.MainframeArea,
+    FMidshipSection.FIntersectionType := fiStation;
+    FMidshipSection.FUseHydrostaticsSurfacesOnly := True;
+    FMidshipSection.FPlane.a := 1.0;
+    FMidshipSection.FPlane.b := 0.0;
+    FMidshipSection.FPlane.c := 0.0;
+    FMidshipSection.FPlane.d := -FMidshipLocation; //Owner.ProjectSettings.ProjectMainframeLocation;
+    FMidshipSection.CalculateArea(FData.WaterlinePlane, FData.MainframeArea,
       FData.MainframeCOG, TmpP2D);
     FData.MainframeCOG.Z := FData.MainframeCOG.Z - FData.ModelMin.Z;
     Smid_ := FData.MainframeArea;
@@ -2296,9 +2377,11 @@ begin
     FData.CenterOfBuoyancy.Z := NewOrigin.Z + FData.CenterOfBuoyancy.Z / FData.Volume;
     /////////////////////////////////////////////////////////
     FData.CenterOfBuoyancy := RotatePoint(FData.CenterOfBuoyancy);
+    CalculateMidshipLocation;
     if FData.LengthWaterline <> 0 then
       FData.LCBPerc := 100 * ((FData.CenterOfBuoyancy.X -
-        Owner.ProjectSettings.ProjectMainframeLocation) / FData.LengthWaterline);
+        //Owner.ProjectSettings.ProjectMainframeLocation) / FData.LengthWaterline);
+        FMidshipLocation) / FData.LengthWaterline);
     // Apply appendage coeff.
     FData.Displacement := VolumeToDisplacement(FData.Volume,
       Owner.ProjectSettings.ProjectWaterDensity,
@@ -2318,7 +2401,8 @@ begin
   FTrim := 0.0;
   FDraft := 0.0;
   Fillchar(FData, SizeOf(FData), 0);
-  FMainframe.Clear;
+  FMidshipLocation := 0.0;
+  FMidshipSection.Clear;
   FCalculations := [hcAll];
 end;{TFreeHydrostaticCalc.Clear}
 
@@ -2326,7 +2410,7 @@ constructor TFreeHydrostaticCalc.Create(Owner: TFreeShip);
 begin
   inherited Create;
   FOwner := Owner;
-  FMainframe := TFreeIntersection.Create(Owner);
+  FMidshipSection := TFreeIntersection.Create(Owner);
   Owner.FHydrostaticCalculations.Add(self);
   Clear;
 end;{TFreeHydrostaticCalc.Create}
@@ -2339,7 +2423,7 @@ begin
   Index := Owner.FHydrostaticCalculations.IndexOf(self);
   if Index <> -1 then
     Owner.FHydrostaticCalculations.Delete(Index);
-  FreeAndNil(FMainframe);
+  FreeAndNil(FMidshipSection);
   inherited Destroy;
 end;{TFreeHydrostaticCalc.Destroy}
 

@@ -6,6 +6,7 @@ object FreeMainframeDialog: TFreeMainframeDialog
   Caption = 'Mainfame location'
   ClientHeight = 105
   ClientWidth = 600
+  FormStyle = fsStayOnTop
   LCLVersion = '2.0.6.0'
   object TopPanel: TPanel
     Left = 0
@@ -28,6 +29,7 @@ object FreeMainframeDialog: TFreeMainframeDialog
       BorderSpacing.Around = 4
       Caption = 'Close'
       ModalResult = 11
+      OnClick = BitBtn1Click
       TabOrder = 0
     end
     object fseMainframeLocation: TFloatSpinEdit

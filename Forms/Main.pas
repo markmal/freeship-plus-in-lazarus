@@ -78,7 +78,8 @@ uses
      Menus,
      ToolWin,
      Buttons, StdActns, Spin, ExtDlgs,
-     DefaultTranslator, ComboEx
+     DefaultTranslator, ComboEx,
+     FreeMainframeDlg
 ;
 
 type
@@ -647,6 +648,8 @@ type
       FToolBarCurvesControlsWidth : integer;
       FActionListHull : TActionList;
       FDestroying: boolean;
+      FMainframeDialog: TFreeMainframeDialog;
+
 
       procedure FLoadRecentFile(sender:TObject);
       procedure FreeShipChangeLayerData(Sender: TObject);
@@ -698,8 +701,7 @@ uses //FreeSplashWndw,
      FreePointGroupForm,
      FreeUpdateDlg,
      FreeLogger,
-     FreeExceptionDlg,
-     FreeMainframeDlg;
+     FreeExceptionDlg;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1667,24 +1669,24 @@ begin
 end;
 
 procedure TMainForm.SetMainframeExecute(Sender: TObject);
-var mfDialog:TFreeMainframeDialog;
 begin
-  mfDialog:=TFreeMainframeDialog.Create(Self);
-  mfDialog.SetDimensions(FreeShip.Surface.Max.X,
+  if FMainframeDialog = nil then
+     FMainframeDialog:=TFreeMainframeDialog.Create(Self);
+  FMainframeDialog.SetDimensions(FreeShip.Surface.Max.X,
                          FreeShip.Surface.Max.X/2, //TODO replace with real Widest
                          FreeShip.Surface.Max.X/2);
   if FreeShip.ProjectSettings.ProjectMainframeLocation > 0 then
-     mfDialog.MainframeLocation := FreeShip.ProjectSettings.ProjectMainframeLocation
+     FMainframeDialog.MainframeLocation := FreeShip.ProjectSettings.ProjectMainframeLocation
   else
-     mfDialog.MainframeLocation := FreeShip.Surface.Max.X/2;
-  mfDialog.OnMainframeLocationChange:=OnMainframeLocationChange;
+     FMainframeDialog.MainframeLocation := FreeShip.Surface.Max.X/2;
+  FMainframeDialog.OnMainframeLocationChange:=OnMainframeLocationChange;
   FreeShip.ProjectSettings.UseDefaultMainframeLocation := false;
-  mfDialog.ShowModal;
-  FreeShip.ProjectSettings.ProjectMainframeLocation:=mfDialog.MainframeLocation;
-  mfDialog.Free;
-  FreeShip.FileChanged := True;
-  FreeShip.Redraw;
-  UpdateMenu;
+  FMainframeDialog.Show;
+  FreeShip.ProjectSettings.ProjectMainframeLocation:=FMainframeDialog.MainframeLocation;
+  //FMainframeDialog.Free;
+  //FreeShip.FileChanged := True;
+  //FreeShip.Redraw;
+  //UpdateMenu;
 end;
 
 procedure TMainForm.OnMainframeLocationChange(Sender: TObject; aValue: TFloatType);

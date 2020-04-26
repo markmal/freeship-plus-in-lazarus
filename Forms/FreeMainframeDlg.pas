@@ -25,6 +25,7 @@ type
     SpeedButton3: TSpeedButton;
     TopPanel: TPanel;
     TrackBar1: TTrackBar;
+    procedure BitBtn1Click(Sender: TObject);
     procedure fseMainframeLocationChange(Sender: TObject);
     procedure fseMainframeLocationEditingDone(Sender: TObject);
     procedure fseMainframeLocationKeyDown(Sender: TObject; var Key: Word;
@@ -134,6 +135,12 @@ procedure TFreeMainframeDialog.fseMainframeLocationChange(Sender: TObject);
 begin
   if FEditMode in [emMouse] then
      SetMainframeLocation(fseMainframeLocation.Value);
+end;
+
+procedure TFreeMainframeDialog.BitBtn1Click(Sender: TObject);
+begin
+  ModalResult:=mrClose;
+  Close;
 end;
 
 end.

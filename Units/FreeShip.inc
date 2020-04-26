@@ -150,7 +150,7 @@ begin
   for I := 1 to NumberOfStations do
   begin
     Intersection := Station[I - 1];
-    if not Intersection.Build then
+    if not Intersection.Built then
       Intersection.Rebuild;
     TmpList := TFasterListTFreeSpline.Create;
     for J := 1 to Intersection.Count do
@@ -396,13 +396,13 @@ begin
   if not Built then
   begin
     for I := 1 to NumberOfStations do
-      Station[I - 1].Build := False;
+      Station[I - 1].Built := False;
     for I := 1 to NumberOfButtocks do
-      Buttock[I - 1].Build := False;
+      Buttock[I - 1].Built := False;
     for I := 1 to NumberOfWaterlines do
-      Waterline[I - 1].Build := False;
+      Waterline[I - 1].Built := False;
     for I := 1 to NumberOfDiagonals do
-      Diagonal[I - 1].Build := False;
+      Diagonal[I - 1].Built := False;
     for I := 1 to NumberOfHydrostaticCalculations do
       HydrostaticCalculation[I - 1].Calculated := False;
     for I := 1 to NumberOfFlowlines do
@@ -1159,7 +1159,7 @@ var
         Viewport.PenWidth := 1;
         for I := 1 to NumberOfDiagonals do
         begin
-          if not Diagonal[I - 1].Build then
+          if not Diagonal[I - 1].Built then
             Diagonal[I - 1].Rebuild;
           for J := 1 to Diagonal[I - 1].Count do
           begin

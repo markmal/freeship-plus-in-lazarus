@@ -3867,7 +3867,7 @@ msgid "m"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.label13.caption
-msgid "Midship or max. area station location"
+msgid "Mainframe section location"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.label14.caption

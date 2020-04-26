@@ -84,10 +84,12 @@ type
     AddRange: TAction;
     DeleteAll: TAction;
     ToolButton6: TToolButton;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure ListBoxClickCheck(
       Sender: TObject);
     procedure ListBoxKeyDown(Sender: TObject;
       var Key: word; Shift: TShiftState);
+    procedure ListBoxSelectionChange(Sender: TObject; User: boolean);
     procedure ShowStationsExecute(Sender: TObject);
     procedure ShowButtocksExecute(Sender: TObject);
     procedure ShowWaterlinesExecute(Sender: TObject);
@@ -102,6 +104,7 @@ type
   public    { Public declarations }
     procedure Execute(FreeShip: TFreeShip);
     procedure UpdateMenu;
+    procedure UnselectAll;
   end;
 
 var
@@ -149,6 +152,19 @@ begin
     DeleteAll.Enabled := FFreeship.NumberofDiagonals > 0;
   end;
 end;{TFreeIntersectionDialog.UpdateMenu}
+
+procedure TFreeIntersectionDialog.UnselectAll;
+var I : integer;
+begin
+  for I := 0 to FFreeShip.NumberofStations - 1 do
+    FFreeship.Station[I].Selected := False;
+  for I := 0 to FFreeShip.NumberofButtocks - 1 do
+    FFreeship.Buttock[I].Selected := False;
+  for I := 0 to FFreeShip.NumberofWaterlines - 1 do
+    FFreeship.Waterline[I].Selected := False;
+  for I := 0 to FFreeShip.NumberofDiagonals - 1 do
+    FFreeship.Diagonal[I].Selected := False;
+end;
 
 procedure TFreeIntersectionDialog.FillBox;
 var
@@ -233,6 +249,22 @@ begin
   end;
 end;{TFreeIntersectionDialog.ListBoxKeyDown}
 
+procedure TFreeIntersectionDialog.ListBoxSelectionChange(Sender: TObject;
+  User: boolean);
+var Intersection: TFreeIntersection;  i, ii:integer;
+begin
+  ii := ListBox.ItemIndex;
+  UnselectAll;
+  if ListBox.ItemIndex <> -1 then
+  begin
+    Intersection := ListBox.Items.Objects[ListBox.ItemIndex] as TFreeIntersection;
+    Intersection.Selected := User;
+  end;
+  for I := 0 to FFreeship.NumberOfViewports - 1 do
+    if FFreeship.Viewport[I].Viewportmode = vmWireframe then
+      FFreeship.Viewport[I].Refresh;
+end;
+
 procedure TFreeIntersectionDialog.ListBoxClickCheck(Sender: TObject);
 var
   Intersection: TFreeIntersection;
@@ -251,6 +283,12 @@ begin
             FFreeship.Viewport[I - 1].Refresh;
     end;
   end;
+end;
+
+procedure TFreeIntersectionDialog.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  UnselectAll;
 end;
 
 procedure TFreeIntersectionDialog.ShowStationsExecute(Sender: TObject);
@@ -295,6 +333,7 @@ end;{TFreeIntersectionDialog.ViewDiagonalsExecute}
 procedure TFreeIntersectionDialog.CloseDialogExecute(Sender: TObject);
 begin
   Close;
+  UnselectAll;
 end;{TFreeIntersectionDialog.CloseDialogExecute}
 
 procedure TFreeIntersectionDialog.AddOneExecute(Sender: TObject);

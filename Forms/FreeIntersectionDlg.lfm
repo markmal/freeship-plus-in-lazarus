@@ -7,9 +7,10 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
   Caption = 'Intersections'
   ClientHeight = 300
   ClientWidth = 300
+  OnClose = FormClose
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
     Height = 276
@@ -30,6 +31,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
       ItemHeight = 0
       OnClickCheck = ListBoxClickCheck
       OnKeyDown = ListBoxKeyDown
+      OnSelectionChange = ListBoxSelectionChange
       TabOrder = 0
       TopIndex = -1
     end

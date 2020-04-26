@@ -323,7 +323,8 @@ type
     // The following data is calculated
     FData: TFreeHydrostaticsData;
     FCalculations: TFreeHydrostaticsCalculate;
-    FMainFrame: TFreeIntersection;
+    FMidshipSection: TFreeIntersection;
+    FMidshipLocation: TFloatType;
     FBulbSection: TFreeIntersection;
     function FGetErrorString: string;
     function FGetTrimAngle: TFloatType;
@@ -345,6 +346,7 @@ type
     procedure Calculate;
     // The actual calculation of the hydrostatics finds place in this procedure
     procedure CalculateGravity;
+    procedure CalculateMidshipLocation;
     procedure CalculateVolume(WaterlinePlane: T3DPlane);
     procedure Clear;
     procedure Face_MoveZAuto;
@@ -380,20 +382,21 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeIntersection = class
   private
-    FOwner: TFreeShip;
+    FFreeShip: TFreeShip;
     FItems: TFasterListTFreeSpline;
     FIntersectionType: TFreeIntersectionType;
     FPlane: T3DPlane;
-    FBuild: boolean;
+    FBuilt: boolean;
     FShowCurvature: boolean;
     FUseHydrostaticsSurfacesOnly: boolean;
     // used for lateral area, mainframe and waterplane properties
+    FSelected: boolean;
     function FGetColor: TColor;
     function FGetPlane: T3DPlane;
     function FGetCount: integer;
     function FGetDescription: string;
     function FGetItem(Index: integer): TFreeSpline;
-    procedure FSetBuild(Val: boolean);
+    procedure FSetBuilt(Val: boolean);
   public
     procedure Add(Item: TFreeSpline);
     procedure CalculateArea(Plane: T3DPlane; var Area: TFloatType;
@@ -413,15 +416,16 @@ type
     procedure Rebuild;
     procedure SaveToDXF(Strings: TStringList);
     procedure SaveBinary(Destination: TFreeFileBuffer);
-    property Build: boolean read FBuild write FSetBuild;
+    property Built: boolean read FBuilt write FSetBuilt;
     property Color: TColor read FGetColor;
     property Count: integer read FGetCount;
     property Description: string read FGetDescription;
     property IntersectionType: TFreeIntersectionType
       read FIntersectionType write FIntersectionType;
     property Items[index: integer]: TFreeSpline read FGetItem;
-    property Owner: TFreeShip read FOwner;
+    property FreeShip: TFreeShip read FFreeShip;
     property Plane: T3DPlane read FGetPlane write FPlane;
+    property Selected: boolean read FSelected write FSelected;
     property ShowCurvature: boolean read FShowCurvature write FShowCurvature;
     property UseHydrostaticsSurfacesOnly: boolean
       read FUseHydrostaticsSurfacesOnly write FUseHydrostaticsSurfacesOnly;

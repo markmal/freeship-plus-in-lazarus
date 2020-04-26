@@ -1740,7 +1740,7 @@ var
     end;{SaveSpline}
 
   begin
-    if not Intersection.Build then
+    if not Intersection.Built then
       Intersection.Rebuild;
     if intersection.Count > 0 then
     begin
@@ -3927,7 +3927,7 @@ var
     Str: string;
     Spline: TFreeSpline;
   begin
-    if not Intersection.Build then
+    if not Intersection.Built then
       Intersection.Rebuild;
     if Intersection.Count > 0 then
     begin

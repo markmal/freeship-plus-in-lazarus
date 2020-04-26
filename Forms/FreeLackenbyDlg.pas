@@ -378,7 +378,7 @@ begin
   for I := 1 to FFreeship.NumberofStations do
   begin
     Station := FFreeship.Station[I - 1];
-    if not Station.Build then
+    if not Station.Built then
       Station.Rebuild;
     for J := 1 to Station.Count do
     begin
@@ -418,7 +418,7 @@ begin
   Plane.c := 1.0;
   Plane.d := -(self.FMin.Z + FFreeship.ProjectSettings.ProjectDraft);
   Waterline.Plane := Plane;
-  if not Waterline.Build then
+  if not Waterline.Built then
     Waterline.Rebuild;
   for J := 1 to Waterline.Count do
   begin

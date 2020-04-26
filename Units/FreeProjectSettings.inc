@@ -232,13 +232,13 @@ begin
   begin
     FProjectSimplifyIntersections := val;
     for I := 1 to FreeShip.NumberofStations do
-      FreeShip.Station[I - 1].Build := False;
+      FreeShip.Station[I - 1].Built := False;
     for I := 1 to FreeShip.NumberofButtocks do
-      FreeShip.Buttock[I - 1].Build := False;
+      FreeShip.Buttock[I - 1].Built := False;
     for I := 1 to FreeShip.NumberofWaterlines do
-      FreeShip.Waterline[I - 1].Build := False;
+      FreeShip.Waterline[I - 1].Built := False;
     for I := 1 to FreeShip.NumberofDiagonals do
-      FreeShip.Diagonal[I - 1].Build := False;
+      FreeShip.Diagonal[I - 1].Built := False;
     for I := 1 to FreeShip.NumberOfHydrostaticCalculations do
       FreeShip.HydrostaticCalculation[I - 1].Calculated := False;
   end;

@@ -314,7 +314,7 @@ begin
       Plane.b := 1 / Sqrt(2);
       Plane.c := -1 / sqrt(2);
       Plane.d := -Diagonal.Plane.d;
-      if not Diagonal.Build then
+      if not Diagonal.Built then
         Diagonal.Rebuild;
       for J := 1 to Diagonal.Count do
       begin
@@ -764,7 +764,7 @@ var
   var
     I: integer;
   begin
-    if not Intersection.Build then
+    if not Intersection.Built then
       Intersection.Rebuild;
     for I := 1 to Intersection.Count do
       DrawSpline(Intersection.Items[I - 1], Views, Style);
@@ -1436,7 +1436,7 @@ begin
       Plane.b := 1 / Sqrt(2);
       Plane.c := -1 / sqrt(2);
       Plane.d := -Diagonal.Plane.d;
-      if not Diagonal.Build then
+      if not Diagonal.Built then
         Diagonal.Rebuild;
       for J := 1 to Diagonal.Count do
       begin
@@ -1920,7 +1920,7 @@ var
   var
     I: integer;
   begin
-    if not Intersection.Build then
+    if not Intersection.Built then
       Intersection.Rebuild;
     for I := 1 to Intersection.Count do
       AddSpline(Intersection.Items[I - 1], Views, Layername, Color);
@@ -2118,7 +2118,7 @@ begin
       Plane.b := 1 / Sqrt(2);
       Plane.c := -1 / sqrt(2);
       Plane.d := -Diagonal.Plane.d;
-      if not Diagonal.Build then
+      if not Diagonal.Built then
         Diagonal.Rebuild;
       for J := 1 to Diagonal.Count do
       begin

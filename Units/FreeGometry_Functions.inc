@@ -1,5 +1,7 @@
 { included in FreeGometry.pas }
 
+
+
 function AddPoint(P1, P2: T3DCoordinate): T3DCoordinate;
   // Add two vectors
 begin
@@ -827,6 +829,13 @@ begin
   Result.Z := 0.5 * (P1.Z + P2.Z);
 end;{Midpoint}
 
+function Mid3point(P1, P2, P3: T3DCoordinate): T3DCoordinate;
+begin
+  Result.X := (P1.X + P2.X + P3.X) / 3;
+  Result.Y := (P1.Y + P2.Y + P3.Y) / 3;
+  Result.Z := (P1.Z + P2.Z + P3.Z) / 3;
+end;{Mid3point}
+
 function MirrorPlane(P: T3DCoordinate; Plane: T3DPLane): T3DCoordinate;
 var
   P2: T3DCoordinate;
@@ -941,7 +950,6 @@ begin
     ((P.X <= Pmax.X) and (P.Y <= Pmax.Y) and (P.Z <= Pmax.Z));
 end;
 
-
 function PointInTriangleBarycentric(P, A, B, C: T3DCoordinate): boolean;
   // This function calculates using Barycentric method
   // if a point lies inside a triangle
@@ -1018,6 +1026,151 @@ function PointInTriangle(Int, P0, P1, P2: T3DCoordinate): boolean;
 begin
   Result := SameSide(Int, P0, P1, P2) and SameSide(Int, P1, P0, P2) and SameSide(Int, P2, P0, P1);
 end;{PointInTriangle}
+
+function PointInPoligon(const P: TPoint; const Points: TPointArray): boolean;
+var i,j,cn:integer; vt: TFloatType; r:boolean;
+  p1,p2: TPoint;
+begin
+  result := false;
+  cn := 0;
+  j := length(Points)-1;
+  for i:=0 to length(Points)-1 do
+  begin
+    p1 := Points[i];
+    p2 := Points[j];
+
+    if ((p1.y < P.Y) and (p2.y >= P.y))
+     or((p2.y < P.Y) and (p1.y >= P.y)) then
+    begin
+       // compute the actual edge-ray intersect x-coordinate
+       vt := (P.y - p1.y) / (p2.y - p1.y);
+       if (P.x > (p1.x + vt * (p2.x - p1.x))) then // P.x < intersect
+         //inc(cn);   // a valid crossing of y=P.y right of P.x
+         result := not result;
+    end;
+    j := i;
+  end;
+end;
+
+// from http://read.pudn.com/downloads352/sourcecode/graph/fractal/1532960/Geometry_Algorithm_Archive.pdf#%16%95%9F%98%88H%5C%07%8F%97%F2%12%F2%EF%04%C5%CDintersect_RayTriangle%28%29
+const SMALL_NUM = 0.00000001; // anything that avoids division overflow
+
+function dotProduct(u,v:T3DVector):TFloatType; overload;
+begin
+  result:=((u).x * (v).x + (u).y * (v).y + (u).z * (v).z);
+end;
+
+// intersect_RayTriangle(): intersect a ray with a 3D triangle
+//    Input:  a ray R, and a triangle T
+//    Output: *I = intersection point (when it exists)
+//    Return: -1 = triangle is degenerate (a segment or point)
+//             0 = disjoint (no intersect)
+//             1 = intersect in unique point I1
+//             2 = are in the same plane
+function RayIntersectTriangle(
+           Ray:T3DLine; V0,V1,V2:T3DCoordinate;
+           var IntersectionPoint:T3DCoordinate):integer;
+var
+  u, v, n : T3DVector;             // triangle vectors
+  dir, w0, w : T3DVector;          // ray vectors
+  r, a, b : TFloatType;             // params to calc ray-plane intersect
+  uu, uv, vv, wu, wv, D, s, t : TFloatType;
+begin
+  result := 0; IntersectionPoint := ZERO;
+  // get triangle edge vectors and plane normal
+  u := V1 - V0;
+  v := V2 - V0;
+  n := u * v;             // cross product
+
+  if n = T3DVector(ZERO)then      // triangle is degenerate
+  begin
+    result := -1;                 // do not deal with this case
+    exit;
+  end;
+
+  dir := Ray.B - Ray.A;             // ray direction vector
+  w0 := Ray.A - V0;
+  a := dotProduct(n,w0);
+  b := dotProduct(n,dir);
+
+  if (abs(b) < SMALL_NUM) then
+  begin     // ray is parallel to triangle plane
+    if (a = 0) then  // ray lies in triangle plane
+    begin
+      result:=2;
+      exit;
+    end
+    else    // ray disjoint from plane
+    begin
+      result:=0;
+      exit;
+    end
+  end;
+
+  // get intersect point of ray with triangle plane
+  r := -a / b;
+  if (r < 0.0) then           // ray goes away from triangle
+  begin                       // => no intersect
+    result:=0;
+    exit;
+  end;
+  // for a segment, also test if (r > 1.0) => no intersect
+
+  IntersectionPoint := Ray.A + r * dir;  // intersect point of ray and plane
+
+  // is IntersectionPoint inside Triangle?
+  uu := dotProduct(u,u);
+  uv := dotProduct(u,v);
+  vv := dotProduct(v,v);
+  w := IntersectionPoint - V0;
+  wu := dotProduct(w,u);
+  wv := dotProduct(w,v);
+  D := uv * uv - uu * vv;
+
+  // get and test parametric coords
+  s := (uv * wv - vv * wu) / D;
+  if (s < 0.0) or (s > 1.0) then  // IntersectionPoint is outside Triangle
+  begin                       // => no intersect
+    result:=0;
+    exit;
+  end;
+
+  t := (uv * wu - uu * wv) / D;
+  if (t < 0.0) or ((s + t) > 1.0) then // IntersectionPoint is outside Triangle
+  begin                       // => no intersect
+    result:=0;
+    exit;
+  end;
+
+  result := 1;                 // IntersectionPoint is in Triangle
+end;
+
+
+function RotatePoint(Center, Point: T3DCoordinate; Angle, Elevation:TFloatType): T3DCoordinate;
+var
+  CosAngle, SinAngle: TFloatType;
+  CosElevation, SinElevation: TFloatType;
+begin
+  // This function takes a point from 3D space and rotates it around the C center
+  // of the scene as specified by the viewing-parameters (angle/elevation)
+  // translate centerpoint back to origin
+  CosAngle := cos(DegToRad(Angle));
+  SinAngle := sin(DegToRad(Angle));
+  CosElevation := cos(DegToRad(Elevation));
+  SinElevation := sin(DegToRad(Elevation));
+  Point.X := Point.X - Center.X;
+  Point.Y := Point.Y - Center.Y;
+  Point.Z := Point.Z - Center.Z;
+  // Rotate a point first around Y-axis then around the Z-axis
+  Result.x := (Point.x * CosElevation + Point.z * SinElevation) * CosAngle - Point.y * SinAngle;
+  Result.y := (Point.x * CosElevation + Point.z * SinElevation) * SinAngle + Point.y * CosAngle;
+  Result.z := (-Point.x * SinElevation + Point.z * CosElevation);
+  // Translate origin back to midpoint
+  Result.X := Result.X + Center.X;
+  Result.Y := Result.Y + Center.Y;
+  Result.Z := Result.Z + Center.Z;
+end;{TFreeViewport.RotatedPoint}
+
 
 // converts pounds to Newton
 function PoundsToNewton(InpLbs: TFloatType): TFloatType;

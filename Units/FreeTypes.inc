@@ -2,6 +2,64 @@
 header file is FreeTypes.pas
 }
 
+operator = (c1,c2:T3DCoordinate): boolean;
+begin
+  result := (c1.x = c2.x) and (c1.y = c2.y) and (c1.z = c2.z);
+end;
+
+operator <> (c1,c2:T3DCoordinate): boolean;
+begin
+  result := not((c1.x = c2.x) and (c1.y = c2.y) and (c1.z = c2.z));
+end;
+
+operator = (v1, v2:T3DVector): boolean;
+begin
+  result := (v1.x = v2.x) and (v1.y = v2.y) and (v1.z = v2.z);
+end;
+
+operator <> (v1, v2:T3DVector): boolean;
+begin
+  result := not((v1.x = v2.x) and (v1.y = v2.y) and (v1.z = v2.z));
+end;
+
+operator + (c:T3DCoordinate; v:T3DVector): T3DCoordinate ;
+begin
+  result.x := (c.x + v.x);
+  result.y := (c.y + v.y);
+  result.z := (c.z + v.z);
+end;
+
+operator - (c:T3DCoordinate; v:T3DVector): T3DCoordinate;
+begin
+  result.x := (c.x - v.x);
+  result.y := (c.y - v.y);
+  result.z := (c.z - v.z);
+end;
+
+operator - (c1,c2:T3DCoordinate): T3DVector;
+begin
+  result.x := (c1.x - c2.x);
+  result.y := (c1.y - c2.y);
+  result.z := (c1.z - c2.z);
+end;
+
+// scalar product
+operator * (s:TFloatType; v:T3DVector): T3DVector;
+begin
+  result.x := (s * v.x);
+  result.y := (s * v.y);
+  result.z := (s * v.z);
+end;
+
+// cross product
+operator * (v1:T3DVector; v2:T3DVector): T3DVector;
+begin
+  result.x := (v1.y * v2.z) - (v1.z * v2.y);
+  result.y := (v1.z * v2.x) - (v1.x * v2.z);
+  result.z := (v1.x * v2.y) - (v1.y * v2.x);
+end;
+
+
 function isEmpty(rec:TFreePlaningResistanceData):boolean;
 begin
   with rec do

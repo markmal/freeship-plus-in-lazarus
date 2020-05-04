@@ -32,7 +32,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="392"/>
+      <BuildNr Value="396"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -1021,7 +1021,7 @@
       <ConfigFile>
         <DontUseConfigFile Value="True"/>
         <CustomConfigFile Value="True"/>
-        <ConfigFilePath Value="/etc/debugfpc.cfg"/>
+        <ConfigFilePath Value="/etc/fpc-debug.cfg"/>
       </ConfigFile>
       <ExecuteBefore>
         <Command Value="bash $(ProjPath)/gitlastrev.sh"/>

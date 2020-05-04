@@ -112,10 +112,10 @@ begin
   FLength := aLength;
   FWidest := aWidest;
   FSpaciest := aSpaciest;
-  tbSplitSectionLocation.Min:=0;
-  tbSplitSectionLocation.Max:=round(aLength*1000);
-  fseSplitSectionLocation.MinValue:=0.0;
-  fseSplitSectionLocation.MaxValue:=aLength;
+  tbSplitSectionLocation.Min:=-1;
+  tbSplitSectionLocation.Max:=round(aLength*1000+1);
+  fseSplitSectionLocation.MinValue:=-0.001;
+  fseSplitSectionLocation.MaxValue:=aLength+0.001;
 end;
 
 procedure TFreeSplitSectionDialog.fseSplitSectionLocationKeyDown(Sender: TObject; var Key: Word;

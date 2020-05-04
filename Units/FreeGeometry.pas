@@ -530,11 +530,13 @@ type
     procedure FSetPenStyle(Val: TPenStyle);
     procedure FSetPenWidth(Val: integer);
     function FGetPrintScaleFactor: TFloatType;
+    function ProjectBackAsLine(P: TPoint): T3DLine;
     procedure SetSelectionFrameRect(Rect: TRect);
     procedure SetSelectionFrameActive(Val: boolean);
     procedure FSetViewType(Val: TFreeViewType);
     procedure FSetViewportMode(Val: TFreeViewportMode);
     procedure FVertScrollbarChange(Sender: TObject);
+    procedure FSetZoom(val: TFloatType);
     procedure FHorScrollbarChange(Sender: TObject);
     procedure WMMouseEnter(var Message: TMessage); message CM_MOUSEENTER;
     procedure WMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
@@ -554,6 +556,12 @@ type
     function DoMouseWheel(Shift: TShiftState; WheelDelta: integer;
       MousePos: TPoint): boolean; override;
   public
+    {$ifdef DrawDebug}
+    FDebugPoint:TPoint;
+    FDebug3DPoint, FDebugCamera, FDebugIntersection,
+      FDebugT1,FDebugT2,FDebugT3: T3DCoordinate;
+    {$endif DrawDebug}
+
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure DetachEventHandlers;
@@ -640,6 +648,7 @@ type
     property Light: TFreeLight read FLight write FSetLight;
     property Max3D: T3DCoordinate read FMax3D;
     property Min3D: T3DCoordinate read FMin3D;
+    property SceneMidPoint: T3DCoordinate read FMidPoint write FMidPoint;
     property PenColor: TColor
       read FGetPenColor write FSetPenColor;
     property PenStyle: TPenStyle
@@ -651,7 +660,7 @@ type
     property PrintScaleFactor: TFloatType read FGetPrintScaleFactor;
     property Scale: TFloatType read FScale;
     property ZBuffer: TFreeZBuffer read FZBuffer;
-    property Zoom: TFloatType read FZoom;
+    property Zoom: TFloatType read FZoom write FSetZoom;
     property Pan: TPoint read FPan write FSetPan;
     property SelectionFrameRect: TRect read FSelectionFrameRect write SetSelectionFrameRect;
     property SelectionFrameActive: boolean read FSelectionFrameActive write SetSelectionFrameActive;
@@ -685,7 +694,7 @@ type
     property Visible;
     property ViewType: TFreeViewtype
       read FViewType write FSetViewType;
-    property ViewportMode: TFreeViewportmode
+    property ViewportMode: TFreeViewportMode
       read FViewportMode write FSetViewportMode;
     // Switch between wireframe mode or differentypes of shading
     property OnChangeBackground: TNotifyEvent
@@ -1653,6 +1662,9 @@ type
       override;
     function DistanceToCursor(X, Y: integer;
       var P: T3DCoordinate; Viewport: TFreeViewport): integer;
+    function PointInFace(X, Y: integer;
+      var IntersectionCoord: T3DCoordinate; var Proximity:TFloatType;
+      Viewport: TFreeViewport): boolean;
     procedure Delete; override;
     procedure Unreference; override;
     destructor Destroy;  override;
@@ -1781,6 +1793,7 @@ type
     // This event is raised whenever an item (such as controlpoint, controledge or controlface) is selected or deselected
 
     FUnderWaterColor: TColor;
+    FUnderWaterColorAlpha: byte;
     // Color used for shading the underwater part
     FWaterlinePlane: T3DPlane;
     // This plane is used to clip the hull, and shade the underwatership in a different color
@@ -1862,6 +1875,7 @@ type
     procedure SetSubdivisionMode(val: TFreeSubdivisionMode);
     procedure SetUnderwaterColor(Val: TColor);
     procedure SetShadeUnderWater(Val: boolean);
+    procedure SetUnderwaterColorAlpha(AValue: byte);
   protected
   public
     procedure AddControlCurve(Curve: TFreesubdivisionControlCurve);
@@ -2104,6 +2118,8 @@ type
       read FSubdivisionMode write SetSubdivisionMode;
     property UnderWaterColor: TColor
       read FUnderWaterColor write SetUnderwaterColor;
+    property UnderWaterColorAlpha: byte
+      read FUnderWaterColorAlpha write SetUnderwaterColorAlpha;
     property WaterlinePlane: T3DPlane
       read FWaterlinePlane write FWaterlinePlane;
     property ZebraColor: TColor
@@ -2170,6 +2186,7 @@ procedure MinMax(P: T3DCoordinate; var Min, Max: T3DCoordinate);
 function Point3D(x,y,z: TFloatType): T3DCoordinate;
 function Midpoint(P1, P2: T3DCoordinate): T3DCoordinate;
 // Calculate the mid-point between P1 and P2
+function Mid3point(P1, P2, P3: T3DCoordinate): T3DCoordinate;
 function MirrorPlane(P: T3DCoordinate; Plane: T3DPLane): T3DCoordinate;
 // mirror a point in a plane
 function Normalize(P: T3DCoordinate): T3DCoordinate;

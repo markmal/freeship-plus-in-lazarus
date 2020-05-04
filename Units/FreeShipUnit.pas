@@ -850,6 +850,7 @@ type
     // Half width of controlpoints in pixels when drawn on screen
     // Colors
     FButtockColor: TColor;
+    FUnderWaterColorAlpha: byte;
     FWaterlineColor: TColor;
     FStationColor: TColor;
     FDiagonalColor: TColor;
@@ -1024,6 +1025,7 @@ type
     property TempDirectory: string read FTempDirectory write FTempDirectory;
     property StationColor: TColor read FStationColor write FStationColor;
     property UnderWaterColor: TColor read FUnderWaterColor write FUnderWaterColor;
+    property UnderWaterColorAlpha: byte read FUnderWaterColorAlpha write FUnderWaterColorAlpha;
     property RegularPointColor: TColor read FRegularPointColor write FRegularPointColor;
     property DartPointColor: TColor read FDartPointColor write FDartPointColor;
     property SelectColor: TColor read FSelectColor write FSelectColor;
@@ -1059,6 +1061,7 @@ type
     FProjectBeam: TFloatType;
     FProjectDraft: TFloatType;
     FProjectLength: TFloatType;
+    FProjectUnderWaterColorAlpha: byte;
     FProjectWaterDensity: TFloatType;
     FProjectWaterTemper: TFloatType;
     FProjectSplitSectionLocation: TFloatType;
@@ -1111,6 +1114,7 @@ type
     procedure FSetProjectShadeUnderwaterShip(Val: boolean);
     procedure FSetProjectSimplifyIntersections(val: boolean);
     procedure FSetProjectUnderWaterColor(Val: TColor);
+    procedure FSetProjectUnderWaterColorAlpha(Val: byte);
     procedure FSetProjectUnits(Val: TFreeUnitType);
     procedure FSetProjectWaterDensity(Val: TFloatType);
     procedure FSetProjectWaterTemper(Val: TFloatType);
@@ -1160,6 +1164,8 @@ type
       read FProjectSimplifyIntersections write FSetProjectSimplifyIntersections;
     property ProjectUnderWaterColor: TColor
       read FProjectUnderWaterColor write FSetProjectUnderWaterColor;
+    property ProjectUnderWaterColorAlpha: byte
+      read FProjectUnderWaterColorAlpha write FSetProjectUnderWaterColorAlpha;
     property ProjectUnits: TFreeUnitType read FProjectUnits write FSetProjectUnits;
     property ProjectPrecision: TFreePrecisionType
       read FProjectPrecision write FProjectPrecision;

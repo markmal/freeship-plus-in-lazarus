@@ -3125,12 +3125,14 @@ procedure TFreeShip.DoSelectItems(const Viewport: TFreeViewport; const X, Y: int
 var
   I, J: integer;
   Tmp: integer;
-  P3D: T3DCoordinate;
+  P:TPoint;
+  P3D, FDebug3DPoint: T3DCoordinate;
   Point: TFreeSubdivisionControlPoint;
   Edge: TFreeSubdivisionControlEdge;
   Curve: TFreeSubdivisionControlCurve;
   Face: TFreeSubdivisionControlFace;
   Entity: TFreeSubdivisionBase;
+  Dist,MinDistance:TFloatType;
 begin
   Entity := nil;
 
@@ -3233,6 +3235,7 @@ begin
       Inc(I);
     end;
   end;
+
   if (Entity = nil) then
   begin
     I := 1;
@@ -3300,6 +3303,49 @@ begin
     end;
   end;
 
+  // search by surface
+  if (Entity = nil) and (Viewport.ViewPortMode <> vmWireFrame ) then
+  begin
+    MinDistance := 10e18;
+
+    P.x:=X; P.y:=Y;
+    p3d:=ViewPort.ProjectBack(P, ZERO);
+    P:=ViewPort.Project(p3d);
+    {$ifdef DrawDebug}
+    ViewPort.FDebugPoint:=P;
+    ViewPort.FDebug3DPoint:=p3d;
+    {$endif DrawDebug}
+
+    for I:=0 to Surface.NumberOfControlFaces-1 do
+    begin
+      if Surface.ControlFace[I].Visible then
+      begin
+        Face := Surface.ControlFace[I];
+        if Face.PointInFace(X, Y, P3D, Dist, Viewport) then
+        begin
+          if Dist < MinDistance then
+          begin
+            MinDistance := Dist;
+            Entity := Face;
+          end;
+        end;
+      end;
+    end;
+    if Entity <> nil then
+    begin
+      Face := TFreeSubdivisionControlFace(Entity);
+      Face.Selected := not Face.Selected;
+      // If CTRL key is pressed, select all connected controlfaces that
+      // belong to the same layer and are not separated by a crease edge
+      // and have the same selected state
+      if (ssCtrl in shift) then
+        Face.Trace;
+      ItemSelected := True;
+      // Draw the selected faces to all viewports
+      for J := 0 to NumberOfViewports-1 do
+        Self.Viewport[J].Refresh;
+    end;
+  end;
 
   if Entity <> nil then // apparently SOMEthing has been selected
     if Entity is TFreeSubdivisionControlPoint then

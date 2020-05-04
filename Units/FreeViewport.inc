@@ -8,7 +8,7 @@ begin
   if Val <> FAngle then
   begin
     FAngle := Val;
-    FCosAngle := Cos(DegToRad(FAngle));
+    FCosAngle := cos(DegToRad(FAngle));
     FSinAngle := sin(DegToRad(FAngle));
     FHorScrollbarChange(self);
     InitializeViewport(FMin3D, FMax3D);
@@ -130,7 +130,7 @@ begin
   if Val <> FElevation then
   begin
     FElevation := Val;
-    FCosElevation := Cos(DegToRad(FElevation));
+    FCosElevation := cos(DegToRad(FElevation));
     FSinElevation := sin(DegToRad(FElevation));
     FVertScrollbarChange(self);
     InitializeViewport(FMin3D, FMax3D);
@@ -389,6 +389,12 @@ begin
       FOriginalVertScrollbarChange(Sender);
   end;
 end;{TFreeViewport.FVertScrollbarChange}
+
+procedure TFreeViewport.FSetZoom(val: TFloatType);
+begin
+  if FZoom = val then exit;
+  FZoom := val;
+end;
 
 procedure TFreeViewport.WMMouseEnter(var Message: TMessage);
 begin
@@ -1043,8 +1049,8 @@ begin
   // apply perspective correction
   P2D.X := FCameralocation.X * P3D.Y / Dist;
   P2D.Y := FCameralocation.X * P3D.Z / Dist;
-  dX:=FPan.X + FScreencenter.X + (FZoom * FScale * P2D.X);
-  dY:=FPan.Y + FScreencenter.Y - (FZoom * FScale * P2D.Y);
+  dX := FPan.X + FScreencenter.X + (FZoom * FScale * P2D.X);
+  dY := FPan.Y + FScreencenter.Y - (FZoom * FScale * P2D.Y);
   if dX > MAXINT then dX := MAXINT;
   if dX < -MAXINT-1 then dX := -MAXINT-1;
   if dY > MAXINT then dY := MAXINT;
@@ -1052,6 +1058,33 @@ begin
   Result.X := Round(dX);
   Result.Y := Round(dY);
 end;{TFreeViewport.Project}
+
+
+// Projects 2d screen coordinate as a ray/line that goes through camera and the 3d "screen" coordinate.
+function TFreeViewport.ProjectBackAsLine(P: TPoint): T3DLine;
+var
+  P2D: T2DCoordinate;
+  P1, P2: T3DCoordinate;
+  P3D: T3DCoordinate;
+  Dist: TFloatType;
+begin
+  // convert from screencoordinate to 2D world coordinate
+  P2D.X := (P.X - FPan.X - FScreencenter.X) / (FZoom * FScale);
+  P2D.Y := (P.Y - FPan.Y - FScreencenter.Y) / -(FZoom * FScale);
+
+  // Now correct for perspective projection and create a 3D ray through the screen coordinate
+  P3D.X := FMin3D.X;
+  Dist := FCameralocation.X - P3D.X;
+  P3D.Y := P2D.X * Dist / FCameralocation.X;
+  P3D.Z := P2D.Y * Dist / FCameralocation.X;
+  Result.A := RotatedPointBack(P3D);
+
+  P3D.X := FMax3D.X;
+  Dist := FCameralocation.X - P3D.X;
+  P3D.Y := P2D.X * Dist / FCameralocation.X;
+  P3D.Z := P2D.Y * Dist / FCameralocation.X;
+  Result.B := RotatedPointBack(P3D);
+end;{TFreeViewport.ProjectBack}
 
 function TFreeViewport.ProjectBack(P: TPoint; Input: T3DCoordinate): T3DCoordinate;
 var
@@ -1075,8 +1108,8 @@ begin
   // convert from screencoordinate to 2D world coordinate
   P2D.X := (P.X - FPan.X - FScreencenter.X) / (FZoom * FScale);
   P2D.Y := (P.Y - FPan.Y - FScreencenter.Y) / -(FZoom * FScale);
-  // Now correct for perspective projection and create a 3D ray through the screen coordinate
 
+  // Now correct for perspective projection and create a 3D ray through the screen coordinate
   P3D.X := FMin3D.X;
   Dist := FCameralocation.X - P3D.X;
   P3D.Y := P2D.X * dist / FCameralocation.X;
@@ -1088,6 +1121,7 @@ begin
   P3D.Y := P2D.X * dist / FCameralocation.X;
   P3D.Z := P2D.Y * Dist / FCameralocation.X;
   P2 := RotatedPointBack(P3D);
+
   // Finally project point Input on the ray through P1 and P2
   Result := Dist_PL_3D(Input, P1, P2);
 end;{TFreeViewport.ProjectBack}
@@ -1194,9 +1228,9 @@ begin
   // This function takes a point from worldspace and rotates it around the midpoint
   // of the scene as specified by the viewing-parameters (angle/elevation)
   // translate midpoint back to origin
-  CosAngle := Cos(DegToRad(-FAngle));
+  CosAngle := cos(DegToRad(-FAngle));
   SinAngle := sin(DegToRad(-FAngle));
-  CosElevation := Cos(DegToRad(-FElevation));
+  CosElevation := cos(DegToRad(-FElevation));
   SinElevation := sin(DegToRad(-FElevation));
   P.X := P.X - FMidpoint.X;
   P.Y := P.Y - FMidpoint.Y;
@@ -1217,6 +1251,7 @@ var
   DrawingToPrinter: boolean;
   L: TFloatType;
   N: T3DCoordinate;
+  P,P0,PC,p1,p2,p3: TPoint;
 begin
   inherited;
   if (not (csDestroying in ComponentState)) and
@@ -1302,6 +1337,48 @@ begin
 
     if FSelectionFrameActive then
        DrawSelectionFrame;
+
+    {$ifdef DrawDebug}
+    FDrawingCanvas.Pen.Color := clYellow;
+    FDrawingCanvas.Rectangle(FDebugPoint.X,FDebugPoint.Y,FDebugPoint.X,FDebugPoint.Y);
+    FDrawingCanvas.Rectangle(FDebugPoint.X-3,FDebugPoint.Y-3,FDebugPoint.X+3,FDebugPoint.Y+3);
+    P:=Project(FDebug3DPoint);
+    FDrawingCanvas.Pen.Color := clWhite;
+    FDrawingCanvas.Rectangle(P.X,P.Y,P.X,P.Y);
+    FDrawingCanvas.Rectangle(P.X-3,P.Y-3,P.X+3,P.Y+3);
+    P0:=Project(ZERO);
+    FDrawingCanvas.Ellipse(P0.X-3,P0.Y-3,P0.X+3,P0.Y+3);
+
+    if (FDebugCamera.X < 100000000) then
+    begin
+      PC:=Project(FDebugCamera);
+      if (abs(PC.X) > 1000000) or (abs(PC.Y) > 1000000) then
+      begin
+        PC.X := PC.X div 1000;
+        PC.Y := PC.Y div 1000;
+      end;
+      FDrawingCanvas.Ellipse(PC.X-5,PC.Y-5,PC.X+5,PC.Y+5);
+      FDrawingCanvas.Ellipse(PC.X-3,PC.Y-3,PC.X+3,PC.Y+3);
+      FDrawingCanvas.Line(PC,P);
+    end;
+
+    P:=Project(FDebugIntersection);
+    FDrawingCanvas.Line(P.X-5,P.Y-5,P.X+5,P.Y+5);
+    FDrawingCanvas.Line(P.X+5,P.Y-5,P.X-5,P.Y+5);
+
+    p1:=Project(FDebugT1);
+    p2:=Project(FDebugT2);
+    p3:=Project(FDebugT3);
+    FDrawingCanvas.Line(p1,p2);
+    FDrawingCanvas.Line(p3,p2);
+    FDrawingCanvas.Line(p1,p3);
+
+    P0 := Project(FMidPoint);
+    FDrawingCanvas.Pen.Color := clRed;
+    FDrawingCanvas.Ellipse(P0.X-1,P0.Y-1,P0.X+1,P0.Y+1);
+    FDrawingCanvas.Ellipse(P0.X-3,P0.Y-3,P0.X+3,P0.Y+3);
+    FDrawingCanvas.Ellipse(P0.X-5,P0.Y-5,P0.X+5,P0.Y+5);
+    {$endif DrawDebug}
 
   end;
 end;{TFreeViewport.Paint}
@@ -1744,15 +1821,17 @@ begin
     if WheelDelta > 0 then
     begin
       FZoom := FZoom * Factor;
-      FPan.X := round(Factor * FPan.X);
-      FPan.Y := round(Factor * FPan.Y);
+      //FPan.X := round(FPan.X * Factor);
+      //if FPan.Y <> 0 then
+      //  FPan.Y := round(Factor / FPan.Y);
       Refresh;
     end
     else
     begin
       FZoom := FZoom / Factor;
-      FPan.X := round(FPan.X / Factor);
-      FPan.Y := round(FPan.Y / Factor);
+      //if FPan.X <> 0 then
+      //  FPan.X := round(Factor / FPan.X);
+      //FPan.Y := round(FPan.Y * Factor);
       Refresh;
     end;
   end;

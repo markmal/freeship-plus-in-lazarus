@@ -44,7 +44,8 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
       Constraints.MinWidth = 120
       DecimalPlaces = 5
       Increment = 0.1
-      MinValue = 0
+      MaxValue = 1000
+      MinValue = -0.00001
       OnChange = fseSplitSectionLocationChange
       OnEditingDone = fseSplitSectionLocationEditingDone
       OnKeyDown = fseSplitSectionLocationKeyDown

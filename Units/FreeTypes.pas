@@ -1,6 +1,7 @@
 unit FreeTypes;
 
-{$mode delphi}
+//{$mode delphi}
+{$mode objfpc}
 
 interface
 uses Classes;
@@ -26,6 +27,21 @@ Type
                                      a,b,c,d:TFloatType;         // Description of a 3D plane: a*x + b*y + c*z -d = 0.0;
                                   end;
 
+  T3DVector                     = record                         // 3D coordinate type
+                                     X,Y,Z:TFloatType;
+                                  end;
+
+  operator = (c1, c2:T3DCoordinate): boolean;
+  operator <> (c1, c2:T3DCoordinate): boolean;
+  operator = (v1, v2:T3DVector): boolean;
+  operator <> (v1, v2:T3DVector): boolean;
+  operator + (c:T3DCoordinate; v:T3DVector): T3DCoordinate ;
+  operator - (c:T3DCoordinate; v:T3DVector): T3DCoordinate;
+  operator - (c1,c2:T3DCoordinate): T3DVector;
+  operator * (s:TFloatType; v:T3DVector): T3DVector;
+  operator * (v1:T3DVector; v2:T3DVector): T3DVector;
+
+type
   TRGBTriple                    = packed record
                                      rgbtBlue : BYTE;
                                      rgbtGreen: BYTE;

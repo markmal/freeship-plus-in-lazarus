@@ -816,8 +816,10 @@ begin
    end;
 }
    FPanned:=False;
-   if Viewport.ViewportMode = vmWireframe
-      then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
+   //if Viewport.ViewportMode = vmWireframe
+     // then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
+   FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
+
    FAllowPanOrZoom:=not Select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
 
    if (Shift = [ssLeft,ssCtrl]) then
@@ -833,7 +835,7 @@ var P    : TPoint;
     P2D  : T2DCoordinate;
     Str  : string;
 begin
-   if Viewport.ViewType<>fvPerspective then
+   //if Viewport.ViewType<>fvPerspective then
    begin
       P.X:=X;
       P.Y:=Y;
@@ -847,12 +849,17 @@ begin
          fvBodyplan     : Str:=Userstring(215)+'.';
          fvProfile      : Str:=Userstring(216)+'.';
          fvPlan         : Str:=Userstring(217)+'.';
+         fvPerspective  : Str:=Userstring(218)+'.';
          else Str:='';
       end;
       Case Viewport.ViewType of
-         fvBodyplan     : Str:=Str+'  Y='+FloatToStrF(P2D.X,ffFixed,7,3)+',   Z='+FloatToStrF(P2D.Y,ffFixed,7,3);
-         fvProfile      : Str:=Str+'  X='+FloatToStrF(P2D.X,ffFixed,7,3)+',   Z='+FloatToStrF(P2D.Y,ffFixed,7,3);
-         fvPlan         : Str:=Str+'  X='+FloatToStrF(P2D.X,ffFixed,7,3)+',   Y='+FloatToStrF(P2D.Y,ffFixed,7,3);
+         fvBodyplan     : Str:=Str+'  Y='+FloatToStrF(P2D.X,ffFixed,7,3)+'  Z='+FloatToStrF(P2D.Y,ffFixed,7,3);
+         fvProfile      : Str:=Str+'  X='+FloatToStrF(P2D.X,ffFixed,7,3)+'  Z='+FloatToStrF(P2D.Y,ffFixed,7,3);
+         fvPlan         : Str:=Str+'  X='+FloatToStrF(P2D.X,ffFixed,7,3)+'  Y='+FloatToStrF(P2D.Y,ffFixed,7,3);
+         fvPerspective  : Str:=format('%s   Pan.X=%d Pan.Y=%d Elevation=%6.2f  Rotation=%6.2f  Zoom=%6.4f  Scale=%6.3f',
+                                      [Str, Viewport.Pan.X, Viewport.Pan.Y,
+                                      Viewport.Elevation, Viewport.Angle,
+                                      Viewport.Zoom, Viewport.Scale]);
       end;
       Caption:=Str;
    end;

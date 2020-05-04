@@ -253,6 +253,12 @@ begin
   end;
 end;{TFreeProjectSettings.FSetProjectUnderWaterColor}
 
+procedure TFreeProjectSettings.FSetProjectUnderWaterColorAlpha(Val: byte);
+begin
+ if FProjectUnderWaterColorAlpha = Val then exit;
+ FProjectUnderWaterColorAlpha := Val;
+end;
+
 procedure TFreeProjectSettings.FSetProjectUnits(Val: TFreeUnitType);
 var
   UnitConversionFactor: double;
@@ -310,6 +316,7 @@ begin
   FProjectShadeUnderwaterShip := True;
   // Shades the underwaterpart of the hull in a different color
   FProjectUnderWaterColor := FreeShip.Preferences.UnderWaterColor;
+  FProjectUnderWaterColorAlpha := FreeShip.Preferences.UnderWaterColorAlpha;
   FProjectUnits := TFreeUnitType(0); // Default is metric units
   FUseDefaultSplitSectionLocation := True;
   FProjectSplitSectionLocation := 0.0;

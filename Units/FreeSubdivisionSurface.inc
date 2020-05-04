@@ -1281,6 +1281,12 @@ begin
   end;
 end;{TFreeSubdivisionSurface.SetShadeUnderWater}
 
+procedure TFreeSubdivisionSurface.SetUnderwaterColorAlpha(AValue: byte);
+begin
+  if FUnderWaterColorAlpha=AValue then Exit;
+  FUnderWaterColorAlpha:=AValue;
+end;
+
 procedure TFreeSubdivisionSurface.SetUnderwaterColor(Val: TColor);
 begin
   if val <> FUnderwaterColor then

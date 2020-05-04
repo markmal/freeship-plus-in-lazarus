@@ -256,6 +256,7 @@ begin
     PointSize := Dialog.SpinEdit1.Value;
     LayerColor := Dialog.Panel2.Color;
     UnderWaterColor := Dialog.Panel5.Color;
+    UnderWaterColorAlpha := Dialog.seSubmergedSurfaceTranslucency.Value;
     EdgeColor := Dialog.Panel6.Color;
     CreaseEdgeColor := Dialog.Panel7.Color;
     CreaseColor := Dialog.Panel8.Color;
@@ -999,6 +1000,7 @@ begin
   FSelectColor := params.ReadColor('Graphic', 'SelectColor', FSelectColor);
   FLayerColor := params.ReadColor('Graphic', 'LayerColor', FLayerColor);
   FUnderWaterColor := params.ReadColor('Graphic', 'UnderWaterColor', FUnderWaterColor);
+  FUnderWaterColorAlpha := params.ReadColor('Graphic', 'UnderWaterColorAlpha', FUnderWaterColorAlpha);
   FNormalColor := params.ReadColor('Graphic', 'NormalColor', FNormalColor);
   FViewportColor := params.ReadColor('Graphic', 'ViewportColor', FViewportColor);
   FDiagonalColor := params.ReadColor('Graphic', 'DiagonalColor', FDiagonalColor);
@@ -1015,7 +1017,7 @@ begin
   params.Free;
 end;
 
-procedure TFreePreferences.LoadFromIni(FileName: string);
+procedure TFreePreferences.LoadFromIni(Filename: string);
 var
   I, N: integer;
   T, L, W, H, S: integer;
@@ -1116,7 +1118,7 @@ begin
   params.Free;
 end;
 
-procedure TFreePreferences.setDefaults;
+procedure TFreePreferences.SetDefaults;
 begin
   FPointSize := 2;
   FLanguage := 'English';
@@ -1256,6 +1258,7 @@ begin
   FLayerColor := RGB(0, 128, 0);       // Default color of each layer (green-ish)
   FViewportColor := $009F9F9F;
   FUnderwaterColor := RGB(240, 240, 240);
+  FUnderwaterColorAlpha := 255;   //opaque
   FLeakPointColor := $0099FF00;
   FNormalColor := clWhite;
   FMarkerColor := $008000FF;
@@ -1406,6 +1409,7 @@ begin
   params.WriteColor('Graphic', 'SelectColor', FSelectColor);
   params.WriteColor('Graphic', 'LayerColor', FLayerColor);
   params.WriteColor('Graphic', 'UnderWaterColor', FUnderWaterColor);
+  params.WriteColor('Graphic', 'UnderWaterColorAlpha', FUnderWaterColorAlpha);
   params.WriteColor('Graphic', 'NormalColor', FNormalColor);
   params.WriteColor('Graphic', 'ViewportColor', FViewportColor);
   params.WriteColor('Graphic', 'DiagonalColor', FDiagonalColor);

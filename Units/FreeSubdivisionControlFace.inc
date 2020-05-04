@@ -317,6 +317,80 @@ begin
   end;
 end;{TFreeSubdivisionControlFace.DistanceToCursor}
 
+function TFreeSubdivisionControlFace.PointInFace(X, Y: integer;
+  var IntersectionCoord: T3DCoordinate; var Proximity:TFloatType;
+  Viewport: TFreeViewport): boolean;
+var
+  I, J, Dist, Tmp: integer;
+  Param: TFloatType;
+  Child: TFreeSubdivisionFace;
+  Edge: TFreeSubdivisionEdge;
+  Px, Pt,Pt1, Pt2, Pt3: TPoint;
+  P0, PC, P1, P2, P3, XP, RelativeCameraLocation, S: T3DCoordinate;
+  D: TFloatType;
+  points: TPointArray;
+  plane:T3DPlane;
+  ray:T3DLine;
+  intsn: integer;
+  triangle: TPointArray;
+  sp1,sp2,sp3: TShadePoint;
+begin
+  Result := false;
+  IntersectionCoord := ZERO;
+  Pt.X := X;
+  Pt.Y := Y;
+  RelativeCameraLocation := Viewport.RotatedPointBack(Viewport.CameraLocation);
+
+  SetLength(triangle,3);
+  for I := 1 to ChildCount do
+  begin
+    Child := Self.Child[I - 1];
+    for J := 1 to Child.NumberOfpoints - 1 do
+    begin
+      p1:=Child.Point[0].Coordinate;
+      p2:=Child.Point[J-1].Coordinate;
+      p3:=Child.Point[J].Coordinate;
+      ray := ViewPort.ProjectBackAsLine(Pt);
+      intsn := RayIntersectTriangle(ray, p1,p2,p3, IntersectionCoord);
+
+      if intsn > 0 then
+      begin
+        {ViewPort.FDebugIntersection := IntersectionCoord;
+        Viewport.FDebugT1 := p1;
+        Viewport.FDebugT2 := p2;
+        Viewport.FDebugT3 := p3;
+        Viewport.FDebugCamera := RelativeCameraLocation;}
+        Proximity := DistPP3D(RelativeCameraLocation, IntersectionCoord);
+        result := true;
+        exit;
+      end;
+
+      if (Surface.DrawMirror) and (Layer.Symmetric) then
+      begin
+        p1.Y := -p1.Y;
+        p2.Y := -p2.Y;
+        p3.Y := -p3.Y;
+        ray := ViewPort.ProjectBackAsLine(Pt);
+        intsn := RayIntersectTriangle(ray, p1,p2,p3, IntersectionCoord);
+
+        if intsn > 0 then
+        begin
+          {ViewPort.FDebugIntersection := IntersectionCoord;
+          Viewport.FDebugT1 := p1;
+          Viewport.FDebugT2 := p2;
+          Viewport.FDebugT3 := p3;
+          Viewport.FDebugCamera := RelativeCameraLocation;}
+          Proximity := DistPP3D(RelativeCameraLocation, IntersectionCoord);
+          result := true;
+          exit;
+        end;
+      end;
+
+    end;
+  end;
+end;{TFreeSubdivisionControlFace.DistanceToCursor}
+
+
 procedure TFreeSubdivisionControlFace.Delete;
 var
   I: integer;
@@ -810,14 +884,24 @@ begin
     G := GetGValue(Layer.Color);
     B := GetBValue(Layer.Color);
     Alpha := Layer.AlphaBlend;
+
+    if Self.Selected then
+    begin
+      R := GetRValue(clYellow);
+      G := GetGValue(clYellow);
+      B := GetBValue(clYellow);
+    end;
+
     Viewport.BeginUpdate;
     if (Surface.ShadeUnderWater) and (Viewport.ViewportMode = vmShade) and
       (Layer.UseInHydrostatics) then
     begin
       // Clip all triangles against the waterline plane
-      Ru := GetRValue(Surface.UnderWaterColor);
-      Gu := GetGValue(Surface.UnderWaterColor);
-      Bu := GetBValue(Surface.UnderWaterColor);
+
+      // blend layer color with underwater color
+      Ru := (R + GetRValue(Surface.UnderWaterColor * Surface.UnderWaterColorAlpha div 255)) div 2;
+      Gu := (G + GetGValue(Surface.UnderWaterColor * Surface.UnderWaterColorAlpha div 255)) div 2;
+      Bu := (B + GetBValue(Surface.UnderWaterColor * Surface.UnderWaterColorAlpha div 255)) div 2;
 
       Setlength(Above, 6);
       setlength(Below, 6);

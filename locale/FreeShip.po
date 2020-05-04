@@ -3713,6 +3713,10 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
+#: tfreepreferencesdialog.lbsubmergedsurfacetranslucency.caption
+msgid "Submerged surface translucency"
+msgstr ""
+
 #: tfreepreferencesdialog.panel29.caption
 msgctxt "tfreepreferencesdialog.panel29.caption"
 msgid "Panel29"
@@ -3744,6 +3748,10 @@ msgstr ""
 
 #: tfreepreferencesdialog.selecttooliconsize.text
 msgid "24"
+msgstr ""
+
+#: tfreepreferencesdialog.sesubmergedsurfacetranslucency.hint
+msgid "0 - clear, 255 - opaque"
 msgstr ""
 
 #: tfreepreferencesdialog.tabsheet1.caption

@@ -1055,7 +1055,7 @@ end;
 // from http://read.pudn.com/downloads352/sourcecode/graph/fractal/1532960/Geometry_Algorithm_Archive.pdf#%16%95%9F%98%88H%5C%07%8F%97%F2%12%F2%EF%04%C5%CDintersect_RayTriangle%28%29
 const SMALL_NUM = 0.00000001; // anything that avoids division overflow
 
-function dotProduct(u,v:T3DVector):TFloatType; overload;
+function dotProduct(const u,v:T3DVector):TFloatType; overload;
 begin
   result:=((u).x * (v).x + (u).y * (v).y + (u).z * (v).z);
 end;

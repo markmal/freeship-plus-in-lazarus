@@ -833,6 +833,7 @@ end;{TFreeHullWindow.ViewportMouseDown}
 procedure TFreeHullWindow.ViewportMouseMove(Sender: TObject;Shift: TShiftState; X, Y: Integer);
 var P    : TPoint;
     P2D  : T2DCoordinate;
+    P3D  : T3DCoordinate;
     Str  : string;
 begin
    //if Viewport.ViewType<>fvPerspective then
@@ -856,10 +857,15 @@ begin
          fvBodyplan     : Str:=Str+'  Y='+FloatToStrF(P2D.X,ffFixed,7,3)+'  Z='+FloatToStrF(P2D.Y,ffFixed,7,3);
          fvProfile      : Str:=Str+'  X='+FloatToStrF(P2D.X,ffFixed,7,3)+'  Z='+FloatToStrF(P2D.Y,ffFixed,7,3);
          fvPlan         : Str:=Str+'  X='+FloatToStrF(P2D.X,ffFixed,7,3)+'  Y='+FloatToStrF(P2D.Y,ffFixed,7,3);
-         fvPerspective  : Str:=format('%s   Pan.X=%d Pan.Y=%d Elevation=%6.2f  Rotation=%6.2f  Zoom=%6.4f  Scale=%6.3f',
+         fvPerspective  :
+           begin
+           {Str:=format('%s   Pan.X=%d Pan.Y=%d Elevation=%6.2f  Rotation=%6.2f  Zoom=%6.4f  Scale=%6.3f',
                                       [Str, Viewport.Pan.X, Viewport.Pan.Y,
                                       Viewport.Elevation, Viewport.Angle,
-                                      Viewport.Zoom, Viewport.Scale]);
+                                      Viewport.Zoom, Viewport.Scale]);}
+             P3D := Viewport.ProjectBack(Point(X,Y), ZERO);
+             Str:=format('%s   X=%-7.3f Y=%-7.3f Z=%-7.3f', [Str, P3D.X, P3D.Y, P3D.Z]);
+           end;
       end;
       Caption:=Str;
    end;

@@ -321,19 +321,12 @@ function TFreeSubdivisionControlFace.PointInFace(X, Y: integer;
   var IntersectionCoord: T3DCoordinate; var Proximity:TFloatType;
   Viewport: TFreeViewport): boolean;
 var
-  I, J, Dist, Tmp: integer;
-  Param: TFloatType;
+  I, J: integer;
   Child: TFreeSubdivisionFace;
-  Edge: TFreeSubdivisionEdge;
-  Px, Pt,Pt1, Pt2, Pt3: TPoint;
-  P0, PC, P1, P2, P3, XP, RelativeCameraLocation, S: T3DCoordinate;
-  D: TFloatType;
-  points: TPointArray;
-  plane:T3DPlane;
+  Pt: TPoint;
+  P1, P2, P3, RelativeCameraLocation: T3DCoordinate;
   ray:T3DLine;
   intsn: integer;
-  triangle: TPointArray;
-  sp1,sp2,sp3: TShadePoint;
 begin
   Result := false;
   IntersectionCoord := ZERO;
@@ -341,7 +334,6 @@ begin
   Pt.Y := Y;
   RelativeCameraLocation := Viewport.RotatedPointBack(Viewport.CameraLocation);
 
-  SetLength(triangle,3);
   for I := 1 to ChildCount do
   begin
     Child := Self.Child[I - 1];

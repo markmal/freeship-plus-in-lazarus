@@ -1202,6 +1202,32 @@ begin
   Result.Z := FCameralocation.X * Scale * P3D.X / Dist;
 end;{TFreeViewport.ProjectToZBuffer}
 
+{
+// Projects 2d screen point coordinate to 3d coordinate on plane that goes through
+// Midpoint coordinate and is orthogonal to ray through camera and the Midpoint
+// Used in getting cursor coords in perspective view
+function TFreeViewport.ProjectPointBackToZeroPlane(X, Y: integer;
+  Viewport: TFreeViewport): T3DCoordinate;
+var
+  Px, Pt,Pt1, Pt2, Pt3: TPoint;
+  P0, PC, P1, P2, P3, XP, RelativeCameraLocation, S: T3DCoordinate;
+  MidPlane: T3DPlane;
+begin
+  Result := ZERO;
+  Pt.X := X;
+  Pt.Y := Y;
+  RelativeCameraLocation := RotatedPointBack(FCameraLocation);
+  MidPlane := PlanePointNormal(RelativeCameraLocation, FMidpoint);
+
+  //ProjectPointOnPlane(P, MidPlane);
+  ray := ViewPort.ProjectBackAsLine(Pt);
+
+  intsn := RayIntersectTriangle(ray, p1,p2,p3, IntersectionCoord);
+
+  PlanePointNormal(P, Normal: T3DCoordinate): T3DPlane;
+end;
+}
+
 function TFreeViewport.RotatedPoint(P: T3DCoordinate): T3DCoordinate;
 begin
   // This function takes a point from worldspace and rotates it around the midpoint

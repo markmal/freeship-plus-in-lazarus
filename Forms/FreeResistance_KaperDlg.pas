@@ -39,7 +39,7 @@ uses
   TeeProcs,
   Chart,
 {$ELSE}
-  LCLIntf, LCLType, //LMessages,
+  LCLIntf, LCLType, //
   TATools, TASeries, TACustomSeries, TAGraph,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}

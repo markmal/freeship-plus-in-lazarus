@@ -31,8 +31,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="9"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="397"/>
+      <RevisionNr Value="4"/>
+      <BuildNr Value="403"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -281,7 +281,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="126">
+    <Units Count="128">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -972,6 +972,19 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit125>
+      <Unit126>
+        <Filename Value="Forms/freeselecteddlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormSelected"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeSelectedDlg"/>
+      </Unit126>
+      <Unit127>
+        <Filename Value="Forms/methodlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MethodList"/>
+      </Unit127>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

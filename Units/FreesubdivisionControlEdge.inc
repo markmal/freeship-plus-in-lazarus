@@ -47,21 +47,15 @@ var
 begin
   Index := Surface.FSelectedControlEdges.IndexOf(self);
 
-  if Index = -1 then PrintDebug;
+  if (Index >= 0) and Val then exit;
+  if (Index < 0) and not Val then exit;
 
   if Val then
-  begin
-    // Only add if it is not already in the list
-    if Index = -1 then
-      Surface.FSelectedControlEdges.Add(self);
-  end
+      Surface.FSelectedControlEdges.Add(self)
   else
-  begin
-    if Index <> -1 then
       Surface.FSelectedControlEdges.Delete(index);
-  end;
-  if Assigned(Surface.FOnSelectItem) then
-    Surface.FOnSelectItem(self);
+
+  Surface.ExecuteOnSelectItem(Self);
 end;{TFreesubdivisionControlEdge.FSetSelected}
 
 function TFreesubdivisionControlEdge.FGetSelected: boolean;

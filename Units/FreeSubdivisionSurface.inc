@@ -55,6 +55,8 @@ begin
   end;
   if Result = nil then
     Result := NewPoint(P);
+  if Result <> nil then
+    ExecuteOnChangeItem(Result);
 end;{TFreeSubdivisionSurface.AddControlPoint}
 
 procedure TFreeSubdivisionSurface.AddControlPoint(P: TFreeSubdivisionControlPoint);
@@ -63,6 +65,7 @@ begin
   begin
     FControlPoints.Add(P);
     P.FSurface := self;
+    ExecuteOnChangeItem(P);
   end;
   Built := False;
 end;{TFreeSubdivisionSurface.AddControlPoint}
@@ -73,7 +76,21 @@ begin
   Result := TFreeSubdivisionControlPoint.Create(self);
   Result.FCoordinate := ZERO;
   FControlPoints.Add(Result);
+  ExecuteOnChangeItem(Result);
 end;{TFreeSubdivisionSurface.AddControlPoint}
+
+procedure TFreeSubdivisionSurface.ExecuteOnSelectItem(Sender: TObject);
+var ne:TNotifyEvent;
+  i: Integer;
+begin
+  if FIsLoading then exit;
+  if FOnSelectItemListeners = nil then exit;
+  for i:=0 to FOnSelectItemListeners.Count-1 do
+  begin
+    ne := FOnSelectItemListeners[i];
+    ne(Sender);
+  end;
+end;
 
 procedure TFreeSubdivisionSurface.UnreferenceControlPoint(P: TFreeSubdivisionControlPoint);
 var i: integer;
@@ -1203,13 +1220,79 @@ begin
   Result := FLastusedLayerID;
 end;{TFreeSubdivisionSurface.FRequestNewLayerID}
 
+procedure TFreeSubdivisionSurface.AddOnSelectItemListener(aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnSelectItemListeners.Add(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.RemoveOnSelectItemListener(aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnSelectItemListeners.DeleteItem(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.ExecuteOnChangeItem(Sender: TObject);
+var ne:TNotifyEvent;
+  i: Integer;
+begin
+  if FIsLoading then exit;
+  if FOnChangeItemListeners = nil then exit;
+  for i:=0 to FOnChangeItemListeners.Count-1 do
+  begin
+    ne := FOnChangeItemListeners[i];
+    ne(Sender);
+  end;
+end;
+
+procedure TFreeSubdivisionSurface.AddOnChangeItemListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeItemListeners.Add(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.RemoveOnChangeItemListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeItemListeners.DeleteItem(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.ExecuteOnChangeActiveControlPoint(
+  Sender: TObject);
+var ne:TNotifyEvent;
+  i: Integer;
+begin
+  if FIsLoading then exit;
+  if FOnChangeActiveControlPointListeners = nil then exit;
+  for i:=0 to FOnChangeActiveControlPointListeners.Count-1 do
+  begin
+    ne := FOnChangeActiveControlPointListeners[i];
+    ne(Sender);
+  end;
+end;
+
+procedure TFreeSubdivisionSurface.AddOnChangeActiveControlPointListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlPointListeners.Add(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.RemoveOnActiveControlPointListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlPointListeners.DeleteItem(aListener);
+end;
+
 procedure TFreeSubdivisionSurface.SetActiveControlPoint(
   AValue: TFreeSubdivisionControlPoint);
 begin
   if FActiveControlPoint=AValue then Exit;
   FActiveControlPoint:=AValue;
-  if assigned(FOnChangeActiveControlPoint) then
-     FOnChangeActiveControlPoint(FActiveControlPoint);
+  ExecuteOnChangeActiveControlPoint(FActiveControlPoint);
 end;
 
 procedure TFreeSubdivisionSurface.SetActiveLayer(Val: TFreeSubdivisionLayer);
@@ -1396,7 +1479,12 @@ begin
   end
   else
     Result := nil;
-  Built := False;
+
+  if Result <> nil then
+    begin
+    ExecuteOnChangeItem(Result);
+    Built := False;
+    end;
 end;{TFreeSubdivisionSurface.AddControlFace}
 
 function TFreeSubdivisionSurface.AddControlEdge(P1, P2: TFreeSubdivisionControlPoint):
@@ -1418,6 +1506,11 @@ begin
   end
   else
     Result := Edge;
+  if Result <> nil then
+    begin
+    ExecuteOnChangeItem(Result);
+    Built := False;
+    end;
 end;{TFreeSubdivisionSurface.AddControlEdge}
 
 procedure TFreeSubdivisionSurface.AddControlCurve(Curve: TFreesubdivisionControlCurve);
@@ -1425,6 +1518,7 @@ begin
   FControlCurves.Add(Curve);
   Curve.FSurface := self;
   Built := False;
+  ExecuteOnChangeItem(Curve);
 end;{TFreeSubdivisionSurface.AddControlCurve}
 
 function TFreeSubdivisionSurface.AddControlFace(Points: TFasterListTFreeSubdivisionControlPoint;
@@ -1527,6 +1621,12 @@ begin
     //         Result:=nil;
     //      end else Built:=False;
   end;
+
+  if Result <> nil then
+    begin
+    ExecuteOnChangeItem(Result);
+    Built := False;
+    end;
 end;{TFreeSubdivisionSurface.AddControlFace}
 
 function TFreeSubdivisionSurface.AddControlFaceN(Points: TFasterListTFreeSubdivisionControlPoint;
@@ -1619,6 +1719,12 @@ begin
       P1 := P2;
     end;
   end;
+
+  if Result <> nil then
+    begin
+    ExecuteOnChangeItem(Result);
+    Built := False;
+    end;
 end;{TFreeSubdivisionSurface.AddControlFaceN}
 
 
@@ -1809,8 +1915,7 @@ begin
   FSelectedControlEdges.Clear;
   FSelectedControlFaces.Clear;
   FSelectedControlCurves.Clear;
-  if Assigned(FOnSelectItem) then
-    FOnSelectItem(nil);
+  self.ExecuteOnSelectItem(nil);
   FActiveControlPoint:=nil;
   if Assigned(FOnChangeActiveControlPoint) then
     FOnChangeActiveControlPoint(nil);
@@ -2222,6 +2327,7 @@ begin
               Face.InsertEdge(V1, V2);
               V2.Selected := False;
               Built := False;
+              ExecuteOnChangeItem(Face);
               break;
             end;
           end;
@@ -3025,6 +3131,11 @@ begin
   FSelectedControlEdges := TFasterListTFreeSubdivisionControlEdge.Create(true,false);
   FSelectedControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
   FSelectedControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
+
+  FOnChangeActiveControlPointListeners:= TMethodList<TNotifyEvent>.Create;
+  FOnSelectItemListeners:= TMethodList<TNotifyEvent>.Create;
+  FOnChangeItemListeners:= TMethodList<TNotifyEvent>.Create;
+
   FControlPointSize := 4;
   FEdgeColor := clDkGray;
   FSelectedcolor := clYellow;
@@ -3054,7 +3165,13 @@ begin
   FOnChangeLayerData:=nil;
   FOnChangeActiveLayer:=nil;
   FOnChangeActiveControlPoint:=nil;
-  FOnSelectItem:=nil;
+  FOnSelectItemListeners.Free;
+  FOnSelectItemListeners:=nil;
+  FOnChangeItemListeners.Free;
+  FOnChangeItemListeners:=nil;
+  FOnChangeActiveControlPointListeners.Free;
+  FOnChangeActiveControlPointListeners:=nil;
+
   // Make sure to also destroy the default layer (layer 0)
   for I := 1 to NumberOfLayers do
     Layer[I - 1].Destroy;
@@ -3352,6 +3469,7 @@ var
   end;{NewPoint}
 
 begin
+  FIsLoading:=true;
   // Read layer information
   Inc(LineNr);
   Str := Strings[LineNr];
@@ -3451,6 +3569,8 @@ begin
     FOnChangeLayerData(self);
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, self.Layer[0]);
+
+  FisLoading:=false;
 end;{TFreeSubdivisionSurface.ImportFsile}
 
 procedure TFreeSubdivisionSurface.ImportControlPointGrid(Grid: TFreeSubdivisionControlPointGrid; Cols, Rows: integer;
@@ -3461,6 +3581,7 @@ var
   Edge: TFreeSubdivisionEdge;
   I, J: integer;
 begin
+  FIsLoading := true;
   GridPoints := TFasterListTFreeSubdivisionControlPoint.Create;
   FacePoints := TFasterListTFreeSubdivisionControlPoint.Create;
   for I := 1 to Cols-1 do
@@ -3517,6 +3638,7 @@ begin
         Grid[I - 1][J - 1].VertexType := svCorner;
 
   FacePoints.Destroy;
+  FIsLoading := false;
 end;
 
 procedure TFreeSubdivisionSurface.ImportCoordGrid(Points: TFreeCoordinateGrid;
@@ -3528,6 +3650,7 @@ var
   Edge: TFreeSubdivisionEdge;
   I, J: integer;
 begin
+  FIsLoading := true;
   Setlength(Grid, Rows);
   for I := 0 to Rows - 1 do
   begin
@@ -3536,6 +3659,7 @@ begin
       Grid[I][J] := AddControlPoint(Points[I][J]);
   end;
   ImportControlPointGrid(Grid, Cols, Rows,  Layer);
+  FIsLoading := false;
 end;{TFreeSubdivisionSurface.ImportCoordGrid}
 
 procedure TFreeSubdivisionSurface.Initialize(
@@ -3815,12 +3939,9 @@ var
   Curve: TFreeSubdivisionControlCurve;
   Layer: TFreeSubdivisionLayer;
   saveOnSelectItem:TNotifyEvent=nil;
+  FIsLoading: Boolean;
 begin
-  if Assigned(FOnSelectItem) then
-    begin
-    saveOnSelectItem := FOnSelectItem;
-    FOnSelectItem := nil;
-    end;
+  FIsLoading := true;
 
   // First load layerdata
   Source.LoadInteger(N);
@@ -3901,10 +4022,7 @@ begin
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, self.Layer[0]);
 
-  if Assigned(saveOnSelectItem) then
-    begin
-    FOnSelectItem := saveOnSelectItem;
-    end;
+  FIsLoading := false;
 end;{TFreeSubdivisionSurface.LoadBinary}
 
 procedure TFreeSubdivisionSurface.LoadFromStream(var LineNr: integer; Strings: TStringList);
@@ -3916,6 +4034,7 @@ var
   Face: TFreeSubdivisionControlFace;
   Layer: TFreeSubdivisionLayer;
 begin
+  FIsLoading := true;
   // First read layerdata
   Inc(LineNr);
   Str := Strings[LineNr];
@@ -3985,6 +4104,7 @@ begin
     FOnChangeLayerData(self);
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, self.Layer[0]);
+  FIsLoading := false;
 end;{TFreeSubdivisionSurface.LoadFromStream}
 
 procedure TFreeSubdivisionSurface.LoadVRMLFile(Filename: string);
@@ -4006,6 +4126,7 @@ var
 begin
   if FileExists(Filename) then
   begin
+    FIsLoading := true;
     VRMLList := TVRMLList.Create;
     try
     VRMLList.LoadFromFile(Filename);
@@ -4104,6 +4225,7 @@ begin
          MessageDlg('Exception in VRML Load:'+#10+E.Message, mtError, [mbOK], 0);
     end;
     VRMLList.Destroy;
+    FIsLoading := false;
   end;
 end;{TFreeSubdivisionSurface.LoadVRMLFile}
 
@@ -4407,6 +4529,7 @@ begin
       I := NumberOfSelectedControlPoints;
     end;
   end;
+  ExecuteOnChangeItem(nil);
   Built := False;
 end;{TFreeSubdivisionSurface.Selection_Delete}
 

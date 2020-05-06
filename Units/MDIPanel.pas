@@ -5,16 +5,16 @@ unit MDIPanel;
 interface
 
 uses
-Classes, SysUtils, Types, TypInfo, Math, CustApp,
+Classes, SysUtils, Types, TypInfo,
 // LCL
-LCLStrConsts, LCLType, LCLProc, LCLIntf, LCLVersion, LCLClasses, InterfaceBase,
-LResources, GraphType, Graphics, Menus, LMessages, CustomTimer, ActnList,
-ClipBrd, HelpIntfs, Controls, ImgList, Themes,
+LCLStrConsts, LCLType, LCLProc, LCLIntf, LCLVersion, LCLClasses,
+LMessages, LResources, GraphType, Graphics, Menus,
+ActnList,
+ClipBrd, Controls, ImgList, Themes,
 // LazUtils
-LazFileUtils, LazUTF8, Maps, IntegerList, LazMethodList, LazLoggerBase,
-LazUtilities, UITypes
-{$ifndef wince},gettext{$endif}// remove ifdefs when gettext is fixed and a new fpc is released
-,Forms, StdCtrls,
+LazFileUtils, LazUTF8, LazLoggerBase,
+{$ifndef wince}gettext,{$endif}// remove ifdefs when gettext is fixed and a new fpc is released
+Forms, StdCtrls,
 ExtCtrls, ComCtrls, Buttons;
 
 type

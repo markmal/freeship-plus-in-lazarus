@@ -54,7 +54,7 @@ uses
      StdCtrls,
      Menus,
      ActnList,
-     Printers, ExtDlgs, ExtCtrls,
+     Printers, ExtCtrls,
      LightDialog
 {$IFDEF USEOPENGL}
     ,FreeViewPortOpenGL
@@ -245,9 +245,8 @@ var FreeHullWindow: TFreeHullWindow;
 
 implementation
 
-uses LResources, LazLoggerBase, LCLStrConsts,
-     FreeLanguageSupport, Main
-     ,fpjsonrtti;
+uses LResources, LazLoggerBase,
+     FreeLanguageSupport;
 
 {$R *.lfm}
 

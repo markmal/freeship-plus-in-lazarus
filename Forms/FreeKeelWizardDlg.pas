@@ -40,10 +40,10 @@ uses
   TeeProcs,
   Chart,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
-  TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils, TATypes,
+  LCLIntf, LCLType, 
+  TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils,
-  PrintersDlgs, Printer4Lazarus, FreePrinter,
+  Printer4Lazarus,
      {$IFDEF VER3}
   LazFileUtils,
      {$ELSE}
@@ -70,7 +70,6 @@ uses
   Math,
   ExtCtrls,
   ImgList,
-  ToolWin,
   Menus, ActnList, Types;
 
 

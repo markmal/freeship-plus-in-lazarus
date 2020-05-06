@@ -36,11 +36,10 @@ uses
   Windows,
   shlobj,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, 
 {$ENDIF}
   LazUTF8,
   LazFileUtils,
-  Messages,
   SysUtils,
   Classes,
   Graphics,

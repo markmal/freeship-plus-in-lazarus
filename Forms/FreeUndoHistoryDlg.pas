@@ -36,7 +36,7 @@ uses
      Windows,
      shlobj,
     {$ELSE}
-     LCLIntf, LCLType, LMessages,
+     LCLIntf, LCLType, 
           {$IFDEF VER3}
       LazUTF8,
       LazFileUtils,
@@ -45,7 +45,6 @@ uses
      {$ENDIF}
 
     {$ENDIF}
-     Messages,
      SysUtils,
      Variants,
      Classes,
@@ -54,15 +53,13 @@ uses
      Forms,
      Dialogs,
      StdCtrls,
-     CheckLst,
      ExtCtrls,
-     ToolWin,
      FreeShipUnit, FreeVersionUnit,
     FreeLanguageSupport,
      ComCtrls,
     FreeTypes,
      FreeGeometry,
-     Buttons, DBGrids, Grids;
+     Buttons, DBGrids;
 
 type
 

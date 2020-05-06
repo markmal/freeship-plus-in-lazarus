@@ -35,9 +35,8 @@ uses
  {$IFDEF Windows}
   Windows,
  {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, 
  {$ENDIF}
-     Messages,
      SysUtils,
      Variants,
      Classes,
@@ -48,7 +47,6 @@ uses
      Buttons,
      ExtCtrls,
      StdCtrls,
-     FreeGeometry,
      FreeTypes,
      Spin;
 

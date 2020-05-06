@@ -41,7 +41,6 @@ uses
      {$ENDIF}
 
     {$ENDIF}
-     Messages,
      SysUtils,
      Classes,
      Graphics,

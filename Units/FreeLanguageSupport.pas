@@ -43,7 +43,6 @@ uses
 {$ELSE}
   LCLIntf, LCLType,
   LCLProc,
-  //LMessages,
 {$ENDIF}
   ActnList,
      SysUtils,

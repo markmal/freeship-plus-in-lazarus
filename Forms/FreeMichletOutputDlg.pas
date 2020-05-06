@@ -34,7 +34,7 @@ uses
 {$IFnDEF FPC}
   jpeg, Windows,
 {$ELSE}
-  LCLIntf, LCLType, //LMessages,
+  LCLIntf, LCLType, //
 {$ENDIF}
   //Messages,
   SysUtils,

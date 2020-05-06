@@ -38,7 +38,7 @@ uses
   TeeProcs,
   Chart,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType,
   TAChartTeeChart,
   TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils,
@@ -68,7 +68,6 @@ uses
   Math,
   ExtCtrls,
   ImgList,
-  ToolWin,
   Menus;
 
 {$IFDEF FPC}

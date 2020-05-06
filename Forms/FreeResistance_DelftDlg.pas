@@ -39,7 +39,7 @@ uses
   TeeProcs,
   Chart,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType,
   TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils, TATransformations,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
@@ -61,7 +61,6 @@ uses
   Math,
   ExtCtrls,
   ImgList,
-  ToolWin,
   Menus;
 
 const

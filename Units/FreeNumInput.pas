@@ -15,7 +15,7 @@ uses
      {$endif}
      {$endif}
      {$ifdef LCL}
-     LCLIntf, LCLType, LMessages, LResources,
+     LCLIntf, LCLType,  LResources,
      {$endif}
      SysUtils,
      Messages,

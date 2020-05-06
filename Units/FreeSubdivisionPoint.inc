@@ -328,6 +328,18 @@ begin
 end;{TFreeSubdivisionPoint.AddFace}
 
 function TFreeSubdivisionPoint.Averaging: T3DCoordinate;
+const
+  AA : array[1..8] of TFloatType =
+    (
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 1)),
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 2)),
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 3)),
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 4)),
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 5)),
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 6)),
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 7)),
+      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 8))
+    );
 var
   I, J, Nt, Nq, NoP: integer;
   a: TFloatType;
@@ -422,7 +434,10 @@ begin
       if Nt = FFaces.Count then
       begin
         // apply averaging in case of vertex surrounded by triangles
-        a := 5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / FFaces.Count));
+        if FFaces.Count <= 8 then
+          a := AA[FFaces.Count]
+        else
+          a := 5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / FFaces.Count));
       end
       else if Nq = FFaces.Count then
       begin

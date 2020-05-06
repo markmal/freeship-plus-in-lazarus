@@ -29,20 +29,16 @@ var
   Index: integer;
 begin
   Index := Surface.FSelectedControlFaces.IndexOf(self);
+
+  if (Index >= 0) and Val then exit;
+  if (Index < 0) and not Val then exit;
+
   if Val then
-  begin
-    // Only add if it is not already in the list
-    if Index = -1 then
-      Surface.FSelectedControlFaces.Add(self);
-    PrintDebug;
-  end
+      Surface.FSelectedControlFaces.Add(self)
   else
-  begin
-    if Index <> -1 then
       Surface.FSelectedControlFaces.Delete(index);
-  end;
-  if Assigned(Surface.FOnSelectItem) then
-    Surface.FOnSelectItem(self);
+
+  Surface.ExecuteOnSelectItem(Self);
 end;{TFreeSubdivisionControlFace.FSetSelected}
 
 function TFreeSubdivisionControlFace.FGetPoint(Index: integer): TFreeSubdivisionControlPoint;

@@ -40,7 +40,7 @@ uses
 {$IFNDEF LCL}
   jpeg, ShellAPI, Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType,
 {$ENDIF}
 
 {$IFDEF VER3}
@@ -50,12 +50,11 @@ uses
  FileUtil, //deprecated
 {$ENDIF}
 
-     Messages,
      SysUtils,
      Variants,
      Classes,
      Graphics,
-     IntfGraphics, GraphType, PrintersDlgs, FPImage,
+     IntfGraphics, GraphType, FPImage,
      Controls,
      Forms,
      Math,
@@ -76,11 +75,11 @@ uses
      FreeAboutDlg,
      FreeSplashWndw,
      Menus,
-     ToolWin,
-     Buttons, StdActns, Spin, ExtDlgs,
-     DefaultTranslator, ComboEx,
+     Buttons, StdActns, Spin,
+     DefaultTranslator,
      FreeSplitSectionDlg,
-     FreeLayerVisibilityDlg
+     FreeLayerVisibilityDlg,
+     FreeSelectedDlg
 ;
 
 type
@@ -89,6 +88,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     miSelectionDialog: TMenuItem;
+     SelectionDialog: TAction;
      SplitSection50pct: TAction;
      miShowLayerVisibilityDialog: TMenuItem;
      LayerVisibilityDialog: TAction;
@@ -487,6 +488,7 @@ type
     procedure LayerBoxPanelClick(Sender: TObject);
     procedure PointExtrudeExecute(Sender: TObject);
     procedure PointsCoincideExecute(Sender: TObject);
+    procedure SelectionDialogExecute(Sender: TObject);
     procedure SplitSectionDialogExecute(Sender: TObject);
     procedure ShowFreeObjectsExecute(Sender: TObject);
     procedure LayerVisibilityDialogExecute(Sender: TObject);
@@ -707,8 +709,7 @@ uses //FreeSplashWndw,
      TileDialog,
      FreePointGroupForm,
      FreeUpdateDlg,
-     FreeLogger,
-     FreeExceptionDlg;
+     FreeLogger;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -798,7 +799,7 @@ begin
  FDestroying := true;
  FreeShip.OnChangeActiveLayer:=nil;
  Freeship.OnChangeLayerData:=nil;
- FreeShip.OnSelectItem:=nil;
+ //FreeShip.OnSelectItem:=nil;
  FreeShip.OnChangeActiveControlPoint:=nil;
  {al:=FActionListHull;
  ptr:=pointer(FActionListHull);
@@ -1675,6 +1676,18 @@ begin
   UpdateMenu;
 end;
 
+procedure TMainForm.SelectionDialogExecute(Sender: TObject);
+begin
+  if FormSelected = nil then
+    FormSelected := TFormSelected.Create(Self);
+  FormSelected.FreeShip := FreeShip;
+  FreeShip.Surface.AddOnSelectItemListener(FormSelected.onSelectionUpdate);
+  FreeShip.Surface.AddOnChangeItemListener(FormSelected.onSelectionUpdate);
+  FreeShip.Surface.AddOnChangeActiveControlPointListener(FormSelected.onSelectionUpdate);
+  FormSelected.onSelectionUpdate(Self);
+  FormSelected.Show;
+end;
+
 procedure TMainForm.SplitSectionDialogExecute(Sender: TObject);
 begin
   if FSplitSectionDialog = nil then
@@ -1749,7 +1762,8 @@ begin
    // Initialize some data
    FreeShip.OnChangeActiveLayer:=FreeShipChangeActiveLayer;
    Freeship.OnChangeLayerData:=FreeShipChangeLayerData;
-   FreeShip.OnSelectItem:=OnSelectItem;
+   //FreeShip.OnSelectItem:=OnSelectItem;
+   FreeShip.Surface.AddOnSelectItemListener(OnSelectItem);
    FreeShip.OnChangeActiveControlPoint:=OnChangeActiveControlPoint;
    FreeShip.Clear;
 
@@ -2112,7 +2126,8 @@ begin
    FreeShip.Preferences.Save;
    FreeShip.OnChangeActiveLayer:=nil;
    Freeship.OnChangeLayerData:=nil;
-   FreeShip.OnSelectItem:=nil;
+   //FreeShip.OnSelectItem:=nil;
+   FreeShip.Surface.RemoveOnSelectItemListener(OnSelectItem);
   end;
 end;{TMainForm.FormClose}
 

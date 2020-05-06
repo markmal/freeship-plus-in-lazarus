@@ -43,7 +43,7 @@ uses
   ToolWin,
   ShellAPI,
   {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, 
   TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
@@ -54,7 +54,6 @@ uses
   FileUtil, //deprecated
   {$ENDIF}
   {$ENDIF}
-  Messages,
   SysUtils,
   Variants,
   Classes,

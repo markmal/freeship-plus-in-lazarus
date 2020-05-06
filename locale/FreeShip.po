@@ -356,6 +356,56 @@ msgstr ""
 msgid "Exception"
 msgstr ""
 
+#: tformselected.bbclose.caption
+msgctxt "tformselected.bbclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tformselected.caption
+msgid "Selected"
+msgstr ""
+
+#: tformselected.epointname.text
+msgid "ePointName"
+msgstr ""
+
+#: tformselected.epointx.text
+msgid "ePointX"
+msgstr ""
+
+#: tformselected.epointy.text
+msgid "ePointY"
+msgstr ""
+
+#: tformselected.epointz.text
+msgid "ePointZ"
+msgstr ""
+
+#: tformselected.lvpoints.columns[0].caption
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvpoints.columns[1].caption
+msgctxt "tformselected.lvpoints.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.tscurves.caption
+msgid "Curves"
+msgstr ""
+
+#: tformselected.tsedges.caption
+msgid "Edges"
+msgstr ""
+
+#: tformselected.tsfaces.caption
+msgid "Faces"
+msgstr ""
+
+#: tformselected.tspoints.caption
+msgid "Points"
+msgstr ""
+
 #: tfreeaboutdlg.button1.caption
 msgctxt "tfreeaboutdlg.button1.caption"
 msgid "Close"
@@ -9319,6 +9369,10 @@ msgstr ""
 
 #: tmainform.selection1.caption
 msgid "Selection"
+msgstr ""
+
+#: tmainform.selectiondialog.caption
+msgid "Selection Dialog"
 msgstr ""
 
 #: tmainform.selectleakpoints.caption

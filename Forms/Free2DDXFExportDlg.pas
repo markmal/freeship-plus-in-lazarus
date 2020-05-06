@@ -45,7 +45,7 @@ uses
 
     {$endif}
     {$ELSE}
-     LCLIntf, LCLType, LMessages,
+     LCLIntf, LCLType, 
           {$IFDEF VER3}
       LazUTF8,
       LazFileUtils,
@@ -54,7 +54,6 @@ uses
      {$ENDIF}
 
     {$ENDIF}
-     Messages,
      SysUtils,
      Classes,
      Graphics,

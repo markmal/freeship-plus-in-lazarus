@@ -18,10 +18,12 @@ begin
   Result := Surface.OnChangeLayerData;
 end;{TFreeShip.FGetOnChangeLayerData}
 
+{
 function TFreeShip.FGetOnSelectItem: TNotifyEvent;
 begin
   Result := Surface.OnSelectItem;
 end;{TFreeShip.FGetOnSelectItem}
+}
 
 function TFreeShip.FGetSelectedControlCurve(Index: integer):
 TFreeSubdivisionControlCurve;
@@ -516,10 +518,12 @@ begin
   // if Assigned(OnChangeLayerData) then OnChangeLayerData;
 end;{TFreeShip.FSetOnChangeLayerData}
 
+{
 procedure TFreeShip.FSetOnSelectItem(Val: TNotifyEvent);
 begin
   Surface.OnSelectItem := Val;
 end;{TFreeShip.FSetOnSelectItem}
+}
 
 procedure TFreeShip.FSetPrecision(Val: TFreePrecisionType);
 begin

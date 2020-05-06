@@ -26,6 +26,8 @@ var
   Index: integer;
 begin
   Index := Owner.FSelectedFlowlines.SortedIndexOf(self);
+  if (Index >= 0) and Val then exit;
+  if (Index < 0) and not Val then exit;
   if Val then
   begin
     // Only add if it is not already in the list
@@ -35,8 +37,9 @@ begin
   else
   if Index <> -1 then
     Owner.FSelectedFlowlines.Delete(index);
-  if Assigned(Owner.Surface.OnSelectItem) then
-    Owner.Surface.OnSelectItem(self);
+
+  Owner.Surface.ExecuteOnSelectItem(self);
+
 end;{TFreeFlowline.FSetSelected}
 
 procedure TFreeFlowline.FSetBuild(val: boolean);

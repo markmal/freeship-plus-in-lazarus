@@ -92,20 +92,17 @@ var
   Index: integer;
 begin
   Index := Surface.FSelectedControlPoints.IndexOf(self);
-  if Index = -1 then PrintDebug;
+  if (Index >= 0) and Val then exit;
+  if (Index < 0) and not Val then exit;
+
   if Val then
-  begin
-    // Only add if it is not already in the list
-    if Index = -1 then
-      Surface.FSelectedControlPoints.Add(self);
-  end
+      Surface.FSelectedControlPoints.Add(self)
   else
-  begin
-    if Index <> -1 then
       Surface.FSelectedControlPoints.Delete(index);
-  end;
-  if Assigned(Surface.FOnSelectItem) then
-    Surface.FOnSelectItem(self);
+
+  //if Assigned(Surface.FOnSelectItemListeners) then
+  //  Surface.FOnSelectItemListeners(self);
+  Surface.ExecuteOnSelectItem(Self);
 end;{TFreeSubdivisionControlPoint.FSetSelected}
 
 procedure TFreeSubdivisionControlPoint.FSetLocked(val: boolean);

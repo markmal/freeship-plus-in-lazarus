@@ -11,6 +11,8 @@ var
   Index: integer;
 begin
   Index := Owner.FSelectedMarkers.SortedIndexOf(self);
+  if (Index >= 0) and Val then exit;
+  if (Index < 0) and not Val then exit;
   if Val then
   begin
     // Only add if it is not already in the list
@@ -20,8 +22,8 @@ begin
   else
   if Index <> -1 then
     Owner.FSelectedMarkers.Delete(index);
-  if Assigned(Owner.Surface.OnSelectItem) then
-    Owner.Surface.OnSelectItem(self);
+
+  Owner.Surface.ExecuteOnSelectItem(self);
 end;{TFreeMarker.FSetSelected}
 
 procedure TFreeMarker.Clear;

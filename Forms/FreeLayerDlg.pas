@@ -36,10 +36,9 @@ uses
 {$IFnDEF FPC}
   Windows,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, 
 {$ENDIF}
   SysUtils,
-     Messages,
      Classes,
      Graphics,
      Controls,
@@ -52,7 +51,6 @@ uses
      CheckLst,
      Dialogs,
      ComCtrls,
-     ToolWin,
      ImgList,
      Spin;
 

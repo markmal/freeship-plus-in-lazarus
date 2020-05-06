@@ -37,12 +37,11 @@ uses
   TeeProcs,
   Chart,
 {$ELSE}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, 
   TATypes, TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils, TASources,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
-  Messages,
   SysUtils,
   Variants,
   Classes,
@@ -58,7 +57,6 @@ uses
   FreeshipUnit,
   Spin,
   ComCtrls,
-  ToolWin,
   ImgList,
   Printers,
   Grids,
@@ -192,8 +190,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport,
-  Math;
+uses FreeLanguageSupport;
 
 {$R *.lfm}
 

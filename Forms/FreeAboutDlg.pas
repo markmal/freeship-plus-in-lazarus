@@ -36,9 +36,8 @@ uses
       FileUtil, //deprecated
      {$ENDIF}
  Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Messages,
-  LCLIntf, LCLType, LMessages,
-  StdCtrls, ValEdit, Grids, Buttons,
+  LCLIntf, LCLType, 
+  StdCtrls, Grids, Buttons,
   FreeVersionUnit;
 
 type

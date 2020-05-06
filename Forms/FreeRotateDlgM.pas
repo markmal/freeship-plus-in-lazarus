@@ -35,7 +35,7 @@ uses
   RichEdit,
 {$ELSE}
   LCLIntf, LCLType,
-  //LMessages, PrintersDlgs,
+  // PrintersDlgs,
   Printer4Lazarus,
   //FreePrinter,
 {$ENDIF}

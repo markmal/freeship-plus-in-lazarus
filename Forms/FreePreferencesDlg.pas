@@ -36,7 +36,7 @@ uses
   Windows,
 {$ELSE}
   LCLIntf, LCLType,
-  //LMessages,
+  //
 {$ENDIF}
   //Messages,
   SysUtils,

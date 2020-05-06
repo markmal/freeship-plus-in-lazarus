@@ -4,12 +4,12 @@
 
 function TFreeSubdivisionControlPointGroup.FGetIndex: integer;
 begin
-  Result := Owner.FControlPointGroups.IndexOf(Self);
+  Result := Surface.FControlPointGroups.IndexOf(Self);
 end;{TFreeSubdivisionControlPoint.FGetIndex}
 
 function TFreeSubdivisionControlPointGroup.FGetSelected: boolean;
 begin
-  Result := Owner.FSelectedControlPointGroups.IndexOf(self) <> -1;
+  Result := Surface.FSelectedControlPointGroups.IndexOf(self) <> -1;
 end;{TFreeSubdivisionControlPoint.FGetSelected}
 
 function TFreeSubdivisionControlPointGroup.FGetVisible: boolean;
@@ -32,23 +32,20 @@ procedure TFreeSubdivisionControlPointGroup.FSetSelected(val: boolean);
 var
   index, i: integer;
 begin
+  Index := Surface.FSelectedControlPointGroups.IndexOf(self);
+
+  if (Index >= 0) and Val then exit;
+  if (Index < 0) and not Val then exit;
+
   for i:=0 to FControlPoints.Count-1 do
      FControlPoints[i].Selected:=val;
 
-  Index := Owner.FSelectedControlPointGroups.IndexOf(self);
   if Val then
-  begin
-    // Only add if it is not already in the list
-    if Index = -1 then
-      Owner.FSelectedControlPointGroups.Add(self);
-  end
+      Surface.FSelectedControlPointGroups.Add(self)
   else
-  begin
-    if Index <> -1 then
-      Owner.FSelectedControlPointGroups.Delete(index);
-  end;
-  if Assigned(Owner.FOnSelectItem) then
-    Owner.FOnSelectItem(self);
+      Surface.FSelectedControlPointGroups.Delete(index);
+
+  Surface.ExecuteOnSelectItem(Self);
 end;{TFreeSubdivisionControlPoint.FSetSelected}
 
 procedure TFreeSubdivisionControlPointGroup.FSetLocked(val: boolean);
@@ -88,8 +85,8 @@ var
   Edge: TFreesubdivisionEdge; //TFreesubdivisionControlEdge;
 begin
   Selected := False;
-  Owner.FSelectedControlPointGroups.DeleteItem(self);
-  Owner.FControlPointGroups.DeleteItem(self);
+  Surface.FSelectedControlPointGroups.DeleteItem(self);
+  Surface.FControlPointGroups.DeleteItem(self);
   FControlPoints.Clear;
   Destroy;
 end;{TFreeSubdivisionControlPoint.Delete}
@@ -130,7 +127,7 @@ begin
       P3D := CalculateCenterPoint;
 
       if (Viewport.ViewType = fvBodyplan) then
-        if P3D.X <= Owner.SplitSectionLocation then
+        if P3D.X <= Surface.SplitSectionLocation then
           P3D.Y := -P3D.Y;
 
       P := Viewport.Project(P3D);
@@ -157,7 +154,7 @@ begin
   for i:=0 to SS.Count-1 do
     begin
     CPN:=StrToInt(SS[i]);
-    FControlPoints.Add(Owner.FControlPoints[CPN]);
+    FControlPoints.Add(Surface.FControlPoints[CPN]);
     end;
   SS.Free;
 end;{TFreeSubdivisionControlPoint.LoadBinary}
@@ -179,7 +176,7 @@ begin
     begin
     //CPN:=ReadIntFromStr(LineNr, Str);
     CPN:=StrToInt(Strs[i]);
-    FControlPoints.Add(Owner.FControlPoints[CPN]);
+    FControlPoints.Add(Surface.FControlPoints[CPN]);
     end;
 end;{TFreeSubdivisionControlPoint.LoadFromStream}
 
@@ -191,7 +188,7 @@ begin
   SS:=TStringList.Create;
   for i:=0 to FControlPoints.Count-1 do
     begin
-    CPN:=Owner.FControlPoints.IndexOf(FControlPoints[i]);
+    CPN:=Surface.FControlPoints.IndexOf(FControlPoints[i]);
     SS.Add(IntToStr(CPN));
     end;
   Destination.Add(SS);
@@ -203,11 +200,11 @@ var I,N,CPN: integer;
   Str: string;
 begin
   Strings.Add(FName);
-  CPN:=Owner.FControlPoints.IndexOf(FControlPoints[0]);
+  CPN:=Surface.FControlPoints.IndexOf(FControlPoints[0]);
   Str:=IntToStr(CPN);
   for i:=1 to FControlPoints.Count-1 do
     begin
-    CPN:=Owner.FControlPoints.IndexOf(FControlPoints[i]);
+    CPN:=Surface.FControlPoints.IndexOf(FControlPoints[i]);
     Str:=Str+#32+IntToStr(CPN);
     end;
   Strings.Add(Str);

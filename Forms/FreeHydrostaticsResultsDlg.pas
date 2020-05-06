@@ -36,7 +36,7 @@ uses
      Windows,
      {$endif}
      {$ifdef LCL}
-     LCLIntf, LCLType, //LMessages,
+     LCLIntf, LCLType, //
      LResources,
      PrintersDlgs, Printer4Lazarus, FreePrinter,
      {$endif}

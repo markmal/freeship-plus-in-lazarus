@@ -37,9 +37,8 @@ uses
   ShellAPI, {$ifndef LCL} jpeg, {$endif} Windows,
 {$ENDIF}
 {$IFDEF LCL}
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, 
 {$ENDIF}
-  Messages,
   SysUtils,
   Classes,
   Graphics,
@@ -47,7 +46,6 @@ uses
   Forms,
   Dialogs,
   ExtCtrls,
-  FreeGeometry,
   FreeVersionUnit,
   StdCtrls,
   FreeLogger,

@@ -36,10 +36,10 @@ uses
 {$IFnDEF FPC}
   JPeg, Windows,
 {$ELSE}
-  LCLIntf, LCLType, LCLProc, LMessages,
+  LCLIntf, LCLType, LCLProc,
 {$ENDIF}
-  GMap, GUtil,
   FasterList,
+  MethodList,
   Messages,
   SysUtils,
   Classes,
@@ -1460,7 +1460,7 @@ type
     procedure SaveToStream(Strings: TStringList);
 
     property ControlPoints:TFasterListTFreeSubdivisionControlPoint read FControlPoints;
-    property Owner: TFreeSubdivisionSurface read FSurface write FSurface;
+    property Surface: TFreeSubdivisionSurface read FSurface write FSurface;
     //procedure PrintDebug; virtual;
     property Locked: boolean read FLocked write FSetLocked;
     property Selected: boolean read FGetSelected write FSetSelected;
@@ -1733,6 +1733,8 @@ type
   TFreeSubdivisionSurface = class(TFreeEntity)
   private
     FChanged: boolean; // Model is changed
+    FIsLoading: boolean;
+    FOnChangeActiveControlPoint: TNotifyEvent;
     FRebuildRequested: boolean; // Flag tells that async rebuild is requested
     FControlPoints: TFasterListTFreeSubdivisionControlPoint;
     // List with controlpoints, which can be changed by the user
@@ -1784,13 +1786,15 @@ type
     FCreaseEdgeColor: TColor;
     // Color of crease controledges
     FLastusedLayerID: integer;
+
     FOnChangeLayerData: TNotifyEvent;
     // Event which is raised when layer-data has been changed
     FOnChangeActiveLayer: TChangeActiveLayerEvent;
     // Event raised when the active layer is changed
-    FOnChangeActiveControlPoint: TNotifyEvent;
-    FOnSelectItem: TNotifyEvent;
+    FOnChangeActiveControlPointListeners: TMethodList<TNotifyEvent>;
+    FOnSelectItemListeners: TMethodList<TNotifyEvent>;
     // This event is raised whenever an item (such as controlpoint, controledge or controlface) is selected or deselected
+    FOnChangeItemListeners: TMethodList<TNotifyEvent>;
 
     FUnderWaterColor: TColor;
     FUnderWaterColorAlpha: byte;
@@ -1899,6 +1903,21 @@ type
     function AddControlPoint: TFreeSubdivisionControlPoint;
       reintroduce; overload;
     // Adds a new controlpoint at 0,0,0 without checking other points
+
+    // Notifies all OnSelectItemNotificationReceivers
+    procedure ExecuteOnSelectItem(Sender:TObject);
+    // Adds OnSelectItemNotificationReceiver if Handler is not nil
+    // Deletes OnSelectItemNotificationReceiver if Handler is nil
+    procedure AddOnSelectItemListener(aListener: TNotifyEvent);
+    procedure RemoveOnSelectItemListener(aListener: TNotifyEvent);
+
+    procedure ExecuteOnChangeItem(Sender:TObject);
+    procedure AddOnChangeItemListener(aListener: TNotifyEvent);
+    procedure RemoveOnChangeItemListener(aListener: TNotifyEvent);
+
+    procedure ExecuteOnChangeActiveControlPoint(Sender:TObject);
+    procedure AddOnChangeActiveControlPointListener(aListener: TNotifyEvent);
+    procedure RemoveOnActiveControlPointListener(aListener: TNotifyEvent);
 
     // Delete all object's references from related objects
     procedure UnreferenceControlPoint(P: TFreeSubdivisionControlPoint);
@@ -2071,8 +2090,8 @@ type
       read FOnChangeActiveControlPoint write FOnChangeActiveControlPoint;
     property OnChangeLayerData: TNotifyEvent
       read FOnChangeLayerData write FOnChangeLayerData;
-    property OnSelectItem: TNotifyEvent
-      read FOnSelectItem write FOnSelectItem;
+    //property OnSelectItem: TNotifyEvent
+    //  read GetOnSelectItemListener write SetOnSelectItemNotificationReceiver;
     property OnFaceRebuilt: TProgressEvent read FOnFaceRebuilt write FOnFaceRebuilt;
     property SubDivPoint[index: integer]: TFreeSubdivisionPoint
       read FGetpoint;
@@ -2268,7 +2287,6 @@ implementation
 
 uses FreeLanguageSupport,
   VRMLUnit,
-  FreeShipUnit,
   FreeBackgroundBlendingDlg,
   FreeBackgroundToleranceDlg,
   FreeSaveImageDlg,

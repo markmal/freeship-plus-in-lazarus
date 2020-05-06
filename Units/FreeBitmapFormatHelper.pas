@@ -90,7 +90,7 @@ TSetPixelProc = procedure(P: pointer; R,G,B,A: byte) of object;
 
 TFreeBitmapFormatHelper = class
   private
-    FBitmap : TBitmap;
+    //FBitmap : TBitmap;
     FBytesPerPixel : integer;
     FGetPixelProc : TGetPixelProc;
     FSetPixelProc : TSetPixelProc;

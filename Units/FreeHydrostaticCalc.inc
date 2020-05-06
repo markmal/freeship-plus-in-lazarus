@@ -1322,6 +1322,7 @@ var i:integer; Frame: TFreeIntersection;
   COG: T3DCoordinate;
   MaxStation: integer;
 begin
+  MaxStation := 0;
   FMidshipLocation := 0.5 * FData.ModelMax.X;
 
   Frame := TFreeIntersection.Create(Owner);

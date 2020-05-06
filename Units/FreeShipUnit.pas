@@ -42,10 +42,10 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
      {$endif}
      {$ifdef LCL}
   Interfaces, LCLIntf, LCLType, LCLProc,
-  LMessages, IntfGraphics,
+  IntfGraphics,
   FPImage,
-  GraphType, GraphMath, Graphics, Controls,
-  PrintersDlgs, Printer4Lazarus, FreePrinter,
+  GraphType, Graphics, Controls,
+  Printer4Lazarus,
      {$IFDEF VER3}
   LazUTF8,
   LazFileUtils,
@@ -1304,7 +1304,7 @@ type
     function FGetNumberOfWaterlines: integer;
     function FGetOnChangeActiveLayer: TChangeActiveLayerEvent;
     function FGetOnChangeLayerData: TNotifyEvent;
-    function FGetOnSelectItem: TNotifyEvent;
+    //function FGetOnSelectItem: TNotifyEvent;
     function FGetSelectedControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function FGetSelectedControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FGetSelectedControlEdge(Index: integer): TFreeSubdivisionControlEdge;
@@ -1335,7 +1335,7 @@ type
     function FGetNumberOfselectedMarkers: integer;
     procedure FSetOnChangeActiveLayer(val: TChangeActiveLayerEvent);
     procedure FSetOnChangeLayerData(Val: TNotifyEvent);
-    procedure FSetOnSelectItem(Val: TNotifyEvent);
+    //procedure FSetOnSelectItem(Val: TNotifyEvent);
     procedure FSetPrecision(Val: TFreePrecisionType);
     function FGetPreview: TJPEGImage;
     procedure SetOnChangeActiveControlPoint(AValue: TNotifyEvent);
@@ -1463,7 +1463,7 @@ type
       read FGetOnChangeActiveLayer write FSetOnChangeActiveLayer;
     property OnChangeLayerData: TNotifyEvent
       read FGetOnChangeLayerData write FSetOnChangeLayerData;
-    property OnSelectItem: TNotifyEvent read FGetOnSelectItem write FSetOnSelectItem;
+    //property OnSelectItem: TNotifyEvent read FGetOnSelectItem write FSetOnSelectItem;
     property OnChangeActiveControlPoint: TNotifyEvent read GetOnChangeActiveControlPoint write SetOnChangeActiveControlPoint;
     property SelectedControlCurve[index: integer]: TFreeSubdivisionControlCurve
       read FGetSelectedControlCurve;

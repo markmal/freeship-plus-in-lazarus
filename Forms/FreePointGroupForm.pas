@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  CheckLst, ActnList, Menus, ListFilterEdit,
+  CheckLst, ActnList, Menus,
   FreeShipUnit, FreeGeometry;
 
 type

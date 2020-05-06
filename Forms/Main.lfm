@@ -1524,6 +1524,11 @@ object MainForm: TMainForm
       Hint = 'Set Split Section location to middle of length'
       ImageIndex = 64
     end
+    object SelectionDialog: TAction
+      Category = 'Selection'
+      Caption = 'Selection Dialog'
+      OnExecute = SelectionDialogExecute
+    end
   end
   object MenuImages: TImageList
     left = 112
@@ -3929,6 +3934,9 @@ object MainForm: TMainForm
       end
       object SelectAllControlPoints1: TMenuItem
         Action = SelectAllControlPoints
+      end
+      object miSelectionDialog: TMenuItem
+        Action = SelectionDialog
       end
       object SelectionSeparator1: TMenuItem
         Caption = '-'

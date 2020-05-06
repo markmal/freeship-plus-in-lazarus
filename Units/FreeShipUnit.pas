@@ -1278,7 +1278,7 @@ type
     // Assembles all stations and builds a 2D bodyplan for export to other calculating programs
     function FGetActiveLayer: TFreeSubdivisionlayer;
     function GetActiveControlPoint: TFreeSubdivisionControlPoint;
-    function GetOnChangeActiveControlPoint: TNotifyEvent;
+    //function GetOnChangeActiveControlPoint: TNotifyEvent;
     procedure SetActiveControlPoint(aControlPoint: TFreeSubdivisionControlPoint);
     function FGetBackgroundImage(Index: integer): TFreeBackgroundImageData;
     function FGetBuilt: boolean;
@@ -1338,7 +1338,7 @@ type
     //procedure FSetOnSelectItem(Val: TNotifyEvent);
     procedure FSetPrecision(Val: TFreePrecisionType);
     function FGetPreview: TJPEGImage;
-    procedure SetOnChangeActiveControlPoint(AValue: TNotifyEvent);
+    //procedure SetOnChangeActiveControlPoint(AValue: TNotifyEvent);
   protected   { Protected declarations }
     procedure ViewportRequestExtents(Sender: TObject; var Min, Max: T3DCoordinate);
   public      { Public declarations }
@@ -1464,7 +1464,7 @@ type
     property OnChangeLayerData: TNotifyEvent
       read FGetOnChangeLayerData write FSetOnChangeLayerData;
     //property OnSelectItem: TNotifyEvent read FGetOnSelectItem write FSetOnSelectItem;
-    property OnChangeActiveControlPoint: TNotifyEvent read GetOnChangeActiveControlPoint write SetOnChangeActiveControlPoint;
+    //property OnChangeActiveControlPoint: TNotifyEvent read GetOnChangeActiveControlPoint write SetOnChangeActiveControlPoint;
     property SelectedControlCurve[index: integer]: TFreeSubdivisionControlCurve
       read FGetSelectedControlCurve;
     property SelectedControlPoint[index: integer]: TFreeSubdivisionControlPoint

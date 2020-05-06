@@ -800,7 +800,8 @@ begin
  FreeShip.OnChangeActiveLayer:=nil;
  Freeship.OnChangeLayerData:=nil;
  //FreeShip.OnSelectItem:=nil;
- FreeShip.OnChangeActiveControlPoint:=nil;
+ //FreeShip.OnChangeActiveControlPoint:=nil;
+ FreeShip.Surface.RemoveOnChangeActiveControlPointListener(self.OnChangeActiveControlPoint);
  {al:=FActionListHull;
  ptr:=pointer(FActionListHull);
  if assigned(FActionListHull)
@@ -1547,9 +1548,11 @@ begin
    if cbPrecision.ItemIndex <> ord(FreeShip.Precision) then
       cbPrecision.ItemIndex := ord(FreeShip.Precision);
 
-   if FreeShip.ActiveControlPoint <> nil then
-      FreeShip.ControlpointForm.Visible:=true;
    FreeShip.ControlpointForm.Reload;
+   FreeShip.ControlpointForm.FormStyle:=fsSystemStayOnTop;
+   if FreeShip.ActiveControlPoint <> nil then
+      //FreeShip.ControlpointForm.Visible:=true;
+      FreeShip.ControlpointForm.Show;
 end;{TMainForm.UpdateMenu}
 
 
@@ -1764,7 +1767,7 @@ begin
    Freeship.OnChangeLayerData:=FreeShipChangeLayerData;
    //FreeShip.OnSelectItem:=OnSelectItem;
    FreeShip.Surface.AddOnSelectItemListener(OnSelectItem);
-   FreeShip.OnChangeActiveControlPoint:=OnChangeActiveControlPoint;
+   FreeShip.Surface.AddOnChangeActiveControlPointListener(OnChangeActiveControlPoint);
    FreeShip.Clear;
 
    // fit to screen

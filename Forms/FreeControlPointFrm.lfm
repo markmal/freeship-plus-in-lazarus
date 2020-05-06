@@ -15,7 +15,9 @@ object FreeControlPointForm: TFreeControlPointForm
   ClientWidth = 349
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
+  OnClose = FormClose
   OnCreate = FormCreate
+  OnHide = FormHide
   OnShow = FormShow
   LCLVersion = '2.0.6.0'
   object Panel1: TPanel

@@ -98,6 +98,9 @@ type
     procedure CheckBoxCornerChange(Sender: TObject);
     procedure ComboBox1Enter(Sender: TObject);
     procedure EditNameEditingDone(Sender: TObject);
+    procedure EditXKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormHide(Sender: TObject);
     procedure OrdinateEditorChange(Sender: TObject);
     procedure OrdinateEditorEditingDone(Sender: TObject);
     procedure OrdinateEditorEnter(Sender: TObject);
@@ -531,7 +534,7 @@ begin
    if ActiveControlPoint<>nil then
    begin
       OrdEdit := Sender as TFloatSpinEdit;
-      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
+      TFreeShip(FreeShip).Surface.Selection_Add(ActiveControlPoint);
       // do something only if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
       Val := OrdEdit.Value;
@@ -645,7 +648,7 @@ begin
 
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
+      TFreeShip(FreeShip).Surface.Selection_Add(ActiveControlPoint);
       // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
       //Val := ConvertCoordinate(EditY.Text, P.Y);
@@ -708,7 +711,7 @@ begin
 
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Surface.SelectedControlPoints.Add(ActiveControlPoint);
+      TFreeShip(FreeShip).Surface.Selection_Add(ActiveControlPoint);
       // do only something, if the value has really been changed:
       P:=ActiveControlPoint.Coordinate;
       //Val := ConvertCoordinate(EditZ.Text, P.Z);
@@ -934,6 +937,23 @@ begin
    end;
 end;
 
+procedure TFreeControlPointForm.EditXKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+end;
+
+procedure TFreeControlPointForm.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+
+end;
+
+procedure TFreeControlPointForm.FormHide(Sender: TObject);
+begin
+
+end;
+
 procedure TFreeControlPointForm.FSetActiveControlPointCorner(isCorner: boolean);
 var I,N     : Integer;
     OldType : TFreeVertexType;
@@ -994,7 +1014,7 @@ end;
 
 procedure TFreeControlPointForm.FormShow(Sender: TObject);
 begin
-
+  Caption := Caption;
 end;
 
 procedure TFreeControlPointForm.SpeedButton1Click(Sender: TObject);

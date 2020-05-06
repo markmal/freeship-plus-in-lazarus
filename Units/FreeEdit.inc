@@ -9532,7 +9532,7 @@ begin
   FreeShip.Surface.AddControlPoint(Result);
   Result.Coordinate := ZERO;
   FreeShip.ActiveControlPoint := Result;
-  FreeShip.Surface.SelectedControlPoints.Add(Result);
+  FreeShip.Surface.Selection_Add(Result);
   FreeShip.FileChanged := True;
   Freeship.ReDraw; // we do not rebuild model because no impact on subdivision yet
   if Assigned(FreeShip.OnUpdateGeometryInfo) then
@@ -9546,7 +9546,7 @@ begin
   FreeShip.Surface.AddControlPoint(Result);
   Result.Coordinate := coord;
   FreeShip.ActiveControlPoint := Result;
-  FreeShip.Surface.SelectedControlPoints.Add(Result);
+  FreeShip.Surface.Selection_Add(Result);
   FreeShip.FileChanged := true;
   FreeShip.Surface.Changed:=true;
   Freeship.ReDraw;

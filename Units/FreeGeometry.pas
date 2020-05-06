@@ -1734,7 +1734,7 @@ type
   private
     FChanged: boolean; // Model is changed
     FIsLoading: boolean;
-    FOnChangeActiveControlPoint: TNotifyEvent;
+    //FOnChangeActiveControlPoint: TNotifyEvent;
     FRebuildRequested: boolean; // Flag tells that async rebuild is requested
     FControlPoints: TFasterListTFreeSubdivisionControlPoint;
     // List with controlpoints, which can be changed by the user
@@ -1917,7 +1917,7 @@ type
 
     procedure ExecuteOnChangeActiveControlPoint(Sender:TObject);
     procedure AddOnChangeActiveControlPointListener(aListener: TNotifyEvent);
-    procedure RemoveOnActiveControlPointListener(aListener: TNotifyEvent);
+    procedure RemoveOnChangeActiveControlPointListener(aListener: TNotifyEvent);
 
     // Delete all object's references from related objects
     procedure UnreferenceControlPoint(P: TFreeSubdivisionControlPoint);
@@ -1986,6 +1986,7 @@ type
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);
     procedure Selection_Delete;
+    procedure Selection_Add(item:TFreeNamedObject);
     procedure SortEdges(Edges: TFasterListTFreeSubdivisionEdge);
       overload; virtual;
     procedure SortEdges(Edges: TFasterListTFreeSubdivisionEdge;
@@ -2086,8 +2087,8 @@ type
       read FGetNumberOfSelectedLockedPoints;
     property OnChangeActiveLayer: TChangeActiveLayerEvent
       read FOnChangeActiveLayer write FOnChangeActiveLayer;
-    property OnChangeActiveControlPoint: TNotifyEvent
-      read FOnChangeActiveControlPoint write FOnChangeActiveControlPoint;
+    //property OnChangeActiveControlPoint: TNotifyEvent
+    //  read FOnChangeActiveControlPoint write FOnChangeActiveControlPoint;
     property OnChangeLayerData: TNotifyEvent
       read FOnChangeLayerData write FOnChangeLayerData;
     //property OnSelectItem: TNotifyEvent
@@ -2118,7 +2119,7 @@ type
       read FGetSelectedControlFace;
     property SelectedControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetSelectedControlPoint;
-    property SelectedControlPoints: TFasterListTFreeSubdivisionControlPoint read FSelectedControlPoints;
+    //property SelectedControlPoints: TFasterListTFreeSubdivisionControlPoint read FSelectedControlPoints;
     property SelectedControlPointGroup[index: integer]: TFreeSubdivisionControlPointGroup
       read FGetSelectedControlPointGroup;
     property ShowControlCurves: boolean

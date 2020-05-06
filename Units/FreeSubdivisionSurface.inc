@@ -56,7 +56,14 @@ begin
   if Result = nil then
     Result := NewPoint(P);
   if Result <> nil then
+    begin
     ExecuteOnChangeItem(Result);
+    if Result.Selected then
+      begin
+      FSelectedControlPoints.Add(Result);
+      ExecuteOnSelectItem(Result);
+      end;
+    end;
 end;{TFreeSubdivisionSurface.AddControlPoint}
 
 procedure TFreeSubdivisionSurface.AddControlPoint(P: TFreeSubdivisionControlPoint);
@@ -66,6 +73,11 @@ begin
     FControlPoints.Add(P);
     P.FSurface := self;
     ExecuteOnChangeItem(P);
+    if P.Selected then
+      begin
+      FSelectedControlPoints.Add(P);
+      ExecuteOnSelectItem(P);
+      end;
   end;
   Built := False;
 end;{TFreeSubdivisionSurface.AddControlPoint}
@@ -1280,7 +1292,7 @@ begin
     FOnChangeActiveControlPointListeners.Add(aListener);
 end;
 
-procedure TFreeSubdivisionSurface.RemoveOnActiveControlPointListener(
+procedure TFreeSubdivisionSurface.RemoveOnChangeActiveControlPointListener(
   aListener: TNotifyEvent);
 begin
   if assigned(aListener) then
@@ -1917,8 +1929,7 @@ begin
   FSelectedControlCurves.Clear;
   self.ExecuteOnSelectItem(nil);
   FActiveControlPoint:=nil;
-  if Assigned(FOnChangeActiveControlPoint) then
-    FOnChangeActiveControlPoint(nil);
+  ExecuteOnChangeActiveControlPoint(nil);
 end;{TFreeSubdivisionSurface.Clearselection}
 
 procedure TFreeSubdivisionSurface.ConvertToGrid(Input: TFreeFaceGrid;
@@ -3164,7 +3175,7 @@ begin
   Clear;
   FOnChangeLayerData:=nil;
   FOnChangeActiveLayer:=nil;
-  FOnChangeActiveControlPoint:=nil;
+  //FOnChangeActiveControlPoint:=nil;
   FOnSelectItemListeners.Free;
   FOnSelectItemListeners:=nil;
   FOnChangeItemListeners.Free;
@@ -4532,6 +4543,22 @@ begin
   ExecuteOnChangeItem(nil);
   Built := False;
 end;{TFreeSubdivisionSurface.Selection_Delete}
+
+procedure TFreeSubdivisionSurface.Selection_Add(item: TFreeNamedObject);
+begin
+  if item = nil then exit;
+  if item is TFreeSubdivisionControlPoint then
+    FSelectedControlPoints.Add(item as TFreeSubdivisionControlPoint);
+  if item is TFreeSubdivisionControlFace then
+    FSelectedControlFaces.Add(item as TFreeSubdivisionControlFace);
+  if item is TFreeSubdivisionControlEdge then
+    FSelectedControlEdges.Add(item as TFreeSubdivisionControlEdge);
+  if item is TFreeSubdivisionControlCurve then
+    FSelectedControlCurves.Add(item as TFreeSubdivisionControlCurve);
+  if item is TFreeSubdivisionControlPointGroup then
+    FSelectedControlPointGroups.Add(item as TFreeSubdivisionControlPointGroup);
+  ExecuteOnSelectItem(item);
+end;
 
 procedure TFreeSubdivisionSurface.SortEdges(Edges: TFasterListTFreeSubdivisionEdge);
 var

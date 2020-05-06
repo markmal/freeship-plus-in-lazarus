@@ -249,15 +249,18 @@ begin
   Result := Surface.ActiveControlPoint;
 end;
 
+{
 function TFreeShip.GetOnChangeActiveControlPoint: TNotifyEvent;
 begin
   result := Surface.OnChangeActiveControlPoint;
 end;
+}
 
 procedure TFreeShip.SetActiveControlPoint(aControlPoint: TFreeSubdivisionControlPoint);
 begin
   Surface.ActiveControlPoint := aControlPoint;
 end;
+
 
 function TFreeShip.FGetBackgroundImage(Index: integer): TFreeBackgroundImageData;
 begin
@@ -722,10 +725,12 @@ begin
   thumbNail.Destroy;
 end;{TFreeShip.FGetPreview}
 
+{
 procedure TFreeShip.SetOnChangeActiveControlPoint(AValue: TNotifyEvent);
 begin
   Surface.OnChangeActiveControlPoint := AValue;
 end;
+}
 
 procedure TFreeShip.AddViewport(Viewport: TFreeViewport);
 // Add a viewport to the list of viewports connected to the model
@@ -3109,7 +3114,7 @@ begin
           if (P2D.x >= rect.Left) and (P2D.x <= rect.Right)
              and (P2D.y >= rect.Top) and (P2D.y <= rect.Bottom)
           then
-            self.Surface.SelectedControlPoints.Add(Point);
+            self.Surface.Selection_Add(Point);
             //ItemSelected := True;
             // Draw the selected point to all viewports
             for J := 1 to NumberOfViewports do
@@ -3141,9 +3146,9 @@ begin
   Entity := nil;
 
   // First check the selected vertices
-  for i := Surface.SelectedControlPoints.Count - 1 downto 0 do
+  for i := Surface.NumberOfSelectedControlPoints - 1 downto 0 do
     begin
-      Point := Surface.SelectedControlPoints[i];
+      Point := Surface.SelectedControlPoint[i];
       if not Point.Visible then continue;
       Tmp := Point.DistanceToCursor(X, Y, Viewport);
       if Tmp <= SelectDistance then
@@ -3367,14 +3372,13 @@ begin
             SelectedControlPointGroup[i].Selected := False;
           end;
 
+        ActiveControlPoint := Point;
         Point.Selected := True;
 
         // select all points in a group if there
         for I:=0 to Surface.ControlPointGroups.Count-1 do
           if Surface.ControlPointGroups[i].ControlPoints.IndexOf(Point)>=0 then
              Surface.ControlPointGroups[i].Selected:=true;
-
-        ActiveControlPoint := Point;
 
         for J := 1 to NumberOfViewports do
           self.Viewport[J - 1].Refresh;
@@ -3461,8 +3465,8 @@ begin
   end
   else if Button = mbRight then
     EditMode := emSelectItems;
-  if not Viewport.Focused then
-    Viewport.SetFocus;
+  ///if not Viewport.Focused then
+  ///  Viewport.SetFocus;
 end;{TFreeShip.MouseDown}
 
 
@@ -3596,8 +3600,8 @@ begin
      Redraw;
      end;
   FCurrentlyMoving := False;
-  if not Viewport.Focused then
-    Viewport.SetFocus;
+  ///if not Viewport.Focused then
+  ///  Viewport.SetFocus;
 end;{TFreeShip.MouseUp}
 
 {not sure why it should belong to an external window if this communication

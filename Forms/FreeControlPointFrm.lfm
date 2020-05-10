@@ -1,7 +1,7 @@
 object FreeControlPointForm: TFreeControlPointForm
-  Left = 725
-  Height = 329
-  Top = 166
+  Left = 947
+  Height = 374
+  Top = 192
   Width = 349
   ActiveControl = EditName
   AlphaBlend = True
@@ -11,18 +11,16 @@ object FreeControlPointForm: TFreeControlPointForm
   Caption = ' '
   ChildSizing.Layout = cclLeftToRightThenTopToBottom
   ChildSizing.ControlsPerLine = 1
-  ClientHeight = 329
+  ClientHeight = 374
   ClientWidth = 349
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
-  OnClose = FormClose
   OnCreate = FormCreate
-  OnHide = FormHide
   OnShow = FormShow
   LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
-    Height = 112
+    Height = 115
     Top = 0
     Width = 349
     Align = alTop
@@ -34,13 +32,13 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.VerticalSpacing = 2
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 112
+    ClientHeight = 115
     ClientWidth = 349
     ParentFont = False
     TabOrder = 0
     object LabelX: TLabel
       Left = 10
-      Height = 32
+      Height = 33
       Top = 6
       Width = 63
       Caption = 'X-coord.'
@@ -50,8 +48,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object LabelY: TLabel
       Left = 10
-      Height = 32
-      Top = 40
+      Height = 33
+      Top = 41
       Width = 63
       Caption = 'Y-coord.'
       Layout = tlCenter
@@ -60,8 +58,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object LabelZ: TLabel
       Left = 10
-      Height = 32
-      Top = 74
+      Height = 33
+      Top = 76
       Width = 63
       Caption = 'Z-coord.'
       Layout = tlCenter
@@ -70,7 +68,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object EditX: TFloatSpinEdit
       Left = 79
-      Height = 32
+      Height = 33
       Top = 6
       Width = 100
       Alignment = taRightJustify
@@ -93,8 +91,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object EditY: TFloatSpinEdit
       Left = 79
-      Height = 32
-      Top = 40
+      Height = 33
+      Top = 41
       Width = 100
       Alignment = taRightJustify
       Constraints.MinWidth = 100
@@ -116,8 +114,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object EditZ: TFloatSpinEdit
       Left = 79
-      Height = 32
-      Top = 74
+      Height = 33
+      Top = 76
       Width = 100
       Alignment = taRightJustify
       Constraints.MinWidth = 100
@@ -139,7 +137,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label1: TLabel
       Left = 185
-      Height = 32
+      Height = 33
       Top = 6
       Width = 49
       BorderSpacing.Left = 6
@@ -150,8 +148,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label2: TLabel
       Left = 185
-      Height = 32
-      Top = 40
+      Height = 33
+      Top = 41
       Width = 49
       BorderSpacing.Left = 6
       Caption = 'Label2'
@@ -161,8 +159,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Label3: TLabel
       Left = 185
-      Height = 32
-      Top = 74
+      Height = 33
+      Top = 76
       Width = 49
       BorderSpacing.Left = 6
       Caption = 'Label3'
@@ -172,7 +170,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object EditAX: TFloatSpinEdit
       Left = 240
-      Height = 32
+      Height = 33
       Top = 6
       Width = 80
       Alignment = taRightJustify
@@ -187,8 +185,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object EditAY: TFloatSpinEdit
       Left = 240
-      Height = 32
-      Top = 40
+      Height = 33
+      Top = 41
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
@@ -203,8 +201,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object EditAZ: TFloatSpinEdit
       Left = 240
-      Height = 32
-      Top = 74
+      Height = 33
+      Top = 76
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
@@ -219,7 +217,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object LabelAX: TLabel
       Left = 326
-      Height = 32
+      Height = 33
       Top = 6
       Width = 6
       Caption = 'º'
@@ -229,8 +227,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object LabelAY: TLabel
       Left = 326
-      Height = 32
-      Top = 40
+      Height = 33
+      Top = 41
       Width = 6
       Caption = 'º'
       Layout = tlCenter
@@ -239,8 +237,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object LabelAZ: TLabel
       Left = 326
-      Height = 32
-      Top = 74
+      Height = 33
+      Top = 76
       Width = 6
       Caption = 'º'
       Layout = tlCenter
@@ -250,8 +248,8 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 74
-    Top = 112
+    Height = 76
+    Top = 115
     Width = 349
     Align = alTop
     AutoSize = True
@@ -262,13 +260,13 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.VerticalSpacing = 2
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 74
+    ClientHeight = 76
     ClientWidth = 349
     ParentFont = False
     TabOrder = 1
     object CheckBoxCorner: TCheckBox
       Left = 10
-      Height = 24
+      Height = 25
       Top = 2
       Width = 307
       Caption = 'Corner'
@@ -280,8 +278,8 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object Panel5: TPanel
       Left = 10
-      Height = 44
-      Top = 28
+      Height = 45
+      Top = 29
       Width = 307
       AutoSize = True
       BevelOuter = bvNone
@@ -289,13 +287,13 @@ object FreeControlPointForm: TFreeControlPointForm
       ChildSizing.HorizontalSpacing = 6
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 4
-      ClientHeight = 44
+      ClientHeight = 45
       ClientWidth = 307
       ParentFont = False
       TabOrder = 1
       object Label4: TLabel
         Left = 0
-        Height = 32
+        Height = 33
         Top = 6
         Width = 66
         Caption = 'Distance'
@@ -305,7 +303,7 @@ object FreeControlPointForm: TFreeControlPointForm
       end
       object EditDistance: TFloatSpinEdit
         Left = 72
-        Height = 32
+        Height = 33
         Top = 6
         Width = 100
         Alignment = taRightJustify
@@ -319,7 +317,7 @@ object FreeControlPointForm: TFreeControlPointForm
       end
       object Label5: TLabel
         Left = 178
-        Height = 32
+        Height = 33
         Top = 6
         Width = 43
         Caption = 'Angle'
@@ -329,7 +327,7 @@ object FreeControlPointForm: TFreeControlPointForm
       end
       object EditAngles: TFloatSpinEdit
         Left = 227
-        Height = 32
+        Height = 33
         Top = 6
         Width = 80
         Alignment = taRightJustify
@@ -344,8 +342,8 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object Panel3: TPanel
     Left = 0
-    Height = 44
-    Top = 186
+    Height = 45
+    Top = 191
     Width = 349
     Align = alTop
     AutoSize = True
@@ -355,13 +353,13 @@ object FreeControlPointForm: TFreeControlPointForm
     ChildSizing.HorizontalSpacing = 6
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
-    ClientHeight = 44
+    ClientHeight = 45
     ClientWidth = 349
     ParentFont = False
     TabOrder = 2
     object LabelName: TLabel
       Left = 10
-      Height = 32
+      Height = 33
       Top = 6
       Width = 45
       Caption = 'Name'
@@ -371,7 +369,7 @@ object FreeControlPointForm: TFreeControlPointForm
     end
     object EditName: TEdit
       Left = 61
-      Height = 32
+      Height = 33
       Top = 6
       Width = 200
       Constraints.MinWidth = 200
@@ -384,19 +382,19 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object GroupBoxLinearConstraint: TGroupBox
     Left = 0
-    Height = 68
-    Top = 230
+    Height = 70
+    Top = 236
     Width = 349
     Align = alTop
     AutoSize = True
     Caption = 'Linear constraint'
-    ClientHeight = 44
+    ClientHeight = 45
     ClientWidth = 345
     ParentFont = False
     TabOrder = 3
     object Panel4: TPanel
       Left = 0
-      Height = 44
+      Height = 45
       Top = 0
       Width = 345
       Align = alTop
@@ -408,13 +406,13 @@ object FreeControlPointForm: TFreeControlPointForm
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 44
+      ClientHeight = 45
       ClientWidth = 345
       ParentFont = False
       TabOrder = 0
       object EditLinearConstraintA: TEdit
         Left = 10
-        Height = 32
+        Height = 33
         Top = 6
         Width = 123
         ParentFont = False
@@ -423,7 +421,7 @@ object FreeControlPointForm: TFreeControlPointForm
       end
       object EditLinearConstraintB: TEdit
         Left = 139
-        Height = 32
+        Height = 33
         Top = 6
         Width = 123
         ParentFont = False
@@ -432,17 +430,17 @@ object FreeControlPointForm: TFreeControlPointForm
       end
       object Panel7: TPanel
         Left = 268
-        Height = 32
+        Height = 33
         Top = 6
         Width = 67
         BevelOuter = bvNone
-        ClientHeight = 32
+        ClientHeight = 33
         ClientWidth = 67
         ParentFont = False
         TabOrder = 2
         object SpeedButtonRemoveLinearConstraint: TSpeedButton
           Left = 0
-          Height = 32
+          Height = 33
           Hint = 'Remove linear constraint'
           Top = 0
           Width = 24
@@ -458,19 +456,19 @@ object FreeControlPointForm: TFreeControlPointForm
   end
   object GroupBoxAnchorConstraint: TGroupBox
     Left = 0
-    Height = 68
-    Top = 298
+    Height = 70
+    Top = 306
     Width = 349
     Align = alTop
     AutoSize = True
     Caption = 'Anchor point'
-    ClientHeight = 44
+    ClientHeight = 45
     ClientWidth = 345
     ParentFont = False
     TabOrder = 4
     object Panel6: TPanel
       Left = 0
-      Height = 44
+      Height = 45
       Top = 0
       Width = 345
       Align = alTop
@@ -482,13 +480,13 @@ object FreeControlPointForm: TFreeControlPointForm
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
       ChildSizing.Layout = cclTopToBottomThenLeftToRight
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 44
+      ClientHeight = 45
       ClientWidth = 345
       ParentFont = False
       TabOrder = 0
       object EditAnchorPoint: TEdit
         Left = 10
-        Height = 32
+        Height = 33
         Top = 6
         Width = 153
         ParentFont = False
@@ -497,17 +495,17 @@ object FreeControlPointForm: TFreeControlPointForm
       end
       object Panel8: TPanel
         Left = 169
-        Height = 32
+        Height = 33
         Top = 6
         Width = 166
         BevelOuter = bvNone
-        ClientHeight = 32
+        ClientHeight = 33
         ClientWidth = 166
         ParentFont = False
         TabOrder = 1
         object SpeedButtonRemoveAnchorPoint: TSpeedButton
           Left = 69
-          Height = 32
+          Height = 33
           Hint = 'Remove anchoring'
           Top = 0
           Width = 24
@@ -520,7 +518,7 @@ object FreeControlPointForm: TFreeControlPointForm
         end
         object CheckBoxAnchorHard: TCheckBox
           Left = 0
-          Height = 32
+          Height = 33
           Top = 0
           Width = 61
           Align = alLeft

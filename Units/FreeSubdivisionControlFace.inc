@@ -875,9 +875,9 @@ begin
 
     if Self.Selected then
     begin
-      R := GetRValue(clYellow);
-      G := GetGValue(clYellow);
-      B := GetBValue(clYellow);
+      R := GetRValue(Surface.SelectedColor);
+      G := GetGValue(Surface.SelectedColor);
+      B := GetBValue(Surface.SelectedColor);
     end;
 
     Viewport.BeginUpdate;

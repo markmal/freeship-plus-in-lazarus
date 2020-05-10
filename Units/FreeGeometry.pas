@@ -1518,6 +1518,7 @@ type
       TFreeSubdivisionPoint read FEndPoint write SetEndPoint;
     property Face[index: integer]
       : TFreeSubdivisionFace read FGetFace;
+    property Faces: TFasterListTFreeSubdivisionFace read FFaces;
     property IsBoundaryEdge: boolean
       read FGetIsBoundaryEdge;
     property NextEdge:
@@ -1732,6 +1733,8 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeSubdivisionSurface = class(TFreeEntity)
   private
+    FActiveControlCurve: TFreeSubdivisionControlCurve;
+    FActiveControlFace: TFreeSubdivisionControlFace;
     FChanged: boolean; // Model is changed
     FIsLoading: boolean;
     //FOnChangeActiveControlPoint: TNotifyEvent;
@@ -1757,6 +1760,7 @@ type
     FLayers: TFasterListTFreeSubdivisionLayer;
     // All layers are stored in this list
     FActiveControlPoint : TFreeSubdivisionControlPoint;
+    FActiveControlEdge : TFreeSubdivisionControlEdge;
     FSelectedControlPoints: TFasterListTFreeSubdivisionControlPoint;
     // Controlpoints which are selected by the user are put in this list
     FSelectedControlPointGroups: TFasterListTFreeSubdivisionControlPointGroup;
@@ -1791,6 +1795,9 @@ type
     // Event which is raised when layer-data has been changed
     FOnChangeActiveLayer: TChangeActiveLayerEvent;
     // Event raised when the active layer is changed
+    FOnChangeActiveControlCurveListeners: TMethodList<TNotifyEvent>;
+    FOnChangeActiveControlEdgeListeners: TMethodList<TNotifyEvent>;
+    FOnChangeActiveControlFaceListeners: TMethodList<TNotifyEvent>;
     FOnChangeActiveControlPointListeners: TMethodList<TNotifyEvent>;
     FOnSelectItemListeners: TMethodList<TNotifyEvent>;
     // This event is raised whenever an item (such as controlpoint, controledge or controlface) is selected or deselected
@@ -1870,6 +1877,9 @@ type
     function FGetSelectedControlPoint(Index: integer): TFreeSubdivisionControlPoint;
     function FGetSelectedControlPointGroup(Index: integer): TFreeSubdivisionControlPointGroup;
     function FRequestNewLayerID: integer;
+    procedure SetActiveControlCurve(AValue: TFreeSubdivisionControlCurve);
+    procedure SetActiveControlEdge(AValue: TFreeSubdivisionControlEdge);
+    procedure SetActiveControlFace(AValue: TFreeSubdivisionControlFace);
     procedure SetActiveControlPoint(AValue: TFreeSubdivisionControlPoint);
     procedure SetActiveLayer(Val: TFreeSubdivisionLayer);
     procedure SetBuilt(Val: boolean); override;
@@ -1918,6 +1928,18 @@ type
     procedure ExecuteOnChangeActiveControlPoint(Sender:TObject);
     procedure AddOnChangeActiveControlPointListener(aListener: TNotifyEvent);
     procedure RemoveOnChangeActiveControlPointListener(aListener: TNotifyEvent);
+
+    procedure ExecuteOnChangeActiveControlEdge(Sender:TObject);
+    procedure AddOnChangeActiveControlEdgeListener(aListener: TNotifyEvent);
+    procedure RemoveOnChangeActiveControlEdgeListener(aListener: TNotifyEvent);
+
+    procedure ExecuteOnChangeActiveControlFace(Sender:TObject);
+    procedure AddOnChangeActiveControlFaceListener(aListener: TNotifyEvent);
+    procedure RemoveOnChangeActiveControlFaceListener(aListener: TNotifyEvent);
+
+    procedure ExecuteOnChangeActiveControlCurve(Sender:TObject);
+    procedure AddOnChangeActiveControlCurveListener(aListener: TNotifyEvent);
+    procedure RemoveOnChangeActiveControlCurveListener(aListener: TNotifyEvent);
 
     // Delete all object's references from related objects
     procedure UnreferenceControlPoint(P: TFreeSubdivisionControlPoint);
@@ -1996,6 +2018,12 @@ type
       read FActiveLayer write SetActiveLayer;
     property ActiveControlPoint : TFreeSubdivisionControlPoint
       read FActiveControlPoint write SetActiveControlPoint;
+    property ActiveControlEdge : TFreeSubdivisionControlEdge
+      read FActiveControlEdge write SetActiveControlEdge;
+    property ActiveControlFace : TFreeSubdivisionControlFace
+      read FActiveControlFace write SetActiveControlFace;
+    property ActiveControlCurve : TFreeSubdivisionControlCurve
+      read FActiveControlCurve write SetActiveControlCurve;
     property Changed: boolean read FChanged write FChanged;
     property ControlPoint[index: integer]: TFreeSubdivisionControlPoint
       read FGetControlpoint;

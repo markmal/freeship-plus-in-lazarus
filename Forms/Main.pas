@@ -666,6 +666,9 @@ type
       procedure OnSplitSectionLocationChange(Sender: TObject; aValue: TFloatType);
       procedure OnSelectItem(Sender:TObject);
       procedure OnChangeActiveControlPoint(Sender:TObject);
+      procedure OnChangeActiveControlEdge(Sender:TObject);
+      procedure OnChangeActiveControlFace(Sender:TObject);
+      procedure OnChangeActiveControlCurve(Sender:TObject);
 
       procedure HullformWindowOnActivate(Sender:TObject);
       procedure HullformWindowOnDeactivate(Sender:TObject);
@@ -1167,6 +1170,21 @@ begin
    if (Sender is TFreeSubdivisionControlPoint) then
      FreeShip.ControlpointForm.ActiveControlPoint := Sender as TFreeSubdivisionControlPoint;
    UpdateMenu;
+end;
+
+procedure TMainForm.OnChangeActiveControlEdge(Sender: TObject);
+begin
+  UpdateMenu;
+end;
+
+procedure TMainForm.OnChangeActiveControlFace(Sender: TObject);
+begin
+  UpdateMenu;
+end;
+
+procedure TMainForm.OnChangeActiveControlCurve(Sender: TObject);
+begin
+  UpdateMenu;
 end;
 
 procedure TMainForm.AbandonMDIChildren(AIndex: Integer);
@@ -1687,6 +1705,9 @@ begin
   FreeShip.Surface.AddOnSelectItemListener(FormSelected.onSelectionUpdate);
   FreeShip.Surface.AddOnChangeItemListener(FormSelected.onSelectionUpdate);
   FreeShip.Surface.AddOnChangeActiveControlPointListener(FormSelected.onSelectionUpdate);
+  FreeShip.Surface.AddOnChangeActiveControlEdgeListener(FormSelected.onSelectionUpdate);
+  FreeShip.Surface.AddOnChangeActiveControlFaceListener(FormSelected.onSelectionUpdate);
+  FreeShip.Surface.AddOnChangeActiveControlCurveListener(FormSelected.onSelectionUpdate);
   FormSelected.onSelectionUpdate(Self);
   FormSelected.Show;
 end;
@@ -1768,6 +1789,9 @@ begin
    //FreeShip.OnSelectItem:=OnSelectItem;
    FreeShip.Surface.AddOnSelectItemListener(OnSelectItem);
    FreeShip.Surface.AddOnChangeActiveControlPointListener(OnChangeActiveControlPoint);
+   FreeShip.Surface.AddOnChangeActiveControlEdgeListener(OnChangeActiveControlEdge);
+   FreeShip.Surface.AddOnChangeActiveControlFaceListener(OnChangeActiveControlFace);
+   FreeShip.Surface.AddOnChangeActiveControlCurveListener(OnChangeActiveControlCurve);
    FreeShip.Clear;
 
    // fit to screen

@@ -1232,6 +1232,30 @@ begin
   Result := FLastusedLayerID;
 end;{TFreeSubdivisionSurface.FRequestNewLayerID}
 
+procedure TFreeSubdivisionSurface.SetActiveControlCurve(
+  AValue: TFreeSubdivisionControlCurve);
+begin
+  if FActiveControlCurve=AValue then Exit;
+  FActiveControlCurve:=AValue;
+  ExecuteOnChangeActiveControlCurve(FActiveControlCurve);
+end;
+
+procedure TFreeSubdivisionSurface.SetActiveControlEdge(
+  AValue: TFreeSubdivisionControlEdge);
+begin
+  if FActiveControlEdge=AValue then Exit;
+  FActiveControlEdge:=AValue;
+  ExecuteOnChangeActiveControlEdge(FActiveControlEdge);
+end;
+
+procedure TFreeSubdivisionSurface.SetActiveControlFace(
+  AValue: TFreeSubdivisionControlFace);
+begin
+  if FActiveControlFace=AValue then Exit;
+  FActiveControlFace:=AValue;
+  ExecuteOnChangeActiveControlFace(FActiveControlFace);
+end;
+
 procedure TFreeSubdivisionSurface.AddOnSelectItemListener(aListener: TNotifyEvent);
 begin
   if assigned(aListener) then
@@ -1297,6 +1321,90 @@ procedure TFreeSubdivisionSurface.RemoveOnChangeActiveControlPointListener(
 begin
   if assigned(aListener) then
     FOnChangeActiveControlPointListeners.DeleteItem(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.ExecuteOnChangeActiveControlEdge(
+  Sender: TObject);
+var ne:TNotifyEvent;
+  i: Integer;
+begin
+  if FIsLoading then exit;
+  if FOnChangeActiveControlEdgeListeners = nil then exit;
+  for i:=0 to FOnChangeActiveControlEdgeListeners.Count-1 do
+  begin
+    ne := FOnChangeActiveControlEdgeListeners[i];
+    ne(Sender);
+  end;
+end;
+
+procedure TFreeSubdivisionSurface.AddOnChangeActiveControlEdgeListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlEdgeListeners.Add(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.RemoveOnChangeActiveControlEdgeListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlEdgeListeners.DeleteItem(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.ExecuteOnChangeActiveControlFace(
+  Sender: TObject);
+var ne:TNotifyEvent;
+  i: Integer;
+begin
+  if FIsLoading then exit;
+  if FOnChangeActiveControlFaceListeners = nil then exit;
+  for i:=0 to FOnChangeActiveControlFaceListeners.Count-1 do
+  begin
+    ne := FOnChangeActiveControlFaceListeners[i];
+    ne(Sender);
+  end;
+end;
+
+procedure TFreeSubdivisionSurface.AddOnChangeActiveControlFaceListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlFaceListeners.Add(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.RemoveOnChangeActiveControlFaceListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlFaceListeners.DeleteItem(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.ExecuteOnChangeActiveControlCurve(
+  Sender: TObject);
+var ne:TNotifyEvent;
+  i: Integer;
+begin
+  if FIsLoading then exit;
+  if FOnChangeActiveControlCurveListeners = nil then exit;
+  for i:=0 to FOnChangeActiveControlCurveListeners.Count-1 do
+  begin
+    ne := FOnChangeActiveControlCurveListeners[i];
+    ne(Sender);
+  end;
+end;
+
+procedure TFreeSubdivisionSurface.AddOnChangeActiveControlCurveListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlCurveListeners.Add(aListener);
+end;
+
+procedure TFreeSubdivisionSurface.RemoveOnChangeActiveControlCurveListener(
+  aListener: TNotifyEvent);
+begin
+  if assigned(aListener) then
+    FOnChangeActiveControlCurveListeners.DeleteItem(aListener);
 end;
 
 procedure TFreeSubdivisionSurface.SetActiveControlPoint(
@@ -3143,7 +3251,10 @@ begin
   FSelectedControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
   FSelectedControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
 
-  FOnChangeActiveControlPointListeners:= TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlPointListeners := TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlEdgeListeners := TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlFaceListeners := TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlCurveListeners := TMethodList<TNotifyEvent>.Create;
   FOnSelectItemListeners:= TMethodList<TNotifyEvent>.Create;
   FOnChangeItemListeners:= TMethodList<TNotifyEvent>.Create;
 
@@ -3182,6 +3293,12 @@ begin
   FOnChangeItemListeners:=nil;
   FOnChangeActiveControlPointListeners.Free;
   FOnChangeActiveControlPointListeners:=nil;
+  FOnChangeActiveControlEdgeListeners.Free;
+  FOnChangeActiveControlEdgeListeners:=nil;
+  FOnChangeActiveControlFaceListeners.Free;
+  FOnChangeActiveControlFaceListeners:=nil;
+  FOnChangeActiveControlCurveListeners.Free;
+  FOnChangeActiveControlCurveListeners:=nil;
 
   // Make sure to also destroy the default layer (layer 0)
   for I := 1 to NumberOfLayers do

@@ -244,9 +244,39 @@ begin
   Result := Surface.ActiveLayer;
 end;{TFreeShip.FGetActiveLayer}
 
+function TFreeShip.GetActiveControlCurve: TFreeSubdivisionControlCurve;
+begin
+  Result := Surface.ActiveControlCurve;
+end;
+
+function TFreeShip.GetActiveControlEdge: TFreeSubdivisionControlEdge;
+begin
+  Result := Surface.ActiveControlEdge;
+end;
+
+function TFreeShip.GetActiveControlFace: TFreeSubdivisionControlFace;
+begin
+  Result := Surface.ActiveControlFace;
+end;
+
 function TFreeShip.GetActiveControlPoint: TFreeSubdivisionControlPoint;
 begin
   Result := Surface.ActiveControlPoint;
+end;
+
+procedure TFreeShip.SetActiveControlCurve(AValue: TFreeSubdivisionControlCurve);
+begin
+  Surface.ActiveControlCurve := AValue;
+end;
+
+procedure TFreeShip.SetActiveControlEdge(AValue: TFreeSubdivisionControlEdge);
+begin
+  Surface.ActiveControlEdge := aValue;
+end;
+
+procedure TFreeShip.SetActiveControlFace(AValue: TFreeSubdivisionControlFace);
+begin
+  Surface.ActiveControlFace := aValue;
 end;
 
 {
@@ -3398,10 +3428,21 @@ begin
       FPrevCursorPosition.X := X;
       FPrevCursorPosition.Y := Y;
     end
+    else if Entity is TFreeSubdivisionControlEdge then
+    begin
+      ActiveControlEdge := Entity as TFreeSubdivisionControlEdge;
+    end
+    else if Entity is TFreeSubdivisionControlFace then
+    begin
+      ActiveControlFace := Entity as TFreeSubdivisionControlFace;
+    end
     else if Entity is TFreeSubdivisionControlCurve then
+      begin
       for J := 1 to NumberOfViewports do
         if self.Viewport[J - 1].ViewportMode = vmWireframe then
           self.Viewport[J - 1].Refresh;
+      ActiveControlCurve := Entity as TFreeSubdivisionControlCurve;
+      end;
 end;
 
 procedure TFreeShip.DoAddPoint(const Viewport: TFreeViewport; const X, Y: integer;

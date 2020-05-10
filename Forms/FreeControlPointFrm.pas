@@ -98,9 +98,6 @@ type
     procedure CheckBoxCornerChange(Sender: TObject);
     procedure ComboBox1Enter(Sender: TObject);
     procedure EditNameEditingDone(Sender: TObject);
-    procedure EditXKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormHide(Sender: TObject);
     procedure OrdinateEditorChange(Sender: TObject);
     procedure OrdinateEditorEditingDone(Sender: TObject);
     procedure OrdinateEditorEnter(Sender: TObject);
@@ -935,23 +932,6 @@ begin
      EditName.Color:=clYellow;
      ShowMessage(rsNameIsNotUnique);
    end;
-end;
-
-procedure TFreeControlPointForm.EditXKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-
-end;
-
-procedure TFreeControlPointForm.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
-begin
-
-end;
-
-procedure TFreeControlPointForm.FormHide(Sender: TObject);
-begin
-
 end;
 
 procedure TFreeControlPointForm.FSetActiveControlPointCorner(isCorner: boolean);

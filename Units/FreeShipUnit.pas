@@ -1277,7 +1277,13 @@ type
       CloseAtDeck: boolean);
     // Assembles all stations and builds a 2D bodyplan for export to other calculating programs
     function FGetActiveLayer: TFreeSubdivisionlayer;
+    function GetActiveControlCurve: TFreeSubdivisionControlCurve;
+    function GetActiveControlEdge: TFreeSubdivisionControlEdge;
+    function GetActiveControlFace: TFreeSubdivisionControlFace;
     function GetActiveControlPoint: TFreeSubdivisionControlPoint;
+    procedure SetActiveControlCurve(AValue: TFreeSubdivisionControlCurve);
+    procedure SetActiveControlEdge(AValue: TFreeSubdivisionControlEdge);
+    procedure SetActiveControlFace(AValue: TFreeSubdivisionControlFace);
     //function GetOnChangeActiveControlPoint: TNotifyEvent;
     procedure SetActiveControlPoint(aControlPoint: TFreeSubdivisionControlPoint);
     function FGetBackgroundImage(Index: integer): TFreeBackgroundImageData;
@@ -1408,8 +1414,14 @@ type
     procedure MouseUp(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
 
     property MainForm: TForm read FMainForm write FMainForm;
+    property ActiveControlEdge: TFreeSubdivisionControlEdge
+      read GetActiveControlEdge write SetActiveControlEdge;
     property ActiveControlPoint: TFreeSubdivisionControlPoint
       read GetActiveControlPoint write SetActiveControlPoint;
+    property ActiveControlFace: TFreeSubdivisionControlFace
+      read GetActiveControlFace write SetActiveControlFace;
+    property ActiveControlCurve: TFreeSubdivisionControlCurve
+      read GetActiveControlCurve write SetActiveControlCurve;
     property ActiveLayer: TFreeSubdivisionLayer
       read FGetActiveLayer write FSetActiveLayer;
     property BackgroundImage[index: integer]: TFreeBackgroundImageData

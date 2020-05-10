@@ -356,8 +356,8 @@ msgstr ""
 msgid "Exception"
 msgstr ""
 
-#: tformselected.bbclose.caption
-msgctxt "tformselected.bbclose.caption"
+#: tformselected.aclose.caption
+msgctxt "tformselected.aclose.caption"
 msgid "Close"
 msgstr ""
 
@@ -365,23 +365,220 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+#: tformselected.cbedgeiscrease.caption
+msgctxt "tformselected.cbedgeiscrease.caption"
+msgid "Crease"
+msgstr ""
+
+#: tformselected.checkboxanchorhard.caption
+msgctxt "tformselected.checkboxanchorhard.caption"
+msgid "Hard"
+msgstr ""
+
+#: tformselected.ecurvename.text
+msgctxt "tformselected.ecurvename.text"
+msgid "eCurveName"
+msgstr ""
+
+#: tformselected.eedgename.text
+msgctxt "tformselected.eedgename.text"
+msgid "eEdgeName"
+msgstr ""
+
+#: tformselected.eedgetype.text
+msgctxt "tformselected.eedgetype.text"
+msgid "eEdgeType"
+msgstr ""
+
+#: tformselected.efacename.text
+msgctxt "tformselected.efacename.text"
+msgid "eFaceName"
+msgstr ""
+
 #: tformselected.epointname.text
+msgctxt "tformselected.epointname.text"
 msgid "ePointName"
 msgstr ""
 
-#: tformselected.epointx.text
-msgid "ePointX"
+#: tformselected.epointtype.text
+msgctxt "tformselected.epointtype.text"
+msgid "ePointType"
 msgstr ""
 
-#: tformselected.epointy.text
-msgid "ePointY"
+#: tformselected.gbedgepoints.caption
+msgid "Edge Points"
 msgstr ""
 
-#: tformselected.epointz.text
-msgid "ePointZ"
+#: tformselected.groupbox1.caption
+msgctxt "tformselected.groupbox1.caption"
+msgid "Faces"
+msgstr ""
+
+#: tformselected.groupbox2.caption
+msgctxt "tformselected.groupbox2.caption"
+msgid "Edges"
+msgstr ""
+
+#: tformselected.groupbox3.caption
+msgid "Groups"
+msgstr ""
+
+#: tformselected.groupbox4.caption
+msgctxt "tformselected.groupbox4.caption"
+msgid "Faces"
+msgstr ""
+
+#: tformselected.groupbox5.caption
+msgctxt "tformselected.groupbox5.caption"
+msgid "Points"
+msgstr ""
+
+#: tformselected.groupbox6.caption
+msgctxt "tformselected.groupbox6.caption"
+msgid "Points"
+msgstr ""
+
+#: tformselected.label1.caption
+msgctxt "tformselected.label1.caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.label10.caption
+msgctxt "tformselected.label10.caption"
+msgid "Layer"
+msgstr ""
+
+#: tformselected.label2.caption
+msgctxt "tformselected.label2.caption"
+msgid "Type"
+msgstr ""
+
+#: tformselected.label3.caption
+msgctxt "tformselected.label3.caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.label4.caption
+msgctxt "tformselected.label4.caption"
+msgid "Type"
+msgstr ""
+
+#: tformselected.label5.caption
+msgid "Align to"
+msgstr ""
+
+#: tformselected.label6.caption
+msgctxt "tformselected.label6.caption"
+msgid "Anchor"
+msgstr ""
+
+#: tformselected.label7.caption
+msgctxt "tformselected.label7.caption"
+msgid "Curve"
+msgstr ""
+
+#: tformselected.label8.caption
+msgctxt "tformselected.label8.caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.label9.caption
+msgctxt "tformselected.label9.caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvcurvepoints.columns[0].caption
+msgctxt "tformselected.lvcurvepoints.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvcurvepoints.columns[1].caption
+msgctxt "tformselected.lvcurvepoints.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvcurves.columns[0].caption
+msgctxt "tformselected.lvcurves.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvcurves.columns[1].caption
+msgctxt "tformselected.lvcurves.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvedgefaces.columns[0].caption
+msgctxt "tformselected.lvedgefaces.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvedgefaces.columns[1].caption
+msgctxt "tformselected.lvedgefaces.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvedges.columns[0].caption
+msgctxt "tformselected.lvedges.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvedges.columns[1].caption
+msgctxt "tformselected.lvedges.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvfacepoints.columns[0].caption
+msgctxt "tformselected.lvfacepoints.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvfacepoints.columns[1].caption
+msgctxt "tformselected.lvfacepoints.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvfaces.columns[0].caption
+msgctxt "tformselected.lvfaces.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvfaces.columns[1].caption
+msgctxt "tformselected.lvfaces.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvpointedges.columns[0].caption
+msgctxt "tformselected.lvpointedges.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvpointedges.columns[1].caption
+msgctxt "tformselected.lvpointedges.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvpointfaces.columns[0].caption
+msgctxt "tformselected.lvpointfaces.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvpointfaces.columns[1].caption
+msgctxt "tformselected.lvpointfaces.columns[1].caption"
+msgid "Name"
+msgstr ""
+
+#: tformselected.lvpointgroups.columns[0].caption
+msgctxt "tformselected.lvpointgroups.columns[0].caption"
+msgid "Id"
+msgstr ""
+
+#: tformselected.lvpointgroups.columns[1].caption
+msgctxt "tformselected.lvpointgroups.columns[1].caption"
+msgid "Name"
 msgstr ""
 
 #: tformselected.lvpoints.columns[0].caption
+msgctxt "tformselected.lvpoints.columns[0].caption"
 msgid "Id"
 msgstr ""
 
@@ -390,19 +587,26 @@ msgctxt "tformselected.lvpoints.columns[1].caption"
 msgid "Name"
 msgstr ""
 
+#: tformselected.miunselect.caption
+msgid "miUnselect"
+msgstr ""
+
 #: tformselected.tscurves.caption
 msgid "Curves"
 msgstr ""
 
 #: tformselected.tsedges.caption
+msgctxt "tformselected.tsedges.caption"
 msgid "Edges"
 msgstr ""
 
 #: tformselected.tsfaces.caption
+msgctxt "tformselected.tsfaces.caption"
 msgid "Faces"
 msgstr ""
 
 #: tformselected.tspoints.caption
+msgctxt "tformselected.tspoints.caption"
 msgid "Points"
 msgstr ""
 
@@ -737,6 +941,7 @@ msgid " "
 msgstr ""
 
 #: tfreecontrolpointform.checkboxanchorhard.caption
+msgctxt "tfreecontrolpointform.checkboxanchorhard.caption"
 msgid "Hard"
 msgstr ""
 
@@ -746,6 +951,7 @@ msgid "Corner"
 msgstr ""
 
 #: tfreecontrolpointform.groupboxanchorconstraint.caption
+msgctxt "tfreecontrolpointform.groupboxanchorconstraint.caption"
 msgid "Anchor point"
 msgstr ""
 
@@ -8628,6 +8834,7 @@ msgid "Cross curves"
 msgstr ""
 
 #: tmainform.curve1.caption
+msgctxt "tmainform.curve1.caption"
 msgid "Curve"
 msgstr ""
 
@@ -8700,6 +8907,7 @@ msgid "Remove an edge by merging the two connected faces into one new face."
 msgstr ""
 
 #: tmainform.edgecrease.caption
+msgctxt "tmainform.edgecrease.caption"
 msgid "Crease"
 msgstr ""
 
@@ -9024,6 +9232,7 @@ msgid "Undo memory : 0 kb."
 msgstr ""
 
 #: tmainform.layer1.caption
+msgctxt "tmainform.layer1.caption"
 msgid "Layer"
 msgstr ""
 
@@ -9167,6 +9376,7 @@ msgid "Project selected points on a straight line through the first and last sel
 msgstr ""
 
 #: tmainform.pointanchor.caption
+msgctxt "tmainform.pointanchor.caption"
 msgid "Anchor"
 msgstr ""
 

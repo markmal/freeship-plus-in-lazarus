@@ -442,10 +442,12 @@ end;
 procedure TFreeControlPointForm.OrdinateEditorChange(Sender: TObject);
 var P: T3DCoordinate;
     OrdEdit : TFloatSpinEdit;
+    Val: Double;
 begin
    if FActiveControlPointChanging then exit;
    if FPointEditorChanging then exit;
    OrdEdit := Sender as TFloatSpinEdit;
+   Val := OrdEdit.Value;
    if EnteredControl <> OrdEdit then exit;
    if not(OrdEdit.Focused and OrdEdit.Enabled and not OrdEdit.ReadOnly) then exit;
    FPointEditorChanging:=true;
@@ -531,10 +533,9 @@ begin
    if ActiveControlPoint<>nil then
    begin
       OrdEdit := Sender as TFloatSpinEdit;
-      TFreeShip(FreeShip).Surface.Selection_Add(ActiveControlPoint);
       // do something only if the value has really been changed:
-      P:=ActiveControlPoint.Coordinate;
       Val := OrdEdit.Value;
+      P:=ActiveControlPoint.Coordinate;
       if (OrdEdit = EditX) and (abs(P.X-Val) < 1e-5) then exit;
       if (OrdEdit = EditY) and (abs(P.Y-Val) < 1e-5) then exit;
       if (OrdEdit = EditZ) and (abs(P.Z-Val) < 1e-5) then exit;
@@ -570,6 +571,7 @@ begin
          }
          if saved then
          begin
+            TFreeShip(FreeShip).Surface.Selection_Add(ActiveControlPoint);
             TFreeShip(FreeShip).Built:=False;
             TFreeShip(FreeShip).FileChanged:=True;
             TFreeShip(FreeShip).Redraw;

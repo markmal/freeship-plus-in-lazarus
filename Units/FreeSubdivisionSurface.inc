@@ -4469,6 +4469,7 @@ begin
 
     end;
 
+    { // temprarily disable LastAveraging
     for i:=0 to ControlFaces.Count - 1 do
       for j:=0 to ControlFace[i].ChildCount - 1 do
         for k:=0 to ControlFace[i].Child[j].Points.Count - 1 do
@@ -4478,6 +4479,7 @@ begin
           C := Point.LastAveraging;
           Point.Coordinate := C;
           end;
+    }
 
     //if not self.CheckIntegrity
     //  then ShowMessage('After Subdivide Model integrity corruption');

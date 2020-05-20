@@ -4540,7 +4540,9 @@ begin
   for I := 0 to FPoints.Count - 1 do
   begin
     Point := FPoints[I];
+    Logger.Debug(format('bfr avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
     Point.FCoordinate := TmpPoints[I];
+    Logger.Debug(format('aft avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
   end;
 
   Setlength(TmpPoints, FFreeStandingPoints.Count);

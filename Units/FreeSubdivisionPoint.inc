@@ -437,7 +437,7 @@ begin
         if FFaces.Count <= 8 then
           a := AA[FFaces.Count]
         else
-          a := 5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / FFaces.Count));
+          a := 5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / FFaces.Count));
       end
       else if Nq = FFaces.Count then
       begin

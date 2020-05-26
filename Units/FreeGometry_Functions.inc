@@ -1404,7 +1404,7 @@ var
   yz, xyz: TFloatType;
   P1, P2: T3DCoordinate;
 begin
-  Fillchar(Result, SizeOf(Result), 0);
+  Result := ZERO;
   yz := sqrt(Endpoint.y * Endpoint.y + Endpoint.z * Endpoint.z);
   if (Endpoint.z = 0) and (Endpoint.y = 0) then
   begin

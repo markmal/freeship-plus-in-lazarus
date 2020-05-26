@@ -1,0 +1,1038 @@
+object FormSelected: TFormSelected
+  Left = 420
+  Height = 544
+  Top = 194
+  Width = 512
+  Caption = 'Selected'
+  ClientHeight = 544
+  ClientWidth = 512
+  FormStyle = fsStayOnTop
+  LCLVersion = '2.0.6.0'
+  object pTop: TPanel
+    Left = 0
+    Height = 36
+    Top = 0
+    Width = 512
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 36
+    ClientWidth = 512
+    TabOrder = 0
+    object bbClose: TBitBtn
+      Left = 454
+      Height = 36
+      Top = 0
+      Width = 58
+      Action = aClose
+      Align = alRight
+      AutoSize = True
+      ModalResult = 11
+      TabOrder = 0
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 508
+    Top = 36
+    Width = 512
+    ActivePage = tsPoints
+    Align = alClient
+    PopupMenu = PopupMenu1
+    TabIndex = 0
+    TabOrder = 1
+    object tsPoints: TTabSheet
+      Caption = 'Points'
+      ClientHeight = 464
+      ClientWidth = 506
+      object Splitter1: TSplitter
+        Left = 122
+        Height = 464
+        Top = 0
+        Width = 5
+      end
+      object pPointsProperties: TPanel
+        Left = 127
+        Height = 464
+        Top = 0
+        Width = 379
+        Align = alClient
+        BorderSpacing.InnerBorder = 10
+        BevelOuter = bvNone
+        ClientHeight = 464
+        ClientWidth = 379
+        TabOrder = 1
+        object Panel1: TPanel
+          Left = 0
+          Height = 40
+          Top = 10
+          Width = 379
+          Align = alTop
+          BorderSpacing.Top = 10
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 6
+          ChildSizing.Layout = cclTopToBottomThenLeftToRight
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 40
+          ClientWidth = 379
+          TabOrder = 0
+          object fsePointX: TFloatSpinEdit
+            Left = 10
+            Height = 36
+            Top = 4
+            Width = 100
+            Alignment = taRightJustify
+            Constraints.MinWidth = 100
+            DecimalPlaces = 4
+            MinValue = 0
+            ReadOnly = True
+            TabOrder = 0
+            Value = 0
+          end
+          object fsePointY: TFloatSpinEdit
+            Left = 116
+            Height = 36
+            Top = 4
+            Width = 100
+            Alignment = taRightJustify
+            Constraints.MinWidth = 100
+            DecimalPlaces = 4
+            MinValue = 0
+            ReadOnly = True
+            TabOrder = 1
+            Value = 0
+          end
+          object fsePointZ: TFloatSpinEdit
+            Left = 222
+            Height = 36
+            Top = 4
+            Width = 100
+            Alignment = taRightJustify
+            Constraints.MinWidth = 100
+            DecimalPlaces = 4
+            MinValue = 0
+            ReadOnly = True
+            TabOrder = 2
+            Value = 0
+          end
+        end
+        object Panel2: TPanel
+          Left = 0
+          Height = 88
+          Top = 136
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 88
+          ClientWidth = 379
+          TabOrder = 1
+          object Panel4: TPanel
+            Left = 10
+            Height = 40
+            Top = 50
+            Width = 359
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 2
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.Layout = cclTopToBottomThenLeftToRight
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 40
+            ClientWidth = 359
+            ParentFont = False
+            TabOrder = 0
+            object Label5: TLabel
+              Left = 10
+              Height = 36
+              Top = 2
+              Width = 95
+              AutoSize = False
+              Caption = 'Align to'
+              Font.Height = 16
+              Layout = tlCenter
+              ParentColor = False
+              ParentFont = False
+            end
+            object EditLinearConstraintA: TEdit
+              Left = 111
+              Height = 36
+              Top = 2
+              Width = 117
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 0
+            end
+            object EditLinearConstraintB: TEdit
+              Left = 234
+              Height = 36
+              Top = 2
+              Width = 115
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 1
+            end
+          end
+          object Panel6: TPanel
+            Left = 10
+            Height = 40
+            Top = 4
+            Width = 359
+            Align = alTop
+            AutoSize = True
+            BevelOuter = bvNone
+            ChildSizing.LeftRightSpacing = 10
+            ChildSizing.TopBottomSpacing = 2
+            ChildSizing.HorizontalSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.Layout = cclTopToBottomThenLeftToRight
+            ChildSizing.ControlsPerLine = 1
+            ClientHeight = 40
+            ClientWidth = 359
+            ParentFont = False
+            TabOrder = 1
+            object Label6: TLabel
+              Left = 10
+              Height = 36
+              Top = 2
+              Width = 96
+              AutoSize = False
+              Caption = 'Anchor'
+              Font.Height = 16
+              Layout = tlCenter
+              ParentColor = False
+              ParentFont = False
+            end
+            object EditAnchorPoint: TEdit
+              Left = 112
+              Height = 36
+              Top = 2
+              Width = 121
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 0
+            end
+            object Panel8: TPanel
+              Left = 239
+              Height = 36
+              Top = 2
+              Width = 110
+              BevelOuter = bvNone
+              ClientHeight = 36
+              ClientWidth = 110
+              ParentFont = False
+              TabOrder = 1
+              object CheckBoxAnchorHard: TCheckBox
+                Left = 0
+                Height = 36
+                Top = 0
+                Width = 66
+                Align = alLeft
+                BorderSpacing.Right = 4
+                Caption = 'Hard'
+                ParentFont = False
+                TabOrder = 0
+              end
+            end
+          end
+        end
+        object Panel3: TPanel
+          Left = 0
+          Height = 86
+          Top = 50
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 86
+          ClientWidth = 379
+          TabOrder = 2
+          object Label1: TLabel
+            Left = 10
+            Height = 36
+            Top = 4
+            Width = 45
+            AutoSize = False
+            Caption = 'Name'
+            Font.Height = 16
+            Layout = tlCenter
+            ParentColor = False
+            ParentFont = False
+          end
+          object ePointName: TEdit
+            Left = 59
+            Height = 36
+            Top = 4
+            Width = 200
+            Constraints.MinWidth = 200
+            ReadOnly = True
+            TabOrder = 0
+            Text = 'ePointName'
+          end
+          object Label2: TLabel
+            Left = 10
+            Height = 36
+            Top = 46
+            Width = 45
+            Caption = 'Type'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object ePointType: TEdit
+            Left = 59
+            Height = 36
+            Top = 46
+            Width = 200
+            ReadOnly = True
+            TabOrder = 1
+            Text = 'ePointType'
+          end
+        end
+        object GroupBox1: TGroupBox
+          Left = 0
+          Height = 130
+          Top = 336
+          Width = 176
+          Caption = 'Faces'
+          ClientHeight = 102
+          ClientWidth = 172
+          TabOrder = 3
+          object lvPointFaces: TListView
+            Left = 0
+            Height = 102
+            Top = 0
+            Width = 172
+            Align = alClient
+            Columns = <            
+              item
+                Caption = 'Id'
+              end            
+              item
+                Caption = 'Name'
+                Width = 183
+              end>
+            TabOrder = 0
+            ViewStyle = vsReport
+          end
+        end
+        object GroupBox2: TGroupBox
+          Left = 176
+          Height = 128
+          Top = 336
+          Width = 176
+          Caption = 'Edges'
+          ClientHeight = 100
+          ClientWidth = 172
+          TabOrder = 4
+          object lvPointEdges: TListView
+            Left = 0
+            Height = 100
+            Top = 0
+            Width = 172
+            Align = alClient
+            Columns = <            
+              item
+                Caption = 'Id'
+              end            
+              item
+                Caption = 'Name'
+                Width = 183
+              end>
+            TabOrder = 0
+            ViewStyle = vsReport
+          end
+        end
+        object GroupBox3: TGroupBox
+          Left = 0
+          Height = 104
+          Top = 216
+          Width = 176
+          Caption = 'Groups'
+          ClientHeight = 76
+          ClientWidth = 172
+          TabOrder = 5
+          object lvPointGroups: TListView
+            Left = 0
+            Height = 76
+            Top = 0
+            Width = 172
+            Align = alClient
+            Columns = <            
+              item
+                Caption = 'Id'
+              end            
+              item
+                Caption = 'Name'
+                Width = 183
+              end>
+            TabOrder = 0
+            ViewStyle = vsReport
+          end
+        end
+      end
+      object lvPoints: TListView
+        Left = 0
+        Height = 464
+        Top = 0
+        Width = 122
+        Align = alLeft
+        Columns = <        
+          item
+            Caption = 'Id'
+          end        
+          item
+            Caption = 'Name'
+            Width = 55
+          end>
+        PopupMenu = PopupMenu1
+        TabOrder = 2
+        ViewStyle = vsReport
+        OnSelectItem = lvPointsSelectItem
+      end
+    end
+    object tsEdges: TTabSheet
+      Caption = 'Edges'
+      ClientHeight = 464
+      ClientWidth = 506
+      object Splitter2: TSplitter
+        Left = 122
+        Height = 470
+        Top = 0
+        Width = 5
+      end
+      object pPointsProperties1: TPanel
+        Left = 127
+        Height = 470
+        Top = 0
+        Width = 379
+        Align = alClient
+        BorderSpacing.InnerBorder = 10
+        BevelOuter = bvNone
+        ClientHeight = 470
+        ClientWidth = 379
+        TabOrder = 1
+        object Panel7: TPanel
+          Left = 0
+          Height = 78
+          Top = 130
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 78
+          ClientWidth = 379
+          TabOrder = 0
+          object gbEdgePoints: TGroupBox
+            Left = 10
+            Height = 70
+            Top = 4
+            Width = 359
+            Align = alTop
+            AutoSize = True
+            Caption = 'Edge Points'
+            ClientHeight = 42
+            ClientWidth = 355
+            ParentFont = False
+            TabOrder = 0
+            object Panel9: TPanel
+              Left = 0
+              Height = 45
+              Top = 0
+              Width = 355
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              ChildSizing.LeftRightSpacing = 10
+              ChildSizing.TopBottomSpacing = 6
+              ChildSizing.HorizontalSpacing = 6
+              ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+              ChildSizing.Layout = cclTopToBottomThenLeftToRight
+              ChildSizing.ControlsPerLine = 1
+              ClientHeight = 41
+              ClientWidth = 351
+              ParentFont = False
+              TabOrder = 0
+              object eEdgePoinA: TEdit
+                Left = 10
+                Height = 33
+                Top = 6
+                Width = 165
+                ParentFont = False
+                ReadOnly = True
+                TabOrder = 0
+              end
+              object eEdgePoinB: TEdit
+                Left = 181
+                Height = 33
+                Top = 6
+                Width = 164
+                ParentFont = False
+                ReadOnly = True
+                TabOrder = 1
+              end
+            end
+          end
+        end
+        object Panel12: TPanel
+          Left = 0
+          Height = 80
+          Top = 10
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BorderSpacing.Top = 10
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 80
+          ClientWidth = 379
+          TabOrder = 1
+          object Label3: TLabel
+            Left = 10
+            Height = 33
+            Top = 4
+            Width = 45
+            AutoSize = False
+            Caption = 'Name'
+            Font.Height = 16
+            Layout = tlCenter
+            ParentColor = False
+            ParentFont = False
+          end
+          object eEdgeName: TEdit
+            Left = 59
+            Height = 33
+            Top = 4
+            Width = 200
+            Constraints.MinWidth = 200
+            ReadOnly = True
+            TabOrder = 0
+            Text = 'eEdgeName'
+          end
+          object Label4: TLabel
+            Left = 10
+            Height = 33
+            Top = 43
+            Width = 45
+            Caption = 'Type'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object eEdgeType: TEdit
+            Left = 59
+            Height = 33
+            Top = 43
+            Width = 200
+            ReadOnly = True
+            TabOrder = 1
+            Text = 'eEdgeType'
+          end
+        end
+        object Panel5: TPanel
+          Left = 0
+          Height = 40
+          Top = 90
+          Width = 379
+          Align = alTop
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 6
+          ChildSizing.Layout = cclTopToBottomThenLeftToRight
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 40
+          ClientWidth = 379
+          TabOrder = 2
+          object Panel10: TPanel
+            Left = 10
+            Height = 25
+            Top = 4
+            Width = 79
+            BevelOuter = bvNone
+            ClientHeight = 25
+            ClientWidth = 79
+            ParentFont = False
+            TabOrder = 0
+            object cbEdgeIsCrease: TCheckBox
+              Left = 0
+              Height = 25
+              Top = 0
+              Width = 75
+              Align = alLeft
+              BorderSpacing.Right = 4
+              Caption = 'Crease'
+              ParentFont = False
+              TabOrder = 0
+            end
+          end
+        end
+        object Panel11: TPanel
+          Left = 10
+          Height = 180
+          Top = 208
+          Width = 369
+          Align = alTop
+          BorderSpacing.Left = 10
+          BevelOuter = bvNone
+          ClientHeight = 180
+          ClientWidth = 369
+          TabOrder = 3
+          object GroupBox4: TGroupBox
+            Left = 0
+            Height = 180
+            Top = 0
+            Width = 176
+            Align = alLeft
+            Caption = 'Faces'
+            ClientHeight = 152
+            ClientWidth = 172
+            TabOrder = 0
+            object lvEdgeFaces: TListView
+              Left = 0
+              Height = 155
+              Top = 0
+              Width = 172
+              Align = alClient
+              Columns = <              
+                item
+                  Caption = 'Id'
+                end              
+                item
+                  Caption = 'Name'
+                  Width = 183
+                end>
+              TabOrder = 0
+              ViewStyle = vsReport
+            end
+          end
+        end
+        object Panel13: TPanel
+          Left = 0
+          Height = 41
+          Top = 388
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 41
+          ClientWidth = 379
+          TabOrder = 4
+          object Label7: TLabel
+            Left = 10
+            Height = 33
+            Top = 4
+            Width = 44
+            Caption = 'Curve'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object eEdgeCurve: TEdit
+            Left = 58
+            Height = 33
+            Top = 4
+            Width = 200
+            Constraints.MinWidth = 200
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+          end
+        end
+      end
+      object lvEdges: TListView
+        Left = 0
+        Height = 470
+        Top = 0
+        Width = 122
+        Align = alLeft
+        Columns = <        
+          item
+            Caption = 'Id'
+          end        
+          item
+            Caption = 'Name'
+            Width = 55
+          end>
+        PopupMenu = PopupMenu1
+        TabOrder = 2
+        ViewStyle = vsReport
+        OnSelectItem = lvEdgesSelectItem
+      end
+    end
+    object tsFaces: TTabSheet
+      Caption = 'Faces'
+      ClientHeight = 464
+      ClientWidth = 506
+      object Splitter3: TSplitter
+        Left = 122
+        Height = 470
+        Top = 0
+        Width = 5
+      end
+      object pPointsProperties2: TPanel
+        Left = 127
+        Height = 470
+        Top = 0
+        Width = 379
+        Align = alClient
+        BorderSpacing.InnerBorder = 10
+        BevelOuter = bvNone
+        ClientHeight = 470
+        ClientWidth = 379
+        TabOrder = 1
+        object Panel14: TPanel
+          Left = 0
+          Height = 1
+          Top = 251
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          TabOrder = 0
+        end
+        object Panel16: TPanel
+          Left = 0
+          Height = 41
+          Top = 10
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BorderSpacing.Top = 10
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 41
+          ClientWidth = 379
+          TabOrder = 1
+          object Label8: TLabel
+            Left = 10
+            Height = 33
+            Top = 4
+            Width = 45
+            AutoSize = False
+            Caption = 'Name'
+            Font.Height = 16
+            Layout = tlCenter
+            ParentColor = False
+            ParentFont = False
+          end
+          object eFaceName: TEdit
+            Left = 59
+            Height = 33
+            Top = 4
+            Width = 200
+            Constraints.MinWidth = 200
+            ReadOnly = True
+            TabOrder = 0
+            Text = 'eFaceName'
+          end
+        end
+        object Panel19: TPanel
+          Left = 10
+          Height = 200
+          Top = 51
+          Width = 369
+          Align = alTop
+          BorderSpacing.Left = 10
+          BevelOuter = bvNone
+          ClientHeight = 200
+          ClientWidth = 369
+          TabOrder = 2
+          object GroupBox5: TGroupBox
+            Left = 0
+            Height = 200
+            Top = 0
+            Width = 176
+            Align = alLeft
+            Caption = 'Points'
+            ClientHeight = 172
+            ClientWidth = 172
+            TabOrder = 0
+            object lvFacePoints: TListView
+              Left = 0
+              Height = 175
+              Top = 0
+              Width = 172
+              Align = alClient
+              AutoSort = False
+              Columns = <              
+                item
+                  Caption = 'Id'
+                end              
+                item
+                  Caption = 'Name'
+                  Width = 183
+                end>
+              TabOrder = 0
+              ViewStyle = vsReport
+            end
+          end
+        end
+        object Panel20: TPanel
+          Left = 0
+          Height = 41
+          Top = 252
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 41
+          ClientWidth = 379
+          TabOrder = 3
+          object Label10: TLabel
+            Left = 10
+            Height = 33
+            Top = 4
+            Width = 41
+            Caption = 'Layer'
+            Layout = tlCenter
+            ParentColor = False
+          end
+          object eFaceLayer: TEdit
+            Left = 55
+            Height = 33
+            Top = 4
+            Width = 200
+            Constraints.MinWidth = 200
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+          end
+        end
+      end
+      object lvFaces: TListView
+        Left = 0
+        Height = 470
+        Top = 0
+        Width = 122
+        Align = alLeft
+        Columns = <        
+          item
+            Caption = 'Id'
+          end        
+          item
+            Caption = 'Name'
+            Width = 55
+          end>
+        PopupMenu = PopupMenu1
+        TabOrder = 2
+        ViewStyle = vsReport
+        OnSelectItem = lvFacesSelectItem
+      end
+    end
+    object tsCurves: TTabSheet
+      Caption = 'Curves'
+      ClientHeight = 464
+      ClientWidth = 506
+      object Splitter4: TSplitter
+        Left = 122
+        Height = 470
+        Top = 0
+        Width = 5
+      end
+      object pPointsProperties3: TPanel
+        Left = 127
+        Height = 470
+        Top = 0
+        Width = 379
+        Align = alClient
+        BorderSpacing.InnerBorder = 10
+        BevelOuter = bvNone
+        ClientHeight = 470
+        ClientWidth = 379
+        TabOrder = 1
+        object Panel15: TPanel
+          Left = 0
+          Height = 1
+          Top = 351
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          TabOrder = 0
+        end
+        object Panel17: TPanel
+          Left = 0
+          Height = 41
+          Top = 10
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BorderSpacing.Top = 10
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 41
+          ClientWidth = 379
+          TabOrder = 1
+          object Label9: TLabel
+            Left = 10
+            Height = 33
+            Top = 4
+            Width = 45
+            AutoSize = False
+            Caption = 'Name'
+            Font.Height = 16
+            Layout = tlCenter
+            ParentColor = False
+            ParentFont = False
+          end
+          object eCurveName: TEdit
+            Left = 59
+            Height = 33
+            Top = 4
+            Width = 200
+            Constraints.MinWidth = 200
+            ReadOnly = True
+            TabOrder = 0
+            Text = 'eCurveName'
+          end
+        end
+        object Panel21: TPanel
+          Left = 10
+          Height = 300
+          Top = 51
+          Width = 369
+          Align = alTop
+          BorderSpacing.Left = 10
+          BevelOuter = bvNone
+          ClientHeight = 300
+          ClientWidth = 369
+          TabOrder = 2
+          object GroupBox6: TGroupBox
+            Left = 0
+            Height = 300
+            Top = 0
+            Width = 176
+            Align = alLeft
+            Caption = 'Points'
+            ClientHeight = 272
+            ClientWidth = 172
+            TabOrder = 0
+            object lvCurvePoints: TListView
+              Left = 0
+              Height = 275
+              Top = 0
+              Width = 172
+              Align = alClient
+              AutoSort = False
+              Columns = <              
+                item
+                  Caption = 'Id'
+                end              
+                item
+                  Caption = 'Name'
+                  Width = 183
+                end>
+              TabOrder = 0
+              ViewStyle = vsReport
+            end
+          end
+        end
+        object Panel22: TPanel
+          Left = 0
+          Height = 1
+          Top = 352
+          Width = 379
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.LeftRightSpacing = 10
+          ChildSizing.TopBottomSpacing = 4
+          ChildSizing.HorizontalSpacing = 4
+          ChildSizing.VerticalSpacing = 6
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          TabOrder = 3
+        end
+      end
+      object lvCurves: TListView
+        Left = 0
+        Height = 470
+        Top = 0
+        Width = 122
+        Align = alLeft
+        Columns = <        
+          item
+            Caption = 'Id'
+          end        
+          item
+            Caption = 'Name'
+            Width = 55
+          end>
+        TabOrder = 2
+        ViewStyle = vsReport
+        OnSelectItem = lvCurvesSelectItem
+      end
+    end
+  end
+  object ActionList1: TActionList
+    left = 424
+    object aClose: TAction
+      Caption = 'Close'
+      OnExecute = aCloseExecute
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    left = 48
+    top = 172
+    object miUnselect: TMenuItem
+      Caption = 'miUnselect'
+      OnClick = miUnselectClick
+    end
+  end
+end

@@ -327,18 +327,19 @@ begin
   end;
 end;{TFreeSubdivisionPoint.AddFace}
 
+
 function TFreeSubdivisionPoint.Averaging: T3DCoordinate;
-const
-  AA : array[1..8] of TFloatType =
-    (
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 1)),
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 2)),
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 3)),
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 4)),
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 5)),
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 6)),
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 7)),
-      5 / 3 - 8 / 3 * sqr(3 / 8 + 1 / 4 * cos(2 * Pi / 8))
+const  Pi = 3.1415926535897932385; // instead of system.py() func
+const  AA : array[1..8] of TFloatType =
+   (
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 1)),
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 2)),
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 3)),
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 4)),
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 5)),
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 6)),
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 7)),
+      5/3 - 8/3 * sqr(3/8 + 1/4 * cos(2 * Pi / 8))
     );
 var
   I, J, Nt, Nq, NoP: integer;

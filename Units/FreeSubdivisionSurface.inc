@@ -2485,9 +2485,12 @@ begin
       begin
         if (V1.NumberOfFaces = 0) and (V2.NumberOfFaces = 0) then
         begin
-          Edge := AddControlEdge(V1, V2);
-          if Edge <> nil then
-            edge.Crease := True;
+          /// Dont insert Edge, just check
+          ///Edge := AddControlEdge(V1, V2);
+          ///if Edge <> nil then
+          ///  edge.Crease := True;
+          Result := True;
+          break;
         end
         else
           for J := 1 to V1.NumberOfFaces do
@@ -4540,9 +4543,9 @@ begin
   for I := 0 to FPoints.Count - 1 do
   begin
     Point := FPoints[I];
-    Logger.Debug(format('bfr avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
+    //Logger.Debug(format('bfr avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
     Point.FCoordinate := TmpPoints[I];
-    Logger.Debug(format('aft avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
+    //Logger.Debug(format('aft avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
   end;
 
   Setlength(TmpPoints, FFreeStandingPoints.Count);

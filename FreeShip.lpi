@@ -32,7 +32,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="4"/>
-      <BuildNr Value="413"/>
+      <BuildNr Value="414"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -973,12 +973,11 @@
         <ResourceBaseClass Value="Form"/>
       </Unit125>
       <Unit126>
-        <Filename Value="Forms/freeselecteddlg.pas"/>
+        <Filename Value="Forms/FreeSelectedDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormSelected"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="FreeSelectedDlg"/>
       </Unit126>
       <Unit127>
         <Filename Value="Forms/methodlist.pas"/>

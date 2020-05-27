@@ -6,10 +6,11 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  CheckLst, StdCtrls,
+  CheckLst, StdCtrls, ComCtrls, Grids,
      FreeShipUnit,
      FreeTypes,
-     FreeGeometry;
+     FreeGeometry,
+     FasterList;
 
 type
 
@@ -18,19 +19,29 @@ type
   TFreeLayerVisibilityDialog = class(TForm)
     bbClose: TBitBtn;
     cbFreeStanding: TCheckBox;
-    clbLayers: TCheckListBox;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    Label1: TLabel;
+    Panel1: TPanel;
     pTools: TPanel;
+    sgLayers: TStringGrid;
     procedure bbCloseClick(Sender: TObject);
     procedure cbFreeStandingChange(Sender: TObject);
-    procedure clbLayersClickCheck(Sender: TObject);
-    procedure clbLayersItemClick(Sender: TObject; Index: integer);
+    procedure CheckBox1Click(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure sgLayersCheckboxToggled(sender: TObject; aCol, aRow: Integer;
+      aState: TCheckboxState);
+    procedure sgLayersGetCellHint(Sender: TObject; ACol, ARow: Integer;
+      var HintText: String);
   private
     FFreeShip : TFreeShip;
     FOnChange: TNotifyEvent;
-    procedure FillLayers;
+    Layers   : specialize TFasterList<TFreeSubdivisionLayer>;
     procedure UpdateMenu;
+
   public
+    procedure FillLayers;
     property FreeShip:TFreeShip read FFreeShip write FFreeShip;
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
   end;
@@ -62,31 +73,23 @@ begin
   end;
 end;
 
-procedure TFreeLayerVisibilityDialog.clbLayersClickCheck(Sender: TObject);
-var index : integer; chk : boolean;
-    Layer   : TFreeSubdivisionLayer;
+procedure TFreeLayerVisibilityDialog.CheckBox1Click(Sender: TObject);
+var i:integer; C: char; S: TCheckboxState;
 begin
-   index := clbLayers.ItemIndex;
-   chk := clbLayers.Checked[index];
-   Layer:=clbLayers.Items.Objects[index] as TFreeSubdivisionLayer;
-   if Layer=nil then exit;
-   if Layer.Visible <> chk then
-     begin
-     Layer.Visible:=chk;
-     FFreeShip.FileChanged:=true;
-     if FOnChange <> nil then
-       FOnChange(Self);
-     FFreeShip.Redraw;
-     end;
-   UpdateMenu;
+  if CheckBox1.Checked then C := '1' else C := '0';
+  if CheckBox1.Checked then S := cbChecked else S := cbUnChecked;
+  for i:=1 to sgLayers.RowCount-1 do
+    begin
+    sgLayers.Cells[0,i] := C;
+    sgLayersCheckboxToggled(Sender, 0, i, S);
+    end;
 end;
 
-procedure TFreeLayerVisibilityDialog.clbLayersItemClick(Sender: TObject;
-  Index: integer);
+procedure TFreeLayerVisibilityDialog.FormResize(Sender: TObject);
 begin
-
+  with sgLayers do
+    ColWidths[2] := ClientWidth - ColWidths[0] - ColWidths[1] - 2 * GridLineWidth;
 end;
-
 
 procedure TFreeLayerVisibilityDialog.FormShow(Sender: TObject);
 var Undo : TFreeUndoObject;
@@ -95,27 +98,70 @@ begin
   UpdateMenu;
 end;
 
-procedure TFreeLayerVisibilityDialog.FillLayers;
-var I,N     : Integer;
+procedure TFreeLayerVisibilityDialog.sgLayersCheckboxToggled(sender: TObject;
+  aCol, aRow: Integer; aState: TCheckboxState);
+var index : integer; chk : boolean;
     Layer   : TFreeSubdivisionLayer;
+begin
+  index := aRow-1;
+  chk := (aState = cbChecked);
+  //Layer := FFreeShip.Surface.Layer[index];
+  //Layer := FFreeShip.Surface.FindLayer(sgLayers.Cells[2,aRow]);
+  Layer := sgLayers.Objects[2,aRow] as TFreeSubdivisionLayer;
+  if Layer=nil then exit;
+  if Layer.Visible <> chk then
+   begin
+   Layer.Visible:=chk;
+   FFreeShip.FileChanged:=true;
+   if FOnChange <> nil then
+     FOnChange(Self);
+   FFreeShip.Redraw;
+   end;
+  UpdateMenu;
+end;
+
+procedure TFreeLayerVisibilityDialog.sgLayersGetCellHint(Sender: TObject; ACol,
+  ARow: Integer; var HintText: String);
+begin
+  if ARow = 0 then
+    begin
+    HintText := sgLayers.Columns[aCol].Title.Caption;
+    end
+  else
+    HintText := sgLayers.Cells[2,aRow];
+end;
+
+procedure TFreeLayerVisibilityDialog.FillLayers;
+var I,N,r     , sc: Integer;
+    Layer   : TFreeSubdivisionLayer;
+    C : char;
+    so: TSortOrder;
 begin
   cbFreeStanding.Checked := FreeShip.Visibility.ShowFreeObjects;
 
-  clbLayers.Items.BeginUpdate;
-  clbLayers.Clear;
+  sc := sgLayers.SortColumn;
+  so := sgLayers.SortOrder;
+
+  sgLayers.Clear;
+  sgLayers.BeginUpdate;
+  sgLayers.RowCount := FFreeShip.NumberOfLayers + 1;
   try
     for I:=0 to FFreeShip.NumberOfLayers - 1 do
     begin
       Layer:=FFreeShip.Layer[I];
-      N:=clbLayers.Items.AddObject(Layer.Name, Layer);
-      clbLayers.Checked[N]:=Layer.Visible;
+      if Layer.Visible then C := '1' else C := '0';
+      r := i + 1;
+      sgLayers.Cells[0,r] := C;
+      sgLayers.Cells[1,r] := '';
+      sgLayers.Cells[2,r] := Layer.Name;
+      sgLayers.Objects[2,r] := Layer;
     end;
   finally
-  clbLayers.Items.EndUpdate;
-  if clbLayers.Count>0 then
+  sgLayers.EndUpdate;
+  if sc > -1 then
     begin
-    clbLayers.ItemIndex:=0;
-    clbLayersItemClick(self,0);
+    sgLayers.SortOrder := so;
+    sgLayers.SortColRow(true,sc);
     end;
   end;
 end;

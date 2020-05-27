@@ -2118,6 +2118,10 @@ begin
       I:=LayerBox.Items.IndexOfObject(FreeShip.ActiveLayer);
       Layerbox.ItemIndex:=I;
    end;
+
+  if FreeLayerVisibilityDialog <> nil then
+     FreeLayerVisibilityDialog.FillLayers;
+
 end;{TMainForm.FreeShipChangeLayerData}
 
 procedure TMainForm.FreeShipChangeActiveLayer(Sender: TObject;Layer: TFreeSubdivisionLayer);

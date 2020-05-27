@@ -1987,6 +1987,7 @@ type
     // extracts all points that are used by the faces in the selectedfaces list
     procedure ExtractPointsFromSelection(SelectedPoints: TFasterListTFreeSubdivisionControlPoint;
       var LockedPoints: integer);
+    function FindLayer(AName:String): TFreeSubdivisionLayer;
     procedure ImportFEFFile(Strings: TStringList; var LineNr: integer);
     procedure ImportCoordGrid(Points: TFreeCoordinateGrid; Cols, Rows: integer;
       Layer: TFreesubdivisionLayer);

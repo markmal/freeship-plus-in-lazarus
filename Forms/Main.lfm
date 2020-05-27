@@ -1513,7 +1513,7 @@ object MainForm: TMainForm
     end
     object LayerVisibilityDialog: TAction
       Category = 'Layer'
-      Caption = 'Show Layer visibility dialog'
+      Caption = 'Layer visibility dialog'
       Hint = 'Show Layer visibility dialog'
       ImageIndex = 62
       OnExecute = LayerVisibilityDialogExecute

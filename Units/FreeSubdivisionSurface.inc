@@ -3582,6 +3582,19 @@ begin
 
 end;{TFreeSubdivisionSurface.ExtractPointsFromSelection}
 
+function TFreeSubdivisionSurface.FindLayer(AName: String
+  ): TFreeSubdivisionLayer;
+var i:integer;
+begin
+  result := nil;
+  for i:=0 to FLayers.Count-1 do
+    if FLayers[i].Name = AName then
+    begin
+      result := FLayers[i];
+      break;
+    end;
+end;
+
 procedure TFreeSubdivisionSurface.ImportFEFFile(Strings: TStringList; var LineNr: integer);
 var
   Str: string;

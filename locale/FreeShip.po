@@ -3210,6 +3210,26 @@ msgstr ""
 msgid "Free standing"
 msgstr ""
 
+#: tfreelayervisibilitydialog.label1.caption
+msgctxt "tfreelayervisibilitydialog.label1.caption"
+msgid "All"
+msgstr ""
+
+#: tfreelayervisibilitydialog.sglayers.columns[0].title.caption
+msgctxt "tfreelayervisibilitydialog.sglayers.columns[0].title.caption"
+msgid "Surface"
+msgstr ""
+
+#: tfreelayervisibilitydialog.sglayers.columns[1].title.caption
+msgctxt "tfreelayervisibilitydialog.sglayers.columns[1].title.caption"
+msgid "Control"
+msgstr ""
+
+#: tfreelayervisibilitydialog.sglayers.columns[2].title.caption
+msgctxt "tfreelayervisibilitydialog.sglayers.columns[2].title.caption"
+msgid "Layer"
+msgstr ""
+
 #: tfreelinesplanform.caption
 msgid "Linesplan."
 msgstr ""
@@ -4182,6 +4202,7 @@ msgid "Water temperature"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.label26.caption
+msgctxt "tfreeprojectsettingsdialog.label26.caption"
 msgid "C"
 msgstr ""
 
@@ -9266,7 +9287,7 @@ msgstr ""
 
 #: tmainform.layervisibilitydialog.caption
 msgctxt "tmainform.layervisibilitydialog.caption"
-msgid "Show Layer visibility dialog"
+msgid "Layer visibility dialog"
 msgstr ""
 
 #: tmainform.layervisibilitydialog.hint

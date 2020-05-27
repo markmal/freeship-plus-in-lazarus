@@ -1,31 +1,32 @@
 object FreeLayerVisibilityDialog: TFreeLayerVisibilityDialog
   Left = 531
-  Height = 240
+  Height = 675
   Top = 185
-  Width = 225
+  Width = 231
   Caption = 'Layer visibility'
-  ClientHeight = 240
-  ClientWidth = 225
+  ClientHeight = 675
+  ClientWidth = 231
   FormStyle = fsStayOnTop
+  OnResize = FormResize
   OnShow = FormShow
   ShowHint = True
   LCLVersion = '2.0.6.0'
   object pTools: TPanel
     Left = 0
-    Height = 40
+    Height = 44
     Top = 0
-    Width = 225
+    Width = 231
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 40
-    ClientWidth = 225
+    ClientHeight = 44
+    ClientWidth = 231
     TabOrder = 0
     object bbClose: TBitBtn
-      Left = 170
-      Height = 32
+      Left = 169
+      Height = 36
       Top = 4
-      Width = 51
+      Width = 58
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 4
@@ -35,27 +36,92 @@ object FreeLayerVisibilityDialog: TFreeLayerVisibilityDialog
       TabOrder = 0
     end
     object cbFreeStanding: TCheckBox
-      Left = 4
-      Height = 32
+      Left = 7
+      Height = 36
       Top = 4
-      Width = 127
+      Width = 145
       Align = alLeft
+      BorderSpacing.Left = 3
       BorderSpacing.Around = 4
       Caption = 'Free standing'
       OnChange = cbFreeStandingChange
       TabOrder = 1
     end
   end
-  object clbLayers: TCheckListBox
-    Left = 4
-    Height = 192
-    Top = 44
-    Width = 217
+  object sgLayers: TStringGrid
+    Left = 0
+    Height = 593
+    Top = 82
+    Width = 231
     Align = alClient
-    BorderSpacing.Around = 4
-    ItemHeight = 0
-    OnClickCheck = clbLayersClickCheck
+    ColCount = 3
+    ColumnClickSorts = True
+    Columns = <    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        Title.Caption = 'Surface'
+        Width = 32
+      end    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        Title.Caption = 'Control'
+        Width = 32
+      end    
+      item
+        ReadOnly = True
+        Title.Caption = 'Layer'
+        Width = 100
+      end>
+    FixedCols = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goRangeSelect, goEditing, goSmoothScroll, goCellHints]
+    ParentShowHint = False
+    RowCount = 2
+    ShowHint = True
     TabOrder = 1
-    TopIndex = -1
+    OnCheckboxToggled = sgLayersCheckboxToggled
+    OnGetCellHint = sgLayersGetCellHint
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 38
+    Top = 44
+    Width = 231
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 38
+    ClientWidth = 231
+    TabOrder = 2
+    object CheckBox1: TCheckBox
+      Left = 6
+      Height = 26
+      Top = 6
+      Width = 21
+      Align = alLeft
+      BorderSpacing.Around = 6
+      OnClick = CheckBox1Click
+      TabOrder = 0
+    end
+    object CheckBox2: TCheckBox
+      Left = 37
+      Height = 26
+      Top = 6
+      Width = 21
+      Align = alLeft
+      BorderSpacing.Left = 4
+      BorderSpacing.Around = 6
+      TabOrder = 1
+    end
+    object Label1: TLabel
+      Left = 68
+      Height = 26
+      Top = 6
+      Width = 22
+      Align = alLeft
+      BorderSpacing.Left = 4
+      BorderSpacing.Around = 6
+      Caption = 'All'
+      ParentColor = False
+    end
   end
 end

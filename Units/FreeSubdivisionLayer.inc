@@ -222,15 +222,25 @@ begin
   end;
 end;{TFreeSubdivisionLayer.FSetUseForIntersections}
 
-procedure TFreeSubdivisionLayer.FSetVisible(Val: boolean);
+procedure TFreeSubdivisionLayer.FSetSurfaceVisible(Val: boolean);
 begin
-  if Val <> FVisible then
+  if Val <> FSurfaceVisible then
   begin
-    FVisible := Val;
+    FSurfaceVisible := Val;
     if assigned(Owner.FOnChangeLayerData) then
       Owner.FOnChangeLayerData(self);
   end;
-end;{TFreeSubdivisionLayer.FSetVisible}
+end;{TFreeSubdivisionLayer.FSetSurfaceVisible}
+
+procedure TFreeSubdivisionLayer.FSetControlNetVisible(Val: boolean);
+begin
+  if Val <> FControlNetVisible then
+  begin
+    FControlNetVisible := Val;
+    if assigned(Owner.FOnChangeLayerData) then
+      Owner.FOnChangeLayerData(self);
+  end;
+end;{TFreeSubdivisionLayer.FSetSurfaceVisible}
 
 procedure TFreeSubdivisionLayer.AddControlFace(ControlFace: TFreeSubdivisionControlFace);
 begin
@@ -245,7 +255,8 @@ end;{TFreeSubdivisionLayer.AddPatch}
 procedure TFreeSubdivisionLayer.AssignProperties(Source: TFreeSubdivisionLayer);
 begin
   FColor := Source.FColor;
-  FVisible := True;
+  FSurfaceVisible := True;
+  FControlNetVisible := True;
   FDescription := '';
   FSymmetric := Source.FSymmetric;
   FDevelopable := Source.FDevelopable;
@@ -803,7 +814,8 @@ begin
   FLayerID := -1;
   FPatches.Clear;
   FColor := Owner.LayerColor;
-  FVisible := True;
+  FSurfaceVisible := True;
+  FControlNetVisible := True;
   FDescription := '';
   FSymmetric := True;
   FDevelopable := False;
@@ -889,9 +901,9 @@ var
   P: TFreeSubdivisionControlPoint;
   G: TFreeSubdivisionControlPointGroup;
 begin
-  if Visible and (Count > 0) then
+  if SurfaceVisible and (Count > 0) then
   begin
-    if Viewport.ViewportMode <> vmWireframe then
+    if (Viewport.ViewportMode <> vmWireframe) then
     begin
       if Viewport.ViewportMode = vmShadeGauss then
         for i := 0 to Count-1 do
@@ -900,7 +912,7 @@ begin
       else
         for i := 0 to Count-1 do
           if items[i] is TFreeSubdivisionControlFace then
-          Items[i].Draw(Viewport)
+            Items[i].Draw(Viewport)
     end
     else
     begin
@@ -951,7 +963,7 @@ var
   Face: TFreeSubdivisionControlface;
   P: T3DCoordinate;
 begin
-  if Visible then
+  if SurfaceVisible then
     for I := 1 to Count do
     begin
       Face := Items[I - 1];
@@ -978,7 +990,7 @@ begin
   if FLayerID > Owner.FLastusedLayerID then
     Owner.FLastusedLayerID := FLayerID;
   Source.LoadTColor(FColor);
-  Source.LoadBoolean(FVisible);
+  Source.LoadBoolean(FSurfaceVisible);
   Source.LoadBoolean(FSymmetric);
   Source.LoadBoolean(FDevelopable);
   FMaterialDensity := 0.0;
@@ -1022,8 +1034,8 @@ begin
     Owner.FLastusedLayerID := FLayerID;
   // read color
   FColor := ReadIntFromStr(LineNr, Str);
-  // read visible
-  FVisible := ReadBoolFromStr(LineNr, Str);
+  // read SurfaceVisible
+  FSurfaceVisible := ReadBoolFromStr(LineNr, Str);
   FSymmetric := ReadBoolFromStr(LineNr, Str);
   // read developability
   if Str <> '' then
@@ -1074,7 +1086,7 @@ var
   DXFName: string;
 
 begin
-  if Visible then
+  if SurfaceVisible then
   begin
     Layers := TFasterListTFreeSubdivisionLayer.Create;
     Layers.Add(self);
@@ -1169,7 +1181,7 @@ begin
   Destination.Add(FDescription);
   Destination.Add(FLayerID);
   Destination.Add(FColor);
-  Destination.Add(FVisible);
+  Destination.Add(FSurfaceVisible);
   Destination.Add(FSymmetric);
   Destination.Add(FDevelopable);
   if Destination.Version >= fv180 then
@@ -1198,7 +1210,7 @@ var
 begin
   Strings.Add(FDescription);
   Str := IntToStr(FLayerID) + #32 + IntToStr(FColor) + #32 +
-    BoolToStr(FVisible) + #32 + BoolToStr(FSymmetric) + #32 +
+    BoolToStr(FSurfaceVisible) + #32 + BoolToStr(FSymmetric) + #32 +
     BoolToStr(FDevelopable);
   Str := Str + #32 + BoolToStr(FUseForIntersections) + #32 + BoolToStr(FUseInHydrostatics);
   Strings.Add(Str);

@@ -73,7 +73,7 @@ end;{TFreeSubdivisionControlFace.FGetIndex}
 
 function TFreeSubdivisionControlFace.FGetVisible: boolean;
 begin
-  Result := Layer.Visible or Selected;
+  Result := Layer.SurfaceVisible or Selected;
 end;{TFreeSubdivisionControlFace.FGetVisible}
 
 procedure TFreeSubdivisionControlFace.FSetLayer(Val: TFreeSubdivisionLayer);

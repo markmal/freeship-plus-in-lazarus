@@ -968,7 +968,7 @@ begin
     for I := 1 to Layers.Count do
     begin
       Layer := Layers[I - 1];
-      if Layer.Visible then
+      if Layer.SurfaceVisible then
       begin
         ToDoList.Capacity := ToDoList.Count + Layer.Count;
         ToDoList.AddList(Layer.FPatches);
@@ -2521,7 +2521,7 @@ begin
     Strings.Add(Layer[I - 1].Name);
     Strings.Add(IntToStr(Layer[I - 1].LayerID) + #32 +
       IntToStr(Layer[I - 1].Color) + #32 +
-      BoolToStr(Layer[I - 1].Visible) + #32 +
+      BoolToStr(Layer[I - 1].SurfaceVisible) + #32 +
       BoolToStr(Layer[I - 1].Developable) + #32 +
       BoolToStr(Layer[I - 1].Symmetric) + #32 +
       BoolToStr(Layer[I - 1].FUseForIntersections) + #32 +
@@ -2589,7 +2589,7 @@ begin
     for I := 1 to NumberOfControlFaces do
     begin
       CFace := ControlFace[I - 1];
-      if CFace.Layer.Visible then
+      if CFace.Layer.SurfaceVisible then
       begin
         for J := 1 to CFace.ChildCount do
         begin
@@ -2662,7 +2662,7 @@ begin
     for I := 1 to NumberOfControlFaces do
     begin
       CFace := ControlFace[I - 1];
-      if CFace.Layer.Visible then
+      if CFace.Layer.SurfaceVisible then
       begin
         // portside
         Str := 'f';
@@ -3633,7 +3633,7 @@ begin
     if Layer.FLayerID > FLastusedLayerID then
       FLastusedLayerID := Layer.FLayerID;
     Layer.FColor := ReadIntFromstr(LineNr, Str);
-    Layer.FVisible := ReadBoolFromStr(LineNr, Str);
+    Layer.FSurfaceVisible := ReadBoolFromStr(LineNr, Str);
     Layer.FDevelopable := ReadBoolFromStr(LineNr, Str);
     Layer.FSymmetric := ReadBoolFromStr(LineNr, Str);
     Layer.FSymmetric := True;

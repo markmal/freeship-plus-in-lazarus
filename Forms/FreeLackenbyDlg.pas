@@ -833,7 +833,7 @@ begin
     if Layer.Count > 0 then
     begin
       Index := LayerBox.Items.AddObject(Layer.Name, Layer);
-      Layerbox.Checked[index] := Layer.Visible;
+      Layerbox.Checked[index] := Layer.SurfaceVisible;
     end;
   end;
 

@@ -52,19 +52,17 @@ begin
   Result := False;
   if Surface.ShowControlNet then
   begin
-    Result := Surface.ShowFreeObjects; // show points without faces/layers
+    //Result := Surface.ShowFreeObjects; // show points without faces/layers
     for i := 0 to FFaces.Count-1 do
       if FFaces[I] is TFreeSubdivisionControlFace then
       begin
         CFace := TFreeSubdivisionControlFace(FFaces[I]);
         if CFace.Layer <> nil then
-        begin
-          if CFace.Layer.Visible then
+          if CFace.Layer.ControlNetVisible then
           begin
             Result := True;
             exit;
           end;
-        end;
       end;
   end;
   // Finally check if the point is selected.

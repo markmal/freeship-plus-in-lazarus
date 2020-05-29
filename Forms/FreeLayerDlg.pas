@@ -65,6 +65,7 @@ type
     CheckBox4: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
+    cbControlNetVisible: TCheckBox;
     Edit1: TEdit;
     Edit2: TFloatSpinEdit;
     Edit3: TFloatSpinEdit;
@@ -114,6 +115,7 @@ type
     MoveUp: TToolButton;
     MoveDown: TToolButton;
     _ToolButton4: TToolButton;
+    procedure cbControlNetVisibleClick(Sender: TObject);
     procedure LayerBoxClick(Sender: TObject);
     procedure LayerBoxClickCheck(Sender: TObject);
     procedure LayerBoxDblClick(Sender: TObject);
@@ -235,7 +237,7 @@ begin
       begin
          Layer:=FFreeShip.Layer[I-1];
          N:=Layerbox.Items.AddObject(Layer.Name,Layer);
-         LayerBox.Checked[N]:=Layer.Visible;
+         LayerBox.Checked[N]:=Layer.SurfaceVisible;
       end;
    finally
       LayerBox.Items.EndUpdate;
@@ -262,9 +264,9 @@ begin
    chk := Layerbox.Checked[index];
    Layer:=Layerbox.Items.Objects[index] as TFreeSubdivisionLayer;
    if Layer=nil then exit;
-   if Layer.Visible <> chk then
+   if Layer.SurfaceVisible <> chk then
      begin
-     Layer.Visible:=chk;
+     Layer.SurfaceVisible:=chk;
      FFreeShip.FileChanged:=true;
      FFreeShip.Redraw;
      end;
@@ -276,6 +278,23 @@ var Index: integer;
 begin
   index := Layerbox.ItemIndex;
   LayerBoxItemClick(Sender, Index);
+end;
+
+procedure TFreeLayerDialog.cbControlNetVisibleClick(Sender: TObject);
+var index : integer; chk : boolean;
+    Layer   : TFreeSubdivisionLayer;
+begin
+   index := Layerbox.ItemIndex;
+   chk := cbControlNetVisible.Checked;
+   Layer:=Layerbox.Items.Objects[index] as TFreeSubdivisionLayer;
+   if Layer=nil then exit;
+   if Layer.ControlNetVisible <> chk then
+     begin
+     Layer.ControlNetVisible:=chk;
+     FFreeShip.FileChanged:=true;
+     FFreeShip.Redraw;
+     end;
+   UpdateMenu;
 end;
 
 procedure TFreeLayerDialog.SelectLayer(Index: integer);
@@ -294,8 +313,9 @@ begin
   Checkbox1.Checked:=Layer.Developable;
   Checkbox2.Checked:=Layer.UseForIntersections;
   Checkbox3.Checked:=Layer.UseInHydrostatics;
-  Checkbox4.Checked:=layer.ShowInLinesplan;
-  Checkbox5.Checked:=layer.Symmetric;
+  Checkbox4.Checked:=Layer.ShowInLinesplan;
+  Checkbox5.Checked:=Layer.Symmetric;
+  cbControlNetVisible.Checked := Layer.ControlNetVisible;
   ////////         Checkbox5.Enabled:=not Layer.UseInHydrostatics;
   Checkbox6.Enabled:=false;
   if Checkbox6.Checked then
@@ -416,7 +436,7 @@ begin
    NewLayer:=FFreeShip.Edit.Layer_New;
 // now update the dialog box. The new layer is the active layer (not the selected layer)
    if FFreeShip.ActiveLayer<>NewLayer then FFreeShip.ActiveLayer:=NewLayer;
-   LayVis:=NewLayer.Visible;
+   LayVis:=NewLayer.SurfaceVisible;
    N:=Layerbox.Items.AddObject(NewLayer.Name,NewLayer);
    Layerbox.Checked[N] := LayVis;
    Layerbox.ItemIndex:=N;

@@ -74,25 +74,23 @@ begin
   Result := False;
   if Surface.ShowControlNet then
   begin
-    Result := Surface.ShowFreeObjects; // show edges without faces/layers
+    //Result := Surface.ShowFreeObjects; // show edges without faces/layers
     for I := 0 to FFaces.Count-1 do
       if Face[I] is TFreeSubdivisionControlFace then
       begin
         CFace := FFaces[I] as TFreeSubdivisionControlFace;
         if CFace.Layer <> nil then
-        begin
-          if CFace.Layer.Visible then
+          if CFace.Layer.ControlNetVisible then
           begin
             Result := True;
             exit;
           end;
-        end;
       end;
   end;
   // Finally check if the edge is selected.
   // Selected edges must be visible at all times
   if not Result then
-    Result := Selected or Surface.ShowFreeObjects;
+    Result := Selected or (Surface.ShowFreeObjects and (FFaces.Count=0));
   if (not Result) and (FCurve <> nil) then
     Result := FCurve.Selected;
 end;{TFreesubdivisionControlEdge.FGetVisible}

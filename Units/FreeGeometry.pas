@@ -1196,12 +1196,12 @@ type
   private
     FOwner: TFreeSubdivisionSurface;
     // Pointer to the subdivisionsurface
-    FLayerID: integer;
-    // Unique identification number for internal references
-    FColor: TColor;
-    // Color of this layer
-    FVisible: boolean;
-    // Visibility switch
+    FLayerID: integer; // Unique identification number for internal references
+    FColor: TColor;  // Color of this layer
+
+    FSurfaceVisible: boolean;  // Visibility switch for subdivided mesh/surface
+    FControlNetVisible: boolean; // Visibility switch for Control Net
+
     FDescription: string;
     // Description of the layer, used as user identification
     FSymmetric: boolean;
@@ -1234,7 +1234,8 @@ type
     procedure FSetShowInLinesplan(val: boolean);
     procedure FSetUseInHydrostatics(val: boolean);
     procedure FSetUseForIntersections(val: boolean);
-    procedure FSetVisible(Val: boolean);
+    procedure FSetSurfaceVisible(Val: boolean);
+    procedure FSetControlNetVisible(Val: boolean);
     procedure FSetSymmetric(Val: boolean);
   public
     procedure AddControlFace(
@@ -1304,8 +1305,10 @@ type
       read FUseInHydrostatics write FSetUseInHydrostatics;
     property UseForIntersections: boolean
       read FUseForIntersections write FSetUseForIntersections;
-    property Visible: boolean
-      read FVisible write FSetVisible;
+    property SurfaceVisible: boolean
+      read FSurfaceVisible write FSetSurfaceVisible;
+    property ControlNetVisible: boolean
+      read FControlNetVisible write FSetControlNetVisible;
   end;
 
   {--------------------------------------------------------------------------------------------------}

@@ -907,7 +907,7 @@ var
 begin
 
   for I := 1 to Owner.NumberOfLayers do
-    if Owner.Layer[I - 1].Visible then
+    if Owner.Layer[I - 1].SurfaceVisible then
       for J := 1 to Owner.Layer[I - 1].Count do
         Owner.Layer[I - 1].Items[J - 1].Selected := True;
   for I := 1 to Owner.Surface.NumberOfControlPoints do

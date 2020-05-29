@@ -3030,6 +3030,10 @@ msgstr ""
 msgid "Layer properties."
 msgstr ""
 
+#: tfreelayerdialog.cbcontrolnetvisible.caption
+msgid "Control Net Visible"
+msgstr ""
+
 #: tfreelayerdialog.checkbox1.caption
 msgid "Developable"
 msgstr ""

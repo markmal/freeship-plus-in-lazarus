@@ -955,7 +955,7 @@ begin
   if Points.Count = 0 then
   begin
     for I := 1 to FreeShip.NumberOfLayers do
-      if FreeShip.Layer[I - 1].Visible then
+      if FreeShip.Layer[I - 1].SurfaceVisible then
         for J := 1 to FreeShip.Surface.NumberOfControlPoints do
           if FreeShip.Surface.ControlPoint[J - 1].Visible then
             FreeShip.Surface.ControlPoint[J - 1].Selected := True;
@@ -3350,7 +3350,7 @@ begin
       // Build color table
       Layers := TFasterListTFreeSubdivisionLayer.Create;
       for I := 0 to FreeShip.NumberOfLayers - 1 do
-        if (FreeShip.Layer[I].Visible) and (FreeShip.Layer[I].Count > 0) then
+        if (FreeShip.Layer[I].SurfaceVisible) and (FreeShip.Layer[I].Count > 0) then
           Layers.Add(FreeShip.Layer[I]);
       Layers.Sort;
       Setlength(ColorIndices, Layers.Count);
@@ -4060,7 +4060,7 @@ begin
       for I := 1 to FreeShip.Surface.NumberOfLayers do
       begin
         Layer := FreeShip.Surface.Layer[I - 1];
-        if Layer.Visible then
+        if Layer.SurfaceVisible then
           for J := 1 to Layer.Count do
           begin
             Face := Layer.Items[J - 1];
@@ -6711,7 +6711,7 @@ begin
       for I := 1 to FreeShip.NumberOfLayers do
       begin
         Layer := FreeShip.Layer[I - 1];
-        if Layer.Visible then
+        if Layer.SurfaceVisible then
         begin
           ToDoList.Capacity := ToDoList.Count + Layer.Count;
           for J := 1 to Layer.Count do
@@ -9809,7 +9809,7 @@ var
   I, J: integer;
 begin
   for I := 1 to FreeShip.NumberOfLayers do
-    if FreeShip.Layer[I - 1].Visible then
+    if FreeShip.Layer[I - 1].SurfaceVisible then
       for J := 1 to FreeShip.Layer[I - 1].Count do
         FreeShip.Layer[I - 1].Items[J - 1].Selected := True;
   for I := 1 to FreeShip.Surface.NumberOfControlEdges do
@@ -9836,7 +9836,7 @@ var
   I, J: integer;
 begin
   {for I := 1 to FreeShip.NumberOfLayers do
-    if FreeShip.Layer[I - 1].Visible then
+    if FreeShip.Layer[I - 1].SurfaceVisible then
       for J := 1 to FreeShip.Layer[I - 1].Count do
         FreeShip.Layer[I - 1].Items[J - 1].Selected := True;}
   for I := 1 to FreeShip.Surface.NumberOfControlPoints do

@@ -109,14 +109,25 @@ begin
   //Layer := FFreeShip.Surface.FindLayer(sgLayers.Cells[2,aRow]);
   Layer := sgLayers.Objects[2,aRow] as TFreeSubdivisionLayer;
   if Layer=nil then exit;
-  if Layer.Visible <> chk then
+
+  if (aCol=0)and(Layer.SurfaceVisible <> chk) then
    begin
-   Layer.Visible:=chk;
+   Layer.SurfaceVisible:=chk;
    FFreeShip.FileChanged:=true;
    if FOnChange <> nil then
      FOnChange(Self);
    FFreeShip.Redraw;
    end;
+
+  if (aCol=1)and(Layer.ControlNetVisible <> chk) then
+   begin
+   Layer.ControlNetVisible:=chk;
+   FFreeShip.FileChanged:=true;
+   if FOnChange <> nil then
+     FOnChange(Self);
+   FFreeShip.Redraw;
+   end;
+
   UpdateMenu;
 end;
 
@@ -134,7 +145,7 @@ end;
 procedure TFreeLayerVisibilityDialog.FillLayers;
 var I,N,r     , sc: Integer;
     Layer   : TFreeSubdivisionLayer;
-    C : char;
+    S,C : char;
     so: TSortOrder;
 begin
   cbFreeStanding.Checked := FreeShip.Visibility.ShowFreeObjects;
@@ -149,10 +160,11 @@ begin
     for I:=0 to FFreeShip.NumberOfLayers - 1 do
     begin
       Layer:=FFreeShip.Layer[I];
-      if Layer.Visible then C := '1' else C := '0';
+      if Layer.SurfaceVisible then S := '1' else S := '0';
+      if Layer.ControlNetVisible then C := '1' else C := '0';
       r := i + 1;
-      sgLayers.Cells[0,r] := C;
-      sgLayers.Cells[1,r] := '';
+      sgLayers.Cells[0,r] := S;
+      sgLayers.Cells[1,r] := C;
       sgLayers.Cells[2,r] := Layer.Name;
       sgLayers.Objects[2,r] := Layer;
     end;

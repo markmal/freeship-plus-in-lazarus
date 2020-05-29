@@ -28,6 +28,7 @@ type
     procedure bbCloseClick(Sender: TObject);
     procedure cbFreeStandingChange(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
+    procedure CheckBox2Click(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure sgLayersCheckboxToggled(sender: TObject; aCol, aRow: Integer;
@@ -82,6 +83,18 @@ begin
     begin
     sgLayers.Cells[0,i] := C;
     sgLayersCheckboxToggled(Sender, 0, i, S);
+    end;
+end;
+
+procedure TFreeLayerVisibilityDialog.CheckBox2Click(Sender: TObject);
+var i:integer; C: char; S: TCheckboxState;
+begin
+  if CheckBox2.Checked then C := '1' else C := '0';
+  if CheckBox2.Checked then S := cbChecked else S := cbUnChecked;
+  for i:=1 to sgLayers.RowCount-1 do
+    begin
+    sgLayers.Cells[1,i] := C;
+    sgLayersCheckboxToggled(Sender, 1, i, S);
     end;
 end;
 

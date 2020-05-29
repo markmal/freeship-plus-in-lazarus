@@ -231,11 +231,11 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS /home/mark/Documents/FreeShip/Ships/CAT_hul.fbm"/>
         <WorkingDirectory Value="/usr/bin"/>
       </local>
       <FormatVersion Value="2"/>
-      <Modes Count="5">
+      <Modes Count="6">
         <Mode0 Name="default">
           <local>
             <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
@@ -265,6 +265,12 @@
             <CommandLineParams Value="--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
           </local>
         </Mode4>
+        <Mode5 Name="with file">
+          <local>
+            <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS /home/mark/Documents/FreeShip/Ships/CAT_hul.fbm"/>
+            <WorkingDirectory Value="/usr/bin"/>
+          </local>
+        </Mode5>
       </Modes>
     </RunParams>
     <RequiredPackages Count="4">

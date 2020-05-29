@@ -1007,6 +1007,10 @@ begin
      begin
         FOpenHullWindows;
         FreeShip.Edit.File_Load(FFileName);
+        FreeShip.Surface.Rebuild;
+        Application.ProcessMessages;
+        FreeShip.ZoomFitAllViewports;
+        //FreeShip.Draw;
      end
    else
    begin

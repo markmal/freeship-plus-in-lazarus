@@ -110,6 +110,7 @@ object FreeLayerVisibilityDialog: TFreeLayerVisibilityDialog
       Align = alLeft
       BorderSpacing.Left = 4
       BorderSpacing.Around = 6
+      OnClick = CheckBox2Click
       TabOrder = 1
     end
     object Label1: TLabel

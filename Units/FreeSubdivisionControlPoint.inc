@@ -166,7 +166,7 @@ var
   Face: TFreeSubdivisionControlFace;
   Edge1: TFreesubdivisionControlEdge;
   Edge2: TFreesubdivisionControlEdge;
-  Edges: TFasterListTFreeSubdivisionControlEdge;
+  Edges: TFasterListTFreeSubdivisionEdge;
   Points: TFasterListTFreeSubdivisionPoint;
   SortedPointLists: TFasterListTFreeSubdivisionFace; // using Face class as list of Points
   sPointList:TFreeSubdivisionFace;
@@ -251,7 +251,7 @@ begin
   else
   begin
     Checklist := TFasterListTFreeSubdivisionControlPoint.Create;
-    Edges := TFasterListTFreeSubdivisionControlEdge.Create;
+    Edges := TFasterListTFreeSubdivisionEdge.Create;
     for i := 1 to NumberOfEdges do
       if Edge[I - 1].StartPoint = self then
         CheckList.Add(Edge[I - 1].EndPoint as TFreeSubdivisionControlPoint)
@@ -278,7 +278,7 @@ begin
     if Edges.Count > 2 then
     begin
       SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
-      FSurface.IsolateEdges(TFasterList(Edges), SortedPointLists);
+      FSurface.IsolateEdges(Edges, SortedPointLists);
       Edges.Destroy;
       for i := 0 to SortedPointLists.Count-1 do
       begin

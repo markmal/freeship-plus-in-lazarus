@@ -258,6 +258,16 @@ msgstr ""
 msgid "Current Version"
 msgstr ""
 
+#: freeupdatedlg.rsknownsslexception
+msgid ""
+"Exception class: %s Message: %s\n"
+"Possible libssl v1.1 compatibility issue.\n"
+"libssl v1.1 is found.\n"
+"FreeShip is currently compatible with libssl v1.0 only.\n"
+"You have to check for updates traditional way at Download page.\n"
+"Click link below.\n"
+msgstr ""
+
 #: main.rsexitconfirmation
 msgid ""
 "The current model has been changed\n"
@@ -2519,6 +2529,74 @@ msgstr ""
 msgid "Delete all stations."
 msgstr ""
 
+#: tfreeintersectiondialog.deleteselected.caption
+msgid "DeleteSelected"
+msgstr ""
+
+#: tfreeintersectiondialog.deleteselected.hint
+msgid "Delete selected"
+msgstr ""
+
+#: tfreeintersectiondialog.sgbuttocks.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgbuttocks.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgbuttocks.columns[1].title.caption
+msgctxt "tfreeintersectiondialog.sgbuttocks.columns[1].title.caption"
+msgid "Distance"
+msgstr ""
+
+#: tfreeintersectiondialog.sgbuttocks.columns[2].title.caption
+msgctxt "tfreeintersectiondialog.sgbuttocks.columns[2].title.caption"
+msgid "Curvature"
+msgstr ""
+
+#: tfreeintersectiondialog.sgdiagonals.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgdiagonals.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgdiagonals.columns[1].title.caption
+msgctxt "tfreeintersectiondialog.sgdiagonals.columns[1].title.caption"
+msgid "Distance"
+msgstr ""
+
+#: tfreeintersectiondialog.sgdiagonals.columns[2].title.caption
+msgctxt "tfreeintersectiondialog.sgdiagonals.columns[2].title.caption"
+msgid "Curvature"
+msgstr ""
+
+#: tfreeintersectiondialog.sgstations.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgstations.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgstations.columns[1].title.caption
+msgctxt "tfreeintersectiondialog.sgstations.columns[1].title.caption"
+msgid "Distance"
+msgstr ""
+
+#: tfreeintersectiondialog.sgstations.columns[2].title.caption
+msgctxt "tfreeintersectiondialog.sgstations.columns[2].title.caption"
+msgid "Curvature"
+msgstr ""
+
+#: tfreeintersectiondialog.sgwaterlines.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgwaterlines.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgwaterlines.columns[1].title.caption
+msgctxt "tfreeintersectiondialog.sgwaterlines.columns[1].title.caption"
+msgid "Distance"
+msgstr ""
+
+#: tfreeintersectiondialog.sgwaterlines.columns[2].title.caption
+msgctxt "tfreeintersectiondialog.sgwaterlines.columns[2].title.caption"
+msgid "Curvature"
+msgstr ""
+
 #: tfreeintersectiondialog.showbuttocks.caption
 msgctxt "tfreeintersectiondialog.showbuttocks.caption"
 msgid "Buttocks"
@@ -2565,8 +2643,28 @@ msgctxt "tfreeintersectiondialog.toolbutton14.caption"
 msgid "ToolButton14"
 msgstr ""
 
-#: tfreeintersectiondialog.toolbutton21.caption
-msgid "ToolButton21"
+#: tfreeintersectiondialog.toolbutton8.caption
+msgid "ToolButton8"
+msgstr ""
+
+#: tfreeintersectiondialog.tsbuttocks.hint
+msgctxt "tfreeintersectiondialog.tsbuttocks.hint"
+msgid "Buttocks"
+msgstr ""
+
+#: tfreeintersectiondialog.tsdiagonals.hint
+msgctxt "tfreeintersectiondialog.tsdiagonals.hint"
+msgid "Diagonals"
+msgstr ""
+
+#: tfreeintersectiondialog.tsstations.hint
+msgctxt "tfreeintersectiondialog.tsstations.hint"
+msgid "Stations"
+msgstr ""
+
+#: tfreeintersectiondialog.tswaterlines.hint
+msgctxt "tfreeintersectiondialog.tswaterlines.hint"
+msgid "Waterlines"
 msgstr ""
 
 #: tfreeintersectlayerdialog.bitbtn1.caption
@@ -9641,6 +9739,7 @@ msgid "Show control net."
 msgstr ""
 
 #: tmainform.showcurvature.caption
+msgctxt "tmainform.showcurvature.caption"
 msgid "Curvature"
 msgstr ""
 

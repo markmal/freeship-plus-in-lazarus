@@ -32,7 +32,7 @@
       <MajorVersionNr Value="4"/>
       <MinorVersionNr Value="9"/>
       <RevisionNr Value="4"/>
-      <BuildNr Value="414"/>
+      <BuildNr Value="418"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -163,9 +163,6 @@
         </CompilerOptions>
       </Item3>
       <Item4 Name="Gtk3 Debug">
-        <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="gtk3"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -222,16 +219,13 @@
           </Other>
         </CompilerOptions>
       </Item4>
-      <SharedMatrixOptions Count="1">
-        <Item1 ID="107324517234" Modes="Gtk3 Debug" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
-      </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS /home/mark/Documents/FreeShip/Ships/CAT_hul.fbm"/>
+        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
         <WorkingDirectory Value="/usr/bin"/>
       </local>
       <FormatVersion Value="2"/>
@@ -999,7 +993,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.6/lcl/interfaces/gtk3/gtk3bindings/"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.8/lcl/interfaces/gtk3/gtk3bindings/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

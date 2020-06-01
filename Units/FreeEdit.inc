@@ -229,7 +229,7 @@ end;{TFreeEdit.CreateUndoObject}
 // Add (a) new controlcurve(s)
 procedure TFreeEdit.Curve_Add;
 var
-  Edges: TFasterListTFreeSubdivisionControlEdge;
+  Edges: TFasterListTFreeSubdivisionEdge;
   SortedPointLists: TFasterListTFreeSubdivisionFace;
   Points: TFasterListTFreeSubdivisionPoint;
   Edge: TFreeSubdivisionControlEdge;
@@ -237,7 +237,7 @@ var
   Point: TFreeSubdivisionControlPoint;
   Curve: TFreesubdivisionControlCurve;
 begin
-  Edges := TFasterListTFreeSubdivisionControlEdge.Create;
+  Edges := TFasterListTFreeSubdivisionEdge.Create;
   Edges.Capacity := FreeShip.NumberOfSelectedControlEdges;
   for I := 0 to FreeShip.NumberOfSelectedControlEdges - 1 do
   begin
@@ -249,7 +249,7 @@ begin
   begin
     Self.CreateUndoObject(Userstring(72), True);
     SortedPointLists := TFasterListTFreeSubdivisionFace.Create(false,false);
-    FreeShip.Surface.IsolateEdges(TFasterList(Edges), SortedPointLists);
+    FreeShip.Surface.IsolateEdges(Edges, SortedPointLists);
     for I := 1 to SortedPointLists.Count do
     begin
       Points := SortedPointLists[I - 1].Points;
@@ -10017,4 +10017,37 @@ begin
     Result := nil;
   end;
 end;{TFreeEdit.Intersection_Add}
+
+// Add a new intersection of the specified type at the specified location
+procedure TFreeEdit.Intersection_Change(Intersection: TFreeIntersection;
+  Distance: TFloatType);
+var
+  TargetList: TFasterListTFreeIntersection;
+  I: integer;
+begin
+  case Intersection.IntersectionType of
+    fiStation:
+    begin
+      Intersection.FPlane.a := 1.0;
+      Intersection.FPlane.d := -Distance;
+    end;
+    fiButtock:
+    begin
+      Intersection.FPlane.b := 1.0;
+      Intersection.FPlane.d := -Distance;
+    end;
+    fiWaterline:
+    begin
+      Intersection.FPlane.c := 1.0;
+      Intersection.FPlane.d := -Distance;
+    end;
+    fiDiagonal:
+    begin
+      Intersection.FPlane.b := 1 / Sqrt(2);
+      Intersection.FPlane.c := 1 / Sqrt(2);
+      Intersection.FPlane.d := -Intersection.FPlane.c * Distance;
+    end;
+  end;
+  Intersection.Rebuild;
+end;{TFreeEdit.Intersection_Change}
 

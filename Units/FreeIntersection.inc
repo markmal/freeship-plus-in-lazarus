@@ -57,6 +57,14 @@ begin
     Result := Result + #32 + FloatToStrF(-FPLane.d, ffFixed, 7, 3);
 end;{TFreeIntersection.FGetDescription}
 
+function TFreeIntersection.FGetDistance: TFloatType;
+begin
+  if IntersectionType = fiDiagonal then
+    Result := -FPLane.d / FPlane.c
+  else
+    Result := -FPLane.d;
+end;{TFreeIntersection.FGetDescription}
+
 function TFreeIntersection.FGetItem(Index: integer): TFreeSpline;
 begin
   Result := TFreeSpline(FItems.Items[Index]);
@@ -74,6 +82,14 @@ begin
   end;
   FBuilt := Val;
 end;{TFreeIntersection.FSetBuilt}
+
+procedure TFreeIntersection.FSetDistance(val: TFloatType);
+begin
+  if IntersectionType = fiDiagonal then
+    FPLane.d := -val * FPlane.c
+  else
+    FPLane.d := -val;
+end;
 
 procedure TFreeIntersection.Add(Item: TFreeSpline);
 begin

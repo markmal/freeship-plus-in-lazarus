@@ -3886,7 +3886,7 @@ var
   Curve: TFreeSubdivisionControlCurve;
   CPoints: TFasterListTFreeSubdivisionControlPoint;
   Points: TFasterListTFreeSubdivisionPoint;
-  Edges: TFasterListTFreeSubdivisionControlEdge;
+  Edges: TFasterListTFreeSubdivisionEdge;
   SortedPointLists: TFasterListTFreeSubdivisionFace; // as a list for Point lists
   sPointList: TFreeSubdivisionFace;
   Inserted: boolean;
@@ -3928,7 +3928,7 @@ begin
     // Try to find multiple points belonging to the same face and insert an edge
     CPoints.Sort;
 
-    Edges := TFasterListTFreeSubdivisionControlEdge.Create;
+    Edges := TFasterListTFreeSubdivisionEdge.Create;
     for I:=0 to CPoints.Count - 1 do
     begin
       P1 := CPoints[I] as TFreeSubdivisionControlPoint;
@@ -3968,7 +3968,7 @@ begin
     if AddCurves then
     begin
       SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
-      IsolateEdges(TFasterList(Edges), SortedPointLists);
+      IsolateEdges(Edges, SortedPointLists);
       for I := 1 to SortedPointLists.Count do
       begin
         sPointList := SortedPointLists[I - 1];
@@ -4004,8 +4004,9 @@ begin
 end;{TFreeSubdivisionSurface.InsertPlane}
 
 {  gets set of edges and returns list of cycled point chains as TFreeSubdivisionFace }
-procedure TFreeSubdivisionSurface.IsolateEdges(Source:TFasterListTFreeSubdivisionEdge;
-          Destination: TFasterListTFreeSubdivisionFace);
+procedure TFreeSubdivisionSurface.IsolateEdges(
+            Source: TFasterListTFreeSubdivisionEdge;
+            Destination: TFasterListTFreeSubdivisionFace);
 var
   I: integer;
   Edge: TFreesubdivisionEdge;

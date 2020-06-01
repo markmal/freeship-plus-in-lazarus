@@ -1,46 +1,209 @@
 object FreeIntersectionDialog: TFreeIntersectionDialog
-  Left = 730
-  Height = 300
-  Top = 330
-  Width = 300
-  BorderStyle = bsDialog
+  Left = 652
+  Height = 400
+  Top = 180
+  Width = 313
   Caption = 'Intersections'
-  ClientHeight = 300
-  ClientWidth = 300
+  ClientHeight = 400
+  ClientWidth = 313
   OnClose = FormClose
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.8.0'
   object Panel1: TPanel
     Left = 0
-    Height = 276
+    Height = 376
     Top = 24
-    Width = 300
+    Width = 313
     Align = alClient
     BevelOuter = bvNone
     BorderWidth = 10
-    ClientHeight = 276
-    ClientWidth = 300
+    ClientHeight = 376
+    ClientWidth = 313
     TabOrder = 0
-    object ListBox: TCheckListBox
+    object PageControl1: TPageControl
       Left = 10
-      Height = 256
+      Height = 356
       Top = 10
-      Width = 280
+      Width = 293
+      ActivePage = tsStations
       Align = alClient
-      ItemHeight = 0
-      OnClickCheck = ListBoxClickCheck
-      OnKeyDown = ListBoxKeyDown
-      OnSelectionChange = ListBoxSelectionChange
+      Images = MenuImages
+      TabIndex = 0
       TabOrder = 0
-      TopIndex = -1
+      OnChange = PageControl1Change
+      object tsStations: TTabSheet
+        Hint = 'Stations'
+        ClientHeight = 312
+        ClientWidth = 287
+        ImageIndex = 2
+        ParentShowHint = False
+        ShowHint = True
+        object sgStations: TStringGrid
+          Left = 0
+          Height = 312
+          Top = 0
+          Width = 287
+          Align = alClient
+          ColCount = 3
+          Columns = <          
+            item
+              Alignment = taRightJustify
+              ReadOnly = True
+              Title.Caption = 'No'
+              Width = 48
+            end          
+            item
+              Alignment = taRightJustify
+              ButtonStyle = cbsEllipsis
+              MinSize = 60
+              Title.Caption = 'Distance'
+              Width = 120
+            end          
+            item
+              ButtonStyle = cbsCheckboxColumn
+              Title.Caption = 'Curvature'
+              Width = 96
+            end>
+          FixedCols = 0
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goSmoothScroll]
+          TabOrder = 0
+          OnEditingDone = OnGridEditingDone
+          OnGetEditMask = OnGridGetEditMask
+          OnSelection = OnGridSelection
+        end
+      end
+      object tsButtocks: TTabSheet
+        Hint = 'Buttocks'
+        ClientHeight = 312
+        ClientWidth = 287
+        ImageIndex = 0
+        ParentShowHint = False
+        ShowHint = True
+        object sgButtocks: TStringGrid
+          Left = 0
+          Height = 312
+          Top = 0
+          Width = 474
+          Align = alClient
+          ColCount = 3
+          Columns = <          
+            item
+              Alignment = taRightJustify
+              ReadOnly = True
+              Title.Caption = 'No'
+              Width = 48
+            end          
+            item
+              Alignment = taRightJustify
+              ButtonStyle = cbsEllipsis
+              MinSize = 60
+              Title.Caption = 'Distance'
+              Width = 120
+            end          
+            item
+              ButtonStyle = cbsCheckboxColumn
+              Title.Caption = 'Curvature'
+              Width = 96
+            end>
+          FixedCols = 0
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goSmoothScroll]
+          TabOrder = 0
+          OnCheckboxToggled = sgButtocksCheckboxToggled
+          OnEditingDone = OnGridEditingDone
+          OnGetEditMask = OnGridGetEditMask
+          OnSelection = OnGridSelection
+        end
+      end
+      object tsWaterlines: TTabSheet
+        Hint = 'Waterlines'
+        ClientHeight = 312
+        ClientWidth = 287
+        ImageIndex = 1
+        ParentShowHint = False
+        ShowHint = True
+        object sgWaterlines: TStringGrid
+          Left = 0
+          Height = 312
+          Top = 0
+          Width = 474
+          Align = alClient
+          ColCount = 3
+          Columns = <          
+            item
+              Alignment = taRightJustify
+              ReadOnly = True
+              Title.Caption = 'No'
+              Width = 48
+            end          
+            item
+              Alignment = taRightJustify
+              ButtonStyle = cbsEllipsis
+              MinSize = 60
+              Title.Caption = 'Distance'
+              Width = 120
+            end          
+            item
+              ButtonStyle = cbsCheckboxColumn
+              Title.Caption = 'Curvature'
+              Width = 96
+            end>
+          FixedCols = 0
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goSmoothScroll]
+          TabOrder = 0
+          OnEditingDone = OnGridEditingDone
+          OnGetEditMask = OnGridGetEditMask
+          OnSelection = OnGridSelection
+        end
+      end
+      object tsDiagonals: TTabSheet
+        Hint = 'Diagonals'
+        ClientHeight = 312
+        ClientWidth = 287
+        ImageIndex = 3
+        ParentShowHint = False
+        ShowHint = True
+        object sgDiagonals: TStringGrid
+          Left = 0
+          Height = 312
+          Top = 0
+          Width = 474
+          Align = alClient
+          ColCount = 3
+          Columns = <          
+            item
+              Alignment = taRightJustify
+              ReadOnly = True
+              Title.Caption = 'No'
+              Width = 48
+            end          
+            item
+              Alignment = taRightJustify
+              ButtonStyle = cbsEllipsis
+              MinSize = 60
+              Title.Caption = 'Distance'
+              Width = 120
+            end          
+            item
+              ButtonStyle = cbsCheckboxColumn
+              Title.Caption = 'Curvature'
+              Width = 96
+            end>
+          FixedCols = 0
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goSmoothScroll]
+          TabOrder = 0
+          OnEditingDone = OnGridEditingDone
+          OnGetEditMask = OnGridGetEditMask
+          OnSelection = OnGridSelection
+        end
+      end
     end
   end
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
     Top = 0
-    Width = 300
+    Width = 313
     AutoSize = True
     Caption = 'ToolBar1'
     Color = clForm
@@ -50,25 +213,30 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
-    object ToolButton1: TToolButton
+    OnClick = ToolBar1Click
+    object tbStations: TToolButton
       Left = 5
       Top = 2
       Action = ShowStations
+      Visible = False
     end
-    object ToolButton2: TToolButton
+    object tbButtocks: TToolButton
       Left = 28
       Top = 2
       Action = ShowButtocks
+      Visible = False
     end
-    object ToolButton3: TToolButton
+    object tbWaterlines: TToolButton
       Left = 51
       Top = 2
       Action = ShowWaterlines
+      Visible = False
     end
-    object ToolButton4: TToolButton
+    object tbDiagonals: TToolButton
       Left = 74
       Top = 2
       Action = ShowDiagonals
+      Visible = False
     end
     object ToolButton14: TToolButton
       Left = 97
@@ -78,38 +246,34 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
       ImageIndex = 12
       Style = tbsSeparator
     end
-    object ToolButton7: TToolButton
+    object tbAddOne: TToolButton
       Left = 105
       Top = 2
       Action = AddOne
     end
-    object ToolButton13: TToolButton
+    object tbAddRange: TToolButton
       Left = 128
       Top = 2
       Action = AddRange
     end
-    object ToolButton6: TToolButton
+    object tbDeleteSelected: TToolButton
       Left = 151
       Top = 2
-      Action = DeleteAll
+      Action = DeleteSelected
     end
-    object ToolButton21: TToolButton
+    object tbCloseDialog: TToolButton
       Left = 174
-      Height = 22
-      Top = 2
-      Caption = 'ToolButton21'
-      ImageIndex = 12
-      Style = tbsSeparator
-    end
-    object ToolButton5: TToolButton
-      Left = 182
       Top = 2
       Action = CloseDialog
     end
+    object ToolButton8: TToolButton
+      Left = 197
+      Top = 2
+      Caption = 'ToolButton8'
+    end
   end
   object MenuImages: TImageList
-    left = 76
-    top = 32
+    left = 232
     Bitmap = {
       4C69080000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -372,8 +536,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
   end
   object ActionList1: TActionList
     Images = MenuImages
-    left = 56
-    top = 88
+    left = 272
     object ShowStations: TAction
       Caption = 'Stations'
       Checked = True
@@ -422,6 +585,12 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
       Hint = 'Delete all stations.'
       ImageIndex = 5
       OnExecute = DeleteAllExecute
+    end
+    object DeleteSelected: TAction
+      Caption = 'DeleteSelected'
+      Hint = 'Delete selected'
+      ImageIndex = 5
+      OnExecute = DeleteSelectedExecute
     end
   end
 end

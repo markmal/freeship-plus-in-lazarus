@@ -393,11 +393,14 @@ type
     // used for lateral area, midship/mainframe and waterplane properties
     FSelected: boolean;
     function FGetColor: TColor;
+    function FGetDistance: TFloatType;
     function FGetPlane: T3DPlane;
     function FGetCount: integer;
     function FGetDescription: string;
     function FGetItem(Index: integer): TFreeSpline;
     procedure FSetBuilt(Val: boolean);
+    procedure FSetDistance(val: TFloatType);
+
   public
     procedure Add(Item: TFreeSpline);
     procedure CalculateArea(Plane: T3DPlane; var Area: TFloatType;
@@ -421,6 +424,7 @@ type
     property Color: TColor read FGetColor;
     property Count: integer read FGetCount;
     property Description: string read FGetDescription;
+    property Distance: TFloatType read FGetDistance write FSetDistance;
     property IntersectionType: TFreeIntersectionType
       read FIntersectionType write FIntersectionType;
     property Items[index: integer]: TFreeSpline read FGetItem;
@@ -718,6 +722,7 @@ type
     // Add a new intersection at the specified location
     procedure Intersection_AddToList(Intersection: TFreeIntersection);
     // Adds an intersection to the appropriate list
+    procedure Intersection_Change(Intersection: TFreeIntersection; Distance: TFloatType);
     procedure Intersection_Dialog;
     // Pops up the dialog in whcih to add or delete stations, buttocks and waterlines
     procedure Layer_AutoGroup;

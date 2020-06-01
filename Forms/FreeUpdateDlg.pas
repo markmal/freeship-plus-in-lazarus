@@ -148,6 +148,14 @@ begin
     end;
 end;
 
+resourcestring
+  rsKnownSSLException = 'Exception class: %s Message: %s'+#10
+           +'Possible libssl v1.1 compatibility issue.'+#10
+           +'libssl v1.1 is found.'+#10
+           +'FreeShip is currently compatible with libssl v1.0 only.'+#10
+           +'You have to check for updates traditional way at Download page.'+#10
+           +'Click link below.';
+
 procedure TFreeUpdateForm.GetGitHubReleases;
 var
   Http: TFPHttpClient;
@@ -182,7 +190,6 @@ var
     s:=ReplaceStr(s,'_','');
     result:=s;
   end;
-
 begin
   LabelNewVersion.Caption := '';
   LabelNewVersionDate.Caption := '';
@@ -290,14 +297,14 @@ begin
        if e.Message.Contains('OpenSSL') then //known issue with libssl1.1
        begin
          logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
-         Memo1.Text:='Exception class: '+E.ClassName+' Message: '+E.Message+#10
-           +'Possible libssl v1.1 compatibility issue.'+#10
-           +'libssl v1.1 is found.'+#10
-           +'FreeShip is currently compatible with libssl v1.0 only.'+#10
-           +'You have to check for updates traditional way at Download page.'+#10
-           +'Click link below.';
+         Memo1.Text:=format(rsKnownSSLException, [E.ClassName, E.Message]);
        end
          else logger.DumpExceptionCallStack(e);
+     end;
+     on e:EAccessViolation do
+     begin
+       logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
+       Memo1.Text:=format(rsKnownSSLException, [E.ClassName, E.Message]);
      end;
      on e:Exception do
        logger.DumpExceptionCallStack(e);

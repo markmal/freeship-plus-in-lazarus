@@ -26,10 +26,10 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
       Height = 356
       Top = 10
       Width = 293
-      ActivePage = tsStations
+      ActivePage = tsDiagonals
       Align = alClient
       Images = MenuImages
-      TabIndex = 0
+      TabIndex = 3
       TabOrder = 0
       OnChange = PageControl1Change
       object tsStations: TTabSheet
@@ -85,7 +85,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
           Left = 0
           Height = 312
           Top = 0
-          Width = 474
+          Width = 287
           Align = alClient
           ColCount = 3
           Columns = <          
@@ -114,6 +114,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
           OnEditingDone = OnGridEditingDone
           OnGetEditMask = OnGridGetEditMask
           OnSelection = OnGridSelection
+          OnValidateEntry = OnGridValidateEntry
         end
       end
       object tsWaterlines: TTabSheet
@@ -127,7 +128,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
           Left = 0
           Height = 312
           Top = 0
-          Width = 474
+          Width = 287
           Align = alClient
           ColCount = 3
           Columns = <          
@@ -155,6 +156,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
           OnEditingDone = OnGridEditingDone
           OnGetEditMask = OnGridGetEditMask
           OnSelection = OnGridSelection
+          OnValidateEntry = OnGridValidateEntry
         end
       end
       object tsDiagonals: TTabSheet
@@ -168,7 +170,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
           Left = 0
           Height = 312
           Top = 0
-          Width = 474
+          Width = 287
           Align = alClient
           ColCount = 3
           Columns = <          
@@ -196,6 +198,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
           OnEditingDone = OnGridEditingDone
           OnGetEditMask = OnGridGetEditMask
           OnSelection = OnGridSelection
+          OnValidateEntry = OnGridValidateEntry
         end
       end
     end

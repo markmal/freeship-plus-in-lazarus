@@ -300,8 +300,7 @@ object FreeUpdateForm: TFreeUpdateForm
       Top = 34
       Width = 179
       Caption = 'LabelDownloadPage'
-      Enabled = False
-      Font.Color = clMenuHighlight
+      Font.Color = clBlue
       Font.Style = [fsUnderline]
       ParentColor = False
       ParentFont = False

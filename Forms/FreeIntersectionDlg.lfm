@@ -71,6 +71,7 @@ object FreeIntersectionDialog: TFreeIntersectionDialog
           OnEditingDone = OnGridEditingDone
           OnGetEditMask = OnGridGetEditMask
           OnSelection = OnGridSelection
+          OnValidateEntry = OnGridValidateEntry
         end
       end
       object tsButtocks: TTabSheet

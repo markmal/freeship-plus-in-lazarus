@@ -110,6 +110,8 @@ type
     procedure sgStationsSelectEditor(Sender: TObject; aCol, aRow: Integer;
       var Editor: TWinControl);
     procedure OnGridSelection(Sender: TObject; aCol, aRow: Integer);
+    procedure OnGridValidateEntry(sender: TObject; aCol, aRow: Integer;
+      const OldValue: string; var NewValue: String);
     //procedure sgWaterlinesEditingDone(Sender: TObject);
     procedure ShowStationsExecute(Sender: TObject);
     procedure ShowButtocksExecute(Sender: TObject);
@@ -454,17 +456,23 @@ end;
 *)
 
 procedure TFreeIntersectionDialog.OnGridEditingDone(Sender: TObject);
-var f:TFloatType; intersection:TFreeIntersection; i:integer;
+var S:String; F:TFloatType;
+  intersection:TFreeIntersection; i:integer;
   grid: TStringGrid;
 begin
   grid := Sender as TStringGrid;
   if grid.Col<>1 then exit;
   try
     intersection := grid.Objects[1, grid.Row] as TFreeIntersection;
-    f := StrToFloat(grid.Cells[1, grid.Row]);
-    intersection.Distance := f;
-    intersection.Rebuild;
-    FFreeship.Redraw;
+    S := grid.Cells[1, grid.Row];
+    if TryStrToFloat(S,F) then
+    begin
+      intersection.Distance := f;
+      intersection.Rebuild;
+      FFreeship.Redraw;
+    end
+    else
+      sgStations.Cells[grid.Col, grid.Row] := format('%7.4f',[intersection.Distance]);
   except
     sgStations.Cells[grid.Col, grid.Row] := format('%7.4f',[intersection.Distance]);
   end;
@@ -517,6 +525,19 @@ begin
     end;
   end;
   FFreeship.Redraw;
+end;
+
+procedure TFreeIntersectionDialog.OnGridValidateEntry(sender: TObject;
+  aCol, aRow: Integer; const OldValue: string; var NewValue: String);
+var  grid: TStringGrid;
+  F: TFloatType;
+begin
+  if aCol <> 1 then exit;
+  grid := Sender as TStringGrid;
+  if TryStrToFloat(NewValue, F) then
+    NewValue := format('%7.4f',[F])
+  else
+    NewValue := OldValue;
 end;
 
 (*

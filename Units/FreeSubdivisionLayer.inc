@@ -696,7 +696,7 @@ var
   S1, S2, T: TFloatType;
   P2D, P3D, esp, eep, CP0, CP2, CP1: T3DCoordinate;
   PP3D: ^T3DCoordinate;
-  PiT: boolean;
+  PiT, IsFaceDeleted: boolean;
   //label StartAgan;
 begin
   Result := False;
@@ -737,8 +737,9 @@ begin
                 Inserted := True;
                 // split the Face into two new ones. The Face is placed into DelayedDestroyList
                 Edge :=
-                  Face.InsertEdge(P1 as TFreesubdivisionControlPoint,
-                  P2 as TFreesubdivisionControlPoint);
+                  Face.InsertEdge( P1 as TFreesubdivisionControlPoint,
+                                   P2 as TFreesubdivisionControlPoint,
+                                   IsFaceDeleted);
                 Edge.Selected := True;
                 for L := 0 to Edge.FFaces.Count - 1 do
                   TFreeSubdivisionControlFace(Edge.Face[L]).Selected := True;

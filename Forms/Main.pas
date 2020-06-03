@@ -998,7 +998,7 @@ if FFileName = '' then
 if (FFileName = '') and not FreeShip.ModelIsLoaded then  //default behaviour if no recent file defined
   NewModelExecute(Self)
 else
-if (FFileName <> '') and not FreeShip.ModelIsLoaded then
+if (FFileName <> '') and not FreeShip.ModelIsLoaded and not FreeShip.IsLoadError then
 begin
    // Skip translation
    FileExt := Uppercase(ExtractFileExt(FFileName));
@@ -1596,13 +1596,33 @@ begin
     Application.ProcessMessages;
 
     Freeship.Edit.ProgressBar := dlg.ProgressBar1;
-    jpg:= Freeship.Edit.getPreviewImage(vFileName);
+    jpg := nil;
+    try
+      jpg := Freeship.Edit.getPreviewImage(vFileName);
+    except
+      on E:Exception do
+      begin
+        Logger.Error(E.Message);
+        Logger.Error(Logger.GetExceptionCallStack(E));
+        if assigned(jpg) then FreeAndNil(jpg);
+      end;
+    end;
     if assigned(jpg) then
       begin
       pic := TPicture.Create;
       pic.Bitmap.Assign(jpg);
       dlg.AddTile(pic, sTime+' - '+vFileName, vFileName);
-      end;
+      end
+    else
+    begin
+      pic := TPicture.Create;
+      pic.Bitmap.SetSize(100,100);
+      pic.Bitmap.Canvas.Brush.Color:=clYellow;
+      pic.Bitmap.Canvas.FillRect(0,0,100,100);
+      pic.Bitmap.Canvas.Font.Color:=clRed;
+      pic.Bitmap.Canvas.TextOut(5,40, 'Load Error');
+      dlg.AddTile(pic, sTime+' - '+vFileName, vFileName);
+    end;
     Application.ProcessMessages;
   end;
   Screen.Cursor := crDefault;

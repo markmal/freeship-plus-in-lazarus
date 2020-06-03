@@ -185,6 +185,12 @@ msgstr ""
 msgid "My Ships"
 msgstr ""
 
+#: freeshipunit.rsfailedtoloadproject
+msgid ""
+"Failed to load project: %s\n"
+"Error: %s\n"
+msgstr ""
+
 #: freeshipunit.rsglobalconfigloaderrormessage
 msgid ""
 "Unable to load per-machine configuration. Skipping. There may be further problems with finding directories and files.\n"

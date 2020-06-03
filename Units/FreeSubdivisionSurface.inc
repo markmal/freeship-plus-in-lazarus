@@ -2422,6 +2422,7 @@ var
   Edge: TFreeSubdivisionControlEdge;
   V1, V2: TFreeSubdivisionControlPoint;
   I, J: integer;
+  IsFaceDeleted: boolean;
 begin
   if NumberOfSelectedControlPoints > 1 then
   begin
@@ -2443,7 +2444,7 @@ begin
             Face := V1.Face[J - 1] as TFreeSubdivisionControlFace;
             if V2.IndexOfFace(Face) <> -1 then
             begin
-              Face.InsertEdge(V1, V2);
+              Face.InsertEdge(V1, V2, IsFaceDeleted);
               V2.Selected := False;
               Built := False;
               ExecuteOnChangeItem(Face);
@@ -3889,7 +3890,7 @@ var
   Edges: TFasterListTFreeSubdivisionEdge;
   SortedPointLists: TFasterListTFreeSubdivisionFace; // as a list for Point lists
   sPointList: TFreeSubdivisionFace;
-  Inserted: boolean;
+  Inserted, FaceIsDeleted, IsFaceDeleted: boolean;
 
 begin
   CPoints := TFasterListTFreeSubdivisionControlPoint.Create;
@@ -3931,28 +3932,29 @@ begin
     Edges := TFasterListTFreeSubdivisionEdge.Create;
     for I:=0 to CPoints.Count - 1 do
     begin
-      P1 := CPoints[I] as TFreeSubdivisionControlPoint;
+      P1 := CPoints[I]; // as TFreeSubdivisionControlPoint;
       //writeln('InsertPlane: Point[',I,'].NumberOfFaces=',P1.NumberOfFaces);
       J := 1;
-      while J <= P1.NumberOfFaces do
+      while J <= P1.Faces.Count do
       begin
         Face := P1.Face[J - 1] as TFreeSubdivisionControlface;
         K := 1;
         Inserted := False;
-        while (K <= Face.NumberOfpoints) and (not Inserted) do
+        while (K <= Face.Points.Count) and (not Inserted) do
         begin
           //writeln('InsertPlane:  K=',K);
-          P2 := Face.Point[K - 1] as TFreeSubdivisionControlPoint;
+          P2 := Face.Point[K - 1]; // as TFreeSubdivisionControlPoint;
           if (P1 <> P2) and (CPoints.SortedIndexOf(P2) <> -1) then
           begin
             // this is also a new point, first check if an edge already exists between P1 and P2
             if EdgeExists(P1, P2) = nil then
             begin
               Inserted := True;
-              Edge := Face.InsertEdge(P1, P2);
+              Edge := Face.InsertEdge(P1, P2, IsFaceDeleted);
               Edge.Selected := True;    //selecting causes loosing Face.FPoints !
               Edges.Add(Edge);
-              if not Assigned(Face) then
+              //if not Assigned(Face) then
+              if IsFaceDeleted then
                 break;
             end;
           end;
@@ -4802,7 +4804,7 @@ begin
   //   NewPointlist.Capacity:=2*NumberOfPoints;
   NewEdgeList := TFasterListTFreeSubdivisionEdge.Create(false,false);
   I := Round(Power(2, FCurrentSubdivisionLevel));
-  NewEdgelist.Capacity := NumberOfControlEdges * I;
+  NewEdgelist.Capacity := ControlEdges.Count * I;
   FaceCnt := NumberOfFaces;
   CFaceCnt := NumberOfControlFaces;
 

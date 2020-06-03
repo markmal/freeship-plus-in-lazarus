@@ -6,7 +6,7 @@ object ExceptionDlg: TExceptionDlg
   Caption = 'Exception'
   ClientHeight = 493
   ClientWidth = 544
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.8.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -20,10 +20,10 @@ object ExceptionDlg: TExceptionDlg
     ClientWidth = 544
     TabOrder = 0
     object Button1: TButton
-      Left = 247
-      Height = 32
-      Top = 9
-      Width = 51
+      Left = 243
+      Height = 36
+      Top = 7
+      Width = 58
       AutoSize = True
       Caption = 'Close'
       ModalResult = 11
@@ -38,6 +38,8 @@ object ExceptionDlg: TExceptionDlg
     Align = alClient
     BorderSpacing.Around = 10
     ReadOnly = True
+    ScrollBars = ssAutoBoth
     TabOrder = 1
+    WordWrap = False
   end
 end

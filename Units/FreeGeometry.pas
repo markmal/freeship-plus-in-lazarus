@@ -1675,8 +1675,8 @@ type
     procedure Draw(Viewport: TFreeViewport); overload; virtual;
     procedure Draw(Viewport: TFreeViewport;
       MinCurvature, MaxCurvature: TFloatType); reintroduce; overload;
-    function InsertEdge(
-      P1, P2: TFreeSubdivisionControlPoint): TFreesubdivisionControlEdge;
+    function InsertEdge( P1, P2: TFreeSubdivisionControlPoint;
+                         var IsFaceDeleted:boolean): TFreesubdivisionControlEdge;
     procedure LoadBinary(Source: TFreeFileBuffer);
     procedure LoadFromStream(
       var LineNr: integer; Strings: TStringList);

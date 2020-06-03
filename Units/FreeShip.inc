@@ -2194,6 +2194,7 @@ begin
     ModelIsLoaded := True;
   except
     Surface.Clear;
+    raise;
   end;
   finally
     Surface.DesiredSubdivisionLevel := Ord(Precision) + 1;

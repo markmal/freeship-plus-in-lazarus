@@ -5186,106 +5186,106 @@ begin
   Result := TJPegImage.Create;
   TempFreeShip := TFreeShip.Create(nil);
   try
-  TempFreeShip.Clear;
-  TempFreeShip.LoadPreview(aFileName, Result);
-  if not assigned(Result) or (Result.Width = 0) then
-  begin
+      TempFreeShip.Clear;
+      TempFreeShip.LoadPreview(aFileName, Result);
+      if not assigned(Result) or (Result.Width = 0) then
+      begin
 
-    Ext := LowerCase(ExtractFileExt(aFileName));
-    if Ext = '.fbm' then
-      Source := TFreeFileBuffer.Create
-    else
-    if Ext = '.ftm' then
-      Source := TFreeTextBuffer.Create
-    else
-      raise Exception.Create('Unsupported file format: ' + Ext);
+        Ext := LowerCase(ExtractFileExt(aFileName));
+        if Ext = '.fbm' then
+          Source := TFreeFileBuffer.Create
+        else
+        if Ext = '.ftm' then
+          Source := TFreeTextBuffer.Create
+        else
+          raise Exception.Create('Unsupported file format: ' + Ext);
 
-    TempFreeShip.ModelIsLoaded := False;
-    Source.LoadFromFile(aFileName);     // Load everything into memory
-    //TempFreeShip.Preferences.OpenDirectory := ExtractFilePath(aFileName);
-    TempFreeShip.Filename := aFileName;
-    TempFreeShip.LoadProject(Source);    // Now read the information from memory
+        TempFreeShip.ModelIsLoaded := False;
+        Source.LoadFromFile(aFileName);     // Load everything into memory
+        //TempFreeShip.Preferences.OpenDirectory := ExtractFilePath(aFileName);
+        TempFreeShip.Filename := aFileName;
+        TempFreeShip.LoadProject(Source);    // Now read the information from memory
 
-    TempFreeShip.Surface.DesiredSubdivisionLevel:=0; // no need to build it in preview in very details
-    if not TempFreeShip.Visibility.ShowControlNet
-       and TempFreeShip.Visibility.ShowInteriorEdges
-       then TempFreeShip.Surface.DesiredSubdivisionLevel:=1;
+        TempFreeShip.Surface.DesiredSubdivisionLevel:=0; // no need to build it in preview in very details
+        if not TempFreeShip.Visibility.ShowControlNet
+           and TempFreeShip.Visibility.ShowInteriorEdges
+           then TempFreeShip.Surface.DesiredSubdivisionLevel:=1;
 
-    //if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
-    TempFreeShip.Surface.OnFaceRebuilt := @OnFaceRebuilt;
+        //if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
+        TempFreeShip.Surface.OnFaceRebuilt := @OnFaceRebuilt;
 
-    TempFreeShip.ModelIsLoaded := True;
-    //TempFreeShip.Preferences.Load;
+        TempFreeShip.ModelIsLoaded := True;
+        //TempFreeShip.Preferences.Load;
 
-    vp := TFreeViewPort.Create(nil);
-    with vp do
-    begin
-        {Parent := Self.;
-        Cursor := crCross;
-        Left := 0;
-        Height := 270;
-        Top := 0;
-        Width := 425;
-        Align := alClient;
-        BevelInner := bvLowered;
-        BevelOuter := bvLowered;
-        BorderStyle := bsSingle;
-        Margin := 1;
-        HorScrollbar := nil;//ScrollBar1;
-        VertScrollbar := nil;//ScrollBar2;
-        }
-        {BackgroundImage.Alpha := 255;
-        BackgroundImage.Owner := vp;
-        BackgroundImage.Quality := 100;
-        BackgroundImage.Scale := 1;
-        BackgroundImage.ShowInView := fvBodyplan;
-        BackgroundImage.Tolerance := 5;
-        BackgroundImage.Transparent := False;
-        BackgroundImage.TransparentColor := clBlack;
-        BackgroundImage.Visible := True;}
-      CameraType := ftStandard;
-      Color := 10461087;
-      DoubleBuffer := True;
-      Angle := 30;
-      Elevation := 20;
-      PopupMenu := PopupMenu;
-      ViewType := fvPerspective;
-      ViewportMode := vmWireFrame;
-        {OnChangeBackground := ViewportChangeBackground;
-        OnChangeViewType := ViewportChangeViewType;
-        OnKeyPress := ViewportKeyPress;
-        OnKeyUp := ViewportKeyUp;
-        OnMouseDown := ViewportMouseDown;
-        OnMouseUp := ViewportMouseUp;
-        OnMouseMove := ViewportMouseMove;
-        OnMouseLeave := ViewportMouseLeave;
-        OnRedraw := ViewportRedraw;
-        OnRequestBackgroundImage := ViewportRequestBackgroundImage;
-        OnRequestExtents := ViewportRequestExtents;}
-    end;
-    vp.Width := pvWidth;
-    vp.Height := pvHeight;
-    vp.ViewType := fvPerspective;
-    vp.ViewportMode := vmWireFrame;
-    //vp.DestinationWidth :=pvWidth;  // shadow does not work here
-    //vp.DestinationHeight:=pvHeight;
-    //vp.ZBuffer.Initialize;
-    //vp.AlphaBuffer.Initialize;
+        vp := TFreeViewPort.Create(nil);
+        with vp do
+        begin
+            {Parent := Self.;
+            Cursor := crCross;
+            Left := 0;
+            Height := 270;
+            Top := 0;
+            Width := 425;
+            Align := alClient;
+            BevelInner := bvLowered;
+            BevelOuter := bvLowered;
+            BorderStyle := bsSingle;
+            Margin := 1;
+            HorScrollbar := nil;//ScrollBar1;
+            VertScrollbar := nil;//ScrollBar2;
+            }
+            {BackgroundImage.Alpha := 255;
+            BackgroundImage.Owner := vp;
+            BackgroundImage.Quality := 100;
+            BackgroundImage.Scale := 1;
+            BackgroundImage.ShowInView := fvBodyplan;
+            BackgroundImage.Tolerance := 5;
+            BackgroundImage.Transparent := False;
+            BackgroundImage.TransparentColor := clBlack;
+            BackgroundImage.Visible := True;}
+          CameraType := ftStandard;
+          Color := 10461087;
+          DoubleBuffer := True;
+          Angle := 30;
+          Elevation := 20;
+          PopupMenu := PopupMenu;
+          ViewType := fvPerspective;
+          ViewportMode := vmWireFrame;
+            {OnChangeBackground := ViewportChangeBackground;
+            OnChangeViewType := ViewportChangeViewType;
+            OnKeyPress := ViewportKeyPress;
+            OnKeyUp := ViewportKeyUp;
+            OnMouseDown := ViewportMouseDown;
+            OnMouseUp := ViewportMouseUp;
+            OnMouseMove := ViewportMouseMove;
+            OnMouseLeave := ViewportMouseLeave;
+            OnRedraw := ViewportRedraw;
+            OnRequestBackgroundImage := ViewportRequestBackgroundImage;
+            OnRequestExtents := ViewportRequestExtents;}
+        end;
+        vp.Width := pvWidth;
+        vp.Height := pvHeight;
+        vp.ViewType := fvPerspective;
+        vp.ViewportMode := vmWireFrame;
+        //vp.DestinationWidth :=pvWidth;  // shadow does not work here
+        //vp.DestinationHeight:=pvHeight;
+        //vp.ZBuffer.Initialize;
+        //vp.AlphaBuffer.Initialize;
 
-    Result.PixelFormat := pf24bit;
-    Result.SetSize(pvWidth, pvHeight);
-    Result.Canvas.AntialiasingMode := amOn;
-    vp.DrawingCanvas := Result.Canvas;
+        Result.PixelFormat := pf24bit;
+        Result.SetSize(pvWidth, pvHeight);
+        Result.Canvas.AntialiasingMode := amOn;
+        vp.DrawingCanvas := Result.Canvas;
 
-    TempFreeShip.AddViewport(vp);
+        TempFreeShip.AddViewport(vp);
 
-    // fill background
-    vp.BrushColor := vp.Color;
-    vp.Rectangle(0, 0, pvWidth, pvHeight);
-    vp.ZoomExtents;
-    TempFreeShip.DrawToViewport(vp);
-    vp.Free;
-  end;
+        // fill background
+        vp.BrushColor := vp.Color;
+        vp.Rectangle(0, 0, pvWidth, pvHeight);
+        vp.ZoomExtents;
+        TempFreeShip.DrawToViewport(vp);
+        vp.Free;
+      end;
   finally
     TempFreeShip.Free;
   end;
@@ -5429,12 +5429,15 @@ begin
     DeleteFileUTF8('Sterns.txt'); { *Converted from DeleteFile* }
 end;{TFreeEdit.File_Load}
 
+resourcestring rsFailedToLoadProject = 'Failed to load project: %s'#10'Error: %s'#10;
+
 procedure TFreeEdit.File_Load(FileName: string);
 var
   Source: TFreeFileBuffer;
   ext: string;
   i:integer;
   b:boolean;
+  ErrMsg:String;
 
   function IsSaveable(fn:string):boolean;
   var dir, tmpFileName:string; fh:THandle;
@@ -5480,28 +5483,42 @@ begin
 
     FreeShip.ModelIsLoaded := False;
     FreeShip.FileIsReadOnly := True;
-    Source.LoadFromFile(FileName);    // Load everything into memory
-    //FreeShip.Preferences.OpenDirectory := ExtractFilePath(FileName);
-    //FreeShip.Filename:=ChangeFileExt(FileName,'.fbm');
-    FreeShip.Filename := FileName;
-    //My correction
-    //      MessageDlg('Begin Loading *.fbm',mtError,[mbOk],0);
-    FreeShip.LoadProject(Source);
-    // Now read the information from memory
-    //My correction
-    //      MessageDlg('Loading *.fbm ended',mtError,[mbOk],0);
-    //for i:=0 to FreeShip.NumberOfViewports-1 do
-    //    FreeShip.Viewport[i].ZoomExtents;
-    //FreeShip.Surface.Rebuild;
-    //FreeShip.Draw;
-    FreeShip.FFilenameSet := True;
-    FreeShip.FStopAskingForFileVersion := False;
-    FreeShip.ModelIsLoaded := True;
-    b:=IsSaveable(FileName);
-    FreeShip.FileIsReadOnly := not b;
+
+    try
+      Source.LoadFromFile(FileName);    // Load everything into memory
+      //FreeShip.Preferences.OpenDirectory := ExtractFilePath(FileName);
+      //FreeShip.Filename:=ChangeFileExt(FileName,'.fbm');
+      FreeShip.Filename := FileName;
+      //My correction
+      //      MessageDlg('Begin Loading *.fbm',mtError,[mbOk],0);
+      FreeShip.LoadProject(Source);
+      // Now read the information from memory
+      //My correction
+      //      MessageDlg('Loading *.fbm ended',mtError,[mbOk],0);
+      //for i:=0 to FreeShip.NumberOfViewports-1 do
+      //    FreeShip.Viewport[i].ZoomExtents;
+      //FreeShip.Surface.Rebuild;
+      //FreeShip.Draw;
+      FreeShip.FFilenameSet := True;
+      FreeShip.FStopAskingForFileVersion := False;
+      FreeShip.ModelIsLoaded := True;
+      b:=IsSaveable(FileName);
+      FreeShip.FileIsReadOnly := not b;
+    except
+      on E:Exception do
+      begin
+        FreeShip.IsLoadError := true;
+        ErrMsg := format(rsFailedToLoadProject,[FileName, E.Message])
+          +#10#10+logger.GetExceptionCallStack(E);
+        logger.Error(ErrMsg);
+        ExceptionDlg.Message.Text:=ErrMsg;
+        ExceptionDlg.ShowModal;
+      end;
+    end;
   finally
     Source.Destroy;
-    AddToRecentFiles(FileName);
+    if FreeShip.ModelIsLoaded then
+       AddToRecentFiles(FileName);
     Undo_Clear;
   end;
   FreeShip.FileChanged := False;
@@ -6024,7 +6041,7 @@ var
   Spline: TFreeSpline;
   NewSpline: TFreeSpline;
   P: T3DCoordinate;
-  ValidStation: boolean;
+  ValidStation, IsFaceDeleted: boolean;
   MinMaxData: array of TMinMax;
   MinZ, MaxZ: TFloatType;
   ControlPoints: array of array of TFreeSubdivisionControlPoint;
@@ -6246,7 +6263,7 @@ begin
               if P2.IndexOfFace(P1.Face[J - 1]) <> -1 then
               begin
                 Face := P1.Face[J - 1] as TFreeSubdivisionControlFace;
-                Edge := Face.InsertEdge(P1, P2);
+                Edge := Face.InsertEdge(P1, P2, IsFaceDeleted);
                 if Edge <> nil then
                   Edge.Crease := True;
               end;
@@ -6287,7 +6304,7 @@ begin
               if P2.IndexOfFace(P1.Face[J - 1]) <> -1 then
               begin
                 Face := P1.Face[J - 1] as TFreeSubdivisionControlFace;
-                Edge := Face.InsertEdge(P1, P2);
+                Edge := Face.InsertEdge(P1, P2, IsFaceDeleted);
                 if Edge <> nil then
                   Edge.Crease := True;
               end;

@@ -1198,6 +1198,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeShip = class(TComponent)
   private     { Private declarations }
+    FIsLoadError: boolean;
     FMainForm: TForm;
     FViewports: TFasterListTFreeViewPort;
     // List containing all viewports associated with the hullform
@@ -1442,6 +1443,7 @@ type
     // Containerclass for all editing commands
     property EditMode: TFreeEditMode read FEditMode write FSetEditMode;
     property FilenameSet: boolean read FFilenameSet write FFilenameSet;
+    property IsLoadError: boolean read FIsLoadError write FIsLoadError;
     property ModelIsLoaded: boolean read FModelIsLoaded write FModelIsLoaded;
     property FileIsReadOnly: boolean read FFileIsReadOnly write FFileIsReadOnly;
     property Flowline[index: integer]: TFreeFlowline read FGetFlowline;

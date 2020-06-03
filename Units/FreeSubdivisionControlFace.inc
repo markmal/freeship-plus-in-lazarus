@@ -1172,12 +1172,12 @@ begin
 end;{TFreeSubdivisionControlFace.Draw}
 
 function TFreeSubdivisionControlFace.InsertEdge(
-  P1, P2: TFreeSubdivisionControlPoint): TFreesubdivisionControlEdge;
+  P1, P2: TFreeSubdivisionControlPoint; var IsFaceDeleted:boolean): TFreesubdivisionControlEdge;
 var
   Tmp, I: integer;
   Pts: TFasterListTFreeSubdivisionControlPoint;
 begin
-  Result := nil;
+  Result := nil; IsFaceDeleted := false;
   try
     if (P1.FFaces.IndexOf(self) <> -1) and (P2.FFaces.IndexOf(self) <> -1) then
     begin
@@ -1185,6 +1185,7 @@ begin
         exit;
       Tmp := IndexOfPoint(P1);
       Pts := TFasterListTFreeSubdivisionControlPoint.Create;
+      // create new face 1
       Pts.Add(P1);
       for I := 1 to NumberOfpoints do
       begin
@@ -1199,6 +1200,7 @@ begin
       end;
       Tmp := IndexOfPoint(P2);
       Pts.Clear;
+      // create new face 2
       Pts.Add(P2);
       for I := 1 to NumberOfpoints do
       begin
@@ -1212,8 +1214,8 @@ begin
         Surface.AddControlFace(Pts, False, Layer);
       end;
       Pts.Destroy;
-      Delete;
-      ///MM ??? Why it suicide itself? It does not makes sence. I comment it. No does not work without it.
+      Delete; // delete the current face because it is split into two new faces
+      IsFaceDeleted := true;
     end;
     Result := FSurface.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
     if Result <> nil then

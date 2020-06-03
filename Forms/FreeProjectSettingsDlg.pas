@@ -79,6 +79,8 @@ type
     GroupBox1: TGroupBox;
     Label10: TLabel;
     Label11: TLabel;
+    Label12: TLabel;
+    Label27: TLabel;
     lbWaterDensity: TLabel;
     Label13: TLabel;
     Label14: TLabel;
@@ -103,6 +105,7 @@ type
     Panel11: TPanel;
     Panel12: TPanel;
     Panel13: TPanel;
+    Panel14: TPanel;
     Panel3: TPanel;
     ColorDialog: TColorDialog;
     BitBtn1: TSpeedButton;
@@ -113,6 +116,7 @@ type
     Panel8: TPanel;
     Panel9: TPanel;
     PrecisionBox: TComboBox;
+    seUnderwaterOpacity: TSpinEdit;
     TabSheet1: TTabSheet;
     Panel: TPanel;
     Label1: TLabel;

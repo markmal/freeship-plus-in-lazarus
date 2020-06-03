@@ -256,7 +256,7 @@ begin
     PointSize := Dialog.SpinEdit1.Value;
     LayerColor := Dialog.Panel2.Color;
     UnderWaterColor := Dialog.Panel5.Color;
-    UnderWaterColorAlpha := Dialog.seSubmergedSurfaceTranslucency.Value;
+    UnderWaterColorAlpha := Dialog.seSubmergedSurfaceOpacity.Value * 255 div 100;
     EdgeColor := Dialog.Panel6.Color;
     CreaseEdgeColor := Dialog.Panel7.Color;
     CreaseColor := Dialog.Panel8.Color;
@@ -1000,7 +1000,7 @@ begin
   FSelectColor := params.ReadColor('Graphic', 'SelectColor', FSelectColor);
   FLayerColor := params.ReadColor('Graphic', 'LayerColor', FLayerColor);
   FUnderWaterColor := params.ReadColor('Graphic', 'UnderWaterColor', FUnderWaterColor);
-  FUnderWaterColorAlpha := params.ReadColor('Graphic', 'UnderWaterColorAlpha', FUnderWaterColorAlpha);
+  FUnderWaterColorAlpha := params.ReadInteger('Graphic', 'UnderWaterColorAlpha', FUnderWaterColorAlpha);
   FNormalColor := params.ReadColor('Graphic', 'NormalColor', FNormalColor);
   FViewportColor := params.ReadColor('Graphic', 'ViewportColor', FViewportColor);
   FDiagonalColor := params.ReadColor('Graphic', 'DiagonalColor', FDiagonalColor);
@@ -1409,7 +1409,7 @@ begin
   params.WriteColor('Graphic', 'SelectColor', FSelectColor);
   params.WriteColor('Graphic', 'LayerColor', FLayerColor);
   params.WriteColor('Graphic', 'UnderWaterColor', FUnderWaterColor);
-  params.WriteColor('Graphic', 'UnderWaterColorAlpha', FUnderWaterColorAlpha);
+  params.WriteInteger('Graphic', 'UnderWaterColorAlpha', FUnderWaterColorAlpha);
   params.WriteColor('Graphic', 'NormalColor', FNormalColor);
   params.WriteColor('Graphic', 'ViewportColor', FViewportColor);
   params.WriteColor('Graphic', 'DiagonalColor', FDiagonalColor);

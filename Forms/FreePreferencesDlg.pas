@@ -104,7 +104,7 @@ type
     Label25: TLabel;
     Label26: TLabel;
     Label27: TLabel;
-    lbSubmergedSurfaceTranslucency: TLabel;
+    lbSubmergedSurfaceOpacity: TLabel;
     Label29: TLabel;
     Label3: TLabel;
     Label30: TLabel;
@@ -203,7 +203,7 @@ type
     SpeedButton9: TSpeedButton;
     SpeedButtonLanguagesDir: TSpeedButton;
     SpinEdit1: TSpinEdit;
-    seSubmergedSurfaceTranslucency: TSpinEdit;
+    seSubmergedSurfaceOpacity: TSpinEdit;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -230,7 +230,7 @@ type
     procedure SpeedButtonLanguagesDirClick(Sender: TObject);
     procedure SpeedButton9Click(Sender: TObject);
     procedure SpinEdit1Change(Sender: TObject);
-    procedure seSubmergedSurfaceTranslucencyChange(Sender: TObject);
+    procedure seSubmergedSurfaceOpacityChange(Sender: TObject);
   private   { Private declarations }
     FFreeship: TFreeShip;
     FConfigChanged: boolean;
@@ -264,7 +264,7 @@ begin
   Panel4.Color := FFreeship.Preferences.ViewportColor;
   Panel2.Color := FFreeship.Preferences.LayerColor;
   Panel5.Color := FFreeship.Preferences.UnderWaterColor;
-  seSubmergedSurfaceTranslucency.Value := FFreeship.Preferences.UnderWaterColorAlpha;
+  seSubmergedSurfaceOpacity.Value := FFreeship.Preferences.UnderWaterColorAlpha * 100 div 255;
   Panel6.Color := FFreeship.Preferences.EdgeColor;
   Panel7.Color := FFreeship.Preferences.CreaseEdgeColor;
   Panel8.Color := FFreeship.Preferences.CreaseColor;
@@ -456,9 +456,9 @@ begin
   FThemeChanged := True;
 end;
 
-procedure TFreePreferencesDialog.seSubmergedSurfaceTranslucencyChange(Sender: TObject);
+procedure TFreePreferencesDialog.seSubmergedSurfaceOpacityChange(Sender: TObject);
 begin
-
+  FThemeChanged := True;
 end;
 
 procedure TFreePreferencesDialog.ResetDirsButtonClick(Sender: TObject);

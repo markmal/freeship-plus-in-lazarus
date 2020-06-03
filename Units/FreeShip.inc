@@ -1497,6 +1497,7 @@ begin
     G := GetGValue(ProjectSettings.ProjectUnderWaterColor);
     B := GetBValue(ProjectSettings.ProjectUnderWaterColor);
     Surface.UnderWaterColor := ProjectSettings.ProjectUnderWaterColor;
+    Surface.UnderWaterColorAlpha:=ProjectSettings.ProjectUnderWaterColorAlpha;
     Surface.ShadeUnderWater := True;
   end
   else
@@ -2467,6 +2468,9 @@ begin
       result := fv462;
       break;
     end;
+
+  if ProjectSettings.ProjectUnderWaterColorAlpha < 255 then
+     result := fv500;
 
 end;{TFreeShip.DetectMinresult}
 

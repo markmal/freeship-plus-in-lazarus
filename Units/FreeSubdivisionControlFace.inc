@@ -574,7 +574,7 @@ var
   Camera: T3DCoordinate;
   R, G, B: byte;
   Ru, Gu, Bu: byte;
-  Alpha: byte;
+  Alpha, uwR, uwG, uwB, uwA: byte;
   Min, Max, Tmp: TFloatType;
   C1, C2, C3: TFloatType;
   Above, Below: TFreeCoordinateArray;
@@ -887,9 +887,13 @@ begin
       // Clip all triangles against the waterline plane
 
       // blend layer color with underwater color
-      Ru := (R + GetRValue(Surface.UnderWaterColor * Surface.UnderWaterColorAlpha div 255)) div 2;
-      Gu := (G + GetGValue(Surface.UnderWaterColor * Surface.UnderWaterColorAlpha div 255)) div 2;
-      Bu := (B + GetBValue(Surface.UnderWaterColor * Surface.UnderWaterColorAlpha div 255)) div 2;
+      uwR:=GetRValue(Surface.UnderWaterColor);
+      uwG:=GetGValue(Surface.UnderWaterColor);
+      uwB:=GetGValue(Surface.UnderWaterColor);
+      uwA:=Surface.UnderWaterColorAlpha;
+      Ru := (R * (255-uwA) +  uwR * uwA) div 255;
+      Gu := (G * (255-uwA) +  uwG * uwA) div 255;
+      Bu := (B * (255-uwA) +  uwB * uwA) div 255;
 
       Setlength(Above, 6);
       setlength(Below, 6);

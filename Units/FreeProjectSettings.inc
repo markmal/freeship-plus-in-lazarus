@@ -395,6 +395,7 @@ begin
   Dialog.Coefficient := ProjectAppendageCoefficient;
   Dialog.cbShadeUnderwater.Checked := ProjectShadeUnderwaterShip;
   Dialog.Panel4.Color := ProjectUnderWaterColor;
+  Dialog.seUnderwaterOpacity.Value := ProjectUnderWaterColorAlpha * 100 div 255;
   Dialog.SplitSectionLocation := ProjectSplitSectionLocation;
   Dialog.CheckBox2.Checked := UseDefaultSplitSectionLocation;
   Dialog.CheckBox3.Checked := DisableModelCheck;
@@ -429,6 +430,7 @@ begin
     ProjectAppendageCoefficient := Dialog.Coefficient;
     ProjectShadeUnderwaterShip := Dialog.cbShadeUnderwater.Checked;
     ProjectUnderWaterColor := Dialog.Panel4.Color;
+    ProjectUnderWaterColorAlpha := Dialog.seUnderwaterOpacity.Value * 255 div 100;
     ProjectSplitSectionLocation := Dialog.SplitSectionLocation;
     UseDefaultSplitSectionLocation := Dialog.CheckBox2.Checked;
     DisableModelCheck := Dialog.CheckBox3.Checked;
@@ -523,6 +525,12 @@ begin
       Source.LoadBoolean(FEnableModelAutoMove);
     if FreeShip.Fileversion >= fv332 then
       Source.LoadBoolean(FEnableBonjeanSAC);
+    FProjectUnderWaterColorAlpha := FreeShip.Preferences.UnderWaterColorAlpha;
+    if FreeShip.Fileversion >= fv500 then
+      begin
+      Source.LoadInteger(I);
+      FProjectUnderWaterColorAlpha := byte(I);
+      end;
   end;
 end;{TFreeProjectSettings.LoadBinary}
 
@@ -594,6 +602,8 @@ begin
         Destination.Add(EnableModelAutoMove);
       if FreeShip.Fileversion >= fv332 then
         Destination.Add(EnableBonjeanSAC);
+      if FreeShip.Fileversion >= fv500 then
+        Destination.Add(FProjectUnderWaterColorAlpha);
     end;
   end;
 end;{TFreeProjectSettings.SaveBinary}

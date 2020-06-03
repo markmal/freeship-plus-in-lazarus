@@ -56,7 +56,8 @@ type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv1
                                     ControlFaceNames, ControlCurveNames,
                                     ControlPointLinearConstraints}
                              fv430, // ControlPointGroups
-                             fv462  // Anchors
+                             fv462, // Anchors
+                             fv500  // UnderWaterColorAlpha
                              );
 
 const CurrentVersion      = fv462;   // Current (latest) version of the FREE!ship project.
@@ -64,8 +65,8 @@ const CurrentVersion      = fv462;   // Current (latest) version of the FREE!shi
       ReleasedDate        = {$I %DATE%};
 
 var
-FREESHIP_MAJOR_VERSION : string ='4.6';   //Major version
-FREESHIP_VERSION : string ='4.6.3.0';   //Major full version
+FREESHIP_MAJOR_VERSION : string ='5.0';   //Major version
+FREESHIP_VERSION : string ='5.0.31.0';   //Major full version
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;
@@ -125,6 +126,7 @@ begin
       fv421  : Result:='4.2';
       fv430  : Result:='4.3';
       fv462  : Result:='4.6.2';
+      fv500  : Result:='5.0';
       else MessageDlg(Userstring(204)+'!',mtError,[mbok],0);
    end
 end;{VersionString}
@@ -175,6 +177,7 @@ begin
   if Version =	'4.2'	 then Result:=	      fv421	 else
   if Version =	'4.3'	 then Result:=	      fv430	 else
   if Version =	'4.6.2'	 then Result:=	      fv462	 else
+  if Version =	'5.0'	 then Result:=	      fv500	 else
   raise Exception.Create(Userstring(204)+'! '+Version);
 end;{VersionString}
 

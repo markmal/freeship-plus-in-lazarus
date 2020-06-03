@@ -4097,8 +4097,8 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
-#: tfreepreferencesdialog.lbsubmergedsurfacetranslucency.caption
-msgid "Submerged surface translucency"
+#: tfreepreferencesdialog.lbsubmergedsurfaceopacity.caption
+msgid "Submerged surface opacity, %"
 msgstr ""
 
 #: tfreepreferencesdialog.panel29.caption
@@ -4134,7 +4134,8 @@ msgstr ""
 msgid "24"
 msgstr ""
 
-#: tfreepreferencesdialog.sesubmergedsurfacetranslucency.hint
+#: tfreepreferencesdialog.sesubmergedsurfaceopacity.hint
+msgctxt "tfreepreferencesdialog.sesubmergedsurfaceopacity.hint"
 msgid "0 - clear, 255 - opaque"
 msgstr ""
 
@@ -4248,6 +4249,10 @@ msgctxt "tfreeprojectsettingsdialog.label11.caption"
 msgid "m"
 msgstr ""
 
+#: tfreeprojectsettingsdialog.label12.caption
+msgid "Underwater opacity, %"
+msgstr ""
+
 #: tfreeprojectsettingsdialog.label13.caption
 msgctxt "tfreeprojectsettingsdialog.label13.caption"
 msgid "Split Section location"
@@ -4312,6 +4317,10 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label26.caption
 msgctxt "tfreeprojectsettingsdialog.label26.caption"
 msgid "C"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label27.caption
+msgid "Underwater color"
 msgstr ""
 
 #: tfreeprojectsettingsdialog.label3.caption

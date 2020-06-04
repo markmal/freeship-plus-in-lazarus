@@ -906,6 +906,7 @@ begin
   FFilename := Userstring(179);
   FVisibility.Clear;
   FEditMode := emSelectItems;// Set editmode to select items
+  //FFontSize := 8; // use Preferences
 
   ActiveControlPoint := nil;
   // delete Markers
@@ -1082,7 +1083,7 @@ var
     Viewport.FontColor := Preferences.HydrostaticsFontColor;
     //size:=Round(Sqrt(Viewport.Zoom)*7);
     //if size<2 then size:=2;
-    Viewport.FontSize := FFontSize;
+    Viewport.FontSize := FPreferences.FontSize;
     Size := Round(Sqrt(Viewport.Zoom) * (Preferences.PointSize + 1));
     if size < 1 then
       size := 1;
@@ -1165,7 +1166,7 @@ var
       //SetFontHeight(DistPP3D(Min,Max)/FontheightFactor * FFontScale);
 
       // just set font size
-      Viewport.FontSize := FFontSize;
+      Viewport.FontSize := Preferences.FontSize;
 
       Height := Viewport.TextHeight('Oly');
       Viewport.BrushStyle := bsClear;
@@ -1407,6 +1408,8 @@ begin
   // But the intersections that should be drawn last depends on the view
 
   Surface.SplitSectionLocation := Projectsettings.ProjectSplitSectionLocation;
+  Viewport.FontSize := Preferences.FontSize;
+
   if Viewport.Viewtype <> fvPerspective then
   begin
     if Visibility.ShowGrid then
@@ -1644,8 +1647,8 @@ begin
     Rect.Bottom := Rect.Top + LegendHeight;
     Rect.Right := Rect.Left + LegendWidth;
     Viewport.Rectangle(Rect);
-    Viewport.FontName := 'Arial';
-    Viewport.FontSize := 8;
+    //Viewport.FontName := 'Arial';
+    //Viewport.FontSize := 8;
     Viewport.FontColor := Preferences.GridFontColor;
     NDecimal := 3;
 

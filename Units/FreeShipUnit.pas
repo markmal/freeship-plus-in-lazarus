@@ -849,6 +849,7 @@ type
 
   TFreePreferences = class(TPersistent)
   private
+    FFontSize: integer;
     FOwner: TFreeShip;
     FMainForm: TForm;
     FPointSize: integer;
@@ -991,6 +992,7 @@ type
   published
     // General options
     property PointSize: integer read FPointSize write FPointSize;
+    property FontSize: integer read FFontSize write FFontSize;
     // Color settings
     property ButtockColor: TColor read FButtockColor write FButtockColor;
     property ControlCurveColor: TColor read FControlCurveColor write FControlCurveColor;
@@ -1277,7 +1279,7 @@ type
     FResistanceMHData: TFreeMHSeriesResistanceData;
     FDesignHydrostatics: TFreeHydrostaticCalc;
     // This object calculates hydrostatic data to draw in the viewports
-    FFontSize: integer;
+    //FFontSize: integer; // use Preferences.FontSize
     procedure FBuildValidFrameTable(
       Destination: TFasterListTFreeSpline;
       CloseAtDeck: boolean);
@@ -1526,7 +1528,7 @@ type
     property Preferences: TFreePreferences read FPreferences;
     property ProjectSettings: TFreeProjectSettings read FProjectSettings;
     property Visibility: TFreeVisibility read FVisibility;
-    property FontSize: integer read FFontSize write FFontSize;
+    //property FontSize: integer read FFontSize write FFontSize; // use Preferences.FontSize
   end;
 // function to find the corresponding water viscosity based on the density
 function FindWaterViscosity(Temper: TFloatType; Units: TFreeUnitType): TFloatType;

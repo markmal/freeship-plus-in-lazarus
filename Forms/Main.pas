@@ -1466,6 +1466,7 @@ begin
    CascadeWindow.Enabled:=MDIChildCount>0;
    // Precision
    //PrecisionBox.ItemIndex:=Ord(FreeShip.Precision);
+   SpinEditFontSize.Value:=FreeShip.Preferences.FontSize;
    // Layers
    LayerAutoGroup.Enabled:=(Freeship.Surface.NumberOfControlFaces>1) and (FreeShip.Visibility.ShowInteriorEdges);
    // Tools
@@ -1879,7 +1880,12 @@ end;{TMainForm.NewWindowExecute}
 procedure TMainForm.SpinEditFontSizeChange(Sender: TObject);
 var w: integer;  vp:TFreeViewport;
 begin
-  FreeShip.FontSize := SpinEditFontSize.value;
+  FreeShip.Preferences.FontSize := SpinEditFontSize.value;
+  if SpinEditFontSize.value < 10
+  then SpinEditFontSize.Constraints.MinWidth := 16+24+2
+  else SpinEditFontSize.Constraints.MinWidth := 16+16+24+2;
+  SpinEditFontSize.Width := SpinEditFontSize.Constraints.MinWidth;
+
   for w:=0 to FMDIPanelManager.PanelCount-1 do
   begin
     vp := TFreeHullWindow(FMDIPanelManager.MDIPanels[w]).Viewport;
@@ -2319,7 +2325,6 @@ begin
    FreeShip.OnUpdateRecentFileList := FreeShipUpdateRecentFileList;
    FreeShip.OnUpdateUndoData := FreeShipUpdateUndoData;
    FreeShip.Precision := fpLow;
-   FreeShip.FontSize := 0;
 
    FAllToolbarsControlsWidth := 0;
    GlobalFreeship := Freeship;

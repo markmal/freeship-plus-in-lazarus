@@ -254,6 +254,7 @@ begin
   if Dialog.Execute(Owner) then
   begin
     PointSize := Dialog.SpinEdit1.Value;
+    FontSize := Dialog.seFontSize.Value;
     LayerColor := Dialog.Panel2.Color;
     UnderWaterColor := Dialog.Panel5.Color;
     UnderWaterColorAlpha := Dialog.seSubmergedSurfaceOpacity.Value * 255 div 100;
@@ -982,6 +983,7 @@ begin
   FParentThemeName := params.ReadString('Theme', 'ParentTheme', FParentThemeName);
 
   FPointSize := params.ReadInteger('Graphic', 'PointSize', FPointSize);
+  FFontSize := params.ReadInteger('Graphic', 'FontSize', FFontSize);
   FButtockColor := params.ReadColor('Graphic', 'ButtockColor', FButtockColor);
   FWaterlineColor := params.ReadColor('Graphic', 'WaterlineColor', FWaterlineColor);
   FStationColor := params.ReadColor('Graphic', 'StationColor', FStationColor);
@@ -1121,6 +1123,7 @@ end;
 procedure TFreePreferences.SetDefaults;
 begin
   FPointSize := 2;
+  FFontSize := 8;
   FLanguage := 'English';
   FFbmEncoding := 'cp1252';
   FMaxUndoMemory := 32;
@@ -1394,6 +1397,7 @@ begin
   params.WriteString('Theme', 'ParentTheme', ParentThemeName);
 
   params.WriteInteger('Graphic', 'PointSize', FPointSize);
+  params.WriteInteger('Graphic', 'FontSize', FFontSize);
   params.WriteColor('Graphic', 'ButtockColor', FButtockColor);
   params.WriteColor('Graphic', 'WaterlineColor', FWaterlineColor);
   params.WriteColor('Graphic', 'StationColor', FStationColor);

@@ -1630,6 +1630,7 @@ begin
   FKeelSurface.ControlPointSize := FFreeship.Preferences.PointSize;
 
   Viewport.Color := FFreeship.Preferences.ViewportColor;
+  Viewport.FontSize := FFreeship.Preferences.FontSize;
   Viewport.Invalidate;
 end;
 

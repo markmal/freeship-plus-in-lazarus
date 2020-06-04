@@ -312,7 +312,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
         ParentFont = False
         object Panel51: TPanel
           Left = 0
-          Height = 595
+          Height = 587
           Top = 0
           Width = 612
           Align = alClient
@@ -322,37 +322,37 @@ object FreePreferencesDialog: TFreePreferencesDialog
           ChildSizing.LeftRightSpacing = 10
           ChildSizing.TopBottomSpacing = 10
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 595
+          ClientHeight = 587
           ClientWidth = 612
           ParentFont = False
           TabOrder = 0
           object Panel30: TPanel
             Left = 10
-            Height = 54
+            Height = 62
             Top = 10
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 0
             object Panel32: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditLanguagesDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -363,7 +363,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButtonLanguagesDir: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -383,7 +383,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object LabelLanguagesDir: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -394,32 +394,32 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel28: TPanel
             Left = 10
-            Height = 54
-            Top = 64
+            Height = 62
+            Top = 72
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 1
             object Panel29: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditExecDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -430,7 +430,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton12: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -450,7 +450,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label30: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -461,32 +461,32 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel31: TPanel
             Left = 10
-            Height = 54
-            Top = 118
+            Height = 62
+            Top = 134
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 2
             object Panel33: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditManualsDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -497,7 +497,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton9: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -517,7 +517,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label29: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -528,32 +528,32 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel34: TPanel
             Left = 10
-            Height = 54
-            Top = 172
+            Height = 62
+            Top = 196
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 3
             object Panel35: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditTempDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -564,7 +564,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton13: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -584,7 +584,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label31: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -595,32 +595,32 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel38: TPanel
             Left = 10
-            Height = 54
-            Top = 226
+            Height = 62
+            Top = 258
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 4
             object Panel39: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditOpenDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -631,7 +631,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton14: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -651,7 +651,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label32: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -662,31 +662,31 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel40: TPanel
             Left = 10
-            Height = 54
-            Top = 388
+            Height = 62
+            Top = 444
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 5
             object Panel41: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditExportDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -697,7 +697,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton17: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -717,7 +717,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label35: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -728,31 +728,31 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel42: TPanel
             Left = 10
-            Height = 54
-            Top = 334
+            Height = 62
+            Top = 382
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 6
             object Panel43: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditImportDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -763,7 +763,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton16: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -783,7 +783,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label34: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -794,32 +794,32 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel44: TPanel
             Left = 10
-            Height = 54
-            Top = 280
+            Height = 62
+            Top = 320
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 7
             object Panel45: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               Caption = 'Panel29'
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditSaveDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -830,7 +830,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton15: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -850,7 +850,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label33: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -861,31 +861,31 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object PanelGlobalImportDir: TPanel
             Left = 10
-            Height = 54
-            Top = 496
+            Height = 62
+            Top = 568
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 8
             object Panel47: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditGlobalImportDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -896,7 +896,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton19: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -916,7 +916,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label39: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -927,31 +927,31 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel48: TPanel
             Left = 10
-            Height = 54
-            Top = 442
+            Height = 62
+            Top = 506
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 54
+            ClientHeight = 62
             ClientWidth = 592
             ParentFont = False
             TabOrder = 9
             object Panel49: TPanel
               Left = 0
-              Height = 32
-              Top = 22
+              Height = 36
+              Top = 26
               Width = 592
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
-              ClientHeight = 32
+              ClientHeight = 36
               ClientWidth = 592
               ParentFont = False
               TabOrder = 0
               object EditGlobalOpenDir: TEdit
                 Left = 0
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 569
                 Align = alClient
@@ -962,7 +962,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
               end
               object SpeedButton18: TSpeedButton
                 Left = 569
-                Height = 32
+                Height = 36
                 Top = 0
                 Width = 23
                 Align = alRight
@@ -982,7 +982,7 @@ object FreePreferencesDialog: TFreePreferencesDialog
             end
             object Label36: TLabel
               Left = 0
-              Height = 22
+              Height = 26
               Top = 0
               Width = 592
               Align = alTop
@@ -993,21 +993,21 @@ object FreePreferencesDialog: TFreePreferencesDialog
           end
           object Panel55: TPanel
             Left = 10
-            Height = 34
-            Top = 550
+            Height = 36
+            Top = 577
             Width = 592
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
-            ClientHeight = 34
+            ClientHeight = 36
             ClientWidth = 592
             ParentFont = False
             TabOrder = 10
             object BitBtnResetDirs: TSpeedButton
               Left = 3
-              Height = 28
+              Height = 30
               Top = 3
-              Width = 80
+              Width = 82
               Align = alLeft
               AutoSize = True
               BorderSpacing.Around = 3
@@ -1168,23 +1168,45 @@ object FreePreferencesDialog: TFreePreferencesDialog
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
+            ChildSizing.ControlsPerLine = 4
             ClientHeight = 82
             ClientWidth = 612
             ParentFont = False
             TabOrder = 1
-            object Label37: TLabel
+            object Label17: TLabel
               Left = 10
               Height = 36
               Top = 4
               Width = 151
+              Caption = 'Controlpoint size'
+              Layout = tlCenter
+              ParentColor = False
+              ParentFont = False
+            end
+            object SpinEdit1: TSpinEdit
+              Left = 167
+              Height = 36
+              Top = 4
+              Width = 50
+              MaxValue = 5
+              MinValue = 1
+              OnChange = SpinEdit1Change
+              ParentFont = False
+              TabOrder = 0
+              Value = 2
+            end
+            object Label37: TLabel
+              Left = 223
+              Height = 36
+              Top = 4
+              Width = 117
               Caption = 'Tool icon size'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object SelectToolIconSize: TComboBox
-              Left = 167
+              Left = 346
               Height = 36
               Top = 4
               Width = 100
@@ -1201,29 +1223,30 @@ object FreePreferencesDialog: TFreePreferencesDialog
               )
               OnChange = ComboBoxThemesChange
               ParentFont = False
-              TabOrder = 0
+              TabOrder = 1
               Text = '24'
             end
-            object Label17: TLabel
+            object Label28: TLabel
               Left = 10
               Height = 36
               Top = 42
               Width = 151
-              Caption = 'Controlpoint size'
+              Caption = 'Font size'
+              Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
-            object SpinEdit1: TSpinEdit
+            object seFontSize: TSpinEdit
               Left = 167
               Height = 36
               Top = 42
-              Width = 100
-              MaxValue = 5
-              MinValue = 1
+              Width = 50
+              MaxValue = 20
+              MinValue = 3
               OnChange = SpinEdit1Change
               ParentFont = False
-              TabOrder = 1
-              Value = 2
+              TabOrder = 2
+              Value = 3
             end
           end
           object Panel50: TPanel

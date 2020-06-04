@@ -4012,6 +4012,10 @@ msgstr ""
 msgid "Max. undo memory (Mb)"
 msgstr ""
 
+#: tfreepreferencesdialog.label28.caption
+msgid "Font size"
+msgstr ""
+
 #: tfreepreferencesdialog.label29.caption
 msgid "Manuals"
 msgstr ""

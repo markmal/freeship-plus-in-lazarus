@@ -104,6 +104,7 @@ type
     Label25: TLabel;
     Label26: TLabel;
     Label27: TLabel;
+    Label28: TLabel;
     lbSubmergedSurfaceOpacity: TLabel;
     Label29: TLabel;
     Label3: TLabel;
@@ -204,6 +205,7 @@ type
     SpeedButtonLanguagesDir: TSpeedButton;
     SpinEdit1: TSpinEdit;
     seSubmergedSurfaceOpacity: TSpinEdit;
+    seFontSize: TSpinEdit;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -287,6 +289,7 @@ begin
   Panel25.Color := FFreeship.Preferences.HydrostaticsFontColor;
   Panel26.Color := FFreeship.Preferences.ZebraStripeColor;
   SpinEdit1.Value := FFreeship.Preferences.PointSize;
+  seFontSize.Value := FFreeship.Preferences.FontSize;
   if FFreeship.Preferences.MaxUndoMemory < 1 then
     FreeNumInput1.Value := 1
   else

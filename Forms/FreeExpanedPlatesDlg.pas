@@ -496,7 +496,7 @@ begin
         // Skip translation
         Viewport.FontName := 'Arial';
         // End Skip translation
-        Viewport.FontSize := 6;
+        //Viewport.FontSize := 6;
         while X <= Viewport.Max3D.X do
         begin
           if (X >= Viewport.Min3D.X - 0.01) and (X <= Viewport.Max3D.X + 0.01) then

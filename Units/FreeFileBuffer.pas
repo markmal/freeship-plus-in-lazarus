@@ -137,10 +137,13 @@ type
   private
     FLines: TStringList;
     FPosition: integer; // this is our position
+    FormatSettings: TFormatSettings;
     procedure FSetCapacity(val: integer); override;
     function FGetCapacity: integer; override;
   public
     constructor Create;
+    Function StrToFloatType(Const S : String) : TFloatType;
+    Function FloatTypeToStr(Value: TFloatType): String;
     procedure Add(IntegerValue: integer); override; overload;
     procedure Add(Text: string); override; overload;
     procedure Add(BooleanValue: boolean); override; overload;
@@ -2238,10 +2241,34 @@ end;{TFreeFileBuffer.GetPosition}
 { Text file used to store file info                                                             }
 {---------------------------------------------------------------------------------------------------}
 constructor TFreeTextBuffer.Create;
+var
+  sdf: String;
 begin
   FLines := TStringList.Create;
   inherited Create;
+  FormatSettings := DefaultFormatSettings;
+  FormatSettings.DecimalSeparator:='.';
+  FormatSettings.ThousandSeparator:=',';
+  FormatSettings.ShortDateFormat:='yyyy-mm-dd';
+  FormatSettings.ShortTimeFormat:='hh:nn:ss';
 end;{TFreeTextBuffer.Create}
+
+function TFreeTextBuffer.StrToFloatType(const S: String): TFloatType;
+var  LocalFormatSettings: TFormatSettings;
+begin
+  if not TryStrToFloat(S, Result, FormatSettings) then
+    begin
+    // try an opposite way. this is a workaround if a file was saved with commas
+    LocalFormatSettings.DecimalSeparator:=',';
+    LocalFormatSettings.ThousandSeparator:='.';
+    Result := StrToFloat(S, LocalFormatSettings);
+    end;
+end;
+
+function TFreeTextBuffer.FloatTypeToStr(Value: TFloatType): String;
+begin
+  Result := FloatToStr(Value, FormatSettings);
+end;
 
 function TFreeTextBuffer.FGetCapacity: integer;
 begin
@@ -2284,7 +2311,7 @@ procedure TFreeTextBuffer.Add(FloatValue: TFloatType);
 var
   S: string;
 begin
-  S := FloatToStr(FloatValue);
+  S := FloatTypeToStr(FloatValue);
   FLines.Add(S);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
@@ -2347,7 +2374,7 @@ procedure TFreeTextBuffer.Add(Coordinate: T3DCoordinate);
 var
   S: string;
 begin
-  S := FloatToStr(Coordinate.X) + ' ' + FloatToStr(Coordinate.Y) + ' ' + FloatToStr(Coordinate.Z);
+  S := FloatTypeToStr(Coordinate.X) + ' ' + FloatTypeToStr(Coordinate.Y) + ' ' + FloatTypeToStr(Coordinate.Z);
   FLines.Add(S);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
@@ -2356,8 +2383,8 @@ procedure TFreeTextBuffer.Add(Plane: T3DPlane);
 var
   S: string;
 begin
-  S := FloatToStr(Plane.a) + ' ' + FloatToStr(Plane.b) + ' '
-     + FloatToStr(Plane.c) + ' ' + FloatToStr(Plane.d);
+  S := FloatTypeToStr(Plane.a) + ' ' + FloatTypeToStr(Plane.b) + ' '
+     + FloatTypeToStr(Plane.c) + ' ' + FloatTypeToStr(Plane.d);
   FLines.Add(S);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
@@ -2463,9 +2490,10 @@ end;{TFreeTextBuffer.LoadTJPEGImage}
 procedure TFreeTextBuffer.LoadTFloatType(var Output: TFloatType);
 var
   S: string;
+  LocalFormatSettings: TFormatSettings;
 begin
   S := FLines[FPosition];
-  Output := StrToFloat(S);
+  Output := StrToFloatType(S);
   Inc(FPosition);
 end;{TFreeTextBuffer.LoadTJPEGImage}
 
@@ -2504,9 +2532,9 @@ var
   S: string;
 begin
   S := FLines[FPosition];
-  Output.X := StrToFloat(ExtractWord(1, S, [' ']));
-  Output.Y := StrToFloat(ExtractWord(2, S, [' ']));
-  Output.Z := StrToFloat(ExtractWord(3, S, [' ']));
+  Output.X := StrToFloatType(ExtractWord(1, S, [' ']));
+  Output.Y := StrToFloatType(ExtractWord(2, S, [' ']));
+  Output.Z := StrToFloatType(ExtractWord(3, S, [' ']));
   Inc(FPosition);
 end;{TFreeTextBuffer.LoadTJPEGImage}
 
@@ -2515,10 +2543,10 @@ var
   S: string;
 begin
   S := FLines[FPosition];
-  Output.a := StrToFloat(ExtractWord(1, S, [' ']));
-  Output.b := StrToFloat(ExtractWord(2, S, [' ']));
-  Output.c := StrToFloat(ExtractWord(3, S, [' ']));
-  Output.d := StrToFloat(ExtractWord(4, S, [' ']));
+  Output.a := StrToFloatType(ExtractWord(1, S, [' ']));
+  Output.b := StrToFloatType(ExtractWord(2, S, [' ']));
+  Output.c := StrToFloatType(ExtractWord(3, S, [' ']));
+  Output.d := StrToFloatType(ExtractWord(4, S, [' ']));
   Inc(FPosition);
 end;{TFreeTextBuffer.LoadTJPEGImage}
 

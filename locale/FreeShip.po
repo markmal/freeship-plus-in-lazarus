@@ -10015,6 +10015,11 @@ msgstr ""
 msgid "ActionRemove"
 msgstr ""
 
+#: ttiledialog.bbclose.caption
+msgctxt "ttiledialog.bbclose.caption"
+msgid "Close"
+msgstr ""
+
 #: ttiledialog.buttonopenfile.caption
 msgid "Open Another"
 msgstr ""

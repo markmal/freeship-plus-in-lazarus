@@ -10,7 +10,9 @@ umask 0022
 
 mkdir -p freeship/usr/bin
 cp $PRJ_HOME/FreeShip freeship/usr/bin/
-#strip --only-keep-debug --keep-file-symbols --keep-symbol=Version freeship/usr/bin/FreeShip
+
+mkdir -p freeship/usr/lib
+cp $PRJ_HOME/lib/lib*.so freeship/usr/lib/
 
 mkdir -p freeship/etc/FreeShip
 cp -r $PRJ_HOME/install/FreeShip.ini freeship/etc/FreeShip/

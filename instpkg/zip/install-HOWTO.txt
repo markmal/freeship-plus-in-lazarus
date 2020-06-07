@@ -8,18 +8,17 @@ Installation from ZIP
 2. Copy FreeShip*.zip file into it and unzip it.
 3. You can install FreeShip with per-user scope (into your home) or with 
    machine scope to be shared by multiple users.
-   Installation with per-machine scope may ask you for password to get 
-   root privileges via `sudo'.
+   Use sudo for installation with per-machine scope.
    Executables installed with per-user scope are not protected by OS and can
    be vulnerable to malware (such as trojans etc) 
 
-a. To install it with user scope run `./install-user.sh'.
-b. To install it with system scope run `sudo ./install-system.sh'
+   To install it with system scope run `sudo ./install-FreeShip.sh' and follow dialog.
+   To install it with user scope run `./install-FreeShip.sh' and follow dialog.
    You will have to accept GLPv3
 
 4. Uninstallation of FreeShip that has been installed from ZIP
-a. To uninstall it from user space `cd $HOME/.local/share/FreeShip; ./uninstall-user.sh'.
-b. To uninstall it from system space `cd /usr/share/FreeShip; sudo ./uninstall-system.sh'
+a. To uninstall it from user space `cd $HOME/.local/share/FreeShip; ./uninstall-FreeShip.sh'.
+b. To uninstall it from system space `cd /usr/share/FreeShip; sudo ./uninstall-FreeShip.sh'
 
 Installation from Debian package `sudo dpkg -i freeship_<***>.deb
 Only system space installation from .deb is currently supported

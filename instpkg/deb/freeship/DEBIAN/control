@@ -1,20 +1,17 @@
 Package: freeship
-Version: 5.0.30.422
-Provides: freeship
+Version: 5.0.33.428
 Architecture: amd64
 Depends:  libatk1.0-0, libc6, libcairo2, libgdk-pixbuf2.0-0, libglib2.0-0, libgtk2.0-0, libpango-1.0-0, libpangocairo-1.0-0, libx11-6
-Recommends: libssl1.0.0
+Recommends: libssl1.1.0
 Source: freeship
 Section: science
 Priority: optional
 Maintainer: markmal <markmal@github.com>
-#Build-Depends: debhelper (>= 8.0.0), lazarus (>=1.4.0), libqt4pas-dev, git, libgl1-mesa-dev, inkscape, imagemagick
-#Standards-Version: 3.9.4
-Installed-Size: 110544
+Installed-Size: 116768
 Homepage: https://github.com/markmal/freeship-plus-in-lazarus
 Origin: https://github.com/markmal/freeship-plus-in-lazarus
-#Vcs-Git: git://github.com/markmal/freeship-plus-in-lazarus.git
-#Vcs-Browser: https://github.com/markmal/freeship-plus-in-lazarus
+Vcs-Git: git://github.com/markmal/freeship-plus-in-lazarus.git
+Vcs-Browser: https://github.com/markmal/freeship-plus-in-lazarus
 Description: FREE!ship plus is a program for designing and analysing ships yachts and boats.
  FREE!ship Plus in Lazarus is further development of the FREE!ship Plus
  (by http://www.hydronship.net ) Windows program with free source code FREE!ship

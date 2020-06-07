@@ -30,8 +30,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
-      <RevisionNr Value="32"/>
-      <BuildNr Value="425"/>
+      <RevisionNr Value="33"/>
+      <BuildNr Value="428"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -227,6 +227,11 @@
         <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
         <WorkingDirectory Value="/usr/bin"/>
       </local>
+      <environment>
+        <UserOverrides Count="1">
+          <Variable0 Name="LD_LIBRARY_PATH" Value="/home/mark/MyProjects/freeship-plus-in-lazarus/lib"/>
+        </UserOverrides>
+      </environment>
       <FormatVersion Value="2"/>
       <Modes Count="6">
         <Mode0 Name="default">
@@ -245,6 +250,11 @@
             <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
             <WorkingDirectory Value="/usr/bin"/>
           </local>
+          <environment>
+            <UserOverrides Count="1">
+              <Variable0 Name="LD_LIBRARY_PATH" Value="/home/mark/MyProjects/freeship-plus-in-lazarus/lib"/>
+            </UserOverrides>
+          </environment>
         </Mode2>
         <Mode3 Name="debug log from Program Files">
           <local>
@@ -992,6 +1002,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
+      <Libraries Value="lib"/>
       <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.8/lcl/interfaces/gtk3/gtk3bindings/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
@@ -1018,6 +1029,10 @@
         <DebugInfoType Value="dsDwarf2"/>
         <UseValgrind Value="True"/>
       </Debugging>
+      <Options>
+        <PassLinkerOptions Value="True"/>
+        <LinkerOptions Value="-rpath='$ORIGIN/../lib'"/>
+      </Options>
     </Linking>
     <Other>
       <Verbosity>

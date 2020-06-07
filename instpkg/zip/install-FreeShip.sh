@@ -177,7 +177,14 @@ fi
 
 echo "  Install executables"
 
+[ ! -d "${FS_BIN}" ] && mkdir -p "${FS_BIN}"
 cp FreeShip "${FS_BIN}/"
+
+if [ -f lib/* ]; then
+  [ ! -d "${FS_LIB}" ] && mkdir -p "${FS_LIB}"
+  cp lib/*  "${FS_LIB}/"
+  [ $INST_SCOPE = M ] && ldconfig
+fi
 
 [ -d "${FS_HOME}" ] || mkdir -p "${FS_HOME}"
 cp -r Exec "${FS_HOME}/"
@@ -267,7 +274,7 @@ Name=FreeShip Plus (user)
 Comment=FREE!ship Plus for Linux
 Icon=freeship
 Exec="${FS_BIN}/FreeShip" %f
-Path="${FS_HOME}/FreeShip"
+Path="${FS_HOME}"
 NoDisplay=false
 Categories=Engineering;
 Keywords=Engineering;FreeShip;Designer;Vessel;

@@ -1,12 +1,28 @@
 unit FreeUpdateDlg;
-
 {$mode objfpc}{$H+}
 
 interface
 
 uses
+  {
+  {$IF defined(unix) and (FPC_FULLVERSION < 32000)}
+  cmem, {$ifdef unix}cthreads,{$endif}
+  {$endif}
+  }
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
   Spin, Buttons, ActnList, fpjsonrtti;
+
+(* If it is Linux/Unix and FPC is older than 3.2 then use library function.
+   The library function is same as https_get(url) below, but it is
+   build using FPC 3.2 that is compatible with new libssl v1.1.
+   This is workaround of the known issue that FPC 3.0.4 is not compatible
+   with libssl v1.1.
+   You must place libfreehttps.so into one of library folders to link FreeShip,
+   default is /usr/local/lib/
+*)
+{$IF defined(unix) and (FPC_FULLVERSION < 32000)}
+function https_get(URL:string):RawByteString; cdecl; external 'libfreehttps.so';
+{$endif}
 
 type TGitHubAsset = class(TCollectionItem)
   private
@@ -156,6 +172,25 @@ resourcestring
            +'You have to check for updates traditional way at Download page.'+#10
            +'Click link below.';
 
+// if it is Unix and FPC is 3.2 and newer then use stock function not the library one
+{$IF not((FPC_FULLVERSION < 32000) and (defined(unix)))}
+function https_get(URL:string):RawByteString;
+var
+  Client: TFPHTTPClient;
+begin
+  Result:='';
+  Client:=TFPHttpClient.Create(Nil);
+  Client.AllowRedirect := true;
+  Client.AddHeader('User-Agent','Mozilla/5.0 (compatible; fpweb)');
+  try
+    InitSSLInterface;
+    Result:=Client.Get(url);
+  finally
+    Client.Free;
+  end;
+end;
+{$ENDIF}
+
 procedure TFreeUpdateForm.GetGitHubReleases;
 var
   Http: TFPHttpClient;
@@ -168,7 +203,7 @@ var
   GitHubAsset : TGitHubAsset;
   havedpkg : boolean;
   fext: string;
-  vers:string;
+  vers, URL:string;
   download_asset:integer;
 
   function extractVersion(fn: string):string;
@@ -216,13 +251,14 @@ begin
   havedpkg := FileExists('/bin/dpkg') or FileExists('/usr/bin/dpkg');
   {$endif}
 
-  Http:=TFPHttpClient.Create(Nil);
+  URL := 'https://api.github.com/repos/markmal/freeship-plus-in-lazarus/releases';
+
+  {Http:=TFPHttpClient.Create(Nil);
   Http.AllowRedirect := true;
-  Http.AddHeader('User-Agent','Mozilla/5.0 (compatible; fpweb)');
+  Http.AddHeader('User-Agent','Mozilla/5.0 (compatible; fpweb)');}
   try
    try
-     InitSSLInterface;
-     Content:=Http.Get('https://api.github.com/repos/markmal/freeship-plus-in-lazarus/releases');
+     Content := https_get(URL);
      jData:=GetJSON(Content);
      try
        jghReleaseData := jData.Items[0]; //0 - get last release
@@ -310,7 +346,7 @@ begin
        logger.DumpExceptionCallStack(e);
    end;
   finally
-    Http.Free;
+    //Http.Free;
   end;
 end;
 

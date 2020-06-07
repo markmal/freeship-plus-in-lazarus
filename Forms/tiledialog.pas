@@ -4,7 +4,7 @@ unit TileDialog;
 
 interface
 
-uses
+uses  Gtk2,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
   StdCtrls, ActnList, Menus, ComCtrls;
 
@@ -30,12 +30,14 @@ type
     ActionRemove: TAction;
     ActionOpenAnother: TAction;
     ActionList1: TActionList;
+    bbClose: TBitBtn;
     ButtonOpenFile: TBitBtn;
     FlowPanel: TFlowPanel;
     MenuItemRemove: TMenuItem;
     MenuItemOpen: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
+    Panel3: TPanel;
     PopupMenu1: TPopupMenu;
     ProgressBar1: TProgressBar;
     TopPanel: TPanel;

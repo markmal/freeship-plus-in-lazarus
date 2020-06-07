@@ -61,7 +61,7 @@ type
     ShellPathPanel: TShellPathPanel;
     BottomPanel: TPanel;
     EditName: TEdit;
-    FilterComboBox1: TFilterComboBox;
+    FilterComboBox1: FreeShellCtrls.TFilterComboBox;
     LabelLocation: TLabel;
     LabelName: TLabel;
     AutoSearchListBox: TListBox;

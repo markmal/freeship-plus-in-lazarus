@@ -1782,7 +1782,7 @@ var
   i: Integer;
   Files: TStringList;
   NewItem: TListItem;
-  CurFileName, CurFilePath: string;
+  CurFileName, CurFilePath, sDT: string;
   CurFileSize: Int64;
   DirObjectTypes, FileObjectTypes : TObjectTypes;
   Time : Longint;
@@ -1845,7 +1845,8 @@ begin
       Time := fileItem.FFileInfo.Time;
       //Time := FileAge(CurFilePath);
       // Forth column - Time
-      NewItem.SubItems.Add( FormatDateTime('YYYY-DD-MM hh:mm:ss',FileDateToDateTime(Time)));
+      sDT := FormatDateTime('YYYY-MM-DD hh:mm:ss',FileDateToDateTime(Time));
+      NewItem.SubItems.Add(sDT);
       if Assigned(FOnFileAdded)
          then FOnFileAdded(Self,NewItem);
     end;

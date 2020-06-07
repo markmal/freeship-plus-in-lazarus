@@ -8,25 +8,26 @@ object TileDialog: TTileDialog
   Font.Quality = fqAntialiased
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.8.0'
   object TopPanel: TPanel
     Left = 0
-    Height = 50
+    Height = 40
     Top = 0
     Width = 1023
     Align = alTop
+    AutoSize = True
     BevelOuter = bvNone
     Caption = 'Recent projects'
-    ClientHeight = 50
+    ClientHeight = 40
     ClientWidth = 1023
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
     object Panel1: TPanel
       Left = 0
-      Height = 50
+      Height = 40
       Top = 0
-      Width = 139
+      Width = 177
       Align = alLeft
       AutoSize = True
       BevelOuter = bvNone
@@ -37,15 +38,17 @@ object TileDialog: TTileDialog
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 50
-      ClientWidth = 139
+      ClientHeight = 40
+      ClientWidth = 177
       TabOrder = 0
       object ButtonOpenFile: TBitBtn
         Left = 10
-        Height = 26
-        Top = 12
-        Width = 119
+        Height = 36
+        Top = 2
+        Width = 157
         Action = ActionOpenAnother
+        Align = alLeft
+        AutoSize = True
         Caption = 'Open Another'
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -88,8 +91,8 @@ object TileDialog: TTileDialog
       end
     end
     object Panel2: TPanel
-      Left = 853
-      Height = 50
+      Left = 775
+      Height = 40
       Top = 0
       Width = 170
       Align = alRight
@@ -102,28 +105,56 @@ object TileDialog: TTileDialog
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 50
+      ClientHeight = 40
       ClientWidth = 170
       TabOrder = 1
       object ProgressBar1: TProgressBar
         Left = 10
         Height = 20
-        Top = 15
+        Top = 10
         Width = 150
         Constraints.MinWidth = 150
+        TabOrder = 0
+      end
+    end
+    object Panel3: TPanel
+      Left = 945
+      Height = 40
+      Top = 0
+      Width = 78
+      Align = alRight
+      AutoSize = True
+      BevelOuter = bvNone
+      ChildSizing.LeftRightSpacing = 10
+      ChildSizing.TopBottomSpacing = 2
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 40
+      ClientWidth = 78
+      TabOrder = 2
+      object bbClose: TBitBtn
+        Left = 10
+        Height = 36
+        Top = 2
+        Width = 58
+        Align = alLeft
+        AutoSize = True
+        Caption = 'Close'
+        ModalResult = 11
+        ParentFont = False
         TabOrder = 0
       end
     end
   end
   object ScrollBox: TScrollBox
     Left = 0
-    Height = 602
-    Top = 50
+    Height = 612
+    Top = 40
     Width = 1023
     HorzScrollBar.Page = 21
     VertScrollBar.Page = 21
     Align = alClient
-    ClientHeight = 600
+    ClientHeight = 610
     ClientWidth = 1021
     Font.Quality = fqAntialiased
     ParentFont = False

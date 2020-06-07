@@ -36,6 +36,12 @@ program FreeShip;
 //{$DEFINE CREATE_TRANSLATION}
 
 uses
+  // this is to load custom libfreehttps.so library. Look to FreeUpdateDlg.pas
+  {$IF defined(unix) and (FPC_FULLVERSION < 32000)}
+  //cmem,
+  {$ifdef unix}cthreads,{$endif}
+  {$endif}
+
   {$IFDEF DBGMEMMGR}
   DbgMemMgr,
   {$ENDIF}

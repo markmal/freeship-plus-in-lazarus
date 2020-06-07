@@ -138,6 +138,7 @@ if [ "$INST_SCOPE" == "M" ]; then
 fi
 
 [ -x "${FS_BIN}/FreeShip" ] && rm -f "${FS_BIN}/FreeShip"
+[ -x "${FS_LIB}/libfreehttps.so" ] && rm -f "${FS_LIB}/libfreehttps.so"
 
 rmdir "${FS_HOME}"
 

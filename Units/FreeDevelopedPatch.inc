@@ -433,8 +433,9 @@ begin
   if b > 255 then
     b := 255;
 
-  Viewport.FontName:=FDimFontName;
-  Viewport.FontSize:=FDimFontSize;
+  Viewport.DrawingCanvas.Font.Name:=FDimFontName;
+  Viewport.DrawingCanvas.Font.Size:=FDimFontSize;
+  Viewport.DrawingCanvas.Font.Color:=FDimFontColor;
   Viewport.BrushColor := RGB(r, g, b);
   Viewport.PenWidth := PenwidthFactor;
   if FShowInteriorEdges then
@@ -596,11 +597,9 @@ begin
     //Viewport.FontName:='arial';
     //Viewport.FontHeight:=round(DistPP3D(Viewport.Min3D,Viewport.Max3D)/150);
 
-    Viewport.FontColor := FDimFontColor;
-    //Viewport.FontName := FDimFontName;
-    Viewport.FontName := 'Arial';
-    //Viewport.FontHeight := FDimFontSize;
-    Viewport.FontSize := FDimFontSize;
+    Viewport.DrawingCanvas.Font.Color := FDimFontColor;
+    Viewport.DrawingCanvas.Font.Name := FDimFontName;
+    Viewport.DrawingCanvas.Font.Size := FDimFontSize;
 
     for I := 1 to FBoundaryEdges.Count do
     begin

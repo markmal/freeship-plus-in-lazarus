@@ -373,6 +373,8 @@ begin
   InitViewPort;
   FFreeship := FreeShip;
   FPlates := Plates;
+  SpinEditFontSizeChange(SpinEditFontSize);
+
   //USE ONCE!
   ////Freeship.Preferences.dumpIcons(MenuImages,ActionList1);
 
@@ -477,7 +479,9 @@ begin
   if FPlates <> nil then
   begin
     // Skip translation
-    Viewport.FontName := 'Arial';
+    Viewport.DrawingCanvas.Font.Color := clBlack;
+    Viewport.DrawingCanvas.Font.Name := 'Arial';
+    Viewport.DrawingCanvas.Font.Size := FFontSize;
     // End Skip translation
     Viewport.FontSize:=FFontSize;
     if ShowDimensions.Checked then

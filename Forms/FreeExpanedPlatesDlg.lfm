@@ -498,7 +498,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       MinValue = 3
       OnChange = SpinEditFontSizeChange
       TabOrder = 0
-      Value = 8
+      Value = 6
     end
   end
   object ActionList1: TActionList

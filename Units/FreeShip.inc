@@ -2350,7 +2350,8 @@ end;{TFreeShip.LoadPreview}
 
 procedure TFreeShip.RebuildAsync(Data: PtrInt);
 begin
-  Surface.Rebuild;
+  if not IsRebuildAsyncDisabled then
+    Surface.Rebuild;
   Draw;
 end;
 

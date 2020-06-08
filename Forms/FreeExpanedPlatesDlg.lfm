@@ -6,36 +6,36 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
   ClientHeight = 800
   ClientWidth = 1200
   Position = poDefault
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.8.0'
   object Panel2: TPanel
-    Left = 955
-    Height = 773
-    Top = 27
-    Width = 245
+    Left = 910
+    Height = 762
+    Top = 38
+    Width = 290
     Align = alRight
     AutoSize = True
     BevelOuter = bvLowered
-    ClientHeight = 773
-    ClientWidth = 245
+    ClientHeight = 762
+    ClientWidth = 290
     TabOrder = 0
     object Panel3: TPanel
       Left = 1
-      Height = 270
+      Height = 376
       Top = 1
-      Width = 243
+      Width = 288
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 270
-      ClientWidth = 243
+      ClientHeight = 376
+      ClientWidth = 288
       TabOrder = 0
       object Panel1: TPanel
         Left = 0
-        Height = 150
+        Height = 216
         Top = 0
-        Width = 243
+        Width = 288
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
@@ -43,23 +43,23 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         ChildSizing.VerticalSpacing = 8
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 150
-        ClientWidth = 243
+        ClientHeight = 216
+        ClientWidth = 288
         TabOrder = 0
         object Label5: TLabel
           Left = 10
-          Height = 15
+          Height = 26
           Top = 10
-          Width = 136
+          Width = 188
           Caption = 'Part name'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label6: TLabel
-          Left = 152
-          Height = 15
+          Left = 204
+          Height = 26
           Top = 10
-          Width = 55
+          Width = 70
           Caption = '_Label6'
           Font.Style = [fsBold]
           Layout = tlCenter
@@ -68,90 +68,90 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         end
         object Label1: TLabel
           Left = 10
-          Height = 15
-          Top = 33
-          Width = 136
+          Height = 26
+          Top = 44
+          Width = 188
           Caption = 'Minimum edge error'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label2: TLabel
-          Left = 152
-          Height = 15
-          Top = 33
-          Width = 55
+          Left = 204
+          Height = 26
+          Top = 44
+          Width = 70
           Caption = '_Label2'
           Layout = tlCenter
           ParentColor = False
         end
         object Label3: TLabel
           Left = 10
-          Height = 15
-          Top = 56
-          Width = 136
+          Height = 26
+          Top = 78
+          Width = 188
           Caption = 'Maximum edge error'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label4: TLabel
-          Left = 152
-          Height = 15
-          Top = 56
-          Width = 55
+          Left = 204
+          Height = 26
+          Top = 78
+          Width = 70
           Caption = 'Label2'
           Layout = tlCenter
           ParentColor = False
         end
         object Label15: TLabel
           Left = 10
-          Height = 15
-          Top = 79
-          Width = 136
+          Height = 26
+          Top = 112
+          Width = 188
           Caption = 'Maximum area error'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label16: TLabel
-          Left = 152
-          Height = 15
-          Top = 79
-          Width = 55
+          Left = 204
+          Height = 26
+          Top = 112
+          Width = 70
           Caption = 'Label2'
           Layout = tlCenter
           ParentColor = False
         end
         object Label17: TLabel
           Left = 10
-          Height = 15
-          Top = 102
-          Width = 136
+          Height = 26
+          Top = 146
+          Width = 188
           Caption = 'Total area error'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label18: TLabel
-          Left = 152
-          Height = 15
-          Top = 102
-          Width = 55
+          Left = 204
+          Height = 26
+          Top = 146
+          Width = 70
           Caption = 'Label2'
           Layout = tlCenter
           ParentColor = False
         end
         object Label8: TLabel
           Left = 10
-          Height = 15
-          Top = 125
-          Width = 136
+          Height = 26
+          Top = 180
+          Width = 188
           Caption = 'No. iterations'
           Layout = tlCenter
           ParentColor = False
         end
         object _Label9: TLabel
-          Left = 152
-          Height = 15
-          Top = 125
-          Width = 55
+          Left = 204
+          Height = 26
+          Top = 180
+          Width = 70
           Caption = 'Label2'
           Layout = tlCenter
           ParentColor = False
@@ -159,9 +159,9 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       end
       object Panel4: TPanel
         Left = 0
-        Height = 99
-        Top = 150
-        Width = 243
+        Height = 132
+        Top = 216
+        Width = 288
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
@@ -169,21 +169,21 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 3
-        ClientHeight = 99
-        ClientWidth = 243
+        ClientHeight = 132
+        ClientWidth = 288
         TabOrder = 1
         object Label7: TLabel
           Left = 10
-          Height = 25
+          Height = 36
           Top = 10
-          Width = 92
+          Width = 123
           Caption = 'Rotation'
           Layout = tlCenter
           ParentColor = False
         end
         object FloatSpinEdit1: TFloatSpinEdit
-          Left = 108
-          Height = 25
+          Left = 139
+          Height = 36
           Top = 10
           Width = 80
           Constraints.MinWidth = 80
@@ -195,27 +195,27 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
           Value = 0
         end
         object _Label12: TLabel
-          Left = 194
-          Height = 25
+          Left = 225
+          Height = 36
           Top = 10
-          Width = 39
+          Width = 53
           Caption = '[degr]'
           Layout = tlCenter
           ParentColor = False
         end
         object Label10: TLabel
           Left = 10
-          Height = 25
-          Top = 37
-          Width = 92
+          Height = 36
+          Top = 48
+          Width = 123
           Caption = 'X grid spacing'
           Layout = tlCenter
           ParentColor = False
         end
         object FloatSpinEdit2: TFloatSpinEdit
-          Left = 108
-          Height = 25
-          Top = 37
+          Left = 139
+          Height = 36
+          Top = 48
           Width = 80
           Increment = 0.1
           MinValue = 0
@@ -224,27 +224,27 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
           Value = 0
         end
         object _Label13: TLabel
-          Left = 194
-          Height = 25
-          Top = 37
-          Width = 39
+          Left = 225
+          Height = 36
+          Top = 48
+          Width = 53
           Caption = '[m]'
           Layout = tlCenter
           ParentColor = False
         end
         object Label11: TLabel
           Left = 10
-          Height = 25
-          Top = 64
-          Width = 92
+          Height = 36
+          Top = 86
+          Width = 123
           Caption = 'Y grid spacing'
           Layout = tlCenter
           ParentColor = False
         end
         object FloatSpinEdit3: TFloatSpinEdit
-          Left = 108
-          Height = 25
-          Top = 64
+          Left = 139
+          Height = 36
+          Top = 86
           Width = 80
           Increment = 0.1
           MinValue = 0
@@ -253,10 +253,10 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
           Value = 0
         end
         object _Label14: TLabel
-          Left = 194
-          Height = 25
-          Top = 64
-          Width = 39
+          Left = 225
+          Height = 36
+          Top = 86
+          Width = 53
           Caption = '[m]'
           Layout = tlCenter
           ParentColor = False
@@ -264,9 +264,9 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
       end
       object CheckBox1: TCheckBox
         Left = 0
-        Height = 21
-        Top = 249
-        Width = 243
+        Height = 28
+        Top = 348
+        Width = 288
         Caption = 'Mirror'
         OnClick = CheckBox1Click
         TabOrder = 2
@@ -274,9 +274,9 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     end
     object ListBox: TCheckListBox
       Left = 1
-      Height = 501
-      Top = 271
-      Width = 243
+      Height = 384
+      Top = 377
+      Width = 288
       Align = alClient
       ItemHeight = 0
       OnClickCheck = ListBoxClickCheck
@@ -286,7 +286,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 27
+    Height = 38
     Top = 0
     Width = 1200
     AutoSize = True
@@ -490,7 +490,7 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
     end
     object SpinEditFontSize: TSpinEdit
       Left = 228
-      Height = 25
+      Height = 36
       Hint = 'Font Size'
       Top = 2
       Width = 40

@@ -1356,6 +1356,7 @@ type
   protected   { Protected declarations }
     procedure ViewportRequestExtents(Sender: TObject; var Min, Max: T3DCoordinate);
   public      { Public declarations }
+    IsRebuildAsyncDisabled:boolean;
     function GetFocusedViewport: TFreeViewport;
     procedure AddViewport(Viewport: TFreeViewport);
     // Add a viewport to the list of viewports connected to the model

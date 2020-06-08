@@ -200,6 +200,7 @@ type
     FAllowPanOrZoom: boolean;
     FXGridSpacing: TFloatType;
     FYGridSpacing: TFloatType;
+    FFontSize: integer;
     function FGetActivePatch: TFreeDevelopedPatch;
     procedure FSetActivePatch(Val: TFreeDevelopedPatch);
     procedure FUpdateListBox;
@@ -448,7 +449,7 @@ begin
   FloatSpinEdit2.Value := FXGridSpacing;
   FloatSpinEdit3.Value := FYGridSpacing;
 
-  SpinEditFontSizeChange(nil); //refresh font sizes
+  //SpinEditFontSizeChange(nil); //refresh font sizes
 
   Viewport.ZoomExtents;
   if Plates.Count = 0 then
@@ -475,6 +476,10 @@ var
 begin
   if FPlates <> nil then
   begin
+    // Skip translation
+    Viewport.FontName := 'Arial';
+    // End Skip translation
+    Viewport.FontSize:=FFontSize;
     if ShowDimensions.Checked then
     begin
       Suppress := False;
@@ -493,10 +498,6 @@ begin
         Viewport.PenStyle := psSolid;
         I := Round((Viewport.Min3D.X) / FXGridSpacing) - 2;
         X := I * FXGridSpacing;
-        // Skip translation
-        Viewport.FontName := 'Arial';
-        // End Skip translation
-        //Viewport.FontSize := 6;
         while X <= Viewport.Max3D.X do
         begin
           if (X >= Viewport.Min3D.X - 0.01) and (X <= Viewport.Max3D.X + 0.01) then
@@ -529,10 +530,6 @@ begin
         Viewport.PenStyle := psSolid;
         I := Round((Viewport.Min3D.Y) / FYGridSpacing) - 2;
         Y := I * FYGridSpacing;
-        // Skip translation
-        Viewport.FontName := 'Arial';
-        // End Skip translation
-        Viewport.Font.Size := 6;
         while Y <= Viewport.Max3D.Y do
         begin
           if (Y >= Viewport.Min3D.Y - 0.01) and (Y <= Viewport.Max3D.Y + 0.01) then
@@ -690,6 +687,7 @@ var
   I: integer;
   Patch: TFreeDevelopedPatch;
 begin
+  FFontSize := SpinEditFontSize.Value;
   for I := 0 to FPlates.Count - 1 do
   begin
     Patch := FPlates[I];

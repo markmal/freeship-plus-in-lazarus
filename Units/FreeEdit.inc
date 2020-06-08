@@ -6853,8 +6853,10 @@ begin
   begin
     Dlg := TFreeExpanedplatesDialog.Create(FreeShip);
     ShowTranslatedValues(Dlg);
+    FreeShip.IsRebuildAsyncDisabled := true;
     Dlg.Execute(FreeShip, Plates);
     Dlg.Destroy;
+    FreeShip.IsRebuildAsyncDisabled := false;
   end;
   for I := 1 to Plates.Count do
   begin

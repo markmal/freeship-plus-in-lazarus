@@ -432,6 +432,9 @@ begin
   b := round(1.1 * GetBValue(Owner.Color));
   if b > 255 then
     b := 255;
+
+  Viewport.FontName:=FDimFontName;
+  Viewport.FontSize:=FDimFontSize;
   Viewport.BrushColor := RGB(r, g, b);
   Viewport.PenWidth := PenwidthFactor;
   if FShowInteriorEdges then
@@ -596,8 +599,8 @@ begin
     Viewport.FontColor := FDimFontColor;
     //Viewport.FontName := FDimFontName;
     Viewport.FontName := 'Arial';
-    Viewport.FontHeight := FDimFontSize;
-    //Viewport.FontSize := FDimFontSize;
+    //Viewport.FontHeight := FDimFontSize;
+    Viewport.FontSize := FDimFontSize;
 
     for I := 1 to FBoundaryEdges.Count do
     begin

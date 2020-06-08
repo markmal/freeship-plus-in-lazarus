@@ -643,7 +643,7 @@ begin
           Inc(Iteration);
           UpdateData(nil);
           UpdateDifferences;
-          Application.ProcessMessages;
+          ///Application.ProcessMessages;
         end;
       end
       else
@@ -674,8 +674,6 @@ begin
     end
     else
     begin
-      // Transformation failed
-      MessageDlg(Userstring(242) + '!', mtWarning, [mbOK], 0);
       // Backup layer data
       Setlength(TmpLayerInfo, FFreeship.NumberOfLayers);
       for I := 1 to FFreeship.NumberOfLayers do
@@ -711,6 +709,8 @@ begin
 
       UpdateDifferences;
       Modified := False;
+      // Transformation failed
+      MessageDlg(Userstring(242) + '!', mtWarning, [mbOK], 0);
     end;
     Points.Destroy;
     LockedPoints.Destroy;

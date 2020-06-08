@@ -471,10 +471,13 @@ begin
       p02 := ViewPort.Project(iP2.Coordinate);
       T := T + (DistPoint2D(p01,p02));
     end;
-    if FSpline.ShowCurvature then
-      FSpline.Fragments := round(T / (30.0 / (Surface.DesiredSubdivisionLevel)) )
-    else
-      FSpline.Fragments := round(T / (15.0 / (Surface.DesiredSubdivisionLevel)));
+
+    if Surface.DesiredSubdivisionLevel > 0 then
+      if FSpline.ShowCurvature then
+        FSpline.Fragments := round(T / (30.0 / Surface.DesiredSubdivisionLevel))
+      else
+        FSpline.Fragments := round(T / (15.0 / Surface.DesiredSubdivisionLevel))
+    else FSpline.Fragments := 10;
     if FSpline.Fragments < 10 then FSpline.Fragments := 10;  //safety
 
 

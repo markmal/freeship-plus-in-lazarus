@@ -161,7 +161,7 @@ var K1,K2,M1,M2   : Integer;
          Tmp:=Knots[I-1];
          if Tmp<0 then Tmp:=0;
          if Tmp>1 then Tmp:=1;
-         Result:=Result+ParameterDelimiter+Truncate(Tmp,6);
+         Result:=Result+ParameterDelimiter+FloatToDec(Tmp,6);
        end;
     end;{CreateKnotvector}
 
@@ -212,17 +212,17 @@ begin
          if abs(P.X)>FMaxCoordinate then FMaxCoordinate:=abs(P.X);
          if abs(P.Y)>FMaxCoordinate then FMaxCoordinate:=abs(P.Y);
          if abs(P.Z)>FMaxCoordinate then FMaxCoordinate:=abs(P.Z);
-         EntityStr:=EntityStr+ParameterDelimiter+Truncate(P.X,5)+ParameterDelimiter+
-                                                 Truncate(P.Y,5)+ParameterDelimiter+
-                                                 Truncate(P.Z,5);
+         EntityStr:=EntityStr+ParameterDelimiter+FloatToDec(P.X,5)+ParameterDelimiter+
+                                                 FloatToDec(P.Y,5)+ParameterDelimiter+
+                                                 FloatToDec(P.Z,5);
       end;
    end;
 
    EntityStr:=EntityStr     +ParameterDelimiter+
-              Truncate(U0,6)+ParameterDelimiter+      // Start first parameter value
-              Truncate(U1,6)+ParameterDelimiter+      // End first parameter value
-              Truncate(V0,6)+ParameterDelimiter+      // Start second parameter value
-              Truncate(V1,6);                         // End second parameter value
+              FloatToDec(U0,6)+ParameterDelimiter+      // Start first parameter value
+              FloatToDec(U1,6)+ParameterDelimiter+      // End first parameter value
+              FloatToDec(V0,6)+ParameterDelimiter+      // Start second parameter value
+              FloatToDec(V1,6);                         // End second parameter value
 
 
    FProcessParameterData(EntityStr,Param);
@@ -266,9 +266,9 @@ begin
    B:=GetBValue(Color);
 
    EntityStr:=IntToStr(314)+ParameterDelimiter+
-              Truncate(100*R/255,3)+ParameterDelimiter+
-              Truncate(100*G/255,3)+ParameterDelimiter+
-              Truncate(100*B/255,3)+ParameterDelimiter+
+              FloatToDec(100*R/255,3)+ParameterDelimiter+
+              FloatToDec(100*G/255,3)+ParameterDelimiter+
+              FloatToDec(100*B/255,3)+ParameterDelimiter+
               ConvertString('');
    FProcessParameterData(EntityStr,Param);
    // First line

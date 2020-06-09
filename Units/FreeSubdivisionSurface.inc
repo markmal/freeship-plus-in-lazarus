@@ -3421,8 +3421,9 @@ begin
 
 end;{TFreeSubdivisionSurface.EdgeExists}
 
+// MM: despite of its name, it returns list of lists of points
 procedure TFreeSubdivisionSurface.ExtractAllEdgeLoops(
-  var Destination: TFasterListTFreeSubdivisionEdge);
+  const DestinationPointLists: TFasterListTFasterListTFreeSubdivisionPoint);
 var
   SourceList: TFasterListTFreeSubdivisionEdge;
   Loop: TFasterListTFreeSubdivisionEdge;
@@ -3482,9 +3483,9 @@ begin
     until NextEdge = nil;
 
     SortEdges(Loop, Points);
-    //if Points <> nil then
-    //  Destination.Add(Points); // MM: Not sure why it returns Points, thought it is expected Edges.
-    Destination.AddList(Loop); // MM: changed to Edges
+    if Points <> nil then
+      DestinationPointLists.Add(Points); // MM: it returns Lists of Points.
+    //Destination.AddList(Loop); // MM: changed to Edges. No returned back
     Loop.Destroy;
   end;
   SourceList.Destroy;
@@ -4007,8 +4008,10 @@ end;{TFreeSubdivisionSurface.InsertPlane}
 
 {  gets set of edges and returns list of cycled point chains as TFreeSubdivisionFace }
 procedure TFreeSubdivisionSurface.IsolateEdges(
-            Source: TFasterListTFreeSubdivisionEdge;
-            Destination: TFasterListTFreeSubdivisionFace);
+            const Source: TFasterListTFreeSubdivisionEdge;
+            const Destination: TFasterListTFreeSubdivisionFace);
+            //TODO replace to Destination:TFasterListTFasterListTFreeSubdivisionPoint
+
 var
   I: integer;
   Edge: TFreesubdivisionEdge;

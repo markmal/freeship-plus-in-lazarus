@@ -951,8 +951,9 @@ var
   P3D: T3DCoordinate;
   Layer: string;
   Source: TFasterListTFreeSubdivisionEdge;
-  Dest: TFasterListTFreeSubdivisionEdge;
+  Dest: TFasterListTFreeSubdivisionFace;
   Edge:TFreeSubdivisionEdge;
+  Face:TFreeSubdivisionFace;
 
   procedure ExportSpline(Spline: TFreeSpline; Layername: string);
   var
@@ -977,8 +978,8 @@ var
       P3D := ConvertTo3D(P2D);
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + Layername);
-      Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-      Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+      Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
     end;
     Strings.Add('0' + EOL + 'SEQEND');
   end;{ExportSpline}
@@ -987,41 +988,31 @@ begin
   // Extract edges as polylines
   Source := TFasterListTFreeSubdivisionEdge.Create;
   Source.AddList(FBoundaryEdges);
-  Dest := TFasterListTFreeSubdivisionEdge.Create;
-  ///Owner.Owner.IsolateEdges(TFasterListTFreeSubdivisionEdge(Source),
-    ///TFasterListTFreeSubdivisionEdge(Dest) );
+  Dest := TFasterListTFreeSubdivisionFace.Create; // use face as list of points
+  Owner.Owner.IsolateEdges(Source, Dest);
+
   Source.Destroy;
   Col := FindDXFColorIndex(Owner.Color);
   Layer := Owner.Name;
 
   for I := 1 to Dest.Count do
   begin
-    Edge := Dest[I - 1];
+    Face := Dest[I - 1];
     // Save data as 2D polyline
     Strings.Add('0' + EOL + 'POLYLINE');
     Strings.Add('8' + EOL + Layer);               // layername
     Strings.Add('62' + EOL + IntToStr(Col));      // color by layer
     Strings.Add('66' + EOL + '1');                // vertices follow
-
+    for J:=0 to Face.Points.Count-1 do
     begin
-      P := Edge.StartPoint;
+      P := Face.Points[J];
       Index := FPoints.SortedIndexOf(P);
       P3D := Point[Index];
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + Layer);
-      Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-      Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+      Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
     end;
-    begin
-      P := Edge.EndPoint;
-      Index := FPoints.SortedIndexOf(P);
-      P3D := Point[Index];
-      Strings.Add('0' + EOL + 'VERTEX');
-      Strings.Add('8' + EOL + Layer);
-      Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-      Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
-    end;
-
     Strings.Add('0' + EOL + 'SEQEND');
     if FMirror then
     begin
@@ -1031,26 +1022,16 @@ begin
       Strings.Add('66' + EOL + '1');             // vertices follow
 
       begin
-        P := Edge.StartPoint;
+        P := Face.Points[J];
         Index := FPoints.SortedIndexOf(P);
         P3D := MirrorPoint[Index];
         Strings.Add('0' + EOL + 'VERTEX');
         Strings.Add('8' + EOL + Layer);
-        Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-        Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
-      end;
-      begin
-        P := Edge.EndPoint;
-        Index := FPoints.SortedIndexOf(P);
-        P3D := MirrorPoint[Index];
-        Strings.Add('0' + EOL + 'VERTEX');
-        Strings.Add('8' + EOL + Layer);
-        Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-        Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+        Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+        Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
       end;
       Strings.Add('0' + EOL + 'SEQEND');
     end;
-    Source.Destroy;
   end;
   if ShowStations then
     for I := 1 to FStations.Count do

@@ -267,7 +267,7 @@ begin
         EditAX.Value:=ArcCos(alfa)*57.29578;
         EditAY.Value:=ArcCos(beta)*57.29578;
         EditAZ.Value:=ArcCos(gamma)*57.29578;
-        {EditAngles.Text := Truncate(ArcCos(alfa)*57.29578,2)+';'+Truncate(ArcCos(beta)*57.29578,2)+';'+Truncate(ArcCos(gamma)*57.29578,2);}
+        {EditAngles.Text := FloatToDec(ArcCos(alfa)*57.29578,2)+';'+FloatToDec(ArcCos(beta)*57.29578,2)+';'+FloatToDec(ArcCos(gamma)*57.29578,2);}
       end;
 
       if  Npoi=2 then begin
@@ -567,7 +567,7 @@ begin
             Val := OrdEdit.Value;
          end
          else Val:= 0;
-         OrdEdit.Text:=Truncate(Val,4); // update the field in case of input errors
+         OrdEdit.Text:=FloatToDec(Val,4); // update the field in case of input errors
          }
          if saved then
          begin
@@ -683,7 +683,7 @@ begin
             Val := EditY.Value;
          end
          else Val:= 0;
-         EditY.Text:=Truncate(Val,4); // update the field in case of input errors
+         EditY.Text:=FloatToDec(Val,4); // update the field in case of input errors
 
          if saved then
          begin
@@ -746,7 +746,7 @@ begin
             Val := EditZ.Value;
          end
          else Val:= 0;
-         EditZ.Text:=Truncate(Val,4); // update the field in case of input errors
+         EditZ.Text:=FloatToDec(Val,4); // update the field in case of input errors
 
          if saved then
          begin

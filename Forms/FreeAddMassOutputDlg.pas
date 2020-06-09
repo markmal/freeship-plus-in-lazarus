@@ -867,15 +867,15 @@ begin
     Scale * Length, ffFixed, 7, 3) + ' B=' + FloatToStrF(Scale * B, ffFixed, 7, 3) +
     ' T=' + FloatToStrF(Scale * Draft, ffFixed, 7, 3));
   if FFreeship.ProjectSettings.ProjectUnits = fuMetric then
-    Strings.Add(FloatToStrF(WaterDensity * 1000, ffFixed, 7, 1) + ' ' + Truncate(
-      Dat1, 3) + ' ' + Truncate(Dat2, 3) + ' ' + Truncate(Dat3, 3) + ' ' + Truncate(Dat4, 3) + ' ' +
-      Truncate(Scale * WaterDepth, 3) + ' ' + Truncate(AngleBeta, 3) + ' ' + Truncate(
-      Vs, 3) + ' ' + Truncate(Om, 3) + ' ' + Truncate(Ntype + 1, 0)) // specific gravity of water
+    Strings.Add(FloatToStrF(WaterDensity * 1000, ffFixed, 7, 1) + ' ' + FloatToDec(
+      Dat1, 3) + ' ' + FloatToDec(Dat2, 3) + ' ' + FloatToDec(Dat3, 3) + ' ' + FloatToDec(Dat4, 3) + ' ' +
+      FloatToDec(Scale * WaterDepth, 3) + ' ' + FloatToDec(AngleBeta, 3) + ' ' + FloatToDec(
+      Vs, 3) + ' ' + FloatToDec(Om, 3) + ' ' + FloatToDec(Ntype + 1, 0)) // specific gravity of water
   else
     Strings.Add(FloatToStrF(WaterDensity / WeightConversionFactor * 1000, ffFixed, 7, 1) +
-      ' ' + Truncate(Dat1, 3) + ' ' + Truncate(Dat2, 3) + ' ' + Truncate(Dat3, 3) + ' ' +
-      Truncate(Dat4, 3) + ' ' + Truncate(Scale * WaterDepth, 3) + ' ' + Truncate(
-      AngleBeta, 3) + ' ' + Truncate(Vs, 3) + ' ' + Truncate(Om, 3) + ' ' + Truncate(Ntype + 1, 0));
+      ' ' + FloatToDec(Dat1, 3) + ' ' + FloatToDec(Dat2, 3) + ' ' + FloatToDec(Dat3, 3) + ' ' +
+      FloatToDec(Dat4, 3) + ' ' + FloatToDec(Scale * WaterDepth, 3) + ' ' + FloatToDec(
+      AngleBeta, 3) + ' ' + FloatToDec(Vs, 3) + ' ' + FloatToDec(Om, 3) + ' ' + FloatToDec(Ntype + 1, 0));
   Strings.Add('0 0 0 0 0 0 0 0 0 0');
   Strings.Add(FloatToStrF(Length, ffFixed, 7, 4) + ' ' + FloatToStrF(Draft, ffFixed, 7, 4));
   Strings.Add(IntToStr(NumberOfStations) + ' 1. 0.');

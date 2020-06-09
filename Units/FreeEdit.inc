@@ -1385,10 +1385,10 @@ begin
         Write(FFile, '0.0' + #10);
         // Forward perpendicular
         Write(FFile, 'FP' + #10);
-        Write(FFile, Truncate(FreeShip.ProjectSettings.ProjectLength, 4) + #10);
+        Write(FFile, FloatToDec(FreeShip.ProjectSettings.ProjectLength, 4) + #10);
         // Water density
         Write(FFile, 'DENSITY' + #10);
-        Write(FFile, Truncate(FreeShip.ProjectSettings.ProjectWaterDensity, 3) + #10);
+        Write(FFile, FloatToDec(FreeShip.ProjectSettings.ProjectWaterDensity, 3) + #10);
         // Now send the frames
         Write(FFile, 'NUMBER_OF_FRAMES' + #10);
         Write(FFile, IntToStr(Frames.Count) + #10);
@@ -1414,16 +1414,16 @@ begin
             //P:=Frame.Value((J-1)/(Np-1));
             P := Frame.Point[J - 1];
             P.Y := -P.Y;
-            Write(FFile, Truncate(P.Y, 4) + #10);
-            Write(FFile, Truncate(P.Z, 4) + #10);
+            Write(FFile, FloatToDec(P.Y, 4) + #10);
+            Write(FFile, FloatToDec(P.Z, 4) + #10);
           end;
           // then port side
           for J := 2 to Np do
           begin
             //P:=Frame.Value((J-1)/(Np-1));
             P := Frame.Point[J - 1];
-            Write(FFile, Truncate(P.Y, 4) + #10);
-            Write(FFile, Truncate(P.Z, 4) + #10);
+            Write(FFile, FloatToDec(P.Y, 4) + #10);
+            Write(FFile, FloatToDec(P.Z, 4) + #10);
           end;
           Write(FFile, '***END_OF_ORDINATES***' + #10);
           Frame.Destroy;
@@ -1448,19 +1448,19 @@ begin
         Strings.Add(Str);
         Strings.Add('</HULL_NAME>');
         // Water density
-        Strings.Add('<DENSITY>' + #32 + Truncate(
+        Strings.Add('<DENSITY>' + #32 + FloatToDec(
           FreeShip.ProjectSettings.ProjectWaterDensity, 3) + #32 + '</DENSITY>');
         // Aft perpendicular
         Strings.Add('<AP> 0.0 </AP>');
         // Forward perpendicular
-        Strings.Add('<FP>' + #32 + Truncate(FreeShip.ProjectSettings.ProjectLength, 4) +
+        Strings.Add('<FP>' + #32 + FloatToDec(FreeShip.ProjectSettings.ProjectLength, 4) +
           #32 + '</FP>');
         // Draught marks
-        Strings.Add('<FWD_DRAUGHT_MARK>' + #32 + Truncate(
+        Strings.Add('<FWD_DRAUGHT_MARK>' + #32 + FloatToDec(
           FreeShip.ProjectSettings.ProjectDraft, 4) + #32 + '</FWD_DRAUGHT_MARK>');
-        Strings.Add('<MID_DRAUGHT_MARK>' + #32 + Truncate(
+        Strings.Add('<MID_DRAUGHT_MARK>' + #32 + FloatToDec(
           FreeShip.ProjectSettings.ProjectDraft, 4) + #32 + '</MID_DRAUGHT_MARK>');
-        Strings.Add('<AFT_DRAUGHT_MARK>' + #32 + Truncate(
+        Strings.Add('<AFT_DRAUGHT_MARK>' + #32 + FloatToDec(
           FreeShip.ProjectSettings.ProjectDraft, 4) + #32 + '</AFT_DRAUGHT_MARK>');
         // Number of appendages (only 1, the main hull)
         Strings.Add('<APPENDAGE_COUNT> 1 </APPENDAGE_COUNT>');
@@ -1494,13 +1494,13 @@ begin
           begin
             P := Frame.Value((J - 1) / (Np - 1));
             P.Y := -P.Y;
-            Strings.Add(Truncate(P.Y, 4) + #32 + Truncate(P.Z, 4));
+            Strings.Add(FloatToDec(P.Y, 4) + #32 + FloatToDec(P.Z, 4));
           end;
           // then port side
           for J := 2 to Np do
           begin
             P := Frame.Value((J - 1) / (Np - 1));
-            Strings.Add(Truncate(P.Y, 4) + #32 + Truncate(P.Z, 4));
+            Strings.Add(FloatToDec(P.Y, 4) + #32 + FloatToDec(P.Z, 4));
           end;
           Strings.Add('</OFFSETS>');
           Strings.Add('</SECTION>');
@@ -1609,18 +1609,18 @@ var
         case IntersectionType of
           fiStation:
           begin
-            Strings.Add('10' + EOL + Truncate(Scale * P.Y, 5));
-            Strings.Add('20' + EOL + Truncate(Scale * P.Z, 5));
+            Strings.Add('10' + EOL + FloatToDec(Scale * P.Y, 5));
+            Strings.Add('20' + EOL + FloatToDec(Scale * P.Z, 5));
           end;
           fiButtock:
           begin
-            Strings.Add('10' + EOL + Truncate(Scale * P.X, 5));
-            Strings.Add('20' + EOL + Truncate(Scale * P.Z, 5));
+            Strings.Add('10' + EOL + FloatToDec(Scale * P.X, 5));
+            Strings.Add('20' + EOL + FloatToDec(Scale * P.Z, 5));
           end;
           fiWaterline:
           begin
-            Strings.Add('10' + EOL + Truncate(Scale * P.X, 5));
-            Strings.Add('20' + EOL + Truncate(Scale * P.Y, 5));
+            Strings.Add('10' + EOL + FloatToDec(Scale * P.X, 5));
+            Strings.Add('20' + EOL + FloatToDec(Scale * P.Y, 5));
           end;
         end;
       end;
@@ -1632,13 +1632,13 @@ var
         case IntersectionType of
           fiStation:
           begin
-            Strings.Add('10' + EOL + Truncate(Scale * -P.Y, 5));
-            Strings.Add('20' + EOL + Truncate(Scale * P.Z, 5));
+            Strings.Add('10' + EOL + FloatToDec(Scale * -P.Y, 5));
+            Strings.Add('20' + EOL + FloatToDec(Scale * P.Z, 5));
           end;
           fiWaterline:
           begin
-            Strings.Add('10' + EOL + Truncate(Scale * P.X, 5));
-            Strings.Add('20' + EOL + Truncate(Scale * -P.Y, 5));
+            Strings.Add('10' + EOL + FloatToDec(Scale * P.X, 5));
+            Strings.Add('20' + EOL + FloatToDec(Scale * -P.Y, 5));
           end;
         end;
       end;
@@ -1885,7 +1885,7 @@ var
   I, J, ind: integer;
   Strings: TStringList;
   Dialog: TSaveDialog;
-  Edges: TFasterListTFreeSubdivisionEdge;
+  EdgePointLists: TFasterListTFasterListTFreeSubdivisionPoint;
   Points: TFasterListTFreeSubdivisionPoint;
   Point: TFreeSubdivisionPoint;
   Layername: string;
@@ -1917,16 +1917,16 @@ begin
       for I := 1 to FreeShip.NumberofControlCurves do
         FreeShip.ControlCurve[I - 1].SaveToDXF(Strings);
 
-    Edges := TFasterListTFreeSubdivisionEdge.Create;
-    FreeShip.Surface.ExtractAllEdgeLoops(Edges);
+    EdgePointLists := TFasterListTFasterListTFreeSubdivisionPoint.Create;
+    FreeShip.Surface.ExtractAllEdgeLoops(EdgePointLists);
     Layername := 'Edges';
     ind := FindDXFColorIndex(FreeShip.Preferences.EdgeColor);
-    Points := TFasterListTFreeSubdivisionPoint.Create;
-    for I := 1 to Edges.Count do
+    //Points := TFasterListTFreeSubdivisionPoint.Create;
+    for I := 1 to EdgePointLists.Count do
     begin
-      //Points := Edges[I - 1];
-      Points.Add(Edges[I - 1].StartPoint);
-      Points.Add(Edges[I - 1].EndPoint);
+      Points := EdgePointLists[I - 1];
+      //Points.Add(EdgePointLists[I - 1].StartPoint);
+      //Points.Add(EdgePointLists[I - 1].EndPoint);
       Strings.Add('0' + EOL + 'POLYLINE');
       Strings.Add('8' + EOL + LayerName);   // layername
       Strings.Add('62' + EOL + IntToStr(Ind));  // color by layer
@@ -1937,9 +1937,9 @@ begin
         Point := Points[J - 1];
         Strings.Add('0' + EOL + 'VERTEX');
         Strings.Add('8' + EOL + LayerName);
-        Strings.Add('10' + EOL + Truncate(Point.Coordinate.X, 4));
-        Strings.Add('20' + EOL + Truncate(Point.Coordinate.Y, 4));
-        Strings.Add('30' + EOL + Truncate(Point.Coordinate.Z, 4));
+        Strings.Add('10' + EOL + FloatToDec(Point.Coordinate.X, 4));
+        Strings.Add('20' + EOL + FloatToDec(Point.Coordinate.Y, 4));
+        Strings.Add('30' + EOL + FloatToDec(Point.Coordinate.Z, 4));
         Strings.Add('70' + EOL + '32');    // 3D polyline mesh vertex
       end;
       Strings.Add('0' + EOL + 'SEQEND');
@@ -1955,16 +1955,16 @@ begin
           Point := Points[J - 1];
           Strings.Add('0' + EOL + 'VERTEX');
           Strings.Add('8' + EOL + LayerName);
-          Strings.Add('10' + EOL + Truncate(Point.Coordinate.X, 4));
-          Strings.Add('20' + EOL + Truncate(-Point.Coordinate.Y, 4));
-          Strings.Add('30' + EOL + Truncate(Point.Coordinate.Z, 4));
+          Strings.Add('10' + EOL + FloatToDec(Point.Coordinate.X, 4));
+          Strings.Add('20' + EOL + FloatToDec(-Point.Coordinate.Y, 4));
+          Strings.Add('30' + EOL + FloatToDec(Point.Coordinate.Z, 4));
           Strings.Add('70' + EOL + '32');    // 3D polyline mesh vertex
         end;
         Strings.Add('0' + EOL + 'SEQEND');
       end;
       Points.Destroy;
     end;
-    Edges.Destroy;
+    EdgePointLists.Destroy;
     Strings.Add('0' + EOL + 'ENDSEC');
     Strings.Add('0' + EOL + 'EOF');
     Strings.SaveToFile(ChangeFileExt(Dialog.FileName, '.dxf'));
@@ -2032,11 +2032,11 @@ begin
     Strings.Add(FreeShip.ProjectSettings.ProjectDesigner);
     Strings.Add(FreeShip.ProjectSettings.ProjectFileCreatedBy);
     Strings.Add(FreeShip.ProjectSettings.ProjectComment);
-    Strings.Add(Truncate(FreeShip.ProjectSettings.ProjectLength, 4) +
-      #32 + Truncate(FreeShip.ProjectSettings.ProjectBeam, 4) + #32 +
-      Truncate(FreeShip.ProjectSettings.ProjectDraft, 4) + #32 +
-      Truncate(FreeShip.ProjectSettings.ProjectWaterDensity, 5) + #32 +
-      Truncate(FreeShip.ProjectSettings.ProjectAppendageCoefficient, 5) +
+    Strings.Add(FloatToDec(FreeShip.ProjectSettings.ProjectLength, 4) +
+      #32 + FloatToDec(FreeShip.ProjectSettings.ProjectBeam, 4) + #32 +
+      FloatToDec(FreeShip.ProjectSettings.ProjectDraft, 4) + #32 +
+      FloatToDec(FreeShip.ProjectSettings.ProjectWaterDensity, 5) + #32 +
+      FloatToDec(FreeShip.ProjectSettings.ProjectAppendageCoefficient, 5) +
       #32 + IntToStr(Ord(FreeShip.ProjectSettings.ProjectUnits)) + #32 +
       BoolToStr(FreeShip.ProjectSettings.MainparticularsHasBeenset) +
       #32 + IntToStr(Ord(FreeShip.Precision)));
@@ -2161,7 +2161,7 @@ begin
         end;
       end;
       SortFloatArray(Params, NParams);
-      Strings.Add(Truncate(-Scale * Section.Min.X, 4) + ',' + IntToStr(NParams));
+      Strings.Add(FloatToDec(-Scale * Section.Min.X, 4) + ',' + IntToStr(NParams));
       Pn:=0;
       for J := 0 to NParams - 1 do
       begin
@@ -2170,9 +2170,9 @@ begin
         begin
           Pn := Pn1;
           Pkn := Section.Point[Pn1];
-          Strings.Add(Truncate(Scale * Pkn.Y, 4) + ',' + Truncate(Scale * Pkn.Z, 4));
+          Strings.Add(FloatToDec(Scale * Pkn.Y, 4) + ',' + FloatToDec(Scale * Pkn.Z, 4));
         end;
-        Strings.Add(Truncate(Scale * P.Y, 4) + ',' + Truncate(Scale * P.Z, 4));
+        Strings.Add(FloatToDec(Scale * P.Y, 4) + ',' + FloatToDec(Scale * P.Z, 4));
       end;
       Section.Destroy;
     end;
@@ -2331,12 +2331,12 @@ begin
         end;
       end;
       SortFloatArray(Params, NParams);
-      Strings.Add(Truncate(-Scale * Section.Min.X + LppHalf, 4) +
+      Strings.Add(FloatToDec(-Scale * Section.Min.X + LppHalf, 4) +
         ' ' + IntToStr(NParams));
       for J := 1 to NParams do
       begin
         P := Section.Value(Params[J - 1]);
-        Strings.Add(Truncate(Scale * P.Z - Draft, 4) + ' ' + Truncate(Scale * P.Y, 4));
+        Strings.Add(FloatToDec(Scale * P.Z - Draft, 4) + ' ' + FloatToDec(Scale * P.Y, 4));
       end;
       Section.Destroy;
     end;
@@ -4006,15 +4006,15 @@ var
   begin
     Normal := UnifiedNormal(p1.Coordinate, P2.Coordinate, P3.Coordinate);
     Write(FFile, '  facet normal ');
-    writeln(FFile, Truncate(normal.X, 4) + #32 + Truncate(normal.Y, 4) +
-      #32 + Truncate(normal.Z, 4));
+    writeln(FFile, FloatToDec(normal.X, 4) + #32 + FloatToDec(normal.Y, 4) +
+      #32 + FloatToDec(normal.Z, 4));
     writeln(FFile, '    outer loop');
-    writeln(FFile, '      vertex ' + Truncate(P1.Coordinate.X, 4) + #32 +
-      Truncate(P1.Coordinate.Y, 4) + #32 + Truncate(P1.Coordinate.Z, 4));
-    writeln(FFile, '      vertex ' + Truncate(P2.Coordinate.X, 4) + #32 +
-      Truncate(P2.Coordinate.Y, 4) + #32 + Truncate(P2.Coordinate.Z, 4));
-    writeln(FFile, '      vertex ' + Truncate(P3.Coordinate.X, 4) + #32 +
-      Truncate(P3.Coordinate.Y, 4) + #32 + Truncate(P3.Coordinate.Z, 4));
+    writeln(FFile, '      vertex ' + FloatToDec(P1.Coordinate.X, 4) + #32 +
+      FloatToDec(P1.Coordinate.Y, 4) + #32 + FloatToDec(P1.Coordinate.Z, 4));
+    writeln(FFile, '      vertex ' + FloatToDec(P2.Coordinate.X, 4) + #32 +
+      FloatToDec(P2.Coordinate.Y, 4) + #32 + FloatToDec(P2.Coordinate.Z, 4));
+    writeln(FFile, '      vertex ' + FloatToDec(P3.Coordinate.X, 4) + #32 +
+      FloatToDec(P3.Coordinate.Y, 4) + #32 + FloatToDec(P3.Coordinate.Z, 4));
     writeln(FFile, '    endloop');
     Writeln(FFile, '  endfacet');
 
@@ -4026,15 +4026,15 @@ var
   begin
     Normal := UnifiedNormal(C1, C2, C3);
     Write(FFile, '  facet normal ');
-    writeln(FFile, Truncate(normal.X, 4) + #32 + Truncate(normal.Y, 4) +
-      #32 + Truncate(normal.Z, 4));
+    writeln(FFile, FloatToDec(normal.X, 4) + #32 + FloatToDec(normal.Y, 4) +
+      #32 + FloatToDec(normal.Z, 4));
     writeln(FFile, '    outer loop');
-    writeln(FFile, '      vertex ' + Truncate(C1.X, 4) + #32 +
-      Truncate(C1.Y, 4) + #32 + Truncate(C1.Z, 4));
-    writeln(FFile, '      vertex ' + Truncate(C2.X, 4) + #32 +
-      Truncate(C2.Y, 4) + #32 + Truncate(C2.Z, 4));
-    writeln(FFile, '      vertex ' + Truncate(C3.X, 4) + #32 +
-      Truncate(C3.Y, 4) + #32 + Truncate(C3.Z, 4));
+    writeln(FFile, '      vertex ' + FloatToDec(C1.X, 4) + #32 +
+      FloatToDec(C1.Y, 4) + #32 + FloatToDec(C1.Z, 4));
+    writeln(FFile, '      vertex ' + FloatToDec(C2.X, 4) + #32 +
+      FloatToDec(C2.Y, 4) + #32 + FloatToDec(C2.Z, 4));
+    writeln(FFile, '      vertex ' + FloatToDec(C3.X, 4) + #32 +
+      FloatToDec(C3.Y, 4) + #32 + FloatToDec(C3.Z, 4));
     writeln(FFile, '    endloop');
     Writeln(FFile, '  endfacet');
   end;{Addfacet}

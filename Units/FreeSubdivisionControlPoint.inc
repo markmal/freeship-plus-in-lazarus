@@ -760,8 +760,8 @@ procedure TFreeSubdivisionControlPoint.SaveToStream(Strings: TStringList);
 var
   Str: string;
 begin
-  Str := Truncate(Fcoordinate.X, 5) + #32 + Truncate(Fcoordinate.Y, 5) + #32 +
-    Truncate(Fcoordinate.Z, 5);
+  Str := FloatToDec(Fcoordinate.X, 5) + #32 + FloatToDec(Fcoordinate.Y, 5) + #32 +
+    FloatToDec(Fcoordinate.Z, 5);
   Str := Str + #32 + IntToStr(Ord(VertexType));
   Str := Str + #32 + BoolToStr(Selected);
   Strings.Add(Str);

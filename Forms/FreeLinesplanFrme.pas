@@ -49,6 +49,7 @@ uses
   FreeTypes,
   FreeShipUnit,
   FreeGeometry,
+  FasterList,
   ExtCtrls,
   ComCtrls,
   //ToolWin,
@@ -124,6 +125,7 @@ type
     FMin3D, FMax3D: T3DCoordinate;
     FProfileOrigin: T3DCoordinate;
     FAftOrigin: T3DCoordinate;
+    FFontSize: integer;
     FFrontOrigin: T3DCoordinate;
     FPlanOrigin: T3DCoordinate;
     FInitialPosition: TPoint;
@@ -135,6 +137,7 @@ type
     procedure UpdateMenu;
     property FreeShip: TFreeShip
       read FFreeShip write FSetFreeShip;
+    property FontSize: integer read FFontSize write FFontSize;
   end;
 
 var
@@ -381,7 +384,7 @@ end;{TFreeLinesplanFrame.ViewportRequestExtents}
 
 procedure TFreeLinesplanFrame.SpinEdit1Change(Sender: TObject);
 begin
-  Font.Size := SpinEdit1.Value;
+  FFontSize := (Sender as TSpinEdit).Value;
   Viewport.invalidate;
 end;
 
@@ -1129,16 +1132,21 @@ begin
   Prevcursor := Screen.Cursor;
   Screen.Cursor := crHourglass;
   Viewport.PenColor := clSilver;
+
   Viewport.FontName := 'Arial';
   Viewport.FontColor := clBlack;
   // calculate and set fontheight
   //SetFontHeight(DistPP3D(FMin3D,FMax3D)/FontheightFactor * FFontheightScale);
-
   //just set font from the frame self
-  Viewport.FontName := Font.Name;
-  Viewport.FontColor := Font.Color;
+  //Viewport.FontName := Font.Name;
+  //Viewport.FontColor := Font.Color;
   //Viewport.FontHeight:=Font.Height;
-  Viewport.FontSize := Font.Size;
+  //Viewport.FontSize := Font.Size;
+  if Viewport.DrawingCanvas.Font = nil then
+     Viewport.DrawingCanvas.Font := TFont.Create;
+  Viewport.DrawingCanvas.Font.Name := 'Arial';
+  Viewport.DrawingCanvas.Font.Color := clBlack;
+  Viewport.DrawingCanvas.Font.Size:=FFontSize;
 
   try
     if (not ShowMonochrome.Checked) and (ShowFillcolor.Checked) then
@@ -1663,14 +1671,14 @@ var
   Diagonal: TFreeIntersection;
   Plane: T3DPlane;
   Spline: TFreeSpline;
-  Edges: TFasterListTFreeSubdivisionEdge;
+  EdgePointLists: TFasterListTFasterListTFreeSubdivisionPoint;
   Points: TFasterListTFreeSubdivisionPoint;
   SplineValues: T3DCoordinateArray;
 
   procedure WriteDXFPoint(N: integer; P: T3DCoordinate);
   begin
-    Strings.Add(IntToStr(N) + EOL + Truncate(P.X, 6));
-    Strings.Add(IntToStr(N + 10) + EOL + Truncate(P.Y, 6));
+    Strings.Add(IntToStr(N) + EOL + FloatToDec(P.X, 6));
+    Strings.Add(IntToStr(N + 10) + EOL + FloatToDec(P.Y, 6));
   end;{WriteDXFPoint}
 
   procedure AddLine(P1, P2: T3DCoordinate; Views: TLinesplanViews;
@@ -1728,7 +1736,7 @@ var
     P: T3DCoordinate;
     I,J: integer;
     Params: TFloatArray;
-    NParams: integer;
+    NParams, NValues: integer;
     Pn, Pn1, Pn2: integer;
   begin
     NParams := 0;
@@ -1769,12 +1777,13 @@ var
     Setlength(Points, J+1);
     }
     Points := Spline.GetValues;
+    NValues := length(Points);
 
     Strings.Add('0' + EOL + 'POLYLINE');
     Strings.Add('8' + EOL + LayerName);   // layername
     Strings.Add('62' + EOL + IntToStr(FindDXFColorIndex(Color)));
     Strings.Add('66' + EOL + '1');    // vertices follow
-    for I := 0 to NParams - 1 do
+    for I := 0 to NValues - 1 do
     begin
       P.Z := 0.0;
       if lvProfile in views then
@@ -1799,8 +1808,8 @@ var
       end;
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + LayerName);
-      Strings.Add('10' + EOL + Truncate(P.X, 4));
-      Strings.Add('20' + EOL + Truncate(P.Y, 4));
+      Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
     end;
     Strings.Add('0' + EOL + 'SEQEND');
 
@@ -1833,14 +1842,14 @@ var
 
         Strings.Add('0' + EOL + 'VERTEX');
         Strings.Add('8' + EOL + LayerName);
-        Strings.Add('10' + EOL + Truncate(P.X, 4));
-        Strings.Add('20' + EOL + Truncate(P.Y, 4));
+        Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+        Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
       end;
       Strings.Add('0' + EOL + 'SEQEND');
     end;
   end;{AddSpline}
 
-  procedure AddEdgeLoop(Points: TFasterListTFreeSubdivisionPoint;
+  procedure AddEdgeLoop(const Points: TFasterListTFreeSubdivisionPoint;
     Views: TLinesplanViews; Layername: string; Color: TColor);
   var
     Point: TFreeSubdivisionPoint;
@@ -1877,8 +1886,8 @@ var
       end;
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + LayerName);
-      Strings.Add('10' + EOL + Truncate(P.X, 4));
-      Strings.Add('20' + EOL + Truncate(P.Y, 4));
+      Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
     end;
     Strings.Add('0' + EOL + 'SEQEND');
 
@@ -1912,8 +1921,8 @@ var
 
         Strings.Add('0' + EOL + 'VERTEX');
         Strings.Add('8' + EOL + LayerName);
-        Strings.Add('10' + EOL + Truncate(P.X, 4));
-        Strings.Add('20' + EOL + Truncate(P.Y, 4));
+        Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+        Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
       end;
       Strings.Add('0' + EOL + 'SEQEND');
     end;
@@ -1931,22 +1940,20 @@ var
   end;
   {AddIntersection}
 begin
-  Str := FFreeShip.Preferences.ExportDirectory;
-  if Str[Length(Str)] <> '\' then
-    Str := Str + '\';
+  Str := IncludeTrailingPathDelimiter(FFreeShip.Preferences.ExportDirectory);
   Str := Str + ChangeFileExt(ExtractFilename(FFreeship.FileName), '') + '_Linesplan';
   SaveDialog := TSaveDialog.Create(Owner);
   SaveDialog.InitialDir := Freeship.Preferences.ExportDirectory;
   SaveDialog.FileName := ChangeFileExt(Str, '');
-  SaveDialog.Filter := 'Autocad dxf file (*.dxf)|*.dxf';
+  SaveDialog.Filter := 'Autocad dxf file (*.dxf)|*.[Dd][Xx][Ff]';
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin
     Freeship.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
     SplitSectionLocation := Freeship.ProjectSettings.ProjectSplitSectionLocation;
 
-    Edges := TFasterListTFreeSubdivisionEdge.Create;
-    Freeship.Surface.ExtractAllEdgeLoops(Edges);
+    EdgePointLists := TFasterListTFasterListTFreeSubdivisionPoint.Create;
+    Freeship.Surface.ExtractAllEdgeLoops(EdgePointLists);
     Strings := TStringList.Create;
     Strings.Add('0' + EOL + 'SECTION');
     Strings.Add('2' + EOL + 'ENTITIES');
@@ -1977,11 +1984,12 @@ begin
       AddIntersection(Freeship.Buttock[I - 1], [lvProfile], 'buttocks',
         Freeship.Preferences.ButtockColor);
     // Add knuckle lines
-    for I := 1 to Edges.Count do
+    for I := 1 to EdgePointLists.Count do
     begin
-      Points := TFasterListTFreeSubdivisionPoint.Create;
-      Points.Add(Edges[I - 1].StartPoint);
-      Points.Add(Edges[I - 1].EndPoint);
+      Points:=EdgePointLists[I-1];
+      //Points := TFasterListTFreeSubdivisionPoint.Create;
+      //Points.Add(EdgePointLists[I - 1].StartPoint);
+      //Points.Add(EdgePointLists[I - 1].EndPoint);
       AddEdgeLoop(Points, [lvProfile], 'Knuckle_lines',
         Freeship.Preferences.CreaseColor);
     end;
@@ -2159,8 +2167,8 @@ begin
           P2.Z := 0.0;
           Strings.Add('0' + EOL + 'VERTEX');
           Strings.Add('8' + EOL + 'Diagonals');
-          Strings.Add('10' + EOL + Truncate(P2.X, 4));
-          Strings.Add('20' + EOL + Truncate(P2.Y, 4));
+          Strings.Add('10' + EOL + FloatToDec(P2.X, 4));
+          Strings.Add('20' + EOL + FloatToDec(P2.Y, 4));
         end;
         Strings.Add('0' + EOL + 'SEQEND');
         // draw as grid in bodyplan views
@@ -2177,26 +2185,24 @@ begin
       end;
     end;
     // Add knuckle lines
-    for I := 1 to Edges.Count do
+    for I := 1 to EdgePointLists.Count do
     begin
-      Points.Add(Edges[I - 1].StartPoint);
-      Points.Add(Edges[I - 1].EndPoint);
+      Points:=EdgePointLists[I-1];
       AddEdgeLoop(Points, [lvPlan], 'Knuckle_lines', Freeship.Preferences.CreaseColor);
     end;
-
-    // Destroy extracted edgeloops
-    for I := 1 to Edges.Count do
-    begin
-      Points.Add(Edges[I - 1].StartPoint);
-      Points.Add(Edges[I - 1].EndPoint);
-      Points.Destroy;
-    end;
-    Edges.Destroy;
 
     Strings.Add('0' + EOL + 'ENDSEC');
     Strings.Add('0' + EOL + 'EOF');
     Strings.SaveToFile(ChangeFileExt(SaveDialog.FileName, '.dxf'));
     Strings.Destroy;
+
+    // Destroy extracted edgeloops
+    for I := 1 to EdgePointLists.Count do
+    begin
+      Points:=EdgePointLists[I-1];
+      Points.Destroy;
+    end;
+    EdgePointLists.Destroy;
   end;
   SaveDialog.Destroy;
 end;

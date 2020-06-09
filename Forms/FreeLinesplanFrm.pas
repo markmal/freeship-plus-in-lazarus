@@ -55,6 +55,8 @@ type
     LinesplanFrame: TFreeLinesplanFrame;
     Viewport: TFreeViewport;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure LinesplanFrameClick(Sender: TObject);
+    procedure SpinEdit1Change(Sender: TObject);
  private   { Private declarations }
  public    { Public declarations }
     constructor Create(Owner: TComponent); override;
@@ -81,6 +83,8 @@ constructor TFreeLinesplanForm.Create(Owner: TComponent);
 begin
   inherited Create(Owner);
   Viewport:=LinesplanFrame.Viewport;
+  LinesplanFrame.FontSize := 7;
+  LinesplanFrame.SpinEdit1.Value:=7;
 end;
 
 procedure TFreeLinesplanForm.FormClose(Sender: TObject;var Action: TCloseAction);
@@ -89,5 +93,15 @@ begin
    LinesplanFrame.FreeShip:=nil;
    Action:=caFree;
 end;{TFreeLinesplanForm.FormClose}
+
+procedure TFreeLinesplanForm.LinesplanFrameClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeLinesplanForm.SpinEdit1Change(Sender: TObject);
+begin
+  LinesplanFrame.SpinEdit1Change(Sender);
+end;
 
 end.

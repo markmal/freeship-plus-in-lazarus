@@ -6,11 +6,11 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
   ClientHeight = 494
   ClientWidth = 761
   TabOrder = 0
-  DesignLeft = 688
-  DesignTop = 221
+  DesignLeft = 1046
+  DesignTop = 306
   object ToolBar1: TToolBar
     Left = 0
-    Height = 27
+    Height = 30
     Top = 0
     Width = 761
     AutoSize = True
@@ -109,7 +109,7 @@ object FreeLinesplanFrame: TFreeLinesplanFrame
     end
     object SpinEdit1: TSpinEdit
       Left = 74
-      Height = 25
+      Height = 28
       Hint = 'Font Size'
       Top = 2
       Width = 45

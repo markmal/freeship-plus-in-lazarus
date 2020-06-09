@@ -2565,7 +2565,7 @@ var Memory : Integer;
 begin
    Memory:=Trunc(Freeship.UndoMemory/1024);
    if Memory<1024 then LabelUndoMemory.Caption:=Userstring(283)+' : '+IntToStr(Memory)+' Kb.'
-                  else LabelUndoMemory.Caption:=Userstring(283)+' : '+Truncate(Memory/1024,3)+' Mb.';
+                  else LabelUndoMemory.Caption:=Userstring(283)+' : '+FloatToDec(Memory/1024,3)+' Mb.';
    Undo.Enabled:=FreeShip.UndoCount>0;
    SetCaption;
    UpdateMenu;
@@ -2665,7 +2665,7 @@ var I          : Integer;
     AlreadyOpen: Boolean;
     Form       : TFreeLinesplanForm;
 begin
-   if not Freeship.ProjectSettings.MainparticularsHasBeenset then
+   if not Freeship.ProjectSettings.MainParticularsHasBeenset then
    begin
       MessageDlg(Userstring(96),mtWarning,[mbOk],0);
       exit;
@@ -2965,7 +2965,7 @@ end;{TMainForm.ResistanceFungLeibExecute}
 procedure TMainForm.FreeShipChangeCursorIncrement(Sender: TObject);
 begin
   if (csdestroying in componentstate) then exit;
-  LabelDistance.Caption:=Userstring(284)+': '+Truncate(Freeship.Visibility.CursorIncrement,7);
+  LabelDistance.Caption:=Userstring(284)+': '+FloatToDec(Freeship.Visibility.CursorIncrement,7);
 end;{TMainForm.FreeShipChangeCursorIncrement}
 
 procedure TMainForm.StatusPanel3Click(Sender: TObject);
@@ -2974,7 +2974,7 @@ var Str  : Ansistring;
     Value: TFloatType;
 begin
    if Freeship.Surface.NumberOfControlPoints=0 then exit;
-   Str:=Truncate(Freeship.Visibility.CursorIncrement,5);
+   Str:=FloatToDec(Freeship.Visibility.CursorIncrement,5);
    if InputQuery('',Userstring(285)+':',Str) then
    begin
       Val(Str,Value,I);

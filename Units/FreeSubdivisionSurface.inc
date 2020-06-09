@@ -2040,6 +2040,13 @@ begin
   ExecuteOnChangeActiveControlPoint(nil);
 end;{TFreeSubdivisionSurface.Clearselection}
 
+procedure TFreeSubdivisionSurface.ClearMesh;
+begin
+  ClearCurvesSubdivision; //this should be called before ClearFaces
+  ClearFaces;
+  FBuilt := False;
+end;
+
 procedure TFreeSubdivisionSurface.ConvertToGrid(Input: TFreeFaceGrid;
   var Cols, Rows: integer; var Grid: TFreeSubdivisionPointGrid);
 var
@@ -2444,6 +2451,9 @@ begin
             Face := V1.Face[J - 1] as TFreeSubdivisionControlFace;
             if V2.IndexOfFace(Face) <> -1 then
             begin
+              // we will rebuild whole mesh anyway. lets cleare it before changes in control mesh
+              ClearMesh;
+
               Face.InsertEdge(V1, V2, IsFaceDeleted);
               V2.Selected := False;
               Built := False;
@@ -3895,6 +3905,8 @@ var
 
 begin
   CPoints := TFasterListTFreeSubdivisionControlPoint.Create;
+  ClearMesh;
+
   for I:=0 to NumberOfControlEdges - 1 do
   begin
     Edge := self.ControlEdge[I];
@@ -4640,6 +4652,9 @@ procedure TFreeSubdivisionSurface.Selection_Delete;
 var
   I: integer;
 begin
+  // we will rebuild whole mesh anyway. lets cleare it before changes in control mesh
+  ClearMesh;
+
   // First controlcurves, then faces, edges and finally points!
   I := NumberOfSelectedControlCurves;
   while I >= 1 do

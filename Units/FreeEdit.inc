@@ -316,6 +316,9 @@ begin
 
   N := 0;
   vUndo := CreateUndoObject(Userstring(73), False);
+
+  FreeShip.Surface.ClearMesh;
+
   for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
   begin
     Edge := FreeShip.SelectedControlEdge[I - 1];
@@ -512,6 +515,9 @@ begin
   N := 0;
   Last := nil;
   vUndo := CreateUndoObject(Userstring(78), False);
+
+  FreeShip.Surface.ClearMesh;
+
   for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
   begin
     Edge := FreeShip.Surface.SelectedControlEdge[I - 1];
@@ -1288,6 +1294,9 @@ begin
   begin
     Tmp := TFasterListTFreeSubdivisionControlPoint.Create;
     vUndo := CreateUndoObject(Userstring(94), False);
+
+    FreeShip.Surface.ClearMesh;
+
     // Remember the number of faces, edges and points
     // Assemble all points in a temp. list
     for I := 1 to FreeShip.Surface.NumberOfSelectedControlPoints do
@@ -7937,6 +7946,16 @@ var
   vUndo: TFreeUndoObject;
 begin
   N := 0;
+  // count points to be collapsed
+  for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
+  begin
+    Point := FreeShip.SelectedControlPoint[I - 1];
+    if (not Point.Locked) and (Point.NumberOfEdges = 2) then
+      Inc(N);
+  end;
+  if N > 0 then
+     FreeShip.Surface.ClearMesh;
+
   vUndo := CreateUndoObject(Userstring(160), False);
   for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
   begin

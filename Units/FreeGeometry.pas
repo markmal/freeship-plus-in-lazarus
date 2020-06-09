@@ -1965,6 +1965,7 @@ type
     procedure Clear; override;
     procedure ClearFaces;
     procedure ClearSelection;
+    procedure ClearMesh;
     procedure ConvertToGrid(Input: TFreeFaceGrid; var Cols, Rows: integer;
       var Grid: TFreeSubdivisionPointGrid);
     procedure Edge_Connect;

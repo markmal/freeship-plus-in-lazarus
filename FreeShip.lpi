@@ -30,14 +30,20 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
-      <RevisionNr Value="34"/>
-      <BuildNr Value="439"/>
+      <RevisionNr Value="35"/>
+      <BuildNr Value="436"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
+    <MacroValues Count="1">
+      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
+    </MacroValues>
     <BuildModes Count="4">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="win32"/>
+        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -218,7 +224,8 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --log-file=debug.log --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+        <WorkingDirectory Value="/usr/local/bin"/>
       </local>
       <environment>
         <UserOverrides Count="1">
@@ -226,7 +233,7 @@
         </UserOverrides>
       </environment>
       <FormatVersion Value="2"/>
-      <Modes Count="6">
+      <Modes Count="7">
         <Mode0 Name="default">
           <local>
             <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
@@ -240,7 +247,7 @@
         </Mode1>
         <Mode2 Name="debug log">
           <local>
-            <CommandLineParams Value="--debug --log-debug --log-file=debug.log --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+            <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
           </local>
           <environment>
             <UserOverrides Count="1">
@@ -266,6 +273,17 @@
             <WorkingDirectory Value="/usr/bin"/>
           </local>
         </Mode5>
+        <Mode6 Name="debug log from /usr/bin">
+          <local>
+            <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+            <WorkingDirectory Value="/usr/local/bin"/>
+          </local>
+          <environment>
+            <UserOverrides Count="1">
+              <Variable0 Name="LD_LIBRARY_PATH" Value="/home/mark/MyProjects/freeship-plus-in-lazarus/lib"/>
+            </UserOverrides>
+          </environment>
+        </Mode6>
       </Modes>
     </RunParams>
     <RequiredPackages Count="4">
@@ -995,7 +1013,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <Libraries Value="lib"/>
-      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.8/lcl/interfaces/gtk3/gtk3bindings"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.8/lcl/interfaces/gtk3/gtk3bindings/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

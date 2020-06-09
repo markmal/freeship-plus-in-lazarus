@@ -2004,8 +2004,8 @@ begin
       Strings := TStringList.Create;
       Strings.Add('0' + EOL + 'SECTION');
       Strings.Add('2' + EOL + 'ENTITIES');
-      for I := 1 to FreeShip.Surface.NumberOfLayers do
-        FreeShip.Surface.Layer[I - 1].SaveToDXF(Strings);
+      for i:=0 to FreeShip.Surface.NumberOfLayers-1 do
+        FreeShip.Surface.Layer[i].SaveToDXF(Strings);
       Strings.Add('0' + EOL + 'ENDSEC');
       Strings.Add('0' + EOL + 'EOF');
       try

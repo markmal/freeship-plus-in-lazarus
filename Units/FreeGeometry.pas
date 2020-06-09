@@ -2002,8 +2002,8 @@ type
       List: TFasterListTFreeSpline): boolean;
     procedure InsertPlane(Plane: T3DPlane; AddCurves: boolean);
     // inserts points on edges (visible edges only) that intersect the input plane
-    procedure IsolateEdges(Source:TFasterListTFreeSubdivisionEdge;
-              Destination: TFasterListTFreeSubdivisionFace); //overload; virtual;
+    procedure IsolateEdges(const Source:TFasterListTFreeSubdivisionEdge;
+              const Destination: TFasterListTFreeSubdivisionFace); //overload; virtual;
     procedure LoadBinary(Source: TFreeFileBuffer);
     procedure LoadFromStream(var LineNr: integer; Strings: TStringList);
     procedure LoadVRMLFile(Filename: string);

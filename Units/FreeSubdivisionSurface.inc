@@ -4008,8 +4008,10 @@ end;{TFreeSubdivisionSurface.InsertPlane}
 
 {  gets set of edges and returns list of cycled point chains as TFreeSubdivisionFace }
 procedure TFreeSubdivisionSurface.IsolateEdges(
-            Source: TFasterListTFreeSubdivisionEdge;
-            Destination: TFasterListTFreeSubdivisionFace);
+            const Source: TFasterListTFreeSubdivisionEdge;
+            const Destination: TFasterListTFreeSubdivisionFace);
+            //TODO replace to Destination:TFasterListTFasterListTFreeSubdivisionPoint
+
 var
   I: integer;
   Edge: TFreesubdivisionEdge;

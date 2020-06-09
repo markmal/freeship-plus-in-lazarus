@@ -248,6 +248,7 @@ type
   TFasterListTFreeSubdivisionEdge = TFasterList<TFreeSubdivisionEdge>;
   TFasterListTFreeSubdivisionFace = TFasterList<TFreeSubdivisionFace>;
   //TFasterListTFreeSubdivisionCurve = TFasterList<TFreeSubdivisionCurve>;
+  TFasterListTFasterListTFreeSubdivisionPoint = TFasterList<TFasterListTFreeSubdivisionPoint>;
 
   TFasterListTFreeSubdivisionControlPoint = TFasterList<TFreeSubdivisionControlPoint>;
   TFasterListTFreeSubdivisionControlPointGroup = TFasterList<TFreeSubdivisionControlPointGroup>;
@@ -1984,7 +1985,7 @@ type
 
     procedure Draw(Viewport: TFreeViewport); override;
     function EdgeExists(P1, P2: TFreeSubdivisionPoint): TFreeSubdivisionEdge;
-    procedure ExtractAllEdgeLoops(var Destination: TFasterListTFreeSubdivisionEdge);
+    procedure ExtractAllEdgeLoops(const DestinationPointLists: TFasterListTFasterListTFreeSubdivisionPoint);
     procedure ExtractPointsFromFaces(  SelectedFaces : TFasterListTFreeSubdivisionFace;
                Points: TFasterListTFreeSubdivisionPoint; var LockedPoints: integer);
     // extracts all points that are used by the faces in the selectedfaces list
@@ -2285,7 +2286,7 @@ function SquaredDistPP(P1, P2: T3DCoordinate): TFloatType;
 // calculates the squared distance between two points
 function Subtract(AVec1, AVec2: T3DCoordinate): T3DCoordinate;
 // subtract two vectors
-function Truncate(Value: TFloatType; Maxlength: integer): string;
+function FloatToDec(Value: TFloatType; Maxlength: integer): string;
 // Convert a floatingpoint to a string value with a max. number of specified decimals All trailing zeros will be removed
 function UnifiedNormal(P1, P2, P3: T3DCoordinate): T3DCoordinate;
 // calculate the normal of a plane defined by points P1,P2,P3 and scale to unit-length

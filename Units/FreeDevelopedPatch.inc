@@ -977,8 +977,8 @@ var
       P3D := ConvertTo3D(P2D);
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + Layername);
-      Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-      Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+      Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
     end;
     Strings.Add('0' + EOL + 'SEQEND');
   end;{ExportSpline}
@@ -1009,8 +1009,8 @@ begin
       P3D := Point[Index];
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + Layer);
-      Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-      Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+      Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
     end;
     begin
       P := Edge.EndPoint;
@@ -1018,8 +1018,8 @@ begin
       P3D := Point[Index];
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + Layer);
-      Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-      Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+      Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
     end;
 
     Strings.Add('0' + EOL + 'SEQEND');
@@ -1036,8 +1036,8 @@ begin
         P3D := MirrorPoint[Index];
         Strings.Add('0' + EOL + 'VERTEX');
         Strings.Add('8' + EOL + Layer);
-        Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-        Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+        Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+        Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
       end;
       begin
         P := Edge.EndPoint;
@@ -1045,8 +1045,8 @@ begin
         P3D := MirrorPoint[Index];
         Strings.Add('0' + EOL + 'VERTEX');
         Strings.Add('8' + EOL + Layer);
-        Strings.Add('10' + EOL + Truncate(P3D.X, 4));
-        Strings.Add('20' + EOL + Truncate(P3D.Y, 4));
+        Strings.Add('10' + EOL + FloatToDec(P3D.X, 4));
+        Strings.Add('20' + EOL + FloatToDec(P3D.Y, 4));
       end;
       Strings.Add('0' + EOL + 'SEQEND');
     end;

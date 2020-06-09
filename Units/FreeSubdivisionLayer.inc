@@ -1121,9 +1121,9 @@ begin
                 P := Grid[J - 1][K - 1].FCoordinate;
                 Strings.Add('0' + EOL + 'VERTEX');
                 Strings.Add('8' + EOL + DXFName);
-                Strings.Add('10' + EOL + Truncate(P.X, 4));
-                Strings.Add('20' + EOL + Truncate(P.Y, 4));
-                Strings.Add('30' + EOL + Truncate(P.Z, 4));
+                Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+                Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
+                Strings.Add('30' + EOL + FloatToDec(P.Z, 4));
                 Strings.Add('70' + EOL + '64');    // polygon mesh vertex
               end;
             end;
@@ -1144,9 +1144,9 @@ begin
                   P := Grid[J - 1][K - 1].FCoordinate;
                   Strings.Add('0' + EOL + 'VERTEX');
                   Strings.Add('8' + EOL + DXFName);
-                  Strings.Add('10' + EOL + Truncate(P.X, 4));
-                  Strings.Add('20' + EOL + Truncate(-P.Y, 4));
-                  Strings.Add('30' + EOL + Truncate(P.Z, 4));
+                  Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+                  Strings.Add('20' + EOL + FloatToDec(-P.Y, 4));
+                  Strings.Add('30' + EOL + FloatToDec(P.Z, 4));
                   Strings.Add('70' + EOL + '64');    // polygon mesh vertex
                 end;
               end;

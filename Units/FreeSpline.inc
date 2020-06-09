@@ -1110,9 +1110,9 @@ begin
     P := Value(Params[J - 1]);
     Strings.Add('0' + EOL + 'VERTEX');
     Strings.Add('8' + EOL + LayerName);
-    Strings.Add('10' + EOL + Truncate(P.X, 4));
-    Strings.Add('20' + EOL + Truncate(P.Y, 4));
-    Strings.Add('30' + EOL + Truncate(P.Z, 4));
+    Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+    Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
+    Strings.Add('30' + EOL + FloatToDec(P.Z, 4));
     Strings.Add('70' + EOL + '32');    // 3D polyline mesh vertex
   end;
   Strings.Add('0' + EOL + 'SEQEND');
@@ -1124,15 +1124,15 @@ begin
     Strings.Add('62' + EOL + IntToStr(Ind));  // color by layer
     Strings.Add('70' + EOL + '10');   // not closed
     Strings.Add('66' + EOL + '1');    // vertices follow
-    for J := 0 to NParams do
+    for J := 1 to NParams do
     begin
       P := Value(Params[J - 1]);
       P.Y := -P.Y;
       Strings.Add('0' + EOL + 'VERTEX');
       Strings.Add('8' + EOL + LayerName);
-      Strings.Add('10' + EOL + Truncate(P.X, 4));
-      Strings.Add('20' + EOL + Truncate(P.Y, 4));
-      Strings.Add('30' + EOL + Truncate(P.Z, 4));
+      Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+      Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
+      Strings.Add('30' + EOL + FloatToDec(P.Z, 4));
       Strings.Add('70' + EOL + '32');    // 3D polyline mesh vertex
     end;
     Strings.Add('0' + EOL + 'SEQEND');

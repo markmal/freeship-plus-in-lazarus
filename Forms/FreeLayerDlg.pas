@@ -324,8 +324,8 @@ begin
     //		 Xgbox.Enabled:=True;
     //		 Ygbox.Enabled:=True;
     //		 Zgbox.Enabled:=True;
-    Edit2.Text:=Truncate(Layer.MaterialDensity,4);
-    Edit3.Text:=Truncate(Layer.Thickness,4);
+    Edit2.Text:=FloatToDec(Layer.MaterialDensity,4);
+    Edit3.Text:=FloatToDec(Layer.Thickness,4);
     Prop:=Layer.SurfaceProperties;
     WeightS:=Prop.Weight+Weight*1000.;
     XgS:=Prop.SurfaceCenterOfGravity.X*Prop.Weight+Xg*Weight*1000.;
@@ -342,8 +342,8 @@ begin
     Xgbox.Enabled:=False;
     Ygbox.Enabled:=False;
     Zgbox.Enabled:=False;
-    Edit2.Text:=Truncate(Layer.MaterialDensity,4);
-    Edit3.Text:=Truncate(Layer.Thickness,4);
+    Edit2.Text:=FloatToDec(Layer.MaterialDensity,4);
+    Edit3.Text:=FloatToDec(Layer.Thickness,4);
     Prop:=Layer.SurfaceProperties;
     end;
 

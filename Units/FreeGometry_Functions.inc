@@ -1563,11 +1563,15 @@ begin
   Result := Sqr(P2.X - P1.X) + Sqr(P2.Y - P1.Y) + Sqr(P2.Z - P1.Z);
 end;{SquaredDistPP}
 
-function Truncate(Value: TFloatType; Maxlength: integer): string;
+function FloatToDec(Value: TFloatType; Maxlength: integer): string;
   // Convert a floatingpoint to a string value with a max. number of specified decimals
   // All trailing zeros will be removed
+var fmt:TFormatSettings;
 begin
-  Result := FloatToStrF(Value, ffFixed, 10, Maxlength);
+  fmt:=DefaultFormatSettings;
+  fmt.DecimalSeparator:='.';
+  fmt.ThousandSeparator:=',';
+  Result := FloatToStrF(Value, ffFixed, 10, Maxlength, fmt);
   while Result[Length(Result)] = '0' do
     Delete(Result, Length(Result), 1);
   if Length(Result) < MaxLength then
@@ -1575,7 +1579,7 @@ begin
   else
   if Result[Length(Result)] in ['.', ','] then
     Result := Result + '0';
-end;{Truncate}
+end;{FloatToDec}
 
 function MakeLength(Value: TFloatType; Decimals, DesLength: integer): string;
 var

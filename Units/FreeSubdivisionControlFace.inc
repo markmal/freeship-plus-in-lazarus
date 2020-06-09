@@ -1433,9 +1433,9 @@ begin
           P := Grid[I - 1][J - 1].FCoordinate;
           Strings.Add('0' + EOL + 'VERTEX');
           Strings.Add('8' + EOL + LayerName);
-          Strings.Add('10' + EOL + Truncate(P.X, 4));
-          Strings.Add('20' + EOL + Truncate(P.Y, 4));
-          Strings.Add('30' + EOL + Truncate(P.Z, 4));
+          Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+          Strings.Add('20' + EOL + FloatToDec(P.Y, 4));
+          Strings.Add('30' + EOL + FloatToDec(P.Z, 4));
           Strings.Add('70' + EOL + '64');    // polygon mesh vertex
         end;
       end;
@@ -1456,9 +1456,9 @@ begin
             P := Grid[I - 1][J - 1].FCoordinate;
             Strings.Add('0' + EOL + 'VERTEX');
             Strings.Add('8' + EOL + LayerName);
-            Strings.Add('10' + EOL + Truncate(P.X, 4));
-            Strings.Add('20' + EOL + Truncate(-P.Y, 4));
-            Strings.Add('30' + EOL + Truncate(P.Z, 4));
+            Strings.Add('10' + EOL + FloatToDec(P.X, 4));
+            Strings.Add('20' + EOL + FloatToDec(-P.Y, 4));
+            Strings.Add('30' + EOL + FloatToDec(P.Z, 4));
             Strings.Add('70' + EOL + '64');    // polygon mesh vertex
           end;
         end;
@@ -1478,16 +1478,16 @@ begin
       for K := 1 to Child.NumberOfpoints do
       begin
         P := Child.Point[K - 1].Coordinate;
-        Strings.Add(IntToStr(10 + K - 1) + EOL + Truncate(P.X, 4));
-        Strings.Add(IntToStr(20 + K - 1) + EOL + Truncate(P.Y, 4));
-        Strings.Add(IntToStr(30 + K - 1) + EOL + Truncate(P.Z, 4));
+        Strings.Add(IntToStr(10 + K - 1) + EOL + FloatToDec(P.X, 4));
+        Strings.Add(IntToStr(20 + K - 1) + EOL + FloatToDec(P.Y, 4));
+        Strings.Add(IntToStr(30 + K - 1) + EOL + FloatToDec(P.Z, 4));
       end;
       if Child.NumberOfpoints = 3 then
       begin
         // 4th point is same as third
-        Strings.Add(IntToStr(13) + EOL + Truncate(P.X, 4));
-        Strings.Add(IntToStr(23) + EOL + Truncate(P.Y, 4));
-        Strings.Add(IntToStr(33) + EOL + Truncate(P.Z, 4));
+        Strings.Add(IntToStr(13) + EOL + FloatToDec(P.X, 4));
+        Strings.Add(IntToStr(23) + EOL + FloatToDec(P.Y, 4));
+        Strings.Add(IntToStr(33) + EOL + FloatToDec(P.Z, 4));
       end;
       if (Layer.Symmetric) and (Surface.DrawMirror) then
       begin
@@ -1499,16 +1499,16 @@ begin
         begin
           P := Child.Point[K - 1].Coordinate;
           P.Y := -P.Y;
-          Strings.Add(IntToStr(10 + K - 1) + EOL + Truncate(P.X, 4));
-          Strings.Add(IntToStr(20 + K - 1) + EOL + Truncate(P.Y, 4));
-          Strings.Add(IntToStr(30 + K - 1) + EOL + Truncate(P.Z, 4));
+          Strings.Add(IntToStr(10 + K - 1) + EOL + FloatToDec(P.X, 4));
+          Strings.Add(IntToStr(20 + K - 1) + EOL + FloatToDec(P.Y, 4));
+          Strings.Add(IntToStr(30 + K - 1) + EOL + FloatToDec(P.Z, 4));
         end;
         if Child.NumberOfpoints = 3 then
         begin
           // 4th point is same as third
-          Strings.Add(IntToStr(13) + EOL + Truncate(P.X, 4));
-          Strings.Add(IntToStr(23) + EOL + Truncate(P.Y, 4));
-          Strings.Add(IntToStr(33) + EOL + Truncate(P.Z, 4));
+          Strings.Add(IntToStr(13) + EOL + FloatToDec(P.X, 4));
+          Strings.Add(IntToStr(23) + EOL + FloatToDec(P.Y, 4));
+          Strings.Add(IntToStr(33) + EOL + FloatToDec(P.Z, 4));
         end;
       end;
     end;

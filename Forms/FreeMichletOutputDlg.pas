@@ -1024,7 +1024,7 @@ begin
   Strings.Add('# Base Eddy Kin. Viscosity (non-dimensional, min 1.0)');
   Strings.Add('10.0');
   Strings.Add('# Water Depth (metres) (max=10000.0)');
-  Strings.Add(Truncate(WaterDepth, 3));
+  Strings.Add(FloatToStrF(WaterDepth, ffFixed, 19,3));
   Strings.Add('# ========================== AIR PROPERTIES ============================');
   Strings.Add('# Air Density (kg/cubic metre) (min 0.9, max 2.0)');
   Strings.Add('1.26');

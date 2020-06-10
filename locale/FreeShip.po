@@ -98,10 +98,14 @@ msgstr ""
 
 #: freeship.installmemessage
 msgid ""
-"You run FreeShip from installation directory.\n"
+"Configuration issue.\n"
+"Scenario A: You probably run FreeShip from installation directory.\n"
 "FreeShip is not installed.\n"
 "It will work but it may experience issues with finding various files and directories.\n"
 "Please exit and run install-FreeShip.sh\n"
+"\n"
+"Scenario B: You probably have previously installed FreeShip in user scope and just re-installed it in machine scope, or vice versa.\n"
+"Please enter menu File/Preferences, Directories tab, and click Reset button\n"
 msgstr ""
 
 #: freeship.usageline01

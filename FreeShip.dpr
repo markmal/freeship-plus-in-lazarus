@@ -222,11 +222,15 @@ end;
 //const INSTSCRIPT_EXT='sh';
 {$endif}
 
-resourcestring InstallMeMessage='You run FreeShip from installation directory.'+#10
+resourcestring InstallMeMessage='Configuration issue.'+#10
+  +'Scenario A: You probably run FreeShip from installation directory.'+#10
   +'FreeShip is not installed.'+#10
   +'It will work but it may experience issues with finding various files and directories.'+#10
-  +'Please exit and run install-FreeShip.sh';
-
+  +'Please exit and run install-FreeShip.sh'+#10
+  +#10
+  +'Scenario B: You probably have previously installed FreeShip in user scope and just re-installed it in machine scope, or vice versa.'+#10
+  +'Please enter menu File/Preferences, Directories tab, and click Reset button'+#10
+  ;
 
 procedure checkInstallation;
 //var MsgForm:TForm; Lbl:TLabel;

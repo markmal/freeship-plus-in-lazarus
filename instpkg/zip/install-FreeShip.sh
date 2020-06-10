@@ -230,6 +230,8 @@ echo "  Install configuration"
 #Global default config
 [ ! -d "${FS_GCONF}" ] && mkdir "${FS_GCONF}"
 GCFG="${FS_GCONF}"/FreeShip.ini
+
+[ -f FreeShip.ini ] && rm -f FreeShip.ini
 echo "[Directories]
 LanguagesDirectory=${FS_HOME}/Languages
 ExecDirectory=${FS_HOME}/Exec
@@ -251,8 +253,36 @@ MaxUndoMemory=32
 if [ -f "$GCFG" ] && ! diff -q FreeShip.ini "$GCFG" &>/dev/null ; then
     echo "    rename existing '$GCFG'" \
     mv "$GCFG" "${GCFG}~"$(date +'%Y-%m-%d_%T')
-fi    
+fi
 cp FreeShip.ini "$GCFG"
+chmod 666 FreeShip.ini
+
+#cleanup users ini
+UINI=~/.config/FreeShip/FreeShip.ini
+if [ -f $UINI ]; then
+  sed -i '/\s*GlobalOpenDirectory=/d' $UINI
+  sed -i '/\s*GlobalImportDirectory=/d' $UINI
+  sed -i '/\s*LanguagesDirectory=/d' $UINI
+  sed -i '/\s*ExecDirectory=/d' $UINI
+  sed -i '/\s*ManualsDirectory=/d' $UINI
+  sed -i '/\s*MenuIconDirectory=/d' $UINI
+
+  UDIRS=$(grep -e '\s*LastDirectory=' -e '\s*OpenDirectory=' \
+               -e '\s*SaveDirectory=' -e '\s*ImportDirectory=' \
+               -e '\s*ExportDirectory=' -e '\s*TempDirectory=' \
+          $UINI )
+
+  eval $UDIRS
+
+  [ ! -d "$LastDirectory" ] && sed -i '/\s*LastDirectory=/d' $UINI
+  [ ! -d "$OpenDirectory" ] && sed -i '/\s*OpenDirectory=/d' $UINI
+  [ ! -d "$SaveDirectory" ] && sed -i '/\s*SaveDirectory=/d' $UINI
+  [ ! -d "$ImportDirectory" ] && sed -i '/\s*ImportDirectory=/d' $UINI
+  [ ! -d "$ExportDirectory" ] && sed -i '/\s*ExportDirectory=/d' $UINI
+  [ ! -d "$TempDirectory" ] && sed -i '/\s*TempDirectory=/d' $UINI
+
+fi
+
 chmod a-x "$GCFG"
 md5sum "$GCFG" >> ${FS_HOME}/install/.original-files.md5
 

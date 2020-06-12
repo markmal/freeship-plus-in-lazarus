@@ -1470,8 +1470,9 @@ var
     Center.X := (P1.X + P2.X + P3.X) / 3;
     Center.Y := (P1.Y + P2.Y + P3.Y) / 3;
     Center.Z := (P1.Z + P2.Z + P3.Z) / 3;
-    Volume := ((P1.z) * (P2.x * P3.y - P2.y * P3.x) + (P1.y) *
-      (P2.z * P3.x - P2.x * P3.z) + (P1.x) * (P2.y * P3.z - P2.z * P3.y)) / 6;
+    Volume := ((P1.z) * (P2.x * P3.y - P2.y * P3.x)
+             + (P1.y) * (P2.z * P3.x - P2.x * P3.z)
+             + (P1.x) * (P2.y * P3.z - P2.z * P3.y)) / 6;
     if Volume <> 0 then
     begin
       VolumeMoment.X := 0.75 * Center.X * Volume;
@@ -1693,14 +1694,18 @@ begin
             P1 := Child.Point[Child.NumberOfPoints - 1].Coordinate;
             P1.Y := -P1.Y;
             // calculate on which side of the waterplane this point is
-            Side1 := FData.Waterlineplane.A * P1.x + FData.Waterlineplane.B *
-              P1.y + FData.Waterlineplane.C * P1.z + FData.Waterlineplane.D;
+            Side1 := FData.Waterlineplane.A * P1.x
+                   + FData.Waterlineplane.B * P1.y
+                   + FData.Waterlineplane.C * P1.z
+                   + FData.Waterlineplane.D;
             for L := 1 to Child.NumberOfPoints do
             begin
               P2 := Child.Point[L - 1].Coordinate;
               P2.Y := -P2.Y;
-              Side2 := FData.Waterlineplane.A * P2.x + FData.Waterlineplane.B *
-                P2.y + FData.Waterlineplane.C * P2.z + FData.Waterlineplane.D;
+              Side2 := FData.Waterlineplane.A * P2.x
+                     + FData.Waterlineplane.B * P2.y
+                     + FData.Waterlineplane.C * P2.z
+                     + FData.Waterlineplane.D;
               if ((Side1 < -1e-7) and (Side2 > 1e-7)) or
                 ((Side1 > 1e-7) and (Side2 < -1e-7)) then
               begin
@@ -1756,6 +1761,7 @@ begin
         end;
       end;
   end;
+  FData.Volume := FData.Volume;
   FData.AbsoluteDraft := -FData.AbsoluteDraft;
   if FirstPoint then
     if not submerged then

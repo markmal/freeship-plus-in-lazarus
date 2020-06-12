@@ -9,23 +9,23 @@ object FreeHydrostaticsForm: TFreeHydrostaticsForm
   ClientHeight = 200
   ClientWidth = 300
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.8.0'
   object Panel2: TPanel
     Left = 0
-    Height = 20
+    Height = 30
     Top = 0
     Width = 300
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 20
+    ClientHeight = 30
     ClientWidth = 300
     TabOrder = 0
     object Button1: TSpeedButton
-      Left = 240
-      Height = 20
+      Left = 228
+      Height = 30
       Top = 0
-      Width = 60
+      Width = 72
       Align = alRight
       AutoSize = True
       Caption = 'Close'
@@ -44,10 +44,10 @@ object FreeHydrostaticsForm: TFreeHydrostaticsForm
     end
     object Button2: TSpeedButton
       Left = 0
-      Height = 20
+      Height = 30
       Hint = 'Start the calculation.'
       Top = 0
-      Width = 85
+      Width = 105
       Align = alLeft
       AutoSize = True
       Caption = 'Calculate'
@@ -67,8 +67,8 @@ object FreeHydrostaticsForm: TFreeHydrostaticsForm
   end
   object Panel1: TPanel
     Left = 0
-    Height = 180
-    Top = 20
+    Height = 170
+    Top = 30
     Width = 300
     Align = alClient
     AutoSize = True
@@ -81,125 +81,129 @@ object FreeHydrostaticsForm: TFreeHydrostaticsForm
     ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 3
-    ClientHeight = 180
+    ClientHeight = 170
     ClientWidth = 300
     TabOrder = 1
     object Label1: TLabel
-      Left = 18
-      Height = 25
+      Left = 8
+      Height = 36
       Top = 16
-      Width = 70
+      Width = 94
       Caption = 'Start draft '
       Layout = tlCenter
       ParentColor = False
     end
     object FloatSpinEdit1: TFloatSpinEdit
-      Left = 106
-      Height = 25
+      Left = 110
+      Height = 36
       Top = 16
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
       DecimalPlaces = 3
+      Increment = 0.1
       MinValue = 0
       TabOrder = 0
       Value = 0.5
     end
     object _Label5: TLabel
-      Left = 204
-      Height = 25
+      Left = 197
+      Height = 36
       Top = 16
-      Width = 58
+      Width = 77
       Caption = 'Label9'
       Layout = tlCenter
       ParentColor = False
     end
     object Label2: TLabel
-      Left = 18
-      Height = 25
-      Top = 43
-      Width = 70
+      Left = 8
+      Height = 36
+      Top = 54
+      Width = 94
       Caption = 'End draft'
       Layout = tlCenter
       ParentColor = False
     end
     object FloatSpinEdit2: TFloatSpinEdit
-      Left = 106
-      Height = 25
-      Top = 43
+      Left = 110
+      Height = 36
+      Top = 54
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
       DecimalPlaces = 3
+      Increment = 0.1
       MinValue = 0
       TabOrder = 1
       Value = 1
     end
     object _Label11: TLabel
-      Left = 204
-      Height = 25
-      Top = 43
-      Width = 58
+      Left = 197
+      Height = 36
+      Top = 54
+      Width = 77
       Caption = '_Label11'
       Layout = tlCenter
       ParentColor = False
     end
     object Label3: TLabel
-      Left = 18
-      Height = 25
-      Top = 70
-      Width = 70
+      Left = 8
+      Height = 36
+      Top = 92
+      Width = 94
       Caption = 'Draft step'
       Layout = tlCenter
       ParentColor = False
     end
     object FloatSpinEdit3: TFloatSpinEdit
-      Left = 106
-      Height = 25
-      Top = 70
+      Left = 110
+      Height = 36
+      Top = 92
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
       DecimalPlaces = 3
+      Increment = 0.1
       MinValue = 0
       TabOrder = 2
       Value = 1
     end
     object _Label10: TLabel
-      Left = 204
-      Height = 25
-      Top = 70
-      Width = 58
+      Left = 197
+      Height = 36
+      Top = 92
+      Width = 77
       Caption = '_Label10'
       Layout = tlCenter
       ParentColor = False
     end
     object Label4: TLabel
-      Left = 18
-      Height = 25
-      Top = 97
-      Width = 70
+      Left = 8
+      Height = 36
+      Top = 130
+      Width = 94
       Caption = 'Trim'
       Layout = tlCenter
       ParentColor = False
     end
     object FloatSpinEdit4: TFloatSpinEdit
-      Left = 106
-      Height = 25
-      Top = 97
+      Left = 110
+      Height = 36
+      Top = 130
       Width = 80
       Alignment = taRightJustify
       Constraints.MinWidth = 80
       DecimalPlaces = 3
+      Increment = 0.1
       MinValue = 0
       TabOrder = 3
       Value = 0
     end
     object Label9: TLabel
-      Left = 204
-      Height = 25
-      Top = 97
-      Width = 58
+      Left = 197
+      Height = 36
+      Top = 130
+      Width = 77
       Caption = 'Label9'
       Layout = tlCenter
       ParentColor = False

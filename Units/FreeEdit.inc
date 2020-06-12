@@ -5949,7 +5949,7 @@ end;{TFreeEdit.Geometry_AddGridPanel}
 function TFreeEdit.Hydrostatics_Calculate(Draft, AngleOfHeel, Trim: TFloatType):
 TFreeHydrostaticCalc;
 begin
-  if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
+  if not FreeShip.ProjectSettings.FMainParticularsHasBeenset then
   begin
     MessageDlg(UserString(196), mtError, [mbOK], 0);
     Result := nil;

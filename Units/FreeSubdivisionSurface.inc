@@ -4138,6 +4138,7 @@ begin
   begin
     Point := TFreeSubdivisionControlPoint.Create(self);
     Point.LoadBinary(Source);
+    //Point.Name:=IntToStr(I-1); //for debug. assign point numbers (as they are in file) as names
     FControlPoints.Add(Point);
   end;
   // Read controlEdges
@@ -4830,11 +4831,11 @@ begin
   logger.Debug('Surface.SubDivide : FCurrentSubdivisionLevel:'+inttostr(FCurrentSubdivisionLevel));
 
   // Create the list with new facepoints and a reference to the original face
-  RefFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
+  RefFaces := TFasterListTFreeSubdivisionFace.Create(true,true);//(false,false);
   // Create the list with new edgepoints and a reference to the original edge
-  RefEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
+  RefEdges := TFasterListTFreeSubdivisionEdge.Create(true,true);//(false,false);
   // Create the list with new vertexpoints and a reference to the original vertex
-  RefVertexPoints := TFasterListTFreeSubdivisionPoint.Create(false,false);
+  RefVertexPoints := TFasterListTFreeSubdivisionPoint.Create(true,true);//(false,false);
 
 
   if FaceCnt = 0 then //first time when surface mesh is not created yet we use control mesh to start with

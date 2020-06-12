@@ -303,6 +303,7 @@ begin
         if Cm > 0 then
         begin
           Cp := Cb / Cm;
+          ResultsDlg.Grid.RowCount := I + 1;
           ResultsDlg.Grid.Cells[0, I] := FloatToStrF(HydObject.Draft + Zmin, ffFixed, 7, 3);
           ResultsDlg.Grid.Cells[1, I] := FloatToStrF(HydObject.Trim, ffFixed, 7, 3);
           ResultsDlg.Grid.Cells[2, I] :=
@@ -350,7 +351,7 @@ begin
       HydObject.AddFooter(Strings, fhMultipleCalculations);
       ResultsDlg.Header.Lines.AddStrings(Strings);
       HydObject.Destroy;
-      ResultsDlg.Grid.RowCount := I;
+      //ResultsDlg.Grid.RowCount := I;
     finally
       Strings.Destroy;
       Screen.Cursor := PrevCursor;

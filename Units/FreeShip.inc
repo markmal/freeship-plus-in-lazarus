@@ -2202,8 +2202,8 @@ begin
   end;
   finally
     Surface.DesiredSubdivisionLevel := Ord(Precision) + 1;
-    CF0:=Surface.ControlFace[0];
-    //Surface.Rebuild; // it will be rebuilt in Draw
+    //CF0:=Surface.ControlFace[0];
+    Surface.Rebuild; // it will be rebuilt in Draw
     Screen.Cursor := PrevCursor;
     for I := 1 to NumberofBackgroundImages do
       BackgroundImage[I - 1].UpdateViews;

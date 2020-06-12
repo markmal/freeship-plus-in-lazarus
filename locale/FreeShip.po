@@ -315,7 +315,8 @@ msgstr ""
 msgid "Export intersections to DXF as 2D polylines."
 msgstr ""
 
-#: tdxfexport2ddialog.checkbox1.caption
+#: tdxfexport2ddialog.cbcreateindividualfiles.caption
+msgctxt "tdxfexport2ddialog.cbcreateindividualfiles.caption"
 msgid "Create individual files"
 msgstr ""
 

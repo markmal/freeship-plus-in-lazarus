@@ -1606,10 +1606,11 @@ var
       Cap: integer;
       Params: TFloatArray;
       I, Ind: integer;
-      Length: double;
+      SplineLength: double;
       T: double;
       P1, P2, Pkn: T3DCoordinate;
       Pn, Pn1, Pn2: integer;
+      SplineValues: T3DCoordinateArray;
 
       procedure SaveVertex(P:T3DCoordinate); // port side
       begin
@@ -1657,34 +1658,37 @@ var
       NParams := 0;
       Setlength(Params, Spline.NumberOfPoints);
       // count number of knucklepoints
-      if not Spline.Built then
-        Spline.Rebuild;
+      //if not Spline.Built then
+      Spline.Rebuild;
       for I := 2 to Spline.NumberOfPoints - 1 do
         if Spline.Knuckle[I - 1] then
         begin
           Params[NParams] := Spline.Parameter[I - 1];
           Inc(NParams);
         end;
-      // Calculate the length of the spline
-      Length := 0.0;
+      // Calculate the SplineLength of the spline
+      SplineLength := 0.0;
       P1 := Spline.Value(0.0);
       for I := 1 to 150 do
       begin
         P2 := Spline.Value(I / 150);
-        Length := Length + DistPP3D(P1, P2);
+        SplineLength := SplineLength + DistPP3D(P1, P2);
         P1 := P2;
       end;
-      Length := Length * ScaleFactor;
+      SplineLength := SplineLength * ScaleFactor;
 
 
-      if length > 0 then
+      if SplineLength > 0 then
       begin
-        N := Round(Length / (SegLength));
+
+        N := Round(SplineLength / (SegLength));
         if N < 2 * Spline.NumberOfPoints then
           N := 2 * Spline.NumberOfPoints;
         if N > 3500 then
           N := 3500;
         Spline.Fragments := N;
+
+        (*
         Cap := NParams + 100;
         Setlength(Params, Cap);
         Inc(Nparams);
@@ -1694,7 +1698,7 @@ var
 
         for I := 1 to Spline.Fragments do
         begin
-          T := Spline.ChordlengthApproximation(I * SegLength / Length);
+          T := Spline.ChordlengthApproximation(I * SegLength / SplineLength);
           if NParams >= Cap then
           begin
             Inc(Cap, 50);
@@ -1705,11 +1709,14 @@ var
         end;
 
         SortFloatArray(Params, NParams);
+        *)
+
         // now export the actual calculated points
         Strings.Add('0' + EOL + 'POLYLINE');
         Strings.Add('8' + EOL + LayerName);   // layername
         Strings.Add('62' + EOL + IntToStr(Ind));  // color by layer
         Strings.Add('66' + EOL + '1');    // vertices follow
+        (*
         Pn:=0;
         for I := 0 to NParams - 1 do
         begin
@@ -1720,7 +1727,15 @@ var
             Pkn := Spline.Point[Pn1];
             SaveVertex(Pkn);
           end;
-          SaveVertex(Pkn);
+          SaveVertex(P1);
+        end;
+        *)
+        //MM: 2020-06-12 just use GetValues. no tricks. Knuckle processing is embedded there.
+        SplineValues := Spline.GetValues;
+        for i:=0 to Length(SplineValues)-1 do
+        begin
+          P1 := SplineValues[i];
+          SaveVertex(P1);
         end;
 
         Strings.Add('0' + EOL + 'SEQEND');
@@ -1750,8 +1765,8 @@ var
     end;{SaveSpline}
 
   begin
-    if not Intersection.Built then
-      Intersection.Rebuild;
+    //if not Intersection.Built then
+    Intersection.Rebuild;
     if intersection.Count > 0 then
     begin
       case Intersection.IntersectionType of
@@ -1819,7 +1834,7 @@ begin
     PrevCursor := Screen.Cursor;
     Screen.Cursor := crHourGlass;
     try
-      if Dialog.CheckBox1.Checked then
+      if Dialog.cbCreateIndividualFiles.Checked then
       begin
         // send each intersection to an individual dxf file
         Intersections := TFasterListTFreeIntersection.Create;

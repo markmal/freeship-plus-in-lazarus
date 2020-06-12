@@ -1,30 +1,30 @@
 object DXFExport2DDialog: TDXFExport2DDialog
   Left = 541
-  Height = 161
+  Height = 206
   Top = 330
-  Width = 598
+  Width = 642
   AutoSize = True
   BorderStyle = bsDialog
   Caption = 'Export intersections to DXF as 2D polylines.'
-  ClientHeight = 161
-  ClientWidth = 598
+  ClientHeight = 206
+  ClientWidth = 642
   ParentFont = True
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.8.0'
   object Panel1: TPanel
     Left = 0
-    Height = 24
+    Height = 34
     Top = 0
-    Width = 598
+    Width = 642
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
-    ClientWidth = 598
+    ClientHeight = 34
+    ClientWidth = 642
     TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 434
-      Height = 20
+      Left = 475
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -72,10 +72,10 @@ object DXFExport2DDialog: TDXFExport2DDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 516
-      Height = 20
+      Left = 557
+      Height = 30
       Top = 2
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2
@@ -123,10 +123,11 @@ object DXFExport2DDialog: TDXFExport2DDialog
   end
   object Panel3: TPanel
     Left = 0
-    Height = 128
-    Top = 24
-    Width = 598
+    Height = 162
+    Top = 34
+    Width = 642
     Align = alTop
+    AutoSize = True
     BevelOuter = bvNone
     ChildSizing.LeftRightSpacing = 10
     ChildSizing.TopBottomSpacing = 10
@@ -134,34 +135,34 @@ object DXFExport2DDialog: TDXFExport2DDialog
     ChildSizing.VerticalSpacing = 2
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
-    ClientHeight = 128
-    ClientWidth = 598
+    ClientHeight = 162
+    ClientWidth = 642
     ParentColor = False
     TabOrder = 1
     object Label7: TLabel
       Left = 10
-      Height = 25
+      Height = 36
       Top = 10
-      Width = 232
+      Width = 313
       Caption = 'Export directory'
       Layout = tlCenter
       ParentColor = False
     end
     object Panel4: TPanel
-      Left = 248
-      Height = 25
+      Left = 329
+      Height = 36
       Top = 10
       Width = 280
       AutoSize = True
       BevelOuter = bvNone
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
-      ClientHeight = 25
+      ClientHeight = 36
       ClientWidth = 280
       TabOrder = 0
       object Edit3: TEdit
         Left = 0
-        Height = 25
+        Height = 36
         Top = 0
         Width = 260
         Constraints.MinWidth = 260
@@ -171,7 +172,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
       end
       object SpeedButton1: TSpeedButton
         Left = 260
-        Height = 25
+        Height = 36
         Hint = 'Browse for the export directory'
         Top = 0
         Width = 20
@@ -192,16 +193,16 @@ object DXFExport2DDialog: TDXFExport2DDialog
     end
     object Label4: TLabel
       Left = 10
-      Height = 25
-      Top = 37
-      Width = 232
+      Height = 36
+      Top = 48
+      Width = 313
       Caption = 'Export units'
       ParentColor = False
     end
     object ComboBox1: TComboBox
-      Left = 248
-      Height = 25
-      Top = 37
+      Left = 329
+      Height = 36
+      Top = 48
       Width = 280
       ItemHeight = 0
       ItemIndex = 0
@@ -218,16 +219,16 @@ object DXFExport2DDialog: TDXFExport2DDialog
     end
     object Label1: TLabel
       Left = 10
-      Height = 25
-      Top = 64
-      Width = 232
+      Height = 36
+      Top = 86
+      Width = 313
       Caption = 'Max length of line segments, pixels'
       ParentColor = False
     end
     object Edit1: TFloatSpinEdit
-      Left = 248
-      Height = 25
-      Top = 64
+      Left = 329
+      Height = 36
+      Top = 86
       Width = 280
       Alignment = taRightJustify
       DecimalPlaces = 5
@@ -235,11 +236,11 @@ object DXFExport2DDialog: TDXFExport2DDialog
       TabOrder = 2
       Value = 0.1
     end
-    object CheckBox1: TCheckBox
+    object cbCreateIndividualFiles: TCheckBox
       Left = 10
-      Height = 21
-      Top = 91
-      Width = 232
+      Height = 28
+      Top = 124
+      Width = 313
       Alignment = taLeftJustify
       Caption = 'Create individual files'
       TabOrder = 3

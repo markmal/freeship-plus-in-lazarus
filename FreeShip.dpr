@@ -185,7 +185,10 @@ begin
     else if S = '--log-debug' then Logger.LogLevel:=LOG_DEBUG
     else if UTF8LeftStr(S,11) = '--log-file=' then
       Logger.ParamForLogFileName:='--log-file='
-    else sOpenFile:=S;
+    else if (lowerCase(UTF8RightStr(S,4)) = '.ftm')
+          or(lowerCase(UTF8RightStr(S,4)) = '.fbm')
+    then
+      sOpenFile:=S;
   end;
 end;
 
@@ -447,6 +450,6 @@ begin
 
  except
    on E: Exception do
-     logger.DumpExceptionCallStack(E);
+     logger.ShowExceptionCallStack(E);
  end;
 end.

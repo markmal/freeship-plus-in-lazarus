@@ -335,7 +335,7 @@ begin
          logger.Error('Exception class: '+E.ClassName+' Message: '+E.Message);
          Memo1.Text:=format(rsKnownSSLException, [E.ClassName, E.Message]);
        end
-         else logger.DumpExceptionCallStack(e);
+         else logger.ShowExceptionCallStack(e);
      end;
      on e:EAccessViolation do
      begin
@@ -343,7 +343,7 @@ begin
        Memo1.Text:=format(rsKnownSSLException, [E.ClassName, E.Message]);
      end;
      on e:Exception do
-       logger.DumpExceptionCallStack(e);
+       logger.ShowExceptionCallStack(e);
    end;
   finally
     //Http.Free;

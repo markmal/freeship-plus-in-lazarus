@@ -581,7 +581,7 @@ begin
         exit;
         end;
       on E:Exception do
-        logger.DumpExceptionCallStack(E);
+        logger.ShowExceptionCallStack(E);
     end;
   finally
     SetCurrentDir(CurDir);

@@ -31,7 +31,8 @@ Type
       procedure IncreaseIndent; override;
       procedure DecreaseIndent; override;
       function GetExceptionCallStack(E: Exception): string;
-      procedure DumpExceptionCallStack(E: Exception);
+      procedure ShowExceptionCallStack(E: Exception);
+      procedure LogExceptionCallStack(E: Exception);
       property LogLevel : integer read FLogLevel write SetLogLevel;
   end;
 
@@ -122,7 +123,7 @@ begin
     Result := Result + LineEnding + BackTraceStrFunc(Frames[I]);
 end;
 
-procedure TLogger.DumpExceptionCallStack(E: Exception);
+procedure TLogger.ShowExceptionCallStack(E: Exception);
 var
   I: Integer;
   Frames: PPointer;
@@ -138,6 +139,18 @@ begin
     ExceptionDlg.Showmodal;
   end;
   //Halt; // End of program execution
+end;
+
+procedure TLogger.LogExceptionCallStack(E: Exception);
+var
+  I: Integer;
+  Frames: PPointer;
+  Report: string;
+begin
+  Report := GetExceptionCallStack(E);
+  for I := 0 to ExceptFrameCount - 1 do
+    Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
+  logger.Error(Report);
 end;
 
 initialization

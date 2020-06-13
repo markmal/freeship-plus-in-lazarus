@@ -5400,6 +5400,7 @@ begin
   Opendialog.ShellListView.AutoWidthLastColumn := False;
   Opendialog.AutoFit := True;
   OpenDialog.CurrentPath := FreeShip.Preferences.LastDirectory;
+  OpenDialog.LocaleDir := FreeShip.Preferences.GlobalAppDataDirectory;
 
   //Places:=Opendialog.GetPlaces;
   if OpenDialog.Execute then
@@ -5721,7 +5722,7 @@ begin
   Savedialog.FileName := ExtractFilename(ChangeFileExt(FreeShip.Filename, '.ftm'));
   //Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   //Savedialog.OnTypeChange := SaveDialogTypeChange;
-
+  SaveDialog.LocaleDir := Preferences.GlobalAppDataDirectory + DirectorySeparator + 'locale';
   if SaveDialog.Execute then
   begin
     //FreeShip.Preferences.SaveDirectory := ExtractFilePath(SaveDialog.AbsoluteFileName);

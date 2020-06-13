@@ -1018,6 +1018,8 @@ type
     property NormalColor: TColor read FNormalColor write FNormalColor;
     property InitDirectory: string read FGetInitDirectory write FInitDirectory;
     property ImportDirectory: string read FGetImportDirectory write FImportDirectory;
+    property GlobalAppDataDirectory: string
+      read FGlobalAppDataDirectory write FGlobalAppDataDirectory;
     property GlobalImportDirectory: string
       read FGetGlobalImportDirectory write FGlobalImportDirectory;
     property LastDirectory: string read FGetLastDirectory write FSetLastDirectory;

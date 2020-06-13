@@ -791,7 +791,7 @@ end;
 
 procedure TMainForm.CustomExceptionHandler(Sender: TObject; E: Exception);
 begin
-  logger.DumpExceptionCallStack(E);
+  logger.ShowExceptionCallStack(E);
   Halt; // End of program execution
 end;
 

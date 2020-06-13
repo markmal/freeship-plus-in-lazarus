@@ -258,6 +258,7 @@ type
     procedure setFileDialogMode(const AValue: TFileDialogMode);
     procedure setLang(ALang:string);
     procedure setListHidden(val:boolean);
+    procedure setLocaleDir(val: string);
 
     function CreateNewDir(aName:String):boolean;
     procedure CreateNewFolder;
@@ -285,7 +286,7 @@ type
     property Filter: String read getFilter write setFilter;
     property FilterIndex: integer read getFilterIndex write setFilterIndex;
     property FileDialogMode: TFileDialogMode read FFileDialogMode write setFileDialogMode;
-    property LocaleDir: String read FLocaleDir write FLocaleDir;
+    property LocaleDir: String read FLocaleDir write setLocaleDir;
     property Lang: String read FLang write setLang;
     property ListHidden: boolean read FListHidden write setListHidden;
     property OnSelectFile: TSelectFileEvent read FOnSelectFile write FOnSelectFile;
@@ -593,6 +594,13 @@ begin
   ShellListView.ObjectTypes:=otlv;
   //ShellListView.Reload;
   ScheduleReload(FPath);
+end;
+
+procedure TFreeFilePreviewDialog.setLocaleDir(val: string);
+begin
+  if FLocaleDir = val then exit;
+  FLocaleDir := val;
+  translate(FLang);
 end;
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewListHiddenClick(Sender: TObject
@@ -1068,18 +1076,22 @@ begin
   Width := Screen.Width * 2 div 3;
   Height := Screen.Height *2 div 3;
   Resize;
-  Translate('');
+  Translate(FLang);
 end;
 
 procedure TFreeFilePreviewDialog.Translate(ALang:string); // '' is default Lang from environment
 var GlobalTranslator: TAbstractTranslator; LocalTranslator: TPOTranslator;
     vLang, FallBackLang, LangShortID, POFileName, POFilePath, AppDir : string;
     i:integer;
-  function makePath(ADir:string; AFile:string):string;
+
+    function makePath(ADir:string; AFile:string):string;
     begin
-      Result := AppDir + ADir + DirectorySeparator + AFile;
+      Result := AFile;
+      if ADir>'' then
+        Result := ADir + DirectorySeparator + AFile;
       if FileExistsUTF8(Result) then
         exit;
+      logger.Debug({$include %file%}+':'+{$include %line%}+': File not found: '+Result);
       Result := '';
     end;
 
@@ -1089,7 +1101,7 @@ begin
     for i := 1 to Paramcount - 1 do
       if (ParamStrUTF8(i) = '--LANG') or (ParamStrUTF8(i) = '-l') or
         (ParamStrUTF8(i) = '--lang') then
-        Lang := ParamStrUTF8(i + 1);
+        FLang := ParamStrUTF8(i + 1);
 
   //Win32 user may decide to override locale with LANG variable.
   if vLang = '' then
@@ -1100,17 +1112,35 @@ begin
 
   LangShortID := copy(vLang, 1, 2);
 
-  AppDir := ExtractFilePath(ParamStrUTF8(0));
   POFileName := 'FreeFilePreviewDialog.'+LangShortID+'.po';
+  logger.Debug({$include %file%}+':'+{$include %line%}+': POFileName: '+POFileName);
+
+  logger.Debug({$include %file%}+':'+{$include %line%}+': LocaleDir: '+FLocaleDir);
   POFilePath := makePath(FLocaleDir, POFileName);
+  logger.Debug({$include %file%}+':'+{$include %line%}+': PO FilePath: '+POFilePath);
+
   if POFilePath = '' then
-    POFilePath := makePath('locale', POFileName);
+  begin
+    AppDir := ExtractFilePath(ParamStrUTF8(0));
+    logger.Debug({$include %file%}+':'+{$include %line%}+': AppDir: '+AppDir);
+    POFilePath := makePath(AppDir+directorySeparator+'locale', POFileName);
+  end;
   if POFilePath = '' then
-    POFilePath := makePath('languages', POFileName);
+    POFilePath := makePath(AppDir+directorySeparator+'languages', POFileName);
   if POFilePath = '' then
     exit;
+  logger.Debug({$include %file%}+':'+{$include %line%}+' :PO FilePath: '+POFilePath);
 
-  LocalTranslator:=TPOTranslator.Create('locale/FreeFilePreviewDialog.'+LangShortID+'.po');
+  try
+    LocalTranslator:=TPOTranslator.Create(POFilePath);
+  except on E : Exception do
+    begin
+    LocalTranslator := nil;
+    logger.Error(Format('Trying create translator from %s :\n Error: %s',[POFilePath, E.Message]));
+    logger.LogExceptionCallStack(E);
+    end;
+  end;
+
   if assigned(LocalTranslator) then
    begin
     GlobalTranslator := LRSTranslator;
@@ -1124,6 +1154,8 @@ end;
 
 procedure TFreeFilePreviewDialog.setLang(ALang:string);
 begin
+  if FLang = ALang then exit;
+  FLang := ALang;
   Translate(ALang);
 end;
 
@@ -1908,7 +1940,8 @@ begin
 end;
 }
 
-procedure TFreeFilePreviewDialog.addIconsForFile(filename:string; Item:TListItem);
+procedure TFreeFilePreviewDialog.addIconsForFile(filename: string;
+  item: TListItem);
 begin
 {$IFDEF WINDOWS_NOUSE}
  Item.ImageIndex := GetWinIconForFile(filename, true, Self.LargeImageList);
@@ -1925,7 +1958,7 @@ addMagicIconsForFile(filename, Item);
     Item.ImageIndex := FFileIcon.addIconsForFile(filename);
 end;
 
-procedure TFreeFilePreviewDialog.setStatusText(AValue:String);
+procedure TFreeFilePreviewDialog.SetStatusText(AValue: String);
 begin
   StatusBar.Panels[0].Text:=AValue;
 end;
@@ -1955,7 +1988,7 @@ begin
 end;
 
 /// Places
-procedure TFreeFilePreviewDialog.addPlace(placeName:string; dirName:string);
+procedure TFreeFilePreviewDialog.AddPlace(placeName: string; dirName: string);
 var absdir: string;
 begin
   absdir := CleanAndExpandDirectory(dirName);
@@ -2214,7 +2247,7 @@ begin
  FitPreviewImage;
 end;
 
-procedure TFreeFilePreviewDialog.doAutoFit;
+procedure TFreeFilePreviewDialog.DoAutoFit;
 var
   //omd: TFreeFilePreviewDialog;
   bmw,bmh, cw, tvw, lvw, pvpw,pvph, ppw, psp: integer;

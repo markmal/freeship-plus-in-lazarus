@@ -145,15 +145,15 @@ begin
   FTotalLength := 0;
   while I <= FNoPoints do
   begin
-    Len := Sqrt(DistPP3D(FPoints[I - 2], FPoints[I - 1]));
+    Len := {Sqrt}(DistPP3D(FPoints[I - 2], FPoints[I - 1]));
     FTotalLength := FTotalLength + Len;
     Inc(I);
   end;
 
   if FNoPoints > 1 then
   begin
-    Setlength(FDerivatives, FNoPoints);
-    Setlength(FParameters, FNoPoints);
+    SetLength(FDerivatives, FNoPoints);
+    SetLength(FParameters, FNoPoints);
     SetLength(U, FNoPoints);
 
     Len := 0;
@@ -168,7 +168,7 @@ begin
       FParameters[0] := 0.0;
       for I := 2 to FNoPoints - 1 do
       begin
-        Len := Len + Sqrt(DistPP3D(FPoints[I - 2], FPoints[I - 1]));
+        Len := Len + {Sqrt}(DistPP3D(FPoints[I - 2], FPoints[I - 1]));
         FParameters[I - 1] := Len / FTotalLength;
       end;
       FParameters[FNoPoints - 1] := 1.0;

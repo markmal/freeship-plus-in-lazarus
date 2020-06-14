@@ -1666,7 +1666,8 @@ var
           Params[NParams] := Spline.Parameter[I - 1];
           Inc(NParams);
         end;
-      // Calculate the SplineLength of the spline
+
+      (* // Calculate the SplineLength of the spline
       SplineLength := 0.0;
       P1 := Spline.Value(0.0);
       for I := 1 to 150 do
@@ -1674,7 +1675,8 @@ var
         P2 := Spline.Value(I / 150);
         SplineLength := SplineLength + DistPP3D(P1, P2);
         P1 := P2;
-      end;
+      end;  *)
+      SplineLength := Spline.TotalLength;
       SplineLength := SplineLength * ScaleFactor;
 
 
@@ -1747,6 +1749,7 @@ var
           Strings.Add('8' + EOL + LayerName);   // layername
           Strings.Add('62' + EOL + IntToStr(Ind));  // color by layer
           Strings.Add('66' + EOL + '1');    // vertices follow
+          (*
           Pn:=0;
           for I := 0 to NParams - 1 do
           begin
@@ -1759,6 +1762,13 @@ var
             end;
             SaveVertexSB(P1);
           end;
+          *)
+          for i:=0 to Length(SplineValues)-1 do
+          begin
+            P1 := SplineValues[i];
+            SaveVertexSB(P1);
+          end;
+
           Strings.Add('0' + EOL + 'SEQEND');
         end;
       end;

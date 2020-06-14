@@ -36,6 +36,11 @@ begin
   Result := (abs(Coordinate.Y) > 1e-4) and (IsBoundaryVertex);
 end;{TFreeSubdivisionControlPoint.FGetIsLeak}
 
+function TFreeSubdivisionControlPoint.GetIsFreeStanding: boolean;
+begin
+  Result := (FFaces.Count + FEdges.Count) = 0;
+end;
+
 function TFreeSubdivisionControlPoint.FGetSelected: boolean;
 begin
   Result := Surface.FSelectedControlPoints.IndexOf(self) <> -1;
@@ -547,11 +552,6 @@ begin
       ViewPort.Line(PA.x,PA.y,PB.x,PB.y);
     end;
 
-    if (FName > '') then
-    begin
-      Viewport.FontColor := Color;
-      ViewPort.TextOut(P.X + 2, P.Y + 2, FName);
-    end;
     {else
     begin  // temporary until Names completely implemented
       Viewport.FontColor := Color;
@@ -559,6 +559,11 @@ begin
     end;}
 
     //end;
+  end;
+  if (FName > '') then
+  begin
+    Viewport.FontColor := Color;
+    ViewPort.TextOut(P.X + 2, P.Y + 2, FName);
   end;
 end;{TFreeSubdivisionControlPoint.Draw}
 

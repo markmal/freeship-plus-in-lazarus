@@ -4436,17 +4436,22 @@ var
   end;
 
   procedure CalcPointsExtents;
-  var i:integer;
+  var i,j:integer;
   begin
+    j:=0;
     for i := 0 to NumberOfControlPoints - 1 do
     begin
-      if i = 0 then
+      if not ControlPoint[i].IsFreeStanding then
       begin
-        FMin := ControlPoint[i].Coordinate;
-        FMax := FMin;
-      end
-      else
-        MinMax(ControlPoint[i].Coordinate, FMin, FMax);
+        if j = 0 then
+        begin
+          FMin := ControlPoint[i].Coordinate;
+          FMax := FMin;
+        end
+        else
+          MinMax(ControlPoint[i].Coordinate, FMin, FMax);
+        inc(j);
+      end;
     end;
   end;
 

@@ -545,6 +545,7 @@ type
   private
     FLightIntensity:single;
     FAmbientIntencity:single;
+    FMouseShift: TShiftState;
   protected
     procedure Paint; override;
     procedure Resize; override;

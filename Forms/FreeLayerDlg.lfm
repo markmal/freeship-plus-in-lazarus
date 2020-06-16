@@ -1,30 +1,28 @@
 object FreeLayerDialog: TFreeLayerDialog
   Left = 614
-  Height = 693
+  Height = 727
   Top = 245
   Width = 800
   BorderIcons = []
-  BorderStyle = bsDialog
   Caption = 'Layer properties.'
-  ClientHeight = 693
+  ClientHeight = 727
   ClientWidth = 800
-  FormStyle = fsStayOnTop
   Position = poOwnerFormCenter
   LCLVersion = '2.0.8.0'
   object Panel1: TPanel
     Left = 0
-    Height = 669
+    Height = 703
     Top = 24
     Width = 800
     Align = alClient
     BevelOuter = bvNone
     BorderWidth = 6
-    ClientHeight = 669
+    ClientHeight = 703
     ClientWidth = 800
     TabOrder = 0
     object Panel2: TPanel
       Left = 456
-      Height = 657
+      Height = 691
       Top = 6
       Width = 338
       Align = alRight
@@ -32,7 +30,7 @@ object FreeLayerDialog: TFreeLayerDialog
       BevelOuter = bvNone
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 657
+      ClientHeight = 691
       ClientWidth = 338
       TabOrder = 0
       object Panel4: TPanel
@@ -500,7 +498,7 @@ object FreeLayerDialog: TFreeLayerDialog
     end
     object LayerBox: TCheckListBox
       Left = 6
-      Height = 657
+      Height = 691
       Top = 6
       Width = 450
       Align = alClient

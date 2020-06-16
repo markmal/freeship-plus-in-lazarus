@@ -55,14 +55,15 @@ uses
      Menus,
      ActnList,
      Printers, ExtCtrls,
-     LightDialog
+     LightDialog,
+     FreeLogger
 {$IFDEF USEOPENGL}
     ,FreeViewPortOpenGL
 {$ENDIF}
  {$IFDEF USE_freehullformwindow_form}
      ,freehullformwindow_form
  {$ENDIF}
-;
+ ;
 
 type
 
@@ -802,8 +803,10 @@ var Select  : Boolean = False;
     P:T2DCoordinate;
     Point:T3DCoordinate;
 begin
-   FInitialPosition.X:=X;
-   FInitialPosition.Y:=Y;
+  if (Shift <> []) then
+    logger.Debug(format('TFreeHullWindow.ViewportMouseDown: %d %d',[X,Y]));
+  FInitialPosition.X:=X;
+  FInitialPosition.Y:=Y;
 {
    if (ssAlt in Shift) and (Viewport.Viewtype<>fvPerspective) then
    begin
@@ -835,6 +838,8 @@ var P    : TPoint;
     P3D  : T3DCoordinate;
     Str  : string;
 begin
+   if (Shift <> []) then
+     logger.Debug(format('TFreeHullWindow.ViewportMouseMove: %d %d',[X,Y]));
    //if Viewport.ViewType<>fvPerspective then
    begin
       P.X:=X;
@@ -890,9 +895,13 @@ begin
       // Pan the window left, right, top or bottom
       if (abs(FInitialPosition.X-X)>4) or (abs(FInitialPosition.Y-Y)>4)  then
       begin
-         P.X:=Viewport.Pan.X+X-FInitialPosition.X;
-         P.Y:=Viewport.Pan.Y+Y-FInitialPosition.Y;
+         logger.Debug(format('Pan Window: Cur Pan.X=%d Pan.Y=%d',[Viewport.Pan.X,Viewport.Pan.Y]));
+         logger.Debug(format('Pan Window: FInitialPosition.X=%d FInitialPosition.Y=%d',[FInitialPosition.X,FInitialPosition.Y]));
+
+         P.X:=Viewport.Pan.X + X - FInitialPosition.X;
+         P.Y:=Viewport.Pan.Y + Y - FInitialPosition.Y;
          Viewport.Pan:=P;
+         logger.Debug(format('Pan Window: New Pan.X=%d Pan.Y=%d',[Viewport.Pan.X,Viewport.Pan.Y]));
          FPanned:=True;
          FInitialPosition.X:=X;
          FInitialPosition.Y:=Y;
@@ -915,6 +924,7 @@ end;{TFreeHullWindow.ViewportMouseMove}
 procedure TFreeHullWindow.ViewportMouseUp(Sender: TObject;Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var P:TPoint;
 begin
+   logger.Debug(format('TFreeHullWindow.ViewportMouseUp: %d %d',[X,Y]));
    if Button=mbRight then
    begin
       //Tracing:=false;

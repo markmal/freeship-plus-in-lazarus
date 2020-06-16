@@ -1598,7 +1598,10 @@ var
   YVal: TFloatType;
   OK: boolean;
 begin
+  FMouseShift := Shift;
   inherited;
+  if (Shift <> []) then
+    logger.Debug(format(#10'TFreeViewport.MouseDown: %d %d',[X,Y]));
   FPreviousPosition.X := X;
   FPreviousPosition.Y := Y;
   if (BackgroundMode <> emNormal) and (ssRight in Shift) then
@@ -1724,7 +1727,11 @@ var
   Pt, Prev: TPoint;
   Scale: TFloatType;
 begin
+  if FMouseShift <> Shift then // Mouse Move came before Mouse Down
+     exit;
   inherited;
+  if (Shift <> []) then
+    logger.Debug(format('TFreeViewport.MouseMove: %d %d',[X,Y]));
   if (Shift = [ssLeft]) and (Backgroundmode = emSetOrigin) then
   begin
     // Background image moving procedure
@@ -1798,7 +1805,9 @@ end;{TFreeViewport.MouseMove}
 
 procedure TFreeViewport.MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: integer);
 begin
+  FMouseShift := Shift;
   inherited;
+  logger.Debug(format('TFreeViewport.MouseUp: %d %d'#10,[X,Y]));
   if BackgroundMode = emSetOrigin then
   begin
     // Finished moving the background image
@@ -1828,38 +1837,47 @@ var
   Factor: single;
   NewPan: TPoint;
   Mid: TPoint;
+  mouseDX, mouseDY: LongInt;
 begin
   Result := inherited DoMousewheel(Shift, Wheeldelta, Mousepos);
    {$IFDEF WIN32}// We need to bring ScreenToClient in MDF mode, not a case for X11
   MousePos := self.ScreenToClient(MousePos);
    {$ENDIF}
+
   if (MousePos.X >= 0) and (MousePos.Y >= 0) and (MousePos.X < Clientwidth) and
-    (MousePos.Y < Clientheight) then
+     (MousePos.Y < Clientheight) then
   begin
     // zoom by using mousewheel
-    Factor := 1.1;
+    {$define xUzeZoom}
+    {$ifdef UzeZoom}
+    if WheelDelta < 0 then begin ZoomOut; ZoomOut; end;
+    if WheelDelta > 0 then begin ZoomIn; ZoomIn; end;
+    {$else}
+    Factor := 1.05;
     Mid.X := ClientWidth div 2;
     Mid.Y := ClientHeight div 2;
-
-    NewPan.X := MousePos.X - Mid.X;
-    NewPan.Y := MousePos.Y - Mid.Y;
+    mouseDX := MousePos.X - Mid.X;
+    mouseDY := MousePos.Y - Mid.Y;
 
     if WheelDelta > 0 then
     begin
       FZoom := FZoom * Factor;
-      //FPan.X := round(FPan.X * Factor);
-      //if FPan.Y <> 0 then
-      //  FPan.Y := round(Factor / FPan.Y);
+      NewPan.X := round(Pan.X * Factor);
+      NewPan.Y := round(Pan.Y * Factor);
+      FPan.X := FPan.X - round((mouseDX*Factor - mouseDX) - (NewPan.X - Pan.X));
+      FPan.Y := FPan.Y - round((mouseDY*Factor - mouseDY) - (NewPan.Y - Pan.Y));
       Refresh;
     end
     else
     begin
       FZoom := FZoom / Factor;
-      //if FPan.X <> 0 then
-      //  FPan.X := round(Factor / FPan.X);
-      //FPan.Y := round(FPan.Y * Factor);
+      NewPan.X := round(Pan.X / Factor);
+      NewPan.Y := round(Pan.Y / Factor);
+      FPan.X := FPan.X - round((mouseDX/Factor - mouseDX) - (NewPan.X - Pan.X));
+      FPan.Y := FPan.Y - round((mouseDY/Factor - mouseDY) - (NewPan.Y - Pan.Y));
       Refresh;
     end;
+  {$endif}
   end;
 end;{TFreeViewport.DoMouseWheel}
 

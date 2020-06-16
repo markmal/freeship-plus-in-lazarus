@@ -31,7 +31,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
       <RevisionNr Value="35"/>
-      <BuildNr Value="454"/>
+      <BuildNr Value="460"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -1037,7 +1037,7 @@
       </Debugging>
       <Options>
         <PassLinkerOptions Value="True"/>
-        <LinkerOptions Value="-rpath='$ORIGIN/../lib'"/>
+        <LinkerOptions Value="-rpath='$ORIGIN/../lib' &quot;-Map out.map&quot;"/>
       </Options>
     </Linking>
     <Other>

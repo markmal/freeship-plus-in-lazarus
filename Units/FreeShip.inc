@@ -3501,6 +3501,8 @@ end;
 procedure TFreeShip.MouseDown(Viewport: TFreeViewport; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer; var ItemSelected: boolean);
 begin
+  if (Shift <> []) then
+    logger.Debug(format('TFreeShip.ViewportMouseDown: %d %d',[X,Y]));
   ItemSelected := False;
   if Button = mbLeft then
   begin
@@ -3530,13 +3532,15 @@ var
   dX,dY,dZ:TFloatType;
   I,j: integer;
 begin
+  if (Shift <> []) then
+    logger.Debug(format('TFreeShip.MouseMove: %d %d',[X,Y]));
   case EditMode of
     emSelectItems:
       if (ActiveControlPoint <> nil) and (FCurrentlyMoving) and
         (ssLeft in shift) and (Viewport.ViewType <> fvPerspective) then
         if (X <> FPrevCursorPosition.X) or (Y <> FPrevCursorPosition.Y) then
         begin
-          Logger.Debug('Point Move.'+IntToSTr(ActiveControlPoint.Id));
+          Logger.Debug('TFreeShip.MouseMove: Point Move.'+IntToSTr(ActiveControlPoint.Id));
           if FPointHasBeenMoved = False then
           begin
             // This is the first time the vertex is moved
@@ -3642,8 +3646,11 @@ end;
 
 procedure TFreeShip.MouseUp(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
 begin
+  if (Shift <> []) then
+    logger.Debug(format('TFreeShip.MouseUp: %d %d',[X,Y]));
   if FCurrentlyMoving and FPointHasBeenMoved then
      begin
+     logger.Debug(format('Point Moved: %d %d',[X,Y]));
      Edit.CreateUndoObject(rsPointMove,True);
      Built:=False;
      FileChanged:=True;

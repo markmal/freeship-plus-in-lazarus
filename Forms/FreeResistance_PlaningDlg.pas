@@ -1377,9 +1377,9 @@ begin
       end;
     end;
 
-    if FileExistsUTF8('clempoup.RES') { *Converted from FileExists* } then
+    if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
     begin
-      Assignfile(FFile, 'clempoup.RES');
+      Assignfile(FFile, ResultFileName);
       {$I-}
       Reset(FFile);
       {$I+}
@@ -1393,7 +1393,7 @@ begin
           MessageDlg(Userstring(487), mtError, [mbOK], 0);
           ResultsMemo.Visible := True;
           CloseFile(FFile);
-          DeleteFileUTF8('clempoup.RES'); { *Converted from DeleteFile* }
+          DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
           exit;
         end;
       end;
@@ -1401,16 +1401,16 @@ begin
     end
     else
     begin
-      if FileExistsUTF8('clempoup.RES') { *Converted from FileExists* } then
-        DeleteFileUTF8('clempoup.RES'); { *Converted from DeleteFile* }
+      if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
+        DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
       MessageDlg(
         'Один или несколько параметров вне диапазона применения метода!!!',
         mtError, [mbOK], 0);
       exit;
     end;
 
-    if FileExistsUTF8('clempoup.RES') { *Converted from FileExists* } then
-      DeleteFileUTF8('clempoup.RES'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
+      DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
 
     SetCurrentDirUTF8(PathFileOld);
 
@@ -1535,7 +1535,7 @@ begin
       end;
     end;
 
-    Assignfile(FFile, 'clemblou.res');
+    Assignfile(FFile, ResultFileName);
     {$I-}
     Reset(FFile);
     {$I+}
@@ -1551,16 +1551,16 @@ begin
         MessageDlg(Userstring(487), mtError, [mbOK], 0);
         ResultsMemo.Visible := True;
         CloseFile(FFile);
-        if FileExistsUTF8('clemblou.res')
+        if FileExistsUTF8(ResultFileName)
         { *Converted from FileExists* } then
-          DeleteFileUTF8('clemblou.res'); { *Converted from DeleteFile* }
+          DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
         exit;
       end;
     end;
     CloseFile(FFile);
 
-    if FileExistsUTF8('clemblou.res') { *Converted from FileExists* } then
-      DeleteFileUTF8('clemblou.res'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
+      DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
 
     SetCurrentDirUTF8(PathFileOld);
 

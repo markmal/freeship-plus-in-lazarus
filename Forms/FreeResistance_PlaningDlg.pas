@@ -42,12 +42,12 @@ uses
   TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
-       {$IFDEF VER3}
+  {$IFDEF VER3}
   LazUTF8,
   LazFileUtils,
-     {$ELSE}
+  {$ELSE}
   FileUtil, //deprecated
-     {$ENDIF}
+  {$ENDIF}
 
 {$ENDIF}
   SysUtils,
@@ -63,6 +63,7 @@ uses
   FreeTypes,
   FreeGeometry,
   FreeShipUnit,
+  FreeLogger,
   Math,
   ExtCtrls,
   ImgList,
@@ -228,7 +229,7 @@ type
   public { Public declarations }
     I3, I4, I5, I6, ie_, Cm: single;
     PathFile, PathFileOld, FileToFind,
-    FileName, FExecDirectory: string;
+    ResultFileName, FExecDirectory: string;
     procedure SelectCalcMethod;
     procedure SelectPropulsorType;
     procedure Calculate;
@@ -262,7 +263,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeLanguageSupport, Process;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -479,7 +480,8 @@ var
   ResRd_: array[1..16] of single;
   ResRt_: array[1..16] of single;
   ResBe2: array[1..16] of single;
-  FInitDirectory: string;
+  FInitDirectory, tmpDir, OutputStr, ExecFullName: string;
+  ExitStatus: integer;
 const
   FrBc: array[1..10] of single = (2.3, 2.9, 3.5, 4.0, 4.5, 5.5, 6.0, 7.0, 9.2, 111);
 const
@@ -1332,7 +1334,6 @@ begin
 
     File_ExportDataCP(dat);
 
-
     if not FileExistsUTF8(FExecDirectory + DirectorySeparator+'CLEMPOUP.EXE')
     { *Converted from FileExists* } then
     begin
@@ -1346,17 +1347,20 @@ begin
       MessageDlg(Userstring(1229), mtError, [mbOK], 0);
       exit;
     end;
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\CLEMPOUP.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys('Exec'+DirectorySeparator+'CLEMPOUP.EXE'), '', []);
-      {$endif}
-    FileName := 'clempoup.RES';
+
+    ExecFullName := FExecDirectory + DirectorySeparator+'CLEMPOUP.EXE';
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CLEMPOUP.EXE'), '', []);
+    RunCommandIndir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
+        OutputStr, ExitStatus, []);
+    logger.Info('Output of '+ExecFullName);
+    logger.Info(OutputStr);
+    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+
+    ResultFileName := 'clempoup.RES';
     i := 1;
     NewSearch:
-      FileToFind := FileSearchUTF8('clempoup.dat', GetCurrentDir);
-    { *Converted from FileSearch* }
-    if FileToFind = 'clempoup.dat' then
+    FileToFind := FileSearchUTF8(ResultFileName, GetCurrentDir);
+    if FileToFind = '' then
     begin
       sleep(200);
       i := i + 1;
@@ -1378,7 +1382,7 @@ begin
       Assignfile(FFile, 'clempoup.RES');
       {$I-}
       Reset(FFile);
-{$I+}
+      {$I+}
       Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1373);
       for I := 1 to 10 do
       begin
@@ -1407,6 +1411,8 @@ begin
 
     if FileExistsUTF8('clempoup.RES') { *Converted from FileExists* } then
       DeleteFileUTF8('clempoup.RES'); { *Converted from DeleteFile* }
+
+    SetCurrentDirUTF8(PathFileOld);
 
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + Userstring(1376));
@@ -1498,17 +1504,21 @@ begin
       MessageDlg(Userstring(1229), mtError, [mbOK], 0);
       exit;
     end;
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\CLEMBLOU.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CLEMBLOU.EXE'), '', []);
-      {$endif}
-    FileName := 'clemblou.res';
+
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CLEMBLOU.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'CLEMBLOU.EXE';
+    RunCommandIndir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
+        OutputStr, ExitStatus, []);
+    logger.Info('Output of '+ExecFullName);
+    logger.Info(OutputStr);
+    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+
+    ResultFileName := 'clemblou.res';
     i := 1;
     NewSearch1:
-      FileToFind := FileSearchUTF8('clemblou.dat', GetCurrentDir);
+      FileToFind := FileSearchUTF8(ResultFileName, GetCurrentDir);
     { *Converted from FileSearch* }
-    if FileToFind = 'clemblou.dat' then
+    if FileToFind = '' then
     begin
       sleep(200);
       i := i + 1;
@@ -1526,9 +1536,9 @@ begin
     end;
 
     Assignfile(FFile, 'clemblou.res');
-      {$I-}
+    {$I-}
     Reset(FFile);
-{$I+}
+    {$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1374);
     for I := 1 to 7 do
     begin
@@ -1551,6 +1561,8 @@ begin
 
     if FileExistsUTF8('clemblou.res') { *Converted from FileExists* } then
       DeleteFileUTF8('clemblou.res'); { *Converted from DeleteFile* }
+
+    SetCurrentDirUTF8(PathFileOld);
 
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + Userstring(1378));
@@ -1634,6 +1646,12 @@ begin
     dat[8] := Ws / power(Displacement / Ro, 0.6666);
     dat[9] := Ro;
     dat[10] := Nu;
+
+    PathFileOld := GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
+    FExecDirectory := FFreeship.Preferences.ExecDirectory;
+
     File_ExportDataBU(dat);
     ResultsMemo.Lines.Add(Space(14) + 'L/B   =' + FloatToStrF(dat[1] / dat[2], ffFixed, 6, 3));
     ResultsMemo.Lines.Add(Space(14) + 'Btr/B =' + FloatToStrF(dat[6], ffFixed, 6, 3));
@@ -1660,11 +1678,6 @@ begin
     if dat[4] / power(dat[2], 3) > 1 then
       exit;
 
-    PathFileOld := GetCurrentDir;
-    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
-    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
-    FExecDirectory := FFreeship.Preferences.ExecDirectory;
-
     FileToFind := FileSearchUTF8('bunkdata.dat', GetCurrentDir);
     { *Converted from FileSearch* }
     if FileToFind <> 'bunkdata.dat' then
@@ -1672,17 +1685,21 @@ begin
       MessageDlg(Userstring(1229), mtError, [mbOK], 0);
       exit;
     end;
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\BUNKOV.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'BUNKOV.EXE'), '', []);
-      {$endif}
-    FileName := 'BUNKOV00.RES';
+
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'BUNKOV.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'BUNKOV.EXE';
+    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
+        OutputStr, ExitStatus, []);
+    logger.Info('Output of '+ExecFullName);
+    logger.Info(OutputStr);
+    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+
+    ResultFileName := 'bunkov00.res';
     i := 1;
     NewSearch2:
-      FileToFind := FileSearchUTF8('bunkdata.dat', GetCurrentDir);
+      FileToFind := FileSearchUTF8(ResultFileName, GetCurrentDir);
     { *Converted from FileSearch* }
-    if FileToFind = 'bunkdata.dat' then
+    if FileToFind = '' then
     begin
       sleep(200);
       i := i + 1;
@@ -1700,10 +1717,10 @@ begin
     end;
 
 
-    Assignfile(FFile, 'BUNKOV00.RES');
-      {$I-}
+    Assignfile(FFile, ResultFileName);
+    {$I-}
     Reset(FFile);
-{$I+}
+    {$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1399);
     for I := 1 to 16 do
     begin
@@ -1714,16 +1731,18 @@ begin
         MessageDlg(Userstring(487), mtError, [mbOK], 0);
         ResultsMemo.Visible := True;
         CloseFile(FFile);
-        if FileExistsUTF8('BUNKOV00.RES')
+        if FileExistsUTF8(ResultFileName)
         { *Converted from FileExists* } then
-          DeleteFileUTF8('BUNKOV00.RES'); { *Converted from DeleteFile* }
+          DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
         exit;
       end;
     end;
     CloseFile(FFile);
 
-    if FileExistsUTF8('BUNKOV00.RES') { *Converted from FileExists* } then
-      DeleteFileUTF8('BUNKOV00.RES'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
+      DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
+
+    SetCurrentDirUTF8(PathFileOld);
 
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + Userstring(1401));
@@ -1820,17 +1839,22 @@ begin
       MessageDlg(Userstring(1229), mtError, [mbOK], 0);
       exit;
     end;
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\COMPTON.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'COMPTON.EXE'), '', []);
-      {$endif}
-    FileName := 'COMPTON0.RES';
+
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'COMPTON.EXE'), '', []);
+
+    ExecFullName := FExecDirectory + DirectorySeparator+'COMPTON.EXE';
+    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
+        OutputStr, ExitStatus, []);
+    logger.Info('Output of '+ExecFullName);
+    logger.Info(OutputStr);
+    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+
+    ResultFileName := 'Compton0.res';
     i := 1;
     NewSearch3:
-      FileToFind := FileSearchUTF8('cmptdata.dat', GetCurrentDir);
+      FileToFind := FileSearchUTF8(ResultFileName, GetCurrentDir);
     { *Converted from FileSearch* }
-    if FileToFind = 'cmptdata.dat' then
+    if FileToFind = '' then
     begin
       sleep(200);
       i := i + 1;
@@ -1848,10 +1872,10 @@ begin
     end;
 
 
-    Assignfile(FFile, 'COMPTON0.RES');
-      {$I-}
+   Assignfile(FFile, ResultFileName);
+   {$I-}
     Reset(FFile);
-{$I+}
+   {$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1494);
     for I := 1 to 11 do
     begin
@@ -1862,16 +1886,18 @@ begin
         MessageDlg(Userstring(487), mtError, [mbOK], 0);
         ResultsMemo.Visible := True;
         CloseFile(FFile);
-        if FileExistsUTF8('COMPTON0.RES')
+        if FileExistsUTF8(ResultFileName)
         { *Converted from FileExists* } then
-          DeleteFileUTF8('COMPTON0.RES'); { *Converted from DeleteFile* }
+          DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
         exit;
       end;
     end;
     CloseFile(FFile);
 
-    if FileExistsUTF8('COMPTON0.RES') { *Converted from FileExists* } then
-      DeleteFileUTF8('COMPTON0.RES'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
+      DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
+
+    SetCurrentDirUTF8(PathFileOld);
 
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + Userstring(1496));
@@ -1964,17 +1990,21 @@ begin
       MessageDlg(Userstring(1229), mtError, [mbOK], 0);
       exit;
     end;
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\Wolfson.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'WOLFSON.EXE'), '', []);
-      {$endif}
-    FileName := 'Wolfson0.res';
+
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'WOLFSON.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'WOLFSON.EXE';
+    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
+        OutputStr, ExitStatus, []);
+    logger.Info('Output of '+ExecFullName);
+    logger.Info(OutputStr);
+    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+
+    ResultFileName := 'Wolfson0.res';
     i := 1;
     NewSearch4:
-      FileToFind := FileSearchUTF8('wolfdata.dat', GetCurrentDir);
+      FileToFind := FileSearchUTF8(ResultFileName, GetCurrentDir);
     { *Converted from FileSearch* }
-    if FileToFind = 'wolfdata.dat' then
+    if FileToFind = '' then
     begin
       sleep(200);
       i := i + 1;
@@ -1992,10 +2022,10 @@ begin
       end;
     end;
 
-    Assignfile(FFile, 'Wolfson0.res');
-      {$I-}
+   Assignfile(FFile, ResultFileName);
+   {$I-}
     Reset(FFile);
-{$I+}
+   {$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1497);
     for I := 1 to 10 do
     begin
@@ -2008,16 +2038,18 @@ begin
         MessageDlg(Userstring(487), mtError, [mbOK], 0);
         ResultsMemo.Visible := True;
         CloseFile(FFile);
-        if FileExistsUTF8('Wolfson0.res')
+        if FileExistsUTF8(ResultFileName)
         { *Converted from FileExists* } then
-          DeleteFileUTF8('Wolfson0.res'); { *Converted from DeleteFile* }
+          DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
         exit;
       end;
     end;
     CloseFile(FFile);
 
-    if FileExistsUTF8('Wolfson0.res') { *Converted from FileExists* } then
-      DeleteFileUTF8('Wolfson0.res'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
+      DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
+
+    SetCurrentDirUTF8(PathFileOld);
 
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + Userstring(1499));
@@ -2103,9 +2135,9 @@ begin
       ResultsMemo.Lines.Add(Space(14) + 'L/B    ' + Userstring(476) + ' 2,36 ... 6,73');
     if (dat[5] / dat[1] > 0.448) or (dat[5] / dat[1] < 0.3) then
       ResultsMemo.Lines.Add(Space(14) + 'Xg/L   ' + Userstring(476) + '  0,3 ... 0,448');
-    if (Beta > 37.4) or (beta < 13) then
+    if (Beta > 37.4) or (Beta < 13) then
     begin
-      ResultsMemo.Lines.Add(Space(14) + 'Beta_x ' + Userstring(476) +
+      ResultsMemo.Lines.Add(Space(14) + 'Beta_x ' + format('%7.2f',[Beta]) + Userstring(476) +
         '  13° ... 37,4°');
       exit;
     end;
@@ -2119,17 +2151,21 @@ begin
       MessageDlg(Userstring(1229), mtError, [mbOK], 0);
       exit;
     end;
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\Radojcic.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RADOJCIC.EXE'), '', []);
-      {$endif}
-    FileName := 'Radojcic.res';
+
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RADOJCIC.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'RADOJCIC.EXE';
+    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
+        OutputStr, ExitStatus, []);
+    logger.Info('Output of '+ExecFullName);
+    logger.Info(OutputStr);
+    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+
+    ResultFileName := 'Radojcic.res';
     i := 1;
     NewSearch5:
-      FileToFind := FileSearchUTF8('radodata.dat', GetCurrentDir);
+      FileToFind := FileSearchUTF8(ResultFileName, GetCurrentDir);
     { *Converted from FileSearch* }
-    if FileToFind = 'radodata.dat' then
+    if FileToFind = '' then
     begin
       sleep(200);
       i := i + 1;
@@ -2146,10 +2182,10 @@ begin
       end;
     end;
 
-    Assignfile(FFile, 'Radojcic.res');
-      {$I-}
+    Assignfile(FFile, ResultFileName);
+    {$I-}
     Reset(FFile);
-{$I+}
+    {$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1578);
     for I := 1 to 8 do
     begin
@@ -2160,16 +2196,18 @@ begin
         MessageDlg(Userstring(487), mtError, [mbOK], 0);
         ResultsMemo.Visible := True;
         CloseFile(FFile);
-        if FileExistsUTF8('Radojcic.res')
+        if FileExistsUTF8(ResultFileName)
         { *Converted from FileExists* } then
-          DeleteFileUTF8('Radojcic.res'); { *Converted from DeleteFile* }
+          DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
         exit;
       end;
     end;
     CloseFile(FFile);
 
-    if FileExistsUTF8('Radojcic.res') { *Converted from FileExists* } then
-      DeleteFileUTF8('Radojcic.res'); { *Converted from DeleteFile* }
+    if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
+      DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
+
+    SetCurrentDirUTF8(PathFileOld);
 
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + Userstring(1580));
@@ -2246,10 +2284,13 @@ begin
     t0 := 0.0;
     nr := 1;
   end;
-  Assignfile(FFile, 'RESISTp.dat');
-         {$I-}
+
+  tmpDir := FFreeship.Preferences.TempDirectory + DirectorySeparator;
+
+  Assignfile(FFile, tmpDir+'RESISTp.dat');
+  {$I-}
   Rewrite(FFile);
-{$I+}
+  {$I+}
   Writeln(FFile, '#     Nser      Np       Wt        t       Eta_R     Dp');
   Write(FFile, Nser: 10: 0);
   Write(FFile, Np: 10: 0);
@@ -2272,10 +2313,10 @@ begin
     end;
   end;
   CloseFile(FFile);
-  Assignfile(FFile, 'RESIST.dat');
-         {$I-}
+  Assignfile(FFile, tmpDir+'RESIST.dat');
+  {$I-}
   Rewrite(FFile);
-{$I+}
+  {$I+}
   for ii := Imax - 3 to Imax do
   begin
     Write(FFile, resVs[II]: 10: 2);
@@ -2292,6 +2333,7 @@ begin
   Write(FFile, resRt[Imax] * 0.51444 * Speed: 10: 2);
   Writeln(FFile, resRt[Imax] * 0.51444 * Speed: 10: 2);
   CloseFile(FFile);
+
   // Расчет осадки по Савитскому
   if Combobox.ItemIndex = 1 then
   begin
@@ -2894,12 +2936,12 @@ var
   I: integer;
   ffile: textfile;
 begin
-  if FileExistsUTF8(PathFileOld + 'clempoup.dat') { *Converted from FileExists* } then
-    DeleteFileUTF8(PChar(PathFile + '\clempoup.dat')); { *Converted from DeleteFile* }
+  if FileExistsUTF8('clempoup.dat') { *Converted from FileExists* } then
+    DeleteFileUTF8('clempoup.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'clempoup.dat');
-      {$I-}
+ {$I-}
   Rewrite(FFile);
-{$I+}
+ {$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -2917,12 +2959,12 @@ var
   I: integer;
   ffile: textfile;
 begin
-  if FileExistsUTF8(PathFileOld + 'clemblou.dat') { *Converted from FileExists* } then
-    DeleteFileUTF8(PChar(PathFile + '\clemblou.dat')); { *Converted from DeleteFile* }
+  if FileExistsUTF8('clemblou.dat') { *Converted from FileExists* } then
+    DeleteFileUTF8('clemblou.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'clemblou.dat');
-      {$I-}
+ {$I-}
   Rewrite(FFile);
-{$I+}
+ {$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -2935,12 +2977,12 @@ var
   I: integer;
   ffile: textfile;
 begin
-  if FileExistsUTF8(PathFileOld + 'bunkdata.dat') { *Converted from FileExists* } then
-    DeleteFileUTF8(PChar(PathFile + '\bunkdata.dat')); { *Converted from DeleteFile* }
+  if FileExistsUTF8('bunkdata.dat') { *Converted from FileExists* } then
+    DeleteFileUTF8('bunkdata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'bunkdata.dat');
-      {$I-}
+ {$I-}
   Rewrite(FFile);
-{$I+}
+ {$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -2953,12 +2995,12 @@ var
   I: integer;
   ffile: textfile;
 begin
-  if FileExistsUTF8(PathFileOld + 'cmptdata.dat') { *Converted from FileExists* } then
-    DeleteFileUTF8(PChar(PathFile + '\cmptdata.dat')); { *Converted from DeleteFile* }
+  if FileExistsUTF8('cmptdata.dat') { *Converted from FileExists* } then
+    DeleteFileUTF8('cmptdata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'cmptdata.dat');
-      {$I-}
+  {$I-}
   Rewrite(FFile);
-{$I+}
+  {$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -2971,12 +3013,12 @@ var
   I: integer;
   ffile: textfile;
 begin
-  if FileExistsUTF8(PathFileOld + 'wolfdata.dat') { *Converted from FileExists* } then
-    DeleteFileUTF8(PChar(PathFile + '\wolfdata.dat')); { *Converted from DeleteFile* }
+  if FileExistsUTF8('wolfdata.dat') { *Converted from FileExists* } then
+    DeleteFileUTF8('wolfdata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'wolfdata.dat');
-      {$I-}
+ {$I-}
   Rewrite(FFile);
-{$I+}
+ {$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -2989,12 +3031,12 @@ var
   I: integer;
   ffile: textfile;
 begin
-  if FileExistsUTF8(PathFileOld + 'radodata.dat') { *Converted from FileExists* } then
-    DeleteFileUTF8(PChar(PathFile + '\radodata.dat')); { *Converted from DeleteFile* }
+  if FileExistsUTF8('radodata.dat') { *Converted from FileExists* } then
+    DeleteFileUTF8('radodata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'radodata.dat');
-      {$I-}
+ {$I-}
   Rewrite(FFile);
-{$I+}
+ {$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);

@@ -569,7 +569,7 @@ var
   index: integer;
   CPopt, LCBopt: array of single;
   Speed, StepSpeed1: single;
-  Line, Tmp: string;
+  Line, Tmp, PathFileOld: string;
   Units: TFreeUnitType;
   Stop: boolean;
   ispeed, iii: integer;
@@ -882,6 +882,10 @@ begin
 
     StepSpeed1 := (Vs[10] - Vs[1]) / 20;
     Speed := Vs[1];
+
+    PathFileOld := GetCurrentDir;
+    ForceDirectoriesUTF8(FFreeship.Preferences.TempDirectory);
+    SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
 
     FTmpFileName:='RESISTp.dat';
     Assignfile(FFile, 'RESISTp.dat');
@@ -1309,6 +1313,7 @@ begin
         DeleteFileUTF8('OUT.'); { *Converted from DeleteFile* }
       end;
     end;
+    SetCurrentDirUTF8(PathFileOld);
 
     // Сделать результаты видимыми и печатаемыми
     ResultsMemo.Visible := True;
@@ -2350,6 +2355,9 @@ begin
     end;
     if FileExistsUTF8('OUT.TXT') { *Converted from FileExists* } then
       DeleteFileUTF8('OUT.TXT'); { *Converted from DeleteFile* }
+
+    SetCurrentDirUTF8(PathFileOld);
+
     Ke := Ke_;
   end;
   //   ResultsMemo.Lines.Add('Ke     =  '+FloatToStrF(Ke,ffFixed,6,3));
@@ -2712,7 +2720,7 @@ var
   ffile: textfile;
 begin
   FTmpFileName:='TMPke.txt';
-  Assignfile(FFile, 'TMPke.txt');
+  Assignfile(FFile, FTmpFileName);
   Rewrite(FFile);
   try
     for I := 0 to 29 do
@@ -2755,7 +2763,7 @@ begin
   finally
     CloseFile(FFile);
   end;
-end;{TFreePropeller_Task1.File_ExportData}
+end;{TFreePropeller_Task1}
 
 {
 Passenger ship and ferry

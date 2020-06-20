@@ -606,6 +606,10 @@ msgstr ""
 msgid "miUnselect"
 msgstr ""
 
+#: tformselected.panel18.caption
+msgid "Panel18"
+msgstr ""
+
 #: tformselected.tscurves.caption
 msgid "Curves"
 msgstr ""

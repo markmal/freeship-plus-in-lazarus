@@ -75,6 +75,7 @@ type
     Panel15: TPanel;
     Panel16: TPanel;
     Panel17: TPanel;
+    Panel18: TPanel;
     Panel19: TPanel;
     Panel2: TPanel;
     Panel20: TPanel;
@@ -131,7 +132,7 @@ implementation
 procedure TFormSelected.lvPointsSelectItem(Sender: TObject; Item: TListItem;
   Selected: Boolean);
 var i:integer;
-  CP:TFreeSubdivisionControlPoint;
+  CP: TFreeSubdivisionControlPoint;
   cpG: TFreeSubdivisionControlPointGroup;
   cpF: TFreeSubdivisionFace;
   cpE: TFreeSubdivisionEdge;

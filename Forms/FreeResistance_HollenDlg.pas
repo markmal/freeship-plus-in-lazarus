@@ -1244,6 +1244,8 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
 
     ResultsMemo.Visible := True;
     PrintButton.Enabled := True;
+
+    SetCurrentDirUTF8(PathFileOld);
   end;
 end;{TFreeResistance_Delft.Calculate}
 

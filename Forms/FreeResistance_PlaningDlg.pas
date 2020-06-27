@@ -193,6 +193,7 @@ type
 
   private{ Private declarations }
     FFreeship: TFreeship;
+    procedure DoCalculate;
     function FGetLCB: single;
     procedure FSetLCB(val: single);
     function FGetle: single;
@@ -428,8 +429,21 @@ begin
     Edit17.Value := 0.1;
 end;{TFreeResistance_Planing.FSetBetaR}
 
-procedure TFreeResistance_Planing.Calculate;
 
+procedure TFreeResistance_Planing.Calculate;
+begin
+  try
+    DoCalculate;
+  except
+    on E:Exception do
+      begin
+      logger.Error(logger.GetExceptionCallStack(E));
+      logger.ShowExceptionCallStack(E);
+      end;
+  end;
+end;
+
+procedure TFreeResistance_Planing.DoCalculate;
 var
   I, J, n1, n2, n3, n4, II, ki, Nwj, N, Imax: integer;
   Mdelta, Lambda, Nu, MdeltaOpt, Mdelta_: single;
@@ -1732,7 +1746,7 @@ begin
         ResultsMemo.Visible := True;
         CloseFile(FFile);
         if FileExistsUTF8(ResultFileName)
-        { *Converted from FileExists* } then
+        then
           DeleteFileUTF8(ResultFileName); { *Converted from DeleteFile* }
         exit;
       end;
@@ -2137,7 +2151,7 @@ begin
       ResultsMemo.Lines.Add(Space(14) + 'Xg/L   ' + Userstring(476) + '  0,3 ... 0,448');
     if (Beta > 37.4) or (Beta < 13) then
     begin
-      ResultsMemo.Lines.Add(Space(14) + 'Beta_x ' + format('%7.2f',[Beta]) + Userstring(476) +
+      ResultsMemo.Lines.Add(Space(14) + 'Beta_x ' + format('%7.2f ',[Beta]) + Userstring(476) +
         '  13° ... 37,4°');
       exit;
     end;
@@ -2591,6 +2605,7 @@ begin
   I4 := 0;
   I5 := 0;
   I6 := 0;
+
   Calculate;
   ShowModal;
   Result := modalResult = mrOk;

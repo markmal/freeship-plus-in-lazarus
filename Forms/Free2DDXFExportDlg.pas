@@ -71,6 +71,7 @@ type
 
   TDXFExport2DDialog = class(TForm)
     cbCreateIndividualFiles: TCheckBox;
+    cbCreateIndividualLayers: TCheckBox;
     ComboBox1: TComboBox;
     Edit1: TFloatSpinEdit;
     Edit3: TEdit;

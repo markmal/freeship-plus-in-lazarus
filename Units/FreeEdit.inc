@@ -1590,10 +1590,95 @@ var
   ScaleFactor: double;
   SegLength: double;
   PrevCursor: TCursor;
-  Filename: string;
+  Filename, Layername: string;
   Intersections: TFasterListTFreeIntersection;
+  CreateIndividualLayers: Boolean;
 
-  procedure CreateDXFData(Intersection: TFreeIntersection;
+  function getLayerName(IntersectionType:TFreeIntersectionType):String;
+  begin
+    Result := '';
+    case IntersectionType of
+    fiStation:
+      Result := Userstring(62);
+    fiButtock:
+      Result := Userstring(63);
+    fiWaterline:
+      Result := Userstring(64);
+    fiDiagonal:
+      Result := Userstring(65);
+    else
+    begin
+      Messagedlg(Userstring(66) + '!', mtError, [mbOK], 0);
+      exit;
+    end;
+    end;
+  end;
+
+  procedure DefineLayers(Stringlist: TStringList; LayerPrefix:string;
+    StartLayer,LayerNumbers:integer);
+  var I:integer;
+  begin
+    Stringlist.add('0');
+    Stringlist.add('SECTION');
+    Stringlist.add('2');
+    Stringlist.add('TABLES');
+    Stringlist.add('0');
+    Stringlist.add('TABLE');
+    Stringlist.add('2');
+    Stringlist.add('LTYPE');
+    Stringlist.add('70');
+    Stringlist.add('1');
+    Stringlist.add('0');
+    Stringlist.add('LTYPE');
+    Stringlist.add('2');
+    Stringlist.add('CONTINUOUS');
+    Stringlist.add('70');
+    Stringlist.add('64');
+    Stringlist.add('3');
+    Stringlist.add('Solid line');
+    Stringlist.add('72');
+    Stringlist.add('65');
+    Stringlist.add('73');
+    Stringlist.add('0');
+    Stringlist.add('40');
+    Stringlist.add('0.000000');
+    Stringlist.add('0');
+    Stringlist.add('ENDTAB');
+
+    Stringlist.add('0');
+    Stringlist.add('TABLE');
+    Stringlist.add('2');
+    Stringlist.add('LAYER');
+    Stringlist.add('70');
+    Stringlist.add('6');
+    for I:=StartLayer to LayerNumbers do
+    begin
+      Stringlist.add('0');
+      Stringlist.add('LAYER');
+      Stringlist.add('2');
+      Stringlist.add( format(LayerPrefix+'%.2d', [I]) );
+      Stringlist.add('70');
+      Stringlist.add('64');
+      Stringlist.add('62');
+      Stringlist.add('7');
+      Stringlist.add('6');
+      Stringlist.add('CONTINUOUS');
+    end;
+    Stringlist.add('0');
+    Stringlist.add('ENDTAB');
+    Stringlist.add('0');
+    Stringlist.add('TABLE');
+    Stringlist.add('2');
+    Stringlist.add('STYLE');
+    Stringlist.add('70');
+    Stringlist.add('0');
+    Stringlist.add('0');
+    Stringlist.add('ENDTAB');
+    Stringlist.add('0');
+    Stringlist.add('ENDSEC');
+  end;
+
+  procedure CreateDXFData(Intersection: TFreeIntersection; IntersectionNumber:integer;
     Stringlist: TStringList; Scale: double; var Filename: string);
   var
     I, N: integer;
@@ -1779,21 +1864,9 @@ var
     Intersection.Rebuild;
     if intersection.Count > 0 then
     begin
-      case Intersection.IntersectionType of
-        fiStation:
-          Layername := Userstring(62);
-        fiButtock:
-          Layername := Userstring(63);
-        fiWaterline:
-          Layername := Userstring(64);
-        fiDiagonal:
-          Layername := Userstring(65);
-        else
-        begin
-          Messagedlg(Userstring(66) + '!', mtError, [mbOK], 0);
-          exit;
-        end;
-      end;
+      Layername := getLayerName(Intersection.IntersectionType);
+      if CreateIndividualLayers then
+        Layername := format(Layername+'%.2d',[IntersectionNumber]);
       Filename := FreeShip.Preferences.ExportDirectory + Intersection.Description + '.dxf';
       for I := 1 to Intersection.Count do
       begin
@@ -1844,6 +1917,8 @@ begin
     PrevCursor := Screen.Cursor;
     Screen.Cursor := crHourGlass;
     try
+      CreateIndividualLayers := Dialog.cbCreateIndividualLayers.Checked;
+
       if Dialog.cbCreateIndividualFiles.Checked then
       begin
         // send each intersection to an individual dxf file
@@ -1857,9 +1932,11 @@ begin
         for I := 1 to Intersections.Count do
         begin
           Strings.Clear;
+          Layername := getLayerName(Intersections[I - 1].IntersectionType);
+          DefineLayers(Strings, Layername, I, 1);
           Strings.Add('0' + EOL + 'SECTION');
           Strings.Add('2' + EOL + 'ENTITIES');
-          CreateDXFData(Intersections[I - 1], Strings, ScaleFactor, Filename);
+          CreateDXFData(Intersections[I - 1], I, Strings, ScaleFactor, Filename);
           Strings.Add('0' + EOL + 'ENDSEC');
           Strings.Add('0' + EOL + 'EOF');
           Strings.SaveToFile(Filename);
@@ -1871,10 +1948,12 @@ begin
         if (FreeShip.Visibility.ShowStations) and (FreeShip.NumberofStations > 0) then
         begin
           Strings.Clear;
+          Layername := getLayerName(fiStation);
+          DefineLayers(Strings, Layername, 1, FreeShip.NumberofStations);
           Strings.Add('0' + EOL + 'SECTION');
           Strings.Add('2' + EOL + 'ENTITIES');
           for I := 1 to FreeShip.NumberofStations do
-            CreateDXFData(FreeShip.Station[I - 1], Strings, ScaleFactor, Filename);
+            CreateDXFData(FreeShip.Station[I - 1], I, Strings, ScaleFactor, Filename);
           Strings.Add('0' + EOL + 'ENDSEC');
           Strings.Add('0' + EOL + 'EOF');
           Filename := FreeShip.Preferences.ExportDirectory + 'stations.dxf';
@@ -1883,10 +1962,12 @@ begin
         if (FreeShip.Visibility.ShowButtocks) and (FreeShip.NumberofButtocks > 0) then
         begin
           Strings.Clear;
+          Layername := getLayerName(fiButtock);
+          DefineLayers(Strings, Layername, 1, FreeShip.NumberofButtocks);
           Strings.Add('0' + EOL + 'SECTION');
           Strings.Add('2' + EOL + 'ENTITIES');
           for I := 1 to FreeShip.NumberofButtocks do
-            CreateDXFData(FreeShip.Buttock[I - 1], Strings, ScaleFactor, Filename);
+            CreateDXFData(FreeShip.Buttock[I - 1], I, Strings, ScaleFactor, Filename);
           Strings.Add('0' + EOL + 'ENDSEC');
           Strings.Add('0' + EOL + 'EOF');
           Filename := FreeShip.Preferences.ExportDirectory + 'buttocks.dxf';
@@ -1895,10 +1976,12 @@ begin
         if (FreeShip.Visibility.ShowWaterlines) and (FreeShip.NumberofWaterlines > 0) then
         begin
           Strings.Clear;
+          Layername := getLayerName(fiWaterline);
+          DefineLayers(Strings, Layername, 1, FreeShip.NumberofWaterlines);
           Strings.Add('0' + EOL + 'SECTION');
           Strings.Add('2' + EOL + 'ENTITIES');
           for I := 1 to FreeShip.NumberofWaterlines do
-            CreateDXFData(FreeShip.Waterline[I - 1], Strings, ScaleFactor, Filename);
+            CreateDXFData(FreeShip.Waterline[I - 1], I, Strings, ScaleFactor, Filename);
           Strings.Add('0' + EOL + 'ENDSEC');
           Strings.Add('0' + EOL + 'EOF');
           Filename := FreeShip.Preferences.ExportDirectory + 'waterlines.dxf';

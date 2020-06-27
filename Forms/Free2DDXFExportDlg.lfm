@@ -1,13 +1,13 @@
 object DXFExport2DDialog: TDXFExport2DDialog
   Left = 541
-  Height = 206
+  Height = 200
   Top = 330
-  Width = 642
+  Width = 640
   AutoSize = True
   BorderStyle = bsDialog
   Caption = 'Export intersections to DXF as 2D polylines.'
-  ClientHeight = 206
-  ClientWidth = 642
+  ClientHeight = 200
+  ClientWidth = 640
   ParentFont = True
   Position = poOwnerFormCenter
   LCLVersion = '2.0.8.0'
@@ -15,15 +15,15 @@ object DXFExport2DDialog: TDXFExport2DDialog
     Left = 0
     Height = 34
     Top = 0
-    Width = 642
+    Width = 640
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 34
-    ClientWidth = 642
+    ClientWidth = 640
     TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 475
+      Left = 473
       Height = 30
       Top = 2
       Width = 80
@@ -72,7 +72,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 557
+      Left = 555
       Height = 30
       Top = 2
       Width = 83
@@ -125,7 +125,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
     Left = 0
     Height = 162
     Top = 34
-    Width = 642
+    Width = 640
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -136,7 +136,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
     ClientHeight = 162
-    ClientWidth = 642
+    ClientWidth = 640
     ParentColor = False
     TabOrder = 1
     object Label7: TLabel
@@ -244,6 +244,15 @@ object DXFExport2DDialog: TDXFExport2DDialog
       Alignment = taLeftJustify
       Caption = 'Create individual files'
       TabOrder = 3
+    end
+    object cbCreateIndividualLayers: TCheckBox
+      Left = 329
+      Height = 28
+      Top = 124
+      Width = 280
+      Alignment = taLeftJustify
+      Caption = 'Create individual layers'
+      TabOrder = 4
     end
   end
   object SaveDialog: TSaveDialog

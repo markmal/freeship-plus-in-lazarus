@@ -1127,6 +1127,12 @@ begin
   wv := dotProduct(w,v);
   D := uv * uv - uu * vv;
 
+  if D = 0 then  // IntersectionPoint is outside Triangle
+  begin                       // => no intersect
+    result:=0;
+    exit;
+  end;
+
   // get and test parametric coords
   s := (uv * wv - vv * wu) / D;
   if (s < 0.0) or (s > 1.0) then  // IntersectionPoint is outside Triangle

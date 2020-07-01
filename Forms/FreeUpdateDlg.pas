@@ -245,7 +245,7 @@ begin
   LabelNewVersionDate.Visible:=false;
 
   FUpdatesAvailable := false;
-
+  FCurrentVersion := '5.0.35.438';       //TEST
   havedpkg := false;
   {$ifdef linux}
   havedpkg := FileExists('/bin/dpkg') or FileExists('/usr/bin/dpkg');
@@ -284,12 +284,19 @@ begin
             then download_asset := i;
          {$endif}
          vers := extractVersion(GitHubAsset.name);
-         if compareVersions(vers,FCurrentVersion) <= 0 then
-         begin
-           Memo1.Text := 'FreeShip is up to date';
-           download_asset := -1;
-         end;
+         if (download_asset > -1) then
+           if (compareVersions(vers,FCurrentVersion) > 0) then
+           begin
+             Memo1.Text := 'Update is available: '+GitHubAsset.name;
+             break;
+           end
+           else
+           begin
+             Memo1.Text := 'FreeShip is up to date';
+             download_asset := -1;
+           end;
        end;
+
        if download_asset > -1 then
        begin
          GitHubAsset:= GitHubRelease.assets.Items[download_asset] as TGitHubAsset;

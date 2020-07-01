@@ -1061,15 +1061,13 @@ begin
       self.Close;
       exit;
       end;
-
-    if not assigned(FreeUpdateForm) then
-      FreeUpdateForm := TFreeUpdateForm.Create(self);
-    if FreeUpdateForm.UpdatesAvailable then
-      FreeUpdateForm.ShowModal;
-
     GShowSplash:=false; // show splash on first activate only
   end;
 
+  if not assigned(FreeUpdateForm) then
+    FreeUpdateForm := TFreeUpdateForm.Create(self);
+  if FreeUpdateForm.UpdatesAvailable then
+    FreeUpdateForm.ShowModal;
 
   if not FModelInitallyLoaded then
     begin

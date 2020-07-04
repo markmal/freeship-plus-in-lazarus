@@ -1293,7 +1293,7 @@ type
       read FMaterialDensity write FMaterialDensity;
     property Name: string
       read FGetName write FSetName;
-    property Owner:
+    property Surface:
       TFreeSubdivisionSurface read FOwner write FOwner;
     property ShowInLinesplan: boolean
       read FShowInLinesplan write FSetShowInLinesplan;
@@ -1629,7 +1629,7 @@ type
       T3DCoordinate read FGetFaceCenter;
     property FaceNormal:
       T3DCoordinate read FGetFaceNormal;
-    property NumberOfpoints: integer
+    property NumberOfPoints: integer
       read FGetNumberOfPoints;
     property Point[index: integer]
       : TFreeSubdivisionPoint read FGetPoint;

@@ -121,7 +121,8 @@ begin
   if Locked then exit;
   //if Locked and (FAnchorPoint = nil) then exit;
   inherited FSetCoordinate(Val);
-  Surface.Built := False;
+  if Surface <> nil then
+    Surface.Built := False;
 end;{TFreeSubdivisionControlPoint.FSetCoordinate}
 
 procedure TFreeSubdivisionControlPoint.SetCoordinate( ViewPort:TFreeViewPort; Val: T3DCoordinate;

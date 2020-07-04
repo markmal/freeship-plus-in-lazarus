@@ -165,12 +165,25 @@ begin
 end;
 
 resourcestring
+  {$ifdef Unix}
   rsKnownSSLException = 'Exception class: %s Message: %s'+#10
            +'Possible libssl v1.1 compatibility issue.'+#10
            +'libssl v1.1 is found.'+#10
            +'FreeShip is currently compatible with libssl v1.0 only.'+#10
            +'You have to check for updates traditional way at Download page.'+#10
            +'Click link below.';
+  {$endif}
+  {$ifdef Windows}
+  rsKnownSSLException = 'Exception class: %s Message: %s'+#10
+           +'Possibly missing OpenSSL DLLs: libeay32.dll, ssleay32.dll.'+#10
+           +'You can download these from http://wiki.overbyte.eu/wiki/index.php/ICS_Download#Download_OpenSSL_Binaries_.28required_for_SSL-enabled_components.29'+#10
+           +'Please use latest binaries for SSL v1.0 "OpenSSL Binaries Win-64 v1.0.*".'+#10
+           +'Place libeay32.dll and ssleay32.dll into directory where FreeShip.exe is installed.'+#10
+           +'Usually it is C:\Program Files\FreeShip\.'+#10
+           +'FreeShip is currently compatible with libssl v1.0 only.'+#10
+           +'You have to check for updates traditional way at Download page.'+#10
+           +'Click link below.';
+  {$endif}
 
 // if it is Unix and FPC is 3.2 and newer then use stock function not the library one
 {$IF not((FPC_FULLVERSION < 32000) and (defined(unix)))}
@@ -179,11 +192,12 @@ var
   Client: TFPHTTPClient;
 begin
   Result:='';
+  Randomize;
+  InitSSLInterface;
   Client:=TFPHttpClient.Create(Nil);
-  Client.AllowRedirect := true;
-  Client.AddHeader('User-Agent','Mozilla/5.0 (compatible; fpweb)');
   try
-    InitSSLInterface;
+    Client.AllowRedirect := true;
+    Client.AddHeader('User-Agent','Mozilla/5.0 (compatible; fpweb)');
     Result:=Client.Get(url);
   finally
     Client.Free;
@@ -245,7 +259,7 @@ begin
   LabelNewVersionDate.Visible:=false;
 
   FUpdatesAvailable := false;
-  FCurrentVersion := '5.0.35.438';       //TEST
+  //FCurrentVersion := '5.0.35.438';       //TEST
   havedpkg := false;
   {$ifdef linux}
   havedpkg := FileExists('/bin/dpkg') or FileExists('/usr/bin/dpkg');

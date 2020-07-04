@@ -458,7 +458,7 @@ begin
     if (not showSolid) then
       Viewport.BrushStyle := bsClear;
 
-    Wlplane := Owner.Owner.WaterlinePlane;
+    Wlplane := Owner.Surface.WaterlinePlane;
 
     for I := 1 to FDoneList.Count do
     begin
@@ -507,7 +507,7 @@ begin
           if MaxZ <= 0.0 then
           begin
             // entirely below the plane
-            DrawTriangle(P1, P2, P3, Owner.Owner.UnderWaterColor);
+            DrawTriangle(P1, P2, P3, Owner.Surface.UnderWaterColor);
           end
           else if MinZ >= 0.0 then
           begin
@@ -521,7 +521,7 @@ begin
             for K := 3 to Na do
               DrawTriangle(Above[0], Above[K - 2], Above[K - 1], Owner.Color);
             for K := 3 to Nb do
-              DrawTriangle(Below[0], Below[K - 2], Below[K - 1], Owner.Owner.UnderWaterColor);
+              DrawTriangle(Below[0], Below[K - 2], Below[K - 1], Owner.Surface.UnderWaterColor);
           end;
         end;
       end
@@ -693,7 +693,7 @@ begin
     Viewport.PenStyle := psSolid;
     Viewport.BrushColor := clWhite;
     Viewport.BrushStyle := bsSolid;
-    I := Owner.Owner.ControlPointSize;
+    I := Owner.Surface.ControlPointSize;
     Viewport.Rectangle(Pt.X - I, Pt.Y - I, Pt.X + I, Pt.Y + I);
     Viewport.BrushStyle := bsClear;
     Viewport.TextOut(Pt.X - Viewport.TextWidth(Name) div 2, Pt.Y, Name);
@@ -853,7 +853,7 @@ begin
       end;
       if NoPoints > 1 then
       begin
-        Spline := TFreeSpline.Create(Owner.Owner);
+        Spline := TFreeSpline.Create(Owner.Surface);
         Spline.Color := Color;
         Spline.Capacity := NoPoints;
         for K := 1 to NoPoints do
@@ -901,7 +901,7 @@ begin
       FDiagonals.Add(Spline);
     if FMirror then
     begin
-      Copy := TFreeSpline.Create(Owner.Owner);
+      Copy := TFreeSpline.Create(Owner.Surface);
       Copy.Assign(Spline);
       for J := 1 to Spline.NumberOfPoints do
       begin
@@ -989,7 +989,7 @@ begin
   Source := TFasterListTFreeSubdivisionEdge.Create;
   Source.AddList(FBoundaryEdges);
   Dest := TFasterListTFreeSubdivisionFace.Create; // use face as list of points
-  Owner.Owner.IsolateEdges(Source, Dest);
+  Owner.Surface.IsolateEdges(Source, Dest);
 
   Source.Destroy;
   Col := FindDXFColorIndex(Owner.Color);
@@ -1094,7 +1094,7 @@ begin
   Source := TFasterListTFreeSubdivisionEdge.Create;
   Source.AddList(FBoundaryEdges);
   Dest := TFasterListTFreeSubdivisionEdge.Create;
-  ///Owner.Owner.IsolateEdges(Source, Dest);
+  ///Owner.Surface.IsolateEdges(Source, Dest);
   Source.Destroy;
 
   // Calculate min.,max extents of coundary
@@ -1579,7 +1579,7 @@ begin
         if FPoints.SortedIndexOf(P2) = -1 then
           FPoints.AddSorted(P2);
         // add this edge
-        Edge := Owner.Owner.EdgeExists(P1, P2);
+        Edge := Owner.Surface.EdgeExists(P1, P2);
         if Edge <> nil then
           if FEdges.SortedIndexOf(Edge) = -1 then
             FEdges.AddSorted(Edge);
@@ -1793,7 +1793,7 @@ begin
             // if so, then this line is used to mirror the other half of the layer
             // so it forms 1 whole panel and there is no need to unfold it.
             SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
-            self.FOwner.Owner.IsolateEdges(TmpEdges, SortedPointLists);
+            self.FOwner.Surface.IsolateEdges(TmpEdges, SortedPointLists);
             TmpEdges.Destroy;
             TmpEdges := nil;
 

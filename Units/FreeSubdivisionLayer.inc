@@ -34,7 +34,7 @@ end;{TFreeSubdivisionLayer.FGetItems}
 
 function TFreeSubdivisionLayer.FGetLayerIndex: integer;
 begin
-  Result := Owner.FLayers.IndexOf(self);
+  Result := Surface.FLayers.IndexOf(self);
 end;{TFreeSubdivisionLayer.FGetLayerIndex}
 
 function TFreeSubdivisionLayer.FGetSurfaceProperties: TLayerProperties;
@@ -151,8 +151,8 @@ begin
   if val <> FDevelopable then
   begin
     FDevelopable := Val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
   end;
 end;{TFreeSubdivisionLayer.FSetFDevelopable}
 
@@ -161,10 +161,10 @@ begin
   if Uppercase(Val) <> Uppercase(FDescription) then
   begin
     FDescription := Val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
-    if (self = Owner.ActiveLayer) and (assigned(Owner.FOnChangeActiveLayer)) then
-      owner.FOnChangeActiveLayer(Owner, Owner.ActiveLayer);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
+    if (self = Surface.ActiveLayer) and (assigned(Surface.FOnChangeActiveLayer)) then
+      Surface.FOnChangeActiveLayer(Surface, Surface.ActiveLayer);
   end;
 end;{TFreeSubdivisionLayer.FSetName}
 
@@ -173,8 +173,8 @@ begin
   if Val <> FSymmetric then
   begin
     FSymmetric := Val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
   end;
 end;{TFreeSubdivisionLayer.FSetSymmetric}
 
@@ -183,10 +183,10 @@ begin
   if Val <> FColor then
   begin
     FColor := Val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
-    if (self = Owner.ActiveLayer) and (assigned(Owner.FOnChangeActiveLayer)) then
-      owner.FOnChangeActiveLayer(Owner, Owner.ActiveLayer);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
+    if (self = Surface.ActiveLayer) and (assigned(Surface.FOnChangeActiveLayer)) then
+      Surface.FOnChangeActiveLayer(Surface, Surface.ActiveLayer);
   end;
 end;{TFreeSubdivisionLayer.FSetColor}
 
@@ -195,8 +195,8 @@ begin
   if Val <> FShowInLinesplan then
   begin
     FShowInLinesplan := val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
   end;
 end;{TFreeSubdivisionLayer.FSetShowInLinesplan}
 
@@ -207,8 +207,8 @@ begin
     FUseInHydrostatics := Val;
     if FUseInHydrostatics and (not FSymmetric) then
       FSymmetric := True;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
   end;
 end;{TFreeSubdivisionLayer.FSetUseInHydrostatics}
 
@@ -217,8 +217,8 @@ begin
   if val <> FUseForIntersections then
   begin
     FUseForIntersections := Val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
   end;
 end;{TFreeSubdivisionLayer.FSetUseForIntersections}
 
@@ -227,8 +227,8 @@ begin
   if Val <> FSurfaceVisible then
   begin
     FSurfaceVisible := Val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
   end;
 end;{TFreeSubdivisionLayer.FSetSurfaceVisible}
 
@@ -237,8 +237,8 @@ begin
   if Val <> FControlNetVisible then
   begin
     FControlNetVisible := Val;
-    if assigned(Owner.FOnChangeLayerData) then
-      Owner.FOnChangeLayerData(self);
+    if assigned(Surface.FOnChangeLayerData) then
+      Surface.FOnChangeLayerData(self);
   end;
 end;{TFreeSubdivisionLayer.FSetSurfaceVisible}
 
@@ -301,7 +301,7 @@ begin
         for J := 1 to Face.NumberOfpoints do
         begin
           P2 := Face.Point[J - 1];
-          Edge := Owner.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+          Edge := Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
           if Edge <> nil then
           begin
             if Edges.SortedIndexOf(Edge) = -1 then
@@ -359,8 +359,8 @@ begin
               PiT := False; //PIT0:=false;
               //if PointInBlock(P3D, Face.Min, Face.Max) then
               begin
-                PiT := PointInTriangleBarycentric(P3D, CP0, CP2, CP1);
-                //PiT:=PointInTriangle(P3D, CP0,CP2,CP1);
+                //PiT := PointInTriangleBarycentric(P3D, CP0, CP2, CP1); // sometimes gives false positive
+                PiT:=PointInTriangle(P3D, CP0,CP2,CP1);
               end;
               //if Edge.Selected or Face.Selected then
               //write('P3D:',ToStr(P3D), ' CP0:',ToStr(CP0),' CP2:',ToStr(CP2),' CP1:',ToStr(CP1));
@@ -374,7 +374,7 @@ begin
                 //writeln('FreeGeometry.CalculateIntersectionPoint: Intersection found. Edge:',I,' FaceChild:',K,' Point:',L);
                 //writeln('FreeGeometry.CalculateIntersectionPoint: Intersection found. P3D(',P3D.X,',',P3D.Y,',',P3D.Z,')');
 
-                P := TFreeSubdivisionControlPoint.Create(Owner);
+                P := TFreeSubdivisionControlPoint.Create(Surface);
                 if (P<>nil) then
                 begin
                   P.FSetCoordinate(P3D);
@@ -421,29 +421,31 @@ var
   S1, S2, T: TFloatType;
   P2D, P3D, esp, eep, CP0, CP2, CP1: T3DCoordinate;
   PiT: boolean;
+  //TmpPoints: TFasterListTFreeSubdivisionControlPoint;
 label
   StartAgain;
 begin
+  //TmpPoints:= TFasterListTFreeSubdivisionControlPoint.Create;
   Edges := TFasterListTFreeSubdivisionControlEdge.Create;
   try
     StartAgain:
         // assemble all controledges in a list
-      for I := 1 to Count do
+    for I := 1 to Count do
+    begin
+      Face := Items[I - 1];
+      P1 := Face.Point[Face.NumberOfPoints - 1];
+      for J := 1 to Face.NumberOfpoints do
       begin
-        Face := Items[I - 1];
-        P1 := Face.Point[Face.NumberOfPoints - 1];
-        for J := 1 to Face.NumberOfpoints do
+        P2 := Face.Point[J - 1];
+        Edge := Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+        if Edge <> nil then
         begin
-          P2 := Face.Point[J - 1];
-          Edge := Owner.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
-          if Edge <> nil then
-          begin
-            if Edges.SortedIndexOf(Edge) = -1 then
-              Edges.AddSorted(Edge);
-          end;
-          P1 := P2;
+          if Edges.SortedIndexOf(Edge) = -1 then
+            Edges.AddSorted(Edge);
         end;
+        P1 := P2;
       end;
+    end;
 
     // now check all edges for intersection with layer 2
     I := 1;
@@ -489,8 +491,8 @@ begin
               //Face.CalcExtents;
               //if PointInBlock(P3D, Face.Min, Face.Max) then
               begin
-                PiT := PointInTriangleBarycentric(P3D, CP0, CP2, CP1);
-                //PiT:=PointInTriangle(P3D, CP0,CP2,CP1);
+                ///PiT := PointInTriangleBarycentric(P3D, CP0, CP2, CP1); //sometimes false positive
+                PiT:=PointInTriangle(P3D, CP0,CP2,CP1);
               end;
               //if Edge.Selected or Face.Selected then
               //write('P3D:',ToStr(P3D), ' CP0:',ToStr(CP0),' CP2:',ToStr(CP2),' CP1:',ToStr(CP1));
@@ -503,6 +505,7 @@ begin
                 // Yes, we have a valid intersection here
                 //writeln('FreeGeometry.CalculateIntersectionPoint: Intersection found. Edge:',I,' FaceChild:',K,' Point:',L);
                 //writeln('FreeGeometry.CalculateIntersectionPoint: Intersection found. P3D(',P3D.X,',',P3D.Y,',',P3D.Z,')');
+
                 P := Edge.InsertControlPoint(P3D);
                 if P <> nil then
                 begin
@@ -512,6 +515,15 @@ begin
                   NewPoints.Add(P);
                   goto StartAgain;
                 end;
+
+                {  // abandone
+                // new way: store new point in TmpPoints list with Edge attached.
+                // then later insert them into these edges
+                P := TFreeSubdivisionControlpoint.Create(nil);
+                P.Coordinate := P3D;
+                P.Edges.Add(Edge); // just to remember
+                TmpPoints.Add(P);
+                }
               end;
               //if Edge.Selected or Face.Selected then
               //writeln();
@@ -524,8 +536,31 @@ begin
       end; //while (J<=Layer.Count) and (not IntFound) do
       Inc(I);
     end; //while I<=Edges.Count do
+
+    { // new way: abandone
+    for i:=0 to TmpPoints.Count-1 do
+    begin
+      P:=TmpPoints[i];
+      Edge := P.Edge[0] as TFreeSubdivisionControlEdge;
+      P.Edges.Clear;
+      if Surface.ControlEdges.IndexOf(Edge) >= 0 then
+      begin
+        P1 := Edge.InsertControlPoint(P.Coordinate);
+        P.Free;
+        if P1 <> nil then
+        begin
+          //IntFound:=true;  //MM:I do not know why to stop searching for all intersections ?
+          //Result:=True;
+          P1.Selected := True;
+          NewPoints.Add(P1);
+        end;
+      end;
+    end;
+    }
+
   finally
     Edges.Destroy;
+    //TmpPoints.Destroy;
   end;
 end;
 
@@ -560,7 +595,7 @@ begin
         for J := 1 to Face.NumberOfpoints do
         begin
           P2 := Face.Point[J - 1];
-          Edge := Owner.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
+          Edge := Surface.EdgeExists(P1, P2) as TFreeSubdivisionControlEdge;
           if Edge <> nil then
           begin
             if Edges.SortedIndexOf(Edge) = -1 then
@@ -611,7 +646,8 @@ begin
               //TFreeSubdivisionControlPoint(Face.Point[0]).Selected:=true;
               //TFreeSubdivisionControlPoint(Face.Point[L-1]).Selected:=true;
               //TFreeSubdivisionControlPoint(Face.Point[L]).Selected:=true;
-              PiT := PointInTriangleBarycentric(P3D, CP0, CP2, CP1);
+              //PiT := PointInTriangleBarycentric(P3D, CP0, CP2, CP1); // sometimes gives false positive
+              PiT := PointInTriangle(P3D, CP0, CP2, CP1); // sometimes gives false positive
               //if PiT then writeln('P3D:',ToStr(P3D),' L:',L, ' CP0:',ToStr(CP0),' CP2:',ToStr(CP2),' CP1:',ToStr(CP1),' Face.p#:',Face.NumberOfPoints);
               //if PiT then writeln(' :IN') else writeln(' :out');
             end;
@@ -697,7 +733,7 @@ var
   P2D, P3D, esp, eep, CP0, CP2, CP1: T3DCoordinate;
   PP3D: ^T3DCoordinate;
   PiT, IsFaceDeleted: boolean;
-  //label StartAgan;
+  label StartAgain;
 begin
   Result := False;
   Edges := TFasterListTFreeSubdivisionControlEdge.Create;
@@ -711,6 +747,16 @@ begin
     // find all intersection points of control edges of Layer with control faces of the Self
     // Layer.FindIntersectionControlPoints(Self, NewPoints);
 
+
+    //debug
+    for i:=0 to NewPoints.Count-1 do
+      begin
+      NewPoints[i].Name:='np'+IntToStr(i);
+      NewPoints[i].Selected:=true;
+      end;
+
+    //exit;
+
     if NewPoints.Count > 0 then
     begin
       // Try to find multiple new points belonging to the same face and insert an edge
@@ -720,6 +766,7 @@ begin
       while I < NewPoints.Count do
       begin
         P1 := NewPoints[I];
+        StartAgain:
         J := 0;
         while J < P1.NumberOfFaces do
         begin
@@ -728,26 +775,24 @@ begin
           Inserted := False;
           while (K < Face.NumberOfPoints) and (not Inserted) do
           begin
-            P2 := Face.Point[K] as TFreeSubdivisionControlPoint;
+            P2 := Face.Point[K];
             if (P1 <> P2) and (NewPoints.IndexOf(P2) <> -1) then
             begin
               // this is also a new point, first check if an edge already exists between P1 and P2
-              if Owner.EdgeExists(P1, P2) = nil then
+              if Surface.EdgeExists(P1, P2) = nil then
               begin
                 Inserted := True;
                 // split the Face into two new ones. The Face is placed into DelayedDestroyList
-                Edge :=
-                  Face.InsertEdge( P1 as TFreesubdivisionControlPoint,
-                                   P2 as TFreesubdivisionControlPoint,
-                                   IsFaceDeleted);
+                Edge := Face.InsertEdge( P1, P2, IsFaceDeleted);
                 Edge.Selected := True;
                 for L := 0 to Edge.FFaces.Count - 1 do
                   TFreeSubdivisionControlFace(Edge.Face[L]).Selected := True;
                 //Face.Selected:=True;
                 //Edges.Add(Edge); // what for ?
                 //TODO: For Intersect faces - find intersections of Edge's faces with Layer's dubdiv edges and insert points into Self edges.
-
                 Result := True;
+                if IsFaceDeleted then
+                  goto StartAgain;
               end;
             end;
             Inc(K);
@@ -755,7 +800,7 @@ begin
           if not Inserted then
             Inc(J);
         end; //while J<=P1.NumberOfFaces-1 do
-        DelayedDestroyList.DestroyAll;
+        //DelayedDestroyList.DestroyAll;
         Inc(I);
       end; //while I<=NewPoints.Count-1 do
     end; //if NewPoints.Count>0 then
@@ -764,13 +809,13 @@ begin
      {
      StartAgan:
 
-     Owner.Rebuild;
+     Surface.Rebuild;
      I:=0;
      while I < Edges.Count do
        begin
        Edge := Edges[I];
        //get an existing Edge just in case the Edge from Edges has been rebuilt
-       Edge := Owner.EdgeExists( Edge.StartPoint, Edge.EndPoint ) as TFreeSubdivisionControlEdge;
+       Edge := Surface.EdgeExists( Edge.StartPoint, Edge.EndPoint ) as TFreeSubdivisionControlEdge;
        if Edge <> nil then
          begin
          EdgeNewPoints.Clear;
@@ -778,7 +823,7 @@ begin
          for M:=0 to EdgeNewPoints.Count-1 do
            begin
              PP3D:=EdgeNewPoints[M];
-             P:=Owner.AddControlPoint(PP3D^);
+             P:=Surface.AddControlPoint(PP3D^);
              P.Selected:=true;
              //P:=Edge.InsertControlPoint( PP3D^ );
              P:=nil;
@@ -814,7 +859,7 @@ procedure TFreeSubdivisionLayer.Clear;
 begin
   FLayerID := -1;
   FPatches.Clear;
-  FColor := Owner.LayerColor;
+  FColor := Surface.LayerColor;
   FSurfaceVisible := True;
   FControlNetVisible := True;
   FDescription := '';
@@ -836,14 +881,14 @@ begin
   Result := True;
   for I := Count downto 1 do
     Items[I - 1].Delete;
-  if Owner.FActiveLayer = self then
-    Owner.FActiveLayer := nil;
+  if Surface.FActiveLayer = self then
+    Surface.FActiveLayer := nil;
   Index := LayerIndex;
   if Index <> -1 then
-    Owner.FLayers.Delete(Index);
+    Surface.FLayers.Delete(Index);
   Clear;
-  if assigned(Owner.FOnChangeLayerData) then
-    Owner.FOnChangeLayerData(self);
+  if assigned(Surface.FOnChangeLayerData) then
+    Surface.FOnChangeLayerData(self);
   Destroy;
 end;{TFreeSubdivisionLayer.Delete}
 
@@ -908,8 +953,8 @@ begin
     begin
       if Viewport.ViewportMode = vmShadeGauss then
         for i := 0 to Count-1 do
-          Items[i].Draw(Viewport, Owner.FMinGaussCurvature,
-            Owner.FMaxGaussCurvature)
+          Items[i].Draw(Viewport, Surface.FMinGaussCurvature,
+            Surface.FMaxGaussCurvature)
       else
         for i := 0 to Count-1 do
           if items[i] is TFreeSubdivisionControlFace then
@@ -918,7 +963,7 @@ begin
     else
     begin
       Viewport.Canvas.AntialiasingMode:=amOn; // MM 04/22/2019 10:30:47 AM. added
-      if Owner.ShowInteriorEdges then
+      if Surface.ShowInteriorEdges then
       begin
         Viewport.SetPenWidth(1);
         Viewport.PenColor := Color;
@@ -928,7 +973,7 @@ begin
       // Draw all interior crease-edges
       Viewport.SetPenWidth(1);
       Viewport.PenStyle := psSolid;
-      Viewport.PenColor := Owner.CreaseColor;
+      Viewport.PenColor := Surface.CreaseColor;
 
       for I := 1 to Count do
       begin
@@ -938,7 +983,7 @@ begin
           Edge := Face.FEdges[J];
           if Edge.FCrease or (Edge.NumberOfFaces<2) then
           begin
-            Edge.Draw(Owner.DrawMirror and Symmetric, Viewport);
+            Edge.Draw(Surface.DrawMirror and Symmetric, Viewport);
           end;
         end;
 
@@ -948,7 +993,7 @@ begin
           Edge := Face.FControlDescendantEdges[J];
           if Edge.FCrease or (Edge.NumberOfFaces<2) then
           begin
-            Edge.Draw(Owner.DrawMirror and Symmetric, Viewport);
+            Edge.Draw(Surface.DrawMirror and Symmetric, Viewport);
           end;
         end;
       end;
@@ -970,7 +1015,7 @@ begin
       Face := Items[I - 1];
       MinMax(Face.Min, Min, Max);
       MinMax(Face.Max, Min, Max);
-      if (Symmetric) and (Owner.DrawMirror) then
+      if (Symmetric) and (Surface.DrawMirror) then
       begin
         P := Face.Min;
         P.Y := -P.Y;
@@ -988,8 +1033,8 @@ var
 begin
   Source.LoadString(FDescription);
   Source.LoadInteger(FLayerID);
-  if FLayerID > Owner.FLastusedLayerID then
-    Owner.FLastusedLayerID := FLayerID;
+  if FLayerID > Surface.FLastusedLayerID then
+    Surface.FLastusedLayerID := FLayerID;
   Source.LoadTColor(FColor);
   Source.LoadBoolean(FSurfaceVisible);
   Source.LoadBoolean(FSymmetric);
@@ -1031,8 +1076,8 @@ begin
   Inc(LineNr);
   Str := Strings[LineNr];
   FLayerID := ReadIntFromStr(LineNr, Str);
-  if FLayerID > Owner.FLastusedLayerID then
-    Owner.FLastusedLayerID := FLayerID;
+  if FLayerID > Surface.FLastusedLayerID then
+    Surface.FLastusedLayerID := FLayerID;
   // read color
   FColor := ReadIntFromStr(LineNr, Str);
   // read SurfaceVisible
@@ -1059,18 +1104,18 @@ procedure TFreeSubdivisionLayer.MoveDown;
 var
   Index: integer;
 begin
-  Index := Owner.FLayers.IndexOf(self);
-  if index < Owner.Flayers.Count - 1 then
-    Owner.FLayers.Exchange(Index + 1, index);
+  Index := Surface.FLayers.IndexOf(self);
+  if index < Surface.Flayers.Count - 1 then
+    Surface.FLayers.Exchange(Index + 1, index);
 end;{TFreeSubdivisionLayer.MoveDown}
 
 procedure TFreeSubdivisionLayer.MoveUp;
 var
   Index: integer;
 begin
-  Index := Owner.FLayers.IndexOf(self);
+  Index := Surface.FLayers.IndexOf(self);
   if index > 0 then
-    Owner.FLayers.Exchange(Index - 1, index);
+    Surface.FLayers.Exchange(Index - 1, index);
 end;{TFreeSubdivisionLayer.MoveUp}
 
 procedure TFreeSubdivisionLayer.SaveToDXF(Strings: TStringList);
@@ -1091,7 +1136,7 @@ begin
   begin
     Layers := TFasterListTFreeSubdivisionLayer.Create;
     Layers.Add(self);
-    Owner.AssembleFacesToPatches(Layers, amRegular, Assembled, NAssembled);
+    Surface.AssembleFacesToPatches(Layers, amRegular, Assembled, NAssembled);
     if NAssembled > 0 then
     begin
       // assign all patches to new layers
@@ -1103,7 +1148,7 @@ begin
           ((AssFace.NCols = 1) and (AssFace.NRows = 1) and
           (AssFace.Faces[0][0].NumberOfPoints = 4)) then
         begin
-          Owner.ConvertToGrid(AssFace, Cols, Rows, Grid);
+          Surface.ConvertToGrid(AssFace, Cols, Rows, Grid);
           if (Cols > 0) and (Rows > 0) then
           begin
             DXFName := DXFLayerName;
@@ -1128,7 +1173,7 @@ begin
               end;
             end;
             Strings.add('0' + EOL + 'SEQEND');
-            if (Symmetric) and (Owner.DrawMirror) then
+            if (Symmetric) and (Surface.DrawMirror) then
             begin
               Strings.Add('0' + EOL + 'POLYLINE');
               Strings.Add('8' + EOL + DXFName);

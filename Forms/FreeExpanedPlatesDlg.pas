@@ -655,7 +655,7 @@ begin
       if Active.Visible then
       begin
         Dist := Active.DistanceToCursor(X, Y, Viewport);
-        if Dist <= Active.Owner.Owner.ControlPointSize then
+        if Dist <= Active.Owner.Surface.ControlPointSize then
         begin
           if ActivePatch <> Active then
             ActivePatch := Active;

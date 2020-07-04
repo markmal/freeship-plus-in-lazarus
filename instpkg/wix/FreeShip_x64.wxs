@@ -80,6 +80,12 @@
 				</ProgId>
 
             </Component>
+
+			<Component Id="libOpenSSL" Guid="32B32482-6009-4B59-85B9-0394F72D315A" Win64="yes" KeyPath="yes">
+              <File Id="libeay32.dll" Name="libeay32.dll" Source="$(var.SrcPath)\libeay32.dll" />
+              <File Id="ssleay32.dll" Name="ssleay32.dll" Source="$(var.SrcPath)\ssleay32.dll" />
+            </Component>
+
 			<Component Id="COPYING" Guid="F530E308-C30C-4AF6-841D-E7984CCB0BA6" Win64="yes">
               <File Id="COPYING" Name="COPYING" Source="$(var.SrcPath)\COPYING" KeyPath="yes" />
             </Component>
@@ -153,6 +159,7 @@
       Display="expand" Level="1" ConfigurableDirectory="APPLICATIONFOLDER">
       <Feature Id="MainProgram" Title="Program" Description="The main executable." Level="1">
         <ComponentRef Id="MainExecutable" />
+		<ComponentRef Id="libOpenSSL" />
 		<ComponentRef Id="COPYING" />
 		<ComponentRef Id="copyright" />
 		<ComponentRef Id="README.txt" />

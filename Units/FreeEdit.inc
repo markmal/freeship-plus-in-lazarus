@@ -7829,6 +7829,7 @@ begin
   if not FreeShip.ProjectSettings.FUseDefaultSplitSectionLocation then
     FreeShip.ProjectSettings.ProjectSplitSectionLocation :=
       abs(FreeShip.ProjectSettings.ProjectSplitSectionLocation * ScaleVector.X);
+
   // Update markers
   if AdjustMarkers then
     for I := 1 to FreeShip.NumberOfMarkers do
@@ -7843,13 +7844,16 @@ begin
         Marker.Point[J - 1] := P;
       end;
     end;
-  // Update stations, buttcks and waterlines
+  {// Update stations, buttcks and waterlines
   for I := 1 to FreeShip.NumberofStations do
     FreeShip.Station[I - 1].FPlane.d := FreeShip.Station[I - 1].FPlane.d * ScaleVector.X;
   for I := 1 to FreeShip.NumberofButtocks do
     FreeShip.Buttock[I - 1].FPlane.d := FreeShip.Buttock[I - 1].FPlane.d * ScaleVector.Y;
   for I := 1 to FreeShip.NumberofWaterlines do
     FreeShip.Waterline[I - 1].FPlane.d := FreeShip.Waterline[I - 1].FPlane.d * ScaleVector.Z;
+  }
+  Freeship.InvalidateIntersections;
+
   // Refresh controlpoint data
   FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
   // Reset any present hydrostatic calculations

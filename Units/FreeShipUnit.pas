@@ -1422,6 +1422,7 @@ type
     procedure MouseMove(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
     procedure AdjustRelatedPointsToLinearConstraint(
               Viewport: TFreeViewport; Point: TFreeSubdivisionControlPoint);
+    procedure InvalidateIntersections;
     procedure MouseUp(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);
 
     property MainForm: TForm read FMainForm write FMainForm;

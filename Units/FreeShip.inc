@@ -2365,6 +2365,7 @@ begin
   try
     Surface.DesiredSubdivisionLevel := Ord(Precision) + 1;
     Surface.Rebuild;
+    InvalidateIntersections;
     Draw;
   finally
     if Screen.Cursor <> PrevCursor then
@@ -3642,6 +3643,19 @@ begin
        or(P.LinearConstraintPointB = Point )
         then P.AdjustToLinearConstraint(Viewport); //TODO: consider recursive
     end;
+end;
+
+procedure TFreeShip.InvalidateIntersections;
+var i:integer;
+begin
+    for I := 0 to NumberOfStations-1 do
+      Station[I].Built := false;
+    for I := 0 to NumberOfButtocks-1 do
+      Buttock[I].Built := false;
+    for I := 0 to NumberOfWaterlines-1 do
+      Waterline[I].Built := false;
+    for I := 0 to NumberOfDiagonals-1 do
+      Diagonal[I].Built := false;
 end;
 
 procedure TFreeShip.MouseUp(Viewport: TFreeViewport; Shift: TShiftState; X, Y: integer);

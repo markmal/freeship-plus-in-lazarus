@@ -1179,16 +1179,19 @@ end;
 
 procedure TCustomMDIPanel.MaximizeButtonClick(Sender: TObject);
 begin
+  SetActive(true);
   DoMaximize;
 end;
 
 procedure TCustomMDIPanel.MinimizeButtonClick(Sender: TObject);
 begin
+  SetActive(true);
   DoMinimize;
 end;
 
 procedure TCustomMDIPanel.RestoreButtonClick(Sender: TObject);
 begin
+  SetActive(true);
   DoRestore;
 end;
 

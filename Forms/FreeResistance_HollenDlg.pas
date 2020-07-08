@@ -411,7 +411,8 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeLanguageSupport,
+     FreeLogger, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -519,7 +520,9 @@ var
   FInitDirectory: string;
   FExecDirectory: string;
   FileName: string;
-label
+  OutputStr, ErrorStr, ExecFullName: string;
+  ExitStatus: integer;
+  label
   NewSearch;
 label
   NewSearch1;
@@ -855,11 +858,9 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
 
       FExecDirectory := FFreeship.Preferences.ExecDirectory;
 
-      {$ifndef LCL}
-      WinExec(PChar(FInitDirectory + 'Exec\hollenbh.exe'), 0);
-      {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'HOLLENBH.EXE'), '', []);
-      {$endif}
+      //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'HOLLENBH.EXE'), '', []);
+      ExecFullName := FExecDirectory + DirectorySeparator+'HOLLENBH.EXE';
+      ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
       FileName := 'hollenba.res';
       //  Определяем есть ли файл с результатами расчета HOLLENBA.res. Если TMP5.tsk присутствует значит расчет не закончен
@@ -888,9 +889,9 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
 
 
       Assignfile(FFile, FileName);
-      {$I-}
+      //{$I-}
       Reset(FFile);
-{$I+}
+//{$I+}
       II := 0;
       Chart.Title.Text.Text :=
         Userstring(265) + ' ' + Userstring(1432) + #13 + 'File:' + FileName;
@@ -940,12 +941,11 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         end;
 
         // Запускаем программу расчета
+        //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
+        ExecFullName := FExecDirectory + DirectorySeparator+'SeaMargn.EXE';
+        ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
-      {$ifndef LCL}
-        WinExec(PChar(FInitDirectory + 'Exec\SeaMargn.EXE'), 0);
-      {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
-      {$endif}
+
         FileName := 'OUT.TXT';
         //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
         i := 1;
@@ -972,9 +972,9 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
         end;
 
         Assignfile(FFile, 'OUT.TXT');
-      {$I-}
+      //{$I-}
         Reset(FFile);
-{$I+}
+//{$I+}
         Readln(FFile, Ke_);
         CloseFile(FFile);
         if FileExistsUTF8('OUT.TXT') { *Converted from FileExists* } then
@@ -1008,9 +1008,9 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
     end;
     // Записываем результаты расчета в Resistp.dat для 10 скоростей
     Assignfile(FFile, 'RESISTp.dat');
-         {$I-}
+         //{$I-}
     Rewrite(FFile);
-{$I+}
+//{$I+}
     Writeln(FFile, '#     Nser      Np       Wt        t       Eta_R     Dp');
     Write(FFile, '       52 ');
     Write(FFile, Np: 10: 0);
@@ -1030,9 +1030,9 @@ DP_TA       0.430–0.840 0.655–1.050 0.495–0.860
     CloseFile(FFile);
     // Записываем результаты расчета в Resist.dat для 5 скоростей
     Assignfile(FFile, 'RESIST.dat');
-          {$I-}
+          //{$I-}
     Rewrite(FFile);
-{$I+}
+//{$I+}
 {              Writeln(FFile,'#     Nser      Np       Wt        t       Eta_R');
                Write(FFile,'       52 ');
                Write(FFile,Np:10:0);
@@ -2304,9 +2304,9 @@ begin
   if FileExistsUTF8(PathFileOld + 'TMP5.tsk') { *Converted from FileExists* } then
     DeleteFileUTF8(PChar(PathFile + '\TMP5.tsk')); { *Converted from DeleteFile* }
   Assignfile(FFile, 'TMP5.tsk');
-      {$I-}
+      //{$I-}
   Rewrite(FFile);
-{$I+}
+//{$I+}
   for I := 0 to 29 do
     Writeln(FFile, dat[I]);
   CloseFile(FFile);
@@ -2318,9 +2318,9 @@ var
   ffile: textfile;
 begin
   Assignfile(FFile, 'TMPke.txt');
-      {$I-}
+      //{$I-}
   Rewrite(FFile);
-{$I+}
+//{$I+}
   for I := 0 to 29 do
     Writeln(FFile, dat[I]);
   for I := 0 to 14 do

@@ -461,7 +461,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeLanguageSupport, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -564,7 +564,7 @@ var
   pathFile, FileToFind: string;
   PathFileOld: string;
   FOpenDirectory: string;
-  FExecDirectory: string;
+  FExecDirectory, ExecFullName: string;
   ParamFileName: string = 'fungdata.dat';
   ResultFileName: string = 'fungleib.res';
 label
@@ -843,11 +843,9 @@ begin
         exit;
       end;
 
-      {$ifndef LCL}
-      WinExec(PChar(FInitDirectory + 'Exec\FungLeib.exe'), 0);
-      {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'fungleib.EXE'), '', []);
-      {$endif}
+      //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'fungleib.EXE'), '', []);
+      ExecFullName := FExecDirectory + DirectorySeparator+'fungleib.EXE';
+      ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
       //  Определяем есть ли файл с результатами расчета FUNGLEIB.RES. Если fungdata.dat присутствует значит расчет не закончен
       i := 1;
@@ -873,9 +871,9 @@ begin
 
 
       Assignfile(FFile, ResultFileName);
-      {$I-}
+      //{$I-}
       Reset(FFile);
-{$I+}
+//{$I+}
       II := 0;
       Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1247);
       while (not EOF(FFile)) and (II < 10) do
@@ -887,7 +885,8 @@ begin
           except
             res[I, II] := 0;
           end;
-        if res[6, II] < 0 then
+        if IsNaN(res[6, II]) then continue;
+        if (res[6, II] < 0) then
         begin
           ResultsMemo.Lines.Add(Space(14) + Userstring(487));
           MessageDlg(Userstring(487), mtError, [mbOK], 0);
@@ -932,11 +931,10 @@ begin
 
         // Запускаем программу расчета
 
-      {$ifndef LCL}
-        WinExec(PChar(FInitDirectory + 'Exec\SeaMargn.EXE'), 0);
-      {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
-      {$endif}
+        //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
+        ExecFullName := FExecDirectory + DirectorySeparator+'SeaMargn.EXE';
+        ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+
         FileName := 'OUT.TXT';
         //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
         i := 1;
@@ -961,9 +959,9 @@ begin
         end;
 
         Assignfile(FFile, 'OUT.TXT');
-      {$I-}
+      //{$I-}
         Reset(FFile);
-{$I+}
+//{$I+}
         Readln(FFile, Ke_);
         CloseFile(FFile);
         if FileExistsUTF8('OUT.TXT') { *Converted from FileExists* } then
@@ -995,9 +993,9 @@ begin
     end;
     // Записываем результаты расчета в Resistp.dat для 10 скоростей
     Assignfile(FFile, 'RESISTp.dat');
-         {$I-}
+         //{$I-}
     Rewrite(FFile);
-{$I+}
+//{$I+}
     Writeln(FFile, '#     Nser      Np       Wt        t       Eta_R     Dp');
     Write(FFile, '       54 ');
     Write(FFile, Np: 10: 0);
@@ -1017,9 +1015,9 @@ begin
     CloseFile(FFile);
     // Записываем результаты расчета в Resist.dat для 5 скоростей
     Assignfile(FFile, 'RESIST.dat');
-          {$I-}
+          //{$I-}
     Rewrite(FFile);
-{$I+}
+//{$I+}
     for I := 1 to 5 do
     begin
       if i = 1 then
@@ -1080,6 +1078,8 @@ begin
     begin
       for I := 1 to 10 do
       begin
+        if IsNaN(res[i, II]) then begin ss[i]:='   NaN  | '; continue; end;
+
         if res[i, II] >= 10000 then
           ss[i] := FloatToStrF(res[i, II], ffFixed, 6, 0) + '  | ';
         if (res[i, II] >= 1000) and (res[i, II] < 10000) then
@@ -2255,9 +2255,9 @@ begin
   if FileExistsUTF8(PathFileOld + 'fungdata.res') { *Converted from FileExists* } then
     DeleteFileUTF8(PChar(PathFile + '\fungdata.res')); { *Converted from DeleteFile* }
   Assignfile(FFile, 'fungdata.dat');
-      {$I-}
+      //{$I-}
   Rewrite(FFile);
-{$I+}
+//{$I+}
   for I := 0 to 29 do
     Writeln(FFile, dat[I]);
   CloseFile(FFile);
@@ -2269,9 +2269,9 @@ var
   ffile: textfile;
 begin
   Assignfile(FFile, 'TMPke.txt');
-      {$I-}
+      //{$I-}
   Rewrite(FFile);
-{$I+}
+//{$I+}
   for I := 0 to 29 do
     Writeln(FFile, dat[I]);
   for I := 0 to 14 do

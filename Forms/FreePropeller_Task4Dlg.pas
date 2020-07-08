@@ -210,7 +210,8 @@ implementation
 
 uses FreeLanguageSupport,
   Printers,
-  Math;
+  Math,
+  FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -414,7 +415,7 @@ var
   Mp, Nz, Np: single;
   STR, tmp, SSS: string;
   FileToFind, PathFileOld: string;
-  FExecDirectory: string;
+  FExecDirectory, ExecFullName: string;
   STR_: array[1..70] of string;
   STR0: array[1..30] of string;
 label
@@ -524,11 +525,10 @@ dat16=EtaM
     end;
 
     // Запускаем программу расчета
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec/PropPred.EXE '), 1);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PropPred.EXE'), '', []);
-      {$endif}
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PropPred.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'PropPred.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+
     FileName := 'OUT.';
     //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен
     i := 1;
@@ -756,7 +756,7 @@ end;{TFreePropeller_Task4.Execute}
 procedure TFreePropeller_Task4.ToolButton17Click(Sender: TObject);
 var
   pathFile, FileToFind: string;
-  FExecDirectory: string;
+  FExecDirectory, ExecFullName: string;
   L: boolean;
 begin
   //  Определяем каталог с программой freeship.exe
@@ -767,11 +767,9 @@ begin
   L := SetCurrentDirUTF8(FFreeship.Preferences.TempDirectory);
   { *Converted from SetCurrentDir* }
   // Запускаем программу расчета
-      {$ifndef LCL}
-  WinExec(PChar(FOpenDirectory + 'Engines\dbfview'), 0);
-      {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'DBFview.EXE'), '', []);
-      {$endif}
+  //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'DBFview.EXE'), '', []);
+  ExecFullName := FExecDirectory + DirectorySeparator+'DBFview.EXE';
+  ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
   // Переходим назад в директорию открытого проекта
   L := SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }
   Calculate;

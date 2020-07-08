@@ -471,7 +471,8 @@ var
 
 implementation
 
-uses FreeLogger, FreeLanguageSupport;
+uses FreeLogger, FreeLanguageSupport,
+     FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1979,6 +1980,7 @@ end;{TFreeResistance_Holtr.ToolButton7Click}
 procedure TFreeResistance_Holtr.Calculate;
 var CurDir, ErrMsg:string;
 begin
+  if FFreeShip = nil then exit; // it is called from events before Execute()
   try
     CurDir:=GetCurrentDir;
     try
@@ -2143,6 +2145,8 @@ var
   FExecDirectory: string;
   PathFileOld: string;
   FileName: string;
+  OutputStr, ErrorStr, ExecFullName: string;
+  ExitStatus: integer;
   ffile: textfile;
 label
   NewSearch;
@@ -2316,11 +2320,10 @@ begin
     end;
 
     // Запускаем программу расчета
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\SeaMargn.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
-      {$endif}
+    //ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'SeaMargn.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+
     FileName := 'OUT.TXT';
     //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
     i := 1;
@@ -2433,12 +2436,9 @@ begin
     end;
 
     // Запускаем программу расчета
-
-      {$ifNdef FPC}
-    WinExec(PChar(FInitDirectory + 'Exec/PowerPrd.EXE '), 1);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PowerPrd.EXE'), '', []);
-      {$endif}
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PowerPrd.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'PowerPrd.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     FileName := 'OUT.';
     //  Определяем есть ли файл с результатами расчета OUT. Если IN. присутствует значит расчет не закончен

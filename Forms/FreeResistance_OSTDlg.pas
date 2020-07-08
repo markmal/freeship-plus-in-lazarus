@@ -518,7 +518,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeLanguageSupport, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1882,6 +1882,7 @@ var
   FrLmin, FrLmax, FrVmin, FrVmax: single;
   destInt, I, IMAX: integer;
   L: boolean;
+  ExecFullName: String;
   //label NewCatalogSearch;
 
 begin
@@ -2438,12 +2439,9 @@ begin
   { *Converted from SetCurrentDir* }// переходим в каталог Freeshipa
   File_ExportData(dat, dan);
   // записываем файл данных в каталог Freeshipa
-   {$ifndef LCL}
-  WinExec(PChar(FileToFind + 'Exec/hship.exe'), 0); // запускаем расчет
-   {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FFreeship.Preferences.ExecDirectory + DirectorySeparator+'hship.EXE'),
-    '', []);
-   {$endif}
+  //SysUtils.ExecuteProcess(UTF8ToSys(FFreeship.Preferences.ExecDirectory + DirectorySeparator+'hship.EXE'),'', []);
+  ExecFullName := FFreeship.Preferences.ExecDirectory + DirectorySeparator+'hship.EXE';
+  ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
   L := SetCurrentDirUTF8(PathFile);
   { *Converted from SetCurrentDir* }// возвращаемся в каталог проекта

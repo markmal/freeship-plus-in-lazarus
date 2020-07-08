@@ -2952,7 +2952,7 @@ end;{TFreeEdit.File_Export_AddMass}
 procedure TFreeEdit.File_Execute_AddMass;
 var
   FileToFind: string;
-  FExecDirectory, FTempDirectory, OldDir: string;
+  FExecDirectory, FTempDirectory, OldDir, ExecFullName: string;
 begin
   OldDir := GetCurrentDirUTF8;
   FTempDirectory := FreeShip.Preferences.TempDirectory;
@@ -2983,11 +2983,9 @@ begin
   ShowMessage('        HydroNShIp_AddedMass v1.03'#13#10#13#10 +
     '                      Calculating...'#13#10#13#10 +
     'Copyright (c) 2008-2009, Timoshenko V.F.');
-      {$ifndef LCL}
-  WinExec(PChar(FInitDirectory + 'Exec/Add_Mass.EXE '), 0);
-      {$else}
-  SysUtils.ExecuteProcess(FExecDirectory + DirectorySeparator+'Add_Mass.EXE', '', []);
-      {$endif}
+  //SysUtils.ExecuteProcess(FExecDirectory + DirectorySeparator+'Add_Mass.EXE', '', []);
+  ExecFullName := FExecDirectory + DirectorySeparator+'Add_Mass.EXE';
+  ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
   // may be it needs to wait the out file and to rename it to something meningful?
   SetCurrentDirUTF8(OldDir);
 end;{TFreeEdit.File_Output_AddMass}

@@ -225,7 +225,8 @@ implementation
 
 uses FreeLanguageSupport,
   Printers,
-  Math;
+  Math,
+  FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -459,7 +460,7 @@ var
   PathFileOld: string;
   FOpenDirectory: string;
   FExecDirectory: string;
-  strp: string;
+  strp, ExecFullName: string;
 label
   NewSearch;
 
@@ -711,11 +712,10 @@ begin
       exit;
     end;
 
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\CalcProp.EXE'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
-      {$endif}
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'CALCPROP.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+
 
     FileName := 'RES1.tsk';
     //  Определяем есть ли файл с результатами расчета RES1.tsk. Если TMP1.tsk присутствует значит расчет не закончен
@@ -948,7 +948,7 @@ end;{TFreePropeller_Task1.Execute}
 procedure TFreePropeller_Task1.ToolButton17Click(Sender: TObject);
 var
   pathFile, FileToFind: string;
-  FOpenDirectory, FExecDirectory: string;
+  FOpenDirectory, FExecDirectory, ExecFullName: string;
   L: boolean;
 begin
   // Определяем каталог с программой freeship.exe
@@ -959,11 +959,10 @@ begin
   // Переходим в директорию Freeshipa
   L := SetCurrentDirUTF8(FOpenDirectory); { *Converted from SetCurrentDir* }
   // Запускаем программу расчета
-      {$ifndef LCL}
-  WinExec(PChar(FInitDirectory + 'Exec\dbfview.EXE'), 0);
-      {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'DBFview.EXE'), '', []);
-      {$endif}
+  //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'DBFview.EXE'), '', []);
+  ExecFullName := FExecDirectory + DirectorySeparator+'DBFview.EXE';
+  ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+
   // Переходим назад в директорию открытого проекта
   L := SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }
 end;{TFreePropeller_Task1.ToolButton17Click}

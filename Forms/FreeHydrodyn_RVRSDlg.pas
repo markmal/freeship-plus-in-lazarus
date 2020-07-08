@@ -222,7 +222,8 @@ implementation
 
 uses FreeLanguageSupport,
   Printers,
-  Math;
+  Math,
+  FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -452,7 +453,7 @@ var
   pathFile, FileToFind: string;
   PathFileOld, Str: string;
   FOpenDirectory: string;
-  FExecDirectory: string;
+  FExecDirectory, ExecFullName: string;
 label
   NewSearch;
 begin
@@ -661,11 +662,9 @@ begin
 
     // Запускаем программу расчета
 
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\rvrsship.exe'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RVRSSHIP.EXE'), '', []);
-      {$endif}
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RVRSSHIP.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'RVRSSHIP.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     FileName := 'RVRSRES.dat';
     //  Определяем есть ли файл с результатами расчета RVRSRES.dat. Если TMP4.tsk присутствует значит расчет не закончен

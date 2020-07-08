@@ -217,7 +217,7 @@ var FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv;
 implementation
 
 uses FreeLanguageSupport,
-     Printers;
+     Printers,FreeProcess;
 {$R *.lfm}
 
 
@@ -443,7 +443,7 @@ var Units  : TFreeUnitType;
     Density,Lambda     : single;
     STR                : string;	
     FileToFind         : string;
-    FInitDirectory     : string;
+    FInitDirectory     , ExecFullName: string;
     STR_               : array[1..200] of string;		
     label NewSearch;	
 
@@ -598,11 +598,9 @@ dat20 = 'Rudder Angle [degrees]'
 	  end;		  
 
 // Запускаем программу расчета
-      {$ifndef LCL}
-      WinExec(PChar(FInitDirectory+'Exec/ManeuvPP.EXE '),1);
-      {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys('Exec/ManeuvPP.EXE'), '', []);
-      {$endif}
+      //SysUtils.ExecuteProcess(UTF8ToSys('Exec/ManeuvPP.EXE'), '', []);
+      ExecFullName := FFreeship.Preferences.ExecDirectory + DirectorySeparator+'ManeuvPP.EXE';
+      ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
       FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если INM. присутствует значит расчет не закончен
 

@@ -474,7 +474,7 @@ var
 
 implementation
 
-uses FreeLogger, FreeLanguageSupport;
+uses FreeLogger, FreeLanguageSupport, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -615,6 +615,9 @@ var
   FOpenDirectory: string;
   FExecDirectory: string;
   FileName: string;
+  OutputStr, ErrorStr, ExecFullName: string;
+  ExitStatus: integer;
+
 label
   NewSearch;
 label
@@ -939,32 +942,25 @@ begin
       if Combobox.ItemIndex = 0 then
       begin // Oortmerssen метод
         Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1650);
-      {$ifndef LCL}
-        WinExec(PChar(FInitDirectory + 'Exec\OORTMERS.EXE'), 0);
-      {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'OORTMERS.EXE'),
-          '', []);
-      {$endif}
+        //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'OORTMERS.EXE'),'', []);
+        ExecFullName := FExecDirectory + DirectorySeparator+'OORTMERS.EXE';
+        ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
         Nser := 1;
       end;
       if Combobox.ItemIndex = 1 then
       begin  // Ridgeley-Nevitt метод
         Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1651);
-      {$ifndef LCL}
-        WinExec(PChar(FInitDirectory + 'Exec\RNTSP.exe'), 0);
-      {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RNTSP.EXE'), '', []);
-      {$endif}
+        //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RNTSP.EXE'), '', []);
+        ExecFullName := FExecDirectory + DirectorySeparator+'RNTSP.EXE';
+        ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
         Nser := 2;
       end;
       if Combobox.ItemIndex = 2 then
       begin  // UBC метод
         Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1652);
-      {$ifndef LCL}
-        WinExec(PChar(FInitDirectory + 'Exec\UBCRT.exe'), 0);
-      {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'UBCRT.EXE'), '', []);
-      {$endif}
+        //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'UBCRT.EXE'), '', []);
+        ExecFullName := FExecDirectory + DirectorySeparator+'UBCRT.EXE';
+        ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
         Nser := 3;
       end;
       if Combobox.ItemIndex = 5 then
@@ -1074,12 +1070,10 @@ begin
         end;
 
         // Запускаем программу расчета
+        //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
+        ExecFullName := FExecDirectory + DirectorySeparator+'SeaMargn.EXE';
+        ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
-      {$ifndef LCL}
-        WinExec(PChar(FInitDirectory + 'Exec\SeaMargn.EXE'), 0);
-      {$else}
-        SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'SeaMargn.EXE'), '', []);
-      {$endif}
         FileName := 'OUT.TXT';
         //  Определяем есть ли файл с результатами расчета OUT. Если TMPke.txt присутствует значит расчет не закончен
         i := 1;

@@ -275,10 +275,12 @@ type
     procedure ComboBoxClick(Sender: TObject);
   private
     FFreeship: TFreeship;
+    FTmpFileName: string;
     B_T, L_D, A_D, L_B: single;
     Am, Cm, Cwp, Cb, Z0, Tc: single;
     procedure CalculateResistanceOST(Vs: array of single;
       LCB, Cp: single; var Rf, Rr, w, t0, nr: single);
+    procedure doCalculate;
     function FGetStartSpeed: single;
     procedure FSetStartSpeed(val: single);
     function FGetEndSpeed: single;
@@ -517,7 +519,7 @@ var
 implementation
 
 uses
-  FreeLanguageSupport;
+  FreeLanguageSupport, FreeLogger, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -588,6 +590,36 @@ begin
 end;{TFreeResistance_RBHS.CorrectInputdata}
 
 procedure TFreeResistance_RBHS.Calculate;
+var CurDir, ErrMsg:string;
+begin
+  if FFreeShip = nil then exit; // it is called from events before Execute()
+  try
+    CurDir:=GetCurrentDir;
+    try
+      SetCurrentDir(FFreeShip.Preferences.TempDirectory);
+      doCalculate;
+    except
+      on E:EInOutError do
+        begin
+        ErrMsg := format(
+          'I/O Error(%d): %s'#10'Current dir: %s'#10#10,
+          [E.ErrorCode,FTmpFileName,GetCurrentDirUTF8])
+          +logger.GetExceptionCallStack(E);
+        logger.Error(ErrMsg);
+        ExceptionDlg.Message.Text:=ErrMsg;
+        ExceptionDlg.ShowModal;
+        exit;
+        end;
+      on E:Exception do
+        logger.ShowExceptionCallStack(E);
+    end;
+  finally
+    SetCurrentDir(CurDir);
+  end;
+end;{TFreeResistance_Holtr.Calculate}
+
+
+procedure TFreeResistance_RBHS.doCalculate;
 var
   ConvertedSpeed: single;
   FroudeNumber: single;
@@ -1036,14 +1068,16 @@ begin
     CalculateResistanceOST(Vs, LCB, Cp, Rf, Rr, w, t0, nr);
     sleep(1000);
 
-    FileName := 'ostres.tmp';
+
+    //FileName := 'ostres.tmp';
+    FTmpFileName := FTempDirectory + DirectorySeparator+'ostres.tmp';
     NN := 0;
-    if FileExistsUTF8(FTempDirectory + DirectorySeparator+'ostres.tmp') then
+    if FileExistsUTF8(FTmpFileName) then
     begin
-      AssignFile(FFile, FTempDirectory + DirectorySeparator+'ostres.tmp');
-      {$I-}
+      AssignFile(FFile, FTmpFileName);
+      //{$I-}
       Reset(FFile);
-{$I+}
+      //{$I+}
       Read(FFile, Nser);
       if Nser = 0 then
       begin
@@ -1073,6 +1107,11 @@ begin
       end;
 
       CloseFile(FFile);
+    end
+    else
+    begin
+      ResultsMemo.Lines.Add('Error: Output file not found: '+FTmpFileName);
+      exit;
     end;
 
     // Удаление временных файлов
@@ -1239,9 +1278,9 @@ begin
     Index := 0;
 
     AssignFile(FFile2, FTempDirectory + DirectorySeparator+'Resistp.dat');
-       {$I-}
+    //{$I-}
     Rewrite(FFile2);
-{$I+}
+    //{$I+}
 
     for ispeed := 1 to 10 do
     begin
@@ -1800,6 +1839,7 @@ var
   FrLmin, FrLmax, FrVmin, FrVmax: single;
   destInt, I, IMAX: integer;
   L: boolean;
+  ExecFullName: String;
   //label NewCatalogSearch;
 
 begin
@@ -2146,11 +2186,10 @@ begin
   File_ExportData(dat, dan);
   // записываем файл данных в каталог Freeshipa
 
-   {$ifndef LCL}
-  WinExec(PChar(FileToFind + 'Exec/hship.exe'), 0); // запускаем расчет
-   {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'hship.EXE'), '', []);
-   {$endif}
+  //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'hship.EXE'), '', []);
+  ExecFullName := FExecDirectory + DirectorySeparator+'hship.EXE';
+  ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+
   L := SetCurrentDir(PathFile);
   // возвращаемся в каталог проекта
   //      ResultsMemo.Lines.Add('PathFile='+PathFile);
@@ -2168,9 +2207,9 @@ begin
     DeleteFileUTF8(FFreeship.Preferences.TempDirectory + DirectorySeparator+'ostdat.tmp');
 
   Assignfile(FFile, FFreeship.Preferences.TempDirectory + DirectorySeparator+'ostdat.tmp');
-      {$I-}
+  //{$I-}
   Rewrite(FFile);
-{$I+}
+  //{$I+}
   for I := 0 to 29 do
     Writeln(FFile, dat[I]);
   for I := 0 to 24 do

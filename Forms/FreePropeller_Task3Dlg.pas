@@ -239,7 +239,7 @@ var
 implementation
 
 uses FreeLanguageSupport,
-  Printers;
+  Printers, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -481,7 +481,7 @@ var
   PathFileOld: string;
   FOpenDirectory: string;
   FExecDirectory: string;
-  strp: string;
+  strp, ExecFullName: string;
 label
   NewSearch;
 begin
@@ -714,11 +714,9 @@ begin
       exit;
     end;
 
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\CalcProp.exe 3'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
-      {$endif}
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'CALCPROP.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     FileName := 'RES3.tsk';
     //  Определяем есть ли файл с результатами расчета RES3.tsk. Если TMP3.tsk присутствует значит расчет не закончен

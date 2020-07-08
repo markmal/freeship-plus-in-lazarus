@@ -267,7 +267,7 @@ implementation
 
 uses FreeLanguageSupport,
   Printers,
-  Math;
+  Math, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -591,7 +591,7 @@ var
   PathFileOld: string;
   FOpenDirectory: string;
   FExecDirectory: string;
-  strp: string;
+  strp, ExecFullName: string;
 label
   NewSearch;
 label
@@ -873,11 +873,9 @@ begin
       exit;
     end;
 
-      {$ifndef LCL}
-    WinExec(PChar(FInitDirectory + 'Exec\CalcProp.exe 2'), 0);
-      {$else}
-    SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
-      {$endif}
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CALCPROP.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'CALCPROP.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     FileName := 'RES2.tsk';
     //  Определяем есть ли файл с результатами расчета RES2.tsk. Если TMP2.tsk присутствует значит расчет не закончен

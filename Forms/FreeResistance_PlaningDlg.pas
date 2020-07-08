@@ -264,7 +264,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport, Process;
+uses FreeLanguageSupport, FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -494,7 +494,7 @@ var
   ResRd_: array[1..16] of single;
   ResRt_: array[1..16] of single;
   ResBe2: array[1..16] of single;
-  FInitDirectory, tmpDir, OutputStr, ExecFullName: string;
+  FInitDirectory, tmpDir, OutputStr, ErrorStr, ExecFullName: string;
   ExitStatus: integer;
 const
   FrBc: array[1..10] of single = (2.3, 2.9, 3.5, 4.0, 4.5, 5.5, 6.0, 7.0, 9.2, 111);
@@ -1364,11 +1364,7 @@ begin
 
     ExecFullName := FExecDirectory + DirectorySeparator+'CLEMPOUP.EXE';
     //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CLEMPOUP.EXE'), '', []);
-    RunCommandIndir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
-        OutputStr, ExitStatus, []);
-    logger.Info('Output of '+ExecFullName);
-    logger.Info(OutputStr);
-    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     ResultFileName := 'clempoup.RES';
     i := 1;
@@ -1394,9 +1390,9 @@ begin
     if FileExistsUTF8(ResultFileName) { *Converted from FileExists* } then
     begin
       Assignfile(FFile, ResultFileName);
-      {$I-}
+      //{$I-}
       Reset(FFile);
-      {$I+}
+      //{$I+}
       Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1373);
       for I := 1 to 10 do
       begin
@@ -1521,11 +1517,7 @@ begin
 
     //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'CLEMBLOU.EXE'), '', []);
     ExecFullName := FExecDirectory + DirectorySeparator+'CLEMBLOU.EXE';
-    RunCommandIndir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
-        OutputStr, ExitStatus, []);
-    logger.Info('Output of '+ExecFullName);
-    logger.Info(OutputStr);
-    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     ResultFileName := 'clemblou.res';
     i := 1;
@@ -1550,9 +1542,9 @@ begin
     end;
 
     Assignfile(FFile, ResultFileName);
-    {$I-}
+    //{$I-}
     Reset(FFile);
-    {$I+}
+    //{$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1374);
     for I := 1 to 7 do
     begin
@@ -1702,11 +1694,7 @@ begin
 
     //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'BUNKOV.EXE'), '', []);
     ExecFullName := FExecDirectory + DirectorySeparator+'BUNKOV.EXE';
-    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
-        OutputStr, ExitStatus, []);
-    logger.Info('Output of '+ExecFullName);
-    logger.Info(OutputStr);
-    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     ResultFileName := 'bunkov00.res';
     i := 1;
@@ -1732,9 +1720,9 @@ begin
 
 
     Assignfile(FFile, ResultFileName);
-    {$I-}
+    //{$I-}
     Reset(FFile);
-    {$I+}
+    //{$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1399);
     for I := 1 to 16 do
     begin
@@ -1857,11 +1845,7 @@ begin
     //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'COMPTON.EXE'), '', []);
 
     ExecFullName := FExecDirectory + DirectorySeparator+'COMPTON.EXE';
-    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
-        OutputStr, ExitStatus, []);
-    logger.Info('Output of '+ExecFullName);
-    logger.Info(OutputStr);
-    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     ResultFileName := 'Compton0.res';
     i := 1;
@@ -1887,9 +1871,9 @@ begin
 
 
    Assignfile(FFile, ResultFileName);
-   {$I-}
+   //{$I-}
     Reset(FFile);
-   {$I+}
+   //{$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1494);
     for I := 1 to 11 do
     begin
@@ -2007,11 +1991,7 @@ begin
 
     //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'WOLFSON.EXE'), '', []);
     ExecFullName := FExecDirectory + DirectorySeparator+'WOLFSON.EXE';
-    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
-        OutputStr, ExitStatus, []);
-    logger.Info('Output of '+ExecFullName);
-    logger.Info(OutputStr);
-    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     ResultFileName := 'Wolfson0.res';
     i := 1;
@@ -2037,9 +2017,9 @@ begin
     end;
 
    Assignfile(FFile, ResultFileName);
-   {$I-}
+   //{$I-}
     Reset(FFile);
-   {$I+}
+   //{$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1497);
     for I := 1 to 10 do
     begin
@@ -2168,11 +2148,7 @@ begin
 
     //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'RADOJCIC.EXE'), '', []);
     ExecFullName := FExecDirectory + DirectorySeparator+'RADOJCIC.EXE';
-    RunCommandInDir(FFreeship.Preferences.TempDirectory, ExecFullName, [],
-        OutputStr, ExitStatus, []);
-    logger.Info('Output of '+ExecFullName);
-    logger.Info(OutputStr);
-    logger.Info('ExitStatus '+IntToStr(ExitStatus));
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
     ResultFileName := 'Radojcic.res';
     i := 1;
@@ -2197,9 +2173,9 @@ begin
     end;
 
     Assignfile(FFile, ResultFileName);
-    {$I-}
+    //{$I-}
     Reset(FFile);
-    {$I+}
+    //{$I+}
     Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(1578);
     for I := 1 to 8 do
     begin
@@ -2302,9 +2278,9 @@ begin
   tmpDir := FFreeship.Preferences.TempDirectory + DirectorySeparator;
 
   Assignfile(FFile, tmpDir+'RESISTp.dat');
-  {$I-}
+  ////{$I-}
   Rewrite(FFile);
-  {$I+}
+  ////{$I+}
   Writeln(FFile, '#     Nser      Np       Wt        t       Eta_R     Dp');
   Write(FFile, Nser: 10: 0);
   Write(FFile, Np: 10: 0);
@@ -2315,7 +2291,7 @@ begin
   Writeln(FFile, '#      Vs       Rt        Rte       Pe       Pee');
   for ii := 2 to 16 do
   begin
-    if (resVs[II] > 0) and (resVs[II] <= Speed + 0.1) then
+    if not IsNaN(resVs[II]) and (resVs[II] > 0) and (resVs[II] <= Speed + 0.1) then
     begin
       Imax := ii;
       Rt_max := resRt[II];
@@ -2328,9 +2304,9 @@ begin
   end;
   CloseFile(FFile);
   Assignfile(FFile, tmpDir+'RESIST.dat');
-  {$I-}
+  //{$I-}
   Rewrite(FFile);
-  {$I+}
+  //{$I+}
   for ii := Imax - 3 to Imax do
   begin
     Write(FFile, resVs[II]: 10: 2);
@@ -2466,7 +2442,7 @@ begin
           Ct := Ct * 1000;
       end;
       if Ct <= 0 then
-        exit;
+        continue;
       //    ResultsMemo.Lines.Add(Space(10)+' Rt   = '+FloatToStrF(Rt,ffFixed,6,3));
       //    ResultsMemo.Lines.Add(Space(10)+' Ro   = '+FloatToStrF(Ro,ffFixed,6,3));
       ResultsMemo.Lines.Add(Space(10) + ' Nwj          = ' + FloatToStrF(Nwj, ffFixed, 6, 0));
@@ -2478,6 +2454,12 @@ begin
         Ct + 0.2336918;
       //    ResultsMemo.Lines.Add(Space(10)+'lg(Cp)= '+FloatToStrF(Cpw,ffFixed,6,3));
       Cpw := power(10, Cpw) * 1.06;
+      ResultsMemo.Lines.Add(Space(10) + ' Cp           = ' + FloatToStrF(Cpw, ffFixed, 6, 3));
+      if Cpw = 0 then
+      begin
+        ResultsMemo.Lines.Add(Space(10) + ' Problem: Cp = 0');
+        continue;
+      end;
       Ne := Cpw * Ro * 0.0177 * Power(Speed * 0.51444, 3);
       // Расчет частоты
       n9 := power(Ne / 736 / (332.94798 / power(2992.278 / 60, 3)), 0.3333);
@@ -2491,7 +2473,6 @@ begin
         EtaW := EtaW * 4.448222;
       if Combobox.ItemIndex = 2 then
         EtaW := EtaW * 1000;
-      ResultsMemo.Lines.Add(Space(10) + ' Cp           = ' + FloatToStrF(Cpw, ffFixed, 6, 3));
       ResultsMemo.Lines.Add(Space(10) + ' EtaW         = ' + FloatToStrF(Etaw, ffFixed, 6, 3));
       ResultsMemo.Lines.Add(Space(10) + ' Power (P)    = ' + FloatToStrF(
         Ne / 1000, ffFixed, 6, 2) + ' ' + Userstring(325) + ' = ' + FloatToStrF(
@@ -2954,9 +2935,9 @@ begin
   if FileExistsUTF8('clempoup.dat') { *Converted from FileExists* } then
     DeleteFileUTF8('clempoup.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'clempoup.dat');
- {$I-}
+ //{$I-}
   Rewrite(FFile);
- {$I+}
+ //{$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -2977,9 +2958,9 @@ begin
   if FileExistsUTF8('clemblou.dat') { *Converted from FileExists* } then
     DeleteFileUTF8('clemblou.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'clemblou.dat');
- {$I-}
+ //{$I-}
   Rewrite(FFile);
- {$I+}
+ //{$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -2995,9 +2976,9 @@ begin
   if FileExistsUTF8('bunkdata.dat') { *Converted from FileExists* } then
     DeleteFileUTF8('bunkdata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'bunkdata.dat');
- {$I-}
+ //{$I-}
   Rewrite(FFile);
- {$I+}
+ //{$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -3013,9 +2994,9 @@ begin
   if FileExistsUTF8('cmptdata.dat') { *Converted from FileExists* } then
     DeleteFileUTF8('cmptdata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'cmptdata.dat');
-  {$I-}
+  //{$I-}
   Rewrite(FFile);
-  {$I+}
+  //{$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -3031,9 +3012,9 @@ begin
   if FileExistsUTF8('wolfdata.dat') { *Converted from FileExists* } then
     DeleteFileUTF8('wolfdata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'wolfdata.dat');
- {$I-}
+ //{$I-}
   Rewrite(FFile);
- {$I+}
+ //{$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);
@@ -3049,9 +3030,9 @@ begin
   if FileExistsUTF8('radodata.dat') { *Converted from FileExists* } then
     DeleteFileUTF8('radodata.dat'); { *Converted from DeleteFile* }
   Assignfile(FFile, 'radodata.dat');
- {$I-}
+ //{$I-}
   Rewrite(FFile);
- {$I+}
+ //{$I+}
   for I := 0 to 9 do
   begin
     Writeln(FFile, dat[I]);

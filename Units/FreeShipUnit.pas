@@ -1596,7 +1596,8 @@ uses Math,
   EnterThemeNameDlg,
   Main,
   freehullformwindow_panel,
-  FreeGridDlg;
+  FreeGridDlg,
+  FreeProcess;
 
 {$I FreeShipUnit_Functions.inc}
 {$I FreeUndoObject.inc}

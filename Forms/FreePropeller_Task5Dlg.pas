@@ -167,7 +167,8 @@ implementation
 
 uses FreeLanguageSupport,
   Printers,
-  Math;
+  Math,
+  FreeProcess;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -354,9 +355,11 @@ dat7=Velocity Vp
 
     // Запускаем программу расчета
     if Combobox.ItemIndex = 0 then
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PROPOL.EXE'), '', [])
-    else
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'fppcalc.EXE'), '', []);
+      //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'PROPOL.EXE'), '', [])
+      ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, FExecDirectory + DirectorySeparator+'PROPOL.EXE')
+     else
+      //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory + DirectorySeparator+'fppcalc.EXE'), '', []);
+      ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, FExecDirectory + DirectorySeparator+'fppcalc.EXE');
 
     FileName := 'OUT.';
 
@@ -650,7 +653,7 @@ end;{TFreePropeller_Task5.Execute}
 procedure TFreePropeller_Task5.ToolButton17Click(Sender: TObject);
 var
   pathFile, FileToFind: string;
-  FOpenDirectory: string;
+  FOpenDirectory, ExecFullName: string;
   L: boolean;
 begin
   //  Определяем каталог с программой freeship.exe
@@ -660,11 +663,9 @@ begin
   // Переходим в директорию Freeshipa
   L := SetCurrentDirUTF8(FOpenDirectory); { *Converted from SetCurrentDir* }
   // Запускаем программу расчета
-      {$ifndef LCL}
-  WinExec(PChar(FOpenDirectory + 'Engines\dbfview'), 0);
-      {$else}
-  SysUtils.ExecuteProcess(UTF8ToSys('Exec/DBFview.EXE'), '', []);
-      {$endif}
+  //SysUtils.ExecuteProcess(UTF8ToSys('Exec/DBFview.EXE'), '', []);
+  ExecFullName := FFreeship.Preferences.ExecDirectory + DirectorySeparator+'DBFview.EXE';
+  ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
   // Переходим назад в директорию открытого проекта
   L := SetCurrentDirUTF8(PathFile); { *Converted from SetCurrentDir* }

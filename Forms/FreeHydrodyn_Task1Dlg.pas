@@ -178,7 +178,8 @@ implementation
 
 uses FreeLanguageSupport,
      Printers,
-     Math;
+     Math,
+     FreeProcess;
 {$IFnDEF FPC}
   {$R *.dfm}
 {$ELSE}
@@ -330,7 +331,7 @@ var Units  : TFreeUnitType;
     Density,Lambda     : single;
     STR,tmp            : string;	
     FileToFind, PathFileOld         : string;
-    FExecDirectory     : string;
+    FExecDirectory     , ExecFullName: string;
     STR_               : array[1..70] of string;
     STR0               : array[1..10] of string;			
     label NewSearch;	
@@ -418,12 +419,11 @@ begin
 		exit;
 	  end;		  
 
-// Запускаем программу расчета
-      {$ifndef LCL}
-      WinExec(PChar(FInitDirectory+'Exec/Ishercof.EXE'),0);
-      {$else}
-      SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+DirectorySeparator+'Ishercof.EXE'), '', []);
-      {$endif}
+      // Запускаем программу расчета
+      //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+DirectorySeparator+'Ishercof.EXE'), '', []);
+      ExecFullName := FExecDirectory + DirectorySeparator+'Ishercof.EXE';
+      ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+
       FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен
       i:=1;

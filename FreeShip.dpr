@@ -353,7 +353,8 @@ begin
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
 
    {$IFNDEF CREATE_TRANSLATION}
-   LoadLanguage(Mainform.Freeship.Preferences.LanguageFile);
+   LoadLanguage(Mainform.Freeship.Preferences.Language,
+                Mainform.Freeship.Preferences.LanguageFile);
    {$ENDIF}
    ShowTranslatedValues(Mainform);
    Mainform.FFileName:=sOpenFile;

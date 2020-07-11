@@ -104,12 +104,12 @@ type
     Estimate3Box: TCheckBox;
     Estimate4Box: TCheckBox;
     EstimateBox: TCheckBox;
-    GeneralPanel1: TPanel;
-    GeneralPanel2: TPanel;
-    GeneralPanel3: TPanel;
     GroupBox1: TGroupBox;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
+    GeneralPanel1: TPanel;
+    GeneralPanel2: TPanel;
+    GeneralPanel3: TPanel;
     K1Box: TFloatSpinEdit;
     K2Box: TFloatSpinEdit;
     K3Box: TFloatSpinEdit;
@@ -197,6 +197,8 @@ type
     Label_16: TLabel;
     RudderAreaBox: TFloatSpinEdit;
     RudderChordLengthbox: TFloatSpinEdit;
+    Splitter1: TSplitter;
+    Splitter2: TSplitter;
     StartSpeedBox: TFloatSpinEdit;
     StepSpeedBox: TFloatSpinEdit;
     ViscosityBox: TFloatSpinEdit;
@@ -246,6 +248,7 @@ type
     procedure File_ExportData84(dat, dan: array of single);
 
     procedure CheckBox2Click(Sender: TObject);
+    procedure Splitter1Moved(Sender: TObject);
     procedure tbCloseSaveClick(Sender: TObject);
     procedure tbCloseClick(Sender: TObject);
     procedure tbCalculateClick(Sender: TObject);
@@ -1965,6 +1968,11 @@ begin
     DraftTotalBoxAfterSetValue(self);
   end;
 end;{TFreeResistance_Holtr.CheckBox2Click}
+
+procedure TFreeResistance_Holtr.Splitter1Moved(Sender: TObject);
+begin
+  Panel1.AutoSize:=false;
+end;
 
 procedure TFreeResistance_Holtr.tbCloseSaveClick(Sender: TObject);
 begin

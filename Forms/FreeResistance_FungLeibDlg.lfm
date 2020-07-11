@@ -7,7 +7,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
   ClientHeight = 740
   ClientWidth = 1200
   Position = poScreenCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.8.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 716
@@ -20,14 +20,14 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 683
+      ClientHeight = 672
       ClientWidth = 1194
       ParentFont = False
       object Panel1: TPanel
         Left = 0
-        Height = 683
+        Height = 672
         Top = 0
-        Width = 562
+        Width = 668
         Align = alLeft
         AutoSize = True
         BevelOuter = bvLowered
@@ -36,30 +36,30 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
         ChildSizing.VerticalSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 683
-        ClientWidth = 562
+        ClientHeight = 672
+        ClientWidth = 668
         ParentColor = False
         ParentFont = False
         TabOrder = 0
         object GroupBox1: TGroupBox
           Left = 10
-          Height = 121
+          Height = 160
           Top = 10
-          Width = 541
+          Width = 647
           AutoSize = True
           Caption = 'General'
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 104
-          ClientWidth = 537
+          ClientHeight = 132
+          ClientWidth = 643
           ParentFont = False
           TabOrder = 0
           object GeneralPanel1: TPanel
             Left = 0
-            Height = 104
+            Height = 132
             Top = 0
-            Width = 219
+            Width = 288
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -68,29 +68,30 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 104
-            ClientWidth = 219
+            ClientHeight = 132
+            ClientWidth = 288
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
               Left = 10
-              Height = 30
+              Height = 36
               Top = 10
-              Width = 71
+              Width = 100
               Caption = 'Start speed'
               Constraints.MaxWidth = 120
+              Constraints.MinWidth = 100
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
               WordWrap = True
             end
             object StartSpeedBox: TFloatSpinEdit
-              Left = 87
-              Height = 30
+              Left = 116
+              Height = 36
               Top = 10
-              Width = 60
+              Width = 70
               Alignment = taRightJustify
-              Constraints.MinWidth = 60
+              Constraints.MinWidth = 70
               DecimalPlaces = 1
               MaxValue = 1050
               MinValue = 0
@@ -100,10 +101,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               Value = 0
             end
             object _Label31: TLabel
-              Left = 153
-              Height = 30
+              Left = 192
+              Height = 36
               Top = 10
-              Width = 16
+              Width = 22
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
@@ -111,9 +112,9 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label2: TLabel
               Left = 10
-              Height = 25
-              Top = 42
-              Width = 71
+              Height = 36
+              Top = 48
+              Width = 100
               Caption = 'End speed '
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -122,10 +123,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               WordWrap = True
             end
             object EndSpeedBox: TFloatSpinEdit
-              Left = 87
-              Height = 25
-              Top = 42
-              Width = 60
+              Left = 116
+              Height = 36
+              Top = 48
+              Width = 70
               Alignment = taRightJustify
               Constraints.MinWidth = 60
               DecimalPlaces = 1
@@ -137,10 +138,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               Value = 0
             end
             object _Label32: TLabel
-              Left = 153
-              Height = 25
-              Top = 42
-              Width = 16
+              Left = 192
+              Height = 36
+              Top = 48
+              Width = 22
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
@@ -148,9 +149,9 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label3: TLabel
               Left = 10
-              Height = 25
-              Top = 69
-              Width = 71
+              Height = 36
+              Top = 86
+              Width = 100
               Caption = 'Step'
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -159,10 +160,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               WordWrap = True
             end
             object StepSpeedBox: TFloatSpinEdit
-              Left = 87
-              Height = 25
-              Top = 69
-              Width = 60
+              Left = 116
+              Height = 36
+              Top = 86
+              Width = 70
               Alignment = taRightJustify
               Constraints.MinWidth = 60
               DecimalPlaces = 1
@@ -174,10 +175,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               Value = 0
             end
             object _Label33: TLabel
-              Left = 153
-              Height = 25
-              Top = 69
-              Width = 16
+              Left = 192
+              Height = 36
+              Top = 86
+              Width = 22
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
@@ -185,10 +186,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
           end
           object GeneralPanel2: TPanel
-            Left = 219
-            Height = 104
+            Left = 288
+            Height = 132
             Top = 0
-            Width = 318
+            Width = 355
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -197,15 +198,15 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 104
-            ClientWidth = 318
+            ClientHeight = 132
+            ClientWidth = 355
             ParentFont = False
             TabOrder = 1
             object Label4: TLabel
               Left = 10
-              Height = 25
+              Height = 52
               Top = 10
-              Width = 90
+              Width = 76
               Caption = 'Water density'
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -214,8 +215,8 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               WordWrap = True
             end
             object DensityBox: TFloatSpinEdit
-              Left = 106
-              Height = 25
+              Left = 92
+              Height = 52
               Top = 10
               Width = 80
               Alignment = taRightJustify
@@ -228,10 +229,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               Value = 0
             end
             object Label34: TLabel
-              Left = 192
-              Height = 25
+              Left = 178
+              Height = 52
               Top = 10
-              Width = 76
+              Width = 103
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -239,9 +240,9 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label5: TLabel
               Left = 10
-              Height = 25
-              Top = 37
-              Width = 90
+              Height = 36
+              Top = 64
+              Width = 76
               Caption = 'Viscosity'
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -250,9 +251,9 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               WordWrap = True
             end
             object ViscosityBox: TFloatSpinEdit
-              Left = 106
-              Height = 25
-              Top = 37
+              Left = 92
+              Height = 36
+              Top = 64
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -265,10 +266,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               Value = 0
             end
             object _Label36: TLabel
-              Left = 192
-              Height = 25
-              Top = 37
-              Width = 76
+              Left = 178
+              Height = 36
+              Top = 64
+              Width = 103
               Caption = '*10-6  m2/s'
               Layout = tlCenter
               ParentColor = False
@@ -278,21 +279,21 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
         end
         object GroupBox2: TGroupBox
           Left = 10
-          Height = 459
-          Top = 141
-          Width = 541
+          Height = 616
+          Top = 180
+          Width = 647
           Caption = 'Hull'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 442
-          ClientWidth = 537
+          ClientHeight = 588
+          ClientWidth = 643
           ParentFont = False
           TabOrder = 1
           object Panel7: TPanel
             Left = 0
-            Height = 41
+            Height = 48
             Top = 0
-            Width = 537
+            Width = 643
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -301,15 +302,15 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 41
-            ClientWidth = 537
+            ClientHeight = 48
+            ClientWidth = 643
             ParentFont = False
             TabOrder = 0
             object CheckBox2: TCheckBox
               Left = 10
-              Height = 21
+              Height = 28
               Top = 10
-              Width = 215
+              Width = 285
               Caption = 'Extract data from current hull'
               OnClick = CheckBox2Click
               ParentFont = False
@@ -318,9 +319,9 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
           end
           object Panel3: TPanel
             Left = 0
-            Height = 153
-            Top = 41
-            Width = 537
+            Height = 208
+            Top = 48
+            Width = 643
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -328,15 +329,15 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 153
-            ClientWidth = 537
+            ClientHeight = 208
+            ClientWidth = 643
             ParentFont = False
             TabOrder = 1
             object GeneralPanel3: TPanel
               Left = 10
-              Height = 153
+              Height = 208
               Top = 0
-              Width = 224
+              Width = 273
               AutoSize = True
               BevelOuter = bvNone
               ChildSizing.TopBottomSpacing = 10
@@ -344,23 +345,23 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 3
-              ClientHeight = 153
-              ClientWidth = 224
+              ClientHeight = 208
+              ClientWidth = 273
               ParentFont = False
               TabOrder = 0
               object Label23: TLabel
                 Left = 0
-                Height = 25
+                Height = 36
                 Top = 10
-                Width = 109
+                Width = 152
                 Caption = 'Length waterline'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object LwlBox: TFloatSpinEdit
-                Left = 115
-                Height = 25
+                Left = 158
+                Height = 36
                 Top = 10
                 Width = 80
                 Alignment = taRightJustify
@@ -374,10 +375,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label8: TLabel
-                Left = 201
-                Height = 25
+                Left = 244
+                Height = 36
                 Top = 10
-                Width = 23
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -385,18 +386,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
               object Label22: TLabel
                 Left = 0
-                Height = 25
-                Top = 37
-                Width = 109
+                Height = 36
+                Top = 48
+                Width = 152
                 Caption = 'Beam waterline '
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object BwlBox: TFloatSpinEdit
-                Left = 115
-                Height = 25
-                Top = 37
+                Left = 158
+                Height = 36
+                Top = 48
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -408,10 +409,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label9: TLabel
-                Left = 201
-                Height = 25
-                Top = 37
-                Width = 23
+                Left = 244
+                Height = 36
+                Top = 48
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -419,18 +420,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
               object Label20: TLabel
                 Left = 0
-                Height = 25
-                Top = 64
-                Width = 109
+                Height = 36
+                Top = 86
+                Width = 152
                 Caption = 'Midship draft'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object DraftTotalBox: TFloatSpinEdit
-                Left = 115
-                Height = 25
-                Top = 64
+                Left = 158
+                Height = 36
+                Top = 86
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -443,10 +444,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label10: TLabel
-                Left = 201
-                Height = 25
-                Top = 64
-                Width = 23
+                Left = 244
+                Height = 36
+                Top = 86
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -454,18 +455,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
               object Label21: TLabel
                 Left = 0
-                Height = 25
-                Top = 91
-                Width = 109
+                Height = 36
+                Top = 124
+                Width = 152
                 Caption = 'Different'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object DraftBox: TFloatSpinEdit
-                Left = 115
-                Height = 25
-                Top = 91
+                Left = 158
+                Height = 36
+                Top = 124
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -478,10 +479,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label11: TLabel
-                Left = 201
-                Height = 25
-                Top = 91
-                Width = 23
+                Left = 244
+                Height = 36
+                Top = 124
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -489,18 +490,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
               object Label13: TLabel
                 Left = 0
-                Height = 25
-                Top = 118
-                Width = 109
+                Height = 36
+                Top = 162
+                Width = 152
                 Caption = 'Wetted surface'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object WettedSurfacebox: TFloatSpinEdit
-                Left = 115
-                Height = 25
-                Top = 118
+                Left = 158
+                Height = 36
+                Top = 162
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -512,10 +513,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label12: TLabel
-                Left = 201
-                Height = 25
-                Top = 118
-                Width = 23
+                Left = 244
+                Height = 36
+                Top = 162
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -523,10 +524,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
             end
             object Panel2: TPanel
-              Left = 242
-              Height = 153
+              Left = 291
+              Height = 208
               Top = 0
-              Width = 285
+              Width = 342
               AutoSize = True
               BevelOuter = bvNone
               ChildSizing.LeftRightSpacing = 10
@@ -535,23 +536,23 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 3
-              ClientHeight = 153
-              ClientWidth = 285
+              ClientHeight = 208
+              ClientWidth = 342
               ParentFont = False
               TabOrder = 1
               object Label27: TLabel
                 Left = 10
-                Height = 25
+                Height = 36
                 Top = 10
-                Width = 150
+                Width = 201
                 Caption = 'Length over surface'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object LoSbox: TFloatSpinEdit
-                Left = 166
-                Height = 25
+                Left = 217
+                Height = 36
                 Top = 10
                 Width = 80
                 Alignment = taRightJustify
@@ -564,10 +565,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label14: TLabel
-                Left = 252
-                Height = 25
+                Left = 303
+                Height = 36
                 Top = 10
-                Width = 23
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -575,18 +576,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
               object Label26: TLabel
                 Left = 10
-                Height = 25
-                Top = 37
-                Width = 150
+                Height = 36
+                Top = 48
+                Width = 201
                 Caption = 'Displacement'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object DisplacementBox: TFloatSpinEdit
-                Left = 166
-                Height = 25
-                Top = 37
+                Left = 217
+                Height = 36
+                Top = 48
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -598,10 +599,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label15: TLabel
-                Left = 252
-                Height = 25
-                Top = 37
-                Width = 23
+                Left = 303
+                Height = 36
+                Top = 48
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -609,18 +610,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
               object Label25: TLabel
                 Left = 10
-                Height = 25
-                Top = 64
-                Width = 150
+                Height = 36
+                Top = 86
+                Width = 201
                 Caption = 'LCB'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object LCBBox: TFloatSpinEdit
-                Left = 166
-                Height = 25
-                Top = 64
+                Left = 217
+                Height = 36
+                Top = 86
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -633,10 +634,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object _Label16: TLabel
-                Left = 252
-                Height = 25
-                Top = 64
-                Width = 23
+                Left = 303
+                Height = 36
+                Top = 86
+                Width = 29
                 Caption = '[%]'
                 Layout = tlCenter
                 ParentColor = False
@@ -644,18 +645,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               end
               object Label24: TLabel
                 Left = 10
-                Height = 25
-                Top = 91
-                Width = 150
+                Height = 36
+                Top = 124
+                Width = 201
                 Caption = 'Prismatic coefficient '
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object CpBox: TFloatSpinEdit
-                Left = 166
-                Height = 25
-                Top = 91
+                Left = 217
+                Height = 36
+                Top = 124
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -668,27 +669,27 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
                 Value = 0
               end
               object Label18: TLabel
-                Left = 252
-                Height = 25
-                Top = 91
-                Width = 23
+                Left = 303
+                Height = 36
+                Top = 124
+                Width = 29
                 ParentColor = False
                 ParentFont = False
               end
               object Label8: TLabel
                 Left = 10
-                Height = 25
-                Top = 118
-                Width = 150
+                Height = 36
+                Top = 162
+                Width = 201
                 Caption = 'Exploitation coefficient'
                 Layout = tlCenter
                 ParentColor = False
                 ParentFont = False
               end
               object KeBox: TFloatSpinEdit
-                Left = 166
-                Height = 25
-                Top = 118
+                Left = 217
+                Height = 36
+                Top = 162
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -703,9 +704,9 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
           end
           object Panel9: TPanel
             Left = 0
-            Height = 41
-            Top = 194
-            Width = 537
+            Height = 48
+            Top = 256
+            Width = 643
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -714,25 +715,25 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 41
-            ClientWidth = 537
+            ClientHeight = 48
+            ClientWidth = 643
             ParentFont = False
             TabOrder = 2
             object EstimateBox: TCheckBox
               Left = 10
-              Height = 21
+              Height = 28
               Top = 10
-              Width = 110
+              Width = 139
               Caption = 'Use estimate'
               OnClick = EstimateBoxClick
               ParentFont = False
               TabOrder = 0
             end
             object Estimate2Box: TCheckBox
-              Left = 126
-              Height = 21
+              Left = 155
+              Height = 28
               Top = 10
-              Width = 119
+              Width = 151
               Caption = 'Use calculated'
               OnClick = Estimate2BoxClick
               ParentFont = False
@@ -741,9 +742,9 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
           end
           object Panel10: TPanel
             Left = 0
-            Height = 207
-            Top = 235
-            Width = 537
+            Height = 284
+            Top = 304
+            Width = 643
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
             ChildSizing.TopBottomSpacing = 10
@@ -751,23 +752,23 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 207
-            ClientWidth = 537
+            ClientHeight = 284
+            ClientWidth = 643
             ParentFont = False
             TabOrder = 3
             object Label9: TLabel
               Left = 10
-              Height = 25
+              Height = 36
               Top = 10
-              Width = 196
+              Width = 264
               Caption = 'Wetted transom area, m2'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object BABox: TFloatSpinEdit
-              Left = 212
-              Height = 25
+              Left = 280
+              Height = 36
               Top = 10
               Width = 80
               Alignment = taRightJustify
@@ -782,18 +783,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label10: TLabel
               Left = 10
-              Height = 25
-              Top = 37
-              Width = 196
+              Height = 36
+              Top = 48
+              Width = 264
               Caption = '1/2 entrance angle, degr'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object KBulbBox: TFloatSpinEdit
-              Left = 212
-              Height = 25
-              Top = 37
+              Left = 280
+              Height = 36
+              Top = 48
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
@@ -806,18 +807,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label11: TLabel
               Left = 10
-              Height = 25
-              Top = 64
-              Width = 196
+              Height = 36
+              Top = 86
+              Width = 264
               Caption = 'Transom beam, m'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object ZBulbBox: TFloatSpinEdit
-              Left = 212
-              Height = 25
-              Top = 64
+              Left = 280
+              Height = 36
+              Top = 86
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
@@ -830,18 +831,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label17: TLabel
               Left = 10
-              Height = 25
-              Top = 91
-              Width = 196
+              Height = 36
+              Top = 124
+              Width = 264
               Caption = 'Absolute roughness, mkm'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object KsBox: TFloatSpinEdit
-              Left = 212
-              Height = 25
-              Top = 91
+              Left = 280
+              Height = 36
+              Top = 124
               Width = 80
               Alignment = taRightJustify
               MaxValue = 2500
@@ -853,18 +854,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label14: TLabel
               Left = 10
-              Height = 25
-              Top = 118
-              Width = 196
+              Height = 36
+              Top = 162
+              Width = 264
               Caption = 'Propeller type (1-CRPP; 2-FPP)'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object CstrnBox: TFloatSpinEdit
-              Left = 212
-              Height = 25
-              Top = 118
+              Left = 280
+              Height = 36
+              Top = 162
               Width = 80
               Alignment = taRightJustify
               MaxValue = 2
@@ -876,18 +877,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label15: TLabel
               Left = 10
-              Height = 25
-              Top = 145
-              Width = 196
+              Height = 36
+              Top = 200
+              Width = 264
               Caption = 'Number of propellers'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object NpBox: TFloatSpinEdit
-              Left = 212
-              Height = 25
-              Top = 145
+              Left = 280
+              Height = 36
+              Top = 200
               Width = 80
               Alignment = taRightJustify
               MaxValue = 5
@@ -899,18 +900,18 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
             object Label16: TLabel
               Left = 10
-              Height = 25
-              Top = 172
-              Width = 196
+              Height = 36
+              Top = 238
+              Width = 264
               Caption = 'Propeller diameter, m'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object DpBox: TFloatSpinEdit
-              Left = 212
-              Height = 25
-              Top = 172
+              Left = 280
+              Height = 36
+              Top = 238
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
@@ -925,10 +926,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
         end
       end
       object Chart: TChart
-        Left = 562
-        Height = 683
+        Left = 668
+        Height = 672
         Top = 0
-        Width = 632
+        Width = 526
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -997,7 +998,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
     end
     object Data2: TTabSheet
       Caption = 'Added data'
-      ClientHeight = 683
+      ClientHeight = 672
       ClientWidth = 1194
       ParentFont = False
       object Panel6: TPanel
@@ -1026,7 +1027,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
           Caption = 'Added data input:'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 366
+          ClientHeight = 355
           ClientWidth = 477
           ParentColor = False
           ParentFont = False
@@ -1357,7 +1358,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
           Top = 10
           Width = 328
           Caption = 'Number of appendages :'
-          ClientHeight = 366
+          ClientHeight = 355
           ClientWidth = 324
           ParentFont = False
           TabOrder = 1
@@ -1693,7 +1694,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 683
+      ClientHeight = 672
       ClientWidth = 1194
       ParentFont = False
       object Panel5: TPanel
@@ -1725,7 +1726,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 683
+      ClientHeight = 672
       ClientWidth = 1194
       ParentFont = False
       object Panel15: TPanel

@@ -301,7 +301,7 @@ begin
       if FileExistsUTF8(FLanguagesDirectory + DS + Lang + '.ini')
       { *Converted from FileExists* } then
       begin
-        LoadLanguage(FLanguagesDirectory + DS + Lang + '.ini');
+        LoadLanguage(Lang, FLanguagesDirectory + DS + Lang + '.ini');
         FLanguageFile := FLanguagesDirectory + DS + Lang + '.ini';
         FLanguage := Lang;
 

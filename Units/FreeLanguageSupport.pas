@@ -77,10 +77,20 @@ type TCompInfo = record
                     Hint    : string;
                  end;
 
-var CurrentLanguage : TMemIniFile; 	//Global variable for current language
+type
+
+{ TLanguageIniFile }
+
+ TLanguageIniFile = class(TMemIniFile)
+  public
+    Name: string;
+    constructor Create(const AName: string; const AFileName: string);
+end;
+
+var CurrentLanguage : TLanguageIniFile; 	//Global variable for current language
 
 //user procs
-function LoadLanguage(Name:string):TMemIniFile;overload;
+function LoadLanguage(aName:string; aFileName:string):TLanguageIniFile;overload;
 procedure ShowTranslatedValues(Component:TComponent);
 function UserString(Index:Integer):String;
 function tl8(Key:String):String;
@@ -93,18 +103,17 @@ function HasProperty(comp:TComponent;prop:string):boolean;
 
 implementation
 
-function LoadLanguage(Name:string):TMemIniFile;
+function LoadLanguage(aName:string; aFileName:string):TLanguageIniFile;
 var Filename:string;    
 begin
-   if Name='' then exit; // leave with default English language
+   if aName='' then exit; // leave with default English language
    //Filename:=ChangeFileExt(extractFileDir(application.exeName)+'/Languages/'+Name,'.ini');
-   Filename:=Name;
-   if FileExistsUTF8(Filename) then
+   if FileExistsUTF8(aFilename) then
    begin
       if CurrentLanguage<>nil then CurrentLanguage.Free;
-      CurrentLanguage:=TMemIniFile.create(Filename);
-   end else if uppercase(Name)<>'ENGLISH'
-      then MessageDlg('Could not load language file '+Filename,mtError,[mbOk],0);
+      CurrentLanguage:=TLanguageIniFile.create(aName, aFilename);
+   end else if uppercase(aName)<>'ENGLISH'
+      then MessageDlg('Could not load language file '+aFilename,mtError,[mbOk],0);
    Result:=CurrentLanguage;
 end;{LoadLanguage}
 
@@ -233,6 +242,7 @@ var I,J     : integer;
     Str,Tmp : TTranslateString;
 begin
    if (CurrentLanguage=nil) or (Component=nil) then exit;
+   if (CurrentLanguage.Name='English') then exit;
    with CurrentLanguage do
    begin
       Str:=readString(Component.Classname,Component.Classname+'.Caption','');
@@ -341,6 +351,14 @@ begin
    if HasProperty(Component,'Hint') then Result.Hint:=GetProperty(Component,'Hint')
                                     else Result.Hint:='';
 end;{GetCompInfo}
+
+{ TLanguageIniFile }
+
+constructor TLanguageIniFile.Create(const AName: string; const AFileName: string);
+begin
+  Name := aName;
+  inherited Create(AFileName,false);
+end;
 
 initialization
    CurrentLanguage:=nil;

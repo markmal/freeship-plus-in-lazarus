@@ -219,6 +219,7 @@ type
     LwlBox: TFloatSpinEdit;
     PageControl1: TPageControl;
     Panel1: TPanel;
+    Panel2: TPanel;
     Panel5: TPanel;
     PrintDialog: TPrintDialog;
     Results: TTabSheet;
@@ -229,6 +230,7 @@ type
     Series2: TLineSeries;
     Series3: TLineSeries;
     Series4: TLineSeries;
+    Splitter1: TSplitter;
     StartSpeedBox: TFloatSpinEdit;
     StepSpeedBox: TFloatSpinEdit;
     ToolBar1: TToolBar;

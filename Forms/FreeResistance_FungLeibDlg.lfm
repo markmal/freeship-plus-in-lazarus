@@ -59,7 +59,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             Left = 0
             Height = 132
             Top = 0
-            Width = 288
+            Width = 299
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -69,7 +69,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 132
-            ClientWidth = 288
+            ClientWidth = 299
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
@@ -186,10 +186,10 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             end
           end
           object GeneralPanel2: TPanel
-            Left = 288
+            Left = 299
             Height = 132
             Top = 0
-            Width = 355
+            Width = 344
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -199,7 +199,7 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 132
-            ClientWidth = 355
+            ClientWidth = 344
             ParentFont = False
             TabOrder = 1
             object Label4: TLabel
@@ -214,25 +214,34 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               ParentFont = False
               WordWrap = True
             end
-            object DensityBox: TFloatSpinEdit
-              Left = 92
-              Height = 52
-              Top = 10
-              Width = 80
-              Alignment = taRightJustify
-              Constraints.MinWidth = 80
-              DecimalPlaces = 3
-              MinValue = 0
-              OnEditingDone = StartSpeedBoxAfterSetValue
-              ParentFont = False
-              TabOrder = 0
-              Value = 0
+            object Panel2_4: TPanel
+              BevelOuter = bvNone
+              ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+              ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+              ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+              ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 1
+              object DensityBox: TFloatSpinEdit
+                Left = 92
+                Height = 52
+                Top = 10
+                Width = 80
+                Alignment = taRightJustify
+                Constraints.MinWidth = 80
+                DecimalPlaces = 3
+                MinValue = 0
+                OnEditingDone = StartSpeedBoxAfterSetValue
+                ParentFont = False
+                TabOrder = 0
+                Value = 0
+              end
             end
             object Label34: TLabel
               Left = 178
               Height = 52
               Top = 10
-              Width = 103
+              Width = 81
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -269,8 +278,8 @@ object FreeResistance_FungLeib: TFreeResistance_FungLeib
               Left = 178
               Height = 36
               Top = 64
-              Width = 103
-              Caption = '*10-6  m2/s'
+              Width = 81
+              Caption = 'E-6  m2/s'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False

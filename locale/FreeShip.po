@@ -5262,7 +5262,7 @@ msgstr ""
 
 #: tfreeresistance_delft._label36.caption
 msgctxt "tfreeresistance_delft._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_delft._label8.caption

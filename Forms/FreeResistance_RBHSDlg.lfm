@@ -214,19 +214,28 @@ object FreeResistance_RBHS: TFreeResistance_RBHS
               ParentFont = False
               WordWrap = True
             end
-            object DensityBox: TFloatSpinEdit
-              Left = 106
-              Height = 28
-              Top = 10
-              Width = 100
-              Alignment = taRightJustify
-              Constraints.MinWidth = 100
-              DecimalPlaces = 3
-              MinValue = 0
-              OnEditingDone = StartSpeedBoxAfterSetValue
-              ParentFont = False
-              TabOrder = 0
-              Value = 0
+            object Panel2_4: TPanel
+              BevelOuter = bvNone
+              ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+              ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+              ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+              ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 1
+              object DensityBox: TFloatSpinEdit
+                Left = 106
+                Height = 28
+                Top = 10
+                Width = 100
+                Alignment = taRightJustify
+                Constraints.MinWidth = 100
+                DecimalPlaces = 3
+                MinValue = 0
+                OnEditingDone = StartSpeedBoxAfterSetValue
+                ParentFont = False
+                TabOrder = 0
+                Value = 0
+              end
             end
             object Label34: TLabel
               Left = 212

@@ -57,7 +57,7 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
             Left = 0
             Height = 132
             Top = 0
-            Width = 290
+            Width = 301
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -67,7 +67,7 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 132
-            ClientWidth = 290
+            ClientWidth = 301
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
@@ -184,10 +184,10 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
             end
           end
           object GeneralPanel2: TPanel
-            Left = 290
+            Left = 301
             Height = 132
             Top = 0
-            Width = 346
+            Width = 335
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -197,7 +197,7 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 132
-            ClientWidth = 346
+            ClientWidth = 335
             ParentFont = False
             TabOrder = 1
             object Label4: TLabel
@@ -230,7 +230,7 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
               Left = 178
               Height = 52
               Top = 10
-              Width = 103
+              Width = 81
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -267,8 +267,8 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
               Left = 178
               Height = 36
               Top = 64
-              Width = 103
-              Caption = '*10-6  m2/s'
+              Width = 81
+              Caption = 'E-6  m2/s'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
@@ -1828,14 +1828,14 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
       Style = tbsSeparator
     end
     object ToolButton20: TToolButton
-      Left = 11
+      Left = 13
       Hint = 'Start the calculation.'
       Top = 2
       ImageIndex = 3
       OnClick = ToolButton20Click
     end
     object PrintButton: TToolButton
-      Left = 61
+      Left = 63
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'PrintButton'
@@ -1843,7 +1843,7 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 111
+      Left = 113
       Height = 22
       Top = 2
       Caption = '_ToolButton14'
@@ -1851,14 +1851,14 @@ object FreeResistance_Oortmer: TFreeResistance_Oortmer
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 117
+      Left = 121
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 167
+      Left = 171
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0

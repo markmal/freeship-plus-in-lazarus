@@ -1,4 +1,15 @@
 
+
+function TFreeNamedObject.FGetSelected: boolean;
+begin
+  // descendant must implement
+end;
+
+procedure TFreeNamedObject.FSetSelected(AValue: boolean);
+begin
+  // descendant must implement
+end;
+
 constructor TFreeNamedObject.Create(Owner: TFreeSubdivisionSurface);
 begin
   FSurface:=Owner;

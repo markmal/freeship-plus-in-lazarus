@@ -8,7 +8,7 @@ begin
     // FSubdividedPoints.Clear;
 end;{TFreeSubdivisionControlCurve.SetBuilt}
 
-procedure TFreeSubdivisionControlCurve.SetSelected(val: boolean);
+procedure TFreeSubdivisionControlCurve.FSetSelected(val: boolean);
 var
   Index: integer;
 begin
@@ -27,7 +27,7 @@ begin
   //if Assigned(Surface.FOnSelectItemListeners) then
   //  Surface.FOnSelectItemListeners(self);
   Surface.ExecuteOnSelectItem(Self);
-end;{TFreeSubdivisionControlCurve.SetSelected}
+end;{TFreeSubdivisionControlCurve.FSetSelected}
 
 procedure TFreeSubdivisionControlCurve.AddPoint(P: TFreeSubdivisionControlPoint);
 begin
@@ -136,10 +136,10 @@ begin
     Result := Surface.ControlCurveColor;
 end;{TFreeSubdivisionControlCurve.GetColor}
 
-function TFreeSubdivisionControlCurve.GetSelected: boolean;
+function TFreeSubdivisionControlCurve.FGetSelected: boolean;
 begin
   Result := Surface.FSelectedControlCurves.IndexOf(self) <> -1;
-end;{TFreeSubdivisionControlCurve.GetSelected}
+end;{TFreeSubdivisionControlCurve.FGetSelected}
 
 procedure TFreeSubdivisionControlCurve.CopySubdividedEdges(const aEdges: TFasterListTFreeSubdivisionEdge);
 var i:integer;

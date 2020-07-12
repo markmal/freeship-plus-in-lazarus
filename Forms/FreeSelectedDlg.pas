@@ -344,13 +344,20 @@ begin
 end;
 
 procedure TFormSelected.Reload;
-var i:integer;
+var N,i:integer;
   item: TListItem;
   CP:TFreeSubdivisionControlPoint;
   CE: TFreesubdivisionControlEdge;
   CF: TFreeSubdivisionControlFace;
   CC: TFreeSubdivisionControlCurve;
 begin
+  N := FreeShip.NumberOfSelectedControlPoints
+     + FreeShip.NumberOfSelectedControlEdges
+     + FreeShip.NumberOfSelectedControlFaces
+     + FreeShip.NumberOfSelectedControlCurves
+     + FreeShip.NumberOfselectedMarkers
+     + FreeShip.NumberOfselectedFlowlines;
+
   lvPoints.Clear;
   for i:=0 to FreeShip.Surface.NumberOfSelectedControlPoints-1 do
   begin
@@ -399,6 +406,10 @@ begin
       item.Selected:=true;
   end;
 
+  (* TODO
+  + FreeShip.NumberOfselectedMarkers
+  + FreeShip.NumberOfselectedFlowlines;
+  *)
 end;
 
 procedure TFormSelected.onSelectionUpdate(Sender: TObject);

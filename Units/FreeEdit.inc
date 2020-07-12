@@ -9929,15 +9929,41 @@ end;{TFreeEdit.Selection_Clear}
 
 procedure TFreeEdit.Selection_Delete;
 var
-  I, N: integer;
+  I, N: integer; DelDlg:TFreeDeleteDialog;
+  MR: TModalResult;
 begin
-  N := FreeShip.NumberOfSelectedControlPoints + FreeShip.NumberOfSelectedControlEdges +
-    FreeShip.NumberOfSelectedControlFaces + FreeShip.NumberOfSelectedControlCurves +
-    FreeShip.NumberOfselectedMarkers + FreeShip.NumberOfselectedFlowlines;
+  N := FreeShip.NumberOfSelectedControlPoints
+     + FreeShip.NumberOfSelectedControlPointGroups
+     + FreeShip.NumberOfSelectedControlEdges
+     + FreeShip.NumberOfSelectedControlFaces
+     + FreeShip.NumberOfSelectedControlCurves
+     + FreeShip.NumberOfselectedMarkers
+     + FreeShip.NumberOfselectedFlowlines;
+
+  MR := mrCancel;
+
   if N > 0 then
-    if MessageDlg(Userstring(173) + #32 + IntToStr(N) + #32 + Userstring(
-      174) + '?', mtWarning, [mbYes, mbNo], 0) = mrYes then
     begin
+      DelDlg := TFreeDeleteDialog.Create(nil);
+      DelDlg.FreeShip := FreeShip;
+      DelDlg.Reload;
+      DelDlg.ShowModal;
+      MR := DelDlg.ModalResult;
+      DelDlg.Free;
+    end;
+
+  N := FreeShip.NumberOfSelectedControlPoints
+     + FreeShip.NumberOfSelectedControlPointGroups
+     + FreeShip.NumberOfSelectedControlEdges
+     + FreeShip.NumberOfSelectedControlFaces
+     + FreeShip.NumberOfSelectedControlCurves
+     + FreeShip.NumberOfselectedMarkers
+     + FreeShip.NumberOfselectedFlowlines;
+
+{    if MessageDlg(Userstring(173) + #32 + IntToStr(N) + #32 + Userstring(
+      174) + '?', mtWarning, [mbYes, mbNo], 0) = mrYes then }
+   if (MR = mrAbort) and (N > 0) then
+   begin
       CreateUndoObject(Userstring(175), True);
       for I := FreeShip.NumberOfselectedFlowlines downto 1 do
         FreeShip.SelectedFlowline[I - 1].Delete;
@@ -9950,7 +9976,7 @@ begin
       //Freeship.ReDraw;
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
-    end;
+   end;
 end;{TFreeEdit.Selection_Delete}
 
 // Select all visible items

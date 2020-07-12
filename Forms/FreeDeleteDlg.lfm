@@ -1,0 +1,127 @@
+object FreeDeleteDialog: TFreeDeleteDialog
+  Left = 773
+  Height = 322
+  Top = 185
+  Width = 320
+  Caption = 'Objects to be deleted'
+  ClientHeight = 322
+  ClientWidth = 320
+  OnResize = FormResize
+  LCLVersion = '2.0.8.0'
+  object pTools: TPanel
+    Left = 0
+    Height = 44
+    Top = 0
+    Width = 320
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 44
+    ClientWidth = 320
+    TabOrder = 0
+    object bbDelete: TBitBtn
+      Left = 247
+      Height = 36
+      Top = 4
+      Width = 69
+      Align = alRight
+      AutoSize = True
+      BorderSpacing.Around = 4
+      Caption = 'Delete'
+      ModalResult = 3
+      TabOrder = 0
+    end
+    object bbCancel: TBitBtn
+      Left = 4
+      Height = 36
+      Top = 4
+      Width = 69
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Around = 4
+      Caption = 'Cancel'
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+  object sgObjects: TStringGrid
+    Left = 0
+    Height = 240
+    Top = 82
+    Width = 320
+    Align = alClient
+    ColCount = 4
+    ColumnClickSorts = True
+    Columns = <    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        Title.Caption = 'Delete'
+        Width = 32
+      end    
+      item
+        ReadOnly = True
+        Title.Caption = 'Type'
+        Width = 100
+      end    
+      item
+        Title.Caption = 'Id'
+      end    
+      item
+        ReadOnly = True
+        Title.Caption = 'Name'
+        Width = 100
+      end>
+    FixedCols = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goRangeSelect, goEditing, goSmoothScroll, goCellHints]
+    ParentShowHint = False
+    RowCount = 2
+    ShowHint = True
+    TabOrder = 1
+    OnCheckboxToggled = sgObjectsCheckboxToggled
+    OnGetCellHint = sgObjectsGetCellHint
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 38
+    Top = 44
+    Width = 320
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 38
+    ClientWidth = 320
+    TabOrder = 2
+    object CheckBox1: TCheckBox
+      Left = 6
+      Height = 26
+      Top = 6
+      Width = 21
+      Align = alLeft
+      BorderSpacing.Around = 6
+      OnClick = CheckBox1Click
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 37
+      Height = 26
+      Top = 6
+      Width = 22
+      Align = alLeft
+      BorderSpacing.Left = 4
+      BorderSpacing.Around = 6
+      Caption = 'All'
+      ParentColor = False
+    end
+    object lbTotalNumber: TLabel
+      Left = 183
+      Height = 38
+      Top = 0
+      Width = 131
+      Align = alRight
+      BorderSpacing.Right = 6
+      Caption = 'lbTotalNumber'
+      Layout = tlCenter
+      ParentColor = False
+    end
+  end
+end

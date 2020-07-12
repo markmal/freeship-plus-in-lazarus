@@ -4,7 +4,7 @@
 function TFreeFlowline.FGetColor: TColor;
 begin
   if Selected then
-    Result := Owner.Preferences.SelectColor
+    Result := FreeShip.Preferences.SelectColor
   else if FMethodNew then
     Result := clRed
   else
@@ -13,32 +13,32 @@ end;{TFreeFlowline.FGetColor}
 
 function TFreeFlowline.FGetSelected: boolean;
 begin
-  Result := Owner.FSelectedFlowlines.SortedIndexOf(self) <> -1;
+  Result := FreeShip.FSelectedFlowlines.SortedIndexOf(self) <> -1;
 end;{TFreeFlowline.FGetSelected}
 
 function TFreeFlowline.FGetVisible: boolean;
 begin
-  Result := owner.Visibility.ShowFlowlines;
+  Result := FreeShip.Visibility.ShowFlowlines;
 end;{TFreeFlowline.FGetVisible}
 
-procedure TFreeFlowline.FSetSelected(val: boolean);
+procedure TFreeFlowline.FSetSelected(aValue: boolean);
 var
   Index: integer;
 begin
-  Index := Owner.FSelectedFlowlines.SortedIndexOf(self);
-  if (Index >= 0) and Val then exit;
-  if (Index < 0) and not Val then exit;
-  if Val then
+  Index := FreeShip.FSelectedFlowlines.SortedIndexOf(self);
+  if (Index >= 0) and aValue then exit;
+  if (Index < 0) and not aValue then exit;
+  if aValue then
   begin
     // Only add if it is not already in the list
     if Index = -1 then
-      Owner.FSelectedFlowlines.AddSorted(self);
+      FreeShip.FSelectedFlowlines.AddSorted(self);
   end
   else
   if Index <> -1 then
-    Owner.FSelectedFlowlines.Delete(index);
+    FreeShip.FSelectedFlowlines.Delete(index);
 
-  Owner.Surface.ExecuteOnSelectItem(self);
+  FreeShip.Surface.ExecuteOnSelectItem(self);
 
 end;{TFreeFlowline.FSetSelected}
 
@@ -61,8 +61,8 @@ end;{TFreeFlowline.Clear}
 
 constructor TFreeFlowline.Create(Owner: TFreeShip);
 begin
-  inherited Create;
-  FOwner := owner;
+  inherited Create(Owner.Surface);
+  FFreeShip := owner;
   FFlowLine := TFreeSpline.Create(Owner.Surface);
   Clear;
 end;{TFreeFlowline.Create}
@@ -71,12 +71,12 @@ procedure TFreeFlowline.Delete;
 var
   Index: integer;
 begin
-  Index := Owner.FSelectedFlowlines.SortedIndexOf(Self);
+  Index := FreeShip.FSelectedFlowlines.SortedIndexOf(Self);
   if Index <> -1 then
-    Owner.FSelectedFlowlines.Delete(Index);
-  Index := Owner.FFlowLines.IndexOf(Self);
+    FreeShip.FSelectedFlowlines.Delete(Index);
+  Index := FreeShip.FFlowLines.IndexOf(Self);
   if Index <> -1 then
-    Owner.FFlowlines.Delete(Index);
+    FreeShip.FFlowlines.Delete(Index);
   Destroy;
 end;{TFreeFlowline.Delete}
 
@@ -96,7 +96,7 @@ var
 begin
   Result := 1000000;
   if (Viewport.ViewType = fvBodyPlan) and
-    (not (Owner.Visibility.ModelView = mvBoth)) then
+    (not (FreeShip.Visibility.ModelView = mvBoth)) then
   begin
     // Check if cursor position lies within the boundaries
     Pt.X := X;
@@ -105,17 +105,17 @@ begin
       (Pt.Y <= Viewport.Height) then
     begin
       V1 := FFlowline.Value(0.0);
-      if V1.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
+      if V1.X < FreeShip.ProjectSettings.ProjectSplitSectionLocation then
         V1.Y := -V1.Y;
       for I := 1 to FFlowline.Fragments do
       begin
         V2 := FFlowline.Value((I - 1) / (FFlowline.Fragments - 1));
-        if V2.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
+        if V2.X < FreeShip.ProjectSettings.ProjectSplitSectionLocation then
           V2.Y := -V2.Y;
-        if ((V1.X < Owner.ProjectSettings.ProjectSplitSectionLocation) and
-          (V2.X < Owner.ProjectSettings.ProjectSplitSectionLocation)) or
-          ((V1.X > Owner.ProjectSettings.ProjectSplitSectionLocation) and
-          (V2.X > Owner.ProjectSettings.ProjectSplitSectionLocation)) then
+        if ((V1.X < FreeShip.ProjectSettings.ProjectSplitSectionLocation) and
+          (V2.X < FreeShip.ProjectSettings.ProjectSplitSectionLocation)) or
+          ((V1.X > FreeShip.ProjectSettings.ProjectSplitSectionLocation) and
+          (V2.X > FreeShip.ProjectSettings.ProjectSplitSectionLocation)) then
         begin
           P1 := Viewport.Project(V1);
           P2 := Viewport.Project(V2);
@@ -130,7 +130,7 @@ begin
   end
   else
     Result := FFlowline.DistanceToCursor(X, Y, Viewport);
-  if Owner.Visibility.ModelView = mvBoth then
+  if FreeShip.Visibility.ModelView = mvBoth then
   begin
     for I := 1 to FFlowline.NumberOfPoints do
     begin
@@ -176,11 +176,11 @@ begin
   begin
     // draw flowline source
     P3D := FFlowline.Point[0];
-    if (Viewport.ViewType = fvBodyplan) and (Owner.Visibility.ModelView <> mvBoth) and
-      (P3D.X < Owner.ProjectSettings.ProjectSplitSectionLocation) then
+    if (Viewport.ViewType = fvBodyplan) and (FreeShip.Visibility.ModelView <> mvBoth) and
+      (P3D.X < FreeShip.ProjectSettings.ProjectSplitSectionLocation) then
       P3D.Y := -P3D.Y;
     Pt := Viewport.Project(P3D);
-    Size := Round(Sqrt(Viewport.Zoom) * (Owner.Preferences.PointSize + 1));
+    Size := Round(Sqrt(Viewport.Zoom) * (FreeShip.Preferences.PointSize + 1));
     if size < 1 then
       size := 1;
     Viewport.BrushStyle := bsClear;
@@ -191,7 +191,7 @@ begin
     Viewport.BrushStyle := bsSolid;
     // Draw entire circle in white;
     Viewport.Ellipse(Pt.X - Size, Pt.Y - Size, Pt.X + Size, Pt.Y + Size);
-    if Owner.Visibility.ModelView = mvBoth then
+    if FreeShip.Visibility.ModelView = mvBoth then
     begin
       P3D.Y := -P3D.Y;
       Pt := Viewport.Project(P3D);
@@ -201,9 +201,9 @@ begin
   end;
 
 
-  if (Viewport.ViewType = fvBodyPlan) and (Owner.Visibility.ModelView <> mvBoth) then
+  if (Viewport.ViewType = fvBodyPlan) and (FreeShip.Visibility.ModelView <> mvBoth) then
   begin
-    Plane := SetPlane(1.0, 0.0, 0.0, -Owner.ProjectSettings.ProjectSplitSectionLocation);
+    Plane := SetPlane(1.0, 0.0, 0.0, -FreeShip.ProjectSettings.ProjectSplitSectionLocation);
     NParam := 2;
     Setlength(Param, NParam);
     Param[0] := 0.0;
@@ -221,7 +221,7 @@ begin
     for I := 2 to NParam do
     begin
       P3D := FFlowline.Value(0.5 * (Param[I - 2] + Param[I - 1]));
-      if P3D.X < Owner.ProjectSettings.ProjectSplitSectionLocation then
+      if P3D.X < FreeShip.ProjectSettings.ProjectSplitSectionLocation then
         Scale := -1
       else
         scale := 1;
@@ -245,7 +245,7 @@ begin
   else
   begin
     FFlowline.Draw(Viewport);
-    if Owner.Visibility.ModelView = mvBoth then
+    if FreeShip.Visibility.ModelView = mvBoth then
     begin
       for I := 1 to FFlowline.NumberOfPoints do
       begin
@@ -280,7 +280,7 @@ begin
   Source.LoadBoolean(FBuild);
   Source.LoadBoolean(K);
   if K then
-    Owner.FSelectedFlowlines.AddSorted(self);
+    FreeShip.FSelectedFlowlines.AddSorted(self);
   Source.LoadInteger(N);
   FFlowline.Capacity := N;
   for I := 1 to N do
@@ -587,16 +587,16 @@ begin
 
   // Assemble all faces that are (partially) submerged and extract points
   Faces := TFasterListTFreeSubdivisionFace.Create;
-  WlHeight := Owner.FindLowestHydrostaticsPoint + Owner.ProjectSettings.ProjectDraft;
+  WlHeight := FreeShip.FindLowestHydrostaticsPoint + FreeShip.ProjectSettings.ProjectDraft;
 
-  //wlheight:=owner.surface.max.z;
+  //wlheight:=FreeShip.surface.max.z;
 
-  if Owner.surface.NumberOfSubDivPoints < 0 then
+  if FreeShip.surface.NumberOfSubDivPoints < 0 then
     exit;
-  for I := 1 to Owner.Surface.NumberOfLayers do
-    if Owner.Surface.Layer[I - 1].UseInHydrostatics then
+  for I := 1 to FreeShip.Surface.NumberOfLayers do
+    if FreeShip.Surface.Layer[I - 1].UseInHydrostatics then
     begin
-      Layer := Owner.Surface.Layer[I - 1];
+      Layer := FreeShip.Surface.Layer[I - 1];
       for J := 1 to Layer.Count do
         if Layer.Items[J - 1].Min.Z <= WlHeight then
         begin
@@ -652,7 +652,7 @@ begin
       fvProfile:
       begin
         Startpoint.X := FProjectionPoint.X;
-        StartPoint.Y := Owner.Surface.Max.Y + 10;
+        StartPoint.Y := FreeShip.Surface.Max.Y + 10;
         StartPoint.Z := FProjectionPoint.Y;
         EndPoint := setPoint(StartPoint.X, 0, StartPoint.Z);
       end;
@@ -660,25 +660,25 @@ begin
       begin
         Startpoint.X := FProjectionPoint.X;
         StartPoint.Y := FProjectionPoint.Y;
-        StartPoint.Z := Owner.Surface.Min.Z - 10;
+        StartPoint.Z := FreeShip.Surface.Min.Z - 10;
         EndPoint :=
-          setPoint(StartPoint.X, StartPoint.Y, Owner.Surface.Max.Z + 100);
+          setPoint(StartPoint.X, StartPoint.Y, FreeShip.Surface.Max.Z + 100);
       end;
       fvBodyplan: if FProjectionPoint.X < 0 then
         begin
-          Startpoint.X := Owner.Surface.Min.X - 10;
+          Startpoint.X := FreeShip.Surface.Min.X - 10;
           StartPoint.Y := -FProjectionPoint.X;
           StartPoint.Z := FProjectionPoint.Y;
           EndPoint :=
-            setPoint(Owner.Surface.Max.X + 10, StartPoint.Y, StartPoint.Z);
+            setPoint(FreeShip.Surface.Max.X + 10, StartPoint.Y, StartPoint.Z);
         end
         else
         begin
-          Startpoint.X := Owner.Surface.Max.X + 10;
+          Startpoint.X := FreeShip.Surface.Max.X + 10;
           StartPoint.Y := FProjectionPoint.X;
           StartPoint.Z := FProjectionPoint.Y;
           EndPoint :=
-            setPoint(Owner.Surface.Min.X - 10, StartPoint.Y, StartPoint.Z);
+            setPoint(FreeShip.Surface.Min.X - 10, StartPoint.Y, StartPoint.Z);
         end;
     end;
 

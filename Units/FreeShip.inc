@@ -68,6 +68,42 @@ begin
   Result := FSelectedMarkers[index];
 end;{TFreeShip.FGetSelectedMarker}
 
+function TFreeShip.IsObjectSelected(aObject:TFreeNamedObject): boolean;
+begin
+  if (aObject is TFreeSubdivisionControlPoint)
+    or (aObject is TFreeSubdivisionControlPointGroup)
+    or (aObject is TFreeSubdivisionControlFace)
+    or (aObject is TFreeSubdivisionControlEdge)
+    or (aObject is TFreeSubdivisionControlCurve)
+   then
+    Result := Surface.IsObjectSelected(aObject);
+
+  if (aObject is TFreeMarker) then
+    Result := (aObject as TFreeMarker).Selected;
+
+  if (aObject is TFreeFlowLine) then
+    Result := (aObject as TFreeFlowLine).Selected;
+
+end;
+
+procedure TFreeShip.SetObjectSelected(aObject:TFreeNamedObject; aSelected: boolean);
+begin
+  if (aObject is TFreeSubdivisionControlPoint)
+    or (aObject is TFreeSubdivisionControlPointGroup)
+    or (aObject is TFreeSubdivisionControlFace)
+    or (aObject is TFreeSubdivisionControlEdge)
+    or (aObject is TFreeSubdivisionControlCurve)
+   then
+     Surface.SetObjectSelected(aObject,aSelected);
+
+  if (aObject is TFreeMarker) then
+    (aObject as TFreeMarker).Selected:=true;
+
+  if (aObject is TFreeFlowLine) then
+    (aObject as TFreeFlowLine).Selected:=true;
+
+end;
+
 function TFreeShip.FGetStation(Index: integer): TFreeIntersection;
 begin
   if (Index >= 0) and (INdex < Fstations.Count) then

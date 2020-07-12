@@ -6,14 +6,14 @@ begin
   Result := Owner.FSelectedMarkers.SortedIndexOf(self) <> -1;
 end;{TFreeMarker.FGetSelected}
 
-procedure TFreeMarker.FSetSelected(val: boolean);
+procedure TFreeMarker.FSetSelected(AValue: boolean);
 var
   Index: integer;
 begin
   Index := Owner.FSelectedMarkers.SortedIndexOf(self);
-  if (Index >= 0) and Val then exit;
-  if (Index < 0) and not Val then exit;
-  if Val then
+  if (Index >= 0) and AValue then exit;
+  if (Index < 0) and not AValue then exit;
+  if AValue then
   begin
     // Only add if it is not already in the list
     if Index = -1 then

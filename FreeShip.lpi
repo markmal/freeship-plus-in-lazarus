@@ -30,8 +30,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
-      <RevisionNr Value="35"/>
-      <BuildNr Value="471"/>
+      <RevisionNr Value="36"/>
+      <BuildNr Value="475"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -300,7 +300,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="127">
+    <Units Count="128">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -999,6 +999,13 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="MethodList"/>
       </Unit126>
+      <Unit127>
+        <Filename Value="Forms/FreeDeleteDlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeDeleteDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit127>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

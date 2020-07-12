@@ -1247,6 +1247,51 @@ msgctxt "tfreecrosscurvesdialog._toolbutton14.caption"
 msgid "_ToolButton14"
 msgstr ""
 
+#: tfreedeletedialog.bbcancel.caption
+msgctxt "tfreedeletedialog.bbcancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfreedeletedialog.bbdelete.caption
+msgctxt "tfreedeletedialog.bbdelete.caption"
+msgid "Delete"
+msgstr ""
+
+#: tfreedeletedialog.caption
+msgctxt "tfreedeletedialog.caption"
+msgid "Objects to be deleted"
+msgstr ""
+
+#: tfreedeletedialog.label1.caption
+msgctxt "tfreedeletedialog.label1.caption"
+msgid "All"
+msgstr ""
+
+#: tfreedeletedialog.lbtotalnumber.caption
+msgctxt "tfreedeletedialog.lbtotalnumber.caption"
+msgid "lbTotalNumber"
+msgstr ""
+
+#: tfreedeletedialog.sgobjects.columns[0].title.caption
+msgctxt "tfreedeletedialog.sgobjects.columns[0].title.caption"
+msgid "Delete"
+msgstr ""
+
+#: tfreedeletedialog.sgobjects.columns[1].title.caption
+msgctxt "tfreedeletedialog.sgobjects.columns[1].title.caption"
+msgid "Type"
+msgstr ""
+
+#: tfreedeletedialog.sgobjects.columns[2].title.caption
+msgctxt "tfreedeletedialog.sgobjects.columns[2].title.caption"
+msgid "Id"
+msgstr ""
+
+#: tfreedeletedialog.sgobjects.columns[3].title.caption
+msgctxt "tfreedeletedialog.sgobjects.columns[3].title.caption"
+msgid "Name"
+msgstr ""
+
 #: tfreeemptymodelchooserdialog.cancelbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.cancelbutton.caption"
 msgid "Cancel"
@@ -5663,7 +5708,7 @@ msgstr ""
 
 #: tfreeresistance_fungleib._label36.caption
 msgctxt "tfreeresistance_fungleib._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_fungleib._label8.caption
@@ -7024,7 +7069,7 @@ msgstr ""
 
 #: tfreeresistance_mh._label36.caption
 msgctxt "tfreeresistance_mh._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_mh._label8.caption
@@ -7437,7 +7482,7 @@ msgstr ""
 
 #: tfreeresistance_oortmer._label36.caption
 msgctxt "tfreeresistance_oortmer._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_oortmer._label8.caption

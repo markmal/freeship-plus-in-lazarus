@@ -443,8 +443,8 @@ type
   private
     FVisible: boolean;
     FOwner: TFreeShip;
-    function FGetSelected: boolean;
-    procedure FSetSelected(val: boolean);
+    function FGetSelected: boolean; override;
+    procedure FSetSelected(AValue: boolean); override;
   public
     procedure Clear;
       override;
@@ -465,22 +465,22 @@ type
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeFlowline                                           }
   {---------------------------------------------------------------------------------------------------}
-  TFreeFlowline = class
+  TFreeFlowline = class(TFreeNamedObject)
   private
     FProjectionPoint: T2DCoordinate;
     FProjectionView: TFreeViewType;
     FFlowLine: TFreeSpline;
     FBuild: boolean;
-    FOwner: TFreeShip;
+    FFreeShip: TFreeShip;
     FMethodNew: boolean;
     function FGetColor: TColor;
-    function FGetSelected: boolean;
+    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetBuild(val: boolean);
-    procedure FSetSelected(val: boolean);
+    procedure FSetSelected(aValue: boolean); override;
   public
     procedure Clear;
-    constructor Create(Owner: TFreeShip);
+    constructor Create(Owner: TFreeShip); overload;
     procedure Delete;
     destructor Destroy;
       override;
@@ -491,7 +491,7 @@ type
     procedure SaveBinary(Destination: TFreeFileBuffer);
     property Build: boolean read FBuild write FSetBuild;
     property Color: TColor read FGetColor;
-    property Owner: TFreeShip read FOwner;
+    property FreeShip: TFreeShip read FFreeShip;
     property Selected: boolean read FGetSelected write FSetSelected;
     property Visible: boolean read FGetvisible;
   end;
@@ -1291,6 +1291,7 @@ type
     function GetActiveControlEdge: TFreeSubdivisionControlEdge;
     function GetActiveControlFace: TFreeSubdivisionControlFace;
     function GetActiveControlPoint: TFreeSubdivisionControlPoint;
+    function IsObjectSelected(aObject: TFreeNamedObject): boolean;
     procedure SetActiveControlCurve(AValue: TFreeSubdivisionControlCurve);
     procedure SetActiveControlEdge(AValue: TFreeSubdivisionControlEdge);
     procedure SetActiveControlFace(AValue: TFreeSubdivisionControlFace);
@@ -1354,6 +1355,7 @@ type
     //procedure FSetOnSelectItem(Val: TNotifyEvent);
     procedure FSetPrecision(Val: TFreePrecisionType);
     function FGetPreview: TJPEGImage;
+    procedure SetObjectSelected(aObject: TFreeNamedObject; aSelected: boolean);
     //procedure SetOnChangeActiveControlPoint(AValue: TNotifyEvent);
   protected   { Protected declarations }
     procedure ViewportRequestExtents(Sender: TObject; var Min, Max: T3DCoordinate);
@@ -1597,7 +1599,8 @@ uses Math,
   Main,
   freehullformwindow_panel,
   FreeGridDlg,
-  FreeProcess;
+  FreeProcess,
+  FreeDeleteDlg;
 
 {$I FreeShipUnit_Functions.inc}
 {$I FreeUndoObject.inc}

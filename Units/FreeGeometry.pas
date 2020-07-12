@@ -888,6 +888,9 @@ type
     FId:integer;
     FName:string;
     FSurface: TFreeSubdivisionSurface;
+  protected
+    function FGetSelected: boolean; virtual;
+    procedure FSetSelected(AValue: boolean); virtual;
   public
     constructor Create(Owner: TFreeSubdivisionSurface); virtual;
     property Surface: TFreeSubdivisionSurface read FSurface write FSurface;
@@ -895,6 +898,7 @@ type
     procedure PrintDebug; virtual;
     property Id: Integer read FId;
     property Name: String read FName write FName;
+    property Selected:boolean read FGetSelected write FSetSelected;
   end;
 
   {---------------------------------------------------------------------------------------------------}
@@ -1134,12 +1138,12 @@ type
     function GetColor: TColor;
     function GetNumberOfControlPoints: integer;
     function GetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
-    function GetSelected: boolean;
+    function FGetSelected: boolean; override;
     function GetVisible: boolean;
     procedure LastAveragePoint(PrevPoint, Point,
       NextPoint: TFreeSubdivisionPoint);
     procedure SetBuilt(Val: boolean);
-    procedure SetSelected(val: boolean);
+    procedure FSetSelected(val: boolean); override;
     procedure SubdivideFreeStanding(level: integer);
   public
     procedure AddPoint(P: TFreeSubdivisionControlPoint);
@@ -1178,8 +1182,7 @@ type
       read GetNumberOfControlPoints;
     property ControlPoint[index: integer]:
       TFreeSubdivisionControlPoint read GetControlPoint;
-    property Selected: boolean
-      read GetSelected write SetSelected;
+    property Selected: boolean read FGetSelected write FSetSelected;
     // Property to see if this edge has been selected by the user
     property Visible: boolean
       read GetVisible write FVisible;
@@ -1397,10 +1400,10 @@ type
       override;
     function FGetIsLeak: boolean;
     function GetIsFreeStanding: boolean;
-    function FGetSelected: boolean;
+    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetLocked(val: boolean);
-    procedure FSetSelected(val: boolean);
+    procedure FSetSelected(val: boolean); override;
     procedure FSetCoordinate(Val: T3DCoordinate); override;
   public
     procedure Collapse0;
@@ -1450,10 +1453,10 @@ type
     FLocked: boolean;
     function CalculateCenterPoint: T3DCoordinate;
     function FGetIndex: integer;
-    function FGetSelected: boolean;
+    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetLocked(val: boolean);
-    procedure FSetSelected(val: boolean);
+    procedure FSetSelected(val: boolean); override;
   public
     procedure AddControlPoint(cp:TFreeSubdivisionControlPoint);
     procedure RemoveControlPoint(cp:TFreeSubdivisionControlPoint);
@@ -1548,8 +1551,8 @@ type
     function FGetColor: TColor;
     function FGetIndex: integer; override;
     function FGetIsBoundaryEdge: boolean; override;
-    procedure FSetSelected(val: boolean);
-    function FGetSelected: boolean;
+    procedure FSetSelected(val: boolean); override;
+    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     function GetStartPoint:TFreeSubdivisionControlPoint;
     procedure SetStartPoint(aPoint:TFreeSubdivisionControlPoint);
@@ -1579,8 +1582,7 @@ type
 
     property Color: TColor
       read FGetColor;
-    property Selected: boolean
-      read FGetSelected write FSetSelected;
+    property Selected: boolean read FGetSelected write FSetSelected;
     // Property to see if this edge has been selected by the user
     property Visible: boolean
       read FGetVisible;
@@ -1656,10 +1658,10 @@ type
     function FGetEdgeCount: integer;
     function FGetIndex: integer;
     function FGetPoint(Index: integer): TFreeSubdivisionControlPoint;
-    function FGetSelected: boolean;
+    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetLayer(Val: TFreeSubdivisionLayer);
-    procedure FSetSelected(val: boolean);
+    procedure FSetSelected(val: boolean); override;
   public
     procedure CalcExtents;
     function CheckIntegrity: boolean;
@@ -1920,6 +1922,9 @@ type
     function AddControlPoint: TFreeSubdivisionControlPoint;
       reintroduce; overload;
     // Adds a new controlpoint at 0,0,0 without checking other points
+
+    function IsObjectSelected(aObject: TFreeNamedObject): boolean;
+    procedure SetObjectSelected(aObject: TFreeNamedObject; aSelected: boolean);
 
     // Notifies all OnSelectItemNotificationReceivers
     procedure ExecuteOnSelectItem(Sender:TObject);

@@ -1226,11 +1226,44 @@ begin
   Result := FSelectedControlPointGroups[index];
 end;{TFreeSubdivisionSurface.FGetSelectedControlPoint}
 
+function TFreeSubdivisionSurface.IsObjectSelected(aObject:TFreeNamedObject): boolean;
+begin
+  if (aObject is TFreeSubdivisionControlPoint) then
+    Result := (aObject as TFreeSubdivisionControlPoint).Selected;
+
+  if (aObject is TFreeSubdivisionControlPointGroup) then
+    Result := (aObject as TFreeSubdivisionControlPointGroup).Selected;
+
+  if (aObject is TFreeSubdivisionControlFace) then
+    Result := (aObject as TFreeSubdivisionControlFace).Selected;
+
+  if (aObject is TFreeSubdivisionControlEdge) then
+    Result := (aObject as TFreeSubdivisionControlEdge).Selected;
+
+  if (aObject is TFreeSubdivisionControlCurve) then
+    Result := (aObject as TFreeSubdivisionControlCurve).Selected;
+end;
+
+procedure TFreeSubdivisionSurface.SetObjectSelected(aObject:TFreeNamedObject; aSelected: boolean);
+begin
+  if (aObject is TFreeSubdivisionControlPoint) then
+    (aObject as TFreeSubdivisionControlPoint).Selected:=true;
+  if (aObject is TFreeSubdivisionControlPointGroup) then
+    (aObject as TFreeSubdivisionControlPointGroup).Selected:=true;
+  if (aObject is TFreeSubdivisionControlFace) then
+    (aObject as TFreeSubdivisionControlFace).Selected:=true;
+  if (aObject is TFreeSubdivisionControlEdge) then
+    (aObject as TFreeSubdivisionControlEdge).Selected:=true;
+  if (aObject is TFreeSubdivisionControlCurve) then
+    (aObject as TFreeSubdivisionControlCurve).Selected:=true;
+end;
+
 function TFreeSubdivisionSurface.FRequestNewLayerID: integer;
 begin
   Inc(FLastusedLayerID);
   Result := FLastusedLayerID;
 end;{TFreeSubdivisionSurface.FRequestNewLayerID}
+
 
 procedure TFreeSubdivisionSurface.SetActiveControlCurve(
   AValue: TFreeSubdivisionControlCurve);

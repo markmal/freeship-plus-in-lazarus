@@ -5219,7 +5219,7 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  {$ifdef LCLGtk2 or LCLGtk3}
+  {$if defined(LCLGtk2) or defined(LCLGtk3)}
   OpenDialog.Filter := 'VRML files (*.wrl)|*.[Ww][Rr][Ll]|All files|*.*';
   {$else}
   OpenDialog.Filter := 'VRML files (*.wrl)|*.wrl|All files|*.*';

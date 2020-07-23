@@ -19,7 +19,12 @@ uses
     {$IFDEF Magic}
       FileIconMagic,
     {$ELSE}
+     {$ifdef LCLGTK2}
       FileIconGtk,
+     {$endif}
+     {$ifdef LCLGTK3}
+       FileIconGtk3,
+     {$endif}
     {$ENDIF}
   {$ENDIF}
   Types

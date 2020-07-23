@@ -1204,7 +1204,7 @@ var
       // just set font size
       Viewport.FontSize := Preferences.FontSize;
 
-      Height := Viewport.TextHeight('Oly');
+      Height := Viewport.TextHeight('Йly');
       Viewport.BrushStyle := bsClear;
       Viewport.PenWidth := 1;
       Viewport.PenStyle := psSolid;
@@ -1525,6 +1525,11 @@ begin
   Surface.ShowControlCurves := Visibility.ShowControlCurves;
   Surface.ControlCurveColor := Preferences.ControlCurveColor;
   Surface.ZebraColor := Preferences.ZebraStripeColor;
+  Surface.ControlEdgeLineWidth := Preferences.FControlEdgeLineWidth;
+  Surface.InternalEdgeLineWidth := Preferences.FInteriorEdgeLineWidth;
+
+
+
   if ProjectSettings.ProjectShadeUnderwaterShip then
   begin
     Plane.a := 0.0;
@@ -1627,6 +1632,7 @@ begin
           Curve.Add(P);
         end;
         Curve.Color := Preferences.HydrostaticsFontColor;
+        Curve.PenWidth := Preferences.FHydrostaticLineWidth;
         if Curve.ShowCurvature then
           Curve.Fragments := 800
         else

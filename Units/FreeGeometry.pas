@@ -912,12 +912,10 @@ type
     FIsBuilding: boolean; // Flag to check if the entity structure is building to exclude double entrance to building
     FMin, FMax: T3DCoordinate;
     // The min/max boundary coordinates of the entity after it has been build
-    FPenWidth: byte;
-    // Pen thickness to use when drawing
+    FPenWidth: byte;    // Pen thickness to use when drawing
     FColor: TColor; // Color when drawing
     //FName:string;
-    FPenstyle: TPenStyle;
-    // Pen style for drawing the line
+    FPenstyle: TPenStyle;  // Pen style for drawing the line
     function GetMin: T3DCoordinate; virtual;
     function GetMax: T3DCoordinate; virtual;
     procedure SetBuilt(Val: boolean); virtual;
@@ -1821,6 +1819,7 @@ type
     // Switch to turn under water shading on or off
     FShowNormals: boolean;
     // show normals of selected controlfaces
+
     FControlPointSize: integer;
     FEdgeColor: TColor;
     // Color of normal edges (no crease)
@@ -1839,6 +1838,10 @@ type
     // color of the curvature plot of controlcurves
     FControlCurveColor: TColor;
     FZebraColor: TColor;
+
+    FControlEdgeLineWidth: integer;
+    FInternalEdgeLineWidth: integer;
+
     FShowCurvature: boolean;
     FShowControlCurves: boolean;
     FCurvatureScale: TFloatType;
@@ -2075,6 +2078,12 @@ type
       read FCornerPointColor write FCornerPointColor;
     property DartPointColor: TColor
       read FDartPointColor write FDartPointColor;
+
+    property ControlEdgeLineWidth: integer
+      read FControlEdgeLineWidth write FControlEdgeLineWidth;
+    property InternalEdgeLineWidth: integer
+      read FInternalEdgeLineWidth write FInternalEdgeLineWidth;
+
     property DesiredSubdivisionLevel: byte
       read FDesiredSubdivisionLevel write SetDesiredSubdivisionLevel;
     property DrawMirror: boolean

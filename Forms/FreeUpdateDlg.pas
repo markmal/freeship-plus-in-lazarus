@@ -270,7 +270,6 @@ begin
   {Http:=TFPHttpClient.Create(Nil);
   Http.AllowRedirect := true;
   Http.AddHeader('User-Agent','Mozilla/5.0 (compatible; fpweb)');}
-  try
    try
      Content := https_get(URL);
      jData:=GetJSON(Content);
@@ -366,9 +365,6 @@ begin
      on e:Exception do
        logger.ShowExceptionCallStack(e);
    end;
-  finally
-    //Http.Free;
-  end;
 end;
 
 end.

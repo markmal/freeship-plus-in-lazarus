@@ -1049,7 +1049,7 @@ begin
   begin
     // Draw interior edges (not descending from controledges)
     Viewport.PenStyle := psSolid;
-    Viewport.PenWidth := 1;
+    Viewport.PenWidth :=  Surface.InternalEdgeLineWidth;
     if Selected then
       Viewport.PenColor := Surface.Selectedcolor
     else

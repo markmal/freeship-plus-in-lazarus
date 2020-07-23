@@ -31,18 +31,18 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
       <RevisionNr Value="36"/>
-      <BuildNr Value="475"/>
+      <BuildNr Value="484"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
     <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
+      <Macro3 Name="LCLWidgetType" Value="gtk2"/>
     </MacroValues>
     <BuildModes Count="4">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
         <MacroValues Count="1">
-          <Macro2 Name="LCLWidgetType" Value="win32"/>
+          <Macro1 Name="LCLWidgetType" Value="win32"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -162,6 +162,9 @@
         </CompilerOptions>
       </Item3>
       <Item4 Name="Gtk3 Debug">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -205,6 +208,11 @@
               <ShowDebugInfo Value="True"/>
               <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
             </Verbosity>
+            <ConfigFile>
+              <DontUseConfigFile Value="True"/>
+              <CustomConfigFile Value="True"/>
+              <ConfigFilePath Value="/etc/fpc-debug.cfg"/>
+            </ConfigFile>
             <ExecuteBefore>
               <Command Value="bash $(ProjPath)/gitlastrev.sh"/>
               <ShowAllMessages Value="True"/>
@@ -300,7 +308,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="128">
+    <Units Count="129">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -1006,6 +1014,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit127>
+      <Unit128>
+        <Filename Value="Units/ribbontoolbarmgr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="RibbonToolBarMgr"/>
+      </Unit128>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

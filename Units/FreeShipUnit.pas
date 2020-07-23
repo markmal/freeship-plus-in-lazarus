@@ -934,6 +934,12 @@ type
     //encoding that is used to convert national strings from/to FBM files
     FApplicationScope : TApplicationScope ; // can be 'machine' or 'user'
 
+    FIntersectionLineWidth: integer;
+    FControlEdgeLineWidth: integer;
+    FInteriorEdgeLineWidth: integer;
+    FAuxEdgeLineWidth: integer;
+    FHydrostaticLineWidth: integer;
+
     procedure detectApplicationScope;
     function getGlobalConfigDirectory: string;
     function getGlobalAppDataDirectory: string; // dir for per-machine install

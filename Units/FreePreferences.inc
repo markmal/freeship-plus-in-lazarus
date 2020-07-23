@@ -1016,6 +1016,13 @@ begin
     'Graphic', 'HydrostaticsFontColor', FHydrostaticsFontColor);
   FZebraStripeColor := params.ReadColor('Graphic', 'ZebraStripeColor',
     FZebraStripeColor);
+
+  FIntersectionLineWidth := params.ReadInteger('Graphic', 'IntersectionLineWidth', FIntersectionLineWidth);
+  FControlEdgeLineWidth := params.ReadInteger('Graphic', 'ControlEdgeLineWidth', FControlEdgeLineWidth);
+  FInteriorEdgeLineWidth := params.ReadInteger('Graphic', 'InteriorEdgeLineWidth', FInteriorEdgeLineWidth);
+  FHydrostaticLineWidth := params.ReadInteger('Graphic', 'HydrostaticLineWidth', FHydrostaticLineWidth);
+  FAuxEdgeLineWidth := params.ReadInteger('Graphic', 'AuxEdgeLineWidth', FAuxEdgeLineWidth);
+
   params.Free;
 end;
 
@@ -1269,6 +1276,13 @@ begin
   FControlCurveColor := 16711808;
   FHydrostaticsFontColor := clMaroon;
   FZebraStripeColor := RGB(230, 230, 230);
+
+  FIntersectionLineWidth := 1;
+  FControlEdgeLineWidth := 2;
+  FInteriorEdgeLineWidth := 1;
+  FAuxEdgeLineWidth := 1;
+  FHydrostaticLineWidth := 1;
+
 end;{TFreePreferences.ResetColors}
 
 procedure TFreePreferences.SaveToDta; //deprecated
@@ -1423,5 +1437,12 @@ begin
   params.WriteColor('Graphic', 'ControlCurveColor', FControlCurveColor);
   params.WriteColor('Graphic', 'HydrostaticsFontColor', FHydrostaticsFontColor);
   params.WriteColor('Graphic', 'ZebraStripeColor', FZebraStripeColor);
+
+  params.WriteInteger('Graphic', 'IntersectionLineWidth', FIntersectionLineWidth);
+  params.WriteInteger('Graphic', 'ControlEdgeLineWidth', FControlEdgeLineWidth);
+  params.WriteInteger('Graphic', 'InteriorEdgeLineWidth', FInteriorEdgeLineWidth);
+  params.WriteInteger('Graphic', 'HydrostaticLineWidth', FHydrostaticLineWidth);
+  params.WriteInteger('Graphic', 'AuxEdgeLineWidth', FAuxEdgeLineWidth);
+
 end;  {SaveTheme}
 

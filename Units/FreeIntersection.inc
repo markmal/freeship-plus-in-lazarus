@@ -471,7 +471,7 @@ begin
       Spline := Items[I - 1];
       Spline.Color := Color;
       Spline.PenStyle := psSolid;
-      Spline.PenWidth := 1;
+      Spline.PenWidth := FreeShip.Preferences.FIntersectionLineWidth;
 
       if IntersectionType = fiStation then
         if Viewport.ViewType in [fvProfile, fvPlan] then
@@ -492,7 +492,7 @@ begin
       if FSelected then
       begin
         Spline.Color := FreeShip.Preferences.SelectColor;
-        Spline.PenWidth := 2;
+        Spline.PenWidth := round(FreeShip.Preferences.FIntersectionLineWidth * 1.5);
       end;
 
       //Spline.ShowPoints:=true; //TODO remove/ debug

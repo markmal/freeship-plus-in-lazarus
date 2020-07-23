@@ -971,7 +971,7 @@ begin
           Items[I - 1].Draw(Viewport);
       end;
       // Draw all interior crease-edges
-      Viewport.SetPenWidth(1);
+      Viewport.PenWidth := Surface.InternalEdgeLineWidth;
       Viewport.PenStyle := psSolid;
       Viewport.PenColor := Surface.CreaseColor;
 

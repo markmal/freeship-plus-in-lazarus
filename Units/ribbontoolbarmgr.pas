@@ -225,10 +225,13 @@ begin
     end;
 end;
 
+var inArrangeRibbonPanel:boolean;
 procedure ArrangeRibbonPanel(RibbonPanel: TPanel);
 var targetWidth, AllToolbarsWidth, w, D: longint;  tlbar: TToolBar;
   edgel, edger: integer;
 begin
+  if inArrangeRibbonPanel then exit;
+  inArrangeRibbonPanel := true;
   AllToolbarsWidth := GetRibbonControlsWidth(RibbonPanel);
   D := RibbonPanel.ClientWidth - AllToolbarsWidth;
 
@@ -253,6 +256,7 @@ begin
   arrangeRibbonToolBars(RibbonPanel);
 
   RibbonPanel.ReAlign;
+  inArrangeRibbonPanel := false;
 end;
 
 procedure ArrangeRibbonPanel2(RibbonPanel: TPanel);

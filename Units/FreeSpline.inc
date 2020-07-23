@@ -798,7 +798,7 @@ begin
       end;
       SetLength(PArray1, J);
       SetLength(PArray2, J);
-      Viewport.SetPenWidth(1);
+      Viewport.SetPenWidth(FPenWidth);
       Viewport.PenColor := CurvatureColor;
       for I := 0 to J - 1 do
         if (I mod 4 = 0) or (I = 1) or (I = Fragments) then
@@ -812,7 +812,7 @@ begin
     begin
       PArray1 := GetValuesProjected(Viewport);
     end;
-    Viewport.SetPenWidth(1);
+    Viewport.SetPenWidth(FPenWidth);
     Viewport.PenColor := Color;
     Viewport.PenStyle := FPenstyle;
     Viewport.Polyline(PArray1);

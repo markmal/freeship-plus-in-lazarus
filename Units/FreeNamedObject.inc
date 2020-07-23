@@ -3,6 +3,7 @@
 function TFreeNamedObject.FGetSelected: boolean;
 begin
   // descendant must implement
+  result := false;
 end;
 
 procedure TFreeNamedObject.FSetSelected(AValue: boolean);

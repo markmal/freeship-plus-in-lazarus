@@ -7350,7 +7350,7 @@ begin
         if Points.Count > 2 then
         begin
           NewLayer := Ctrlface.Layer;
-          FreeShip.Surface.AddControlFace(TFasterList(Points), False, NewLayer);
+          FreeShip.Surface.AddControlFace(Points, False, NewLayer);
           CtrlFace.Delete;
           Changed := True;
           Inc(DblEdges);

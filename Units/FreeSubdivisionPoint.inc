@@ -423,7 +423,8 @@ begin
         Result.Y := Result.Y + Weight * Center.Y;
         Result.Z := Result.Z + Weight * Center.Z;
         TotalWeight := TotalWeight + Weight;
-      end;
+      end; // for I := 1 to FFaces.Count
+
       if TotalWeight <> 0 then
       begin
         Result.X := Result.X / TotalWeight;

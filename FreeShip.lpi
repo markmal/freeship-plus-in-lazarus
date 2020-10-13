@@ -31,7 +31,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
       <RevisionNr Value="36"/>
-      <BuildNr Value="484"/>
+      <BuildNr Value="488"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -232,7 +232,7 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS --lang ru"/>
+        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS --sync"/>
         <WorkingDirectory Value="/usr/bin"/>
       </local>
       <environment>
@@ -283,7 +283,7 @@
         </Mode5>
         <Mode6 Name="debug log from /usr/bin">
           <local>
-            <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS --lang ru"/>
+            <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS --sync"/>
             <WorkingDirectory Value="/usr/bin"/>
           </local>
           <environment>
@@ -1029,7 +1029,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <Libraries Value="lib"/>
-      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/2.0.8/lcl/interfaces/gtk3/gtk3bindings/"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/$(LazVer)/lcl/interfaces/gtk3/gtk3bindings/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
@@ -1071,8 +1071,6 @@
         <IgnoredMessages idx5091="True" idx5057="True" idx5030="True" idx5027="True" idx5026="True" idx5024="True"/>
       </CompilerMessages>
       <ConfigFile>
-        <DontUseConfigFile Value="True"/>
-        <CustomConfigFile Value="True"/>
         <ConfigFilePath Value="/etc/fpc-debug.cfg"/>
       </ConfigFile>
       <ExecuteBefore>

@@ -3120,7 +3120,7 @@ end;
 procedure TFreeShip.KeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 var
   vViewport: TFreeViewport;
-  I,R,D,N,P,E:UInt64; S,M:integer;
+  I,R,D,N,E:UInt64; S,M,P:integer;
 begin
   if not (Sender is TFreeHullWindow) then exit;
   vViewport := (Sender as TFreeHullWindow).Viewport;

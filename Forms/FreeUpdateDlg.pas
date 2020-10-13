@@ -11,7 +11,8 @@ uses
   }
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
   Spin, Buttons, ActnList,
-  {$IF (FPC_FULLVERSION >= 30200) and (defined(unix))}
+  //{$IF (FPC_FULLVERSION >= 30200) and (defined(unix))}
+  {$IF FPC_FULLVERSION >= 30200}
   opensslsockets,
   {$ENDIF}
   fpjsonrtti;
@@ -190,7 +191,8 @@ resourcestring
   {$endif}
 
 // if it is Unix and FPC is 3.2 and newer then use stock function not the library one
-{$IF (FPC_FULLVERSION >= 30200) and (defined(unix))}
+//{$IF (FPC_FULLVERSION >= 30200) and (defined(unix))}
+{$IF (FPC_FULLVERSION >= 30200)}
 function https_get(URL:string):RawByteString;
 var
   Client: TFPHTTPClient;

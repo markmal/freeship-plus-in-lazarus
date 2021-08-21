@@ -212,7 +212,7 @@ begin
     for i := 0 to FHeight - 1 do
       Setlength(FBuffer[I], FWidth);
   end;
-  // initalize all pixel cells to an initial value
+  // initialize all pixel cells to an initial value
   for I := 0 to FWidth - 1 do
     FBuffer[0][I] := -1e10;
   for I := 1 to FHeight - 1 do

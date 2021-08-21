@@ -100,7 +100,7 @@ CFG="${FS_CONF}"/FreeShip.ini
 if [ -f "$CFG" ]
 then
   read -e -p "Configuration file ${CFG} already exits. 
-Whould you like to change current directories to default ones? 
+Would you like to change current directories to default ones? 
 Your current configuration will be backed up if you answer Y.
 [Y/N]: " -i "Y" CHANGE
 

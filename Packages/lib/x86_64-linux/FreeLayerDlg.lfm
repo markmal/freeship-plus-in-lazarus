@@ -153,7 +153,7 @@ object FreeLayerDialog: TFreeLayerDialog
         Height = 20
         Top = 208
         Width = 193
-        Caption = 'Set weigth and CoG manually'
+        Caption = 'Set weight and CoG manually'
         OnClick = CheckBox3Click
         TabOrder = 2
       end

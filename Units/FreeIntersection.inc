@@ -654,7 +654,7 @@ begin
   else
   begin
     // draw to z-buffer
-    // Three is no visible diffrence with z-buffer vs regular lineto.
+    // Three is no visible difference with z-buffer vs regular lineto.
     // So we go with lineto (Spline.Draw)
     if not Built then
       Rebuild;

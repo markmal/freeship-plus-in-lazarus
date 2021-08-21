@@ -930,7 +930,7 @@ begin
   FFileName := trim(EditName.Text);
 end;
 
-function ExtractFileNameExt(const AFilename: string): string; // extracts extention with dot
+function ExtractFileNameExt(const AFilename: string): string; // extracts extension with dot
 var
   p: Integer;
 begin

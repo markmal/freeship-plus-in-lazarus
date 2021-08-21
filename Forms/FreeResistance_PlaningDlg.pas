@@ -746,7 +746,7 @@ begin
 
 
   ValidData := True;
-  // Check for valid paramaters
+  // Check for valid parameters
   if (Cp < 0.4) or (Cp > 0.9) then
   begin
     ResultsMemo.Lines.Add(Space(10) + Userstring(271) + ' of 0.40 .. 0.90');

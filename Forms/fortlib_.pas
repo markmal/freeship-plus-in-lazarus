@@ -32,7 +32,7 @@ type
     TIntegerMatrix = array [0..0,0..0] of integer;
 
 // 
-// Procedures publically available.
+// Procedures publicly available.
 // 
 
 procedure adder(a,b : integer;var c : integer); 
@@ -49,7 +49,7 @@ stdcall;
 implementation
 
 // 
-// Interface unit implemetation.
+// Interface unit implementation.
 //
 
 //

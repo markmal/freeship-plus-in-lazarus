@@ -8773,6 +8773,10 @@ msgctxt "tmainform.colorbutton1.hint"
 msgid "Change the color of the currently active layer."
 msgstr ""
 
+#: tmainform.cornerizeedge.caption
+msgid "CornerizeEdge"
+msgstr ""
+
 #: tmainform.crosscurves.caption
 msgid "Cross curves"
 msgstr ""
@@ -8780,6 +8784,10 @@ msgstr ""
 #: tmainform.curve1.caption
 msgctxt "tmainform.curve1.caption"
 msgid "Curve"
+msgstr ""
+
+#: tmainform.decornerizeedge.caption
+msgid "DecornerizeEdge"
 msgstr ""
 
 #: tmainform.decreasecurvaturescale.caption

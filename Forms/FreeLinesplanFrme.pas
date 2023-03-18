@@ -1821,7 +1821,7 @@ var
       Strings.Add('8' + EOL + LayerName);   // layername
       Strings.Add('62' + EOL + IntToStr(FindDXFColorIndex(Color)));
       Strings.Add('66' + EOL + '1');    // vertices follow
-      for I := 0 to NParams - 1 do
+      for I := 0 to NValues - 1 do
       begin
         P.Z := 0.0;
         if lvAftBody in views then

@@ -377,6 +377,7 @@ var Str     : AnsiString;
     end;{CreateTimeStamp}
 
 begin
+   DefaultFormatSettings.DecimalSeparator := '.';
    // Create time string
    TimeStr:=CreateTimeStamp;
    // Create the start section

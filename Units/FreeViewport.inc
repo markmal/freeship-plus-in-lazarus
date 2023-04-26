@@ -758,7 +758,7 @@ begin
   FSinElevation := sin(DegToRad(FElevation));
 
   // now project all 8 cornerpoints of the bounding box to 2D
-  // in order to determin the min. and max. 2D coordinates of the 2D viewport.
+  // in order to determine the min. and max. 2D coordinates of the 2D viewport.
   P[1].X := FMin3D.X;
   P[1].Y := FMin3D.Y;
   P[1].Z := FMin3D.Z;
@@ -893,7 +893,7 @@ begin
       FScreencenter.X := Canvaswidth div 2;
       FScreencenter.Y := Canvasheight div 2;
       // project all 8 cornerpoints of the bounding box to 2D
-      // in order to determin the min. and max. 2D coordinates of the 2D viewport.
+      // in order to determine the min. and max. 2D coordinates of the 2D viewport.
       P[1].X := FMin3D.X;
       P[1].Y := FMin3D.Y;
       P[1].Z := FMin3D.Z;

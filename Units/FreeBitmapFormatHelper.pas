@@ -262,7 +262,7 @@ begin
       and (BlueShift=0)
       and (AlphaPrec=0)
       //and (MaskBitsPerPixel=0)
-    then FBitMapDataFormat := bmdf_BPP24_B8G8R8      // not sure what reverce bit order means here
+    then FBitMapDataFormat := bmdf_BPP24_B8G8R8      // not sure what reverse bit order means here
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 24) // used bits per pixel
@@ -292,7 +292,7 @@ begin
       and (BlueShift=0)
       and (AlphaPrec=0)
       //and (MaskBitsPerPixel=0)
-    then FBitMapDataFormat := bmdf_BPP32_B8G8R8      // not sure what reverce bit order means here
+    then FBitMapDataFormat := bmdf_BPP32_B8G8R8      // not sure what reverse bit order means here
     else if
       (Format = ricfRGBA) and (PaletteColorCount = 0)
       and (Depth = 24) // used bits per pixel

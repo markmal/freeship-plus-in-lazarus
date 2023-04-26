@@ -118,7 +118,7 @@ begin
 end;{LoadLanguage}
 
 // Takse a string value and detrmines if it is a stringvalue that should
-// be translated into another langage
+// be translated into another language
 // Values not to be translated are: numbers, strings containing no valid characters
 function ValidString(Input:String):Boolean;
 var Value   : single;
@@ -230,7 +230,7 @@ end;{UserString}
 
 {Translates the forms you choose in the language called in ini.
 Only created forms are translated with ShowTranslatedValues. Call it in the onShow
-event of your main form whith names of all automatically created forms
+event of your main form with names of all automatically created forms
 at the start-up of your application in the TC parameter.
 In runtime, call it when you create dynamically a form.
 See demo for a sample}

@@ -7,7 +7,7 @@ interface
 uses Classes;
 
 const
-  PixelCountMax                 = 32768;                         // used for faster pixel acces when shading to viewport
+  PixelCountMax                 = 32768;                         // used for faster pixel access when shading to viewport
 
 Type
 
@@ -55,7 +55,7 @@ type
   TFreePrecisionType           = (fpLow,fpMedium,fpHigh,fpVeryHigh);                                  // Precision of the ship-model
   TFreeIntersectionType        = (fiFree,fiStation,fiButtock,fiWaterline,fiDiagonal);                 // Different types of intersectionlines, stations, buttocks, waterlines and lines orientated in random planes
   TFreeModelView               = (mvPort,mvBoth);                                                     // Show half the hull or the entire hull
-  TFreeEditMode                = (emSelectItems,emAddPoint,emAddFlowLine);                                                     // The program responds differnt to mouse actions depending on the editmode of the component
+  TFreeEditMode                = (emSelectItems,emAddPoint,emAddFlowLine);                                                     // The program responds differently to mouse actions depending on the editmode of the component
   TFreeHydrostaticType         = (fhShort,fhExtensive);                                               // Determines how calculations are performed: short, extensive etc.
   TFreeHydrostaticsMode        = (fhSingleCalculation,fhMultipleCalculations);                        // Used when creating hydrostatic reports
   TFreeHydrostaticsCalculation = (hcAll,hcVolume,hcMidship,hcWaterline,hcSAC,hcLateralArea,hcBulbSection);        //

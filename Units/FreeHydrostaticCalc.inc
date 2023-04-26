@@ -1197,7 +1197,7 @@ var
         max := Distance;
     end;
     MinMaxdata.Maxdraft := Max - Min - 1e-4;
-  end;{Initalizes data of the hull under a specified heel and trim}
+  end;{Initializes data of the hull under a specified heel and trim}
 
 begin
   Fillchar(FData, SizeOf(FData), 0);

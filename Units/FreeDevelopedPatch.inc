@@ -1666,7 +1666,7 @@ begin
     BestIndex := -1;
     I := 1;
     FNoIterations := 0;
-    // Keep trying to develop the faces until no error has occured and the max. error<1e-7 and the number of iterations<=25
+    // Keep trying to develop the faces until no error has occurred and the max. error<1e-7 and the number of iterations<=25
     while I <= seedfaces.Count do
     begin
       Seedface := Seedfaces[I - 1];
@@ -1674,7 +1674,7 @@ begin
       Inc(FNoIterations);
       if (ErrorIndex <> -1) and (Seedfaces.Count < 25) then
       begin
-        // Add faces where an error occured as new seedfaces, these
+        // Add faces where an error occurred as new seedfaces, these
         // are generally areas where gauss curvature<>0.0
         if Seedfaces.IndexOf(FDonelist[ErrorIndex]) = -1 then
           Seedfaces.Add(FDonelist[ErrorIndex]);

@@ -278,7 +278,7 @@ type
     procedure Reload;
     { Properties }
     property IsLoading: boolean read FIsLoading;
-    property Mask: string read FMask write SetMask; // Can be used to conect to other controls
+    property Mask: string read FMask write SetMask; // Can be used to connect to other controls
     property ObjectTypes: TObjectTypes read FObjectTypes write FObjectTypes;
     property Root: string read FRoot write SetRoot;
     property ShellTreeView: TCustomShellTreeView read FShellTreeView write SetShellTreeView;
@@ -424,7 +424,7 @@ type
     class procedure ConvertFilterToStrings(AFilter: string;
       AStrings: TStrings; AClearStrings, AAddDescription, AAddFilter: Boolean);
     { properties }
-    property Mask: string read GetMask; // Can be used to conect to other controls
+    property Mask: string read GetMask; // Can be used to connect to other controls
     property ShellListView: TShellListView read FShellListView write SetShellListView;
   end;
 
@@ -1442,7 +1442,7 @@ begin
   end
   else
   begin
-    //AValue is an absoulte path to begin with
+    //AValue is an absolute path to begin with
     //if not DirectoryExistsUtf8(AValue) then
     if not Exists(AValue) then
       Raise EInvalidPath.CreateFmt(sShellCtrlsInvalidPath,[AValue]);
@@ -1462,7 +1462,7 @@ begin
 
   if (not IsRelpath) or ((RelPath <> '') and ((Length(RelPath) > 1) and (RelPath[1] = '.') and (RelPath[2] = '.'))) then
   begin
-    // CreateRelativePath retruns a string beginning with ..
+    // CreateRelativePath returns a string beginning with ..
     // so AValue is not a subdirectory of FRoot
     Raise EInvalidPath.CreateFmt(sShellCtrlsInvalidPathRelative,[AValue, FQRootPath]);
   end;

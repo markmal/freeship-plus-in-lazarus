@@ -1,6 +1,6 @@
 (*
 MemCheck: the ultimate memory troubles hunter
-Created by: Jean Marc Eber & Vincent Mahon, Société Générale, INFI/SGOP/R&D
+Created by: Jean Marc Eber & Vincent Mahon, Sociï¿½tï¿½ Gï¿½nï¿½rale, INFI/SGOP/R&D
 Version 2.75	-> Also update OutputFileHeader when changing the version #
 
 Contact...
@@ -8,13 +8,13 @@ Contact...
 	http://v.mahon.free.fr/pro/freeware/memcheck
 
 Mail address:
-	Tour Société Générale
+	Tour Sociï¿½tï¿½ Gï¿½nï¿½rale
 	Sgib/Sgop/R&D
-	92987 Paris - La Défense cedex
+	92987 Paris - La Dï¿½fense cedex
 	France
 
 Copyrights...
-The authors grant you the right to modify/change the source code as long as the original authors are mentionned.
+The authors grant you the right to modify/change the source code as long as the original authors are mentioned.
 Please let us know if you make any improvements, so that we can keep an up to date version. We also welcome
 all comments, preferably by email.
 
@@ -26,7 +26,7 @@ Reuse of this code in a commercial application is not permitted. The portions ar
 > Clive Turvey <clive@tbcnet.com> http://www.tbcnet.com/~clive/vcomwinp.html
 
 Disclaimer...
-You use MemCheck at your own risks. This means that you cannot hold the authors or Société Générale to be
+You use MemCheck at your own risks. This means that you cannot hold the authors or Sociï¿½tï¿½ Gï¿½nï¿½rale to be
 responsible for any software\hardware problems you may encounter while using this module.
 
 General information...
@@ -54,7 +54,7 @@ Features...
 
 Options and parameters...
 - You can specify the log files names (MemCheckLogFileName)
-- It is possible to tell MemCheck that you are instanciating an object in a special way - See doc for
+- It is possible to tell MemCheck that you are instantiating an object in a special way - See doc for
   CheckForceAllocatedType
 - Clients can specify the depth of the call stack they want to store (StoredCallStackDepth)
 
@@ -160,7 +160,7 @@ var
 	DeallocateFreedMemoryWhenBlockBiggerThan: Integer = 0;
 	{should blocks be really deallocated when FreeMem is called ? If you want all blocks to be deallocated, set this
 	constant to 0. If you want blocks to be never deallocated, set the cstte to MaxInt. When blocks are not deallocated,
-	MemCheck can give information about when the second deallocation occured}
+	MemCheck can give information about when the second deallocation occurred}
 
 	ShowLogFileWhenUseful: Boolean = True;
 
@@ -211,7 +211,7 @@ const
 	- for objects, this option replaces the VMT with a special one which will raise exceptions if a virtual method is called
 	- for other memory kinds, this will fill the memory space with the char below}
 	CharToUseToWipeOut: char = #0;
-	//I choose #0 because this makes objet fields Nil, which is easier to debug. Tell me if you have a better idea !
+	//I choose #0 because this makes object fields Nil, which is easier to debug. Tell me if you have a better idea !
 
 	CheckWipedBlocksOnTermination = True and WipeOutMemoryOnFreeMem and not (DanglingInterfacesVerified);
 	{When iterating on the blocks (in OutputAllocatedBlocks), we check for every block which has been deallocated that it is still
@@ -222,7 +222,7 @@ const
 	DoNotCheckWipedBlocksBiggerThan = 4000;
 
 	CollectStatsAboutObjectAllocation = False;
-	{Every time FreeMem is called for allocationg an object, this will register information about the class instanciated:
+	{Every time FreeMem is called for allocationg an object, this will register information about the class instantiated:
 	class name, number of instances, allocated space for one instance
 	Note: this has to be done on FreeMem because when GetMem is called, the VMT is not installed yet and we can not know
 	this is an object}
@@ -252,7 +252,7 @@ const
 	phase does not take too long}
 
 	UseDebugInfos = True;
-	//Should use the debug informations which are in the executable ?
+	//Should use the debug information which is in the executable ?
 
 	RaiseExceptionsOnEnd = true;
 	//Should we use exceptions to show memory leak information ?
@@ -405,7 +405,7 @@ var
 	{This is the log file for exceptions}
 
 	OutOfMemory: EOutOfMemory;
-	// Because when we have to raise this, we do not want to have to instanciate it (as there is no memory available)
+	// Because when we have to raise this, we do not want to have to instantiate it (as there is no memory available)
 
 	HeapCorrupted: Exception;
 
@@ -892,7 +892,7 @@ begin
 		if i in [1..8] then
 			FeedBackStr:= 'Call ' + TObjectVirtualMethodNames[i]
 		else
-			FeedBackStr:= 'Call ' + IntToStr(i) + '° virtual method';
+			FeedBackStr:= 'Call ' + IntToStr(i) + 'ï¿½ virtual method';
 		FeedBackStr:= FeedBackStr + ' on a FREED instance of ' + T.VMT.ClassName + ' (destroyed at ' + TextualDebugInfoForAddress(Cardinal(T.DestructionAdress)) + ' - had been created at ' + TextualDebugInfoForAddress(Cardinal(T.CallerAddress[0])) + ')';
 		raise EBadInstance.Create(FeedBackStr) at Caller;
 	except
@@ -1251,7 +1251,7 @@ asm
 		@@3:	POP	 EBX
 				MOV	 ECX,[EBX].TInterfaceTable.EntryCount
 				ADD	 EBX,4
-		@@4:	LEA	 ESI, BadInterfaceVMT // mettre dans ESI l'adresse du début de MyInterfaceVMT: correct ?????
+		@@4:	LEA	 ESI, BadInterfaceVMT // mettre dans ESI l'adresse du dï¿½but de MyInterfaceVMT: correct ?????
 				MOV	 EDI,[EBX].TInterfaceEntry.IOffset
 				MOV	 [EAX+EDI],ESI
 				ADD	 EBX,TYPE TInterfaceEntry
@@ -2293,7 +2293,7 @@ var
   TopLeakRefs: TList;
   MinIdx: integer;
 begin
-	//Initalize
+	//Initialize
 	InitializeOnce;
 	UnMemChk;
 	LeaksList := TLeakList.Create;

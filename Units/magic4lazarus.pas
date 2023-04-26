@@ -1,7 +1,7 @@
 (****************************************************************************
  *
  * Magic4Lazarus:
- * Retrive the mime of content from a file or a buffer.
+ * Retrieve the mime of content from a file or a buffer.
  *
  * Copyright (c) Francisco Ernesto Teixeira 2010.
  * All Rights Reserved.

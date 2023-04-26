@@ -452,7 +452,7 @@ end;{TFreeLayerDialog.ToolButton1Click}
 procedure TFreeLayerDialog.ToolButton3Click(Sender: TObject);
 var noFeedback: Boolean;
 begin
-// delete the emtpy layers, set a new active layer:
+// delete the empty layers, set a new active layer:
    noFeedback := False; // if quiet, then no undo object, no feedback about number of deleted layers
    FFreeShip.Edit.Layer_DeleteEmpty(noFeedback);
 // now update the dialog box: clear it and build it new

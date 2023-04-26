@@ -54,7 +54,7 @@ type
   {                                       TFasterList                                                 }
 
   {   TFasterlist is an improved version of Delphi's standard TList object.                           }
-  {   It is stripped of unneccesary code to improve speed.                                            }
+  {   It is stripped of unnecessary code to improve speed.                                            }
   {   Additionally the contents (pointers) can be sorted so that the time needed to search an item    }
   {   has been reduced with a factor 2^n                                                               }
 

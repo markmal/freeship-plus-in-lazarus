@@ -529,7 +529,7 @@ var
   i:integer;
 begin
   try
-    {Using this to remove Currency symbol and Thousand seperator}
+    {Using this to remove Currency symbol and Thousand separator}
     TrashText:='';
     for i:=1 to length(Text) do
     if ( Text[i] in ['0'..'9',FormatSettings.DecimalSeparator,'-']) then TrashText:=TrashText+Text[i];

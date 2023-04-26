@@ -397,7 +397,7 @@ begin
   _Label13.Caption := LengthStr(FFreeship.ProjectSettings.ProjectUnits);
   _Label14.Caption := _Label13.Caption;
 
-  // Calculate the initial position fo each surface
+  // Calculate the initial position of each surface
   for I := 1 to FPlates.Count do
   begin
     Patch := Plates[I - 1];

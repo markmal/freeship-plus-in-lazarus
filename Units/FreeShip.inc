@@ -428,7 +428,7 @@ begin
     end
     else
     begin
-      // The first line makes sure that the activecontrolpoint form does NOT recieve focus.
+      // The first line makes sure that the activecontrolpoint form does NOT receive focus.
       // because the mousewheel zoom in/out doesn't work anymore in that case
       if not FControlpointForm.Visible then
       begin
@@ -1581,7 +1581,7 @@ begin
     end;
     if FDesignHydrostatics.Errors = [] then
     begin
-      // Center of bouyancy
+      // Center of buoyancy
       if Visibility.FShowHydrostDisplacement then
         DrawPoint(FDesignHydrostatics.FData.CenterOfBuoyancy, 'Displ=' +
           FloatToStrF(FDesignHydrostatics.Data.Displacement, ffFixed, 7, 2), True);

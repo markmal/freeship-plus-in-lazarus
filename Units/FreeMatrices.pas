@@ -113,7 +113,7 @@ begin
    if (Col>=0) and (Col<FNoColumns) and
       (Row>=0) and (Row<FNoRows) then Result:=FRows[Row][Col] else
    begin
-      Raise TFreeMatrixError.Create('Error in accesing matrix');
+      Raise TFreeMatrixError.Create('Error in accessing matrix');
    end;
 end;{TFreeMatrix.FGetValue}
 
@@ -123,7 +123,7 @@ begin
       (Row>=0) and (Row<FNoRows) then
       begin
          FRows[Row][Col]:=Value;
-      end else Raise TFreeMatrixError.Create('Error in accesing matrix');
+      end else Raise TFreeMatrixError.Create('Error in accessing matrix');
 end;{TFreeMatrix.FSetValue}
 
 procedure TFreeMatrix.Clear;

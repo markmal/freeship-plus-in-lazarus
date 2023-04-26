@@ -72,7 +72,7 @@ set CFG=%FS_LAPP%\FreeShip.ini
 
 if not exist %CFG% goto CFGNOTEXIST
   echo Configuration file %CFG% already exits.
-  set /P CHANGE="Whould you like to change shared directories to user ones? [Y\N]: "
+  set /P CHANGE="Would you like to change shared directories to user ones? [Y\N]: "
   
   if %CHANGE% == "Y" (
     xcopy /Y %CFG% %CFG%.0

@@ -92,7 +92,7 @@ fi
 cd -
 
 #change ownership of .local files of current user back to the user,
-#because above commands may chane them to root:root
+#because above commands may change them to root:root
 GRP=$(ls -ld ~ | while read P X USR GRP S ; do echo $GRP; done)
 USR=$(ls -ld ~ | while read P X USR GRP S ; do echo $USR; done)
 [ -d ~/.local/share/applications ] && chown -R $USR:$GRP ~/.local/share/applications

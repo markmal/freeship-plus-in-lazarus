@@ -1387,7 +1387,7 @@ begin
    ExportArchimedes.Enabled:=FreeShip.NumberofStations>0;
    ExportGHS.Enabled:=FreeShip.NumberofStations>0;
    ExportPAM.Enabled:=FreeShip.NumberofStations>0;   
-// Detect existance of external modules
+// Detect existence of external modules
    FExecDirectory:=Freeship.Preferences.ExecDirectory;
    ExportMichlet.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);
    ExportAddMass.Enabled:=(Freeship.Surface.NumberOfControlFaces>0) and (Freeship.ProjectSettings.MainparticularsHasBeenset);   
@@ -1409,7 +1409,7 @@ begin
    ExportAddMass.Enabled:=False;
    ResistanceRBHS.Enabled:=False;
    ResistanceMH.Enabled:=False;   
-   // Detect existance of external modules and include executables into menu
+   // Detect existence of external modules and include executables into menu
    if FileExists(FExecDirectory+DS+'ADD_MASS.EXE') { *Converted from FileExists* } then ExportAddMass.Enabled:=True;
    if FileExists(FExecDirectory+DS+'Ishercof.EXE') { *Converted from FileExists* } then HydrodynTask1_.Enabled:=True;
    if FileExists(FExecDirectory+DS+'Pos_Ship.EXE') { *Converted from FileExists* } then HydrodynTask2_.Enabled:=True;
@@ -2041,7 +2041,7 @@ begin
       if Answer=mrYes then
       begin
          Freeship.Edit.File_SaveAs;
-         if Freeship.FileChanged then exit; // Apparently saving was not successfull, abort
+         if Freeship.FileChanged then exit; // Apparently saving was not successful, abort
       end;
    end;
 

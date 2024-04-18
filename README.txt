@@ -14,4 +14,5 @@ allows the designer to simulate and analyze condition of balance of a complex co
 rudders - keels - engine - propellers in different regimes and of service conditions of a ship. 
 The analyzable system includes a hull, appendages, a propeller and the engine (i.e. resistance, 
 power, a thrust and a torque), and also various service conditions (heaving, a wind, a shallow-water 
-effect, a regime of tow / pushing, etc...) refer to http://www.hydronship.net for full description.
+effect, a regime of tow / pushing, etc...) refer to https://sourceforge.net/projects/freeship/ for full description.
+

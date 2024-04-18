@@ -10,7 +10,7 @@ object FreeUpdateForm: TFreeUpdateForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '2.0.10.0'
   object BottomPanel: TPanel
     Left = 0
     Height = 50
@@ -134,10 +134,9 @@ object FreeUpdateForm: TFreeUpdateForm
       object SpeedButton1: TSpeedButton
         Left = 14
         Height = 28
-        Hint = 'Refresh'
         Top = 11
         Width = 28
-        Action = ActionCheckUpdate
+        Action = MainForm.AboutAction
         Glyph.Data = {
           36090000424D3609000000000000360000002800000018000000180000000100
           2000000000000009000064000000640000000000000000000000000000000000
@@ -310,8 +309,8 @@ object FreeUpdateForm: TFreeUpdateForm
     end
   end
   object ActionList1: TActionList
-    left = 424
-    top = 376
+    Left = 424
+    Top = 376
     object ActionCheckUpdate: TAction
       Caption = 'Check Update'
       OnExecute = ActionCheckUpdateExecute

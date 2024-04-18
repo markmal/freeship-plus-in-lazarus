@@ -4,7 +4,7 @@ object MainForm: TMainForm
   Top = 182
   Width = 1132
   Align = alTop
-  ClientHeight = 611
+  ClientHeight = 609
   ClientWidth = 1132
   Color = clAppWorkspace
   Constraints.MinHeight = 200
@@ -22,11 +22,11 @@ object MainForm: TMainForm
   OnWindowStateChange = FormWindowStateChange
   Position = poDefault
   ShowHint = True
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '2.0.10.0'
   object StatusBar: TPanel
     Left = 0
     Height = 37
-    Top = 574
+    Top = 572
     Width = 1132
     Align = alBottom
     AutoSize = True
@@ -127,7 +127,7 @@ object MainForm: TMainForm
       Left = 466
       Height = 36
       Top = 0
-      Width = 302
+      Width = 300
       BevelInner = bvLowered
       BevelOuter = bvNone
       ChildSizing.LeftRightSpacing = 10
@@ -136,7 +136,7 @@ object MainForm: TMainForm
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
       ClientHeight = 36
-      ClientWidth = 302
+      ClientWidth = 300
       ParentFont = False
       TabOrder = 3
       object ProgressBarMain: TProgressBar
@@ -152,7 +152,7 @@ object MainForm: TMainForm
         Left = 166
         Height = 26
         Top = 5
-        Width = 125
+        Width = 123
         Caption = 'LabelProgress'
         Layout = tlCenter
         ParentColor = False
@@ -688,7 +688,7 @@ object MainForm: TMainForm
   end
   object MainClientPanel: TPanel
     Left = 0
-    Height = 527
+    Height = 525
     Top = 47
     Width = 1132
     Align = alClient
@@ -699,8 +699,8 @@ object MainForm: TMainForm
   end
   object ActionList1: TActionList
     Images = MenuImages
-    left = 112
-    top = 200
+    Left = 112
+    Top = 200
     object ExportFEF: TAction
       Category = 'Export'
       Caption = 'FEF file...'
@@ -1534,8 +1534,8 @@ object MainForm: TMainForm
     end
   end
   object MenuImages: TImageList
-    left = 112
-    top = 136
+    Left = 112
+    Top = 136
     Bitmap = {
       4C69410000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3622,8 +3622,8 @@ object MainForm: TMainForm
   end
   object MainMenu1: TMainMenu
     Images = MenuImages
-    left = 112
-    top = 72
+    Left = 112
+    Top = 72
     object File1: TMenuItem
       Caption = 'File'
       object New3: TMenuItem
@@ -4119,8 +4119,7 @@ object MainForm: TMainForm
         ShortCut = 112
       end
       object CheckUpdates: TMenuItem
-        Action = ActionCheckUpdates
-        Caption = 'Check updates'
+        Action = ActiveLayerColor
       end
       object HelpAbout: TMenuItem
         Action = AboutAction
@@ -4152,13 +4151,13 @@ object MainForm: TMainForm
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 240
-    top = 72
+    Left = 240
+    Top = 72
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
-    left = 240
-    top = 136
+    Left = 240
+    Top = 136
   end
 end

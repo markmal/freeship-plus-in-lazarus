@@ -699,6 +699,7 @@ type
 
 var MainForm: TMainForm;
 var GShowSplash : boolean = true;
+var GCheckUpdates : boolean = true;
 
 implementation
 
@@ -1064,10 +1065,14 @@ begin
     GShowSplash:=false; // show splash on first activate only
   end;
 
-  if not assigned(FreeUpdateForm) then
-    FreeUpdateForm := TFreeUpdateForm.Create(self);
-  if FreeUpdateForm.UpdatesAvailable then
-    FreeUpdateForm.ShowModal;
+  if GCheckUpdates then
+  begin
+    if not assigned(FreeUpdateForm) then
+      FreeUpdateForm := TFreeUpdateForm.Create(self);
+    if FreeUpdateForm.UpdatesAvailable then
+      FreeUpdateForm.ShowModal;
+    GCheckUpdates := false; // Check updates on first activate only
+  end;
 
   if not FModelInitallyLoaded then
     begin

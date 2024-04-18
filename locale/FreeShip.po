@@ -301,3 +301,241 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
+#: tfreeprojectsettingsdialog.bitbtn1.caption
+msgid "OK"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.bitbtn2.caption
+msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.caption
+msgid "Project settings."
+msgstr ""
+
+#: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
+msgid "Save preview image"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.cbshadeunderwater.caption
+msgid "Shade underwater"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
+msgid "Simplify intersections"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox11.caption
+msgid "Default at 0.0"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox12.caption
+msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
+msgid "Default at 0.5*L"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox13.caption
+msgid "Enable auto move model to baseline"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox14.caption
+msgid "Save Bonjean scale and SAC in files"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox2.caption
+msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
+msgid "Default at 0.5*L"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox3.caption
+msgid "Disable surface check"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox5.caption
+msgid "Displacement and center of buoyancy"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox6.caption
+msgid "Curve of sectional areas"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox7.caption
+msgid "Metacentric height"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox8.caption
+msgid "Longitudinal center of floatation"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox9.caption
+msgid "Lateral area and center of effort"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.combobox1.text
+msgid "Dimensions from project settings"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.groupbox1.caption
+msgid "Display hydrostatic features. "
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label1.caption
+msgid "Project name"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label10.caption
+msgctxt "tfreeprojectsettingsdialog.label10.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label11.caption
+msgctxt "tfreeprojectsettingsdialog.label11.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label12.caption
+msgid "Underwater opacity, %"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label13.caption
+msgid "Split Section location"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label14.caption
+msgctxt "tfreeprojectsettingsdialog.label14.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label15.caption
+msgid "Comment"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label16.caption
+msgid "File created by"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label17.caption
+msgid "Coefficients based on"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label18.caption
+msgid "Select which of the following hydrostatic properties"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label19.caption
+msgid "you want to have displayed in the model:"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label2.caption
+msgid "Length "
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label20.caption
+msgid "Y coord. of Longitudinal Max. Wind Area location"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label21.caption
+msgctxt "tfreeprojectsettingsdialog.label21.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label22.caption
+msgid "X coord. of Transverse Max. Wind Area location"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label23.caption
+msgctxt "tfreeprojectsettingsdialog.label23.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label24.caption
+msgid "Precision"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label25.caption
+msgid "Water temperature"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label26.caption
+msgid "C"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label27.caption
+msgid "Underwater color"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label3.caption
+msgid "Beam"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label4.caption
+msgid "Draft"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label5.caption
+msgid "Water density"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label6.caption
+msgid "Appendage coefficient"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label7.caption
+msgid "Designer"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label8.caption
+msgid "Units"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label9.caption
+msgctxt "tfreeprojectsettingsdialog.label9.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.lbwaterdensity.caption
+msgid "lbWaterDensity"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.precisionbox.hint
+msgid "Change the precision of the model."
+msgstr ""
+
+#: tfreeprojectsettingsdialog.precisionbox.text
+msgid "Low"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.tabsheet1.caption
+msgid "General"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.tabsheet2.caption
+msgid "Hydrostatics"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.tabsheet3.caption
+msgid "Main dimensions"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.unitbox.text
+msgid "Metric"
+msgstr ""
+
+#: tfreesplitsectiondialog.bitbtn1.caption
+msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
+msgid "Close"
+msgstr ""
+
+#: tfreesplitsectiondialog.caption
+msgid "Split section location"
+msgstr ""
+
+#: tfreesplitsectiondialog.speedbutton1.hint
+msgid "Medium"
+msgstr ""
+
+#: tfreesplitsectiondialog.speedbutton3.hint
+msgid "From hydrostatics"
+msgstr ""
+

@@ -28,9 +28,9 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
       Height = 550
       Top = 8
       Width = 784
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'General'
@@ -364,6 +364,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Constraints.MinWidth = 120
               DecimalPlaces = 4
               Increment = 0.1
+              MaxValue = 500
               OnEditingDone = Edit3EditingDone
               TabOrder = 1
             end
@@ -437,6 +438,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Alignment = taRightJustify
               Constraints.MinWidth = 120
               DecimalPlaces = 4
+              MaxValue = 1000
               OnEditingDone = SplitSectionLocationEditingDone
               ReadOnly = True
               TabOrder = 0

@@ -8,23 +8,23 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
   ClientWidth = 600
   FormStyle = fsStayOnTop
   OnShow = FormShow
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object TopPanel: TPanel
     Left = 0
-    Height = 40
+    Height = 44
     Top = 0
     Width = 600
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 40
+    ClientHeight = 44
     ClientWidth = 600
     TabOrder = 0
     object BitBtn1: TBitBtn
-      Left = 545
-      Height = 32
+      Left = 538
+      Height = 36
       Top = 4
-      Width = 51
+      Width = 58
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 4
@@ -35,14 +35,14 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
     end
     object fseSplitSectionLocation: TFloatSpinEdit
       Left = 4
-      Height = 32
+      Height = 36
       Top = 4
-      Width = 120
+      Width = 140
       Align = alLeft
       Alignment = taRightJustify
       BorderSpacing.Around = 4
       Constraints.MinWidth = 120
-      DecimalPlaces = 5
+      DecimalPlaces = 4
       Increment = 0.1
       MaxValue = 1000
       MinValue = -0.00001
@@ -52,21 +52,20 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
       OnMouseDown = fseSplitSectionLocationMouseDown
       OnMouseWheel = fseSplitSectionLocationMouseWheel
       TabOrder = 1
-      Value = 0
     end
     object Panel1: TPanel
-      Left = 128
-      Height = 40
+      Left = 148
+      Height = 44
       Top = 0
-      Width = 413
+      Width = 386
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 40
-      ClientWidth = 413
+      ClientHeight = 44
+      ClientWidth = 386
       TabOrder = 2
       object SpeedButton1: TSpeedButton
         Left = 2
-        Height = 32
+        Height = 36
         Hint = 'Medium'
         Top = 4
         Width = 30
@@ -83,7 +82,7 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
       end
       object SpeedButton3: TSpeedButton
         Left = 34
-        Height = 32
+        Height = 36
         Hint = 'From hydrostatics'
         Top = 4
         Width = 30
@@ -102,8 +101,8 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
   end
   object tbSplitSectionLocation: TTrackBar
     Left = 10
-    Height = 43
-    Top = 50
+    Height = 46
+    Top = 54
     Width = 580
     OnChange = tbSplitSectionLocationChange
     Position = 0

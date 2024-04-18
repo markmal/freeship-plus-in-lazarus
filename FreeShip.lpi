@@ -222,6 +222,10 @@
       <Version Value="2"/>
     </PublishOptions>
     <RunParams>
+      <local>
+        <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+        <WorkingDirectory Value="/usr/bin/"/>
+      </local>
       <FormatVersion Value="2"/>
       <Modes Count="7">
         <Mode0 Name="default">

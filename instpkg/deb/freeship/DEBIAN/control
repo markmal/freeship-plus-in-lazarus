@@ -1,5 +1,5 @@
 Package: freeship
-Version: 5.0.36.495
+Version: 5.0.36.497
 Architecture: amd64
 Depends:  libatk1.0-0, libc6, libcairo2, libgdk-pixbuf2.0-0, libglib2.0-0, libgtk2.0-0, libpango-1.0-0, libpangocairo-1.0-0, libx11-6
 Recommends: libssl1.1.0
@@ -7,7 +7,7 @@ Source: freeship
 Section: science
 Priority: optional
 Maintainer: markmal <markmal@github.com>
-Installed-Size: 125672
+Installed-Size: 121300
 Homepage: https://github.com/markmal/freeship-plus-in-lazarus
 Origin: https://github.com/markmal/freeship-plus-in-lazarus
 Vcs-Git: git://github.com/markmal/freeship-plus-in-lazarus.git

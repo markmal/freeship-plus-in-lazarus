@@ -136,7 +136,7 @@ object FreeUpdateForm: TFreeUpdateForm
         Height = 28
         Top = 11
         Width = 28
-        Action = MainForm.AboutAction
+        Action = ActionCheckUpdate
         Glyph.Data = {
           36090000424D3609000000000000360000002800000018000000180000000100
           2000000000000009000064000000640000000000000000000000000000000000
@@ -312,7 +312,7 @@ object FreeUpdateForm: TFreeUpdateForm
     Left = 424
     Top = 376
     object ActionCheckUpdate: TAction
-      Caption = 'Check Update'
+      Caption = 'Check for updates'
       OnExecute = ActionCheckUpdateExecute
     end
   end

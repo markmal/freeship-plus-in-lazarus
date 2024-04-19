@@ -294,11 +294,11 @@ New features:
 Release Version 3.4
 Released March 31, 2013
 New features:
-     * Specify the range of FPP series Zvezdkinoy per curves of the propeller in the free water††† 
-     * Set rotative speed propeller default of 100 rev. in minutes††† 
-     * The abscissa of the bow perpendicular  was set equal to project length†††††† 
-     * Added a series of five-blade surface piercing propeller KSRI  SPP-5††(for x32)† 
-     * Added output engine power with a 10% premium (on the recommendation of the diesel firm MAN)†††
+     * Specify the range of FPP series Zvezdkinoy per curves of the propeller in the free water¬†¬†¬† 
+     * Set rotative speed propeller default of 100 rev. in minutes¬†¬†¬† 
+     * The abscissa of the bow perpendicular  was set equal to project length¬†¬†¬†¬†¬†¬† 
+     * Added a series of five-blade surface piercing propeller KSRI  SPP-5¬†¬†(for x32)¬† 
+     * Added output engine power with a 10% premium (on the recommendation of the diesel firm MAN)¬†¬†¬†
      * Added  2 new multi-lingual messages 
      * Made more than 40 small changes and interface corrections
 
@@ -715,7 +715,7 @@ Test only Version 2.96+
 Released June 10, 2008
 New features:
    *  Added into method Hollenbach-1998 calculation of minimal residual resistance for good optimazed
-      ship hulls (HydroNShIp_Hollenbach ‚ÂÒËË v1.02)
+      ship hulls (HydroNShIp_Hollenbach –≤–µ—Ä—Å–∏–∏ v1.02)
    *  Added output resistance curve into input datas for maneuverability calculation
    *  Initial speed in brake moving is set estimated speed from resistance prediction calculation
    *  Added output computing time of maneuver
@@ -845,7 +845,7 @@ New features:
       Ps=f(Vs) is added (a diesel engine with a turbo-supercharging) in the passport 
       diagram task
    *  Calculation of the characteristic of total propeller's thrust Ts=f(Vs) is added
-   *  Are renamed wing profiles HE∆ on Jouk
+   *  Are renamed wing profiles HE–ñ on Jouk
    *  22 symmetric structures Eppler are added
    *  49 symmetric structures GOE, NACA, RAF, WORTMANN and others (total 125) are added
    *  It's made more than 18 changes and corrections
@@ -854,7 +854,7 @@ Test only Version 2.83+
 Released October 30, 2007
 New features:
    *  Added a button for start engine selection in propeller task N1
-   *  Added into strength propeller calculation some parameters e/D, dÌ/D and other as function 
+   *  Added into strength propeller calculation some parameters e/D, d–Ω/D and other as function 
       by number of diagram
    *  Added into strength propeller calculation 8 types of metal (brass, bronze, stainless steel and duralumin)
    *  Added more better diagnostics of input parameters for propellers calculation
@@ -882,7 +882,7 @@ New features:
    *  Added into BD hydromotors (30) and electromotors (23+74) for submercibles
    *  Added into BD diesels MAN (Low speed engines - 165  and Medium speed - 66)
    *  Added calculation pitch ratio P/D for propellers of series B 
-   *  Changed calculation additional resistance —‡ and —‡ for catamarans and trimarans
+   *  Changed calculation additional resistance –°–∞ and –°–∞—Ä—Ä for catamarans and trimarans
    *  Added the resistance and power calcs for river cargo, passenger, cargopassenger ships and river 
       tugs by methods of NIIWT, GIIWT and LIWT ( 19 ship's prototypes )
    *  Added the resistance and power calcs for fishing ships by method Yeroshin 
@@ -899,13 +899,13 @@ Released August 8, 2007
 New features:
    *  Updated links on site FREE!ship Plus and e-mail
    *  Added 12 body plans of NACA0006...NACA0035
-   *  Added 12 body plans of HE∆-06...HE∆-35 (Joukovsky)
+   *  Added 12 body plans of HE–ñ-06...HE–ñ-35 (Joukovsky)
    *  Added three type of ship by Neyman's diagram for resistance calcs
    *  Added data input in form for calculation of displacement catamaran and triple-hulled 
       vessel by method Doubrovsky (Nser=14,15)
    *  Added more better diagnostics of input parameters for resistance calculation
    *  Fixed some bugs in input data diagnostics for propeller tasks
-   *  Updated ÕÂl for 16 methods of resistance and power calcs
+   *  Updated –ù–µl—Ä for 16 methods of resistance and power calcs
    *  Synchronized  *.ini files
    *  Made more 20 little changings
 
@@ -918,11 +918,11 @@ New features:
       by diagrams Volodin, Nordstrem, Groot, SSPA, NPL
    *  Added the resistance and power calcs for highspeed round-bilge boats for
       big L/V**0.333 by diagrams of 64 series Teylor's basin
-   *  Released calc of coefficient of exploitation condition  Â for Œ—“ and for other methods
+   *  Released calc of coefficient of exploitation condition –ö–µ for –û–°–¢ and for other methods
    *  Added more better diagnostics of input parameters for calculation resistance
       by data of model's experiment
    *  Added diagnostics of input data for 7 methods (Nser=5,8,9,10,11,12,13) 
-   *  Added ÕÂl for 14 methods of resistance and power calcs
+   *  Added –ù–µl—Ä for 14 methods of resistance and power calcs
    *  Made more 25 little changings
 
 Test only Version 2.76+ 
@@ -937,7 +937,7 @@ New features:
    *  Added resistance and power prediction by experimental data of model ships
    *  Added resistance and power prediction by diagrams of Braun (for highspeed vessels)  
    *  Added resistance and power prediction by diagram of Neyman (for tags and trawlers)  
-   *  Added resistance and power prediction by method NIEWT(Õ»»¬“)for river cargo ships
+   *  Added resistance and power prediction by method NIEWT(–ù–ò–ò–í–¢)for river cargo ships
       and river-sea cargo vessels
    *  Made many the little changings
 
@@ -947,7 +947,7 @@ New features:
    *  Changed approximation accuracy of B series propellers' diagrams
    *  Made more better diagnostics of input parameters for propeller tasks
    *  Added 6 propeller's diagrams (from 5 to 10)
-   *  Added resistance and power prediction by method Œ—“ 5.0181-75 (1-4 series)   
+   *  Added resistance and power prediction by method –û–°–¢ 5.0181-75 (1-4 series)   
    *  Added tramslation on English in Help for propeller calcs
    *  Made many the little changings
 
@@ -966,7 +966,7 @@ New features:
 Test only Version 2.73+ 
 Released May 28, 2007
 New features:
-   *  ¿dded calculation wetted area S, ratio Ae/Ao and diametr of propeller Dp
+   *  –êdded calculation wetted area S, ratio Ae/Ao and diametr of propeller Dp
       by method Holtrop-Mennen
    *  Added input data form for calc of coefficient of exploitation condition
    *  Fixed bug in loading of project with background image

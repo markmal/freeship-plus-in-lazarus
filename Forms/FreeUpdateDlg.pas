@@ -222,7 +222,7 @@ var
   GitHubRelease: TGitHubRelease;
   GitHubAsset : TGitHubAsset;
   havedpkg : boolean;
-  fext: string;
+  tag_name, fext: string;
   vers, URL:string;
   download_asset:integer;
 
@@ -303,7 +303,8 @@ begin
             then download_asset := i;
          {$endif}
          vers := extractVersion(GitHubAsset.name);
-         if (download_asset > -1) then
+         if vers = '' then vers := GitHubRelease.tag_name;
+         if (download_asset > -1) and (vers > '') then
            if (compareVersions(vers,FCurrentVersion) > 0) then
            begin
              Memo1.Text := 'Update is available: '+GitHubAsset.name;
@@ -316,7 +317,7 @@ begin
            end;
        end;
 
-       if download_asset > -1 then
+       if (download_asset > -1) and (vers > '') then
        begin
          GitHubAsset:= GitHubRelease.assets.Items[download_asset] as TGitHubAsset;
 

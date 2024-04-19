@@ -1,5 +1,5 @@
 setlocal
-set WIX="C:\Program Files (x86)\WiX Toolset v3.11\bin"
+set WIX="C:\Program Files (x86)\WiX Toolset v3.14\bin"
 set PATH=%WIX%;%PATH%
 
 :: if icons need to be rebulid call in cmd from project dir `instpkg\wix\harvest_dir.cmd Themes themes'
@@ -7,7 +7,7 @@ set PATH=%WIX%;%PATH%
 del *.wixobj *.wixpdb
 del FreeShip_x64.msi
 
-set SRCPATH=C:\Users\mmalakanov\Documents\My\freeship-plus-in-lazarus
+set SRCPATH=D:\my\prj\freeship-plus-in-lazarus
 
 candle.exe -v -pedantic -arch x64 -dSrcPath="%SRCPATH%" FreeShip_x64.wxs -dLanguages="%SRCPATH%\Languages" languages.wxs -dlocale="%SRCPATH%\locale" locale.wxs -dManuals="%SRCPATH%\Manuals" manuals.wxs -dShips="%SRCPATH%\Ships" ships.wxs -dThemes="%SRCPATH%\Themes" themes.wxs -dExec="%SRCPATH%\Exec" exec.wxs   
 

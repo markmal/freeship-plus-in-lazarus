@@ -822,7 +822,7 @@ begin
      // then FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
    FreeShip.MouseDown(Viewport,Button,Shift,X,Y,Select);
 
-   FAllowPanOrZoom:=not Select; // An item has just been selected or deselect, so do NOT pan or zoom the vieport when the user (accidently) moves the mouse
+   FAllowPanOrZoom:=not Select; // An item has just been selected or deselect, so do NOT pan or zoom the viewport when the user (accidentally) moves the mouse
 
    if (Shift = [ssLeft,ssCtrl]) then
       begin

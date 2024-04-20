@@ -3,9 +3,9 @@
 {   Container class for all program settings                                                        }
 {---------------------------------------------------------------------------------------------------}
 { Due to migration into multiplatform environment config files and directories will be stored
-in diffrent locations for different config areas.
+in different locations for different config areas.
 
-  For per-machine and per-user installation in Linux all pathes are predefined. See below.
+  For per-machine and per-user installation in Linux all paths are predefined. See below.
 
   Per-machine installation in Windows is done into so called FreeShipHome
   that by default is CIDL_PROGRAM_FILES\FreeShip
@@ -47,8 +47,8 @@ in diffrent locations for different config areas.
     In Linux: $HOME/FreeShip/
     In Windows: defined by [FreeShipHome]\
 
-  Note: Paths from Config have piority over default paths.
-  Default Local config and data paths have piority over global ones.
+  Note: Paths from Config have priority over default paths.
+  Default Local config and data paths have priority over global ones.
 
   Application defines default paths following way:
   1. Try to get from local config, if exists

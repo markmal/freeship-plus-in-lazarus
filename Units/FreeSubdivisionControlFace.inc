@@ -1059,7 +1059,7 @@ begin
       Edge := FEdges[I - 1];
       Edge.Draw(Surface.DrawMirror and Layer.Symmetric, Viewport);
     end;
-    // Draw edges descending from controledges, but slighly darker then interior edges
+    // Draw edges descending from controledges, but slightly darker then interior edges
     if not Selected then
     begin
       R := round(0.6 * GetRValue(Layer.Color));

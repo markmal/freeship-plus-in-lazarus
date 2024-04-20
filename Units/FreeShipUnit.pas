@@ -537,7 +537,7 @@ type
     FCurvatureScale: TFloatType;
     // Scalefactor used to increase or decrease the size of the curvature plot
     FCursorIncrement: TFloatType;
-    // Distance added when the active controlpoint is moved withe the arrow keys
+    // Distance added when the active controlpoint is moved with the arrow keys
     procedure FSetCursorIncrement(val: TFloatType);
     procedure FSetCurvatureScale(Val: TFloatType);
     procedure FSetShowButtocks(Val: boolean);
@@ -724,7 +724,7 @@ type
     // Adds an intersection to the appropriate list
     procedure Intersection_Change(Intersection: TFreeIntersection; Distance: TFloatType);
     procedure Intersection_Dialog;
-    // Pops up the dialog in whcih to add or delete stations, buttocks and waterlines
+    // Pops up the dialog in which to add or delete stations, buttocks and waterlines
     procedure Layer_AutoGroup;
     // All connected patches surrounded by crease edges are grouped together into a new layer
     procedure Layer_Develop;
@@ -1246,7 +1246,7 @@ type
     FFilenameSet: boolean; // Flag to determine if the filename already has been set
     FModelIsLoaded: boolean; // Flag to determine if the model is created new or loaded.
     FFileIsReadOnly: boolean;
-    // The folowing private variables are for moving controlpoints with the mouse
+    // The following private variables are for moving controlpoints with the mouse
     FCurrentlyMoving: boolean;
     FPointHasBeenMoved: boolean;
     FStopAskingForFileVersion: boolean;

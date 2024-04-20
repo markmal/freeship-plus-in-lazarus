@@ -1,7 +1,7 @@
 {---------------------------------------------------------------------------------------------------}
 {                                           TFreeSpline                                             }
 { 3D CSpline                                                                                        }
-{ Copied from page 107 of the book: "Numerical recipes in fortan 77"                                }
+{ Copied from page 107 of the book: "Numerical recipes in fortran 77"                                }
 { Url: http://www.library.cornell.edu/nr/bookfpdf/f3-3.pdf                                          }
 { Modified to use chordlength parametrisation for smoother interpolation and to accept              }
 { knuckles in the controlpoints                                                                     }

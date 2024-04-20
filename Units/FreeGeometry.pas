@@ -102,13 +102,13 @@ const
   Lbs = 0.44642857;
   WeightConversionFactor = (1000 / Lbs) / ((1 / Foot) * (1 / Foot) * (1 / Foot));
   IncrementSize = 25;
-  // amount of points which is automaticly allocated extra memory for
+  // amount of points which is automatically allocated extra memory for
   Decimals = 4;
   // When weilding points together this is the accuracy for comparing points
   PixelCountMax = 32768;
-  // used for faster pixel acces when shading to viewport
+  // used for faster pixel access when shading to viewport
   ZBufferScaleFactor = 1.004;
-  // Offset for hidden-line drawing when drawing ontop of shaded triangles
+  // Offset for hidden-line drawing when drawing on top of shaded triangles
   Zoomfactor = 1.02;
 
   DXFLayerColors: array[1..255] of TColor =
@@ -943,7 +943,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeSpline                                             }
   { 3D CSpline                                                                                        }
-  { Copied from page 107 of the book: "Numerical recipes in fortan 77"                                }
+  { Copied from page 107 of the book: "Numerical recipes in fortran 77"                                }
   { Url: http://www.library.cornell.edu/nr/bookfpdf/f3-3.pdf                                          }
   { Modified to use centripetal parametrisation for smoother interpolation and to accept              }
   { knuckles in the controlpoints                                                                     }
@@ -960,7 +960,7 @@ type
     FCurvatureScale: TFloatType;
     // scale factor used to increase or decrease the scale of the curvature plot
     FCurvatureColor: TColor;
-    // Color used for draing the curvature plot
+    // Color used for drawing the curvature plot
     FTotalLength: TFloatType;
     FPoints: TFreeCoordinateArray;
     // Array containing all controlpoints
@@ -1787,9 +1787,9 @@ type
     FShowInteriorEdges: boolean;
     // Switch to turn on drawing off all interior edges as well.
     FDrawMirror: boolean;
-    // If this is set tot true, the other imaginary half (starboard side) will be drawn aswell
+    // If this is set tot true, the other imaginary half (starboard side) will be drawn as well
     FSubdivisionMode: TFreeSubdivisionMode;
-    // Varaiable to switch between quad-triangle and Catmull Clark subdivision
+    // Variable to switch between quad-triangle and Catmull Clark subdivision
     FDesiredSubdivisionLevel: byte;
     FCurrentSubdivisionLevel: byte;
     FCreaseColor: TColor;

@@ -809,7 +809,7 @@ var
         Face.Point[I - 2].Coordinate,
         Face.Point[I - 1].Coordinate,
         WlPlane, Nabove, Nbelow, AbovePoints, BelowPoints);
-      // proces submerged area
+      // process submerged area
       for J := 3 to NBelow do
         AddTriangle(BelowPoints[0], BelowPoints[J - 2], BelowPoints[J - 1], SubmColor, Below, Symmetric);
       for J := 3 to NAbove do

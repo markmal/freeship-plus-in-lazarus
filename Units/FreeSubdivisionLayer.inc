@@ -516,7 +516,7 @@ begin
                   goto StartAgain;
                 end;
 
-                {  // abandone
+                {  // abandon
                 // new way: store new point in TmpPoints list with Edge attached.
                 // then later insert them into these edges
                 P := TFreeSubdivisionControlpoint.Create(nil);
@@ -537,7 +537,7 @@ begin
       Inc(I);
     end; //while I<=Edges.Count do
 
-    { // new way: abandone
+    { // new way: abandon
     for i:=0 to TmpPoints.Count-1 do
     begin
       P:=TmpPoints[i];
@@ -695,7 +695,7 @@ end;
 
 {
 The two lines may not meet at a single point.
-The best you can do in general is find the point on line1 closest to line2 and vise versa.
+The best you can do in general is find the point on line1 closest to line2 and vice versa.
 Connect those two points to create the common normal direction.
 Given two lines passing through 3D points r1=[r1x,r1y,r1z] and r2=[r2x,r2y,r2z]
 and having unit directions e1=[e1x,e1y,e1z] and e2=[e2x,e2y,e2z]

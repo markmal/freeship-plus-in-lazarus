@@ -998,7 +998,7 @@ var
     WettedArea := WettedArea + Sqrt(ax * ax + ay * ay + az * az);
   end;{ProcessTriangle}
 
-  // calculate volume, center of bouyancy and wetted area
+  // calculate volume, center of buoyancy and wetted area
   procedure calculate_volume_CB_WA;
   var i,j:integer;
   begin
@@ -1372,7 +1372,7 @@ begin
     Fillchar(VolCOG, SizeOf(T3DCoordinate), 0);
     WettedArea := 0.0;
 
-    calculate_volume_CB_WA; // calculate volume, center of bouyancy and wetted area
+    calculate_volume_CB_WA; // calculate volume, center of buoyancy and wetted area
     calculate_planform_area; // Calculate planform area
 
     if Span <> 0 then

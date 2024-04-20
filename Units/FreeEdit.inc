@@ -3901,7 +3901,7 @@ begin
       PrevCursor := Screen.Cursor;
       Screen.Cursor := crHourglass;
       FreeShip.Extents(Min, Max);
-      // Search grid for strips wit zero wave-elevation height and leave these out
+      // Search grid for strips with zero wave-elevation height and leave these out
       MultFact := 1.0;
 
       Setlength(CtrlGrid, Ny);
@@ -4242,7 +4242,7 @@ begin
         File_SaveAs;
         if FreeShip.FileChanged then
         begin
-          // Apparently saving was not successfull, abort
+          // Apparently saving was not successful, abort
           OpenDialog.Destroy;
           exit;
         end;
@@ -4351,7 +4351,7 @@ begin
         File_SaveAs;
         if FreeShip.FileChanged then
         begin
-          // Apparently saving was not successfull, abort
+          // Apparently saving was not successful, abort
           OpenDialog.Destroy;
           exit;
         end;
@@ -4457,7 +4457,7 @@ begin
         File_SaveAs;
         if FreeShip.FileChanged then
         begin
-          // Apparently saving was not successfull, abort
+          // Apparently saving was not successful, abort
           OpenDialog.Destroy;
           exit;
         end;
@@ -4529,7 +4529,7 @@ begin
         File_SaveAs;
         if FreeShip.FileChanged then
         begin
-          // Apparently saving was not successfull, abort
+          // Apparently saving was not successful, abort
           OpenDialog.Destroy;
           exit;
         end;
@@ -4984,7 +4984,7 @@ begin
         File_SaveAs;
         if FreeShip.FileChanged then
         begin
-          // Apparently saving was not successfull, abort
+          // Apparently saving was not successful, abort
           OpenDialog.Destroy;
           exit;
         end;
@@ -5242,7 +5242,7 @@ begin
         File_SaveAs;
         if FreeShip.FileChanged then
         begin
-          // Apparently saving was not successfull, abort
+          // Apparently saving was not successful, abort
           OpenDialog.Destroy;
           exit;
         end;
@@ -5510,7 +5510,7 @@ begin
         File_SaveAs;
         if FreeShip.FileChanged then
         begin
-          // Apparently saving was not successfull, abort
+          // Apparently saving was not successful, abort
           OpenDialog.Destroy;
           exit;
         end;
@@ -6923,7 +6923,7 @@ begin
   end;
 end;{TFreeEdit.Layer_AutoGroup}
 
-// Develope all developable layers
+// Develop all developable layers
 procedure TFreeEdit.Layer_Develop;
 var
   Layer: TFreeSubdivisionLayer;
@@ -7588,7 +7588,7 @@ begin
     begin
       FreeShip.Edit.File_SaveAs;
       if FreeShip.FileChanged then
-        exit// Apparently saving was not successfull, abort
+        exit// Apparently saving was not successful, abort
       ;
     end;
   end;
@@ -9764,7 +9764,7 @@ begin
   if FreeShip.NumberOfSelectedControlPoints > 1 then
   begin
     NLocked := 0;
-    // Determine if the number of points to be moved does not conatin locked
+    // Determine if the number of points to be moved does not contain locked
     // or hard anchored controlpoints.
     // However the first and last points (determining the linesegment) are
     // allowed to be locked or hard anchored
@@ -9819,7 +9819,7 @@ var
 begin
   if FreeShip.NumberOfSelectedControlPoints > 2 then
   begin
-    // Determine if the number of points to be moved does not conatin locked
+    // Determine if the number of points to be moved does not contain locked
     // or hard anchored controlpoints.
     // However the first and last points (determining the linesegment) are
     // allowed to be locked or hard anchored
@@ -9879,7 +9879,7 @@ var
 begin
   if FreeShip.NumberOfSelectedControlPoints > 2 then
   begin
-    // Determine if the number of points to be moved does not conatin locked controlpoints only
+    // Determine if the number of points to be moved does not contain locked controlpoints only
     // however the first and last points (determining the linesegment) are allowed to be locked
     NLocked := 0;
     for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do

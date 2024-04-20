@@ -518,7 +518,7 @@ var
           end;
           if NFaces = Cols - 1 then
           begin
-            // search was successfull
+            // search was successful
             for I := 1 to NFaces do
             begin
               Setlength(Grid, Rows + 1);
@@ -605,7 +605,7 @@ var
           end;
           if NFaces = Rows - 1 then
           begin
-            // search was successfull
+            // search was successful
             for I := 1 to Rows do
             begin
               Setlength(grid[I - 1], Cols + 1);
@@ -693,7 +693,7 @@ var
           end;
           if NFaces = Cols - 1 then
           begin
-            // search was successfull
+            // search was successful
             Setlength(Grid, Rows + 1);
             Setlength(Grid[Rows], Cols);
             for I := Rows downto 1 do
@@ -792,7 +792,7 @@ var
           end;
           if NFaces = Rows - 1 then
           begin
-            // search was successfull
+            // search was successful
             for I := 1 to Rows do
             begin
               Setlength(grid[I - 1], Cols + 1);
@@ -2172,7 +2172,7 @@ var
         end;
         if NFaces = Cols - 1 then
         begin
-          // search was successfull
+          // search was successful
           for I := 1 to NFaces do
           begin
             Setlength(Grid, Rows + 1);
@@ -2232,7 +2232,7 @@ var
         end;
         if NFaces = Rows - 1 then
         begin
-          // search was successfull
+          // search was successful
           for I := 1 to Rows do
           begin
             Setlength(grid[I - 1], Cols + 1);
@@ -2294,7 +2294,7 @@ var
         end;
         if NFaces = Cols - 1 then
         begin
-          // search was successfull
+          // search was successful
           Setlength(Grid, Rows + 1);
           Setlength(Grid[Rows], Cols);
           for I := Rows downto 1 do
@@ -2362,7 +2362,7 @@ var
         end;
         if NFaces = Rows - 1 then
         begin
-          // search was successfull
+          // search was successful
           for I := 1 to Rows do
           begin
             Setlength(grid[I - 1], Cols + 1);
@@ -2484,7 +2484,7 @@ begin
             Face := V1.Face[J - 1] as TFreeSubdivisionControlFace;
             if V2.IndexOfFace(Face) <> -1 then
             begin
-              // we will rebuild whole mesh anyway. lets cleare it before changes in control mesh
+              // we will rebuild whole mesh anyway. lets clear it before changes in control mesh
               ClearMesh;
 
               Face.InsertEdge(V1, V2, IsFaceDeleted);
@@ -2574,7 +2574,7 @@ begin
       FloatToStrF(Layer[I - 1].MaterialDensity, ffFixed, 10, 8) + #32 +
       FloatToStrF(Layer[I - 1].Thickness, ffFixed, 10, 8));
   end;
-  // first sort controlpoints for faster acces of function (Indexof())
+  // first sort controlpoints for faster access of function (Indexof())
   FControlPoints.Sort;
   Strings.Add(IntToStr(NumberOfControlPoints));
   for I := 1 to NumberOfControlPoints do
@@ -2605,7 +2605,7 @@ begin
 
     if not Built then
       rebuild;
-    // first sort subdiv points for faster acces of function (Indexof())
+    // first sort subdiv points for faster access of function (Indexof())
     Strings.Add('# FREE!ship model');
     FPoints.Sort;
     // Create points for portside
@@ -2674,7 +2674,7 @@ begin
     // export the controlnet only
     if not Built then
       rebuild;
-    // first sort controlpoints for faster acces of function (Indexof())
+    // first sort controlpoints for faster access of function (Indexof())
     Strings.Add('# FREE!ship model');
     FControlPoints.Sort;
     // Create ControlPoints for portside
@@ -3997,7 +3997,7 @@ begin
             begin
               Inserted := True;
               Edge := Face.InsertEdge(P1, P2, IsFaceDeleted);
-              Edge.Selected := True;    //selecting causes loosing Face.FPoints !
+              Edge.Selected := True;    //selecting causes losing Face.FPoints !
               Edges.Add(Edge);
               //if not Assigned(Face) then
               if IsFaceDeleted then
@@ -4542,7 +4542,7 @@ begin
 
     end;
 
-    { // temprarily disable LastAveraging
+    { // temporarily disable LastAveraging
     for i:=0 to ControlFaces.Count - 1 do
       for j:=0 to ControlFace[i].ChildCount - 1 do
         for k:=0 to ControlFace[i].Child[j].Points.Count - 1 do
@@ -4645,7 +4645,7 @@ begin
     Layer[I - 1].SaveBinary(Destination);
   // Save index of active layer
   Destination.Add(ActiveLayer.LayerIndex);
-  // first sort controlpoints for faster acces of function (Indexof())
+  // first sort controlpoints for faster access of function (Indexof())
   FControlPoints.Sort;
   Destination.Add(NumberOfControlPoints);
   for I := 1 to NumberOfControlPoints do
@@ -4674,7 +4674,7 @@ begin
     Layer[I - 1].SaveToStream(Strings);
   // Save index of active layer
   Strings.Add(IntToStr(ActiveLayer.LayerIndex));
-  // first sort controlpoints for faster acces of function (Indexof())
+  // first sort controlpoints for faster access of function (Indexof())
   FControlPoints.Sort;
   Strings.Add(IntToStr(NumberOfControlPoints));
   for I := 1 to NumberOfControlPoints do
@@ -4691,7 +4691,7 @@ procedure TFreeSubdivisionSurface.Selection_Delete;
 var
   I: integer;
 begin
-  // we will rebuild whole mesh anyway. lets cleare it before changes in control mesh
+  // we will rebuild whole mesh anyway. lets clear it before changes in control mesh
   ClearMesh;
 
   // First controlcurves, then faces, edges and finally points!
@@ -4997,7 +4997,7 @@ begin
   logger.Debug('Surface.SubDivide 4:'+inttostr(t2.Time - t1.Time));
   t1:=t2;
 
-  // Sort the new points for faster acces
+  // Sort the new points for faster access
   //RefVertexPoints.Sort;
   //RefEdges.Sort;
   //RefFaces.Sort;

@@ -1326,7 +1326,17 @@ begin
       end
       else
         FDrawingCanvas := OldCanvas;
-      // Clear buffer
+
+      // Reset Pen
+      FDrawingCanvas.Pen.Color := Color;
+      FDrawingCanvas.Pen.Cosmetic := true;
+      FDrawingCanvas.Pen.EndCap := pecRound;
+      FDrawingCanvas.Pen.JoinStyle := pjsRound;
+      FDrawingCanvas.Pen.Mode := pmCopy;
+      FDrawingCanvas.Pen.Style := psSolid;
+      FDrawingCanvas.Pen.Width := 1;
+
+      // Reset Brush. Clear buffer
       FDrawingCanvas.Brush.Color := Color;
       FDrawingCanvas.Brush.Style := bsSolid;
       FDrawingCanvas.FillRect(-1, -1, FDestinationWidth + 2, FDestinationHeight + 2);
@@ -1673,6 +1683,15 @@ begin
         MessageDlg(Userstring(197) + '!', mtError, [mbOK], 0);
     end;
   end
+  else if (BackgroundMode = emSetFrame) and (ssLeft in Shift) then
+  begin
+    FBackgroundScale := BackgroundImage.FScale;
+    FBackgroundOrigin := BackgroundImage.Origin;
+    Refresh;
+    if assigned(FOnChangeBackgroundImage) then
+      FOnChangeBackgroundImage(Owner);
+  end
+
   else if (BackgroundMode = emSetTransparentColor) and (ssLeft in Shift) then
   begin
     Pt := Project(ZERO);
@@ -1725,7 +1744,12 @@ procedure TFreeViewport.MouseMove(Shift: TShiftState; X, Y: integer);
 var
   Desired: TCursor;
   Pt, Prev: TPoint;
-  Scale: TFloatType;
+  Scl: TFloatType;
+  Dist0, DistC: TPoint;
+  XVal: TFloattype;
+  YVal: TFloatType;
+  W,H,X0,Y0,dX,dY: Longint;
+  bgImageRect: TRect;
 begin
   if FMouseShift <> Shift then // Mouse Move came before Mouse Down
      exit;
@@ -1735,13 +1759,13 @@ begin
   if (Shift = [ssLeft]) and (Backgroundmode = emSetOrigin) then
   begin
     // Background image moving procedure
-    Scale := 1.0;
-    if scale <> 0 then
+    Scl := 1.0;
+    if Scl <> 0 then
     begin
       Prev := BackgroundImage.ImageCoordinate(FPreviousPosition.X, FPreviousPosition.Y);
       Pt := BackgroundImage.ImageCoordinate(X, Y);
-      Pt.X := -round((Pt.X - Prev.X) / Scale);
-      Pt.Y := -round((Pt.Y - Prev.Y) / Scale);
+      Pt.X := -round((Pt.X - Prev.X) / Scl);
+      Pt.Y := -round((Pt.Y - Prev.Y) / Scl);
       if (Pt.X <> 0) or (Pt.Y <> 0) then
       begin
         BackgroundImage.FOrigin.X := BackgroundImage.FOrigin.X + Pt.X;
@@ -1755,17 +1779,83 @@ begin
       exit;
     end;
   end
+  else if (Shift = [ssLeft]) and (Backgroundmode = emSetFrame)
+       and (FBackgroundScaleIsMouseOnFrameSide in [fsW,fsE,fsN,fsS]) then
+  begin
+    // Background image scaling procedure
+    Pt := BackgroundImage.ImageCoordinate(X, Y);
+    Prev := BackgroundImage.ImageCoordinate(FPreviousPosition.X, FPreviousPosition.Y);
+    dX := Pt.X - Prev.X;
+    dY := Pt.Y - Prev.Y;
+    X0 := BackgroundImage.FOrigin.X;
+    Y0 := BackgroundImage.FOrigin.Y;
+    W := BackgroundImage.Bitmap.Width;
+    H := BackgroundImage.Bitmap.Height;
+    if FBackgroundScaleIsMouseOnFrameSide = fsW then
+    begin
+      X0 := BackgroundImage.FOrigin.X - dX;
+      Scl := BackgroundImage.FScale * (-dX + W) / W;
+    end;
+    if FBackgroundScaleIsMouseOnFrameSide = fsE then
+    begin
+      Scl := BackgroundImage.FScale * (dX + W) / W;
+    end;
+    if FBackgroundScaleIsMouseOnFrameSide = fsN then
+    begin
+      Scl := BackgroundImage.FScale * (-dY + H) / H;
+    end;
+    if FBackgroundScaleIsMouseOnFrameSide = fsS then
+    begin
+      Y0 := BackgroundImage.FOrigin.Y - dY;
+      Scl := BackgroundImage.FScale * (dY + H) / H;
+    end;
+    FPreviousPosition.X := X;
+    FPreviousPosition.Y := Y;
+
+    BackgroundImage.FOrigin.X := X0;
+    BackgroundImage.FOrigin.Y := Y0;
+    BackgroundImage.FScale := Scl;
+
+    Refresh;
+    if assigned(FOnChangeBackgroundImage) then
+      FOnChangeBackgroundImage(Owner);
+    exit;
+  end
   else if (shift = []) and (Backgroundmode <> emNormal) then
   begin
     case Backgroundmode of
       emSetOrigin: Desired := crsetOrigin;
-      emSetScale: Desired := crSetScale;
+      emSetScale, emSetFrame: Desired := crSetScale;
       emSetTransparentColor: Desired := crTranspCol;
       else
         Desired := cursor;
     end;
+    FBackgroundScaleIsMouseOnFrameSide := fsNone;
+    bgImageRect := BackgroundImage.TargetRect;
+    if ((X >= bgImageRect.Left-1) and (X <= bgImageRect.Left+1)) then
+    begin
+      Desired := crSizeWE;
+      FBackgroundScaleIsMouseOnFrameSide := fsW;
+    end;
+    if ((X >= bgImageRect.Right-1)and (X <= bgImageRect.Right+1)) then
+    begin
+      Desired := crSizeWE;
+      FBackgroundScaleIsMouseOnFrameSide := fsE;
+    end;
+    if ((Y >= bgImageRect.Top-1) and (Y <= bgImageRect.Top+1)) then
+    begin
+      Desired := crSizeNS;
+      FBackgroundScaleIsMouseOnFrameSide := fsN;
+    end;
+    if ((Y >= bgImageRect.Bottom-1) and (Y <= bgImageRect.Bottom+1)) then
+    begin
+      Desired := crSizeNS;
+      FBackgroundScaleIsMouseOnFrameSide := fsS;
+    end;
     if Cursor <> Desired then
       Cursor := Desired;
+
+    Invalidate;
   end
   else if (Viewtype = fvPerspective)
        and (ssLeft in Shift) and not(ssCtrl in Shift) then
@@ -1811,14 +1901,33 @@ begin
   if BackgroundMode = emSetOrigin then
   begin
     // Finished moving the background image
+    BackgroundMode := emNormal;
     // Check if origin has changed
     if (FBackgroundOrigin.X <> BackgroundImage.Origin.X) or
       (FBackgroundOrigin.Y <> BackgroundImage.Origin.Y) then
     begin
-      BackgroundMode := emNormal;
       if assigned(FOnChangeBackgroundImage) then
         FOnChangeBackgroundImage(Owner);
     end;
+  end
+  else
+  if BackgroundMode = emSetScale then
+  begin
+    // Finished scaling the background image
+    BackgroundMode := emNormal;
+    // Check if Scale has changed
+    Refresh;
+    if (FBackgroundScale <> BackgroundImage.Scale) then
+    begin
+      if assigned(FOnChangeBackgroundImage) then
+        FOnChangeBackgroundImage(Owner);
+    end;
+  end
+  else
+  if (BackgroundMode = emSetFrame) and (ssRight in Shift) then
+  begin
+    // Finished framing the background image
+    BackgroundMode := emNormal;
   end
   else
   begin

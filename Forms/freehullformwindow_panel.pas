@@ -70,6 +70,8 @@ type
 { TFreeHullWindow }
 
  TFreeHullWindow   = class(TMDIPanel)
+  BackgroundFrame: TAction;
+  Frame: TMenuItem;
   SetLight: TAction;
   ActionListHull: TActionList;
   ImagesHull: TImageList;
@@ -145,10 +147,12 @@ type
 
    //FreeHullForm: TFreeHullForm;
 
+   procedure BackgroundFrameExecute(Sender: TObject);
    procedure FormDestroy(Sender: TObject);
    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
    procedure FormKeyPress(Sender: TObject; var Key: char);
    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+   procedure FrameClick(Sender: TObject);
    procedure ScrollBar1Change(Sender: TObject);
    procedure ScrollBar1Enter(Sender: TObject);
    procedure ScrollBar2Change(Sender: TObject);
@@ -552,6 +556,7 @@ procedure TFreeHullWindow.FormDestroy(Sender: TObject);
 begin
 end;
 
+
 procedure TFreeHullWindow.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -567,6 +572,11 @@ procedure TFreeHullWindow.FormKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   ViewportKeyUp(Sender, Key, Shift);
+end;
+
+procedure TFreeHullWindow.FrameClick(Sender: TObject);
+begin
+
 end;
 
 procedure TFreeHullWindow.ScrollBar1Change(Sender: TObject);
@@ -1046,6 +1056,11 @@ procedure TFreeHullWindow.BackgroundScaleExecute(Sender: TObject);
 begin
    Viewport.BackgroundMode:=emSetScale;
 end;{TFreeHullWindow.BackgroundScaleExecute}
+
+procedure TFreeHullWindow.BackgroundFrameExecute(Sender: TObject);
+begin
+  Viewport.BackgroundMode:=emSetFrame;
+end;
 
 procedure TFreeHullWindow.BackgroundTransparentColorExecute(Sender: TObject);
 begin

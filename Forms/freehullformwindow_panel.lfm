@@ -15,11 +15,11 @@ object FreeHullWindow: TFreeHullWindow
   OnShow = FormShow
   PopupMenu = PopupMenuHull
   Position = poDefault
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object ScrollBar1: TScrollBar
     Left = 0
-    Height = 15
-    Top = 247
+    Height = 12
+    Top = 250
     Width = 469
     Align = alBottom
     LargeChange = 5
@@ -32,10 +32,10 @@ object FreeHullWindow: TFreeHullWindow
     OnEnter = ScrollBar1Enter
   end
   object ScrollBar2: TScrollBar
-    Left = 454
-    Height = 247
+    Left = 457
+    Height = 250
     Top = 0
-    Width = 15
+    Width = 12
     Align = alRight
     Kind = sbVertical
     Max = 180
@@ -50,8 +50,8 @@ object FreeHullWindow: TFreeHullWindow
     Images = ImagesHull
     AutoPopup = False
     OnPopup = PopupMenuHullPopup
-    left = 72
-    top = 136
+    Left = 72
+    Top = 136
     object Deselectall1: TMenuItem
       Action = DeselectAll
     end
@@ -144,6 +144,10 @@ object FreeHullWindow: TFreeHullWindow
       object Setscale1: TMenuItem
         Action = BackgroundScale
       end
+      object Frame: TMenuItem
+        Action = BackgroundFrame
+        OnClick = FrameClick
+      end
       object Transparentcolor1: TMenuItem
         Action = BackgroundTransparentColor
       end
@@ -163,8 +167,8 @@ object FreeHullWindow: TFreeHullWindow
   end
   object ActionListHull: TActionList
     Images = ImagesHull
-    left = 72
-    top = 40
+    Left = 72
+    Top = 40
     object StandardLens: TAction
       Category = 'Camera'
       Caption = 'Standard lens 50mm.'
@@ -294,6 +298,17 @@ object FreeHullWindow: TFreeHullWindow
       Caption = 'Set scale'
       OnExecute = BackgroundScaleExecute
     end
+    object SetLight: TAction
+      Category = 'Light'
+      Caption = 'Light'
+      OnExecute = SetLightExecute
+    end
+    object BackgroundFrame: TAction
+      Category = 'Background'
+      Caption = 'Frame'
+      Hint = 'Move and scale using frame'
+      OnExecute = BackgroundFrameExecute
+    end
     object BackgroundTransparentColor: TAction
       Category = 'Background'
       Caption = 'Transparent color'
@@ -325,15 +340,10 @@ object FreeHullWindow: TFreeHullWindow
       Caption = 'Visible'
       OnExecute = BackgroundVisibleExecute
     end
-    object SetLight: TAction
-      Category = 'Light'
-      Caption = 'Light'
-      OnExecute = SetLightExecute
-    end
   end
   object ImagesHull: TImageList
-    left = 208
-    top = 40
+    Left = 208
+    Top = 40
     Bitmap = {
       4C690A0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000B8B8C0FF9292
@@ -659,7 +669,7 @@ object FreeHullWindow: TFreeHullWindow
     }
   end
   object PrintDialogHull: TPrintDialog
-    left = 208
-    top = 136
+    Left = 208
+    Top = 136
   end
 end

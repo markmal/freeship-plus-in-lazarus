@@ -194,7 +194,7 @@ type
   TFreeSubdivisionMode = (fmQuadTriangle, fmCatmullClark);
   TFreeAssembleMode = (amRegular, amNURBS);
   TFreeViewportBackgroundMode =
-    (emNormal, emSetOrigin, emSetScale, emSetTransparentColor);
+    (emNormal, emSetOrigin, emSetScale, emSetFrame, emSetTransparentColor);
 
   TFreeLight = record
     Position: T3DCoordinate;
@@ -482,7 +482,9 @@ type
     FPan: TPoint;
     FPreviousPosition: TPoint;
     FBackgroundOrigin: TPoint;
+    FBackgroundScale: TFloatType;
     FBackgroundImage: TFreeBackgroundImage;
+    FBackgroundScaleIsMouseOnFrameSide : (fsNone,fsE,fsW,fsN,fsS);
     // shade data
     FZBuffer: TFreeZBuffer;
     FAlphaBuffer: TFreeAlphaBuffer;

@@ -301,6 +301,161 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
+#: tfreehullwindow.backgroundblending.caption
+msgid "Blending"
+msgstr ""
+
+#: tfreehullwindow.backgroundclear.caption
+msgctxt "tfreehullwindow.backgroundclear.caption"
+msgid "Clear"
+msgstr ""
+
+#: tfreehullwindow.backgroundexport.caption
+msgctxt "tfreehullwindow.backgroundexport.caption"
+msgid "Save"
+msgstr ""
+
+#: tfreehullwindow.backgroundframe.caption
+msgctxt "tfreehullwindow.backgroundframe.caption"
+msgid "Frame"
+msgstr ""
+
+#: tfreehullwindow.backgroundframe.hint
+msgid "Move and scale using frame"
+msgstr ""
+
+#: tfreehullwindow.backgroundimage2.caption
+msgid "Background image"
+msgstr ""
+
+#: tfreehullwindow.backgroundorigin.caption
+msgid "Origin"
+msgstr ""
+
+#: tfreehullwindow.backgroundscale.caption
+msgid "Set scale"
+msgstr ""
+
+#: tfreehullwindow.backgroundtolerance.caption
+msgid "Tolerance"
+msgstr ""
+
+#: tfreehullwindow.backgroundtransparentcolor.caption
+msgid "Transparent color"
+msgstr ""
+
+#: tfreehullwindow.backgroundvisible.caption
+msgid "Visible"
+msgstr ""
+
+#: tfreehullwindow.camera1.caption
+msgid "Camera"
+msgstr ""
+
+#: tfreehullwindow.caption
+msgid "FreeHullWindow"
+msgstr ""
+
+#: tfreehullwindow.deselectall.caption
+msgid "Deselect all     Esc"
+msgstr ""
+
+#: tfreehullwindow.importbackground.caption
+msgid "Load"
+msgstr ""
+
+#: tfreehullwindow.longtelelens.caption
+msgid "Long telelens 200 mm."
+msgstr ""
+
+#: tfreehullwindow.mediumtelelens.caption
+msgid "Medium telelens 130 mm."
+msgstr ""
+
+#: tfreehullwindow.mode1.caption
+msgid "Mode"
+msgstr ""
+
+#: tfreehullwindow.print.caption
+msgid "Print"
+msgstr ""
+
+#: tfreehullwindow.saveasbitmap.caption
+msgid "Save image"
+msgstr ""
+
+#: tfreehullwindow.setlight.caption
+msgid "Light"
+msgstr ""
+
+#: tfreehullwindow.shadezebra.caption
+msgid "Zebra shading"
+msgstr ""
+
+#: tfreehullwindow.shorttelelens.caption
+msgid "Short telelens 90 mm."
+msgstr ""
+
+#: tfreehullwindow.showdevelopablity.caption
+msgid "Developablity check"
+msgstr ""
+
+#: tfreehullwindow.showflatshade.caption
+msgid "Shade"
+msgstr ""
+
+#: tfreehullwindow.showgausscurvature.caption
+msgid "Gaussian curvature"
+msgstr ""
+
+#: tfreehullwindow.showwireframe.caption
+msgid "Wireframe"
+msgstr ""
+
+#: tfreehullwindow.standardlens.caption
+msgid "Standard lens 50mm."
+msgstr ""
+
+#: tfreehullwindow.view1.caption
+msgid "View"
+msgstr ""
+
+#: tfreehullwindow.viewbodyplan.caption
+msgid "Bodyplan"
+msgstr ""
+
+#: tfreehullwindow.viewperspective.caption
+msgid "Perspective"
+msgstr ""
+
+#: tfreehullwindow.viewplan.caption
+msgid "Plan view"
+msgstr ""
+
+#: tfreehullwindow.viewprofile.caption
+msgid "Profile"
+msgstr ""
+
+#: tfreehullwindow.widelens.caption
+msgid "Wide lens 28 mm."
+msgstr ""
+
+#: tfreehullwindow.zoom1.caption
+msgid "Zoom"
+msgstr ""
+
+#: tfreehullwindow.zoomextents.caption
+msgid "All"
+msgstr ""
+
+#: tfreehullwindow.zoomin.caption
+msgid "Zoom in"
+msgstr ""
+
+#: tfreehullwindow.zoomout.caption
+msgid "Zoom out"
+msgstr ""
+
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
 msgid "OK"

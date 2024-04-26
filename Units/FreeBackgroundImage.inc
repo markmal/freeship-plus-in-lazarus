@@ -188,6 +188,17 @@ var
   Pixel: TRGBTriple;
   C: TColor;
   pft,pfc:TPixelFormat;
+
+  procedure drawFrame;
+  begin
+     FOwner.PenColor := clYellow;
+     FOwner.PenWidth := 3;
+     FOwner.DrawingCanvas.Pen.Style := psDash;
+     FOwner.DrawingCanvas.Brush.Style := bsClear;
+     FOwner.Rectangle(DestRect);
+  end;
+
+
 begin
   if (Visible) and (Owner.ViewType = FShowInView) then
   begin
@@ -199,6 +210,9 @@ begin
       // this means that the background is already prepared and we can
       // just draw it and exit
       FOwner.StretchDraw(DestRect, FCachedBmp);
+
+      if FOwner.Backgroundmode = emSetFrame then drawFrame;
+
       exit;
     end;
 
@@ -273,6 +287,9 @@ begin
     end;
 
     FOwner.StretchDraw(DestRect, FCachedBmp);
+
+    if FOwner.Backgroundmode = emSetFrame then drawFrame;
+
     BitmapFormatHelper.Destroy;
     BitmapFormatHelper := nil;
   end;

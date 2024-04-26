@@ -30,8 +30,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
-      <RevisionNr Value="36"/>
-      <BuildNr Value="497"/>
+      <RevisionNr Value="37"/>
+      <BuildNr Value="498"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>

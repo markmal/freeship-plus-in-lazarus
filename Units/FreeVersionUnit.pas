@@ -66,7 +66,10 @@ const CurrentVersion      = fv462;   // Current (latest) version of the FREE!shi
 
 var
 FREESHIP_MAJOR_VERSION : string ='5.0';   //Major version
-FREESHIP_VERSION : string ='5.0.37.0';   //Major full version
+
+// This is placeholder
+// Set actual version in Lazarus Project -> Project Options -> Version Info -> Version
+FREESHIP_VERSION : string = '5.0.37.0';   //Major full version
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;

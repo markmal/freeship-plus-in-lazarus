@@ -194,7 +194,7 @@ type
   TFreeSubdivisionMode = (fmQuadTriangle, fmCatmullClark);
   TFreeAssembleMode = (amRegular, amNURBS);
   TFreeViewportBackgroundMode =
-    (emNormal, emSetOrigin, emSetScale, emSetFrame, emSetTransparentColor);
+    (emNormal, emSetOrigin, emSetScale, emSetFrame, emUnsetFrame, emSetTransparentColor);
 
   TFreeLight = record
     Position: T3DCoordinate;

@@ -1614,7 +1614,8 @@ begin
     logger.Debug(format(#10'TFreeViewport.MouseDown: %d %d',[X,Y]));
   FPreviousPosition.X := X;
   FPreviousPosition.Y := Y;
-  if (BackgroundMode <> emNormal) and (ssRight in Shift) then
+  if (BackgroundMode <> emNormal) and (BackgroundMode <> emSetFrame)
+    and (ssRight in Shift) then
   begin
     BackgroundMode := emNormal;
   end
@@ -1691,7 +1692,13 @@ begin
     if assigned(FOnChangeBackgroundImage) then
       FOnChangeBackgroundImage(Owner);
   end
-
+  else if (BackgroundMode = emSetFrame) and (ssRight in Shift) then
+  begin
+    BackgroundMode := emUnsetFrame;
+    Refresh;
+    if assigned(FOnChangeBackgroundImage) then
+      FOnChangeBackgroundImage(Owner);
+  end
   else if (BackgroundMode = emSetTransparentColor) and (ssLeft in Shift) then
   begin
     Pt := Project(ZERO);
@@ -1896,7 +1903,8 @@ end;{TFreeViewport.MouseMove}
 procedure TFreeViewport.MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: integer);
 begin
   FMouseShift := Shift;
-  inherited;
+  if (BackgroundMode <> emUnsetFrame) then
+    inherited;
   logger.Debug(format('TFreeViewport.MouseUp: %d %d'#10,[X,Y]));
   if BackgroundMode = emSetOrigin then
   begin
@@ -1924,10 +1932,11 @@ begin
     end;
   end
   else
-  if (BackgroundMode = emSetFrame) and (ssRight in Shift) then
+  if (BackgroundMode = emUnsetFrame) then
   begin
     // Finished framing the background image
     BackgroundMode := emNormal;
+    Refresh;
   end
   else
   begin

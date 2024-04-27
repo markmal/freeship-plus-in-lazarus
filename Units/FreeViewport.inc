@@ -1751,12 +1751,9 @@ procedure TFreeViewport.MouseMove(Shift: TShiftState; X, Y: integer);
 var
   Desired: TCursor;
   Pt, Prev: TPoint;
-  Scl: TFloatType;
-  Dist0, DistC: TPoint;
-  XVal: TFloattype;
-  YVal: TFloatType;
+  Scl,S: TFloatType;
   W,H,X0,Y0,dX,dY: Longint;
-  bgImageRect: TRect;
+  bgiRect: TRect;
 begin
   if FMouseShift <> Shift then // Mouse Move came before Mouse Down
      exit;
@@ -1816,14 +1813,25 @@ begin
       Y0 := BackgroundImage.FOrigin.Y - dY;
       Scl := BackgroundImage.FScale * (dY + H) / H;
     end;
-    FPreviousPosition.X := X;
-    FPreviousPosition.Y := Y;
 
-    BackgroundImage.FOrigin.X := X0;
-    BackgroundImage.FOrigin.Y := Y0;
-    BackgroundImage.FScale := Scl;
+    if Scl > 0 then
+    begin
+      FPreviousPosition.X := X;
+      FPreviousPosition.Y := Y;
+      Pt := BackgroundImage.FOrigin;
+      S := BackgroundImage.FScale;
+      BackgroundImage.FOrigin.X := X0;
+      BackgroundImage.FOrigin.Y := Y0;
+      BackgroundImage.FScale := Scl;
+      bgiRect := BackgroundImage.TargetRect;
+      if (bgiRect.Width < 16) or (bgiRect.Height < 16) then
+      begin
+        BackgroundImage.FOrigin := Pt;
+        BackgroundImage.FScale := S;
+      end;
+    end;
 
-    Refresh;
+    Invalidate;
     if assigned(FOnChangeBackgroundImage) then
       FOnChangeBackgroundImage(Owner);
     exit;
@@ -1838,31 +1846,29 @@ begin
         Desired := cursor;
     end;
     FBackgroundScaleIsMouseOnFrameSide := fsNone;
-    bgImageRect := BackgroundImage.TargetRect;
-    if ((X >= bgImageRect.Left-1) and (X <= bgImageRect.Left+1)) then
+    bgiRect := BackgroundImage.TargetRect;
+    if ((X >= bgiRect.Left-1) and (X <= bgiRect.Left+1)) then
     begin
       Desired := crSizeWE;
       FBackgroundScaleIsMouseOnFrameSide := fsW;
     end;
-    if ((X >= bgImageRect.Right-1)and (X <= bgImageRect.Right+1)) then
+    if ((X >= bgiRect.Right-1)and (X <= bgiRect.Right+1)) then
     begin
       Desired := crSizeWE;
       FBackgroundScaleIsMouseOnFrameSide := fsE;
     end;
-    if ((Y >= bgImageRect.Top-1) and (Y <= bgImageRect.Top+1)) then
+    if ((Y >= bgiRect.Top-1) and (Y <= bgiRect.Top+1)) then
     begin
       Desired := crSizeNS;
       FBackgroundScaleIsMouseOnFrameSide := fsN;
     end;
-    if ((Y >= bgImageRect.Bottom-1) and (Y <= bgImageRect.Bottom+1)) then
+    if ((Y >= bgiRect.Bottom-1) and (Y <= bgiRect.Bottom+1)) then
     begin
       Desired := crSizeNS;
       FBackgroundScaleIsMouseOnFrameSide := fsS;
     end;
     if Cursor <> Desired then
       Cursor := Desired;
-
-    Invalidate;
   end
   else if (Viewtype = fvPerspective)
        and (ssLeft in Shift) and not(ssCtrl in Shift) then

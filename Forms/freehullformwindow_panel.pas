@@ -1060,6 +1060,7 @@ end;{TFreeHullWindow.BackgroundScaleExecute}
 procedure TFreeHullWindow.BackgroundFrameExecute(Sender: TObject);
 begin
   Viewport.BackgroundMode:=emSetFrame;
+  Viewport.Invalidate;
 end;
 
 procedure TFreeHullWindow.BackgroundTransparentColorExecute(Sender: TObject);

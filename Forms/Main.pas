@@ -2364,7 +2364,7 @@ begin
    if Freeship.FileChanged then
    begin
       //Answer:=MessageDlg(Userstring(103)+EOL+Userstring(282)+'?',mtWarning,[mbYes,mbNo],0);
-   Answer:=MessageDlg(rsExitConfirmation, mtWarning, [mbNo, mbYes],0);
+   Answer:=MessageDlg(rsExitConfirmation, mtWarning, [mbNo, mbYes],0,mbNo);
    CanClose:=Answer=mrYes;
    end;
 end;{TMainForm.FormCloseQuery}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<DirectoryRef Id="TARGETDIR">
+
+			<Component Id="RegistryEntries" Guid="68F1D2A4-F146-45D2-A55D-16A5762A53D9">
+
+				<!-- register FreeShip -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Classes\Applications\FreeShip.exe\shell\open\command"
+				  >
+					<RegistryValue Type="string" Name="(Default)" Value="[APPLICATIONFOLDER]FreeShip.exe %1" KeyPath="yes"/>
+				</RegistryKey>
+
+				<!-- register .fbm association -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Classes\.fbm"
+				  >
+					<RegistryValue Type="string" Name="(Default)" Value="fbm_auto_file"/>
+				</RegistryKey>
+
+				<!-- register .ftm association -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Classes\.ftm"
+				  >
+					<RegistryValue Type="string" Name="(Default)" Value="ftm_auto_file"/>
+				</RegistryKey>
+
+				<RegistryKey Root="HKMU"
+						 Key="Software\Classes\fbm_auto_file\shell\open\command"
+				  >
+					<RegistryValue Type="string" Name="(Default)" Value="[APPLICATIONFOLDER]FreeShip.exe %1"/>
+				</RegistryKey>
+
+				<!-- link .ftm to FreeShip -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Classes\ftm_auto_file\shell\open\command"
+				  >
+					<RegistryValue Type="string" Name="(Default)" Value="[APPLICATIONFOLDER]FreeShip.exe %1"/>
+				</RegistryKey>
+
+				<!-- open with list .fbm -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.fbm\OpenWithList"
+				  >
+					<RegistryValue Type="string" Name="a" Value="FreeShip.exe"/>
+					<RegistryValue Type="string" Name="MRUList" Value="a" />
+				</RegistryKey>
+
+				<!-- open with list .ftm -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.ftm\OpenWithList"
+				  >
+					<RegistryValue Type="string" Name="a" Value="FreeShip.exe"/>
+					<RegistryValue Type="string" Name="MRUList" Value="a"/>
+				</RegistryKey>
+
+				<!-- open with ProdId .fbm -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.fbm\OpenWithProgids">
+					<RegistryValue Type="string" Name="fbm_auto_file" Value=""/>
+				</RegistryKey>
+
+				<!-- open with ProdId .ftm -->
+				<RegistryKey Root="HKMU"
+						 Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.ftm\OpenWithProgids"
+			>
+					<RegistryValue Type="string" Name="ftm_auto_file" Value=""/>
+				</RegistryKey>
+
+			</Component>
+
+		</DirectoryRef>
+	</Fragment>	
+</Wix>

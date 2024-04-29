@@ -5557,7 +5557,7 @@ var
   ErrMsg:String;
 
   function IsSaveable(fn:string):boolean;
-  var dir, tmpFileName:string; fh:THandle;
+  var dir, tmpFileName:string; fh:LCLType.THandle;
     buf:array[0..1023] of byte; sz:integer=1024; rsz:integer=0;
     r1,r2,r3:boolean;
   begin

@@ -714,6 +714,7 @@ var I,J: integer;
   P1, P2, Pkn: T3DCoordinate;
   Pn, Pn1,Pn2: integer;
 begin
+  Result := [];
   SetLength(Result, FFragments + FNoPoints);
   J:=0; Pn:=0;
   for I := 0 to Fragments-1 do
@@ -738,6 +739,7 @@ var I,J: integer;
   P:TPoint;
   Pn, Pn1,Pn2: integer;
 begin
+  Result := [];
   SetLength(Result, FFragments + FNoPoints);
   J:=0; Pn:=0;
   for I := 0 to Fragments-1 do

@@ -8,7 +8,8 @@ uses
   FileIcon,
   GTK2,
   GLib2,
-  LazGio2 ,LazGlib2;
+  LazGio2, LazGlib2
+  ;
 
 type TFileIconGtk = class(TFileIconAdapter)
 protected

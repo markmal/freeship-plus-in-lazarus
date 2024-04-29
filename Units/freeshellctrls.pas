@@ -557,7 +557,11 @@ end;
 
 function TFileItem.GetIsHidden: boolean;
 begin
+  {$ifdef WINDOWS}
   result := FFileInfo.Attr and faHidden > 0;
+  {$else}
+  result := FileName.StartsWith('.');
+  {$endif}
 end;
 
 function TFileItem.GetCreatedTime: TDateTime;

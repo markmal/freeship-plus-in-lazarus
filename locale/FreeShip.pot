@@ -1,0 +1,1799 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: freecontrolpointfrm.rsangle
+msgid "Angle"
+msgstr ""
+
+#: freecontrolpointfrm.rsangles
+msgid "Angles"
+msgstr ""
+
+#: freecontrolpointfrm.rslength
+msgid "Length"
+msgstr ""
+
+#: freecontrolpointfrm.rsnameisnotunique
+msgid "Name Is Not Unique"
+msgstr ""
+
+#: freecontrolpointfrm.rspointnamechanged
+msgid "Point Name Changed"
+msgstr ""
+
+#: freecontrolpointfrm.rsxcoordinate
+msgid "X Coordinate"
+msgstr ""
+
+#: freecontrolpointfrm.rsycoordinate
+msgid "Y Coordinate"
+msgstr ""
+
+#: freecontrolpointfrm.rszcoordinate
+msgid "Z Coordinate"
+msgstr ""
+
+#: freefilebuffer.rsparsingerroroutoffilesize
+#, object-pascal-format
+msgid "Error parsing of file \"%s\". Reading %s of size %d at position %d that is out of file size %d."
+msgstr ""
+
+#: freefilepreviewdialog.hintdblclicktofitsize
+msgid "DblClick to fit size"
+msgstr ""
+
+#: freefilepreviewdialog.hintdblclicktofullsize
+msgid "DblClick to full size"
+msgstr ""
+
+#: freefilepreviewdialog.okbuttoncaptionopen
+msgid "Open"
+msgstr ""
+
+#: freefilepreviewdialog.okbuttoncaptionsave
+msgctxt "freefilepreviewdialog.okbuttoncaptionsave"
+msgid "Save"
+msgstr ""
+
+#: freefilepreviewdialog.rscancelbuttoncaptioncancel
+msgctxt "freefilepreviewdialog.rscancelbuttoncaptioncancel"
+msgid "Cancel"
+msgstr ""
+
+#: freefilepreviewdialog.rsclicktoedit
+msgid "Click to edit"
+msgstr ""
+
+#: freefilepreviewdialog.rslocation_does_not_exist
+msgid "Location does not exist"
+msgstr ""
+
+#: freefilepreviewdialog.rsunableopenfilemsg
+#, object-pascal-format
+msgid "Unable open file \"%s\""
+msgstr ""
+
+#: freefilepreviewdialog.statusfailedtorename
+#, object-pascal-format
+msgid "Failed to rename \"%s\" to \"%s\""
+msgstr ""
+
+#: freefilepreviewdialog.statusnamealreadyexists
+#, object-pascal-format
+msgid "Name \"%s\" already exists"
+msgstr ""
+
+#: freefilepreviewdialog.statuswrongname
+#, object-pascal-format
+msgid "Wrong name \"%s\""
+msgstr ""
+
+#: freepropeller_task5dlg.rsnoresultfile
+#, object-pascal-format
+msgid "Result file \"%s\" not found"
+msgstr ""
+
+#: freeshellctrls.sshellctrlstime
+msgid "Time"
+msgstr ""
+
+#: freeship.installmemessage
+msgid ""
+"Configuration issue.\n"
+"Scenario A: You probably run FreeShip from installation directory.\n"
+"FreeShip is not installed.\n"
+"It will work but it may experience issues with finding various files and directories.\n"
+"Please exit and run install-FreeShip.sh\n"
+"\n"
+"Scenario B: You probably have previously installed FreeShip in user scope and just re-installed it in machine scope, or vice versa.\n"
+"Please enter menu File/Preferences, Directories tab, and click Reset button\n"
+msgstr ""
+
+#: freeship.usageline01
+msgid "Usage: FreeShip [parameter]* [model]"
+msgstr ""
+
+#: freeship.usageline02
+msgid "Where parameter is:"
+msgstr ""
+
+#: freeship.usageline03
+msgid "--help        : this screen"
+msgstr ""
+
+#: freeship.usageline04
+msgid "--log-error   : log level is Error. Only Error messages logged"
+msgstr ""
+
+#: freeship.usageline05
+msgid "--log-warning : log level is Warning. Only Error and Warning messages logged"
+msgstr ""
+
+#: freeship.usageline06
+msgid "--log-info    : log level is Info. Error, Warning and Info messages logged"
+msgstr ""
+
+#: freeship.usageline07
+msgid "--log-debug   : log level is Debug. All messages logged."
+msgstr ""
+
+#: freeship.usageline08
+msgid "--log-file=<logfile> : filename of the log file"
+msgstr ""
+
+#: freeship.usageline09
+msgid "--nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS : turn off splash screen."
+msgstr ""
+
+#: freeship.usageline10
+msgid "--debug       : for development, use only when run in debugger"
+msgstr ""
+
+#: freeship.usageline11
+msgid "model         : model file .ftm or .fbm"
+msgstr ""
+
+#: freeshipunit.filedialogfilterall
+msgid "All|*"
+msgstr ""
+
+#: freeshipunit.filedialogfilterfreeship
+msgid "FreeShip files (*.ftm *.fbm)|*.ftm;*.fbm"
+msgstr ""
+
+#: freeshipunit.filedialogfilterfreeshipbinary
+msgid "FreeShip Binary (*.fbm)|*.fbm"
+msgstr ""
+
+#: freeshipunit.filedialogfilterfreeshiptext
+msgid "FreeShip Text (*.ftm)|*.ftm"
+msgstr ""
+
+#: freeshipunit.filedialogplaceglobalimport
+msgid "Global Import"
+msgstr ""
+
+#: freeshipunit.filedialogplaceglobalships
+msgid "Global Ships"
+msgstr ""
+
+#: freeshipunit.filedialogplacelast
+msgid "Last"
+msgstr ""
+
+#: freeshipunit.filedialogplacemyimport
+msgid "My Import"
+msgstr ""
+
+#: freeshipunit.filedialogplacemyships
+msgid "My Ships"
+msgstr ""
+
+#: freeshipunit.rsfailedtoloadproject
+#, object-pascal-format
+msgid ""
+"Failed to load project: %s\n"
+"Error: %s\n"
+msgstr ""
+
+#: freeshipunit.rsglobalconfigloaderrormessage
+msgid ""
+"Unable to load per-machine configuration. Skipping. There may be further problems with finding directories and files.\n"
+"Error:"
+msgstr ""
+
+#: freeshipunit.rspointanchorconstraintchanged
+msgid "ControlPoint Anchor Constraint Changed"
+msgstr ""
+
+#: freeshipunit.rspointlinearconstraintchanged
+msgid "ControlPoint Linear Constraint Changed"
+msgstr ""
+
+#: freeshipunit.rspointmove
+msgid "point move"
+msgstr ""
+
+#: freeshipunit.rssavefile
+msgid "Save file"
+msgstr ""
+
+#: freeshipunit.rssavewithhigherfileversion
+#, object-pascal-format
+msgid "The current file version is %s.%sDo you want to save the file as version %s ?"
+msgstr ""
+
+#: freeshipunit.rssplitsection
+msgid "Split Section"
+msgstr ""
+
+#: freeshipunit.rsthemeloaderrormessage
+#, object-pascal-format
+msgid ""
+"Unable to load theme %s\n"
+"Error:"
+msgstr ""
+
+#: freeshipunit.rsunablecreatebackupfile
+msgid "Unable to create backup file"
+msgstr ""
+
+#: freeshipunit.rsunabledeletebackupfile
+msgid "Unable to delete backup file"
+msgstr ""
+
+#: freeshipunit.rsunabletosavefile
+msgid "Unable to save file"
+msgstr ""
+
+#: freeshipunit.rsuserconfigloaderrormessage
+msgid ""
+"Unable to load per-user configuration. There may be further problems with finding directories and files. Using defaults.\n"
+"Error:"
+msgstr ""
+
+#: freesplashwndw.rsbuild
+msgid "Build"
+msgstr ""
+
+#: freesplashwndw.rsrelease
+msgid "Release"
+msgstr ""
+
+#: freesplashwndw.rsversion
+msgid "Version"
+msgstr ""
+
+#: freeupdatedlg.rscurrentversion
+msgid "Current Version"
+msgstr ""
+
+#: freeupdatedlg.rsknownsslexception
+#, object-pascal-format
+msgid ""
+"Exception class: %s Message: %s\n"
+"Possible libssl v1.1 compatibility issue.\n"
+"libssl v1.1 is found.\n"
+"FreeShip is currently compatible with libssl v1.0 only.\n"
+"You have to check for updates traditional way at Download page.\n"
+"Click link below."
+msgstr ""
+
+#: main.rsexitconfirmation
+msgid ""
+"The current model has been changed\n"
+"Are you sure you want to exit?"
+msgstr ""
+
+#: mdipanel.rsclose
+msgctxt "mdipanel.rsclose"
+msgid "Close"
+msgstr ""
+
+#: mdipanel.rsmaximize
+msgid "Maximize"
+msgstr ""
+
+#: mdipanel.rsminimize
+msgid "Minimize"
+msgstr ""
+
+#: mdipanel.rsrestore
+msgid "Restore"
+msgstr ""
+
+#: tfreehullwindow.backgroundblending.caption
+msgid "Blending"
+msgstr ""
+
+#: tfreehullwindow.backgroundclear.caption
+msgctxt "tfreehullwindow.backgroundclear.caption"
+msgid "Clear"
+msgstr ""
+
+#: tfreehullwindow.backgroundexport.caption
+msgctxt "tfreehullwindow.backgroundexport.caption"
+msgid "Save"
+msgstr ""
+
+#: tfreehullwindow.backgroundframe.caption
+msgid "Frame"
+msgstr ""
+
+#: tfreehullwindow.backgroundframe.hint
+msgid "Move and scale using frame"
+msgstr ""
+
+#: tfreehullwindow.backgroundimage2.caption
+msgid "Background image"
+msgstr ""
+
+#: tfreehullwindow.backgroundorigin.caption
+msgid "Origin"
+msgstr ""
+
+#: tfreehullwindow.backgroundscale.caption
+msgid "Set scale"
+msgstr ""
+
+#: tfreehullwindow.backgroundtolerance.caption
+msgid "Tolerance"
+msgstr ""
+
+#: tfreehullwindow.backgroundtransparentcolor.caption
+msgid "Transparent color"
+msgstr ""
+
+#: tfreehullwindow.backgroundvisible.caption
+msgid "Visible"
+msgstr ""
+
+#: tfreehullwindow.camera1.caption
+msgid "Camera"
+msgstr ""
+
+#: tfreehullwindow.caption
+msgid "FreeHullWindow"
+msgstr ""
+
+#: tfreehullwindow.deselectall.caption
+msgid "Deselect all     Esc"
+msgstr ""
+
+#: tfreehullwindow.importbackground.caption
+msgid "Load"
+msgstr ""
+
+#: tfreehullwindow.longtelelens.caption
+msgid "Long telelens 200 mm."
+msgstr ""
+
+#: tfreehullwindow.mediumtelelens.caption
+msgid "Medium telelens 130 mm."
+msgstr ""
+
+#: tfreehullwindow.mode1.caption
+msgid "Mode"
+msgstr ""
+
+#: tfreehullwindow.print.caption
+msgid "Print"
+msgstr ""
+
+#: tfreehullwindow.saveasbitmap.caption
+msgid "Save image"
+msgstr ""
+
+#: tfreehullwindow.setlight.caption
+msgid "Light"
+msgstr ""
+
+#: tfreehullwindow.shadezebra.caption
+msgid "Zebra shading"
+msgstr ""
+
+#: tfreehullwindow.shorttelelens.caption
+msgid "Short telelens 90 mm."
+msgstr ""
+
+#: tfreehullwindow.showdevelopablity.caption
+msgid "Developablity check"
+msgstr ""
+
+#: tfreehullwindow.showflatshade.caption
+msgid "Shade"
+msgstr ""
+
+#: tfreehullwindow.showgausscurvature.caption
+msgid "Gaussian curvature"
+msgstr ""
+
+#: tfreehullwindow.showwireframe.caption
+msgid "Wireframe"
+msgstr ""
+
+#: tfreehullwindow.standardlens.caption
+msgid "Standard lens 50mm."
+msgstr ""
+
+#: tfreehullwindow.view1.caption
+msgid "View"
+msgstr ""
+
+#: tfreehullwindow.viewbodyplan.caption
+msgid "Bodyplan"
+msgstr ""
+
+#: tfreehullwindow.viewperspective.caption
+msgid "Perspective"
+msgstr ""
+
+#: tfreehullwindow.viewplan.caption
+msgid "Plan view"
+msgstr ""
+
+#: tfreehullwindow.viewprofile.caption
+msgid "Profile"
+msgstr ""
+
+#: tfreehullwindow.widelens.caption
+msgid "Wide lens 28 mm."
+msgstr ""
+
+#: tfreehullwindow.zoom1.caption
+msgid "Zoom"
+msgstr ""
+
+#: tfreehullwindow.zoomextents.caption
+msgid "All"
+msgstr ""
+
+#: tfreehullwindow.zoomin.caption
+msgid "Zoom in"
+msgstr ""
+
+#: tfreehullwindow.zoomout.caption
+msgid "Zoom out"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.bitbtn1.caption
+msgid "OK"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.bitbtn2.caption
+msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.caption
+msgid "Project settings."
+msgstr ""
+
+#: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
+msgid "Save preview image"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.cbshadeunderwater.caption
+msgid "Shade underwater"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
+msgid "Simplify intersections"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox11.caption
+msgid "Default at 0.0"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox12.caption
+msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
+msgid "Default at 0.5*L"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox13.caption
+msgid "Enable auto move model to baseline"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox14.caption
+msgid "Save Bonjean scale and SAC in files"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox2.caption
+msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
+msgid "Default at 0.5*L"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox3.caption
+msgid "Disable surface check"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox5.caption
+msgid "Displacement and center of buoyancy"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox6.caption
+msgid "Curve of sectional areas"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox7.caption
+msgid "Metacentric height"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox8.caption
+msgid "Longitudinal center of floatation"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.checkbox9.caption
+msgid "Lateral area and center of effort"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.combobox1.text
+msgid "Dimensions from project settings"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.groupbox1.caption
+msgid "Display hydrostatic features. "
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label1.caption
+msgid "Project name"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label10.caption
+msgctxt "tfreeprojectsettingsdialog.label10.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label11.caption
+msgctxt "tfreeprojectsettingsdialog.label11.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label12.caption
+msgid "Underwater opacity, %"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label13.caption
+msgctxt "tfreeprojectsettingsdialog.label13.caption"
+msgid "Split Section location"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label14.caption
+msgctxt "tfreeprojectsettingsdialog.label14.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label15.caption
+msgid "Comment"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label16.caption
+msgid "File created by"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label17.caption
+msgid "Coefficients based on"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label18.caption
+msgid "Select which of the following hydrostatic properties"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label19.caption
+msgid "you want to have displayed in the model:"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label2.caption
+msgid "Length "
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label20.caption
+msgid "Y coord. of Longitudinal Max. Wind Area location"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label21.caption
+msgctxt "tfreeprojectsettingsdialog.label21.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label22.caption
+msgid "X coord. of Transverse Max. Wind Area location"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label23.caption
+msgctxt "tfreeprojectsettingsdialog.label23.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label24.caption
+msgctxt "tfreeprojectsettingsdialog.label24.caption"
+msgid "Precision"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label25.caption
+msgid "Water temperature"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label26.caption
+msgid "C"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label27.caption
+msgid "Underwater color"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label3.caption
+msgid "Beam"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label4.caption
+msgid "Draft"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label5.caption
+msgid "Water density"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label6.caption
+msgid "Appendage coefficient"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label7.caption
+msgid "Designer"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label8.caption
+msgid "Units"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.label9.caption
+msgctxt "tfreeprojectsettingsdialog.label9.caption"
+msgid "m"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.lbwaterdensity.caption
+msgid "lbWaterDensity"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.precisionbox.hint
+msgid "Change the precision of the model."
+msgstr ""
+
+#: tfreeprojectsettingsdialog.precisionbox.text
+msgid "Low"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.tabsheet1.caption
+msgid "General"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.tabsheet2.caption
+msgid "Hydrostatics"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.tabsheet3.caption
+msgid "Main dimensions"
+msgstr ""
+
+#: tfreeprojectsettingsdialog.unitbox.text
+msgid "Metric"
+msgstr ""
+
+#: tfreesplitsectiondialog.bitbtn1.caption
+msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
+msgid "Close"
+msgstr ""
+
+#: tfreesplitsectiondialog.caption
+msgid "Split section location"
+msgstr ""
+
+#: tfreesplitsectiondialog.speedbutton1.hint
+msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
+msgid "Medium"
+msgstr ""
+
+#: tfreesplitsectiondialog.speedbutton3.hint
+msgid "From hydrostatics"
+msgstr ""
+
+#: tfreeupdateform.actioncheckupdate.caption
+msgctxt "tfreeupdateform.actioncheckupdate.caption"
+msgid "Check for updates"
+msgstr ""
+
+#: tfreeupdateform.bitbtn2.caption
+msgctxt "tfreeupdateform.bitbtn2.caption"
+msgid "Close"
+msgstr ""
+
+#: tfreeupdateform.caption
+msgid "Check updates"
+msgstr ""
+
+#: tfreeupdateform.groupbox1.caption
+msgid "What's new"
+msgstr ""
+
+#: tfreeupdateform.label4.caption
+msgid "Download link:"
+msgstr ""
+
+#: tfreeupdateform.label6.caption
+msgid "Download page:"
+msgstr ""
+
+#: tfreeupdateform.labelcurrentversion.caption
+msgid "1.2.3.4"
+msgstr ""
+
+#: tfreeupdateform.labeldownloadlink.caption
+msgid "LabelDownloadLink"
+msgstr ""
+
+#: tfreeupdateform.labeldownloadpage.caption
+msgid "LabelDownloadPage"
+msgstr ""
+
+#: tfreeupdateform.labelnewversion.caption
+msgid "LabelNewVersion"
+msgstr ""
+
+#: tfreeupdateform.labelnewversionavailable.caption
+msgid "New version available:"
+msgstr ""
+
+#: tfreeupdateform.labelnewversiondate.caption
+msgid "LabelNewVersionDate"
+msgstr ""
+
+#: tfreeupdateform.toppanel1.caption
+msgid "TopPanel1"
+msgstr ""
+
+#: tmainform.aboutaction.caption
+msgid "AboutAction"
+msgstr ""
+
+#: tmainform.actioncheckupdates.caption
+msgctxt "tmainform.actioncheckupdates.caption"
+msgid "Check for updates"
+msgstr ""
+
+#: tmainform.activelayercolor.caption
+msgid "Active layer color"
+msgstr ""
+
+#: tmainform.activelayercolor.hint
+msgctxt "tmainform.activelayercolor.hint"
+msgid "Change the color of the currently active layer."
+msgstr ""
+
+#: tmainform.addcylinder.caption
+msgid "Add cylinder..."
+msgstr ""
+
+#: tmainform.addflowline.caption
+msgctxt "tmainform.addflowline.caption"
+msgid "Add flow line"
+msgstr ""
+
+#: tmainform.addgridpanel.caption
+msgid "Add grid panel"
+msgstr ""
+
+#: tmainform.addpoint.caption
+msgid "Add"
+msgstr ""
+
+#: tmainform.addpoint.hint
+msgid "Add a new controlpoint to the model."
+msgstr ""
+
+#: tmainform.addpointtogroup.caption
+msgid "Add Point To Group"
+msgstr ""
+
+#: tmainform.bothsides.caption
+msgid "Show both sides"
+msgstr ""
+
+#: tmainform.bothsides.hint
+msgid "Show both sides of the model"
+msgstr ""
+
+#: tmainform.calculations1.caption
+msgid "Calculations"
+msgstr ""
+
+#: tmainform.cascadewindow.caption
+msgid "Cascade"
+msgstr ""
+
+#: tmainform.cbprecision.hint
+msgctxt "tmainform.cbprecision.hint"
+msgid "Precision"
+msgstr ""
+
+#: tmainform.cbprecision.text
+msgctxt "tmainform.cbprecision.text"
+msgid "Medium"
+msgstr ""
+
+#: tmainform.checkmodel.caption
+msgid "Check model"
+msgstr ""
+
+#: tmainform.checkmodel.hint
+msgid "Check the model for errors and inconsitencies."
+msgstr ""
+
+#: tmainform.clearundo.caption
+msgctxt "tmainform.clearundo.caption"
+msgid "Clear"
+msgstr ""
+
+#: tmainform.colorbutton1.hint
+msgctxt "tmainform.colorbutton1.hint"
+msgid "Change the color of the currently active layer."
+msgstr ""
+
+#: tmainform.crosscurves.caption
+msgid "Cross curves"
+msgstr ""
+
+#: tmainform.curve1.caption
+msgid "Curve"
+msgstr ""
+
+#: tmainform.decreasecurvaturescale.caption
+msgid "Decr. curvature scale"
+msgstr ""
+
+#: tmainform.decreasecurvaturescale.hint
+msgid "Decrease the scale of the curvature plots"
+msgstr ""
+
+#: tmainform.delete.caption
+msgid "Delete"
+msgstr ""
+
+#: tmainform.delete.hint
+msgid "Delete all selected items."
+msgstr ""
+
+#: tmainform.deleteemptylayers.caption
+msgid "Delete empty"
+msgstr ""
+
+#: tmainform.deleteemptylayers.hint
+msgid "Delete empty layers from the model."
+msgstr ""
+
+#: tmainform.deletemarkers.caption
+msgid "Delete all markers"
+msgstr ""
+
+#: tmainform.deletemarkers.hint
+msgid "Delete all markers from the model."
+msgstr ""
+
+#: tmainform.deselectall.caption
+msgctxt "tmainform.deselectall.caption"
+msgid "Deselect all"
+msgstr ""
+
+#: tmainform.deselectall.hint
+msgctxt "tmainform.deselectall.hint"
+msgid "Deselect all"
+msgstr ""
+
+#: tmainform.designhydrostatics.caption
+msgid "Design hydrostatics"
+msgstr ""
+
+#: tmainform.designhydrostatics.hint
+msgid "Calculate hydrostatics for the design condition."
+msgstr ""
+
+#: tmainform.developlayers.caption
+msgid "Develop plates"
+msgstr ""
+
+#: tmainform.edge1.caption
+msgid "Edge"
+msgstr ""
+
+#: tmainform.edgecollapse.caption
+msgctxt "tmainform.edgecollapse.caption"
+msgid "Collapse"
+msgstr ""
+
+#: tmainform.edgecollapse.hint
+msgid "Remove an edge by merging the two connected faces into one new face."
+msgstr ""
+
+#: tmainform.edgecrease.caption
+msgid "Crease"
+msgstr ""
+
+#: tmainform.edgecrease.hint
+msgid "Switch selected edges between normal or crease edges (knuckle lines)."
+msgstr ""
+
+#: tmainform.edgeextrude.caption
+msgid "Extrude..."
+msgstr ""
+
+#: tmainform.edgeextrude.hint
+msgid "Create new controlfaces by extruding selected boundary edges."
+msgstr ""
+
+#: tmainform.edgesplit.caption
+msgid "Split"
+msgstr ""
+
+#: tmainform.edgesplit.hint
+msgid "Create new controlpoints by splitting an controledge into two."
+msgstr ""
+
+#: tmainform.edit1.caption
+msgid "Edit"
+msgstr ""
+
+#: tmainform.editprojectsettings.caption
+msgid "Project settings"
+msgstr ""
+
+#: tmainform.exitprogram.caption
+msgid "Exit"
+msgstr ""
+
+#: tmainform.exitprogram.hint
+msgid "Quit FreeShip"
+msgstr ""
+
+#: tmainform.export1.caption
+msgid "Export"
+msgstr ""
+
+#: tmainform.exportaddmass.caption
+msgid "Export and calculation Add_Mass"
+msgstr ""
+
+#: tmainform.exportarchimedes.caption
+msgid "Archimedes..."
+msgstr ""
+
+#: tmainform.exportarchimedes.hint
+msgid "Export stations to Arcimedes"
+msgstr ""
+
+#: tmainform.exportcoordinates.caption
+msgid "Coordinates..."
+msgstr ""
+
+#: tmainform.exportdxf2dpolylines.caption
+msgid "DXF 2D Polylines..."
+msgstr ""
+
+#: tmainform.exportdxf2dpolylines.hint
+msgid "Export all lines as 2D polylines."
+msgstr ""
+
+#: tmainform.exportdxf3dpolylines.caption
+msgid "DXF 3D Polylines..."
+msgstr ""
+
+#: tmainform.exportdxf3dpolylines.hint
+msgid "Export all lines as 3D polylines."
+msgstr ""
+
+#: tmainform.exportdxffaces.caption
+msgid "DXF 3D mesh..."
+msgstr ""
+
+#: tmainform.exportdxffaces.hint
+msgid "Export all faces to a 3D DXF file."
+msgstr ""
+
+#: tmainform.exportfef.caption
+msgctxt "tmainform.exportfef.caption"
+msgid "FEF file..."
+msgstr ""
+
+#: tmainform.exportfef.hint
+msgid "Export to a FEF (Freeship Exchange Format) hull."
+msgstr ""
+
+#: tmainform.exportghs.caption
+msgid "GHS..."
+msgstr ""
+
+#: tmainform.exportiges.caption
+msgid "IGES"
+msgstr ""
+
+#: tmainform.exportmichlet.caption
+msgid "Michlet..."
+msgstr ""
+
+#: tmainform.exportobj.caption
+msgid "Wavefront file (Obj)..."
+msgstr ""
+
+#: tmainform.exportoffsets.caption
+msgid "Offsets..."
+msgstr ""
+
+#: tmainform.exportpam.caption
+msgid "Add_Mass *.PAM"
+msgstr ""
+
+#: tmainform.exportpart.caption
+msgctxt "tmainform.exportpart.caption"
+msgid "Part..."
+msgstr ""
+
+#: tmainform.exportstl.caption
+msgid "STL..."
+msgstr ""
+
+#: tmainform.face1.caption
+msgid "Face"
+msgstr ""
+
+#: tmainform.file1.caption
+msgid "File"
+msgstr ""
+
+#: tmainform.filesave.caption
+msgctxt "tmainform.filesave.caption"
+msgid "Save"
+msgstr ""
+
+#: tmainform.filesave.hint
+msgid "Save file without prompting for the filename."
+msgstr ""
+
+#: tmainform.filesaveas.caption
+msgid "Save as..."
+msgstr ""
+
+#: tmainform.filesaveas.hint
+msgid "Prompt for filename and save file."
+msgstr ""
+
+#: tmainform.help1.caption
+msgid "Help"
+msgstr ""
+
+#: tmainform.helpabout.caption
+msgid "About"
+msgstr ""
+
+#: tmainform.helpaction.caption
+msgid "HelpAction"
+msgstr ""
+
+#: tmainform.helpcontents.caption
+msgid "Contents"
+msgstr ""
+
+#: tmainform.hydrodynmaneuv_.caption
+msgid "HydrodynManeuv"
+msgstr ""
+
+#: tmainform.hydrodyntask.caption
+msgid "Hydrodynamics characteristics"
+msgstr ""
+
+#: tmainform.hydrodyntask1_.caption
+msgid "HydrodynAero"
+msgstr ""
+
+#: tmainform.hydrodyntask2_.caption
+msgid "HydrodynPosition"
+msgstr ""
+
+#: tmainform.hydrodyntask3_.caption
+msgid "HydrodynRotation"
+msgstr ""
+
+#: tmainform.hydrodyntask4_.caption
+msgid "Import results of Add_Mass"
+msgstr ""
+
+#: tmainform.hydrostaticsdialog.caption
+msgid "Hydrostatics..."
+msgstr ""
+
+#: tmainform.hydrostaticsdialog.hint
+msgid "Calculate hydrostatics for a range of inputdata."
+msgstr ""
+
+#: tmainform.import1.caption
+msgctxt "tmainform.import1.caption"
+msgid "Import"
+msgstr ""
+
+#: tmainform.importbodyplan.caption
+msgid "Bodyplan..."
+msgstr ""
+
+#: tmainform.importbodyplan.hint
+msgid "Import a bodyplan and fit a surface."
+msgstr ""
+
+#: tmainform.importcarene.caption
+msgid "Carene XYZ file..."
+msgstr ""
+
+#: tmainform.importchines.caption
+msgid "Chines..."
+msgstr ""
+
+#: tmainform.importfef.caption
+msgctxt "tmainform.importfef.caption"
+msgid "FEF file..."
+msgstr ""
+
+#: tmainform.importfef.hint
+msgid "Import a FEF (Freeship Exchange Format) hull."
+msgstr ""
+
+#: tmainform.importhullfile.caption
+msgid "Carlson .hul file..."
+msgstr ""
+
+#: tmainform.importmarkers.caption
+msgctxt "tmainform.importmarkers.caption"
+msgid "Import"
+msgstr ""
+
+#: tmainform.importmichletwaves.caption
+msgid "Michlet waves..."
+msgstr ""
+
+#: tmainform.importpart.caption
+msgctxt "tmainform.importpart.caption"
+msgid "Part..."
+msgstr ""
+
+#: tmainform.importpolycad.caption
+msgid "PolyCad"
+msgstr ""
+
+#: tmainform.importsurface.caption
+msgid "Surface..."
+msgstr ""
+
+#: tmainform.importvrml.caption
+msgid "VRML..."
+msgstr ""
+
+#: tmainform.importvrml.hint
+msgid "Import a VRML 1.0 file."
+msgstr ""
+
+#: tmainform.increasecurvaturescale.caption
+msgid "Incr. curvature scale"
+msgstr ""
+
+#: tmainform.increasecurvaturescale.hint
+msgid "Increase the scale of the curvature plots"
+msgstr ""
+
+#: tmainform.insertplane.caption
+msgid "Insert plane..."
+msgstr ""
+
+#: tmainform.insertplane.hint
+msgid "Insert multiple new points on a 3D oriented plane."
+msgstr ""
+
+#: tmainform.intersectiondialog.caption
+msgid "Intersections..."
+msgstr ""
+
+#: tmainform.intersectiondialog.hint
+msgid "Show the window to add stations, buttocks, waterlines and diagonals."
+msgstr ""
+
+#: tmainform.invertface.caption
+msgid "Invert"
+msgstr ""
+
+#: tmainform.invertface.hint
+msgid "Flip the normal direction of the selected controlfaces."
+msgstr ""
+
+#: tmainform.keelrudderwizard.caption
+msgid "Keel and rudder wizard"
+msgstr ""
+
+#: tmainform.keelrudderwizard.hint
+msgid "Create a default rudder or keel."
+msgstr ""
+
+#: tmainform.labeldistance.caption
+msgid "distance : "
+msgstr ""
+
+#: tmainform.labelnumbers.caption
+msgid "LabelNumbers"
+msgstr ""
+
+#: tmainform.labelprogress.caption
+msgid "LabelProgress"
+msgstr ""
+
+#: tmainform.labelundomemory.caption
+msgid "Undo memory : 0 kb."
+msgstr ""
+
+#: tmainform.layer1.caption
+msgid "Layer"
+msgstr ""
+
+#: tmainform.layerautogroup.caption
+msgid "Auto group"
+msgstr ""
+
+#: tmainform.layerautogroup.hint
+msgid "Automatic grouping of connected controlfaces into a new layer."
+msgstr ""
+
+#: tmainform.layerbox.text
+msgid "LayerBox"
+msgstr ""
+
+#: tmainform.layerdialog.caption
+msgid "Dialog"
+msgstr ""
+
+#: tmainform.layerdialog.hint
+msgid "Show the window with layer properties."
+msgstr ""
+
+#: tmainform.layerintersection.caption
+msgid "Intersect layers..."
+msgstr ""
+
+#: tmainform.layerintersection.hint
+msgid "Find the intersection of two layers."
+msgstr ""
+
+#: tmainform.layervisibilitydialog.caption
+msgid "Layer visibility dialog"
+msgstr ""
+
+#: tmainform.layervisibilitydialog.hint
+msgid "Show Layer visibility dialog"
+msgstr ""
+
+#: tmainform.loadfile.caption
+msgid "Open..."
+msgstr ""
+
+#: tmainform.loadfile.hint
+msgid "Open a new file."
+msgstr ""
+
+#: tmainform.markers2.caption
+msgctxt "tmainform.markers2.caption"
+msgid "Markers"
+msgstr ""
+
+#: tmainform.menuitem1.caption
+msgctxt "tmainform.menuitem1.caption"
+msgid "Add flow line"
+msgstr ""
+
+#: tmainform.menuitempointalignpermanently.caption
+msgid "Align Permanently"
+msgstr ""
+
+#: tmainform.mirrorface.caption
+msgid "Mirror..."
+msgstr ""
+
+#: tmainform.movemodel.caption
+msgid "Move..."
+msgstr ""
+
+#: tmainform.movemodel.hint
+msgid "Move the entire model."
+msgstr ""
+
+#: tmainform.newcurve.caption
+msgctxt "tmainform.newcurve.caption"
+msgid "New"
+msgstr ""
+
+#: tmainform.newcurve.hint
+msgid "Add a new curve to selected edges."
+msgstr ""
+
+#: tmainform.newedge.caption
+msgid "Insert"
+msgstr ""
+
+#: tmainform.newedge.hint
+msgid "Split a face by inserting a new edge between to selected points."
+msgstr ""
+
+#: tmainform.newface.caption
+msgctxt "tmainform.newface.caption"
+msgid "New"
+msgstr ""
+
+#: tmainform.newface.hint
+msgid "Create a new controlface from selected controlpoints."
+msgstr ""
+
+#: tmainform.newlayer.caption
+msgctxt "tmainform.newlayer.caption"
+msgid "New"
+msgstr ""
+
+#: tmainform.newlayer.hint
+msgid "Add a new empty layer to the model."
+msgstr ""
+
+#: tmainform.newmodel.caption
+msgid "New..."
+msgstr ""
+
+#: tmainform.newmodel.hint
+msgid "Start a new model."
+msgstr ""
+
+#: tmainform.newwindow.caption
+msgid "New window"
+msgstr ""
+
+#: tmainform.ools1.caption
+msgid "Tools"
+msgstr ""
+
+#: tmainform.point1.caption
+msgid "Point"
+msgstr ""
+
+#: tmainform.pointalighnpermanently.caption
+msgid "Point Alighn Permanently"
+msgstr ""
+
+#: tmainform.pointalign.caption
+msgid "Align"
+msgstr ""
+
+#: tmainform.pointalign.hint
+msgid "Project selected points on a straight line through the first and last selected point."
+msgstr ""
+
+#: tmainform.pointanchor.caption
+msgid "Anchor"
+msgstr ""
+
+#: tmainform.pointcollapse.caption
+msgctxt "tmainform.pointcollapse.caption"
+msgid "Collapse"
+msgstr ""
+
+#: tmainform.pointcollapse.hint
+msgid "Merge two selected edges by removing their common controlpoint."
+msgstr ""
+
+#: tmainform.pointextrude.caption
+msgid "Extrude points"
+msgstr ""
+
+#: tmainform.pointscoincide.caption
+msgid "Coincide points"
+msgstr ""
+
+#: tmainform.pointscoincide.hint
+msgid "Coincide points to the first selected one"
+msgstr ""
+
+#: tmainform.pointslock.caption
+msgid "Lock points"
+msgstr ""
+
+#: tmainform.pointslock.hint
+msgid "Lock all selected controlpoints."
+msgstr ""
+
+#: tmainform.pointsunlock.caption
+msgid "Unlock points"
+msgstr ""
+
+#: tmainform.pointsunlock.hint
+msgid "Unlock all selected controlpoints."
+msgstr ""
+
+#: tmainform.pointsunlockall.caption
+msgid "Unlock all points"
+msgstr ""
+
+#: tmainform.pointsunlockall.hint
+msgid "Unlock all locked controlpoints."
+msgstr ""
+
+#: tmainform.preferences.caption
+msgid "Preferences"
+msgstr ""
+
+#: tmainform.project1.caption
+msgid "Project"
+msgstr ""
+
+#: tmainform.propellerrvrs.caption
+msgid "Hydrodynamics ship tasks"
+msgstr ""
+
+#: tmainform.propellertask1.caption
+msgid "Design of propeller"
+msgstr ""
+
+#: tmainform.proptask1_.caption
+msgid "PropTask1"
+msgstr ""
+
+#: tmainform.proptask2_.caption
+msgid "PropTask2"
+msgstr ""
+
+#: tmainform.proptask3_.caption
+msgid "PropTask3"
+msgstr ""
+
+#: tmainform.proptask4_.caption
+msgid "PropTask4"
+msgstr ""
+
+#: tmainform.proptask5_.caption
+msgid "PropTask5"
+msgstr ""
+
+#: tmainform.proptaskrvrs_.caption
+msgid "PropTaskRvrs"
+msgstr ""
+
+#: tmainform.ransform1.caption
+msgid "Transform"
+msgstr ""
+
+#: tmainform.recentfiles.caption
+msgid "Recent files"
+msgstr ""
+
+#: tmainform.redo.caption
+msgid "Redo"
+msgstr ""
+
+#: tmainform.redo.hint
+msgid "Undo the previous modification."
+msgstr ""
+
+#: tmainform.removenegative.caption
+msgid "Remove negative"
+msgstr ""
+
+#: tmainform.removenegative.hint
+msgid "Removes all faces on the starbaordside of the hull."
+msgstr ""
+
+#: tmainform.removeunusedpoints.caption
+msgid "Remove unused points"
+msgstr ""
+
+#: tmainform.resistance1.caption
+msgid "Resistance"
+msgstr ""
+
+#: tmainform.resistancedelft.caption
+msgid "Delft yacht series"
+msgstr ""
+
+#: tmainform.resistancefungleib.caption
+msgid "Method Fung-Leibman"
+msgstr ""
+
+#: tmainform.resistancehollen.caption
+msgid "Method Hollenbach"
+msgstr ""
+
+#: tmainform.resistanceholtr.caption
+msgid "Method Holtrop"
+msgstr ""
+
+#: tmainform.resistancekaper.caption
+msgid "KAPER"
+msgstr ""
+
+#: tmainform.resistancemh.caption
+msgid "Multihull ships methods"
+msgstr ""
+
+#: tmainform.resistanceoortmer.caption
+msgid "Method van Oortmerssen"
+msgstr ""
+
+#: tmainform.resistanceost.caption
+msgid "OST 5.0181-75 sea vessel series"
+msgstr ""
+
+#: tmainform.resistanceplaning.caption
+msgid "Planing resistance method"
+msgstr ""
+
+#: tmainform.resistancerbhs.caption
+msgid "High Speed Round Bilge ships methods"
+msgstr ""
+
+#: tmainform.rotatemodel.caption
+msgid "Rotate..."
+msgstr ""
+
+#: tmainform.rotatemodel.hint
+msgid "Rotate selected items."
+msgstr ""
+
+#: tmainform.rotatemodelm.caption
+msgid "Heeling and/or trimming..."
+msgstr ""
+
+#: tmainform.rotatemodelm.hint
+msgid "Rotate all model items."
+msgstr ""
+
+#: tmainform.scalemodel.caption
+msgid "Scale..."
+msgstr ""
+
+#: tmainform.scalemodel.hint
+msgid "Scale selected items."
+msgstr ""
+
+#: tmainform.selectall.caption
+msgid "Select all"
+msgstr ""
+
+#: tmainform.selectallcontrolpoints.caption
+msgctxt "tmainform.selectallcontrolpoints.caption"
+msgid "Select All Control Points"
+msgstr ""
+
+#: tmainform.selectallcontrolpoints.hint
+msgctxt "tmainform.selectallcontrolpoints.hint"
+msgid "Select All Control Points"
+msgstr ""
+
+#: tmainform.selection1.caption
+msgid "Selection"
+msgstr ""
+
+#: tmainform.selectiondialog.caption
+msgid "Selection Dialog"
+msgstr ""
+
+#: tmainform.selectleakpoints.caption
+msgid "SelectLeakPoints"
+msgstr ""
+
+#: tmainform.showbuttocks.caption
+msgid "Buttocks"
+msgstr ""
+
+#: tmainform.showbuttocks.hint
+msgid "Toggle buttocks visibility on or off."
+msgstr ""
+
+#: tmainform.showcontrolcurves.caption
+msgid "Control curves"
+msgstr ""
+
+#: tmainform.showcontrolcurves.hint
+msgid "Show control curves."
+msgstr ""
+
+#: tmainform.showcontrolnet.caption
+msgid "Control net"
+msgstr ""
+
+#: tmainform.showcontrolnet.hint
+msgid "Show control net."
+msgstr ""
+
+#: tmainform.showcurvature.caption
+msgid "Curvature"
+msgstr ""
+
+#: tmainform.showcurvature.hint
+msgid "Show curvature plot of intersectionlines."
+msgstr ""
+
+#: tmainform.showdiagonals.caption
+msgid "Diagonals"
+msgstr ""
+
+#: tmainform.showdiagonals.hint
+msgid "Toggle diagonals visibility on or off."
+msgstr ""
+
+#: tmainform.showflowlines.caption
+msgid "Flowlines"
+msgstr ""
+
+#: tmainform.showflowlines.hint
+msgid "Show flowlines around the hull."
+msgstr ""
+
+#: tmainform.showfreeobjects.caption
+msgid "Show free objects"
+msgstr ""
+
+#: tmainform.showfreeobjects.hint
+msgid "Show objects not associated with any layer"
+msgstr ""
+
+#: tmainform.showgrid.caption
+msgid "Grid"
+msgstr ""
+
+#: tmainform.showgrid.hint
+msgid "Show grid of intersections in plan, profile and bodyplan view."
+msgstr ""
+
+#: tmainform.showhydrostatics.caption
+msgid "Hydrostatic features"
+msgstr ""
+
+#: tmainform.showhydrostatics.hint
+msgid "Show certain hydrostatic key properties in the model."
+msgstr ""
+
+#: tmainform.showinterioredges.caption
+msgid "Interior edges"
+msgstr ""
+
+#: tmainform.showinterioredges.hint
+msgid "Show interior edges."
+msgstr ""
+
+#: tmainform.showlinesplan.caption
+msgid "Linesplan"
+msgstr ""
+
+#: tmainform.showmarkers.caption
+msgctxt "tmainform.showmarkers.caption"
+msgid "Markers"
+msgstr ""
+
+#: tmainform.showmarkers.hint
+msgid "Show markers."
+msgstr ""
+
+#: tmainform.shownormals.caption
+msgid "Normals"
+msgstr ""
+
+#: tmainform.shownormals.hint
+msgid "Show normals of selected controlfaces."
+msgstr ""
+
+#: tmainform.showstations.caption
+msgid "Stations"
+msgstr ""
+
+#: tmainform.showstations.hint
+msgid "Toggle stations visibility on or off."
+msgstr ""
+
+#: tmainform.showundohistory.caption
+msgid "Browse..."
+msgstr ""
+
+#: tmainform.showwaterlines.caption
+msgid "Waterlines"
+msgstr ""
+
+#: tmainform.showwaterlines.hint
+msgid "Toggle waterlines visibility on or off."
+msgstr ""
+
+#: tmainform.spineditfontsize.hint
+msgid "Font Size"
+msgstr ""
+
+#: tmainform.splitsection50pct.caption
+msgid "Split Section middle location"
+msgstr ""
+
+#: tmainform.splitsection50pct.hint
+msgid "Set Split Section location to middle of length"
+msgstr ""
+
+#: tmainform.splitsectiondialog.caption
+msgctxt "tmainform.splitsectiondialog.caption"
+msgid "Split Section location"
+msgstr ""
+
+#: tmainform.splitsectiondialog.hint
+msgid "Set Split Section location in Body Plan"
+msgstr ""
+
+#: tmainform.tilewindow.caption
+msgid "Tile"
+msgstr ""
+
+#: tmainform.toolbarcurves.caption
+msgctxt "tmainform.toolbarcurves.caption"
+msgid "ToolBarFile"
+msgstr ""
+
+#: tmainform.toolbaredges.caption
+msgctxt "tmainform.toolbaredges.caption"
+msgid "ToolBarFile"
+msgstr ""
+
+#: tmainform.toolbaredit.caption
+msgctxt "tmainform.toolbaredit.caption"
+msgid "ToolBarFile"
+msgstr ""
+
+#: tmainform.toolbarfaces.caption
+msgctxt "tmainform.toolbarfaces.caption"
+msgid "ToolBarFile"
+msgstr ""
+
+#: tmainform.toolbarfile.caption
+msgctxt "tmainform.toolbarfile.caption"
+msgid "ToolBarFile"
+msgstr ""
+
+#: tmainform.toolbarlayers.caption
+msgctxt "tmainform.toolbarlayers.caption"
+msgid "ToolBarFile"
+msgstr ""
+
+#: tmainform.toolbarpoints.caption
+msgid "ToolBarPoints"
+msgstr ""
+
+#: tmainform.toolbarvisibility.caption
+msgctxt "tmainform.toolbarvisibility.caption"
+msgid "ToolBarFile"
+msgstr ""
+
+#: tmainform.toolbuttonselect.hint
+msgid "Deselect All"
+msgstr ""
+
+#: tmainform.transformlackenby.caption
+msgid "Lackenby..."
+msgstr ""
+
+#: tmainform.undo.caption
+msgid "Undo"
+msgstr ""
+
+#: tmainform.undo.hint
+msgid "Undo the last modification."
+msgstr ""
+
+#: tmainform.undohistory1.caption
+msgid "Undo history"
+msgstr ""
+
+#: tmainform.visibility1.caption
+msgid "Visibility"
+msgstr ""
+
+#: tmainform.window1.caption
+msgid "Window"
+msgstr ""
+

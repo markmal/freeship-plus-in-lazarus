@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <General>
       <Flags>
         <MainUnitHasUsesSectionForAllUnits Value="False"/>
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
+        <CompatibilityMode Value="True"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <MainUnit Value="0"/>
       <Title Value="FreeShip"/>
       <Scaled Value="True"/>
       <UseAppBundle Value="False"/>
@@ -30,11 +30,15 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
-      <RevisionNr Value="37"/>
-      <BuildNr Value="500"/>
+      <MinorVersionNr Value="1"/>
+      <RevisionNr Value="1"/>
+      <BuildNr Value="503"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
+    <MacroValues Count="1">
+      <Macro1 Name="LazVer" Value="3.2.0"/>
+    </MacroValues>
     <BuildModes Count="4">
       <Item1 Name="Gtk2 Debug" Default="True"/>
       <Item2 Name="Win32 Debug">
@@ -217,6 +221,9 @@
           </Other>
         </CompilerOptions>
       </Item4>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="988489124168" Modes="Gtk2 Debug" Type="IDEMacro" MacroName="LazVer" Value="3.2.0"/>
+      </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -1043,7 +1050,7 @@
       </Debugging>
       <Options>
         <PassLinkerOptions Value="True"/>
-        <LinkerOptions Value="-rpath='$ORIGIN/../lib' &quot;-Map out.map&quot;"/>
+        <LinkerOptions Value="-rpath=&apos;$ORIGIN/../lib&apos; &quot;-Map out.map&quot;"/>
       </Options>
     </Linking>
     <Other>

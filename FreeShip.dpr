@@ -305,7 +305,7 @@ begin
 
    RequireDerivedFormResource:=True; // new
    FormatSettings.DecimalSeparator:='.';
-   Application.Scaled:=True;
+  Application.Scaled:=True;
    Application.Initialize;
 
    if ParametersHelp then
@@ -358,12 +358,12 @@ begin
    {$ENDIF}
    ShowTranslatedValues(Mainform);
    Mainform.FFileName:=sOpenFile;
-
    //if sOpenFile <> ''
    //then MainForm.LoadNamedFile(sOpenFile);
 
    //Application.CreateForm(TFreeKeelWizardDialog, FreeKeelWizardDialog);
 
+   Application.OnActivate := MainForm.OnActivate;
 
    {$IFDEF CREATE_TRANSLATION}
       // Create a translation of all the forms and stringvalues in the project

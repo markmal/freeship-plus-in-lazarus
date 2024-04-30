@@ -681,7 +681,7 @@ type
       FModelInitallyLoaded : boolean;
       {$IFDEF FPC}
       function  ActiveMDIChild: TFreeHullWindow; reintroduce;
-      function  MDIChildCount: Integer; override;
+      function  MDIChildCount: Integer; reintroduce;
       function  GetMDIChildren(AIndex: Integer): TFreeHullWindow; reintroduce;
       procedure AbandonMDIChildren(AIndex: Integer);
       procedure Tile;

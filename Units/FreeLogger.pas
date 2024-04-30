@@ -149,6 +149,7 @@ var
   Report: string;
 begin
   Report := GetExceptionCallStack(E);
+  Frames := ExceptFrames;
   for I := 0 to ExceptFrameCount - 1 do
     Report := Report + LineEnding + BackTraceStrFunc(Frames[I]);
   logger.Error(Report);

@@ -1041,6 +1041,7 @@ var inActivation: boolean = false;
 procedure TMainForm.FormActivate(Sender: TObject);
 var i:integer; splashResult:TModalResult;
 begin
+  if FDestroying then exit;
   if inActivation then exit;
   inActivation:=true;
 

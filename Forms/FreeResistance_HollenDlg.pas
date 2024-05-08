@@ -1882,7 +1882,7 @@ begin
       LCB := 0;
     Cp := HydObject.Data.PrismCoefficient;
     Wbulb := HydObject.Data.BulbSectionArea;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
   end;
   Calculate;
 end;{TFreeResistance_Hollen.DraftTotalBoxAfterSetValue}

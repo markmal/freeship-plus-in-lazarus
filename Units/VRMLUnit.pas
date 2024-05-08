@@ -361,7 +361,7 @@ begin
     end;
     Inc(I);
   end;
-  ToDo.Destroy;
+  FreeAndNil(ToDo);
 end;{GetEmbeddedObjects}
 
 // ##################################### VRML base object #####################################
@@ -471,10 +471,10 @@ begin
                begin
                end;
                words:=Objects.Objects[I-1] as TStringList;
-               Words.destroy;
+               FreeAndNil(Words);
             end;
             //Showmessage(Objects.Text);
-            Objects.Destroy;
+            FreeAndNil(Objects);
          end;
          }
     end;
@@ -485,7 +485,7 @@ begin
       Add(VRMLObject);
     end;
   end;
-  words.Destroy;
+  FreeAndNil(words);
 end;{TVRMLSeparator.Load}
 
 // ##################################### VRML Material #####################################
@@ -637,7 +637,7 @@ begin
           Inc(I, 3);
         end;
       end;
-      Points.Destroy;
+      FreeAndNil(Points);
     end;
   end;
 end;{TVRMLCoordinate3.Load}
@@ -733,7 +733,7 @@ begin
 
         end;
       end;
-      Faces.Destroy;
+      FreeAndNil(Faces);
     end;
   end;
 end;{TVRMLIndexedFaceSet.Load}
@@ -809,7 +809,7 @@ begin
     end;
     if Result.Count = 0 then
     begin
-      Result.Destroy;
+      FreeAndNil(Result);
       Result := nil;
     end;
   end;
@@ -854,7 +854,7 @@ begin
     begin
       MessageDlg(Userstring(208) + '!', mtError, [mbOK], 0);
       CloseFile(FFile);
-      Strings.Destroy;
+      FreeAndNil(Strings);
       exit;
     end;
     while not EOF(FFile) do
@@ -914,11 +914,11 @@ begin
           Add(VRMLObject);
         end;
       end;
-      words.Destroy;
+      FreeAndNil(words);
     end
     else
       MessageDlg(Userstring(208) + '!', mtError, [mbOK], 0);
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
 end;{TVRMLList.LoadFromFile}
 

@@ -851,9 +851,9 @@ begin
     Strings.Add('0' + EOL + 'ENDSEC');
     Strings.Add('0' + EOL + 'EOF');
     Strings.SaveToFile(ChangeFileExt(SaveDialog.FileName, '.dxf'));
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;{TFreeExpanedplatesDialog.ExportDXFExecute}
 
 procedure TFreeExpanedplatesDialog.ShowStationsExecute(Sender: TObject);
@@ -1067,9 +1067,9 @@ begin
         Patch.SaveToTextFile(Strings);
     end;
     Strings.SaveToFile(ChangeFileExt(SaveDialog.FileName, '.txt'));
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;{TFreeExpanedplatesDialog.ExportTextFileExecute}
 
 procedure TFreeExpanedplatesDialog.InitViewPort;

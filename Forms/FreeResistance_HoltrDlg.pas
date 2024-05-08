@@ -2068,7 +2068,7 @@ begin
       Kbulb := HydObject.Data.BulbSectionArea;
       Zbulb := HydObject.Data.BulbSectionCOG.Z;
     end;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
   end;
   Calculate;
 end;{TFreeResistance_Holtr.DraftTotalBoxAfterSetValue}

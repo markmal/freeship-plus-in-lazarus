@@ -1359,7 +1359,7 @@ begin
           MaxY := Mesh[I, J].Y;
       end;
     end;
-    Spline.Destroy;
+    FreeAndNil(Spline);
 
     Area := 0;
     COG.X := 0.0;
@@ -2325,7 +2325,7 @@ var
       ///Surface.AddControlFace(FacePoints, True, Layer);
       }
     end;
-    FacePoints.Destroy;
+    FreeAndNil(FacePoints);
 
   end;
 
@@ -2502,7 +2502,7 @@ var
       Surface.AddControlFace(ControlPoints, True, Layer);
 
     end;
-    ControlPoints.Destroy;
+    FreeAndNil(ControlPoints);
 
   end;
 
@@ -2604,7 +2604,7 @@ begin
         if ControlPoints.Count >= 3 then
           Surface.AddControlFace(ControlPoints, True, Layer);
       end;
-    ControlPoints.Destroy;
+    FreeAndNil(ControlPoints);
 
     // set crease edges at top and bottom
     for J := 2 to Cols do
@@ -2651,8 +2651,8 @@ begin
   for I := 1 to Surface.NumberOfControlFaces do
     Faces.Add(Surface.ControlFace[I - 1]);
   FFreeship.SavePart(Faces);
-  Faces.Destroy;
-  Surface.Destroy;
+  FreeAndNil(Faces);
+  FreeAndNil(Surface);
 end;{TFreeKeelWizardDialog.SendToSurface}
 
 procedure TFreeKeelWizardDialog.InputBulbShapeClick(Sender: TObject);

@@ -370,7 +370,7 @@ begin
   for I := 1 to Dest.Count do
   begin
     Spline := Dest[I - 1];
-    Spline.Destroy;
+    FreeAndNil(Spline);
   end;
   Dest.Clear;
 
@@ -407,7 +407,7 @@ begin
   for I := 1 to Dest.Count do
   begin
     Spline := Dest[I - 1];
-    Spline.Destroy;
+    FreeAndNil(Spline);
   end;
   Dest.Clear;
   Waterline := TFreeIntersection.Create(FFreeship);
@@ -425,7 +425,7 @@ begin
     Spline.Assign(Waterline.Items[J - 1]);
     Dest.Add(Spline);
   end;
-  Waterline.Destroy;
+  FreeAndNil(Waterline);
 end;{TFreeLackenbyDialog.ExtractWaterline}
 
 procedure TFreeLackenbyDialog.Transform(NewDispl: TFloatType;
@@ -494,8 +494,8 @@ begin
   if Points.Count = 0 then
   begin
     MessageDlg(Userstring(238) + '!', mtError, [mbOK], 0);
-    Points.Destroy;
-    LockedPoints.Destroy;
+    FreeAndNil(Points);
+    FreeAndNil(LockedPoints);
     exit;
   end
   else if LockedPoints.Count > 0 then
@@ -507,8 +507,8 @@ begin
     Proceed := True;
   if not Proceed then
   begin
-    Points.Destroy;
-    LockedPoints.Destroy;
+    FreeAndNil(Points);
+    FreeAndNil(LockedPoints);
     Exit;
   end;
 
@@ -712,8 +712,8 @@ begin
       // Transformation failed
       MessageDlg(Userstring(242) + '!', mtWarning, [mbOK], 0);
     end;
-    Points.Destroy;
-    LockedPoints.Destroy;
+    FreeAndNil(Points);
+    FreeAndNil(LockedPoints);
     if Modified then
       FModified := True;
   end;
@@ -859,7 +859,7 @@ begin
   Plane.d := -MidshipLocation;
   Station.Plane := Plane;
   Station.CalculateArea(FWaterlinePlane, FMainArea, P, P2D);
-  Station.Destroy;
+  FreeAndNil(Station);
 
   FAftShip := TFasterListTFreeIntersection.Create;
   FAftShip.Capacity := NStations + 1;
@@ -912,41 +912,41 @@ begin
   for I := 1 to FAftShip.Count do
   begin
     Station := FAftShip[I - 1];
-    Station.Destroy;
+    FreeAndNil(Station);
   end;
-  FAftShip.Destroy;
+  FreeAndNil(FAftShip);
   for I := 1 to FForeShip.Count do
   begin
     Station := FForeShip[I - 1];
-    Station.Destroy;
+    FreeAndNil(Station);
   end;
-  FForeShip.Destroy;
+  FreeAndNil(FForeShip);
   for I := 1 to FOriginalStations.Count do
   begin
     Spline := FOriginalStations[I - 1];
-    Spline.Destroy;
+    FreeAndNil(Spline);
   end;
-  FOriginalStations.Destroy;
+  FreeAndNil(FOriginalStations);
   for I := 1 to FNewStations.Count do
   begin
     Spline := FNewStations[I - 1];
-    Spline.Destroy;
+    FreeAndNil(Spline);
   end;
-  FNewStations.Destroy;
-  FOriginalSectionalAreaCurve.Destroy;
-  FNewSectionalAreaCurve.Destroy;
+  FreeAndNil(FNewStations);
+  FreeAndNil(FOriginalSectionalAreaCurve);
+  FreeAndNil(FNewSectionalAreaCurve);
   for I := 1 to FOriginalWaterline.Count do
   begin
     Spline := ForiginalWaterline[I - 1];
-    Spline.Destroy;
+    FreeAndNil(Spline);
   end;
-  FOriginalWaterline.Destroy;
+  FreeAndNil(FOriginalWaterline);
   for I := 1 to FNewWaterline.Count do
   begin
     Spline := FNewWaterline[I - 1];
-    Spline.Destroy;
+    FreeAndNil(Spline);
   end;
-  FNewWaterline.Destroy;
+  FreeAndNil(FNewWaterline);
 end;{TFreeLackenbyDialog.Execute}
 
 procedure TFreeLackenbyDialog.OKButtonClick(Sender: TObject);

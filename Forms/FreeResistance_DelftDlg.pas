@@ -1408,7 +1408,7 @@ begin
     Cp := HydObject.Data.PrismCoefficient;
     Cb := HydObject.Data.BlockCoefficient;
     Cm := HydObject.Data.MidshipCoeff;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
   end;
   Calculate;
 end;{TFreeResistance_Delft.DraftTotalBoxAfterSetValue}

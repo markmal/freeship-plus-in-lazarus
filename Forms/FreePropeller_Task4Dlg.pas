@@ -837,7 +837,7 @@ begin
       if Ewl<>0 then LCB:=(HydObject.Data.WlMax.X-HydObject.Data.CenterOfBuoyancy.X)/Ewl
                 else LCB:=0;
       Ie:=HydObject.Data.WaterplaneEntranceAngle;
-      HydObject.Destroy;
+      FreeAndNil(HydObject);
       Calculate;
    end;
 }

@@ -740,7 +740,7 @@ begin
       dat2:=HydObject.Data.ModelMax.X-HydObject.Data.ModelMin.X;
       dat3:=HydObject.Data.BeamWaterline;
       dat4:=HydObject.Data.SDP;
-      HydObject.Destroy;
+      FreeAndNil(HydObject);
       Calculate;
    end;
 end;{TFreeHydrodyn_Task1.CheckBox2Click}

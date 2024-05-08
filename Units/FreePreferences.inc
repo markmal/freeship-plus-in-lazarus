@@ -345,7 +345,7 @@ begin
       Save;
 
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreePreferences.Edit}
 
 
@@ -1086,7 +1086,7 @@ begin
     // add any filename, TFreeEmptyModelChooserDialog will be invoked if the file does not exist
     Owner.Edit.FRecentFiles.Add(Filename);
   end;
-  RecentFileNames.Destroy;
+  FreeAndNil(RecentFileNames);
   if assigned(Owner.FOnUpdateRecentFileList) then
     Owner.FOnUpdateRecentFileList(self);
 

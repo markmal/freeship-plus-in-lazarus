@@ -2037,7 +2037,7 @@ begin
     else
       LCB := 0;
     Cp := HydObject.Data.PrismCoefficient;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
   end;
   Calculate;
 end;{TFreeResistance_Oortmer.DraftTotalBoxAfterSetValue}

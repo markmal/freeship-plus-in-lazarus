@@ -221,7 +221,7 @@ begin
       else if Spline.Min.Z < Min then
         Min := Spline.Min.Z;
     end;
-    Tmplist.Destroy;
+    FreeAndNil(Tmplist);
   end;
   // Now shift all stations up or down so that the lowest point
   // of all stations is on the baseline z=0.0
@@ -684,7 +684,7 @@ function TFreeShip.FGetPreview: TJPEGImage;
             Row2^[J].rgbtBlue:= (4*Row1^[J].rgbtBlue +Row2^[J].rgbtBlue) div 5;
          end;
       end;
-      Bmp1.Destroy;
+      FreeAndNil(Bmp1);
    end;//Resample
 
    Procedure SnapShot(xpos: integer; ypos: integer;OrgWidth,OrgHeight:integer; Var Bmp:TBitmap);
@@ -725,7 +725,7 @@ function TFreeShip.FGetPreview: TJPEGImage;
       end;
       Resample(TmpBmp,Bmp,W,H);
       ReleaseDc(0, dc);
-      TmpBmp.Destroy;
+      FreeAndNil(TmpBmp);
    End;//SnapShot
  }
 var
@@ -788,7 +788,7 @@ begin
   Result.Assign(thumbNail);
   Result.CompressionQuality := 90;
   //Result.SaveToFile('saved_screenshot.jpg');
-  thumbNail.Destroy;
+  FreeAndNil(thumbNail);
 end;{TFreeShip.FGetPreview}
 
 {
@@ -1657,7 +1657,7 @@ begin
           else
             Viewport.TextOut(Pt.X, Pt.Y - Viewport.TextHeight(str), Str);
         end;
-        Curve.Destroy;
+        FreeAndNil(Curve);
       end;
     end;
   end;
@@ -1840,7 +1840,7 @@ begin
     Matrix.Value[Np - 1, Np - 1] := 1.0;
     // Invert matrix
     Inv := Matrix.Invert;
-    Matrix.Destroy;
+    FreeAndNil(Matrix);
 
     OrgPts := TFreeMatrix.Create;
     OrgPts.SetSize(3, Np);
@@ -1877,11 +1877,11 @@ begin
           MinMax(P, Min, Max);
         Points[J - 1][I - 1] := Surface.AddControlPoint(P);
       end;
-      NewPts.Destroy;
+      FreeAndNil(NewPts);
     end;
-    OrgPts.Destroy;
+    FreeAndNil(OrgPts);
     // Delete inverted matrix
-    Inv.Destroy;
+    FreeAndNil(Inv);
     // Add chines as markers
     for I := 1 to Chines.Count do
     begin
@@ -2018,9 +2018,9 @@ begin
     for I := Surface.NumberOfControlPoints downto 1 do
       if Surface.ControlPoint[I - 1].NumberOfFaces = 0 then
         Surface.ControlPoint[I - 1].Delete;
-    Tmp.Destroy;
-    Pts2.Destroy;
-    Pts.Destroy;
+    FreeAndNil(Tmp);
+    FreeAndNil(Pts2);
+    FreeAndNil(Pts);
   finally
     Extents(Min, Max);
     //ProjectSettings.ProjectWaterDensity:=1.0;
@@ -2034,7 +2034,7 @@ begin
     for I := 1 to Chines.Count do
     begin
       Spline := Chines[I - 1];
-      Spline.Destroy;
+      FreeAndNil(Spline);
     end;
   end;
 end;{TFreeShip.ImportChines}
@@ -2386,7 +2386,7 @@ begin
       end;
     end;
   finally
-    Source.Destroy;
+    FreeAndNil(Source);
   end;
 end;{TFreeShip.LoadPreview}
 
@@ -2951,13 +2951,13 @@ begin
     finally
       Screen.Cursor := PrevCursor;
     end;
-    Partfile.Destroy;
-    Points.Destroy;
-    Edges.Destroy;
-    Curves.Destroy;
-    Layers.Destroy;
+    FreeAndNil(Partfile);
+    FreeAndNil(Points);
+    FreeAndNil(Edges);
+    FreeAndNil(Curves);
+    FreeAndNil(Layers);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;{TFreeShip.SavePart}
 
 procedure TFreeShip.SubmergedHullExtents(Wlplane: T3DPlane; var Min, Max: T3DCoordinate);

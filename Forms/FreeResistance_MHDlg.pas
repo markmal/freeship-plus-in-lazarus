@@ -1752,7 +1752,7 @@ begin
     Cb := HydObject.Data.BlockCoefficient;
     Cm := HydObject.Data.MidshipCoeff;
     Cwp := HydObject.Data.WaterplaneCoeff;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
   end;
   Calculate;
 end;{TFreeResistance_MH.DraftTotalBoxAfterSetValue}

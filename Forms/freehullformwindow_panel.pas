@@ -304,7 +304,7 @@ begin
     WriteLn(JSONString);
     WriteLn('======================================');
   finally
-    Streamer.Destroy;
+    FreeAndNil(Streamer);
   end;
 end;
 
@@ -711,7 +711,7 @@ begin
    VP.PopupMenu := ViewPort.PopupMenu;
    VP.VertScrollbar := ViewPort.VertScrollbar;
 
-   ViewPort.Destroy;
+   FreeAndNil(ViewPort);
    ViewPort:=VP;
    {$ENDIF}
 end;{TFreeHullWindow.FormCreate}

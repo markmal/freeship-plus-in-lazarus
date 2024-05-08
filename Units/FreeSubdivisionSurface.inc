@@ -956,7 +956,7 @@ var
       else
         raise Exception.Create('No valid cornerface found!');
     end;
-    Checkfaces.Destroy;
+    FreeAndNil(Checkfaces);
   end;{AssembleFaces}
 
 begin
@@ -993,12 +993,12 @@ begin
         Current := DoneList.Objects[I - 1];
         if Current.Count > 0 then
           AssembleFaces(Current, AssembledPatches, NAssembled);
-        Current.Destroy;
+        FreeAndNil(Current);
       end;
     end;
   finally
-    ToDoList.Destroy;
-    DoneList.Destroy;
+    FreeAndNil(ToDoList);
+    FreeAndNil(DoneList);
   end;
 end;{TFreeSubdivisionSurface.AssembleFacesToPatches}
 
@@ -1622,7 +1622,7 @@ begin
           Edge.EndPoint.UnreferenceFace(Result);
         end;
       end;
-      Result.Destroy;
+      FreeAndNil(Result);
       Result := nil;
     end
     else
@@ -1899,7 +1899,7 @@ begin
   for I := 1 to Points.Count do
     Tmp.Add(Points[I - 1]);
   Result := AddControlFace(Tmp, CheckEdges, nil);
-  Tmp.Destroy;
+  FreeAndNil(Tmp);
 end;{TFreeSubdivisionSurface.AddControlFace}
 
 function TFreeSubdivisionSurface.CheckIntegrity:boolean;
@@ -2449,9 +2449,9 @@ begin
       begin
         MessageDlg('Could not establish the entire grid!', mtError, [mbOK], 0);
       end;
-      Faces.Destroy;
+      FreeAndNil(Faces);
     finally
-      Backup.Destroy;
+      FreeAndNil(Backup);
     end;
   end;
 end;{TFreeSubdivisionSurface.ConvertToGrid}
@@ -2667,7 +2667,7 @@ begin
         end;
       end;
     end;
-    Tmp.Destroy;
+    FreeAndNil(Tmp);
   end
   else
   begin
@@ -2735,7 +2735,7 @@ begin
         end;
       end;
     end;
-    Tmp.Destroy;
+    FreeAndNil(Tmp);
   end;
 end;{TFreeSubdivisionSurface.ExportObjFile}
 
@@ -2885,15 +2885,15 @@ begin
       }
       ///Edge.Crease := True;
     end;
-    Points.Destroy;
+    FreeAndNil(Points);
 
     Edges.Clear;
     // return the new edges
     for I := 1 to NewEdges.Count do
       Edges.Add(Newedges[I - 1]);
-    Newedges.Destroy;
+    FreeAndNil(Newedges);
   finally
-    Vertices.Destroy;
+    FreeAndNil(Vertices);
     Initialize(NoVertices + 1, NoEdges + 1, NumberOfControlFaces + 1);
     Built := False;
   end;
@@ -3268,14 +3268,14 @@ begin
         Parameter := SquaredDistPP(Spline.Min, Spline.Max);
         if Parameter < 1e-3 then
         begin
-          Spline.Destroy;
+          FreeAndNil(Spline);
           Destination.Delete(I - 1);
         end;
       end;
     end;
   end;
 
-  Edges.Destroy;
+  FreeAndNil(Edges);
 end;{TFreeSubdivisionSurface.CalculateIntersections}
 
 constructor TFreeSubdivisionSurface.Create(Owner: TFreeSubdivisionSurface);
@@ -3529,9 +3529,9 @@ begin
     if Points <> nil then
       DestinationPointLists.Add(Points); // MM: it returns Lists of Points.
     //Destination.AddList(Loop); // MM: changed to Edges. No returned back
-    Loop.Destroy;
+    FreeAndNil(Loop);
   end;
-  SourceList.Destroy;
+  FreeAndNil(SourceList);
 end;{TFreeSubdivisionSurface.ExtractAllEdgeLoops}
 
 // extracts all points that are used by the faces in the selectedfaces list
@@ -3826,7 +3826,7 @@ begin
       if Grid[I - 1][J - 1].NumberOfFaces < 2 then
         Grid[I - 1][J - 1].VertexType := svCorner;
 
-  FacePoints.Destroy;
+  FreeAndNil(FacePoints);
   FIsLoading := false;
 end;
 
@@ -3914,7 +3914,7 @@ begin
       end;
   end;
   CalculateIntersections(Plane, IntersectedFaces, List);
-  IntersectedFaces.Destroy;
+  FreeAndNil(IntersectedFaces);
   Result := List.Count > 0;
 end;{TFreeSubdivisionSurface.IntersectPlane}
 
@@ -4040,11 +4040,11 @@ begin
             end;
           end;
         end;
-        Points.Destroy;
+        FreeAndNil(Points);
       end;
-      SortedPointLists.Destroy;
+      FreeAndNil(SortedPointLists);
     end;
-    Edges.Destroy;
+    FreeAndNil(Edges);
     Built := False;
   end
   else
@@ -4122,7 +4122,7 @@ begin
         end;
     end;
   end;  //while source
-  TmpEdges.Destroy;
+  FreeAndNil(TmpEdges);
 end;{TFreeSubdivisionSurface.IsolateEdges}
 
 procedure TFreeSubdivisionSurface.LoadBinary(Source: TFreeFileBuffer);
@@ -4392,14 +4392,14 @@ begin
             end;
           end;
         end;
-        FacePoints.Destroy;
+        FreeAndNil(FacePoints);
 
         for I := 1 to AddedCtrlPts.Count do
         begin
           Points := AddedCtrlPts.Objects[I - 1];
-          Points.Destroy;
+          FreeAndNil(Points);
         end;
-        AddedCtrlPts.Destroy;
+        FreeAndNil(AddedCtrlPts);
 
 
         // delete empty layers
@@ -4411,7 +4411,7 @@ begin
         ActiveLayer := self.Layer[NumberOfLayers - 1];
       finally
         Built := False;
-        Data.Destroy;
+        FreeAndNil(Data);
       end;
     end
     else
@@ -4420,7 +4420,7 @@ begin
       on E:Exception do
          MessageDlg('Exception in VRML Load:'+#10+E.Message, mtError, [mbOK], 0);
     end;
-    VRMLList.Destroy;
+    FreeAndNil(VRMLList);
     FIsLoading := false;
   end;
 end;{TFreeSubdivisionSurface.LoadVRMLFile}
@@ -5034,9 +5034,9 @@ begin
     if Edge.FFaces.Count=0 then // preserve freestanding curve edges
       NewEdgeList.Add(Edge)
     else
-      Edge.Destroy;
+      FreeAndNil(Edge);
   end;
-  FEdges.Destroy;
+  FreeAndNil(FEdges);
   FEdges := NewEdgeList;
 
   i:=0;
@@ -5046,7 +5046,7 @@ begin
     if Point.FFaces.Count = 0 then // preserve freestanding curve points
       RefVertexPoints.Add(Point)
     else
-      Point.Destroy;
+      FreeAndNil(Point);
   end;
   FPoints.Clear;
 
@@ -5108,9 +5108,9 @@ begin
 
   FPoints.Capacity := FPoints.Count;
   // Cleanup temp. lists
-  RefVertexPoints.Destroy;
-  RefEdges.Destroy;
-  RefFaces.Destroy;
+  FreeAndNil(RefVertexPoints);
+  FreeAndNil(RefEdges);
+  FreeAndNil(RefFaces);
 
   // TODO: later make Averaging separate and call it without previous Rebuild
   // when control points just moved, and no other structural changes,

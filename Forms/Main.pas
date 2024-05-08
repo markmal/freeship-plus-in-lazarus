@@ -2393,7 +2393,7 @@ var FreeAboutDlg : TFreeAboutDlg;
 begin
  FreeAboutDlg := TFreeAboutDlg.Create(Self);
  FreeAboutDlg.ShowModal;
- FreeAboutDlg.Destroy;
+ FreeAndNil(FreeAboutDlg);
 end;{TMainForm.About1Click}
 
 // begin correction Victor T
@@ -2502,7 +2502,7 @@ begin
    Calculation:=Freeship.Edit.Hydrostatics_Calculate(Freeship.ProjectSettings.ProjectDraft,0.0,0.0);
    if Calculation<>nil then
    begin
-      Calculation.Destroy;
+      FreeAndNil(Calculation);
    end;
 end;{TMainForm.DesignHydrostaticsExecute}
 

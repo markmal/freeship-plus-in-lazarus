@@ -237,7 +237,7 @@ begin
         if Face.FPoints[j] <> self then
           Points.Add(Face.FPoints[j]);
       FSurface.AddControlFace(TFasterList(Points), False, Face.Layer);
-      Points.Destroy;
+      FreeAndNil(Points);
       Face.Delete;
     end;
 
@@ -285,7 +285,7 @@ begin
     begin
       SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
       FSurface.IsolateEdges(Edges, SortedPointLists);
-      Edges.Destroy;
+      FreeAndNil(Edges);
       for i := 0 to SortedPointLists.Count-1 do
       begin
         // was Points := Sorted[I - 1]; ??? Points := ControlEdges?
@@ -318,7 +318,7 @@ begin
       SortedPointLists.Free;
     end
     else
-      Edges.Destroy;
+      FreeAndNil(Edges);
 
 
     Delete;
@@ -331,7 +331,7 @@ begin
         P1.Collapse;
       end;
     end;
-    Checklist.Destroy;
+    FreeAndNil(Checklist);
   end;
 end;{TFreeSubdivisionControlPoint.Collapse}
 
@@ -439,11 +439,11 @@ begin
 
   for i:=0 to FacesToDelete.Count-1 do
     FacesToDelete[i].Delete;
-  FacesToDelete.Destroy;
+  FreeAndNil(FacesToDelete);
 
   for i:=0 to EdgesToDelete.Count-1 do
     EdgesToDelete[i].Delete;
-  EdgesToDelete.Destroy;
+  FreeAndNil(EdgesToDelete);
 
   Unreference;
   Destroy; //TODO: figure out why we do not delete Point if Edge exists

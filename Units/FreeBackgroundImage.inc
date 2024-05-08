@@ -45,7 +45,7 @@ procedure TFreeBackgroundImage.Clear;
 begin
   if FBitmap <> nil then
   begin
-    FBitmap.Destroy;
+    FreeAndNil(FBitmap);
     FBitmap := nil;
   end;
   FOrigin.X := 0;
@@ -290,7 +290,7 @@ begin
 
     if FOwner.Backgroundmode = emSetFrame then drawFrame;
 
-    BitmapFormatHelper.Destroy;
+    FreeAndNil(BitmapFormatHelper);
     BitmapFormatHelper := nil;
   end;
 end;{TFreeBackgroundImage.Draw}
@@ -338,7 +338,7 @@ begin
       JPEGImage := TJPEGImage.Create;
       JPEGImage.LoadFromFile(Dialog.FileName);
       FBitmap.Assign(JPEGImage);
-      JPEGImage.Destroy;
+      FreeAndNil(JPEGImage);
       FQuality := JPEGImage.CompressionQuality;
     end
     else
@@ -358,7 +358,7 @@ begin
       if assigned(Owner.FOnChangeBackgroundImage) then
         Owner.FOnChangeBackgroundImage(Owner);
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeBackgroundImage.Open}
 
 procedure TFreeBackgroundImage.Save;
@@ -376,9 +376,9 @@ begin
     Image.Assign(FBitmap);
     Image.CompressionQuality := FQuality;
     Image.SaveToFile(ChangeFileExt(SaveDialog.Filename, '.jpg'));
-    Image.Destroy;
+    FreeAndNil(Image);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;{TFreeBackgroundImage.Save}
 
 procedure TFreeBackgroundImage.SetBlendingValue;
@@ -396,7 +396,7 @@ begin
   end
   else
     Alpha := Old;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeBackgroundImage.SetBlendingValue}
 
 procedure TFreeBackgroundImage.SetToleranceValue;
@@ -414,6 +414,6 @@ begin
   end
   else
     Tolerance := Old;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeBackgroundImage.SetBlendingValue}
 

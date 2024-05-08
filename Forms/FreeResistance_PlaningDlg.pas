@@ -2702,7 +2702,7 @@ begin
     else
       LCB := 0;
     ie_ := HydObject.Data.WaterplaneEntranceAngle;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
     if FFreeship.ProjectSettings.ProjectUnits <> fuImperial then
     begin          // если метрическая переводим в империальную
       k := k;

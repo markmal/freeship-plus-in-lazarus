@@ -954,7 +954,7 @@ begin
     Displ := HydObject.Data.Displacement;
     Ws := HydObject.Data.WettedSurface;
     Cp := HydObject.Data.PrismCoefficient;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
     Calculate;
     dat2 := Lpp;
     dat3 := Bwl;

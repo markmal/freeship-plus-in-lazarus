@@ -45,7 +45,7 @@ begin
       (Owner.FUndoObjects.Count > 2) do
     begin
       Obj := TFreeUndoObject(FOwner.FUndoObjects[0]);
-      Obj.Destroy;
+      FreeAndNil(Obj);
       FOwner.FUndoObjects.Delete(0);
       Dec(Owner.FUndoPosition);
       Dec(Owner.FPreviousUndoPosition);

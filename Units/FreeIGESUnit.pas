@@ -251,7 +251,7 @@ begin
    EntityStr:=CheckString(EntityStr,LastColumn,'D',FDirectorySection.Count+1);
    FDirectorySection.Add(EntityStr);
    FParametersection.AddStrings(Param);
-   Param.Destroy;
+   FreeAndNil(Param);
 end;{TFreeIGESList.Add_Entity_128}
 
 function TFreeIGESList.Add_Entity_314(Color:TColor):Integer;
@@ -297,7 +297,7 @@ begin
    EntityStr:=CheckString(EntityStr,LastColumn,'D',FDirectorySection.Count+1);
    FDirectorySection.Add(EntityStr);
    FParametersection.AddStrings(Param);
-   Param.Destroy;
+   FreeAndNil(Param);
 end;{TFreeIGESList.Add_Entity_314}
 
 procedure TFreeIGESList.Clear;
@@ -456,7 +456,7 @@ begin
    Strings.AddStrings(FParameterSection);
    Strings.AddStrings(FTerminateSection);
    Strings.SaveToFile(ChangeFileExt(Filename,'.igs'));
-   Strings.Destroy;
+   FreeAndNil(Strings);
 end;{TFreeIGESList.SaveToFile}
 
 

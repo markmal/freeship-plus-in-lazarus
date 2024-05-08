@@ -399,7 +399,7 @@ begin
       Inc(I);
     end; //while I<=Edges.Count do
   finally
-    Edges.Destroy;
+    FreeAndNil(Edges);
   end;
 end;
 
@@ -559,7 +559,7 @@ begin
     }
 
   finally
-    Edges.Destroy;
+    FreeAndNil(Edges);
     //TmpPoints.Destroy;
   end;
 end;
@@ -669,7 +669,7 @@ begin
       Inc(I);
     end; //while I<=Edges.Count do
   finally
-    Edges.Destroy;
+    FreeAndNil(Edges);
   end;
 end;
 
@@ -841,9 +841,9 @@ begin
        end;
       }
   finally
-    NewPoints.Destroy;
-    Edges.Destroy;
-    EdgeNewPoints.Destroy;
+    FreeAndNil(NewPoints);
+    FreeAndNil(Edges);
+    FreeAndNil(EdgeNewPoints);
   end;
 end;{TFreeSubdivisionLayer.CalculateIntersectionPoints}
 
@@ -889,7 +889,8 @@ begin
   Clear;
   if assigned(Surface.FOnChangeLayerData) then
     Surface.FOnChangeLayerData(self);
-  Destroy;
+  //Destroy;
+  Free;
 end;{TFreeSubdivisionLayer.Delete}
 
 procedure TFreeSubdivisionLayer.DeleteControlFace(
@@ -1218,7 +1219,7 @@ begin
         end;
       end;
     end;
-    Layers.Destroy;
+    FreeAndNil(Layers);
   end;
 end;{TFreeSubdivisionLayer.SaveToDXF}
 
@@ -1354,12 +1355,12 @@ begin
             Destination.Add(Copy);
           end;
         end;
-        Current.Destroy;
+        FreeAndNil(Current);
       end;
     end;
   finally
-    ToDoList.Destroy;
-    DoneList.Destroy;
+    FreeAndNil(ToDoList);
+    FreeAndNil(DoneList);
   end;
 end;{TFreeSubdivisionLayer.Unroll}
 

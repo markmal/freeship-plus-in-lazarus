@@ -879,7 +879,7 @@ begin
         Parameter := SquaredDistPP(Spline.Min, Spline.Max);
         if Parameter < 1e-3 then
         begin
-          Spline.Destroy;
+          FreeAndNil(Spline);
           Dest.Delete(I - 1);
         end;
       end;
@@ -920,7 +920,7 @@ begin
         FDiagonals.Add(Copy);
     end;
   end;
-  Dest.Destroy;
+  FreeAndNil(Dest);
 
 end;{TFreeDevelopedPatch.IntersectPlane}
 
@@ -991,7 +991,7 @@ begin
   Dest := TFasterListTFreeSubdivisionFace.Create; // use face as list of points
   Owner.Surface.IsolateEdges(Source, Dest);
 
-  Source.Destroy;
+  FreeAndNil(Source);
   Col := FindDXFColorIndex(Owner.Color);
   Layer := Owner.Name;
 
@@ -1045,7 +1045,7 @@ begin
   if ShowDiagonals then
     for I := 1 to FDiagonals.Count do
       ExportSpline(FDiagonals[I - 1], 'diagonals');
-  Dest.Destroy;
+  FreeAndNil(Dest);
 end;{TFreeDevelopedPatch.SaveToDXF}
 
 procedure TFreeDevelopedPatch.SaveToTextFile(Strings: TStringList);
@@ -1095,7 +1095,7 @@ begin
   Source.AddList(FBoundaryEdges);
   Dest := TFasterListTFreeSubdivisionEdge.Create;
   ///Owner.Surface.IsolateEdges(Source, Dest);
-  Source.Destroy;
+  FreeAndNil(Source);
 
   // Calculate min.,max extents of coundary
   // all measurements are referred to the min. coordinate
@@ -1124,9 +1124,9 @@ begin
       printEdgePoint(Edge.StartPoint, FMirror);
       printEdgePoint(Edge.EndPoint, FMirror);
     end;
-    Source.Destroy;
+    FreeAndNil(Source);
   end;
-  Dest.Destroy;
+  FreeAndNil(Dest);
 end;{TFreeDevelopedPatch.SaveToDXF}
 
 procedure TFreeDevelopedPatch.Unroll(ControlFaces: TFasterListTFreeSubdivisionControlFace);
@@ -1510,7 +1510,7 @@ var
       end;
       SeedFace := nil;
     end;
-    ToDoList.Destroy;
+    FreeAndNil(ToDoList);
 
     // Calculate diff. in area of all faces
     FMaxAreaerror := 0.0;
@@ -1794,15 +1794,14 @@ begin
             // so it forms 1 whole panel and there is no need to unfold it.
             SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
             self.FOwner.Surface.IsolateEdges(TmpEdges, SortedPointLists);
-            TmpEdges.Destroy;
-            TmpEdges := nil;
+            FreeAndNil(TmpEdges);
 
             // MM: logic is not clear
             for J := SortedPointLists.Count downto 1 do
             begin
               sPointList := SortedPointLists[J - 1];
               if J > 1 then
-                sPointList.Destroy; // MM: ??
+                FreeAndNil(sPointList); // MM: ??
             end;
 
             if sPointList <> nil then
@@ -1880,7 +1879,8 @@ begin
           end;
         end;
       end;
-      TmpEdges.Destroy;
+      if (TmpEdges <> nil) and Assigned(TmpEdges) then
+        FreeAndNil(TmpEdges);
     end;
 
     // Assemble cornerpoints for dimensioning
@@ -1901,9 +1901,11 @@ begin
   end
   else
     MessageDlg('Seed could not be found!', mtError, [mbOK], 0);
-  Seedfaces.Destroy;
+  {Seedfaces.Destroy;
   Seedfaces := nil;
-  FFaces.Destroy;
-  FFaces := nil;
+  FreeAndNil(FFaces);
+  FFaces := nil;}
+  FreeAndNil(Seedfaces);
+  FreeAndNil(FFaces);
 end;{TFreeDevelopedPatch.Unroll}
 

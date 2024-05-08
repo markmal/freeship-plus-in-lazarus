@@ -122,7 +122,7 @@ implementation
     try
       BM.SaveToFile(AFileName);
     finally
-      BM.Destroy;
+      FreeAndNil(BM);
     end;
   end;
 

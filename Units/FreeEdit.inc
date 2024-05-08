@@ -122,7 +122,7 @@ begin
       Bmp := TBitmap.Create;
       Bmp.LoadFromFile(Dialog.Filename);
       Data.FImageData.Assign(Bmp);
-      Bmp.Destroy;
+      FreeAndNil(Bmp);
       Data.FQuality := 100;
     end;
     if not Data.FImageData.Empty then
@@ -146,7 +146,7 @@ begin
     end;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 
 end;{TFreeEdit.BackgroundImage_Open}
 
@@ -273,7 +273,7 @@ begin
         end;
         Freeship.Built:=false;
       end;
-      Points.Destroy;
+      FreeAndNil(Points);
     end;
     Freeship.RebuildModel;
     for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
@@ -281,7 +281,7 @@ begin
       Edge := FreeShip.SelectedControlEdge[I - 1];
       Edge.Selected := False;
     end;
-    SortedPointLists.Destroy;
+    FreeAndNil(SortedPointLists);
     if FreeShip.Visibility.ShowControlCurves = False then
       FreeShip.Visibility.ShowControlCurves := True
     else
@@ -290,7 +290,7 @@ begin
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
   end;
-  Edges.Destroy;
+  FreeAndNil(Edges);
 end;{TFreeEdit.Curve_Add}
 
 destructor TFreeEdit.Destroy;
@@ -439,9 +439,9 @@ begin
       MessageDlg(Userstring(77), mtError, [mbOK], 0);
       vUndo.Delete;
     end;
-    Points.Destroy;
+    FreeAndNil(Points);
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Point_Extrude}
 
 // Create new controlfaces by extruding selected boundary edges (eg edges with only 1 controlface connected to it)
@@ -498,9 +498,9 @@ begin
       MessageDlg(Userstring(77), mtError, [mbOK], 0);
       vUndo.Delete;
     end;
-    Edges.Destroy;
+    FreeAndNil(Edges);
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Edge_Extrude}
 
 // Create new controlpoints by splitting an controledge into two.
@@ -581,7 +581,7 @@ begin
     Freeship.RebuildModel;
     ShowMessage('Assembled ' + IntToStr(NAssembled) + ' patches');
   end;
-  Layers.Destroy;
+  FreeAndNil(Layers);
 end;{TFreeEdit.Face_Assemble}
 
 // Deletes all faces on the starboardside of the hull
@@ -700,7 +700,7 @@ begin
         FreeShip.SelectedControlFace[I - 1].Selected := False;
       Freeship.RebuildModel;
     end;
-    SelectDlg.Destroy;
+    FreeAndNil(SelectDlg);
   end
   else
   begin
@@ -781,7 +781,7 @@ begin
               NewFace.Layer := Face.Layer;
           end;
         end;
-        Points.Destroy;
+        FreeAndNil(Points);
         // Now check all edges for crease edges
         for I := 1 to Vertices.Count do
         begin
@@ -817,7 +817,7 @@ begin
             P2.Locked := P1.Locked;
           end;
         end;
-        Vertices.Destroy;
+        FreeAndNil(Vertices);
         for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
           FreeShip.SelectedControlFace[I - 1].Selected := False;
       finally
@@ -828,9 +828,9 @@ begin
         Screen.Cursor := PrevCursor;
       end;
     end;
-    Dialog.Destroy;
+    FreeAndNil(Dialog);
   end;
-  Faces.Destroy;
+  FreeAndNil(Faces);
 end;{TFreeEdit.Face_MirrorPlane}
 
 procedure TFreeEdit.Face_Rotate;
@@ -865,7 +865,7 @@ begin
       for I := 1 to FreeShip.NumberOfViewports do
         FreeShip.Viewport[I - 1].Refresh;
     end;
-    SelectDlg.Destroy;
+    FreeAndNil(SelectDlg);
   end;
   if Points.Count > 0 then
   begin
@@ -927,7 +927,7 @@ begin
         for I := 1 to FreeShip.NumberOfViewports do
           FreeShip.Viewport[I - 1].Refresh;
       end;
-      Dialog.Destroy;
+      FreeAndNil(Dialog);
     end
     else
     begin
@@ -937,7 +937,7 @@ begin
         FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
-  Points.Destroy;
+  FreeAndNil(Points);
 end;{TFreeEdit.Face_Rotate}
 
 procedure TFreeEdit.Face_RotateM;
@@ -1031,7 +1031,7 @@ begin
         for I := 1 to FreeShip.NumberOfViewports do
           FreeShip.Viewport[I - 1].Refresh;
       end;
-      Dialog.Destroy;
+      FreeAndNil(Dialog);
     end
     else
     begin
@@ -1041,7 +1041,7 @@ begin
         FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
-  Points.Destroy;
+  FreeAndNil(Points);
 end;{TFreeEdit.Face_RotateM}
 
 procedure TFreeEdit.Face_Scale;
@@ -1074,7 +1074,7 @@ begin
       for I := 1 to FreeShip.NumberOfViewports do
         FreeShip.Viewport[I - 1].Refresh;
     end;
-    SelectDlg.Destroy;
+    FreeAndNil(SelectDlg);
   end;
   if Points.Count > 0 then
   begin
@@ -1138,7 +1138,7 @@ begin
         for I := 1 to FreeShip.NumberOfViewports do
           FreeShip.Viewport[I - 1].Refresh;
       end;
-      Dialog.Destroy;
+      FreeAndNil(Dialog);
     end
     else
     begin
@@ -1148,7 +1148,7 @@ begin
         FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
-  Points.Destroy;
+  FreeAndNil(Points);
 end;{TFreeEdit.Face_Scale}
 
 procedure TFreeEdit.Face_Move;
@@ -1181,7 +1181,7 @@ begin
       for I := 1 to FreeShip.NumberOfViewports do
         FreeShip.Viewport[I - 1].Refresh;
     end;
-    SelectDlg.Destroy;
+    FreeAndNil(SelectDlg);
   end;
   if Points.Count > 0 then
   begin
@@ -1267,7 +1267,7 @@ begin
         for I := 1 to FreeShip.NumberOfViewports do
           FreeShip.Viewport[I - 1].Refresh;
       end;
-      Dialog.Destroy;
+      FreeAndNil(Dialog);
     end
     else
     begin
@@ -1277,7 +1277,7 @@ begin
         FreeShip.Viewport[I - 1].Refresh;
     end;
   end;
-  Points.Destroy;
+  FreeAndNil(Points);
 end;{TFreeEdit.Face_Move}
 
 
@@ -1319,7 +1319,7 @@ begin
     else
       vUndo.Delete;
     // Initialize then new edges and faces
-    Tmp.Destroy;
+    FreeAndNil(Tmp);
   end
   else
     MessageDlg(Userstring(95), mtInformation, [mbOK], 0);
@@ -1435,7 +1435,7 @@ begin
             Write(FFile, FloatToDec(P.Z, 4) + #10);
           end;
           Write(FFile, '***END_OF_ORDINATES***' + #10);
-          Frame.Destroy;
+          FreeAndNil(Frame);
         end;
         Write(FFile, '***END_OF_FILE***' + #10);
         closefile(FFile);
@@ -1513,23 +1513,23 @@ begin
           end;
           Strings.Add('</OFFSETS>');
           Strings.Add('</SECTION>');
-          Frame.Destroy;
+          FreeAndNil(Frame);
         end;
         Strings.Add('</APPENDAGE>');  // end of appendage
         Strings.Add('</HULL>');       // end of hull
         Strings.SaveToFile(ChangeFileExt(SaveDialog.FileName, '.hll'));
-        Strings.Destroy;
+        FreeAndNil(Strings);
       end;
     end
     else
       for I := 1 to Frames.Count do
       begin
         Frame := Frames[I - 1];
-        Frame.Destroy;
+        FreeAndNil(Frame);
       end;
-    SaveDialog.Destroy;
+    FreeAndNil(SaveDialog);
   end;
-  Frames.Destroy;
+  FreeAndNil(Frames);
 end;{TFreeEdit.File_ExportArchimedes}
 
 // export the coordinates of all controlpoints to a textfile
@@ -1577,7 +1577,7 @@ begin
     else
       MessageDlg(Userstring(97), mtError, [mbOK], 0);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 
 end;{TFreeEdit.File_ExportCoordinates}
 
@@ -1941,7 +1941,7 @@ begin
           Strings.Add('0' + EOL + 'EOF');
           Strings.SaveToFile(Filename);
         end;
-        Intersections.Destroy;
+        FreeAndNil(Intersections);
       end
       else
       begin
@@ -1989,11 +1989,11 @@ begin
         end;
       end;
     finally
-      Strings.Destroy;
+      FreeAndNil(Strings);
       Screen.Cursor := PrevCursor;
     end;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.File_ExportDXF_2DPolylines}
 
 // Export all lines to a 3D DXF model as polylines
@@ -2079,15 +2079,15 @@ begin
         end;
         Strings.Add('0' + EOL + 'SEQEND');
       end;
-      Points.Destroy;
+      FreeAndNil(Points);
     end;
-    EdgePointLists.Destroy;
+    FreeAndNil(EdgePointLists);
     Strings.Add('0' + EOL + 'ENDSEC');
     Strings.Add('0' + EOL + 'EOF');
     Strings.SaveToFile(ChangeFileExt(Dialog.FileName, '.dxf'));
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.File_ExportDXF_3DPolylines}
 
 // Export all faces to a 3D DXF model
@@ -2125,9 +2125,9 @@ begin
     finally
       Screen.Cursor := Prev;
     end;
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.File_ExportDXF_Faces}
 
 procedure TFreeEdit.File_ExportFEF;
@@ -2159,9 +2159,9 @@ begin
       #32 + IntToStr(Ord(FreeShip.Precision)));
     FreeShip.Surface.ExportFeFFile(Strings);
     Strings.SaveToFile(ChangeFileExt(Savedialog.FileName, '.fef'));
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;{TFreeEdit.File_ExportFEF}
 
 // Save ordinates to the GHS file format
@@ -2199,7 +2199,7 @@ begin
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if not SaveDialog.Execute then
   begin
-    Savedialog.Destroy;
+    FreeAndNil(Savedialog);
     exit;
   end;
   FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
@@ -2291,7 +2291,7 @@ begin
         end;
         Strings.Add(FloatToDec(Scale * P.Y, 4) + ',' + FloatToDec(Scale * P.Z, 4));
       end;
-      Section.Destroy;
+      FreeAndNil(Section);
     end;
     Strings.Add('0,0,0');         // shell thickness data of shape
 
@@ -2331,11 +2331,11 @@ begin
     Str := ExtractFilePath(SaveDialog.Filename) + Str;
     Strings.SaveToFile(Str);
 
-    SaveDialog.Destroy;
+    FreeAndNil(SaveDialog);
   finally
-    Frames.Destroy;
+    FreeAndNil(Frames);
     Screen.Cursor := PrevCursor;
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
 end;{TFreeEdit.File_ExportGHS}
 
@@ -2376,7 +2376,7 @@ begin
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if not SaveDialog.Execute then
   begin
-    Savedialog.Destroy;
+    FreeAndNil(Savedialog);
     exit;
   end;
   FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
@@ -2455,7 +2455,7 @@ begin
         P := Section.Value(Params[J - 1]);
         Strings.Add(FloatToDec(Scale * P.Z - Draft, 4) + ' ' + FloatToDec(Scale * P.Y, 4));
       end;
-      Section.Destroy;
+      FreeAndNil(Section);
     end;
 
     // Mark end of file
@@ -2470,11 +2470,11 @@ begin
     Str := ExtractFilePath(SaveDialog.Filename) + Str;
     Strings.SaveToFile(Str);
 
-    SaveDialog.Destroy;
+    FreeAndNil(SaveDialog);
   finally
-    Frames.Destroy;
+    FreeAndNil(Frames);
     Screen.Cursor := PrevCursor;
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
 end;{TFreeEdit.File_ExportPAM}
 
@@ -2495,7 +2495,7 @@ begin
     for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
       FreeShip.SelectedControlFace[I - 1].Selected := False;
     Freeship.ReDraw;
-    SelectDlg.Destroy;
+    FreeAndNil(SelectDlg);
   end
   else
   begin
@@ -2505,7 +2505,7 @@ begin
   end;
   if Faces.Count > 0 then
     FreeShip.SavePart(Faces);
-  Faces.Destroy;
+  FreeAndNil(Faces);
 end;{TFreeEdit.File_ExportPart}
 
 procedure TFreeEdit.File_Export_AddMass;
@@ -2554,7 +2554,7 @@ begin
     HydObject.Calculate;
     Cb := HydObject.Data.Volume / HydObject.Data.LengthWaterLine /
       HydObject.Data.BeamWaterLine / T;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
     g := 9.806;
     Dialog.Draft := T;
     Dialog.Length := L;
@@ -2589,7 +2589,7 @@ begin
         SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
         SaveDialog.FileName := 'INA.';
         Dialog.SaveToFile(SaveDialog.FileName);
-        SaveDialog.Destroy;
+        FreeAndNil(SaveDialog);
 
         File_Execute_AddMass;
 
@@ -2763,7 +2763,7 @@ begin
             SaveDialog.InitialDir := FreeShip.Preferences.ExportDirectory;
             SaveDialog.FileName := 'INA.';
             Dialog.SaveToFile(SaveDialog.FileName);
-            SaveDialog.Destroy;
+            FreeAndNil(SaveDialog);
 
             File_Execute_AddMass;
 
@@ -2941,7 +2941,7 @@ begin
       end;
     if FileExistsUTF8('OUTA.') { *Converted from FileExists* } then
       DeleteFileUTF8('OUTA.'); { *Converted from DeleteFile* }
-    Dialog.Destroy;
+    FreeAndNil(Dialog);
   finally
     if UndoObject <> nil then
       UndoObject.Restore;
@@ -3046,7 +3046,7 @@ var
             list.Delete(J);
           if list.Count > 0 then
             Result := TFreeSubdivisionPoint(List[0]);
-          List.Destroy;
+          FreeAndNil(List);
         end;
       end;
   end;{FindFourtPoint}
@@ -3180,8 +3180,8 @@ var
     end
     else
       MessageDlg(Userstring(99), mtError, [mbOK], 0);
-    Faces.Destroy;
-    Points.Destroy;
+    FreeAndNil(Faces);
+    FreeAndNil(Points);
   end;{AssembleTriangle}
 
   procedure ProcessGrid(Cols, Rows: integer; Grid: TFreeSubdivisionPointGrid;
@@ -3433,10 +3433,10 @@ var
         NURB2.SetDefaultRowKnotvector;
         IGESList.Add_Entity_128(NURB2, ColorInd);
         Inc(NSurfaces);
-        NURB2.Destroy;
+        FreeAndNil(NURB2);
       end;
       Inc(NSurfaces);
-      NURB.Destroy;
+      FreeAndNil(NURB);
     end;
   end;{ProcessGrid}
 
@@ -3531,7 +3531,7 @@ begin
               end;
             end;
         end;
-        CheckFaces.Destroy;
+        FreeAndNil(CheckFaces);
       end
       else
         for I := 1 to FreeShip.Surface.NumberOfControlFaces do
@@ -3577,8 +3577,8 @@ begin
       end
       else
         MessageDlg(Userstring(100), mtInformation, [mbOK], 0);
-      IGESList.Destroy;
-      Layers.Destroy;
+      FreeAndNil(IGESList);
+      FreeAndNil(Layers);
     finally
       FreeShip.Surface.DesiredSubdivisionLevel := PrevLevel;
       FreeShip.Surface.SubdivisionMode := fmQuadTriangle;
@@ -3588,7 +3588,7 @@ begin
       Freeship.ReDraw;
     end;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.File_ExportIGES}
 
 // Creates a file to be read by the CFD program Michlet
@@ -3653,9 +3653,9 @@ begin
       Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
       if SaveDialog.Execute then
         Dialog.SaveToFile(ChangeFileExt(SaveDialog.FileName, '.mlt'));
-      SaveDialog.Destroy;
+      FreeAndNil(SaveDialog);
     end;
-    Dialog.Destroy;
+    FreeAndNil(Dialog);
   finally
     if UndoObject <> nil then
       UndoObject.Restore;
@@ -3977,7 +3977,7 @@ begin
         for J := 1 to Nx do
           if CtrlGrid[I - 1][J - 1].NumberOfFaces = 1 then
             CtrlGrid[I - 1][J - 1].VertexType := svCorner;
-      Pts.Destroy;
+      FreeAndNil(Pts);
       FreeShip.Draw;
       Screen.Cursor := PrevCursor;
     end
@@ -3988,7 +3988,7 @@ begin
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_Import_MichletWaves}
 
 procedure TFreeEdit.File_ExportObj;
@@ -4008,9 +4008,9 @@ begin
     Strings := TStringList.Create;
     FreeShip.Surface.ExportObjFile(SaveDialog.FilterIndex = 2, Strings);
     Strings.SaveToFile(ChangeFileExt(Savedialog.FileName, '.obj'));
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;{TFreeEdit.File_ExportObj}
 
 // Exports all intersections to a textfile as 3D points
@@ -4085,9 +4085,9 @@ begin
       SendSpline(FreeShip.ControlCurve[I - 1].Spline);
     end;
     Strings.SaveToFile(ChangeFileExt(Savedialog.FileName, '.txt'));
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;{TFreeEdit.File_ExportOffsets}
 
 // Export the surface to a STL file
@@ -4205,7 +4205,7 @@ begin
     else
       MessageDlg(Userstring(97), mtError, [mbOK], 0);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 
 end;{TFreeEdit.File_ExportSTL}
 
@@ -4234,7 +4234,7 @@ begin
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
-        OpenDialog.Destroy;
+        FreeAndNil(OpenDialog);
         exit;
       end;
       if Answer = mrYes then
@@ -4243,7 +4243,7 @@ begin
         if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
-          OpenDialog.Destroy;
+          FreeAndNil(OpenDialog);
           exit;
         end;
       end;
@@ -4304,7 +4304,7 @@ begin
           end;
         end;
         FreeShip.ImportChines(8, Chines);
-        Chines.Destroy;
+        FreeAndNil(Chines);
       finally
         CloseFile(FFile);
         FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
@@ -4315,7 +4315,7 @@ begin
     else
       MessageDlg(Userstring(106), mtError, [mbOK], 0);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportCarene}
 
 // Import chines from a textfile and fit a surface through them
@@ -4343,7 +4343,7 @@ begin
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
-        OpenDialog.Destroy;
+        FreeAndNil(OpenDialog);
         exit;
       end;
       if Answer = mrYes then
@@ -4352,7 +4352,7 @@ begin
         if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
-          OpenDialog.Destroy;
+          FreeAndNil(OpenDialog);
           exit;
         end;
       end;
@@ -4399,20 +4399,20 @@ begin
               if Spline.NumberOfPoints > 1 then
                 Chines.Add(Spline)
               else
-                Spline.Destroy;
+                FreeAndNil(Spline);
               Spline := TFreeSpline.Create(FreeShip.Surface);
             end;
           until (Str = 'EOF') or (EOF(FFile));
           if Spline.NumberOfPoints > 1 then
             Chines.Add(Spline)
           else
-            Spline.Destroy;
+            FreeAndNil(Spline);
         except
           MessageDlg('Error on line ' + IntToStr(LineNr) + ' in file ' +
             Opendialog.Filename, mtError, [mbOK], 0);
         end;
         FreeShip.ImportChines(8, Chines);
-        Chines.Destroy;
+        FreeAndNil(Chines);
       finally
         CloseFile(FFile);
         FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.fbm');
@@ -4425,7 +4425,7 @@ begin
     else
       MessageDlg(Userstring(106), mtError, [mbOK], 0);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportChines}
 
 // Import a Freeship Exchange Format (FEF) file
@@ -4449,7 +4449,7 @@ begin
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
-        OpenDialog.Destroy;
+        FreeAndNil(OpenDialog);
         exit;
       end;
       if Answer = mrYes then
@@ -4458,7 +4458,7 @@ begin
         if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
-          OpenDialog.Destroy;
+          FreeAndNil(OpenDialog);
           exit;
         end;
       end;
@@ -4492,7 +4492,7 @@ begin
     I := ReadIntfromStr(LineNr, Str);
     FreeShip.FPrecision := TFreePrecisionType(I);
     FreeShip.Surface.ImportFEFFile(Strings, LineNr);
-    Strings.Destroy;
+    FreeAndNil(Strings);
     FreeShip.FileName := Opendialog.FileName;
     FreeShip.ModelIsLoaded := True;
     FreeShip.Built := False;
@@ -4500,7 +4500,7 @@ begin
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportFEF}
 
 // Imports a file created with Carlssons's Hulls program
@@ -4521,7 +4521,7 @@ begin
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
-        OpenDialog.Destroy;
+        FreeAndNil(OpenDialog);
         exit;
       end;
       if Answer = mrYes then
@@ -4530,7 +4530,7 @@ begin
         if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
-          OpenDialog.Destroy;
+          FreeAndNil(OpenDialog);
           exit;
         end;
       end;
@@ -4539,7 +4539,7 @@ begin
     File_ImportHull(OpenDialog.FileName, False);
     FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportHull}
 
 procedure TFreeEdit.File_ImportHull(Filename: string; Quiet: boolean);
@@ -4649,7 +4649,7 @@ begin
         end;
       end;
       FreeShip.ImportChines(NBulkheads, Chines);
-      Chines.Destroy;
+      FreeAndNil(Chines);
       // read stations
       for I := 1 to 8 do
       begin
@@ -4841,10 +4841,10 @@ begin
               end;
             end;
           end;
-          FacePoints.Destroy;
-          Points.Destroy;
-          Edges.Destroy;
-          Layers.Destroy;
+          FreeAndNil(FacePoints);
+          FreeAndNil(Points);
+          FreeAndNil(Edges);
+          FreeAndNil(Layers);
         finally
           Screen.Cursor := Prevcursor;
         end;
@@ -4867,9 +4867,9 @@ begin
       MessageDlg(Userstring(114), mtError, [mbOK], 0);
     if not Changed then
       vUndo.Delete;
-    Partfile.Destroy;
+    FreeAndNil(Partfile);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportPart}
 
 // Imports a PolyCad file
@@ -4976,7 +4976,7 @@ begin
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
-        OpenDialog.Destroy;
+        FreeAndNil(OpenDialog);
         exit;
       end;
       if Answer = mrYes then
@@ -4985,7 +4985,7 @@ begin
         if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
-          OpenDialog.Destroy;
+          FreeAndNil(OpenDialog);
           exit;
         end;
       end;
@@ -5200,14 +5200,14 @@ begin
       else
         MessageDlg(UserString(124), mtInformation, [mbOK], 0);
     finally
-      Strings.Destroy;
+      FreeAndNil(Strings);
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
         FreeShip.OnUpdateGeometryInfo(self);
       Screen.Cursor := PrevCursor;
     end;
 
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportPolycad}
 
 // Load a VRML file
@@ -5234,7 +5234,7 @@ begin
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
-        OpenDialog.Destroy;
+        FreeAndNil(OpenDialog);
         exit;
       end;
       if Answer = mrYes then
@@ -5243,7 +5243,7 @@ begin
         if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
-          OpenDialog.Destroy;
+          FreeAndNil(OpenDialog);
           exit;
         end;
       end;
@@ -5267,7 +5267,7 @@ begin
       Screen.Cursor := PrevCursor;
     end;
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportVRML}
 
 procedure TFreeEdit.OnFaceRebuilt (Sender: TObject; current:integer; total:integer);
@@ -5502,7 +5502,7 @@ begin
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
-        OpenDialog.Destroy;
+        FreeAndNil(OpenDialog);
         exit;
       end;
       if Answer = mrYes then
@@ -5511,7 +5511,7 @@ begin
         if FreeShip.FileChanged then
         begin
           // Apparently saving was not successfull, abort
-          OpenDialog.Destroy;
+          FreeAndNil(OpenDialog);
           exit;
         end;
       end;
@@ -5528,7 +5528,7 @@ begin
   //PreviewFrm.Close;
   //PreviewFrm.Free;
 
-  Opendialog.Destroy;
+  FreeAndNil(Opendialog);
 
   if FileExistsUTF8('Resist.dat') { *Converted from FileExists* } then
     DeleteFileUTF8('Resist.dat'); { *Converted from DeleteFile* }
@@ -5633,7 +5633,7 @@ begin
       end;
     end;
   finally
-    Source.Destroy;
+    FreeAndNil(Source);
     if FreeShip.ModelIsLoaded then
        AddToRecentFiles(FileName);
     Undo_Clear;
@@ -5731,12 +5731,12 @@ begin
   try
     result := Destination.SaveToFile(FreeShip.Filename);
     FreeShip.FileChanged:=false;
-    Destination.Destroy;
+    FreeAndNil(Destination);
     FreeShip.Preferences.LastDirectory := ExtractFilePath(FreeShip.FileName);
     AddToRecentFiles(FreeShip.FileName);
   except on E:Exception do
     begin
-    Destination.Destroy;
+    FreeAndNil(Destination);
     result := false;
     MessageDlg(rsUnableToSaveFile+' '+FreeShip.Filename+'\n'
     +'Exception class: ' + E.ClassName+'\n'
@@ -5909,7 +5909,7 @@ begin
     Matrix.Value[NPoints + 3, NPoints + 3] := 1.0;
     // Invert matrix
     Inv := Matrix.Invert;
-    Matrix.Destroy;
+    FreeAndNil(Matrix);
 
     OrgPts := TFreeMatrix.Create;
     OrgPts.SetSize(3, NPoints + 4);
@@ -5944,9 +5944,9 @@ begin
     end;
     Points[0][NPoints] := Points[0][0];
     Points[1][NPoints] := Points[1][0];
-    Inv.Destroy;
-    OrgPts.Destroy;
-    NewPts.Destroy;
+    FreeAndNil(Inv);
+    FreeAndNil(OrgPts);
+    FreeAndNil(NewPts);
     Ne := FreeShip.Surface.NumberOfControlEdges;
 
     Setlength(Grid, 2);
@@ -5982,7 +5982,7 @@ begin
 
     Freeship.RebuildModel;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Geometry_AddCylinder}
 
 
@@ -6048,7 +6048,7 @@ begin
 
     Freeship.RebuildModel;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Geometry_AddGridPanel}
 
 
@@ -6113,7 +6113,7 @@ begin
       FreeShip.FileChanged := True;
 
     end;
-    Dialog.Destroy;
+    FreeAndNil(Dialog);
 
   end;
 end;{TFreeEdit.Hydrostatics_Crosscurves}
@@ -6221,7 +6221,7 @@ begin
             if ValidStation then
               Frames.Add(Spline)
             else
-              Spline.Destroy;
+              FreeAndNil(Spline);
           end;
           CloseFile(FFile);
         end
@@ -6324,7 +6324,7 @@ begin
           end;
 
         // Delete the old station
-        Spline.Destroy;
+        FreeAndNil(Spline);
         // and replace by the resampled one
         Frames[I - 1] := NewSpline;
         // Add the controlpoints to the subdivision surface
@@ -6441,7 +6441,7 @@ begin
       for I := 1 to FreeShip.Surface.NumberOfControlPoints do
         if FreeShip.Surface.ControlPoint[I - 1].NumberOfFaces = 1 then
           FreeShip.Surface.ControlPoint[I - 1].VertexType := svCorner;
-      Points.Destroy;
+      FreeAndNil(Points);
       FreeShip.FileChanged := True;
     end;
     FreeShip.Draw;
@@ -6451,11 +6451,11 @@ begin
     for I := 1 to Frames.Count do
     begin
       Spline := Frames[I - 1];
-      Spline.Destroy;
+      FreeAndNil(Spline);
     end;
-    Frames.Destroy;
+    FreeAndNil(Frames);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.ImportFrames}
 
 // Imports a number of curves and fits a surface;
@@ -6532,14 +6532,14 @@ begin
                 if Spline.NumberOfPoints > 1 then
                   Curves.Add(Spline)
                 else
-                  Spline.Destroy;
+                  FreeAndNil(Spline);
                 Spline := TFreeSpline.Create(FreeShip.Surface);
               end;
             until (Str = 'EOF') or (EOF(FFile));
             if Spline.NumberOfPoints > 1 then
               Curves.Add(Spline)
             else
-              Spline.Destroy;
+              FreeAndNil(Spline);
           except
             MessageDlg(Userstring(132) + #32 + IntToStr(Nr), mtError, [mbOK], 0);
           end;
@@ -6590,9 +6590,9 @@ begin
           for J := 1 to Spline.NumberOfPoints do
             Marker.Add(Spline.Point[J - 1]);
           Marker_Add(Marker);
-          Spline.Destroy;
+          FreeAndNil(Spline);
         end;
-        Curves.Destroy;
+        FreeAndNil(Curves);
 
         // build matrix for column interpolation
         Matrix := TFreeMatrix.Create;
@@ -6620,7 +6620,7 @@ begin
         Matrix.Value[Rows - 1, Rows - 1] := 1.0;
         // Invert matrix
         Rowmatrix := Matrix.Invert;
-        Matrix.Destroy;
+        FreeAndNil(Matrix);
 
         // build initial point grid
         Setlength(Points, Rows);
@@ -6649,10 +6649,10 @@ begin
             Points[I - 1][J - 1] := P;
           end;
 
-          OrgPts.Destroy;
-          NewPts.Destroy;
+          FreeAndNil(OrgPts);
+          FreeAndNil(NewPts);
         end;
-        ColMatrix.Destroy;
+        FreeAndNil(ColMatrix);
 
         // interpolate rows
         for I := 1 to Cols do
@@ -6676,18 +6676,18 @@ begin
             P.Z := NewPts.Value[J - 1, 2];
             Points[J - 1][I - 1] := P;
           end;
-          OrgPts.Destroy;
-          NewPts.Destroy;
+          FreeAndNil(OrgPts);
+          FreeAndNil(NewPts);
         end;
-        RowMatrix.Destroy;
+        FreeAndNil(RowMatrix);
 
         // delete long. curves
         for I := 1 to LongCurves.Count do
         begin
           Spline := LongCurves[I - 1];
-          Spline.Destroy;
+          FreeAndNil(Spline);
         end;
-        LongCurves.Destroy;
+        FreeAndNil(LongCurves);
 
         // import actual surface
         Setlength(ControlPoints, Rows);
@@ -6722,7 +6722,7 @@ begin
             if Pts.Count > 2 then
               FreeShip.Surface.AddControlFace(Pts, True);
           end;
-        Pts.Destroy;
+        FreeAndNil(Pts);
         FreeShip.FileChanged := True;
       finally
         if Assigned(FreeShip.OnUpdateGeometryInfo) then
@@ -6735,7 +6735,7 @@ begin
     FreeShip.Precision := fpMedium;
     FreeShip.Draw;
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.ImportFrames}
 
 procedure TFreeEdit.Intersection_AddToList(Intersection: TFreeIntersection);
@@ -6907,7 +6907,7 @@ begin
               Face.Layer := Layer;
             end;
         end;
-        Current.Destroy;
+        FreeAndNil(Current);
       end;
       FreeShip.ActiveLayer := FreeShip.Layer[FreeShip.NumberOfLayers - 1];
       // Delete empty layers
@@ -6918,8 +6918,8 @@ begin
   finally
     if assigned(FreeShip.OnChangeLayerData) then
       FreeShip.OnChangeLayerData(self);
-    ToDoList.Destroy;
-    DoneList.Destroy;
+    FreeAndNil(ToDoList);
+    FreeAndNil(DoneList);
   end;
 end;{TFreeEdit.Layer_AutoGroup}
 
@@ -6971,15 +6971,15 @@ begin
     ShowTranslatedValues(Dlg);
     FreeShip.IsRebuildAsyncDisabled := true;
     Dlg.Execute(FreeShip, Plates);
-    Dlg.Destroy;
+    FreeAndNil(Dlg);
     FreeShip.IsRebuildAsyncDisabled := false;
   end;
   for I := 1 to Plates.Count do
   begin
     Patch := plates[I - 1];
-    Patch.Destroy;
+    FreeAndNil(Patch);
   end;
-  Plates.Destroy;
+  FreeAndNil(Plates);
 end;{TFreeEdit.Layer_Develop}
 
 // Delete all layers that are empty from the model
@@ -7135,14 +7135,14 @@ begin
               if Marker.NumberOfPoints > 1 then
                 Markers.Add(Marker)
               else
-                Marker.Destroy;
+                FreeAndNil(Marker);
               Marker := TFreeMarker.Create(FreeShip.Surface);
             end;
           until (Str = 'EOF') or (EOF(FFile));
           if Marker.NumberOfPoints > 1 then
             Markers.Add(Marker)
           else
-            Marker.Destroy;
+            FreeAndNil(Marker);
         except
           MessageDlg(Userstring(132) + #32 + IntToStr(LineNr), mtError, [mbOK], 0);
         end;
@@ -7171,7 +7171,7 @@ begin
             for I := 1 to Markers.Count do
             begin
               Marker := Markers[I - 1];
-              Marker.Destroy;
+              FreeAndNil(Marker);
             end;
           end;
         end
@@ -7183,12 +7183,12 @@ begin
       end
       else
         MessageDlg(Userstring(147), mtInformation, [mbOK], 0);
-      Markers.Destroy;
+      FreeAndNil(Markers);
     end
     else
       MessageDlg(Userstring(106), mtError, [mbOK], 0);
   end;
-  OpenDialog.Destroy;
+  FreeAndNil(OpenDialog);
 end;{TFreeEdit.Marker_Import}
 
 // Checks the surface for inconsistent normal directions and leaks
@@ -7357,8 +7357,8 @@ begin
         end;
       end;
     end;
-    DoubleEdges.Destroy;
-    Points.Destroy;
+    FreeAndNil(DoubleEdges);
+    FreeAndNil(Points);
   end;
 
   // Check for correct normal direction (outward)
@@ -7474,7 +7474,7 @@ begin
       end;
     end;
 
-    NewGroup.Destroy;
+    FreeAndNil(NewGroup);
     if (Leaks.Count > 0) and (ShowResult) then
     begin
       Str := Userstring(149) + ' ' + IntToStr(Leaks.Count) + ' ' + Userstring(150) + '.';
@@ -7527,9 +7527,9 @@ begin
       if (ShowResult) and (Leaks.Count = 0) then
         ShowMessage(Userstring(156));
     end;
-    Leaks.Destroy;
+    FreeAndNil(Leaks);
   end;
-  AllFaces.Destroy;
+  FreeAndNil(AllFaces);
 
   IsIntegrityOk:=true;
   for i:=0 to FreeShip.Surface.NumberOfLayers-1 do
@@ -7691,13 +7691,13 @@ begin
         if (I = 0) and (J = Cols) then
           StemPoint := Pts[I, J];
       end;
-      Spline2.Destroy;
+      FreeAndNil(Spline2);
     end;
     // Destroy tmp splines
     for I := 1 to TrvSplines.Count do
     begin
       Spline1 := TrvSplines[I - 1];
-      Spline1.Destroy;
+      FreeAndNil(Spline1);
     end;
 
     TrvPoints := TFasterListTFreeSubdivisionControlPoint.Create;
@@ -7742,10 +7742,10 @@ begin
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
     Result := True;
-    TrvSplines.Destroy;
+    FreeAndNil(TrvSplines);
     TrvPoints.Free;
   end;
-  FreeNewModelDialog.Destroy;
+  FreeAndNil(FreeNewModelDialog);
 end;{TFreeEdit.Model_New}
 
 // Affine hullform transformation according to Lackenby
@@ -7783,7 +7783,7 @@ begin
       vUndo.Restore;
     vUndo.Delete;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Model_LackenbyTransformation}
 
 // Scale the entire model and all equivalent data such as stations etc.
@@ -8152,7 +8152,7 @@ begin
     else
       vUndo.Delete; // nothis has been changed
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Point_InsertPlane}
 
 // Calculates the intersection points of two layers
@@ -8190,11 +8190,11 @@ begin
           MessageDlg(Userstring(165), mtInformation, [mbOK], 0);
         end;
       end;
-    Dialog.Destroy;
+    FreeAndNil(Dialog);
   end
   else
     MessageDlg(Userstring(166), mtError, [mbOK], 0);
-  Layers.Destroy;
+  FreeAndNil(Layers);
 end;{TFreeEdit.Point_IntersectLayer}
 
 // Locks all selected points
@@ -8306,7 +8306,7 @@ begin
     FreeShip.FResistanceDelftData.WlArea := Dialog.WlArea;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_Delft}
 
 // Calculate resistance Holtrop sea ships
@@ -8410,7 +8410,7 @@ begin
     FreeShip.FResistanceHoltrData.A11 := Dialog.A11;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_Holtr}
 
 // Calculate resistance Hollenbach cargoships
@@ -8514,7 +8514,7 @@ begin
     FreeShip.FResistanceHollenData.A11 := Dialog.A11;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_Hollen}
 
 // Calculate resistance van Oortmerssen tugs and trawlers
@@ -8618,7 +8618,7 @@ begin
     FreeShip.FResistanceOortmerData.A11 := Dialog.A11;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_Oortmer}
 
 // Calculate resistance FUNG method
@@ -8722,7 +8722,7 @@ begin
     FreeShip.FResistanceFungData.A11 := Dialog.A11;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_FungLeib}
 
 
@@ -8847,7 +8847,7 @@ begin
     FreeShip.FResistanceOSTData.Dat18_5 := Dialog.Dat18_5;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_OST}
 
 // Calculate resistance by high speed round bilge ships
@@ -8970,7 +8970,7 @@ begin
     FreeShip.FResistanceRBHSData.Dat18_5 := Dialog.Dat18_5;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_RBHS}
 
 // Calculate resistance of multihull ships
@@ -9093,7 +9093,7 @@ begin
     FreeShip.FResistanceMHData.Dat18_5 := Dialog.Dat18_5;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_MH}
 
 // Calculate resistance of slender hulls (canoes) according to John Winters
@@ -9126,7 +9126,7 @@ begin
     FreeShip.FResistanceKaperData.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_Kaper}
 
 // Calculate resistance of planing hulls
@@ -9167,7 +9167,7 @@ begin
     FreeShip.FResistancePlaningData.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Resistance_Planing}
 
 
@@ -9213,7 +9213,7 @@ begin
     FreeShip.FPropellerTask1Data.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Propeller_Task1}
 
 // Calculate propeller Task2
@@ -9278,7 +9278,7 @@ begin
     FreeShip.FPropellerTask2Data.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Propeller_Task2}
 
 // Calculate propeller Task3
@@ -9325,7 +9325,7 @@ begin
     FreeShip.FPropellerTask3Data.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Propeller_Task3}
 
 // Calculate propeller Task4
@@ -9370,7 +9370,7 @@ begin
     FreeShip.FPropellerTask4Data.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Propeller_Task4}
 
 
@@ -9396,7 +9396,7 @@ begin
     FreeShip.FPropellerTask5Data.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Propeller_Task5}
 
 // Calculate propeller Rvrs
@@ -9443,7 +9443,7 @@ begin
     FreeShip.FPropellerRvrsData.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Hydrodyn_Rvrs}
 
 // Calculate maneuv Task1
@@ -9496,7 +9496,7 @@ begin
     FreeShip.FHydrodynManeuvData.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.HydrodynManeuv}
 
 // Calculate hydrodynamics Task1
@@ -9533,7 +9533,7 @@ begin
     FreeShip.FHydrodynTask1Data.Extract := Dialog.CheckBox2.Checked;
     FreeShip.FileChanged := True;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.HydrodynTask1}
 
 
@@ -9579,7 +9579,7 @@ begin
       FreeShip.FHydrodynTask2Data.Extract:=Dialog.CheckBox2.Checked;
       FreeShip.FileChanged:=True;
    end;
-   Dialog.Destroy;
+   FreeAndNil(Dialog);
 end;
 }
 
@@ -9626,7 +9626,7 @@ begin
       FreeShip.FHydrodynTask3Data.Extract:=Dialog.CheckBox2.Checked;
       FreeShip.FileChanged:=True;
    end;
-   Dialog.Destroy;
+   FreeAndNil(Dialog);
 end;{TFreeEdit.HydrodynTask3}
 }
 
@@ -9671,7 +9671,7 @@ begin
       FreeShip.FHydrodynTask4Data.Extract:=Dialog.CheckBox2.Checked;
       FreeShip.FileChanged:=True;
    end;
-   Dialog.Destroy;
+   FreeAndNil(Dialog);
 end;{TFreeEdit.HydrodynTask4}
 }
 
@@ -10099,7 +10099,7 @@ begin
   end
   else if vRedo <> nil then
     vRedo.Delete;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeEdit.Undo_ShowHistory}
 
 procedure TFreeEdit.Redo;
@@ -10189,7 +10189,7 @@ begin
   end
   else
   begin
-    Intersection.Destroy;
+    FreeAndNil(Intersection);
     Result := nil;
   end;
 end;{TFreeEdit.Intersection_Add}

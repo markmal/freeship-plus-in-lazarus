@@ -513,19 +513,19 @@ destructor TFreeViewport.Destroy;
 begin
   DetachEventHandlers;
   if Assigned(FDrawingBuffer) then
-    FDrawingBuffer.Destroy;
+    FreeAndNil(FDrawingBuffer);
   FDrawingBuffer := nil;
   if Assigned(FZBuffer) then
-    FZBuffer.Destroy;
+    FreeAndNil(FZBuffer);
   FZBuffer := nil;
   if Assigned(FAlphaBuffer) then
-    FAlphaBuffer.Destroy;
+    FreeAndNil(FAlphaBuffer);
   FAlphaBuffer := nil;
   if Assigned(FBackgroundImage) then
-    FBackgroundImage.Destroy;
+    FreeAndNil(FBackgroundImage);
   FBackgroundImage := nil;
   if Assigned(FBitmapFormatHelper) then
-    FBitmapFormatHelper.Destroy;
+    FreeAndNil(FBitmapFormatHelper);
   inherited Destroy;
 end;{TFreeViewport.Destroy}
 
@@ -1539,7 +1539,7 @@ begin
       Refresh;
       //Bitmap.SaveToFile(ChangeFileExt(filename, '.bmp'));
       //Bitmap.SaveToFile(filename);
-      Bitmap.Destroy;
+      FreeAndNil(Bitmap);
 
       TargetImage:=TImage.Create(self);
       TargetImage.Width:=FDestinationWidth;
@@ -1559,7 +1559,7 @@ begin
     end;
   end;
   if ShowDialog then
-    Dialog.Destroy;
+    FreeAndNil(Dialog);
 end;{TFreeViewport.SaveAsBitmap}
 
 procedure TFreeViewport.Resize;

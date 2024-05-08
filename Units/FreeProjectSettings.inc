@@ -449,7 +449,7 @@ begin
     FreeShip.Precision := ProjectPrecision;   //TODO: save and load precision
     FreeShip.Redraw;
   end;
-  Dialog.Destroy;
+  FreeAndNil(Dialog);
 end;{TFreeProjectSettings.Edit}
 
 procedure TFreeProjectSettings.LoadBinary(Source: TFreeFilebuffer; Image: TJPegImage);
@@ -488,7 +488,7 @@ begin
       Source.LoadTJPEGImage(Jpg);
       if Image <> nil then
         Image.Assign(JPG);
-      Jpg.Destroy;
+      FreeAndNil(Jpg);
     end;
     if FreeShip.FileVersion >= fv230 then
       Source.LoadBoolean(FProjectSimplifyIntersections);
@@ -570,7 +570,7 @@ begin
       begin
         Jpg := FreeShip.FGetPreview;
         Destination.Add(Jpg);
-        Jpg.Destroy;
+        FreeAndNil(Jpg);
       end;
       if FreeShip.FileVersion >= fv230 then
         Destination.Add(FProjectSimplifyIntersections);

@@ -222,7 +222,7 @@ begin
    if Result then Undo.Accept else
    begin
       Undo.Restore;
-      Undo.Destroy;
+      FreeAndNil(Undo);
    end;
 end;{TFreeLayerDialog.Execute}
 

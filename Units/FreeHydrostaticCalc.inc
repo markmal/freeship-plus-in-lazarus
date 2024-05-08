@@ -249,7 +249,7 @@ begin
             Areastr(Owner.ProjectSettings.ProjectUnits));
           Strings.Add(Space(4) + MakeLength(Userstring(20), 43) +
             ' :  ' + Makelength(FData.WaterplaneCoeff, -1, 12));
-          HydObject.Destroy;
+          FreeAndNil(HydObject);
           Xd := (X2 * D2 - X1 * D1) / (D2 - D1);
           Strings.Add(Space(4) + MakeLength(Userstring(21), 43) +
             ' :  ' + Makelength(Xd, -1, 12) + ' ' +
@@ -687,7 +687,7 @@ begin
           Writeln(FFile, -FData.WaterlinePlane.D: 9: 3, HydObject.Data.WlMin.X: 9: 3,
             HydObject.Data.WlMax.X: 9: 3);
         end;
-        HydObject.Destroy;
+        FreeAndNil(HydObject);
         Writeln(FFile, ' ');
         Writeln(FFile, 'EOF ');
         CloseFile(FFile);
@@ -767,7 +767,7 @@ begin
               Strings.Add(Space(4)+MakeLength('Новая осадка',50)+' : '+Makelength(Owner.ProjectSettings.ProjectDraft,-1,8)+' '+LengthStr(Owner.ProjectSettings.ProjectUnits));
               Strings.Add(' ');
 }
-        HydObject.Destroy;
+        FreeAndNil(HydObject);
       end;
       //              Strings.Add(Space(4)+MakeLength('Максимум возможной осадки',50)+' : '+Makelength(Owner.Surface.Max.Z,-1,8)+' '+LengthStr(Owner.ProjectSettings.ProjectUnits));
 
@@ -972,7 +972,7 @@ begin
   //   Owner.ActiveControlPoint:=nil;
   //   Owner.FSelectedFlowlines.Clear;
   Owner.FSelectedMarkers.Clear;
-  Points.Destroy;
+  FreeAndNil(Points);
 end;{TFreeHydrostaticCalc.Face_MoveZAuto}
 
 
@@ -1389,7 +1389,7 @@ begin
     end;
   end;
 
-  Frame.Destroy;
+  FreeAndNil(Frame);
 end;
 
 
@@ -1582,7 +1582,7 @@ begin
       if N = 13 then
         Vol := Vol - Sw[N] / 2 - Sw[1] / 2;
     end;
-    Waterplane.Destroy;
+    FreeAndNil(Waterplane);
     Vol := Vol * dT;
   end;
 
@@ -1916,7 +1916,7 @@ begin
     else if FData.BeamWaterline * FData.LengthWaterline <> 0.0 then
       FData.WaterplaneCoeff :=
         FData.Waterplanearea / (FData.BeamWaterline * FData.LengthWaterline);
-    Waterplane.Destroy;
+    FreeAndNil(Waterplane);
     // Stability data
     FData.KMtransverse := FData.CenterOfBuoyancy.Z + FData.WaterplaneMomInertia.X /
       FData.Volume;
@@ -1987,7 +1987,7 @@ begin
             Frame.FUseHydrostaticsSurfacesOnly := True;
             Fdata.Sac[I].X := -Frame.Plane.d;
             Frame.CalculateArea(FData.WaterlinePlane, FData.Sac[I].Y, P1, TmpP2D);
-            Frame.Destroy;
+            FreeAndNil(Frame);
             Xbon[I + 1] := Fdata.Sac[I].X;
             Wbon[J + 1, I + 1] := Fdata.Sac[I].Y;
           end;
@@ -2041,7 +2041,7 @@ begin
         Frame.FUseHydrostaticsSurfacesOnly := True;
         Fdata.Sac[I].X := -Frame.Plane.d;
         Frame.CalculateArea(FData.WaterlinePlane, FData.Sac[I].Y, P1, TmpP2D);
-        Frame.Destroy;
+        FreeAndNil(Frame);
       end;
       if (Fdata.Sac[Trunc(Owner.NumberofStations / 2)].Y > FData.MidshipArea) and
         (isymm = 1) then
@@ -2068,7 +2068,7 @@ begin
     SDP := FData.LateralArea;
     Zsdp := FData.LateralCOG.Z;
     Xsdp := FData.LateralCOG.X;
-    LateralPlane.Destroy;
+    FreeAndNil(LateralPlane);
     FData.WaterlinePlane.D := SmomentZ;
   end;
 
@@ -2088,7 +2088,7 @@ begin
     SDP_ := FData.LateralArea;
     Zsdp_ := FData.LateralCOG.Z;
     Xsdp_ := FData.LateralCOG.X;
-    LateralPlane.Destroy;
+    FreeAndNil(LateralPlane);
     //   Определяем боковую проекцию площади контура ДП выше ватерлинии и координату Z ее ЦТ от линии воды
     SmomentZ := SDP * Zsdp - SDP_ * Zsdp_;
     SmomentX := SDP * Xsdp - SDP_ * Xsdp_;
@@ -2128,7 +2128,7 @@ begin
         FData.Z_min_board := Pt.Coordinate.Z;
       // Определяем Z точки утечки с минимальной аппликатой
     end;
-  Leaks.Destroy;
+  FreeAndNil(Leaks);
 
   Calculated := True;
 end;{TFreeHydrostaticCalc.Calculate}
@@ -2459,8 +2459,8 @@ begin
     Dialog.Edit.Lines.EndUpdate;
     Dialog.ShowModal;
   finally
-    Strings.Destroy;
-    Dialog.Destroy;
+    FreeAndNil(Strings);
+    FreeAndNil(Dialog);
   end;
 end;{TFreeHydrostaticCalc.ShowData}
 

@@ -847,7 +847,7 @@ begin
     else
       LCB := 0;
     Ie := HydObject.Data.WaterplaneEntranceAngle;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
     Calculate;
   end;
 end;{TFreeResistance_Kaper.CheckBox2Click}

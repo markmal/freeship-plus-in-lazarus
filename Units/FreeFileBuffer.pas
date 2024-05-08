@@ -328,7 +328,7 @@ begin
     FGrow(Size + 20);
   Stream.Read(FData[FCount], Size);
   Inc(FCount, Size);
-  Stream.Destroy;
+  FreeAndNil(Stream);
 end;{TFreeFileBuffer.Add}
 
 procedure TFreeFileBuffer.LoadTJPEGImage(var JPegImage: TJPEGImage);
@@ -345,7 +345,7 @@ begin
   Inc(FPosition, Size);
   Stream.Position := 0;
   JPEGImage.LoadFromStream(Stream);
-  Stream.Destroy;
+  FreeAndNil(Stream);
 end;{TFreeFileBuffer.Add}
 
 {
@@ -2414,7 +2414,7 @@ begin
   L := StrPas(S);
   StrDispose(S);
   FLines.Add(L);
-  Stream.Destroy;
+  FreeAndNil(Stream);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
 
@@ -2435,7 +2435,7 @@ begin
   StrDispose(PData);
   Stream.Position := 0;
   JPEGImage.LoadFromStream(Stream);
-  Stream.Destroy;
+  FreeAndNil(Stream);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
 

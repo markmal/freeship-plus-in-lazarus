@@ -1100,7 +1100,7 @@ begin
           DrawNormal(P1, P2, Surface.NormalColor);
         end;
       end;
-      Points.Destroy;
+      FreeAndNil(Points);
     end;
   end;
 end;{TFreeSubdivisionControlFace.Draw}
@@ -1217,7 +1217,7 @@ begin
       begin
         Surface.AddControlFace(Pts, False, Layer);
       end;
-      Pts.Destroy;
+      FreeAndNil(Pts);
       Delete; // delete the current face because it is split into two new faces
       IsFaceDeleted := true;
     end;
@@ -1626,7 +1626,7 @@ begin
   end;
 
   //NewControlEdges.Clear;
-  NewControlEdges.Destroy;
+  FreeAndNil(NewControlEdges);
   CalcExtents;
 end;{TFreeSubdivisionControlFace.Subdivide}
 
@@ -1685,7 +1685,7 @@ begin
     end;
     ToDoList.Sort;
     FindAttachedFaces(ToDoList, self);
-    ToDoList.Destroy;
+    FreeAndNil(ToDoList);
   finally
     Screen.Cursor := prev;
   end;

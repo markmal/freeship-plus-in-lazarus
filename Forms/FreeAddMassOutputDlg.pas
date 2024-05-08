@@ -381,14 +381,14 @@ begin
             end;
       end;
     end;
-    Station.Destroy;
+    FreeAndNil(Station);
   end;
   Viewport.ZoomExtents;
   Hydrostat := TFreeHydrostaticCalc.Create(FFreeship);
   Hydrostat.Draft := Draft;
   Hydrostat.Calculate;
   Volume := Hydrostat.Data.Volume;
-  Hydrostat.Destroy;
+  FreeAndNil(Hydrostat);
 
 end;{TFreeAddMassOutputDialog.FBuildOffsets}
 
@@ -854,7 +854,7 @@ begin
   HydObject.Calculate;
   Length := HydObject.Data.LengthWaterline;
   B := HydObject.Data.BeamWaterline;
-  HydObject.Destroy;
+  FreeAndNil(HydObject);
   if FFreeship = nil then
     exit;
   Strings := TStringList.Create;
@@ -894,7 +894,7 @@ begin
   end;
   Strings.Add(DirectorySeparator+'*');
   Strings.SaveToFile(Filename);
-  Strings.Destroy;
+  FreeAndNil(Strings);
 end;{TFreeAddMassOutputDialog.SaveToFile}
 
 function TFreeAddMassOutputDialog.FGetMultihull: boolean;

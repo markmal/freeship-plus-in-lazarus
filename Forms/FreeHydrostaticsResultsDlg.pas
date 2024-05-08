@@ -213,7 +213,7 @@ begin
       // Skip translation
       Strings.SaveToFile(ChangeFileExt(SaveDialog.Filename,'.txt'));
       // End Skip translation
-      Strings.Destroy;
+      FreeAndNil(Strings);
    end;
 end;{TFreeHydrostaticsResultsDialog.SpeedButton2Click}
 

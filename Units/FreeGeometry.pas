@@ -2389,7 +2389,7 @@ begin
         O := TObject(Items[I]);
         if Assigned(O) then
         begin
-          O.Destroy;
+          FreeAndNil(O);
           Delete(I);
         end;
       end; }

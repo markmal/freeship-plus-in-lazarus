@@ -13,7 +13,7 @@ begin
   Index := FItems.IndexOf(Item);
   if Index <> -1 then
     FItems.Delete(index);
-  Item.Destroy;
+  FreeAndNil(Item);
 end;{TFreeIntersection.DeleteItem}
 
 function TFreeIntersection.FGetColor: TColor;
@@ -377,7 +377,7 @@ begin
       // Either this spline has a very small area(0.01m x 0.01m) or it is an unconnected
       // straight line. In both cases it may be deleted as long as at least one valid
       // spline segment remains.
-      Spline.Destroy;
+      FreeAndNil(Spline);
       FItems.Delete(I - 1);
     end
     else if Area < 0 then

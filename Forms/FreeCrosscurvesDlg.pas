@@ -570,7 +570,7 @@ begin
   HydObject.Calculate;
   Zmin := HydObject.Data.ModelMin.Z;
   //          MessageDlg('New Zmin = '+FloatToStrF(Zmin,ffFixed,6,3),mtInformation,[mbOk],0);
-  HydObject.Destroy;
+  FreeAndNil(HydObject);
 
   JJ := 0;
   Dr := 0;
@@ -621,7 +621,7 @@ begin
       FreeNuminput5_.Value := Di;
       FreeNuminput6_.Value := Zgr;
     end;
-    HydObject.Destroy;
+    FreeAndNil(HydObject);
     //        MessageDlg('D>0 Zmin = '+FloatToStrF(Zmin,ffFixed,6,3)+' '+'Zgr = '+FloatToStrF(Zgr,ffFixed,6,3),mtInformation,[mbOk],0);
 
     Chart.Title.Text.Text := Userstring(997);
@@ -778,10 +778,10 @@ begin
       end;
       Inc(I);
       if Series.Count = 0 then
-        series.Destroy;
+        FreeAndNil(series);
     end;
     TabSheet1.Visible := True;
-    Calculation.Destroy;
+    FreeAndNil(Calculation);
   finally
     Screen.Cursor := PrevCursor;
     ToolButton2.Enabled := False;
@@ -964,7 +964,7 @@ begin
         //    exit;
         //   end;
         //    MessageDlg('D1>0 Zmin = '+FloatToStrF(Zmin,ffFixed,6,3)+' '+'Zgr = '+FloatToStrF(Zgr,ffFixed,6,3),mtInformation,[mbOk],0);
-        HydObject.Destroy;
+        FreeAndNil(HydObject);
         Zp := FreeNuminput10_.Value;
         Av := FreeNuminput9_.Value;
         if Av < 0 then
@@ -1117,7 +1117,7 @@ begin
         //    exit;
         //   end;
         //        MessageDlg('D2>0 Zmin = '+FloatToStrF(Zmin,ffFixed,6,3)+' '+'Zgr = '+FloatToStrF(Zgr,ffFixed,6,3),mtInformation,[mbOk],0);
-        HydObject.Destroy;
+        FreeAndNil(HydObject);
 
         Zp := FreeNuminput10_.Value;
         Av := FreeNuminput9_.Value;
@@ -1637,7 +1637,7 @@ begin
     // Skip translation
     Strings.SaveToFile(ChangeFileExt(SaveDialog.Filename, '.txt'));
     // End Skip translation
-    Strings.Destroy;
+    FreeAndNil(Strings);
   end;
 end;{TFreeCrosscurvesDialog.SaveButtonClick}
 

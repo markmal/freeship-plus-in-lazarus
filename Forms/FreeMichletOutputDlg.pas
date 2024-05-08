@@ -437,14 +437,14 @@ begin
             end;
       end;
     end;
-    Station.Destroy;
+    FreeAndNil(Station);
   end;
   Viewport.ZoomExtents;
   Hydrostat := TFreeHydrostaticCalc.Create(FFreeship);
   Hydrostat.Draft := Draft;
   Hydrostat.Calculate;
   Volume := Hydrostat.Data.Volume;
-  Hydrostat.Destroy;
+  FreeAndNil(Hydrostat);
 
 end;{TFreeMichletOutputDialog.FBuildOffsets}
 
@@ -1175,7 +1175,7 @@ begin
     Strings.Add('0');
   end;
   Strings.SaveToFile(Filename);
-  Strings.Destroy;
+  FreeAndNil(Strings);
 end;{TFreeMichletOutputDialog.SaveToFile}
 
 function TFreeMichletOutputDialog.FGetMultihull: boolean;

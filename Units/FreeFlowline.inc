@@ -729,9 +729,9 @@ begin
         else
           break;
     end;
-    Points.Destroy;
+    FreeAndNil(Points);
   end;
-  Faces.Destroy;
+  FreeAndNil(Faces);
   FBuild := True;
 end;{TFreeFlowline.Rebuild}
 

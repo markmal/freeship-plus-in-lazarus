@@ -759,7 +759,7 @@ begin
 	  Units:=FFreeship.ProjectSettings.ProjectUnits;
 	  Temper:=FFreeship.ProjectSettings.ProjectWaterTemper;
 	  Dat11:=FindWaterViscosity(Temper,Units);
-      HydObject.Destroy;
+      FreeAndNil(HydObject);
       Calculate;
    end;
 end;{TFreeHydrodyn_Maneuv.CheckBox2Click}

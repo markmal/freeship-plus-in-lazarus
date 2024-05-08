@@ -2194,17 +2194,17 @@ begin
     Strings.Add('0' + EOL + 'ENDSEC');
     Strings.Add('0' + EOL + 'EOF');
     Strings.SaveToFile(ChangeFileExt(SaveDialog.FileName, '.dxf'));
-    Strings.Destroy;
+    FreeAndNil(Strings);
 
     // Destroy extracted edgeloops
     for I := 1 to EdgePointLists.Count do
     begin
       Points:=EdgePointLists[I-1];
-      Points.Destroy;
+      FreeAndNil(Points);
     end;
-    EdgePointLists.Destroy;
+    FreeAndNil(EdgePointLists);
   end;
-  SaveDialog.Destroy;
+  FreeAndNil(SaveDialog);
 end;
 
 end.

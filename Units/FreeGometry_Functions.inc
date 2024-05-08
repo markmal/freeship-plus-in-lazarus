@@ -732,7 +732,7 @@ begin
             messagedlg('Error in comparing minimum values.', mtError, [mbOK], 0);
           // Destroy the matching spline
           List.Delete(MatchIndex - 1);
-          Match.Destroy;
+          FreeAndNil(Match);
           Match := nil;
           I := 0; // Reset match index to start searching for a new matching spline
         end;

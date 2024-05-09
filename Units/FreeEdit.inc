@@ -100,8 +100,13 @@ begin
 
   Dialog := TOpenPictureDialog.Create(Viewport);
   Dialog.InitialDir := FreeShip.Preferences.ImportDirectory;
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
   Dialog.Filter :=
-    'All files (*.jpg;*.bmp)|*.jpg; *.bmp|Jpeg images (*.jpg)|*.jpg|Bitmap files (*.bmp)|*.bmp|';
+    'Image files (*.jpg;*.bmp)|*.[Jj][Pp][Gg]; *.[Bb][Mm][Pp]|Jpeg images (*.jpg)|*.[Jj][Pp][Gg]|Bitmap files (*.bmp)|*.[Bb][Mm][Pp]|All files (*.*)|*.*|';
+  {$ELSE}
+  Dialog.Filter :=
+    'Image files (*.jpg;*.bmp)|*.jpg; *.bmp|Jpeg images (*.jpg)|*.jpg|Bitmap files (*.bmp)|*.bmp|All files (*.*)|*.*|';
+  {$ENDIF}
 
     //Dialog.Options := [ofHideReadOnly];
   if Dialog.Execute then
@@ -3685,7 +3690,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Michlet wave elevations file (*.mlt)|*.[Mm][Ll][Tt]';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'Michlet wave elevations file (*.mlt)|*.[Mm][Ll][Tt]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'Michlet wave elevations file (*.mlt)|*.mlt|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4224,7 +4233,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Carene XYZ files (*.xyz)|*.[Xx][Yy][Zz]';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'Carene XYZ files (*.xyz)|*.[Xx][Yy][Zz]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'Carene XYZ files (*.xyz)|*.xyz|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4333,7 +4346,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Text files (*.txt)|*.[Tt][Xx][Tt]';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'Text files (*.txt)|*.[Tt][Xx][Tt]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'Text files (*.txt)|*.txt|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4439,7 +4456,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'FREE!ship Exchange Format file (*.Fef)|*.[Ff][Ee][Ff]';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'FREE!ship Exchange Format file (*.Fef)|*.[Ff][Ee][Ff]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'FREE!ship Exchange Format file (*.Fef)|*.fef|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4511,7 +4532,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Carlsson Hull files (*.hul)|*.[Hh][Uu][Ll]';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'Carlsson Hull files (*.hul)|*.[Hh][Uu][Ll]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'Carlsson Hull files (*.hul)|*.hul|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4709,7 +4734,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'FREE!ship geometry part (*.Part)|*.[Pp][Aa][Rr][Tt]';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'FREE!ship geometry part (*.Part)|*.[Pp][Aa][Rr][Tt]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'FREE!ship geometry part (*.Part)|*.part|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -4966,7 +4995,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'PolyCad files (*.geo)|*.[Gg][Ee][Oo]';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'PolyCad files (*.geo)|*.[Gg][Ee][Oo]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'PolyCad files (*.geo)|*.geo|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -5220,9 +5253,9 @@ begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   {$if defined(LCLGtk2) or defined(LCLGtk3)}
-  OpenDialog.Filter := 'VRML files (*.wrl)|*.[Ww][Rr][Ll]|All files|*.*';
+  OpenDialog.Filter := 'VRML files (*.wrl)|*.[Ww][Rr][Ll]|All files|*.*|All files (*.*)|*.*|';
   {$else}
-  OpenDialog.Filter := 'VRML files (*.wrl)|*.wrl|All files|*.*';
+  OpenDialog.Filter := 'VRML files (*.wrl)|*.wrl|All files|*.*|All files (*.*)|*.*|';
   {$endif}
 
   Opendialog.Options := [ofHideReadOnly];
@@ -6170,7 +6203,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := ExtractFilepath(Application.ExeName);
-  OpenDialog.Filter := '3D text file (*.Txt)|*.txt';
+  {$if defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := '3D text file (*.Txt)|*.[Tt][Xx][Tt]|All files (*.*)|*.*|';
+  {$else}
+  OpenDialog.Filter := '3D text file (*.Txt)|*.txt|All files (*.*)|*.*|';
+  {$endif}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -6486,7 +6523,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := '3D text file (*.Txt)|*.txt';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := '3D text file (*.Txt)|*.[Tt][Xx][Tt]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := '3D text file (*.Txt)|*.txt|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
@@ -7095,7 +7136,11 @@ var
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := 'Text files (*.txt)|*.txt';
+  {$IF defined(LCLGtk2) or defined(LCLGtk3)}
+  OpenDialog.Filter := 'Text files (*.txt)|*.[Tt][Xx][Tt]|All files (*.*)|*.*|';
+  {$ELSE}
+  OpenDialog.Filter := 'Text files (*.txt)|*.txt|All files (*.*)|*.*|';
+  {$ENDIF}
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin

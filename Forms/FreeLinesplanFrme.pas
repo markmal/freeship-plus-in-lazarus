@@ -56,7 +56,8 @@ uses
   Printers,
   Math,
   ImgList,
-  ActnList, StdCtrls, Spin;
+  ActnList, StdCtrls, Spin,
+  FreeStringUtils;
 
 const
   SpacePercentage = 0.20;
@@ -1657,6 +1658,8 @@ begin
   Viewport.ZoomExtents;
 end;{TFreeLinesplanFrame.MirrorPlanViewExecute}
 
+resourceString ExportDXF_Filter = 'Autocad dxf file';
+
 procedure TFreeLinesplanFrame.ExportDXFExecute(Sender: TObject);
 var
   SaveDialog: TSaveDialog;
@@ -1945,7 +1948,7 @@ begin
   SaveDialog := TSaveDialog.Create(Owner);
   SaveDialog.InitialDir := Freeship.Preferences.ExportDirectory;
   SaveDialog.FileName := ChangeFileExt(Str, '');
-  SaveDialog.Filter := 'Autocad dxf file (*.dxf)|*.[Dd][Xx][Ff]';
+  SaveDialog.Filter := createDialogFilter(rsAutocadDxfFile,['dxf']);
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin

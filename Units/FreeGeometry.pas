@@ -2344,7 +2344,8 @@ uses FreeLanguageSupport,
   FreeBackgroundBlendingDlg,
   FreeBackgroundToleranceDlg,
   FreeSaveImageDlg,
-  FreeLogger;
+  FreeLogger,
+  FreeStringUtils;
 
 {$I FreeGometry_Functions.inc}
 {$I FreeAlphaBuffer.inc}

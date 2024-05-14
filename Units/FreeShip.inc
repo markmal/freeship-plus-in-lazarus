@@ -2826,7 +2826,7 @@ begin
   SaveDialog := TSaveDialog.Create(Owner);
   SaveDialog.InitialDir := Preferences.ExportDirectory;
   SaveDialog.FileName := ChangeFileExt(ExtractFilename(FileName), '.part');
-  SaveDialog.Filter := 'FREE!ship geometry part (*.Part)|*.part';
+  SaveDialog.Filter := createDialogFilter(rsFREEShipGeometryPart,['part']);
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin

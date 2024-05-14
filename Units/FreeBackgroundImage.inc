@@ -2,7 +2,6 @@
 {                                           TFreeBackgroundImage                                    }
 
 { Background image properties for use in a viewport                                                 }
-
 {---------------------------------------------------------------------------------------------------}
 procedure TFreeBackgroundImage.AssignData(Image: TGraphic; View: TFreeViewType;
   Origin: TPoint; Scale: TFloatType; Transp: boolean; TranspCol: TColor;
@@ -324,8 +323,9 @@ var
 begin
   Dialog := TOpenPictureDialog.Create(Application);
   Dialog.InitialDir := InitialDir;
-  Dialog.Filter :=
-    'All files (*.jpg;*.bmp)|*.jpg; *.bmp|Jpeg images (*.jpg)|*.jpg|Bitmap files (*.bmp)|*.bmp|';
+  Dialog.Filter := createDialogFilter(rsImageFiles, ['jpg', 'bmp'], False)
+   +'|'+createDialogFilter(rsJPEGFiles, ['jpg'], False)
+   +'|'+createDialogFilter(rsBitmapFiles, ['bmp']);
   Dialog.Options := [ofHideReadOnly];
   if Dialog.Execute then
   begin
@@ -368,7 +368,7 @@ var
 begin
   SaveDialog := TSaveDialog.Create(Owner);
   SaveDialog.FileName := 'image.jpg';
-  SaveDialog.Filter := 'Jpeg files (*.jpg)|*.jpg';
+  SaveDialog.Filter := createDialogFilter(rsJPEGFiles, ['jpg']);
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin

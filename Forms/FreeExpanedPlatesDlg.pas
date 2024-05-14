@@ -58,7 +58,8 @@ uses
   Printers,
   ImgList,
   Math,
-  CheckLst, Spin;
+  CheckLst, Spin,
+  FreeStringUtils;
 
 type
 
@@ -834,7 +835,7 @@ begin
   Str := ChangeFileExt(ExtractFilename(FFreeship.FileName), '');
   Str := Str + '_developments.dxf';
   SaveDialog.FileName := Str;
-  SaveDialog.Filter := 'AutoCad dxf files (*.dxf)|*.dxf';
+  SaveDialog.Filter := createDialogFilter(rsAutocadDxfFile,['dxf']);
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin
@@ -1054,7 +1055,7 @@ begin
   Str := ChangeFileExt(ExtractFilename(FFreeship.FileName), '');
   Str := Str + '_developments.txt';
   SaveDialog.FileName := Str;
-  SaveDialog.Filter := 'Coordinates to text file (*.txt)|*.txt';
+  SaveDialog.Filter := createDialogFilter(rsTextFile,['txt']);
   Savedialog.Options := [ofOverwritePrompt, ofHideReadOnly];
   if SaveDialog.Execute then
   begin

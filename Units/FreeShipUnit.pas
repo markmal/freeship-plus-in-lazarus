@@ -79,7 +79,8 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
   FreeControlPointFrm,
   FreeLogger,
   //FreeOpenDialog
-  FreeFilePreviewDialog;
+  FreeFilePreviewDialog,
+  FreeStringUtils;
 
 
 // FREE!ship uses British imperial format, eg 1 long ton=2240 lbs
@@ -99,6 +100,26 @@ resourcestring
   rsPointMove = 'point move';
   rsPointLinearConstraintChanged = 'ControlPoint Linear Constraint Changed';
   rsPointAnchorConstraintChanged = 'ControlPoint Anchor Constraint Changed';
+  rsTextFile = 'Text file';
+  rsAutocadDxfFile = 'Autocad dxf file';
+  rsFREEShipExchangeFormat = 'FREE!ship Exchange Format';
+  rsGHSFiles = 'GHS files';
+  rsAdd_MassFiles = 'Add_Mass files';
+  rsIGESFiles = 'IGES files';
+  rsMichletInputFile = 'Michlet input file';
+  rsMichletWaveElevationsFile = 'Michlet wave elevations file';
+  //rsAllFiles = 'All files';
+  rsSTLFile = 'STL file';
+  rsCareneXYZFiles = 'Carene XYZ files';
+  rsTextFiles = 'Text files';
+  rsVRMLFiles = 'VRML files';
+  rsPolyCadFiles = 'PolyCad files';
+  rsFREEShipGeometryPart = 'FREE!ship geometry part';
+  rsCarlssonHullFiles = 'Carlsson Hull files';
+  rsFREEShipExchangeFormatFile = 'FREE!ship Exchange Format file';
+  rsWavefrontFile = 'Wavefront file';
+  rsArchimedesMBMultiBodyHullData = 'ArchimedesMB multi body hull data';
+  rsArchimedesSingleBodyHullData = 'Archimedes single body hull data';
 
 type
   TFreeShip = class;                                                               // to be declared later

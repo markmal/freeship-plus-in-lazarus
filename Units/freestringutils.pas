@@ -94,7 +94,7 @@ begin
     {$IF defined(LCLGtk2) or defined(LCLGtk3)}
     fltr += '*.' + makeGTKfilter(extensions[i])+';';
     {$ELSE}
-    fltr += '*.' + extensions[i])+';';
+    fltr += '*.' + extensions[i]+';';
     {$ENDIF}
   end;
   ext := LeftStr(ext, length(ext)-1);

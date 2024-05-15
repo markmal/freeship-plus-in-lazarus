@@ -191,6 +191,8 @@ begin
    if Result='' then
    begin
       N:=Length(UserStrings);
+      if N>9
+         then N:=N;
       for I:=1 to N do if UserStrings[I-1].ID=index then
       begin
          Result:=UserStrings[I-1].Value;

@@ -1658,8 +1658,6 @@ begin
   Viewport.ZoomExtents;
 end;{TFreeLinesplanFrame.MirrorPlanViewExecute}
 
-resourceString ExportDXF_Filter = 'Autocad dxf file';
-
 procedure TFreeLinesplanFrame.ExportDXFExecute(Sender: TObject);
 var
   SaveDialog: TSaveDialog;

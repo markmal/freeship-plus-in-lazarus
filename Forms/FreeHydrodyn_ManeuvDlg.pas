@@ -216,7 +216,7 @@ var FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv;
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
      Printers,FreeProcess;
 {$R *.lfm}
 
@@ -645,7 +645,7 @@ NewSearch:    FileToFind := FileSearch('OUT.', GetCurrentDir);
         if FileExists('OUT.') then  DeleteFile('OUT.');  
    end;    
    end else begin
-     MessageDlg(Userstring(1047),mtError,[mbOk],0); 
+     MessageDlg(rs_One_or_more_parameters_are_outside_valid_domain_ {UserString[1047]},mtError,[mbOk],0); 
      ResultsMemo.Lines.Add('');
      ResultsMemo.Lines.Add(Space(16)+'Np       = '+FloatToStrF(dat17,ffFixed,6,0));
      ResultsMemo.Lines.Add(Space(16)+'Lpp      = '+FloatToStrF(dat2,ffFixed,6,2)+' m');
@@ -657,7 +657,7 @@ NewSearch:    FileToFind := FileSearch('OUT.', GetCurrentDir);
      ResultsMemo.Lines.Add(Space(16)+'AB       = '+FloatToStrF(dat16,ffFixed,6,3));
      ResultsMemo.Lines.Add(Space(16)+'Fr       = '+FloatToStrF((dat9*0.51444/sqrt(9.81*dat2)),ffFixed,6,3));
      ResultsMemo.Lines.Add('');
-     ResultsMemo.Lines.Add(Space(16)+Userstring(1047));
+     ResultsMemo.Lines.Add(Space(16)+rs_One_or_more_parameters_are_outside_valid_domain_ {UserString[1047]});
      ResultsMemo.Lines.Add('');
      for  i:=1260 to 1271 do ResultsMemo.Lines.Add(Space(16)+Userstring(i));
        end;
@@ -670,7 +670,7 @@ begin
    FFreeship:=Freeship;
    Units:=FFreeship.ProjectSettings.ProjectUnits;
       if Units=fuImperial then begin
-        MessageDlg(Userstring(754),mtInformation,[mbOk],0);
+        MessageDlg(rs_This_is_version_of_program_work_with_metric_system_units_only {UserString[754]},mtInformation,[mbOk],0);
         exit
       end;	     
    Checkbox2.Enabled:=FFreeship.Surface.NumberOfControlFaces>1;

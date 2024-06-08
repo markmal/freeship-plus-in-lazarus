@@ -59,6 +59,7 @@ uses
   ImgList,
   Math,
   CheckLst, Spin,
+  LCLTranslator,
   FreeStringUtils;
 
 type
@@ -219,7 +220,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeStringsUnit;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -461,7 +462,7 @@ begin
     ListBox.ItemIndex := 0;
   ActivePatch := ActivePatch;
 
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   ShowModal;
   Result := ModalResult = mrOk;
 end;{TFreeExpanedplatesDialog.Execute}
@@ -907,7 +908,7 @@ begin
   else
     Printer.Orientation := poPortrait;
   if PrintDialog.Execute then
-    Viewport.Print(self.FFreeShip.ProjectSettings.ProjectUnits, True, Userstring(214));
+    Viewport.Print(self.FFreeShip.ProjectSettings.ProjectUnits, True, rs_FREE_ship_plate_developments {UserString[214]});
 end;{TFreeExpanedplatesDialog.PrintExecute}
 
 procedure TFreeExpanedplatesDialog.ShowDimensionsExecute(Sender: TObject);

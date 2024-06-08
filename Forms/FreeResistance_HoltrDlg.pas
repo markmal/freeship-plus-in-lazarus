@@ -474,7 +474,7 @@ var
 
 implementation
 
-uses FreeLogger, FreeLanguageSupport,
+uses FreeLogger, FreeStringsUnit,
      FreeProcess;
 
 {$IFnDEF FPC}
@@ -613,30 +613,57 @@ begin
   tbPrint.Enabled := False;
   // Вывод помощи для метода Холтроп
   ResultsMemo2.Text := '';
-  //      ResultsMemo2.Lines.Add(Userstring(332));
-  ResultsMemo2.Lines.Add(Userstring(333));
-  ResultsMemo2.Lines.Add(Userstring(334));
+  //      ResultsMemo2.Lines.Add(rs_______________________________________________________________________________________________ {UserString[332]});
+  ResultsMemo2.Lines.Add(rs_1_Viscosity_by_default_is_for_sea_water_with_density_1025_kg_m_3_and_temperature_15__C_ {UserString[333]});
+  ResultsMemo2.Lines.Add(rs_You_can_change_the_temperature_and_the_density__Project__Project_Settings__Hydrostatics {UserString[334]});
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(Userstring(335));
+  ResultsMemo2.Lines.Add(rs_2_The_trim_is_calculated_by_formulaes__dT_Tf_Ta__Tf_Ttdt_2__Ta_T_dt_2 {UserString[335]});
   ResultsMemo2.Lines.Add('');
-  for i := 336 to 344 do
-    ResultsMemo2.Lines.Add(Userstring(i));
+  //for i := 336 to 344 do
+  //  ResultsMemo2.Lines.Add(Userstring(i));
+  ResultsMemo2.Lines.Add(rs_3_Coefficient_influence_the_after_body_form_is_from_table_);
+  ResultsMemo2.Lines.Add(rs_t_______________________________________________________t_________________________t);
+  ResultsMemo2.Lines.Add(rs_l________________After_body_form________________________l__________Cstrn__________l);
+  ResultsMemo2.Lines.Add(rs_t_______________________________________________________t_________________________t);
+  ResultsMemo2.Lines.Add(rs_l______________Normal_sections__________________________l____________0____________l);
+  ResultsMemo2.Lines.Add(rs_l______________V_shaped_sections________________________l____________10___________l);
+  ResultsMemo2.Lines.Add(rs_l______________U_shaped_sections___with_Hogner_stern____l__________5____10________l);
+  ResultsMemo2.Lines.Add(rs_l______________Barge_type_form__________________________l_________20__or__25______l);
+  ResultsMemo2.Lines.Add(rs_t_______________________________________________________t_________________________t);
+
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(Userstring(345));
+  ResultsMemo2.Lines.Add(rs_4_If_wetted_surface_area_S_is_set_as_0__then_S_to_calculate_by_formulae_from_method_of_Holtrop_ {UserString[345]});
   ResultsMemo2.Lines.Add('');
-  for i := 346 to 349 do
+  {for i := 346 to 349 do
     ResultsMemo2.Lines.Add(Userstring(i));
   ResultsMemo2.Lines.Add('');
   for i := 350 to 352 do
-    ResultsMemo2.Lines.Add(Userstring(i));
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_5_The_wetted_area_of_transom_you_can_determine_from_sectional_areas_curve_on_Profile_View_or);
+  ResultsMemo2.Lines.Add(rs_from__Design_hydrostatics__output_);
+  ResultsMemo2.Lines.Add(rs_The_wetted_area_of_bulbous_on_F_P__is_analogous_determination_);
+  ResultsMemo2.Lines.Add(rs_The_CoG_wetted_bulb_area_h_b_to_determine_on__Bodyplan_view__visually_);
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(Userstring(353));
-  ResultsMemo2.Lines.Add(Userstring(354));
+  ResultsMemo2.Lines.Add(rs_6_Propeller_number_Np_is_set_for_power_prediction_and_for_interaction_propeller_and_hull_);
+  ResultsMemo2.Lines.Add(rs_For_Np_0_the_wake_fraction_Wt_and_thrust_deduction_t_is_calculated_as_for_highspeed_sailing);
+  ResultsMemo2.Lines.Add(rs_ships_);
+
+
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(Userstring(355));
+  ResultsMemo2.Lines.Add(rs_7_Propeller_diameter_D_with_one_screw_is____0_8oTa__and_for_twin_screw____0_7oTa_ {UserString[353]});
+  ResultsMemo2.Lines.Add(rs_Expanded_blade_area_ratio_Ae_Ao_is_calculate_from_condition__when_cavitation_be_absent_ {UserString[354]});
   ResultsMemo2.Lines.Add('');
-  for i := 1294 to 1299 do
-    ResultsMemo2.Lines.Add(Userstring(i));
+  ResultsMemo2.Lines.Add(rs_8_Absolutely_rougness_of_hull_less_150_mkm_one_can_don_t_set_ {UserString[355]});
+  ResultsMemo2.Lines.Add('');
+  {for i := 1294 to 1299 do
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_9_____More_information_about_statistical_Holtrop_method_are_here_);
+  ResultsMemo2.Lines.Add(rs_9_1___Holtrop_J___Mennen_G_G_J____An__Approximate__Power__Prediction__Method____International);
+  ResultsMemo2.Lines.Add(rs_Shipbuilding_Progress__Vol_29__No_335__July__1982_);
+  ResultsMemo2.Lines.Add(rs_9_2___Holtrop_J____A_Statistical_Reanalysis_of_Resistance_and_Propulsion_Data___International);
+  ResultsMemo2.Lines.Add(rs_Shipbuilding_Progress__Vol_31__No_363__Nov___1984_);
+  ResultsMemo2.Lines.Add('');
+
   ResultsMemo2.Lines.Add(' ');
   ResultsMemo2.Lines.Add('Copyright (c) 2007, Timoshenko V.F.');
   ResultsMemo2.Visible := True;
@@ -647,66 +674,66 @@ begin
     ResultsMemo.Text := '';
     for i := 1 to 4 do
       ResultsMemo.Lines.Add('');
-    FFreeship.CreateOutputHeader(Space(10) + Userstring(303) + '.', ResultsMemo.Lines);
+    FFreeship.CreateOutputHeader(Space(10) + rs_Resistance_prediction_for_sea_vessels__according_to_Associate_Prof__Timoshenko {UserString[303]} + '.', ResultsMemo.Lines);
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(
       '          ----------------------------------------------------------------------------------');
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(10) + Userstring(250));
+    ResultsMemo.Lines.Add(Space(10) + rs_Input_variables {UserString[250]});
     ResultsMemo.Lines.Add(
       '          ----------------------------------------------------------------------------------');
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add('');
 
-    ResultsMemo.Lines.Add(Space(10) + Userstring(251));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(252), 40) +
-      ' : ' + FloatToStrF(Vs[1], ffFixed, 6, 2) + ' ' + Userstring(326));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(253), 40) +
-      ' : ' + FloatToStrF(Vs[10], ffFixed, 6, 2) + ' ' + Userstring(326));
-    //      ResultsMemo.Lines.Add(Space(16)+Makelength(Userstring(254),40)+' : '+FloatToStrF(StepSpeed,ffFixed,6,2)+' '+Userstring(326));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(50), 40) +
+    ResultsMemo.Lines.Add(Space(10) + rs_General {UserString[251]});
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Start_speed {UserString[252]}, 40) +
+      ' : ' + FloatToStrF(Vs[1], ffFixed, 6, 2) + ' ' + rs_kn {UserString[326]});
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_End_speed {UserString[253]}, 40) +
+      ' : ' + FloatToStrF(Vs[10], ffFixed, 6, 2) + ' ' + rs_kn {UserString[326]});
+    //      ResultsMemo.Lines.Add(Space(16)+Makelength(rs_Speed_step {UserString[254]},40)+' : '+FloatToStrF(StepSpeed,ffFixed,6,2)+' '+rs_kn {UserString[326]});
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Water_density {UserString[50]}, 40) +
       ' : ' + FloatToStrF(Density, ffFixed, 8, 3) + #32 + DensityStr(Units));
     if Units = fuImperial then
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(255), 40) + ' : ' +
-        FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + Userstring(471))
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Water_viscosity {UserString[255]}, 40) + ' : ' +
+        FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + rs_ft_2_s {UserString[471]})
     else
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(255), 40) + ' : ' +
-        FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + Userstring(472));
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Water_viscosity {UserString[255]}, 40) + ' : ' +
+        FloatToStrF(Viscosity, ffFixed, 8, 4) + '*10^(-6) ' + rs_m_2_s {UserString[472]});
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(10) + Userstring(256));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(17), 40) +
+    ResultsMemo.Lines.Add(Space(10) + rs_Hull {UserString[256]});
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Length_on_waterline {UserString[17]}, 40) +
       ' : ' + FloatToStrF(Lwl, ffFixed, 6, 3) + #32 + LengthStr(Units));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(18), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Beam_on_waterline {UserString[18]}, 40) +
       ' : ' + FloatToStrF(Bwl, ffFixed, 6, 3) + #32 + LengthStr(Units));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(304), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Draft_on_midship {UserString[304]}, 40) +
       ' : ' + FloatToStrF(Tc, ffFixed, 6, 3) + #32 + LengthStr(Units));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(305), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Draft_on_F_P_ {UserString[305]}, 40) +
       ' : ' + FloatToStrF(Tc + Draft / 2., ffFixed, 6, 3) + #32 + LengthStr(Units));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(306), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Draft_on_F_A_ {UserString[306]}, 40) +
       ' : ' + FloatToStrF(Tc - Draft / 2., ffFixed, 6, 3) + #32 + LengthStr(Units));
 
     Stop := False;
     if (abs(Draft) / Lwl > 0.05) or (abs(Draft) > DraftTotal / 2) then
     begin
-      ResultsMemo.Lines.Add(Space(10) + Userstring(307));
+      ResultsMemo.Lines.Add(Space(10) + rs_Warning____Very_big_trim__Tf_Ta_ {UserString[307]});
       Stop := True;
       //Exit;
     end;
     if EstimateBox.Checked then
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(10), 40) + ' : ' +
-        FloatToStrF(WettedSurface, ffFixed, 6, 2) + #32 + AreaStr(Units) + ' (' + Userstring(266) + ')')
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Wetted_surface_area {UserString[10]}, 40) + ' : ' +
+        FloatToStrF(WettedSurface, ffFixed, 6, 2) + #32 + AreaStr(Units) + ' (' + rs_Estimated {UserString[266]} + ')')
     else
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(10), 40) + ' : ' +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Wetted_surface_area {UserString[10]}, 40) + ' : ' +
         FloatToStrF(WettedSurface, ffFixed, 6, 2) + #32 + AreaStr(Units));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(19), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Waterplane_area {UserString[19]}, 40) +
       ' : ' + FloatToStrF(WlArea, ffFixed, 6, 2) + #32 + AreaStr(Units));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(4), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Displacement {UserString[4]}, 40) +
       ' : ' + FloatToStrF(Displacement, ffFixed, 6, 3) + #32 + VolStr(Units));
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(11), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Longitudinal_center_of_buoyancy {UserString[11]}, 40) +
       ' : ' + FloatToStrF(LCB, ffFixed, 6, 3) + ' %');
-    ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(8), 40) +
+    ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Prismatic_coefficient {UserString[8]}, 40) +
       ' : ' + FloatToStrF(Cp, ffFixed, 6, 4));
     ResultsMemo.Lines.Add('');
     iii := 5;
@@ -714,33 +741,33 @@ begin
     begin
       for i := 1 to 3 do
         ResultsMemo.Lines.Add('');
-      ResultsMemo.Lines.Add(Space(10) + Userstring(322));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(314), 40) +
+      ResultsMemo.Lines.Add(Space(10) + rs_Appendages_areas_ {UserString[322]});
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Shaft_brackets_area {UserString[314]}, 40) +
         ' : ' + FloatToStrF(K1, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(316), 40) +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Strut_bossing_area {UserString[316]}, 40) +
         ' : ' + FloatToStrF(K2, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(317), 40) +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Hull_bossing_area {UserString[317]}, 40) +
         ' : ' + FloatToStrF(K4, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(321), 40) +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Stabiliser_fins_area {UserString[321]}, 40) +
         ' : ' + FloatToStrF(K3, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(311), 40) +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Dome_area {UserString[311]}, 40) +
         ' : ' + FloatToStrF(K5, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(10) + Makelength(Userstring(318), 40));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(319), 40) +
+      ResultsMemo.Lines.Add(Space(10) + Makelength(rs_Exposed_shafts_area_ {UserString[318]}, 40));
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Angle_vs_buttoks_about_10__ {UserString[319]}, 40) +
         ' : ' + FloatToStrF(K6, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(320), 40) +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Angle_vs_buttoks_about_20__ {UserString[320]}, 40) +
         ' : ' + FloatToStrF(K7, ffFixed, 6, 3) + #32 + AreaStr(Units));
       ResultsMemo.Lines.Add('');
-      ResultsMemo.Lines.Add(Space(10) + Userstring(308));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(315), 40) +
+      ResultsMemo.Lines.Add(Space(10) + rs_Areas_of_keels {UserString[308]});
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Skeg {UserString[315]}, 40) +
         ' : ' + FloatToStrF(KeelChordLength, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(310), 40) +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Bilge_keels {UserString[310]}, 40) +
         ' : ' + FloatToStrF(KeelArea, ffFixed, 6, 3) + #32 + AreaStr(Units));
       ResultsMemo.Lines.Add('');
-      ResultsMemo.Lines.Add(Space(10) + Userstring(309));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(312), 40) +
+      ResultsMemo.Lines.Add(Space(10) + rs_Areas_of_rudders {UserString[309]});
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_Rudder_behind_skeg_stern {UserString[312]}, 40) +
         ' : ' + FloatToStrF(RudderChordLength, ffFixed, 6, 3) + #32 + AreaStr(Units));
-      ResultsMemo.Lines.Add(Space(16) + Makelength(Userstring(313), 40) +
+      ResultsMemo.Lines.Add(Space(16) + Makelength(rs_2_screw_rudder_slender_thick {UserString[313]}, 40) +
         ' : ' + FloatToStrF(RudderArea, ffFixed, 6, 3) + #32 + AreaStr(Units));
       for i := 1 to 4 do
         ResultsMemo.Lines.Add('');
@@ -781,7 +808,7 @@ begin
     end;
     for i := 1 to iii do
       ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(10) + Userstring(263));
+    ResultsMemo.Lines.Add(Space(10) + rs_Calculated_variables {UserString[263]});
     ResultsMemo.Lines.Add(Space(10) +
       '----------------------------------------------------------------------------------');
     ResultsMemo.Lines.Add('');
@@ -791,7 +818,7 @@ begin
       S := Lwl * (2 * Tc + Bwl) * sqrt(Cm) *
         (0.453 + 0.442 * Cp * Cm - 0.2862 * Cm - 0.003467 * Bwl / Tc + 0.3696 * Cwp) + 2.38 * KBulb / Cp * Cm;
       ResultsMemo.Lines.Add(Space(10) + 'S             = ' + FloatToStrF(
-        S, ffFixed, 6, 2) + #32 + AreaStr(Units) + ' (' + Userstring(266) + ' ' + Userstring(630) + ')');
+        S, ffFixed, 6, 2) + #32 + AreaStr(Units) + ' (' + rs_Estimated {UserString[266]} + ' ' + rs_by_a_method_Holtrop_1988 {UserString[630]} + ')');
     end;
 
     //      MessageDlg('Am='+FloatToStrF(Am,ffFixed,6,2),mtError,[mbOk],0);
@@ -818,17 +845,17 @@ begin
     ResultsMemo.Lines.Add(Space(10) + 'Np            = ' + FloatToStrF(Np, ffFixed, 6, 0));
     if iflag1 = 1 then
       ResultsMemo.Lines.Add(Space(10) + 'ie            = ' + FloatToStrF(
-        Ie_, ffFixed, 6, 3) + ' ' + Userstring(455));
+        Ie_, ffFixed, 6, 3) + ' ' + rs_degr {UserString[455]});
     ResultsMemo.Lines.Add('');
 
     if (Cp > 0.85) or (Cp < 0.55) then
-      ResultsMemo.Lines.Add(Space(10) + 'Cp      ' + Userstring(476) + ' 0,55 ... 0,85');
+      ResultsMemo.Lines.Add(Space(10) + 'Cp      ' + rs_is_outside_valid_domain {UserString[476]} + ' 0,55 ... 0,85');
     if (Lwl / Bwl > 14.9) or (Lwl / Bwl < 3.9) then
-      ResultsMemo.Lines.Add(Space(10) + 'Lwl/Bwl ' + Userstring(476) + ' 3,90 ... 14,9');
+      ResultsMemo.Lines.Add(Space(10) + 'Lwl/Bwl ' + rs_is_outside_valid_domain {UserString[476]} + ' 3,90 ... 14,9');
     if (Bwl / Tc > 4) or (Bwl / Tc < 2.1) then
-      ResultsMemo.Lines.Add(Space(10) + 'Bwl/T   ' + Userstring(476) + ' 2,10 ... 4,0');
+      ResultsMemo.Lines.Add(Space(10) + 'Bwl/T   ' + rs_is_outside_valid_domain {UserString[476]} + ' 2,10 ... 4,0');
     if (LCB > 6) or (LCB < -6) then
-      ResultsMemo.Lines.Add(Space(10) + 'LCB     ' + Userstring(476) + ' -6 % ... 6 %');
+      ResultsMemo.Lines.Add(Space(10) + 'LCB     ' + rs_is_outside_valid_domain {UserString[476]} + ' -6 % ... 6 %');
     if (LCB > 6.1) or (Cp > 0.9) then
       Exit;
     Lr := Lwl * (1 - Cp + 0.06 * Cp * lcb / (4 * Cp - 1));
@@ -840,7 +867,7 @@ begin
     end;
     if Lwl / Bwl <= 2 then
     begin
-      MessageDlg(Userstring(1423), mtError, [mbOK], 0);
+      MessageDlg(rs_Calculation_is_NOT_possible__because_L_B_2____ {UserString[1423]}, mtError, [mbOK], 0);
       // Так как L/B<2, расчет невозможен!!!
       exit;
     end;
@@ -860,23 +887,23 @@ begin
     // Основной расчет по Холтропу
     for i := 1 to 10 do
       ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(8) + Userstring(299));
+    ResultsMemo.Lines.Add(Space(8) + rs_Final_calculations_of_resistance_by_a_method_Holtrop_1988 {UserString[299]});
     ResultsMemo.Lines.Add(
       Space(10) + '+-------+-------+-------+--------+--------+--------+---------+--------+---------+');
-    ResultsMemo.Lines.Add(Space(10) + Userstring(497));
+    ResultsMemo.Lines.Add(Space(10) + rs_l_Speed_l_Speed_l__Fr___l___R_f__l___R_r__l___R_T__l__Power__l__R_T_e_l_Power_e_l {UserString[497]});
     if flag = 1 then
     begin
-      ResultsMemo.Lines.Add(Space(10) + Userstring(498));
-      Chart.LeftAxis.Title.Caption := Userstring(272) + ', ' + Userstring(324);
-      //+';   '+Userstring(300)+', '+Userstring(325)
-      Chart.AxisList[2].Title.Caption := Userstring(300) + ', ' + Userstring(325);
+      ResultsMemo.Lines.Add(Space(10) + rs_l___kn__l__m_s__l_______l___kN___l___kN___l____kN__l____kW___l____kN__l____kW___l {UserString[498]});
+      Chart.LeftAxis.Title.Caption := rs_Resistance {UserString[272]} + ', ' + rs_kN {UserString[324]};
+      //+';   '+rs_Power {UserString[300]}+', '+rs_kW {UserString[325]}
+      Chart.AxisList[2].Title.Caption := rs_Power {UserString[300]} + ', ' + rs_kW {UserString[325]};
     end
     else
     begin
-      ResultsMemo.Lines.Add(Space(10) + Userstring(499));
-      Chart.LeftAxis.Title.Caption := Userstring(272) + ', ' + Userstring(330);
-      //+';   '+Userstring(300)+', '+Userstring(331)
-      Chart.AxisList[2].Title.Caption := Userstring(300) + ', ' + Userstring(331);
+      ResultsMemo.Lines.Add(Space(10) + rs_l___kn__l__m_s__l_______l____N___l____N___l____N___l____W____l____N___l____W____l {UserString[499]});
+      Chart.LeftAxis.Title.Caption := rs_Resistance {UserString[272]} + ', ' + rs_N {UserString[330]};
+      //+';   '+rs_Power {UserString[300]}+', '+rs_W {UserString[331]}
+      Chart.AxisList[2].Title.Caption := rs_Power {UserString[300]} + ', ' + rs_W {UserString[331]};
     end;
     ResultsMemo.Lines.Add(
       Space(10) + '+-------+-------+-------+--------+--------+--------+---------+--------+---------+');
@@ -914,7 +941,7 @@ begin
         else
           FroudeNumber := ConvertedSpeed / SQRT(9.81 * Lwl);
         if (FroudeNumber > 1.0) or (FroudeNumber < 0.05) then
-          ResultsMemo.Lines.Add(Space(10) + 'Fr ' + Userstring(476) + ' 0,05 ... 1,0');
+          ResultsMemo.Lines.Add(Space(10) + 'Fr ' + rs_is_outside_valid_domain {UserString[476]} + ' 0,05 ... 1,0');
         CalculateResistanceHoltr(ConvertedSpeed, LCB, Cp, Rf, Rr, w, t0, nr);
 
         Series1.AddXY(Speed, (Rf + Rr) / flag, '', clTeeColor);
@@ -960,7 +987,7 @@ begin
 
         if ((FroudeNumber >= 0.05) and (FroudeNumber <= 1)) then
         begin
-          Chart.Title.Text.Text := Userstring(265) + ' ' + Userstring(630);
+          Chart.Title.Text.Text := rs_Resistance_and_power_are_calculated {UserString[265]} + ' ' + rs_by_a_method_Holtrop_1988 {UserString[630]};
           //               inc(Index);
           //               CPopt[index]:=OptimumCPH(ConvertedSpeed);
           //               LCBopt[index]:=OptimumLCBH(ConvertedSpeed);
@@ -1026,7 +1053,7 @@ begin
         ResultsMemo.Lines.Add('Ae/Ao   =  ' + FloatToStrF(Ae0, ffFixed, 6, 4));
       if (Ae0 > 1.1) and (Np <= 2) then
       begin
-        ResultsMemo.Lines.Add(Userstring(971));
+        ResultsMemo.Lines.Add(rs_ATTENTION____Increase_number_of_propellers_or_decrease_estimate_speed_ {UserString[971]});
         ResultsMemo.Visible := True;
         exit;
       end;
@@ -1084,22 +1111,22 @@ begin
       //      ResultsMemo.Lines.Add(Space(10)+'Ta       =  '+FloatToStrF(Ta,ffFixed,6,3)+' '+LengthStr(Units));
       if flag = 1 then
         ResultsMemo.Lines.Add(Space(10) + 'Tb       =  ' + FloatToStrF(Tb, ffFixed, 6, 3) +
-          ' ' + Userstring(324))
+          ' ' + rs_kN {UserString[324]})
       else
         ResultsMemo.Lines.Add(Space(10) + 'Tb       =  ' + FloatToStrF(Tb / flag, ffFixed, 6, 0) +
-          ' ' + Userstring(330));
+          ' ' + rs_N {UserString[330]});
       ResultsMemo.Lines.Add(Space(10) + 'Kdt      =  ' + FloatToStrF(Kdt, ffFixed, 6, 3));
       ResultsMemo.Lines.Add(Space(10) + 'Dp       =  ' + FloatToStrF(
         Dp_, ffFixed, 6, 3) + ' ' + LengthStr(Units));
       ResultsMemo.Lines.Add(Space(10) + 'Z        =  ' + FloatToStrF(Z, ffFixed, 6, 0));
       ResultsMemo.Lines.Add(Space(10) + 'Ae/Ao    =  ' + FloatToStrF(
-        Ae0, ffFixed, 6, 3) + ' ' + Userstring(972));
+        Ae0, ffFixed, 6, 3) + ' ' + rs___calculated {UserString[972]});
       P_D0 := P_D;
       Ae0 := Ae_Ao;
       ResultsMemo.Lines.Add(Space(10) + 'Ae/Ao    =  ' + FloatToStrF(
-        Ae0, ffFixed, 6, 3) + ' ' + Userstring(973));
+        Ae0, ffFixed, 6, 3) + ' ' + rs___for_selection_of_propeller_diagram {UserString[973]});
       ResultsMemo.Lines.Add(Space(10) + 'P/Dp     =  ' + FloatToStrF(
-        P_D0, ffFixed, 6, 3) + ' ' + Userstring(974));
+        P_D0, ffFixed, 6, 3) + ' ' + rs___by_curve_of_propeller_optimal_frequency {UserString[974]});
     end;
     if Np = 1 then
       nr := 0.9922 - 0.05908 * Ae0 + 0.07424 * (Cp - 0.0225 * lcb)
@@ -1108,7 +1135,7 @@ begin
     ResultsMemo.Lines.Add(Space(10) + 'Ke       =  ' + FloatToStrF(Ke, ffFixed, 6, 3));
     if iflag1 = 0 then
       ResultsMemo.Lines.Add(Space(10) + 'ie       =  ' + FloatToStrF(Ie, ffFixed, 6, 3) +
-        ' ' + Userstring(455));
+        ' ' + rs_degr {UserString[455]});
     ResultsMemo.Lines.Add(Space(10) + 'Wt       =  ' + FloatToStrF(w, ffFixed, 6, 4));
     ResultsMemo.Lines.Add(Space(10) + 't        =  ' + FloatToStrF(t0, ffFixed, 6, 4));
     ResultsMemo.Lines.Add(Space(10) + 'EtaR     =  ' + FloatToStrF(nr, ffFixed, 6, 4));
@@ -1121,9 +1148,9 @@ begin
     //         ResultsMemo.Lines.Add(Space(10)+'Cp_opt   =  '+FloatToStrF(CPopt[1],ffFixed,6,3));
     //         ResultsMemo.Lines.Add(Space(10)+'Lcb_opt  =  '+FloatToStrF(LCBopt[1],ffFixed,6,3)+' %');
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(10) + Userstring(1026) + FloatToStrF(
+    ResultsMemo.Lines.Add(Space(10) + rs_NOTE__Coefficients_Wt__t_and_EtaR_were_calculated_by_formulaes_of_method_Holtrop_ {UserString[1026]} + FloatToStrF(
       Nver, ffFixed, 6, 0));
-    //         ResultsMemo.Lines.Add(Space(10)+Userstring(301)+FloatToStrF(Vs[5],ffFixed,3,2)+' '+Userstring(302));
+    //         ResultsMemo.Lines.Add(Space(10)+rs_Note__Coefficients__Wt_t_nr_Cp_opt_Lcb_opt__are_calculated_for_speed_Vs__ {UserString[301]}+FloatToStrF(Vs[5],ffFixed,3,2)+' '+rs_knots {UserString[302]});
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + 'Copyright (c) 2007-2010, Timoshenko V.F.');
@@ -1226,7 +1253,7 @@ begin
             if np = 1 then
               ResultsMemo.Lines.Add(Space(10) + Userstring(1499 + ii - JJ) + str_[II]);
             if (np = 2) and (ii = 50) then
-              ResultsMemo.Lines.Add(Space(10) + Userstring(769) + str_[II])
+              ResultsMemo.Lines.Add(Space(10) + rs_Propeller_Pitch_Diameter_Ratio_P_Dp_____ {UserString[769]} + str_[II])
             else if np = 2 then
               ResultsMemo.Lines.Add(Space(10) + Userstring(1499 + ii - JJ) + str_[II]);
           end;
@@ -1309,7 +1336,7 @@ begin
         for ii := 112 + J3 to 122 + J3 do
           ResultsMemo.Lines.Add(Space(10) + str_[II]);
         if Ke > 1 then
-          ResultsMemo.Lines.Add(Space(10) + Userstring(1536));
+          ResultsMemo.Lines.Add(Space(10) + rs_Design_Margin_Has_Been_Included_in_RT__PE__and_REQ_THR___RT__1_t__ {UserString[1536]});
         ResultsMemo.Lines.Add('');
         ResultsMemo.Lines.Add(
           Space(10) + 'Copyright (c) 1996, M. G. Parsons (PPP v1.8)');
@@ -1827,20 +1854,20 @@ begin
   Units := FFreeship.ProjectSettings.ProjectUnits;
   if Units = fuImperial then
   begin
-    MessageDlg(Userstring(754), mtInformation, [mbOK], 0);
+    MessageDlg(rs_This_is_version_of_program_work_with_metric_system_units_only {UserString[754]}, mtInformation, [mbOK], 0);
     Result := ModalResult = mrOk;
     exit;
   end;
   Chart.Title.Text.Text := ' ';
-  //   Chart.Title.Text.Text:=Userstring(265);
-  //   Chart.LeftAxis.Title.Caption:=Userstring(272)+'*10, '+Userstring(324)+';   '+Userstring(300)+', '+Userstring(325);
-  Chart.BottomAxis.Title.Caption := Userstring(273) + ', ' + Userstring(326);
+  //   Chart.Title.Text.Text:=rs_Resistance_and_power_are_calculated {UserString[265]};
+  //   Chart.LeftAxis.Title.Caption:=rs_Resistance {UserString[272]}+'*10, '+rs_kN {UserString[324]}+';   '+rs_Power {UserString[300]}+', '+rs_kW {UserString[325]};
+  Chart.BottomAxis.Title.Caption := rs_Speed {UserString[273]} + ', ' + rs_kn {UserString[326]};
    {$ifNdef FPC}
   RightAxis := Chart.RightAxis;
    {$else}
   RightAxis := Chart.AxisList.GetAxisByAlign(calRight);
    {$endif}
-  RightAxis.Title.Caption := Userstring(300) + ', ' + Userstring(325);
+  RightAxis.Title.Caption := rs_Power {UserString[300]} + ', ' + rs_kW {UserString[325]};
   Units := FFreeship.ProjectSettings.ProjectUnits;
   Temper := FFreeship.ProjectSettings.ProjectWaterTemper;
   DensityBox.Enabled := False;
@@ -1849,9 +1876,9 @@ begin
   Checkbox2.Checked := AutoExtract;
   if Checkbox2.Checked then
     CheckBox2Click(self);
-  _Label31.Caption := Userstring(457);
-  _Label32.Caption := Userstring(457);
-  _Label33.Caption := Userstring(457);
+  _Label31.Caption := rs_knots {UserString[457]};
+  _Label32.Caption := rs_knots {UserString[457]};
+  _Label33.Caption := rs_knots {UserString[457]};
   Label34.Caption := DensityStr(Units);
   _Label8.Caption := LengthStr(Units);
   _Label9.Caption := LengthStr(Units);
@@ -1868,9 +1895,9 @@ begin
 
   // Skip translation
   if Units = fuMetric then
-    _Label36.Caption := ' ' + Userstring(472)
+    _Label36.Caption := ' ' + rs_m_2_s {UserString[472]}
   else
-    _Label36.Caption := ' ' + Userstring(471);
+    _Label36.Caption := ' ' + rs_ft_2_s {UserString[471]};
   // End Skip translation
   Viscosity := FindWaterViscosity(Temper, Units);
   Calculate;
@@ -2348,9 +2375,9 @@ begin
         if FileExistsUTF8('TMPke.txt') { *Converted from FileExists* } then
           DeleteFileUTF8('TMPke.txt'); { *Converted from DeleteFile* }
         SetCurrentDir(PathFileOld);
-        MessageDlg(Userstring(1138) +
-          #13#10#13#10 + Userstring(1139) + ' SeaMargn.EXE ' + #13#10#13#10 + Userstring(
-          1140) + #13#10#13#10 + Userstring(1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} +
+          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' SeaMargn.EXE ' + #13#10#13#10 + Userstring(
+          1140) + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         Ke := 1;
         exit;
       end;
@@ -2470,9 +2497,9 @@ begin
         if FileExistsUTF8('IN.') { *Converted from FileExists* } then
           DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
         SetCurrentDir(PathFileOld);
-        MessageDlg(Userstring(1138) + #13#10#13#10 + Userstring(1139) +
-          ' PowerPrd.EXE ' + #13#10#13#10 + Userstring(1140) + #13#10#13#10 + Userstring(
-          1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} +
+          ' PowerPrd.EXE ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 + Userstring(
+          1141) + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         exit;
       end;
     end;

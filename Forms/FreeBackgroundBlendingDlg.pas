@@ -55,7 +55,7 @@ uses
   FreeGeometry,
   ComCtrls,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 
 type
 
@@ -99,7 +99,7 @@ begin
   TrackBar1Change(self);
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   Showmodal;
   Result := ModalResult = mrOk;
 end;{TFreeBackgroundBlendDialog.Execute}

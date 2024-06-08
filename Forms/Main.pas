@@ -76,7 +76,7 @@ uses
      FreeSplashWndw,
      Menus,
      Buttons, StdActns, Spin,
-     DefaultTranslator,
+     LCLTranslator,
      FreeSplitSectionDlg,
      FreeLayerVisibilityDlg,
      FreeSelectedDlg
@@ -707,7 +707,7 @@ uses //FreeSplashWndw,
      FreeLinesplanFrm,
      FreeControlPointFrm,
      FreeKeelWizardDlg,
-     FreeLanguageSupport,
+     FreeStringsUnit,
      FreeEmptyModelChooserDlg,
      RibbonToolBarMgr,
      TileDialog,
@@ -1015,9 +1015,9 @@ begin
      end
    else
    begin
-      //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+      //MessageDlg(rs_Unable_to_open_file_ {UserString[106]}+' '+FFileName,mtError,[mbOk],0);
       FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
-      ShowTranslatedValues(FreeEmptyModelChooserDialog);
+      //ShowTranslatedValues(FreeEmptyModelChooserDialog);
       if FreeEmptyModelChooserDialog.Execute(FFileName)
       then
         begin
@@ -1302,7 +1302,7 @@ begin
          HullformWindow.OnDestroy:=HullformWindowOnDeactivate;
 
          HullformWindow.Viewport.ViewType:=TFreeViewType(I);
-         ShowTranslatedValues(HullformWindow);
+         //ShowTranslatedValues(HullformWindow);
 
          HullformWindow.SetCaption;
          HullformWindow.SetBounds(I * 40,I * 30,
@@ -1319,8 +1319,8 @@ end;{TMainForm.FOpenHullWindows}
 procedure TMainForm.SetCaption;
 begin
    // Skip translation
-   if FreeShip.FileChanged then Caption:='Free!Ship  : '+FreeShip.Filename+' ('+Userstring(280)+')'
-                           else Caption:='Free!Ship  : '+FreeShip.Filename+' ('+Userstring(281)+')';
+   if FreeShip.FileChanged then Caption:='Free!Ship  : '+FreeShip.Filename+' ('+rs_modified {UserString[280]}+')'
+                           else Caption:='Free!Ship  : '+FreeShip.Filename+' ('+rs_not_modified {UserString[281]}+')';
    // End Skip translation
 end;{TMainForm.SetCaption}
 
@@ -1549,10 +1549,10 @@ begin
    // Skip translation
    if (Freeship.Undoposition-1>=0) and (Freeship.Undoposition-1<Freeship.UndoCount) then
    begin
-      Undo.Caption:=Userstring(290)+#32+Freeship.UndoObject[Freeship.Undoposition-1].Undotext;
+      Undo.Caption:=rs_Undo {UserString[290]}+#32+Freeship.UndoObject[Freeship.Undoposition-1].Undotext;
    end else
    begin
-      Undo.Caption:=Userstring(290);
+      Undo.Caption:=rs_Undo {UserString[290]};
    end;
    Undo.Enabled:=(FreeShip.UndoCount>0) and (Freeship.UndoPosition>0);
    //if Undo.Enabled then Undo.Caption:='Undo '+Freeship.UndoObject[Freeship.Undoposition-1].Undotext
@@ -1876,7 +1876,7 @@ begin
    // Connect viewport to freeship component
    HullformWindow.FreeShip:=FreeShip;
    HullformWindow.Viewport.ViewType:=fvPerspective;
-   ShowTranslatedValues(HullformWindow);
+   //ShowTranslatedValues(HullformWindow);
    HullformWindow.SetCaption;
    UpdateMenu;
 end;{TMainForm.NewWindowExecute}
@@ -2042,7 +2042,7 @@ begin
 
    if Freeship.FileChanged then
    begin
-      Answer:=MessageDlg(Userstring(103)+EOL+Userstring(104),mtConfirmation,[mbYes,mbNo,mbCancel],0);
+      Answer:=MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]}+EOL+rs_Do_you_want_to_save_it_first_ {UserString[104]},mtConfirmation,[mbYes,mbNo,mbCancel],0);
       if Answer=mrCancel then exit;
       if Answer=mrYes then
       begin
@@ -2061,9 +2061,9 @@ begin
       end
    else
       begin
-         //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+         //MessageDlg(rs_Unable_to_open_file_ {UserString[106]}+' '+FFileName,mtError,[mbOk],0);
          FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
-         ShowTranslatedValues(FreeEmptyModelChooserDialog);
+         //ShowTranslatedValues(FreeEmptyModelChooserDialog);
          if FreeEmptyModelChooserDialog.Execute(FileName)
          then
            begin
@@ -2120,7 +2120,7 @@ begin
     end
   else
     begin
-       //MessageDlg(Userstring(106)+' '+FFileName,mtError,[mbOk],0);
+       //MessageDlg(rs_Unable_to_open_file_ {UserString[106]}+' '+FFileName,mtError,[mbOk],0);
        FreeEmptyModelChooserDialog:=TFreeEmptyModelChooserDialog.Create(Self);
        if FreeEmptyModelChooserDialog.Execute(FileName)
        then
@@ -2364,7 +2364,7 @@ var Answer:word;
 begin
    if Freeship.FileChanged then
    begin
-      //Answer:=MessageDlg(Userstring(103)+EOL+Userstring(282)+'?',mtWarning,[mbYes,mbNo],0);
+      //Answer:=MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]}+EOL+rs_Are_you_sure_you_want_to_quit {UserString[282]}+'?',mtWarning,[mbYes,mbNo],0);
    Answer:=MessageDlg(rsExitConfirmation, mtWarning, [mbNo, mbYes],0,mbNo);
    CanClose:=Answer=mrYes;
    end;
@@ -2410,20 +2410,20 @@ var pathFile,FileToFind : string;
     L                  : boolean;
     //label NewCatalogSearch;
 begin
-{
+(*
   ii:=1;
-  if Userstring(279)='Версия'  then II:=10;
-  if Userstring(279)='Версія'  then II:=20;
-  if Userstring(279)='Versie'  then II:=30;
-  if Userstring(279)='Versjon' then II:=40;
-  if Userstring(279)='Versio'  then II:=50;
-  if Userstring(279)='Phien ban' then II:=70;
-  if Userstring(279)='Versiуn' then II:=62;
-  if Userstring(279)='Version' then begin
-    if Userstring(273)='Speed'     then II:=60;
-    if Userstring(273)='Vitesse'   then II:=61;
-    if Userstring(273)='Velocidad' then II:=62;
-    if Userstring(273)='Geschwindigkeit' then II:=63;
+  if rs_Version {UserString[279]}='Версия'  then II:=10;
+  if rs_Version {UserString[279]}='Версія'  then II:=20;
+  if rs_Version {UserString[279]}='Versie'  then II:=30;
+  if rs_Version {UserString[279]}='Versjon' then II:=40;
+  if rs_Version {UserString[279]}='Versio'  then II:=50;
+  if rs_Version {UserString[279]}='Phien ban' then II:=70;
+  if rs_Version {UserString[279]}='Versiуn' then II:=62;
+  if rs_Version {UserString[279]}='Version' then begin
+    if rs_Speed {UserString[273]}='Speed'     then II:=60;
+    if rs_Speed {UserString[273]}='Vitesse'   then II:=61;
+    if rs_Speed {UserString[273]}='Velocidad' then II:=62;
+    if rs_Speed {UserString[273]}='Geschwindigkeit' then II:=63;
   end;
   FInitDirectory:=Freeship.Preferences.ManualsDirectory;
   PathFile:=GetCurrentDirUTF8;
@@ -2443,7 +2443,7 @@ begin
     else command:='Manuals/Manual.pdf';
   end;
   FileToFind := FileSearchUTF8(command,FInitDirectory);
-  }
+*)
   FLang := Freeship.Preferences.Language;
   FManDirectory := Freeship.Preferences.ManualsDirectory;
   man := FLang+'.pdf';
@@ -2568,8 +2568,8 @@ procedure TMainForm.FreeShipUpdateUndoData(Sender: TObject);
 var Memory : Integer;
 begin
    Memory:=Trunc(Freeship.UndoMemory/1024);
-   if Memory<1024 then LabelUndoMemory.Caption:=Userstring(283)+' : '+IntToStr(Memory)+' Kb.'
-                  else LabelUndoMemory.Caption:=Userstring(283)+' : '+FloatToDec(Memory/1024,3)+' Mb.';
+   if Memory<1024 then LabelUndoMemory.Caption:=rs_Undo_memory {UserString[283]}+' : '+IntToStr(Memory)+' Kb.'
+                  else LabelUndoMemory.Caption:=rs_Undo_memory {UserString[283]}+' : '+FloatToDec(Memory/1024,3)+' Mb.';
    Undo.Enabled:=FreeShip.UndoCount>0;
    SetCaption;
    UpdateMenu;
@@ -2671,7 +2671,7 @@ var I          : Integer;
 begin
    if not Freeship.ProjectSettings.MainParticularsHasBeenset then
    begin
-      MessageDlg(Userstring(96),mtWarning,[mbOk],0);
+      MessageDlg(rs_You_have_to_set_the_mainparticulars_first_ {UserString[96]},mtWarning,[mbOk],0);
       exit;
    end;
    AlreadyOpen:=False;
@@ -2684,8 +2684,8 @@ begin
    if not AlreadyOpen then
    begin
       Form:=TFreeLinesplanForm.Create(self);
-      ShowTranslatedValues(Form.LinesplanFrame);
-      ShowTranslatedValues(Form);
+      //ShowTranslatedValues(Form.LinesplanFrame);
+      //ShowTranslatedValues(Form);
       Form.LinesplanFrame.FreeShip:=FreeShip;
       Form.LinesplanFrame.Viewport.ZoomExtents;
    end;
@@ -2969,7 +2969,7 @@ end;{TMainForm.ResistanceFungLeibExecute}
 procedure TMainForm.FreeShipChangeCursorIncrement(Sender: TObject);
 begin
   if (csdestroying in componentstate) then exit;
-  LabelDistance.Caption:=Userstring(284)+': '+FloatToDec(Freeship.Visibility.CursorIncrement,7);
+  LabelDistance.Caption:=rs_Incr__distance {UserString[284]}+': '+FloatToDec(Freeship.Visibility.CursorIncrement,7);
 end;{TMainForm.FreeShipChangeCursorIncrement}
 
 procedure TMainForm.StatusPanel3Click(Sender: TObject);
@@ -2979,7 +2979,7 @@ var Str  : Ansistring;
 begin
    if Freeship.Surface.NumberOfControlPoints=0 then exit;
    Str:=FloatToDec(Freeship.Visibility.CursorIncrement,5);
-   if InputQuery('',Userstring(285)+':',Str) then
+   if InputQuery('',rs_New_increment_distance {UserString[285]}+':',Str) then
    begin
       Val(Str,Value,I);
       if I=0 then Freeship.Visibility.CursorIncrement:=Value;
@@ -3040,10 +3040,10 @@ end;{TMainForm.ExportDXF2DPolylinesExecute}
 
 procedure TMainForm.FreeShipUpdateGeometryInfo(Sender: TObject);
 begin
-   LabelNumbers.Caption:=IntToStr(Freeship.Surface.NumberOfControlFaces)+#32+Userstring(286)+', '+
-                   IntToStr(Freeship.Surface.NumberOfControlEdges)+#32+Userstring(287)+', '+
-                   IntToStr(Freeship.Surface.NumberOfControlPoints)+#32+Userstring(288)+', '+
-                   IntToStr(Freeship.Surface.NumberOfControlCurves)+#32+Userstring(289);
+   LabelNumbers.Caption:=IntToStr(Freeship.Surface.NumberOfControlFaces)+#32+rs_faces {UserString[286]}+', '+
+                   IntToStr(Freeship.Surface.NumberOfControlEdges)+#32+rs_edges {UserString[287]}+', '+
+                   IntToStr(Freeship.Surface.NumberOfControlPoints)+#32+rs_points {UserString[288]}+', '+
+                   IntToStr(Freeship.Surface.NumberOfControlCurves)+#32+rs_curves {UserString[289]};
    if Freeship.Surface.Changed then
      UpdateMenu;
 end;{TMainForm.FreeShipUpdateGeometryInfo}
@@ -3082,7 +3082,7 @@ procedure TMainForm.KeelRudderWizardExecute(Sender: TObject);
 begin
    if not Assigned(FreeKeelWizardDialog) then
      FreeKeelWizardDialog := TFreeKeelWizardDialog.Create(Self);
-   ShowTranslatedValues(FreeKeelWizardDialog);
+   //ShowTranslatedValues(FreeKeelWizardDialog);
    FreeKeelWizardDialog.Execute(freeship);
    UpdateMenu;
 end;{TMainForm.KeelRudderWizardExecute}

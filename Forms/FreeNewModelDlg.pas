@@ -44,9 +44,11 @@ uses
   Controls,
   StdCtrls,
   Buttons,
-  ExtCtrls, Spin,
+  ExtCtrls,
+  LCLTranslator,
+  Spin,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 
 type
 
@@ -173,7 +175,7 @@ begin
   Breadth := Breadth;
   Draft := Draft;
 
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
 

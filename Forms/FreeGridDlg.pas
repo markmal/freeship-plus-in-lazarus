@@ -56,8 +56,9 @@ uses
   FreeTypes,
   FreeGeometry,
   ExtCtrls, Spin,
+  LCLTranslator,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 type
 
   { TFreeGridDialog }
@@ -126,7 +127,7 @@ begin
   lbUnit2.Caption := Str;
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   Showmodal;
   Result := ModalResult = mrOk;
 end;{TFreeGridDialog.Execute}

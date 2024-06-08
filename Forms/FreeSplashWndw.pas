@@ -48,6 +48,7 @@ uses
   ExtCtrls,
   FreeVersionUnit,
   StdCtrls,
+  LCLTranslator,
   FreeLogger,
   FreeShipUnit,
   FreeTYpes;
@@ -128,7 +129,7 @@ procedure SetTransparentForm(form: TForm; AValue: byte = 0);
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeStringsUnit, Translations, LResources, TypInfo;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -280,21 +281,25 @@ end;
 
 procedure TFreeSplashWindow.FormCreate(Sender: TObject);
 var
-  Str: string;
+  Str: string; propInfo:TPropInfo;
 begin
   LabelVersion.Caption := rsVersion + ': ' + FREESHIP_MAJOR_VERSION;
   LabelRelease.Caption := rsRelease + ': ' + ReleasedDate;
   LabelBuildInfo.Caption := rsBuild + ': ' + ResourceVersionInfo + ' ' +
     COMPILE_DATE + ' ' + COMPILE_TIME + ' ' + TARGET_CPU + ' ' + TARGET_OS;
   Str := '';
-  if CurrentLanguage <> nil then
+  //if CurrentLanguage <> nil then
   begin
-    Str := CurrentLanguage.ReadString('Translation', 'Author', '');
+    //Str := CurrentLanguage.ReadString('Translation', 'Author', '');
+    // TODO - test!
+    propInfo.Name := 'translation.author';
+    LRSTranslator.TranslateStringProperty(nil,nil, @propInfo, Str);
     if Uppercase(Str) = Uppercase('Translation: <Your name>') then
       str := '';
     _Label8.Caption := Str;
   end;
   _Label8.Visible := Str <> '';
+
 
   FCounter := 0;
   //AlphaBlend := false;

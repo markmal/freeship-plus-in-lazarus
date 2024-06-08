@@ -150,7 +150,7 @@ var FreeControlPointForm: TFreeControlPointForm;
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
      FreeShipUnit;
 
 {$IFnDEF FPC}
@@ -947,7 +947,7 @@ begin
    begin
       // Count the number of crease edges connected to this point
       OldType:=ActiveControlPoint.VertexType;
-      Undo:=TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(213),false);
+      Undo:=TFreeShip(FreeShip).Edit.CreateUndoObject(rs_corner {UserString[213]},false);
       if (ActiveControlPoint.Vertextype=svCorner) and (not isCorner)
       then
          begin
@@ -1004,7 +1004,7 @@ var P   : T3DCoordinate;
 begin
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      TFreeShip(FreeShip).Edit.CreateUndoObject(rs_point_move {UserString[190]},True);
       P:=ActiveControlPoint.Coordinate;
       P.X:=P.X+TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
@@ -1020,7 +1020,7 @@ var P   : T3DCoordinate;
 begin
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      TFreeShip(FreeShip).Edit.CreateUndoObject(rs_point_move {UserString[190]},True);
       P:=ActiveControlPoint.Coordinate;
       P.X:=P.X-TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
@@ -1036,7 +1036,7 @@ var P   : T3DCoordinate;
 begin
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      TFreeShip(FreeShip).Edit.CreateUndoObject(rs_point_move {UserString[190]},True);
       P:=ActiveControlPoint.Coordinate;
       P.Y:=P.Y+TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
@@ -1052,7 +1052,7 @@ var P   : T3DCoordinate;
 begin
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      TFreeShip(FreeShip).Edit.CreateUndoObject(rs_point_move {UserString[190]},True);
       P:=ActiveControlPoint.Coordinate;
       P.Y:=P.Y-TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
@@ -1068,7 +1068,7 @@ var P   : T3DCoordinate;
 begin
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      TFreeShip(FreeShip).Edit.CreateUndoObject(rs_point_move {UserString[190]},True);
       P:=ActiveControlPoint.Coordinate;
       P.Z:=P.Z+TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;
@@ -1084,7 +1084,7 @@ var P   : T3DCoordinate;
 begin
    if ActiveControlPoint<>nil then
    begin
-      TFreeShip(FreeShip).Edit.CreateUndoObject(Userstring(190),True);
+      TFreeShip(FreeShip).Edit.CreateUndoObject(rs_point_move {UserString[190]},True);
       P:=ActiveControlPoint.Coordinate;
       P.Z:=P.Z-TFreeShip(FreeShip).Visibility.CursorIncrement;
       ActiveControlPoint.Coordinate:=P;

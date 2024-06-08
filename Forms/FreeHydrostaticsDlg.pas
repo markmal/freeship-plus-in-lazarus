@@ -36,7 +36,7 @@ uses
   Windows,
   RichEdit,
 {$ELSE}
-  LCLIntf, LCLType, //
+  LCLIntf, LCLType,
   PrintersDlgs, Printer4Lazarus, FreePrinter,
 {$ENDIF}
   //Messages,
@@ -52,8 +52,9 @@ uses
   Buttons,
   Printers,
   ExtCtrls,
+  LCLTranslator,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 
 type
 
@@ -141,7 +142,7 @@ begin
   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonPrint.Glyph, 'Print');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonSave.Glyph, 'Save');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonClose.Glyph, 'Ok');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
 
 end;{TFreeHydrostaticsDialog.FormShow}
 

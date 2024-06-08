@@ -7,7 +7,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
   ClientHeight = 739
   ClientWidth = 970
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '3.2.0.0'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -111,7 +111,7 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       Left = 1
       Height = 713
       Top = 1
-      Width = 344
+      Width = 417
       Align = alLeft
       AutoSize = True
       BevelOuter = bvNone
@@ -121,191 +121,183 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 713
-      ClientWidth = 344
+      ClientWidth = 417
       TabOrder = 0
       object GroupBox4: TGroupBox
         Left = 10
-        Height = 167
+        Height = 240
         Top = 10
-        Width = 324
+        Width = 397
         Caption = 'Displacements.'
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 150
-        ClientWidth = 320
+        ClientHeight = 212
+        ClientWidth = 393
         TabOrder = 0
         object Panel7: TPanel
           Left = 0
-          Height = 150
+          Height = 212
           Top = 0
-          Width = 320
+          Width = 393
           Align = alClient
           BevelOuter = bvNone
           ChildSizing.HorizontalSpacing = 6
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 150
-          ClientWidth = 320
+          ClientHeight = 212
+          ClientWidth = 393
           TabOrder = 0
           object Panel2: TPanel
             Left = 0
-            Height = 150
+            Height = 212
             Top = 0
             Width = 100
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 150
+            ClientHeight = 212
             ClientWidth = 100
             TabOrder = 0
             object FreeNumInput1: TFloatSpinEdit
               Left = 0
-              Height = 25
+              Height = 36
               Top = 0
               Width = 100
               Align = alTop
               Alignment = taRightJustify
               DecimalPlaces = 3
-              MinValue = 0
               TabOrder = 0
-              Value = 0
             end
             object DisplBox: TListBox
               Left = 0
-              Height = 125
-              Top = 25
+              Height = 176
+              Top = 36
               Width = 100
               Align = alClient
               ItemHeight = 0
-              OnMouseDown = DisplBoxMouseDown
               ScrollWidth = 98
               TabOrder = 1
               TopIndex = -1
+              OnMouseDown = DisplBoxMouseDown
             end
           end
           object Panel3: TPanel
             Left = 106
-            Height = 150
+            Height = 212
             Top = 0
-            Width = 156
+            Width = 182
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 150
-            ClientWidth = 156
+            ClientHeight = 212
+            ClientWidth = 182
             TabOrder = 1
             object Panel5: TPanel
               Left = 0
-              Height = 50
+              Height = 72
               Top = 0
-              Width = 156
+              Width = 182
               BevelOuter = bvNone
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 1
-              ClientHeight = 50
-              ClientWidth = 156
+              ClientHeight = 72
+              ClientWidth = 182
               TabOrder = 0
               object Button1: TButton
                 Left = 0
-                Height = 25
+                Height = 36
                 Top = 0
-                Width = 53
+                Width = 69
                 Caption = 'Add'
-                OnClick = Button1Click
                 TabOrder = 0
+                OnClick = Button1Click
               end
               object Button2: TButton
                 Left = 0
-                Height = 25
-                Top = 25
-                Width = 53
+                Height = 36
+                Top = 36
+                Width = 69
                 Caption = 'Delete'
-                OnClick = Button2Click
                 TabOrder = 1
+                OnClick = Button2Click
               end
             end
             object CheckBox1: TCheckBox
               Left = 0
-              Height = 21
-              Top = 50
-              Width = 156
+              Height = 28
+              Top = 72
+              Width = 182
               Caption = 'Incremental displ.'
-              OnClick = CheckBox1Click
               TabOrder = 1
+              OnClick = CheckBox1Click
             end
             object Panel4: TPanel
               Left = 0
-              Height = 79
-              Top = 71
-              Width = 156
+              Height = 112
+              Top = 100
+              Width = 182
               BevelOuter = bvNone
               ChildSizing.HorizontalSpacing = 6
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 2
-              ClientHeight = 79
-              ClientWidth = 156
+              ClientHeight = 112
+              ClientWidth = 182
               TabOrder = 2
               object Label1: TLabel
                 Left = 0
-                Height = 25
+                Height = 36
                 Top = 0
-                Width = 70
+                Width = 93
                 Caption = 'Start displ.'
                 Layout = tlCenter
                 ParentColor = False
               end
               object FreeNumInput2: TFloatSpinEdit
-                Left = 76
-                Height = 25
+                Left = 99
+                Height = 36
                 Top = 0
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
-                MinValue = 0
                 TabOrder = 0
-                Value = 0
               end
               object Label2: TLabel
                 Left = 0
-                Height = 25
-                Top = 27
-                Width = 70
+                Height = 36
+                Top = 38
+                Width = 93
                 Caption = 'End displ.'
                 Layout = tlCenter
                 ParentColor = False
               end
               object FreeNumInput3: TFloatSpinEdit
-                Left = 76
-                Height = 25
-                Top = 27
+                Left = 99
+                Height = 36
+                Top = 38
                 Width = 80
                 Alignment = taRightJustify
                 DecimalPlaces = 3
-                MinValue = 0
                 TabOrder = 1
-                Value = 0
               end
               object Label3: TLabel
                 Left = 0
-                Height = 25
-                Top = 54
-                Width = 70
+                Height = 36
+                Top = 76
+                Width = 93
                 Caption = 'Displ. step'
                 Layout = tlCenter
                 ParentColor = False
               end
               object FreeNumInput4: TFloatSpinEdit
-                Left = 76
-                Height = 25
-                Top = 54
+                Left = 99
+                Height = 36
+                Top = 76
                 Width = 80
                 Alignment = taRightJustify
                 DecimalPlaces = 3
-                MinValue = 0
                 TabOrder = 2
-                Value = 0
               end
             end
           end
@@ -313,113 +305,111 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       end
       object GroupBox2: TGroupBox
         Left = 10
-        Height = 122
-        Top = 187
-        Width = 324
+        Height = 144
+        Top = 260
+        Width = 397
         AutoSize = True
         Caption = 'Heeling angles.'
-        ClientHeight = 105
-        ClientWidth = 320
+        ClientHeight = 116
+        ClientWidth = 393
         TabOrder = 1
         object Panel8: TPanel
           Left = 0
-          Height = 105
+          Height = 116
           Top = 0
-          Width = 320
+          Width = 393
           Align = alClient
           AutoSize = True
           BevelOuter = bvNone
           ChildSizing.HorizontalSpacing = 6
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 105
-          ClientWidth = 320
+          ClientHeight = 116
+          ClientWidth = 393
           TabOrder = 0
           object Panel9: TPanel
             Left = 0
-            Height = 105
+            Height = 116
             Top = 0
             Width = 100
             AutoSize = True
             BevelOuter = bvNone
             Caption = 'Panel9'
-            ClientHeight = 105
+            ClientHeight = 116
             ClientWidth = 100
             TabOrder = 0
             object FreeNumInput5: TFloatSpinEdit
               Left = 0
-              Height = 25
+              Height = 36
               Top = 0
               Width = 100
               Align = alTop
               Alignment = taRightJustify
-              MinValue = 0
               OnExit = FreeNumInput5_AfterSetValue
               TabOrder = 0
-              Value = 0
             end
             object HeelBox: TListBox
               Left = 0
               Height = 80
-              Top = 25
+              Top = 36
               Width = 100
               Align = alClient
               ItemHeight = 0
-              OnClick = HeelBoxClick
               ScrollWidth = 98
               TabOrder = 1
               TopIndex = -1
+              OnClick = HeelBoxClick
             end
           end
           object Panel10: TPanel
             Left = 106
-            Height = 105
+            Height = 116
             Top = 0
-            Width = 53
+            Width = 69
             BevelOuter = bvNone
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 105
-            ClientWidth = 53
+            ClientHeight = 116
+            ClientWidth = 69
             TabOrder = 1
             object Button3: TButton
               Left = 0
-              Height = 25
+              Height = 36
               Top = 0
-              Width = 53
+              Width = 69
               Caption = 'Add'
-              OnClick = Button3Click
               TabOrder = 0
+              OnClick = Button3Click
             end
             object Button4: TButton
               Left = 0
-              Height = 25
-              Top = 25
-              Width = 53
+              Height = 36
+              Top = 36
+              Width = 69
               Caption = 'Delete'
-              OnClick = Button4Click
               TabOrder = 1
+              OnClick = Button4Click
             end
           end
         end
       end
       object GroupBox3: TGroupBox
         Left = 10
-        Height = 291
-        Top = 319
-        Width = 324
+        Height = 412
+        Top = 414
+        Width = 397
         AutoSize = True
         Caption = 'Data for SSD:'
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 274
-        ClientWidth = 320
+        ClientHeight = 384
+        ClientWidth = 393
         TabOrder = 2
         object Panel11: TPanel
           Left = 0
-          Height = 218
+          Height = 306
           Top = 0
-          Width = 320
+          Width = 393
           AutoSize = True
           BevelOuter = bvNone
           ChildSizing.TopBottomSpacing = 2
@@ -427,186 +417,170 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           ChildSizing.VerticalSpacing = 2
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 218
-          ClientWidth = 320
+          ClientHeight = 306
+          ClientWidth = 393
           TabOrder = 0
           object Label1_: TLabel
             Left = 0
-            Height = 25
+            Height = 36
             Top = 2
-            Width = 234
+            Width = 307
             Caption = 'Projected displ., [tons]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput5_: TFloatSpinEdit
-            Left = 240
-            Height = 25
+            Left = 313
+            Height = 36
             Top = 2
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
             Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MinValue = 0
             OnExit = FreeNumInput5_AfterSetValue
             TabOrder = 0
-            Value = 0
           end
           object Label2_: TLabel
             Left = 0
-            Height = 25
-            Top = 29
-            Width = 234
+            Height = 36
+            Top = 40
+            Width = 307
             Caption = 'Estimated Z CoG, [m]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput6_: TFloatSpinEdit
-            Left = 240
-            Height = 25
-            Top = 29
+            Left = 313
+            Height = 36
+            Top = 40
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
             DecimalPlaces = 3
-            MinValue = 0
             OnExit = FreeNumInput6_AfterSetValue
             TabOrder = 1
-            Value = 0
           end
           object Label4_: TLabel
             Left = 0
-            Height = 25
-            Top = 56
-            Width = 234
+            Height = 36
+            Top = 78
+            Width = 307
             Caption = 'Area of bilge keels, [m^2]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput7_: TFloatSpinEdit
-            Left = 240
-            Height = 25
-            Top = 56
+            Left = 313
+            Height = 36
+            Top = 78
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
             DecimalPlaces = 3
-            MinValue = 0
             TabOrder = 2
-            Value = 0
           end
           object Label5_: TLabel
             Left = 0
-            Height = 25
-            Top = 83
-            Width = 234
+            Height = 36
+            Top = 116
+            Width = 307
             Caption = 'Area of skeg, [m^2]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput8_: TFloatSpinEdit
-            Left = 240
-            Height = 25
-            Top = 83
+            Left = 313
+            Height = 36
+            Top = 116
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
             DecimalPlaces = 3
-            MinValue = 0
             TabOrder = 3
-            Value = 0
           end
           object Label6_: TLabel
             Left = 0
-            Height = 25
-            Top = 110
-            Width = 234
+            Height = 36
+            Top = 154
+            Width = 307
             Caption = 'Lateral wind area, [m^2]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput9_: TFloatSpinEdit
-            Left = 240
-            Height = 25
-            Top = 110
+            Left = 313
+            Height = 36
+            Top = 154
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
             DecimalPlaces = 3
-            MinValue = 0
             TabOrder = 4
-            Value = 0
           end
           object Label7_: TLabel
             Left = 0
-            Height = 25
-            Top = 137
-            Width = 234
+            Height = 36
+            Top = 192
+            Width = 307
             Caption = 'Z CoG of wind area above DWL, [m]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput10_: TFloatSpinEdit
-            Left = 240
-            Height = 25
-            Top = 137
+            Left = 313
+            Height = 36
+            Top = 192
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
             DecimalPlaces = 3
-            MinValue = 0
             TabOrder = 5
-            Value = 0
           end
           object Label12_: TLabel
             Left = 0
-            Height = 25
-            Top = 164
-            Width = 234
+            Height = 36
+            Top = 230
+            Width = 307
             Caption = 'Decrease metacentric height, [m]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput12_: TFloatSpinEdit
-            Left = 240
-            Height = 25
-            Top = 164
+            Left = 313
+            Height = 36
+            Top = 230
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
             DecimalPlaces = 3
-            MinValue = 0
             TabOrder = 6
-            Value = 0
           end
           object Label13_: TLabel
             Left = 0
-            Height = 25
-            Top = 191
-            Width = 234
+            Height = 36
+            Top = 268
+            Width = 307
             AutoSize = False
             Caption = 'Immersion deck angle, [degr]'
             Layout = tlCenter
             ParentColor = False
           end
           object FreeNumInput13_: TFloatSpinEdit
-            Left = 240
-            Height = 25
-            Top = 191
+            Left = 313
+            Height = 36
+            Top = 268
             Width = 80
             Alignment = taRightJustify
             AutoSize = False
-            MinValue = 0
             TabOrder = 7
-            Value = 0
           end
         end
         object Panel12: TPanel
           Left = 0
-          Height = 56
-          Top = 218
-          Width = 320
+          Height = 78
+          Top = 306
+          Width = 393
           AutoSize = True
           BevelOuter = bvNone
           ChildSizing.TopBottomSpacing = 2
@@ -615,24 +589,24 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 56
-          ClientWidth = 320
+          ClientHeight = 78
+          ClientWidth = 393
           TabOrder = 1
           object Label8_: TLabel
             Left = 0
-            Height = 25
+            Height = 36
             Top = 2
-            Width = 137
+            Width = 194
             AutoSize = False
             Caption = 'Navigation region:'
             Layout = tlCenter
             ParentColor = False
           end
           object ComboBox: TComboBox
-            Left = 143
-            Height = 25
+            Left = 200
+            Height = 36
             Top = 2
-            Width = 177
+            Width = 193
             ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
@@ -643,26 +617,26 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               'R3'
               'R3-RSN'
             )
-            OnChange = ComboBoxClick
-            OnClick = ComboBoxClick
             TabOrder = 0
             Text = 'Nonlimit'
+            OnChange = ComboBoxClick
+            OnClick = ComboBoxClick
           end
           object Label9_: TLabel
             Left = 0
-            Height = 25
-            Top = 29
-            Width = 137
+            Height = 36
+            Top = 40
+            Width = 194
             AutoSize = False
             Caption = 'Registry:'
             Layout = tlCenter
             ParentColor = False
           end
           object ComboBox1: TComboBox
-            Left = 143
-            Height = 25
-            Top = 29
-            Width = 177
+            Left = 200
+            Height = 36
+            Top = 40
+            Width = 193
             Constraints.MinWidth = 160
             ItemHeight = 0
             ItemIndex = 0
@@ -672,32 +646,32 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               'GISS'
               'Ukrainian Registry 2005'
             )
-            OnChange = ComboBox1Click
-            OnClick = ComboBox1Click
             TabOrder = 1
             Text = 'Russian Registry 2010'
+            OnChange = ComboBox1Click
+            OnClick = ComboBox1Click
           end
         end
       end
     end
     object PageControl1: TPageControl
-      Left = 345
+      Left = 418
       Height = 713
       Top = 1
-      Width = 624
+      Width = 551
       ActivePage = TabSheet1
       Align = alClient
       TabIndex = 0
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Graph'
-        ClientHeight = 680
-        ClientWidth = 618
+        ClientHeight = 673
+        ClientWidth = 547
         object Chart: TChart
           Left = 0
-          Height = 680
+          Height = 673
           Top = 0
-          Width = 618
+          Width = 547
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -725,7 +699,6 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               Title.Caption = 'Power [kW]'
               Title.LabelBrush.Style = bsClear
             end>
-          BackColor = clWindow
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Visible = True
@@ -744,14 +717,14 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Data'
-        ClientHeight = 680
-        ClientWidth = 618
+        ClientHeight = 673
+        ClientWidth = 547
         ImageIndex = 1
         object Grid: TStringGrid
           Left = 0
-          Height = 680
+          Height = 673
           Top = 0
-          Width = 618
+          Width = 547
           Align = alClient
           ColCount = 17
           DefaultColWidth = 49
@@ -770,13 +743,13 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Stability diagram'
-        ClientHeight = 680
-        ClientWidth = 618
+        ClientHeight = 673
+        ClientWidth = 547
         object Chart0: TChart
           Left = 0
-          Height = 680
+          Height = 673
           Top = 0
-          Width = 618
+          Width = 547
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -804,7 +777,6 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
               Title.Caption = 'Power [kW]'
               Title.LabelBrush.Style = bsClear
             end>
-          BackColor = clWindow
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Alignment = laTopCenter
@@ -822,10 +794,10 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
           Align = alClient
           ParentColor = True
           object Series1: TLineSeries
-            Marks.Visible = False
             Title = 'l(Teta)'
             LinePen.Color = clYellow
             LinePen.Width = 2
+            Marks.Visible = False
             Pointer.HorizSize = 2
             Pointer.Style = psCircle
             Pointer.VertSize = 2
@@ -833,10 +805,10 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
             ShowPoints = True
           end
           object Series2: TLineSeries
-            Marks.Visible = False
             Title = 'd(Teta)'
             LinePen.Color = clWhite
             LinePen.Width = 2
+            Marks.Visible = False
             Pointer.Visible = True
             ShowPoints = True
           end
@@ -844,14 +816,14 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
       end
       object TabSheet4: TTabSheet
         Caption = 'Results'
-        ClientHeight = 680
-        ClientWidth = 618
+        ClientHeight = 673
+        ClientWidth = 547
         ImageIndex = 1
         object Resultsmemo: TMemo
           Left = 0
-          Height = 680
+          Height = 673
           Top = 0
-          Width = 618
+          Width = 547
           Align = alClient
           Font.Color = clBlack
           Font.Height = -13
@@ -868,212 +840,38 @@ object FreeCrosscurvesDialog: TFreeCrosscurvesDialog
     end
   end
   object MenuImages: TImageList
-    left = 720
+    Left = 720
     Bitmap = {
-      4C69060000001000000010000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      84FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
-      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
-      84FF000084FF000000000000000000000000000000000000FFFF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
-      84FF848284FF000000000000000000000000000000000000FFFF000084FF0000
-      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF8482
-      84FF0000000000000000000000000000000000000000000000000000FFFF0000
-      84FF000084FF000084FF848284FF000084FF000084FF000084FF848284FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000084FF000084FF000084FF000084FF000084FF848284FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000FFFF000084FF000084FF000084FF000084FF848284FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000084FF000084FF000084FF000084FF000084FF848284FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000084FF000084FF000084FF000084FF000084FF000084FF848284FF0000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      84FF000084FF000084FF000084FF000084FF000084FF000084FF000084FF8482
-      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
-      84FF000084FF000084FF848284FF000084FF000084FF000084FF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
-      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF8482
-      84FF000000000000000000000000000000000000FFFF000084FF000084FF8482
-      84FF00000000000000000000000000000000000000000000FFFF848284FF0000
-      00000000000000000000000000000000000000000000848284FF848284FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000FF00FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000FF00FF008200FF008200FF000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000000000FF
-      00FF008200FF008200FF840000FF000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000FF00FF0082
-      00FF008200FF008200FF840000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000FF00FF008200FF0082
-      00FF008200FF840000FF00000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000FF00FF008200FF008200FF0082
-      00FF840000FF0000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000FF00FF008200FF008200FF008200FF8400
-      00FF0000000000000000000000000000000000FF00FF00000000000000000000
-      0000000000000000000000FF00FF008200FF008200FF008200FF840000FF0000
-      000000000000000000000000000000FF00FF008200FF00FF00FF000000000000
-      00000000000000FF00FF008200FF008200FF008200FF840000FF000000000000
-      0000000000000000000000000000008200FF008200FF008200FF00FF00FF0000
-      000000FF00FF008200FF008200FF008200FF840000FF00000000000000000000
-      0000000000000000000000000000840000FF008200FF008200FF008200FF00FF
-      00FF008200FF008200FF008200FF008200FF840000FF00000000000000000000
-      000000000000000000000000000000000000840000FF008200FF008200FF0082
-      00FF008200FF008200FF008200FF840000FF0000000000000000000000000000
-      00000000000000000000000000000000000000000000840000FF008200FF0082
-      00FF008200FF008200FF840000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000840000FF0082
-      00FF008200FF840000FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000008400
-      00FF840000FF0000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
-      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C7
-      C6FF000000FFC6C7C6FF000000FF00000000000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C7C6FF0000
-      00FFC6C7C6FF000000FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
-      C6FF000000FFC6C7C6FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C7C6FFC6C7C6FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FF848684FF848684FF848684FFC6C7C6FFC6C7C6FF0000
-      00FFC6C7C6FF000000FF00000000000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FF00FFFFFF00FFFFFF00FFFFFFC6C7C6FFC6C7C6FF0000
-      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C7C6FF000000FF0000000000000000000000FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
-      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000007B7D7BFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
-      7BFF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF0000FFFF0000FFFF0000FFFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF00000000000000000000000000000000000000007B7D7BFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
-      7BFF00000000000000000000000000000000000000007B7D7BFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
-      7BFF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FF000000FF000000FF000000FF006994FF00698CFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000659CFF00518CFFBDBEBDFF0000
-      00FF000000FF000000FF0051ADFF0000BDFF0000A5FF00519CFFBDBEBDFF0000
-      00FF00000000000000000000000000659CFF0018BDFF00008CFF397984FF0000
-      00FF000000FF004DB5FF0004B5FF000084FF181C84FF186984FFBDBEBDFF0000
-      00FF0000000000000000000000000051ADFF0000B5FF000084FF212884FF4282
-      84FF0051ADFF0008B5FF000084FF181884FF426D84FFBDBEBDFFBDBEBDFF0000
-      00FF00000000000000000000000000000000003CBDFF0004A5FF000084FF2128
-      84FF313884FF000084FF101484FF527984FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000003CC6FF0000A5FF0000
-      84FF000084FF000084FF6B7184FFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FF0008B5FF0000
-      84FF000084FF000084FF6B7184FF000000FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000003CC6FF000084FF0000
-      84FF000084FF000084FF212884FF428284FFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF00000000000000000000000000000000003CBDFF0004A5FF000084FF0000
-      84FF000484FF000084FF000084FF212884FF397984FF000000FFBDBEBDFF0000
-      00FF000000000000000000000000003CB5FF0000ADFF000084FF000484FF313C
-      84FF31418CFF00008CFF000084FF000084FF393884FF318284FFBDBEBDFF0000
-      00FF0000000000000000000000000000CEFF000084FF000084FF313C84FF3182
-      84FF005DA5FF0010BDFF000084FF080C84FF395584FF188284FFBDBEBDFF0000
-      00FF0000000000000000000000000000CEFF000084FF393C84FF297D84FFBDBE
-      BDFFBDBEBDFF005DA5FF000CC6FF4A5D84FF188284FFBDBEBDFFBDBEBDFF0000
-      00FF00000000000000000000000021698CFF6B6984FF297984FF000000FF0000
-      00FF000000FF000000FF006D94FF108284FF000000FF000000FF000000FF7B7D
-      7BFF000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000848684FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF848684FF0000000000000000000000FFFF4142FF000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FFFF4142FF000000FF0000000000000000000000FF000000FF000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FF000000FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FFFF4142FF000000FF0000000000000000000000FFFF4142FF848600FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF8486
-      00FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FFFF41
-      42FFFF4142FFFF4142FFFF4142FFFF4142FFFF4142FFFF4142FFFF4142FFFF41
-      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF8486
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF848600FFFF41
-      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF0000
-      00FFC6C7C6FF848684FF848684FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFFF41
-      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF0000
-      00FF848684FFFF4142FFFF4142FFFFFFFFFFC6C7C6FFC6C7C6FF000000FFFF41
-      42FFFF4142FF000000FF0000000000000000000000FFFF4142FFFF4142FF0000
-      00FF848684FFFF4142FFFF4142FFFFFFFFFFC6C7C6FFC6C7C6FF000000FFFF41
-      42FFFF4142FF000000FF0000000000000000848684FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF848684FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000
+      4C7A0600000010000000100000003E0200000000000078DAED97AD6F023114C0
+      2B100804620231831B1237923320974CB06412394108629210CCA54121915824
+      12C92473FB97DEDA722DBDBBB6F7DE1D10B2ACC9A3D0F6F73EDBD03276CB06C0
+      1887531F9A0FCD71CF9AF33C8FB3F369363F1F5A8361433AB0AC2F4E0AEBD741
+      E3ABD877FB8FD3E1678B75F862C6E808E50BC87C68BE68EF85E20BE54FCED16A
+      5CF52833A8C4C68954603923F2B65D2A7FCFACAF165836569F50CA676B8DD141
+      8857CD6575C4B47CE57494C8B54B07757FD93AC87BD3D25196BDA30608F1FF09
+      14340CEFB28965AF6CDB970394EDE3F731D513F2ED62CD6F8C847450C4D617B2
+      CF97DC88CB071DBBD75F99B344B236A9B973E5D1AE1D357F25CF4CD1FE2BDDE6
+      8B39CA76B2CEB9F70F5F874209F87F113EE43B950748F7B7B07F89F88BFA7FFB
+      B7B40F46AE69BFEAF9FDB3E77FBC16B20AD7FF63036CB8CAF3C39DE8E5D8567C
+      DFB879C9B6E4F80A7A337E665FF7C06A7BF5A66B3D0A197337AF6C9CD6B59F38
+      0CE41B4E8ED513B625C6A63C1C7F24C66B5BA3A3FB7C7A4B361F38BCCD386EFF
+      47C7539CD63B76F2C949F9D73EDB3CFAFC29FBE977B6CE47A17D2B7E25B5B40E
+      5D17271F499F7786EB4642FA2B554FADA327F2D98D3DF5633F669D6265FD46C2
+      97E6418DD51B827F17752CE07B82ED2CAC3A4B1D8D23BC8CCEAC8B6F8BBD3D11
+      7BAB63EF3D2DD33534638E3DBFA59BBC9F51EF500973BEFBF60780BD03EBB5AE
+      BB13F2FE9EE3ABDAFF0B3C5F62EAE6E729E2E3433E68DB215EDFB1B3EF067DEF
+      C6F09233BE66DE0ED7E02F707E4AB75F23027A7D
     }
   end
   object PrintDialog: TPrintDialog
-    left = 800
-    top = 65533
+    Left = 800
+    Top = 65533
   end
   object SaveDialog: TSaveDialog
     Filter = 'Text files (*.txt)|*.txt'
     FilterIndex = 2
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    left = 872
-    top = 65533
+    Left = 872
+    Top = 65533
   end
 end

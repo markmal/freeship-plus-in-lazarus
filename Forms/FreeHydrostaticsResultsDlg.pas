@@ -53,8 +53,9 @@ uses
      StdCtrls,
      Printers,
      Buttons,
+     LCLTranslator,
      FreeShipUnit,
-     FreeLanguageSupport;
+     FreeStringsUnit;
 
 type
 
@@ -143,7 +144,7 @@ begin
    GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonPrint.Glyph,'Print');
    GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonSave.Glyph,'Save');
    GlobalFreeship.Preferences.LoadImageIntoBitmap(ButtonClose.Glyph,'Ok');
-   ShowTranslatedValues(Self);
+   //ShowTranslatedValues(Self);
 
    ShowModal;
    Result:=modalresult=mrOK;

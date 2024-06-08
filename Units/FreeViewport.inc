@@ -961,7 +961,7 @@ begin
       if AskPrintScale then
       begin
         Str := IntToStr(Trunc(PrintScale) + 1);
-        if InputQuery(Userstring(193), Userstring(194) + ' 1:', Str) then
+        if InputQuery(rs_Print_scale {UserString[193]}, rs_Enter_the_printscale {UserString[194]} + ' 1:', Str) then
         begin
           NewPrintScale := StrToFloat(Str);
           if NewPrintScale < 0 then
@@ -1034,7 +1034,7 @@ begin
     end;
   end
   else
-    MessageDlg(Userstring(195) + '!', mtError, [mbOK], 0);
+    MessageDlg(rs_No_printer_assigned {UserString[195]} + '!', mtError, [mbOK], 0);
 end;{TFreeViewport.Print}
 
 function TFreeViewport.Project(P: T3DCoordinate): TPoint;
@@ -1491,7 +1491,7 @@ begin
   if ShowDialog then
   begin
     Dialog := TSaveImageDialog.Create(self);
-    ShowTranslatedValues(Dialog);
+    //ShowTranslatedValues(Dialog);
     Dialog.SetImageSizes(ClientWidth,ClientHeight);
     Dialog.Filename := Filename;
     OK := Dialog.Execute;
@@ -1642,7 +1642,7 @@ begin
     //TODO - change InputQuery to a dialog with TFloatSpinEdit fields
     Str := FloatToDec(-BackgroundImage.Scale * Diff.X, 4) + ', ' + FloatToDec(
       BackgroundImage.Scale * Diff.Y, 4);
-    if InputQuery(Userstring(91), Userstring(196) + ':', str) then
+    if InputQuery(rs_scale {UserString[91]}, rs_New_coordinate {UserString[196]} + ':', str) then
     begin
       Ind := Pos(',', Str);
       if Ind <> 0 then
@@ -1678,10 +1678,10 @@ begin
             FOnChangeBackgroundImage(Owner);
         end
         else
-          MessageDlg(Userstring(197) + '!', mtError, [mbOK], 0);
+          MessageDlg(rs_Invalid_coordinate {UserString[197]} + '!', mtError, [mbOK], 0);
       end
       else
-        MessageDlg(Userstring(197) + '!', mtError, [mbOK], 0);
+        MessageDlg(rs_Invalid_coordinate {UserString[197]} + '!', mtError, [mbOK], 0);
     end;
   end
   else if (BackgroundMode = emSetFrame) and (ssLeft in Shift) then

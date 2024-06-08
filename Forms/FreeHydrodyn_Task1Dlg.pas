@@ -176,7 +176,7 @@ var FreeHydrodyn_Task1: TFreeHydrodyn_Task1;
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
      Printers,
      Math,
      FreeProcess;
@@ -364,9 +364,9 @@ begin
    ResultsMemo.Visible:=True;
 
    if  (Dat4=0) or (Dat5=0) or (Dat6=0) or (Dat7=0) or (Dat8=0) then
-          Label9.Caption:=Userstring(1486)
-   else   Label9.Caption:=Userstring(1485);
-   if  (Dat9>11) then Label9.Caption:=Userstring(1486);
+          Label9.Caption:=rs_Type_of_a_ship__1_15_ {UserString[1486]}
+   else   Label9.Caption:=rs_Number_of_masts_and_posts__1_7_ {UserString[1485]};
+   if  (Dat9>11) then Label9.Caption:=rs_Type_of_a_ship__1_15_ {UserString[1486]};
 
   if (Dat2>0) and (Dat3>0) then 
     begin
@@ -435,7 +435,7 @@ NewSearch:    FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted f
 	     if i<30 then goto NewSearch
 		        else begin
 			 if FileExistsUTF8('INO.') { *Converted from FileExists* } then DeleteFileUTF8('INO.'); { *Converted from DeleteFile* }
-            MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' Ishercof.EXE '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0); 
+            MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}+#13#10#13#10+rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]}+' Ishercof.EXE '+#13#10#13#10+rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}+#13#10#13#10+rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}+#13#10#13#10+rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]},mtError,[mbOk],0); 
 			 exit;
 			end;	 
 	     end;    
@@ -514,15 +514,15 @@ NewSearch:    FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted f
       end;
 
       for II:=1 to 4 do ResultsMemo.Lines.Add('');
-         ResultsMemo.Lines.Add(Space(22)+Userstring(1538));
+         ResultsMemo.Lines.Add(Space(22)+rs_CALCULATION_OF_WIND_COEFFICIENTS_OF_A_SHIP {UserString[1538]});
          ResultsMemo.Lines.Add('');
-         ResultsMemo.Lines.Add(Space(14)+Userstring(1539));
+         ResultsMemo.Lines.Add(Space(14)+rs_Merchant_ship {UserString[1539]});
          ResultsMemo.Lines.Add('');
       for II:=1 to 7 do begin
          if (II<3) or (II>5) then ResultsMemo.Lines.Add(Space(14)+Userstring(1539+II)+' '+FloatToStrF(dat[II],ffFixed,6,2)+' '+LengthStr(Units))
                              else ResultsMemo.Lines.Add(Space(14)+Userstring(1539+II)+' '+FloatToStrF(dat[II],ffFixed,6,2)+' '+AreaStr(Units));
       end;
-         ResultsMemo.Lines.Add(Space(14)+Userstring(1547)+' '+FloatToStrF(dat[II],ffFixed,6,0));
+         ResultsMemo.Lines.Add(Space(14)+rs_TYPE_OF_A_SHIP_OR_NUMBER_OF_MASTS_____M__ {UserString[1547]}+' '+FloatToStrF(dat[II],ffFixed,6,0));
          ResultsMemo.Lines.Add('');
       for II:=1 to 5 do ResultsMemo.Lines.Add(Space(14)+Userstring(1547+II));
       for II:=1 to 37 do
@@ -571,9 +571,9 @@ STR0[8]:='NUMBER OF GROUPS OF MASTS, ETC. ..... M :';
           ResultsMemo.Lines.Add(' ');
           ResultsMemo.Lines.Add(' ');
 //	  for i:=5 to 18 do ResultsMemo.Lines.Add(Space(10)+str_[I]);			
-          ResultsMemo.Lines.Add(Space(22)+Userstring(1538));
+          ResultsMemo.Lines.Add(Space(22)+rs_CALCULATION_OF_WIND_COEFFICIENTS_OF_A_SHIP {UserString[1538]});
           ResultsMemo.Lines.Add(' ');
-          ResultsMemo.Lines.Add(Space(14)+Userstring(1539));
+          ResultsMemo.Lines.Add(Space(14)+rs_Merchant_ship {UserString[1539]});
           ResultsMemo.Lines.Add(' ');
           JJ:=18;
 	  for i:=19 to 26 do begin
@@ -592,8 +592,8 @@ STR0[8]:='NUMBER OF GROUPS OF MASTS, ETC. ..... M :';
               J:=Pos(tmp,Str_[I]);
               if J<>0 then Delete(Str_[I],J,3);
              until J=0;
-             if (I=19) or (I=20) or (I=24) or (I=25) then ResultsMemo.Lines.Add(Space(14)+Userstring(1539+i-JJ)+str_[I]+' '+Userstring(451));			
-             if (I=21) or (I=22) or (I=23) then ResultsMemo.Lines.Add(Space(14)+Userstring(1539+i-JJ)+str_[I]+Userstring(452));			
+             if (I=19) or (I=20) or (I=24) or (I=25) then ResultsMemo.Lines.Add(Space(14)+Userstring(1539+i-JJ)+str_[I]+' '+rs_m {UserString[451]});			
+             if (I=21) or (I=22) or (I=23) then ResultsMemo.Lines.Add(Space(14)+Userstring(1539+i-JJ)+str_[I]+rs_m_2 {UserString[452]});			
              if I=26 then ResultsMemo.Lines.Add(Space(14)+Userstring(1539+i-JJ)+str_[I]);			
           end;
 
@@ -642,13 +642,13 @@ STR0[8]:='NUMBER OF GROUPS OF MASTS, ETC. ..... M :';
           Rx:=Cx*1.2/2*Va*Va*dat6/1000; 
           Ry:=Cy*1.2/2*Va*Va*dat6/1000*znak; 
           Mz:=Cmz*1.2/2*Va*Va*dat6/1000*znak; 
-          ResultsMemo.Lines.Add(Space(14)+Userstring(1492));
+          ResultsMemo.Lines.Add(Space(14)+rs_Aerodynamic_forces_and_moment_without_drift_ {UserString[1492]});
           ResultsMemo.Lines.Add(' ');
-          ResultsMemo.Lines.Add(Space(14)+MakeLength(Userstring(1490),46)+' : '+FloatToStrF(Va,ffFixed,6,2));
-          ResultsMemo.Lines.Add(Space(14)+MakeLength(Userstring(1491),46)+' : '+FloatToStrF(gammaD*znak,ffFixed,6,2));
-          ResultsMemo.Lines.Add(Space(14)+MakeLength(Userstring(1487),46)+' : '+FloatToStrF(Rx,ffFixed,6,3));
-          ResultsMemo.Lines.Add(Space(14)+MakeLength(Userstring(1488),46)+' : '+FloatToStrF(Ry,ffFixed,6,3));
-          ResultsMemo.Lines.Add(Space(14)+MakeLength(Userstring(1489),46)+' : '+FloatToStrF(Mz,ffFixed,6,3));
+          ResultsMemo.Lines.Add(Space(14)+MakeLength(rs_Apparent__relative__wind_speed__m_s_ {UserString[1490]},46)+' : '+FloatToStrF(Va,ffFixed,6,2));
+          ResultsMemo.Lines.Add(Space(14)+MakeLength(rs_Angle_between_relative_velocity_and_center_line__degr__ {UserString[1491]},46)+' : '+FloatToStrF(gammaD*znak,ffFixed,6,2));
+          ResultsMemo.Lines.Add(Space(14)+MakeLength(rs_Drag_force__kN_ {UserString[1487]},46)+' : '+FloatToStrF(Rx,ffFixed,6,3));
+          ResultsMemo.Lines.Add(Space(14)+MakeLength(rs_Lateral_force__kN_ {UserString[1488]},46)+' : '+FloatToStrF(Ry,ffFixed,6,3));
+          ResultsMemo.Lines.Add(Space(14)+MakeLength(rs_Torque_yaw__kNom_ {UserString[1489]},46)+' : '+FloatToStrF(Mz,ffFixed,6,3));
           ResultsMemo.Lines.Add(' ');
           ResultsMemo.Lines.Add(' ');
          end;
@@ -670,13 +670,13 @@ begin
 
    Units:=FFreeship.ProjectSettings.ProjectUnits;
       if Units=fuImperial then begin
-        MessageDlg(Userstring(754),mtInformation,[mbOk],0);
+        MessageDlg(rs_This_is_version_of_program_work_with_metric_system_units_only {UserString[754]},mtInformation,[mbOk],0);
         exit
       end;	     
-   Chart.Title.Text.Text:=Userstring(737);
-   Chart.LeftAxis.Title.Caption:=Userstring(738);
-//   Chart.RightAxis.Title.Caption:=Userstring(740);
-   Chart.BottomAxis.Title.Caption:=Userstring(739);
+   Chart.Title.Text.Text:=rs_Aerodynamic_characteristics_of_a_merchant_ship {UserString[737]};
+   Chart.LeftAxis.Title.Caption:=rs_Aerodynamic_coefficients_Cx__Cy__10oCmz {UserString[738]};
+//   Chart.RightAxis.Title.Caption:=rs_CoG_X_of_FP_area {UserString[740]};
+   Chart.BottomAxis.Title.Caption:=rs_Angle_of_rel_wind_off_bow__degr__ {UserString[739]};
    Checkbox2.Enabled:=FFreeship.Surface.NumberOfControlFaces>1;
    CheckBox2.Checked:=AutoExtract;
    Calculate;

@@ -161,7 +161,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
   Printers,
   Math;
 
@@ -418,9 +418,9 @@ begin
   TChartSeries(Chart.Series[2]).Clear;
   TChartSeries(Chart.Series[3]).Clear;
   if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
-    Chart.LeftAxis.Title.Caption := Userstring(272) + ', ' + Userstring(456)
+    Chart.LeftAxis.Title.Caption := rs_Resistance {UserString[272]} + ', ' + rs_lbs {UserString[456]}
   else
-    Chart.LeftAxis.Title.Caption := Userstring(272) + ', ' + Userstring(330);
+    Chart.LeftAxis.Title.Caption := rs_Resistance {UserString[272]} + ', ' + rs_N {UserString[330]};
   ResultsMemo.Clear;
   ResultsMemo.Visible := False;
 
@@ -470,42 +470,42 @@ begin
     end;
   end;
 
-  FFreeship.CreateOutputHeader(Space(10) + Userstring(274) + ', ' +
-    Userstring(275) + '.', ResultsMemo.Lines);
+  FFreeship.CreateOutputHeader(Space(10) + rs_KAPER_resistance_for_canoes_and_kayaks {UserString[274]} + ', ' +
+    rs_according_to_John_Winters {UserString[275]} + '.', ResultsMemo.Lines);
   ResultsMemo.Lines.Add(
     '          ----------------------------------------------------------------------------------');
   ResultsMemo.Lines.Add('');
-  ResultsMemo.Lines.Add(Space(10) + Userstring(250));
+  ResultsMemo.Lines.Add(Space(10) + rs_Input_variables {UserString[250]});
   ResultsMemo.Lines.Add('');
-  ResultsMemo.Lines.Add(Space(10) + Userstring(256));
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(276), 40) +
+  ResultsMemo.Lines.Add(Space(10) + rs_Hull {UserString[256]});
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Effective_waterline_length {UserString[276]}, 40) +
     ' : ' + FloatToStrF(Ewl, ffFixed, 6, 3) + #32 + LengthStr(
     FFreeship.ProjectSettings.ProjectUnits));
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(18), 40) +
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Beam_on_waterline {UserString[18]}, 40) +
     ' : ' + FloatToStrF(Bwl, ffFixed, 6, 3) + #32 + LengthStr(
     FFreeship.ProjectSettings.ProjectUnits));
   if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
-    ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(257), 40) + ' : ' +
+    ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Draft_hull {UserString[257]}, 40) + ' : ' +
       FloatToStrF(Draft, ffFixed, 6, 3) + #32 + LengthStr(FFreeship.ProjectSettings.ProjectUnits))
   else
-    ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(257), 40) + ' : ' +
+    ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Draft_hull {UserString[257]}, 40) + ' : ' +
       FloatToStrF(Draft * Foot, ffFixed, 6, 3) + #32 + LengthStr(
       FFreeship.ProjectSettings.ProjectUnits));
 
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(10), 40) +
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Wetted_surface_area {UserString[10]}, 40) +
     ' : ' + FloatToStrF(Ws, ffFixed, 6, 2) + #32 + AreaStr(FFreeship.ProjectSettings.ProjectUnits));
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(8), 40) + ' : ' +
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Prismatic_coefficient {UserString[8]}, 40) + ' : ' +
     FloatToStrF(Cp, ffFixed, 6, 4));
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(4), 40) + ' : ' +
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Displacement {UserString[4]}, 40) + ' : ' +
     FloatToStrF(Displ, ffFixed, 6, 3) + #32 + WeightStr(FFreeship.ProjectSettings.ProjectUnits));
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(277), 40) +
-    ' : ' + FloatToStrF(Ie, ffFixed, 6, 3) + ' ' + Userstring(455));
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(11), 40) +
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Half_entrance_angle_of_dwl {UserString[277]}, 40) +
+    ' : ' + FloatToStrF(Ie, ffFixed, 6, 3) + ' ' + rs_degr {UserString[455]});
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Longitudinal_center_of_buoyancy {UserString[11]}, 40) +
     ' : ' + FloatToStrF(LCB, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(10) + MakeLength(Userstring(278), 40) +
+  ResultsMemo.Lines.Add(Space(10) + MakeLength(rs_Submerged_transom_area_ratio {UserString[278]}, 40) +
     ' : ' + FloatToStrF(At_Ax, ffFixed, 6, 4));
   //   ResultsMemo.Lines.Add('');
-  //   ResultsMemo.Lines.Add(Space(6)+MakeLength(Userstring(4),40)+' : '+FloatToStrF(Displacement,ffFixed,6,4)+' pounds');
+  //   ResultsMemo.Lines.Add(Space(6)+MakeLength(rs_Displacement {UserString[4]},40)+' : '+FloatToStrF(Displacement,ffFixed,6,4)+' pounds');
   ResultsMemo.Lines.Add('');
   ResultsMemo.Lines.Add(
     '          ----------------------------------------------------------------------------------');
@@ -518,13 +518,13 @@ begin
   // Check for valid paramaters
   if (Cp < 0.48) or (Cp > 0.64) then
   begin
-    ResultsMemo.Lines.Add(Space(10) + Userstring(271) + ' of 0.48 .. 0.64');
+    ResultsMemo.Lines.Add(Space(10) + rs_Cp_is_outside_valid_domain {UserString[271]} + ' of 0.48 .. 0.64');
     ValidData := False;
     Edit6.Color:=clYellow;
   end;
   if (At_Ax < 0.0) or (At_Ax > 0.04) then
   begin
-    ResultsMemo.Lines.Add(Space(10) + Userstring(278) + ' of 0.00 .. 0.04');
+    ResultsMemo.Lines.Add(Space(10) + rs_Submerged_transom_area_ratio {UserString[278]} + ' of 0.00 .. 0.04');
     ValidData := False;
     Edit10.Color:=clYellow;
   end;
@@ -534,15 +534,15 @@ begin
     exit;
   end;
 
-  ResultsMemo.Lines.Add(Space(10) + Userstring(264) + ' KAPER:');
+  ResultsMemo.Lines.Add(Space(10) + rs_Final_calculations_of_resistance_by {UserString[264]} + ' KAPER:');
   ResultsMemo.Lines.Add('');
-  ResultsMemo.Lines.Add(Space(10) + Userstring(947));
-  ResultsMemo.Lines.Add(Space(10) + Userstring(948));
+  ResultsMemo.Lines.Add(Space(10) + rs_t_______t_______t_______t_________t_________t_________t_________t {UserString[947]});
+  ResultsMemo.Lines.Add(Space(10) + rs_l_Speed_l_Speed_l__S_L__l_R_frict_l_R_resid_l_R_total_l_Spilman_l {UserString[948]});
   if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
-    ResultsMemo.Lines.Add(Space(10) + Userstring(950))
+    ResultsMemo.Lines.Add(Space(10) + rs_l___kn__l__ft_s_l_ratio_l___lbs___l___lbs___l___lbs___l___lbs___l {UserString[950]})
   else
-    ResultsMemo.Lines.Add(Space(10) + Userstring(949));
-  ResultsMemo.Lines.Add(Space(10) + Userstring(947));
+    ResultsMemo.Lines.Add(Space(10) + rs_l___kn__l__m_s__l_ratio_l____N____l____N____l____N____l____N____l {UserString[949]});
+  ResultsMemo.Lines.Add(Space(10) + rs_t_______t_______t_______t_________t_________t_________t_________t {UserString[947]});
 
   Speed := 0.4 * Power(EffectiveLengthWaterline, 0.5); //this is a lowest speed
   while Speed <= MaxSpeed do
@@ -720,9 +720,9 @@ begin
   Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'Print');
   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'Calculate');
 
-  Chart.Title.Text.Text := Userstring(274);
-  Chart.LeftAxis.Title.Caption := Userstring(272) + ' ,' + Userstring(330);
-  Chart.BottomAxis.Title.Caption := Userstring(273) + ', ' + Userstring(326);
+  Chart.Title.Text.Text := rs_KAPER_resistance_for_canoes_and_kayaks {UserString[274]};
+  Chart.LeftAxis.Title.Caption := rs_Resistance {UserString[272]} + ' ,' + rs_N {UserString[330]};
+  Chart.BottomAxis.Title.Caption := rs_Speed {UserString[273]} + ', ' + rs_kn {UserString[326]};
 
   Checkbox2.Enabled := FFreeship.Surface.NumberOfControlFaces > 1;
   CheckBox2.Checked := AutoExtract;
@@ -731,7 +731,7 @@ begin
   Label11.Caption := LengthStr(FFreeship.ProjectSettings.ProjectUnits);
   Label7.Caption := AreaStr(FFreeship.ProjectSettings.ProjectUnits);
   Label14.Caption := WeightStr(FFreeship.ProjectSettings.ProjectUnits);
-  Label16.Caption := Userstring(455);
+  Label16.Caption := rs_degr {UserString[455]};
   Calculate;
   ShowModal;
   Result := modalResult = mrOk;

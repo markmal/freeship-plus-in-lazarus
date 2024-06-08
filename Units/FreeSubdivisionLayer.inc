@@ -22,7 +22,7 @@ end;{TFreeSubdivisionLayer.FGetDXFLayername}
 function TFreeSubdivisionLayer.FGetName: string;
 begin
   if FDescription = '' then
-    Result := Userstring(33) + #32 + IntToStr(LayerId)
+    Result := rs_Layer {UserString[33]} + #32 + IntToStr(LayerId)
   else
     Result := FDescription;
 end;{TFreeSubdivisionLayer.FGetName}
@@ -1342,7 +1342,7 @@ begin
           if DoneList.Count = 1 then
             Str := Name
           else
-            Str := Name + #32 + Lowercase(Userstring(198)) + #32 + IntToStr(I);
+            Str := Name + #32 + Lowercase(rs_Part {UserString[198]}) + #32 + IntToStr(I);
           Patch.Name := Str;
           Destination.Add(Patch);
           if (not Patch.FMirror) and (self.Symmetric) then

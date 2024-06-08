@@ -47,8 +47,9 @@ uses
   StdCtrls,
   Buttons,
   ExtCtrls, Spin,
+  LCLTranslator,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 type
 
   { TFreeExtrudeDialog }
@@ -138,7 +139,7 @@ begin
   _label3.Caption := Str;
   _label6.Caption := Str;
   _label9.Caption := Str;
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
   Showmodal;

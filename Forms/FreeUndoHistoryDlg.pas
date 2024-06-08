@@ -54,8 +54,9 @@ uses
      Dialogs,
      StdCtrls,
      ExtCtrls,
+     LCLTranslator,
      FreeShipUnit, FreeVersionUnit,
-    FreeLanguageSupport,
+    FreeStringsUnit,
      ComCtrls,
     FreeTypes,
      FreeGeometry,
@@ -178,7 +179,7 @@ begin
 
       Freeship.Preferences.LoadImageIntoBitmap(Speedbutton1.Glyph,'Ok');
       Freeship.Preferences.LoadImageIntoBitmap(Speedbutton2.Glyph,'Cancel');
-      ShowTranslatedValues(Self);
+      //ShowTranslatedValues(Self);
 
       ShowModal;
    end;

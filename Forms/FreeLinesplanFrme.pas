@@ -146,7 +146,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeStringsUnit;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -1246,13 +1246,13 @@ begin
       Viewport.FontColor := clRed;
     // draw baseline
     DrawLineAtt(FProfileOrigin, SetPoint(FMin3D.X - Space, FMin3D.Z, 0),
-      SetPoint(FMax3D.X + Space, FMin3D.Z, 0), Userstring(184) + #32 +
+      SetPoint(FMax3D.X + Space, FMin3D.Z, 0), rs_Base {UserString[184]} + #32 +
       ConvertDimension(
       FMin3D.Z, Freeship.ProjectSettings.ProjectUnits), False);
     // draw dwl
     DrawLineAtt(FProfileOrigin, SetPoint(FMin3D.X - Space, FMin3D.Z +
       FFreeship.ProjectSettings.ProjectDraft, 0), SetPoint(
-      FMax3D.X + Space, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft, 0), Userstring(185) + #32 +
+      FMax3D.X + Space, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft, 0), rs_DWL {UserString[185]} + #32 +
       ConvertDimension(FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft,
       Freeship.ProjectSettings.ProjectUnits), False);
     Viewport.SetPenWidth(PenwidthFactor);
@@ -1281,17 +1281,17 @@ begin
       Viewport.FontColor := clRed;
     // draw base
     DrawLineAtt(FAftOrigin, SetPoint(-FMax3D.Y - Space, FMin3D.Z, 0),
-      SetPoint(FMax3D.Y + Space, FMin3D.Z, 0), Userstring(184) + #32 + ConvertDimension(
+      SetPoint(FMax3D.Y + Space, FMin3D.Z, 0), rs_Base {UserString[184]} + #32 + ConvertDimension(
       FMin3D.Z, Freeship.ProjectSettings.ProjectUnits), False);
     // draw dwl
     DrawLineAtt(FAftOrigin, SetPoint(-FMax3D.Y - Space, FMin3D.Z +
       FFreeship.ProjectSettings.ProjectDraft, 0), SetPoint(
-      FMax3D.Y + Space, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft, 0), Userstring(185) + #32 +
+      FMax3D.Y + Space, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft, 0), rs_DWL {UserString[185]} + #32 +
       ConvertDimension(FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft,
       Freeship.ProjectSettings.ProjectUnits), False);
     Space := CalculateSpace(textspace, FMin3D.Z, FMax3D.Z);
     DrawLineAtt(FAftOrigin, SetPoint(0.0, FMin3D.Z - space, 0), SetPoint(
-      0.0, FMax3D.Z + space, 0), Userstring(245), True);
+      0.0, FMax3D.Z + space, 0), rs_Center {UserString[245]}, True);
     Space := CalculateSpace(textspace, FMin3D.Y, FMax3D.Y);
     Viewport.FontColor := clBlack;
     Viewport.SetPenWidth(PenwidthFactor);
@@ -1321,18 +1321,18 @@ begin
       Viewport.FontColor := clRed;
     // draw baseline
     DrawLineAtt(FFrontOrigin, SetPoint(-FMax3D.Y - Space, FMin3D.Z, 0),
-      SetPoint(FMax3D.Y + Space, FMin3D.Z, 0), Userstring(184) + #32 +
+      SetPoint(FMax3D.Y + Space, FMin3D.Z, 0), rs_Base {UserString[184]} + #32 +
       ConvertDimension(
       FMin3D.Z, Freeship.ProjectSettings.ProjectUnits), False);
     // draw dwl
     DrawLineAtt(FFrontOrigin, SetPoint(-FMax3D.Y - Space, FMin3D.Z +
       FFreeship.ProjectSettings.ProjectDraft, 0), SetPoint(
-      FMax3D.Y + Space, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft, 0), Userstring(185) + #32 +
+      FMax3D.Y + Space, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft, 0), rs_DWL {UserString[185]} + #32 +
       ConvertDimension(FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft,
       Freeship.ProjectSettings.ProjectUnits), False);
     Space := CalculateSpace(textspace, FMin3D.Z, FMax3D.Z);
     DrawLineAtt(FFrontOrigin, SetPoint(0.0, FMin3D.Z - space, 0), SetPoint(
-      0.0, FMax3D.Z + space, 0), Userstring(245), True);
+      0.0, FMax3D.Z + space, 0), rs_Center {UserString[245]}, True);
     Space := CalculateSpace(textspace, FMin3D.Y, FMax3D.Y);
     Viewport.FontColor := clBlack;
     Viewport.SetPenWidth(PenwidthFactor);
@@ -1361,7 +1361,7 @@ begin
     else
       Viewport.FontColor := clRed;
     DrawLineAtt(FPlanOrigin, SetPoint(FMin3D.X - Space, 0, 0), SetPoint(
-      FMax3D.X + Space, 0, 0), Userstring(245), False);
+      FMax3D.X + Space, 0, 0), rs_Center {UserString[245]}, False);
     Viewport.FontColor := clBlack;
     Viewport.SetPenWidth(PenwidthFactor);
     for I := 1 to FFreeship.NumberofButtocks do
@@ -1582,7 +1582,7 @@ begin
   else
     Printer.Orientation := poPortrait;
   if PrintDialog.Execute then
-    Viewport.Print(FFreeship.ProjectSettings.ProjectUnits, True, Userstring(246));
+    Viewport.Print(FFreeship.ProjectSettings.ProjectUnits, True, rs_FREE_ship_linesplan {UserString[246]});
 end;{TFreeLinesplanFrame.PrintExecute}
 
 procedure TFreeLinesplanFrame.ViewportMouseMove(Sender: TObject; Shift: TShiftState;
@@ -1962,11 +1962,11 @@ begin
     Space := CalculateSpace(0.5 * textspace, FMin3D.X, FMax3D.X);
     // draw baseline
     AddLine(SetPoint(FMin3D.X - Space, FMin3D.Z, 0), SetPoint(
-      FMax3D.X + Space, FMin3D.Z, 0), [lvProfile], Userstring(184), Freeship.Preferences.GridColor);
+      FMax3D.X + Space, FMin3D.Z, 0), [lvProfile], rs_Base {UserString[184]}, Freeship.Preferences.GridColor);
     // draw dwl
     AddLine(SetPoint(FMin3D.X - Space, 0, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft),
       SetPoint(FMax3D.X + Space, 0, FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft),
-      [lvProfile], Userstring(185), clRed);
+      [lvProfile], rs_DWL {UserString[185]}, clRed);
     for I := 1 to FFreeship.NumberofWaterlines do
     begin
       Tmp := -FFreeship.Waterline[I - 1].Plane.D;
@@ -1999,11 +1999,11 @@ begin
     Space := CalculateSpace(0.5 * textspace, -FMax3D.Y, FMax3D.Y);
     // draw baseline
     AddLine(SetPoint(0.0, -FMax3D.Y - Space, 0.0), SetPoint(0.0, FMax3D.Y + Space, 0.0),
-      [lvAftBody], Userstring(184), Freeship.Preferences.GridColor);
+      [lvAftBody], rs_Base {UserString[184]}, Freeship.Preferences.GridColor);
     // draw dwl
     AddLine(SetPoint(0.0, -FMax3D.Y - Space, FMin3D.Z +
       FFreeship.ProjectSettings.ProjectDraft), SetPoint(0.0, FMax3D.Y + Space,
-      FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft), [lvAftBody], Userstring(185), clRed);
+      FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft), [lvAftBody], rs_DWL {UserString[185]}, clRed);
     for I := 1 to FFreeship.NumberofWaterlines do
     begin
       Tmp := -FFreeship.Waterline[I - 1].Plane.D;
@@ -2013,7 +2013,7 @@ begin
     Space := CalculateSpace(textspace, FMin3D.Z, FMax3D.Z);
     // draw centerline
     AddLine(SetPoint(0.0, 0.0, FMin3D.Z - space), SetPoint(0.0, 0.0, FMax3D.Z + space),
-      [lvAftBody], Userstring(245), clRed);
+      [lvAftBody], rs_Center {UserString[245]}, clRed);
     for I := 1 to FFreeship.NumberofButtocks do
     begin
       Tmp := -FFreeship.Buttock[I - 1].Plane.D;
@@ -2047,11 +2047,11 @@ begin
     Space := CalculateSpace(0.5 * textspace, -FMax3D.Y, FMax3D.Y);
     // draw baseline
     AddLine(SetPoint(0.0, -FMax3D.Y - Space, 0.0), SetPoint(0.0, FMax3D.Y + Space, 0.0),
-      [lvFrontBody], Userstring(184), Freeship.Preferences.GridColor);
+      [lvFrontBody], rs_Base {UserString[184]}, Freeship.Preferences.GridColor);
     // draw dwl
     AddLine(SetPoint(0.0, -FMax3D.Y - Space, FMin3D.Z +
       FFreeship.ProjectSettings.ProjectDraft), SetPoint(0.0, FMax3D.Y + Space,
-      FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft), [lvFrontBody], Userstring(185), clRed);
+      FMin3D.Z + FFreeship.ProjectSettings.ProjectDraft), [lvFrontBody], rs_DWL {UserString[185]}, clRed);
     for I := 1 to FFreeship.NumberofWaterlines do
     begin
       Tmp := -FFreeship.Waterline[I - 1].Plane.D;
@@ -2061,7 +2061,7 @@ begin
     Space := CalculateSpace(textspace, FMin3D.Z, FMax3D.Z);
     // draw centerline
     AddLine(SetPoint(0.0, 0.0, FMin3D.Z - space), SetPoint(0.0, 0.0, FMax3D.Z + space),
-      [lvFrontBody], Userstring(245), clRed);
+      [lvFrontBody], rs_Center {UserString[245]}, clRed);
     for I := 1 to FFreeship.NumberofButtocks do
     begin
       Tmp := -FFreeship.Buttock[I - 1].Plane.D;
@@ -2096,7 +2096,7 @@ begin
     Space := CalculateSpace(0.5 * textspace, FMin3D.X, FMax3D.X);
     // draw centerline
     AddLine(SetPoint(FMin3D.X - Space, 0.0, 0.0), SetPoint(FMax3D.X + Space, 0.0, 0.0),
-      [lvPlan], Userstring(245), clRed);
+      [lvPlan], rs_Center {UserString[245]}, clRed);
     for I := 1 to FFreeship.NumberofButtocks do
     begin
       Tmp := -FFreeship.Buttock[I - 1].Plane.D;

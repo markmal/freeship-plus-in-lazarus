@@ -44,10 +44,10 @@ end;{TFreeIntersection.FGetCount}
 function TFreeIntersection.FGetDescription: string;
 begin
   case IntersectionType of
-    fiStation: Result := Userstring(58);
-    fiButtock: Result := Userstring(59);
-    fiWaterline: Result := Userstring(60);
-    fiDiagonal: Result := Userstring(61);
+    fiStation: Result := rs_Station {UserString[58]};
+    fiButtock: Result := rs_Buttock {UserString[59]};
+    fiWaterline: Result := rs_Waterline {UserString[60]};
+    fiDiagonal: Result := rs_Diagonal {UserString[61]};
     else
       Result := 'Free';
   end;
@@ -367,7 +367,7 @@ begin
         fiButtock: DeltaA := 0.5 * (P2.X + P1.X) * (P2.Z - P1.Z);
         fiWaterline: DeltaA := 0.5 * (P2.X + P1.X) * (P2.Y - P1.Y);
         else
-          raise Exception.Create(Userstring(66) + '!');
+          raise Exception.Create(rs_Unknown_intersection_type {UserString[66]} + '!');
       end;
       Area := Area + DeltaA;
       P1 := P2;
@@ -819,10 +819,10 @@ begin
   begin
     Spline := Items[I - 1];
     case IntersectionType of
-      fiStation: layer := Userstring(62);
-      fiButtock: layer := Userstring(63);
-      fiWaterline: layer := Userstring(64);
-      fiDiagonal: layer := Userstring(65);
+      fiStation: layer := rs_Stations {UserString[62]};
+      fiButtock: layer := rs_Buttocks {UserString[63]};
+      fiWaterline: layer := rs_Waterlines {UserString[64]};
+      fiDiagonal: layer := rs_Diagonals {UserString[65]};
       else
         Layer := 'Layer_0';
     end;

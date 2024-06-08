@@ -55,10 +55,11 @@ uses
   Buttons,
   StdCtrls,
   ExtCtrls,
+  LCLTranslator,
   FasterList,
   Freegeometry,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 
 type
 
@@ -163,7 +164,7 @@ begin
 
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
 
   ShowModal;
   Result := modalResult = mrOk;

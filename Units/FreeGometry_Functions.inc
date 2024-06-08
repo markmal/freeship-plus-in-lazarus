@@ -26,67 +26,67 @@ end;{AddPointSymm}
 function AreaStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(465)
+    Result := rs_ft_2 {UserString[465]}
   else
-    Result := Userstring(452);
+    Result := rs_m_2 {UserString[452]};
 end;{AreaStr}
 
 // Returns a string value with the length units
 function LengthStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(464)
+    Result := rs_ft {UserString[464]}
   else
-    Result := Userstring(451);
+    Result := rs_m {UserString[451]};
 end;{LengthStr}
 
 // Returns a string value with the moment of inertia units
 function InertiaStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(467)
+    Result := rs_ft_4 {UserString[467]}
   else
-    Result := Userstring(470);
+    Result := rs_m_4 {UserString[470]};
 end;{InertiaStr}
 
 function VolStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(466)
+    Result := rs_ft_3 {UserString[466]}
   else
-    Result := Userstring(453);
+    Result := rs_m_3 {UserString[453]};
 end;{VolStr}
 
 function DensStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(468)
+    Result := rs_lbs_ft_3 {UserString[468]}
   else
-    Result := Userstring(469);
+    Result := rs_t_m_3 {UserString[469]};
 end;{DensStr}
 
 function ViscStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(471)
+    Result := rs_ft_2_s {UserString[471]}
   else
-    Result := Userstring(472);
+    Result := rs_m_2_s {UserString[472]};
 end;{ViscStr}
 
 function DegrStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(455)
+    Result := rs_degr {UserString[455]}
   else
-    Result := Userstring(455);
+    Result := rs_degr {UserString[455]};
 end;{DegrStr}
 
 function LenMMStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(755)
+    Result := rs_in {UserString[755]}
   else
-    Result := Userstring(756);
+    Result := rs_mm {UserString[756]};
 end;{LenMMStr}
 
 // Converts a volume to displacement
@@ -103,17 +103,17 @@ end;{VolumeToDisplacement}
 function DensityStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(468)
+    Result := rs_lbs_ft_3 {UserString[468]}
   else
-    Result := Userstring(469);
+    Result := rs_t_m_3 {UserString[469]};
 end;{DensityStr}
 
 function WeightStr(Units: TFreeUnitType): string;
 begin
   if Units = fuImperial then
-    Result := Userstring(473)
+    Result := rs_tons {UserString[473]}
   else
-    Result := Userstring(474);
+    Result := rs_tonnes {UserString[474]};
 end;{WeightStr}
 
 function BoolToStr(Val: boolean): string;

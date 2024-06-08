@@ -47,8 +47,9 @@ uses
      Buttons,
      ExtCtrls,
      StdCtrls,
+     LCLTranslator,
      FreeshipUnit,
-     FreeLanguageSupport,
+     FreeStringsUnit,
      FreeGeometry,
      FasterList,
      CheckLst;
@@ -221,7 +222,7 @@ begin
 
    Freeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
    Freeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
-   ShowTranslatedValues(Self);
+   //ShowTranslatedValues(Self);
 
    try
      ShowModal;

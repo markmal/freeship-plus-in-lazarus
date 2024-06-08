@@ -77,7 +77,7 @@ function ResourceVersionInfo: String;
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
      resource, versionresource, versiontypes,
      resreader, coffreader, elfreader, winpeimagereader, //elfconsts,
      FreeLogger;
@@ -130,7 +130,7 @@ begin
       fv430  : Result:='4.3';
       fv462  : Result:='4.6.2';
       fv500  : Result:='5.0';
-      else MessageDlg(Userstring(204)+'!',mtError,[mbok],0);
+      else MessageDlg(rs_Unknown_fileversion {UserString[204]}+'!',mtError,[mbok],0);
    end
 end;{VersionString}
 
@@ -181,7 +181,7 @@ begin
   if Version =	'4.3'	 then Result:=	      fv430	 else
   if Version =	'4.6.2'	 then Result:=	      fv462	 else
   if Version =	'5.0'	 then Result:=	      fv500	 else
-  raise Exception.Create(Userstring(204)+'! '+Version);
+  raise Exception.Create(rs_Unknown_fileversion {UserString[204]}+'! '+Version);
 end;{VersionString}
 
 

@@ -41,19 +41,20 @@ uses
      {$ENDIF}
 
     {$ENDIF}
-     SysUtils,
-     Classes,
-     Graphics,
-     Controls,
-     Forms,
-     Dialogs,
-     StdCtrls,
+    SysUtils,
+    Classes,
+    Graphics,
+    Controls,
+    Forms,
+    Dialogs,
+    StdCtrls,
     ComCtrls,
     Buttons,
-     ExtCtrls,
-     FreeGeometry,
+    ExtCtrls,
+    LCLTranslator,
+    FreeGeometry,
     FreeShipUnit,
-    FreeLanguageSupport
+    FreeStringsUnit
      ;
 
 type
@@ -95,7 +96,7 @@ begin
    LabelFileName.Caption := FileName;
    GlobalFreeship.Preferences.LoadImageIntoBitmap(OKbutton.Glyph,'Ok');
    GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph,'Cancel');
-   ShowTranslatedValues(Self);
+   //ShowTranslatedValues(Self);
    Showmodal;
    BringToFront;
    Result:=ModalResult=mrOk;

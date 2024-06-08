@@ -11,9 +11,10 @@ uses
      {$ELSE}
       FileUtil, //deprecated
      {$ENDIF}
- Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Forms, Controls, Graphics, Dialogs, StdCtrls,
   Buttons, ExtCtrls,
-  FreeShipUnit,FreeLanguageSupport;
+  LCLTranslator,
+  FreeShipUnit,FreeStringsUnit;
 
 
 type
@@ -45,7 +46,7 @@ function TEnterThemeNameDlg.Execute:Boolean;
 begin
    GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph,'Ok');
    GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph,'Cancel');
-   ShowTranslatedValues(Self);
+   //ShowTranslatedValues(Self);
    Showmodal;
    Result:=ModalResult=mrOk;
 end;{TEnterThemeNameDlg.Execute}

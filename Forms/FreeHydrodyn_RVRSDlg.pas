@@ -220,7 +220,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
   Printers,
   Math,
   FreeProcess;
@@ -515,7 +515,7 @@ begin
   { *Converted from FileSearch* }
   if FileToFind <> 'resist.dat' then
   begin
-    MessageDlg(Userstring(736), mtError, [mbOK], 0);
+    MessageDlg(rs_Do_not_resistance_calculation_results_of_a_ship___ {UserString[736]}, mtError, [mbOK], 0);
     exit;
   end
   else
@@ -537,74 +537,74 @@ begin
   Ntask := Trunc(dat18);
   if NTask = 1 then
   begin
-    Chart.Title.Text.Text := Userstring(1000);
-    ResultsMemo.Lines.Add(Space(16) + Userstring(1005));
+    Chart.Title.Text.Text := rs_Acceleration__free_and_active_brake_calculation_ {UserString[1000]};
+    ResultsMemo.Lines.Add(Space(16) + rs_Acceleration_of_ship_calculation {UserString[1005]});
     dat[22] := 0;
     dat[23] := dat15;
   end;
   if NTask = 2 then
   begin
-    Chart.Title.Text.Text := Userstring(1008);
-    ResultsMemo.Lines.Add(Space(16) + Userstring(1006));
+    Chart.Title.Text.Text := rs_Free_brake_of_ship_ {UserString[1008]};
+    ResultsMemo.Lines.Add(Space(16) + rs_Free_brake_of_ship_calculation {UserString[1006]});
     dat[22] := res[1, 4];
     dat[23] := dat15;
   end;
   if NTask = 3 then
   begin
-    Chart.Title.Text.Text := Userstring(1009);
-    ResultsMemo.Lines.Add(Space(16) + Userstring(1007));
+    Chart.Title.Text.Text := rs_Active_brake_of_ship_ {UserString[1009]};
+    ResultsMemo.Lines.Add(Space(16) + rs_Active_brake_of_ship_calculation__reverse_ {UserString[1007]});
     dat[22] := res[1, 4];
     dat[23] := dat15;
   end;
 
-  //   FFreeship.CreateOutputHeader(Userstring(360)+'.',ResultsMemo.Lines);
+  //   FFreeship.CreateOutputHeader(rs_Calculation_optimal_elements_of_propeller_for_engine_selection {UserString[360]}+'.',ResultsMemo.Lines);
 
   ResultsMemo.Lines.Add(' ');
-  ResultsMemo.Lines.Add(Space(14) + Userstring(250));
+  ResultsMemo.Lines.Add(Space(14) + rs_Input_variables {UserString[250]});
   ResultsMemo.Lines.Add(' ');
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(44) + ', ' + LengthStr(Units), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Design_length {UserString[44]} + ', ' + LengthStr(Units), 50) +
     ' : ' + FloatToStrF(Dat2, ffFixed, 6, 2));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(46) + ', ' + LengthStr(Units), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Design_beam {UserString[46]} + ', ' + LengthStr(Units), 50) +
     ' : ' + FloatToStrF(Dat3, ffFixed, 6, 2));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(48) + ', ' + LengthStr(Units), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Design_draft {UserString[48]} + ', ' + LengthStr(Units), 50) +
     ' : ' + FloatToStrF(Dat4, ffFixed, 6, 2));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(3) + ', ' + VolStr(Units), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Displaced_volume {UserString[3]} + ', ' + VolStr(Units), 50) +
     ' : ' + FloatToStrF(Dat5, ffFixed, 6, 1));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(10) + ', ' + AreaStr(Units), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Wetted_surface_area {UserString[10]} + ', ' + AreaStr(Units), 50) +
     ' : ' + FloatToStrF(Dat6, ffFixed, 6, 1));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(368), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Number_of_propellers {UserString[368]}, 50) +
     ' : ' + FloatToStrF(Dat7, ffFixed, 6, 0));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(416), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Diameter_of_propeller__m_ {UserString[416]}, 50) +
     ' : ' + FloatToStrF(Dat8, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(417), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Pitch_diameter_ratio {UserString[417]}, 50) +
     ' : ' + FloatToStrF(Dat9, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(380), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Disk_area_ratio_Ae_Ao {UserString[380]}, 50) +
     ' : ' + FloatToStrF(Dat10, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(379), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Number_of_blades {UserString[379]}, 50) +
     ' : ' + FloatToStrF(Dat11, ffFixed, 6, 0));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(372), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Wake_fraction_Wt {UserString[372]}, 50) +
     ' : ' + FloatToStrF(Dat12, ffFixed, 6, 4));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(373), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Thrust_deduction_fraction_t {UserString[373]}, 50) +
     ' : ' + FloatToStrF(Dat13, ffFixed, 6, 4));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(359), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Engine_power__kW_ {UserString[359]}, 50) +
     ' : ' + FloatToStrF(Dat14, ffFixed, 6, 1));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(358), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Frequency__1_min_ {UserString[358]}, 50) +
     ' : ' + FloatToStrF(Dat15, ffFixed, 6, 2));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(998), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Shaf_effic_oGearbox_effic_ {UserString[998]}, 50) +
     ' : ' + FloatToStrF(Dat16, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1004), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Summary_inertia_moment_of_engine__kgom2_ {UserString[1004]}, 50) +
     ' : ' + FloatToStrF(Dat17, ffFixed, 6, 3));
   ResultsMemo.Lines.Add('');
-  //   ResultsMemo.Lines.Add(Space(16)+MakeLength(Userstring(1227),50)+' : '+FloatToStrF(res[1,1],ffFixed,6,2)+' '+FloatToStrF(res[1,2],ffFixed,6,2)+' '+FloatToStrF(res[1,3],ffFixed,6,2)+' '+FloatToStrF(res[1,4],ffFixed,6,2)+' '+FloatToStrF(res[1,5],ffFixed,6,2));
-  //   ResultsMemo.Lines.Add(Space(16)+MakeLength(Userstring(1228),50)+' : '+FloatToStrF(res[2,1],ffFixed,6,1)+' '+FloatToStrF(res[2,2],ffFixed,6,1)+' '+FloatToStrF(res[2,3],ffFixed,6,1)+' '+FloatToStrF(res[2,4],ffFixed,6,1)+' '+FloatToStrF(res[2,5],ffFixed,6,1));
+  //   ResultsMemo.Lines.Add(Space(16)+MakeLength(rs_Speed_ship__kn_ {UserString[1227]},50)+' : '+FloatToStrF(res[1,1],ffFixed,6,2)+' '+FloatToStrF(res[1,2],ffFixed,6,2)+' '+FloatToStrF(res[1,3],ffFixed,6,2)+' '+FloatToStrF(res[1,4],ffFixed,6,2)+' '+FloatToStrF(res[1,5],ffFixed,6,2));
+  //   ResultsMemo.Lines.Add(Space(16)+MakeLength(rs_Resistance__kN_ {UserString[1228]},50)+' : '+FloatToStrF(res[2,1],ffFixed,6,1)+' '+FloatToStrF(res[2,2],ffFixed,6,1)+' '+FloatToStrF(res[2,3],ffFixed,6,1)+' '+FloatToStrF(res[2,4],ffFixed,6,1)+' '+FloatToStrF(res[2,5],ffFixed,6,1));
 
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1227), 35) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Speed_ship__kn_ {UserString[1227]}, 35) +
     ' : ' + MakeLength(FloatToStrF(res[1, 1], ffFixed, 6, 2), 7) + ' ' + MakeLength(
     FloatToStrF(res[1, 2], ffFixed, 6, 2), 7) + ' ' + MakeLength(
     FloatToStrF(res[1, 3], ffFixed, 6, 2), 7) + ' ' + MakeLength(
     FloatToStrF(res[1, 4], ffFixed, 6, 2), 7) + ' ' + MakeLength(
     FloatToStrF(res[1, 5], ffFixed, 6, 2), 7));
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1228), 35) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Resistance__kN_ {UserString[1228]}, 35) +
     ' : ' + MakeLength(FloatToStrF(res[2, 1], ffFixed, 6, 2), 7) + ' ' + MakeLength(
     FloatToStrF(res[2, 2], ffFixed, 6, 2), 7) + ' ' + MakeLength(
     FloatToStrF(res[4, 3], ffFixed, 6, 2), 7) + ' ' + MakeLength(
@@ -632,7 +632,7 @@ begin
     { *Converted from FileSearch* }
     if FileToFind <> 'resist.dat' then
     begin
-      MessageDlg(Userstring(736), mtError, [mbOK], 0);
+      MessageDlg(rs_Do_not_resistance_calculation_results_of_a_ship___ {UserString[736]}, mtError, [mbOK], 0);
       exit;
     end;
 
@@ -642,19 +642,19 @@ begin
     { *Converted from FileSearch* }
     if FileToFind <> 'TMP4.tsk' then
     begin
-      MessageDlg(Userstring(1229), mtError, [mbOK], 0);
+      MessageDlg(rs_Have_not_input_file_for_calculation_is_here___ {UserString[1229]}, mtError, [mbOK], 0);
       exit;
     end;
 
     //  Определяем каталог с программой rvrsship.exe
-{      FileToFind := FileSearch('Exec\rvrsship.exe', FInitDirectory);
+(*      FileToFind := FileSearch('Exec\rvrsship.exe', FInitDirectory);
           str:=PChar(FInitDirectory+'Exec\rvrsship.exe');
     if FileToFind<>Str then begin
-            MessageDlg(Userstring(1138)+#13#10#13#10+Userstring(1139)+' Rvrsship.EXE '+#13#10#13#10+Userstring(1140)+#13#10#13#10+Userstring(1141)+#13#10#13#10+Userstring(1142),mtError,[mbOk],0);
+            MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}+#13#10#13#10+rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]}+' Rvrsship.EXE '+#13#10#13#10+rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}+#13#10#13#10+rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}+#13#10#13#10+rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]},mtError,[mbOk],0);
             ResultsMemo.Lines.Add(Space(16)+'Do not found file rvrsship.exe here: '+FInitDirectory+'Exec\');
       exit;
     end;
-}
+*)
 
     Time := now;
     //begtim:=HourOf(Time)*3600.+MinuteOf(Time)*60.+SecondOf(Time)+MilliSecondOf(Time)/1000.;
@@ -673,8 +673,8 @@ begin
       FileToFind := FileSearchUTF8('TMP4.tsk', GetCurrentDir); { *Converted from FileSearch* }
     if ii > 10 then
     begin
-      MessageDlg(Userstring(1433), mtError, [mbOK], 0);
-      ResultsMemo.Lines.Add(Space(16) + Userstring(1433));
+      MessageDlg(rs_Calculation_is_NOT_possible_with_this_data____ {UserString[1433]}, mtError, [mbOK], 0);
+      ResultsMemo.Lines.Add(Space(16) + rs_Calculation_is_NOT_possible_with_this_data____ {UserString[1433]});
       exit;
     end;
     if FileToFind = 'TMP4.tsk' then
@@ -727,8 +727,8 @@ begin
   ResultsMemo.Lines.Add('');
   if res[1, 2] < 6 then
   begin
-    ResultsMemo.Lines.Add(Space(16) + Userstring(734));
-    ResultsMemo.Lines.Add(Space(16) + Userstring(735));
+    ResultsMemo.Lines.Add(Space(16) + rs_ATTENTION____Stopped_acceleration_calculation__because_steady_engine_RPM {UserString[734]});
+    ResultsMemo.Lines.Add(Space(16) + rs_is_lower_then_critical__Increase_engine_power_ {UserString[735]});
     exit;
   end;
 
@@ -741,19 +741,19 @@ begin
   ResultsMemo.Lines.Add('');
   ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1010 + NTask), 50) +
     ' : ' + FloatToStrF(res[1, 2] / 60., ffFixed, 6, 2) + '(' + FloatToStrF(res[1, 2], ffFixed, 6, 2) + ')');
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1014), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Distance__sea_miles__m__ {UserString[1014]}, 50) +
     ' : ' + FloatToStrF(res[2, 2] / 1852., ffFixed, 6, 2) + '(' + FloatToStrF(res[2, 2], ffFixed, 6, 2) + ')');
   if NTask > 1 then
-    ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1025), 50) + ' : ' +
+    ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Started_speed__knots__m_s__ {UserString[1025]}, 50) + ' : ' +
       FloatToStrF(dat[22], ffFixed, 6, 2) + '(' + FloatToStrF(dat[22] * 0.51444, ffFixed, 6, 2) + ')');
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1015), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Ended_speed__knots__m_s__ {UserString[1015]}, 50) +
     ' : ' + FloatToStrF(res[3, 2] / 0.51444, ffFixed, 6, 2) + '(' + FloatToStrF(
     res[3, 2], ffFixed, 6, 2) + ')');
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(1016), 50) +
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Ended_frequency_engine_shaft__1_min__1_s__ {UserString[1016]}, 50) +
     ' : ' + FloatToStrF(abs(res[4, 2]), ffFixed, 6, 2) + '(' + FloatToStrF(
     abs(res[4, 2]) / 60., ffFixed, 6, 2) + ')');
-  ResultsMemo.Lines.Add(Space(16) + MakeLength(Userstring(962), 50) +
-    ' : ' + FloatToStrF(endtim, ffFixed, 6, 1) + ' ' + Userstring(963));
+  ResultsMemo.Lines.Add(Space(16) + MakeLength(rs_Computing_time {UserString[962]}, 50) +
+    ' : ' + FloatToStrF(endtim, ffFixed, 6, 1) + ' ' + rs_seconds {UserString[963]});
   ValidData := True;
 
   ResultsMemo.Lines.Add('');
@@ -782,7 +782,7 @@ begin
   Units := FFreeship.ProjectSettings.ProjectUnits;
   if Units = fuImperial then
   begin
-    MessageDlg(Userstring(754), mtInformation, [mbOK], 0);
+    MessageDlg(rs_This_is_version_of_program_work_with_metric_system_units_only {UserString[754]}, mtInformation, [mbOK], 0);
     exit;
   end;
 
@@ -799,7 +799,7 @@ begin
   end
   else
   begin
-    MessageDlg(Userstring(995), mtInformation, [mbOK], 0);
+    MessageDlg(rs_Do_not_have_results_of_resistance_calculation_in_this_directory_ {UserString[995]}, mtInformation, [mbOK], 0);
     exit;
   end;
   dat7 := datp[2];
@@ -807,7 +807,7 @@ begin
   dat13 := datp[4];
   if dat7 = 0 then
   begin
-    MessageDlg(Userstring(1537), mtInformation, [mbOK], 0);
+    MessageDlg(rs_Calculation_of_propeller_is_stop__because_Np_set_zero_in_resistance_calculation_ {UserString[1537]}, mtInformation, [mbOK], 0);
     exit;
   end;
 
@@ -832,7 +832,7 @@ begin
   end
   else
   begin
-    MessageDlg(Userstring(995), mtInformation, [mbOK], 0);
+    MessageDlg(rs_Do_not_have_results_of_resistance_calculation_in_this_directory_ {UserString[995]}, mtInformation, [mbOK], 0);
     exit;
   end;
   dat8 := datp[1];
@@ -844,15 +844,15 @@ begin
 
   Checkbox2.Enabled := FFreeship.Surface.NumberOfControlFaces > 1;
   CheckBox2.Checked := AutoExtract;
-  Chart.Title.Text.Text := Userstring(1000);
-  Chart.LeftAxis.Title.Caption := Userstring(1002);
+  Chart.Title.Text.Text := rs_Acceleration__free_and_active_brake_calculation_ {UserString[1000]};
+  Chart.LeftAxis.Title.Caption := rs_Distance__miles___Speed__knots___Frequency_of_propeller_no0_1__1_min_ {UserString[1002]};
    {$ifNdef FPC}
   RightAxis := Chart.RightAxis;
    {$else}
   RightAxis := Chart.AxisList.GetAxisByAlign(calRight);
    {$endif}
-  RightAxis.Title.Caption := Userstring(1003);
-  Chart.BottomAxis.Title.Caption := Userstring(1001);
+  RightAxis.Title.Caption := rs_Thrust__kN___Torque__kNom_ {UserString[1003]};
+  Chart.BottomAxis.Title.Caption := rs_Time__sec_ {UserString[1001]};
   Edit10.Enabled := False;  // Нельзя менять в freeware версии
   Edit11.Enabled := False;
   Calculate;
@@ -865,14 +865,14 @@ var
   pathFile, FileToFind, FileName: string;
   FInitDirectory: string;
 begin
-{
+(*
       FInitDirectory := FFreeship.Preferences.InitDirectory;
 //      ResultsMemo.Lines.Add(FInitDirectory+' -init');
 
 //  Определяем текущий каталог с проектами и результатами расчета resist.dat
       FileToFind := FileSearch('resist.dat', GetCurrentDir);
     if FileToFind<>'resist.dat' then begin
-       MessageDlg(Userstring(734),mtError,[mbOk],0);
+       MessageDlg(rs_ATTENTION____Stopped_acceleration_calculation__because_steady_engine_RPM {UserString[734]},mtError,[mbOk],0);
     exit;
     end;
 //      ResultsMemo.Lines.Add(GetCurrentDir+'='+FileToFind);
@@ -880,13 +880,13 @@ begin
 //  Определяем текущий каталог с проектами и с данными для расчета TMP4.tsk
       FileToFind := FileSearch('TMP4.tsk', GetCurrentDir);
     if FileToFind<>'TMP4.tsk' then begin
-      MessageDlg(Userstring(1229),mtError,[mbOk],0);
+      MessageDlg(rs_Have_not_input_file_for_calculation_is_here___ {UserString[1229]},mtError,[mbOk],0);
     exit;
     end;
 //    ResultsMemo.Lines.Add(GetCurrentDir+'='+FileToFind);
 // Запускаем программу расчета
       WinExec(PChar(FInitDirectory+'rvrsship.exe'),0);
-}
+*)
 end;{TFreeHydrodyn_Rvrs.ToolButton17Click}
 
 procedure TFreeHydrodyn_Rvrs.ToolButton7Click(Sender: TObject);

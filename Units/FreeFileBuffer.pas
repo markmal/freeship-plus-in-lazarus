@@ -13,7 +13,7 @@ uses
   LConvEncoding,
   FreeVersionUnit,
   FreeTypes,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 
 const
   FileBufferBlockSize = 4096;
@@ -356,11 +356,13 @@ begin
    D := PChar(@Dest);
    if FPosition+Size>FCount then
      begin
-       raise Exception.Create(UserString(192)+'_0 ! Load data'+EOL
+       raise Exception.Create(rs_Error_reading_from_file //UserString[192]
+       +'_0 ! Load data'+EOL
        +'Position+Size:'+IntToStr(FPosition+Size)
        +' > '+IntToStr(FCount)
        +EOL+FFileName);
-       //MessageDlg(UserString(192)+'_0 !',mtError,[mbOk],0);
+       //MessageDlg(rs_Error_reading_from_file //UserString[192]
+       +'_0 !',mtError,[mbOk],0);
        exit;
      end;
    for I:=0 to size-1 do
@@ -1894,11 +1896,13 @@ begin
       Inc(FPosition,Size);
    end
    else
-   raise Exception.Create(UserString(192)+'_1 ! Load Integer'+EOL
+   raise Exception.Create(rs_Error_reading_from_file //UserString[192]
+      +'_1 ! Load Integer'+EOL
       +'Position+Size:'+IntToStr(FPosition+Size)
       +' > '+IntToStr(FCount)
       +EOL+FFileName);
-   //MessageDlg(UserString(192)+'_1 !',mtError,[mbOk],0);
+   //MessageDlg(rs_Error_reading_from_file //UserString[192]
+      +'_1 !',mtError,[mbOk],0);
 end;}{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadInteger(var Output: integer);
@@ -1987,8 +1991,8 @@ begin
       Output := b2 <> 0;
       Inc(FPosition,Size);
    end
-   else //MessageDlg(UserString(192)+'_3 !',mtError,[mbOk],0);
-   raise Exception.Create(UserString(192)+'_3 ! Load Boolean'+EOL
+   else //MessageDlg(rs_Error_reading_from_file //UserString[192] +'_3 !',mtError,[mbOk],0);
+   raise Exception.Create(rs_Error_reading_from_file //UserString[192]+'_3 ! Load Boolean'+EOL
       +'Position+Size:'+IntToStr(FPosition+Size)
       +' > '+IntToStr(FCount)
       +EOL+FFileName);
@@ -2041,8 +2045,8 @@ begin
     Move(FData[FPosition], Output, Size);
     Inc(FPosition, Size);
   end
-  else //MessageDlg(UserString(192)+'_5 !',mtError,[mbOk],0);
-    raise Exception.Create(UserString(192) + '_5 ! Load TColor' + EOL
+  else //MessageDlg(rs_Error_reading_from_file //UserString[192]+'_5 !',mtError,[mbOk],0);
+    raise Exception.Create(rs_Error_reading_from_file //UserString[192] + '_5 ! Load TColor' + EOL
       + 'Position+Size:' + IntToStr(FPosition + Size) + ' > ' + IntToStr(
       FCount) + EOL + FFileName);
 end;}{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}

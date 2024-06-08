@@ -130,7 +130,7 @@ procedure Register;
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeStringsUnit;
 
 type TSetOfChar=set of char;
 
@@ -307,8 +307,8 @@ begin
    if FValidate and ((Value<FMin) or (Value>FMax)) then
    begin
       if FOutOfRangeMessage then MessageDlg(
-         Userstring(205)+' '+FloatToStrF(FMin,ffFixed,7,Decimals)+' '
-         +Userstring(206)+' '+FloatToStrF(FMax,ffFixed,7,Decimals),mtError,[mbOk],0);
+         rs_Value_must_be_between {UserString[205]}+' '+FloatToStrF(FMin,ffFixed,7,Decimals)+' '
+         +rs_and {UserString[206]}+' '+FloatToStrF(FMax,ffFixed,7,Decimals),mtError,[mbOk],0);
       Tmp:=FloatToStrF(Value,ffFixed,FDigits,FDecimals);
       Value:=StrToFloat(Tmp);
 
@@ -559,7 +559,7 @@ begin
   except
     on E: EConvertError do
     begin
-      MessageDlg('''' + Text + ''''+Userstring(207)+'.', mtError, [mbOK], 0);
+      MessageDlg('''' + Text + ''''+rs_is_no_valid_numeric_input {UserString[207]}+'.', mtError, [mbOK], 0);
       SelectAll;
       SetFocus;
     end;

@@ -165,7 +165,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
   Printers,
   Math,
   FreeProcess;
@@ -294,7 +294,7 @@ begin
     ResultsMemo2.Lines.Add(Userstring(i));
   for i := 832 to 842 do
     ResultsMemo2.Lines.Add(Userstring(i));
-  ResultsMemo2.Lines.Add(Userstring(833));
+  ResultsMemo2.Lines.Add(rs_t_______________________________________t___t______________t_________t {UserString[833]});
   ResultsMemo2.Lines.Add('');
   ResultsMemo2.Lines.Add('Copyright (c) 2008-2013, Timoshenko V.F.');
   ResultsMemo2.Visible := True;
@@ -349,7 +349,7 @@ dat7=Velocity Vp
     FileToFind := FileSearchUTF8('INO.', GetCurrentDir); { *Converted from FileSearch* }
     if FileToFind <> 'INO.' then
     begin
-      MessageDlg(Userstring(1229), mtError, [mbOK], 0);
+      MessageDlg(rs_Have_not_input_file_for_calculation_is_here___ {UserString[1229]}, mtError, [mbOK], 0);
       exit;
     end;
 
@@ -380,13 +380,13 @@ dat7=Velocity Vp
         DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
       end;
       if Combobox.ItemIndex = 0 then
-        MessageDlg(Userstring(1138) + #13#10#13#10 + Userstring(1139) + ' Propol.EXE '
-          + #13#10#13#10 + Userstring(1140) + #13#10#13#10 + Userstring(
-          1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0)
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' Propol.EXE '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 + Userstring(
+          1141) + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0)
       else
-        MessageDlg(Userstring(1138) + #13#10#13#10 + Userstring(1139) + ' FPPcalc.EXE '
-          + #13#10#13#10 + Userstring(1140) + #13#10#13#10 + Userstring(
-          1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' FPPcalc.EXE '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 + Userstring(
+          1141) + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
       exit;
     end;
 
@@ -416,41 +416,41 @@ dat7=Velocity Vp
   end;
   CloseFile(FFile);
 
-  ResultsMemo.Lines.Add(Space(19) + Userstring(1555));
+  ResultsMemo.Lines.Add(Space(19) + rs_CALCULATION_OF_OPEN_WATER_CHARACTERISTICS_OF_A_PROPELLER {UserString[1555]});
   ResultsMemo.Lines.Add(' ');
   ResultsMemo.Lines.Add(
     Space(18) + '-----------------------------------------------------------------------');
   ResultsMemo.Lines.Add(' ');
   if Combobox.ItemIndex = 0 then
-    ResultsMemo.Lines.Add(Space(34) + Userstring(1556) + ' B ' + Userstring(0824));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' B ' + Userstring(0824));
   if Combobox.ItemIndex = 1 then
-    ResultsMemo.Lines.Add(Space(34) + Userstring(1556) + ' T ' + Userstring(0825));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' T ' + Userstring(0825));
   if Combobox.ItemIndex = 2 then
-    ResultsMemo.Lines.Add(Space(34) + Userstring(1556) + ' M ' + Userstring(0826));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' M ' + Userstring(0826));
   if Combobox.ItemIndex = 3 then
-    ResultsMemo.Lines.Add(Space(34) + Userstring(1556) + ' Z ' + Userstring(0827));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' Z ' + Userstring(0827));
   if Combobox.ItemIndex = 4 then
-    ResultsMemo.Lines.Add(Space(34) + Userstring(1556) + ' T ' + Userstring(0828));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' T ' + Userstring(0828));
   if Combobox.ItemIndex = 5 then
-    ResultsMemo.Lines.Add(Space(34) + Userstring(1556) + ' ZM ' + Userstring(0829));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' ZM ' + Userstring(0829));
   if Combobox.ItemIndex = 6 then
-    ResultsMemo.Lines.Add(Space(34) + Userstring(1556) + ' ZV ' + Userstring(0830));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' ZV ' + Userstring(0830));
   ResultsMemo.Lines.Add(' ');
-  ResultsMemo.Lines.Add(Space(14) + Userstring(1557) + ' ' +
+  ResultsMemo.Lines.Add(Space(14) + rs_AAE___ {UserString[1557]} + ' ' +
     FloatToStrF(dat3, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(14) + Userstring(1558) + ' ' +
+  ResultsMemo.Lines.Add(Space(14) + rs_PPD___ {UserString[1558]} + ' ' +
     FloatToStrF(dat4, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(14) + Userstring(1559) + ' ' +
+  ResultsMemo.Lines.Add(Space(14) + rs_NPB___ {UserString[1559]} + ' ' +
     FloatToStrF(dat5, ffFixed, 6, 0));
-  ResultsMemo.Lines.Add(Space(14) + Userstring(1560) + ' ' +
-    FloatToStrF(dat6, ffFixed, 6, 3) + ' ' + Userstring(451));
-  ResultsMemo.Lines.Add(Space(14) + Userstring(1561) + ' ' +
-    FloatToStrF(dat2, ffFixed, 6, 2) + ' ' + Userstring(1553));
-  ResultsMemo.Lines.Add(Space(14) + Userstring(1426) + ' ' +
-    FloatToStrF(dat7, ffFixed, 6, 3) + ' ' + Userstring(1405));
+  ResultsMemo.Lines.Add(Space(14) + rs_DPR___ {UserString[1560]} + ' ' +
+    FloatToStrF(dat6, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]});
+  ResultsMemo.Lines.Add(Space(14) + rs_RPM___ {UserString[1561]} + ' ' +
+    FloatToStrF(dat2, ffFixed, 6, 2) + ' ' + rs_1_min {UserString[1553]});
+  ResultsMemo.Lines.Add(Space(14) + rs_Vp____ {UserString[1426]} + ' ' +
+    FloatToStrF(dat7, ffFixed, 6, 3) + ' ' + rs_m_s {UserString[1405]});
   ResultsMemo.Lines.Add(' ');
   if Combobox.ItemIndex = 0 then
-    ResultsMemo.Lines.Add(Space(17) + Userstring(1562));
+    ResultsMemo.Lines.Add(Space(17) + rs_J________KT_____DKT____KTtDKT_______KQ______DKQ____KQtDKQ_____ETA_0 {UserString[1562]});
   if Combobox.ItemIndex > 0 then
     ResultsMemo.Lines.Add(Space(20) +
       'Jp       KT      dKT     KT+dKT    KQ      dKQ     KQ+dKQ     Eta0');
@@ -567,14 +567,14 @@ dat7=Velocity Vp
   end;
 
   ResultsMemo.Lines.Add(' ');
-  ResultsMemo.Lines.Add(Space(14) + Userstring(741) + ' ' + FloatToStrF(
+  ResultsMemo.Lines.Add(Space(14) + rs_Optimal_advance_coeffic___Jp_opt__ {UserString[741]} + ' ' + FloatToStrF(
     Jpopt, ffFixed, 6, 4));
-  ResultsMemo.Lines.Add(Space(14) + Userstring(742) + ' ' + FloatToStrF(Etam, ffFixed, 6, 4));
-  ResultsMemo.Lines.Add(Space(14) + Userstring(743) + ' ' + FloatToStrF(Jp10, ffFixed, 6, 4));
+  ResultsMemo.Lines.Add(Space(14) + rs_Maximum_efficiency______Eta0_max__ {UserString[742]} + ' ' + FloatToStrF(Etam, ffFixed, 6, 4));
+  ResultsMemo.Lines.Add(Space(14) + rs_Zero_thrust_advance_coeff__Jp_T0__ {UserString[743]} + ' ' + FloatToStrF(Jp10, ffFixed, 6, 4));
   if Jp20 < 2.2 then
-    ResultsMemo.Lines.Add(Space(14) + Userstring(744) + ' ' + FloatToStrF(Jp20, ffFixed, 6, 4))
+    ResultsMemo.Lines.Add(Space(14) + rs_Zero_torque_advance_coeff__Jp_Q0__ {UserString[744]} + ' ' + FloatToStrF(Jp20, ffFixed, 6, 4))
   else
-    ResultsMemo.Lines.Add(Space(14) + Userstring(744) + ' >2.2');
+    ResultsMemo.Lines.Add(Space(14) + rs_Zero_torque_advance_coeff__Jp_Q0__ {UserString[744]} + ' >2.2');
 
   Jpr := dat7 / dat6 / dat2 * 60;
   if Jpr < Jp10 then
@@ -584,27 +584,27 @@ dat7=Velocity Vp
       K1 := (KoeKT[1] + KoeKT[2] * Jpr + KoeKT[3] * Jpr * Jpr + KoeKT[4] * Jpr * Jpr * Jpr);
       K2 := (KoeKQ[1] + KoeKQ[2] * Jpr + KoeKQ[3] * Jpr * Jpr + KoeKQ[4] * Jpr * Jpr * Jpr);
     end;
-    //       ResultsMemo.Lines.Add(Space(14)+Userstring(1428)+' '+FloatToStrF(K1,ffFixed,6,3));
-    //       ResultsMemo.Lines.Add(Space(14)+Userstring(1429)+' '+FloatToStrF(K2,ffFixed,6,3));
+    //       ResultsMemo.Lines.Add(Space(14)+rs_Propeller_thrust__kN___________T__ {UserString[1428]}+' '+FloatToStrF(K1,ffFixed,6,3));
+    //       ResultsMemo.Lines.Add(Space(14)+rs_Propeller_torque__kNom_________Q__ {UserString[1429]}+' '+FloatToStrF(K2,ffFixed,6,3));
     Eta := K1 / K2 / 6.2831852 * Jpr;
     K1 := K1 * Density * dat2 * dat2 * dat6 * dat6 * dat6 * dat6 / 3600;
     K2 := K2 * Density * dat2 * dat2 * dat6 * dat6 * dat6 * dat6 * dat6 / 3600;
     Series4.AddXY(Jpr, 0, '', clTeeColor);
     Series4.AddXY(Jpr, 1, '', clTeeColor);
-    ResultsMemo.Lines.Add(Space(14) + Userstring(1427) + ' ' + FloatToStrF(
+    ResultsMemo.Lines.Add(Space(14) + rs_Estimated_advance_____________Jp__ {UserString[1427]} + ' ' + FloatToStrF(
       Jpr, ffFixed, 6, 4));
-    ResultsMemo.Lines.Add(Space(14) + Userstring(1428) + ' ' + FloatToStrF(K1, ffFixed, 6, 3));
-    ResultsMemo.Lines.Add(Space(14) + Userstring(1429) + ' ' + FloatToStrF(K2, ffFixed, 6, 3));
-    ResultsMemo.Lines.Add(Space(14) + Userstring(1430) + ' ' + FloatToStrF(
+    ResultsMemo.Lines.Add(Space(14) + rs_Propeller_thrust__kN___________T__ {UserString[1428]} + ' ' + FloatToStrF(K1, ffFixed, 6, 3));
+    ResultsMemo.Lines.Add(Space(14) + rs_Propeller_torque__kNom_________Q__ {UserString[1429]} + ' ' + FloatToStrF(K2, ffFixed, 6, 3));
+    ResultsMemo.Lines.Add(Space(14) + rs_Efficiency___________________Eta__ {UserString[1430]} + ' ' + FloatToStrF(
       Eta, ffFixed, 6, 4));
-    ResultsMemo.Lines.Add(Space(14) + Userstring(1445) + ' ' + FloatToStrF(
+    ResultsMemo.Lines.Add(Space(14) + rs_Brake_power__kW_______________Pb__ {UserString[1445]} + ' ' + FloatToStrF(
       K1 * dat7, ffFixed, 6, 3));
-    ResultsMemo.Lines.Add(Space(14) + Userstring(1431) + ' ' + FloatToStrF(
+    ResultsMemo.Lines.Add(Space(14) + rs_Propeller_power__kW___________Pd__ {UserString[1431]} + ' ' + FloatToStrF(
       K2 * 6.283 * dat2 / 60, ffFixed, 6, 3) + ' (' + FloatToStrF(K2 * 6.283 * dat2 / 60 / 0.736, ffFixed, 6, 3) +
-      ') ' + Userstring(461));
+      ') ' + rs_BHP {UserString[461]});
   end
   else
-    ResultsMemo.Lines.Add(Space(14) + Userstring(1427) + ' ' + FloatToStrF(
+    ResultsMemo.Lines.Add(Space(14) + rs_Estimated_advance_____________Jp__ {UserString[1427]} + ' ' + FloatToStrF(
       Jpr, ffFixed, 6, 4) + ' > Jp_T0');
   ResultsMemo.Lines.Add(' ');
   if Combobox.ItemIndex = 0 then
@@ -631,18 +631,18 @@ begin
   Units := FFreeship.ProjectSettings.ProjectUnits;
   if Units = fuImperial then
   begin
-    MessageDlg(Userstring(754), mtInformation, [mbOK], 0);
+    MessageDlg(rs_This_is_version_of_program_work_with_metric_system_units_only {UserString[754]}, mtInformation, [mbOK], 0);
     exit;
   end;
-  Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(824);
-  Chart.LeftAxis.Title.Caption := Userstring(698);
+  Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_Troost {UserString[824]};
+  Chart.LeftAxis.Title.Caption := rs_Thrust_coefficient_and_torque__KT__10oKQ {UserString[698]};
    {$ifNdef FPC}
   RightAxis := Chart.RightAxis;
    {$else}
   RightAxis := Chart.AxisList.GetAxisByAlign(calRight);
    {$endif}
-  RightAxis.Title.Caption := Userstring(699);
-  Chart.BottomAxis.Title.Caption := Userstring(697);
+  RightAxis.Title.Caption := rs_Propeller_efficiency_Eta0 {UserString[699]};
+  Chart.BottomAxis.Title.Caption := rs_Advance_coefficient_Jp {UserString[697]};
   Checkbox2.Enabled := False; //FFreeship.Surface.NumberOfControlFaces>1;
   CheckBox2.Checked := AutoExtract;
   Calculate;
@@ -863,7 +863,7 @@ procedure TFreePropeller_Task5.ComboBoxClick(Sender: TObject);
 begin
   if Combobox.ItemIndex = 0 then
   begin // В серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(824);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_Troost {UserString[824]};
     ComboBox1.Items[0] := 'unknown';
     ComboBox1.Items[1] := 'unknown';
     ComboBox1.Items[2] := 'unknown';
@@ -874,7 +874,7 @@ begin
   end;
   if Combobox.ItemIndex = 1 then
   begin  // Т серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(825);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_I_Titov {UserString[825]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'T-4-35';
@@ -884,7 +884,7 @@ begin
   end;
   if Combobox.ItemIndex = 2 then
   begin  // М серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(826);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_V_Mishkevich {UserString[826]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'M-4-65';
@@ -894,7 +894,7 @@ begin
   end;
   if Combobox.ItemIndex = 3 then
   begin  // Z серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(827);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_M_Zavadovsky {UserString[827]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'Z-4-85';
@@ -904,7 +904,7 @@ begin
   end;
   if Combobox.ItemIndex = 4 then
   begin  // T серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(828);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_V_Turbal {UserString[828]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'T-6-68';
@@ -914,7 +914,7 @@ begin
   end;
   if Combobox.ItemIndex = 5 then
   begin  // ZM серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(829);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_KSRI_BIHS {UserString[829]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'ZM-5-70';
@@ -924,7 +924,7 @@ begin
   end;
   if Combobox.ItemIndex = 6 then
   begin  // ZV серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(830);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_series_of_Zvezdkina {UserString[830]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'ZV-3-50';
@@ -934,7 +934,7 @@ begin
   end;
   if Combobox.ItemIndex = 7 then
   begin  // E серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(1206);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_CPP_in_nozzle_E_series {UserString[1206]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'E-4-57';
@@ -944,7 +944,7 @@ begin
   end;
   if Combobox.ItemIndex = 8 then
   begin  // VIT серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(1207);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_FPP_in_nozzle_VIT_series {UserString[1207]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'VIT-4-35';
@@ -954,7 +954,7 @@ begin
   end;
   if Combobox.ItemIndex = 9 then
   begin  // Ka серия N19a
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(1208);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_FPP_in_nozzle_Kaplan_series {UserString[1208]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'KA-3-65 in 19a';
@@ -964,7 +964,7 @@ begin
   end;
   if Combobox.ItemIndex = 10 then
   begin  // Ka серия N22,24,37
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(1208);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_FPP_in_nozzle_Kaplan_series {UserString[1208]};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'KA-4-70 in 19a';
@@ -974,7 +974,7 @@ begin
   end;
   if Combobox.ItemIndex = 11 then
   begin  // SPP серия
-    Chart.Title.Text.Text := Userstring(939) + ' ' + Userstring(1209);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + Userstring(1209);
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'SPP-5';

@@ -53,7 +53,8 @@ uses
   FreeGeometry,
   ActnList,
   Spin,
-  FreeLanguageSupport;
+  LCLTranslator,
+  FreeStringsUnit;
 
 type
 
@@ -632,14 +633,14 @@ begin
   Units := FFreeship.ProjectSettings.ProjectUnits;
   if Units = fuImperial then
     MessageDlg('Imperial system units in this program is NOT support !!!',
-      mtInformation, [mbOK], 0)//        MessageDlg(Userstring(754),mtInformation,[mbOk],0);
+      mtInformation, [mbOK], 0)//        MessageDlg(rs_This_is_version_of_program_work_with_metric_system_units_only {UserString[754]},mtInformation,[mbOk],0);
     //        exit;
   ;
   Viewport.Color := FFreeship.Preferences.ViewportColor;
   FBuildOffsets;
   Freeship.Preferences.LoadImageIntoBitmap(OKbutton.Glyph, 'Ok');
   Freeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   ShowModal;
   Result := ModalResult = mrOk;
 end;{TFreeAddMassOutputDialog.Execute}

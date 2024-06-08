@@ -46,8 +46,9 @@ uses
   Dialogs,
   StdCtrls,
   Buttons,
+  LCLTranslator,
   FreeShipUnit,
-  FreeLanguageSupport,
+  FreeStringsUnit,
   ExtCtrls, Spin;
 
 type
@@ -131,7 +132,7 @@ function TFreeRotateDialog.Execute(Caption, Units: string): boolean;
 begin
   GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph, 'Ok');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   Self.Caption := Caption;
   Label3.Caption := Units;
   Label6.Caption := Units;

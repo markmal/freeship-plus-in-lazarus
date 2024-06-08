@@ -141,7 +141,7 @@ type
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeStringsUnit;
 
 function Trim(input: ansistring): ansistring;
 var
@@ -328,7 +328,7 @@ begin
     if NumberOfObjects = 0 then
       Done := True;
     if not done then
-      MessageDlg(Userstring(115), mtError, [mbOK], 0);
+      MessageDlg(rs_Unexpected_end_of_file_ {UserString[115]}, mtError, [mbOK], 0);
   end;
 end;{LoadNextObject}
 
@@ -852,7 +852,7 @@ begin
     end;
     if not ValidFile then
     begin
-      MessageDlg(Userstring(208) + '!', mtError, [mbOK], 0);
+      MessageDlg(rs_This_is_not_a_valid_VRML_1_0_file {UserString[208]} + '!', mtError, [mbOK], 0);
       CloseFile(FFile);
       FreeAndNil(Strings);
       exit;
@@ -917,7 +917,7 @@ begin
       FreeAndNil(words);
     end
     else
-      MessageDlg(Userstring(208) + '!', mtError, [mbOK], 0);
+      MessageDlg(rs_This_is_not_a_valid_VRML_1_0_file {UserString[208]} + '!', mtError, [mbOK], 0);
     FreeAndNil(Strings);
   end;
 end;{TVRMLList.LoadFromFile}

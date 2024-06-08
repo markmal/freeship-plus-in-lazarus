@@ -52,7 +52,8 @@ uses
   FreeShipUnit,
   ComCtrls,
   Spin, //ValEdit,
-  FreeLanguageSupport;
+  LCLTranslator,
+  FreeStringsUnit;
 
 type
 
@@ -328,7 +329,7 @@ begin
   FThemeChanged := False;
   Freeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   Freeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   Showmodal;
   if FThemeChanged then FConfigChanged := true;
   Result := ModalResult = mrOk;
@@ -352,8 +353,8 @@ end;{TFreePreferencesDialog.ColorPanelClick}
 
 procedure TFreePreferencesDialog.ResetColorsButtonClick(Sender: TObject);
 begin
-  if MessageDlg(Userstring(247) + '?' + #13#10 +
-    Userstring(248) + '.', mtWarning, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg(rs_Are_you_sure_you_want_to_reset_the_preferences {UserString[247]} + '?' + #13#10 +
+    rs_The_current_settings_will_be_lost {UserString[248]} + '.', mtWarning, [mbYes, mbNo], 0) = mrYes then
   begin
     FFreeship.Preferences.ResetColors;
     Updatedata;
@@ -466,8 +467,8 @@ end;
 
 procedure TFreePreferencesDialog.ResetDirsButtonClick(Sender: TObject);
 begin
-  if MessageDlg(Userstring(247) + '?' + #13#10 +
-    Userstring(248) + '.', mtWarning, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg(rs_Are_you_sure_you_want_to_reset_the_preferences {UserString[247]} + '?' + #13#10 +
+    rs_The_current_settings_will_be_lost {UserString[248]} + '.', mtWarning, [mbYes, mbNo], 0) = mrYes then
   begin
     FFreeship.Preferences.ResetDirectories;
     Updatedata;

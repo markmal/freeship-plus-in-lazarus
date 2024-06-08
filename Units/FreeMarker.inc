@@ -143,7 +143,7 @@ begin
     begin
       Color := clLime;
       Size := 2;
-      MessageDlg(Userstring(67), mtError, [mbOK], 0);
+      MessageDlg(rs_Marker_has_no_owner_ {UserString[67]}, mtError, [mbOK], 0);
     end;
     Fragments := 250;
     if (Viewport.ViewType = fvBodyPlan) and (Owner.Visibility.ModelView <> mvBoth) then

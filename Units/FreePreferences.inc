@@ -196,7 +196,10 @@ const DS = DirectorySeparator;
       I: integer;
       Found: boolean;
     begin
-      Tmp := ChangeFileExt(ExtractFilename(Filename), '');
+      //Tmp := ChangeFileExt(ExtractFilename(Filename), '');
+      Tmp := Filename.Split('.')[1];
+      Tmp := LanguageName(Tmp);
+      if Tmp = '' then exit;
       found := False;
       for I := 1 to Dialog.ComboBox1.Items.Count do
         if Uppercase(Tmp) = Uppercase(Dialog.Combobox1.Items[I - 1]) then
@@ -211,22 +214,22 @@ const DS = DirectorySeparator;
   begin
     if Dir[Length(Dir)] <> DirectorySeparator then
       Dir := Dir + DirectorySeparator;
-    if FindFirstUTF8(Dir + '*.ini', faAnyfile, SearchRec)
+    if FindFirst(Dir + '*.po', faAnyfile, SearchRec)
       { *Converted from FindFirst* } = 0 then
     begin
-      if Uppercase(ExtractFileExt(SearchRec.Name)) = '.INI' then
+      if Uppercase(ExtractFileExt(SearchRec.Name)) = '.PO' then
         Add(Searchrec.Name);
-      while FindNextUTF8(SearchRec) { *Converted from FindNext* } = 0 do
+      while FindNext(SearchRec) { *Converted from FindNext* } = 0 do
         if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') then
-          if Uppercase(ExtractFileExt(SearchRec.Name)) = '.INI' then
+          if Uppercase(ExtractFileExt(SearchRec.Name)) = '.PO' then
             Add(Searchrec.Name);
-      FindCloseUTF8(SearchRec); { *Converted from FindClose* }
+      FindClose(SearchRec); { *Converted from FindClose* }
     end;
   end;{Browse}
 
 begin
   Dialog := TFreePreferencesDialog.Create(Owner);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   //Dir:=ExtractFileDir(Application.ExeName)+'/Languages/';
   Dir := FLanguagesDirectory;
   Dialog.ComboBox1.Items.Clear;
@@ -298,22 +301,24 @@ begin
     FThemeName := Dialog.ComboBoxThemes.Text;
 
     if Uppercase(Lang) <> Uppercase(FLanguage) then
-      if FileExistsUTF8(FLanguagesDirectory + DS + Lang + '.ini')
-      { *Converted from FileExists* } then
+      if FileExistsUTF8(FLanguagesDirectory + DS + 'FreeShip.'+LanguageCode(Lang) + '.po')
+      then
       begin
-        LoadLanguage(Lang, FLanguagesDirectory + DS + Lang + '.ini');
-        FLanguageFile := FLanguagesDirectory + DS + Lang + '.ini';
+        (*LoadLanguage(Lang, FLanguagesDirectory + DS + Lang + '.ini');
+        FLanguageFile := FLanguagesDirectory + DS + Lang + '.ini';*)
+        SetDefaultLang(LanguageCode(Lang), FLanguagesDirectory, 'FreeShip', true);
         FLanguage := Lang;
-
+        (*
         for I := 1 to Application.ComponentCount do
           if Application.Components[I - 1] is TCustomForm then
-            ShowTranslatedValues(Application.Components[I - 1]);
+            //ShowTranslatedValues(Application.Components[I - 1]);
         for I := 1 to MainForm.MDIChildCount do
           if MainForm.MDIChildren[I - 1] is TFreeLinesplanForm then
-            ShowTranslatedValues(TFreeLinesplanForm(
+            //ShowTranslatedValues(TFreeLinesplanForm(
               MainForm.MDIChildren[I - 1]).LinesplanFrame)
           else
-            ShowTranslatedValues(MainForm.MDIChildren[I - 1]);
+            //ShowTranslatedValues(MainForm.MDIChildren[I - 1]);
+         *)
       end//else FLanguage:=Lang;
     ;
 
@@ -606,7 +611,7 @@ begin
         Readln(FFile, FMaxUndoMemory);
       CloseFile(FFile);
     except
-      MessageDlg(Userstring(176) + ':' + EOL + Filename, mtError, [mbOK], 0);
+      MessageDlg(rs_Could_not_load_program_preferences_from_the_following_location {UserString[176]} + ':' + EOL + Filename, mtError, [mbOK], 0);
     end;
   end;
 end;{TFreePreferences.LoadFromDta}
@@ -1119,7 +1124,7 @@ begin
   end;
 
   FLanguage := params.ReadString('General', 'Language', FLanguage);
-  FLanguageFile := FLanguagesDirectory + DirectorySeparator + Flanguage + '.ini';
+  FLanguageFile := FLanguagesDirectory+DirectorySeparator+'FreeShip.'+LanguageCode(Flanguage)+'.po';
   if not FileExistsUTF8(FLanguageFile) { *Converted from FileExists* } then
     FLanguage := 'English';
   FFbmEncoding := params.ReadString('General', 'FbmEncoding', FbmEncoding);
@@ -1334,7 +1339,7 @@ begin
     Writeln(FFile, FMaxUndoMemory);
     CloseFile(FFile);
   except
-    MessageDlg(Userstring(177) + ':' + EOL + Filename, mtError, [mbOK], 0);
+    MessageDlg(rs_Could_not_save_program_preferences_to_the_following_location {UserString[177]} + ':' + EOL + Filename, mtError, [mbOK], 0);
   end;
 end;{TFreePreferences.SaveToDta}
 

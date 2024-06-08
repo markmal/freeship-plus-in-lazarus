@@ -218,10 +218,10 @@ uses FreeLanguageSupport,
 function TFreeHullForm.FCaptionText:string;
 begin
    Case Viewport.ViewType of
-      fvBodyplan     : Result:=Userstring(215)+'.';
-      fvProfile      : Result:=Userstring(216)+'.';
-      fvPlan         : Result:=Userstring(217)+'.';
-      fvPerspective  : Result:=Userstring(218)+'.';
+      fvBodyplan     : Result:=rs_Bodyplan_view {UserString[215]}+'.';
+      fvProfile      : Result:=rs_Profile_view {UserString[216]}+'.';
+      fvPlan         : Result:=rs_Plan_view {UserString[217]}+'.';
+      fvPerspective  : Result:=rs_Perspective_view {UserString[218]}+'.';
       else Result:='';
    end;
 end;{TFreeHullForm.FCaptionText}
@@ -540,9 +540,9 @@ begin
       if abs(P2D.Y)>1e+6 then P2D.Y := 1e+6;
 
       Case Viewport.ViewType of
-         fvBodyplan     : Str:=Userstring(215)+'.';
-         fvProfile      : Str:=Userstring(216)+'.';
-         fvPlan         : Str:=Userstring(217)+'.';
+         fvBodyplan     : Str:=rs_Bodyplan_view {UserString[215]}+'.';
+         fvProfile      : Str:=rs_Profile_view {UserString[216]}+'.';
+         fvPlan         : Str:=rs_Plan_view {UserString[217]}+'.';
          else Str:='';
       end;
       Case Viewport.ViewType of
@@ -741,7 +741,7 @@ var I:Integer;
 begin
    for I:=1 to Freeship.NumberofBackgroundImages do if Freeship.BackgroundImage[I-1].AssignedView=Viewport.ViewType then
    begin
-      Freeship.Edit.CreateUndoObject(Userstring(219),true);
+      Freeship.Edit.CreateUndoObject(rs_Background_image_settings {UserString[219]},true);
       Freeship.BackgroundImage[I-1].UpdateData(Viewport);
       Break;
    end;
@@ -759,7 +759,7 @@ begin
   Viewport.BackgroundImage.SetToleranceValue;
 
 {  Str:=IntToStr(Viewport.BackgroundImage.Tolerance);
-   if InputQuery(Userstring(220),Userstring(221)+' (0-255)',Str) then
+   if InputQuery(rs_Transparency_tolerance {UserString[220]},rs_Set_tolerance {UserString[221]}+' (0-255)',Str) then
    begin
       val(Str,Value,I);
       if I=0 then
@@ -767,7 +767,7 @@ begin
          if Value<0 then value:=0 else
             if Value>255 then value:=255;
          Viewport.BackgroundImage.Tolerance:=Value;
-      end else MessageDlg(Userstring(222)+'!',mtError,[mbok],0)
+      end else MessageDlg(rs_Invalid_value {UserString[222]}+'!',mtError,[mbok],0)
    end;}
 end;{TFreeHullForm.BackgroundToleranceExecute}
 

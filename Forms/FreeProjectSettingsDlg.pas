@@ -48,9 +48,10 @@ uses
   Dialogs,
   ExtCtrls,
   StdCtrls,
+  LCLTranslator,
   FreeGeometry,
   FreeShipUnit,
-  FreeLanguageSupport,
+  FreeStringsUnit,
   Buttons, ComCtrls, Spin;
 
 type
@@ -394,7 +395,7 @@ begin
 
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
 
   ShowModal;
   Result := Modalresult = mrOk;

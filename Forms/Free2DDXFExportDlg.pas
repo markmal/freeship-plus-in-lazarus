@@ -64,7 +64,8 @@ uses
   Buttons,
   ExtCtrls,
   Spin,
-  FreeShipUnit, FreeLanguageSupport;
+  LCLTranslator,
+  FreeShipUnit, FreeStringsUnit;
 type
 
   { TDXFExport2DDialog }
@@ -216,7 +217,7 @@ begin
   FSetUnits;
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   Showmodal;
   Result := ModalResult = mrOk;
 end;{TDXFExport2DDialog.Execute}
@@ -224,7 +225,7 @@ end;{TDXFExport2DDialog.Execute}
 procedure TDXFExport2DDialog.SpeedButton1Click(Sender: TObject);
 var Tmp: string;
 begin
-  Tmp := BrowseForFolder(PAnsichar(Userstring(209) + ':'), ExportDirectory);
+  Tmp := BrowseForFolder(PAnsichar(rs_Choose_a_directory_where_you_want_to_save_the_dxf_files_to_ {UserString[209]} + ':'), ExportDirectory);
   if DirectoryExistsUTF8(Tmp) { *Converted from DirectoryExists* } then
     self.ExportDirectory := Tmp;
 end;{TDXFExport2DDialog.SpeedButton1Click}

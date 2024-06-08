@@ -207,7 +207,7 @@ begin
           Swap(Ind3, Ind4);
         end;
 
-        {// Remove all references to Face1
+        (* // Remove all references to Face1
         for I := 1 to Face1.NumberOfpoints do
           Face1.Point[I - 1].UnreferenceFace(Face1);
         // Remove all references to Face2
@@ -251,7 +251,7 @@ begin
         end;
         // Check if all appropriate points are added
         if Newface.NumberOfpoints <> Face1.NumberOfpoints + Face2.NumberOfpoints - 2 then
-          messageDlg(Userstring(200) + #32 + IntToStr(self.EdgeIndex), mtError, [mbOK], 0);
+          messageDlg(rs_Not_all_points_could_be_added_while_collapsing_edge {UserString[200]} + #32 + IntToStr(self.EdgeIndex), mtError, [mbOK], 0);
 
         P1 := NewFace.Point[Newface.NumberOfPoints - 1];
         for I := 1 to Newface.NumberOfPoints do
@@ -272,7 +272,7 @@ begin
           end;
           P1 := p2;
         end;
-        }
+        *)
 
         NewPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
 

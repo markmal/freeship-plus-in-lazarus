@@ -256,7 +256,7 @@ begin
     end
     else
     begin
-      MessageDlg(Userstring(199) + '!', mtError, [mbOK], 0);
+      MessageDlg(rs_Could_not_calculate_limitpoint {UserString[199]} + '!', mtError, [mbOK], 0);
       Result := FCoordinate;
     end;
   end

@@ -387,7 +387,7 @@ var
   Old: byte;
 begin
   Dialog := TFreeBackgroundBlendDialog.Create(Owner);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Old := FAlpha;
   if Dialog.Execute(Owner) then
   begin
@@ -405,7 +405,7 @@ var
   Old: byte;
 begin
   Dialog := TFreeBackgroundToleranceDialog.Create(Owner);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Old := FTolerance;
   if Dialog.Execute(Owner) then
   begin

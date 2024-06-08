@@ -1354,7 +1354,7 @@ begin
     if Edge <> nil then
       Edge.FFaces.Add(Self)
     else
-      MessageDlg(Userstring(201) + '!', mtError, [mbOK], 0);
+      MessageDlg(rs_Could_not_find_edge {UserString[201]} + '!', mtError, [mbOK], 0);
     P1 := P2;
   end;
 end;{TFreeSubdivisionControlFace.LoadFromStream}

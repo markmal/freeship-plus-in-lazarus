@@ -60,7 +60,7 @@ procedure TFreeEdit.BackgroundImage_Delete(Viewport: TFreeViewport);
 var
   I: integer;
 begin
-  if MessageDlg(Userstring(68), mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg(rs_Are_you_sure_you_want_to_delete_this_background_image_ {UserString[68]}, mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     for I := FFreeShip.NumberofBackgroundImages downto 1 do
       if FFreeShip.BackgroundImage[I - 1].AssignedView = Viewport.ViewType then
@@ -95,7 +95,7 @@ begin
     if FreeShip.BackgroundImage[I - 1].AssignedView = Viewport.ViewType then
       Data := FreeShip.BackgroundImage[I - 1];
   if Data <> nil then
-    if MessageDlg(Userstring(69) + EOL + Userstring(70), mtConfirmation,
+    if MessageDlg(rs_There_is_already_one_backgroundimage_assigned_to_this_view_ {UserString[69]} + EOL + rs_Do_you_want_to_replace_it_with_another_one_ {UserString[70]}, mtConfirmation,
       [mbYes, mbNo], 0) = mrNo then
       exit;
 
@@ -167,7 +167,7 @@ var
 begin
   UndoObject := TFreeUndoObject.Create(FreeShip);
   Result := UndoObject;
-  UndoObject.FUndoText := UserString(71);
+  UndoObject.FUndoText := rs_Last_state {UserString[71]};
   Version := FreeShip.FileVersion;
   Preview := FreeShip.ProjectSettings.SavePreview;
   try
@@ -250,7 +250,7 @@ begin
   end;
   if Edges.Count > 0 then
   begin
-    Self.CreateUndoObject(Userstring(72), True);
+    Self.CreateUndoObject(rs_new_controlcurve {UserString[72]}, True);
     SortedPointLists := TFasterListTFreeSubdivisionFace.Create(false,false);
     FreeShip.Surface.IsolateEdges(Edges, SortedPointLists);
     for I := 1 to SortedPointLists.Count do
@@ -317,7 +317,7 @@ begin
   //      str_1 := TimeToStr(DateTime); // convert the time into a string
 
   N := 0;
-  vUndo := CreateUndoObject(Userstring(73), False);
+  vUndo := CreateUndoObject(rs_edge_collapse {UserString[73]}, False);
 
   FreeShip.Surface.ClearMesh;
 
@@ -356,7 +356,7 @@ var
   N: integer;
 begin
   N := FreeShip.Surface.NumberOfControlEdges;
-  vUndo := CreateUndoObject(Userstring(74), False);
+  vUndo := CreateUndoObject(rs_new_edge {UserString[74]}, False);
   FreeShip.Surface.Edge_Connect;
   if FreeShip.Surface.NumberOfControlEdges > N then
   begin
@@ -376,7 +376,7 @@ procedure TFreeEdit.Edge_Crease;
 var
   I: integer;
 begin
-  CreateUndoObject(Userstring(75), True);
+  CreateUndoObject(rs_set_crease_edges {UserString[75]}, True);
   for I := FreeShip.NumberOfSelectedControlEdges downto 1 do
     FreeShip.SelectedControlEdge[I - 1].Crease :=
       not FreeShip.SelectedControlEdge[I - 1].Crease;
@@ -398,14 +398,14 @@ var
   vUndo: TFreeUndoObject;
 begin
   Dialog := TFreeExtrudeDialog.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.XValue := 0.0;
   Dialog.YValue := 0.0;
   Dialog.ZValue := 0.0;
   Str := LengthStr(FreeShip.ProjectSettings.ProjectUnits);
   if Dialog.Execute(Str) then
   begin
-    vUndo := CreateUndoObject(Userstring(76), False);
+    vUndo := CreateUndoObject(rs_edge_extrusion {UserString[76]}, False);
     Vector.X := Dialog.XValue;
     Vector.Y := Dialog.YValue;
     Vector.Z := Dialog.ZValue;
@@ -438,7 +438,7 @@ begin
     end
     else
     begin
-      MessageDlg(Userstring(77), mtError, [mbOK], 0);
+      MessageDlg(rs_Only_boundary_edges_can_be_extruded_ {UserString[77]}, mtError, [mbOK], 0);
       vUndo.Delete;
     end;
     FreeAndNil(Points);
@@ -458,14 +458,14 @@ var
   vUndo: TFreeUndoObject;
 begin
   Dialog := TFreeExtrudeDialog.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.XValue := 0.0;
   Dialog.YValue := 0.0;
   Dialog.ZValue := 0.0;
   Str := LengthStr(FreeShip.ProjectSettings.ProjectUnits);
   if Dialog.Execute(Str) then
   begin
-    vUndo := CreateUndoObject(Userstring(76), False);
+    vUndo := CreateUndoObject(rs_edge_extrusion {UserString[76]}, False);
     Vector.X := Dialog.XValue;
     Vector.Y := Dialog.YValue;
     Vector.Z := Dialog.ZValue;
@@ -497,7 +497,7 @@ begin
     end
     else
     begin
-      MessageDlg(Userstring(77), mtError, [mbOK], 0);
+      MessageDlg(rs_Only_boundary_edges_can_be_extruded_ {UserString[77]}, mtError, [mbOK], 0);
       vUndo.Delete;
     end;
     FreeAndNil(Edges);
@@ -516,7 +516,7 @@ var
 begin
   N := 0;
   Last := nil;
-  vUndo := CreateUndoObject(Userstring(78), False);
+  vUndo := CreateUndoObject(rs_edge_split {UserString[78]}, False);
 
   FreeShip.Surface.ClearMesh;
 
@@ -603,7 +603,7 @@ begin
   RemovedP := 0;
   PrevCursor := Screen.Cursor;
   Screen.Cursor := crHourglass;
-  vUndo := CreateUndoObject(Userstring(79), False);
+  vUndo := CreateUndoObject(rs_remove_starboard_side {UserString[79]}, False);
   try
     for I := FreeShip.Surface.NumberOfControlFaces downto 1 do
     begin
@@ -636,12 +636,12 @@ begin
     begin
       Str := '';
       if RemovedF > 0 then
-        Str := Str + IntToStr(RemovedF) + #32 + Userstring(80);
+        Str := Str + IntToStr(RemovedF) + #32 + rs_controlface_s__could_be_removed_ {UserString[80]};
       if RemovedP > 0 then
       begin
         if Str <> '' then
           Str := Str + EOL;
-        Str := Str + IntToStr(RemovedP) + #32 + Userstring(81);
+        Str := Str + IntToStr(RemovedP) + #32 + rs_controlpoints_s__could_be_removed_ {UserString[81]};
       end;
       MessageDlg(Str, mtInformation, [mbOK], 0);
       vUndo.Accept;
@@ -653,7 +653,7 @@ begin
     end
     else
     begin
-      MessageDlg(Userstring(82), mtInformation, [mbOK], 0);
+      MessageDlg(rs_No_faces_could_be_removed_ {UserString[82]}, mtInformation, [mbOK], 0);
       vUndo.Delete;
     end;
   finally
@@ -666,7 +666,7 @@ procedure TFreeEdit.Face_Flip;
 var
   I: integer;
 begin
-  CreateUndoObject(Userstring(83), True);
+  CreateUndoObject(rs_flip_normals {UserString[83]}, True);
   for I := 1 to FreeShip.NumberOfSelectedControlFaces do
     FreeShip.SelectedControlFace[I - 1].FlipNormal;
   FreeShip.Built := False;
@@ -693,7 +693,7 @@ begin
   if FreeShip.NumberOfSelectedControlFaces = 0 then
   begin
     SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
-    ShowTranslatedValues(SelectDlg);
+    //ShowTranslatedValues(SelectDlg);
     if SelectDlg.Execute(FFreeShip, fsFaces) then
       SelectDlg.ExtractSelectedFaces(Faces)
     else
@@ -713,12 +713,12 @@ begin
   if Faces.Count > 0 then
   begin
     Dialog := TFreeMirrorPlaneDialog.Create(FreeShip);
-    ShowTranslatedValues(Dialog);
+    //ShowTranslatedValues(Dialog);
     if Dialog.Execute then
     begin
       Mirrorplane := Dialog.Plane;
 
-      CreateUndoObject(Userstring(84), True);
+      CreateUndoObject(rs_mirror {UserString[84]}, True);
       PrevCursor := Screen.Cursor;
       Screen.Cursor := crHourglass;
       try
@@ -774,7 +774,7 @@ begin
                 Points.Add(P2);
             end
             else
-              raise Exception.Create(Userstring(85));
+              raise Exception.Create(rs_Unknown_point_in_mirror_command_ {UserString[85]});
           end;
           if Points.Count > 2 then
           begin
@@ -857,7 +857,7 @@ begin
   if Points.Count = 0 then
   begin
     SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
-    ShowTranslatedValues(SelectDlg);
+    //ShowTranslatedValues(SelectDlg);
     if SelectDlg.Execute(FFreeShip, fsPoints) then
       SelectDlg.ExtractSelectedPoints(Points)
     else
@@ -872,20 +872,20 @@ begin
   if Points.Count > 0 then
   begin
     if NLocked > 0 then
-      Proceed := MessageDlg(Userstring(86) + EOL + Userstring(87),
+      Proceed := MessageDlg(rs_The_selection_contains_locked_points_that_will_not_be_affected_by_this_operation {UserString[86]} + EOL + rs_Are_you_sure_you_want_to_continue_ {UserString[87]},
         mtWarning, [mbYes, mbNo], 0) = mrYes
     else
       Proceed := True;
     if Proceed then
     begin
       Dialog := TFreeRotateDialog.Create(FreeShip);
-      ShowTranslatedValues(Dialog);
+      //ShowTranslatedValues(Dialog);
       Dialog.XValue := 0.0;
       Dialog.YValue := 0.0;
       Dialog.ZValue := 0.0;
-      if Dialog.Execute(Userstring(88), Userstring(455)) then
+      if Dialog.Execute(rs_Rotation_vector {UserString[88]}, rs_degr {UserString[455]}) then
       begin
-        CreateUndoObject(Userstring(89), True);
+        CreateUndoObject(rs_rotate {UserString[89]}, True);
         PrevCursor := Screen.Cursor;
         Screen.Cursor := crHourGlass;
         try
@@ -975,7 +975,7 @@ begin
   if Points.Count > 0 then
   begin
     if NLocked > 0 then
-      Proceed := MessageDlg(Userstring(86) + EOL + Userstring(87),
+      Proceed := MessageDlg(rs_The_selection_contains_locked_points_that_will_not_be_affected_by_this_operation {UserString[86]} + EOL + rs_Are_you_sure_you_want_to_continue_ {UserString[87]},
         mtWarning, [mbYes, mbNo], 0) = mrYes
     else
       Proceed := True;
@@ -987,9 +987,9 @@ begin
       Dialog.XValue := 0.0;
       Dialog.YValue := 0.0;
       Dialog.ZValue := 0.0;
-      if Dialog.Execute(Userstring(88), Userstring(455)) then
+      if Dialog.Execute(rs_Rotation_vector {UserString[88]}, rs_degr {UserString[455]}) then
       begin
-        CreateUndoObject(Userstring(89), True);
+        CreateUndoObject(rs_rotate {UserString[89]}, True);
         PrevCursor := Screen.Cursor;
         Screen.Cursor := crHourGlass;
         try
@@ -1066,7 +1066,7 @@ begin
   if Points.Count = 0 then
   begin
     SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
-    ShowTranslatedValues(SelectDlg);
+    //ShowTranslatedValues((SelectDlg);
     if SelectDlg.Execute(FFreeShip, fsPoints) then
       SelectDlg.ExtractSelectedPoints(Points)
     else
@@ -1081,7 +1081,7 @@ begin
   if Points.Count > 0 then
   begin
     if NLocked > 0 then
-      Proceed := MessageDlg(Userstring(86) + EOL + Userstring(87),
+      Proceed := MessageDlg(rs_The_selection_contains_locked_points_that_will_not_be_affected_by_this_operation {UserString[86]} + EOL + rs_Are_you_sure_you_want_to_continue_ {UserString[87]},
         mtWarning, [mbYes, mbNo], 0) = mrYes
     else
       Proceed := True;
@@ -1094,9 +1094,9 @@ begin
       Dialog.YValue := 1.0;
       Dialog.ZValue := 1.0;
 
-      if Dialog.Execute(Userstring(90), '') then
+      if Dialog.Execute(rs_Scale_vector {UserString[90]}, '') then
       begin
-        CreateUndoObject(Userstring(91), True);
+        CreateUndoObject(rs_scale {UserString[91]}, True);
         PrevCursor := Screen.Cursor;
         Screen.Cursor := crHourGlass;
         try
@@ -1173,7 +1173,7 @@ begin
   if Points.Count = 0 then
   begin
     SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
-    ShowTranslatedValues(SelectDlg);
+    //ShowTranslatedValues(SelectDlg);
     if SelectDlg.Execute(FFreeShip, fsPoints) then
       SelectDlg.ExtractSelectedPoints(Points)
     else
@@ -1188,7 +1188,7 @@ begin
   if Points.Count > 0 then
   begin
     if NLocked > 0 then
-      Proceed := MessageDlg(Userstring(86) + EOL + Userstring(87),
+      Proceed := MessageDlg(rs_The_selection_contains_locked_points_that_will_not_be_affected_by_this_operation {UserString[86]} + EOL + rs_Are_you_sure_you_want_to_continue_ {UserString[87]},
         mtWarning, [mbYes, mbNo], 0) = mrYes
     else
       Proceed := True;
@@ -1200,10 +1200,10 @@ begin
       Dialog.XValue := 0.0;
       Dialog.YValue := 0.0;
       Dialog.ZValue := 0.0;
-      if Dialog.Execute(Userstring(92), LengthStr(
+      if Dialog.Execute(rs_Translation_vector {UserString[92]}, LengthStr(
         FreeShip.ProjectSettings.ProjectUnits)) then
       begin
-        CreateUndoObject(Userstring(93), True);
+        CreateUndoObject(rs_move {UserString[93]}, True);
         Translate.X := Dialog.XValue;
         Translate.Y := Dialog.YValue;
         Translate.Z := Dialog.ZValue;
@@ -1295,7 +1295,7 @@ begin
   if FreeShip.NumberOfSelectedControlPoints > 2 then
   begin
     Tmp := TFasterListTFreeSubdivisionControlPoint.Create;
-    vUndo := CreateUndoObject(Userstring(94), False);
+    vUndo := CreateUndoObject(rs_new_face {UserString[94]}, False);
 
     FreeShip.Surface.ClearMesh;
 
@@ -1324,7 +1324,7 @@ begin
     FreeAndNil(Tmp);
   end
   else
-    MessageDlg(Userstring(95), mtInformation, [mbOK], 0);
+    MessageDlg(rs_You_need_to_select_at_least_3_controlpoints_to_create_a_new_controlface {UserString[95]}, mtInformation, [mbOK], 0);
 end;{TFreeEdit.Face_New}
 
 procedure TFreeEdit.File_ExportArchimedes;
@@ -1341,7 +1341,7 @@ var
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
-    MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
+    MessageDlg(rs_You_need_to_select_at_least_3_controlpoints_to_create_a_new_controlface {UserString[95]}, mtWarning, [mbOK], 0);
     exit;
   end;
   Frames := TFasterListTFreeSpline.Create;
@@ -1578,7 +1578,7 @@ begin
       CloseFile(FFile);
     end
     else
-      MessageDlg(Userstring(97), mtError, [mbOK], 0);
+      MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
   end;
   FreeAndNil(SaveDialog);
 
@@ -1602,16 +1602,16 @@ var
     Result := '';
     case IntersectionType of
     fiStation:
-      Result := Userstring(62);
+      Result := rs_Stations {UserString[62]};
     fiButtock:
-      Result := Userstring(63);
+      Result := rs_Buttocks {UserString[63]};
     fiWaterline:
-      Result := Userstring(64);
+      Result := rs_Waterlines {UserString[64]};
     fiDiagonal:
-      Result := Userstring(65);
+      Result := rs_Diagonals {UserString[65]};
     else
     begin
-      Messagedlg(Userstring(66) + '!', mtError, [mbOK], 0);
+      Messagedlg(rs_Unknown_intersection_type {UserString[66]} + '!', mtError, [mbOK], 0);
       exit;
     end;
     end;
@@ -1881,7 +1881,7 @@ var
 
 begin
   Dialog := TDXFExport2DDialog.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.ExportDirectory := FreeShip.Preferences.ExportDirectory;
   if FreeShip.ProjectSettings.ProjectUnits = fuMetric then
     Dialog.ComboBox1.ItemIndex := 0
@@ -2185,7 +2185,7 @@ var
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
-    MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
+    MessageDlg(rs_You_need_to_select_at_least_3_controlpoints_to_create_a_new_controlface {UserString[95]}, mtWarning, [mbOK], 0);
     exit;
   end;
   SaveDialog := TSaveDialog.Create(FreeShip);
@@ -2361,7 +2361,7 @@ var
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
-    MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
+    MessageDlg(rs_You_need_to_select_at_least_3_controlpoints_to_create_a_new_controlface {UserString[95]}, mtWarning, [mbOK], 0);
     exit;
   end;
 
@@ -2492,7 +2492,7 @@ begin
   if FreeShip.NumberOfSelectedControlFaces = 0 then
   begin
     SelectDlg := TFreeSelectLayersDialog.Create(FreeShip);
-    ShowTranslatedValues(SelectDlg);
+    //ShowTranslatedValues(SelectDlg);
     if SelectDlg.Execute(FFreeShip, fsFaces) then
       SelectDlg.ExtractSelectedFaces(Faces);
     for I := FreeShip.NumberOfSelectedControlFaces downto 1 do
@@ -2530,13 +2530,13 @@ label
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
-    MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
+    MessageDlg(rs_You_need_to_select_at_least_3_controlpoints_to_create_a_new_controlface {UserString[95]}, mtWarning, [mbOK], 0);
     exit;
   end;
   // temporarily switch to metric units for AddMass export
   if FreeShip.ProjectSettings.ProjectUnits = fuImperial then
   begin
-    UndoObject := CreateUndoObject(Userstring(101), False);
+    UndoObject := CreateUndoObject(rs_Michlet_export {UserString[101]}, False);
     FreeShip.ProjectSettings.ProjectUnits := fuMetric;
   end
   else
@@ -2545,7 +2545,7 @@ begin
     if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
     Dialog := TFreeAddMassOutputDialog.Create(FreeShip);
-    ShowTranslatedValues(Dialog);
+    //ShowTranslatedValues(Dialog);
     // Hull
     Dialog.NumberOfStations := 21;
     Dialog.NumberOfWaterlines := 11;
@@ -2638,19 +2638,19 @@ begin
           Dialog.ResultsMemo.Clear;
           Dialog.ResultsMemo.Visible := False;
           Dialog.ResultsMemo.Lines.Add(' ');
-          Dialog.ResultsMemo.Lines.Add(Space(20) + Userstring(1232));
+          Dialog.ResultsMemo.Lines.Add(Space(20) + rs_R_E_S_U_L_T_S___O_F___C_A_L_C_U_L_A_T_I_O_N {UserString[1232]});
           Dialog.ResultsMemo.Lines.Add(' ');
-          Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1233) + ' ' + str_[1]);
+          Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_of_a_ship_ {UserString[1233]} + ' ' + str_[1]);
           Dialog.ResultsMemo.Lines.Add(' ');
           for ii := 2 to 11 do
             Dialog.ResultsMemo.Lines.Add(Space(5) + str_[II]);
           Dialog.ResultsMemo.Lines.Add(' ');
-          Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1234) +
+          Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Note_1__Calculated_number_of_hull_surface_areas___ {UserString[1234]} +
           ' ' + FloatToStrF(Numb, ffFixed, 6, 0));
-          Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1235) +
+          Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Note_2__Added_masses_are_be_devided_on____________ {UserString[1235]} +
           ' ' + FloatToStrF(Kmass, ffFixed, 8, 0));
           Dialog.ResultsMemo.Lines.Add(' ');
-          Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1236));
+          Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_of_equivalent_ellipsoid_body__3__ {UserString[1236]});
           Dialog.ResultsMemo.Lines.Add(' ');
           for ii := 12 to 18 do
             Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1028 + ii) +
@@ -2673,22 +2673,22 @@ begin
           end;
           if Ival > 0 then
           begin
-            Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1237));
+            Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_riverships_ {UserString[1237]});
             Dialog.ResultsMemo.Lines.Add(' ');
             if Ival = 1 then
               Dialog.ResultsMemo.Lines.Add(Space(5) + 'L/B = ' +
-              FloatToStrF(L / B, ffFixed, 10, 2) + ' ' + Userstring(476) +
+              FloatToStrF(L / B, ffFixed, 10, 2) + ' ' + rs_is_outside_valid_domain {UserString[476]} +
               ' 4,0 ... 8,6');
             if Ival = 2 then
               Dialog.ResultsMemo.Lines.Add(Space(5) + 'B/T = ' +
-              FloatToStrF(B / T, ffFixed, 10, 2) + ' ' + Userstring(476) +
+              FloatToStrF(B / T, ffFixed, 10, 2) + ' ' + rs_is_outside_valid_domain {UserString[476]} +
               ' 3,7 ... 14,0');
             if Ival = 3 then
               Dialog.ResultsMemo.Lines.Add(Space(5) + 'Cb  = ' +
-              FloatToStrF(Cb, ffFixed, 10, 4) + ' ' + Userstring(476) + ' 0,5 ... 0,93');
+              FloatToStrF(Cb, ffFixed, 10, 4) + ' ' + rs_is_outside_valid_domain {UserString[476]} + ' 0,5 ... 0,93');
             if Ival = 4 then
               Dialog.ResultsMemo.Lines.Add(Space(5) + 'T/H = ' +
-              FloatToStrF(T / H, ffFixed, 10, 3) + ' ' + Userstring(476) +
+              FloatToStrF(T / H, ffFixed, 10, 3) + ' ' + rs_is_outside_valid_domain {UserString[476]} +
               ' 0,0 ... 0,7');
             goto exit0;
           end;
@@ -2698,14 +2698,14 @@ begin
             k11 := (0.465 * B / L - 0.028) * 2 * T / B;
             k22 := (1 - 0.5 * B / L) * 2 * T / B;
             k66 := (1.03 - 1.76 * B / L) * 2 * T / B;
-            Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1038));
+            Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_seaships_by_folmulae__4__ {UserString[1038]});
             Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
             FloatToStrF(k11, ffFixed, 10, 4) + '  ' + FloatToStrF(k22, ffFixed, 10, 4) +
             '  ' + FloatToStrF(k66, ffFixed, 10, 4));
           end;
           if (Cb >= 0.8) and ((TypeShip = 2) or (TypeShip = 3)) then
           begin
-            Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1039));
+            Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_riverships_and_ships_with_Cb____0_8_ {UserString[1039]});
             Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
             FloatToStrF(k11 * 1.4, ffFixed, 10, 4) + '  ' +
             FloatToStrF(k22 * 1.3, ffFixed, 10, 4) + '  ' +
@@ -2727,14 +2727,14 @@ begin
             (1 - 0.071 * (L / B - 6.8) * Hf * (1.09 - 0.015 * B / T)));
             dk22 := 1 + (0.72 + 6.3 * sqr(Hf)) * power(B / T, 0.73) * FrB;
             dk66 := 1 + 0.31 * (1 + 0.312 * B / T) * (1 + 7.29 * sqr(Hf)) * FrW;
-            Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1237));
-            Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1238));
+            Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_riverships_ {UserString[1237]});
+            Dialog.ResultsMemo.Lines.Add(Space(5) + rs___without_shipwaves_and_depth_water {UserString[1238]});
             Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
             FloatToStrF(k11, ffFixed, 10, 4) + '  ' + FloatToStrF(k22, ffFixed, 10, 4) +
             '  ' + FloatToStrF(k66, ffFixed, 10, 4));
             if Hf <= 0.7 then
             begin
-              Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1239));
+              Dialog.ResultsMemo.Lines.Add(Space(5) + rs___with_shipwaves_and_depth_water_for {UserString[1239]});
               Dialog.ResultsMemo.Lines.Add(Space(5) + ' T/Hf = ' +
               FloatToStrF(Hf, ffFixed, 10, 4) + '   BetaD = ' +
               FloatToStrF(AngleB, ffFixed, 10, 1) + ' degr  Vs = ' +
@@ -2743,14 +2743,14 @@ begin
               Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
               FloatToStrF(k11 + dk11, ffFixed, 10, 4) + '  ' +
               FloatToStrF(k22 * dk22, ffFixed, 10, 4) + '  ' +
-              FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + Userstring(1240));
+              FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + rs___positive_accelerated_moving {UserString[1240]});
               dk11 := 1.176 * dk11 / 0.918;
               dk22 := 1 + (0.9 + 7.38 * sqr(Hf)) * power(B / T, 0.73) * FrB;
               dk66 := 1 + 0.388 * (1 + 0.312 * B / T) * (1 + 6.75 * sqr(Hf)) * FrW;
               Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
               FloatToStrF(k11 + dk11, ffFixed, 10, 4) + '  ' +
               FloatToStrF(k22 * dk22, ffFixed, 10, 4) + '  ' +
-              FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + Userstring(1241));
+              FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + rs___negative_accelerated_moving {UserString[1241]});
             end;
             Dialog.ResultsMemo.Lines.Add(' ');
           end;
@@ -2812,19 +2812,19 @@ begin
               Dialog.ResultsMemo.Clear;
               Dialog.ResultsMemo.Visible := False;
               Dialog.ResultsMemo.Lines.Add(' ');
-              Dialog.ResultsMemo.Lines.Add(Space(20) + Userstring(1232));
+              Dialog.ResultsMemo.Lines.Add(Space(20) + rs_R_E_S_U_L_T_S___O_F___C_A_L_C_U_L_A_T_I_O_N {UserString[1232]});
               Dialog.ResultsMemo.Lines.Add(' ');
-              Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1233) + ' ' + str_[1]);
+              Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_of_a_ship_ {UserString[1233]} + ' ' + str_[1]);
               Dialog.ResultsMemo.Lines.Add(' ');
               for ii := 2 to 11 do
                 Dialog.ResultsMemo.Lines.Add(Space(5) + str_[II]);
               Dialog.ResultsMemo.Lines.Add(' ');
-              Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1234) +
+              Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Note_1__Calculated_number_of_hull_surface_areas___ {UserString[1234]} +
               ' ' + FloatToStrF(Numb, ffFixed, 6, 0));
-              Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1235) +
+              Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Note_2__Added_masses_are_be_devided_on____________ {UserString[1235]} +
               ' ' + FloatToStrF(Kmass, ffFixed, 8, 0));
               Dialog.ResultsMemo.Lines.Add(' ');
-              Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1236));
+              Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_of_equivalent_ellipsoid_body__3__ {UserString[1236]});
               Dialog.ResultsMemo.Lines.Add(' ');
               for ii := 12 to 18 do
                 Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1028 + ii) +
@@ -2847,23 +2847,23 @@ begin
               end;
               if Ival > 0 then
               begin
-                Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1237));
+                Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_riverships_ {UserString[1237]});
                 Dialog.ResultsMemo.Lines.Add(' ');
                 if Ival = 1 then
                   Dialog.ResultsMemo.Lines.Add(Space(5) + 'L/B = ' +
-                  FloatToStrF(L / B, ffFixed, 10, 2) + ' ' + Userstring(476) +
+                  FloatToStrF(L / B, ffFixed, 10, 2) + ' ' + rs_is_outside_valid_domain {UserString[476]} +
                   ' 4,0 ... 8,6');
                 if Ival = 2 then
                   Dialog.ResultsMemo.Lines.Add(Space(5) + 'B/T = ' +
-                  FloatToStrF(B / T, ffFixed, 10, 2) + ' ' + Userstring(476) +
+                  FloatToStrF(B / T, ffFixed, 10, 2) + ' ' + rs_is_outside_valid_domain {UserString[476]} +
                   ' 3,7 ... 14,0');
                 if Ival = 3 then
                   Dialog.ResultsMemo.Lines.Add(Space(5) + 'Cb  = ' +
-                  FloatToStrF(Cb, ffFixed, 10, 4) + ' ' + Userstring(476) +
+                  FloatToStrF(Cb, ffFixed, 10, 4) + ' ' + rs_is_outside_valid_domain {UserString[476]} +
                   ' 0,5 ... 0,93');
                 if Ival = 4 then
                   Dialog.ResultsMemo.Lines.Add(Space(5) + 'T/H = ' +
-                  FloatToStrF(T / H, ffFixed, 10, 3) + ' ' + Userstring(476) +
+                  FloatToStrF(T / H, ffFixed, 10, 3) + ' ' + rs_is_outside_valid_domain {UserString[476]} +
                   ' 0,0 ... 0,7');
                 goto exit1;
               end;
@@ -2873,7 +2873,7 @@ begin
                 k11 := (0.465 * B / L - 0.028) * 2 * T / B;
                 k22 := (1 - 0.5 * B / L) * 2 * T / B;
                 k66 := (1.03 - 1.76 * B / L) * 2 * T / B;
-                Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1038));
+                Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_seaships_by_folmulae__4__ {UserString[1038]});
                 Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
                 FloatToStrF(k11, ffFixed, 10, 4) + '  ' +
                 FloatToStrF(k22, ffFixed, 10, 4) + '  ' +
@@ -2881,7 +2881,7 @@ begin
               end;
               if (Cb >= 0.8) and ((TypeShip = 2) or (TypeShip = 3)) then
               begin
-                Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1039));
+                Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_riverships_and_ships_with_Cb____0_8_ {UserString[1039]});
                 Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
                 FloatToStrF(k11 * 1.4, ffFixed, 10, 4) + '  ' +
                 FloatToStrF(k22 * 1.3, ffFixed, 10, 4) + '  ' +
@@ -2904,15 +2904,15 @@ begin
                 (1 - 0.071 * (L / B - 6.8) * Hf * (1.09 - 0.015 * B / T)));
                 dk22 := 1 + (0.72 + 6.3 * sqr(Hf)) * power(B / T, 0.73) * FrB;
                 dk66 := 1 + 0.31 * (1 + 0.312 * B / T) * (1 + 7.29 * sqr(Hf)) * FrW;
-                Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1237));
-                Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1238));
+                Dialog.ResultsMemo.Lines.Add(Space(5) + rs_Added_masses_Coefficients_for_riverships_ {UserString[1237]});
+                Dialog.ResultsMemo.Lines.Add(Space(5) + rs___without_shipwaves_and_depth_water {UserString[1238]});
                 Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
                 FloatToStrF(k11, ffFixed, 10, 4) + '  ' +
                 FloatToStrF(k22, ffFixed, 10, 4) + '  ' +
                 FloatToStrF(k66, ffFixed, 10, 4));
                 if Hf <= 0.7 then
                 begin
-                  Dialog.ResultsMemo.Lines.Add(Space(5) + Userstring(1239));
+                  Dialog.ResultsMemo.Lines.Add(Space(5) + rs___with_shipwaves_and_depth_water_for {UserString[1239]});
                   Dialog.ResultsMemo.Lines.Add(Space(5) + ' T/Hf = ' +
                   FloatToStrF(Hf, ffFixed, 10, 4) + '   BetaD = ' +
                   FloatToStrF(AngleB, ffFixed, 10, 1) + ' degr  Vs = ' +
@@ -2921,14 +2921,14 @@ begin
                   Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
                   FloatToStrF(k11 + dk11, ffFixed, 10, 4) + '  ' +
                   FloatToStrF(k22 * dk22, ffFixed, 10, 4) + '  ' +
-                  FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + Userstring(1240));
+                  FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + rs___positive_accelerated_moving {UserString[1240]});
                   dk11 := 1.176 * dk11 / 0.918;
                   dk22 := 1 + (0.9 + 7.38 * sqr(Hf)) * power(B / T, 0.73) * FrB;
                   dk66 := 1 + 0.388 * (1 + 0.312 * B / T) * (1 + 6.75 * sqr(Hf)) * FrW;
                   Dialog.ResultsMemo.Lines.Add(Space(5) + ' k11, k22, k66    = ' +
                   FloatToStrF(k11 + dk11, ffFixed, 10, 4) + '  ' +
                   FloatToStrF(k22 * dk22, ffFixed, 10, 4) + '  ' +
-                  FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + Userstring(1241));
+                  FloatToStrF(k66 * dk66, ffFixed, 10, 4) + ' ' + rs___negative_accelerated_moving {UserString[1241]});
                 end;
                 Dialog.ResultsMemo.Lines.Add(' ');
               end;
@@ -2969,7 +2969,7 @@ begin
   { *Converted from FileSearch* }
   if FileToFind <> 'INA.' then
   begin
-    MessageDlg(Userstring(1229), mtError, [mbOK], 0);
+    MessageDlg(rs_Have_not_input_file_for_calculation_is_here___ {UserString[1229]}, mtError, [mbOK], 0);
     exit;
   end;
 
@@ -2978,9 +2978,9 @@ begin
   { *Converted from FileSearch* }
   if FileToFind <> FExecDirectory + DirectorySeparator+'Add_Mass.EXE' then
   begin
-    MessageDlg(Userstring(1138) + #13#10#13#10 + Userstring(1139) +
-      ' Add_Mass.EXE ' + #13#10#13#10 + Userstring(1140) + #13#10#13#10 +
-      Userstring(1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
+    MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} +
+      ' Add_Mass.EXE ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 +
+      rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
     exit;
   end;
   ShowMessage('        HydroNShIp_AddedMass v1.03'#13#10#13#10 +
@@ -3179,10 +3179,10 @@ var
       for I := 1 to Rows do
         for J := 1 to cols do
           if grid[I - 1][j - 1] = nil then
-            raise Exception.Create(Userstring(98));
+            raise Exception.Create(rs_Error_while_assembling_triangle_ {UserString[98]});
     end
     else
-      MessageDlg(Userstring(99), mtError, [mbOK], 0);
+      MessageDlg(rs_Could_not_find_the_interior_point_ {UserString[99]}, mtError, [mbOK], 0);
     FreeAndNil(Faces);
     FreeAndNil(Points);
   end;{AssembleTriangle}
@@ -3579,7 +3579,7 @@ begin
           mtInformation, [mbOK], 0);
       end
       else
-        MessageDlg(Userstring(100), mtInformation, [mbOK], 0);
+        MessageDlg(rs_Could_not_export_surfaces_ {UserString[100]}, mtInformation, [mbOK], 0);
       FreeAndNil(IGESList);
       FreeAndNil(Layers);
     finally
@@ -3603,13 +3603,13 @@ var
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
-    MessageDlg(Userstring(95), mtWarning, [mbOK], 0);
+    MessageDlg(rs_You_need_to_select_at_least_3_controlpoints_to_create_a_new_controlface {UserString[95]}, mtWarning, [mbOK], 0);
     exit;
   end;
   // temporarily switch to metric units for michlet export
   if FreeShip.ProjectSettings.ProjectUnits = fuImperial then
   begin
-    UndoObject := CreateUndoObject(Userstring(101), False);
+    UndoObject := CreateUndoObject(rs_Michlet_export {UserString[101]}, False);
     FreeShip.ProjectSettings.ProjectUnits := fuMetric;
   end
   else
@@ -3618,7 +3618,7 @@ begin
     if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
     Dialog := TFreeMichletOutputDialog.Create(FreeShip);
-    ShowTranslatedValues(Dialog);
+    //ShowTranslatedValues(Dialog);
     // Hull
     Dialog.NumberOfStations := 31;
     Dialog.NumberOfWaterlines := 21;
@@ -3985,7 +3985,7 @@ begin
       Screen.Cursor := PrevCursor;
     end
     else
-      MessageDlg(Userstring(102), mtError, [mbOK], 0);
+      MessageDlg(rs_Invalid_wave_pattern_file_ {UserString[102]}, mtError, [mbOK], 0);
     CloseFile(FFile);
     FreeShip.FileChanged := True;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
@@ -4204,7 +4204,7 @@ begin
       Closefile(FFile);
     end
     else
-      MessageDlg(Userstring(97), mtError, [mbOK], 0);
+      MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
   end;
   FreeAndNil(SaveDialog);
 
@@ -4231,7 +4231,7 @@ begin
   begin
     if FreeShip.FileChanged then
     begin
-      Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
@@ -4249,7 +4249,7 @@ begin
         end;
       end;
     end;
-    CreateUndoObject(Userstring(105), True);
+    CreateUndoObject(rs_import_carene_file {UserString[105]}, True);
     FreeShip.Clear;
     assignFile(FFile, ChangeFileExt(Opendialog.FileName, '.xyz'));
       {$I-}
@@ -4314,7 +4314,7 @@ begin
       end;
     end
     else
-      MessageDlg(Userstring(106), mtError, [mbOK], 0);
+      MessageDlg(rs_Unable_to_open_file_ {UserString[106]}, mtError, [mbOK], 0);
   end;
   FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportCarene}
@@ -4340,7 +4340,7 @@ begin
   begin
     if FreeShip.FileChanged then
     begin
-      Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
@@ -4358,7 +4358,7 @@ begin
         end;
       end;
     end;
-    CreateUndoObject(Userstring(107), True);
+    CreateUndoObject(rs_import_chines {UserString[107]}, True);
     FreeShip.Clear;
     assignFile(FFile, ChangeFileExt(Opendialog.FileName, '.txt'));
       {$I-}
@@ -4376,7 +4376,7 @@ begin
           if I in [0, 1] then
             FreeShip.ProjectSettings.ProjectUnits := TFreeUnitType(I)
           else
-            MessageDlg(Userstring(108), mtError, [mbOK], 0);
+            MessageDlg(rs_Invalid_unit_identifier_ {UserString[108]}, mtError, [mbOK], 0);
           Spline := TFreeSpline.Create(FreeShip.Surface);
           repeat
             Readln(FFile, Str);
@@ -4424,7 +4424,7 @@ begin
       end;
     end
     else
-      MessageDlg(Userstring(106), mtError, [mbOK], 0);
+      MessageDlg(rs_Unable_to_open_file_ {UserString[106]}, mtError, [mbOK], 0);
   end;
   FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_ImportChines}
@@ -4446,7 +4446,7 @@ begin
   begin
     if FreeShip.FileChanged then
     begin
-      Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
@@ -4465,7 +4465,7 @@ begin
       end;
     end;
     FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
-    CreateUndoObject(Userstring(109), True);
+    CreateUndoObject(rs_import__Fef_file {UserString[109]}, True);
     FreeShip.Clear;
     Strings := TStringList.Create;
     Strings.LoadFromFile(OpenDialog.Filename);
@@ -4518,7 +4518,7 @@ begin
   begin
     if FreeShip.FileChanged then
     begin
-      Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
@@ -4536,7 +4536,7 @@ begin
         end;
       end;
     end;
-    CreateUndoObject(UserString(110), True);
+    CreateUndoObject(rs_import__hul_file {UserString[110]}, True);
     File_ImportHull(OpenDialog.FileName, False);
     FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
   end;
@@ -4594,7 +4594,7 @@ begin
       if Quiet then
         Skip := True
       else
-        Skip := MessageDlg(Userstring(111), mtConfirmation, [mbYes, mbNo], 0) = mrNo;
+        Skip := MessageDlg(rs_Do_you_want_to_import_the_intermediate_bulkheads_ {UserString[111]}, mtConfirmation, [mbYes, mbNo], 0) = mrNo;
       if not skip then
       begin
         NBulkHeads := 13;
@@ -4679,7 +4679,7 @@ begin
     end;
   end
   else
-    MessageDlg(Userstring(106), mtError, [mbOK], 0);
+    MessageDlg(rs_Unable_to_open_file_ {UserString[106]}, mtError, [mbOK], 0);
 end;{TFreeEdit.File_ImportHull}
 
 // Import a partfile and add it to the current geometry
@@ -4717,7 +4717,7 @@ begin
     PartFile := TFreeFileBuffer.Create;
     //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
     Changed := False;
-    vUndo := CreateUndoObject(Userstring(112), False);
+    vUndo := CreateUndoObject(rs_Import_part {UserString[112]}, False);
     //Partfile.LoadFromFile(ChangeFileExt(OpenDialog.FileName, '.part'));
     Partfile.LoadFromFile(OpenDialog.FileName);
     Partfile.LoadString(Str);
@@ -4862,10 +4862,10 @@ begin
         end;
       end
       else
-        MessageDlg(UserString(113), mtError, [mbOK], 0);
+        MessageDlg(rs_This_file_was_created_with_a_later_version_of_FREE_ship_ {UserString[113]}, mtError, [mbOK], 0);
     end
     else
-      MessageDlg(Userstring(114), mtError, [mbOK], 0);
+      MessageDlg(rs_This_is_not_a_valid_FREE_ship_part_file_ {UserString[114]}, mtError, [mbOK], 0);
     if not Changed then
       vUndo.Delete;
     FreeAndNil(Partfile);
@@ -4902,7 +4902,7 @@ var
     begin
       Result := '';
       Abort := True;
-      MessageDlg(UserString(115), mtError, [mbOK], 0);
+      MessageDlg(rs_Unexpected_end_of_file_ {UserString[115]}, mtError, [mbOK], 0);
     end;
   end;{NextLine}
 
@@ -4918,7 +4918,7 @@ var
       Val(Str, Result, Index);
       if Index <> 0 then
       begin
-        MessageDlg(Userstring(116) + #32 + IntToStr(I), mtError, [mbOK], 0);
+        MessageDlg(rs_Invalid_integer_value_in_surface {UserString[116]} + #32 + IntToStr(I), mtError, [mbOK], 0);
         Abort := True;
       end;
     end
@@ -4938,7 +4938,7 @@ var
       Val(Str, Result, Index);
       if Index <> 0 then
       begin
-        MessageDlg(Userstring(117) + #32 + IntToStr(I), mtError, [mbOK], 0);
+        MessageDlg(rs_Invalid_floating_point_value_in_surface {UserString[117]} + #32 + IntToStr(I), mtError, [mbOK], 0);
         Abort := True;
       end;
     end
@@ -4973,7 +4973,7 @@ begin
   begin
     if FreeShip.FileChanged then
     begin
-      Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
@@ -5014,7 +5014,7 @@ begin
         end;
       if NSurfaces > 0 then
       begin
-        CreateUndoObject(Userstring(118), True);
+        CreateUndoObject(rs_import_PolyCad_file {UserString[118]}, True);
         FreeShip.Clear;
         FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
         I := 1;
@@ -5098,7 +5098,7 @@ begin
                     Val(Tmp, P.X, N);
                     if N <> 0 then
                     begin
-                      MessageDlg(Userstring(119) + #32 +
+                      MessageDlg(rs_Invalid_x_coordinate_in_surface {UserString[119]} + #32 +
                         IntToStr(I), mtError, [mbOK], 0);
                       Abort := True;
                     end;
@@ -5111,7 +5111,7 @@ begin
                       Val(Tmp, P.Y, N);
                       if N <> 0 then
                       begin
-                        MessageDlg(Userstring(120) + #32 +
+                        MessageDlg(rs_Invalid_y_coordinate_in_surface {UserString[120]} + #32 +
                           IntToStr(I), mtError, [mbOK], 0);
                         Abort := True;
                       end;
@@ -5126,7 +5126,7 @@ begin
                       Val(Tmp, P.Z, N);
                       if N <> 0 then
                       begin
-                        MessageDlg(Userstring(121) + #32 +
+                        MessageDlg(rs_Invalid_z_coordinate_in_surface {UserString[121]} + #32 +
                           IntToStr(I), mtError, [mbOK], 0);
                         Abort := True;
                       end;
@@ -5172,7 +5172,7 @@ begin
                       Val(Str, Value, N);
                       if N <> 0 then
                       begin
-                        MessageDlg(Userstring(122), mtError, [mbOK], 0);
+                        MessageDlg(rs_Invalid_contour_distance_ {UserString[122]}, mtError, [mbOK], 0);
                         Abort := True;
                       end
                       else
@@ -5196,10 +5196,10 @@ begin
           FreeShip.FileChanged := True;
         end
         else
-          MessageDlg(UserString(123), mtInformation, [mbOK], 0);
+          MessageDlg(rs_No_geometry_imported_ {UserString[123]}, mtInformation, [mbOK], 0);
       end
       else
-        MessageDlg(UserString(124), mtInformation, [mbOK], 0);
+        MessageDlg(rs_The_file_contains_no_BSpline_surfaces {UserString[124]}, mtInformation, [mbOK], 0);
     finally
       FreeAndNil(Strings);
       if Assigned(FreeShip.OnUpdateGeometryInfo) then
@@ -5226,7 +5226,7 @@ begin
   begin
     if FreeShip.FileChanged then
     begin
-      Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
@@ -5248,7 +5248,7 @@ begin
     Screen.Cursor := crHourglass;
 
     try
-      CreateUndoObject(Userstring(125), True);
+      CreateUndoObject(rs_import_VRML_file {UserString[125]}, True);
       FreeShip.Clear;
       //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
       FreeShip.Surface.LoadVRMLFile(Opendialog.FileName);
@@ -5498,7 +5498,7 @@ begin
   begin
     if FreeShip.FileChanged then
     begin
-      Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
         mtConfirmation, [mbYes, mbNo, mbCancel], 0);
       if Answer = mrCancel then
       begin
@@ -5779,6 +5779,7 @@ end;
 
 resourcestring rsSaveFile = 'Save file';
 rs3DTextFile = '3D text file';
+rs_CannotCreateDirectory = 'Cannot create directory: ';
 
 function TFreeEdit.File_SaveAs:boolean;
 var
@@ -5793,7 +5794,7 @@ begin
   Preferences := FreeShip.Preferences;
   Dir := Preferences.LastDirectory;
   if not DirectoryExistsUTF8(Dir) and not ForceDirectoriesUTF8(Dir) then
-    MessageDlg(tl8('Cannot create directory: ') + Dir, mtWarning, [mbOK], 0);
+    MessageDlg(rs_CannotCreateDirectory + Dir, mtWarning, [mbOK], 0);
 
   SaveDialog := TFreeFilePreviewDialog.Create(FreeShip);
   with SaveDialog do
@@ -5840,7 +5841,7 @@ var
   Flowline: TFreeFlowline;
   vUndo: TFreeUndoObject;
 begin
-  vUndo := CreateUndoObject(Userstring(130), False);
+  vUndo := CreateUndoObject(rs_Add_flowline {UserString[130]}, False);
   Flowline := TFreeFlowline.Create(FreeShip);
   FreeShip.FFlowLines.Add(Flowline);
   Flowline.FProjectionPoint := Source;
@@ -5878,7 +5879,7 @@ var
   Grid: TFreeSubdivisionControlPointGrid;
 begin
   Dialog := TFreeCylinderDialog.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.StartPoint := SetPoint(0.0, 0.0, 0.0);
   Dialog.EndPoint := SetPoint(0.0, 1.0, 0.0);
   Dialog.Radius.Value := 1.0;
@@ -5886,7 +5887,7 @@ begin
 
   if Dialog.Execute(LengthStr(FreeShip.ProjectSettings.ProjectUnits)) then
   begin
-    CreateUndoObject(Userstring(131), True);
+    CreateUndoObject(rs_Add_cylinder {UserString[131]}, True);
     Layer := FreeShip.Surface.ActiveLayer;
     StartPoint := Dialog.StartPoint;
     EndPoint := Dialog.EndPoint;
@@ -6004,7 +6005,7 @@ begin
 
   if Dialog.Execute(LengthStr(FreeShip.ProjectSettings.ProjectUnits)) then
   begin
-    CreateUndoObject(Userstring(131), True);
+    CreateUndoObject(rs_Add_cylinder {UserString[131]}, True);
     Layer := FreeShip.Surface.ActiveLayer;
     StartPoint := Dialog.StartPoint;
     SizeA := Dialog.SizeA.Value;
@@ -6059,7 +6060,7 @@ TFreeHydrostaticCalc;
 begin
   if not FreeShip.ProjectSettings.FMainParticularsHasBeenset then
   begin
-    MessageDlg(UserString(196), mtError, [mbOK], 0);
+    MessageDlg(rs_New_coordinate {UserString[196]}, mtError, [mbOK], 0);
     Result := nil;
   end
   else
@@ -6082,14 +6083,14 @@ var
   Dialog: TFreeCrosscurvesDialog;
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
-    MessageDlg(UserString(196), mtError, [mbOK], 0)
+    MessageDlg(rs_New_coordinate {UserString[196]}, mtError, [mbOK], 0)
   else
   begin
     // Check model for inconsistencies
     if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
     Dialog := TFreeCrosscurvesDialog.Create(FreeShip);
-    ShowTranslatedValues(Dialog);
+    //ShowTranslatedValues(Dialog);
     Dialog.SetDisplacements(FreeShip.ProjectSettings.FDisplacements,
       FreeShip.ProjectSettings.FNoDisplacements);
     Dialog.FreeNumInput2.Value := FreeShip.ProjectSettings.FMinimumDisplacement;
@@ -6125,7 +6126,7 @@ var
   HydrostaticsForm: TFreeHydrostaticsForm;
 begin
   HydrostaticsForm := TFreeHydrostaticsForm.Create(FreeShip);
-  ShowTranslatedValues(HydrostaticsForm);
+  //ShowTranslatedValues(HydrostaticsForm);
   Hydrostaticsform.StartDraft := FreeShip.ProjectSettings.Hydrostatics_Startdraft;
   Hydrostaticsform.EndDraft := FreeShip.ProjectSettings.Hydrostatics_Enddraft;
   Hydrostaticsform.DraftStep := FreeShip.ProjectSettings.Hydrostatics_DraftStep;
@@ -6211,7 +6212,7 @@ begin
                   Readln(FFile);
                 end;
               except
-                ShowMessage(Userstring(132) + #32 + IntToStr(Nr));
+                ShowMessage(rs_Error_in_line {UserString[132]} + #32 + IntToStr(Nr));
               end;
               Spline.Add(P);
               if J > 1 then
@@ -6227,13 +6228,13 @@ begin
           CloseFile(FFile);
         end
         else
-          MessageDlg(Userstring(132), mtError, [mbOK], 0);
+          MessageDlg(rs_Error_in_line {UserString[132]}, mtError, [mbOK], 0);
       end;
     end;
     if Frames.Count > 1 then
     begin
       FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
-      CreateUndoObject(Userstring(133), True);
+      CreateUndoObject(rs_Could_not_open_the_file_ {UserString[133]}, True);
       FreeShip.Clear;
       FreeShip.Filename := Opendialog.FileName;
       MinZ := 0.0;
@@ -6295,7 +6296,7 @@ begin
 
       NoPoints := 10;
       // resample all stations to a user defined number of points
-      NoPoints := StrToInt(InputBox('', Userstring(135) + ':', IntToStr(NoPoints)));
+      NoPoints := StrToInt(InputBox('', rs_Number_of_desired_controlpoints_on_each_station {UserString[135]} + ':', IntToStr(NoPoints)));
       if NoPoints < 5 then
         NoPoints := 5;
       Setlength(ControlPoints, Frames.Count);
@@ -6509,7 +6510,7 @@ begin
             if I in [0, 1] then
               UnitType := TFreeUnitType(I)
             else
-              MessageDlg(Userstring(108), mtError, [mbOK], 0);
+              MessageDlg(rs_Invalid_unit_identifier_ {UserString[108]}, mtError, [mbOK], 0);
             Spline := TFreeSpline.Create(FreeShip.Surface);
             repeat
               Readln(FFile, Str);
@@ -6542,31 +6543,31 @@ begin
             else
               FreeAndNil(Spline);
           except
-            MessageDlg(Userstring(132) + #32 + IntToStr(Nr), mtError, [mbOK], 0);
+            MessageDlg(rs_Error_in_line {UserString[132]} + #32 + IntToStr(Nr), mtError, [mbOK], 0);
           end;
           CloseFile(FFile);
         end
         else
-          MessageDlg(Userstring(132), mtError, [mbOK], 0);
+          MessageDlg(rs_Error_in_line {UserString[132]}, mtError, [mbOK], 0);
       end;
     end;
     if Curves.Count > 1 then
     begin
       PrevCursor := Screen.Cursor;
       FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
-      CreateUndoObject(Userstring(136), True);
+      CreateUndoObject(rs_import_surface {UserString[136]}, True);
       FreeShip.Clear;
       FreeShip.ProjectSettings.ProjectUnits := UnitType;
       FreeShip.Filename := Opendialog.FileName;
       try
 
         Cols := Curves.Count;
-        Cols := StrToInt(InputBox('', Userstring(137) + ':', IntToStr(Cols)));
+        Cols := StrToInt(InputBox('', rs_Number_of_columns {UserString[137]} + ':', IntToStr(Cols)));
         if Cols < 3 then
           Cols := 3;
 
         Rows := 10;
-        Rows := StrToInt(InputBox('', Userstring(138) + ':', IntToStr(Rows)));
+        Rows := StrToInt(InputBox('', rs_Number_of_rows {UserString[138]} + ':', IntToStr(Rows)));
         if Rows < 3 then
           Rows := 3;
 
@@ -6780,7 +6781,7 @@ var
   Dialog: TFreeIntersectionDialog;
 begin
   Dialog := FreeShip.FIntersectionDialog as TFreeIntersectionDialog;
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Execute(FreeShip);
   FreeShip.FDesignHydrostatics.Calculated := False;
   if FreeShip.Visibility.ShowHydrostaticData then
@@ -6856,7 +6857,7 @@ begin
     ;
     if ToDoList.Count > 0 then
     begin
-      CreateUndoObject(Userstring(139), True);
+      CreateUndoObject(rs_layer_grouping {UserString[139]}, True);
       while ToDoList.Count > 0 do
       begin
         Face := TFreeSubdivisionControlFace(ToDoList[ToDoList.Count - 1]);
@@ -6969,7 +6970,7 @@ begin
   if Plates.Count > 0 then
   begin
     Dlg := TFreeExpanedplatesDialog.Create(FreeShip);
-    ShowTranslatedValues(Dlg);
+    //ShowTranslatedValues(Dlg);
     FreeShip.IsRebuildAsyncDisabled := true;
     Dlg.Execute(FreeShip, Plates);
     FreeAndNil(Dlg);
@@ -6993,7 +6994,7 @@ begin
   if Quiet then
     vUndo := nil
   else
-    vUndo := CreateUndoObject(Userstring(140), False);
+    vUndo := CreateUndoObject(rs_delete_empty_layers {UserString[140]}, False);
   for I := FreeShip.NumberOfLayers downto 1 do
     if (FreeShip.Layer[I - 1].Count = 0) and (FreeShip.NumberOfLayers > 1) then
     begin
@@ -7008,7 +7009,7 @@ begin
   if (N > 0) and (not Quiet) then
   begin
     vUndo.Accept;
-    ShowMessage(IntToStr(N) + #32 + Userstring(141) + '.');
+    ShowMessage(IntToStr(N) + #32 + rs_empty_layers_deleted {UserString[141]} + '.');
   end;
   if (N = 0) and (vUndo <> nil) then
     vUndo.Delete;
@@ -7020,14 +7021,14 @@ var
   LayerDialog: TFreeLayerDialog;
 begin
   LayerDialog := TFreeLayerDialog.Create(FreeShip);
-  ShowTranslatedValues(LayerDialog);
+  //ShowTranslatedValues(LayerDialog);
   LayerDialog.Execute(FreeShip);
   LayerDialog.Free;
 end;{TFreeEdit.Layer_Dialog}
 
 function TFreeEdit.Layer_New: TFreeSubdivisionLayer;
 begin
-  CreateUndoObject(Userstring(142), True);
+  CreateUndoObject(rs_new_layer {UserString[142]}, True);
   Result := FreeShip.Surface.AddNewLayer;
   Result.Color := FreeShip.Preferences.LayerColor;
   FreeShip.FileChanged := True;
@@ -7045,9 +7046,9 @@ procedure TFreeEdit.Marker_Delete;
 var
   I: integer;
 begin
-  if MessageDlg(Userstring(143), mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg(rs_Are_you_sure_you_want_to_delete_all_the_markers_ {UserString[143]}, mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
-    CreateUndoObject(Userstring(144), True);
+    CreateUndoObject(rs_delete_markers {UserString[144]}, True);
     for I := 1 to FreeShip.NumberofMarkers do
       FreeShip.Marker[I - 1].Destroy;
     FreeShip.FMarkers.Clear;
@@ -7145,7 +7146,7 @@ begin
           else
             FreeAndNil(Marker);
         except
-          MessageDlg(Userstring(132) + #32 + IntToStr(LineNr), mtError, [mbOK], 0);
+          MessageDlg(rs_Error_in_line {UserString[132]} + #32 + IntToStr(LineNr), mtError, [mbOK], 0);
         end;
       finally
         CloseFile(FFile);
@@ -7154,11 +7155,11 @@ begin
       begin
         if FreeShip.NumberofMarkers > 0 then
         begin
-          Answer := MessageDlg(Userstring(145), mtConfirmation,
+          Answer := MessageDlg(rs_The_model_already_contains_markers__Do_you_want_to_delete_those_ {UserString[145]}, mtConfirmation,
             [mbYes, mbNo, mbCancel], 0);
           if Answer <> mrCancel then
           begin
-            CreateUndoObject(Userstring(146), True);
+            CreateUndoObject(rs_import_markers {UserString[146]}, True);
             if Answer = mrYes then
             begin
               for I := 1 to FreeShip.NumberofMarkers do
@@ -7178,16 +7179,16 @@ begin
         end
         else
         begin
-          CreateUndoObject(Userstring(146), True);
+          CreateUndoObject(rs_import_markers {UserString[146]}, True);
           Import(Markers);
         end;
       end
       else
-        MessageDlg(Userstring(147), mtInformation, [mbOK], 0);
+        MessageDlg(rs_No_markers_could_be_imported_ {UserString[147]}, mtInformation, [mbOK], 0);
       FreeAndNil(Markers);
     end
     else
-      MessageDlg(Userstring(106), mtError, [mbOK], 0);
+      MessageDlg(rs_Unable_to_open_file_ {UserString[106]}, mtError, [mbOK], 0);
   end;
   FreeAndNil(OpenDialog);
 end;{TFreeEdit.Marker_Import}
@@ -7274,7 +7275,7 @@ var
 
   var IsIntegrityOk, B:boolean;
 begin
-  vUndo := self.CreateUndoObject(Userstring(148), False);
+  vUndo := self.CreateUndoObject(rs_analyze_surface {UserString[148]}, False);
   Changed := False;
   InvertedFaces := 0;
   Inconsistent := 0;
@@ -7478,9 +7479,9 @@ begin
     FreeAndNil(NewGroup);
     if (Leaks.Count > 0) and (ShowResult) then
     begin
-      Str := Userstring(149) + ' ' + IntToStr(Leaks.Count) + ' ' + Userstring(150) + '.';
+      Str := rs_The_model_contains_a_total_of {UserString[149]} + ' ' + IntToStr(Leaks.Count) + ' ' + rs_leak_points {UserString[150]} + '.';
       if Leaks.Count > 10 then
-        Str := Str + EOL + Userstring(151) + ':';
+        Str := Str + EOL + rs_Only_the_first_10_are_shown {UserString[151]} + ':';
       Str := Str + EOL;
       for I := 1 to Leaks.Count do
       begin
@@ -7495,7 +7496,7 @@ begin
       ///////////// begin Victor T
       Point := Leaks[0];
       if Point.Coordinate.Z - Z_min < FreeShip.ProjectSettings.ProjectDraft then
-        MessageDlg(Userstring(899), mtWarning, [mbOK], 0);
+        MessageDlg(rs_Hydrostatics_calculation_is_not_possible__because_there_is_leak_point_under_DWL___ {UserString[899]}, mtWarning, [mbOK], 0);
       ;
       ///////////// end Victor T
     end;
@@ -7508,15 +7509,15 @@ begin
       FreeShip.FileChanged := True;
       if ShowResult then
       begin
-        Str := Userstring(152) + ':';
+        Str := rs_The_following_items_were_corrected {UserString[152]} + ':';
         if DblEdges > 0 then
-          Str := Str + EOL + IntToStr(DblEdges) + ' ' + UserString(158) + '.';
+          Str := Str + EOL + IntToStr(DblEdges) + ' ' + rs_double_edges {UserString[158]} + '.';
         if Inconsistent > 0 then
-          Str := Str + EOL + IntToStr(Inconsistent) + ' ' + Userstring(153) + '.';
+          Str := Str + EOL + IntToStr(Inconsistent) + ' ' + rs_inconsistent_normals {UserString[153]} + '.';
         if InvertedFaces > 0 then
-          Str := Str + EOL + IntToStr(InvertedFaces) + ' ' + Userstring(154) + '.';
+          Str := Str + EOL + IntToStr(InvertedFaces) + ' ' + rs_normals_flipped_to_point_outward {UserString[154]} + '.';
         if NonManifold > 0 then
-          Str := Str + EOL + IntToStr(NonManifold) + ' ' + Userstring(155);
+          Str := Str + EOL + IntToStr(NonManifold) + ' ' + rs_edges_found_with_more_then_2_faces_connected_to_it_ {UserString[155]};
         MessageDlg(Str, mtInformation, [mbOK], 0);
         if assigned(FreeShip.FOnUpdateGeometryInfo) then
           FreeShip.FOnUpdateGeometryInfo(self);
@@ -7526,7 +7527,7 @@ begin
     begin
       vUndo.Delete;
       if (ShowResult) and (Leaks.Count = 0) then
-        ShowMessage(Userstring(156));
+        ShowMessage(rs_Model_is_ok_ {UserString[156]});
     end;
     FreeAndNil(Leaks);
   end;
@@ -7581,7 +7582,7 @@ begin
   Result := False;
   if FreeShip.FileChanged then
   begin
-    Answer := MessageDlg(Userstring(103) + EOL + Userstring(104),
+    Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
       mtConfirmation, [mbYes, mbNo, mbCancel], 0);
     if Answer = mrCancel then
       exit;
@@ -7594,11 +7595,11 @@ begin
     end;
   end;
   FreeNewModelDialog := TFreeNewModelDialog.Create(FreeShip);
-  ShowTranslatedValues(FreeNewModelDialog);
+  //ShowTranslatedValues(FreeNewModelDialog);
   if FreeNewModelDialog.Execute then
   begin
     FreeShip.ModelIsLoaded := False;
-    CreateUndoObject(Userstring(157), True);
+    CreateUndoObject(rs_new_model {UserString[157]}, True);
     Cols := FreeNewModelDialog.NCols - 1;
     Rows := FreeNewModelDialog.NRows - 1;
     L := FreeNewModelDialog.Length;
@@ -7760,12 +7761,12 @@ var
 begin
   if not FreeShip.ProjectSettings.FMainparticularsHasBeenset then
   begin
-    MessageDlg(Userstring(96), mtError, [mbOK], 0);
+    MessageDlg(rs_You_have_to_set_the_mainparticulars_first_ {UserString[96]}, mtError, [mbOK], 0);
     exit;
   end;
   Dialog := TFreeLackenbyDialog.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
-  vUndo := CreateUndoObject(Userstring(159), False);
+  //ShowTranslatedValues(Dialog);
+  vUndo := CreateUndoObject(rs_Lackenby_tranformation {UserString[159]}, False);
   UndoIndex := FreeShip.UndoCount;
   if Dialog.Execute(FreeShip, Modified) then
   begin
@@ -8068,7 +8069,7 @@ begin
   if N > 0 then
      FreeShip.Surface.ClearMesh;
 
-  vUndo := CreateUndoObject(Userstring(160), False);
+  vUndo := CreateUndoObject(rs_collapse_point {UserString[160]}, False);
   for I := FreeShip.NumberOfSelectedControlPoints downto 1 do
   begin
     Point := FreeShip.SelectedControlPoint[I - 1];
@@ -8099,7 +8100,7 @@ var
   vUndo: TFreeUndoObject;
 begin
   N := 0;
-  vUndo := CreateUndoObject(Userstring(161), False);
+  vUndo := CreateUndoObject(rs_remove_unused_points {UserString[161]}, False);
   for I := FreeShip.Surface.NumberOfControlPoints downto 1 do
   begin
     Point := FreeShip.Surface.ControlPoint[I - 1];
@@ -8117,7 +8118,7 @@ begin
     FreeShip.FileChanged := True;
     if Assigned(FreeShip.OnUpdateGeometryInfo) then
       FreeShip.OnUpdateGeometryInfo(self);
-    MessageDlg(IntToStr(N) + #32 + Userstring(162), mtInformation, [mbOK], 0);
+    MessageDlg(IntToStr(N) + #32 + rs_points_removed_ {UserString[162]}, mtInformation, [mbOK], 0);
   end
   else
     vUndo.Delete;
@@ -8133,12 +8134,12 @@ var
 begin
   FreeShip.Extents(Min, Max);
   Dialog := TFreeInsertPlaneDialog.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Max := Max;
   Dialog.Min := Min;
   if Dialog.Execute then
   begin
-    vUndo := CreateUndoObject(UserString(163), False);
+    vUndo := CreateUndoObject(rs_insert_plane_intersections {UserString[163]}, False);
     N := FreeShip.Surface.NumberOfControlPoints;
     FreeShip.Surface.InsertPlane(Dialog.Plane, Dialog.CreateControlCurve);
     if N < FreeShip.Surface.NumberOfControlPoints then
@@ -8171,11 +8172,11 @@ begin
   if Layers.Count > 1 then
   begin
     Dialog := TFreeIntersectLayerDialog.Create(FreeShip);
-    ShowTranslatedValues(Dialog);
+    //ShowTranslatedValues(Dialog);
     if Dialog.Execute(Layers) then
       if assigned(Dialog.Layer1) and assigned(Dialog.Layer2) then
       begin
-        vUndo := CreateUndoObject(Userstring(164), False);
+        vUndo := CreateUndoObject(rs_layer_intersection {UserString[164]}, False);
         if Dialog.Layer1.CalculateIntersectionPoints(Dialog.Layer2) then
         begin
           vUndo.Accept;
@@ -8188,13 +8189,13 @@ begin
         else
         begin
           vUndo.Delete;
-          MessageDlg(Userstring(165), mtInformation, [mbOK], 0);
+          MessageDlg(rs_No_intersection_points_found_ {UserString[165]}, mtInformation, [mbOK], 0);
         end;
       end;
     FreeAndNil(Dialog);
   end
   else
-    MessageDlg(Userstring(166), mtError, [mbOK], 0);
+    MessageDlg(rs_At_least_two_layers_are_needed_to_perform_this_operation_ {UserString[166]}, mtError, [mbOK], 0);
   FreeAndNil(Layers);
 end;{TFreeEdit.Point_IntersectLayer}
 
@@ -8205,7 +8206,7 @@ var
 begin
   if FreeShip.NumberOfSelectedLockedPoints < FreeShip.NumberOfSelectedControlPoints then
   begin
-    self.CreateUndoObject(UserString(167), True);
+    self.CreateUndoObject(rs_lock_points {UserString[167]}, True);
     for I := 1 to FreeShip.NumberOfSelectedControlPoints do
       FreeShip.SelectedControlPoint[I - 1].Locked := True;
     FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
@@ -8221,7 +8222,7 @@ var
 begin
   if FreeShip.NumberOfSelectedLockedPoints > 0 then
   begin
-    self.CreateUndoObject(Userstring(168), True);
+    self.CreateUndoObject(rs_unlock_points {UserString[168]}, True);
     for I := 1 to FreeShip.NumberOfSelectedControlPoints do
       FreeShip.SelectedControlPoint[I - 1].Locked := False;
     FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
@@ -8237,13 +8238,13 @@ var
 begin
   if FreeShip.NumberOfLockedPoints > 0 then
   begin
-    CreateUndoObject(Userstring(169), True);
+    CreateUndoObject(rs_unlock_all_points {UserString[169]}, True);
     N := FreeShip.NumberOfLockedPoints;
     for I := 1 to FreeShip.Surface.NumberOfControlPoints do
       FreeShip.Surface.ControlPoint[I - 1].Locked := False;
     FreeShip.ActiveControlPoint := FreeShip.ActiveControlPoint;
     Freeship.ReDraw;
-    MessageDlg(IntToStr(N) + #32 + Userstring(170) + '.', mtInformation, [mbOK], 0);
+    MessageDlg(IntToStr(N) + #32 + rs_points_unlocked {UserString[170]} + '.', mtInformation, [mbOK], 0);
     FreeShip.FileChanged := True;
   end;
 end;{TFreeEdit.Point_UnlockAll}
@@ -8252,7 +8253,7 @@ end;{TFreeEdit.Point_UnlockAll}
 function TFreeEdit.ProceedWhenLockedPoints: boolean;
 begin
   if FreeShip.NumberOfLockedPoints > 0 then
-    Result := MessageDlg(Userstring(86) + EOL + Userstring(87),
+    Result := MessageDlg(rs_The_selection_contains_locked_points_that_will_not_be_affected_by_this_operation {UserString[86]} + EOL + rs_Are_you_sure_you_want_to_continue_ {UserString[87]},
       mtWarning, [mbYes, mbNo], 0) = mrYes
   else
     Result := True;
@@ -8264,7 +8265,7 @@ var
   Dialog: TFreeResistance_Delft;
 begin
   Dialog := TFreeResistance_Delft.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceDelftData.Bwl;
   Dialog.Cp := FreeShip.FResistanceDelftData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -8316,7 +8317,7 @@ var
   Dialog: TFreeResistance_Holtr;
 begin
   Dialog := TFreeResistance_Holtr.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceHoltrData.Bwl;
   Dialog.Cp := FreeShip.FResistanceHoltrData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -8420,7 +8421,7 @@ var
   Dialog: TFreeResistance_Hollen;
 begin
   Dialog := TFreeResistance_Hollen.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceHollenData.Bwl;
   Dialog.Cp := FreeShip.FResistanceHollenData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -8524,7 +8525,7 @@ var
   Dialog: TFreeResistance_Oortmer;
 begin
   Dialog := TFreeResistance_Oortmer.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceOortmerData.Bwl;
   Dialog.Cp := FreeShip.FResistanceOortmerData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -8628,7 +8629,7 @@ var
   Dialog: TFreeResistance_FungLeib;
 begin
   Dialog := TFreeResistance_FungLeib.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceFungData.Bwl;
   Dialog.Cp := FreeShip.FResistanceFungData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -8734,7 +8735,7 @@ var
   Dialog: TFreeResistance_OST;
 begin
   Dialog := TFreeResistance_OST.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceOSTData.Bwl;
   Dialog.Cp := FreeShip.FResistanceOSTData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -8857,7 +8858,7 @@ var
   Dialog: TFreeResistance_RBHS;
 begin
   Dialog := TFreeResistance_RBHS.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceRBHSData.Bwl;
   Dialog.Cp := FreeShip.FResistanceRBHSData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -8980,7 +8981,7 @@ var
   Dialog: TFreeResistance_MH;
 begin
   Dialog := TFreeResistance_MH.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Bwl := FreeShip.FResistanceMHData.Bwl;
   Dialog.Cp := FreeShip.FResistanceMHData.Cp;
   Dialog.Density := FreeShip.ProjectSettings.ProjectWaterDensity;
@@ -9103,7 +9104,7 @@ var
   Dialog: TFreeResistance_Kaper;
 begin
   Dialog := TFreeResistance_Kaper.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Ewl := FreeShip.FResistanceKaperData.Lwl;
   Dialog.Bwl := FreeShip.FResistanceKaperData.Bwl;
   Dialog.Cp := FreeShip.FResistanceKaperData.Cp;
@@ -9136,7 +9137,7 @@ var
   Dialog: TFreeResistance_Planing;
 begin
   Dialog := TFreeResistance_Planing.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Ewl := FreeShip.FResistancePlaningData.Lwl;
   Dialog.Bwl := FreeShip.FResistancePlaningData.Bwl;
   Dialog.Cp := FreeShip.FResistancePlaningData.Cp;
@@ -9178,7 +9179,7 @@ var
   Dialog: TFreePropeller_Task1;
 begin
   Dialog := TFreePropeller_Task1.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FPropellerTask1Data.Dat2;
   Dialog.Dat3 := FreeShip.FPropellerTask1Data.Dat3;
   Dialog.Dat4 := FreeShip.FPropellerTask1Data.Dat4;
@@ -9223,7 +9224,7 @@ var
   Dialog: TFreePropeller_Task2;
 begin
   Dialog := TFreePropeller_Task2.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FPropellerTask2Data.Dat2;
   Dialog.Dat3 := FreeShip.FPropellerTask2Data.Dat3;
   Dialog.Dat4 := FreeShip.FPropellerTask2Data.Dat4;
@@ -9288,7 +9289,7 @@ var
   Dialog: TFreePropeller_Task3;
 begin
   Dialog := TFreePropeller_Task3.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FPropellerTask3Data.Dat2;
   Dialog.Dat3 := FreeShip.FPropellerTask3Data.Dat3;
   Dialog.Dat4 := FreeShip.FPropellerTask3Data.Dat4;
@@ -9335,7 +9336,7 @@ var
   Dialog: TFreePropeller_Task4;
 begin
   Dialog := TFreePropeller_Task4.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FPropellerTask4Data.Dat2;
   Dialog.Dat3 := FreeShip.FPropellerTask4Data.Dat3;
   Dialog.Dat4 := FreeShip.FPropellerTask4Data.Dat4;
@@ -9381,7 +9382,7 @@ var
   Dialog: TFreePropeller_Task5;
 begin
   Dialog := TFreePropeller_Task5.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FPropellerTask5Data.Dat2;
   Dialog.Dat3 := FreeShip.FPropellerTask5Data.Dat3;
   Dialog.Dat4 := FreeShip.FPropellerTask5Data.Dat4;
@@ -9406,7 +9407,7 @@ var
   Dialog: TFreeHydrodyn_Rvrs;
 begin
   Dialog := TFreeHydrodyn_Rvrs.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FPropellerRvrsData.Dat2;
   Dialog.Dat3 := FreeShip.FPropellerRvrsData.Dat3;
   Dialog.Dat4 := FreeShip.FPropellerRvrsData.Dat4;
@@ -9453,7 +9454,7 @@ var
   Dialog: TFreeHydrodyn_Maneuv;
 begin
   Dialog := TFreeHydrodyn_Maneuv.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FHydrodynManeuvData.Dat2;
   Dialog.Dat3 := FreeShip.FHydrodynManeuvData.Dat3;
   Dialog.Dat4 := FreeShip.FHydrodynManeuvData.Dat4;
@@ -9506,7 +9507,7 @@ var
   Dialog: TFreeHydrodyn_Task1;
 begin
   Dialog := TFreeHydrodyn_Task1.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   Dialog.Dat2 := FreeShip.FHydrodynTask1Data.Dat2;
   Dialog.Dat3 := FreeShip.FHydrodynTask1Data.Dat3;
   Dialog.Dat4 := FreeShip.FHydrodynTask1Data.Dat4;
@@ -9544,7 +9545,7 @@ procedure TFreeEdit.Hydrodyn_Task2;
 var Dialog : TFreeHydrodyn_Task2;
 begin
    Dialog:=TFreeHydrodyn_Task2.Create(FreeShip);
-   ShowTranslatedValues(Dialog);
+   //ShowTranslatedValues(Dialog);
    Dialog.Dat2:=FreeShip.FHydrodynTask2Data.Dat2;
    Dialog.Dat3:=FreeShip.FHydrodynTask2Data.Dat3;
    Dialog.Dat4:=FreeShip.FHydrodynTask2Data.Dat4;
@@ -9591,7 +9592,7 @@ end;
 var Dialog : TFreeHydrodyn_Task3;
 begin
    Dialog:=TFreeHydrodyn_Task3.Create(FreeShip);
-   ShowTranslatedValues(Dialog);
+   //ShowTranslatedValues(Dialog);
    Dialog.Dat2:=FreeShip.FHydrodynTask3Data.Dat2;
    Dialog.Dat3:=FreeShip.FHydrodynTask3Data.Dat3;
    Dialog.Dat4:=FreeShip.FHydrodynTask3Data.Dat4;
@@ -9636,7 +9637,7 @@ end;{TFreeEdit.HydrodynTask3}
 var Dialog : TFreeHydrodyn_Task4;
 begin
    Dialog:=TFreeHydrodyn_Task4.Create(FreeShip);
-   ShowTranslatedValues(Dialog);
+   //ShowTranslatedValues(Dialog);
    Dialog.Dat2:=FreeShip.FHydrodynTask4Data.Dat2;
    Dialog.Dat3:=FreeShip.FHydrodynTask4Data.Dat3;
    Dialog.Dat4:=FreeShip.FHydrodynTask4Data.Dat4;
@@ -9747,7 +9748,7 @@ begin
         vUndo.Delete;
     end
     else
-      MessageDlg(Userstring(172) + '.', mtError, [mbOK], 0);
+      MessageDlg(rs_All_of_the_selected_points_are_locked_and_cannot_be_moved {UserString[172]} + '.', mtError, [mbOK], 0);
   end;
 end;{TFreeEdit.Point_AnchorToPoint}
 
@@ -9803,7 +9804,7 @@ begin
         vUndo.Delete;
     end
     else
-      MessageDlg(Userstring(172) + '.', mtError, [mbOK], 0);
+      MessageDlg(rs_All_of_the_selected_points_are_locked_and_cannot_be_moved {UserString[172]} + '.', mtError, [mbOK], 0);
   end;
 end;{TFreeEdit.Point_CoinsideToPoint}
 
@@ -9837,7 +9838,7 @@ begin
     begin
       P1 := FreeShip.SelectedControlPoint[0];
       P2 := FreeShip.SelectedControlPoint[FreeShip.NumberOfSelectedControlPoints - 1];
-      vUndo := CreateUndoObject(userstring(171), False);
+      vUndo := CreateUndoObject(rs_align_points {UserString[171]}, False);
       NChanged := 0;
       for I := 2 to FreeShip.NumberOfSelectedControlPoints - 1 do
       begin
@@ -9863,7 +9864,7 @@ begin
         vUndo.Delete;
     end
     else
-      MessageDlg(Userstring(172) + '.', mtError, [mbOK], 0);
+      MessageDlg(rs_All_of_the_selected_points_are_locked_and_cannot_be_moved {UserString[172]} + '.', mtError, [mbOK], 0);
   end;
 end;{TFreeEdit.Point_ProjectStraightLine}
 
@@ -9913,7 +9914,7 @@ begin
         vUndo.Delete;
     end
     else
-      MessageDlg(Userstring(172) + '.', mtError, [mbOK], 0);
+      MessageDlg(rs_All_of_the_selected_points_are_locked_and_cannot_be_moved {UserString[172]} + '.', mtError, [mbOK], 0);
   end;
 end;{TFreeEdit.Point_ProjectStraightLine}
 
@@ -9961,11 +9962,11 @@ begin
      + FreeShip.NumberOfselectedMarkers
      + FreeShip.NumberOfselectedFlowlines;
 
-{    if MessageDlg(Userstring(173) + #32 + IntToStr(N) + #32 + Userstring(
+{    if MessageDlg(rs_Are_you_sure_you_want_to_delete_the {UserString[173]} + #32 + IntToStr(N) + #32 + Userstring(
       174) + '?', mtWarning, [mbYes, mbNo], 0) = mrYes then }
    if (MR = mrAbort) and (N > 0) then
    begin
-      CreateUndoObject(Userstring(175), True);
+      CreateUndoObject(rs_delete {UserString[175]}, True);
       for I := FreeShip.NumberOfselectedFlowlines downto 1 do
         FreeShip.SelectedFlowline[I - 1].Delete;
       for I := FreeShip.NumberOfselectedMarkers downto 1 do
@@ -10073,7 +10074,7 @@ var
   vRedo: TFreeUndoObject;
 begin
   Dialog := TFreeUndoHistoryDialog.Create(FreeShip);
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
   vRedo := nil;
   if (FreeShip.FUndoPosition = FreeShip.UndoCount) and (FreeShip.UndoCount > 0) then
     if not FreeShip.UndoObject[FreeShip.UndoCount - 1].FIsTempRedoObject then

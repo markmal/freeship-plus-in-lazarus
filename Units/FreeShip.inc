@@ -343,7 +343,7 @@ var
   Ext: string;
 begin
   if FFilename = '' then
-    FFilename := Userstring(179);
+    FFilename := rs_New_model {UserString[179]};
   Ext := ExtractFileExt(FFilename);
   if (Ext = '.ftm') or (Ext = '.fbm') then
     Result := FFilename
@@ -422,7 +422,7 @@ begin
     FControlpointForm.ActiveControlPoint := FActiveControlPoint;
     if FActiveControlPoint = nil then
     begin
-      ShowTranslatedValues(FControlpointForm);
+      //ShowTranslatedValues(FControlpointForm);
       if FControlpointForm.Visible then
         FControlpointForm.Visible := False;
     end
@@ -432,7 +432,7 @@ begin
       // because the mousewheel zoom in/out doesn't work anymore in that case
       if not FControlpointForm.Visible then
       begin
-        ShowTranslatedValues(FControlpointForm);
+        //ShowTranslatedValues(FControlpointForm);
         ShowWindow(FControlpointForm.Handle, SW_SHOWNOACTIVATE);
       end;
       if not FControlpointForm.Visible then
@@ -515,7 +515,7 @@ var
   Tmp: string;
 begin
   if val = '' then
-    val := Userstring(179);
+    val := rs_New_model {UserString[179]};
   Tmp := ChangeFileExt(Val, FreeShipExtention);
   if FFilename <> val then
     FFilename := Val;
@@ -822,7 +822,7 @@ function TFreeShip.AdjustMarkers: boolean;
 begin
   Result := False;
   if NumberofMarkers > 0 then
-    Result := MessageDlg(Userstring(180) + '?', mtInformation, [mbYes, mbNo], 0) = mrYes;
+    Result := MessageDlg(rs_Do_you_want_to_adjust_the_markers_too {UserString[180]} + '?', mtInformation, [mbYes, mbNo], 0) = mrYes;
 end;{TFreeShip.AdjustMarkers}
 
 constructor TFreeShip.Create(AOwner: TComponent);
@@ -879,42 +879,42 @@ begin
   Strings.Add('');
   Strings.Add(CalcHeader);
   Strings.Add('');
-  Strings.Add(Makelength(Space(10) + Userstring(39), 31) + ' : ' +
+  Strings.Add(Makelength(Space(10) + rs_Project {UserString[39]}, 31) + ' : ' +
     Separator + ProjectSettings.ProjectName);
-  Strings.Add(Makelength(Space(10) + Userstring(40), 31) + ' : ' +
+  Strings.Add(Makelength(Space(10) + rs_Designer {UserString[40]}, 31) + ' : ' +
     Separator + ProjectSettings.ProjectDesigner);
   if ProjectSettings.ProjectFileCreatedBy <> '' then
-    Strings.Add(Makelength(Space(10) + Userstring(41), 31) + ' : ' +
+    Strings.Add(Makelength(Space(10) + rs_Created_by {UserString[41]}, 31) + ' : ' +
       Separator + ProjectSettings.ProjectFileCreatedBy);
   if ProjectSettings.ProjectComment <> '' then
-    Strings.Add(Makelength(Space(10) + Userstring(42), 31) + ' : ' +
+    Strings.Add(Makelength(Space(10) + rs_Comment {UserString[42]}, 31) + ' : ' +
       Separator + ProjectSettings.ProjectComment);
-  Strings.Add(Makelength(Space(10) + Userstring(43), 31) + ' : ' +
+  Strings.Add(Makelength(Space(10) + rs_Filename {UserString[43]}, 31) + ' : ' +
     Separator + ChangeFileExt(ExtractFilename(FileName), '.fbm'));
   Strings.Add('');
   if ProjectSettings.MainparticularsHasBeenset then
   begin
-    Strings.Add(MakeLength(Space(10) + Userstring(44), 31) + ' : ' +
+    Strings.Add(MakeLength(Space(10) + rs_Design_length {UserString[44]}, 31) + ' : ' +
       MakeLength(ProjectSettings.ProjectLength, -1, 10) + #32 +
       LengthStr(ProjectSettings.ProjectUnits));
-    Strings.Add(MakeLength(Space(10) + Userstring(46), 31) + ' : ' +
+    Strings.Add(MakeLength(Space(10) + rs_Design_beam {UserString[46]}, 31) + ' : ' +
       MakeLength(ProjectSettings.ProjectBeam, -1, 10) + #32 + LengthStr(
       ProjectSettings.ProjectUnits));
-    Strings.Add(MakeLength(Space(10) + Userstring(48), 31) + ' : ' +
+    Strings.Add(MakeLength(Space(10) + rs_Design_draft {UserString[48]}, 31) + ' : ' +
       MakeLength(ProjectSettings.Projectdraft, -1, 10) + #32 + LengthStr(
       ProjectSettings.ProjectUnits));
-    Strings.Add(MakeLength(Space(10) + Userstring(49), 31) + ' : ' +
+    Strings.Add(MakeLength(Space(10) + rs_Midship_location {UserString[49]}, 31) + ' : ' +
       MakeLength(ProjectSettings.ProjectSplitSectionLocation, -1, 10) +
       #32 + LengthStr(ProjectSettings.ProjectUnits));
-    Strings.Add(MakeLength(Space(10) + Userstring(50), 31) + ' : ' +
+    Strings.Add(MakeLength(Space(10) + rs_Water_density {UserString[50]}, 31) + ' : ' +
       MakeLength(ProjectSettings.ProjectWaterDensity, 3, 10) + #32 +
       DensityStr(ProjectSettings.ProjectUnits));
-    Strings.Add(MakeLength(Space(10) + Userstring(51), 31) + ' : ' +
+    Strings.Add(MakeLength(Space(10) + rs_Appendage_coefficient {UserString[51]}, 31) + ' : ' +
       MakeLength(ProjectSettings.ProjectAppendageCoefficient, 4, 10));
     Strings.Add('');
   end;
-  Strings.Add(Makelength(Space(10) + Userstring(181), 19) + ' : ' + DateToStr(Date));
-  Strings.Add(Makelength(Space(10) + Userstring(182), 19) + ' : ' + TimeToStr(Time));
+  Strings.Add(Makelength(Space(10) + rs_Date {UserString[181]}, 19) + ' : ' + DateToStr(Date));
+  Strings.Add(Makelength(Space(10) + rs_Time {UserString[182]}, 19) + ' : ' + TimeToStr(Time));
   Strings.Add('');
 end;{TFreeShip.CreateOutputHeader}
 
@@ -939,7 +939,7 @@ begin
   FModelIsLoaded := False;
   FFileIsReadOnly := False;
   FSurface.Clear;
-  FFilename := Userstring(179);
+  FFilename := rs_New_model {UserString[179]};
   FVisibility.Clear;
   FEditMode := emSelectItems;// Set editmode to select items
   //FFontSize := 8; // use Preferences
@@ -1338,7 +1338,7 @@ var
         Viewport.PenWidth := 2;
         P1 := Min;
         P2 := Max;
-        Str := Userstring(183);
+        Str := rs_Centerline {UserString[183]};
         P1.Y := 0.0;
         P2.Y := P1.Y;
         Pt1 := Viewport.Project(P1);
@@ -1368,7 +1368,7 @@ var
         P1 := Min;
         P2 := Max;
         Position := Surface.Min.Z;
-        Str := Userstring(184) + #32 + ConvertDimension(
+        Str := rs_Base {UserString[184]} + #32 + ConvertDimension(
           Position, ProjectSettings.ProjectUnits);
         P1.Z := Position;
         P2.Z := P1.Z;
@@ -1389,7 +1389,7 @@ var
           P1 := Min;
           P2 := Max;
           Position := Surface.Min.Z + ProjectSettings.FProjectDraft;
-          Str := Userstring(185) + #32 + ConvertDimension(
+          Str := rs_DWL {UserString[185]} + #32 + ConvertDimension(
             Position, ProjectSettings.ProjectUnits);
           P1.Z := Position;
           P2.Z := P1.Z;
@@ -1606,10 +1606,10 @@ begin
           FloatToStrF(FDesignHydrostatics.Data.Weight_, ffFixed, 7, 2), True);
       // Lateral center
       if Visibility.FShowHydrostLateralArea then
-        DrawPoint(FDesignHydrostatics.FData.LateralCOG, Userstring(29) +
+        DrawPoint(FDesignHydrostatics.FData.LateralCOG, rs_Lateral_area {UserString[29]} +
           '=' + FloatToStrF(FDesignHydrostatics.Data.LateralArea, ffFixed, 7, 2), True);
       if Visibility.FShowHydrostLateralArea then
-        DrawPoint(FDesignHydrostatics.FData.sdpCOG, Userstring(1436) +
+        DrawPoint(FDesignHydrostatics.FData.sdpCOG, rs_Lateral_wind_area {UserString[1436]} +
           '=' + FloatToStrF(FDesignHydrostatics.Data.SDP, ffFixed, 7, 2), True);
       if (Viewport.ViewType = fvProfile) and
         (Visibility.FShowHydrostSectionalAreas) then
@@ -1818,12 +1818,12 @@ begin
         vLayer := Surface.Layer[I - 1]
       else
         vLayer := Surface.AddNewLayer;
-      vLayer.Name := Userstring(186) + #32 + IntToStr(I);
+      vLayer.Name := rs_Strake {UserString[186]} + #32 + IntToStr(I);
       vLayer.Developable := True;
     end;
     // add special layer to close the hull at centerline
     vLayer := Surface.AddNewLayer;
-    vLayer.Name := Userstring(187);
+    vLayer.Name := rs_Close_hull {UserString[187]};
     Setlength(Points, Np);
 
     // Prepare matrices
@@ -2227,11 +2227,11 @@ begin
         end;  //if FileVersion>=fv180
       end //if (FFileVersion<=CurrentVersion) or (FFileVersion<=High(FFileVersion))
       else
-        MessageDlg(Userstring(113) + eol + UserString(188) +
+        MessageDlg(rs_This_file_was_created_with_a_later_version_of_FREE_ship_ {UserString[113]} + eol + rs_and_cannot_be_opened_with_this_version {UserString[188]} +
           '.', mtError, [mbOK], 0);
     end //if Str='FREE!ship' then
     else
-      MessageDlg(Userstring(189), mtError, [mbOK], 0);
+      MessageDlg(rs_This_is_not_a_valid_FREE_ship_file_ {UserString[189]}, mtError, [mbOK], 0);
 
     Surface.UnderWaterColor := ProjectSettings.ProjectUnderWaterColor;
     Surface.ShadeUnderWater := ProjectSettings.ProjectShadeUnderwaterShip;
@@ -3063,7 +3063,7 @@ begin
   if (Key in [Left..Down]) and (vViewport.ViewType <> fvPerspective)
      and (ActiveControlPoint <> nil) then
   begin
-    Edit.CreateUndoObject(Userstring(190), True);
+    Edit.CreateUndoObject(rs_point_move {UserString[190]}, True);
     Point := ActiveControlPoint;
     FileChanged := True;
     Built := False;
@@ -3594,11 +3594,11 @@ begin
               exit;
             if ActiveControlPoint.Locked then
             begin
-              MessageDlg(Userstring(191) + '!', mtWarning, [mbOK], 0);
+              MessageDlg(rs_Locked_points_can_not_be_moved_ {UserString[191]} + '!', mtWarning, [mbOK], 0);
               exit;
             end;
             Logger.Debug('Point Move. CreateUndoObject');
-            Edit.CreateUndoObject(Userstring(190), True);
+            Edit.CreateUndoObject(rs_point_move {UserString[190]}, True);
           end;
           Point := ActiveControlPoint;
           FileChanged := True;

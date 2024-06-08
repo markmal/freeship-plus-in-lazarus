@@ -188,7 +188,7 @@ begin
       Str:=CurrentLanguage.readString(Section,Key,'');
       if Str<>'' then Result:=Str;
    end;
-   if Result='' then
+   {if Result='' then
    begin
       N:=Length(UserStrings);
       if N>9
@@ -198,7 +198,7 @@ begin
          Result:=UserStrings[I-1].Value;
          break;
       end;
-   end;
+   end;}
 end;{UserString}
 
 { Direct translation - key is a word or a phrase in Latin chars, it can be a whole phase.
@@ -206,6 +206,7 @@ end;{UserString}
 Hello world!=Здравствуй, мир!
 It can be multiline too, EOLs in key and value will be replaced by \n.
 }
+
 function tl8(Key:String):String;
 var Str     : string;
     Section : String;

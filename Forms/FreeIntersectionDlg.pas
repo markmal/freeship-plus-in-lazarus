@@ -142,7 +142,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeStringsUnit;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -155,30 +155,30 @@ procedure TFreeIntersectionDialog.UpdateMenu;
 begin
   if ShowStations.Checked then
   begin
-    AddOne.Hint := Userstring(223) + '.';
-    AddRange.Hint := Userstring(224) + '.';
-    DeleteAll.Hint := Userstring(225) + '.';
+    AddOne.Hint := rs_Add_one_station {UserString[223]} + '.';
+    AddRange.Hint := rs_Add_multiple_stations {UserString[224]} + '.';
+    DeleteAll.Hint := rs_Delete_all_stations {UserString[225]} + '.';
     DeleteAll.Enabled := FFreeship.NumberofStations > 0;
   end
   else if ShowButtocks.Checked then
   begin
-    AddOne.Hint := Userstring(226) + '.';
-    AddRange.Hint := Userstring(227) + '.';
-    DeleteAll.Hint := Userstring(228) + '.';
+    AddOne.Hint := rs_Add_one_buttock {UserString[226]} + '.';
+    AddRange.Hint := rs_Add_multiple_buttocks {UserString[227]} + '.';
+    DeleteAll.Hint := rs_Delete_all_buttocks {UserString[228]} + '.';
     DeleteAll.Enabled := FFreeship.NumberofButtocks > 0;
   end
   else if ShowWaterlines.Checked then
   begin
-    AddOne.Hint := Userstring(229) + '.';
-    AddRange.Hint := Userstring(230) + '.';
-    DeleteAll.Hint := Userstring(231) + '.';
+    AddOne.Hint := rs_Add_one_waterline {UserString[229]} + '.';
+    AddRange.Hint := rs_Add_multiple_waterlines {UserString[230]} + '.';
+    DeleteAll.Hint := rs_Delete_all_waterlines {UserString[231]} + '.';
     DeleteAll.Enabled := FFreeship.NumberofWaterlines > 0;
   end
   else if ShowDiagonals.Checked then
   begin
-    AddOne.Hint := Userstring(232) + '.';
-    AddRange.Hint := Userstring(233) + '.';
-    DeleteAll.Hint := Userstring(234) + '.';
+    AddOne.Hint := rs_Add_one_diagonal {UserString[232]} + '.';
+    AddRange.Hint := rs_Add_multiple_diagonals {UserString[233]} + '.';
+    DeleteAll.Hint := rs_Delete_all_diagonals {UserString[234]} + '.';
     DeleteAll.Enabled := FFreeship.NumberofDiagonals > 0;
   end;
 end;{TFreeIntersectionDialog.UpdateMenu}
@@ -691,7 +691,7 @@ var
   Int: TFreeIntersection;
 begin
   Str := '1.0';
-  if InputQuery(Userstring(235), Userstring(236) + ':', Str) then
+  if InputQuery(rs_New_intersection {UserString[235]}, rs_Distance {UserString[236]} + ':', Str) then
   begin
     Int := nil;
     if ShowStations.Checked then
@@ -719,7 +719,7 @@ var
   Index: integer;
 begin
   Str := '1.0';
-  if not InputQuery(Userstring(237), Userstring(236) + ':', Str) then
+  if not InputQuery(rs_New_range_of_intersections {UserString[237]}, rs_Distance {UserString[236]} + ':', Str) then
     exit;
   Step := abs(StrToFloat(Str));
   if abs(Step) < 1e-3 then

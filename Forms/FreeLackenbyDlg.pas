@@ -51,10 +51,11 @@ uses
   FreeTypes,
   FreeGeometry,
   FreeShipUnit,
-  FreeLanguageSupport,
+  FreeStringsUnit,
   ExtCtrls,
   FasterList,
   Spin,
+  LCLTranslator,
   CheckLst;
 
 const
@@ -493,14 +494,14 @@ begin
   end;
   if Points.Count = 0 then
   begin
-    MessageDlg(Userstring(238) + '!', mtError, [mbOK], 0);
+    MessageDlg(rs_No_points_to_transfom_in_the_current_selection {UserString[238]} + '!', mtError, [mbOK], 0);
     FreeAndNil(Points);
     FreeAndNil(LockedPoints);
     exit;
   end
   else if LockedPoints.Count > 0 then
   begin
-    Proceed := MessageDlg(Userstring(239) + '.' + EOL + Userstring(87),
+    Proceed := MessageDlg(rs_This_model_contains_locked_points_that_will_be_modified_by_this_operation {UserString[239]} + '.' + EOL + rs_Are_you_sure_you_want_to_continue_ {UserString[87]},
       mtWarning, [mbYes, mbNo], 0) = mrYes;
   end
   else
@@ -513,7 +514,7 @@ begin
   end;
 
   Iteration := 1;
-  Undo := FFreeship.Edit.CreateUndoObject(Userstring(159), False);
+  Undo := FFreeship.Edit.CreateUndoObject(rs_Lackenby_tranformation {UserString[159]}, False);
 
   Modified := False;
   DisplError := 1.0;
@@ -669,8 +670,8 @@ begin
       end;
       FFreeship.Redraw;
       Succeeded := True;
-      MessageDlg(Userstring(240) + #32 + IntToStr(Iteration) + #32 +
-        Userstring(241) + '.', mtInformation, [mbOK], 0);
+      MessageDlg(rs_Transformation_succeeded_after {UserString[240]} + #32 + IntToStr(Iteration) + #32 +
+        rs_iterations {UserString[241]} + '.', mtInformation, [mbOK], 0);
     end
     else
     begin
@@ -710,7 +711,7 @@ begin
       UpdateDifferences;
       Modified := False;
       // Transformation failed
-      MessageDlg(Userstring(242) + '!', mtWarning, [mbOK], 0);
+      MessageDlg(rs_Transormation_failed {UserString[242]} + '!', mtWarning, [mbOK], 0);
     end;
     FreeAndNil(Points);
     FreeAndNil(LockedPoints);
@@ -901,7 +902,7 @@ begin
   Viewport.ZoomExtents;
   TopView.ZoomExtents;
 
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
 
   Showmodal;
 
@@ -991,7 +992,7 @@ begin
     end;
   end
   else
-    MessageDlg(Userstring(243) + '!', mtError, [mbOK], 0);
+    MessageDlg(rs_Invalid_displacement {UserString[243]} + '!', mtError, [mbOK], 0);
 end;{TFreeLackenbyDialog.Button1Click}
 
 procedure TFreeLackenbyDialog.Input1AfterSetValue(Sender: TObject);

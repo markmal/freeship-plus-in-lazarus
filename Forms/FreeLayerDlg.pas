@@ -171,7 +171,7 @@ var FreeLayerDialog : TFreeLayerDialog;
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
      FreeLinesplanFrme;
 
 {$IFnDEF FPC}
@@ -199,7 +199,7 @@ function TFreeLayerDialog.Execute(FreeShip:TFreeShip):Boolean;
 var Undo : TFreeUndoObject;
 begin
    FFreeShip:=FreeShip;
-   Undo:=Freeship.Edit.CreateUndoObject(Userstring(244),False);
+   Undo:=Freeship.Edit.CreateUndoObject(rs_layer_properties {UserString[244]},False);
    FFillBox;
    _Label4.Caption:=DensityStr(FFreeship.ProjectSettings.ProjectUnits);
    // Skip translation

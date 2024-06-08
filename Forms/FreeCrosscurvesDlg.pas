@@ -190,9 +190,11 @@ var
 
 implementation
 
-uses FreeLanguageSupport;
+uses FreeStringsUnit;
 
 {$R *.lfm}
+
+resourcestring Amplitude_of_heel_angle__2_0_degrees____ = 'Amplitude of heel angle <2.0 degrees !!!';
 
 function TFreeCrosscurvesDialog.Execute(Freeship: TFreeship): boolean;
 begin
@@ -207,14 +209,14 @@ begin
   Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'Calculate');
 
   Pagecontrol1.ActivePage := Tabsheet1;
-  Chart.Title.Text.Text := Userstring(293);
+  Chart.Title.Text.Text := rs_Cross_curves {UserString[293]};
   Chart.LeftAxis.Title.Caption :=
-    Userstring(996) + ', ' + LengthStr(FFreeship.ProjectSettings.ProjectUnits);
+    rs_KN_sin_Psi_ {UserString[996]} + ', ' + LengthStr(FFreeship.ProjectSettings.ProjectUnits);
   Chart.BottomAxis.Title.Caption :=
-    Userstring(4) + ', ' + WeightStr(FFreeship.ProjectSettings.ProjectUnits);
-  Chart0.Title.Text.Text := Userstring(766);
-  Chart0.LeftAxis.Title.Caption := Userstring(767);
-  Chart0.BottomAxis.Title.Caption := Userstring(768);
+    rs_Displacement {UserString[4]} + ', ' + WeightStr(FFreeship.ProjectSettings.ProjectUnits);
+  Chart0.Title.Text.Text := rs_Static_and_Dynamic_Stability_Diagrams__SSD___DSD_ {UserString[766]};
+  Chart0.LeftAxis.Title.Caption := rs_GZ___m___GZd____m_ {UserString[767]};
+  Chart0.BottomAxis.Title.Caption := rs_Heeling_angle___degr_ {UserString[768]};
   UpdateDisplacementData;
   UpdateHeelingAngleData;
   ShowModal;
@@ -475,6 +477,8 @@ begin
 end;{TFreeCrosscurvesDialog.ComboBox1Click}
 
 
+
+
 procedure TFreeCrosscurvesDialog.ToolButton1Click(Sender: TObject);
 var
   NHeel: integer;
@@ -560,7 +564,7 @@ begin
       end;
     end
     else
-      MessageDlg(Userstring(292) + '!', mtError, [mbOK], 0);
+      MessageDlg(rs_Displacement_step_can_not_be_zero_ {UserString[292]} + '!', mtError, [mbOK], 0);
   end
   else
     GetDisplacements(Displacements, NDispl);
@@ -624,9 +628,9 @@ begin
     FreeAndNil(HydObject);
     //        MessageDlg('D>0 Zmin = '+FloatToStrF(Zmin,ffFixed,6,3)+' '+'Zgr = '+FloatToStrF(Zgr,ffFixed,6,3),mtInformation,[mbOk],0);
 
-    Chart.Title.Text.Text := Userstring(997);
+    Chart.Title.Text.Text := rs_GZ_Psi_ {UserString[997]};
     Chart.LeftAxis.Title.Caption :=
-      Userstring(997) + ', ' + LengthStr(FFreeship.ProjectSettings.ProjectUnits);
+      rs_GZ_Psi_ {UserString[997]} + ', ' + LengthStr(FFreeship.ProjectSettings.ProjectUnits);
     if JJ = 0 then
     begin
       if Di > 10 then
@@ -634,15 +638,15 @@ begin
       else
         iii := 2;
       Chart.Title.Text.Text :=
-        Userstring(997) + ' ' + Userstring(999) + FloatToStrF(Displacements[0], ffFixed, 6, iii) +
-        ' ' + Userstring(1010) + FloatToStrF(Zgr, ffFixed, 6, 3) + ' ' + Userstring(451);
+        rs_GZ_Psi_ {UserString[997]} + ' ' + rs_for_D_ {UserString[999]} + FloatToStrF(Displacements[0], ffFixed, 6, iii) +
+        ' ' + rs_tonnes_and_Z_CoG__ {UserString[1010]} + FloatToStrF(Zgr, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]};
     end;
   end
   else
   begin
-    Chart.Title.Text.Text := Userstring(293);
+    Chart.Title.Text.Text := rs_Cross_curves {UserString[293]};
     Chart.LeftAxis.Title.Caption :=
-      Userstring(996) + ', ' + LengthStr(FFreeship.ProjectSettings.ProjectUnits);
+      rs_KN_sin_Psi_ {UserString[996]} + ', ' + LengthStr(FFreeship.ProjectSettings.ProjectUnits);
   end;
 
   if Zmin <> 0 then
@@ -672,10 +676,10 @@ begin
         Grid.Cells[J - 1, I - 1] := '';
     I := 1;
     if NDispl = 1 then
-      Chart.BottomAxis.Title.Caption := Userstring(768)
+      Chart.BottomAxis.Title.Caption := rs_Heeling_angle___degr_ {UserString[768]}
     else
       Chart.BottomAxis.Title.Caption :=
-        Userstring(4) + ', ' + WeightStr(FFreeship.ProjectSettings.ProjectUnits);
+        rs_Displacement {UserString[4]} + ', ' + WeightStr(FFreeship.ProjectSettings.ProjectUnits);
     //Chart.UndoZoom;
     Chart.ZoomFull;
 
@@ -709,8 +713,8 @@ begin
         Series1.ShowInLegend := False;
         Pagecontrol1.ActivePage := Tabsheet1;
         Grid.Cells[I, 0] := FloatToStrF(Angles[I - 1], ffFixed, 7, 1) + '°';
-        //            MessageDlg(Userstring(1124),mtInformation,[mbOk],0);
-        //            MessageDlg(Userstring(1125),mtInformation,[mbOk],0);
+        //            MessageDlg(rs_SSD_calculation_for_imported_D_and_Zg {UserString[1124]},mtInformation,[mbOk],0);
+        //            MessageDlg(rs_SSD_and_DSD_calculation_for_input_D_and_Zg {UserString[1125]},mtInformation,[mbOk],0);
       end
       else if NDispl <> 1 then
       begin
@@ -725,7 +729,7 @@ begin
         Series1.LinePen.Color := ColorFactory1.getNextColorFarFrom(Chart.Color, 199);
         Series1.LinePen.Width := 2;
         //Series1.AllowSinglePoint:=True;
-        Series1.Title := Userstring(1048) + FloatToStrF(Zgr + Zmin, ffFixed, 7, 3) + 'm';
+        Series1.Title := rs_GZ_for_Zg_ {UserString[1048]} + FloatToStrF(Zgr + Zmin, ffFixed, 7, 3) + 'm';
       end;
 
       J := 1;
@@ -793,13 +797,13 @@ begin
   // Построение ДСО
   if (Units = fuImperial) and (Dr > 0) and (Zgr > 0) then
   begin
-    MessageDlg(Userstring(1437), mtInformation, [mbOK], 0);
+    MessageDlg(rs_Calculation_SSD__DSD_and_weather_criteria_is_available_in_metric_system_ {UserString[1437]}, mtInformation, [mbOK], 0);
     exit;
   end;
   if (Dr > 0) and (Zgr > 0) then
   begin
     Series2 := TLineSeries.Create(Chart0);
-    //          MessageDlg(Userstring(1126),mtInformation,[mbOk],0);
+    //          MessageDlg(rs_SSD_and_DSD_are_calculated_ {UserString[1126]},mtInformation,[mbOk],0);
     if jj = 1 then
     begin
       Chart0.AddSeries(Series1);
@@ -847,7 +851,7 @@ begin
     d_Teta0 := 0;
     L30 := 0;
     Series2.AddXY(d_Teta0, d_Teta, 'Init', clTeeColor);
-    Series2.Title := Userstring(1049) + FloatToStrF(Zgr + Zmin, ffFixed, 7, 3) + 'm';
+    Series2.Title := rs_GZd_for_Zg_ {UserString[1049]} + FloatToStrF(Zgr + Zmin, ffFixed, 7, 3) + 'm';
     h0 := 0;
     I0 := 0;
     if length(Angles) < (Grid.Colcount - 1)    // by MM
@@ -907,13 +911,13 @@ begin
       if (L_Teta[I0] = 0.0) and (Angles[I0] < 180) then
         MessageDlg(Userstring(0952), mtInformation, [mbOK], 0);
       if (Lmax < 0.25) and (Lpp <= 80) then
-        MessageDlg(Userstring(0953) + ' 0,25 ' + Userstring(451), mtInformation, [mbOK], 0);
+        MessageDlg(Userstring(0953) + ' 0,25 ' + rs_m {UserString[451]}, mtInformation, [mbOK], 0);
       if (Lmax < 0.2) and (Lpp >= 105) then
-        MessageDlg(Userstring(0953) + ' 0,2 ' + Userstring(451), mtInformation, [mbOK], 0);
+        MessageDlg(Userstring(0953) + ' 0,2 ' + rs_m {UserString[451]}, mtInformation, [mbOK], 0);
       Lmax0 := 0.41 - 0.002 * Lpp;
       if (Lpp > 80) and (Lmax < Lmax0) and (Lpp < 105) then
         MessageDlg(Userstring(0953) + ' ' + FloatToStrF(Lmax0, ffFixed, 6, 2) + ' ' +
-          Userstring(451), mtInformation, [mbOK], 0);
+          rs_m {UserString[451]}, mtInformation, [mbOK], 0);
       if h0 < 0.0 then
       begin
         MessageDlg(Userstring(0954) + ' ' + FloatToStrF(
@@ -1209,7 +1213,7 @@ begin
         ///            MessageDlg('Teta='+FloatToStrF(Teta,ffFixed,6,3),mtInformation,[mbOk],0);
         if Teta <= 2 then
         begin
-          MessageDlg(tl8('Amplitude of heel angle <2.0 degrees !!!'),
+          MessageDlg(Amplitude_of_heel_angle__2_0_degrees____,
             mtInformation, [mbOK], 0);
           exit;
         end;
@@ -1366,96 +1370,96 @@ begin
           if RR = 2 then
             Kw := 1;
           if Kw < 1 then
-            MessageDlg(Userstring(1127) + FloatToStrF(Kw, ffFixed, 6, 3) + '<1 !!!',
+            MessageDlg(rs_Unsatisfactory_stability__because_Weather_criteria_K__ {UserString[1127]} + FloatToStrF(Kw, ffFixed, 6, 3) + '<1 !!!',
               mtInformation, [mbOK], 0);
           ResultsMemo.Lines.Add(' ');
           if RR < 2 then
-            ResultsMemo.Lines.Add(Space(4) + Userstring(1438) + ' ' + Userstring(1439) + ':');
+            ResultsMemo.Lines.Add(Space(4) + rs_Stability_calculation_results {UserString[1438]} + ' ' + rs_by_Russian_Registry_for_sea_ships {UserString[1439]} + ':');
           if RR = 2 then
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1459), 50));
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Caclulation_added_SSD_parameters_by_GIMS__Russia__ {UserString[1459]}, 50));
           if RR = 3 then
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1470), 50));
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Stability_calculation_according_to_the_rules_of_the_River_Register_of_Shipping_of_Ukraine_ {UserString[1470]}, 50));
           ResultsMemo.Lines.Add(' ');
 
           // Вывод исходных данных
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1440), 50) +
-            ': ' + FloatToStrF(Dr, ffFixed, 6, 3) + ' ' + Userstring(474));
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1441), 50) +
-            ': ' + FloatToStrF(Zgr + Zmin, ffFixed, 6, 3) + ' ' + Userstring(451));
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1460), 50) +
-            ': ' + FloatToStrF(FreeNuminput7_.Value, ffFixed, 6, 3) + ' ' + Userstring(451) + '^2');
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1461), 50) +
-            ': ' + FloatToStrF(FreeNuminput8_.Value, ffFixed, 6, 3) + ' ' + Userstring(451) + '^2');
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1462), 50) +
-            ': ' + FloatToStrF(Av, ffFixed, 6, 3) + ' ' + Userstring(451) + '^2');
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1135), 50) +
-            ': ' + FloatToStrF(Zp, ffFixed, 6, 3) + ' ' + Userstring(451));
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1472), 50) +
-            ': ' + FloatToStrF(Zp + d / 2, ffFixed, 6, 3) + ' ' + Userstring(451));
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Estimated_displacement_D {UserString[1440]}, 50) +
+            ': ' + FloatToStrF(Dr, ffFixed, 6, 3) + ' ' + rs_tonnes {UserString[474]});
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Z_coordinate_of_CoG {UserString[1441]}, 50) +
+            ': ' + FloatToStrF(Zgr + Zmin, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]});
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Bilge_keels_area {UserString[1460]}, 50) +
+            ': ' + FloatToStrF(FreeNuminput7_.Value, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]} + '^2');
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Skeg_area {UserString[1461]}, 50) +
+            ': ' + FloatToStrF(FreeNuminput8_.Value, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]} + '^2');
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Lateral_wind_area {UserString[1462]}, 50) +
+            ': ' + FloatToStrF(Av, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]} + '^2');
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Distance_from_wind_area_CoG_to_DWL {UserString[1135]}, 50) +
+            ': ' + FloatToStrF(Zp, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]});
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Wind_area_righting_lever {UserString[1472]}, 50) +
+            ': ' + FloatToStrF(Zp + d / 2, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]});
           // Вывод результатов расчета ДСО и ДДО
           if RR = 0 then
           begin
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1468), 50) +
-              ': ' + FloatToStrF(Teta0r, ffFixed, 6, 1) + ' ' + Userstring(455));
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1128), 50) +
-              ': ' + FloatToStrF(int(Teta1r + 0.5), ffFixed, 6, 1) + ' ' + Userstring(455));
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Heeling_angle_for_constant_wind_speed {UserString[1468]}, 50) +
+              ': ' + FloatToStrF(Teta0r, ffFixed, 6, 1) + ' ' + rs_degr {UserString[455]});
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Amplitude_of_roll {UserString[1128]}, 50) +
+              ': ' + FloatToStrF(int(Teta1r + 0.5), ffFixed, 6, 1) + ' ' + rs_degr {UserString[455]});
           end;
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1030), 50) +
-            ': ' + FloatToStrF(h0, ffFixed, 6, 3) + ' ' + Userstring(451));
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Initial_transverse_metacentric_height_ho {UserString[1030]}, 50) +
+            ': ' + FloatToStrF(h0, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]});
           if Lpp <= 80 then
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1446), 50) + ': ' +
-              Makelength(FloatToStrF(Lmax, ffFixed, 6, 3) + ' ' + Userstring(451), 11) + ' ( 0.25)');
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Maximal_GZ {UserString[1446]}, 50) + ': ' +
+              Makelength(FloatToStrF(Lmax, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]}, 11) + ' ( 0.25)');
           if Lpp >= 105 then
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1446), 50) + ': ' +
-              Makelength(FloatToStrF(Lmax, ffFixed, 6, 3) + ' ' + Userstring(451), 11) + ' ( 0.20)');
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Maximal_GZ {UserString[1446]}, 50) + ': ' +
+              Makelength(FloatToStrF(Lmax, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]}, 11) + ' ( 0.20)');
           if (Lpp > 80) and (Lpp < 105) then
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1446), 50) + ': ' +
-              Makelength(FloatToStrF(Lmax, ffFixed, 6, 3) + ' ' + Userstring(451), 11) + ' (' +
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Maximal_GZ {UserString[1446]}, 50) + ': ' +
+              Makelength(FloatToStrF(Lmax, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]}, 11) + ' (' +
               FloatToStrF(Lmax0, ffFixed, 6, 3) + ')');
           if RR = 2 then
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1447), 50) + ': ' +
-              Makelength(FloatToStrF(Teta_max, ffFixed, 6, 1) + ' ' + Userstring(455), 11) + ' ( 25° )')
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Heeling_angle_for_GZ_maximum {UserString[1447]}, 50) + ': ' +
+              Makelength(FloatToStrF(Teta_max, ffFixed, 6, 1) + ' ' + rs_degr {UserString[455]}, 11) + ' ( 25° )')
           else
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1447), 50) + ': ' +
-              Makelength(FloatToStrF(Teta_max, ffFixed, 6, 1) + ' ' + Userstring(455), 11) + ' ( 30° )');
-          ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1448), 50) +
-            ': ' + Makelength(FloatToStrF(TetaZak, ffFixed, 6, 1) + ' ' + Userstring(455), 11) + ' ( 60° )');
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Heeling_angle_for_GZ_maximum {UserString[1447]}, 50) + ': ' +
+              Makelength(FloatToStrF(Teta_max, ffFixed, 6, 1) + ' ' + rs_degr {UserString[455]}, 11) + ' ( 30° )');
+          ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Heeling_angle_at_which_righting_lever_0_again {UserString[1448]}, 50) +
+            ': ' + Makelength(FloatToStrF(TetaZak, ffFixed, 6, 1) + ' ' + rs_degr {UserString[455]}, 11) + ' ( 60° )');
           if RR = 1 then
           begin
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1129), 50) +
-              ': ' + FloatToStrF(x01, ffFixed, 6, 1) + ' ' + Userstring(455));
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1130), 50) +
-              ': ' + FloatToStrF(b0, ffFixed, 7, iii) + ' ' + Userstring(1133));
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1131), 50) +
-              ': ' + FloatToStrF(Mv, ffFixed, 6, jjj) + ' ' + Userstring(1133));
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Maximum_dynamic_heeling_angle {UserString[1129]}, 50) +
+              ': ' + FloatToStrF(x01, ffFixed, 6, 1) + ' ' + rs_degr {UserString[455]});
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Maximal_heeling_moment {UserString[1130]}, 50) +
+              ': ' + FloatToStrF(b0, ffFixed, 7, iii) + ' ' + rs_kNom {UserString[1133]});
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Maximal_wind_moment {UserString[1131]}, 50) +
+              ': ' + FloatToStrF(Mv, ffFixed, 6, jjj) + ' ' + rs_kNom {UserString[1133]});
           end;
           if RR <> 2 then
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1132), 50) + ': ' +
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Weather_criteria_K {UserString[1132]}, 50) + ': ' +
               Makelength(FloatToStrF(Kw, ffFixed, 6, 3), 11) + ' ( 1.0 )');
           if RR = 0 then
           begin
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1466), 50) +
-              ': ' + Makelength(FloatToStrF(h0 - dh, ffFixed, 6, 3) + ' ' + Userstring(451), 11) + ' (0.150)');
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1463), 50) +
-              ': ' + Makelength(FloatToStrF(S30 / 57.29, ffFixed, 6, 3) + ' ' + Userstring(1467), 11) + ' (0.055)');
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1464), 50) +
-              ': ' + Makelength(FloatToStrF(S40 / 57.29, ffFixed, 6, 3) + ' ' + Userstring(1467), 11) +
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Corrected_metacentric_height {UserString[1466]}, 50) +
+              ': ' + Makelength(FloatToStrF(h0 - dh, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]}, 11) + ' (0.150)');
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Required_area_of_GZ_curve_from_0__to_30_ {UserString[1463]}, 50) +
+              ': ' + Makelength(FloatToStrF(S30 / 57.29, ffFixed, 6, 3) + ' ' + rs_morad {UserString[1467]}, 11) + ' (0.055)');
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Required_area_of_GZ_curve_from_0__to_40_ {UserString[1464]}, 50) +
+              ': ' + Makelength(FloatToStrF(S40 / 57.29, ffFixed, 6, 3) + ' ' + rs_morad {UserString[1467]}, 11) +
               ' (0.090)');
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1465), 50) +
-              ': ' + Makelength(FloatToStrF((S40 - S30) / 57.29, ffFixed, 6, 3) + ' ' + Userstring(1467), 11) +
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Required_area_of_GZ_curve_from_30__to_40_ {UserString[1465]}, 50) +
+              ': ' + Makelength(FloatToStrF((S40 - S30) / 57.29, ffFixed, 6, 3) + ' ' + rs_morad {UserString[1467]}, 11) +
               ' (0.030)');
           end;
 
           if (L30 > 0) and (RR = 2) then
           begin
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1466), 50) +
-              ': ' + Makelength(FloatToStrF(h0 - dh, ffFixed, 6, 3) + ' ' + Userstring(451), 11) + ' ( 0.50)');
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1457), 50) +
-              ': ' + FloatToStrF(L30, ffFixed, 6, 3) + ' ' + Userstring(451));
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1458), 50) +
-              ': ' + FloatToStrF(L30 * Dr * 9.81, ffFixed, 6, iii) + ' ' + Userstring(1133));
-            ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1471), 50) +
-              ': ' + FloatToStrF(Vb_, ffFixed, 6, 2) + ' ' + Userstring(1405));
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Corrected_metacentric_height {UserString[1466]}, 50) +
+              ': ' + Makelength(FloatToStrF(h0 - dh, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]}, 11) + ' ( 0.50)');
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Transverse_righting_lever_for_heeling_angle_30_ {UserString[1457]}, 50) +
+              ': ' + FloatToStrF(L30, ffFixed, 6, 3) + ' ' + rs_m {UserString[451]});
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Transverse_moment_of_stability_for_heel_angle_30_ {UserString[1458]}, 50) +
+              ': ' + FloatToStrF(L30 * Dr * 9.81, ffFixed, 6, iii) + ' ' + rs_kNom {UserString[1133]});
+            ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Permissible_wind_speed {UserString[1471]}, 50) +
+              ': ' + FloatToStrF(Vb_, ffFixed, 6, 2) + ' ' + rs_m_s {UserString[1405]});
             Nraz := 0;
             if Vb_ >= 10 then
               Nraz := 1;
@@ -1468,17 +1472,17 @@ begin
             if (Vb_ >= 2) and (Vb_ < 4) then
               Nraz := 5;
             if Nraz > 0 then
-              ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1473), 50) + ': ' +
+              ResultsMemo.Lines.Add(Space(4) + Makelength(rs_Corresponds_to_category_navigation {UserString[1473]}, 50) + ': ' +
                 FloatToStrF(Nraz, ffFixed, 6, 0))
             else
-              ResultsMemo.Lines.Add(Space(4) + Makelength(Userstring(1474), 50));
+              ResultsMemo.Lines.Add(Space(4) + Makelength(rs_The_vessel_does_not_correspond_to_any_category_of_navigation____ {UserString[1474]}, 50));
           end;
 
 
           ///            ResultsMemo.Lines.Add(Space(4)+Makelength('X coord Wind Area',50)+': '+FloatToStrF(HydObject.Data.XWindAreaMax,ffFixed,6,3));
           ///            ResultsMemo.Lines.Add(Space(4)+Makelength('Y coord Wind Area',50)+': '+FloatToStrF(HydObject.Data.YWindAreaMax,ffFixed,6,3));
           ResultsMemo.Lines.Add('');
-          ResultsMemo.Lines.Add(Space(4) + Userstring(1469));
+          ResultsMemo.Lines.Add(Space(4) + rs_Note__In_parentheses_the_minimum_values_of_demanded_parameters_are_specified {UserString[1469]});
           ResultsMemo.Lines.Add('');
           ResultsMemo.Lines.Add(Space(4) + 'Copyright (C) 2010-2012, Timoshenko V.F.');
           ResultsMemo.Visible := True;
@@ -1596,7 +1600,7 @@ var
   Str, Tmp: ansistring;
 begin
   SaveDialog.InitialDir := FFreeship.Preferences.ExportDirectory;
-  SaveDialog.FileName := ChangeFileExt(Userstring(293), '.txt');
+  SaveDialog.FileName := ChangeFileExt(rs_Cross_curves {UserString[293]}, '.txt');
   if SaveDialog.Execute then
   begin
     strings := TStringList.Create;

@@ -62,8 +62,9 @@ uses
      {$ENDIF}
   Interfaces, // this includes the LCL widgetset
 
-  DefaultTranslator,
-  FreeLanguageSupport in 'Units/FreeLanguageSupport.pas',
+  //DefaultTranslator,
+  LCLTranslator,
+  FreeStringsUnit in 'Units/FreeStringsUnit.pas',
   Main in 'Forms/Main.pas' {MainForm},
   FreeVersionUnit in 'Units/FreeVersionUnit.pas',
   FreeLogger in 'Units/FreeLogger.pas'
@@ -353,10 +354,15 @@ begin
    //Application.CreateForm(TFreeCrosscurvesDialog, FreeCrosscurvesDialog);
 
    {$IFNDEF CREATE_TRANSLATION}
-   LoadLanguage(Mainform.Freeship.Preferences.Language,
-                Mainform.Freeship.Preferences.LanguageFile);
+   //LoadLanguage(Mainform.Freeship.Preferences.Language,
+   //             Mainform.Freeship.Preferences.LanguageFile);
+   SetDefaultLang(LanguageCode(
+     Mainform.Freeship.Preferences.Language),
+     Mainform.Freeship.Preferences.LanguagesDirectory,
+     'FreeShip', True);
+
    {$ENDIF}
-   ShowTranslatedValues(Mainform);
+   //ShowTranslatedValues(Mainform);
    Mainform.FFileName:=sOpenFile;
    //if sOpenFile <> ''
    //then MainForm.LoadNamedFile(sOpenFile);

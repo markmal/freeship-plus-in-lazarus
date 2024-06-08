@@ -208,7 +208,7 @@ var
 
 implementation
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
   Printers,
   Math,
   FreeProcess;
@@ -546,9 +546,9 @@ dat16=EtaM
       begin
         if FileExistsUTF8('INO.') { *Converted from FileExists* } then
           DeleteFileUTF8('INO.'); { *Converted from DeleteFile* }
-        MessageDlg(Userstring(1138) + #13#10#13#10 + Userstring(
-          1139) + ' PropPred.EXE ' + #13#10#13#10 + Userstring(1140) + #13#10#13#10 +
-          Userstring(1141) + #13#10#13#10 + Userstring(1142), mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + Userstring(
+          1139) + ' PropPred.EXE ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 +
+          rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         exit;
       end;
     end;
@@ -602,14 +602,14 @@ dat16=EtaM
     ResultsMemo.Lines.Add(' ');
   for ii := 1 to 5 do
     ResultsMemo.Lines.Add(Space(18) + str_[II]);
-  ResultsMemo.Lines.Add(Space(18) + Userstring(849));
+  ResultsMemo.Lines.Add(Space(18) + rs_Wageningen_B_Screw_Series_Propeller_Preliminary_Design {UserString[849]});
   ResultsMemo.Lines.Add(' ');
-  ResultsMemo.Lines.Add(Space(18) + Userstring(1500));
+  ResultsMemo.Lines.Add(Space(18) + rs_Input_Verification_ {UserString[1500]});
   ResultsMemo.Lines.Add(' ');
   if dat4 = 1 then
-    ResultsMemo.Lines.Add(Space(18) + Userstring(850));
+    ResultsMemo.Lines.Add(Space(18) + rs_Fixed_Pitch_Propeller {UserString[850]});
   if dat4 = 2 then
-    ResultsMemo.Lines.Add(Space(18) + Userstring(879));
+    ResultsMemo.Lines.Add(Space(18) + rs_Controllable_Reversible_Pitch_Propeller {UserString[879]});
 
   JJ := 25;
   for i := 27 to 41 do
@@ -630,7 +630,7 @@ dat16=EtaM
     end;
 
   ResultsMemo.Lines.Add(' ');
-  ResultsMemo.Lines.Add(Space(18) + Userstring(878));
+  ResultsMemo.Lines.Add(Space(18) + rs_Optimal_Design_Results_ {UserString[878]});
   ResultsMemo.Lines.Add(' ');
 
   JJ := 31;
@@ -651,7 +651,7 @@ dat16=EtaM
       ResultsMemo.Lines.Add(Space(18) + Userstring(849 + i - JJ) + str_[I]);
     end;
   ResultsMemo.Lines.Add('');
-  ResultsMemo.Lines.Add(Space(18) + Userstring(1242));
+  ResultsMemo.Lines.Add(Space(18) + rs_Additional_calculations_ {UserString[1242]});
   ResultsMemo.Lines.Add('');
   // Преобразование строкового массива результатов в массив dat
   for ii := 47 to 56 do
@@ -666,14 +666,14 @@ dat16=EtaM
   Mp := dat[15] * dat[8] * dat[5] * dat[5] / 3600000 * power(dat[1], 5);
   Nz := Mp * 2 * 3.1415926 * dat[5] / 60;
   Np := dat[10] * dat2 * 0.51444 * (1 - dat9);
-  ResultsMemo.Lines.Add(Space(18) + Userstring(1243) + Space(9) +
+  ResultsMemo.Lines.Add(Space(18) + rs_Propeller_Torque__kNom_________________ {UserString[1243]} + Space(9) +
     FloatToStrF(Mp, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(18) + Userstring(1244) + Space(8) +
+  ResultsMemo.Lines.Add(Space(18) + rs_Propeller_Propulsive_Power__kW_________ {UserString[1244]} + Space(8) +
     FloatToStrF(Nz, ffFixed, 6, 3));
-  ResultsMemo.Lines.Add(Space(18) + Userstring(1245) + Space(8) +
+  ResultsMemo.Lines.Add(Space(18) + rs_Propeller_Shaft_Power__kW______________ {UserString[1245]} + Space(8) +
     FloatToStrF(Np, ffFixed, 6, 3));
-  //         ResultsMemo.Lines.Add(Space(18)+Userstring(1246)+Space(8)+FloatToStrF(Nz/0.95,ffFixed,6,3)+' ( '+FloatToStrF(Nz/0.95/0.736,ffFixed,6,3)+' )');
-  ResultsMemo.Lines.Add(Space(18) + Userstring(1246) + Space(8) +
+  //         ResultsMemo.Lines.Add(Space(18)+rs_Estimated_Power_Engine___kW___bhp______ {UserString[1246]}+Space(8)+FloatToStrF(Nz/0.95,ffFixed,6,3)+' ( '+FloatToStrF(Nz/0.95/0.736,ffFixed,6,3)+' )');
+  ResultsMemo.Lines.Add(Space(18) + rs_Estimated_Power_Engine___kW___bhp______ {UserString[1246]} + Space(8) +
     FloatToStrF(Nz / dat14 / dat15 / dat16, ffFixed, 6, 3) + ' ( ' + FloatToStrF(
     Nz / dat14 / dat15 / dat16 / 0.736, ffFixed, 6, 3) + ' )');
 {         ResultsMemo.Lines.Add(Space(18)+FloatToStrF(dat[2],ffFixed,6,3));
@@ -734,18 +734,18 @@ begin
   Units := FFreeship.ProjectSettings.ProjectUnits;
   if Units = fuImperial then
   begin
-    MessageDlg(Userstring(754), mtInformation, [mbOK], 0);
+    MessageDlg(rs_This_is_version_of_program_work_with_metric_system_units_only {UserString[754]}, mtInformation, [mbOK], 0);
     exit;
   end;
-  Chart.Title.Text.Text := Userstring(696);
-  Chart.LeftAxis.Title.Caption := Userstring(698);
+  Chart.Title.Text.Text := rs_Wageningen_B_Screw_Series_Propeller_Preliminary_Design {UserString[696]};
+  Chart.LeftAxis.Title.Caption := rs_Thrust_coefficient_and_torque__KT__10oKQ {UserString[698]};
    {$ifNdef FPC}
   RightAxis := Chart.RightAxis;
    {$else}
   RightAxis := Chart.AxisList.GetAxisByAlign(calRight);
    {$endif}
-  RightAxis.Title.Caption := Userstring(699);
-  Chart.BottomAxis.Title.Caption := Userstring(697);
+  RightAxis.Title.Caption := rs_Propeller_efficiency_Eta0 {UserString[699]};
+  Chart.BottomAxis.Title.Caption := rs_Advance_coefficient_Jp {UserString[697]};
   Checkbox2.Enabled := False; //FFreeship.Surface.NumberOfControlFaces>1;
   CheckBox2.Checked := AutoExtract;
   Calculate;

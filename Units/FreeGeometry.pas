@@ -2339,7 +2339,7 @@ implementation
 //{$R ViewportCursors.res}
 {$R cursors.res}         // new nice cursors with antialiasing
 
-uses FreeLanguageSupport,
+uses FreeStringsUnit,
   VRMLUnit,
   FreeBackgroundBlendingDlg,
   FreeBackgroundToleranceDlg,

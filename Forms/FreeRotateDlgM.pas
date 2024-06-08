@@ -49,8 +49,9 @@ uses
   StdCtrls,
   Buttons,
   ExtCtrls, Spin,
+  LCLTranslator,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 
 type
 
@@ -149,7 +150,7 @@ begin
 
   GlobalFreeship.Preferences.LoadImageIntoBitmap(OkButton.Glyph, 'Ok');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(CancelButton.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
 
   Showmodal;
   Result := ModalResult = mrOk;

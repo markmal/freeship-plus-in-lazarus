@@ -48,10 +48,11 @@ uses
   Buttons,
   ExtCtrls,
   StdCtrls, Spin,
+  LCLTranslator,
   FreeTypes,
   //FreeGeometry,
   FreeShipUnit,
-  FreeLanguageSupport;
+  FreeStringsUnit;
 
 type
 
@@ -158,7 +159,7 @@ begin
   FUpdate;
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeShip.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   ShowModal;
   Result := ModalResult = mrOk;
 end;{TFreeInsertPlaneDialog.Execute}

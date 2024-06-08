@@ -410,11 +410,11 @@ begin
   Dialog.CheckBox8.Checked := FreeShip.Visibility.FShowHydrostLCF;
   Dialog.CheckBox9.Checked := FreeShip.Visibility.FShowHydrostLateralArea;
   Dialog.cbSimplifyIntersections.Checked := ProjectSimplifyIntersections;
-  ShowTranslatedValues(Dialog);
+  //ShowTranslatedValues(Dialog);
 
   if Dialog.Execute then
   begin
-    FreeShip.Edit.CreateUndoObject(Userstring(178), True);
+    FreeShip.Edit.CreateUndoObject(rs_project_settings {UserString[178]}, True);
     ProjectName := Dialog.Edit1.Text;
     ProjectDesigner := Dialog.Edit7.Text;
     ProjectComment := Dialog.Edit9.Text;

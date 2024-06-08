@@ -64,13 +64,14 @@ uses
   Printers,
   FreeTypes,
   FreeGeometry,
-  FreeLanguageSupport,
+  FreeStringsUnit,
   FasterList,
   FreeShipUnit,
   Math,
   ExtCtrls,
   ImgList,
-  Menus, ActnList, Types;
+  Menus, ActnList, Types,
+  LCLTranslator;
 
 
 {$IFDEF FPC}
@@ -1132,9 +1133,9 @@ var
     if InputBulbShape.ItemIndex = 0 then
     begin
       if Combobox.ItemIndex = 0 then
-        GroupBox1.Caption := UserString(1119) + ':'
+        GroupBox1.Caption := rs_Keel_s_properties {UserString[1119]} + ':'
       else
-        GroupBox1.Caption := UserString(1118) + ':';
+        GroupBox1.Caption := rs_Rudder_s_properties {UserString[1118]} + ':';
       Label18.Caption := Str[0];
       Label20.Caption := Str[1];
       Label22.Caption := Str[2];
@@ -1163,9 +1164,9 @@ var
         FFreeship.ProjectSettings.ProjectUnits);
     end
     else if Combobox.ItemIndex = 0 then
-      GroupBox1.Caption := UserString(1119) + ' ' + UserString(1120) + ':'
+      GroupBox1.Caption := rs_Keel_s_properties {UserString[1119]} + ' ' + rs_with_bulb {UserString[1120]} + ':'
     else
-      GroupBox1.Caption := UserString(1118) + ' ' + UserString(1120) + ':';
+      GroupBox1.Caption := rs_Rudder_s_properties {UserString[1118]} + ' ' + rs_with_bulb {UserString[1120]} + ':';
   end;
 
 begin
@@ -1571,9 +1572,9 @@ begin
       Volwing := Volwing * wng * (20 - Trackbar2.Position / 2) / Trackbar2.Max;
     end;
     // end calculate bulbous volume
-    Label18.Caption := UserString(1121);
-    Label20.Caption := UserString(1122);
-    Label22.Caption := UserString(1123);
+    Label18.Caption := rs_Volume_of_rudder_keel {UserString[1121]};
+    Label20.Caption := rs_Volume_of_bulb {UserString[1122]};
+    Label22.Caption := rs_Oriented_bulbous_mass {UserString[1123]};
     Label7.Caption := ' ';
     Label9.Caption := ' ';
     Label11.Caption := ' ';
@@ -1693,13 +1694,13 @@ begin
   str[7] := Label15.Caption;
   str[8] := Label24.Caption;
   FFreeship := Freeship;
-  Chart.BottomAxis.Title.Caption := UserString(933);
-  Chart.LeftAxis.Title.Caption := UserString(934);
+  Chart.BottomAxis.Title.Caption := rs_Angle_of_attack__degr_ {UserString[933]};
+  Chart.LeftAxis.Title.Caption := rs_Cx_Drag___Cy_Lift___m_z__Cd__0_1oK {UserString[934]};
   FProfile := TFreeSpline.Create(FFreeship.Surface);
 
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn1.Glyph, 'Ok');
   GlobalFreeship.Preferences.LoadImageIntoBitmap(BitBtn2.Glyph, 'Cancel');
-  ShowTranslatedValues(Self);
+  //ShowTranslatedValues(Self);
   FLayerColor := FFreeship.Preferences.LayerColor;
   LayerColorButton.ButtonColor := FLayerColor;
   ComboBoxSubdivisionLevel.ItemIndex := Ord(FFreeship.Precision);

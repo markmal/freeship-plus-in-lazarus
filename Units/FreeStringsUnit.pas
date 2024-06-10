@@ -2,6 +2,7 @@ unit FreeStringsUnit;
 
 {$IFDEF FPC}
   { $MODE Delphi}
+  {$modeswitch result+}
 {$ENDIF}
 
 interface

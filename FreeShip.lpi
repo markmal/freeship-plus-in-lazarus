@@ -30,8 +30,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
-      <MinorVersionNr Value="1"/>
-      <RevisionNr Value="2"/>
+      <MinorVersionNr Value="2"/>
       <BuildNr Value="512"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
@@ -343,9 +342,14 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
-        <WorkingDirectory Value="/usr/bin/"/>
+        <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+        <WorkingDirectory Value="D:/my/prj/freeship-plus-in-lazarus"/>
       </local>
+      <environment>
+        <UserOverrides Count="1">
+          <Variable0 Name="LD_LIBRARY_PATH" Value="/home/mark/MyProjects/freeship-plus-in-lazarus/lib"/>
+        </UserOverrides>
+      </environment>
       <FormatVersion Value="2"/>
       <Modes Count="7">
         <Mode0 Name="default">
@@ -1137,7 +1141,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <Libraries Value="lib"/>
-      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/$(LazVer)/lcl/interfaces/gtk3/gtk3bindings/"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/$(LazVer)/lcl/interfaces/gtk3/gtk3bindings"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

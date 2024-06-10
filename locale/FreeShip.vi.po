@@ -43,14 +43,6 @@ msgstr ""
 msgid "Amplitude of heel angle <2.0 degrees !!!"
 msgstr ""
 
-#: freeexpanedplatesdlg.exportdxf_filter
-msgid "AutoCad dxf files"
-msgstr ""
-
-#: freeexpanedplatesdlg.exporttextfile_filter
-msgid "Coordinates to text file"
-msgstr ""
-
 #: freefilebuffer.rsparsingerroroutoffilesize
 #, object-pascal-format
 msgid "Error parsing of file \"%s\". Reading %s of size %d at position %d that is out of file size %d."
@@ -1157,6 +1149,7 @@ msgid "Angle between relative velocity and center line [degr.]"
 msgstr "Angle between relative velocity and center line [degr.]"
 
 #: freestringsunit.rs_angle_between_thrust_and_keel_lines
+msgctxt "freestringsunit.rs_angle_between_thrust_and_keel_lines"
 msgid "Angle between Thrust and Keel lines"
 msgstr "Goc giua truc chan vit va duong thang chinh"
 
@@ -1342,6 +1335,7 @@ msgid "AT   - Transverse projected wind area [m2];"
 msgstr "AT   - dien tich hinh chieu dung cua phan chan gio tren duong nuoc thiet ke, m2;"
 
 #: freestringsunit.rs_average_chordlength
+msgctxt "freestringsunit.rs_average_chordlength"
 msgid "Average chordlength"
 msgstr "Chieu dai trung binh cua day cung"
 
@@ -1386,6 +1380,7 @@ msgid "BHP"
 msgstr "hp"
 
 #: freestringsunit.rs_bilge_keels
+msgctxt "freestringsunit.rs_bilge_keels"
 msgid "Bilge keels"
 msgstr "Song day tau"
 
@@ -2084,6 +2079,7 @@ msgid "Displacement step can not be zero."
 msgstr "Buoc cua luong chiem nuoc khong the bang 0."
 
 #: freestringsunit.rs_distance
+msgctxt "freestringsunit.rs_distance"
 msgid "Distance"
 msgstr "Khoang cach"
 
@@ -2180,6 +2176,7 @@ msgid "Draft Forward (m)                      ="
 msgstr "Luong mon nuoc mui, m                                       ="
 
 #: freestringsunit.rs_draft_hull
+msgctxt "freestringsunit.rs_draft_hull"
 msgid "Draft hull"
 msgstr "Luong mon nuoc tau"
 
@@ -2348,6 +2345,7 @@ msgid "feels  that  these  results  are  at  least  as  effective  as the semi-e
 msgstr "Clarke cho rang nhung ket qua nay khong kem phan quan trong so voi nhung phuong trinh ban thuc nghiem"
 
 #: freestringsunit.rs_filename
+msgctxt "freestringsunit.rs_filename"
 msgid "Filename"
 msgstr "Ten file"
 
@@ -2626,6 +2624,7 @@ msgid "hub."
 msgstr "1.7   Cac thong so cua chan vit chua nhung so lieu ve so luong canh, ti le dia, ti le buoc"
 
 #: freestringsunit.rs_hull
+msgctxt "freestringsunit.rs_hull"
 msgid "Hull"
 msgstr "Vo"
 
@@ -2942,6 +2941,7 @@ msgid "KAPER resistance for canoes and kayaks"
 msgstr "Luc can theo KAPER cho cano va kayak"
 
 #: freestringsunit.rs_keel
+msgctxt "freestringsunit.rs_keel"
 msgid "Keel"
 msgstr "Song tau"
 
@@ -4193,6 +4193,7 @@ msgid "Maximal heeling moment"
 msgstr "Momen nghieng gioi han:"
 
 #: freestringsunit.rs_maximal_speed
+msgctxt "freestringsunit.rs_maximal_speed"
 msgid "Maximal speed"
 msgstr "Van toc lon nhat"
 
@@ -4265,6 +4266,7 @@ msgid "Midship Coefficient to LWL       CM=CX ="
 msgstr "he so beo suon giua Cm                                      ="
 
 #: freestringsunit.rs_midship_draft
+msgctxt "freestringsunit.rs_midship_draft"
 msgid "Midship draft"
 msgstr "Luong mon nuoc trung binh"
 
@@ -4337,6 +4339,7 @@ msgid "m^2"
 msgstr "m^2"
 
 #: freestringsunit.rs_m_2_s
+msgctxt "freestringsunit.rs_m_2_s"
 msgid "m^2/s"
 msgstr "m^2/ñ"
 
@@ -4561,6 +4564,7 @@ msgid "Number of masts and posts (1-7)"
 msgstr "Number of masts and posts (1-7)"
 
 #: freestringsunit.rs_number_of_propellers
+msgctxt "freestringsunit.rs_number_of_propellers"
 msgid "Number of propellers"
 msgstr "So luong chan vit                                                 "
 
@@ -5094,10 +5098,12 @@ msgid "RPM  ="
 msgstr "n      ="
 
 #: freestringsunit.rs_rudder
+msgctxt "freestringsunit.rs_rudder"
 msgid "Rudder"
 msgstr "Banh lai"
 
 #: freestringsunit.rs_rudder_behind_skeg_stern
+msgctxt "freestringsunit.rs_rudder_behind_skeg_stern"
 msgid "Rudder behind skeg/stern"
 msgstr "Banh lai sau chan de/duoi"
 
@@ -5198,6 +5204,7 @@ msgid "should check this on the graphical output."
 msgstr ""
 
 #: freestringsunit.rs_skeg
+msgctxt "freestringsunit.rs_skeg"
 msgid "Skeg"
 msgstr "chan de san"
 
@@ -5286,6 +5293,7 @@ msgid "Started speed [knots (m/s)]"
 msgstr "Van toc ban dau, kn (m/ñ)"
 
 #: freestringsunit.rs_start_speed
+msgctxt "freestringsunit.rs_start_speed"
 msgid "Start speed"
 msgstr "Van toc ban dau"
 
@@ -5475,6 +5483,7 @@ msgid "The  dependence  of the turns of single screw ships on the direction of p
 msgstr "Su anh huong toi tinh quay vong cua tau mot chan vit cua huong quay chan vit va anh huong"
 
 #: freestringsunit.rs_thickness
+msgctxt "freestringsunit.rs_thickness"
 msgid "Thickness"
 msgstr "Chieu day"
 
@@ -5608,6 +5617,7 @@ msgid "Total beam of submerged body"
 msgstr "Chieu rong toan bo cua phan than ngap nuoc"
 
 #: freestringsunit.rs_total_draft
+msgctxt "freestringsunit.rs_total_draft"
 msgid "Total draft"
 msgstr "Luong mon nuoc toan bo"
 
@@ -5728,6 +5738,7 @@ msgid "Type of transmission              |     Transmission efficiency"
 msgstr "Kieu hop so                       |             Hieu suat"
 
 #: freestringsunit.rs_t_m_3
+msgctxt "freestringsunit.rs_t_m_3"
 msgid "t/m^3"
 msgstr "t/m^3"
 
@@ -6015,6 +6026,7 @@ msgid "Waterlines"
 msgstr "Duong nuoc"
 
 #: freestringsunit.rs_waterplane_area
+msgctxt "freestringsunit.rs_waterplane_area"
 msgid "Waterplane area"
 msgstr "Dien tich duong nuoc"
 
@@ -6080,6 +6092,7 @@ msgid "were added  by  regressing  the  data  presented by Fugino (4) for the To
 msgstr "duoc them sau khi su dung cac phan tich cua Fugino[4] cho tau \"Tokyo"
 
 #: freestringsunit.rs_wetted_area
+msgctxt "freestringsunit.rs_wetted_area"
 msgid "Wetted area"
 msgstr "Phan mat ngap nuoc"
 
@@ -6569,8 +6582,11 @@ msgstr ""
 #, object-pascal-format
 msgid ""
 "Exception class: %s Message: %s\n"
-"Possible libssl v1.1 compatibility issue.\n"
-"libssl v1.1 is found.\n"
+"Possibly missing OpenSSL DLLs: libeay32.dll, ssleay32.dll.\n"
+"You can download these from http://wiki.overbyte.eu/wiki/index.php/ICS_Download#Download_OpenSSL_Binaries_.28required_for_SSL-enabled_components.29\n"
+"Please use latest binaries for SSL v1.0 \"OpenSSL Binaries Win-64 v1.0.*\".\n"
+"Place libeay32.dll and ssleay32.dll into directory where FreeShip.exe is installed.\n"
+"Usually it is C:\\Program Files\\FreeShip\\.\n"
 "FreeShip is currently compatible with libssl v1.0 only.\n"
 "You have to check for updates traditional way at Download page.\n"
 "Click link below."
@@ -6599,217 +6615,220 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
-#: tfreecrosscurvesdialog.button1.caption
-msgctxt "tfreecrosscurvesdialog.button1.caption"
-msgid "Add"
-msgstr "Them"
-
-#: tfreecrosscurvesdialog.button2.caption
-msgctxt "tfreecrosscurvesdialog.button2.caption"
-msgid "Delete"
-msgstr "Xoa"
-
-#: tfreecrosscurvesdialog.button3.caption
-msgctxt "tfreecrosscurvesdialog.button3.caption"
-msgid "Add"
-msgstr "Them"
-
-#: tfreecrosscurvesdialog.button4.caption
-msgctxt "tfreecrosscurvesdialog.button4.caption"
-msgid "Delete"
-msgstr "Xoa"
-
-#: tfreecrosscurvesdialog.caption
-msgctxt "tfreecrosscurvesdialog.caption"
-msgid "Cross curves."
-msgstr "Tinh cac duong cong on dinh tinh va dong (SSD va DSD)"
-
-#: tfreecrosscurvesdialog.chart.axislist[0].title.caption
-msgid "KN sin(phi)"
+#: tfreecontrolpointform.caption
+msgid " "
 msgstr ""
 
-#: tfreecrosscurvesdialog.chart.axislist[1].title.caption
-msgid "Displacement [tons]"
+#: tfreecontrolpointform.checkboxanchorhard.caption
+msgid "Hard"
 msgstr ""
 
-#: tfreecrosscurvesdialog.chart.axislist[2].title.caption
-msgctxt "tfreecrosscurvesdialog.chart.axislist[2].title.caption"
-msgid "Power [kW]"
+#: tfreecontrolpointform.checkboxcorner.caption
+msgid "Corner"
 msgstr ""
 
-#: tfreecrosscurvesdialog.chart0.axislist[0].title.caption
-msgid "l, [m]"
+#: tfreecontrolpointform.groupboxanchorconstraint.caption
+msgid "Anchor point"
 msgstr ""
 
-#: tfreecrosscurvesdialog.chart0.axislist[1].title.caption
+#: tfreecontrolpointform.groupboxlinearconstraint.caption
+msgid "Linear constraint"
+msgstr ""
+
+#: tfreecontrolpointform.label1.caption
+msgid "Label1"
+msgstr ""
+
+#: tfreecontrolpointform.label2.caption
+msgid "Label2"
+msgstr ""
+
+#: tfreecontrolpointform.label3.caption
+msgid "Label3"
+msgstr ""
+
+#: tfreecontrolpointform.label4.caption
 #, fuzzy
-msgctxt "tfreecrosscurvesdialog.chart0.axislist[1].title.caption"
-msgid "Heeling angle, [degr]"
-msgstr "Goc nghieng ngang, degr"
+msgctxt "tfreecontrolpointform.label4.caption"
+msgid "Distance"
+msgstr "Khoang cach"
 
-#: tfreecrosscurvesdialog.chart0.axislist[2].title.caption
-msgctxt "tfreecrosscurvesdialog.chart0.axislist[2].title.caption"
-msgid "Power [kW]"
+#: tfreecontrolpointform.label5.caption
+#, fuzzy
+msgctxt "tfreecontrolpointform.label5.caption"
+msgid "Angle"
+msgstr "Angle"
+
+#: tfreecontrolpointform.labelax.caption
+msgctxt "tfreecontrolpointform.labelax.caption"
+msgid "º"
 msgstr ""
 
-#: tfreecrosscurvesdialog.checkbox1.caption
-msgid "Incremental displ."
-msgstr "Gia tang luong chiem nuoc."
-
-#: tfreecrosscurvesdialog.combobox.text
-msgid "Nonlimit"
+#: tfreecontrolpointform.labelay.caption
+msgctxt "tfreecontrolpointform.labelay.caption"
+msgid "º"
 msgstr ""
 
-#: tfreecrosscurvesdialog.combobox1.text
-msgid "Russian Registry 2010"
+#: tfreecontrolpointform.labelaz.caption
+msgctxt "tfreecontrolpointform.labelaz.caption"
+msgid "º"
 msgstr ""
 
-#: tfreecrosscurvesdialog.groupbox2.caption
-msgid "Heeling angles."
-msgstr "Goc nghieng ngang."
-
-#: tfreecrosscurvesdialog.groupbox3.caption
-msgid "Data for SSD:"
-msgstr "Cac thong so cua duong cong on dinh dong"
-
-#: tfreecrosscurvesdialog.groupbox4.caption
-msgid "Displacements."
+#: tfreecontrolpointform.labelname.caption
+msgid "Name"
 msgstr ""
 
-#: tfreecrosscurvesdialog.label1.caption
-msgid "Start displ."
-msgstr "Luong chiem nuoc nho nhat."
-
-#: tfreecrosscurvesdialog.label12_.caption
-msgid "Decrease metacentric height, [m]"
-msgstr "Decrease metacentric height, [m]"
-
-#: tfreecrosscurvesdialog.label13_.caption
-msgid "Immersion deck angle, [degr]"
-msgstr "Immersion deck angle, [degr]"
-
-#: tfreecrosscurvesdialog.label1_.caption
-msgid "Projected displ., [tons]"
-msgstr "Luong chiem nuoc du an, ton"
-
-#: tfreecrosscurvesdialog.label2.caption
-msgid "End displ."
-msgstr "Luong chiem nuoc lon nhat."
-
-#: tfreecrosscurvesdialog.label2_.caption
-msgid "Estimated Z CoG, [m]"
-msgstr "Cao do du doan cua trong tam, m"
-
-#: tfreecrosscurvesdialog.label3.caption
-msgid "Displ. step"
-msgstr "Khoang cach luong chiem nuoc."
-
-#: tfreecrosscurvesdialog.label4_.caption
-msgid "Area of bilge keels, [m^2]"
-msgstr "song man tau, m^2"
-
-#: tfreecrosscurvesdialog.label5_.caption
-msgid "Area of skeg, [m^2]"
-msgstr "chan de san tau (skeg), m^2"
-
-#: tfreecrosscurvesdialog.label6_.caption
-msgid "Lateral wind area, [m^2]"
-msgstr "phan chan gio (Lateral wind area), m^2"
-
-#: tfreecrosscurvesdialog.label7_.caption
-msgid "Z CoG of wind area above DWL, [m]"
-msgstr "Chieu cao cua trong tam phan chan gio tren duong nuoc chinh, m"
-
-#: tfreecrosscurvesdialog.label8_.caption
-msgid "Navigation region:"
-msgstr "Vung hoat dong:"
-
-#: tfreecrosscurvesdialog.label9_.caption
-msgid "Registry:"
-msgstr "(khong gioi han.- 0; vung gioi han I - 1; vung gioi han II - 2)"
-
-#: tfreecrosscurvesdialog.panel1.caption
-msgid "Panel1"
+#: tfreecontrolpointform.labelx.caption
+msgid "X-coord."
 msgstr ""
 
-#: tfreecrosscurvesdialog.panel9.caption
-msgid "Panel9"
+#: tfreecontrolpointform.labely.caption
+msgid "Y-coord."
 msgstr ""
 
-#: tfreecrosscurvesdialog.printbutton.caption
-msgctxt "tfreecrosscurvesdialog.printbutton.caption"
-msgid "Cross curves."
-msgstr "Cac duong cong on dinh"
-
-#: tfreecrosscurvesdialog.printbutton.hint
-msgctxt "tfreecrosscurvesdialog.printbutton.hint"
-msgid "Print the results of the calculation."
-msgstr "In ket qua tinh toan."
-
-#: tfreecrosscurvesdialog.savebutton.caption
-msgid "SaveButton"
+#: tfreecontrolpointform.labelz.caption
+msgid "Z-coord."
 msgstr ""
 
-#: tfreecrosscurvesdialog.savebutton.hint
-msgid "Save the results of the calculation."
-msgstr "Luu ket qua tinh toan."
-
-#: tfreecrosscurvesdialog.tabsheet1.caption
-msgid "Graph"
-msgstr "Duong cong on dinh"
-
-#: tfreecrosscurvesdialog.tabsheet2.caption
-msgid "Data"
-msgstr "Ket qua tinh toan"
-
-#: tfreecrosscurvesdialog.tabsheet3.caption
-msgid "Stability diagram"
-msgstr "SSD va DSD"
-
-#: tfreecrosscurvesdialog.tabsheet4.caption
-msgctxt "tfreecrosscurvesdialog.tabsheet4.caption"
-msgid "Results"
-msgstr "Results"
-
-#: tfreecrosscurvesdialog.toolbar1.caption
-msgctxt "tfreecrosscurvesdialog.toolbar1.caption"
-msgid "ToolBar1"
+#: tfreecontrolpointform.speedbuttonremoveanchorpoint.caption
+msgctxt "tfreecontrolpointform.speedbuttonremoveanchorpoint.caption"
+msgid "x"
 msgstr ""
 
-#: tfreecrosscurvesdialog.toolbutton1.caption
-msgid "ToolButton1"
+#: tfreecontrolpointform.speedbuttonremoveanchorpoint.hint
+msgid "Remove anchoring"
 msgstr ""
 
-#: tfreecrosscurvesdialog.toolbutton1.hint
-msgid "Start the calculation."
-msgstr "Bat dau tinh toan."
+#: tfreecontrolpointform.speedbuttonremovelinearconstraint.caption
+msgctxt "tfreecontrolpointform.speedbuttonremovelinearconstraint.caption"
+msgid "x"
+msgstr ""
 
-#: tfreecrosscurvesdialog.toolbutton2.caption
-msgid "Abort"
+#: tfreecontrolpointform.speedbuttonremovelinearconstraint.hint
+msgid "Remove linear constraint"
+msgstr ""
+
+#: tfreefilepreviewdialog.actionrefresh.caption
+msgid "ActionRefresh"
+msgstr ""
+
+#: tfreefilepreviewdialog.bitbtncancel.caption
+#, fuzzy
+msgctxt "tfreefilepreviewdialog.bitbtncancel.caption"
+msgid "Cancel"
 msgstr "Huy"
 
-#: tfreecrosscurvesdialog.toolbutton2.hint
-msgid "Abort the calculation"
-msgstr "Dung tinh toan"
-
-#: tfreecrosscurvesdialog.toolbutton25.hint
-msgctxt "tfreecrosscurvesdialog.toolbutton25.hint"
-msgid "Close the window and save changes."
-msgstr "Dong cua so va luu nhung thay doi."
-
-#: tfreecrosscurvesdialog.toolbutton7.hint
-msgctxt "tfreecrosscurvesdialog.toolbutton7.hint"
-msgid "Close window without saving changes."
-msgstr "Dong cua so khong luu cac thay doi."
-
-#: tfreecrosscurvesdialog._toolbutton10.caption
-msgctxt "tfreecrosscurvesdialog._toolbutton10.caption"
-msgid "_ToolButton10"
+#: tfreefilepreviewdialog.bitbtnopen.caption
+msgctxt "tfreefilepreviewdialog.bitbtnopen.caption"
+msgid "Open"
 msgstr ""
 
-#: tfreecrosscurvesdialog._toolbutton14.caption
-msgctxt "tfreecrosscurvesdialog._toolbutton14.caption"
-msgid "_ToolButton14"
+#: tfreefilepreviewdialog.comboboxdir.text
+msgid "."
+msgstr ""
+
+#: tfreefilepreviewdialog.editname.text
+msgid "EditName"
+msgstr ""
+
+#: tfreefilepreviewdialog.fitsize.caption
+msgid "Fit Size"
+msgstr ""
+
+#: tfreefilepreviewdialog.fullsize.caption
+msgid "Full Size"
+msgstr ""
+
+#: tfreefilepreviewdialog.labellocation.caption
+msgid "Location:"
+msgstr ""
+
+#: tfreefilepreviewdialog.labelname.caption
+msgid "Name:"
+msgstr ""
+
+#: tfreefilepreviewdialog.placesmenuitemdelete.caption
+#, fuzzy
+msgctxt "tfreefilepreviewdialog.placesmenuitemdelete.caption"
+msgid "Delete"
+msgstr "Xoa"
+
+#: tfreefilepreviewdialog.placesmenuitemrename.caption
+msgctxt "tfreefilepreviewdialog.placesmenuitemrename.caption"
+msgid "Rename"
+msgstr ""
+
+#: tfreefilepreviewdialog.properties.caption
+msgctxt "tfreefilepreviewdialog.properties.caption"
+msgid "Properties"
+msgstr ""
+
+#: tfreefilepreviewdialog.scrollboxpreview.hint
+msgctxt "tfreefilepreviewdialog.scrollboxpreview.hint"
+msgid "DblClick to full size"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemdelete.caption
+#, fuzzy
+msgctxt "tfreefilepreviewdialog.shelllistviewitemdelete.caption"
+msgid "Delete"
+msgstr "Xoa"
+
+#: tfreefilepreviewdialog.shelllistviewitemnewfolder.caption
+msgid "New Folder"
+msgstr ""
+
+#: tfreefilepreviewdialog.shelllistviewitemrename.caption
+msgctxt "tfreefilepreviewdialog.shelllistviewitemrename.caption"
+msgid "Rename"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonaddplace.caption
+msgid "+"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonaddplace.hint
+msgid "Add place"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewdetails.hint
+msgid "Details"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistcompact.hint
+msgid "Icons"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlisthidden.hint
+msgid "View Hidden"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistlarge.hint
+msgid "Large Icons"
+msgstr ""
+
+#: tfreefilepreviewdialog.speedbuttonviewlistsimple.hint
+msgid "List"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheetplaces.caption
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.caption"
+msgid "Places"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheetplaces.hint
+msgctxt "tfreefilepreviewdialog.tabsheetplaces.hint"
+msgid "Places"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheettree.caption
+msgctxt "tfreefilepreviewdialog.tabsheettree.caption"
+msgid "Tree"
+msgstr ""
+
+#: tfreefilepreviewdialog.tabsheettree.hint
+msgctxt "tfreefilepreviewdialog.tabsheettree.hint"
+msgid "Tree"
 msgstr ""
 
 #: tfreehullwindow.backgroundblending.caption
@@ -6825,14 +6844,6 @@ msgstr "Xoa"
 msgctxt "tfreehullwindow.backgroundexport.caption"
 msgid "Save"
 msgstr "Luu"
-
-#: tfreehullwindow.backgroundframe.caption
-msgid "Frame"
-msgstr ""
-
-#: tfreehullwindow.backgroundframe.hint
-msgid "Move and scale using frame"
-msgstr ""
 
 #: tfreehullwindow.backgroundimage2.caption
 msgid "Background image"
@@ -6893,10 +6904,6 @@ msgstr "In"
 #: tfreehullwindow.saveasbitmap.caption
 msgid "Save image"
 msgstr "Luu hinh anh"
-
-#: tfreehullwindow.setlight.caption
-msgid "Light"
-msgstr ""
 
 #: tfreehullwindow.shadezebra.caption
 msgid "Zebra shading"
@@ -6969,6 +6976,529 @@ msgstr "Phong to"
 #: tfreehullwindow.zoomout.caption
 msgid "Zoom out"
 msgstr "Thu nho"
+
+#: tfreeintersectiondialog.addone.caption
+msgid "Add..."
+msgstr ""
+
+#: tfreeintersectiondialog.addone.hint
+msgid "Add one station."
+msgstr ""
+
+#: tfreeintersectiondialog.addrange.caption
+msgid "Range"
+msgstr ""
+
+#: tfreeintersectiondialog.addrange.hint
+msgid "Add a whole range of intersection curves."
+msgstr ""
+
+#: tfreeintersectiondialog.caption
+msgid "Intersections"
+msgstr ""
+
+#: tfreeintersectiondialog.closedialog.caption
+msgid "CloseDialog"
+msgstr ""
+
+#: tfreeintersectiondialog.closedialog.hint
+msgid "Close this dialog."
+msgstr ""
+
+#: tfreeintersectiondialog.deleteall.caption
+msgid "Delete all"
+msgstr ""
+
+#: tfreeintersectiondialog.deleteall.hint
+msgid "Delete all stations."
+msgstr ""
+
+#: tfreeintersectiondialog.deleteselected.caption
+msgid "DeleteSelected"
+msgstr ""
+
+#: tfreeintersectiondialog.deleteselected.hint
+msgid "Delete selected"
+msgstr ""
+
+#: tfreeintersectiondialog.sgbuttocks.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgbuttocks.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgbuttocks.columns[1].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgbuttocks.columns[1].title.caption"
+msgid "Distance"
+msgstr "Khoang cach"
+
+#: tfreeintersectiondialog.sgbuttocks.columns[2].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgbuttocks.columns[2].title.caption"
+msgid "Curvature"
+msgstr "Duong cong"
+
+#: tfreeintersectiondialog.sgdiagonals.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgdiagonals.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgdiagonals.columns[1].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgdiagonals.columns[1].title.caption"
+msgid "Distance"
+msgstr "Khoang cach"
+
+#: tfreeintersectiondialog.sgdiagonals.columns[2].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgdiagonals.columns[2].title.caption"
+msgid "Curvature"
+msgstr "Duong cong"
+
+#: tfreeintersectiondialog.sgstations.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgstations.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgstations.columns[1].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgstations.columns[1].title.caption"
+msgid "Distance"
+msgstr "Khoang cach"
+
+#: tfreeintersectiondialog.sgstations.columns[2].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgstations.columns[2].title.caption"
+msgid "Curvature"
+msgstr "Duong cong"
+
+#: tfreeintersectiondialog.sgwaterlines.columns[0].title.caption
+msgctxt "tfreeintersectiondialog.sgwaterlines.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tfreeintersectiondialog.sgwaterlines.columns[1].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgwaterlines.columns[1].title.caption"
+msgid "Distance"
+msgstr "Khoang cach"
+
+#: tfreeintersectiondialog.sgwaterlines.columns[2].title.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.sgwaterlines.columns[2].title.caption"
+msgid "Curvature"
+msgstr "Duong cong"
+
+#: tfreeintersectiondialog.showbuttocks.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.showbuttocks.caption"
+msgid "Buttocks"
+msgstr "Duong bien dang doc"
+
+#: tfreeintersectiondialog.showbuttocks.hint
+msgid "Switch to view or add buttocks."
+msgstr ""
+
+#: tfreeintersectiondialog.showdiagonals.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.showdiagonals.caption"
+msgid "Diagonals"
+msgstr "Duong cheo"
+
+#: tfreeintersectiondialog.showdiagonals.hint
+msgid "Switch to view or add diagonals."
+msgstr ""
+
+#: tfreeintersectiondialog.showstations.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.showstations.caption"
+msgid "Stations"
+msgstr "Suon"
+
+#: tfreeintersectiondialog.showstations.hint
+msgid "Switch to view or add stations."
+msgstr ""
+
+#: tfreeintersectiondialog.showwaterlines.caption
+#, fuzzy
+msgctxt "tfreeintersectiondialog.showwaterlines.caption"
+msgid "Waterlines"
+msgstr "Duong nuoc"
+
+#: tfreeintersectiondialog.showwaterlines.hint
+msgid "Switch to view or add waterlines."
+msgstr ""
+
+#: tfreeintersectiondialog.toolbar1.caption
+msgctxt "tfreeintersectiondialog.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeintersectiondialog.toolbutton14.caption
+msgid "ToolButton14"
+msgstr ""
+
+#: tfreeintersectiondialog.toolbutton8.caption
+msgid "ToolButton8"
+msgstr ""
+
+#: tfreeintersectiondialog.tsbuttocks.hint
+#, fuzzy
+msgctxt "tfreeintersectiondialog.tsbuttocks.hint"
+msgid "Buttocks"
+msgstr "Duong bien dang doc"
+
+#: tfreeintersectiondialog.tsdiagonals.hint
+#, fuzzy
+msgctxt "tfreeintersectiondialog.tsdiagonals.hint"
+msgid "Diagonals"
+msgstr "Duong cheo"
+
+#: tfreeintersectiondialog.tsstations.hint
+#, fuzzy
+msgctxt "tfreeintersectiondialog.tsstations.hint"
+msgid "Stations"
+msgstr "Suon"
+
+#: tfreeintersectiondialog.tswaterlines.hint
+#, fuzzy
+msgctxt "tfreeintersectiondialog.tswaterlines.hint"
+msgid "Waterlines"
+msgstr "Duong nuoc"
+
+#: tfreekeelwizarddialog.actionmodeshade.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.actionmodeshade.caption"
+msgid "Shade"
+msgstr "Danh bong"
+
+#: tfreekeelwizarddialog.actionmodewireframe.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.actionmodewireframe.caption"
+msgid "Wireframe"
+msgstr "Model khung day"
+
+#: tfreekeelwizarddialog.actionsetlayercolor.caption
+msgctxt "tfreekeelwizarddialog.actionsetlayercolor.caption"
+msgid "Set Layer Color"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionsetlayercolor.hint
+msgctxt "tfreekeelwizarddialog.actionsetlayercolor.hint"
+msgid "Set Layer Color"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionshowbothsides.caption
+msgctxt "tfreekeelwizarddialog.actionshowbothsides.caption"
+msgid "Show Both Sides"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionshowcontrolnet.caption
+msgctxt "tfreekeelwizarddialog.actionshowcontrolnet.caption"
+msgid "Show Control Net"
+msgstr ""
+
+#: tfreekeelwizarddialog.actionshowinterioredges.caption
+msgctxt "tfreekeelwizarddialog.actionshowinterioredges.caption"
+msgid "Show Interior Edges"
+msgstr ""
+
+#: tfreekeelwizarddialog.bitbtn1.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.bitbtn1.caption"
+msgid "OK"
+msgstr "OK"
+
+#: tfreekeelwizarddialog.bitbtn2.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.bitbtn2.caption"
+msgid "Cancel"
+msgstr "Huy"
+
+#: tfreekeelwizarddialog.button1.caption
+msgctxt "tfreekeelwizarddialog.button1.caption"
+msgid "Calc"
+msgstr ""
+
+#: tfreekeelwizarddialog.button2.caption
+msgctxt "tfreekeelwizarddialog.button2.caption"
+msgid "Calc"
+msgstr ""
+
+#: tfreekeelwizarddialog.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.caption"
+msgid "Keel and rudder wizard"
+msgstr "Song doc va banh lai"
+
+#: tfreekeelwizarddialog.combobox.text
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.combobox.text"
+msgid "Keel"
+msgstr "Song tau"
+
+#: tfreekeelwizarddialog.comboboxplanformshape.text
+msgid "Trapezoidal"
+msgstr ""
+
+#: tfreekeelwizarddialog.comboboxsubdivisionlevel.hint
+msgid "Desired Subdivision Level"
+msgstr ""
+
+#: tfreekeelwizarddialog.comboboxsubdivisionlevel.text
+msgctxt "tfreekeelwizarddialog.comboboxsubdivisionlevel.text"
+msgid "Medium"
+msgstr ""
+
+#: tfreekeelwizarddialog.groupbox1.caption
+msgctxt "tfreekeelwizarddialog.groupbox1.caption"
+msgid "Properties"
+msgstr ""
+
+#: tfreekeelwizarddialog.inputbulbshape.text
+msgid "No bullb"
+msgstr ""
+
+#: tfreekeelwizarddialog.inputbulbwing.text
+msgid "NACA0020"
+msgstr ""
+
+#: tfreekeelwizarddialog.inputmaterial.text
+msgid "Plumbum"
+msgstr ""
+
+#: tfreekeelwizarddialog.label1.caption
+msgid "Type of appendage"
+msgstr ""
+
+#: tfreekeelwizarddialog.label10.caption
+msgid "Wing width"
+msgstr ""
+
+#: tfreekeelwizarddialog.label11.caption
+msgid "Mean chord length"
+msgstr ""
+
+#: tfreekeelwizarddialog.label12.caption
+msgctxt "tfreekeelwizarddialog.label12.caption"
+msgid "Wing section"
+msgstr ""
+
+#: tfreekeelwizarddialog.label13.caption
+msgid "Geometric aspect ratio"
+msgstr ""
+
+#: tfreekeelwizarddialog.label14.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.label14.caption"
+msgid "Length"
+msgstr "Length"
+
+#: tfreekeelwizarddialog.label15.caption
+msgid "Effective aspect ratio"
+msgstr ""
+
+#: tfreekeelwizarddialog.label16.caption
+msgctxt "tfreekeelwizarddialog.label16.caption"
+msgid "No horizontal points"
+msgstr ""
+
+#: tfreekeelwizarddialog.label17.caption
+msgctxt "tfreekeelwizarddialog.label17.caption"
+msgid "Wing section"
+msgstr ""
+
+#: tfreekeelwizarddialog.label18.caption
+msgid "Volume"
+msgstr ""
+
+#: tfreekeelwizarddialog.label19.caption
+msgid "Bulb's material"
+msgstr ""
+
+#: tfreekeelwizarddialog.label2.caption
+msgctxt "tfreekeelwizarddialog.label2.caption"
+msgid "Planform shape"
+msgstr ""
+
+#: tfreekeelwizarddialog.label20.caption
+msgid "Volume COG"
+msgstr ""
+
+#: tfreekeelwizarddialog.label21.caption
+msgid "Specific weight"
+msgstr ""
+
+#: tfreekeelwizarddialog.label22.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.label22.caption"
+msgid "Wetted area"
+msgstr "Phan mat ngap nuoc"
+
+#: tfreekeelwizarddialog.label23.caption
+msgctxt "tfreekeelwizarddialog.label23.caption"
+msgid "Vertical compression"
+msgstr ""
+
+#: tfreekeelwizarddialog.label24.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.label24.caption"
+msgid "Thickness"
+msgstr "Chieu day"
+
+#: tfreekeelwizarddialog.label25.caption
+msgctxt "tfreekeelwizarddialog.label25.caption"
+msgid "Delta tip"
+msgstr ""
+
+#: tfreekeelwizarddialog.label26.caption
+msgid "No. vertical points"
+msgstr ""
+
+#: tfreekeelwizarddialog.label27.caption
+msgctxt "tfreekeelwizarddialog.label27.caption"
+msgid "No horizontal points"
+msgstr ""
+
+#: tfreekeelwizarddialog.label28.caption
+msgctxt "tfreekeelwizarddialog.label28.caption"
+msgid "Vertical compression"
+msgstr ""
+
+#: tfreekeelwizarddialog.label29.caption
+msgid "Bulb weight"
+msgstr ""
+
+#: tfreekeelwizarddialog.label3.caption
+msgid "Root chord length"
+msgstr ""
+
+#: tfreekeelwizarddialog.label30.caption
+msgid "Horizontal compression"
+msgstr ""
+
+#: tfreekeelwizarddialog.label4.caption
+msgid "Tip chord length"
+msgstr ""
+
+#: tfreekeelwizarddialog.label5.caption
+msgid "Span"
+msgstr ""
+
+#: tfreekeelwizarddialog.label6.caption
+msgctxt "tfreekeelwizarddialog.label6.caption"
+msgid "Delta tip"
+msgstr ""
+
+#: tfreekeelwizarddialog.label7.caption
+msgid "Planform area"
+msgstr ""
+
+#: tfreekeelwizarddialog.label8.caption
+msgctxt "tfreekeelwizarddialog.label8.caption"
+msgid "Planform shape"
+msgstr ""
+
+#: tfreekeelwizarddialog.label9.caption
+msgid "Planform COG"
+msgstr ""
+
+#: tfreekeelwizarddialog.layercolorbutton.hint
+msgctxt "tfreekeelwizarddialog.layercolorbutton.hint"
+msgid "Set Layer Color"
+msgstr ""
+
+#: tfreekeelwizarddialog.panel7.caption
+msgid "Panel7"
+msgstr ""
+
+#: tfreekeelwizarddialog.sbshowbothsides.hint
+msgctxt "tfreekeelwizarddialog.sbshowbothsides.hint"
+msgid "Show Both Sides"
+msgstr ""
+
+#: tfreekeelwizarddialog.sbshowcontrolnet.hint
+msgctxt "tfreekeelwizarddialog.sbshowcontrolnet.hint"
+msgid "Show Control Net"
+msgstr ""
+
+#: tfreekeelwizarddialog.sbshowinterioredges.hint
+msgctxt "tfreekeelwizarddialog.sbshowinterioredges.hint"
+msgid "Show Interior Edges"
+msgstr ""
+
+#: tfreekeelwizarddialog.speedbutton1.caption
+msgid "Send"
+msgstr ""
+
+#: tfreekeelwizarddialog.speedbutton2.caption
+msgid "Save as part"
+msgstr ""
+
+#: tfreekeelwizarddialog.tabsheet1.caption
+msgid "3D view"
+msgstr ""
+
+#: tfreekeelwizarddialog.tabsheet2.caption
+msgid "Lift and drag"
+msgstr ""
+
+#: tfreekeelwizarddialog.tabsheet3.caption
+#, fuzzy
+msgctxt "tfreekeelwizarddialog.tabsheet3.caption"
+msgid "Keel"
+msgstr "Song tau"
+
+#: tfreekeelwizarddialog.tabsheet4.caption
+msgid "Bulb"
+msgstr ""
+
+#: tfreekeelwizarddialog._combobox2.text
+msgid "NACA63-006"
+msgstr ""
+
+#: tfreekeelwizarddialog._label10.caption
+msgid "_Label10"
+msgstr ""
+
+#: tfreekeelwizarddialog._label12.caption
+msgctxt "tfreekeelwizarddialog._label12.caption"
+msgid "Label10"
+msgstr ""
+
+#: tfreekeelwizarddialog._label14.caption
+msgctxt "tfreekeelwizarddialog._label14.caption"
+msgid "Label10"
+msgstr ""
+
+#: tfreekeelwizarddialog._label16.caption
+msgctxt "tfreekeelwizarddialog._label16.caption"
+msgid "Label10"
+msgstr ""
+
+#: tfreekeelwizarddialog._label19.caption
+msgctxt "tfreekeelwizarddialog._label19.caption"
+msgid "Label8"
+msgstr ""
+
+#: tfreekeelwizarddialog._label21.caption
+msgctxt "tfreekeelwizarddialog._label21.caption"
+msgid "Label8"
+msgstr ""
+
+#: tfreekeelwizarddialog._label23.caption
+msgctxt "tfreekeelwizarddialog._label23.caption"
+msgid "Label8"
+msgstr ""
+
+#: tfreekeelwizarddialog._label25.caption
+msgctxt "tfreekeelwizarddialog._label25.caption"
+msgid "Label10"
+msgstr ""
+
+#: tfreekeelwizarddialog._label8.caption
+msgid "_Label8"
+msgstr ""
 
 #: tfreepreferencesdialog.bitbtn1.caption
 #, fuzzy
@@ -7142,10 +7672,6 @@ msgstr ""
 msgid "Max. undo memory (Mb)"
 msgstr ""
 
-#: tfreepreferencesdialog.label28.caption
-msgid "Font size"
-msgstr ""
-
 #: tfreepreferencesdialog.label29.caption
 msgid "Manuals"
 msgstr ""
@@ -7234,10 +7760,6 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
-#: tfreepreferencesdialog.lbsubmergedsurfaceopacity.caption
-msgid "Submerged surface opacity, %"
-msgstr ""
-
 #: tfreepreferencesdialog.panel29.caption
 msgctxt "tfreepreferencesdialog.panel29.caption"
 msgid "Panel29"
@@ -7271,10 +7793,6 @@ msgstr ""
 msgid "24"
 msgstr ""
 
-#: tfreepreferencesdialog.sesubmergedsurfaceopacity.hint
-msgid "0 - clear, 255 - opaque"
-msgstr ""
-
 #: tfreepreferencesdialog.tabsheet1.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.tabsheet1.caption"
@@ -7289,261 +7807,1679 @@ msgstr ""
 msgid "Graphics"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.bitbtn1.caption
-msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
-msgid "OK"
-msgstr "OK"
-
-#: tfreeprojectsettingsdialog.bitbtn2.caption
-msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
-msgid "Cancel"
-msgstr "Huy"
-
-#: tfreeprojectsettingsdialog.caption
-msgid "Project settings."
-msgstr "Thiet lap du an."
-
-#: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
-msgid "Save preview image"
+#: tfreepropeller_task5.caption
+msgid "Calculation of Open Water Characteristics of Screw Propeller."
 msgstr ""
 
-#: tfreeprojectsettingsdialog.cbshadeunderwater.caption
-msgid "Shade underwater"
+#: tfreepropeller_task5.checkbox2.caption
+#, fuzzy
+msgctxt "tfreepropeller_task5.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreepropeller_task5.combobox.text
+msgid "B series Troost"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
-msgid "Simplify intersections"
+#: tfreepropeller_task5.combobox1.text
+msgid "Reserved"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.checkbox11.caption
-msgid "Default at 0.0"
-msgstr "Default at 0.0"
-
-#: tfreeprojectsettingsdialog.checkbox12.caption
-msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
-msgid "Default at 0.5*L"
-msgstr "Default at 0.5*L"
-
-#: tfreeprojectsettingsdialog.checkbox13.caption
-msgid "Enable auto move model to baseline"
-msgstr "Enable automoving model to baseline"
-
-#: tfreeprojectsettingsdialog.checkbox14.caption
-msgid "Save Bonjean scale and SAC in files"
-msgstr "Save Bonjean scale and SAC results in files"
-
-#: tfreeprojectsettingsdialog.checkbox2.caption
-msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
-msgid "Default at 0.5*L"
-msgstr "Theo mac dinh tai 0.5*L"
-
-#: tfreeprojectsettingsdialog.checkbox3.caption
-msgid "Disable surface check"
-msgstr "Ngung kiem tra mat"
-
-#: tfreeprojectsettingsdialog.checkbox5.caption
-msgid "Displacement and center of buoyancy"
-msgstr "Luong chiem nuoc va trong tam noi"
-
-#: tfreeprojectsettingsdialog.checkbox6.caption
-msgid "Curve of sectional areas"
-msgstr "DUong cong dien tich suon"
-
-#: tfreeprojectsettingsdialog.checkbox7.caption
-msgid "Metacentric height"
-msgstr "Tam nghieng ngang"
-
-#: tfreeprojectsettingsdialog.checkbox8.caption
-msgid "Longitudinal center of floatation"
-msgstr "Trong tam cua duong mat nuoc chinh"
-
-#: tfreeprojectsettingsdialog.checkbox9.caption
-msgid "Lateral area and center of effort"
-msgstr "Trong tam va dien tich phan ngap nuoc cua mat phang doi xung tam"
-
-#: tfreeprojectsettingsdialog.combobox1.text
-msgid "Dimensions from project settings"
+#: tfreepropeller_task5.label2.caption
+msgid "Frequancy of rotation, 1/min"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.groupbox1.caption
-msgid "Display hydrostatic features. "
-msgstr "Hien thi cac duong cong tuyen hinh va trong tam noi."
-
-#: tfreeprojectsettingsdialog.label1.caption
-msgid "Project name"
-msgstr "Ten du an"
-
-#: tfreeprojectsettingsdialog.label10.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label10.caption"
-msgid "m"
-msgstr "m"
-
-#: tfreeprojectsettingsdialog.label11.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label11.caption"
-msgid "m"
-msgstr "m"
-
-#: tfreeprojectsettingsdialog.label12.caption
-msgid "Underwater opacity, %"
+#: tfreepropeller_task5.label3.caption
+msgid "Disk ratio"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.label13.caption
-msgctxt "tfreeprojectsettingsdialog.label13.caption"
-msgid "Split Section location"
-msgstr "Vi tri cua suon giua"
-
-#: tfreeprojectsettingsdialog.label14.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label14.caption"
-msgid "m"
-msgstr "m"
-
-#: tfreeprojectsettingsdialog.label15.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label15.caption"
-msgid "Comment"
-msgstr "Chu thich"
-
-#: tfreeprojectsettingsdialog.label16.caption
-msgid "File created by"
-msgstr "File duoc tao boi"
-
-#: tfreeprojectsettingsdialog.label17.caption
-msgid "Coefficients based on"
-msgstr "He so xac dinh theo"
-
-#: tfreeprojectsettingsdialog.label18.caption
-msgid "Select which of the following hydrostatic properties"
-msgstr "Chon cac thong so cua tinh thuy tinh ma"
-
-#: tfreeprojectsettingsdialog.label19.caption
-msgid "you want to have displayed in the model:"
-msgstr "ban muon nhin thay o model:"
-
-#: tfreeprojectsettingsdialog.label2.caption
-msgctxt "tfreeprojectsettingsdialog.label2.caption"
-msgid "Length "
-msgstr "Chieu dai"
-
-#: tfreeprojectsettingsdialog.label20.caption
-msgid "Y coord. of Longitudinal Max. Wind Area location"
-msgstr "Y maximal coord. of lateral wind area"
-
-#: tfreeprojectsettingsdialog.label21.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label21.caption"
-msgid "m"
-msgstr "m"
-
-#: tfreeprojectsettingsdialog.label22.caption
-msgid "X coord. of Transverse Max. Wind Area location"
-msgstr "X maximal coord. of transverse wind area"
-
-#: tfreeprojectsettingsdialog.label23.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label23.caption"
-msgid "m"
-msgstr "m"
-
-#: tfreeprojectsettingsdialog.label24.caption
-msgctxt "tfreeprojectsettingsdialog.label24.caption"
-msgid "Precision"
+#: tfreepropeller_task5.label4.caption
+msgid "Pitch fraction"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.label25.caption
-msgid "Water temperature"
-msgstr "Nhiet do cua nuoc,°C"
-
-#: tfreeprojectsettingsdialog.label26.caption
-msgid "C"
+#: tfreepropeller_task5.label5.caption
+msgid "Number of blade"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.label27.caption
-msgid "Underwater color"
+#: tfreepropeller_task5.label6.caption
+msgid "Diameter of propeller, m"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.label3.caption
-msgid "Beam"
-msgstr "Chieu rong"
-
-#: tfreeprojectsettingsdialog.label4.caption
-msgctxt "tfreeprojectsettingsdialog.label4.caption"
-msgid "Draft"
-msgstr "Luong mon nuoc"
-
-#: tfreeprojectsettingsdialog.label5.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label5.caption"
-msgid "Water density"
-msgstr "Ti trong cua nuoc,"
-
-#: tfreeprojectsettingsdialog.label6.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label6.caption"
-msgid "Appendage coefficient"
-msgstr "He so cho phan them"
-
-#: tfreeprojectsettingsdialog.label7.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label7.caption"
-msgid "Designer"
-msgstr "Nguoi thiet ke"
-
-#: tfreeprojectsettingsdialog.label8.caption
-msgid "Units"
-msgstr "Don vi do luong"
-
-#: tfreeprojectsettingsdialog.label9.caption
-#, fuzzy
-msgctxt "tfreeprojectsettingsdialog.label9.caption"
-msgid "m"
-msgstr "m"
-
-#: tfreeprojectsettingsdialog.lbwaterdensity.caption
-msgid "lbWaterDensity"
+#: tfreepropeller_task5.label7.caption
+msgid "Velocity in propeller disk, m/s"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.precisionbox.hint
-msgid "Change the precision of the model."
+#: tfreepropeller_task5.label8.caption
+msgid "Type of propeller:"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.precisionbox.text
-msgid "Low"
+#: tfreepropeller_task5.label9.caption
+msgid "Series of propeller:"
 msgstr ""
 
-#: tfreeprojectsettingsdialog.tabsheet1.caption
+#: tfreepropeller_task5.printbutton.caption
+msgctxt "tfreepropeller_task5.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreepropeller_task5.printbutton.hint
 #, fuzzy
-msgctxt "tfreeprojectsettingsdialog.tabsheet1.caption"
+msgctxt "tfreepropeller_task5.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreepropeller_task5.tabsheet1.caption
+#, fuzzy
+msgctxt "tfreepropeller_task5.tabsheet1.caption"
 msgid "General"
-msgstr "Cac thong so chung"
+msgstr "Cac thong so chinh"
 
-#: tfreeprojectsettingsdialog.tabsheet2.caption
-msgid "Hydrostatics"
-msgstr "Tinh thuy tinh"
+#: tfreepropeller_task5.tabsheet2.caption
+#, fuzzy
+msgctxt "tfreepropeller_task5.tabsheet2.caption"
+msgid "Results"
+msgstr "Results"
 
-#: tfreeprojectsettingsdialog.tabsheet3.caption
-msgid "Main dimensions"
-msgstr "Cac kich thuoc chinh"
+#: tfreepropeller_task5.toolbar1.caption
+msgctxt "tfreepropeller_task5.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
 
-#: tfreeprojectsettingsdialog.unitbox.text
-msgid "Metric"
+#: tfreepropeller_task5.toolbutton17.hint
+msgid "Start engine selection"
+msgstr ""
+
+#: tfreepropeller_task5.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreepropeller_task5.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreepropeller_task5.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreepropeller_task5.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreepropeller_task5._toolbutton10.caption
+msgctxt "tfreepropeller_task5._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreepropeller_task5._toolbutton14.caption
+msgctxt "tfreepropeller_task5._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_delft.caption
+msgid "Resistance for Sailing Yachts or a Sea Ships"
+msgstr ""
+
+#: tfreeresistance_delft.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_delft.estimatebox.caption
+msgctxt "tfreeresistance_delft.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_delft.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_delft.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_delft.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_delft.groupbox3.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.groupbox3.caption"
+msgid "Keel"
+msgstr "Song tau"
+
+#: tfreeresistance_delft.groupbox4.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.groupbox4.caption"
+msgid "Rudder"
+msgstr "Banh lai"
+
+#: tfreeresistance_delft.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_delft.label13.caption
+msgctxt "tfreeresistance_delft.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_delft.label2.caption
+msgctxt "tfreeresistance_delft.label2.caption"
+msgid "End speed "
+msgstr ""
+
+#: tfreeresistance_delft.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label20.caption"
+msgid "Total draft"
+msgstr "Luong mon nuoc toan bo"
+
+#: tfreeresistance_delft.label21.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label21.caption"
+msgid "Draft hull"
+msgstr "Luong mon nuoc tau"
+
+#: tfreeresistance_delft.label22.caption
+msgctxt "tfreeresistance_delft.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_delft.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_delft.label24.caption
+msgctxt "tfreeresistance_delft.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_delft.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_delft.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_delft.label27.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label27.caption"
+msgid "Waterplane area"
+msgstr "Dien tich duong nuoc"
+
+#: tfreeresistance_delft.label29.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label29.caption"
+msgid "Average chordlength"
+msgstr "Chieu dai trung binh cua day cung"
+
+#: tfreeresistance_delft.label3.caption
+msgctxt "tfreeresistance_delft.label3.caption"
+msgid "Step"
+msgstr ""
+
+#: tfreeresistance_delft.label34.caption
+msgctxt "tfreeresistance_delft.label34.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_delft.label5.caption
+msgctxt "tfreeresistance_delft.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_delft.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label6.caption"
+msgid "Average chordlength"
+msgstr "Chieu dai trung binh cua day cung"
+
+#: tfreeresistance_delft.label7.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label7.caption"
+msgid "Wetted area"
+msgstr "Phan mat ngap nuoc"
+
+#: tfreeresistance_delft.label8.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.label8.caption"
+msgid "Wetted area"
+msgstr "Phan mat ngap nuoc"
+
+#: tfreeresistance_delft.printbutton.caption
+msgctxt "tfreeresistance_delft.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_delft.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_delft.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_delft.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_delft.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_delft.toolbar1.caption
+msgctxt "tfreeresistance_delft.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_delft.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_delft.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_delft.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_delft.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_delft.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_delft.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_delft._label10.caption
+msgctxt "tfreeresistance_delft._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft._label11.caption
+msgctxt "tfreeresistance_delft._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft._label12.caption
+msgctxt "tfreeresistance_delft._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft._label14.caption
+msgctxt "tfreeresistance_delft._label14.caption"
+msgid "[m2]"
+msgstr ""
+
+#: tfreeresistance_delft._label15.caption
+msgctxt "tfreeresistance_delft._label15.caption"
+msgid "[m2]"
+msgstr ""
+
+#: tfreeresistance_delft._label16.caption
+msgctxt "tfreeresistance_delft._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_delft._label17.caption
+msgctxt "tfreeresistance_delft._label17.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft._label18.caption
+msgctxt "tfreeresistance_delft._label18.caption"
+msgid "[m2]"
+msgstr ""
+
+#: tfreeresistance_delft._label19.caption
+msgctxt "tfreeresistance_delft._label19.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft._label20.caption
+msgctxt "tfreeresistance_delft._label20.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_delft._label30.caption
+msgctxt "tfreeresistance_delft._label30.caption"
+msgid "[m2]"
+msgstr ""
+
+#: tfreeresistance_delft._label31.caption
+msgctxt "tfreeresistance_delft._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_delft._label32.caption
+msgctxt "tfreeresistance_delft._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_delft._label33.caption
+msgctxt "tfreeresistance_delft._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_delft._label36.caption
+msgctxt "tfreeresistance_delft._label36.caption"
+msgid "*10-6  m2/s"
+msgstr ""
+
+#: tfreeresistance_delft._label8.caption
+msgctxt "tfreeresistance_delft._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft._label9.caption
+msgctxt "tfreeresistance_delft._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_delft._toolbutton10.caption
+msgctxt "tfreeresistance_delft._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_delft._toolbutton14.caption
+msgctxt "tfreeresistance_delft._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_fungleib.a11box.text
+msgctxt "tfreeresistance_fungleib.a11box.text"
+msgid "Passenger ship and ferry"
+msgstr ""
+
+#: tfreeresistance_fungleib.caption
+msgid "Resistance for naval ships by Fung-Leibmans method 1995"
+msgstr ""
+
+#: tfreeresistance_fungleib.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_fungleib.data2.caption
+msgctxt "tfreeresistance_fungleib.data2.caption"
+msgid "Added data"
+msgstr ""
+
+#: tfreeresistance_fungleib.estimate2box.caption
+msgctxt "tfreeresistance_fungleib.estimate2box.caption"
+msgid "Use calculated"
+msgstr ""
+
+#: tfreeresistance_fungleib.estimatebox.caption
+msgctxt "tfreeresistance_fungleib.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_fungleib.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_fungleib.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_fungleib.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_fungleib.groupbox3.caption
+msgctxt "tfreeresistance_fungleib.groupbox3.caption"
+msgid "Added data input:"
+msgstr ""
+
+#: tfreeresistance_fungleib.groupbox4.caption
+msgctxt "tfreeresistance_fungleib.groupbox4.caption"
+msgid "Number of appendages :"
+msgstr ""
+
+#: tfreeresistance_fungleib.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_fungleib.label10.caption
+msgctxt "tfreeresistance_fungleib.label10.caption"
+msgid "1/2 entrance angle, degr"
+msgstr ""
+
+#: tfreeresistance_fungleib.label11.caption
+msgid "Transom beam, m"
+msgstr ""
+
+#: tfreeresistance_fungleib.label13.caption
+msgctxt "tfreeresistance_fungleib.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_fungleib.label14.caption
+msgid "Propeller type (1-CRPP; 2-FPP)"
+msgstr ""
+
+#: tfreeresistance_fungleib.label15.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label15.caption"
+msgid "Number of propellers"
+msgstr "So luong chan vit                                                 "
+
+#: tfreeresistance_fungleib.label16.caption
+msgctxt "tfreeresistance_fungleib.label16.caption"
+msgid "Propeller diameter, m"
+msgstr ""
+
+#: tfreeresistance_fungleib.label17.caption
+msgctxt "tfreeresistance_fungleib.label17.caption"
+msgid "Absolute roughness, mkm"
+msgstr ""
+
+#: tfreeresistance_fungleib.label2.caption
+msgctxt "tfreeresistance_fungleib.label2.caption"
+msgid "End speed "
+msgstr ""
+
+#: tfreeresistance_fungleib.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label20.caption"
+msgid "Midship draft"
+msgstr "Luong mon nuoc trung binh"
+
+#: tfreeresistance_fungleib.label21.caption
+msgctxt "tfreeresistance_fungleib.label21.caption"
+msgid "Different"
+msgstr ""
+
+#: tfreeresistance_fungleib.label22.caption
+msgctxt "tfreeresistance_fungleib.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_fungleib.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_fungleib.label24.caption
+msgctxt "tfreeresistance_fungleib.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_fungleib.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_fungleib.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_fungleib.label27.caption
+msgctxt "tfreeresistance_fungleib.label27.caption"
+msgid "Length over surface"
+msgstr ""
+
+#: tfreeresistance_fungleib.label281.caption
+msgctxt "tfreeresistance_fungleib.label281.caption"
+msgid "Keel and skeg:"
+msgstr ""
+
+#: tfreeresistance_fungleib.label29.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label29.caption"
+msgid "Skeg"
+msgstr "chan de san"
+
+#: tfreeresistance_fungleib.label3.caption
+msgctxt "tfreeresistance_fungleib.label3.caption"
+msgid "Step"
+msgstr ""
+
+#: tfreeresistance_fungleib.label30.caption
+msgctxt "tfreeresistance_fungleib.label30.caption"
+msgid "Shaft brackets"
+msgstr ""
+
+#: tfreeresistance_fungleib.label31.caption
+msgctxt "tfreeresistance_fungleib.label31.caption"
+msgid "Strut bossing"
+msgstr ""
+
+#: tfreeresistance_fungleib.label32.caption
+msgctxt "tfreeresistance_fungleib.label32.caption"
+msgid "Hull bossing"
+msgstr ""
+
+#: tfreeresistance_fungleib.label33.caption
+msgctxt "tfreeresistance_fungleib.label33.caption"
+msgid "Exposed shafts:"
+msgstr ""
+
+#: tfreeresistance_fungleib.label34.caption
+msgctxt "tfreeresistance_fungleib.label34.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib.label35.caption
+msgctxt "tfreeresistance_fungleib.label35.caption"
+msgid "Angle with battoks about 10"
+msgstr ""
+
+#: tfreeresistance_fungleib.label36.caption
+msgctxt "tfreeresistance_fungleib.label36.caption"
+msgid "Angle with battoks about 20"
+msgstr ""
+
+#: tfreeresistance_fungleib.label37.caption
+msgctxt "tfreeresistance_fungleib.label37.caption"
+msgid "Stabiliser fins"
+msgstr ""
+
+#: tfreeresistance_fungleib.label38.caption
+msgctxt "tfreeresistance_fungleib.label38.caption"
+msgid "Dome"
+msgstr ""
+
+#: tfreeresistance_fungleib.label39.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label39.caption"
+msgid "Bilge keels"
+msgstr "Song day tau"
+
+#: tfreeresistance_fungleib.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_fungleib.label5.caption
+msgctxt "tfreeresistance_fungleib.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.label6.caption"
+msgid "Rudder behind skeg/stern"
+msgstr "Banh lai sau chan de/duoi"
+
+#: tfreeresistance_fungleib.label61.caption
+msgctxt "tfreeresistance_fungleib.label61.caption"
+msgid "Presence of rudders (0-No, 1-Yes):"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_1.caption
+msgctxt "tfreeresistance_fungleib.label6_1.caption"
+msgid "Time ship hull is in water, month"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_10.caption
+msgctxt "tfreeresistance_fungleib.label6_10.caption"
+msgid "Wetted area of midship, m^2"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_11.caption
+msgctxt "tfreeresistance_fungleib.label6_11.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_2.caption
+msgctxt "tfreeresistance_fungleib.label6_2.caption"
+msgid "Height of 3% wave, m "
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_3.caption
+msgctxt "tfreeresistance_fungleib.label6_3.caption"
+msgid "Course angle of moving wave, degree"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_4.caption
+msgctxt "tfreeresistance_fungleib.label6_4.caption"
+msgid "Wind speed, m/s"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_5.caption
+msgctxt "tfreeresistance_fungleib.label6_5.caption"
+msgid "Course wind angle, degree"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_6.caption
+msgctxt "tfreeresistance_fungleib.label6_6.caption"
+msgid "Height of board above water, m"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_7.caption
+msgctxt "tfreeresistance_fungleib.label6_7.caption"
+msgid "Air density, kg/m^3"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_8.caption
+msgctxt "tfreeresistance_fungleib.label6_8.caption"
+msgid "Height of COG area of superstructure above waterline, m"
+msgstr ""
+
+#: tfreeresistance_fungleib.label6_9.caption
+msgctxt "tfreeresistance_fungleib.label6_9.caption"
+msgid "Depth of water, m"
+msgstr ""
+
+#: tfreeresistance_fungleib.label7.caption
+msgctxt "tfreeresistance_fungleib.label7.caption"
+msgid "Two-screw slender"
+msgstr ""
+
+#: tfreeresistance_fungleib.label8.caption
+msgctxt "tfreeresistance_fungleib.label8.caption"
+msgid "Exploitation coefficient"
+msgstr ""
+
+#: tfreeresistance_fungleib.label9.caption
+msgid "Wetted transom area, m2"
+msgstr ""
+
+#: tfreeresistance_fungleib.printbutton.caption
+msgctxt "tfreeresistance_fungleib.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_fungleib.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_fungleib.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_fungleib.results2.caption
+msgctxt "tfreeresistance_fungleib.results2.caption"
+msgid "Help"
+msgstr ""
+
+#: tfreeresistance_fungleib.toolbar1.caption
+msgctxt "tfreeresistance_fungleib.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_fungleib.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_fungleib.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_fungleib.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_fungleib._label10.caption
+msgctxt "tfreeresistance_fungleib._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib._label11.caption
+msgctxt "tfreeresistance_fungleib._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib._label12.caption
+msgctxt "tfreeresistance_fungleib._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib._label14.caption
+msgctxt "tfreeresistance_fungleib._label14.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib._label15.caption
+msgctxt "tfreeresistance_fungleib._label15.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib._label16.caption
+msgctxt "tfreeresistance_fungleib._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_fungleib._label31.caption
+msgctxt "tfreeresistance_fungleib._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_fungleib._label32.caption
+msgctxt "tfreeresistance_fungleib._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_fungleib._label33.caption
+msgctxt "tfreeresistance_fungleib._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_fungleib._label36.caption
+msgctxt "tfreeresistance_fungleib._label36.caption"
+msgid "*10-6  m2/s"
+msgstr ""
+
+#: tfreeresistance_fungleib._label8.caption
+msgctxt "tfreeresistance_fungleib._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib._label9.caption
+msgctxt "tfreeresistance_fungleib._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_fungleib._toolbutton10.caption
+msgctxt "tfreeresistance_fungleib._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_fungleib._toolbutton14.caption
+msgctxt "tfreeresistance_fungleib._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_hollen.a11box.text
+msgctxt "tfreeresistance_hollen.a11box.text"
+msgid "Passenger ship and ferry"
+msgstr ""
+
+#: tfreeresistance_hollen.caption
+msgid "Resistance for sea ships by Hollenbachs method 1998"
+msgstr ""
+
+#: tfreeresistance_hollen.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_hollen.data2.caption
+msgctxt "tfreeresistance_hollen.data2.caption"
+msgid "Added data"
+msgstr ""
+
+#: tfreeresistance_hollen.estimate2box.caption
+msgctxt "tfreeresistance_hollen.estimate2box.caption"
+msgid "Use calculated"
+msgstr ""
+
+#: tfreeresistance_hollen.estimatebox.caption
+msgctxt "tfreeresistance_hollen.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_hollen.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_hollen.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_hollen.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_hollen.groupbox3.caption
+msgctxt "tfreeresistance_hollen.groupbox3.caption"
+msgid "Added data input:"
+msgstr ""
+
+#: tfreeresistance_hollen.groupbox4.caption
+msgctxt "tfreeresistance_hollen.groupbox4.caption"
+msgid "Number of appendages :"
+msgstr ""
+
+#: tfreeresistance_hollen.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_hollen.label10.caption
+msgctxt "tfreeresistance_hollen.label10.caption"
+msgid "Bulbous area on F.P., m^2"
+msgstr ""
+
+#: tfreeresistance_hollen.label11.caption
+msgctxt "tfreeresistance_hollen.label11.caption"
+msgid "Full Cargo or Ballast (0...1)"
+msgstr ""
+
+#: tfreeresistance_hollen.label13.caption
+msgctxt "tfreeresistance_hollen.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_hollen.label14.caption
+msgctxt "tfreeresistance_hollen.label14.caption"
+msgid "Form stern coefficient"
+msgstr ""
+
+#: tfreeresistance_hollen.label15.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label15.caption"
+msgid "Number of propellers"
+msgstr "So luong chan vit                                                 "
+
+#: tfreeresistance_hollen.label16.caption
+msgctxt "tfreeresistance_hollen.label16.caption"
+msgid "Propeller diametr, m"
+msgstr ""
+
+#: tfreeresistance_hollen.label17.caption
+msgctxt "tfreeresistance_hollen.label17.caption"
+msgid "Absolute roughness, mkm"
+msgstr ""
+
+#: tfreeresistance_hollen.label2.caption
+msgid "Estimate speed "
+msgstr ""
+
+#: tfreeresistance_hollen.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label20.caption"
+msgid "Midship draft"
+msgstr "Luong mon nuoc trung binh"
+
+#: tfreeresistance_hollen.label21.caption
+msgctxt "tfreeresistance_hollen.label21.caption"
+msgid "Different"
+msgstr ""
+
+#: tfreeresistance_hollen.label22.caption
+msgctxt "tfreeresistance_hollen.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_hollen.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_hollen.label24.caption
+msgctxt "tfreeresistance_hollen.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_hollen.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_hollen.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_hollen.label27.caption
+msgctxt "tfreeresistance_hollen.label27.caption"
+msgid "Length over surface"
+msgstr ""
+
+#: tfreeresistance_hollen.label28.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label28.caption"
+msgid "Skeg"
+msgstr "chan de san"
+
+#: tfreeresistance_hollen.label281.caption
+msgctxt "tfreeresistance_hollen.label281.caption"
+msgid "Keel and skeg:"
+msgstr ""
+
+#: tfreeresistance_hollen.label29.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label29.caption"
+msgid "Bilge keels"
+msgstr "Song day tau"
+
+#: tfreeresistance_hollen.label3.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label3.caption"
+msgid "Maximal speed"
+msgstr "Van toc lon nhat"
+
+#: tfreeresistance_hollen.label30.caption
+msgctxt "tfreeresistance_hollen.label30.caption"
+msgid "Shaft brackets"
+msgstr ""
+
+#: tfreeresistance_hollen.label31.caption
+msgctxt "tfreeresistance_hollen.label31.caption"
+msgid "Strut bossing"
+msgstr ""
+
+#: tfreeresistance_hollen.label32.caption
+msgctxt "tfreeresistance_hollen.label32.caption"
+msgid "Hull bossing"
+msgstr ""
+
+#: tfreeresistance_hollen.label33.caption
+msgctxt "tfreeresistance_hollen.label33.caption"
+msgid "Exposed shafts:"
+msgstr ""
+
+#: tfreeresistance_hollen.label34.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label34.caption"
+msgid "t/m^3"
+msgstr "t/m^3"
+
+#: tfreeresistance_hollen.label35.caption
+msgctxt "tfreeresistance_hollen.label35.caption"
+msgid "Angle with battoks about 10"
+msgstr ""
+
+#: tfreeresistance_hollen.label36.caption
+msgctxt "tfreeresistance_hollen.label36.caption"
+msgid "Angle with battoks about 20"
+msgstr ""
+
+#: tfreeresistance_hollen.label37.caption
+msgctxt "tfreeresistance_hollen.label37.caption"
+msgid "Stabiliser fins"
+msgstr ""
+
+#: tfreeresistance_hollen.label38.caption
+msgctxt "tfreeresistance_hollen.label38.caption"
+msgid "Dome"
+msgstr ""
+
+#: tfreeresistance_hollen.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_hollen.label5.caption
+msgctxt "tfreeresistance_hollen.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_hollen.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.label6.caption"
+msgid "Rudder behind skeg/stern"
+msgstr "Banh lai sau chan de/duoi"
+
+#: tfreeresistance_hollen.label61.caption
+msgctxt "tfreeresistance_hollen.label61.caption"
+msgid "Presence of rudders (0-No, 1-Yes):"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_1.caption
+msgctxt "tfreeresistance_hollen.label6_1.caption"
+msgid "Time ship hull is in water, month"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_10.caption
+msgctxt "tfreeresistance_hollen.label6_10.caption"
+msgid "Wetted area of midship, m^2"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_11.caption
+msgctxt "tfreeresistance_hollen.label6_11.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_2.caption
+msgctxt "tfreeresistance_hollen.label6_2.caption"
+msgid "Height of 3% wave, m "
+msgstr ""
+
+#: tfreeresistance_hollen.label6_3.caption
+msgctxt "tfreeresistance_hollen.label6_3.caption"
+msgid "Course angle of moving wave, degree"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_4.caption
+msgctxt "tfreeresistance_hollen.label6_4.caption"
+msgid "Wind speed, m/s"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_5.caption
+msgctxt "tfreeresistance_hollen.label6_5.caption"
+msgid "Course wind angle, degree"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_6.caption
+msgctxt "tfreeresistance_hollen.label6_6.caption"
+msgid "Height of board above water, m"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_7.caption
+msgctxt "tfreeresistance_hollen.label6_7.caption"
+msgid "Air density, kg/m^3"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_8.caption
+msgctxt "tfreeresistance_hollen.label6_8.caption"
+msgid "Height of COG area of superstructure above waterline, m"
+msgstr ""
+
+#: tfreeresistance_hollen.label6_9.caption
+msgctxt "tfreeresistance_hollen.label6_9.caption"
+msgid "Depth of water, m"
+msgstr ""
+
+#: tfreeresistance_hollen.label7.caption
+msgctxt "tfreeresistance_hollen.label7.caption"
+msgid "Two-screw slender"
+msgstr ""
+
+#: tfreeresistance_hollen.label8.caption
+msgctxt "tfreeresistance_hollen.label8.caption"
+msgid "Exploitation coefficient"
+msgstr ""
+
+#: tfreeresistance_hollen.label9.caption
+msgctxt "tfreeresistance_hollen.label9.caption"
+msgid "Number of thrusters (0...2)"
+msgstr ""
+
+#: tfreeresistance_hollen.printbutton.caption
+msgctxt "tfreeresistance_hollen.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_hollen.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_hollen.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_hollen.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_hollen.results2.caption
+msgctxt "tfreeresistance_hollen.results2.caption"
+msgid "Help"
+msgstr ""
+
+#: tfreeresistance_hollen.toolbar1.caption
+msgctxt "tfreeresistance_hollen.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_hollen.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_hollen.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_hollen.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_hollen.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_hollen.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_hollen.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_hollen._label10.caption
+msgctxt "tfreeresistance_hollen._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_hollen._label11.caption
+msgctxt "tfreeresistance_hollen._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_hollen._label12.caption
+msgctxt "tfreeresistance_hollen._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_hollen._label14.caption
+msgctxt "tfreeresistance_hollen._label14.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_hollen._label15.caption
+msgctxt "tfreeresistance_hollen._label15.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_hollen._label16.caption
+msgctxt "tfreeresistance_hollen._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_hollen._label31.caption
+msgctxt "tfreeresistance_hollen._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_hollen._label32.caption
+msgctxt "tfreeresistance_hollen._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_hollen._label33.caption
+msgctxt "tfreeresistance_hollen._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_hollen._label36.caption
+#, fuzzy
+msgctxt "tfreeresistance_hollen._label36.caption"
+msgid "m^2/s"
+msgstr "m^2/ñ"
+
+#: tfreeresistance_hollen._label8.caption
+msgctxt "tfreeresistance_hollen._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_hollen._label9.caption
+msgctxt "tfreeresistance_hollen._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_hollen._toolbutton10.caption
+msgctxt "tfreeresistance_hollen._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_hollen._toolbutton14.caption
+msgctxt "tfreeresistance_hollen._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_holtr.a11box.text
+msgctxt "tfreeresistance_holtr.a11box.text"
+msgid "Passenger ship and ferry"
+msgstr ""
+
+#: tfreeresistance_holtr.caption
+msgid "Resistance for sea ships"
+msgstr ""
+
+#: tfreeresistance_holtr.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_holtr.data2.caption
+msgctxt "tfreeresistance_holtr.data2.caption"
+msgid "Added data"
+msgstr ""
+
+#: tfreeresistance_holtr.estimate2box.caption
+msgctxt "tfreeresistance_holtr.estimate2box.caption"
+msgid "Use calculated"
+msgstr ""
+
+#: tfreeresistance_holtr.estimate3box.caption
+msgid "Add calculated by Holtrop-1984 method"
+msgstr ""
+
+#: tfreeresistance_holtr.estimate4box.caption
+msgid "Extract half entrance angle from model - Ie"
+msgstr ""
+
+#: tfreeresistance_holtr.estimatebox.caption
+msgctxt "tfreeresistance_holtr.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_holtr.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_holtr.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_holtr.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_holtr.groupbox3.caption
+msgctxt "tfreeresistance_holtr.groupbox3.caption"
+msgid "Added data input:"
+msgstr ""
+
+#: tfreeresistance_holtr.groupbox4.caption
+msgid "Appendage areas input, [m^2]:"
+msgstr ""
+
+#: tfreeresistance_holtr.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_holtr.label10.caption
+msgctxt "tfreeresistance_holtr.label10.caption"
+msgid "Bulbous area on F.P., m^2"
+msgstr ""
+
+#: tfreeresistance_holtr.label11.caption
+msgid "Z COG of bulbous area, m"
+msgstr ""
+
+#: tfreeresistance_holtr.label13.caption
+msgctxt "tfreeresistance_holtr.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_holtr.label14.caption
+msgctxt "tfreeresistance_holtr.label14.caption"
+msgid "Form stern coefficient"
+msgstr ""
+
+#: tfreeresistance_holtr.label15.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label15.caption"
+msgid "Number of propellers"
+msgstr "So luong chan vit                                                 "
+
+#: tfreeresistance_holtr.label16.caption
+msgctxt "tfreeresistance_holtr.label16.caption"
+msgid "Propeller diametr, m"
+msgstr ""
+
+#: tfreeresistance_holtr.label17.caption
+msgctxt "tfreeresistance_holtr.label17.caption"
+msgid "Absolute roughness, mkm"
+msgstr ""
+
+#: tfreeresistance_holtr.label2.caption
+msgctxt "tfreeresistance_holtr.label2.caption"
+msgid "End speed "
+msgstr ""
+
+#: tfreeresistance_holtr.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label20.caption"
+msgid "Midship draft"
+msgstr "Luong mon nuoc trung binh"
+
+#: tfreeresistance_holtr.label21.caption
+msgctxt "tfreeresistance_holtr.label21.caption"
+msgid "Different"
+msgstr ""
+
+#: tfreeresistance_holtr.label22.caption
+msgctxt "tfreeresistance_holtr.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_holtr.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_holtr.label24.caption
+msgctxt "tfreeresistance_holtr.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_holtr.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_holtr.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_holtr.label27.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label27.caption"
+msgid "Waterplane area"
+msgstr "Dien tich duong nuoc"
+
+#: tfreeresistance_holtr.label28.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label28.caption"
+msgid "Skeg"
+msgstr "chan de san"
+
+#: tfreeresistance_holtr.label281.caption
+msgid "Keel and skeg area, [m^2]:"
+msgstr ""
+
+#: tfreeresistance_holtr.label29.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label29.caption"
+msgid "Bilge keels"
+msgstr "Song day tau"
+
+#: tfreeresistance_holtr.label3.caption
+msgctxt "tfreeresistance_holtr.label3.caption"
+msgid "Step"
+msgstr ""
+
+#: tfreeresistance_holtr.label30.caption
+msgctxt "tfreeresistance_holtr.label30.caption"
+msgid "Shaft brackets"
+msgstr ""
+
+#: tfreeresistance_holtr.label31.caption
+msgctxt "tfreeresistance_holtr.label31.caption"
+msgid "Strut bossing"
+msgstr ""
+
+#: tfreeresistance_holtr.label32.caption
+msgctxt "tfreeresistance_holtr.label32.caption"
+msgid "Hull bossing"
+msgstr ""
+
+#: tfreeresistance_holtr.label33.caption
+msgid "Exposed shafts, [m^2]:"
+msgstr ""
+
+#: tfreeresistance_holtr.label34.caption
+msgctxt "tfreeresistance_holtr.label34.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr.label35.caption
+msgctxt "tfreeresistance_holtr.label35.caption"
+msgid "Angle with battoks about 10"
+msgstr ""
+
+#: tfreeresistance_holtr.label36.caption
+msgctxt "tfreeresistance_holtr.label36.caption"
+msgid "Angle with battoks about 20"
+msgstr ""
+
+#: tfreeresistance_holtr.label37.caption
+msgctxt "tfreeresistance_holtr.label37.caption"
+msgid "Stabiliser fins"
+msgstr ""
+
+#: tfreeresistance_holtr.label38.caption
+msgctxt "tfreeresistance_holtr.label38.caption"
+msgid "Dome"
+msgstr ""
+
+#: tfreeresistance_holtr.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_holtr.label5.caption
+msgctxt "tfreeresistance_holtr.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_holtr.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.label6.caption"
+msgid "Rudder behind skeg/stern"
+msgstr "Banh lai sau chan de/duoi"
+
+#: tfreeresistance_holtr.label61.caption
+msgid "Rudders area, [m^2]:"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_1.caption
+msgctxt "tfreeresistance_holtr.label6_1.caption"
+msgid "Time ship hull is in water, month"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_10.caption
+msgctxt "tfreeresistance_holtr.label6_10.caption"
+msgid "Wetted area of midship, m^2"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_11.caption
+msgctxt "tfreeresistance_holtr.label6_11.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_12.caption
+msgctxt "tfreeresistance_holtr.label6_12.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_2.caption
+msgctxt "tfreeresistance_holtr.label6_2.caption"
+msgid "Height of 3% wave, m "
+msgstr ""
+
+#: tfreeresistance_holtr.label6_3.caption
+msgctxt "tfreeresistance_holtr.label6_3.caption"
+msgid "Course angle of moving wave, degree"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_4.caption
+msgctxt "tfreeresistance_holtr.label6_4.caption"
+msgid "Wind speed, m/s"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_5.caption
+msgctxt "tfreeresistance_holtr.label6_5.caption"
+msgid "Course wind angle, degree"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_6.caption
+msgctxt "tfreeresistance_holtr.label6_6.caption"
+msgid "Height of board above water, m"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_7.caption
+msgctxt "tfreeresistance_holtr.label6_7.caption"
+msgid "Air density, kg/m^3"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_8.caption
+msgctxt "tfreeresistance_holtr.label6_8.caption"
+msgid "Height of COG area of superstructure above waterline, m"
+msgstr ""
+
+#: tfreeresistance_holtr.label6_9.caption
+msgctxt "tfreeresistance_holtr.label6_9.caption"
+msgid "Depth of water, m"
+msgstr ""
+
+#: tfreeresistance_holtr.label7.caption
+msgctxt "tfreeresistance_holtr.label7.caption"
+msgid "Two-screw slender"
+msgstr ""
+
+#: tfreeresistance_holtr.label8.caption
+msgctxt "tfreeresistance_holtr.label8.caption"
+msgid "Sea margin coefficient"
+msgstr ""
+
+#: tfreeresistance_holtr.label9.caption
+msgid "Transom wetted area, m^2"
+msgstr ""
+
+#: tfreeresistance_holtr.printbutton.caption
+msgctxt "tfreeresistance_holtr.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_holtr.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_holtr.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_holtr.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_holtr.results2.caption
+msgctxt "tfreeresistance_holtr.results2.caption"
+msgid "Help"
+msgstr ""
+
+#: tfreeresistance_holtr.toolbar1.caption
+msgctxt "tfreeresistance_holtr.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_holtr.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_holtr.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_holtr.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_holtr._label10.caption
+msgctxt "tfreeresistance_holtr._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr._label11.caption
+msgctxt "tfreeresistance_holtr._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr._label12.caption
+msgctxt "tfreeresistance_holtr._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr._label14.caption
+msgctxt "tfreeresistance_holtr._label14.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr._label15.caption
+msgctxt "tfreeresistance_holtr._label15.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr._label16.caption
+msgctxt "tfreeresistance_holtr._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_holtr._label31.caption
+msgctxt "tfreeresistance_holtr._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_holtr._label32.caption
+msgctxt "tfreeresistance_holtr._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_holtr._label33.caption
+msgctxt "tfreeresistance_holtr._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_holtr._label36.caption
+msgctxt "tfreeresistance_holtr._label36.caption"
+msgid "*10-6  m2/s"
+msgstr ""
+
+#: tfreeresistance_holtr._label8.caption
+msgctxt "tfreeresistance_holtr._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr._label9.caption
+msgctxt "tfreeresistance_holtr._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_holtr._toolbutton10.caption
+msgctxt "tfreeresistance_holtr._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_holtr._toolbutton14.caption
+msgctxt "tfreeresistance_holtr._toolbutton14.caption"
+msgid "_ToolButton14"
 msgstr ""
 
 #: tfreeresistance_kaper.caption
 msgid "Kaper resistance calculation."
 msgstr "Tinh luc can theo phuong phap Kaper cho cano."
 
-#: tfreeresistance_kaper.chart.axislist[0].title.caption
-msgid "Resistance [Lbs]"
-msgstr ""
-
-#: tfreeresistance_kaper.chart.axislist[1].title.caption
-msgid "Speed [knots]"
-msgstr ""
-
 #: tfreeresistance_kaper.checkbox2.caption
+msgctxt "tfreeresistance_kaper.checkbox2.caption"
 msgid "Extract data from current hull"
 msgstr "Lay cac thong so cua du an hien thoi"
 
@@ -7586,6 +9522,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label17.caption
+msgctxt "tfreeresistance_kaper.label17.caption"
 msgid "LCB"
 msgstr "LCB"
 
@@ -7594,10 +9531,12 @@ msgid "Subm. transom ratio"
 msgstr "Dien tich duoi ngap nuoc cua tau"
 
 #: tfreeresistance_kaper.label2.caption
+msgctxt "tfreeresistance_kaper.label2.caption"
 msgid "Length waterline"
 msgstr "Chieu dai theo duong nuoc"
 
 #: tfreeresistance_kaper.label3.caption
+msgctxt "tfreeresistance_kaper.label3.caption"
 msgid "Beam waterline"
 msgstr "Chieu rong theo duong nuoc"
 
@@ -7618,6 +9557,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label8.caption
+msgctxt "tfreeresistance_kaper.label8.caption"
 msgid "Cp"
 msgstr "Cp"
 
@@ -7627,6 +9567,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.printbutton.caption
+msgctxt "tfreeresistance_kaper.printbutton.caption"
 msgid "PrintButton"
 msgstr ""
 
@@ -7668,6 +9609,1976 @@ msgstr ""
 
 #: tfreeresistance_kaper._toolbutton14.caption
 msgctxt "tfreeresistance_kaper._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_mh.a11box.text
+msgctxt "tfreeresistance_mh.a11box.text"
+msgid "Passenger ship and ferry"
+msgstr ""
+
+#: tfreeresistance_mh.caption
+msgid "Resistance for multihull ships"
+msgstr ""
+
+#: tfreeresistance_mh.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_mh.combobox.text
+msgid "model tests"
+msgstr ""
+
+#: tfreeresistance_mh.data2.caption
+msgctxt "tfreeresistance_mh.data2.caption"
+msgid "Added data"
+msgstr ""
+
+#: tfreeresistance_mh.estimate2box.caption
+msgctxt "tfreeresistance_mh.estimate2box.caption"
+msgid "Use calculated"
+msgstr ""
+
+#: tfreeresistance_mh.estimatebox.caption
+msgctxt "tfreeresistance_mh.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_mh.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_mh.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_mh.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_mh.groupbox3.caption
+msgctxt "tfreeresistance_mh.groupbox3.caption"
+msgid "Added data input:"
+msgstr ""
+
+#: tfreeresistance_mh.groupbox4.caption
+msgctxt "tfreeresistance_mh.groupbox4.caption"
+msgid "Number of appendages :"
+msgstr ""
+
+#: tfreeresistance_mh.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_mh.label10.caption
+msgctxt "tfreeresistance_mh.label10.caption"
+msgid "Type of forward stern"
+msgstr ""
+
+#: tfreeresistance_mh.label11.caption
+msgctxt "tfreeresistance_mh.label11.caption"
+msgid "Type of after stern"
+msgstr ""
+
+#: tfreeresistance_mh.label13.caption
+msgctxt "tfreeresistance_mh.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_mh.label15.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label15.caption"
+msgid "Number of propellers"
+msgstr "So luong chan vit                                                 "
+
+#: tfreeresistance_mh.label16.caption
+msgctxt "tfreeresistance_mh.label16.caption"
+msgid "Propeller diametr, m"
+msgstr ""
+
+#: tfreeresistance_mh.label17.caption
+msgctxt "tfreeresistance_mh.label17.caption"
+msgid "Absolute roughness, mkm"
+msgstr ""
+
+#: tfreeresistance_mh.label19.caption
+msgid "Calculation by the method:"
+msgstr ""
+
+#: tfreeresistance_mh.label2.caption
+msgctxt "tfreeresistance_mh.label2.caption"
+msgid "End speed "
+msgstr ""
+
+#: tfreeresistance_mh.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label20.caption"
+msgid "Midship draft"
+msgstr "Luong mon nuoc trung binh"
+
+#: tfreeresistance_mh.label21.caption
+msgctxt "tfreeresistance_mh.label21.caption"
+msgid "Different"
+msgstr ""
+
+#: tfreeresistance_mh.label22.caption
+msgctxt "tfreeresistance_mh.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_mh.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_mh.label24.caption
+msgctxt "tfreeresistance_mh.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_mh.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_mh.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_mh.label27.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label27.caption"
+msgid "Waterplane area"
+msgstr "Dien tich duong nuoc"
+
+#: tfreeresistance_mh.label281.caption
+msgctxt "tfreeresistance_mh.label281.caption"
+msgid "Keel and skeg:"
+msgstr ""
+
+#: tfreeresistance_mh.label3.caption
+msgctxt "tfreeresistance_mh.label3.caption"
+msgid "Step"
+msgstr ""
+
+#: tfreeresistance_mh.label30.caption
+msgctxt "tfreeresistance_mh.label30.caption"
+msgid "Shaft brackets"
+msgstr ""
+
+#: tfreeresistance_mh.label31.caption
+msgctxt "tfreeresistance_mh.label31.caption"
+msgid "Strut bossing"
+msgstr ""
+
+#: tfreeresistance_mh.label32.caption
+msgctxt "tfreeresistance_mh.label32.caption"
+msgid "Hull bossing"
+msgstr ""
+
+#: tfreeresistance_mh.label33.caption
+msgctxt "tfreeresistance_mh.label33.caption"
+msgid "Exposed shafts:"
+msgstr ""
+
+#: tfreeresistance_mh.label34.caption
+msgctxt "tfreeresistance_mh.label34.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh.label35.caption
+msgctxt "tfreeresistance_mh.label35.caption"
+msgid "Angle with battoks about 10"
+msgstr ""
+
+#: tfreeresistance_mh.label36.caption
+msgctxt "tfreeresistance_mh.label36.caption"
+msgid "Angle with battoks about 20"
+msgstr ""
+
+#: tfreeresistance_mh.label37.caption
+msgctxt "tfreeresistance_mh.label37.caption"
+msgid "Stabiliser fins"
+msgstr ""
+
+#: tfreeresistance_mh.label38.caption
+msgctxt "tfreeresistance_mh.label38.caption"
+msgid "Dome"
+msgstr ""
+
+#: tfreeresistance_mh.label39.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label39.caption"
+msgid "Skeg"
+msgstr "chan de san"
+
+#: tfreeresistance_mh.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_mh.label40.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label40.caption"
+msgid "Bilge keels"
+msgstr "Song day tau"
+
+#: tfreeresistance_mh.label5.caption
+msgctxt "tfreeresistance_mh.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_mh.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.label6.caption"
+msgid "Rudder behind skeg/stern"
+msgstr "Banh lai sau chan de/duoi"
+
+#: tfreeresistance_mh.label61.caption
+msgctxt "tfreeresistance_mh.label61.caption"
+msgid "Presence of rudders (0-No, 1-Yes):"
+msgstr ""
+
+#: tfreeresistance_mh.label6_1.caption
+msgctxt "tfreeresistance_mh.label6_1.caption"
+msgid "Time ship hull is in water, month"
+msgstr ""
+
+#: tfreeresistance_mh.label6_10.caption
+msgctxt "tfreeresistance_mh.label6_10.caption"
+msgid "Wetted area of midship, m^2"
+msgstr ""
+
+#: tfreeresistance_mh.label6_11.caption
+msgctxt "tfreeresistance_mh.label6_11.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_mh.label6_2.caption
+msgctxt "tfreeresistance_mh.label6_2.caption"
+msgid "Height of 3% wave, m "
+msgstr ""
+
+#: tfreeresistance_mh.label6_3.caption
+msgctxt "tfreeresistance_mh.label6_3.caption"
+msgid "Course angle of moving wave, degree"
+msgstr ""
+
+#: tfreeresistance_mh.label6_4.caption
+msgctxt "tfreeresistance_mh.label6_4.caption"
+msgid "Wind speed, m/s"
+msgstr ""
+
+#: tfreeresistance_mh.label6_5.caption
+msgctxt "tfreeresistance_mh.label6_5.caption"
+msgid "Course wind angle, degree"
+msgstr ""
+
+#: tfreeresistance_mh.label6_6.caption
+msgctxt "tfreeresistance_mh.label6_6.caption"
+msgid "Height of board above water, m"
+msgstr ""
+
+#: tfreeresistance_mh.label6_7.caption
+msgctxt "tfreeresistance_mh.label6_7.caption"
+msgid "Air density, kg/m^3"
+msgstr ""
+
+#: tfreeresistance_mh.label6_8.caption
+msgctxt "tfreeresistance_mh.label6_8.caption"
+msgid "Height of COG area of superstructure above waterline, m"
+msgstr ""
+
+#: tfreeresistance_mh.label6_9.caption
+msgctxt "tfreeresistance_mh.label6_9.caption"
+msgid "Depth of water, m"
+msgstr ""
+
+#: tfreeresistance_mh.label7.caption
+msgctxt "tfreeresistance_mh.label7.caption"
+msgid "Two-screw slender"
+msgstr ""
+
+#: tfreeresistance_mh.label8.caption
+msgctxt "tfreeresistance_mh.label8.caption"
+msgid "Exploitation coefficient"
+msgstr ""
+
+#: tfreeresistance_mh.label9.caption
+msgctxt "tfreeresistance_mh.label9.caption"
+msgid "Number of series ships"
+msgstr ""
+
+#: tfreeresistance_mh.printbutton.caption
+msgctxt "tfreeresistance_mh.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_mh.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_mh.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_mh.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_mh.results2.caption
+msgctxt "tfreeresistance_mh.results2.caption"
+msgid "Help"
+msgstr ""
+
+#: tfreeresistance_mh.toolbar1.caption
+msgctxt "tfreeresistance_mh.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_mh.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_mh.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_mh.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_mh.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_mh.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_mh.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_mh._label10.caption
+msgctxt "tfreeresistance_mh._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh._label11.caption
+msgctxt "tfreeresistance_mh._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh._label12.caption
+msgctxt "tfreeresistance_mh._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh._label14.caption
+msgctxt "tfreeresistance_mh._label14.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh._label15.caption
+msgctxt "tfreeresistance_mh._label15.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh._label16.caption
+msgctxt "tfreeresistance_mh._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_mh._label31.caption
+msgctxt "tfreeresistance_mh._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_mh._label32.caption
+msgctxt "tfreeresistance_mh._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_mh._label33.caption
+msgctxt "tfreeresistance_mh._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_mh._label36.caption
+msgctxt "tfreeresistance_mh._label36.caption"
+msgid "*10-6  m2/s"
+msgstr ""
+
+#: tfreeresistance_mh._label8.caption
+msgctxt "tfreeresistance_mh._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh._label9.caption
+msgctxt "tfreeresistance_mh._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_mh._toolbutton10.caption
+msgctxt "tfreeresistance_mh._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_mh._toolbutton14.caption
+msgctxt "tfreeresistance_mh._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_oortmer.a11box.text
+msgctxt "tfreeresistance_oortmer.a11box.text"
+msgid "Passenger ship and ferry"
+msgstr ""
+
+#: tfreeresistance_oortmer.caption
+msgid "Resistance for small displacement ships methods"
+msgstr ""
+
+#: tfreeresistance_oortmer.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_oortmer.combobox.text
+msgid "van Oortmerssen 1971"
+msgstr ""
+
+#: tfreeresistance_oortmer.data2.caption
+msgctxt "tfreeresistance_oortmer.data2.caption"
+msgid "Added data"
+msgstr ""
+
+#: tfreeresistance_oortmer.estimate2box.caption
+msgctxt "tfreeresistance_oortmer.estimate2box.caption"
+msgid "Use calculated"
+msgstr ""
+
+#: tfreeresistance_oortmer.estimatebox.caption
+msgctxt "tfreeresistance_oortmer.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_oortmer.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_oortmer.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_oortmer.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_oortmer.groupbox3.caption
+msgctxt "tfreeresistance_oortmer.groupbox3.caption"
+msgid "Added data input:"
+msgstr ""
+
+#: tfreeresistance_oortmer.groupbox4.caption
+msgctxt "tfreeresistance_oortmer.groupbox4.caption"
+msgid "Number of appendages :"
+msgstr ""
+
+#: tfreeresistance_oortmer.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_oortmer.label10.caption
+msgctxt "tfreeresistance_oortmer.label10.caption"
+msgid "1/2 entrance angle, degr"
+msgstr ""
+
+#: tfreeresistance_oortmer.label11.caption
+msgctxt "tfreeresistance_oortmer.label11.caption"
+msgid "Full Cargo or Ballast (0...1)"
+msgstr ""
+
+#: tfreeresistance_oortmer.label13.caption
+msgctxt "tfreeresistance_oortmer.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_oortmer.label14.caption
+msgctxt "tfreeresistance_oortmer.label14.caption"
+msgid "Form stern coefficient"
+msgstr ""
+
+#: tfreeresistance_oortmer.label15.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label15.caption"
+msgid "Number of propellers"
+msgstr "So luong chan vit                                                 "
+
+#: tfreeresistance_oortmer.label16.caption
+msgctxt "tfreeresistance_oortmer.label16.caption"
+msgid "Propeller diameter, m"
+msgstr ""
+
+#: tfreeresistance_oortmer.label17.caption
+msgctxt "tfreeresistance_oortmer.label17.caption"
+msgid "Absolute roughness, mkm"
+msgstr ""
+
+#: tfreeresistance_oortmer.label2.caption
+msgctxt "tfreeresistance_oortmer.label2.caption"
+msgid "End speed "
+msgstr ""
+
+#: tfreeresistance_oortmer.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label20.caption"
+msgid "Midship draft"
+msgstr "Luong mon nuoc trung binh"
+
+#: tfreeresistance_oortmer.label21.caption
+msgctxt "tfreeresistance_oortmer.label21.caption"
+msgid "Different"
+msgstr ""
+
+#: tfreeresistance_oortmer.label22.caption
+msgctxt "tfreeresistance_oortmer.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_oortmer.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_oortmer.label24.caption
+msgctxt "tfreeresistance_oortmer.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_oortmer.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_oortmer.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_oortmer.label27.caption
+msgctxt "tfreeresistance_oortmer.label27.caption"
+msgid "Length over surface"
+msgstr ""
+
+#: tfreeresistance_oortmer.label28.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label28.caption"
+msgid "Skeg"
+msgstr "chan de san"
+
+#: tfreeresistance_oortmer.label281.caption
+msgctxt "tfreeresistance_oortmer.label281.caption"
+msgid "Keel and skeg:"
+msgstr ""
+
+#: tfreeresistance_oortmer.label29.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label29.caption"
+msgid "Bilge keels"
+msgstr "Song day tau"
+
+#: tfreeresistance_oortmer.label3.caption
+msgctxt "tfreeresistance_oortmer.label3.caption"
+msgid "Step"
+msgstr ""
+
+#: tfreeresistance_oortmer.label30.caption
+msgctxt "tfreeresistance_oortmer.label30.caption"
+msgid "Shaft brackets"
+msgstr ""
+
+#: tfreeresistance_oortmer.label31.caption
+msgctxt "tfreeresistance_oortmer.label31.caption"
+msgid "Strut bossing"
+msgstr ""
+
+#: tfreeresistance_oortmer.label32.caption
+msgctxt "tfreeresistance_oortmer.label32.caption"
+msgid "Hull bossing"
+msgstr ""
+
+#: tfreeresistance_oortmer.label33.caption
+msgctxt "tfreeresistance_oortmer.label33.caption"
+msgid "Exposed shafts:"
+msgstr ""
+
+#: tfreeresistance_oortmer.label34.caption
+msgctxt "tfreeresistance_oortmer.label34.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer.label35.caption
+msgctxt "tfreeresistance_oortmer.label35.caption"
+msgid "Angle with battoks about 10"
+msgstr ""
+
+#: tfreeresistance_oortmer.label36.caption
+msgctxt "tfreeresistance_oortmer.label36.caption"
+msgid "Angle with battoks about 20"
+msgstr ""
+
+#: tfreeresistance_oortmer.label37.caption
+msgctxt "tfreeresistance_oortmer.label37.caption"
+msgid "Stabiliser fins"
+msgstr ""
+
+#: tfreeresistance_oortmer.label38.caption
+msgctxt "tfreeresistance_oortmer.label38.caption"
+msgid "Dome"
+msgstr ""
+
+#: tfreeresistance_oortmer.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_oortmer.label48.caption
+msgctxt "tfreeresistance_oortmer.label48.caption"
+msgid "Calculation method:"
+msgstr ""
+
+#: tfreeresistance_oortmer.label5.caption
+msgctxt "tfreeresistance_oortmer.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.label6.caption"
+msgid "Rudder behind skeg/stern"
+msgstr "Banh lai sau chan de/duoi"
+
+#: tfreeresistance_oortmer.label61.caption
+msgctxt "tfreeresistance_oortmer.label61.caption"
+msgid "Presence of rudders (0-No, 1-Yes):"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_1.caption
+msgctxt "tfreeresistance_oortmer.label6_1.caption"
+msgid "Time ship hull is in water, month"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_10.caption
+msgctxt "tfreeresistance_oortmer.label6_10.caption"
+msgid "Wetted area of midship, m^2"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_11.caption
+msgctxt "tfreeresistance_oortmer.label6_11.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_2.caption
+msgctxt "tfreeresistance_oortmer.label6_2.caption"
+msgid "Height of 3% wave, m "
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_3.caption
+msgctxt "tfreeresistance_oortmer.label6_3.caption"
+msgid "Course angle of moving wave, degree"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_4.caption
+msgctxt "tfreeresistance_oortmer.label6_4.caption"
+msgid "Wind speed, m/s"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_5.caption
+msgctxt "tfreeresistance_oortmer.label6_5.caption"
+msgid "Course wind angle, degree"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_6.caption
+msgctxt "tfreeresistance_oortmer.label6_6.caption"
+msgid "Height of board above water, m"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_7.caption
+msgctxt "tfreeresistance_oortmer.label6_7.caption"
+msgid "Air density, kg/m^3"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_8.caption
+msgctxt "tfreeresistance_oortmer.label6_8.caption"
+msgid "Height of COG area of superstructure above waterline, m"
+msgstr ""
+
+#: tfreeresistance_oortmer.label6_9.caption
+msgctxt "tfreeresistance_oortmer.label6_9.caption"
+msgid "Depth of water, m"
+msgstr ""
+
+#: tfreeresistance_oortmer.label7.caption
+msgctxt "tfreeresistance_oortmer.label7.caption"
+msgid "Two-screw slender"
+msgstr ""
+
+#: tfreeresistance_oortmer.label8.caption
+msgctxt "tfreeresistance_oortmer.label8.caption"
+msgid "Sea margin coefficient"
+msgstr ""
+
+#: tfreeresistance_oortmer.label9.caption
+msgctxt "tfreeresistance_oortmer.label9.caption"
+msgid "Number of thrusters (0...2)"
+msgstr ""
+
+#: tfreeresistance_oortmer.printbutton.caption
+msgctxt "tfreeresistance_oortmer.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_oortmer.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_oortmer.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_oortmer.results2.caption
+msgctxt "tfreeresistance_oortmer.results2.caption"
+msgid "Help"
+msgstr ""
+
+#: tfreeresistance_oortmer.toolbar1.caption
+msgctxt "tfreeresistance_oortmer.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_oortmer.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_oortmer.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_oortmer.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_oortmer._label10.caption
+msgctxt "tfreeresistance_oortmer._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer._label11.caption
+msgctxt "tfreeresistance_oortmer._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer._label12.caption
+msgctxt "tfreeresistance_oortmer._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer._label14.caption
+msgctxt "tfreeresistance_oortmer._label14.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer._label15.caption
+msgctxt "tfreeresistance_oortmer._label15.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer._label16.caption
+msgctxt "tfreeresistance_oortmer._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_oortmer._label31.caption
+msgctxt "tfreeresistance_oortmer._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_oortmer._label32.caption
+msgctxt "tfreeresistance_oortmer._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_oortmer._label33.caption
+msgctxt "tfreeresistance_oortmer._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_oortmer._label36.caption
+msgctxt "tfreeresistance_oortmer._label36.caption"
+msgid "*10-6  m2/s"
+msgstr ""
+
+#: tfreeresistance_oortmer._label8.caption
+msgctxt "tfreeresistance_oortmer._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer._label9.caption
+msgctxt "tfreeresistance_oortmer._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_oortmer._toolbutton10.caption
+msgctxt "tfreeresistance_oortmer._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_oortmer._toolbutton14.caption
+msgctxt "tfreeresistance_oortmer._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_ost.a11box.text
+msgctxt "tfreeresistance_ost.a11box.text"
+msgid "Passenger ship and ferry"
+msgstr ""
+
+#: tfreeresistance_ost.caption
+msgctxt "tfreeresistance_ost.caption"
+msgid "Resistance for displacement ships"
+msgstr ""
+
+#: tfreeresistance_ost.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_ost.combobox.text
+msgctxt "tfreeresistance_ost.combobox.text"
+msgid "Any displacement ships"
+msgstr ""
+
+#: tfreeresistance_ost.data2.caption
+msgctxt "tfreeresistance_ost.data2.caption"
+msgid "Added data"
+msgstr ""
+
+#: tfreeresistance_ost.estimate2box.caption
+msgctxt "tfreeresistance_ost.estimate2box.caption"
+msgid "Use calculated"
+msgstr ""
+
+#: tfreeresistance_ost.estimatebox.caption
+msgctxt "tfreeresistance_ost.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_ost.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_ost.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_ost.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_ost.groupbox3.caption
+msgctxt "tfreeresistance_ost.groupbox3.caption"
+msgid "Added data input:"
+msgstr ""
+
+#: tfreeresistance_ost.groupbox4.caption
+msgctxt "tfreeresistance_ost.groupbox4.caption"
+msgid "Number of appendages :"
+msgstr ""
+
+#: tfreeresistance_ost.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_ost.label10.caption
+msgctxt "tfreeresistance_ost.label10.caption"
+msgid "Type of forward stern"
+msgstr ""
+
+#: tfreeresistance_ost.label11.caption
+msgctxt "tfreeresistance_ost.label11.caption"
+msgid "Type of after stern"
+msgstr ""
+
+#: tfreeresistance_ost.label13.caption
+msgctxt "tfreeresistance_ost.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_ost.label15.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label15.caption"
+msgid "Number of propellers"
+msgstr "So luong chan vit                                                 "
+
+#: tfreeresistance_ost.label16.caption
+msgctxt "tfreeresistance_ost.label16.caption"
+msgid "Propeller diametr, m"
+msgstr ""
+
+#: tfreeresistance_ost.label17.caption
+msgctxt "tfreeresistance_ost.label17.caption"
+msgid "Absolute roughness, mkm"
+msgstr ""
+
+#: tfreeresistance_ost.label19.caption
+msgctxt "tfreeresistance_ost.label19.caption"
+msgid "Type of ships:"
+msgstr ""
+
+#: tfreeresistance_ost.label2.caption
+msgctxt "tfreeresistance_ost.label2.caption"
+msgid "End speed "
+msgstr ""
+
+#: tfreeresistance_ost.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label20.caption"
+msgid "Midship draft"
+msgstr "Luong mon nuoc trung binh"
+
+#: tfreeresistance_ost.label21.caption
+msgctxt "tfreeresistance_ost.label21.caption"
+msgid "Different"
+msgstr ""
+
+#: tfreeresistance_ost.label22.caption
+msgctxt "tfreeresistance_ost.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_ost.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_ost.label24.caption
+msgctxt "tfreeresistance_ost.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_ost.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_ost.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_ost.label27.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label27.caption"
+msgid "Waterplane area"
+msgstr "Dien tich duong nuoc"
+
+#: tfreeresistance_ost.label281.caption
+msgctxt "tfreeresistance_ost.label281.caption"
+msgid "Keel and skeg:"
+msgstr ""
+
+#: tfreeresistance_ost.label3.caption
+msgctxt "tfreeresistance_ost.label3.caption"
+msgid "Step"
+msgstr ""
+
+#: tfreeresistance_ost.label30.caption
+msgctxt "tfreeresistance_ost.label30.caption"
+msgid "Shaft brackets"
+msgstr ""
+
+#: tfreeresistance_ost.label31.caption
+msgctxt "tfreeresistance_ost.label31.caption"
+msgid "Strut bossing"
+msgstr ""
+
+#: tfreeresistance_ost.label32.caption
+msgctxt "tfreeresistance_ost.label32.caption"
+msgid "Hull bossing"
+msgstr ""
+
+#: tfreeresistance_ost.label33.caption
+msgctxt "tfreeresistance_ost.label33.caption"
+msgid "Exposed shafts:"
+msgstr ""
+
+#: tfreeresistance_ost.label34.caption
+msgctxt "tfreeresistance_ost.label34.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost.label35.caption
+msgctxt "tfreeresistance_ost.label35.caption"
+msgid "Angle with battoks about 10"
+msgstr ""
+
+#: tfreeresistance_ost.label36.caption
+msgctxt "tfreeresistance_ost.label36.caption"
+msgid "Angle with battoks about 20"
+msgstr ""
+
+#: tfreeresistance_ost.label37.caption
+msgctxt "tfreeresistance_ost.label37.caption"
+msgid "Stabiliser fins"
+msgstr ""
+
+#: tfreeresistance_ost.label38.caption
+msgctxt "tfreeresistance_ost.label38.caption"
+msgid "Dome"
+msgstr ""
+
+#: tfreeresistance_ost.label39.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label39.caption"
+msgid "Skeg"
+msgstr "chan de san"
+
+#: tfreeresistance_ost.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_ost.label40.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label40.caption"
+msgid "Bilge keels"
+msgstr "Song day tau"
+
+#: tfreeresistance_ost.label5.caption
+msgctxt "tfreeresistance_ost.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_ost.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.label6.caption"
+msgid "Rudder behind skeg/stern"
+msgstr "Banh lai sau chan de/duoi"
+
+#: tfreeresistance_ost.label61.caption
+msgctxt "tfreeresistance_ost.label61.caption"
+msgid "Presence of rudders (0-No, 1-Yes):"
+msgstr ""
+
+#: tfreeresistance_ost.label6_1.caption
+msgctxt "tfreeresistance_ost.label6_1.caption"
+msgid "Time ship hull is in water, month"
+msgstr ""
+
+#: tfreeresistance_ost.label6_10.caption
+msgctxt "tfreeresistance_ost.label6_10.caption"
+msgid "Wetted area of midship, m^2"
+msgstr ""
+
+#: tfreeresistance_ost.label6_11.caption
+msgctxt "tfreeresistance_ost.label6_11.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_ost.label6_2.caption
+msgctxt "tfreeresistance_ost.label6_2.caption"
+msgid "Height of 3% wave, m "
+msgstr ""
+
+#: tfreeresistance_ost.label6_3.caption
+msgctxt "tfreeresistance_ost.label6_3.caption"
+msgid "Course angle of moving wave, degree"
+msgstr ""
+
+#: tfreeresistance_ost.label6_4.caption
+msgctxt "tfreeresistance_ost.label6_4.caption"
+msgid "Wind speed, m/s"
+msgstr ""
+
+#: tfreeresistance_ost.label6_5.caption
+msgctxt "tfreeresistance_ost.label6_5.caption"
+msgid "Course wind angle, degree"
+msgstr ""
+
+#: tfreeresistance_ost.label6_6.caption
+msgctxt "tfreeresistance_ost.label6_6.caption"
+msgid "Height of board above water, m"
+msgstr ""
+
+#: tfreeresistance_ost.label6_7.caption
+msgctxt "tfreeresistance_ost.label6_7.caption"
+msgid "Air density, kg/m^3"
+msgstr ""
+
+#: tfreeresistance_ost.label6_8.caption
+msgctxt "tfreeresistance_ost.label6_8.caption"
+msgid "Height of COG area of superstructure above waterline, m"
+msgstr ""
+
+#: tfreeresistance_ost.label6_9.caption
+msgctxt "tfreeresistance_ost.label6_9.caption"
+msgid "Depth of water, m"
+msgstr ""
+
+#: tfreeresistance_ost.label7.caption
+msgctxt "tfreeresistance_ost.label7.caption"
+msgid "Two-screw slender"
+msgstr ""
+
+#: tfreeresistance_ost.label8.caption
+msgctxt "tfreeresistance_ost.label8.caption"
+msgid "Exploitation coefficient"
+msgstr ""
+
+#: tfreeresistance_ost.label9.caption
+msgctxt "tfreeresistance_ost.label9.caption"
+msgid "Number of series ships"
+msgstr ""
+
+#: tfreeresistance_ost.printbutton.caption
+msgctxt "tfreeresistance_ost.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_ost.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_ost.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_ost.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_ost.results2.caption
+msgctxt "tfreeresistance_ost.results2.caption"
+msgid "Help"
+msgstr ""
+
+#: tfreeresistance_ost.toolbar1.caption
+msgctxt "tfreeresistance_ost.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_ost.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_ost.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_ost.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_ost.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_ost.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_ost.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_ost._label10.caption
+msgctxt "tfreeresistance_ost._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost._label11.caption
+msgctxt "tfreeresistance_ost._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost._label12.caption
+msgctxt "tfreeresistance_ost._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost._label14.caption
+msgctxt "tfreeresistance_ost._label14.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost._label15.caption
+msgctxt "tfreeresistance_ost._label15.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost._label16.caption
+msgctxt "tfreeresistance_ost._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_ost._label31.caption
+msgctxt "tfreeresistance_ost._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_ost._label32.caption
+msgctxt "tfreeresistance_ost._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_ost._label33.caption
+msgctxt "tfreeresistance_ost._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_ost._label36.caption
+msgctxt "tfreeresistance_ost._label36.caption"
+msgid "*10-6  m2/s"
+msgstr ""
+
+#: tfreeresistance_ost._label8.caption
+msgctxt "tfreeresistance_ost._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost._label9.caption
+msgctxt "tfreeresistance_ost._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_ost._toolbutton10.caption
+msgctxt "tfreeresistance_ost._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_ost._toolbutton14.caption
+msgctxt "tfreeresistance_ost._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_planing.caption
+msgid "Planing resistance calculation."
+msgstr ""
+
+#: tfreeresistance_planing.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_planing.checkbox3.caption
+msgid "Add aerodynamic resistance"
+msgstr ""
+
+#: tfreeresistance_planing.checkbox4.caption
+msgid "Add appendage resistance with steady engine"
+msgstr ""
+
+#: tfreeresistance_planing.checkbox5.caption
+msgid "Add spray strip influence"
+msgstr ""
+
+#: tfreeresistance_planing.checkbox6.caption
+msgid "Add round bilge influence"
+msgstr ""
+
+#: tfreeresistance_planing.combobox.text
+msgid "Sedov-Perelmootre"
+msgstr ""
+
+#: tfreeresistance_planing.combobox1.text
+msgid "Waterjet"
+msgstr ""
+
+#: tfreeresistance_planing.edit6.hint
+msgid "0.40 .. 0.90"
+msgstr ""
+
+#: tfreeresistance_planing.label10.caption
+msgctxt "tfreeresistance_planing.label10.caption"
+msgid "[-]"
+msgstr ""
+
+#: tfreeresistance_planing.label11.caption
+msgctxt "tfreeresistance_planing.label11.caption"
+msgid "[-]"
+msgstr ""
+
+#: tfreeresistance_planing.label13.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label13.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_planing.label14.caption
+msgctxt "tfreeresistance_planing.label14.caption"
+msgid "[-]"
+msgstr ""
+
+#: tfreeresistance_planing.label15.caption
+msgid "Deadrise @ Amidships"
+msgstr ""
+
+#: tfreeresistance_planing.label16.caption
+msgctxt "tfreeresistance_planing.label16.caption"
+msgid "[-]"
+msgstr ""
+
+#: tfreeresistance_planing.label17.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label17.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_planing.label17_.caption
+msgctxt "tfreeresistance_planing.label17_.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_planing.label18.caption
+msgctxt "tfreeresistance_planing.label18.caption"
+msgid "[-]"
+msgstr ""
+
+#: tfreeresistance_planing.label19.caption
+msgid "Amidship area under water"
+msgstr ""
+
+#: tfreeresistance_planing.label19_.caption
+msgctxt "tfreeresistance_planing.label19_.caption"
+msgid "[m2]"
+msgstr ""
+
+#: tfreeresistance_planing.label2.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label2.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_planing.label20.caption
+msgid "Roughness allowance*10^3"
+msgstr ""
+
+#: tfreeresistance_planing.label21.caption
+msgid "Max. speed"
+msgstr ""
+
+#: tfreeresistance_planing.label21_.caption
+msgid "[kn]"
+msgstr ""
+
+#: tfreeresistance_planing.label22.caption
+msgctxt "tfreeresistance_planing.label22.caption"
+msgid "Calculation method:"
+msgstr ""
+
+#: tfreeresistance_planing.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label23.caption"
+msgid "Angle between Thrust and Keel lines"
+msgstr "Goc giua truc chan vit va duong thang chinh"
+
+#: tfreeresistance_planing.label23_.caption
+msgctxt "tfreeresistance_planing.label23_.caption"
+msgid "[degr]"
+msgstr ""
+
+#: tfreeresistance_planing.label24.caption
+msgid "Distance between Thrust line and CG"
+msgstr ""
+
+#: tfreeresistance_planing.label24_.caption
+msgctxt "tfreeresistance_planing.label24_.caption"
+msgid "[ft]"
+msgstr ""
+
+#: tfreeresistance_planing.label25.caption
+msgid "Diameter of propeller"
+msgstr ""
+
+#: tfreeresistance_planing.label25_.caption
+msgctxt "tfreeresistance_planing.label25_.caption"
+msgid "[ft]"
+msgstr ""
+
+#: tfreeresistance_planing.label26.caption
+msgid "Deadrise transom"
+msgstr ""
+
+#: tfreeresistance_planing.label26_.caption
+msgctxt "tfreeresistance_planing.label26_.caption"
+msgid "[degr]"
+msgstr ""
+
+#: tfreeresistance_planing.label27.caption
+msgid "Deadrise redan"
+msgstr ""
+
+#: tfreeresistance_planing.label27_.caption
+msgctxt "tfreeresistance_planing.label27_.caption"
+msgid "[degr]"
+msgstr ""
+
+#: tfreeresistance_planing.label28.caption
+msgid "Propulsor type:"
+msgstr ""
+
+#: tfreeresistance_planing.label3.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label3.caption"
+msgid "Beam waterline"
+msgstr "Chieu rong theo duong nuoc"
+
+#: tfreeresistance_planing.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label4.caption"
+msgid "Draft"
+msgstr "Luong mon nuoc"
+
+#: tfreeresistance_planing.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label6.caption"
+msgid "Wetted surface area"
+msgstr "Dien tich phan mat ngap nuoc"
+
+#: tfreeresistance_planing.label7.caption
+msgctxt "tfreeresistance_planing.label7.caption"
+msgid "[-]"
+msgstr ""
+
+#: tfreeresistance_planing.label8.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.label8.caption"
+msgid "Cp"
+msgstr "Cp"
+
+#: tfreeresistance_planing.label9.caption
+msgctxt "tfreeresistance_planing.label9.caption"
+msgid "[-]"
+msgstr ""
+
+#: tfreeresistance_planing.printbutton.caption
+msgctxt "tfreeresistance_planing.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_planing.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_planing.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_planing.tabsheet1.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.tabsheet1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_planing.tabsheet2.caption
+#, fuzzy
+msgctxt "tfreeresistance_planing.tabsheet2.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_planing.toolbar1.caption
+msgctxt "tfreeresistance_planing.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_planing.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_planing.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_planing.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_planing.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_planing._toolbutton10.caption
+msgctxt "tfreeresistance_planing._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_planing._toolbutton14.caption
+msgctxt "tfreeresistance_planing._toolbutton14.caption"
+msgid "_ToolButton14"
+msgstr ""
+
+#: tfreeresistance_rbhs.a11box.text
+msgctxt "tfreeresistance_rbhs.a11box.text"
+msgid "Passenger ship and ferry"
+msgstr ""
+
+#: tfreeresistance_rbhs.caption
+msgctxt "tfreeresistance_rbhs.caption"
+msgid "Resistance for displacement ships"
+msgstr ""
+
+#: tfreeresistance_rbhs.checkbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.checkbox2.caption"
+msgid "Extract data from current hull"
+msgstr "Lay cac thong so cua du an hien thoi"
+
+#: tfreeresistance_rbhs.combobox.text
+msgctxt "tfreeresistance_rbhs.combobox.text"
+msgid "Any displacement ships"
+msgstr ""
+
+#: tfreeresistance_rbhs.data2.caption
+msgctxt "tfreeresistance_rbhs.data2.caption"
+msgid "Added data"
+msgstr ""
+
+#: tfreeresistance_rbhs.estimate2box.caption
+msgctxt "tfreeresistance_rbhs.estimate2box.caption"
+msgid "Use calculated"
+msgstr ""
+
+#: tfreeresistance_rbhs.estimatebox.caption
+msgctxt "tfreeresistance_rbhs.estimatebox.caption"
+msgid "Use estimate"
+msgstr ""
+
+#: tfreeresistance_rbhs.general.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.general.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_rbhs.groupbox1.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.groupbox1.caption"
+msgid "General"
+msgstr "Cac thong so chinh"
+
+#: tfreeresistance_rbhs.groupbox2.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.groupbox2.caption"
+msgid "Hull"
+msgstr "Vo"
+
+#: tfreeresistance_rbhs.groupbox3.caption
+msgctxt "tfreeresistance_rbhs.groupbox3.caption"
+msgid "Added data input:"
+msgstr ""
+
+#: tfreeresistance_rbhs.groupbox4.caption
+msgctxt "tfreeresistance_rbhs.groupbox4.caption"
+msgid "Number of appendages :"
+msgstr ""
+
+#: tfreeresistance_rbhs.label1.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label1.caption"
+msgid "Start speed"
+msgstr "Van toc ban dau"
+
+#: tfreeresistance_rbhs.label10.caption
+msgctxt "tfreeresistance_rbhs.label10.caption"
+msgid "Type of forward stern"
+msgstr ""
+
+#: tfreeresistance_rbhs.label11.caption
+msgctxt "tfreeresistance_rbhs.label11.caption"
+msgid "Type of after stern"
+msgstr ""
+
+#: tfreeresistance_rbhs.label13.caption
+msgctxt "tfreeresistance_rbhs.label13.caption"
+msgid "Wetted surface"
+msgstr ""
+
+#: tfreeresistance_rbhs.label15.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label15.caption"
+msgid "Number of propellers"
+msgstr "So luong chan vit                                                 "
+
+#: tfreeresistance_rbhs.label16.caption
+msgctxt "tfreeresistance_rbhs.label16.caption"
+msgid "Propeller diametr, m"
+msgstr ""
+
+#: tfreeresistance_rbhs.label17.caption
+msgctxt "tfreeresistance_rbhs.label17.caption"
+msgid "Absolute roughness, mkm"
+msgstr ""
+
+#: tfreeresistance_rbhs.label19.caption
+msgctxt "tfreeresistance_rbhs.label19.caption"
+msgid "Type of ships:"
+msgstr ""
+
+#: tfreeresistance_rbhs.label2.caption
+msgctxt "tfreeresistance_rbhs.label2.caption"
+msgid "End speed "
+msgstr ""
+
+#: tfreeresistance_rbhs.label20.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label20.caption"
+msgid "Midship draft"
+msgstr "Luong mon nuoc trung binh"
+
+#: tfreeresistance_rbhs.label21.caption
+msgctxt "tfreeresistance_rbhs.label21.caption"
+msgid "Different"
+msgstr ""
+
+#: tfreeresistance_rbhs.label22.caption
+msgctxt "tfreeresistance_rbhs.label22.caption"
+msgid "Beam waterline "
+msgstr ""
+
+#: tfreeresistance_rbhs.label23.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label23.caption"
+msgid "Length waterline"
+msgstr "Chieu dai theo duong nuoc"
+
+#: tfreeresistance_rbhs.label24.caption
+msgctxt "tfreeresistance_rbhs.label24.caption"
+msgid "Prismatic coefficient "
+msgstr ""
+
+#: tfreeresistance_rbhs.label25.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label25.caption"
+msgid "LCB"
+msgstr "LCB"
+
+#: tfreeresistance_rbhs.label26.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label26.caption"
+msgid "Displacement"
+msgstr "Luong chiem nuoc"
+
+#: tfreeresistance_rbhs.label27.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label27.caption"
+msgid "Waterplane area"
+msgstr "Dien tich duong nuoc"
+
+#: tfreeresistance_rbhs.label281.caption
+msgctxt "tfreeresistance_rbhs.label281.caption"
+msgid "Keel and skeg:"
+msgstr ""
+
+#: tfreeresistance_rbhs.label3.caption
+msgctxt "tfreeresistance_rbhs.label3.caption"
+msgid "Step"
+msgstr ""
+
+#: tfreeresistance_rbhs.label30.caption
+msgctxt "tfreeresistance_rbhs.label30.caption"
+msgid "Shaft brackets"
+msgstr ""
+
+#: tfreeresistance_rbhs.label31.caption
+msgctxt "tfreeresistance_rbhs.label31.caption"
+msgid "Strut bossing"
+msgstr ""
+
+#: tfreeresistance_rbhs.label32.caption
+msgctxt "tfreeresistance_rbhs.label32.caption"
+msgid "Hull bossing"
+msgstr ""
+
+#: tfreeresistance_rbhs.label33.caption
+msgctxt "tfreeresistance_rbhs.label33.caption"
+msgid "Exposed shafts:"
+msgstr ""
+
+#: tfreeresistance_rbhs.label34.caption
+msgctxt "tfreeresistance_rbhs.label34.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs.label35.caption
+msgctxt "tfreeresistance_rbhs.label35.caption"
+msgid "Angle with battoks about 10"
+msgstr ""
+
+#: tfreeresistance_rbhs.label36.caption
+msgctxt "tfreeresistance_rbhs.label36.caption"
+msgid "Angle with battoks about 20"
+msgstr ""
+
+#: tfreeresistance_rbhs.label37.caption
+msgctxt "tfreeresistance_rbhs.label37.caption"
+msgid "Stabiliser fins"
+msgstr ""
+
+#: tfreeresistance_rbhs.label38.caption
+msgctxt "tfreeresistance_rbhs.label38.caption"
+msgid "Dome"
+msgstr ""
+
+#: tfreeresistance_rbhs.label39.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label39.caption"
+msgid "Skeg"
+msgstr "chan de san"
+
+#: tfreeresistance_rbhs.label4.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label4.caption"
+msgid "Water density"
+msgstr "Ti trong cua nuoc                 "
+
+#: tfreeresistance_rbhs.label40.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label40.caption"
+msgid "Bilge keels"
+msgstr "Song day tau"
+
+#: tfreeresistance_rbhs.label5.caption
+msgctxt "tfreeresistance_rbhs.label5.caption"
+msgid "Viscosity"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.label6.caption"
+msgid "Rudder behind skeg/stern"
+msgstr "Banh lai sau chan de/duoi"
+
+#: tfreeresistance_rbhs.label61.caption
+msgctxt "tfreeresistance_rbhs.label61.caption"
+msgid "Presence of rudders (0-No, 1-Yes):"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_1.caption
+msgctxt "tfreeresistance_rbhs.label6_1.caption"
+msgid "Time ship hull is in water, month"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_10.caption
+msgctxt "tfreeresistance_rbhs.label6_10.caption"
+msgid "Wetted area of midship, m^2"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_11.caption
+msgctxt "tfreeresistance_rbhs.label6_11.caption"
+msgid "Type of ship:"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_2.caption
+msgctxt "tfreeresistance_rbhs.label6_2.caption"
+msgid "Height of 3% wave, m "
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_3.caption
+msgctxt "tfreeresistance_rbhs.label6_3.caption"
+msgid "Course angle of moving wave, degree"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_4.caption
+msgctxt "tfreeresistance_rbhs.label6_4.caption"
+msgid "Wind speed, m/s"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_5.caption
+msgctxt "tfreeresistance_rbhs.label6_5.caption"
+msgid "Course wind angle, degree"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_6.caption
+msgctxt "tfreeresistance_rbhs.label6_6.caption"
+msgid "Height of board above water, m"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_7.caption
+msgctxt "tfreeresistance_rbhs.label6_7.caption"
+msgid "Air density, kg/m^3"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_8.caption
+msgctxt "tfreeresistance_rbhs.label6_8.caption"
+msgid "Height of COG area of superstructure above waterline, m"
+msgstr ""
+
+#: tfreeresistance_rbhs.label6_9.caption
+msgctxt "tfreeresistance_rbhs.label6_9.caption"
+msgid "Depth of water, m"
+msgstr ""
+
+#: tfreeresistance_rbhs.label7.caption
+msgctxt "tfreeresistance_rbhs.label7.caption"
+msgid "Two-screw slender"
+msgstr ""
+
+#: tfreeresistance_rbhs.label8.caption
+msgctxt "tfreeresistance_rbhs.label8.caption"
+msgid "Exploitation coefficient"
+msgstr ""
+
+#: tfreeresistance_rbhs.label9.caption
+msgctxt "tfreeresistance_rbhs.label9.caption"
+msgid "Number of series ships"
+msgstr ""
+
+#: tfreeresistance_rbhs.printbutton.caption
+msgctxt "tfreeresistance_rbhs.printbutton.caption"
+msgid "PrintButton"
+msgstr ""
+
+#: tfreeresistance_rbhs.printbutton.hint
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.printbutton.hint"
+msgid "Print the results of the calculation."
+msgstr "In ket qua tinh toan."
+
+#: tfreeresistance_rbhs.results.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.results.caption"
+msgid "Results"
+msgstr "Results"
+
+#: tfreeresistance_rbhs.results2.caption
+msgctxt "tfreeresistance_rbhs.results2.caption"
+msgid "Help"
+msgstr ""
+
+#: tfreeresistance_rbhs.toolbar1.caption
+msgctxt "tfreeresistance_rbhs.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfreeresistance_rbhs.toolbutton20.hint
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.toolbutton20.hint"
+msgid "Start the calculation."
+msgstr "Bat dau tinh toan."
+
+#: tfreeresistance_rbhs.toolbutton25.hint
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.toolbutton25.hint"
+msgid "Close the window and save changes."
+msgstr "Dong cua so va luu nhung thay doi."
+
+#: tfreeresistance_rbhs.toolbutton7.hint
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.toolbutton7.hint"
+msgid "Close window without saving changes."
+msgstr "Dong cua so khong luu cac thay doi."
+
+#: tfreeresistance_rbhs._label10.caption
+msgctxt "tfreeresistance_rbhs._label10.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs._label11.caption
+msgctxt "tfreeresistance_rbhs._label11.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs._label12.caption
+msgctxt "tfreeresistance_rbhs._label12.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs._label14.caption
+msgctxt "tfreeresistance_rbhs._label14.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs._label15.caption
+msgctxt "tfreeresistance_rbhs._label15.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs._label16.caption
+msgctxt "tfreeresistance_rbhs._label16.caption"
+msgid "[%]"
+msgstr ""
+
+#: tfreeresistance_rbhs._label31.caption
+msgctxt "tfreeresistance_rbhs._label31.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_rbhs._label32.caption
+msgctxt "tfreeresistance_rbhs._label32.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_rbhs._label33.caption
+msgctxt "tfreeresistance_rbhs._label33.caption"
+msgid "kn"
+msgstr ""
+
+#: tfreeresistance_rbhs._label36.caption
+msgctxt "tfreeresistance_rbhs._label36.caption"
+msgid "*10-6  m2/s"
+msgstr ""
+
+#: tfreeresistance_rbhs._label8.caption
+msgctxt "tfreeresistance_rbhs._label8.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs._label9.caption
+msgctxt "tfreeresistance_rbhs._label9.caption"
+msgid "[m]"
+msgstr ""
+
+#: tfreeresistance_rbhs._toolbutton10.caption
+msgctxt "tfreeresistance_rbhs._toolbutton10.caption"
+msgid "_ToolButton10"
+msgstr ""
+
+#: tfreeresistance_rbhs._toolbutton14.caption
+msgctxt "tfreeresistance_rbhs._toolbutton14.caption"
 msgid "_ToolButton14"
 msgstr ""
 
@@ -7740,27 +11651,9 @@ msgstr ""
 msgid "Translated by: M. van Engeland"
 msgstr ""
 
-#: tfreesplitsectiondialog.bitbtn1.caption
-msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
-msgid "Close"
-msgstr ""
-
-#: tfreesplitsectiondialog.caption
-msgid "Split section location"
-msgstr ""
-
-#: tfreesplitsectiondialog.speedbutton1.hint
-msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
-msgid "Medium"
-msgstr ""
-
-#: tfreesplitsectiondialog.speedbutton3.hint
-msgid "From hydrostatics"
-msgstr ""
-
 #: tfreeupdateform.actioncheckupdate.caption
 msgctxt "tfreeupdateform.actioncheckupdate.caption"
-msgid "Check for updates"
+msgid "Check Update"
 msgstr ""
 
 #: tfreeupdateform.bitbtn2.caption
@@ -7772,8 +11665,12 @@ msgstr ""
 msgid "Check updates"
 msgstr ""
 
-#: tfreeupdateform.groupbox1.caption
-msgctxt "tfreeupdateform.groupbox1.caption"
+#: tfreeupdateform.label1.caption
+msgid "Current Version:"
+msgstr ""
+
+#: tfreeupdateform.label3.caption
+msgctxt "tfreeupdateform.label3.caption"
 msgid "What's new"
 msgstr ""
 
@@ -7809,8 +11706,8 @@ msgstr ""
 msgid "LabelNewVersionDate"
 msgstr ""
 
-#: tfreeupdateform.toppanel1.caption
-msgid "TopPanel1"
+#: tfreeupdateform.speedbutton1.hint
+msgid "Refresh"
 msgstr ""
 
 #: tmainform.aboutaction.caption
@@ -8888,4 +12785,103 @@ msgstr "Hien thi"
 #: tmainform.window1.caption
 msgid "Window"
 msgstr "Cua so"
+
+#: tsaveimagedialog.bitbtn1.caption
+#, fuzzy
+msgctxt "tsaveimagedialog.bitbtn1.caption"
+msgid "OK"
+msgstr "OK"
+
+#: tsaveimagedialog.bitbtn2.caption
+#, fuzzy
+msgctxt "tsaveimagedialog.bitbtn2.caption"
+msgid "Cancel"
+msgstr "Huy"
+
+#: tsaveimagedialog.caption
+msgid "Save image."
+msgstr ""
+
+#: tsaveimagedialog.edit3.text
+msgid "Edit3"
+msgstr ""
+
+#: tsaveimagedialog.label1.caption
+msgid "Width"
+msgstr ""
+
+#: tsaveimagedialog.label2.caption
+msgid "Height"
+msgstr ""
+
+#: tsaveimagedialog.label3.caption
+msgctxt "tsaveimagedialog.label3.caption"
+msgid "[pixels]"
+msgstr ""
+
+#: tsaveimagedialog.label4.caption
+msgid "Estimated size"
+msgstr ""
+
+#: tsaveimagedialog.label5.caption
+msgid "KB"
+msgstr ""
+
+#: tsaveimagedialog.label6.caption
+msgctxt "tsaveimagedialog.label6.caption"
+msgid "[pixels]"
+msgstr ""
+
+#: tsaveimagedialog.label7.caption
+#, fuzzy
+msgctxt "tsaveimagedialog.label7.caption"
+msgid "Filename"
+msgstr "Ten file"
+
+#: ttiledialog.actionopen.caption
+msgid "ActionOpen"
+msgstr ""
+
+#: ttiledialog.actionopenanother.caption
+msgid "ActionOpenAnother"
+msgstr ""
+
+#: ttiledialog.actionremove.caption
+msgid "ActionRemove"
+msgstr ""
+
+#: ttiledialog.bbclose.caption
+msgctxt "ttiledialog.bbclose.caption"
+msgid "Close"
+msgstr ""
+
+#: ttiledialog.buttonopenfile.caption
+msgid "Open Another"
+msgstr ""
+
+#: ttiledialog.menuitemopen.caption
+msgctxt "ttiledialog.menuitemopen.caption"
+msgid "Open"
+msgstr ""
+
+#: ttiledialog.menuitemremove.caption
+msgid "Remove"
+msgstr ""
+
+#: ttiledialog.menuitemremove.hint
+msgid "Remove project from this \"Recent projects\" list"
+msgstr ""
+
+#: ttiledialog.panel1.caption
+msgctxt "ttiledialog.panel1.caption"
+msgid "Panel1"
+msgstr ""
+
+#: ttiledialog.panel2.caption
+msgid "Panel2"
+msgstr ""
+
+#: ttiledialog.toppanel.caption
+msgid "Recent projects"
+msgstr ""
 

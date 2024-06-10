@@ -214,16 +214,16 @@ const DS = DirectorySeparator;
   begin
     if Dir[Length(Dir)] <> DirectorySeparator then
       Dir := Dir + DirectorySeparator;
-    if FindFirst(Dir + '*.po', faAnyfile, SearchRec)
+    if FindFirstUTF8(Dir + '*.po', faAnyfile, SearchRec)
       { *Converted from FindFirst* } = 0 then
     begin
       if Uppercase(ExtractFileExt(SearchRec.Name)) = '.PO' then
         Add(Searchrec.Name);
-      while FindNext(SearchRec) { *Converted from FindNext* } = 0 do
+      while FindNextUTF8(SearchRec) { *Converted from FindNext* } = 0 do
         if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') then
           if Uppercase(ExtractFileExt(SearchRec.Name)) = '.PO' then
             Add(Searchrec.Name);
-      FindClose(SearchRec); { *Converted from FindClose* }
+      FindCloseUTF8(SearchRec); { *Converted from FindClose* }
     end;
   end;{Browse}
 

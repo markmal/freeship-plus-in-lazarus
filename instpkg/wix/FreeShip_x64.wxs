@@ -112,6 +112,8 @@
 						 Section="Directories" Key="GlobalOpenDirectory" Value="[APPLICATIONFOLDER]Ships" />
 				<IniFile Id="ini_GlobalImportDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
 						 Section="Directories" Key="GlobalImportDirectory" Value="[APPLICATIONFOLDER]Import" />
+				<IniFile Id="ini_LanguagesDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
+						 Section="Directories" Key="LanguagesDirectory" Value="[APPLICATIONFOLDER]locale" />
 				<IniFile Id="ini_ExecDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"
 						 Section="Directories" Key="ExecDirectory" Value="[APPLICATIONFOLDER]Exec" />
 				<IniFile Id="ini_ManualsDirectory" Directory="GlobalFreeShipIniFolder" Name="FreeShip.ini" Action="createLine"

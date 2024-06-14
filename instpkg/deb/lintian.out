@@ -25,6 +25,7 @@ W: freeship: executable-not-elf-or-script usr/share/FreeShip/Exec/fungleib.EXE
 W: freeship: executable-not-elf-or-script usr/share/FreeShip/Exec/hship.EXE
 W: freeship: hardening-no-pie [usr/bin/FreeShip]
 W: freeship: national-encoding usr/share/FreeShip/Manuals/GPL-German.html
+W: freeship: national-encoding usr/share/FreeShip/locale/FreeShip.en.po
 W: freeship: package-has-unnecessary-activation-of-ldconfig-trigger
 W: freeship: unknown-field Vcs-Browser
 W: freeship: unknown-field Vcs-Git

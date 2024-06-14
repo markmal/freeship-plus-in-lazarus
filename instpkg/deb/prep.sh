@@ -20,7 +20,7 @@ cp -r $PRJ_HOME/install/FreeShip.ini freeship/etc/FreeShip/
 mkdir -p freeship/usr/share/FreeShip/Import
 cp -r $PRJ_HOME/Exec freeship/usr/share/FreeShip/
 cp -r $PRJ_HOME/install freeship/usr/share/FreeShip/
-cp -r $PRJ_HOME/Languages freeship/usr/share/FreeShip/
+#cp -r $PRJ_HOME/Languages freeship/usr/share/FreeShip/
 cp -r $PRJ_HOME/locale freeship/usr/share/FreeShip/
 cp -r $PRJ_HOME/Manuals freeship/usr/share/FreeShip/
 cp -r $PRJ_HOME/Ships freeship/usr/share/FreeShip/

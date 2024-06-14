@@ -5637,6 +5637,10 @@ msgstr "1.4.2 Показник повороткості Кларка P. Ця в�
 msgid "Transformation succeeded after"
 msgstr "Трансформація піде після"
 
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr ""
+
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
 msgstr "Трансляція вектора"

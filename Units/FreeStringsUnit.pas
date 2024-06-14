@@ -7,6 +7,8 @@ unit FreeStringsUnit;
 
 interface
 
+resourcestring rs_translation_author = 'Translation: <Your name>';
+
 { Get rid of UserStrings
 Type TUserstring   = record
                         ID     : Integer;

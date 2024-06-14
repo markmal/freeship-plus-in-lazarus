@@ -5635,6 +5635,10 @@ msgstr "1.4.2 Показатель поворотливости Кларка P. 
 msgid "Transformation succeeded after"
 msgstr "Трансформация последует после"
 
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr "Translation: V. Timoshenko, M. Malakanov"
+
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
 msgstr "Смещение вдоль осей"

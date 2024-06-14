@@ -5637,6 +5637,10 @@ msgstr "to helm increases with 1/T'."
 msgid "Transformation succeeded after"
 msgstr "Transformation réussie après"
 
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr ""
+
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
 msgstr "Vecteur de translation"

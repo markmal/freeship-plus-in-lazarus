@@ -5637,6 +5637,10 @@ msgstr "1.4.2 Thong so cua tinh quay vong Clarke P. Dai luong nay chinh la ket q
 msgid "Transformation succeeded after"
 msgstr "Bien doi hinh dang dien ra sau"
 
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr ""
+
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
 msgstr "Dich chuyen doc theo truc"

@@ -5629,6 +5629,10 @@ msgstr ""
 msgid "Transformation succeeded after"
 msgstr ""
 
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr ""
+
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
 msgstr ""

@@ -5637,6 +5637,10 @@ msgstr "estabilidad y la rapidez de respuesta aumentan con 1/T'."
 msgid "Transformation succeeded after"
 msgstr "La transformación finalizó con éxito"
 
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr ""
+
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
 msgstr "Vector de traslación"

@@ -4319,11 +4319,20 @@ var
   CtrPoint: TFreeSubdivisionControlPoint;
   Points: TFasterListTFreeSubdivisionControlPoint;
   tolerance:double;
+  VRMLVersion: String;
 begin
   if FileExists(Filename) then
   begin
     FIsLoading := true;
-    VRMLList := TVRMLList.Create;
+    VRMLVersion := TVRMLList.CheckVRMLFileVersion(Filename);
+    if VRMLVersion = 'VRML V1.0' then
+      VRMLList := TVRMLList.Create;
+    if VRMLVersion = 'VRML V2.0' then
+      VRMLList := TVRML2Scene.Create;
+
+    VRMLList.Import(Filename, Self);
+
+   {
     try
     VRMLList.LoadFromFile(Filename);
     Data := VRMLList.ExtractFaceSetData;
@@ -4415,13 +4424,15 @@ begin
       end;
     end
     else
-      MessageDlg(rs_No_meshdata_could_be_imported {UserString[203]} + '.', mtError, [mbOK], 0);
+      MessageDlg(rs_No_meshdata_could_be_imported //UserString[203]
+        + '.', mtError, [mbOK], 0);
     except
       on E:Exception do
          MessageDlg('Exception in VRML Load:'+#10+E.Message, mtError, [mbOK], 0);
     end;
     FreeAndNil(VRMLList);
     FIsLoading := false;
+    }
   end;
 end;{TFreeSubdivisionSurface.LoadVRMLFile}
 

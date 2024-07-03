@@ -25,7 +25,7 @@ uses
   Dialogs,
   Graphics,
   FreeTypes,
-  //FreeGeometry,
+  FreeGeometry,
   FasterList,
   Math;
 
@@ -132,12 +132,16 @@ type
     constructor Create;
     destructor Destroy; override;
     function ExtractFaceSetData: TFasterListTVRMLIndexedFaceSet;
-    procedure LoadFromFile(Filename: string);
+    class function CheckVRMLFileVersion(Filename: string):String;
+    procedure LoadFromFile(Filename: string); virtual;
+    procedure LoadVrml1(Strings: TStringList);
+    procedure Import(Filename:String; SubdivisionSurface: TFreeSubdivisionSurface); virtual;
     property Count: integer
       read GetCount;
     property Items[index: integer]: TVRMLObject
       read GetItems;
   end;
+
 
 implementation
 
@@ -331,6 +335,32 @@ begin
       MessageDlg(rs_Unexpected_end_of_file_ {UserString[115]}, mtError, [mbOK], 0);
   end;
 end;{LoadNextObject}
+
+function LoadNextFloat(Strings: TStringList; var LineNr:integer): Float;
+var
+  Level, L: integer;
+  Tmp, Str: string;
+  Tokens: TStringArray;
+  Index: integer;
+  Ch: char;
+  Done: boolean;
+begin
+  Result := Float.NaN;
+  Done := False;
+  while (LineNr < Strings.Count) and (not Done) do
+  begin
+    Tmp := Strings[LineNr];
+    Tmp := Tmp.Trim();
+    Tokens := Tmp.Split(' '+#9+#13+#10);
+    Done := Float.TryParse(Tokens[0], Result);
+    inc(LineNr);
+  end;
+  if not Done then
+  begin
+    MessageDlg(rs_Unexpected_end_of_file_ {UserString[115]}, mtError, [mbOK], 0);
+  end;
+end;{LoadNextFloat}
+
 
 procedure GetEmbeddedObjects(Source: TStringList; Dest: TStringList);
 var
@@ -815,6 +845,69 @@ begin
   end;
 end;{TVRMLList.ExtractFaceSetData}
 
+procedure TVRMLList.LoadVrml1(Strings: TStringList);
+var
+  LineNr: integer;
+  I, Index, NObj: integer;
+  Str: string;
+  ObjectName: string;
+  VRMLObject: TVRMLObject;
+  Words: TStringList;
+  ValidFile: boolean;
+begin
+  LineNr := 0;
+  Words := TStringList.Create;
+  while LineNr < Strings.Count do
+  begin
+    LoadNextObject(Strings, LineNr, NObj, Objectname, Words);
+    //            showmessage(words.Text);
+    VRMLObject := nil;
+
+    if Pos('SEPARATOR', Objectname) <> 0 then
+      VRMLObject := TVRMLSeparator.Create(self)
+    else
+    if Pos('COORDINATE3', Objectname) <> 0 then
+      VRMLObject := TVRMLCoordinate3.Create(self)
+    else
+    if pos('INDEXEDFACESET', Objectname) <> 0 then
+      VRMLObject := TVRMLIndexedFaceSet.Create(self);
+    if VRMLObject <> nil then
+    begin
+      Index := 0;
+      VRMLObject.Load(Index, Words);
+      Add(VRMLObject);
+    end;
+  end;
+  FreeAndNil(words);
+end;{TVRMLList.LoadVrml1}
+
+
+class function TVRMLList.CheckVRMLFileVersion(Filename: string):String;
+var
+  Str: string;
+  FFile: TextFile;
+  ValidFile: boolean;
+begin
+  if FileExistsUTF8(Filename) { *Converted from FileExists* } then
+  begin
+    AssignFile(FFile, FileName);
+    Reset(FFile);
+    ValidFile := False;
+    CheckVRMLFileVersion := 'Not VRML';
+    if not EOF(FFile) then
+    begin
+      Readln(FFile, Str); // First line, must contain the string: "#VRML V1.0 ascii"
+      Str := Uppercase(Str);
+      if pos('#VRML V1.0 ASCII', Str) <> 0 then
+        CheckVRMLFileVersion := 'VRML V1.0'
+      else if pos('#VRML V2.0 UTF8', Str) <> 0 then
+        CheckVRMLFileVersion := 'VRML V2.0';
+    end;
+    CloseFile(FFile);
+  end;
+end;
+
+
 procedure TVRMLList.LoadFromFile(Filename: string);
 var
   Strings: TStringList;
@@ -843,11 +936,9 @@ begin
         FFileType := ftVRML1;
         ValidFile := True;
       end
-      else if pos('#VRML V2.0 UTF8', Str) <> 0 then
+      else
       begin
-        FFileType := ftVRML2;
-        ValidFile := True;
-        // Закоментировать если не работает
+        ValidFile := False;
       end;
     end;
     if not ValidFile then
@@ -886,35 +977,15 @@ begin
       // remove leading and trailing spaces
       Str := Trim(Str);
       if Str <> '' then
+      begin
         Strings.Add(Uppercase(Str));
+      end;
     end;
     CloseFile(FFile);
+
     if Strings.Count > 0 then
     begin
-      LineNr := 0;
-      Words := TStringList.Create;
-      while LineNr < Strings.Count do
-      begin
-        LoadNextObject(Strings, LineNr, NObj, Objectname, Words);
-        //            showmessage(words.Text);
-        VRMLObject := nil;
-
-        if Pos('SEPARATOR', Objectname) <> 0 then
-          VRMLObject := TVRMLSeparator.Create(self)
-        else
-        if Pos('COORDINATE3', Objectname) <> 0 then
-          VRMLObject := TVRMLCoordinate3.Create(self)
-        else
-        if pos('INDEXEDFACESET', Objectname) <> 0 then
-          VRMLObject := TVRMLIndexedFaceSet.Create(self);
-        if VRMLObject <> nil then
-        begin
-          Index := 0;
-          VRMLObject.Load(Index, Words);
-          Add(VRMLObject);
-        end;
-      end;
-      FreeAndNil(words);
+      LoadVrml1(Strings);
     end
     else
       MessageDlg(rs_This_is_not_a_valid_VRML_1_0_file {UserString[208]} + '!', mtError, [mbOK], 0);
@@ -922,5 +993,134 @@ begin
   end;
 end;{TVRMLList.LoadFromFile}
 
+procedure TVRMLList.Import(Filename:String; SubdivisionSurface: TFreeSubdivisionSurface);
+var
+  //VRMLList: TVRMLList;
+  I, J, K, N: integer;
+  Index: integer;
+  Data: TFasterListTVRMLIndexedFaceSet;
+  CoordInfo: TVRMLCoordinate3;
+  FaceInfo: TVRMLIndexedFaceSet;
+  V3Point: T3DCoordinate;
+  Face: TIntArray;
+  Layer: TFreeSubdivisionLayer;
+  FacePoints: TFasterListTFreeSubdivisionControlPoint;
+  AddedCtrlPts: TFasterListTVRMLCoordinate3;
+  CtrPoint: TFreeSubdivisionControlPoint;
+  Points: TFasterListTFreeSubdivisionControlPoint;
+  tolerance:double;
+  VRMLVersion: String;
+begin
+  if FileExists(Filename) then
+  begin
+    SubdivisionSurface.IsLoading := true;
+    VRMLVersion := TVRMLList.CheckVRMLFileVersion(Filename);
+    if VRMLVersion <> 'VRML V1.0' then
+    begin
+      MessageDlg('Not a VRML V1.0 format', mtError, [mbOK], 0);
+      exit;
+    end;
+    try
+    Self.LoadFromFile(Filename);
+    Data := Self.ExtractFaceSetData;
+    if Data <> nil then
+    begin
+      Clear;
+      try
+
+        AddedCtrlPts := TFasterListTVRMLCoordinate3.Create(true,false);
+        AddedCtrlPts.Capacity := Data.Count;
+        // Assemble coordinate sets
+        for I := 1 to Data.Count do
+        begin
+          FaceInfo := Data[I - 1];
+          if AddedCtrlPts.SortedIndexOf(FaceInfo.Coordinates) = -1 then
+            AddedCtrlPts.Add(FaceInfo.Coordinates);
+        end;
+
+        // now add actual controlPoints
+        for I := 0 to AddedCtrlPts.Count-1 do
+        begin
+          CoordInfo := AddedCtrlPts[I];
+          Points := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+          Points.Capacity := CoordInfo.Count;
+          AddedCtrlPts.Objects[I] := Points;
+          for J := 0 to CoordInfo.Count-1 do
+          begin
+            V3Point := CoordInfo.Point[J];
+            CtrPoint := SubdivisionSurface.AddControlPoint(V3Point,CoordInfo.Precision);
+            Points.Add(CtrPoint);
+          end;
+        end;
+
+
+        // Add controlfaces
+        FacePoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+        for I := 1 to Data.Count do
+        begin
+          FaceInfo := Data[I - 1];
+          Index := AddedCtrlPts.IndexOf(FaceInfo.Coordinates);
+          if Index <> -1 then
+          begin
+            Points := TFasterListTFreeSubdivisionControlPoint(AddedCtrlPts.Objects[Index]);
+            Layer := SubdivisionSurface.AddNewLayer;
+            for J := 1 to FaceInfo.Count do
+            begin
+              Face := FaceInfo.Face[J - 1];
+              if Face <> nil then
+              begin
+                N := length(Face);
+                FacePoints.Clear;
+                for K := 1 to N do
+                begin
+                  Index := Face[K - 1];
+                  if (Index >= 0) and (Index < Points.Count) then
+                  begin
+                    CtrPoint := Points[Index] as TFreeSubdivisionControlpoint;
+                    if FacePoints.IndexOf(CtrPoint) = -1 then
+                      FacePoints.Add(CtrPoint);
+                  end;
+                end;
+                if FacePoints.Count > 2 then
+                  SubdivisionSurface.AddControlFaceN(FacePoints, True, Layer);
+              end;
+            end;
+          end;
+        end;
+        FreeAndNil(FacePoints);
+
+        for I := 1 to AddedCtrlPts.Count do
+        begin
+          Points := TFasterListTFreeSubdivisionControlPoint(AddedCtrlPts.Objects[I - 1]);
+          FreeAndNil(Points);
+        end;
+        FreeAndNil(AddedCtrlPts);
+
+
+        // delete empty layers
+        for I := SubdivisionSurface.NumberOfLayers downto 1 do
+        begin
+          if (SubdivisionSurface.Layer[I - 1].Count = 0)
+            and (SubdivisionSurface.NumberOfLayers > 1)
+          then
+            SubdivisionSurface.Layer[I - 1].Delete;
+        end;
+        SubdivisionSurface.ActiveLayer :=
+          SubdivisionSurface.Layer[SubdivisionSurface.NumberOfLayers - 1];
+      finally
+        SubdivisionSurface.Built := False;
+        FreeAndNil(Data);
+      end;
+    end
+    else
+      MessageDlg(rs_No_meshdata_could_be_imported {UserString[203]} + '.', mtError, [mbOK], 0);
+    except
+      on E:Exception do
+         MessageDlg('Exception in VRML Load:'+#10+E.Message, mtError, [mbOK], 0);
+    end;
+    //FreeAndNil(VRMLList);
+    SubdivisionSurface.IsLoading := false;
+  end;
+end;
 
 end.

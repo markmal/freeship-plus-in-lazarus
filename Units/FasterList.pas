@@ -524,8 +524,9 @@ function TFasterList.FGet(Index: integer): TItemType;
 begin
   if (Index >= 0) and (Index < FCount) then
     Result := FList[Index]
-  else
-    Result := nil;
+//  else
+//    Result := nil;
+// !! Generate excetion if accessed out of array
 end;{TFasterList.FGet}
 
 function TFasterList.FGetObject(Index: integer): Pointer;

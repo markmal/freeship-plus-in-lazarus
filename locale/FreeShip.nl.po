@@ -1157,6 +1157,7 @@ msgid "Angle between relative velocity and center line [degr.]"
 msgstr "Angle between relative velocity and center line [degr.]"
 
 #: freestringsunit.rs_angle_between_thrust_and_keel_lines
+msgctxt "freestringsunit.rs_angle_between_thrust_and_keel_lines"
 msgid "Angle between Thrust and Keel lines"
 msgstr "Angle between Thrust and Keel lines"
 
@@ -1342,6 +1343,7 @@ msgid "AT   - Transverse projected wind area [m2];"
 msgstr "AT   - Transverse projected wind area [m2];"
 
 #: freestringsunit.rs_average_chordlength
+msgctxt "freestringsunit.rs_average_chordlength"
 msgid "Average chordlength"
 msgstr "Gemiddelde koordelengte"
 
@@ -1386,6 +1388,7 @@ msgid "BHP"
 msgstr "BHP"
 
 #: freestringsunit.rs_bilge_keels
+msgctxt "freestringsunit.rs_bilge_keels"
 msgid "Bilge keels"
 msgstr "Bilge keels"
 
@@ -2084,6 +2087,7 @@ msgid "Displacement step can not be zero."
 msgstr "Deplacement stapgrootte moet groter zijn dan nul."
 
 #: freestringsunit.rs_distance
+msgctxt "freestringsunit.rs_distance"
 msgid "Distance"
 msgstr "Afstand"
 
@@ -2180,6 +2184,7 @@ msgid "Draft Forward (m)                      ="
 msgstr "Draft Forward (m)                      ="
 
 #: freestringsunit.rs_draft_hull
+msgctxt "freestringsunit.rs_draft_hull"
 msgid "Draft hull"
 msgstr "Diepgang romp"
 
@@ -2348,6 +2353,7 @@ msgid "feels  that  these  results  are  at  least  as  effective  as the semi-e
 msgstr "feels  that  these  results  are  at  least  as  effective  as the semi-empirical"
 
 #: freestringsunit.rs_filename
+msgctxt "freestringsunit.rs_filename"
 msgid "Filename"
 msgstr "Bestandsnaam"
 
@@ -2626,6 +2632,7 @@ msgid "hub."
 msgstr "hub."
 
 #: freestringsunit.rs_hull
+msgctxt "freestringsunit.rs_hull"
 msgid "Hull"
 msgstr "Romp"
 
@@ -2942,6 +2949,7 @@ msgid "KAPER resistance for canoes and kayaks"
 msgstr "KAPER weerstand voor kano's en kajaks"
 
 #: freestringsunit.rs_keel
+msgctxt "freestringsunit.rs_keel"
 msgid "Keel"
 msgstr "Kiel"
 
@@ -4193,6 +4201,7 @@ msgid "Maximal heeling moment"
 msgstr "Maximal heeling moment :"
 
 #: freestringsunit.rs_maximal_speed
+msgctxt "freestringsunit.rs_maximal_speed"
 msgid "Maximal speed"
 msgstr "Maximal speed"
 
@@ -4265,6 +4274,7 @@ msgid "Midship Coefficient to LWL       CM=CX ="
 msgstr "Midship Coefficient to LWL       CM=CX ="
 
 #: freestringsunit.rs_midship_draft
+msgctxt "freestringsunit.rs_midship_draft"
 msgid "Midship draft"
 msgstr "Midship draft"
 
@@ -4337,6 +4347,7 @@ msgid "m^2"
 msgstr "m^2"
 
 #: freestringsunit.rs_m_2_s
+msgctxt "freestringsunit.rs_m_2_s"
 msgid "m^2/s"
 msgstr "m^2/s"
 
@@ -4561,6 +4572,7 @@ msgid "Number of masts and posts (1-7)"
 msgstr "Number of masts and posts (1-7)"
 
 #: freestringsunit.rs_number_of_propellers
+msgctxt "freestringsunit.rs_number_of_propellers"
 msgid "Number of propellers"
 msgstr "Number of propellers"
 
@@ -5094,10 +5106,12 @@ msgid "RPM  ="
 msgstr "RPM  ="
 
 #: freestringsunit.rs_rudder
+msgctxt "freestringsunit.rs_rudder"
 msgid "Rudder"
 msgstr "Roer"
 
 #: freestringsunit.rs_rudder_behind_skeg_stern
+msgctxt "freestringsunit.rs_rudder_behind_skeg_stern"
 msgid "Rudder behind skeg/stern"
 msgstr "Rudder behind skeg/stern"
 
@@ -5198,6 +5212,7 @@ msgid "should check this on the graphical output."
 msgstr "should check this on the graphical output."
 
 #: freestringsunit.rs_skeg
+msgctxt "freestringsunit.rs_skeg"
 msgid "Skeg"
 msgstr "Skeg"
 
@@ -5286,6 +5301,7 @@ msgid "Started speed [knots (m/s)]"
 msgstr "Started speed [knots (m/s)]"
 
 #: freestringsunit.rs_start_speed
+msgctxt "freestringsunit.rs_start_speed"
 msgid "Start speed"
 msgstr "Begin snelheid"
 
@@ -5475,6 +5491,7 @@ msgid "The  dependence  of the turns of single screw ships on the direction of p
 msgstr "The  dependence  of the turns of single screw ships on the direction of propeller"
 
 #: freestringsunit.rs_thickness
+msgctxt "freestringsunit.rs_thickness"
 msgid "Thickness"
 msgstr "Dikte"
 
@@ -5501,6 +5518,10 @@ msgstr "Dit is een ongeldig FREE!ship onderdeel!"
 #: freestringsunit.rs_this_is_not_a_valid_vrml_1_0_file
 msgid "This is not a valid VRML 1.0 file"
 msgstr "Dit is geen geldig VRML 1.0 bestand"
+
+#: freestringsunit.rs_this_is_not_a_valid_vrml_2_0_file
+msgid "This is not a valid VRML 2.0 file"
+msgstr ""
 
 #: freestringsunit.rs_this_is_propeller_not_a_strong_in_non_uniform_flow_
 msgid "This is propeller not a strong in non-uniform flow!"
@@ -5608,6 +5629,7 @@ msgid "Total beam of submerged body"
 msgstr "Totale breedte onderwaterschip"
 
 #: freestringsunit.rs_total_draft
+msgctxt "freestringsunit.rs_total_draft"
 msgid "Total draft"
 msgstr "Totale diepgang"
 
@@ -5626,6 +5648,10 @@ msgstr "to helm increases with 1/T'."
 #: freestringsunit.rs_transformation_succeeded_after
 msgid "Transformation succeeded after"
 msgstr "Transformatie geslaagd na"
+
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr ""
 
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
@@ -5728,6 +5754,7 @@ msgid "Type of transmission              |     Transmission efficiency"
 msgstr "Type of transmission              |     Transmission efficiency"
 
 #: freestringsunit.rs_t_m_3
+msgctxt "freestringsunit.rs_t_m_3"
 msgid "t/m^3"
 msgstr "t/m^3"
 
@@ -6015,6 +6042,7 @@ msgid "Waterlines"
 msgstr "Waterlijnen"
 
 #: freestringsunit.rs_waterplane_area
+msgctxt "freestringsunit.rs_waterplane_area"
 msgid "Waterplane area"
 msgstr "Waterlijn oppervlak"
 
@@ -6080,6 +6108,7 @@ msgid "were added  by  regressing  the  data  presented by Fugino (4) for the To
 msgstr "were added  by  regressing  the  data  presented by Fugino (4) for the Tokyo Maru"
 
 #: freestringsunit.rs_wetted_area
+msgctxt "freestringsunit.rs_wetted_area"
 msgid "Wetted area"
 msgstr "Nat oppervlak"
 
@@ -6600,29 +6629,33 @@ msgid "Restore"
 msgstr ""
 
 #: tfreecrosscurvesdialog.button1.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button1.caption"
 msgid "Add"
-msgstr "Add"
+msgstr "Toevoegen"
 
 #: tfreecrosscurvesdialog.button2.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button2.caption"
 msgid "Delete"
-msgstr "Delete"
+msgstr "Verwijder"
 
 #: tfreecrosscurvesdialog.button3.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button3.caption"
 msgid "Add"
-msgstr "Add"
+msgstr "Toevoegen"
 
 #: tfreecrosscurvesdialog.button4.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button4.caption"
 msgid "Delete"
-msgstr "Delete"
+msgstr "Verwijder"
 
 #: tfreecrosscurvesdialog.caption
 msgctxt "tfreecrosscurvesdialog.caption"
 msgid "Cross curves."
-msgstr "Cross curves."
+msgstr ""
 
 #: tfreecrosscurvesdialog.chart.axislist[0].title.caption
 msgid "KN sin(phi)"
@@ -6654,7 +6687,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.checkbox1.caption
 msgid "Incremental displ."
-msgstr "Incremental displ."
+msgstr ""
 
 #: tfreecrosscurvesdialog.combobox.text
 msgid "Nonlimit"
@@ -6666,11 +6699,11 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox2.caption
 msgid "Heeling angles."
-msgstr "Heeling angles."
+msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox3.caption
 msgid "Data for SSD:"
-msgstr "Data for SSD"
+msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox4.caption
 msgid "Displacements."
@@ -6678,57 +6711,58 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label1.caption
 msgid "Start displ."
-msgstr "Start displ."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label12_.caption
 msgid "Decrease metacentric height, [m]"
-msgstr "Decrease metacentric height, [m]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label13_.caption
 msgid "Immersion deck angle, [degr]"
-msgstr "Immersion deck angle, [degr]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label1_.caption
 msgid "Projected displ., [tons]"
-msgstr "Projected displ.,[tons]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label2.caption
 msgid "End displ."
-msgstr "End displ."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label2_.caption
 msgid "Estimated Z CoG, [m]"
-msgstr "Estimated Z of CoG, [m]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label3.caption
 msgid "Displ. step"
-msgstr "Displ. step"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label4_.caption
 msgid "Area of bilge keels, [m^2]"
-msgstr "of bilge keels, [m^2]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label5_.caption
 msgid "Area of skeg, [m^2]"
-msgstr "of skeg, [m^2]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr "Lateral wind area, [m^2]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"
-msgstr "Z of wind area COG, [m]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label8_.caption
 msgid "Navigation region:"
-msgstr "Navigation region:"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label9_.caption
 msgid "Registry:"
-msgstr "(nonlim.- 0; limit.I - 1; limit.II - 2)"
+msgstr ""
 
 #: tfreecrosscurvesdialog.panel1.caption
+msgctxt "tfreecrosscurvesdialog.panel1.caption"
 msgid "Panel1"
 msgstr ""
 
@@ -6739,12 +6773,13 @@ msgstr ""
 #: tfreecrosscurvesdialog.printbutton.caption
 msgctxt "tfreecrosscurvesdialog.printbutton.caption"
 msgid "Cross curves."
-msgstr "Cross curves."
+msgstr ""
 
 #: tfreecrosscurvesdialog.printbutton.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.printbutton.hint"
 msgid "Print the results of the calculation."
-msgstr "Print the results of the calculation."
+msgstr "Print de resultaten van de berekening."
 
 #: tfreecrosscurvesdialog.savebutton.caption
 msgid "SaveButton"
@@ -6752,24 +6787,25 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.savebutton.hint
 msgid "Save the results of the calculation."
-msgstr "Save the results of the calculation."
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet1.caption
 msgid "Graph"
-msgstr "Graph"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet2.caption
 msgid "Data"
-msgstr "Data"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet3.caption
 msgid "Stability diagram"
-msgstr "Stability diagram"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet4.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.tabsheet4.caption"
 msgid "Results"
-msgstr "Results"
+msgstr "Resultaten"
 
 #: tfreecrosscurvesdialog.toolbar1.caption
 msgctxt "tfreecrosscurvesdialog.toolbar1.caption"
@@ -6781,26 +6817,29 @@ msgid "ToolButton1"
 msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton1.hint
+msgctxt "tfreecrosscurvesdialog.toolbutton1.hint"
 msgid "Start the calculation."
-msgstr "Start the calculation."
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.caption
 msgid "Abort"
-msgstr "Abort"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.hint
 msgid "Abort the calculation"
-msgstr "Abort the calculation"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton25.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "Close the window and save changes."
+msgstr "Sluit het venster en bewaar veranderingen."
 
 #: tfreecrosscurvesdialog.toolbutton7.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "Close window without saving changes."
+msgstr "Sluit het venster zonder de veranderingen te bewaren."
 
 #: tfreecrosscurvesdialog._toolbutton10.caption
 msgctxt "tfreecrosscurvesdialog._toolbutton10.caption"
@@ -7292,16 +7331,16 @@ msgstr ""
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.bitbtn2.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Stoppen"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.caption
 msgid "Project settings."
-msgstr "Project instellingen."
+msgstr ""
 
 #: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
 msgid "Save preview image"
@@ -7317,49 +7356,49 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox11.caption
 msgid "Default at 0.0"
-msgstr "Default at 0.0"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox12.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
 msgid "Default at 0.5*L"
-msgstr "Default at 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox13.caption
 msgid "Enable auto move model to baseline"
-msgstr "Enable automoving model to baseline"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox14.caption
 msgid "Save Bonjean scale and SAC in files"
-msgstr "Save Bonjean scale and SAC results in files"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox2.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
 msgid "Default at 0.5*L"
-msgstr "Standaard op 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr "Schakel vlak correctie uit"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
 msgid "Displacement and center of buoyancy"
-msgstr "Deplacement en drukkingspunt"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox6.caption
 msgid "Curve of sectional areas"
-msgstr "Kromme van spantoppervlakken"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox7.caption
 msgid "Metacentric height"
-msgstr "Metacenter hoogte"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox8.caption
 msgid "Longitudinal center of floatation"
-msgstr "Waterlijn zwaartepunt"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox9.caption
 msgid "Lateral area and center of effort"
-msgstr "Lateraal opp. en zwaartepunt"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.combobox1.text
 msgid "Dimensions from project settings"
@@ -7367,11 +7406,11 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.groupbox1.caption
 msgid "Display hydrostatic features. "
-msgstr "Toon hydrostatische eigenschappen."
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label1.caption
 msgid "Project name"
-msgstr "Project naam"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label10.caption
 #, fuzzy
@@ -7392,7 +7431,7 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label13.caption
 msgctxt "tfreeprojectsettingsdialog.label13.caption"
 msgid "Split Section location"
-msgstr "Grootspant locatie"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label14.caption
 #, fuzzy
@@ -7408,28 +7447,27 @@ msgstr "Opmerking"
 
 #: tfreeprojectsettingsdialog.label16.caption
 msgid "File created by"
-msgstr "Bestand gemaakt door"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label17.caption
 msgid "Coefficients based on"
-msgstr "Coeff. baseren op"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label18.caption
 msgid "Select which of the following hydrostatic properties"
-msgstr "Selecteer welke van de volgende eigenschappen"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label19.caption
 msgid "you want to have displayed in the model:"
-msgstr "getoond moeten worden in het model:"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label2.caption
-msgctxt "tfreeprojectsettingsdialog.label2.caption"
 msgid "Length "
-msgstr "Lengte"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label20.caption
 msgid "Y coord. of Longitudinal Max. Wind Area location"
-msgstr "Y maximal coord. of lateral wind area"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label21.caption
 #, fuzzy
@@ -7439,7 +7477,7 @@ msgstr "m"
 
 #: tfreeprojectsettingsdialog.label22.caption
 msgid "X coord. of Transverse Max. Wind Area location"
-msgstr "X maximal coord. of transverse wind area"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label23.caption
 #, fuzzy
@@ -7454,7 +7492,7 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label25.caption
 msgid "Water temperature"
-msgstr "Water temperature,°C"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label26.caption
 msgid "C"
@@ -7466,9 +7504,10 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label3.caption
 msgid "Beam"
-msgstr "Breedte"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label4.caption
+#, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label4.caption"
 msgid "Draft"
 msgstr "Diepgang"
@@ -7477,7 +7516,7 @@ msgstr "Diepgang"
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label5.caption"
 msgid "Water density"
-msgstr "Water dichtheid"
+msgstr "Dichtheid water"
 
 #: tfreeprojectsettingsdialog.label6.caption
 #, fuzzy
@@ -7493,7 +7532,7 @@ msgstr "Ontwerper"
 
 #: tfreeprojectsettingsdialog.label8.caption
 msgid "Units"
-msgstr "Eenheden"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label9.caption
 #, fuzzy
@@ -7521,11 +7560,11 @@ msgstr "Algemeen"
 
 #: tfreeprojectsettingsdialog.tabsheet2.caption
 msgid "Hydrostatics"
-msgstr "Hydrostatica"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.tabsheet3.caption
 msgid "Main dimensions"
-msgstr "Hoofdafmetingen"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.unitbox.text
 msgid "Metric"
@@ -7544,6 +7583,7 @@ msgid "Speed [knots]"
 msgstr ""
 
 #: tfreeresistance_kaper.checkbox2.caption
+msgctxt "tfreeresistance_kaper.checkbox2.caption"
 msgid "Extract data from current hull"
 msgstr "Gebruik gegevens van deze romp"
 
@@ -7586,6 +7626,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label17.caption
+msgctxt "tfreeresistance_kaper.label17.caption"
 msgid "LCB"
 msgstr "LCB"
 
@@ -7594,10 +7635,12 @@ msgid "Subm. transom ratio"
 msgstr "Nat spiegel opp. verh."
 
 #: tfreeresistance_kaper.label2.caption
+msgctxt "tfreeresistance_kaper.label2.caption"
 msgid "Length waterline"
 msgstr "Lengte waterlijn"
 
 #: tfreeresistance_kaper.label3.caption
+msgctxt "tfreeresistance_kaper.label3.caption"
 msgid "Beam waterline"
 msgstr "Breedte waterlijn"
 
@@ -7618,6 +7661,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label8.caption
+msgctxt "tfreeresistance_kaper.label8.caption"
 msgid "Cp"
 msgstr "Cp"
 
@@ -7627,6 +7671,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.printbutton.caption
+msgctxt "tfreeresistance_kaper.printbutton.caption"
 msgid "PrintButton"
 msgstr ""
 

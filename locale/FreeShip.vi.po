@@ -1157,6 +1157,7 @@ msgid "Angle between relative velocity and center line [degr.]"
 msgstr "Angle between relative velocity and center line [degr.]"
 
 #: freestringsunit.rs_angle_between_thrust_and_keel_lines
+msgctxt "freestringsunit.rs_angle_between_thrust_and_keel_lines"
 msgid "Angle between Thrust and Keel lines"
 msgstr "Goc giua truc chan vit va duong thang chinh"
 
@@ -1342,6 +1343,7 @@ msgid "AT   - Transverse projected wind area [m2];"
 msgstr "AT   - dien tich hinh chieu dung cua phan chan gio tren duong nuoc thiet ke, m2;"
 
 #: freestringsunit.rs_average_chordlength
+msgctxt "freestringsunit.rs_average_chordlength"
 msgid "Average chordlength"
 msgstr "Chieu dai trung binh cua day cung"
 
@@ -1386,6 +1388,7 @@ msgid "BHP"
 msgstr "hp"
 
 #: freestringsunit.rs_bilge_keels
+msgctxt "freestringsunit.rs_bilge_keels"
 msgid "Bilge keels"
 msgstr "Song day tau"
 
@@ -2084,6 +2087,7 @@ msgid "Displacement step can not be zero."
 msgstr "Buoc cua luong chiem nuoc khong the bang 0."
 
 #: freestringsunit.rs_distance
+msgctxt "freestringsunit.rs_distance"
 msgid "Distance"
 msgstr "Khoang cach"
 
@@ -2180,6 +2184,7 @@ msgid "Draft Forward (m)                      ="
 msgstr "Luong mon nuoc mui, m                                       ="
 
 #: freestringsunit.rs_draft_hull
+msgctxt "freestringsunit.rs_draft_hull"
 msgid "Draft hull"
 msgstr "Luong mon nuoc tau"
 
@@ -2348,6 +2353,7 @@ msgid "feels  that  these  results  are  at  least  as  effective  as the semi-e
 msgstr "Clarke cho rang nhung ket qua nay khong kem phan quan trong so voi nhung phuong trinh ban thuc nghiem"
 
 #: freestringsunit.rs_filename
+msgctxt "freestringsunit.rs_filename"
 msgid "Filename"
 msgstr "Ten file"
 
@@ -2626,6 +2632,7 @@ msgid "hub."
 msgstr "1.7   Cac thong so cua chan vit chua nhung so lieu ve so luong canh, ti le dia, ti le buoc"
 
 #: freestringsunit.rs_hull
+msgctxt "freestringsunit.rs_hull"
 msgid "Hull"
 msgstr "Vo"
 
@@ -2942,6 +2949,7 @@ msgid "KAPER resistance for canoes and kayaks"
 msgstr "Luc can theo KAPER cho cano va kayak"
 
 #: freestringsunit.rs_keel
+msgctxt "freestringsunit.rs_keel"
 msgid "Keel"
 msgstr "Song tau"
 
@@ -4193,6 +4201,7 @@ msgid "Maximal heeling moment"
 msgstr "Momen nghieng gioi han:"
 
 #: freestringsunit.rs_maximal_speed
+msgctxt "freestringsunit.rs_maximal_speed"
 msgid "Maximal speed"
 msgstr "Van toc lon nhat"
 
@@ -4265,6 +4274,7 @@ msgid "Midship Coefficient to LWL       CM=CX ="
 msgstr "he so beo suon giua Cm                                      ="
 
 #: freestringsunit.rs_midship_draft
+msgctxt "freestringsunit.rs_midship_draft"
 msgid "Midship draft"
 msgstr "Luong mon nuoc trung binh"
 
@@ -4337,6 +4347,7 @@ msgid "m^2"
 msgstr "m^2"
 
 #: freestringsunit.rs_m_2_s
+msgctxt "freestringsunit.rs_m_2_s"
 msgid "m^2/s"
 msgstr "m^2/ñ"
 
@@ -4561,6 +4572,7 @@ msgid "Number of masts and posts (1-7)"
 msgstr "Number of masts and posts (1-7)"
 
 #: freestringsunit.rs_number_of_propellers
+msgctxt "freestringsunit.rs_number_of_propellers"
 msgid "Number of propellers"
 msgstr "So luong chan vit                                                 "
 
@@ -5094,10 +5106,12 @@ msgid "RPM  ="
 msgstr "n      ="
 
 #: freestringsunit.rs_rudder
+msgctxt "freestringsunit.rs_rudder"
 msgid "Rudder"
 msgstr "Banh lai"
 
 #: freestringsunit.rs_rudder_behind_skeg_stern
+msgctxt "freestringsunit.rs_rudder_behind_skeg_stern"
 msgid "Rudder behind skeg/stern"
 msgstr "Banh lai sau chan de/duoi"
 
@@ -5198,6 +5212,7 @@ msgid "should check this on the graphical output."
 msgstr ""
 
 #: freestringsunit.rs_skeg
+msgctxt "freestringsunit.rs_skeg"
 msgid "Skeg"
 msgstr "chan de san"
 
@@ -5286,6 +5301,7 @@ msgid "Started speed [knots (m/s)]"
 msgstr "Van toc ban dau, kn (m/ñ)"
 
 #: freestringsunit.rs_start_speed
+msgctxt "freestringsunit.rs_start_speed"
 msgid "Start speed"
 msgstr "Van toc ban dau"
 
@@ -5475,6 +5491,7 @@ msgid "The  dependence  of the turns of single screw ships on the direction of p
 msgstr "Su anh huong toi tinh quay vong cua tau mot chan vit cua huong quay chan vit va anh huong"
 
 #: freestringsunit.rs_thickness
+msgctxt "freestringsunit.rs_thickness"
 msgid "Thickness"
 msgstr "Chieu day"
 
@@ -5501,6 +5518,10 @@ msgstr "File FREE!ship .part loi!"
 #: freestringsunit.rs_this_is_not_a_valid_vrml_1_0_file
 msgid "This is not a valid VRML 1.0 file"
 msgstr "File VRML 1.0 loi!"
+
+#: freestringsunit.rs_this_is_not_a_valid_vrml_2_0_file
+msgid "This is not a valid VRML 2.0 file"
+msgstr ""
 
 #: freestringsunit.rs_this_is_propeller_not_a_strong_in_non_uniform_flow_
 msgid "This is propeller not a strong in non-uniform flow!"
@@ -5608,6 +5629,7 @@ msgid "Total beam of submerged body"
 msgstr "Chieu rong toan bo cua phan than ngap nuoc"
 
 #: freestringsunit.rs_total_draft
+msgctxt "freestringsunit.rs_total_draft"
 msgid "Total draft"
 msgstr "Luong mon nuoc toan bo"
 
@@ -5626,6 +5648,10 @@ msgstr "1.4.2 Thong so cua tinh quay vong Clarke P. Dai luong nay chinh la ket q
 #: freestringsunit.rs_transformation_succeeded_after
 msgid "Transformation succeeded after"
 msgstr "Bien doi hinh dang dien ra sau"
+
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr ""
 
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
@@ -5728,6 +5754,7 @@ msgid "Type of transmission              |     Transmission efficiency"
 msgstr "Kieu hop so                       |             Hieu suat"
 
 #: freestringsunit.rs_t_m_3
+msgctxt "freestringsunit.rs_t_m_3"
 msgid "t/m^3"
 msgstr "t/m^3"
 
@@ -6015,6 +6042,7 @@ msgid "Waterlines"
 msgstr "Duong nuoc"
 
 #: freestringsunit.rs_waterplane_area
+msgctxt "freestringsunit.rs_waterplane_area"
 msgid "Waterplane area"
 msgstr "Dien tich duong nuoc"
 
@@ -6080,6 +6108,7 @@ msgid "were added  by  regressing  the  data  presented by Fugino (4) for the To
 msgstr "duoc them sau khi su dung cac phan tich cua Fugino[4] cho tau \"Tokyo"
 
 #: freestringsunit.rs_wetted_area
+msgctxt "freestringsunit.rs_wetted_area"
 msgid "Wetted area"
 msgstr "Phan mat ngap nuoc"
 
@@ -6600,21 +6629,25 @@ msgid "Restore"
 msgstr ""
 
 #: tfreecrosscurvesdialog.button1.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button1.caption"
 msgid "Add"
 msgstr "Them"
 
 #: tfreecrosscurvesdialog.button2.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button2.caption"
 msgid "Delete"
 msgstr "Xoa"
 
 #: tfreecrosscurvesdialog.button3.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button3.caption"
 msgid "Add"
 msgstr "Them"
 
 #: tfreecrosscurvesdialog.button4.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button4.caption"
 msgid "Delete"
 msgstr "Xoa"
@@ -6622,7 +6655,7 @@ msgstr "Xoa"
 #: tfreecrosscurvesdialog.caption
 msgctxt "tfreecrosscurvesdialog.caption"
 msgid "Cross curves."
-msgstr "Tinh cac duong cong on dinh tinh va dong (SSD va DSD)"
+msgstr ""
 
 #: tfreecrosscurvesdialog.chart.axislist[0].title.caption
 msgid "KN sin(phi)"
@@ -6654,7 +6687,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.checkbox1.caption
 msgid "Incremental displ."
-msgstr "Gia tang luong chiem nuoc."
+msgstr ""
 
 #: tfreecrosscurvesdialog.combobox.text
 msgid "Nonlimit"
@@ -6666,11 +6699,11 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox2.caption
 msgid "Heeling angles."
-msgstr "Goc nghieng ngang."
+msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox3.caption
 msgid "Data for SSD:"
-msgstr "Cac thong so cua duong cong on dinh dong"
+msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox4.caption
 msgid "Displacements."
@@ -6678,57 +6711,58 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label1.caption
 msgid "Start displ."
-msgstr "Luong chiem nuoc nho nhat."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label12_.caption
 msgid "Decrease metacentric height, [m]"
-msgstr "Decrease metacentric height, [m]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label13_.caption
 msgid "Immersion deck angle, [degr]"
-msgstr "Immersion deck angle, [degr]"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label1_.caption
 msgid "Projected displ., [tons]"
-msgstr "Luong chiem nuoc du an, ton"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label2.caption
 msgid "End displ."
-msgstr "Luong chiem nuoc lon nhat."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label2_.caption
 msgid "Estimated Z CoG, [m]"
-msgstr "Cao do du doan cua trong tam, m"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label3.caption
 msgid "Displ. step"
-msgstr "Khoang cach luong chiem nuoc."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label4_.caption
 msgid "Area of bilge keels, [m^2]"
-msgstr "song man tau, m^2"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label5_.caption
 msgid "Area of skeg, [m^2]"
-msgstr "chan de san tau (skeg), m^2"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr "phan chan gio (Lateral wind area), m^2"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"
-msgstr "Chieu cao cua trong tam phan chan gio tren duong nuoc chinh, m"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label8_.caption
 msgid "Navigation region:"
-msgstr "Vung hoat dong:"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label9_.caption
 msgid "Registry:"
-msgstr "(khong gioi han.- 0; vung gioi han I - 1; vung gioi han II - 2)"
+msgstr ""
 
 #: tfreecrosscurvesdialog.panel1.caption
+msgctxt "tfreecrosscurvesdialog.panel1.caption"
 msgid "Panel1"
 msgstr ""
 
@@ -6739,9 +6773,10 @@ msgstr ""
 #: tfreecrosscurvesdialog.printbutton.caption
 msgctxt "tfreecrosscurvesdialog.printbutton.caption"
 msgid "Cross curves."
-msgstr "Cac duong cong on dinh"
+msgstr ""
 
 #: tfreecrosscurvesdialog.printbutton.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.printbutton.hint"
 msgid "Print the results of the calculation."
 msgstr "In ket qua tinh toan."
@@ -6752,24 +6787,25 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.savebutton.hint
 msgid "Save the results of the calculation."
-msgstr "Luu ket qua tinh toan."
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet1.caption
 msgid "Graph"
-msgstr "Duong cong on dinh"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet2.caption
 msgid "Data"
-msgstr "Ket qua tinh toan"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet3.caption
 msgid "Stability diagram"
-msgstr "SSD va DSD"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet4.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.tabsheet4.caption"
 msgid "Results"
-msgstr "Results"
+msgstr "Ket qua"
 
 #: tfreecrosscurvesdialog.toolbar1.caption
 msgctxt "tfreecrosscurvesdialog.toolbar1.caption"
@@ -6781,26 +6817,29 @@ msgid "ToolButton1"
 msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton1.hint
+msgctxt "tfreecrosscurvesdialog.toolbutton1.hint"
 msgid "Start the calculation."
-msgstr "Bat dau tinh toan."
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.caption
 msgid "Abort"
-msgstr "Huy"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.hint
 msgid "Abort the calculation"
-msgstr "Dung tinh toan"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton25.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "Dong cua so va luu nhung thay doi."
+msgstr "Dong cua so va luu thay doi."
 
 #: tfreecrosscurvesdialog.toolbutton7.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "Dong cua so khong luu cac thay doi."
+msgstr "Dong cua so khong luu thay doi."
 
 #: tfreecrosscurvesdialog._toolbutton10.caption
 msgctxt "tfreecrosscurvesdialog._toolbutton10.caption"
@@ -7292,16 +7331,16 @@ msgstr ""
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.bitbtn2.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Huy"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.caption
 msgid "Project settings."
-msgstr "Thiet lap du an."
+msgstr ""
 
 #: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
 msgid "Save preview image"
@@ -7317,49 +7356,49 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox11.caption
 msgid "Default at 0.0"
-msgstr "Default at 0.0"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox12.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
 msgid "Default at 0.5*L"
-msgstr "Default at 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox13.caption
 msgid "Enable auto move model to baseline"
-msgstr "Enable automoving model to baseline"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox14.caption
 msgid "Save Bonjean scale and SAC in files"
-msgstr "Save Bonjean scale and SAC results in files"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox2.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
 msgid "Default at 0.5*L"
-msgstr "Theo mac dinh tai 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr "Ngung kiem tra mat"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
 msgid "Displacement and center of buoyancy"
-msgstr "Luong chiem nuoc va trong tam noi"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox6.caption
 msgid "Curve of sectional areas"
-msgstr "DUong cong dien tich suon"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox7.caption
 msgid "Metacentric height"
-msgstr "Tam nghieng ngang"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox8.caption
 msgid "Longitudinal center of floatation"
-msgstr "Trong tam cua duong mat nuoc chinh"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox9.caption
 msgid "Lateral area and center of effort"
-msgstr "Trong tam va dien tich phan ngap nuoc cua mat phang doi xung tam"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.combobox1.text
 msgid "Dimensions from project settings"
@@ -7367,11 +7406,11 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.groupbox1.caption
 msgid "Display hydrostatic features. "
-msgstr "Hien thi cac duong cong tuyen hinh va trong tam noi."
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label1.caption
 msgid "Project name"
-msgstr "Ten du an"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label10.caption
 #, fuzzy
@@ -7392,7 +7431,7 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label13.caption
 msgctxt "tfreeprojectsettingsdialog.label13.caption"
 msgid "Split Section location"
-msgstr "Vi tri cua suon giua"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label14.caption
 #, fuzzy
@@ -7404,32 +7443,31 @@ msgstr "m"
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label15.caption"
 msgid "Comment"
-msgstr "Chu thich"
+msgstr "Luu chu"
 
 #: tfreeprojectsettingsdialog.label16.caption
 msgid "File created by"
-msgstr "File duoc tao boi"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label17.caption
 msgid "Coefficients based on"
-msgstr "He so xac dinh theo"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label18.caption
 msgid "Select which of the following hydrostatic properties"
-msgstr "Chon cac thong so cua tinh thuy tinh ma"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label19.caption
 msgid "you want to have displayed in the model:"
-msgstr "ban muon nhin thay o model:"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label2.caption
-msgctxt "tfreeprojectsettingsdialog.label2.caption"
 msgid "Length "
-msgstr "Chieu dai"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label20.caption
 msgid "Y coord. of Longitudinal Max. Wind Area location"
-msgstr "Y maximal coord. of lateral wind area"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label21.caption
 #, fuzzy
@@ -7439,7 +7477,7 @@ msgstr "m"
 
 #: tfreeprojectsettingsdialog.label22.caption
 msgid "X coord. of Transverse Max. Wind Area location"
-msgstr "X maximal coord. of transverse wind area"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label23.caption
 #, fuzzy
@@ -7454,7 +7492,7 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label25.caption
 msgid "Water temperature"
-msgstr "Nhiet do cua nuoc,°C"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label26.caption
 msgid "C"
@@ -7466,24 +7504,25 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label3.caption
 msgid "Beam"
-msgstr "Chieu rong"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label4.caption
+#, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label4.caption"
 msgid "Draft"
-msgstr "Luong mon nuoc"
+msgstr "Chieu cao mon nuoc"
 
 #: tfreeprojectsettingsdialog.label5.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label5.caption"
 msgid "Water density"
-msgstr "Ti trong cua nuoc,"
+msgstr "Ti trong cua nuoc                 "
 
 #: tfreeprojectsettingsdialog.label6.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label6.caption"
 msgid "Appendage coefficient"
-msgstr "He so cho phan them"
+msgstr "Cac he so bo sung                 "
 
 #: tfreeprojectsettingsdialog.label7.caption
 #, fuzzy
@@ -7493,7 +7532,7 @@ msgstr "Nguoi thiet ke"
 
 #: tfreeprojectsettingsdialog.label8.caption
 msgid "Units"
-msgstr "Don vi do luong"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label9.caption
 #, fuzzy
@@ -7517,15 +7556,15 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.tabsheet1.caption"
 msgid "General"
-msgstr "Cac thong so chung"
+msgstr "Cac thong so chinh"
 
 #: tfreeprojectsettingsdialog.tabsheet2.caption
 msgid "Hydrostatics"
-msgstr "Tinh thuy tinh"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.tabsheet3.caption
 msgid "Main dimensions"
-msgstr "Cac kich thuoc chinh"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.unitbox.text
 msgid "Metric"
@@ -7544,6 +7583,7 @@ msgid "Speed [knots]"
 msgstr ""
 
 #: tfreeresistance_kaper.checkbox2.caption
+msgctxt "tfreeresistance_kaper.checkbox2.caption"
 msgid "Extract data from current hull"
 msgstr "Lay cac thong so cua du an hien thoi"
 
@@ -7586,6 +7626,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label17.caption
+msgctxt "tfreeresistance_kaper.label17.caption"
 msgid "LCB"
 msgstr "LCB"
 
@@ -7594,10 +7635,12 @@ msgid "Subm. transom ratio"
 msgstr "Dien tich duoi ngap nuoc cua tau"
 
 #: tfreeresistance_kaper.label2.caption
+msgctxt "tfreeresistance_kaper.label2.caption"
 msgid "Length waterline"
 msgstr "Chieu dai theo duong nuoc"
 
 #: tfreeresistance_kaper.label3.caption
+msgctxt "tfreeresistance_kaper.label3.caption"
 msgid "Beam waterline"
 msgstr "Chieu rong theo duong nuoc"
 
@@ -7618,6 +7661,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label8.caption
+msgctxt "tfreeresistance_kaper.label8.caption"
 msgid "Cp"
 msgstr "Cp"
 
@@ -7627,6 +7671,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.printbutton.caption
+msgctxt "tfreeresistance_kaper.printbutton.caption"
 msgid "PrintButton"
 msgstr ""
 

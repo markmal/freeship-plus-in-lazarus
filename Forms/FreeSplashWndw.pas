@@ -278,10 +278,11 @@ begin
   //Timer.Enabled := False;
   //Timer.OnTimer:=nil;
 end;
-
+var propInfo:TPropInfo;
+var _ptypeInfo: PTypeInfo;
 procedure TFreeSplashWindow.FormCreate(Sender: TObject);
 var
-  Str: string; propInfo:TPropInfo;
+  Str: string;
 begin
   LabelVersion.Caption := rsVersion + ': ' + FREESHIP_MAJOR_VERSION;
   LabelRelease.Caption := rsRelease + ': ' + ReleasedDate;
@@ -291,9 +292,9 @@ begin
   //if CurrentLanguage <> nil then
   begin
     //Str := CurrentLanguage.ReadString('Translation', 'Author', '');
-    // TODO - test!
-    propInfo.Name := 'translation.author';
-    LRSTranslator.TranslateStringProperty(nil,nil, @propInfo, Str);
+
+    Str := rs_translation_author;
+
     if Uppercase(Str) = Uppercase('Translation: <Your name>') then
       str := '';
     _Label8.Caption := Str;

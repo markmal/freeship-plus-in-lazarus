@@ -2098,6 +2098,7 @@ type
       read FFreeShip write FFreeShip;
     property RegularPointColor: TColor
       read FRegularPointColor write FRegularPointColor;
+    property IsLoading: boolean read FIsLoading write FIsLoading;
     property Layer[index: integer]: TFreeSubdivisionLayer
       read FGetLayer;
     property LayerColor: TColor
@@ -2341,6 +2342,7 @@ implementation
 
 uses FreeStringsUnit,
   VRMLUnit,
+  VRML2Unit,
   FreeBackgroundBlendingDlg,
   FreeBackgroundToleranceDlg,
   FreeSaveImageDlg,

@@ -233,9 +233,10 @@ msgid "Archimedes single body hull data"
 msgstr ""
 
 #: freeshipunit.rsautocaddxffile
+#, fuzzy
 msgctxt "freeshipunit.rsautocaddxffile"
 msgid "Autocad dxf file"
-msgstr ""
+msgstr "Autocad dxf файл"
 
 #: freeshipunit.rscarenexyzfiles
 msgid "Carene XYZ files"
@@ -1154,6 +1155,7 @@ msgid "Angle between relative velocity and center line [degr.]"
 msgstr "Угол между относительной скоростью и ДП, град"
 
 #: freestringsunit.rs_angle_between_thrust_and_keel_lines
+msgctxt "freestringsunit.rs_angle_between_thrust_and_keel_lines"
 msgid "Angle between Thrust and Keel lines"
 msgstr "Угол между гребным валом и ОЛ"
 
@@ -1339,6 +1341,7 @@ msgid "AT   - Transverse projected wind area [m2];"
 msgstr "AT   - лобовая проекция площади парусности над КВЛ, м^2;"
 
 #: freestringsunit.rs_average_chordlength
+msgctxt "freestringsunit.rs_average_chordlength"
 msgid "Average chordlength"
 msgstr "Средняя хорда"
 
@@ -1383,6 +1386,7 @@ msgid "BHP"
 msgstr "л.с."
 
 #: freestringsunit.rs_bilge_keels
+msgctxt "freestringsunit.rs_bilge_keels"
 msgid "Bilge keels"
 msgstr "Днищевые кили"
 
@@ -2081,6 +2085,7 @@ msgid "Displacement step can not be zero."
 msgstr "Шаг водоизмещения не может быть 0."
 
 #: freestringsunit.rs_distance
+msgctxt "freestringsunit.rs_distance"
 msgid "Distance"
 msgstr "Расстояние"
 
@@ -2177,6 +2182,7 @@ msgid "Draft Forward (m)                      ="
 msgstr "Осадка носом, м                        ="
 
 #: freestringsunit.rs_draft_hull
+msgctxt "freestringsunit.rs_draft_hull"
 msgid "Draft hull"
 msgstr "Осадка корпуса"
 
@@ -2345,6 +2351,7 @@ msgid "feels  that  these  results  are  at  least  as  effective  as the semi-e
 msgstr "Кларк почувствовал, что эти  результаты не менее эффективны, чем полуэмпирические"
 
 #: freestringsunit.rs_filename
+msgctxt "freestringsunit.rs_filename"
 msgid "Filename"
 msgstr "Имя файла"
 
@@ -2623,6 +2630,7 @@ msgid "hub."
 msgstr "1.7   Характеристики  винта содержат данные о количестве лопастей, дисковом и шаговом"
 
 #: freestringsunit.rs_hull
+msgctxt "freestringsunit.rs_hull"
 msgid "Hull"
 msgstr "Корпус"
 
@@ -2939,6 +2947,7 @@ msgid "KAPER resistance for canoes and kayaks"
 msgstr "Сопротивление по KAPER для каноэ и каяков"
 
 #: freestringsunit.rs_keel
+msgctxt "freestringsunit.rs_keel"
 msgid "Keel"
 msgstr "Киль"
 
@@ -4190,6 +4199,7 @@ msgid "Maximal heeling moment"
 msgstr "Предельный кренящий момент"
 
 #: freestringsunit.rs_maximal_speed
+msgctxt "freestringsunit.rs_maximal_speed"
 msgid "Maximal speed"
 msgstr "Максимальная скорость"
 
@@ -4262,6 +4272,7 @@ msgid "Midship Coefficient to LWL       CM=CX ="
 msgstr "Коэффициент полноты мидельшпангоута Cm ="
 
 #: freestringsunit.rs_midship_draft
+msgctxt "freestringsunit.rs_midship_draft"
 msgid "Midship draft"
 msgstr "Средняя осадка"
 
@@ -4334,6 +4345,7 @@ msgid "m^2"
 msgstr "м^2"
 
 #: freestringsunit.rs_m_2_s
+msgctxt "freestringsunit.rs_m_2_s"
 msgid "m^2/s"
 msgstr "м^2/с"
 
@@ -4558,6 +4570,7 @@ msgid "Number of masts and posts (1-7)"
 msgstr "Количество мачт и стоек (1-7)"
 
 #: freestringsunit.rs_number_of_propellers
+msgctxt "freestringsunit.rs_number_of_propellers"
 msgid "Number of propellers"
 msgstr "Количество гребных винтов"
 
@@ -5091,10 +5104,12 @@ msgid "RPM  ="
 msgstr "n      ="
 
 #: freestringsunit.rs_rudder
+msgctxt "freestringsunit.rs_rudder"
 msgid "Rudder"
 msgstr "Руль"
 
 #: freestringsunit.rs_rudder_behind_skeg_stern
+msgctxt "freestringsunit.rs_rudder_behind_skeg_stern"
 msgid "Rudder behind skeg/stern"
 msgstr "Руль за скегом/штевнем"
 
@@ -5195,6 +5210,7 @@ msgid "should check this on the graphical output."
 msgstr ""
 
 #: freestringsunit.rs_skeg
+msgctxt "freestringsunit.rs_skeg"
 msgid "Skeg"
 msgstr "Скег"
 
@@ -5283,6 +5299,7 @@ msgid "Started speed [knots (m/s)]"
 msgstr "Начальная скорость, узлы (м/с)"
 
 #: freestringsunit.rs_start_speed
+msgctxt "freestringsunit.rs_start_speed"
 msgid "Start speed"
 msgstr "Начальная скорость"
 
@@ -5472,6 +5489,7 @@ msgid "The  dependence  of the turns of single screw ships on the direction of p
 msgstr "Влияние на циркуляцию одновинтового судна направления вращения  винта  и  влияние"
 
 #: freestringsunit.rs_thickness
+msgctxt "freestringsunit.rs_thickness"
 msgid "Thickness"
 msgstr "Толщина"
 
@@ -5498,6 +5516,10 @@ msgstr "Это неверный FREE!ship .part файл!"
 #: freestringsunit.rs_this_is_not_a_valid_vrml_1_0_file
 msgid "This is not a valid VRML 1.0 file"
 msgstr "Это неверный VRML 1.0 файл!"
+
+#: freestringsunit.rs_this_is_not_a_valid_vrml_2_0_file
+msgid "This is not a valid VRML 2.0 file"
+msgstr ""
 
 #: freestringsunit.rs_this_is_propeller_not_a_strong_in_non_uniform_flow_
 msgid "This is propeller not a strong in non-uniform flow!"
@@ -5605,6 +5627,7 @@ msgid "Total beam of submerged body"
 msgstr "Полная ширина погруженного тела"
 
 #: freestringsunit.rs_total_draft
+msgctxt "freestringsunit.rs_total_draft"
 msgid "Total draft"
 msgstr "Полная осадка"
 
@@ -5623,6 +5646,10 @@ msgstr "1.4.2 Показатель поворотливости Кларка P. 
 #: freestringsunit.rs_transformation_succeeded_after
 msgid "Transformation succeeded after"
 msgstr "Трансформация последует после"
+
+#: freestringsunit.rs_translation_author
+msgid "Translation: <Your name>"
+msgstr "Translation: V. Timoshenko, M. Malakanov"
 
 #: freestringsunit.rs_translation_vector
 msgid "Translation vector"
@@ -5725,6 +5752,7 @@ msgid "Type of transmission              |     Transmission efficiency"
 msgstr "Тип передачи                      |        Значение КПД"
 
 #: freestringsunit.rs_t_m_3
+msgctxt "freestringsunit.rs_t_m_3"
 msgid "t/m^3"
 msgstr "т/м^3"
 
@@ -6012,6 +6040,7 @@ msgid "Waterlines"
 msgstr "Ватерлинии"
 
 #: freestringsunit.rs_waterplane_area
+msgctxt "freestringsunit.rs_waterplane_area"
 msgid "Waterplane area"
 msgstr "Площадь ватерлинии"
 
@@ -6077,6 +6106,7 @@ msgid "were added  by  regressing  the  data  presented by Fugino (4) for the To
 msgstr "был добавлен с использованием регрессионного анализа Фугино [4] для судов  \"Tokyo"
 
 #: freestringsunit.rs_wetted_area
+msgctxt "freestringsunit.rs_wetted_area"
 msgid "Wetted area"
 msgstr "Смоченная поверхность"
 
@@ -6597,29 +6627,33 @@ msgid "Restore"
 msgstr ""
 
 #: tfreecrosscurvesdialog.button1.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button1.caption"
 msgid "Add"
 msgstr "Добавить"
 
 #: tfreecrosscurvesdialog.button2.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button2.caption"
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Удаление"
 
 #: tfreecrosscurvesdialog.button3.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button3.caption"
 msgid "Add"
 msgstr "Добавить"
 
 #: tfreecrosscurvesdialog.button4.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.button4.caption"
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Удаление"
 
 #: tfreecrosscurvesdialog.caption
 msgctxt "tfreecrosscurvesdialog.caption"
 msgid "Cross curves."
-msgstr "Расчет пантокарен, ДСО и ДДО."
+msgstr ""
 
 #: tfreecrosscurvesdialog.chart.axislist[0].title.caption
 msgid "KN sin(phi)"
@@ -6651,7 +6685,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.checkbox1.caption
 msgid "Incremental displ."
-msgstr "Возр. водоизм."
+msgstr ""
 
 #: tfreecrosscurvesdialog.combobox.text
 msgid "Nonlimit"
@@ -6663,11 +6697,11 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox2.caption
 msgid "Heeling angles."
-msgstr "Угол крена."
+msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox3.caption
 msgid "Data for SSD:"
-msgstr "Данные для ДСО:"
+msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox4.caption
 msgid "Displacements."
@@ -6675,57 +6709,58 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label1.caption
 msgid "Start displ."
-msgstr "Водоизм. миним."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label12_.caption
 msgid "Decrease metacentric height, [m]"
-msgstr "Уменьшение метацен.высоты dh, м"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label13_.caption
 msgid "Immersion deck angle, [degr]"
-msgstr "Угол входа палубы в воду, град"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label1_.caption
 msgid "Projected displ., [tons]"
-msgstr "Проектное водоизм., т"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label2.caption
 msgid "End displ."
-msgstr "Водоизм. макс."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label2_.caption
 msgid "Estimated Z CoG, [m]"
-msgstr "Ожидаемая Zg Ц.Т., м"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label3.caption
 msgid "Displ. step"
-msgstr "Шаг по водоизм."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label4_.caption
 msgid "Area of bilge keels, [m^2]"
-msgstr "скуловых килей, м^2"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label5_.caption
 msgid "Area of skeg, [m^2]"
-msgstr "брускового киля, м^2"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr "парусности, м^2"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"
-msgstr "Zп Ц.Т парусн.над КВЛ, м"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label8_.caption
 msgid "Navigation region:"
-msgstr "Район плавания:"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label9_.caption
 msgid "Registry:"
-msgstr "По правилам:"
+msgstr ""
 
 #: tfreecrosscurvesdialog.panel1.caption
+msgctxt "tfreecrosscurvesdialog.panel1.caption"
 msgid "Panel1"
 msgstr ""
 
@@ -6736,9 +6771,10 @@ msgstr ""
 #: tfreecrosscurvesdialog.printbutton.caption
 msgctxt "tfreecrosscurvesdialog.printbutton.caption"
 msgid "Cross curves."
-msgstr "Пантокарены."
+msgstr ""
 
 #: tfreecrosscurvesdialog.printbutton.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.printbutton.hint"
 msgid "Print the results of the calculation."
 msgstr "Печать результатов расчета."
@@ -6749,24 +6785,25 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.savebutton.hint
 msgid "Save the results of the calculation."
-msgstr "Сохранить результаты расчета."
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet1.caption
 msgid "Graph"
-msgstr "Графики"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet2.caption
 msgid "Data"
-msgstr "Данные расчета"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet3.caption
 msgid "Stability diagram"
-msgstr "ДСО и ДДО"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet4.caption
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.tabsheet4.caption"
 msgid "Results"
-msgstr "Результаты расчета"
+msgstr "Результаты"
 
 #: tfreecrosscurvesdialog.toolbar1.caption
 msgctxt "tfreecrosscurvesdialog.toolbar1.caption"
@@ -6778,26 +6815,29 @@ msgid "ToolButton1"
 msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton1.hint
+msgctxt "tfreecrosscurvesdialog.toolbutton1.hint"
 msgid "Start the calculation."
-msgstr "Начало расчета."
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.caption
 msgid "Abort"
-msgstr "Сброс"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.hint
 msgid "Abort the calculation"
-msgstr "Стоп расчет"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton25.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton25.hint"
 msgid "Close the window and save changes."
 msgstr "Закрыть окно и сохранить изменения."
 
 #: tfreecrosscurvesdialog.toolbutton7.hint
+#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "Закрыть окно без сохранения изменений."
+msgstr "Закрыть окно без сохранения."
 
 #: tfreecrosscurvesdialog._toolbutton10.caption
 msgctxt "tfreecrosscurvesdialog._toolbutton10.caption"
@@ -7289,16 +7329,16 @@ msgstr ""
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.bitbtn2.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.caption
 msgid "Project settings."
-msgstr "Установки."
+msgstr ""
 
 #: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
 msgid "Save preview image"
@@ -7314,49 +7354,49 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox11.caption
 msgid "Default at 0.0"
-msgstr "По умолчанию на 0.0"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox12.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
 msgid "Default at 0.5*L"
-msgstr "По умолчанию на 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox13.caption
 msgid "Enable auto move model to baseline"
-msgstr "Включить автоперемещение модели к ОЛ"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox14.caption
 msgid "Save Bonjean scale and SAC in files"
-msgstr "Сохранять СПШ и масштаб Бонжана в файлах"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox2.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
 msgid "Default at 0.5*L"
-msgstr "По умолчанию на 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr "Отключить проверку поверхности"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
 msgid "Displacement and center of buoyancy"
-msgstr "Водоизмещение и центр величины"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox6.caption
 msgid "Curve of sectional areas"
-msgstr "Строевая по шпангоутам"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox7.caption
 msgid "Metacentric height"
-msgstr "Поперечный метацентр"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox8.caption
 msgid "Longitudinal center of floatation"
-msgstr "Центр тяжести площади КВЛ"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox9.caption
 msgid "Lateral area and center of effort"
-msgstr "Ц.Т и плошадь погруженной части ДП"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.combobox1.text
 msgid "Dimensions from project settings"
@@ -7364,11 +7404,11 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.groupbox1.caption
 msgid "Display hydrostatic features. "
-msgstr "Показ СПШ, ЦТ, ЦВ, ЦП и др.:"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label1.caption
 msgid "Project name"
-msgstr "Название проекта"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label10.caption
 #, fuzzy
@@ -7389,7 +7429,7 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label13.caption
 msgctxt "tfreeprojectsettingsdialog.label13.caption"
 msgid "Split Section location"
-msgstr "Абсцисса миделя или шпангоута макс.площади"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label14.caption
 #, fuzzy
@@ -7401,32 +7441,31 @@ msgstr "м"
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label15.caption"
 msgid "Comment"
-msgstr "Комментарий"
+msgstr "Коментарий"
 
 #: tfreeprojectsettingsdialog.label16.caption
 msgid "File created by"
-msgstr "Файл создан"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label17.caption
 msgid "Coefficients based on"
-msgstr "Коэффициенти определяются по"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label18.caption
 msgid "Select which of the following hydrostatic properties"
-msgstr "Выберите гидростатические параметры которые"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label19.caption
 msgid "you want to have displayed in the model:"
-msgstr "вы хотите видеть на модели:"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label2.caption
-msgctxt "tfreeprojectsettingsdialog.label2.caption"
 msgid "Length "
-msgstr "Длина"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label20.caption
 msgid "Y coord. of Longitudinal Max. Wind Area location"
-msgstr "Y максимума боковой площади парусности"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label21.caption
 #, fuzzy
@@ -7436,7 +7475,7 @@ msgstr "м"
 
 #: tfreeprojectsettingsdialog.label22.caption
 msgid "X coord. of Transverse Max. Wind Area location"
-msgstr "X максимума лобовой площади парусности"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label23.caption
 #, fuzzy
@@ -7451,7 +7490,7 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label25.caption
 msgid "Water temperature"
-msgstr "Температура воды,°C"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label26.caption
 msgid "C"
@@ -7463,9 +7502,10 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label3.caption
 msgid "Beam"
-msgstr "Ширина"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label4.caption
+#, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label4.caption"
 msgid "Draft"
 msgstr "Осадка"
@@ -7474,23 +7514,23 @@ msgstr "Осадка"
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label5.caption"
 msgid "Water density"
-msgstr "Плотность воды,"
+msgstr "Плотность воды"
 
 #: tfreeprojectsettingsdialog.label6.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label6.caption"
 msgid "Appendage coefficient"
-msgstr "Добавочный коэффициент"
+msgstr "Дополн. коэффициент"
 
 #: tfreeprojectsettingsdialog.label7.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label7.caption"
 msgid "Designer"
-msgstr "Дизайнер"
+msgstr "Проектант"
 
 #: tfreeprojectsettingsdialog.label8.caption
 msgid "Units"
-msgstr "Система измерения"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label9.caption
 #, fuzzy
@@ -7514,15 +7554,15 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.tabsheet1.caption"
 msgid "General"
-msgstr "Главное"
+msgstr "Основные хар-ки"
 
 #: tfreeprojectsettingsdialog.tabsheet2.caption
 msgid "Hydrostatics"
-msgstr "Гидростатика"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.tabsheet3.caption
 msgid "Main dimensions"
-msgstr "Главные размерения"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.unitbox.text
 msgid "Metric"
@@ -7541,6 +7581,7 @@ msgid "Speed [knots]"
 msgstr ""
 
 #: tfreeresistance_kaper.checkbox2.caption
+msgctxt "tfreeresistance_kaper.checkbox2.caption"
 msgid "Extract data from current hull"
 msgstr "Взять данные текущ.проекта"
 
@@ -7583,6 +7624,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label17.caption
+msgctxt "tfreeresistance_kaper.label17.caption"
 msgid "LCB"
 msgstr "LCB"
 
@@ -7591,10 +7633,12 @@ msgid "Subm. transom ratio"
 msgstr "Смоч. площадь транца"
 
 #: tfreeresistance_kaper.label2.caption
+msgctxt "tfreeresistance_kaper.label2.caption"
 msgid "Length waterline"
 msgstr "Длина по ватерлинии"
 
 #: tfreeresistance_kaper.label3.caption
+msgctxt "tfreeresistance_kaper.label3.caption"
 msgid "Beam waterline"
 msgstr "Ширина по ватерлинии"
 
@@ -7615,6 +7659,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.label8.caption
+msgctxt "tfreeresistance_kaper.label8.caption"
 msgid "Cp"
 msgstr "Cp"
 
@@ -7624,6 +7669,7 @@ msgid "[-]"
 msgstr ""
 
 #: tfreeresistance_kaper.printbutton.caption
+msgctxt "tfreeresistance_kaper.printbutton.caption"
 msgid "PrintButton"
 msgstr ""
 

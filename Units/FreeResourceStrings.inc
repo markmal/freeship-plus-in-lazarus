@@ -623,6 +623,7 @@ resourcestring
 
  //rs_This_is_not_a_valid_VRML_1_0_file {UserString[208]}
   rs_This_is_not_a_valid_VRML_1_0_file = 'This is not a valid VRML 1.0 file';
+  rs_This_is_not_a_valid_VRML_2_0_file = 'This is not a valid VRML 2.0 file';
 
  //rs_Choose_a_directory_where_you_want_to_save_the_dxf_files_to_ {UserString[209]}
   rs_Choose_a_directory_where_you_want_to_save_the_dxf_files_to_ = 'Choose a directory where you want to save the dxf files to:';

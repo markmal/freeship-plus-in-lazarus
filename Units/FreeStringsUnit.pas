@@ -25,9 +25,12 @@ unit FreeStringsUnit;
 
 {$IFDEF FPC}
   { $MODE Delphi}
+  {$modeswitch result+}
 {$ENDIF}
 
 interface
+
+resourcestring rs_translation_author = 'Translation: <Your name>';
 
 { Get rid of UserStrings
 Type TUserstring   = record

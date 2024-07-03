@@ -31,7 +31,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="5"/>
       <MinorVersionNr Value="2"/>
-      <BuildNr Value="512"/>
+      <BuildNr Value="513"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -360,7 +360,7 @@
         </Mode1>
         <Mode2 Name="debug log">
           <local>
-            <CommandLineParams Value="--debug --log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+            <CommandLineParams Value="--debug --log-debug --Xnosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
             <WorkingDirectory Value="D:/my/prj/freeship-plus-in-lazarus"/>
           </local>
           <environment>
@@ -414,7 +414,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="129">
+    <Units Count="130">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -1126,6 +1126,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="RibbonToolBarMgr"/>
       </Unit128>
+      <Unit129>
+        <Filename Value="Units/VRML2Unit.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit129>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

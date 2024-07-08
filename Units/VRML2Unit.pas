@@ -69,6 +69,25 @@ public
   property Children[index: integer]: TVRMLObject read FGetChild;
 end;
 
+TFloatArray3 = array[0..2] of Float;
+TFloatArray4 = array[0..3] of Float;
+
+TVRML2Transform = class(TVRML2Group)
+private
+  FScale: TFloatArray3;
+  FScaleOrientation: array[0..3] of Float;
+  FCenter: array[0..2] of Float;
+  FRotation: array[0..3] of Float;
+  FTranslation: array[0..2] of Float;
+  FBBoxCenter: array[0..2] of Float;
+  FBBoxSize: array[0..2] of Float;
+public
+  constructor Create(Scene: TVRML2Scene; Parent:TVRML2Object); override;
+  procedure Clear; override;
+  destructor Destroy; override;
+  procedure Load; override;
+end;
+
 TVRML2Material = class(TVRML2object)
 private
   FAmbientIntensity: Float;
@@ -234,7 +253,7 @@ end;
 
 procedure Assert(found:TToken; expected:String);
   begin
-    if found.FString <> expected then
+    if found.FString.ToUpper <> expected.ToUpper then
       begin
       MessageDlg(String.Format('Found "%s", "%s" was expected at %d,%d',
         [found.FString, expected, found.FLine, found.FPosition]),
@@ -280,7 +299,7 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
       FTokens := TFasterListTToken.Create;
       FObjects:= TFasterListTVRML2Object.Create;
       FFaceSets:= TFasterListTVRML2IndexedFaceSet.Create;
-      FCurrentToken := 0;
+      FCurrentToken := -1;
       FLevel := 0;
     end;
 
@@ -298,7 +317,7 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
       FTokens.Clear;
       FObjects.Clear;
       FFaceSets.Clear;
-      FCurrentToken:=0;
+      FCurrentToken:=-1;
       FLevel := 0;
     end;
 
@@ -322,7 +341,10 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
           VRMLObject := TVRML2Group.Create(self, nil)
         else
         if word.ToUpper = 'SHAPE' then
-          VRMLObject := TVRML2Shape.Create(self,nil);
+          VRMLObject := TVRML2Shape.Create(self,nil)
+        else
+        if word.ToUpper = 'TRANSFORM' then
+          VRMLObject := TVRML2Transform.Create(self,nil);
 
         if VRMLObject <> nil then
         begin
@@ -338,13 +360,18 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
       token: TToken;
     begin
       Result := TFasterListTToken.Create;
-      W := ''; InSQString:=false; InDQString:=false;
+      W := ''; InSQString:=false; InDQString:=false; b:=1;
       for i:=1 to Length(Str) do
       begin
         C := Str[i];
-        if C in [' ',#9,#10,#13] then
+        if (C in [' ',#9,#10,#13])
+          and not InSQString and not InDQString then
            begin
-             if W > '' then Result.Add(TToken.Create(W,ln,b));
+             if W > '' then
+             begin
+               Result.Add(TToken.Create(W,ln,b));
+             end;
+             b:=i+1;
              W := '';
            end
         else if C = '''' then
@@ -453,10 +480,11 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
     var curLevel: integer;  token: TToken; word: String;
     begin
      curLevel := FLevel;
-     while (FCurrentToken <= FTokens.Count) and (curLevel >= FLevel) do
+     while (FCurrentToken <= FTokens.Count) and (curLevel <= FLevel) do
      begin
        word := LoadId(token);
      end;
+     dec(FCurrentToken);
     end;
 
     procedure TVRML2Scene.LoadFromFile(Filename: string);
@@ -515,17 +543,17 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
             end;
             Inc(I);
           end;
-          repeat
+          {repeat
             // replace double spaces by only 1
             I := Pos('  ', Str);
             if I <> 0 then
             begin
               System.Delete(Str, I, 1);
             end;
-          until I = 0;
+          until I = 0;}
           // remove leading and trailing spaces
-          Str := Trim(Str);
-          if Str <> '' then
+          //Str := Trim(Str);
+          if Trim(Str) <> '' then
           begin
             tokens := Tokenize(Str, L);
             for I:=0 to tokens.Count-1 do
@@ -676,6 +704,115 @@ begin
 end;{TVRML2Group.Load}
 
 
+// TVRML2Transform
+constructor TVRML2Transform.Create(Scene: TVRML2Scene; Parent: TVRML2object);
+begin
+  inherited Create(Scene, Parent);
+  Clear;
+end;{TVRML2Transform.Create}
+
+procedure TVRML2Transform.Clear;
+var
+  I: integer;
+begin
+  inherited Clear;
+  FScale[0]:=1.0; FScale[1]:=1.0; FScale[0]:=1.0;
+  FScaleOrientation[0]:= 0; FScaleOrientation[1]:= 0;
+  FScaleOrientation[2]:= 1; FScaleOrientation[3]:= 0;
+  FCenter[0]:=0; FCenter[1]:=0; FCenter[2]:=0;
+  FRotation[0]:=0; FRotation[1]:=0; FRotation[2]:=1; FRotation[3]:=0;
+  FTranslation[0]:=0; FTranslation[1]:=0; FTranslation[2]:=0;
+  FBBoxCenter[0]:=0; FBBoxCenter[1]:=0; FBBoxCenter[2]:=0;
+  FBBoxSize[0]:=-1; FBBoxSize[2]:=-1; FBBoxSize[2]:=-1;
+end;{TVRML2Transform.Clear}
+
+destructor TVRML2Transform.Destroy;
+begin
+  inherited Destroy;
+end;{TVRML2Transform.Destroy}
+
+procedure TVRML2Transform.Load;
+var
+  token:TToken;
+  word,ObjectName: string;
+  coord: T3DCoordinate;
+  child: TVRML2Object;
+begin
+  word := FScene.LoadId(token);
+  if word <> '{' then
+    begin
+      Self.FName := word;
+      word := FScene.LoadId(token);
+      Assert(token, '{');
+    end;
+  word := FScene.LoadId(token);
+  while word <> '}' do
+  begin
+    if word.ToUpper = 'CENTER' then
+    begin
+      FCenter[0] := FScene.LoadFloat(token);
+      FCenter[1] := FScene.LoadFloat(token);
+      FCenter[2] := FScene.LoadFloat(token);
+    end
+    else if word.ToUpper = 'ROTATION' then
+    begin
+      FRotation[0] := FScene.LoadFloat(token);
+      FRotation[1] := FScene.LoadFloat(token);
+      FRotation[2] := FScene.LoadFloat(token);
+      FRotation[3] := FScene.LoadFloat(token);
+    end
+    else if word.ToUpper = 'SCALE' then
+    begin
+      FScale[0] := FScene.LoadFloat(token);
+      FScale[1] := FScene.LoadFloat(token);
+      FScale[2] := FScene.LoadFloat(token);
+    end
+    else if word.ToUpper = 'SCALEORIENTATION' then
+    begin
+      FScaleOrientation[0] := FScene.LoadFloat(token);
+      FScaleOrientation[1] := FScene.LoadFloat(token);
+      FScaleOrientation[2] := FScene.LoadFloat(token);
+      FScaleOrientation[3] := FScene.LoadFloat(token);
+    end
+    else if word.ToUpper = 'TRANSLATION' then
+    begin
+      FTranslation[0] := FScene.LoadFloat(token);
+      FTranslation[1] := FScene.LoadFloat(token);
+      FTranslation[2] := FScene.LoadFloat(token);
+    end
+    else if word.ToUpper = 'BBOXCENTER' then
+    begin
+      FBBoxCenter[0] := FScene.LoadFloat(token);
+      FBBoxCenter[1] := FScene.LoadFloat(token);
+      FBBoxCenter[2] := FScene.LoadFloat(token);
+    end
+    else if word.ToUpper = 'BBOXSIZE' then
+    begin
+      FBBoxSize[0] := FScene.LoadFloat(token);
+      FBBoxSize[1] := FScene.LoadFloat(token);
+      FBBoxSize[2] := FScene.LoadFloat(token);
+    end
+    else if word.ToUpper = 'CHILDREN' then
+    begin
+      word := FScene.LoadId(token);
+      Assert(token, '[');
+      word := FScene.LoadId(token);
+      while word <> ']' do
+      begin
+        if word.ToUpper = 'SHAPE' then
+        begin
+          child := TVRML2Shape.Create(FScene, Self);
+          child.Load;
+          FChildren.Add(child);
+        end;
+        word := FScene.LoadId(token);
+      end;
+      Assert(token, ']');
+    end;
+    word := FScene.LoadId(token);
+  end; //while Transform
+end;{TVRML2Transform.Load}
+
 //   TVRML2Material
 
 constructor TVRML2Material.Create(Scene: TVRML2Scene; Parent:TVRML2Object);
@@ -724,7 +861,7 @@ begin
       else
       if word.toUpper = 'AMBIENTINTENSITY' then FAmbientIntensity := FScene.LoadFloat(token)
       else
-      if word.toUpper = 'SHINENESS' then FShininess := FScene.LoadFloat(token)
+      if word.toUpper = 'SHININESS' then FShininess := FScene.LoadFloat(token)
       else
       if word.toUpper = 'TRANSPARENCY' then FTransparency := FScene.LoadFloat(token);
       // TODO add error if something else
@@ -814,24 +951,26 @@ end;{TVRML2Material.Load}
         Assert(token, '{');
       end;
     word := FScene.LoadId(token);
-    if word.ToUpper = 'APPEARANCE' then
+    while word <> '}' do
     begin
-      FAppearance := TVRML2Appearance.Create(FScene, Self);
-      FAppearance.Load;
-      word := FScene.LoadId(token);
-    end;
-    if word.ToUpper = 'GEOMETRY' then
-    begin
-      word := FScene.LoadId(token);
-      if word.ToUpper = 'INDEXEDFACESET' then
+      if word.ToUpper = 'APPEARANCE' then
       begin
-        FGeometry := TVRML2IndexedFaceSet.Create(FScene, Self);
-        FGeometry.Load;
+        FAppearance := TVRML2Appearance.Create(FScene, Self);
+        FAppearance.Load;
+        //word := FScene.LoadId(token);
       end
-      else FScene.SkipObject;
+      else if word.ToUpper = 'GEOMETRY' then
+      begin
+        word := FScene.LoadId(token);
+        if word.ToUpper = 'INDEXEDFACESET' then
+        begin
+          FGeometry := TVRML2IndexedFaceSet.Create(FScene, Self);
+          FGeometry.Load;
+        end
+        else FScene.SkipObject;
+      end;
+      word := FScene.LoadId(token);
     end;
-    word := FScene.LoadId(token);
-    Assert(token, '}');
   end;{TVRML2Shape.Load}
 
 // TVRML2Coordinates
@@ -1039,6 +1178,11 @@ function TVRML2Coordinates.FGetPoint(Index: integer): T3DCoordinate;
         if word.ToUpper = 'SOLID' then
         begin
           FSolid := FScene.LoadBoolean(token);
+        end
+        else
+        if word.ToUpper = 'CREASEANGLE' then
+        begin
+          FCreaseAngle := FScene.LoadFloat(token);
         end
         else
         if word.ToUpper = 'COORD' then

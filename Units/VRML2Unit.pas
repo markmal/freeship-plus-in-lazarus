@@ -45,6 +45,7 @@ type
 TVRML2object = class(TVRMLObject)
 private
   FName: String;
+  FType: String;
   FScene: TVRML2Scene;
   FParent: TVRML2object;
 public
@@ -262,6 +263,14 @@ procedure Assert(found:TToken; expected:String);
       end;
   end;
 
+procedure RaiseSyntaxError(found:TToken; expected: String);
+  begin
+    MessageDlg(String.Format('Found "%s", %s was expected at %d,%d',
+      [found.FString, expected, found.FLine, found.FPosition]),
+      mtError, [mbOK], 0);
+    raise VRML2ParserException.create at get_caller_addr(get_frame), get_caller_frame(get_frame);
+  end;
+
 constructor TToken.Create(val:String; ln,pos:integer);
 begin
   FString := val;
@@ -326,16 +335,24 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
       LineNr: integer;
       I, Index, NObj: integer;
       Str: string;
-      word, ObjectName: string;
+      word, ObjectName, ObjectType: string;
       VRMLObject: TVRML2Object;
       token: TToken;
       ValidFile: boolean;
     begin
       while FCurrentToken < FTokens.Count-1 do
       begin
-        VRMLObject := nil;
+        VRMLObject := nil; ObjectName:=''; ObjectType:='';
         token := nil;
         word := Self.LoadId(token);
+
+        if word.toUpper = 'DEF' then
+        begin
+          ObjectName := Self.LoadId(token);
+          word := Self.LoadId(token);
+        end;
+
+        ObjectType := word;
 
         if word.ToUpper = 'GROUP' then
           VRMLObject := TVRML2Group.Create(self, nil)
@@ -344,11 +361,15 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
           VRMLObject := TVRML2Shape.Create(self,nil)
         else
         if word.ToUpper = 'TRANSFORM' then
-          VRMLObject := TVRML2Transform.Create(self,nil);
+          VRMLObject := TVRML2Transform.Create(self,nil)
+        else if word.ToUpper <> '}' then
+          Self.SkipObject;
 
         if VRMLObject <> nil then
         begin
           Index := 0;
+          VRMLObject.FName := ObjectName;
+          VRMLObject.FType := ObjectType;
           VRMLObject.Load;
           Add(VRMLObject);
         end;
@@ -480,11 +501,13 @@ constructor TVRML2Object.Create(Scene: TVRML2Scene; Parent: TVRML2object);
     var curLevel: integer;  token: TToken; word: String;
     begin
      curLevel := FLevel;
-     while (FCurrentToken <= FTokens.Count) and (curLevel <= FLevel) do
-     begin
+     while (FCurrentToken < FTokens.Count)
+       and (word<>'{')and (word<>'[') do
        word := LoadId(token);
-     end;
-     dec(FCurrentToken);
+     repeat
+       word := LoadId(token);
+     until (FCurrentToken = FTokens.Count) or (curLevel = FLevel);
+     //dec(FCurrentToken);
     end;
 
     procedure TVRML2Scene.LoadFromFile(Filename: string);
@@ -808,7 +831,10 @@ begin
         word := FScene.LoadId(token);
       end;
       Assert(token, ']');
-    end;
+    end
+    else RaiseParserError(token, 'center|children|rotation|scale|scaleOrientation'
+         +'|translation|bboxCenter|bboxSize');
+
     word := FScene.LoadId(token);
   end; //while Transform
 end;{TVRML2Transform.Load}
@@ -863,8 +889,9 @@ begin
       else
       if word.toUpper = 'SHININESS' then FShininess := FScene.LoadFloat(token)
       else
-      if word.toUpper = 'TRANSPARENCY' then FTransparency := FScene.LoadFloat(token);
-      // TODO add error if something else
+      if word.toUpper = 'TRANSPARENCY' then FTransparency := FScene.LoadFloat(token)
+      else RaiseParserError(token, 'ambientIntensity|diffuseColor|emissiveColor'
+           +'|shininess|specularColor|transparency');
 
       word := FScene.LoadId(token);
     end;
@@ -900,7 +927,13 @@ end;{TVRML2Material.Load}
       word := FScene.LoadId(token);
       if word <> '{' then
       begin
-        Self.FName := word;
+        if word.toUpper = 'DEF' then
+        begin
+          word := FScene.LoadId(token);
+          Self.FName := word; // nodeNameId
+          word := FScene.LoadId(token);
+        end;
+        Self.FType := word;
         word := FScene.LoadId(token);
         Assert(token, '{');
       end;
@@ -911,7 +944,10 @@ end;{TVRML2Material.Load}
         begin
           FMaterial := TVRML2Material.Create(FScene, Self);
           FMaterial.Load;
-        end;
+        end
+        else if word.toUpper = 'TEXTURE' then FScene.SkipObject
+        else if word.toUpper = 'TEXTURETRANSFORM' then FScene.SkipObject
+        else RaiseSyntaxError(token, 'material|texture|textureTransform');
         word := FScene.LoadId(token);
       end;
   end;{TVRML2Appearance.Load}
@@ -946,7 +982,13 @@ end;{TVRML2Material.Load}
     word := FScene.LoadId(token);
     if word <> '{' then
       begin
-        Self.FName := word;
+        if word.toUpper = 'DEF' then
+        begin
+          word := FScene.LoadId(token);
+          Self.FName := word; // nodeNameId
+          word := FScene.LoadId(token);
+        end;
+        Self.FType := word;
         word := FScene.LoadId(token);
         Assert(token, '{');
       end;
@@ -968,7 +1010,8 @@ end;{TVRML2Material.Load}
           FGeometry.Load;
         end
         else FScene.SkipObject;
-      end;
+      end
+      else RaiseParserError(token, 'appearance|geometry');
       word := FScene.LoadId(token);
     end;
   end;{TVRML2Shape.Load}
@@ -1090,7 +1133,8 @@ function TVRML2Coordinates.FGetPoint(Index: integer): T3DCoordinate;
           Add(coord);
           word := FScene.LoadId(token);
         end;
-      end;
+      end
+      else RaiseParserError(token, 'point');
       word := FScene.LoadId(token);
     end;
     Assert(token, '}');
@@ -1175,20 +1219,38 @@ function TVRML2Coordinates.FGetPoint(Index: integer): T3DCoordinate;
       word := FScene.LoadId(token);
       while word <> '}' do
       begin
+        if word.ToUpper = 'CCW' then
+          FCCW := FScene.LoadBoolean(token)
+        else
+        if word.ToUpper = 'COLORPERVERTEX' then
+          FColorPerVertex := FScene.LoadBoolean(token)
+        else
+        if word.ToUpper = 'CONVEX' then
+          FConvex := FScene.LoadBoolean(token)
+        else
+        if word.ToUpper = 'NORMALPERVERTEX' then
+          FNormalPerVertex := FScene.LoadBoolean(token)
+        else
         if word.ToUpper = 'SOLID' then
-        begin
-          FSolid := FScene.LoadBoolean(token);
-        end
+          FSolid := FScene.LoadBoolean(token)
         else
         if word.ToUpper = 'CREASEANGLE' then
-        begin
-          FCreaseAngle := FScene.LoadFloat(token);
-        end
+          FCreaseAngle := FScene.LoadFloat(token)
         else
         if word.ToUpper = 'COORD' then
         begin
           //FCoordinates := TVRML2Coordinates.Create(FScene, Self);
           FCoordinates.Load;
+        end
+        else
+        if (word.ToUpper='COLOR')or(word.ToUpper='NORMAL')or(word.ToUpper='TEXCOORD') then
+        begin
+          FScene.SkipObject;
+        end
+        else
+        if (word.ToUpper='COLORINDEX')or(word.ToUpper='NORMALINDEX')or(word.ToUpper='TEXCOORDINDEX') then
+        begin
+          FScene.SkipObject;
         end
         else
         if word.ToUpper = 'COORDINDEX' then
@@ -1218,7 +1280,10 @@ function TVRML2Coordinates.FGetPoint(Index: integer): T3DCoordinate;
             end;
             word := FScene.LoadId(token);
           end;
-        end;
+        end
+        else RaiseParserError(token,'color|coord|normal|texCoord|ccw|colorIndex'
+             +'|colorPerVertex|convex|coordIndex|creaseAngle|normalIndex'
+             +'|normalPerVertex|solid|texCoordIndex');
         word := FScene.LoadId(token);
       end;
       FScene.Add(Self);

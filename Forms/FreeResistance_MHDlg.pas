@@ -66,6 +66,7 @@ uses
   FreeShipUnit,
   Math,
   ExtCtrls,
+  LCLTranslator,
   ImgList,
   Menus;
 

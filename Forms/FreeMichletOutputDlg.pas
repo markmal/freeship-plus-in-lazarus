@@ -49,6 +49,7 @@ uses
   ComCtrls,
   FreeShipUnit,
   StdCtrls,
+  LCLTranslator,
   FreeTypes,
   FreeGeometry,
   ActnList,

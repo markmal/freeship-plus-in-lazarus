@@ -44,6 +44,7 @@ uses
   Forms,
   Dialogs,
   StdCtrls,
+  LCLTranslator,
   Buttons,
   ExtCtrls, Spin,
   FreeShipUnit,

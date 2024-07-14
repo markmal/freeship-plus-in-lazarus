@@ -52,6 +52,7 @@ uses
   FasterList,
   ExtCtrls,
   ComCtrls,
+  LCLTranslator,
   //ToolWin,
   Printers,
   Math,

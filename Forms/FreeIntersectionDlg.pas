@@ -53,6 +53,7 @@ uses
   CheckLst,
   ImgList,
   ComCtrls,
+  LCLTranslator,
   //ToolWin,
   ActnList, Grids, Spin;
 

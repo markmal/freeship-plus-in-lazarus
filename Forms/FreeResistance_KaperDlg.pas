@@ -59,6 +59,7 @@ uses
   FreeShipUnit,
   Spin,
   ComCtrls,
+  LCLTranslator,
   //ToolWin,
   ImgList;
 

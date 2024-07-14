@@ -37,6 +37,7 @@ uses
      {$ENDIF}
  Forms, Controls, Graphics, Dialogs, ExtCtrls,
   LCLIntf, LCLType, 
+  LCLTranslator,
   StdCtrls, Grids, Buttons,
   FreeVersionUnit;
 

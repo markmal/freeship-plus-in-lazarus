@@ -54,6 +54,7 @@ uses
   ExtCtrls,
   FreeGeometry,
   ComCtrls,
+  LCLTranslator,
   FreeShipUnit,
   FreeStringsUnit;
 

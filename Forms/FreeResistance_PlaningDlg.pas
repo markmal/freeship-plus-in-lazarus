@@ -66,6 +66,7 @@ uses
   FreeLogger,
   Math,
   ExtCtrls,
+  LCLTranslator,
   ImgList,
   Menus,
   Graphics;

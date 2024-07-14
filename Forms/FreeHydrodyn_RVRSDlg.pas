@@ -60,6 +60,7 @@ uses
   Forms,
   Dialogs,
   StdCtrls,
+  LCLTranslator,
   Buttons,
   FreeGeometry,
   ExtCtrls,

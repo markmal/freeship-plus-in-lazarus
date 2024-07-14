@@ -9,7 +9,8 @@ uses
   Gtk2,
 {$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, ActnList, Menus, ComCtrls;
+  StdCtrls, ActnList, Menus, ComCtrls,
+  LCLTranslator;
 
 type
 

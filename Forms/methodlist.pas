@@ -5,7 +5,8 @@ unit MethodList;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils,
+  LCLTranslator;
 
 // simple not sorted generic list
 // TItemType can be procedure of object type, double pointer, like TNotifyEvent

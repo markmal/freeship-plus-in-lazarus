@@ -50,6 +50,7 @@ uses
   Forms,
   Dialogs,
   StdCtrls,
+  LCLTranslator,
   Buttons,
   FreeTypes,
   FreeGeometry,

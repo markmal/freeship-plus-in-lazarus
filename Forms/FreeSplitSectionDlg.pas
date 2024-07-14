@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
   Buttons, Spin,
+  LCLTranslator,
   FreeTypes, Types;
 
 type

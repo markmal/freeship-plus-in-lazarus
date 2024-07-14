@@ -69,6 +69,7 @@ uses
   FreeshipUnit,
   Spin,
   ComCtrls,
+  LCLTranslator,
   ImgList;
 
 {$IFDEF FPC}

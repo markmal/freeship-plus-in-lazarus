@@ -51,6 +51,7 @@ uses
      CheckLst,
      Dialogs,
      ComCtrls,
+     LCLTranslator,
      ImgList,
      Spin;
 

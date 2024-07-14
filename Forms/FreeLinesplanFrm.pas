@@ -44,6 +44,7 @@ uses
    Controls,
    Forms,
    Dialogs, ComCtrls,
+   LCLTranslator,
    FreeGeometry,
    FreeLinesplanFrme;
 

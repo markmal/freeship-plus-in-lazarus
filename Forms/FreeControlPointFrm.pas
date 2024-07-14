@@ -45,6 +45,7 @@ uses
      Forms,
      Dialogs,
      Math,
+     LCLTranslator,
      FreeTypes,
      FreeGeometry,
      StdCtrls, Buttons, ExtCtrls, Spin, FileCtrl, Types;

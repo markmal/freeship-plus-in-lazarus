@@ -48,11 +48,11 @@ uses
   Forms,
   Dialogs,
   StdCtrls,
+  LCLTranslator,
   ComCtrls,
   Buttons,
   Printers,
   ExtCtrls,
-  LCLTranslator,
   FreeShipUnit,
   FreeStringsUnit;
 

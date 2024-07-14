@@ -60,6 +60,7 @@ uses
   FreeshipUnit,
   Math,
   ExtCtrls,
+  LCLTranslator,
   ImgList,
   Menus;
 

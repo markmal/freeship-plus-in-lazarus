@@ -7007,6 +7007,46 @@ msgstr "Увеличить"
 msgid "Zoom out"
 msgstr "Уменьшить"
 
+#: tfreemirrorplanedialog.bitbtn1.caption
+msgctxt "tfreemirrorplanedialog.bitbtn1.caption"
+msgid "OK"
+msgstr "Ok"
+
+#: tfreemirrorplanedialog.bitbtn2.caption
+msgctxt "tfreemirrorplanedialog.bitbtn2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfreemirrorplanedialog.caption
+msgid "Mirror"
+msgstr ""
+
+#: tfreemirrorplanedialog.checkbox1.caption
+msgid "Connect to existing points"
+msgstr "Присоединить к существующим точкам"
+
+#: tfreemirrorplanedialog.groupbox1.caption
+msgid "3D Mirror plane. "
+msgstr "Плоскость зеркалирования в 3Д"
+
+#: tfreemirrorplanedialog.label1.caption
+#, fuzzy
+msgctxt "tfreemirrorplanedialog.label1.caption"
+msgid "Distance"
+msgstr "Расстояние"
+
+#: tfreemirrorplanedialog.radiobutton1.caption
+msgid "Transverse plane"
+msgstr "Поперечная плоскость"
+
+#: tfreemirrorplanedialog.radiobutton2.caption
+msgid "Horizontal plane"
+msgstr "Горизонтальная плоскость"
+
+#: tfreemirrorplanedialog.radiobutton3.caption
+msgid "Vertical plane"
+msgstr "Вертикальная плоскость"
+
 #: tfreepreferencesdialog.bitbtn1.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.bitbtn1.caption"
@@ -7022,16 +7062,16 @@ msgstr "Cancel"
 #: tfreepreferencesdialog.bitbtnresetcolors.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetcolors.caption"
 msgid "Reset"
-msgstr ""
+msgstr "Сброс"
 
 #: tfreepreferencesdialog.bitbtnresetdirs.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetdirs.caption"
 msgid "Reset"
-msgstr ""
+msgstr "Сброс"
 
 #: tfreepreferencesdialog.caption
 msgid "|Preferences.|"
-msgstr ""
+msgstr "|Предпочтения.|"
 
 #: tfreepreferencesdialog.combobox1.text
 msgid "ComboBox1"
@@ -7042,70 +7082,72 @@ msgid ""
 "Encoding for FBM files\n"
 "Used to convert Windows encoded strings to UTF8"
 msgstr ""
+"Кодировка для FBM файлов\n"
+"Используется для перевода кодировки Windows в UTF8"
 
 #: tfreepreferencesdialog.comboboxthemes.text
 msgid "ComboBoxThemes"
-msgstr ""
+msgstr "Темы панели кнопок"
 
 #: tfreepreferencesdialog.editexecdir.text
 msgid "EditExecDir"
-msgstr ""
+msgstr "Редактировать директорий исполняемых файлов"
 
 #: tfreepreferencesdialog.editexportdir.text
 msgid "EditExportDir"
-msgstr ""
+msgstr "Редактировать директорий экспорта"
 
 #: tfreepreferencesdialog.editglobalimportdir.text
 msgid "EditGlobalImportDir"
-msgstr ""
+msgstr "Редактировать глобальный директорий импорта"
 
 #: tfreepreferencesdialog.editglobalopendir.text
 msgid "EditGlobalOpenDir"
-msgstr ""
+msgstr "Редактировать глобальный директорий проектов"
 
 #: tfreepreferencesdialog.editimportdir.text
 msgid "EditImportDir"
-msgstr ""
+msgstr "Редактировать директорий импорта"
 
 #: tfreepreferencesdialog.editlanguagesdir.text
 msgid "EditLanguagesDir"
-msgstr ""
+msgstr "Редактировать директорий языков"
 
 #: tfreepreferencesdialog.editmanualsdir.text
 msgid "EditManualsDir"
-msgstr ""
+msgstr "Редактировать директорий мануалов"
 
 #: tfreepreferencesdialog.editopendir.text
 msgid "EditOpenDir"
-msgstr ""
+msgstr "Редактировать директорий открытия проектов"
 
 #: tfreepreferencesdialog.editsavedir.text
 msgid "EditSaveDir"
-msgstr ""
+msgstr "Редактировать директорий сохранения проектов"
 
 #: tfreepreferencesdialog.edittempdir.text
 msgid "EditTempDir"
-msgstr ""
+msgstr "Редактировать директорий импорта"
 
 #: tfreepreferencesdialog.label1.caption
 msgid "Viewport background"
-msgstr ""
+msgstr "Цвет поля"
 
 #: tfreepreferencesdialog.label10.caption
 msgid "Dart points"
-msgstr ""
+msgstr "Стрелки точек"
 
 #: tfreepreferencesdialog.label11.caption
 msgid "Selected items"
-msgstr ""
+msgstr "Выбранные элементы"
 
 #: tfreepreferencesdialog.label12.caption
 msgid "Viewport grid"
-msgstr ""
+msgstr "Сетка"
 
 #: tfreepreferencesdialog.label13.caption
 msgid "Grid font"
-msgstr ""
+msgstr "Шрифт сетки"
 
 #: tfreepreferencesdialog.label14.caption
 #, fuzzy
@@ -7141,11 +7183,11 @@ msgstr "Рыбины"
 
 #: tfreepreferencesdialog.label2.caption
 msgid "New surfaces"
-msgstr ""
+msgstr "Новые поверхности"
 
 #: tfreepreferencesdialog.label20.caption
 msgid "Leak points"
-msgstr ""
+msgstr "Точки течи"
 
 #: tfreepreferencesdialog.label21.caption
 #, fuzzy
@@ -7155,7 +7197,7 @@ msgstr "Маркеры"
 
 #: tfreepreferencesdialog.label22.caption
 msgid "Curvature plots"
-msgstr ""
+msgstr "Чертежи кривизны"
 
 #: tfreepreferencesdialog.label23.caption
 #, fuzzy
@@ -7165,44 +7207,44 @@ msgstr "Кривые контроля"
 
 #: tfreepreferencesdialog.label24.caption
 msgid "Hydrostatics font color"
-msgstr ""
+msgstr "Цвет грифта гидростатики"
 
 #: tfreepreferencesdialog.label25.caption
 msgid "Zebra stripes color"
-msgstr ""
+msgstr "Цвет раскраски Зебра"
 
 #: tfreepreferencesdialog.label26.caption
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 #: tfreepreferencesdialog.label27.caption
 msgid "Max. undo memory (Mb)"
-msgstr ""
+msgstr "Мкс. память отмены (Мб)"
 
 #: tfreepreferencesdialog.label28.caption
 msgid "Font size"
-msgstr ""
+msgstr "Размер щрифта"
 
 #: tfreepreferencesdialog.label29.caption
 msgid "Manuals"
-msgstr ""
+msgstr "Мануалы"
 
 #: tfreepreferencesdialog.label3.caption
 msgid "Submerged surfaces"
-msgstr ""
+msgstr "Погруженные поверхности"
 
 #: tfreepreferencesdialog.label30.caption
 msgid "Executables"
-msgstr ""
+msgstr "Исполняемые файлы"
 
 #: tfreepreferencesdialog.label31.caption
 msgid "Temporary"
-msgstr ""
+msgstr "Временный директорий"
 
 #: tfreepreferencesdialog.label32.caption
 msgctxt "tfreepreferencesdialog.label32.caption"
 msgid "Open"
-msgstr ""
+msgstr "Открыть"
 
 #: tfreepreferencesdialog.label33.caption
 #, fuzzy
@@ -7224,56 +7266,56 @@ msgstr "Экспорт"
 
 #: tfreepreferencesdialog.label36.caption
 msgid "Global Open"
-msgstr ""
+msgstr "Открыть в глобальном директории"
 
 #: tfreepreferencesdialog.label37.caption
 msgid "Tool icon size"
-msgstr ""
+msgstr "Размер кнопок инструментальной панели"
 
 #: tfreepreferencesdialog.label38.caption
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: tfreepreferencesdialog.label39.caption
 msgctxt "tfreepreferencesdialog.label39.caption"
 msgid "Global Import"
-msgstr ""
+msgstr "Глобальный директорий импорта"
 
 #: tfreepreferencesdialog.label4.caption
 msgid "Regular control edges"
-msgstr ""
+msgstr "Обычные контрольные ребра"
 
 #: tfreepreferencesdialog.label5.caption
 msgid "Crease edges (control)"
-msgstr ""
+msgstr "Контрольные ребра перелома"
 
 #: tfreepreferencesdialog.label6.caption
 msgid "Crease edges (interior)"
-msgstr ""
+msgstr "Внутренние ребра перелома"
 
 #: tfreepreferencesdialog.label7.caption
 msgid "Regular control points"
-msgstr ""
+msgstr "Обычные контрольные точки"
 
 #: tfreepreferencesdialog.label8.caption
 msgid "Crease points"
-msgstr ""
+msgstr "Точки перелома"
 
 #: tfreepreferencesdialog.label9.caption
 msgid "Corner points"
-msgstr ""
+msgstr "Угловые точки"
 
 #: tfreepreferencesdialog.labelencoding.caption
 msgid "Encoding for FBM"
-msgstr ""
+msgstr "Кодировка для FBM файлов"
 
 #: tfreepreferencesdialog.labellanguagesdir.caption
 msgid "Languages"
-msgstr ""
+msgstr "Языки"
 
 #: tfreepreferencesdialog.lbsubmergedsurfaceopacity.caption
 msgid "Submerged surface opacity, %"
-msgstr ""
+msgstr "Прозрачность погруженных поверхностей, %"
 
 #: tfreepreferencesdialog.panel29.caption
 msgctxt "tfreepreferencesdialog.panel29.caption"
@@ -7310,7 +7352,7 @@ msgstr ""
 
 #: tfreepreferencesdialog.sesubmergedsurfaceopacity.hint
 msgid "0 - clear, 255 - opaque"
-msgstr ""
+msgstr "0 - прозрачно, 255 - не прозрачно"
 
 #: tfreepreferencesdialog.tabsheet1.caption
 #, fuzzy
@@ -7320,11 +7362,11 @@ msgstr "Основные хар-ки"
 
 #: tfreepreferencesdialog.tabsheet2.caption
 msgid "Directories"
-msgstr ""
+msgstr "Директории"
 
 #: tfreepreferencesdialog.tabsheet3.caption
 msgid "Graphics"
-msgstr ""
+msgstr "Графика"
 
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
@@ -7334,81 +7376,81 @@ msgstr ""
 #: tfreeprojectsettingsdialog.bitbtn2.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: tfreeprojectsettingsdialog.caption
 msgid "Project settings."
-msgstr ""
+msgstr "Установки проекта"
 
 #: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
 msgid "Save preview image"
-msgstr ""
+msgstr "Сохранять картинку препросмотра"
 
 #: tfreeprojectsettingsdialog.cbshadeunderwater.caption
 msgid "Shade underwater"
-msgstr ""
+msgstr "Затенять подводные поверхности"
 
 #: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
 msgid "Simplify intersections"
-msgstr ""
+msgstr "Упрощать пересечения"
 
 #: tfreeprojectsettingsdialog.checkbox11.caption
 msgid "Default at 0.0"
-msgstr ""
+msgstr "По умолчанию на 0.0"
 
 #: tfreeprojectsettingsdialog.checkbox12.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
 msgid "Default at 0.5*L"
-msgstr ""
+msgstr "По умолчанию на 0.5 длинны"
 
 #: tfreeprojectsettingsdialog.checkbox13.caption
 msgid "Enable auto move model to baseline"
-msgstr ""
+msgstr "Разрешить автосдвиг модели к базовой линии"
 
 #: tfreeprojectsettingsdialog.checkbox14.caption
 msgid "Save Bonjean scale and SAC in files"
-msgstr ""
+msgstr "Сохранять шкалу Bonjean и SAC"
 
 #: tfreeprojectsettingsdialog.checkbox2.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
 msgid "Default at 0.5*L"
-msgstr ""
+msgstr "По умолчанию на 0.5 длинны"
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr ""
+msgstr "Запретить проверку поверхности"
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
 msgid "Displacement and center of buoyancy"
-msgstr ""
+msgstr "ВОдоизмещение и центр плавучести"
 
 #: tfreeprojectsettingsdialog.checkbox6.caption
 msgid "Curve of sectional areas"
-msgstr ""
+msgstr "Кривая площадей секций"
 
 #: tfreeprojectsettingsdialog.checkbox7.caption
 msgid "Metacentric height"
-msgstr ""
+msgstr "Метацентрическая высота"
 
 #: tfreeprojectsettingsdialog.checkbox8.caption
 msgid "Longitudinal center of floatation"
-msgstr ""
+msgstr "Продольный центр плавучести"
 
 #: tfreeprojectsettingsdialog.checkbox9.caption
 msgid "Lateral area and center of effort"
-msgstr ""
+msgstr "Поперечная площадь и центр боковой нагрузки"
 
 #: tfreeprojectsettingsdialog.combobox1.text
 msgid "Dimensions from project settings"
-msgstr ""
+msgstr "Размеры из Установок проекта"
 
 #: tfreeprojectsettingsdialog.groupbox1.caption
 msgid "Display hydrostatic features. "
-msgstr ""
+msgstr "Показать гидростатические признаки"
 
 #: tfreeprojectsettingsdialog.label1.caption
 msgid "Project name"
-msgstr ""
+msgstr "Имя проекта"
 
 #: tfreeprojectsettingsdialog.label10.caption
 #, fuzzy
@@ -7429,7 +7471,7 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label13.caption
 msgctxt "tfreeprojectsettingsdialog.label13.caption"
 msgid "Split Section location"
-msgstr ""
+msgstr "Положение секции разделения"
 
 #: tfreeprojectsettingsdialog.label14.caption
 #, fuzzy
@@ -7445,27 +7487,27 @@ msgstr "Коментарий"
 
 #: tfreeprojectsettingsdialog.label16.caption
 msgid "File created by"
-msgstr ""
+msgstr "Файл создан "
 
 #: tfreeprojectsettingsdialog.label17.caption
 msgid "Coefficients based on"
-msgstr ""
+msgstr "Коэффициенты основаны на"
 
 #: tfreeprojectsettingsdialog.label18.caption
 msgid "Select which of the following hydrostatic properties"
-msgstr ""
+msgstr "Выбери какое из следующих гидростатических свойств"
 
 #: tfreeprojectsettingsdialog.label19.caption
 msgid "you want to have displayed in the model:"
-msgstr ""
+msgstr "будет показано на модели:"
 
 #: tfreeprojectsettingsdialog.label2.caption
 msgid "Length "
-msgstr ""
+msgstr "Длина "
 
 #: tfreeprojectsettingsdialog.label20.caption
 msgid "Y coord. of Longitudinal Max. Wind Area location"
-msgstr ""
+msgstr "Y-координата продольного положения Макс площади парусности"
 
 #: tfreeprojectsettingsdialog.label21.caption
 #, fuzzy
@@ -7475,7 +7517,7 @@ msgstr "м"
 
 #: tfreeprojectsettingsdialog.label22.caption
 msgid "X coord. of Transverse Max. Wind Area location"
-msgstr ""
+msgstr "X-координата поперечного положения Макс площади парусности"
 
 #: tfreeprojectsettingsdialog.label23.caption
 #, fuzzy
@@ -7486,23 +7528,23 @@ msgstr "м"
 #: tfreeprojectsettingsdialog.label24.caption
 msgctxt "tfreeprojectsettingsdialog.label24.caption"
 msgid "Precision"
-msgstr ""
+msgstr "Точность"
 
 #: tfreeprojectsettingsdialog.label25.caption
 msgid "Water temperature"
-msgstr ""
+msgstr "Температура воды"
 
 #: tfreeprojectsettingsdialog.label26.caption
 msgid "C"
-msgstr ""
+msgstr "Ц"
 
 #: tfreeprojectsettingsdialog.label27.caption
 msgid "Underwater color"
-msgstr ""
+msgstr "Цвет подводных частей"
 
 #: tfreeprojectsettingsdialog.label3.caption
 msgid "Beam"
-msgstr ""
+msgstr "Ширина"
 
 #: tfreeprojectsettingsdialog.label4.caption
 #, fuzzy
@@ -7526,11 +7568,11 @@ msgstr "Дополн. коэффициент"
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label7.caption"
 msgid "Designer"
-msgstr "Проектант"
+msgstr "Проектировщик"
 
 #: tfreeprojectsettingsdialog.label8.caption
 msgid "Units"
-msgstr ""
+msgstr "Единицы измерения"
 
 #: tfreeprojectsettingsdialog.label9.caption
 #, fuzzy
@@ -7544,11 +7586,11 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.precisionbox.hint
 msgid "Change the precision of the model."
-msgstr ""
+msgstr "Изменить точность модели"
 
 #: tfreeprojectsettingsdialog.precisionbox.text
 msgid "Low"
-msgstr ""
+msgstr "Низкая"
 
 #: tfreeprojectsettingsdialog.tabsheet1.caption
 #, fuzzy
@@ -7558,15 +7600,15 @@ msgstr "Основные хар-ки"
 
 #: tfreeprojectsettingsdialog.tabsheet2.caption
 msgid "Hydrostatics"
-msgstr ""
+msgstr "Гидростатика"
 
 #: tfreeprojectsettingsdialog.tabsheet3.caption
 msgid "Main dimensions"
-msgstr ""
+msgstr "Главные размерения"
 
 #: tfreeprojectsettingsdialog.unitbox.text
 msgid "Metric"
-msgstr ""
+msgstr "Метрическая"
 
 #: tfreeresistance_kaper.caption
 msgid "Kaper resistance calculation."
@@ -7574,11 +7616,11 @@ msgstr "Расчет сопротивления по методу Kaper для �
 
 #: tfreeresistance_kaper.chart.axislist[0].title.caption
 msgid "Resistance [Lbs]"
-msgstr ""
+msgstr "Сопротивление [фунты]"
 
 #: tfreeresistance_kaper.chart.axislist[1].title.caption
 msgid "Speed [knots]"
-msgstr ""
+msgstr "Скорость [узлы]"
 
 #: tfreeresistance_kaper.checkbox2.caption
 msgctxt "tfreeresistance_kaper.checkbox2.caption"
@@ -7716,12 +7758,12 @@ msgstr ""
 
 #: tfreesplashwindow.button1.caption
 msgid "Read GPL"
-msgstr ""
+msgstr "Читать GPL"
 
 #: tfreesplashwindow.button2.caption
 msgctxt "tfreesplashwindow.button2.caption"
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: tfreesplashwindow.caption
 msgctxt "tfreesplashwindow.caption"
@@ -7730,11 +7772,11 @@ msgstr ""
 
 #: tfreesplashwindow.checkbox1.caption
 msgid "I accept"
-msgstr ""
+msgstr "Я принимаю"
 
 #: tfreesplashwindow.checkbox1.hint
 msgid "I accept License terms and conditions"
-msgstr ""
+msgstr "Я принимаю лицензионные условия"
 
 #: tfreesplashwindow.label2.caption
 msgid "Copyright © 2007-2013,Timoshenko V.F."
@@ -7786,47 +7828,47 @@ msgstr ""
 #: tfreesplitsectiondialog.bitbtn1.caption
 msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: tfreesplitsectiondialog.caption
 msgid "Split section location"
-msgstr ""
+msgstr "Положение секции разделения"
 
 #: tfreesplitsectiondialog.speedbutton1.hint
 msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
 msgid "Medium"
-msgstr ""
+msgstr "Средний"
 
 #: tfreesplitsectiondialog.speedbutton3.hint
 msgid "From hydrostatics"
-msgstr ""
+msgstr "Из гидростатики"
 
 #: tfreeupdateform.actioncheckupdate.caption
 msgctxt "tfreeupdateform.actioncheckupdate.caption"
 msgid "Check for updates"
-msgstr ""
+msgstr "Проверить обновления"
 
 #: tfreeupdateform.bitbtn2.caption
 msgctxt "tfreeupdateform.bitbtn2.caption"
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: tfreeupdateform.caption
 msgid "Check updates"
-msgstr ""
+msgstr "Проверить обновления"
 
 #: tfreeupdateform.groupbox1.caption
 msgctxt "tfreeupdateform.groupbox1.caption"
 msgid "What's new"
-msgstr ""
+msgstr "Что нового"
 
 #: tfreeupdateform.label4.caption
 msgid "Download link:"
-msgstr ""
+msgstr "Ссылка для скачивания:"
 
 #: tfreeupdateform.label6.caption
 msgid "Download page:"
-msgstr ""
+msgstr "Страница для скачивания:"
 
 #: tfreeupdateform.labelcurrentversion.caption
 msgid "1.2.3.4"
@@ -7846,7 +7888,7 @@ msgstr ""
 
 #: tfreeupdateform.labelnewversionavailable.caption
 msgid "New version available:"
-msgstr ""
+msgstr "Доступна новая версия:"
 
 #: tfreeupdateform.labelnewversiondate.caption
 msgid "LabelNewVersionDate"
@@ -7863,7 +7905,7 @@ msgstr ""
 #: tmainform.actioncheckupdates.caption
 msgctxt "tmainform.actioncheckupdates.caption"
 msgid "Check for updates"
-msgstr ""
+msgstr "Проверить обновления"
 
 #: tmainform.activelayercolor.caption
 msgid "Active layer color"
@@ -7879,9 +7921,10 @@ msgid "Add cylinder..."
 msgstr "Добавить цилиндр..."
 
 #: tmainform.addflowline.caption
+#, fuzzy
 msgctxt "tmainform.addflowline.caption"
 msgid "Add flow line"
-msgstr ""
+msgstr "Добавить линию потока"
 
 #: tmainform.addgridpanel.caption
 msgid "Add grid panel"
@@ -7898,7 +7941,7 @@ msgstr "Добавить новую точку в модель."
 
 #: tmainform.addpointtogroup.caption
 msgid "Add Point To Group"
-msgstr ""
+msgstr "Добавить точку в группу"
 
 #: tmainform.bothsides.caption
 msgid "Show both sides"
@@ -7919,12 +7962,12 @@ msgstr "Каскадно"
 #: tmainform.cbprecision.hint
 msgctxt "tmainform.cbprecision.hint"
 msgid "Precision"
-msgstr ""
+msgstr "Точность"
 
 #: tmainform.cbprecision.text
 msgctxt "tmainform.cbprecision.text"
 msgid "Medium"
-msgstr ""
+msgstr "Средняя"
 
 #: tmainform.checkmodel.caption
 msgid "Check model"
@@ -8071,7 +8114,7 @@ msgstr "Экспорт"
 
 #: tmainform.exportaddmass.caption
 msgid "Export and calculation Add_Mass"
-msgstr ""
+msgstr "Экспорт и вычисления Add_Mass"
 
 #: tmainform.exportarchimedes.caption
 msgid "Archimedes..."
@@ -8179,11 +8222,11 @@ msgstr "Путь и имя для сохранения файла."
 #: tmainform.help1.caption
 msgctxt "tmainform.help1.caption"
 msgid "Help"
-msgstr ""
+msgstr "Помощ"
 
 #: tmainform.helpabout.caption
 msgid "About"
-msgstr ""
+msgstr "Информация"
 
 #: tmainform.helpaction.caption
 msgid "HelpAction"
@@ -8191,11 +8234,11 @@ msgstr ""
 
 #: tmainform.helpcontents.caption
 msgid "Contents"
-msgstr ""
+msgstr "Содержание"
 
 #: tmainform.hydrodynmaneuv_.caption
 msgid "HydrodynManeuv"
-msgstr ""
+msgstr "Гидродин Маневренность"
 
 #: tmainform.hydrodyntask.caption
 msgid "Hydrodynamics characteristics"
@@ -8203,19 +8246,19 @@ msgstr "Гидро- и аэродинамические характеристи
 
 #: tmainform.hydrodyntask1_.caption
 msgid "HydrodynAero"
-msgstr ""
+msgstr "Гидродин Аэро"
 
 #: tmainform.hydrodyntask2_.caption
 msgid "HydrodynPosition"
-msgstr ""
+msgstr "Гидродин Позиция"
 
 #: tmainform.hydrodyntask3_.caption
 msgid "HydrodynRotation"
-msgstr ""
+msgstr "Гидродин вращение"
 
 #: tmainform.hydrodyntask4_.caption
 msgid "Import results of Add_Mass"
-msgstr ""
+msgstr "Импорт результатов Add_Mass"
 
 #: tmainform.hydrostaticsdialog.caption
 msgid "Hydrostatics..."
@@ -8332,11 +8375,11 @@ msgstr "Создать руль или киль."
 
 #: tmainform.labeldistance.caption
 msgid "distance : "
-msgstr ""
+msgstr "расстояние : "
 
 #: tmainform.labelnumbers.caption
 msgid "LabelNumbers"
-msgstr ""
+msgstr "Номера меток"
 
 #: tmainform.labelprogress.caption
 msgid "LabelProgress"
@@ -8344,7 +8387,7 @@ msgstr ""
 
 #: tmainform.labelundomemory.caption
 msgid "Undo memory : 0 kb."
-msgstr ""
+msgstr "Память отмены : 0 кб."
 
 #: tmainform.layer1.caption
 #, fuzzy
@@ -8362,7 +8405,7 @@ msgstr "Автоматическое группирование выбранны
 
 #: tmainform.layerbox.text
 msgid "LayerBox"
-msgstr ""
+msgstr "Слой"
 
 #: tmainform.layerdialog.caption
 msgid "Dialog"
@@ -8382,11 +8425,11 @@ msgstr "Найти пересечение двух слоев."
 
 #: tmainform.layervisibilitydialog.caption
 msgid "Layer visibility dialog"
-msgstr ""
+msgstr "Диалоговое окно видимости слоев"
 
 #: tmainform.layervisibilitydialog.hint
 msgid "Show Layer visibility dialog"
-msgstr ""
+msgstr "Показать диалоговое окно видимости слоев"
 
 #: tmainform.loadfile.caption
 msgid "Open..."
@@ -8404,11 +8447,11 @@ msgstr "Маркеры"
 #: tmainform.menuitem1.caption
 msgctxt "tmainform.menuitem1.caption"
 msgid "Add flow line"
-msgstr ""
+msgstr "Добавить линию потока"
 
 #: tmainform.menuitempointalignpermanently.caption
 msgid "Align Permanently"
-msgstr ""
+msgstr "Выровнять постоянно"
 
 #: tmainform.mirrorface.caption
 msgid "Mirror..."
@@ -8479,7 +8522,7 @@ msgstr "Точка"
 
 #: tmainform.pointalighnpermanently.caption
 msgid "Point Alighn Permanently"
-msgstr ""
+msgstr "Выровнять точку постоянно"
 
 #: tmainform.pointalign.caption
 msgid "Align"
@@ -8491,7 +8534,7 @@ msgstr "Спроектировать выбранные точки на прям
 
 #: tmainform.pointanchor.caption
 msgid "Anchor"
-msgstr ""
+msgstr "Якорь"
 
 #: tmainform.pointcollapse.caption
 msgctxt "tmainform.pointcollapse.caption"
@@ -8504,15 +8547,15 @@ msgstr "Слить две выбранные кромки, удаляя общи
 
 #: tmainform.pointextrude.caption
 msgid "Extrude points"
-msgstr ""
+msgstr "Экструдировать точки"
 
 #: tmainform.pointscoincide.caption
 msgid "Coincide points"
-msgstr ""
+msgstr "Совместить точки"
 
 #: tmainform.pointscoincide.hint
 msgid "Coincide points to the first selected one"
-msgstr ""
+msgstr "Совместить точки к первой выбранной"
 
 #: tmainform.pointslock.caption
 msgid "Lock points"
@@ -8686,12 +8729,12 @@ msgstr "Выбрать все"
 #: tmainform.selectallcontrolpoints.caption
 msgctxt "tmainform.selectallcontrolpoints.caption"
 msgid "Select All Control Points"
-msgstr ""
+msgstr "Выделить все контрольные точки"
 
 #: tmainform.selectallcontrolpoints.hint
 msgctxt "tmainform.selectallcontrolpoints.hint"
 msgid "Select All Control Points"
-msgstr ""
+msgstr "Выделить все контрольные точки"
 
 #: tmainform.selection1.caption
 msgid "Selection"
@@ -8699,7 +8742,7 @@ msgstr "Выбор"
 
 #: tmainform.selectiondialog.caption
 msgid "Selection Dialog"
-msgstr ""
+msgstr "Диалог выбора"
 
 #: tmainform.selectleakpoints.caption
 msgid "SelectLeakPoints"
@@ -8838,15 +8881,15 @@ msgstr "Сделать ватерлинии видимыми или нет."
 
 #: tmainform.spineditfontsize.hint
 msgid "Font Size"
-msgstr ""
+msgstr "Размер шрифта"
 
 #: tmainform.splitsection50pct.caption
 msgid "Split Section middle location"
-msgstr ""
+msgstr "Разделить секцию посредине"
 
 #: tmainform.splitsection50pct.hint
 msgid "Set Split Section location to middle of length"
-msgstr ""
+msgstr "Установить разделение секции посредине длины"
 
 #: tmainform.splitsectiondialog.caption
 #, fuzzy
@@ -8856,7 +8899,7 @@ msgstr "Абсцисса миделя или шпангоута макс.пло�
 
 #: tmainform.splitsectiondialog.hint
 msgid "Set Split Section location in Body Plan"
-msgstr ""
+msgstr "Установить разделение секции в плане"
 
 #: tmainform.tilewindow.caption
 msgid "Tile"
@@ -8903,7 +8946,7 @@ msgstr ""
 
 #: tmainform.toolbuttonselect.hint
 msgid "Deselect All"
-msgstr ""
+msgstr "Отменить выбор"
 
 #: tmainform.transformlackenby.caption
 msgid "Lackenby..."
@@ -8913,7 +8956,7 @@ msgstr "Афинное преобразование..."
 #, fuzzy
 msgctxt "tmainform.undo.caption"
 msgid "Undo"
-msgstr "Undo"
+msgstr "Отменить"
 
 #: tmainform.undo.hint
 msgid "Undo the last modification."
@@ -8921,7 +8964,7 @@ msgstr "Вернуть последнюю модификацию."
 
 #: tmainform.undohistory1.caption
 msgid "Undo history"
-msgstr "История Undo"
+msgstr "История отмен"
 
 #: tmainform.visibility1.caption
 msgid "Visibility"

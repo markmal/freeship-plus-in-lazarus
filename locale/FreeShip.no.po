@@ -7009,6 +7009,46 @@ msgstr "Zoom inn"
 msgid "Zoom out"
 msgstr "Zoom ut"
 
+#: tfreemirrorplanedialog.bitbtn1.caption
+msgctxt "tfreemirrorplanedialog.bitbtn1.caption"
+msgid "OK"
+msgstr ""
+
+#: tfreemirrorplanedialog.bitbtn2.caption
+msgctxt "tfreemirrorplanedialog.bitbtn2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfreemirrorplanedialog.caption
+msgid "Mirror"
+msgstr ""
+
+#: tfreemirrorplanedialog.checkbox1.caption
+msgid "Connect to existing points"
+msgstr ""
+
+#: tfreemirrorplanedialog.groupbox1.caption
+msgid "3D Mirror plane. "
+msgstr ""
+
+#: tfreemirrorplanedialog.label1.caption
+#, fuzzy
+msgctxt "tfreemirrorplanedialog.label1.caption"
+msgid "Distance"
+msgstr "Avstand"
+
+#: tfreemirrorplanedialog.radiobutton1.caption
+msgid "Transverse plane"
+msgstr ""
+
+#: tfreemirrorplanedialog.radiobutton2.caption
+msgid "Horizontal plane"
+msgstr ""
+
+#: tfreemirrorplanedialog.radiobutton3.caption
+msgid "Vertical plane"
+msgstr ""
+
 #: tfreepreferencesdialog.bitbtn1.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.bitbtn1.caption"

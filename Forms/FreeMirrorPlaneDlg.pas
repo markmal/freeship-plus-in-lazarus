@@ -47,6 +47,7 @@ uses
      Buttons,
      ExtCtrls,
      StdCtrls,
+     LCLTranslator,
      FreeTypes,
      Spin;
 

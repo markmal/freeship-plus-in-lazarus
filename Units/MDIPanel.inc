@@ -841,7 +841,8 @@ begin
   FActionClose.ActionList:=FActionList;
 
   FMenuItemClose := TMenuItem.Create(Self);
-  FMenuItemClose.Name := rsClose;
+  FMenuItemClose.Name := 'Close';
+  FMenuItemClose.Caption:=rsClose;
   FMenuItemClose.Action:=FActionClose;
   //FMenuItemClose.OnClick := @CloseButtonClick;
   FSystemPopupMenu.Items.Add(FMenuItemClose);

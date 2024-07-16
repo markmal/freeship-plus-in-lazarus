@@ -8,21 +8,21 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
   ClientHeight = 283
   ClientWidth = 400
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
-    Height = 30
+    Height = 34
     Top = 0
     Width = 400
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 30
+    ClientHeight = 34
     ClientWidth = 400
     TabOrder = 0
     object OKbutton: TSpeedButton
-      Left = 236
-      Height = 26
+      Left = 233
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -70,10 +70,10 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
       OnClick = OKbuttonClick
     end
     object CancelButton: TSpeedButton
-      Left = 318
-      Height = 26
+      Left = 315
+      Height = 30
       Top = 2
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2
@@ -121,8 +121,8 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
   end
   object Panel3: TPanel
     Left = 0
-    Height = 253
-    Top = 30
+    Height = 249
+    Top = 34
     Width = 400
     Align = alClient
     BevelOuter = bvNone
@@ -130,14 +130,14 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
     ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 253
+    ClientHeight = 249
     ClientWidth = 400
     TabOrder = 1
     object Panel2: TPanel
-      Left = 57
-      Height = 212
-      Top = 21
-      Width = 287
+      Left = 40
+      Height = 236
+      Top = 7
+      Width = 320
       AutoSize = True
       BorderSpacing.InnerBorder = 10
       BevelOuter = bvNone
@@ -145,14 +145,14 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
       ChildSizing.VerticalSpacing = 6
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 212
-      ClientWidth = 287
+      ClientHeight = 236
+      ClientWidth = 320
       TabOrder = 0
       object LabelFileName: TLabel
         Left = 22
-        Height = 22
+        Height = 26
         Top = 22
-        Width = 243
+        Width = 276
         BorderSpacing.Left = 20
         BorderSpacing.Top = 20
         BorderSpacing.Around = 2
@@ -163,9 +163,9 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
       end
       object Label1: TLabel
         Left = 22
-        Height = 22
-        Top = 50
-        Width = 243
+        Height = 26
+        Top = 54
+        Width = 276
         BorderSpacing.Left = 20
         BorderSpacing.Around = 2
         Caption = 'Not found'
@@ -173,9 +173,9 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
       end
       object RadioGroup1: TRadioGroup
         Left = 22
-        Height = 104
-        Top = 78
-        Width = 243
+        Height = 120
+        Top = 86
+        Width = 276
         AutoFill = True
         AutoSize = True
         BorderSpacing.Left = 20
@@ -188,14 +188,14 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 80
-        ClientWidth = 239
+        ClientHeight = 92
+        ClientWidth = 272
         TabOrder = 0
         object RbLoadFile: TRadioButton
           Left = 6
-          Height = 24
+          Height = 28
           Top = 2
-          Width = 227
+          Width = 260
           BorderSpacing.Around = 2
           Caption = 'Load from a file'
           Checked = True
@@ -204,18 +204,18 @@ object FreeEmptyModelChooserDialog: TFreeEmptyModelChooserDialog
         end
         object RbCreateNew: TRadioButton
           Left = 6
-          Height = 24
-          Top = 28
-          Width = 227
+          Height = 28
+          Top = 32
+          Width = 260
           BorderSpacing.Around = 2
           Caption = 'Create new model'
           TabOrder = 0
         end
         object RbEmptyModel: TRadioButton
           Left = 6
-          Height = 24
-          Top = 54
-          Width = 227
+          Height = 28
+          Top = 62
+          Width = 260
           BorderSpacing.Around = 2
           Caption = 'Proceed with empty model'
           TabOrder = 1

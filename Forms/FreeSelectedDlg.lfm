@@ -7,7 +7,7 @@ object FormSelected: TFormSelected
   ClientHeight = 591
   ClientWidth = 512
   FormStyle = fsStayOnTop
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object pTop: TPanel
     Left = 0
     Height = 36
@@ -43,30 +43,30 @@ object FormSelected: TFormSelected
     TabOrder = 1
     object tsPoints: TTabSheet
       Caption = 'Points'
-      ClientHeight = 511
-      ClientWidth = 506
+      ClientHeight = 515
+      ClientWidth = 508
       object Splitter1: TSplitter
         Left = 122
-        Height = 511
+        Height = 515
         Top = 0
         Width = 5
       end
       object pPointsProperties: TPanel
         Left = 127
-        Height = 511
+        Height = 515
         Top = 0
-        Width = 379
+        Width = 381
         Align = alClient
         BorderSpacing.InnerBorder = 10
         BevelOuter = bvNone
-        ClientHeight = 511
-        ClientWidth = 379
+        ClientHeight = 515
+        ClientWidth = 381
         TabOrder = 1
         object Panel1: TPanel
           Left = 0
           Height = 40
           Top = 10
-          Width = 379
+          Width = 381
           Align = alTop
           BorderSpacing.Top = 10
           BevelOuter = bvNone
@@ -76,7 +76,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclTopToBottomThenLeftToRight
           ChildSizing.ControlsPerLine = 1
           ClientHeight = 40
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 0
           object fsePointX: TFloatSpinEdit
             Left = 10
@@ -86,10 +86,8 @@ object FormSelected: TFormSelected
             Alignment = taRightJustify
             Constraints.MinWidth = 100
             DecimalPlaces = 4
-            MinValue = 0
             ReadOnly = True
             TabOrder = 0
-            Value = 0
           end
           object fsePointY: TFloatSpinEdit
             Left = 116
@@ -99,10 +97,8 @@ object FormSelected: TFormSelected
             Alignment = taRightJustify
             Constraints.MinWidth = 100
             DecimalPlaces = 4
-            MinValue = 0
             ReadOnly = True
             TabOrder = 1
-            Value = 0
           end
           object fsePointZ: TFloatSpinEdit
             Left = 222
@@ -112,17 +108,15 @@ object FormSelected: TFormSelected
             Alignment = taRightJustify
             Constraints.MinWidth = 100
             DecimalPlaces = 4
-            MinValue = 0
             ReadOnly = True
             TabOrder = 2
-            Value = 0
           end
         end
         object Panel2: TPanel
           Left = 0
           Height = 88
           Top = 136
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -132,13 +126,13 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 88
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 1
           object Panel4: TPanel
             Left = 10
             Height = 40
             Top = 50
-            Width = 359
+            Width = 361
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -149,7 +143,7 @@ object FormSelected: TFormSelected
             ChildSizing.Layout = cclTopToBottomThenLeftToRight
             ChildSizing.ControlsPerLine = 1
             ClientHeight = 40
-            ClientWidth = 359
+            ClientWidth = 361
             ParentFont = False
             TabOrder = 0
             object Label5: TLabel
@@ -177,7 +171,7 @@ object FormSelected: TFormSelected
               Left = 234
               Height = 36
               Top = 2
-              Width = 115
+              Width = 117
               ParentFont = False
               ReadOnly = True
               TabOrder = 1
@@ -187,7 +181,7 @@ object FormSelected: TFormSelected
             Left = 10
             Height = 40
             Top = 4
-            Width = 359
+            Width = 361
             Align = alTop
             AutoSize = True
             BevelOuter = bvNone
@@ -198,14 +192,14 @@ object FormSelected: TFormSelected
             ChildSizing.Layout = cclTopToBottomThenLeftToRight
             ChildSizing.ControlsPerLine = 1
             ClientHeight = 40
-            ClientWidth = 359
+            ClientWidth = 361
             ParentFont = False
             TabOrder = 1
             object Label6: TLabel
               Left = 10
               Height = 36
               Top = 2
-              Width = 96
+              Width = 97
               AutoSize = False
               Caption = 'Anchor'
               Font.Height = 16
@@ -214,16 +208,16 @@ object FormSelected: TFormSelected
               ParentFont = False
             end
             object EditAnchorPoint: TEdit
-              Left = 112
+              Left = 113
               Height = 36
               Top = 2
-              Width = 121
+              Width = 122
               ParentFont = False
               ReadOnly = True
               TabOrder = 0
             end
             object Panel8: TPanel
-              Left = 239
+              Left = 241
               Height = 36
               Top = 2
               Width = 110
@@ -250,7 +244,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 86
           Top = 50
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -261,7 +255,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 86
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 2
           object Label1: TLabel
             Left = 10
@@ -308,17 +302,17 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 128
           Top = 224
-          Width = 379
+          Width = 381
           Align = alTop
           Caption = 'Groups'
           ClientHeight = 100
-          ClientWidth = 375
+          ClientWidth = 377
           TabOrder = 3
           object lvPointGroups: TListView
             Left = 0
             Height = 100
             Top = 0
-            Width = 375
+            Width = 377
             Align = alClient
             Columns = <            
               item
@@ -326,7 +320,7 @@ object FormSelected: TFormSelected
               end            
               item
                 Caption = 'Name'
-                Width = 308
+                Width = 313
               end>
             TabOrder = 0
             ViewStyle = vsReport
@@ -334,27 +328,27 @@ object FormSelected: TFormSelected
         end
         object Panel18: TPanel
           Left = 0
-          Height = 159
+          Height = 163
           Top = 352
-          Width = 379
+          Width = 381
           Align = alClient
           Caption = 'Panel18'
-          ClientHeight = 159
-          ClientWidth = 379
+          ClientHeight = 163
+          ClientWidth = 381
           TabOrder = 4
           object GroupBox1: TGroupBox
             Left = 1
-            Height = 157
+            Height = 161
             Top = 1
             Width = 176
             Align = alLeft
             Caption = 'Faces'
-            ClientHeight = 129
+            ClientHeight = 133
             ClientWidth = 172
             TabOrder = 0
             object lvPointFaces: TListView
               Left = 0
-              Height = 129
+              Height = 133
               Top = 0
               Width = 172
               Align = alClient
@@ -372,17 +366,17 @@ object FormSelected: TFormSelected
           end
           object GroupBox2: TGroupBox
             Left = 177
-            Height = 157
+            Height = 161
             Top = 1
             Width = 176
             Align = alLeft
             Caption = 'Edges'
-            ClientHeight = 129
+            ClientHeight = 133
             ClientWidth = 172
             TabOrder = 1
             object lvPointEdges: TListView
               Left = 0
-              Height = 129
+              Height = 133
               Top = 0
               Width = 172
               Align = alClient
@@ -402,7 +396,7 @@ object FormSelected: TFormSelected
       end
       object lvPoints: TListView
         Left = 0
-        Height = 511
+        Height = 515
         Top = 0
         Width = 122
         Align = alLeft
@@ -412,7 +406,7 @@ object FormSelected: TFormSelected
           end        
           item
             Caption = 'Name'
-            Width = 55
+            Width = 58
           end>
         PopupMenu = PopupMenu1
         TabOrder = 2
@@ -422,30 +416,30 @@ object FormSelected: TFormSelected
     end
     object tsEdges: TTabSheet
       Caption = 'Edges'
-      ClientHeight = 511
-      ClientWidth = 506
+      ClientHeight = 515
+      ClientWidth = 508
       object Splitter2: TSplitter
         Left = 122
-        Height = 511
+        Height = 515
         Top = 0
         Width = 5
       end
       object pPointsProperties1: TPanel
         Left = 127
-        Height = 511
+        Height = 515
         Top = 0
-        Width = 379
+        Width = 381
         Align = alClient
         BorderSpacing.InnerBorder = 10
         BevelOuter = bvNone
-        ClientHeight = 511
-        ClientWidth = 379
+        ClientHeight = 515
+        ClientWidth = 381
         TabOrder = 1
         object Panel7: TPanel
           Left = 0
           Height = 84
           Top = 136
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -455,25 +449,25 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 84
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 0
           object gbEdgePoints: TGroupBox
             Left = 10
             Height = 76
             Top = 4
-            Width = 359
+            Width = 361
             Align = alTop
             AutoSize = True
             Caption = 'Edge Points'
             ClientHeight = 48
-            ClientWidth = 355
+            ClientWidth = 357
             ParentFont = False
             TabOrder = 0
             object Panel9: TPanel
               Left = 0
               Height = 48
               Top = 0
-              Width = 355
+              Width = 357
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
@@ -484,23 +478,23 @@ object FormSelected: TFormSelected
               ChildSizing.Layout = cclTopToBottomThenLeftToRight
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 48
-              ClientWidth = 355
+              ClientWidth = 357
               ParentFont = False
               TabOrder = 0
               object eEdgePoinA: TEdit
                 Left = 10
                 Height = 36
                 Top = 6
-                Width = 165
+                Width = 166
                 ParentFont = False
                 ReadOnly = True
                 TabOrder = 0
               end
               object eEdgePoinB: TEdit
-                Left = 181
+                Left = 182
                 Height = 36
                 Top = 6
-                Width = 164
+                Width = 165
                 ParentFont = False
                 ReadOnly = True
                 TabOrder = 1
@@ -512,7 +506,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 86
           Top = 10
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BorderSpacing.Top = 10
@@ -524,7 +518,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 86
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 1
           object Label3: TLabel
             Left = 10
@@ -571,7 +565,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 40
           Top = 96
-          Width = 379
+          Width = 381
           Align = alTop
           BevelOuter = bvNone
           ChildSizing.LeftRightSpacing = 10
@@ -580,7 +574,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclTopToBottomThenLeftToRight
           ChildSizing.ControlsPerLine = 1
           ClientHeight = 40
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 2
           object Panel10: TPanel
             Left = 10
@@ -609,12 +603,12 @@ object FormSelected: TFormSelected
           Left = 10
           Height = 180
           Top = 220
-          Width = 369
+          Width = 371
           Align = alTop
           BorderSpacing.Left = 10
           BevelOuter = bvNone
           ClientHeight = 180
-          ClientWidth = 369
+          ClientWidth = 371
           TabOrder = 3
           object GroupBox4: TGroupBox
             Left = 0
@@ -649,7 +643,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 44
           Top = 400
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -660,7 +654,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 44
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 4
           object Label7: TLabel
             Left = 10
@@ -685,7 +679,7 @@ object FormSelected: TFormSelected
       end
       object lvEdges: TListView
         Left = 0
-        Height = 511
+        Height = 515
         Top = 0
         Width = 122
         Align = alLeft
@@ -695,7 +689,7 @@ object FormSelected: TFormSelected
           end        
           item
             Caption = 'Name'
-            Width = 55
+            Width = 58
           end>
         PopupMenu = PopupMenu1
         TabOrder = 2
@@ -705,30 +699,30 @@ object FormSelected: TFormSelected
     end
     object tsFaces: TTabSheet
       Caption = 'Faces'
-      ClientHeight = 511
-      ClientWidth = 506
+      ClientHeight = 515
+      ClientWidth = 508
       object Splitter3: TSplitter
         Left = 122
-        Height = 511
+        Height = 515
         Top = 0
         Width = 5
       end
       object pPointsProperties2: TPanel
         Left = 127
-        Height = 511
+        Height = 515
         Top = 0
-        Width = 379
+        Width = 381
         Align = alClient
         BorderSpacing.InnerBorder = 10
         BevelOuter = bvNone
-        ClientHeight = 511
-        ClientWidth = 379
+        ClientHeight = 515
+        ClientWidth = 381
         TabOrder = 1
         object Panel14: TPanel
           Left = 0
           Height = 1
           Top = 254
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -743,7 +737,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 44
           Top = 10
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BorderSpacing.Top = 10
@@ -755,7 +749,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 44
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 1
           object Label8: TLabel
             Left = 10
@@ -784,12 +778,12 @@ object FormSelected: TFormSelected
           Left = 10
           Height = 200
           Top = 54
-          Width = 369
+          Width = 371
           Align = alTop
           BorderSpacing.Left = 10
           BevelOuter = bvNone
           ClientHeight = 200
-          ClientWidth = 369
+          ClientWidth = 371
           TabOrder = 2
           object GroupBox5: TGroupBox
             Left = 0
@@ -825,7 +819,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 44
           Top = 255
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -836,7 +830,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 44
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 3
           object Label10: TLabel
             Left = 10
@@ -861,7 +855,7 @@ object FormSelected: TFormSelected
       end
       object lvFaces: TListView
         Left = 0
-        Height = 511
+        Height = 515
         Top = 0
         Width = 122
         Align = alLeft
@@ -871,7 +865,7 @@ object FormSelected: TFormSelected
           end        
           item
             Caption = 'Name'
-            Width = 55
+            Width = 58
           end>
         PopupMenu = PopupMenu1
         TabOrder = 2
@@ -881,30 +875,30 @@ object FormSelected: TFormSelected
     end
     object tsCurves: TTabSheet
       Caption = 'Curves'
-      ClientHeight = 511
-      ClientWidth = 506
+      ClientHeight = 515
+      ClientWidth = 508
       object Splitter4: TSplitter
         Left = 122
-        Height = 511
+        Height = 515
         Top = 0
         Width = 5
       end
       object pPointsProperties3: TPanel
         Left = 127
-        Height = 511
+        Height = 515
         Top = 0
-        Width = 379
+        Width = 381
         Align = alClient
         BorderSpacing.InnerBorder = 10
         BevelOuter = bvNone
-        ClientHeight = 511
-        ClientWidth = 379
+        ClientHeight = 515
+        ClientWidth = 381
         TabOrder = 1
         object Panel15: TPanel
           Left = 0
           Height = 1
           Top = 354
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -919,7 +913,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 44
           Top = 10
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BorderSpacing.Top = 10
@@ -931,7 +925,7 @@ object FormSelected: TFormSelected
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 44
-          ClientWidth = 379
+          ClientWidth = 381
           TabOrder = 1
           object Label9: TLabel
             Left = 10
@@ -960,12 +954,12 @@ object FormSelected: TFormSelected
           Left = 10
           Height = 300
           Top = 54
-          Width = 369
+          Width = 371
           Align = alTop
           BorderSpacing.Left = 10
           BevelOuter = bvNone
           ClientHeight = 300
-          ClientWidth = 369
+          ClientWidth = 371
           TabOrder = 2
           object GroupBox6: TGroupBox
             Left = 0
@@ -1001,7 +995,7 @@ object FormSelected: TFormSelected
           Left = 0
           Height = 1
           Top = 355
-          Width = 379
+          Width = 381
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -1016,7 +1010,7 @@ object FormSelected: TFormSelected
       end
       object lvCurves: TListView
         Left = 0
-        Height = 511
+        Height = 515
         Top = 0
         Width = 122
         Align = alLeft
@@ -1026,7 +1020,7 @@ object FormSelected: TFormSelected
           end        
           item
             Caption = 'Name'
-            Width = 55
+            Width = 58
           end>
         TabOrder = 2
         ViewStyle = vsReport
@@ -1035,15 +1029,15 @@ object FormSelected: TFormSelected
     end
   end
   object ActionList1: TActionList
-    left = 424
+    Left = 424
     object aClose: TAction
       Caption = 'Close'
       OnExecute = aCloseExecute
     end
   end
   object PopupMenu1: TPopupMenu
-    left = 48
-    top = 172
+    Left = 48
+    Top = 172
     object miUnselect: TMenuItem
       Caption = 'miUnselect'
       OnClick = miUnselectClick

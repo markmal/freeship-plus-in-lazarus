@@ -9,7 +9,7 @@ object FreeLinesplanForm: TFreeLinesplanForm
   FormStyle = fsMDIChild
   OnClose = FormClose
   Position = poDefault
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   Visible = True
   inline LinesplanFrame: TFreeLinesplanFrame
     Height = 621

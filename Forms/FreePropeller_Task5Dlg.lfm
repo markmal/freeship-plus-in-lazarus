@@ -8,7 +8,7 @@ object FreePropeller_Task5: TFreePropeller_Task5
   ClientHeight = 600
   ClientWidth = 900
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '3.2.0.0'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -84,25 +84,25 @@ object FreePropeller_Task5: TFreePropeller_Task5
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 543
-      ClientWidth = 894
+      ClientHeight = 536
+      ClientWidth = 896
       ParentFont = False
       object Panel1: TPanel
         Left = 0
-        Height = 543
+        Height = 536
         Top = 0
-        Width = 894
+        Width = 896
         Align = alClient
         BevelOuter = bvNone
-        ClientHeight = 543
-        ClientWidth = 894
+        ClientHeight = 536
+        ClientWidth = 896
         ParentFont = False
         TabOrder = 0
         object Panel: TPanel
           Left = 0
-          Height = 543
+          Height = 536
           Top = 0
-          Width = 349
+          Width = 392
           Align = alLeft
           AutoSize = True
           BevelOuter = bvNone
@@ -111,60 +111,60 @@ object FreePropeller_Task5: TFreePropeller_Task5
           ChildSizing.VerticalSpacing = 4
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 543
-          ClientWidth = 349
+          ClientHeight = 536
+          ClientWidth = 392
           ParentColor = False
           ParentFont = False
           TabOrder = 0
           object Panel2: TPanel
             Left = 10
-            Height = 24
+            Height = 31
             Top = 10
-            Width = 329
+            Width = 372
             BevelOuter = bvNone
             ChildSizing.TopBottomSpacing = 2
-            ClientHeight = 24
-            ClientWidth = 329
+            ClientHeight = 31
+            ClientWidth = 372
             ParentFont = False
             TabOrder = 0
             object CheckBox2: TCheckBox
               Left = 2
-              Height = 21
+              Height = 28
               Top = 1
-              Width = 215
+              Width = 283
               Caption = 'Extract data from current hull'
-              OnClick = CheckBox2Click
               ParentFont = False
               TabOrder = 0
+              OnClick = CheckBox2Click
             end
           end
           object Panel3: TPanel
             Left = 10
-            Height = 52
-            Top = 38
-            Width = 329
+            Height = 74
+            Top = 45
+            Width = 372
             BevelOuter = bvNone
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 52
-            ClientWidth = 329
+            ClientHeight = 74
+            ClientWidth = 372
             ParentFont = False
             TabOrder = 1
             object Label8: TLabel
               Left = 0
-              Height = 25
+              Height = 36
               Top = 0
-              Width = 123
+              Width = 166
               Caption = 'Type of propeller:'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object ComboBox: TComboBox
-              Left = 129
-              Height = 25
+              Left = 172
+              Height = 36
               Top = 0
               Width = 200
               Constraints.MinWidth = 200
@@ -184,25 +184,25 @@ object FreePropeller_Task5: TFreePropeller_Task5
                 'KA-4-70 series'
                 'SPP series'
               )
-              OnClick = ComboBoxClick
               ParentFont = False
               TabOrder = 0
               Text = 'B series Troost'
+              OnClick = ComboBoxClick
             end
             object Label9: TLabel
               Left = 0
-              Height = 25
-              Top = 27
-              Width = 123
+              Height = 36
+              Top = 38
+              Width = 166
               Caption = 'Series of propeller:'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object ComboBox1: TComboBox
-              Left = 129
-              Height = 25
-              Top = 27
+              Left = 172
+              Height = 36
+              Top = 38
               Width = 200
               ItemHeight = 0
               ItemIndex = 0
@@ -212,40 +212,40 @@ object FreePropeller_Task5: TFreePropeller_Task5
                 'Reserved'
                 'Reserved'
               )
-              OnClick = ComboBoxClick1
               ParentFont = False
               TabOrder = 1
               Text = 'Reserved'
+              OnClick = ComboBoxClick1
             end
           end
           object Panel4: TPanel
             Left = 10
-            Height = 164
-            Top = 94
-            Width = 329
+            Height = 230
+            Top = 123
+            Width = 372
             BevelOuter = bvNone
             ChildSizing.TopBottomSpacing = 2
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 164
-            ClientWidth = 329
+            ClientHeight = 230
+            ClientWidth = 372
             ParentFont = False
             TabOrder = 2
             object Label3: TLabel
               Left = 0
-              Height = 25
+              Height = 36
               Top = 2
-              Width = 193
+              Width = 259
               Caption = 'Disk ratio'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit3: TFloatSpinEdit
-              Left = 199
-              Height = 25
+              Left = 265
+              Height = 36
               Top = 2
               Width = 80
               Alignment = taRightJustify
@@ -260,18 +260,18 @@ object FreePropeller_Task5: TFreePropeller_Task5
             end
             object Label4: TLabel
               Left = 0
-              Height = 25
-              Top = 29
-              Width = 193
+              Height = 36
+              Top = 40
+              Width = 259
               Caption = 'Pitch fraction'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit4: TFloatSpinEdit
-              Left = 199
-              Height = 25
-              Top = 29
+              Left = 265
+              Height = 36
+              Top = 40
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 4
@@ -284,18 +284,18 @@ object FreePropeller_Task5: TFreePropeller_Task5
             end
             object Label5: TLabel
               Left = 0
-              Height = 25
-              Top = 56
-              Width = 193
+              Height = 36
+              Top = 78
+              Width = 259
               Caption = 'Number of blade'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit5: TFloatSpinEdit
-              Left = 199
-              Height = 25
-              Top = 56
+              Left = 265
+              Height = 36
+              Top = 78
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 0
@@ -308,82 +308,76 @@ object FreePropeller_Task5: TFreePropeller_Task5
             end
             object Label2: TLabel
               Left = 0
-              Height = 25
-              Top = 83
-              Width = 193
+              Height = 36
+              Top = 116
+              Width = 259
               Caption = 'Frequancy of rotation, 1/min'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit2: TFloatSpinEdit
-              Left = 199
-              Height = 25
-              Top = 83
+              Left = 265
+              Height = 36
+              Top = 116
               Width = 80
               Alignment = taRightJustify
               MaxValue = 2000
-              MinValue = 0
               OnExit = Edit1AfterSetValue
               ParentFont = False
               TabOrder = 3
-              Value = 0
             end
             object Label6: TLabel
               Left = 0
-              Height = 25
-              Top = 110
-              Width = 193
+              Height = 36
+              Top = 154
+              Width = 259
               Caption = 'Diameter of propeller, m'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit6: TFloatSpinEdit
-              Left = 199
-              Height = 25
-              Top = 110
+              Left = 265
+              Height = 36
+              Top = 154
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 25
-              MinValue = 0
               OnExit = Edit1AfterSetValue
               ParentFont = False
               TabOrder = 4
-              Value = 0
             end
             object Label7: TLabel
               Left = 0
-              Height = 25
-              Top = 137
-              Width = 193
+              Height = 36
+              Top = 192
+              Width = 259
               Caption = 'Velocity in propeller disk, m/s'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit7: TFloatSpinEdit
-              Left = 199
-              Height = 25
-              Top = 137
+              Left = 265
+              Height = 36
+              Top = 192
               Width = 80
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 50
-              MinValue = 0
               OnExit = Edit1AfterSetValue
               ParentFont = False
               TabOrder = 5
-              Value = 0
             end
           end
         end
         object Chart: TChart
-          Left = 349
-          Height = 543
+          Left = 392
+          Height = 536
           Top = 0
-          Width = 545
+          Width = 504
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -410,7 +404,6 @@ object FreePropeller_Task5: TFreePropeller_Task5
               Title.Caption = 'Open Water Efficiency Eta0'
               Title.LabelBrush.Style = bsClear
             end>
-          BackColor = clWindow
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Alignment = laTopCenter
@@ -425,41 +418,41 @@ object FreePropeller_Task5: TFreePropeller_Task5
           Align = alClient
           ParentColor = True
           object Series1: TLineSeries
-            Marks.Visible = False
             Title = 'KT   '
             LinePen.Color = clBlue
+            Marks.Visible = False
             Pointer.HorizSize = 2
             Pointer.VertSize = 2
           end
           object Series2: TLineSeries
-            Marks.Visible = False
             Title = 'KQ   '
             LinePen.Color = clGreen
+            Marks.Visible = False
           end
           object Series3: TLineSeries
-            Marks.Visible = False
             Title = 'Eta0   '
             LinePen.Color = clRed
             LinePen.Width = 2
+            Marks.Visible = False
           end
           object Series4: TLineSeries
-            Marks.Visible = False
             Title = 'Jp'
+            Marks.Visible = False
           end
         end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 543
-      ClientWidth = 894
+      ClientHeight = 536
+      ClientWidth = 896
       ImageIndex = 1
       ParentFont = False
       object Resultsmemo: TMemo
         Left = 0
-        Height = 543
+        Height = 536
         Top = 0
-        Width = 894
+        Width = 896
         Align = alClient
         Font.Color = clBlack
         Font.Height = -13
@@ -472,24 +465,24 @@ object FreePropeller_Task5: TFreePropeller_Task5
     end
     object TabSheet3: TTabSheet
       Caption = 'Help'
-      ClientHeight = 543
-      ClientWidth = 894
+      ClientHeight = 536
+      ClientWidth = 896
       object Panel15: TPanel
         Left = 0
-        Height = 543
+        Height = 536
         Top = 0
-        Width = 894
+        Width = 896
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 543
-        ClientWidth = 894
+        ClientHeight = 536
+        ClientWidth = 896
         ParentFont = False
         TabOrder = 0
         object Resultsmemo2: TMemo
           Left = 1
-          Height = 541
+          Height = 534
           Top = 1
-          Width = 892
+          Width = 894
           Align = alClient
           Font.Color = clBlack
           Font.Height = -13
@@ -503,141 +496,22 @@ object FreePropeller_Task5: TFreePropeller_Task5
     end
   end
   object MenuImages: TImageList
-    left = 292
+    Left = 292
     Bitmap = {
-      4C69040000001000000010000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      84FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
-      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
-      84FF000084FF000000000000000000000000000000000000FFFF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
-      84FF848284FF000000000000000000000000000000000000FFFF000084FF0000
-      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF8482
-      84FF0000000000000000000000000000000000000000000000000000FFFF0000
-      84FF000084FF000084FF848284FF000084FF000084FF000084FF848284FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000084FF000084FF000084FF000084FF000084FF848284FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000FFFF000084FF000084FF000084FF000084FF848284FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000084FF000084FF000084FF000084FF000084FF848284FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000084FF000084FF000084FF000084FF000084FF000084FF848284FF0000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      84FF000084FF000084FF000084FF000084FF000084FF000084FF000084FF8482
-      84FF00000000000000000000000000000000000000000000FFFF000084FF0000
-      84FF000084FF000084FF848284FF000084FF000084FF000084FF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
-      84FF000084FF848284FF000000000000FFFF000084FF000084FF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF0000
-      84FF848284FF0000000000000000000000000000FFFF000084FF000084FF8482
-      84FF000000000000000000000000000000000000FFFF000084FF000084FF8482
-      84FF00000000000000000000000000000000000000000000FFFF848284FF0000
-      00000000000000000000000000000000000000000000848284FF848284FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000FF00FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000FF00FF008200FF008200FF000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000000000FF
-      00FF008200FF008200FF840000FF000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000FF00FF0082
-      00FF008200FF008200FF840000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000FF00FF008200FF0082
-      00FF008200FF840000FF00000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000FF00FF008200FF008200FF0082
-      00FF840000FF0000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000FF00FF008200FF008200FF008200FF8400
-      00FF0000000000000000000000000000000000FF00FF00000000000000000000
-      0000000000000000000000FF00FF008200FF008200FF008200FF840000FF0000
-      000000000000000000000000000000FF00FF008200FF00FF00FF000000000000
-      00000000000000FF00FF008200FF008200FF008200FF840000FF000000000000
-      0000000000000000000000000000008200FF008200FF008200FF00FF00FF0000
-      000000FF00FF008200FF008200FF008200FF840000FF00000000000000000000
-      0000000000000000000000000000840000FF008200FF008200FF008200FF00FF
-      00FF008200FF008200FF008200FF008200FF840000FF00000000000000000000
-      000000000000000000000000000000000000840000FF008200FF008200FF0082
-      00FF008200FF008200FF008200FF840000FF0000000000000000000000000000
-      00000000000000000000000000000000000000000000840000FF008200FF0082
-      00FF008200FF008200FF840000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000840000FF0082
-      00FF008200FF840000FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000008400
-      00FF840000FF0000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
-      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C7
-      C6FF000000FFC6C7C6FF000000FF00000000000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C7C6FF0000
-      00FFC6C7C6FF000000FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
-      C6FF000000FFC6C7C6FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C7C6FFC6C7C6FF000000FF000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FF848684FF848684FF848684FFC6C7C6FFC6C7C6FF0000
-      00FFC6C7C6FF000000FF00000000000000FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FF00FFFFFF00FFFFFF00FFFFFFC6C7C6FFC6C7C6FF0000
-      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C7C6FF000000FF0000000000000000000000FFC6C7C6FFC6C7C6FFC6C7
-      C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FFC6C7C6FF000000FFC6C7
-      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000007B7D7BFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
-      7BFF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF000000FFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFF0000
-      00FFBDBEBDFF000000FFBDBEBDFF0000FFFF0000FFFF0000FFFFBDBEBDFF0000
-      00FF0000000000000000000000000000000000000000000000FFBDBEBDFFBDBE
-      BDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFFBDBEBDFF0000
-      00FF00000000000000000000000000000000000000007B7D7BFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7B7D
-      7BFF000000000000000000000000
+      4C7A0400000010000000100000000B0100000000000078DAED55D10E83200CE4
+      BFCD5E08D95FB947F7595D74CA00DBD203353E8CA4234BB9BBF628D1B92B1791
+      7381BEBB96D7724138F3CB075FE673EC3EAF9DB160350E2B56EA13C1CA1C18BE
+      479FAFDFC62163EB1C52CF160ECD2F82F15ABE367B5A7F9A7F730EBBE3DEA7EC
+      A80BEBD7E8C00607E2535D147F67AC741756AC5F7EA9A9E6E44CE400FA5D7225
+      87C7FCDA713478CD71A0F39572C0B39970B4626FB4C810F247A0B22C784ED38A
+      3D595BF2C0A43DBDA76C07FCE6B0F1BF25340E24523E4D3F3C430CAE86AD77B1
+      DED9B3354A4DD43BCEC7F4EE50FF1ADF4C6DFE9AD7F0184CDAEB3976F6C7D758
+      0DA5FE43F05AED289E28DFAFD03FA2FFDAFED7BF529F629CA9DFFA7E3FCFE74A
+      53
     }
   end
   object PrintDialog: TPrintDialog
-    left = 193
-    top = 3
+    Left = 193
+    Top = 3
   end
 end

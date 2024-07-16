@@ -10,23 +10,23 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '3.2.0.0'
   object Panel2: TPanel
     Left = 0
-    Height = 765
-    Top = 30
+    Height = 761
+    Top = 34
     Width = 1000
     Align = alClient
     BorderWidth = 10
-    ClientHeight = 765
+    ClientHeight = 761
     ClientWidth = 1000
     ParentFont = False
     TabOrder = 0
     object PageControl: TPageControl
-      Left = 330
-      Height = 743
+      Left = 349
+      Height = 739
       Top = 11
-      Width = 659
+      Width = 640
       ActivePage = TabSheet1
       Align = alClient
       ParentFont = False
@@ -34,15 +34,15 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = '3D view'
-        ClientHeight = 703
-        ClientWidth = 653
+        ClientHeight = 699
+        ClientWidth = 636
         OnContextPopup = TabSheet1ContextPopup
         ParentFont = False
         object ScrollBar1: TScrollBar
           Left = 0
-          Height = 15
-          Top = 688
-          Width = 653
+          Height = 12
+          Top = 687
+          Width = 636
           Align = alBottom
           Max = 180
           Min = -180
@@ -51,10 +51,10 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           TabOrder = 1
         end
         object ScrollBar2: TScrollBar
-          Left = 638
-          Height = 655
-          Top = 33
-          Width = 15
+          Left = 624
+          Height = 650
+          Top = 37
+          Width = 12
           Align = alRight
           Kind = sbVertical
           Max = 180
@@ -65,9 +65,9 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         end
         object ViewToolbar: TPanel
           Left = 0
-          Height = 33
+          Height = 37
           Top = 0
-          Width = 653
+          Width = 636
           Align = alTop
           AutoSize = True
           ChildSizing.LeftRightSpacing = 2
@@ -75,13 +75,13 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           ChildSizing.HorizontalSpacing = 2
           ChildSizing.Layout = cclTopToBottomThenLeftToRight
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 33
-          ClientWidth = 653
+          ClientHeight = 37
+          ClientWidth = 636
           ParentFont = False
           TabOrder = 2
           object sbShowControlNet: TSpeedButton
             Left = 2
-            Height = 30
+            Height = 34
             Hint = 'Show Control Net'
             Top = 1
             Width = 20
@@ -97,7 +97,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object sbShowInteriorEdges: TSpeedButton
             Left = 24
-            Height = 30
+            Height = 34
             Hint = 'Show Interior Edges'
             Top = 1
             Width = 20
@@ -114,7 +114,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object sbShowBothSides: TSpeedButton
             Left = 46
-            Height = 30
+            Height = 34
             Hint = 'Show Both Sides'
             Top = 1
             Width = 20
@@ -132,7 +132,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object LayerColorButton: TColorButton
             Left = 68
-            Height = 30
+            Height = 34
             Hint = 'Set Layer Color'
             Top = 1
             Width = 20
@@ -147,7 +147,7 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object ComboBoxSubdivisionLevel: TComboBox
             Left = 90
-            Height = 30
+            Height = 34
             Hint = 'Desired Subdivision Level'
             Top = 1
             Width = 100
@@ -159,27 +159,27 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               'High'
               'Very High'
             )
-            OnChange = ComboBoxSubdivisionLevelChange
             ParentFont = False
             ParentShowHint = False
             ShowHint = True
             Style = csDropDownList
             TabOrder = 0
             Text = 'Medium'
+            OnChange = ComboBoxSubdivisionLevelChange
           end
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Lift and drag'
-        ClientHeight = 703
-        ClientWidth = 653
+        ClientHeight = 699
+        ClientWidth = 636
         ImageIndex = 1
         ParentFont = False
         object Chart: TChart
           Left = 0
-          Height = 542
+          Height = 699
           Top = 0
-          Width = 772
+          Width = 636
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -206,7 +206,6 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               Title.Caption = 'Cy/Cx'
               Title.LabelBrush.Style = bsClear
             end>
-          BackColor = clWindow
           Foot.Brush.Color = clBtnFace
           Foot.Font.Color = clBlue
           Legend.Alignment = laTopCenter
@@ -220,61 +219,61 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Align = alClient
           ParentColor = True
           object Series1: TLineSeries
-            Marks.Visible = False
-            Marks.Format = '%0:.9g'
-            Marks.Style = smsValue
             Title = 'Cy'
             LinePen.Color = clBlue
             LinePen.Width = 2
+            Marks.Visible = False
+            Marks.Format = '%0:.9g'
+            Marks.Style = smsValue
             Pointer.HorizSize = 2
             Pointer.VertSize = 2
           end
           object Series2: TLineSeries
-            Marks.Visible = False
             Title = 'Cx'
             LinePen.Color = clGreen
             LinePen.Width = 2
+            Marks.Visible = False
           end
           object Series3: TLineSeries
-            Marks.Visible = False
             Title = 'm_z'
             LinePen.Color = clRed
             LinePen.Width = 2
+            Marks.Visible = False
           end
           object Series4: TLineSeries
-            Marks.Visible = False
             Title = 'Cd'
             LinePen.Color = clBlue
             LinePen.Width = 2
+            Marks.Visible = False
           end
           object Series5: TLineSeries
-            Marks.Visible = False
             Title = 'K=Cy/Cx'
             LinePen.Color = clRed
             LinePen.Width = 2
+            Marks.Visible = False
           end
         end
       end
     end
     object Panel7: TPanel
       Left = 11
-      Height = 743
+      Height = 739
       Top = 11
-      Width = 319
+      Width = 338
       Align = alLeft
       AutoSize = True
       Caption = 'Panel7'
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 743
-      ClientWidth = 319
+      ClientHeight = 739
+      ClientWidth = 338
       ParentFont = False
       TabOrder = 1
       object PageControl1: TPageControl
         Left = 0
-        Height = 446
+        Height = 490
         Top = 0
-        Width = 318
+        Width = 337
         ActivePage = TabSheet3
         ParentFont = False
         TabIndex = 0
@@ -283,14 +282,14 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Caption = 'Keel'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 406
-          ClientWidth = 312
+          ClientHeight = 450
+          ClientWidth = 333
           ParentFont = False
           object Panel4: TPanel
             Left = 0
-            Height = 120
+            Height = 132
             Top = 0
-            Width = 312
+            Width = 333
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -299,22 +298,22 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 120
-            ClientWidth = 312
+            ClientHeight = 132
+            ClientWidth = 333
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
               Left = 10
-              Height = 32
+              Height = 36
               Top = 10
-              Width = 146
+              Width = 167
               Caption = 'Type of appendage'
               ParentColor = False
               ParentFont = False
             end
             object ComboBox: TComboBox
-              Left = 162
-              Height = 32
+              Left = 183
+              Height = 36
               Top = 10
               Width = 140
               ItemHeight = 0
@@ -323,25 +322,25 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 'Keel'
                 'Rudder'
               )
-              OnChange = ComboBoxClick
-              OnClick = ComboBoxClick
               ParentFont = False
               TabOrder = 0
               Text = 'Keel'
+              OnChange = ComboBoxClick
+              OnClick = ComboBoxClick
             end
             object Label2: TLabel
               Left = 10
-              Height = 32
-              Top = 44
-              Width = 146
+              Height = 36
+              Top = 48
+              Width = 167
               Caption = 'Planform shape'
               ParentColor = False
               ParentFont = False
             end
             object ComboBoxPlanformShape: TComboBox
-              Left = 162
-              Height = 32
-              Top = 44
+              Left = 183
+              Height = 36
+              Top = 48
               Width = 140
               ItemHeight = 0
               ItemIndex = 0
@@ -351,25 +350,25 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 'Quarter ellipse'
                 'Straight quarter chord line'
               )
-              OnChange = ComboBoxPlanformShapeClick
-              OnClick = ComboBoxPlanformShapeClick
               ParentFont = False
               TabOrder = 1
               Text = 'Trapezoidal'
+              OnChange = ComboBoxPlanformShapeClick
+              OnClick = ComboBoxPlanformShapeClick
             end
             object Label17: TLabel
               Left = 10
-              Height = 32
-              Top = 78
-              Width = 146
+              Height = 36
+              Top = 86
+              Width = 167
               Caption = 'Wing section'
               ParentColor = False
               ParentFont = False
             end
             object _ComboBox2: TComboBox
-              Left = 162
-              Height = 32
-              Top = 78
+              Left = 183
+              Height = 36
+              Top = 86
               Width = 140
               Constraints.MinWidth = 140
               ItemHeight = 0
@@ -501,17 +500,17 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 'Griffith 30%'
                 'JOUKOWSKI 12%'
               )
-              OnChange = ComboBoxPlanformShapeClick
               ParentFont = False
               TabOrder = 2
               Text = 'NACA63-006'
+              OnChange = ComboBoxPlanformShapeClick
             end
           end
           object Panel5: TPanel
             Left = 0
-            Height = 222
-            Top = 120
-            Width = 312
+            Height = 246
+            Top = 132
+            Width = 333
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -520,22 +519,22 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 222
-            ClientWidth = 312
+            ClientHeight = 246
+            ClientWidth = 333
             ParentFont = False
             TabOrder = 1
             object Label3: TLabel
               Left = 10
-              Height = 32
+              Height = 36
               Top = 10
-              Width = 156
+              Width = 180
               Caption = 'Root chord length'
               ParentColor = False
               ParentFont = False
             end
             object Input1: TFloatSpinEdit
-              Left = 172
-              Height = 32
+              Left = 196
+              Height = 36
               Top = 10
               Width = 80
               Alignment = taRightJustify
@@ -543,8 +542,6 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               Increment = 0.1
-              MaxValue = 0
-              MinValue = 0
               OnChange = Input1ChangeValue
               OnEditingDone = Input1AfterSetValue
               ParentFont = False
@@ -553,24 +550,23 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label4: TLabel
               Left = 10
-              Height = 32
-              Top = 44
-              Width = 156
+              Height = 36
+              Top = 48
+              Width = 180
               Caption = 'Tip chord length'
               ParentColor = False
               ParentFont = False
             end
             object Input2: TFloatSpinEdit
-              Left = 172
-              Height = 32
-              Top = 44
+              Left = 196
+              Height = 36
+              Top = 48
               Width = 80
               Alignment = taRightJustify
               AutoSize = False
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               Increment = 0.1
-              MinValue = 0
               OnChange = Input2ChangeValue
               OnEditingDone = Input1AfterSetValue
               ParentFont = False
@@ -579,24 +575,23 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label6: TLabel
               Left = 10
-              Height = 32
-              Top = 78
-              Width = 156
+              Height = 36
+              Top = 86
+              Width = 180
               Caption = 'Delta tip'
               ParentColor = False
               ParentFont = False
             end
             object Input4: TFloatSpinEdit
-              Left = 172
-              Height = 32
-              Top = 78
+              Left = 196
+              Height = 36
+              Top = 86
               Width = 80
               Alignment = taRightJustify
               AutoSize = False
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               Increment = 0.1
-              MinValue = 0
               OnChange = Input4ChangeValue
               OnEditingDone = Input1AfterSetValue
               ParentFont = False
@@ -605,24 +600,23 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label5: TLabel
               Left = 10
-              Height = 32
-              Top = 112
-              Width = 156
+              Height = 36
+              Top = 124
+              Width = 180
               Caption = 'Span'
               ParentColor = False
               ParentFont = False
             end
             object Input3: TFloatSpinEdit
-              Left = 172
-              Height = 32
-              Top = 112
+              Left = 196
+              Height = 36
+              Top = 124
               Width = 80
               Alignment = taRightJustify
               AutoSize = False
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               Increment = 0.1
-              MinValue = 0
               OnChange = Input3ChangeValue
               OnEditingDone = Input1AfterSetValue
               ParentFont = False
@@ -631,17 +625,17 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label26: TLabel
               Left = 10
-              Height = 32
-              Top = 146
-              Width = 156
+              Height = 36
+              Top = 162
+              Width = 180
               Caption = 'No. vertical points'
               ParentColor = False
               ParentFont = False
             end
             object Input5: TSpinEdit
-              Left = 172
-              Height = 32
-              Top = 146
+              Left = 196
+              Height = 36
+              Top = 162
               Width = 80
               Alignment = taRightJustify
               AutoSize = False
@@ -656,17 +650,17 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label27: TLabel
               Left = 10
-              Height = 32
-              Top = 180
-              Width = 156
+              Height = 36
+              Top = 200
+              Width = 180
               Caption = 'No horizontal points'
               ParentColor = False
               ParentFont = False
             end
             object Input6: TSpinEdit
-              Left = 172
-              Height = 32
-              Top = 180
+              Left = 196
+              Height = 36
+              Top = 200
               Width = 80
               Alignment = taRightJustify
               AutoSize = False
@@ -682,42 +676,42 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object Panel6: TPanel
             Left = 0
-            Height = 64
-            Top = 342
-            Width = 312
+            Height = 72
+            Top = 378
+            Width = 333
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
             ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
             ChildSizing.Layout = cclTopToBottomThenLeftToRight
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 64
-            ClientWidth = 312
+            ClientHeight = 72
+            ClientWidth = 333
             ParentFont = False
             TabOrder = 2
             object Label28: TLabel
               Left = 10
-              Height = 32
+              Height = 36
               Top = 0
-              Width = 213
+              Width = 236
               Caption = 'Vertical compression'
               ParentColor = False
               ParentFont = False
             end
             object Label30: TLabel
               Left = 10
-              Height = 32
-              Top = 32
-              Width = 213
+              Height = 36
+              Top = 36
+              Width = 236
               Caption = 'Horizontal compression'
               ParentColor = False
               ParentFont = False
             end
             object TrackBarVerticalCompression: TSpinEdit
-              Left = 223
-              Height = 32
+              Left = 246
+              Height = 36
               Top = 0
-              Width = 79
+              Width = 77
               Alignment = taRightJustify
               AutoSize = False
               Constraints.MinWidth = 30
@@ -728,10 +722,10 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               TabOrder = 0
             end
             object TrackBarHorizontalCompression: TSpinEdit
-              Left = 223
-              Height = 32
-              Top = 32
-              Width = 79
+              Left = 246
+              Height = 36
+              Top = 36
+              Width = 77
               Alignment = taRightJustify
               AutoSize = False
               Constraints.MinWidth = 30
@@ -748,15 +742,15 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           Caption = 'Bulb'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 406
-          ClientWidth = 312
+          ClientHeight = 450
+          ClientWidth = 333
           ImageIndex = 1
           ParentFont = False
           object Panel8: TPanel
             Left = 0
-            Height = 331
+            Height = 367
             Top = 0
-            Width = 308
+            Width = 332
             AutoSize = True
             ChildSizing.LeftRightSpacing = 10
             ChildSizing.TopBottomSpacing = 10
@@ -764,23 +758,23 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 331
-            ClientWidth = 308
+            ClientHeight = 367
+            ClientWidth = 332
             ParentFont = False
             TabOrder = 0
             OnResize = Panel8Resize
             object Label8: TLabel
               Left = 10
-              Height = 30
+              Height = 34
               Top = 10
-              Width = 156
+              Width = 180
               Caption = 'Planform shape'
               ParentColor = False
               ParentFont = False
             end
             object InputBulbShape: TComboBox
-              Left = 172
-              Height = 28
+              Left = 196
+              Height = 34
               Top = 10
               Width = 125
               ItemHeight = 0
@@ -791,25 +785,25 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 'Wing'
                 'Round wing'
               )
-              OnChange = InputBulbShapeClick
               ParentFont = False
               Style = csDropDownList
               TabOrder = 0
               Text = 'No bullb'
+              OnChange = InputBulbShapeClick
             end
             object Label12: TLabel
               Left = 10
-              Height = 30
-              Top = 42
-              Width = 156
+              Height = 34
+              Top = 46
+              Width = 180
               Caption = 'Wing section'
               ParentColor = False
               ParentFont = False
             end
             object InputBulbWing: TComboBox
-              Left = 172
-              Height = 28
-              Top = 42
+              Left = 196
+              Height = 34
+              Top = 46
               Width = 125
               ItemHeight = 0
               ItemIndex = 37
@@ -940,36 +934,36 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 'Griffith 30%'
                 'JOUKOWSKI 12%'
               )
-              OnChange = InputWingClick
               ParentFont = False
               Style = csDropDownList
               TabOrder = 1
               Text = 'NACA0020'
+              OnChange = InputWingClick
             end
             object Label14: TLabel
               Left = 10
-              Height = 34
-              Top = 74
-              Width = 156
+              Height = 38
+              Top = 82
+              Width = 180
               Caption = 'Length'
               ParentColor = False
               ParentFont = False
             end
             object Panel9: TPanel
-              Left = 172
-              Height = 34
-              Top = 74
+              Left = 196
+              Height = 38
+              Top = 82
               Width = 125
               AutoSize = True
               BevelInner = bvRaised
               BevelOuter = bvNone
-              ClientHeight = 34
+              ClientHeight = 38
               ClientWidth = 125
               ParentFont = False
               TabOrder = 2
               object Button2: TButton
                 Left = 1
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 58
                 Align = alRight
@@ -980,14 +974,13 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
               end
               object InputBulbLength: TFloatSpinEdit
                 Left = 59
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 65
                 Align = alRight
                 Alignment = taRightJustify
                 DecimalPlaces = 3
                 Increment = 0.1
-                MinValue = 0
                 OnEditingDone = InputLengthAfterSetValue
                 ParentFont = False
                 TabOrder = 1
@@ -996,35 +989,34 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label25: TLabel
               Left = 10
-              Height = 34
-              Top = 110
-              Width = 156
+              Height = 38
+              Top = 122
+              Width = 180
               Caption = 'Delta tip'
               ParentColor = False
               ParentFont = False
             end
             object Panel10: TPanel
-              Left = 172
-              Height = 34
-              Top = 110
+              Left = 196
+              Height = 38
+              Top = 122
               Width = 125
               AutoSize = True
               BevelInner = bvRaised
               BevelOuter = bvNone
-              ClientHeight = 34
+              ClientHeight = 38
               ClientWidth = 125
               ParentFont = False
               TabOrder = 3
               object InputBulbDelta: TFloatSpinEdit
                 Left = 59
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 65
                 Align = alRight
                 Alignment = taRightJustify
                 DecimalPlaces = 3
                 Increment = 0.1
-                MinValue = 0
                 OnEditingDone = InputDeltaAfterSetValue
                 ParentFont = False
                 TabOrder = 0
@@ -1033,35 +1025,34 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label10: TLabel
               Left = 10
-              Height = 34
-              Top = 146
-              Width = 156
+              Height = 38
+              Top = 162
+              Width = 180
               Caption = 'Wing width'
               ParentColor = False
               ParentFont = False
             end
             object Panel11: TPanel
-              Left = 172
-              Height = 34
-              Top = 146
+              Left = 196
+              Height = 38
+              Top = 162
               Width = 125
               AutoSize = True
               BevelInner = bvRaised
               BevelOuter = bvNone
-              ClientHeight = 34
+              ClientHeight = 38
               ClientWidth = 125
               ParentFont = False
               TabOrder = 4
               object InputBulbWingWidth: TFloatSpinEdit
                 Left = 59
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 65
                 Align = alRight
                 Alignment = taRightJustify
                 DecimalPlaces = 3
                 Increment = 0.1
-                MinValue = 0
                 OnEditingDone = InputDeltaAfterSetValue
                 ParentFont = False
                 TabOrder = 0
@@ -1070,18 +1061,18 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label19: TLabel
               Left = 10
-              Height = 30
-              Top = 182
-              Width = 156
+              Height = 34
+              Top = 202
+              Width = 180
               Caption = 'Bulb''s material'
               Enabled = False
               ParentColor = False
               ParentFont = False
             end
             object InputMaterial: TComboBox
-              Left = 172
-              Height = 28
-              Top = 182
+              Left = 196
+              Height = 34
+              Top = 202
               Width = 125
               ItemHeight = 0
               ItemIndex = 0
@@ -1091,44 +1082,43 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 'Wolfram'
                 'Set density'
               )
-              OnChange = InputMaterialChange
               ParentFont = False
               Style = csDropDownList
               TabOrder = 5
               Text = 'Plumbum'
+              OnChange = InputMaterialChange
             end
             object Label21: TLabel
               Left = 10
-              Height = 34
-              Top = 214
-              Width = 156
+              Height = 38
+              Top = 238
+              Width = 180
               Caption = 'Specific weight'
               Enabled = False
               ParentColor = False
               ParentFont = False
             end
             object Panel12: TPanel
-              Left = 172
-              Height = 34
-              Top = 214
+              Left = 196
+              Height = 38
+              Top = 238
               Width = 125
               AutoSize = True
               BevelInner = bvRaised
               BevelOuter = bvNone
-              ClientHeight = 34
+              ClientHeight = 38
               ClientWidth = 125
               ParentFont = False
               TabOrder = 6
               object InputBulbDensity: TFloatSpinEdit
                 Left = 59
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 65
                 Align = alRight
                 Alignment = taRightJustify
                 Enabled = False
                 Increment = 0.1
-                MinValue = 0
                 OnEditingDone = InputDensityAfterSetValue
                 ParentFont = False
                 TabOrder = 0
@@ -1137,29 +1127,29 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label29: TLabel
               Left = 10
-              Height = 34
-              Top = 250
-              Width = 156
+              Height = 38
+              Top = 278
+              Width = 180
               Caption = 'Bulb weight'
               Enabled = False
               ParentColor = False
               ParentFont = False
             end
             object Panel13: TPanel
-              Left = 172
-              Height = 34
-              Top = 250
+              Left = 196
+              Height = 38
+              Top = 278
               Width = 125
               AutoSize = True
               BevelInner = bvRaised
               BevelOuter = bvNone
-              ClientHeight = 34
+              ClientHeight = 38
               ClientWidth = 125
               ParentFont = False
               TabOrder = 7
               object InputBulbWeight: TFloatSpinEdit
                 Left = 59
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 65
                 Align = alRight
@@ -1167,14 +1157,13 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
                 DecimalPlaces = 3
                 Enabled = False
                 Increment = 0.1
-                MinValue = 0
                 ParentFont = False
                 TabOrder = 0
                 Value = 0.6
               end
               object Button1: TButton
                 Left = 1
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 58
                 Align = alRight
@@ -1186,28 +1175,28 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
             end
             object Label16: TLabel
               Left = 10
-              Height = 34
-              Top = 286
-              Width = 156
+              Height = 38
+              Top = 318
+              Width = 180
               Caption = 'No horizontal points'
               ParentColor = False
               ParentFont = False
             end
             object Panel15: TPanel
-              Left = 172
-              Height = 34
-              Top = 286
+              Left = 196
+              Height = 38
+              Top = 318
               Width = 125
               AutoSize = True
               BevelInner = bvRaised
               BevelOuter = bvNone
-              ClientHeight = 34
+              ClientHeight = 38
               ClientWidth = 125
               ParentFont = False
               TabOrder = 8
               object InputBulbPoints: TSpinEdit
                 Left = 59
-                Height = 32
+                Height = 36
                 Top = 1
                 Width = 65
                 Align = alRight
@@ -1220,33 +1209,33 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
           end
           object Panel14: TPanel
             Left = 0
-            Height = 66
-            Top = 331
-            Width = 308
+            Height = 73
+            Top = 367
+            Width = 332
             BevelInner = bvRaised
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
             ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 66
-            ClientWidth = 308
+            ClientHeight = 73
+            ClientWidth = 332
             ParentFont = False
             TabOrder = 1
             object Label23: TLabel
               Left = 10
-              Height = 22
+              Height = 26
               Top = 0
-              Width = 288
+              Width = 312
               Caption = 'Vertical compression'
               ParentColor = False
               ParentFont = False
             end
             object TrackBar2: TTrackBar
               Left = 10
-              Height = 43
-              Top = 22
-              Width = 288
+              Height = 46
+              Top = 26
+              Width = 312
               Max = 20
               OnChange = TrackBarVerticalCompressionChange
               Position = 0
@@ -1259,9 +1248,9 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Height = 290
-        Top = 446
-        Width = 318
+        Height = 330
+        Top = 490
+        Width = 337
         Caption = 'Properties'
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
@@ -1269,168 +1258,168 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
         ChildSizing.VerticalSpacing = 6
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 266
-        ClientWidth = 314
+        ClientHeight = 302
+        ClientWidth = 333
         ParentFont = False
         TabOrder = 1
         object Label18: TLabel
           Left = 10
-          Height = 22
+          Height = 26
           Top = 10
-          Width = 174
+          Width = 200
           Caption = 'Volume'
           ParentColor = False
           ParentFont = False
         end
         object _Label19: TLabel
-          Left = 190
-          Height = 22
+          Left = 216
+          Height = 26
           Top = 10
-          Width = 65
+          Width = 77
           Caption = 'Label8'
           ParentColor = False
           ParentFont = False
         end
         object Label20: TLabel
           Left = 10
-          Height = 22
-          Top = 38
-          Width = 174
+          Height = 26
+          Top = 42
+          Width = 200
           Caption = 'Volume COG'
           ParentColor = False
           ParentFont = False
         end
         object _Label21: TLabel
-          Left = 190
-          Height = 22
-          Top = 38
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 42
+          Width = 77
           Caption = 'Label8'
           ParentColor = False
           ParentFont = False
         end
         object Label22: TLabel
           Left = 10
-          Height = 22
-          Top = 66
-          Width = 174
+          Height = 26
+          Top = 74
+          Width = 200
           Caption = 'Wetted area'
           ParentColor = False
           ParentFont = False
         end
         object _Label23: TLabel
-          Left = 190
-          Height = 22
-          Top = 66
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 74
+          Width = 77
           Caption = 'Label8'
           ParentColor = False
           ParentFont = False
         end
         object Label7: TLabel
           Left = 10
-          Height = 22
-          Top = 94
-          Width = 174
+          Height = 26
+          Top = 106
+          Width = 200
           Caption = 'Planform area'
           ParentColor = False
           ParentFont = False
         end
         object _Label8: TLabel
-          Left = 190
-          Height = 22
-          Top = 94
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 106
+          Width = 77
           Caption = '_Label8'
           ParentColor = False
           ParentFont = False
         end
         object Label9: TLabel
           Left = 10
-          Height = 22
-          Top = 122
-          Width = 174
+          Height = 26
+          Top = 138
+          Width = 200
           Caption = 'Planform COG'
           ParentColor = False
           ParentFont = False
         end
         object _Label10: TLabel
-          Left = 190
-          Height = 22
-          Top = 122
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 138
+          Width = 77
           Caption = '_Label10'
           ParentColor = False
           ParentFont = False
         end
         object Label11: TLabel
           Left = 10
-          Height = 22
-          Top = 150
-          Width = 174
+          Height = 26
+          Top = 170
+          Width = 200
           Caption = 'Mean chord length'
           ParentColor = False
           ParentFont = False
         end
         object _Label12: TLabel
-          Left = 190
-          Height = 22
-          Top = 150
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 170
+          Width = 77
           Caption = 'Label10'
           ParentColor = False
           ParentFont = False
         end
         object Label24: TLabel
           Left = 10
-          Height = 22
-          Top = 178
-          Width = 174
+          Height = 26
+          Top = 202
+          Width = 200
           Caption = 'Thickness'
           ParentColor = False
           ParentFont = False
         end
         object _Label25: TLabel
-          Left = 190
-          Height = 22
-          Top = 178
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 202
+          Width = 77
           Caption = 'Label10'
           ParentColor = False
           ParentFont = False
         end
         object Label13: TLabel
           Left = 10
-          Height = 22
-          Top = 206
-          Width = 174
+          Height = 26
+          Top = 234
+          Width = 200
           Caption = 'Geometric aspect ratio'
           ParentColor = False
           ParentFont = False
         end
         object _Label14: TLabel
-          Left = 190
-          Height = 22
-          Top = 206
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 234
+          Width = 77
           Caption = 'Label10'
           ParentColor = False
           ParentFont = False
         end
         object Label15: TLabel
           Left = 10
-          Height = 22
-          Top = 234
-          Width = 174
+          Height = 26
+          Top = 266
+          Width = 200
           Caption = 'Effective aspect ratio'
           ParentColor = False
           ParentFont = False
         end
         object _Label16: TLabel
-          Left = 190
-          Height = 22
-          Top = 234
-          Width = 65
+          Left = 216
+          Height = 26
+          Top = 266
+          Width = 77
           Caption = 'Label10'
           ParentColor = False
           ParentFont = False
@@ -1449,19 +1438,19 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 30
+    Height = 34
     Top = 0
     Width = 1000
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 30
+    ClientHeight = 34
     ClientWidth = 1000
     ParentFont = False
     TabOrder = 2
     object BitBtn1: TSpeedButton
-      Left = 836
-      Height = 26
+      Left = 833
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -1510,10 +1499,10 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       ParentFont = False
     end
     object BitBtn2: TSpeedButton
-      Left = 918
-      Height = 26
+      Left = 915
+      Height = 30
       Top = 2
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2
@@ -1560,8 +1549,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
       ParentFont = False
     end
     object SpeedButton1: TSpeedButton
-      Left = 100
-      Height = 26
+      Left = 113
+      Height = 30
       Top = 2
       Width = 80
       Align = alLeft
@@ -1575,9 +1564,9 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     end
     object SpeedButton2: TSpeedButton
       Left = 2
-      Height = 26
+      Height = 30
       Top = 2
-      Width = 96
+      Width = 109
       Align = alLeft
       AutoSize = True
       BorderSpacing.Around = 2
@@ -1590,8 +1579,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
   end
   object PopupMenu1: TPopupMenu
     AutoPopup = False
-    left = 510
-    top = 306
+    Left = 510
+    Top = 306
     object MenuItemShade: TMenuItem
       Action = ActionModeShade
       ShortCut = 16454
@@ -1602,8 +1591,8 @@ object FreeKeelWizardDialog: TFreeKeelWizardDialog
     end
   end
   object ActionList1: TActionList
-    left = 508
-    top = 200
+    Left = 508
+    Top = 200
     object ActionModeShade: TAction
       Caption = 'Shade'
       GroupIndex = 1

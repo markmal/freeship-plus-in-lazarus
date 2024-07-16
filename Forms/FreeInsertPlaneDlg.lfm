@@ -8,7 +8,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
   ClientHeight = 400
   ClientWidth = 400
   Position = poMainFormCenter
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object Panel2: TPanel
     Left = 0
     Height = 366
@@ -57,9 +57,9 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
           Width = 173
           Caption = 'Transverse plane'
           Checked = True
-          OnClick = RadioButton1Click
           TabOrder = 0
           TabStop = True
+          OnClick = RadioButton1Click
         end
         object RadioButton2: TRadioButton
           Left = 0
@@ -67,8 +67,8 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
           Top = 40
           Width = 173
           Caption = 'Horizontal plane'
-          OnClick = RadioButton2Click
           TabOrder = 1
+          OnClick = RadioButton2Click
         end
         object RadioButton3: TRadioButton
           Left = 0
@@ -76,8 +76,8 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
           Top = 70
           Width = 173
           Caption = 'Vertical plane'
-          OnClick = RadioButton3Click
           TabOrder = 2
+          OnClick = RadioButton3Click
         end
       end
       object CheckBox1: TCheckBox
@@ -161,9 +161,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
           Alignment = taRightJustify
           Constraints.MinWidth = 120
           DecimalPlaces = 4
-          MinValue = 0
           TabOrder = 2
-          Value = 0
         end
       end
     end
@@ -179,6 +177,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
     ClientHeight = 34
     ClientWidth = 400
     Color = clForm
+    ParentBackground = False
     ParentColor = False
     TabOrder = 1
     object BitBtn1: TSpeedButton

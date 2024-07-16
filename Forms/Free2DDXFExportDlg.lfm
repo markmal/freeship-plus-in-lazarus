@@ -10,7 +10,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
   ClientWidth = 640
   ParentFont = True
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 34
@@ -213,9 +213,9 @@ object DXFExport2DDialog: TDXFExport2DDialog
         'Feet'
         'Inch'
       )
-      OnChange = ComboBox1Change
       TabOrder = 1
       Text = 'Meters'
+      OnChange = ComboBox1Change
     end
     object Label1: TLabel
       Left = 10
@@ -232,7 +232,6 @@ object DXFExport2DDialog: TDXFExport2DDialog
       Width = 280
       Alignment = taRightJustify
       DecimalPlaces = 5
-      MinValue = 0
       TabOrder = 2
       Value = 0.1
     end
@@ -257,6 +256,6 @@ object DXFExport2DDialog: TDXFExport2DDialog
   end
   object SaveDialog: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist, ofEnableSizing]
-    left = 376
+    Left = 376
   end
 end

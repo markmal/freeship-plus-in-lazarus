@@ -7,7 +7,7 @@ object FreePointGroupForm: TFreePointGroupForm
   ClientHeight = 298
   ClientWidth = 299
   OnClose = FormClose
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '3.2.0.0'
   object SpeedButtonAdd: TSpeedButton
     Left = 21
     Height = 22
@@ -18,7 +18,7 @@ object FreePointGroupForm: TFreePointGroupForm
   end
   object EditNewGroupName: TEdit
     Left = 53
-    Height = 25
+    Height = 36
     Top = 10
     Width = 227
     TabOrder = 0
@@ -54,8 +54,8 @@ object FreePointGroupForm: TFreePointGroupForm
     TopIndex = -1
   end
   object PopupMenu1: TPopupMenu
-    left = 148
-    top = 250
+    Left = 148
+    Top = 250
     object MenuItemDeleteGroup: TMenuItem
       Caption = 'Delete Group'
       OnClick = MenuItemDeleteGroupClick

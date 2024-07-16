@@ -7,7 +7,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
   ClientHeight = 740
   ClientWidth = 1200
   Position = poScreenCenter
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -80,12 +80,12 @@ object FreeResistance_Delft: TFreeResistance_Delft
     TabOrder = 1
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 672
-      ClientWidth = 1194
+      ClientHeight = 676
+      ClientWidth = 1196
       ParentFont = False
       object Panel1: TPanel
         Left = 0
-        Height = 672
+        Height = 676
         Top = 0
         Width = 600
         Align = alLeft
@@ -96,7 +96,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 672
+        ClientHeight = 676
         ClientWidth = 600
         ParentColor = False
         ParentFont = False
@@ -105,7 +105,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Left = 10
           Height = 192
           Top = 10
-          Width = 585
+          Width = 583
           AutoSize = True
           Caption = 'General'
           ChildSizing.LeftRightSpacing = 10
@@ -115,8 +115,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 164
-          ClientWidth = 581
+          ClientWidth = 579
           Color = clForm
+          ParentBackground = False
           ParentColor = False
           ParentFont = False
           TabOrder = 0
@@ -124,7 +125,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 10
             Height = 164
             Top = 0
-            Width = 217
+            Width = 216
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.TopBottomSpacing = 10
@@ -135,7 +136,8 @@ object FreeResistance_Delft: TFreeResistance_Delft
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 164
-            ClientWidth = 217
+            ClientWidth = 216
+            ParentBackground = False
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
@@ -164,6 +166,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 82
+              ParentBackground = False
               TabOrder = 0
               object StartSpeedBox: TFloatSpinEdit
                 Left = 0
@@ -174,18 +177,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 60
                 DecimalPlaces = 1
                 MaxValue = 1050
-                MinValue = 0
                 OnEditingDone = StartSpeedBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label31: TLabel
               Left = 174
               Height = 52
               Top = 10
-              Width = 43
+              Width = 42
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
@@ -217,6 +218,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 82
+              ParentBackground = False
               TabOrder = 1
               object EndSpeedBox: TFloatSpinEdit
                 Left = 0
@@ -227,18 +229,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 60
                 DecimalPlaces = 1
                 MaxValue = 1050
-                MinValue = 0
                 OnEditingDone = StartSpeedBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label32: TLabel
               Left = 174
               Height = 52
               Top = 64
-              Width = 43
+              Width = 42
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
@@ -265,17 +265,15 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Constraints.MinWidth = 60
               DecimalPlaces = 1
               MaxValue = 1050
-              MinValue = 0
               OnEditingDone = StartSpeedBoxAfterSetValue
               ParentFont = False
               TabOrder = 2
-              Value = 0
             end
             object _Label33: TLabel
               Left = 174
               Height = 36
               Top = 118
-              Width = 43
+              Width = 42
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
@@ -283,10 +281,10 @@ object FreeResistance_Delft: TFreeResistance_Delft
             end
           end
           object GeneralPanel2: TPanel
-            Left = 237
+            Left = 236
             Height = 164
             Top = 0
-            Width = 334
+            Width = 333
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -298,7 +296,8 @@ object FreeResistance_Delft: TFreeResistance_Delft
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 164
-            ClientWidth = 334
+            ClientWidth = 333
+            ParentBackground = False
             ParentFont = False
             TabOrder = 1
             object Label4: TLabel
@@ -327,6 +326,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 102
+              ParentBackground = False
               TabOrder = 0
               object DensityBox: TFloatSpinEdit
                 Left = 0
@@ -336,18 +336,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
-                MinValue = 0
                 OnEditingDone = StartSpeedBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object Label34: TLabel
               Left = 222
               Height = 52
               Top = 10
-              Width = 102
+              Width = 101
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -374,17 +372,15 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Constraints.MinWidth = 80
               DecimalPlaces = 4
               MaxValue = 1
-              MinValue = 0
               OnEditingDone = StartSpeedBoxAfterSetValue
               ParentFont = False
               TabOrder = 1
-              Value = 0
             end
             object _Label36: TLabel
               Left = 222
               Height = 36
               Top = 64
-              Width = 102
+              Width = 101
               Caption = 'E-6  m2/s'
               Layout = tlCenter
               ParentColor = False
@@ -402,6 +398,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 1
+              ParentBackground = False
               TabOrder = 2
             end
           end
@@ -410,7 +407,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Left = 10
           Height = 312
           Top = 204
-          Width = 585
+          Width = 583
           AutoSize = True
           Caption = 'Hull'
           ChildSizing.LeftRightSpacing = 10
@@ -420,8 +417,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 284
-          ClientWidth = 581
+          ClientWidth = 579
           Color = clForm
+          ParentBackground = False
           ParentColor = False
           ParentFont = False
           TabOrder = 1
@@ -429,27 +427,27 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Left = 10
             Height = 28
             Top = 0
-            Width = 285
+            Width = 283
             Caption = 'Extract data from current hull'
-            OnClick = CheckBox2Click
             ParentFont = False
             TabOrder = 0
+            OnClick = CheckBox2Click
           end
           object EstimateBox: TCheckBox
-            Left = 305
+            Left = 303
             Height = 28
             Top = 0
             Width = 266
             Caption = 'Use estimate'
-            OnClick = EstimateBoxClick
             ParentFont = False
             TabOrder = 1
+            OnClick = EstimateBoxClick
           end
           object HullPanel2: TPanel
             Left = 10
             Height = 256
             Top = 28
-            Width = 285
+            Width = 283
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.TopBottomSpacing = 10
@@ -460,7 +458,8 @@ object FreeResistance_Delft: TFreeResistance_Delft
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 256
-            ClientWidth = 285
+            ClientWidth = 283
+            ParentBackground = False
             ParentFont = False
             TabOrder = 2
             object Label23: TLabel
@@ -489,6 +488,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 105
+              ParentBackground = False
               TabOrder = 1
               object LwlBox: TFloatSpinEdit
                 Left = 0
@@ -499,18 +499,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 100000
-                MinValue = 0
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label8: TLabel
               Left = 231
               Height = 52
               Top = 10
-              Width = 54
+              Width = 52
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -542,6 +540,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 105
+              ParentBackground = False
               TabOrder = 2
               object BwlBox: TFloatSpinEdit
                 Left = 0
@@ -552,18 +551,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 100000
-                MinValue = 0
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label9: TLabel
               Left = 231
               Height = 52
               Top = 64
-              Width = 54
+              Width = 52
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -595,6 +592,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 36
               ClientWidth = 105
+              ParentBackground = False
               TabOrder = 3
               object DraftBox: TFloatSpinEdit
                 Left = 0
@@ -605,18 +603,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 100000
-                MinValue = 0
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label10: TLabel
               Left = 231
               Height = 36
               Top = 118
-              Width = 54
+              Width = 52
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -648,6 +644,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 36
               ClientWidth = 105
+              ParentBackground = False
               TabOrder = 4
               object DraftTotalBox: TFloatSpinEdit
                 Left = 0
@@ -658,18 +655,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 100000
-                MinValue = 0
                 OnEditingDone = DraftTotalBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label11: TLabel
               Left = 231
               Height = 36
               Top = 156
-              Width = 54
+              Width = 52
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -701,6 +696,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 105
+              ParentBackground = False
               TabOrder = 0
               object WettedSurfacebox: TFloatSpinEdit
                 Left = 0
@@ -710,18 +706,16 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 MaxValue = 100000
-                MinValue = 0
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label12: TLabel
               Left = 231
               Height = 52
               Top = 194
-              Width = 54
+              Width = 52
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -729,7 +723,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             end
           end
           object HullPanel3: TPanel
-            Left = 305
+            Left = 303
             Height = 256
             Top = 28
             Width = 266
@@ -745,6 +739,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 256
             ClientWidth = 266
+            ParentBackground = False
             ParentFont = False
             TabOrder = 3
             object Label27: TLabel
@@ -773,6 +768,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 80
+              ParentBackground = False
               TabOrder = 1
               object WlAreabox: TFloatSpinEdit
                 Left = 0
@@ -782,11 +778,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 MaxValue = 100000
-                MinValue = 0
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label14: TLabel
@@ -825,6 +819,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 80
+              ParentBackground = False
               TabOrder = 2
               object DisplacementBox: TFloatSpinEdit
                 Left = 0
@@ -835,11 +830,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 500000
-                MinValue = 0
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label15: TLabel
@@ -878,6 +871,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 36
               ClientWidth = 80
+              ParentBackground = False
               TabOrder = 3
               object LCBBox: TFloatSpinEdit
                 Left = 0
@@ -892,7 +886,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label20: TLabel
@@ -931,6 +924,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 80
+              ParentBackground = False
               TabOrder = 0
               object CpBox: TFloatSpinEdit
                 Left = 0
@@ -941,11 +935,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 4
                 MaxValue = 1
-                MinValue = 0
                 OnEditingDone = LwlBoxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label16: TLabel
@@ -964,7 +956,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
           Left = 10
           Height = 138
           Top = 518
-          Width = 585
+          Width = 583
           AutoSize = True
           BevelOuter = bvNone
           ChildSizing.HorizontalSpacing = 10
@@ -973,14 +965,14 @@ object FreeResistance_Delft: TFreeResistance_Delft
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 138
-          ClientWidth = 585
+          ClientWidth = 583
           ParentFont = False
           TabOrder = 2
           object GroupBox3: TGroupBox
             Left = 0
             Height = 138
             Top = 0
-            Width = 288
+            Width = 287
             AutoSize = True
             Caption = 'Keel'
             ChildSizing.LeftRightSpacing = 10
@@ -992,8 +984,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 110
-            ClientWidth = 284
+            ClientWidth = 283
             Color = clForm
+            ParentBackground = False
             ParentColor = False
             ParentFont = False
             TabOrder = 0
@@ -1001,7 +994,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Left = 10
               Height = 52
               Top = 10
-              Width = 117
+              Width = 116
               Caption = 'Average chordlength'
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -1010,7 +1003,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               WordWrap = True
             end
             object Panel2_15: TPanel
-              Left = 133
+              Left = 132
               Height = 52
               Top = 10
               Width = 88
@@ -1023,6 +1016,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 88
+              ParentBackground = False
               TabOrder = 1
               object KeelChordLengthbox: TFloatSpinEdit
                 Left = 0
@@ -1033,7 +1027,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 75
-                MinValue = 0
                 OnEditingDone = KeelChordLengthboxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
@@ -1041,7 +1034,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               end
             end
             object _Label17: TLabel
-              Left = 227
+              Left = 226
               Height = 52
               Top = 10
               Width = 47
@@ -1054,7 +1047,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Left = 10
               Height = 36
               Top = 64
-              Width = 117
+              Width = 116
               Caption = 'Wetted area'
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -1063,7 +1056,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               WordWrap = True
             end
             object Panel2_16: TPanel
-              Left = 133
+              Left = 132
               Height = 36
               Top = 64
               Width = 88
@@ -1076,6 +1069,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 36
               ClientWidth = 88
+              ParentBackground = False
               TabOrder = 0
               object KeelAreaBox: TFloatSpinEdit
                 Left = 0
@@ -1085,15 +1079,13 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 MaxValue = 1000000
-                MinValue = 0
                 OnEditingDone = KeelChordLengthboxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label18: TLabel
-              Left = 227
+              Left = 226
               Height = 36
               Top = 64
               Width = 47
@@ -1104,10 +1096,10 @@ object FreeResistance_Delft: TFreeResistance_Delft
             end
           end
           object GroupBox4: TGroupBox
-            Left = 298
+            Left = 297
             Height = 138
             Top = 0
-            Width = 287
+            Width = 286
             AutoSize = True
             Caption = 'Rudder'
             ChildSizing.LeftRightSpacing = 10
@@ -1119,8 +1111,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
             ClientHeight = 110
-            ClientWidth = 283
+            ClientWidth = 282
             Color = clForm
+            ParentBackground = False
             ParentColor = False
             ParentFont = False
             TabOrder = 1
@@ -1128,7 +1121,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Left = 10
               Height = 52
               Top = 10
-              Width = 117
+              Width = 116
               Caption = 'Average chordlength'
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -1137,7 +1130,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               WordWrap = True
             end
             object Panel2_17: TPanel
-              Left = 133
+              Left = 132
               Height = 52
               Top = 10
               Width = 88
@@ -1150,6 +1143,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 52
               ClientWidth = 88
+              ParentBackground = False
               TabOrder = 1
               object RudderChordLengthbox: TFloatSpinEdit
                 Left = 0
@@ -1160,7 +1154,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 75
-                MinValue = 0
                 OnEditingDone = KeelChordLengthboxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
@@ -1168,7 +1161,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               end
             end
             object _Label19: TLabel
-              Left = 227
+              Left = 226
               Height = 52
               Top = 10
               Width = 46
@@ -1181,7 +1174,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               Left = 10
               Height = 36
               Top = 64
-              Width = 117
+              Width = 116
               Caption = 'Wetted area'
               Constraints.MaxWidth = 120
               Layout = tlCenter
@@ -1189,7 +1182,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ParentFont = False
             end
             object Panel2_18: TPanel
-              Left = 133
+              Left = 132
               Height = 36
               Top = 64
               Width = 88
@@ -1202,6 +1195,7 @@ object FreeResistance_Delft: TFreeResistance_Delft
               ChildSizing.ControlsPerLine = 1
               ClientHeight = 36
               ClientWidth = 88
+              ParentBackground = False
               TabOrder = 0
               object RudderAreaBox: TFloatSpinEdit
                 Left = 0
@@ -1211,15 +1205,13 @@ object FreeResistance_Delft: TFreeResistance_Delft
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 MaxValue = 1000000
-                MinValue = 0
                 OnEditingDone = KeelChordLengthboxAfterSetValue
                 ParentFont = False
                 TabOrder = 0
-                Value = 0
               end
             end
             object _Label30: TLabel
-              Left = 227
+              Left = 226
               Height = 36
               Top = 64
               Width = 46
@@ -1233,9 +1225,9 @@ object FreeResistance_Delft: TFreeResistance_Delft
       end
       object Chart: TChart
         Left = 605
-        Height = 672
+        Height = 676
         Top = 0
-        Width = 589
+        Width = 591
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -1265,7 +1257,6 @@ object FreeResistance_Delft: TFreeResistance_Delft
             Title.LabelBrush.Style = bsClear
             Transformations = ChartAxisTransformations2
           end>
-        BackColor = clWindow
         Foot.Brush.Color = clBtnFace
         Foot.Font.Color = clBlue
         Legend.Alignment = laTopCenter
@@ -1279,65 +1270,65 @@ object FreeResistance_Delft: TFreeResistance_Delft
         Align = alClient
         ParentColor = True
         object Series1: TLineSeries
-          Marks.Visible = False
           Title = 'Rf      '
           AxisIndexX = 1
           AxisIndexY = 0
           LinePen.Color = clBlue
+          Marks.Visible = False
           Pointer.HorizSize = 2
           Pointer.VertSize = 2
         end
         object Series2: TLineSeries
-          Marks.Visible = False
           Title = 'Rr      '
           AxisIndexX = 1
           AxisIndexY = 0
           LinePen.Color = clGreen
+          Marks.Visible = False
         end
         object Series3: TLineSeries
-          Marks.Visible = False
           Title = 'Rt      '
           AxisIndexX = 1
           AxisIndexY = 0
           LinePen.Color = clRed
           LinePen.Width = 2
+          Marks.Visible = False
         end
         object Series4: TLineSeries
-          Marks.Visible = False
           Title = 'Pe '
           AxisIndexX = 1
           AxisIndexY = 2
           LinePen.Width = 2
+          Marks.Visible = False
         end
       end
       object Splitter1: TSplitter
         Left = 600
-        Height = 672
+        Height = 676
         Top = 0
         Width = 5
       end
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 672
-      ClientWidth = 1194
+      ClientHeight = 676
+      ClientWidth = 1196
       ParentFont = False
       object Panel5: TPanel
         Left = 0
-        Height = 474
+        Height = 676
         Top = 0
-        Width = 1053
+        Width = 1196
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 474
-        ClientWidth = 1053
+        ClientHeight = 676
+        ClientWidth = 1196
         ParentFont = False
         TabOrder = 0
         object Resultsmemo: TMemo
           Left = 1
-          Height = 472
+          Height = 674
           Top = 1
-          Width = 1051
+          Width = 1194
           Align = alClient
           Font.Color = clBlack
           Font.Height = -13
@@ -1351,152 +1342,32 @@ object FreeResistance_Delft: TFreeResistance_Delft
     end
   end
   object PrintDialog: TPrintDialog
-    left = 383
-    top = 1
+    Left = 383
+    Top = 1
   end
   object MenuImages: TImageList
-    left = 292
+    Left = 292
     Bitmap = {
-      4C69040000001000000010000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      80FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
-      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
-      80FF000080FF000000000000000000000000000000000000FFFF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
-      80FF808080FF000000000000000000000000000000000000FFFF000080FF0000
-      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF8080
-      80FF0000000000000000000000000000000000000000000000000000FFFF0000
-      80FF000080FF000080FF808080FF000080FF000080FF000080FF808080FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000080FF000080FF000080FF000080FF000080FF808080FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000FFFF000080FF000080FF000080FF000080FF808080FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000080FF000080FF000080FF000080FF000080FF808080FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000080FF000080FF000080FF000080FF000080FF000080FF808080FF0000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      80FF000080FF000080FF000080FF000080FF000080FF000080FF000080FF8080
-      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
-      80FF000080FF000080FF808080FF000080FF000080FF000080FF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
-      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF8080
-      80FF000000000000000000000000000000000000FFFF000080FF000080FF8080
-      80FF00000000000000000000000000000000000000000000FFFF808080FF0000
-      00000000000000000000000000000000000000000000808080FF808080FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000FF00FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000FF00FF008000FF008000FF000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000000000FF
-      00FF008000FF008000FF800000FF000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000FF00FF0080
-      00FF008000FF008000FF800000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000FF00FF008000FF0080
-      00FF008000FF800000FF00000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000FF00FF008000FF008000FF0080
-      00FF800000FF0000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000FF00FF008000FF008000FF008000FF8000
-      00FF0000000000000000000000000000000000FF00FF00000000000000000000
-      0000000000000000000000FF00FF008000FF008000FF008000FF800000FF0000
-      000000000000000000000000000000FF00FF008000FF00FF00FF000000000000
-      00000000000000FF00FF008000FF008000FF008000FF800000FF000000000000
-      0000000000000000000000000000008000FF008000FF008000FF00FF00FF0000
-      000000FF00FF008000FF008000FF008000FF800000FF00000000000000000000
-      0000000000000000000000000000800000FF008000FF008000FF008000FF00FF
-      00FF008000FF008000FF008000FF008000FF800000FF00000000000000000000
-      000000000000000000000000000000000000800000FF008000FF008000FF0080
-      00FF008000FF008000FF008000FF800000FF0000000000000000000000000000
-      00000000000000000000000000000000000000000000800000FF008000FF0080
-      00FF008000FF008000FF800000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000800000FF0080
-      00FF008000FF800000FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000008000
-      00FF800000FF0000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
-      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C6
-      C6FF000000FFC6C6C6FF000000FF00000000000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C6C6FF0000
-      00FFC6C6C6FF000000FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
-      C6FF000000FFC6C6C6FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C6C6FFC6C6C6FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FF848484FF848484FF848484FFC6C6C6FFC6C6C6FF0000
-      00FFC6C6C6FF000000FF00000000000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FF00FFFFFF00FFFFFF00FFFFFFC6C6C6FFC6C6C6FF0000
-      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C6C6FF000000FF0000000000000000000000FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
-      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000007F7F7FFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
-      7FFF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF0000FFFF0000FFFF0000FFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF00000000000000000000000000000000000000007F7F7FFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
-      7FFF000000000000000000000000
+      4C7A040000001000000010000000070100000000000078DAED55410E84200CE4
+      E7F4C0BFB8F9AD6E745D16B52D1D50E341922ED9949969871243B873318740FC
+      DDADBC9523E5CC3F4FB4CF6FB1C7BC75C683B538BC58AD4F04AB7360F8117DB9
+      7E1F878E6D73683D7B382CBF18C65BF9D6EC59FD59FECD39EC8E479F72E0212C
+      AD3180A500E26B5D14FF64AC76175E2C2DBFDC557375A67000FD2EB93D07617E
+      1D383ABC9638D0F9AA39E0D9AC387AB10F5AEC08FD23D0581EBCA4E9C55EACAD
+      79E0D29EA669B3037E4BD8F2DF13160712359FA59F522A21D5F0EB5DAD77F66C
+      8DBD26EA9DE4637D77A87F9D6FA6357FDD2BC6E8D25ECF89B39F736E8651FF29
+      78AB7614CFBCDDEFD03FA3FFD6FEEADFA9CF25AED4EF7DBF1FCA84495D
     }
   end
   object ChartAxisTransformations1: TChartAxisTransformations
-    left = 533
-    top = 20
+    Left = 533
+    Top = 20
     object ChartAxisTransformations1AutoScaleAxisTransform1: TAutoScaleAxisTransform
     end
   end
   object ChartAxisTransformations2: TChartAxisTransformations
-    left = 584
-    top = 20
+    Left = 584
+    Top = 20
     object ChartAxisTransformations2AutoScaleAxisTransform1: TAutoScaleAxisTransform
     end
   end

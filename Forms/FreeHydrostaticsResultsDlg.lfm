@@ -10,23 +10,23 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
   Font.Name = 'Arial'
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
-    Height = 24
+    Height = 34
     Top = 0
     Width = 900
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 34
     ClientWidth = 900
     Font.Color = clBlack
     ParentFont = False
     TabOrder = 0
     object ButtonPrint: TSpeedButton
       Left = 2
-      Height = 20
+      Height = 30
       Top = 2
       Width = 80
       Align = alLeft
@@ -75,7 +75,7 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
     end
     object ButtonSave: TSpeedButton
       Left = 84
-      Height = 20
+      Height = 30
       Top = 2
       Width = 80
       Align = alLeft
@@ -125,7 +125,7 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
     end
     object ButtonClose: TSpeedButton
       Left = 818
-      Height = 20
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -175,13 +175,13 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
   end
   object Panel2: TPanel
     Left = 0
-    Height = 576
-    Top = 24
+    Height = 566
+    Top = 34
     Width = 900
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 8
-    ClientHeight = 576
+    ClientHeight = 566
     ClientWidth = 900
     TabOrder = 1
     object Splitter1: TSplitter
@@ -195,7 +195,7 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
     end
     object Grid: TStringGrid
       Left = 9
-      Height = 383
+      Height = 373
       Top = 184
       Width = 882
       Align = alClient
@@ -231,14 +231,14 @@ object FreeHydrostaticsResultsDialog: TFreeHydrostaticsResultsDialog
   end
   object PrintDialog: TPrintDialog
     Options = [poPageNums, poDisablePrintToFile]
-    left = 20
-    top = 40
+    Left = 20
+    Top = 40
   end
   object SaveDialog: TSaveDialog
     Filter = 'Text files (*.txt)|*.txt'
     FilterIndex = 2
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    left = 52
-    top = 40
+    Left = 52
+    Top = 40
   end
 end

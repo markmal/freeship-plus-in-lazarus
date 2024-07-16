@@ -52,7 +52,7 @@ uses
      FreeGeometry,
      FreeShipUnit,
      StdCtrls,
-     LCLTranslator,
+     //LCLTranslator,
      Menus,
      ActnList,
      Printers, ExtCtrls,

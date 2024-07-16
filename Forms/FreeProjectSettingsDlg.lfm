@@ -9,7 +9,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
   ClientWidth = 800
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 566
@@ -163,9 +163,9 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
                 'Metric'
                 'Imperial'
               )
-              OnChange = UnitboxChange
               TabOrder = 0
               Text = 'Metric'
+              OnChange = UnitboxChange
             end
             object Label24: TLabel
               Left = 0
@@ -459,8 +459,8 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Width = 163
               Caption = 'Default at 0.5*L'
               Enabled = False
-              OnClick = CheckBox2Click
               TabOrder = 1
+              OnClick = CheckBox2Click
             end
             object Label20: TLabel
               Left = 0
@@ -498,8 +498,8 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 38
               Width = 163
               Caption = 'Default at 0.0'
-              OnClick = CheckBox11Click
               TabOrder = 3
+              OnClick = CheckBox11Click
             end
             object Label22: TLabel
               Left = 0
@@ -537,8 +537,8 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
               Top = 76
               Width = 163
               Caption = 'Default at 0.5*L'
-              OnClick = CheckBox12Click
               TabOrder = 5
+              OnClick = CheckBox12Click
             end
           end
         end
@@ -744,6 +744,7 @@ object FREEProjectSettingsDialog: TFREEProjectSettingsDialog
             ClientWidth = 492
             Color = clForm
             Font.Style = [fsBold]
+            ParentBackground = False
             ParentColor = False
             ParentFont = False
             TabOrder = 3

@@ -8,21 +8,21 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
   ClientWidth = 800
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
-    Height = 24
+    Height = 34
     Top = 0
     Width = 800
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 34
     ClientWidth = 800
     TabOrder = 0
     object OKbutton: TSpeedButton
       Left = 718
-      Height = 20
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -70,10 +70,10 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       OnClick = OKbuttonClick
     end
     object CancelButton: TSpeedButton
-      Left = 636
-      Height = 20
+      Left = 633
+      Height = 30
       Top = 2
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2
@@ -121,32 +121,32 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
   end
   object Panel2: TPanel
     Left = 0
-    Height = 563
-    Top = 24
+    Height = 553
+    Top = 34
     Width = 800
     Align = alClient
     BevelOuter = bvLowered
-    ClientHeight = 563
+    ClientHeight = 553
     ClientWidth = 800
     TabOrder = 1
     object PageControl1: TPageControl
       Left = 1
-      Height = 561
+      Height = 551
       Top = 1
       Width = 798
-      ActivePage = TabSheet4
+      ActivePage = TabSheet1
       Align = alClient
-      TabIndex = 3
+      TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Hull geometry'
-        ClientHeight = 528
-        ClientWidth = 792
+        ClientHeight = 511
+        ClientWidth = 794
         object Panel4: TPanel
           Left = 0
-          Height = 173
+          Height = 228
           Top = 0
-          Width = 792
+          Width = 794
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
@@ -155,14 +155,14 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           ChildSizing.VerticalSpacing = 10
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 173
-          ClientWidth = 792
+          ClientHeight = 228
+          ClientWidth = 794
           TabOrder = 0
           object Panel9: TPanel
             Left = 0
-            Height = 153
+            Height = 208
             Top = 10
-            Width = 331
+            Width = 408
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
             ChildSizing.TopBottomSpacing = 10
@@ -170,57 +170,57 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclTopToBottomThenLeftToRight
             ChildSizing.ControlsPerLine = 5
-            ClientHeight = 153
-            ClientWidth = 331
+            ClientHeight = 208
+            ClientWidth = 408
             TabOrder = 0
             object Label1: TLabel
               Left = 10
-              Height = 25
+              Height = 36
               Top = 10
-              Width = 184
+              Width = 249
               Caption = 'Number of stations (5-81)'
               Layout = tlCenter
               ParentColor = False
             end
             object Label2: TLabel
               Left = 10
-              Height = 25
-              Top = 37
-              Width = 184
+              Height = 36
+              Top = 48
+              Width = 249
               Caption = 'Number of waterlines (5-81)'
               Layout = tlCenter
               ParentColor = False
             end
             object Label3: TLabel
               Left = 10
-              Height = 25
-              Top = 64
-              Width = 184
+              Height = 36
+              Top = 86
+              Width = 249
               Caption = 'Draft'
               Layout = tlCenter
               ParentColor = False
             end
             object Label4: TLabel
               Left = 10
-              Height = 25
-              Top = 91
-              Width = 184
+              Height = 36
+              Top = 124
+              Width = 249
               Caption = 'Length'
               Layout = tlCenter
               ParentColor = False
             end
             object Label5: TLabel
               Left = 10
-              Height = 25
-              Top = 118
-              Width = 184
+              Height = 36
+              Top = 162
+              Width = 249
               Caption = 'Volume'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit1: TSpinEdit
-              Left = 200
-              Height = 25
+              Left = 265
+              Height = 36
               Top = 10
               Width = 80
               Alignment = taRightJustify
@@ -232,9 +232,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               Value = 5
             end
             object Edit2: TSpinEdit
-              Left = 200
-              Height = 25
-              Top = 37
+              Left = 265
+              Height = 36
+              Top = 48
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
@@ -245,175 +245,169 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               Value = 5
             end
             object Edit3: TFloatSpinEdit
-              Left = 200
-              Height = 25
-              Top = 64
+              Left = 265
+              Height = 36
+              Top = 86
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               MaxValue = 10000000000
-              MinValue = 0
               OnEditingDone = Edit3AfterSetValue
               TabOrder = 2
-              Value = 0
             end
             object Edit4: TFloatSpinEdit
-              Left = 200
-              Height = 25
-              Top = 91
+              Left = 265
+              Height = 36
+              Top = 124
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
               DecimalPlaces = 3
-              MinValue = 0
               OnEditingDone = Edit4AfterSetValue
               ParentFont = False
               ReadOnly = True
               TabOrder = 3
-              Value = 0
             end
             object Edit5: TFloatSpinEdit
-              Left = 200
-              Height = 25
-              Top = 118
+              Left = 265
+              Height = 36
+              Top = 162
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
               DecimalPlaces = 3
-              MinValue = 0
               OnEditingDone = Edit5AfterSetValue
               ParentFont = False
               ReadOnly = True
               TabOrder = 4
-              Value = 0
             end
             object Label8: TLabel
-              Left = 286
-              Height = 25
+              Left = 351
+              Height = 36
               Top = 10
-              Width = 35
+              Width = 47
               ParentColor = False
             end
             object Label9: TLabel
-              Left = 286
-              Height = 25
-              Top = 37
-              Width = 35
+              Left = 351
+              Height = 36
+              Top = 48
+              Width = 47
               ParentColor = False
             end
             object _Label18: TLabel
-              Left = 286
-              Height = 25
-              Top = 64
-              Width = 35
+              Left = 351
+              Height = 36
+              Top = 86
+              Width = 47
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
             end
             object _Label19: TLabel
-              Left = 286
-              Height = 25
-              Top = 91
-              Width = 35
+              Left = 351
+              Height = 36
+              Top = 124
+              Width = 47
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
             end
             object _Label20: TLabel
-              Left = 286
-              Height = 25
-              Top = 118
-              Width = 35
+              Left = 351
+              Height = 36
+              Top = 162
+              Width = 47
               Caption = '[m/3]'
               Layout = tlCenter
               ParentColor = False
             end
           end
           object GroupBox3: TGroupBox
-            Left = 341
-            Height = 153
+            Left = 418
+            Height = 208
             Top = 10
-            Width = 222
+            Width = 302
             Caption = 'Hullform configuration.  '
             ChildSizing.TopBottomSpacing = 10
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 136
-            ClientWidth = 218
+            ClientHeight = 180
+            ClientWidth = 298
             Color = clForm
+            ParentBackground = False
             ParentColor = False
             ParentFont = False
             TabOrder = 1
             object RadioButton1: TRadioButton
               Left = 0
-              Height = 21
+              Height = 28
               Top = 10
-              Width = 218
+              Width = 298
               Caption = 'Monohull'
               Checked = True
-              OnClick = RadioButton1Click
               TabOrder = 0
               TabStop = True
+              OnClick = RadioButton1Click
             end
             object RadioButton2: TRadioButton
               Left = 0
-              Height = 21
-              Top = 33
-              Width = 218
+              Height = 28
+              Top = 40
+              Width = 298
               Caption = 'Monohull, send as catamaran'
-              OnClick = RadioButton1Click
               TabOrder = 1
+              OnClick = RadioButton1Click
             end
             object RadioButton3: TRadioButton
               Left = 0
-              Height = 21
-              Top = 56
-              Width = 218
+              Height = 28
+              Top = 70
+              Width = 298
               Caption = 'Catamaran'
-              OnClick = RadioButton1Click
               TabOrder = 2
+              OnClick = RadioButton1Click
             end
             object Label14: TLabel
               Left = 0
-              Height = 15
-              Top = 79
-              Width = 218
+              Height = 26
+              Top = 100
+              Width = 298
               Caption = 'Distance between center of hulls:'
               ParentColor = False
             end
             object Panel10: TPanel
               Left = 0
-              Height = 25
-              Top = 96
-              Width = 218
+              Height = 36
+              Top = 128
+              Width = 298
               BevelOuter = bvNone
               ChildSizing.HorizontalSpacing = 6
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 2
-              ClientHeight = 25
-              ClientWidth = 218
+              ClientHeight = 36
+              ClientWidth = 298
+              ParentBackground = False
               TabOrder = 3
               object Distance: TFloatSpinEdit
                 Left = 0
-                Height = 25
+                Height = 36
                 Top = 0
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 Enabled = False
-                MinValue = 0
                 OnEditingDone = DistanceAfterSetValue
                 TabOrder = 0
-                Value = 0
               end
               object _Label15: TLabel
                 Left = 86
-                Height = 25
+                Height = 36
                 Top = 0
-                Width = 23
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -423,19 +417,19 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
         end
         object Panel6: TPanel
           Left = 0
-          Height = 355
-          Top = 173
-          Width = 792
+          Height = 283
+          Top = 228
+          Width = 794
           Align = alClient
           BevelOuter = bvNone
-          ClientHeight = 355
-          ClientWidth = 792
+          ClientHeight = 283
+          ClientWidth = 794
           TabOrder = 1
           object ScrollBar1: TScrollBar
             Left = 0
-            Height = 15
-            Top = 340
-            Width = 792
+            Height = 12
+            Top = 271
+            Width = 794
             Align = alBottom
             Max = 180
             Min = -180
@@ -444,10 +438,10 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             TabOrder = 0
           end
           object ScrollBar2: TScrollBar
-            Left = 777
-            Height = 340
+            Left = 782
+            Height = 271
             Top = 0
-            Width = 15
+            Width = 12
             Align = alRight
             Kind = sbVertical
             Max = 180
@@ -460,28 +454,28 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       end
       object TabSheet3: TTabSheet
         Caption = 'Environment'
-        ClientHeight = 528
-        ClientWidth = 792
+        ClientHeight = 511
+        ClientWidth = 794
         ImageIndex = 2
         object Panel7: TPanel
           Left = 0
-          Height = 528
+          Height = 511
           Top = 0
-          Width = 792
+          Width = 794
           Align = alClient
           BevelOuter = bvNone
           ChildSizing.LeftRightSpacing = 10
           ChildSizing.TopBottomSpacing = 10
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 528
-          ClientWidth = 792
+          ClientHeight = 511
+          ClientWidth = 794
           TabOrder = 0
           object Panel11: TPanel
             Left = 10
-            Height = 126
+            Height = 170
             Top = 10
-            Width = 379
+            Width = 467
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -490,48 +484,48 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclTopToBottomThenLeftToRight
             ChildSizing.ControlsPerLine = 4
-            ClientHeight = 126
-            ClientWidth = 379
+            ClientHeight = 170
+            ClientWidth = 467
             TabOrder = 0
             object Label6: TLabel
               Left = 10
-              Height = 25
+              Height = 36
               Top = 10
-              Width = 181
+              Width = 240
               Caption = 'Gravitational acceleration g'
               Layout = tlCenter
               ParentColor = False
             end
             object Label7: TLabel
               Left = 10
-              Height = 25
-              Top = 37
-              Width = 181
+              Height = 36
+              Top = 48
+              Width = 240
               Caption = 'Water density'
               Layout = tlCenter
               ParentColor = False
             end
             object Label10: TLabel
               Left = 10
-              Height = 25
-              Top = 64
-              Width = 181
+              Height = 36
+              Top = 86
+              Width = 240
               Caption = 'Water kinematic viscosity'
               Layout = tlCenter
               ParentColor = False
             end
             object Label12: TLabel
               Left = 10
-              Height = 25
-              Top = 91
-              Width = 181
+              Height = 36
+              Top = 124
+              Width = 240
               Caption = 'Water depth'
               Layout = tlCenter
               ParentColor = False
             end
             object Edit6: TFloatSpinEdit
-              Left = 197
-              Height = 25
+              Left = 256
+              Height = 36
               Top = 10
               Width = 80
               Alignment = taRightJustify
@@ -544,78 +538,74 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               Value = 9.81
             end
             object Edit7: TFloatSpinEdit
-              Left = 197
-              Height = 25
-              Top = 37
+              Left = 256
+              Height = 36
+              Top = 48
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
               DecimalPlaces = 3
               MaxValue = 1.03
-              MinValue = 0
               TabOrder = 1
               Value = 1
             end
             object Edit8: TFloatSpinEdit
-              Left = 197
-              Height = 25
-              Top = 64
+              Left = 256
+              Height = 36
+              Top = 86
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
               DecimalPlaces = 4
               MaxValue = 1.31
-              MinValue = 0
               ParentFont = False
               ReadOnly = True
               TabOrder = 2
               Value = 0.8
             end
             object Edit9: TFloatSpinEdit
-              Left = 197
-              Height = 25
-              Top = 91
+              Left = 256
+              Height = 36
+              Top = 124
               Width = 80
               Alignment = taRightJustify
               Constraints.MinWidth = 80
               MaxValue = 10000
-              MinValue = 0
               OnEditingDone = Edit9AfterSetValue
               TabOrder = 3
-              Value = 0
             end
             object _Label9: TLabel
-              Left = 283
-              Height = 25
+              Left = 342
+              Height = 36
               Top = 10
-              Width = 86
+              Width = 115
               Caption = '[m/s2]'
               Layout = tlCenter
               ParentColor = False
             end
             object _Label8: TLabel
-              Left = 283
-              Height = 25
-              Top = 37
-              Width = 86
+              Left = 342
+              Height = 36
+              Top = 48
+              Width = 115
               Caption = '[t/m3]'
               Layout = tlCenter
               ParentColor = False
             end
             object _Label11: TLabel
-              Left = 283
-              Height = 25
-              Top = 64
-              Width = 86
+              Left = 342
+              Height = 36
+              Top = 86
+              Width = 115
               Caption = '*10-6  [m2/s]'
               Layout = tlCenter
               ParentColor = False
             end
             object _Label13: TLabel
-              Left = 283
-              Height = 25
-              Top = 91
-              Width = 86
+              Left = 342
+              Height = 36
+              Top = 124
+              Width = 115
               Caption = '[m]'
               Layout = tlCenter
               ParentColor = False
@@ -625,41 +615,41 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       end
       object TabSheet2: TTabSheet
         Caption = 'Resistance'
-        ClientHeight = 528
-        ClientWidth = 792
+        ClientHeight = 511
+        ClientWidth = 794
         ImageIndex = 1
         object Panel5: TPanel
           Left = 0
-          Height = 528
+          Height = 511
           Top = 0
-          Width = 792
+          Width = 794
           Align = alClient
           BevelOuter = bvNone
           ChildSizing.LeftRightSpacing = 10
           ChildSizing.TopBottomSpacing = 10
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 528
-          ClientWidth = 792
+          ClientHeight = 511
+          ClientWidth = 794
           TabOrder = 0
           object Panel12: TPanel
             Left = 10
-            Height = 258
+            Height = 348
             Top = 10
-            Width = 392
+            Width = 485
             BevelOuter = bvNone
             Caption = 'Panel12'
             ChildSizing.VerticalSpacing = 10
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 1
-            ClientHeight = 258
-            ClientWidth = 392
+            ClientHeight = 348
+            ClientWidth = 485
             TabOrder = 0
             object Panel13: TPanel
               Left = 0
-              Height = 99
+              Height = 132
               Top = 0
-              Width = 392
+              Width = 485
               AutoSize = True
               BevelOuter = bvNone
               ChildSizing.LeftRightSpacing = 10
@@ -668,103 +658,101 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 4
-              ClientHeight = 99
-              ClientWidth = 392
+              ClientHeight = 132
+              ClientWidth = 485
               TabOrder = 0
               object Label21: TLabel
                 Left = 10
-                Height = 25
+                Height = 36
                 Top = 10
-                Width = 170
+                Width = 229
                 Caption = 'Start speed'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Edit12: TFloatSpinEdit
-                Left = 186
-                Height = 25
+                Left = 245
+                Height = 36
                 Top = 10
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
                 MaxValue = 77.56
-                MinValue = 0
                 OnEditingDone = Edit12AfterSetValue
                 TabOrder = 0
                 Value = 0.02
               end
               object Label22: TLabel
-                Left = 272
-                Height = 25
+                Left = 331
+                Height = 36
                 Top = 10
-                Width = 46
+                Width = 61
                 Caption = '[knots]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label25: TLabel
-                Left = 324
-                Height = 25
+                Left = 398
+                Height = 36
                 Top = 10
-                Width = 58
+                Width = 77
                 Caption = '_Label25'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label23: TLabel
                 Left = 10
-                Height = 25
-                Top = 37
-                Width = 170
+                Height = 36
+                Top = 48
+                Width = 229
                 Caption = 'End speed'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Edit13: TFloatSpinEdit
-                Left = 186
-                Height = 25
-                Top = 37
+                Left = 245
+                Height = 36
+                Top = 48
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 DecimalPlaces = 3
-                MinValue = 0
                 OnEditingDone = Edit13AfterSetValue
                 TabOrder = 1
                 Value = 0.1
               end
               object Label24: TLabel
-                Left = 272
-                Height = 25
-                Top = 37
-                Width = 46
+                Left = 331
+                Height = 36
+                Top = 48
+                Width = 61
                 Caption = '[knots]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label26: TLabel
-                Left = 324
-                Height = 25
-                Top = 37
-                Width = 58
+                Left = 398
+                Height = 36
+                Top = 48
+                Width = 77
                 Caption = '_Label26'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label27: TLabel
                 Left = 10
-                Height = 25
-                Top = 64
-                Width = 170
+                Height = 36
+                Top = 86
+                Width = 229
                 Caption = 'Number of speeds (2-100)'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Edit14: TSpinEdit
-                Left = 186
-                Height = 25
-                Top = 64
+                Left = 245
+                Height = 36
+                Top = 86
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -776,9 +764,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
             object Group1: TRadioGroup
               Left = 0
-              Height = 80
-              Top = 109
-              Width = 392
+              Height = 112
+              Top = 142
+              Width = 485
               AutoFill = True
               Caption = 'Skin friction method. '
               ChildSizing.LeftRightSpacing = 6
@@ -788,8 +776,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               ChildSizing.ShrinkVertical = crsScaleChilds
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 1
-              ClientHeight = 63
-              ClientWidth = 388
+              ClientHeight = 84
+              ClientWidth = 481
               Color = clForm
               ItemIndex = 1
               Items.Strings = (
@@ -797,14 +785,15 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 'ITTC 1957'
                 'Grigson'
               )
+              ParentBackground = False
               ParentColor = False
               TabOrder = 1
             end
             object Group2: TRadioGroup
               Left = 0
-              Height = 59
-              Top = 199
-              Width = 392
+              Height = 84
+              Top = 264
+              Width = 485
               AutoFill = True
               Caption = 'Viscous Form Factor Method'
               ChildSizing.LeftRightSpacing = 6
@@ -814,14 +803,15 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               ChildSizing.ShrinkVertical = crsScaleChilds
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 1
-              ClientHeight = 42
-              ClientWidth = 388
+              ClientHeight = 56
+              ClientWidth = 481
               Color = clForm
               ItemIndex = 1
               Items.Strings = (
                 'None'
                 'Dual'
               )
+              ParentBackground = False
               ParentColor = False
               TabOrder = 2
             end
@@ -830,14 +820,14 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
       end
       object TabSheet4: TTabSheet
         Caption = 'Waves'
-        ClientHeight = 528
-        ClientWidth = 792
+        ClientHeight = 511
+        ClientWidth = 794
         ImageIndex = 3
         object Panel8: TPanel
           Left = 0
-          Height = 528
+          Height = 511
           Top = 0
-          Width = 792
+          Width = 794
           Align = alClient
           BevelOuter = bvNone
           ChildSizing.LeftRightSpacing = 10
@@ -846,109 +836,105 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           ChildSizing.VerticalSpacing = 10
           ChildSizing.Layout = cclTopToBottomThenLeftToRight
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 528
-          ClientWidth = 792
+          ClientHeight = 511
+          ClientWidth = 794
           TabOrder = 0
           object GroupBox1: TGroupBox
             Left = 10
-            Height = 150
+            Height = 216
             Top = 10
-            Width = 251
+            Width = 297
             AutoSize = True
             Caption = 'Sectorial cut. '
             ChildSizing.HorizontalSpacing = 10
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 133
-            ClientWidth = 247
+            ClientHeight = 188
+            ClientWidth = 293
             TabOrder = 0
             object Panel14: TPanel
               Left = 0
-              Height = 133
+              Height = 188
               Top = 0
-              Width = 247
+              Width = 293
               BevelOuter = bvNone
               ChildSizing.LeftRightSpacing = 10
               ChildSizing.HorizontalSpacing = 6
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclTopToBottomThenLeftToRight
               ChildSizing.ControlsPerLine = 5
-              ClientHeight = 133
-              ClientWidth = 247
+              ClientHeight = 188
+              ClientWidth = 293
               TabOrder = 0
               object _Label28: TLabel
                 Left = 10
-                Height = 25
+                Height = 36
                 Top = 0
-                Width = 94
+                Width = 125
                 Caption = 'R0'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label29: TLabel
                 Left = 10
-                Height = 25
-                Top = 27
-                Width = 94
+                Height = 36
+                Top = 38
+                Width = 125
                 Caption = 'R1'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label30: TLabel
                 Left = 10
-                Height = 25
-                Top = 54
-                Width = 94
+                Height = 36
+                Top = 76
+                Width = 125
                 Caption = 'Beta'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label31: TLabel
                 Left = 10
-                Height = 25
-                Top = 81
-                Width = 94
+                Height = 36
+                Top = 114
+                Width = 125
                 Caption = 'Nr (2-200)'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label32: TLabel
                 Left = 10
-                Height = 25
-                Top = 108
-                Width = 94
+                Height = 36
+                Top = 152
+                Width = 125
                 Caption = 'N beta (2-200)'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Edit15: TFloatSpinEdit
-                Left = 110
-                Height = 25
+                Left = 141
+                Height = 36
                 Top = 0
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
-                MinValue = 0
                 OnEditingDone = Edit15AfterSetValue
                 TabOrder = 0
-                Value = 0
               end
               object Edit16: TFloatSpinEdit
-                Left = 110
-                Height = 25
-                Top = 27
+                Left = 141
+                Height = 36
+                Top = 38
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
-                MinValue = 0
                 OnEditingDone = Edit16AfterSetValue
                 TabOrder = 1
-                Value = 0
               end
               object Edit17: TFloatSpinEdit
-                Left = 110
-                Height = 25
-                Top = 54
+                Left = 141
+                Height = 36
+                Top = 76
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -959,9 +945,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Value = 1
               end
               object Edit18: TSpinEdit
-                Left = 110
-                Height = 25
-                Top = 81
+                Left = 141
+                Height = 36
+                Top = 114
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -972,9 +958,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Value = 2
               end
               object Edit19: TSpinEdit
-                Left = 110
-                Height = 25
-                Top = 108
+                Left = 141
+                Height = 36
+                Top = 152
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -985,28 +971,28 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Value = 2
               end
               object _Label33: TLabel
-                Left = 196
-                Height = 25
+                Left = 227
+                Height = 36
                 Top = 0
-                Width = 41
+                Width = 56
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label34: TLabel
-                Left = 196
-                Height = 25
-                Top = 27
-                Width = 41
+                Left = 227
+                Height = 36
+                Top = 38
+                Width = 56
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label35: TLabel
-                Left = 196
-                Height = 25
-                Top = 54
-                Width = 41
+                Left = 227
+                Height = 36
+                Top = 76
+                Width = 56
                 Caption = '[Degr]'
                 Layout = tlCenter
                 ParentColor = False
@@ -1015,22 +1001,22 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
           end
           object GroupBox2: TGroupBox
             Left = 10
-            Height = 177
-            Top = 170
-            Width = 251
+            Height = 254
+            Top = 236
+            Width = 297
             AutoSize = True
             Caption = 'Rectangular cut. '
             ChildSizing.HorizontalSpacing = 10
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 160
-            ClientWidth = 247
+            ClientHeight = 226
+            ClientWidth = 293
             TabOrder = 1
             object Panel15: TPanel
               Left = 0
-              Height = 160
+              Height = 226
               Top = 0
-              Width = 157
+              Width = 170
               AutoSize = True
               BevelOuter = bvNone
               ChildSizing.LeftRightSpacing = 10
@@ -1038,93 +1024,89 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclTopToBottomThenLeftToRight
               ChildSizing.ControlsPerLine = 6
-              ClientHeight = 160
-              ClientWidth = 157
+              ClientHeight = 226
+              ClientWidth = 170
               TabOrder = 0
               object _Label36: TLabel
                 Left = 10
-                Height = 25
+                Height = 36
                 Top = 0
-                Width = 22
+                Width = 29
                 Caption = 'X0'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label37: TLabel
                 Left = 10
-                Height = 25
-                Top = 27
-                Width = 22
+                Height = 36
+                Top = 38
+                Width = 29
                 Caption = 'X1'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label38: TLabel
                 Left = 10
-                Height = 25
-                Top = 54
-                Width = 22
+                Height = 36
+                Top = 76
+                Width = 29
                 Caption = 'Y0'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label39: TLabel
                 Left = 10
-                Height = 25
-                Top = 81
-                Width = 22
+                Height = 36
+                Top = 114
+                Width = 29
                 Caption = 'Y1'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label40: TLabel
                 Left = 10
-                Height = 25
-                Top = 108
-                Width = 22
+                Height = 36
+                Top = 152
+                Width = 29
                 Caption = 'N x'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label44: TLabel
                 Left = 10
-                Height = 25
-                Top = 135
-                Width = 22
+                Height = 36
+                Top = 190
+                Width = 29
                 Caption = 'N y'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Edit20: TFloatSpinEdit
-                Left = 38
-                Height = 25
+                Left = 45
+                Height = 36
                 Top = 0
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 MaxValue = 1000
-                MinValue = 0
                 OnEditingDone = Edit20AfterSetValue
                 TabOrder = 0
-                Value = 0
               end
               object Edit21: TFloatSpinEdit
-                Left = 38
-                Height = 25
-                Top = 27
+                Left = 45
+                Height = 36
+                Top = 38
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
                 MaxValue = 1000
-                MinValue = 0
                 OnEditingDone = Edit21AfterSetValue
                 TabOrder = 1
-                Value = 0
               end
               object Edit22: TFloatSpinEdit
-                Left = 38
-                Height = 25
-                Top = 54
+                Left = 45
+                Height = 36
+                Top = 76
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -1132,12 +1114,11 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 MinValue = -1000
                 OnEditingDone = Edit22AfterSetValue
                 TabOrder = 2
-                Value = 0
               end
               object Edit23: TFloatSpinEdit
-                Left = 38
-                Height = 25
-                Top = 81
+                Left = 45
+                Height = 36
+                Top = 114
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -1145,12 +1126,11 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 MinValue = -1000
                 OnEditingDone = Edit23AfterSetValue
                 TabOrder = 3
-                Value = 0
               end
               object Edit24: TSpinEdit
-                Left = 38
-                Height = 25
-                Top = 108
+                Left = 45
+                Height = 36
+                Top = 152
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -1161,9 +1141,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Value = 2
               end
               object Edit25: TSpinEdit
-                Left = 38
-                Height = 25
-                Top = 135
+                Left = 45
+                Height = 36
+                Top = 190
                 Width = 80
                 Alignment = taRightJustify
                 Constraints.MinWidth = 80
@@ -1174,37 +1154,37 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
                 Value = 2
               end
               object _Label41: TLabel
-                Left = 124
-                Height = 25
+                Left = 131
+                Height = 36
                 Top = 0
-                Width = 23
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label42: TLabel
-                Left = 124
-                Height = 25
-                Top = 27
-                Width = 23
+                Left = 131
+                Height = 36
+                Top = 38
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label16: TLabel
-                Left = 124
-                Height = 25
-                Top = 54
-                Width = 23
+                Left = 131
+                Height = 36
+                Top = 76
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object _Label17: TLabel
-                Left = 124
-                Height = 25
-                Top = 81
-                Width = 23
+                Left = 131
+                Height = 36
+                Top = 114
+                Width = 29
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
@@ -1212,8 +1192,8 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             end
           end
           object Image1: TImage
-            Left = 271
-            Height = 150
+            Left = 317
+            Height = 216
             Top = 10
             Width = 136
             Center = True
@@ -1401,9 +1381,9 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
             }
           end
           object Image2: TImage
-            Left = 271
-            Height = 177
-            Top = 170
+            Left = 317
+            Height = 254
+            Top = 236
             Width = 136
             Center = True
             Picture.Data = {
@@ -1544,7 +1524,7 @@ object FreeMichletOutputDialog: TFreeMichletOutputDialog
     TabOrder = 2
   end
   object ActionList1: TActionList
-    left = 448
+    Left = 448
     object SaveFile: TAction
       Caption = 'Save'
     end

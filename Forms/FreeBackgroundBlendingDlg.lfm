@@ -12,21 +12,21 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
   ClientHeight = 200
   ClientWidth = 300
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
-    Height = 24
+    Height = 34
     Top = 0
     Width = 300
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 34
     ClientWidth = 300
     TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 136
-      Height = 20
+      Left = 133
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -74,10 +74,10 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 218
-      Height = 20
+      Left = 215
+      Height = 30
       Top = 2
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2
@@ -124,63 +124,63 @@ object FreeBackgroundBlendDialog: TFreeBackgroundBlendDialog
     end
   end
   object Panel3: TPanel
-    Left = 53
-    Height = 71
-    Top = 65
-    Width = 195
+    Left = 27
+    Height = 64
+    Top = 68
+    Width = 246
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 71
-    ClientWidth = 195
+    ClientHeight = 64
+    ClientWidth = 246
     TabOrder = 1
     object Panel2: TPanel
       Left = 0
-      Height = 71
+      Height = 64
       Top = 0
-      Width = 195
+      Width = 246
       AutoSize = True
       BevelOuter = bvNone
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 71
-      ClientWidth = 195
+      ClientHeight = 64
+      ClientWidth = 246
       TabOrder = 0
       object Panel4: TPanel
         Left = 0
-        Height = 35
+        Height = 46
         Top = 0
-        Width = 195
+        Width = 246
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.TopBottomSpacing = 10
         ChildSizing.HorizontalSpacing = 6
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 35
-        ClientWidth = 195
+        ClientHeight = 46
+        ClientWidth = 246
         TabOrder = 0
         object Label1: TLabel
           Left = 10
-          Height = 15
+          Height = 26
           Top = 10
-          Width = 119
+          Width = 154
           Caption = 'Visibility of image'
           ParentColor = False
         end
         object _Label2: TLabel
-          Left = 135
-          Height = 15
+          Left = 170
+          Height = 26
           Top = 10
-          Width = 50
+          Width = 66
           Caption = '_Label2'
           ParentColor = False
         end
       end
       object TrackBar1: TTrackBar
         Left = 0
-        Height = 36
-        Top = 35
-        Width = 195
+        Height = 18
+        Top = 46
+        Width = 246
         Max = 255
         OnChange = TrackBar1Change
         Position = 255

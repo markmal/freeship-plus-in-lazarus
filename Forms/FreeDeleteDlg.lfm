@@ -1,13 +1,13 @@
 object FreeDeleteDialog: TFreeDeleteDialog
-  Left = 773
+  Left = 745
   Height = 322
-  Top = 185
+  Top = 199
   Width = 320
   Caption = 'Objects to be deleted'
   ClientHeight = 322
   ClientWidth = 320
   OnResize = FormResize
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object pTools: TPanel
     Left = 0
     Height = 44
@@ -95,14 +95,14 @@ object FreeDeleteDialog: TFreeDeleteDialog
       Left = 6
       Height = 26
       Top = 6
-      Width = 21
+      Width = 22
       Align = alLeft
       BorderSpacing.Around = 6
-      OnClick = CheckBox1Click
       TabOrder = 0
+      OnClick = CheckBox1Click
     end
     object Label1: TLabel
-      Left = 37
+      Left = 38
       Height = 26
       Top = 6
       Width = 22

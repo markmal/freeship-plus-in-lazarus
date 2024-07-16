@@ -8,11 +8,11 @@ object EnterThemeNameDlg: TEnterThemeNameDlg
   ClientHeight = 240
   ClientWidth = 320
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '3.2.0.0'
   object Message: TLabel
     Left = 0
     Height = 97
-    Top = 26
+    Top = 36
     Width = 320
     Align = alTop
     AutoSize = False
@@ -22,8 +22,8 @@ object EnterThemeNameDlg: TEnterThemeNameDlg
   end
   object EditCustomSchemeName: TEdit
     Left = 10
-    Height = 25
-    Top = 123
+    Height = 36
+    Top = 133
     Width = 300
     Align = alTop
     BorderSpacing.Left = 10
@@ -33,19 +33,19 @@ object EnterThemeNameDlg: TEnterThemeNameDlg
   end
   object Panel1: TPanel
     Left = 0
-    Height = 26
+    Height = 36
     Top = 0
     Width = 320
     Align = alTop
     AutoSize = True
-    ClientHeight = 26
+    ClientHeight = 36
     ClientWidth = 320
     TabOrder = 1
     object BitBtn2: TSpeedButton
-      Left = 237
-      Height = 20
+      Left = 234
+      Height = 30
       Top = 3
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2
@@ -91,8 +91,8 @@ object EnterThemeNameDlg: TEnterThemeNameDlg
       OnClick = BitBtn2Click
     end
     object BitBtn1: TSpeedButton
-      Left = 155
-      Height = 20
+      Left = 152
+      Height = 30
       Top = 3
       Width = 80
       Align = alRight

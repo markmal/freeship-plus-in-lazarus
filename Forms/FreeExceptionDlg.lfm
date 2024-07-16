@@ -6,7 +6,7 @@ object ExceptionDlg: TExceptionDlg
   Caption = 'Exception'
   ClientHeight = 493
   ClientWidth = 544
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 50

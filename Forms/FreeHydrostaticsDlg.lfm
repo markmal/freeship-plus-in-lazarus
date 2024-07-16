@@ -9,21 +9,21 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
   ClientWidth = 792
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
-    Height = 545
-    Top = 28
+    Height = 535
+    Top = 38
     Width = 792
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 10
-    ClientHeight = 545
+    ClientHeight = 535
     ClientWidth = 792
     TabOrder = 0
     object Edit: TMemo
       Left = 11
-      Height = 523
+      Height = 513
       Top = 11
       Width = 770
       Align = alClient
@@ -38,18 +38,18 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
   end
   object Panel22: TPanel
     Left = 0
-    Height = 28
+    Height = 38
     Top = 0
     Width = 792
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 28
+    ClientHeight = 38
     ClientWidth = 792
     TabOrder = 1
     object ButtonPrint: TSpeedButton
       Left = 84
-      Height = 24
+      Height = 34
       Top = 2
       Width = 80
       Align = alLeft
@@ -98,7 +98,7 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
     end
     object ButtonSave: TSpeedButton
       Left = 2
-      Height = 24
+      Height = 34
       Top = 2
       Width = 80
       Align = alLeft
@@ -147,7 +147,7 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
     end
     object ButtonClose: TSpeedButton
       Left = 710
-      Height = 24
+      Height = 34
       Top = 2
       Width = 80
       Align = alRight
@@ -197,14 +197,14 @@ object FreeHydrostaticsDialog: TFreeHydrostaticsDialog
   end
   object PrintDialog: TPrintDialog
     Options = [poPageNums, poDisablePrintToFile]
-    left = 172
-    top = 4
+    Left = 172
+    Top = 4
   end
   object SaveDialog: TSaveDialog
     Filter = 'Text files (*.txt)|*.txt'
     FilterIndex = 0
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    left = 200
-    top = 4
+    Left = 200
+    Top = 4
   end
 end

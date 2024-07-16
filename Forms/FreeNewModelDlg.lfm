@@ -10,21 +10,21 @@ object FreeNewModelDialog: TFreeNewModelDialog
   ClientWidth = 500
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '3.2.0.0'
   object Panel3: TPanel
     Left = 0
-    Height = 24
+    Height = 34
     Top = 0
     Width = 500
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 34
     ClientWidth = 500
     TabOrder = 0
     object BitBtn1: TSpeedButton
-      Left = 336
-      Height = 20
+      Left = 333
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -72,10 +72,10 @@ object FreeNewModelDialog: TFreeNewModelDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 418
-      Height = 20
+      Left = 415
+      Height = 30
       Top = 2
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2
@@ -123,8 +123,8 @@ object FreeNewModelDialog: TFreeNewModelDialog
   end
   object Panel1: TPanel
     Left = 0
-    Height = 276
-    Top = 24
+    Height = 266
+    Top = 34
     Width = 500
     Align = alClient
     AutoSize = True
@@ -132,25 +132,25 @@ object FreeNewModelDialog: TFreeNewModelDialog
     ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
     ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
-    ClientHeight = 276
+    ClientHeight = 266
     ClientWidth = 500
     TabOrder = 1
     object Panel5: TPanel
-      Left = 83
-      Height = 182
-      Top = 47
-      Width = 334
+      Left = 42
+      Height = 248
+      Top = 9
+      Width = 416
       BevelOuter = bvNone
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 182
-      ClientWidth = 334
+      ClientHeight = 248
+      ClientWidth = 416
       TabOrder = 0
       object Panel2: TPanel
         Left = 0
-        Height = 153
+        Height = 208
         Top = 0
-        Width = 334
+        Width = 416
         AutoSize = True
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -159,14 +159,14 @@ object FreeNewModelDialog: TFreeNewModelDialog
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 153
-        ClientWidth = 334
+        ClientHeight = 208
+        ClientWidth = 416
         TabOrder = 0
         object Label1: TLabel
           Left = 10
-          Height = 25
+          Height = 36
           Top = 10
-          Width = 224
+          Width = 306
           BorderSpacing.Left = 4
           BorderSpacing.Around = 2
           Caption = 'No. points in longitudinal direction'
@@ -174,8 +174,8 @@ object FreeNewModelDialog: TFreeNewModelDialog
           ParentColor = False
         end
         object SpinEdit1: TSpinEdit
-          Left = 244
-          Height = 25
+          Left = 326
+          Height = 36
           Top = 10
           Width = 80
           Alignment = taRightJustify
@@ -187,9 +187,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
         end
         object Label2: TLabel
           Left = 10
-          Height = 25
-          Top = 37
-          Width = 224
+          Height = 36
+          Top = 48
+          Width = 306
           BorderSpacing.Left = 6
           BorderSpacing.Around = 2
           Caption = 'No. points in vertical direction'
@@ -197,9 +197,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
           ParentColor = False
         end
         object SpinEdit2: TSpinEdit
-          Left = 244
-          Height = 25
-          Top = 37
+          Left = 326
+          Height = 36
+          Top = 48
           Width = 80
           Alignment = taRightJustify
           Constraints.MinWidth = 60
@@ -210,9 +210,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
         end
         object Label3: TLabel
           Left = 10
-          Height = 25
-          Top = 64
-          Width = 224
+          Height = 36
+          Top = 86
+          Width = 306
           BorderSpacing.Left = 6
           BorderSpacing.Around = 2
           Caption = 'Length'
@@ -220,9 +220,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
           ParentColor = False
         end
         object FloatSpinEdit1: TFloatSpinEdit
-          Left = 244
-          Height = 25
-          Top = 64
+          Left = 326
+          Height = 36
+          Top = 86
           Width = 80
           Alignment = taRightJustify
           Constraints.MinWidth = 80
@@ -233,9 +233,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
         end
         object Label4: TLabel
           Left = 10
-          Height = 25
-          Top = 91
-          Width = 224
+          Height = 36
+          Top = 124
+          Width = 306
           BorderSpacing.Left = 6
           BorderSpacing.Around = 2
           Caption = 'Beam'
@@ -243,9 +243,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
           ParentColor = False
         end
         object FloatSpinEdit2: TFloatSpinEdit
-          Left = 244
-          Height = 25
-          Top = 91
+          Left = 326
+          Height = 36
+          Top = 124
           Width = 80
           Alignment = taRightJustify
           Constraints.MinWidth = 60
@@ -256,9 +256,9 @@ object FreeNewModelDialog: TFreeNewModelDialog
         end
         object Label5: TLabel
           Left = 10
-          Height = 25
-          Top = 118
-          Width = 224
+          Height = 36
+          Top = 162
+          Width = 306
           BorderSpacing.Left = 6
           BorderSpacing.Around = 2
           Caption = 'Draft'
@@ -266,37 +266,36 @@ object FreeNewModelDialog: TFreeNewModelDialog
           ParentColor = False
         end
         object FloatSpinEdit3: TFloatSpinEdit
-          Left = 244
-          Height = 25
-          Top = 118
+          Left = 326
+          Height = 36
+          Top = 162
           Width = 80
           Alignment = taRightJustify
           Constraints.MinWidth = 60
           MaxValue = 1000
-          MinValue = 0
           TabOrder = 4
           Value = 0.5
         end
       end
       object Panel4: TPanel
         Left = 0
-        Height = 29
-        Top = 153
-        Width = 334
+        Height = 40
+        Top = 208
+        Width = 416
         AutoSize = True
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
         ChildSizing.HorizontalSpacing = 6
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 29
-        ClientWidth = 334
+        ClientHeight = 40
+        ClientWidth = 416
         TabOrder = 1
         object Label6: TLabel
           Left = 10
-          Height = 25
+          Height = 36
           Top = 2
-          Width = 34
+          Width = 47
           Align = alLeft
           BorderSpacing.Left = 6
           BorderSpacing.Around = 2
@@ -305,8 +304,8 @@ object FreeNewModelDialog: TFreeNewModelDialog
           ParentColor = False
         end
         object ComboBox1: TComboBox
-          Left = 224
-          Height = 25
+          Left = 306
+          Height = 36
           Top = 2
           Width = 100
           Align = alRight

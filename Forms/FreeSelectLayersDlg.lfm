@@ -8,33 +8,33 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
   ClientHeight = 272
   ClientWidth = 387
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '3.2.0.0'
   object Panel2: TPanel
     Left = 0
-    Height = 235
-    Top = 24
+    Height = 225
+    Top = 34
     Width = 387
     Align = alClient
     BevelOuter = bvLowered
     BorderWidth = 10
-    ClientHeight = 235
+    ClientHeight = 225
     ClientWidth = 387
     TabOrder = 0
     object LayerBox: TCheckListBox
       Left = 11
-      Height = 187
+      Height = 177
       Top = 11
       Width = 365
       Align = alClient
       ItemHeight = 0
-      OnClickCheck = LayerBoxClickCheck
       TabOrder = 0
       TopIndex = -1
+      OnClickCheck = LayerBoxClickCheck
     end
     object Panel4: TPanel
       Left = 11
       Height = 26
-      Top = 198
+      Top = 188
       Width = 365
       Align = alBottom
       BevelOuter = bvNone
@@ -43,12 +43,12 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
       TabOrder = 1
       object CheckBox: TCheckBox
         Left = 0
-        Height = 21
+        Height = 28
         Top = 7
-        Width = 368
+        Width = 494
         Caption = 'Include points that are shared with unselected layers'
-        OnClick = CheckBoxClick
         TabOrder = 0
+        OnClick = CheckBoxClick
       end
     end
   end
@@ -63,18 +63,18 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
   end
   object Panel5: TPanel
     Left = 0
-    Height = 24
+    Height = 34
     Top = 0
     Width = 387
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    ClientHeight = 24
+    ClientHeight = 34
     ClientWidth = 387
     TabOrder = 2
     object BitBtn1: TSpeedButton
-      Left = 223
-      Height = 20
+      Left = 220
+      Height = 30
       Top = 2
       Width = 80
       Align = alRight
@@ -122,10 +122,10 @@ object FreeSelectLayersDialog: TFreeSelectLayersDialog
       OnClick = BitBtn1Click
     end
     object BitBtn2: TSpeedButton
-      Left = 305
-      Height = 20
+      Left = 302
+      Height = 30
       Top = 2
-      Width = 80
+      Width = 83
       Align = alRight
       AutoSize = True
       BorderSpacing.Around = 2

@@ -1,33 +1,32 @@
 object TileDialog: TTileDialog
   Left = 719
-  Height = 815
+  Height = 652
   Top = 188
-  Width = 1279
-  ClientHeight = 815
-  ClientWidth = 1279
-  DesignTimePPI = 120
+  Width = 1023
+  ClientHeight = 652
+  ClientWidth = 1023
   Font.Quality = fqAntialiased
   Position = poMainFormCenter
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object TopPanel: TPanel
     Left = 0
-    Height = 34
+    Height = 40
     Top = 0
-    Width = 1279
+    Width = 1023
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     Caption = 'Recent projects'
-    ClientHeight = 34
-    ClientWidth = 1279
+    ClientHeight = 40
+    ClientWidth = 1023
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
     object Panel1: TPanel
       Left = 0
-      Height = 34
+      Height = 40
       Top = 0
-      Width = 159
+      Width = 177
       Align = alLeft
       AutoSize = True
       BevelOuter = bvNone
@@ -38,16 +37,16 @@ object TileDialog: TTileDialog
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 34
-      ClientWidth = 159
+      ClientHeight = 40
+      ClientWidth = 177
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
       object ButtonOpenFile: TBitBtn
         Left = 10
-        Height = 30
+        Height = 36
         Top = 2
-        Width = 139
+        Width = 157
         Action = ActionOpenAnother
         Align = alLeft
         AutoSize = True
@@ -93,10 +92,10 @@ object TileDialog: TTileDialog
       end
     end
     object Panel2: TPanel
-      Left = 989
-      Height = 34
+      Left = 775
+      Height = 40
       Top = 0
-      Width = 208
+      Width = 170
       Align = alRight
       AutoSize = True
       BevelOuter = bvNone
@@ -107,27 +106,27 @@ object TileDialog: TTileDialog
       ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 34
-      ClientWidth = 208
+      ClientHeight = 40
+      ClientWidth = 170
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
       object ProgressBar1: TProgressBar
         Left = 10
-        Height = 25
-        Top = 5
-        Width = 188
-        Constraints.MinWidth = 188
+        Height = 20
+        Top = 10
+        Width = 150
+        Constraints.MinWidth = 150
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
       end
     end
     object Panel3: TPanel
-      Left = 1197
-      Height = 34
+      Left = 945
+      Height = 40
       Top = 0
-      Width = 82
+      Width = 78
       Align = alRight
       AutoSize = True
       BevelOuter = bvNone
@@ -135,16 +134,16 @@ object TileDialog: TTileDialog
       ChildSizing.TopBottomSpacing = 2
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 34
-      ClientWidth = 82
+      ClientHeight = 40
+      ClientWidth = 78
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
       object bbClose: TBitBtn
         Left = 10
-        Height = 30
+        Height = 36
         Top = 2
-        Width = 62
+        Width = 58
         Align = alLeft
         AutoSize = True
         Caption = 'Close'
@@ -156,26 +155,26 @@ object TileDialog: TTileDialog
   end
   object ScrollBox: TScrollBox
     Left = 0
-    Height = 781
-    Top = 34
-    Width = 1279
-    HorzScrollBar.Page = 24
-    VertScrollBar.Page = 24
+    Height = 612
+    Top = 40
+    Width = 1023
+    HorzScrollBar.Page = 21
+    VertScrollBar.Page = 21
     Align = alClient
-    ClientHeight = 777
-    ClientWidth = 1275
+    ClientHeight = 610
+    ClientWidth = 1021
     Font.Quality = fqAntialiased
     ParentFont = False
     TabOrder = 1
     object FlowPanel: TFlowPanel
-      Left = 12
-      Height = 0
-      Top = 12
-      Width = 1251
+      Left = 10
+      Height = 1
+      Top = 10
+      Width = 1001
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
-      BorderSpacing.Around = 12
+      BorderSpacing.Around = 10
       ControlList = <>
       FlowLayout = tlTop
       FlowStyle = fsLeftRightTopBottom
@@ -186,8 +185,8 @@ object TileDialog: TTileDialog
     end
   end
   object ActionList1: TActionList
-    left = 220
-    top = 10
+    Left = 176
+    Top = 8
     object ActionOpenAnother: TAction
       Caption = 'ActionOpenAnother'
       OnExecute = ActionOpenAnotherExecute
@@ -203,8 +202,8 @@ object TileDialog: TTileDialog
   end
   object PopupMenu1: TPopupMenu
     OnPopup = PopupMenu1Popup
-    left = 220
-    top = 140
+    Left = 176
+    Top = 112
     object MenuItemOpen: TMenuItem
       Action = ActionOpen
       Caption = 'Open'

@@ -8,7 +8,7 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
   ClientHeight = 500
   ClientWidth = 800
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '3.2.0.0'
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -82,13 +82,13 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 443
-      ClientWidth = 794
+      ClientHeight = 436
+      ClientWidth = 796
       object Panel: TPanel
         Left = 0
-        Height = 443
+        Height = 436
         Top = 0
-        Width = 794
+        Width = 796
         Align = alClient
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -97,444 +97,416 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
         ChildSizing.VerticalSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 443
-        ClientWidth = 794
+        ClientHeight = 436
+        ClientWidth = 796
         TabOrder = 0
         object CheckBox2: TCheckBox
           Left = 10
-          Height = 21
+          Height = 28
           Top = 10
-          Width = 346
+          Width = 433
           Caption = 'Extract data from current hull'
-          OnClick = CheckBox2Click
           TabOrder = 0
+          OnClick = CheckBox2Click
         end
         object Label1: TLabel
-          Left = 366
-          Height = 21
+          Left = 453
+          Height = 28
           Top = 10
-          Width = 382
+          Width = 482
           ParentColor = False
         end
         object Panel2: TPanel
           Left = 10
-          Height = 295
-          Top = 41
-          Width = 346
+          Height = 416
+          Top = 48
+          Width = 433
           BevelOuter = bvNone
           ChildSizing.HorizontalSpacing = 6
           ChildSizing.VerticalSpacing = 2
           ChildSizing.Layout = cclTopToBottomThenLeftToRight
           ChildSizing.ControlsPerLine = 11
-          ClientHeight = 295
-          ClientWidth = 346
+          ClientHeight = 416
+          ClientWidth = 433
           TabOrder = 1
           object Label2: TLabel
             Left = 0
-            Height = 25
+            Height = 36
             Top = 0
-            Width = 260
+            Width = 347
             Caption = 'Length of Waterline LWL [m]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label3: TLabel
             Left = 0
-            Height = 25
-            Top = 27
-            Width = 260
+            Height = 36
+            Top = 38
+            Width = 347
             Caption = 'Maximum Beam on LWL [m]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label4: TLabel
             Left = 0
-            Height = 25
-            Top = 54
-            Width = 260
+            Height = 36
+            Top = 76
+            Width = 347
             Caption = 'Draft Forward [m]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label5: TLabel
             Left = 0
-            Height = 25
-            Top = 81
-            Width = 260
+            Height = 36
+            Top = 114
+            Width = 347
             Caption = 'Draft Aft [m]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label6: TLabel
             Left = 0
-            Height = 25
-            Top = 108
-            Width = 260
+            Height = 36
+            Top = 152
+            Width = 347
             Caption = 'Block Coefficient on LWL Cb'
             Layout = tlCenter
             ParentColor = False
           end
           object Label7: TLabel
             Left = 0
-            Height = 25
-            Top = 135
-            Width = 260
+            Height = 36
+            Top = 190
+            Width = 347
             Caption = 'Center of Gravity LCG (%LWL; + Fwd)'
             Layout = tlCenter
             ParentColor = False
           end
           object Label8: TLabel
             Left = 0
-            Height = 25
-            Top = 162
-            Width = 260
+            Height = 36
+            Top = 228
+            Width = 347
             Caption = 'Midships to Rudder CE XR (%LWL; + Aft)'
             Layout = tlCenter
             ParentColor = False
           end
           object Label9: TLabel
             Left = 0
-            Height = 25
-            Top = 189
-            Width = 260
+            Height = 36
+            Top = 266
+            Width = 347
             Caption = 'Initial Ship Speed [knots]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label10: TLabel
             Left = 0
-            Height = 25
-            Top = 216
-            Width = 260
+            Height = 36
+            Top = 304
+            Width = 347
             Caption = 'Water Density [kg/m^3]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label11: TLabel
             Left = 0
-            Height = 25
-            Top = 243
-            Width = 260
+            Height = 36
+            Top = 342
+            Width = 347
             Caption = 'Kinematic Viscosity [m^2/s]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label12: TLabel
             Left = 0
-            Height = 25
-            Top = 270
-            Width = 260
+            Height = 36
+            Top = 380
+            Width = 347
             Caption = 'Yaw Radius of Gyration K33/LWL'
             Layout = tlCenter
             ParentColor = False
           end
           object Edit2: TFloatSpinEdit
-            Left = 266
-            Height = 25
+            Left = 353
+            Height = 36
             Top = 0
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 0
-            Value = 0
           end
           object Edit3: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 27
+            Left = 353
+            Height = 36
+            Top = 38
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 1
-            Value = 0
           end
           object Edit4: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 54
+            Left = 353
+            Height = 36
+            Top = 76
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 2
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 2
-            Value = 0
           end
           object Edit5: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 81
+            Left = 353
+            Height = 36
+            Top = 114
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 7
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 3
-            Value = 0
           end
           object Edit6: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 108
+            Left = 353
+            Height = 36
+            Top = 152
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 4
             MaxValue = 2
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 4
-            Value = 0
           end
           object Edit7: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 135
+            Left = 353
+            Height = 36
+            Top = 190
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 6
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 5
-            Value = 0
           end
           object Edit8: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 162
+            Left = 353
+            Height = 36
+            Top = 228
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 6
-            Value = 0
           end
           object Edit9: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 189
+            Left = 353
+            Height = 36
+            Top = 266
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 48
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 7
-            Value = 0
           end
           object Edit10: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 216
+            Left = 353
+            Height = 36
+            Top = 304
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             MaxValue = 2000
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 8
-            Value = 0
           end
           object Edit11: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 243
+            Left = 353
+            Height = 36
+            Top = 342
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 4
             MaxValue = 3
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 9
-            Value = 0
           end
           object Edit12: TFloatSpinEdit
-            Left = 266
-            Height = 25
-            Top = 270
+            Left = 353
+            Height = 36
+            Top = 380
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 3
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 10
-            Value = 0
           end
         end
         object Panel3: TPanel
-          Left = 366
-          Height = 295
-          Top = 41
-          Width = 382
+          Left = 453
+          Height = 416
+          Top = 48
+          Width = 482
           BevelOuter = bvNone
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.VerticalSpacing = 2
           ChildSizing.Layout = cclTopToBottomThenLeftToRight
           ChildSizing.ControlsPerLine = 11
-          ClientHeight = 295
-          ClientWidth = 382
+          ClientHeight = 416
+          ClientWidth = 482
           TabOrder = 2
           object Label13: TLabel
             Left = 6
-            Height = 25
+            Height = 36
             Top = 0
-            Width = 290
+            Width = 390
             Caption = 'Water Depth to Ship Draft Ratio H/T'
             Layout = tlCenter
             ParentColor = False
           end
           object Label14: TLabel
             Left = 6
-            Height = 25
-            Top = 27
-            Width = 290
+            Height = 36
+            Top = 38
+            Width = 390
             Caption = 'Steering Gear Time Constant [s]'
             Layout = tlCenter
             ParentColor = False
           end
           object Label15: TLabel
             Left = 6
-            Height = 25
-            Top = 54
-            Width = 290
+            Height = 36
+            Top = 76
+            Width = 390
             Caption = 'Total Rudder Area - Fraction of LWL*T'
             Layout = tlCenter
             ParentColor = False
           end
           object Label16: TLabel
             Left = 6
-            Height = 25
-            Top = 81
-            Width = 290
+            Height = 36
+            Top = 114
+            Width = 390
             Caption = 'Submerged Bow Area - Fraction of LWL*T'
             Layout = tlCenter
             ParentColor = False
           end
           object Label17: TLabel
             Left = 6
-            Height = 25
-            Top = 108
-            Width = 290
+            Height = 36
+            Top = 152
+            Width = 390
             Caption = 'Number of Propellers (0...2)'
             Layout = tlCenter
             ParentColor = False
           end
           object Label18: TLabel
             Left = 6
-            Height = 25
-            Top = 135
-            Width = 290
+            Height = 36
+            Top = 190
+            Width = 390
             Caption = 'Type of Single Screw Stern (0-Close;1-Open;)'
             Layout = tlCenter
             ParentColor = False
           end
           object Label19: TLabel
             Left = 6
-            Height = 25
-            Top = 162
-            Width = 290
+            Height = 36
+            Top = 228
+            Width = 390
             Caption = 'Number of Rudders (0...2)'
             Layout = tlCenter
             ParentColor = False
           end
           object Label20: TLabel
             Left = 6
-            Height = 25
-            Top = 189
-            Width = 290
+            Height = 36
+            Top = 266
+            Width = 390
             Caption = 'Rudder Angle [degrees]'
             Layout = tlCenter
             ParentColor = False
           end
           object CheckBox3: TCheckBox
             Left = 6
-            Height = 21
-            Top = 216
-            Width = 290
+            Height = 28
+            Top = 304
+            Width = 390
             Caption = 'Linear Evaluation'
-            OnClick = CheckBox3Click
             TabOrder = 0
+            OnClick = CheckBox3Click
           end
           object CheckBox4: TCheckBox
             Left = 6
-            Height = 21
-            Top = 239
-            Width = 290
+            Height = 28
+            Top = 334
+            Width = 390
             Caption = 'Turning Prediction'
-            OnClick = CheckBox4Click
             TabOrder = 1
+            OnClick = CheckBox4Click
           end
           object CheckBox5: TCheckBox
             Left = 6
-            Height = 21
-            Top = 262
-            Width = 290
+            Height = 28
+            Top = 364
+            Width = 390
             Caption = 'State Variable Equations'
-            OnClick = CheckBox5Click
             TabOrder = 2
+            OnClick = CheckBox5Click
           end
           object Edit13: TFloatSpinEdit
-            Left = 296
-            Height = 25
+            Left = 396
+            Height = 36
             Top = 0
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             MaxValue = 1000
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 3
-            Value = 0
           end
           object Edit14: TFloatSpinEdit
-            Left = 296
-            Height = 25
-            Top = 27
+            Left = 396
+            Height = 36
+            Top = 38
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             MaxValue = 40
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 4
-            Value = 0
           end
           object Edit15: TFloatSpinEdit
-            Left = 296
-            Height = 25
-            Top = 54
+            Left = 396
+            Height = 36
+            Top = 76
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             DecimalPlaces = 3
             MaxValue = 1
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 5
-            Value = 0
           end
           object Edit16: TFloatSpinEdit
-            Left = 296
-            Height = 25
-            Top = 81
+            Left = 396
+            Height = 36
+            Top = 114
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
@@ -542,73 +514,64 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
             MinValue = -0.15
             OnExit = Edit1AfterSetValue
             TabOrder = 6
-            Value = 0
           end
           object Edit17: TFloatSpinEdit
-            Left = 296
-            Height = 25
-            Top = 108
+            Left = 396
+            Height = 36
+            Top = 152
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             MaxValue = 2
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 7
-            Value = 0
           end
           object Edit18: TFloatSpinEdit
-            Left = 296
-            Height = 25
-            Top = 135
+            Left = 396
+            Height = 36
+            Top = 190
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             MaxValue = 1
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 8
-            Value = 0
           end
           object Edit19: TFloatSpinEdit
-            Left = 296
-            Height = 25
-            Top = 162
+            Left = 396
+            Height = 36
+            Top = 228
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             MaxValue = 2
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 9
-            Value = 0
           end
           object Edit20: TFloatSpinEdit
-            Left = 296
-            Height = 25
-            Top = 189
+            Left = 396
+            Height = 36
+            Top = 266
             Width = 80
             Alignment = taRightJustify
             Constraints.MinWidth = 80
             MaxValue = 35
-            MinValue = 0
             OnExit = Edit1AfterSetValue
             TabOrder = 10
-            Value = 0
           end
         end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 443
-      ClientWidth = 794
+      ClientHeight = 436
+      ClientWidth = 796
       ImageIndex = 1
       object Resultsmemo: TMemo
         Left = 0
-        Height = 443
+        Height = 436
         Top = 0
-        Width = 794
+        Width = 796
         Align = alClient
         Font.Color = clBlack
         Font.Height = -13
@@ -621,23 +584,23 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 443
-      ClientWidth = 794
+      ClientHeight = 436
+      ClientWidth = 796
       object Panel15: TPanel
         Left = 0
-        Height = 443
+        Height = 436
         Top = 0
-        Width = 794
+        Width = 796
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 443
-        ClientWidth = 794
+        ClientHeight = 436
+        ClientWidth = 796
         TabOrder = 0
         object Resultsmemo2: TMemo
           Left = 1
-          Height = 441
+          Height = 434
           Top = 1
-          Width = 792
+          Width = 794
           Align = alClient
           Font.Color = clBlack
           Font.Height = -13
@@ -651,140 +614,20 @@ object FreeHydrodyn_Maneuv: TFreeHydrodyn_Maneuv
     end
   end
   object MenuImages: TImageList
-    left = 512
+    Left = 512
     Bitmap = {
-      4C69040000001000000010000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      80FF0000FFFF00000000000000000000000000000000000000000000FFFF0000
-      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
-      80FF000080FF000000000000000000000000000000000000FFFF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
-      80FF808080FF000000000000000000000000000000000000FFFF000080FF0000
-      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF8080
-      80FF0000000000000000000000000000000000000000000000000000FFFF0000
-      80FF000080FF000080FF808080FF000080FF000080FF000080FF808080FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000080FF000080FF000080FF000080FF000080FF808080FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000FFFF000080FF000080FF000080FF000080FF808080FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000080FF000080FF000080FF000080FF000080FF808080FF000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      FFFF000080FF000080FF000080FF000080FF000080FF000080FF808080FF0000
-      00000000000000000000000000000000000000000000000000000000FFFF0000
-      80FF000080FF000080FF000080FF000080FF000080FF000080FF000080FF8080
-      80FF00000000000000000000000000000000000000000000FFFF000080FF0000
-      80FF000080FF000080FF808080FF000080FF000080FF000080FF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
-      80FF000080FF808080FF000000000000FFFF000080FF000080FF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF0000
-      80FF808080FF0000000000000000000000000000FFFF000080FF000080FF8080
-      80FF000000000000000000000000000000000000FFFF000080FF000080FF8080
-      80FF00000000000000000000000000000000000000000000FFFF808080FF0000
-      00000000000000000000000000000000000000000000808080FF808080FF0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000FF00FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000FF00FF008000FF008000FF000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000000000FF
-      00FF008000FF008000FF800000FF000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000000FF00FF0080
-      00FF008000FF008000FF800000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000FF00FF008000FF0080
-      00FF008000FF800000FF00000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000FF00FF008000FF008000FF0080
-      00FF800000FF0000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000FF00FF008000FF008000FF008000FF8000
-      00FF0000000000000000000000000000000000FF00FF00000000000000000000
-      0000000000000000000000FF00FF008000FF008000FF008000FF800000FF0000
-      000000000000000000000000000000FF00FF008000FF00FF00FF000000000000
-      00000000000000FF00FF008000FF008000FF008000FF800000FF000000000000
-      0000000000000000000000000000008000FF008000FF008000FF00FF00FF0000
-      000000FF00FF008000FF008000FF008000FF800000FF00000000000000000000
-      0000000000000000000000000000800000FF008000FF008000FF008000FF00FF
-      00FF008000FF008000FF008000FF008000FF800000FF00000000000000000000
-      000000000000000000000000000000000000800000FF008000FF008000FF0080
-      00FF008000FF008000FF008000FF800000FF0000000000000000000000000000
-      00000000000000000000000000000000000000000000800000FF008000FF0080
-      00FF008000FF008000FF800000FF000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000800000FF0080
-      00FF008000FF800000FF00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000008000
-      00FF800000FF0000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFF000000FF0000000000000000000000000000000000000000000000000000
-      00FFFFFFFFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
-      00FF000000000000000000000000000000000000000000000000000000FFFFFF
-      FFFF000000FF000000FF000000FF000000FF000000FFFFFFFFFF000000FF0000
-      00FF000000FF000000FF000000000000000000000000000000FFFFFFFFFFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFC6C6
-      C6FF000000FFC6C6C6FF000000FF00000000000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFC6C6C6FF0000
-      00FFC6C6C6FF000000FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
-      C6FF000000FFC6C6C6FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C6C6FFC6C6C6FF000000FF000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FF848484FF848484FF848484FFC6C6C6FFC6C6C6FF0000
-      00FFC6C6C6FF000000FF00000000000000FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FF00FFFFFF00FFFFFF00FFFFFFC6C6C6FFC6C6C6FF0000
-      00FF000000FF000000FF00000000000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FFC6C6C6FF000000FF0000000000000000000000FFC6C6C6FFC6C6C6FFC6C6
-      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FF000000FFC6C6
-      C6FF000000FF00000000000000000000000000000000000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000007F7F7FFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
-      7FFF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FF000000FF000000FFFFFF00FF000000FFFFFF00FF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF000000FFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFF0000
-      00FFBFBFBFFF000000FFBFBFBFFF0000FFFF0000FFFF0000FFFFBFBFBFFF0000
-      00FF0000000000000000000000000000000000000000000000FFBFBFBFFFBFBF
-      BFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFFBFBFBFFF0000
-      00FF00000000000000000000000000000000000000007F7F7FFF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF7F7F
-      7FFF000000000000000000000000
+      4C7A040000001000000010000000070100000000000078DAED55410E84200CE4
+      E7F4C0BFB8F9AD6E745D16B52D1D50E341922ED9949969871243B873318740FC
+      DDADBC9523E5CC3F4FB4CF6FB1C7BC75C683B538BC58AD4F04AB7360F8117DB9
+      7E1F878E6D73683D7B382CBF18C65BF9D6EC59FD59FECD39EC8E479F72E0212C
+      AD3180A500E26B5D14FF64AC76175E2C2DBFDC557375A67000FD2EB93D07617E
+      1D383ABC9638D0F9AA39E0D9AC387AB10F5AEC08FD23D0581EBCA4E9C55EACAD
+      79E0D29EA669B3037E4BD8F2DF13160712359FA59F522A21D5F0EB5DAD77F66C
+      8DBD26EA9DE4637D77A87F9D6FA6357FDD2BC6E8D25ECF89B39F736E8651FF29
+      78AB7614CFBCDDEFD03FA3FFD6FEEADFA9CF25AED4EF7DBF1FCA84495D
     }
   end
   object PrintDialog: TPrintDialog
-    left = 392
+    Left = 392
   end
 end

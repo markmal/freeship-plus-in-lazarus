@@ -8,7 +8,7 @@ object FreeSplitSectionDialog: TFreeSplitSectionDialog
   ClientWidth = 600
   FormStyle = fsStayOnTop
   OnShow = FormShow
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '3.2.0.0'
   object TopPanel: TPanel
     Left = 0
     Height = 44

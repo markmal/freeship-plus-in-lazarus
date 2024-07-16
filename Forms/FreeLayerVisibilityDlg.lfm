@@ -10,7 +10,7 @@ object FreeLayerVisibilityDialog: TFreeLayerVisibilityDialog
   OnResize = FormResize
   OnShow = FormShow
   ShowHint = True
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '3.2.0.0'
   object pTools: TPanel
     Left = 0
     Height = 44
@@ -44,8 +44,8 @@ object FreeLayerVisibilityDialog: TFreeLayerVisibilityDialog
       BorderSpacing.Left = 3
       BorderSpacing.Around = 4
       Caption = 'Free standing'
-      OnChange = cbFreeStandingChange
       TabOrder = 1
+      OnChange = cbFreeStandingChange
     end
   end
   object sgLayers: TStringGrid
@@ -96,25 +96,25 @@ object FreeLayerVisibilityDialog: TFreeLayerVisibilityDialog
       Left = 6
       Height = 26
       Top = 6
-      Width = 21
+      Width = 22
       Align = alLeft
       BorderSpacing.Around = 6
-      OnClick = CheckBox1Click
       TabOrder = 0
+      OnClick = CheckBox1Click
     end
     object CheckBox2: TCheckBox
-      Left = 37
+      Left = 38
       Height = 26
       Top = 6
-      Width = 21
+      Width = 22
       Align = alLeft
       BorderSpacing.Left = 4
       BorderSpacing.Around = 6
-      OnClick = CheckBox2Click
       TabOrder = 1
+      OnClick = CheckBox2Click
     end
     object Label1: TLabel
-      Left = 68
+      Left = 70
       Height = 26
       Top = 6
       Width = 22

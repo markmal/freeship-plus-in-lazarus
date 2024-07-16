@@ -14,10 +14,10 @@ object LightDialog: TLightDialog
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '3.2.0.0'
   object GroupBoxPosition: TGroupBox
     Left = 10
-    Height = 303
+    Height = 322
     Top = 10
     Width = 449
     Align = alTop
@@ -30,22 +30,22 @@ object LightDialog: TLightDialog
     ChildSizing.VerticalSpacing = 8
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 2
-    ClientHeight = 279
+    ClientHeight = 294
     ClientWidth = 445
     TabOrder = 0
     object LabelX: TLabel
       Left = 10
-      Height = 43
+      Height = 46
       Top = 10
-      Width = 83
+      Width = 98
       Alignment = taCenter
       Caption = 'X'
       Layout = tlCenter
       ParentColor = False
     end
     object TrackBarX: TTrackBar
-      Left = 103
-      Height = 43
+      Left = 118
+      Height = 46
       Top = 10
       Width = 300
       Max = 180
@@ -59,18 +59,18 @@ object LightDialog: TLightDialog
     end
     object LabelY: TLabel
       Left = 10
-      Height = 43
-      Top = 61
-      Width = 83
+      Height = 46
+      Top = 64
+      Width = 98
       Alignment = taCenter
       Caption = 'Y'
       Layout = tlCenter
       ParentColor = False
     end
     object TrackBarY: TTrackBar
-      Left = 103
-      Height = 43
-      Top = 61
+      Left = 118
+      Height = 46
+      Top = 64
       Width = 300
       Max = 180
       Min = -180
@@ -83,18 +83,18 @@ object LightDialog: TLightDialog
     end
     object LabelZ: TLabel
       Left = 10
-      Height = 43
-      Top = 112
-      Width = 83
+      Height = 46
+      Top = 118
+      Width = 98
       Alignment = taCenter
       Caption = 'Z'
       Layout = tlCenter
       ParentColor = False
     end
     object TrackBarZ: TTrackBar
-      Left = 103
-      Height = 43
-      Top = 112
+      Left = 118
+      Height = 46
+      Top = 118
       Width = 300
       Max = 180
       Min = -180
@@ -107,18 +107,18 @@ object LightDialog: TLightDialog
     end
     object LabelAmbience: TLabel
       Left = 10
-      Height = 43
-      Top = 175
-      Width = 83
+      Height = 46
+      Top = 184
+      Width = 98
       Alignment = taCenter
       Caption = 'Ambience'
       Layout = tlCenter
       ParentColor = False
     end
     object TrackBarAmbience: TTrackBar
-      Left = 103
-      Height = 43
-      Top = 175
+      Left = 118
+      Height = 46
+      Top = 184
       Width = 300
       Max = 255
       OnChange = TrackBarAmbienceChange
@@ -131,17 +131,17 @@ object LightDialog: TLightDialog
     end
     object LabelLuminance: TLabel
       Left = 10
-      Height = 43
-      Top = 226
-      Width = 83
+      Height = 46
+      Top = 238
+      Width = 98
       Caption = 'Luminance'
       Layout = tlCenter
       ParentColor = False
     end
     object TrackBarIntensity: TTrackBar
-      Left = 103
-      Height = 43
-      Top = 226
+      Left = 118
+      Height = 46
+      Top = 238
       Width = 300
       Max = 255
       OnChange = TrackBarIntensityChange
@@ -155,7 +155,7 @@ object LightDialog: TLightDialog
   object GroupBoxPosition1: TGroupBox
     Left = 10
     Height = 4
-    Top = 323
+    Top = 342
     Width = 459
     Align = alTop
     AutoSize = True
@@ -170,8 +170,8 @@ object LightDialog: TLightDialog
   end
   object ButtonPanel: TButtonPanel
     Left = 6
-    Height = 40
-    Top = 317
+    Height = 44
+    Top = 322
     Width = 457
     BorderSpacing.Top = 30
     OKButton.Name = 'OKButton'

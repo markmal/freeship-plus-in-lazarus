@@ -304,7 +304,8 @@ type
 
 implementation
 uses LCLType,
-  LResources, LCLTranslator, LazUTF8 // for translations
+  LResources, LazUTF8, // for translations
+  LCLTranslator, Translations
   {$IfDef QT}
   ,qtwidgets  ,qt4
   //  ,qt5
@@ -605,7 +606,7 @@ procedure TFreeFilePreviewDialog.setLocaleDir(val: string);
 begin
   if FLocaleDir = val then exit;
   FLocaleDir := val;
-  translate(FLang);
+  //translate(FLang);
 end;
 
 procedure TFreeFilePreviewDialog.SpeedButtonViewListHiddenClick(Sender: TObject
@@ -1081,9 +1082,10 @@ begin
   Width := Screen.Width * 2 div 3;
   Height := Screen.Height *2 div 3;
   Resize;
-  Translate(FLang);
+  //Translate(FLang);
 end;
 
+// legacy
 procedure TFreeFilePreviewDialog.Translate(ALang:string); // '' is default Lang from environment
 var GlobalTranslator: TAbstractTranslator; LocalTranslator: TPOTranslator;
     vLang, FallBackLang, LangShortID, POFileName, POFilePath, AppDir : string;
@@ -1113,7 +1115,8 @@ begin
     vLang := GetEnvironmentVariableUTF8('LANG');
 
   if vLang = '' then
-    LazGetLanguageIDs(vLang, FallBackLang);
+    //LazGetLanguageIDs(vLang, FallBackLang);
+    vLang := GetLanguageID.LanguageCode;
 
   LangShortID := copy(vLang, 1, 2);
 

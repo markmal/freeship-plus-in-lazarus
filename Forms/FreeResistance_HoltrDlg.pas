@@ -1250,13 +1250,13 @@ begin
                 Delete(Str_[II], J, 46);
             until J = 0;
             if np = 0 then
-              ResultsMemo.Lines.Add(Space(10) + Userstring(1499 + ii - JJ) + str_[II]);
+              ResultsMemo.Lines.Add(Space(10) + UserString(1499 + ii - JJ) + str_[II]);
             if np = 1 then
-              ResultsMemo.Lines.Add(Space(10) + Userstring(1499 + ii - JJ) + str_[II]);
+              ResultsMemo.Lines.Add(Space(10) + UserString(1499 + ii - JJ) + str_[II]);
             if (np = 2) and (ii = 50) then
               ResultsMemo.Lines.Add(Space(10) + rs_Propeller_Pitch_Diameter_Ratio_P_Dp_____ {UserString[769]} + str_[II])
             else if np = 2 then
-              ResultsMemo.Lines.Add(Space(10) + Userstring(1499 + ii - JJ) + str_[II]);
+              ResultsMemo.Lines.Add(Space(10) + UserString(1499 + ii - JJ) + str_[II]);
           end;
         end;
 
@@ -1279,7 +1279,7 @@ begin
               if J <> 0 then
                 Delete(Str_[II], J, 77);
             until J = 0;
-            ResultsMemo.Lines.Add(Space(10) + Userstring(1499 + ii - JJ) + str_[II]);
+            ResultsMemo.Lines.Add(Space(10) + UserString(1499 + ii - JJ) + str_[II]);
           end;
         end;
         //  Выводим результаты расчета

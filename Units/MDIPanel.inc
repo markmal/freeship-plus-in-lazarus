@@ -814,17 +814,20 @@ begin
   FSystemPopupMenu := TPopupMenu.Create(Self);
 
   FMenuItemMaximize := TMenuItem.Create(Self);
-  FMenuItemMaximize.Name := rsMaximize;
+  FMenuItemMaximize.Name := 'Maximize';
+  FMenuItemMaximize.Caption := rsMaximize;
   FMenuItemMaximize.OnClick := @MaximizeButtonClick;
   FSystemPopupMenu.Items.Add(FMenuItemMaximize);
 
   FMenuItemMinimize := TMenuItem.Create(Self);
-  FMenuItemMinimize.Name := rsMinimize;
+  FMenuItemMinimize.Name := 'Minimize';
+  FMenuItemMinimize.Caption := rsMinimize;
   FMenuItemMinimize.OnClick := @MinimizeButtonClick;
   FSystemPopupMenu.Items.Add(FMenuItemMinimize);
 
   FMenuItemRestore := TMenuItem.Create(Self);
-  FMenuItemRestore.Name := rsRestore;
+  FMenuItemRestore.Name := 'Restore';
+  FMenuItemRestore.Caption := rsRestore;
   FMenuItemRestore.OnClick := @RestoreButtonClick;
   FSystemPopupMenu.Items.Add(FMenuItemRestore);
 

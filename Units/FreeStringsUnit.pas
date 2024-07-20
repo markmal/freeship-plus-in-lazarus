@@ -53,17 +53,19 @@ const UserStrings:array[0..8] of TUserstring =(
 
 {$I FreeResourceStrings.inc}
 
-// this is a workaround for code where UserString called in loops with tricky computed indexes
-{$I FreeUserStringsArray.inc}
+procedure SetUserStringsLang;
 function UserString(Index:Integer):String;
 function LanguageCode(Language:string): string;
 function LanguageName(code:string): string;
 
 implementation
 
+// this is a workaround for code where UserString called in loops with tricky computed indexes
+{$I FreeUserStringsArray.inc}
+
 function UserString(Index:Integer):String;
 begin
-   Result := UserStrings[Index - 1];
+   Result := UserStrings[Index];
 end;{UserString}
 
 // Returns ISO 639 codes from a Language name
@@ -106,4 +108,9 @@ begin
   end;
 end;
 
+// check
+var s:String;
+begin
+  if UserStrings[1]>''
+    then S:=UserStrings[1];
 end.

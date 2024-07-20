@@ -361,6 +361,8 @@ begin
      Mainform.Freeship.Preferences.LanguagesDirectory,
      'FreeShip', True);
 
+   SetUserStringsLang;
+
    {$ENDIF}
    //ShowTranslatedValues(Mainform);
    Mainform.FFileName:=sOpenFile;

@@ -8241,6 +8241,22 @@ msgstr ""
 msgid "Resistance for naval ships by Fung-Leibmans method 1995"
 msgstr ""
 
+#: tfreeresistance_fungleib.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Resistencia (kN)"
+
+#: tfreeresistance_fungleib.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_fungleib.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_fungleib.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_fungleib.chart.axislist[2].title.caption"
+msgid "Power [kW]"
+msgstr ""
+
 #: tfreeresistance_fungleib.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.checkbox2.caption"
@@ -8422,12 +8438,12 @@ msgstr ""
 
 #: tfreeresistance_fungleib.label35.caption
 msgctxt "tfreeresistance_fungleib.label35.caption"
-msgid "Angle with battoks about 10"
+msgid "Angle with buttocks about 10"
 msgstr ""
 
 #: tfreeresistance_fungleib.label36.caption
 msgctxt "tfreeresistance_fungleib.label36.caption"
-msgid "Angle with battoks about 20"
+msgid "Angle with buttocks about 20"
 msgstr ""
 
 #: tfreeresistance_fungleib.label37.caption
@@ -8628,7 +8644,7 @@ msgstr ""
 
 #: tfreeresistance_fungleib._label36.caption
 msgctxt "tfreeresistance_fungleib._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_fungleib._label8.caption
@@ -8658,6 +8674,21 @@ msgstr ""
 
 #: tfreeresistance_hollen.caption
 msgid "Resistance for sea ships by Hollenbachs method 1998"
+msgstr ""
+
+#: tfreeresistance_hollen.chart.axislist[0].title.caption
+msgctxt "tfreeresistance_hollen.chart.axislist[0].title.caption"
+msgid "Resistance [N]"
+msgstr ""
+
+#: tfreeresistance_hollen.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_hollen.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_hollen.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_hollen.chart.axislist[2].title.caption"
+msgid "Power [W]"
 msgstr ""
 
 #: tfreeresistance_hollen.checkbox2.caption
@@ -8850,12 +8881,12 @@ msgstr "t/m3"
 
 #: tfreeresistance_hollen.label35.caption
 msgctxt "tfreeresistance_hollen.label35.caption"
-msgid "Angle with battoks about 10"
+msgid "Angle with buttocks about 10"
 msgstr ""
 
 #: tfreeresistance_hollen.label36.caption
 msgctxt "tfreeresistance_hollen.label36.caption"
-msgid "Angle with battoks about 20"
+msgid "Angle with buttocks about 20"
 msgstr ""
 
 #: tfreeresistance_hollen.label37.caption
@@ -9084,6 +9115,20 @@ msgstr ""
 msgid "Resistance for sea ships"
 msgstr ""
 
+#: tfreeresistance_holtr.chart.axislist[0].title.caption
+msgctxt "tfreeresistance_holtr.chart.axislist[0].title.caption"
+msgid "Resistance [N]"
+msgstr ""
+
+#: tfreeresistance_holtr.chart.axislist[1].title.caption
+msgid "Speed [m/s]"
+msgstr ""
+
+#: tfreeresistance_holtr.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_holtr.chart.axislist[2].title.caption"
+msgid "Power [W]"
+msgstr ""
+
 #: tfreeresistance_holtr.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.checkbox2.caption"
@@ -9278,12 +9323,12 @@ msgstr ""
 
 #: tfreeresistance_holtr.label35.caption
 msgctxt "tfreeresistance_holtr.label35.caption"
-msgid "Angle with battoks about 10"
+msgid "Angle with buttocks about 10"
 msgstr ""
 
 #: tfreeresistance_holtr.label36.caption
 msgctxt "tfreeresistance_holtr.label36.caption"
-msgid "Angle with battoks about 20"
+msgid "Angle with buttocks about 20"
 msgstr ""
 
 #: tfreeresistance_holtr.label37.caption
@@ -9391,17 +9436,6 @@ msgstr ""
 msgid "Transom wetted area, m^2"
 msgstr ""
 
-#: tfreeresistance_holtr.printbutton.caption
-msgctxt "tfreeresistance_holtr.printbutton.caption"
-msgid "PrintButton"
-msgstr ""
-
-#: tfreeresistance_holtr.printbutton.hint
-#, fuzzy
-msgctxt "tfreeresistance_holtr.printbutton.hint"
-msgid "Print the results of the calculation."
-msgstr "Imprimir resultados."
-
 #: tfreeresistance_holtr.results.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.results.caption"
@@ -9413,27 +9447,37 @@ msgctxt "tfreeresistance_holtr.results2.caption"
 msgid "Help"
 msgstr ""
 
+#: tfreeresistance_holtr.tbcalculate.hint
+msgctxt "tfreeresistance_holtr.tbcalculate.hint"
+msgid "Start the calculation."
+msgstr ""
+
+#: tfreeresistance_holtr.tbclose.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.tbclose.hint"
+msgid "Close window without saving changes."
+msgstr "Cierra la ventana y descarta cambios."
+
+#: tfreeresistance_holtr.tbclosesave.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.tbclosesave.hint"
+msgid "Close the window and save changes."
+msgstr "Cierra la ventana y guarda cambios."
+
+#: tfreeresistance_holtr.tbprint.caption
+msgid "tbPrint"
+msgstr ""
+
+#: tfreeresistance_holtr.tbprint.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.tbprint.hint"
+msgid "Print the results of the calculation."
+msgstr "Imprimir resultados."
+
 #: tfreeresistance_holtr.toolbar1.caption
 msgctxt "tfreeresistance_holtr.toolbar1.caption"
 msgid "ToolBar1"
 msgstr ""
-
-#: tfreeresistance_holtr.toolbutton20.hint
-msgctxt "tfreeresistance_holtr.toolbutton20.hint"
-msgid "Start the calculation."
-msgstr ""
-
-#: tfreeresistance_holtr.toolbutton25.hint
-#, fuzzy
-msgctxt "tfreeresistance_holtr.toolbutton25.hint"
-msgid "Close the window and save changes."
-msgstr "Cierra la ventana y guarda cambios."
-
-#: tfreeresistance_holtr.toolbutton7.hint
-#, fuzzy
-msgctxt "tfreeresistance_holtr.toolbutton7.hint"
-msgid "Close window without saving changes."
-msgstr "Cierra la ventana y descarta cambios."
 
 #: tfreeresistance_holtr._label10.caption
 msgctxt "tfreeresistance_holtr._label10.caption"
@@ -9482,7 +9526,7 @@ msgstr ""
 
 #: tfreeresistance_holtr._label36.caption
 msgctxt "tfreeresistance_holtr._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_holtr._label8.caption
@@ -9508,6 +9552,15 @@ msgstr ""
 #: tfreeresistance_kaper.caption
 msgid "Kaper resistance calculation."
 msgstr "Kaper. Cálculo de la Resistencia."
+
+#: tfreeresistance_kaper.chart.axislist[0].title.caption
+msgid "Resistance [Lbs]"
+msgstr ""
+
+#: tfreeresistance_kaper.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_kaper.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
 
 #: tfreeresistance_kaper.checkbox2.caption
 msgctxt "tfreeresistance_kaper.checkbox2.caption"
@@ -9650,6 +9703,22 @@ msgstr ""
 
 #: tfreeresistance_mh.caption
 msgid "Resistance for multihull ships"
+msgstr ""
+
+#: tfreeresistance_mh.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Resistencia (kN)"
+
+#: tfreeresistance_mh.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_mh.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_mh.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_mh.chart.axislist[2].title.caption"
+msgid "Power [kW]"
 msgstr ""
 
 #: tfreeresistance_mh.checkbox2.caption
@@ -9833,12 +9902,12 @@ msgstr ""
 
 #: tfreeresistance_mh.label35.caption
 msgctxt "tfreeresistance_mh.label35.caption"
-msgid "Angle with battoks about 10"
+msgid "Angle with buttocks about 10"
 msgstr ""
 
 #: tfreeresistance_mh.label36.caption
 msgctxt "tfreeresistance_mh.label36.caption"
-msgid "Angle with battoks about 20"
+msgid "Angle with buttocks about 20"
 msgstr ""
 
 #: tfreeresistance_mh.label37.caption
@@ -10046,7 +10115,7 @@ msgstr ""
 
 #: tfreeresistance_mh._label36.caption
 msgctxt "tfreeresistance_mh._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_mh._label8.caption
@@ -10076,6 +10145,22 @@ msgstr ""
 
 #: tfreeresistance_oortmer.caption
 msgid "Resistance for small displacement ships methods"
+msgstr ""
+
+#: tfreeresistance_oortmer.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Resistencia (kN)"
+
+#: tfreeresistance_oortmer.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_oortmer.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_oortmer.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_oortmer.chart.axislist[2].title.caption"
+msgid "Power [kW]"
 msgstr ""
 
 #: tfreeresistance_oortmer.checkbox2.caption
@@ -10271,12 +10356,12 @@ msgstr ""
 
 #: tfreeresistance_oortmer.label35.caption
 msgctxt "tfreeresistance_oortmer.label35.caption"
-msgid "Angle with battoks about 10"
+msgid "Angle with buttocks about 10"
 msgstr ""
 
 #: tfreeresistance_oortmer.label36.caption
 msgctxt "tfreeresistance_oortmer.label36.caption"
-msgid "Angle with battoks about 20"
+msgid "Angle with buttocks about 20"
 msgstr ""
 
 #: tfreeresistance_oortmer.label37.caption
@@ -10477,7 +10562,7 @@ msgstr ""
 
 #: tfreeresistance_oortmer._label36.caption
 msgctxt "tfreeresistance_oortmer._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr ""
 
 #: tfreeresistance_oortmer._label8.caption
@@ -10508,6 +10593,22 @@ msgstr ""
 #: tfreeresistance_ost.caption
 msgctxt "tfreeresistance_ost.caption"
 msgid "Resistance for displacement ships"
+msgstr ""
+
+#: tfreeresistance_ost.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Resistencia (kN)"
+
+#: tfreeresistance_ost.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_ost.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_ost.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_ost.chart.axislist[2].title.caption"
+msgid "Power [kW]"
 msgstr ""
 
 #: tfreeresistance_ost.checkbox2.caption
@@ -10693,12 +10794,12 @@ msgstr ""
 
 #: tfreeresistance_ost.label35.caption
 msgctxt "tfreeresistance_ost.label35.caption"
-msgid "Angle with battoks about 10"
+msgid "Angle with buttocks about 10"
 msgstr ""
 
 #: tfreeresistance_ost.label36.caption
 msgctxt "tfreeresistance_ost.label36.caption"
-msgid "Angle with battoks about 20"
+msgid "Angle with buttocks about 20"
 msgstr ""
 
 #: tfreeresistance_ost.label37.caption
@@ -11190,6 +11291,22 @@ msgctxt "tfreeresistance_rbhs.caption"
 msgid "Resistance for displacement ships"
 msgstr ""
 
+#: tfreeresistance_rbhs.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Resistencia (kN)"
+
+#: tfreeresistance_rbhs.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_rbhs.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_rbhs.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_rbhs.chart.axislist[2].title.caption"
+msgid "Power [kW]"
+msgstr ""
+
 #: tfreeresistance_rbhs.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.checkbox2.caption"
@@ -11373,12 +11490,12 @@ msgstr ""
 
 #: tfreeresistance_rbhs.label35.caption
 msgctxt "tfreeresistance_rbhs.label35.caption"
-msgid "Angle with battoks about 10"
+msgid "Angle with buttocks about 10"
 msgstr ""
 
 #: tfreeresistance_rbhs.label36.caption
 msgctxt "tfreeresistance_rbhs.label36.caption"
-msgid "Angle with battoks about 20"
+msgid "Angle with buttocks about 20"
 msgstr ""
 
 #: tfreeresistance_rbhs.label37.caption

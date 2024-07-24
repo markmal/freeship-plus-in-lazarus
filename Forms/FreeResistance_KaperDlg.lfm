@@ -1,21 +1,22 @@
 object FreeResistance_Kaper: TFreeResistance_Kaper
   Left = 382
-  Height = 600
+  Height = 750
   Top = 224
-  Width = 800
+  Width = 1000
   Caption = 'Kaper resistance calculation.'
-  ClientHeight = 600
-  ClientWidth = 800
+  ClientHeight = 750
+  ClientWidth = 1000
+  DesignTimePPI = 120
   Position = poOwnerFormCenter
   LCLVersion = '3.2.0.0'
   object ToolBar1: TToolBar
     Left = 0
-    Height = 24
+    Height = 30
     Top = 0
-    Width = 800
+    Width = 1000
     AutoSize = True
-    ButtonHeight = 22
-    ButtonWidth = 50
+    ButtonHeight = 28
+    ButtonWidth = 62
     Caption = 'ToolBar1'
     Color = clForm
     Images = MenuImages
@@ -27,14 +28,14 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
-      Height = 22
+      Height = 28
       Top = 2
       Caption = '_ToolButton10'
       ImageIndex = 6
       Style = tbsSeparator
     end
     object PrintButton: TToolButton
-      Left = 13
+      Left = 15
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'PrintButton'
@@ -42,22 +43,22 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 63
-      Height = 22
+      Left = 77
+      Height = 28
       Top = 2
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 71
+      Left = 87
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 121
+      Left = 149
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0
@@ -66,9 +67,9 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 576
-    Top = 24
-    Width = 800
+    Height = 720
+    Top = 30
+    Width = 1000
     ActivePage = TabSheet1
     Align = alClient
     ParentFont = False
@@ -76,27 +77,27 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'
-      ClientHeight = 536
-      ClientWidth = 796
+      ClientHeight = 687
+      ClientWidth = 992
       ParentFont = False
       object Panel1: TPanel
         Left = 0
-        Height = 536
+        Height = 687
         Top = 0
-        Width = 796
+        Width = 992
         Align = alClient
         AutoSize = True
         BevelOuter = bvLowered
         BorderWidth = 10
-        ClientHeight = 536
-        ClientWidth = 796
+        ClientHeight = 687
+        ClientWidth = 992
         ParentFont = False
         TabOrder = 0
         object Chart: TChart
-          Left = 319
-          Height = 514
+          Left = 293
+          Height = 665
           Top = 11
-          Width = 466
+          Width = 688
           AxisList = <          
             item
               Marks.LabelBrush.Style = bsClear
@@ -148,9 +149,9 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
         end
         object Panel2: TPanel
           Left = 11
-          Height = 514
+          Height = 665
           Top = 11
-          Width = 308
+          Width = 282
           Align = alLeft
           AutoSize = True
           BevelOuter = bvNone
@@ -160,16 +161,16 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
           ChildSizing.VerticalSpacing = 10
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 514
-          ClientWidth = 308
+          ClientHeight = 665
+          ClientWidth = 282
           ParentColor = False
           ParentFont = False
           TabOrder = 1
           object CheckBox2: TCheckBox
             Left = 10
-            Height = 28
+            Height = 24
             Top = 2
-            Width = 288
+            Width = 262
             Caption = 'Extract data from current hull'
             ParentFont = False
             TabOrder = 0
@@ -177,36 +178,36 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
           end
           object Panel3: TPanel
             Left = 10
-            Height = 360
-            Top = 40
-            Width = 288
+            Height = 288
+            Top = 36
+            Width = 262
             BevelOuter = bvNone
             ChildSizing.TopBottomSpacing = 10
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 360
-            ClientWidth = 288
+            ClientHeight = 288
+            ClientWidth = 262
             ParentFont = False
             TabOrder = 1
             object Label2: TLabel
               Left = 0
-              Height = 36
+              Height = 28
               Top = 10
-              Width = 178
+              Width = 134
               Caption = 'Length waterline'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit2: TFloatSpinEdit
-              Left = 184
-              Height = 36
+              Left = 140
+              Height = 28
               Top = 10
-              Width = 80
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 3
               Increment = 0.01
               OnExit = Edit1AfterSetValue
@@ -214,10 +215,10 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               TabOrder = 0
             end
             object Label9: TLabel
-              Left = 270
-              Height = 36
+              Left = 246
+              Height = 28
               Top = 10
-              Width = 18
+              Width = 16
               Caption = '[-]'
               Layout = tlCenter
               ParentColor = False
@@ -225,21 +226,21 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             end
             object Label3: TLabel
               Left = 0
-              Height = 36
-              Top = 48
-              Width = 178
+              Height = 28
+              Top = 40
+              Width = 134
               Caption = 'Beam waterline'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit3: TFloatSpinEdit
-              Left = 184
-              Height = 36
-              Top = 48
-              Width = 80
+              Left = 140
+              Height = 28
+              Top = 40
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 3
               Increment = 0.01
               OnExit = Edit1AfterSetValue
@@ -247,10 +248,10 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               TabOrder = 1
             end
             object Label10: TLabel
-              Left = 270
-              Height = 36
-              Top = 48
-              Width = 18
+              Left = 246
+              Height = 28
+              Top = 40
+              Width = 16
               Caption = '[-]'
               Layout = tlCenter
               ParentColor = False
@@ -258,21 +259,21 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             end
             object Label4: TLabel
               Left = 0
-              Height = 36
-              Top = 86
-              Width = 178
+              Height = 28
+              Top = 70
+              Width = 134
               Caption = 'Draft'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit4: TFloatSpinEdit
-              Left = 184
-              Height = 36
-              Top = 86
-              Width = 80
+              Left = 140
+              Height = 28
+              Top = 70
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 3
               Increment = 0.01
               OnExit = Edit1AfterSetValue
@@ -280,10 +281,10 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               TabOrder = 2
             end
             object Label11: TLabel
-              Left = 270
-              Height = 36
-              Top = 86
-              Width = 18
+              Left = 246
+              Height = 28
+              Top = 70
+              Width = 16
               Caption = '[-]'
               Layout = tlCenter
               ParentColor = False
@@ -291,31 +292,31 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             end
             object Label6: TLabel
               Left = 0
-              Height = 36
-              Top = 124
-              Width = 178
+              Height = 28
+              Top = 100
+              Width = 134
               Caption = 'Wetted surface area'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit5: TFloatSpinEdit
-              Left = 184
-              Height = 36
-              Top = 124
-              Width = 80
+              Left = 140
+              Height = 28
+              Top = 100
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               Increment = 0.01
               OnExit = Edit1AfterSetValue
               ParentFont = False
               TabOrder = 3
             end
             object Label7: TLabel
-              Left = 270
-              Height = 36
-              Top = 124
-              Width = 18
+              Left = 246
+              Height = 28
+              Top = 100
+              Width = 16
               Caption = '[-]'
               Layout = tlCenter
               ParentColor = False
@@ -323,22 +324,22 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             end
             object Label8: TLabel
               Left = 0
-              Height = 36
-              Top = 162
-              Width = 178
+              Height = 28
+              Top = 130
+              Width = 134
               Caption = 'Cp'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit6: TFloatSpinEdit
-              Left = 184
-              Height = 36
+              Left = 140
+              Height = 28
               Hint = '0.48 .. 0.64'
-              Top = 162
-              Width = 80
+              Top = 130
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 4
               Increment = 0.001
               MaxValue = 1
@@ -349,31 +350,31 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               TabOrder = 4
             end
             object Label12: TLabel
-              Left = 270
-              Height = 36
-              Top = 162
-              Width = 18
+              Left = 246
+              Height = 28
+              Top = 130
+              Width = 16
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Label13: TLabel
               Left = 0
-              Height = 36
-              Top = 200
-              Width = 178
+              Height = 28
+              Top = 160
+              Width = 134
               Caption = 'Displacement'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit7: TFloatSpinEdit
-              Left = 184
-              Height = 36
-              Top = 200
-              Width = 80
+              Left = 140
+              Height = 28
+              Top = 160
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 4
               Increment = 0.01
               OnExit = Edit1AfterSetValue
@@ -381,10 +382,10 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               TabOrder = 5
             end
             object Label14: TLabel
-              Left = 270
-              Height = 36
-              Top = 200
-              Width = 18
+              Left = 246
+              Height = 28
+              Top = 160
+              Width = 16
               Caption = '[-]'
               Layout = tlCenter
               ParentColor = False
@@ -392,21 +393,21 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             end
             object Label15: TLabel
               Left = 0
-              Height = 36
-              Top = 238
-              Width = 178
+              Height = 28
+              Top = 190
+              Width = 134
               Caption = 'Half entrance angle'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit8: TFloatSpinEdit
-              Left = 184
-              Height = 36
-              Top = 238
-              Width = 80
+              Left = 140
+              Height = 28
+              Top = 190
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 3
               Increment = 0.1
               OnExit = Edit1AfterSetValue
@@ -414,10 +415,10 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               TabOrder = 6
             end
             object Label16: TLabel
-              Left = 270
-              Height = 36
-              Top = 238
-              Width = 18
+              Left = 246
+              Height = 28
+              Top = 190
+              Width = 16
               Caption = '[-]'
               Layout = tlCenter
               ParentColor = False
@@ -425,21 +426,21 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
             end
             object Label17: TLabel
               Left = 0
-              Height = 36
-              Top = 276
-              Width = 178
+              Height = 28
+              Top = 220
+              Width = 134
               Caption = 'LCB'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit9: TFloatSpinEdit
-              Left = 184
-              Height = 36
-              Top = 276
-              Width = 80
+              Left = 140
+              Height = 28
+              Top = 220
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 3
               Increment = 0.001
               OnExit = Edit1AfterSetValue
@@ -447,32 +448,32 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
               TabOrder = 7
             end
             object Label18: TLabel
-              Left = 270
-              Height = 36
-              Top = 276
-              Width = 18
+              Left = 246
+              Height = 28
+              Top = 220
+              Width = 16
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Label19: TLabel
               Left = 0
-              Height = 36
-              Top = 314
-              Width = 178
+              Height = 28
+              Top = 250
+              Width = 134
               Caption = 'Subm. transom ratio'
               Layout = tlCenter
               ParentColor = False
               ParentFont = False
             end
             object Edit10: TFloatSpinEdit
-              Left = 184
-              Height = 36
+              Left = 140
+              Height = 28
               Hint = '0.00 .. 0.04'
-              Top = 314
-              Width = 80
+              Top = 250
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 3
               Increment = 0.001
               OnExit = Edit1AfterSetValue
@@ -487,18 +488,18 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     end
     object TabSheet2: TTabSheet
       Caption = 'Results'
-      ClientHeight = 536
-      ClientWidth = 796
+      ClientHeight = 687
+      ClientWidth = 992
       ImageIndex = 1
       ParentFont = False
       object Resultsmemo: TMemo
         Left = 0
-        Height = 536
+        Height = 687
         Top = 0
-        Width = 796
+        Width = 992
         Align = alClient
         Font.Color = clBlack
-        Font.Height = -13
+        Font.Height = -16
         Font.Name = 'Courier New'
         ParentFont = False
         ScrollBars = ssBoth
@@ -507,7 +508,7 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     end
   end
   object MenuImages: TImageList
-    Left = 336
+    Left = 420
     Bitmap = {
       4C7A040000001000000010000000070100000000000078DAED55410E84200CE4
       E7F4C0BFB8F9AD6E745D16B52D1D50E341922ED9949969871243B873318740FC
@@ -521,6 +522,6 @@ object FreeResistance_Kaper: TFreeResistance_Kaper
     }
   end
   object PrintDialog: TPrintDialog
-    Left = 240
+    Left = 300
   end
 end

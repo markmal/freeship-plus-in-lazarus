@@ -8279,6 +8279,22 @@ msgstr ""
 msgid "Resistance for naval ships by Fung-Leibmans method 1995"
 msgstr ""
 
+#: tfreeresistance_fungleib.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_fungleib.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Сопротивление, кН"
+
+#: tfreeresistance_fungleib.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_fungleib.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_fungleib.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_fungleib.chart.axislist[2].title.caption"
+msgid "Power [kW]"
+msgstr ""
+
 #: tfreeresistance_fungleib.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.checkbox2.caption"
@@ -8288,7 +8304,7 @@ msgstr "Взять данные текущ.проекта"
 #: tfreeresistance_fungleib.data2.caption
 msgctxt "tfreeresistance_fungleib.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Дополнительные данные"
 
 #: tfreeresistance_fungleib.estimate2box.caption
 msgctxt "tfreeresistance_fungleib.estimate2box.caption"
@@ -8322,12 +8338,12 @@ msgstr "Корпус"
 #: tfreeresistance_fungleib.groupbox3.caption
 msgctxt "tfreeresistance_fungleib.groupbox3.caption"
 msgid "Added data input:"
-msgstr ""
+msgstr "Ввод дополнительных данных"
 
 #: tfreeresistance_fungleib.groupbox4.caption
 msgctxt "tfreeresistance_fungleib.groupbox4.caption"
 msgid "Number of appendages :"
-msgstr ""
+msgstr "Кол-во выступающих частей:"
 
 #: tfreeresistance_fungleib.label1.caption
 #, fuzzy
@@ -8368,7 +8384,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label17.caption
 msgctxt "tfreeresistance_fungleib.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Абсолютная шероховатость, мкм"
 
 #: tfreeresistance_fungleib.label2.caption
 #, fuzzy
@@ -8385,7 +8401,7 @@ msgstr "Средняя осадка"
 #: tfreeresistance_fungleib.label21.caption
 msgctxt "tfreeresistance_fungleib.label21.caption"
 msgid "Different"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeresistance_fungleib.label22.caption
 #, fuzzy
@@ -8425,7 +8441,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label281.caption
 msgctxt "tfreeresistance_fungleib.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Киль и скег:"
 
 #: tfreeresistance_fungleib.label29.caption
 #, fuzzy
@@ -8457,7 +8473,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label33.caption
 msgctxt "tfreeresistance_fungleib.label33.caption"
 msgid "Exposed shafts:"
-msgstr ""
+msgstr "Наружные валы:"
 
 #: tfreeresistance_fungleib.label34.caption
 msgctxt "tfreeresistance_fungleib.label34.caption"
@@ -8466,13 +8482,13 @@ msgstr "[м]"
 
 #: tfreeresistance_fungleib.label35.caption
 msgctxt "tfreeresistance_fungleib.label35.caption"
-msgid "Angle with battoks about 10"
-msgstr ""
+msgid "Angle with buttocks about 10"
+msgstr "Угол с батоксами около 10"
 
 #: tfreeresistance_fungleib.label36.caption
 msgctxt "tfreeresistance_fungleib.label36.caption"
-msgid "Angle with battoks about 20"
-msgstr ""
+msgid "Angle with buttocks about 20"
+msgstr "Угол с батоксами около 20"
 
 #: tfreeresistance_fungleib.label37.caption
 msgctxt "tfreeresistance_fungleib.label37.caption"
@@ -8482,7 +8498,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label38.caption
 msgctxt "tfreeresistance_fungleib.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Купол"
 
 #: tfreeresistance_fungleib.label39.caption
 #, fuzzy
@@ -8511,7 +8527,7 @@ msgstr "Руль за скегом/штевнем"
 #: tfreeresistance_fungleib.label61.caption
 msgctxt "tfreeresistance_fungleib.label61.caption"
 msgid "Presence of rudders (0-No, 1-Yes):"
-msgstr ""
+msgstr "Наличие рулей (0-нет, 1-да):"
 
 #: tfreeresistance_fungleib.label6_1.caption
 msgctxt "tfreeresistance_fungleib.label6_1.caption"
@@ -8531,12 +8547,12 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_2.caption
 msgctxt "tfreeresistance_fungleib.label6_2.caption"
 msgid "Height of 3% wave, m "
-msgstr ""
+msgstr "Высота 3% волны, м"
 
 #: tfreeresistance_fungleib.label6_3.caption
 msgctxt "tfreeresistance_fungleib.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Курсовой угол движущейся волны, грд"
 
 #: tfreeresistance_fungleib.label6_4.caption
 msgctxt "tfreeresistance_fungleib.label6_4.caption"
@@ -8546,27 +8562,27 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_5.caption
 msgctxt "tfreeresistance_fungleib.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Курсовой угол ветра, грд"
 
 #: tfreeresistance_fungleib.label6_6.caption
 msgctxt "tfreeresistance_fungleib.label6_6.caption"
 msgid "Height of board above water, m"
-msgstr ""
+msgstr "Высота доски над водой, м"
 
 #: tfreeresistance_fungleib.label6_7.caption
 msgctxt "tfreeresistance_fungleib.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Плотность воздуха, кг/м^3"
 
 #: tfreeresistance_fungleib.label6_8.caption
 msgctxt "tfreeresistance_fungleib.label6_8.caption"
 msgid "Height of COG area of superstructure above waterline, m"
-msgstr ""
+msgstr "Высота центра тяжести площади надстройки выше ватерлинии, м"
 
 #: tfreeresistance_fungleib.label6_9.caption
 msgctxt "tfreeresistance_fungleib.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Глубина воды, м"
 
 #: tfreeresistance_fungleib.label7.caption
 msgctxt "tfreeresistance_fungleib.label7.caption"
@@ -8675,8 +8691,9 @@ msgstr "уз"
 
 #: tfreeresistance_fungleib._label36.caption
 #, fuzzy
+#| msgid "*10-6  m2/s"
 msgctxt "tfreeresistance_fungleib._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr "*10-6 м2/с"
 
 #: tfreeresistance_fungleib._label8.caption
@@ -8708,6 +8725,21 @@ msgstr ""
 msgid "Resistance for sea ships by Hollenbachs method 1998"
 msgstr ""
 
+#: tfreeresistance_hollen.chart.axislist[0].title.caption
+msgctxt "tfreeresistance_hollen.chart.axislist[0].title.caption"
+msgid "Resistance [N]"
+msgstr ""
+
+#: tfreeresistance_hollen.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_hollen.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_hollen.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_hollen.chart.axislist[2].title.caption"
+msgid "Power [W]"
+msgstr ""
+
 #: tfreeresistance_hollen.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_hollen.checkbox2.caption"
@@ -8717,7 +8749,7 @@ msgstr "Взять данные текущ.проекта"
 #: tfreeresistance_hollen.data2.caption
 msgctxt "tfreeresistance_hollen.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Дополнительные данные"
 
 #: tfreeresistance_hollen.estimate2box.caption
 msgctxt "tfreeresistance_hollen.estimate2box.caption"
@@ -8751,12 +8783,12 @@ msgstr "Корпус"
 #: tfreeresistance_hollen.groupbox3.caption
 msgctxt "tfreeresistance_hollen.groupbox3.caption"
 msgid "Added data input:"
-msgstr ""
+msgstr "Ввод дополнительных данных"
 
 #: tfreeresistance_hollen.groupbox4.caption
 msgctxt "tfreeresistance_hollen.groupbox4.caption"
 msgid "Number of appendages :"
-msgstr ""
+msgstr "Кол-во выступающих частей:"
 
 #: tfreeresistance_hollen.label1.caption
 #, fuzzy
@@ -8794,12 +8826,12 @@ msgstr "Количество гребных винтов"
 #: tfreeresistance_hollen.label16.caption
 msgctxt "tfreeresistance_hollen.label16.caption"
 msgid "Propeller diametr, m"
-msgstr ""
+msgstr "Диаметр винта, м"
 
 #: tfreeresistance_hollen.label17.caption
 msgctxt "tfreeresistance_hollen.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Абсолютная шероховатость, мкм"
 
 #: tfreeresistance_hollen.label2.caption
 msgid "Estimate speed "
@@ -8814,7 +8846,7 @@ msgstr "Средняя осадка"
 #: tfreeresistance_hollen.label21.caption
 msgctxt "tfreeresistance_hollen.label21.caption"
 msgid "Different"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeresistance_hollen.label22.caption
 #, fuzzy
@@ -8860,7 +8892,7 @@ msgstr "Скег"
 #: tfreeresistance_hollen.label281.caption
 msgctxt "tfreeresistance_hollen.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Киль и скег:"
 
 #: tfreeresistance_hollen.label29.caption
 #, fuzzy
@@ -8892,7 +8924,7 @@ msgstr ""
 #: tfreeresistance_hollen.label33.caption
 msgctxt "tfreeresistance_hollen.label33.caption"
 msgid "Exposed shafts:"
-msgstr ""
+msgstr "Наружные валы:"
 
 #: tfreeresistance_hollen.label34.caption
 #, fuzzy
@@ -8902,13 +8934,13 @@ msgstr "т/м^3"
 
 #: tfreeresistance_hollen.label35.caption
 msgctxt "tfreeresistance_hollen.label35.caption"
-msgid "Angle with battoks about 10"
-msgstr ""
+msgid "Angle with buttocks about 10"
+msgstr "Угол с батоксами около 10"
 
 #: tfreeresistance_hollen.label36.caption
 msgctxt "tfreeresistance_hollen.label36.caption"
-msgid "Angle with battoks about 20"
-msgstr ""
+msgid "Angle with buttocks about 20"
+msgstr "Угол с батоксами около 20"
 
 #: tfreeresistance_hollen.label37.caption
 msgctxt "tfreeresistance_hollen.label37.caption"
@@ -8918,7 +8950,7 @@ msgstr ""
 #: tfreeresistance_hollen.label38.caption
 msgctxt "tfreeresistance_hollen.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Купол"
 
 #: tfreeresistance_hollen.label4.caption
 #, fuzzy
@@ -8941,7 +8973,7 @@ msgstr "Руль за скегом/штевнем"
 #: tfreeresistance_hollen.label61.caption
 msgctxt "tfreeresistance_hollen.label61.caption"
 msgid "Presence of rudders (0-No, 1-Yes):"
-msgstr ""
+msgstr "Наличие рулей (0-нет, 1-да):"
 
 #: tfreeresistance_hollen.label6_1.caption
 msgctxt "tfreeresistance_hollen.label6_1.caption"
@@ -8961,12 +8993,12 @@ msgstr ""
 #: tfreeresistance_hollen.label6_2.caption
 msgctxt "tfreeresistance_hollen.label6_2.caption"
 msgid "Height of 3% wave, m "
-msgstr ""
+msgstr "Высота 3% волны, м"
 
 #: tfreeresistance_hollen.label6_3.caption
 msgctxt "tfreeresistance_hollen.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Курсовой угол движущейся волны, грд"
 
 #: tfreeresistance_hollen.label6_4.caption
 msgctxt "tfreeresistance_hollen.label6_4.caption"
@@ -8976,27 +9008,27 @@ msgstr ""
 #: tfreeresistance_hollen.label6_5.caption
 msgctxt "tfreeresistance_hollen.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Курсовой угол ветра, грд"
 
 #: tfreeresistance_hollen.label6_6.caption
 msgctxt "tfreeresistance_hollen.label6_6.caption"
 msgid "Height of board above water, m"
-msgstr ""
+msgstr "Высота доски над водой, м"
 
 #: tfreeresistance_hollen.label6_7.caption
 msgctxt "tfreeresistance_hollen.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Плотность воздуха, кг/м^3"
 
 #: tfreeresistance_hollen.label6_8.caption
 msgctxt "tfreeresistance_hollen.label6_8.caption"
 msgid "Height of COG area of superstructure above waterline, m"
-msgstr ""
+msgstr "Высота центра тяжести площади надстройки выше ватерлинии, м"
 
 #: tfreeresistance_hollen.label6_9.caption
 msgctxt "tfreeresistance_hollen.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Глубина воды, м"
 
 #: tfreeresistance_hollen.label7.caption
 msgctxt "tfreeresistance_hollen.label7.caption"
@@ -9139,6 +9171,20 @@ msgstr ""
 msgid "Resistance for sea ships"
 msgstr ""
 
+#: tfreeresistance_holtr.chart.axislist[0].title.caption
+msgctxt "tfreeresistance_holtr.chart.axislist[0].title.caption"
+msgid "Resistance [N]"
+msgstr ""
+
+#: tfreeresistance_holtr.chart.axislist[1].title.caption
+msgid "Speed [m/s]"
+msgstr ""
+
+#: tfreeresistance_holtr.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_holtr.chart.axislist[2].title.caption"
+msgid "Power [W]"
+msgstr ""
+
 #: tfreeresistance_holtr.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.checkbox2.caption"
@@ -9148,7 +9194,7 @@ msgstr "Взять данные текущ.проекта"
 #: tfreeresistance_holtr.data2.caption
 msgctxt "tfreeresistance_holtr.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Дополнительные данные"
 
 #: tfreeresistance_holtr.estimate2box.caption
 msgctxt "tfreeresistance_holtr.estimate2box.caption"
@@ -9190,7 +9236,7 @@ msgstr "Корпус"
 #: tfreeresistance_holtr.groupbox3.caption
 msgctxt "tfreeresistance_holtr.groupbox3.caption"
 msgid "Added data input:"
-msgstr ""
+msgstr "Ввод дополнительных данных"
 
 #: tfreeresistance_holtr.groupbox4.caption
 msgid "Appendage areas input, [m^2]:"
@@ -9231,12 +9277,12 @@ msgstr "Количество гребных винтов"
 #: tfreeresistance_holtr.label16.caption
 msgctxt "tfreeresistance_holtr.label16.caption"
 msgid "Propeller diametr, m"
-msgstr ""
+msgstr "Диаметр винта, м"
 
 #: tfreeresistance_holtr.label17.caption
 msgctxt "tfreeresistance_holtr.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Абсолютная шероховатость, мкм"
 
 #: tfreeresistance_holtr.label2.caption
 #, fuzzy
@@ -9253,7 +9299,7 @@ msgstr "Средняя осадка"
 #: tfreeresistance_holtr.label21.caption
 msgctxt "tfreeresistance_holtr.label21.caption"
 msgid "Different"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeresistance_holtr.label22.caption
 #, fuzzy
@@ -9339,13 +9385,13 @@ msgstr "[м]"
 
 #: tfreeresistance_holtr.label35.caption
 msgctxt "tfreeresistance_holtr.label35.caption"
-msgid "Angle with battoks about 10"
-msgstr ""
+msgid "Angle with buttocks about 10"
+msgstr "Угол с батоксами около 10"
 
 #: tfreeresistance_holtr.label36.caption
 msgctxt "tfreeresistance_holtr.label36.caption"
-msgid "Angle with battoks about 20"
-msgstr ""
+msgid "Angle with buttocks about 20"
+msgstr "Угол с батоксами около 20"
 
 #: tfreeresistance_holtr.label37.caption
 msgctxt "tfreeresistance_holtr.label37.caption"
@@ -9355,7 +9401,7 @@ msgstr ""
 #: tfreeresistance_holtr.label38.caption
 msgctxt "tfreeresistance_holtr.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Купол"
 
 #: tfreeresistance_holtr.label4.caption
 #, fuzzy
@@ -9402,12 +9448,12 @@ msgstr ""
 #: tfreeresistance_holtr.label6_2.caption
 msgctxt "tfreeresistance_holtr.label6_2.caption"
 msgid "Height of 3% wave, m "
-msgstr ""
+msgstr "Высота 3% волны, м"
 
 #: tfreeresistance_holtr.label6_3.caption
 msgctxt "tfreeresistance_holtr.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Курсовой угол движущейся волны, грд"
 
 #: tfreeresistance_holtr.label6_4.caption
 msgctxt "tfreeresistance_holtr.label6_4.caption"
@@ -9417,27 +9463,27 @@ msgstr ""
 #: tfreeresistance_holtr.label6_5.caption
 msgctxt "tfreeresistance_holtr.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Курсовой угол ветра, грд"
 
 #: tfreeresistance_holtr.label6_6.caption
 msgctxt "tfreeresistance_holtr.label6_6.caption"
 msgid "Height of board above water, m"
-msgstr ""
+msgstr "Высота доски над водой, м"
 
 #: tfreeresistance_holtr.label6_7.caption
 msgctxt "tfreeresistance_holtr.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Плотность воздуха, кг/м^3"
 
 #: tfreeresistance_holtr.label6_8.caption
 msgctxt "tfreeresistance_holtr.label6_8.caption"
 msgid "Height of COG area of superstructure above waterline, m"
-msgstr ""
+msgstr "Высота центра тяжести площади надстройки выше ватерлинии, м"
 
 #: tfreeresistance_holtr.label6_9.caption
 msgctxt "tfreeresistance_holtr.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Глубина воды, м"
 
 #: tfreeresistance_holtr.label7.caption
 msgctxt "tfreeresistance_holtr.label7.caption"
@@ -9453,17 +9499,6 @@ msgstr ""
 msgid "Transom wetted area, m^2"
 msgstr ""
 
-#: tfreeresistance_holtr.printbutton.caption
-msgctxt "tfreeresistance_holtr.printbutton.caption"
-msgid "PrintButton"
-msgstr ""
-
-#: tfreeresistance_holtr.printbutton.hint
-#, fuzzy
-msgctxt "tfreeresistance_holtr.printbutton.hint"
-msgid "Print the results of the calculation."
-msgstr "Печать результатов расчета."
-
 #: tfreeresistance_holtr.results.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.results.caption"
@@ -9476,28 +9511,38 @@ msgctxt "tfreeresistance_holtr.results2.caption"
 msgid "Help"
 msgstr "Помощ"
 
+#: tfreeresistance_holtr.tbcalculate.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.tbcalculate.hint"
+msgid "Start the calculation."
+msgstr "Запустите расчет."
+
+#: tfreeresistance_holtr.tbclose.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.tbclose.hint"
+msgid "Close window without saving changes."
+msgstr "Закрыть окно без сохранения."
+
+#: tfreeresistance_holtr.tbclosesave.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.tbclosesave.hint"
+msgid "Close the window and save changes."
+msgstr "Закрыть окно и сохранить изменения."
+
+#: tfreeresistance_holtr.tbprint.caption
+msgid "tbPrint"
+msgstr ""
+
+#: tfreeresistance_holtr.tbprint.hint
+#, fuzzy
+msgctxt "tfreeresistance_holtr.tbprint.hint"
+msgid "Print the results of the calculation."
+msgstr "Печать результатов расчета."
+
 #: tfreeresistance_holtr.toolbar1.caption
 msgctxt "tfreeresistance_holtr.toolbar1.caption"
 msgid "ToolBar1"
 msgstr ""
-
-#: tfreeresistance_holtr.toolbutton20.hint
-#, fuzzy
-msgctxt "tfreeresistance_holtr.toolbutton20.hint"
-msgid "Start the calculation."
-msgstr "Запустите расчет."
-
-#: tfreeresistance_holtr.toolbutton25.hint
-#, fuzzy
-msgctxt "tfreeresistance_holtr.toolbutton25.hint"
-msgid "Close the window and save changes."
-msgstr "Закрыть окно и сохранить изменения."
-
-#: tfreeresistance_holtr.toolbutton7.hint
-#, fuzzy
-msgctxt "tfreeresistance_holtr.toolbutton7.hint"
-msgid "Close window without saving changes."
-msgstr "Закрыть окно без сохранения."
 
 #: tfreeresistance_holtr._label10.caption
 msgctxt "tfreeresistance_holtr._label10.caption"
@@ -9546,8 +9591,9 @@ msgstr "уз"
 
 #: tfreeresistance_holtr._label36.caption
 #, fuzzy
+#| msgid "*10-6  m2/s"
 msgctxt "tfreeresistance_holtr._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr "*10-6 м2/с"
 
 #: tfreeresistance_holtr._label8.caption
@@ -9573,6 +9619,15 @@ msgstr ""
 #: tfreeresistance_kaper.caption
 msgid "Kaper resistance calculation."
 msgstr "Расчет сопротивления по методу Kaper для каноэ."
+
+#: tfreeresistance_kaper.chart.axislist[0].title.caption
+msgid "Resistance [Lbs]"
+msgstr ""
+
+#: tfreeresistance_kaper.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_kaper.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
 
 #: tfreeresistance_kaper.checkbox2.caption
 msgctxt "tfreeresistance_kaper.checkbox2.caption"
@@ -9717,6 +9772,22 @@ msgstr ""
 msgid "Resistance for multihull ships"
 msgstr ""
 
+#: tfreeresistance_mh.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_mh.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Сопротивление, кН"
+
+#: tfreeresistance_mh.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_mh.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_mh.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_mh.chart.axislist[2].title.caption"
+msgid "Power [kW]"
+msgstr ""
+
 #: tfreeresistance_mh.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_mh.checkbox2.caption"
@@ -9730,7 +9801,7 @@ msgstr ""
 #: tfreeresistance_mh.data2.caption
 msgctxt "tfreeresistance_mh.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Дополнительные данные"
 
 #: tfreeresistance_mh.estimate2box.caption
 msgctxt "tfreeresistance_mh.estimate2box.caption"
@@ -9764,12 +9835,12 @@ msgstr "Корпус"
 #: tfreeresistance_mh.groupbox3.caption
 msgctxt "tfreeresistance_mh.groupbox3.caption"
 msgid "Added data input:"
-msgstr ""
+msgstr "Ввод дополнительных данных"
 
 #: tfreeresistance_mh.groupbox4.caption
 msgctxt "tfreeresistance_mh.groupbox4.caption"
 msgid "Number of appendages :"
-msgstr ""
+msgstr "Кол-во выступающих частей:"
 
 #: tfreeresistance_mh.label1.caption
 #, fuzzy
@@ -9802,12 +9873,12 @@ msgstr "Количество гребных винтов"
 #: tfreeresistance_mh.label16.caption
 msgctxt "tfreeresistance_mh.label16.caption"
 msgid "Propeller diametr, m"
-msgstr ""
+msgstr "Диаметр винта, м"
 
 #: tfreeresistance_mh.label17.caption
 msgctxt "tfreeresistance_mh.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Абсолютная шероховатость, мкм"
 
 #: tfreeresistance_mh.label19.caption
 msgid "Calculation by the method:"
@@ -9828,7 +9899,7 @@ msgstr "Средняя осадка"
 #: tfreeresistance_mh.label21.caption
 msgctxt "tfreeresistance_mh.label21.caption"
 msgid "Different"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeresistance_mh.label22.caption
 #, fuzzy
@@ -9869,7 +9940,7 @@ msgstr "Площадь ватерлинии"
 #: tfreeresistance_mh.label281.caption
 msgctxt "tfreeresistance_mh.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Киль и скег:"
 
 #: tfreeresistance_mh.label3.caption
 #, fuzzy
@@ -9895,7 +9966,7 @@ msgstr ""
 #: tfreeresistance_mh.label33.caption
 msgctxt "tfreeresistance_mh.label33.caption"
 msgid "Exposed shafts:"
-msgstr ""
+msgstr "Наружные валы:"
 
 #: tfreeresistance_mh.label34.caption
 msgctxt "tfreeresistance_mh.label34.caption"
@@ -9904,13 +9975,13 @@ msgstr "[м]"
 
 #: tfreeresistance_mh.label35.caption
 msgctxt "tfreeresistance_mh.label35.caption"
-msgid "Angle with battoks about 10"
-msgstr ""
+msgid "Angle with buttocks about 10"
+msgstr "Угол с батоксами около 10"
 
 #: tfreeresistance_mh.label36.caption
 msgctxt "tfreeresistance_mh.label36.caption"
-msgid "Angle with battoks about 20"
-msgstr ""
+msgid "Angle with buttocks about 20"
+msgstr "Угол с батоксами около 20"
 
 #: tfreeresistance_mh.label37.caption
 msgctxt "tfreeresistance_mh.label37.caption"
@@ -9920,7 +9991,7 @@ msgstr ""
 #: tfreeresistance_mh.label38.caption
 msgctxt "tfreeresistance_mh.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Купол"
 
 #: tfreeresistance_mh.label39.caption
 #, fuzzy
@@ -9955,7 +10026,7 @@ msgstr "Руль за скегом/штевнем"
 #: tfreeresistance_mh.label61.caption
 msgctxt "tfreeresistance_mh.label61.caption"
 msgid "Presence of rudders (0-No, 1-Yes):"
-msgstr ""
+msgstr "Наличие рулей (0-нет, 1-да):"
 
 #: tfreeresistance_mh.label6_1.caption
 msgctxt "tfreeresistance_mh.label6_1.caption"
@@ -9975,12 +10046,12 @@ msgstr ""
 #: tfreeresistance_mh.label6_2.caption
 msgctxt "tfreeresistance_mh.label6_2.caption"
 msgid "Height of 3% wave, m "
-msgstr ""
+msgstr "Высота 3% волны, м"
 
 #: tfreeresistance_mh.label6_3.caption
 msgctxt "tfreeresistance_mh.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Курсовой угол движущейся волны, грд"
 
 #: tfreeresistance_mh.label6_4.caption
 msgctxt "tfreeresistance_mh.label6_4.caption"
@@ -9990,27 +10061,27 @@ msgstr ""
 #: tfreeresistance_mh.label6_5.caption
 msgctxt "tfreeresistance_mh.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Курсовой угол ветра, грд"
 
 #: tfreeresistance_mh.label6_6.caption
 msgctxt "tfreeresistance_mh.label6_6.caption"
 msgid "Height of board above water, m"
-msgstr ""
+msgstr "Высота доски над водой, м"
 
 #: tfreeresistance_mh.label6_7.caption
 msgctxt "tfreeresistance_mh.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Плотность воздуха, кг/м^3"
 
 #: tfreeresistance_mh.label6_8.caption
 msgctxt "tfreeresistance_mh.label6_8.caption"
 msgid "Height of COG area of superstructure above waterline, m"
-msgstr ""
+msgstr "Высота центра тяжести площади надстройки выше ватерлинии, м"
 
 #: tfreeresistance_mh.label6_9.caption
 msgctxt "tfreeresistance_mh.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Глубина воды, м"
 
 #: tfreeresistance_mh.label7.caption
 msgctxt "tfreeresistance_mh.label7.caption"
@@ -10120,8 +10191,9 @@ msgstr "уз"
 
 #: tfreeresistance_mh._label36.caption
 #, fuzzy
+#| msgid "*10-6  m2/s"
 msgctxt "tfreeresistance_mh._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr "*10-6 м2/с"
 
 #: tfreeresistance_mh._label8.caption
@@ -10153,6 +10225,22 @@ msgstr ""
 msgid "Resistance for small displacement ships methods"
 msgstr ""
 
+#: tfreeresistance_oortmer.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_oortmer.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Сопротивление, кН"
+
+#: tfreeresistance_oortmer.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_oortmer.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_oortmer.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_oortmer.chart.axislist[2].title.caption"
+msgid "Power [kW]"
+msgstr ""
+
 #: tfreeresistance_oortmer.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.checkbox2.caption"
@@ -10166,7 +10254,7 @@ msgstr ""
 #: tfreeresistance_oortmer.data2.caption
 msgctxt "tfreeresistance_oortmer.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Дополнительные данные"
 
 #: tfreeresistance_oortmer.estimate2box.caption
 msgctxt "tfreeresistance_oortmer.estimate2box.caption"
@@ -10200,12 +10288,12 @@ msgstr "Корпус"
 #: tfreeresistance_oortmer.groupbox3.caption
 msgctxt "tfreeresistance_oortmer.groupbox3.caption"
 msgid "Added data input:"
-msgstr ""
+msgstr "Ввод дополнительных данных"
 
 #: tfreeresistance_oortmer.groupbox4.caption
 msgctxt "tfreeresistance_oortmer.groupbox4.caption"
 msgid "Number of appendages :"
-msgstr ""
+msgstr "Кол-во выступающих частей:"
 
 #: tfreeresistance_oortmer.label1.caption
 #, fuzzy
@@ -10248,7 +10336,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label17.caption
 msgctxt "tfreeresistance_oortmer.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Абсолютная шероховатость, мкм"
 
 #: tfreeresistance_oortmer.label2.caption
 #, fuzzy
@@ -10265,7 +10353,7 @@ msgstr "Средняя осадка"
 #: tfreeresistance_oortmer.label21.caption
 msgctxt "tfreeresistance_oortmer.label21.caption"
 msgid "Different"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeresistance_oortmer.label22.caption
 #, fuzzy
@@ -10311,7 +10399,7 @@ msgstr "Скег"
 #: tfreeresistance_oortmer.label281.caption
 msgctxt "tfreeresistance_oortmer.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Киль и скег:"
 
 #: tfreeresistance_oortmer.label29.caption
 #, fuzzy
@@ -10343,7 +10431,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label33.caption
 msgctxt "tfreeresistance_oortmer.label33.caption"
 msgid "Exposed shafts:"
-msgstr ""
+msgstr "Наружные валы:"
 
 #: tfreeresistance_oortmer.label34.caption
 msgctxt "tfreeresistance_oortmer.label34.caption"
@@ -10352,13 +10440,13 @@ msgstr "[м]"
 
 #: tfreeresistance_oortmer.label35.caption
 msgctxt "tfreeresistance_oortmer.label35.caption"
-msgid "Angle with battoks about 10"
-msgstr ""
+msgid "Angle with buttocks about 10"
+msgstr "Угол с батоксами около 10"
 
 #: tfreeresistance_oortmer.label36.caption
 msgctxt "tfreeresistance_oortmer.label36.caption"
-msgid "Angle with battoks about 20"
-msgstr ""
+msgid "Angle with buttocks about 20"
+msgstr "Угол с батоксами около 20"
 
 #: tfreeresistance_oortmer.label37.caption
 msgctxt "tfreeresistance_oortmer.label37.caption"
@@ -10368,7 +10456,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label38.caption
 msgctxt "tfreeresistance_oortmer.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Купол"
 
 #: tfreeresistance_oortmer.label4.caption
 #, fuzzy
@@ -10396,7 +10484,7 @@ msgstr "Руль за скегом/штевнем"
 #: tfreeresistance_oortmer.label61.caption
 msgctxt "tfreeresistance_oortmer.label61.caption"
 msgid "Presence of rudders (0-No, 1-Yes):"
-msgstr ""
+msgstr "Наличие рулей (0-нет, 1-да):"
 
 #: tfreeresistance_oortmer.label6_1.caption
 msgctxt "tfreeresistance_oortmer.label6_1.caption"
@@ -10416,12 +10504,12 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_2.caption
 msgctxt "tfreeresistance_oortmer.label6_2.caption"
 msgid "Height of 3% wave, m "
-msgstr ""
+msgstr "Высота 3% волны, м"
 
 #: tfreeresistance_oortmer.label6_3.caption
 msgctxt "tfreeresistance_oortmer.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Курсовой угол движущейся волны, грд"
 
 #: tfreeresistance_oortmer.label6_4.caption
 msgctxt "tfreeresistance_oortmer.label6_4.caption"
@@ -10431,27 +10519,27 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_5.caption
 msgctxt "tfreeresistance_oortmer.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Курсовой угол ветра, грд"
 
 #: tfreeresistance_oortmer.label6_6.caption
 msgctxt "tfreeresistance_oortmer.label6_6.caption"
 msgid "Height of board above water, m"
-msgstr ""
+msgstr "Высота доски над водой, м"
 
 #: tfreeresistance_oortmer.label6_7.caption
 msgctxt "tfreeresistance_oortmer.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Плотность воздуха, кг/м^3"
 
 #: tfreeresistance_oortmer.label6_8.caption
 msgctxt "tfreeresistance_oortmer.label6_8.caption"
 msgid "Height of COG area of superstructure above waterline, m"
-msgstr ""
+msgstr "Высота центра тяжести площади надстройки выше ватерлинии, м"
 
 #: tfreeresistance_oortmer.label6_9.caption
 msgctxt "tfreeresistance_oortmer.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Глубина воды, м"
 
 #: tfreeresistance_oortmer.label7.caption
 msgctxt "tfreeresistance_oortmer.label7.caption"
@@ -10561,8 +10649,9 @@ msgstr "уз"
 
 #: tfreeresistance_oortmer._label36.caption
 #, fuzzy
+#| msgid "*10-6  m2/s"
 msgctxt "tfreeresistance_oortmer._label36.caption"
-msgid "*10-6  m2/s"
+msgid "E-6  m2/s"
 msgstr "*10-6 м2/с"
 
 #: tfreeresistance_oortmer._label8.caption
@@ -10595,6 +10684,22 @@ msgctxt "tfreeresistance_ost.caption"
 msgid "Resistance for displacement ships"
 msgstr ""
 
+#: tfreeresistance_ost.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_ost.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Сопротивление, кН"
+
+#: tfreeresistance_ost.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_ost.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_ost.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_ost.chart.axislist[2].title.caption"
+msgid "Power [kW]"
+msgstr ""
+
 #: tfreeresistance_ost.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_ost.checkbox2.caption"
@@ -10609,7 +10714,7 @@ msgstr ""
 #: tfreeresistance_ost.data2.caption
 msgctxt "tfreeresistance_ost.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Дополнительные данные"
 
 #: tfreeresistance_ost.estimate2box.caption
 msgctxt "tfreeresistance_ost.estimate2box.caption"
@@ -10643,12 +10748,12 @@ msgstr "Корпус"
 #: tfreeresistance_ost.groupbox3.caption
 msgctxt "tfreeresistance_ost.groupbox3.caption"
 msgid "Added data input:"
-msgstr ""
+msgstr "Ввод дополнительных данных"
 
 #: tfreeresistance_ost.groupbox4.caption
 msgctxt "tfreeresistance_ost.groupbox4.caption"
 msgid "Number of appendages :"
-msgstr ""
+msgstr "Кол-во выступающих частей:"
 
 #: tfreeresistance_ost.label1.caption
 #, fuzzy
@@ -10681,12 +10786,12 @@ msgstr "Количество гребных винтов"
 #: tfreeresistance_ost.label16.caption
 msgctxt "tfreeresistance_ost.label16.caption"
 msgid "Propeller diametr, m"
-msgstr ""
+msgstr "Диаметр винта, м"
 
 #: tfreeresistance_ost.label17.caption
 msgctxt "tfreeresistance_ost.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Абсолютная шероховатость, мкм"
 
 #: tfreeresistance_ost.label19.caption
 msgctxt "tfreeresistance_ost.label19.caption"
@@ -10708,7 +10813,7 @@ msgstr "Средняя осадка"
 #: tfreeresistance_ost.label21.caption
 msgctxt "tfreeresistance_ost.label21.caption"
 msgid "Different"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeresistance_ost.label22.caption
 #, fuzzy
@@ -10749,7 +10854,7 @@ msgstr "Площадь ватерлинии"
 #: tfreeresistance_ost.label281.caption
 msgctxt "tfreeresistance_ost.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Киль и скег:"
 
 #: tfreeresistance_ost.label3.caption
 #, fuzzy
@@ -10775,7 +10880,7 @@ msgstr ""
 #: tfreeresistance_ost.label33.caption
 msgctxt "tfreeresistance_ost.label33.caption"
 msgid "Exposed shafts:"
-msgstr ""
+msgstr "Наружные валы:"
 
 #: tfreeresistance_ost.label34.caption
 msgctxt "tfreeresistance_ost.label34.caption"
@@ -10784,13 +10889,13 @@ msgstr "[м]"
 
 #: tfreeresistance_ost.label35.caption
 msgctxt "tfreeresistance_ost.label35.caption"
-msgid "Angle with battoks about 10"
-msgstr ""
+msgid "Angle with buttocks about 10"
+msgstr "Угол с батоксами около 10"
 
 #: tfreeresistance_ost.label36.caption
 msgctxt "tfreeresistance_ost.label36.caption"
-msgid "Angle with battoks about 20"
-msgstr ""
+msgid "Angle with buttocks about 20"
+msgstr "Угол с батоксами около 20"
 
 #: tfreeresistance_ost.label37.caption
 msgctxt "tfreeresistance_ost.label37.caption"
@@ -10800,7 +10905,7 @@ msgstr ""
 #: tfreeresistance_ost.label38.caption
 msgctxt "tfreeresistance_ost.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Купол"
 
 #: tfreeresistance_ost.label39.caption
 #, fuzzy
@@ -10835,7 +10940,7 @@ msgstr "Руль за скегом/штевнем"
 #: tfreeresistance_ost.label61.caption
 msgctxt "tfreeresistance_ost.label61.caption"
 msgid "Presence of rudders (0-No, 1-Yes):"
-msgstr ""
+msgstr "Наличие рулей (0-нет, 1-да):"
 
 #: tfreeresistance_ost.label6_1.caption
 msgctxt "tfreeresistance_ost.label6_1.caption"
@@ -10855,12 +10960,12 @@ msgstr ""
 #: tfreeresistance_ost.label6_2.caption
 msgctxt "tfreeresistance_ost.label6_2.caption"
 msgid "Height of 3% wave, m "
-msgstr ""
+msgstr "Высота 3% волны, м"
 
 #: tfreeresistance_ost.label6_3.caption
 msgctxt "tfreeresistance_ost.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Курсовой угол движущейся волны, грд"
 
 #: tfreeresistance_ost.label6_4.caption
 msgctxt "tfreeresistance_ost.label6_4.caption"
@@ -10870,27 +10975,27 @@ msgstr ""
 #: tfreeresistance_ost.label6_5.caption
 msgctxt "tfreeresistance_ost.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Курсовой угол ветра, грд"
 
 #: tfreeresistance_ost.label6_6.caption
 msgctxt "tfreeresistance_ost.label6_6.caption"
 msgid "Height of board above water, m"
-msgstr ""
+msgstr "Высота доски над водой, м"
 
 #: tfreeresistance_ost.label6_7.caption
 msgctxt "tfreeresistance_ost.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Плотность воздуха, кг/м^3"
 
 #: tfreeresistance_ost.label6_8.caption
 msgctxt "tfreeresistance_ost.label6_8.caption"
 msgid "Height of COG area of superstructure above waterline, m"
-msgstr ""
+msgstr "Высота центра тяжести площади надстройки выше ватерлинии, м"
 
 #: tfreeresistance_ost.label6_9.caption
 msgctxt "tfreeresistance_ost.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Глубина воды, м"
 
 #: tfreeresistance_ost.label7.caption
 msgctxt "tfreeresistance_ost.label7.caption"
@@ -11285,6 +11390,22 @@ msgctxt "tfreeresistance_rbhs.caption"
 msgid "Resistance for displacement ships"
 msgstr ""
 
+#: tfreeresistance_rbhs.chart.axislist[0].title.caption
+#, fuzzy
+msgctxt "tfreeresistance_rbhs.chart.axislist[0].title.caption"
+msgid "Resistance [kN]"
+msgstr "Сопротивление, кН"
+
+#: tfreeresistance_rbhs.chart.axislist[1].title.caption
+msgctxt "tfreeresistance_rbhs.chart.axislist[1].title.caption"
+msgid "Speed [knots]"
+msgstr ""
+
+#: tfreeresistance_rbhs.chart.axislist[2].title.caption
+msgctxt "tfreeresistance_rbhs.chart.axislist[2].title.caption"
+msgid "Power [kW]"
+msgstr ""
+
 #: tfreeresistance_rbhs.checkbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.checkbox2.caption"
@@ -11299,7 +11420,7 @@ msgstr ""
 #: tfreeresistance_rbhs.data2.caption
 msgctxt "tfreeresistance_rbhs.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Дополнительные данные"
 
 #: tfreeresistance_rbhs.estimate2box.caption
 msgctxt "tfreeresistance_rbhs.estimate2box.caption"
@@ -11333,12 +11454,12 @@ msgstr "Корпус"
 #: tfreeresistance_rbhs.groupbox3.caption
 msgctxt "tfreeresistance_rbhs.groupbox3.caption"
 msgid "Added data input:"
-msgstr ""
+msgstr "Ввод дополнительных данных"
 
 #: tfreeresistance_rbhs.groupbox4.caption
 msgctxt "tfreeresistance_rbhs.groupbox4.caption"
 msgid "Number of appendages :"
-msgstr ""
+msgstr "Кол-во выступающих частей:"
 
 #: tfreeresistance_rbhs.label1.caption
 #, fuzzy
@@ -11371,12 +11492,12 @@ msgstr "Количество гребных винтов"
 #: tfreeresistance_rbhs.label16.caption
 msgctxt "tfreeresistance_rbhs.label16.caption"
 msgid "Propeller diametr, m"
-msgstr ""
+msgstr "Диаметр винта, м"
 
 #: tfreeresistance_rbhs.label17.caption
 msgctxt "tfreeresistance_rbhs.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Абсолютная шероховатость, мкм"
 
 #: tfreeresistance_rbhs.label19.caption
 msgctxt "tfreeresistance_rbhs.label19.caption"
@@ -11398,7 +11519,7 @@ msgstr "Средняя осадка"
 #: tfreeresistance_rbhs.label21.caption
 msgctxt "tfreeresistance_rbhs.label21.caption"
 msgid "Different"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeresistance_rbhs.label22.caption
 #, fuzzy
@@ -11439,7 +11560,7 @@ msgstr "Площадь ватерлинии"
 #: tfreeresistance_rbhs.label281.caption
 msgctxt "tfreeresistance_rbhs.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Киль и скег:"
 
 #: tfreeresistance_rbhs.label3.caption
 #, fuzzy
@@ -11465,7 +11586,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label33.caption
 msgctxt "tfreeresistance_rbhs.label33.caption"
 msgid "Exposed shafts:"
-msgstr ""
+msgstr "Наружные валы:"
 
 #: tfreeresistance_rbhs.label34.caption
 msgctxt "tfreeresistance_rbhs.label34.caption"
@@ -11474,13 +11595,13 @@ msgstr "[м]"
 
 #: tfreeresistance_rbhs.label35.caption
 msgctxt "tfreeresistance_rbhs.label35.caption"
-msgid "Angle with battoks about 10"
-msgstr ""
+msgid "Angle with buttocks about 10"
+msgstr "Угол с батоксами около 10"
 
 #: tfreeresistance_rbhs.label36.caption
 msgctxt "tfreeresistance_rbhs.label36.caption"
-msgid "Angle with battoks about 20"
-msgstr ""
+msgid "Angle with buttocks about 20"
+msgstr "Угол с батоксами около 20"
 
 #: tfreeresistance_rbhs.label37.caption
 msgctxt "tfreeresistance_rbhs.label37.caption"
@@ -11490,7 +11611,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label38.caption
 msgctxt "tfreeresistance_rbhs.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Купол"
 
 #: tfreeresistance_rbhs.label39.caption
 #, fuzzy
@@ -11525,7 +11646,7 @@ msgstr "Руль за скегом/штевнем"
 #: tfreeresistance_rbhs.label61.caption
 msgctxt "tfreeresistance_rbhs.label61.caption"
 msgid "Presence of rudders (0-No, 1-Yes):"
-msgstr ""
+msgstr "Наличие рулей (0-нет, 1-да):"
 
 #: tfreeresistance_rbhs.label6_1.caption
 msgctxt "tfreeresistance_rbhs.label6_1.caption"
@@ -11545,12 +11666,12 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_2.caption
 msgctxt "tfreeresistance_rbhs.label6_2.caption"
 msgid "Height of 3% wave, m "
-msgstr ""
+msgstr "Высота 3% волны, м"
 
 #: tfreeresistance_rbhs.label6_3.caption
 msgctxt "tfreeresistance_rbhs.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Курсовой угол движущейся волны, грд"
 
 #: tfreeresistance_rbhs.label6_4.caption
 msgctxt "tfreeresistance_rbhs.label6_4.caption"
@@ -11560,27 +11681,27 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_5.caption
 msgctxt "tfreeresistance_rbhs.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Курсовой угол ветра, грд"
 
 #: tfreeresistance_rbhs.label6_6.caption
 msgctxt "tfreeresistance_rbhs.label6_6.caption"
 msgid "Height of board above water, m"
-msgstr ""
+msgstr "Высота доски над водой, м"
 
 #: tfreeresistance_rbhs.label6_7.caption
 msgctxt "tfreeresistance_rbhs.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Плотность воздуха, кг/м^3"
 
 #: tfreeresistance_rbhs.label6_8.caption
 msgctxt "tfreeresistance_rbhs.label6_8.caption"
 msgid "Height of COG area of superstructure above waterline, m"
-msgstr ""
+msgstr "Высота центра тяжести площади надстройки выше ватерлинии, м"
 
 #: tfreeresistance_rbhs.label6_9.caption
 msgctxt "tfreeresistance_rbhs.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Глубина воды, м"
 
 #: tfreeresistance_rbhs.label7.caption
 msgctxt "tfreeresistance_rbhs.label7.caption"

@@ -1,21 +1,22 @@
 object FreeResistance_Hollen: TFreeResistance_Hollen
   Left = 556
-  Height = 843
+  Height = 1054
   Top = 107
-  Width = 1200
+  Width = 1500
   Caption = 'Resistance for sea ships by Hollenbachs method 1998'
-  ClientHeight = 843
-  ClientWidth = 1200
+  ClientHeight = 1054
+  ClientWidth = 1500
+  DesignTimePPI = 120
   Position = poScreenCenter
   LCLVersion = '3.2.0.0'
   object ToolBar1: TToolBar
     Left = 0
-    Height = 24
+    Height = 30
     Top = 0
-    Width = 1200
+    Width = 1500
     AutoSize = True
-    ButtonHeight = 22
-    ButtonWidth = 50
+    ButtonHeight = 28
+    ButtonWidth = 62
     Caption = 'ToolBar1'
     Color = clForm
     Images = MenuImages
@@ -25,14 +26,14 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     TabOrder = 0
     object _ToolButton10: TToolButton
       Left = 5
-      Height = 22
+      Height = 28
       Top = 2
       Caption = '_ToolButton10'
       ImageIndex = 6
       Style = tbsSeparator
     end
     object ToolButton20: TToolButton
-      Left = 13
+      Left = 15
       Hint = 'Start the calculation.'
       Top = 2
       AutoSize = True
@@ -40,7 +41,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
       OnClick = ToolButton20Click
     end
     object PrintButton: TToolButton
-      Left = 63
+      Left = 77
       Hint = 'Print the results of the calculation.'
       Top = 2
       AutoSize = True
@@ -49,15 +50,15 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 113
-      Height = 22
+      Left = 139
+      Height = 28
       Top = 2
       Caption = '_ToolButton14'
       ImageIndex = 12
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 121
+      Left = 149
       Hint = 'Close the window and save changes.'
       Top = 2
       AutoSize = True
@@ -65,7 +66,7 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 171
+      Left = 211
       Hint = 'Close window without saving changes.'
       Top = 2
       AutoSize = True
@@ -75,9 +76,9 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 819
-    Top = 24
-    Width = 1200
+    Height = 1024
+    Top = 30
+    Width = 1500
     ActivePage = General
     Align = alClient
     ParentFont = False
@@ -85,14 +86,14 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     TabOrder = 1
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 779
-      ClientWidth = 1196
+      ClientHeight = 991
+      ClientWidth = 1492
       ParentFont = False
       object Panel1: TPanel
         Left = 0
-        Height = 779
+        Height = 991
         Top = 0
-        Width = 651
+        Width = 589
         Align = alLeft
         AutoSize = True
         BevelOuter = bvLowered
@@ -101,28 +102,28 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
         ChildSizing.VerticalSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 779
-        ClientWidth = 651
+        ClientHeight = 991
+        ClientWidth = 589
         ParentColor = False
         TabOrder = 0
         object GroupBox1: TGroupBox
           Left = 10
-          Height = 160
+          Height = 133
           Top = 10
-          Width = 630
+          Width = 568
           AutoSize = True
           Caption = 'General'
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 132
-          ClientWidth = 626
+          ClientHeight = 108
+          ClientWidth = 564
           TabOrder = 0
           object Panel2: TPanel
             Left = 0
-            Height = 132
+            Height = 108
             Top = 0
-            Width = 305
+            Width = 276
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
@@ -131,55 +132,55 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 132
-            ClientWidth = 305
+            ClientHeight = 108
+            ClientWidth = 276
             TabOrder = 0
             object Label1: TLabel
               Left = 6
-              Height = 36
+              Height = 28
               Top = 10
-              Width = 139
+              Width = 105
               Caption = 'Start speed'
               Layout = tlCenter
               ParentColor = False
               WordWrap = True
             end
             object StartSpeedBox: TFloatSpinEdit
-              Left = 151
-              Height = 36
+              Left = 117
+              Height = 28
               Top = 10
-              Width = 80
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 1
               MaxValue = 50
               OnExit = StartSpeedBoxAfterSetValue
               TabOrder = 0
             end
             object _Label31: TLabel
-              Left = 237
-              Height = 36
+              Left = 223
+              Height = 28
               Top = 10
-              Width = 22
+              Width = 15
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
             end
             object Label2: TLabel
               Left = 6
-              Height = 36
-              Top = 48
-              Width = 139
+              Height = 28
+              Top = 40
+              Width = 105
               Caption = 'Estimate speed '
               Layout = tlCenter
               ParentColor = False
               WordWrap = True
             end
             object EndSpeedBox: TFloatSpinEdit
-              Left = 151
-              Height = 36
-              Top = 48
-              Width = 80
+              Left = 117
+              Height = 28
+              Top = 40
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 1
               MaxValue = 50
@@ -187,29 +188,29 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
               TabOrder = 1
             end
             object _Label32: TLabel
-              Left = 237
-              Height = 36
-              Top = 48
-              Width = 22
+              Left = 223
+              Height = 28
+              Top = 40
+              Width = 15
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
             end
             object Label3: TLabel
               Left = 6
-              Height = 36
-              Top = 86
-              Width = 139
+              Height = 28
+              Top = 70
+              Width = 105
               Caption = 'Maximal speed'
               Layout = tlCenter
               ParentColor = False
               WordWrap = True
             end
             object StepSpeedBox: TFloatSpinEdit
-              Left = 151
-              Height = 36
-              Top = 86
-              Width = 80
+              Left = 117
+              Height = 28
+              Top = 70
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 1
               MaxValue = 10
@@ -217,20 +218,20 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
               TabOrder = 2
             end
             object _Label33: TLabel
-              Left = 237
-              Height = 36
-              Top = 86
-              Width = 22
+              Left = 223
+              Height = 28
+              Top = 70
+              Width = 15
               Caption = 'kn'
               Layout = tlCenter
               ParentColor = False
             end
           end
           object Panel3: TPanel
-            Left = 305
-            Height = 132
+            Left = 276
+            Height = 108
             Top = 0
-            Width = 321
+            Width = 288
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
@@ -239,52 +240,52 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 132
-            ClientWidth = 321
+            ClientHeight = 108
+            ClientWidth = 288
             TabOrder = 1
             object Label4: TLabel
               Left = 6
-              Height = 36
+              Height = 28
               Top = 10
-              Width = 123
+              Width = 90
               Caption = 'Water density'
               Layout = tlCenter
               ParentColor = False
             end
             object DensityBox: TFloatSpinEdit
-              Left = 135
-              Height = 36
+              Left = 102
+              Height = 28
               Top = 10
-              Width = 80
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 3
               OnExit = StartSpeedBoxAfterSetValue
               TabOrder = 0
             end
             object Label34: TLabel
-              Left = 221
-              Height = 36
+              Left = 208
+              Height = 28
               Top = 10
-              Width = 55
+              Width = 43
               Caption = 't/m^3'
               Layout = tlCenter
               ParentColor = False
             end
             object Label5: TLabel
               Left = 6
-              Height = 36
-              Top = 48
-              Width = 123
+              Height = 28
+              Top = 40
+              Width = 90
               Caption = 'Viscosity'
               Layout = tlCenter
               ParentColor = False
             end
             object ViscosityBox: TFloatSpinEdit
-              Left = 135
-              Height = 36
-              Top = 48
-              Width = 80
+              Left = 102
+              Height = 28
+              Top = 40
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 4
               MaxValue = 1
@@ -292,10 +293,10 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
               TabOrder = 1
             end
             object _Label36: TLabel
-              Left = 221
-              Height = 36
-              Top = 48
-              Width = 55
+              Left = 208
+              Height = 28
+              Top = 40
+              Width = 43
               Caption = 'm^2/s'
               Layout = tlCenter
               ParentColor = False
@@ -304,21 +305,21 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
         end
         object GroupBox2: TGroupBox
           Left = 10
-          Height = 576
-          Top = 180
-          Width = 630
+          Height = 469
+          Top = 153
+          Width = 568
           AutoSize = True
           Caption = 'Hull'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 548
-          ClientWidth = 626
+          ClientHeight = 444
+          ClientWidth = 564
           TabOrder = 1
           object Panel4: TPanel
             Left = 0
-            Height = 48
+            Height = 44
             Top = 0
-            Width = 626
+            Width = 564
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
@@ -327,14 +328,14 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 3
-            ClientHeight = 48
-            ClientWidth = 626
+            ClientHeight = 44
+            ClientWidth = 564
             TabOrder = 0
             object CheckBox2: TCheckBox
               Left = 6
-              Height = 28
+              Height = 24
               Top = 10
-              Width = 283
+              Width = 214
               Caption = 'Extract data from current hull'
               TabOrder = 0
               OnClick = CheckBox2Click
@@ -342,103 +343,103 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           end
           object Panel7: TPanel
             Left = 0
-            Height = 188
-            Top = 48
-            Width = 626
+            Height = 148
+            Top = 44
+            Width = 564
             BevelOuter = bvNone
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 188
-            ClientWidth = 626
+            ClientHeight = 148
+            ClientWidth = 564
             TabOrder = 1
             object Panel10: TPanel
               Left = 0
-              Height = 188
+              Height = 148
               Top = 0
-              Width = 285
+              Width = 257
               BevelOuter = bvNone
               ChildSizing.LeftRightSpacing = 6
               ChildSizing.HorizontalSpacing = 6
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 3
-              ClientHeight = 188
-              ClientWidth = 285
+              ClientHeight = 148
+              ClientWidth = 257
               TabOrder = 0
               object Label23: TLabel
                 Left = 6
-                Height = 36
+                Height = 28
                 Top = 0
-                Width = 152
+                Width = 110
                 Caption = 'Length waterline'
                 Layout = tlCenter
                 ParentColor = False
               end
               object LwlBox: TFloatSpinEdit
-                Left = 164
-                Height = 36
+                Left = 122
+                Height = 28
                 Top = 0
-                Width = 80
+                Width = 100
                 Alignment = taRightJustify
-                Constraints.MinWidth = 80
+                Constraints.MinWidth = 100
                 DecimalPlaces = 3
                 MaxValue = 600
                 OnExit = LwlBoxAfterSetValue
                 TabOrder = 0
               end
               object _Label8: TLabel
-                Left = 250
-                Height = 36
+                Left = 228
+                Height = 28
                 Top = 0
-                Width = 29
+                Width = 23
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label22: TLabel
                 Left = 6
-                Height = 36
-                Top = 38
-                Width = 152
+                Height = 28
+                Top = 30
+                Width = 110
                 Caption = 'Beam waterline '
                 Layout = tlCenter
                 ParentColor = False
               end
               object BwlBox: TFloatSpinEdit
-                Left = 164
-                Height = 36
-                Top = 38
-                Width = 80
+                Left = 122
+                Height = 28
+                Top = 30
+                Width = 100
                 Alignment = taRightJustify
                 DecimalPlaces = 3
                 OnExit = LwlBoxAfterSetValue
                 TabOrder = 1
               end
               object _Label9: TLabel
-                Left = 250
-                Height = 36
-                Top = 38
-                Width = 29
+                Left = 228
+                Height = 28
+                Top = 30
+                Width = 23
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label20: TLabel
                 Left = 6
-                Height = 36
-                Top = 76
-                Width = 152
+                Height = 28
+                Top = 60
+                Width = 110
                 Caption = 'Midship draft'
                 Layout = tlCenter
                 ParentColor = False
               end
               object DraftTotalBox: TFloatSpinEdit
-                Left = 164
-                Height = 36
-                Top = 76
-                Width = 80
+                Left = 122
+                Height = 28
+                Top = 60
+                Width = 100
                 Alignment = taRightJustify
                 DecimalPlaces = 3
                 MaxValue = 30
@@ -446,28 +447,28 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
                 TabOrder = 2
               end
               object _Label10: TLabel
-                Left = 250
-                Height = 36
-                Top = 76
-                Width = 29
+                Left = 228
+                Height = 28
+                Top = 60
+                Width = 23
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label21: TLabel
                 Left = 6
-                Height = 36
-                Top = 114
-                Width = 152
+                Height = 28
+                Top = 90
+                Width = 110
                 Caption = 'Different'
                 Layout = tlCenter
                 ParentColor = False
               end
               object DraftBox: TFloatSpinEdit
-                Left = 164
-                Height = 36
-                Top = 114
-                Width = 80
+                Left = 122
+                Height = 28
+                Top = 90
+                Width = 100
                 Alignment = taRightJustify
                 DecimalPlaces = 3
                 MaxValue = 30
@@ -475,102 +476,102 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
                 TabOrder = 3
               end
               object _Label11: TLabel
-                Left = 250
-                Height = 36
-                Top = 114
-                Width = 29
+                Left = 228
+                Height = 28
+                Top = 90
+                Width = 23
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label13: TLabel
                 Left = 6
-                Height = 36
-                Top = 152
-                Width = 152
+                Height = 28
+                Top = 120
+                Width = 110
                 Caption = 'Wetted surface'
                 Layout = tlCenter
                 ParentColor = False
               end
               object WettedSurfacebox: TFloatSpinEdit
-                Left = 164
-                Height = 36
-                Top = 152
-                Width = 80
+                Left = 122
+                Height = 28
+                Top = 120
+                Width = 100
                 Alignment = taRightJustify
                 MaxValue = 20000
                 OnExit = LwlBoxAfterSetValue
                 TabOrder = 4
               end
               object _Label12: TLabel
-                Left = 250
-                Height = 36
-                Top = 152
-                Width = 29
+                Left = 228
+                Height = 28
+                Top = 120
+                Width = 23
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
             end
             object Panel11: TPanel
-              Left = 291
-              Height = 188
+              Left = 263
+              Height = 148
               Top = 0
-              Width = 335
+              Width = 301
               BevelOuter = bvNone
               ChildSizing.LeftRightSpacing = 6
               ChildSizing.HorizontalSpacing = 6
               ChildSizing.VerticalSpacing = 2
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 3
-              ClientHeight = 188
-              ClientWidth = 335
+              ClientHeight = 148
+              ClientWidth = 301
               TabOrder = 1
               object Label27: TLabel
                 Left = 6
-                Height = 36
+                Height = 28
                 Top = 0
-                Width = 202
+                Width = 154
                 Caption = 'Length over surface'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Losbox: TFloatSpinEdit
-                Left = 214
-                Height = 36
+                Left = 166
+                Height = 28
                 Top = 0
-                Width = 80
+                Width = 100
                 HelpType = htKeyword
                 Alignment = taRightJustify
-                Constraints.MinWidth = 80
+                Constraints.MinWidth = 100
                 DecimalPlaces = 3
                 MaxValue = 600
                 OnExit = LwlBoxAfterSetValue
                 TabOrder = 0
               end
               object _Label14: TLabel
-                Left = 300
-                Height = 36
+                Left = 272
+                Height = 28
                 Top = 0
-                Width = 29
+                Width = 23
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label26: TLabel
                 Left = 6
-                Height = 36
-                Top = 38
-                Width = 202
+                Height = 28
+                Top = 30
+                Width = 154
                 Caption = 'Displacement'
                 Layout = tlCenter
                 ParentColor = False
               end
               object DisplacementBox: TFloatSpinEdit
-                Left = 214
-                Height = 36
-                Top = 38
-                Width = 80
+                Left = 166
+                Height = 28
+                Top = 30
+                Width = 100
                 HelpType = htKeyword
                 Alignment = taRightJustify
                 MaxValue = 500000
@@ -578,28 +579,28 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
                 TabOrder = 1
               end
               object _Label15: TLabel
-                Left = 300
-                Height = 36
-                Top = 38
-                Width = 29
+                Left = 272
+                Height = 28
+                Top = 30
+                Width = 23
                 Caption = '[m]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label25: TLabel
                 Left = 6
-                Height = 36
-                Top = 76
-                Width = 202
+                Height = 28
+                Top = 60
+                Width = 154
                 Caption = 'LCB'
                 Layout = tlCenter
                 ParentColor = False
               end
               object LCBBox: TFloatSpinEdit
-                Left = 214
-                Height = 36
-                Top = 76
-                Width = 80
+                Left = 166
+                Height = 28
+                Top = 60
+                Width = 100
                 HelpType = htKeyword
                 Alignment = taRightJustify
                 DecimalPlaces = 3
@@ -609,28 +610,28 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
                 TabOrder = 2
               end
               object _Label16: TLabel
-                Left = 300
-                Height = 36
-                Top = 76
-                Width = 29
+                Left = 272
+                Height = 28
+                Top = 60
+                Width = 23
                 Caption = '[%]'
                 Layout = tlCenter
                 ParentColor = False
               end
               object Label24: TLabel
                 Left = 6
-                Height = 36
-                Top = 114
-                Width = 202
+                Height = 28
+                Top = 90
+                Width = 154
                 Caption = 'Prismatic coefficient '
                 Layout = tlCenter
                 ParentColor = False
               end
               object CpBox: TFloatSpinEdit
-                Left = 214
-                Height = 36
-                Top = 114
-                Width = 80
+                Left = 166
+                Height = 28
+                Top = 90
+                Width = 100
                 HelpType = htKeyword
                 Alignment = taRightJustify
                 DecimalPlaces = 4
@@ -639,26 +640,26 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
                 TabOrder = 3
               end
               object Label12: TLabel
-                Left = 300
-                Height = 36
-                Top = 114
-                Width = 29
+                Left = 272
+                Height = 28
+                Top = 90
+                Width = 23
                 ParentColor = False
               end
               object Label8: TLabel
                 Left = 6
-                Height = 36
-                Top = 152
-                Width = 202
+                Height = 28
+                Top = 120
+                Width = 154
                 Caption = 'Exploitation coefficient'
                 Layout = tlCenter
                 ParentColor = False
               end
               object KeBox: TFloatSpinEdit
-                Left = 214
-                Height = 36
-                Top = 152
-                Width = 80
+                Left = 166
+                Height = 28
+                Top = 120
+                Width = 100
                 HelpType = htKeyword
                 Alignment = taRightJustify
                 MaxValue = 1.3
@@ -671,9 +672,9 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           end
           object Panel9: TPanel
             Left = 0
-            Height = 48
-            Top = 236
-            Width = 626
+            Height = 44
+            Top = 192
+            Width = 564
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
@@ -682,23 +683,23 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 48
-            ClientWidth = 626
+            ClientHeight = 44
+            ClientWidth = 564
             TabOrder = 2
             object EstimateBox: TCheckBox
               Left = 6
-              Height = 28
+              Height = 24
               Top = 10
-              Width = 140
+              Width = 106
               Caption = 'Use estimate'
               TabOrder = 0
               OnClick = EstimateBoxClick
             end
             object Estimate2Box: TCheckBox
-              Left = 152
-              Height = 28
+              Left = 118
+              Height = 24
               Top = 10
-              Width = 152
+              Width = 117
               Caption = 'Use calculated'
               TabOrder = 1
               OnClick = Estimate2BoxClick
@@ -706,52 +707,52 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           end
           object Panel8: TPanel
             Left = 0
-            Height = 264
-            Top = 284
-            Width = 626
+            Height = 208
+            Top = 236
+            Width = 564
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 6
             ChildSizing.HorizontalSpacing = 6
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 264
-            ClientWidth = 626
+            ClientHeight = 208
+            ClientWidth = 564
             TabOrder = 3
             object Label9: TLabel
               Left = 6
-              Height = 36
+              Height = 28
               Top = 0
-              Width = 237
+              Width = 172
               Caption = 'Number of thrusters (0...2)'
               Layout = tlCenter
               ParentColor = False
             end
             object BABox: TFloatSpinEdit
-              Left = 249
-              Height = 36
+              Left = 184
+              Height = 28
               Top = 0
-              Width = 80
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
               TabOrder = 0
             end
             object Label10: TLabel
               Left = 6
-              Height = 36
-              Top = 38
-              Width = 237
+              Height = 28
+              Top = 30
+              Width = 172
               Caption = 'Bulbous area on F.P., m^2'
               Layout = tlCenter
               ParentColor = False
             end
             object KBulbBox: TFloatSpinEdit
-              Left = 249
-              Height = 36
-              Top = 38
-              Width = 80
+              Left = 184
+              Height = 28
+              Top = 30
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 30
@@ -760,18 +761,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label11: TLabel
               Left = 6
-              Height = 36
-              Top = 76
-              Width = 237
+              Height = 28
+              Top = 60
+              Width = 172
               Caption = 'Full Cargo or Ballast (0...1)'
               Layout = tlCenter
               ParentColor = False
             end
             object ZBulbBox: TFloatSpinEdit
-              Left = 249
-              Height = 36
-              Top = 76
-              Width = 80
+              Left = 184
+              Height = 28
+              Top = 60
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 1
               OnExit = LwlBoxAfterSetValue
@@ -779,18 +780,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label17: TLabel
               Left = 6
-              Height = 36
-              Top = 114
-              Width = 237
+              Height = 28
+              Top = 90
+              Width = 172
               Caption = 'Absolute roughness, mkm'
               Layout = tlCenter
               ParentColor = False
             end
             object KsBox: TFloatSpinEdit
-              Left = 249
-              Height = 36
-              Top = 114
-              Width = 80
+              Left = 184
+              Height = 28
+              Top = 90
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 2500
               OnExit = LwlBoxAfterSetValue
@@ -798,18 +799,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label14: TLabel
               Left = 6
-              Height = 36
-              Top = 152
-              Width = 237
+              Height = 28
+              Top = 120
+              Width = 172
               Caption = 'Form stern coefficient'
               Layout = tlCenter
               ParentColor = False
             end
             object CstrnBox: TFloatSpinEdit
-              Left = 249
-              Height = 36
-              Top = 152
-              Width = 80
+              Left = 184
+              Height = 28
+              Top = 120
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 25
               MinValue = -25
@@ -818,18 +819,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label15: TLabel
               Left = 6
-              Height = 36
-              Top = 190
-              Width = 237
+              Height = 28
+              Top = 150
+              Width = 172
               Caption = 'Number of propellers'
               Layout = tlCenter
               ParentColor = False
             end
             object NpBox: TFloatSpinEdit
-              Left = 249
-              Height = 36
-              Top = 190
-              Width = 80
+              Left = 184
+              Height = 28
+              Top = 150
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 5
               OnExit = LwlBoxAfterSetValue
@@ -837,18 +838,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label16: TLabel
               Left = 6
-              Height = 36
-              Top = 228
-              Width = 237
+              Height = 28
+              Top = 180
+              Width = 172
               Caption = 'Propeller diametr, m'
               Layout = tlCenter
               ParentColor = False
             end
             object DpBox: TFloatSpinEdit
-              Left = 249
-              Height = 36
-              Top = 228
-              Width = 80
+              Left = 184
+              Height = 28
+              Top = 180
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 25
@@ -859,10 +860,10 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
         end
       end
       object Chart: TChart
-        Left = 651
-        Height = 779
+        Left = 589
+        Height = 991
         Top = 0
-        Width = 545
+        Width = 903
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -938,13 +939,13 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
     object Data2: TTabSheet
       Caption = 'Added data'
-      ClientHeight = 779
-      ClientWidth = 1196
+      ClientHeight = 991
+      ClientWidth = 1492
       object Panel6: TPanel
         Left = 0
-        Height = 779
+        Height = 991
         Top = 0
-        Width = 1196
+        Width = 1492
         Align = alClient
         BevelOuter = bvLowered
         ChildSizing.LeftRightSpacing = 10
@@ -952,28 +953,28 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
         ChildSizing.HorizontalSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 779
-        ClientWidth = 1196
+        ClientHeight = 991
+        ClientWidth = 1492
         ParentColor = False
         TabOrder = 0
         object GroupBox3: TGroupBox
           Left = 10
-          Height = 548
+          Height = 439
           Top = 10
-          Width = 613
+          Width = 505
           AutoSize = True
           Caption = 'Added data input:'
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 520
-          ClientWidth = 609
+          ClientHeight = 414
+          ClientWidth = 501
           ParentColor = False
           TabOrder = 1
           object Panel12: TPanel
             Left = 0
-            Height = 398
+            Height = 318
             Top = 0
-            Width = 609
+            Width = 501
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -982,25 +983,25 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 398
-            ClientWidth = 609
+            ClientHeight = 318
+            ClientWidth = 501
             TabOrder = 0
             object Label6_1: TLabel
               Left = 10
-              Height = 36
+              Height = 28
               Top = 10
-              Width = 503
+              Width = 375
               Caption = 'Time ship hull is in water, month'
               Layout = tlCenter
               ParentColor = False
             end
             object A1Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
+              Left = 391
+              Height = 28
               Top = 10
-              Width = 80
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               DecimalPlaces = 1
               MaxValue = 250
               OnExit = LwlBoxAfterSetValue
@@ -1008,18 +1009,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_2: TLabel
               Left = 10
-              Height = 36
-              Top = 48
-              Width = 503
+              Height = 28
+              Top = 40
+              Width = 375
               Caption = 'Height of 3% wave, m '
               Layout = tlCenter
               ParentColor = False
             end
             object A2Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 48
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 40
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1028,18 +1029,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_3: TLabel
               Left = 10
-              Height = 36
-              Top = 86
-              Width = 503
+              Height = 28
+              Top = 70
+              Width = 375
               Caption = 'Course angle of moving wave, degree'
               Layout = tlCenter
               ParentColor = False
             end
             object A3Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 86
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 70
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1048,18 +1049,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_4: TLabel
               Left = 10
-              Height = 36
-              Top = 124
-              Width = 503
+              Height = 28
+              Top = 100
+              Width = 375
               Caption = 'Wind speed, m/s'
               Layout = tlCenter
               ParentColor = False
             end
             object A4Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 124
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 100
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1068,18 +1069,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_5: TLabel
               Left = 10
-              Height = 36
-              Top = 162
-              Width = 503
+              Height = 28
+              Top = 130
+              Width = 375
               Caption = 'Course wind angle, degree'
               Layout = tlCenter
               ParentColor = False
             end
             object A5Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 162
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 130
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1088,18 +1089,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_6: TLabel
               Left = 10
-              Height = 36
-              Top = 200
-              Width = 503
+              Height = 28
+              Top = 160
+              Width = 375
               Caption = 'Height of board above water, m'
               Layout = tlCenter
               ParentColor = False
             end
             object A6Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 200
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 160
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1108,18 +1109,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_7: TLabel
               Left = 10
-              Height = 36
-              Top = 238
-              Width = 503
+              Height = 28
+              Top = 190
+              Width = 375
               Caption = 'Air density, kg/m^3'
               Layout = tlCenter
               ParentColor = False
             end
             object A7Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 238
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 190
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1128,18 +1129,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_8: TLabel
               Left = 10
-              Height = 36
-              Top = 276
-              Width = 503
+              Height = 28
+              Top = 220
+              Width = 375
               Caption = 'Height of COG area of superstructure above waterline, m'
               Layout = tlCenter
               ParentColor = False
             end
             object A8Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 276
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 220
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1148,18 +1149,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_9: TLabel
               Left = 10
-              Height = 36
-              Top = 314
-              Width = 503
+              Height = 28
+              Top = 250
+              Width = 375
               Caption = 'Depth of water, m'
               Layout = tlCenter
               ParentColor = False
             end
             object A9Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 314
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 250
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 1
               MaxValue = 250
@@ -1168,18 +1169,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_10: TLabel
               Left = 10
-              Height = 36
-              Top = 352
-              Width = 503
+              Height = 28
+              Top = 280
+              Width = 375
               Caption = 'Wetted area of midship, m^2'
               Layout = tlCenter
               ParentColor = False
             end
             object A10Box: TFloatSpinEdit
-              Left = 519
-              Height = 36
-              Top = 352
-              Width = 80
+              Left = 391
+              Height = 28
+              Top = 280
+              Width = 100
               Alignment = taRightJustify
               DecimalPlaces = 3
               MaxValue = 250
@@ -1189,9 +1190,9 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
           end
           object Panel13: TPanel
             Left = 0
-            Height = 38
-            Top = 398
-            Width = 609
+            Height = 32
+            Top = 318
+            Width = 501
             AutoSize = True
             BevelOuter = bvNone
             ChildSizing.LeftRightSpacing = 10
@@ -1200,20 +1201,20 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 38
-            ClientWidth = 609
+            ClientHeight = 32
+            ClientWidth = 501
             TabOrder = 1
             object A11Box: TComboBox
-              Left = 415
-              Height = 34
+              Left = 259
+              Height = 28
               Top = 1
-              Width = 200
+              Width = 250
               Anchors = [akTop, akRight]
               AutoComplete = True
               AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
               AutoDropDown = True
-              Constraints.MinWidth = 200
-              ItemHeight = 0
+              Constraints.MinWidth = 250
+              ItemHeight = 20
               ItemIndex = 0
               Items.Strings = (
                 'Passenger ship and ferry'
@@ -1234,31 +1235,31 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label6_11: TLabel
               Left = 10
-              Height = 26
+              Height = 20
               Top = 2
-              Width = 111
+              Width = 83
               Caption = 'Type of ship:'
-              Constraints.MaxWidth = 300
-              Constraints.MinWidth = 10
+              Constraints.MaxWidth = 375
+              Constraints.MinWidth = 12
               Layout = tlCenter
               ParentColor = False
             end
           end
         end
         object GroupBox4: TGroupBox
-          Left = 633
-          Height = 548
+          Left = 525
+          Height = 439
           Top = 10
-          Width = 409
+          Width = 353
           Caption = 'Number of appendages :'
-          ClientHeight = 520
-          ClientWidth = 405
+          ClientHeight = 414
+          ClientWidth = 349
           TabOrder = 0
           object Panel14: TPanel
             Left = 0
-            Height = 520
+            Height = 414
             Top = 0
-            Width = 405
+            Width = 349
             Align = alClient
             AutoSize = True
             BevelOuter = bvNone
@@ -1268,43 +1269,43 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             ChildSizing.VerticalSpacing = 2
             ChildSizing.Layout = cclLeftToRightThenTopToBottom
             ChildSizing.ControlsPerLine = 2
-            ClientHeight = 520
-            ClientWidth = 405
+            ClientHeight = 414
+            ClientWidth = 349
             TabOrder = 0
             object Label30: TLabel
               Left = 10
-              Height = 36
+              Height = 28
               Top = 10
-              Width = 299
+              Width = 223
               Caption = 'Shaft brackets'
               Layout = tlCenter
               ParentColor = False
             end
             object K1Box: TFloatSpinEdit
-              Left = 315
-              Height = 36
+              Left = 239
+              Height = 28
               Top = 10
-              Width = 80
+              Width = 100
               Alignment = taRightJustify
-              Constraints.MinWidth = 80
+              Constraints.MinWidth = 100
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
               TabOrder = 0
             end
             object Label31: TLabel
               Left = 10
-              Height = 36
-              Top = 48
-              Width = 299
+              Height = 28
+              Top = 40
+              Width = 223
               Caption = 'Strut bossing'
               Layout = tlCenter
               ParentColor = False
             end
             object K2Box: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 48
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 40
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
@@ -1312,18 +1313,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label37: TLabel
               Left = 10
-              Height = 36
-              Top = 86
-              Width = 299
+              Height = 28
+              Top = 70
+              Width = 223
               Caption = 'Stabiliser fins'
               Layout = tlCenter
               ParentColor = False
             end
             object K3Box: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 86
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 70
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
@@ -1331,18 +1332,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label32: TLabel
               Left = 10
-              Height = 36
-              Top = 124
-              Width = 299
+              Height = 28
+              Top = 100
+              Width = 223
               Caption = 'Hull bossing'
               Layout = tlCenter
               ParentColor = False
             end
             object K4Box: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 124
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 100
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
@@ -1350,18 +1351,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label38: TLabel
               Left = 10
-              Height = 36
-              Top = 162
-              Width = 299
+              Height = 28
+              Top = 130
+              Width = 223
               Caption = 'Dome'
               Layout = tlCenter
               ParentColor = False
             end
             object K5Box: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 162
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 130
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
@@ -1369,34 +1370,34 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label33: TLabel
               Left = 10
-              Height = 26
-              Top = 200
-              Width = 299
+              Height = 20
+              Top = 160
+              Width = 223
               Caption = 'Exposed shafts:'
               Layout = tlCenter
               ParentColor = False
             end
             object Label18: TLabel
-              Left = 315
-              Height = 26
-              Top = 200
-              Width = 80
+              Left = 239
+              Height = 20
+              Top = 160
+              Width = 100
               ParentColor = False
             end
             object Label35: TLabel
               Left = 10
-              Height = 36
-              Top = 228
-              Width = 299
-              Caption = 'Angle with battoks about 10'
+              Height = 28
+              Top = 182
+              Width = 223
+              Caption = 'Angle with buttocks about 10'
               Layout = tlCenter
               ParentColor = False
             end
             object K6Box: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 228
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 182
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
@@ -1404,18 +1405,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label36: TLabel
               Left = 10
-              Height = 36
-              Top = 266
-              Width = 299
-              Caption = 'Angle with battoks about 20'
+              Height = 28
+              Top = 212
+              Width = 223
+              Caption = 'Angle with buttocks about 20'
               Layout = tlCenter
               ParentColor = False
             end
             object K7Box: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 266
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 212
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = LwlBoxAfterSetValue
@@ -1423,34 +1424,34 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label281: TLabel
               Left = 10
-              Height = 26
-              Top = 304
-              Width = 299
+              Height = 20
+              Top = 242
+              Width = 223
               Caption = 'Keel and skeg:'
               Layout = tlCenter
               ParentColor = False
             end
             object Label19: TLabel
-              Left = 315
-              Height = 26
-              Top = 304
-              Width = 80
+              Left = 239
+              Height = 20
+              Top = 242
+              Width = 100
               ParentColor = False
             end
             object Label28: TLabel
               Left = 10
-              Height = 36
-              Top = 332
-              Width = 299
+              Height = 28
+              Top = 264
+              Width = 223
               Caption = 'Skeg'
               Layout = tlCenter
               ParentColor = False
             end
             object KeelChordLengthbox: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 332
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 264
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = KeelChordLengthboxAfterSetValue
@@ -1458,18 +1459,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label29: TLabel
               Left = 10
-              Height = 36
-              Top = 370
-              Width = 299
+              Height = 28
+              Top = 294
+              Width = 223
               Caption = 'Bilge keels'
               Layout = tlCenter
               ParentColor = False
             end
             object KeelAreaBox: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 370
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 294
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = KeelChordLengthboxAfterSetValue
@@ -1477,34 +1478,34 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label61: TLabel
               Left = 10
-              Height = 26
-              Top = 408
-              Width = 299
+              Height = 20
+              Top = 324
+              Width = 223
               Caption = 'Presence of rudders (0-No, 1-Yes):'
               Layout = tlCenter
               ParentColor = False
             end
             object Label39: TLabel
-              Left = 315
-              Height = 26
-              Top = 408
-              Width = 80
+              Left = 239
+              Height = 20
+              Top = 324
+              Width = 100
               ParentColor = False
             end
             object Label6: TLabel
               Left = 10
-              Height = 36
-              Top = 436
-              Width = 299
+              Height = 28
+              Top = 346
+              Width = 223
               Caption = 'Rudder behind skeg/stern'
               Layout = tlCenter
               ParentColor = False
             end
             object RudderChordLengthbox: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 436
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 346
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = KeelChordLengthboxAfterSetValue
@@ -1512,18 +1513,18 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
             end
             object Label7: TLabel
               Left = 10
-              Height = 36
-              Top = 474
-              Width = 299
+              Height = 28
+              Top = 376
+              Width = 223
               Caption = 'Two-screw slender'
               Layout = tlCenter
               ParentColor = False
             end
             object RudderAreaBox: TFloatSpinEdit
-              Left = 315
-              Height = 36
-              Top = 474
-              Width = 80
+              Left = 239
+              Height = 28
+              Top = 376
+              Width = 100
               Alignment = taRightJustify
               MaxValue = 3
               OnExit = KeelChordLengthboxAfterSetValue
@@ -1535,25 +1536,25 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 779
-      ClientWidth = 1196
+      ClientHeight = 991
+      ClientWidth = 1492
       object Panel5: TPanel
         Left = 0
-        Height = 779
+        Height = 991
         Top = 0
-        Width = 1196
+        Width = 1492
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 779
-        ClientWidth = 1196
+        ClientHeight = 991
+        ClientWidth = 1492
         TabOrder = 0
         object Resultsmemo: TMemo
           Left = 1
-          Height = 777
+          Height = 989
           Top = 1
-          Width = 1194
+          Width = 1490
           Align = alClient
-          Font.Height = -13
+          Font.Height = -16
           Font.Name = 'Courier New'
           ParentFont = False
           ScrollBars = ssBoth
@@ -1564,27 +1565,27 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 779
-      ClientWidth = 1196
+      ClientHeight = 991
+      ClientWidth = 1492
       object Panel15: TPanel
         Left = 0
-        Height = 779
+        Height = 991
         Top = 0
-        Width = 1196
+        Width = 1492
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 779
-        ClientWidth = 1196
+        ClientHeight = 991
+        ClientWidth = 1492
         ParentFont = False
         TabOrder = 0
         object Resultsmemo2: TMemo
           Left = 1
-          Height = 777
+          Height = 989
           Top = 1
-          Width = 1194
+          Width = 1490
           Align = alClient
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -16
           Font.Name = 'Courier New'
           ParentFont = False
           ScrollBars = ssBoth
@@ -1595,11 +1596,11 @@ object FreeResistance_Hollen: TFreeResistance_Hollen
     end
   end
   object PrintDialog: TPrintDialog
-    Left = 383
+    Left = 479
     Top = 1
   end
   object MenuImages: TImageList
-    Left = 292
+    Left = 365
     Bitmap = {
       4C7A0400000010000000100000000B0100000000000078DAED55D10E83200CE4
       BFCD5E08D95FB947F7595D74CA00DBD203353E8CA4234BB9BBF628D1B92B1791

@@ -439,6 +439,7 @@
       <Unit3>
         <Filename Value="Forms/freehullformwindow_panel.pas"/>
         <IsPartOfProject Value="True"/>
+        <DisableI18NForLFM Value="True"/>
         <ComponentName Value="FreeHullWindow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>

@@ -547,7 +547,9 @@ msgid "1.4   This is program modification calculates zero thrust and torque adva
 msgstr "1.4   This is program modification calcs zero thrust and moment advances,"
 
 #: freestringsunit.rs_1_5_1____3____nblade____7___0_3_____ae_ao____1_05___0_5_____p_dp_____1_40__
-msgid "1.5.1    3 <= Nblade <= 7;  0,3 <=  Ae/Ao <= 1,05;  0,5 <=  P/Dp  <= 1,40 ;"
+#, fuzzy
+#| msgid "1.5.1    3 <= Nblade <= 7;  0,3 <=  Ae/Ao <= 1,05;  0,5 <=  P/Dp  <= 1,40 ;"
+msgid "1.5.1    3 <= Nblade <= 7;  0.3 <=  Ae/Ao <= 1.05;  0.5 <=  P/Dp  <= 1.40 ;"
 msgstr "1.5.1    3 <= Nblade <= 7;  0,3 <=  Ae/Ao <= 1,05;  0,5 <=  P/Dp  <= 1,40 ;"
 
 #: freestringsunit.rs_1_5_all__output__is__nondimensional__following_clarke__1__except_the_phase_margin
@@ -571,7 +573,9 @@ msgid "1.6 Propeller Type allows the selection of a fixed-pitch or controllable-
 msgstr "1.6 Propeller Type allows the selection of a fixed-pitch or controllable-pitch propeller."
 
 #: freestringsunit.rs_1_6___the_advance_coefficient_is_as_follow__0_____jp_vp_n_dp____1_6_
-msgid "1.6   The advance coefficient is as follow: 0 <=  Jp=Vp/n/Dp <= 1,6."
+#, fuzzy
+#| msgid "1.6   The advance coefficient is as follow: 0 <=  Jp=Vp/n/Dp <= 1,6."
+msgid "1.6   The advance coefficient is as follow: 0 <=  Jp=Vp/n/Dp <= 1.6."
 msgstr "1.6   The advance coefficient is as follow: 0 <=  Jp=Vp/n/Dp <= 1,6."
 
 #: freestringsunit.rs_1_7_propeller_characteristics__obtains__the__blade__number_and_the_basic_parameters_for_the
@@ -731,7 +735,9 @@ msgid "3.REFERENCES:"
 msgstr "3.REFERENCES:"
 
 #: freestringsunit.rs_3__korotkin_a_i__prisoedinennie_massy_sudna__spravochnik__l__sudostroenie_1986_312pp_
-msgid "3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986,312pp."
+#, fuzzy
+#| msgid "3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986,312pp."
+msgid "3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986.312pp."
 msgstr "3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986,312pp."
 
 #: freestringsunit.rs_3__parsons_m__g____informal__notes_for_na530_automatic_control_in_naval_architec_
@@ -971,7 +977,9 @@ msgid "according to modeling experiment"
 msgstr "model's experiment"
 
 #: freestringsunit.rs_account_effect_of_a_bottom_and_a_trim__1_2___thus_we_believe_that_a_fluid_ideal_
-msgid "account effect of a bottom and a trim [1,2]. Thus we believe,that a fluid ideal,"
+#, fuzzy
+#| msgid "account effect of a bottom and a trim [1,2]. Thus we believe,that a fluid ideal,"
+msgid "account effect of a bottom and a trim [1.2]. Thus we believe,that a fluid ideal,"
 msgstr "account effect of a bottom and a trim [1,2]. Thus we believe,that a fluid ideal,"
 
 #: freestringsunit.rs_active_brake_of_ship_
@@ -995,7 +1003,9 @@ msgid "Added masses Coefficients for riverships:"
 msgstr "Added masses Coefficients for riverships:"
 
 #: freestringsunit.rs_added_masses_coefficients_for_riverships_and_ships_with_cb____0_8_
-msgid "Added masses Coefficients for riverships and ships with Cb >= 0,8:"
+#, fuzzy
+#| msgid "Added masses Coefficients for riverships and ships with Cb >= 0,8:"
+msgid "Added masses Coefficients for riverships and ships with Cb >= 0.8:"
 msgstr "Added masses Coefficients for riverships and ships with Ñb >= 0,8:"
 
 #: freestringsunit.rs_added_masses_coefficients_for_seaships_by_folmulae__4__
@@ -1107,7 +1117,9 @@ msgid "All of the selected points are locked and cannot be moved"
 msgstr "Kaikki valitut pisteet ovat lukittuja, eikä niitä voi siirtää"
 
 #: freestringsunit.rs_alternating_current_______________l__________0_83___0_93
-msgid "alternating current               |          0,83...0,93"
+#, fuzzy
+#| msgid "alternating current               |          0,83...0,93"
+msgid "alternating current               |          0.83...0.93"
 msgstr "alternating current               |          0,83...0,93"
 
 #: freestringsunit.rs_al_____lateral_projected_wind_area__m2__
@@ -1350,7 +1362,9 @@ msgid "Background image settings"
 msgstr "Taustakuvan asetukset"
 
 #: freestringsunit.rs_ball_bearing_or_roller_bearing____l__________0_96___0_98
-msgid "ball-bearing or roller bearing    |          0,96...0,98"
+#, fuzzy
+#| msgid "ball-bearing or roller bearing    |          0,96...0,98"
+msgid "ball-bearing or roller bearing    |          0.96...0.98"
 msgstr "ball-bearing or roller bearing    |          0,96...0,98"
 
 #: freestringsunit.rs_base
@@ -1927,7 +1941,9 @@ msgid "Cross curves"
 msgstr "Cross curves"
 
 #: freestringsunit.rs_cr_f_fr___where_is_fr_v__gol__0_5_
-msgid "Cr=f(Fr), where is Fr=v/(g*L)^0,5."
+#, fuzzy
+#| msgid "Cr=f(Fr), where is Fr=v/(g*L)^0,5."
+msgid "Cr=f(Fr), where is Fr=v/(g*L)^0.5."
 msgstr "Cr=f(Fr), where is Fr=v/(g*L)^0,5."
 
 #: freestringsunit.rs_curves
@@ -2061,7 +2077,9 @@ msgid "Difference of midship draft"
 msgstr "Difference of midship draft"
 
 #: freestringsunit.rs_direct_current____________________l__________0_86___0_90
-msgid "direct current                    |          0,86...0,90"
+#, fuzzy
+#| msgid "direct current                    |          0,86...0,90"
+msgid "direct current                    |          0.86...0.90"
 msgstr "direct current                    |          0,86...0,90"
 
 #: freestringsunit.rs_disk_area_ratio_ae_ao
@@ -2112,7 +2130,9 @@ msgid "Distance from wind area CoG to DWL"
 msgstr "Z coordinate of wind area CoG above DWL"
 
 #: freestringsunit.rs_distance__miles___speed__knots___frequency_of_propeller_no0_1__1_min_
-msgid "Distance [miles]; Speed [knots]; Frequency of propeller n*0,1 [1/min]"
+#, fuzzy
+#| msgid "Distance [miles]; Speed [knots]; Frequency of propeller n*0,1 [1/min]"
+msgid "Distance [miles]; Speed [knots]; Frequency of propeller n*0.1 [1/min]"
 msgstr "Distance, miles; Speed, kn; Frequency of propeller n*0.1, 1/min"
 
 #: freestringsunit.rs_distance__sea_miles__m__
@@ -2444,7 +2464,9 @@ msgid "flip normals"
 msgstr "Käännä normaalit"
 
 #: freestringsunit.rs_fluid_flywheel____________________l__________0_95___0_97
-msgid "fluid flywheel                    |          0,95...0,97"
+#, fuzzy
+#| msgid "fluid flywheel                    |          0,95...0,97"
+msgid "fluid flywheel                    |          0.95...0.97"
 msgstr "fluid flywheel                    |          0,95...0,97"
 
 #: freestringsunit.rs_for
@@ -2667,7 +2689,9 @@ msgid "If SigmaB > 1 ==>"
 msgstr "If SigmaB < 1 ==>"
 
 #: freestringsunit.rs_if_s__0__then_s_lo_2ottb_osqrt_cm_o_0_453t0_442ocb_0_2862ocm_0_003467ob_tt0_3696ocwp____by_holtrop
-msgid "If S= 0, then S=L*(2*T+B)*sqrt(Cm)*(0,453+0,442*Cb-0,2862*Cm-0,003467*B/T+0,3696*Cwp) - by Holtrop"
+#, fuzzy
+#| msgid "If S= 0, then S=L*(2*T+B)*sqrt(Cm)*(0,453+0,442*Cb-0,2862*Cm-0,003467*B/T+0,3696*Cwp) - by Holtrop"
+msgid "If S= 0, then S=L*(2*T+B)*sqrt(Cm)*(0.453+0.442*Cb-0.2862*Cm-0.003467*B/T+0.3696*Cwp) - by Holtrop"
 msgstr "If S= 0, then S=L*(2*T+B)*sqrt(Cm)*(0,453+0,442*Cb-0,2862*Cm-0,003467*B/T+0,3696*Cwp) - by Holtrop"
 
 #: freestringsunit.rs_if_s__10__then_s_v_bo1_7_cbtb_to_0_92t0_092ocb____for_trawlers__danckwardt_1969_
@@ -2679,47 +2703,69 @@ msgid "If S=-11, then S=Lpp*(1.8*T+B*Cb)               - for modern warships (Sc
 msgstr "If S=-11, then S=Lpp*(1.8*T+B*Cb) - for modern warships (Schneekluth,1988)"
 
 #: freestringsunit.rs_if_s__12__then_s_3_223ov__2_3_t0_5402olwlov__1_3___for_tugs_and_trawlers__van_oortmerssen_1971_
-msgid "If S=-12, then S=3,223*V^(2/3)+0,5402*Lwl*V^(1/3)- for tugs and trawlers (van Oortmerssen,1971)"
+#, fuzzy
+#| msgid "If S=-12, then S=3,223*V^(2/3)+0,5402*Lwl*V^(1/3)- for tugs and trawlers (van Oortmerssen,1971)"
+msgid "If S=-12, then S=3.223*V^(2/3)+0.5402*Lwl*V^(1/3)- for tugs and trawlers (van Oortmerssen,1971)"
 msgstr "If S=-12, then S=3,223*V^(2/3)+0,5402*Lwl*V^(1/3)- for tugs and trawlers (van Oortmerssen,1971)"
 
 #: freestringsunit.rs_if_s__13__then_s_v_1_tt1_75_b_cb___________________by_grigoriev_formulae
-msgid "If S=-13, then S=V(1/T+1,75/B/Cb)                - by Grigoriev formulae"
+#, fuzzy
+#| msgid "If S=-13, then S=V(1/T+1,75/B/Cb)                - by Grigoriev formulae"
+msgid "If S=-13, then S=V(1/T+1.75/B/Cb)                - by Grigoriev formulae"
 msgstr "If S=-13, then S=V(1/T+1,75/B/Cb)                - by Grigoriev formulae"
 
 #: freestringsunit.rs_if_s__14__then_s_l_2ot_t_b__0_654ocb_t_0_338_______by_benge_afanasiev_formulae
-msgid "If S=-14, then S=L(2*T + B)(0,654*Cb + 0,338)    - by Benge-Afanasiev formulae"
+#, fuzzy
+#| msgid "If S=-14, then S=L(2*T + B)(0,654*Cb + 0,338)    - by Benge-Afanasiev formulae"
+msgid "If S=-14, then S=L(2*T + B)(0.654*Cb + 0.338)    - by Benge-Afanasiev formulae"
 msgstr "If S=-14, then S=L(2T + B)(0,654Cb + 0,338)      - by Benge-Afanasiev formulae"
 
 #: freestringsunit.rs_if_s__15__then_s__0_085ob_t_2ocbt3_29__vol__0_5____by_vashedchenko_1985_formulae
-msgid "If S=-15, then S=(0,085*B/T-2*Cb+3,29)(V*L)^0,5  - by Vashedchenko-1985 formulae"
+#, fuzzy
+#| msgid "If S=-15, then S=(0,085*B/T-2*Cb+3,29)(V*L)^0,5  - by Vashedchenko-1985 formulae"
+msgid "If S=-15, then S=(0.085*B/T-2*Cb+3.29)(V*L)^0.5  - by Vashedchenko-1985 formulae"
 msgstr "If S=-15, then S=(0,085*B/T-2*Cb+3,29)(V*L)^0,5  - by Vashedchenko-1985 formulae"
 
 #: freestringsunit.rs_if_s__16__then_s_l_2ottb__4_84ocb_4_15ocb_2_0_77___for_megayachts
-msgid "If S=-16, then S=L(2*T+B)(4,84*Cb-4,15*Cb^2-0,77)- for megayachts"
+#, fuzzy
+#| msgid "If S=-16, then S=L(2*T+B)(4,84*Cb-4,15*Cb^2-0,77)- for megayachts"
+msgid "If S=-16, then S=L(2*T+B)(4.84*Cb-4.15*Cb^2-0.77)- for megayachts"
 msgstr "If S=-16, then S=L(2T+B)(4,84Cb-4,15Cb^2-0,77)   - for megayacts"
 
 #: freestringsunit.rs_if_s__1__then_s_lo_1_36ott1_13ocbob____by_muragin_s_formulae_for_ships_with_cb_0_4___0_5_and_b_t_2_5___3_5
-msgid "If S=-1, then S=L*(1,36*T+1,13*Cb*B) - by Muragin's formulae for ships with Cb=0,4...0,5 and B/T=2,5...3,5"
+#, fuzzy
+#| msgid "If S=-1, then S=L*(1,36*T+1,13*Cb*B) - by Muragin's formulae for ships with Cb=0,4...0,5 and B/T=2,5...3,5"
+msgid "If S=-1, then S=L*(1.36*T+1.13*Cb*B) - by Muragin's formulae for ships with Cb=0.4...0.5 and B/T=2.5...3.5"
 msgstr "If S=-1, then S=L*(1,36*T+1,13*Cb*B) - by Muragin's formula for ships with Cb=0,4...0,5 and B/T=2,5...3,5"
 
 #: freestringsunit.rs_if_s__2__then_s_loto_2t1_37o_cb_0_274_ob_t________by_semeka_s_formulae_for_ships_with_big_cb
-msgid "If S=-2, then S=L*T*(2+1,37*(Cb-0,274)*B/T)     - by Semeka's formulae for ships with big Cb"
+#, fuzzy
+#| msgid "If S=-2, then S=L*T*(2+1,37*(Cb-0,274)*B/T)     - by Semeka's formulae for ships with big Cb"
+msgid "If S=-2, then S=L*T*(2+1.37*(Cb-0.274)*B/T)     - by Semeka's formulae for ships with big Cb"
 msgstr "If S=-2, then S=L*T*(2+1,37*(Cb-0,274)*B/T)   - by Semeka's formula for ships with big Cb"
 
 #: freestringsunit.rs_if_s__3__then_s_lo_cbobt1_7ot_____________________by_moomford_s_formulae_for_cb_0_7_and_b_t_2___3
-msgid "If S=-3, then S=L*(Cb*B+1,7*T)                  - by Moomford's formulae for Cb=0,7 and B/T=2...3"
+#, fuzzy
+#| msgid "If S=-3, then S=L*(Cb*B+1,7*T)                  - by Moomford's formulae for Cb=0,7 and B/T=2...3"
+msgid "If S=-3, then S=L*(Cb*B+1.7*T)                  - by Moomford's formulae for Cb=0.7 and B/T=2...3"
 msgstr "If S=-3, then S=L*(Cb*B+1,7*T)    - by Moomford's formula for Cb=0,7 and B/T=2...3"
 
 #: freestringsunit.rs_if_s__4__then_s_lo_bt2ot_o_0_76ocbt0_28___________by_benhe_s_formulae
-msgid "If S=-4, then S=L*(B+2*T)*(0,76*Cb+0,28)        - by Benhe's formulae"
+#, fuzzy
+#| msgid "If S=-4, then S=L*(B+2*T)*(0,76*Cb+0,28)        - by Benhe's formulae"
+msgid "If S=-4, then S=L*(B+2*T)*(0.76*Cb+0.28)        - by Benhe's formulae"
 msgstr "If S=-4, then S=L*(B+2*T)*(0,76*Cb+0,28)  - by Benhe's formula"
 
 #: freestringsunit.rs_if_s__5__then_s_lo_0_85obt0_25ot__________________for_ship_with_transom
-msgid "If S=-5, then S=L*(0,85*B+0,25*T)               - for ship with transom"
+#, fuzzy
+#| msgid "If S=-5, then S=L*(0,85*B+0,25*T)               - for ship with transom"
+msgid "If S=-5, then S=L*(0.85*B+0.25*T)               - for ship with transom"
 msgstr "If S=-5, then S=L*(0,85*B+0,25*T) - for ship with transom"
 
 #: freestringsunit.rs_if_s__6__then_s_v_0_6667o_5_1t0_074ol_t_0_4ocb____by_karpov_s_formulae_for_river_ships_w_o_tonnels
-msgid "If S=-6, then S=V^0,6667*(5,1+0,074*L/T-0,4*Cb) - by Karpov's formulae for river ships w/o tonnels"
+#, fuzzy
+#| msgid "If S=-6, then S=V^0,6667*(5,1+0,074*L/T-0,4*Cb) - by Karpov's formulae for river ships w/o tonnels"
+msgid "If S=-6, then S=V^0.6667*(5.1+0.074*L/T-0.4*Cb) - by Karpov's formulae for river ships w/o tonnels"
 msgstr "If S=-6, then S=V**0,666666*(5,1+0,74*B/T-0,4*Cb) - by Karpov's formula for river ships w/o tonnels"
 
 #: freestringsunit.rs_if_s__7__then_s_lppo_0_5obtt_o_0_55t1_52ocb_______by_yeroshin_s_formulae_for_fishing_ships
@@ -3004,7 +3050,9 @@ msgid "kW"
 msgstr "kW"
 
 #: freestringsunit.rs_l10_lt_titov____________________l__4__l_____0_35____l0_6_____1_5l_0_06l0_200_l__0_l
-msgid "|10 |T-Titov                    |  4  |     0,35    |0,6 ... 1,5| 0,06|0,200 |  0 |"
+#, fuzzy
+#| msgid "|10 |T-Titov                    |  4  |     0,35    |0,6 ... 1,5| 0,06|0,200 |  0 |"
+msgid "|10 |T-Titov                    |  4  |     0.35    |0.6 ... 1.5| 0.06|0.200 |  0 |"
 msgstr "|10 |T-Titov                    |  4  |     0,35    |0,6 ... 1,5| 0,06|0,200 |  0 |"
 
 #: freestringsunit.rs_l10_l_wdz____l_m3__l
@@ -3012,7 +3060,9 @@ msgid "|10 | Wdz    |[m3] |"
 msgstr "|10 | Wdz    | m3  |"
 
 #: freestringsunit.rs_l11_lfixed_pitch_ducted_propel__l__4__l_____0_35____l0_7_____1_5l_0_06l0_200_l__0_l
-msgid "|11 |Fixed pitch ducted propel. |  4  |     0,35    |0,7 ... 1,5| 0,06|0,200 |  0 |"
+#, fuzzy
+#| msgid "|11 |Fixed pitch ducted propel. |  4  |     0,35    |0,7 ... 1,5| 0,06|0,200 |  0 |"
+msgid "|11 |Fixed pitch ducted propel. |  4  |     0.35    |0.7 ... 1.5| 0.06|0.200 |  0 |"
 msgstr "|11 |Const.pitch ducted propel. |  4  |     0,35    |0,7 ... 1,5| 0,06|0,200 |  0 |"
 
 #: freestringsunit.rs_l11_l_g______l_kg__l
@@ -3020,7 +3070,9 @@ msgid "|11 | G      |[kg] |"
 msgstr "|11 | G      | kg  |"
 
 #: freestringsunit.rs_l12_lfixed_pitch_ducted_propel__l__4__l_____0_58____l0_7_____1_5l_0_06l0_200_l__0_l
-msgid "|12 |Fixed pitch ducted propel. |  4  |     0,58    |0,7 ... 1,5| 0,06|0,200 |  0 |"
+#, fuzzy
+#| msgid "|12 |Fixed pitch ducted propel. |  4  |     0,58    |0,7 ... 1,5| 0,06|0,200 |  0 |"
+msgid "|12 |Fixed pitch ducted propel. |  4  |     0.58    |0.7 ... 1.5| 0.06|0.200 |  0 |"
 msgstr "|12 |Const.pitch ducted propel. |  4  |     0,58    |0,7 ... 1,5| 0,06|0,200 |  0 |"
 
 #: freestringsunit.rs_l12_l_pc_____l_kn__l
@@ -3028,7 +3080,9 @@ msgid "|12 | Pc     |[kN] |"
 msgstr "|12 | Pc     | kN  |"
 
 #: freestringsunit.rs_l13_lfixed_pitch_ducted_propel__l__4__l_____0_75____l0_7_____1_5l_0_06l0_200_l__0_l
-msgid "|13 |Fixed pitch ducted propel. |  4  |     0,75    |0,7 ... 1,5| 0,06|0,200 |  0 |"
+#, fuzzy
+#| msgid "|13 |Fixed pitch ducted propel. |  4  |     0,75    |0,7 ... 1,5| 0,06|0,200 |  0 |"
+msgid "|13 |Fixed pitch ducted propel. |  4  |     0.75    |0.7 ... 1.5| 0.06|0.200 |  0 |"
 msgstr "|13 |Const.pitch ducted propel. |  4  |     0,75    |0,7 ... 1,5| 0,06|0,200 |  0 |"
 
 #: freestringsunit.rs_l13_l_mc_____lknom_l
@@ -3036,7 +3090,9 @@ msgid "|13 | Mc     |kN*m |"
 msgstr "|13 | Mc     |kN*m |"
 
 #: freestringsunit.rs_l14_lcp_ducted_propeller_l_0_6__l__4__l_____0_57____l0_5_____1_8l_0_06l0_317_l__0_l
-msgid "|14 |CP ducted propeller l=0,6  |  4  |     0,57    |0,5 ... 1,8| 0,06|0,317 |  0 |"
+#, fuzzy
+#| msgid "|14 |CP ducted propeller l=0,6  |  4  |     0,57    |0,5 ... 1,8| 0,06|0,317 |  0 |"
+msgid "|14 |CP ducted propeller l=0.6  |  4  |     0.57    |0.5 ... 1.8| 0.06|0.317 |  0 |"
 msgstr "|14 |CP ducted propeller l=0,6  |  4  |     0,57    |0,5 ... 1,8| 0,06|0,317 |  0 |"
 
 #: freestringsunit.rs_l14_l_sigma__ln_mm2l
@@ -3044,7 +3100,9 @@ msgid "|14 | Sigma  |N/mm2|"
 msgstr "|14 | Sigma  |N/mm2|"
 
 #: freestringsunit.rs_l15_lcp_ducted_propeller_l_0_8__l__4__l_____0_57____l0_5_____1_5l_0_06l0_317_l__0_l
-msgid "|15 |CP ducted propeller l=0,8  |  4  |     0,57    |0,5 ... 1,5| 0,06|0,317 |  0 |"
+#, fuzzy
+#| msgid "|15 |CP ducted propeller l=0,8  |  4  |     0,57    |0,5 ... 1,5| 0,06|0,317 |  0 |"
+msgid "|15 |CP ducted propeller l=0.8  |  4  |     0.57    |0.5 ... 1.5| 0.06|0.317 |  0 |"
 msgstr "|15 |CP ducted propeller l=0,8  |  4  |     0,57    |0,5 ... 1,5| 0,06|0,317 |  0 |"
 
 #: freestringsunit.rs_l15_l_sigmac_ln_mm2l
@@ -3052,7 +3110,9 @@ msgid "|15 | SigmaC |N/mm2|"
 msgstr "|15 | SigmaC |N/mm2|"
 
 #: freestringsunit.rs_l16_lfixed_pitch_ducted_propel__l__4__l_____0_57____l0_5_____1_5l_0_06l0_180_l__0_l
-msgid "|16 |Fixed pitch ducted propel. |  4  |     0,57    |0,5 ... 1,5| 0,06|0,180 |  0 |"
+#, fuzzy
+#| msgid "|16 |Fixed pitch ducted propel. |  4  |     0,57    |0,5 ... 1,5| 0,06|0,180 |  0 |"
+msgid "|16 |Fixed pitch ducted propel. |  4  |     0.57    |0.5 ... 1.5| 0.06|0.180 |  0 |"
 msgstr "|16 |Const.pitch ducted propel. |  4  |     0,57    |0,5 ... 1,5| 0,06|0,180 |  0 |"
 
 #: freestringsunit.rs_l16_l_sigmas_ln_mm2l
@@ -3060,7 +3120,9 @@ msgid "|16 | SigmaS |N/mm2|"
 msgstr "|16 | SigmaS |N/mm2|"
 
 #: freestringsunit.rs_l17_lcontra_rotat_propeller_1_2_l__4__l_0_575_0_545_l0_8_____1_5l_____l0_200_l__0_l
-msgid "|17 |Contra-rotat.propeller 1(2)|  4  | 0,575(0,545)|0,8 ... 1,5|     |0,200 |  0 |"
+#, fuzzy
+#| msgid "|17 |Contra-rotat.propeller 1(2)|  4  | 0,575(0,545)|0,8 ... 1,5|     |0,200 |  0 |"
+msgid "|17 |Contra-rotat.propeller 1(2)|  4  | 0.575(0.545)|0.8 ... 1.5|     |0.200 |  0 |"
 msgstr "|17 |Contra-rotat.propeller 1(2)|  4  | 0,575(0,545)|0,8 ... 1,5|     |0,200 |  0 |"
 
 #: freestringsunit.rs_l17_l_sigmab_l_____l
@@ -3072,7 +3134,9 @@ msgid "|18 |SigmaB/4|  -  |"
 msgstr "|18 |SigmaB/4|  -  |"
 
 #: freestringsunit.rs_l6_hc_27_5_36_6_275__h_l_______515_______l_______600________l______150_______l
-msgid "|6#215HC#20727,5/36(6#203275#216#207H)|       515       |       600        |      150       |"
+#, fuzzy
+#| msgid "|6#215HC#20727,5/36(6#203275#216#207H)|       515       |       600        |      150       |"
+msgid "|6#215HC#20727.5/36(6#203275#216#207H)|       515       |       600        |      150       |"
 msgstr "|6×HCÏ27,5/36(6Ë275ØÏÍ)|       515       |       600        |      150       |"
 
 #: freestringsunit.rs_l8_hc_24_36_8bd36_24a1_l_______441_______l_______500________l______123_______l
@@ -3262,11 +3326,15 @@ msgid "|Propeller's metal:|   1   |   2   |   3   |   4   |   5   |   6   |   7 
 msgstr "|Propeller's metal:|   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |"
 
 #: freestringsunit.rs_lpsi_l_v_0_333l_________________l_________________l_________________l__5_00_____7_50__l
-msgid "|Psi=L/V^0.333|        -        |        -        |        -        |  5,00 ... 7,50  |"
+#, fuzzy
+#| msgid "|Psi=L/V^0.333|        -        |        -        |        -        |  5,00 ... 7,50  |"
+msgid "|Psi=L/V^0.333|        -        |        -        |        -        |  5.00 ... 7.50  |"
 msgstr "|Psi=L/V^0.333|        -        |        -        |        -        |  5,00 ... 7,50  |"
 
 #: freestringsunit.rs_lrudder_angle_l__10_0_____45_degr_l____10_0_____35_degr_____l
-msgid "|rudder angle |  10,0 ... 45 degr.|    10,0 ... 35 degr.    |"
+#, fuzzy
+#| msgid "|rudder angle |  10,0 ... 45 degr.|    10,0 ... 35 degr.    |"
+msgid "|rudder angle |  10.0 ... 45 degr.|    10.0 ... 35 degr.    |"
 msgstr "|rudder angle |  10,0 ... 45 degr.|    10,0 ... 35 degr.    |"
 
 #: freestringsunit.rs_lwl_bwl_is_outside_valid_domain
@@ -3294,7 +3362,9 @@ msgid "| 12#215HC18/22 (M416)    |       808       |      1550        |      3.9
 msgstr "| 12×HC18/22 (Ì416)    |       808       |      1550        |      3.9       |"
 
 #: freestringsunit.rs_l_1_lb_wageningen_basin_________l2___6l0_3______1_05l0_6_____1_4l0_050l0_180_l_15_l
-msgid "| 1 |B-Wageningen basin         |2...6|0,3  ... 1,05|0,6 ... 1,4|0,050|0,180 | 15 |"
+#, fuzzy
+#| msgid "| 1 |B-Wageningen basin         |2...6|0,3  ... 1,05|0,6 ... 1,4|0,050|0,180 | 15 |"
+msgid "| 1 |B-Wageningen basin         |2...6|0.3  ... 1.05|0.6 ... 1.4|0.050|0.180 | 15 |"
 msgstr "| 1 |B-Wageningen basin         |2...6|0,3  ... 1,05|0,6 ... 1,4|0,050|0,180 | 15 |"
 
 #: freestringsunit.rs_l_1_l_bmax___l__m__l
@@ -3302,7 +3372,9 @@ msgid "| 1 | Bmax   | [m] |"
 msgstr "| 1 | Bmax   |  m  |"
 
 #: freestringsunit.rs_l_2_lb_wageningen_basin_________l__4__l0_4______1_0_l0_6_____1_4l0_045l0_167_l_15_l
-msgid "| 2 |B-Wageningen basin         |  4  |0,4  ... 1,0 |0,6 ... 1,4|0,045|0,167 | 15 |"
+#, fuzzy
+#| msgid "| 2 |B-Wageningen basin         |  4  |0,4  ... 1,0 |0,6 ... 1,4|0,045|0,167 | 15 |"
+msgid "| 2 |B-Wageningen basin         |  4  |0.4  ... 1.0 |0.6 ... 1.4|0.045|0.167 | 15 |"
 msgstr "| 2 |B-Wageningen basin         |  4  |0,4  ... 1,0 |0,6 ... 1,4|0,045|0,167 | 15 |"
 
 #: freestringsunit.rs_l_2_l_bl_____l__m__l
@@ -3310,7 +3382,9 @@ msgid "| 2 | Bl     | [m] |"
 msgstr "| 2 | Bl     |  m  |"
 
 #: freestringsunit.rs_l_3_lb_wageningen_basin_________l__5__l0_45_____1_05l0_6_____1_4l0_040l0_167_l_15_l
-msgid "| 3 |B-Wageningen basin         |  5  |0,45 ... 1,05|0,6 ... 1,4|0,040|0,167 | 15 |"
+#, fuzzy
+#| msgid "| 3 |B-Wageningen basin         |  5  |0,45 ... 1,05|0,6 ... 1,4|0,040|0,167 | 15 |"
+msgid "| 3 |B-Wageningen basin         |  5  |0.45 ... 1.05|0.6 ... 1.4|0.040|0.167 | 15 |"
 msgstr "| 3 |B-Wageningen basin         |  5  |0,45 ... 1,05|0,6 ... 1,4|0,040|0,167 | 15 |"
 
 #: freestringsunit.rs_l_3_l_e______l__m__l
@@ -3318,7 +3392,9 @@ msgid "| 3 | e      | [m] |"
 msgstr "| 3 | e      |  m  |"
 
 #: freestringsunit.rs_l_4_lb_wageningen_basin_________l__6__l_____0_8_____l0_5_____1_4l0_040l0_167_l_15_l
-msgid "| 4 |B-Wageningen basin         |  6  |     0,8     |0,5 ... 1,4|0,040|0,167 | 15 |"
+#, fuzzy
+#| msgid "| 4 |B-Wageningen basin         |  6  |     0,8     |0,5 ... 1,4|0,040|0,167 | 15 |"
+msgid "| 4 |B-Wageningen basin         |  6  |     0.8     |0.5 ... 1.4|0.040|0.167 | 15 |"
 msgstr "| 4 |B-Wageningen basin         |  6  |     0,8     |0,5 ... 1,4|0,040|0,167 | 15 |"
 
 #: freestringsunit.rs_l_4_l_fi_____l_degrl
@@ -3326,7 +3402,9 @@ msgid "| 4 | fi     | degr|"
 msgstr "| 4 | fi     |grad |"
 
 #: freestringsunit.rs_l_5_lt_titov____________________l__4__l_____0_58____l0_6_____1_5l_0_06l0_200_l__0_l
-msgid "| 5 |T-Titov                    |  4  |     0,58    |0,6 ... 1,5| 0,06|0,200 |  0 |"
+#, fuzzy
+#| msgid "| 5 |T-Titov                    |  4  |     0,58    |0,6 ... 1,5| 0,06|0,200 |  0 |"
+msgid "| 5 |T-Titov                    |  4  |     0.58    |0.6 ... 1.5| 0.06|0.200 |  0 |"
 msgstr "| 5 |T-Titov                    |  4  |     0,58    |0,6 ... 1,5| 0,06|0,200 |  0 |"
 
 #: freestringsunit.rs_l_5_l_gp_____l_____l
@@ -3366,7 +3444,9 @@ msgid "| 6#215C#207H18/22-300       |       220       |       750        |      
 msgstr "| 6×CÏH18/22-300       |       220       |       750        |       25       |"
 
 #: freestringsunit.rs_l_6_lt_titov____________________l__4__l_____0_75____l0_6_____1_5l_0_06l0_200_l__0_l
-msgid "| 6 |T-Titov                    |  4  |     0,75    |0,6 ... 1,5| 0,06|0,200 |  0 |"
+#, fuzzy
+#| msgid "| 6 |T-Titov                    |  4  |     0,75    |0,6 ... 1,5| 0,06|0,200 |  0 |"
+msgid "| 6 |T-Titov                    |  4  |     0.75    |0.6 ... 1.5| 0.06|0.200 |  0 |"
 msgstr "| 6 |T-Titov                    |  4  |     0,75    |0,6 ... 1,5| 0,06|0,200 |  0 |"
 
 #: freestringsunit.rs_l_6_l_gt_____l_____l
@@ -3398,7 +3478,9 @@ msgid "| 7DKPH 67/170-7       |     11240       |       123        |      508   
 msgstr "| 7ÄKPH 67/170-7       |     11240       |       123        |      508       |"
 
 #: freestringsunit.rs_l_7_lm_mishkevich_______________l__4__l_____0_65____l0_6_____1_4l_0_06l0_200_l__5_l
-msgid "| 7 |M-Mishkevich               |  4  |     0,65    |0,6 ... 1,4| 0,06|0,200 |  5 |"
+#, fuzzy
+#| msgid "| 7 |M-Mishkevich               |  4  |     0,65    |0,6 ... 1,4| 0,06|0,200 |  5 |"
+msgid "| 7 |M-Mishkevich               |  4  |     0.65    |0.6 ... 1.4| 0.06|0.200 |  5 |"
 msgstr "| 7 |M-Mishkevich               |  4  |     0,65    |0,6 ... 1,4| 0,06|0,200 |  5 |"
 
 #: freestringsunit.rs_l_7_l_mp_____lknom_l
@@ -3422,7 +3504,9 @@ msgid "| 8#215C#207H18/22-475       |       370       |       750        |      
 msgstr "| 8×CÏH18/22-475       |       370       |       750        |       20       |"
 
 #: freestringsunit.rs_l_8_lz_zavadovsky_______________l__4__l_____0_85____l0_9_____1_4l0_045l0_180_l_15_l
-msgid "| 8 |Z-Zavadovsky               |  4  |     0,85    |0,9 ... 1,4|0,045|0,180 | 15 |"
+#, fuzzy
+#| msgid "| 8 |Z-Zavadovsky               |  4  |     0,85    |0,9 ... 1,4|0,045|0,180 | 15 |"
+msgid "| 8 |Z-Zavadovsky               |  4  |     0.85    |0.9 ... 1.4|0.045|0.180 | 15 |"
 msgstr "| 8 |Z-Zavadovsky               |  4  |     0,85    |0,9 ... 1,4|0,045|0,180 | 15 |"
 
 #: freestringsunit.rs_l_8_l_mt_____lknom_l
@@ -3442,7 +3526,9 @@ msgid "| 8#215PH32/48(8HBD48A-2#211)|       970       |       428        |      
 msgstr "| 8×PH32/48(8ÍÂÄ48À-2Ó)|       970       |       428        |      760       |"
 
 #: freestringsunit.rs_l_9_lz_zavadovsky_______________l__4__l_____1_0_____l0_9_____1_4l0_045l0_180_l_15_l
-msgid "| 9 |Z-Zavadovsky               |  4  |     1,0     |0,9 ... 1,4|0,045|0,180 | 15 |"
+#, fuzzy
+#| msgid "| 9 |Z-Zavadovsky               |  4  |     1,0     |0,9 ... 1,4|0,045|0,180 | 15 |"
+msgid "| 9 |Z-Zavadovsky               |  4  |     1.0     |0.9 ... 1.4|0.045|0.180 | 15 |"
 msgstr "| 9 |Z-Zavadovsky               |  4  |     1,0     |0,9 ... 1,4|0,045|0,180 | 15 |"
 
 #: freestringsunit.rs_l_9_l_f______l_m2__l
@@ -3574,7 +3660,9 @@ msgid "| Long.center of buoyancy,LCB |  -7% L ... 2.8% L    |"
 msgstr "| Long.center of buoyancy,LCB |  -7% L ... 2.8% L    |"
 
 #: freestringsunit.rs_l_l_voo0_3333_l__4_490_____6_008__l__5_450_____7_047___l__4_405_____7_265__l
-msgid "| L/V**0,3333 |  4,490 ... 6,008  |  5,450 ... 7,047   |  4,405 ... 7,265  |"
+#, fuzzy
+#| msgid "| L/V**0,3333 |  4,490 ... 6,008  |  5,450 ... 7,047   |  4,405 ... 7,265  |"
+msgid "| L/V**0.3333 |  4.490 ... 6.008  |  5.450 ... 7.047   |  4.405 ... 7.265  |"
 msgstr "| L/V**0,3333 |  4,490 ... 6,008  |  5,450 ... 7,047   |  4,405 ... 7,265  |"
 
 #: freestringsunit.rs_l_midship_coefficient______cm_l__0_556_to_0_994______l
@@ -3742,11 +3830,15 @@ msgid "|  7  | 6.11 | 0.184 | 0.788 | 0.76 |  7  | 4.04 | 0.135 | 0.528 |     | 
 msgstr "|  7  | 6.11 | 0.184 | 0.788 | 0.76 |  7  | 4.04 | 0.135 | 0.528 |     |      |       |       |"
 
 #: freestringsunit.rs_l__b_t____l___2_6_____4_0___l___2_3_____3_2____l_________________l
-msgid "|  B/T    |   2,6 ... 4,0   |   2,3 ... 3,2    |       -         |"
+#, fuzzy
+#| msgid "|  B/T    |   2,6 ... 4,0   |   2,3 ... 3,2    |       -         |"
+msgid "|  B/T    |   2.6 ... 4.0   |   2.3 ... 3.2    |       -         |"
 msgstr "|  B/T    |   2,6 ... 4,0   |   2,3 ... 3,2    |       -         |"
 
 #: freestringsunit.rs_l__b_t________l__2_00_____5_00__l__2_00_____5_00__l__2_00_____5_00__l__2_20_____3_50__l
-msgid "|  B/T        |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,20 ... 3,50  |"
+#, fuzzy
+#| msgid "|  B/T        |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,20 ... 3,50  |"
+msgid "|  B/T        |  2.00 ... 5.00  |  2.00 ... 5.00  |  2.00 ... 5.00  |  2.20 ... 3.50  |"
 msgstr "|  B/T        |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,20 ... 3,50  |"
 
 #: freestringsunit.rs_l__b__t___m_______
@@ -3754,35 +3846,51 @@ msgid "L, B, T , m      ="
 msgstr "L, B, T , m      ="
 
 #: freestringsunit.rs_l__cb_________l_0_500_____0_650_l_0_550_____0_650_l_0_600_____0_800_l_0_800_____0_875_l
-msgid "|  Cb         | 0,500 ... 0,650 | 0,550 ... 0,650 | 0,600 ... 0,800 | 0,800 ... 0,875 |"
+#, fuzzy
+#| msgid "|  Cb         | 0,500 ... 0,650 | 0,550 ... 0,650 | 0,600 ... 0,800 | 0,800 ... 0,875 |"
+msgid "|  Cb         | 0.500 ... 0.650 | 0.550 ... 0.650 | 0.600 ... 0.800 | 0.800 ... 0.875 |"
 msgstr "|  Cb         | 0,500 ... 0,650 | 0,550 ... 0,650 | 0,600 ... 0,800 | 0,800 ... 0,875 |"
 
 #: freestringsunit.rs_l__cm_____l__0_75_____0_92__l__0_65_____0_92___l_________________l
-msgid "|  Cm     |  0,75 ... 0,92  |  0,65 ... 0,92   |       -         |"
+#, fuzzy
+#| msgid "|  Cm     |  0,75 ... 0,92  |  0,65 ... 0,92   |       -         |"
+msgid "|  Cm     |  0.75 ... 0.92  |  0.65 ... 0.92   |       -         |"
 msgstr "|  Cm     |  0,75 ... 0,92  |  0,65 ... 0,92   |       -         |"
 
 #: freestringsunit.rs_l__cp_____l__0_50_____0_72__l__0_55_____0_70___l_________________l
-msgid "|  Cp     |  0,50 ... 0,72  |  0,55 ... 0,70   |       -         |"
+#, fuzzy
+#| msgid "|  Cp     |  0,50 ... 0,72  |  0,55 ... 0,70   |       -         |"
+msgid "|  Cp     |  0.50 ... 0.72  |  0.55 ... 0.70   |       -         |"
 msgstr "|  Cð     |  0,50 ... 0,72  |  0,55 ... 0,70   |       -         |"
 
 #: freestringsunit.rs_l__fr_____l___0_1_____0_5___l__0_21_____0_37___l_________________l
-msgid "|  Fr     |   0,1 ... 0,5   |  0,21 ... 0,37   |       -         |"
+#, fuzzy
+#| msgid "|  Fr     |   0,1 ... 0,5   |  0,21 ... 0,37   |       -         |"
+msgid "|  Fr     |   0.1 ... 0.5   |  0.21 ... 0.37   |       -         |"
 msgstr "|  Fr     |   0,1 ... 0,5   |  0,21 ... 0,37   |       -         |"
 
 #: freestringsunit.rs_l__fr_________l__0_17_____0_34__l__0_17_____0_38__l__0_16_____0_30__l__0_10_____0_23__l
-msgid "|  Fr         |  0,17 ... 0,34  |  0,17 ... 0,38  |  0,16 ... 0,30  |  0,10 ... 0,23  |"
+#, fuzzy
+#| msgid "|  Fr         |  0,17 ... 0,34  |  0,17 ... 0,38  |  0,16 ... 0,30  |  0,10 ... 0,23  |"
+msgid "|  Fr         |  0.17 ... 0.34  |  0.17 ... 0.38  |  0.16 ... 0.30  |  0.10 ... 0.23  |"
 msgstr "|  Fr         |  0,17 ... 0,34  |  0,17 ... 0,38  |  0,16 ... 0,30  |  0,10 ... 0,23  |"
 
 #: freestringsunit.rs_l__lcb____l__0_05_____0_01__l__0_03_____0_01___l_________________l
-msgid "|  lcb    | -0,05 ...-0,01  | -0,03 ... 0,01   |       -         |"
+#, fuzzy
+#| msgid "|  lcb    | -0,05 ...-0,01  | -0,03 ... 0,01   |       -         |"
+msgid "|  lcb    | -0.05 ...-0.01  | -0.03 ... 0.01   |       -         |"
 msgstr "|  lcb    | -0,05 ...-0,01  | -0,03 ... 0,01   |       -         |"
 
 #: freestringsunit.rs_l__lpp_b__l___2_5_____3_5___l___3_5_____5_0____l_________________l
-msgid "|  Lpp/B  |   2,5 ... 3,5   |   3,5 ... 5,0    |       -         |"
+#, fuzzy
+#| msgid "|  Lpp/B  |   2,5 ... 3,5   |   3,5 ... 5,0    |       -         |"
+msgid "|  Lpp/B  |   2.5 ... 3.5   |   3.5 ... 5.0    |       -         |"
 msgstr "|  Lpp/B  |   2,5 ... 3,5   |   3,5 ... 5,0    |       -         |"
 
 #: freestringsunit.rs_l__lpp_b______l__4_80_____7_00__l__4_80_____7_30__l_________________l__5_80_____8_30__l
-msgid "|  Lpp/B      |  4,80 ... 7,00  |  4,80 ... 7,30  |        -        |  5,80 ... 8,30  |"
+#, fuzzy
+#| msgid "|  Lpp/B      |  4,80 ... 7,00  |  4,80 ... 7,30  |        -        |  5,80 ... 8,30  |"
+msgid "|  Lpp/B      |  4.80 ... 7.00  |  4.80 ... 7.30  |        -        |  5.80 ... 8.30  |"
 msgstr "|  Lpp/B      |  4,80 ... 7,00  |  4,80 ... 7,30  |        -        |  5,80 ... 8,30  |"
 
 #: freestringsunit.rs_l__na_________l________2________l________2________l________2________l_____1_____3_____l
@@ -3790,7 +3898,9 @@ msgid "|  Na         |        2        |        2        |        2        |    
 msgstr "|  Na         |        2        |        2        |        2        |     1 ... 3     |"
 
 #: freestringsunit.rs_l__nf_________l_______2_4_______l________2________l______1_2_4______l_____2_____5_____l
-msgid "|  Nf         |       2,4       |        2        |      1,2,4      |     2 ... 5     |"
+#, fuzzy
+#| msgid "|  Nf         |       2,4       |        2        |      1,2,4      |     2 ... 5     |"
+msgid "|  Nf         |       2.4       |        2        |      1.2,4      |     2 ... 5     |"
 msgstr "|  Nf         |       2,4       |        2        |      1,2,4      |     2 ... 5     |"
 
 #: freestringsunit.rs_l__np_________l_____1_____2_____l________2________l________1________l________1________l
@@ -3806,7 +3916,9 @@ msgid "|  Parameter  |    Series 1     |    Series 2     |   Series 3      |    
 msgstr "|  Parameter  |    Series 1     |    Series 2     |   Series 3      |    Series 4     |"
 
 #: freestringsunit.rs_l__sudostroenie_1988_360pp_
-msgid "L.:Sudostroenie,1988,360pp."
+#, fuzzy
+#| msgid "L.:Sudostroenie,1988,360pp."
+msgid "L.:Sudostroenie,1988.360pp."
 msgstr "L.:Sudostroenie,1988,360pp."
 
 #: freestringsunit.rs_l__type_of_diesel______t_________________t__________________t________________t
@@ -3822,11 +3934,15 @@ msgid "|  Value   |Measurem|               M E A N I N G S              |"
 msgstr "|  Value   |Measurem|               M E A N I N G S              |"
 
 #: freestringsunit.rs_l__xc_lpp_l____________l_1_79_____2_88_l_11_5_____3_09_l_______________l______6_4_____lxg_lpp_6_56_l
-msgid "|  Xc/Lpp |     -      |-1,79 ... 2,88%|-11,5 ... 3,09%|       -       |     -6,4%    |Xg/Lpp=6,56%|"
+#, fuzzy
+#| msgid "|  Xc/Lpp |     -      |-1,79 ... 2,88%|-11,5 ... 3,09%|       -       |     -6,4%    |Xg/Lpp=6,56%|"
+msgid "|  Xc/Lpp |     -      |-1.79 ... 2.88%|-11.5 ... 3.09%|       -       |     -6.4%    |Xg/Lpp=6.56%|"
 msgstr "|  Xc/Lpp |     -      |-1,79 ... 2,88%|-11,5 ... 3,09%|       -       |     -6,4%    |Xg/Lpp=6,56%|"
 
 #: freestringsunit.rs_l__xc_lpp_____l_________________l__0_05_____0_00__l_0_025_____0_030_l_0_015_____0_044_l
-msgid "|  Xc/Lpp     |        -        | -0,05 ... 0,00  |-0,025 ... 0,030 | 0,015 ... 0,044 |"
+#, fuzzy
+#| msgid "|  Xc/Lpp     |        -        | -0,05 ... 0,00  |-0,025 ... 0,030 | 0,015 ... 0,044 |"
+msgid "|  Xc/Lpp     |        -        | -0.05 ... 0.00  |-0.025 ... 0.030 | 0.015 ... 0.044 |"
 msgstr "|  Xc/Lpp     |        -        | -0,05 ... 0,00  |-0,025 ... 0,030 | 0,015 ... 0,044 |"
 
 #: freestringsunit.rs_l___6_c_18_22__________l_______110_______l_______750________l_____18_3_______l
@@ -3834,23 +3950,33 @@ msgid "|   6#215C#20718/22          |       110       |       750        |     1
 msgstr "|   6×ÑÏ18/22          |       110       |       750        |     18.3       |"
 
 #: freestringsunit.rs_l___a_f___l____________l_15_1_____22_5_l_______________l__8_2_____14_4_l______________l_3_7____7_8_l
-msgid "|   a_f   |     -      | 15,1 ... 22,5#176|       -       |  8,2 ... 14,4#176|       -      | 3,7... 7,8#176|"
+#, fuzzy
+#| msgid "|   a_f   |     -      | 15,1 ... 22,5#176|       -       |  8,2 ... 14,4#176|       -      | 3,7... 7,8#176|"
+msgid "|   a_f   |     -      | 15.1 ... 22.5#176|       -       |  8.2 ... 14.4#176|       -      | 3.7... 7.8#176|"
 msgstr "|   a_í   |     -      | 15,1 ... 22,5°|       -       |  8,2 ... 14,4°|       -      | 3,7... 7,8°|"
 
 #: freestringsunit.rs_l___b_t___l____________l_3_70_____14_0_l_2_72_____6_58_l_3_0__3_5__4_0_l_1_76_____6_87l2_0_____4_0_l
-msgid "|   B/T   |     -      | 3,70 ... 14,0 | 2,72 ... 6,58 | 3.0; 3.5; 4.0 | 1,76 ... 6,87|2,0 ... 4,0 |"
+#, fuzzy
+#| msgid "|   B/T   |     -      | 3,70 ... 14,0 | 2,72 ... 6,58 | 3.0; 3.5; 4.0 | 1,76 ... 6,87|2,0 ... 4,0 |"
+msgid "|   B/T   |     -      | 3.70 ... 14.0 | 2.72 ... 6.58 | 3.0; 3.5; 4.0 | 1.76 ... 6.87|2.0 ... 4.0 |"
 msgstr "|   B/T   |     -      | 3,70 ... 14,0 | 2,72 ... 6,58 | 3.0; 3.5; 4.0 | 1,76 ... 6,87|2,0 ... 4,0 |"
 
 #: freestringsunit.rs_l___cb____l_0_4___0_7__l_0_373____0_41_l_0_293____0_56_l______0_4______l____0_397_____l_0_35___0_55l
-msgid "|   Cb    | 0,4...0,7  | 0,373... 0,41 | 0,293... 0,56 |      0,4      |    0,397     | 0,35...0,55|"
+#, fuzzy
+#| msgid "|   Cb    | 0,4...0,7  | 0,373... 0,41 | 0,293... 0,56 |      0,4      |    0,397     | 0,35...0,55|"
+msgid "|   Cb    | 0.4...0.7  | 0.373... 0.41 | 0.293... 0.56 |      0.4      |    0.397     | 0.35...0.55|"
 msgstr "|   Cb    | 0,4...0,7  | 0,373... 0,41 | 0,293... 0,56 |      0,4      |    0,397     | 0,35...0,55|"
 
 #: freestringsunit.rs_l___cp____l____________l_0_576____0_6__l_0_463___0_781_l______0_68_____l____0_693_____l_____0_63___l
-msgid "|   Cp    |     -      | 0,576... 0,6  | 0,463...0,781 |      0,68     |    0,693     |     0,63   |"
+#, fuzzy
+#| msgid "|   Cp    |     -      | 0,576... 0,6  | 0,463...0,781 |      0,68     |    0,693     |     0,63   |"
+msgid "|   Cp    |     -      | 0.576... 0.6  | 0.463...0.781 |      0.68     |    0.693     |     0.63   |"
 msgstr "|   Cð    |     -      | 0,576... 0,6  | 0,463...0,781 |      0,68     |    0,693     |     0,63   |"
 
 #: freestringsunit.rs_l___frv___l_1_0___2_5__l_0_90_____2_00_l__0_8_____2_7__l__1_0_____2_0__l__0_5_____2_8_l_0_8____3_0_l
-msgid "|   FrV   | 1,0...2,5  | 0,90 ... 2,00 |  0,8 ... 2,7  |  1,0 ... 2,0  |  0,5 ... 2,8 | 0,8... 3,0 |"
+#, fuzzy
+#| msgid "|   FrV   | 1,0...2,5  | 0,90 ... 2,00 |  0,8 ... 2,7  |  1,0 ... 2,0  |  0,5 ... 2,8 | 0,8... 3,0 |"
+msgid "|   FrV   | 1.0...2.5  | 0.90 ... 2.00 |  0.8 ... 2.7  |  1.0 ... 2.0  |  0.5 ... 2.8 | 0.8... 3.0 |"
 msgstr "|   FrV   | 1,0...2,5  | 0,90 ... 2,00 |  0,8 ... 2,7  |  1,0 ... 2,0  |  0,5 ... 2,8 | 0,8... 3,0 |"
 
 #: freestringsunit.rs_l___kn__l__ft_s_l_ratio_l___lbs___l___lbs___l___lbs___l___lbs___l
@@ -3914,15 +4040,21 @@ msgid "|   kn   |   m/s  |    -   |    N   |    N   |    N   |   W    |    N   |
 msgstr "|   kn   |   m/s  |    -   |    N   |    N   |    N   |   W    |    N   |   W    |"
 
 #: freestringsunit.rs_l___los_lwl___l__1_000_____1_050__l__1_000_____1_050___l__1_000_____1_050__l
-msgid "|   Los/Lwl   |  1,000 ... 1,050  |  1,000 ... 1,050   |  1,000 ... 1,050  |"
+#, fuzzy
+#| msgid "|   Los/Lwl   |  1,000 ... 1,050  |  1,000 ... 1,050   |  1,000 ... 1,050  |"
+msgid "|   Los/Lwl   |  1.000 ... 1.050  |  1.000 ... 1.050   |  1.000 ... 1.050  |"
 msgstr "|   Los/Lwl   |  1,000 ... 1,050  |  1,000 ... 1,050   |  1,000 ... 1,050  |"
 
 #: freestringsunit.rs_l___lwl_l_____l__1_000_____1_055__l__0_945_____1_000___l__1_000_____1_070__l
-msgid "|   Lwl/L     |  1,000 ... 1,055  |  0,945 ... 1,000   |  1,000 ... 1,070  |"
+#, fuzzy
+#| msgid "|   Lwl/L     |  1,000 ... 1,055  |  0,945 ... 1,000   |  1,000 ... 1,070  |"
+msgid "|   Lwl/L     |  1.000 ... 1.055  |  0.945 ... 1.000   |  1.000 ... 1.070  |"
 msgstr "|   Lwl/L     |  1,000 ... 1,055  |  0,945 ... 1,000   |  1,000 ... 1,070  |"
 
 #: freestringsunit.rs_l___l_b___l____________l_4_83_____6_94_l_3_53____10_09_l_4_62_____8_20_l_3_33____7_5__l8_45___18_26l
-msgid "|   L/B   |     -      | 4,83 ... 6,94 | 3,53 ...10,09 | 4,62 ... 8,20 | 3,33 ...7,5  |8,45...18,26|"
+#, fuzzy
+#| msgid "|   L/B   |     -      | 4,83 ... 6,94 | 3,53 ...10,09 | 4,62 ... 8,20 | 3,33 ...7,5  |8,45...18,26|"
+msgid "|   L/B   |     -      | 4.83 ... 6.94 | 3.53 ...10.09 | 4.62 ... 8.20 | 3.33 ...7.5  |8.45...18.26|"
 msgstr "|   L/B   |     -      | 4,83 ... 6,94 | 3,53 ...10,09 | 4,62 ... 8,20 | 3,33 ...7,5  |8,45...18,26|"
 
 #: freestringsunit.rs_l___np____l_____1______l_______1_______l_______1_______l________1______l________1_____l_______1____l
@@ -3938,11 +4070,15 @@ msgid "|   Psi   |     -      |       -       |       -       |    6; 7; 8    | 
 msgstr "|   Psi   |     -      |       -       |       -       |    6; 7; 8    |       -      |     -      |"
 
 #: freestringsunit.rs_l___svlr__l____________l_2_67_____2_70_l______2_75_____l__2_9_____3_0__l______________l____________l
-msgid "|   SVLR  |     -      | 2,67 ... 2,70 |      2,75     |  2,9 ... 3,0  |       -      |     -      |"
+#, fuzzy
+#| msgid "|   SVLR  |     -      | 2,67 ... 2,70 |      2,75     |  2,9 ... 3,0  |       -      |     -      |"
+msgid "|   SVLR  |     -      | 2.67 ... 2.70 |      2.75     |  2.9 ... 3.0  |       -      |     -      |"
 msgstr "|   SVLR  |     -      | 2,67 ... 2,70 |      2,75     |  2,9 ... 3,0  |       -      |     -      |"
 
 #: freestringsunit.rs_l___trim_lpp__l__0_00_____0_05____l____0_01_____0_03________l
-msgid "|   trim/Lpp  |  0,00 ... 0,05    |   -0,01 ... 0,03        |"
+#, fuzzy
+#| msgid "|   trim/Lpp  |  0,00 ... 0,05    |   -0,01 ... 0,03        |"
+msgid "|   trim/Lpp  |  0.00 ... 0.05    |   -0.01 ... 0.03        |"
 msgstr "|   trim/Lpp  |  0,00 ... 0,05    |   -0,01 ... 0,03        |"
 
 #: freestringsunit.rs_l___value__l______________m_e_a_n_i_n_g_s_______________l
@@ -3974,7 +4110,9 @@ msgid "|   Vs   |   Vms  |   Fr   |   R_f  |   R_r  |   R_T  |   Pe   |  R_T_e |
 msgstr "|   Vs   |   Vms  |   Fr   |   R_f  |   R_r  |   R_T  |   Pe   |  R_T_e |  Pe_e  |"
 
 #: freestringsunit.rs_l____dp_ta____l__0_430_____0_840__l__0_655_____1_050___l__0_495_____0_860__l
-msgid "|    Dp/Ta    |  0,430 ... 0,840  |  0,655 ... 1,050   |  0,495 ... 0,860  |"
+#, fuzzy
+#| msgid "|    Dp/Ta    |  0,430 ... 0,840  |  0,655 ... 1,050   |  0,495 ... 0,860  |"
+msgid "|    Dp/Ta    |  0.430 ... 0.840  |  0.655 ... 1.050   |  0.495 ... 0.860  |"
 msgstr "|    Dp/Ta    |  0,430 ... 0,840  |  0,655 ... 1,050   |  0,495 ... 0,860  |"
 
 #: freestringsunit.rs_l____jb____l________l
@@ -4038,39 +4176,57 @@ msgid "|    vs    |   [kn] |"
 msgstr "|    vs    |   kn   |"
 
 #: freestringsunit.rs_l_____ab______l__0_11_____0_04____l____0_10_____0_0_________l
-msgid "|     AB      | -0,11 ... 0,04    |   -0,10 ... 0,0         |"
+#, fuzzy
+#| msgid "|     AB      | -0,11 ... 0,04    |   -0,10 ... 0,0         |"
+msgid "|     AB      | -0.11 ... 0.04    |   -0.10 ... 0.0         |"
 msgstr "|     AB      | -0,11 ... 0,04    |   -0,10 ... 0,0         |"
 
 #: freestringsunit.rs_l_____ar______l__0_01_____0_04____l_0_01_____0_02_per_rudderl
-msgid "|     AR      |  0,01 ... 0,04    | 0,01 ... 0,02 per rudder|"
+#, fuzzy
+#| msgid "|     AR      |  0,01 ... 0,04    | 0,01 ... 0,02 per rudder|"
+msgid "|     AR      |  0.01 ... 0.04    | 0.01 ... 0.02 per rudder|"
 msgstr "|     AR      |  0,01 ... 0,04    | 0,01 ... 0,02 per rudder|"
 
 #: freestringsunit.rs_l_____b_t_____l__1_989_____4_002__l__2_967_____6_120___l__2_308_____6_110__l
-msgid "|     B/T     |  1,989 ... 4,002  |  2,967 ... 6,120   |  2,308 ... 6,110  |"
+#, fuzzy
+#| msgid "|     B/T     |  1,989 ... 4,002  |  2,967 ... 6,120   |  2,308 ... 6,110  |"
+msgid "|     B/T     |  1.989 ... 4.002  |  2.967 ... 6.120   |  2.308 ... 6.110  |"
 msgstr "|     B/T     |  1,989 ... 4,002  |  2,967 ... 6,120   |  2,308 ... 6,110  |"
 
 #: freestringsunit.rs_l_____cb______l__0_56_____0_87____l____0_42_____0_62________l
-msgid "|     Cb      |  0,56 ... 0,87    |    0,42 ... 0,62        |"
+#, fuzzy
+#| msgid "|     Cb      |  0,56 ... 0,87    |    0,42 ... 0,62        |"
+msgid "|     Cb      |  0.56 ... 0.87    |    0.42 ... 0.62        |"
 msgstr "|     Cb      |  0,56 ... 0,87    |    0,42 ... 0,62        |"
 
 #: freestringsunit.rs_l_____cb______l__0_601_____0_830__l__0_559_____0_790___l__0_512_____0_775__l
-msgid "|     Cb      |  0,601 ... 0,830  |  0,559 ... 0,790   |  0,512 ... 0,775  |"
+#, fuzzy
+#| msgid "|     Cb      |  0,601 ... 0,830  |  0,559 ... 0,790   |  0,512 ... 0,775  |"
+msgid "|     Cb      |  0.601 ... 0.830  |  0.559 ... 0.790   |  0.512 ... 0.775  |"
 msgstr "|     Cb      |  0,601 ... 0,830  |  0,559 ... 0,790   |  0,512 ... 0,775  |"
 
 #: freestringsunit.rs_l_____fr______l__0_06_____0_298___l___0_074_____0_655_______l
-msgid "|     Fr      |  0,06 ... 0,298   |   0,074 ... 0,655       |"
+#, fuzzy
+#| msgid "|     Fr      |  0,06 ... 0,298   |   0,074 ... 0,655       |"
+msgid "|     Fr      |  0.06 ... 0.298   |   0.074 ... 0.655       |"
 msgstr "|     Fr      |  0,06 ... 0,298   |   0,074 ... 0,655       |"
 
 #: freestringsunit.rs_l_____lpp_____l__54_9_____329_2_m_l____76_2_____225_6_m_____l
-msgid "|     Lpp     |  54,9 ... 329,2 m |    76,2 ... 225,6 m     |"
+#, fuzzy
+#| msgid "|     Lpp     |  54,9 ... 329,2 m |    76,2 ... 225,6 m     |"
+msgid "|     Lpp     |  54.9 ... 329.2 m |    76.2 ... 225.6 m     |"
 msgstr "|     Lpp     |  54,9 ... 329,2 m |    76,2 ... 225,6 m     |"
 
 #: freestringsunit.rs_l_____l_b_____l__4_710_____7_106__l__4_949_____6_623___l__3_960_____7_130__l
-msgid "|     L/B     |  4,710 ... 7,106  |  4,949 ... 6,623   |  3,960 ... 7,130  |"
+#, fuzzy
+#| msgid "|     L/B     |  4,710 ... 7,106  |  4,949 ... 6,623   |  3,960 ... 7,130  |"
+msgid "|     L/B     |  4.710 ... 7.106  |  4.949 ... 6.623   |  3.960 ... 7.130  |"
 msgstr "|     L/B     |  4,710 ... 7,106  |  4,949 ... 6,623   |  3,960 ... 7,130  |"
 
 #: freestringsunit.rs_l_____l_b_____l__5_56_____9_09____l____5_00_____16_67_______l
-msgid "|     L/B     |  5,56 ... 9,09    |    5,00 ... 16,67       |"
+#, fuzzy
+#| msgid "|     L/B     |  5,56 ... 9,09    |    5,00 ... 16,67       |"
+msgid "|     L/B     |  5.56 ... 9.09    |    5.00 ... 16.67       |"
 msgstr "|     L/B     |  5,56 ... 9,09    |    5,00 ... 16,67       |"
 
 #: freestringsunit.rs_l________parameters___________l______limitations_____l
@@ -4171,7 +4327,9 @@ msgid "m"
 msgstr "m"
 
 #: freestringsunit.rs_magnetics_________________________l__________0_96___0_98
-msgid "magnetics                         |          0,96...0,98"
+#, fuzzy
+#| msgid "magnetics                         |          0,96...0,98"
+msgid "magnetics                         |          0.96...0.98"
 msgstr "magnetics                         |          0,96...0,98"
 
 #: freestringsunit.rs_maneuvering_prediction_program__mpp_1_3_
@@ -4248,7 +4406,9 @@ msgid "Method (Nm=1 - Geers; Nm=2 - Doubrovin)"
 msgstr "Method (Nm = 1 - Geers; Nm = 2 - Doubrovin)"
 
 #: freestringsunit.rs_michell___________________________l______________0_97
-msgid "Michell                           |              0,97"
+#, fuzzy
+#| msgid "Michell                           |              0,97"
+msgid "Michell                           |              0.97"
 msgstr "Michell                           |              0,97"
 
 #: freestringsunit.rs_michlet_export
@@ -5077,7 +5237,9 @@ msgid "Righting lever transverse static stability  GZ_teta"
 msgstr "Righting lever transverse static stability  GZ_teta"
 
 #: freestringsunit.rs_ring_type_________________________l______________0_95
-msgid "ring-type                         |              0,95"
+#, fuzzy
+#| msgid "ring-type                         |              0,95"
+msgid "ring-type                         |              0.95"
 msgstr "ring-type                         |              0,95"
 
 #: freestringsunit.rs_robinson_john___performance_prediction_of_chine_and_round_bilge_hull_forms___international
@@ -5609,11 +5771,15 @@ msgid "tons"
 msgstr "tons"
 
 #: freestringsunit.rs_toothed_double_reduction_gearbox__l__________0_94___0_97
-msgid "toothed double-reduction gearbox  |          0,94...0,97"
+#, fuzzy
+#| msgid "toothed double-reduction gearbox  |          0,94...0,97"
+msgid "toothed double-reduction gearbox  |          0.94...0.97"
 msgstr "toothed double-reduction gear     |          0,94...0,97"
 
 #: freestringsunit.rs_toothed_single_reduction_gearbox__l__________0_97___0_99
-msgid "toothed single-reduction gearbox  |          0,97...0,99"
+#, fuzzy
+#| msgid "toothed single-reduction gearbox  |          0,97...0,99"
+msgid "toothed single-reduction gearbox  |          0.97...0.99"
 msgstr "toothed single-reduction gear     |          0,97...0,99"
 
 #: freestringsunit.rs_torque_coefficient_kq____________________
@@ -6135,7 +6301,9 @@ msgid "When the analysis process is completed, the program can be produce an ope
 msgstr "1.17 Dpmax - Maximum propeller diameter permitted by hull and required clearances, in meters."
 
 #: freestringsunit.rs_where_frv___v__gov_0_3333__0_5_____svlr___s__vl__0_5_____pr_shl___formulae_by_prandl_schlichting
-msgid "where FrV = v/(g*V^0,3333)^0,5 ;   SVLR = S/(VL)^0,5 ;   Pr-Shl - formulae by Prandl-Schlichting"
+#, fuzzy
+#| msgid "where FrV = v/(g*V^0,3333)^0,5 ;   SVLR = S/(VL)^0,5 ;   Pr-Shl - formulae by Prandl-Schlichting"
+msgid "where FrV = v/(g*V^0.3333)^0.5 ;   SVLR = S/(VL)^0.5 ;   Pr-Shl - formulae by Prandl-Schlichting"
 msgstr "where FrV = v/(g*V^0,3333)^0,5 ;   SVLR = S/(VL)^0,5 ;   Pr-Shl - formulae by Prandl-Schlichting"
 
 #: freestringsunit.rs_which_is_expressed_in_degrees_
@@ -6251,7 +6419,9 @@ msgid "- B maximum beam on waterline in meters"
 msgstr "- B maximum beam on waterline in meters"
 
 #: freestringsunit.rs___b_t_____2_5_____7_5_____lc_l______0_6_____0_85_
-msgid "- B/T  =  2,5 ... 7,5  ;  Lc/L  =   0,6 ... 0,85;"
+#, fuzzy
+#| msgid "- B/T  =  2,5 ... 7,5  ;  Lc/L  =   0,6 ... 0,85;"
+msgid "- B/T  =  2.5 ... 7.5  ;  Lc/L  =   0.6 ... 0.85;"
 msgstr "- B/T  =  2,5 ... 7,5  ;  Lc/L  =   0,6 ... 0,85;"
 
 #: freestringsunit.rs___calculated
@@ -6267,39 +6437,57 @@ msgid "( CB = 0.805 ) and the  Mariner ( CB = 0.589 ). Independent  variables  i
 msgstr "( CB = 0.805 ) and the  Mariner ( CB = 0.589 ). Independent  variables  in  these"
 
 #: freestringsunit.rs___cb_____0_290_____0_540___l_b____3_50_____7_40___b_t____3_10_____4_40_
-msgid "- Cb   = 0,290 ... 0,540;  L/B  = 3,50 ... 7,40;  B/T  = 3,10 ... 4,40;"
+#, fuzzy
+#| msgid "- Cb   = 0,290 ... 0,540;  L/B  = 3,50 ... 7,40;  B/T  = 3,10 ... 4,40;"
+msgid "- Cb   = 0.290 ... 0.540;  L/B  = 3.50 ... 7.40;  B/T  = 3.10 ... 4.40;"
 msgstr "- Cb   = 0,290 ... 0,540;  L/B  = 3,50 ... 7,40;  B/T  = 3,10 ... 4,40;"
 
 #: freestringsunit.rs___cb_____0_35_____0_55______s_lwl___0_15_____0_45__
-msgid "- Cb   = 0,35 ... 0,55 ;    S/Lwl = 0,15 ... 0,45 ;"
+#, fuzzy
+#| msgid "- Cb   = 0,35 ... 0,55 ;    S/Lwl = 0,15 ... 0,45 ;"
+msgid "- Cb   = 0.35 ... 0.55 ;    S/Lwl = 0.15 ... 0.45 ;"
 msgstr "- Cb   = 0,35 ... 0,55 ;    S/Lwl = 0,15 ... 0,45 ;"
 
 #: freestringsunit.rs___cb_____0_3_____0_55______c_l___0_01_____0_15_____psi_____8_0_____18_0__
-msgid "- Cb   = 0,3 ... 0,55 ;    C/L = 0,01 ... 0,15 ;   Psi  =  8,0 ... 18,0 ;"
+#, fuzzy
+#| msgid "- Cb   = 0,3 ... 0,55 ;    C/L = 0,01 ... 0,15 ;   Psi  =  8,0 ... 18,0 ;"
+msgid "- Cb   = 0.3 ... 0.55 ;    C/L = 0.01 ... 0.15 ;   Psi  =  8.0 ... 18.0 ;"
 msgstr "- Cb   = 0,3 ... 0,55 ;    ñ/L = 0,01 ... 0,15 ;   Psi  =  8,0 ... 18,0 ;"
 
 #: freestringsunit.rs___cb_____0_40_____0_85____l_b_______4_0_____9_0__
-msgid "- Cb   = 0,40 ... 0,85 ;  L/B   =   4,0 ... 9,0 ;"
+#, fuzzy
+#| msgid "- Cb   = 0,40 ... 0,85 ;  L/B   =   4,0 ... 9,0 ;"
+msgid "- Cb   = 0.40 ... 0.85 ;  L/B   =   4.0 ... 9.0 ;"
 msgstr "- Cb   = 0,40 ... 0,85 ;  L/B   =   4,0 ... 9,0 ;"
 
 #: freestringsunit.rs___cb_____0_5_____0_6_____l_b___10_0_____20_0____b_t____1_5_____2_5____s_lwl___0_15_____0_55__
-msgid "- Cb   = 0,5 ... 0,6 ;   L/B = 10,0 ... 20,0 ;  B/T =  1,5 ... 2,5 ;  S/Lwl = 0,15 ... 0,55 ;"
+#, fuzzy
+#| msgid "- Cb   = 0,5 ... 0,6 ;   L/B = 10,0 ... 20,0 ;  B/T =  1,5 ... 2,5 ;  S/Lwl = 0,15 ... 0,55 ;"
+msgid "- Cb   = 0.5 ... 0.6 ;   L/B = 10.0 ... 20.0 ;  B/T =  1.5 ... 2.5 ;  S/Lwl = 0.15 ... 0.55 ;"
 msgstr "- Cb   = 0,5 ... 0,6 ;   L/B = 10,0 ... 20,0 ;  B/T =  1,5 ... 2,5 ;  S/Lwl = 0,15 ... 0,55 ;"
 
 #: freestringsunit.rs___cp_____0_500_____0_680________b_t_____2_4_____3_2_____psi_l_v_0_333___4_00_____7_20_
-msgid "- Cp   = 0,500 ... 0,680;       B/T  =  2,4 ... 3,2;    Psi=L/V^0,333 = 4,00 ... 7,20;"
+#, fuzzy
+#| msgid "- Cp   = 0,500 ... 0,680;       B/T  =  2,4 ... 3,2;    Psi=L/V^0,333 = 4,00 ... 7,20;"
+msgid "- Cp   = 0.500 ... 0.680;       B/T  =  2.4 ... 3.2;    Psi=L/V^0.333 = 4.00 ... 7.20;"
 msgstr "- Cp   = 0,500 ... 0,680;       B/T  =  2,4 ... 3,2;    Psi=L/V^0,333 = 4,00 ... 7,20;"
 
 #: freestringsunit.rs___cp_____0_800_____0_930________l_b____4_00_____8_50____b_t____3_70_____14_0_
-msgid "- Cp   = 0,800 ... 0,930;       L/B  = 4,00 ... 8,50;   B/T  = 3,70 ... 14,0;"
+#, fuzzy
+#| msgid "- Cp   = 0,800 ... 0,930;       L/B  = 4,00 ... 8,50;   B/T  = 3,70 ... 14,0;"
+msgid "- Cp   = 0.800 ... 0.930;       L/B  = 4.00 ... 8.50;   B/T  = 3.70 ... 14.0;"
 msgstr "- Cp   = 0,800 ... 0,930;       L/B  = 4,00 ... 8,50;   B/T  = 3,70 ... 14,0;"
 
 #: freestringsunit.rs___for_nm_1__cp____0_5_____0_85____b_t_____2_____14____psi___l_v_0_333___5_____11___fr___0_25_____0_65__
-msgid "- For Nm=1, Cp =  0,5 ... 0,85 ;  B/T =   2 ... 14 ;  Psi = L/V^0,333 = 5 ... 11;  Fr = 0,25 ... 0,65 ;"
+#, fuzzy
+#| msgid "- For Nm=1, Cp =  0,5 ... 0,85 ;  B/T =   2 ... 14 ;  Psi = L/V^0,333 = 5 ... 11;  Fr = 0,25 ... 0,65 ;"
+msgid "- For Nm=1, Cp =  0.5 ... 0.85 ;  B/T =   2 ... 14 ;  Psi = L/V^0.333 = 5 ... 11;  Fr = 0.25 ... 0.65 ;"
 msgstr "- For Nm=1, Cp =  0,5 ... 0,85 ;  B/T =   2 ... 14 ;  Psi = L/V^0,333 = 5 ... 11;  Fr = 0,25 ... 0,65 ;"
 
 #: freestringsunit.rs___for_nm_2__cb___0_45_____0_55____l_b___3_5_____5_5___b_t____2_0_____3_5___________fr___0_10_____0_35__
-msgid "- For Nm=2, Cb = 0,45 ... 0,55 ;  L/B = 3,5 ... 5,5;  B/T =  2,0 ... 3,5  ;        Fr = 0,10 ... 0,35 ;"
+#, fuzzy
+#| msgid "- For Nm=2, Cb = 0,45 ... 0,55 ;  L/B = 3,5 ... 5,5;  B/T =  2,0 ... 3,5  ;        Fr = 0,10 ... 0,35 ;"
+msgid "- For Nm=2, Cb = 0.45 ... 0.55 ;  L/B = 3.5 ... 5.5;  B/T =  2.0 ... 3.5  ;        Fr = 0.10 ... 0.35 ;"
 msgstr "- For Nm=2, Cb = 0,45 ... 0,55 ;  L/B = 3,5 ... 5,5;  B/T =  2,0 ... 3,5  ;        Fr = 0,10 ... 0,35 ;"
 
 #: freestringsunit.rs___for_selection_of_propeller_diagram
@@ -6307,31 +6495,45 @@ msgid "- for selection of propeller diagram"
 msgstr "- for selection of propeller diagram"
 
 #: freestringsunit.rs___frv____0_8_____2_2_
-msgid "- FrV  = 0,8 ... 2,2;"
+#, fuzzy
+#| msgid "- FrV  = 0,8 ... 2,2;"
+msgid "- FrV  = 0.8 ... 2.2;"
 msgstr "- FrV  = 0,8 ... 2,2;"
 
 #: freestringsunit.rs___frv____v__gov_0_3333__0_5___0_8_____2_6_
-msgid "- FrV  = v/(g*V^0,3333)^0,5 = 0,8 ... 2,6;"
+#, fuzzy
+#| msgid "- FrV  = v/(g*V^0,3333)^0,5 = 0,8 ... 2,6;"
+msgid "- FrV  = v/(g*V^0.3333)^0.5 = 0.8 ... 2.6;"
 msgstr "- FrV  = v/(g*V^0,3333)^0,5 = 0,8 ... 2,6;"
 
 #: freestringsunit.rs___fr_____0_05_____0_35__
-msgid "- Fr   = 0,05 ... 0,35 ;"
+#, fuzzy
+#| msgid "- Fr   = 0,05 ... 0,35 ;"
+msgid "- Fr   = 0.05 ... 0.35 ;"
 msgstr "- Fr   = 0,05 ... 0,35 ;"
 
 #: freestringsunit.rs___fr_____0_07_____0_25_
-msgid "- Fr   = 0,07 ... 0,25;"
+#, fuzzy
+#| msgid "- Fr   = 0,07 ... 0,25;"
+msgid "- Fr   = 0.07 ... 0.25;"
 msgstr "- Fr   = 0,07 ... 0,25;"
 
 #: freestringsunit.rs___fr_____0_07_____0_45_
-msgid "- Fr   = 0,07 ... 0,45;"
+#, fuzzy
+#| msgid "- Fr   = 0,07 ... 0,45;"
+msgid "- Fr   = 0.07 ... 0.45;"
 msgstr "- Fr   = 0,07 ... 0,45;"
 
 #: freestringsunit.rs___fr_____0_25_____0_6_
-msgid "- Fr   = 0,25 ... 0,6;"
+#, fuzzy
+#| msgid "- Fr   = 0,25 ... 0,6;"
+msgid "- Fr   = 0.25 ... 0.6;"
 msgstr "- Fr   = 0,25 ... 0,6;"
 
 #: freestringsunit.rs___fr_____0_4_____1_5__
-msgid "- Fr   = 0,4 ... 1,5 ;"
+#, fuzzy
+#| msgid "- Fr   = 0,4 ... 1,5 ;"
+msgid "- Fr   = 0.4 ... 1.5 ;"
 msgstr "- Fr   = 0,4 ... 1,5 ;"
 
 #: freestringsunit.rs___gyrad_yaw_radius_of_gyration_k33_as_a_fraction_of_lwl__default_value_0_25
@@ -6387,7 +6589,9 @@ msgid "- Npr  = 1 ... 7 or 5 - number of ship prototype;"
 msgstr "- Npr  = 1 ... 7 or 5 - number of ship prototype;"
 
 #: freestringsunit.rs___np_____1_2__
-msgid "- Np   = 1,2 ;"
+#, fuzzy
+#| msgid "- Np   = 1,2 ;"
+msgid "- Np   = 1.2 ;"
 msgstr "- Np   = 1,2 ;"
 
 #: freestringsunit.rs___np_____1__
@@ -6455,11 +6659,15 @@ msgid "- positive accelerated moving"
 msgstr "- positive accelerated moving"
 
 #: freestringsunit.rs___psi____6_6_____12_6_
-msgid "- Psi  = 6,6 ... 12,6;"
+#, fuzzy
+#| msgid "- Psi  = 6,6 ... 12,6;"
+msgid "- Psi  = 6.6 ... 12.6;"
 msgstr "- Psi  = 6,6 ... 12,6;"
 
 #: freestringsunit.rs___psi_____8_0_____18_0_______a_lwl___0_0______0_5___for_s_lwl___0_3__
-msgid "- Psi  =  8,0 ... 18,0 ;     A/Lwl = 0,0  ... 0,5  (for S/Lwl = 0,3);"
+#, fuzzy
+#| msgid "- Psi  =  8,0 ... 18,0 ;     A/Lwl = 0,0  ... 0,5  (for S/Lwl = 0,3);"
+msgid "- Psi  =  8.0 ... 18.0 ;     A/Lwl = 0.0  ... 0.5  (for S/Lwl = 0.3);"
 msgstr "- Psi  =  8,0 ... 18,0 ;     A/Lwl = 0,0  ... 0,5  (for S/Lwl = 0,3);"
 
 #: freestringsunit.rs___steady_speed_in_the_turn__knots_

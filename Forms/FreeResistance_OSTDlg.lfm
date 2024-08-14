@@ -4,14 +4,14 @@ object FreeResistance_OST: TFreeResistance_OST
   Top = 99
   Width = 1500
   Caption = 'Resistance for displacement ships'
-  ClientHeight = 1012
+  ClientHeight = 1055
   ClientWidth = 1500
   DesignTimePPI = 120
   Position = poScreenCenter
   LCLVersion = '3.2.0.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 982
+    Height = 1025
     Top = 30
     Width = 1500
     ActivePage = General
@@ -21,19 +21,19 @@ object FreeResistance_OST: TFreeResistance_OST
     TabOrder = 0
     object General: TTabSheet
       Caption = 'General'
-      ClientHeight = 949
+      ClientHeight = 992
       ClientWidth = 1492
       ParentFont = False
       object Panel1: TPanel
         Left = 0
-        Height = 949
+        Height = 992
         Top = 0
         Width = 599
         Align = alLeft
         AutoSize = True
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 949
+        ClientHeight = 992
         ClientWidth = 599
         ParentColor = False
         ParentFont = False
@@ -1053,7 +1053,7 @@ object FreeResistance_OST: TFreeResistance_OST
       end
       object Chart: TChart
         Left = 599
-        Height = 949
+        Height = 992
         Top = 0
         Width = 893
         AxisList = <        
@@ -1125,12 +1125,12 @@ object FreeResistance_OST: TFreeResistance_OST
     end
     object Data2: TTabSheet
       Caption = 'Added data'
-      ClientHeight = 949
+      ClientHeight = 992
       ClientWidth = 1492
       ParentFont = False
       object Panel6: TPanel
         Left = 0
-        Height = 949
+        Height = 992
         Top = 0
         Width = 1492
         Align = alClient
@@ -1140,7 +1140,7 @@ object FreeResistance_OST: TFreeResistance_OST
         ChildSizing.VerticalSpacing = 10
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 949
+        ClientHeight = 992
         ClientWidth = 1492
         ParentColor = False
         ParentFont = False
@@ -1800,22 +1800,22 @@ object FreeResistance_OST: TFreeResistance_OST
     end
     object Results: TTabSheet
       Caption = 'Results'
-      ClientHeight = 949
+      ClientHeight = 992
       ClientWidth = 1492
       ParentFont = False
       object Panel5: TPanel
         Left = 0
-        Height = 949
+        Height = 992
         Top = 0
         Width = 1492
         Align = alClient
-        ClientHeight = 949
+        ClientHeight = 992
         ClientWidth = 1492
         ParentFont = False
         TabOrder = 0
         object Resultsmemo: TMemo
           Left = 1
-          Height = 947
+          Height = 990
           Top = 1
           Width = 1490
           Align = alClient
@@ -1831,22 +1831,22 @@ object FreeResistance_OST: TFreeResistance_OST
     end
     object Results2: TTabSheet
       Caption = 'Help'
-      ClientHeight = 949
+      ClientHeight = 992
       ClientWidth = 1492
       ParentFont = False
       object Panel15: TPanel
         Left = 0
-        Height = 949
+        Height = 992
         Top = 0
         Width = 1492
         Align = alClient
-        ClientHeight = 949
+        ClientHeight = 992
         ClientWidth = 1492
         ParentFont = False
         TabOrder = 0
         object Resultsmemo2: TMemo
           Left = 1
-          Height = 947
+          Height = 990
           Top = 1
           Width = 1490
           Align = alClient
@@ -1887,14 +1887,14 @@ object FreeResistance_OST: TFreeResistance_OST
       Style = tbsSeparator
     end
     object ToolButton20: TToolButton
-      Left = 15
+      Left = 13
       Hint = 'Start the calculation.'
       Top = 2
       ImageIndex = 3
       OnClick = ToolButton20Click
     end
     object PrintButton: TToolButton
-      Left = 77
+      Left = 75
       Hint = 'Print the results of the calculation.'
       Top = 2
       Caption = 'PrintButton'
@@ -1902,7 +1902,7 @@ object FreeResistance_OST: TFreeResistance_OST
       OnClick = PrintButtonClick
     end
     object _ToolButton14: TToolButton
-      Left = 139
+      Left = 137
       Height = 28
       Top = 2
       Caption = '_ToolButton14'
@@ -1910,14 +1910,14 @@ object FreeResistance_OST: TFreeResistance_OST
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 149
+      Left = 145
       Hint = 'Close the window and save changes.'
       Top = 2
       ImageIndex = 1
       OnClick = ToolButton25Click
     end
     object ToolButton7: TToolButton
-      Left = 211
+      Left = 207
       Hint = 'Close window without saving changes.'
       Top = 2
       ImageIndex = 0

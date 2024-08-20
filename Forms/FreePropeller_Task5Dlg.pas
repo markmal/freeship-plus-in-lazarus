@@ -289,13 +289,15 @@ begin
 
 
   ResultsMemo2.Text := '';
-  for i := 725 to 733 do
+  {for i := 725 to 733 do
     ResultsMemo2.Lines.Add(Userstring(i));
   for i := 745 to 749 do
     ResultsMemo2.Lines.Add(Userstring(i));
   for i := 832 to 842 do
     ResultsMemo2.Lines.Add(Userstring(i));
-  ResultsMemo2.Lines.Add(rs_t_______________________________________t___t______________t_________t {UserString[833]});
+  }
+  ResultsMemo2.Lines.Add(rs_Propeller_Task5_Note);
+
   ResultsMemo2.Lines.Add('');
   ResultsMemo2.Lines.Add('Copyright (c) 2008-2013, Timoshenko V.F.');
   ResultsMemo2.Visible := True;
@@ -381,13 +383,17 @@ dat7=Velocity Vp
         DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
       end;
       if Combobox.ItemIndex = 0 then
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' Propol.EXE '
-          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 + Userstring(
-          1141) + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0)
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+          + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' Propol.EXE '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}
+          + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_{Userstring(1141)}
+          + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0)
       else
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' FPPcalc.EXE '
-          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 + Userstring(
-          1141) + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+          + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' FPPcalc.EXE '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}
+          + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_{Userstring(1141)}
+          + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
       exit;
     end;
 
@@ -423,19 +429,19 @@ dat7=Velocity Vp
     Space(18) + '-----------------------------------------------------------------------');
   ResultsMemo.Lines.Add(' ');
   if Combobox.ItemIndex = 0 then
-    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' B ' + Userstring(0824));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' B ' + rs_series_of_Troost {Userstring(0824)});
   if Combobox.ItemIndex = 1 then
-    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' T ' + Userstring(0825));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' T ' + rs_series_of_I_Titov {Userstring(0825)});
   if Combobox.ItemIndex = 2 then
-    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' M ' + Userstring(0826));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' M ' + rs_series_of_V_Mishkevich {Userstring(0826)});
   if Combobox.ItemIndex = 3 then
-    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' Z ' + Userstring(0827));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' Z ' + rs_series_of_M_Zavadovsky {Userstring(0827)});
   if Combobox.ItemIndex = 4 then
-    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' T ' + Userstring(0828));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' T ' + rs_series_of_V_Turbal {Userstring(0828)});
   if Combobox.ItemIndex = 5 then
-    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' ZM ' + Userstring(0829));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' ZM ' + rs_series_of_KSRI_BIHS {Userstring(0829)});
   if Combobox.ItemIndex = 6 then
-    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' ZV ' + Userstring(0830));
+    ResultsMemo.Lines.Add(Space(34) + rs_PROPELLER {UserString[1556]} + ' ZV ' + rs_series_of_Zvezdkina {Userstring(0830)});
   ResultsMemo.Lines.Add(' ');
   ResultsMemo.Lines.Add(Space(14) + rs_AAE___ {UserString[1557]} + ' ' +
     FloatToStrF(dat3, ffFixed, 6, 3));
@@ -975,7 +981,7 @@ begin
   end;
   if Combobox.ItemIndex = 11 then
   begin  // SPP серия
-    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + Userstring(1209);
+    Chart.Title.Text.Text := rs_Open_water_characteristics_of_propeller {UserString[939]} + ' ' + rs_FPP_in_nozzle_SPP_series {Userstring(1209)};
     Edit5.Enabled := False;
     Edit3.Enabled := False;
     ComboBox1.Items[0] := 'SPP-5';

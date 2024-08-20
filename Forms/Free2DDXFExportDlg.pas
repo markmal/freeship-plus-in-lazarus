@@ -86,6 +86,7 @@ type
     BitBtn1: TSpeedButton;
     BitBtn2: TSpeedButton;
     SpeedButton1: TSpeedButton;
+    procedure FormActivate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -229,6 +230,15 @@ begin
   if DirectoryExistsUTF8(Tmp) { *Converted from DirectoryExists* } then
     self.ExportDirectory := Tmp;
 end;{TDXFExport2DDialog.SpeedButton1Click}
+
+procedure TDXFExport2DDialog.FormActivate(Sender: TObject);
+begin
+  ComboBox1.Items[0] := rs_Meters;
+  ComboBox1.Items[1] := rs_Centimeters;
+  ComboBox1.Items[2] := rs_Millimeters;
+  ComboBox1.Items[3] := rs_Feet;
+  ComboBox1.Items[4] := rs_Inches;
+end;
 
 procedure TDXFExport2DDialog.BitBtn1Click(Sender: TObject);
 begin

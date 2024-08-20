@@ -610,8 +610,10 @@ begin
 
   // Вывод помощи для винтовых задач
   ResultsMemo2.Text := '';
-  for  i := 650 to 695 do
-    ResultsMemo2.Lines.Add(Userstring(i));
+  {for  i := 650 to 695 do
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_Propeller_Task1_Note);
+
   ResultsMemo2.Lines.Add('');
   ResultsMemo2.Lines.Add('Copyright (c) 2007, Timoshenko V.F.');
   ResultsMemo2.Visible := True;
@@ -893,9 +895,11 @@ begin
       begin
         if FileExistsUTF8('TMP2.tsk') { *Converted from FileExists* } then
           DeleteFileUTF8('TMP2.tsk'); { *Converted from DeleteFile* }
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} +
-          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' CalcProp.exe ' + #13#10#13#10 + Userstring(
-          1140) + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+          + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' CalcProp.exe '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_{Userstring(1140)}
+          + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+          + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         exit;
       end;
     end;

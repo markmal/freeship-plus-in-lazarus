@@ -642,26 +642,32 @@ begin
   //   ResultsMemo2.Visible:=true;
   // Вывод помощи для метода Oortmerssen и др.
   ResultsMemo2.Text := '';
-  ResultsMemo2.Lines.Add(rs_1_Viscosity_by_default_is_for_sea_water_with_density_1025_kg_m_3_and_temperature_15__C_ {UserString[333]});
-  ResultsMemo2.Lines.Add(rs_You_can_change_the_temperature_and_the_density__Project__Project_Settings__Hydrostatics {UserString[334]});
+  //ResultsMemo2.Lines.Add(rs_1_Viscosity_by_default_is_for_sea_water_with_density_1025_kg_m_3_and_temperature_15__C_ {UserString[333]});
+  //ResultsMemo2.Lines.Add(rs_You_can_change_the_temperature_and_the_density__Project__Project_Settings__Hydrostatics {UserString[334]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Oortmer_Note_p1);
+
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(rs_2_The_trim_is_calculated_by_formulaes__dT_Tf_Ta__Tf_Ttdt_2__Ta_T_dt_2 {UserString[335]});
+  //ResultsMemo2.Lines.Add(rs_2_The_trim_is_calculated_by_formulaes__dT_Tf_Ta__Tf_Ttdt_2__Ta_T_dt_2 {UserString[335]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p2);
   ResultsMemo2.Lines.Add('');
-  for i := 336 to 344 do
-    ResultsMemo2.Lines.Add(Userstring(i));
+  {for i := 336 to 344 do
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_Resistance_Oortmer_Note_p3);
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(rs_4_If_wetted_surface_area_S_is_set_as_0__then_S_to_calculate_by_formulae_from_method_of_Holtrop_ {UserString[345]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p4);
   ResultsMemo2.Lines.Add('');
-  for i := 1600 to 1614 do
-    ResultsMemo2.Lines.Add(Userstring(i));
+  {for i := 1600 to 1614 do
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_Resistance_Oortmer_Note_p5);
   ResultsMemo2.Lines.Add('');
-  for i := 1615 to 1622 do
-    ResultsMemo2.Lines.Add(Userstring(i));
-  ResultsMemo2.Lines.Add(rs_t_____________________________t______________________t {UserString[1601]});
+  {for i := 1615 to 1622 do
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_Resistance_Oortmer_Note_p6);
   ResultsMemo2.Lines.Add('');
-  for i := 1623 to 1632 do
-    ResultsMemo2.Lines.Add(Userstring(i));
-  ResultsMemo2.Lines.Add(rs_t_____________________________t______________________t {UserString[1601]});
+  {for i := 1623 to 1632 do
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_Resistance_Oortmer_Note_p7);
+
   ResultsMemo2.Lines.Add('');
   ResultsMemo2.Lines.Add('Copyright (c) 2009-2012, Timoshenko V.F.');
   ResultsMemo2.Visible := True;
@@ -1001,9 +1007,11 @@ begin
         begin
           if FileExistsUTF8('TMP6.tsk') { *Converted from FileExists* } then
             DeleteFileUTF8('TMP6.tsk'); { *Converted from DeleteFile* }
-          MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} +
-            #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' EXE file ' + #13#10#13#10 + Userstring(
-            1140) + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+          MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+            + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' EXE file '
+            + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {Userstring[1140]}
+            + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+            + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
           exit;
         end;
       end;

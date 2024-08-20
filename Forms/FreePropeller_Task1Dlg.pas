@@ -480,8 +480,11 @@ begin
 
 
   ResultsMemo2.Text := '';
-  for  i := 650 to 695 do
+  {for  i := 650 to 695 do
     ResultsMemo2.Lines.Add(Userstring(i));
+  }
+  ResultsMemo2.Lines.Add(rs_Propeller_Task1_Note);
+
   ResultsMemo2.Lines.Add('');
   ResultsMemo2.Lines.Add('Copyright (c) 2007, Timoshenko V.F.');
   ResultsMemo2.Visible := True;
@@ -733,9 +736,11 @@ begin
       begin
         if FileExistsUTF8('TMP1.tsk') { *Converted from FileExists* } then
           DeleteFileUTF8('TMP1.tsk'); { *Converted from DeleteFile* }
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} +
-          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' CalcProp.exe ' + #13#10#13#10 + Userstring(
-          1140) + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+          + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' CalcProp.exe '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {Userstring(1140)}
+          + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+          + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         exit;
       end;
     end;
@@ -781,14 +786,14 @@ begin
     ResultsMemo.Lines.Add('');
     if dat14 < 17 then
     begin
-      ResultsMemo.Lines.Add(Space(14) + Userstring(
-        450) + rs_Limit_of_power_in_freeware_Free_shipt_is_reached_or_increase_diameter_of_propeller___ {UserString[490]});
+      ResultsMemo.Lines.Add(Space(14) + rs_ATTENTION____ {Userstring(450)}
+      + rs_Limit_of_power_in_freeware_Free_shipt_is_reached_or_increase_diameter_of_propeller___ {UserString[490]});
       MessageDlg(rs_Limit_of_power_in_freeware_Free_shipt_is_reached_or_increase_diameter_of_propeller___ {UserString[490]}, mtError, [mbOK], 0);
     end
     else
     begin
-      ResultsMemo.Lines.Add(Space(14) + Userstring(
-        450) + rs_This_is_diagram_of_propeller_access_in_Pro_version_only {UserString[491]});
+      ResultsMemo.Lines.Add(Space(14) + rs_ATTENTION____ {Userstring(450)}
+      + rs_This_is_diagram_of_propeller_access_in_Pro_version_only {UserString[491]});
       MessageDlg(rs_This_is_diagram_of_propeller_access_in_Pro_version_only {UserString[491]}, mtError, [mbOK], 0);
     end;
     ResultsMemo.Lines.Add('');

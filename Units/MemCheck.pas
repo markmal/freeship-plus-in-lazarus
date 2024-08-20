@@ -1,6 +1,6 @@
 (*
 MemCheck: the ultimate memory troubles hunter
-Created by: Jean Marc Eber & Vincent Mahon, Société Générale, INFI/SGOP/R&D
+Created by: Jean Marc Eber & Vincent Mahon, SociÃ©tÃ© GÃ©nÃ©rale, INFI/SGOP/R&D
 Version 2.75	-> Also update OutputFileHeader when changing the version #
 
 Contact...
@@ -8,9 +8,9 @@ Contact...
 	http://v.mahon.free.fr/pro/freeware/memcheck
 
 Mail address:
-	Tour Société Générale
+	Tour SociÃ©tÃ© GÃ©nÃ©rale
 	Sgib/Sgop/R&D
-	92987 Paris - La Défense cedex
+	92987 Paris - La DÃ©fense cedex
 	France
 
 Copyrights...
@@ -26,7 +26,7 @@ Reuse of this code in a commercial application is not permitted. The portions ar
 > Clive Turvey <clive@tbcnet.com> http://www.tbcnet.com/~clive/vcomwinp.html
 
 Disclaimer...
-You use MemCheck at your own risks. This means that you cannot hold the authors or Société Générale to be
+You use MemCheck at your own risks. This means that you cannot hold the authors or SociÃ©tÃ© GÃ©nÃ©rale to be
 responsible for any software\hardware problems you may encounter while using this module.
 
 General information...
@@ -892,7 +892,7 @@ begin
 		if i in [1..8] then
 			FeedBackStr:= 'Call ' + TObjectVirtualMethodNames[i]
 		else
-			FeedBackStr:= 'Call ' + IntToStr(i) + '° virtual method';
+			FeedBackStr:= 'Call ' + IntToStr(i) + 'Â° virtual method';
 		FeedBackStr:= FeedBackStr + ' on a FREED instance of ' + T.VMT.ClassName + ' (destroyed at ' + TextualDebugInfoForAddress(Cardinal(T.DestructionAdress)) + ' - had been created at ' + TextualDebugInfoForAddress(Cardinal(T.CallerAddress[0])) + ')';
 		raise EBadInstance.Create(FeedBackStr) at Caller;
 	except
@@ -1251,7 +1251,7 @@ asm
 		@@3:	POP	 EBX
 				MOV	 ECX,[EBX].TInterfaceTable.EntryCount
 				ADD	 EBX,4
-		@@4:	LEA	 ESI, BadInterfaceVMT // mettre dans ESI l'adresse du début de MyInterfaceVMT: correct ?????
+		@@4:	LEA	 ESI, BadInterfaceVMT // mettre dans ESI l'adresse du dÃ©but de MyInterfaceVMT: correct ?????
 				MOV	 EDI,[EBX].TInterfaceEntry.IOffset
 				MOV	 [EAX+EDI],ESI
 				ADD	 EBX,TYPE TInterfaceEntry

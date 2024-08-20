@@ -77,10 +77,10 @@ object FreePropeller_Task5: TFreePropeller_Task5
     Height = 576
     Top = 24
     Width = 900
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'General'

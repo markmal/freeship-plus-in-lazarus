@@ -9,9 +9,9 @@ function TFreeHydrostaticCalc.FGetErrorString: string;
 begin
   Result := '';
   if feNothingSubmerged in Errors then
-    Result := Result + UserString(0) + EOL;
+    Result := Result + rs_There_is_no_submersion + EOL;
   if feMakingWater in Errors then
-    Result := Result + rs_There_is_no_submersion {UserString[1]} + #32 + FloatToStrF(FData.Leak.X, ffFixed, 7, 3) +
+    Result := Result + rs_Volume_properties {UserString[1]} + #32 + FloatToStrF(FData.Leak.X, ffFixed, 7, 3) +
       ', ' + FloatToStrF(FData.Leak.Y, ffFixed, 7, 3) + ', ' +
       FloatToStrF(FData.Leak.Z, ffFixed, 7, 3) + EOL;
 end;{TFreeHydrostaticCalc.FGetErrorString}

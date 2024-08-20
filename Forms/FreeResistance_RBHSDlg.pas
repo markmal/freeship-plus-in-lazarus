@@ -699,8 +699,7 @@ begin
 
   // Вывод помощи для метода OCTa
   ResultsMemo2.Text := '';
-
-  for i := 333 to 344 do
+  {for i := 333 to 344 do
     ResultsMemo2.Lines.Add(Userstring(i));
   for i := 640 to 649 do
     ResultsMemo2.Lines.Add(Userstring(i));
@@ -714,6 +713,8 @@ begin
     ResultsMemo2.Lines.Add(Userstring(i));
   for i := 800 to 822 do
     ResultsMemo2.Lines.Add(Userstring(i));
+  }
+  ResultsMemo2.Lines.Add(rs_Resistance_MH_Note);
 
   ResultsMemo2.Lines.Add('');
   ResultsMemo2.Lines.Add('Copyright (c) 2007-2012, Timoshenko V.F.');
@@ -1211,8 +1212,8 @@ begin
     if Nser = 3 then
       if (ParRes[3, 7] = 3) or (ParRes[3, 7] = 5) then
       begin
-        ResultsMemo.Lines.Add(Space(10) + 'Nf    ' + Userstring(
-          476) + ' ' + FloatToStrF(ParRes[1, 7], ffFixed, 6, 0) + '...' + FloatToStrF(
+        ResultsMemo.Lines.Add(Space(10) + 'Nf    ' + rs_is_outside_valid_domain {Userstring[476]}
+          + ' ' + FloatToStrF(ParRes[1, 7], ffFixed, 6, 0) + '...' + FloatToStrF(
           ParRes[2, 7], ffFixed, 6, 0) + ',4');
         i := 0;
         //                    ResultsMemo.Lines.Add(Space(10)+'Nf = '+FloatToStrF(i,ffFixed,6,0));
@@ -1899,8 +1900,8 @@ begin
   end;
 
   NserBox.Enabled := False;
-  Label10.Caption := Userstring(692);
-  Label11.Caption := Userstring(692);
+  Label10.Caption := ''; //Userstring(692);
+  Label11.Caption := ''; //Userstring(692);
   Label15.Caption := Label15Old;
   Label16.Caption := Label16Old;
   if Nser = 5 then

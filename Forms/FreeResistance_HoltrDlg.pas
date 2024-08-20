@@ -615,11 +615,14 @@ begin
   // Вывод помощи для метода Холтроп
   ResultsMemo2.Text := '';
   //      ResultsMemo2.Lines.Add(rs_______________________________________________________________________________________________ {UserString[332]});
-  ResultsMemo2.Lines.Add(rs_1_Viscosity_by_default_is_for_sea_water_with_density_1025_kg_m_3_and_temperature_15__C_ {UserString[333]});
-  ResultsMemo2.Lines.Add(rs_You_can_change_the_temperature_and_the_density__Project__Project_Settings__Hydrostatics {UserString[334]});
+  //ResultsMemo2.Lines.Add(rs_1_Viscosity_by_default_is_for_sea_water_with_density_1025_kg_m_3_and_temperature_15__C_ {UserString[333]});
+  //ResultsMemo2.Lines.Add(rs_You_can_change_the_temperature_and_the_density__Project__Project_Settings__Hydrostatics {UserString[334]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p1);
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(rs_2_The_trim_is_calculated_by_formulaes__dT_Tf_Ta__Tf_Ttdt_2__Ta_T_dt_2 {UserString[335]});
+  //ResultsMemo2.Lines.Add(rs_2_The_trim_is_calculated_by_formulaes__dT_Tf_Ta__Tf_Ttdt_2__Ta_T_dt_2 {UserString[335]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p2);
   ResultsMemo2.Lines.Add('');
+  {
   //for i := 336 to 344 do
   //  ResultsMemo2.Lines.Add(Userstring(i));
   ResultsMemo2.Lines.Add(rs_3_Coefficient_influence_the_after_body_form_is_from_table_);
@@ -631,39 +634,51 @@ begin
   ResultsMemo2.Lines.Add(rs_l______________U_shaped_sections___with_Hogner_stern____l__________5____10________l);
   ResultsMemo2.Lines.Add(rs_l______________Barge_type_form__________________________l_________20__or__25______l);
   ResultsMemo2.Lines.Add(rs_t_______________________________________________________t_________________________t);
+  }
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p3);
+
 
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(rs_4_If_wetted_surface_area_S_is_set_as_0__then_S_to_calculate_by_formulae_from_method_of_Holtrop_ {UserString[345]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p4);
   ResultsMemo2.Lines.Add('');
   {for i := 346 to 349 do
     ResultsMemo2.Lines.Add(Userstring(i));
+
+    ResultsMemo2.Lines.Add(rs_5_The_wetted_area_of_transom_you_can_determine_from_sectional_areas_curve_on_Profile_View_or);
+    ResultsMemo2.Lines.Add(rs_from__Design_hydrostatics__output_);
+    ResultsMemo2.Lines.Add(rs_The_wetted_area_of_bulbous_on_F_P__is_analogous_determination_);
+    ResultsMemo2.Lines.Add(rs_The_CoG_wetted_bulb_area_h_b_to_determine_on__Bodyplan_view__visually_);
+    ResultsMemo2.Lines.Add('');
+    }
+
+    ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p5);
+
   ResultsMemo2.Lines.Add('');
-  for i := 350 to 352 do
-    ResultsMemo2.Lines.Add(Userstring(i));}
-  ResultsMemo2.Lines.Add(rs_5_The_wetted_area_of_transom_you_can_determine_from_sectional_areas_curve_on_Profile_View_or);
-  ResultsMemo2.Lines.Add(rs_from__Design_hydrostatics__output_);
-  ResultsMemo2.Lines.Add(rs_The_wetted_area_of_bulbous_on_F_P__is_analogous_determination_);
-  ResultsMemo2.Lines.Add(rs_The_CoG_wetted_bulb_area_h_b_to_determine_on__Bodyplan_view__visually_);
-  ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(rs_6_Propeller_number_Np_is_set_for_power_prediction_and_for_interaction_propeller_and_hull_);
-  ResultsMemo2.Lines.Add(rs_For_Np_0_the_wake_fraction_Wt_and_thrust_deduction_t_is_calculated_as_for_highspeed_sailing);
-  ResultsMemo2.Lines.Add(rs_ships_);
+  {for i := 350 to 352 do
+    ResultsMemo2.Lines.Add(Userstring(i));
+    ResultsMemo2.Lines.Add(rs_6_Propeller_number_Np_is_set_for_power_prediction_and_for_interaction_propeller_and_hull_);
+    ResultsMemo2.Lines.Add(rs_For_Np_0_the_wake_fraction_Wt_and_thrust_deduction_t_is_calculated_as_for_highspeed_sailing);
+    ResultsMemo2.Lines.Add(rs_ships_);
+  }
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p6);
 
 
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(rs_7_Propeller_diameter_D_with_one_screw_is____0_8oTa__and_for_twin_screw____0_7oTa_ {UserString[353]});
-  ResultsMemo2.Lines.Add(rs_Expanded_blade_area_ratio_Ae_Ao_is_calculate_from_condition__when_cavitation_be_absent_ {UserString[354]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p7);
   ResultsMemo2.Lines.Add('');
-  ResultsMemo2.Lines.Add(rs_8_Absolutely_rougness_of_hull_less_150_mkm_one_can_don_t_set_ {UserString[355]});
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p8);
   ResultsMemo2.Lines.Add('');
+
   {for i := 1294 to 1299 do
-    ResultsMemo2.Lines.Add(Userstring(i));}
+    ResultsMemo2.Lines.Add(Userstring(i));
   ResultsMemo2.Lines.Add(rs_9_____More_information_about_statistical_Holtrop_method_are_here_);
   ResultsMemo2.Lines.Add(rs_9_1___Holtrop_J___Mennen_G_G_J____An__Approximate__Power__Prediction__Method____International);
   ResultsMemo2.Lines.Add(rs_Shipbuilding_Progress__Vol_29__No_335__July__1982_);
   ResultsMemo2.Lines.Add(rs_9_2___Holtrop_J____A_Statistical_Reanalysis_of_Resistance_and_Propulsion_Data___International);
   ResultsMemo2.Lines.Add(rs_Shipbuilding_Progress__Vol_31__No_363__Nov___1984_);
   ResultsMemo2.Lines.Add('');
+  }
+  ResultsMemo2.Lines.Add(rs_Resistance_Holtrop_Note_p9);
 
   ResultsMemo2.Lines.Add(' ');
   ResultsMemo2.Lines.Add('Copyright (c) 2007, Timoshenko V.F.');
@@ -2377,8 +2392,10 @@ begin
           DeleteFileUTF8('TMPke.txt'); { *Converted from DeleteFile* }
         SetCurrentDir(PathFileOld);
         MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} +
-          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' SeaMargn.EXE ' + #13#10#13#10 + Userstring(
-          1140) + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' SeaMargn.EXE '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {Userstring(1140)}
+          + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+          + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         Ke := 1;
         exit;
       end;
@@ -2498,9 +2515,12 @@ begin
         if FileExistsUTF8('IN.') { *Converted from FileExists* } then
           DeleteFileUTF8('IN.'); { *Converted from DeleteFile* }
         SetCurrentDir(PathFileOld);
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} +
-          ' PowerPrd.EXE ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 + Userstring(
-          1141) + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+        + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' PowerPrd.EXE '
+        + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}
+        + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {Userstring(1141)}
+        + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]},
+          mtError, [mbOK], 0);
         exit;
       end;
     end;

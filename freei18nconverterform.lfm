@@ -1,11 +1,11 @@
 object Form1: TForm1
   Left = 615
-  Height = 250
+  Height = 608
   Top = 190
-  Width = 411
+  Width = 719
   Caption = 'Form1'
-  ClientHeight = 250
-  ClientWidth = 411
+  ClientHeight = 608
+  ClientWidth = 719
   LCLVersion = '3.2.0.0'
   object Button1: TButton
     Left = 160
@@ -26,5 +26,51 @@ object Form1: TForm1
     Font.Color = clRed
     ParentFont = False
     WordWrap = True
+  end
+  object Button2: TButton
+    Left = 497
+    Height = 41
+    Top = 440
+    Width = 159
+    Caption = 'Run concat'
+    TabOrder = 1
+    OnClick = Button2Click
+  end
+  object Edit_RS_Name: TEdit
+    Left = 150
+    Height = 36
+    Top = 340
+    Width = 506
+    TabOrder = 2
+    Text = 'rs_HydroNShIp_AddedMass_Note'
+  end
+  object Label2: TLabel
+    Left = 52
+    Height = 26
+    Top = 344
+    Width = 79
+    Caption = 'RS Name'
+  end
+  object Label3: TLabel
+    Left = 54
+    Height = 26
+    Top = 309
+    Width = 450
+    Caption = 'Concat multiple UserStrings to one ResourceString'
+  end
+  object Label4: TLabel
+    Left = 53
+    Height = 26
+    Top = 396
+    Width = 65
+    Caption = 'Ranges'
+  end
+  object Edit_Ranges: TEdit
+    Left = 152
+    Height = 36
+    Top = 395
+    Width = 504
+    TabOrder = 3
+    Text = '1093-1117 1034-1036'
   end
 end

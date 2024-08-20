@@ -2571,13 +2571,17 @@ begin
     Dialog.ResultsMemo2.Clear;
     Dialog.ResultsMemo2.Visible := False;
     Dialog.ResultsMemo2.Text := '';
-    for  ii := 1093 to 1117 do
+    {for  ii := 1093 to 1117 do
       Dialog.ResultsMemo2.Lines.Add(Userstring(ii));
     for  ii := 1034 to 1036 do
-      Dialog.ResultsMemo2.Lines.Add(Userstring(ii));
+      Dialog.ResultsMemo2.Lines.Add(Userstring(ii));}
+    Dialog.ResultsMemo2.Lines.Add(rs_HydroNShIp_AddedMass_Note);
     Dialog.ResultsMemo2.Lines.Add('');
     Dialog.ResultsMemo2.Lines.Add(Space(5) + 'Copyright (c) 2008, Timoshenko V.F.');
     Dialog.ResultsMemo2.Visible := True;
+
+
+
 
     Dialog.ResultsMemo.Clear;
     Dialog.ResultsMemo.Visible := False;

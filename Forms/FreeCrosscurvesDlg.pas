@@ -793,7 +793,7 @@ begin
     PrintButton.Enabled := True;
     SaveButton.Enabled := True;
     if FAbortCalculation then
-      MessageDlg(Userstring(0294) + '!', mtInformation, [mbOK], 0);
+      MessageDlg(rs_Calculation_aborted {Userstring(0294)} + '!', mtInformation, [mbOK], 0);
   end;
   // Построение ДСО
   if (Units = fuImperial) and (Dr > 0) and (Zgr > 0) then
@@ -902,7 +902,7 @@ begin
         end;
         // Teta_zak<60 град
         if (L_Teta[I - 1] < 0) and (L_Teta[I - 2] > 0) and (Tet0 <= 60) then
-          MessageDlg(Userstring(0951), mtInformation, [mbOK], 0);
+          MessageDlg(rs_ATTENTION____Teta0___60_ {Userstring(0951)}, mtInformation, [mbOK], 0);
         // Угол заката ДСО меньше 60°.
       end;
     end;
@@ -910,18 +910,18 @@ begin
     begin
       Lpp := FFreeship.ProjectSettings.ProjectLength;
       if (L_Teta[I0] = 0.0) and (Angles[I0] < 180) then
-        MessageDlg(Userstring(0952), mtInformation, [mbOK], 0);
+        MessageDlg(rs_Possible_inaccurate_SSD_calculation__Increase_the_maximum_angle_of_heel_ {Userstring(0952)}, mtInformation, [mbOK], 0);
       if (Lmax < 0.25) and (Lpp <= 80) then
-        MessageDlg(Userstring(0953) + ' 0,25 ' + rs_m {UserString[451]}, mtInformation, [mbOK], 0);
+        MessageDlg(rs_ATTENTION____l_max__{Userstring(0953)} + ' 0,25 ' + rs_m {UserString[451]}, mtInformation, [mbOK], 0);
       if (Lmax < 0.2) and (Lpp >= 105) then
-        MessageDlg(Userstring(0953) + ' 0,2 ' + rs_m {UserString[451]}, mtInformation, [mbOK], 0);
+        MessageDlg(rs_ATTENTION____l_max__{Userstring(0953)} + ' 0,2 ' + rs_m {UserString[451]}, mtInformation, [mbOK], 0);
       Lmax0 := 0.41 - 0.002 * Lpp;
       if (Lpp > 80) and (Lmax < Lmax0) and (Lpp < 105) then
-        MessageDlg(Userstring(0953) + ' ' + FloatToStrF(Lmax0, ffFixed, 6, 2) + ' ' +
+        MessageDlg(rs_ATTENTION____l_max__{Userstring(0953)} + ' ' + FloatToStrF(Lmax0, ffFixed, 6, 2) + ' ' +
           rs_m {UserString[451]}, mtInformation, [mbOK], 0);
       if h0 < 0.0 then
       begin
-        MessageDlg(Userstring(0954) + ' ' + FloatToStrF(
+        MessageDlg(rs_ATTENTION____ho__{Userstring(0954)} + ' ' + FloatToStrF(
           h0, ffFixed, 6, 3) + ' ' + LengthStr(FFreeship.ProjectSettings.ProjectUnits) +
           ' < 0 !', mtInformation, [mbOK], 0);
         exit;

@@ -474,8 +474,10 @@ begin
 
 
   ResultsMemo2.Text := '';
-  for  i := 1050 to 1092 do
-    ResultsMemo2.Lines.Add(Userstring(i));
+  {for  i := 1050 to 1092 do
+    ResultsMemo2.Lines.Add(Userstring(i));}
+  ResultsMemo2.Lines.Add(rs_Hydrodin_Rvrs_Note);
+
   ResultsMemo2.Lines.Add('');
   ResultsMemo2.Lines.Add('Copyright (c) 2008, Timoshenko V.F.');
   ResultsMemo2.Visible := True;

@@ -338,7 +338,7 @@ begin
   UserStrings[ 330] := rs_N;
   UserStrings[ 331] := rs_W;
   UserStrings[ 332] := rs_______________________________________________________________________________________________;
-  UserStrings[ 333] := rs_1_Viscosity_by_default_is_for_sea_water_with_density_1025_kg_m_3_and_temperature_15__C_;
+{  UserStrings[ 333] := rs_1_Viscosity_by_default_is_for_sea_water_with_density_1025_kg_m_3_and_temperature_15__C_;
   UserStrings[ 334] := rs_You_can_change_the_temperature_and_the_density__Project__Project_Settings__Hydrostatics;
   UserStrings[ 335] := rs_2_The_trim_is_calculated_by_formulaes__dT_Tf_Ta__Tf_Ttdt_2__Ta_T_dt_2;
   UserStrings[ 336] := rs_3_Coefficient_influence_the_after_body_form_is_from_table_;
@@ -349,8 +349,8 @@ begin
   UserStrings[ 341] := rs_l______________V_shaped_sections________________________l____________10___________l;
   UserStrings[ 342] := rs_l______________U_shaped_sections___with_Hogner_stern____l__________5____10________l;
   UserStrings[ 343] := rs_l______________Barge_type_form__________________________l_________20__or__25______l;
-  UserStrings[ 344] := rs_t_______________________________________________________t_________________________t;
-  UserStrings[ 345] := rs_4_If_wetted_surface_area_S_is_set_as_0__then_S_to_calculate_by_formulae_from_method_of_Holtrop_;
+  UserStrings[ 344] := rs_t_______________________________________________________t_________________________t; }
+ {UserStrings[ 345] := rs_4_If_wetted_surface_area_S_is_set_as_0__then_S_to_calculate_by_formulae_from_method_of_Holtrop_;
   UserStrings[ 346] := rs_5_The_wetted_area_of_transom_you_can_determine_from_sectional_areas_curve_on_Profile_View_or;
   UserStrings[ 347] := rs_from__Design_hydrostatics__output_;
   UserStrings[ 348] := rs_The_wetted_area_of_bulbous_on_F_P__is_analogous_determination_;
@@ -360,7 +360,7 @@ begin
   UserStrings[ 352] := rs_ships_;
   UserStrings[ 353] := rs_7_Propeller_diameter_D_with_one_screw_is____0_8oTa__and_for_twin_screw____0_7oTa_;
   UserStrings[ 354] := rs_Expanded_blade_area_ratio_Ae_Ao_is_calculate_from_condition__when_cavitation_be_absent_;
-  UserStrings[ 355] := rs_8_Absolutely_rougness_of_hull_less_150_mkm_one_can_don_t_set_;
+  UserStrings[ 355] := rs_8_Absolutely_rougness_of_hull_less_150_mkm_one_can_don_t_set_;}
   UserStrings[ 356] := rs_Calculation_of_the_propeller_elements_for_main_engine_selection;
   UserStrings[ 357] := rs_Diameter_of_propeller__m_;
   UserStrings[ 358] := rs_Frequency__1_min_;
@@ -514,7 +514,7 @@ begin
   UserStrings[ 506] := rs_Calculation_of_propeller_on_cavitation_by_S_hoenherr_s_method_;
   UserStrings[ 507] := rs_ATTENTION____Calculated_diameter_of_propeller_is_bigger_then_limited_diameter_Dp_lim_;
   UserStrings[ 508] := rs_km_hour;
-  UserStrings[ 509] := rs_9__Limitations_of_resistance_calculation_by_OCT_5_0181_75__xUSSR__and_another_methods_are_;
+ {UserStrings[ 509] := rs_9__Limitations_of_resistance_calculation_by_OCT_5_0181_75__xUSSR__and_another_methods_are_;
   UserStrings[ 510] := rs_9_1_Series_N_1___high_speed_and_medium_rate_ships__container_carrier__Ro_Ro_vessel__lighter_carrier_;
   UserStrings[ 511] := rs_9_2_Series_N_2___passenger_and_cargopassenger_ships_;
   UserStrings[ 512] := rs_9_3_Series_N_3___sea_transport_vessels__universal_cargo_vessels__middle_tankers__bulkcarriers_;
@@ -634,7 +634,8 @@ begin
   UserStrings[ 626] := rs_l__B_T____l___2_6_____4_0___l___2_3_____3_2____l_________________l;
   UserStrings[ 627] := rs_l__Cm_____l__0_75_____0_92__l__0_65_____0_92___l_________________l;
   UserStrings[ 628] := rs_l__lcb____l__0_05_____0_01__l__0_03_____0_01___l_________________l;
-  UserStrings[ 629] := rs_l__Fr_____l___0_1_____0_5___l__0_21_____0_37___l_________________l;
+  UserStrings[ 629] := rs_l__Fr_____l___0_1_____0_5___l__0_21_____0_37___l_________________l;}
+
   UserStrings[ 630] := rs_by_a_method_Holtrop_1988;
   UserStrings[ 631] := rs_by_Muragin_s_formulae;
   UserStrings[ 632] := rs_by_Semeka_s_formulae;
@@ -645,6 +646,7 @@ begin
   UserStrings[ 637] := rs_by_Yeroshin_s_formulae;
   UserStrings[ 638] := rs_Results_of_optimisation_;
   UserStrings[ 639] := rs_for;
+  {
   UserStrings[ 640] := rs_4_In_begining_phase_of_ship_design_the_wetted_area_S_can_be_calculate_for_different_types_of_ship_and;
   UserStrings[ 641] := rs_hulls_on_this_formulaes_;
   UserStrings[ 642] := rs_If_S__0__then_S_Lo_2oTtB_osqrt_Cm_o_0_453t0_442oCb_0_2862oCm_0_003467oB_Tt0_3696oCwp____by_Holtrop;
@@ -655,7 +657,8 @@ begin
   UserStrings[ 647] := rs_If_S__5__then_S_Lo_0_85oBt0_25oT__________________for_ship_with_transom;
   UserStrings[ 648] := rs_If_S__6__then_S_V_0_6667o_5_1t0_074oL_T_0_4oCb____by_Karpov_s_formulae_for_river_ships_w_o_tonnels;
   UserStrings[ 649] := rs_If_S__7__then_S_Lppo_0_5oBtT_o_0_55t1_52oCb_______by_Yeroshin_s_formulae_for_fishing_ships;
-  UserStrings[ 650] := rs_Table_______Middle_meanings_of_efficiency_shaft_and_gearbox;
+  }
+  {UserStrings[ 650] := rs_Table_______Middle_meanings_of_efficiency_shaft_and_gearbox;
   UserStrings[ 651] := rs___________________________________t______________________________________;
   UserStrings[ 652] := rs_Type_of_thrust_bearing____________l________Shaft_efficiency;
   UserStrings[ 653] := rs___________________________________t______________________________________;
@@ -700,7 +703,8 @@ begin
   UserStrings[ 692] := rs_;
   UserStrings[ 693] := rs_Note__More_information_see_in_book__Raschet_Hodkosti_nudvodnych_vodoizmeschayuschich_sudov_;
   UserStrings[ 694] := rs_Uchebnoe_posobie__M_B_Slizghevski__Yu_M_Korol__M_G_Sokolik__V_F_Timoshenko_;
-  UserStrings[ 695] := rs_Under_common_redaction_by_Prof__M_B_Slizghevski__Nikolaev__NUoS__2004__192p_;
+  UserStrings[ 695] := rs_Under_common_redaction_by_Prof__M_B_Slizghevski__Nikolaev__NUoS__2004__192p_;}
+
   UserStrings[ 696] := rs_Wageningen_B_Screw_Series_Propeller_Preliminary_Design;
   UserStrings[ 697] := rs_Advance_coefficient_Jp;
   UserStrings[ 698] := rs_Thrust_coefficient_and_torque__KT__10oKQ;
@@ -730,7 +734,8 @@ begin
   UserStrings[ 722] := rs_l___Lwl_L_____l__1_000_____1_055__l__0_945_____1_000___l__1_000_____1_070__l;
   UserStrings[ 723] := rs_l____Dp_Ta____l__0_430_____0_840__l__0_655_____1_050___l__0_495_____0_860__l;
   UserStrings[ 724] := rs_t_____________t___________________t____________________t___________________t;
-  UserStrings[ 725] := rs_1_1___This_program_calculates_the_open_water_characteristics_of_a_fixed_pitch_full_scale;
+
+  {UserStrings[ 725] := rs_1_1___This_program_calculates_the_open_water_characteristics_of_a_fixed_pitch_full_scale;
   UserStrings[ 726] := rs_propeller_as_published_by_;
   UserStrings[ 727] := rs_o_____M_W_C_Oosterveld_and_P__van_Oossanen__Further_Computer_Analyzed_Data_of_Wageningen;
   UserStrings[ 728] := rs_B_Screw_Series__I_S_P___Vol__22__No__251__July_1975_;
@@ -738,7 +743,8 @@ begin
   UserStrings[ 730] := rs_1_2___Also_the_program_calculates_for_each_RPM_the_coefficients_of_a_third_degree__poly_;
   UserStrings[ 731] := rs_nomial__expressed_in_the_speed_ratio_J_;
   UserStrings[ 732] := rs_1_3___When_decreasing_the_thrust_and_the__efficiency__by__approximately__3__percent__the;
-  UserStrings[ 733] := rs_results_can_be_used_for_a_controllable_pitch_propeller_without_a_nozzle_;
+  UserStrings[ 733] := rs_results_can_be_used_for_a_controllable_pitch_propeller_without_a_nozzle_;}
+
   UserStrings[ 734] := rs_ATTENTION____Stopped_acceleration_calculation__because_steady_engine_RPM;
   UserStrings[ 735] := rs_is_lower_then_critical__Increase_engine_power_;
   UserStrings[ 736] := rs_Do_not_resistance_calculation_results_of_a_ship___;
@@ -750,11 +756,13 @@ begin
   UserStrings[ 742] := rs_Maximum_efficiency______Eta0_max__;
   UserStrings[ 743] := rs_Zero_thrust_advance_coeff__Jp_T0__;
   UserStrings[ 744] := rs_Zero_torque_advance_coeff__Jp_Q0__;
-  UserStrings[ 745] := rs_1_4___This_is_program_modification_calculates_zero_thrust_and_torque_advances_;
+
+  {UserStrings[ 745] := rs_1_4___This_is_program_modification_calculates_zero_thrust_and_torque_advances_;
   UserStrings[ 746] := rs_optimal_advance_Jopt_and_maximal_efficiency_Eta0_max_of_propeller_series_B_;
   UserStrings[ 747] := rs_1_5___The_characteristics_of_a_propeller_series_B_set_are_as_follows_;
   UserStrings[ 748] := rs_1_5_1____3____Nblade____7___0_3_____Ae_Ao____1_05___0_5_____P_Dp_____1_40__;
-  UserStrings[ 749] := rs_1_6___The_advance_coefficient_is_as_follow__0_____Jp_Vp_n_Dp____1_6_;
+  UserStrings[ 749] := rs_1_6___The_advance_coefficient_is_as_follow__0_____Jp_Vp_n_Dp____1_6_;}
+
   UserStrings[ 750] := rs_by_methods_NIEWT__GIEWT_and_LIWT__Russia_;
   UserStrings[ 751] := rs_by_method_of_Yeroshin;
   UserStrings[ 752] := rs_by_method_of_Geers;
@@ -784,7 +792,8 @@ begin
   UserStrings[ 776] := rs_B______Beam__m__;
   UserStrings[ 777] := rs_AL_____Lateral_projected_wind_area__m2__;
   UserStrings[ 778] := rs_AS_____Lateral_projected_area_of_superstructure__m2__;
-  UserStrings[ 779] := rs_AT_____Transverse_projected_wind_area__m2__;
+
+ {UserStrings[ 779] := rs_AT_____Transverse_projected_wind_area__m2__;
   UserStrings[ 780] := rs_S______Length_of_perimeter_of_lateral_projection__excluding_WL_and_slender_bodies_;
   UserStrings[ 781] := rs_C______Distance_from_bow_to_centroid_of_lateral_projected_area__m__;
   UserStrings[ 782] := rs_M______Number_of_distinct_groups_of_masts_or_king_posts_;
@@ -804,8 +813,9 @@ begin
   UserStrings[ 796] := rs_13___Passenger_ships__ferries__container_ships_with_cargo_on_deck_;
   UserStrings[ 797] := rs_14___Lichter_ships_with_cargo_on_deck_;
   UserStrings[ 798] := rs_15___Lichter_ships_with_out_cargo_;
-  UserStrings[ 799] := rs_1_3____Output_data_;
-  UserStrings[ 800] := rs_t_________t_________________t__________________t_________________t;
+  UserStrings[ 799] := rs_1_3____Output_data_;}
+
+ {UserStrings[ 800] := rs_t_________t_________________t__________________t_________________t;
   UserStrings[ 801] := rs_NOTE__BFT_series_is_NOT_available_now_;
   UserStrings[ 802] := rs___Nser___17__;
   UserStrings[ 803] := rs___Nsh____1_____3___type_of_fishing_ship__1___SFT__2___MFT__3___BFT__;
@@ -827,7 +837,7 @@ begin
   UserStrings[ 819] := rs___type_of_ships___any_displacement_ships_;
   UserStrings[ 820] := rs___Nser___0__;
   UserStrings[ 821] := rs_NOTE__You_must_to_set_the_coefficient_of_residual_resistance_Cr_in_function_of_Froude_number_Fr;
-  UserStrings[ 822] := rs_Cr_f_Fr___where_is_Fr_v__goL__0_5_;
+  UserStrings[ 822] := rs_Cr_f_Fr___where_is_Fr_v__goL__0_5_;}
   UserStrings[ 823] := rs_Calculation_of_resistance_for_keeled_yacht_by_Holtrop_s_method_is_impossible___;
   UserStrings[ 824] := rs_series_of_Troost;
   UserStrings[ 825] := rs_series_of_I_Titov;
@@ -837,7 +847,8 @@ begin
   UserStrings[ 829] := rs_series_of_KSRI_BIHS;
   UserStrings[ 830] := rs_series_of_Zvezdkina;
   UserStrings[ 831] := rs_;
-  UserStrings[ 832] := rs_1_7___Main_parameters_of_fixed_pitch_propellers_of_T_M_Z_ZM_series_;
+
+  {UserStrings[ 832] := rs_1_7___Main_parameters_of_fixed_pitch_propellers_of_T_M_Z_ZM_series_;
   UserStrings[ 833] := rs_t_______________________________________t___t______________t_________t;
   UserStrings[ 834] := rs_l____________S_E_R_I_E_S________________l_Z_l_____Ae_Ao____l___P_D___l;
   UserStrings[ 835] := rs_l_______________________________________t___t______________t_________l;
@@ -847,13 +858,16 @@ begin
   UserStrings[ 839] := rs_l_KSRI_BIHS____ZM_5_70_ZM_5_85_ZM_5_100_l_5_l0_70_0_85_1_0_l0_80_1_35l;
   UserStrings[ 840] := rs_l_V_Turbal_______________________T_6_68_l_6_l____0_680_____l0_40_1_36l;
   UserStrings[ 841] := rs_l_V_Turbal_______________________T_7_70_l_7_l____0_700_____l0_50_1_30l;
-  UserStrings[ 842] := rs_l_V_Turbal_______________________T_8_72_l_8_l____0_720_____l0_50_1_30l;
+  UserStrings[ 842] := rs_l_V_Turbal_______________________T_8_72_l_8_l____0_720_____l0_50_1_30l;}
+
   UserStrings[ 843] := rs_Length_over_surface_Los;
-  UserStrings[ 844] := rs_Cx___Fx__0_5oRHOAoVr_2oAT_t_1_96oStand_Err_X_______longitudinal_force_coefficient_;
+
+  {UserStrings[ 844] := rs_Cx___Fx__0_5oRHOAoVr_2oAT_t_1_96oStand_Err_X_______longitudinal_force_coefficient_;
   UserStrings[ 845] := rs_Cy___Fy__0_5oRHOAoVr_2oAT_t_1_96oStand_Err_Y_______lateral_force_coefficient_;
   UserStrings[ 846] := rs_Cmz__Mz__0_5oRHOAoVr_2oAToSLOA_t_1_96oStand_Err_Mz____yawing_moment_coefficient_;
   UserStrings[ 847] := rs_RHOA___density_of_air_;
-  UserStrings[ 848] := rs_Vr_____RMS_of_relative_wind_speed_between_water_level_and_top_of_superstructure_;
+  UserStrings[ 848] := rs_Vr_____RMS_of_relative_wind_speed_between_water_level_and_top_of_superstructure_;}
+
   UserStrings[ 849] := rs_Wageningen_B_Screw_Series_Propeller_Preliminary_Design;
   UserStrings[ 850] := rs_Fixed_Pitch_Propeller;
   UserStrings[ 851] := rs_Number_of_Propeller_Blades_____________;
@@ -889,12 +903,14 @@ begin
   UserStrings[ 881] := rs_Y_coordinate_of_DWL_area_CoG;
   UserStrings[ 882] := rs_Transverse_metacentric_radius;
   UserStrings[ 883] := rs_Longitudinal_metacentric_radius;
+  {
   UserStrings[ 884] := rs_If_S__12__then_S_3_223oV__2_3_t0_5402oLwloV__1_3___for_tugs_and_trawlers__van_Oortmerssen_1971_;
   UserStrings[ 885] := rs_If_S__13__then_S_V_1_Tt1_75_B_Cb___________________by_Grigoriev_formulae;
   UserStrings[ 886] := rs_If_S__14__then_S_L_2oT_t_B__0_654oCb_t_0_338_______by_Benge_Afanasiev_formulae;
   UserStrings[ 887] := rs_If_S__15__then_S__0_085oB_T_2oCbt3_29__VoL__0_5____by_Vashedchenko_1985_formulae;
   UserStrings[ 888] := rs_If_S__16__then_S_L_2oTtB__4_84oCb_4_15oCb_2_0_77___for_megayachts;
   UserStrings[ 889] := rs_;
+  }
   UserStrings[ 890] := rs_by_van_Oortmerssen_1971_formulae;
   UserStrings[ 891] := rs_by_Grigoriev_formulae;
   UserStrings[ 892] := rs_by_Benge_Afanasiev_formulae;
@@ -1039,9 +1055,9 @@ begin
   UserStrings[1031] := rs_Initial_longitudinal_metacentric_height_Ho;
   UserStrings[1032] := rs_LCB___;
   UserStrings[1033] := rs_LCB___;
-  UserStrings[1034] := rs_3__Korotkin_A_I__Prisoedinennie_massy_sudna__Spravochnik__L__Sudostroenie_1986_312pp_;
+ {UserStrings[1034] := rs_3__Korotkin_A_I__Prisoedinennie_massy_sudna__Spravochnik__L__Sudostroenie_1986_312pp_;
   UserStrings[1035] := rs_4__Hofman_A_D__Dvigitelno_rulevoy_kompleks_i_manevrirovanie_sudna__Spravochnik___;
-  UserStrings[1036] := rs_L__Sudostroenie_1988_360pp_;
+  UserStrings[1036] := rs_L__Sudostroenie_1988_360pp_;}
   UserStrings[1037] := rs_;
   UserStrings[1038] := rs_Added_masses_Coefficients_for_seaships_by_folmulae__4__;
   UserStrings[1039] := rs_Added_masses_Coefficients_for_riverships_and_ships_with_Cb____0_8_;
@@ -1055,7 +1071,8 @@ begin
   UserStrings[1047] := rs_One_or_more_parameters_are_outside_valid_domain_;
   UserStrings[1048] := rs_GZ_for_Zg_;
   UserStrings[1049] := rs_GZd_for_Zg_;
-  UserStrings[1050] := rs_Table__Characteristics_of_sea_ships_diesels;
+
+  {UserStrings[1050] := rs_Table__Characteristics_of_sea_ships_diesels;
   UserStrings[1051] := rs_t______________________t_________________t__________________t________________t;
   UserStrings[1052] := rs_l______________________l______Power______l__Freq__of_rotate_l_Inertia_moment_l;
   UserStrings[1053] := rs_l__Type_of_diesel______t_________________t__________________t________________t;
@@ -1097,8 +1114,9 @@ begin
   UserStrings[1089] := rs_l8_HC_24_36_8BD36_24A1_l_______441_______l_______500________l______123_______l;
   UserStrings[1090] := rs_l6_HC_27_5_36_6_275__H_l_______515_______l_______600________l______150_______l;
   UserStrings[1091] := rs_l_6_PH36_50__6_350_H___l_______721_______l_______375________l______670_______l;
-  UserStrings[1092] := rs_t______________________t_________________t__________________t________________t;
-  UserStrings[1093] := rs_HydroNShIp_AddedMass_v1_03_is_free__CFD__software_of_added_masses_calculation_for;
+  UserStrings[1092] := rs_t______________________t_________________t__________________t________________t;}
+
+ {UserStrings[1093] := rs_HydroNShIp_AddedMass_v1_03_is_free__CFD__software_of_added_masses_calculation_for;
   UserStrings[1094] := rs_education_and_noncommercial_use_only_;
   UserStrings[1095] := rs_Copyright__c__1987_1994_Dudchenko_O_M___1992_2009_Timoshenko_V_F_;
   UserStrings[1096] := rs_1_METHODS_;
@@ -1122,7 +1140,7 @@ begin
   UserStrings[1114] := rs_finite_fluid__Ship_hydrodynamics__Sb_nauch_tr____Nikolaev__NKI_1987___p_21_26_;
   UserStrings[1115] := rs_2__Timoshenko_V_F__Investigation_of_submercible_vechicle_inertia_characteristics;
   UserStrings[1116] := rs_near_bottom_and_in_stratified_fluid__Ship_hydrodynamics__Sb_nauch_tr___Nikolaev_;
-  UserStrings[1117] := rs_NKI__1993____p__22_27_;
+  UserStrings[1117] := rs_NKI__1993____p__22_27_; }
   UserStrings[1118] := rs_Rudder_s_properties;
   UserStrings[1119] := rs_Keel_s_properties;
   UserStrings[1120] := rs_with_bulb;
@@ -1155,7 +1173,8 @@ begin
   UserStrings[1147] := rs_l___Vs__l__FrB__l__FrV__l___R_f___l___R_r___l___R_t___l___Pe____l;
   UserStrings[1148] := rs_l___kn__l_______l_______l___kN____l___kN____l___kN____l___kW____l;
   UserStrings[1149] := rs_l___kn__l_______l_______l___lbf___l___lbf___l___lbf___l___ehp___l;
-  UserStrings[1150] := rs_Maneuvering_Prediction_Program__MPP_1_3_;
+
+ {UserStrings[1150] := rs_Maneuvering_Prediction_Program__MPP_1_3_;
   UserStrings[1151] := rs_M__G__Parsons__December__1994;
   UserStrings[1152] := rs_1__METHODS_;
   UserStrings[1153] := rs_1_1__This_program_offers_two_main_options__Linear_Evaluation_which_implements_the;
@@ -1204,7 +1223,8 @@ begin
   UserStrings[1196] := rs_which_is_expressed_in_degrees_;
   UserStrings[1197] := rs_1_6_In_the_completely_independent_Turning_Prediction_option__the_regression_equa_;
   UserStrings[1198] := rs_tions_developed_by_Lyster_and_Knights__2__from_sea_trial_results_are_used_to__es_;
-  UserStrings[1199] := rs_timate_turning__characteristics_for_a_user_input_rudder_angle_and_approach_speed_;
+  UserStrings[1199] := rs_timate_turning__characteristics_for_a_user_input_rudder_angle_and_approach_speed_;}
+
   UserStrings[1200] := rs_Final_calculations_of_resistance_and_power_by_method_Hollenbach_1998;
   UserStrings[1201] := rs_Program_of_resistance_prediction_for_cargo_ships_by_Hollenbach_1998_method__NUoS__Ukraine_;
   UserStrings[1202] := rs_t________t________t________t________t________t________t________t________t________t;
@@ -1214,7 +1234,7 @@ begin
   UserStrings[1206] := rs_CPP_in_nozzle_E_series;
   UserStrings[1207] := rs_FPP_in_nozzle_VIT_series;
   UserStrings[1208] := rs_FPP_in_nozzle_Kaplan_series;
-  UserStrings[1209] := rs_;
+  UserStrings[1209] := rs_FPP_in_nozzle_SPP_series;
   UserStrings[1210] := rs_Comparison_by_resistance;
   UserStrings[1211] := rs_Missing_file_in_Exec__folder_;
   UserStrings[1212] := rs_;
@@ -1225,10 +1245,12 @@ begin
   UserStrings[1217] := rs_;
   UserStrings[1218] := rs_;
   UserStrings[1219] := rs_;
+  {
   UserStrings[1220] := rs_If_S__8__then_S_V_0_3333o_3_4oV_0_3333t0_5oLwl____for_cargo_ships_and_ferries__Lap_1954_;
   UserStrings[1221] := rs_If_S__9__then_S_V_Bo1_7__Cb_0_2o_Cb_0_65__tB_T____for_cargo_ships_and_ferries__Danckwardt_1969_;
   UserStrings[1222] := rs_If_S__10__then_S_V_Bo1_7_CbtB_To_0_92t0_092oCb____for_trawlers__Danckwardt_1969_;
   UserStrings[1223] := rs_If_S__11__then_S_Lppo_1_8oTtBoCb__________________for_modern_warships__Schneekluth_1988_;
+  }
   UserStrings[1224] := rs_by_Lap_1954_formulae;
   UserStrings[1225] := rs_by_Danckwardt_1969_formulae;
   UserStrings[1226] := rs_by_Schneekluth_1988_formulae;
@@ -1255,7 +1277,8 @@ begin
   UserStrings[1247] := rs_by_Fung_Leibman_s_method_1995;
   UserStrings[1248] := rs_Program_of_resistance_and_power_prediction_for_naval_ships__NUoS_Ukraine_2010_;
   UserStrings[1249] := rs_Final_calculations_of_resistance_and_power_by_method_Fung_Leibman_1995;
-  UserStrings[1250] := rs_The__dependence__of_the_turns_of_single_screw_ships_on_the_direction_of_propeller;
+
+  {UserStrings[1250] := rs_The__dependence__of_the_turns_of_single_screw_ships_on_the_direction_of_propeller;
   UserStrings[1251] := rs_rotation_and_the_ratio_of_the_mean_draft_to_the_design_draft_were_not_implemented_;
   UserStrings[1252] := rs_1_7_The_option_produces_estimates_of_the_following_;
   UserStrings[1253] := rs___steady_turning_diameter__meters_;
@@ -1298,14 +1321,16 @@ begin
   UserStrings[1290] := rs_input_either_as_a_fraction_of_LWLoT_or_automatically_as_the_minumum__rudder__area;
   UserStrings[1291] := rs_specified__by__Det__Norske__Veritas_for_commercial_vessels__For_single_screw__the;
   UserStrings[1292] := rs_sterm__type__must__be__designated__as_a_closed_or_open_stern__For_twin_screw__the;
-  UserStrings[1293] := rs_number_of_rudders_must_be_designated_as_one_or_two_;
-  UserStrings[1294] := rs_9_____More_information_about_statistical_Holtrop_method_are_here_;
+  UserStrings[1293] := rs_number_of_rudders_must_be_designated_as_one_or_two_;}
+
+ {UserStrings[1294] := rs_9_____More_information_about_statistical_Holtrop_method_are_here_;
   UserStrings[1295] := rs_9_1___Holtrop_J___Mennen_G_G_J____An__Approximate__Power__Prediction__Method____International;
   UserStrings[1296] := rs_Shipbuilding_Progress__Vol_29__No_335__July__1982_;
   UserStrings[1297] := rs_9_2___Holtrop_J____A_Statistical_Reanalysis_of_Resistance_and_Propulsion_Data___International;
   UserStrings[1298] := rs_Shipbuilding_Progress__Vol_31__No_363__Nov___1984_;
-  UserStrings[1299] := rs_;
-  UserStrings[1300] := rs_PROPELLER_OPTIMIZATION_PROGRAM__POP_1_5_;
+  UserStrings[1299] := rs_;}
+
+  {UserStrings[1300] := rs_PROPELLER_OPTIMIZATION_PROGRAM__POP_1_5_;
   UserStrings[1301] := rs_M__G__Parsons__December__1994;
   UserStrings[1302] := rs_1__METHODS_;
   UserStrings[1303] := rs_1_1____This_program_implements_the_Wageningen_B_Screw_Series_regression_equations_presented;
@@ -1349,25 +1374,25 @@ begin
   UserStrings[1341] := rs_propeller__If_the_optimization_option_is_being_used__the_parameters_are_the_initial__values;
   UserStrings[1342] := rs_used_by_the_search_algorithm__If_the_evaluation_option_is__being_used__the__parameters__are;
   UserStrings[1343] := rs_those_evaluated_by_the_program_;
-  UserStrings[1344] := rs_1_8_NBLADE_number_of_blades_on_propeller__3_through_7_supported_;
-  UserStrings[1345] := rs_1_9_Ae_Ao_initial_point_for_search_or_evaluated_expanded_area_ratio_;
-  UserStrings[1346] := rs_1_10_P_Dp_initial_point_for_search_or_evaluated_pitch_diameter_ratio_;
-  UserStrings[1347] := rs_1_11_Dp_initial_point_for_search_or_evaluated_propeller_diameter_in_meters_;
-  UserStrings[1348] := rs_1_12_Operating__Conditions__obtains_the_ship_speed__wake_fraction__and_thrust_required_from;
+  UserStrings[1344] := rs_1_7_1_Nblade_number_of_blades_on_propeller__3_through_7_supported_;
+  UserStrings[1345] := rs_1_7_2_Ae_Ao_initial_point_for_search_or_evaluated_expanded_area_ratio_;
+  UserStrings[1346] := rs_1_7_3_P_Dp_initial_point_for_search_or_evaluated_pitch_diameter_ratio_;
+  UserStrings[1347] := rs_1_7_4_Dp_initial_point_for_search_or_evaluated_propeller_diameter_in_meters_;
+  UserStrings[1348] := rs_1_8_Operating__Conditions__obtains_the_ship_speed__wake_fraction__and_thrust_required_from;
   UserStrings[1349] := rs_the_propeller__It_also_allows__the__selection__of__the__5___or__10__Burrill_back_cavitation;
   UserStrings[1350] := rs_constraint_and_obtains__the__submergence__of__the__shaft_centerline_needed_to_calculate_the;
   UserStrings[1351] := rs_Cavitation_Number_at_the_blade_tip_;
-  UserStrings[1352] := rs_1_13_THR_required_thrust_per_propeller_in_kilonewtons__THR___Rt_Zp__1___t__;
-  UserStrings[1353] := rs_Vk___ship_speed_in_knots_;
-  UserStrings[1354] := rs_w___average_longitudinal_wake_fraction_;
-  UserStrings[1355] := rs_HWLM___depth_of_shaft_centerline_below_waterline_in_meters_;
-  UserStrings[1356] := rs_1_14_Water_Properties_allows_the_choice_of_fresh_water___15C__salt_water___15C_or_user_spe_;
+  UserStrings[1352] := rs_1_8_1_THR_required_thrust_per_propeller_in_kilonewtons__THR___Rt_Zp__1___t__;
+  UserStrings[1353] := rs_1_8_2_Vk___ship_speed_in_knots_;
+  UserStrings[1354] := rs__1_8_3_w___average_longitudinal_wake_fraction_;
+  UserStrings[1355] := rs_1_8_4_HWLM___depth_of_shaft_centerline_below_waterline_in_meters_;
+  UserStrings[1356] := rs_1_9_Water_Properties_allows_the_choice_of_fresh_water___15C__salt_water___15C_or_user_spe_;
   UserStrings[1357] := rs_cified_water_properties_;
-  UserStrings[1358] := rs_1_15_When_the_optimization_is_selected__a_minimum_and_maximum_propeller__diameter__must__be;
+  UserStrings[1358] := rs_1_10_When_the_optimization_is_selected__a_minimum_and_maximum_propeller__diameter__must__be;
   UserStrings[1359] := rs_specified__The_user_can_also_enter_a_run_specific_identifier_at_this_point__if_desired_;
-  UserStrings[1360] := rs_1_16_Dpmin___Minimum_propeller_diameter_in_meters__Typically_this_is_about_25__of_Dpmax_for;
+  UserStrings[1360] := rs_1_10_1_Dpmin___Minimum_propeller_diameter_in_meters__Typically_this_is_about_25__of_Dpmax_for;
   UserStrings[1361] := rs_fixed_pitch_propellers_and_about_35__of_Dpmax_for_controllable_pitch_propellers_;
-  UserStrings[1362] := rs_1_17_Dpmax___Maximum_propeller_diameter_permitted_by_hull_and_required_clearances_in_meters_;
+  UserStrings[1362] := rs_1_10_2_Dpmax___Maximum_propeller_diameter_permitted_by_hull_and_required_clearances_in_meters_;
   UserStrings[1363] := rs_When_the_analysis_process_is_completed__the_program_can_be_produce_an_open_water_efficiency_;
   UserStrings[1364] := rs_KT__and_KQ_versus_J_and_plot_graphics_;
   UserStrings[1365] := rs_REFERENCES_;
@@ -1376,7 +1401,8 @@ begin
   UserStrings[1368] := rs_2_Parsons__M__G____Optimization_Methods_for_Use_in_Computer_Aided_Ship_Design___Proceedings;
   UserStrings[1369] := rs_of_the_First_SNAME_STAR_Symposium__1975_;
   UserStrings[1370] := rs_3_Comstock_J_P___Ed____Principles_of_Naval_Architecture__Vol__II__1988__Edition__SNAME__New;
-  UserStrings[1371] := rs_York__p_182_;
+  UserStrings[1371] := rs_York__p_182_;}
+
   UserStrings[1372] := rs_Number_of_a_ship_series;
   UserStrings[1373] := rs_by_Clement_Poup_1961_method;
   UserStrings[1374] := rs_by_Clement_Blount_1963_method;
@@ -1385,7 +1411,8 @@ begin
   UserStrings[1377] := rs_Resistance_and_power_planing_ships_by_Clement_Blount_method;
   UserStrings[1378] := rs_Final_calculations_of_resistance_and_power_by_Clement_Blount_s_method;
   UserStrings[1379] := rs_l___Vs__l__FrV__l__Tau__l___R_f___l___R_p___l___R_t___l___Pe____l;
-  UserStrings[1380] := rs_2_2_1__AR_total_rudder__area__as_fraction_of_LWLoT__i_e___AR___A__LWLoT____option;
+
+ {UserStrings[1380] := rs_2_2_1__AR_total_rudder__area__as_fraction_of_LWLoT__i_e___AR___A__LWLoT____option;
   UserStrings[1381] := rs_is_calculated_from_the_Det_Norske_Veritas_minimum_rudder_area;
   UserStrings[1382] := rs_2_2_2__TE_steering_gear_time_constant_in_seconds__default_value_is_2_5_s;
   UserStrings[1383] := rs_2_2_3__XR_center_of_effort_of_rudder_in__LWL_from_amidships_t_aft_i_e__about_49_0;
@@ -1403,7 +1430,8 @@ begin
   UserStrings[1395] := rs_4__Fugino__M____Maneuverability_in_Restricted_Waters__State_of_the_Art___The_Uni_;
   UserStrings[1396] := rs_versity_of_Michigan_NAME_Report_No__184__Aug___1976_;
   UserStrings[1397] := rs_5__Inoue__S___Hirano__M___and_Kijima__K____Hydrodynamic_Derivatives_on_Ship_Mano_;
-  UserStrings[1398] := rs_evring___International_Shipbuilding_Progress__Vol__28__No__321__1981_;
+  UserStrings[1398] := rs_evring___International_Shipbuilding_Progress__Vol__28__No__321__1981_;}
+
   UserStrings[1399] := rs_by_M_Bunkov_method;
   UserStrings[1400] := rs_Resistance_and_power_pre_planing_ships_by_M_Bunkov_method;
   UserStrings[1401] := rs_Final_calculations_of_resistance_and_power_by_M_Bunkov_method;
@@ -1411,7 +1439,8 @@ begin
   UserStrings[1403] := rs_ATTENTION_____Vs_is_out_valid_domain_0_____40_knots_for_used_diagram_;
   UserStrings[1404] := rs_ATTENTION_____Power_is_out_valid_domain_30_____400_BHP_per_unit_for_used_diagram_;
   UserStrings[1405] := rs_m_s;
-  UserStrings[1406] := rs_5_Standart_deviation_of_database_for_typical_resistance_Fung_Leibman_s_method_;
+
+ {UserStrings[1406] := rs_5_Standart_deviation_of_database_for_typical_resistance_Fung_Leibman_s_method_;
   UserStrings[1407] := rs_t_____________________________t______________________t;
   UserStrings[1408] := rs_l________Parameters___________l______Limitations_____l;
   UserStrings[1409] := rs_l_____________________________t______________________l;
@@ -1424,7 +1453,8 @@ begin
   UserStrings[1416] := rs_l_Transom_area_coefficient_Ta_l___0_00_to_0_74_______l;
   UserStrings[1417] := rs_l_Transom_beam_coefficient_Tw_l___0_00_to_1_00_______l;
   UserStrings[1418] := rs_l_Disp_length__DLR_V_Lwl_3____l__16_24_to_359_2______l;
-  UserStrings[1419] := rs_l_Froude_number__Fr___________l___0_15_to_0_90_______l;
+  UserStrings[1419] := rs_l_Froude_number__Fr___________l___0_15_to_0_90_______l;}
+
   UserStrings[1420] := rs_Impeller_Type_;
   UserStrings[1421] := rs_Midship_area;
   UserStrings[1422] := rs_Transom_area;
@@ -1605,7 +1635,8 @@ begin
   UserStrings[1597] := rs_;
   UserStrings[1598] := rs_;
   UserStrings[1599] := rs_;
-  UserStrings[1600] := rs_5_Standart_deviation_of_database_for_typical_resistance_van_Oortmerssen_s_method_;
+
+ {UserStrings[1600] := rs_5_Standart_deviation_of_database_for_typical_resistance_van_Oortmerssen_s_method_;
   UserStrings[1601] := rs_t_____________________________t______________________t;
   UserStrings[1602] := rs_l________Parameters___________l______Limitations_____l;
   UserStrings[1603] := rs_l_____________________________t______________________l;
@@ -1619,8 +1650,9 @@ begin
   UserStrings[1611] := rs_l_Half_entrance_angle______ie_l_____10_____46_degr___l;
   UserStrings[1612] := rs_l_Speed_length_____V_sqrt_Lwl_l______0_____1_79______l;
   UserStrings[1613] := rs_l_Froude_number____________Fr_l______0_____0_50______l;
-  UserStrings[1614] := rs_t_____________________________t______________________t;
-  UserStrings[1615] := rs_6_Standart_deviation_of_database_for_typical_resistance_by_Ridgeley_Nevitt_1967_;
+  UserStrings[1614] := rs_t_____________________________t______________________t;}
+
+ {UserStrings[1615] := rs_6_Standart_deviation_of_database_for_typical_resistance_by_Ridgeley_Nevitt_1967_;
   UserStrings[1616] := rs_t_____________________________t______________________t;
   UserStrings[1617] := rs_l_________Parameters__________l______Limitations_____l;
   UserStrings[1618] := rs_l_____________________________t______________________l;
@@ -1637,7 +1669,8 @@ begin
   UserStrings[1629] := rs_l_Prismatic_coefficient____Cp_l___0_45_____0_61______l;
   UserStrings[1630] := rs_l_Midship_coefficient______Cm_l__0_747_____0_878_____l;
   UserStrings[1631] := rs_l_Coefficient______L_V_0_3333_l___3_00_____5_31______l;
-  UserStrings[1632] := rs_l_Froude_number____________Fr_l___0_20_____0_50______l;
+  UserStrings[1632] := rs_l_Froude_number____________Fr_l___0_20_____0_50______l;}
+
   UserStrings[1633] := rs_;
   UserStrings[1634] := rs_;
   UserStrings[1635] := rs_;

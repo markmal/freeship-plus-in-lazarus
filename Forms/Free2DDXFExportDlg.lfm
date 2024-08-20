@@ -8,6 +8,7 @@ object DXFExport2DDialog: TDXFExport2DDialog
   Caption = 'Export intersections to DXF as 2D polylines.'
   ClientHeight = 200
   ClientWidth = 640
+  OnActivate = FormActivate
   ParentFont = True
   Position = poOwnerFormCenter
   LCLVersion = '3.2.0.0'
@@ -205,13 +206,12 @@ object DXFExport2DDialog: TDXFExport2DDialog
       Top = 48
       Width = 280
       ItemHeight = 0
-      ItemIndex = 0
       Items.Strings = (
         'Meters'
         'Centimeters'
         'Millimeters'
         'Feet'
-        'Inch'
+        'Inches'
       )
       TabOrder = 1
       Text = 'Meters'

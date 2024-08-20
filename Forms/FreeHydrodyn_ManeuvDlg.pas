@@ -459,9 +459,12 @@ begin
 
 
       ResultsMemo2.Text:='';
-      for  i:=1150 to 1199 do ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
+      {for  i:=1150 to 1199 do ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
       for  i:=1250 to 1293 do ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
       for  i:=1380 to 1398 do ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
+      }
+      ResultsMemo2.Lines.Add(rs_Hydrodin_Maneuv_Note);
+
       ResultsMemo2.Lines.Add('');
       ResultsMemo2.Lines.Add(Space(5)+'Copyright (c) 2008, Timoshenko V.F.');
       ResultsMemo2.Visible:=True;

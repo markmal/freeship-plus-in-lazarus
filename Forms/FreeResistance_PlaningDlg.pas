@@ -1380,8 +1380,10 @@ begin
       else
       begin
         MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} +
-          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' Clempoup.exe ' + #13#10#13#10 + Userstring(
-          1140) + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' Clempoup.exe '
+          + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {Userstring[1140]}
+          + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+          + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         if FileExistsUTF8('clempoup.dat') { *Converted from FileExists* } then
           DeleteFileUTF8('clempoup.dat'); { *Converted from DeleteFile* }
         exit;
@@ -1428,10 +1430,10 @@ begin
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + rs_Final_calculations_of_resistance_and_power_by_Clement_Poup_s_method {UserString[1376]});
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___Vs__l__FrV__l__Tau__l___R_f___l___R_p___l___R_t___l___Pe____l {UserString[1379]});
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0969));
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_l___kn__l_______l__degr_l___kN____l___kN____l___kN____l___kW____l {Userstring[0969]});
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
 
     for I := 1 to 10 do
     begin
@@ -1485,8 +1487,7 @@ begin
     dat[1] := Displacement * 9.81 / 1000;
     if (dat[1] > 400) or (dat[1] < 5) then
     begin
-      ResultsMemo.Lines.Add(Space(14) + 'Displacement   ' + Userstring(
-        476) + '   5 ... 400 kN');
+      ResultsMemo.Lines.Add(Space(14) + 'Displacement   ' + rs_is_outside_valid_domain {Userstring[476]} + '   5 ... 400 kN');
       ResultsMemo.Lines.Add(Space(14) + rs_ATTENTION____This_is_series_NOT_correct_for_this_project_ {UserString[487]});
       MessageDlg(rs_ATTENTION____This_is_series_NOT_correct_for_this_project_ {UserString[487]}, mtError, [mbOK], 0);
       exit;
@@ -1533,9 +1534,11 @@ begin
         goto NewSearch1
       else
       begin
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} +
-          #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' Clemblou.exe ' + #13#10#13#10 + Userstring(
-          1140) + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+         + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]} + ' Clemblou.exe '
+         + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {Userstring[1140]}
+         + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+         + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         if FileExistsUTF8('clemblou.dat') { *Converted from FileExists* } then
           DeleteFileUTF8('clemblou.dat'); { *Converted from DeleteFile* }
         exit;
@@ -1574,10 +1577,10 @@ begin
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + rs_Final_calculations_of_resistance_and_power_by_Clement_Blount_s_method {UserString[1378]});
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___Vs__l__FrV__lEpsilonl___R_f___l___R_p___l___R_t___l___Pe____l {UserString[1402]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___kn__l_______l_______l___kN____l___kN____l___kN____l___kW____l {UserString[1148]});
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
 
     for I := 1 to 7 do
     begin
@@ -1710,9 +1713,11 @@ begin
         goto NewSearch2
       else
       begin
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + Userstring(
-          1139) + ' Bunkov.exe ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 +
-          rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+        + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {Userstring[1139]} + ' Bunkov.exe '
+        + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}
+        + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+        + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         if FileExistsUTF8('bunkdata.dat') { *Converted from FileExists* } then
           DeleteFileUTF8('bunkdata.dat'); { *Converted from DeleteFile* }
         exit;
@@ -1750,10 +1755,10 @@ begin
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + rs_Final_calculations_of_resistance_and_power_by_M_Bunkov_method {UserString[1401]});
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___Vs__l__FrV__l__Tau__l___R_f___l___R_p___l___R_t___l___Pe____l {UserString[1379]});
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0969));
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_l___kn__l_______l__degr_l___kN____l___kN____l___kN____l___kW____l {Userstring[0969]});
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
 
     dVs := (Speed - resVs_[1]) / 15;
     Vsr := resVs_[1] - dVs;
@@ -1861,9 +1866,11 @@ begin
         goto NewSearch3
       else
       begin
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + Userstring(
-          1139) + ' Compton.exe ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 +
-          rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+         + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {Userstring[1139]} + ' Compton.exe '
+         + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}
+         + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+         + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         if FileExistsUTF8('cmptdata.dat') { *Converted from FileExists* } then
           DeleteFileUTF8('cmptdata.dat'); { *Converted from DeleteFile* }
         exit;
@@ -1901,10 +1908,10 @@ begin
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + rs_Final_calculations_of_resistance_and_power_by_Compton_s_method {UserString[1496]});
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___Vs__l__FrL__l__FrV__l___R_f___l___R_r___l___R_t___l___Pe____l {UserString[1574]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___kn__l_______l_______l___kN____l____kN___l____kN___l___kW____l {UserString[1575]});
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
 
     dVs := (Speed - resVs_[1]) / 15;
     Vsr := resVs_[1] - dVs;
@@ -2007,9 +2014,11 @@ begin
         goto NewSearch4
       else
       begin
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + Userstring(
-          1139) + ' Wolfson.exe ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 +
-          rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+        + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {Userstring[1139]} + ' Wolfson.exe '
+        + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}
+        + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+        + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         if FileExistsUTF8('wolfdata.dat') { *Converted from FileExists* }
         then
           DeleteFileUTF8('wolfdata.dat'); { *Converted from DeleteFile* }
@@ -2049,10 +2058,10 @@ begin
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + rs_Final_calculations_of_resistance_and_power_by_Robinson_s_method {UserString[1499]});
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___Vs__l__FrL__l__FrV__l___R_f___l___R_r___l___R_t___l___Pe____l {UserString[1574]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___kn__l_______l_______l___kN____l____kN___l____kN___l___kW____l {UserString[1575]});
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     dVs := (Speed - resVs_[1]) / 15;
     Vsr := resVs_[1] - dVs;
     for I := 1 to 16 do
@@ -2164,9 +2173,11 @@ begin
         goto NewSearch5
       else
       begin
-        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]} + #13#10#13#10 + Userstring(
-          1139) + ' Radojcic.exe ' + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]} + #13#10#13#10 +
-          rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]} + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
+        MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}
+        + #13#10#13#10 + rs_1__Do_not_found_into__Exec_or_was_damaged_file {Userstring[1139]} + ' Radojcic.exe '
+        + #13#10#13#10 + rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}
+        + #13#10#13#10 + rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}
+        + #13#10#13#10 + rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]}, mtError, [mbOK], 0);
         if FileExistsUTF8('radodata.dat') { *Converted from FileExists* } then
           DeleteFileUTF8('radodata.dat'); { *Converted from DeleteFile* }
         exit;
@@ -2203,10 +2214,10 @@ begin
     ResultsMemo.Lines.Add('');
     ResultsMemo.Lines.Add(Space(10) + rs_Final_calculations_of_resistance_and_power_by_Radojcic_s_method {UserString[1580]});
     ResultsMemo.Lines.Add('');
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___Vs__l__FrL__l__FrV__l___R_f___l___R_r___l___R_t___l___Pe____l {UserString[1574]});
     ResultsMemo.Lines.Add(Space(13) + rs_l___kn__l_______l_______l___kN____l____kN___l____kN___l___kW____l {UserString[1575]});
-    ResultsMemo.Lines.Add(Space(13) + Userstring(0967));
+    ResultsMemo.Lines.Add(Space(13) + rs_t_______t_______t_______t_________t_________t_________t_________t {Userstring[0967]});
     dVs := (Speed - resVs_[1]) / 15;
     Vsr := resVs_[1] - dVs;
     for I := 1 to 16 do

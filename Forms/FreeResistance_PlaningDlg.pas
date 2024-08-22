@@ -476,7 +476,7 @@ var
   Ct, Cpw, Ne, EtaW, iee, Roi, Bwli: single;
   FrVr, L_opt, Cg_opt, Be_opt: single;
   Cg, Dp, Vsr, FrL, Xg_opt: single;
-  Lk, Lc, d, Be2: single;
+  Lk, Lc, Ld, Be2: single;
   dat: array[1..15] of single;
   RTT, FnV_: array[1..11] of single;
   ax, bx: array[1..10] of single;
@@ -497,6 +497,7 @@ var
   ResBe2: array[1..16] of single;
   FInitDirectory, tmpDir, OutputStr, ErrorStr, ExecFullName: string;
   ExitStatus: integer;
+  unt: string;
 const
   FrBc: array[1..10] of single = (2.3, 2.9, 3.5, 4.0, 4.5, 5.5, 6.0, 7.0, 9.2, 111);
 const
@@ -2341,19 +2342,22 @@ begin
   begin
     Lk := lambda * Bwl + Bwl / 6.28 * tan(Ie / 57.3) / tan(Tau / 57.3);
     Lc := lambda * Bwl - Bwl / 6.28 * tan(Ie / 57.3) / tan(Tau / 57.3);
-    d := Lk * sin(Tau / 57.3);
+    Ld := Lk * sin(Tau / 57.3);
     ResultsMemo.Lines.Add(Space(13) + 'Lambda       = ' + FloatToStrF(
       Lambda, ffFixed, 6, 3));
     if FFreeship.ProjectSettings.ProjectUnits = fuImperial then
-      ii := 454
+      unt := rs_ft
     else
-      ii := 451;
-    ResultsMemo.Lines.Add(Space(13) + 'Lk           = ' + FloatToStrF(
-      Lk, ffFixed, 6, 3) + ' ' + Userstring(ii));
+      unt := rs_m;
+    {ResultsMemo.Lines.Add(Space(13) + 'Lk           = ' + FloatToStrF(
+      Lk, ffFixed, 6, 3) + ' ' + units);
     ResultsMemo.Lines.Add(Space(13) + 'Lc           = ' + FloatToStrF(
-      Lc, ffFixed, 6, 3) + ' ' + Userstring(ii));
+      Lc, ffFixed, 6, 3) + ' ' + units);
     ResultsMemo.Lines.Add(Space(13) + 'd            = ' + FloatToStrF(
-      d, ffFixed, 6, 3) + ' ' + Userstring(ii));
+      d, ffFixed, 6, 3) + ' ' + units);}
+    ResultsMemo.Lines.Add(String.Format('             Lk           = %-6.3f %s',[Lk,unt]));
+    ResultsMemo.Lines.Add(String.Format('             Lc           = %-6.3f %s',[Lc,unt]));
+    ResultsMemo.Lines.Add(String.Format('             Ld           = %-6.3f %s',[Ld,unt]));
   end;
 
   // Расчет оптимальных параметров глиссера
@@ -2432,9 +2436,11 @@ begin
     ResultsMemo.Lines.Add(Space(10) +
       ' C.W.F.Hamilton & Co. type of waterjet calculation, according to [1,2]:');
     ResultsMemo.Lines.Add(' ');
-    ResultsMemo.Lines.Add(Space(10) + ' Vs   = ' + FloatToStrF(Speed, ffFixed, 6, 2) +
-      ' ' + rs_kn {UserString[326]} + ' = ' + FloatToStrF(Speed * 0.51444, ffFixed, 6, 3) + ' ' +
-      rs_m_s {UserString[1405]} + ' = ' + FloatToStrF(Speed * 1.852, ffFixed, 6, 2) + ' ' + rs_km_hour {UserString[508]});
+    //ResultsMemo.Lines.Add(Space(10) + ' Vs   = ' + FloatToStrF(Speed, ffFixed, 6, 2) +
+    //  ' ' + rs_kn {UserString[326]} + ' = ' + FloatToStrF(Speed * 0.51444, ffFixed, 6, 3) + ' ' +
+    //  rs_m_s {UserString[1405]} + ' = ' + FloatToStrF(Speed * 1.852, ffFixed, 6, 2) + ' ' + rs_km_hour {UserString[508]});
+    ResultsMemo.Lines.Add('           Vs   = %-6.2f %s = %-6.3f %s = %-6.2f %s',
+                          [Speed,rs_kn, Speed * 0.51444,rs_m_s, Speed * 1.852,rs_km_hour]);
     ResultsMemo.Lines.Add(' ');
     if Speed > 45 then
       ResultsMemo.Lines.Add(Space(10) + rs_ATTENTION_____Vs_is_out_valid_domain_0_____40_knots_for_used_diagram_ {UserString[1403]});
@@ -2457,8 +2463,10 @@ begin
         continue;
       //    ResultsMemo.Lines.Add(Space(10)+' Rt   = '+FloatToStrF(Rt,ffFixed,6,3));
       //    ResultsMemo.Lines.Add(Space(10)+' Ro   = '+FloatToStrF(Ro,ffFixed,6,3));
-      ResultsMemo.Lines.Add(Space(10) + ' Nwj          = ' + FloatToStrF(Nwj, ffFixed, 6, 0));
-      ResultsMemo.Lines.Add(Space(10) + ' Ct           = ' + FloatToStrF(Ct, ffFixed, 6, 3));
+      //ResultsMemo.Lines.Add(Space(10) + ' Nwj          = ' + FloatToStrF(Nwj, ffFixed, 6, 0));
+      ResultsMemo.Lines.Add('           Nwj          = %-6,0f',[Nwj]);
+      //ResultsMemo.Lines.Add(Space(10) + ' Ct           = ' + FloatToStrF(Ct, ffFixed, 6, 3));
+      ResultsMemo.Lines.Add('           Ct           = %-6,3f',[Ct]);
       Ct := log10(Ct);
       //    ResultsMemo.Lines.Add(Space(10)+'lg(Ct)= '+FloatToStrF(Ct,ffFixed,6,3));
       //    ResultsMemo.Lines.Add(Space(10)+'lg(Cp)= '+FloatToStrF(Cpw,ffFixed,6,3));
@@ -2466,7 +2474,8 @@ begin
         Ct + 0.2336918;
       //    ResultsMemo.Lines.Add(Space(10)+'lg(Cp)= '+FloatToStrF(Cpw,ffFixed,6,3));
       Cpw := power(10, Cpw) * 1.06;
-      ResultsMemo.Lines.Add(Space(10) + ' Cp           = ' + FloatToStrF(Cpw, ffFixed, 6, 3));
+      //ResultsMemo.Lines.Add(Space(10) + ' Cp           = ' + FloatToStrF(Cpw, ffFixed, 6, 3));
+      ResultsMemo.Lines.Add('           Cp           = %-6,3f',[Cp]);
       if Cpw = 0 then
       begin
         ResultsMemo.Lines.Add(Space(10) + ' Problem: Cp = 0');

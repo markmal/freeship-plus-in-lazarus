@@ -53,11 +53,11 @@ msgstr "Амплитуда угла крена <2.0 градусов !!!"
 
 #: freeexpanedplatesdlg.exportdxf_filter
 msgid "AutoCad dxf files"
-msgstr ""
+msgstr "Файлы AutoCad dxf"
 
 #: freeexpanedplatesdlg.exporttextfile_filter
 msgid "Coordinates to text file"
-msgstr ""
+msgstr "Текстовые файлы координат"
 
 #: freefilebuffer.rsparsingerroroutoffilesize
 #, object-pascal-format
@@ -1985,121 +1985,6 @@ msgid "Hull characteristics above waterline"
 msgstr "Характеристики надводной части корпуса"
 
 #: freestringsunit.rs_hydrodin_maneuv_note
-#, fuzzy
-#| msgid ""
-#| "Maneuvering Prediction Program (MPP-1.3)\n"
-#| "M. G. Parsons, December, 1994\n"
-#| "1. METHODS:\n"
-#| "1.1  This program offers two main options: Linear Evaluation which implements the\n"
-#| "methods proposed by Clarke, Gedling, and Hine (1) for the  assessment  of  course\n"
-#| "stability,  turning  ability,  and  controllability  by  a  helmsman; and Turning\n"
-#| "Prediction which  implements  the  multiple linear regression equations presented\n"
-#| "by Lyster and Knights (2) for the estimation of turning circle characteristics.\n"
-#| "1.2  The  user should consult the Clarke paper prior to using the program. If the\n"
-#| "Linear  Evaluation option is used, the user can also obtain the linearized maneu-\n"
-#| "vering equations of motion in state variable form (3).\n"
-#| "1.3  In the Linear Evaluation option, the linear derivatives are estimated using\n"
-#| "the multiple linear regression equations presented by Clarke et al (1). The velo-\n"
-#| "city derivatives  were obtained from 72 sets of data from rotating arm and planar\n"
-#| "motion  tests.  Acceleration  derivatives  were  obtained from planar motion test\n"
-#| "data. The  independent  variables  include  T/LWL, CB*B/T, B/LWL, and B/T. Clarke\n"
-#| "feels  that  these  results  are  at  least  as  effective  as the semi-empirical\n"
-#| "equations developed by Wagner Smitt, Norrbin, or  Inoue. Water  depth corrections\n"
-#| "were added  by  regressing  the  data  presented by Fugino (4) for the Tokyo Maru\n"
-#| "( CB = 0.805 ) and the  Mariner ( CB = 0.589 ). Independent  variables  in  these\n"
-#| "analyses were CB and inverse powers of F = (H/T) -1. These  can be used for water\n"
-#| "depths down to H/T= 1.3, but are considered unreliable below this value. The trim\n"
-#| "corrections presented by Inoue (5) are used  for  the  velocity  derivatives. The\n"
-#| "independent variable  in  these corrections  is the trim to mean draft ratio. The\n"
-#| "various  time  constants  and  gains  in  the  first-  and  second-order Nomoto's\n"
-#| "equations are calculated from the linear derivatives.\n"
-#| "1.4  The quantities calculated to allow evaluation of the maneuvering performance\n"
-#| "of the vessels are as follows:\n"
-#| "1.4.1 Inverse time  constant (1/T')  and  inverse  gain  (1/K'). Turning  ability\n"
-#| "increases  with  decreasing 1/K' while course stability and quickness of response\n"
-#| "to helm increases with 1/T'.\n"
-#| "1.4.2 Clarke's turning index P.This quantity is derived from the linear equations\n"
-#| "as  the  amount  of  turn achieved in one ship length using a unit step rudder. A\n"
-#| "minimum value of 0.3 (equivalent to about 10 degrees for a 35 degree step rudder,\n"
-#| "within the  limits  of  the  linearized  equations of motion) is recommended with\n"
-#| "values as low as 0.2 considered acceptable for large tankers.\n"
-#| "1.4.3 Bare hull  dynamic  stability  criterion C. This must be positive for open-\n"
-#| "loop, controls-fixed course stability of the bare hull.\n"
-#| "1.4.4 Phase margin applicable to the closed-loop steering system.The phase margin\n"
-#| "of the ship transfer function, including the steering gear, is calculated. Nomoto\n"
-#| "notes  that  by  anticipating  the  ship's  turning, a typical helmsman can apply\n"
-#| "between 20 and 30 degrees of phase advance.  Thus, the  ship  with  steering gear\n"
-#| "cannot have more than this amount of negative phase margin  for  the  combination\n"
-#| "of the ship and helmsman to be closed-loop stable on course. Thus, a phase margin\n"
-#| "greater than about -20 degrees is recommended for reasonable human control.\n"
-#| "1.5 All  output  is  nondimensional  following Clarke (1) except the phase margin\n"
-#| "which is expressed in degrees.\n"
-#| "1.6 In the completely independent Turning Prediction option, the regression equa-\n"
-#| "tions developed by Lyster and Knights (2) from sea trial results are used to  es-\n"
-#| "timate turning  characteristics for a user-input rudder angle and approach speed.\n"
-#| "The  dependence  of the turns of single screw ships on the direction of propeller\n"
-#| "rotation and the ratio of the mean draft to the design draft were not implemented.\n"
-#| "1.7 The option produces estimates of the following:\n"
-#| "- steady turning diameter (meters)\n"
-#| "- tactical diameter (meters)\n"
-#| "- advance (meters)\n"
-#| "- transfer (meters)\n"
-#| "- steady speed in the turn (knots)\n"
-#| "1.8  This model is for  deep water and includes no dependence on water depth. The\n"
-#| "range of the ship parameters included in regression data set is as follows:\n"
-#| "+-------------+-------------------+-------------------------+\n"
-#| "| Parameter   |   Single screw    |       Twin screw        |\n"
-#| "+-------------+-------------------+-------------------------+\n"
-#| "|     Lpp     |  54,9 ... 329,2 m |    76,2 ... 225,6 m     |\n"
-#| "|     Cb      |  0,56 ... 0,87    |    0,42 ... 0,62        |\n"
-#| "|rudder angle |  10,0 ... 45 degr.|    10,0 ... 35 degr.    |\n"
-#| "|     L/B     |  5,56 ... 9,09    |    5,00 ... 16,67       |\n"
-#| "|   trim/Lpp  |  0,00 ... 0,05    |   -0,01 ... 0,03        |\n"
-#| "|     AR      |  0,01 ... 0,04    | 0,01 ... 0,02 per rudder|\n"
-#| "|     AB      | -0,11 ... 0,04    |   -0,10 ... 0,0         |\n"
-#| "|     Fr      |  0,06 ... 0,298   |   0,074 ... 0,655       |\n"
-#| "+-------------+-------------------+-------------------------+\n"
-#| "This model should be used with CAUTION outside this range.\n"
-#| "2.   INPUT:\n"
-#| "2.1  The input to MPP is through a series as follows:\n"
-#| "- LWL length on waterline in meters\n"
-#| "- B maximum beam on waterline in meters\n"
-#| "- TF draft forward in meters\n"
-#| "- TA draft aft in meters\n"
-#| "- CB block coefficient on LWL\n"
-#| "- LCG longitudinal center of gravity in %LWL from amidships; + forward\n"
-#| "- GYRAD yaw radius of gyration k33 as a fraction of LWL; default value 0.25\n"
-#| "- AB difference between the submerged bow profile area  on  the  centerplane  and\n"
-#| "that of a plumb bow as fraction of LWL*T; i.e.,AB = area forward of STA0/(LWL*T),\n"
-#| "positive when a bulbous bow projects forward of  the  forward  perpendicular,  or\n"
-#| "AB = cutaway  area  aft  of  STA0/(LWL*T), negative  with a raked stem or cutaway\n"
-#| "forefoot.\n"
-#| "2.2  Steering Characteristics obtains the rudder area, steering gear  time  cons-\n"
-#| "tant, position of the rudder center of effort (typically the 1/4 chord point from\n"
-#| "the leading edge), and selection of single or twin screw. The rudder area can  be\n"
-#| "input either as a fraction of LWL*T or automatically as the minumum  rudder  area\n"
-#| "specified  by  Det  Norske  Veritas for commercial vessels. For single screw, the\n"
-#| "sterm  type  must  be  designated  as a closed or open stern. For twin screw, the\n"
-#| "number of rudders must be designated as one or two.\n"
-#| "2.2.1  AR total rudder  area  as fraction of LWL*T; i.e., AR = A/(LWL*T);  option\n"
-#| "is calculated from the Det Norske Veritas minimum rudder area\n"
-#| "2.2.2  TE steering gear time constant in seconds; default value is 2.5 s\n"
-#| "2.2.3  XR center of effort of rudder in %LWL from amidships;+ aft;i.e.,about 49.0\n"
-#| "2.3    Operating Conditions obtains the water depth and the initial vessel speed.\n"
-#| "2.3.1  H/T water depth to ship draft ratio (H/T); input 1000 for deep water\n"
-#| "2.3.2  VK initial or reference ship speed in knots\n"
-#| "3. REFERENCES:\n"
-#| "1. Clarke  D., Gedling  P., and Hine  G., \"The Application of Manoevring Criteria\n"
-#| "in Hull Design Using Linear Theory\", Transactions RINA, Vol. 124, 1982.\n"
-#| "2. Lyster  C. A., and Knights  H. L., \"Prediction  Equations  for  Ships' Turning\n"
-#| "Circles\", Transactions NECIES 1978-1979.\n"
-#| "3. Parsons M. G., \"Informal  Notes for NA530 Automatic Control in Naval Architec-\n"
-#| "ture  and  Marine  Engineering\", Vol. I, \"Classical Control,\" and Vol. II \"Modern\n"
-#| "Control.\"\n"
-#| "4. Fugino  M., \"Maneuverability in Restricted Waters: State of the Art\", The Uni-\n"
-#| "versity of Michigan NAME Report No. 184, Aug., 1976.\n"
-#| "5. Inoue, S., Hirano, M., and Kijima, K., \"Hydrodynamic Derivatives on Ship Mano-\n"
-#| "evring\", International Shipbuilding Progress, Vol. 28, No. 321, 1981."
 msgid ""
 "Maneuvering Prediction Program (MPP-1.3)\n"
 "M. G. Parsons, December, 1994\n"
@@ -2330,51 +2215,6 @@ msgstr ""
 "evring\", International Shipbuilding Progress, Vol. 28, No. 321, 1981."
 
 #: freestringsunit.rs_hydrodin_rvrs_note
-#, fuzzy
-#| msgid ""
-#| "Table. Characteristics of sea ships diesels\n"
-#| "+----------------------+-----------------+------------------+----------------+\n"
-#| "|                      |      Power      |  Freq. of rotate | Inertia moment |\n"
-#| "|  Type of diesel      +-----------------+------------------+----------------+\n"
-#| "|                      |       kW        |      1/min       |     kg*m^2     |\n"
-#| "+----------------------+-----------------+------------------+----------------+\n"
-#| "| 6ДКРН 45/120-7       |      3970       |       170        |       70       |\n"
-#| "| 8ДКРН 45/120-7       |      5290       |       170        |       90       |\n"
-#| "| 6ДКРН 67/170-7       |      9630       |       123        |      446       |\n"
-#| "| 7ДКРН 67/170-7       |     11240       |       123        |      508       |\n"
-#| "| 6ДКРН 67/195-10      |      9150       |       111        |      550       |\n"
-#| "| 8ДКРН 67/195-10      |     12200       |       111        |      711       |\n"
-#| "| 6ЧРН 36/45(Г70)      |       883       |       375        |      512       |\n"
-#| "|                      |       736       |       350        |      512       |\n"
-#| "|                      |       662       |       375        |      512       |\n"
-#| "| 8ЧСПН18/22-475       |       370       |       750        |       20       |\n"
-#| "| 8ЧСПН18/22-315       |       230       |       750        |       20       |\n"
-#| "| 6ЧСПН18/22-300       |       220       |       750        |       25       |\n"
-#| "| 6ЧСПН18/22-225       |       165       |       750        |     18,3       |\n"
-#| "|   6ЧСП18/22          |       110       |       750        |     18,3       |\n"
-#| "| 12ЧНС18/22 (М401А-1) |       736       |      1550        |      4,9       |\n"
-#| "| 12ЧНС18/22 (М416)    |       808       |      1550        |      3,9       |\n"
-#| "| 12ЧН15/18(3КД12Н-520)|       380       |      1500        |      3,7       |\n"
-#| "| 12ЧСП15/18 (3Д12)    |       220       |      1500        |      8,7       |\n"
-#| "| 6ЧСПН15/18 (3Д6Н-235)|       170       |      1500        |      8,2       |\n"
-#| "| 6ЧСП15/18 (3Д6)      |       110       |      1500        |      8,5       |\n"
-#| "| 6ЧСП12/14 (К-161)    |        66       |      1500        |      4,0       |\n"
-#| "| 8ЧРН32/48(8НВД48А-2У)|       970       |       428        |      760       |\n"
-#| "|                      |       770       |       350        |      760       |\n"
-#| "| 6ЧРН32/48(6НВД48А-2У)|       736       |       428        |      700       |\n"
-#| "|                      |       640       |       375        |      700       |\n"
-#| "|                      |       515       |       300        |      700       |\n"
-#| "| 8ЧР32/48 (8НВД48-2У) |       647       |       428        |      760       |\n"
-#| "|                      |       490       |       350        |      760       |\n"
-#| "| 6ЧР32/48 (6НВД48-2У) |       485       |       428        |      700       |\n"
-#| "|                      |       370       |       375        |      700       |\n"
-#| "|                      |       294       |       300        |      700       |\n"
-#| "| 6ЧРН32/48 (6НВД48АУ) |       486       |       330        |      670       |\n"
-#| "| 8ЧРН24/36(8НВД36А-1У)|       425       |       500        |      117       |\n"
-#| "|8ЧНСП24/36(8ВД36/24А1)|       441       |       500        |      123       |\n"
-#| "|6ЧНСП27,5/36(6Л275ШПН)|       515       |       600        |      150       |\n"
-#| "| 6ЧРН36/50 (6Л350ПН)  |       721       |       375        |      670       |\n"
-#| "+----------------------+-----------------+------------------+----------------+"
 msgid ""
 "Table. Characteristics of sea ships diesels\n"
 "+----------------------+-----------------+------------------+----------------+\n"
@@ -2466,6 +2306,15 @@ msgstr ""
 
 #: freestringsunit.rs_hydrodin_task1_note
 msgid ""
+"Program of aerodynamics characteristics calculation for merchant ships.\n"
+"1.1   This wind resistance prediction method in this program has been described by:\n"
+"1.1.1 R.M.Isherwood, \"Wind  Resistance of  Merchant  Ships\", Proceedings  of  Royal\n"
+"Institution of Naval Architects, 1973.\n"
+"1.2   Needed input data parameters:\n"
+"SLOA - Length overall [m];\n"
+"B    - Beam [m];\n"
+"AL   - Lateral projected wind area [m2];\n"
+"AS   - Lateral projected area of superstructure [m2];\n"
 "AT   - Transverse projected wind area [m2];\n"
 "S    - Length of perimeter of lateral projection, excluding WL and slender bodies;\n"
 "C    - Distance from bow to centroid of lateral projected area (m);\n"
@@ -2493,6 +2342,41 @@ msgid ""
 "RHOA - density of air;\n"
 "Vr   - RMS of relative wind speed between water level and top of superstructure."
 msgstr ""
+"Программа расчетов аэродинамических характеристик судов торгового флота\n"
+"1.1   Этот метод расчета ветрового сопротивления опубликован в статье:\n"
+"1.1.1 R.M. Isherwood, \"Wind  Resistance  of  Merchant  Ships\", Proceedings  of  Royal\n"
+"Institution of Naval Architects, 1973.\n"
+"1.2   Параметры исходных данных к расчету:\n"
+"SLOA - полная длина, м;\n"
+"B    - ширина, м;\n"
+"AL   - боковая проекция площади парусности, м^2;\n"
+"AS   - боковая проекция площади надстройки, м^2;\n"
+"AT   - лобовая проекция площади парусности над КВЛ, м^2;\n"
+"S    - длина периметра боковой проекции площади, исключая ватерлинию и тонкие тела (мачты), м;\n"
+"C    - расстояние от носового перпендикуляра до Ц.Т. боковой проекции, м;\n"
+"M    - тип судна или количество мачт;\n"
+"1.2.1   Тип судна M:\n"
+"1  - пассажиpское и паpом;\n"
+"2  - гpузовое с сpедним pасположением  МО в полном гpузу;\n"
+"3  - гpузовое с сpедним pасположением  МО в балласте;\n"
+"4  - гpузовое с коpмовым pасположением МО в полном гpузу;\n"
+"5  - гpузовое с коpмовым pасположением МО в балласте;\n"
+"6  - танкеp и pудовоз с сpедним pасполож. МО в полном гpузу;\n"
+"7  - танкеp и pудовоз с сpедним pасположением МО в балласте;\n"
+"8  - танкеp и pудовоз с коpмовым pасполож. МО в полном гpузу;\n"
+"9  - танкеp и pудовоз с коpмовым pасположением МО в балласте;\n"
+"10 - тpаулеp;\n"
+"11 - буксиp;\n"
+"12 - танкер, балкер, газовоз, универс. судно с кормовым расположением надстройки;\n"
+"13 - пассажирское судно, паром, контейнеровоз, универс. судно с грузом на ВП;\n"
+"14 - лихтеровоз с грузом на ВП;\n"
+"15 - лихтеровоз без палубного груза.\n"
+"1.3    Результаты расчета:\n"
+"Cx =Fx/(0.5*RHOA*Vr^2*AT)+-1.96*Stand_Err(X)    - коэффициент продольной силы;\n"
+"Cy =Fy/(0.5*RHOA*Vr^2*AT)+-1.96*Stand_Err(Y)    - коэффициент поперечной силы;\n"
+"Cmz=Mz/(0.5*RHOA*Vr^2*AT*SLOA)+-1.96*Stand_Err(N) - коэффициент момента рыскания,\n"
+"где : RHOA - плотность воздуха, кг/м^3;\n"
+"Vr - средняя скорость ветра между ВЛ и ВП надстройки, м/с."
 
 #: freestringsunit.rs_hydrodin_task2_note
 msgctxt "freestringsunit.rs_hydrodin_task2_note"
@@ -2644,36 +2528,6 @@ msgstr ""
 "3.Comstock J.P.,Principles of Naval Architecture,Vol.II,1988 Edition,SNAME,New York,p.182."
 
 #: freestringsunit.rs_hydronship_addedmass_note
-#, fuzzy
-#| msgid ""
-#| "HydroNShIp_AddedMass v1.03 is free  CFD  software of added masses calculation for\n"
-#| "education and noncommercial use only.\n"
-#| "Copyright (c) 1987-1994 Dudchenko O.M., 1992-2009 Timoshenko V.F.\n"
-#| "1.METHODS:\n"
-#| "1.1   Added masses are defined numerically by a method of successive  approxima-\n"
-#| "tions at the decision of integrated equations Fredholm of 2-nd  sort  concerning\n"
-#| "density of hydrodynamic features (sources - effluents) distributing continuously\n"
-#| "on surface ship hull (with keels) with  the  account  and  without  taking  into\n"
-#| "account effect of a bottom and a trim [1,2]. Thus we believe,that a fluid ideal,\n"
-#| "incompressible, and movement potential. Ship hull is  considered  as  the  solid\n"
-#| "limited to the closed surface and moving in a boundless fluid.\n"
-#| "2.LIMITATIONS of freeware version:\n"
-#| "2.1 Interaction between catamarans  hulls  in  freeware HydroNShIp_AddedMass not\n"
-#| "calculate.\n"
-#| "2.2 User must be control input data for water depth value and trim angle,because\n"
-#| "intersection between a ship hull surface and sea bottom is not admiss.\n"
-#| "2.3 This  is  limited  number  of  areas (not  more 1600)for modeling surface of\n"
-#| "a ship hull. It's decrease accuracy of added masses calculation.\n"
-#| "\n"
-#| "3.REFERENCES:\n"
-#| "1. Dudchenko O.N. Numerical calculation inertia characteristics of a body in in-\n"
-#| "finite fluid//Ship hydrodynamics: Sb.nauch.tr. #150 Nikolaev, NKI,1987.#150 p.21-26.\n"
-#| "2. Timoshenko V.F. Investigation of submercible vechicle inertia characteristics\n"
-#| "near bottom and in stratified fluid//Ship hydrodynamics: Sb.nauch.tr.- Nikolaev,\n"
-#| "NKI, 1993. #150 p. 22-27.\n"
-#| "3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986,312pp.\n"
-#| "4. Hofman A.D. Dvigitelno-rulevoy kompleks i manevrirovanie sudna: Spravochnik. -\n"
-#| "L.:Sudostroenie,1988,360pp."
 msgid ""
 "HydroNShIp_AddedMass v1.03 is free  CFD  software of added masses calculation for\n"
 "education and noncommercial use only.\n"
@@ -2696,10 +2550,10 @@ msgid ""
 "\n"
 "3.REFERENCES:\n"
 "1. Dudchenko O.N. Numerical calculation inertia characteristics of a body in in-\n"
-"finite fluid//Ship hydrodynamics: Sb.nauch.tr. Â Nikolaev, NKI,1987.Â p.21-26.\n"
+"finite fluid//Ship hydrodynamics: Sb.nauch.tr. - Nikolaev, NKI,1987.- p.21-26.\n"
 "2. Timoshenko V.F. Investigation of submercible vechicle inertia characteristics\n"
 "near bottom and in stratified fluid//Ship hydrodynamics: Sb.nauch.tr.- Nikolaev,\n"
-"NKI, 1993. Â p. 22-27.\n"
+"NKI, 1993. - p. 22-27.\n"
 "3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986,312pp.\n"
 "4. Hofman A.D. Dvigitelno-rulevoy kompleks i manevrirovanie sudna: Spravochnik. -\n"
 "L.:Sudostroenie,1988,360pp."
@@ -3071,14 +2925,18 @@ msgstr "фунт"
 msgid "lbs/ft^3"
 msgstr "фунт/фут^3"
 
+#: freestringsunit.rs_lcb
+#, fuzzy
+msgctxt "freestringsunit.rs_lcb"
+msgid "LCB"
+msgstr "LCB"
+
 #: freestringsunit.rs_lcb_is_outside_valid_domain
 msgid "LCB is outside valid domain"
 msgstr "LCB     вне диапазона"
 
-#: freestringsunit.rs_lcb___
-#, fuzzy
-#| msgid "LCB  #160"
-msgid "LCB  ÃÂ "
+#: freestringsunit.rs_lcb_lpp
+msgid "LCB/Lpp"
 msgstr "Xc/Lpp"
 
 #: freestringsunit.rs_leak_points
@@ -3255,8 +3113,6 @@ msgid "| Kt       |  [-]   |"
 msgstr "| Kt       |   -    |"
 
 #: freestringsunit.rs_l_l_voo0_3333_l__4_490_____6_008__l__5_450_____7_047___l__4_405_____7_265__l
-#, fuzzy
-#| msgid "| L/V**0,3333 |  4,490 ... 6,008  |  5,450 ... 7,047   |  4,405 ... 7,265  |"
 msgid "| L/V**0.3333 |  4.490 ... 6.008  |  5.450 ... 7.047   |  4.405 ... 7.265  |"
 msgstr "| L/V**0,3333 |  4,490 ... 6,008  |  5,450 ... 7,047   |  4,405 ... 7,265  |"
 
@@ -3437,8 +3293,6 @@ msgid "|   Vs   |   Vms  |   Fr   |   R_f  |   R_r  |   R_T  |   Pe   |  R_T_e |
 msgstr "|   Vs   |   Vms  |   Fr   |   R_f  |   R_r  |   R_T  |   Pe   |  R_T_e |  Pe_e  |"
 
 #: freestringsunit.rs_l____dp_ta____l__0_430_____0_840__l__0_655_____1_050___l__0_495_____0_860__l
-#, fuzzy
-#| msgid "|    Dp/Ta    |  0,430 ... 0,840  |  0,655 ... 1,050   |  0,495 ... 0,860  |"
 msgid "|    Dp/Ta    |  0.430 ... 0.840  |  0.655 ... 1.050   |  0.495 ... 0.860  |"
 msgstr "|    Dp/Ta    |  0,430 ... 0,840  |  0,655 ... 1,050   |  0,495 ... 0,860  |"
 
@@ -3503,20 +3357,14 @@ msgid "|    vs    |   [kn] |"
 msgstr "|    vs    |   уз   |"
 
 #: freestringsunit.rs_l_____b_t_____l__1_989_____4_002__l__2_967_____6_120___l__2_308_____6_110__l
-#, fuzzy
-#| msgid "|     B/T     |  1,989 ... 4,002  |  2,967 ... 6,120   |  2,308 ... 6,110  |"
 msgid "|     B/T     |  1.989 ... 4.002  |  2.967 ... 6.120   |  2.308 ... 6.110  |"
 msgstr "|     B/T     |  1,989 ... 4,002  |  2,967 ... 6,120   |  2,308 ... 6,110  |"
 
 #: freestringsunit.rs_l_____cb______l__0_601_____0_830__l__0_559_____0_790___l__0_512_____0_775__l
-#, fuzzy
-#| msgid "|     Cb      |  0,601 ... 0,830  |  0,559 ... 0,790   |  0,512 ... 0,775  |"
 msgid "|     Cb      |  0.601 ... 0.830  |  0.559 ... 0.790   |  0.512 ... 0.775  |"
 msgstr "|     Cb      |  0,601 ... 0,830  |  0,559 ... 0,790   |  0,512 ... 0,775  |"
 
 #: freestringsunit.rs_l_____l_b_____l__4_710_____7_106__l__4_949_____6_623___l__3_960_____7_130__l
-#, fuzzy
-#| msgid "|     L/B     |  4,710 ... 7,106  |  4,949 ... 6,623   |  3,960 ... 7,130  |"
 msgid "|     L/B     |  4.710 ... 7.106  |  4.949 ... 6.623   |  3.960 ... 7.130  |"
 msgstr "|     L/B     |  4,710 ... 7,106  |  4,949 ... 6,623   |  3,960 ... 7,130  |"
 
@@ -4312,7 +4160,6 @@ msgstr ""
 "проф. Н.Б.Слижевского.-Николаев, НУК, 2004.-192с."
 
 #: freestringsunit.rs_propeller_task4_note
-#, fuzzy
 msgctxt "freestringsunit.rs_propeller_task4_note"
 msgid ""
 "PROPELLER OPTIMIZATION PROGRAM (POP.1.5)\n"
@@ -4517,7 +4364,6 @@ msgstr ""
 "| B.K.Турбала                    T-8-72 | 8 |    0.720     |0.50-1.50|\n"
 "+---------------------------------------+---+--------------+---------+"
 
-
 #: freestringsunit.rs_propeller_thrust__kn___________t__
 msgid "Propeller thrust [kN]          T ="
 msgstr "Упор винта, кН               T ="
@@ -4568,20 +4414,14 @@ msgid "remove unused points"
 msgstr "удаление неиспользуемых точек"
 
 #: freestringsunit.rs_required_area_of_gz_curve_from_0__to_30_
-#, fuzzy
-#| msgid "Required area of GZ curve from 0#176 to 30#176"
 msgid "Required area of GZ curve from 0° to 30°"
 msgstr "Площадь под кривой ДСО до угла крена 30°"
 
 #: freestringsunit.rs_required_area_of_gz_curve_from_0__to_40_
-#, fuzzy
-#| msgid "Required area of GZ curve from 0#176 to 40#176"
 msgid "Required area of GZ curve from 0° to 40°"
 msgstr "Площадь под кривой ДСО до угла крена 40°"
 
 #: freestringsunit.rs_required_area_of_gz_curve_from_30__to_40_
-#, fuzzy
-#| msgid "Required area of GZ curve from 30#176 to 40#176"
 msgid "Required area of GZ curve from 30° to 40°"
 msgstr "Площадь под кривой ДСО от 30° до 40°"
 
@@ -4651,23 +4491,6 @@ msgid "Resistance and power pre-planing ships by M.Bunkov method"
 msgstr "Расчет сопротивления и мощности глиссера по методу М.Бунькова"
 
 #: freestringsunit.rs_resistance_fungleib_note_p5
-#, fuzzy
-#| msgid ""
-#| "5.Standart deviation of database for typical resistance Fung-Leibman's method:\n"
-#| "+-----------------------------+----------------------+\n"
-#| "|        Parameters           |      Limitations     |\n"
-#| "|-----------------------------+----------------------|\n"
-#| "| Length/Breadth,       Lwl/B |  2.520 to 17.935     |\n"
-#| "| Breadth/Draft,          B/T |  1.696 to 10.204     |\n"
-#| "| Prismatic coefficient,   Cp |  0.526 to 0.774      |\n"
-#| "| Midship coefficient,     Cm |  0.556 to 0.994      |\n"
-#| "| Waterplane coefficient, Cwp |  0.662 to 0.841      |\n"
-#| "| Half entrance angle,     ie |    2.6 to 31.73 degr |\n"
-#| "| Transom area coefficient Ta |   0.00 to 0.74       |\n"
-#| "| Transom beam coefficient Tw |   0.00 to 1.00       |\n"
-#| "| Disp/length, DLR=V/Lwl^3    |  16.24 to 359.2      |\n"
-#| "| Froude number, Fr           |   0.15 to 0.90       |\n"
-#| "|-----------------------------+----------------------|"
 msgid ""
 "5.Standart deviation of database for typical resistance Fung-Leibman's method:\n"
 "+-----------------------------+----------------------+\n"
@@ -4682,7 +4505,8 @@ msgid ""
 "| Transom area coefficient Ta |   0.00 to 0.74       |\n"
 "| Transom beam coefficient Tw |   0.00 to 1.00       |\n"
 "| Disp/length, DLR=V/Lwl^3    |  16.24 to 359.2      |\n"
-"| Froude number, Fr           |   0.15 to 0.90       |"
+"| Froude number, Fr           |   0.15 to 0.90       |\n"
+"+-----------------------------+----------------------+"
 msgstr ""
 "5.Диапазоны параметров судов по методу Fung-Leibman 1995:\n"
 "+----------------------------------------+----------------------+\n"
@@ -4698,6 +4522,7 @@ msgstr ""
 "| Относительная ширина транца по КВЛ, Tw |   0.00 ... 1.00      |\n"
 "| Отношение V к L^3,     DLR=V/(L/100)^3 | 16.239 ... 359.18    |\n"
 "| Число Фруда,                        Fr |   0.15 ... 0.90      |"
+"+----------------------------------------+----------------------+"
 
 #: freestringsunit.rs_resistance_hollen_note_p5
 msgid ""
@@ -4743,16 +4568,6 @@ msgstr ""
 
 #: freestringsunit.rs_resistance_holtrop_note_p3
 #, fuzzy
-#| msgid ""
-#| "3.Coefficient influence the after body form is from table:\n"
-#| "+-------------------------------------------------------+-------------------------+\n"
-#| "|                After body form                        |          Cstrn          |\n"
-#| "+-------------------------------------------------------+-------------------------+\n"
-#| "|              Normal sections                          |            0            |\n"
-#| "|              V-shaped sections                        |           -10           |\n"
-#| "|              U-shaped sections  (with Hogner stern)   |          5  ( 10 )      |\n"
-#| "|              Barge type form                          |        -20  or -25      |\n"
-#| "+-------------------------------------------------------+-------------------------+\n"
 msgctxt "freestringsunit.rs_resistance_holtrop_note_p3"
 msgid ""
 "3.Coefficient influence the after body form is from table:\n"
@@ -4776,18 +4591,11 @@ msgstr ""
 "+-------------------------------------------------------+-------------------------+"
 
 #: freestringsunit.rs_resistance_holtrop_note_p4
-#, fuzzy
 msgctxt "freestringsunit.rs_resistance_holtrop_note_p4"
 msgid "4.If wetted surface area S is set as 0, then S to calculate by formulae from method of Holtrop."
 msgstr "4.Если площадь смоченной поверхности S = 0, то расчет S по формуле метода Холтропа."
 
 #: freestringsunit.rs_resistance_holtrop_note_p5
-#, fuzzy
-#| msgid ""
-#| "5.The wetted area of transom you can determine from sectional areas curve on Profile View or\n"
-#| "from \"Design hydrostatics\" output.\n"
-#| "The wetted area of bulbous on F.P. is analogous determination.\n"
-#| "The CoG wetted bulb area h_b to determine on \"Bodyplan view\" visually."
 msgctxt "freestringsunit.rs_resistance_holtrop_note_p5"
 msgid ""
 "5.The wetted area of transom you can determine from sectional areas curve on Profile View or\n"
@@ -4801,12 +4609,6 @@ msgstr ""
 "На проекции \"Корпус\" визуально определить ц.т. площади бульба и высоту его от килевой линии."
 
 #: freestringsunit.rs_resistance_holtrop_note_p6
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "6.Propeller number Np is set for power prediction and for interaction propeller and hull.\n"
-#| "For Np=0 the wake fraction Wt and thrust deduction t is calculated as for highspeed sailing\n"
-#| "ships."
 msgctxt "freestringsunit.rs_resistance_holtrop_note_p6"
 msgid ""
 "6.Propeller number Np is set for power prediction and for interaction propeller and hull.\n"
@@ -4824,20 +4626,11 @@ msgid ""
 msgstr ""
 
 #: freestringsunit.rs_resistance_holtrop_note_p8
-#, fuzzy
 msgctxt "freestringsunit.rs_resistance_holtrop_note_p8"
 msgid "8.Absolutely rougness of hull less 150 mkm one can don't set."
 msgstr "8.Абсолютная шероховатость корпуса до 150 мкм не влияет на сопротивление и можно не задавать."
 
 #: freestringsunit.rs_resistance_holtrop_note_p9
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "9.    More information about statistical Holtrop method are here:\n"
-#| "9.1   Holtrop J., Mennen G.G.J., \"An  Approximate  Power  Prediction  Method\", \"International\n"
-#| "Shipbuilding Progress, Vol.29, No.335, July, 1982.\n"
-#| "9.2   Holtrop J., \"A Statistical Reanalysis of Resistance and Propulsion Data, \"International\n"
-#| "Shipbuilding Progress, Vol.31, No.363, Nov., 1984.\n"
 msgid ""
 "9.    More information about statistical Holtrop method are here:\n"
 "9.1   Holtrop J., Mennen G.G.J., \"An  Approximate  Power  Prediction  Method\", \"International\n"
@@ -4852,184 +4645,6 @@ msgstr ""
 "Shipbuilding Progress, Vol.31, No.363, Nov., 1984.\n"
 
 #: freestringsunit.rs_resistance_mh_note
-#, fuzzy
-#| msgid ""
-#| "1.Viscosity by default is for sea water with density 1025 kg/m^3 and temperature 15 #176C.\n"
-#| "You can change the temperature and the density: Project->Project Settings->Hydrostatics\n"
-#| "2.The trim is calculated by formulaes: dT=Tf-Ta, Tf=T+dt/2, Ta=T-dt/2\n"
-#| "3.Coefficient influence the after body form is from table:\n"
-#| "+-------------------------------------------------------+-------------------------+\n"
-#| "|                After body form                        |          Cstrn          |\n"
-#| "+-------------------------------------------------------+-------------------------+\n"
-#| "|              Normal sections                          |            0            |\n"
-#| "|              V-shaped sections                        |           -10           |\n"
-#| "|              U-shaped sections  (with Hogner stern)   |          5  ( 10 )      |\n"
-#| "|              Barge type form                          |        -20  or -25      |\n"
-#| "+-------------------------------------------------------+-------------------------+\n"
-#| "4.In begining phase of ship design the wetted area S can be calculate for different types of ship and\n"
-#| "hulls on this formulaes:\n"
-#| "If S= 0, then S=L*(2*T+B)*sqrt(Cm)*(0,453+0,442*Cb-0,2862*Cm-0,003467*B/T+0,3696*Cwp) - by Holtrop\n"
-#| "If S=-1, then S=L*(1,36*T+1,13*Cb*B) - by Muragin's formulae for ships with Cb=0,4...0,5 and B/T=2,5...3,5\n"
-#| "If S=-2, then S=L*T*(2+1,37*(Cb-0,274)*B/T)     - by Semeka's formulae for ships with big Cb\n"
-#| "If S=-3, then S=L*(Cb*B+1,7*T)                  - by Moomford's formulae for Cb=0,7 and B/T=2...3\n"
-#| "If S=-4, then S=L*(B+2*T)*(0,76*Cb+0,28)        - by Benhe's formulae\n"
-#| "If S=-5, then S=L*(0,85*B+0,25*T)               - for ship with transom\n"
-#| "If S=-6, then S=V^0,6667*(5,1+0,074*L/T-0,4*Cb) - by Karpov's formulae for river ships w/o tonnels\n"
-#| "If S=-7, then S=Lpp*(0.5*B+T)*(0.55+1.52*Cb)    - by Yeroshin's formulae for fishing ships\n"
-#| "If S=-8, then S=V^0.3333*(3.4*V^0.3333+0.5*Lwl) - for cargo ships and ferries (Lap,1954)\n"
-#| "If S=-9, then S=V/B*1.7/[Cb-0.2*(Cb-0.65)]+B/T  - for cargo ships and ferries (Danckwardt,1969)\n"
-#| "If S=-10, then S=V/B*1.7/Cb+B/T*(0.92+0.092*Cb) - for trawlers (Danckwardt,1969)\n"
-#| "If S=-11, then S=Lpp*(1.8*T+B*Cb)               - for modern warships (Schneekluth,1988)\n"
-#| "If S=-12, then S=3,223*V^(2/3)+0,5402*Lwl*V^(1/3)- for tugs and trawlers (van Oortmerssen,1971)\n"
-#| "If S=-13, then S=V(1/T+1,75/B/Cb)                - by Grigoriev formulae\n"
-#| "If S=-14, then S=L(2*T + B)(0,654*Cb + 0,338)    - by Benge-Afanasiev formulae\n"
-#| "If S=-15, then S=(0,085*B/T-2*Cb+3,29)(V*L)^0,5  - by Vashedchenko-1985 formulae\n"
-#| "If S=-16, then S=L(2*T+B)(4,84*Cb-4,15*Cb^2-0,77)- for megayachts\n"
-#| "\n"
-#| "9. Limitations of resistance calculation by OCT 5.0181-75 (xUSSR) and another methods are:\n"
-#| "9.1 Series N 1 - high-speed and medium-rate ships: container carrier, Ro-Ro vessel, lighter carrier;\n"
-#| "9.2 Series N 2 - passenger and cargopassenger ships:\n"
-#| "9.3 Series N 3 - sea transport vessels: universal cargo vessels, middle tankers, bulkcarriers,\n"
-#| "transport fishing, refrigerator ships;\n"
-#| "9.4 Series N 4 - large displacement transport vessels: large tankers and ore-carriers;\n"
-#| "Table. Standart deviation of database for typical resistance of series by OCT 5.0181-75 method\n"
-#| "+-------------+-----------------+-----------------+-----------------+-----------------+\n"
-#| "|  Parameter  |    Series 1     |    Series 2     |   Series 3      |    Series 4     |\n"
-#| "+-------------+-----------------+-----------------+-----------------+-----------------+\n"
-#| "|  Cb         | 0,500 ... 0,650 | 0,550 ... 0,650 | 0,600 ... 0,800 | 0,800 ... 0,875 |\n"
-#| "|  Lpp/B      |  4,80 ... 7,00  |  4,80 ... 7,30  |        -        |  5,80 ... 8,30  |\n"
-#| "|  B/T        |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,00 ... 5,00  |  2,20 ... 3,50  |\n"
-#| "|  Xc/Lpp     |        -        | -0,05 ... 0,00  |-0,025 ... 0,030 | 0,015 ... 0,044 |\n"
-#| "|Psi=L/V^0.333|        -        |        -        |        -        |  5,00 ... 7,50  |\n"
-#| "|  Fr         |  0,17 ... 0,34  |  0,17 ... 0,38  |  0,16 ... 0,30  |  0,10 ... 0,23  |\n"
-#| "|  Nser       |        1        |        2        |        3        |        4        |\n"
-#| "|  Np         |     1 ... 2     |        2        |        1        |        1        |\n"
-#| "|  Nf         |       2,4       |        2        |      1,2,4      |     2 ... 5     |\n"
-#| "|  Na         |        2        |        2        |        2        |     1 ... 3     |\n"
-#| "+-------------+-----------------+-----------------+-----------------+-----------------+\n"
-#| "Note: Np - propellers number; Nf - bow type; Na - stern type:\n"
-#| "- Nf   = 1 ... 5 (U-shaped, V-shaped, cylinder-shaped (drum), ram-conical, bulbous bow);\n"
-#| "- Na   = 1 ... 3 (U-shaped, V-shaped sections, cigar-shaped stern).\n"
-#| "9.5 Calculation resistance and power prediction by diagrams of Braun:\n"
-#| "- type of ships - highspeed ships are in preplaning regime;\n"
-#| "- Cb   = 0,290 ... 0,540;  L/B  = 3,50 ... 7,40;  B/T  = 3,10 ... 4,40;\n"
-#| "- FrV  = v/(g*V^0,3333)^0,5 = 0,8 ... 2,6;\n"
-#| "- Nser = 5 ;\n"
-#| "- Np   = 1 ;\n"
-#| "- Nf   = 1 ... 2 (U-shaped, V-shaped sections);\n"
-#| "- Na   = 1 ... 2 (U-shaped, V-shaped sections).\n"
-#| "9.6 Calculation resistance and power prediction by diagram of Neyman:\n"
-#| "- type of ships - tugs, trawlers and icebreakers;\n"
-#| "- Cp   = 0,500 ... 0,680;       B/T  =  2,4 ... 3,2;    Psi=L/V^0,333 = 4,00 ... 7,20;\n"
-#| "- Fr   = 0,07 ... 0,45;\n"
-#| "- Nser = 6 ;\n"
-#| "- Nship= 1 ... 4 (1-tugs, 2-trawlers, 3 and 4-small warships);\n"
-#| "- Np   = 1 ;\n"
-#| "9.7 Calculation resistance and power prediction by a method of NIEWT (Russia):\n"
-#| "- type of ships - cargo vessels for inland and mixed navigation (river-sea);\n"
-#| "- Cp   = 0,800 ... 0,930;       L/B  = 4,00 ... 8,50;   B/T  = 3,70 ... 14,0;\n"
-#| "- Fr   = 0,07 ... 0,25;\n"
-#| "- Nser = 7 ;\n"
-#| "- Np   = 1,2 ;\n"
-#| "9.8 Calculation resistance and power prediction by diagram of Volodin:\n"
-#| "- type of ships - highspeed round-bilge boats;\n"
-#| "9.9 Calculation resistance and power prediction by diagram of Nordstrom:\n"
-#| "- type of ships - highspeed round-bilge boats (14 models in 1936);\n"
-#| "- V = 10 ... 30 m^3;\n"
-#| "9.10  Calculation resistance and power prediction by diagrams of de Groot:\n"
-#| "- type of ships - highspeed round-bilge boats (31 models in 1951);\n"
-#| "9.11 Calculation resistance and power prediction by diagrams of SSPA:\n"
-#| "- type of ships - highspeed round-bilge boats (9 models in 1968);\n"
-#| "9.12 Calculation resistance and power prediction by diagrams of NPL:\n"
-#| "- type of ships - highspeed round-bilge boats (22 models in 1969 and 1976);\n"
-#| "9.13 Calculation resistance and power prediction by diagrams 64 series Taylor's basin:\n"
-#| "- type of ships - highspeed round-bilge boats (27 models in 1965);\n"
-#| "+---------+------------+---------------+---------------+---------------+--------------+------------+\n"
-#| "|Parameter|  Volodin   |   Nordstrom   |   de Groote   |     SSPA      |     NPL      |  64 series |\n"
-#| "+---------+------------+---------------+---------------+---------------+--------------+------------+\n"
-#| "|   Cb    | 0,4...0,7  | 0,373... 0,41 | 0,293... 0,56 |      0,4      |    0,397     | 0,35...0,55|\n"
-#| "|   Cp    |     -      | 0,576... 0,6  | 0,463...0,781 |      0,68     |    0,693     |     0,63   |\n"
-#| "|   L/B   |     -      | 4,83 ... 6,94 | 3,53 ...10,09 | 4,62 ... 8,20 | 3,33 ...7,5  |8,45...18,26|\n"
-#| "|   B/T   |     -      | 3,70 ... 14,0 | 2,72 ... 6,58 | 3.0; 3.5; 4.0 | 1,76 ... 6,87|2,0 ... 4,0 |\n"
-#| "|  Xc/Lpp |     -      |-1,79 ... 2,88%|-11,5 ... 3,09%|       -       |     -6,4%    |Xg/Lpp=6,56%|\n"
-#| "|   Psi   |     -      |       -       |       -       |    6; 7; 8    |       -      |     -      |\n"
-#| "|   SVLR  |     -      | 2,67 ... 2,70 |      2,75     |  2,9 ... 3,0  |       -      |     -      |\n"
-#| "|   a_f   |     -      | 15,1 ... 22,5#176|       -       |  8,2 ... 14,4#176|       -      | 3,7... 7,8#176|\n"
-#| "|   FrV   | 1,0...2,5  | 0,90 ... 2,00 |  0,8 ... 2,7  |  1,0 ... 2,0  |  0,5 ... 2,8 | 0,8... 3,0 |\n"
-#| "| Cfo(Re) |   Pr-Shl   |     Pr-Shl    |     Pr-Shl    |  by ITTC-57   |  by ITTC-57  |    Pr-Shl  |\n"
-#| "|   Nser  |     8      |       9       |      10       |       11      |       12     |      13    |\n"
-#| "|   Np    |     1      |       1       |       1       |        1      |        1     |       1    |\n"
-#| "+--------+------------+---------------+---------------+---------------+--------------+------------+\n"
-#| "where FrV = v/(g*V^0,3333)^0,5 ;   SVLR = S/(VL)^0,5 ;   Pr-Shl - formulae by Prandl-Schlichting\n"
-#| "9.14 Calculation resistance and power prediction by method of Doubrovsky:\n"
-#| "- type of ships - displacement catamarans;\n"
-#| "- Cb   = 0,3 ... 0,55 ;    C/L = 0,01 ... 0,15 ;   Psi  =  8,0 ... 18,0 ;\n"
-#| "- FrV  = 0,8 ... 2,2;\n"
-#| "- Nser = 14 ;\n"
-#| "- Np   = 1 ... 2 - number of hulls ;\n"
-#| "9.15 Calculation resistance and power prediction by method of Doubrovsky:\n"
-#| "- type of ships - displacement catamarans and trimarans;\n"
-#| "- Cb   = 0,35 ... 0,55 ;    S/Lwl = 0,15 ... 0,45 ;\n"
-#| "- Psi  =  8,0 ... 18,0 ;     A/Lwl = 0,0  ... 0,5  (for S/Lwl = 0,3);\n"
-#| "- Fr   = 0,25 ... 0,6;\n"
-#| "- Nser = 15 ;\n"
-#| "- Nh   = 1 ... 3 - number of hulls ;\n"
-#| "9.16 Calculation resistance and power prediction by methods NIEWT, GIEWT and LIWT (Russia):\n"
-#| "- type of ships - river cargoship, passenger, cargopassenger ships and tugs;\n"
-#| "- Cb   = 0,40 ... 0,85 ;  L/B   =   4,0 ... 9,0 ;\n"
-#| "- B/T  =  2,5 ... 7,5  ;  Lc/L  =   0,6 ... 0,85;\n"
-#| "- Fr   = 0,05 ... 0,35 ;\n"
-#| "- Nser = 16 ;\n"
-#| "- Nsh  = 1 ... 3 - type of ships (1-cargoship, 2- tugs, 3- passenger and cargopassenger ships);\n"
-#| "- Npr  = 1 ... 7 or 5 - number of ship prototype;\n"
-#| "Table. Characteristics of ship's prototype for inland and mixed navigation (river-sea)\n"
-#| "+-----+------+-------+-------+------+-----+------+-------+-------+-----+------+-------+-------+\n"
-#| "|Numb.| L/B  |  T/B  |  Cb   | Lc/L |Numb.| L/B  |  T/B  |  Cb   |Numb.| L/B  |  T/B  |  Cb   |\n"
-#| "+-----------------------------------+----------------------------+----------------------------+\n"
-#| "|           Cargo ships             |        River tugs          |Passenger and cargopassenger|\n"
-#| "+-----------------------------------+----------------------------+----------------------------+\n"
-#| "|  1  | 8.18 | 0.212 | 0.851 | 0.79 |  1  | 4.99 | 0.243 | 0.545 |  1  | 7.75 | 0.190 | 0.575 |\n"
-#| "|  2  | 6.93 | 0.216 | 0.837 | 0.76 |  2  | 4.73 | 0.253 | 0.557 |  2  | 8.10 | 0.198 | 0.710 |\n"
-#| "|  3  | 7.02 | 0.204 | 0.830 | 0.75 |  3  | 5.02 | 0.243 | 0.636 |  3  | 6.60 | 0.202 | 0.573 |\n"
-#| "|  4  | 7.95 | 0.266 | 0.869 | 0.78 |  4  | 4.60 | 0.400 | 0.522 |  4  | 5.72 | 0.249 | 0.465 |\n"
-#| "|  5  | 6.74 | 0.225 | 0.800 | 0.75 |  5  | 5.13 | 0.275 | 0.535 |  5  | 4.73 | 0.202 | 0.581 |\n"
-#| "|  6  | 8.50 | 0.266 | 0.818 | 0.80 |  6  | 4.70 | 0.244 | 0.618 |     |      |       |       |\n"
-#| "|  7  | 6.11 | 0.184 | 0.788 | 0.76 |  7  | 4.04 | 0.135 | 0.528 |     |      |       |       |\n"
-#| "+-----------------------------------+----------------------------+----------------------------+\n"
-#| "9.17 Calculation resistance and power prediction by method Yeroshin:\n"
-#| "- type of ships - fishing ships (SFT, MFT, BFT);\n"
-#| "+---------+-----------------+------------------+-----------------+\n"
-#| "| Charact.|      SFT        |       MFT        |      BFT        |\n"
-#| "+---------+-----------------+------------------+-----------------+\n"
-#| "|  Cp     |  0,50 ... 0,72  |  0,55 ... 0,70   |       -         |\n"
-#| "|  Lpp/B  |   2,5 ... 3,5   |   3,5 ... 5,0    |       -         |\n"
-#| "|  B/T    |   2,6 ... 4,0   |   2,3 ... 3,2    |       -         |\n"
-#| "|  Cm     |  0,75 ... 0,92  |  0,65 ... 0,92   |       -         |\n"
-#| "|  lcb    | -0,05 ...-0,01  | -0,03 ... 0,01   |       -         |\n"
-#| "|  Fr     |   0,1 ... 0,5   |  0,21 ... 0,37   |       -         |\n"
-#| "+---------+-----------------+------------------+-----------------+\n"
-#| "NOTE: BFT series is NOT available now.\n"
-#| "- Nser = 17 ;\n"
-#| "- Nsh  = 1 ... 3 - type of fishing ship (1 - SFT, 2 - MFT, 3 - BFT);\n"
-#| "9.18 Calculation resistance and power prediction by prototype:\n"
-#| "- type of ships - highspeed sea ships w/o cylindrical body (Nm=1), tugs, icebreakers and fishing ships (Nm=2);\n"
-#| "- For Nm=1, Cp =  0,5 ... 0,85 ;  B/T =   2 ... 14 ;  Psi = L/V^0,333 = 5 ... 11;  Fr = 0,25 ... 0,65 ;\n"
-#| "- For Nm=2, Cb = 0,45 ... 0,55 ;  L/B = 3,5 ... 5,5;  B/T =  2,0 ... 3,5  ;        Fr = 0,10 ... 0,35 ;\n"
-#| "- Nser = 18 ;\n"
-#| "- Nm   = 1 ... 2  - method of calculation (1 - Geers, 2 - Doubrovin);\n"
-#| "- Npr  = 0 ... 20 - number of prototype in BD, if 0, then to input manually.\n"
-#| "9.19 Calculation resistance and power prediction by hard-chine catamarans:\n"
-#| "- type of ships - displacement hard-chine catamarans;\n"
-#| "- Cb   = 0,5 ... 0,6 ;   L/B = 10,0 ... 20,0 ;  B/T =  1,5 ... 2,5 ;  S/Lwl = 0,15 ... 0,55 ;\n"
-#| "- Psi  = 6,6 ... 12,6;\n"
-#| "- Fr   = 0,4 ... 1,5 ;\n"
-#| "- Nser = 19 ;\n"
-#| "- Nh   = 2 - number of hulls ;\n"
-#| "10. Calculation resistance and power prediction by experimental model's data:\n"
-#| "- type of ships - any displacement ships;\n"
-#| "- Nser = 0 ;\n"
-#| "NOTE: You must to set the coefficient of residual resistance Cr in function of Froude number Fr\n"
-#| "Cr=f(Fr), where is Fr=v/(g*L)^0,5."
 msgid ""
 "1.Viscosity by default is for sea water with density 1025 kg/m^3 and temperature 15 °C.\n"
 "You can change the temperature and the density: Project->Project Settings->Hydrostatics\n"
@@ -5471,16 +5086,6 @@ msgstr ""
 "+-----------------------------------------+----------------------+"
 
 #: freestringsunit.rs_resistance_oortmer_note_p6
-#, fuzzy
-#| msgid ""
-#| "6.Standart deviation of database for typical resistance by Ridgeley-Nevitt 1967:\n"
-#| "+-----------------------------+----------------------+\n"
-#| "|         Parameters          |      Limitations     |\n"
-#| "|-----------------------------+----------------------|\n"
-#| "| Length/Breadth,       Lwl/B |      4 ... 5.2       |\n"
-#| "| Prismatic coefficient,   Cp |   0.55 ... 0.70      |\n"
-#| "| Speed/length,    V/sqrt(Lwl)|   0.70 ... 1.50      |\n"
-#| "| Coefficient    V/(0.01*L)^3 |    200 ... 500       |"
 msgid ""
 "6.Standart deviation of database for typical resistance by Ridgeley-Nevitt 1967:\n"
 "+-----------------------------+----------------------+\n"
@@ -5503,18 +5108,6 @@ msgstr ""
 "+-----------------------------------------+----------------------+"
 
 #: freestringsunit.rs_resistance_oortmer_note_p7
-#, fuzzy
-#| msgid ""
-#| "7.Standart deviation of database for typical resistance by UBC-1993 method:\n"
-#| "+-----------------------------+----------------------+\n"
-#| "|        Parameters           |      Limitations     |\n"
-#| "|-----------------------------+----------------------|\n"
-#| "| Length/Breadth,       Lwl/B |    2.6 ... 3.98      |\n"
-#| "| Breadth/Draft,          B/T |    2.0 ... 4.23      |\n"
-#| "| Prismatic coefficient,   Cp |   0.45 ... 0.61      |\n"
-#| "| Midship coefficient,     Cm |  0.747 ... 0.878     |\n"
-#| "| Coefficient      L/V^0.3333 |   3.00 ... 5.31      |\n"
-#| "| Froude number,           Fr |   0.20 ... 0.50      |"
 msgid ""
 "7.Standart deviation of database for typical resistance by UBC-1993 method:\n"
 "+-----------------------------+----------------------+\n"
@@ -6059,8 +5652,6 @@ msgid "Transverse moment of inertia"
 msgstr "Поперечный момент инерции"
 
 #: freestringsunit.rs_transverse_moment_of_stability_for_heel_angle_30_
-#, fuzzy
-#| msgid "Transverse moment of stability for heel angle=30#176"
 msgid "Transverse moment of stability for heel angle=30°"
 msgstr "Восстанавливающий момент при крене 30°"
 
@@ -6069,8 +5660,6 @@ msgid "TRANSVERSE PROJECTED WIND AREA ..... AT :"
 msgstr "Лобовая проекция площади парусности....... AT :"
 
 #: freestringsunit.rs_transverse_righting_lever_for_heeling_angle_30_
-#, fuzzy
-#| msgid "Transverse righting lever for heeling angle=30#176"
 msgid "Transverse righting lever for heeling angle=30°"
 msgstr "Плечо восстанавливающего момента при крене 30°"
 
@@ -6484,8 +6073,6 @@ msgid "- with shipwaves and depth water for"
 msgstr "- с учетом волнообразования и мелководья для"
 
 #: freestringsunit.rs__________form____appendage___wave_______bulb____transom_correlation_air_drag
-#, fuzzy
-#| msgid "#160        Form    Appendage   Wave       Bulb    Transom Correlation Air Drag"
 msgid "         Form    Appendage   Wave       Bulb    Transom Correlation Air Drag"
 msgstr "Скорость Формы Выступ.частей Волновое  Бульба   Транца  Корреляцион. Возд. сопр."
 
@@ -6519,17 +6106,6 @@ msgid "Current Version"
 msgstr "Текущая версия"
 
 #: freeupdatedlg.rsknownsslexception
-#, object-pascal-format, fuzzy
-#| msgid ""
-#| "Exception class: %s Message: %s\n"
-#| "Possibly missing OpenSSL DLLs: libeay32.dll, ssleay32.dll.\n"
-#| "You can download these from http://wiki.overbyte.eu/wiki/index.php/ICS_Download#Download_OpenSSL_Binaries_.28required_for_SSL-enabled_components.29\n"
-#| "Please use latest binaries for SSL v1.0 \"OpenSSL Binaries Win-64 v1.0.*\".\n"
-#| "Place libeay32.dll and ssleay32.dll into directory where FreeShip.exe is installed.\n"
-#| "Usually it is C:\\Program Files\\FreeShip\\.\n"
-#| "FreeShip is currently compatible with libssl v1.0 only.\n"
-#| "You have to check for updates traditional way at Download page.\n"
-#| "Click link below."
 msgid ""
 "Exception class: %s Message: %s\n"
 "Possible libssl v1.1 compatibility issue.\n"
@@ -6673,7 +6249,7 @@ msgstr "Линии слома"
 #: tformselected.checkboxanchorhard.caption
 msgctxt "tformselected.checkboxanchorhard.caption"
 msgid "Hard"
-msgstr ""
+msgstr "Жесткий"
 
 #: tformselected.ecurvename.text
 msgid "eCurveName"
@@ -6706,31 +6282,31 @@ msgstr ""
 #: tformselected.groupbox1.caption
 msgctxt "tformselected.groupbox1.caption"
 msgid "Faces"
-msgstr ""
+msgstr "Грани"
 
 #: tformselected.groupbox2.caption
 msgctxt "tformselected.groupbox2.caption"
 msgid "Edges"
-msgstr ""
+msgstr "Ребра"
 
 #: tformselected.groupbox3.caption
 msgid "Groups"
-msgstr ""
+msgstr "Группы"
 
 #: tformselected.groupbox4.caption
 msgctxt "tformselected.groupbox4.caption"
 msgid "Faces"
-msgstr ""
+msgstr "Грани"
 
 #: tformselected.groupbox5.caption
 msgctxt "tformselected.groupbox5.caption"
 msgid "Points"
-msgstr ""
+msgstr "Точки"
 
 #: tformselected.groupbox6.caption
 msgctxt "tformselected.groupbox6.caption"
 msgid "Points"
-msgstr ""
+msgstr "Точки"
 
 #: tformselected.label1.caption
 #, fuzzy
@@ -6762,7 +6338,7 @@ msgstr ""
 
 #: tformselected.label5.caption
 msgid "Align to"
-msgstr ""
+msgstr "Выровнять к"
 
 #: tformselected.label6.caption
 #, fuzzy
@@ -6908,22 +6484,22 @@ msgstr ""
 
 #: tformselected.tscurves.caption
 msgid "Curves"
-msgstr ""
+msgstr "Кривые"
 
 #: tformselected.tsedges.caption
 msgctxt "tformselected.tsedges.caption"
 msgid "Edges"
-msgstr ""
+msgstr "Ребра"
 
 #: tformselected.tsfaces.caption
 msgctxt "tformselected.tsfaces.caption"
 msgid "Faces"
-msgstr ""
+msgstr "Грани"
 
 #: tformselected.tspoints.caption
 msgctxt "tformselected.tspoints.caption"
 msgid "Points"
-msgstr ""
+msgstr "Точки"
 
 #: tfreeaboutdlg.button1.caption
 #, fuzzy
@@ -6933,31 +6509,31 @@ msgstr "Закрыть"
 
 #: tfreeaboutdlg.caption
 msgid "FREE!ship About"
-msgstr ""
+msgstr "О программе FREE!ship"
 
 #: tfreeaboutdlg.label1.caption
 msgid "Version Info"
-msgstr ""
+msgstr "Версия"
 
 #: tfreeaboutdlg.label2.caption
 msgid "Credits"
-msgstr ""
+msgstr "Благодарности"
 
 #: tfreeaboutdlg.label3.caption
 msgid "License: GPL v3+"
-msgstr ""
+msgstr "Лицензия: GPL v3+"
 
 #: tfreeaboutdlg.label4.caption
 msgid "Copyrights"
-msgstr ""
+msgstr "Права"
 
 #: tfreeaboutdlg.label5.caption
 msgid "FREE!ship Plus for Lazarus project page:"
-msgstr ""
+msgstr "Страница проекта FREE!ship Plus for Lazarus"
 
 #: tfreeaboutdlg.label7.caption
 msgid "FREE!ship Plus homepage:"
-msgstr ""
+msgstr "Страница FREE!ship Plus"
 
 #: tfreeaboutdlg.labelfreeshiphomelink.caption
 msgid "http://www.hydronship.net"
@@ -6969,7 +6545,7 @@ msgstr ""
 
 #: tfreeaboutdlg.labelproductversion.caption
 msgid "Product Version: "
-msgstr ""
+msgstr "Версия продукта"
 
 #: tfreeaboutdlg.labeltitle.caption
 msgctxt "tfreeaboutdlg.labeltitle.caption"
@@ -7023,32 +6599,32 @@ msgstr ""
 #: tfreeaddmassoutputdialog.cancelbutton.caption
 msgctxt "tfreeaddmassoutputdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: tfreeaddmassoutputdialog.caption
 msgid "Add_Mass file generator."
-msgstr ""
+msgstr "Генератор файла Add_Mass"
 
 #: tfreeaddmassoutputdialog.combobox.text
 msgid "Any Objects or Ships"
-msgstr ""
+msgstr "Любой объект или судно"
 
 #: tfreeaddmassoutputdialog.groupbox3.caption
 msgid "Hullform configuration:  "
-msgstr ""
+msgstr "Конфигурация формы корпуса"
 
 #: tfreeaddmassoutputdialog.label1.caption
 msgid "Number of stations (5-45)"
-msgstr ""
+msgstr "Количество шпангоутов (5-45)"
 
 #: tfreeaddmassoutputdialog.label10.caption
 msgctxt "tfreeaddmassoutputdialog.label10.caption"
 msgid "Water depth"
-msgstr ""
+msgstr "Глубина воды"
 
 #: tfreeaddmassoutputdialog.label12.caption
 msgid "Trim angle"
-msgstr ""
+msgstr "Дифферент"
 
 #: tfreeaddmassoutputdialog.label14.caption
 msgctxt "tfreeaddmassoutputdialog.label14.caption"
@@ -7057,39 +6633,39 @@ msgstr ""
 
 #: tfreeaddmassoutputdialog.label2.caption
 msgid "Number of waterlines (5-25)"
-msgstr ""
+msgstr "Количество ватерлиний (5-25)"
 
 #: tfreeaddmassoutputdialog.label20.caption
 msgid "Number of areas"
-msgstr ""
+msgstr "Количество областей"
 
 #: tfreeaddmassoutputdialog.label21.caption
 msgid "Percent of areas sum"
-msgstr ""
+msgstr "Процент сумм областей"
 
 #: tfreeaddmassoutputdialog.label22.caption
 msgid "Calculation accuracy"
-msgstr ""
+msgstr "Точность вычислений"
 
 #: tfreeaddmassoutputdialog.label23.caption
 msgid "Type of areas (1-triangle;2-trapezium)"
-msgstr ""
+msgstr "Тип областей (1-треугольники;2-трапеции)"
 
 #: tfreeaddmassoutputdialog.label24.caption
 msgid "Drift angle BetaD, degr"
-msgstr ""
+msgstr "Угол дрейфа BetaD, гр"
 
 #: tfreeaddmassoutputdialog.label25.caption
 msgid "Estimated velocity Vs, knots"
-msgstr ""
+msgstr "Предполагаемая скорость Vs, узлов"
 
 #: tfreeaddmassoutputdialog.label26.caption
 msgid "Rotative velocity Omega, 1/sec"
-msgstr ""
+msgstr "Скорость поворота Omega, 1/сек"
 
 #: tfreeaddmassoutputdialog.label27.caption
 msgid "Type of object or ship:"
-msgstr ""
+msgstr "Тип объекта или судна"
 
 #: tfreeaddmassoutputdialog.label3.caption
 #, fuzzy
@@ -7118,7 +6694,7 @@ msgstr "Плотность воды"
 #: tfreeaddmassoutputdialog.label7.caption
 msgctxt "tfreeaddmassoutputdialog.label7.caption"
 msgid "Water kinematic viscosity"
-msgstr ""
+msgstr "Кинематическая вязкость воды"
 
 #: tfreeaddmassoutputdialog.okbutton.caption
 msgctxt "tfreeaddmassoutputdialog.okbutton.caption"
@@ -7133,12 +6709,12 @@ msgstr ""
 #: tfreeaddmassoutputdialog.radiobutton2.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton2.caption"
 msgid "Monohull, send as catamaran"
-msgstr ""
+msgstr "Монокорпус, послать как катамаран"
 
 #: tfreeaddmassoutputdialog.radiobutton3.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton3.caption"
 msgid "Catamaran"
-msgstr ""
+msgstr "Катамаран"
 
 #: tfreeaddmassoutputdialog.savefile.caption
 #, fuzzy
@@ -7149,7 +6725,7 @@ msgstr "Сохранить"
 #: tfreeaddmassoutputdialog.tabsheet1.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet1.caption"
 msgid "Hull geometry"
-msgstr ""
+msgstr "Геометрия корпуса"
 
 #: tfreeaddmassoutputdialog.tabsheet2.caption
 #, fuzzy
@@ -7160,7 +6736,7 @@ msgstr "Результаты"
 #: tfreeaddmassoutputdialog.tabsheet3.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet3.caption"
 msgid "Environment"
-msgstr ""
+msgstr "Среда"
 
 #: tfreeaddmassoutputdialog.tabsheet4.caption
 #, fuzzy
@@ -7177,7 +6753,7 @@ msgstr "[м]"
 #: tfreeaddmassoutputdialog._label13.caption
 msgctxt "tfreeaddmassoutputdialog._label13.caption"
 msgid "[degr]"
-msgstr ""
+msgstr "[грд]"
 
 #: tfreeaddmassoutputdialog._label15.caption
 #, fuzzy
@@ -7199,7 +6775,7 @@ msgstr "[м]"
 
 #: tfreeaddmassoutputdialog._label20.caption
 msgid "[m^3]"
-msgstr ""
+msgstr "[м^3]"
 
 #: tfreeaddmassoutputdialog._label21.caption
 msgctxt "tfreeaddmassoutputdialog._label21.caption"
@@ -7209,12 +6785,12 @@ msgstr ""
 #: tfreeaddmassoutputdialog._label8.caption
 msgctxt "tfreeaddmassoutputdialog._label8.caption"
 msgid "*10-6  [m2/s]"
-msgstr ""
+msgstr "*10-6  [м2/с]"
 
 #: tfreeaddmassoutputdialog._label9.caption
 msgctxt "tfreeaddmassoutputdialog._label9.caption"
 msgid "[t/m3]"
-msgstr ""
+msgstr "[t/м3]"
 
 #: tfreebackgroundblenddialog.bitbtn1.caption
 msgctxt "tfreebackgroundblenddialog.bitbtn1.caption"
@@ -7229,11 +6805,11 @@ msgstr ""
 #: tfreebackgroundblenddialog.caption
 msgctxt "tfreebackgroundblenddialog.caption"
 msgid "Background blending."
-msgstr ""
+msgstr "Слияние фона"
 
 #: tfreebackgroundblenddialog.label1.caption
 msgid "Visibility of image"
-msgstr ""
+msgstr "Видимость изображения"
 
 #: tfreebackgroundblenddialog._label2.caption
 msgctxt "tfreebackgroundblenddialog._label2.caption"
@@ -7248,15 +6824,15 @@ msgstr ""
 #: tfreebackgroundtolerancedialog.bitbtn2.caption
 msgctxt "tfreebackgroundtolerancedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: tfreebackgroundtolerancedialog.caption
 msgid "Background Tolerance"
-msgstr ""
+msgstr "Допуск фона"
 
 #: tfreebackgroundtolerancedialog.label1.caption
 msgid "Tolerance of transparent color"
-msgstr ""
+msgstr "Допуск цвета прозрачности"
 
 #: tfreebackgroundtolerancedialog.panel4.caption
 msgctxt "tfreebackgroundtolerancedialog.panel4.caption"
@@ -7271,7 +6847,7 @@ msgstr " "
 #: tfreecontrolpointform.checkboxanchorhard.caption
 msgctxt "tfreecontrolpointform.checkboxanchorhard.caption"
 msgid "Hard"
-msgstr ""
+msgstr "Жесткий"
 
 #: tfreecontrolpointform.checkboxcorner.caption
 msgid "Corner"
@@ -7388,7 +6964,7 @@ msgstr "Удаление"
 #: tfreecrosscurvesdialog.caption
 msgctxt "tfreecrosscurvesdialog.caption"
 msgid "Cross curves."
-msgstr ""
+msgstr "Перекрестные кривые"
 
 #: tfreecrosscurvesdialog.chart.axislist[0].title.caption
 msgid "KN sin(phi)"
@@ -7396,27 +6972,26 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.chart.axislist[1].title.caption
 msgid "Displacement [tons]"
-msgstr ""
+msgstr "Водоизмещение [тонны]"
 
 #: tfreecrosscurvesdialog.chart.axislist[2].title.caption
 msgctxt "tfreecrosscurvesdialog.chart.axislist[2].title.caption"
 msgid "Power [kW]"
-msgstr ""
+msgstr "Мощность [кВ]"
 
 #: tfreecrosscurvesdialog.chart0.axislist[0].title.caption
 msgid "l, [m]"
 msgstr ""
 
 #: tfreecrosscurvesdialog.chart0.axislist[1].title.caption
-#, fuzzy
 msgctxt "tfreecrosscurvesdialog.chart0.axislist[1].title.caption"
 msgid "Heeling angle, [degr]"
-msgstr "Угол крена, град"
+msgstr "Угол крена, [град]"
 
 #: tfreecrosscurvesdialog.chart0.axislist[2].title.caption
 msgctxt "tfreecrosscurvesdialog.chart0.axislist[2].title.caption"
 msgid "Power [kW]"
-msgstr ""
+msgstr "Мощность [кВ]"
 
 #: tfreecrosscurvesdialog.checkbox1.caption
 msgid "Incremental displ."
@@ -7428,59 +7003,59 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.combobox1.text
 msgid "Russian Registry 2010"
-msgstr ""
+msgstr "Русский Регистр 2010"
 
 #: tfreecrosscurvesdialog.groupbox2.caption
 msgid "Heeling angles."
-msgstr ""
+msgstr "Углы крена"
 
 #: tfreecrosscurvesdialog.groupbox3.caption
 msgid "Data for SSD:"
-msgstr ""
+msgstr "Данные для ССД:"
 
 #: tfreecrosscurvesdialog.groupbox4.caption
 msgid "Displacements."
-msgstr ""
+msgstr "Водоизмещения."
 
 #: tfreecrosscurvesdialog.label1.caption
 msgid "Start displ."
-msgstr ""
+msgstr "Начальное водоизмещение."
 
 #: tfreecrosscurvesdialog.label12_.caption
 msgid "Decrease metacentric height, [m]"
-msgstr ""
+msgstr "Уменьшить метацентрическую высоту, [м]"
 
 #: tfreecrosscurvesdialog.label13_.caption
 msgid "Immersion deck angle, [degr]"
-msgstr ""
+msgstr "Угол погружения палубы, [град]"
 
 #: tfreecrosscurvesdialog.label1_.caption
 msgid "Projected displ., [tons]"
-msgstr ""
+msgstr "Проекционное водоизмещение. [тонны]"
 
 #: tfreecrosscurvesdialog.label2.caption
 msgid "End displ."
-msgstr ""
+msgstr "Конечное водоизмещение."
 
 #: tfreecrosscurvesdialog.label2_.caption
 msgid "Estimated Z CoG, [m]"
-msgstr ""
+msgstr "Предполагаемый Z ЦТ, [м]"
 
 #: tfreecrosscurvesdialog.label3.caption
 msgid "Displ. step"
-msgstr ""
+msgstr "Шаг водоизмещения."
 
 #: tfreecrosscurvesdialog.label4_.caption
 msgid "Area of bilge keels, [m^2]"
-msgstr ""
+msgstr "Площадь килей, [m^2]"
 
 #: tfreecrosscurvesdialog.label5_.caption
 msgid "Area of skeg, [m^2]"
-msgstr ""
+msgstr "Площадь скега, [m^2]"
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr ""
+msgstr "Поперечная ветровая площадь, [м^2]"
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"

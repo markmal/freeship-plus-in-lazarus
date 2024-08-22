@@ -1126,7 +1126,7 @@ begin
       if (ParRes[3, 2] < ParRes[1, 2]) or (ParRes[3, 2] > ParRes[2, 2]) then
         if Nser < 5 then
         begin
-          ResultsMemo.Lines.Add(Space(10) + rs_LCB___ {UserString[1033]} + ' ' + rs_is_outside_valid_domain {UserString[476]} +
+          ResultsMemo.Lines.Add(Space(10) + rs_LCB_Lpp {UserString[1033]} + ' ' + rs_is_outside_valid_domain {UserString[476]} +
             ' ' + FloatToStrF(ParRes[1, 2], ffFixed, 6, 4) + '...' + FloatToStrF(ParRes[2, 2], ffFixed, 6, 4));
           i := 0;
           //                    ResultsMemo.Lines.Add(Space(10)+'lcb = '+FloatToStrF(i,ffFixed,6,0));
@@ -2116,9 +2116,9 @@ begin
   FrVmin := Vs[0] * 0.51444 / sqrt(9.81 * power(dat[9], 0.3333));
   FrVmax := FrVmin * Vs[9] / Vs[0];
 
-  ResultsMemo.Lines.Add(Space(10) + rs_LCB___ {UserString[1032]} + '        = ' +
+  ResultsMemo.Lines.Add(Space(10) + rs_LCB {UserString[1032]} + '        = ' +
     FloatToStrF(dat[7], ffFixed, 6, 3) + ' ' + LengthStr(Units));
-  ResultsMemo.Lines.Add(Space(10) + rs_LCB___ {UserString[1033]} + '        = ' +
+  ResultsMemo.Lines.Add(Space(10) + rs_LCB_Lpp {UserString[1033]} + '        = ' +
     FloatToStrF(dat[7] / FFreeship.ProjectSettings.ProjectLength, ffFixed, 6, 4));
   ResultsMemo.Lines.Add(Space(10) + 'Ca*10^3       = ' + FloatToStrF(Ca, ffFixed, 6, 3));
   if Capp > 0 then

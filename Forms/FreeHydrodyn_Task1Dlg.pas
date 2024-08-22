@@ -352,8 +352,9 @@ begin
 
 
       ResultsMemo2.Text:='';
-      for  i:=770 to 799 do  ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
-      for  i:=844 to 848 do  ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
+      //for  i:=770 to 799 do  ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
+      //for  i:=844 to 848 do  ResultsMemo2.Lines.Add(Space(5)+Userstring(i));
+      ResultsMemo2.Lines.Add(rs_Hydrodin_Task1_Note);
       ResultsMemo2.Lines.Add('');
       ResultsMemo2.Lines.Add(Space(5)+'Copyright (c) 2008, Timoshenko V.F.');
       ResultsMemo2.Visible:=True;
@@ -375,30 +376,31 @@ begin
     Temper:=FFreeship.ProjectSettings.ProjectWaterTemper;
     Density:=FFreeship.ProjectSettings.ProjectWaterDensity;	
     Viscosity:=FindWaterViscosity(Temper,Units);
-        if dat2>1000 then dat2:=110;
-        if dat3>100 then dat3:=15;
-        dat[1]:=dat2;
-	dat[2]:=dat3;
-	dat[3]:=dat4;
-	dat[4]:=dat5;
-	dat[5]:=dat6;
-	dat[6]:=dat7;
-        if dat8>dat2 then dat8:=dat2/2.;
-	dat[7]:=dat8;
-        if dat9>15 then dat9:=12;
-	dat[8]:=dat9;
+    if dat2>1000 then dat2:=110;
+    if dat3>100 then dat3:=15;
+    dat[1]:=dat2;
+	  dat[2]:=dat3;
+	  dat[3]:=dat4;
+	  dat[4]:=dat5;
+	  dat[5]:=dat6;
+	  dat[6]:=dat7;
+    if dat8>dat2 then dat8:=dat2/2.;
+    dat[7]:=dat8;
+    if dat9>15 then dat9:=12;
+	  dat[8]:=dat9;
 
-         beta:=0; // угол дрейфа
-         Va:=sqrt(sqr(dat10)+sqr(dat11)+2*dat10*dat11*cos(dat12/57.3));
-         if Va<>0 then begin  
-          gamma:=arcsin(dat10/Va*sin((180-dat12)/57.3))-beta/57.29;
-          gammaD:=dat12-gamma*57.29;
-         end else gammaD:=0; 
-         if gammaD>0 then znak:=1
-                     else begin 
-					      znak:=-1;
-                          gammaD:=-gammaD; 
-         end; 						  
+    beta:=0; // угол дрейфа
+    Va:=sqrt(sqr(dat10)+sqr(dat11)+2*dat10*dat11*cos(dat12/57.3));
+    if Va<>0 then begin
+    gamma:=arcsin(dat10/Va*sin((180-dat12)/57.3))-beta/57.29;
+    gammaD:=dat12-gamma*57.29;
+    end else gammaD:=0;
+    if gammaD>0 then znak:=1
+    else
+    begin
+	    znak:=-1;
+      gammaD:=-gammaD;
+    end;
          
   if dat9<12 then begin  
 
@@ -408,27 +410,28 @@ begin
 
     File_ExportData(dat); 
 
-  //  Определяем каталог с программой Ishercof.exe
-  FExecDirectory:=FFreeship.Preferences.ExecDirectory;
+    //  Определяем каталог с программой Ishercof.exe
+    FExecDirectory:=FFreeship.Preferences.ExecDirectory;
 
-  //  Определяем текущий каталог с проектами и с данными для расчета IN.
+    //  Определяем текущий каталог с проектами и с данными для расчета IN.
 
-//  Определяем текущий каталог с проектами и с данными для расчета IN.
-      FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted from FileSearch* }
+    //  Определяем текущий каталог с проектами и с данными для расчета IN.
+    FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind<>'INO.' then begin
 	    MessageDlg('Нет файла исходных данных для расчета!!!',mtError,[mbOk],0); 
-		exit;
+		  exit;
 	  end;		  
 
-      // Запускаем программу расчета
-      //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+DirectorySeparator+'Ishercof.EXE'), '', []);
-      ExecFullName := FExecDirectory + DirectorySeparator+'Ishercof.EXE';
-      ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
+    // Запускаем программу расчета
+    //SysUtils.ExecuteProcess(UTF8ToSys(FExecDirectory+DirectorySeparator+'Ishercof.EXE'), '', []);
+    ExecFullName := FExecDirectory + DirectorySeparator+'Ishercof.EXE';
+    ExecuteFreePlugin(FFreeship.Preferences.TempDirectory, ExecFullName);
 
-      FileName:='OUT.';
+    FileName:='OUT.';
 //  Определяем есть ли файл с результатами расчета OUT. Если INO. присутствует значит расчет не закончен
-      i:=1;
-NewSearch:    FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted from FileSearch* }
+    i:=1;
+
+    NewSearch:    FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted from FileSearch* }
 	  if FileToFind='INO.' then begin
 	     sleep(100);
          if FileExistsUTF8('OUT.') { *Converted from FileExists* } then  DeleteFileUTF8('INO.'); { *Converted from DeleteFile* }
@@ -436,7 +439,11 @@ NewSearch:    FileToFind := FileSearchUTF8('INO.',GetCurrentDir); { *Converted f
 	     if i<30 then goto NewSearch
 		        else begin
 			 if FileExistsUTF8('INO.') { *Converted from FileExists* } then DeleteFileUTF8('INO.'); { *Converted from DeleteFile* }
-            MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}+#13#10#13#10+rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]}+' Ishercof.EXE '+#13#10#13#10+rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}+#13#10#13#10+rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}+#13#10#13#10+rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]},mtError,[mbOk],0); 
+            MessageDlg(rs_Do_NOT_calculate_this_task__because_ {UserString[1138]}+#13#10#13#10
+              +rs_1__Do_not_found_into__Exec_or_was_damaged_file {UserString[1139]}+' Ishercof.EXE '+#13#10#13#10
+              +rs_2__Input_datas_are_outside_valid_domain_or_catalog_is_not_valid_ {UserString[1140]}+#13#10#13#10
+              +rs_3__This_is_very_slow_computer__Fcpu___800_MHz_ {UserString[1141]}+#13#10#13#10
+              +rs_4__CPU_is_loaded_more_80__another_processes_ {UserString[1142]},mtError,[mbOk],0);
 			 exit;
 			end;	 
 	     end;    

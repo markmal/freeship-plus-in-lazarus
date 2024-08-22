@@ -783,7 +783,8 @@ begin
   UserStrings[ 767] := rs_GZ___m___GZd____m_;
   UserStrings[ 768] := rs_Heeling_angle___degr_;
   UserStrings[ 769] := rs_Propeller_Pitch_Diameter_Ratio_P_Dp_____;
-  UserStrings[ 770] := rs_Program_of_aerodynamics_characteristics_calculation_for_merchant_ships_;
+
+  {UserStrings[ 770] := rs_Program_of_aerodynamics_characteristics_calculation_for_merchant_ships_;
   UserStrings[ 771] := rs_1_1___This_wind_resistance_prediction_method_in_this_program_has_been_described_by_;
   UserStrings[ 772] := rs_1_1_1_R_M_Isherwood___Wind__Resistance_of__Merchant__Ships___Proceedings__of__Royal;
   UserStrings[ 773] := rs_Institution_of_Naval_Architects__1973_;
@@ -792,8 +793,7 @@ begin
   UserStrings[ 776] := rs_B______Beam__m__;
   UserStrings[ 777] := rs_AL_____Lateral_projected_wind_area__m2__;
   UserStrings[ 778] := rs_AS_____Lateral_projected_area_of_superstructure__m2__;
-
- {UserStrings[ 779] := rs_AT_____Transverse_projected_wind_area__m2__;
+  UserStrings[ 779] := rs_AT_____Transverse_projected_wind_area__m2__;
   UserStrings[ 780] := rs_S______Length_of_perimeter_of_lateral_projection__excluding_WL_and_slender_bodies_;
   UserStrings[ 781] := rs_C______Distance_from_bow_to_centroid_of_lateral_projected_area__m__;
   UserStrings[ 782] := rs_M______Number_of_distinct_groups_of_masts_or_king_posts_;
@@ -1053,8 +1053,8 @@ begin
   UserStrings[1029] := rs_Attention__Weight_of_a_ship_and_displacement_are_difference_more_then_10___;
   UserStrings[1030] := rs_Initial_transverse_metacentric_height_ho;
   UserStrings[1031] := rs_Initial_longitudinal_metacentric_height_Ho;
-  UserStrings[1032] := rs_LCB___;
-  UserStrings[1033] := rs_LCB___;
+  UserStrings[1032] := rs_LCB;
+  UserStrings[1033] := rs_LCB_Lpp;
  {UserStrings[1034] := rs_3__Korotkin_A_I__Prisoedinennie_massy_sudna__Spravochnik__L__Sudostroenie_1986_312pp_;
   UserStrings[1035] := rs_4__Hofman_A_D__Dvigitelno_rulevoy_kompleks_i_manevrirovanie_sudna__Spravochnik___;
   UserStrings[1036] := rs_L__Sudostroenie_1988_360pp_;}

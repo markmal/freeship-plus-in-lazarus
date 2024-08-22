@@ -3059,10 +3059,10 @@ resourcestring
   rs_Initial_longitudinal_metacentric_height_Ho = 'Initial longitudinal metacentric height Ho';
 
  //rs_LCB___ {UserString[1032]}
-  rs_LCB___ = 'LCB  ÃÂ ';
+  rs_LCB = 'LCB';
 
  //rs_LCB___ {UserString[1033]}
- //rs_LCB___ = 'LCB  ÃÂ ';
+  rs_LCB_Lpp = 'LCB/Lpp';
 
  //rs_3__Korotkin_A_I__Prisoedinennie_massy_sudna__Spravochnik__L__Sudostroenie_1986_312pp_ {UserString[1034]}
   //rs_3__Korotkin_A_I__Prisoedinennie_massy_sudna__Spravochnik__L__Sudostroenie_1986_312pp_ = '3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986.312pp.';
@@ -3299,7 +3299,7 @@ resourcestring
   //rs_1__Dudchenko_O_N__Numerical_calculation_inertia_characteristics_of_a_body_in_in_ = '1. Dudchenko O.N. Numerical calculation inertia characteristics of a body in in-';
 
  //rs_finite_fluid__Ship_hydrodynamics__Sb_nauch_tr____Nikolaev__NKI_1987___p_21_26_ {UserString[1114]}
-  //rs_finite_fluid__Ship_hydrodynamics__Sb_nauch_tr____Nikolaev__NKI_1987___p_21_26_ = 'finite fluid//Ship hydrodynamics: Sb.nauch.tr. ÃÂ Nikolaev, NKI,1987.ÃÂ p.21-26.';
+  //rs_finite_fluid__Ship_hydrodynamics__Sb_nauch_tr____Nikolaev__NKI_1987___p_21_26_ = 'finite fluid//Ship hydrodynamics: Sb.nauch.tr. Ã- Nikolaev, NKI,1987.Ã- p.21-26.';
 
  //rs_2__Timoshenko_V_F__Investigation_of_submercible_vechicle_inertia_characteristics {UserString[1115]}
   //rs_2__Timoshenko_V_F__Investigation_of_submercible_vechicle_inertia_characteristics = '2. Timoshenko V.F. Investigation of submercible vechicle inertia characteristics';
@@ -3308,7 +3308,7 @@ resourcestring
   //rs_near_bottom_and_in_stratified_fluid__Ship_hydrodynamics__Sb_nauch_tr___Nikolaev_ = 'near bottom and in stratified fluid//Ship hydrodynamics: Sb.nauch.tr.- Nikolaev,';
 
  //rs_NKI__1993____p__22_27_ {UserString[1117]}
-  //rs_NKI__1993____p__22_27_ = 'NKI, 1993. ÃÂ p. 22-27.';
+  //rs_NKI__1993____p__22_27_ = 'NKI, 1993. Ã- p. 22-27.';
 
  //rs_Rudder_s_properties {UserString[1118]}
   rs_Rudder_s_properties = 'Rudder''s properties';
@@ -4835,10 +4835,10 @@ resourcestring rs_HydroNShIp_AddedMass_Note = ''
   +''+#10
   +'3.REFERENCES:'+#10
   +'1. Dudchenko O.N. Numerical calculation inertia characteristics of a body in in-'+#10
-  +'finite fluid//Ship hydrodynamics: Sb.nauch.tr. Â Nikolaev, NKI,1987.Â p.21-26.'+#10
+  +'finite fluid//Ship hydrodynamics: Sb.nauch.tr. - Nikolaev, NKI,1987.- p.21-26.'+#10
   +'2. Timoshenko V.F. Investigation of submercible vechicle inertia characteristics'+#10
   +'near bottom and in stratified fluid//Ship hydrodynamics: Sb.nauch.tr.- Nikolaev,'+#10
-  +'NKI, 1993. Â p. 22-27.'+#10
+  +'NKI, 1993. - p. 22-27.'+#10
   +'3. Korotkin A.I. Prisoedinennie massy sudna: Spravochnik.-L.:Sudostroenie,1986,312pp.'+#10
   +'4. Hofman A.D. Dvigitelno-rulevoy kompleks i manevrirovanie sudna: Spravochnik. -'+#10
   +'L.:Sudostroenie,1988,360pp.';
@@ -5203,7 +5203,7 @@ resourcestring rs_Resistance_Holtrop_Note_p9 = ''
   +'Shipbuilding Progress, Vol.31, No.363, Nov., 1984.'+#10
   +'';
 
-// rs_Hydrodin_Task1_Note UserStrings: 650-695
+// rs_Propeller_Task1_Note UserStrings: 650-695
 resourcestring rs_Propeller_Task1_Note = ''
   +'Table.      Middle meanings of efficiency shaft and gearbox'+#10
   +'----------------------------------+--------------------------------------'+#10
@@ -5342,7 +5342,8 @@ resourcestring rs_Resistance_FungLeib_Note_p5 = ''
   +'| Transom area coefficient Ta |   0.00 to 0.74       |'+#10
   +'| Transom beam coefficient Tw |   0.00 to 1.00       |'+#10
   +'| Disp/length, DLR=V/Lwl^3    |  16.24 to 359.2      |'+#10
-  +'| Froude number, Fr           |   0.15 to 0.90       |';
+  +'| Froude number, Fr           |   0.15 to 0.90       |'+#10
+  +'+-----------------------------+----------------------+';
 
 // rs_Hydrodin_Rvrs_Note UserStrings: 1050-1092
 resourcestring rs_Hydrodin_Rvrs_Note = ''
@@ -5441,34 +5442,43 @@ resourcestring rs_Propeller_Task2_Note = ''
 
 
 
-// rs_Hydrodin_Task1_Note UserStrings: 779-799 844-848
-resourcestring rs_Hydrodin_Task1_Note = ''
-  +'AT   - Transverse projected wind area [m2];'+#10
-  +'S    - Length of perimeter of lateral projection, excluding WL and slender bodies;'+#10
-  +'C    - Distance from bow to centroid of lateral projected area (m);'+#10
-  +'M    - Number of distinct groups of masts or king posts;'+#10
-  +'1.2.1   Number of groups of masts M:'+#10
-  +'1  - Passenger ships and ferries;'+#10
-  +'2  - Cargo ships with engines amidships, load;'+#10
-  +'3  - Cargo ships with engines amidships, ballast;'+#10
-  +'4  - Cargo ships with engines aft, load;'+#10
-  +'5  - Cargo ships with engines aft, ballast;'+#10
-  +'6  - Tankers and ore carriers with bridge amidships, load;'+#10
-  +'7  - Tankers and ore carriers with bridge amidships, ballast;'+#10
-  +'8  - Tankers and ore carriers with bridge aft, load;'+#10
-  +'9  - Tankers and ore carriers with bridge aft, ballast;'+#10
-  +'10 - Stern trawlers;'+#10
-  +'11 - Tugs;'+#10
-  +'12 - Tankers, bulkcariers, cargo ships with engines aft;'+#10
-  +'13 - Passenger ships, ferries, container ships with cargo on deck;'+#10
-  +'14 - Lichter ships with cargo on deck;'+#10
-  +'15 - Lichter ships with out cargo.'+#10
-  +'1.3    Output data:'+#10
-  +'Cx = Fx/(0.5*RHOA*Vr^2*AT)+-1.96*Stand_Err(X)    - longitudinal force coefficient;'+#10
-  +'Cy = Fy/(0.5*RHOA*Vr^2*AT)+-1.96*Stand_Err(Y)    - lateral force coefficient;'+#10
-  +'Cmz= Mz/(0.5*RHOA*Vr^2*AT*SLOA)+-1.96*Stand_Err(Mz) - yawing moment coefficient,'+#10
-  +'RHOA - density of air;'+#10
-  +'Vr   - RMS of relative wind speed between water level and top of superstructure.';
+  // rs_Hydrodin_Task1_Note UserStrings: 770-799 844-848
+  resourcestring rs_Hydrodin_Task1_Note = ''
+    +'Program of aerodynamics characteristics calculation for merchant ships.'+#10
+    +'1.1   This wind resistance prediction method in this program has been described by:'+#10
+    +'1.1.1 R.M.Isherwood, "Wind  Resistance of  Merchant  Ships", Proceedings  of  Royal'+#10
+    +'Institution of Naval Architects, 1973.'+#10
+    +'1.2   Needed input data parameters:'+#10
+    +'SLOA - Length overall [m];'+#10
+    +'B    - Beam [m];'+#10
+    +'AL   - Lateral projected wind area [m2];'+#10
+    +'AS   - Lateral projected area of superstructure [m2];'+#10
+    +'AT   - Transverse projected wind area [m2];'+#10
+    +'S    - Length of perimeter of lateral projection, excluding WL and slender bodies;'+#10
+    +'C    - Distance from bow to centroid of lateral projected area (m);'+#10
+    +'M    - Number of distinct groups of masts or king posts;'+#10
+    +'1.2.1   Number of groups of masts M:'+#10
+    +'1  - Passenger ships and ferries;'+#10
+    +'2  - Cargo ships with engines amidships, load;'+#10
+    +'3  - Cargo ships with engines amidships, ballast;'+#10
+    +'4  - Cargo ships with engines aft, load;'+#10
+    +'5  - Cargo ships with engines aft, ballast;'+#10
+    +'6  - Tankers and ore carriers with bridge amidships, load;'+#10
+    +'7  - Tankers and ore carriers with bridge amidships, ballast;'+#10
+    +'8  - Tankers and ore carriers with bridge aft, load;'+#10
+    +'9  - Tankers and ore carriers with bridge aft, ballast;'+#10
+    +'10 - Stern trawlers;'+#10
+    +'11 - Tugs;'+#10
+    +'12 - Tankers, bulkcariers, cargo ships with engines aft;'+#10
+    +'13 - Passenger ships, ferries, container ships with cargo on deck;'+#10
+    +'14 - Lichter ships with cargo on deck;'+#10
+    +'15 - Lichter ships with out cargo.'+#10
+    +'1.3    Output data:'+#10
+    +'Cx = Fx/(0.5*RHOA*Vr^2*AT)+-1.96*Stand_Err(X)    - longitudinal force coefficient;'+#10
+    +'Cy = Fy/(0.5*RHOA*Vr^2*AT)+-1.96*Stand_Err(Y)    - lateral force coefficient;'+#10
+    +'Cmz= Mz/(0.5*RHOA*Vr^2*AT*SLOA)+-1.96*Stand_Err(Mz) - yawing moment coefficient,'+#10
+    +'RHOA - density of air;'+#10
+    +'Vr   - RMS of relative wind speed between water level and top of superstructure.';
 
 // rs_Propeller_Task5_Note UserStrings: 725-733 745-749 832-842
 resourcestring rs_Propeller_Task5_Note = ''
@@ -5651,3 +5661,5 @@ resourcestring rs_Resistance_Hollen_Note_p5 = ''
   +'|   Lwl/L     |  1,000 ... 1,055  |  0,945 ... 1,000   |  1,000 ... 1,070  |'+#10
   +'|    Dp/Ta    |  0,430 ... 0,840  |  0,655 ... 1,050   |  0,495 ... 0,860  |'+#10
   +'+-------------+-------------------+--------------------+-------------------+';
+
+

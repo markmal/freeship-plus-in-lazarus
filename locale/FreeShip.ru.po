@@ -7055,11 +7055,11 @@ msgstr "Площадь скега, [m^2]"
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr "Поперечная ветровая площадь, [м^2]"
+msgstr "Поперечная площадь парусности, [м^2]"
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"
-msgstr ""
+msgstr "Z ЦТ площади парусности выше ватерлинии"
 
 #: tfreecrosscurvesdialog.label8_.caption
 msgid "Navigation region:"
@@ -7067,7 +7067,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label9_.caption
 msgid "Registry:"
-msgstr ""
+msgstr "Регистр"
 
 #: tfreecrosscurvesdialog.panel1.caption
 msgctxt "tfreecrosscurvesdialog.panel1.caption"
@@ -7081,36 +7081,34 @@ msgstr ""
 #: tfreecrosscurvesdialog.printbutton.caption
 msgctxt "tfreecrosscurvesdialog.printbutton.caption"
 msgid "Cross curves."
-msgstr ""
+msgstr "Кривые пересечения"
 
 #: tfreecrosscurvesdialog.printbutton.hint
-#, fuzzy
 msgctxt "tfreecrosscurvesdialog.printbutton.hint"
 msgid "Print the results of the calculation."
 msgstr "Печать результатов расчета."
 
 #: tfreecrosscurvesdialog.savebutton.caption
 msgid "SaveButton"
-msgstr ""
+msgstr "Сохранить"
 
 #: tfreecrosscurvesdialog.savebutton.hint
 msgid "Save the results of the calculation."
-msgstr ""
+msgstr "Сохранить результаты расчета"
 
 #: tfreecrosscurvesdialog.tabsheet1.caption
 msgid "Graph"
-msgstr ""
+msgstr "График"
 
 #: tfreecrosscurvesdialog.tabsheet2.caption
 msgid "Data"
-msgstr ""
+msgstr "Данные"
 
 #: tfreecrosscurvesdialog.tabsheet3.caption
 msgid "Stability diagram"
-msgstr ""
+msgstr "Диаграмма устойчивости"
 
 #: tfreecrosscurvesdialog.tabsheet4.caption
-#, fuzzy
 msgctxt "tfreecrosscurvesdialog.tabsheet4.caption"
 msgid "Results"
 msgstr "Результаты"
@@ -7125,27 +7123,24 @@ msgid "ToolButton1"
 msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton1.hint
-#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton1.hint"
 msgid "Start the calculation."
 msgstr "Запустите расчет."
 
 #: tfreecrosscurvesdialog.toolbutton2.caption
 msgid "Abort"
-msgstr ""
+msgstr "Остановить"
 
 #: tfreecrosscurvesdialog.toolbutton2.hint
 msgid "Abort the calculation"
-msgstr ""
+msgstr "Остановить расчет"
 
 #: tfreecrosscurvesdialog.toolbutton25.hint
-#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton25.hint"
 msgid "Close the window and save changes."
 msgstr "Закрыть окно и сохранить изменения."
 
 #: tfreecrosscurvesdialog.toolbutton7.hint
-#, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton7.hint"
 msgid "Close window without saving changes."
 msgstr "Закрыть окно без сохранения."
@@ -7166,17 +7161,15 @@ msgid "Cancel"
 msgstr ""
 
 #: tfreedeletedialog.bbdelete.caption
-#, fuzzy
 msgctxt "tfreedeletedialog.bbdelete.caption"
 msgid "Delete"
 msgstr "Удаление"
 
 #: tfreedeletedialog.caption
 msgid "Objects to be deleted"
-msgstr ""
+msgstr "Удаляемые объекты"
 
 #: tfreedeletedialog.label1.caption
-#, fuzzy
 msgctxt "tfreedeletedialog.label1.caption"
 msgid "All"
 msgstr "Все"
@@ -7186,7 +7179,6 @@ msgid "lbTotalNumber"
 msgstr ""
 
 #: tfreedeletedialog.sgobjects.columns[0].title.caption
-#, fuzzy
 msgctxt "tfreedeletedialog.sgobjects.columns[0].title.caption"
 msgid "Delete"
 msgstr "Удаление"
@@ -7194,7 +7186,7 @@ msgstr "Удаление"
 #: tfreedeletedialog.sgobjects.columns[1].title.caption
 msgctxt "tfreedeletedialog.sgobjects.columns[1].title.caption"
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: tfreedeletedialog.sgobjects.columns[2].title.caption
 msgctxt "tfreedeletedialog.sgobjects.columns[2].title.caption"
@@ -7202,7 +7194,6 @@ msgid "Id"
 msgstr ""
 
 #: tfreedeletedialog.sgobjects.columns[3].title.caption
-#, fuzzy
 msgctxt "tfreedeletedialog.sgobjects.columns[3].title.caption"
 msgid "Name"
 msgstr "Имя"
@@ -7210,16 +7201,16 @@ msgstr "Имя"
 #: tfreeemptymodelchooserdialog.cancelbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
 #: tfreeemptymodelchooserdialog.caption
 msgctxt "tfreeemptymodelchooserdialog.caption"
 msgid "Background blending."
-msgstr ""
+msgstr "Слияние с фоном"
 
 #: tfreeemptymodelchooserdialog.label1.caption
 msgid "Not found"
-msgstr ""
+msgstr "Не найдено"
 
 #: tfreeemptymodelchooserdialog.labelfilename.caption
 msgid "LabelFileName"
@@ -7232,34 +7223,34 @@ msgstr ""
 
 #: tfreeemptymodelchooserdialog.radiogroup1.caption
 msgid "Further action"
-msgstr ""
+msgstr "Дальнейшее действие"
 
 #: tfreeemptymodelchooserdialog.rbcreatenew.caption
 msgid "Create new model"
-msgstr ""
+msgstr "Создать новую модель"
 
 #: tfreeemptymodelchooserdialog.rbemptymodel.caption
 msgid "Proceed with empty model"
-msgstr ""
+msgstr "Продолжить с пустой моделью"
 
 #: tfreeemptymodelchooserdialog.rbloadfile.caption
 msgid "Load from a file"
-msgstr ""
+msgstr "Загрузить файл"
 
 #: tfreeexpanedplatesdialog.checkbox1.caption
 msgctxt "tfreeexpanedplatesdialog.checkbox1.caption"
 msgid "Mirror"
-msgstr ""
+msgstr "Зеркалирование"
 
 #: tfreeexpanedplatesdialog.closedialog.caption
 msgctxt "tfreeexpanedplatesdialog.closedialog.caption"
 msgid "Close Dialog"
-msgstr ""
+msgstr "Закрыть диалог"
 
 #: tfreeexpanedplatesdialog.closedialog.hint
 msgctxt "tfreeexpanedplatesdialog.closedialog.hint"
 msgid "Close Dialog"
-msgstr ""
+msgstr "Закрыть диалог"
 
 #: tfreeexpanedplatesdialog.exportdxf.caption
 msgctxt "tfreeexpanedplatesdialog.exportdxf.caption"
@@ -7268,65 +7259,63 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.exportdxf.hint
 msgid "Export the visible plates to a DXF file."
-msgstr ""
+msgstr "Экспорт видимых развертываемых пластин в файл DXF"
 
 #: tfreeexpanedplatesdialog.exporttextfile.caption
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.exporttextfile.caption"
 msgid "Text file"
 msgstr "Текстовый файл"
 
 #: tfreeexpanedplatesdialog.exporttextfile.hint
 msgid "Export the visible plates to a TXT file."
-msgstr ""
+msgstr "Экспорт видимых пластин в файл TXT"
 
 #: tfreeexpanedplatesdialog.label1.caption
 msgid "Minimum edge error"
-msgstr ""
+msgstr "Минимальная ошибка ребра"
 
 #: tfreeexpanedplatesdialog.label10.caption
 msgid "X grid spacing"
-msgstr ""
+msgstr "Размер сетки по X"
 
 #: tfreeexpanedplatesdialog.label11.caption
 msgid "Y grid spacing"
-msgstr ""
+msgstr "Размер сетки по Y"
 
 #: tfreeexpanedplatesdialog.label15.caption
 msgid "Maximum area error"
-msgstr ""
+msgstr "Максимальная ошибка площади"
 
 #: tfreeexpanedplatesdialog.label17.caption
 msgid "Total area error"
-msgstr ""
+msgstr "Суммарная ошибка площади"
 
 #: tfreeexpanedplatesdialog.label3.caption
 msgid "Maximum edge error"
-msgstr ""
+msgstr "Максимальная ошибка ребер"
 
 #: tfreeexpanedplatesdialog.label5.caption
 msgctxt "tfreeexpanedplatesdialog.label5.caption"
 msgid "Part name"
-msgstr ""
+msgstr "Имя части"
 
 #: tfreeexpanedplatesdialog.label7.caption
 msgctxt "tfreeexpanedplatesdialog.label7.caption"
 msgid "Rotation"
-msgstr ""
+msgstr "Поворот"
 
 #: tfreeexpanedplatesdialog.label8.caption
 msgid "No. iterations"
-msgstr ""
+msgstr "Кол-во итераций"
 
 #: tfreeexpanedplatesdialog.print.caption
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.print.caption"
 msgid "Print"
 msgstr "Печать"
 
 #: tfreeexpanedplatesdialog.print.hint
 msgid "Send unfolded plates to printer or plotter."
-msgstr ""
+msgstr "Послать развертываемые пластины на принтер или плоттер."
 
 #: tfreeexpanedplatesdialog.rotateccw1.caption
 msgid "-1"
@@ -7334,7 +7323,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw1.hint
 msgid "Rotate part 1 degr. counter clockwise."
-msgstr ""
+msgstr "Повернуть часть на 1 град. против часовой стрелки"
 
 #: tfreeexpanedplatesdialog.rotateccw5.caption
 msgid "-5"
@@ -7342,7 +7331,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw5.hint
 msgid "Rotate part 5 degr. counter clockwise."
-msgstr ""
+msgstr "Повернуть часть на 5 град. против часовой стрелки"
 
 #: tfreeexpanedplatesdialog.rotateccw90.caption
 msgid "-90"
@@ -7350,7 +7339,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw90.hint
 msgid "Rotate part 90 degr. counter clockwise."
-msgstr ""
+msgstr "Повернуть часть на 90 град. против часовой стрелки"
 
 #: tfreeexpanedplatesdialog.rotatecw1.caption
 msgid "+1"
@@ -7358,7 +7347,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw1.hint
 msgid "Rotate part 1 degr. clockwise."
-msgstr ""
+msgstr "Повернуть часть на 1 град. по часовой стрелке"
 
 #: tfreeexpanedplatesdialog.rotatecw5.caption
 msgid "+5"
@@ -7366,7 +7355,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw5.hint
 msgid "Rotate part 5 degr. clockwise."
-msgstr ""
+msgstr "Повернуть часть на 5 град. по часовой стрелке"
 
 #: tfreeexpanedplatesdialog.rotatecw90.caption
 msgid "+90"
@@ -7374,71 +7363,67 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw90.hint
 msgid "Rotate part 90 degr. clockwise."
-msgstr ""
+msgstr "Повернуть часть на 90 град. по часовой стрелке"
 
 #: tfreeexpanedplatesdialog.savebitmap.caption
 msgctxt "tfreeexpanedplatesdialog.savebitmap.caption"
 msgid "Save bitmap"
-msgstr ""
+msgstr "Сохранить в изображение"
 
 #: tfreeexpanedplatesdialog.savebitmap.hint
 msgid "Save the current layout as a bitmap."
-msgstr ""
+msgstr "Сохранить текущий расклад в изображение"
 
 #: tfreeexpanedplatesdialog.showbuttocks.caption
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showbuttocks.caption"
 msgid "Buttocks"
 msgstr "Батоксы"
 
 #: tfreeexpanedplatesdialog.showbuttocks.hint
 msgid "Show buttocks on developed plates."
-msgstr ""
+msgstr "Показать батоксы на развертываемых пластинах."
 
 #: tfreeexpanedplatesdialog.showdiagonals.caption
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showdiagonals.caption"
 msgid "Diagonals"
 msgstr "Рыбины"
 
 #: tfreeexpanedplatesdialog.showdiagonals.hint
 msgid "Show diagonals on developed plates."
-msgstr ""
+msgstr "Показать рыбины на развертываемых пластинах."
 
 #: tfreeexpanedplatesdialog.showdimensions.caption
 msgid "ShowDimensions"
-msgstr ""
+msgstr "Показать размерности"
 
 #: tfreeexpanedplatesdialog.showdimensions.hint
 msgid "Show dimensions at grid intersections."
-msgstr ""
+msgstr "Показать размерности на пересечениях сетки."
 
 #: tfreeexpanedplatesdialog.showerroredges.caption
 msgid "ShowErrorEdges"
-msgstr ""
+msgstr "Показать ребра с ошибками"
 
 #: tfreeexpanedplatesdialog.showerroredges.hint
 msgid "Highlight compressed or stretched edges."
-msgstr ""
+msgstr "Подсветить сжатые или растянутые ребра."
 
 #: tfreeexpanedplatesdialog.showfillcolor.caption
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.caption"
 msgid "Solid"
-msgstr ""
+msgstr "Сплошной"
 
 #: tfreeexpanedplatesdialog.showfillcolor.hint
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.hint"
 msgid "Show plates with fillcolor."
-msgstr ""
+msgstr "Показать развертываемые пластины с заливкой цветом."
 
 #: tfreeexpanedplatesdialog.showinterioredges.caption
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showinterioredges.caption"
 msgid "Interior edges"
 msgstr "Внутренние ребра"
 
 #: tfreeexpanedplatesdialog.showinterioredges.hint
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showinterioredges.hint"
 msgid "Show interior edges."
 msgstr "Показ внутренних ребер."
@@ -7446,21 +7431,20 @@ msgstr "Показ внутренних ребер."
 #: tfreeexpanedplatesdialog.showpartname.caption
 msgctxt "tfreeexpanedplatesdialog.showpartname.caption"
 msgid "Part name"
-msgstr ""
+msgstr "Имя детали"
 
 #: tfreeexpanedplatesdialog.showpartname.hint
 msgid "Show the name of each developed part."
-msgstr ""
+msgstr "Показать имя каждой детали развертки."
 
 #: tfreeexpanedplatesdialog.showstations.caption
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showstations.caption"
 msgid "Stations"
 msgstr "Шпангоуты"
 
 #: tfreeexpanedplatesdialog.showstations.hint
 msgid "Show stations on developed plates."
-msgstr ""
+msgstr "Показать шпангоуты на развертываемых пластинах."
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.caption
 msgid "ShowSubmergedArea"
@@ -7468,17 +7452,16 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.hint
 msgid "Show the submerged surface areas in a different color."
-msgstr ""
+msgstr "Показать погруженные развертываемые пластины другим цветом."
 
 #: tfreeexpanedplatesdialog.showwaterlines.caption
-#, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showwaterlines.caption"
 msgid "Waterlines"
 msgstr "Ватерлинии"
 
 #: tfreeexpanedplatesdialog.showwaterlines.hint
 msgid "Show waterlines on developed plates."
-msgstr ""
+msgstr "Показать погруженные развертываемые пластины другим цветом."
 
 #: tfreeexpanedplatesdialog.spineditfontsize.hint
 #, fuzzy
@@ -7493,7 +7476,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.toolbutton26.hint
 msgid "Show dimensions of the unfolded plates."
-msgstr ""
+msgstr "Показать размерности неразвертываемых пластин."
 
 #: tfreeexpanedplatesdialog.zoomextents.caption
 msgctxt "tfreeexpanedplatesdialog.zoomextents.caption"
@@ -7503,12 +7486,12 @@ msgstr ""
 #: tfreeexpanedplatesdialog.zoomextents.hint
 msgctxt "tfreeexpanedplatesdialog.zoomextents.hint"
 msgid "Zoom all."
-msgstr ""
+msgstr "Показать все"
 
 #: tfreeexpanedplatesdialog.zoomin.caption
 msgctxt "tfreeexpanedplatesdialog.zoomin.caption"
 msgid "ZoomIn"
-msgstr ""
+msgstr "Увеличить"
 
 #: tfreeexpanedplatesdialog.zoomin.hint
 #, fuzzy
@@ -7525,12 +7508,12 @@ msgstr "Уменьшить"
 #: tfreeexpanedplatesdialog.zoomout.hint
 msgctxt "tfreeexpanedplatesdialog.zoomout.hint"
 msgid "Zoom out."
-msgstr ""
+msgstr "Уменьшить"
 
 #: tfreeexpanedplatesdialog._label12.caption
 msgctxt "tfreeexpanedplatesdialog._label12.caption"
 msgid "[degr]"
-msgstr ""
+msgstr "[град]"
 
 #: tfreeexpanedplatesdialog._label13.caption
 #, fuzzy
@@ -7599,23 +7582,23 @@ msgstr ""
 #: tfreeextrudedialog.bitbtn2.caption
 msgctxt "tfreeextrudedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: tfreeextrudedialog.caption
 msgid "Extrusion vector"
-msgstr ""
+msgstr "Вектор растягивания"
 
 #: tfreeextrudedialog.label1.caption
 msgid "Longitudinal direction"
-msgstr ""
+msgstr "Продольное направление"
 
 #: tfreeextrudedialog.label2.caption
 msgid "Transverse direction"
-msgstr ""
+msgstr "Поперечное направление"
 
 #: tfreeextrudedialog.label4.caption
 msgid "Vertical direction"
-msgstr ""
+msgstr "Вертикальное направление"
 
 #: tfreeextrudedialog._label3.caption
 #, fuzzy
@@ -7653,7 +7636,7 @@ msgstr "Открыть"
 
 #: tfreefilepreviewdialog.comboboxdir.text
 msgid "."
-msgstr ""
+msgstr "."
 
 #: tfreefilepreviewdialog.editname.text
 msgid "EditName"
@@ -7783,15 +7766,15 @@ msgstr "x"
 
 #: tfreegriddialog.lbdimensions.caption
 msgid "Dimensions"
-msgstr ""
+msgstr "Габариты"
 
 #: tfreegriddialog.lbnopoints.caption
 msgid "No points"
-msgstr ""
+msgstr "Нет точек"
 
 #: tfreegriddialog.lbplane.caption
 msgid "Plane"
-msgstr ""
+msgstr "План"
 
 #: tfreegriddialog.lbstartpoint.caption
 msgid "Startpoint"
@@ -7811,7 +7794,7 @@ msgstr "[м]"
 
 #: tfreegriddialog.plane.text
 msgid "Horizontal (X,Y)"
-msgstr ""
+msgstr "Горизонталь (X,Y)"
 
 #: tfreehullwindow.backgroundblending.caption
 msgid "Blending"
@@ -7829,11 +7812,11 @@ msgstr "Сохранить"
 
 #: tfreehullwindow.backgroundframe.caption
 msgid "Frame"
-msgstr ""
+msgstr "Рамка"
 
 #: tfreehullwindow.backgroundframe.hint
 msgid "Move and scale using frame"
-msgstr ""
+msgstr "Двигать и масштабировать используя рамку"
 
 #: tfreehullwindow.backgroundimage2.caption
 msgid "Background image"
@@ -7899,7 +7882,7 @@ msgstr "Сохранить изображение"
 #: tfreehullwindow.setlight.caption
 msgctxt "tfreehullwindow.setlight.caption"
 msgid "Light"
-msgstr ""
+msgstr "Свет"
 
 #: tfreehullwindow.shadezebra.caption
 msgid "Zebra shading"
@@ -7988,91 +7971,91 @@ msgstr "Взять данные текущ.проекта"
 
 #: tfreehydrodyn_maneuv.checkbox3.caption
 msgid "Linear Evaluation"
-msgstr ""
+msgstr "Линейная оценка"
 
 #: tfreehydrodyn_maneuv.checkbox4.caption
 msgid "Turning Prediction"
-msgstr ""
+msgstr "Прогноз поворотов"
 
 #: tfreehydrodyn_maneuv.checkbox5.caption
 msgid "State Variable Equations"
-msgstr ""
+msgstr "Переменные уравнений состояния"
 
 #: tfreehydrodyn_maneuv.label10.caption
 msgid "Water Density [kg/m^3]"
-msgstr ""
+msgstr "Плотность воды [кг/м^3]"
 
 #: tfreehydrodyn_maneuv.label11.caption
 msgid "Kinematic Viscosity [m^2/s]"
-msgstr ""
+msgstr "Кинематическая вязкость [м^2/с]"
 
 #: tfreehydrodyn_maneuv.label12.caption
 msgid "Yaw Radius of Gyration K33/LWL"
-msgstr ""
+msgstr "Радиус рысканья Gyration K33/LWL"
 
 #: tfreehydrodyn_maneuv.label13.caption
 msgid "Water Depth to Ship Draft Ratio H/T"
-msgstr ""
+msgstr "Отношение глубины воды к осадке H/T"
 
 #: tfreehydrodyn_maneuv.label14.caption
 msgid "Steering Gear Time Constant [s]"
-msgstr ""
+msgstr "Временная константа рулевого управления [с]"
 
 #: tfreehydrodyn_maneuv.label15.caption
 msgid "Total Rudder Area - Fraction of LWL*T"
-msgstr ""
+msgstr "Полная площадь руля - доля от LWL*T"
 
 #: tfreehydrodyn_maneuv.label16.caption
 msgid "Submerged Bow Area - Fraction of LWL*T"
-msgstr ""
+msgstr "Погруженная площадь носа - доля от LWL*T"
 
 #: tfreehydrodyn_maneuv.label17.caption
 msgid "Number of Propellers (0...2)"
-msgstr ""
+msgstr "Количество винтов (0...2)"
 
 #: tfreehydrodyn_maneuv.label18.caption
 msgid "Type of Single Screw Stern (0-Close;1-Open;)"
-msgstr ""
+msgstr "Тип одновинтовой кормы (0-закрытая;1-открытая;)"
 
 #: tfreehydrodyn_maneuv.label19.caption
 msgid "Number of Rudders (0...2)"
-msgstr ""
+msgstr "Количество рулей (0...2)"
 
 #: tfreehydrodyn_maneuv.label2.caption
 msgid "Length of Waterline LWL [m]"
-msgstr ""
+msgstr "Длина по ватерлинии LWL [м]"
 
 #: tfreehydrodyn_maneuv.label20.caption
 msgid "Rudder Angle [degrees]"
-msgstr ""
+msgstr "Угол руля [град]"
 
 #: tfreehydrodyn_maneuv.label3.caption
 msgid "Maximum Beam on LWL [m]"
-msgstr ""
+msgstr "Максимальная ширина на ватерлинии [м]"
 
 #: tfreehydrodyn_maneuv.label4.caption
 msgid "Draft Forward [m]"
-msgstr ""
+msgstr "Осадка носом [м]"
 
 #: tfreehydrodyn_maneuv.label5.caption
 msgid "Draft Aft [m]"
-msgstr ""
+msgstr "Осадка кормой [м]"
 
 #: tfreehydrodyn_maneuv.label6.caption
 msgid "Block Coefficient on LWL Cb"
-msgstr ""
+msgstr "Коэффициент общей полноты по ватерлинии Cb"
 
 #: tfreehydrodyn_maneuv.label7.caption
 msgid "Center of Gravity LCG (%LWL; + Fwd)"
-msgstr ""
+msgstr "Центр тяжести LCG (%LWL; + Fwd)"
 
 #: tfreehydrodyn_maneuv.label8.caption
 msgid "Midships to Rudder CE XR (%LWL; + Aft)"
-msgstr ""
+msgstr "От миделя до руля CE XR (%LWL; + Aft)"
 
 #: tfreehydrodyn_maneuv.label9.caption
 msgid "Initial Ship Speed [knots]"
-msgstr ""
+msgstr "Начальная скорость судна [узлы]"
 
 #: tfreehydrodyn_maneuv.printbutton.caption
 msgctxt "tfreehydrodyn_maneuv.printbutton.caption"
@@ -8110,7 +8093,7 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.toolbutton17.hint
 msgid "Calculate"
-msgstr ""
+msgstr "Расчет"
 
 #: tfreehydrodyn_maneuv.toolbutton25.hint
 #, fuzzy
@@ -8136,15 +8119,15 @@ msgstr ""
 
 #: tfreehydrodyn_rvrs.caption
 msgid "Acceleration, free and active brake of ship calculation"
-msgstr ""
+msgstr "Расчет ускорения, свободного и активного торможения судна"
 
 #: tfreehydrodyn_rvrs.chart.axislist[0].title.caption
 msgid "Way, speed, frequency"
-msgstr ""
+msgstr "Путь, скорость, частота"
 
 #: tfreehydrodyn_rvrs.chart.axislist[1].title.caption
 msgid "Time [c]"
-msgstr ""
+msgstr "Время [с]"
 
 #: tfreehydrodyn_rvrs.chart.axislist[2].title.caption
 msgid "Thrust, Torque Moment"
@@ -8171,12 +8154,12 @@ msgstr "Количество лопастей"
 #: tfreehydrodyn_rvrs.label12.caption
 msgctxt "tfreehydrodyn_rvrs.label12.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "Доля волн"
 
 #: tfreehydrodyn_rvrs.label13.caption
 msgctxt "tfreehydrodyn_rvrs.label13.caption"
 msgid "Thrust fraction"
-msgstr ""
+msgstr "Доля тяги"
 
 #: tfreehydrodyn_rvrs.label14.caption
 #, fuzzy
@@ -8186,39 +8169,39 @@ msgstr "Спецификац. мощность двигателя, кВт"
 
 #: tfreehydrodyn_rvrs.label15.caption
 msgid "Frequency of propeller rotation [1/min]"
-msgstr ""
+msgstr "Частота вращения винта [1/мин]"
 
 #: tfreehydrodyn_rvrs.label16.caption
 msgid "Shaft and gear efficiency"
-msgstr ""
+msgstr "Эффективность передачи и вала"
 
 #: tfreehydrodyn_rvrs.label17.caption
 msgid "Inertia moment by engine [t*m^2]"
-msgstr ""
+msgstr "Момент инерции двигателя [t*м^2]"
 
 #: tfreehydrodyn_rvrs.label18.caption
 msgid "Number of maneuver task"
-msgstr ""
+msgstr "Количество задач маневрирования"
 
 #: tfreehydrodyn_rvrs.label2.caption
 msgid "Length between perpendiculars [m]"
-msgstr ""
+msgstr "Длина между перпендикулярами [m]"
 
 #: tfreehydrodyn_rvrs.label3.caption
 msgid "Beam waterline [m]"
-msgstr ""
+msgstr "Ширина ватерлинии [m]"
 
 #: tfreehydrodyn_rvrs.label4.caption
 msgid "Midship draft [m]"
-msgstr ""
+msgstr "Средняя осадка [м]"
 
 #: tfreehydrodyn_rvrs.label5.caption
 msgid "Displacement [m^3]"
-msgstr ""
+msgstr "Водоизмещение [м^3]"
 
 #: tfreehydrodyn_rvrs.label6.caption
 msgid "Wetted surface area [m^2]"
-msgstr ""
+msgstr "Площадь смачиваемой поверхности [м^2]"
 
 #: tfreehydrodyn_rvrs.label7.caption
 #, fuzzy
@@ -8228,11 +8211,11 @@ msgstr "Количество гребных винтов"
 
 #: tfreehydrodyn_rvrs.label8.caption
 msgid "Propeller diameter [m]"
-msgstr ""
+msgstr "Диаметр винта [m]"
 
 #: tfreehydrodyn_rvrs.label9.caption
 msgid "Pitch ratio P/D"
-msgstr ""
+msgstr "Шаг P/D"
 
 #: tfreehydrodyn_rvrs.printbutton.caption
 msgctxt "tfreehydrodyn_rvrs.printbutton.caption"
@@ -8306,7 +8289,7 @@ msgstr ""
 
 #: tfreehydrodyn_task1.chart.axislist[1].title.caption
 msgid "Angle of rel wind off bow"
-msgstr ""
+msgstr "Угол ветра от носа"
 
 #: tfreehydrodyn_task1.chart.axislist[2].title.caption
 #, fuzzy
@@ -8322,47 +8305,47 @@ msgstr "Взять данные текущ.проекта"
 
 #: tfreehydrodyn_task1.label10.caption
 msgid "Ship speed, [m/s]"
-msgstr ""
+msgstr "Скорость судна, [м/с]"
 
 #: tfreehydrodyn_task1.label11.caption
 msgid "Wind speed, [m/s]"
-msgstr ""
+msgstr "Скорость ветра, [м/с]"
 
 #: tfreehydrodyn_task1.label12.caption
 msgid "Wind angle, [degr.]"
-msgstr ""
+msgstr "Угол ветра, [град]"
 
 #: tfreehydrodyn_task1.label2.caption
 msgid "Length overall Loa [m]"
-msgstr ""
+msgstr "Общая длина  Loa [м]"
 
 #: tfreehydrodyn_task1.label3.caption
 msgid "Breadth [m]"
-msgstr ""
+msgstr "Ширина [м]"
 
 #: tfreehydrodyn_task1.label4.caption
 msgid "Lateral projected wind area [m2]"
-msgstr ""
+msgstr "Площадь парусности в боковой проекции [м2]"
 
 #: tfreehydrodyn_task1.label5.caption
 msgid "Lateral proj. area of superstructure [m2]"
-msgstr ""
+msgstr "Площадь надстройки в боковой проекции [м2]"
 
 #: tfreehydrodyn_task1.label6.caption
 msgid "Transverse projected wind area [m2]"
-msgstr ""
+msgstr "Площадь парусности в поперечной проекции [м2]"
 
 #: tfreehydrodyn_task1.label7.caption
 msgid "Length of perimeter [m]"
-msgstr ""
+msgstr "Длина периметра [м]"
 
 #: tfreehydrodyn_task1.label8.caption
 msgid "Distance from bow to centroid [m]"
-msgstr ""
+msgstr "Расстояние от носа до центроида [м]"
 
 #: tfreehydrodyn_task1.label9.caption
 msgid "Number of groups of masts, ETC."
-msgstr ""
+msgstr "Кол-во групп мачт, ETC."
 
 #: tfreehydrodyn_task1.printbutton.caption
 msgctxt "tfreehydrodyn_task1.printbutton.caption"
@@ -8469,7 +8452,7 @@ msgstr "Сохранить"
 #: tfreehydrostaticsresultsdialog.caption
 msgctxt "tfreehydrostaticsresultsdialog.caption"
 msgid "Hydrostatics"
-msgstr ""
+msgstr "Гидростатика"
 
 #: tfreeinsertplanedialog.bitbtn1.caption
 msgctxt "tfreeinsertplanedialog.bitbtn1.caption"
@@ -8479,15 +8462,15 @@ msgstr ""
 #: tfreeinsertplanedialog.bitbtn2.caption
 msgctxt "tfreeinsertplanedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: tfreeinsertplanedialog.caption
 msgid "Insert multiple points"
-msgstr ""
+msgstr "Вставить несколько точек"
 
 #: tfreeinsertplanedialog.checkbox1.caption
 msgid "Add control curve"
-msgstr ""
+msgstr "Добавить контрольную кривую"
 
 #: tfreeinsertplanedialog.edit1.text
 msgid "Edit1"
@@ -8499,7 +8482,7 @@ msgstr ""
 
 #: tfreeinsertplanedialog.groupbox1.caption
 msgid "Insert multiple vertices on a plane.  "
-msgstr ""
+msgstr "Вставить несколько вертексов на плоскость.  "
 
 #: tfreeinsertplanedialog.label1.caption
 #, fuzzy
@@ -8509,30 +8492,30 @@ msgstr "Расстояние"
 
 #: tfreeinsertplanedialog.label2.caption
 msgid "Min. value"
-msgstr ""
+msgstr "Мин. значение"
 
 #: tfreeinsertplanedialog.label5.caption
 msgid "Max. value"
-msgstr ""
+msgstr "Макс. значение"
 
 #: tfreeinsertplanedialog.radiobutton1.caption
 msgctxt "tfreeinsertplanedialog.radiobutton1.caption"
 msgid "Transverse plane"
-msgstr ""
+msgstr "Поперечная плоскость"
 
 #: tfreeinsertplanedialog.radiobutton2.caption
 msgctxt "tfreeinsertplanedialog.radiobutton2.caption"
 msgid "Horizontal plane"
-msgstr ""
+msgstr "Горизонтальная плоскость"
 
 #: tfreeinsertplanedialog.radiobutton3.caption
 msgctxt "tfreeinsertplanedialog.radiobutton3.caption"
 msgid "Vertical plane"
-msgstr ""
+msgstr "Вертикальная плоскость"
 
 #: tfreeintersectiondialog.addone.caption
 msgid "Add..."
-msgstr "Добавлять..."
+msgstr "Добавить..."
 
 #: tfreeintersectiondialog.addone.hint
 msgid "Add one station."
@@ -8595,16 +8578,14 @@ msgid "No"
 msgstr "Нет"
 
 #: tfreeintersectiondialog.sgdiagonals.columns[1].title.caption
-#, fuzzy
 msgctxt "tfreeintersectiondialog.sgdiagonals.columns[1].title.caption"
 msgid "Distance"
 msgstr "Расстояние"
 
 #: tfreeintersectiondialog.sgdiagonals.columns[2].title.caption
-#, fuzzy
 msgctxt "tfreeintersectiondialog.sgdiagonals.columns[2].title.caption"
 msgid "Curvature"
-msgstr "Кривизны"
+msgstr "Кривизна"
 
 #: tfreeintersectiondialog.sgstations.columns[0].title.caption
 msgctxt "tfreeintersectiondialog.sgstations.columns[0].title.caption"
@@ -8612,7 +8593,6 @@ msgid "No"
 msgstr "Нет"
 
 #: tfreeintersectiondialog.sgstations.columns[1].title.caption
-#, fuzzy
 msgctxt "tfreeintersectiondialog.sgstations.columns[1].title.caption"
 msgid "Distance"
 msgstr "Расстояние"
@@ -8621,7 +8601,7 @@ msgstr "Расстояние"
 #, fuzzy
 msgctxt "tfreeintersectiondialog.sgstations.columns[2].title.caption"
 msgid "Curvature"
-msgstr "Кривизны"
+msgstr "Кривизна"
 
 #: tfreeintersectiondialog.sgwaterlines.columns[0].title.caption
 msgctxt "tfreeintersectiondialog.sgwaterlines.columns[0].title.caption"
@@ -8638,7 +8618,7 @@ msgstr "Расстояние"
 #, fuzzy
 msgctxt "tfreeintersectiondialog.sgwaterlines.columns[2].title.caption"
 msgid "Curvature"
-msgstr "Кривизны"
+msgstr "Кривизна"
 
 #: tfreeintersectiondialog.showbuttocks.caption
 #, fuzzy

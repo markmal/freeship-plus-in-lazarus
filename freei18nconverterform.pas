@@ -18,14 +18,17 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
     Edit_Ranges: TEdit;
     Edit_RS_Name: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
 
   public
@@ -65,6 +68,7 @@ const langs: array of String = (
 'fi',
 'uk',
 'vi' );
+
 
 procedure runConversion;
 
@@ -402,14 +406,13 @@ end;
 
 var EnglishMap: specialize TFPGMap<String, String>;
 
-
 procedure convertGUIforLang(lang:string; ln:string; poFile:TPOFile);
 var es, tl, rsid, sec: String;
   i: integer;
   Sections, SectionKeys: TStrings;
   CurrentItem: TPOFileItem;
 begin
-  writeln('convertUserStrings');
+  writeln('convertGUIforLang');
   Sections := TStringList.Create;
   SectionKeys := TStringList.Create;
 
@@ -417,26 +420,29 @@ begin
 
   for sec in Sections do
   begin
+    if sec = 'User' then continue;
+    if sec = 'Translation' then continue;
+
     SectionKeys.Clear;
     CurrentLanguage.ReadSection(sec, SectionKeys);
     for rsid in SectionKeys do
-    if EnglishMap.IndexOf(rsid)>=0 then
-    begin
-      es := EnglishMap[rsid];
-      if es>'' then
+      if EnglishMap.IndexOf(rsid)>=0 then
       begin
-        tl := CurrentLanguage.ReadString(sec,rsid,''); ;
-        CurrentItem := poFile.FindPoItem(rsid);
-        if CurrentItem <> nil then
+        es := EnglishMap[rsid];
+        if es>'' then
         begin
-          CurrentItem.Translation := tl;
-          poFile.FillItem(CurrentItem,
-            {Identifier} rsid, {Original} es, {Translation} tl,
-            {Comments} '',
-            {Context} '', {Flags} '', {PreviousID} '');
+          tl := CurrentLanguage.ReadString(sec,rsid,'');
+          CurrentItem := poFile.FindPoItem(rsid);
+          if CurrentItem <> nil then
+          begin
+            CurrentItem.Translation := tl;
+            poFile.FillItem(CurrentItem,
+              {Identifier} rsid, {Original} es, {Translation} tl,
+              {Comments} '',
+              {Context} '', {Flags} '', {PreviousID} '');
+          end;
         end;
       end;
-    end;
 
   end;
   SectionKeys.Free;
@@ -566,6 +572,107 @@ begin
   //ranges[1].StartNo:=1034; ranges[1].EndNo:=1036;
   convertUserStringsConcatMultiline(Edit_RS_Name.text, ranges);
 
+end;
+/// --------------  Translate PO GUI items from .INI ------------- ///
+
+type TPOItemList = specialize TFPGList<TPOFileItem>;
+
+function findPOItemsByMsgId(poFile:TPOFile; msgid: string ):TPOItemList;
+var CurrentItem: TPOFileItem; i:integer;
+begin
+  Result := TPOItemList.Create;
+  for i:=0 to  poFile.Count-1 do
+  begin
+    CurrentItem := poFile.PoItems[i];
+    if CurrentItem.Original = msgid then
+    begin
+      Result.Add(CurrentItem);
+    end;
+  end;
+end;
+
+procedure translateGUIforLang(lang:string; ln:string; poFile:TPOFile);
+var es, tl, rsid, sec: String;
+  i: integer;
+  Sections, SectionKeys: TStrings;
+  ci,CurrentItem: TPOFileItem;
+  foundItems: TPOItemList;
+begin
+  writeln('convertGUIforLang');
+  Sections := TStringList.Create;
+  SectionKeys := TStringList.Create;
+
+  CurrentLanguage.ReadSections(Sections);
+
+  for sec in Sections do
+  begin
+    if sec = 'User' then continue;
+    if sec = 'Translation' then continue;
+
+    SectionKeys.Clear;
+    CurrentLanguage.ReadSection(sec, SectionKeys);
+    for rsid in SectionKeys do
+      if EnglishMap.IndexOf(rsid)>=0 then
+      begin
+        es := EnglishMap[rsid];
+        if es>'' then
+        begin
+          tl := CurrentLanguage.ReadString(sec,rsid,'');
+          if tl.trim > '' then
+          begin
+            foundItems := findPOItemsByMsgId(poFile, es );
+            for ci in foundItems do
+            begin
+              CurrentItem := ci;
+              CurrentItem.Translation := tl;
+              poFile.FillItem(CurrentItem,
+                {Identifier} rsid, {Original} es, {Translation} tl,
+                {Comments} '', {Context} '', {Flags} '', {PreviousID} '');
+            end;
+            foundItems.Free;
+          end;
+        end;
+      end;
+
+  end;
+  SectionKeys.Free;
+  Sections.Free;
+end;
+
+
+
+procedure translateGUI;
+var sr, lang, ln, poFileName: string;
+  l: integer;
+  poFile: TPOFile;
+begin
+  loadEnglishUserStrings; // load English UserStrings from Languages/English.ini
+  LoadEnglishGUI;
+
+  for l:=0 to length(languages)-1 do
+  begin
+    lang := languages[l];
+    ln := langs[l];
+    Write(lang);
+    poFileName := 'locale'+DirectorySeparator+'FreeShip.'+ln+'.po';
+    if FileExists(poFileName) then
+      poFile := TPOFile.Create(poFileName, true);
+
+    FreeLanguageSupport.LoadLanguage(lang,'Languages/'+lang+'.ini');
+
+    translateGUIforLang(lang, ln, poFile);
+
+    poFile.SaveToFile(poFileName);
+
+    FreeAndNil(FreeLanguageSupport.CurrentLanguage);
+    poFile.Free;
+    Writeln(' - done');
+  end;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+  translateGUI;
 end;
 
 

@@ -73,4 +73,20 @@ object Form1: TForm1
     TabOrder = 3
     Text = '1093-1117 1034-1036'
   end
+  object Label5: TLabel
+    Left = 56
+    Height = 26
+    Top = 518
+    Width = 286
+    Caption = 'Translate PO GUI items from .INI'
+  end
+  object Button3: TButton
+    Left = 368
+    Height = 26
+    Top = 518
+    Width = 144
+    Caption = 'Run'
+    TabOrder = 4
+    OnClick = Button3Click
+  end
 end

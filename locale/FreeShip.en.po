@@ -1219,7 +1219,7 @@ msgstr "Center of Buoyancy LCB (% LWL; + Fwd)  ="
 
 #: freestringsunit.rs_centimeters
 msgid "Centimeters"
-msgstr ""
+msgstr "Centimeters"
 
 #: freestringsunit.rs_choose_a_directory_where_you_want_to_save_the_dxf_files_to_
 msgid "Choose a directory where you want to save the dxf files to:"
@@ -1711,7 +1711,7 @@ msgstr "faces"
 
 #: freestringsunit.rs_feet
 msgid "Feet"
-msgstr ""
+msgstr "Feet"
 
 #: freestringsunit.rs_filename
 msgctxt "freestringsunit.rs_filename"
@@ -3145,7 +3145,7 @@ msgstr "Merchant ship"
 #: freestringsunit.rs_meters
 msgctxt "freestringsunit.rs_meters"
 msgid "Meters"
-msgstr ""
+msgstr "Meters"
 
 #: freestringsunit.rs_method__nm_1___geers__nm_2___doubrovin_
 msgid "Method (Nm=1 - Geers; Nm=2 - Doubrovin)"
@@ -3190,7 +3190,7 @@ msgstr "Midship section area"
 
 #: freestringsunit.rs_millimeters
 msgid "Millimeters"
-msgstr ""
+msgstr "Millimeters"
 
 #: freestringsunit.rs_min
 msgid "min"
@@ -5370,7 +5370,7 @@ msgstr ""
 #: mdipanel.rsclose
 msgctxt "mdipanel.rsclose"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: mdipanel.rsmaximize
 msgid "Maximize"
@@ -5387,20 +5387,20 @@ msgstr ""
 #: tdxfexport2ddialog.bitbtn1.caption
 msgctxt "tdxfexport2ddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tdxfexport2ddialog.bitbtn2.caption
 msgctxt "tdxfexport2ddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tdxfexport2ddialog.caption
 msgid "Export intersections to DXF as 2D polylines."
-msgstr ""
+msgstr "Export intersections to DXF as 2D polylines."
 
 #: tdxfexport2ddialog.cbcreateindividualfiles.caption
 msgid "Create individual files"
-msgstr ""
+msgstr "Create individual files"
 
 #: tdxfexport2ddialog.cbcreateindividuallayers.caption
 msgid "Create individual layers"
@@ -5409,7 +5409,7 @@ msgstr ""
 #: tdxfexport2ddialog.combobox1.text
 msgctxt "tdxfexport2ddialog.combobox1.text"
 msgid "Meters"
-msgstr ""
+msgstr "Meters"
 
 #: tdxfexport2ddialog.edit3.text
 msgctxt "tdxfexport2ddialog.edit3.text"
@@ -5422,25 +5422,25 @@ msgstr ""
 
 #: tdxfexport2ddialog.label4.caption
 msgid "Export units"
-msgstr ""
+msgstr "Export units"
 
 #: tdxfexport2ddialog.label7.caption
 msgid "Export directory"
-msgstr ""
+msgstr "Export directory"
 
 #: tdxfexport2ddialog.speedbutton1.hint
 msgid "Browse for the export directory"
-msgstr ""
+msgstr "Browse for the export directory"
 
 #: tenterthemenamedlg.bitbtn1.caption
 msgctxt "tenterthemenamedlg.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tenterthemenamedlg.bitbtn2.caption
 msgctxt "tenterthemenamedlg.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tenterthemenamedlg.caption
 msgid "Enter Theme Name"
@@ -5457,7 +5457,7 @@ msgstr ""
 #: texceptiondlg.button1.caption
 msgctxt "texceptiondlg.button1.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: texceptiondlg.caption
 msgid "Exception"
@@ -5466,7 +5466,7 @@ msgstr ""
 #: tformselected.aclose.caption
 msgctxt "tformselected.aclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tformselected.caption
 msgid "Selected"
@@ -5543,7 +5543,7 @@ msgstr ""
 #: tformselected.label1.caption
 msgctxt "tformselected.label1.caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.label10.caption
 #, fuzzy
@@ -5559,7 +5559,7 @@ msgstr ""
 #: tformselected.label3.caption
 msgctxt "tformselected.label3.caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.label4.caption
 msgctxt "tformselected.label4.caption"
@@ -5584,12 +5584,12 @@ msgstr "Curve"
 #: tformselected.label8.caption
 msgctxt "tformselected.label8.caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.label9.caption
 msgctxt "tformselected.label9.caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvcurvepoints.columns[0].caption
 msgctxt "tformselected.lvcurvepoints.columns[0].caption"
@@ -5599,7 +5599,7 @@ msgstr ""
 #: tformselected.lvcurvepoints.columns[1].caption
 msgctxt "tformselected.lvcurvepoints.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvcurves.columns[0].caption
 msgctxt "tformselected.lvcurves.columns[0].caption"
@@ -5609,7 +5609,7 @@ msgstr ""
 #: tformselected.lvcurves.columns[1].caption
 msgctxt "tformselected.lvcurves.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvedgefaces.columns[0].caption
 msgctxt "tformselected.lvedgefaces.columns[0].caption"
@@ -5619,7 +5619,7 @@ msgstr ""
 #: tformselected.lvedgefaces.columns[1].caption
 msgctxt "tformselected.lvedgefaces.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvedges.columns[0].caption
 msgctxt "tformselected.lvedges.columns[0].caption"
@@ -5629,7 +5629,7 @@ msgstr ""
 #: tformselected.lvedges.columns[1].caption
 msgctxt "tformselected.lvedges.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvfacepoints.columns[0].caption
 msgctxt "tformselected.lvfacepoints.columns[0].caption"
@@ -5639,7 +5639,7 @@ msgstr ""
 #: tformselected.lvfacepoints.columns[1].caption
 msgctxt "tformselected.lvfacepoints.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvfaces.columns[0].caption
 msgctxt "tformselected.lvfaces.columns[0].caption"
@@ -5649,7 +5649,7 @@ msgstr ""
 #: tformselected.lvfaces.columns[1].caption
 msgctxt "tformselected.lvfaces.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvpointedges.columns[0].caption
 msgctxt "tformselected.lvpointedges.columns[0].caption"
@@ -5659,7 +5659,7 @@ msgstr ""
 #: tformselected.lvpointedges.columns[1].caption
 msgctxt "tformselected.lvpointedges.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvpointfaces.columns[0].caption
 msgctxt "tformselected.lvpointfaces.columns[0].caption"
@@ -5669,7 +5669,7 @@ msgstr ""
 #: tformselected.lvpointfaces.columns[1].caption
 msgctxt "tformselected.lvpointfaces.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvpointgroups.columns[0].caption
 msgctxt "tformselected.lvpointgroups.columns[0].caption"
@@ -5679,7 +5679,7 @@ msgstr ""
 #: tformselected.lvpointgroups.columns[1].caption
 msgctxt "tformselected.lvpointgroups.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.lvpoints.columns[0].caption
 msgctxt "tformselected.lvpoints.columns[0].caption"
@@ -5689,7 +5689,7 @@ msgstr ""
 #: tformselected.lvpoints.columns[1].caption
 msgctxt "tformselected.lvpoints.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tformselected.miunselect.caption
 msgid "miUnselect"
@@ -5721,7 +5721,7 @@ msgstr ""
 #: tfreeaboutdlg.button1.caption
 msgctxt "tfreeaboutdlg.button1.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tfreeaboutdlg.caption
 msgid "FREE!ship About"
@@ -5815,7 +5815,7 @@ msgstr ""
 #: tfreeaddmassoutputdialog.cancelbutton.caption
 msgctxt "tfreeaddmassoutputdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeaddmassoutputdialog.caption
 msgid "Add_Mass file generator."
@@ -5831,33 +5831,33 @@ msgstr ""
 
 #: tfreeaddmassoutputdialog.label1.caption
 msgid "Number of stations (5-45)"
-msgstr ""
+msgstr "Number of stations (5-45)"
 
 #: tfreeaddmassoutputdialog.label10.caption
 msgctxt "tfreeaddmassoutputdialog.label10.caption"
 msgid "Water depth"
-msgstr ""
+msgstr "Water depth"
 
 #: tfreeaddmassoutputdialog.label12.caption
 msgid "Trim angle"
-msgstr ""
+msgstr "Trim angle"
 
 #: tfreeaddmassoutputdialog.label14.caption
 msgctxt "tfreeaddmassoutputdialog.label14.caption"
 msgid "Distance between center of hulls:"
-msgstr ""
+msgstr "Distance between center of hulls:"
 
 #: tfreeaddmassoutputdialog.label2.caption
 msgid "Number of waterlines (5-25)"
-msgstr ""
+msgstr "Number of waterlines (5-25)"
 
 #: tfreeaddmassoutputdialog.label20.caption
 msgid "Number of areas"
-msgstr ""
+msgstr "Number of areas"
 
 #: tfreeaddmassoutputdialog.label21.caption
 msgid "Percent of areas sum"
-msgstr ""
+msgstr "Percent of areas sum"
 
 #: tfreeaddmassoutputdialog.label22.caption
 msgid "Calculation accuracy"
@@ -5877,7 +5877,7 @@ msgstr ""
 
 #: tfreeaddmassoutputdialog.label26.caption
 msgid "Rotative velocity Omega, 1/sec"
-msgstr ""
+msgstr "Rotative velocity Omega, 1/sec"
 
 #: tfreeaddmassoutputdialog.label27.caption
 msgid "Type of object or ship:"
@@ -5898,7 +5898,7 @@ msgstr "Length"
 #: tfreeaddmassoutputdialog.label5.caption
 msgctxt "tfreeaddmassoutputdialog.label5.caption"
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: tfreeaddmassoutputdialog.label6.caption
 #, fuzzy
@@ -5909,27 +5909,27 @@ msgstr "Water density"
 #: tfreeaddmassoutputdialog.label7.caption
 msgctxt "tfreeaddmassoutputdialog.label7.caption"
 msgid "Water kinematic viscosity"
-msgstr ""
+msgstr "Water kinematic viscosity"
 
 #: tfreeaddmassoutputdialog.okbutton.caption
 msgctxt "tfreeaddmassoutputdialog.okbutton.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeaddmassoutputdialog.radiobutton1.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton1.caption"
 msgid "Monohull"
-msgstr ""
+msgstr "Monohull"
 
 #: tfreeaddmassoutputdialog.radiobutton2.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton2.caption"
 msgid "Monohull, send as catamaran"
-msgstr ""
+msgstr "Monohull, send as catamaran"
 
 #: tfreeaddmassoutputdialog.radiobutton3.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton3.caption"
 msgid "Catamaran"
-msgstr ""
+msgstr "Catamaran"
 
 #: tfreeaddmassoutputdialog.savefile.caption
 #, fuzzy
@@ -5940,7 +5940,7 @@ msgstr "Save"
 #: tfreeaddmassoutputdialog.tabsheet1.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet1.caption"
 msgid "Hull geometry"
-msgstr ""
+msgstr "Hull geometry"
 
 #: tfreeaddmassoutputdialog.tabsheet2.caption
 #, fuzzy
@@ -5951,12 +5951,12 @@ msgstr "Results"
 #: tfreeaddmassoutputdialog.tabsheet3.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet3.caption"
 msgid "Environment"
-msgstr ""
+msgstr "Environment"
 
 #: tfreeaddmassoutputdialog.tabsheet4.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet4.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeaddmassoutputdialog._label11.caption
 msgctxt "tfreeaddmassoutputdialog._label11.caption"
@@ -6005,21 +6005,21 @@ msgstr ""
 #: tfreebackgroundblenddialog.bitbtn1.caption
 msgctxt "tfreebackgroundblenddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreebackgroundblenddialog.bitbtn2.caption
 msgctxt "tfreebackgroundblenddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreebackgroundblenddialog.caption
 msgctxt "tfreebackgroundblenddialog.caption"
 msgid "Background blending."
-msgstr ""
+msgstr "Background blending."
 
 #: tfreebackgroundblenddialog.label1.caption
 msgid "Visibility of image"
-msgstr ""
+msgstr "Visibility of image"
 
 #: tfreebackgroundblenddialog._label2.caption
 msgctxt "tfreebackgroundblenddialog._label2.caption"
@@ -6029,12 +6029,12 @@ msgstr ""
 #: tfreebackgroundtolerancedialog.bitbtn1.caption
 msgctxt "tfreebackgroundtolerancedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreebackgroundtolerancedialog.bitbtn2.caption
 msgctxt "tfreebackgroundtolerancedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreebackgroundtolerancedialog.caption
 msgid "Background Tolerance"
@@ -6061,7 +6061,7 @@ msgstr ""
 
 #: tfreecontrolpointform.checkboxcorner.caption
 msgid "Corner"
-msgstr ""
+msgstr "Corner"
 
 #: tfreecontrolpointform.groupboxanchorconstraint.caption
 msgid "Anchor point"
@@ -6114,19 +6114,19 @@ msgstr ""
 #: tfreecontrolpointform.labelname.caption
 msgctxt "tfreecontrolpointform.labelname.caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tfreecontrolpointform.labelx.caption
 msgid "X-coord."
-msgstr ""
+msgstr "X-coord."
 
 #: tfreecontrolpointform.labely.caption
 msgid "Y-coord."
-msgstr ""
+msgstr "Y-coord."
 
 #: tfreecontrolpointform.labelz.caption
 msgid "Z-coord."
-msgstr ""
+msgstr "Z-coord."
 
 #: tfreecontrolpointform.speedbuttonremoveanchorpoint.caption
 msgctxt "tfreecontrolpointform.speedbuttonremoveanchorpoint.caption"
@@ -6173,7 +6173,7 @@ msgstr "Delete"
 #: tfreecrosscurvesdialog.caption
 msgctxt "tfreecrosscurvesdialog.caption"
 msgid "Cross curves."
-msgstr ""
+msgstr "Cross curves."
 
 #: tfreecrosscurvesdialog.chart.axislist[0].title.caption
 msgid "KN sin(phi)"
@@ -6205,7 +6205,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.checkbox1.caption
 msgid "Incremental displ."
-msgstr ""
+msgstr "Incremental displ."
 
 #: tfreecrosscurvesdialog.combobox.text
 msgid "Nonlimit"
@@ -6217,7 +6217,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox2.caption
 msgid "Heeling angles."
-msgstr ""
+msgstr "Heeling angles."
 
 #: tfreecrosscurvesdialog.groupbox3.caption
 msgid "Data for SSD:"
@@ -6225,19 +6225,19 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox4.caption
 msgid "Displacements."
-msgstr ""
+msgstr "Displacements."
 
 #: tfreecrosscurvesdialog.label1.caption
 msgid "Start displ."
-msgstr ""
+msgstr "Start displ."
 
 #: tfreecrosscurvesdialog.label12_.caption
 msgid "Decrease metacentric height, [m]"
-msgstr ""
+msgstr "Decrease metacentric height, [m]"
 
 #: tfreecrosscurvesdialog.label13_.caption
 msgid "Immersion deck angle, [degr]"
-msgstr ""
+msgstr "Immersion deck angle, [degr]"
 
 #: tfreecrosscurvesdialog.label1_.caption
 msgid "Projected displ., [tons]"
@@ -6245,15 +6245,15 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label2.caption
 msgid "End displ."
-msgstr ""
+msgstr "End displ."
 
 #: tfreecrosscurvesdialog.label2_.caption
 msgid "Estimated Z CoG, [m]"
-msgstr ""
+msgstr "Estimated Z CoG, [m]"
 
 #: tfreecrosscurvesdialog.label3.caption
 msgid "Displ. step"
-msgstr ""
+msgstr "Displ. step"
 
 #: tfreecrosscurvesdialog.label4_.caption
 msgid "Area of bilge keels, [m^2]"
@@ -6265,7 +6265,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr ""
+msgstr "Lateral wind area, [m^2]"
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"
@@ -6273,7 +6273,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label8_.caption
 msgid "Navigation region:"
-msgstr ""
+msgstr "Navigation region:"
 
 #: tfreecrosscurvesdialog.label9_.caption
 msgid "Registry:"
@@ -6291,7 +6291,7 @@ msgstr ""
 #: tfreecrosscurvesdialog.printbutton.caption
 msgctxt "tfreecrosscurvesdialog.printbutton.caption"
 msgid "Cross curves."
-msgstr ""
+msgstr "Cross curves."
 
 #: tfreecrosscurvesdialog.printbutton.hint
 #, fuzzy
@@ -6305,15 +6305,15 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.savebutton.hint
 msgid "Save the results of the calculation."
-msgstr ""
+msgstr "Save the results of the calculation."
 
 #: tfreecrosscurvesdialog.tabsheet1.caption
 msgid "Graph"
-msgstr ""
+msgstr "Graph"
 
 #: tfreecrosscurvesdialog.tabsheet2.caption
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: tfreecrosscurvesdialog.tabsheet3.caption
 msgid "Stability diagram"
@@ -6337,15 +6337,15 @@ msgstr ""
 #: tfreecrosscurvesdialog.toolbutton1.hint
 msgctxt "tfreecrosscurvesdialog.toolbutton1.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreecrosscurvesdialog.toolbutton2.caption
 msgid "Abort"
-msgstr ""
+msgstr "Abort"
 
 #: tfreecrosscurvesdialog.toolbutton2.hint
 msgid "Abort the calculation"
-msgstr ""
+msgstr "Abort the calculation"
 
 #: tfreecrosscurvesdialog.toolbutton25.hint
 #, fuzzy
@@ -6372,7 +6372,7 @@ msgstr ""
 #: tfreedeletedialog.bbcancel.caption
 msgctxt "tfreedeletedialog.bbcancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreedeletedialog.bbdelete.caption
 #, fuzzy
@@ -6413,17 +6413,17 @@ msgstr ""
 #: tfreedeletedialog.sgobjects.columns[3].title.caption
 msgctxt "tfreedeletedialog.sgobjects.columns[3].title.caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tfreeemptymodelchooserdialog.cancelbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeemptymodelchooserdialog.caption
 msgctxt "tfreeemptymodelchooserdialog.caption"
 msgid "Background blending."
-msgstr ""
+msgstr "Background blending."
 
 #: tfreeemptymodelchooserdialog.label1.caption
 msgid "Not found"
@@ -6436,7 +6436,7 @@ msgstr ""
 #: tfreeemptymodelchooserdialog.okbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.okbutton.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeemptymodelchooserdialog.radiogroup1.caption
 msgid "Further action"
@@ -6457,7 +6457,7 @@ msgstr ""
 #: tfreeexpanedplatesdialog.checkbox1.caption
 msgctxt "tfreeexpanedplatesdialog.checkbox1.caption"
 msgid "Mirror"
-msgstr ""
+msgstr "Mirror"
 
 #: tfreeexpanedplatesdialog.closedialog.caption
 msgctxt "tfreeexpanedplatesdialog.closedialog.caption"
@@ -6472,11 +6472,11 @@ msgstr ""
 #: tfreeexpanedplatesdialog.exportdxf.caption
 msgctxt "tfreeexpanedplatesdialog.exportdxf.caption"
 msgid "DXF"
-msgstr ""
+msgstr "DXF"
 
 #: tfreeexpanedplatesdialog.exportdxf.hint
 msgid "Export the visible plates to a DXF file."
-msgstr ""
+msgstr "Export the visible plates to a DXF file."
 
 #: tfreeexpanedplatesdialog.exporttextfile.caption
 msgctxt "tfreeexpanedplatesdialog.exporttextfile.caption"
@@ -6489,41 +6489,41 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.label1.caption
 msgid "Minimum edge error"
-msgstr ""
+msgstr "Minimum edge error"
 
 #: tfreeexpanedplatesdialog.label10.caption
 msgid "X grid spacing"
-msgstr ""
+msgstr "X grid spacing"
 
 #: tfreeexpanedplatesdialog.label11.caption
 msgid "Y grid spacing"
-msgstr ""
+msgstr "Y grid spacing"
 
 #: tfreeexpanedplatesdialog.label15.caption
 msgid "Maximum area error"
-msgstr ""
+msgstr "Maximum area error"
 
 #: tfreeexpanedplatesdialog.label17.caption
 msgid "Total area error"
-msgstr ""
+msgstr "Total area error"
 
 #: tfreeexpanedplatesdialog.label3.caption
 msgid "Maximum edge error"
-msgstr ""
+msgstr "Maximum edge error"
 
 #: tfreeexpanedplatesdialog.label5.caption
 msgctxt "tfreeexpanedplatesdialog.label5.caption"
 msgid "Part name"
-msgstr ""
+msgstr "Part name"
 
 #: tfreeexpanedplatesdialog.label7.caption
 msgctxt "tfreeexpanedplatesdialog.label7.caption"
 msgid "Rotation"
-msgstr ""
+msgstr "Rotation"
 
 #: tfreeexpanedplatesdialog.label8.caption
 msgid "No. iterations"
-msgstr ""
+msgstr "No. iterations"
 
 #: tfreeexpanedplatesdialog.print.caption
 #, fuzzy
@@ -6533,7 +6533,7 @@ msgstr "Print"
 
 #: tfreeexpanedplatesdialog.print.hint
 msgid "Send unfolded plates to printer or plotter."
-msgstr ""
+msgstr "Send unfolded plates to printer or plotter."
 
 #: tfreeexpanedplatesdialog.rotateccw1.caption
 msgid "-1"
@@ -6541,7 +6541,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw1.hint
 msgid "Rotate part 1 degr. counter clockwise."
-msgstr ""
+msgstr "Rotate part 1 degr. counter clockwise."
 
 #: tfreeexpanedplatesdialog.rotateccw5.caption
 msgid "-5"
@@ -6549,7 +6549,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw5.hint
 msgid "Rotate part 5 degr. counter clockwise."
-msgstr ""
+msgstr "Rotate part 5 degr. counter clockwise."
 
 #: tfreeexpanedplatesdialog.rotateccw90.caption
 msgid "-90"
@@ -6557,7 +6557,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw90.hint
 msgid "Rotate part 90 degr. counter clockwise."
-msgstr ""
+msgstr "Rotate part 90 degr. counter clockwise."
 
 #: tfreeexpanedplatesdialog.rotatecw1.caption
 msgid "+1"
@@ -6565,7 +6565,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw1.hint
 msgid "Rotate part 1 degr. clockwise."
-msgstr ""
+msgstr "Rotate part 1 degr. clockwise."
 
 #: tfreeexpanedplatesdialog.rotatecw5.caption
 msgid "+5"
@@ -6573,7 +6573,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw5.hint
 msgid "Rotate part 5 degr. clockwise."
-msgstr ""
+msgstr "Rotate part 5 degr. clockwise."
 
 #: tfreeexpanedplatesdialog.rotatecw90.caption
 msgid "+90"
@@ -6581,16 +6581,16 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw90.hint
 msgid "Rotate part 90 degr. clockwise."
-msgstr ""
+msgstr "Rotate part 90 degr. clockwise."
 
 #: tfreeexpanedplatesdialog.savebitmap.caption
 msgctxt "tfreeexpanedplatesdialog.savebitmap.caption"
 msgid "Save bitmap"
-msgstr ""
+msgstr "Save bitmap"
 
 #: tfreeexpanedplatesdialog.savebitmap.hint
 msgid "Save the current layout as a bitmap."
-msgstr ""
+msgstr "Save the current layout as a bitmap."
 
 #: tfreeexpanedplatesdialog.showbuttocks.caption
 #, fuzzy
@@ -6600,7 +6600,7 @@ msgstr "Buttocks"
 
 #: tfreeexpanedplatesdialog.showbuttocks.hint
 msgid "Show buttocks on developed plates."
-msgstr ""
+msgstr "Show buttocks on developed plates."
 
 #: tfreeexpanedplatesdialog.showdiagonals.caption
 #, fuzzy
@@ -6610,33 +6610,33 @@ msgstr "Diagonals"
 
 #: tfreeexpanedplatesdialog.showdiagonals.hint
 msgid "Show diagonals on developed plates."
-msgstr ""
+msgstr "Show diagonals on developed plates."
 
 #: tfreeexpanedplatesdialog.showdimensions.caption
 msgid "ShowDimensions"
-msgstr ""
+msgstr "ShowDimensions"
 
 #: tfreeexpanedplatesdialog.showdimensions.hint
 msgid "Show dimensions at grid intersections."
-msgstr ""
+msgstr "Show dimensions at grid intersections."
 
 #: tfreeexpanedplatesdialog.showerroredges.caption
 msgid "ShowErrorEdges"
-msgstr ""
+msgstr "ShowErrorEdges"
 
 #: tfreeexpanedplatesdialog.showerroredges.hint
 msgid "Highlight compressed or stretched edges."
-msgstr ""
+msgstr "Highlight compressed or stretched edges."
 
 #: tfreeexpanedplatesdialog.showfillcolor.caption
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.caption"
 msgid "Solid"
-msgstr ""
+msgstr "Solid"
 
 #: tfreeexpanedplatesdialog.showfillcolor.hint
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.hint"
 msgid "Show plates with fillcolor."
-msgstr ""
+msgstr "Show plates with fillcolor."
 
 #: tfreeexpanedplatesdialog.showinterioredges.caption
 #, fuzzy
@@ -6653,11 +6653,11 @@ msgstr "Show interior edges."
 #: tfreeexpanedplatesdialog.showpartname.caption
 msgctxt "tfreeexpanedplatesdialog.showpartname.caption"
 msgid "Part name"
-msgstr ""
+msgstr "Part name"
 
 #: tfreeexpanedplatesdialog.showpartname.hint
 msgid "Show the name of each developed part."
-msgstr ""
+msgstr "Show the name of each developed part."
 
 #: tfreeexpanedplatesdialog.showstations.caption
 #, fuzzy
@@ -6667,15 +6667,15 @@ msgstr "Stations"
 
 #: tfreeexpanedplatesdialog.showstations.hint
 msgid "Show stations on developed plates."
-msgstr ""
+msgstr "Show stations on developed plates."
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.caption
 msgid "ShowSubmergedArea"
-msgstr ""
+msgstr "ShowSubmergedArea"
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.hint
 msgid "Show the submerged surface areas in a different color."
-msgstr ""
+msgstr "Show the submerged surface areas in a different color."
 
 #: tfreeexpanedplatesdialog.showwaterlines.caption
 #, fuzzy
@@ -6685,7 +6685,7 @@ msgstr "Waterlines"
 
 #: tfreeexpanedplatesdialog.showwaterlines.hint
 msgid "Show waterlines on developed plates."
-msgstr ""
+msgstr "Show waterlines on developed plates."
 
 #: tfreeexpanedplatesdialog.spineditfontsize.hint
 msgctxt "tfreeexpanedplatesdialog.spineditfontsize.hint"
@@ -6704,17 +6704,17 @@ msgstr ""
 #: tfreeexpanedplatesdialog.zoomextents.caption
 msgctxt "tfreeexpanedplatesdialog.zoomextents.caption"
 msgid "Extents"
-msgstr ""
+msgstr "Extents"
 
 #: tfreeexpanedplatesdialog.zoomextents.hint
 msgctxt "tfreeexpanedplatesdialog.zoomextents.hint"
 msgid "Zoom all."
-msgstr ""
+msgstr "Zoom all."
 
 #: tfreeexpanedplatesdialog.zoomin.caption
 msgctxt "tfreeexpanedplatesdialog.zoomin.caption"
 msgid "ZoomIn"
-msgstr ""
+msgstr "ZoomIn"
 
 #: tfreeexpanedplatesdialog.zoomin.hint
 #, fuzzy
@@ -6731,7 +6731,7 @@ msgstr "Zoom out"
 #: tfreeexpanedplatesdialog.zoomout.hint
 msgctxt "tfreeexpanedplatesdialog.zoomout.hint"
 msgid "Zoom out."
-msgstr ""
+msgstr "Zoom out."
 
 #: tfreeexpanedplatesdialog._label12.caption
 msgctxt "tfreeexpanedplatesdialog._label12.caption"
@@ -6798,28 +6798,28 @@ msgstr ""
 #: tfreeextrudedialog.bitbtn1.caption
 msgctxt "tfreeextrudedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeextrudedialog.bitbtn2.caption
 msgctxt "tfreeextrudedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeextrudedialog.caption
 msgid "Extrusion vector"
-msgstr ""
+msgstr "Extrusion vector"
 
 #: tfreeextrudedialog.label1.caption
 msgid "Longitudinal direction"
-msgstr ""
+msgstr "Longitudinal direction"
 
 #: tfreeextrudedialog.label2.caption
 msgid "Transverse direction"
-msgstr ""
+msgstr "Transverse direction"
 
 #: tfreeextrudedialog.label4.caption
 msgid "Vertical direction"
-msgstr ""
+msgstr "Vertical direction"
 
 #: tfreeextrudedialog._label3.caption
 msgctxt "tfreeextrudedialog._label3.caption"
@@ -6843,7 +6843,7 @@ msgstr ""
 #: tfreefilepreviewdialog.bitbtncancel.caption
 msgctxt "tfreefilepreviewdialog.bitbtncancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreefilepreviewdialog.bitbtnopen.caption
 msgctxt "tfreefilepreviewdialog.bitbtnopen.caption"
@@ -6852,7 +6852,7 @@ msgstr ""
 
 #: tfreefilepreviewdialog.comboboxdir.text
 msgid "."
-msgstr ""
+msgstr "."
 
 #: tfreefilepreviewdialog.editname.text
 msgid "EditName"
@@ -6888,7 +6888,7 @@ msgstr ""
 #: tfreefilepreviewdialog.properties.caption
 msgctxt "tfreefilepreviewdialog.properties.caption"
 msgid "Properties"
-msgstr ""
+msgstr "Properties"
 
 #: tfreefilepreviewdialog.scrollboxpreview.hint
 msgctxt "tfreefilepreviewdialog.scrollboxpreview.hint"
@@ -6962,12 +6962,12 @@ msgstr ""
 #: tfreegriddialog.bitbtn1.caption
 msgctxt "tfreegriddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreegriddialog.bitbtn2.caption
 msgctxt "tfreegriddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreegriddialog.caption
 msgid "Add a grid"
@@ -6992,7 +6992,7 @@ msgstr ""
 
 #: tfreegriddialog.lbstartpoint.caption
 msgid "Startpoint"
-msgstr ""
+msgstr "Startpoint"
 
 #: tfreegriddialog.lbunit1.caption
 msgctxt "tfreegriddialog.lbunit1.caption"
@@ -7173,7 +7173,7 @@ msgstr "Zoom out"
 
 #: tfreehydrodyn_maneuv.caption
 msgid "Evaluation of Turning Ability and Stability. Turning Prediction."
-msgstr ""
+msgstr "Evaluation of Turning Ability and Stability. Turning Prediction."
 
 #: tfreehydrodyn_maneuv.checkbox2.caption
 #, fuzzy
@@ -7183,47 +7183,47 @@ msgstr "Extract data from current hull"
 
 #: tfreehydrodyn_maneuv.checkbox3.caption
 msgid "Linear Evaluation"
-msgstr ""
+msgstr "Linear Evaluation"
 
 #: tfreehydrodyn_maneuv.checkbox4.caption
 msgid "Turning Prediction"
-msgstr ""
+msgstr "Turning Prediction"
 
 #: tfreehydrodyn_maneuv.checkbox5.caption
 msgid "State Variable Equations"
-msgstr ""
+msgstr "State Variable Equations"
 
 #: tfreehydrodyn_maneuv.label10.caption
 msgid "Water Density [kg/m^3]"
-msgstr ""
+msgstr "Water Density [kg/m^3]"
 
 #: tfreehydrodyn_maneuv.label11.caption
 msgid "Kinematic Viscosity [m^2/s]"
-msgstr ""
+msgstr "Kinematic Viscosity [m^2/s]"
 
 #: tfreehydrodyn_maneuv.label12.caption
 msgid "Yaw Radius of Gyration K33/LWL"
-msgstr ""
+msgstr "Yaw Radius of Gyration K33/LWL"
 
 #: tfreehydrodyn_maneuv.label13.caption
 msgid "Water Depth to Ship Draft Ratio H/T"
-msgstr ""
+msgstr "Water Depth to Ship Draft Ratio H/T"
 
 #: tfreehydrodyn_maneuv.label14.caption
 msgid "Steering Gear Time Constant [s]"
-msgstr ""
+msgstr "Steering Gear Time Constant [s]"
 
 #: tfreehydrodyn_maneuv.label15.caption
 msgid "Total Rudder Area - Fraction of LWL*T"
-msgstr ""
+msgstr "Total Rudder Area - Fraction of LWL*T"
 
 #: tfreehydrodyn_maneuv.label16.caption
 msgid "Submerged Bow Area - Fraction of LWL*T"
-msgstr ""
+msgstr "Submerged Bow Area - Fraction of LWL*T"
 
 #: tfreehydrodyn_maneuv.label17.caption
 msgid "Number of Propellers (0...2)"
-msgstr ""
+msgstr "Number of Propellers (0...2)"
 
 #: tfreehydrodyn_maneuv.label18.caption
 msgid "Type of Single Screw Stern (0-Close;1-Open;)"
@@ -7231,11 +7231,11 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.label19.caption
 msgid "Number of Rudders (0...2)"
-msgstr ""
+msgstr "Number of Rudders (0...2)"
 
 #: tfreehydrodyn_maneuv.label2.caption
 msgid "Length of Waterline LWL [m]"
-msgstr ""
+msgstr "Length of Waterline LWL [m]"
 
 #: tfreehydrodyn_maneuv.label20.caption
 msgid "Rudder Angle [degrees]"
@@ -7243,31 +7243,31 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.label3.caption
 msgid "Maximum Beam on LWL [m]"
-msgstr ""
+msgstr "Maximum Beam on LWL [m]"
 
 #: tfreehydrodyn_maneuv.label4.caption
 msgid "Draft Forward [m]"
-msgstr ""
+msgstr "Draft Forward [m]"
 
 #: tfreehydrodyn_maneuv.label5.caption
 msgid "Draft Aft [m]"
-msgstr ""
+msgstr "Draft Aft [m]"
 
 #: tfreehydrodyn_maneuv.label6.caption
 msgid "Block Coefficient on LWL Cb"
-msgstr ""
+msgstr "Block Coefficient on LWL Cb"
 
 #: tfreehydrodyn_maneuv.label7.caption
 msgid "Center of Gravity LCG (%LWL; + Fwd)"
-msgstr ""
+msgstr "Center of Gravity LCG (%LWL; + Fwd)"
 
 #: tfreehydrodyn_maneuv.label8.caption
 msgid "Midships to Rudder CE XR (%LWL; + Aft)"
-msgstr ""
+msgstr "Midships to Rudder CE XR (%LWL; + Aft)"
 
 #: tfreehydrodyn_maneuv.label9.caption
 msgid "Initial Ship Speed [knots]"
-msgstr ""
+msgstr "Initial Ship Speed [knots]"
 
 #: tfreehydrodyn_maneuv.printbutton.caption
 msgctxt "tfreehydrodyn_maneuv.printbutton.caption"
@@ -7283,7 +7283,7 @@ msgstr "Print the results of the calculation."
 #: tfreehydrodyn_maneuv.results2.caption
 msgctxt "tfreehydrodyn_maneuv.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreehydrodyn_maneuv.tabsheet1.caption
 #, fuzzy
@@ -7304,7 +7304,7 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.toolbutton17.hint
 msgid "Calculate"
-msgstr ""
+msgstr "Calculate"
 
 #: tfreehydrodyn_maneuv.toolbutton25.hint
 #, fuzzy
@@ -7365,7 +7365,7 @@ msgstr "Number of blades"
 #: tfreehydrodyn_rvrs.label12.caption
 msgctxt "tfreehydrodyn_rvrs.label12.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "Wake fraction"
 
 #: tfreehydrodyn_rvrs.label13.caption
 msgctxt "tfreehydrodyn_rvrs.label13.caption"
@@ -7396,23 +7396,23 @@ msgstr ""
 
 #: tfreehydrodyn_rvrs.label2.caption
 msgid "Length between perpendiculars [m]"
-msgstr ""
+msgstr "Length between perpendiculars [m]"
 
 #: tfreehydrodyn_rvrs.label3.caption
 msgid "Beam waterline [m]"
-msgstr ""
+msgstr "Beam waterline [m]"
 
 #: tfreehydrodyn_rvrs.label4.caption
 msgid "Midship draft [m]"
-msgstr ""
+msgstr "Midship draft [m]"
 
 #: tfreehydrodyn_rvrs.label5.caption
 msgid "Displacement [m^3]"
-msgstr ""
+msgstr "Displacement [m^3]"
 
 #: tfreehydrodyn_rvrs.label6.caption
 msgid "Wetted surface area [m^2]"
-msgstr ""
+msgstr "Wetted surface area [m^2]"
 
 #: tfreehydrodyn_rvrs.label7.caption
 #, fuzzy
@@ -7422,7 +7422,7 @@ msgstr "Number of propellers"
 
 #: tfreehydrodyn_rvrs.label8.caption
 msgid "Propeller diameter [m]"
-msgstr ""
+msgstr "Propeller diameter [m]"
 
 #: tfreehydrodyn_rvrs.label9.caption
 msgid "Pitch ratio P/D"
@@ -7454,7 +7454,7 @@ msgstr "Results"
 #: tfreehydrodyn_rvrs.tabsheet3.caption
 msgctxt "tfreehydrodyn_rvrs.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreehydrodyn_rvrs.toolbar1.caption
 msgctxt "tfreehydrodyn_rvrs.toolbar1.caption"
@@ -7525,31 +7525,31 @@ msgstr ""
 
 #: tfreehydrodyn_task1.label2.caption
 msgid "Length overall Loa [m]"
-msgstr ""
+msgstr "Length overall Loa [m]"
 
 #: tfreehydrodyn_task1.label3.caption
 msgid "Breadth [m]"
-msgstr ""
+msgstr "Breadth [m]"
 
 #: tfreehydrodyn_task1.label4.caption
 msgid "Lateral projected wind area [m2]"
-msgstr ""
+msgstr "Lateral projected wind area [m2]"
 
 #: tfreehydrodyn_task1.label5.caption
 msgid "Lateral proj. area of superstructure [m2]"
-msgstr ""
+msgstr "Lateral proj. area of superstructure [m2]"
 
 #: tfreehydrodyn_task1.label6.caption
 msgid "Transverse projected wind area [m2]"
-msgstr ""
+msgstr "Transverse projected wind area [m2]"
 
 #: tfreehydrodyn_task1.label7.caption
 msgid "Length of perimeter [m]"
-msgstr ""
+msgstr "Length of perimeter [m]"
 
 #: tfreehydrodyn_task1.label8.caption
 msgid "Distance from bow to centroid [m]"
-msgstr ""
+msgstr "Distance from bow to centroid [m]"
 
 #: tfreehydrodyn_task1.label9.caption
 msgid "Number of groups of masts, ETC."
@@ -7581,7 +7581,7 @@ msgstr "Results"
 #: tfreehydrodyn_task1.tabsheet3.caption
 msgctxt "tfreehydrodyn_task1.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreehydrodyn_task1.toolbar1.caption
 msgctxt "tfreehydrodyn_task1.toolbar1.caption"
@@ -7618,7 +7618,7 @@ msgstr ""
 #: tfreehydrostaticsdialog.buttonclose.caption
 msgctxt "tfreehydrostaticsdialog.buttonclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tfreehydrostaticsdialog.buttonprint.caption
 #, fuzzy
@@ -7634,12 +7634,12 @@ msgstr "Save"
 
 #: tfreehydrostaticsdialog.caption
 msgid "Hydrostatics results"
-msgstr ""
+msgstr "Hydrostatics results"
 
 #: tfreehydrostaticsresultsdialog.buttonclose.caption
 msgctxt "tfreehydrostaticsresultsdialog.buttonclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tfreehydrostaticsresultsdialog.buttonprint.caption
 #, fuzzy
@@ -7656,25 +7656,25 @@ msgstr "Save"
 #: tfreehydrostaticsresultsdialog.caption
 msgctxt "tfreehydrostaticsresultsdialog.caption"
 msgid "Hydrostatics"
-msgstr ""
+msgstr "Hydrostatics"
 
 #: tfreeinsertplanedialog.bitbtn1.caption
 msgctxt "tfreeinsertplanedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeinsertplanedialog.bitbtn2.caption
 msgctxt "tfreeinsertplanedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeinsertplanedialog.caption
 msgid "Insert multiple points"
-msgstr ""
+msgstr "Insert multiple points"
 
 #: tfreeinsertplanedialog.checkbox1.caption
 msgid "Add control curve"
-msgstr ""
+msgstr "Add control curve"
 
 #: tfreeinsertplanedialog.edit1.text
 msgid "Edit1"
@@ -7696,62 +7696,62 @@ msgstr "Distance"
 
 #: tfreeinsertplanedialog.label2.caption
 msgid "Min. value"
-msgstr ""
+msgstr "Min. value"
 
 #: tfreeinsertplanedialog.label5.caption
 msgid "Max. value"
-msgstr ""
+msgstr "Max. value"
 
 #: tfreeinsertplanedialog.radiobutton1.caption
 msgctxt "tfreeinsertplanedialog.radiobutton1.caption"
 msgid "Transverse plane"
-msgstr ""
+msgstr "Transverse plane"
 
 #: tfreeinsertplanedialog.radiobutton2.caption
 msgctxt "tfreeinsertplanedialog.radiobutton2.caption"
 msgid "Horizontal plane"
-msgstr ""
+msgstr "Horizontal plane"
 
 #: tfreeinsertplanedialog.radiobutton3.caption
 msgctxt "tfreeinsertplanedialog.radiobutton3.caption"
 msgid "Vertical plane"
-msgstr ""
+msgstr "Vertical plane"
 
 #: tfreeintersectiondialog.addone.caption
 msgid "Add..."
-msgstr ""
+msgstr "Add..."
 
 #: tfreeintersectiondialog.addone.hint
 msgid "Add one station."
-msgstr ""
+msgstr "Add one station."
 
 #: tfreeintersectiondialog.addrange.caption
 msgid "Range"
-msgstr ""
+msgstr "Range"
 
 #: tfreeintersectiondialog.addrange.hint
 msgid "Add a whole range of intersection curves."
-msgstr ""
+msgstr "Add a whole range of intersection curves."
 
 #: tfreeintersectiondialog.caption
 msgid "Intersections"
-msgstr ""
+msgstr "Intersections"
 
 #: tfreeintersectiondialog.closedialog.caption
 msgid "CloseDialog"
-msgstr ""
+msgstr "CloseDialog"
 
 #: tfreeintersectiondialog.closedialog.hint
 msgid "Close this dialog."
-msgstr ""
+msgstr "Close this dialog."
 
 #: tfreeintersectiondialog.deleteall.caption
 msgid "Delete all"
-msgstr ""
+msgstr "Delete all"
 
 #: tfreeintersectiondialog.deleteall.hint
 msgid "Delete all stations."
-msgstr ""
+msgstr "Delete all stations."
 
 #: tfreeintersectiondialog.deleteselected.caption
 msgid "DeleteSelected"
@@ -7837,7 +7837,7 @@ msgstr "Buttocks"
 
 #: tfreeintersectiondialog.showbuttocks.hint
 msgid "Switch to view or add buttocks."
-msgstr ""
+msgstr "Switch to view or add buttocks."
 
 #: tfreeintersectiondialog.showdiagonals.caption
 #, fuzzy
@@ -7847,7 +7847,7 @@ msgstr "Diagonals"
 
 #: tfreeintersectiondialog.showdiagonals.hint
 msgid "Switch to view or add diagonals."
-msgstr ""
+msgstr "Switch to view or add diagonals."
 
 #: tfreeintersectiondialog.showstations.caption
 #, fuzzy
@@ -7857,7 +7857,7 @@ msgstr "Stations"
 
 #: tfreeintersectiondialog.showstations.hint
 msgid "Switch to view or add stations."
-msgstr ""
+msgstr "Switch to view or add stations."
 
 #: tfreeintersectiondialog.showwaterlines.caption
 #, fuzzy
@@ -7867,7 +7867,7 @@ msgstr "Waterlines"
 
 #: tfreeintersectiondialog.showwaterlines.hint
 msgid "Switch to view or add waterlines."
-msgstr ""
+msgstr "Switch to view or add waterlines."
 
 #: tfreeintersectiondialog.toolbar1.caption
 msgctxt "tfreeintersectiondialog.toolbar1.caption"
@@ -7910,16 +7910,16 @@ msgstr "Waterlines"
 #: tfreeintersectlayerdialog.bitbtn1.caption
 msgctxt "tfreeintersectlayerdialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeintersectlayerdialog.bitbtn2.caption
 msgctxt "tfreeintersectlayerdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeintersectlayerdialog.caption
 msgid "Intersect two layers."
-msgstr ""
+msgstr "Intersect two layers."
 
 #: tfreeintersectlayerdialog.combobox1.text
 msgctxt "tfreeintersectlayerdialog.combobox1.text"
@@ -7932,11 +7932,11 @@ msgstr ""
 
 #: tfreeintersectlayerdialog.label1.caption
 msgid "Insert new points in"
-msgstr ""
+msgstr "Insert new points in"
 
 #: tfreeintersectlayerdialog.label2.caption
 msgid "Find intersection with"
-msgstr ""
+msgstr "Find intersection with"
 
 #: tfreekeelwizarddialog.actionmodeshade.caption
 #, fuzzy
@@ -7978,22 +7978,22 @@ msgstr ""
 #: tfreekeelwizarddialog.bitbtn1.caption
 msgctxt "tfreekeelwizarddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreekeelwizarddialog.bitbtn2.caption
 msgctxt "tfreekeelwizarddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreekeelwizarddialog.button1.caption
 msgctxt "tfreekeelwizarddialog.button1.caption"
 msgid "Calc"
-msgstr ""
+msgstr "Calc"
 
 #: tfreekeelwizarddialog.button2.caption
 msgctxt "tfreekeelwizarddialog.button2.caption"
 msgid "Calc"
-msgstr ""
+msgstr "Calc"
 
 #: tfreekeelwizarddialog.caption
 #, fuzzy
@@ -8023,7 +8023,7 @@ msgstr "Keel"
 
 #: tfreekeelwizarddialog.comboboxplanformshape.text
 msgid "Trapezoidal"
-msgstr ""
+msgstr "Trapezoidal"
 
 #: tfreekeelwizarddialog.comboboxsubdivisionlevel.hint
 msgid "Desired Subdivision Level"
@@ -8032,16 +8032,16 @@ msgstr ""
 #: tfreekeelwizarddialog.comboboxsubdivisionlevel.text
 msgctxt "tfreekeelwizarddialog.comboboxsubdivisionlevel.text"
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: tfreekeelwizarddialog.groupbox1.caption
 msgctxt "tfreekeelwizarddialog.groupbox1.caption"
 msgid "Properties"
-msgstr ""
+msgstr "Properties"
 
 #: tfreekeelwizarddialog.inputbulbshape.text
 msgid "No bullb"
-msgstr ""
+msgstr "No bullb"
 
 #: tfreekeelwizarddialog.inputbulbwing.text
 msgid "NACA0020"
@@ -8049,28 +8049,28 @@ msgstr ""
 
 #: tfreekeelwizarddialog.inputmaterial.text
 msgid "Plumbum"
-msgstr ""
+msgstr "Plumbum"
 
 #: tfreekeelwizarddialog.label1.caption
 msgid "Type of appendage"
-msgstr ""
+msgstr "Type of appendage"
 
 #: tfreekeelwizarddialog.label10.caption
 msgid "Wing width"
-msgstr ""
+msgstr "Wing width"
 
 #: tfreekeelwizarddialog.label11.caption
 msgid "Mean chord length"
-msgstr ""
+msgstr "Mean chord length"
 
 #: tfreekeelwizarddialog.label12.caption
 msgctxt "tfreekeelwizarddialog.label12.caption"
 msgid "Wing section"
-msgstr ""
+msgstr "Wing section"
 
 #: tfreekeelwizarddialog.label13.caption
 msgid "Geometric aspect ratio"
-msgstr ""
+msgstr "Geometric aspect ratio"
 
 #: tfreekeelwizarddialog.label14.caption
 #, fuzzy
@@ -8080,7 +8080,7 @@ msgstr "Length"
 
 #: tfreekeelwizarddialog.label15.caption
 msgid "Effective aspect ratio"
-msgstr ""
+msgstr "Effective aspect ratio"
 
 #: tfreekeelwizarddialog.label16.caption
 msgctxt "tfreekeelwizarddialog.label16.caption"
@@ -8090,21 +8090,21 @@ msgstr ""
 #: tfreekeelwizarddialog.label17.caption
 msgctxt "tfreekeelwizarddialog.label17.caption"
 msgid "Wing section"
-msgstr ""
+msgstr "Wing section"
 
 #: tfreekeelwizarddialog.label18.caption
 msgctxt "tfreekeelwizarddialog.label18.caption"
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: tfreekeelwizarddialog.label19.caption
 msgid "Bulb's material"
-msgstr ""
+msgstr "Bulb's material"
 
 #: tfreekeelwizarddialog.label2.caption
 msgctxt "tfreekeelwizarddialog.label2.caption"
 msgid "Planform shape"
-msgstr ""
+msgstr "Planform shape"
 
 #: tfreekeelwizarddialog.label20.caption
 msgid "Volume COG"
@@ -8113,7 +8113,7 @@ msgstr ""
 #: tfreekeelwizarddialog.label21.caption
 msgctxt "tfreekeelwizarddialog.label21.caption"
 msgid "Specific weight"
-msgstr ""
+msgstr "Specific weight"
 
 #: tfreekeelwizarddialog.label22.caption
 #, fuzzy
@@ -8124,7 +8124,7 @@ msgstr "Wetted area"
 #: tfreekeelwizarddialog.label23.caption
 msgctxt "tfreekeelwizarddialog.label23.caption"
 msgid "Vertical compression"
-msgstr ""
+msgstr "Vertical compression"
 
 #: tfreekeelwizarddialog.label24.caption
 #, fuzzy
@@ -8135,11 +8135,11 @@ msgstr "Thickness"
 #: tfreekeelwizarddialog.label25.caption
 msgctxt "tfreekeelwizarddialog.label25.caption"
 msgid "Delta tip"
-msgstr ""
+msgstr "Delta tip"
 
 #: tfreekeelwizarddialog.label26.caption
 msgid "No. vertical points"
-msgstr ""
+msgstr "No. vertical points"
 
 #: tfreekeelwizarddialog.label27.caption
 msgctxt "tfreekeelwizarddialog.label27.caption"
@@ -8149,15 +8149,15 @@ msgstr ""
 #: tfreekeelwizarddialog.label28.caption
 msgctxt "tfreekeelwizarddialog.label28.caption"
 msgid "Vertical compression"
-msgstr ""
+msgstr "Vertical compression"
 
 #: tfreekeelwizarddialog.label29.caption
 msgid "Bulb weight"
-msgstr ""
+msgstr "Bulb weight"
 
 #: tfreekeelwizarddialog.label3.caption
 msgid "Root chord length"
-msgstr ""
+msgstr "Root chord length"
 
 #: tfreekeelwizarddialog.label30.caption
 msgid "Horizontal compression"
@@ -8165,25 +8165,25 @@ msgstr ""
 
 #: tfreekeelwizarddialog.label4.caption
 msgid "Tip chord length"
-msgstr ""
+msgstr "Tip chord length"
 
 #: tfreekeelwizarddialog.label5.caption
 msgid "Span"
-msgstr ""
+msgstr "Span"
 
 #: tfreekeelwizarddialog.label6.caption
 msgctxt "tfreekeelwizarddialog.label6.caption"
 msgid "Delta tip"
-msgstr ""
+msgstr "Delta tip"
 
 #: tfreekeelwizarddialog.label7.caption
 msgid "Planform area"
-msgstr ""
+msgstr "Planform area"
 
 #: tfreekeelwizarddialog.label8.caption
 msgctxt "tfreekeelwizarddialog.label8.caption"
 msgid "Planform shape"
-msgstr ""
+msgstr "Planform shape"
 
 #: tfreekeelwizarddialog.label9.caption
 msgid "Planform COG"
@@ -8215,19 +8215,19 @@ msgstr ""
 
 #: tfreekeelwizarddialog.speedbutton1.caption
 msgid "Send"
-msgstr ""
+msgstr "Send"
 
 #: tfreekeelwizarddialog.speedbutton2.caption
 msgid "Save as part"
-msgstr ""
+msgstr "Save as part"
 
 #: tfreekeelwizarddialog.tabsheet1.caption
 msgid "3D view"
-msgstr ""
+msgstr "3D view"
 
 #: tfreekeelwizarddialog.tabsheet2.caption
 msgid "Lift and drag"
-msgstr ""
+msgstr "Lift and drag"
 
 #: tfreekeelwizarddialog.tabsheet3.caption
 #, fuzzy
@@ -8237,7 +8237,7 @@ msgstr "Keel"
 
 #: tfreekeelwizarddialog.tabsheet4.caption
 msgid "Bulb"
-msgstr ""
+msgstr "Bulb"
 
 #: tfreekeelwizarddialog._combobox2.text
 msgid "NACA63-006"
@@ -8289,7 +8289,7 @@ msgstr ""
 #: tfreelackenbydialog.bitbtn2.caption
 msgctxt "tfreelackenbydialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreelackenbydialog.button1.caption
 #, fuzzy
@@ -8299,15 +8299,15 @@ msgstr "Transform"
 
 #: tfreelackenbydialog.button1.hint
 msgid "Start the hullform transformation."
-msgstr ""
+msgstr "Start the hullform transformation."
 
 #: tfreelackenbydialog.caption
 msgid "Lackenby hullform transformation."
-msgstr ""
+msgstr "Lackenby hullform transformation."
 
 #: tfreelackenbydialog.checkbox1.caption
 msgid "Redraw after each iteration"
-msgstr ""
+msgstr "Redraw after each iteration"
 
 #: tfreelackenbydialog.label1.caption
 #, fuzzy
@@ -8317,27 +8317,27 @@ msgstr "Displacement"
 
 #: tfreelackenbydialog.label10.caption
 msgid "Maximum no. of iterations"
-msgstr ""
+msgstr "Maximum no. of iterations"
 
 #: tfreelackenbydialog.label11.caption
 msgid "Prismatic coeff. aftship"
-msgstr ""
+msgstr "Prismatic coeff. aftship"
 
 #: tfreelackenbydialog.label13.caption
 msgid "Prismatic coeff. foreship"
-msgstr ""
+msgstr "Prismatic coeff. foreship"
 
 #: tfreelackenbydialog.label15.caption
 msgid "Maximum displacement"
-msgstr ""
+msgstr "Maximum displacement"
 
 #: tfreelackenbydialog.label2.caption
 msgid "Current"
-msgstr ""
+msgstr "Current"
 
 #: tfreelackenbydialog.label3.caption
 msgid "Desired"
-msgstr ""
+msgstr "Desired"
 
 #: tfreelackenbydialog.label4.caption
 msgid "Label4"
@@ -8351,7 +8351,7 @@ msgstr "Block coefficient"
 
 #: tfreelackenbydialog.label6.caption
 msgid "Long. center of buoyancy"
-msgstr ""
+msgstr "Long. center of buoyancy"
 
 #: tfreelackenbydialog.label7.caption
 #, fuzzy
@@ -8361,7 +8361,7 @@ msgstr "Prismatic coefficient"
 
 #: tfreelackenbydialog.label8.caption
 msgid "Difference"
-msgstr ""
+msgstr "Difference"
 
 #: tfreelackenbydialog.label9.caption
 msgid "Label9"
@@ -8375,7 +8375,7 @@ msgstr ""
 #: tfreelackenbydialog.speedbutton1.caption
 msgctxt "tfreelackenbydialog.speedbutton1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreelackenbydialog._label12.caption
 msgid "_Label12"
@@ -8393,7 +8393,7 @@ msgstr ""
 
 #: tfreelayerdialog.caption
 msgid "Layer properties."
-msgstr ""
+msgstr "Layer properties."
 
 #: tfreelayerdialog.cbcontrolnetvisible.caption
 msgid "Control Net Visible"
@@ -8401,23 +8401,23 @@ msgstr ""
 
 #: tfreelayerdialog.checkbox1.caption
 msgid "Developable"
-msgstr ""
+msgstr "Developable"
 
 #: tfreelayerdialog.checkbox2.caption
 msgid "Intersection curves"
-msgstr ""
+msgstr "Intersection curves"
 
 #: tfreelayerdialog.checkbox3.caption
 msgid "Use for hydrostatics"
-msgstr ""
+msgstr "Use for hydrostatics"
 
 #: tfreelayerdialog.checkbox4.caption
 msgid "Show in linesplan"
-msgstr ""
+msgstr "Show in linesplan"
 
 #: tfreelayerdialog.checkbox5.caption
 msgid "Symmetric"
-msgstr ""
+msgstr "Symmetric"
 
 #: tfreelayerdialog.checkbox6.caption
 msgid "Set weigth and CoG manually"
@@ -8430,20 +8430,20 @@ msgstr ""
 #: tfreelayerdialog.label1.caption
 msgctxt "tfreelayerdialog.label1.caption"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: tfreelayerdialog.label2.caption
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: tfreelayerdialog.label3.caption
 msgctxt "tfreelayerdialog.label3.caption"
 msgid "Specific weight"
-msgstr ""
+msgstr "Specific weight"
 
 #: tfreelayerdialog.label4.caption
 msgid "Transparency"
-msgstr ""
+msgstr "Transparency"
 
 #: tfreelayerdialog.label5.caption
 #, fuzzy
@@ -8472,15 +8472,15 @@ msgstr ""
 
 #: tfreelayerdialog.label6_2.caption
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: tfreelayerdialog.label6_3.caption
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: tfreelayerdialog.label6_4.caption
 msgid "Z:"
-msgstr ""
+msgstr "Z:"
 
 #: tfreelayerdialog.label7.caption
 #, fuzzy
@@ -8496,23 +8496,23 @@ msgstr "Weight"
 
 #: tfreelayerdialog.label9.caption
 msgid "Center of gravity"
-msgstr ""
+msgstr "Center of gravity"
 
 #: tfreelayerdialog.movedown.caption
 msgid "Down"
-msgstr ""
+msgstr "Down"
 
 #: tfreelayerdialog.movedown.hint
 msgid "Move the layer down in the list."
-msgstr ""
+msgstr "Move the layer down in the list."
 
 #: tfreelayerdialog.moveup.caption
 msgid "Up"
-msgstr ""
+msgstr "Up"
 
 #: tfreelayerdialog.moveup.hint
 msgid "Move the layer up in the list."
-msgstr ""
+msgstr "Move the layer up in the list."
 
 #: tfreelayerdialog.toolbar1.caption
 msgctxt "tfreelayerdialog.toolbar1.caption"
@@ -8521,15 +8521,15 @@ msgstr ""
 
 #: tfreelayerdialog.toolbutton1.caption
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #: tfreelayerdialog.toolbutton1.hint
 msgid "Close this window."
-msgstr ""
+msgstr "Close this window."
 
 #: tfreelayerdialog.toolbutton20.hint
 msgid "Create a new empty layer."
-msgstr ""
+msgstr "Create a new empty layer."
 
 #: tfreelayerdialog.toolbutton3.caption
 msgid "ToolButton3"
@@ -8537,7 +8537,7 @@ msgstr ""
 
 #: tfreelayerdialog.toolbutton3.hint
 msgid "Remove all empty layers from the model."
-msgstr ""
+msgstr "Remove all empty layers from the model."
 
 #: tfreelayerdialog._label10.caption
 msgctxt "tfreelayerdialog._label10.caption"
@@ -8574,7 +8574,7 @@ msgstr ""
 #: tfreelayervisibilitydialog.bbclose.caption
 msgctxt "tfreelayervisibilitydialog.bbclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tfreelayervisibilitydialog.caption
 msgid "Layer visibility"
@@ -8606,24 +8606,24 @@ msgstr "Layer"
 
 #: tfreelinesplanform.caption
 msgid "Linesplan."
-msgstr ""
+msgstr "Linesplan."
 
 #: tfreelinesplanframe.exportdxf.caption
 msgctxt "tfreelinesplanframe.exportdxf.caption"
 msgid "DXF"
-msgstr ""
+msgstr "DXF"
 
 #: tfreelinesplanframe.exportdxf.hint
 msgid "Export the formatted linesplan to a DXF file."
-msgstr ""
+msgstr "Export the formatted linesplan to a DXF file."
 
 #: tfreelinesplanframe.mirrorplanview.caption
 msgid "MirrorPlanView"
-msgstr ""
+msgstr "MirrorPlanView"
 
 #: tfreelinesplanframe.mirrorplanview.hint
 msgid "Show both sides of the ship in plan view."
-msgstr ""
+msgstr "Show both sides of the ship in plan view."
 
 #: tfreelinesplanframe.print.caption
 #, fuzzy
@@ -8633,34 +8633,34 @@ msgstr "Print"
 
 #: tfreelinesplanframe.print.hint
 msgid "Send the linesplan to the printer."
-msgstr ""
+msgstr "Send the linesplan to the printer."
 
 #: tfreelinesplanframe.savebitmap.caption
 msgctxt "tfreelinesplanframe.savebitmap.caption"
 msgid "Save bitmap"
-msgstr ""
+msgstr "Save bitmap"
 
 #: tfreelinesplanframe.savebitmap.hint
 msgid "Save the linesplan as a bitmap."
-msgstr ""
+msgstr "Save the linesplan as a bitmap."
 
 #: tfreelinesplanframe.showfillcolor.caption
 msgctxt "tfreelinesplanframe.showfillcolor.caption"
 msgid "Solid"
-msgstr ""
+msgstr "Solid"
 
 #: tfreelinesplanframe.showfillcolor.hint
 msgctxt "tfreelinesplanframe.showfillcolor.hint"
 msgid "Show plates with fillcolor."
-msgstr ""
+msgstr "Show plates with fillcolor."
 
 #: tfreelinesplanframe.showmonochrome.caption
 msgid "Monochrome"
-msgstr ""
+msgstr "Monochrome"
 
 #: tfreelinesplanframe.showmonochrome.hint
 msgid "Draw the linesplan in black and white only."
-msgstr ""
+msgstr "Draw the linesplan in black and white only."
 
 #: tfreelinesplanframe.spinedit1.hint
 msgctxt "tfreelinesplanframe.spinedit1.hint"
@@ -8687,26 +8687,26 @@ msgstr ""
 
 #: tfreelinesplanframe.uselights.caption
 msgid "Use lights"
-msgstr ""
+msgstr "Use lights"
 
 #: tfreelinesplanframe.uselights.hint
 msgid "Use lights in solid color drawing mode."
-msgstr ""
+msgstr "Use lights in solid color drawing mode."
 
 #: tfreelinesplanframe.zoomextents.caption
 msgctxt "tfreelinesplanframe.zoomextents.caption"
 msgid "Extents"
-msgstr ""
+msgstr "Extents"
 
 #: tfreelinesplanframe.zoomextents.hint
 msgctxt "tfreelinesplanframe.zoomextents.hint"
 msgid "Zoom all."
-msgstr ""
+msgstr "Zoom all."
 
 #: tfreelinesplanframe.zoomin.caption
 msgctxt "tfreelinesplanframe.zoomin.caption"
 msgid "ZoomIn"
-msgstr ""
+msgstr "ZoomIn"
 
 #: tfreelinesplanframe.zoomin.hint
 #, fuzzy
@@ -8723,16 +8723,16 @@ msgstr "Zoom out"
 #: tfreelinesplanframe.zoomout.hint
 msgctxt "tfreelinesplanframe.zoomout.hint"
 msgid "Zoom out."
-msgstr ""
+msgstr "Zoom out."
 
 #: tfreemichletoutputdialog.cancelbutton.caption
 msgctxt "tfreemichletoutputdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreemichletoutputdialog.caption
 msgid "Michlet file generator."
-msgstr ""
+msgstr "Michlet file generator."
 
 #: tfreemichletoutputdialog.group1.caption
 msgid "Skin friction method. "
@@ -8756,26 +8756,26 @@ msgstr ""
 
 #: tfreemichletoutputdialog.label1.caption
 msgid "Number of stations (5-81)"
-msgstr ""
+msgstr "Number of stations (5-81)"
 
 #: tfreemichletoutputdialog.label10.caption
 msgctxt "tfreemichletoutputdialog.label10.caption"
 msgid "Water kinematic viscosity"
-msgstr ""
+msgstr "Water kinematic viscosity"
 
 #: tfreemichletoutputdialog.label12.caption
 msgctxt "tfreemichletoutputdialog.label12.caption"
 msgid "Water depth"
-msgstr ""
+msgstr "Water depth"
 
 #: tfreemichletoutputdialog.label14.caption
 msgctxt "tfreemichletoutputdialog.label14.caption"
 msgid "Distance between center of hulls:"
-msgstr ""
+msgstr "Distance between center of hulls:"
 
 #: tfreemichletoutputdialog.label2.caption
 msgid "Number of waterlines (5-81)"
-msgstr ""
+msgstr "Number of waterlines (5-81)"
 
 #: tfreemichletoutputdialog.label21.caption
 #, fuzzy
@@ -8786,7 +8786,7 @@ msgstr "Start speed"
 #: tfreemichletoutputdialog.label22.caption
 msgctxt "tfreemichletoutputdialog.label22.caption"
 msgid "[knots]"
-msgstr ""
+msgstr "[knots]"
 
 #: tfreemichletoutputdialog.label23.caption
 #, fuzzy
@@ -8797,11 +8797,11 @@ msgstr "End speed"
 #: tfreemichletoutputdialog.label24.caption
 msgctxt "tfreemichletoutputdialog.label24.caption"
 msgid "[knots]"
-msgstr ""
+msgstr "[knots]"
 
 #: tfreemichletoutputdialog.label27.caption
 msgid "Number of speeds (2-100)"
-msgstr ""
+msgstr "Number of speeds (2-100)"
 
 #: tfreemichletoutputdialog.label3.caption
 #, fuzzy
@@ -8818,11 +8818,11 @@ msgstr "Length"
 #: tfreemichletoutputdialog.label5.caption
 msgctxt "tfreemichletoutputdialog.label5.caption"
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: tfreemichletoutputdialog.label6.caption
 msgid "Gravitational acceleration g"
-msgstr ""
+msgstr "Gravitational acceleration g"
 
 #: tfreemichletoutputdialog.label7.caption
 #, fuzzy
@@ -8833,7 +8833,7 @@ msgstr "Water density"
 #: tfreemichletoutputdialog.okbutton.caption
 msgctxt "tfreemichletoutputdialog.okbutton.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreemichletoutputdialog.panel12.caption
 msgid "Panel12"
@@ -8842,17 +8842,17 @@ msgstr ""
 #: tfreemichletoutputdialog.radiobutton1.caption
 msgctxt "tfreemichletoutputdialog.radiobutton1.caption"
 msgid "Monohull"
-msgstr ""
+msgstr "Monohull"
 
 #: tfreemichletoutputdialog.radiobutton2.caption
 msgctxt "tfreemichletoutputdialog.radiobutton2.caption"
 msgid "Monohull, send as catamaran"
-msgstr ""
+msgstr "Monohull, send as catamaran"
 
 #: tfreemichletoutputdialog.radiobutton3.caption
 msgctxt "tfreemichletoutputdialog.radiobutton3.caption"
 msgid "Catamaran"
-msgstr ""
+msgstr "Catamaran"
 
 #: tfreemichletoutputdialog.savefile.caption
 #, fuzzy
@@ -8863,7 +8863,7 @@ msgstr "Save"
 #: tfreemichletoutputdialog.tabsheet1.caption
 msgctxt "tfreemichletoutputdialog.tabsheet1.caption"
 msgid "Hull geometry"
-msgstr ""
+msgstr "Hull geometry"
 
 #: tfreemichletoutputdialog.tabsheet2.caption
 #, fuzzy
@@ -8874,11 +8874,11 @@ msgstr "Resistance"
 #: tfreemichletoutputdialog.tabsheet3.caption
 msgctxt "tfreemichletoutputdialog.tabsheet3.caption"
 msgid "Environment"
-msgstr ""
+msgstr "Environment"
 
 #: tfreemichletoutputdialog.tabsheet4.caption
 msgid "Waves"
-msgstr ""
+msgstr "Waves"
 
 #: tfreemichletoutputdialog._label11.caption
 msgctxt "tfreemichletoutputdialog._label11.caption"
@@ -8933,7 +8933,7 @@ msgstr ""
 
 #: tfreemichletoutputdialog._label29.caption
 msgid "R1"
-msgstr ""
+msgstr "R1"
 
 #: tfreemichletoutputdialog._label30.caption
 msgid "Beta"
@@ -9007,21 +9007,21 @@ msgstr ""
 #: tfreemirrorplanedialog.bitbtn1.caption
 msgctxt "tfreemirrorplanedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreemirrorplanedialog.bitbtn2.caption
 msgctxt "tfreemirrorplanedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreemirrorplanedialog.caption
 msgctxt "tfreemirrorplanedialog.caption"
 msgid "Mirror"
-msgstr ""
+msgstr "Mirror"
 
 #: tfreemirrorplanedialog.checkbox1.caption
 msgid "Connect to existing points"
-msgstr ""
+msgstr "Connect to existing points"
 
 #: tfreemirrorplanedialog.groupbox1.caption
 msgid "3D Mirror plane. "
@@ -9036,44 +9036,44 @@ msgstr "Distance"
 #: tfreemirrorplanedialog.radiobutton1.caption
 msgctxt "tfreemirrorplanedialog.radiobutton1.caption"
 msgid "Transverse plane"
-msgstr ""
+msgstr "Transverse plane"
 
 #: tfreemirrorplanedialog.radiobutton2.caption
 msgctxt "tfreemirrorplanedialog.radiobutton2.caption"
 msgid "Horizontal plane"
-msgstr ""
+msgstr "Horizontal plane"
 
 #: tfreemirrorplanedialog.radiobutton3.caption
 msgctxt "tfreemirrorplanedialog.radiobutton3.caption"
 msgid "Vertical plane"
-msgstr ""
+msgstr "Vertical plane"
 
 #: tfreenewmodeldialog.bitbtn1.caption
 msgctxt "tfreenewmodeldialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreenewmodeldialog.bitbtn2.caption
 msgctxt "tfreenewmodeldialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreenewmodeldialog.caption
 msgid "New model."
-msgstr ""
+msgstr "New model."
 
 #: tfreenewmodeldialog.combobox1.text
 msgctxt "tfreenewmodeldialog.combobox1.text"
 msgid "Meters"
-msgstr ""
+msgstr "Meters"
 
 #: tfreenewmodeldialog.label1.caption
 msgid "No. points in longitudinal direction"
-msgstr ""
+msgstr "No. points in longitudinal direction"
 
 #: tfreenewmodeldialog.label2.caption
 msgid "No. points in vertical direction"
-msgstr ""
+msgstr "No. points in vertical direction"
 
 #: tfreenewmodeldialog.label3.caption
 #, fuzzy
@@ -9084,7 +9084,7 @@ msgstr "Length"
 #: tfreenewmodeldialog.label4.caption
 msgctxt "tfreenewmodeldialog.label4.caption"
 msgid "Beam"
-msgstr ""
+msgstr "Beam"
 
 #: tfreenewmodeldialog.label5.caption
 #, fuzzy
@@ -9095,16 +9095,16 @@ msgstr "Draft"
 #: tfreenewmodeldialog.label6.caption
 msgctxt "tfreenewmodeldialog.label6.caption"
 msgid "Units"
-msgstr ""
+msgstr "Units"
 
 #: tfreepointgroupform.bitbtncancel.caption
 msgctxt "tfreepointgroupform.bitbtncancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreepointgroupform.bitbtnok.caption
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: tfreepointgroupform.caption
 msgid "Point Groups"
@@ -9142,12 +9142,12 @@ msgstr "Cancel"
 #: tfreepreferencesdialog.bitbtnresetcolors.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetcolors.caption"
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: tfreepreferencesdialog.bitbtnresetdirs.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetdirs.caption"
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: tfreepreferencesdialog.caption
 msgid "|Preferences.|"
@@ -9210,23 +9210,23 @@ msgstr ""
 
 #: tfreepreferencesdialog.label1.caption
 msgid "Viewport background"
-msgstr ""
+msgstr "Viewport background"
 
 #: tfreepreferencesdialog.label10.caption
 msgid "Dart points"
-msgstr ""
+msgstr "Dart points"
 
 #: tfreepreferencesdialog.label11.caption
 msgid "Selected items"
-msgstr ""
+msgstr "Selected items"
 
 #: tfreepreferencesdialog.label12.caption
 msgid "Viewport grid"
-msgstr ""
+msgstr "Viewport grid"
 
 #: tfreepreferencesdialog.label13.caption
 msgid "Grid font"
-msgstr ""
+msgstr "Grid font"
 
 #: tfreepreferencesdialog.label14.caption
 #, fuzzy
@@ -9248,11 +9248,11 @@ msgstr "Waterlines"
 
 #: tfreepreferencesdialog.label17.caption
 msgid "Controlpoint size"
-msgstr ""
+msgstr "Controlpoint size"
 
 #: tfreepreferencesdialog.label18.caption
 msgid "Surface normals"
-msgstr ""
+msgstr "Surface normals"
 
 #: tfreepreferencesdialog.label19.caption
 #, fuzzy
@@ -9262,11 +9262,11 @@ msgstr "Diagonals"
 
 #: tfreepreferencesdialog.label2.caption
 msgid "New surfaces"
-msgstr ""
+msgstr "New surfaces"
 
 #: tfreepreferencesdialog.label20.caption
 msgid "Leak points"
-msgstr ""
+msgstr "Leak points"
 
 #: tfreepreferencesdialog.label21.caption
 #, fuzzy
@@ -9276,7 +9276,7 @@ msgstr "Markers"
 
 #: tfreepreferencesdialog.label22.caption
 msgid "Curvature plots"
-msgstr ""
+msgstr "Curvature plots"
 
 #: tfreepreferencesdialog.label23.caption
 #, fuzzy
@@ -9286,19 +9286,19 @@ msgstr "Control curves"
 
 #: tfreepreferencesdialog.label24.caption
 msgid "Hydrostatics font color"
-msgstr ""
+msgstr "Hydrostatics font color"
 
 #: tfreepreferencesdialog.label25.caption
 msgid "Zebra stripes color"
-msgstr ""
+msgstr "Zebra stripes color"
 
 #: tfreepreferencesdialog.label26.caption
 msgid "Language"
-msgstr ""
+msgstr "Language"
 
 #: tfreepreferencesdialog.label27.caption
 msgid "Max. undo memory (Mb)"
-msgstr ""
+msgstr "Max. undo memory (Mb)"
 
 #: tfreepreferencesdialog.label28.caption
 msgid "Font size"
@@ -9310,7 +9310,7 @@ msgstr ""
 
 #: tfreepreferencesdialog.label3.caption
 msgid "Submerged surfaces"
-msgstr ""
+msgstr "Submerged surfaces"
 
 #: tfreepreferencesdialog.label30.caption
 msgid "Executables"
@@ -9362,27 +9362,27 @@ msgstr ""
 
 #: tfreepreferencesdialog.label4.caption
 msgid "Regular control edges"
-msgstr ""
+msgstr "Regular control edges"
 
 #: tfreepreferencesdialog.label5.caption
 msgid "Crease edges (control)"
-msgstr ""
+msgstr "Crease edges (control)"
 
 #: tfreepreferencesdialog.label6.caption
 msgid "Crease edges (interior)"
-msgstr ""
+msgstr "Crease edges (interior)"
 
 #: tfreepreferencesdialog.label7.caption
 msgid "Regular control points"
-msgstr ""
+msgstr "Regular control points"
 
 #: tfreepreferencesdialog.label8.caption
 msgid "Crease points"
-msgstr ""
+msgstr "Crease points"
 
 #: tfreepreferencesdialog.label9.caption
 msgid "Corner points"
-msgstr ""
+msgstr "Corner points"
 
 #: tfreepreferencesdialog.labelencoding.caption
 msgid "Encoding for FBM"
@@ -9450,37 +9450,37 @@ msgstr ""
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeprojectsettingsdialog.bitbtn2.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeprojectsettingsdialog.caption
 msgid "Project settings."
-msgstr ""
+msgstr "Project settings."
 
 #: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
 msgid "Save preview image"
-msgstr ""
+msgstr "Save preview image"
 
 #: tfreeprojectsettingsdialog.cbshadeunderwater.caption
 msgid "Shade underwater"
-msgstr ""
+msgstr "Shade underwater"
 
 #: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
 msgid "Simplify intersections"
-msgstr ""
+msgstr "Simplify intersections"
 
 #: tfreeprojectsettingsdialog.checkbox11.caption
 msgid "Default at 0.0"
-msgstr ""
+msgstr "Default at 0.0"
 
 #: tfreeprojectsettingsdialog.checkbox12.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
 msgid "Default at 0.5*L"
-msgstr ""
+msgstr "Default at 0.5*L"
 
 #: tfreeprojectsettingsdialog.checkbox13.caption
 msgid "Enable auto move model to baseline"
@@ -9493,19 +9493,19 @@ msgstr ""
 #: tfreeprojectsettingsdialog.checkbox2.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
 msgid "Default at 0.5*L"
-msgstr ""
+msgstr "Default at 0.5*L"
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr ""
+msgstr "Disable surface check"
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
 msgid "Displacement and center of buoyancy"
-msgstr ""
+msgstr "Displacement and center of buoyancy"
 
 #: tfreeprojectsettingsdialog.checkbox6.caption
 msgid "Curve of sectional areas"
-msgstr ""
+msgstr "Curve of sectional areas"
 
 #: tfreeprojectsettingsdialog.checkbox7.caption
 msgid "Metacentric height"
@@ -9513,15 +9513,15 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox8.caption
 msgid "Longitudinal center of floatation"
-msgstr ""
+msgstr "Longitudinal center of floatation"
 
 #: tfreeprojectsettingsdialog.checkbox9.caption
 msgid "Lateral area and center of effort"
-msgstr ""
+msgstr "Lateral area and center of effort"
 
 #: tfreeprojectsettingsdialog.combobox1.text
 msgid "Dimensions from project settings"
-msgstr ""
+msgstr "Dimensions from project settings"
 
 #: tfreeprojectsettingsdialog.groupbox1.caption
 msgid "Display hydrostatic features. "
@@ -9529,7 +9529,7 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label1.caption
 msgid "Project name"
-msgstr ""
+msgstr "Project name"
 
 #: tfreeprojectsettingsdialog.label10.caption
 #, fuzzy
@@ -9566,19 +9566,19 @@ msgstr "Comment"
 
 #: tfreeprojectsettingsdialog.label16.caption
 msgid "File created by"
-msgstr ""
+msgstr "File created by"
 
 #: tfreeprojectsettingsdialog.label17.caption
 msgid "Coefficients based on"
-msgstr ""
+msgstr "Coefficients based on"
 
 #: tfreeprojectsettingsdialog.label18.caption
 msgid "Select which of the following hydrostatic properties"
-msgstr ""
+msgstr "Select which of the following hydrostatic properties"
 
 #: tfreeprojectsettingsdialog.label19.caption
 msgid "you want to have displayed in the model:"
-msgstr ""
+msgstr "you want to have displayed in the model:"
 
 #: tfreeprojectsettingsdialog.label2.caption
 msgid "Length "
@@ -9624,7 +9624,7 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label3.caption
 msgctxt "tfreeprojectsettingsdialog.label3.caption"
 msgid "Beam"
-msgstr ""
+msgstr "Beam"
 
 #: tfreeprojectsettingsdialog.label4.caption
 #, fuzzy
@@ -9653,7 +9653,7 @@ msgstr "Designer"
 #: tfreeprojectsettingsdialog.label8.caption
 msgctxt "tfreeprojectsettingsdialog.label8.caption"
 msgid "Units"
-msgstr ""
+msgstr "Units"
 
 #: tfreeprojectsettingsdialog.label9.caption
 #, fuzzy
@@ -9667,11 +9667,11 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.precisionbox.hint
 msgid "Change the precision of the model."
-msgstr ""
+msgstr "Change the precision of the model."
 
 #: tfreeprojectsettingsdialog.precisionbox.text
 msgid "Low"
-msgstr ""
+msgstr "Low"
 
 #: tfreeprojectsettingsdialog.tabsheet1.caption
 #, fuzzy
@@ -9682,15 +9682,15 @@ msgstr "General"
 #: tfreeprojectsettingsdialog.tabsheet2.caption
 msgctxt "tfreeprojectsettingsdialog.tabsheet2.caption"
 msgid "Hydrostatics"
-msgstr ""
+msgstr "Hydrostatics"
 
 #: tfreeprojectsettingsdialog.tabsheet3.caption
 msgid "Main dimensions"
-msgstr ""
+msgstr "Main dimensions"
 
 #: tfreeprojectsettingsdialog.unitbox.text
 msgid "Metric"
-msgstr ""
+msgstr "Metric"
 
 #: tfreepropeller_task1.caption
 msgid "Design of propeller elements for engine selection."
@@ -9739,7 +9739,7 @@ msgstr ""
 #: tfreepropeller_task1.label15.caption
 msgctxt "tfreepropeller_task1.label15.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "Number of blade"
 
 #: tfreepropeller_task1.label16.caption
 msgctxt "tfreepropeller_task1.label16.caption"
@@ -9748,21 +9748,21 @@ msgstr ""
 
 #: tfreepropeller_task1.label17.caption
 msgid "Depth of Shaft below Waterline, m"
-msgstr ""
+msgstr "Depth of Shaft below Waterline, m"
 
 #: tfreepropeller_task1.label18.caption
 msgid "Burrill Back Cavitation Constraint, %"
-msgstr ""
+msgstr "Burrill Back Cavitation Constraint, %"
 
 #: tfreepropeller_task1.label2.caption
 msgctxt "tfreepropeller_task1.label2.caption"
 msgid "Ship speed, kn"
-msgstr ""
+msgstr "Ship speed, kn"
 
 #: tfreepropeller_task1.label3.caption
 msgctxt "tfreepropeller_task1.label3.caption"
 msgid "Resistance, kN"
-msgstr ""
+msgstr "Resistance, kN"
 
 #: tfreepropeller_task1.label4.caption
 #, fuzzy
@@ -9772,7 +9772,7 @@ msgstr "Number of propellers"
 
 #: tfreepropeller_task1.label5.caption
 msgid "Limit of propeller diameter, m"
-msgstr ""
+msgstr "Limit of propeller diameter, m"
 
 #: tfreepropeller_task1.label6.caption
 msgid "Step changing of diameter, m"
@@ -9816,7 +9816,7 @@ msgstr "Results"
 #: tfreepropeller_task1.tabsheet3.caption
 msgctxt "tfreepropeller_task1.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreepropeller_task1.toolbar1.caption
 msgctxt "tfreepropeller_task1.toolbar1.caption"
@@ -9893,7 +9893,7 @@ msgstr "Number of diagram"
 #: tfreepropeller_task2.label13.caption
 msgctxt "tfreepropeller_task2.label13.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "Number of blade"
 
 #: tfreepropeller_task2.label14.caption
 msgctxt "tfreepropeller_task2.label14.caption"
@@ -9902,11 +9902,11 @@ msgstr ""
 
 #: tfreepropeller_task2.label15.caption
 msgid "Koef. infl. hull on diameter"
-msgstr ""
+msgstr "Koef. infl. hull on diameter"
 
 #: tfreepropeller_task2.label16.caption
 msgid "Waiting ship speed, kn"
-msgstr ""
+msgstr "Waiting ship speed, kn"
 
 #: tfreepropeller_task2.label17.caption
 msgid "Calculated ship speed, kn :"
@@ -9923,7 +9923,7 @@ msgstr ""
 #: tfreepropeller_task2.label3.caption
 msgctxt "tfreepropeller_task2.label3.caption"
 msgid "Frequency of propeller, 1/min"
-msgstr ""
+msgstr "Frequency of propeller, 1/min"
 
 #: tfreepropeller_task2.label4.caption
 #, fuzzy
@@ -9933,12 +9933,12 @@ msgstr "Number of propellers"
 
 #: tfreepropeller_task2.label5.caption
 msgid "Water density, kg/m^3"
-msgstr ""
+msgstr "Water density, kg/m^3"
 
 #: tfreepropeller_task2.label6.caption
 msgctxt "tfreepropeller_task2.label6.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "Wake fraction"
 
 #: tfreepropeller_task2.label7.caption
 msgctxt "tfreepropeller_task2.label7.caption"
@@ -9947,11 +9947,11 @@ msgstr ""
 
 #: tfreepropeller_task2.label8.caption
 msgid "Koef. influence on thrust"
-msgstr ""
+msgstr "Koef. influence on thrust"
 
 #: tfreepropeller_task2.label9.caption
 msgid "Koef. influence on torque"
-msgstr ""
+msgstr "Koef. influence on torque"
 
 #: tfreepropeller_task2.printbutton.caption
 msgctxt "tfreepropeller_task2.printbutton.caption"
@@ -9967,7 +9967,7 @@ msgstr "Print the results of the calculation."
 #: tfreepropeller_task2.results2.caption
 msgctxt "tfreepropeller_task2.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreepropeller_task2.tabsheet1.caption
 #, fuzzy
@@ -10034,7 +10034,7 @@ msgstr "Extract data from current hull"
 #: tfreepropeller_task3.label10.caption
 msgctxt "tfreepropeller_task3.label10.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "Wake fraction"
 
 #: tfreepropeller_task3.label11.caption
 msgctxt "tfreepropeller_task3.label11.caption"
@@ -10043,11 +10043,11 @@ msgstr ""
 
 #: tfreepropeller_task3.label12.caption
 msgid "Koef. infl. on thrust"
-msgstr ""
+msgstr "Koef. infl. on thrust"
 
 #: tfreepropeller_task3.label13.caption
 msgid "Koef. infl. on torque"
-msgstr ""
+msgstr "Koef. infl. on torque"
 
 #: tfreepropeller_task3.label14.caption
 #, fuzzy
@@ -10070,11 +10070,11 @@ msgstr ""
 #: tfreepropeller_task3.label2.caption
 msgctxt "tfreepropeller_task3.label2.caption"
 msgid "Propeller diameter, m"
-msgstr ""
+msgstr "Propeller diameter, m"
 
 #: tfreepropeller_task3.label3.caption
 msgid "Disk area ratio"
-msgstr ""
+msgstr "Disk area ratio"
 
 #: tfreepropeller_task3.label4.caption
 msgid "Pitch ratio"
@@ -10087,7 +10087,7 @@ msgstr ""
 #: tfreepropeller_task3.label6.caption
 msgctxt "tfreepropeller_task3.label6.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "Number of blade"
 
 #: tfreepropeller_task3.label7.caption
 #, fuzzy
@@ -10104,7 +10104,7 @@ msgstr "Number of propellers"
 #: tfreepropeller_task3.label9.caption
 msgctxt "tfreepropeller_task3.label9.caption"
 msgid "Frequency of propeller, 1/min"
-msgstr ""
+msgstr "Frequency of propeller, 1/min"
 
 #: tfreepropeller_task3.printbutton.caption
 msgctxt "tfreepropeller_task3.printbutton.caption"
@@ -10132,7 +10132,7 @@ msgstr "Results"
 #: tfreepropeller_task3.tabsheet3.caption
 msgctxt "tfreepropeller_task3.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreepropeller_task3.toolbar1.caption
 msgctxt "tfreepropeller_task3.toolbar1.caption"
@@ -10163,7 +10163,7 @@ msgstr ""
 
 #: tfreepropeller_task4.caption
 msgid "Wageningen B-Screw Series Propeller Preliminary Design."
-msgstr ""
+msgstr "Wageningen B-Screw Series Propeller Preliminary Design."
 
 #: tfreepropeller_task4.chart.axislist[0].title.caption
 msgctxt "tfreepropeller_task4.chart.axislist[0].title.caption"
@@ -10189,7 +10189,7 @@ msgstr "Extract data from current hull"
 #: tfreepropeller_task4.help.caption
 msgctxt "tfreepropeller_task4.help.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreepropeller_task4.label10.caption
 msgid "Depth of axis propeller"
@@ -10209,7 +10209,7 @@ msgstr ""
 
 #: tfreepropeller_task4.label14.caption
 msgid "Rotative coefficient EtaR"
-msgstr ""
+msgstr "Rotative coefficient EtaR"
 
 #: tfreepropeller_task4.label15.caption
 msgid "Gear efficiency"
@@ -10217,17 +10217,17 @@ msgstr ""
 
 #: tfreepropeller_task4.label16.caption
 msgid "Shaft efficiency"
-msgstr ""
+msgstr "Shaft efficiency"
 
 #: tfreepropeller_task4.label2.caption
 msgctxt "tfreepropeller_task4.label2.caption"
 msgid "Ship speed, kn"
-msgstr ""
+msgstr "Ship speed, kn"
 
 #: tfreepropeller_task4.label3.caption
 msgctxt "tfreepropeller_task4.label3.caption"
 msgid "Resistance, kN"
-msgstr ""
+msgstr "Resistance, kN"
 
 #: tfreepropeller_task4.label4.caption
 msgid "Type of propeller (1-FPP ; 2-CPP)"
@@ -10256,7 +10256,7 @@ msgstr ""
 #: tfreepropeller_task4.label9.caption
 msgctxt "tfreepropeller_task4.label9.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "Wake fraction"
 
 #: tfreepropeller_task4.printbutton.caption
 msgctxt "tfreepropeller_task4.printbutton.caption"
@@ -10344,7 +10344,7 @@ msgstr ""
 
 #: tfreepropeller_task5.combobox1.text
 msgid "Reserved"
-msgstr ""
+msgstr "Reserved"
 
 #: tfreepropeller_task5.label2.caption
 msgid "Frequancy of rotation, 1/min"
@@ -10363,7 +10363,7 @@ msgstr ""
 #: tfreepropeller_task5.label5.caption
 msgctxt "tfreepropeller_task5.label5.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "Number of blade"
 
 #: tfreepropeller_task5.label6.caption
 msgid "Diameter of propeller, m"
@@ -10379,7 +10379,7 @@ msgstr ""
 
 #: tfreepropeller_task5.label9.caption
 msgid "Series of propeller:"
-msgstr ""
+msgstr "Series of propeller:"
 
 #: tfreepropeller_task5.printbutton.caption
 msgctxt "tfreepropeller_task5.printbutton.caption"
@@ -10407,7 +10407,7 @@ msgstr "Results"
 #: tfreepropeller_task5.tabsheet3.caption
 msgctxt "tfreepropeller_task5.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreepropeller_task5.toolbar1.caption
 msgctxt "tfreepropeller_task5.toolbar1.caption"
@@ -10469,7 +10469,7 @@ msgstr "Extract data from current hull"
 #: tfreeresistance_delft.estimatebox.caption
 msgctxt "tfreeresistance_delft.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_delft.general.caption
 #, fuzzy
@@ -10510,7 +10510,7 @@ msgstr "Start speed"
 #: tfreeresistance_delft.label13.caption
 msgctxt "tfreeresistance_delft.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_delft.label2.caption
 msgctxt "tfreeresistance_delft.label2.caption"
@@ -10572,7 +10572,7 @@ msgstr "Average chordlength"
 #: tfreeresistance_delft.label3.caption
 msgctxt "tfreeresistance_delft.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: tfreeresistance_delft.label34.caption
 msgctxt "tfreeresistance_delft.label34.caption"
@@ -10588,7 +10588,7 @@ msgstr "Water density"
 #: tfreeresistance_delft.label5.caption
 msgctxt "tfreeresistance_delft.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_delft.label6.caption
 #, fuzzy
@@ -10633,7 +10633,7 @@ msgstr ""
 #: tfreeresistance_delft.toolbutton20.hint
 msgctxt "tfreeresistance_delft.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_delft.toolbutton25.hint
 #, fuzzy
@@ -10776,7 +10776,7 @@ msgstr "Extract data from current hull"
 #: tfreeresistance_fungleib.data2.caption
 msgctxt "tfreeresistance_fungleib.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Added data"
 
 #: tfreeresistance_fungleib.estimate2box.caption
 msgctxt "tfreeresistance_fungleib.estimate2box.caption"
@@ -10786,7 +10786,7 @@ msgstr ""
 #: tfreeresistance_fungleib.estimatebox.caption
 msgctxt "tfreeresistance_fungleib.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_fungleib.general.caption
 #, fuzzy
@@ -10825,20 +10825,20 @@ msgstr "Start speed"
 #: tfreeresistance_fungleib.label10.caption
 msgctxt "tfreeresistance_fungleib.label10.caption"
 msgid "1/2 entrance angle, degr"
-msgstr ""
+msgstr "1/2 entrance angle, degr"
 
 #: tfreeresistance_fungleib.label11.caption
 msgid "Transom beam, m"
-msgstr ""
+msgstr "Transom beam, m"
 
 #: tfreeresistance_fungleib.label13.caption
 msgctxt "tfreeresistance_fungleib.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_fungleib.label14.caption
 msgid "Propeller type (1-CRPP; 2-FPP)"
-msgstr ""
+msgstr "Propeller type (1-CRPP; 2-FPP)"
 
 #: tfreeresistance_fungleib.label15.caption
 #, fuzzy
@@ -10849,12 +10849,12 @@ msgstr "Number of propellers"
 #: tfreeresistance_fungleib.label16.caption
 msgctxt "tfreeresistance_fungleib.label16.caption"
 msgid "Propeller diameter, m"
-msgstr ""
+msgstr "Propeller diameter, m"
 
 #: tfreeresistance_fungleib.label17.caption
 msgctxt "tfreeresistance_fungleib.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Absolute roughness, mkm"
 
 #: tfreeresistance_fungleib.label2.caption
 msgctxt "tfreeresistance_fungleib.label2.caption"
@@ -10908,7 +10908,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label281.caption
 msgctxt "tfreeresistance_fungleib.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Keel and skeg:"
 
 #: tfreeresistance_fungleib.label29.caption
 #, fuzzy
@@ -10919,22 +10919,22 @@ msgstr "Skeg"
 #: tfreeresistance_fungleib.label3.caption
 msgctxt "tfreeresistance_fungleib.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: tfreeresistance_fungleib.label30.caption
 msgctxt "tfreeresistance_fungleib.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "Shaft brackets"
 
 #: tfreeresistance_fungleib.label31.caption
 msgctxt "tfreeresistance_fungleib.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "Strut bossing"
 
 #: tfreeresistance_fungleib.label32.caption
 msgctxt "tfreeresistance_fungleib.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "Hull bossing"
 
 #: tfreeresistance_fungleib.label33.caption
 msgctxt "tfreeresistance_fungleib.label33.caption"
@@ -10959,12 +10959,12 @@ msgstr ""
 #: tfreeresistance_fungleib.label37.caption
 msgctxt "tfreeresistance_fungleib.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "Stabiliser fins"
 
 #: tfreeresistance_fungleib.label38.caption
 msgctxt "tfreeresistance_fungleib.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Dome"
 
 #: tfreeresistance_fungleib.label39.caption
 #, fuzzy
@@ -10981,7 +10981,7 @@ msgstr "Water density"
 #: tfreeresistance_fungleib.label5.caption
 msgctxt "tfreeresistance_fungleib.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_fungleib.label6.caption
 #, fuzzy
@@ -11017,17 +11017,17 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_3.caption
 msgctxt "tfreeresistance_fungleib.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Course angle of moving wave, degree"
 
 #: tfreeresistance_fungleib.label6_4.caption
 msgctxt "tfreeresistance_fungleib.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "Wind speed, m/s"
 
 #: tfreeresistance_fungleib.label6_5.caption
 msgctxt "tfreeresistance_fungleib.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Course wind angle, degree"
 
 #: tfreeresistance_fungleib.label6_6.caption
 msgctxt "tfreeresistance_fungleib.label6_6.caption"
@@ -11037,7 +11037,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_7.caption
 msgctxt "tfreeresistance_fungleib.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Air density, kg/m^3"
 
 #: tfreeresistance_fungleib.label6_8.caption
 msgctxt "tfreeresistance_fungleib.label6_8.caption"
@@ -11047,7 +11047,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_9.caption
 msgctxt "tfreeresistance_fungleib.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Depth of water, m"
 
 #: tfreeresistance_fungleib.label7.caption
 msgctxt "tfreeresistance_fungleib.label7.caption"
@@ -11083,7 +11083,7 @@ msgstr "Results"
 #: tfreeresistance_fungleib.results2.caption
 msgctxt "tfreeresistance_fungleib.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeresistance_fungleib.toolbar1.caption
 msgctxt "tfreeresistance_fungleib.toolbar1.caption"
@@ -11093,7 +11093,7 @@ msgstr ""
 #: tfreeresistance_fungleib.toolbutton20.hint
 msgctxt "tfreeresistance_fungleib.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_fungleib.toolbutton25.hint
 #, fuzzy
@@ -11210,7 +11210,7 @@ msgstr "Extract data from current hull"
 #: tfreeresistance_hollen.data2.caption
 msgctxt "tfreeresistance_hollen.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Added data"
 
 #: tfreeresistance_hollen.estimate2box.caption
 msgctxt "tfreeresistance_hollen.estimate2box.caption"
@@ -11220,7 +11220,7 @@ msgstr ""
 #: tfreeresistance_hollen.estimatebox.caption
 msgctxt "tfreeresistance_hollen.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_hollen.general.caption
 #, fuzzy
@@ -11259,7 +11259,7 @@ msgstr "Start speed"
 #: tfreeresistance_hollen.label10.caption
 msgctxt "tfreeresistance_hollen.label10.caption"
 msgid "Bulbous area on F.P., m^2"
-msgstr ""
+msgstr "Bulbous area on F.P., m^2"
 
 #: tfreeresistance_hollen.label11.caption
 msgctxt "tfreeresistance_hollen.label11.caption"
@@ -11269,7 +11269,7 @@ msgstr ""
 #: tfreeresistance_hollen.label13.caption
 msgctxt "tfreeresistance_hollen.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_hollen.label14.caption
 msgctxt "tfreeresistance_hollen.label14.caption"
@@ -11290,7 +11290,7 @@ msgstr ""
 #: tfreeresistance_hollen.label17.caption
 msgctxt "tfreeresistance_hollen.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Absolute roughness, mkm"
 
 #: tfreeresistance_hollen.label2.caption
 msgid "Estimate speed "
@@ -11349,7 +11349,7 @@ msgstr "Skeg"
 #: tfreeresistance_hollen.label281.caption
 msgctxt "tfreeresistance_hollen.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Keel and skeg:"
 
 #: tfreeresistance_hollen.label29.caption
 #, fuzzy
@@ -11366,17 +11366,17 @@ msgstr "Maximal speed"
 #: tfreeresistance_hollen.label30.caption
 msgctxt "tfreeresistance_hollen.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "Shaft brackets"
 
 #: tfreeresistance_hollen.label31.caption
 msgctxt "tfreeresistance_hollen.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "Strut bossing"
 
 #: tfreeresistance_hollen.label32.caption
 msgctxt "tfreeresistance_hollen.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "Hull bossing"
 
 #: tfreeresistance_hollen.label33.caption
 msgctxt "tfreeresistance_hollen.label33.caption"
@@ -11402,12 +11402,12 @@ msgstr ""
 #: tfreeresistance_hollen.label37.caption
 msgctxt "tfreeresistance_hollen.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "Stabiliser fins"
 
 #: tfreeresistance_hollen.label38.caption
 msgctxt "tfreeresistance_hollen.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Dome"
 
 #: tfreeresistance_hollen.label4.caption
 #, fuzzy
@@ -11418,7 +11418,7 @@ msgstr "Water density"
 #: tfreeresistance_hollen.label5.caption
 msgctxt "tfreeresistance_hollen.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_hollen.label6.caption
 #, fuzzy
@@ -11454,17 +11454,17 @@ msgstr ""
 #: tfreeresistance_hollen.label6_3.caption
 msgctxt "tfreeresistance_hollen.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Course angle of moving wave, degree"
 
 #: tfreeresistance_hollen.label6_4.caption
 msgctxt "tfreeresistance_hollen.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "Wind speed, m/s"
 
 #: tfreeresistance_hollen.label6_5.caption
 msgctxt "tfreeresistance_hollen.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Course wind angle, degree"
 
 #: tfreeresistance_hollen.label6_6.caption
 msgctxt "tfreeresistance_hollen.label6_6.caption"
@@ -11474,7 +11474,7 @@ msgstr ""
 #: tfreeresistance_hollen.label6_7.caption
 msgctxt "tfreeresistance_hollen.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Air density, kg/m^3"
 
 #: tfreeresistance_hollen.label6_8.caption
 msgctxt "tfreeresistance_hollen.label6_8.caption"
@@ -11484,7 +11484,7 @@ msgstr ""
 #: tfreeresistance_hollen.label6_9.caption
 msgctxt "tfreeresistance_hollen.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Depth of water, m"
 
 #: tfreeresistance_hollen.label7.caption
 msgctxt "tfreeresistance_hollen.label7.caption"
@@ -11521,7 +11521,7 @@ msgstr "Results"
 #: tfreeresistance_hollen.results2.caption
 msgctxt "tfreeresistance_hollen.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeresistance_hollen.toolbar1.caption
 msgctxt "tfreeresistance_hollen.toolbar1.caption"
@@ -11531,7 +11531,7 @@ msgstr ""
 #: tfreeresistance_hollen.toolbutton20.hint
 msgctxt "tfreeresistance_hollen.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_hollen.toolbutton25.hint
 #, fuzzy
@@ -11648,7 +11648,7 @@ msgstr "Extract data from current hull"
 #: tfreeresistance_holtr.data2.caption
 msgctxt "tfreeresistance_holtr.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Added data"
 
 #: tfreeresistance_holtr.estimate2box.caption
 msgctxt "tfreeresistance_holtr.estimate2box.caption"
@@ -11661,12 +11661,12 @@ msgstr ""
 
 #: tfreeresistance_holtr.estimate4box.caption
 msgid "Extract half entrance angle from model - Ie"
-msgstr ""
+msgstr "Extract half entrance angle from model - Ie"
 
 #: tfreeresistance_holtr.estimatebox.caption
 msgctxt "tfreeresistance_holtr.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_holtr.general.caption
 #, fuzzy
@@ -11704,7 +11704,7 @@ msgstr "Start speed"
 #: tfreeresistance_holtr.label10.caption
 msgctxt "tfreeresistance_holtr.label10.caption"
 msgid "Bulbous area on F.P., m^2"
-msgstr ""
+msgstr "Bulbous area on F.P., m^2"
 
 #: tfreeresistance_holtr.label11.caption
 msgid "Z COG of bulbous area, m"
@@ -11713,7 +11713,7 @@ msgstr ""
 #: tfreeresistance_holtr.label13.caption
 msgctxt "tfreeresistance_holtr.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_holtr.label14.caption
 msgctxt "tfreeresistance_holtr.label14.caption"
@@ -11734,7 +11734,7 @@ msgstr ""
 #: tfreeresistance_holtr.label17.caption
 msgctxt "tfreeresistance_holtr.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Absolute roughness, mkm"
 
 #: tfreeresistance_holtr.label2.caption
 msgctxt "tfreeresistance_holtr.label2.caption"
@@ -11805,22 +11805,22 @@ msgstr "Bilge keels"
 #: tfreeresistance_holtr.label3.caption
 msgctxt "tfreeresistance_holtr.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: tfreeresistance_holtr.label30.caption
 msgctxt "tfreeresistance_holtr.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "Shaft brackets"
 
 #: tfreeresistance_holtr.label31.caption
 msgctxt "tfreeresistance_holtr.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "Strut bossing"
 
 #: tfreeresistance_holtr.label32.caption
 msgctxt "tfreeresistance_holtr.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "Hull bossing"
 
 #: tfreeresistance_holtr.label33.caption
 msgid "Exposed shafts, [m^2]:"
@@ -11844,12 +11844,12 @@ msgstr ""
 #: tfreeresistance_holtr.label37.caption
 msgctxt "tfreeresistance_holtr.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "Stabiliser fins"
 
 #: tfreeresistance_holtr.label38.caption
 msgctxt "tfreeresistance_holtr.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Dome"
 
 #: tfreeresistance_holtr.label4.caption
 #, fuzzy
@@ -11860,7 +11860,7 @@ msgstr "Water density"
 #: tfreeresistance_holtr.label5.caption
 msgctxt "tfreeresistance_holtr.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_holtr.label6.caption
 #, fuzzy
@@ -11900,17 +11900,17 @@ msgstr ""
 #: tfreeresistance_holtr.label6_3.caption
 msgctxt "tfreeresistance_holtr.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Course angle of moving wave, degree"
 
 #: tfreeresistance_holtr.label6_4.caption
 msgctxt "tfreeresistance_holtr.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "Wind speed, m/s"
 
 #: tfreeresistance_holtr.label6_5.caption
 msgctxt "tfreeresistance_holtr.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Course wind angle, degree"
 
 #: tfreeresistance_holtr.label6_6.caption
 msgctxt "tfreeresistance_holtr.label6_6.caption"
@@ -11920,7 +11920,7 @@ msgstr ""
 #: tfreeresistance_holtr.label6_7.caption
 msgctxt "tfreeresistance_holtr.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Air density, kg/m^3"
 
 #: tfreeresistance_holtr.label6_8.caption
 msgctxt "tfreeresistance_holtr.label6_8.caption"
@@ -11930,7 +11930,7 @@ msgstr ""
 #: tfreeresistance_holtr.label6_9.caption
 msgctxt "tfreeresistance_holtr.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Depth of water, m"
 
 #: tfreeresistance_holtr.label7.caption
 msgctxt "tfreeresistance_holtr.label7.caption"
@@ -11944,7 +11944,7 @@ msgstr ""
 
 #: tfreeresistance_holtr.label9.caption
 msgid "Transom wetted area, m^2"
-msgstr ""
+msgstr "Transom wetted area, m^2"
 
 #: tfreeresistance_holtr.results.caption
 #, fuzzy
@@ -11955,12 +11955,12 @@ msgstr "Results"
 #: tfreeresistance_holtr.results2.caption
 msgctxt "tfreeresistance_holtr.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeresistance_holtr.tbcalculate.hint
 msgctxt "tfreeresistance_holtr.tbcalculate.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_holtr.tbclose.hint
 #, fuzzy
@@ -12240,12 +12240,12 @@ msgstr "Extract data from current hull"
 
 #: tfreeresistance_mh.combobox.text
 msgid "model tests"
-msgstr ""
+msgstr "model tests"
 
 #: tfreeresistance_mh.data2.caption
 msgctxt "tfreeresistance_mh.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Added data"
 
 #: tfreeresistance_mh.estimate2box.caption
 msgctxt "tfreeresistance_mh.estimate2box.caption"
@@ -12255,7 +12255,7 @@ msgstr ""
 #: tfreeresistance_mh.estimatebox.caption
 msgctxt "tfreeresistance_mh.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_mh.general.caption
 #, fuzzy
@@ -12294,17 +12294,17 @@ msgstr "Start speed"
 #: tfreeresistance_mh.label10.caption
 msgctxt "tfreeresistance_mh.label10.caption"
 msgid "Type of forward stern"
-msgstr ""
+msgstr "Type of forward stern"
 
 #: tfreeresistance_mh.label11.caption
 msgctxt "tfreeresistance_mh.label11.caption"
 msgid "Type of after stern"
-msgstr ""
+msgstr "Type of after stern"
 
 #: tfreeresistance_mh.label13.caption
 msgctxt "tfreeresistance_mh.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_mh.label15.caption
 #, fuzzy
@@ -12320,11 +12320,11 @@ msgstr ""
 #: tfreeresistance_mh.label17.caption
 msgctxt "tfreeresistance_mh.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Absolute roughness, mkm"
 
 #: tfreeresistance_mh.label19.caption
 msgid "Calculation by the method:"
-msgstr ""
+msgstr "Calculation by the method:"
 
 #: tfreeresistance_mh.label2.caption
 msgctxt "tfreeresistance_mh.label2.caption"
@@ -12379,27 +12379,27 @@ msgstr "Waterplane area"
 #: tfreeresistance_mh.label281.caption
 msgctxt "tfreeresistance_mh.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Keel and skeg:"
 
 #: tfreeresistance_mh.label3.caption
 msgctxt "tfreeresistance_mh.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: tfreeresistance_mh.label30.caption
 msgctxt "tfreeresistance_mh.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "Shaft brackets"
 
 #: tfreeresistance_mh.label31.caption
 msgctxt "tfreeresistance_mh.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "Strut bossing"
 
 #: tfreeresistance_mh.label32.caption
 msgctxt "tfreeresistance_mh.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "Hull bossing"
 
 #: tfreeresistance_mh.label33.caption
 msgctxt "tfreeresistance_mh.label33.caption"
@@ -12424,12 +12424,12 @@ msgstr ""
 #: tfreeresistance_mh.label37.caption
 msgctxt "tfreeresistance_mh.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "Stabiliser fins"
 
 #: tfreeresistance_mh.label38.caption
 msgctxt "tfreeresistance_mh.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Dome"
 
 #: tfreeresistance_mh.label39.caption
 #, fuzzy
@@ -12452,7 +12452,7 @@ msgstr "Bilge keels"
 #: tfreeresistance_mh.label5.caption
 msgctxt "tfreeresistance_mh.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_mh.label6.caption
 #, fuzzy
@@ -12488,17 +12488,17 @@ msgstr ""
 #: tfreeresistance_mh.label6_3.caption
 msgctxt "tfreeresistance_mh.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Course angle of moving wave, degree"
 
 #: tfreeresistance_mh.label6_4.caption
 msgctxt "tfreeresistance_mh.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "Wind speed, m/s"
 
 #: tfreeresistance_mh.label6_5.caption
 msgctxt "tfreeresistance_mh.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Course wind angle, degree"
 
 #: tfreeresistance_mh.label6_6.caption
 msgctxt "tfreeresistance_mh.label6_6.caption"
@@ -12508,7 +12508,7 @@ msgstr ""
 #: tfreeresistance_mh.label6_7.caption
 msgctxt "tfreeresistance_mh.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Air density, kg/m^3"
 
 #: tfreeresistance_mh.label6_8.caption
 msgctxt "tfreeresistance_mh.label6_8.caption"
@@ -12518,7 +12518,7 @@ msgstr ""
 #: tfreeresistance_mh.label6_9.caption
 msgctxt "tfreeresistance_mh.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Depth of water, m"
 
 #: tfreeresistance_mh.label7.caption
 msgctxt "tfreeresistance_mh.label7.caption"
@@ -12555,7 +12555,7 @@ msgstr "Results"
 #: tfreeresistance_mh.results2.caption
 msgctxt "tfreeresistance_mh.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeresistance_mh.toolbar1.caption
 msgctxt "tfreeresistance_mh.toolbar1.caption"
@@ -12565,7 +12565,7 @@ msgstr ""
 #: tfreeresistance_mh.toolbutton20.hint
 msgctxt "tfreeresistance_mh.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_mh.toolbutton25.hint
 #, fuzzy
@@ -12682,12 +12682,12 @@ msgstr "Extract data from current hull"
 
 #: tfreeresistance_oortmer.combobox.text
 msgid "van Oortmerssen 1971"
-msgstr ""
+msgstr "van Oortmerssen 1971"
 
 #: tfreeresistance_oortmer.data2.caption
 msgctxt "tfreeresistance_oortmer.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Added data"
 
 #: tfreeresistance_oortmer.estimate2box.caption
 msgctxt "tfreeresistance_oortmer.estimate2box.caption"
@@ -12697,7 +12697,7 @@ msgstr ""
 #: tfreeresistance_oortmer.estimatebox.caption
 msgctxt "tfreeresistance_oortmer.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_oortmer.general.caption
 #, fuzzy
@@ -12736,7 +12736,7 @@ msgstr "Start speed"
 #: tfreeresistance_oortmer.label10.caption
 msgctxt "tfreeresistance_oortmer.label10.caption"
 msgid "1/2 entrance angle, degr"
-msgstr ""
+msgstr "1/2 entrance angle, degr"
 
 #: tfreeresistance_oortmer.label11.caption
 msgctxt "tfreeresistance_oortmer.label11.caption"
@@ -12746,7 +12746,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label13.caption
 msgctxt "tfreeresistance_oortmer.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_oortmer.label14.caption
 msgctxt "tfreeresistance_oortmer.label14.caption"
@@ -12762,12 +12762,12 @@ msgstr "Number of propellers"
 #: tfreeresistance_oortmer.label16.caption
 msgctxt "tfreeresistance_oortmer.label16.caption"
 msgid "Propeller diameter, m"
-msgstr ""
+msgstr "Propeller diameter, m"
 
 #: tfreeresistance_oortmer.label17.caption
 msgctxt "tfreeresistance_oortmer.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Absolute roughness, mkm"
 
 #: tfreeresistance_oortmer.label2.caption
 msgctxt "tfreeresistance_oortmer.label2.caption"
@@ -12827,7 +12827,7 @@ msgstr "Skeg"
 #: tfreeresistance_oortmer.label281.caption
 msgctxt "tfreeresistance_oortmer.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Keel and skeg:"
 
 #: tfreeresistance_oortmer.label29.caption
 #, fuzzy
@@ -12838,22 +12838,22 @@ msgstr "Bilge keels"
 #: tfreeresistance_oortmer.label3.caption
 msgctxt "tfreeresistance_oortmer.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: tfreeresistance_oortmer.label30.caption
 msgctxt "tfreeresistance_oortmer.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "Shaft brackets"
 
 #: tfreeresistance_oortmer.label31.caption
 msgctxt "tfreeresistance_oortmer.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "Strut bossing"
 
 #: tfreeresistance_oortmer.label32.caption
 msgctxt "tfreeresistance_oortmer.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "Hull bossing"
 
 #: tfreeresistance_oortmer.label33.caption
 msgctxt "tfreeresistance_oortmer.label33.caption"
@@ -12878,12 +12878,12 @@ msgstr ""
 #: tfreeresistance_oortmer.label37.caption
 msgctxt "tfreeresistance_oortmer.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "Stabiliser fins"
 
 #: tfreeresistance_oortmer.label38.caption
 msgctxt "tfreeresistance_oortmer.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Dome"
 
 #: tfreeresistance_oortmer.label4.caption
 #, fuzzy
@@ -12894,12 +12894,12 @@ msgstr "Water density"
 #: tfreeresistance_oortmer.label48.caption
 msgctxt "tfreeresistance_oortmer.label48.caption"
 msgid "Calculation method:"
-msgstr ""
+msgstr "Calculation method:"
 
 #: tfreeresistance_oortmer.label5.caption
 msgctxt "tfreeresistance_oortmer.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_oortmer.label6.caption
 #, fuzzy
@@ -12935,17 +12935,17 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_3.caption
 msgctxt "tfreeresistance_oortmer.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Course angle of moving wave, degree"
 
 #: tfreeresistance_oortmer.label6_4.caption
 msgctxt "tfreeresistance_oortmer.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "Wind speed, m/s"
 
 #: tfreeresistance_oortmer.label6_5.caption
 msgctxt "tfreeresistance_oortmer.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Course wind angle, degree"
 
 #: tfreeresistance_oortmer.label6_6.caption
 msgctxt "tfreeresistance_oortmer.label6_6.caption"
@@ -12955,7 +12955,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_7.caption
 msgctxt "tfreeresistance_oortmer.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Air density, kg/m^3"
 
 #: tfreeresistance_oortmer.label6_8.caption
 msgctxt "tfreeresistance_oortmer.label6_8.caption"
@@ -12965,7 +12965,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_9.caption
 msgctxt "tfreeresistance_oortmer.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Depth of water, m"
 
 #: tfreeresistance_oortmer.label7.caption
 msgctxt "tfreeresistance_oortmer.label7.caption"
@@ -13002,7 +13002,7 @@ msgstr "Results"
 #: tfreeresistance_oortmer.results2.caption
 msgctxt "tfreeresistance_oortmer.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeresistance_oortmer.toolbar1.caption
 msgctxt "tfreeresistance_oortmer.toolbar1.caption"
@@ -13012,7 +13012,7 @@ msgstr ""
 #: tfreeresistance_oortmer.toolbutton20.hint
 msgctxt "tfreeresistance_oortmer.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_oortmer.toolbutton25.hint
 #, fuzzy
@@ -13131,12 +13131,12 @@ msgstr "Extract data from current hull"
 #: tfreeresistance_ost.combobox.text
 msgctxt "tfreeresistance_ost.combobox.text"
 msgid "Any displacement ships"
-msgstr ""
+msgstr "Any displacement ships"
 
 #: tfreeresistance_ost.data2.caption
 msgctxt "tfreeresistance_ost.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Added data"
 
 #: tfreeresistance_ost.estimate2box.caption
 msgctxt "tfreeresistance_ost.estimate2box.caption"
@@ -13146,7 +13146,7 @@ msgstr ""
 #: tfreeresistance_ost.estimatebox.caption
 msgctxt "tfreeresistance_ost.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_ost.general.caption
 #, fuzzy
@@ -13185,17 +13185,17 @@ msgstr "Start speed"
 #: tfreeresistance_ost.label10.caption
 msgctxt "tfreeresistance_ost.label10.caption"
 msgid "Type of forward stern"
-msgstr ""
+msgstr "Type of forward stern"
 
 #: tfreeresistance_ost.label11.caption
 msgctxt "tfreeresistance_ost.label11.caption"
 msgid "Type of after stern"
-msgstr ""
+msgstr "Type of after stern"
 
 #: tfreeresistance_ost.label13.caption
 msgctxt "tfreeresistance_ost.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_ost.label15.caption
 #, fuzzy
@@ -13211,7 +13211,7 @@ msgstr ""
 #: tfreeresistance_ost.label17.caption
 msgctxt "tfreeresistance_ost.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Absolute roughness, mkm"
 
 #: tfreeresistance_ost.label19.caption
 msgctxt "tfreeresistance_ost.label19.caption"
@@ -13271,27 +13271,27 @@ msgstr "Waterplane area"
 #: tfreeresistance_ost.label281.caption
 msgctxt "tfreeresistance_ost.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Keel and skeg:"
 
 #: tfreeresistance_ost.label3.caption
 msgctxt "tfreeresistance_ost.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: tfreeresistance_ost.label30.caption
 msgctxt "tfreeresistance_ost.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "Shaft brackets"
 
 #: tfreeresistance_ost.label31.caption
 msgctxt "tfreeresistance_ost.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "Strut bossing"
 
 #: tfreeresistance_ost.label32.caption
 msgctxt "tfreeresistance_ost.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "Hull bossing"
 
 #: tfreeresistance_ost.label33.caption
 msgctxt "tfreeresistance_ost.label33.caption"
@@ -13316,12 +13316,12 @@ msgstr ""
 #: tfreeresistance_ost.label37.caption
 msgctxt "tfreeresistance_ost.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "Stabiliser fins"
 
 #: tfreeresistance_ost.label38.caption
 msgctxt "tfreeresistance_ost.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Dome"
 
 #: tfreeresistance_ost.label39.caption
 #, fuzzy
@@ -13344,7 +13344,7 @@ msgstr "Bilge keels"
 #: tfreeresistance_ost.label5.caption
 msgctxt "tfreeresistance_ost.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_ost.label6.caption
 #, fuzzy
@@ -13380,17 +13380,17 @@ msgstr ""
 #: tfreeresistance_ost.label6_3.caption
 msgctxt "tfreeresistance_ost.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Course angle of moving wave, degree"
 
 #: tfreeresistance_ost.label6_4.caption
 msgctxt "tfreeresistance_ost.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "Wind speed, m/s"
 
 #: tfreeresistance_ost.label6_5.caption
 msgctxt "tfreeresistance_ost.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Course wind angle, degree"
 
 #: tfreeresistance_ost.label6_6.caption
 msgctxt "tfreeresistance_ost.label6_6.caption"
@@ -13400,7 +13400,7 @@ msgstr ""
 #: tfreeresistance_ost.label6_7.caption
 msgctxt "tfreeresistance_ost.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Air density, kg/m^3"
 
 #: tfreeresistance_ost.label6_8.caption
 msgctxt "tfreeresistance_ost.label6_8.caption"
@@ -13410,7 +13410,7 @@ msgstr ""
 #: tfreeresistance_ost.label6_9.caption
 msgctxt "tfreeresistance_ost.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Depth of water, m"
 
 #: tfreeresistance_ost.label7.caption
 msgctxt "tfreeresistance_ost.label7.caption"
@@ -13447,7 +13447,7 @@ msgstr "Results"
 #: tfreeresistance_ost.results2.caption
 msgctxt "tfreeresistance_ost.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeresistance_ost.toolbar1.caption
 msgctxt "tfreeresistance_ost.toolbar1.caption"
@@ -13457,7 +13457,7 @@ msgstr ""
 #: tfreeresistance_ost.toolbutton20.hint
 msgctxt "tfreeresistance_ost.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_ost.toolbutton25.hint
 #, fuzzy
@@ -13567,7 +13567,7 @@ msgstr "Extract data from current hull"
 
 #: tfreeresistance_planing.checkbox3.caption
 msgid "Add aerodynamic resistance"
-msgstr ""
+msgstr "Add aerodynamic resistance"
 
 #: tfreeresistance_planing.checkbox4.caption
 msgid "Add appendage resistance with steady engine"
@@ -13579,7 +13579,7 @@ msgstr ""
 
 #: tfreeresistance_planing.checkbox6.caption
 msgid "Add round bilge influence"
-msgstr ""
+msgstr "Add round bilge influence"
 
 #: tfreeresistance_planing.combobox.text
 msgid "Sedov-Perelmootre"
@@ -13669,7 +13669,7 @@ msgstr ""
 #: tfreeresistance_planing.label22.caption
 msgctxt "tfreeresistance_planing.label22.caption"
 msgid "Calculation method:"
-msgstr ""
+msgstr "Calculation method:"
 
 #: tfreeresistance_planing.label23.caption
 #, fuzzy
@@ -13693,7 +13693,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label25.caption
 msgid "Diameter of propeller"
-msgstr ""
+msgstr "Diameter of propeller"
 
 #: tfreeresistance_planing.label25_.caption
 msgctxt "tfreeresistance_planing.label25_.caption"
@@ -13702,7 +13702,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label26.caption
 msgid "Deadrise transom"
-msgstr ""
+msgstr "Deadrise transom"
 
 #: tfreeresistance_planing.label26_.caption
 msgctxt "tfreeresistance_planing.label26_.caption"
@@ -13720,7 +13720,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label28.caption
 msgid "Propulsor type:"
-msgstr ""
+msgstr "Propulsor type:"
 
 #: tfreeresistance_planing.label3.caption
 #, fuzzy
@@ -13841,12 +13841,12 @@ msgstr "Extract data from current hull"
 #: tfreeresistance_rbhs.combobox.text
 msgctxt "tfreeresistance_rbhs.combobox.text"
 msgid "Any displacement ships"
-msgstr ""
+msgstr "Any displacement ships"
 
 #: tfreeresistance_rbhs.data2.caption
 msgctxt "tfreeresistance_rbhs.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "Added data"
 
 #: tfreeresistance_rbhs.estimate2box.caption
 msgctxt "tfreeresistance_rbhs.estimate2box.caption"
@@ -13856,7 +13856,7 @@ msgstr ""
 #: tfreeresistance_rbhs.estimatebox.caption
 msgctxt "tfreeresistance_rbhs.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "Use estimate"
 
 #: tfreeresistance_rbhs.general.caption
 #, fuzzy
@@ -13895,17 +13895,17 @@ msgstr "Start speed"
 #: tfreeresistance_rbhs.label10.caption
 msgctxt "tfreeresistance_rbhs.label10.caption"
 msgid "Type of forward stern"
-msgstr ""
+msgstr "Type of forward stern"
 
 #: tfreeresistance_rbhs.label11.caption
 msgctxt "tfreeresistance_rbhs.label11.caption"
 msgid "Type of after stern"
-msgstr ""
+msgstr "Type of after stern"
 
 #: tfreeresistance_rbhs.label13.caption
 msgctxt "tfreeresistance_rbhs.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "Wetted surface"
 
 #: tfreeresistance_rbhs.label15.caption
 #, fuzzy
@@ -13921,7 +13921,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label17.caption
 msgctxt "tfreeresistance_rbhs.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "Absolute roughness, mkm"
 
 #: tfreeresistance_rbhs.label19.caption
 msgctxt "tfreeresistance_rbhs.label19.caption"
@@ -13981,27 +13981,27 @@ msgstr "Waterplane area"
 #: tfreeresistance_rbhs.label281.caption
 msgctxt "tfreeresistance_rbhs.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "Keel and skeg:"
 
 #: tfreeresistance_rbhs.label3.caption
 msgctxt "tfreeresistance_rbhs.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: tfreeresistance_rbhs.label30.caption
 msgctxt "tfreeresistance_rbhs.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "Shaft brackets"
 
 #: tfreeresistance_rbhs.label31.caption
 msgctxt "tfreeresistance_rbhs.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "Strut bossing"
 
 #: tfreeresistance_rbhs.label32.caption
 msgctxt "tfreeresistance_rbhs.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "Hull bossing"
 
 #: tfreeresistance_rbhs.label33.caption
 msgctxt "tfreeresistance_rbhs.label33.caption"
@@ -14026,12 +14026,12 @@ msgstr ""
 #: tfreeresistance_rbhs.label37.caption
 msgctxt "tfreeresistance_rbhs.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "Stabiliser fins"
 
 #: tfreeresistance_rbhs.label38.caption
 msgctxt "tfreeresistance_rbhs.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "Dome"
 
 #: tfreeresistance_rbhs.label39.caption
 #, fuzzy
@@ -14054,7 +14054,7 @@ msgstr "Bilge keels"
 #: tfreeresistance_rbhs.label5.caption
 msgctxt "tfreeresistance_rbhs.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "Viscosity"
 
 #: tfreeresistance_rbhs.label6.caption
 #, fuzzy
@@ -14090,17 +14090,17 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_3.caption
 msgctxt "tfreeresistance_rbhs.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "Course angle of moving wave, degree"
 
 #: tfreeresistance_rbhs.label6_4.caption
 msgctxt "tfreeresistance_rbhs.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "Wind speed, m/s"
 
 #: tfreeresistance_rbhs.label6_5.caption
 msgctxt "tfreeresistance_rbhs.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "Course wind angle, degree"
 
 #: tfreeresistance_rbhs.label6_6.caption
 msgctxt "tfreeresistance_rbhs.label6_6.caption"
@@ -14110,7 +14110,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_7.caption
 msgctxt "tfreeresistance_rbhs.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "Air density, kg/m^3"
 
 #: tfreeresistance_rbhs.label6_8.caption
 msgctxt "tfreeresistance_rbhs.label6_8.caption"
@@ -14120,7 +14120,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_9.caption
 msgctxt "tfreeresistance_rbhs.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "Depth of water, m"
 
 #: tfreeresistance_rbhs.label7.caption
 msgctxt "tfreeresistance_rbhs.label7.caption"
@@ -14157,7 +14157,7 @@ msgstr "Results"
 #: tfreeresistance_rbhs.results2.caption
 msgctxt "tfreeresistance_rbhs.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tfreeresistance_rbhs.toolbar1.caption
 msgctxt "tfreeresistance_rbhs.toolbar1.caption"
@@ -14167,7 +14167,7 @@ msgstr ""
 #: tfreeresistance_rbhs.toolbutton20.hint
 msgctxt "tfreeresistance_rbhs.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "Start the calculation."
 
 #: tfreeresistance_rbhs.toolbutton25.hint
 #, fuzzy
@@ -14259,22 +14259,22 @@ msgstr ""
 #: tfreerotatedialog.cancelbutton.hint
 msgctxt "tfreerotatedialog.cancelbutton.hint"
 msgid "Cancel operation."
-msgstr ""
+msgstr "Cancel operation."
 
 #: tfreerotatedialog.caption
 msgctxt "tfreerotatedialog.caption"
 msgid "Rotation"
-msgstr ""
+msgstr "Rotation"
 
 #: tfreerotatedialog.label1.caption
 msgctxt "tfreerotatedialog.label1.caption"
 msgid "Longitudinal axis"
-msgstr ""
+msgstr "Longitudinal axis"
 
 #: tfreerotatedialog.label2.caption
 msgctxt "tfreerotatedialog.label2.caption"
 msgid "Transverse axis"
-msgstr ""
+msgstr "Transverse axis"
 
 #: tfreerotatedialog.label3.caption
 msgctxt "tfreerotatedialog.label3.caption"
@@ -14284,7 +14284,7 @@ msgstr ""
 #: tfreerotatedialog.label4.caption
 msgctxt "tfreerotatedialog.label4.caption"
 msgid "Vertical axis"
-msgstr ""
+msgstr "Vertical axis"
 
 #: tfreerotatedialog.label6.caption
 msgctxt "tfreerotatedialog.label6.caption"
@@ -14304,7 +14304,7 @@ msgstr ""
 #: tfreerotatedialog.okbutton.hint
 msgctxt "tfreerotatedialog.okbutton.hint"
 msgid "Close dialog."
-msgstr ""
+msgstr "Close dialog."
 
 #: tfreerotatedialog.panel3.caption
 msgid "Panel3"
@@ -14318,12 +14318,12 @@ msgstr ""
 #: tfreerotatemdialog.cancelbutton.hint
 msgctxt "tfreerotatemdialog.cancelbutton.hint"
 msgid "Cancel operation."
-msgstr ""
+msgstr "Cancel operation."
 
 #: tfreerotatemdialog.caption
 msgctxt "tfreerotatemdialog.caption"
 msgid "Rotation"
-msgstr ""
+msgstr "Rotation"
 
 #: tfreerotatemdialog.groupbox1.caption
 msgid "Axis:"
@@ -14331,12 +14331,12 @@ msgstr ""
 
 #: tfreerotatemdialog.groupbox2.caption
 msgid "Current angles:"
-msgstr ""
+msgstr "Current angles:"
 
 #: tfreerotatemdialog.label1.caption
 msgctxt "tfreerotatemdialog.label1.caption"
 msgid "Longitudinal axis"
-msgstr ""
+msgstr "Longitudinal axis"
 
 #: tfreerotatemdialog.label11.caption
 msgid "of the heel:"
@@ -14368,7 +14368,7 @@ msgstr ""
 #: tfreerotatemdialog.label2.caption
 msgctxt "tfreerotatemdialog.label2.caption"
 msgid "Transverse axis"
-msgstr ""
+msgstr "Transverse axis"
 
 #: tfreerotatemdialog.label3.caption
 msgctxt "tfreerotatemdialog.label3.caption"
@@ -14378,7 +14378,7 @@ msgstr ""
 #: tfreerotatemdialog.label4.caption
 msgctxt "tfreerotatemdialog.label4.caption"
 msgid "Vertical axis"
-msgstr ""
+msgstr "Vertical axis"
 
 #: tfreerotatemdialog.label6.caption
 msgctxt "tfreerotatemdialog.label6.caption"
@@ -14398,25 +14398,25 @@ msgstr ""
 #: tfreerotatemdialog.okbutton.hint
 msgctxt "tfreerotatemdialog.okbutton.hint"
 msgid "Close dialog."
-msgstr ""
+msgstr "Close dialog."
 
 #: tfreeselectlayersdialog.bitbtn1.caption
 msgctxt "tfreeselectlayersdialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeselectlayersdialog.bitbtn2.caption
 msgctxt "tfreeselectlayersdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeselectlayersdialog.caption
 msgid "Select layers."
-msgstr ""
+msgstr "Select layers."
 
 #: tfreeselectlayersdialog.checkbox.caption
 msgid "Include points that are shared with unselected layers"
-msgstr ""
+msgstr "Include points that are shared with unselected layers"
 
 #: tfreesplashwindow.button1.caption
 msgid "Read GPL"
@@ -14425,7 +14425,7 @@ msgstr ""
 #: tfreesplashwindow.button2.caption
 msgctxt "tfreesplashwindow.button2.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tfreesplashwindow.caption
 msgctxt "tfreesplashwindow.caption"
@@ -14492,7 +14492,7 @@ msgstr ""
 #: tfreesplitsectiondialog.bitbtn1.caption
 msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tfreesplitsectiondialog.caption
 msgid "Split section location"
@@ -14501,7 +14501,7 @@ msgstr ""
 #: tfreesplitsectiondialog.speedbutton1.hint
 msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: tfreesplitsectiondialog.speedbutton3.hint
 msgid "From hydrostatics"
@@ -14509,16 +14509,16 @@ msgstr ""
 
 #: tfreeundohistorydialog.caption
 msgid "Undo history."
-msgstr ""
+msgstr "Undo history."
 
 #: tfreeundohistorydialog.speedbutton1.caption
 msgid "Select"
-msgstr ""
+msgstr "Select"
 
 #: tfreeundohistorydialog.speedbutton2.caption
 msgctxt "tfreeundohistorydialog.speedbutton2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tfreeupdateform.actioncheckupdate.caption
 msgctxt "tfreeupdateform.actioncheckupdate.caption"
@@ -14528,7 +14528,7 @@ msgstr ""
 #: tfreeupdateform.bitbtn2.caption
 msgctxt "tfreeupdateform.bitbtn2.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: tfreeupdateform.caption
 msgid "Check updates"
@@ -14672,7 +14672,7 @@ msgstr ""
 #: tmainform.cbprecision.text
 msgctxt "tmainform.cbprecision.text"
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: tmainform.checkmodel.caption
 msgid "Check model"
@@ -14929,11 +14929,11 @@ msgstr "Prompt for filename and save file."
 #: tmainform.help1.caption
 msgctxt "tmainform.help1.caption"
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tmainform.helpabout.caption
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: tmainform.helpaction.caption
 msgid "HelpAction"
@@ -15094,7 +15094,7 @@ msgstr ""
 
 #: tmainform.labelundomemory.caption
 msgid "Undo memory : 0 kb."
-msgstr ""
+msgstr "Undo memory : 0 kb."
 
 #: tmainform.layer1.caption
 #, fuzzy
@@ -15690,16 +15690,16 @@ msgstr "Window"
 #: tsaveimagedialog.bitbtn1.caption
 msgctxt "tsaveimagedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tsaveimagedialog.bitbtn2.caption
 msgctxt "tsaveimagedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: tsaveimagedialog.caption
 msgid "Save image."
-msgstr ""
+msgstr "Save image."
 
 #: tsaveimagedialog.edit3.text
 msgctxt "tsaveimagedialog.edit3.text"
@@ -15708,20 +15708,20 @@ msgstr ""
 
 #: tsaveimagedialog.label1.caption
 msgid "Width"
-msgstr ""
+msgstr "Width"
 
 #: tsaveimagedialog.label2.caption
 msgid "Height"
-msgstr ""
+msgstr "Height"
 
 #: tsaveimagedialog.label3.caption
 msgctxt "tsaveimagedialog.label3.caption"
 msgid "[pixels]"
-msgstr ""
+msgstr "[pixels]"
 
 #: tsaveimagedialog.label4.caption
 msgid "Estimated size"
-msgstr ""
+msgstr "Estimated size"
 
 #: tsaveimagedialog.label5.caption
 msgid "KB"
@@ -15730,7 +15730,7 @@ msgstr ""
 #: tsaveimagedialog.label6.caption
 msgctxt "tsaveimagedialog.label6.caption"
 msgid "[pixels]"
-msgstr ""
+msgstr "[pixels]"
 
 #: tsaveimagedialog.label7.caption
 #, fuzzy
@@ -15753,7 +15753,7 @@ msgstr ""
 #: ttiledialog.bbclose.caption
 msgctxt "ttiledialog.bbclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: ttiledialog.buttonopenfile.caption
 msgid "Open Another"

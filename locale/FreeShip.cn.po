@@ -20,12 +20,12 @@ msgstr ""
 #: freecontrolpointfrm.rsangles
 msgctxt "freecontrolpointfrm.rsangles"
 msgid "Angles"
-msgstr ""
+msgstr "角度"
 
 #: freecontrolpointfrm.rslength
 msgctxt "freecontrolpointfrm.rslength"
 msgid "Length"
-msgstr ""
+msgstr "长度"
 
 #: freecontrolpointfrm.rsnameisnotunique
 msgid "Name Is Not Unique"
@@ -468,7 +468,7 @@ msgstr "加速时间 [min (sec)]"
 
 #: freestringsunit.rs_acceleration__free_and_active_brake_calculation_
 msgid "Acceleration, free and active brake calculation."
-msgstr "加速度, 自由状态和主动状态的制动计算."
+msgstr "加速,无束缚和现行状态的制动计算."
 
 #: freestringsunit.rs_according_to_john_winters
 msgid "according to John Winters"
@@ -638,7 +638,7 @@ msgstr ""
 #: freestringsunit.rs_angles
 msgctxt "freestringsunit.rs_angles"
 msgid "Angles"
-msgstr ""
+msgstr "角度"
 
 #: freestringsunit.rs_angle_between_relative_velocity_and_center_line__degr__
 msgid "Angle between relative velocity and center line [degr.]"
@@ -647,7 +647,7 @@ msgstr ""
 #: freestringsunit.rs_angle_between_thrust_and_keel_lines
 msgctxt "freestringsunit.rs_angle_between_thrust_and_keel_lines"
 msgid "Angle between Thrust and Keel lines"
-msgstr ""
+msgstr "推进器与龙骨线夹角"
 
 #: freestringsunit.rs_angle_of
 msgid "ANGLE OF"
@@ -916,7 +916,7 @@ msgstr "纵剖线"
 #: freestringsunit.rs_buttocks
 msgctxt "freestringsunit.rs_buttocks"
 msgid "Buttocks"
-msgstr "纵剖线图"
+msgstr "纵剖面"
 
 #: freestringsunit.rs_bwl_tc_is_outside_valid_domain
 msgid "Bwl/Tc is outside valid domain"
@@ -1212,7 +1212,7 @@ msgstr ""
 
 #: freestringsunit.rs_centimeters
 msgid "Centimeters"
-msgstr ""
+msgstr "厘米"
 
 #: freestringsunit.rs_choose_a_directory_where_you_want_to_save_the_dxf_files_to_
 msgid "Choose a directory where you want to save the dxf files to:"
@@ -1354,7 +1354,7 @@ msgstr "日期"
 
 #: freestringsunit.rs_deadrise_amidships
 msgid "Deadrise amidships"
-msgstr "船体中部全部上升"
+msgstr "船舯舭部升高"
 
 #: freestringsunit.rs_deck_house_cargo_frontal_area__m_2______
 msgid "Deck House/Cargo Frontal Area (m^2)    ="
@@ -1445,7 +1445,7 @@ msgstr "船中吃水差异"
 #: freestringsunit.rs_disk_area_ratio_ae_ao
 msgctxt "freestringsunit.rs_disk_area_ratio_ae_ao"
 msgid "Disk area ratio Ae/Ao"
-msgstr "桨叶盘面比Ae/Ao"
+msgstr "桨盘面积比 Ae/Ao"
 
 #: freestringsunit.rs_displaced_volume
 msgid "Displaced volume"
@@ -1463,7 +1463,7 @@ msgstr "排水量步数不能为0！."
 #: freestringsunit.rs_distance
 msgctxt "freestringsunit.rs_distance"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: freestringsunit.rs_distance_between_centerplans_s__m
 msgid "Distance between centerplans S, m"
@@ -1475,7 +1475,7 @@ msgstr "船体间距, m"
 
 #: freestringsunit.rs_distance_between_thrust_line_and_cog
 msgid "Distance between Thrust line and CoG"
-msgstr ""
+msgstr "推力线与重心之间的距离"
 
 #: freestringsunit.rs_distance_from_bow_to_centroid_________c__
 msgid "DISTANCE FROM BOW TO CENTROID ....... C :"
@@ -1636,7 +1636,7 @@ msgstr "结尾速度 [knots (m/s)]"
 #: freestringsunit.rs_end_speed
 msgctxt "freestringsunit.rs_end_speed"
 msgid "End speed"
-msgstr "终止速度"
+msgstr "结束速度"
 
 #: freestringsunit.rs_engine_power__kw_
 msgid "Engine power [kW]"
@@ -1704,7 +1704,7 @@ msgstr "面"
 
 #: freestringsunit.rs_feet
 msgid "Feet"
-msgstr ""
+msgstr "英尺"
 
 #: freestringsunit.rs_filename
 msgctxt "freestringsunit.rs_filename"
@@ -2556,7 +2556,7 @@ msgstr "皮划艇和独木舟的KAPER阻力"
 #: freestringsunit.rs_keel
 msgctxt "freestringsunit.rs_keel"
 msgid "Keel"
-msgstr ""
+msgstr "龙骨"
 
 #: freestringsunit.rs_keel_s_properties
 msgid "Keel's properties"
@@ -2720,7 +2720,7 @@ msgstr "漏点"
 #: freestringsunit.rs_length
 msgctxt "freestringsunit.rs_length"
 msgid "Length"
-msgstr ""
+msgstr "长度"
 
 #: freestringsunit.rs_length_of_cylindrical_body__m
 msgid "Length of cylindrical body, m"
@@ -3149,7 +3149,7 @@ msgstr ""
 #: freestringsunit.rs_m
 msgctxt "freestringsunit.rs_m"
 msgid "m"
-msgstr "m"
+msgstr "米"
 
 #: freestringsunit.rs_marine_technology__okt__1986
 msgid "Marine Technology, Okt. 1986"
@@ -3211,7 +3211,7 @@ msgstr ""
 #: freestringsunit.rs_meters
 msgctxt "freestringsunit.rs_meters"
 msgid "Meters"
-msgstr ""
+msgstr "米"
 
 #: freestringsunit.rs_method__nm_1___geers__nm_2___doubrovin_
 msgid "Method (Nm=1 - Geers; Nm=2 - Doubrovin)"
@@ -3227,7 +3227,7 @@ msgstr ""
 
 #: freestringsunit.rs_midship_area_above_waterline
 msgid "Midship area above waterline"
-msgstr "水线上的船中区域"
+msgstr "船舯水线以上区域"
 
 #: freestringsunit.rs_midship_coefficient
 msgid "Midship coefficient"
@@ -3256,7 +3256,7 @@ msgstr "中横剖面面积"
 
 #: freestringsunit.rs_millimeters
 msgid "Millimeters"
-msgstr ""
+msgstr "毫米"
 
 #: freestringsunit.rs_min
 msgid "min"
@@ -3466,7 +3466,7 @@ msgstr ""
 #: freestringsunit.rs_number_of_blades
 msgctxt "freestringsunit.rs_number_of_blades"
 msgid "Number of blades"
-msgstr "桨叶数"
+msgstr "叶片数"
 
 #: freestringsunit.rs_number_of_blades_is_out_of_limits_for_this_diagram___
 msgid "Number of blades is out of limits for this diagram!!!"
@@ -3483,7 +3483,7 @@ msgstr "期望每一站的控制点数"
 #: freestringsunit.rs_number_of_diagram
 msgctxt "freestringsunit.rs_number_of_diagram"
 msgid "Number of diagram"
-msgstr "数量图"
+msgstr "图表的数量"
 
 #: freestringsunit.rs_number_of_hulls
 msgid "Number of hulls"
@@ -3496,7 +3496,7 @@ msgstr ""
 #: freestringsunit.rs_number_of_propellers
 msgctxt "freestringsunit.rs_number_of_propellers"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: freestringsunit.rs_number_of_propeller_blades_____________
 msgid "Number of Propeller Blades            ="
@@ -3576,7 +3576,7 @@ msgstr "透视图"
 
 #: freestringsunit.rs_pitch_diameter_ratio
 msgid "Pitch-diameter ratio"
-msgstr "桨叶比率"
+msgstr "螺距比"
 
 #: freestringsunit.rs_pitch_diameter_ratio_p_dp________________
 msgid "Pitch Diameter Ratio P/Dp               ="
@@ -3585,7 +3585,7 @@ msgstr ""
 #: freestringsunit.rs_plan_view
 msgctxt "freestringsunit.rs_plan_view"
 msgid "Plan view"
-msgstr "水线图"
+msgstr "主视图"
 
 #: freestringsunit.rs_points
 msgid "points"
@@ -3632,7 +3632,7 @@ msgstr "打印比例"
 #: freestringsunit.rs_prismatic_coefficient
 msgctxt "freestringsunit.rs_prismatic_coefficient"
 msgid "Prismatic coefficient"
-msgstr "菱形系数"
+msgstr "棱形系数"
 
 #: freestringsunit.rs_prismatic_coefficient_on_lwl________cp__
 msgid "Prismatic Coefficient on LWL        CP ="
@@ -3669,7 +3669,7 @@ msgstr ""
 #: freestringsunit.rs_project
 msgctxt "freestringsunit.rs_project"
 msgid "Project"
-msgstr "项目"
+msgstr "工程"
 
 #: freestringsunit.rs_project_settings
 msgid "project settings"
@@ -4994,7 +4994,7 @@ msgstr "旋转矢量"
 
 #: freestringsunit.rs_roughness_coefficient_o10_3
 msgid "Roughness coefficient *10^3"
-msgstr "粗糙度系数 *10^3"
+msgstr "粗糙系数*10^3"
 
 #: freestringsunit.rs_rpm___
 msgid "RPM  ="
@@ -5110,7 +5110,7 @@ msgstr "某些指令输入错误!!!"
 #: freestringsunit.rs_specified_engine_power__kw_
 msgctxt "freestringsunit.rs_specified_engine_power__kw_"
 msgid "Specified engine power [kW]"
-msgstr "主机规定功率 [kW]"
+msgstr "选定主机功率 [kW]"
 
 #: freestringsunit.rs_speed
 msgid "Speed"
@@ -5134,7 +5134,7 @@ msgstr ""
 
 #: freestringsunit.rs_spray_strips_deadrise
 msgid "Spray strips deadrise"
-msgstr ""
+msgstr "Spray strips deadrise"
 
 #: freestringsunit.rs_ssd_and_dsd_are_calculated_
 msgid "SSD and DSD are calculated!"
@@ -5171,7 +5171,7 @@ msgstr "开始速度 [knots (m/s)]"
 #: freestringsunit.rs_start_speed
 msgctxt "freestringsunit.rs_start_speed"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: freestringsunit.rs_static_and_dynamic_stability_diagrams__ssd___dsd_
 msgid "Static and Dynamic Stability Diagrams (SSD & DSD)"
@@ -5184,7 +5184,7 @@ msgstr "站线"
 #: freestringsunit.rs_stations
 msgctxt "freestringsunit.rs_stations"
 msgid "Stations"
-msgstr "站线"
+msgstr "横剖面"
 
 #: freestringsunit.rs_step_of_propeller_diameter_is_very_big_
 msgid "Step of propeller diameter is very big!"
@@ -5216,7 +5216,7 @@ msgstr "概述主机的惯性力矩 [kg*m2]"
 
 #: freestringsunit.rs_t
 msgid "t"
-msgstr "t"
+msgstr "吨"
 
 #: freestringsunit.rs_table
 msgid "Table"
@@ -5658,7 +5658,7 @@ msgstr "W"
 
 #: freestringsunit.rs_wageningen_b_screw_series_propeller_preliminary_design
 msgid "Wageningen B-Screw Series Propeller Preliminary Design"
-msgstr ""
+msgstr "Wageningen B-Screw 系列螺旋桨初步设计"
 
 #: freestringsunit.rs_waited_speed_ship__knots_
 msgid "Waited speed ship [knots]"
@@ -5683,12 +5683,12 @@ msgstr "水线"
 #: freestringsunit.rs_waterlines
 msgctxt "freestringsunit.rs_waterlines"
 msgid "Waterlines"
-msgstr "水线"
+msgstr "水线面"
 
 #: freestringsunit.rs_waterplane_area
 msgctxt "freestringsunit.rs_waterplane_area"
 msgid "Waterplane area"
-msgstr "水线面面积"
+msgstr "水线面积"
 
 #: freestringsunit.rs_waterplane_center_of_floatation
 msgid "Waterplane center of floatation"
@@ -5709,7 +5709,7 @@ msgstr "水线面属性"
 #: freestringsunit.rs_water_density
 msgctxt "freestringsunit.rs_water_density"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: freestringsunit.rs_water_density_rho__kg_m_3______________
 msgid "Water Density Rho (kg/m^3)            ="
@@ -5751,7 +5751,7 @@ msgstr ""
 #: freestringsunit.rs_wetted_area
 msgctxt "freestringsunit.rs_wetted_area"
 msgid "Wetted area"
-msgstr "浸润面积"
+msgstr "浸水面积"
 
 #: freestringsunit.rs_wetted_area_by_holtrop_formulae_is_not_right__because_cwp_0____
 msgid "Wetted area by Holtrop formulae is NOT right, because Cwp=0 !!!"
@@ -5760,7 +5760,7 @@ msgstr "用Holtrop公式求浸润面积不正确, 因为 Cwp=0 !!!"
 #: freestringsunit.rs_wetted_surface_area
 msgctxt "freestringsunit.rs_wetted_surface_area"
 msgid "Wetted surface area"
-msgstr "浸润表面面积"
+msgstr "浸润区域"
 
 #: freestringsunit.rs_wetted_surface__m_2_____________________
 msgid "Wetted Surface (m^2)                   ="
@@ -5919,7 +5919,7 @@ msgstr ""
 #: mdipanel.rsclose
 msgctxt "mdipanel.rsclose"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: mdipanel.rsmaximize
 msgid "Maximize"
@@ -5936,20 +5936,20 @@ msgstr ""
 #: tdxfexport2ddialog.bitbtn1.caption
 msgctxt "tdxfexport2ddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tdxfexport2ddialog.bitbtn2.caption
 msgctxt "tdxfexport2ddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tdxfexport2ddialog.caption
 msgid "Export intersections to DXF as 2D polylines."
-msgstr ""
+msgstr "以二维多段线导出交点到DXF文件."
 
 #: tdxfexport2ddialog.cbcreateindividualfiles.caption
 msgid "Create individual files"
-msgstr ""
+msgstr "创建个人文件"
 
 #: tdxfexport2ddialog.cbcreateindividuallayers.caption
 msgid "Create individual layers"
@@ -5958,7 +5958,7 @@ msgstr ""
 #: tdxfexport2ddialog.combobox1.text
 msgctxt "tdxfexport2ddialog.combobox1.text"
 msgid "Meters"
-msgstr ""
+msgstr "米"
 
 #: tdxfexport2ddialog.edit3.text
 msgctxt "tdxfexport2ddialog.edit3.text"
@@ -5971,25 +5971,25 @@ msgstr ""
 
 #: tdxfexport2ddialog.label4.caption
 msgid "Export units"
-msgstr ""
+msgstr "输出单位"
 
 #: tdxfexport2ddialog.label7.caption
 msgid "Export directory"
-msgstr ""
+msgstr "输出目录"
 
 #: tdxfexport2ddialog.speedbutton1.hint
 msgid "Browse for the export directory"
-msgstr ""
+msgstr "浏览输出目录"
 
 #: tenterthemenamedlg.bitbtn1.caption
 msgctxt "tenterthemenamedlg.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tenterthemenamedlg.bitbtn2.caption
 msgctxt "tenterthemenamedlg.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tenterthemenamedlg.caption
 msgid "Enter Theme Name"
@@ -6006,7 +6006,7 @@ msgstr ""
 #: texceptiondlg.button1.caption
 msgctxt "texceptiondlg.button1.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: texceptiondlg.caption
 msgid "Exception"
@@ -6015,7 +6015,7 @@ msgstr ""
 #: tformselected.aclose.caption
 msgctxt "tformselected.aclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tformselected.caption
 msgid "Selected"
@@ -6092,7 +6092,7 @@ msgstr ""
 #: tformselected.label1.caption
 msgctxt "tformselected.label1.caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.label10.caption
 #, fuzzy
@@ -6108,7 +6108,7 @@ msgstr ""
 #: tformselected.label3.caption
 msgctxt "tformselected.label3.caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.label4.caption
 msgctxt "tformselected.label4.caption"
@@ -6133,12 +6133,12 @@ msgstr "曲线"
 #: tformselected.label8.caption
 msgctxt "tformselected.label8.caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.label9.caption
 msgctxt "tformselected.label9.caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvcurvepoints.columns[0].caption
 msgctxt "tformselected.lvcurvepoints.columns[0].caption"
@@ -6148,7 +6148,7 @@ msgstr ""
 #: tformselected.lvcurvepoints.columns[1].caption
 msgctxt "tformselected.lvcurvepoints.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvcurves.columns[0].caption
 msgctxt "tformselected.lvcurves.columns[0].caption"
@@ -6158,7 +6158,7 @@ msgstr ""
 #: tformselected.lvcurves.columns[1].caption
 msgctxt "tformselected.lvcurves.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvedgefaces.columns[0].caption
 msgctxt "tformselected.lvedgefaces.columns[0].caption"
@@ -6168,7 +6168,7 @@ msgstr ""
 #: tformselected.lvedgefaces.columns[1].caption
 msgctxt "tformselected.lvedgefaces.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvedges.columns[0].caption
 msgctxt "tformselected.lvedges.columns[0].caption"
@@ -6178,7 +6178,7 @@ msgstr ""
 #: tformselected.lvedges.columns[1].caption
 msgctxt "tformselected.lvedges.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvfacepoints.columns[0].caption
 msgctxt "tformselected.lvfacepoints.columns[0].caption"
@@ -6188,7 +6188,7 @@ msgstr ""
 #: tformselected.lvfacepoints.columns[1].caption
 msgctxt "tformselected.lvfacepoints.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvfaces.columns[0].caption
 msgctxt "tformselected.lvfaces.columns[0].caption"
@@ -6198,7 +6198,7 @@ msgstr ""
 #: tformselected.lvfaces.columns[1].caption
 msgctxt "tformselected.lvfaces.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvpointedges.columns[0].caption
 msgctxt "tformselected.lvpointedges.columns[0].caption"
@@ -6208,7 +6208,7 @@ msgstr ""
 #: tformselected.lvpointedges.columns[1].caption
 msgctxt "tformselected.lvpointedges.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvpointfaces.columns[0].caption
 msgctxt "tformselected.lvpointfaces.columns[0].caption"
@@ -6218,7 +6218,7 @@ msgstr ""
 #: tformselected.lvpointfaces.columns[1].caption
 msgctxt "tformselected.lvpointfaces.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvpointgroups.columns[0].caption
 msgctxt "tformselected.lvpointgroups.columns[0].caption"
@@ -6228,7 +6228,7 @@ msgstr ""
 #: tformselected.lvpointgroups.columns[1].caption
 msgctxt "tformselected.lvpointgroups.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.lvpoints.columns[0].caption
 msgctxt "tformselected.lvpoints.columns[0].caption"
@@ -6238,7 +6238,7 @@ msgstr ""
 #: tformselected.lvpoints.columns[1].caption
 msgctxt "tformselected.lvpoints.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformselected.miunselect.caption
 msgid "miUnselect"
@@ -6270,7 +6270,7 @@ msgstr ""
 #: tfreeaboutdlg.button1.caption
 msgctxt "tfreeaboutdlg.button1.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tfreeaboutdlg.caption
 msgid "FREE!ship About"
@@ -6364,7 +6364,7 @@ msgstr ""
 #: tfreeaddmassoutputdialog.cancelbutton.caption
 msgctxt "tfreeaddmassoutputdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeaddmassoutputdialog.caption
 msgid "Add_Mass file generator."
@@ -6380,33 +6380,33 @@ msgstr ""
 
 #: tfreeaddmassoutputdialog.label1.caption
 msgid "Number of stations (5-45)"
-msgstr ""
+msgstr "站数 (5-45)"
 
 #: tfreeaddmassoutputdialog.label10.caption
 msgctxt "tfreeaddmassoutputdialog.label10.caption"
 msgid "Water depth"
-msgstr ""
+msgstr "水深"
 
 #: tfreeaddmassoutputdialog.label12.caption
 msgid "Trim angle"
-msgstr ""
+msgstr "纵倾角"
 
 #: tfreeaddmassoutputdialog.label14.caption
 msgctxt "tfreeaddmassoutputdialog.label14.caption"
 msgid "Distance between center of hulls:"
-msgstr ""
+msgstr "中心与船壳的距离:"
 
 #: tfreeaddmassoutputdialog.label2.caption
 msgid "Number of waterlines (5-25)"
-msgstr ""
+msgstr "水线数 (5-25)"
 
 #: tfreeaddmassoutputdialog.label20.caption
 msgid "Number of areas"
-msgstr ""
+msgstr "面积的值"
 
 #: tfreeaddmassoutputdialog.label21.caption
 msgid "Percent of areas sum"
-msgstr ""
+msgstr "面积总和的百分比"
 
 #: tfreeaddmassoutputdialog.label22.caption
 msgid "Calculation accuracy"
@@ -6426,7 +6426,7 @@ msgstr ""
 
 #: tfreeaddmassoutputdialog.label26.caption
 msgid "Rotative velocity Omega, 1/sec"
-msgstr ""
+msgstr "旋转速度 （Ω）Omega, 1/sec"
 
 #: tfreeaddmassoutputdialog.label27.caption
 msgid "Type of object or ship:"
@@ -6441,43 +6441,43 @@ msgstr "吃水"
 #: tfreeaddmassoutputdialog.label4.caption
 msgctxt "tfreeaddmassoutputdialog.label4.caption"
 msgid "Length"
-msgstr ""
+msgstr "长度"
 
 #: tfreeaddmassoutputdialog.label5.caption
 msgctxt "tfreeaddmassoutputdialog.label5.caption"
 msgid "Volume"
-msgstr ""
+msgstr "体积"
 
 #: tfreeaddmassoutputdialog.label6.caption
 #, fuzzy
 msgctxt "tfreeaddmassoutputdialog.label6.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeaddmassoutputdialog.label7.caption
 msgctxt "tfreeaddmassoutputdialog.label7.caption"
 msgid "Water kinematic viscosity"
-msgstr ""
+msgstr "水的动态粘度"
 
 #: tfreeaddmassoutputdialog.okbutton.caption
 msgctxt "tfreeaddmassoutputdialog.okbutton.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeaddmassoutputdialog.radiobutton1.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton1.caption"
 msgid "Monohull"
-msgstr ""
+msgstr "单体船"
 
 #: tfreeaddmassoutputdialog.radiobutton2.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton2.caption"
 msgid "Monohull, send as catamaran"
-msgstr ""
+msgstr "单体船,作为双体船发送"
 
 #: tfreeaddmassoutputdialog.radiobutton3.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton3.caption"
 msgid "Catamaran"
-msgstr ""
+msgstr "双体船"
 
 #: tfreeaddmassoutputdialog.savefile.caption
 #, fuzzy
@@ -6488,7 +6488,7 @@ msgstr "保存"
 #: tfreeaddmassoutputdialog.tabsheet1.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet1.caption"
 msgid "Hull geometry"
-msgstr ""
+msgstr "船体的几何形状"
 
 #: tfreeaddmassoutputdialog.tabsheet2.caption
 #, fuzzy
@@ -6499,12 +6499,12 @@ msgstr "结果"
 #: tfreeaddmassoutputdialog.tabsheet3.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet3.caption"
 msgid "Environment"
-msgstr ""
+msgstr "周围环境状况"
 
 #: tfreeaddmassoutputdialog.tabsheet4.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet4.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeaddmassoutputdialog._label11.caption
 msgctxt "tfreeaddmassoutputdialog._label11.caption"
@@ -6553,21 +6553,21 @@ msgstr ""
 #: tfreebackgroundblenddialog.bitbtn1.caption
 msgctxt "tfreebackgroundblenddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreebackgroundblenddialog.bitbtn2.caption
 msgctxt "tfreebackgroundblenddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreebackgroundblenddialog.caption
 msgctxt "tfreebackgroundblenddialog.caption"
 msgid "Background blending."
-msgstr ""
+msgstr "背景混合."
 
 #: tfreebackgroundblenddialog.label1.caption
 msgid "Visibility of image"
-msgstr ""
+msgstr "图像透明度"
 
 #: tfreebackgroundblenddialog._label2.caption
 msgctxt "tfreebackgroundblenddialog._label2.caption"
@@ -6577,12 +6577,12 @@ msgstr ""
 #: tfreebackgroundtolerancedialog.bitbtn1.caption
 msgctxt "tfreebackgroundtolerancedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreebackgroundtolerancedialog.bitbtn2.caption
 msgctxt "tfreebackgroundtolerancedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreebackgroundtolerancedialog.caption
 msgid "Background Tolerance"
@@ -6609,7 +6609,7 @@ msgstr ""
 
 #: tfreecontrolpointform.checkboxcorner.caption
 msgid "Corner"
-msgstr ""
+msgstr "角点"
 
 #: tfreecontrolpointform.groupboxanchorconstraint.caption
 msgid "Anchor point"
@@ -6636,7 +6636,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreecontrolpointform.label4.caption"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: tfreecontrolpointform.label5.caption
 msgctxt "tfreecontrolpointform.label5.caption"
@@ -6661,19 +6661,19 @@ msgstr ""
 #: tfreecontrolpointform.labelname.caption
 msgctxt "tfreecontrolpointform.labelname.caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tfreecontrolpointform.labelx.caption
 msgid "X-coord."
-msgstr ""
+msgstr "X-坐标."
 
 #: tfreecontrolpointform.labely.caption
 msgid "Y-coord."
-msgstr ""
+msgstr "Y-坐标."
 
 #: tfreecontrolpointform.labelz.caption
 msgid "Z-coord."
-msgstr ""
+msgstr "Z-坐标."
 
 #: tfreecontrolpointform.speedbuttonremoveanchorpoint.caption
 msgctxt "tfreecontrolpointform.speedbuttonremoveanchorpoint.caption"
@@ -6720,7 +6720,7 @@ msgstr "删除"
 #: tfreecrosscurvesdialog.caption
 msgctxt "tfreecrosscurvesdialog.caption"
 msgid "Cross curves."
-msgstr ""
+msgstr "交叉曲线."
 
 #: tfreecrosscurvesdialog.chart.axislist[0].title.caption
 msgid "KN sin(phi)"
@@ -6752,7 +6752,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.checkbox1.caption
 msgid "Incremental displ."
-msgstr ""
+msgstr "排水增长量"
 
 #: tfreecrosscurvesdialog.combobox.text
 msgid "Nonlimit"
@@ -6764,7 +6764,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox2.caption
 msgid "Heeling angles."
-msgstr ""
+msgstr "横倾角."
 
 #: tfreecrosscurvesdialog.groupbox3.caption
 msgid "Data for SSD:"
@@ -6772,19 +6772,19 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox4.caption
 msgid "Displacements."
-msgstr ""
+msgstr "排水量."
 
 #: tfreecrosscurvesdialog.label1.caption
 msgid "Start displ."
-msgstr ""
+msgstr "最小排水量."
 
 #: tfreecrosscurvesdialog.label12_.caption
 msgid "Decrease metacentric height, [m]"
-msgstr ""
+msgstr "降低定倾中心高度, [米]"
 
 #: tfreecrosscurvesdialog.label13_.caption
 msgid "Immersion deck angle, [degr]"
-msgstr ""
+msgstr "甲板浸没角, [度]"
 
 #: tfreecrosscurvesdialog.label1_.caption
 msgid "Projected displ., [tons]"
@@ -6792,15 +6792,15 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label2.caption
 msgid "End displ."
-msgstr ""
+msgstr "最大排水量."
 
 #: tfreecrosscurvesdialog.label2_.caption
 msgid "Estimated Z CoG, [m]"
-msgstr ""
+msgstr "估计Z轴重心坐标, [m]"
 
 #: tfreecrosscurvesdialog.label3.caption
 msgid "Displ. step"
-msgstr ""
+msgstr "计算间距"
 
 #: tfreecrosscurvesdialog.label4_.caption
 msgid "Area of bilge keels, [m^2]"
@@ -6812,7 +6812,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr ""
+msgstr "侧风面积, [m^2]"
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"
@@ -6820,7 +6820,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label8_.caption
 msgid "Navigation region:"
-msgstr ""
+msgstr "航行区域:"
 
 #: tfreecrosscurvesdialog.label9_.caption
 msgid "Registry:"
@@ -6838,7 +6838,7 @@ msgstr ""
 #: tfreecrosscurvesdialog.printbutton.caption
 msgctxt "tfreecrosscurvesdialog.printbutton.caption"
 msgid "Cross curves."
-msgstr ""
+msgstr "交叉曲线."
 
 #: tfreecrosscurvesdialog.printbutton.hint
 #, fuzzy
@@ -6852,15 +6852,15 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.savebutton.hint
 msgid "Save the results of the calculation."
-msgstr ""
+msgstr "保存计算结果."
 
 #: tfreecrosscurvesdialog.tabsheet1.caption
 msgid "Graph"
-msgstr ""
+msgstr "曲线图"
 
 #: tfreecrosscurvesdialog.tabsheet2.caption
 msgid "Data"
-msgstr ""
+msgstr "数据表"
 
 #: tfreecrosscurvesdialog.tabsheet3.caption
 msgid "Stability diagram"
@@ -6884,27 +6884,27 @@ msgstr ""
 #: tfreecrosscurvesdialog.toolbutton1.hint
 msgctxt "tfreecrosscurvesdialog.toolbutton1.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreecrosscurvesdialog.toolbutton2.caption
 msgid "Abort"
-msgstr ""
+msgstr "关于"
 
 #: tfreecrosscurvesdialog.toolbutton2.hint
 msgid "Abort the calculation"
-msgstr ""
+msgstr "关于计算"
 
 #: tfreecrosscurvesdialog.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreecrosscurvesdialog.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreecrosscurvesdialog.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreecrosscurvesdialog._toolbutton10.caption
 msgctxt "tfreecrosscurvesdialog._toolbutton10.caption"
@@ -6919,7 +6919,7 @@ msgstr ""
 #: tfreedeletedialog.bbcancel.caption
 msgctxt "tfreedeletedialog.bbcancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreedeletedialog.bbdelete.caption
 #, fuzzy
@@ -6960,17 +6960,17 @@ msgstr ""
 #: tfreedeletedialog.sgobjects.columns[3].title.caption
 msgctxt "tfreedeletedialog.sgobjects.columns[3].title.caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tfreeemptymodelchooserdialog.cancelbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeemptymodelchooserdialog.caption
 msgctxt "tfreeemptymodelchooserdialog.caption"
 msgid "Background blending."
-msgstr ""
+msgstr "背景混合."
 
 #: tfreeemptymodelchooserdialog.label1.caption
 msgid "Not found"
@@ -6983,7 +6983,7 @@ msgstr ""
 #: tfreeemptymodelchooserdialog.okbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.okbutton.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeemptymodelchooserdialog.radiogroup1.caption
 msgid "Further action"
@@ -7004,7 +7004,7 @@ msgstr ""
 #: tfreeexpanedplatesdialog.checkbox1.caption
 msgctxt "tfreeexpanedplatesdialog.checkbox1.caption"
 msgid "Mirror"
-msgstr ""
+msgstr "镜像"
 
 #: tfreeexpanedplatesdialog.closedialog.caption
 msgctxt "tfreeexpanedplatesdialog.closedialog.caption"
@@ -7019,11 +7019,11 @@ msgstr ""
 #: tfreeexpanedplatesdialog.exportdxf.caption
 msgctxt "tfreeexpanedplatesdialog.exportdxf.caption"
 msgid "DXF"
-msgstr ""
+msgstr "DXF文件"
 
 #: tfreeexpanedplatesdialog.exportdxf.hint
 msgid "Export the visible plates to a DXF file."
-msgstr ""
+msgstr "可视板DXF文件输出"
 
 #: tfreeexpanedplatesdialog.exporttextfile.caption
 msgctxt "tfreeexpanedplatesdialog.exporttextfile.caption"
@@ -7036,41 +7036,41 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.label1.caption
 msgid "Minimum edge error"
-msgstr ""
+msgstr "边缘最小误差"
 
 #: tfreeexpanedplatesdialog.label10.caption
 msgid "X grid spacing"
-msgstr ""
+msgstr "X 方向格栅间距"
 
 #: tfreeexpanedplatesdialog.label11.caption
 msgid "Y grid spacing"
-msgstr ""
+msgstr "Y 方向格栅间距"
 
 #: tfreeexpanedplatesdialog.label15.caption
 msgid "Maximum area error"
-msgstr ""
+msgstr "面积最大误差"
 
 #: tfreeexpanedplatesdialog.label17.caption
 msgid "Total area error"
-msgstr ""
+msgstr "总面积误差"
 
 #: tfreeexpanedplatesdialog.label3.caption
 msgid "Maximum edge error"
-msgstr ""
+msgstr "边缘最大误差"
 
 #: tfreeexpanedplatesdialog.label5.caption
 msgctxt "tfreeexpanedplatesdialog.label5.caption"
 msgid "Part name"
-msgstr ""
+msgstr "部件名称"
 
 #: tfreeexpanedplatesdialog.label7.caption
 msgctxt "tfreeexpanedplatesdialog.label7.caption"
 msgid "Rotation"
-msgstr ""
+msgstr "旋转"
 
 #: tfreeexpanedplatesdialog.label8.caption
 msgid "No. iterations"
-msgstr ""
+msgstr "迭代次数"
 
 #: tfreeexpanedplatesdialog.print.caption
 #, fuzzy
@@ -7080,7 +7080,7 @@ msgstr "打印"
 
 #: tfreeexpanedplatesdialog.print.hint
 msgid "Send unfolded plates to printer or plotter."
-msgstr ""
+msgstr "打印或绘制展开版."
 
 #: tfreeexpanedplatesdialog.rotateccw1.caption
 msgid "-1"
@@ -7088,7 +7088,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw1.hint
 msgid "Rotate part 1 degr. counter clockwise."
-msgstr ""
+msgstr "逆时针旋转部件1度."
 
 #: tfreeexpanedplatesdialog.rotateccw5.caption
 msgid "-5"
@@ -7096,7 +7096,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw5.hint
 msgid "Rotate part 5 degr. counter clockwise."
-msgstr ""
+msgstr "逆时针旋转部件5度."
 
 #: tfreeexpanedplatesdialog.rotateccw90.caption
 msgid "-90"
@@ -7104,7 +7104,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw90.hint
 msgid "Rotate part 90 degr. counter clockwise."
-msgstr ""
+msgstr "逆时针旋转部件90度."
 
 #: tfreeexpanedplatesdialog.rotatecw1.caption
 msgid "+1"
@@ -7112,7 +7112,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw1.hint
 msgid "Rotate part 1 degr. clockwise."
-msgstr ""
+msgstr "顺时针旋转部件1度"
 
 #: tfreeexpanedplatesdialog.rotatecw5.caption
 msgid "+5"
@@ -7120,7 +7120,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw5.hint
 msgid "Rotate part 5 degr. clockwise."
-msgstr ""
+msgstr "顺时针旋转部件5度."
 
 #: tfreeexpanedplatesdialog.rotatecw90.caption
 msgid "+90"
@@ -7128,26 +7128,26 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw90.hint
 msgid "Rotate part 90 degr. clockwise."
-msgstr ""
+msgstr "顺时针旋转部件90度."
 
 #: tfreeexpanedplatesdialog.savebitmap.caption
 msgctxt "tfreeexpanedplatesdialog.savebitmap.caption"
 msgid "Save bitmap"
-msgstr ""
+msgstr "保存点阵图"
 
 #: tfreeexpanedplatesdialog.savebitmap.hint
 msgid "Save the current layout as a bitmap."
-msgstr ""
+msgstr "保存点阵图当前排布."
 
 #: tfreeexpanedplatesdialog.showbuttocks.caption
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showbuttocks.caption"
 msgid "Buttocks"
-msgstr "纵剖线图"
+msgstr "纵剖面"
 
 #: tfreeexpanedplatesdialog.showbuttocks.hint
 msgid "Show buttocks on developed plates."
-msgstr ""
+msgstr "显示纵剖面制定板."
 
 #: tfreeexpanedplatesdialog.showdiagonals.caption
 #, fuzzy
@@ -7157,82 +7157,82 @@ msgstr "斜线"
 
 #: tfreeexpanedplatesdialog.showdiagonals.hint
 msgid "Show diagonals on developed plates."
-msgstr ""
+msgstr "显示斜线上的制定版."
 
 #: tfreeexpanedplatesdialog.showdimensions.caption
 msgid "ShowDimensions"
-msgstr ""
+msgstr "显示尺寸"
 
 #: tfreeexpanedplatesdialog.showdimensions.hint
 msgid "Show dimensions at grid intersections."
-msgstr ""
+msgstr "显示栅格捏的尺寸."
 
 #: tfreeexpanedplatesdialog.showerroredges.caption
 msgid "ShowErrorEdges"
-msgstr ""
+msgstr "显示边缘错误"
 
 #: tfreeexpanedplatesdialog.showerroredges.hint
 msgid "Highlight compressed or stretched edges."
-msgstr ""
+msgstr "使压缩和压缩边缘变亮."
 
 #: tfreeexpanedplatesdialog.showfillcolor.caption
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.caption"
 msgid "Solid"
-msgstr ""
+msgstr "着色"
 
 #: tfreeexpanedplatesdialog.showfillcolor.hint
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.hint"
 msgid "Show plates with fillcolor."
-msgstr ""
+msgstr "显示着色板材."
 
 #: tfreeexpanedplatesdialog.showinterioredges.caption
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showinterioredges.caption"
 msgid "Interior edges"
-msgstr "内部边缘"
+msgstr "内部边"
 
 #: tfreeexpanedplatesdialog.showinterioredges.hint
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showinterioredges.hint"
 msgid "Show interior edges."
-msgstr "显示内部边缘."
+msgstr "显示内部边"
 
 #: tfreeexpanedplatesdialog.showpartname.caption
 msgctxt "tfreeexpanedplatesdialog.showpartname.caption"
 msgid "Part name"
-msgstr ""
+msgstr "部件名称"
 
 #: tfreeexpanedplatesdialog.showpartname.hint
 msgid "Show the name of each developed part."
-msgstr ""
+msgstr "显示各制定部件名称."
 
 #: tfreeexpanedplatesdialog.showstations.caption
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showstations.caption"
 msgid "Stations"
-msgstr "站线"
+msgstr "横剖面"
 
 #: tfreeexpanedplatesdialog.showstations.hint
 msgid "Show stations on developed plates."
-msgstr ""
+msgstr "显示横剖面制定板."
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.caption
 msgid "ShowSubmergedArea"
-msgstr ""
+msgstr "显示浸润区域"
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.hint
 msgid "Show the submerged surface areas in a different color."
-msgstr ""
+msgstr "显示用不同颜色表示的外表面浸润区域、"
 
 #: tfreeexpanedplatesdialog.showwaterlines.caption
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showwaterlines.caption"
 msgid "Waterlines"
-msgstr "水线"
+msgstr "水线面"
 
 #: tfreeexpanedplatesdialog.showwaterlines.hint
 msgid "Show waterlines on developed plates."
-msgstr ""
+msgstr "显示水线面制定板."
 
 #: tfreeexpanedplatesdialog.spineditfontsize.hint
 msgctxt "tfreeexpanedplatesdialog.spineditfontsize.hint"
@@ -7251,17 +7251,17 @@ msgstr ""
 #: tfreeexpanedplatesdialog.zoomextents.caption
 msgctxt "tfreeexpanedplatesdialog.zoomextents.caption"
 msgid "Extents"
-msgstr ""
+msgstr "范围"
 
 #: tfreeexpanedplatesdialog.zoomextents.hint
 msgctxt "tfreeexpanedplatesdialog.zoomextents.hint"
 msgid "Zoom all."
-msgstr ""
+msgstr "整图缩放."
 
 #: tfreeexpanedplatesdialog.zoomin.caption
 msgctxt "tfreeexpanedplatesdialog.zoomin.caption"
 msgid "ZoomIn"
-msgstr ""
+msgstr "放大"
 
 #: tfreeexpanedplatesdialog.zoomin.hint
 #, fuzzy
@@ -7278,7 +7278,7 @@ msgstr "缩小"
 #: tfreeexpanedplatesdialog.zoomout.hint
 msgctxt "tfreeexpanedplatesdialog.zoomout.hint"
 msgid "Zoom out."
-msgstr ""
+msgstr "缩小."
 
 #: tfreeexpanedplatesdialog._label12.caption
 msgctxt "tfreeexpanedplatesdialog._label12.caption"
@@ -7345,28 +7345,28 @@ msgstr ""
 #: tfreeextrudedialog.bitbtn1.caption
 msgctxt "tfreeextrudedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeextrudedialog.bitbtn2.caption
 msgctxt "tfreeextrudedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeextrudedialog.caption
 msgid "Extrusion vector"
-msgstr ""
+msgstr "矢量拉伸"
 
 #: tfreeextrudedialog.label1.caption
 msgid "Longitudinal direction"
-msgstr ""
+msgstr "纵向"
 
 #: tfreeextrudedialog.label2.caption
 msgid "Transverse direction"
-msgstr ""
+msgstr "横向"
 
 #: tfreeextrudedialog.label4.caption
 msgid "Vertical direction"
-msgstr ""
+msgstr "垂向"
 
 #: tfreeextrudedialog._label3.caption
 msgctxt "tfreeextrudedialog._label3.caption"
@@ -7390,7 +7390,7 @@ msgstr ""
 #: tfreefilepreviewdialog.bitbtncancel.caption
 msgctxt "tfreefilepreviewdialog.bitbtncancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreefilepreviewdialog.bitbtnopen.caption
 msgctxt "tfreefilepreviewdialog.bitbtnopen.caption"
@@ -7399,7 +7399,7 @@ msgstr ""
 
 #: tfreefilepreviewdialog.comboboxdir.text
 msgid "."
-msgstr ""
+msgstr "."
 
 #: tfreefilepreviewdialog.editname.text
 msgid "EditName"
@@ -7435,7 +7435,7 @@ msgstr ""
 #: tfreefilepreviewdialog.properties.caption
 msgctxt "tfreefilepreviewdialog.properties.caption"
 msgid "Properties"
-msgstr ""
+msgstr "性能"
 
 #: tfreefilepreviewdialog.scrollboxpreview.hint
 msgctxt "tfreefilepreviewdialog.scrollboxpreview.hint"
@@ -7509,12 +7509,12 @@ msgstr ""
 #: tfreegriddialog.bitbtn1.caption
 msgctxt "tfreegriddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreegriddialog.bitbtn2.caption
 msgctxt "tfreegriddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreegriddialog.caption
 msgid "Add a grid"
@@ -7539,7 +7539,7 @@ msgstr ""
 
 #: tfreegriddialog.lbstartpoint.caption
 msgid "Startpoint"
-msgstr ""
+msgstr "起点"
 
 #: tfreegriddialog.lbunit1.caption
 msgctxt "tfreegriddialog.lbunit1.caption"
@@ -7720,57 +7720,57 @@ msgstr "缩小"
 
 #: tfreehydrodyn_maneuv.caption
 msgid "Evaluation of Turning Ability and Stability. Turning Prediction."
-msgstr ""
+msgstr "估计回转能力和静态反转预测."
 
 #: tfreehydrodyn_maneuv.checkbox2.caption
 #, fuzzy
 msgctxt "tfreehydrodyn_maneuv.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreehydrodyn_maneuv.checkbox3.caption
 msgid "Linear Evaluation"
-msgstr ""
+msgstr "线性评估"
 
 #: tfreehydrodyn_maneuv.checkbox4.caption
 msgid "Turning Prediction"
-msgstr ""
+msgstr "回转预测"
 
 #: tfreehydrodyn_maneuv.checkbox5.caption
 msgid "State Variable Equations"
-msgstr ""
+msgstr "状态变量方程"
 
 #: tfreehydrodyn_maneuv.label10.caption
 msgid "Water Density [kg/m^3]"
-msgstr ""
+msgstr "水的密度 [kg/m^3]"
 
 #: tfreehydrodyn_maneuv.label11.caption
 msgid "Kinematic Viscosity [m^2/s]"
-msgstr ""
+msgstr "动态粘滞率 [m^2/s]"
 
 #: tfreehydrodyn_maneuv.label12.caption
 msgid "Yaw Radius of Gyration K33/LWL"
-msgstr ""
+msgstr "偏航的回转半径 K33/LWL"
 
 #: tfreehydrodyn_maneuv.label13.caption
 msgid "Water Depth to Ship Draft Ratio H/T"
-msgstr ""
+msgstr "型深对吃水的比H/T"
 
 #: tfreehydrodyn_maneuv.label14.caption
 msgid "Steering Gear Time Constant [s]"
-msgstr ""
+msgstr "转舵恒定时间 [s]"
 
 #: tfreehydrodyn_maneuv.label15.caption
 msgid "Total Rudder Area - Fraction of LWL*T"
-msgstr ""
+msgstr "总舵面积- LWL*T的小部分"
 
 #: tfreehydrodyn_maneuv.label16.caption
 msgid "Submerged Bow Area - Fraction of LWL*T"
-msgstr ""
+msgstr "船首淹没面积 - LWL*T的小部分"
 
 #: tfreehydrodyn_maneuv.label17.caption
 msgid "Number of Propellers (0...2)"
-msgstr ""
+msgstr "螺旋桨数目 (0...2)"
 
 #: tfreehydrodyn_maneuv.label18.caption
 msgid "Type of Single Screw Stern (0-Close;1-Open;)"
@@ -7778,11 +7778,11 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.label19.caption
 msgid "Number of Rudders (0...2)"
-msgstr ""
+msgstr "舵的数量 (0...2)"
 
 #: tfreehydrodyn_maneuv.label2.caption
 msgid "Length of Waterline LWL [m]"
-msgstr ""
+msgstr "水线长 LWL [m]"
 
 #: tfreehydrodyn_maneuv.label20.caption
 msgid "Rudder Angle [degrees]"
@@ -7790,31 +7790,31 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.label3.caption
 msgid "Maximum Beam on LWL [m]"
-msgstr ""
+msgstr "LWL最大宽度[m]"
 
 #: tfreehydrodyn_maneuv.label4.caption
 msgid "Draft Forward [m]"
-msgstr ""
+msgstr "艏部吃水 [m]"
 
 #: tfreehydrodyn_maneuv.label5.caption
 msgid "Draft Aft [m]"
-msgstr ""
+msgstr "艉部吃水 [m]"
 
 #: tfreehydrodyn_maneuv.label6.caption
 msgid "Block Coefficient on LWL Cb"
-msgstr ""
+msgstr "LWL方形系数 Cb"
 
 #: tfreehydrodyn_maneuv.label7.caption
 msgid "Center of Gravity LCG (%LWL; + Fwd)"
-msgstr ""
+msgstr "LCG重心 (%LWL; + Fwd)"
 
 #: tfreehydrodyn_maneuv.label8.caption
 msgid "Midships to Rudder CE XR (%LWL; + Aft)"
-msgstr ""
+msgstr "CE XR 中站到舵 (%LWL; +Aft)"
 
 #: tfreehydrodyn_maneuv.label9.caption
 msgid "Initial Ship Speed [knots]"
-msgstr ""
+msgstr "初始航速 [knots]"
 
 #: tfreehydrodyn_maneuv.printbutton.caption
 msgctxt "tfreehydrodyn_maneuv.printbutton.caption"
@@ -7830,7 +7830,7 @@ msgstr "打印计算结果."
 #: tfreehydrodyn_maneuv.results2.caption
 msgctxt "tfreehydrodyn_maneuv.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreehydrodyn_maneuv.tabsheet1.caption
 #, fuzzy
@@ -7851,19 +7851,19 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.toolbutton17.hint
 msgid "Calculate"
-msgstr ""
+msgstr "计算"
 
 #: tfreehydrodyn_maneuv.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreehydrodyn_maneuv.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreehydrodyn_maneuv.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreehydrodyn_maneuv.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreehydrodyn_maneuv._toolbutton10.caption
 msgctxt "tfreehydrodyn_maneuv._toolbutton10.caption"
@@ -7895,24 +7895,24 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreehydrodyn_rvrs.label10.caption
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.label10.caption"
 msgid "Disk area ratio Ae/Ao"
-msgstr "桨叶盘面比Ae/Ao"
+msgstr "桨盘面积比 Ae/Ao"
 
 #: tfreehydrodyn_rvrs.label11.caption
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.label11.caption"
 msgid "Number of blades"
-msgstr "桨叶数"
+msgstr "叶片数"
 
 #: tfreehydrodyn_rvrs.label12.caption
 msgctxt "tfreehydrodyn_rvrs.label12.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "伴流系数"
 
 #: tfreehydrodyn_rvrs.label13.caption
 msgctxt "tfreehydrodyn_rvrs.label13.caption"
@@ -7923,7 +7923,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.label14.caption"
 msgid "Specified engine power [kW]"
-msgstr "主机规定功率 [kW]"
+msgstr "选定主机功率 [kW]"
 
 #: tfreehydrodyn_rvrs.label15.caption
 msgid "Frequency of propeller rotation [1/min]"
@@ -7943,33 +7943,33 @@ msgstr ""
 
 #: tfreehydrodyn_rvrs.label2.caption
 msgid "Length between perpendiculars [m]"
-msgstr ""
+msgstr "垂线间长 [m]"
 
 #: tfreehydrodyn_rvrs.label3.caption
 msgid "Beam waterline [m]"
-msgstr ""
+msgstr "水线宽 [m]"
 
 #: tfreehydrodyn_rvrs.label4.caption
 msgid "Midship draft [m]"
-msgstr ""
+msgstr "中站吃水 [m]"
 
 #: tfreehydrodyn_rvrs.label5.caption
 msgid "Displacement [m^3]"
-msgstr ""
+msgstr "排水量 [m^3]"
 
 #: tfreehydrodyn_rvrs.label6.caption
 msgid "Wetted surface area [m^2]"
-msgstr ""
+msgstr "浸润表面积[m^2]"
 
 #: tfreehydrodyn_rvrs.label7.caption
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.label7.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreehydrodyn_rvrs.label8.caption
 msgid "Propeller diameter [m]"
-msgstr ""
+msgstr "螺旋桨直径 [m]"
 
 #: tfreehydrodyn_rvrs.label9.caption
 msgid "Pitch ratio P/D"
@@ -8001,7 +8001,7 @@ msgstr "结果"
 #: tfreehydrodyn_rvrs.tabsheet3.caption
 msgctxt "tfreehydrodyn_rvrs.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreehydrodyn_rvrs.toolbar1.caption
 msgctxt "tfreehydrodyn_rvrs.toolbar1.caption"
@@ -8017,13 +8017,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreehydrodyn_rvrs.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreehydrodyn_rvrs._toolbutton10.caption
 msgctxt "tfreehydrodyn_rvrs._toolbutton10.caption"
@@ -8056,7 +8056,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreehydrodyn_task1.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreehydrodyn_task1.label10.caption
 msgid "Ship speed, [m/s]"
@@ -8072,31 +8072,31 @@ msgstr ""
 
 #: tfreehydrodyn_task1.label2.caption
 msgid "Length overall Loa [m]"
-msgstr ""
+msgstr "总长度Loa [m]"
 
 #: tfreehydrodyn_task1.label3.caption
 msgid "Breadth [m]"
-msgstr ""
+msgstr "型宽 [m]"
 
 #: tfreehydrodyn_task1.label4.caption
 msgid "Lateral projected wind area [m2]"
-msgstr ""
+msgstr "预测侧风面积 [m2]"
 
 #: tfreehydrodyn_task1.label5.caption
 msgid "Lateral proj. area of superstructure [m2]"
-msgstr ""
+msgstr "上层建筑侧风面积预测[m2]"
 
 #: tfreehydrodyn_task1.label6.caption
 msgid "Transverse projected wind area [m2]"
-msgstr ""
+msgstr "横风面积预测 [m2]"
 
 #: tfreehydrodyn_task1.label7.caption
 msgid "Length of perimeter [m]"
-msgstr ""
+msgstr "周长长度 [m]"
 
 #: tfreehydrodyn_task1.label8.caption
 msgid "Distance from bow to centroid [m]"
-msgstr ""
+msgstr "从船头到质心的距离[m]"
 
 #: tfreehydrodyn_task1.label9.caption
 msgid "Number of groups of masts, ETC."
@@ -8128,7 +8128,7 @@ msgstr "结果"
 #: tfreehydrodyn_task1.tabsheet3.caption
 msgctxt "tfreehydrodyn_task1.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreehydrodyn_task1.toolbar1.caption
 msgctxt "tfreehydrodyn_task1.toolbar1.caption"
@@ -8144,13 +8144,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreehydrodyn_task1.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreehydrodyn_task1.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreehydrodyn_task1.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreehydrodyn_task1._toolbutton10.caption
 msgctxt "tfreehydrodyn_task1._toolbutton10.caption"
@@ -8165,7 +8165,7 @@ msgstr ""
 #: tfreehydrostaticsdialog.buttonclose.caption
 msgctxt "tfreehydrostaticsdialog.buttonclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tfreehydrostaticsdialog.buttonprint.caption
 #, fuzzy
@@ -8181,12 +8181,12 @@ msgstr "保存"
 
 #: tfreehydrostaticsdialog.caption
 msgid "Hydrostatics results"
-msgstr ""
+msgstr "静水力结果"
 
 #: tfreehydrostaticsresultsdialog.buttonclose.caption
 msgctxt "tfreehydrostaticsresultsdialog.buttonclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tfreehydrostaticsresultsdialog.buttonprint.caption
 #, fuzzy
@@ -8203,25 +8203,25 @@ msgstr "保存"
 #: tfreehydrostaticsresultsdialog.caption
 msgctxt "tfreehydrostaticsresultsdialog.caption"
 msgid "Hydrostatics"
-msgstr ""
+msgstr "静水力"
 
 #: tfreeinsertplanedialog.bitbtn1.caption
 msgctxt "tfreeinsertplanedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeinsertplanedialog.bitbtn2.caption
 msgctxt "tfreeinsertplanedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeinsertplanedialog.caption
 msgid "Insert multiple points"
-msgstr ""
+msgstr "插入多重控制点"
 
 #: tfreeinsertplanedialog.checkbox1.caption
 msgid "Add control curve"
-msgstr ""
+msgstr "添加控制曲线"
 
 #: tfreeinsertplanedialog.edit1.text
 msgid "Edit1"
@@ -8239,66 +8239,66 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeinsertplanedialog.label1.caption"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: tfreeinsertplanedialog.label2.caption
 msgid "Min. value"
-msgstr ""
+msgstr "最小值"
 
 #: tfreeinsertplanedialog.label5.caption
 msgid "Max. value"
-msgstr ""
+msgstr "最大值"
 
 #: tfreeinsertplanedialog.radiobutton1.caption
 msgctxt "tfreeinsertplanedialog.radiobutton1.caption"
 msgid "Transverse plane"
-msgstr ""
+msgstr "横向平面"
 
 #: tfreeinsertplanedialog.radiobutton2.caption
 msgctxt "tfreeinsertplanedialog.radiobutton2.caption"
 msgid "Horizontal plane"
-msgstr ""
+msgstr "水平平面"
 
 #: tfreeinsertplanedialog.radiobutton3.caption
 msgctxt "tfreeinsertplanedialog.radiobutton3.caption"
 msgid "Vertical plane"
-msgstr ""
+msgstr "垂直平面"
 
 #: tfreeintersectiondialog.addone.caption
 msgid "Add..."
-msgstr ""
+msgstr "添加..."
 
 #: tfreeintersectiondialog.addone.hint
 msgid "Add one station."
-msgstr ""
+msgstr "添加一个横剖面."
 
 #: tfreeintersectiondialog.addrange.caption
 msgid "Range"
-msgstr ""
+msgstr "范围"
 
 #: tfreeintersectiondialog.addrange.hint
 msgid "Add a whole range of intersection curves."
-msgstr ""
+msgstr "添加一个完整剖面曲线范围."
 
 #: tfreeintersectiondialog.caption
 msgid "Intersections"
-msgstr ""
+msgstr "剖面"
 
 #: tfreeintersectiondialog.closedialog.caption
 msgid "CloseDialog"
-msgstr ""
+msgstr "关闭对话框"
 
 #: tfreeintersectiondialog.closedialog.hint
 msgid "Close this dialog."
-msgstr ""
+msgstr "关闭这个对话框."
 
 #: tfreeintersectiondialog.deleteall.caption
 msgid "Delete all"
-msgstr ""
+msgstr "全部删除"
 
 #: tfreeintersectiondialog.deleteall.hint
 msgid "Delete all stations."
-msgstr ""
+msgstr "删除所有横剖面"
 
 #: tfreeintersectiondialog.deleteselected.caption
 msgid "DeleteSelected"
@@ -8317,7 +8317,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeintersectiondialog.sgbuttocks.columns[1].title.caption"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: tfreeintersectiondialog.sgbuttocks.columns[2].title.caption
 #, fuzzy
@@ -8334,7 +8334,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeintersectiondialog.sgdiagonals.columns[1].title.caption"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: tfreeintersectiondialog.sgdiagonals.columns[2].title.caption
 #, fuzzy
@@ -8351,7 +8351,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeintersectiondialog.sgstations.columns[1].title.caption"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: tfreeintersectiondialog.sgstations.columns[2].title.caption
 #, fuzzy
@@ -8368,7 +8368,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeintersectiondialog.sgwaterlines.columns[1].title.caption"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: tfreeintersectiondialog.sgwaterlines.columns[2].title.caption
 #, fuzzy
@@ -8380,11 +8380,11 @@ msgstr "曲率"
 #, fuzzy
 msgctxt "tfreeintersectiondialog.showbuttocks.caption"
 msgid "Buttocks"
-msgstr "纵剖线图"
+msgstr "纵剖面"
 
 #: tfreeintersectiondialog.showbuttocks.hint
 msgid "Switch to view or add buttocks."
-msgstr ""
+msgstr "添加和查看纵剖面."
 
 #: tfreeintersectiondialog.showdiagonals.caption
 #, fuzzy
@@ -8394,27 +8394,27 @@ msgstr "斜线"
 
 #: tfreeintersectiondialog.showdiagonals.hint
 msgid "Switch to view or add diagonals."
-msgstr ""
+msgstr "添加和查看斜剖面."
 
 #: tfreeintersectiondialog.showstations.caption
 #, fuzzy
 msgctxt "tfreeintersectiondialog.showstations.caption"
 msgid "Stations"
-msgstr "站线"
+msgstr "横剖面"
 
 #: tfreeintersectiondialog.showstations.hint
 msgid "Switch to view or add stations."
-msgstr ""
+msgstr "添加和查看横剖面."
 
 #: tfreeintersectiondialog.showwaterlines.caption
 #, fuzzy
 msgctxt "tfreeintersectiondialog.showwaterlines.caption"
 msgid "Waterlines"
-msgstr "水线"
+msgstr "水线面"
 
 #: tfreeintersectiondialog.showwaterlines.hint
 msgid "Switch to view or add waterlines."
-msgstr ""
+msgstr "添加和查看水线面."
 
 #: tfreeintersectiondialog.toolbar1.caption
 msgctxt "tfreeintersectiondialog.toolbar1.caption"
@@ -8434,7 +8434,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeintersectiondialog.tsbuttocks.hint"
 msgid "Buttocks"
-msgstr "纵剖线图"
+msgstr "纵剖面"
 
 #: tfreeintersectiondialog.tsdiagonals.hint
 #, fuzzy
@@ -8446,27 +8446,27 @@ msgstr "斜线"
 #, fuzzy
 msgctxt "tfreeintersectiondialog.tsstations.hint"
 msgid "Stations"
-msgstr "站线"
+msgstr "横剖面"
 
 #: tfreeintersectiondialog.tswaterlines.hint
 #, fuzzy
 msgctxt "tfreeintersectiondialog.tswaterlines.hint"
 msgid "Waterlines"
-msgstr "水线"
+msgstr "水线面"
 
 #: tfreeintersectlayerdialog.bitbtn1.caption
 msgctxt "tfreeintersectlayerdialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeintersectlayerdialog.bitbtn2.caption
 msgctxt "tfreeintersectlayerdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeintersectlayerdialog.caption
 msgid "Intersect two layers."
-msgstr ""
+msgstr "交叉两图层."
 
 #: tfreeintersectlayerdialog.combobox1.text
 msgctxt "tfreeintersectlayerdialog.combobox1.text"
@@ -8479,11 +8479,11 @@ msgstr ""
 
 #: tfreeintersectlayerdialog.label1.caption
 msgid "Insert new points in"
-msgstr ""
+msgstr "插入新点"
 
 #: tfreeintersectlayerdialog.label2.caption
 msgid "Find intersection with"
-msgstr ""
+msgstr "找出交叉部分"
 
 #: tfreekeelwizarddialog.actionmodeshade.caption
 #, fuzzy
@@ -8525,28 +8525,28 @@ msgstr ""
 #: tfreekeelwizarddialog.bitbtn1.caption
 msgctxt "tfreekeelwizarddialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreekeelwizarddialog.bitbtn2.caption
 msgctxt "tfreekeelwizarddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreekeelwizarddialog.button1.caption
 msgctxt "tfreekeelwizarddialog.button1.caption"
 msgid "Calc"
-msgstr ""
+msgstr "计算"
 
 #: tfreekeelwizarddialog.button2.caption
 msgctxt "tfreekeelwizarddialog.button2.caption"
 msgid "Calc"
-msgstr ""
+msgstr "计算"
 
 #: tfreekeelwizarddialog.caption
 #, fuzzy
 msgctxt "tfreekeelwizarddialog.caption"
 msgid "Keel and rudder wizard"
-msgstr "新建舵和龙骨"
+msgstr "龙骨和方向舵的向导"
 
 #: tfreekeelwizarddialog.chart.axislist[0].title.caption
 msgid "Cx, Cy, Cd, m_z, 0.1*K"
@@ -8565,11 +8565,11 @@ msgstr ""
 #: tfreekeelwizarddialog.combobox.text
 msgctxt "tfreekeelwizarddialog.combobox.text"
 msgid "Keel"
-msgstr ""
+msgstr "龙骨"
 
 #: tfreekeelwizarddialog.comboboxplanformshape.text
 msgid "Trapezoidal"
-msgstr ""
+msgstr "梯形"
 
 #: tfreekeelwizarddialog.comboboxsubdivisionlevel.hint
 msgid "Desired Subdivision Level"
@@ -8578,16 +8578,16 @@ msgstr ""
 #: tfreekeelwizarddialog.comboboxsubdivisionlevel.text
 msgctxt "tfreekeelwizarddialog.comboboxsubdivisionlevel.text"
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 #: tfreekeelwizarddialog.groupbox1.caption
 msgctxt "tfreekeelwizarddialog.groupbox1.caption"
 msgid "Properties"
-msgstr ""
+msgstr "性能"
 
 #: tfreekeelwizarddialog.inputbulbshape.text
 msgid "No bullb"
-msgstr ""
+msgstr "无球鼻艏"
 
 #: tfreekeelwizarddialog.inputbulbwing.text
 msgid "NACA0020"
@@ -8595,37 +8595,37 @@ msgstr ""
 
 #: tfreekeelwizarddialog.inputmaterial.text
 msgid "Plumbum"
-msgstr ""
+msgstr "铅"
 
 #: tfreekeelwizarddialog.label1.caption
 msgid "Type of appendage"
-msgstr ""
+msgstr "附件的类型"
 
 #: tfreekeelwizarddialog.label10.caption
 msgid "Wing width"
-msgstr ""
+msgstr "翼宽"
 
 #: tfreekeelwizarddialog.label11.caption
 msgid "Mean chord length"
-msgstr ""
+msgstr "弦长均值"
 
 #: tfreekeelwizarddialog.label12.caption
 msgctxt "tfreekeelwizarddialog.label12.caption"
 msgid "Wing section"
-msgstr ""
+msgstr "翼剖面"
 
 #: tfreekeelwizarddialog.label13.caption
 msgid "Geometric aspect ratio"
-msgstr ""
+msgstr "几何展弦比"
 
 #: tfreekeelwizarddialog.label14.caption
 msgctxt "tfreekeelwizarddialog.label14.caption"
 msgid "Length"
-msgstr ""
+msgstr "长度"
 
 #: tfreekeelwizarddialog.label15.caption
 msgid "Effective aspect ratio"
-msgstr ""
+msgstr "有效展弦比"
 
 #: tfreekeelwizarddialog.label16.caption
 msgctxt "tfreekeelwizarddialog.label16.caption"
@@ -8635,21 +8635,21 @@ msgstr ""
 #: tfreekeelwizarddialog.label17.caption
 msgctxt "tfreekeelwizarddialog.label17.caption"
 msgid "Wing section"
-msgstr ""
+msgstr "翼剖面"
 
 #: tfreekeelwizarddialog.label18.caption
 msgctxt "tfreekeelwizarddialog.label18.caption"
 msgid "Volume"
-msgstr ""
+msgstr "体积"
 
 #: tfreekeelwizarddialog.label19.caption
 msgid "Bulb's material"
-msgstr ""
+msgstr "球鼻艏材料"
 
 #: tfreekeelwizarddialog.label2.caption
 msgctxt "tfreekeelwizarddialog.label2.caption"
 msgid "Planform shape"
-msgstr ""
+msgstr "俯视图形式"
 
 #: tfreekeelwizarddialog.label20.caption
 msgid "Volume COG"
@@ -8658,18 +8658,18 @@ msgstr ""
 #: tfreekeelwizarddialog.label21.caption
 msgctxt "tfreekeelwizarddialog.label21.caption"
 msgid "Specific weight"
-msgstr ""
+msgstr "比重"
 
 #: tfreekeelwizarddialog.label22.caption
 #, fuzzy
 msgctxt "tfreekeelwizarddialog.label22.caption"
 msgid "Wetted area"
-msgstr "浸润面积"
+msgstr "浸水面积"
 
 #: tfreekeelwizarddialog.label23.caption
 msgctxt "tfreekeelwizarddialog.label23.caption"
 msgid "Vertical compression"
-msgstr ""
+msgstr "垂直压力"
 
 #: tfreekeelwizarddialog.label24.caption
 #, fuzzy
@@ -8680,11 +8680,11 @@ msgstr "厚度"
 #: tfreekeelwizarddialog.label25.caption
 msgctxt "tfreekeelwizarddialog.label25.caption"
 msgid "Delta tip"
-msgstr ""
+msgstr "三角尖"
 
 #: tfreekeelwizarddialog.label26.caption
 msgid "No. vertical points"
-msgstr ""
+msgstr "垂直点数"
 
 #: tfreekeelwizarddialog.label27.caption
 msgctxt "tfreekeelwizarddialog.label27.caption"
@@ -8694,15 +8694,15 @@ msgstr ""
 #: tfreekeelwizarddialog.label28.caption
 msgctxt "tfreekeelwizarddialog.label28.caption"
 msgid "Vertical compression"
-msgstr ""
+msgstr "垂直压力"
 
 #: tfreekeelwizarddialog.label29.caption
 msgid "Bulb weight"
-msgstr ""
+msgstr "球鼻艏重量"
 
 #: tfreekeelwizarddialog.label3.caption
 msgid "Root chord length"
-msgstr ""
+msgstr "翼根弦长度"
 
 #: tfreekeelwizarddialog.label30.caption
 msgid "Horizontal compression"
@@ -8710,25 +8710,25 @@ msgstr ""
 
 #: tfreekeelwizarddialog.label4.caption
 msgid "Tip chord length"
-msgstr ""
+msgstr "翼尖弦长度"
 
 #: tfreekeelwizarddialog.label5.caption
 msgid "Span"
-msgstr ""
+msgstr "跨度"
 
 #: tfreekeelwizarddialog.label6.caption
 msgctxt "tfreekeelwizarddialog.label6.caption"
 msgid "Delta tip"
-msgstr ""
+msgstr "三角尖"
 
 #: tfreekeelwizarddialog.label7.caption
 msgid "Planform area"
-msgstr ""
+msgstr "俯视图面积"
 
 #: tfreekeelwizarddialog.label8.caption
 msgctxt "tfreekeelwizarddialog.label8.caption"
 msgid "Planform shape"
-msgstr ""
+msgstr "俯视图形式"
 
 #: tfreekeelwizarddialog.label9.caption
 msgid "Planform COG"
@@ -8760,28 +8760,28 @@ msgstr ""
 
 #: tfreekeelwizarddialog.speedbutton1.caption
 msgid "Send"
-msgstr ""
+msgstr "发送"
 
 #: tfreekeelwizarddialog.speedbutton2.caption
 msgid "Save as part"
-msgstr ""
+msgstr "部件另存"
 
 #: tfreekeelwizarddialog.tabsheet1.caption
 msgid "3D view"
-msgstr ""
+msgstr "三维视图"
 
 #: tfreekeelwizarddialog.tabsheet2.caption
 msgid "Lift and drag"
-msgstr ""
+msgstr "升力和阻力"
 
 #: tfreekeelwizarddialog.tabsheet3.caption
 msgctxt "tfreekeelwizarddialog.tabsheet3.caption"
 msgid "Keel"
-msgstr ""
+msgstr "龙骨"
 
 #: tfreekeelwizarddialog.tabsheet4.caption
 msgid "Bulb"
-msgstr ""
+msgstr "球鼻艏"
 
 #: tfreekeelwizarddialog._combobox2.text
 msgid "NACA63-006"
@@ -8833,25 +8833,25 @@ msgstr ""
 #: tfreelackenbydialog.bitbtn2.caption
 msgctxt "tfreelackenbydialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreelackenbydialog.button1.caption
 #, fuzzy
 msgctxt "tfreelackenbydialog.button1.caption"
 msgid "Transform"
-msgstr "转化"
+msgstr "转换"
 
 #: tfreelackenbydialog.button1.hint
 msgid "Start the hullform transformation."
-msgstr ""
+msgstr "开始船体转换"
 
 #: tfreelackenbydialog.caption
 msgid "Lackenby hullform transformation."
-msgstr ""
+msgstr "Lackenby 船体变换."
 
 #: tfreelackenbydialog.checkbox1.caption
 msgid "Redraw after each iteration"
-msgstr ""
+msgstr "每次迭代后重生成"
 
 #: tfreelackenbydialog.label1.caption
 #, fuzzy
@@ -8861,27 +8861,27 @@ msgstr "排水量"
 
 #: tfreelackenbydialog.label10.caption
 msgid "Maximum no. of iterations"
-msgstr ""
+msgstr "最大迭代次数"
 
 #: tfreelackenbydialog.label11.caption
 msgid "Prismatic coeff. aftship"
-msgstr ""
+msgstr "艉部棱形系数"
 
 #: tfreelackenbydialog.label13.caption
 msgid "Prismatic coeff. foreship"
-msgstr ""
+msgstr "艏部棱形系数"
 
 #: tfreelackenbydialog.label15.caption
 msgid "Maximum displacement"
-msgstr ""
+msgstr "最大排水量"
 
 #: tfreelackenbydialog.label2.caption
 msgid "Current"
-msgstr ""
+msgstr "当前值"
 
 #: tfreelackenbydialog.label3.caption
 msgid "Desired"
-msgstr ""
+msgstr "需要值"
 
 #: tfreelackenbydialog.label4.caption
 msgid "Label4"
@@ -8895,17 +8895,17 @@ msgstr "方形系数"
 
 #: tfreelackenbydialog.label6.caption
 msgid "Long. center of buoyancy"
-msgstr ""
+msgstr "浮心纵向位置"
 
 #: tfreelackenbydialog.label7.caption
 #, fuzzy
 msgctxt "tfreelackenbydialog.label7.caption"
 msgid "Prismatic coefficient"
-msgstr "菱形系数"
+msgstr "棱形系数"
 
 #: tfreelackenbydialog.label8.caption
 msgid "Difference"
-msgstr ""
+msgstr "差值"
 
 #: tfreelackenbydialog.label9.caption
 msgid "Label9"
@@ -8919,7 +8919,7 @@ msgstr ""
 #: tfreelackenbydialog.speedbutton1.caption
 msgctxt "tfreelackenbydialog.speedbutton1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreelackenbydialog._label12.caption
 msgid "_Label12"
@@ -8937,7 +8937,7 @@ msgstr ""
 
 #: tfreelayerdialog.caption
 msgid "Layer properties."
-msgstr ""
+msgstr "图层特性"
 
 #: tfreelayerdialog.cbcontrolnetvisible.caption
 msgid "Control Net Visible"
@@ -8945,23 +8945,23 @@ msgstr ""
 
 #: tfreelayerdialog.checkbox1.caption
 msgid "Developable"
-msgstr ""
+msgstr "可展开性"
 
 #: tfreelayerdialog.checkbox2.caption
 msgid "Intersection curves"
-msgstr ""
+msgstr "交线"
 
 #: tfreelayerdialog.checkbox3.caption
 msgid "Use for hydrostatics"
-msgstr ""
+msgstr "用于静水力"
 
 #: tfreelayerdialog.checkbox4.caption
 msgid "Show in linesplan"
-msgstr ""
+msgstr "在型线图中显示"
 
 #: tfreelayerdialog.checkbox5.caption
 msgid "Symmetric"
-msgstr ""
+msgstr "对称"
 
 #: tfreelayerdialog.checkbox6.caption
 msgid "Set weigth and CoG manually"
@@ -8974,20 +8974,20 @@ msgstr ""
 #: tfreelayerdialog.label1.caption
 msgctxt "tfreelayerdialog.label1.caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tfreelayerdialog.label2.caption
 msgid "Color"
-msgstr ""
+msgstr "颜色"
 
 #: tfreelayerdialog.label3.caption
 msgctxt "tfreelayerdialog.label3.caption"
 msgid "Specific weight"
-msgstr ""
+msgstr "比重"
 
 #: tfreelayerdialog.label4.caption
 msgid "Transparency"
-msgstr ""
+msgstr "透明度"
 
 #: tfreelayerdialog.label5.caption
 #, fuzzy
@@ -9016,15 +9016,15 @@ msgstr ""
 
 #: tfreelayerdialog.label6_2.caption
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: tfreelayerdialog.label6_3.caption
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: tfreelayerdialog.label6_4.caption
 msgid "Z:"
-msgstr ""
+msgstr "Z:"
 
 #: tfreelayerdialog.label7.caption
 #, fuzzy
@@ -9040,23 +9040,23 @@ msgstr "重量"
 
 #: tfreelayerdialog.label9.caption
 msgid "Center of gravity"
-msgstr ""
+msgstr "重心"
 
 #: tfreelayerdialog.movedown.caption
 msgid "Down"
-msgstr ""
+msgstr "下移"
 
 #: tfreelayerdialog.movedown.hint
 msgid "Move the layer down in the list."
-msgstr ""
+msgstr "从列表中向下移动图层."
 
 #: tfreelayerdialog.moveup.caption
 msgid "Up"
-msgstr ""
+msgstr "上移"
 
 #: tfreelayerdialog.moveup.hint
 msgid "Move the layer up in the list."
-msgstr ""
+msgstr "从列表中向上移动图层."
 
 #: tfreelayerdialog.toolbar1.caption
 msgctxt "tfreelayerdialog.toolbar1.caption"
@@ -9065,15 +9065,15 @@ msgstr ""
 
 #: tfreelayerdialog.toolbutton1.caption
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: tfreelayerdialog.toolbutton1.hint
 msgid "Close this window."
-msgstr ""
+msgstr "关闭"
 
 #: tfreelayerdialog.toolbutton20.hint
 msgid "Create a new empty layer."
-msgstr ""
+msgstr "创造新空图层."
 
 #: tfreelayerdialog.toolbutton3.caption
 msgid "ToolButton3"
@@ -9081,7 +9081,7 @@ msgstr ""
 
 #: tfreelayerdialog.toolbutton3.hint
 msgid "Remove all empty layers from the model."
-msgstr ""
+msgstr "清除所有空图层."
 
 #: tfreelayerdialog._label10.caption
 msgctxt "tfreelayerdialog._label10.caption"
@@ -9118,7 +9118,7 @@ msgstr ""
 #: tfreelayervisibilitydialog.bbclose.caption
 msgctxt "tfreelayervisibilitydialog.bbclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tfreelayervisibilitydialog.caption
 msgid "Layer visibility"
@@ -9150,24 +9150,24 @@ msgstr "图层"
 
 #: tfreelinesplanform.caption
 msgid "Linesplan."
-msgstr ""
+msgstr "型线图."
 
 #: tfreelinesplanframe.exportdxf.caption
 msgctxt "tfreelinesplanframe.exportdxf.caption"
 msgid "DXF"
-msgstr ""
+msgstr "DXF文件"
 
 #: tfreelinesplanframe.exportdxf.hint
 msgid "Export the formatted linesplan to a DXF file."
-msgstr ""
+msgstr "型线图以DXF文件格式输出."
 
 #: tfreelinesplanframe.mirrorplanview.caption
 msgid "MirrorPlanView"
-msgstr ""
+msgstr "平面图镜像"
 
 #: tfreelinesplanframe.mirrorplanview.hint
 msgid "Show both sides of the ship in plan view."
-msgstr ""
+msgstr "显示平面图中船舶的两侧."
 
 #: tfreelinesplanframe.print.caption
 #, fuzzy
@@ -9177,34 +9177,34 @@ msgstr "打印"
 
 #: tfreelinesplanframe.print.hint
 msgid "Send the linesplan to the printer."
-msgstr ""
+msgstr "打印线形图."
 
 #: tfreelinesplanframe.savebitmap.caption
 msgctxt "tfreelinesplanframe.savebitmap.caption"
 msgid "Save bitmap"
-msgstr ""
+msgstr "保存点阵图"
 
 #: tfreelinesplanframe.savebitmap.hint
 msgid "Save the linesplan as a bitmap."
-msgstr ""
+msgstr "型线图另存为点阵图."
 
 #: tfreelinesplanframe.showfillcolor.caption
 msgctxt "tfreelinesplanframe.showfillcolor.caption"
 msgid "Solid"
-msgstr ""
+msgstr "着色"
 
 #: tfreelinesplanframe.showfillcolor.hint
 msgctxt "tfreelinesplanframe.showfillcolor.hint"
 msgid "Show plates with fillcolor."
-msgstr ""
+msgstr "显示着色板材."
 
 #: tfreelinesplanframe.showmonochrome.caption
 msgid "Monochrome"
-msgstr ""
+msgstr "黑白"
 
 #: tfreelinesplanframe.showmonochrome.hint
 msgid "Draw the linesplan in black and white only."
-msgstr ""
+msgstr "只有黑色和白色绘制线形图."
 
 #: tfreelinesplanframe.spinedit1.hint
 msgctxt "tfreelinesplanframe.spinedit1.hint"
@@ -9231,26 +9231,26 @@ msgstr ""
 
 #: tfreelinesplanframe.uselights.caption
 msgid "Use lights"
-msgstr ""
+msgstr "亮度"
 
 #: tfreelinesplanframe.uselights.hint
 msgid "Use lights in solid color drawing mode."
-msgstr ""
+msgstr "使用纯色绘图模式亮起."
 
 #: tfreelinesplanframe.zoomextents.caption
 msgctxt "tfreelinesplanframe.zoomextents.caption"
 msgid "Extents"
-msgstr ""
+msgstr "范围"
 
 #: tfreelinesplanframe.zoomextents.hint
 msgctxt "tfreelinesplanframe.zoomextents.hint"
 msgid "Zoom all."
-msgstr ""
+msgstr "整图缩放."
 
 #: tfreelinesplanframe.zoomin.caption
 msgctxt "tfreelinesplanframe.zoomin.caption"
 msgid "ZoomIn"
-msgstr ""
+msgstr "放大"
 
 #: tfreelinesplanframe.zoomin.hint
 #, fuzzy
@@ -9267,16 +9267,16 @@ msgstr "缩小"
 #: tfreelinesplanframe.zoomout.hint
 msgctxt "tfreelinesplanframe.zoomout.hint"
 msgid "Zoom out."
-msgstr ""
+msgstr "缩小."
 
 #: tfreemichletoutputdialog.cancelbutton.caption
 msgctxt "tfreemichletoutputdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreemichletoutputdialog.caption
 msgid "Michlet file generator."
-msgstr ""
+msgstr "Michlet文件生成."
 
 #: tfreemichletoutputdialog.group1.caption
 msgid "Skin friction method. "
@@ -9300,52 +9300,52 @@ msgstr ""
 
 #: tfreemichletoutputdialog.label1.caption
 msgid "Number of stations (5-81)"
-msgstr ""
+msgstr "船站数 (5-81)"
 
 #: tfreemichletoutputdialog.label10.caption
 msgctxt "tfreemichletoutputdialog.label10.caption"
 msgid "Water kinematic viscosity"
-msgstr ""
+msgstr "水的动态粘度"
 
 #: tfreemichletoutputdialog.label12.caption
 msgctxt "tfreemichletoutputdialog.label12.caption"
 msgid "Water depth"
-msgstr ""
+msgstr "水深"
 
 #: tfreemichletoutputdialog.label14.caption
 msgctxt "tfreemichletoutputdialog.label14.caption"
 msgid "Distance between center of hulls:"
-msgstr ""
+msgstr "中心与船壳的距离:"
 
 #: tfreemichletoutputdialog.label2.caption
 msgid "Number of waterlines (5-81)"
-msgstr ""
+msgstr "水线数 (5-81)"
 
 #: tfreemichletoutputdialog.label21.caption
 #, fuzzy
 msgctxt "tfreemichletoutputdialog.label21.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreemichletoutputdialog.label22.caption
 msgctxt "tfreemichletoutputdialog.label22.caption"
 msgid "[knots]"
-msgstr ""
+msgstr "[knots]"
 
 #: tfreemichletoutputdialog.label23.caption
 #, fuzzy
 msgctxt "tfreemichletoutputdialog.label23.caption"
 msgid "End speed"
-msgstr "终止速度"
+msgstr "结束速度"
 
 #: tfreemichletoutputdialog.label24.caption
 msgctxt "tfreemichletoutputdialog.label24.caption"
 msgid "[knots]"
-msgstr ""
+msgstr "[knots]"
 
 #: tfreemichletoutputdialog.label27.caption
 msgid "Number of speeds (2-100)"
-msgstr ""
+msgstr "速度值(2-100)"
 
 #: tfreemichletoutputdialog.label3.caption
 #, fuzzy
@@ -9356,27 +9356,27 @@ msgstr "吃水"
 #: tfreemichletoutputdialog.label4.caption
 msgctxt "tfreemichletoutputdialog.label4.caption"
 msgid "Length"
-msgstr ""
+msgstr "长度"
 
 #: tfreemichletoutputdialog.label5.caption
 msgctxt "tfreemichletoutputdialog.label5.caption"
 msgid "Volume"
-msgstr ""
+msgstr "体积"
 
 #: tfreemichletoutputdialog.label6.caption
 msgid "Gravitational acceleration g"
-msgstr ""
+msgstr "重力加速度 [g]"
 
 #: tfreemichletoutputdialog.label7.caption
 #, fuzzy
 msgctxt "tfreemichletoutputdialog.label7.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreemichletoutputdialog.okbutton.caption
 msgctxt "tfreemichletoutputdialog.okbutton.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreemichletoutputdialog.panel12.caption
 msgid "Panel12"
@@ -9385,17 +9385,17 @@ msgstr ""
 #: tfreemichletoutputdialog.radiobutton1.caption
 msgctxt "tfreemichletoutputdialog.radiobutton1.caption"
 msgid "Monohull"
-msgstr ""
+msgstr "单体船"
 
 #: tfreemichletoutputdialog.radiobutton2.caption
 msgctxt "tfreemichletoutputdialog.radiobutton2.caption"
 msgid "Monohull, send as catamaran"
-msgstr ""
+msgstr "单体船,作为双体船发送"
 
 #: tfreemichletoutputdialog.radiobutton3.caption
 msgctxt "tfreemichletoutputdialog.radiobutton3.caption"
 msgid "Catamaran"
-msgstr ""
+msgstr "双体船"
 
 #: tfreemichletoutputdialog.savefile.caption
 #, fuzzy
@@ -9406,7 +9406,7 @@ msgstr "保存"
 #: tfreemichletoutputdialog.tabsheet1.caption
 msgctxt "tfreemichletoutputdialog.tabsheet1.caption"
 msgid "Hull geometry"
-msgstr ""
+msgstr "船体的几何形状"
 
 #: tfreemichletoutputdialog.tabsheet2.caption
 #, fuzzy
@@ -9417,11 +9417,11 @@ msgstr "阻力"
 #: tfreemichletoutputdialog.tabsheet3.caption
 msgctxt "tfreemichletoutputdialog.tabsheet3.caption"
 msgid "Environment"
-msgstr ""
+msgstr "周围环境状况"
 
 #: tfreemichletoutputdialog.tabsheet4.caption
 msgid "Waves"
-msgstr ""
+msgstr "波浪"
 
 #: tfreemichletoutputdialog._label11.caption
 msgctxt "tfreemichletoutputdialog._label11.caption"
@@ -9476,7 +9476,7 @@ msgstr ""
 
 #: tfreemichletoutputdialog._label29.caption
 msgid "R1"
-msgstr ""
+msgstr "R1"
 
 #: tfreemichletoutputdialog._label30.caption
 msgid "Beta"
@@ -9550,21 +9550,21 @@ msgstr ""
 #: tfreemirrorplanedialog.bitbtn1.caption
 msgctxt "tfreemirrorplanedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreemirrorplanedialog.bitbtn2.caption
 msgctxt "tfreemirrorplanedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreemirrorplanedialog.caption
 msgctxt "tfreemirrorplanedialog.caption"
 msgid "Mirror"
-msgstr ""
+msgstr "镜像"
 
 #: tfreemirrorplanedialog.checkbox1.caption
 msgid "Connect to existing points"
-msgstr ""
+msgstr "连接存在的点"
 
 #: tfreemirrorplanedialog.groupbox1.caption
 msgid "3D Mirror plane. "
@@ -9574,59 +9574,59 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreemirrorplanedialog.label1.caption"
 msgid "Distance"
-msgstr "位置"
+msgstr "距离"
 
 #: tfreemirrorplanedialog.radiobutton1.caption
 msgctxt "tfreemirrorplanedialog.radiobutton1.caption"
 msgid "Transverse plane"
-msgstr ""
+msgstr "横向平面"
 
 #: tfreemirrorplanedialog.radiobutton2.caption
 msgctxt "tfreemirrorplanedialog.radiobutton2.caption"
 msgid "Horizontal plane"
-msgstr ""
+msgstr "水平平面"
 
 #: tfreemirrorplanedialog.radiobutton3.caption
 msgctxt "tfreemirrorplanedialog.radiobutton3.caption"
 msgid "Vertical plane"
-msgstr ""
+msgstr "垂直平面"
 
 #: tfreenewmodeldialog.bitbtn1.caption
 msgctxt "tfreenewmodeldialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreenewmodeldialog.bitbtn2.caption
 msgctxt "tfreenewmodeldialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreenewmodeldialog.caption
 msgid "New model."
-msgstr ""
+msgstr "新模型."
 
 #: tfreenewmodeldialog.combobox1.text
 msgctxt "tfreenewmodeldialog.combobox1.text"
 msgid "Meters"
-msgstr ""
+msgstr "米"
 
 #: tfreenewmodeldialog.label1.caption
 msgid "No. points in longitudinal direction"
-msgstr ""
+msgstr "纵向控制点号"
 
 #: tfreenewmodeldialog.label2.caption
 msgid "No. points in vertical direction"
-msgstr ""
+msgstr "垂向控制点号"
 
 #: tfreenewmodeldialog.label3.caption
 msgctxt "tfreenewmodeldialog.label3.caption"
 msgid "Length"
-msgstr ""
+msgstr "长度"
 
 #: tfreenewmodeldialog.label4.caption
 msgctxt "tfreenewmodeldialog.label4.caption"
 msgid "Beam"
-msgstr ""
+msgstr "船宽"
 
 #: tfreenewmodeldialog.label5.caption
 #, fuzzy
@@ -9637,16 +9637,16 @@ msgstr "吃水"
 #: tfreenewmodeldialog.label6.caption
 msgctxt "tfreenewmodeldialog.label6.caption"
 msgid "Units"
-msgstr ""
+msgstr "单位"
 
 #: tfreepointgroupform.bitbtncancel.caption
 msgctxt "tfreepointgroupform.bitbtncancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreepointgroupform.bitbtnok.caption
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: tfreepointgroupform.caption
 msgid "Point Groups"
@@ -9684,12 +9684,12 @@ msgstr "取消"
 #: tfreepreferencesdialog.bitbtnresetcolors.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetcolors.caption"
 msgid "Reset"
-msgstr ""
+msgstr "重新设定"
 
 #: tfreepreferencesdialog.bitbtnresetdirs.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetdirs.caption"
 msgid "Reset"
-msgstr ""
+msgstr "重新设定"
 
 #: tfreepreferencesdialog.caption
 msgid "|Preferences.|"
@@ -9752,49 +9752,49 @@ msgstr ""
 
 #: tfreepreferencesdialog.label1.caption
 msgid "Viewport background"
-msgstr ""
+msgstr "视图背景"
 
 #: tfreepreferencesdialog.label10.caption
 msgid "Dart points"
-msgstr ""
+msgstr "投影点"
 
 #: tfreepreferencesdialog.label11.caption
 msgid "Selected items"
-msgstr ""
+msgstr "被选项目"
 
 #: tfreepreferencesdialog.label12.caption
 msgid "Viewport grid"
-msgstr ""
+msgstr "视口栅格"
 
 #: tfreepreferencesdialog.label13.caption
 msgid "Grid font"
-msgstr ""
+msgstr "栅格字体"
 
 #: tfreepreferencesdialog.label14.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.label14.caption"
 msgid "Stations"
-msgstr "站线"
+msgstr "横剖面"
 
 #: tfreepreferencesdialog.label15.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.label15.caption"
 msgid "Buttocks"
-msgstr "纵剖线图"
+msgstr "纵剖面"
 
 #: tfreepreferencesdialog.label16.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.label16.caption"
 msgid "Waterlines"
-msgstr "水线"
+msgstr "水线面"
 
 #: tfreepreferencesdialog.label17.caption
 msgid "Controlpoint size"
-msgstr ""
+msgstr "控制点尺寸"
 
 #: tfreepreferencesdialog.label18.caption
 msgid "Surface normals"
-msgstr ""
+msgstr "曲面法线"
 
 #: tfreepreferencesdialog.label19.caption
 #, fuzzy
@@ -9804,43 +9804,43 @@ msgstr "斜线"
 
 #: tfreepreferencesdialog.label2.caption
 msgid "New surfaces"
-msgstr ""
+msgstr "新的表面"
 
 #: tfreepreferencesdialog.label20.caption
 msgid "Leak points"
-msgstr ""
+msgstr "遗漏点"
 
 #: tfreepreferencesdialog.label21.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.label21.caption"
 msgid "Markers"
-msgstr "标记点"
+msgstr "标签"
 
 #: tfreepreferencesdialog.label22.caption
 msgid "Curvature plots"
-msgstr ""
+msgstr "曲率图"
 
 #: tfreepreferencesdialog.label23.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.label23.caption"
 msgid "Control curves"
-msgstr "控制曲线"
+msgstr "曲线控制"
 
 #: tfreepreferencesdialog.label24.caption
 msgid "Hydrostatics font color"
-msgstr ""
+msgstr "静水力字体颜色"
 
 #: tfreepreferencesdialog.label25.caption
 msgid "Zebra stripes color"
-msgstr ""
+msgstr "斑纹颜色"
 
 #: tfreepreferencesdialog.label26.caption
 msgid "Language"
-msgstr ""
+msgstr "语言"
 
 #: tfreepreferencesdialog.label27.caption
 msgid "Max. undo memory (Mb)"
-msgstr ""
+msgstr "最大化清除记忆 (Mb)"
 
 #: tfreepreferencesdialog.label28.caption
 msgid "Font size"
@@ -9852,7 +9852,7 @@ msgstr ""
 
 #: tfreepreferencesdialog.label3.caption
 msgid "Submerged surfaces"
-msgstr ""
+msgstr "水下表面"
 
 #: tfreepreferencesdialog.label30.caption
 msgid "Executables"
@@ -9904,27 +9904,27 @@ msgstr ""
 
 #: tfreepreferencesdialog.label4.caption
 msgid "Regular control edges"
-msgstr ""
+msgstr "控制边缘规则化"
 
 #: tfreepreferencesdialog.label5.caption
 msgid "Crease edges (control)"
-msgstr ""
+msgstr "线条褶皱 (控制)"
 
 #: tfreepreferencesdialog.label6.caption
 msgid "Crease edges (interior)"
-msgstr ""
+msgstr "线条褶皱 (内部)"
 
 #: tfreepreferencesdialog.label7.caption
 msgid "Regular control points"
-msgstr ""
+msgstr "控制点规则化"
 
 #: tfreepreferencesdialog.label8.caption
 msgid "Crease points"
-msgstr ""
+msgstr "褶皱点"
 
 #: tfreepreferencesdialog.label9.caption
 msgid "Corner points"
-msgstr ""
+msgstr "拐角点"
 
 #: tfreepreferencesdialog.labelencoding.caption
 msgid "Encoding for FBM"
@@ -9992,37 +9992,37 @@ msgstr ""
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeprojectsettingsdialog.bitbtn2.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeprojectsettingsdialog.caption
 msgid "Project settings."
-msgstr ""
+msgstr "工程设置."
 
 #: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
 msgid "Save preview image"
-msgstr ""
+msgstr "保存预览图"
 
 #: tfreeprojectsettingsdialog.cbshadeunderwater.caption
 msgid "Shade underwater"
-msgstr ""
+msgstr "水线以下阴影"
 
 #: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
 msgid "Simplify intersections"
-msgstr ""
+msgstr "单一交点"
 
 #: tfreeprojectsettingsdialog.checkbox11.caption
 msgid "Default at 0.0"
-msgstr ""
+msgstr "默认0.0"
 
 #: tfreeprojectsettingsdialog.checkbox12.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
 msgid "Default at 0.5*L"
-msgstr ""
+msgstr "默认 0.5*L"
 
 #: tfreeprojectsettingsdialog.checkbox13.caption
 msgid "Enable auto move model to baseline"
@@ -10035,19 +10035,19 @@ msgstr ""
 #: tfreeprojectsettingsdialog.checkbox2.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
 msgid "Default at 0.5*L"
-msgstr ""
+msgstr "默认 0.5*L"
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr ""
+msgstr "不检查控制面"
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
 msgid "Displacement and center of buoyancy"
-msgstr ""
+msgstr "排水量和浮心位置"
 
 #: tfreeprojectsettingsdialog.checkbox6.caption
 msgid "Curve of sectional areas"
-msgstr ""
+msgstr "横剖面面积曲线"
 
 #: tfreeprojectsettingsdialog.checkbox7.caption
 msgid "Metacentric height"
@@ -10055,15 +10055,15 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox8.caption
 msgid "Longitudinal center of floatation"
-msgstr ""
+msgstr "浮心纵向位置"
 
 #: tfreeprojectsettingsdialog.checkbox9.caption
 msgid "Lateral area and center of effort"
-msgstr ""
+msgstr "水线下纵中侧投影面积和中心位置"
 
 #: tfreeprojectsettingsdialog.combobox1.text
 msgid "Dimensions from project settings"
-msgstr ""
+msgstr "项目设置的尺寸"
 
 #: tfreeprojectsettingsdialog.groupbox1.caption
 msgid "Display hydrostatic features. "
@@ -10071,19 +10071,19 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label1.caption
 msgid "Project name"
-msgstr ""
+msgstr "工程名称"
 
 #: tfreeprojectsettingsdialog.label10.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label10.caption"
 msgid "m"
-msgstr "m"
+msgstr "米"
 
 #: tfreeprojectsettingsdialog.label11.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label11.caption"
 msgid "m"
-msgstr "m"
+msgstr "米"
 
 #: tfreeprojectsettingsdialog.label12.caption
 msgid "Underwater opacity, %"
@@ -10098,7 +10098,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label14.caption"
 msgid "m"
-msgstr "m"
+msgstr "米"
 
 #: tfreeprojectsettingsdialog.label15.caption
 #, fuzzy
@@ -10108,19 +10108,19 @@ msgstr "注释"
 
 #: tfreeprojectsettingsdialog.label16.caption
 msgid "File created by"
-msgstr ""
+msgstr "绘制"
 
 #: tfreeprojectsettingsdialog.label17.caption
 msgid "Coefficients based on"
-msgstr ""
+msgstr "船型系数基准"
 
 #: tfreeprojectsettingsdialog.label18.caption
 msgid "Select which of the following hydrostatic properties"
-msgstr ""
+msgstr "选择以下静水力特性"
 
 #: tfreeprojectsettingsdialog.label19.caption
 msgid "you want to have displayed in the model:"
-msgstr ""
+msgstr "选择下列在模型中需要:"
 
 #: tfreeprojectsettingsdialog.label2.caption
 msgid "Length "
@@ -10134,7 +10134,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label21.caption"
 msgid "m"
-msgstr "m"
+msgstr "米"
 
 #: tfreeprojectsettingsdialog.label22.caption
 msgid "X coord. of Transverse Max. Wind Area location"
@@ -10144,7 +10144,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label23.caption"
 msgid "m"
-msgstr "m"
+msgstr "米"
 
 #: tfreeprojectsettingsdialog.label24.caption
 msgctxt "tfreeprojectsettingsdialog.label24.caption"
@@ -10166,7 +10166,7 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label3.caption
 msgctxt "tfreeprojectsettingsdialog.label3.caption"
 msgid "Beam"
-msgstr ""
+msgstr "船宽"
 
 #: tfreeprojectsettingsdialog.label4.caption
 #, fuzzy
@@ -10178,7 +10178,7 @@ msgstr "吃水"
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label5.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeprojectsettingsdialog.label6.caption
 #, fuzzy
@@ -10195,13 +10195,13 @@ msgstr "设计者"
 #: tfreeprojectsettingsdialog.label8.caption
 msgctxt "tfreeprojectsettingsdialog.label8.caption"
 msgid "Units"
-msgstr ""
+msgstr "单位"
 
 #: tfreeprojectsettingsdialog.label9.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label9.caption"
 msgid "m"
-msgstr "m"
+msgstr "米"
 
 #: tfreeprojectsettingsdialog.lbwaterdensity.caption
 msgid "lbWaterDensity"
@@ -10209,11 +10209,11 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.precisionbox.hint
 msgid "Change the precision of the model."
-msgstr ""
+msgstr "改变模型精度."
 
 #: tfreeprojectsettingsdialog.precisionbox.text
 msgid "Low"
-msgstr ""
+msgstr "低"
 
 #: tfreeprojectsettingsdialog.tabsheet1.caption
 #, fuzzy
@@ -10224,15 +10224,15 @@ msgstr "常规信息"
 #: tfreeprojectsettingsdialog.tabsheet2.caption
 msgctxt "tfreeprojectsettingsdialog.tabsheet2.caption"
 msgid "Hydrostatics"
-msgstr ""
+msgstr "静水力"
 
 #: tfreeprojectsettingsdialog.tabsheet3.caption
 msgid "Main dimensions"
-msgstr ""
+msgstr "主尺度"
 
 #: tfreeprojectsettingsdialog.unitbox.text
 msgid "Metric"
-msgstr ""
+msgstr "公制"
 
 #: tfreepropeller_task1.caption
 msgid "Design of propeller elements for engine selection."
@@ -10256,7 +10256,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task1.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreepropeller_task1.label10.caption
 msgid "Koef. influence on Thrust"
@@ -10281,7 +10281,7 @@ msgstr ""
 #: tfreepropeller_task1.label15.caption
 msgctxt "tfreepropeller_task1.label15.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "桨叶数"
 
 #: tfreepropeller_task1.label16.caption
 msgctxt "tfreepropeller_task1.label16.caption"
@@ -10290,31 +10290,31 @@ msgstr ""
 
 #: tfreepropeller_task1.label17.caption
 msgid "Depth of Shaft below Waterline, m"
-msgstr ""
+msgstr "轴低于水线的深度, m"
 
 #: tfreepropeller_task1.label18.caption
 msgid "Burrill Back Cavitation Constraint, %"
-msgstr ""
+msgstr "Burrill回流空蚀束缚 , %"
 
 #: tfreepropeller_task1.label2.caption
 msgctxt "tfreepropeller_task1.label2.caption"
 msgid "Ship speed, kn"
-msgstr ""
+msgstr "航速, kn"
 
 #: tfreepropeller_task1.label3.caption
 msgctxt "tfreepropeller_task1.label3.caption"
 msgid "Resistance, kN"
-msgstr ""
+msgstr "阻力, kN"
 
 #: tfreepropeller_task1.label4.caption
 #, fuzzy
 msgctxt "tfreepropeller_task1.label4.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreepropeller_task1.label5.caption
 msgid "Limit of propeller diameter, m"
-msgstr ""
+msgstr "螺旋桨直径的极限, m"
 
 #: tfreepropeller_task1.label6.caption
 msgid "Step changing of diameter, m"
@@ -10358,7 +10358,7 @@ msgstr "结果"
 #: tfreepropeller_task1.tabsheet3.caption
 msgctxt "tfreepropeller_task1.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreepropeller_task1.toolbar1.caption
 msgctxt "tfreepropeller_task1.toolbar1.caption"
@@ -10374,13 +10374,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task1.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreepropeller_task1.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreepropeller_task1.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreepropeller_task1._toolbutton10.caption
 msgctxt "tfreepropeller_task1._toolbutton10.caption"
@@ -10414,7 +10414,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task2.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreepropeller_task2.label10.caption
 #, fuzzy
@@ -10430,12 +10430,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task2.label12.caption"
 msgid "Number of diagram"
-msgstr "数量图"
+msgstr "图表的数量"
 
 #: tfreepropeller_task2.label13.caption
 msgctxt "tfreepropeller_task2.label13.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "桨叶数"
 
 #: tfreepropeller_task2.label14.caption
 msgctxt "tfreepropeller_task2.label14.caption"
@@ -10444,11 +10444,11 @@ msgstr ""
 
 #: tfreepropeller_task2.label15.caption
 msgid "Koef. infl. hull on diameter"
-msgstr ""
+msgstr "Koef.影响船体改变直径"
 
 #: tfreepropeller_task2.label16.caption
 msgid "Waiting ship speed, kn"
-msgstr ""
+msgstr "侯船速, kn"
 
 #: tfreepropeller_task2.label17.caption
 msgid "Calculated ship speed, kn :"
@@ -10465,22 +10465,22 @@ msgstr ""
 #: tfreepropeller_task2.label3.caption
 msgctxt "tfreepropeller_task2.label3.caption"
 msgid "Frequency of propeller, 1/min"
-msgstr ""
+msgstr "螺旋桨的频率, 1/min"
 
 #: tfreepropeller_task2.label4.caption
 #, fuzzy
 msgctxt "tfreepropeller_task2.label4.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreepropeller_task2.label5.caption
 msgid "Water density, kg/m^3"
-msgstr ""
+msgstr "水的密度, kg/m^3"
 
 #: tfreepropeller_task2.label6.caption
 msgctxt "tfreepropeller_task2.label6.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "伴流系数"
 
 #: tfreepropeller_task2.label7.caption
 msgctxt "tfreepropeller_task2.label7.caption"
@@ -10489,11 +10489,11 @@ msgstr ""
 
 #: tfreepropeller_task2.label8.caption
 msgid "Koef. influence on thrust"
-msgstr ""
+msgstr "Koef. 对推力的影响"
 
 #: tfreepropeller_task2.label9.caption
 msgid "Koef. influence on torque"
-msgstr ""
+msgstr "Koef. 对转矩的影响"
 
 #: tfreepropeller_task2.printbutton.caption
 msgctxt "tfreepropeller_task2.printbutton.caption"
@@ -10509,7 +10509,7 @@ msgstr "打印计算结果."
 #: tfreepropeller_task2.results2.caption
 msgctxt "tfreepropeller_task2.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreepropeller_task2.tabsheet1.caption
 #, fuzzy
@@ -10532,13 +10532,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task2.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreepropeller_task2.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreepropeller_task2.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreepropeller_task2._toolbutton10.caption
 msgctxt "tfreepropeller_task2._toolbutton10.caption"
@@ -10571,12 +10571,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task3.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreepropeller_task3.label10.caption
 msgctxt "tfreepropeller_task3.label10.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "伴流系数"
 
 #: tfreepropeller_task3.label11.caption
 msgctxt "tfreepropeller_task3.label11.caption"
@@ -10585,11 +10585,11 @@ msgstr ""
 
 #: tfreepropeller_task3.label12.caption
 msgid "Koef. infl. on thrust"
-msgstr ""
+msgstr "Koef. 对推力的影响"
 
 #: tfreepropeller_task3.label13.caption
 msgid "Koef. infl. on torque"
-msgstr ""
+msgstr "Koef. 对转矩的影响"
 
 #: tfreepropeller_task3.label14.caption
 #, fuzzy
@@ -10612,11 +10612,11 @@ msgstr ""
 #: tfreepropeller_task3.label2.caption
 msgctxt "tfreepropeller_task3.label2.caption"
 msgid "Propeller diameter, m"
-msgstr ""
+msgstr "螺旋桨直径, m"
 
 #: tfreepropeller_task3.label3.caption
 msgid "Disk area ratio"
-msgstr ""
+msgstr "桨盘面积比"
 
 #: tfreepropeller_task3.label4.caption
 msgid "Pitch ratio"
@@ -10629,24 +10629,24 @@ msgstr ""
 #: tfreepropeller_task3.label6.caption
 msgctxt "tfreepropeller_task3.label6.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "桨叶数"
 
 #: tfreepropeller_task3.label7.caption
 #, fuzzy
 msgctxt "tfreepropeller_task3.label7.caption"
 msgid "Number of diagram"
-msgstr "数量图"
+msgstr "图表的数量"
 
 #: tfreepropeller_task3.label8.caption
 #, fuzzy
 msgctxt "tfreepropeller_task3.label8.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreepropeller_task3.label9.caption
 msgctxt "tfreepropeller_task3.label9.caption"
 msgid "Frequency of propeller, 1/min"
-msgstr ""
+msgstr "螺旋桨的频率, 1/min"
 
 #: tfreepropeller_task3.printbutton.caption
 msgctxt "tfreepropeller_task3.printbutton.caption"
@@ -10674,7 +10674,7 @@ msgstr "结果"
 #: tfreepropeller_task3.tabsheet3.caption
 msgctxt "tfreepropeller_task3.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreepropeller_task3.toolbar1.caption
 msgctxt "tfreepropeller_task3.toolbar1.caption"
@@ -10685,13 +10685,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task3.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreepropeller_task3.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreepropeller_task3.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreepropeller_task3._toolbutton10.caption
 msgctxt "tfreepropeller_task3._toolbutton10.caption"
@@ -10705,7 +10705,7 @@ msgstr ""
 
 #: tfreepropeller_task4.caption
 msgid "Wageningen B-Screw Series Propeller Preliminary Design."
-msgstr ""
+msgstr "Wageningen B-型螺旋式螺旋桨的初步设计."
 
 #: tfreepropeller_task4.chart.axislist[0].title.caption
 msgctxt "tfreepropeller_task4.chart.axislist[0].title.caption"
@@ -10726,12 +10726,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task4.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreepropeller_task4.help.caption
 msgctxt "tfreepropeller_task4.help.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreepropeller_task4.label10.caption
 msgid "Depth of axis propeller"
@@ -10751,7 +10751,7 @@ msgstr ""
 
 #: tfreepropeller_task4.label14.caption
 msgid "Rotative coefficient EtaR"
-msgstr ""
+msgstr "旋转系数 EtaR"
 
 #: tfreepropeller_task4.label15.caption
 msgid "Gear efficiency"
@@ -10759,17 +10759,17 @@ msgstr ""
 
 #: tfreepropeller_task4.label16.caption
 msgid "Shaft efficiency"
-msgstr ""
+msgstr "轴效率"
 
 #: tfreepropeller_task4.label2.caption
 msgctxt "tfreepropeller_task4.label2.caption"
 msgid "Ship speed, kn"
-msgstr ""
+msgstr "航速, kn"
 
 #: tfreepropeller_task4.label3.caption
 msgctxt "tfreepropeller_task4.label3.caption"
 msgid "Resistance, kN"
-msgstr ""
+msgstr "阻力, kN"
 
 #: tfreepropeller_task4.label4.caption
 msgid "Type of propeller (1-FPP ; 2-CPP)"
@@ -10779,7 +10779,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task4.label5.caption"
 msgid "Number of blades"
-msgstr "桨叶数"
+msgstr "叶片数"
 
 #: tfreepropeller_task4.label6.caption
 msgctxt "tfreepropeller_task4.label6.caption"
@@ -10798,7 +10798,7 @@ msgstr ""
 #: tfreepropeller_task4.label9.caption
 msgctxt "tfreepropeller_task4.label9.caption"
 msgid "Wake fraction"
-msgstr ""
+msgstr "伴流系数"
 
 #: tfreepropeller_task4.printbutton.caption
 msgctxt "tfreepropeller_task4.printbutton.caption"
@@ -10837,13 +10837,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task4.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreepropeller_task4.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreepropeller_task4.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreepropeller_task4._toolbutton10.caption
 msgctxt "tfreepropeller_task4._toolbutton10.caption"
@@ -10878,7 +10878,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task5.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreepropeller_task5.combobox.text
 msgid "B series Troost"
@@ -10886,7 +10886,7 @@ msgstr ""
 
 #: tfreepropeller_task5.combobox1.text
 msgid "Reserved"
-msgstr ""
+msgstr "Reserved"
 
 #: tfreepropeller_task5.label2.caption
 msgid "Frequancy of rotation, 1/min"
@@ -10905,7 +10905,7 @@ msgstr ""
 #: tfreepropeller_task5.label5.caption
 msgctxt "tfreepropeller_task5.label5.caption"
 msgid "Number of blade"
-msgstr ""
+msgstr "桨叶数"
 
 #: tfreepropeller_task5.label6.caption
 msgid "Diameter of propeller, m"
@@ -10949,7 +10949,7 @@ msgstr "结果"
 #: tfreepropeller_task5.tabsheet3.caption
 msgctxt "tfreepropeller_task5.tabsheet3.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreepropeller_task5.toolbar1.caption
 msgctxt "tfreepropeller_task5.toolbar1.caption"
@@ -10965,13 +10965,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task5.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreepropeller_task5.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreepropeller_task5.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreepropeller_task5._toolbutton10.caption
 msgctxt "tfreepropeller_task5._toolbutton10.caption"
@@ -11006,12 +11006,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_delft.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_delft.estimatebox.caption
 msgctxt "tfreeresistance_delft.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_delft.general.caption
 #, fuzzy
@@ -11034,7 +11034,7 @@ msgstr "船体"
 #: tfreeresistance_delft.groupbox3.caption
 msgctxt "tfreeresistance_delft.groupbox3.caption"
 msgid "Keel"
-msgstr ""
+msgstr "龙骨"
 
 #: tfreeresistance_delft.groupbox4.caption
 #, fuzzy
@@ -11046,12 +11046,12 @@ msgstr "舵"
 #, fuzzy
 msgctxt "tfreeresistance_delft.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_delft.label13.caption
 msgctxt "tfreeresistance_delft.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_delft.label2.caption
 msgctxt "tfreeresistance_delft.label2.caption"
@@ -11102,7 +11102,7 @@ msgstr "排水量"
 #, fuzzy
 msgctxt "tfreeresistance_delft.label27.caption"
 msgid "Waterplane area"
-msgstr "水线面面积"
+msgstr "水线面积"
 
 #: tfreeresistance_delft.label29.caption
 #, fuzzy
@@ -11113,7 +11113,7 @@ msgstr "平均弦长"
 #: tfreeresistance_delft.label3.caption
 msgctxt "tfreeresistance_delft.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "步骤"
 
 #: tfreeresistance_delft.label34.caption
 msgctxt "tfreeresistance_delft.label34.caption"
@@ -11124,12 +11124,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_delft.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_delft.label5.caption
 msgctxt "tfreeresistance_delft.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_delft.label6.caption
 #, fuzzy
@@ -11141,13 +11141,13 @@ msgstr "平均弦长"
 #, fuzzy
 msgctxt "tfreeresistance_delft.label7.caption"
 msgid "Wetted area"
-msgstr "浸润面积"
+msgstr "浸水面积"
 
 #: tfreeresistance_delft.label8.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.label8.caption"
 msgid "Wetted area"
-msgstr "浸润面积"
+msgstr "浸水面积"
 
 #: tfreeresistance_delft.printbutton.caption
 msgctxt "tfreeresistance_delft.printbutton.caption"
@@ -11174,19 +11174,19 @@ msgstr ""
 #: tfreeresistance_delft.toolbutton20.hint
 msgctxt "tfreeresistance_delft.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_delft.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreeresistance_delft.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_delft.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_delft.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_delft._label10.caption
 msgctxt "tfreeresistance_delft._label10.caption"
@@ -11311,12 +11311,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_fungleib.data2.caption
 msgctxt "tfreeresistance_fungleib.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "添加数据"
 
 #: tfreeresistance_fungleib.estimate2box.caption
 msgctxt "tfreeresistance_fungleib.estimate2box.caption"
@@ -11326,7 +11326,7 @@ msgstr ""
 #: tfreeresistance_fungleib.estimatebox.caption
 msgctxt "tfreeresistance_fungleib.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_fungleib.general.caption
 #, fuzzy
@@ -11360,41 +11360,41 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_fungleib.label10.caption
 msgctxt "tfreeresistance_fungleib.label10.caption"
 msgid "1/2 entrance angle, degr"
-msgstr ""
+msgstr "1/2入射角, degr"
 
 #: tfreeresistance_fungleib.label11.caption
 msgid "Transom beam, m"
-msgstr ""
+msgstr "横梁宽, m"
 
 #: tfreeresistance_fungleib.label13.caption
 msgctxt "tfreeresistance_fungleib.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_fungleib.label14.caption
 msgid "Propeller type (1-CRPP; 2-FPP)"
-msgstr ""
+msgstr "螺旋桨型式(1-CRPP可控桨叶; 2-FPP固定桨叶)"
 
 #: tfreeresistance_fungleib.label15.caption
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.label15.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreeresistance_fungleib.label16.caption
 msgctxt "tfreeresistance_fungleib.label16.caption"
 msgid "Propeller diameter, m"
-msgstr ""
+msgstr "螺旋桨直径, m"
 
 #: tfreeresistance_fungleib.label17.caption
 msgctxt "tfreeresistance_fungleib.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "粗糙度绝对值, mkm"
 
 #: tfreeresistance_fungleib.label2.caption
 msgctxt "tfreeresistance_fungleib.label2.caption"
@@ -11448,7 +11448,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label281.caption
 msgctxt "tfreeresistance_fungleib.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "龙骨和尾鳍:"
 
 #: tfreeresistance_fungleib.label29.caption
 #, fuzzy
@@ -11459,22 +11459,22 @@ msgstr "尾鳍"
 #: tfreeresistance_fungleib.label3.caption
 msgctxt "tfreeresistance_fungleib.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "步骤"
 
 #: tfreeresistance_fungleib.label30.caption
 msgctxt "tfreeresistance_fungleib.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "轴肘板"
 
 #: tfreeresistance_fungleib.label31.caption
 msgctxt "tfreeresistance_fungleib.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "支撑式轴包套"
 
 #: tfreeresistance_fungleib.label32.caption
 msgctxt "tfreeresistance_fungleib.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "船体固定式轴包套"
 
 #: tfreeresistance_fungleib.label33.caption
 msgctxt "tfreeresistance_fungleib.label33.caption"
@@ -11499,12 +11499,12 @@ msgstr ""
 #: tfreeresistance_fungleib.label37.caption
 msgctxt "tfreeresistance_fungleib.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "稳定鳍"
 
 #: tfreeresistance_fungleib.label38.caption
 msgctxt "tfreeresistance_fungleib.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "顶部半球"
 
 #: tfreeresistance_fungleib.label39.caption
 #, fuzzy
@@ -11516,12 +11516,12 @@ msgstr "舭龙骨"
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_fungleib.label5.caption
 msgctxt "tfreeresistance_fungleib.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_fungleib.label6.caption
 #, fuzzy
@@ -11557,17 +11557,17 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_3.caption
 msgctxt "tfreeresistance_fungleib.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "航行时与海浪移动的角度, 度"
 
 #: tfreeresistance_fungleib.label6_4.caption
 msgctxt "tfreeresistance_fungleib.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "风速, m/s"
 
 #: tfreeresistance_fungleib.label6_5.caption
 msgctxt "tfreeresistance_fungleib.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "风向角, 度"
 
 #: tfreeresistance_fungleib.label6_6.caption
 msgctxt "tfreeresistance_fungleib.label6_6.caption"
@@ -11577,7 +11577,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_7.caption
 msgctxt "tfreeresistance_fungleib.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "空气密度, kg/m^3"
 
 #: tfreeresistance_fungleib.label6_8.caption
 msgctxt "tfreeresistance_fungleib.label6_8.caption"
@@ -11587,7 +11587,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_9.caption
 msgctxt "tfreeresistance_fungleib.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "水深, m"
 
 #: tfreeresistance_fungleib.label7.caption
 msgctxt "tfreeresistance_fungleib.label7.caption"
@@ -11623,7 +11623,7 @@ msgstr "结果"
 #: tfreeresistance_fungleib.results2.caption
 msgctxt "tfreeresistance_fungleib.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeresistance_fungleib.toolbar1.caption
 msgctxt "tfreeresistance_fungleib.toolbar1.caption"
@@ -11633,19 +11633,19 @@ msgstr ""
 #: tfreeresistance_fungleib.toolbutton20.hint
 msgctxt "tfreeresistance_fungleib.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_fungleib.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_fungleib.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_fungleib._label10.caption
 msgctxt "tfreeresistance_fungleib._label10.caption"
@@ -11745,12 +11745,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_hollen.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_hollen.data2.caption
 msgctxt "tfreeresistance_hollen.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "添加数据"
 
 #: tfreeresistance_hollen.estimate2box.caption
 msgctxt "tfreeresistance_hollen.estimate2box.caption"
@@ -11760,7 +11760,7 @@ msgstr ""
 #: tfreeresistance_hollen.estimatebox.caption
 msgctxt "tfreeresistance_hollen.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_hollen.general.caption
 #, fuzzy
@@ -11794,12 +11794,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_hollen.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_hollen.label10.caption
 msgctxt "tfreeresistance_hollen.label10.caption"
 msgid "Bulbous area on F.P., m^2"
-msgstr ""
+msgstr "F.P.球鼻艏面积, m^2"
 
 #: tfreeresistance_hollen.label11.caption
 msgctxt "tfreeresistance_hollen.label11.caption"
@@ -11809,7 +11809,7 @@ msgstr ""
 #: tfreeresistance_hollen.label13.caption
 msgctxt "tfreeresistance_hollen.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_hollen.label14.caption
 msgctxt "tfreeresistance_hollen.label14.caption"
@@ -11820,7 +11820,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_hollen.label15.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreeresistance_hollen.label16.caption
 msgctxt "tfreeresistance_hollen.label16.caption"
@@ -11830,7 +11830,7 @@ msgstr ""
 #: tfreeresistance_hollen.label17.caption
 msgctxt "tfreeresistance_hollen.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "粗糙度绝对值, mkm"
 
 #: tfreeresistance_hollen.label2.caption
 msgid "Estimate speed "
@@ -11889,7 +11889,7 @@ msgstr "尾鳍"
 #: tfreeresistance_hollen.label281.caption
 msgctxt "tfreeresistance_hollen.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "龙骨和尾鳍:"
 
 #: tfreeresistance_hollen.label29.caption
 #, fuzzy
@@ -11906,17 +11906,17 @@ msgstr "最大速度"
 #: tfreeresistance_hollen.label30.caption
 msgctxt "tfreeresistance_hollen.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "轴肘板"
 
 #: tfreeresistance_hollen.label31.caption
 msgctxt "tfreeresistance_hollen.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "支撑式轴包套"
 
 #: tfreeresistance_hollen.label32.caption
 msgctxt "tfreeresistance_hollen.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "船体固定式轴包套"
 
 #: tfreeresistance_hollen.label33.caption
 msgctxt "tfreeresistance_hollen.label33.caption"
@@ -11942,23 +11942,23 @@ msgstr ""
 #: tfreeresistance_hollen.label37.caption
 msgctxt "tfreeresistance_hollen.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "稳定鳍"
 
 #: tfreeresistance_hollen.label38.caption
 msgctxt "tfreeresistance_hollen.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "顶部半球"
 
 #: tfreeresistance_hollen.label4.caption
 #, fuzzy
 msgctxt "tfreeresistance_hollen.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_hollen.label5.caption
 msgctxt "tfreeresistance_hollen.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_hollen.label6.caption
 #, fuzzy
@@ -11994,17 +11994,17 @@ msgstr ""
 #: tfreeresistance_hollen.label6_3.caption
 msgctxt "tfreeresistance_hollen.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "航行时与海浪移动的角度, 度"
 
 #: tfreeresistance_hollen.label6_4.caption
 msgctxt "tfreeresistance_hollen.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "风速, m/s"
 
 #: tfreeresistance_hollen.label6_5.caption
 msgctxt "tfreeresistance_hollen.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "风向角, 度"
 
 #: tfreeresistance_hollen.label6_6.caption
 msgctxt "tfreeresistance_hollen.label6_6.caption"
@@ -12014,7 +12014,7 @@ msgstr ""
 #: tfreeresistance_hollen.label6_7.caption
 msgctxt "tfreeresistance_hollen.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "空气密度, kg/m^3"
 
 #: tfreeresistance_hollen.label6_8.caption
 msgctxt "tfreeresistance_hollen.label6_8.caption"
@@ -12024,7 +12024,7 @@ msgstr ""
 #: tfreeresistance_hollen.label6_9.caption
 msgctxt "tfreeresistance_hollen.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "水深, m"
 
 #: tfreeresistance_hollen.label7.caption
 msgctxt "tfreeresistance_hollen.label7.caption"
@@ -12061,7 +12061,7 @@ msgstr "结果"
 #: tfreeresistance_hollen.results2.caption
 msgctxt "tfreeresistance_hollen.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeresistance_hollen.toolbar1.caption
 msgctxt "tfreeresistance_hollen.toolbar1.caption"
@@ -12071,19 +12071,19 @@ msgstr ""
 #: tfreeresistance_hollen.toolbutton20.hint
 msgctxt "tfreeresistance_hollen.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_hollen.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreeresistance_hollen.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_hollen.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_hollen.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_hollen._label10.caption
 msgctxt "tfreeresistance_hollen._label10.caption"
@@ -12183,12 +12183,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_holtr.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_holtr.data2.caption
 msgctxt "tfreeresistance_holtr.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "添加数据"
 
 #: tfreeresistance_holtr.estimate2box.caption
 msgctxt "tfreeresistance_holtr.estimate2box.caption"
@@ -12201,12 +12201,12 @@ msgstr ""
 
 #: tfreeresistance_holtr.estimate4box.caption
 msgid "Extract half entrance angle from model - Ie"
-msgstr ""
+msgstr "模型半进流角输出- Ie"
 
 #: tfreeresistance_holtr.estimatebox.caption
 msgctxt "tfreeresistance_holtr.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_holtr.general.caption
 #, fuzzy
@@ -12239,12 +12239,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_holtr.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_holtr.label10.caption
 msgctxt "tfreeresistance_holtr.label10.caption"
 msgid "Bulbous area on F.P., m^2"
-msgstr ""
+msgstr "F.P.球鼻艏面积, m^2"
 
 #: tfreeresistance_holtr.label11.caption
 msgid "Z COG of bulbous area, m"
@@ -12253,7 +12253,7 @@ msgstr ""
 #: tfreeresistance_holtr.label13.caption
 msgctxt "tfreeresistance_holtr.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_holtr.label14.caption
 msgctxt "tfreeresistance_holtr.label14.caption"
@@ -12264,7 +12264,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_holtr.label15.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreeresistance_holtr.label16.caption
 msgctxt "tfreeresistance_holtr.label16.caption"
@@ -12274,7 +12274,7 @@ msgstr ""
 #: tfreeresistance_holtr.label17.caption
 msgctxt "tfreeresistance_holtr.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "粗糙度绝对值, mkm"
 
 #: tfreeresistance_holtr.label2.caption
 msgctxt "tfreeresistance_holtr.label2.caption"
@@ -12324,7 +12324,7 @@ msgstr "排水量"
 #, fuzzy
 msgctxt "tfreeresistance_holtr.label27.caption"
 msgid "Waterplane area"
-msgstr "水线面面积"
+msgstr "水线面积"
 
 #: tfreeresistance_holtr.label28.caption
 #, fuzzy
@@ -12345,22 +12345,22 @@ msgstr "舭龙骨"
 #: tfreeresistance_holtr.label3.caption
 msgctxt "tfreeresistance_holtr.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "步骤"
 
 #: tfreeresistance_holtr.label30.caption
 msgctxt "tfreeresistance_holtr.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "轴肘板"
 
 #: tfreeresistance_holtr.label31.caption
 msgctxt "tfreeresistance_holtr.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "支撑式轴包套"
 
 #: tfreeresistance_holtr.label32.caption
 msgctxt "tfreeresistance_holtr.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "船体固定式轴包套"
 
 #: tfreeresistance_holtr.label33.caption
 msgid "Exposed shafts, [m^2]:"
@@ -12384,23 +12384,23 @@ msgstr ""
 #: tfreeresistance_holtr.label37.caption
 msgctxt "tfreeresistance_holtr.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "稳定鳍"
 
 #: tfreeresistance_holtr.label38.caption
 msgctxt "tfreeresistance_holtr.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "顶部半球"
 
 #: tfreeresistance_holtr.label4.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_holtr.label5.caption
 msgctxt "tfreeresistance_holtr.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_holtr.label6.caption
 #, fuzzy
@@ -12440,17 +12440,17 @@ msgstr ""
 #: tfreeresistance_holtr.label6_3.caption
 msgctxt "tfreeresistance_holtr.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "航行时与海浪移动的角度, 度"
 
 #: tfreeresistance_holtr.label6_4.caption
 msgctxt "tfreeresistance_holtr.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "风速, m/s"
 
 #: tfreeresistance_holtr.label6_5.caption
 msgctxt "tfreeresistance_holtr.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "风向角, 度"
 
 #: tfreeresistance_holtr.label6_6.caption
 msgctxt "tfreeresistance_holtr.label6_6.caption"
@@ -12460,7 +12460,7 @@ msgstr ""
 #: tfreeresistance_holtr.label6_7.caption
 msgctxt "tfreeresistance_holtr.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "空气密度, kg/m^3"
 
 #: tfreeresistance_holtr.label6_8.caption
 msgctxt "tfreeresistance_holtr.label6_8.caption"
@@ -12470,7 +12470,7 @@ msgstr ""
 #: tfreeresistance_holtr.label6_9.caption
 msgctxt "tfreeresistance_holtr.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "水深, m"
 
 #: tfreeresistance_holtr.label7.caption
 msgctxt "tfreeresistance_holtr.label7.caption"
@@ -12484,7 +12484,7 @@ msgstr ""
 
 #: tfreeresistance_holtr.label9.caption
 msgid "Transom wetted area, m^2"
-msgstr ""
+msgstr "横向浸润面积, m^2"
 
 #: tfreeresistance_holtr.results.caption
 #, fuzzy
@@ -12495,24 +12495,24 @@ msgstr "结果"
 #: tfreeresistance_holtr.results2.caption
 msgctxt "tfreeresistance_holtr.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeresistance_holtr.tbcalculate.hint
 msgctxt "tfreeresistance_holtr.tbcalculate.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_holtr.tbclose.hint
 #, fuzzy
 msgctxt "tfreeresistance_holtr.tbclose.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_holtr.tbclosesave.hint
 #, fuzzy
 msgctxt "tfreeresistance_holtr.tbclosesave.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_holtr.tbprint.caption
 msgid "tbPrint"
@@ -12616,7 +12616,7 @@ msgstr ""
 #: tfreeresistance_kaper.checkbox2.caption
 msgctxt "tfreeresistance_kaper.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_kaper.edit10.hint
 msgid "0.00 .. 0.04"
@@ -12715,7 +12715,7 @@ msgstr "打印计算结果."
 #, fuzzy
 msgctxt "tfreeresistance_kaper.tabsheet1.caption"
 msgid "General"
-msgstr "常规信息尺寸"
+msgstr "常规信息"
 
 #: tfreeresistance_kaper.tabsheet2.caption
 msgctxt "tfreeresistance_kaper.tabsheet2.caption"
@@ -12730,12 +12730,12 @@ msgstr ""
 #: tfreeresistance_kaper.toolbutton25.hint
 msgctxt "tfreeresistance_kaper.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_kaper.toolbutton7.hint
 msgctxt "tfreeresistance_kaper.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_kaper._toolbutton10.caption
 msgctxt "tfreeresistance_kaper._toolbutton10.caption"
@@ -12775,7 +12775,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_mh.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_mh.combobox.text
 msgid "model tests"
@@ -12784,7 +12784,7 @@ msgstr ""
 #: tfreeresistance_mh.data2.caption
 msgctxt "tfreeresistance_mh.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "添加数据"
 
 #: tfreeresistance_mh.estimate2box.caption
 msgctxt "tfreeresistance_mh.estimate2box.caption"
@@ -12794,7 +12794,7 @@ msgstr ""
 #: tfreeresistance_mh.estimatebox.caption
 msgctxt "tfreeresistance_mh.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_mh.general.caption
 #, fuzzy
@@ -12828,28 +12828,28 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_mh.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_mh.label10.caption
 msgctxt "tfreeresistance_mh.label10.caption"
 msgid "Type of forward stern"
-msgstr ""
+msgstr "艉部前端形式"
 
 #: tfreeresistance_mh.label11.caption
 msgctxt "tfreeresistance_mh.label11.caption"
 msgid "Type of after stern"
-msgstr ""
+msgstr "艉部后端形式"
 
 #: tfreeresistance_mh.label13.caption
 msgctxt "tfreeresistance_mh.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_mh.label15.caption
 #, fuzzy
 msgctxt "tfreeresistance_mh.label15.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreeresistance_mh.label16.caption
 msgctxt "tfreeresistance_mh.label16.caption"
@@ -12859,7 +12859,7 @@ msgstr ""
 #: tfreeresistance_mh.label17.caption
 msgctxt "tfreeresistance_mh.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "粗糙度绝对值, mkm"
 
 #: tfreeresistance_mh.label19.caption
 msgid "Calculation by the method:"
@@ -12913,32 +12913,32 @@ msgstr "排水量"
 #, fuzzy
 msgctxt "tfreeresistance_mh.label27.caption"
 msgid "Waterplane area"
-msgstr "水线面面积"
+msgstr "水线面积"
 
 #: tfreeresistance_mh.label281.caption
 msgctxt "tfreeresistance_mh.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "龙骨和尾鳍:"
 
 #: tfreeresistance_mh.label3.caption
 msgctxt "tfreeresistance_mh.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "步骤"
 
 #: tfreeresistance_mh.label30.caption
 msgctxt "tfreeresistance_mh.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "轴肘板"
 
 #: tfreeresistance_mh.label31.caption
 msgctxt "tfreeresistance_mh.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "支撑式轴包套"
 
 #: tfreeresistance_mh.label32.caption
 msgctxt "tfreeresistance_mh.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "船体固定式轴包套"
 
 #: tfreeresistance_mh.label33.caption
 msgctxt "tfreeresistance_mh.label33.caption"
@@ -12963,12 +12963,12 @@ msgstr ""
 #: tfreeresistance_mh.label37.caption
 msgctxt "tfreeresistance_mh.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "稳定鳍"
 
 #: tfreeresistance_mh.label38.caption
 msgctxt "tfreeresistance_mh.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "顶部半球"
 
 #: tfreeresistance_mh.label39.caption
 #, fuzzy
@@ -12980,7 +12980,7 @@ msgstr "尾鳍"
 #, fuzzy
 msgctxt "tfreeresistance_mh.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_mh.label40.caption
 #, fuzzy
@@ -12991,7 +12991,7 @@ msgstr "舭龙骨"
 #: tfreeresistance_mh.label5.caption
 msgctxt "tfreeresistance_mh.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_mh.label6.caption
 #, fuzzy
@@ -13027,17 +13027,17 @@ msgstr ""
 #: tfreeresistance_mh.label6_3.caption
 msgctxt "tfreeresistance_mh.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "航行时与海浪移动的角度, 度"
 
 #: tfreeresistance_mh.label6_4.caption
 msgctxt "tfreeresistance_mh.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "风速, m/s"
 
 #: tfreeresistance_mh.label6_5.caption
 msgctxt "tfreeresistance_mh.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "风向角, 度"
 
 #: tfreeresistance_mh.label6_6.caption
 msgctxt "tfreeresistance_mh.label6_6.caption"
@@ -13047,7 +13047,7 @@ msgstr ""
 #: tfreeresistance_mh.label6_7.caption
 msgctxt "tfreeresistance_mh.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "空气密度, kg/m^3"
 
 #: tfreeresistance_mh.label6_8.caption
 msgctxt "tfreeresistance_mh.label6_8.caption"
@@ -13057,7 +13057,7 @@ msgstr ""
 #: tfreeresistance_mh.label6_9.caption
 msgctxt "tfreeresistance_mh.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "水深, m"
 
 #: tfreeresistance_mh.label7.caption
 msgctxt "tfreeresistance_mh.label7.caption"
@@ -13094,7 +13094,7 @@ msgstr "结果"
 #: tfreeresistance_mh.results2.caption
 msgctxt "tfreeresistance_mh.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeresistance_mh.toolbar1.caption
 msgctxt "tfreeresistance_mh.toolbar1.caption"
@@ -13104,19 +13104,19 @@ msgstr ""
 #: tfreeresistance_mh.toolbutton20.hint
 msgctxt "tfreeresistance_mh.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_mh.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreeresistance_mh.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_mh.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_mh.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_mh._label10.caption
 msgctxt "tfreeresistance_mh._label10.caption"
@@ -13216,16 +13216,16 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_oortmer.combobox.text
 msgid "van Oortmerssen 1971"
-msgstr ""
+msgstr "van Oortmerssen 1971"
 
 #: tfreeresistance_oortmer.data2.caption
 msgctxt "tfreeresistance_oortmer.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "添加数据"
 
 #: tfreeresistance_oortmer.estimate2box.caption
 msgctxt "tfreeresistance_oortmer.estimate2box.caption"
@@ -13235,7 +13235,7 @@ msgstr ""
 #: tfreeresistance_oortmer.estimatebox.caption
 msgctxt "tfreeresistance_oortmer.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_oortmer.general.caption
 #, fuzzy
@@ -13269,12 +13269,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_oortmer.label10.caption
 msgctxt "tfreeresistance_oortmer.label10.caption"
 msgid "1/2 entrance angle, degr"
-msgstr ""
+msgstr "1/2入射角, degr"
 
 #: tfreeresistance_oortmer.label11.caption
 msgctxt "tfreeresistance_oortmer.label11.caption"
@@ -13284,7 +13284,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label13.caption
 msgctxt "tfreeresistance_oortmer.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_oortmer.label14.caption
 msgctxt "tfreeresistance_oortmer.label14.caption"
@@ -13295,17 +13295,17 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.label15.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreeresistance_oortmer.label16.caption
 msgctxt "tfreeresistance_oortmer.label16.caption"
 msgid "Propeller diameter, m"
-msgstr ""
+msgstr "螺旋桨直径, m"
 
 #: tfreeresistance_oortmer.label17.caption
 msgctxt "tfreeresistance_oortmer.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "粗糙度绝对值, mkm"
 
 #: tfreeresistance_oortmer.label2.caption
 msgctxt "tfreeresistance_oortmer.label2.caption"
@@ -13365,7 +13365,7 @@ msgstr "尾鳍"
 #: tfreeresistance_oortmer.label281.caption
 msgctxt "tfreeresistance_oortmer.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "龙骨和尾鳍:"
 
 #: tfreeresistance_oortmer.label29.caption
 #, fuzzy
@@ -13376,22 +13376,22 @@ msgstr "舭龙骨"
 #: tfreeresistance_oortmer.label3.caption
 msgctxt "tfreeresistance_oortmer.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "步骤"
 
 #: tfreeresistance_oortmer.label30.caption
 msgctxt "tfreeresistance_oortmer.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "轴肘板"
 
 #: tfreeresistance_oortmer.label31.caption
 msgctxt "tfreeresistance_oortmer.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "支撑式轴包套"
 
 #: tfreeresistance_oortmer.label32.caption
 msgctxt "tfreeresistance_oortmer.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "船体固定式轴包套"
 
 #: tfreeresistance_oortmer.label33.caption
 msgctxt "tfreeresistance_oortmer.label33.caption"
@@ -13416,28 +13416,28 @@ msgstr ""
 #: tfreeresistance_oortmer.label37.caption
 msgctxt "tfreeresistance_oortmer.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "稳定鳍"
 
 #: tfreeresistance_oortmer.label38.caption
 msgctxt "tfreeresistance_oortmer.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "顶部半球"
 
 #: tfreeresistance_oortmer.label4.caption
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_oortmer.label48.caption
 msgctxt "tfreeresistance_oortmer.label48.caption"
 msgid "Calculation method:"
-msgstr ""
+msgstr "Calculation method:"
 
 #: tfreeresistance_oortmer.label5.caption
 msgctxt "tfreeresistance_oortmer.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_oortmer.label6.caption
 #, fuzzy
@@ -13473,17 +13473,17 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_3.caption
 msgctxt "tfreeresistance_oortmer.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "航行时与海浪移动的角度, 度"
 
 #: tfreeresistance_oortmer.label6_4.caption
 msgctxt "tfreeresistance_oortmer.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "风速, m/s"
 
 #: tfreeresistance_oortmer.label6_5.caption
 msgctxt "tfreeresistance_oortmer.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "风向角, 度"
 
 #: tfreeresistance_oortmer.label6_6.caption
 msgctxt "tfreeresistance_oortmer.label6_6.caption"
@@ -13493,7 +13493,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_7.caption
 msgctxt "tfreeresistance_oortmer.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "空气密度, kg/m^3"
 
 #: tfreeresistance_oortmer.label6_8.caption
 msgctxt "tfreeresistance_oortmer.label6_8.caption"
@@ -13503,7 +13503,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_9.caption
 msgctxt "tfreeresistance_oortmer.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "水深, m"
 
 #: tfreeresistance_oortmer.label7.caption
 msgctxt "tfreeresistance_oortmer.label7.caption"
@@ -13540,7 +13540,7 @@ msgstr "结果"
 #: tfreeresistance_oortmer.results2.caption
 msgctxt "tfreeresistance_oortmer.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeresistance_oortmer.toolbar1.caption
 msgctxt "tfreeresistance_oortmer.toolbar1.caption"
@@ -13550,19 +13550,19 @@ msgstr ""
 #: tfreeresistance_oortmer.toolbutton20.hint
 msgctxt "tfreeresistance_oortmer.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_oortmer.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_oortmer.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_oortmer._label10.caption
 msgctxt "tfreeresistance_oortmer._label10.caption"
@@ -13663,17 +13663,17 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_ost.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_ost.combobox.text
 msgctxt "tfreeresistance_ost.combobox.text"
 msgid "Any displacement ships"
-msgstr ""
+msgstr "任意排水型船舶"
 
 #: tfreeresistance_ost.data2.caption
 msgctxt "tfreeresistance_ost.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "添加数据"
 
 #: tfreeresistance_ost.estimate2box.caption
 msgctxt "tfreeresistance_ost.estimate2box.caption"
@@ -13683,7 +13683,7 @@ msgstr ""
 #: tfreeresistance_ost.estimatebox.caption
 msgctxt "tfreeresistance_ost.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_ost.general.caption
 #, fuzzy
@@ -13717,28 +13717,28 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_ost.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_ost.label10.caption
 msgctxt "tfreeresistance_ost.label10.caption"
 msgid "Type of forward stern"
-msgstr ""
+msgstr "艉部前端形式"
 
 #: tfreeresistance_ost.label11.caption
 msgctxt "tfreeresistance_ost.label11.caption"
 msgid "Type of after stern"
-msgstr ""
+msgstr "艉部后端形式"
 
 #: tfreeresistance_ost.label13.caption
 msgctxt "tfreeresistance_ost.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_ost.label15.caption
 #, fuzzy
 msgctxt "tfreeresistance_ost.label15.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreeresistance_ost.label16.caption
 msgctxt "tfreeresistance_ost.label16.caption"
@@ -13748,7 +13748,7 @@ msgstr ""
 #: tfreeresistance_ost.label17.caption
 msgctxt "tfreeresistance_ost.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "粗糙度绝对值, mkm"
 
 #: tfreeresistance_ost.label19.caption
 msgctxt "tfreeresistance_ost.label19.caption"
@@ -13803,32 +13803,32 @@ msgstr "排水量"
 #, fuzzy
 msgctxt "tfreeresistance_ost.label27.caption"
 msgid "Waterplane area"
-msgstr "水线面面积"
+msgstr "水线面积"
 
 #: tfreeresistance_ost.label281.caption
 msgctxt "tfreeresistance_ost.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "龙骨和尾鳍:"
 
 #: tfreeresistance_ost.label3.caption
 msgctxt "tfreeresistance_ost.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "步骤"
 
 #: tfreeresistance_ost.label30.caption
 msgctxt "tfreeresistance_ost.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "轴肘板"
 
 #: tfreeresistance_ost.label31.caption
 msgctxt "tfreeresistance_ost.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "支撑式轴包套"
 
 #: tfreeresistance_ost.label32.caption
 msgctxt "tfreeresistance_ost.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "船体固定式轴包套"
 
 #: tfreeresistance_ost.label33.caption
 msgctxt "tfreeresistance_ost.label33.caption"
@@ -13853,12 +13853,12 @@ msgstr ""
 #: tfreeresistance_ost.label37.caption
 msgctxt "tfreeresistance_ost.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "稳定鳍"
 
 #: tfreeresistance_ost.label38.caption
 msgctxt "tfreeresistance_ost.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "顶部半球"
 
 #: tfreeresistance_ost.label39.caption
 #, fuzzy
@@ -13870,7 +13870,7 @@ msgstr "尾鳍"
 #, fuzzy
 msgctxt "tfreeresistance_ost.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_ost.label40.caption
 #, fuzzy
@@ -13881,7 +13881,7 @@ msgstr "舭龙骨"
 #: tfreeresistance_ost.label5.caption
 msgctxt "tfreeresistance_ost.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_ost.label6.caption
 #, fuzzy
@@ -13917,17 +13917,17 @@ msgstr ""
 #: tfreeresistance_ost.label6_3.caption
 msgctxt "tfreeresistance_ost.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "航行时与海浪移动的角度, 度"
 
 #: tfreeresistance_ost.label6_4.caption
 msgctxt "tfreeresistance_ost.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "风速, m/s"
 
 #: tfreeresistance_ost.label6_5.caption
 msgctxt "tfreeresistance_ost.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "风向角, 度"
 
 #: tfreeresistance_ost.label6_6.caption
 msgctxt "tfreeresistance_ost.label6_6.caption"
@@ -13937,7 +13937,7 @@ msgstr ""
 #: tfreeresistance_ost.label6_7.caption
 msgctxt "tfreeresistance_ost.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "空气密度, kg/m^3"
 
 #: tfreeresistance_ost.label6_8.caption
 msgctxt "tfreeresistance_ost.label6_8.caption"
@@ -13947,7 +13947,7 @@ msgstr ""
 #: tfreeresistance_ost.label6_9.caption
 msgctxt "tfreeresistance_ost.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "水深, m"
 
 #: tfreeresistance_ost.label7.caption
 msgctxt "tfreeresistance_ost.label7.caption"
@@ -13984,7 +13984,7 @@ msgstr "结果"
 #: tfreeresistance_ost.results2.caption
 msgctxt "tfreeresistance_ost.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeresistance_ost.toolbar1.caption
 msgctxt "tfreeresistance_ost.toolbar1.caption"
@@ -13994,19 +13994,19 @@ msgstr ""
 #: tfreeresistance_ost.toolbutton20.hint
 msgctxt "tfreeresistance_ost.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_ost.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreeresistance_ost.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_ost.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_ost.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_ost._label10.caption
 msgctxt "tfreeresistance_ost._label10.caption"
@@ -14100,11 +14100,11 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_planing.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_planing.checkbox3.caption
 msgid "Add aerodynamic resistance"
-msgstr ""
+msgstr "加入气动阻力"
 
 #: tfreeresistance_planing.checkbox4.caption
 msgid "Add appendage resistance with steady engine"
@@ -14116,7 +14116,7 @@ msgstr ""
 
 #: tfreeresistance_planing.checkbox6.caption
 msgid "Add round bilge influence"
-msgstr ""
+msgstr "Add round bilge influence"
 
 #: tfreeresistance_planing.combobox.text
 msgid "Sedov-Perelmootre"
@@ -14206,12 +14206,12 @@ msgstr ""
 #: tfreeresistance_planing.label22.caption
 msgctxt "tfreeresistance_planing.label22.caption"
 msgid "Calculation method:"
-msgstr ""
+msgstr "Calculation method:"
 
 #: tfreeresistance_planing.label23.caption
 msgctxt "tfreeresistance_planing.label23.caption"
 msgid "Angle between Thrust and Keel lines"
-msgstr ""
+msgstr "推进器与龙骨线夹角"
 
 #: tfreeresistance_planing.label23_.caption
 msgctxt "tfreeresistance_planing.label23_.caption"
@@ -14229,7 +14229,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label25.caption
 msgid "Diameter of propeller"
-msgstr ""
+msgstr "螺旋桨直径"
 
 #: tfreeresistance_planing.label25_.caption
 msgctxt "tfreeresistance_planing.label25_.caption"
@@ -14238,7 +14238,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label26.caption
 msgid "Deadrise transom"
-msgstr ""
+msgstr "横向船底斜度"
 
 #: tfreeresistance_planing.label26_.caption
 msgctxt "tfreeresistance_planing.label26_.caption"
@@ -14256,7 +14256,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label28.caption
 msgid "Propulsor type:"
-msgstr ""
+msgstr "推进器形式:"
 
 #: tfreeresistance_planing.label3.caption
 #, fuzzy
@@ -14274,7 +14274,7 @@ msgstr "吃水"
 #, fuzzy
 msgctxt "tfreeresistance_planing.label6.caption"
 msgid "Wetted surface area"
-msgstr "浸润表面面积"
+msgstr "浸润区域"
 
 #: tfreeresistance_planing.label7.caption
 msgctxt "tfreeresistance_planing.label7.caption"
@@ -14324,13 +14324,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_planing.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_planing.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_planing.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_planing._toolbutton10.caption
 msgctxt "tfreeresistance_planing._toolbutton10.caption"
@@ -14371,17 +14371,17 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "当前船体数据输出"
+msgstr "从目前的船体中提取数据"
 
 #: tfreeresistance_rbhs.combobox.text
 msgctxt "tfreeresistance_rbhs.combobox.text"
 msgid "Any displacement ships"
-msgstr ""
+msgstr "任意排水型船舶"
 
 #: tfreeresistance_rbhs.data2.caption
 msgctxt "tfreeresistance_rbhs.data2.caption"
 msgid "Added data"
-msgstr ""
+msgstr "添加数据"
 
 #: tfreeresistance_rbhs.estimate2box.caption
 msgctxt "tfreeresistance_rbhs.estimate2box.caption"
@@ -14391,7 +14391,7 @@ msgstr ""
 #: tfreeresistance_rbhs.estimatebox.caption
 msgctxt "tfreeresistance_rbhs.estimatebox.caption"
 msgid "Use estimate"
-msgstr ""
+msgstr "使用估计"
 
 #: tfreeresistance_rbhs.general.caption
 #, fuzzy
@@ -14425,28 +14425,28 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.label1.caption"
 msgid "Start speed"
-msgstr "起始速度"
+msgstr "开始速度"
 
 #: tfreeresistance_rbhs.label10.caption
 msgctxt "tfreeresistance_rbhs.label10.caption"
 msgid "Type of forward stern"
-msgstr ""
+msgstr "艉部前端形式"
 
 #: tfreeresistance_rbhs.label11.caption
 msgctxt "tfreeresistance_rbhs.label11.caption"
 msgid "Type of after stern"
-msgstr ""
+msgstr "艉部后端形式"
 
 #: tfreeresistance_rbhs.label13.caption
 msgctxt "tfreeresistance_rbhs.label13.caption"
 msgid "Wetted surface"
-msgstr ""
+msgstr "浸水面积"
 
 #: tfreeresistance_rbhs.label15.caption
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.label15.caption"
 msgid "Number of propellers"
-msgstr "螺旋桨数量"
+msgstr "螺旋桨数目"
 
 #: tfreeresistance_rbhs.label16.caption
 msgctxt "tfreeresistance_rbhs.label16.caption"
@@ -14456,7 +14456,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label17.caption
 msgctxt "tfreeresistance_rbhs.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr ""
+msgstr "粗糙度绝对值, mkm"
 
 #: tfreeresistance_rbhs.label19.caption
 msgctxt "tfreeresistance_rbhs.label19.caption"
@@ -14511,32 +14511,32 @@ msgstr "排水量"
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.label27.caption"
 msgid "Waterplane area"
-msgstr "水线面面积"
+msgstr "水线面积"
 
 #: tfreeresistance_rbhs.label281.caption
 msgctxt "tfreeresistance_rbhs.label281.caption"
 msgid "Keel and skeg:"
-msgstr ""
+msgstr "龙骨和尾鳍:"
 
 #: tfreeresistance_rbhs.label3.caption
 msgctxt "tfreeresistance_rbhs.label3.caption"
 msgid "Step"
-msgstr ""
+msgstr "步骤"
 
 #: tfreeresistance_rbhs.label30.caption
 msgctxt "tfreeresistance_rbhs.label30.caption"
 msgid "Shaft brackets"
-msgstr ""
+msgstr "轴肘板"
 
 #: tfreeresistance_rbhs.label31.caption
 msgctxt "tfreeresistance_rbhs.label31.caption"
 msgid "Strut bossing"
-msgstr ""
+msgstr "支撑式轴包套"
 
 #: tfreeresistance_rbhs.label32.caption
 msgctxt "tfreeresistance_rbhs.label32.caption"
 msgid "Hull bossing"
-msgstr ""
+msgstr "船体固定式轴包套"
 
 #: tfreeresistance_rbhs.label33.caption
 msgctxt "tfreeresistance_rbhs.label33.caption"
@@ -14561,12 +14561,12 @@ msgstr ""
 #: tfreeresistance_rbhs.label37.caption
 msgctxt "tfreeresistance_rbhs.label37.caption"
 msgid "Stabiliser fins"
-msgstr ""
+msgstr "稳定鳍"
 
 #: tfreeresistance_rbhs.label38.caption
 msgctxt "tfreeresistance_rbhs.label38.caption"
 msgid "Dome"
-msgstr ""
+msgstr "顶部半球"
 
 #: tfreeresistance_rbhs.label39.caption
 #, fuzzy
@@ -14578,7 +14578,7 @@ msgstr "尾鳍"
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.label4.caption"
 msgid "Water density"
-msgstr "水密度"
+msgstr "水的密度"
 
 #: tfreeresistance_rbhs.label40.caption
 #, fuzzy
@@ -14589,7 +14589,7 @@ msgstr "舭龙骨"
 #: tfreeresistance_rbhs.label5.caption
 msgctxt "tfreeresistance_rbhs.label5.caption"
 msgid "Viscosity"
-msgstr ""
+msgstr "粘度"
 
 #: tfreeresistance_rbhs.label6.caption
 #, fuzzy
@@ -14625,17 +14625,17 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_3.caption
 msgctxt "tfreeresistance_rbhs.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr ""
+msgstr "航行时与海浪移动的角度, 度"
 
 #: tfreeresistance_rbhs.label6_4.caption
 msgctxt "tfreeresistance_rbhs.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr ""
+msgstr "风速, m/s"
 
 #: tfreeresistance_rbhs.label6_5.caption
 msgctxt "tfreeresistance_rbhs.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr ""
+msgstr "风向角, 度"
 
 #: tfreeresistance_rbhs.label6_6.caption
 msgctxt "tfreeresistance_rbhs.label6_6.caption"
@@ -14645,7 +14645,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_7.caption
 msgctxt "tfreeresistance_rbhs.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr ""
+msgstr "空气密度, kg/m^3"
 
 #: tfreeresistance_rbhs.label6_8.caption
 msgctxt "tfreeresistance_rbhs.label6_8.caption"
@@ -14655,7 +14655,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_9.caption
 msgctxt "tfreeresistance_rbhs.label6_9.caption"
 msgid "Depth of water, m"
-msgstr ""
+msgstr "水深, m"
 
 #: tfreeresistance_rbhs.label7.caption
 msgctxt "tfreeresistance_rbhs.label7.caption"
@@ -14692,7 +14692,7 @@ msgstr "结果"
 #: tfreeresistance_rbhs.results2.caption
 msgctxt "tfreeresistance_rbhs.results2.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tfreeresistance_rbhs.toolbar1.caption
 msgctxt "tfreeresistance_rbhs.toolbar1.caption"
@@ -14702,19 +14702,19 @@ msgstr ""
 #: tfreeresistance_rbhs.toolbutton20.hint
 msgctxt "tfreeresistance_rbhs.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr ""
+msgstr "开始计算."
 
 #: tfreeresistance_rbhs.toolbutton25.hint
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.toolbutton25.hint"
 msgid "Close the window and save changes."
-msgstr "关闭窗口并保存更改."
+msgstr "关闭窗口并保存修改."
 
 #: tfreeresistance_rbhs.toolbutton7.hint
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.toolbutton7.hint"
 msgid "Close window without saving changes."
-msgstr "关闭窗口不保存更改."
+msgstr "关闭窗口不保存修改."
 
 #: tfreeresistance_rbhs._label10.caption
 msgctxt "tfreeresistance_rbhs._label10.caption"
@@ -14794,22 +14794,22 @@ msgstr ""
 #: tfreerotatedialog.cancelbutton.hint
 msgctxt "tfreerotatedialog.cancelbutton.hint"
 msgid "Cancel operation."
-msgstr ""
+msgstr "取消操作."
 
 #: tfreerotatedialog.caption
 msgctxt "tfreerotatedialog.caption"
 msgid "Rotation"
-msgstr ""
+msgstr "旋转"
 
 #: tfreerotatedialog.label1.caption
 msgctxt "tfreerotatedialog.label1.caption"
 msgid "Longitudinal axis"
-msgstr ""
+msgstr "纵轴"
 
 #: tfreerotatedialog.label2.caption
 msgctxt "tfreerotatedialog.label2.caption"
 msgid "Transverse axis"
-msgstr ""
+msgstr "横轴"
 
 #: tfreerotatedialog.label3.caption
 msgctxt "tfreerotatedialog.label3.caption"
@@ -14819,7 +14819,7 @@ msgstr ""
 #: tfreerotatedialog.label4.caption
 msgctxt "tfreerotatedialog.label4.caption"
 msgid "Vertical axis"
-msgstr ""
+msgstr "垂轴"
 
 #: tfreerotatedialog.label6.caption
 msgctxt "tfreerotatedialog.label6.caption"
@@ -14839,7 +14839,7 @@ msgstr ""
 #: tfreerotatedialog.okbutton.hint
 msgctxt "tfreerotatedialog.okbutton.hint"
 msgid "Close dialog."
-msgstr ""
+msgstr "关闭对话框."
 
 #: tfreerotatedialog.panel3.caption
 msgid "Panel3"
@@ -14853,12 +14853,12 @@ msgstr ""
 #: tfreerotatemdialog.cancelbutton.hint
 msgctxt "tfreerotatemdialog.cancelbutton.hint"
 msgid "Cancel operation."
-msgstr ""
+msgstr "取消操作."
 
 #: tfreerotatemdialog.caption
 msgctxt "tfreerotatemdialog.caption"
 msgid "Rotation"
-msgstr ""
+msgstr "旋转"
 
 #: tfreerotatemdialog.groupbox1.caption
 msgid "Axis:"
@@ -14866,12 +14866,12 @@ msgstr ""
 
 #: tfreerotatemdialog.groupbox2.caption
 msgid "Current angles:"
-msgstr ""
+msgstr "当前角度:"
 
 #: tfreerotatemdialog.label1.caption
 msgctxt "tfreerotatemdialog.label1.caption"
 msgid "Longitudinal axis"
-msgstr ""
+msgstr "纵轴"
 
 #: tfreerotatemdialog.label11.caption
 msgid "of the heel:"
@@ -14903,7 +14903,7 @@ msgstr ""
 #: tfreerotatemdialog.label2.caption
 msgctxt "tfreerotatemdialog.label2.caption"
 msgid "Transverse axis"
-msgstr ""
+msgstr "横轴"
 
 #: tfreerotatemdialog.label3.caption
 msgctxt "tfreerotatemdialog.label3.caption"
@@ -14913,7 +14913,7 @@ msgstr ""
 #: tfreerotatemdialog.label4.caption
 msgctxt "tfreerotatemdialog.label4.caption"
 msgid "Vertical axis"
-msgstr ""
+msgstr "垂轴"
 
 #: tfreerotatemdialog.label6.caption
 msgctxt "tfreerotatemdialog.label6.caption"
@@ -14933,25 +14933,25 @@ msgstr ""
 #: tfreerotatemdialog.okbutton.hint
 msgctxt "tfreerotatemdialog.okbutton.hint"
 msgid "Close dialog."
-msgstr ""
+msgstr "关闭对话框."
 
 #: tfreeselectlayersdialog.bitbtn1.caption
 msgctxt "tfreeselectlayersdialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tfreeselectlayersdialog.bitbtn2.caption
 msgctxt "tfreeselectlayersdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeselectlayersdialog.caption
 msgid "Select layers."
-msgstr ""
+msgstr "选择图层."
 
 #: tfreeselectlayersdialog.checkbox.caption
 msgid "Include points that are shared with unselected layers"
-msgstr ""
+msgstr "包含未选择图层的公共点"
 
 #: tfreesplashwindow.button1.caption
 msgid "Read GPL"
@@ -14960,7 +14960,7 @@ msgstr ""
 #: tfreesplashwindow.button2.caption
 msgctxt "tfreesplashwindow.button2.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tfreesplashwindow.caption
 msgctxt "tfreesplashwindow.caption"
@@ -15027,7 +15027,7 @@ msgstr ""
 #: tfreesplitsectiondialog.bitbtn1.caption
 msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tfreesplitsectiondialog.caption
 msgid "Split section location"
@@ -15036,7 +15036,7 @@ msgstr ""
 #: tfreesplitsectiondialog.speedbutton1.hint
 msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 #: tfreesplitsectiondialog.speedbutton3.hint
 msgid "From hydrostatics"
@@ -15044,16 +15044,16 @@ msgstr ""
 
 #: tfreeundohistorydialog.caption
 msgid "Undo history."
-msgstr ""
+msgstr "清除历史."
 
 #: tfreeundohistorydialog.speedbutton1.caption
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: tfreeundohistorydialog.speedbutton2.caption
 msgctxt "tfreeundohistorydialog.speedbutton2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tfreeupdateform.actioncheckupdate.caption
 msgctxt "tfreeupdateform.actioncheckupdate.caption"
@@ -15063,7 +15063,7 @@ msgstr ""
 #: tfreeupdateform.bitbtn2.caption
 msgctxt "tfreeupdateform.bitbtn2.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: tfreeupdateform.caption
 msgid "Check updates"
@@ -15207,7 +15207,7 @@ msgstr ""
 #: tmainform.cbprecision.text
 msgctxt "tmainform.cbprecision.text"
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 #: tmainform.checkmodel.caption
 msgid "Check model"
@@ -15302,7 +15302,7 @@ msgstr "边"
 #: tmainform.edgecollapse.caption
 msgctxt "tmainform.edgecollapse.caption"
 msgid "Collapse"
-msgstr "合并面"
+msgstr "面转点"
 
 #: tmainform.edgecollapse.hint
 msgid "Remove an edge by merging the two connected faces into one new face."
@@ -15397,7 +15397,7 @@ msgstr "所有面输出到三维 DXF 文件."
 #: tmainform.exportfef.caption
 msgctxt "tmainform.exportfef.caption"
 msgid "FEF file..."
-msgstr "FEF 文件..."
+msgstr "FEF文件..."
 
 #: tmainform.exportfef.hint
 msgid "Export to a FEF (Freeship Exchange Format) hull."
@@ -15464,11 +15464,11 @@ msgstr "提示输入文件名并保存文件."
 #: tmainform.help1.caption
 msgctxt "tmainform.help1.caption"
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: tmainform.helpabout.caption
 msgid "About"
-msgstr ""
+msgstr "关于"
 
 #: tmainform.helpaction.caption
 msgid "HelpAction"
@@ -15609,7 +15609,7 @@ msgstr "法线反向."
 #: tmainform.keelrudderwizard.caption
 msgctxt "tmainform.keelrudderwizard.caption"
 msgid "Keel and rudder wizard"
-msgstr "新建舵和龙骨"
+msgstr "龙骨和方向舵的向导"
 
 #: tmainform.keelrudderwizard.hint
 msgid "Create a default rudder or keel."
@@ -15629,7 +15629,7 @@ msgstr ""
 
 #: tmainform.labelundomemory.caption
 msgid "Undo memory : 0 kb."
-msgstr ""
+msgstr "内存清除 : 0 kb."
 
 #: tmainform.layer1.caption
 #, fuzzy
@@ -15684,7 +15684,7 @@ msgstr "打开一个新文件."
 #: tmainform.markers2.caption
 msgctxt "tmainform.markers2.caption"
 msgid "Markers"
-msgstr "标记点"
+msgstr "标签"
 
 #: tmainform.menuitem1.caption
 msgctxt "tmainform.menuitem1.caption"
@@ -15727,7 +15727,7 @@ msgstr "在两个选中点间插入新边分隔平面."
 #: tmainform.newface.caption
 msgctxt "tmainform.newface.caption"
 msgid "New"
-msgstr "新建面"
+msgstr "新建"
 
 #: tmainform.newface.hint
 msgid "Create a new controlface from selected controlpoints."
@@ -15736,7 +15736,7 @@ msgstr "从选择的控制点创建一个新控制面."
 #: tmainform.newlayer.caption
 msgctxt "tmainform.newlayer.caption"
 msgid "New"
-msgstr "新建图层"
+msgstr "新建"
 
 #: tmainform.newlayer.hint
 msgid "Add a new empty layer to the model."
@@ -15869,7 +15869,7 @@ msgstr ""
 #: tmainform.ransform1.caption
 msgctxt "tmainform.ransform1.caption"
 msgid "Transform"
-msgstr "转化"
+msgstr "转换"
 
 #: tmainform.recentfiles.caption
 msgid "Recent files"
@@ -16006,7 +16006,7 @@ msgstr "显示纵剖面."
 #: tmainform.showcontrolcurves.caption
 msgctxt "tmainform.showcontrolcurves.caption"
 msgid "Control curves"
-msgstr "控制曲线"
+msgstr "曲线控制"
 
 #: tmainform.showcontrolcurves.hint
 msgid "Show control curves."
@@ -16074,12 +16074,12 @@ msgstr "显示静水力性能."
 #: tmainform.showinterioredges.caption
 msgctxt "tmainform.showinterioredges.caption"
 msgid "Interior edges"
-msgstr "内部边缘"
+msgstr "内部边"
 
 #: tmainform.showinterioredges.hint
 msgctxt "tmainform.showinterioredges.hint"
 msgid "Show interior edges."
-msgstr "显示内部边缘."
+msgstr "显示内部边"
 
 #: tmainform.showlinesplan.caption
 msgid "Linesplan"
@@ -16088,7 +16088,7 @@ msgstr "线型图"
 #: tmainform.showmarkers.caption
 msgctxt "tmainform.showmarkers.caption"
 msgid "Markers"
-msgstr "标记点"
+msgstr "标签"
 
 #: tmainform.showmarkers.hint
 msgid "Show markers."
@@ -16225,16 +16225,16 @@ msgstr "窗口"
 #: tsaveimagedialog.bitbtn1.caption
 msgctxt "tsaveimagedialog.bitbtn1.caption"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tsaveimagedialog.bitbtn2.caption
 msgctxt "tsaveimagedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tsaveimagedialog.caption
 msgid "Save image."
-msgstr ""
+msgstr "保存图片."
 
 #: tsaveimagedialog.edit3.text
 msgctxt "tsaveimagedialog.edit3.text"
@@ -16243,20 +16243,20 @@ msgstr ""
 
 #: tsaveimagedialog.label1.caption
 msgid "Width"
-msgstr ""
+msgstr "宽度"
 
 #: tsaveimagedialog.label2.caption
 msgid "Height"
-msgstr ""
+msgstr "高度"
 
 #: tsaveimagedialog.label3.caption
 msgctxt "tsaveimagedialog.label3.caption"
 msgid "[pixels]"
-msgstr ""
+msgstr "[像素]"
 
 #: tsaveimagedialog.label4.caption
 msgid "Estimated size"
-msgstr ""
+msgstr "预计大小"
 
 #: tsaveimagedialog.label5.caption
 msgid "KB"
@@ -16265,7 +16265,7 @@ msgstr ""
 #: tsaveimagedialog.label6.caption
 msgctxt "tsaveimagedialog.label6.caption"
 msgid "[pixels]"
-msgstr ""
+msgstr "[像素]"
 
 #: tsaveimagedialog.label7.caption
 #, fuzzy
@@ -16288,7 +16288,7 @@ msgstr ""
 #: ttiledialog.bbclose.caption
 msgctxt "ttiledialog.bbclose.caption"
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: ttiledialog.buttonopenfile.caption
 msgid "Open Another"

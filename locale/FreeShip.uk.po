@@ -22,13 +22,13 @@ msgstr "Кут"
 #, fuzzy
 msgctxt "freecontrolpointfrm.rsangles"
 msgid "Angles"
-msgstr "Кут"
+msgstr "Кути"
 
 #: freecontrolpointfrm.rslength
 #, fuzzy
 msgctxt "freecontrolpointfrm.rslength"
 msgid "Length"
-msgstr "Довжина"
+msgstr "Довж."
 
 #: freecontrolpointfrm.rsnameisnotunique
 msgid "Name Is Not Unique"
@@ -471,7 +471,7 @@ msgstr "Час розгону, хв (c)"
 
 #: freestringsunit.rs_acceleration__free_and_active_brake_calculation_
 msgid "Acceleration, free and active brake calculation."
-msgstr "Розгін, гальмування й реверсування судна."
+msgstr "Розгін судна."
 
 #: freestringsunit.rs_according_to_john_winters
 msgid "according to John Winters"
@@ -643,7 +643,7 @@ msgstr "Кут"
 #: freestringsunit.rs_angles
 msgctxt "freestringsunit.rs_angles"
 msgid "Angles"
-msgstr "Кут"
+msgstr "Кути"
 
 #: freestringsunit.rs_angle_between_relative_velocity_and_center_line__degr__
 msgid "Angle between relative velocity and center line [degr.]"
@@ -698,7 +698,7 @@ msgstr "Площі виступаючих частин:"
 #: freestringsunit.rs_appendage_coefficient
 msgctxt "freestringsunit.rs_appendage_coefficient"
 msgid "Appendage coefficient"
-msgstr "Додатковий коефіцієнт"
+msgstr "Додатк. коефіцієнт"
 
 #: freestringsunit.rs_appen__drag____bare_hull_resistance_____
 msgid "Appen. Drag (% Bare Hull Resistance)   ="
@@ -867,7 +867,7 @@ msgstr "к.с."
 #: freestringsunit.rs_bilge_keels
 msgctxt "freestringsunit.rs_bilge_keels"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: freestringsunit.rs_bilge_keels_area
 msgid "Bilge keels area"
@@ -1219,7 +1219,7 @@ msgstr "Відносна абсціса Ц.В. (+ у ніс), %      ="
 
 #: freestringsunit.rs_centimeters
 msgid "Centimeters"
-msgstr "сантиметр"
+msgstr ""
 
 #: freestringsunit.rs_choose_a_directory_where_you_want_to_save_the_dxf_files_to_
 msgid "Choose a directory where you want to save the dxf files to:"
@@ -1410,7 +1410,7 @@ msgstr "Заглублення осі гребного гвинта, м      ="
 #: freestringsunit.rs_designer
 msgctxt "freestringsunit.rs_designer"
 msgid "Designer"
-msgstr "Дизайнер"
+msgstr "Проектант"
 
 #: freestringsunit.rs_design_beam
 msgid "Design beam"
@@ -1452,7 +1452,7 @@ msgstr "Збільшення середньої осадки"
 #: freestringsunit.rs_disk_area_ratio_ae_ao
 msgctxt "freestringsunit.rs_disk_area_ratio_ae_ao"
 msgid "Disk area ratio Ae/Ao"
-msgstr "Дискове відношення Ae/Ao"
+msgstr "Дискове відношення"
 
 #: freestringsunit.rs_displaced_volume
 msgid "Displaced volume"
@@ -1482,7 +1482,7 @@ msgstr "Мінім.відстань між корпусами С, м"
 
 #: freestringsunit.rs_distance_between_thrust_line_and_cog
 msgid "Distance between Thrust line and CoG"
-msgstr "Мін.відстань між вісью ГГ і ЦТ"
+msgstr "Мін.відст. від осі ГГ до ЦТ"
 
 #: freestringsunit.rs_distance_from_bow_to_centroid_________c__
 msgid "DISTANCE FROM BOW TO CENTROID ....... C :"
@@ -1643,7 +1643,7 @@ msgstr "Кінцева швидкість, вузли (м/с)"
 #: freestringsunit.rs_end_speed
 msgctxt "freestringsunit.rs_end_speed"
 msgid "End speed"
-msgstr "Кінц. швидкість"
+msgstr "Кінцева швидкість"
 
 #: freestringsunit.rs_engine_power__kw_
 msgid "Engine power [kW]"
@@ -1711,7 +1711,7 @@ msgstr "поверхні"
 
 #: freestringsunit.rs_feet
 msgid "Feet"
-msgstr "фут"
+msgstr ""
 
 #: freestringsunit.rs_filename
 msgctxt "freestringsunit.rs_filename"
@@ -1893,7 +1893,7 @@ msgstr "фут^4"
 #: freestringsunit.rs_general
 msgctxt "freestringsunit.rs_general"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: freestringsunit.rs_generalized_longitudinal_metacentric_height_h
 msgid "Generalized longitudinal metacentric height H"
@@ -1959,7 +1959,7 @@ msgstr "методом Холтропа-1988(84)"
 #: freestringsunit.rs_hull
 msgctxt "freestringsunit.rs_hull"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: freestringsunit.rs_hull_bossing_area
 msgid "Hull bossing area"
@@ -2862,7 +2862,7 @@ msgstr "Опір по KAPER для каное й каяків"
 #: freestringsunit.rs_keel
 msgctxt "freestringsunit.rs_keel"
 msgid "Keel"
-msgstr "Кіль:"
+msgstr "Кіль"
 
 #: freestringsunit.rs_keel_s_properties
 msgid "Keel's properties"
@@ -3026,7 +3026,7 @@ msgstr "точок витоку"
 #: freestringsunit.rs_length
 msgctxt "freestringsunit.rs_length"
 msgid "Length"
-msgstr "Довжина"
+msgstr "Довж."
 
 #: freestringsunit.rs_length_of_cylindrical_body__m
 msgid "Length of cylindrical body, m"
@@ -3531,7 +3531,7 @@ msgstr "Судно торгівельного флоту"
 #: freestringsunit.rs_meters
 msgctxt "freestringsunit.rs_meters"
 msgid "Meters"
-msgstr "метр"
+msgstr ""
 
 #: freestringsunit.rs_method__nm_1___geers__nm_2___doubrovin_
 msgid "Method (Nm=1 - Geers; Nm=2 - Doubrovin)"
@@ -3547,7 +3547,7 @@ msgstr "Площа міделя"
 
 #: freestringsunit.rs_midship_area_above_waterline
 msgid "Midship area above waterline"
-msgstr "Площа міделя вище КВЛ"
+msgstr "Площа миделя вище ватерлінії"
 
 #: freestringsunit.rs_midship_coefficient
 msgid "Midship coefficient"
@@ -3576,7 +3576,7 @@ msgstr "Площа міделя"
 
 #: freestringsunit.rs_millimeters
 msgid "Millimeters"
-msgstr "міліметр"
+msgstr ""
 
 #: freestringsunit.rs_min
 msgid "min"
@@ -3952,7 +3952,7 @@ msgstr "Масштаб роздруківки"
 #: freestringsunit.rs_prismatic_coefficient
 msgctxt "freestringsunit.rs_prismatic_coefficient"
 msgid "Prismatic coefficient"
-msgstr "Призматич. коеф."
+msgstr "Призматичний коефіцієнт"
 
 #: freestringsunit.rs_prismatic_coefficient_on_lwl________cp__
 msgid "Prismatic Coefficient on LWL        CP ="
@@ -5571,7 +5571,7 @@ msgstr "Вектор обертання"
 
 #: freestringsunit.rs_roughness_coefficient_o10_3
 msgid "Roughness coefficient *10^3"
-msgstr "Надбавка на шорсткість, *10^3"
+msgstr "Надбавка на шорсткість, dCf*10^3"
 
 #: freestringsunit.rs_rpm___
 msgid "RPM  ="
@@ -5580,7 +5580,7 @@ msgstr "n      ="
 #: freestringsunit.rs_rudder
 msgctxt "freestringsunit.rs_rudder"
 msgid "Rudder"
-msgstr "Стерно:"
+msgstr "Стерно"
 
 #: freestringsunit.rs_rudder_behind_skeg_stern
 msgctxt "freestringsunit.rs_rudder_behind_skeg_stern"
@@ -5748,7 +5748,7 @@ msgstr "Початкова швидкість, вузли (м/с)"
 #: freestringsunit.rs_start_speed
 msgctxt "freestringsunit.rs_start_speed"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: freestringsunit.rs_static_and_dynamic_stability_diagrams__ssd___dsd_
 msgid "Static and Dynamic Stability Diagrams (SSD & DSD)"
@@ -6239,7 +6239,7 @@ msgstr "Вт"
 
 #: freestringsunit.rs_wageningen_b_screw_series_propeller_preliminary_design
 msgid "Wageningen B-Screw Series Propeller Preliminary Design"
-msgstr "Попередній розрахунок оптимального ГГ серії B (Вагенінген)"
+msgstr "Попередній розрахунок гребного гвинта серії В (Вагенінген)"
 
 #: freestringsunit.rs_waited_speed_ship__knots_
 msgid "Waited speed ship [knots]"
@@ -6269,7 +6269,7 @@ msgstr "Ватерлінії"
 #: freestringsunit.rs_waterplane_area
 msgctxt "freestringsunit.rs_waterplane_area"
 msgid "Waterplane area"
-msgstr "Площа КВЛ"
+msgstr "Площа ватерлінії"
 
 #: freestringsunit.rs_waterplane_center_of_floatation
 msgid "Waterplane center of floatation"
@@ -6332,7 +6332,7 @@ msgstr "Маса, тон        ="
 #: freestringsunit.rs_wetted_area
 msgctxt "freestringsunit.rs_wetted_area"
 msgid "Wetted area"
-msgstr "Змочена площа"
+msgstr "Змочена поверхня"
 
 #: freestringsunit.rs_wetted_area_by_holtrop_formulae_is_not_right__because_cwp_0____
 msgid "Wetted area by Holtrop formulae is NOT right, because Cwp=0 !!!"
@@ -6341,7 +6341,7 @@ msgstr "Тому що Cwp=0, то площа змоченої поверхні, 
 #: freestringsunit.rs_wetted_surface_area
 msgctxt "freestringsunit.rs_wetted_surface_area"
 msgid "Wetted surface area"
-msgstr "Змочена площа"
+msgstr "Змочена площа поверхні"
 
 #: freestringsunit.rs_wetted_surface__m_2_____________________
 msgid "Wetted Surface (m^2)                   ="
@@ -6502,7 +6502,7 @@ msgstr ""
 #: mdipanel.rsclose
 msgctxt "mdipanel.rsclose"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: mdipanel.rsmaximize
 msgid "Maximize"
@@ -6519,20 +6519,20 @@ msgstr ""
 #: tdxfexport2ddialog.bitbtn1.caption
 msgctxt "tdxfexport2ddialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tdxfexport2ddialog.bitbtn2.caption
 msgctxt "tdxfexport2ddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tdxfexport2ddialog.caption
 msgid "Export intersections to DXF as 2D polylines."
-msgstr "Експорт перетинань в DXF як 2D ламані лінії."
+msgstr ""
 
 #: tdxfexport2ddialog.cbcreateindividualfiles.caption
 msgid "Create individual files"
-msgstr "Створити індивідуальні файли"
+msgstr ""
 
 #: tdxfexport2ddialog.cbcreateindividuallayers.caption
 msgid "Create individual layers"
@@ -6541,7 +6541,7 @@ msgstr ""
 #: tdxfexport2ddialog.combobox1.text
 msgctxt "tdxfexport2ddialog.combobox1.text"
 msgid "Meters"
-msgstr "метр"
+msgstr ""
 
 #: tdxfexport2ddialog.edit3.text
 msgctxt "tdxfexport2ddialog.edit3.text"
@@ -6554,25 +6554,25 @@ msgstr ""
 
 #: tdxfexport2ddialog.label4.caption
 msgid "Export units"
-msgstr "Експорт одиниць"
+msgstr ""
 
 #: tdxfexport2ddialog.label7.caption
 msgid "Export directory"
-msgstr "Директорія експорту"
+msgstr ""
 
 #: tdxfexport2ddialog.speedbutton1.hint
 msgid "Browse for the export directory"
-msgstr "Перегляд директорії для експорта"
+msgstr ""
 
 #: tenterthemenamedlg.bitbtn1.caption
 msgctxt "tenterthemenamedlg.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tenterthemenamedlg.bitbtn2.caption
 msgctxt "tenterthemenamedlg.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tenterthemenamedlg.caption
 msgid "Enter Theme Name"
@@ -6589,7 +6589,7 @@ msgstr ""
 #: texceptiondlg.button1.caption
 msgctxt "texceptiondlg.button1.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: texceptiondlg.caption
 msgid "Exception"
@@ -6598,7 +6598,7 @@ msgstr ""
 #: tformselected.aclose.caption
 msgctxt "tformselected.aclose.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tformselected.caption
 msgid "Selected"
@@ -6675,7 +6675,7 @@ msgstr ""
 #: tformselected.label1.caption
 msgctxt "tformselected.label1.caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.label10.caption
 #, fuzzy
@@ -6691,7 +6691,7 @@ msgstr ""
 #: tformselected.label3.caption
 msgctxt "tformselected.label3.caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.label4.caption
 msgctxt "tformselected.label4.caption"
@@ -6716,12 +6716,12 @@ msgstr "Крива"
 #: tformselected.label8.caption
 msgctxt "tformselected.label8.caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.label9.caption
 msgctxt "tformselected.label9.caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvcurvepoints.columns[0].caption
 msgctxt "tformselected.lvcurvepoints.columns[0].caption"
@@ -6731,7 +6731,7 @@ msgstr ""
 #: tformselected.lvcurvepoints.columns[1].caption
 msgctxt "tformselected.lvcurvepoints.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvcurves.columns[0].caption
 msgctxt "tformselected.lvcurves.columns[0].caption"
@@ -6741,7 +6741,7 @@ msgstr ""
 #: tformselected.lvcurves.columns[1].caption
 msgctxt "tformselected.lvcurves.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvedgefaces.columns[0].caption
 msgctxt "tformselected.lvedgefaces.columns[0].caption"
@@ -6751,7 +6751,7 @@ msgstr ""
 #: tformselected.lvedgefaces.columns[1].caption
 msgctxt "tformselected.lvedgefaces.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvedges.columns[0].caption
 msgctxt "tformselected.lvedges.columns[0].caption"
@@ -6761,7 +6761,7 @@ msgstr ""
 #: tformselected.lvedges.columns[1].caption
 msgctxt "tformselected.lvedges.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvfacepoints.columns[0].caption
 msgctxt "tformselected.lvfacepoints.columns[0].caption"
@@ -6771,7 +6771,7 @@ msgstr ""
 #: tformselected.lvfacepoints.columns[1].caption
 msgctxt "tformselected.lvfacepoints.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvfaces.columns[0].caption
 msgctxt "tformselected.lvfaces.columns[0].caption"
@@ -6781,7 +6781,7 @@ msgstr ""
 #: tformselected.lvfaces.columns[1].caption
 msgctxt "tformselected.lvfaces.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvpointedges.columns[0].caption
 msgctxt "tformselected.lvpointedges.columns[0].caption"
@@ -6791,7 +6791,7 @@ msgstr ""
 #: tformselected.lvpointedges.columns[1].caption
 msgctxt "tformselected.lvpointedges.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvpointfaces.columns[0].caption
 msgctxt "tformselected.lvpointfaces.columns[0].caption"
@@ -6801,7 +6801,7 @@ msgstr ""
 #: tformselected.lvpointfaces.columns[1].caption
 msgctxt "tformselected.lvpointfaces.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvpointgroups.columns[0].caption
 msgctxt "tformselected.lvpointgroups.columns[0].caption"
@@ -6811,7 +6811,7 @@ msgstr ""
 #: tformselected.lvpointgroups.columns[1].caption
 msgctxt "tformselected.lvpointgroups.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.lvpoints.columns[0].caption
 msgctxt "tformselected.lvpoints.columns[0].caption"
@@ -6821,7 +6821,7 @@ msgstr ""
 #: tformselected.lvpoints.columns[1].caption
 msgctxt "tformselected.lvpoints.columns[1].caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tformselected.miunselect.caption
 msgid "miUnselect"
@@ -6853,7 +6853,7 @@ msgstr ""
 #: tfreeaboutdlg.button1.caption
 msgctxt "tfreeaboutdlg.button1.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tfreeaboutdlg.caption
 msgid "FREE!ship About"
@@ -6947,7 +6947,7 @@ msgstr ""
 #: tfreeaddmassoutputdialog.cancelbutton.caption
 msgctxt "tfreeaddmassoutputdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.caption
 msgid "Add_Mass file generator."
@@ -6963,33 +6963,33 @@ msgstr ""
 
 #: tfreeaddmassoutputdialog.label1.caption
 msgid "Number of stations (5-45)"
-msgstr "Число шпангоутів (5-45)"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label10.caption
 msgctxt "tfreeaddmassoutputdialog.label10.caption"
 msgid "Water depth"
-msgstr "Відстань до дна (екрана)"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label12.caption
 msgid "Trim angle"
-msgstr "Кут нахилу дна (екрана) у ДП або диферента"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label14.caption
 msgctxt "tfreeaddmassoutputdialog.label14.caption"
 msgid "Distance between center of hulls:"
-msgstr "Відстань між ДП корпусів:"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label2.caption
 msgid "Number of waterlines (5-25)"
-msgstr "Число ватерліній (5-25)"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label20.caption
 msgid "Number of areas"
-msgstr "Число площадок"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label21.caption
 msgid "Percent of areas sum"
-msgstr "Відсоток підсумовування площадок"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label22.caption
 msgid "Calculation accuracy"
@@ -7009,7 +7009,7 @@ msgstr ""
 
 #: tfreeaddmassoutputdialog.label26.caption
 msgid "Rotative velocity Omega, 1/sec"
-msgstr "Кутова швидкість обертання Omega, 1/сек"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label27.caption
 msgid "Type of object or ship:"
@@ -7025,12 +7025,12 @@ msgstr "Осадка"
 #, fuzzy
 msgctxt "tfreeaddmassoutputdialog.label4.caption"
 msgid "Length"
-msgstr "Довжина"
+msgstr "Довж."
 
 #: tfreeaddmassoutputdialog.label5.caption
 msgctxt "tfreeaddmassoutputdialog.label5.caption"
 msgid "Volume"
-msgstr "Об'ємна водотоннажність"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.label6.caption
 #, fuzzy
@@ -7041,27 +7041,27 @@ msgstr "Питома маса води"
 #: tfreeaddmassoutputdialog.label7.caption
 msgctxt "tfreeaddmassoutputdialog.label7.caption"
 msgid "Water kinematic viscosity"
-msgstr "Кінематичний коефіцієнт в'язкості"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.okbutton.caption
 msgctxt "tfreeaddmassoutputdialog.okbutton.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.radiobutton1.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton1.caption"
 msgid "Monohull"
-msgstr "Однокорпусник"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.radiobutton2.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton2.caption"
 msgid "Monohull, send as catamaran"
-msgstr "Однокорпусне, як катамаран"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.radiobutton3.caption
 msgctxt "tfreeaddmassoutputdialog.radiobutton3.caption"
 msgid "Catamaran"
-msgstr "Катамаран"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.savefile.caption
 #, fuzzy
@@ -7072,7 +7072,7 @@ msgstr "Зберегти"
 #: tfreeaddmassoutputdialog.tabsheet1.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet1.caption"
 msgid "Hull geometry"
-msgstr "Геометрія корпуса"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.tabsheet2.caption
 #, fuzzy
@@ -7083,12 +7083,12 @@ msgstr "Результати"
 #: tfreeaddmassoutputdialog.tabsheet3.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet3.caption"
 msgid "Environment"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeaddmassoutputdialog.tabsheet4.caption
 msgctxt "tfreeaddmassoutputdialog.tabsheet4.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeaddmassoutputdialog._label11.caption
 msgctxt "tfreeaddmassoutputdialog._label11.caption"
@@ -7137,21 +7137,21 @@ msgstr ""
 #: tfreebackgroundblenddialog.bitbtn1.caption
 msgctxt "tfreebackgroundblenddialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreebackgroundblenddialog.bitbtn2.caption
 msgctxt "tfreebackgroundblenddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreebackgroundblenddialog.caption
 msgctxt "tfreebackgroundblenddialog.caption"
 msgid "Background blending."
-msgstr "Background blending."
+msgstr ""
 
 #: tfreebackgroundblenddialog.label1.caption
 msgid "Visibility of image"
-msgstr "Visibility of image"
+msgstr ""
 
 #: tfreebackgroundblenddialog._label2.caption
 msgctxt "tfreebackgroundblenddialog._label2.caption"
@@ -7161,12 +7161,12 @@ msgstr ""
 #: tfreebackgroundtolerancedialog.bitbtn1.caption
 msgctxt "tfreebackgroundtolerancedialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreebackgroundtolerancedialog.bitbtn2.caption
 msgctxt "tfreebackgroundtolerancedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreebackgroundtolerancedialog.caption
 msgid "Background Tolerance"
@@ -7193,7 +7193,7 @@ msgstr ""
 
 #: tfreecontrolpointform.checkboxcorner.caption
 msgid "Corner"
-msgstr "Кутова"
+msgstr ""
 
 #: tfreecontrolpointform.groupboxanchorconstraint.caption
 msgid "Anchor point"
@@ -7201,19 +7201,6 @@ msgstr ""
 
 #: tfreecontrolpointform.groupboxlinearconstraint.caption
 msgid "Linear constraint"
-msgstr ""
-
-#: tfreecontrolpointform.label1.caption
-msgid "Label1"
-msgstr ""
-
-#: tfreecontrolpointform.label2.caption
-msgctxt "tfreecontrolpointform.label2.caption"
-msgid "Label2"
-msgstr ""
-
-#: tfreecontrolpointform.label3.caption
-msgid "Label3"
 msgstr ""
 
 #: tfreecontrolpointform.label4.caption
@@ -7227,6 +7214,10 @@ msgstr "Відстань"
 msgctxt "tfreecontrolpointform.label5.caption"
 msgid "Angle"
 msgstr "Кут"
+
+#: tfreecontrolpointform.labelalpha.caption
+msgid "α"
+msgstr ""
 
 #: tfreecontrolpointform.labelax.caption
 msgctxt "tfreecontrolpointform.labelax.caption"
@@ -7243,22 +7234,30 @@ msgctxt "tfreecontrolpointform.labelaz.caption"
 msgid "º"
 msgstr ""
 
+#: tfreecontrolpointform.labelbeta.caption
+msgid "β"
+msgstr ""
+
+#: tfreecontrolpointform.labelgamma.caption
+msgid "γ"
+msgstr ""
+
 #: tfreecontrolpointform.labelname.caption
 msgctxt "tfreecontrolpointform.labelname.caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tfreecontrolpointform.labelx.caption
 msgid "X-coord."
-msgstr "X-коорд."
+msgstr ""
 
 #: tfreecontrolpointform.labely.caption
 msgid "Y-coord."
-msgstr "Y-коорд."
+msgstr ""
 
 #: tfreecontrolpointform.labelz.caption
 msgid "Z-coord."
-msgstr "Z-коорд."
+msgstr ""
 
 #: tfreecontrolpointform.speedbuttonremoveanchorpoint.caption
 msgctxt "tfreecontrolpointform.speedbuttonremoveanchorpoint.caption"
@@ -7288,7 +7287,7 @@ msgstr "Додати"
 #, fuzzy
 msgctxt "tfreecrosscurvesdialog.button2.caption"
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Видалення"
 
 #: tfreecrosscurvesdialog.button3.caption
 #, fuzzy
@@ -7300,12 +7299,12 @@ msgstr "Додати"
 #, fuzzy
 msgctxt "tfreecrosscurvesdialog.button4.caption"
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Видалення"
 
 #: tfreecrosscurvesdialog.caption
 msgctxt "tfreecrosscurvesdialog.caption"
 msgid "Cross curves."
-msgstr "Пантокарени."
+msgstr ""
 
 #: tfreecrosscurvesdialog.chart.axislist[0].title.caption
 msgid "KN sin(phi)"
@@ -7337,7 +7336,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.checkbox1.caption
 msgid "Incremental displ."
-msgstr "Зрост. водотонн."
+msgstr ""
 
 #: tfreecrosscurvesdialog.combobox.text
 msgid "Nonlimit"
@@ -7349,7 +7348,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox2.caption
 msgid "Heeling angles."
-msgstr "Кут крену."
+msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox3.caption
 msgid "Data for SSD:"
@@ -7357,19 +7356,19 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.groupbox4.caption
 msgid "Displacements."
-msgstr "Водотоннажність:"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label1.caption
 msgid "Start displ."
-msgstr "Водотонн. мінім."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label12_.caption
 msgid "Decrease metacentric height, [m]"
-msgstr "Зменьшення метацент.висоти dh, м"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label13_.caption
 msgid "Immersion deck angle, [degr]"
-msgstr "Кут входа палуби у воду, град"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label1_.caption
 msgid "Projected displ., [tons]"
@@ -7377,15 +7376,15 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label2.caption
 msgid "End displ."
-msgstr "Водотонн. макс."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label2_.caption
 msgid "Estimated Z CoG, [m]"
-msgstr "Очікувана Zg Ц.Т., м"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label3.caption
 msgid "Displ. step"
-msgstr "Крок по водотонн."
+msgstr ""
 
 #: tfreecrosscurvesdialog.label4_.caption
 msgid "Area of bilge keels, [m^2]"
@@ -7397,7 +7396,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label6_.caption
 msgid "Lateral wind area, [m^2]"
-msgstr "вітрильності, м^2"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label7_.caption
 msgid "Z CoG of wind area above DWL, [m]"
@@ -7405,7 +7404,7 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.label8_.caption
 msgid "Navigation region:"
-msgstr "Район плавання:"
+msgstr ""
 
 #: tfreecrosscurvesdialog.label9_.caption
 msgid "Registry:"
@@ -7423,7 +7422,7 @@ msgstr ""
 #: tfreecrosscurvesdialog.printbutton.caption
 msgctxt "tfreecrosscurvesdialog.printbutton.caption"
 msgid "Cross curves."
-msgstr "Пантокарени."
+msgstr ""
 
 #: tfreecrosscurvesdialog.printbutton.hint
 #, fuzzy
@@ -7437,15 +7436,15 @@ msgstr ""
 
 #: tfreecrosscurvesdialog.savebutton.hint
 msgid "Save the results of the calculation."
-msgstr "Зберегти результати розрахунку."
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet1.caption
 msgid "Graph"
-msgstr "Пантокарени"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet2.caption
 msgid "Data"
-msgstr "Результати розрахунку"
+msgstr ""
 
 #: tfreecrosscurvesdialog.tabsheet3.caption
 msgid "Stability diagram"
@@ -7469,15 +7468,15 @@ msgstr ""
 #: tfreecrosscurvesdialog.toolbutton1.hint
 msgctxt "tfreecrosscurvesdialog.toolbutton1.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.caption
 msgid "Abort"
-msgstr "Скидання"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton2.hint
 msgid "Abort the calculation"
-msgstr "Стіп розрахунок"
+msgstr ""
 
 #: tfreecrosscurvesdialog.toolbutton25.hint
 #, fuzzy
@@ -7504,13 +7503,13 @@ msgstr ""
 #: tfreedeletedialog.bbcancel.caption
 msgctxt "tfreedeletedialog.bbcancel.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreedeletedialog.bbdelete.caption
 #, fuzzy
 msgctxt "tfreedeletedialog.bbdelete.caption"
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Видалення"
 
 #: tfreedeletedialog.caption
 msgid "Objects to be deleted"
@@ -7530,7 +7529,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreedeletedialog.sgobjects.columns[0].title.caption"
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Видалення"
 
 #: tfreedeletedialog.sgobjects.columns[1].title.caption
 msgctxt "tfreedeletedialog.sgobjects.columns[1].title.caption"
@@ -7545,17 +7544,17 @@ msgstr ""
 #: tfreedeletedialog.sgobjects.columns[3].title.caption
 msgctxt "tfreedeletedialog.sgobjects.columns[3].title.caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tfreeemptymodelchooserdialog.cancelbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeemptymodelchooserdialog.caption
 msgctxt "tfreeemptymodelchooserdialog.caption"
 msgid "Background blending."
-msgstr "Background blending."
+msgstr ""
 
 #: tfreeemptymodelchooserdialog.label1.caption
 msgid "Not found"
@@ -7568,7 +7567,7 @@ msgstr ""
 #: tfreeemptymodelchooserdialog.okbutton.caption
 msgctxt "tfreeemptymodelchooserdialog.okbutton.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeemptymodelchooserdialog.radiogroup1.caption
 msgid "Further action"
@@ -7589,7 +7588,7 @@ msgstr ""
 #: tfreeexpanedplatesdialog.checkbox1.caption
 msgctxt "tfreeexpanedplatesdialog.checkbox1.caption"
 msgid "Mirror"
-msgstr "Дзеркало"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.closedialog.caption
 msgctxt "tfreeexpanedplatesdialog.closedialog.caption"
@@ -7604,11 +7603,11 @@ msgstr ""
 #: tfreeexpanedplatesdialog.exportdxf.caption
 msgctxt "tfreeexpanedplatesdialog.exportdxf.caption"
 msgid "DXF"
-msgstr "DXF"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.exportdxf.hint
 msgid "Export the visible plates to a DXF file."
-msgstr "Експорт видимих поверхонь в DXF файл."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.exporttextfile.caption
 msgctxt "tfreeexpanedplatesdialog.exporttextfile.caption"
@@ -7621,41 +7620,41 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.label1.caption
 msgid "Minimum edge error"
-msgstr "Мінімум помилок"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label10.caption
 msgid "X grid spacing"
-msgstr "Крок сітки по X"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label11.caption
 msgid "Y grid spacing"
-msgstr "Крок сітки по Y"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label15.caption
 msgid "Maximum area error"
-msgstr "Maximum area error"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label17.caption
 msgid "Total area error"
-msgstr "Total area error"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label3.caption
 msgid "Maximum edge error"
-msgstr "Максим. помилок"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label5.caption
 msgctxt "tfreeexpanedplatesdialog.label5.caption"
 msgid "Part name"
-msgstr "Ім'я файлу *.Part"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label7.caption
 msgctxt "tfreeexpanedplatesdialog.label7.caption"
 msgid "Rotation"
-msgstr "Обертання"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.label8.caption
 msgid "No. iterations"
-msgstr "N ітерацій"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.print.caption
 #, fuzzy
@@ -7665,7 +7664,7 @@ msgstr "Друк"
 
 #: tfreeexpanedplatesdialog.print.hint
 msgid "Send unfolded plates to printer or plotter."
-msgstr "Друк розгорнень на принтері або плотере."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw1.caption
 msgid "-1"
@@ -7673,7 +7672,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw1.hint
 msgid "Rotate part 1 degr. counter clockwise."
-msgstr "Обертати деталь на 1 градус проти годинній стрілці."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw5.caption
 msgid "-5"
@@ -7681,7 +7680,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw5.hint
 msgid "Rotate part 5 degr. counter clockwise."
-msgstr "Обертати деталь на 5 градусів проти годинній стрілці."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw90.caption
 msgid "-90"
@@ -7689,7 +7688,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotateccw90.hint
 msgid "Rotate part 90 degr. counter clockwise."
-msgstr "Обертати деталь на 90 градусів проти годинній стрілці."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw1.caption
 msgid "+1"
@@ -7697,7 +7696,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw1.hint
 msgid "Rotate part 1 degr. clockwise."
-msgstr "Обертати деталь на 1 градус по годинній стрілці."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw5.caption
 msgid "+5"
@@ -7705,7 +7704,7 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw5.hint
 msgid "Rotate part 5 degr. clockwise."
-msgstr "Обертати деталь на 5 градусів по годинній стрілці."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw90.caption
 msgid "+90"
@@ -7713,16 +7712,16 @@ msgstr ""
 
 #: tfreeexpanedplatesdialog.rotatecw90.hint
 msgid "Rotate part 90 degr. clockwise."
-msgstr "Обертати деталь на 90 градусів по годинній стрілці."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.savebitmap.caption
 msgctxt "tfreeexpanedplatesdialog.savebitmap.caption"
 msgid "Save bitmap"
-msgstr "Збереження ВМР"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.savebitmap.hint
 msgid "Save the current layout as a bitmap."
-msgstr "Зберегти поточний шар як ВМР."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showbuttocks.caption
 #, fuzzy
@@ -7732,7 +7731,7 @@ msgstr "Батокси"
 
 #: tfreeexpanedplatesdialog.showbuttocks.hint
 msgid "Show buttocks on developed plates."
-msgstr "Показати батокси на розгорненні."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showdiagonals.caption
 #, fuzzy
@@ -7742,54 +7741,54 @@ msgstr "Рибини"
 
 #: tfreeexpanedplatesdialog.showdiagonals.hint
 msgid "Show diagonals on developed plates."
-msgstr "Показати рибини на розгорненні."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showdimensions.caption
 msgid "ShowDimensions"
-msgstr "Розмірення корпуса"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showdimensions.hint
 msgid "Show dimensions at grid intersections."
-msgstr "Показ розмірів на сітці перетинань."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showerroredges.caption
 msgid "ShowErrorEdges"
-msgstr "Показ граней з помилками"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showerroredges.hint
 msgid "Highlight compressed or stretched edges."
-msgstr "Висвітити стислі й розтягнуті грані."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showfillcolor.caption
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.caption"
 msgid "Solid"
-msgstr "Безперервний"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showfillcolor.hint
 msgctxt "tfreeexpanedplatesdialog.showfillcolor.hint"
 msgid "Show plates with fillcolor."
-msgstr "Заливання кольорами."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showinterioredges.caption
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showinterioredges.caption"
 msgid "Interior edges"
-msgstr "Внутрішні крайки"
+msgstr "Внутрішні грані"
 
 #: tfreeexpanedplatesdialog.showinterioredges.hint
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.showinterioredges.hint"
 msgid "Show interior edges."
-msgstr "Показ внутрішніх крайок."
+msgstr "Показ внутрішніх граней."
 
 #: tfreeexpanedplatesdialog.showpartname.caption
 msgctxt "tfreeexpanedplatesdialog.showpartname.caption"
 msgid "Part name"
-msgstr "Ім'я файлу *.Part"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showpartname.hint
 msgid "Show the name of each developed part."
-msgstr "Показ імені кожної деталі розгорнень."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showstations.caption
 #, fuzzy
@@ -7799,15 +7798,15 @@ msgstr "Шпангоути"
 
 #: tfreeexpanedplatesdialog.showstations.hint
 msgid "Show stations on developed plates."
-msgstr "Показати шпангоути на розгорненні."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.caption
 msgid "ShowSubmergedArea"
-msgstr "Змочена поверхня"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showsubmergedarea.hint
 msgid "Show the submerged surface areas in a different color."
-msgstr "Показ підводної частини корпуса в кольорі."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.showwaterlines.caption
 #, fuzzy
@@ -7817,7 +7816,7 @@ msgstr "Ватерлінії"
 
 #: tfreeexpanedplatesdialog.showwaterlines.hint
 msgid "Show waterlines on developed plates."
-msgstr "Показати ватерлінії на розгорненні."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.spineditfontsize.hint
 msgctxt "tfreeexpanedplatesdialog.spineditfontsize.hint"
@@ -7836,17 +7835,17 @@ msgstr ""
 #: tfreeexpanedplatesdialog.zoomextents.caption
 msgctxt "tfreeexpanedplatesdialog.zoomextents.caption"
 msgid "Extents"
-msgstr "Extents"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.zoomextents.hint
 msgctxt "tfreeexpanedplatesdialog.zoomextents.hint"
 msgid "Zoom all."
-msgstr "Збільшити все."
+msgstr ""
 
 #: tfreeexpanedplatesdialog.zoomin.caption
 msgctxt "tfreeexpanedplatesdialog.zoomin.caption"
 msgid "ZoomIn"
-msgstr "Збільшення"
+msgstr ""
 
 #: tfreeexpanedplatesdialog.zoomin.hint
 #, fuzzy
@@ -7858,12 +7857,12 @@ msgstr "Збільшити"
 #, fuzzy
 msgctxt "tfreeexpanedplatesdialog.zoomout.caption"
 msgid "Zoom out"
-msgstr "Зменшення"
+msgstr "Зменшити"
 
 #: tfreeexpanedplatesdialog.zoomout.hint
 msgctxt "tfreeexpanedplatesdialog.zoomout.hint"
 msgid "Zoom out."
-msgstr "Зменшити."
+msgstr ""
 
 #: tfreeexpanedplatesdialog._label12.caption
 msgctxt "tfreeexpanedplatesdialog._label12.caption"
@@ -7930,28 +7929,28 @@ msgstr ""
 #: tfreeextrudedialog.bitbtn1.caption
 msgctxt "tfreeextrudedialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeextrudedialog.bitbtn2.caption
 msgctxt "tfreeextrudedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeextrudedialog.caption
 msgid "Extrusion vector"
-msgstr "Вектор витиснення"
+msgstr ""
 
 #: tfreeextrudedialog.label1.caption
 msgid "Longitudinal direction"
-msgstr "Поздовжній напрямок"
+msgstr ""
 
 #: tfreeextrudedialog.label2.caption
 msgid "Transverse direction"
-msgstr "Поперечний напрямок"
+msgstr ""
 
 #: tfreeextrudedialog.label4.caption
 msgid "Vertical direction"
-msgstr "Вертикальний напрямок"
+msgstr ""
 
 #: tfreeextrudedialog._label3.caption
 msgctxt "tfreeextrudedialog._label3.caption"
@@ -7975,7 +7974,7 @@ msgstr ""
 #: tfreefilepreviewdialog.bitbtncancel.caption
 msgctxt "tfreefilepreviewdialog.bitbtncancel.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreefilepreviewdialog.bitbtnopen.caption
 msgctxt "tfreefilepreviewdialog.bitbtnopen.caption"
@@ -7984,7 +7983,7 @@ msgstr ""
 
 #: tfreefilepreviewdialog.comboboxdir.text
 msgid "."
-msgstr "."
+msgstr ""
 
 #: tfreefilepreviewdialog.editname.text
 msgid "EditName"
@@ -8010,7 +8009,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreefilepreviewdialog.placesmenuitemdelete.caption"
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Видалення"
 
 #: tfreefilepreviewdialog.placesmenuitemrename.caption
 msgctxt "tfreefilepreviewdialog.placesmenuitemrename.caption"
@@ -8020,7 +8019,7 @@ msgstr ""
 #: tfreefilepreviewdialog.properties.caption
 msgctxt "tfreefilepreviewdialog.properties.caption"
 msgid "Properties"
-msgstr "Властивості"
+msgstr ""
 
 #: tfreefilepreviewdialog.scrollboxpreview.hint
 msgctxt "tfreefilepreviewdialog.scrollboxpreview.hint"
@@ -8031,7 +8030,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreefilepreviewdialog.shelllistviewitemdelete.caption"
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Видалення"
 
 #: tfreefilepreviewdialog.shelllistviewitemnewfolder.caption
 msgid "New Folder"
@@ -8094,12 +8093,12 @@ msgstr ""
 #: tfreegriddialog.bitbtn1.caption
 msgctxt "tfreegriddialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreegriddialog.bitbtn2.caption
 msgctxt "tfreegriddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreegriddialog.caption
 msgid "Add a grid"
@@ -8124,7 +8123,7 @@ msgstr ""
 
 #: tfreegriddialog.lbstartpoint.caption
 msgid "Startpoint"
-msgstr "Нач. точка"
+msgstr ""
 
 #: tfreegriddialog.lbunit1.caption
 msgctxt "tfreegriddialog.lbunit1.caption"
@@ -8301,61 +8300,61 @@ msgstr "Збільшити"
 #: tfreehullwindow.zoomout.caption
 msgctxt "tfreehullwindow.zoomout.caption"
 msgid "Zoom out"
-msgstr "Зменшення"
+msgstr "Зменшити"
 
 #: tfreehydrodyn_maneuv.caption
 msgid "Evaluation of Turning Ability and Stability. Turning Prediction."
-msgstr "Розрахунок стійкості на курсі. Розрахунок характеристик керованості."
+msgstr ""
 
 #: tfreehydrodyn_maneuv.checkbox2.caption
 #, fuzzy
 msgctxt "tfreehydrodyn_maneuv.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreehydrodyn_maneuv.checkbox3.caption
 msgid "Linear Evaluation"
-msgstr "Розрахунок по лінійній теорії"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.checkbox4.caption
 msgid "Turning Prediction"
-msgstr "Розрахунок циркуляції"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.checkbox5.caption
 msgid "State Variable Equations"
-msgstr "Компоненти рівняння руху"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label10.caption
 msgid "Water Density [kg/m^3]"
-msgstr "Питома маса води, кг/м^3"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label11.caption
 msgid "Kinematic Viscosity [m^2/s]"
-msgstr "Кінематичний коеф. в'язкості, м^2/з"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label12.caption
 msgid "Yaw Radius of Gyration K33/LWL"
-msgstr "Відносний Yaw радіус циркуляції K33/Lwl"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label13.caption
 msgid "Water Depth to Ship Draft Ratio H/T"
-msgstr "Відносна глибина H/T"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label14.caption
 msgid "Steering Gear Time Constant [s]"
-msgstr "Постійна часу стернового пристрою, с"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label15.caption
 msgid "Total Rudder Area - Fraction of LWL*T"
-msgstr "Площа стерн, віднесена до Lwl*T"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label16.caption
 msgid "Submerged Bow Area - Fraction of LWL*T"
-msgstr "Площа занур. носа, віднесена до Lwl*T"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label17.caption
 msgid "Number of Propellers (0...2)"
-msgstr "Кількість гвинтів (0...2)"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label18.caption
 msgid "Type of Single Screw Stern (0-Close;1-Open;)"
@@ -8363,11 +8362,11 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.label19.caption
 msgid "Number of Rudders (0...2)"
-msgstr "Кількість стерн (0...2)"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label2.caption
 msgid "Length of Waterline LWL [m]"
-msgstr "Довжина по КВЛ, м"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label20.caption
 msgid "Rudder Angle [degrees]"
@@ -8375,31 +8374,31 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.label3.caption
 msgid "Maximum Beam on LWL [m]"
-msgstr "Максимальна ширина, м"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label4.caption
 msgid "Draft Forward [m]"
-msgstr "Осадка носом, м"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label5.caption
 msgid "Draft Aft [m]"
-msgstr "Осадка кормою, м"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label6.caption
 msgid "Block Coefficient on LWL Cb"
-msgstr "Коефіцієнт загальної повноти Cb"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label7.caption
 msgid "Center of Gravity LCG (%LWL; + Fwd)"
-msgstr "Абсциса Ц.Т. (в % від Lwl; >0, якщо в ніс)"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label8.caption
 msgid "Midships to Rudder CE XR (%LWL; + Aft)"
-msgstr "Абсциса попер. сили на стерні (в % від Lwl; + у корму)"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.label9.caption
 msgid "Initial Ship Speed [knots]"
-msgstr "Початкова швидкість, вузл"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.printbutton.caption
 msgctxt "tfreehydrodyn_maneuv.printbutton.caption"
@@ -8415,13 +8414,13 @@ msgstr "Друк результатів розрахунку."
 #: tfreehydrodyn_maneuv.results2.caption
 msgctxt "tfreehydrodyn_maneuv.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.tabsheet1.caption
 #, fuzzy
 msgctxt "tfreehydrodyn_maneuv.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreehydrodyn_maneuv.tabsheet2.caption
 #, fuzzy
@@ -8436,7 +8435,7 @@ msgstr ""
 
 #: tfreehydrodyn_maneuv.toolbutton17.hint
 msgid "Calculate"
-msgstr "Розрахувати"
+msgstr ""
 
 #: tfreehydrodyn_maneuv.toolbutton25.hint
 #, fuzzy
@@ -8480,13 +8479,13 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreehydrodyn_rvrs.label10.caption
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.label10.caption"
 msgid "Disk area ratio Ae/Ao"
-msgstr "Дискове відношення Ae/Ao"
+msgstr "Дискове відношення"
 
 #: tfreehydrodyn_rvrs.label11.caption
 #, fuzzy
@@ -8497,7 +8496,7 @@ msgstr "Кількість лопатей"
 #: tfreehydrodyn_rvrs.label12.caption
 msgctxt "tfreehydrodyn_rvrs.label12.caption"
 msgid "Wake fraction"
-msgstr "Коефіцієнт побіжного потоку"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.label13.caption
 msgctxt "tfreehydrodyn_rvrs.label13.caption"
@@ -8528,23 +8527,23 @@ msgstr ""
 
 #: tfreehydrodyn_rvrs.label2.caption
 msgid "Length between perpendiculars [m]"
-msgstr "Довжина між перпендикулярами, м"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.label3.caption
 msgid "Beam waterline [m]"
-msgstr "Ширина по КВЛ, м"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.label4.caption
 msgid "Midship draft [m]"
-msgstr "Осадка на міделі, м"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.label5.caption
 msgid "Displacement [m^3]"
-msgstr "Об'ємна водотоннажність, м^3"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.label6.caption
 msgid "Wetted surface area [m^2]"
-msgstr "Площа змоченої поверхні, м^2"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.label7.caption
 #, fuzzy
@@ -8554,7 +8553,7 @@ msgstr "Кількість гребних гвинтів"
 
 #: tfreehydrodyn_rvrs.label8.caption
 msgid "Propeller diameter [m]"
-msgstr "Діаметр гребного гвинта, м"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.label9.caption
 msgid "Pitch ratio P/D"
@@ -8575,7 +8574,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreehydrodyn_rvrs.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreehydrodyn_rvrs.tabsheet2.caption
 #, fuzzy
@@ -8586,7 +8585,7 @@ msgstr "Результати"
 #: tfreehydrodyn_rvrs.tabsheet3.caption
 msgctxt "tfreehydrodyn_rvrs.tabsheet3.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreehydrodyn_rvrs.toolbar1.caption
 msgctxt "tfreehydrodyn_rvrs.toolbar1.caption"
@@ -8641,7 +8640,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreehydrodyn_task1.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreehydrodyn_task1.label10.caption
 msgid "Ship speed, [m/s]"
@@ -8657,31 +8656,31 @@ msgstr ""
 
 #: tfreehydrodyn_task1.label2.caption
 msgid "Length overall Loa [m]"
-msgstr "Довжина судна максимальна, м"
+msgstr ""
 
 #: tfreehydrodyn_task1.label3.caption
 msgid "Breadth [m]"
-msgstr "Ширина, м"
+msgstr ""
 
 #: tfreehydrodyn_task1.label4.caption
 msgid "Lateral projected wind area [m2]"
-msgstr "Бокова площа вітрильності, м2"
+msgstr ""
 
 #: tfreehydrodyn_task1.label5.caption
 msgid "Lateral proj. area of superstructure [m2]"
-msgstr "Бокова площа надбудови, м2"
+msgstr ""
 
 #: tfreehydrodyn_task1.label6.caption
 msgid "Transverse projected wind area [m2]"
-msgstr "Лобова площа над КВЛ, м2"
+msgstr ""
 
 #: tfreehydrodyn_task1.label7.caption
 msgid "Length of perimeter [m]"
-msgstr "Довжина періметра, м"
+msgstr ""
 
 #: tfreehydrodyn_task1.label8.caption
 msgid "Distance from bow to centroid [m]"
-msgstr "Відстань від НП до Ц.Т.площі, м"
+msgstr ""
 
 #: tfreehydrodyn_task1.label9.caption
 msgid "Number of groups of masts, ETC."
@@ -8702,7 +8701,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreehydrodyn_task1.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreehydrodyn_task1.tabsheet2.caption
 #, fuzzy
@@ -8713,7 +8712,7 @@ msgstr "Результати"
 #: tfreehydrodyn_task1.tabsheet3.caption
 msgctxt "tfreehydrodyn_task1.tabsheet3.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreehydrodyn_task1.toolbar1.caption
 msgctxt "tfreehydrodyn_task1.toolbar1.caption"
@@ -8750,7 +8749,7 @@ msgstr ""
 #: tfreehydrostaticsdialog.buttonclose.caption
 msgctxt "tfreehydrostaticsdialog.buttonclose.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tfreehydrostaticsdialog.buttonprint.caption
 #, fuzzy
@@ -8766,12 +8765,12 @@ msgstr "Зберегти"
 
 #: tfreehydrostaticsdialog.caption
 msgid "Hydrostatics results"
-msgstr "Результати гідростатики"
+msgstr ""
 
 #: tfreehydrostaticsresultsdialog.buttonclose.caption
 msgctxt "tfreehydrostaticsresultsdialog.buttonclose.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tfreehydrostaticsresultsdialog.buttonprint.caption
 #, fuzzy
@@ -8788,25 +8787,25 @@ msgstr "Зберегти"
 #: tfreehydrostaticsresultsdialog.caption
 msgctxt "tfreehydrostaticsresultsdialog.caption"
 msgid "Hydrostatics"
-msgstr "Гідростатика"
+msgstr ""
 
 #: tfreeinsertplanedialog.bitbtn1.caption
 msgctxt "tfreeinsertplanedialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeinsertplanedialog.bitbtn2.caption
 msgctxt "tfreeinsertplanedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeinsertplanedialog.caption
 msgid "Insert multiple points"
-msgstr "Вставка безлічі точок"
+msgstr ""
 
 #: tfreeinsertplanedialog.checkbox1.caption
 msgid "Add control curve"
-msgstr "Додавання кривій управління."
+msgstr ""
 
 #: tfreeinsertplanedialog.edit1.text
 msgid "Edit1"
@@ -8828,62 +8827,62 @@ msgstr "Відстань"
 
 #: tfreeinsertplanedialog.label2.caption
 msgid "Min. value"
-msgstr "Мін. значення"
+msgstr ""
 
 #: tfreeinsertplanedialog.label5.caption
 msgid "Max. value"
-msgstr "Maкс.значення"
+msgstr ""
 
 #: tfreeinsertplanedialog.radiobutton1.caption
 msgctxt "tfreeinsertplanedialog.radiobutton1.caption"
 msgid "Transverse plane"
-msgstr "Поперечний вид"
+msgstr ""
 
 #: tfreeinsertplanedialog.radiobutton2.caption
 msgctxt "tfreeinsertplanedialog.radiobutton2.caption"
 msgid "Horizontal plane"
-msgstr "Відносно ОП"
+msgstr ""
 
 #: tfreeinsertplanedialog.radiobutton3.caption
 msgctxt "tfreeinsertplanedialog.radiobutton3.caption"
 msgid "Vertical plane"
-msgstr "Вид зверху"
+msgstr ""
 
 #: tfreeintersectiondialog.addone.caption
 msgid "Add..."
-msgstr "Додати..."
+msgstr ""
 
 #: tfreeintersectiondialog.addone.hint
 msgid "Add one station."
-msgstr "Додати шпангоут."
+msgstr ""
 
 #: tfreeintersectiondialog.addrange.caption
 msgid "Range"
-msgstr "Ранжирування"
+msgstr ""
 
 #: tfreeintersectiondialog.addrange.hint
 msgid "Add a whole range of intersection curves."
-msgstr "Додати в ранг пересічні криві."
+msgstr ""
 
 #: tfreeintersectiondialog.caption
 msgid "Intersections"
-msgstr "Перетинання"
+msgstr ""
 
 #: tfreeintersectiondialog.closedialog.caption
 msgid "CloseDialog"
-msgstr "Закрити діалог"
+msgstr ""
 
 #: tfreeintersectiondialog.closedialog.hint
 msgid "Close this dialog."
-msgstr "Закрити діалог."
+msgstr ""
 
 #: tfreeintersectiondialog.deleteall.caption
 msgid "Delete all"
-msgstr "Видалити всі"
+msgstr ""
 
 #: tfreeintersectiondialog.deleteall.hint
 msgid "Delete all stations."
-msgstr "Видалити всі шпангоути."
+msgstr ""
 
 #: tfreeintersectiondialog.deleteselected.caption
 msgid "DeleteSelected"
@@ -8969,7 +8968,7 @@ msgstr "Батокси"
 
 #: tfreeintersectiondialog.showbuttocks.hint
 msgid "Switch to view or add buttocks."
-msgstr "Перемикач на перегляд або додавання батоксів."
+msgstr ""
 
 #: tfreeintersectiondialog.showdiagonals.caption
 #, fuzzy
@@ -8979,7 +8978,7 @@ msgstr "Рибини"
 
 #: tfreeintersectiondialog.showdiagonals.hint
 msgid "Switch to view or add diagonals."
-msgstr "Перемикач на перегляд або додавання рибин."
+msgstr ""
 
 #: tfreeintersectiondialog.showstations.caption
 #, fuzzy
@@ -8989,7 +8988,7 @@ msgstr "Шпангоути"
 
 #: tfreeintersectiondialog.showstations.hint
 msgid "Switch to view or add stations."
-msgstr "Перемикач на перегляд або додавання шпангоутів."
+msgstr ""
 
 #: tfreeintersectiondialog.showwaterlines.caption
 #, fuzzy
@@ -8999,7 +8998,7 @@ msgstr "Ватерлінії"
 
 #: tfreeintersectiondialog.showwaterlines.hint
 msgid "Switch to view or add waterlines."
-msgstr "Перемикач на перегляд або додавання ватерліній."
+msgstr ""
 
 #: tfreeintersectiondialog.toolbar1.caption
 msgctxt "tfreeintersectiondialog.toolbar1.caption"
@@ -9042,16 +9041,16 @@ msgstr "Ватерлінії"
 #: tfreeintersectlayerdialog.bitbtn1.caption
 msgctxt "tfreeintersectlayerdialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeintersectlayerdialog.bitbtn2.caption
 msgctxt "tfreeintersectlayerdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeintersectlayerdialog.caption
 msgid "Intersect two layers."
-msgstr "Перетинання 2-х шарів."
+msgstr ""
 
 #: tfreeintersectlayerdialog.combobox1.text
 msgctxt "tfreeintersectlayerdialog.combobox1.text"
@@ -9064,11 +9063,11 @@ msgstr ""
 
 #: tfreeintersectlayerdialog.label1.caption
 msgid "Insert new points in"
-msgstr "Вставка нових точок в"
+msgstr ""
 
 #: tfreeintersectlayerdialog.label2.caption
 msgid "Find intersection with"
-msgstr "Знайти перетинання з"
+msgstr ""
 
 #: tfreekeelwizarddialog.actionmodeshade.caption
 #, fuzzy
@@ -9110,28 +9109,28 @@ msgstr ""
 #: tfreekeelwizarddialog.bitbtn1.caption
 msgctxt "tfreekeelwizarddialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreekeelwizarddialog.bitbtn2.caption
 msgctxt "tfreekeelwizarddialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreekeelwizarddialog.button1.caption
 msgctxt "tfreekeelwizarddialog.button1.caption"
 msgid "Calc"
-msgstr "Розрах."
+msgstr ""
 
 #: tfreekeelwizarddialog.button2.caption
 msgctxt "tfreekeelwizarddialog.button2.caption"
 msgid "Calc"
-msgstr "Розрах."
+msgstr ""
 
 #: tfreekeelwizarddialog.caption
 #, fuzzy
 msgctxt "tfreekeelwizarddialog.caption"
 msgid "Keel and rudder wizard"
-msgstr "Завдання характеристик кіля й стерна"
+msgstr "Кіль і стерно"
 
 #: tfreekeelwizarddialog.chart.axislist[0].title.caption
 msgid "Cx, Cy, Cd, m_z, 0.1*K"
@@ -9151,11 +9150,11 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreekeelwizarddialog.combobox.text"
 msgid "Keel"
-msgstr "Кіль:"
+msgstr "Кіль"
 
 #: tfreekeelwizarddialog.comboboxplanformshape.text
 msgid "Trapezoidal"
-msgstr "Трапецієдальна"
+msgstr ""
 
 #: tfreekeelwizarddialog.comboboxsubdivisionlevel.hint
 msgid "Desired Subdivision Level"
@@ -9164,16 +9163,16 @@ msgstr ""
 #: tfreekeelwizarddialog.comboboxsubdivisionlevel.text
 msgctxt "tfreekeelwizarddialog.comboboxsubdivisionlevel.text"
 msgid "Medium"
-msgstr "Середня"
+msgstr ""
 
 #: tfreekeelwizarddialog.groupbox1.caption
 msgctxt "tfreekeelwizarddialog.groupbox1.caption"
 msgid "Properties"
-msgstr "Властивості"
+msgstr ""
 
 #: tfreekeelwizarddialog.inputbulbshape.text
 msgid "No bullb"
-msgstr "Без бульба"
+msgstr ""
 
 #: tfreekeelwizarddialog.inputbulbwing.text
 msgid "NACA0020"
@@ -9181,38 +9180,38 @@ msgstr ""
 
 #: tfreekeelwizarddialog.inputmaterial.text
 msgid "Plumbum"
-msgstr "Свінець"
+msgstr ""
 
 #: tfreekeelwizarddialog.label1.caption
 msgid "Type of appendage"
-msgstr "Тип виступ. частин"
+msgstr ""
 
 #: tfreekeelwizarddialog.label10.caption
 msgid "Wing width"
-msgstr "Ширина горизонтального крила"
+msgstr ""
 
 #: tfreekeelwizarddialog.label11.caption
 msgid "Mean chord length"
-msgstr "Середня хорда"
+msgstr ""
 
 #: tfreekeelwizarddialog.label12.caption
 msgctxt "tfreekeelwizarddialog.label12.caption"
 msgid "Wing section"
-msgstr "Тип профілю"
+msgstr ""
 
 #: tfreekeelwizarddialog.label13.caption
 msgid "Geometric aspect ratio"
-msgstr "Відносне подовження"
+msgstr ""
 
 #: tfreekeelwizarddialog.label14.caption
 #, fuzzy
 msgctxt "tfreekeelwizarddialog.label14.caption"
 msgid "Length"
-msgstr "Довжина"
+msgstr "Довж."
 
 #: tfreekeelwizarddialog.label15.caption
 msgid "Effective aspect ratio"
-msgstr "Ефективне подовження"
+msgstr ""
 
 #: tfreekeelwizarddialog.label16.caption
 msgctxt "tfreekeelwizarddialog.label16.caption"
@@ -9222,21 +9221,21 @@ msgstr ""
 #: tfreekeelwizarddialog.label17.caption
 msgctxt "tfreekeelwizarddialog.label17.caption"
 msgid "Wing section"
-msgstr "Тип профілю"
+msgstr ""
 
 #: tfreekeelwizarddialog.label18.caption
 msgctxt "tfreekeelwizarddialog.label18.caption"
 msgid "Volume"
-msgstr "Об'ємна водотоннажність"
+msgstr ""
 
 #: tfreekeelwizarddialog.label19.caption
 msgid "Bulb's material"
-msgstr "Тип материала"
+msgstr ""
 
 #: tfreekeelwizarddialog.label2.caption
 msgctxt "tfreekeelwizarddialog.label2.caption"
 msgid "Planform shape"
-msgstr "Форма в плані"
+msgstr ""
 
 #: tfreekeelwizarddialog.label20.caption
 msgid "Volume COG"
@@ -9245,18 +9244,18 @@ msgstr ""
 #: tfreekeelwizarddialog.label21.caption
 msgctxt "tfreekeelwizarddialog.label21.caption"
 msgid "Specific weight"
-msgstr "Питома маса матер. корпуса"
+msgstr ""
 
 #: tfreekeelwizarddialog.label22.caption
 #, fuzzy
 msgctxt "tfreekeelwizarddialog.label22.caption"
 msgid "Wetted area"
-msgstr "Змочена площа"
+msgstr "Змочена поверхня"
 
 #: tfreekeelwizarddialog.label23.caption
 msgctxt "tfreekeelwizarddialog.label23.caption"
 msgid "Vertical compression"
-msgstr "Вертикальне стиснення"
+msgstr ""
 
 #: tfreekeelwizarddialog.label24.caption
 #, fuzzy
@@ -9267,11 +9266,11 @@ msgstr "Товщина"
 #: tfreekeelwizarddialog.label25.caption
 msgctxt "tfreekeelwizarddialog.label25.caption"
 msgid "Delta tip"
-msgstr "Поздовжній зсув"
+msgstr ""
 
 #: tfreekeelwizarddialog.label26.caption
 msgid "No. vertical points"
-msgstr "N точок по вертикалі"
+msgstr ""
 
 #: tfreekeelwizarddialog.label27.caption
 msgctxt "tfreekeelwizarddialog.label27.caption"
@@ -9281,15 +9280,15 @@ msgstr ""
 #: tfreekeelwizarddialog.label28.caption
 msgctxt "tfreekeelwizarddialog.label28.caption"
 msgid "Vertical compression"
-msgstr "Вертикальне стиснення"
+msgstr ""
 
 #: tfreekeelwizarddialog.label29.caption
 msgid "Bulb weight"
-msgstr "Маса бульба"
+msgstr ""
 
 #: tfreekeelwizarddialog.label3.caption
 msgid "Root chord length"
-msgstr "Довжина кореневої хорди"
+msgstr ""
 
 #: tfreekeelwizarddialog.label30.caption
 msgid "Horizontal compression"
@@ -9297,25 +9296,25 @@ msgstr ""
 
 #: tfreekeelwizarddialog.label4.caption
 msgid "Tip chord length"
-msgstr "Довжина кінцевої хорди"
+msgstr ""
 
 #: tfreekeelwizarddialog.label5.caption
 msgid "Span"
-msgstr "Розмах"
+msgstr ""
 
 #: tfreekeelwizarddialog.label6.caption
 msgctxt "tfreekeelwizarddialog.label6.caption"
 msgid "Delta tip"
-msgstr "Поздовжній зсув"
+msgstr ""
 
 #: tfreekeelwizarddialog.label7.caption
 msgid "Planform area"
-msgstr "Площа в плані"
+msgstr ""
 
 #: tfreekeelwizarddialog.label8.caption
 msgctxt "tfreekeelwizarddialog.label8.caption"
 msgid "Planform shape"
-msgstr "Форма в плані"
+msgstr ""
 
 #: tfreekeelwizarddialog.label9.caption
 msgid "Planform COG"
@@ -9347,29 +9346,29 @@ msgstr ""
 
 #: tfreekeelwizarddialog.speedbutton1.caption
 msgid "Send"
-msgstr "Додати"
+msgstr ""
 
 #: tfreekeelwizarddialog.speedbutton2.caption
 msgid "Save as part"
-msgstr "Зберегти"
+msgstr ""
 
 #: tfreekeelwizarddialog.tabsheet1.caption
 msgid "3D view"
-msgstr "3D вид"
+msgstr ""
 
 #: tfreekeelwizarddialog.tabsheet2.caption
 msgid "Lift and drag"
-msgstr "Гідродинамічні хар-ки (без бульба)."
+msgstr ""
 
 #: tfreekeelwizarddialog.tabsheet3.caption
 #, fuzzy
 msgctxt "tfreekeelwizarddialog.tabsheet3.caption"
 msgid "Keel"
-msgstr "Кіль:"
+msgstr "Кіль"
 
 #: tfreekeelwizarddialog.tabsheet4.caption
 msgid "Bulb"
-msgstr "Бульб"
+msgstr ""
 
 #: tfreekeelwizarddialog._combobox2.text
 msgid "NACA63-006"
@@ -9421,25 +9420,25 @@ msgstr ""
 #: tfreelackenbydialog.bitbtn2.caption
 msgctxt "tfreelackenbydialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreelackenbydialog.button1.caption
 #, fuzzy
 msgctxt "tfreelackenbydialog.button1.caption"
 msgid "Transform"
-msgstr "Запуск"
+msgstr "Трансформації"
 
 #: tfreelackenbydialog.button1.hint
 msgid "Start the hullform transformation."
-msgstr "Запуск перетворення ТК."
+msgstr ""
 
 #: tfreelackenbydialog.caption
 msgid "Lackenby hullform transformation."
-msgstr "Трансформація ТК корпуса по Lackenby."
+msgstr ""
 
 #: tfreelackenbydialog.checkbox1.caption
 msgid "Redraw after each iteration"
-msgstr "Показ після кожної ітерації"
+msgstr ""
 
 #: tfreelackenbydialog.label1.caption
 #, fuzzy
@@ -9449,27 +9448,27 @@ msgstr "Водотоннажність"
 
 #: tfreelackenbydialog.label10.caption
 msgid "Maximum no. of iterations"
-msgstr "Максимальне число ітерацій"
+msgstr ""
 
 #: tfreelackenbydialog.label11.caption
 msgid "Prismatic coeff. aftship"
-msgstr "Призматичний коеф. корми"
+msgstr ""
 
 #: tfreelackenbydialog.label13.caption
 msgid "Prismatic coeff. foreship"
-msgstr "Призматичний коеф.  носа"
+msgstr ""
 
 #: tfreelackenbydialog.label15.caption
 msgid "Maximum displacement"
-msgstr "Максимум водотоннажності"
+msgstr ""
 
 #: tfreelackenbydialog.label2.caption
 msgid "Current"
-msgstr "Поточне"
+msgstr ""
 
 #: tfreelackenbydialog.label3.caption
 msgid "Desired"
-msgstr "Проектн."
+msgstr ""
 
 #: tfreelackenbydialog.label4.caption
 msgid "Label4"
@@ -9483,17 +9482,17 @@ msgstr "Коефіцієнт загальної повноти"
 
 #: tfreelackenbydialog.label6.caption
 msgid "Long. center of buoyancy"
-msgstr "Абсциса Ц.В."
+msgstr ""
 
 #: tfreelackenbydialog.label7.caption
 #, fuzzy
 msgctxt "tfreelackenbydialog.label7.caption"
 msgid "Prismatic coefficient"
-msgstr "Призматич. коеф."
+msgstr "Призматичний коефіцієнт"
 
 #: tfreelackenbydialog.label8.caption
 msgid "Difference"
-msgstr "Різниця"
+msgstr ""
 
 #: tfreelackenbydialog.label9.caption
 msgid "Label9"
@@ -9507,7 +9506,7 @@ msgstr ""
 #: tfreelackenbydialog.speedbutton1.caption
 msgctxt "tfreelackenbydialog.speedbutton1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreelackenbydialog._label12.caption
 msgid "_Label12"
@@ -9525,7 +9524,7 @@ msgstr ""
 
 #: tfreelayerdialog.caption
 msgid "Layer properties."
-msgstr "Властивості шарів."
+msgstr ""
 
 #: tfreelayerdialog.cbcontrolnetvisible.caption
 msgid "Control Net Visible"
@@ -9533,23 +9532,23 @@ msgstr ""
 
 #: tfreelayerdialog.checkbox1.caption
 msgid "Developable"
-msgstr "Разгортаємость"
+msgstr ""
 
 #: tfreelayerdialog.checkbox2.caption
 msgid "Intersection curves"
-msgstr "Перетинання кривих"
+msgstr ""
 
 #: tfreelayerdialog.checkbox3.caption
 msgid "Use for hydrostatics"
-msgstr "Використати для гідростатики"
+msgstr ""
 
 #: tfreelayerdialog.checkbox4.caption
 msgid "Show in linesplan"
-msgstr "Показ у теоретичному кресленні"
+msgstr ""
 
 #: tfreelayerdialog.checkbox5.caption
 msgid "Symmetric"
-msgstr "Симетрично"
+msgstr ""
 
 #: tfreelayerdialog.checkbox6.caption
 msgid "Set weigth and CoG manually"
@@ -9562,20 +9561,20 @@ msgstr ""
 #: tfreelayerdialog.label1.caption
 msgctxt "tfreelayerdialog.label1.caption"
 msgid "Name"
-msgstr "Ім'я"
+msgstr ""
 
 #: tfreelayerdialog.label2.caption
 msgid "Color"
-msgstr "Кольори"
+msgstr ""
 
 #: tfreelayerdialog.label3.caption
 msgctxt "tfreelayerdialog.label3.caption"
 msgid "Specific weight"
-msgstr "Питома маса матер. корпуса"
+msgstr ""
 
 #: tfreelayerdialog.label4.caption
 msgid "Transparency"
-msgstr "Прозорість"
+msgstr ""
 
 #: tfreelayerdialog.label5.caption
 #, fuzzy
@@ -9604,15 +9603,15 @@ msgstr ""
 
 #: tfreelayerdialog.label6_2.caption
 msgid "X:"
-msgstr "X:"
+msgstr ""
 
 #: tfreelayerdialog.label6_3.caption
 msgid "Y:"
-msgstr "Y:"
+msgstr ""
 
 #: tfreelayerdialog.label6_4.caption
 msgid "Z:"
-msgstr "Z:"
+msgstr ""
 
 #: tfreelayerdialog.label7.caption
 #, fuzzy
@@ -9628,23 +9627,23 @@ msgstr "Вага"
 
 #: tfreelayerdialog.label9.caption
 msgid "Center of gravity"
-msgstr "Центр ваги"
+msgstr ""
 
 #: tfreelayerdialog.movedown.caption
 msgid "Down"
-msgstr "Униз"
+msgstr ""
 
 #: tfreelayerdialog.movedown.hint
 msgid "Move the layer down in the list."
-msgstr "Перемістити шар униз аркуша."
+msgstr ""
 
 #: tfreelayerdialog.moveup.caption
 msgid "Up"
-msgstr "Нагору"
+msgstr ""
 
 #: tfreelayerdialog.moveup.hint
 msgid "Move the layer up in the list."
-msgstr "Перемістити шар наверх аркуша."
+msgstr ""
 
 #: tfreelayerdialog.toolbar1.caption
 msgctxt "tfreelayerdialog.toolbar1.caption"
@@ -9653,15 +9652,15 @@ msgstr ""
 
 #: tfreelayerdialog.toolbutton1.caption
 msgid "Done"
-msgstr "Закінчити"
+msgstr ""
 
 #: tfreelayerdialog.toolbutton1.hint
 msgid "Close this window."
-msgstr "Закрити це вікно."
+msgstr ""
 
 #: tfreelayerdialog.toolbutton20.hint
 msgid "Create a new empty layer."
-msgstr "Створити новий шар."
+msgstr ""
 
 #: tfreelayerdialog.toolbutton3.caption
 msgid "ToolButton3"
@@ -9669,7 +9668,7 @@ msgstr ""
 
 #: tfreelayerdialog.toolbutton3.hint
 msgid "Remove all empty layers from the model."
-msgstr "Видалити зайві шари з моделі."
+msgstr ""
 
 #: tfreelayerdialog._label10.caption
 msgctxt "tfreelayerdialog._label10.caption"
@@ -9706,7 +9705,7 @@ msgstr ""
 #: tfreelayervisibilitydialog.bbclose.caption
 msgctxt "tfreelayervisibilitydialog.bbclose.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tfreelayervisibilitydialog.caption
 msgid "Layer visibility"
@@ -9738,24 +9737,24 @@ msgstr "Шар"
 
 #: tfreelinesplanform.caption
 msgid "Linesplan."
-msgstr "Креслення."
+msgstr ""
 
 #: tfreelinesplanframe.exportdxf.caption
 msgctxt "tfreelinesplanframe.exportdxf.caption"
 msgid "DXF"
-msgstr "DXF"
+msgstr ""
 
 #: tfreelinesplanframe.exportdxf.hint
 msgid "Export the formatted linesplan to a DXF file."
-msgstr "Експорт креслення в DXF файл."
+msgstr ""
 
 #: tfreelinesplanframe.mirrorplanview.caption
 msgid "MirrorPlanView"
-msgstr "Дзеркальне зображення виду"
+msgstr ""
 
 #: tfreelinesplanframe.mirrorplanview.hint
 msgid "Show both sides of the ship in plan view."
-msgstr "Показати обидві сторони корпуса на проекції."
+msgstr ""
 
 #: tfreelinesplanframe.print.caption
 #, fuzzy
@@ -9765,34 +9764,34 @@ msgstr "Друк"
 
 #: tfreelinesplanframe.print.hint
 msgid "Send the linesplan to the printer."
-msgstr "Послати креслення на принтер."
+msgstr ""
 
 #: tfreelinesplanframe.savebitmap.caption
 msgctxt "tfreelinesplanframe.savebitmap.caption"
 msgid "Save bitmap"
-msgstr "Збереження ВМР"
+msgstr ""
 
 #: tfreelinesplanframe.savebitmap.hint
 msgid "Save the linesplan as a bitmap."
-msgstr "Зберегти креслення як ВМР файл."
+msgstr ""
 
 #: tfreelinesplanframe.showfillcolor.caption
 msgctxt "tfreelinesplanframe.showfillcolor.caption"
 msgid "Solid"
-msgstr "Безперервний"
+msgstr ""
 
 #: tfreelinesplanframe.showfillcolor.hint
 msgctxt "tfreelinesplanframe.showfillcolor.hint"
 msgid "Show plates with fillcolor."
-msgstr "Заливання кольорами."
+msgstr ""
 
 #: tfreelinesplanframe.showmonochrome.caption
 msgid "Monochrome"
-msgstr "Монохром"
+msgstr ""
 
 #: tfreelinesplanframe.showmonochrome.hint
 msgid "Draw the linesplan in black and white only."
-msgstr "Чорно-біле креслення."
+msgstr ""
 
 #: tfreelinesplanframe.spinedit1.hint
 msgctxt "tfreelinesplanframe.spinedit1.hint"
@@ -9819,26 +9818,26 @@ msgstr ""
 
 #: tfreelinesplanframe.uselights.caption
 msgid "Use lights"
-msgstr "Використання освітлювачів"
+msgstr ""
 
 #: tfreelinesplanframe.uselights.hint
 msgid "Use lights in solid color drawing mode."
-msgstr "Використати освітлювачів."
+msgstr ""
 
 #: tfreelinesplanframe.zoomextents.caption
 msgctxt "tfreelinesplanframe.zoomextents.caption"
 msgid "Extents"
-msgstr "Extents"
+msgstr ""
 
 #: tfreelinesplanframe.zoomextents.hint
 msgctxt "tfreelinesplanframe.zoomextents.hint"
 msgid "Zoom all."
-msgstr "Збільшити все."
+msgstr ""
 
 #: tfreelinesplanframe.zoomin.caption
 msgctxt "tfreelinesplanframe.zoomin.caption"
 msgid "ZoomIn"
-msgstr "Збільшення"
+msgstr ""
 
 #: tfreelinesplanframe.zoomin.hint
 #, fuzzy
@@ -9850,21 +9849,21 @@ msgstr "Збільшити"
 #, fuzzy
 msgctxt "tfreelinesplanframe.zoomout.caption"
 msgid "Zoom out"
-msgstr "Зменшення"
+msgstr "Зменшити"
 
 #: tfreelinesplanframe.zoomout.hint
 msgctxt "tfreelinesplanframe.zoomout.hint"
 msgid "Zoom out."
-msgstr "Зменшити."
+msgstr ""
 
 #: tfreemichletoutputdialog.cancelbutton.caption
 msgctxt "tfreemichletoutputdialog.cancelbutton.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreemichletoutputdialog.caption
 msgid "Michlet file generator."
-msgstr "Michlet файл генератор."
+msgstr ""
 
 #: tfreemichletoutputdialog.group1.caption
 msgid "Skin friction method. "
@@ -9888,52 +9887,52 @@ msgstr ""
 
 #: tfreemichletoutputdialog.label1.caption
 msgid "Number of stations (5-81)"
-msgstr "Число шпангоутів (5-81)"
+msgstr ""
 
 #: tfreemichletoutputdialog.label10.caption
 msgctxt "tfreemichletoutputdialog.label10.caption"
 msgid "Water kinematic viscosity"
-msgstr "Кінематичний коефіцієнт в'язкості"
+msgstr ""
 
 #: tfreemichletoutputdialog.label12.caption
 msgctxt "tfreemichletoutputdialog.label12.caption"
 msgid "Water depth"
-msgstr "Відстань до дна (екрана)"
+msgstr ""
 
 #: tfreemichletoutputdialog.label14.caption
 msgctxt "tfreemichletoutputdialog.label14.caption"
 msgid "Distance between center of hulls:"
-msgstr "Відстань між ДП корпусів:"
+msgstr ""
 
 #: tfreemichletoutputdialog.label2.caption
 msgid "Number of waterlines (5-81)"
-msgstr "Число ватерліній (5-81)"
+msgstr ""
 
 #: tfreemichletoutputdialog.label21.caption
 #, fuzzy
 msgctxt "tfreemichletoutputdialog.label21.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreemichletoutputdialog.label22.caption
 msgctxt "tfreemichletoutputdialog.label22.caption"
 msgid "[knots]"
-msgstr "[вузли]"
+msgstr ""
 
 #: tfreemichletoutputdialog.label23.caption
 #, fuzzy
 msgctxt "tfreemichletoutputdialog.label23.caption"
 msgid "End speed"
-msgstr "Кінц. швидкість"
+msgstr "Кінцева швидкість"
 
 #: tfreemichletoutputdialog.label24.caption
 msgctxt "tfreemichletoutputdialog.label24.caption"
 msgid "[knots]"
-msgstr "[вузли]"
+msgstr ""
 
 #: tfreemichletoutputdialog.label27.caption
 msgid "Number of speeds (2-100)"
-msgstr "Число швидкостей (2-100)"
+msgstr ""
 
 #: tfreemichletoutputdialog.label3.caption
 #, fuzzy
@@ -9945,16 +9944,16 @@ msgstr "Осадка"
 #, fuzzy
 msgctxt "tfreemichletoutputdialog.label4.caption"
 msgid "Length"
-msgstr "Довжина"
+msgstr "Довж."
 
 #: tfreemichletoutputdialog.label5.caption
 msgctxt "tfreemichletoutputdialog.label5.caption"
 msgid "Volume"
-msgstr "Об'ємна водотоннажність"
+msgstr ""
 
 #: tfreemichletoutputdialog.label6.caption
 msgid "Gravitational acceleration g"
-msgstr "Прискорення сили ваги g"
+msgstr ""
 
 #: tfreemichletoutputdialog.label7.caption
 #, fuzzy
@@ -9965,7 +9964,7 @@ msgstr "Питома маса води"
 #: tfreemichletoutputdialog.okbutton.caption
 msgctxt "tfreemichletoutputdialog.okbutton.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreemichletoutputdialog.panel12.caption
 msgid "Panel12"
@@ -9974,17 +9973,17 @@ msgstr ""
 #: tfreemichletoutputdialog.radiobutton1.caption
 msgctxt "tfreemichletoutputdialog.radiobutton1.caption"
 msgid "Monohull"
-msgstr "Однокорпусник"
+msgstr ""
 
 #: tfreemichletoutputdialog.radiobutton2.caption
 msgctxt "tfreemichletoutputdialog.radiobutton2.caption"
 msgid "Monohull, send as catamaran"
-msgstr "Однокорпусне, як катамаран"
+msgstr ""
 
 #: tfreemichletoutputdialog.radiobutton3.caption
 msgctxt "tfreemichletoutputdialog.radiobutton3.caption"
 msgid "Catamaran"
-msgstr "Катамаран"
+msgstr ""
 
 #: tfreemichletoutputdialog.savefile.caption
 #, fuzzy
@@ -9995,7 +9994,7 @@ msgstr "Зберегти"
 #: tfreemichletoutputdialog.tabsheet1.caption
 msgctxt "tfreemichletoutputdialog.tabsheet1.caption"
 msgid "Hull geometry"
-msgstr "Геометрія корпуса"
+msgstr ""
 
 #: tfreemichletoutputdialog.tabsheet2.caption
 #, fuzzy
@@ -10006,11 +10005,11 @@ msgstr "Опір"
 #: tfreemichletoutputdialog.tabsheet3.caption
 msgctxt "tfreemichletoutputdialog.tabsheet3.caption"
 msgid "Environment"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreemichletoutputdialog.tabsheet4.caption
 msgid "Waves"
-msgstr "Хвилі"
+msgstr ""
 
 #: tfreemichletoutputdialog._label11.caption
 msgctxt "tfreemichletoutputdialog._label11.caption"
@@ -10065,7 +10064,7 @@ msgstr ""
 
 #: tfreemichletoutputdialog._label29.caption
 msgid "R1"
-msgstr "R1"
+msgstr ""
 
 #: tfreemichletoutputdialog._label30.caption
 msgid "Beta"
@@ -10139,21 +10138,21 @@ msgstr ""
 #: tfreemirrorplanedialog.bitbtn1.caption
 msgctxt "tfreemirrorplanedialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreemirrorplanedialog.bitbtn2.caption
 msgctxt "tfreemirrorplanedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreemirrorplanedialog.caption
 msgctxt "tfreemirrorplanedialog.caption"
 msgid "Mirror"
-msgstr "Дзеркало"
+msgstr ""
 
 #: tfreemirrorplanedialog.checkbox1.caption
 msgid "Connect to existing points"
-msgstr "Приєднати до наявних точок"
+msgstr ""
 
 #: tfreemirrorplanedialog.groupbox1.caption
 msgid "3D Mirror plane. "
@@ -10168,55 +10167,55 @@ msgstr "Відстань"
 #: tfreemirrorplanedialog.radiobutton1.caption
 msgctxt "tfreemirrorplanedialog.radiobutton1.caption"
 msgid "Transverse plane"
-msgstr "Поперечний вид"
+msgstr ""
 
 #: tfreemirrorplanedialog.radiobutton2.caption
 msgctxt "tfreemirrorplanedialog.radiobutton2.caption"
 msgid "Horizontal plane"
-msgstr "Відносно ОП"
+msgstr ""
 
 #: tfreemirrorplanedialog.radiobutton3.caption
 msgctxt "tfreemirrorplanedialog.radiobutton3.caption"
 msgid "Vertical plane"
-msgstr "Вид зверху"
+msgstr ""
 
 #: tfreenewmodeldialog.bitbtn1.caption
 msgctxt "tfreenewmodeldialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreenewmodeldialog.bitbtn2.caption
 msgctxt "tfreenewmodeldialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreenewmodeldialog.caption
 msgid "New model."
-msgstr "Нова модель."
+msgstr ""
 
 #: tfreenewmodeldialog.combobox1.text
 msgctxt "tfreenewmodeldialog.combobox1.text"
 msgid "Meters"
-msgstr "метр"
+msgstr ""
 
 #: tfreenewmodeldialog.label1.caption
 msgid "No. points in longitudinal direction"
-msgstr "Кількість точок по довжині"
+msgstr ""
 
 #: tfreenewmodeldialog.label2.caption
 msgid "No. points in vertical direction"
-msgstr "Кількість точок по висоті"
+msgstr ""
 
 #: tfreenewmodeldialog.label3.caption
 #, fuzzy
 msgctxt "tfreenewmodeldialog.label3.caption"
 msgid "Length"
-msgstr "Довжина"
+msgstr "Довж."
 
 #: tfreenewmodeldialog.label4.caption
 msgctxt "tfreenewmodeldialog.label4.caption"
 msgid "Beam"
-msgstr "Ширина"
+msgstr ""
 
 #: tfreenewmodeldialog.label5.caption
 #, fuzzy
@@ -10227,16 +10226,16 @@ msgstr "Осадка"
 #: tfreenewmodeldialog.label6.caption
 msgctxt "tfreenewmodeldialog.label6.caption"
 msgid "Units"
-msgstr "Система виміру"
+msgstr ""
 
 #: tfreepointgroupform.bitbtncancel.caption
 msgctxt "tfreepointgroupform.bitbtncancel.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreepointgroupform.bitbtnok.caption
 msgid "Ok"
-msgstr "Ok"
+msgstr ""
 
 #: tfreepointgroupform.caption
 msgid "Point Groups"
@@ -10274,12 +10273,12 @@ msgstr "Cancel"
 #: tfreepreferencesdialog.bitbtnresetcolors.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetcolors.caption"
 msgid "Reset"
-msgstr "Скидання"
+msgstr ""
 
 #: tfreepreferencesdialog.bitbtnresetdirs.caption
 msgctxt "tfreepreferencesdialog.bitbtnresetdirs.caption"
 msgid "Reset"
-msgstr "Скидання"
+msgstr ""
 
 #: tfreepreferencesdialog.caption
 msgid "|Preferences.|"
@@ -10342,23 +10341,23 @@ msgstr ""
 
 #: tfreepreferencesdialog.label1.caption
 msgid "Viewport background"
-msgstr "Кольори тіла"
+msgstr ""
 
 #: tfreepreferencesdialog.label10.caption
 msgid "Dart points"
-msgstr "Точки стрілок"
+msgstr ""
 
 #: tfreepreferencesdialog.label11.caption
 msgid "Selected items"
-msgstr "Обрані елементи"
+msgstr ""
 
 #: tfreepreferencesdialog.label12.caption
 msgid "Viewport grid"
-msgstr "Координатна сітка"
+msgstr ""
 
 #: tfreepreferencesdialog.label13.caption
 msgid "Grid font"
-msgstr "Кольори текста сітки"
+msgstr ""
 
 #: tfreepreferencesdialog.label14.caption
 #, fuzzy
@@ -10380,11 +10379,11 @@ msgstr "Ватерлінії"
 
 #: tfreepreferencesdialog.label17.caption
 msgid "Controlpoint size"
-msgstr "Розмір точок"
+msgstr ""
 
 #: tfreepreferencesdialog.label18.caption
 msgid "Surface normals"
-msgstr "Нормалі до поверхні"
+msgstr ""
 
 #: tfreepreferencesdialog.label19.caption
 #, fuzzy
@@ -10394,11 +10393,11 @@ msgstr "Рибини"
 
 #: tfreepreferencesdialog.label2.caption
 msgid "New surfaces"
-msgstr "Нові поверхні"
+msgstr ""
 
 #: tfreepreferencesdialog.label20.caption
 msgid "Leak points"
-msgstr "Точки витоку"
+msgstr ""
 
 #: tfreepreferencesdialog.label21.caption
 #, fuzzy
@@ -10408,29 +10407,29 @@ msgstr "Маркери"
 
 #: tfreepreferencesdialog.label22.caption
 msgid "Curvature plots"
-msgstr "Кривизни"
+msgstr ""
 
 #: tfreepreferencesdialog.label23.caption
 #, fuzzy
 msgctxt "tfreepreferencesdialog.label23.caption"
 msgid "Control curves"
-msgstr "Криві керування"
+msgstr "Криві контролю"
 
 #: tfreepreferencesdialog.label24.caption
 msgid "Hydrostatics font color"
-msgstr "Кольори гідростатики"
+msgstr ""
 
 #: tfreepreferencesdialog.label25.caption
 msgid "Zebra stripes color"
-msgstr "Кольори смуг зебри"
+msgstr ""
 
 #: tfreepreferencesdialog.label26.caption
 msgid "Language"
-msgstr "Language"
+msgstr ""
 
 #: tfreepreferencesdialog.label27.caption
 msgid "Max. undo memory (Mb)"
-msgstr "Maкс. Undo пам'ять (Mб)"
+msgstr ""
 
 #: tfreepreferencesdialog.label28.caption
 msgid "Font size"
@@ -10442,7 +10441,7 @@ msgstr ""
 
 #: tfreepreferencesdialog.label3.caption
 msgid "Submerged surfaces"
-msgstr "Занурені поверхні"
+msgstr ""
 
 #: tfreepreferencesdialog.label30.caption
 msgid "Executables"
@@ -10494,27 +10493,27 @@ msgstr ""
 
 #: tfreepreferencesdialog.label4.caption
 msgid "Regular control edges"
-msgstr "Регулярні ребра упр."
+msgstr ""
 
 #: tfreepreferencesdialog.label5.caption
 msgid "Crease edges (control)"
-msgstr "Ребра зламування(управ.)"
+msgstr ""
 
 #: tfreepreferencesdialog.label6.caption
 msgid "Crease edges (interior)"
-msgstr "Ребра зламування(внутр.)"
+msgstr ""
 
 #: tfreepreferencesdialog.label7.caption
 msgid "Regular control points"
-msgstr "Регулярні точки упр."
+msgstr ""
 
 #: tfreepreferencesdialog.label8.caption
 msgid "Crease points"
-msgstr "Точки ліній зламування"
+msgstr ""
 
 #: tfreepreferencesdialog.label9.caption
 msgid "Corner points"
-msgstr "Кутові точки"
+msgstr ""
 
 #: tfreepreferencesdialog.labelencoding.caption
 msgid "Encoding for FBM"
@@ -10569,7 +10568,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepreferencesdialog.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreepreferencesdialog.tabsheet2.caption
 msgid "Directories"
@@ -10582,37 +10581,37 @@ msgstr ""
 #: tfreeprojectsettingsdialog.bitbtn1.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.bitbtn2.caption
 msgctxt "tfreeprojectsettingsdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.caption
 msgid "Project settings."
-msgstr "Установки."
+msgstr ""
 
 #: tfreeprojectsettingsdialog.cbsavepreviewimage.caption
 msgid "Save preview image"
-msgstr "Зберегти зображення"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.cbshadeunderwater.caption
 msgid "Shade underwater"
-msgstr "Кольори підводної частини"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.cbsimplifyintersections.caption
 msgid "Simplify intersections"
-msgstr "Спрощені перетинання"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox11.caption
 msgid "Default at 0.0"
-msgstr "За замовчуванням на 0.0"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox12.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox12.caption"
 msgid "Default at 0.5*L"
-msgstr "За замовчуванням на 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox13.caption
 msgid "Enable auto move model to baseline"
@@ -10625,19 +10624,19 @@ msgstr ""
 #: tfreeprojectsettingsdialog.checkbox2.caption
 msgctxt "tfreeprojectsettingsdialog.checkbox2.caption"
 msgid "Default at 0.5*L"
-msgstr "За замовчуванням на 0.5*L"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox3.caption
 msgid "Disable surface check"
-msgstr "Відключити перевірку поверхні"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox5.caption
 msgid "Displacement and center of buoyancy"
-msgstr "Водотоннажність й центр величини"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox6.caption
 msgid "Curve of sectional areas"
-msgstr "Стройова по шпангоутах"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox7.caption
 msgid "Metacentric height"
@@ -10645,15 +10644,15 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox8.caption
 msgid "Longitudinal center of floatation"
-msgstr "Центр ваги площі КВЛ"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.checkbox9.caption
 msgid "Lateral area and center of effort"
-msgstr "Ц.Т і площа зануреної частини ДП"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.combobox1.text
 msgid "Dimensions from project settings"
-msgstr "Розмірам з установок проекту"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.groupbox1.caption
 msgid "Display hydrostatic features. "
@@ -10661,7 +10660,7 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.label1.caption
 msgid "Project name"
-msgstr "Назва проекту"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label10.caption
 #, fuzzy
@@ -10698,19 +10697,19 @@ msgstr "Коментар"
 
 #: tfreeprojectsettingsdialog.label16.caption
 msgid "File created by"
-msgstr "Файл створений"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label17.caption
 msgid "Coefficients based on"
-msgstr "Коефіцієнти визначаються по"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label18.caption
 msgid "Select which of the following hydrostatic properties"
-msgstr "Виберіть гідростатичні параметри які"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label19.caption
 msgid "you want to have displayed in the model:"
-msgstr "ви хочете бачити на моделі:"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label2.caption
 msgid "Length "
@@ -10756,7 +10755,7 @@ msgstr ""
 #: tfreeprojectsettingsdialog.label3.caption
 msgctxt "tfreeprojectsettingsdialog.label3.caption"
 msgid "Beam"
-msgstr "Ширина"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label4.caption
 #, fuzzy
@@ -10774,18 +10773,18 @@ msgstr "Питома маса води"
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label6.caption"
 msgid "Appendage coefficient"
-msgstr "Додатковий коефіцієнт"
+msgstr "Додатк. коефіцієнт"
 
 #: tfreeprojectsettingsdialog.label7.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.label7.caption"
 msgid "Designer"
-msgstr "Дизайнер"
+msgstr "Проектант"
 
 #: tfreeprojectsettingsdialog.label8.caption
 msgctxt "tfreeprojectsettingsdialog.label8.caption"
 msgid "Units"
-msgstr "Система виміру"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.label9.caption
 #, fuzzy
@@ -10799,30 +10798,30 @@ msgstr ""
 
 #: tfreeprojectsettingsdialog.precisionbox.hint
 msgid "Change the precision of the model."
-msgstr "Змінити точність моделі."
+msgstr ""
 
 #: tfreeprojectsettingsdialog.precisionbox.text
 msgid "Low"
-msgstr "Низька"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.tabsheet1.caption
 #, fuzzy
 msgctxt "tfreeprojectsettingsdialog.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeprojectsettingsdialog.tabsheet2.caption
 msgctxt "tfreeprojectsettingsdialog.tabsheet2.caption"
 msgid "Hydrostatics"
-msgstr "Гідростатика"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.tabsheet3.caption
 msgid "Main dimensions"
-msgstr "Головні розмірення"
+msgstr ""
 
 #: tfreeprojectsettingsdialog.unitbox.text
 msgid "Metric"
-msgstr "Метрична"
+msgstr ""
 
 #: tfreepropeller_task1.caption
 msgid "Design of propeller elements for engine selection."
@@ -10846,7 +10845,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task1.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreepropeller_task1.label10.caption
 msgid "Koef. influence on Thrust"
@@ -10871,7 +10870,7 @@ msgstr ""
 #: tfreepropeller_task1.label15.caption
 msgctxt "tfreepropeller_task1.label15.caption"
 msgid "Number of blade"
-msgstr "Кількість лопатей"
+msgstr ""
 
 #: tfreepropeller_task1.label16.caption
 msgctxt "tfreepropeller_task1.label16.caption"
@@ -10880,21 +10879,21 @@ msgstr ""
 
 #: tfreepropeller_task1.label17.caption
 msgid "Depth of Shaft below Waterline, m"
-msgstr "Глибина занурення осі ГГ, м"
+msgstr ""
 
 #: tfreepropeller_task1.label18.caption
 msgid "Burrill Back Cavitation Constraint, %"
-msgstr "Запас на кавитацію, %"
+msgstr ""
 
 #: tfreepropeller_task1.label2.caption
 msgctxt "tfreepropeller_task1.label2.caption"
 msgid "Ship speed, kn"
-msgstr "Швидкість судна, вузли"
+msgstr ""
 
 #: tfreepropeller_task1.label3.caption
 msgctxt "tfreepropeller_task1.label3.caption"
 msgid "Resistance, kN"
-msgstr "Опір, кН"
+msgstr ""
 
 #: tfreepropeller_task1.label4.caption
 #, fuzzy
@@ -10904,7 +10903,7 @@ msgstr "Кількість гребних гвинтів"
 
 #: tfreepropeller_task1.label5.caption
 msgid "Limit of propeller diameter, m"
-msgstr "Граничний діаметр ГГ, м"
+msgstr ""
 
 #: tfreepropeller_task1.label6.caption
 msgid "Step changing of diameter, m"
@@ -10937,7 +10936,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreepropeller_task1.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreepropeller_task1.tabsheet2.caption
 #, fuzzy
@@ -10948,7 +10947,7 @@ msgstr "Результати"
 #: tfreepropeller_task1.tabsheet3.caption
 msgctxt "tfreepropeller_task1.tabsheet3.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreepropeller_task1.toolbar1.caption
 msgctxt "tfreepropeller_task1.toolbar1.caption"
@@ -11004,7 +11003,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task2.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreepropeller_task2.label10.caption
 #, fuzzy
@@ -11025,7 +11024,7 @@ msgstr "Номер діаграми"
 #: tfreepropeller_task2.label13.caption
 msgctxt "tfreepropeller_task2.label13.caption"
 msgid "Number of blade"
-msgstr "Кількість лопатей"
+msgstr ""
 
 #: tfreepropeller_task2.label14.caption
 msgctxt "tfreepropeller_task2.label14.caption"
@@ -11034,11 +11033,11 @@ msgstr ""
 
 #: tfreepropeller_task2.label15.caption
 msgid "Koef. infl. hull on diameter"
-msgstr "Коеф.впливу корпуса на діаметр"
+msgstr ""
 
 #: tfreepropeller_task2.label16.caption
 msgid "Waiting ship speed, kn"
-msgstr "Очікувана швидкість ходу, узл"
+msgstr ""
 
 #: tfreepropeller_task2.label17.caption
 msgid "Calculated ship speed, kn :"
@@ -11055,7 +11054,7 @@ msgstr ""
 #: tfreepropeller_task2.label3.caption
 msgctxt "tfreepropeller_task2.label3.caption"
 msgid "Frequency of propeller, 1/min"
-msgstr "Частота обертання ГГ, об/хв"
+msgstr ""
 
 #: tfreepropeller_task2.label4.caption
 #, fuzzy
@@ -11065,12 +11064,12 @@ msgstr "Кількість гребних гвинтів"
 
 #: tfreepropeller_task2.label5.caption
 msgid "Water density, kg/m^3"
-msgstr "Питома маса води, кг/м^3"
+msgstr ""
 
 #: tfreepropeller_task2.label6.caption
 msgctxt "tfreepropeller_task2.label6.caption"
 msgid "Wake fraction"
-msgstr "Коефіцієнт побіжного потоку"
+msgstr ""
 
 #: tfreepropeller_task2.label7.caption
 msgctxt "tfreepropeller_task2.label7.caption"
@@ -11079,11 +11078,11 @@ msgstr ""
 
 #: tfreepropeller_task2.label8.caption
 msgid "Koef. influence on thrust"
-msgstr "Коеф. впливу неоднор. на упор"
+msgstr ""
 
 #: tfreepropeller_task2.label9.caption
 msgid "Koef. influence on torque"
-msgstr "Коеф. впливу неоднор. на момент"
+msgstr ""
 
 #: tfreepropeller_task2.printbutton.caption
 msgctxt "tfreepropeller_task2.printbutton.caption"
@@ -11099,13 +11098,13 @@ msgstr "Друк результатів розрахунку."
 #: tfreepropeller_task2.results2.caption
 msgctxt "tfreepropeller_task2.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreepropeller_task2.tabsheet1.caption
 #, fuzzy
 msgctxt "tfreepropeller_task2.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreepropeller_task2.tabsheet2.caption
 #, fuzzy
@@ -11161,12 +11160,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task3.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreepropeller_task3.label10.caption
 msgctxt "tfreepropeller_task3.label10.caption"
 msgid "Wake fraction"
-msgstr "Коефіцієнт побіжного потоку"
+msgstr ""
 
 #: tfreepropeller_task3.label11.caption
 msgctxt "tfreepropeller_task3.label11.caption"
@@ -11175,11 +11174,11 @@ msgstr ""
 
 #: tfreepropeller_task3.label12.caption
 msgid "Koef. infl. on thrust"
-msgstr "Коеф. впливу неоднор. на упор"
+msgstr ""
 
 #: tfreepropeller_task3.label13.caption
 msgid "Koef. infl. on torque"
-msgstr "Коеф. впливу неоднор. на момент"
+msgstr ""
 
 #: tfreepropeller_task3.label14.caption
 #, fuzzy
@@ -11202,11 +11201,11 @@ msgstr ""
 #: tfreepropeller_task3.label2.caption
 msgctxt "tfreepropeller_task3.label2.caption"
 msgid "Propeller diameter, m"
-msgstr "Діаметр ГГ, м"
+msgstr ""
 
 #: tfreepropeller_task3.label3.caption
 msgid "Disk area ratio"
-msgstr "Дискове відношення"
+msgstr ""
 
 #: tfreepropeller_task3.label4.caption
 msgid "Pitch ratio"
@@ -11219,7 +11218,7 @@ msgstr ""
 #: tfreepropeller_task3.label6.caption
 msgctxt "tfreepropeller_task3.label6.caption"
 msgid "Number of blade"
-msgstr "Кількість лопатей"
+msgstr ""
 
 #: tfreepropeller_task3.label7.caption
 #, fuzzy
@@ -11236,7 +11235,7 @@ msgstr "Кількість гребних гвинтів"
 #: tfreepropeller_task3.label9.caption
 msgctxt "tfreepropeller_task3.label9.caption"
 msgid "Frequency of propeller, 1/min"
-msgstr "Частота обертання ГГ, об/хв"
+msgstr ""
 
 #: tfreepropeller_task3.printbutton.caption
 msgctxt "tfreepropeller_task3.printbutton.caption"
@@ -11253,7 +11252,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreepropeller_task3.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreepropeller_task3.tabsheet2.caption
 #, fuzzy
@@ -11264,7 +11263,7 @@ msgstr "Результати"
 #: tfreepropeller_task3.tabsheet3.caption
 msgctxt "tfreepropeller_task3.tabsheet3.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreepropeller_task3.toolbar1.caption
 msgctxt "tfreepropeller_task3.toolbar1.caption"
@@ -11295,7 +11294,7 @@ msgstr ""
 
 #: tfreepropeller_task4.caption
 msgid "Wageningen B-Screw Series Propeller Preliminary Design."
-msgstr "Попередній розрахунок оптимального ГГ серії В."
+msgstr ""
 
 #: tfreepropeller_task4.chart.axislist[0].title.caption
 msgctxt "tfreepropeller_task4.chart.axislist[0].title.caption"
@@ -11316,12 +11315,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task4.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreepropeller_task4.help.caption
 msgctxt "tfreepropeller_task4.help.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreepropeller_task4.label10.caption
 msgid "Depth of axis propeller"
@@ -11341,7 +11340,7 @@ msgstr ""
 
 #: tfreepropeller_task4.label14.caption
 msgid "Rotative coefficient EtaR"
-msgstr "Коєф. неоднородності потока EtaR"
+msgstr ""
 
 #: tfreepropeller_task4.label15.caption
 msgid "Gear efficiency"
@@ -11349,17 +11348,17 @@ msgstr ""
 
 #: tfreepropeller_task4.label16.caption
 msgid "Shaft efficiency"
-msgstr "ККД валопровода"
+msgstr ""
 
 #: tfreepropeller_task4.label2.caption
 msgctxt "tfreepropeller_task4.label2.caption"
 msgid "Ship speed, kn"
-msgstr "Швидкість судна, вузли"
+msgstr ""
 
 #: tfreepropeller_task4.label3.caption
 msgctxt "tfreepropeller_task4.label3.caption"
 msgid "Resistance, kN"
-msgstr "Опір, кН"
+msgstr ""
 
 #: tfreepropeller_task4.label4.caption
 msgid "Type of propeller (1-FPP ; 2-CPP)"
@@ -11388,7 +11387,7 @@ msgstr ""
 #: tfreepropeller_task4.label9.caption
 msgctxt "tfreepropeller_task4.label9.caption"
 msgid "Wake fraction"
-msgstr "Коефіцієнт побіжного потоку"
+msgstr ""
 
 #: tfreepropeller_task4.printbutton.caption
 msgctxt "tfreepropeller_task4.printbutton.caption"
@@ -11405,7 +11404,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreepropeller_task4.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreepropeller_task4.tabsheet2.caption
 #, fuzzy
@@ -11468,7 +11467,7 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreepropeller_task5.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreepropeller_task5.combobox.text
 msgid "B series Troost"
@@ -11476,7 +11475,7 @@ msgstr ""
 
 #: tfreepropeller_task5.combobox1.text
 msgid "Reserved"
-msgstr "Графічно порівняти"
+msgstr ""
 
 #: tfreepropeller_task5.label2.caption
 msgid "Frequancy of rotation, 1/min"
@@ -11495,7 +11494,7 @@ msgstr ""
 #: tfreepropeller_task5.label5.caption
 msgctxt "tfreepropeller_task5.label5.caption"
 msgid "Number of blade"
-msgstr "Кількість лопатей"
+msgstr ""
 
 #: tfreepropeller_task5.label6.caption
 msgid "Diameter of propeller, m"
@@ -11511,7 +11510,7 @@ msgstr ""
 
 #: tfreepropeller_task5.label9.caption
 msgid "Series of propeller:"
-msgstr "Серія ГГ:"
+msgstr ""
 
 #: tfreepropeller_task5.printbutton.caption
 msgctxt "tfreepropeller_task5.printbutton.caption"
@@ -11528,7 +11527,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreepropeller_task5.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreepropeller_task5.tabsheet2.caption
 #, fuzzy
@@ -11539,7 +11538,7 @@ msgstr "Результати"
 #: tfreepropeller_task5.tabsheet3.caption
 msgctxt "tfreepropeller_task5.tabsheet3.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreepropeller_task5.toolbar1.caption
 msgctxt "tfreepropeller_task5.toolbar1.caption"
@@ -11596,53 +11595,53 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_delft.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_delft.estimatebox.caption
 msgctxt "tfreeresistance_delft.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_delft.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_delft.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_delft.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_delft.groupbox3.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.groupbox3.caption"
 msgid "Keel"
-msgstr "Кіль:"
+msgstr "Кіль"
 
 #: tfreeresistance_delft.groupbox4.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.groupbox4.caption"
 msgid "Rudder"
-msgstr "Стерно:"
+msgstr "Стерно"
 
 #: tfreeresistance_delft.label1.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_delft.label13.caption
 msgctxt "tfreeresistance_delft.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_delft.label2.caption
 msgctxt "tfreeresistance_delft.label2.caption"
@@ -11693,7 +11692,7 @@ msgstr "Водотоннажність"
 #, fuzzy
 msgctxt "tfreeresistance_delft.label27.caption"
 msgid "Waterplane area"
-msgstr "Площа КВЛ"
+msgstr "Площа ватерлінії"
 
 #: tfreeresistance_delft.label29.caption
 #, fuzzy
@@ -11704,7 +11703,7 @@ msgstr "Середня хорда"
 #: tfreeresistance_delft.label3.caption
 msgctxt "tfreeresistance_delft.label3.caption"
 msgid "Step"
-msgstr "Крок"
+msgstr ""
 
 #: tfreeresistance_delft.label34.caption
 msgctxt "tfreeresistance_delft.label34.caption"
@@ -11720,7 +11719,7 @@ msgstr "Питома маса води"
 #: tfreeresistance_delft.label5.caption
 msgctxt "tfreeresistance_delft.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_delft.label6.caption
 #, fuzzy
@@ -11732,13 +11731,13 @@ msgstr "Середня хорда"
 #, fuzzy
 msgctxt "tfreeresistance_delft.label7.caption"
 msgid "Wetted area"
-msgstr "Змочена площа"
+msgstr "Змочена поверхня"
 
 #: tfreeresistance_delft.label8.caption
 #, fuzzy
 msgctxt "tfreeresistance_delft.label8.caption"
 msgid "Wetted area"
-msgstr "Змочена площа"
+msgstr "Змочена поверхня"
 
 #: tfreeresistance_delft.printbutton.caption
 msgctxt "tfreeresistance_delft.printbutton.caption"
@@ -11765,7 +11764,7 @@ msgstr ""
 #: tfreeresistance_delft.toolbutton20.hint
 msgctxt "tfreeresistance_delft.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_delft.toolbutton25.hint
 #, fuzzy
@@ -11903,12 +11902,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_fungleib.data2.caption
 msgctxt "tfreeresistance_fungleib.data2.caption"
 msgid "Added data"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeresistance_fungleib.estimate2box.caption
 msgctxt "tfreeresistance_fungleib.estimate2box.caption"
@@ -11918,25 +11917,25 @@ msgstr ""
 #: tfreeresistance_fungleib.estimatebox.caption
 msgctxt "tfreeresistance_fungleib.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_fungleib.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_fungleib.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_fungleib.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_fungleib.groupbox3.caption
 msgctxt "tfreeresistance_fungleib.groupbox3.caption"
@@ -11952,25 +11951,25 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_fungleib.label10.caption
 msgctxt "tfreeresistance_fungleib.label10.caption"
 msgid "1/2 entrance angle, degr"
-msgstr "1/2 кута носового загострення, град"
+msgstr ""
 
 #: tfreeresistance_fungleib.label11.caption
 msgid "Transom beam, m"
-msgstr "Ширина транця по КВЛ, м"
+msgstr ""
 
 #: tfreeresistance_fungleib.label13.caption
 msgctxt "tfreeresistance_fungleib.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_fungleib.label14.caption
 msgid "Propeller type (1-CRPP; 2-FPP)"
-msgstr "Тип рушія (1-ГPК; 2-ГФК)"
+msgstr ""
 
 #: tfreeresistance_fungleib.label15.caption
 #, fuzzy
@@ -11981,12 +11980,12 @@ msgstr "Кількість гребних гвинтів"
 #: tfreeresistance_fungleib.label16.caption
 msgctxt "tfreeresistance_fungleib.label16.caption"
 msgid "Propeller diameter, m"
-msgstr "Діаметр ГГ, м"
+msgstr ""
 
 #: tfreeresistance_fungleib.label17.caption
 msgctxt "tfreeresistance_fungleib.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr "Абсолютна шорсткість, мкм"
+msgstr ""
 
 #: tfreeresistance_fungleib.label2.caption
 msgctxt "tfreeresistance_fungleib.label2.caption"
@@ -12040,7 +12039,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label281.caption
 msgctxt "tfreeresistance_fungleib.label281.caption"
 msgid "Keel and skeg:"
-msgstr "Ознака наявності кілів (0-немає, 1-є):"
+msgstr ""
 
 #: tfreeresistance_fungleib.label29.caption
 #, fuzzy
@@ -12051,22 +12050,22 @@ msgstr "Скег"
 #: tfreeresistance_fungleib.label3.caption
 msgctxt "tfreeresistance_fungleib.label3.caption"
 msgid "Step"
-msgstr "Крок"
+msgstr ""
 
 #: tfreeresistance_fungleib.label30.caption
 msgctxt "tfreeresistance_fungleib.label30.caption"
 msgid "Shaft brackets"
-msgstr "кронштейнів гребних валів"
+msgstr ""
 
 #: tfreeresistance_fungleib.label31.caption
 msgctxt "tfreeresistance_fungleib.label31.caption"
 msgid "Strut bossing"
-msgstr "обтічників кронштейнів валів"
+msgstr ""
 
 #: tfreeresistance_fungleib.label32.caption
 msgctxt "tfreeresistance_fungleib.label32.caption"
 msgid "Hull bossing"
-msgstr "викружки"
+msgstr ""
 
 #: tfreeresistance_fungleib.label33.caption
 msgctxt "tfreeresistance_fungleib.label33.caption"
@@ -12091,18 +12090,18 @@ msgstr ""
 #: tfreeresistance_fungleib.label37.caption
 msgctxt "tfreeresistance_fungleib.label37.caption"
 msgid "Stabiliser fins"
-msgstr "стабілізатори"
+msgstr ""
 
 #: tfreeresistance_fungleib.label38.caption
 msgctxt "tfreeresistance_fungleib.label38.caption"
 msgid "Dome"
-msgstr "обтічники"
+msgstr ""
 
 #: tfreeresistance_fungleib.label39.caption
 #, fuzzy
 msgctxt "tfreeresistance_fungleib.label39.caption"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: tfreeresistance_fungleib.label4.caption
 #, fuzzy
@@ -12113,7 +12112,7 @@ msgstr "Питома маса води"
 #: tfreeresistance_fungleib.label5.caption
 msgctxt "tfreeresistance_fungleib.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_fungleib.label6.caption
 #, fuzzy
@@ -12149,17 +12148,17 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_3.caption
 msgctxt "tfreeresistance_fungleib.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr "Куpсовой кут набігання хвиль, гpад"
+msgstr ""
 
 #: tfreeresistance_fungleib.label6_4.caption
 msgctxt "tfreeresistance_fungleib.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr "Швидкість вітру, м/с"
+msgstr ""
 
 #: tfreeresistance_fungleib.label6_5.caption
 msgctxt "tfreeresistance_fungleib.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr "Куpсовой кут ветpа, гpад"
+msgstr ""
 
 #: tfreeresistance_fungleib.label6_6.caption
 msgctxt "tfreeresistance_fungleib.label6_6.caption"
@@ -12169,7 +12168,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_7.caption
 msgctxt "tfreeresistance_fungleib.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr "Питома маса повітря, кг/м^3"
+msgstr ""
 
 #: tfreeresistance_fungleib.label6_8.caption
 msgctxt "tfreeresistance_fungleib.label6_8.caption"
@@ -12179,7 +12178,7 @@ msgstr ""
 #: tfreeresistance_fungleib.label6_9.caption
 msgctxt "tfreeresistance_fungleib.label6_9.caption"
 msgid "Depth of water, m"
-msgstr "Глибина води, м"
+msgstr ""
 
 #: tfreeresistance_fungleib.label7.caption
 msgctxt "tfreeresistance_fungleib.label7.caption"
@@ -12215,7 +12214,7 @@ msgstr "Результати"
 #: tfreeresistance_fungleib.results2.caption
 msgctxt "tfreeresistance_fungleib.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeresistance_fungleib.toolbar1.caption
 msgctxt "tfreeresistance_fungleib.toolbar1.caption"
@@ -12225,7 +12224,7 @@ msgstr ""
 #: tfreeresistance_fungleib.toolbutton20.hint
 msgctxt "tfreeresistance_fungleib.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_fungleib.toolbutton25.hint
 #, fuzzy
@@ -12337,12 +12336,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_hollen.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_hollen.data2.caption
 msgctxt "tfreeresistance_hollen.data2.caption"
 msgid "Added data"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeresistance_hollen.estimate2box.caption
 msgctxt "tfreeresistance_hollen.estimate2box.caption"
@@ -12352,25 +12351,25 @@ msgstr ""
 #: tfreeresistance_hollen.estimatebox.caption
 msgctxt "tfreeresistance_hollen.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_hollen.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_hollen.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_hollen.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_hollen.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_hollen.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_hollen.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_hollen.groupbox3.caption
 msgctxt "tfreeresistance_hollen.groupbox3.caption"
@@ -12386,12 +12385,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_hollen.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_hollen.label10.caption
 msgctxt "tfreeresistance_hollen.label10.caption"
 msgid "Bulbous area on F.P., m^2"
-msgstr "Площа бульба на Н.П., м^2"
+msgstr ""
 
 #: tfreeresistance_hollen.label11.caption
 msgctxt "tfreeresistance_hollen.label11.caption"
@@ -12401,7 +12400,7 @@ msgstr ""
 #: tfreeresistance_hollen.label13.caption
 msgctxt "tfreeresistance_hollen.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_hollen.label14.caption
 msgctxt "tfreeresistance_hollen.label14.caption"
@@ -12422,7 +12421,7 @@ msgstr ""
 #: tfreeresistance_hollen.label17.caption
 msgctxt "tfreeresistance_hollen.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr "Абсолютна шорсткість, мкм"
+msgstr ""
 
 #: tfreeresistance_hollen.label2.caption
 msgid "Estimate speed "
@@ -12481,13 +12480,13 @@ msgstr "Скег"
 #: tfreeresistance_hollen.label281.caption
 msgctxt "tfreeresistance_hollen.label281.caption"
 msgid "Keel and skeg:"
-msgstr "Ознака наявності кілів (0-немає, 1-є):"
+msgstr ""
 
 #: tfreeresistance_hollen.label29.caption
 #, fuzzy
 msgctxt "tfreeresistance_hollen.label29.caption"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: tfreeresistance_hollen.label3.caption
 #, fuzzy
@@ -12498,17 +12497,17 @@ msgstr "Максимальна швидкість"
 #: tfreeresistance_hollen.label30.caption
 msgctxt "tfreeresistance_hollen.label30.caption"
 msgid "Shaft brackets"
-msgstr "кронштейнів гребних валів"
+msgstr ""
 
 #: tfreeresistance_hollen.label31.caption
 msgctxt "tfreeresistance_hollen.label31.caption"
 msgid "Strut bossing"
-msgstr "обтічників кронштейнів валів"
+msgstr ""
 
 #: tfreeresistance_hollen.label32.caption
 msgctxt "tfreeresistance_hollen.label32.caption"
 msgid "Hull bossing"
-msgstr "викружки"
+msgstr ""
 
 #: tfreeresistance_hollen.label33.caption
 msgctxt "tfreeresistance_hollen.label33.caption"
@@ -12534,12 +12533,12 @@ msgstr ""
 #: tfreeresistance_hollen.label37.caption
 msgctxt "tfreeresistance_hollen.label37.caption"
 msgid "Stabiliser fins"
-msgstr "стабілізатори"
+msgstr ""
 
 #: tfreeresistance_hollen.label38.caption
 msgctxt "tfreeresistance_hollen.label38.caption"
 msgid "Dome"
-msgstr "обтічники"
+msgstr ""
 
 #: tfreeresistance_hollen.label4.caption
 #, fuzzy
@@ -12550,7 +12549,7 @@ msgstr "Питома маса води"
 #: tfreeresistance_hollen.label5.caption
 msgctxt "tfreeresistance_hollen.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_hollen.label6.caption
 #, fuzzy
@@ -12586,17 +12585,17 @@ msgstr ""
 #: tfreeresistance_hollen.label6_3.caption
 msgctxt "tfreeresistance_hollen.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr "Куpсовой кут набігання хвиль, гpад"
+msgstr ""
 
 #: tfreeresistance_hollen.label6_4.caption
 msgctxt "tfreeresistance_hollen.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr "Швидкість вітру, м/с"
+msgstr ""
 
 #: tfreeresistance_hollen.label6_5.caption
 msgctxt "tfreeresistance_hollen.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr "Куpсовой кут ветpа, гpад"
+msgstr ""
 
 #: tfreeresistance_hollen.label6_6.caption
 msgctxt "tfreeresistance_hollen.label6_6.caption"
@@ -12606,7 +12605,7 @@ msgstr ""
 #: tfreeresistance_hollen.label6_7.caption
 msgctxt "tfreeresistance_hollen.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr "Питома маса повітря, кг/м^3"
+msgstr ""
 
 #: tfreeresistance_hollen.label6_8.caption
 msgctxt "tfreeresistance_hollen.label6_8.caption"
@@ -12616,7 +12615,7 @@ msgstr ""
 #: tfreeresistance_hollen.label6_9.caption
 msgctxt "tfreeresistance_hollen.label6_9.caption"
 msgid "Depth of water, m"
-msgstr "Глибина води, м"
+msgstr ""
 
 #: tfreeresistance_hollen.label7.caption
 msgctxt "tfreeresistance_hollen.label7.caption"
@@ -12653,7 +12652,7 @@ msgstr "Результати"
 #: tfreeresistance_hollen.results2.caption
 msgctxt "tfreeresistance_hollen.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeresistance_hollen.toolbar1.caption
 msgctxt "tfreeresistance_hollen.toolbar1.caption"
@@ -12663,7 +12662,7 @@ msgstr ""
 #: tfreeresistance_hollen.toolbutton20.hint
 msgctxt "tfreeresistance_hollen.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_hollen.toolbutton25.hint
 #, fuzzy
@@ -12775,12 +12774,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_holtr.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_holtr.data2.caption
 msgctxt "tfreeresistance_holtr.data2.caption"
 msgid "Added data"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeresistance_holtr.estimate2box.caption
 msgctxt "tfreeresistance_holtr.estimate2box.caption"
@@ -12793,30 +12792,30 @@ msgstr ""
 
 #: tfreeresistance_holtr.estimate4box.caption
 msgid "Extract half entrance angle from model - Ie"
-msgstr "Взяти 1/2 кута носового загострення ie з моделі"
+msgstr ""
 
 #: tfreeresistance_holtr.estimatebox.caption
 msgctxt "tfreeresistance_holtr.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_holtr.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_holtr.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_holtr.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_holtr.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_holtr.groupbox3.caption
 msgctxt "tfreeresistance_holtr.groupbox3.caption"
@@ -12831,12 +12830,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_holtr.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_holtr.label10.caption
 msgctxt "tfreeresistance_holtr.label10.caption"
 msgid "Bulbous area on F.P., m^2"
-msgstr "Площа бульба на Н.П., м^2"
+msgstr ""
 
 #: tfreeresistance_holtr.label11.caption
 msgid "Z COG of bulbous area, m"
@@ -12845,7 +12844,7 @@ msgstr ""
 #: tfreeresistance_holtr.label13.caption
 msgctxt "tfreeresistance_holtr.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_holtr.label14.caption
 msgctxt "tfreeresistance_holtr.label14.caption"
@@ -12866,7 +12865,7 @@ msgstr ""
 #: tfreeresistance_holtr.label17.caption
 msgctxt "tfreeresistance_holtr.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr "Абсолютна шорсткість, мкм"
+msgstr ""
 
 #: tfreeresistance_holtr.label2.caption
 msgctxt "tfreeresistance_holtr.label2.caption"
@@ -12916,7 +12915,7 @@ msgstr "Водотоннажність"
 #, fuzzy
 msgctxt "tfreeresistance_holtr.label27.caption"
 msgid "Waterplane area"
-msgstr "Площа КВЛ"
+msgstr "Площа ватерлінії"
 
 #: tfreeresistance_holtr.label28.caption
 #, fuzzy
@@ -12932,27 +12931,27 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_holtr.label29.caption"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: tfreeresistance_holtr.label3.caption
 msgctxt "tfreeresistance_holtr.label3.caption"
 msgid "Step"
-msgstr "Крок"
+msgstr ""
 
 #: tfreeresistance_holtr.label30.caption
 msgctxt "tfreeresistance_holtr.label30.caption"
 msgid "Shaft brackets"
-msgstr "кронштейнів гребних валів"
+msgstr ""
 
 #: tfreeresistance_holtr.label31.caption
 msgctxt "tfreeresistance_holtr.label31.caption"
 msgid "Strut bossing"
-msgstr "обтічників кронштейнів валів"
+msgstr ""
 
 #: tfreeresistance_holtr.label32.caption
 msgctxt "tfreeresistance_holtr.label32.caption"
 msgid "Hull bossing"
-msgstr "викружки"
+msgstr ""
 
 #: tfreeresistance_holtr.label33.caption
 msgid "Exposed shafts, [m^2]:"
@@ -12976,12 +12975,12 @@ msgstr ""
 #: tfreeresistance_holtr.label37.caption
 msgctxt "tfreeresistance_holtr.label37.caption"
 msgid "Stabiliser fins"
-msgstr "стабілізатори"
+msgstr ""
 
 #: tfreeresistance_holtr.label38.caption
 msgctxt "tfreeresistance_holtr.label38.caption"
 msgid "Dome"
-msgstr "обтічники"
+msgstr ""
 
 #: tfreeresistance_holtr.label4.caption
 #, fuzzy
@@ -12992,7 +12991,7 @@ msgstr "Питома маса води"
 #: tfreeresistance_holtr.label5.caption
 msgctxt "tfreeresistance_holtr.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_holtr.label6.caption
 #, fuzzy
@@ -13032,17 +13031,17 @@ msgstr ""
 #: tfreeresistance_holtr.label6_3.caption
 msgctxt "tfreeresistance_holtr.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr "Куpсовой кут набігання хвиль, гpад"
+msgstr ""
 
 #: tfreeresistance_holtr.label6_4.caption
 msgctxt "tfreeresistance_holtr.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr "Швидкість вітру, м/с"
+msgstr ""
 
 #: tfreeresistance_holtr.label6_5.caption
 msgctxt "tfreeresistance_holtr.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr "Куpсовой кут ветpа, гpад"
+msgstr ""
 
 #: tfreeresistance_holtr.label6_6.caption
 msgctxt "tfreeresistance_holtr.label6_6.caption"
@@ -13052,7 +13051,7 @@ msgstr ""
 #: tfreeresistance_holtr.label6_7.caption
 msgctxt "tfreeresistance_holtr.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr "Питома маса повітря, кг/м^3"
+msgstr ""
 
 #: tfreeresistance_holtr.label6_8.caption
 msgctxt "tfreeresistance_holtr.label6_8.caption"
@@ -13062,7 +13061,7 @@ msgstr ""
 #: tfreeresistance_holtr.label6_9.caption
 msgctxt "tfreeresistance_holtr.label6_9.caption"
 msgid "Depth of water, m"
-msgstr "Глибина води, м"
+msgstr ""
 
 #: tfreeresistance_holtr.label7.caption
 msgctxt "tfreeresistance_holtr.label7.caption"
@@ -13076,7 +13075,7 @@ msgstr ""
 
 #: tfreeresistance_holtr.label9.caption
 msgid "Transom wetted area, m^2"
-msgstr "Занурена площа транця, м^2"
+msgstr ""
 
 #: tfreeresistance_holtr.results.caption
 #, fuzzy
@@ -13087,12 +13086,12 @@ msgstr "Результати"
 #: tfreeresistance_holtr.results2.caption
 msgctxt "tfreeresistance_holtr.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeresistance_holtr.tbcalculate.hint
 msgctxt "tfreeresistance_holtr.tbcalculate.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_holtr.tbclose.hint
 #, fuzzy
@@ -13208,7 +13207,7 @@ msgstr ""
 #: tfreeresistance_kaper.checkbox2.caption
 msgctxt "tfreeresistance_kaper.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_kaper.edit10.hint
 msgid "0.00 .. 0.04"
@@ -13307,7 +13306,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreeresistance_kaper.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Загальні дані"
 
 #: tfreeresistance_kaper.tabsheet2.caption
 msgctxt "tfreeresistance_kaper.tabsheet2.caption"
@@ -13368,16 +13367,16 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_mh.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_mh.combobox.text
 msgid "model tests"
-msgstr "модельних тестувань"
+msgstr ""
 
 #: tfreeresistance_mh.data2.caption
 msgctxt "tfreeresistance_mh.data2.caption"
 msgid "Added data"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeresistance_mh.estimate2box.caption
 msgctxt "tfreeresistance_mh.estimate2box.caption"
@@ -13387,25 +13386,25 @@ msgstr ""
 #: tfreeresistance_mh.estimatebox.caption
 msgctxt "tfreeresistance_mh.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_mh.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_mh.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_mh.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_mh.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_mh.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_mh.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_mh.groupbox3.caption
 msgctxt "tfreeresistance_mh.groupbox3.caption"
@@ -13421,22 +13420,22 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_mh.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_mh.label10.caption
 msgctxt "tfreeresistance_mh.label10.caption"
 msgid "Type of forward stern"
-msgstr "Тип носового краю"
+msgstr ""
 
 #: tfreeresistance_mh.label11.caption
 msgctxt "tfreeresistance_mh.label11.caption"
 msgid "Type of after stern"
-msgstr "Тип кормового краю"
+msgstr ""
 
 #: tfreeresistance_mh.label13.caption
 msgctxt "tfreeresistance_mh.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_mh.label15.caption
 #, fuzzy
@@ -13452,11 +13451,11 @@ msgstr ""
 #: tfreeresistance_mh.label17.caption
 msgctxt "tfreeresistance_mh.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr "Абсолютна шорсткість, мкм"
+msgstr ""
 
 #: tfreeresistance_mh.label19.caption
 msgid "Calculation by the method:"
-msgstr "Розрахунок методом:"
+msgstr ""
 
 #: tfreeresistance_mh.label2.caption
 msgctxt "tfreeresistance_mh.label2.caption"
@@ -13506,32 +13505,32 @@ msgstr "Водотоннажність"
 #, fuzzy
 msgctxt "tfreeresistance_mh.label27.caption"
 msgid "Waterplane area"
-msgstr "Площа КВЛ"
+msgstr "Площа ватерлінії"
 
 #: tfreeresistance_mh.label281.caption
 msgctxt "tfreeresistance_mh.label281.caption"
 msgid "Keel and skeg:"
-msgstr "Ознака наявності кілів (0-немає, 1-є):"
+msgstr ""
 
 #: tfreeresistance_mh.label3.caption
 msgctxt "tfreeresistance_mh.label3.caption"
 msgid "Step"
-msgstr "Крок"
+msgstr ""
 
 #: tfreeresistance_mh.label30.caption
 msgctxt "tfreeresistance_mh.label30.caption"
 msgid "Shaft brackets"
-msgstr "кронштейнів гребних валів"
+msgstr ""
 
 #: tfreeresistance_mh.label31.caption
 msgctxt "tfreeresistance_mh.label31.caption"
 msgid "Strut bossing"
-msgstr "обтічників кронштейнів валів"
+msgstr ""
 
 #: tfreeresistance_mh.label32.caption
 msgctxt "tfreeresistance_mh.label32.caption"
 msgid "Hull bossing"
-msgstr "викружки"
+msgstr ""
 
 #: tfreeresistance_mh.label33.caption
 msgctxt "tfreeresistance_mh.label33.caption"
@@ -13556,12 +13555,12 @@ msgstr ""
 #: tfreeresistance_mh.label37.caption
 msgctxt "tfreeresistance_mh.label37.caption"
 msgid "Stabiliser fins"
-msgstr "стабілізатори"
+msgstr ""
 
 #: tfreeresistance_mh.label38.caption
 msgctxt "tfreeresistance_mh.label38.caption"
 msgid "Dome"
-msgstr "обтічники"
+msgstr ""
 
 #: tfreeresistance_mh.label39.caption
 #, fuzzy
@@ -13579,12 +13578,12 @@ msgstr "Питома маса води"
 #, fuzzy
 msgctxt "tfreeresistance_mh.label40.caption"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: tfreeresistance_mh.label5.caption
 msgctxt "tfreeresistance_mh.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_mh.label6.caption
 #, fuzzy
@@ -13620,17 +13619,17 @@ msgstr ""
 #: tfreeresistance_mh.label6_3.caption
 msgctxt "tfreeresistance_mh.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr "Куpсовой кут набігання хвиль, гpад"
+msgstr ""
 
 #: tfreeresistance_mh.label6_4.caption
 msgctxt "tfreeresistance_mh.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr "Швидкість вітру, м/с"
+msgstr ""
 
 #: tfreeresistance_mh.label6_5.caption
 msgctxt "tfreeresistance_mh.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr "Куpсовой кут ветpа, гpад"
+msgstr ""
 
 #: tfreeresistance_mh.label6_6.caption
 msgctxt "tfreeresistance_mh.label6_6.caption"
@@ -13640,7 +13639,7 @@ msgstr ""
 #: tfreeresistance_mh.label6_7.caption
 msgctxt "tfreeresistance_mh.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr "Питома маса повітря, кг/м^3"
+msgstr ""
 
 #: tfreeresistance_mh.label6_8.caption
 msgctxt "tfreeresistance_mh.label6_8.caption"
@@ -13650,7 +13649,7 @@ msgstr ""
 #: tfreeresistance_mh.label6_9.caption
 msgctxt "tfreeresistance_mh.label6_9.caption"
 msgid "Depth of water, m"
-msgstr "Глибина води, м"
+msgstr ""
 
 #: tfreeresistance_mh.label7.caption
 msgctxt "tfreeresistance_mh.label7.caption"
@@ -13687,7 +13686,7 @@ msgstr "Результати"
 #: tfreeresistance_mh.results2.caption
 msgctxt "tfreeresistance_mh.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeresistance_mh.toolbar1.caption
 msgctxt "tfreeresistance_mh.toolbar1.caption"
@@ -13697,7 +13696,7 @@ msgstr ""
 #: tfreeresistance_mh.toolbutton20.hint
 msgctxt "tfreeresistance_mh.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_mh.toolbutton25.hint
 #, fuzzy
@@ -13810,16 +13809,16 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_oortmer.combobox.text
 msgid "van Oortmerssen 1971"
-msgstr "van Oortmerssen-1971"
+msgstr ""
 
 #: tfreeresistance_oortmer.data2.caption
 msgctxt "tfreeresistance_oortmer.data2.caption"
 msgid "Added data"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeresistance_oortmer.estimate2box.caption
 msgctxt "tfreeresistance_oortmer.estimate2box.caption"
@@ -13829,25 +13828,25 @@ msgstr ""
 #: tfreeresistance_oortmer.estimatebox.caption
 msgctxt "tfreeresistance_oortmer.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_oortmer.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_oortmer.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_oortmer.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_oortmer.groupbox3.caption
 msgctxt "tfreeresistance_oortmer.groupbox3.caption"
@@ -13863,12 +13862,12 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_oortmer.label10.caption
 msgctxt "tfreeresistance_oortmer.label10.caption"
 msgid "1/2 entrance angle, degr"
-msgstr "1/2 кута носового загострення, град"
+msgstr ""
 
 #: tfreeresistance_oortmer.label11.caption
 msgctxt "tfreeresistance_oortmer.label11.caption"
@@ -13878,7 +13877,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label13.caption
 msgctxt "tfreeresistance_oortmer.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_oortmer.label14.caption
 msgctxt "tfreeresistance_oortmer.label14.caption"
@@ -13894,12 +13893,12 @@ msgstr "Кількість гребних гвинтів"
 #: tfreeresistance_oortmer.label16.caption
 msgctxt "tfreeresistance_oortmer.label16.caption"
 msgid "Propeller diameter, m"
-msgstr "Діаметр ГГ, м"
+msgstr ""
 
 #: tfreeresistance_oortmer.label17.caption
 msgctxt "tfreeresistance_oortmer.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr "Абсолютна шорсткість, мкм"
+msgstr ""
 
 #: tfreeresistance_oortmer.label2.caption
 msgctxt "tfreeresistance_oortmer.label2.caption"
@@ -13959,33 +13958,33 @@ msgstr "Скег"
 #: tfreeresistance_oortmer.label281.caption
 msgctxt "tfreeresistance_oortmer.label281.caption"
 msgid "Keel and skeg:"
-msgstr "Ознака наявності кілів (0-немає, 1-є):"
+msgstr ""
 
 #: tfreeresistance_oortmer.label29.caption
 #, fuzzy
 msgctxt "tfreeresistance_oortmer.label29.caption"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: tfreeresistance_oortmer.label3.caption
 msgctxt "tfreeresistance_oortmer.label3.caption"
 msgid "Step"
-msgstr "Крок"
+msgstr ""
 
 #: tfreeresistance_oortmer.label30.caption
 msgctxt "tfreeresistance_oortmer.label30.caption"
 msgid "Shaft brackets"
-msgstr "кронштейнів гребних валів"
+msgstr ""
 
 #: tfreeresistance_oortmer.label31.caption
 msgctxt "tfreeresistance_oortmer.label31.caption"
 msgid "Strut bossing"
-msgstr "обтічників кронштейнів валів"
+msgstr ""
 
 #: tfreeresistance_oortmer.label32.caption
 msgctxt "tfreeresistance_oortmer.label32.caption"
 msgid "Hull bossing"
-msgstr "викружки"
+msgstr ""
 
 #: tfreeresistance_oortmer.label33.caption
 msgctxt "tfreeresistance_oortmer.label33.caption"
@@ -14010,12 +14009,12 @@ msgstr ""
 #: tfreeresistance_oortmer.label37.caption
 msgctxt "tfreeresistance_oortmer.label37.caption"
 msgid "Stabiliser fins"
-msgstr "стабілізатори"
+msgstr ""
 
 #: tfreeresistance_oortmer.label38.caption
 msgctxt "tfreeresistance_oortmer.label38.caption"
 msgid "Dome"
-msgstr "обтічники"
+msgstr ""
 
 #: tfreeresistance_oortmer.label4.caption
 #, fuzzy
@@ -14026,12 +14025,12 @@ msgstr "Питома маса води"
 #: tfreeresistance_oortmer.label48.caption
 msgctxt "tfreeresistance_oortmer.label48.caption"
 msgid "Calculation method:"
-msgstr "Метод розрахунку:"
+msgstr ""
 
 #: tfreeresistance_oortmer.label5.caption
 msgctxt "tfreeresistance_oortmer.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_oortmer.label6.caption
 #, fuzzy
@@ -14067,17 +14066,17 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_3.caption
 msgctxt "tfreeresistance_oortmer.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr "Куpсовой кут набігання хвиль, гpад"
+msgstr ""
 
 #: tfreeresistance_oortmer.label6_4.caption
 msgctxt "tfreeresistance_oortmer.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr "Швидкість вітру, м/с"
+msgstr ""
 
 #: tfreeresistance_oortmer.label6_5.caption
 msgctxt "tfreeresistance_oortmer.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr "Куpсовой кут ветpа, гpад"
+msgstr ""
 
 #: tfreeresistance_oortmer.label6_6.caption
 msgctxt "tfreeresistance_oortmer.label6_6.caption"
@@ -14087,7 +14086,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_7.caption
 msgctxt "tfreeresistance_oortmer.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr "Питома маса повітря, кг/м^3"
+msgstr ""
 
 #: tfreeresistance_oortmer.label6_8.caption
 msgctxt "tfreeresistance_oortmer.label6_8.caption"
@@ -14097,7 +14096,7 @@ msgstr ""
 #: tfreeresistance_oortmer.label6_9.caption
 msgctxt "tfreeresistance_oortmer.label6_9.caption"
 msgid "Depth of water, m"
-msgstr "Глибина води, м"
+msgstr ""
 
 #: tfreeresistance_oortmer.label7.caption
 msgctxt "tfreeresistance_oortmer.label7.caption"
@@ -14134,7 +14133,7 @@ msgstr "Результати"
 #: tfreeresistance_oortmer.results2.caption
 msgctxt "tfreeresistance_oortmer.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeresistance_oortmer.toolbar1.caption
 msgctxt "tfreeresistance_oortmer.toolbar1.caption"
@@ -14144,7 +14143,7 @@ msgstr ""
 #: tfreeresistance_oortmer.toolbutton20.hint
 msgctxt "tfreeresistance_oortmer.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_oortmer.toolbutton25.hint
 #, fuzzy
@@ -14258,17 +14257,17 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_ost.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_ost.combobox.text
 msgctxt "tfreeresistance_ost.combobox.text"
 msgid "Any displacement ships"
-msgstr "Будь-які водотонажні судна"
+msgstr ""
 
 #: tfreeresistance_ost.data2.caption
 msgctxt "tfreeresistance_ost.data2.caption"
 msgid "Added data"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeresistance_ost.estimate2box.caption
 msgctxt "tfreeresistance_ost.estimate2box.caption"
@@ -14278,25 +14277,25 @@ msgstr ""
 #: tfreeresistance_ost.estimatebox.caption
 msgctxt "tfreeresistance_ost.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_ost.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_ost.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_ost.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_ost.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_ost.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_ost.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_ost.groupbox3.caption
 msgctxt "tfreeresistance_ost.groupbox3.caption"
@@ -14312,22 +14311,22 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_ost.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_ost.label10.caption
 msgctxt "tfreeresistance_ost.label10.caption"
 msgid "Type of forward stern"
-msgstr "Тип носового краю"
+msgstr ""
 
 #: tfreeresistance_ost.label11.caption
 msgctxt "tfreeresistance_ost.label11.caption"
 msgid "Type of after stern"
-msgstr "Тип кормового краю"
+msgstr ""
 
 #: tfreeresistance_ost.label13.caption
 msgctxt "tfreeresistance_ost.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_ost.label15.caption
 #, fuzzy
@@ -14343,7 +14342,7 @@ msgstr ""
 #: tfreeresistance_ost.label17.caption
 msgctxt "tfreeresistance_ost.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr "Абсолютна шорсткість, мкм"
+msgstr ""
 
 #: tfreeresistance_ost.label19.caption
 msgctxt "tfreeresistance_ost.label19.caption"
@@ -14398,32 +14397,32 @@ msgstr "Водотоннажність"
 #, fuzzy
 msgctxt "tfreeresistance_ost.label27.caption"
 msgid "Waterplane area"
-msgstr "Площа КВЛ"
+msgstr "Площа ватерлінії"
 
 #: tfreeresistance_ost.label281.caption
 msgctxt "tfreeresistance_ost.label281.caption"
 msgid "Keel and skeg:"
-msgstr "Ознака наявності кілів (0-немає, 1-є):"
+msgstr ""
 
 #: tfreeresistance_ost.label3.caption
 msgctxt "tfreeresistance_ost.label3.caption"
 msgid "Step"
-msgstr "Крок"
+msgstr ""
 
 #: tfreeresistance_ost.label30.caption
 msgctxt "tfreeresistance_ost.label30.caption"
 msgid "Shaft brackets"
-msgstr "кронштейнів гребних валів"
+msgstr ""
 
 #: tfreeresistance_ost.label31.caption
 msgctxt "tfreeresistance_ost.label31.caption"
 msgid "Strut bossing"
-msgstr "обтічників кронштейнів валів"
+msgstr ""
 
 #: tfreeresistance_ost.label32.caption
 msgctxt "tfreeresistance_ost.label32.caption"
 msgid "Hull bossing"
-msgstr "викружки"
+msgstr ""
 
 #: tfreeresistance_ost.label33.caption
 msgctxt "tfreeresistance_ost.label33.caption"
@@ -14448,12 +14447,12 @@ msgstr ""
 #: tfreeresistance_ost.label37.caption
 msgctxt "tfreeresistance_ost.label37.caption"
 msgid "Stabiliser fins"
-msgstr "стабілізатори"
+msgstr ""
 
 #: tfreeresistance_ost.label38.caption
 msgctxt "tfreeresistance_ost.label38.caption"
 msgid "Dome"
-msgstr "обтічники"
+msgstr ""
 
 #: tfreeresistance_ost.label39.caption
 #, fuzzy
@@ -14471,12 +14470,12 @@ msgstr "Питома маса води"
 #, fuzzy
 msgctxt "tfreeresistance_ost.label40.caption"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: tfreeresistance_ost.label5.caption
 msgctxt "tfreeresistance_ost.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_ost.label6.caption
 #, fuzzy
@@ -14512,17 +14511,17 @@ msgstr ""
 #: tfreeresistance_ost.label6_3.caption
 msgctxt "tfreeresistance_ost.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr "Куpсовой кут набігання хвиль, гpад"
+msgstr ""
 
 #: tfreeresistance_ost.label6_4.caption
 msgctxt "tfreeresistance_ost.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr "Швидкість вітру, м/с"
+msgstr ""
 
 #: tfreeresistance_ost.label6_5.caption
 msgctxt "tfreeresistance_ost.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr "Куpсовой кут ветpа, гpад"
+msgstr ""
 
 #: tfreeresistance_ost.label6_6.caption
 msgctxt "tfreeresistance_ost.label6_6.caption"
@@ -14532,7 +14531,7 @@ msgstr ""
 #: tfreeresistance_ost.label6_7.caption
 msgctxt "tfreeresistance_ost.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr "Питома маса повітря, кг/м^3"
+msgstr ""
 
 #: tfreeresistance_ost.label6_8.caption
 msgctxt "tfreeresistance_ost.label6_8.caption"
@@ -14542,7 +14541,7 @@ msgstr ""
 #: tfreeresistance_ost.label6_9.caption
 msgctxt "tfreeresistance_ost.label6_9.caption"
 msgid "Depth of water, m"
-msgstr "Глибина води, м"
+msgstr ""
 
 #: tfreeresistance_ost.label7.caption
 msgctxt "tfreeresistance_ost.label7.caption"
@@ -14579,7 +14578,7 @@ msgstr "Результати"
 #: tfreeresistance_ost.results2.caption
 msgctxt "tfreeresistance_ost.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeresistance_ost.toolbar1.caption
 msgctxt "tfreeresistance_ost.toolbar1.caption"
@@ -14589,7 +14588,7 @@ msgstr ""
 #: tfreeresistance_ost.toolbutton20.hint
 msgctxt "tfreeresistance_ost.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_ost.toolbutton25.hint
 #, fuzzy
@@ -14695,11 +14694,11 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_planing.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_planing.checkbox3.caption
 msgid "Add aerodynamic resistance"
-msgstr "Урахувати аеродинамічний опір"
+msgstr ""
 
 #: tfreeresistance_planing.checkbox4.caption
 msgid "Add appendage resistance with steady engine"
@@ -14711,7 +14710,7 @@ msgstr ""
 
 #: tfreeresistance_planing.checkbox6.caption
 msgid "Add round bilge influence"
-msgstr "Урахувати вплив круглих скул"
+msgstr ""
 
 #: tfreeresistance_planing.combobox.text
 msgid "Sedov-Perelmootre"
@@ -14801,7 +14800,7 @@ msgstr ""
 #: tfreeresistance_planing.label22.caption
 msgctxt "tfreeresistance_planing.label22.caption"
 msgid "Calculation method:"
-msgstr "Метод розрахунку:"
+msgstr ""
 
 #: tfreeresistance_planing.label23.caption
 #, fuzzy
@@ -14825,7 +14824,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label25.caption
 msgid "Diameter of propeller"
-msgstr "Діаметр гребного гвинта"
+msgstr ""
 
 #: tfreeresistance_planing.label25_.caption
 msgctxt "tfreeresistance_planing.label25_.caption"
@@ -14834,7 +14833,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label26.caption
 msgid "Deadrise transom"
-msgstr "Кут кілеватості на транці"
+msgstr ""
 
 #: tfreeresistance_planing.label26_.caption
 msgctxt "tfreeresistance_planing.label26_.caption"
@@ -14852,7 +14851,7 @@ msgstr ""
 
 #: tfreeresistance_planing.label28.caption
 msgid "Propulsor type:"
-msgstr "Тип рушія:"
+msgstr ""
 
 #: tfreeresistance_planing.label3.caption
 #, fuzzy
@@ -14870,7 +14869,7 @@ msgstr "Осадка"
 #, fuzzy
 msgctxt "tfreeresistance_planing.label6.caption"
 msgid "Wetted surface area"
-msgstr "Змочена площа"
+msgstr "Змочена площа поверхні"
 
 #: tfreeresistance_planing.label7.caption
 msgctxt "tfreeresistance_planing.label7.caption"
@@ -14903,7 +14902,7 @@ msgstr "Друк результатів розрахунку."
 #, fuzzy
 msgctxt "tfreeresistance_planing.tabsheet1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_planing.tabsheet2.caption
 #, fuzzy
@@ -14968,17 +14967,17 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.checkbox2.caption"
 msgid "Extract data from current hull"
-msgstr "Імпорт даних із проекту"
+msgstr "Взяти дані з поточ.проекту"
 
 #: tfreeresistance_rbhs.combobox.text
 msgctxt "tfreeresistance_rbhs.combobox.text"
 msgid "Any displacement ships"
-msgstr "Будь-які водотонажні судна"
+msgstr ""
 
 #: tfreeresistance_rbhs.data2.caption
 msgctxt "tfreeresistance_rbhs.data2.caption"
 msgid "Added data"
-msgstr "Додаткові дані"
+msgstr ""
 
 #: tfreeresistance_rbhs.estimate2box.caption
 msgctxt "tfreeresistance_rbhs.estimate2box.caption"
@@ -14988,25 +14987,25 @@ msgstr ""
 #: tfreeresistance_rbhs.estimatebox.caption
 msgctxt "tfreeresistance_rbhs.estimatebox.caption"
 msgid "Use estimate"
-msgstr "Використ. розрахункову"
+msgstr ""
 
 #: tfreeresistance_rbhs.general.caption
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.general.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_rbhs.groupbox1.caption
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.groupbox1.caption"
 msgid "General"
-msgstr "Основні"
+msgstr "Основні хар-ки"
 
 #: tfreeresistance_rbhs.groupbox2.caption
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.groupbox2.caption"
 msgid "Hull"
-msgstr "Корпус:"
+msgstr "Корпус"
 
 #: tfreeresistance_rbhs.groupbox3.caption
 msgctxt "tfreeresistance_rbhs.groupbox3.caption"
@@ -15022,22 +15021,22 @@ msgstr ""
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.label1.caption"
 msgid "Start speed"
-msgstr "Почат. швидкість"
+msgstr "Початкова швидкість"
 
 #: tfreeresistance_rbhs.label10.caption
 msgctxt "tfreeresistance_rbhs.label10.caption"
 msgid "Type of forward stern"
-msgstr "Тип носового краю"
+msgstr ""
 
 #: tfreeresistance_rbhs.label11.caption
 msgctxt "tfreeresistance_rbhs.label11.caption"
 msgid "Type of after stern"
-msgstr "Тип кормового краю"
+msgstr ""
 
 #: tfreeresistance_rbhs.label13.caption
 msgctxt "tfreeresistance_rbhs.label13.caption"
 msgid "Wetted surface"
-msgstr "Змочена площа"
+msgstr ""
 
 #: tfreeresistance_rbhs.label15.caption
 #, fuzzy
@@ -15053,7 +15052,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label17.caption
 msgctxt "tfreeresistance_rbhs.label17.caption"
 msgid "Absolute roughness, mkm"
-msgstr "Абсолютна шорсткість, мкм"
+msgstr ""
 
 #: tfreeresistance_rbhs.label19.caption
 msgctxt "tfreeresistance_rbhs.label19.caption"
@@ -15108,32 +15107,32 @@ msgstr "Водотоннажність"
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.label27.caption"
 msgid "Waterplane area"
-msgstr "Площа КВЛ"
+msgstr "Площа ватерлінії"
 
 #: tfreeresistance_rbhs.label281.caption
 msgctxt "tfreeresistance_rbhs.label281.caption"
 msgid "Keel and skeg:"
-msgstr "Ознака наявності кілів (0-немає, 1-є):"
+msgstr ""
 
 #: tfreeresistance_rbhs.label3.caption
 msgctxt "tfreeresistance_rbhs.label3.caption"
 msgid "Step"
-msgstr "Крок"
+msgstr ""
 
 #: tfreeresistance_rbhs.label30.caption
 msgctxt "tfreeresistance_rbhs.label30.caption"
 msgid "Shaft brackets"
-msgstr "кронштейнів гребних валів"
+msgstr ""
 
 #: tfreeresistance_rbhs.label31.caption
 msgctxt "tfreeresistance_rbhs.label31.caption"
 msgid "Strut bossing"
-msgstr "обтічників кронштейнів валів"
+msgstr ""
 
 #: tfreeresistance_rbhs.label32.caption
 msgctxt "tfreeresistance_rbhs.label32.caption"
 msgid "Hull bossing"
-msgstr "викружки"
+msgstr ""
 
 #: tfreeresistance_rbhs.label33.caption
 msgctxt "tfreeresistance_rbhs.label33.caption"
@@ -15158,12 +15157,12 @@ msgstr ""
 #: tfreeresistance_rbhs.label37.caption
 msgctxt "tfreeresistance_rbhs.label37.caption"
 msgid "Stabiliser fins"
-msgstr "стабілізатори"
+msgstr ""
 
 #: tfreeresistance_rbhs.label38.caption
 msgctxt "tfreeresistance_rbhs.label38.caption"
 msgid "Dome"
-msgstr "обтічники"
+msgstr ""
 
 #: tfreeresistance_rbhs.label39.caption
 #, fuzzy
@@ -15181,12 +15180,12 @@ msgstr "Питома маса води"
 #, fuzzy
 msgctxt "tfreeresistance_rbhs.label40.caption"
 msgid "Bilge keels"
-msgstr "Дніщеві кілі"
+msgstr "Днищеві кілі"
 
 #: tfreeresistance_rbhs.label5.caption
 msgctxt "tfreeresistance_rbhs.label5.caption"
 msgid "Viscosity"
-msgstr "В'язкість*10^6"
+msgstr ""
 
 #: tfreeresistance_rbhs.label6.caption
 #, fuzzy
@@ -15222,17 +15221,17 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_3.caption
 msgctxt "tfreeresistance_rbhs.label6_3.caption"
 msgid "Course angle of moving wave, degree"
-msgstr "Куpсовой кут набігання хвиль, гpад"
+msgstr ""
 
 #: tfreeresistance_rbhs.label6_4.caption
 msgctxt "tfreeresistance_rbhs.label6_4.caption"
 msgid "Wind speed, m/s"
-msgstr "Швидкість вітру, м/с"
+msgstr ""
 
 #: tfreeresistance_rbhs.label6_5.caption
 msgctxt "tfreeresistance_rbhs.label6_5.caption"
 msgid "Course wind angle, degree"
-msgstr "Куpсовой кут ветpа, гpад"
+msgstr ""
 
 #: tfreeresistance_rbhs.label6_6.caption
 msgctxt "tfreeresistance_rbhs.label6_6.caption"
@@ -15242,7 +15241,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_7.caption
 msgctxt "tfreeresistance_rbhs.label6_7.caption"
 msgid "Air density, kg/m^3"
-msgstr "Питома маса повітря, кг/м^3"
+msgstr ""
 
 #: tfreeresistance_rbhs.label6_8.caption
 msgctxt "tfreeresistance_rbhs.label6_8.caption"
@@ -15252,7 +15251,7 @@ msgstr ""
 #: tfreeresistance_rbhs.label6_9.caption
 msgctxt "tfreeresistance_rbhs.label6_9.caption"
 msgid "Depth of water, m"
-msgstr "Глибина води, м"
+msgstr ""
 
 #: tfreeresistance_rbhs.label7.caption
 msgctxt "tfreeresistance_rbhs.label7.caption"
@@ -15289,7 +15288,7 @@ msgstr "Результати"
 #: tfreeresistance_rbhs.results2.caption
 msgctxt "tfreeresistance_rbhs.results2.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tfreeresistance_rbhs.toolbar1.caption
 msgctxt "tfreeresistance_rbhs.toolbar1.caption"
@@ -15299,7 +15298,7 @@ msgstr ""
 #: tfreeresistance_rbhs.toolbutton20.hint
 msgctxt "tfreeresistance_rbhs.toolbutton20.hint"
 msgid "Start the calculation."
-msgstr "Почати розрахунок."
+msgstr ""
 
 #: tfreeresistance_rbhs.toolbutton25.hint
 #, fuzzy
@@ -15391,22 +15390,22 @@ msgstr ""
 #: tfreerotatedialog.cancelbutton.hint
 msgctxt "tfreerotatedialog.cancelbutton.hint"
 msgid "Cancel operation."
-msgstr "Відмінити операцію."
+msgstr ""
 
 #: tfreerotatedialog.caption
 msgctxt "tfreerotatedialog.caption"
 msgid "Rotation"
-msgstr "Обертання"
+msgstr ""
 
 #: tfreerotatedialog.label1.caption
 msgctxt "tfreerotatedialog.label1.caption"
 msgid "Longitudinal axis"
-msgstr "Вісі абсцис"
+msgstr ""
 
 #: tfreerotatedialog.label2.caption
 msgctxt "tfreerotatedialog.label2.caption"
 msgid "Transverse axis"
-msgstr "Вісі ординат"
+msgstr ""
 
 #: tfreerotatedialog.label3.caption
 msgctxt "tfreerotatedialog.label3.caption"
@@ -15416,7 +15415,7 @@ msgstr ""
 #: tfreerotatedialog.label4.caption
 msgctxt "tfreerotatedialog.label4.caption"
 msgid "Vertical axis"
-msgstr "Вісі апликат"
+msgstr ""
 
 #: tfreerotatedialog.label6.caption
 msgctxt "tfreerotatedialog.label6.caption"
@@ -15436,7 +15435,7 @@ msgstr ""
 #: tfreerotatedialog.okbutton.hint
 msgctxt "tfreerotatedialog.okbutton.hint"
 msgid "Close dialog."
-msgstr "Закрити діалог"
+msgstr ""
 
 #: tfreerotatedialog.panel3.caption
 msgid "Panel3"
@@ -15450,12 +15449,12 @@ msgstr ""
 #: tfreerotatemdialog.cancelbutton.hint
 msgctxt "tfreerotatemdialog.cancelbutton.hint"
 msgid "Cancel operation."
-msgstr "Відмінити операцію."
+msgstr ""
 
 #: tfreerotatemdialog.caption
 msgctxt "tfreerotatemdialog.caption"
 msgid "Rotation"
-msgstr "Обертання"
+msgstr ""
 
 #: tfreerotatemdialog.groupbox1.caption
 msgid "Axis:"
@@ -15463,12 +15462,12 @@ msgstr ""
 
 #: tfreerotatemdialog.groupbox2.caption
 msgid "Current angles:"
-msgstr "Поточні вугли:"
+msgstr ""
 
 #: tfreerotatemdialog.label1.caption
 msgctxt "tfreerotatemdialog.label1.caption"
 msgid "Longitudinal axis"
-msgstr "Вісі абсцис"
+msgstr ""
 
 #: tfreerotatemdialog.label11.caption
 msgid "of the heel:"
@@ -15500,7 +15499,7 @@ msgstr ""
 #: tfreerotatemdialog.label2.caption
 msgctxt "tfreerotatemdialog.label2.caption"
 msgid "Transverse axis"
-msgstr "Вісі ординат"
+msgstr ""
 
 #: tfreerotatemdialog.label3.caption
 msgctxt "tfreerotatemdialog.label3.caption"
@@ -15510,7 +15509,7 @@ msgstr ""
 #: tfreerotatemdialog.label4.caption
 msgctxt "tfreerotatemdialog.label4.caption"
 msgid "Vertical axis"
-msgstr "Вісі апликат"
+msgstr ""
 
 #: tfreerotatemdialog.label6.caption
 msgctxt "tfreerotatemdialog.label6.caption"
@@ -15530,25 +15529,25 @@ msgstr ""
 #: tfreerotatemdialog.okbutton.hint
 msgctxt "tfreerotatemdialog.okbutton.hint"
 msgid "Close dialog."
-msgstr "Закрити діалог"
+msgstr ""
 
 #: tfreeselectlayersdialog.bitbtn1.caption
 msgctxt "tfreeselectlayersdialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tfreeselectlayersdialog.bitbtn2.caption
 msgctxt "tfreeselectlayersdialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeselectlayersdialog.caption
 msgid "Select layers."
-msgstr "Вибір шарів."
+msgstr ""
 
 #: tfreeselectlayersdialog.checkbox.caption
 msgid "Include points that are shared with unselected layers"
-msgstr "Вкл. точки спільних з невибраними шарами"
+msgstr ""
 
 #: tfreesplashwindow.button1.caption
 msgid "Read GPL"
@@ -15557,7 +15556,7 @@ msgstr ""
 #: tfreesplashwindow.button2.caption
 msgctxt "tfreesplashwindow.button2.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tfreesplashwindow.caption
 msgctxt "tfreesplashwindow.caption"
@@ -15624,7 +15623,7 @@ msgstr ""
 #: tfreesplitsectiondialog.bitbtn1.caption
 msgctxt "tfreesplitsectiondialog.bitbtn1.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tfreesplitsectiondialog.caption
 msgid "Split section location"
@@ -15633,7 +15632,7 @@ msgstr ""
 #: tfreesplitsectiondialog.speedbutton1.hint
 msgctxt "tfreesplitsectiondialog.speedbutton1.hint"
 msgid "Medium"
-msgstr "Середня"
+msgstr ""
 
 #: tfreesplitsectiondialog.speedbutton3.hint
 msgid "From hydrostatics"
@@ -15641,16 +15640,16 @@ msgstr ""
 
 #: tfreeundohistorydialog.caption
 msgid "Undo history."
-msgstr "Undo історія."
+msgstr ""
 
 #: tfreeundohistorydialog.speedbutton1.caption
 msgid "Select"
-msgstr "Вибір"
+msgstr ""
 
 #: tfreeundohistorydialog.speedbutton2.caption
 msgctxt "tfreeundohistorydialog.speedbutton2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tfreeupdateform.actioncheckupdate.caption
 msgctxt "tfreeupdateform.actioncheckupdate.caption"
@@ -15660,7 +15659,7 @@ msgstr ""
 #: tfreeupdateform.bitbtn2.caption
 msgctxt "tfreeupdateform.bitbtn2.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: tfreeupdateform.caption
 msgid "Check updates"
@@ -15804,7 +15803,7 @@ msgstr ""
 #: tmainform.cbprecision.text
 msgctxt "tmainform.cbprecision.text"
 msgid "Medium"
-msgstr "Середня"
+msgstr ""
 
 #: tmainform.checkmodel.caption
 msgid "Check model"
@@ -15847,7 +15846,7 @@ msgstr "Зменшення масштабу кривин"
 #: tmainform.delete.caption
 msgctxt "tmainform.delete.caption"
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Видалення"
 
 #: tmainform.delete.hint
 msgid "Delete all selected items."
@@ -16027,7 +16026,7 @@ msgstr ""
 #: tmainform.exportpart.caption
 msgctxt "tmainform.exportpart.caption"
 msgid "Part..."
-msgstr "Частина з *.part"
+msgstr "Частина у *.part"
 
 #: tmainform.exportstl.caption
 msgid "STL..."
@@ -16061,11 +16060,11 @@ msgstr "Шлях та ім'я для збереження файлу."
 #: tmainform.help1.caption
 msgctxt "tmainform.help1.caption"
 msgid "Help"
-msgstr "Help"
+msgstr ""
 
 #: tmainform.helpabout.caption
 msgid "About"
-msgstr "Про себе"
+msgstr ""
 
 #: tmainform.helpaction.caption
 msgid "HelpAction"
@@ -16206,7 +16205,7 @@ msgstr "Переклацнути нормалі на обраних гранях
 #: tmainform.keelrudderwizard.caption
 msgctxt "tmainform.keelrudderwizard.caption"
 msgid "Keel and rudder wizard"
-msgstr "Завдання характеристик кіля й стерна"
+msgstr "Кіль і стерно"
 
 #: tmainform.keelrudderwizard.hint
 msgid "Create a default rudder or keel."
@@ -16226,7 +16225,7 @@ msgstr ""
 
 #: tmainform.labelundomemory.caption
 msgid "Undo memory : 0 kb."
-msgstr "Зайнято пам'яті : 0 kb."
+msgstr ""
 
 #: tmainform.layer1.caption
 #, fuzzy
@@ -16324,7 +16323,7 @@ msgstr "Розщепити поверхню вставкою нової край
 #: tmainform.newface.caption
 msgctxt "tmainform.newface.caption"
 msgid "New"
-msgstr "Нова"
+msgstr "Новий"
 
 #: tmainform.newface.hint
 msgid "Create a new controlface from selected controlpoints."
@@ -16333,7 +16332,7 @@ msgstr "Створити нову поверхню із обраних конт�
 #: tmainform.newlayer.caption
 msgctxt "tmainform.newlayer.caption"
 msgid "New"
-msgstr "Нова"
+msgstr "Новий"
 
 #: tmainform.newlayer.hint
 msgid "Add a new empty layer to the model."
@@ -16466,7 +16465,7 @@ msgstr ""
 #: tmainform.ransform1.caption
 msgctxt "tmainform.ransform1.caption"
 msgid "Transform"
-msgstr "Запуск"
+msgstr "Трансформації"
 
 #: tmainform.recentfiles.caption
 msgid "Recent files"
@@ -16603,7 +16602,7 @@ msgstr "Зробити батокси видимими чи ні."
 #: tmainform.showcontrolcurves.caption
 msgctxt "tmainform.showcontrolcurves.caption"
 msgid "Control curves"
-msgstr "Криві керування"
+msgstr "Криві контролю"
 
 #: tmainform.showcontrolcurves.hint
 msgid "Show control curves."
@@ -16671,12 +16670,12 @@ msgstr "Розрахунок СПШ і Ц.Т."
 #: tmainform.showinterioredges.caption
 msgctxt "tmainform.showinterioredges.caption"
 msgid "Interior edges"
-msgstr "Внутрішні крайки"
+msgstr "Внутрішні грані"
 
 #: tmainform.showinterioredges.hint
 msgctxt "tmainform.showinterioredges.hint"
 msgid "Show interior edges."
-msgstr "Показ внутрішніх крайок."
+msgstr "Показ внутрішніх граней."
 
 #: tmainform.showlinesplan.caption
 msgid "Linesplan"
@@ -16822,16 +16821,16 @@ msgstr "Вікна"
 #: tsaveimagedialog.bitbtn1.caption
 msgctxt "tsaveimagedialog.bitbtn1.caption"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: tsaveimagedialog.bitbtn2.caption
 msgctxt "tsaveimagedialog.bitbtn2.caption"
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: tsaveimagedialog.caption
 msgid "Save image."
-msgstr "Збереження зображення."
+msgstr ""
 
 #: tsaveimagedialog.edit3.text
 msgctxt "tsaveimagedialog.edit3.text"
@@ -16840,20 +16839,20 @@ msgstr ""
 
 #: tsaveimagedialog.label1.caption
 msgid "Width"
-msgstr "Ширина"
+msgstr ""
 
 #: tsaveimagedialog.label2.caption
 msgid "Height"
-msgstr "Висота"
+msgstr ""
 
 #: tsaveimagedialog.label3.caption
 msgctxt "tsaveimagedialog.label3.caption"
 msgid "[pixels]"
-msgstr "[pixels]"
+msgstr ""
 
 #: tsaveimagedialog.label4.caption
 msgid "Estimated size"
-msgstr "Займає місця"
+msgstr ""
 
 #: tsaveimagedialog.label5.caption
 msgid "KB"
@@ -16862,7 +16861,7 @@ msgstr ""
 #: tsaveimagedialog.label6.caption
 msgctxt "tsaveimagedialog.label6.caption"
 msgid "[pixels]"
-msgstr "[pixels]"
+msgstr ""
 
 #: tsaveimagedialog.label7.caption
 #, fuzzy
@@ -16885,7 +16884,7 @@ msgstr ""
 #: ttiledialog.bbclose.caption
 msgctxt "ttiledialog.bbclose.caption"
 msgid "Close"
-msgstr "Закрити"
+msgstr ""
 
 #: ttiledialog.buttonopenfile.caption
 msgid "Open Another"

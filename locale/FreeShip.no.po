@@ -7298,19 +7298,6 @@ msgstr ""
 msgid "Linear constraint"
 msgstr ""
 
-#: tfreecontrolpointform.label1.caption
-msgid "Label1"
-msgstr ""
-
-#: tfreecontrolpointform.label2.caption
-msgctxt "tfreecontrolpointform.label2.caption"
-msgid "Label2"
-msgstr ""
-
-#: tfreecontrolpointform.label3.caption
-msgid "Label3"
-msgstr ""
-
 #: tfreecontrolpointform.label4.caption
 #, fuzzy
 msgctxt "tfreecontrolpointform.label4.caption"
@@ -7322,6 +7309,10 @@ msgstr "Avstand"
 msgctxt "tfreecontrolpointform.label5.caption"
 msgid "Angle"
 msgstr "Angle"
+
+#: tfreecontrolpointform.labelalpha.caption
+msgid "α"
+msgstr ""
 
 #: tfreecontrolpointform.labelax.caption
 msgctxt "tfreecontrolpointform.labelax.caption"
@@ -7336,6 +7327,14 @@ msgstr ""
 #: tfreecontrolpointform.labelaz.caption
 msgctxt "tfreecontrolpointform.labelaz.caption"
 msgid "º"
+msgstr ""
+
+#: tfreecontrolpointform.labelbeta.caption
+msgid "β"
+msgstr ""
+
+#: tfreecontrolpointform.labelgamma.caption
+msgid "γ"
 msgstr ""
 
 #: tfreecontrolpointform.labelname.caption

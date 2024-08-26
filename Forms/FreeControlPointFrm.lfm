@@ -126,41 +126,41 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentFont = False
       TabOrder = 2
     end
-    object Label1: TLabel
-      Left = 193
+    object LabelAlpha: TLabel
+      Left = 199
       Height = 36
       Top = 6
-      Width = 58
-      BorderSpacing.Left = 6
-      Caption = 'Label1'
+      Width = 12
+      BorderSpacing.Left = 12
+      Caption = 'α'
       Layout = tlCenter
       ParentColor = False
       ParentFont = False
     end
-    object Label2: TLabel
-      Left = 193
+    object LabelBeta: TLabel
+      Left = 199
       Height = 36
       Top = 44
-      Width = 58
+      Width = 12
       BorderSpacing.Left = 6
-      Caption = 'Label2'
+      Caption = 'β'
       Layout = tlCenter
       ParentColor = False
       ParentFont = False
     end
-    object Label3: TLabel
-      Left = 193
+    object LabelGamma: TLabel
+      Left = 199
       Height = 36
       Top = 82
-      Width = 58
+      Width = 12
       BorderSpacing.Left = 6
-      Caption = 'Label3'
+      Caption = 'γ'
       Layout = tlCenter
       ParentColor = False
       ParentFont = False
     end
     object EditAX: TFloatSpinEdit
-      Left = 257
+      Left = 217
       Height = 36
       Top = 6
       Width = 80
@@ -172,7 +172,7 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 3
     end
     object EditAY: TFloatSpinEdit
-      Left = 257
+      Left = 217
       Height = 36
       Top = 44
       Width = 80
@@ -185,7 +185,7 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 4
     end
     object EditAZ: TFloatSpinEdit
-      Left = 257
+      Left = 217
       Height = 36
       Top = 82
       Width = 80
@@ -198,7 +198,7 @@ object FreeControlPointForm: TFreeControlPointForm
       TabOrder = 5
     end
     object LabelAX: TLabel
-      Left = 343
+      Left = 303
       Height = 36
       Top = 6
       Width = 7
@@ -208,7 +208,7 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentFont = False
     end
     object LabelAY: TLabel
-      Left = 343
+      Left = 303
       Height = 36
       Top = 44
       Width = 7
@@ -218,7 +218,7 @@ object FreeControlPointForm: TFreeControlPointForm
       ParentFont = False
     end
     object LabelAZ: TLabel
-      Left = 343
+      Left = 303
       Height = 36
       Top = 82
       Width = 7

@@ -68,9 +68,9 @@ type
     EditAZ: TFloatSpinEdit;
     GroupBoxLinearConstraint: TGroupBox;
     GroupBoxAnchorConstraint: TGroupBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
+    LabelAlpha: TLabel;
+    LabelBeta: TLabel;
+    LabelGamma: TLabel;
     LabelName: TLabel;
     LabelX: TLabel;
     EditY: TFloatSpinEdit;
@@ -155,16 +155,17 @@ uses FreeStringsUnit,
      FreeShipUnit;
 
 {$IFnDEF FPC}
-  {$R *.dfm}
+  {$R *.lfm}
 {$ELSE}
   {$R *.lfm}
 {$ENDIF}
 
+{
 const cDegree=#$C2#$B0; //UTF8 degree sign
-      cAlpha=#$CE#$B1;
-      cBeta=#$CE#$B2;
-      cGamma=#$CE#$B3;
-
+      cAlpha='α'; //#$CE#$B1;
+      cBeta ='β'; //#$CE#$B2;
+      cGamma='γ'; //#$CE#$B3;
+}
 resourcestring
   rsAngle = 'Angle';
   rsAngles = 'Angles';
@@ -983,12 +984,12 @@ begin
   EditX.Increment := TFreeShip(FreeShip).Visibility.CursorIncrement;
   EditY.Increment := TFreeShip(FreeShip).Visibility.CursorIncrement;
   EditZ.Increment := TFreeShip(FreeShip).Visibility.CursorIncrement;
-  LabelAX.Caption:=cDegree;
+  {LabelAX.Caption:=cDegree;
   LabelAY.Caption:=cDegree;
   LabelAZ.Caption:=cDegree;
-  Label1.Caption:=cAlpha;
-  Label2.Caption:=cBeta;
-  Label3.Caption:=cGamma;
+  LabelAlpha.Caption:=cAlpha;
+  LabelBeta.Caption:=cBeta;
+  LabelGamma.Caption:=cGamma;}
 end;
 
 procedure TFreeControlPointForm.FormCreate(Sender: TObject);

@@ -69,6 +69,8 @@ const langs: array of String = (
 'uk',
 'vi' );
 
+//const languages: array of String = ('Ukrainian');
+//const langs: array of String = ('uk');
 
 procedure runConversion;
 
@@ -591,6 +593,26 @@ begin
   end;
 end;
 
+
+function FindIniTranslationItemByEnglishString(es:String): String;
+var Sections, SectionKeys: TStrings;
+  sec, rsid, s,t: string;
+  i: integer;
+begin
+  Result := '';
+  for i:=0 to EnglishMap.Count-1 do
+  begin
+    rsid := EnglishMap.Keys[i];
+    if EnglishMap[rsid] = es then
+    begin
+      sec := (rsid.split('.'))[0];
+      t := CurrentLanguage.ReadString(sec, rsid, '');
+      Result := t;
+      exit;
+    end;
+  end;
+end;
+
 procedure translateGUIforLang(lang:string; ln:string; poFile:TPOFile);
 var es, tl, rsid, sec: String;
   i: integer;
@@ -599,6 +621,41 @@ var es, tl, rsid, sec: String;
   foundItems: TPOItemList;
 begin
   writeln('convertGUIforLang');
+
+  for i:=0 to  poFile.Count-1 do
+  begin
+    CurrentItem := poFile.PoItems[i];
+    if CurrentItem.Translation = '' then
+    begin
+
+      rsid := CurrentItem.IdentifierLow;
+      es := CurrentItem.Original;
+      tl := FindIniTranslationItemByEnglishString(es);
+
+      if tl = '' then
+      begin
+        sec := rsid.split('.')[0];
+        tl := CurrentLanguage.ReadString(sec, rsid, '');
+      end;
+
+      if tl > '' then
+        poFile.FillItem(CurrentItem,
+          {Identifier} rsid, {Original} es, {Translation} tl,
+          {Comments} '', {Context} '', {Flags} '', {PreviousID} '');
+
+    end;
+  end;
+
+end;
+
+procedure translateGUIforLang0(lang:string; ln:string; poFile:TPOFile);
+var es, tl, rsid, sec: String;
+  i: integer;
+  Sections, SectionKeys: TStrings;
+  ci,CurrentItem: TPOFileItem;
+  foundItems: TPOItemList;
+begin
+  writeln('convertGUIforLang0');
   Sections := TStringList.Create;
   SectionKeys := TStringList.Create;
 
@@ -612,6 +669,9 @@ begin
     SectionKeys.Clear;
     CurrentLanguage.ReadSection(sec, SectionKeys);
     for rsid in SectionKeys do
+    begin
+      if rsid.ToLower = 'tfreeresistance_holtr.caption'
+      then i:=0;
       if EnglishMap.IndexOf(rsid)>=0 then
       begin
         es := EnglishMap[rsid];
@@ -624,16 +684,51 @@ begin
             for ci in foundItems do
             begin
               CurrentItem := ci;
-              CurrentItem.Translation := tl;
-              poFile.FillItem(CurrentItem,
-                {Identifier} rsid, {Original} es, {Translation} tl,
-                {Comments} '', {Context} '', {Flags} '', {PreviousID} '');
+              if CurrentItem.Translation.Trim = '' then
+              begin
+                CurrentItem.Translation := tl;
+                poFile.FillItem(CurrentItem,
+                  {Identifier} rsid, {Original} es, {Translation} tl,
+                  {Comments} '', {Context} '', {Flags} '', {PreviousID} '');
+              end;
+            end;
+            foundItems.Free;
+            // check by RsId
+            CurrentItem := poFile.FindPoItem(rsid);
+            if CurrentItem <> nil then
+            begin
+              if CurrentItem.Translation.Trim = '' then
+              begin
+                CurrentItem.Translation := tl;
+                poFile.FillItem(CurrentItem,
+                  {Identifier} rsid, {Original} es, {Translation} tl,
+                  {Comments} '', {Context} '', {Flags} '', {PreviousID} '');
+              end;
+            end;
+          end;
+        end;
+      end
+      else
+      begin
+          tl := CurrentLanguage.ReadString(sec,rsid,'');
+          if tl.trim > '' then
+          begin
+            foundItems := findPOItemsByMsgId(poFile, es );
+            for ci in foundItems do
+            begin
+              CurrentItem := ci;
+              if CurrentItem.Translation.Trim = '' then
+              begin
+                CurrentItem.Translation := tl;
+                poFile.FillItem(CurrentItem,
+                  {Identifier} rsid, {Original} es, {Translation} tl,
+                  {Comments} '', {Context} '', {Flags} '', {PreviousID} '');
+              end;
             end;
             foundItems.Free;
           end;
-        end;
       end;
-
+    end;
   end;
   SectionKeys.Free;
   Sections.Free;
@@ -653,6 +748,8 @@ begin
   begin
     lang := languages[l];
     ln := langs[l];
+    if ln = 'en' then continue;
+
     Write(lang);
     poFileName := 'locale'+DirectorySeparator+'FreeShip.'+ln+'.po';
     if FileExists(poFileName) then

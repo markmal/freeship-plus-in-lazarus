@@ -3,15 +3,6 @@
     <Fragment>
         <DirectoryRef Id="APPLICATIONFOLDER">
             <Directory Id="locale" Name="locale">
-                <Component Id="FreeFilePreviewDialog.po" Guid="{AB92DE8D-D220-4383-8B74-281A316C36A3}">
-                    <File Id="FreeFilePreviewDialog.po" KeyPath="yes" Source="$(var.locale)\FreeFilePreviewDialog.po" />
-                </Component>
-                <Component Id="FreeFilePreviewDialog.ru.mo" Guid="{6CD940BE-FACB-4E9A-974C-2D3AC6539064}">
-                    <File Id="FreeFilePreviewDialog.ru.mo" KeyPath="yes" Source="$(var.locale)\FreeFilePreviewDialog.ru.mo" />
-                </Component>
-                <Component Id="FreeFilePreviewDialog.ru.po" Guid="{FE5225AD-6043-42DE-93F3-0458D6C3CED2}">
-                    <File Id="FreeFilePreviewDialog.ru.po" KeyPath="yes" Source="$(var.locale)\FreeFilePreviewDialog.ru.po" />
-                </Component>
                 <Component Id="FreeShip.cn.po" Guid="{2F449CA3-99FB-4927-8912-697E28250FD3}">
                     <File Id="FreeShip.cn.po" KeyPath="yes" Source="$(var.locale)\FreeShip.cn.po" />
                 </Component>
@@ -42,9 +33,6 @@
                 <Component Id="FreeShip.no.po" Guid="{D22610A4-035F-4713-98D9-19C04A48D06D}">
                     <File Id="FreeShip.no.po" KeyPath="yes" Source="$(var.locale)\FreeShip.no.po" />
                 </Component>
-                <Component Id="FreeShip.po" Guid="{A39D06A5-B3C6-492E-A5B9-4154C8A14B7E}">
-                    <File Id="FreeShip.po" KeyPath="yes" Source="$(var.locale)\FreeShip.po" />
-                </Component>
                 <Component Id="FreeShip.pot" Guid="{821B942E-5462-4182-8466-42B3F6314E70}">
                     <File Id="FreeShip.pot" KeyPath="yes" Source="$(var.locale)\FreeShip.pot" />
                 </Component>
@@ -62,9 +50,6 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="locale">
-            <ComponentRef Id="FreeFilePreviewDialog.po" />
-            <ComponentRef Id="FreeFilePreviewDialog.ru.mo" />
-            <ComponentRef Id="FreeFilePreviewDialog.ru.po" />
             <ComponentRef Id="FreeShip.cn.po" />
             <ComponentRef Id="FreeShip.cs.po" />
             <ComponentRef Id="FreeShip.de.po" />
@@ -75,7 +60,6 @@
             <ComponentRef Id="FreeShip.it.po" />
             <ComponentRef Id="FreeShip.nl.po" />
             <ComponentRef Id="FreeShip.no.po" />
-            <ComponentRef Id="FreeShip.po" />
             <ComponentRef Id="FreeShip.pot" />
             <ComponentRef Id="FreeShip.ru.po" />
             <ComponentRef Id="FreeShip.uk.po" />

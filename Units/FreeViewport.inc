@@ -335,19 +335,25 @@ begin
         FElevation := 20;
       end;
     end;
-    if FHorScrollbar <> nil then
+    if (FHorScrollbar <> nil) and self.Visible then
     begin
-      FHorScrollbar.Position := round(Angle);
       FHorScrollbar.Visible := ViewType = fvPerspective;
-      if FHorScrollbar.Position <> round(angle) then
-        FHorScrollbar.Position := Round(Angle);
+      if FHorScrollbar.Visible then
+      begin
+        FHorScrollbar.Position := round(Angle);
+        if FHorScrollbar.Position <> round(angle) then
+          FHorScrollbar.Position := Round(Angle);
+      end;
     end;
-    if FVertScrollbar <> nil then
+    if (FVertScrollbar <> nil) and self.Visible then
     begin
-      FVertScrollbar.Position := round(Elevation);
       FVertScrollbar.Visible := ViewType = fvPerspective;
-      if FVertScrollbar.Position <> round(Elevation) then
-        FVertScrollbar.Position := Round(Elevation);
+      if FVertScrollbar.Visible then
+      begin
+        FVertScrollbar.Position := round(Elevation);
+        if FVertScrollbar.Position <> round(Elevation) then
+          FVertScrollbar.Position := Round(Elevation);
+      end;
     end;
     if assigned(FOnRequestBackgroundImage) then
       FOnRequestBackgroundImage(self);

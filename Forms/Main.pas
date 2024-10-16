@@ -1301,12 +1301,14 @@ begin
          HullformWindow.OnClose:=HullformWindowOnClose;
          HullformWindow.OnDestroy:=HullformWindowOnDeactivate;
 
-         HullformWindow.Viewport.ViewType:=TFreeViewType(I);
+         //HullformWindow.Viewport.ViewType:=TFreeViewType(I);
          //ShowTranslatedValues(HullformWindow);
 
          HullformWindow.SetCaption;
          HullformWindow.SetBounds(I * 40,I * 30,
             ClientWidth * 3 div 4, ClientHeight * 3 div 4);
+         //HullformWindow.Visible:=true;
+         HullformWindow.Viewport.ViewType:=TFreeViewType(I);
       end;
       {$ifndef LCL}
         TileMode := tbHorizontal;

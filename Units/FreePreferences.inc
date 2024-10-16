@@ -1174,7 +1174,7 @@ begin
   FExportDirectory := FUserDataDirectory + DS + 'Export';
 
   FLanguagesDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
-    DS + 'Languages', FUserAppDataDirectory + DS + 'Languages');
+    DS + 'Languages', FUserAppDataDirectory + DS + 'locale');
   FExecDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +
     DS + 'Exec', FUserAppDataDirectory + DS + 'Exec');
   FManualsDirectory := chooseDirAppDataDir(FGlobalAppDataDirectory +

@@ -4886,7 +4886,7 @@ var
   Strings: TStringList;
   I, J, K, N: integer;
   Cols, Rows: integer;
-  Index: integer;
+  Index, EndIndex: integer;
   NSurfaces: integer;
   Indices: array of integer;
   Str, Tmp: string;
@@ -4968,6 +4968,82 @@ var
     end;
   end;{NextParameter}
 
+  procedure readSurface(Cols, Rows: integer; var Points: TFreeCoordinateGrid);
+  var J,K: integer;
+    begin
+      // Initialize points
+      Setlength(Points, Rows);
+      for J := 1 to Rows do
+      begin
+        Setlength(Points[J - 1], Cols);
+        for K := 1 to Cols do
+          Points[J - 1][K - 1] := ZERO;
+      end;
+      for J := 1 to Cols do
+      begin
+        for K := 1 to Rows do
+        begin
+          Str := NextLine;
+          if not abort then
+          begin
+            Str := Trim(Str);
+            P.X := 0;
+            P.Y := 0;
+            P.Z := 0;
+            // X coordinate
+            Tmp := NextParameter(Str);
+            if not abort then
+            begin
+              Val(Tmp, P.X, N);
+              if N <> 0 then
+              begin
+                MessageDlg(rs_Invalid_x_coordinate_in_surface {UserString[119]} + #32 +
+                  IntToStr(I), mtError, [mbOK], 0);
+                Abort := True;
+              end;
+            end;
+            if not Abort then
+            begin
+              Tmp := NextParameter(Str);
+              if not abort then
+              begin
+                Val(Tmp, P.Y, N);
+                if N <> 0 then
+                begin
+                  MessageDlg(rs_Invalid_y_coordinate_in_surface {UserString[120]} + #32 +
+                    IntToStr(I), mtError, [mbOK], 0);
+                  Abort := True;
+                end;
+              end;
+            end;
+            if not Abort then
+            begin
+              // Z coordinate
+              Tmp := NextParameter(Str);
+              if not abort then
+              begin
+                Val(Tmp, P.Z, N);
+                if N <> 0 then
+                begin
+                  MessageDlg(rs_Invalid_z_coordinate_in_surface {UserString[121]} + #32 +
+                    IntToStr(I), mtError, [mbOK], 0);
+                  Abort := True;
+                end;
+              end;
+            end;
+            Points[K - 1][J - 1] := P;
+          end
+          else
+            break;
+        end;
+        if abort then
+          break;
+      end;
+      if not Abort then
+        FreeShip.Surface.ImportCoordGrid(Points, Cols, Rows, nil);
+    end;
+
+
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
@@ -5027,128 +5103,166 @@ begin
         begin
           Index := Indices[I - 1];
           Str := Strings[index];
-          if (pos('[TYachtLines]', Strings[I - 1]) <> 0) then
+          if (pos('[TYachtLines]', Str) <> 0) then
           begin
-            // Read loa
-            Str := NextLine;
-            FreeShip.ProjectSettings.ProjectLength := GetFloat(Str);
-            NextLine;
-            NextLine;
-            // read beam over all
-            Str := NextLine;
-            FreeShip.ProjectSettings.ProjectBeam := GetFloat(Str);
-            NextLine;
-            NextLine;
-            // Read draft
-            Str := NextLine;
-            FreeShip.ProjectSettings.ProjectDraft := GetFloat(Str);
-            FreeShip.ProjectSettings.FMainparticularsHasBeenset := True;
-            for J := 1 to 12 do
-              NextLine;
-          end
-          else if (pos('[TShipLines]', Strings[I - 1]) <> 0) then
-          begin
-            NextLine;
-            // Read length
-            Str := NextLine;
-            FreeShip.ProjectSettings.ProjectLength := GetFloat(Str);
-            // read beam
-            Str := NextLine;
-            FreeShip.ProjectSettings.ProjectBeam := GetFloat(Str);
-            // skip depth
-            NextLine;
-            // Read draft
-            Str := NextLine;
-            FreeShip.ProjectSettings.ProjectDraft := GetFloat(Str);
-            FreeShip.ProjectSettings.FMainparticularsHasBeenset := True;
-            for J := 1 to 22 do
-              NextLine;
-          end;
-
-          NextLine;            // skip OrderU=
-          NextLine;            // skip OrderV=
-
-          // Read number of columns
-          Str := NextLine;
-          Cols := GetInteger(Str);
-          // Read number of rows
-          Str := NextLine;
-          Rows := GetInteger(Str);
-          if (Cols > 1) and (Rows > 1) then
-          begin
-            // Initialize points
-            Setlength(Points, Rows);
-            for J := 1 to Rows do
+            FreeShip.ProjectSettings.ProjectLength := 0.0;
+            FreeShip.ProjectSettings.ProjectBeam := 0.0;
+            FreeShip.ProjectSettings.ProjectDraft := 0.0;
+            FreeShip.ProjectSettings.FMainparticularsHasBeenset := False;
+            EndIndex := Strings.Count-1;
+            while Index < EndIndex do
             begin
-              Setlength(Points[J - 1], Cols);
-              for K := 1 to Cols do
-                Points[J - 1][K - 1] := ZERO;
-            end;
-            for J := 1 to Cols do
-            begin
-              for K := 1 to Rows do
+              Str := NextLine;
+              Str := Str.TrimLeft();
+              if (pos('Loa=', Str) = 1) then
+                FreeShip.ProjectSettings.ProjectLength := GetFloat(Str)
+              else if (pos('Lwl=', Str) = 1) then
+              else if (pos('Ovh=', Str) = 1) then
+              else if (pos('BMax=', Str) = 1) then
+                FreeShip.ProjectSettings.ProjectBeam := GetFloat(Str)
+              else if (pos('Bwl=', Str) = 1) then
+              else if (pos('BTransom=', Str) = 1) then
+              else if (pos('MaxVParameter=', Str) = 1) then
+              else if (pos('Tc=', Str) = 1) then
+                FreeShip.ProjectSettings.ProjectDraft := GetFloat(Str)
+              else if (pos('Cp=', Str) = 1) then
+              else if (pos('Cm=', Str) = 1) then
+              else if (pos('LCB=', Str) = 1) then
+              else if (pos('Cwp=', Str) = 1) then
+              else if (pos('Lcf=', Str) = 1) then
+              else if (pos('FreeBow=', Str) = 1) then
+              else if (pos('FreeMid=', Str) = 1) then
+              else if (pos('FreeAft=', Str) = 1) then
+              else if (pos('BowCurve=', Str) = 1) then
+              else if (pos('ForeFoot=', Str) = 1) then
+              else if (pos('TransomAngle=', Str) = 1) then
+              else if (pos('FlareAngle=', Str) = 1) then
+              else if (pos('OrderU=', Str) = 1) then
+              else if (pos('OrderV=', Str) = 1) then
+              else if (pos('NumU=', Str) = 1) then Cols := GetInteger(Str)
+              else if (pos('NumV=', Str) = 1) then Rows := GetInteger(Str)
+              else if (pos('Name=', Str) = 1) then
+              else if (pos('$POLYCADVERSION', Str) = 1) then
+              else if (pos('=', Str) = 0) then
               begin
-                Str := NextLine;
-                if not abort then
+                dec(index);
+                if (Cols > 1) and (Rows > 1) then
                 begin
-                  Str := Trim(Str);
-                  P.X := 0;
-                  P.Y := 0;
-                  P.Z := 0;
-                  // X coordinate
-                  Tmp := NextParameter(Str);
-                  if not abort then
-                  begin
-                    Val(Tmp, P.X, N);
-                    if N <> 0 then
-                    begin
-                      MessageDlg(rs_Invalid_x_coordinate_in_surface {UserString[119]} + #32 +
-                        IntToStr(I), mtError, [mbOK], 0);
-                      Abort := True;
-                    end;
-                  end;
-                  if not Abort then
-                  begin
-                    Tmp := NextParameter(Str);
-                    if not abort then
-                    begin
-                      Val(Tmp, P.Y, N);
-                      if N <> 0 then
-                      begin
-                        MessageDlg(rs_Invalid_y_coordinate_in_surface {UserString[120]} + #32 +
-                          IntToStr(I), mtError, [mbOK], 0);
-                        Abort := True;
-                      end;
-                    end;
-                  end;
-                  if not Abort then
-                  begin
-                    // Z coordinate
-                    Tmp := NextParameter(Str);
-                    if not abort then
-                    begin
-                      Val(Tmp, P.Z, N);
-                      if N <> 0 then
-                      begin
-                        MessageDlg(rs_Invalid_z_coordinate_in_surface {UserString[121]} + #32 +
-                          IntToStr(I), mtError, [mbOK], 0);
-                        Abort := True;
-                      end;
-                    end;
-                  end;
-                  Points[K - 1][J - 1] := P;
-                end
-                else
-                  break;
+                  readSurface(Cols, Rows, Points);
+                end;
               end;
-              if abort then
-                break;
             end;
-            if not Abort then
-              FreeShip.Surface.ImportCoordGrid(Points, Cols, Rows, nil);
+            FreeShip.ProjectSettings.FMainparticularsHasBeenset := (
+              (FreeShip.ProjectSettings.ProjectLength > 0.0)
+              and(FreeShip.ProjectSettings.ProjectBeam > 0.0)
+              and(FreeShip.ProjectSettings.ProjectDraft > 0.0)
+            );
+          end
+
+          else if (pos('[TShipLines]', Str) <> 0) then
+          begin
+            FreeShip.ProjectSettings.ProjectLength := 0.0;
+            FreeShip.ProjectSettings.ProjectBeam := 0.0;
+            FreeShip.ProjectSettings.ProjectDraft := 0.0;
+            FreeShip.ProjectSettings.FMainparticularsHasBeenset := False;
+            EndIndex := Strings.Count-1;
+            while Index < EndIndex do
+            begin
+              Str := NextLine;
+              Str := Str.TrimLeft();
+              if (pos('BowShape=', Str) = 1) then
+              else if (pos('Lbp=', Str) = 1) then
+                FreeShip.ProjectSettings.ProjectLength := GetFloat(Str)
+              else if (pos('Beam=', Str) = 1) then
+                FreeShip.ProjectSettings.ProjectBeam := GetFloat(Str)
+              else if (pos('Depth=', Str) = 1) then
+              else if (pos('Draught=', Str) = 1) then
+                FreeShip.ProjectSettings.ProjectDraft := GetFloat(Str)
+              else if (pos('ParallelDeckF=', Str) = 1) then
+              else if (pos('ParallelDeckA=', Str) = 1) then
+              else if (pos('FOSBow=', Str) = 1) then
+              else if (pos('FOSAft=', Str) = 1) then
+              else if (pos('BowRadiusAtDeck=', Str) = 1) then
+              else if (pos('BilgeRadius=', Str) = 1) then
+              else if (pos('TransomBehindAP=', Str) = 1) then
+              else if (pos('TransomImmersion=', Str) = 1) then
+              else if (pos('TransomBeam=', Str) = 1) then
+              else if (pos('TransomCurvature=', Str) = 1) then
+              else if (pos('BowCurvature=', Str) = 1) then
+              else if (pos('BulbRadius=', Str) = 1) then
+              else if (pos('ForeOverHang=', Str) = 1) then
+              else if (pos('BulbLength=', Str) = 1) then
+              else if (pos('ForeFootRadius=', Str) = 1) then
+              else if (pos('StemRadius=', Str) = 1) then
+              else if (pos('StRootHeight=', Str) = 1) then
+              else if (pos('StShaftHeight=', Str) = 1) then
+              else if (pos('StBossToRoot=', Str) = 1) then
+              else if (pos('StBossRadius=', Str) = 1) then
+              else if (pos('StBossStart=', Str) = 1) then
+              else if (pos('StFlatOfBottomStart=', Str) = 1) then
+              else if (pos('DrawBoundaries=', Str) = 1) then
+              else if (pos('DrawParameters=', Str) = 1) then
+              else if (pos('DesignDraught=', Str) = 1) then
+              else if (pos('OrderU=', Str) = 1) then
+              else if (pos('OrderV=', Str) = 1) then
+              else if (pos('NumU=', Str) = 1) then Cols := GetInteger(Str)
+              else if (pos('NumV=', Str) = 1) then Rows := GetInteger(Str)
+              else if (pos('Name=', Str) = 1) then
+              else if (pos('$POLYCADVERSION', Str) = 1) then
+              else if (pos('=', Str) = 0) then
+              begin
+                dec(index);
+                if (Cols > 1) and (Rows > 1) then
+                begin
+                  readSurface(Cols, Rows, Points);
+                end;
+              end;
+            end;
+            FreeShip.ProjectSettings.FMainparticularsHasBeenset := (
+              (FreeShip.ProjectSettings.ProjectLength > 0.0)
+              and(FreeShip.ProjectSettings.ProjectBeam > 0.0)
+              and(FreeShip.ProjectSettings.ProjectDraft > 0.0)
+            );
+          end
+
+          else if (pos('[TBSplineSurface]', Str) <> 0) then
+          begin
+            if I < NSurfaces then
+              EndIndex := Indices[I]-1
+            else
+              EndIndex := Strings.Count-1;
+
+            while Index < EndIndex do
+            begin
+              Str := NextLine;
+              Str := Str.TrimLeft();
+              if (pos('KnotType=', Str) = 1) then
+              else if (pos('KnotU=', Str) = 1) then
+              else if (pos('KnotV=', Str) = 1) then
+              else if (pos('MinUParameter=', Str) = 1) then
+              else if (pos('MinVParameter=', Str) = 1) then
+              else if (pos('MaxUParameter=', Str) = 1) then
+              else if (pos('MaxVParameter=', Str) = 1) then
+              else if (pos('OrderU=', Str) = 1) then
+              else if (pos('OrderV=', Str) = 1) then
+              else if (pos('NumU=', Str) = 1) then Cols := GetInteger(Str)
+              else if (pos('NumV=', Str) = 1) then Rows := GetInteger(Str)
+              else if (pos('Name=', Str) = 1) then
+              else if (pos('$POLYCADVERSION', Str) = 1) then
+              else if (pos('=', Str) = 0) then
+              begin
+                dec(index);
+                if (Cols > 1) and (Rows > 1) then
+                begin
+                  readSurface(Cols, Rows, Points);
+                end;
+              end;
+            end;
           end;
-          Inc(i);
-        end;
+
+          Inc(I);
+        end;  // while (I <= NSurfaces)
+
         if not Abort then
         begin
           // Read contours;

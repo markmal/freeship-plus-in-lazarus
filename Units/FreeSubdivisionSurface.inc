@@ -3773,9 +3773,9 @@ begin
   FIsLoading := true;
   GridPoints := TFasterListTFreeSubdivisionControlPoint.Create;
   FacePoints := TFasterListTFreeSubdivisionControlPoint.Create;
-  for I := 1 to Cols-1 do
+  for I := 1 to Rows-1 do
   begin
-    for J := 1 to Rows-1 do
+    for J := 1 to Cols-1 do
     begin
       FacePoints.Clear;
       P11:=Grid[I - 1, J - 1];
@@ -3821,8 +3821,8 @@ begin
        GridPoints[i].Edge[j].Crease:=false;
 
   // set cornerpoints
-  for I := 1 to Cols do
-    for J := 1 to Rows do
+  for I := 1 to Rows do
+    for J := 1 to Cols do
       if Grid[I - 1][J - 1].NumberOfFaces < 2 then
         Grid[I - 1][J - 1].VertexType := svCorner;
 

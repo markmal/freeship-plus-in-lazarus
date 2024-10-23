@@ -4887,7 +4887,7 @@ var
   I, J, K, N: integer;
   Cols, Rows: integer;
   Index, EndIndex: integer;
-  NSurfaces: integer;
+  NSections, NumSurfaces, SurfaceNo: integer;
   Indices: array of integer;
   Str, Tmp: string;
   Abort: boolean;
@@ -4912,17 +4912,19 @@ var
 
   function GetInteger(str: string): integer;
   var
-    Index: integer;
+    Index: integer; tmp:string;
   begin
     Index := Pos('=', Str);
     Result := 0;
     if Index <> 0 then
     begin
-      Str := Copy(Str, Index + 1, Length(Str) - Index);
-      Val(Str, Result, Index);
+      tmp := Copy(Str, Index + 1, Length(Str) - Index);
+      Val(tmp, Result, Index);
       if Index <> 0 then
       begin
-        MessageDlg(rs_Invalid_integer_value_in_surface {UserString[116]} + #32 + IntToStr(I), mtError, [mbOK], 0);
+        MessageDlg(rs_Invalid_integer_value_in_surface {UserString[116]} + #32
+          + IntToStr(I) + ' at row '+IntToStr(Index) + ' value: "'+tmp+'"',
+          mtError, [mbOK], 0);
         Abort := True;
       end;
     end
@@ -4932,17 +4934,19 @@ var
 
   function GetFloat(str: string): TFloatType;
   var
-    Index: integer;
+    Index: integer; tmp:string;
   begin
     Index := Pos('=', Str);
     Result := 0;
     if Index <> 0 then
     begin
-      Str := Copy(Str, Index + 1, Length(Str) - Index);
-      Val(Str, Result, Index);
+      tmp := Copy(Str, Index + 1, Length(Str) - Index);
+      Val(tmp, Result, Index);
       if Index <> 0 then
       begin
-        MessageDlg(rs_Invalid_floating_point_value_in_surface {UserString[117]} + #32 + IntToStr(I), mtError, [mbOK], 0);
+        MessageDlg(rs_Invalid_floating_point_value_in_surface {UserString[117]} + #32
+          + IntToStr(I) + ' at row '+IntToStr(Index) + ' value: "'+tmp+'"',
+          mtError, [mbOK], 0);
         Abort := True;
       end;
     end
@@ -4998,7 +5002,8 @@ var
               if N <> 0 then
               begin
                 MessageDlg(rs_Invalid_x_coordinate_in_surface {UserString[119]} + #32 +
-                  IntToStr(I), mtError, [mbOK], 0);
+                  IntToStr(I) + ' at row '+IntToStr(Index) + ' value: "'+Tmp+'"',
+                  mtError, [mbOK], 0);
                 Abort := True;
               end;
             end;
@@ -5010,8 +5015,9 @@ var
                 Val(Tmp, P.Y, N);
                 if N <> 0 then
                 begin
-                  MessageDlg(rs_Invalid_y_coordinate_in_surface {UserString[120]} + #32 +
-                    IntToStr(I), mtError, [mbOK], 0);
+                  MessageDlg(rs_Invalid_y_coordinate_in_surface {UserString[119]} + #32 +
+                    IntToStr(I) + ' at row '+IntToStr(Index) + ' value: "'+Tmp+'"',
+                    mtError, [mbOK], 0);
                   Abort := True;
                 end;
               end;
@@ -5025,8 +5031,9 @@ var
                 Val(Tmp, P.Z, N);
                 if N <> 0 then
                 begin
-                  MessageDlg(rs_Invalid_z_coordinate_in_surface {UserString[121]} + #32 +
-                    IntToStr(I), mtError, [mbOK], 0);
+                  MessageDlg(rs_Invalid_z_coordinate_in_surface {UserString[119]} + #32 +
+                    IntToStr(I) + ' at row '+IntToStr(Index) + ' value: "'+Tmp+'"',
+                    mtError, [mbOK], 0);
                   Abort := True;
                 end;
               end;
@@ -5078,32 +5085,35 @@ begin
     try
       Strings.LoadFromFile(OpenDialog.FileName);
       // delete empty strings
-      for I := Strings.Count downto 1 do
+      {for I := Strings.Count downto 1 do
         if Strings[I - 1] = '' then
-          Strings.Delete(I - 1);
-      // count number of BSpline surfaces
-      NSurfaces := 0;
-      for I := 1 to strings.Count do
-        if (pos('[TBSplineSurface]', Strings[I - 1]) <> 0) or
-          (pos('[TShipLines]', Strings[I - 1]) <> 0) or
-          (pos('[TYachtLines]', Strings[I - 1]) <> 0) then
+          Strings.Delete(I - 1);}
+      // count number of Sections
+      NSections := 0;
+      for I := 0 to strings.Count-1 do
+      begin
+        Str := Strings[I].TrimLeft();
+        if Str.StartsWith('[') and Str.EndsWith(']') then
         begin
-          Setlength(Indices, NSurfaces + 1);
-          Indices[NSurfaces] := I - 1;
-          Inc(NSurfaces);
+          Setlength(Indices, NSections + 1);
+          Indices[NSections] := I;
+          Inc(NSections);
         end;
-      if NSurfaces > 0 then
+      end;
+
+      if NSections > 0 then
       begin
         CreateUndoObject(rs_import_PolyCad_file {UserString[118]}, True);
         FreeShip.Clear;
         FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
         I := 1;
         Abort := False;
-        while (I <= NSurfaces) and (not Abort) do
+        while (I <= NSections) and (not Abort) do
         begin
           Index := Indices[I - 1];
           Str := Strings[index];
-          if (pos('[TYachtLines]', Str) <> 0) then
+          if Str = '' then inc(index)
+          else if Str = '[TYachtLines]' then
           begin
             FreeShip.ProjectSettings.ProjectLength := 0.0;
             FreeShip.ProjectSettings.ProjectBeam := 0.0;
@@ -5114,7 +5124,8 @@ begin
             begin
               Str := NextLine;
               Str := Str.TrimLeft();
-              if (pos('Loa=', Str) = 1) then
+              if Str = '' then
+              else if (pos('Loa=', Str) = 1) then
                 FreeShip.ProjectSettings.ProjectLength := GetFloat(Str)
               else if (pos('Lwl=', Str) = 1) then
               else if (pos('Ovh=', Str) = 1) then
@@ -5159,7 +5170,7 @@ begin
             );
           end
 
-          else if (pos('[TShipLines]', Str) <> 0) then
+          else if Str = '[TShipLines]' then
           begin
             FreeShip.ProjectSettings.ProjectLength := 0.0;
             FreeShip.ProjectSettings.ProjectBeam := 0.0;
@@ -5170,7 +5181,8 @@ begin
             begin
               Str := NextLine;
               Str := Str.TrimLeft();
-              if (pos('BowShape=', Str) = 1) then
+              if Str = '' then
+              else if (pos('BowShape=', Str) = 1) then
               else if (pos('Lbp=', Str) = 1) then
                 FreeShip.ProjectSettings.ProjectLength := GetFloat(Str)
               else if (pos('Beam=', Str) = 1) then
@@ -5225,9 +5237,9 @@ begin
             );
           end
 
-          else if (pos('[TBSplineSurface]', Str) <> 0) then
+          else if Str = '[TBSplineSurface]' then
           begin
-            if I < NSurfaces then
+            if I < NSections then
               EndIndex := Indices[I]-1
             else
               EndIndex := Strings.Count-1;
@@ -5236,7 +5248,8 @@ begin
             begin
               Str := NextLine;
               Str := Str.TrimLeft();
-              if (pos('KnotType=', Str) = 1) then
+              if Str = '' then
+              else if (pos('KnotType=', Str) = 1) then
               else if (pos('KnotU=', Str) = 1) then
               else if (pos('KnotV=', Str) = 1) then
               else if (pos('MinUParameter=', Str) = 1) then
@@ -5258,14 +5271,53 @@ begin
                 end;
               end;
             end;
+          end
+
+          else if Str = '[TBSplineSurfaceList]' then
+          begin
+            if I < NSections then
+              EndIndex := Indices[I]-1
+            else
+              EndIndex := Strings.Count-1;
+            SurfaceNo:=0;
+            while Index < EndIndex do
+            begin
+              Str := NextLine;
+              Str := Str.TrimLeft();
+              if Str = '' then
+              else if (pos('NumSurfaces=', Str) = 1) then NumSurfaces := GetInteger(Str)
+              else if (pos('KnotType=', Str) = 1) then
+              else if (pos('KnotU=', Str) = 1) then
+              else if (pos('KnotV=', Str) = 1) then
+              else if (pos('MinUParameter=', Str) = 1) then
+              else if (pos('MinVParameter=', Str) = 1) then
+              else if (pos('MaxUParameter=', Str) = 1) then
+              else if (pos('MaxVParameter=', Str) = 1) then
+              else if (pos('OrderU=', Str) = 1) then
+              else if (pos('OrderV=', Str) = 1) then
+              else if (pos('NumU=', Str) = 1) then Cols := GetInteger(Str)
+              else if (pos('NumV=', Str) = 1) then Rows := GetInteger(Str)
+              else if (pos('Name=', Str) = 1) then
+              else if (pos('$POLYCADVERSION', Str) = 1) then
+              else if (pos('=', Str) = 0) then
+              begin
+                inc(SurfaceNo);
+                dec(index);
+                if (Cols > 1) and (Rows > 1) then
+                begin
+                  readSurface(Cols, Rows, Points);
+                end;
+              end;
+            end;
           end;
 
           Inc(I);
-        end;  // while (I <= NSurfaces)
+        end;  // while (I <= NSections)
+
 
         if not Abort then
         begin
-          // Read contours;
+          (* // Read contours;
           for I := 1 to Strings.Count do
             if Pos('[TContours]', Strings[I - 1]) <> 0 then
             begin
@@ -5307,6 +5359,7 @@ begin
                 end;
               break;
             end;
+            *)
           FreeShip.Precision := fpMedium;
           FreeShip.FileName := ChangeFileExt(Opendialog.FileName, '');
           FreeShip.ModelIsLoaded:=True;

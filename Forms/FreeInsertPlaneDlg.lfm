@@ -22,7 +22,6 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 366
     ClientWidth = 400
-    ParentColor = False
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 37
@@ -119,6 +118,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
           Top = 10
           Width = 120
           Alignment = taRightJustify
+          Color = clForm
           ReadOnly = True
           TabStop = False
           TabOrder = 0
@@ -139,6 +139,7 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
           Top = 48
           Width = 120
           Alignment = taRightJustify
+          Color = clForm
           ReadOnly = True
           TabStop = False
           TabOrder = 1
@@ -176,7 +177,6 @@ object FreeInsertPlaneDialog: TFreeInsertPlaneDialog
     BevelOuter = bvNone
     ClientHeight = 34
     ClientWidth = 400
-    Color = clForm
     ParentBackground = False
     ParentColor = False
     TabOrder = 1

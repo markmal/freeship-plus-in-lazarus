@@ -706,6 +706,8 @@ type
     // Import the surface from a STL file
     procedure File_ImportSTLtext(FileName: string);
     // Import the surface from a STL text file
+    procedure File_ImportSTLbin(FileName: string);
+    // Import the surface from a STL binary file
     procedure File_ImportCarene;
     // imports a Carene XYZ file and creates a multichine boat with developable surfaces
     procedure File_ImportChines;

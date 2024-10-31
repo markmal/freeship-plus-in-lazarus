@@ -20,9 +20,11 @@ begin
   Result := nil;
   MaxError := sqr(aTolerance)*3;
 
-  for I := 1 to NumberOfControlEdges do
+  {
+  // backward search is usually faster on load
+  for I := FControlEdges.Count-1 downto 0 do
   begin
-    Edge := FControlEdges[I - 1];
+    Edge := FControlEdges[I];
     if Edge.FFaces.Count <= 1 then // boundary edge
     begin
       if SquaredDistPP(P, Edge.FStartpoint.FCoordinate) <= MaxError then
@@ -37,12 +39,29 @@ begin
       end;
     end;
   end;
+  }
+  if Result = nil then
+  begin
+    // Search controlpoints with edges
+    for I := FControlPoints.Count-1 downto 0 do
+    begin
+      Point := ControlPoint[I];
+      if Point.NumberOfEdges > 0 then
+      begin
+        if SquaredDistPP(P, Point.FCoordinate) <= MaxError then
+        begin
+          Result := Point;
+          break;
+        end;
+      end;
+    end;
+  end;
   if Result = nil then
   begin
     // Search controlpoints without edges
-    for I := 1 to FControlPoints.Count do
+    for I := FControlPoints.Count-1 downto 0 do
     begin
-      Point := ControlPoint[I - 1];
+      Point := ControlPoint[I];
       if Point.NumberOfEdges = 0 then
       begin
         if SquaredDistPP(P, Point.FCoordinate) <= MaxError then

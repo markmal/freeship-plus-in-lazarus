@@ -3286,7 +3286,7 @@ begin
           // by tracing regular edges to a boundary or irregular points
           if (ssCtrl in shift) then
             Edge.Trace;
-          ItemSelected := True;
+          ItemSelected := Edge.Selected;
           // Draw the selected edge to all viewports
           for J := 1 to NumberOfViewports do
             Self.Viewport[J - 1].Refresh;

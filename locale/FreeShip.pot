@@ -14622,6 +14622,10 @@ msgstr ""
 msgid "PolyCad"
 msgstr ""
 
+#: tmainform.importstl.caption
+msgid "STL"
+msgstr ""
+
 #: tmainform.importsurface.caption
 msgid "Surface..."
 msgstr ""

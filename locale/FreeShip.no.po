@@ -12250,6 +12250,10 @@ msgstr "Part..."
 msgid "PolyCad"
 msgstr "PolyCad"
 
+#: tmainform.importstl.caption
+msgid "STL"
+msgstr ""
+
 #: tmainform.importsurface.caption
 msgid "Surface..."
 msgstr "Overflate..."

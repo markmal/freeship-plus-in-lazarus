@@ -4214,6 +4214,287 @@ begin
 
 end;{TFreeEdit.File_ExportSTL}
 
+procedure TFreeEdit.File_ImportSTL;
+var
+  OpenDialog: TOpenDialog;
+  Answer: word;
+  FileName: String;
+  FFile: TextFile;
+  Str: string;
+  begin
+    OpenDialog := TOpenDialog.Create(FreeShip);
+    OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
+    OpenDialog.Filter := createDialogFilter(rsSTLFile, ['stl']);
+    Opendialog.Options := [ofHideReadOnly];
+    if OpenDialog.Execute then
+    begin
+      if FreeShip.FileChanged then
+      begin
+        Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
+          mtConfirmation, [mbYes, mbNo, mbCancel], 0);
+        if Answer = mrCancel then
+        begin
+          FreeAndNil(OpenDialog);
+          exit;
+        end;
+        if Answer = mrYes then
+        begin
+          File_SaveAs;
+          if FreeShip.FileChanged then
+          begin
+            // Apparently saving was not successfull, abort
+            FreeAndNil(OpenDialog);
+            exit;
+          end;
+        end;
+      end;
+      CreateUndoObject(rs_import_carene_file {UserString[105]}, True);
+      FreeShip.Clear;
+      FileName := ChangeFileExt(OpenDialog.FileName, '.stl');
+      AssignFile(FFile, FileName);
+      {$I-}
+      Reset(FFile);
+      {$I+}
+      if IOResult = 0 then
+      begin
+        try
+          if not EOF(FFile) then
+          begin
+            Readln(FFile, Str); Str := Str.Trim.ToLower;
+            if Str.StartsWith('solid ') then
+            begin
+              File_ImportSTLtext(FileName);
+            end
+            else
+            begin
+              File_ImportSTLbin(FileName);
+            end;
+
+          end;
+
+        finally
+          CloseFile(FFile);
+          FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.stl');
+          FreeShip.ModelIsLoaded := True;
+          FreeShip.FileChanged := True;
+          FreeShip.RebuildModel;
+          FreeShip.Redraw;
+        end;
+      end
+      else
+        MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
+    end;
+    FreeAndNil(OpenDialog);
+
+  end;{TFreeEdit.File_ImportSTL}
+
+procedure TFreeEdit.File_ImportSTLtext(FileName: string);
+var
+  FFile: TextFile;
+  Str: string;
+  LineNr, SolidNr, FacetNr, VertexNr, I, J, K, L: integer;
+  Layer: TFreeSubdivisionLayer;
+  Face: TFreeSubdivisionControlface;
+  Child: TFreeSubdivisionface;
+  V, C1, C2, C3: T3DCoordinate;
+  FacePoints: TFasterListTFreeSubdivisionControlPoint;
+  CtrPoint: TFreeSubdivisionControlPoint;
+  SubdivisionSurface: TFreeSubdivisionSurface;
+  Precision: double;
+  Tokens: array of string;
+
+  function detectPrecision(D:string): double;
+  var i:integer; dc, code:integer; ss:string;
+  begin
+    Result := 1.0;
+    if D.IndexOf('e') < 0 then
+    begin
+      i:=D.IndexOf('.');
+      if i > -1 then
+        dc:=D.length - i - 1;
+      if Result > power(10,-dc) then
+        Result := power(10,-dc);
+    end
+    else
+    begin //scientific
+      i:=D.IndexOf('e');
+      ss:=D.Substring(i+1,32);
+      val(ss,dc,code);
+      if code = 0 then
+        if Result > power(10,dc) then
+          Result := power(10,dc);
+    end
+  end;
+
+begin
+    //FreeShip.ProjectSettings.ProjectName := FileName;
+    AssignFile(FFile, FileName);
+    {$I-}
+    Reset(FFile);
+    {$I+}
+    if IOResult = 0 then
+    begin
+      try
+        SubdivisionSurface := FreeShip.Surface;
+        SubdivisionSurface.IsLoading := true;
+        FacePoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+        LineNr := 1; SolidNr:=0; FacetNr:=0; VertexNr:=1;
+        while not EOF(FFile) do
+        begin
+          Readln(FFile, Str); Str := Str.Trim.ToLower; Inc(LineNr);
+          if Str.StartsWith('solid ') then
+          begin
+            inc(SolidNr);
+            if (SolidNr = 1)
+            then Layer := SubdivisionSurface.Layer[0]
+            else Layer := SubdivisionSurface.AddNewLayer;
+            Layer.Name := Str.SubString(7,256);
+          end
+          else if Str.StartsWith('facet ') then // read Normal ?
+          begin
+            inc(FacetNr);
+            VertexNr:=1;
+            FacePoints.Clear;
+          end
+          else if Str.StartsWith('outer loop') then
+          else if Str.StartsWith('vertex ') then
+          begin
+            Str := Str.Replace('  ',' ').Replace('  ',' ');
+            Tokens := Str.Split([' ']);
+            V.X := Single.Parse(Tokens[1]);
+            V.Y := Single.Parse(Tokens[2]);
+            V.Z := Single.Parse(Tokens[3]);
+            Precision := detectPrecision(Tokens[1]);
+            CtrPoint := SubdivisionSurface.AddControlPoint(V, Precision);
+            //if FacePoints.IndexOf(CtrPoint) = -1 then
+            FacePoints.Add(CtrPoint);
+            inc(VertexNr);
+            SetLength(Tokens,0);
+          end
+          else if Str.StartsWith('endloop') then
+          else if Str.StartsWith('endfacet') then
+          begin
+            if FacePoints.Count > 2 then
+               SubdivisionSurface.AddControlFace(FacePoints, True, Layer);
+          end
+          else if Str.StartsWith('endsolid') then
+          begin
+          end;
+
+        end;
+        FreeAndNil(FacePoints);
+      finally
+        CloseFile(FFile);
+        SubdivisionSurface.IsLoading := false;
+      end;
+    end
+    else
+      MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
+end;{TFreeEdit.File_ImportSTLtext}
+
+
+procedure TFreeEdit.File_ImportSTLbin(FileName: string);
+var
+  FileStream: TFileStream;
+  STLheader: array[0..79] of char;
+  STLfacets: uint32;
+  STLrecord: packed record
+    normalX, normalY, normalZ: single;
+    vertex1_X, vertex1_Y, vertex1_Z: single;
+    vertex2_X, vertex2_Y, vertex2_Z: single;
+    vertex3_X, vertex3_Y, vertex3_Z: single;
+    unused: uint16;
+  end;
+  Str: string;
+  LineNr, SolidNr, FacetNr, VertexNr, I, J, K, L: integer;
+  r: longint;
+  Layer: TFreeSubdivisionLayer;
+  Face: TFreeSubdivisionControlface;
+  Child: TFreeSubdivisionface;
+  V, C1, C2, C3: T3DCoordinate;
+  FacePoints: TFasterListTFreeSubdivisionControlPoint;
+  CtrPoint: TFreeSubdivisionControlPoint;
+  SubdivisionSurface: TFreeSubdivisionSurface;
+  Precision: double;
+  Tokens: array of string;
+
+  function detectPrecision(D:string): double;
+  var i:integer; dc, code:integer; ss:string;
+  begin
+    Result := 1.0;
+    if D.IndexOf('e') < 0 then
+    begin
+      i:=D.IndexOf('.');
+      if i > -1 then
+        dc:=D.length - i - 1;
+      if Result > power(10,-dc) then
+        Result := power(10,-dc);
+    end
+    else
+    begin //scientific
+      i:=D.IndexOf('e');
+      ss:=D.Substring(i+1,32);
+      val(ss,dc,code);
+      if code = 0 then
+        if Result > power(10,dc) then
+          Result := power(10,dc);
+    end
+  end;
+
+begin
+    //FreeShip.ProjectSettings.ProjectName := FileName;
+    FileStream := TFileStream.Create(FileName, fmOpenRead);
+    if FileStream.Size > 80 then
+    begin
+      try
+        SubdivisionSurface := FreeShip.Surface;
+        SubdivisionSurface.IsLoading := true;
+        FacePoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+        SolidNr:=0; FacetNr:=1;
+        r := FileStream.Read(STLheader,80);
+        Str := String.Create(STLheader);
+        inc(SolidNr);
+        if (SolidNr = 1)
+        then Layer := SubdivisionSurface.Layer[0]
+        else Layer := SubdivisionSurface.AddNewLayer;
+        Layer.Name := Str;
+        r := FileStream.Read(STLfacets,4);
+        for FacetNr:=1 to STLfacets do
+        begin
+            r := FileStream.Read(STLrecord,SizeOf(STLrecord));
+            FacePoints.Clear;
+            V.X := STLrecord.vertex1_X;
+            V.Y := STLrecord.vertex1_Y;
+            V.Z := STLrecord.vertex1_Z;
+            Precision := 0.1;
+            CtrPoint := SubdivisionSurface.AddControlPoint(V, Precision);
+            FacePoints.Add(CtrPoint);
+
+            V.X := STLrecord.vertex2_X;
+            V.Y := STLrecord.vertex2_Y;
+            V.Z := STLrecord.vertex2_Z;
+            Precision := 0.1;
+            CtrPoint := SubdivisionSurface.AddControlPoint(V, Precision);
+            FacePoints.Add(CtrPoint);
+
+            V.X := STLrecord.vertex3_X;
+            V.Y := STLrecord.vertex3_Y;
+            V.Z := STLrecord.vertex3_Z;
+            Precision := 0.1;
+            CtrPoint := SubdivisionSurface.AddControlPoint(V, Precision);
+            FacePoints.Add(CtrPoint);
+
+            SubdivisionSurface.AddControlFace(FacePoints, True, Layer);
+        end;
+      finally
+        FileStream.Free;
+        SubdivisionSurface.IsLoading := false;
+      end;
+    end
+    else
+      MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
+end;{TFreeEdit.File_ImportSTLbin}
+
 // imports a Carene XYZ file and creates a multichine boat with developable surfaces
 procedure TFreeEdit.File_ImportCarene;
 var
@@ -4256,9 +4537,9 @@ begin
     CreateUndoObject(rs_import_carene_file {UserString[105]}, True);
     FreeShip.Clear;
     assignFile(FFile, ChangeFileExt(Opendialog.FileName, '.xyz'));
-      {$I-}
+    {$I-}
     Reset(FFile);
-{$I+}
+    {$I+}
     if IOResult = 0 then
     begin
       //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);

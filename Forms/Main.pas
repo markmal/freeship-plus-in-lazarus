@@ -88,6 +88,8 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     ImportSTL: TAction;
+     MenuImportSTL: TMenuItem;
      miSelectionDialog: TMenuItem;
      SelectionDialog: TAction;
      SplitSection50pct: TAction;
@@ -482,7 +484,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
-
+    procedure ImportSTLExecute(Sender: TObject);
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
     procedure LayerBoxPanelClick(Sender: TObject);
@@ -850,6 +852,7 @@ begin
  Self.Invalidate;
  }
 end;
+
 
 // total width of all controls in toolbar
 function TMainForm.getToolbarControlsWidth(tb:TToolBar): integer;
@@ -3114,6 +3117,13 @@ begin
    FOpenHullWindows;
    UpdateMenu;
 end;{TMainForm.ImportPolyCadExecute}
+
+procedure TMainForm.ImportSTLExecute(Sender: TObject);
+begin
+  Freeship.Edit.File_ImportSTL;
+  FOpenHullWindows;
+  UpdateMenu;
+end;
 
 procedure TMainForm.RemoveUnusedPointsExecute(Sender: TObject);
 begin

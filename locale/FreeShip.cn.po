@@ -11561,6 +11561,10 @@ msgstr "部件..."
 msgid "PolyCad"
 msgstr "PolyCad文件"
 
+#: tmainform.importstl.caption
+msgid "STL"
+msgstr ""
+
 #: tmainform.importsurface.caption
 msgid "Surface..."
 msgstr "外表面..."

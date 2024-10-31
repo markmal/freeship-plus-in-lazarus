@@ -11588,6 +11588,10 @@ msgstr "Часть из *.part"
 msgid "PolyCad"
 msgstr "PolyCad *.GEO"
 
+#: tmainform.importstl.caption
+msgid "STL"
+msgstr ""
+
 #: tmainform.importsurface.caption
 msgid "Surface..."
 msgstr "Поверхность из 3D *.TXT"

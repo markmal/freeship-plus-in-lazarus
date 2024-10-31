@@ -12250,6 +12250,10 @@ msgstr "Phan tu *.part"
 msgid "PolyCad"
 msgstr "PolyCad *.GEO"
 
+#: tmainform.importstl.caption
+msgid "STL"
+msgstr ""
+
 #: tmainform.importsurface.caption
 msgid "Surface..."
 msgstr "Mat phang 3D *.TXT"

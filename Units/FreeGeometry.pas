@@ -1984,6 +1984,7 @@ type
     procedure Edge_Connect;
     function CanInsertEdge: boolean;
     procedure ExportFeFFile(Strings: TStringList);
+    procedure ImportObjFile(Strings: TStringList);
     procedure ExportObjFile(ExportControlNet: boolean; Strings: TStringList);
     procedure Extents(var Min, Max: T3DCoordinate);     override;
     function ExtrudeControlPoints(

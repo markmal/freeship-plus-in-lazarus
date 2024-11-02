@@ -2796,6 +2796,10 @@ msgstr "importer des bouchains"
 msgid "import markers"
 msgstr "importer des marqueurs"
 
+#: freestringsunit.rs_import_obj_file
+msgid "import OBJ file"
+msgstr ""
+
 #: freestringsunit.rs_import_part
 msgid "Import part"
 msgstr "Importer un élément"
@@ -2803,6 +2807,10 @@ msgstr "Importer un élément"
 #: freestringsunit.rs_import_polycad_file
 msgid "import PolyCad file"
 msgstr "importer un fichier PolyCad"
+
+#: freestringsunit.rs_import_stl_file
+msgid "import STL file"
+msgstr ""
 
 #: freestringsunit.rs_import_surface
 msgid "import surface"
@@ -16298,6 +16306,10 @@ msgstr "Importer"
 #: tmainform.importmichletwaves.caption
 msgid "Michlet waves..."
 msgstr "Vagues de Michlet ..."
+
+#: tmainform.importobj.caption
+msgid "Import Wavefront OBJ"
+msgstr ""
 
 #: tmainform.importpart.caption
 msgctxt "tmainform.importpart.caption"

@@ -2293,12 +2293,20 @@ msgstr ""
 msgid "import markers"
 msgstr ""
 
+#: freestringsunit.rs_import_obj_file
+msgid "import OBJ file"
+msgstr ""
+
 #: freestringsunit.rs_import_part
 msgid "Import part"
 msgstr ""
 
 #: freestringsunit.rs_import_polycad_file
 msgid "import PolyCad file"
+msgstr ""
+
+#: freestringsunit.rs_import_stl_file
+msgid "import STL file"
 msgstr ""
 
 #: freestringsunit.rs_import_surface
@@ -14611,6 +14619,10 @@ msgstr ""
 
 #: tmainform.importmichletwaves.caption
 msgid "Michlet waves..."
+msgstr ""
+
+#: tmainform.importobj.caption
+msgid "Import Wavefront OBJ"
 msgstr ""
 
 #: tmainform.importpart.caption

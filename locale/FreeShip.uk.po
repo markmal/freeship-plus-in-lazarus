@@ -2699,6 +2699,10 @@ msgstr "імпорт chines"
 msgid "import markers"
 msgstr "імпорт маркерів"
 
+#: freestringsunit.rs_import_obj_file
+msgid "import OBJ file"
+msgstr ""
+
 #: freestringsunit.rs_import_part
 msgid "Import part"
 msgstr "імпорт part"
@@ -2706,6 +2710,10 @@ msgstr "імпорт part"
 #: freestringsunit.rs_import_polycad_file
 msgid "import PolyCad file"
 msgstr "імпорт PolyCad файлу"
+
+#: freestringsunit.rs_import_stl_file
+msgid "import STL file"
+msgstr ""
 
 #: freestringsunit.rs_import_surface
 msgid "import surface"
@@ -16148,6 +16156,10 @@ msgstr "Імпорт"
 #: tmainform.importmichletwaves.caption
 msgid "Michlet waves..."
 msgstr "Michlet хвилі..."
+
+#: tmainform.importobj.caption
+msgid "Import Wavefront OBJ"
+msgstr ""
 
 #: tmainform.importpart.caption
 msgctxt "tmainform.importpart.caption"

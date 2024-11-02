@@ -2776,6 +2776,10 @@ msgstr "importa codillos"
 msgid "import markers"
 msgstr "importa marcadores"
 
+#: freestringsunit.rs_import_obj_file
+msgid "import OBJ file"
+msgstr ""
+
 #: freestringsunit.rs_import_part
 msgid "Import part"
 msgstr "Importa Parte"
@@ -2783,6 +2787,10 @@ msgstr "Importa Parte"
 #: freestringsunit.rs_import_polycad_file
 msgid "import PolyCad file"
 msgstr "Importa PolyCad"
+
+#: freestringsunit.rs_import_stl_file
+msgid "import STL file"
+msgstr ""
 
 #: freestringsunit.rs_import_surface
 msgid "import surface"
@@ -16280,6 +16288,10 @@ msgstr "Importar"
 #: tmainform.importmichletwaves.caption
 msgid "Michlet waves..."
 msgstr "Michlet waves..."
+
+#: tmainform.importobj.caption
+msgid "Import Wavefront OBJ"
+msgstr ""
 
 #: tmainform.importpart.caption
 msgctxt "tmainform.importpart.caption"

@@ -88,8 +88,10 @@ type
 
  TMainForm         = class(TForm)
      AboutAction: TAction;
+     ImportOBJ: TAction;
      ImportSTL: TAction;
      MenuImportSTL: TMenuItem;
+     MenuItem3: TMenuItem;
      miSelectionDialog: TMenuItem;
      SelectionDialog: TAction;
      SplitSection50pct: TAction;
@@ -484,6 +486,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
+    procedure ImportOBJExecute(Sender: TObject);
     procedure ImportSTLExecute(Sender: TObject);
     procedure LoadFileExecute(Sender   : TObject);
     procedure ExitProgramExecute(Sender: TObject);
@@ -851,6 +854,13 @@ begin
  Self.Resize;
  Self.Invalidate;
  }
+end;
+
+procedure TMainForm.ImportOBJExecute(Sender: TObject);
+begin
+  Freeship.Edit.File_ImportOBJ;
+  FOpenHullWindows;
+  UpdateMenu;
 end;
 
 
@@ -3120,7 +3130,7 @@ end;{TMainForm.ImportPolyCadExecute}
 
 procedure TMainForm.ImportSTLExecute(Sender: TObject);
 begin
-  Freeship.Edit.File_ImportSTL;
+  Freeship.Edit.File_ImportObj;
   FOpenHullWindows;
   UpdateMenu;
 end;

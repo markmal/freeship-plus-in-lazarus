@@ -3998,6 +3998,65 @@ begin
   FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_Import_MichletWaves}
 
+procedure TFreeEdit.File_ImportObj;
+var
+  OpenDialog: TOpenDialog;
+  Answer: word;
+  PrevCursor: TCursor;
+  Strings: TStringList;
+begin
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
+  OpenDialog.Filter := createDialogFilter(rsMichletWaveElevationsFile,['obj']);
+  if OpenDialog.Execute then
+  begin
+    if FreeShip.FileChanged then
+    begin
+      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
+        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
+      if Answer = mrCancel then
+      begin
+        FreeAndNil(OpenDialog);
+        exit;
+      end;
+      if Answer = mrYes then
+      begin
+        File_SaveAs;
+        if FreeShip.FileChanged then
+        begin
+          // Apparently saving was not successfull, abort
+          FreeAndNil(OpenDialog);
+          exit;
+        end;
+      end;
+    end;
+    PrevCursor := Screen.Cursor;
+    Screen.Cursor := crHourglass;
+
+    try
+      CreateUndoObject(rs_import_OBJ_file, True);
+      FreeShip.Clear;
+
+      Strings := TStringList.Create;
+      Strings.LoadFromFile(ChangeFileExt(OpenDialog.FileName, '.obj'));
+      FreeShip.Surface.ImportObjFile(Strings);
+
+      FreeShip.ModelIsLoaded := True;
+      FreeShip.FileName := ChangeFileExt(Opendialog.FileName, '');
+      FreeShip.RebuildModel;
+      FreeShip.FileChanged := True;
+      FreeShip.Redraw;
+
+    finally
+      FreeAndNil(Strings);
+      if Assigned(FreeShip.OnUpdateGeometryInfo) then
+        FreeShip.OnUpdateGeometryInfo(self);
+      Screen.Cursor := PrevCursor;
+    end;
+  end;
+  FreeAndNil(OpenDialog);
+end;{TFreeEdit.File_ImportObj}
+
 procedure TFreeEdit.File_ExportObj;
 var
   SaveDialog: TSaveDialog;
@@ -5673,7 +5732,6 @@ begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
   OpenDialog.Filter := createDialogFilter(rsVRMLFiles, ['wrl', 'vrml']);
-  Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
     if FreeShip.FileChanged then

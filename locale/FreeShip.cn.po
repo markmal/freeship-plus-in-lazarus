@@ -2393,6 +2393,10 @@ msgstr "输入chines"
 msgid "import markers"
 msgstr "输入标记"
 
+#: freestringsunit.rs_import_obj_file
+msgid "import OBJ file"
+msgstr ""
+
 #: freestringsunit.rs_import_part
 msgid "Import part"
 msgstr "输入部件"
@@ -2400,6 +2404,10 @@ msgstr "输入部件"
 #: freestringsunit.rs_import_polycad_file
 msgid "import PolyCad file"
 msgstr "输入PolyCad文件"
+
+#: freestringsunit.rs_import_stl_file
+msgid "import STL file"
+msgstr ""
 
 #: freestringsunit.rs_import_surface
 msgid "import surface"
@@ -15632,6 +15640,10 @@ msgstr "输入"
 #: tmainform.importmichletwaves.caption
 msgid "Michlet waves..."
 msgstr "Michlet waves文件..."
+
+#: tmainform.importobj.caption
+msgid "Import Wavefront OBJ"
+msgstr ""
 
 #: tmainform.importpart.caption
 msgctxt "tmainform.importpart.caption"

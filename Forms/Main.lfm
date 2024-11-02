@@ -1543,6 +1543,11 @@ object MainForm: TMainForm
       Caption = 'STL'
       OnExecute = ImportSTLExecute
     end
+    object ImportOBJ: TAction
+      Category = 'Import'
+      Caption = 'Import Wavefront OBJ'
+      OnExecute = ImportOBJExecute
+    end
   end
   object MenuImages: TImageList
     Left = 112
@@ -2057,6 +2062,9 @@ object MainForm: TMainForm
         end
         object MenuImportSTL: TMenuItem
           Action = ImportSTL
+        end
+        object MenuItem3: TMenuItem
+          Action = ImportOBJ
         end
         object N6: TMenuItem
           Caption = '-'

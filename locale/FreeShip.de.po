@@ -2776,6 +2776,10 @@ msgstr "Importiere Punktkoordinaten aus Datei"
 msgid "import markers"
 msgstr "Importiere Markierungen"
 
+#: freestringsunit.rs_import_obj_file
+msgid "import OBJ file"
+msgstr ""
+
 #: freestringsunit.rs_import_part
 msgid "Import part"
 msgstr "Importiere Objekt"
@@ -2783,6 +2787,10 @@ msgstr "Importiere Objekt"
 #: freestringsunit.rs_import_polycad_file
 msgid "import PolyCad file"
 msgstr "Importiere PolyCad-Datei"
+
+#: freestringsunit.rs_import_stl_file
+msgid "import STL file"
+msgstr ""
 
 #: freestringsunit.rs_import_surface
 msgid "import surface"
@@ -16301,6 +16309,10 @@ msgstr "Importieren"
 #: tmainform.importmichletwaves.caption
 msgid "Michlet waves..."
 msgstr "Michlet Wellen..."
+
+#: tmainform.importobj.caption
+msgid "Import Wavefront OBJ"
+msgstr ""
 
 #: tmainform.importpart.caption
 msgctxt "tmainform.importpart.caption"

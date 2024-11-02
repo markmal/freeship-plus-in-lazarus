@@ -2796,6 +2796,10 @@ msgstr "importeer kniklijnen"
 msgid "import markers"
 msgstr "importeer markeerlijnen"
 
+#: freestringsunit.rs_import_obj_file
+msgid "import OBJ file"
+msgstr ""
+
 #: freestringsunit.rs_import_part
 msgid "Import part"
 msgstr "Importeer onderdeel"
@@ -2803,6 +2807,10 @@ msgstr "Importeer onderdeel"
 #: freestringsunit.rs_import_polycad_file
 msgid "import PolyCad file"
 msgstr "Importeer PolyCad bestand"
+
+#: freestringsunit.rs_import_stl_file
+msgid "import STL file"
+msgstr ""
 
 #: freestringsunit.rs_import_surface
 msgid "import surface"
@@ -16321,6 +16329,10 @@ msgstr "Importeer"
 #: tmainform.importmichletwaves.caption
 msgid "Michlet waves..."
 msgstr "Michlet golven..."
+
+#: tmainform.importobj.caption
+msgid "Import Wavefront OBJ"
+msgstr ""
 
 #: tmainform.importpart.caption
 msgctxt "tmainform.importpart.caption"

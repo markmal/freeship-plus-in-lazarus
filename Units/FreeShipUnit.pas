@@ -634,6 +634,7 @@ type
     // Delete the backgrundimage associated with this view
     procedure BackgroundImage_Open(Viewport: TFreeViewport);
     // browse for and open a backgroundimage
+    function CheckIfChangedAndAskToSave():boolean;
     constructor Create(FreeShip: TFreeShip);
     function CreateRedoObject: TFreeUndoObject;
     // Creates redo data before an undo is done

@@ -1545,7 +1545,7 @@ object MainForm: TMainForm
     end
     object ImportOBJ: TAction
       Category = 'Import'
-      Caption = 'Import Wavefront OBJ'
+      Caption = 'Wavefront OBJ'
       OnExecute = ImportOBJExecute
     end
   end

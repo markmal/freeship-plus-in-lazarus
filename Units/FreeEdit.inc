@@ -3998,38 +3998,47 @@ begin
   FreeAndNil(OpenDialog);
 end;{TFreeEdit.File_Import_MichletWaves}
 
+function TFreeEdit.CheckIfChangedAndAskToSave():boolean;
+  var Answer: word;
+begin
+  Result := true;
+  if FreeShip.FileChanged then
+  begin
+    Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
+      mtConfirmation, [mbYes, mbNo, mbCancel], 0);
+    if Answer = mrCancel then
+    begin
+      Result := false;
+    end
+    else if Answer = mrYes then
+    begin
+      File_SaveAs;
+      if FreeShip.FileChanged then
+      begin
+        // Apparently saving was not successfull, abort
+        Result := false;
+      end;
+    end;
+  end;
+end;
+
 procedure TFreeEdit.File_ImportObj;
 var
   OpenDialog: TOpenDialog;
-  Answer: word;
   PrevCursor: TCursor;
   Strings: TStringList;
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-  OpenDialog.Filter := createDialogFilter(rsMichletWaveElevationsFile,['obj']);
+  OpenDialog.Filter := createDialogFilter(rsWavefrontFile,['obj']);
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
+
     PrevCursor := Screen.Cursor;
     Screen.Cursor := crHourglass;
 
@@ -4270,82 +4279,61 @@ begin
       MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
   end;
   FreeAndNil(SaveDialog);
-
 end;{TFreeEdit.File_ExportSTL}
 
 procedure TFreeEdit.File_ImportSTL;
 var
   OpenDialog: TOpenDialog;
-  Answer: word;
   FileName: String;
   FFile: TextFile;
   Str: string;
+begin
+  OpenDialog := TOpenDialog.Create(FreeShip);
+  OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
+  OpenDialog.Filter := createDialogFilter(rsSTLFile, ['stl']);
+  if OpenDialog.Execute then
   begin
-    OpenDialog := TOpenDialog.Create(FreeShip);
-    OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
-    OpenDialog.Filter := createDialogFilter(rsSTLFile, ['stl']);
-    Opendialog.Options := [ofHideReadOnly];
-    if OpenDialog.Execute then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      if FreeShip.FileChanged then
-      begin
-        Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-          mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-        if Answer = mrCancel then
-        begin
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-        if Answer = mrYes then
-        begin
-          File_SaveAs;
-          if FreeShip.FileChanged then
-          begin
-            // Apparently saving was not successfull, abort
-            FreeAndNil(OpenDialog);
-            exit;
-          end;
-        end;
-      end;
-      CreateUndoObject(rs_import_carene_file {UserString[105]}, True);
-      FreeShip.Clear;
-      FileName := ChangeFileExt(OpenDialog.FileName, '.stl');
-      AssignFile(FFile, FileName);
-      {$I-}
-      Reset(FFile);
-      {$I+}
-      if IOResult = 0 then
-      begin
-        try
-          if not EOF(FFile) then
-          begin
-            Readln(FFile, Str); Str := Str.Trim.ToLower;
-            if Str.StartsWith('solid ') then
-            begin
-              File_ImportSTLtext(FileName);
-            end
-            else
-            begin
-              File_ImportSTLbin(FileName);
-            end;
-
-          end;
-
-        finally
-          CloseFile(FFile);
-          FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.stl');
-          FreeShip.ModelIsLoaded := True;
-          FreeShip.FileChanged := True;
-          FreeShip.RebuildModel;
-          FreeShip.Redraw;
-        end;
-      end
-      else
-        MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
+      FreeAndNil(OpenDialog);
+      exit;
     end;
-    FreeAndNil(OpenDialog);
-
-  end;{TFreeEdit.File_ImportSTL}
+    CreateUndoObject(rs_import_STL_file, True);
+    FreeShip.Clear;
+    FileName := ChangeFileExt(OpenDialog.FileName, '.stl');
+    AssignFile(FFile, FileName);
+    {$I-}
+    Reset(FFile);
+    {$I+}
+    if IOResult = 0 then
+    begin
+      try
+        if not EOF(FFile) then
+        begin
+          Readln(FFile, Str); Str := Str.Trim.ToLower;
+          if Str.StartsWith('solid ') then
+          begin
+            File_ImportSTLtext(FileName);
+          end
+          else
+          begin
+            File_ImportSTLbin(FileName);
+          end;
+        end;
+      finally
+        CloseFile(FFile);
+        FreeShip.Filename := ChangeFileExt(Opendialog.FileName, '.stl');
+        FreeShip.ModelIsLoaded := True;
+        FreeShip.FileChanged := True;
+        FreeShip.RebuildModel;
+        FreeShip.Redraw;
+      end;
+    end
+    else
+      MessageDlg(rs_Unable_to_create_file_ {UserString[97]}, mtError, [mbOK], 0);
+  end;
+  FreeAndNil(OpenDialog);
+end;{TFreeEdit.File_ImportSTL}
 
 procedure TFreeEdit.File_ImportSTLtext(FileName: string);
 var
@@ -4573,25 +4561,10 @@ begin
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
     CreateUndoObject(rs_import_carene_file {UserString[105]}, True);
     FreeShip.Clear;
@@ -4682,32 +4655,17 @@ begin
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
     CreateUndoObject(rs_import_chines {UserString[107]}, True);
     FreeShip.Clear;
     assignFile(FFile, ChangeFileExt(Opendialog.FileName, '.txt'));
-      {$I-}
+    {$I-}
     Reset(FFile);
-{$I+}
+    {$I+}
     if IOResult = 0 then
     begin
       //FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
@@ -4777,7 +4735,6 @@ end;{TFreeEdit.File_ImportChines}
 procedure TFreeEdit.File_ImportFEF;
 var
   OpenDialog: TOpenDialog;
-  Answer: word;
   Strings: TStringList;
   Str: string;
   LineNr, I: integer;
@@ -4788,25 +4745,10 @@ begin
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
     FreeShip.Preferences.ImportDirectory := ExtractFilePath(OpenDialog.FileName);
     CreateUndoObject(rs_import__Fef_file {UserString[109]}, True);
@@ -4852,7 +4794,6 @@ end;{TFreeEdit.File_ImportFEF}
 procedure TFreeEdit.File_ImportHull;
 var
   OpenDialog: TOpenDialog;
-  Answer: word;
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
   OpenDialog.InitialDir := FreeShip.Preferences.ImportDirectory;
@@ -4860,25 +4801,10 @@ begin
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
     CreateUndoObject(rs_import__hul_file {UserString[110]}, True);
     File_ImportHull(OpenDialog.FileName, False);
@@ -5221,7 +5147,6 @@ end;{TFreeEdit.File_ImportPart}
 procedure TFreeEdit.File_ImportPolycad;
 var
   OpenDialog: TOpenDialog;
-  Answer: word;
   PrevCursor: TCursor;
   Strings: TStringList;
   I, J, K, N: integer;
@@ -5398,25 +5323,10 @@ begin
   Opendialog.Options := [ofHideReadOnly];
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
     PrevCursor := Screen.Cursor;
     Screen.Cursor := crHourglass;
@@ -5726,7 +5636,6 @@ end;{TFreeEdit.File_ImportPolycad}
 procedure TFreeEdit.File_ImportVRML;
 var
   OpenDialog: TOpenDialog;
-  Answer: word;
   PrevCursor: TCursor;
 begin
   OpenDialog := TOpenDialog.Create(FreeShip);
@@ -5734,25 +5643,10 @@ begin
   OpenDialog.Filter := createDialogFilter(rsVRMLFiles, ['wrl', 'vrml']);
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
     PrevCursor := Screen.Cursor;
     Screen.Cursor := crHourglass;
@@ -6006,25 +5900,10 @@ begin
   //Places:=Opendialog.GetPlaces;
   if OpenDialog.Execute then
   begin
-    if FreeShip.FileChanged then
+    if not CheckIfChangedAndAskToSave() then
     begin
-      Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-        mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-      if Answer = mrCancel then
-      begin
-        FreeAndNil(OpenDialog);
-        exit;
-      end;
-      if Answer = mrYes then
-      begin
-        File_SaveAs;
-        if FreeShip.FileChanged then
-        begin
-          // Apparently saving was not successfull, abort
-          FreeAndNil(OpenDialog);
-          exit;
-        end;
-      end;
+      FreeAndNil(OpenDialog);
+      exit;
     end;
 
     FreeShip.ClearUndo;
@@ -6206,7 +6085,6 @@ begin
       exit;
   end
   else FreeShip.FileVersion := MinFileVersion;
-  ;
 
   FreeShip.FFilenameSet := True;
   // Check if the file already exists
@@ -8090,20 +7968,7 @@ var
 
 begin
   Result := False;
-  if FreeShip.FileChanged then
-  begin
-    Answer := MessageDlg(rs_The_current_model_has_been_changed_ {UserString[103]} + EOL + rs_Do_you_want_to_save_it_first_ {UserString[104]},
-      mtConfirmation, [mbYes, mbNo, mbCancel], 0);
-    if Answer = mrCancel then
-      exit;
-    if Answer = mrYes then
-    begin
-      FreeShip.Edit.File_SaveAs;
-      if FreeShip.FileChanged then
-        exit// Apparently saving was not successfull, abort
-      ;
-    end;
-  end;
+  if not CheckIfChangedAndAskToSave() then exit;
   FreeNewModelDialog := TFreeNewModelDialog.Create(FreeShip);
   //ShowTranslatedValues(FreeNewModelDialog);
   if FreeNewModelDialog.Execute then

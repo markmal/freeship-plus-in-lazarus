@@ -3130,7 +3130,7 @@ end;{TMainForm.ImportPolyCadExecute}
 
 procedure TMainForm.ImportSTLExecute(Sender: TObject);
 begin
-  Freeship.Edit.File_ImportObj;
+  Freeship.Edit.File_ImportSTL;
   FOpenHullWindows;
   UpdateMenu;
 end;

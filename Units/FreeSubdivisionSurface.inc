@@ -4726,6 +4726,48 @@ begin
   FIsAveraged := true;
 end;
 
+
+procedure TFreeSubdivisionSurface.ReverseAverage;
+var Point: TFreeSubdivisionPoint;
+  i,c:integer;
+  TmpPoints: array of T3DCoordinate;
+begin
+  if FIsAveraged then exit;
+
+  // perform reverse averaging procedure to coarse the new mesh
+
+  Setlength(TmpPoints, FPoints.Count);
+  for I := 0 to FPoints.Count - 1 do
+  begin
+    Point := FPoints[I];
+    TmpPoints[I] := Point.ReverseAveraging;
+  end;
+  for I := 0 to FPoints.Count - 1 do
+  begin
+    Point := FPoints[I];
+    //Logger.Debug(format('bfr avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
+    Point.FCoordinate := TmpPoints[I];
+    //Logger.Debug(format('aft avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
+  end;
+
+  Setlength(TmpPoints, FFreeStandingPoints.Count);
+  for I := 0 to FFreeStandingPoints.Count - 1 do
+  begin
+    Point := FFreeStandingPoints[I];
+    TmpPoints[I] := Point.Averaging;
+  end;
+  for I := 0 to FFreeStandingPoints.Count - 1 do
+  begin
+    Point := FFreeStandingPoints[I];
+    Point.FCoordinate := TmpPoints[I];
+  end;
+
+  SetLength(TmpPoints, 0);
+
+  FIsAveraged := true;
+end;
+
+
 procedure TFreeSubdivisionSurface.SaveBinary(Destination: TFreeFileBuffer);
 var
   I: integer;

@@ -48,7 +48,10 @@ type
 
   TObjectTypes = set of TObjectType;
 
-  TFileSortType = (fstNone, fstAlphabet, fstFoldersFirst);
+  TFileSortType = (fstNone, fstAlphabet, fstFoldersFirst, fstCustom);
+
+  TMaskCaseSensitivity = (mcsPlatformDefault, mcsCaseInsensitive, mcsCaseSensitive);
+
 
   { TFileItem : internal helper class used for temporarily storing info in an internal TStrings component}
   type
@@ -85,6 +88,7 @@ type
       property Owner: String read GetOwner;
     end;
 
+  TFileItemCompareEvent = function(Item1, Item2: TFileItem): integer of object;
 
   { Forward declaration of the classes }
 
@@ -129,7 +133,8 @@ type
     function  GetRootPath: string;
     class function PathContainsHiddenDir(path: String): Boolean;
     class procedure GetFilesInDir(const ABaseDir: string;
-      AMask: string; AObjectTypes: TObjectTypes; AResult: TStrings; AFileSortType: TFileSortType = fstNone);
+      AMask: string; AObjectTypes: TObjectTypes; AResult: TStrings; AFileSortType: TFileSortType = fstNone;
+             ACaseSensitivity: TMaskCaseSensitivity = mcsPlatformDefault);
     { Other methods specific to Lazarus }
     function  GetPathFromNode(ANode: TTreeNode): string;
     procedure PopulateWithBaseFiles;
@@ -240,6 +245,7 @@ type
   TCustomShellListView = class(TCustomListView)
   private
     FMask: string;
+    FMaskCaseSensitivity: TMaskCaseSensitivity;
     FObjectTypes: TObjectTypes;
     FRoot: string;
     FShellTreeView: TCustomShellTreeView;
@@ -256,6 +262,7 @@ type
 
     { Setters and getters }
     procedure SetMask(const AValue: string);
+    procedure SetMaskCaseSensitivity(const AValue: TMaskCaseSensitivity);
     procedure SetShellTreeView(const Value: TCustomShellTreeView);
     procedure SetRoot(const Value: string);
   protected
@@ -279,6 +286,7 @@ type
     { Properties }
     property IsLoading: boolean read FIsLoading;
     property Mask: string read FMask write SetMask; // Can be used to conect to other controls
+    property MaskCaseSensitivity: TMaskCaseSensitivity read FMaskCaseSensitivity write SetMaskCaseSensitivity;
     property ObjectTypes: TObjectTypes read FObjectTypes write FObjectTypes;
     property Root: string read FRoot write SetRoot;
     property ShellTreeView: TCustomShellTreeView read FShellTreeView write SetShellTreeView;
@@ -320,6 +328,7 @@ type
 //    property HoverTime;
     property LargeImages;
     property Mask;
+    property MaskCaseSensitivity;
     property MultiSelect;
 //    property OwnerData;
 //    property OwnerDraw;
@@ -509,9 +518,11 @@ procedure Register;
 
 implementation
 
+uses
 {$ifdef windows}
-uses Windows;
+  Windows,
 {$endif}
+  Masks;
 
 const
   //no need to localize, it's a message for the programmer
@@ -594,6 +605,31 @@ begin
   result := '';
 end;
 
+{ TFileItemAVLTree
+
+  Specialized TAVLTree descendant for sorting the TFileItems found by the
+  helper function GetFilesInDirectory such that a user-friendly compare function
+  can be applied. }
+
+type
+  TFileItemAVLTree = class(TAVLTree)
+  private
+    FFileItemCompare: TFileItemCompareEvent;
+    function InternalFileItemCompare(ATree: TAvlTree; Item1, Item2: Pointer): Integer;
+  public
+    constructor CreateFileItemCompare(ACompare: TFileItemCompareEvent);
+  end;
+
+constructor TFileItemAVLTree.CreateFileItemCompare(ACompare: TFileItemCompareEvent);
+begin
+  FFileItemCompare := ACompare;
+  inherited CreateObjectCompare(@InternalFileItemCompare);
+end;
+
+function TFileItemAVLTree.InternalFileItemCompare(ATree: TAvlTree; Item1, Item2: Pointer): Integer;
+begin
+  Result := FFileItemCompare(TFileItem(Item1), TFileItem(Item2));
+end;
 
 
 { TShellTreeNode }
@@ -844,10 +880,155 @@ end;
   AResult will contain TFileItem objects upon return, make sure to free them in the calling routine
 
   AMask may contain multiple file masks separated by ;
-  Don't add a final ; after the last mask.
 }
+procedure GetFilesInDirectory(const ABaseDir: string; AMask: string;
+  AObjectTypes: TObjectTypes; AResult: TStrings; AFileSortType: TFileSortType;
+  ACaseSensitivity: TMaskCaseSensitivity = mcsPlatformDefault;
+  ASortCompare: TFileItemCompareEvent = nil);
+var
+  DirInfo: TSearchRec;
+  FindResult, i: Integer;
+  IsDirectory, IsValidDirectory, IsHidden, AddFile, UseMaskList, CaseSens: Boolean;
+  SearchStr, ShortFilename: string;
+  MaskList: TMaskList = nil;
+  Files: TFileItemAVLTree;
+  FileItem: TFileItem;
+  avlNode: TAVLTreeNode;
+  {$if defined(windows) and not defined(wince)}
+  ErrMode : LongWord;
+  {$endif}
+begin
+  {$if defined(windows) and not defined(wince)}
+  // disables the error dialog, while enumerating not-available drives
+  // for example listing A: path, without diskette present.
+  // WARNING: Since Application.ProcessMessages is called, it might effect some operations!
+  ErrMode:=SetErrorMode(SEM_FAILCRITICALERRORS or SEM_NOALIGNMENTFAULTEXCEPT or SEM_NOGPFAULTERRORBOX or SEM_NOOPENFILEERRORBOX);
+  try
+  {$endif}
+    while (Length(AMask) > 0) and (AMask[Length(AMask)] = ';') do
+      Delete(AMask, Length(AMask), 1);
+    if Trim(AMask) = '' then
+      AMask := AllFilesMask;
+    //Use a TMaskList if more than 1 mask is specified or if MaskCaseSensitivity differs from the platform default behaviour
+    UseMaskList := (Pos(';', AMask) > 0) or
+                   {$ifdef NotLiteralFilenames}
+                   (ACaseSensitivity = mcsCaseSensitive)
+                   {$else}
+                   (ACaseSensitivity = mcsCaseInsensitive)
+                   {$endif}
+                   ;
+    if UseMaskList then
+    begin
+      // Disable sets and ranges in the MaskList. [...] is interpreted as literal chars.
+      // Otherwise this would be incompatible with the situation if no MaskList was used
+      // and would break backwards compatibilty and could raise unexpected EConvertError.
+      // If you need sets/ranges in the MaskList, use the OnAddItem event for that. (BB)
+      {$ifdef NotLiteralFilenames}
+      CaseSens := ACaseSensitivity = mcsCaseSensitive;
+      {$else}
+      CaseSens := ACaseSensitivity <> mcsCaseInsensitive;
+      {$endif}
+      MaskList := TMaskList.Create(AMask, ';', CaseSens, MaskOpCodesDisableRange);
+    end;
+
+    try
+      Files := nil;
+      case AFileSortType of
+        fstAlphabet:
+          Files := TFileItemAVLTree.Create(@FilesSortAlphabet);
+        fstFoldersFirst:
+          Files := TFileItemAVLTree.Create(@FilesSortFoldersFirst);
+        fstCustom:
+          if ASortCompare <> nil then
+            Files := TFileItemAVLTree.CreateFileItemCompare(ASortCompare);
+      end;
+
+      i := 0;
+      if UseMaskList then
+        SearchStr := IncludeTrailingPathDelimiter(ABaseDir) + AllFilesMask
+      else
+        SearchStr := IncludeTrailingPathDelimiter(ABaseDir) + AMask; //single mask, let FindFirst/FindNext handle matching
+
+      FindResult := FindFirstUTF8(SearchStr, faAnyFile, DirInfo);
+      while (FindResult = 0) do
+      begin
+        ShortFilename := DirInfo.Name;
+        IsValidDirectory := (ShortFilename <> '.') and (ShortFilename <> '..');
+        //no need to call MaskListMatches (which loops through all masks) if ShortFileName is '.' or '..' since we never process this
+        if ((not UseMaskList) or MaskList.Matches(DirInfo.Name)) and IsValidDirectory  then
+        begin
+          inc(i);
+          if i = 100 then
+          begin
+            Application.ProcessMessages;
+            i := 0;
+          end;
+          IsDirectory := (DirInfo.Attr and FaDirectory = FaDirectory);
+          IsHidden := (DirInfo.Attr and faHidden{%H-} = faHidden{%H-});
+
+          // First check if we show hidden files
+          if IsHidden then
+            AddFile := (otHidden in AObjectTypes)
+          else
+            AddFile := True;
+
+          // If it is a directory, check if it is a valid one
+          if IsDirectory then
+            AddFile := AddFile and ((otFolders in AObjectTypes) and IsValidDirectory)
+          else
+            AddFile := AddFile and (otNonFolders in AObjectTypes);
+
+          // AddFile identifies if the file is valid or not
+          if AddFile then
+          begin
+            if Assigned(Files) then
+              Files.Add(TFileItem.Create(DirInfo, ABaseDir))
+            else
+              AResult.AddObject(ShortFilename, TFileItem.Create(DirInfo, ABaseDir));
+          end;
+        end;// Filename matches the mask
+        FindResult := FindNextUTF8(DirInfo);
+      end; //FindResult = 0
+
+      FindCloseUTF8(DirInfo);
+    finally
+      MaskList.Free;
+    end;
+
+    if Assigned(Files) then
+    begin
+      avlNode := Files.FindLowest;
+      while Assigned(avlNode) do
+      begin
+        FileItem := TFileItem(avlNode.Data);
+        AResult.AddObject(FileItem.FileInfo.Name, FileItem);
+        avlNode := Files.FindSuccessor(avlNode);
+      end;
+
+      //don't free the TFileItems here, they will freed by the calling routine
+      Files.Free;
+    end;
+
+  {$if defined(windows) and not defined(wince)}
+  finally
+     SetErrorMode(ErrMode);
+  end;
+  {$endif}
+end;
+
 class procedure TCustomShellTreeView.GetFilesInDir(const ABaseDir: string;
-  AMask: string; AObjectTypes: TObjectTypes; AResult: TStrings; AFileSortType: TFileSortType);
+  AMask: string; AObjectTypes: TObjectTypes; AResult: TStrings; AFileSortType: TFileSortType;
+  ACaseSensitivity: TMaskCaseSensitivity);
+begin
+  GetFilesInDirectory(ABaseDir, AMask, AObjectTypes, AResult,
+                    AFileSortType, ACaseSensitivity);
+end;
+
+
+{
+class procedure TCustomShellTreeView.GetFilesInDir(const ABaseDir: string;
+  AMask: string; AObjectTypes: TObjectTypes; AResult: TStrings; AFileSortType: TFileSortType;
+  ACaseSensitivity: TMaskCaseSensitivity);
 var
   DirInfo: TSearchRec;
   FindResult: Integer;
@@ -980,6 +1161,7 @@ begin
   end;
   {$endif}
 end;
+}
 
 class function TCustomShellTreeView.GetBasePath: string;
 begin
@@ -1635,6 +1817,19 @@ begin
   end;
 end;
 
+
+procedure TCustomShellListView.SetMaskCaseSensitivity(const AValue: TMaskCaseSensitivity);
+begin
+  if AValue <> FMaskCaseSensitivity then
+  begin
+    FMaskCaseSensitivity := AValue;
+    Clear;
+    Items.Clear;
+    PopulateWithRoot();
+  end;
+end;
+
+
 procedure TCustomShellListView.SetRoot(const Value: string);
 begin
   if FRoot <> Value then
@@ -1814,7 +2009,7 @@ begin
 
 
     TCustomShellTreeView.GetFilesInDir(FRoot, '*',   DirObjectTypes, Files, fstAlphabet);
-    TCustomShellTreeView.GetFilesInDir(FRoot, FMask, FileObjectTypes, Files, fstAlphabet);
+    TCustomShellTreeView.GetFilesInDir(FRoot, FMask, FileObjectTypes, Files, fstAlphabet, FMaskCaseSensitivity );
     FAbortLoading := false;
     for i := 0 to Files.Count - 1 do
     begin

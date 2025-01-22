@@ -1345,6 +1345,7 @@ type
     procedure AddFace(Face: TFreeSubdivisionFace);
     function Averaging: T3DCoordinate;
     function LastAveraging: T3DCoordinate;
+    function ReverseAveraging: T3DCoordinate;
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
     function CheckIntegrity: boolean;
     procedure Clear;
@@ -2024,6 +2025,7 @@ type
     procedure LoadVRMLFile(Filename: string);
     function PointExists(P: TFreeSubdivisionControlPoint): boolean;
     procedure Average;
+    procedure ReverseAverage;
     procedure Rebuild; override;
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);

@@ -92,7 +92,8 @@ begin
   begin
     ext += '*.' + extensions[i]+';';
     {$IF defined(LCLGtk2) or defined(LCLGtk3)}
-    fltr += '*.' + makeGTKfilter(extensions[i])+';';
+    //fltr += '*.' + makeGTKfilter(extensions[i])+';'; // does not work. Change to case insensitive
+    fltr += '*.' + extensions[i]+';';
     {$ELSE}
     fltr += '*.' + extensions[i]+';';
     {$ENDIF}

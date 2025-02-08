@@ -1054,8 +1054,10 @@ var
   Index: integer;
   P: TFreeSubdivisionPoint;
   P3D: T3DCoordinate;
-  Source, Dest: TFasterListTFreeSubdivisionEdge;
-  Edge:TFreeSubdivisionEdge;
+  Source: TFasterListTFreeSubdivisionEdge;
+  Dest: TFasterListTFreeSubdivisionFace;
+  Edge: TFreeSubdivisionEdge;
+  Face: TFreeSubdivisionFace;
   Min, Max: T3DCoordinate;
   First: boolean;
 
@@ -1093,41 +1095,56 @@ begin
   // Extract edges as polylines
   Source := TFasterListTFreeSubdivisionEdge.Create;
   Source.AddList(FBoundaryEdges);
-  Dest := TFasterListTFreeSubdivisionEdge.Create;
-  ///Owner.Surface.IsolateEdges(Source, Dest);
+  Dest := TFasterListTFreeSubdivisionFace.Create;
+  Owner.Surface.IsolateEdges(Source, Dest);
   FreeAndNil(Source);
 
-  // Calculate min.,max extents of coundary
+  // Calculate min.,max extents of boundary
   // all measurements are referred to the min. coordinate
   First := True;
   Strings.Add('');
   Strings.Add('Boundary coordinates for: ' + Name);
-  for I := 1 to Dest.Count do
+  for I := 0 to Dest.Count-1 do
   begin
-    Edge := Dest[I - 1];
-    getEdgeMinMax(Edge.StartPoint, Min, Max);
-    getEdgeMinMax(Edge.EndPoint, Min, Max);
-  end;
-
-  for I := 1 to Dest.Count do
-  begin
-    Edge := Dest[I - 1];
-    if I > 1 then
-      Strings.Add('');
-
-    printEdgePoint(Edge.StartPoint, FMirror);
-    printEdgePoint(Edge.EndPoint, FMirror);
-
-    if FMirror then
+    Face := Dest[I];
+    for J:=0 to Face.Points.Count-1 do
     begin
-      Strings.Add('');
-      printEdgePoint(Edge.StartPoint, FMirror);
-      printEdgePoint(Edge.EndPoint, FMirror);
+      P := Face.Points[J];
+      getEdgeMinMax(P, Min, Max);
     end;
-    FreeAndNil(Source);
   end;
+
+  // print boundary coordinates
+  for I := 0 to Dest.Count-1 do
+  begin
+    if I > 0 then Strings.Add('');
+    Face := Dest[I];
+    for J:=0 to Face.Points.Count-1 do
+    begin
+      P := Face.Points[J];
+      printEdgePoint(P, false);
+    end;
+  end;
+
+  // print mirror boundary coordinates
+  if FMirror then
+  begin
+    Strings.Add('');
+    Strings.Add('mirror');
+    for I := 0 to Dest.Count-1 do
+    begin
+      if I > 0 then Strings.Add('');
+      Face := Dest[I];
+      for J:=0 to Face.Points.Count-1 do
+      begin
+        P := Face.Points[J];
+        printEdgePoint(P, FMirror);
+      end;
+    end;
+  end;
+
   FreeAndNil(Dest);
-end;{TFreeDevelopedPatch.SaveToDXF}
+end;{TFreeDevelopedPatch.SaveToTextFile}
 
 procedure TFreeDevelopedPatch.Unroll(ControlFaces: TFasterListTFreeSubdivisionControlFace);
 type

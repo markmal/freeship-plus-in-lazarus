@@ -67,7 +67,7 @@ type
   { TFreeExpanedplatesDialog }
 
   TFreeExpanedplatesDialog = class(TForm)
-    CheckBox1: TCheckBox;
+    CheckBoxMirror: TCheckBox;
     CloseDialog: TAction;
     FloatSpinEdit1: TFloatSpinEdit;
     FloatSpinEdit2: TFloatSpinEdit;
@@ -192,7 +192,7 @@ type
     procedure Edit3Exit(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure ShowPartNameExecute(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
+    procedure CheckBoxMirrorClick(Sender: TObject);
     procedure ShowSubmergedAreaExecute(Sender: TObject);
     procedure ExportTextFileExecute(Sender: TObject);
   private   { Private declarations }
@@ -300,7 +300,7 @@ begin
     _Label16.Caption := '';
     _Label18.Caption := '';
     FloatSpinEdit1.Value := 0;
-    Checkbox1.Checked := False;
+    CheckBoxMirror.Checked := False;
   end
   else
   begin
@@ -311,7 +311,7 @@ begin
     _Label6.Caption := ': ' + Val.Name;
     _Label9.Caption := IntToStr(Val.NumberOfIterations);
     FloatSpinEdit1.Value := Val.Rotation;
-    Checkbox1.Checked := Val.MirrorOnScreen;
+    CheckBoxMirror.Checked := Val.MirrorOnScreen;
   end;
   Viewport.Refresh;
 end;{TFreeExpanedplatesDialog.FSetActivePatch}
@@ -1024,18 +1024,18 @@ begin
   Viewport.Refresh;
 end;{TFreeExpanedplatesDialog.ShowPartNameExecute}
 
-procedure TFreeExpanedplatesDialog.CheckBox1Click(Sender: TObject);
+procedure TFreeExpanedplatesDialog.CheckBoxMirrorClick(Sender: TObject);
 begin
   if ActivePatch <> nil then
-    if Checkbox1.Checked <> ActivePatch.MirrorOnScreen then
+    if CheckBoxMirror.Checked <> ActivePatch.MirrorOnScreen then
     begin
-      ActivePatch.MirroronScreen := Checkbox1.Checked;
+      ActivePatch.MirrorOnScreen := CheckBoxMirror.Checked;
       if Viewport.Zoom = 1.0 then
         Viewport.ZoomExtents
       else
         Viewport.Refresh;
     end;
-end;{TFreeExpanedplatesDialog.CheckBox1Click}
+end;{TFreeExpanedplatesDialog.CheckBoxMirrorClick}
 
 procedure TFreeExpanedplatesDialog.ShowSubmergedAreaExecute(Sender: TObject);
 begin

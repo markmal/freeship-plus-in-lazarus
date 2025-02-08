@@ -7263,8 +7263,8 @@ msgstr ""
 msgid "Load from a file"
 msgstr ""
 
-#: tfreeexpanedplatesdialog.checkbox1.caption
-msgctxt "tfreeexpanedplatesdialog.checkbox1.caption"
+#: tfreeexpanedplatesdialog.checkboxmirror.caption
+msgctxt "tfreeexpanedplatesdialog.checkboxmirror.caption"
 msgid "Mirror"
 msgstr ""
 

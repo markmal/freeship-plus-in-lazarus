@@ -634,6 +634,7 @@ type
     // Delete the backgrundimage associated with this view
     procedure BackgroundImage_Open(Viewport: TFreeViewport);
     // browse for and open a backgroundimage
+    function CheckIfChangedAndAskToSave():boolean;
     constructor Create(FreeShip: TFreeShip);
     function CreateRedoObject: TFreeUndoObject;
     // Creates redo data before an undo is done
@@ -696,6 +697,8 @@ type
     procedure File_Export_Michlet;
     // Creates a file to be read by the CFD program Michlet
     procedure File_Import_MichletWaves;
+    procedure File_ImportObj;
+    // Import the model from a wavefront .Obj file
     procedure File_ExportObj;
     // Saves the model as a wavefront .Obj file
     procedure File_ExportOffsets;

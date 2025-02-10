@@ -1022,9 +1022,17 @@ begin
 
         FDestinationHeight := CanvasHeight;
         Printer.Title := JobName;
-        Printer.BeginDoc;
-        refresh;
-        Printer.EndDoc;
+        try
+          Printer.BeginDoc;
+          Printer.Canvas.Pixels[0,0] := clWhite; // init canvas
+
+          //refresh;
+          Self.Paint;
+
+        finally
+          Printer.EndDoc;
+          FPrinting := False;
+        end;
       end;
     finally
       // Restore settings;

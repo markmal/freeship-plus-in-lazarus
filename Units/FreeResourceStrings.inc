@@ -375,6 +375,9 @@ resourcestring
  //rs_import_VRML_file {UserString[125]}
   rs_import_VRML_file = 'import VRML file';
 
+  rs_import_OBJ_file = 'import OBJ file';
+  rs_import_STL_file = 'import STL file';
+
  //rs_The_current_fileversion_is_version {UserString[126]}
   rs_The_current_fileversion_is_version = 'The current fileversion is version';
 

@@ -2606,6 +2606,67 @@ begin
     ControlFace[I - 1].SaveToStream(Strings);
 end;{TFreeSubdivisionSurface.ExportFEFFile}
 
+procedure TFreeSubdivisionSurface.ImportObjFile(Strings: TStringList);
+var
+  I, J, K: integer;
+  Index: integer;
+  CFace: TFreeSubdivisionControlFace;
+  Child: TFreeSubdivisionFace;
+  Str, sX, sY, sZ: string;
+  CPoint: TFreeSubdivisionCOntrolPoint;
+  CPoints, FacePoints: TFasterListTFreeSubdivisionControlPoint;
+  C3d: T3DCoordinate;
+  Faces: TStringList;
+  Vindex, S3d : array of string;
+
+begin
+  CPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  FacePoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+  Faces := TStringList.Create;
+  Self.IsLoading:=true;
+  try
+    for i:=0 to Strings.Count-1 do
+    begin
+      Str := Strings[i].trim();
+      if Str.StartsWith('#') then
+      else if Str.StartsWith('v ') then
+      begin
+        SetLength(S3d,0);
+        S3d := Str.Split([' ']);
+        C3d.X := TFloatType.Parse(S3d[1]);
+        C3d.Y := TFloatType.Parse(S3d[2]);
+        C3d.Z := TFloatType.Parse(S3d[3]);
+        CPoint := AddControlPoint(C3d);
+        CPoints.Add(CPoint);
+      end
+      else if Str.StartsWith('f ') then Faces.Append(Str);
+    end;
+
+    for i:=0 to Faces.Count-1 do
+    begin
+      Str := Faces[i].Replace('  ',' ').Replace('  ',' ');
+      SetLength(Vindex,0);
+      Vindex := Str.Split([' ']);
+      FacePoints.Clear;
+      for j:=1 to Length(Vindex)-1 do
+      begin
+        Index := Integer.Parse(Vindex[j].Split(['/'])[0]);
+        CPoint := CPoints[Index-1];
+        FacePoints.Add(CPoint);
+      end;
+      AddControlFace(FacePoints, True, Self.Layer[0]);
+    end;
+  finally
+    Self.IsLoading:=false;
+    SetLength(S3d,0);
+    SetLength(Vindex,0);
+    CPoints.Free;
+    FacePoints.Free;
+    Faces.Free;
+  end;
+
+end;
+
 procedure TFreeSubdivisionSurface.ExportObjFile(ExportControlNet: boolean;
   Strings: TStringList);
 var
@@ -4664,6 +4725,48 @@ begin
 
   FIsAveraged := true;
 end;
+
+
+procedure TFreeSubdivisionSurface.ReverseAverage;
+var Point: TFreeSubdivisionPoint;
+  i,c:integer;
+  TmpPoints: array of T3DCoordinate;
+begin
+  if FIsAveraged then exit;
+
+  // perform reverse averaging procedure to coarse the new mesh
+
+  Setlength(TmpPoints, FPoints.Count);
+  for I := 0 to FPoints.Count - 1 do
+  begin
+    Point := FPoints[I];
+    TmpPoints[I] := Point.ReverseAveraging;
+  end;
+  for I := 0 to FPoints.Count - 1 do
+  begin
+    Point := FPoints[I];
+    //Logger.Debug(format('bfr avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
+    Point.FCoordinate := TmpPoints[I];
+    //Logger.Debug(format('aft avg: point:%d %8.5f %8.5f %8.5f',[Point.Id, Point.FCoordinate.X, Point.FCoordinate.Y, Point.FCoordinate.Z]));
+  end;
+
+  Setlength(TmpPoints, FFreeStandingPoints.Count);
+  for I := 0 to FFreeStandingPoints.Count - 1 do
+  begin
+    Point := FFreeStandingPoints[I];
+    TmpPoints[I] := Point.Averaging;
+  end;
+  for I := 0 to FFreeStandingPoints.Count - 1 do
+  begin
+    Point := FFreeStandingPoints[I];
+    Point.FCoordinate := TmpPoints[I];
+  end;
+
+  SetLength(TmpPoints, 0);
+
+  FIsAveraged := true;
+end;
+
 
 procedure TFreeSubdivisionSurface.SaveBinary(Destination: TFreeFileBuffer);
 var

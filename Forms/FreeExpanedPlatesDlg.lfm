@@ -257,14 +257,14 @@ object FreeExpanedplatesDialog: TFreeExpanedplatesDialog
           ParentColor = False
         end
       end
-      object CheckBox1: TCheckBox
+      object CheckBoxMirror: TCheckBox
         Left = 0
         Height = 28
         Top = 348
         Width = 288
         Caption = 'Mirror'
         TabOrder = 2
-        OnClick = CheckBox1Click
+        OnClick = CheckBoxMirrorClick
       end
     end
     object ListBox: TCheckListBox

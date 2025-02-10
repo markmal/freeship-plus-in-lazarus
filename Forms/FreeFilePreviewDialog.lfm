@@ -558,6 +558,7 @@ object FreeFilePreviewDialog: TFreeFilePreviewDialog
               HideSelection = False
               LargeImages = LargeImageList
               Mask = '*.ftm *.fbm'
+              MaskCaseSensitivity = mcsCaseInsensitive
               ParentFont = False
               ParentShowHint = False
               PopupMenu = ShellListViewPopupMenu

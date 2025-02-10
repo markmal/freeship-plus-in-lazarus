@@ -522,6 +522,44 @@ begin
   end;
 end;
 
+function TFreeSubdivisionPoint.ReverseAveraging: T3DCoordinate;
+var
+  I, J, Nt, Nq, NoP: integer;
+  a: TFloatType;
+  Weight, TotalWeight: TFloatType;
+  Center: T3DCoordinate;
+  Face: TFreeSubdivisionFace;
+  Edge: TFreeSubdivisionEdge;
+  P: TFreeSubdivisionPoint;
+begin
+  Result := FCoordinate;
+  if (NumberOfEdges = 0) or (FVertexType = svCorner) then
+    Result := FCoordinate
+  else
+  begin
+    if FVertexType = svCrease then
+    begin
+      Center := ZERO;
+      for I := 0 to FEdges.Count-1 do
+      begin
+        Edge := FEdges[I];
+        if (Edge.FFaces.Count = 1) or (Edge.FCrease) then
+        begin
+          if Edge.FStartPoint = Self then
+            P := Edge.FEndPoint
+          else
+            P := Edge.FStartpoint;
+          Center.X := Center.X + P.FCoordinate.X;
+          Center.Y := Center.Y + P.FCoordinate.Y;
+          Center.Z := Center.Z + P.FCoordinate.Z;
+        end;
+      end;
+      Result.X := Result.X * FEdges.Count - Center.X;
+      Result.Y := Result.Y * FEdges.Count - Center.Y;
+      Result.Z := Result.Z * FEdges.Count - Center.Z;
+    end
+  end;
+end;
 
 function TFreeSubdivisionPoint.CalculateVertexPoint: TFreeSubdivisionPoint;
 var

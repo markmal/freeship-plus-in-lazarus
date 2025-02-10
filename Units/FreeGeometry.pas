@@ -1345,6 +1345,7 @@ type
     procedure AddFace(Face: TFreeSubdivisionFace);
     function Averaging: T3DCoordinate;
     function LastAveraging: T3DCoordinate;
+    function ReverseAveraging: T3DCoordinate;
     function CalculateVertexPoint:TFreeSubdivisionPoint;virtual;
     function CheckIntegrity: boolean;
     procedure Clear;
@@ -1984,6 +1985,7 @@ type
     procedure Edge_Connect;
     function CanInsertEdge: boolean;
     procedure ExportFeFFile(Strings: TStringList);
+    procedure ImportObjFile(Strings: TStringList);
     procedure ExportObjFile(ExportControlNet: boolean; Strings: TStringList);
     procedure Extents(var Min, Max: T3DCoordinate);     override;
     function ExtrudeControlPoints(
@@ -2023,6 +2025,7 @@ type
     procedure LoadVRMLFile(Filename: string);
     function PointExists(P: TFreeSubdivisionControlPoint): boolean;
     procedure Average;
+    procedure ReverseAverage;
     procedure Rebuild; override;
     procedure SaveBinary(Destination: TFreeFileBuffer);
     procedure SaveToStream(Strings: TStringList);

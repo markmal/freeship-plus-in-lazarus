@@ -344,9 +344,14 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="--log-debug --nosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
-        <WorkingDirectory Value="/usr/bin/"/>
+        <CommandLineParams Value="--debug --log-debug --Xnosplash-I-ACCEPT-GPLv3-TERMS-AND-CONDITIONS"/>
+        <WorkingDirectory Value="D:/my/prj/freeship-plus-in-lazarus"/>
       </local>
+      <environment>
+        <UserOverrides Count="1">
+          <Variable0 Name="LD_LIBRARY_PATH" Value="/home/mark/MyProjects/freeship-plus-in-lazarus/lib"/>
+        </UserOverrides>
+      </environment>
       <FormatVersion Value="2"/>
       <Modes Count="7">
         <Mode0 Name="default">
@@ -416,7 +421,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="130">
+    <Units Count="132">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -1134,6 +1139,14 @@
         <Filename Value="Units/VRML2Unit.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit129>
+      <Unit130>
+        <Filename Value="GITLastChangeRevision.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit130>
+      <Unit131>
+        <Filename Value="GitCommit.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit131>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -1144,7 +1157,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <Libraries Value="lib"/>
-      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/$(LazVer)/lcl/interfaces/gtk3/gtk3bindings/"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/$(LazVer)/lcl/interfaces/gtk3/gtk3bindings"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

@@ -671,7 +671,9 @@ type
       virtual;//reintroduce;overload;
     procedure ShadeTriangle(P_1, P_2, P_3: T3DCoordinate;
       R1, G1, B1, R2, G2, B2, R3, G3, B3: byte); virtual;//reintroduce;overload;
-    procedure ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdivisionPoint; texture:TFreeTexture);
+    procedure ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, Point2, Point3:
+                                       TFreeSubdivisionPoint; texture:TFreeTexture;
+                                       WaterlinePlane:T3DPlane);
     function TextWidth(val: string): integer; virtual;
     function TextHeight(val: string): integer; virtual;
     procedure TextOut(x, y: integer; val: string); virtual;
@@ -1413,7 +1415,8 @@ type
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
-    property Coordinate:T3DCoordinate read FGetCoordinate write FSetCoordinate;
+    //property Coordinate:T3DCoordinate read FGetCoordinate write FSetCoordinate;
+    property Coordinate:T3DCoordinate read FCoordinate write FCoordinate;
     property Curvature: extended read FGetCurvature;
     property Edges: TFasterListTFreeSubdivisionEdge read FEdges;
     property Edge[index: integer]: TFreeSubdivisionEdge read FGetEdge;

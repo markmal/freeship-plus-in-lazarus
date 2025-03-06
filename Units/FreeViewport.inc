@@ -2857,9 +2857,9 @@ end;{TFreeViewport.ShadeTriangle}
 
 
 // Draw a smooth shaded triangle to the ZBuffer getting color from corresponding pixels of texture
-procedure TFreeViewport.ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdivisionPoint; Texture:TFreeTexture);
+procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, Point2, Point3: TFreeSubdivisionPoint;
+                                                 Texture:TFreeTexture; WaterlinePlane:T3DPlane);
   var
-    P_1, P_2, P_3: T3DCoordinate;
     Normal: T3DCoordinate;
     Pt1, Pt2, Pt3, T: TShadePoint;
     LSourceDirection: T3DCoordinate;
@@ -2875,6 +2875,7 @@ procedure TFreeViewport.ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdiv
     ModelPoint: T3Dcoordinate;
     R, G, B, Alpha: byte;
     intsn: longint;
+    Level : TFloatType;
 
       {$ifdef Windows32}
     procedure Swap(var A, B: integer); assembler;
@@ -2957,6 +2958,19 @@ procedure TFreeViewport.ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdiv
 
             SetColor(TxColor, Alpha, B,G,R);
 
+            Level := WaterlinePlane.a * ModelPoint.X
+                   + WaterlinePlane.b * ModelPoint.Y
+                   + WaterlinePlane.c * ModelPoint.Z
+                   + WaterlinePlane.d;
+
+            if Level <= 0 then
+            begin
+               //TODO UnderwaterIntensityRatio := 0.5;
+               R := round(R * 0.5);
+               G := round(G * 0.5);
+               B := round(B * 0.5);
+            end;
+
             if Alpha = 255 then
             begin
               // temporary draw via canvas
@@ -2978,22 +2992,18 @@ procedure TFreeViewport.ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdiv
     end;{ShadeLine}
 
   begin
-    P_1 := Point1.Coordinate;
-    P_2 := Point2.Coordinate;
-    P_3 := Point3.Coordinate;
-
     // Calculate data for the points
-    Pt1 := ProjectToZBuffer(P_1);
-    Pt2 := ProjectToZBuffer(P_2);
-    Pt3 := ProjectToZBuffer(P_3);
-    P_1 := RotatedPoint(P_1);
-    P_2 := RotatedPoint(P_2);
-    P_3 := RotatedPoint(P_3);
+    Pt1 := ProjectToZBuffer(P1);
+    Pt2 := ProjectToZBuffer(P2);
+    Pt3 := ProjectToZBuffer(P3);
+    P1 := RotatedPoint(P1);
+    P2 := RotatedPoint(P2);
+    P3 := RotatedPoint(P3);
     // Calculate triangle normal and center
-    Normal := UnifiedNormal(P_1, P_2, P_3);
-    Center.X := (P_1.X + P_2.X + P_3.X) / 3;
-    Center.Y := (P_1.Y + P_2.Y + P_3.Y) / 3;
-    Center.Z := (P_1.Z + P_2.Z + P_3.Z) / 3;
+    Normal := UnifiedNormal(P1, P2, P3);
+    Center.X := (P1.X + P2.X + P3.X) / 3;
+    Center.Y := (P1.Y + P2.Y + P3.Y) / 3;
+    Center.Z := (P1.Z + P2.Z + P3.Z) / 3;
     // Calculate light vector
     LSourceDirection.X := Center.X - FLight.Position.X;
     LSourceDirection.Y := Center.Y - FLight.Position.Y;
@@ -3001,10 +3011,12 @@ procedure TFreeViewport.ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdiv
     LSourceDirection := Normalize(LSourceDirection);
     LIntensityRatio := DotProduct(Normal, LSourceDirection);
 
+    { why toshade uninitalizied color
     ShadedColor(LIntensityRatio, R, G, B, R, G, B);
     Pt1.R:=R;   Pt1.G:=G;   Pt1.B:=B;
     Pt2.R:=R;   Pt2.G:=G;   Pt2.B:=B;
     Pt3.R:=R;   Pt3.G:=G;   Pt3.B:=B;
+    }
 
     // Sort points according to Y-value
     if Pt2.Y < Pt1.Y then

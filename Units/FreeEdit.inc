@@ -7344,11 +7344,11 @@ begin
       Patch := Patches[I]; // How Plate assigned to Patch?
       for J := 0 to FreeShip.NumberofStations-1 do
         Patch.IntersectPlane(FreeShip.Station[J].Plane, FreeShip.Station[J].Color);
-      for J := 0 to FreeShip.NumberofWaterlines do
+      for J := 0 to FreeShip.NumberofWaterlines-1 do
         Patch.IntersectPlane(FreeShip.Waterline[J].Plane, FreeShip.Waterline[J].Color);
-      for J := 0 to FreeShip.NumberofButtocks do
+      for J := 0 to FreeShip.NumberofButtocks-1 do
         Patch.IntersectPlane(FreeShip.Buttock[J].Plane, FreeShip.Buttock[J].Color);
-      for J := 0 to FreeShip.NumberofDiagonals do
+      for J := 0 to FreeShip.NumberofDiagonals-1 do
         Patch.IntersectPlane(FreeShip.Diagonal[J].Plane, FreeShip.Diagonal[J].Color);
     end;
   finally

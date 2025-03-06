@@ -2274,7 +2274,7 @@ begin
   //DPL:= TFasterListTFreeDevelopedPatch.Create;
   //L.Unroll(DPL);
   A1.X:=0; A1.Y:=0;
-  A2.X:=12; A2.Y:=0.5; // meters
+  A2.X:=13; A2.Y:=0.5; // meters
   P1.X:=50; P1.Y:=30;
   P2.X:=1500; P2.Y:=800;    // pixels
   L.Texture.SetAnchorPoints(A1,A2,P1,P2);

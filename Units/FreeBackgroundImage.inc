@@ -624,7 +624,6 @@ begin
   Result := clBlack;
   if FDevelopedPatch = nil then
   begin
-    //FDevelopedPatch:= TFreeDevelopedPatch.Create();
     DPL:= TFasterListTFreeDevelopedPatch.Create;
     Layer.Unroll(DPL);
     FDevelopedPatch:= DPL[0];

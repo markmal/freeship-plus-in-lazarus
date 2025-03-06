@@ -7319,57 +7319,57 @@ var
   Layer: TFreeSubdivisionLayer;
   Patch: TFreeDevelopedPatch;
   Dlg: TFreeExpanedplatesDialog;
-  Plates: TFasterListTFreeDevelopedPatch;
+  Patches: TFasterListTFreeDevelopedPatch;
   I, J: integer;
   Prev: TCursor;
 begin
   Prev := Screen.Cursor;
   Screen.Cursor := crHourGlass;
-  Plates := TFasterListTFreeDevelopedPatch.Create;
+  Patches := TFasterListTFreeDevelopedPatch.Create;
   try
     // perform a quiet test to check normal directions
     if not FreeShip.ProjectSettings.DisableModelCheck then
       Model_Check(False);
-    for I := 1 to FreeShip.NumberOfLayers do
+    for I := 0 to FreeShip.NumberOfLayers-1 do
     begin
-      Layer := FreeShip.Layer[I - 1];
+      Layer := FreeShip.Layer[I];
       if Layer.Developable then
-        Layer.Unroll(Plates);
+        Layer.Unroll(Patches);
     end;
 
     Patch := TFreeDevelopedPatch.Create(FreeShip.ActiveLayer);
 
-    for I := 1 to Plates.Count do
+    for I := 0 to Patches.Count-1 do
     begin
-      Patch := Plates[I - 1]; // How Plate assigned to Patch?
-      for J := 1 to FreeShip.NumberofStations do
-        Patch.IntersectPlane(FreeShip.Station[J - 1].Plane, FreeShip.Station[J - 1].Color);
-      for J := 1 to FreeShip.NumberofWaterlines do
-        Patch.IntersectPlane(FreeShip.Waterline[J - 1].Plane, FreeShip.Waterline[J - 1].Color);
-      for J := 1 to FreeShip.NumberofButtocks do
-        Patch.IntersectPlane(FreeShip.Buttock[J - 1].Plane, FreeShip.Buttock[J - 1].Color);
-      for J := 1 to FreeShip.NumberofDiagonals do
-        Patch.IntersectPlane(FreeShip.Diagonal[J - 1].Plane, FreeShip.Diagonal[J - 1].Color);
+      Patch := Patches[I]; // How Plate assigned to Patch?
+      for J := 0 to FreeShip.NumberofStations-1 do
+        Patch.IntersectPlane(FreeShip.Station[J].Plane, FreeShip.Station[J].Color);
+      for J := 0 to FreeShip.NumberofWaterlines do
+        Patch.IntersectPlane(FreeShip.Waterline[J].Plane, FreeShip.Waterline[J].Color);
+      for J := 0 to FreeShip.NumberofButtocks do
+        Patch.IntersectPlane(FreeShip.Buttock[J].Plane, FreeShip.Buttock[J].Color);
+      for J := 0 to FreeShip.NumberofDiagonals do
+        Patch.IntersectPlane(FreeShip.Diagonal[J].Plane, FreeShip.Diagonal[J].Color);
     end;
   finally
     Screen.Cursor := Prev;
   end;
 
-  if Plates.Count > 0 then
+  if Patches.Count > 0 then
   begin
     Dlg := TFreeExpanedplatesDialog.Create(FreeShip);
     //ShowTranslatedValues(Dlg);
     FreeShip.IsRebuildAsyncDisabled := true;
-    Dlg.Execute(FreeShip, Plates);
+    Dlg.Execute(FreeShip, Patches);
     FreeAndNil(Dlg);
     FreeShip.IsRebuildAsyncDisabled := false;
   end;
-  for I := 1 to Plates.Count do
+  for I := 0 to Patches.Count-1 do
   begin
-    Patch := plates[I - 1];
+    Patch := Patches[I];
     FreeAndNil(Patch);
   end;
-  FreeAndNil(Plates);
+  FreeAndNil(Patches);
 end;{TFreeEdit.Layer_Develop}
 
 // Delete all layers that are empty from the model

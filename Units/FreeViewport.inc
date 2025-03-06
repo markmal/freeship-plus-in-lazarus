@@ -2855,6 +2855,262 @@ begin
   end;
 end;{TFreeViewport.ShadeTriangle}
 
+
+// Draw a smooth shaded triangle to the ZBuffer getting color from corresponding pixels of texture
+procedure TFreeViewport.ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdivisionPoint; Texture:TFreeTexture);
+  var
+    P_1, P_2, P_3: T3DCoordinate;
+    Normal: T3DCoordinate;
+    Pt1, Pt2, Pt3, T: TShadePoint;
+    LSourceDirection: T3DCoordinate;
+    Center: T3DCoordinate;
+    LIntensityRatio, LIntensity: TFloatType;
+    Y: integer;
+    XLeft, dXLeft: integer;
+    XRight, dXRight: integer;
+    ZLeft, dZLeft: TFloatType;
+    ZRight, dZRight: TFloatType;
+    TxColor: TColor;
+    ScreenPoint: TPoint;
+    ModelPoint: T3Dcoordinate;
+    R, G, B, Alpha: byte;
+    intsn: longint;
+
+      {$ifdef Windows32}
+    procedure Swap(var A, B: integer); assembler;
+    asm
+             MOV     ECX,[EAX]
+             XCHG    ECX,[EDX]
+             MOV     [EAX],ECX
+    end;{Swap}
+      {$else}
+    procedure Swap(var A, B: integer);
+    var
+      X: integer;
+    begin
+      X := A;
+      A := B;
+      B := X;
+    end;
+    {Swap}
+      {$endif}
+
+    procedure SetColor(C: TColor; var A,B,G,R: byte);
+    type TABGR = record A,B,G,R: byte; end;
+    begin
+      R := TABGR(C).R;
+      G := TABGR(C).G;
+      B := TABGR(C).B;
+      A := TABGR(C).A;
+      ShadedColor(LIntensityRatio, R, G, B, R, G, B);
+    end;{SetColor}
+
+    procedure ShadeLine(X1, X2, Y: integer; Z1, Z2: TFloatType);
+    var
+      IncZ, T: TFloatType;
+      //Row     : pRGBTripleArray;
+      pRow, pPixel: pointer;
+      Pixel: TRGBTriple;
+    begin
+      if (Y < 0) or (Y > FDestinationHeight - 1) then
+        exit;
+      X1 := X1 div 256;
+      X2 := X2 div 256;
+      if X1 > X2 then
+      begin
+        Swap(X1, X2);
+        T := Z1;
+        Z1 := Z2;
+        Z2 := T;
+      end;
+      if X1 <> X2 then
+        IncZ := (Z2 - Z1) / (X2 - X1)
+      else
+        IncZ := 0;
+      if (X1 > FDestinationWidth - 1) or (X2 < 0) then
+        exit;
+      if (X1 < 0) then
+      begin
+        Z1 := Z1 + abs(X1) * IncZ;
+        X1 := 0;
+      end;
+      if X2 > FDestinationWidth - 1 then
+        X2 := FDestinationWidth - 1;
+      if X1 >= 0 then
+      begin
+        // Use scanline property for faster pixel access
+        //Row:=FDrawingBuffer.Scanline[y];
+        pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
+        while (X1 <= X2) do
+        begin
+          if Z1 > FZBuffer.FBuffer[Y][X1] then
+          begin
+
+            ScreenPoint.X := X1; ScreenPoint.Y := Y;
+
+            //ModelPoint := self.ProjectBack(ScreenPoint, ZERO);
+            intsn := RayIntersectTriangle(ProjectBackAsLine(ScreenPoint), //ray,
+                  Point1.FCoordinate, Point2.FCoordinate, Point3.FCoordinate,
+                  ModelPoint);
+
+            TxColor := Texture.GetTextureColor(ModelPoint, Point1, Point2, Point3);
+
+            SetColor(TxColor, Alpha, B,G,R);
+
+            if Alpha = 255 then
+            begin
+              // temporary draw via canvas
+              //FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 widget DCSetPixel (qtobject.inc) calling QPen_create5
+
+              SetPixel(X1, Y, R, G, B);
+              ///FBitmapFormatHelper.SetPixelInLine(pRow, X1, R, G, B, Alpha);
+
+              FZBuffer.FBuffer[Y][X1] := Z1;
+            end
+            else
+              AlphaBuffer.AddPixelData(X1, Y, R, G, B, Alpha, Z1);
+
+          end;
+          Z1 := Z1 + IncZ;
+          Inc(X1);
+        end;
+      end;
+    end;{ShadeLine}
+
+  begin
+    P_1 := Point1.Coordinate;
+    P_2 := Point2.Coordinate;
+    P_3 := Point3.Coordinate;
+
+    // Calculate data for the points
+    Pt1 := ProjectToZBuffer(P_1);
+    Pt2 := ProjectToZBuffer(P_2);
+    Pt3 := ProjectToZBuffer(P_3);
+    P_1 := RotatedPoint(P_1);
+    P_2 := RotatedPoint(P_2);
+    P_3 := RotatedPoint(P_3);
+    // Calculate triangle normal and center
+    Normal := UnifiedNormal(P_1, P_2, P_3);
+    Center.X := (P_1.X + P_2.X + P_3.X) / 3;
+    Center.Y := (P_1.Y + P_2.Y + P_3.Y) / 3;
+    Center.Z := (P_1.Z + P_2.Z + P_3.Z) / 3;
+    // Calculate light vector
+    LSourceDirection.X := Center.X - FLight.Position.X;
+    LSourceDirection.Y := Center.Y - FLight.Position.Y;
+    LSourceDirection.Z := Center.Z - FLight.Position.Z;
+    LSourceDirection := Normalize(LSourceDirection);
+    LIntensityRatio := DotProduct(Normal, LSourceDirection);
+
+    ShadedColor(LIntensityRatio, R, G, B, R, G, B);
+    Pt1.R:=R;   Pt1.G:=G;   Pt1.B:=B;
+    Pt2.R:=R;   Pt2.G:=G;   Pt2.B:=B;
+    Pt3.R:=R;   Pt3.G:=G;   Pt3.B:=B;
+
+    // Sort points according to Y-value
+    if Pt2.Y < Pt1.Y then
+    begin
+      T := Pt1;
+      Pt1 := Pt2;
+      Pt2 := T;
+    end;
+    if Pt3.Y < Pt2.Y then
+    begin
+      T := Pt2;
+      Pt2 := Pt3;
+      Pt3 := T;
+      if Pt2.Y < Pt1.Y then
+      begin
+        T := Pt1;
+        Pt1 := Pt2;
+        Pt2 := T;
+      end;
+    end;
+    // check if min/max values are outside window
+    if ((Pt1.Y >= FDestinationHeight) or (Pt3.Y <= 0)) or
+      ((Pt1.X < 0) and (Pt2.X < 0) and (Pt3.X < 0)) or
+      ((Pt1.X > FDestinationWidth) and (Pt2.X > FDestinationWidth) and
+      (Pt3.X > FDestinationWidth)) then
+      exit;
+    Pt1.X := Pt1.X shl 8;
+    Pt2.X := Pt2.X shl 8;
+    Pt3.X := Pt3.X shl 8;
+
+    if Pt3.Y = Pt1.Y then
+    begin
+      if Pt2.X >= Pt1.X then
+        ShadeLine(Pt1.X, Pt2.X, Pt1.Y, Pt1.Z, Pt2.Z)
+      else
+        ShadeLine(Pt2.X, Pt1.X, Pt1.Y, Pt2.Z, Pt1.Z);
+      if Pt3.X >= Pt2.X then
+        ShadeLine(Pt2.X, Pt3.X, Pt1.Y, Pt2.Z, Pt3.Z)
+      else
+        ShadeLine(Pt3.X, Pt2.X, Pt3.Y, Pt3.Z, Pt2.Z);
+      Exit;
+    end;
+    XLeft := Pt1.X;
+    ZLeft := Pt1.Z;
+    if Pt3.Y <> Pt1.Y then
+    begin
+      dZLeft := (Pt3.Z - Pt1.Z) / (Pt3.Y - Pt1.Y);
+      dXLeft := (Pt3.X - Pt1.X) div (Pt3.Y - Pt1.Y);
+    end
+    else
+    begin
+      dZLeft := 0;
+      dXLeft := 0;
+    end;
+    XRight := Pt1.X;
+    ZRight := Pt1.Z;
+    if Pt2.Y <> Pt1.Y then
+    begin
+      dZRight := (Pt2.Z - Pt1.Z) / (Pt2.Y - Pt1.Y);
+      dXRight := (Pt2.X - Pt1.X) div (Pt2.Y - Pt1.Y);
+    end
+    else
+    begin
+      dZRight := 0;
+      dXRight := 0;
+    end;
+    Y := Pt1.Y;
+    while Y < Pt2.Y do
+    begin
+      if XRight >= XLeft then
+        ShadeLine(XLeft, XRight, Y, ZLeft, ZRight)
+      else
+        ShadeLine(XRight, XLeft, Y, ZRight, ZLeft);
+      if Y < Pt2.Y then
+      begin
+        Inc(XLeft, dXLeft);
+        ZLeft := ZLeft + dZLeft;
+        Inc(XRight, dXRight);
+        ZRight := ZRight + dZRight;
+      end;
+      Inc(Y);
+    end;
+    if Pt2.Y = Pt3.Y then
+      Exit;
+    XRight := Pt2.X;
+    ZRight := Pt2.Z;
+    if Pt3.Y <> Pt2.Y then
+    begin
+      dZRight := (Pt3.Z - Pt2.Z) / (Pt3.Y - Pt2.Y);
+      dXRight := (Pt3.X - Pt2.X) div (Pt3.Y - Pt2.Y);
+    end;
+    for Y := Pt2.Y to Pt3.Y do
+    begin
+      if XRight >= XLeft then
+        ShadeLine(XLeft, XRight, Y, ZLeft, ZRight)
+      else
+        ShadeLine(XRight, XLeft, Y, ZRight, ZLeft);
+      Inc(XLeft, dXLeft);
+      ZLeft := ZLeft + dZLeft;
+      Inc(XRight, dXRight);
+      ZRight := ZRight + dZRight;
+    end;
+end;{TFreeViewport.ShadeTriangleTexture}
+
+
+
 procedure TFreeViewport.ZoomExtents;
 var
   Min, Max: T3DCoordinate;

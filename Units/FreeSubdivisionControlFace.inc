@@ -571,6 +571,7 @@ var
   Point: TFreeSubdivisionPoint;
 
   P1, P2, P3: T3DCoordinate;
+  Point1, Point2, Point3: TFreeSubdivisionPoint;
   Camera: T3DCoordinate;
   R, G, B: byte;
   Ru, Gu, Bu: byte;
@@ -902,6 +903,9 @@ begin
         Child := Self.Child[I - 1];
         for J := 2 to Child.NumberOfpoints - 1 do
         begin
+          Point1 := Child.Point[0];
+          Point2 := Child.Point[J-1];
+          Point3 := Child.Point[J];
           P1 := Child.Point[0].Coordinate;
           P2 := Child.Point[J - 1].Coordinate;
           P3 := Child.Point[J].Coordinate;
@@ -925,12 +929,19 @@ begin
           if Max <= 0.0 then
           begin
             // entirely below the plane
-            Viewport.ShadeTriangle(P1, P2, P3, Ru, Gu, Bu, Alpha);
+            if not Layer.ShowTexture then
+              Viewport.ShadeTriangle(P1, P2, P3, Ru, Gu, Bu, Alpha)
+            else
+              Viewport.ShadeTriangleTexture(Point1, Point2, Point3, Layer.Texture);
+
           end
           else if Min >= 0.0 then
           begin
             // entirely above the plane
-            Viewport.ShadeTriangle(P1, P2, P3, R, G, B, Alpha);
+            if not Layer.ShowTexture then
+              Viewport.ShadeTriangle(P1, P2, P3, R, G, B, Alpha)
+            else
+              Viewport.ShadeTriangleTexture(Point1, Point2, Point3, Layer.Texture);
           end
           else
           begin

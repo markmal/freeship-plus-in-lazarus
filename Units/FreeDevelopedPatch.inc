@@ -157,8 +157,11 @@ begin
       end;
     end;
   end;
-  Setlength(FEdgeErrors, Fedges.Count);
-  Move(Org.FEdgeErrors[0], FEdgeErrors[0], FEdges.Count * SizeOf(double));
+  if Fedges.Count > 0 then
+  begin
+    Setlength(FEdgeErrors, Fedges.Count);
+    Move(Org.FEdgeErrors[0], FEdgeErrors[0], FEdges.Count * SizeOf(double));
+  end;
   FMaxAreaError := Org.FMaxAreaError;
   FTotalAreaError := Org.FTotalAreaError;
 end;{TFreeDevelopedPatch.Assign}
@@ -1372,6 +1375,9 @@ var
         F2DCoordinates[Ind3].Coordinate := P3_2D;
         Processed[ind3] := True;
       end;
+      P1.FUnrolledCoordinate := P1_2D;
+      P2.FUnrolledCoordinate := P2_2D;
+      P3.FUnrolledCoordinate := P3_2D;
     end;
 
   begin

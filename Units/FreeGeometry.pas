@@ -9,7 +9,8 @@
 {    FREE!ship project page  : http://freeship-plus.land.ru                                   }
 {    FREE!ship homepage      : www.freeship-plus.pisem.su                                     }
 
-{    Copyright © 2015-2015, Conversion to FPC/Lazarus by Mark Malakanov.                      }
+{    Copyright © from 2015 Conversion to FPC/Lazarus by Mark Malakanov.                       }
+{    FREE!ship project page  : https://github.com/markmal/freeship-plus-in-lazarus            }
 
 {    This program is free software; you can redistribute it and/or modify it under            }
 {    the terms of the GNU General Public License as published by the                          }
@@ -169,11 +170,13 @@ const
 
 type
 
-  TShadePoint =
-    record                         // Used for drawing to the Z-buffer
+  TShadePoint = record                         // Used for drawing to the Z-buffer
     X, Y: integer;
     Z: TFloatType;
     R, G, B: integer;
+    // for textured shading
+    point2d: T2DCoordinate; // coordinate on developed patch
+    point3d: T3DCoordinate; // original coordinate
   end;
 
   TLayerProperties = record
@@ -416,6 +419,51 @@ type
       read FVisible write FSetVisible;
   end;
 
+  { TFreeTexture }
+
+  TFreeTexture = class //(TPersistent)
+  private
+    FLayer: TFreeSubdivisionLayer;
+    FDevelopedPatch: TFreeDevelopedPatch;
+    FDevelopedPatchAnchorPoint1: T2DCoordinate;
+    FDevelopedPatchAnchorPoint2: T2DCoordinate;
+    FBitmap: TBitmap;
+    FIntfImage: TLazIntfImage;
+    FRawImage: TRawImage;
+    FBitmapTargetPoint1: TPoint;
+    FBitmapTargetPoint2: TPoint;
+  public
+    procedure AssignData(Layer: TFreeSubdivisionLayer;
+       //DevelopedPatch: TFreeDevelopedPatch;
+       Bitmap: TBitmap; IntfImage: TLazIntfImage; RawImage: TRawImage;
+       DevelopedPatchAnchorPoint1:T2DCoordinate;
+       DevelopedPatchAnchorPoint2:T2DCoordinate;
+       BitmapTargetPoint1:TPoint;
+       BitmapTargetPoint2:TPoint);
+    procedure SetAnchorPoints(
+      DevelopedPatchAnchorPoint1: T2DCoordinate;
+      DevelopedPatchAnchorPoint2: T2DCoordinate;
+      BitmapTargetPoint1: TPoint;
+      BitmapTargetPoint2: TPoint);
+    procedure LoadIntfImage(FileName: String);
+    procedure Clear;
+    constructor Create(Layer: TFreeSubdivisionLayer);
+    destructor Destroy; override;
+    function FindD2_3(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
+    function UnrollPoint(ModelPoint:T3DCoordinate; Point1,Point2,Point3:TFreeSubdivisionPoint): T2DCoordinate;
+    function FindTexturePixel(C1:T2DCoordinate): TPoint;
+    function GetTextureColor(ModelPoint:T3DCoordinate;  Point1,Point2,Point3:TFreeSubdivisionPoint): TColor;
+  published
+    property Bitmap: TBitmap
+      read FBitmap write FBitmap;
+    property Layer: TFreeSubdivisionLayer
+      read FLayer write FLayer;
+    property DevelopedPatch: TFreeDevelopedPatch
+      read FDevelopedPatch write FDevelopedPatch;
+  end;
+
+
+
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeViewport                                           }
 
@@ -503,6 +551,8 @@ type
     FLastResizeClientHeight:integer;
     FOriginalVertScrollbarChange:TNotifyEvent;
     FOriginalHorScrollbarChange:TNotifyEvent;
+
+    FShadingFace: TFreeSubdivisionFace;
 
     function FGetBrushColor: TColor;
     function FGetBrushStyle: TBrushStyle;
@@ -621,6 +671,7 @@ type
       virtual;//reintroduce;overload;
     procedure ShadeTriangle(P_1, P_2, P_3: T3DCoordinate;
       R1, G1, B1, R2, G2, B2, R3, G3, B3: byte); virtual;//reintroduce;overload;
+    procedure ShadeTriangleTexture(Point1, Point2, Point3: TFreeSubdivisionPoint; texture:TFreeTexture);
     function TextWidth(val: string): integer; virtual;
     function TextHeight(val: string): integer; virtual;
     procedure TextOut(x, y: integer; val: string); virtual;
@@ -1225,6 +1276,8 @@ type
     // Also used for weight calculation
     FPatches: TFasterListTFreeSubdivisionControlFace;
     // List containing all controlpatches
+    FTexture: TFreeTexture;
+    FShowTexture: boolean;
     FAlphaBlend: byte;
     function FGetColor: TColor;
     function FGetCount: integer;
@@ -1314,6 +1367,8 @@ type
       read FSurfaceVisible write FSetSurfaceVisible;
     property ControlNetVisible: boolean
       read FControlNetVisible write FSetControlNetVisible;
+    property Texture: TFreeTexture read FTexture write FTexture;
+    property ShowTexture: boolean read FShowTexture write FShowTexture;
   end;
 
   {--------------------------------------------------------------------------------------------------}
@@ -1324,6 +1379,7 @@ type
     FFaces: TFasterListTFreeSubdivisionFace;
     FEdges: TFasterListTFreeSubdivisionEdge;
     FCoordinate: T3DCoordinate;
+    FUnrolledCoordinate: T2DCoordinate;
     FVertexType: TFreeVertexType;
     function FGetEdge(Index: integer):TFreeSubdivisionEdge;
     function FGetCoordinate: T3DCoordinate;

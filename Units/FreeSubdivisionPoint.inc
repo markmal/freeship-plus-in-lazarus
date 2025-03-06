@@ -637,6 +637,8 @@ begin
   FCoordinate.X := 0;
   FCoordinate.Y := 0;
   FCoordinate.Z := 0;
+  FUnrolledCoordinate.X := 0;
+  FUnrolledCoordinate.Y := 0;
   FFaces.Clear;
   FEdges.Clear;
   FVertexType := svRegular;

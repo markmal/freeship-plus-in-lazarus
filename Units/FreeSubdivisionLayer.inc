@@ -1064,6 +1064,7 @@ begin
       end;
     end;
   end;
+
 end;{TFreeSubdivisionLayer.LoadBinary}
 
 procedure TFreeSubdivisionLayer.LoadFromStream(var LineNr: integer; Strings: TStringList);
@@ -1099,6 +1100,7 @@ begin
     FUseInHydrostatics := ReadBoolFromStr(LineNr, Str)
   else
     FUseInHydrostatics := True;
+
 end;{TFreeSubdivisionLayer.LoadFromStream}
 
 procedure TFreeSubdivisionLayer.MoveDown;
@@ -1342,7 +1344,7 @@ begin
           if DoneList.Count = 1 then
             Str := Name
           else
-            Str := Name + #32 + Lowercase(rs_Part {UserString[198]}) + #32 + IntToStr(I);
+            Str := Name + ' ' + Lowercase(rs_Part {UserString[198]}) + ' ' + IntToStr(I);
           Patch.Name := Str;
           Destination.Add(Patch);
           if (not Patch.FMirror) and (self.Symmetric) then

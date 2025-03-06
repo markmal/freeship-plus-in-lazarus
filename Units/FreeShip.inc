@@ -2221,10 +2221,16 @@ begin
                   LoadControlPointAnchors(Source);
                 end;
 
+
+                //if FileVersion >= fv541 then
+                //LoadTextures(Source);
+
+
               end; //if FileVersion>=fv250
             end; //if FileVersion>=fv210
           end;  //if FileVersion>=fv191
         end;  //if FileVersion>=fv180
+        LoadTextures(Source); // REMOVE LATER
       end //if (FFileVersion<=CurrentVersion) or (FFileVersion<=High(FFileVersion))
       else
         MessageDlg(rs_This_file_was_created_with_a_later_version_of_FREE_ship_ {UserString[113]} + eol + rs_and_cannot_be_opened_with_this_version {UserString[188]} +
@@ -2253,6 +2259,27 @@ begin
       OnUpdateGeometryInfo(self);
   end;
 end;{TFreeShip.LoadBinary}
+
+procedure TFreeShip.LoadTextures(Source:TFreeFileBuffer);
+var L: TFreeSubdivisionLayer; BM : TPicture;  DP: TFreeDevelopedPatch; DPL: TFasterListTFreeDevelopedPatch;
+  A1,A2: T2DCoordinate; P1,P2:TPoint;
+  c: TColor; w,h:integer;
+begin
+  // experimental load texture. later replace with normal load
+  L:=Layer[0];
+  L.Texture := TFreeTexture.Create(L);
+  L.Texture.LoadIntfImage('/home/mark/MyProjects/freeship-plus-in-lazarus/tmptexture.png');
+  //c:=BM.Bitmap.Canvas.Pixels[0,0];
+  //DP:= TFreeDevelopedPatch.Create(L);
+  //DPL:= TFasterListTFreeDevelopedPatch.Create;
+  //L.Unroll(DPL);
+  A1.X:=0; A1.Y:=0;
+  A2.X:=12; A2.Y:=0.5; // meters
+  P1.X:=50; P1.Y:=30;
+  P2.X:=1500; P2.Y:=800;    // pixels
+  L.Texture.SetAnchorPoints(A1,A2,P1,P2);
+  L.ShowTexture:=true;
+end;
 
 procedure TFreeShip.LoadControlPointNames(Source:TFreeFileBuffer);
 var I,N:integer; NameData:TNameData;

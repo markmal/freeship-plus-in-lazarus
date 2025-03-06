@@ -1428,6 +1428,7 @@ type
     procedure LoadControlCurveNames(Source:TFreeFileBuffer);
     procedure LoadControlPointAnchors(Source:TFreeFileBuffer);
     procedure LoadControlPointLinearConstraints(Source:TFreeFileBuffer);
+    procedure LoadTextures(Source:TFreeFileBuffer);
     procedure LoadPreview(Filename: string; Image: TJPegImage); // loads the preview image from a file
     procedure RebuildAsync(Data: PtrInt);
     procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data

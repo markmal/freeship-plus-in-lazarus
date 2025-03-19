@@ -92,6 +92,8 @@ begin
       // Connect to the new layer
       FLayer.AddControlFace(self);
     end;
+    if FTexture <> nil then
+      FTexture := FLayer.Textures[0];
   end;
 end;{TFreeSubdivisionControlFace.FSetLayer}
 
@@ -583,6 +585,7 @@ var
   Intersections: array of TIntData;
   Capacity: integer;
   Points: TFasterListTFreeSubdivisionPoint;
+  up1,up2,up3: T2DCoordinate;
 
   procedure DrawNormal(P, N: T3DCoordinate; color: TColor);
   var
@@ -883,7 +886,7 @@ begin
 
     Viewport.BeginUpdate;
     if (Surface.ShadeUnderWater) and (Viewport.ViewportMode = vmShade) and
-      (Layer.UseInHydrostatics) and (not Layer.ShowTexture) then
+      (Layer.UseInHydrostatics) and ((Texture=nil) or not Layer.ShowTexture) then
     begin
       // Clip all triangles against the waterline plane
 
@@ -991,7 +994,7 @@ begin
       end;
     end
     else if (Surface.ShadeUnderWater) and (Viewport.ViewportMode = vmShade) and
-      (Layer.UseInHydrostatics) and (Layer.ShowTexture) then
+      (Layer.UseInHydrostatics) and ((Texture<>nil) and Layer.ShowTexture) then
     begin
       // Get color from texture and make it darker under the waterline plane
       for I := 1 to ChildCount do
@@ -1005,15 +1008,23 @@ begin
           P1 := Child.Point[0].Coordinate;
           P2 := Child.Point[J - 1].Coordinate;
           P3 := Child.Point[J].Coordinate;
+          {up1 := Child.FUnrolledPoints[0];
+          up2 := Child.FUnrolledPoints[J-1];
+          up3 := Child.FUnrolledPoints[J];}
+          up1 := Point1.FUnrolledCoordinate;
+          up2 := Point1.FUnrolledCoordinate;
+          up3 := Point1.FUnrolledCoordinate;
 
-          Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3, Layer.Texture, Surface.WaterlinePlane);
+          Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3,
+                   up1,up2,up3, Texture, Surface.WaterlinePlane);
 
           if (Surface.DrawMirror) and (Layer.Symmetric) then
           begin
             P1.Y := -P1.Y;
             P2.Y := -P2.Y;
             P3.Y := -P3.Y;
-            Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3, Layer.Texture, Surface.WaterlinePlane);
+            Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3,
+                     up1,up2,up3, Texture, Surface.WaterlinePlane);
           end;
         end;
       end;

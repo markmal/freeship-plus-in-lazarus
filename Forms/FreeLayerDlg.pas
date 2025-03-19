@@ -53,7 +53,7 @@ uses
      ComCtrls,
      LCLTranslator,
      ImgList,
-     Spin;
+     Spin, Buttons;
 
 type
 
@@ -95,6 +95,7 @@ type
     Panel7: TPanel;
     Panel8: TPanel;
     Panel9: TPanel;
+    SpeedButtonTexture: TSpeedButton;
     ToolBar1: TToolBar;
     ToolButton20: TToolButton;
     MenuImages: TImageList;
@@ -128,6 +129,7 @@ type
     procedure MenuImagesChange(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
+    procedure SpeedButtonTextureClick(Sender: TObject);
     procedure ToolButton20Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
@@ -173,7 +175,8 @@ var FreeLayerDialog : TFreeLayerDialog;
 implementation
 
 uses FreeStringsUnit,
-     FreeLinesplanFrme;
+     FreeLinesplanFrme,
+     FreeTextureDlg;
 
 {$IFnDEF FPC}
   {$R *.dfm}
@@ -427,6 +430,14 @@ begin
       FFreeShip.Redraw;
    end;
 end;{TFreeLayerDialog.CheckBox1Click}
+
+procedure TFreeLayerDialog.SpeedButtonTextureClick(Sender: TObject);
+var Dlg: TFreeTextureForm;
+begin
+   Dlg := TFreeTextureForm.Create(FFreeShip);
+   Dlg.Execute(FFreeShip, SelectedLayer);
+   Dlg.Free;
+end;
 
 procedure TFreeLayerDialog.ToolButton20Click(Sender: TObject);
 var N:         Integer;

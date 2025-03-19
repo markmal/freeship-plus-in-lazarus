@@ -223,6 +223,7 @@ type
   TFreeSpline = class;
   TFreeBackgroundImage = class;
   TFreeDevelopedPatch = class;
+  TFreeTexture = class;
 
   {   Reference integrity diagram
 
@@ -261,6 +262,7 @@ type
 
   TFasterListTFreeSubdivisionLayer = TFasterList<TFreeSubdivisionLayer>;
   TFasterListTFreeDevelopedPatch = TFasterList<TFreeDevelopedPatch>;
+  TFasterListTFreeTexture = TFasterList<TFreeTexture>;
   {---------------------------------------------------------------------------------------------------}
 
 
@@ -424,6 +426,8 @@ type
   TFreeTexture = class //(TPersistent)
   private
     FLayer: TFreeSubdivisionLayer;
+    FColor: TColor;
+    FDevelopedPatchName: String;
     FDevelopedPatch: TFreeDevelopedPatch;
     FDevelopedPatchAnchorPoint1: T2DCoordinate;
     FDevelopedPatchAnchorPoint2: T2DCoordinate;
@@ -432,7 +436,14 @@ type
     FRawImage: TRawImage;
     FBitmapTargetPoint1: TPoint;
     FBitmapTargetPoint2: TPoint;
+    FTranslation: T2DCoordinate;
+    FRotation: TFloatType;
+    FScale: TFloatType;
+    FSin: TFloatType;
+    FCos: TFloatType;
   public
+    BitmapScale: TFloatType;
+    BitmapOrigin: TPoint;
     procedure AssignData(Layer: TFreeSubdivisionLayer;
        //DevelopedPatch: TFreeDevelopedPatch;
        Bitmap: TBitmap; IntfImage: TLazIntfImage; RawImage: TRawImage;
@@ -447,19 +458,34 @@ type
       BitmapTargetPoint2: TPoint);
     procedure LoadIntfImage(FileName: String);
     procedure Clear;
-    constructor Create(Layer: TFreeSubdivisionLayer);
+    function Project2DtoViewport(P: T2DCoordinate): T3DCoordinate;
+    function ProjectViewportTo2D(P: T2DCoordinate): T2DCoordinate;
+    procedure AutoSetDevelopedPatchAnchorPoints;
+    procedure SetBitmapTargetPointsByDevelopedPatchAnchors(Viewport: TFreeViewport);
+    constructor Create(Layer: TFreeSubdivisionLayer; DevelopedPatch: TFreeDevelopedPatch);
     destructor Destroy; override;
+    procedure Draw(Viewport: TFreeViewport);
+    procedure Extents(var Min, Max:T3DCoordinate);
+    function FindSubdivionPoint(P: T2DCoordinate): TFreeSubdivisionPoint;
+    function FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
     function FindD2_3(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
-    function UnrollPoint(ModelPoint:T3DCoordinate; Point1,Point2,Point3:TFreeSubdivisionPoint): T2DCoordinate;
+    //function UnrollPoint(ModelPoint:T3DCoordinate; Point1,Point2,Point3:TFreeSubdivisionPoint): T2DCoordinate;
     function FindTexturePixel(C1:T2DCoordinate): TPoint;
     function GetTextureColor(ModelPoint:T3DCoordinate;  Point1,Point2,Point3:TFreeSubdivisionPoint): TColor;
-  published
-    property Bitmap: TBitmap
-      read FBitmap write FBitmap;
-    property Layer: TFreeSubdivisionLayer
-      read FLayer write FLayer;
-    property DevelopedPatch: TFreeDevelopedPatch
-      read FDevelopedPatch write FDevelopedPatch;
+    procedure FSetRotation(Val: TFloatType);
+  //published
+    property Bitmap: TBitmap read FBitmap write FBitmap;
+    property BitmapTargetPoint1: TPoint read FBitmapTargetPoint1 write FBitmapTargetPoint1;
+    property BitmapTargetPoint2: TPoint read FBitmapTargetPoint2 write FBitmapTargetPoint2;
+    property Color: TColor read FColor write FColor;
+    property Layer: TFreeSubdivisionLayer read FLayer write FLayer;
+    property DevelopedPatch: TFreeDevelopedPatch read FDevelopedPatch write FDevelopedPatch;
+    property DevelopedPatchName: String read FDevelopedPatchName write FDevelopedPatchName;
+    property DevelopedPatchAnchorPoint1: T2DCoordinate read FDevelopedPatchAnchorPoint1 write FDevelopedPatchAnchorPoint1;
+    property DevelopedPatchAnchorPoint2: T2DCoordinate read FDevelopedPatchAnchorPoint2 write FDevelopedPatchAnchorPoint2;
+    property Translation: T2DCoordinate read FTranslation write FTranslation;
+    property Rotation: TFloatType read FRotation write FSetRotation;
+    property Scale: TFloatType read FScale write FScale;
   end;
 
 
@@ -671,8 +697,10 @@ type
       virtual;//reintroduce;overload;
     procedure ShadeTriangle(P_1, P_2, P_3: T3DCoordinate;
       R1, G1, B1, R2, G2, B2, R3, G3, B3: byte); virtual;//reintroduce;overload;
-    procedure ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, Point2, Point3:
-                                       TFreeSubdivisionPoint; texture:TFreeTexture;
+    procedure ShadeTriangleTexture(P1, P2, P3: T3DCoordinate;
+                                       Point1, Point2, Point3:TFreeSubdivisionPoint;
+                                       up1,up2,up3: T2DCoordinate;
+                                       texture:TFreeTexture;
                                        WaterlinePlane:T3DPlane);
     function TextWidth(val: string): integer; virtual;
     function TextHeight(val: string): integer; virtual;
@@ -795,6 +823,7 @@ type
     FPoints: TFasterListTFreeSubdivisionPoint;
     // All original 3D points
     FEdges: TFasterListTFreeSubdivisionEdge;// All original edges
+    FFaces: TFasterListTFreeSubdivisionFace;
     ///FDoneList: TFasterListTFreeSubdivisionPoint;
     FDoneList: TFasterListTFreeSubdivisionFace;
     // List containing developed faces in chronological order
@@ -931,6 +960,8 @@ type
       read FXGrid write FXGrid;
     property YGrid: TFloatType
       read FYGrid write FYGrid;
+    property Faces: TFasterListTFreeSubdivisionFace
+      read FFaces write FFaces;
   end;
 
 
@@ -1274,11 +1305,9 @@ type
     // Flag to hide or show this layer in the linesplan
     FMaterialDensity: TFloatType;
     // Density of material used to calculate the weight of the surface
-    FThickness: TFloatType;
-    // Also used for weight calculation
-    FPatches: TFasterListTFreeSubdivisionControlFace;
-    // List containing all controlpatches
-    FTexture: TFreeTexture;
+    FThickness: TFloatType; // Also used for weight calculation
+    FControlFaces: TFasterListTFreeSubdivisionControlFace; // List containing all controlfaces
+    FTextures: TFasterListTFreeTexture; // one texture per unrolled patch
     FShowTexture: boolean;
     FAlphaBlend: byte;
     function FGetColor: TColor;
@@ -1369,7 +1398,8 @@ type
       read FSurfaceVisible write FSetSurfaceVisible;
     property ControlNetVisible: boolean
       read FControlNetVisible write FSetControlNetVisible;
-    property Texture: TFreeTexture read FTexture write FTexture;
+    //property Texture: TFreeTexture read FTexture write FTexture;
+    property Textures: TFasterListTFreeTexture read FTextures write FTextures;
     property ShowTexture: boolean read FShowTexture write FShowTexture;
   end;
 
@@ -1381,6 +1411,7 @@ type
     FFaces: TFasterListTFreeSubdivisionFace;
     FEdges: TFasterListTFreeSubdivisionEdge;
     FCoordinate: T3DCoordinate;
+    FTexture: TFreeTexture; // For time being one "last" texture per unrolled patch
     FUnrolledCoordinate: T2DCoordinate;
     FVertexType: TFreeVertexType;
     function FGetEdge(Index: integer):TFreeSubdivisionEdge;
@@ -1436,10 +1467,12 @@ type
       read FGetNumberOfFaces;
     property RegularPoint: boolean
       read FGetRegularPoint;
+    property Texture: TFreeTexture read FTexture write FTexture;
     property VertexIndex: integer
       read FGetIndex;
     property VertexType:
       TFreeVertexType read FVertexType write SetVertexType;
+    property UnrolledCoordinate: T2DCoordinate read FUnrolledCoordinate write FUnrolledCoordinate;
   end;
 
   {--------------------------------------------------------------------------------------------------}
@@ -1654,6 +1687,8 @@ type
   TFreeSubdivisionFace = class(TFreeSubdivisionBase)
   private
     FPoints: TFasterListTFreeSubdivisionPoint;
+    //FUnrolledPoints: array of T2DCoordinate;
+    FTexture: TFreeTexture;
     function FGetArea: TFloatType;
     function FGetFaceCenter: T3DCoordinate;
     function FGetFaceNormal: T3DCoordinate;
@@ -1708,6 +1743,7 @@ type
     FMin, FMax: T3DCoordinate;
     FEdges: TFasterListTFreeSubdivisionEdge;
     FControlDescendantEdges: TFasterListTFreeSubdivisionEdge; // here can be real ControlEdges and divided "children" of them. Do not why.
+    FTexture: TFreeTexture;
     function FGetChild(Index: integer):
       TFreeSubdivisionFace;
     function FGetChildCount: integer;
@@ -1789,6 +1825,7 @@ type
     property Selected: boolean
       read FGetSelected write FSetSelected;
     // Property to see if this controlface has been selected by the user
+    property Texture: TFreeTexture read FTexture write FTexture;
     property Visible: boolean
       read FGetVisible;
   end;
@@ -2300,6 +2337,7 @@ function DensityStr(Units: TFreeUnitType): string;
 // Returns a string value with the density units
 function DistPP3D(P1, P2: T3DCoordinate): TFloatType;
 // Calculates the distance between two points
+function Distance2D(P1, P2: T2DCoordinate): TFloatType;
 function DistanceToLine(P1, P2: TPoint; X, Y: integer; var Parameter: TFloatType): TFloatType;
 function DistancePointToPlane(P: T3DCoordinate; Plane: T3DPlane): TFloatType;
 function DotProduct(U, V: T3DCoordinate): TFloatType;
@@ -2431,6 +2469,7 @@ uses FreeStringsUnit,
 {$I FreeSubdivisionFace.inc}
 {$I FreeSubdivisionControlFace.inc}
 {$I FreeSubdivisionSurface.inc}
+{$I FreeTexture.inc}
 
 // -----------------------------------------------------------------------------
 constructor TFreeDestroyList.Create;

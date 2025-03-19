@@ -33,7 +33,7 @@
       <MajorVersionNr Value="5"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="546"/>
+      <BuildNr Value="548"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
@@ -416,7 +416,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="130">
+    <Units Count="132">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -1134,6 +1134,18 @@
         <Filename Value="Units/VRML2Unit.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit129>
+      <Unit130>
+        <Filename Value="Units/FreeTexture.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit130>
+      <Unit131>
+        <Filename Value="Forms/freetexturedlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FreeTextureForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FreeTextureDlg"/>
+      </Unit131>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

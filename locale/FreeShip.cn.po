@@ -8339,6 +8339,7 @@ msgid "Intersections"
 msgstr "剖面"
 
 #: tfreeintersectiondialog.closedialog.caption
+msgctxt "tfreeintersectiondialog.closedialog.caption"
 msgid "CloseDialog"
 msgstr "关闭对话框"
 
@@ -9118,6 +9119,10 @@ msgstr ""
 msgid "Move the layer up in the list."
 msgstr ""
 
+#: tfreelayerdialog.speedbuttontexture.caption
+msgid "Texture"
+msgstr ""
+
 #: tfreelayerdialog.toolbar1.caption
 msgctxt "tfreelayerdialog.toolbar1.caption"
 msgid "ToolBar1"
@@ -9136,6 +9141,7 @@ msgid "Create a new empty layer."
 msgstr ""
 
 #: tfreelayerdialog.toolbutton3.caption
+msgctxt "tfreelayerdialog.toolbutton3.caption"
 msgid "ToolButton3"
 msgstr ""
 
@@ -15127,6 +15133,108 @@ msgstr "中"
 
 #: tfreesplitsectiondialog.speedbutton3.hint
 msgid "From hydrostatics"
+msgstr ""
+
+#: tfreetextureform.button1.caption
+msgid "Set anchors"
+msgstr ""
+
+#: tfreetextureform.button1.hint
+msgid "Autoset 2d anchors"
+msgstr ""
+
+#: tfreetextureform.caption
+msgid "FreeTextureForm"
+msgstr ""
+
+#: tfreetextureform.closedialog.caption
+#, fuzzy
+msgctxt "tfreetextureform.closedialog.caption"
+msgid "CloseDialog"
+msgstr "关闭对话框"
+
+#: tfreetextureform.comboboxselecttexture.text
+msgid "ComboBoxSelectTexture"
+msgstr ""
+
+#: tfreetextureform.floatspineditshiftx.hint
+msgctxt "tfreetextureform.floatspineditshiftx.hint"
+msgid "X shift"
+msgstr ""
+
+#: tfreetextureform.floatspineditshifty.hint
+msgctxt "tfreetextureform.floatspineditshifty.hint"
+msgid "Y shift"
+msgstr ""
+
+#: tfreetextureform.label3.caption
+msgid "Rotate"
+msgstr ""
+
+#: tfreetextureform.label4.caption
+msgid "Shift X"
+msgstr ""
+
+#: tfreetextureform.label5.caption
+msgid "Shift Y"
+msgstr ""
+
+#: tfreetextureform.label6.caption
+msgid "Scale"
+msgstr ""
+
+#: tfreetextureform.labelanchor1.caption
+msgid "LabelAnchor1"
+msgstr ""
+
+#: tfreetextureform.labelanchor2.caption
+msgid "LabelAnchor2"
+msgstr ""
+
+#: tfreetextureform.labeltarget1.caption
+msgid "LabelTarget1"
+msgstr ""
+
+#: tfreetextureform.labeltarget2.caption
+msgid "LabelTarget2"
+msgstr ""
+
+#: tfreetextureform.loadfile.caption
+msgctxt "tfreetextureform.loadfile.caption"
+msgid "ActionOpenImage"
+msgstr ""
+
+#: tfreetextureform.showinterioredges.caption
+msgid "ShowInteriorEdges"
+msgstr ""
+
+#: tfreetextureform.spineditrotate.hint
+msgctxt "tfreetextureform.spineditrotate.hint"
+msgid "Rotation"
+msgstr ""
+
+#: tfreetextureform.statusbar1.panels[0].text
+msgid "Scr X:Y"
+msgstr ""
+
+#: tfreetextureform.statusbar1.panels[1].text
+msgctxt "tfreetextureform.statusbar1.panels[1].text"
+msgid "Bmp X:Y"
+msgstr ""
+
+#: tfreetextureform.statusbar1.panels[2].text
+msgctxt "tfreetextureform.statusbar1.panels[2].text"
+msgid "2D X:Y"
+msgstr ""
+
+#: tfreetextureform.statusbar1.panels[3].text
+msgctxt "tfreetextureform.statusbar1.panels[3].text"
+msgid "Mdl X:Y:Z"
+msgstr ""
+
+#: tfreetextureform.toolbar1.caption
+msgctxt "tfreetextureform.toolbar1.caption"
+msgid "ToolBar1"
 msgstr ""
 
 #: tfreeundohistorydialog.caption

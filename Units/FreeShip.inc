@@ -2261,23 +2261,27 @@ begin
 end;{TFreeShip.LoadBinary}
 
 procedure TFreeShip.LoadTextures(Source:TFreeFileBuffer);
-var L: TFreeSubdivisionLayer; BM : TPicture;  DP: TFreeDevelopedPatch; DPL: TFasterListTFreeDevelopedPatch;
+var Texture: TFreeTexture;
+  L: TFreeSubdivisionLayer; BM : TPicture;  DP: TFreeDevelopedPatch; DPL: TFasterListTFreeDevelopedPatch;
   A1,A2: T2DCoordinate; P1,P2:TPoint;
-  c: TColor; w,h:integer;
+  c: TColor; w,h,i:integer;
 begin
   // experimental load texture. later replace with normal load
   L:=Layer[0];
-  L.Texture := TFreeTexture.Create(L);
-  L.Texture.LoadIntfImage('/home/mark/MyProjects/freeship-plus-in-lazarus/tmptexture.png');
-  //c:=BM.Bitmap.Canvas.Pixels[0,0];
-  //DP:= TFreeDevelopedPatch.Create(L);
-  //DPL:= TFasterListTFreeDevelopedPatch.Create;
-  //L.Unroll(DPL);
-  A1.X:=0; A1.Y:=0;
-  A2.X:=13; A2.Y:=0.5; // meters
-  P1.X:=50; P1.Y:=30;
-  P2.X:=1500; P2.Y:=800;    // pixels
-  L.Texture.SetAnchorPoints(A1,A2,P1,P2);
+  DPL:= TFasterListTFreeDevelopedPatch.Create;
+  if not L.Surface.Built then L.Surface.Rebuild;
+  L.Unroll(DPL);
+  for i:=0 to DPL.Count-1 do
+  begin
+    Texture := TFreeTexture.Create(L, DPL[i]);
+    Texture.LoadIntfImage('/home/mark/MyProjects/freeship-plus-in-lazarus/tmptexture.png');
+    A1:=Texture.DevelopedPatchAnchorPoint1;
+    A2:=Texture.DevelopedPatchAnchorPoint2;
+    P1.X:=50; P1.Y:=30;
+    P2.X:=1500; P2.Y:=800;    // pixels
+    Texture.SetAnchorPoints(A1,A2,P1,P2);
+    L.Textures.Add(Texture);
+  end;
   L.ShowTexture:=true;
 end;
 

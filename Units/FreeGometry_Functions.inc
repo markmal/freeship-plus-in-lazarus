@@ -422,6 +422,15 @@ begin
   Result := Sqrt(Sqr(P2.X - P1.X) + Sqr(P2.Y - P1.Y) + Sqr(P2.Z - P1.Z));
 end;{DistPP3D}
 
+function Distance2D(P1, P2: T2DCoordinate): TFloatType;
+var
+  dX, dY: extended;
+begin
+  dX := P2.X - P1.X;
+  dY := P2.Y - P1.Y;
+  Result := sqrt(sqr(dX) + sqr(dY));
+end;{Distance2D}
+
 function DistancePointToLine(P, P1, P2: T3DCoordinate): TFloatType;
 var
   V1, V2, N: T3DCoordinate;

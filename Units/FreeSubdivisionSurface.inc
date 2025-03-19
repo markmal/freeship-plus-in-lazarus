@@ -990,7 +990,7 @@ begin
       if Layer.SurfaceVisible then
       begin
         ToDoList.Capacity := ToDoList.Count + Layer.Count;
-        ToDoList.AddList(Layer.FPatches);
+        ToDoList.AddList(Layer.FControlFaces);
       end;
     end;
     if ToDoList.Count > 0 then
@@ -4579,6 +4579,59 @@ var
     end;
   end;
 
+  procedure AssignTextures;
+  var i,j,k, l,p,t:integer;
+    ALayer: TFreeSubdivisionLayer;
+    CFace: TFreeSubdivisionControlFace;
+    AFace: TFreeSubdivisionFace;
+    APoint: TFreeSubdivisionPoint;
+    ATexture: TFreeTexture;
+    APatches: TFasterListTFreeDevelopedPatch;
+    APatch: TFreeDevelopedPatch;
+  begin
+    for l:=0 to NumberOfLayers-1 do
+    begin
+      ALayer := FLayers[l];
+      if ALayer.Textures.Count = 0 then continue;
+
+      APatches:= TFasterListTFreeDevelopedPatch.Create;
+      ALayer.Unroll(APatches);
+
+      for p:=0 to APatches.Count-1 do
+      begin
+        APatch := APatches[p];
+        // search a texture
+        for t:=0 to ALayer.Textures.Count-1 do
+          if ALayer.Textures[t].FDevelopedPatchName = APatch.Name
+             then ATexture := ALayer.Textures[t];
+        if ATexture = nil then continue;
+        ATexture.DevelopedPatch := APatch;
+
+        for j:=0 to APatch.FFaces.Count-1 do
+        begin
+          AFace := APatch.FFaces[j];
+          AFace.FTexture := ATexture;
+        end;
+        for k:=0 to APatch.FPoints.Count-1 do
+        begin
+          APoint := APatch.FPoints[k];
+          APoint.Texture := ATexture;
+        end;
+      end;
+
+      for i:=0 to ALayer.FControlFaces.Count - 1 do
+      begin
+        CFace := ALayer.FControlFaces[i];
+        for j:=0 to CFace.ChildCount - 1 do
+        begin
+          AFace := CFace.Child[j];
+          CFace.FTexture := AFace.FTexture;
+        end;
+      end;
+
+    end;  // l
+  end;
+
 begin
   if FIsBuilding then exit; // no double entries
   FIsBuilding:=true;
@@ -4680,6 +4733,8 @@ begin
 
   if not self.CheckIntegrity
     then ShowMessage('After Build Model integrity corruption');
+
+  AssignTextures;
 
   FIsBuilding:=false;
   FBuilt := true;

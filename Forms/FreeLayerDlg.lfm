@@ -35,7 +35,7 @@ object FreeLayerDialog: TFreeLayerDialog
       TabOrder = 0
       object Panel4: TPanel
         Left = 0
-        Height = 112
+        Height = 116
         Top = 0
         Width = 338
         BevelOuter = bvNone
@@ -44,7 +44,7 @@ object FreeLayerDialog: TFreeLayerDialog
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 112
+        ClientHeight = 116
         ClientWidth = 338
         TabOrder = 0
         object Label1: TLabel
@@ -66,7 +66,7 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Label2: TLabel
           Left = 10
-          Height = 26
+          Height = 30
           Top = 38
           Width = 117
           Caption = 'Color'
@@ -75,17 +75,17 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Panel5: TPanel
           Left = 133
-          Height = 26
+          Height = 30
           Top = 38
           Width = 150
           AutoSize = True
           BevelOuter = bvNone
-          ClientHeight = 26
+          ClientHeight = 30
           ClientWidth = 150
           TabOrder = 1
           object Panel3: TPanel
             Left = 0
-            Height = 26
+            Height = 30
             Top = 0
             Width = 40
             Align = alLeft
@@ -94,11 +94,20 @@ object FreeLayerDialog: TFreeLayerDialog
             TabOrder = 0
             OnClick = Panel3Click
           end
+          object SpeedButtonTexture: TSpeedButton
+            Left = 120
+            Height = 30
+            Top = 0
+            Width = 30
+            Align = alRight
+            Caption = 'Texture'
+            OnClick = SpeedButtonTextureClick
+          end
         end
         object Label4: TLabel
           Left = 10
           Height = 46
-          Top = 66
+          Top = 70
           Width = 117
           Caption = 'Transparency'
           Layout = tlCenter
@@ -107,7 +116,7 @@ object FreeLayerDialog: TFreeLayerDialog
         object AlphaBar: TTrackBar
           Left = 133
           Height = 46
-          Top = 66
+          Top = 70
           Width = 150
           Max = 100
           OnChange = AlphaBarChange
@@ -120,7 +129,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel6: TPanel
         Left = 0
         Height = 208
-        Top = 112
+        Top = 116
         Width = 338
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -134,7 +143,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 10
           Height = 28
           Top = 0
-          Width = 284
+          Width = 282
           Caption = 'Use for hydrostatics'
           TabOrder = 0
           OnClick = CheckBox3Click
@@ -143,7 +152,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 10
           Height = 28
           Top = 30
-          Width = 284
+          Width = 282
           Caption = 'Symmetric'
           TabOrder = 1
           OnClick = CheckBox5Click
@@ -152,7 +161,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 10
           Height = 28
           Top = 60
-          Width = 284
+          Width = 282
           Caption = 'Intersection curves'
           TabOrder = 2
           OnClick = CheckBox2Click
@@ -161,7 +170,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 10
           Height = 28
           Top = 90
-          Width = 284
+          Width = 282
           Caption = 'Developable'
           TabOrder = 3
           OnClick = CheckBox1Click
@@ -170,7 +179,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 10
           Height = 28
           Top = 120
-          Width = 284
+          Width = 282
           Caption = 'Show in linesplan'
           TabOrder = 4
           OnClick = CheckBox4Click
@@ -179,7 +188,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 10
           Height = 28
           Top = 150
-          Width = 284
+          Width = 282
           Caption = 'Set weigth and CoG manually'
           TabOrder = 5
           OnClick = CheckBox3Click
@@ -188,7 +197,7 @@ object FreeLayerDialog: TFreeLayerDialog
           Left = 10
           Height = 28
           Top = 180
-          Width = 284
+          Width = 282
           Caption = 'Control Net Visible'
           TabOrder = 6
           OnClick = cbControlNetVisibleClick
@@ -197,7 +206,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel7: TPanel
         Left = 0
         Height = 132
-        Top = 320
+        Top = 324
         Width = 338
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -303,7 +312,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel8: TPanel
         Left = 0
         Height = 30
-        Top = 462
+        Top = 466
         Width = 338
         BorderSpacing.Top = 10
         BevelOuter = bvNone
@@ -338,7 +347,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel9: TPanel
         Left = 0
         Height = 36
-        Top = 492
+        Top = 496
         Width = 338
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -412,7 +421,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object GroupBox1: TGroupBox
         Left = 0
         Height = 138
-        Top = 538
+        Top = 542
         Width = 338
         BorderSpacing.Top = 10
         Caption = 'Surface properties. '

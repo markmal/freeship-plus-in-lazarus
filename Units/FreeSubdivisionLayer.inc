@@ -11,7 +11,7 @@ end;{TFreeSubdivisionLayer.FGetColor}
 
 function TFreeSubdivisionLayer.FGetCount: integer;
 begin
-  Result := FPatches.Count;
+  Result := FControlFaces.Count;
 end;{TFreeSubdivisionLayer.FGetCount}
 
 function TFreeSubdivisionLayer.FGetDXFLayername: string;
@@ -29,7 +29,7 @@ end;{TFreeSubdivisionLayer.FGetName}
 
 function TFreeSubdivisionLayer.FGetItems(Index: integer): TFreeSubdivisionControlFace;
 begin
-  Result := FPatches[Index];
+  Result := FControlFaces[Index];
 end;{TFreeSubdivisionLayer.FGetItems}
 
 function TFreeSubdivisionLayer.FGetLayerIndex: integer;
@@ -247,8 +247,8 @@ begin
   // disconnect from current layer
   if ControlFace.Layer <> nil then
     ControlFace.Layer.DeleteControlFace(ControlFace);
-  if FPatches.Indexof(ControlFace) = -1 then
-    FPatches.Add(ControlFace);
+  if FControlFaces.Indexof(ControlFace) = -1 then
+    FControlFaces.Add(ControlFace);
   ControlFace.FLayer := self;
 end;{TFreeSubdivisionLayer.AddPatch}
 
@@ -851,14 +851,15 @@ constructor TFreeSubdivisionLayer.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create;
   FOwner := Owner;
-  FPatches := TFasterListTFreeSubdivisionControlFace.Create;
+  FControlFaces := TFasterListTFreeSubdivisionControlFace.Create;
+  FTextures := TFasterListTFreeTexture.Create;
   Clear;
 end;{TFreeSubdivisionLayer.Create}
 
 procedure TFreeSubdivisionLayer.Clear;
 begin
   FLayerID := -1;
-  FPatches.Clear;
+  FControlFaces.Clear;
   FColor := Surface.LayerColor;
   FSurfaceVisible := True;
   FControlNetVisible := True;
@@ -871,6 +872,7 @@ begin
   FMaterialDensity := 0.0;
   FThickness := 0.0;
   FAlphaBlend := 255;
+  FTextures.Clear;
 end;{TFreeSubdivisionLayer.Clear}
 
 function TFreeSubdivisionLayer.Delete: boolean;
@@ -898,17 +900,17 @@ procedure TFreeSubdivisionLayer.DeleteControlFace(
 var
   Index: integer;
 begin
-  FPatches.DeleteItem(ControlFace);
+  FControlFaces.DeleteItem(ControlFace);
  {
-  Index := FPatches.IndexOf(ControlFace);
+  Index := FControlFaces.IndexOf(ControlFace);
   if index <> -1 then
-    FPatches.Delete(Index);
+    FControlFaces.Delete(Index);
  }
 end;{TFreeSubdivisionLayer.DeleteControlFace}
 
 destructor TFreeSubdivisionLayer.Destroy;
 begin
-  FreeAndNil(FPatches);
+  FreeAndNil(FControlFaces);
   inherited Destroy;
 end;{TFreeSubdivisionLayer.Destroy}
 
@@ -1320,8 +1322,8 @@ begin
   ToDoList := TFasterListTFreeSubdivisionControlFace.Create;
   DoneList := TFasterList<TFasterListTFreeSubdivisionControlFace>.Create;
   try
-    ToDoList.Capacity := FPatches.Count;
-    ToDoList.AddList(FPatches);
+    ToDoList.Capacity := FControlFaces.Count;
+    ToDoList.AddList(FControlFaces);
     if ToDoList.Count > 0 then
     begin
       while ToDoList.Count > 0 do

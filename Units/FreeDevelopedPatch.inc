@@ -178,6 +178,7 @@ begin
   FName := '';
   FPoints.Clear;
   FEdges.Clear;
+  FFaces.Clear;
   FDoneList.Clear;
   FCorners.Clear;
   FBoundaryEdges.Clear;
@@ -234,6 +235,7 @@ begin
   FOwner := Owner;
   FPoints := TFasterListTFreeSubdivisionPoint.Create;
   FEdges := TFasterListTFreeSubdivisionEdge.Create;
+  FFaces := TFasterListTFreeSubdivisionFace.Create;
   FDoneList := TFasterListTFreeSubdivisionFace.Create;
   FBoundaryEdges := TFasterListTFreeSubdivisionEdge.Create;
   FStations := TFasterListTFreeSpline.Create;
@@ -476,6 +478,7 @@ begin
       begin
         for J := 3 to Face.NumberOfpoints do
         begin
+          Point := Face.Point[0];
           Index := FPoints.SortedIndexOf(Face.Point[0]);
           if Index <> -1 then
             P1 := self.Point[index];
@@ -1170,7 +1173,6 @@ var
   Edge: TFreeSubdivisionEdge;
   P1, P2, P3: TFreeSubdivisionPoint;
   Processed: array of boolean;
-  FFaces: TFasterListTFreeSubdivisionFace;
   SeedFaces: TFasterListTFreeSubdivisionFace;
   Orientation: TPolygonOrientation;
   Winding: TPolygonOrientation;
@@ -1313,7 +1315,7 @@ var
       Result.X := c * Cos(Fie2) + P1.X;
       Result.Y := c * Sin(Fie2) + P1.Y;
     end;
-  end;{CalculateTriangle}
+  end;{CalculateTriangle2}
 
   procedure Unroll2D(Face: TFreeSubdivisionFace; FirstFace: boolean; var Error: boolean);
   var
@@ -1354,8 +1356,8 @@ var
       begin
         // calculate position of P3
         a := Distance2D(P1_2D, P2_2D);
-        //P3_2D:=CalculateTriangle(b,c,a,P1_2D,P2_2D);
-        P3_2D := CalculateTriangle2(a, b, c, P1_2D, P2_2D);
+        P3_2D:=CalculateTriangle(b,c,a,P1_2D,P2_2D); // deck unrolled at 45 dgr
+        //P3_2D := CalculateTriangle2(a, b, c, P1_2D, P2_2D); // deck unrolled vertically
         if First then
         begin
           Orientation := Crossproduct(P1_2D, P2_2D, P3_2D);
@@ -1378,6 +1380,9 @@ var
       P1.FUnrolledCoordinate := P1_2D;
       P2.FUnrolledCoordinate := P2_2D;
       P3.FUnrolledCoordinate := P3_2D;
+      {Face.FUnrolledPoints[Face.IndexOfPoint(P1)] := P1_2D;
+      Face.FUnrolledPoints[Face.IndexOfPoint(P2)] := P2_2D;
+      Face.FUnrolledPoints[Face.IndexOfPoint(P3)] := P3_2D;}
     end;
 
   begin
@@ -1404,6 +1409,10 @@ var
         end;
       end;
     end;
+
+    //if Length(Face.FUnrolledPoints) < Face.FPoints.Capacity
+    //then SetLength(Face.FUnrolledPoints, Face.FPoints.Capacity);
+
     if (S <> -1) and (E <> -1) then
     begin
       for I := 3 to Face.NumberOfpoints do
@@ -1478,11 +1487,11 @@ var
     for I := 1 to FEdges.Count do
       FEdgeErrors[I - 1] := 0.0;
 
-    for i := 1 to FPoints.Count do
+    for i := 0 to FPoints.Count-1 do
     begin
-      Processed[I - 1] := False;
-      F2DCoordinates[I - 1].Coordinate.X := 0.0;
-      F2DCoordinates[I - 1].Coordinate.Y := 0.0;
+      Processed[i] := False;
+      F2DCoordinates[i].Coordinate.X := 0.0;
+      F2DCoordinates[i].Coordinate.Y := 0.0;
     end;
     ToDoList := TFasterListTFreeSubdivisionFace.Create;       // Assemble all faces to be developed in a list
     ToDoList.AddList(FFaces);
@@ -1582,6 +1591,25 @@ var
     end;
     MaxError := MaxError + abs(FTotalAreaError);
   end;{ProcessFaces}
+
+  procedure AssignUnrolledCoordinates;
+  var i,j, index: integer;
+    Face: TFreeSubdivisionFace;
+    Pnt: TFreeSubdivisionPoint;
+    P3D: T3DCoordinate;
+    P2D1, P2D2: T2DCoordinate;
+  begin
+    //writeln('AssignUnrolledCoordinates '+self.Name);
+    for I := 0 to FPoints.Count-1 do
+    begin
+      P2D1 := FPoints[i].FUnrolledCoordinate;
+      P2D2 := F2DCoordinates[i].Coordinate;
+      if (P2D1.X<>P2D2.X)or(P2D1.Y<>P2D2.Y)
+      then FPoints[i].FUnrolledCoordinate := F2DCoordinates[i].Coordinate;
+      //writeln(String.Format('p1: %0:8.3f : %1:8.3f', [P2D1.x, P2D1.y]));
+    end;
+
+  end;
 
 begin
   // first assemble all points, edges and faces used
@@ -1921,6 +1949,9 @@ begin
         FCorners.Add(P1);
       end;
     end;
+
+    AssignUnrolledCoordinates;
+
   end
   else
     MessageDlg('Seed could not be found!', mtError, [mbOK], 0);
@@ -1929,6 +1960,6 @@ begin
   FreeAndNil(FFaces);
   FFaces := nil;}
   FreeAndNil(Seedfaces);
-  FreeAndNil(FFaces);
+  //FreeAndNil(FFaces);
 end;{TFreeDevelopedPatch.Unroll}
 

@@ -93,6 +93,8 @@ procedure TFreeSubdivisionFace.AddPoint(Point: TFreeSubdivisionPoint);
 begin
   FPoints.Add(Point);
   Point.AddFace(self);
+  //if Length(FUnrolledPoints) < FPoints.Capacity then
+  //  SetLength(FUnrolledPoints, FPoints.Capacity);
 end;{TFreeSubdivisionFace.AddPoint}
 
 function TFreeSubdivisionFace.CalculateFaceCenterPoint: TFreeSubdivisionPoint;
@@ -176,6 +178,7 @@ constructor TFreeSubdivisionFace.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
   FPoints := TFasterListTFreeSubdivisionPoint.Create(true,false);
+  //SetLength(FUnrolledPoints, FPoints.Capacity);
   Clear;
 end;{TFreeSubdivisionFace.Create}
 

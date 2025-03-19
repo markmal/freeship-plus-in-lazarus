@@ -873,7 +873,12 @@ begin
     begin
       IconFile := GetIconFileName(Theme, AName, ToolIconSize);
       if (IconFile > '') and FileExistsUTF8(IconFile) then
-        if (II < ilcnt) then
+      begin
+        ilcnt:=cil.Count;
+        while cil.Count<=II do
+          cil.Add(bmp, nil);
+        ilcnt:=cil.Count;
+        if (II < cil.Count) then
         begin
           png.LoadFromFile(IconFile);
           img := png.CreateIntfImage;
@@ -882,6 +887,7 @@ begin
           cil.Replace(II, bmp, nil);
           img.Free;
         end;
+      end;
     end;
   end;
   bmp.Free;

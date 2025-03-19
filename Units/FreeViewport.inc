@@ -1355,7 +1355,7 @@ begin
       FDrawingCanvas.Brush.Style := bsSolid;
       FDrawingCanvas.FillRect(-1, -1, FDestinationWidth + 2, FDestinationHeight + 2);
 
-      if BackgroundImage.Bitmap <> nil then
+      if BackgroundImage.Visible and (BackgroundImage.Bitmap <> nil) then
         BackgroundImage.Draw;
 
       // Turn clipping back on
@@ -2858,6 +2858,7 @@ end;{TFreeViewport.ShadeTriangle}
 
 // Draw a smooth shaded triangle to the ZBuffer getting color from corresponding pixels of texture
 procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, Point2, Point3: TFreeSubdivisionPoint;
+                                                 up1,up2,up3:T2DCoordinate;
                                                  Texture:TFreeTexture; WaterlinePlane:T3DPlane);
   var
     Normal: T3DCoordinate;

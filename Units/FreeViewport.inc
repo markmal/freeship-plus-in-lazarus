@@ -1083,8 +1083,8 @@ var
   Dist: TFloatType;
 begin
   // convert from screencoordinate to 2D world coordinate
-  P2D.X := (P.X - FPan.X - FScreencenter.X) / (FZoom * FScale);
-  P2D.Y := (P.Y - FPan.Y - FScreencenter.Y) / -(FZoom * FScale);
+  P2D.X := ( 0.5+P.X - FPan.X - FScreencenter.X) / (FZoom * FScale);
+  P2D.Y := (-0.5+P.Y - FPan.Y - FScreencenter.Y) / -(FZoom * FScale);
 
   // Now correct for perspective projection and create a 3D ray through the screen coordinate
   P3D.X := FMin3D.X;
@@ -2856,10 +2856,13 @@ begin
 end;{TFreeViewport.ShadeTriangle}
 
 
-// Draw a smooth shaded triangle to the ZBuffer getting color from corresponding pixels of texture
-procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, Point2, Point3: TFreeSubdivisionPoint;
-                                                 up1,up2,up3:T2DCoordinate;
-                                                 Texture:TFreeTexture; WaterlinePlane:T3DPlane);
+{ Draw a smooth shaded triangle to the ZBuffer getting color from corresponding pixels of texture
+  IsMirrored means that Y of P1, P2, P3 is mirrored (negated)}
+procedure TFreeViewport.ShadeTriangleTexture( P1, P2, P3: T3DCoordinate;
+                                              Point1, Point2, Point3: TFreeSubdivisionPoint;
+                                              //up1,up2,up3:T2DCoordinate;
+                                              Texture:TFreeTexture; WaterlinePlane:T3DPlane;
+                                              IsMirrored: boolean);
   var
     Normal: T3DCoordinate;
     Pt1, Pt2, Pt3, T: TShadePoint;
@@ -2874,6 +2877,7 @@ procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, 
     TxColor: TColor;
     ScreenPoint: TPoint;
     ModelPoint: T3Dcoordinate;
+    mP1, mP2, mP3: T3DCoordinate;
     R, G, B, Alpha: byte;
     intsn: longint;
     Level : TFloatType;
@@ -2909,15 +2913,18 @@ procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, 
 
     procedure ShadeLine(X1, X2, Y: integer; Z1, Z2: TFloatType);
     var
-      IncZ, T: TFloatType;
+      IncZ, T: TFloatType;  X: integer;
       //Row     : pRGBTripleArray;
       pRow, pPixel: pointer;
       Pixel: TRGBTriple;
+      L:T3DLine;
     begin
       if (Y < 0) or (Y > FDestinationHeight - 1) then
         exit;
+      // back to normal precision
       X1 := X1 div 256;
       X2 := X2 div 256;
+
       if X1 > X2 then
       begin
         Swap(X1, X2);
@@ -2943,21 +2950,44 @@ procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, 
         // Use scanline property for faster pixel access
         //Row:=FDrawingBuffer.Scanline[y];
         pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
-        while (X1 <= X2) do
+        for X:=X1 to X2 do
         begin
-          if Z1 > FZBuffer.FBuffer[Y][X1] then
+          if Z1 > FZBuffer.FBuffer[Y][X] then
           begin
-
-            ScreenPoint.X := X1; ScreenPoint.Y := Y;
-
-            //ModelPoint := self.ProjectBack(ScreenPoint, ZERO);
-            intsn := RayIntersectTriangle(ProjectBackAsLine(ScreenPoint), //ray,
+            ScreenPoint.X := X; ScreenPoint.Y := Y;
+            ModelPoint:=ZERO;
+            if not IsMirrored then
+            begin
+              intsn := RayIntersectTriangle(ProjectBackAsLine(ScreenPoint), //ray,
                   Point1.FCoordinate, Point2.FCoordinate, Point3.FCoordinate,
                   ModelPoint);
+              if (intsn=0)and(X>(X1+1))and(X<(X2-1))
+                   and (Y>(Pt2.Y+1)) and (Y<(Pt3.Y-1)) then
+              begin
+                L := ProjectBackAsLine(ScreenPoint);
+                intsn := RayIntersectTriangle(L, //ray,
+                  Point1.FCoordinate, Point2.FCoordinate, Point3.FCoordinate,
+                  ModelPoint);
+              end;
+            end
+            else
+            begin
+              mP1 := Point1.FCoordinate;
+              mP2 := Point2.FCoordinate;
+              mP3 := Point3.FCoordinate;
+              mP1.Y := -mP1.Y;
+              mP2.Y := -mP2.Y;
+              mP3.Y := -mP3.Y;
+              intsn := RayIntersectTriangle(ProjectBackAsLine(ScreenPoint), //ray,
+                  mP1, mP2, mP3,
+                  ModelPoint)
+            end;
 
-            TxColor := Texture.GetTextureColor(ModelPoint, Point1, Point2, Point3);
+            TxColor := Texture.GetTextureColor(ModelPoint, Point1, Point2, Point3, IsMirrored);
 
             SetColor(TxColor, Alpha, B,G,R);
+
+            //B:=0; G:=255; R:=0; Alpha:=255;  /// TEST
 
             Level := WaterlinePlane.a * ModelPoint.X
                    + WaterlinePlane.b * ModelPoint.Y
@@ -2977,17 +3007,16 @@ procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, 
               // temporary draw via canvas
               //FDrawingBuffer.Canvas.Pixels[X1,Y]:=RGBtoColor(R,G,B);  // this causes mem leak in LibQt4 widget DCSetPixel (qtobject.inc) calling QPen_create5
 
-              SetPixel(X1, Y, R, G, B);
+              SetPixel(X, Y, R, G, B);
               ///FBitmapFormatHelper.SetPixelInLine(pRow, X1, R, G, B, Alpha);
 
-              FZBuffer.FBuffer[Y][X1] := Z1;
+              FZBuffer.FBuffer[Y][X] := Z1;
             end
             else
-              AlphaBuffer.AddPixelData(X1, Y, R, G, B, Alpha, Z1);
+              AlphaBuffer.AddPixelData(X, Y, R, G, B, Alpha, Z1);
 
           end;
           Z1 := Z1 + IncZ;
-          Inc(X1);
         end;
       end;
     end;{ShadeLine}
@@ -3039,14 +3068,15 @@ procedure TFreeViewport.ShadeTriangleTexture(P1, P2, P3: T3DCoordinate; Point1, 
       end;
     end;
     // check if min/max values are outside window
-    if ((Pt1.Y >= FDestinationHeight) or (Pt3.Y <= 0)) or
+    if((Pt1.Y >= FDestinationHeight) or (Pt3.Y <= 0)) or
       ((Pt1.X < 0) and (Pt2.X < 0) and (Pt3.X < 0)) or
       ((Pt1.X > FDestinationWidth) and (Pt2.X > FDestinationWidth) and
       (Pt3.X > FDestinationWidth)) then
       exit;
-    Pt1.X := Pt1.X shl 8;
-    Pt2.X := Pt2.X shl 8;
-    Pt3.X := Pt3.X shl 8;
+    // multiply on 256 to achieve higher precision with further divisions
+    Pt1.X := Pt1.X * 256;
+    Pt2.X := Pt2.X * 256;
+    Pt3.X := Pt3.X * 256;
 
     if Pt3.Y = Pt1.Y then
     begin

@@ -1008,15 +1008,9 @@ begin
           P1 := Child.Point[0].Coordinate;
           P2 := Child.Point[J - 1].Coordinate;
           P3 := Child.Point[J].Coordinate;
-          {up1 := Child.FUnrolledPoints[0];
-          up2 := Child.FUnrolledPoints[J-1];
-          up3 := Child.FUnrolledPoints[J];}
-          up1 := Point1.FUnrolledCoordinate;
-          up2 := Point1.FUnrolledCoordinate;
-          up3 := Point1.FUnrolledCoordinate;
 
           Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3,
-                   up1,up2,up3, Texture, Surface.WaterlinePlane);
+                   Texture, Surface.WaterlinePlane, false);
 
           if (Surface.DrawMirror) and (Layer.Symmetric) then
           begin
@@ -1024,7 +1018,7 @@ begin
             P2.Y := -P2.Y;
             P3.Y := -P3.Y;
             Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3,
-                     up1,up2,up3, Texture, Surface.WaterlinePlane);
+                     Texture, Surface.WaterlinePlane, true);
           end;
         end;
       end;

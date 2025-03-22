@@ -4605,9 +4605,9 @@ var
           if ALayer.Textures[t].FDevelopedPatchName = APatch.Name
              then ATexture := ALayer.Textures[t];
         if ATexture = nil then continue;
-        ATexture.DevelopedPatch := APatch;
+        ATexture.LoadUnrolledPatch(APatch);
 
-        for j:=0 to APatch.FFaces.Count-1 do
+        {for j:=0 to APatch.FFaces.Count-1 do
         begin
           AFace := APatch.FFaces[j];
           AFace.FTexture := ATexture;
@@ -4616,7 +4616,7 @@ var
         begin
           APoint := APatch.FPoints[k];
           APoint.Texture := ATexture;
-        end;
+        end;}
       end;
 
       for i:=0 to ALayer.FControlFaces.Count - 1 do

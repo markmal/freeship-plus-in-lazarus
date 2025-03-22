@@ -198,6 +198,8 @@ type
   TFreeAssembleMode = (amRegular, amNURBS);
   TFreeViewportBackgroundMode =
     (emNormal, emSetOrigin, emSetScale, emSetFrame, emUnsetFrame, emSetTransparentColor);
+  TFreeSide = (fsPort,fsStarboard,fsAsymmetrical);
+  // If the model is Symmetrical a Developed Patch can be either Port or Starboard, Asymmetrical otherwise.
 
   TFreeLight = record
     Position: T3DCoordinate;
@@ -391,6 +393,7 @@ type
     procedure Invalidate;
     procedure Draw;
     function ImageCoordinate(X, Y: integer): TPoint;
+    function TargetCoordinate(X, Y: integer): TPoint;
     function TargetRect: TRect;
     procedure Open(InitialDir: string);
     procedure Save;
@@ -428,14 +431,22 @@ type
     FLayer: TFreeSubdivisionLayer;
     FColor: TColor;
     FDevelopedPatchName: String;
-    FDevelopedPatch: TFreeDevelopedPatch;
+    FUnrolledCoordinates: array of T2DCoordinate; //Every SubdivisionPoint should have index on these arrays
+    FBitmapCoordinates: array of TPoint; //Uses same index as above
+    FDevelopedPatchXXX: TFreeDevelopedPatch;
     FDevelopedPatchAnchorPoint1: T2DCoordinate;
     FDevelopedPatchAnchorPoint2: T2DCoordinate;
+    FFaces: TFasterListTFreeSubdivisionFace;
+    FPoints: TFasterListTFreeSubdivisionPoint;
+    FMirrorPlane: T3DPlane;
+    FMirrored: boolean;
     FBitmap: TBitmap;
     FIntfImage: TLazIntfImage;
     FRawImage: TRawImage;
     FBitmapTargetPoint1: TPoint;
     FBitmapTargetPoint2: TPoint;
+    FMin2D: T2DCoordinate;
+    FMax2D: T2DCoordinate;
     FTranslation: T2DCoordinate;
     FRotation: TFloatType;
     FScale: TFloatType;
@@ -458,6 +469,7 @@ type
       BitmapTargetPoint2: TPoint);
     procedure LoadIntfImage(FileName: String);
     procedure Clear;
+    function FGetMidPoint: T2DCoordinate;
     function Project2DtoViewport(P: T2DCoordinate): T3DCoordinate;
     function ProjectViewportTo2D(P: T2DCoordinate): T2DCoordinate;
     procedure AutoSetDevelopedPatchAnchorPoints;
@@ -468,18 +480,20 @@ type
     procedure Extents(var Min, Max:T3DCoordinate);
     function FindSubdivionPoint(P: T2DCoordinate): TFreeSubdivisionPoint;
     function FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
-    function FindD2_3(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
+    function ProjectOnUnrolled(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
     //function UnrollPoint(ModelPoint:T3DCoordinate; Point1,Point2,Point3:TFreeSubdivisionPoint): T2DCoordinate;
-    function FindTexturePixel(C1:T2DCoordinate): TPoint;
-    function GetTextureColor(ModelPoint:T3DCoordinate;  Point1,Point2,Point3:TFreeSubdivisionPoint): TColor;
+    function ProjectOnBitmap(C1:T2DCoordinate): TPoint;
+    function GetTextureColor(ModelPoint:T3DCoordinate;  Point1,Point2,Point3:TFreeSubdivisionPoint; IsMirrored: boolean): TColor;
     procedure FSetRotation(Val: TFloatType);
+    function Mirror2DCoordinate(P: T2DCoordinate): T2DCoordinate;
+    procedure LoadUnrolledPatch(DevelopedPatch: TFreeDevelopedPatch);
   //published
     property Bitmap: TBitmap read FBitmap write FBitmap;
     property BitmapTargetPoint1: TPoint read FBitmapTargetPoint1 write FBitmapTargetPoint1;
     property BitmapTargetPoint2: TPoint read FBitmapTargetPoint2 write FBitmapTargetPoint2;
     property Color: TColor read FColor write FColor;
     property Layer: TFreeSubdivisionLayer read FLayer write FLayer;
-    property DevelopedPatch: TFreeDevelopedPatch read FDevelopedPatch write FDevelopedPatch;
+    //property DevelopedPatch: TFreeDevelopedPatch read FDevelopedPatch write FDevelopedPatch;
     property DevelopedPatchName: String read FDevelopedPatchName write FDevelopedPatchName;
     property DevelopedPatchAnchorPoint1: T2DCoordinate read FDevelopedPatchAnchorPoint1 write FDevelopedPatchAnchorPoint1;
     property DevelopedPatchAnchorPoint2: T2DCoordinate read FDevelopedPatchAnchorPoint2 write FDevelopedPatchAnchorPoint2;
@@ -698,10 +712,11 @@ type
     procedure ShadeTriangle(P_1, P_2, P_3: T3DCoordinate;
       R1, G1, B1, R2, G2, B2, R3, G3, B3: byte); virtual;//reintroduce;overload;
     procedure ShadeTriangleTexture(P1, P2, P3: T3DCoordinate;
-                                       Point1, Point2, Point3:TFreeSubdivisionPoint;
-                                       up1,up2,up3: T2DCoordinate;
-                                       texture:TFreeTexture;
-                                       WaterlinePlane:T3DPlane);
+                                   Point1, Point2, Point3:TFreeSubdivisionPoint;
+                                   //up1,up2,up3: T2DCoordinate;
+                                   texture:TFreeTexture;
+                                   WaterlinePlane:T3DPlane;
+                                   IsMirrored: boolean);
     function TextWidth(val: string): integer; virtual;
     function TextHeight(val: string): integer; virtual;
     procedure TextOut(x, y: integer; val: string); virtual;
@@ -871,6 +886,7 @@ type
     FDimFontColor: TColor;
     FDimFontName: string;
     FDimFontSize: integer;
+    FSide: TFreeSide;
 
     function FGetShowErrorEdges: boolean;
     function FGetMidPoint: T2DCoordinate;
@@ -1412,7 +1428,8 @@ type
     FEdges: TFasterListTFreeSubdivisionEdge;
     FCoordinate: T3DCoordinate;
     FTexture: TFreeTexture; // For time being one "last" texture per unrolled patch
-    FUnrolledCoordinate: T2DCoordinate;
+    //FUnrolledCoordinate: T2DCoordinate;
+    FUnrolledIndex: integer; // index in arrays of FTexture.FUnrolledCoordinates and FTexture.FBitmapCoordinates
     FVertexType: TFreeVertexType;
     function FGetEdge(Index: integer):TFreeSubdivisionEdge;
     function FGetCoordinate: T3DCoordinate;
@@ -1446,6 +1463,8 @@ type
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
+    function FGetUnrolledCoordinate: T2DCoordinate;
+    function FGetBitmapCoordinate: TPoint;
     //property Coordinate:T3DCoordinate read FGetCoordinate write FSetCoordinate;
     property Coordinate:T3DCoordinate read FCoordinate write FCoordinate;
     property Curvature: extended read FGetCurvature;
@@ -1472,7 +1491,9 @@ type
       read FGetIndex;
     property VertexType:
       TFreeVertexType read FVertexType write SetVertexType;
-    property UnrolledCoordinate: T2DCoordinate read FUnrolledCoordinate write FUnrolledCoordinate;
+    property UnrolledCoordinate: T2DCoordinate read FGetUnrolledCoordinate;
+    property BitmapCoordinate: TPoint read FGetBitmapCoordinate;
+    property UnrolledIndex: integer read FUnrolledIndex write FUnrolledIndex;
   end;
 
   {--------------------------------------------------------------------------------------------------}

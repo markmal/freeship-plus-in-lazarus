@@ -1377,9 +1377,9 @@ var
         F2DCoordinates[Ind3].Coordinate := P3_2D;
         Processed[ind3] := True;
       end;
-      P1.FUnrolledCoordinate := P1_2D;
+      {P1.FUnrolledCoordinate := P1_2D;
       P2.FUnrolledCoordinate := P2_2D;
-      P3.FUnrolledCoordinate := P3_2D;
+      P3.FUnrolledCoordinate := P3_2D;}
       {Face.FUnrolledPoints[Face.IndexOfPoint(P1)] := P1_2D;
       Face.FUnrolledPoints[Face.IndexOfPoint(P2)] := P2_2D;
       Face.FUnrolledPoints[Face.IndexOfPoint(P3)] := P3_2D;}
@@ -1592,6 +1592,7 @@ var
     MaxError := MaxError + abs(FTotalAreaError);
   end;{ProcessFaces}
 
+  {
   procedure AssignUnrolledCoordinates;
   var i,j, index: integer;
     Face: TFreeSubdivisionFace;
@@ -1608,8 +1609,8 @@ var
       then FPoints[i].FUnrolledCoordinate := F2DCoordinates[i].Coordinate;
       //writeln(String.Format('p1: %0:8.3f : %1:8.3f', [P2D1.x, P2D1.y]));
     end;
-
   end;
+  }
 
 begin
   // first assemble all points, edges and faces used
@@ -1950,7 +1951,7 @@ begin
       end;
     end;
 
-    AssignUnrolledCoordinates;
+    //AssignUnrolledCoordinates;
 
   end
   else

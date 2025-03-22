@@ -303,6 +303,18 @@ begin
   Result.Y := round(((Y - Dest.Top) / (Dest.Bottom - Dest.Top)) * FBitmap.Height);
 end;{TFreeBackgroundImage.ImageCoordinate}
 
+// image coordinate to viewport screen coordinate
+function TFreeBackgroundImage.TargetCoordinate(X, Y: integer): TPoint;
+var
+  Dest: TRect; dW, dH: longint;
+begin
+  Dest := TargetRect;
+  dW := Dest.Right - Dest.Left;
+  dH := Dest.Bottom - Dest.Top;
+  Result.X := round(Dest.Left + X*(dW/FBitmap.Width));
+  Result.Y := round(Dest.Top  + Y*(dH/FBitmap.Height));
+end;{TFreeBackgroundImage.OwnerCoordinate}
+
 function TFreeBackgroundImage.TargetRect: TRect;
 var
   Pt: TPoint;

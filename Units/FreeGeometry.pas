@@ -431,9 +431,9 @@ type
     FLayer: TFreeSubdivisionLayer;
     FColor: TColor;
     FDevelopedPatchName: String;
-    FUnrolledCoordinates: array of T2DCoordinate; //Every SubdivisionPoint should have index on these arrays
-    FBitmapCoordinates: array of TPoint; //Uses same index as above
-    FDevelopedPatchXXX: TFreeDevelopedPatch;
+    //FUnrolledCoordinates: array of T2DCoordinate; //Every SubdivisionPoint should have index on these arrays
+    //FBitmapCoordinates: array of TPoint; //Uses same index as above
+    //FDevelopedPatchXXX: TFreeDevelopedPatch;
     FDevelopedPatchAnchorPoint1: T2DCoordinate;
     FDevelopedPatchAnchorPoint2: T2DCoordinate;
     FFaces: TFasterListTFreeSubdivisionFace;
@@ -480,10 +480,14 @@ type
     procedure Extents(var Min, Max:T3DCoordinate);
     function FindSubdivionPoint(P: T2DCoordinate): TFreeSubdivisionPoint;
     function FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
+    function FindUnrolledPointForSubdivionPoint(P: TFreeSubdivisionPoint): T2DCoordinate;
     function ProjectOnUnrolled(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
     //function UnrollPoint(ModelPoint:T3DCoordinate; Point1,Point2,Point3:TFreeSubdivisionPoint): T2DCoordinate;
     function ProjectOnBitmap(C1:T2DCoordinate): TPoint;
-    function GetTextureColor(ModelPoint:T3DCoordinate;  Point1,Point2,Point3:TFreeSubdivisionPoint; IsMirrored: boolean): TColor;
+    function GetTextureColor( ModelPoint:T3DCoordinate;
+                              Point1,Point2,Point3:TFreeSubdivisionPoint;
+                              uP1,uP2,uP3: T2DCoordinate;
+                              IsMirrored: boolean): TColor;
     procedure FSetRotation(Val: TFloatType);
     function Mirror2DCoordinate(P: T2DCoordinate): T2DCoordinate;
     procedure LoadUnrolledPatch(DevelopedPatch: TFreeDevelopedPatch);
@@ -713,7 +717,7 @@ type
       R1, G1, B1, R2, G2, B2, R3, G3, B3: byte); virtual;//reintroduce;overload;
     procedure ShadeTriangleTexture(P1, P2, P3: T3DCoordinate;
                                    Point1, Point2, Point3:TFreeSubdivisionPoint;
-                                   //up1,up2,up3: T2DCoordinate;
+                                   uP1,uP2,uP3: T2DCoordinate;
                                    texture:TFreeTexture;
                                    WaterlinePlane:T3DPlane;
                                    IsMirrored: boolean);
@@ -1427,9 +1431,9 @@ type
     FFaces: TFasterListTFreeSubdivisionFace;
     FEdges: TFasterListTFreeSubdivisionEdge;
     FCoordinate: T3DCoordinate;
-    FTexture: TFreeTexture; // For time being one "last" texture per unrolled patch
+    //FTexture: TFreeTexture; // For time being one "last" texture per unrolled patch
     //FUnrolledCoordinate: T2DCoordinate;
-    FUnrolledIndex: integer; // index in arrays of FTexture.FUnrolledCoordinates and FTexture.FBitmapCoordinates
+    //FUnrolledIndex: integer; // index in arrays of FTexture.FUnrolledCoordinates and FTexture.FBitmapCoordinates
     FVertexType: TFreeVertexType;
     function FGetEdge(Index: integer):TFreeSubdivisionEdge;
     function FGetCoordinate: T3DCoordinate;
@@ -1463,8 +1467,8 @@ type
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
-    function FGetUnrolledCoordinate: T2DCoordinate;
-    function FGetBitmapCoordinate: TPoint;
+    //function FGetUnrolledCoordinate: T2DCoordinate;
+    //function FGetBitmapCoordinate: TPoint;
     //property Coordinate:T3DCoordinate read FGetCoordinate write FSetCoordinate;
     property Coordinate:T3DCoordinate read FCoordinate write FCoordinate;
     property Curvature: extended read FGetCurvature;
@@ -1486,14 +1490,14 @@ type
       read FGetNumberOfFaces;
     property RegularPoint: boolean
       read FGetRegularPoint;
-    property Texture: TFreeTexture read FTexture write FTexture;
+    //property Texture: TFreeTexture read FTexture write FTexture;
     property VertexIndex: integer
       read FGetIndex;
     property VertexType:
       TFreeVertexType read FVertexType write SetVertexType;
-    property UnrolledCoordinate: T2DCoordinate read FGetUnrolledCoordinate;
-    property BitmapCoordinate: TPoint read FGetBitmapCoordinate;
-    property UnrolledIndex: integer read FUnrolledIndex write FUnrolledIndex;
+    //property UnrolledCoordinate: T2DCoordinate read FGetUnrolledCoordinate;
+    //property BitmapCoordinate: TPoint read FGetBitmapCoordinate;
+    //property UnrolledIndex: integer read FUnrolledIndex write FUnrolledIndex;
   end;
 
   {--------------------------------------------------------------------------------------------------}
@@ -1708,7 +1712,7 @@ type
   TFreeSubdivisionFace = class(TFreeSubdivisionBase)
   private
     FPoints: TFasterListTFreeSubdivisionPoint;
-    //FUnrolledPoints: array of T2DCoordinate;
+    FUnrolledPoints: array of T2DCoordinate;
     FTexture: TFreeTexture;
     function FGetArea: TFloatType;
     function FGetFaceCenter: T3DCoordinate;
@@ -1732,6 +1736,7 @@ type
     function IndexOfPoint(
       P: TFreeSubdivisionPoint): integer;
     procedure PrintDebug; override;
+    //procedure SetUnrolledPoint(i:ineger; P:T2DCoordinate);
     procedure Subdivide(
       aOwner: TFreeSubdivisionSurface;
       aIsControlFace: boolean;
@@ -1741,17 +1746,13 @@ type
       aInteriorEdges:TFasterListTFreeSubdivisionEdge;
       aControlDescendandEdges:TFasterListTFreeSubdivisionEdge;
       aNewFaces: TFasterListTFreeSubdivisionFace);
-    property Area: TFloatType
-      read FGetArea;
-    property FaceCenter:
-      T3DCoordinate read FGetFaceCenter;
-    property FaceNormal:
-      T3DCoordinate read FGetFaceNormal;
-    property NumberOfPoints: integer
-      read FGetNumberOfPoints;
-    property Point[index: integer]
-      : TFreeSubdivisionPoint read FGetPoint;
+    property Area: TFloatType read FGetArea;
+    property FaceCenter: T3DCoordinate read FGetFaceCenter;
+    property FaceNormal: T3DCoordinate read FGetFaceNormal;
+    property NumberOfPoints: integer read FGetNumberOfPoints;
+    property Point[index: integer]: TFreeSubdivisionPoint read FGetPoint;
     property Points:TFasterListTFreeSubdivisionPoint read FPoints;
+    //property UnrolledPoints: array of T2DCoordinate read FUnrolledPoints;
   end;
 
   {--------------------------------------------------------------------------------------------------}

@@ -92,7 +92,7 @@ end;{TFreeDevelopedPatch.FGetMirrorPoint}
 
 // transform unrolled points and faces from DevelopedPatch
 procedure TFreeTexture.LoadUnrolledPatch(DevelopedPatch: TFreeDevelopedPatch);
-var i: integer;
+var i,j,index: integer;
   Face: TFreeSubdivisionFace;
   Point: TFreeSubdivisionPoint;
 begin
@@ -104,23 +104,23 @@ begin
   FMirrored := DevelopedPatch.FMirror or DevelopedPatch.FMirrorOnScreen
                or (DevelopedPatch.FSide = fsStarboard);
 
-  SetLength(FUnrolledCoordinates, Length(DevelopedPatch.F2DCoordinates));
-  SetLength(FBitmapCoordinates, Length(DevelopedPatch.F2DCoordinates));
+  //SetLength(FUnrolledCoordinates, Length(DevelopedPatch.F2DCoordinates));
+  //SetLength(FBitmapCoordinates, Length(DevelopedPatch.F2DCoordinates));
 
   FPoints.Clear;
   FPoints.AddList(DevelopedPatch.FPoints);
-  for i:=0 to FPoints.Count-1 do
+  {for i:=0 to FPoints.Count-1 do
   begin
     Point := FPoints[i];
-    Point.FTexture := Self;
+    //Point.FTexture := Self;
     Point.FUnrolledIndex := i;
     FUnrolledCoordinates[i] := DevelopedPatch.F2DCoordinates[i].Coordinate;
     FBitmapCoordinates[i] := ProjectOnBitmap(FUnrolledCoordinates[i]);
-    {if FMirrored then
+    if FMirrored then
     begin
       Point.FUnrolledCoordinate := Mirror2DCoordinate(Point.FUnrolledCoordinate);
-    end;}
-  end;
+    end;
+  end;}
 
   FFaces.Clear;
   FFaces.AddList(DevelopedPatch.FDoneList);
@@ -128,7 +128,13 @@ begin
   begin
     Face := FFaces[i];
     Face.FTexture := Self;
-    //Face.FaceNormal;
+    SetLength(Face.FUnrolledPoints, Face.FPoints.Count);
+    for j:=0 to Face.FPoints.Count-1 do
+    begin
+      Point := Face.FPoints[j];
+      index := FPoints.IndexOf(Point);
+      Face.FUnrolledPoints[j] := DevelopedPatch.F2DCoordinates[index].Coordinate;
+    end;
   end;
 
 end;
@@ -140,8 +146,8 @@ begin
   FDevelopedPatchName := '';
   //if FDevelopedPatch<>nil then FDevelopedPatch.Clear;
   //FreeAndNil(FDevelopedPatch);
-  SetLength(FUnrolledCoordinates, 0);
-  SetLength(FBitmapCoordinates, 0);
+  //SetLength(FUnrolledCoordinates, 0);
+  //SetLength(FBitmapCoordinates, 0);
   FFaces.Clear;
   FPoints.Clear;
   if Assigned(FBitmap) then FBitmap.Clear;
@@ -158,19 +164,33 @@ end;
 
 // find two most distanced 2d points
 procedure TFreeTexture.AutoSetDevelopedPatchAnchorPoints;
-var i,j: integer;
+var i,j,k: integer;
+  unrolledPoints: array of T2DCoordinate;
   p1,p2: T2DCoordinate;
   D, Dmax: TFloatType;
+  Face: TFreeSubdivisionFace;
 begin
-  Dmax := 0;
-  //writeln('AutoSetDevelopedPatchAnchorPoints '+SELF.Name);
-  for i:=0 to SELF.FPoints.Count-1 do
+  SetLength(unrolledPoints, FPoints.Count);
+  k:=0;
+  for i:=0 to FFaces.Count-1 do
   begin
-    p1 := SELF.FPoints[i].UnrolledCoordinate;
-    //writeln(String.Format('p1: %0:8.3f : %1:8.3f', [P1.x, P1.y]));
-    for j:=i+1 to SELF.FPoints.Count-1 do
+    Face := FFaces[i];
+    for j:=0 to Face.FPoints.Count-1 do
     begin
-      p2 := SELF.FPoints[j].UnrolledCoordinate;
+      p1 := Face.FUnrolledPoints[j];
+      if Length(unrolledPoints)<=k then SetLength(unrolledPoints, k+4);
+      unrolledPoints[k]:=p1;
+      inc(k);
+    end;
+  end;
+
+  Dmax := 0;
+  for i:=0 to Length(unrolledPoints)-1 do
+  begin
+    p1 := unrolledPoints[i];
+    for j:=i+1 to Length(unrolledPoints)-1 do
+    begin
+      p2 := unrolledPoints[j];
       D := Distance2D(p1,p2);
       if D > Dmax then
       begin
@@ -180,6 +200,8 @@ begin
       end;
     end;
   end;
+
+  SetLength(unrolledPoints,0);
 end;
 
 procedure TFreeTexture.SetBitmapTargetPointsByDevelopedPatchAnchors(Viewport: TFreeViewport);
@@ -304,9 +326,9 @@ begin
       for J := 3 to Face.NumberOfPoints do
         begin
 
-          p2d1 := Face.Points[0].UnrolledCoordinate;
-          p2d2 := Face.Points[J-2].UnrolledCoordinate;
-          p2d3 := Face.Points[J-1].UnrolledCoordinate;
+          p2d1 := Face.FUnrolledPoints[0];
+          p2d2 := Face.FUnrolledPoints[J-2];
+          p2d3 := Face.FUnrolledPoints[J-1];
 
           if FMirrored then
           begin
@@ -339,9 +361,9 @@ begin
       Face := FFaces[i];
       for J := 3 to Face.NumberOfPoints do
         begin
-          p2d1 := Face.Points[0].UnrolledCoordinate;
-          p2d2 := Face.Points[J-2].UnrolledCoordinate;
-          p2d3 := Face.Points[J-1].UnrolledCoordinate;
+          p2d1 := Face.FUnrolledPoints[0];
+          p2d2 := Face.FUnrolledPoints[J-2];
+          p2d3 := Face.FUnrolledPoints[J-1];
 
           bP1 := ProjectOnBitmap(p2d1);
           bP2 := ProjectOnBitmap(p2d2);
@@ -454,10 +476,11 @@ begin
 end;{TFreeDevelopedPatch.ConvertTo3D}
 
 function TFreeTexture.FindSubdivionPoint(P: T2DCoordinate): TFreeSubdivisionPoint;
-var i: integer; d:TFloatType; ModelPoint: TFreeSubdivisionPoint; MP: T2DCoordinate;
+var i,j: integer; d:TFloatType; Face: TFreeSubdivisionFace;
+  ModelPoint: TFreeSubdivisionPoint; MP: T2DCoordinate;
 begin
   Result := nil;
-  for i:=0 to SELF.FPoints.Count-1 do
+  {for i:=0 to SELF.FPoints.Count-1 do
   begin
     ModelPoint := SELF.FPoints[i];
     MP.X := ModelPoint.UnrolledCoordinate.X;
@@ -467,17 +490,32 @@ begin
       Result := ModelPoint;
       exit;
     end;
+  end; }
+
+  for i:=0 to FFaces.Count-1 do
+  begin
+    Face := FFaces[i];
+    for j := 0 to Face.NumberOfPoints-1 do
+    begin
+      MP := Face.FUnrolledPoints[j];
+      if Distance2D(P,MP) < 0.001 then
+      begin
+        Result := Face.FPoints[j];
+        exit;
+      end;
+    end;
   end;
 end;
 
 function TFreeTexture.FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
-var i: integer; d:TFloatType; ModelPoint: TFreeSubdivisionPoint;
+var i,j: integer; d:TFloatType; Face: TFreeSubdivisionFace;
+  ModelPoint: TFreeSubdivisionPoint;
   MP,UP: T2DCoordinate;
   VP: T3DCoordinate;
   P:TPoint;
 begin
   Result := nil;
-  for i:=0 to SELF.FPoints.Count-1 do
+  {for i:=0 to SELF.FPoints.Count-1 do
   begin
     ModelPoint := SELF.FPoints[i];
     MP.X := ModelPoint.UnrolledCoordinate.X;
@@ -489,23 +527,57 @@ begin
       Result := ModelPoint;
       exit;
     end;
+  end; }
+
+  for i:=0 to FFaces.Count-1 do
+  begin
+    Face := FFaces[i];
+    for j := 0 to Face.NumberOfPoints-1 do
+    begin
+      MP := Face.FUnrolledPoints[j];
+      VP:=Self.Project2DtoViewport(MP);
+      P:=Viewport.Project(VP);
+      if (abs(P.X - X) < 3) and (abs(P.Y - Y) < 3) then
+      begin
+        Result := ModelPoint;
+        exit;
+      end;
+    end;
+  end;
+
+
+end;
+
+function TFreeTexture.FindUnrolledPointForSubdivionPoint(P: TFreeSubdivisionPoint): T2DCoordinate;
+var i,j,index: integer;
+  Face: TFreeSubdivisionFace;
+begin
+  for i:=0 to FFaces.Count-1 do
+  begin
+    Face := FFaces[i];
+    index := Face.FPoints.IndexOf(P);
+    if index >= 0 then
+    begin
+      Result := Face.FUnrolledPoints[index];
+      exit;
+    end;
   end;
 end;
 
 procedure TFreeTexture.Extents(var Min, Max:T3DCoordinate);
-var i,j: integer; P: T3DCoordinate;
+var i,j: integer; P: T3DCoordinate; uP: T2DCoordinate;
   Face: TFreeSubdivisionFace;
   Point: TFreeSubdivisionPoint;
 begin
-  {for i:=0 to FPoints.Count-1 do
+  for i:=0 to FFaces.Count-1 do
   begin
-    P:=Project2DtoViewport(FPoints[i].UnrolledCoordinate);
-    MinMax(P, Min, Max);
-  end; }
-  for i:=0 to length(FUnrolledCoordinates)-1 do
-  begin
-    P:=Project2DtoViewport(FUnrolledCoordinates[i]);
-    MinMax(P, Min, Max);
+    Face := FFaces[i];
+    for j:=0 to Face.FPoints.Count-1 do
+    begin
+      uP := Face.FUnrolledPoints[j];
+      P:=Project2DtoViewport(uP);
+      MinMax(P, Min, Max);
+    end;
   end;
 end;
 
@@ -622,6 +694,7 @@ end;
   IsMirrored means when the Layer is simmetric and mirror side visibility is turned on}
 function TFreeTexture.GetTextureColor( ModelPoint:T3DCoordinate;
                                        Point1,Point2,Point3:TFreeSubdivisionPoint;
+                                       uP1,uP2,uP3: T2DCoordinate;
                                        IsMirrored: boolean): TColor;
 type TABGR = record A,B,G,R: byte; end;
 var P: TPoint; UnrolledPoint: T2DCoordinate;
@@ -638,8 +711,8 @@ begin
   // Find a point on unrolled patch that corresponds to a point on Model
   UnrolledPoint := //UnrollPoint(ModelPoint,Point1,Point2,Point3);
     ProjectOnUnrolled(Point1.FCoordinate, Point2.FCoordinate, Point3.FCoordinate,
-         ModelPoint,
-         Point1.UnrolledCoordinate,Point2.UnrolledCoordinate,Point3.UnrolledCoordinate);
+         ModelPoint, uP1, uP2, uP3);
+         //Point1.UnrolledCoordinate,Point2.UnrolledCoordinate,Point3.UnrolledCoordinate);
   // Find a pixel on texture bitmap that corresponds to a point on unrolled patch
   P := ProjectOnBitmap(UnrolledPoint);
   // TColor is 4 bytes: RGBA

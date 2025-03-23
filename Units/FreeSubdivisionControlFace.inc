@@ -1006,10 +1006,16 @@ begin
           Point2 := Child.Point[J-1];
           Point3 := Child.Point[J];
           P1 := Child.Point[0].Coordinate;
-          P2 := Child.Point[J - 1].Coordinate;
+          P2 := Child.Point[J-1].Coordinate;
           P3 := Child.Point[J].Coordinate;
+          uP1 := Child.FUnrolledPoints[0];
+          uP2 := Child.FUnrolledPoints[J-1];
+          uP3 := Child.FUnrolledPoints[J];
 
-          Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3,
+          Viewport.ShadeTriangleTexture(
+                   P1, P2, P3,
+                   Point1, Point2, Point3,
+                   uP1, uP2, uP3,
                    Texture, Surface.WaterlinePlane, false);
 
           if (Surface.DrawMirror) and (Layer.Symmetric) then
@@ -1017,7 +1023,9 @@ begin
             P1.Y := -P1.Y;
             P2.Y := -P2.Y;
             P3.Y := -P3.Y;
-            Viewport.ShadeTriangleTexture(P1,P2,P3, Point1, Point2, Point3,
+            Viewport.ShadeTriangleTexture(P1,P2,P3,
+                     Point1, Point2, Point3,
+                     uP1, uP2, uP3,
                      Texture, Surface.WaterlinePlane, true);
           end;
         end;

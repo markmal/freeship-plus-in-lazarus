@@ -2860,7 +2860,7 @@ end;{TFreeViewport.ShadeTriangle}
   IsMirrored means that Y of P1, P2, P3 is mirrored (negated)}
 procedure TFreeViewport.ShadeTriangleTexture( P1, P2, P3: T3DCoordinate;
                                               Point1, Point2, Point3: TFreeSubdivisionPoint;
-                                              //up1,up2,up3:T2DCoordinate;
+                                              uP1,uP2,uP3:T2DCoordinate;
                                               Texture:TFreeTexture; WaterlinePlane:T3DPlane;
                                               IsMirrored: boolean);
   var
@@ -2983,7 +2983,10 @@ procedure TFreeViewport.ShadeTriangleTexture( P1, P2, P3: T3DCoordinate;
                   ModelPoint)
             end;
 
-            TxColor := Texture.GetTextureColor(ModelPoint, Point1, Point2, Point3, IsMirrored);
+            TxColor := Texture.GetTextureColor( ModelPoint,
+                                                Point1, Point2, Point3,
+                                                uP1,uP2,uP3,
+                                                IsMirrored);
 
             SetColor(TxColor, Alpha, B,G,R);
 

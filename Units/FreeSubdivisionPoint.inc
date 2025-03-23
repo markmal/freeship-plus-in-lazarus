@@ -311,7 +311,7 @@ begin
   FCoordinate := Val;
 end;{TFreeSubdivisionPoint.FSetCoordinate}
 
-function TFreeSubdivisionPoint.FGetUnrolledCoordinate: T2DCoordinate;
+{function TFreeSubdivisionPoint.FGetUnrolledCoordinate: T2DCoordinate;
 begin
   Result := FTexture.FUnrolledCoordinates[FUnrolledIndex];
 end;
@@ -320,6 +320,7 @@ function TFreeSubdivisionPoint.FGetBitmapCoordinate: TPoint;
 begin
   Result := FTexture.FBitmapCoordinates[FUnrolledIndex];
 end;
+}
 
 procedure TFreeSubdivisionPoint.AddEdge(Edge: TFreeSubdivisionEdge);
 begin
@@ -647,8 +648,8 @@ begin
   FCoordinate.X := 0;
   FCoordinate.Y := 0;
   FCoordinate.Z := 0;
-  FUnrolledIndex := -1;
-  FTexture := nil;
+  //FUnrolledIndex := -1;
+  //FTexture := nil;
   FFaces.Clear;
   FEdges.Clear;
   FVertexType := svRegular;

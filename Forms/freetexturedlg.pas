@@ -55,6 +55,8 @@ type
     procedure FloatSpinEditShiftYChange(Sender: TObject);
     procedure FloatSpinEditScaleChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure LoadFileExecute(Sender: TObject);
     procedure SpinEditRotateChange(Sender: TObject);
     procedure ViewportRequestExtents(Sender: TObject; var Min, Max: T3DCoordinate);
     procedure ViewportRedraw(Sender: TObject);
@@ -145,9 +147,7 @@ begin
   begin
     FActiveTexture := Layer.Textures[i];
     ComboBoxSelectTexture.AddItem(FActiveTexture.DevelopedPatchName, FActiveTexture);
-    Viewport.ZoomExtents;
-    if (FActiveTexture.BitmapOrigin.X=0) and (FActiveTexture.BitmapOrigin.Y=0)
-       then FitBitmap;
+    //Viewport.ZoomExtents;
   end;
 
   ComboBoxSelectTexture.ItemIndex := 0;
@@ -172,6 +172,7 @@ begin
   FXGridSpacing:=20;
   FYGridSpacing:=20;
   FAllowPanOrZoom:=true;
+  OpenPictureDialog1.InitialDir := FFreeShip.Preferences.ImportDirectory;
 
   //ShowTranslatedValues(Self);
   ShowModal;
@@ -356,32 +357,23 @@ end;{TFreeTextureForm.ViewportRequestExtents}
 procedure TFreeTextureForm.FitBitmap;
 var Pt0, Pt, Pt1, Pt2: TPoint; W,H: integer;
   PatchW, PatchH: TFloatType;
-  Bm2: T2DCoordinate; Bm3: T3DCoordinate;
+  Bm1,Bm2,P2D: T2DCoordinate; Bm3: T3DCoordinate;
 begin
   Viewport.ZoomExtents;
   if Assigned(FActiveTexture.Bitmap) then
   begin
     W := FActiveTexture.Bitmap.Width;
     H := FActiveTexture.Bitmap.Height;
-
-    FActiveTexture.BitmapScale := (Viewport.Width - 20) / W / Viewport.Scale;
-
-    Pt0 := Viewport.Project(ZERO);
-
-    Pt.X:= FActiveTexture.Bitmap.Width;
-    Pt.Y:= FActiveTexture.Bitmap.Height;
-    Bm2 := Viewport.ProjectBackTo2D(Pt);
-
-    PatchW := Viewport.Max3D.X - Viewport.Min3D.X;
-    PatchH := Viewport.Max3D.Y - Viewport.Min3D.Y;
-
-    Pt1 := Viewport.Project(Viewport.Min3D);
-    Pt2 := Viewport.Project(Viewport.Max3D);
-
-    Pt.X := round( -Viewport.Min3D.X / FActiveTexture.BitmapScale);
-    Pt.Y := round(  Viewport.Max3D.Y / FActiveTexture.BitmapScale);
-
+    FActiveTexture.BitmapScale := (Viewport.ClientWidth - 40) / W / Viewport.Scale;
+    Bm1 := Viewport.ProjectBackTo2D(ToPoint(0+20, 0+20));
+    Bm2 := Viewport.ProjectBackTo2D(ToPoint(Viewport.ClientWidth-20, Viewport.ClientHeight-20));
+    Pt.X := round( -Bm1.X / FActiveTexture.BitmapScale);
+    Pt.Y := round(  Bm1.Y / FActiveTexture.BitmapScale);
     FActiveTexture.BitmapOrigin := Pt;
+
+    Viewport.BackgroundImage.Origin := FActiveTexture.BitmapOrigin;
+    Viewport.BackgroundImage.Scale := FActiveTexture.BitmapScale;
+    SetBitmapTargetPoints;
   end;
 end;
 
@@ -394,13 +386,14 @@ begin
   Viewport.ZoomExtents;
   if Assigned(FActiveTexture.Bitmap) then
   begin
-      //Viewport.BackgroundImage := TFreeBackgroundImage.Create(Viewport);
     Viewport.BackgroundImage.Bitmap := FActiveTexture.Bitmap;
     Viewport.BackgroundImage.Origin := FActiveTexture.BitmapOrigin;
     Viewport.BackgroundImage.Scale := FActiveTexture.BitmapScale;
     Viewport.BackgroundImage.ShowInView := Viewport.ViewType;
     Viewport.BackgroundImage.Visible := true;
     Viewport.BackgroundMode:=emNormal;
+    if (FActiveTexture.BitmapOrigin.X=0) and (FActiveTexture.BitmapOrigin.Y=0)
+       then FitBitmap;
   end
   else
     Viewport.BackgroundImage.Visible := false;
@@ -477,6 +470,20 @@ begin
   Viewport.BackgroundImage.Visible:=false;
   //Viewport.BackgroundImage.Bitmap.Free;
   Viewport.BackgroundImage.Bitmap:=nil;
+end;
+
+procedure TFreeTextureForm.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure TFreeTextureForm.LoadFileExecute(Sender: TObject);
+begin
+  if OpenPictureDialog1.Execute then
+  begin
+    FActiveTexture.LoadIntfImage(OpenPictureDialog1.FileName);
+    FitBitmap;
+  end;
 end;
 
 procedure TFreeTextureForm.CloseDialogExecute(Sender: TObject);

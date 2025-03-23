@@ -97,11 +97,15 @@ object FreeLayerDialog: TFreeLayerDialog
           object SpeedButtonTexture: TSpeedButton
             Left = 120
             Height = 30
+            Hint = 'Texture'
             Top = 0
             Width = 30
             Align = alRight
             Caption = 'Texture'
             OnClick = SpeedButtonTextureClick
+            ShowCaption = False
+            ShowHint = True
+            ParentShowHint = False
           end
         end
         object Label4: TLabel

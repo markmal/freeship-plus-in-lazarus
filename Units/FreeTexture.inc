@@ -71,7 +71,7 @@ begin
     //FBitmap.MaskHandle:=tmpMaskBitmapHandle;
     FBitmap.LoadFromIntfImage(FIntfImage);
   except
-    FIntfImage.Free;
+    FreeAndNil(FIntfImage);
   end;
 end;
 

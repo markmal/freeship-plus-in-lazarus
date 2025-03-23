@@ -7,6 +7,7 @@ object FreeTextureForm: TFreeTextureForm
   ClientHeight = 633
   ClientWidth = 987
   OnClose = FormClose
+  OnCreate = FormCreate
   LCLVersion = '3.2.0.0'
   object PanelTop: TPanel
     Left = 0
@@ -56,7 +57,7 @@ object FreeTextureForm: TFreeTextureForm
         Left = 65
         Height = 28
         Top = 2
-        Width = 100
+        Width = 300
         ItemHeight = 0
         TabOrder = 0
         Text = 'ComboBoxSelectTexture'
@@ -74,7 +75,7 @@ object FreeTextureForm: TFreeTextureForm
         Action = CloseDialog
       end
       object ToolButtonShowInteriorEdges: TToolButton
-        Left = 165
+        Left = 365
         Top = 2
         Action = ShowInteriorEdges
         Style = tbsCheck
@@ -236,6 +237,7 @@ object FreeTextureForm: TFreeTextureForm
     object LoadFile: TAction
       Caption = 'ActionOpenImage'
       ImageIndex = 0
+      OnExecute = LoadFileExecute
     end
     object CloseDialog: TAction
       Caption = 'CloseDialog'

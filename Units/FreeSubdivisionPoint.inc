@@ -648,8 +648,6 @@ begin
   FCoordinate.X := 0;
   FCoordinate.Y := 0;
   FCoordinate.Z := 0;
-  //FUnrolledIndex := -1;
-  //FTexture := nil;
   FFaces.Clear;
   FEdges.Clear;
   FVertexType := svRegular;

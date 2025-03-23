@@ -823,6 +823,18 @@ begin
    }
 end;{Lines3DIntersect}
 
+function ToPoint(x,y: integer): TPoint;
+begin
+  Result.X := x;
+  Result.Y := y;
+end;
+
+function Point2D(x,y: TFloatType): T2DCoordinate;
+begin
+  Result.X := x;
+  Result.Y := y;
+end;
+
 function Point3D(x,y,z: TFloatType): T3DCoordinate;
 begin
   Result.X := x;

@@ -424,16 +424,19 @@ type
       read FVisible write FSetVisible;
   end;
 
-  { TFreeTexture }
-
+  {---------------------------------------------------------------------------------------------------}
+  {                                           TFreeTexture                                            }
+  { This combines unrolled(developed) patch with a bitmap.                                            }
+  { It uses TDevelopedPatch Unroll to develop one or multiple patches from a Layer.                   }
+  { Two anchor points on the unrolled patch that correspond to two Target points on the bitmap.       }
+  { GetTextureColor is used in TFreeSubdivisionFace.Draw to project each drawed point to the Bitmap   }
+  { pixel and get its color/alpha.                                                                    }
+  {---------------------------------------------------------------------------------------------------}
   TFreeTexture = class //(TPersistent)
   private
     FLayer: TFreeSubdivisionLayer;
     FColor: TColor;
     FDevelopedPatchName: String;
-    //FUnrolledCoordinates: array of T2DCoordinate; //Every SubdivisionPoint should have index on these arrays
-    //FBitmapCoordinates: array of TPoint; //Uses same index as above
-    //FDevelopedPatchXXX: TFreeDevelopedPatch;
     FDevelopedPatchAnchorPoint1: T2DCoordinate;
     FDevelopedPatchAnchorPoint2: T2DCoordinate;
     FFaces: TFasterListTFreeSubdivisionFace;
@@ -482,7 +485,6 @@ type
     function FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
     function FindUnrolledPointForSubdivionPoint(P: TFreeSubdivisionPoint): T2DCoordinate;
     function ProjectOnUnrolled(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
-    //function UnrollPoint(ModelPoint:T3DCoordinate; Point1,Point2,Point3:TFreeSubdivisionPoint): T2DCoordinate;
     function ProjectOnBitmap(C1:T2DCoordinate): TPoint;
     function GetTextureColor( ModelPoint:T3DCoordinate;
                               Point1,Point2,Point3:TFreeSubdivisionPoint;
@@ -497,7 +499,6 @@ type
     property BitmapTargetPoint2: TPoint read FBitmapTargetPoint2 write FBitmapTargetPoint2;
     property Color: TColor read FColor write FColor;
     property Layer: TFreeSubdivisionLayer read FLayer write FLayer;
-    //property DevelopedPatch: TFreeDevelopedPatch read FDevelopedPatch write FDevelopedPatch;
     property DevelopedPatchName: String read FDevelopedPatchName write FDevelopedPatchName;
     property DevelopedPatchAnchorPoint1: T2DCoordinate read FDevelopedPatchAnchorPoint1 write FDevelopedPatchAnchorPoint1;
     property DevelopedPatchAnchorPoint2: T2DCoordinate read FDevelopedPatchAnchorPoint2 write FDevelopedPatchAnchorPoint2;
@@ -505,6 +506,7 @@ type
     property Rotation: TFloatType read FRotation write FSetRotation;
     property Scale: TFloatType read FScale write FScale;
   end;
+  { // TFreeTexture }
 
 
 
@@ -1431,9 +1433,6 @@ type
     FFaces: TFasterListTFreeSubdivisionFace;
     FEdges: TFasterListTFreeSubdivisionEdge;
     FCoordinate: T3DCoordinate;
-    //FTexture: TFreeTexture; // For time being one "last" texture per unrolled patch
-    //FUnrolledCoordinate: T2DCoordinate;
-    //FUnrolledIndex: integer; // index in arrays of FTexture.FUnrolledCoordinates and FTexture.FBitmapCoordinates
     FVertexType: TFreeVertexType;
     function FGetEdge(Index: integer):TFreeSubdivisionEdge;
     function FGetCoordinate: T3DCoordinate;
@@ -1467,9 +1466,6 @@ type
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
     function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
-    //function FGetUnrolledCoordinate: T2DCoordinate;
-    //function FGetBitmapCoordinate: TPoint;
-    //property Coordinate:T3DCoordinate read FGetCoordinate write FSetCoordinate;
     property Coordinate:T3DCoordinate read FCoordinate write FCoordinate;
     property Curvature: extended read FGetCurvature;
     property Edges: TFasterListTFreeSubdivisionEdge read FEdges;
@@ -1490,14 +1486,10 @@ type
       read FGetNumberOfFaces;
     property RegularPoint: boolean
       read FGetRegularPoint;
-    //property Texture: TFreeTexture read FTexture write FTexture;
     property VertexIndex: integer
       read FGetIndex;
     property VertexType:
       TFreeVertexType read FVertexType write SetVertexType;
-    //property UnrolledCoordinate: T2DCoordinate read FGetUnrolledCoordinate;
-    //property BitmapCoordinate: TPoint read FGetBitmapCoordinate;
-    //property UnrolledIndex: integer read FUnrolledIndex write FUnrolledIndex;
   end;
 
   {--------------------------------------------------------------------------------------------------}
@@ -2379,6 +2371,8 @@ function LengthStr(Units: TFreeUnitType): string;
 function MakeLength(Value: TFloatType; Decimals, DesLength: integer): string; overload;
 function MakeLength(Value: string; DesLength: integer): string; overload;
 procedure MinMax(P: T3DCoordinate; var Min, Max: T3DCoordinate);
+function ToPoint(x,y: integer): TPoint;
+function Point2D(x,y: TFloatType): T2DCoordinate;
 function Point3D(x,y,z: TFloatType): T3DCoordinate;
 function Midpoint(P1, P2: T3DCoordinate): T3DCoordinate;
 // Calculate the mid-point between P1 and P2

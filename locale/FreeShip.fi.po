@@ -9782,6 +9782,12 @@ msgid "Move the layer up in the list."
 msgstr ""
 
 #: tfreelayerdialog.speedbuttontexture.caption
+msgctxt "tfreelayerdialog.speedbuttontexture.caption"
+msgid "Texture"
+msgstr ""
+
+#: tfreelayerdialog.speedbuttontexture.hint
+msgctxt "tfreelayerdialog.speedbuttontexture.hint"
 msgid "Texture"
 msgstr ""
 

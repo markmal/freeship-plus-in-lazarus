@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
   ExtDlgs, ActnList, ComCtrls, StdCtrls,
+  Math,
   FreeTypes, FreeGeometry,
   FreeShipUnit,
   LCLTranslator, Spin,
@@ -50,6 +51,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure CloseDialogExecute(Sender: TObject);
     procedure ComboBoxSelectTextureSelect(Sender: TObject);
+    procedure CreateUnrolledPatches;
     procedure FitBitmap;
     procedure FloatSpinEditShiftXChange(Sender: TObject);
     procedure FloatSpinEditShiftYChange(Sender: TObject);
@@ -67,8 +69,10 @@ type
       Shift: TShiftState; X, Y: integer);
     procedure SetBitmapTargetPoints;
   private
+    FTextures: TFasterListTFreeTexture;
     FActiveTexture: TFreeTexture;
     FFreeShip: TFreeShip;
+    FLayer: TFreeSubdivisionLayer;
     FPatchScale: TFloatType;
     FPatchAngle: TFloatType;
     FImageScale: TFloatType;
@@ -128,10 +132,29 @@ begin
   end;
 end;
 
+procedure TFreeTextureForm.CreateUnrolledPatches;
+var i: integer;
+  DPL: TFasterListTFreeDevelopedPatch;
+  Texture: TFreeTexture;
+begin
+  DPL:= TFasterListTFreeDevelopedPatch.Create;
+  if not FLayer.Surface.Built then FLayer.Surface.Rebuild;
+  FLayer.Unroll(DPL);
+  FTextures.Clear;
+  for i:=0 to DPL.Count-1 do
+    if (not FLayer.Symmetric) or (FLayer.Symmetric and (DPL[i].Side=fsPort)) then
+    begin
+      Texture := TFreeTexture.Create(FLayer, DPL[i]);
+      FTextures.Add(Texture);
+      ComboBoxSelectTexture.AddItem(Texture.DevelopedPatchName, Texture);
+    end;
+end;
+
 function TFreeTextureForm.Execute(FreeShip: TFreeShip;
   Layer: TFreeSubdivisionLayer): boolean;
 var
   I: integer;
+  Texture: TFreeTexture;
   Patch: TFreeDevelopedPatch;
   Min, Max: T3DCoordinate;
   MinT, MaxT: T3DCoordinate;
@@ -142,18 +165,26 @@ var
 begin
   InitViewPort;
   FFreeship := FreeShip;
+  FLayer := Layer;
+  FTextures := TFasterListTFreeTexture.Create;
 
   for i:=0 to Layer.Textures.Count-1 do
   begin
     FActiveTexture := Layer.Textures[i];
+    FTextures.Add(FActiveTexture);
     ComboBoxSelectTexture.AddItem(FActiveTexture.DevelopedPatchName, FActiveTexture);
     //Viewport.ZoomExtents;
   end;
 
-  ComboBoxSelectTexture.ItemIndex := 0;
-  FActiveTexture := Layer.Textures[0];
-  ComboBoxSelectTextureSelect(Self);
-  //SpinEditFontSizeChange(SpinEditFontSize);
+  if FTextures.Count = 0 then
+    CreateUnrolledPatches;
+
+  if FTextures.Count > 0 then
+  begin
+    ComboBoxSelectTexture.ItemIndex := 0;
+    FActiveTexture := FTextures[0];
+    ComboBoxSelectTextureSelect(Self);
+  end;
 
   //USE ONCE!
   ////Freeship.Preferences.dumpIcons(MenuImages,ActionList1);
@@ -177,6 +208,14 @@ begin
   //ShowTranslatedValues(Self);
   ShowModal;
   Result := ModalResult = mrOk;
+
+  if Result then
+  begin
+    FLayer.Textures.Clear;
+    FLayer.Textures.AddList(FTextures);
+    FLayer.ShowTexture:=true;
+  end;
+
 end;{TFreeTextureForm.Execute}
 
 procedure TFreeTextureForm.ViewportMouseMove(Sender: TObject;
@@ -251,22 +290,31 @@ begin
 
   StatusBar1.Panels[0].Text := String.Format('Scr %0:d:%1:d',[X,Y]);
 
-  bP := Viewport.BackgroundImage.ImageCoordinate(X,Y);
-  StatusBar1.Panels[1].Text := String.Format('Bmp %0:d:%1:d',[bP.X,bP.Y]);
+  if Assigned(Viewport.BackgroundImage.Bitmap)
+      and (Viewport.BackgroundImage.Bitmap.Width > 0)
+      and (Viewport.BackgroundImage.Bitmap.Height > 0) then
+  begin
+    bP := Viewport.BackgroundImage.ImageCoordinate(X,Y);
+    StatusBar1.Panels[1].Text := String.Format('Bmp %0:d:%1:d',[bP.X,bP.Y]);
+  end;
 
   StatusBar1.Panels[2].Text := String.Format('Viw %0:.3f:%1:.3f',[P3.X, P3.Y]);
 
   MP:=nil;
   MP := FActiveTexture.FindSubdivionPointByScreen(X,Y,Viewport);
-  uP := FActiveTexture.FindUnrolledPointForSubdivionPoint(MP);
   if Assigned(MP) then
   begin
-    StatusBar1.Panels[3].Text := String.Format('Plt %0:8.3f:%1:8.3f  Mdl %2:8.3f:%3:8.3f:%4:8.3f',
-      [uP.X, uP.Y,
-       MP.Coordinate.X, MP.Coordinate.Y, MP.Coordinate.Z]);
+    uP := FActiveTexture.FindUnrolledPointForSubdivionPoint(MP);
+    if not IsNAN(uP.X) then
+    begin
+      StatusBar1.Panels[3].Text := String.Format(
+        'Plt %0:8.3f:%1:8.3f  Mdl %2:8.3f:%3:8.3f:%4:8.3f',
+        [uP.X, uP.Y,
+         MP.Coordinate.X, MP.Coordinate.Y, MP.Coordinate.Z]);
 
-    bP := FActiveTexture.ProjectOnBitmap(uP);
-    StatusBar1.Panels[0].Text := String.Format('Txt %0:d:%1:d',[bP.X,bP.Y]);
+      bP := FActiveTexture.ProjectOnBitmap(uP);
+      StatusBar1.Panels[0].Text := String.Format('Txt %0:d:%1:d',[bP.X,bP.Y]);
+    end;
   end;
 
 end;{TFreeTextureForm.ViewportMouseMove}
@@ -314,31 +362,33 @@ var p1,p2: T3DCoordinate;
   tp1, tp2: TPoint;
   z: TFloatType;
 begin
-  //z := ViewPort.Zoom;
-  //ViewPort.Zoom := 10000;
-
-  p1 := FActiveTexture.Project2DtoViewport(FActiveTexture.DevelopedPatchAnchorPoint1);
-  tp1 := ViewPort.Project(p1);
-  FActiveTexture.BitmapTargetPoint1 := ViewPort.BackgroundImage.ImageCoordinate(tp1.X,tp1.Y);
-
-  p2 := FActiveTexture.Project2DtoViewport(FActiveTexture.DevelopedPatchAnchorPoint2);
-  tp2 := ViewPort.Project(p2);
-  FActiveTexture.BitmapTargetPoint2 := ViewPort.BackgroundImage.ImageCoordinate(tp2.X,tp2.Y);
-
-  //ViewPort.Zoom := z;
-
   LabelAnchor1.Caption:= String.Format('%0:.3f : %1:.3f',
     [FActiveTexture.DevelopedPatchAnchorPoint1.X, FActiveTexture.DevelopedPatchAnchorPoint1.Y]);
 
   LabelAnchor2.Caption:= String.Format('%0:.3f : %1:.3f',
     [FActiveTexture.DevelopedPatchAnchorPoint2.X, FActiveTexture.DevelopedPatchAnchorPoint2.Y]);
 
-  LabelTarget1.Caption:= String.Format('%0:d : %1:d',
-    [FActiveTexture.BitmapTargetPoint1.X, FActiveTexture.BitmapTargetPoint1.Y]);
+  if (Assigned(ViewPort.BackgroundImage.Bitmap)
+     and (ViewPort.BackgroundImage.Bitmap.Width > 0)
+     and (ViewPort.BackgroundImage.Bitmap.Height > 0))
+  then
+  begin
+    p1 := FActiveTexture.Project2DtoViewport(FActiveTexture.DevelopedPatchAnchorPoint1);
+    tp1 := ViewPort.Project(p1);
+    FActiveTexture.BitmapTargetPoint1 := ViewPort.BackgroundImage.ImageCoordinate(tp1.X,tp1.Y);
 
-  LabelTarget2.Caption:= String.Format('%0:d : %1:d',
-    [FActiveTexture.BitmapTargetPoint2.X, FActiveTexture.BitmapTargetPoint2.Y]);
+    p2 := FActiveTexture.Project2DtoViewport(FActiveTexture.DevelopedPatchAnchorPoint2);
+    tp2 := ViewPort.Project(p2);
+    FActiveTexture.BitmapTargetPoint2 := ViewPort.BackgroundImage.ImageCoordinate(tp2.X,tp2.Y);
 
+    FActiveTexture.IsCorelated := true;
+
+    LabelTarget1.Caption:= String.Format('%0:d : %1:d',
+      [FActiveTexture.BitmapTargetPoint1.X, FActiveTexture.BitmapTargetPoint1.Y]);
+
+    LabelTarget2.Caption:= String.Format('%0:d : %1:d',
+      [FActiveTexture.BitmapTargetPoint2.X, FActiveTexture.BitmapTargetPoint2.Y]);
+  end;
 end;
 
 procedure TFreeTextureForm.ViewportRequestExtents(Sender: TObject;
@@ -360,21 +410,20 @@ var Pt0, Pt, Pt1, Pt2: TPoint; W,H: integer;
   Bm1,Bm2,P2D: T2DCoordinate; Bm3: T3DCoordinate;
 begin
   Viewport.ZoomExtents;
-  if Assigned(FActiveTexture.Bitmap) then
-  begin
-    W := FActiveTexture.Bitmap.Width;
-    H := FActiveTexture.Bitmap.Height;
-    FActiveTexture.BitmapScale := (Viewport.ClientWidth - 40) / W / Viewport.Scale;
-    Bm1 := Viewport.ProjectBackTo2D(ToPoint(0+20, 0+20));
-    Bm2 := Viewport.ProjectBackTo2D(ToPoint(Viewport.ClientWidth-20, Viewport.ClientHeight-20));
-    Pt.X := round( -Bm1.X / FActiveTexture.BitmapScale);
-    Pt.Y := round(  Bm1.Y / FActiveTexture.BitmapScale);
-    FActiveTexture.BitmapOrigin := Pt;
+  if not Assigned(FActiveTexture.Bitmap) then exit;
+  W := FActiveTexture.Bitmap.Width;
+  H := FActiveTexture.Bitmap.Height;
+  if (W=0) or (H=0) then exit;
+  FActiveTexture.BitmapScale := (Viewport.ClientWidth - 40) / W / Viewport.Scale;
+  Bm1 := Viewport.ProjectBackTo2D(ToPoint(0+20, 0+20));
+  Bm2 := Viewport.ProjectBackTo2D(ToPoint(Viewport.ClientWidth-20, Viewport.ClientHeight-20));
+  Pt.X := round( -Bm1.X / FActiveTexture.BitmapScale);
+  Pt.Y := round(  Bm1.Y / FActiveTexture.BitmapScale);
+  FActiveTexture.BitmapOrigin := Pt;
 
-    Viewport.BackgroundImage.Origin := FActiveTexture.BitmapOrigin;
-    Viewport.BackgroundImage.Scale := FActiveTexture.BitmapScale;
-    SetBitmapTargetPoints;
-  end;
+  Viewport.BackgroundImage.Origin := FActiveTexture.BitmapOrigin;
+  Viewport.BackgroundImage.Scale := FActiveTexture.BitmapScale;
+  SetBitmapTargetPoints;
 end;
 
 procedure TFreeTextureForm.ComboBoxSelectTextureSelect(Sender: TObject);
@@ -392,7 +441,7 @@ begin
     Viewport.BackgroundImage.ShowInView := Viewport.ViewType;
     Viewport.BackgroundImage.Visible := true;
     Viewport.BackgroundMode:=emNormal;
-    if (FActiveTexture.BitmapOrigin.X=0) and (FActiveTexture.BitmapOrigin.Y=0)
+    if (not FActiveTexture.IsCorelated)
        then FitBitmap;
   end
   else
@@ -482,17 +531,21 @@ begin
   if OpenPictureDialog1.Execute then
   begin
     FActiveTexture.LoadIntfImage(OpenPictureDialog1.FileName);
+    FActiveTexture.IsCorelated := false;
     FitBitmap;
   end;
 end;
 
 procedure TFreeTextureForm.CloseDialogExecute(Sender: TObject);
 begin
-  self.Close;
+  ModalResult := mrOk;
+  //Close;
 end;
 
 procedure TFreeTextureForm.Button1Click(Sender: TObject);
 begin
+  FActiveTexture.FindOptimalRotation;
+  SpinEditRotate.Value := FActiveTexture.Rotation;
   FActiveTexture.AutoSetDevelopedPatchAnchorPoints;
   SetBitmapTargetPoints;
   Viewport.Invalidate;

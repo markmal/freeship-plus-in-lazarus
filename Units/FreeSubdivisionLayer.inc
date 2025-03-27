@@ -1348,16 +1348,19 @@ begin
           else
             Str := Name + ' ' + Lowercase(rs_Part {UserString[198]}) + ' ' + IntToStr(I);
           Patch.Name := Str;
+          Patch.Id := 'P'+IntToStr(I)+'A';
           Patch.FSide := fsAsymmetrical;
           Destination.Add(Patch);
           if (not Patch.FMirror) and (self.Symmetric) then
           begin
             // Create the starboard half
             Patch.Name := Str + ' (SB)';
+            Patch.Id := 'P'+IntToStr(I)+'S';
             Patch.FSide := fsStarboard;
             Copy := TFreeDevelopedPatch.Create(self);
             Copy.Assign(Patch, True);
             Copy.Name := Str + ' (P)';
+            Copy.Id := 'P'+IntToStr(I)+'P';
             Copy.FSide := fsPort;
             Destination.Add(Copy);
           end;

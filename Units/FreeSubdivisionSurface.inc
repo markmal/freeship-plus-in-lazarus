@@ -4601,34 +4601,13 @@ var
       begin
         APatch := APatches[p];
         // search a texture
+        ATexture := nil;
         for t:=0 to ALayer.Textures.Count-1 do
-          if ALayer.Textures[t].FDevelopedPatchName = APatch.Name
+          if ALayer.Textures[t].FDevelopedPatchId = APatch.Id
              then ATexture := ALayer.Textures[t];
         if ATexture = nil then continue;
         ATexture.LoadUnrolledPatch(APatch);
-
-        {for j:=0 to APatch.FFaces.Count-1 do
-        begin
-          AFace := APatch.FFaces[j];
-          AFace.FTexture := ATexture;
-        end;
-        for k:=0 to APatch.FPoints.Count-1 do
-        begin
-          APoint := APatch.FPoints[k];
-          APoint.Texture := ATexture;
-        end;}
       end;
-
-      for i:=0 to ALayer.FControlFaces.Count - 1 do
-      begin
-        CFace := ALayer.FControlFaces[i];
-        for j:=0 to CFace.ChildCount - 1 do
-        begin
-          AFace := CFace.Child[j];
-          CFace.FTexture := AFace.FTexture;
-        end;
-      end;
-
     end;  // l
   end;
 

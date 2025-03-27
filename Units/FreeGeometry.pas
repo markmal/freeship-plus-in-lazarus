@@ -437,6 +437,7 @@ type
     FLayer: TFreeSubdivisionLayer;
     FColor: TColor;
     FDevelopedPatchName: String;
+    FDevelopedPatchId: String;
     FDevelopedPatchAnchorPoint1: T2DCoordinate;
     FDevelopedPatchAnchorPoint2: T2DCoordinate;
     FFaces: TFasterListTFreeSubdivisionFace;
@@ -448,6 +449,7 @@ type
     FRawImage: TRawImage;
     FBitmapTargetPoint1: TPoint;
     FBitmapTargetPoint2: TPoint;
+    FIsCorelated: boolean;
     FMin2D: T2DCoordinate;
     FMax2D: T2DCoordinate;
     FTranslation: T2DCoordinate;
@@ -493,6 +495,10 @@ type
     procedure FSetRotation(Val: TFloatType);
     function Mirror2DCoordinate(P: T2DCoordinate): T2DCoordinate;
     procedure LoadUnrolledPatch(DevelopedPatch: TFreeDevelopedPatch);
+    procedure FindOptimalRotation;
+    function GetAverageNormal: T3DCoordinate;
+    function GetMidpoint3D: T3DCoordinate;
+    function Valid: boolean;
   //published
     property Bitmap: TBitmap read FBitmap write FBitmap;
     property BitmapTargetPoint1: TPoint read FBitmapTargetPoint1 write FBitmapTargetPoint1;
@@ -500,11 +506,13 @@ type
     property Color: TColor read FColor write FColor;
     property Layer: TFreeSubdivisionLayer read FLayer write FLayer;
     property DevelopedPatchName: String read FDevelopedPatchName write FDevelopedPatchName;
+    property DevelopedPatchId: String read FDevelopedPatchId write FDevelopedPatchId;
     property DevelopedPatchAnchorPoint1: T2DCoordinate read FDevelopedPatchAnchorPoint1 write FDevelopedPatchAnchorPoint1;
     property DevelopedPatchAnchorPoint2: T2DCoordinate read FDevelopedPatchAnchorPoint2 write FDevelopedPatchAnchorPoint2;
     property Translation: T2DCoordinate read FTranslation write FTranslation;
     property Rotation: TFloatType read FRotation write FSetRotation;
     property Scale: TFloatType read FScale write FScale;
+    property IsCorelated: boolean read FIsCorelated write FIsCorelated;
   end;
   { // TFreeTexture }
 
@@ -840,6 +848,7 @@ type
   private
     FOwner: TFreeSubdivisionLayer;
     FName: string;
+    FId: string;
     FConnectedMirror: TFreeDevelopedPatch;
     FPoints: TFasterListTFreeSubdivisionPoint;
     // All original 3D points
@@ -984,6 +993,8 @@ type
       read FYGrid write FYGrid;
     property Faces: TFasterListTFreeSubdivisionFace
       read FFaces write FFaces;
+    property Id: String read FId write FId; // Language independent Id
+    property Side: TFreeSide read FSide write FSide;
   end;
 
 
@@ -1757,7 +1768,6 @@ type
     FMin, FMax: T3DCoordinate;
     FEdges: TFasterListTFreeSubdivisionEdge;
     FControlDescendantEdges: TFasterListTFreeSubdivisionEdge; // here can be real ControlEdges and divided "children" of them. Do not why.
-    FTexture: TFreeTexture;
     function FGetChild(Index: integer):
       TFreeSubdivisionFace;
     function FGetChildCount: integer;

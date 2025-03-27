@@ -886,7 +886,8 @@ begin
 
     Viewport.BeginUpdate;
     if (Surface.ShadeUnderWater) and (Viewport.ViewportMode = vmShade) and
-      (Layer.UseInHydrostatics) and ((Texture=nil) or not Layer.ShowTexture) then
+      (Layer.UseInHydrostatics)
+       and not(Layer.ShowTexture and Assigned(Texture) and Texture.Valid) then
     begin
       // Clip all triangles against the waterline plane
 
@@ -994,7 +995,7 @@ begin
       end;
     end
     else if (Surface.ShadeUnderWater) and (Viewport.ViewportMode = vmShade) and
-      (Layer.UseInHydrostatics) and ((Texture<>nil) and Layer.ShowTexture) then
+      (Layer.UseInHydrostatics) and (Layer.ShowTexture and Assigned(Texture) and Texture.Valid) then
     begin
       // Get color from texture and make it darker under the waterline plane
       for I := 1 to ChildCount do

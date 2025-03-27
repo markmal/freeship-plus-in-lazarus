@@ -136,7 +136,7 @@ object FreeTextureForm: TFreeTextureForm
       TabOrder = 3
     end
     object Button1: TButton
-      Left = 19
+      Left = 18
       Height = 32
       Hint = 'Autoset 2d anchors'
       Top = 320

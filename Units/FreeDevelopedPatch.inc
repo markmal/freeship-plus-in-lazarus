@@ -1806,6 +1806,7 @@ begin
     Extents(Min, Max);
     if Max.X - Min.X < Max.Y - Min.Y then
       Rotation := Rotation - 90;
+
     if Owner.Symmetric then
     begin
       // Now check if the surface has one of its sides on the centerplane

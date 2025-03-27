@@ -93,10 +93,12 @@ end;{TFreeDevelopedPatch.FGetMirrorPoint}
 // transform unrolled points and faces from DevelopedPatch
 procedure TFreeTexture.LoadUnrolledPatch(DevelopedPatch: TFreeDevelopedPatch);
 var i,j,index: integer;
+  CFace: TFreeSubdivisionControlFace;
   Face: TFreeSubdivisionFace;
   Point: TFreeSubdivisionPoint;
 begin
-  FDevelopedPatchName:= DevelopedPatch.Name;
+  FDevelopedPatchName := DevelopedPatch.Name; // used to show the texture in dialog
+  FDevelopedPatchId := DevelopedPatch.Id; // used to search the texture after Layer rebuild and re-LoadUnrolledPatch
   FMirrorplane := DevelopedPatch.FMirrorplane;
   FMin2D := DevelopedPatch.FMin2D;
   FMax2D := DevelopedPatch.FMax2D;
@@ -104,23 +106,8 @@ begin
   FMirrored := DevelopedPatch.FMirror or DevelopedPatch.FMirrorOnScreen
                or (DevelopedPatch.FSide = fsStarboard);
 
-  //SetLength(FUnrolledCoordinates, Length(DevelopedPatch.F2DCoordinates));
-  //SetLength(FBitmapCoordinates, Length(DevelopedPatch.F2DCoordinates));
-
   FPoints.Clear;
   FPoints.AddList(DevelopedPatch.FPoints);
-  {for i:=0 to FPoints.Count-1 do
-  begin
-    Point := FPoints[i];
-    //Point.FTexture := Self;
-    Point.FUnrolledIndex := i;
-    FUnrolledCoordinates[i] := DevelopedPatch.F2DCoordinates[i].Coordinate;
-    FBitmapCoordinates[i] := ProjectOnBitmap(FUnrolledCoordinates[i]);
-    if FMirrored then
-    begin
-      Point.FUnrolledCoordinate := Mirror2DCoordinate(Point.FUnrolledCoordinate);
-    end;
-  end;}
 
   FFaces.Clear;
   FFaces.AddList(DevelopedPatch.FDoneList);
@@ -134,20 +121,26 @@ begin
       Point := Face.FPoints[j];
       index := FPoints.IndexOf(Point);
       Face.FUnrolledPoints[j] := DevelopedPatch.F2DCoordinates[index].Coordinate;
+      index := Face.FPoints.IndexOf(Point);
     end;
   end;
 
+  for i:=0 to FLayer.FControlFaces.Count - 1 do
+  begin
+    CFace := FLayer.FControlFaces[i];
+    for j:=0 to CFace.ChildCount - 1 do
+    begin
+      Face := CFace.Child[j];
+      CFace.FTexture := Face.FTexture;
+    end;
+  end;
 end;
 
 
 procedure TFreeTexture.Clear;
 begin
   FLayer := nil;
-  FDevelopedPatchName := '';
-  //if FDevelopedPatch<>nil then FDevelopedPatch.Clear;
-  //FreeAndNil(FDevelopedPatch);
-  //SetLength(FUnrolledCoordinates, 0);
-  //SetLength(FBitmapCoordinates, 0);
+  FDevelopedPatchId := '';
   FFaces.Clear;
   FPoints.Clear;
   if Assigned(FBitmap) then FBitmap.Clear;
@@ -160,6 +153,7 @@ begin
   FScale := 1;
   FSin:=0;
   FCos:=1;
+  FIsCorelated := false;
 end;
 
 // find two most distanced 2d points
@@ -171,24 +165,25 @@ var i,j,k: integer;
   Face: TFreeSubdivisionFace;
 begin
   SetLength(unrolledPoints, FPoints.Count);
-  k:=0;
+  K:=0;
   for i:=0 to FFaces.Count-1 do
   begin
     Face := FFaces[i];
     for j:=0 to Face.FPoints.Count-1 do
     begin
       p1 := Face.FUnrolledPoints[j];
-      if Length(unrolledPoints)<=k then SetLength(unrolledPoints, k+4);
-      unrolledPoints[k]:=p1;
-      inc(k);
+      if Length(unrolledPoints)<=K then SetLength(unrolledPoints, K+4);
+      unrolledPoints[K]:=p1;
+      inc(K);
     end;
   end;
+  dec(K);
 
   Dmax := 0;
-  for i:=0 to Length(unrolledPoints)-1 do
+  for i:=0 to K-1 do
   begin
     p1 := unrolledPoints[i];
-    for j:=i+1 to Length(unrolledPoints)-1 do
+    for j:=i+1 to K-1 do
     begin
       p2 := unrolledPoints[j];
       D := Distance2D(p1,p2);
@@ -209,9 +204,6 @@ var p1,p2: T3DCoordinate;
   tp1, tp2: TPoint;
   z: TFloatType;
 begin
-  z := ViewPort.Zoom;
-  //ViewPort.Zoom := 10000;
-
   p1 := Project2DtoViewport(FDevelopedPatchAnchorPoint1);
   tp1 := ViewPort.Project(p1);
   FBitmapTargetPoint1 := ViewPort.BackgroundImage.ImageCoordinate(tp1.X,tp1.Y);
@@ -220,7 +212,7 @@ begin
   tp2 := ViewPort.Project(p2);
   FBitmapTargetPoint2 := ViewPort.BackgroundImage.ImageCoordinate(tp2.X,tp2.Y);
 
-  ViewPort.Zoom := z;
+  FIsCorelated := true;
 end;
 
 constructor TFreeTexture.Create(Layer: TFreeSubdivisionLayer; DevelopedPatch: TFreeDevelopedPatch);
@@ -232,8 +224,6 @@ begin
   FFaces := TFasterListTFreeSubdivisionFace.Create();
   Clear;
   FLayer := Layer;
-  //FDevelopedPatch := DevelopedPatch;
-  FDevelopedPatchName := DevelopedPatch.Name; // used to search the texture after Layer rebuild and re-LoadUnrolledPatch
 
   LoadUnrolledPatch(DevelopedPatch);
 
@@ -356,6 +346,10 @@ begin
     end;
 
     // check texture projection
+    if Assigned(Viewport.BackgroundImage.Bitmap)
+      and (Viewport.BackgroundImage.Bitmap.Width > 0)
+      and (Viewport.BackgroundImage.Bitmap.Height > 0)
+    then
     for i:=0 to FFaces.Count-1 do
     begin
       Face := FFaces[i];
@@ -477,21 +471,9 @@ end;{TFreeDevelopedPatch.ConvertTo3D}
 
 function TFreeTexture.FindSubdivionPoint(P: T2DCoordinate): TFreeSubdivisionPoint;
 var i,j: integer; d:TFloatType; Face: TFreeSubdivisionFace;
-  ModelPoint: TFreeSubdivisionPoint; MP: T2DCoordinate;
+  MP: T2DCoordinate;
 begin
   Result := nil;
-  {for i:=0 to SELF.FPoints.Count-1 do
-  begin
-    ModelPoint := SELF.FPoints[i];
-    MP.X := ModelPoint.UnrolledCoordinate.X;
-    MP.Y := ModelPoint.UnrolledCoordinate.Y;
-    if Distance2D(P,MP) < 0.001 then
-    begin
-      Result := ModelPoint;
-      exit;
-    end;
-  end; }
-
   for i:=0 to FFaces.Count-1 do
   begin
     Face := FFaces[i];
@@ -509,26 +491,11 @@ end;
 
 function TFreeTexture.FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
 var i,j: integer; d:TFloatType; Face: TFreeSubdivisionFace;
-  ModelPoint: TFreeSubdivisionPoint;
   MP,UP: T2DCoordinate;
   VP: T3DCoordinate;
   P:TPoint;
 begin
   Result := nil;
-  {for i:=0 to SELF.FPoints.Count-1 do
-  begin
-    ModelPoint := SELF.FPoints[i];
-    MP.X := ModelPoint.UnrolledCoordinate.X;
-    MP.Y := ModelPoint.UnrolledCoordinate.Y;
-    VP:=Self.Project2DtoViewport(MP);
-    P:=Viewport.Project(VP);
-    if (abs(P.X - X) < 3) and (abs(P.Y - Y) < 3) then
-    begin
-      Result := ModelPoint;
-      exit;
-    end;
-  end; }
-
   for i:=0 to FFaces.Count-1 do
   begin
     Face := FFaces[i];
@@ -539,19 +506,18 @@ begin
       P:=Viewport.Project(VP);
       if (abs(P.X - X) < 3) and (abs(P.Y - Y) < 3) then
       begin
-        Result := ModelPoint;
+        Result := Face.FPoints[j];
         exit;
       end;
     end;
   end;
-
-
 end;
 
 function TFreeTexture.FindUnrolledPointForSubdivionPoint(P: TFreeSubdivisionPoint): T2DCoordinate;
 var i,j,index: integer;
   Face: TFreeSubdivisionFace;
 begin
+  Result := Point2D(NaN,NaN);
   for i:=0 to FFaces.Count-1 do
   begin
     Face := FFaces[i];
@@ -587,8 +553,8 @@ var
   A1,B1: T2DCoordinate;  A2,B2: TPoint;
   num_real, num_imag, den, ratio_real, ratio_imag, C2x, C2y: TFloatType;
 begin
-  Result.X := 0;
-  Result.Y := 0;
+  Result.X := -1;
+  Result.Y := -1;
   A1 := FDevelopedPatchAnchorPoint1;
   B1 := FDevelopedPatchAnchorPoint2;
   A2 := FBitmapTargetPoint1;
@@ -620,6 +586,7 @@ begin
   if (C2y<Integer.MinValue) then C2y:=Integer.MinValue+10;
   if (C2y>Integer.MaxValue) then C2y:=Integer.MaxValue-10;
 
+  if IsNAN(C2x) or IsNAN(C2y) then exit;
   Result.X := round(C2x);
   Result.Y := round(C2y);
 end;
@@ -733,4 +700,187 @@ begin
   FSin := Sin(DegTorad(FRotation));
 end;{TFreeDevelopedPatch.FSetRotation}
 
+function TFreeTexture.GetAverageNormal: T3DCoordinate;
+var i,j,index: integer;
+  Face: TFreeSubdivisionFace;
+  SumNormal: T3DCoordinate;
+begin
+  SumNormal:=ZERO;
+  for i:=0 to FFaces.Count-1 do
+  begin
+    Face := FFaces[i];
+    SumNormal.X := SumNormal.X + Face.FaceNormal.X;
+    SumNormal.Y := SumNormal.Y + Face.FaceNormal.Y;
+    SumNormal.Z := SumNormal.Z + Face.FaceNormal.Z;
+  end;
+  Result.X := SumNormal.X / FFaces.Count;
+  Result.Y := SumNormal.Y / FFaces.Count;
+  Result.Z := SumNormal.Z / FFaces.Count;
+end;{TFreeDevelopedPatch.FSetRotation}
 
+function TFreeTexture.GetMidpoint3D: T3DCoordinate;
+var i,j,index: integer;
+  Point: TFreeSubdivisionPoint;
+  SumMidP: T3DCoordinate;
+begin
+  SumMidP := ZERO;
+  for i:=0 to FPoints.Count-1 do
+  begin
+    Point := FPoints[i];
+    SumMidP.X := SumMidP.X + Point.Coordinate.X;
+    SumMidP.Y := SumMidP.Y + Point.Coordinate.Y;
+    SumMidP.Z := SumMidP.Z + Point.Coordinate.Z;
+  end;
+  Result.X := SumMidP.X / FPoints.Count;
+  Result.Y := SumMidP.Y / FPoints.Count;
+  Result.Z := SumMidP.Z / FPoints.Count;
+end;{TFreeDevelopedPatch.FSetRotation}
+
+//find optimal rotation angle depending on average normal
+procedure TFreeTexture.FindOptimalRotation;
+var AvgNormal: T3DCoordinate;
+  R, K, A, D, X,Y,Z: TFloatType;
+  uP1,uP2,uPm,p2D1,p2D2: T2DCoordinate;
+  midP, mP, Min,Max, MinP3D,MaxP3D: T3DCoordinate;
+  P,P1,P2: TFreeSubdivisionPoint;
+  tmpPoints: array of T2DCoordinate;
+  i,j: integer;
+  Area, OptArea, OptAngle: TFloatType;
+
+  function Angle( A, B, APrime, BPrime: T2DCoordinate): TFloatType;
+  var
+    v1, v2: T2DCoordinate;
+    dotProduct, magnitudeV1, magnitudeV2, cosAngle, angle: TFloatType;
+  begin
+    // Calculate vectors representing the lines
+    v1.X := B.X - A.X;
+    v1.Y := B.Y - A.Y;
+
+    v2.X := BPrime.X - APrime.X;
+    v2.Y := BPrime.Y - APrime.Y;
+
+    // Calculate dot product
+    dotProduct := v1.X * v2.X + v1.Y * v2.Y;
+
+    // Calculate magnitudes of vectors
+    magnitudeV1 := Sqrt(Sqr(v1.X) + Sqr(v1.Y));
+    magnitudeV2 := Sqrt(Sqr(v2.X) + Sqr(v2.Y));
+
+    // Calculate cosine of the angle
+    if (magnitudeV1 = 0) or (magnitudeV2 = 0) then
+    begin
+      Result := NaN; // Handle degenerate cases. Lines that are points.
+      exit;
+    end;
+
+    cosAngle := dotProduct / (magnitudeV1 * magnitudeV2);
+
+    // Calculate the angle in radians
+    angle := ArcCos(cosAngle);
+
+    // Return the angle in Degrees
+    Result := RadToDeg(angle);
+  end;
+
+begin
+  R := Rotation;
+  AvgNormal := GetAverageNormal;
+  if FLayer.Symmetric
+  then
+    // if normal turned sidewise
+    if (abs(AvgNormal.Y) > abs(AvgNormal.X))
+    and (abs(AvgNormal.Y) > abs(AvgNormal.Z))
+    then // vertical side - Port. Points with highest Z must be on top.
+    begin
+      {
+      // get average X of points above MidPoint to tmpPoints;
+      midP:=GetMidpoint3D;
+      //SetLength(tmpPoints,FPoints.Count);
+      // find points with X closest to mid X and highest Z
+      Z := midP.Z;  D:=0;
+      for i:=0 to FPoints.Count-2 do
+      begin
+        P := FPoints[i];
+        if (D < abs(DistPP3D(midP, P.Coordinate))) and (P.Coordinate.Z > midP.Z)
+        then
+        begin
+          P1 := P;
+          D := abs(DistPP3D(midP, P.Coordinate));
+          Z := P.Coordinate.Z;
+        end;
+      end;
+      // find unrolled coords for these points
+      uP1 := FindUnrolledPointForSubdivionPoint(P1);
+      //uP2 := FindUnrolledPointForSubdivionPoint(P2);
+      uPm := self.FGetMidPoint;
+      p2D1.X := midP.X;
+      p2D1.Y := midP.Z;
+      p2D2.X := P1.Coordinate.X;
+      p2D2.Y := P1.Coordinate.Z;
+      A := -Angle(uPm,uP1, p2D1,p2D2);
+      }
+      A := -90;
+    end;
+
+  if (AvgNormal.Z > 0)
+    and (abs(AvgNormal.Z) > abs(AvgNormal.X))
+    and (abs(AvgNormal.Z) > abs(AvgNormal.Y))
+  then // horizontal deck side
+    A := 45;
+
+  if (AvgNormal.Z < 0)
+    and (abs(AvgNormal.Z) > abs(AvgNormal.X))
+    and (abs(AvgNormal.Z) > abs(AvgNormal.Y))
+  then // horizontal bottom side
+    A := 90;
+
+
+  if (AvgNormal.X < 0)
+    and (abs(AvgNormal.X) > abs(AvgNormal.Y))
+    and (abs(AvgNormal.X) > abs(AvgNormal.Z))
+  then // vertical back side
+    A := -90;
+
+  if (AvgNormal.X > 0)
+    and (abs(AvgNormal.X) > abs(AvgNormal.Y))
+    and (abs(AvgNormal.X) > abs(AvgNormal.Z))
+  then // vertical front side
+    A := 90;
+
+  Rotation := A;
+
+  // finally find optimal rotation angle such that the
+  // area of the bounding box is minimal
+  MinP3D := Point3D(TFloatType.MinValue, TFloatType.MinValue, 0);
+  MaxP3D := Point3D(TFloatType.MaxValue, TFloatType.MaxValue, 0);
+  OptArea := TFloatType.MaxValue;
+  OptAngle := 0;
+  for I := 2*(round(A)-60) to 2*(round(A)+60) do
+  begin
+    Rotation := I / 2;
+    Min := MaxP3D;
+    Max := MinP3D;
+    Extents(Min, Max);
+    Area := abs((Max.X - Min.X) * (Max.Y - Min.Y));
+    if Area < OptArea then
+    begin
+      OptArea := Area;
+      OptAngle := Rotation;
+    end;
+  end;
+  Rotation := OptAngle;
+  Min := MaxP3D;
+  Max := MinP3D;
+  Extents(Min, Max);
+  if Max.X - Min.X < Max.Y - Min.Y then
+    Rotation := Rotation - 90;
+
+end;{TFreeTexture.FSetRotation}
+
+function TFreeTexture.Valid: boolean;
+begin
+  Result := (FFaces.Count>0)and(FPoints.Count>0)
+         and Assigned(FBitmap) and (FBitmap.Width>0) and (FBitmap.Height>0)
+         and Assigned(FIntfImage) and (FIntfImage.Width>0) and (FIntfImage.Height>0);
+         //and Assigned(FRawImage) and (FRawImage.DataSize>0);
+end;

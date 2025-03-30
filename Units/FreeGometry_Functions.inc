@@ -1710,6 +1710,43 @@ begin
     Result := 0.0000001;
 end;{VectorLength}
 
+// Angle between two lines
+function Angle( Line1point1, Line1point2, Line2point1, Line2point2: T2DCoordinate): TFloatType;
+var
+  v1, v2: T2DCoordinate;
+  dotProduct, magnitudeV1, magnitudeV2, cosAngle, angle: TFloatType;
+begin
+  // Calculate vectors representing the lines
+  v1.X := Line1point2.X - Line1point1.X;
+  v1.Y := Line1point2.Y - Line1point1.Y;
+
+  v2.X := Line2point2.X - Line2point1.X;
+  v2.Y := Line2point2.Y - Line2point1.Y;
+
+  // Calculate dot product
+  dotProduct := v1.X * v2.X + v1.Y * v2.Y;
+
+  // Calculate magnitudes of vectors
+  magnitudeV1 := Sqrt(Sqr(v1.X) + Sqr(v1.Y));
+  magnitudeV2 := Sqrt(Sqr(v2.X) + Sqr(v2.Y));
+
+  // Calculate cosine of the angle
+  if (magnitudeV1 = 0) or (magnitudeV2 = 0) then
+  begin
+    Result := NaN; // Handle degenerate cases. Lines that are points.
+    exit;
+  end;
+
+  cosAngle := dotProduct / (magnitudeV1 * magnitudeV2);
+
+  // Calculate the angle in radians
+  angle := ArcCos(cosAngle);
+
+  // Return the angle in Degrees
+  Result := RadToDeg(angle);
+end;
+
+
 
 
 

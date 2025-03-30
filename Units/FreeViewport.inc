@@ -484,7 +484,8 @@ begin
   // Load cursors from resource file
   curRes:='32';
   if Forms.Screen.PixelsPerInch >= 144 then curRes:='48';
-  Screen.Cursors[crRotate] := LoadCursor(hInstance, pchar('ROTATE_'+curRes));
+  Screen.Cursors[crRotate2d] := LoadCursor(hInstance, pchar('ROTATE2D_'+curRes));
+  Screen.Cursors[crRotate3d] := LoadCursor(hInstance, pchar('ROTATE3D_'+curRes));
   Screen.Cursors[crSetOrigin] := LoadCursor(hInstance, pchar('SETORIGIN_'+curRes));
   Screen.Cursors[crSetScale] := LoadCursor(hInstance, pchar('SETSCALE_'+curRes));
   Screen.Cursors[crTranspCol] := LoadCursor(hInstance, pchar('COLORPICKER_'+curRes));
@@ -1888,7 +1889,7 @@ begin
        and (ssLeft in Shift) and not(ssCtrl in Shift) then
   begin
     // rotation using Left mousebutton
-    Cursor := crRotate;
+    Cursor := crRotate3d;
     FAngle := Self.FAngle + (X - FPreviousPosition.X) / 4;
     while FAngle > 180 do
       FAngle := FAngle - 360;

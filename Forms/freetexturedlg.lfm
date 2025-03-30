@@ -91,17 +91,6 @@ object FreeTextureForm: TFreeTextureForm
     ClientHeight = 555
     ClientWidth = 170
     TabOrder = 1
-    object SpinEditRotate: TSpinEdit
-      Left = 15
-      Height = 36
-      Hint = 'Rotation'
-      Top = 40
-      Width = 127
-      OnChange = SpinEditRotateChange
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-    end
     object FloatSpinEditShiftX: TFloatSpinEdit
       Left = 16
       Height = 36
@@ -112,7 +101,7 @@ object FreeTextureForm: TFreeTextureForm
       OnChange = FloatSpinEditShiftXChange
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 1
+      TabOrder = 0
     end
     object FloatSpinEditShiftY: TFloatSpinEdit
       Left = 19
@@ -124,7 +113,7 @@ object FreeTextureForm: TFreeTextureForm
       OnChange = FloatSpinEditShiftYChange
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 2
+      TabOrder = 1
     end
     object FloatSpinEditScale: TFloatSpinEdit
       Left = 19
@@ -133,7 +122,7 @@ object FreeTextureForm: TFreeTextureForm
       Width = 126
       Increment = 0.01
       OnChange = FloatSpinEditScaleChange
-      TabOrder = 3
+      TabOrder = 2
     end
     object Button1: TButton
       Left = 18
@@ -142,7 +131,7 @@ object FreeTextureForm: TFreeTextureForm
       Top = 320
       Width = 123
       Caption = 'Set anchors'
-      TabOrder = 4
+      TabOrder = 3
       OnClick = Button1Click
     end
     object LabelAnchor1: TLabel
@@ -200,6 +189,16 @@ object FreeTextureForm: TFreeTextureForm
       Top = 440
       Width = 114
       Caption = 'LabelTarget2'
+    end
+    object SpinEditRotate: TFloatSpinEdit
+      Left = 16
+      Height = 36
+      Top = 40
+      Width = 121
+      DecimalPlaces = 1
+      Increment = 0.1
+      OnChange = SpinEditRotateChange
+      TabOrder = 4
     end
   end
   object StatusBar1: TStatusBar

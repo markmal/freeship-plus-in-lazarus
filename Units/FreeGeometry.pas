@@ -87,7 +87,8 @@ const // Cursors
   crSMALLCROSS_48 = 16; }
 
   // Currently using 32x32 cursors. TODO use 48x48 if high res 144dpi
-  crRotate = 1; // Rotation cursor
+  crRotate2d = 1; // Rotation cursor
+  crRotate3d = 2; // Rotation cursor
   crPan = crSize; // Pan cursor
   crSetOrigin = 3; // Cursor used when setting the origin of a background image
   crSetScale = 4; // Cursor used when setting the scale of a background image
@@ -485,6 +486,7 @@ type
     procedure Extents(var Min, Max:T3DCoordinate);
     function FindSubdivionPoint(P: T2DCoordinate): TFreeSubdivisionPoint;
     function FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
+    function FindSubdivionEdgeByScreen(X,Y:integer; Viewport:TFreeViewport; var UP1,UP2: T2DCoordinate): TFreeSubdivisionEdge;
     function FindUnrolledPointForSubdivionPoint(P: TFreeSubdivisionPoint): T2DCoordinate;
     function ProjectOnUnrolled(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
     function ProjectOnBitmap(C1:T2DCoordinate): TPoint;
@@ -2338,123 +2340,127 @@ type
   end;
 
 
+  // Add two vectors
 function AddPoint(P1, P2: T3DCoordinate): T3DCoordinate;
-// Add two vectors
-function AddPointSymm(P1, P2: T3DCoordinate): T3DCoordinate;
 // Add two vectors for symmetric layers
-function AreaStr(Units: TFreeUnitType): string;
+function AddPointSymm(P1, P2: T3DCoordinate): T3DCoordinate;
 // Returns a string value with the area units
-function BoolToStr(Val: boolean): string;
+function AreaStr(Units: TFreeUnitType): string;
 // In contrast to delphis own BoolToStrF this procedure returns '0' when false and '1' when true
+function BoolToStr(Val: boolean): string;
 procedure ClipTriangle(P1, P2, P3: T3DCoordinate; s1, s2, s3: TFloatType;
   var Nf, Nb: integer; var Front, Back: TFreeCoordinateArray); overload;
 procedure ClipTriangle(P1, P2, P3: T3DCoordinate; Plane: T3DPlane;
   var Nf, Nb: integer; var Front, Back: TFreeCoordinateArray); overload;
-function ConvertDimension(Value: TFloatType; Units: TFreeUnitType): string;
 // Converts a dimesnion to a string
-function ConvertCoordinate(Coord: string; OldCoord: TFloatType): TFloatType;
+function ConvertDimension(Value: TFloatType; Units: TFreeUnitType): string;
 // converts a string to a floatingpoint value, possibly using imperial units
+function ConvertCoordinate(Coord: string; OldCoord: TFloatType): TFloatType;
 function CrossProduct(U, V: T3DCoordinate): T3DCoordinate;
 function DisplacementToVolume(Displ, Density, AppCoeff: TFloatType;
   Units: TFreeUnitType): TFloatType; // Converts a displacement to volume
-function DensityStr(Units: TFreeUnitType): string;
 // Returns a string value with the density units
-function DistPP3D(P1, P2: T3DCoordinate): TFloatType;
+function DensityStr(Units: TFreeUnitType): string;
 // Calculates the distance between two points
+function DistPP3D(P1, P2: T3DCoordinate): TFloatType;
 function Distance2D(P1, P2: T2DCoordinate): TFloatType;
 function DistanceToLine(P1, P2: TPoint; X, Y: integer; var Parameter: TFloatType): TFloatType;
 function DistancePointToPlane(P: T3DCoordinate; Plane: T3DPlane): TFloatType;
 function DotProduct(U, V: T3DCoordinate): TFloatType;
-function FindDXFColorIndex(Color: TColor): integer;
 // find nearest DXF color corresponding to a windows color
+function FindDXFColorIndex(Color: TColor): integer;
 procedure FillColor(Parameter: TFloatType; var R, G, B: byte);
-function InertiaStr(Units: TFreeUnitType): string;
 // Returns a string value with the moment of inertia units
-function Interpolate(P1, P2: T3DCoordinate; Param: TFloatType): T3DCoordinate;
+function InertiaStr(Units: TFreeUnitType): string;
 // perform linear interpolation between two 3D points
+function Interpolate(P1, P2: T3DCoordinate; Param: TFloatType): T3DCoordinate;
 procedure JoinSplineSegments(JoinError: TFloatType; ForceToOneSegment: boolean;
   List: TFasterListTFreeSpline);// Takes multiple splines and tries to connect them to as few as possible
 function Lines3DIntersect(P1, P2, P3, P4: T3DCoordinate; var Param: double;
   var Int: T3DCoordinate): boolean;
-function LengthStr(Units: TFreeUnitType): string;
 // Returns a string value with the length units
+function LengthStr(Units: TFreeUnitType): string;
 function MakeLength(Value: TFloatType; Decimals, DesLength: integer): string; overload;
 function MakeLength(Value: string; DesLength: integer): string; overload;
 procedure MinMax(P: T3DCoordinate; var Min, Max: T3DCoordinate);
 function ToPoint(x,y: integer): TPoint;
 function Point2D(x,y: TFloatType): T2DCoordinate;
 function Point3D(x,y,z: TFloatType): T3DCoordinate;
-function Midpoint(P1, P2: T3DCoordinate): T3DCoordinate;
 // Calculate the mid-point between P1 and P2
+function Midpoint(P1, P2: T3DCoordinate): T3DCoordinate;
 function Mid3point(P1, P2, P3: T3DCoordinate): T3DCoordinate;
-function MirrorPlane(P: T3DCoordinate; Plane: T3DPLane): T3DCoordinate;
 // mirror a point in a plane
+function MirrorPlane(P: T3DCoordinate; Plane: T3DPLane): T3DCoordinate;
 function Normalize(P: T3DCoordinate): T3DCoordinate;
-function NumberOfDecimals(Value: TFloatType): integer;
 // Finds out with how many decimals a number should be presented
-function PlaneIntersectsBox(Min, Max: T3DCoordinate; Plane: T3DPlane): boolean;
+function NumberOfDecimals(Value: TFloatType): integer;
 // Function to determine if a plane intersects a bounding box
-function PlanePointNormal(P, Normal: T3DCoordinate): T3DPlane;
+function PlaneIntersectsBox(Min, Max: T3DCoordinate; Plane: T3DPlane): boolean;
 // Calculates the plane with a given normal N through point P
-function PlanePPP(P1, P2, P3: T3DCoordinate): T3DPlane;
+function PlanePointNormal(P, Normal: T3DCoordinate): T3DPlane;
 // Create a plane defined by three points
-function PointInTriangle(Int, P0, P1, P2: T3DCoordinate): boolean;
+function PlanePPP(P1, P2, P3: T3DCoordinate): T3DPlane;
 // This function calculates if a point lies inside a triangle assuming it lies on the plane determined by the triangle
-function PoundsToNewton(InpLbs: TFloatType): TFloatType;
+function PointInTriangle(Int, P0, P1, P2: T3DCoordinate): boolean;
 // converts pounds to Newton
-function ProjectPointOnLine(P, P1, P2: T3DCoordinate): T3DCoordinate;
+function PoundsToNewton(InpLbs: TFloatType): TFloatType;
 // Projects point  P on the linesegment through P1 and P2
-function ProjectPointOnPlane(P: T3DCoordinate; Plane: T3DPlane): T3DCoordinate;
+function ProjectPointOnLine(P, P1, P2: T3DCoordinate): T3DCoordinate;
 // Projects a point on to a plane
-function RandomColor: TColor;
+function ProjectPointOnPlane(P: T3DCoordinate; Plane: T3DPlane): T3DCoordinate;
 // create a random color
-function ReadBoolFromStr(LineNr: integer; var Source: string): boolean;
+function RandomColor: TColor;
 // Read a single boolean value from a string
+function ReadBoolFromStr(LineNr: integer; var Source: string): boolean;
 function ReadFloatFromStr(LineNr: integer;
   var Source: string): TFloatType;   // Read a single floatingpoint value from a string
-function ReadIntFromStr(LineNr: integer; var Source: string): integer;
 // Read an integer value from a string
+function ReadIntFromStr(LineNr: integer; var Source: string): integer;
 function RotateAroundPoint(P: T3DCoordinate; Center: T3DCoordinate;
   sinhx, coshx, sinhy, coshy, sinhz, coshz: TFloatType): T3DCoordinate;
-function RotatePointAroundVector(Point, StartPoint, Endpoint: T3DCoordinate): T3DCoordinate;
 // Function to rotate a point around a vector
+function RotatePointAroundVector(Point, StartPoint, Endpoint: T3DCoordinate): T3DCoordinate;
+// Rotates a vector around the origin
 function RotateVector(P0: T3DCoordinate;
   sinx, cosx, siny, cosy, sinz, cosz: TFloatType): T3DCoordinate;
-// Rotates a vector around the origin
-function ScalePoint(Scale: TFloatType; P: T3DCoordinate): T3DCoordinate;
 // Scales a vector
+function ScalePoint(Scale: TFloatType; P: T3DCoordinate): T3DCoordinate;
 function SetPlane(a, b, c, d: TFloatType): T3DPlane;
 function SetPoint(X, Y, Z: TFloatType): T3DCoordinate;
+// sorts an array with floatingpoint values and removes double entries
 procedure SortFloatArray(var FloatArray: TFloatArray;
-  var N: integer);        // sorts an array with floatingpoint values and removes double entries
-function Space(Index: integer): string;
+  var N: integer);
 // Outputs a string with a number of spaces
-function SquaredDistPP(P1, P2: T3DCoordinate): TFloatType;
+function Space(Index: integer): string;
 // calculates the squared distance between two points
-function Subtract(AVec1, AVec2: T3DCoordinate): T3DCoordinate;
+function SquaredDistPP(P1, P2: T3DCoordinate): TFloatType;
 // subtract two vectors
-function FloatToDec(Value: TFloatType; Maxlength: integer): string;
+function Subtract(AVec1, AVec2: T3DCoordinate): T3DCoordinate;
 // Convert a floatingpoint to a string value with a max. number of specified decimals All trailing zeros will be removed
-function UnifiedNormal(P1, P2, P3: T3DCoordinate): T3DCoordinate;
+function FloatToDec(Value: TFloatType; Maxlength: integer): string;
 // calculate the normal of a plane defined by points P1,P2,P3 and scale to unit-length
-function UnitVector(P: T3DCoordinate): T3DCoordinate;
+function UnifiedNormal(P1, P2, P3: T3DCoordinate): T3DCoordinate;
 // Scale a vector sucht that it's length is 1.0
-function VectorLength(Normal: T3DCoordinate): TFloatType;
+function UnitVector(P: T3DCoordinate): T3DCoordinate;
 // Calculate the length of a vector
-function VolStr(Units: TFreeUnitType): string;
+function VectorLength(Normal: T3DCoordinate): TFloatType;
+// Angle between two lines
+function Angle( Line1point1, Line1point2, Line2point1, Line2point2: T2DCoordinate): TFloatType;
 // Returns a string value with the volume units
-function DensStr(Units: TFreeUnitType): string;
+function VolStr(Units: TFreeUnitType): string;
 // Returns a string value with the density units
-function ViscStr(Units: TFreeUnitType): string;
+function DensStr(Units: TFreeUnitType): string;
 // Returns a string value with the viscosity units
+function ViscStr(Units: TFreeUnitType): string;
+// Converts a volume to displacement
 function VolumeToDisplacement(Volume, Density, AppCoeff: TFloatType;
-  Units: TFreeUnitType): TFloatType; // Converts a volume to displacement
-function WeightStr(Units: TFreeUnitType): string;
+  Units: TFreeUnitType): TFloatType;
 // Returns a string value with the weight units
-function DegrStr(Units: TFreeUnitType): string;
+function WeightStr(Units: TFreeUnitType): string;
 // Returns a string value with the degr units
-function LenMMStr(Units: TFreeUnitType): string;
+function DegrStr(Units: TFreeUnitType): string;
 // Returns a string value with the length (mm or inch) units
+function LenMMStr(Units: TFreeUnitType): string;
 
 var
   DelayedDestroyList: TFreeDestroyList;
@@ -2464,7 +2470,7 @@ procedure Register;
 implementation
 
 //{$R ViewportCursors.res}
-{$R cursors.res}         // new nice cursors with antialiasing
+{$R cursors.rc}         // new nice cursors with antialiasing
 
 uses FreeStringsUnit,
   VRMLUnit,

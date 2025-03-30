@@ -19,6 +19,7 @@ type
 
   TFreeTextureForm = class(TForm)
     Button1: TButton;
+    SpinEditRotate: TFloatSpinEdit;
     FloatSpinEditShiftX: TFloatSpinEdit;
     FloatSpinEditShiftY: TFloatSpinEdit;
     FloatSpinEditScale: TFloatSpinEdit;
@@ -41,7 +42,6 @@ type
     PanelRight: TPanel;
     SpeedButtonClose: TSpeedButton;
     SpeedButtonOpenImage: TSpeedButton;
-    SpinEditRotate: TSpinEdit;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
@@ -82,6 +82,8 @@ type
     FYGridSpacing: integer;
     FAllowPanOrZoom: boolean;
     FInitialPosition: TPoint;
+    FFoundPoint: TFreeSubdivisionPoint;
+    FFoundEdge: TFreeSubdivisionEdge;
     procedure InitViewPort;
   public
     function Execute(FreeShip: TFreeShip; Layer: TFreeSubdivisionLayer): boolean;
@@ -227,6 +229,8 @@ var
   Diff: T2DCoordinate;
   Patch: TFreeDevelopedPatch;
   MP: TFreeSubdivisionPoint;
+  Edge: TFreeSubdivisionEdge;
+  UP1,UP2: T2DCoordinate;
 begin
 
   if FAllowPanOrZoom then
@@ -300,10 +304,13 @@ begin
 
   StatusBar1.Panels[2].Text := String.Format('Viw %0:.3f:%1:.3f',[P3.X, P3.Y]);
 
+  Viewport.Cursor := crDefault;
   MP:=nil;
   MP := FActiveTexture.FindSubdivionPointByScreen(X,Y,Viewport);
   if Assigned(MP) then
   begin
+    FFoundPoint := MP;
+    Viewport.Cursor := crRotate2d;
     uP := FActiveTexture.FindUnrolledPointForSubdivionPoint(MP);
     if not IsNAN(uP.X) then
     begin
@@ -314,6 +321,16 @@ begin
 
       bP := FActiveTexture.ProjectOnBitmap(uP);
       StatusBar1.Panels[0].Text := String.Format('Txt %0:d:%1:d',[bP.X,bP.Y]);
+    end;
+  end;
+
+  if not Assigned(MP) then
+  begin
+    Edge := FActiveTexture.FindSubdivionEdgeByScreen(X,Y,Viewport,UP1,UP2);
+    if Assigned(Edge) then
+    begin
+      FFoundEdge := Edge;
+      Viewport.Cursor := crSizeAll;
     end;
   end;
 
@@ -517,7 +534,6 @@ procedure TFreeTextureForm.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   Viewport.BackgroundImage.Visible:=false;
-  //Viewport.BackgroundImage.Bitmap.Free;
   Viewport.BackgroundImage.Bitmap:=nil;
 end;
 

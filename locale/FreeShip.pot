@@ -14197,11 +14197,6 @@ msgstr ""
 msgid "ShowInteriorEdges"
 msgstr ""
 
-#: tfreetextureform.spineditrotate.hint
-msgctxt "tfreetextureform.spineditrotate.hint"
-msgid "Rotation"
-msgstr ""
-
 #: tfreetextureform.statusbar1.panels[0].text
 msgid "Scr X:Y"
 msgstr ""

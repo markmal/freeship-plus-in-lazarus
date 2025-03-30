@@ -416,7 +416,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="132">
+    <Units Count="133">
       <Unit0>
         <Filename Value="FreeShip.dpr"/>
         <IsPartOfProject Value="True"/>
@@ -1146,6 +1146,10 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FreeTextureDlg"/>
       </Unit131>
+      <Unit132>
+        <Filename Value="Units/cursors.rc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit132>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

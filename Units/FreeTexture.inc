@@ -294,6 +294,16 @@ var
     Viewport.Polygon(Pts);
   end;{DrawTriangle}
 
+  procedure DrawLine(P1, P2: T3DCoordinate; Color: TColor);
+  var A,B: TPoint;
+  begin
+    A := Viewport.Project(P1);
+    B := Viewport.Project(P2);
+    //Viewport.PenColor := Color;
+    //Viewport.BrushColor := Color;
+    Viewport.Line(A.X,A.Y, B.X,B.Y);
+  end;{DrawTriangle}
+
 begin
   FShowInteriorEdges:=true;
   FShadeSubmerged:=true;
@@ -313,39 +323,27 @@ begin
     for i:=0 to FFaces.Count-1 do
     begin
       Face := FFaces[i];
-      for J := 3 to Face.NumberOfPoints do
+      for j:=1 to Face.NumberOfPoints-1 do
         begin
 
-          p2d1 := Face.FUnrolledPoints[0];
-          p2d2 := Face.FUnrolledPoints[J-2];
-          p2d3 := Face.FUnrolledPoints[J-1];
+          p2d1 := Face.FUnrolledPoints[j-1];
+          p2d2 := Face.FUnrolledPoints[j];
 
           if FMirrored then
           begin
             p2d1 := Self.Mirror2DCoordinate(p2d1);
             p2d2 := Self.Mirror2DCoordinate(p2d2);
-            p2d3 := Self.Mirror2DCoordinate(p2d3);
           end;
 
-
           P1:=Project2DtoViewport(p2d1);
-
-          {// check back projection
-          p2d:=Face.Points[0].UnrolledCoordinate;
-          pt:=Viewport.Project(P1);
-          p2d1:=Viewport.ProjectBackTo2D(pt); //should be = P1
-          p2d2:=ProjectViewportTo2D(p2d1); //should be = Face.Points[0].UnrolledCoordinate
-          }
-
           P2:=Project2DtoViewport(p2d2);
-          P3:=Project2DtoViewport(p2d3);
 
-
-          DrawTriangle(P1, P2, P3, FColor);
+          //DrawTriangle(P1, P2, P3, FColor);
+          DrawLine(P1,P2,FColor);
         end;
     end;
 
-    // check texture projection
+{    // check texture projection
     if Assigned(Viewport.BackgroundImage.Bitmap)
       and (Viewport.BackgroundImage.Bitmap.Width > 0)
       and (Viewport.BackgroundImage.Bitmap.Height > 0)
@@ -370,7 +368,7 @@ begin
           Viewport.PenColor:=clBlue;
           Viewport.Polyline([bP1, bP2, bP3]);
         end;
-    end;
+    end;   }
 
     {
     for i:=0 to DevelopedPatch.FPoints.Count-1 do
@@ -508,6 +506,54 @@ begin
       begin
         Result := Face.FPoints[j];
         exit;
+      end;
+    end;
+  end;
+end;
+
+function TFreeTexture.FindSubdivionEdgeByScreen(X,Y:integer; Viewport:TFreeViewport;
+  var UP1,UP2: T2DCoordinate): TFreeSubdivisionEdge;
+var i,j,k, ep,sp: integer; D,Par:TFloatType; Face: TFreeSubdivisionFace;
+  Point: TFreeSubdivisionPoint; Edge: TFreeSubdivisionEdge;
+  MP: T2DCoordinate;
+  VP1,VP2: T3DCoordinate;
+  P1,P2:TPoint;
+begin
+  Result := nil;
+  for i:=0 to FFaces.Count-1 do
+  begin
+    Face := FFaces[i];
+    for j:=0 to Face.NumberOfPoints-1 do
+    begin
+      Point := Face.FPoints[j];
+      for k:=0 to Point.NumberOfEdges-1 do
+      begin
+        Edge := Point.Edges[k];
+        if Edge.StartPoint = Point then
+        begin
+          sp := j;
+          ep := Face.Points.IndexOf(Edge.EndPoint);
+        end;
+        if Edge.EndPoint = Point then
+        begin
+          sp := Face.Points.IndexOf(Edge.StartPoint);
+          ep := j;
+        end;
+        if (sp >= 0)and(ep >= 0) then
+        begin
+          UP1:=Face.FUnrolledPoints[sp];
+          UP2:=Face.FUnrolledPoints[ep];
+          VP1:=Self.Project2DtoViewport(UP1);
+          VP2:=Self.Project2DtoViewport(UP2);
+          P1:=Viewport.Project(VP1);
+          P2:=Viewport.Project(VP2);
+          D := DistanceToLine(P1, P2, X, Y, Par);
+          if D < 3 then
+          begin
+            Result := Edge;
+            exit;
+          end;
+        end;
       end;
     end;
   end;
@@ -747,40 +793,6 @@ var AvgNormal: T3DCoordinate;
   i,j: integer;
   Area, OptArea, OptAngle: TFloatType;
 
-  function Angle( A, B, APrime, BPrime: T2DCoordinate): TFloatType;
-  var
-    v1, v2: T2DCoordinate;
-    dotProduct, magnitudeV1, magnitudeV2, cosAngle, angle: TFloatType;
-  begin
-    // Calculate vectors representing the lines
-    v1.X := B.X - A.X;
-    v1.Y := B.Y - A.Y;
-
-    v2.X := BPrime.X - APrime.X;
-    v2.Y := BPrime.Y - APrime.Y;
-
-    // Calculate dot product
-    dotProduct := v1.X * v2.X + v1.Y * v2.Y;
-
-    // Calculate magnitudes of vectors
-    magnitudeV1 := Sqrt(Sqr(v1.X) + Sqr(v1.Y));
-    magnitudeV2 := Sqrt(Sqr(v2.X) + Sqr(v2.Y));
-
-    // Calculate cosine of the angle
-    if (magnitudeV1 = 0) or (magnitudeV2 = 0) then
-    begin
-      Result := NaN; // Handle degenerate cases. Lines that are points.
-      exit;
-    end;
-
-    cosAngle := dotProduct / (magnitudeV1 * magnitudeV2);
-
-    // Calculate the angle in radians
-    angle := ArcCos(cosAngle);
-
-    // Return the angle in Degrees
-    Result := RadToDeg(angle);
-  end;
 
 begin
   R := Rotation;

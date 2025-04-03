@@ -866,7 +866,7 @@ begin
   begin
     A := TAction(ActionList.Actions[i]);
     AName := A.Name;
-    if Aname = 'LayerVisibilityDialog' then
+    if Aname = 'Delete' then
       II:=0;
     II := A.ImageIndex;
     if (II > -1) then

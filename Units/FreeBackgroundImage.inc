@@ -44,6 +44,7 @@ procedure TFreeBackgroundImage.Clear;
 begin
   if FBitmap <> nil then
   begin
+    FBitmap.Clear;
     FreeAndNil(FBitmap);
     FBitmap := nil;
   end;

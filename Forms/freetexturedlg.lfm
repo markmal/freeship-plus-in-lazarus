@@ -9,88 +9,15 @@ object FreeTextureForm: TFreeTextureForm
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '3.2.0.0'
-  object PanelTop: TPanel
-    Left = 0
-    Height = 48
-    Top = 0
-    Width = 987
-    Align = alTop
-    ClientHeight = 48
-    ClientWidth = 987
-    TabOrder = 0
-    object SpeedButtonOpenImage: TSpeedButton
-      Left = 112
-      Height = 22
-      Top = 1
-      Width = 23
-      Action = LoadFile
-      Images = ImageList1
-      ImageIndex = 0
-    end
-    object SpeedButtonClose: TSpeedButton
-      Left = 152
-      Height = 22
-      Top = 8
-      Width = 23
-      Action = CloseDialog
-      Images = ImageList1
-      ImageIndex = 1
-    end
-    object ToolBar1: TToolBar
-      Left = 1
-      Height = 30
-      Top = 1
-      Width = 985
-      AutoSize = True
-      ButtonHeight = 28
-      ButtonWidth = 28
-      Caption = 'ToolBar1'
-      ChildSizing.LeftRightSpacing = 2
-      ChildSizing.TopBottomSpacing = 2
-      ChildSizing.HorizontalSpacing = 2
-      ChildSizing.VerticalSpacing = 2
-      ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      Images = ImageList1
-      ImagesWidth = 32
-      TabOrder = 0
-      object ComboBoxSelectTexture: TComboBox
-        Left = 65
-        Height = 28
-        Top = 2
-        Width = 300
-        ItemHeight = 0
-        TabOrder = 0
-        Text = 'ComboBoxSelectTexture'
-        OnSelect = ComboBoxSelectTextureSelect
-      end
-      object ToolButton1: TToolButton
-        Left = 1
-        Top = 2
-        Action = LoadFile
-        AutoSize = True
-      end
-      object ToolButton2: TToolButton
-        Left = 29
-        Top = 2
-        Action = CloseDialog
-      end
-      object ToolButtonShowInteriorEdges: TToolButton
-        Left = 365
-        Top = 2
-        Action = ShowInteriorEdges
-        Style = tbsCheck
-      end
-    end
-  end
   object PanelRight: TPanel
     Left = 817
-    Height = 555
-    Top = 48
+    Height = 565
+    Top = 38
     Width = 170
     Align = alRight
-    ClientHeight = 555
+    ClientHeight = 565
     ClientWidth = 170
-    TabOrder = 1
+    TabOrder = 0
     object FloatSpinEditShiftX: TFloatSpinEdit
       Left = 16
       Height = 36
@@ -127,10 +54,10 @@ object FreeTextureForm: TFreeTextureForm
     object Button1: TButton
       Left = 18
       Height = 32
-      Hint = 'Autoset 2d anchors'
+      Hint = 'Reset 2d anchors'
       Top = 320
       Width = 123
-      Caption = 'Set anchors'
+      Caption = 'Reset'
       TabOrder = 3
       OnClick = Button1Click
     end
@@ -190,14 +117,14 @@ object FreeTextureForm: TFreeTextureForm
       Width = 114
       Caption = 'LabelTarget2'
     end
-    object SpinEditRotate: TFloatSpinEdit
+    object FloatSpinEditRotate: TFloatSpinEdit
       Left = 16
       Height = 36
       Top = 40
       Width = 121
       DecimalPlaces = 1
       Increment = 0.1
-      OnChange = SpinEditRotateChange
+      OnChange = FloatSpinEditRotateChange
       TabOrder = 4
     end
   end
@@ -225,6 +152,65 @@ object FreeTextureForm: TFreeTextureForm
       end>
     SimplePanel = False
   end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 38
+    Top = 0
+    Width = 987
+    AutoSize = True
+    BorderWidth = 4
+    ButtonHeight = 32
+    ButtonWidth = 32
+    Caption = 'ToolBar1'
+    Images = ImageList1
+    ImagesWidth = 24
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+    object ComboBoxSelectTexture: TComboBox
+      Left = 97
+      Height = 36
+      Top = 2
+      Width = 300
+      ItemHeight = 0
+      TabOrder = 0
+      Text = 'ComboBoxSelectTexture'
+      OnSelect = ComboBoxSelectTextureSelect
+    end
+    object ToolButton1: TToolButton
+      Left = 1
+      Hint = 'Load image'
+      Top = 2
+      Action = LoadFile
+    end
+    object ToolButtonCancel: TToolButton
+      Left = 65
+      Hint = 'Close with Cancel'
+      Top = 2
+      Action = CloseDialog
+      ShowCaption = False
+    end
+    object ToolButtonOk: TToolButton
+      Left = 33
+      Top = 2
+      Action = Ok
+    end
+    object ColorButton1: TColorButton
+      Left = 397
+      Height = 32
+      Top = 2
+      Width = 32
+      BorderWidth = 2
+      ButtonColorSize = 16
+      ButtonColor = clRed
+    end
+    object ToolButtonDelete: TToolButton
+      Left = 429
+      Top = 2
+      Action = Delete
+      ShowCaption = False
+    end
+  end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 150
     Top = 76
@@ -234,18 +220,25 @@ object FreeTextureForm: TFreeTextureForm
     Left = 16
     Top = 57
     object LoadFile: TAction
-      Caption = 'ActionOpenImage'
+      Caption = 'Load image'
       ImageIndex = 0
       OnExecute = LoadFileExecute
     end
-    object CloseDialog: TAction
-      Caption = 'CloseDialog'
+    object Ok: TAction
+      Caption = 'Ok'
       ImageIndex = 1
+      OnExecute = OkExecute
+    end
+    object CloseDialog: TAction
+      Caption = 'Close Dialog'
+      ImageIndex = 2
       OnExecute = CloseDialogExecute
     end
-    object ShowInteriorEdges: TAction
-      Caption = 'ShowInteriorEdges'
-      ImageIndex = 2
+    object Delete: TAction
+      Caption = 'DeleteTexture'
+      Hint = 'Delete texture'
+      ImageIndex = 3
+      OnExecute = DeleteTextureExecute
     end
   end
   object ImageList1: TImageList
@@ -254,5 +247,75 @@ object FreeTextureForm: TFreeTextureForm
     Width = 24
     Left = 66
     Top = 61
+    Bitmap = {
+      4C7A0400000018000000180000005D0800000000000078DAED99095454E71580
+      A73DA9B18DB229298BC8965424B2B8159598C4A8516C342C26C6BD3569638FD5
+      A0A03636C2808A311A894B059744D1888D5171090A026557C085250306148D0B
+      0A32303830C330C0BBBDF7E78D4C8619DE8098C453E79CEFCCBCC7FDBFF7BF7F
+      B98F992B123D7DFD925F8D2AF5F8BB374B6F5D4C896DCA4DD8D7949B18A326F2
+      12639AF1BD459273BAA54E262D5435A9C7E96BAF5028C7281B55DE8D8DAA31BA
+      34A95B464B2B6FC71E5C3F1BC2DEFE3D8413EFB4BD87319E8775B30742FC17AB
+      4026ADCA52377396BAFE867A79BDACE67E03FEBD0375B5D50DE5929CE60DF35F
+      84103F3308F5B7E840889F39844DB784F3F17B54EA16F0D1F5DF2CCDE7F685FA
+      41F4F2F1B053971513607BA037EBA73EB786D56F99C089A865D0A86A7A5FD77F
+      B530938B98E3C06256FB9A762004E9CC2DE4BF5694C57D32CF1942F13E43BAC9
+      C7D3FAC2F11D4BD1AF5E0800BD9A5BE1B78D2A556F8542F1ACC64F7DDDB1EC55
+      483FB615D28E447689D46F3E83E2DC33F0A0AEB60CD7525A5DAD34B5BE5E9E82
+      FEBD0FFBEFDF8FE608B24FED84BD21BEB04FEC6F3431E200A039DC1BEACB38B4
+      611EDCFDE10A8DD736F2AF9FEB085B177B017E86ADFFF0C2FBEDD3361F5DC614
+      FE35F539764D5C7B95B4C6997F8E2324EE0F839C337B411CD05F703E3B438C6B
+      35EFEC01C0FD7654A168E84DEB87FA5C9A9F063161016C1EBAEB0EF135836D4B
+      464355C58D161C9BB9B47ED0CB9DDAB502E72781ED455A478FE2A771502A1B4B
+      706E07B4EDAFCB5C59413A9C880E7AB4BE63BF689F5F2FC9A575BA59B3FEEBE5
+      0FB8DBD78A60F3071E06738031D0DC1EFA743ED4CBEB1E2895CA57DBF3631397
+      11B7AD6D5CD8D8741DEA3BE5BD828CA3D4F7641C9B3E1A7F6DF53D8EE675CDBB
+      B6B06ED6C06EB116DBEE59E503D2AA0A0E73F122EDFC80EBB4B5F4722A87F3CB
+      95E4750FDCBB1CCE2360BF2B90C14F9F9A3FCFCB24D60588C7E97E1CD7D075F7
+      A4FFA7763FC97D7F12DCBFF4BE0BB5E909B7A1B63DD57743ED1F75CC3BDB2F3D
+      35A786AED193EBE571FB85AEF1347FFD3CFEC7FD5C7DD2FE27F829FC4F5F2291
+      A359DA44241E713322D6193981F81BE99E84481040D290419DC4DA23DFF2B1D7
+      1DCDD27D442210F29FE6E33564BA58C6BF14172CEA85DFAB7A872087978A7A0D
+      B13A4EFD3EA38973304B87172C92BE9D3C6465BF0D3345CF52AC3E30F62524A5
+      DD9F0EAECFC7952E9A302A292CC034598C7C38C933C9CDFA70313A39E636CD80
+      910377C3A2095EE5627FF364F41822416B4C53A84F9A6B78D94741E064772E68
+      8A4BABB7D3E7A0DDEF11765F342D7963A84A1C60A646478B01E87BA55A334E7F
+      B48F761B6A7BE096237F0D07D374F0B439281F362046E6F8F0BA8C73D33C16FB
+      AD79FB7713B0FD443D8C47162032A459E38F98F18C65E0643789B75324B45F23
+      83A1E5CE465C85D60C7A5D904ABA0FAD739678BFC5C153063579D8C4DEA2FEEB
+      CCFBC5CED696717E53C9D2C943D4EED65F57E8F117221EDDF547CCF88DE5E289
+      C325A31C7680CE786B730919D61DFF50DBFDC3DDADFF7347C79D8124E95C231F
+      19DE153FBF07CE39FCD84D7BC209B1E1F381F6DF0A9091C6F8316E04B9B5D737
+      DF6727AD3D6E8BC4E95CA308F132C2FFA33DEF651F2D7FD33D70AC9E3C42F771
+      54E71AC791E704FC6391CB14FFB2732404F90CAEC5BDE369205759234778F7F7
+      C86BC68CBFBD69D670CC3931CB7C5CAB700FD0BEF33434B6767D73ACEC4D3337
+      0D34C91EDB95F583EBDE2AD4DFBC18CFD5236F220E88930ECEE1D3FB38AE9A66
+      F742F87413478C77D213E3C0E709A9EEFE42247C5EAA42EE3C02D4F756EDFC86
+      9FFB2345BC9FEB01288736FE3F3CFFF13E6D91F33ABF496622563DE41F80A422
+      354835FF9E84D874D1330C99AD87594830B2598B20FEBCBE780F03FE0CBE8EC1
+      E9A10569D6A2455F5CDB6FAE16C906FC5723E6D8376E7C6F306C5CD03DD6CDB2
+      6B404F893EFFEAB74CFE509071ECAB4B2987202F717F97A176B909FB22825F17
+      391B9A83A8E0715B36FCF945A09A06DE0B833EB71D3B40C46C7BF6DE7EAEFD98
+      DA452E1C1ADAD91C87F89A6DA7DFABA98EC1C6E93D57104FEFCF7EC35E3FD709
+      36FFCD9DB9580C9EDF847FA7711107F4E3EB496691026B2842E32AB97016CA0A
+      32E0D3052EAC0E961CBB1EAAEFDD84C403E1AC56B0E97D57B856940D929CD3EC
+      1EF8DA8458C0BF82FC9FCC73829B65F95075A71C3EFBAB1BF3659D8C06750B07
+      19C7B6B27A4EE4424FB87FF707B871E582B63F50C0FF01C551CD87DA55555C67
+      B507E63F11054DEA56483FBA85F93FFFFB30763FE5DF9DD3AEADFC45C03F13E3
+      389AC772C979D6BF48F4E8F36F593412A49577E06A6126AD4BAA3550CE0C10F0
+      FF09FD6A8AA77A98B4F2367A46309FAE7FDBE2515073FF2EAB3DAD9D694B7E15
+      3D5B04FCAF609C62EDCC0140759F9AAA0A5673EBE8EF0BDB3FF486DAEA4AB872
+      3119D6BC6B03FCB36FB4700E329751FCF797FE8BEDEFC1F62563F4FA772C7D05
+      6435F7A1242F11C2675801FF4C7413F00F42EEAD9961CDD6A74C5A05FF0E7CB9
+      839F6AA65141E3A0AE560A92F3F1ACBEC33F1B9D05FC76C88DF077ACA038E70C
+      D511D1F39A5E3FD59F1FC86AA028FBA4A6067D5528676B9EF314FFDDB953AC7D
+      F4F2D7F5FA77FD7312C81FC8007316AB9163BB02C442C06F82E4527C61661CC8
+      EB6A61D7CA37F4FAF7AC9A42F534B89C7A98E50A6C9785F411F0D3F7BE148ACF
+      4F3B82FDAB83DD1FF9B0F9D4F57FB97A2AD4D7CBE1624A2CCB3FF47D0EE925E0
+      7F0689A3FC46FD52281AE0CB8FA7327FF6A968686E05A07A1FD588A9CEAB542A
+      E142D241569FC67687915F77EAF7B3F815C6C484627FCE7EB516CA70EF44078F
+      63E313BFE723B85E9C0327772E67C73B574E64F92F2146AC79E6EF36F239BC85
+      E2698DD23EE6E78EAD713AA6B545C7749E1D631CEFDF68A47F7EDB5E346FA65C
+      41FFE73D44FF713322A7DCA5EBFA1F82A6E6FC
+    }
   end
 end

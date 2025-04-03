@@ -313,7 +313,7 @@ end;{TFreeSpline.SecondDerive}
 function TFreeSpline.Simplify(Criterium: TFloatType): boolean;
 var
   Weights: array of TFloatType;
-  TotalLength: TFloatType;
+  vTotalLength: TFloatType;
   I, Index: integer;
   N1, N2: integer;
 
@@ -388,12 +388,12 @@ begin
     if Knuckle[I - 1] then
       Inc(N1);
 
-  TotalLength := FTotalLength * FTotalLength;
+  vTotalLength := FTotalLength * FTotalLength;
   if TotalLength = 0 then
     exit;
   SetLength(Weights, NumberOfPoints);
   for I := 1 to NumberOfPoints do
-    Weights[I - 1] := Weight(I - 1) / TotalLength;
+    Weights[I - 1] := Weight(I - 1) / vTotalLength;
   try
     repeat
       Index := FindNextPoint;
@@ -514,17 +514,17 @@ end;{TFreeSpline.CoordLength}
 
 function TFreeSpline.ChordlengthApproximation(Percentage: TFloatType): extended;
 var
-  Totallength: TFloatType;
+  vTotallength: TFloatType;
   Desiredlength: TFloatType;
-  Parameter: TFloatType;
-  Length: TFloatType;
+  vParameter: TFloatType;
+  vLength: TFloatType;
   T1, T2: TFloatType;
   L1, L2: TFloatType;
   Counter: integer;
 begin
   T1 := 0;
   T2 := 1;
-  Parameter := 1.0;
+  vParameter := 1.0;
   Counter := 0;
   L1 := 0;
   L2 := 0;
@@ -537,36 +537,36 @@ begin
   else
   begin
     repeat
-      Length := CoordLength(0, Parameter);
+      vLength := CoordLength(0, vParameter);
       if counter = 0 then
       begin
         L1 := 0;
-        L2 := Length;
-        TotalLength := Length;
-        DesiredLength := Percentage * Totallength;
-        Parameter := Percentage;
+        L2 := vLength;
+        vTotalLength := vLength;
+        DesiredLength := Percentage * vTotallength;
+        vParameter := Percentage;
       end
       else
       begin
-        if Length > Desiredlength then
+        if vLength > Desiredlength then
         begin
-          T2 := Parameter;
-          L2 := Length;
+          T2 := vParameter;
+          L2 := vLength;
         end
         else
         begin
-          T1 := Parameter;
-          L1 := Length;
+          T1 := vParameter;
+          L1 := vLength;
         end;
-        Parameter := T1 + ((DesiredLength - L1) / (L2 - L1)) * (T2 - T1);
-        if Parameter < 0 then
-          Parameter := 0;
-        if Parameter > 1 then
-          Parameter := 1;
+        vParameter := T1 + ((DesiredLength - L1) / (L2 - L1)) * (T2 - T1);
+        if vParameter < 0 then
+          vParameter := 0;
+        if vParameter > 1 then
+          vParameter := 1;
       end;
       Inc(Counter);
-    until (Counter > 75) or (abs(Length - DesiredLength) < 1e-3);
-    Result := Parameter;
+    until (Counter > 75) or (abs(vLength - DesiredLength) < 1e-3);
+    Result := vParameter;
   end;
 end;{TFreeSpline.ChordlengthApproximation}
 
@@ -970,7 +970,7 @@ end;{TFreeSpline.InsertSpline}
 function TFreeSpline.IntersectPlane(Plane: T3DPlane;
   var Output: TFreeIntersectionData): boolean;
 var
-  Capacity: integer;
+  vCapacity: integer;
   I: integer;
   P1, P2: T3DCoordinate;
   S1, S2: TFloatType;
@@ -978,11 +978,11 @@ var
 
   procedure AddToOutput(P: T3DCoordinate; Parameter: TFloatType);
   begin
-    if Output.NumberOfIntersections = Capacity then
+    if Output.NumberOfIntersections = vCapacity then
     begin
-      Inc(Capacity, 10);
-      Setlength(Output.Points, Capacity);
-      Setlength(Output.Parameters, Capacity);
+      Inc(vCapacity, 10);
+      Setlength(Output.Points, vCapacity);
+      Setlength(Output.Parameters, vCapacity);
     end;
     Output.Points[Output.NumberOfIntersections] := P;
     Output.Parameters[Output.NumberOfIntersections] := Parameter;

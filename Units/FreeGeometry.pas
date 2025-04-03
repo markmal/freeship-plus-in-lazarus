@@ -29,7 +29,8 @@
 
 unit FreeGeometry;
 
-{$MODE Delphi} {$H+}
+//{$MODE Delphi} {$H+}
+{$mode ObjFPC}{$H+}
 
 interface
 
@@ -248,24 +249,24 @@ type
   {                                           FasterList specializations                                     }
   {---------------------------------------------------------------------------------------------------}
 
-  TFasterListTFreeNamedObject = TFasterList<TFreeNamedObject>;
-  TFasterListTFreeSpline = TFasterList<TFreeSpline>;
+  TFasterListTFreeNamedObject = specialize TFasterList<TFreeNamedObject>;
+  TFasterListTFreeSpline = specialize TFasterList<TFreeSpline>;
 
-  TFasterListTFreeSubdivisionPoint = TFasterList<TFreeSubdivisionPoint>;
-  TFasterListTFreeSubdivisionEdge = TFasterList<TFreeSubdivisionEdge>;
-  TFasterListTFreeSubdivisionFace = TFasterList<TFreeSubdivisionFace>;
+  TFasterListTFreeSubdivisionPoint = specialize TFasterList<TFreeSubdivisionPoint>;
+  TFasterListTFreeSubdivisionEdge = specialize TFasterList<TFreeSubdivisionEdge>;
+  TFasterListTFreeSubdivisionFace = specialize TFasterList<TFreeSubdivisionFace>;
   //TFasterListTFreeSubdivisionCurve = TFasterList<TFreeSubdivisionCurve>;
-  TFasterListTFasterListTFreeSubdivisionPoint = TFasterList<TFasterListTFreeSubdivisionPoint>;
+  TFasterListTFasterListTFreeSubdivisionPoint = specialize TFasterList<TFasterListTFreeSubdivisionPoint>;
 
-  TFasterListTFreeSubdivisionControlPoint = TFasterList<TFreeSubdivisionControlPoint>;
-  TFasterListTFreeSubdivisionControlPointGroup = TFasterList<TFreeSubdivisionControlPointGroup>;
-  TFasterListTFreeSubdivisionControlEdge = TFasterList<TFreeSubdivisionControlEdge>;
-  TFasterListTFreeSubdivisionControlFace = TFasterList<TFreeSubdivisionControlFace>;
-  TFasterListTFreeSubdivisionControlCurve = TFasterList<TFreeSubdivisionControlCurve>;
+  TFasterListTFreeSubdivisionControlPoint = specialize TFasterList<TFreeSubdivisionControlPoint>;
+  TFasterListTFreeSubdivisionControlPointGroup = specialize TFasterList<TFreeSubdivisionControlPointGroup>;
+  TFasterListTFreeSubdivisionControlEdge = specialize TFasterList<TFreeSubdivisionControlEdge>;
+  TFasterListTFreeSubdivisionControlFace = specialize TFasterList<TFreeSubdivisionControlFace>;
+  TFasterListTFreeSubdivisionControlCurve = specialize TFasterList<TFreeSubdivisionControlCurve>;
 
-  TFasterListTFreeSubdivisionLayer = TFasterList<TFreeSubdivisionLayer>;
-  TFasterListTFreeDevelopedPatch = TFasterList<TFreeDevelopedPatch>;
-  TFasterListTFreeTexture = TFasterList<TFreeTexture>;
+  TFasterListTFreeSubdivisionLayer = specialize TFasterList<TFreeSubdivisionLayer>;
+  TFasterListTFreeDevelopedPatch = specialize TFasterList<TFreeDevelopedPatch>;
+  TFasterListTFreeTexture = specialize TFasterList<TFreeTexture>;
   {---------------------------------------------------------------------------------------------------}
 
 
@@ -451,6 +452,7 @@ type
     FBitmapTargetPoint1: TPoint;
     FBitmapTargetPoint2: TPoint;
     FIsCorelated: boolean;
+    FIsManuallyAdjusted: boolean;
     FMin2D: T2DCoordinate;
     FMax2D: T2DCoordinate;
     FTranslation: T2DCoordinate;
@@ -475,7 +477,7 @@ type
       BitmapTargetPoint2: TPoint);
     procedure LoadIntfImage(FileName: String);
     procedure Clear;
-    function FGetMidPoint: T2DCoordinate;
+    function GetMidPoint: T2DCoordinate;
     function Project2DtoViewport(P: T2DCoordinate): T3DCoordinate;
     function ProjectViewportTo2D(P: T2DCoordinate): T2DCoordinate;
     procedure AutoSetDevelopedPatchAnchorPoints;
@@ -500,7 +502,9 @@ type
     procedure FindOptimalRotation;
     function GetAverageNormal: T3DCoordinate;
     function GetMidpoint3D: T3DCoordinate;
+    function HasBitmap: boolean;
     function Valid: boolean;
+    procedure ClearBitmap;
   //published
     property Bitmap: TBitmap read FBitmap write FBitmap;
     property BitmapTargetPoint1: TPoint read FBitmapTargetPoint1 write FBitmapTargetPoint1;
@@ -515,6 +519,7 @@ type
     property Rotation: TFloatType read FRotation write FSetRotation;
     property Scale: TFloatType read FScale write FScale;
     property IsCorelated: boolean read FIsCorelated write FIsCorelated;
+    property IsManuallyAdjusted: boolean read FIsManuallyAdjusted write FIsManuallyAdjusted;
   end;
   { // TFreeTexture }
 
@@ -717,7 +722,7 @@ type
 
     procedure SetFocus; override;
 
-    procedure SetPenWidth(Width: integer); virtual;
+    procedure SetPenWidth(pWidth: integer); virtual;
     procedure StretchDraw(DestRect: TRect; bmp: TBitmap); virtual;
     procedure ShadedColor(aIntensityRatio: single; R, G, B: byte;
       var ROut, GOut, BOut: byte); virtual;
@@ -1051,10 +1056,8 @@ type
     property Color: TColor
       read FColor write FColor;
     property IsBuilding: boolean read FIsBuilding;
-    property Min: T3DCoordinate
-      read GetMin;
-    property Max: T3DCoordinate
-      read GetMax;
+    property Min: T3DCoordinate read GetMin;
+    property Max: T3DCoordinate read GetMax;
     property PenStyle: TPenStyle
       read FPenStyle write FPenStyle;        // Pen style
     property PenWidth: byte
@@ -1478,7 +1481,7 @@ type
     procedure Unreference; virtual;
     destructor Destroy;override;
     function IndexOfFace(Face: TFreeSubdivisionFace): integer;
-    function IsRegularNURBSPoint(Faces: TFasterListTFreeSubdivisionFace): boolean;
+    function IsRegularNURBSPoint(pFaces: TFasterListTFreeSubdivisionFace): boolean;
     property Coordinate:T3DCoordinate read FCoordinate write FCoordinate;
     property Curvature: extended read FGetCurvature;
     property Edges: TFasterListTFreeSubdivisionEdge read FEdges;
@@ -1927,13 +1930,13 @@ type
     // Event which is raised when layer-data has been changed
     FOnChangeActiveLayer: TChangeActiveLayerEvent;
     // Event raised when the active layer is changed
-    FOnChangeActiveControlCurveListeners: TMethodList<TNotifyEvent>;
-    FOnChangeActiveControlEdgeListeners: TMethodList<TNotifyEvent>;
-    FOnChangeActiveControlFaceListeners: TMethodList<TNotifyEvent>;
-    FOnChangeActiveControlPointListeners: TMethodList<TNotifyEvent>;
-    FOnSelectItemListeners: TMethodList<TNotifyEvent>;
+    FOnChangeActiveControlCurveListeners: specialize TMethodList<TNotifyEvent>;
+    FOnChangeActiveControlEdgeListeners: specialize TMethodList<TNotifyEvent>;
+    FOnChangeActiveControlFaceListeners: specialize TMethodList<TNotifyEvent>;
+    FOnChangeActiveControlPointListeners: specialize TMethodList<TNotifyEvent>;
+    FOnSelectItemListeners: specialize TMethodList<TNotifyEvent>;
     // This event is raised whenever an item (such as controlpoint, controledge or controlface) is selected or deselected
-    FOnChangeItemListeners: TMethodList<TNotifyEvent>;
+    FOnChangeItemListeners: specialize TMethodList<TNotifyEvent>;
 
     FUnderWaterColor: TColor;
     FUnderWaterColorAlpha: byte;
@@ -2032,17 +2035,17 @@ type
     procedure AddControlCurve(Curve: TFreesubdivisionControlCurve);
     function AddControlEdge(P1, P2: TFreeSubdivisionControlPoint):
       TFreesubdivisionControlEdge; overload; virtual;
-    function AddControlFace(Points: array of T3DCoordinate;
+    function AddControlFace(pPoints: array of T3DCoordinate;
       NoPoints: integer): TFreeSubdivisionControlFace; overload; virtual;
-    function AddControlFace(Points: TFasterListTFreeSubdivisionControlPoint;
+    function AddControlFace(pPoints: TFasterListTFreeSubdivisionControlPoint;
       CheckEdges: boolean): TFreeSubdivisionControlFace; reintroduce; overload;
-    function AddControlFace(Points: TList;
+    function AddControlFace(pPoints: TList;
       CheckEdges: boolean): TFreeSubdivisionControlFace;
       reintroduce; overload;
-    function AddControlFace(Points: TFasterListTFreeSubdivisionControlPoint; CheckEdges: boolean;
-      Layer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace; reintroduce; overload;
-    function AddControlFaceN(Points: TFasterListTFreeSubdivisionControlPoint; CheckEdges: boolean;
-      Layer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace; reintroduce; overload;
+    function AddControlFace(pPoints: TFasterListTFreeSubdivisionControlPoint; CheckEdges: boolean;
+      pLayer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace; reintroduce; overload;
+    function AddControlFaceN(pPoints: TFasterListTFreeSubdivisionControlPoint; CheckEdges: boolean;
+      pLayer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace; reintroduce; overload;
     function AddControlPoint(P: T3DCoordinate; aTolerance:double=1e-6): TFreeSubdivisionControlPoint;
       overload; virtual;
     procedure AddControlPoint(P: TFreeSubdivisionControlPoint);
@@ -2109,11 +2112,11 @@ type
     procedure ExportFeFFile(Strings: TStringList);
     procedure ImportObjFile(Strings: TStringList);
     procedure ExportObjFile(ExportControlNet: boolean; Strings: TStringList);
-    procedure Extents(var Min, Max: T3DCoordinate);     override;
+    procedure Extents(var pMin, pMax: T3DCoordinate);     override;
     function ExtrudeControlPoints(
                Points: TFasterListTFreeSubdivisionControlPoint;
                Direction: T3DCoordinate): TFasterListTFreeSubdivisionControlPoint;
-    procedure ExtrudeEdges(Edges: TFasterListTFreeSubdivisionEdge; Direction: T3DCoordinate);
+    procedure ExtrudeEdges(pEdges: TFasterListTFreeSubdivisionEdge; Direction: T3DCoordinate);
       reintroduce; overload;
     procedure CalculateIntersections(Plane: T3DPlane;
       Faces: TFasterListTFreeSubdivisionFace; Destination: TFasterListTFreeSpline);
@@ -2332,7 +2335,7 @@ type
   {  They should be added to this list and destroyed later.                                          }
   {--------------------------------------------------------------------------------------------------}
 
-  TFreeDestroyList = class(TFasterList<TFreeSubdivisionBase>)
+  TFreeDestroyList = class(specialize TFasterList<TFreeSubdivisionBase>)
   public
     constructor Create;
     procedure DestroyAll;
@@ -2470,7 +2473,10 @@ procedure Register;
 implementation
 
 //{$R ViewportCursors.res}
-{$R cursors.rc}         // new nice cursors with antialiasing
+// new nice cursors with antialiasing
+{$R cursors.rc}         // to compile cursors.rc into lib/*/cursors.res
+//manually copy lib/*/cursors.res into Units/cursors.res
+//{$R cursors.res}         //to link Units/cursors.res into FreeShip
 
 uses FreeStringsUnit,
   VRMLUnit,

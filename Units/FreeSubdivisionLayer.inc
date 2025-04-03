@@ -1278,7 +1278,7 @@ end;
 procedure TFreeSubdivisionLayer.Unroll(Destination: TFasterListTFreeDevelopedPatch);
 var
   ToDoList: TFasterListTFreeSubdivisionControlFace;
-  DoneList: TFasterList<TFasterListTFreeSubdivisionControlFace>;
+  DoneList: specialize TFasterList<TFasterListTFreeSubdivisionControlFace>;
   Current: TFasterListTFreeSubdivisionControlFace;
   I: integer;
   Face, Face1: TFreeSubdivisionControlFace;
@@ -1320,7 +1320,7 @@ var
 begin
 
   ToDoList := TFasterListTFreeSubdivisionControlFace.Create;
-  DoneList := TFasterList<TFasterListTFreeSubdivisionControlFace>.Create;
+  DoneList := specialize TFasterList<TFasterListTFreeSubdivisionControlFace>.Create;
   try
     ToDoList.Capacity := FControlFaces.Count;
     ToDoList.AddList(FControlFaces);

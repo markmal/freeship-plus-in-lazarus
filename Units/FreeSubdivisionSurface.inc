@@ -293,8 +293,8 @@ var
   Current: TFasterListTFreeSubdivisionControlFace;
   I: integer;
   Capacity: integer;
-  Face: TFreeSubdivisionControlFace;
-  Layer: TFreeSubdivisionLayer;
+  vFace: TFreeSubdivisionControlFace;
+  vLayer: TFreeSubdivisionLayer;
   ErrInd: integer;
 
   function GetFace(P1, P2, P3, P4: TFreeSubdivisionPoint): TFreeSubdivisionControlFace;
@@ -374,7 +374,7 @@ var
     Face: TFreeSubdivisionControlFace;
     Grid: TFreeSubdivisionPointGrid;
     NewFace: TFreeFaceGrid;
-    CheckFaces: TFasterListTFreeSubdivisionControlFace;
+    CheckFaces: TFasterListTFreeSubdivisionFace;
     // temporary list with all controlfaces that is used to check if a crease vertex is
     // regular (depends on which side of the crease edge is being processed)
 
@@ -428,7 +428,7 @@ var
     end;{AddFace}
 
     procedure DoAssemble(var Grid: TFreeSubdivisionPointGrid;
-    var Cols, Rows: integer; Faces: TFasterListTFreeSubdivisionFace);
+    var Cols, Rows: integer; pFaces: TFasterListTFreeSubdivisionControlFace);
     var
       SearchBottom: boolean;
       SearchTop: boolean;
@@ -438,8 +438,8 @@ var
       I, J: integer;
       NFaces: integer;
       Edge1, Edge2: TFreeSubdivisionEdge;
-      Face: TFreeSubdivisionFace;
-      TmpFaces: array of TFreeSubdivisionFace;
+      vFace: TFreeSubdivisionControlFace;
+      TmpFaces: array of TFreeSubdivisionControlFace;
       DataOK: boolean;
 
       function ValidFace(Face: TFreeSubdivisionface): boolean;
@@ -450,7 +450,7 @@ var
         Result := False;
         if Face.NumberOfpoints = 4 then
         begin
-          Index := Faces.SortedIndexOf(Face);
+          Index := pFaces.SortedIndexOf(vFace);
           if Index <> -1 then
           begin
             Result := True;
@@ -485,22 +485,22 @@ var
 
       if Mode = amNURBS then
       begin
-        if not Grid[0][0].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+        if not Grid[0][0].IsRegularNURBSPoint(CheckFaces) then
         begin
           SearchLeft := False;
           SearchTop := False;
         end;
-        if not Grid[Rows - 1][0].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+        if not Grid[Rows - 1][0].IsRegularNURBSPoint(CheckFaces) then
         begin
           SearchLeft := False;
           SearchBottom := False;
         end;
-        if not Grid[Rows - 1][Cols - 1].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+        if not Grid[Rows - 1][Cols - 1].IsRegularNURBSPoint(CheckFaces) then
         begin
           SearchRight := False;
           SearchBottom := False;
         end;
-        if not Grid[0][Cols - 1].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+        if not Grid[0][Cols - 1].IsRegularNURBSPoint(CheckFaces) then
         begin
           SearchRight := False;
           SearchTop := False;
@@ -508,7 +508,7 @@ var
       end;
 
       while ((SearchBottom) or (SearchTop) or (SearchRight) or (SearchLeft)) and
-        (Faces.Count > 0) do
+        (pFaces.Count > 0) do
       begin
         Inc(Counter);
         if Counter > 4 then
@@ -524,10 +524,10 @@ var
               if not Edge1.Crease then
                 for J := 1 to Edge1.NumberOfFaces do
                 begin
-                  Face := Edge1.Face[J - 1];
-                  if ValidFace(Face) then
+                  vFace := Edge1.Face[J - 1] as TFreeSubdivisionControlFace;
+                  if ValidFace(vFace) then
                   begin
-                    TmpFaces[NFaces] := Face;
+                    TmpFaces[NFaces] := vFace;
                     Inc(NFaces);
                     break;
                   end;
@@ -542,30 +542,30 @@ var
             begin
               Setlength(Grid, Rows + 1);
               Setlength(Grid[Rows], Cols);
-              Face := TmpFaces[I - 1];
-              Index := Faces.SortedIndexOf(Face);
+              vFace := TmpFaces[I - 1];
+              Index := pFaces.SortedIndexOf(vFace);
               if Index <> -1 then
-                Faces.Delete(index);
+                pFaces.Delete(index);
 
-              Index := Face.IndexOfPoint(Grid[Rows - 1][I]);
-              Index := (Index + 1) mod Face.NumberOfpoints;
-              if Face.Point[index] = Grid[Rows - 1][I - 1] then
+              Index := vFace.IndexOfPoint(Grid[Rows - 1][I]);
+              Index := (Index + 1) mod vFace.NumberOfpoints;
+              if vFace.Point[index] = Grid[Rows - 1][I - 1] then
               begin
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[Rows][I - 1] := Face.Point[index];
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[Rows][I] := Face.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[Rows][I - 1] := vFace.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[Rows][I] := vFace.Point[index];
               end
               else
               begin
-                Index := Face.IndexOfPoint(Grid[Rows - 1][I - 1]);
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                if Face.Point[index] = Grid[Rows - 1][I] then
+                Index := vFace.IndexOfPoint(Grid[Rows - 1][I - 1]);
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                if vFace.Point[index] = Grid[Rows - 1][I] then
                 begin
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[Rows][I] := Face.Point[index];
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[Rows][I - 1] := Face.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[Rows][I] := vFace.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[Rows][I - 1] := vFace.Point[index];
                 end;
               end;
             end;
@@ -584,14 +584,14 @@ var
                 if Edge1.Crease <> Edge2.Crease then
                   DataOK := False;
               for I := 2 to Cols - 1 do
-                if not Grid[Rows][I - 1].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+                if not Grid[Rows][I - 1].IsRegularNURBSPoint(CheckFaces) then
                   DataOK := False;
             end;
             if not DataOK then
             begin
               // do not add the current row
               for I := 1 to NFaces do
-                Faces.AddSorted(TmpFaces[I - 1]);
+                pFaces.AddSorted(TmpFaces[I - 1]);
               SearchBottom := False;
             end
             else
@@ -611,10 +611,10 @@ var
               if not Edge1.Crease then
                 for J := 1 to Edge1.NumberOfFaces do
                 begin
-                  Face := Edge1.Face[J - 1];
-                  if ValidFace(Face) then
+                  vFace := Edge1.Face[J - 1] as TFreeSubdivisionControlFace;
+                  if ValidFace(vFace) then
                   begin
-                    TmpFaces[NFaces] := Face;
+                    TmpFaces[NFaces] := vFace;
                     Inc(NFaces);
                     break;
                   end;
@@ -632,29 +632,29 @@ var
             end;
             for I := 1 to NFaces do
             begin
-              Face := TmpFaces[I - 1];
-              Index := Faces.SortedIndexOf(Face);
+              vFace := TmpFaces[I - 1];
+              Index := pFaces.SortedIndexOf(vFace);
               if Index <> -1 then
-                Faces.Delete(index);
-              Index := Face.IndexOfPoint(Grid[I - 1][Cols - 1]);
-              Index := (Index + 1) mod Face.NumberOfpoints;
-              if Face.Point[index] = Grid[I][Cols - 1] then
+                pFaces.Delete(index);
+              Index := vFace.IndexOfPoint(Grid[I - 1][Cols - 1]);
+              Index := (Index + 1) mod vFace.NumberOfpoints;
+              if vFace.Point[index] = Grid[I][Cols - 1] then
               begin
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[I][Cols] := Face.Point[index];
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[I - 1][Cols] := Face.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[I][Cols] := vFace.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[I - 1][Cols] := vFace.Point[index];
               end
               else
               begin
-                Index := Face.IndexOfPoint(Grid[I][Cols - 1]);
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                if Face.Point[index] = Grid[I - 1][Cols - 1] then
+                Index := vFace.IndexOfPoint(Grid[I][Cols - 1]);
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                if vFace.Point[index] = Grid[I - 1][Cols - 1] then
                 begin
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[I - 1][Cols] := Face.Point[index];
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[I][Cols] := Face.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[I - 1][Cols] := vFace.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[I][Cols] := vFace.Point[index];
                 end;
               end;
             end;
@@ -672,14 +672,14 @@ var
                 if Edge1.Crease <> Edge2.Crease then
                   DataOK := False;
               for I := 2 to Rows - 1 do
-                if not Grid[I - 2][Cols].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+                if not Grid[I - 2][Cols].IsRegularNURBSPoint(CheckFaces) then
                   DataOK := False;
             end;
             if not DataOK then
             begin
               // do not add the current row
               for I := 1 to NFaces do
-                Faces.AddSorted(TmpFaces[I - 1]);
+                pFaces.AddSorted(TmpFaces[I - 1]);
               SearchRight := False;
             end
             else
@@ -699,10 +699,10 @@ var
               if not Edge1.Crease then
                 for J := 1 to Edge1.NumberOfFaces do
                 begin
-                  Face := Edge1.Face[J - 1];
-                  if ValidFace(Face) then
+                  vFace := Edge1.Face[J - 1] as TFreeSubdivisionControlFace;
+                  if ValidFace(vFace) then
                   begin
-                    TmpFaces[NFaces] := Face;
+                    TmpFaces[NFaces] := vFace;
                     Inc(NFaces);
                     break;
                   end;
@@ -725,30 +725,30 @@ var
 
             for I := 1 to NFaces do
             begin
-              Face := TmpFaces[I - 1];
-              Index := Faces.SortedIndexOf(Face);
+              vFace := TmpFaces[I - 1];
+              Index := pFaces.SortedIndexOf(vFace);
               if Index <> -1 then
-                Faces.Delete(index);
+                pFaces.Delete(index);
 
-              Index := Face.IndexOfPoint(Grid[1][I - 1]);
-              Index := (Index + 1) mod Face.NumberOfpoints;
-              if Face.Point[index] = Grid[1][I] then
+              Index := vFace.IndexOfPoint(Grid[1][I - 1]);
+              Index := (Index + 1) mod vFace.NumberOfpoints;
+              if vFace.Point[index] = Grid[1][I] then
               begin
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[0][I] := Face.Point[index];
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[0][I - 1] := Face.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[0][I] := vFace.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[0][I - 1] := vFace.Point[index];
               end
               else
               begin
-                Index := Face.IndexOfPoint(Grid[1][I]);
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                if Face.Point[index] = Grid[1][I - 1] then
+                Index := vFace.IndexOfPoint(Grid[1][I]);
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                if vFace.Point[index] = Grid[1][I - 1] then
                 begin
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[0][I - 1] := Face.Point[index];
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[0][I] := Face.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[0][I - 1] := vFace.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[0][I] := vFace.Point[index];
                 end;
               end;
             end;
@@ -766,14 +766,14 @@ var
                 if Edge1.Crease <> Edge2.Crease then
                   DataOK := False;
               for I := 2 to Cols - 1 do
-                if not Grid[0][I - 1].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+                if not Grid[0][I - 1].IsRegularNURBSPoint(CheckFaces) then
                   DataOK := False;
             end;
             if not DataOK then
             begin
               // do not add the current row
               for I := 1 to NFaces do
-                Faces.AddSorted(TmpFaces[I - 1]);
+                pFaces.AddSorted(TmpFaces[I - 1]);
               SearchTop := False;
               for I := 1 to Rows do
               begin
@@ -798,10 +798,10 @@ var
               if not Edge1.Crease then
                 for J := 1 to Edge1.NumberOfFaces do
                 begin
-                  Face := Edge1.Face[J - 1];
-                  if ValidFace(Face) then
+                  vFace := Edge1.Face[J - 1] as TFreeSubdivisionControlFace;
+                  if ValidFace(vFace) then
                   begin
-                    TmpFaces[NFaces] := Face;
+                    TmpFaces[NFaces] := vFace;
                     Inc(NFaces);
                     break;
                   end;
@@ -820,29 +820,29 @@ var
             end;
             for I := 1 to NFaces do
             begin
-              Face := TmpFaces[I - 1];
-              Index := Faces.SortedIndexOf(Face);
+              vFace := TmpFaces[I - 1];
+              Index := pFaces.SortedIndexOf(vFace);
               if Index <> -1 then
-                Faces.Delete(index);
-              Index := Face.IndexOfPoint(Grid[I][1]);
-              Index := (Index + 1) mod Face.NumberOfpoints;
-              if Face.Point[index] = Grid[I - 1][1] then
+                pFaces.Delete(index);
+              Index := vFace.IndexOfPoint(Grid[I][1]);
+              Index := (Index + 1) mod vFace.NumberOfpoints;
+              if vFace.Point[index] = Grid[I - 1][1] then
               begin
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[I - 1][0] := Face.Point[index];
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                Grid[I][0] := Face.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[I - 1][0] := vFace.Point[index];
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                Grid[I][0] := vFace.Point[index];
               end
               else
               begin
-                Index := Face.IndexOfPoint(Grid[I - 1][1]);
-                Index := (Index + 1) mod Face.NumberOfpoints;
-                if Face.Point[index] = Grid[I][1] then
+                Index := vFace.IndexOfPoint(Grid[I - 1][1]);
+                Index := (Index + 1) mod vFace.NumberOfpoints;
+                if vFace.Point[index] = Grid[I][1] then
                 begin
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[I][0] := Face.Point[index];
-                  Index := (Index + 1) mod Face.NumberOfpoints;
-                  Grid[I - 1][0] := Face.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[I][0] := vFace.Point[index];
+                  Index := (Index + 1) mod vFace.NumberOfpoints;
+                  Grid[I - 1][0] := vFace.Point[index];
                 end;
               end;
             end;
@@ -860,14 +860,14 @@ var
                 if Edge1.Crease <> Edge2.Crease then
                   DataOK := False;
               for I := 2 to Rows - 1 do
-                if not Grid[I - 2][0].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+                if not Grid[I - 2][0].IsRegularNURBSPoint(CheckFaces) then
                   DataOK := False;
             end;
             if not DataOK then
             begin
               // do not add the current column
               for I := 1 to NFaces do
-                Faces.AddSorted(TmpFaces[I - 1]);
+                pFaces.AddSorted(TmpFaces[I - 1]);
               SearchLeft := False;
               for I := 1 to Rows do
               begin
@@ -884,22 +884,22 @@ var
 
         if Mode = amNURBS then
         begin
-          if not Grid[0][0].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+          if not Grid[0][0].IsRegularNURBSPoint(CheckFaces) then
           begin
             SearchLeft := False;
             SearchTop := False;
           end;
-          if not Grid[Rows - 1][0].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+          if not Grid[Rows - 1][0].IsRegularNURBSPoint(CheckFaces) then
           begin
             SearchLeft := False;
             SearchBottom := False;
           end;
-          if not Grid[Rows - 1][Cols - 1].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+          if not Grid[Rows - 1][Cols - 1].IsRegularNURBSPoint(CheckFaces) then
           begin
             SearchRight := False;
             SearchBottom := False;
           end;
-          if not Grid[0][Cols - 1].IsRegularNURBSPoint(TFasterList(CheckFaces)) then
+          if not Grid[0][Cols - 1].IsRegularNURBSPoint(CheckFaces) then
           begin
             SearchRight := False;
             SearchTop := False;
@@ -910,17 +910,18 @@ var
 
   begin
     CtrlFaces.Sort;
-    CheckFaces := TFasterListTFreeSubdivisionControlFace.Create;
-    Checkfaces.AddList(CtrlFaces);
+    CheckFaces := TFasterListTFreeSubdivisionFace.Create;
+    for i:=0 to CtrlFaces.Count-1 do
+        Checkfaces.Add(CtrlFaces[i]);
     while CtrlFaces.Count > 0 do
     begin
       // find a corner face
-      Face := FindCornerFace;
+      vFace := FindCornerFace;
       Inc(ErrInd);
 
-      if Face <> nil then
+      if vFace <> nil then
       begin
-        Index := CtrlFaces.SortedIndexOf(Face);
+        Index := CtrlFaces.SortedIndexOf(vFace);
         if Index <> -1 then
           CtrlFaces.Delete(Index);
 
@@ -931,12 +932,12 @@ var
           Setlength(Grid, NRows);
           Setlength(Grid[0], NCols);
           Setlength(Grid[1], NCols);
-          Grid[0][1] := Face.Point[0];
-          Grid[0][0] := Face.Point[1];
-          Grid[1][0] := Face.Point[2];
-          Grid[1][1] := Face.Point[3];
+          Grid[0][1] := vFace.Point[0];
+          Grid[0][0] := vFace.Point[1];
+          Grid[1][0] := vFace.Point[2];
+          Grid[1][1] := vFace.Point[3];
 
-          DoAssemble(Grid, NCols, NRows, TFasterList(CtrlFaces));
+          DoAssemble(Grid, NCols, NRows, CtrlFaces);
 
           Newface.NCols := NCols - 1;
           NewFace.NRows := NRows - 1;
@@ -946,11 +947,11 @@ var
             Setlength(NewFace.Faces[I - 2], NewFace.NCols);
             for J := 2 to NCols do
             begin
-              Face := GetFace(Grid[I - 2][J - 1], Grid[I - 2][J - 2],
+              vFace := GetFace(Grid[I - 2][J - 1], Grid[I - 2][J - 2],
                 Grid[I - 1][J - 2], Grid[I - 1][J - 1]);
-              if Face <> nil then
+              if vFace <> nil then
               begin
-                NewFace.Faces[I - 2][J - 2] := Face;
+                NewFace.Faces[I - 2][J - 2] := vFace;
               end
               else
               begin
@@ -986,30 +987,30 @@ begin
     // use all visible faces
     for I := 1 to Layers.Count do
     begin
-      Layer := Layers[I - 1];
-      if Layer.SurfaceVisible then
+      vLayer := Layers[I - 1];
+      if vLayer.SurfaceVisible then
       begin
-        ToDoList.Capacity := ToDoList.Count + Layer.Count;
-        ToDoList.AddList(Layer.FControlFaces);
+        ToDoList.Capacity := ToDoList.Count + vLayer.Count;
+        ToDoList.AddList(vLayer.FControlFaces);
       end;
     end;
     if ToDoList.Count > 0 then
     begin
       while ToDoList.Count > 0 do
       begin
-        Face := ToDoList[ToDoList.Count - 1];
+        vFace := ToDoList[ToDoList.Count - 1];
         ToDoList.Delete(ToDoList.Count - 1);
         Current := TFasterListTFreeSubdivisionControlFace.Create;
-        Current.Add(Face);
-        FindAttachedFaces(Current, Face);
-        DoneList.AddObject(Face,Current);
+        Current.Add(vFace);
+        FindAttachedFaces(Current, vFace);
+        DoneList.AddObject(vFace,Current);
       end;
       Capacity := 50;
       setlength(AssembledPatches, Capacity);
       // Assign all groups to different layers
       for I := 1 to DoneList.Count do
       begin
-        Current := DoneList.Objects[I - 1];
+        Current := TFasterListTFreeSubdivisionControlFace(DoneList.Objects[I - 1]);
         if Current.Count > 0 then
           AssembleFaces(Current, AssembledPatches, NAssembled);
         FreeAndNil(Current);
@@ -1551,13 +1552,13 @@ begin
 end;{TFreeSubdivisionSurface.SetSubdivisionMode}
 
 
-function TFreeSubdivisionSurface.AddControlFace(Points: array of T3DCoordinate;
+function TFreeSubdivisionSurface.AddControlFace(pPoints: array of T3DCoordinate;
   NoPoints: integer): TFreeSubdivisionControlFace;
 var
   I, J, N: integer;
   P: T3DCoordinate;
-  Edge: TFreeSubdivisionEdge;
-  Point, Prev: TFreeSubdivisionControlPoint;
+  vEdge: TFreeSubdivisionEdge;
+  vPoint, Prev: TFreeSubdivisionControlPoint;
   dist: TFloatType;
   MaxError: double;
   InValidFace: boolean;
@@ -1571,11 +1572,11 @@ begin
     J := I + 1;
     while J < NoPoints do
     begin
-      Dist := DistPP3D(Points[I], Points[j]);
+      Dist := DistPP3D(pPoints[I], pPoints[j]);
       if Dist <= MaxError then
       begin
         for N := J to NoPoints - 2 do
-          Points[N] := Points[N + 1];
+          pPoints[N] := pPoints[N + 1];
         Dec(NoPoints);
       end
       else
@@ -1592,29 +1593,29 @@ begin
     //Prev:=AddControlPoint(Decimals,P1);
     for I := 1 to NoPoints do
     begin
-      P := Points[I - 1];
-      Point := AddControlPoint(P);
-      Result.AddPoint(Point);
+      P := pPoints[I - 1];
+      vPoint := AddControlPoint(P);
+      Result.AddPoint(vPoint);
 
       if I > 1 then
       begin
-        Edge := AddControlEdge(Prev, Point);
-        Edge.AddFace(Result);
+        vEdge := AddControlEdge(Prev, vPoint);
+        vEdge.AddFace(Result);
       end;
-      Prev := Point;
+      Prev := vPoint;
     end;
-    Point := Result.Point[0];
-    Edge := AddControlEdge(Prev, Point);
-    Edge.AddFace(Result);
+    vPoint := Result.Point[0];
+    vEdge := AddControlEdge(Prev, vPoint);
+    vEdge.AddFace(Result);
 
     // Check if a point refers to the same face more than once ==> invalid face
     InValidFace := False;
     for I := 1 to Result.NumberOfpoints do
     begin
       N := 0;
-      Point := Result.Point[I - 1];
-      for J := 1 to Point.NumberOfFaces do
-        if Point.Face[J - 1] = Result then
+      vPoint := Result.Point[I - 1];
+      for J := 1 to vPoint.NumberOfFaces do
+        if vPoint.Face[J - 1] = Result then
           Inc(N);
       if N > 1 then
       begin
@@ -1629,16 +1630,16 @@ begin
       begin
         Result.Point[J - 1].UnreferenceFace(Result);
         if J = 1 then
-          Edge := EdgeExists(Result.Point[Result.NumberOfPoints - 1], Result.Point[J - 1])
+          vEdge := EdgeExists(Result.Point[Result.NumberOfPoints - 1], Result.Point[J - 1])
         else
-          Edge := EdgeExists(Result.Point[J - 2], Result.Point[J - 1]);
-        if Edge <> nil then
+          vEdge := EdgeExists(Result.Point[J - 2], Result.Point[J - 1]);
+        if vEdge <> nil then
         begin
-          Edge.UnreferenceFace(Result);
-          Edge.StartPoint.UnreferenceEdge(Edge);
-          Edge.StartPoint.UnreferenceFace(Result);
-          Edge.EndPoint.UnreferenceEdge(Edge);
-          Edge.EndPoint.UnreferenceFace(Result);
+          vEdge.UnreferenceFace(Result);
+          vEdge.StartPoint.UnreferenceEdge(vEdge);
+          vEdge.StartPoint.UnreferenceFace(Result);
+          vEdge.EndPoint.UnreferenceEdge(vEdge);
+          vEdge.EndPoint.UnreferenceFace(Result);
         end;
       end;
       FreeAndNil(Result);
@@ -1693,43 +1694,43 @@ begin
   ExecuteOnChangeItem(Curve);
 end;{TFreeSubdivisionSurface.AddControlCurve}
 
-function TFreeSubdivisionSurface.AddControlFace(Points: TFasterListTFreeSubdivisionControlPoint;
-  CheckEdges: boolean; Layer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace;
+function TFreeSubdivisionSurface.AddControlFace(pPoints: TFasterListTFreeSubdivisionControlPoint;
+  CheckEdges: boolean; pLayer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace;
 var
   I, J, N: integer;
   Index: integer;
   P1, P2: TFreeSubdivisionControlPoint;
-  Edge: TFreesubdivisionControlEdge;
-  Face: TFreeSubdivisionControlFace;
+  vEdge: TFreesubdivisionControlEdge;
+  vFace: TFreeSubdivisionControlFace;
   FaceExists: boolean;
 begin
 
   Result := nil;
   /////   if Points.Count>2 then if Points[Points.Count-1]=Points[0] then Points.Delete(Points.Count-1);
-  if Points.Count > 2 then
+  if pPoints.Count > 2 then
   begin
-    if Points[Points.Count - 1] = Points[0] then
-      Points.Delete(Points.Count - 1);
+    if pPoints[pPoints.Count - 1] = pPoints[0] then
+      pPoints.Delete(pPoints.Count - 1);
     // Check if another patch with the same vertices exists
     FaceExists := False;
     I := 1;
-    while I <= Points.Count do
+    while I <= pPoints.Count do
     begin
-      P1 := Points[I - 1];
+      P1 := pPoints[I - 1];
       J := 1;
       while J <= P1.NumberOfFaces do
       begin
-        Face := P1.Face[J - 1] as TFreeSubdivisionControlFace;
-        if Face.NumberOfpoints = Points.Count then
+        vFace := P1.Face[J - 1] as TFreeSubdivisionControlFace;
+        if vFace.NumberOfpoints = pPoints.Count then
         begin
           FaceExists := True;
           N := 1;
-          while (N <= Points.Count) and (FaceExists) do
+          while (N <= pPoints.Count) and (FaceExists) do
           begin
-            Index := Face.FPoints.IndexOf(Points[N - 1]);
+            Index := vFace.FPoints.IndexOf(pPoints[N - 1]);
             if Index = -1 then
             begin
-              N := Points.Count;
+              N := pPoints.Count;
               FaceExists := False;
             end
             else
@@ -1752,37 +1753,37 @@ begin
     end;
 
     Result := TFreeSubdivisionControlFace.Create(Self);
-    if Layer = nil then
-      Layer := self.Layer[0];
-    Result.FLayer := layer;
-    Layer.AddControlFace(Result);
-    Result.FPoints.Capacity := Points.Count;
+    if pLayer = nil then
+      pLayer := Self.Layer[0];
+    Result.FLayer := pLayer;
+    pLayer.AddControlFace(Result);
+    Result.FPoints.Capacity := pPoints.Count;
     FControlFaces.Add(Result);
 
-    P1 := Points[Points.Count - 1];
-    for I := 1 to Points.Count do
+    P1 := pPoints[pPoints.Count - 1];
+    for I := 1 to pPoints.Count do
     begin
-      P2 := Points[I - 1];
+      P2 := pPoints[I - 1];
       P2.FFaces.Add(Result);
       Result.FPoints.Add(P2);
-      Edge := EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
-      if Edge = nil then
+      vEdge := EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
+      if vEdge = nil then
       begin
-        Edge := TFreeSubdivisionControlEdge.Create(Self);
-        Edge.FStartpoint := P1;
-        Edge.FEndpoint := P2;
-        Edge.FControlEdge := True;
-        P1.AddEdge(Edge);
-        P2.AddEdge(Edge);
-        FControlEdges.Add(Edge);
-        Edge.AddFace(Result);
-        Edge.Crease := False;
+        vEdge := TFreeSubdivisionControlEdge.Create(Self);
+        vEdge.FStartpoint := P1;
+        vEdge.FEndpoint := P2;
+        vEdge.FControlEdge := True;
+        P1.AddEdge(vEdge);
+        P2.AddEdge(vEdge);
+        FControlEdges.Add(vEdge);
+        vEdge.AddFace(Result);
+        vEdge.Crease := False;
       end
       else
       begin
-        Edge.AddFace(Result);
+        vEdge.AddFace(Result);
         if CheckEdges then
-          Edge.Crease := Edge.Crease or (Edge.NumberOfFaces < 2);
+          vEdge.Crease := vEdge.Crease or (vEdge.NumberOfFaces < 2);
       end;
       P1 := P2;
     end;
@@ -1801,42 +1802,42 @@ begin
     end;
 end;{TFreeSubdivisionSurface.AddControlFace}
 
-function TFreeSubdivisionSurface.AddControlFaceN(Points: TFasterListTFreeSubdivisionControlPoint;
-  CheckEdges: boolean; Layer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace;
+function TFreeSubdivisionSurface.AddControlFaceN(pPoints: TFasterListTFreeSubdivisionControlPoint;
+  CheckEdges: boolean; pLayer: TFreeSubdivisionLayer): TFreeSubdivisionControlFace;
 var
   I, J, N: integer;
   Index: integer;
   P1, P2: TFreeSubdivisionControlPoint;
-  Edge: TFreesubdivisionControlEdge;
-  Face: TFreeSubdivisionControlFace;
+  vEdge: TFreesubdivisionControlEdge;
+  vFace: TFreeSubdivisionControlFace;
   FaceExists: boolean;
 begin
 
   Result := nil;
-  if Points.Count > 2 then
+  if pPoints.Count > 2 then
   begin
-    if Points[Points.Count - 1] = Points[0] then
-      Points.Delete(Points.Count - 1);
+    if pPoints[pPoints.Count - 1] = pPoints[0] then
+      pPoints.Delete(pPoints.Count - 1);
     // Check if another patch with the same vertices exists
     FaceExists := False;
     I := 1;
-    while I <= Points.Count do
+    while I <= pPoints.Count do
     begin
-      P1 := Points[I - 1];
+      P1 := pPoints[I - 1];
       J := 1;
       while J <= P1.NumberOfFaces do
       begin
-        Face := P1.Face[J - 1] as TFreeSubdivisionControlFace;
-        if Face.NumberOfpoints = Points.Count then
+        vFace := P1.Face[J - 1] as TFreeSubdivisionControlFace;
+        if vFace.NumberOfPoints = pPoints.Count then
         begin
           FaceExists := True;
           N := 1;
-          while (N <= Points.Count) and (FaceExists) do
+          while (N <= pPoints.Count) and (FaceExists) do
           begin
-            Index := Face.FPoints.IndexOf(Points[N - 1]);
+            Index := vFace.FPoints.IndexOf(pPoints[N - 1]);
             if Index = -1 then
             begin
-              N := Points.Count;
+              N := pPoints.Count;
               FaceExists := False;
             end
             else
@@ -1859,34 +1860,34 @@ begin
     end;
 
     Result := TFreeSubdivisionControlFace.Create(Self);
-    if Layer = nil then
-      Layer := self.Layer[0];
-    Result.FLayer := layer;
-    Layer.AddControlFace(Result);
-    Result.FPoints.Capacity := Points.Count;
+    if pLayer = nil then
+      pLayer := Self.Layer[0];
+    Result.FLayer := pLayer;
+    pLayer.AddControlFace(Result);
+    Result.FPoints.Capacity := pPoints.Count;
     FControlFaces.Add(Result);
 
-    P1 := Points[Points.Count - 1];
-    for I := 1 to Points.Count do
+    P1 := pPoints[pPoints.Count - 1];
+    for I := 1 to pPoints.Count do
     begin
-      P2 := Points[I - 1];
+      P2 := pPoints[I - 1];
       P2.FFaces.Add(Result);
       Result.FPoints.Add(P2);
-      Edge := EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
-      if Edge = nil then
+      vEdge := EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
+      if vEdge = nil then
       begin
-        Edge := TFreesubdivisionControlEdge.Create(Self);
-        Edge.FStartpoint := P1;
-        Edge.FEndpoint := P2;
-        Edge.FControlEdge := True;
-        P1.FEdges.Add(Edge);
-        P2.FEdges.Add(Edge);
-        FControlEdges.Add(Edge);
-        Edge.FFaces.Add(Result);
+        vEdge := TFreesubdivisionControlEdge.Create(Self);
+        vEdge.FStartpoint := P1;
+        vEdge.FEndpoint := P2;
+        vEdge.FControlEdge := True;
+        P1.FEdges.Add(vEdge);
+        P2.FEdges.Add(vEdge);
+        FControlEdges.Add(vEdge);
+        vEdge.FFaces.Add(Result);
       end
       else
       begin
-        Edge.AddFace(Result);
+        vEdge.AddFace(Result);
       end;
       P1 := P2;
     end;
@@ -1901,28 +1902,28 @@ end;{TFreeSubdivisionSurface.AddControlFaceN}
 
 
 
-function TFreeSubdivisionSurface.AddControlFace(Points: TFasterListTFreeSubdivisionControlPoint;
+function TFreeSubdivisionSurface.AddControlFace(pPoints: TFasterListTFreeSubdivisionControlPoint;
   CheckEdges: boolean): TFreeSubdivisionControlFace;
 begin
-  Result := AddControlFace(Points, CheckEdges, nil);
+  Result := AddControlFace(pPoints, CheckEdges, nil);
 end;{TFreeSubdivisionSurface.AddControlFace}
 
-function TFreeSubdivisionSurface.AddControlFace(Points: TList;
+function TFreeSubdivisionSurface.AddControlFace(pPoints: TList;
   CheckEdges: boolean): TFreeSubdivisionControlFace;
 var
   Tmp: TFasterListTFreeSubdivisionControlPoint;
   I: integer;
 begin
   Tmp := TFasterListTFreeSubdivisionControlPoint.Create;
-  Tmp.Capacity := Points.Count;
-  for I := 1 to Points.Count do
-    Tmp.Add(Points[I - 1]);
+  Tmp.Capacity := pPoints.Count;
+  for I := 1 to pPoints.Count do
+    Tmp.Add(TFreeSubdivisionControlPoint(pPoints[I - 1]));
   Result := AddControlFace(Tmp, CheckEdges, nil);
   FreeAndNil(Tmp);
 end;{TFreeSubdivisionSurface.AddControlFace}
 
 function TFreeSubdivisionSurface.CheckIntegrity:boolean;
-var  i: integer; b:boolean; layer:TFreeSubdivisionLayer;
+var  i: integer; b:boolean; pLayer:TFreeSubdivisionLayer;
   CEdge:TFreeSubdivisionControlEdge;
   //Edge:TFreeSubdivisionEdge;
   //CPoint:TFreeSubdivisionControlPoint;
@@ -1931,20 +1932,20 @@ begin
   result:=true;
   for i := 0 to NumberOfLayers-1 do
     begin
-      layer := self.Layer[I];
-      if layer = nil then
+      pLayer := Self.Layer[I];
+      if pLayer = nil then
       begin
         logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: Layer[%d] = nil',[I]));
         result:= result and false;
         continue;
       end;
-      if not (layer is TFreeSubdivisionLayer) then
+      if not (pLayer is TFreeSubdivisionLayer) then
       begin
         logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: Layer[%d] not TFreeSubdivisionLayer',[I]));
         result:= result and false;
         continue;
       end;
-      b:=Layer.CheckIntegrity;
+      b:=pLayer.CheckIntegrity;
       if not b then logger.Error(Format('TFreeSubdivisionSurface.CheckIntegrity: In Layer[%d]',[I]));
       result:= result and b;
     end;
@@ -1974,7 +1975,7 @@ end;
 procedure TFreeSubdivisionSurface.Clear;
 var
   I: integer;
-  Layer: TFreeSubdivisionLayer;
+  vLayer: TFreeSubdivisionLayer;
 begin
   inherited Clear;
   for I := 0 to FControlPointGroups.Count-1 do
@@ -2019,8 +2020,8 @@ begin
   FSelectedControlFaces.Clear;
   FSelectedControlCurves.Clear;
   // Add one default layer and set it to active
-  Layer := AddNewLayer;
-  ActiveLayer := Layer;
+  vLayer := AddNewLayer;
+  ActiveLayer := vLayer;
   Built := False;
   FDrawMirror := False;
   FShowControlNet := True;
@@ -2819,18 +2820,18 @@ begin
   end;
 end;{TFreeSubdivisionSurface.ExportObjFile}
 
-procedure TFreeSubdivisionSurface.Extents(var Min, Max: T3DCoordinate);
+procedure TFreeSubdivisionSurface.Extents(var pMin, pMax: T3DCoordinate);
 var
   I: integer;
 begin
   if not Built then
     Rebuild;
 
-  MinMax(FMin, Min, Max);
-  MinMax(FMax, Min, Max);
+  MinMax(FMin, pMin, pMax);
+  MinMax(FMax, pMin, pMax);
 
   for I := 0 to FControlPoints.Count-1 do
-    MinMax(ControlPoint[i].FCoordinate, Min, Max);
+    MinMax(ControlPoint[i].FCoordinate, pMin, pMax);
 
   {
   if NumberOfControlFaces > 0 then
@@ -2867,30 +2868,30 @@ begin
   end;
 end;{TFreeSubdivisionSurface.ExtrudePoints}
 
-procedure TFreeSubdivisionSurface.ExtrudeEdges(Edges: TFasterListTFreeSubdivisionEdge;
+procedure TFreeSubdivisionSurface.ExtrudeEdges(pEdges: TFasterListTFreeSubdivisionEdge;
   Direction: T3DCoordinate);
 var
   I, INdex: integer;
-  Edge, Tmp: TFreesubdivisionControlEdge;
+  vEdge, Tmp: TFreesubdivisionControlEdge;
   Vertices: TFasterListTFreeSubdivisionControlPoint;
   Newedges: TFasterListTFreeSubdivisionControlEdge;
   Points: TFasterListTFreeSubdivisionControlPoint;
   Point1: TFreeSubdivisionControlPoint;
   Point2: TFreeSubdivisionControlPoint;
-  Face: TFreeSubdivisionControlFace;
+  vFace: TFreeSubdivisionControlFace;
   NoEdges: integer;
   NoVertices: integer;
   //OrigStartPointVertexType, OrigEndPointVertexType: TFreeVertexType;
 begin
   Vertices := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
   // first assemble all points
-  for I := 0 to Edges.Count - 1 do
+  for I := 0 to pEdges.Count - 1 do
   begin
-    Edge := Edges[I] as TFreeSubdivisionControlEdge;
-    if Vertices.IndexOf(Edge.StartPoint) = -1 then
-      Vertices.Add(Edge.StartPoint);
-    if Vertices.IndexOf(Edge.EndPoint) = -1 then
-      Vertices.Add(Edge.EndPoint);
+    vEdge := pEdges[I] as TFreeSubdivisionControlEdge;
+    if Vertices.IndexOf(vEdge.StartPoint) = -1 then
+      Vertices.Add(vEdge.StartPoint);
+    if Vertices.IndexOf(vEdge.EndPoint) = -1 then
+      Vertices.Add(vEdge.EndPoint);
   end;
   NoEdges := FControlEdges.Count;
   NoVertices := FControlPoints.Count;
@@ -2907,38 +2908,38 @@ begin
       Vertices.Objects[I] := Point2;
     end;
     Points := TFasterListTFreeSubdivisionControlPoint.Create;
-    for I := 0 to Edges.Count - 1 do
+    for I := 0 to pEdges.Count - 1 do
     begin
-      Edge := Edges[I] as TFreeSubdivisionControlEdge;
-      //OrigStartPointVertexType := Edge.StartPoint.VertexType;
-      //OrigEndPointVertexType := Edge.EndPoint.VertexType;
+      vEdge := pEdges[I] as TFreeSubdivisionControlEdge;
+      //OrigStartPointVertexType := vEdge.StartPoint.VertexType;
+      //OrigEndPointVertexType := vEdge.EndPoint.VertexType;
       Points.Clear;
-      Points.Add(Edge.EndPoint);
-      Points.Add(Edge.StartPoint);
+      Points.Add(vEdge.EndPoint);
+      Points.Add(vEdge.StartPoint);
       Point1 := nil;
       Point2 := nil;
-      Index := Vertices.IndexOf(Edge.StartPoint);
+      Index := Vertices.IndexOf(vEdge.StartPoint);
       if Index <> -1 then
       begin
-        Point1 := Vertices.Objects[index];
+        Point1 := TFreeSubdivisionControlPoint(Vertices.Objects[index]);
         Points.Add(Point1);
       end;
 
-      Index := Vertices.IndexOf(Edge.EndPoint);
+      Index := Vertices.IndexOf(vEdge.EndPoint);
       if Index <> -1 then
       begin
-        Point2 := Vertices.Objects[index];
+        Point2 := TFreeSubdivisionControlPoint(Vertices.Objects[index]);
         Points.Add(Point2);
       end;
 
-      Face := AddControlFace(Points, false);
-      Face.Layer := self.ActiveLayer;
+      vFace := AddControlFace(Points, false);
+      vFace.Layer := self.ActiveLayer;
 
-      Tmp := EdgeExists(Edge.StartPoint, Point1) as TFreeSubdivisionControlEdge;
+      Tmp := EdgeExists(vEdge.StartPoint, Point1) as TFreeSubdivisionControlEdge;
       if Tmp <> nil then
         Tmp.Crease := False;
 
-      Tmp := EdgeExists(Edge.EndPoint, Point2) as TFreeSubdivisionControlEdge;
+      Tmp := EdgeExists(vEdge.EndPoint, Point2) as TFreeSubdivisionControlEdge;
       if Tmp <> nil then
         Tmp.Crease := False;
      {
@@ -2951,26 +2952,26 @@ begin
 
       if (OrigStartPointVertexType = svCorner) and (Point1 <> nil) then
       begin
-        Tmp := EdgeExists(Edge.StartPoint, Point1) as TFreeSubdivisionControlEdge;
+        Tmp := EdgeExists(vEdge.StartPoint, Point1) as TFreeSubdivisionControlEdge;
         if Tmp <> nil then
           Tmp.Crease := True;
       end;
 
       if (OrigEndPointVertexType = svCorner) and (Point2 <> nil) then
       begin
-        Tmp := EdgeExists(Edge.EndPoint, Point2) as TFreeSubdivisionControlEdge;
+        Tmp := EdgeExists(vEdge.EndPoint, Point2) as TFreeSubdivisionControlEdge;
         if Tmp <> nil then
           Tmp.Crease := True;
       end;
       }
-      ///Edge.Crease := True;
+      ///vEdge.Crease := True;
     end;
     FreeAndNil(Points);
 
-    Edges.Clear;
-    // return the new edges
+    pEdges.Clear;
+    // return the new pEdges
     for I := 1 to NewEdges.Count do
-      Edges.Add(Newedges[I - 1]);
+      pEdges.Add(Newedges[I - 1]);
     FreeAndNil(Newedges);
   finally
     FreeAndNil(Vertices);
@@ -3378,12 +3379,12 @@ begin
   FSelectedControlFaces := TFasterListTFreeSubdivisionControlFace.Create(true,false);
   FSelectedControlCurves := TFasterListTFreeSubdivisionControlCurve.Create(true,false);
 
-  FOnChangeActiveControlPointListeners := TMethodList<TNotifyEvent>.Create;
-  FOnChangeActiveControlEdgeListeners := TMethodList<TNotifyEvent>.Create;
-  FOnChangeActiveControlFaceListeners := TMethodList<TNotifyEvent>.Create;
-  FOnChangeActiveControlCurveListeners := TMethodList<TNotifyEvent>.Create;
-  FOnSelectItemListeners:= TMethodList<TNotifyEvent>.Create;
-  FOnChangeItemListeners:= TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlPointListeners := specialize TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlEdgeListeners := specialize TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlFaceListeners := specialize TMethodList<TNotifyEvent>.Create;
+  FOnChangeActiveControlCurveListeners := specialize TMethodList<TNotifyEvent>.Create;
+  FOnSelectItemListeners:= specialize TMethodList<TNotifyEvent>.Create;
+  FOnChangeItemListeners:= specialize TMethodList<TNotifyEvent>.Create;
 
   FControlPointSize := 4;
   FEdgeColor := clDkGray;
@@ -3728,7 +3729,7 @@ var
   Point, P1, P2: TFreeSubdivisionControlPoint;
   Edge: TFreeSubdivisionControlEdge;
   Face: TFreeSubdivisionControlFace;
-  Layer: TFreeSubdivisionLayer;
+  vLayer: TFreeSubdivisionLayer;
 
   function NewPoint(P: T3DCoordinate): TFreeSubdivisionControlPoint;
   begin
@@ -3739,34 +3740,34 @@ var
 
 begin
   FIsLoading:=true;
-  // Read layer information
+  // Read vLayer information
   Inc(LineNr);
   Str := Strings[LineNr];
   N := ReadIntFromStr(LineNr, Str);
   for I := 1 to N do
   begin
     if I > NumberOfLayers then
-      Layer := self.AddNewLayer
+      vLayer := self.AddNewLayer
     else
-      Layer := self.Layer[I - 1];
+      vLayer := self.Layer[I - 1];
     Inc(LineNr);
-    Layer.FDescription := Strings[LineNr];
+    vLayer.FDescription := Strings[LineNr];
     ;
     Inc(LineNr);
     Str := Strings[LineNr];
-    Layer.FLayerID := ReadIntFromstr(LineNr, Str);
-    if Layer.FLayerID > FLastusedLayerID then
-      FLastusedLayerID := Layer.FLayerID;
-    Layer.FColor := ReadIntFromstr(LineNr, Str);
-    Layer.FSurfaceVisible := ReadBoolFromStr(LineNr, Str);
-    Layer.FDevelopable := ReadBoolFromStr(LineNr, Str);
-    Layer.FSymmetric := ReadBoolFromStr(LineNr, Str);
-    Layer.FSymmetric := True;
-    Layer.FUseForIntersections := ReadBoolFromStr(LineNr, Str);
-    Layer.FUseInHydrostatics := ReadBoolFromStr(LineNr, Str);
-    Layer.FShowInLinesplan := ReadBoolFromStr(LineNr, Str);
-    Layer.FMaterialDensity := ReadFloatFromStr(LineNr, Str);
-    Layer.FThickness := ReadFloatFromStr(LineNr, Str);
+    vLayer.FLayerID := ReadIntFromstr(LineNr, Str);
+    if vLayer.FLayerID > FLastusedLayerID then
+      FLastusedLayerID := vLayer.FLayerID;
+    vLayer.FColor := ReadIntFromstr(LineNr, Str);
+    vLayer.FSurfaceVisible := ReadBoolFromStr(LineNr, Str);
+    vLayer.FDevelopable := ReadBoolFromStr(LineNr, Str);
+    vLayer.FSymmetric := ReadBoolFromStr(LineNr, Str);
+    vLayer.FSymmetric := True;
+    vLayer.FUseForIntersections := ReadBoolFromStr(LineNr, Str);
+    vLayer.FUseInHydrostatics := ReadBoolFromStr(LineNr, Str);
+    vLayer.FShowInLinesplan := ReadBoolFromStr(LineNr, Str);
+    vLayer.FMaterialDensity := ReadFloatFromStr(LineNr, Str);
+    vLayer.FThickness := ReadFloatFromStr(LineNr, Str);
   end;
   if Assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
@@ -3829,8 +3830,8 @@ begin
     begin
       AddNewLayer;
     end;
-    Layer := FLayers[Index];
-    Layer.AddControlFace(Face);
+    vLayer := FLayers[Index];
+    vLayer.AddControlFace(Face);
   end;
   Built := False;
   FInitialized := True;
@@ -3966,9 +3967,9 @@ var
   I, J: integer;
   CtrlFace: TFreesubdivisionControlFace;
   IntersectedFaces: TFasterListTFreeSubdivisionFace;
-  Min, Max: T3DCoordinate;
+  vMin, vMax: T3DCoordinate;
   UseLayer: boolean;
-  Layer: TFreeSubdivisionLayer;
+  vLayer: TFreeSubdivisionLayer;
 begin
   Result := False;
   if not Built then
@@ -3978,18 +3979,18 @@ begin
   IntersectedFaces := TFasterListTFreeSubdivisionFace.Create;
   for I := 1 to NumberOfLayers do
   begin
-    Layer := self.Layer[I - 1];
+    vLayer := self.Layer[I - 1];
     if HydrostaticsLayersOnly then
-      UseLayer := Layer.UseInHydrostatics
+      UseLayer := vLayer.UseInHydrostatics
     else
-      UseLayer := Layer.UseForIntersections;
+      UseLayer := vLayer.UseForIntersections;
     if UseLayer then
-      for J := 1 to Layer.Count do
+      for J := 1 to vLayer.Count do
       begin
-        CtrlFace := Layer.Items[J - 1];
-        Min := CtrlFace.Min;
-        Max := CtrlFace.MAx;
-        if PlaneIntersectsBox(Min, Max, Plane) then
+        CtrlFace := vLayer.Items[J - 1];
+        vMin := CtrlFace.Min;
+        vMax := CtrlFace.MAx;
+        if PlaneIntersectsBox(vMin, vMax, Plane) then
           IntersectedFaces.Add(CtrlFace);
       end;
   end;
@@ -4208,15 +4209,15 @@ end;{TFreeSubdivisionSurface.IsolateEdges}
 procedure TFreeSubdivisionSurface.LoadBinary(Source: TFreeFileBuffer);
 var
   I, N: integer;
-  Point: TFreeSubdivisionControlPoint;
-  Edge: TFreeSubdivisionControlEdge;
-  Face: TFreeSubdivisionControlFace;
-  Curve: TFreeSubdivisionControlCurve;
-  Layer: TFreeSubdivisionLayer;
+  vPoint: TFreeSubdivisionControlPoint;
+  vEdge: TFreeSubdivisionControlEdge;
+  vFace: TFreeSubdivisionControlFace;
+  vCurve: TFreeSubdivisionControlCurve;
+  vLayer: TFreeSubdivisionLayer;
   saveOnSelectItem:TNotifyEvent=nil;
-  FIsLoading: Boolean;
+  vIsLoading: Boolean;
 begin
-  FIsLoading := true;
+  vIsLoading := true;
 
   // First load layerdata
   Source.LoadInteger(N);
@@ -4229,8 +4230,8 @@ begin
     FLayers.Capacity := N;
     for I := 1 to N do
     begin
-      Layer := AddNewLayer;
-      Layer.LoadBinary(Source);
+      vLayer := AddNewLayer;
+      vLayer.LoadBinary(Source);
     end;
   end
   else
@@ -4239,7 +4240,7 @@ begin
   end;
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
-  // Read index of active layer
+  // Read index of active vLayer
   Source.LoadInteger(N);
   ActiveLayer := self.Layer[N];
   if assigned(FOnChangeActiveLayer) then
@@ -4249,20 +4250,20 @@ begin
   FControlPoints.Capacity := N;
   for I := 1 to N do
   begin
-    Point := TFreeSubdivisionControlPoint.Create(self);
-    Point.LoadBinary(Source);
-    //Point.Name:=IntToStr(I-1); //for debug. assign point numbers (as they are in file) as names
-    FControlPoints.Add(Point);
+    vPoint := TFreeSubdivisionControlPoint.Create(self);
+    vPoint.LoadBinary(Source);
+    //vPoint.Name:=IntToStr(I-1); //for debug. assign vPoint numbers (as they are in file) as names
+    FControlPoints.Add(vPoint);
   end;
   // Read controlEdges
   Source.LoadInteger(N);
   FControlEdges.Capacity := N;
   for I := 1 to N do
   begin
-    Edge := TFreeSubdivisionControlEdge.Create(self);
-    Edge.FControlEdge := True;
-    Edge.LoadBinary(Source);
-    FControlEdges.Add(Edge);
+    vEdge := TFreeSubdivisionControlEdge.Create(self);
+    vEdge.FControlEdge := True;
+    vEdge.LoadBinary(Source);
+    FControlEdges.Add(vEdge);
   end;
   if Source.Version >= fv195 then
   begin
@@ -4271,9 +4272,9 @@ begin
     FControlCurves.Capacity := N;
     for I := 1 to N do
     begin
-      Curve := TFreeSubdivisionControlCurve.Create(self);
-      Curve.LoadBinary(Source);
-      FControlCurves.Add(Curve);
+      vCurve := TFreeSubdivisionControlCurve.Create(self);
+      vCurve.LoadBinary(Source);
+      FControlCurves.Add(vCurve);
     end;
   end;
 
@@ -4282,9 +4283,9 @@ begin
   FControlFaces.Capacity := N;
   for I := 1 to N do
   begin
-    Face := TFreeSubdivisionControlFace.Create(self);
-    Face.LoadBinary(Source);
-    FControlFaces.Add(Face);
+    vFace := TFreeSubdivisionControlFace.Create(self);
+    vFace.LoadBinary(Source);
+    FControlFaces.Add(vFace);
   end;
 
   Built := False;
@@ -4298,17 +4299,17 @@ begin
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, self.Layer[0]);
 
-  FIsLoading := false;
+  vIsLoading := false;
 end;{TFreeSubdivisionSurface.LoadBinary}
 
 procedure TFreeSubdivisionSurface.LoadFromStream(var LineNr: integer; Strings: TStringList);
 var
   Str: string;
   I, N: integer;
-  Point: TFreeSubdivisionControlPoint;
-  Edge: TFreeSubdivisionControlEdge;
-  Face: TFreeSubdivisionControlFace;
-  Layer: TFreeSubdivisionLayer;
+  vPoint: TFreeSubdivisionControlPoint;
+  vEdge: TFreeSubdivisionControlEdge;
+  vFace: TFreeSubdivisionControlFace;
+  vLayer: TFreeSubdivisionLayer;
 begin
   FIsLoading := true;
   // First read layerdata
@@ -4324,8 +4325,8 @@ begin
     FLayers.Capacity := N;
     for I := 1 to N do
     begin
-      Layer := AddNewLayer;
-      Layer.LoadFromStream(LineNr, Strings);
+      vLayer := AddNewLayer;
+      vLayer.LoadFromStream(LineNr, Strings);
     end;
   end
   else
@@ -4334,7 +4335,7 @@ begin
   end;
   if assigned(FOnChangeLayerData) then
     FOnChangeLayerData(self);
-  // Read index of active layer
+  // Read index of active vLayer
   Inc(LineNr);
   Str := Strings[LineNr];
   N := ReadIntFromStr(LineNr, Str);
@@ -4348,9 +4349,9 @@ begin
   N := ReadIntFromStr(LineNr, Str);
   for I := 1 to N do
   begin
-    Point := TFreeSubdivisionControlPoint.Create(self);
-    FControlPoints.Add(Point);
-    Point.LoadFromStream(LineNr, Strings);
+    vPoint := TFreeSubdivisionControlPoint.Create(self);
+    FControlPoints.Add(vPoint);
+    vPoint.LoadFromStream(LineNr, Strings);
   end;
 
   // Read controlEdges
@@ -4359,10 +4360,10 @@ begin
   N := ReadIntFromStr(LineNr, Str);
   for I := 1 to N do
   begin
-    Edge := TFreeSubdivisionControlEdge.Create(self);
-    Edge.FControlEdge := True;
-    FControlEdges.Add(Edge);
-    Edge.LoadFromStream(LineNr, Strings);
+    vEdge := TFreeSubdivisionControlEdge.Create(self);
+    vEdge.FControlEdge := True;
+    FControlEdges.Add(vEdge);
+    vEdge.LoadFromStream(LineNr, Strings);
   end;
   // Read controlFaces
   Inc(LineNr);
@@ -4370,9 +4371,9 @@ begin
   N := ReadIntFromStr(LineNr, Str);
   for I := 1 to N do
   begin
-    Face := TFreeSubdivisionControlFace.Create(self);
-    FControlFaces.Add(Face);
-    Face.LoadFromStream(LineNr, Strings);
+    vFace := TFreeSubdivisionControlFace.Create(self);
+    FControlFaces.Add(vFace);
+    vFace.LoadFromStream(LineNr, Strings);
   end;
   Built := False;
   FInitialized := True;
@@ -4392,12 +4393,12 @@ var
   CoordInfo: TVRMLCoordinate3;
   FaceInfo: TVRMLIndexedFaceSet;
   V3Point: T3DCoordinate;
-  Face: TIntArray;
-  Layer: TFreeSubdivisionLayer;
+  vFace: TIntArray;
+  vLayer: TFreeSubdivisionLayer;
   FacePoints: TFasterListTFreeSubdivisionControlPoint;
   AddedCtrlPts: TFasterListTVRMLCoordinate3;
   CtrPoint: TFreeSubdivisionControlPoint;
-  Points: TFasterListTFreeSubdivisionControlPoint;
+  vPoints: TFasterListTFreeSubdivisionControlPoint;
   tolerance:double;
   VRMLVersion: String;
 begin
@@ -4436,14 +4437,14 @@ begin
         for I := 0 to AddedCtrlPts.Count-1 do
         begin
           CoordInfo := AddedCtrlPts[I];
-          Points := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
-          Points.Capacity := CoordInfo.Count;
-          AddedCtrlPts.Objects[I] := Points;
+          vPoints := TFasterListTFreeSubdivisionControlPoint.Create(true,false);
+          vPoints.Capacity := CoordInfo.Count;
+          AddedCtrlPts.Objects[I] := vPoints;
           for J := 0 to CoordInfo.Count-1 do
           begin
             V3Point := CoordInfo.Point[J];
             CtrPoint := AddControlPoint(V3Point,CoordInfo.Precision);
-            Points.Add(CtrPoint);
+            vPoints.Add(CtrPoint);
           end;
         end;
 
@@ -4456,27 +4457,27 @@ begin
           Index := AddedCtrlPts.IndexOf(FaceInfo.Coordinates);
           if Index <> -1 then
           begin
-            Points := AddedCtrlPts.Objects[Index];
-            Layer := AddNewLayer;
+            vPoints := AddedCtrlPts.Objects[Index];
+            vLayer := AddNewLayer;
             for J := 1 to FaceInfo.Count do
             begin
-              Face := FaceInfo.Face[J - 1];
-              if Face <> nil then
+              vFace := FaceInfo.Face[J - 1];
+              if vFace <> nil then
               begin
-                N := length(Face);
+                N := length(vFace);
                 FacePoints.Clear;
                 for K := 1 to N do
                 begin
-                  Index := Face[K - 1];
-                  if (Index >= 0) and (Index < Points.Count) then
+                  Index := vFace[K - 1];
+                  if (Index >= 0) and (Index < vPoints.Count) then
                   begin
-                    CtrPoint := Points[Index] as TFreeSubdivisionControlpoint;
+                    CtrPoint := vPoints[Index] as TFreeSubdivisionControlpoint;
                     if FacePoints.IndexOf(CtrPoint) = -1 then
                       FacePoints.Add(CtrPoint);
                   end;
                 end;
                 if FacePoints.Count > 2 then
-                  AddControlFaceN(FacePoints, True, Layer);
+                  AddControlFaceN(FacePoints, True, vLayer);
               end;
             end;
           end;
@@ -4485,8 +4486,8 @@ begin
 
         for I := 1 to AddedCtrlPts.Count do
         begin
-          Points := AddedCtrlPts.Objects[I - 1];
-          FreeAndNil(Points);
+          vPoints := AddedCtrlPts.Objects[I - 1];
+          FreeAndNil(vPoints);
         end;
         FreeAndNil(AddedCtrlPts);
 
@@ -4638,7 +4639,9 @@ begin
     begin
       Curve := ControlCurve[I];
       // TODO: investigate why we add ControlPoints as Points, later they can be deleted.
-      Curve.FSubdividedPoints.AddList(TFasterList(Curve.FControlPoints));
+      //Curve.FSubdividedPoints.AddList(Curve.FControlPoints);
+      for j:=0 to Curve.FControlPoints.Count-1 do
+        Curve.FSubdividedPoints.Add(TFreeSubdivisionPoint(Curve.FControlPoints[i]))
     end;
 
     if not self.CheckIntegrity
@@ -5007,10 +5010,10 @@ var
   I, J, FaceCnt, CFaceCnt, X: integer;
   CtrlFace: TFreeSubdivisionControlFace;
   CtrlFaceChild: TFreeSubdivisionFace;
-  Edge: TFreeSubdivisionEdge;
+  vEdge: TFreeSubdivisionEdge;
   CtrlEdge: TFreeSubdivisionControlEdge;
   CtrlEdgeChild: TFreeSubdivisionEdge;
-  P,PSD,Point: TFreeSubdivisionPoint;
+  P,PSD,vPoint: TFreeSubdivisionPoint;
   //    NewPointList  : TFasterListTFreeSubdivisionControlPoint;
   NewEdgeList: TFasterListTFreeSubdivisionEdge;
   TmpPoints: array of T3DCoordinate;
@@ -5037,7 +5040,7 @@ begin
 
   // Create the list with new facepoints and a reference to the original face
   RefFaces := TFasterListTFreeSubdivisionFace.Create(true,true);//(false,false);
-  // Create the list with new edgepoints and a reference to the original edge
+  // Create the list with new edgepoints and a reference to the original vEdge
   RefEdges := TFasterListTFreeSubdivisionEdge.Create(true,true);//(false,false);
   // Create the list with new vertexpoints and a reference to the original vertex
   RefVertexPoints := TFasterListTFreeSubdivisionPoint.Create(true,true);//(false,false);
@@ -5059,21 +5062,21 @@ begin
       end;
       for J := 0 to CtrlFace.FEdges.Count-1 do     // not needed. no edges at this stage
         begin
-        Edge := CtrlFace.FEdges[J];
-        Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
-        //Edge.PrintDebug;
-        PSD:=Edge.CalculateEdgeCenterPoint;
+        vEdge := CtrlFace.FEdges[J];
+        vEdge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+        //vEdge.PrintDebug;
+        PSD:=vEdge.CalculateEdgeCenterPoint;
         PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
-        RefEdges.AddObject(Edge, PSD);
+        RefEdges.AddObject(vEdge, PSD);
         end;
       for J := 0 to CtrlFace.FControlDescendantEdges.Count-1 do // not needed.  no edges at this stage
         begin
-        Edge := CtrlFace.FControlDescendantEdges[J];
-        Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
-        //Edge.PrintDebug;
-        PSD:=Edge.CalculateEdgeCenterPoint;
+        vEdge := CtrlFace.FControlDescendantEdges[J];
+        vEdge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+        //vEdge.PrintDebug;
+        PSD:=vEdge.CalculateEdgeCenterPoint;
         PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
-        RefEdges.AddObject(Edge, PSD);
+        RefEdges.AddObject(vEdge, PSD);
         end;
     end;
   end
@@ -5098,11 +5101,11 @@ begin
         end;
       for J := 0 to CtrlFace.EdgeCount-1 do
         begin
-        Edge := CtrlFace.Edge[J];
-        Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
-        PSD:=Edge.CalculateEdgeCenterPoint;
+        vEdge := CtrlFace.Edge[J];
+        vEdge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+        PSD:=vEdge.CalculateEdgeCenterPoint;
         PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
-        RefEdges.AddObject(Edge, PSD);
+        RefEdges.AddObject(vEdge, PSD);
         end;
     end;
   end;
@@ -5115,23 +5118,23 @@ begin
   RefEdges.Capacity := RefEdges.Count + NumberOfSubDivEdges;
   for I := 0 to NumberOfSubDivEdges-1 do
     begin
-    Edge := self.SubDivEdge[I];
-    if Edge.FFaces.Count=0 then continue;    ///
-    Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
-    PSD:=Edge.CalculateEdgeCenterPoint;
+    vEdge := self.SubDivEdge[I];
+    if vEdge.FFaces.Count=0 then continue;    ///
+    vEdge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+    PSD:=vEdge.CalculateEdgeCenterPoint;
     PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
-    RefEdges.AddObject(Edge, PSD);
+    RefEdges.AddObject(vEdge, PSD);
     end;
 
   RefEdges.Capacity := RefEdges.Count + NumberOfControlEdges;
   for I := 0 to NumberOfControlEdges-1 do
     begin
-    Edge := self.ControlEdge[I];
-    if Edge.FFaces.Count=0 then continue;    ///
-    Edge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
-    PSD:=Edge.CalculateEdgeCenterPoint;
+    vEdge := self.ControlEdge[I];
+    if vEdge.FFaces.Count=0 then continue;    ///
+    vEdge.SubdivisionLevel := PrevCurrentSubdivisionLevel;
+    PSD:=vEdge.CalculateEdgeCenterPoint;
     PSD.SubdivisionLevel := FCurrentSubdivisionLevel;
-    RefEdges.AddObject(Edge, PSD);
+    RefEdges.AddObject(vEdge, PSD);
     end;
 
   t2:=DateTimeToTimestamp(Now);
@@ -5197,11 +5200,11 @@ begin
   // cleanup old mesh
   for i:=0 to FEdges.Count-1 do
   begin
-    Edge := FEdges[i];
-    if Edge.FFaces.Count=0 then // preserve freestanding curve edges
-      NewEdgeList.Add(Edge)
+    vEdge := FEdges[i];
+    if vEdge.FFaces.Count=0 then // preserve freestanding curve edges
+      NewEdgeList.Add(vEdge)
     else
-      FreeAndNil(Edge);
+      FreeAndNil(vEdge);
   end;
   FreeAndNil(FEdges);
   FEdges := NewEdgeList;
@@ -5209,11 +5212,11 @@ begin
   i:=0;
   for I:=0 to FPoints.Count-1 do
   begin
-    Point := FPoints[I];
-    if Point.FFaces.Count = 0 then // preserve freestanding curve points
-      RefVertexPoints.Add(Point)
+    vPoint := FPoints[I];
+    if vPoint.FFaces.Count = 0 then // preserve freestanding curve points
+      RefVertexPoints.Add(vPoint)
     else
-      FreeAndNil(Point);
+      FreeAndNil(vPoint);
   end;
   FPoints.Clear;
 
@@ -5241,37 +5244,37 @@ begin
   end;
   }
 
-  t2:=DateTimeToTimestamp(Now);
+  //t2:=DateTimeToTimestamp(Now);
   //logger.Debug('Surface.SubDivide 6:'+inttostr(t2.Time - t1.Time));
-  t1:=t2;
+  //t1:=t2;
 
-  // Add all new points int the point-list
+  // Add all new points int the vPoint-list
   FPoints.Capacity := RefVertexPoints.Count + RefEdges.Count + RefFaces.Count;
   //FPoints.IsUnique:=true;
   //FPoints.IsSorted:=true;
   for I := 0 to RefVertexPoints.Count - 1 do
     if RefVertexPoints.Objects[I] <> nil then
-      FPoints.Add(RefVertexPoints.Objects[I]);
+      FPoints.Add(TFreeSubdivisionPoint(RefVertexPoints.Objects[I]));
 
-  t2:=DateTimeToTimestamp(Now);
+  //t2:=DateTimeToTimestamp(Now);
   //logger.Debug('Surface.SubDivide 7:'+inttostr(t2.Time - t1.Time));
-  t1:=t2;
+  //t1:=t2;
 
   for I := 0 to RefEdges.Count - 1 do
     if RefEdges.Objects[I] <> nil then
-      FPoints.Add(RefEdges.Objects[I]);
+      FPoints.Add(TFreeSubdivisionPoint(RefEdges.Objects[I]));
 
-  t2:=DateTimeToTimestamp(Now);
+  //t2:=DateTimeToTimestamp(Now);
   //logger.Debug('Surface.SubDivide 8:'+inttostr(t2.Time - t1.Time));
-  t1:=t2;
+  //t1:=t2;
 
   for I := 0 to RefFaces.Count - 1 do
     if RefFaces.Objects[I] <> nil then
-      FPoints.Add(RefFaces.Objects[I]);
+      FPoints.Add(TFreeSubdivisionPoint(RefFaces.Objects[I]));
 
-  t2:=DateTimeToTimestamp(Now);
+  //t2:=DateTimeToTimestamp(Now);
   //logger.Debug('Surface.SubDivide 9:'+inttostr(t2.Time - t1.Time));
-  t1:=t2;
+  //t1:=t2;
 
   FPoints.Capacity := FPoints.Count;
   // Cleanup temp. lists
@@ -5287,15 +5290,15 @@ begin
   Setlength(TmpPoints, FPoints.Count);
   for I := 0 to FPoints.Count - 1 do
   begin
-    Point := FPoints[I];
-    if Point.SubdivisionLevel <> FCurrentSubdivisionLevel
+    vPoint := FPoints[I];
+    if vPoint.SubdivisionLevel <> FCurrentSubdivisionLevel
       then X:=0;
-    TmpPoints[I] := Point.Averaging;
+    TmpPoints[I] := vPoint.Averaging;
   end;
   for I := 0 to FPoints.Count - 1 do
   begin
-    Point := FPoints[I];
-    Point.FCoordinate := TmpPoints[I];
+    vPoint := FPoints[I];
+    vPoint.FCoordinate := TmpPoints[I];
   end;
   SetLength(TmpPoints, 0);
 }

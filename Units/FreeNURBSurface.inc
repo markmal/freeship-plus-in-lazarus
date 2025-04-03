@@ -368,18 +368,18 @@ end;{TFreeNURBSurface.InsertRowKnot}
 procedure TFreeNURBSurface.NormalizeKnotVectors;
 var
   I, N: integer;
-  Min, Max: TFloatType;
+  vMin, vMax: TFloatType;
   New: TFloatType;
 begin
   N := length(FRowknots);
   if N > 0 then
   begin
-    Min := FRowknots[0];
-    Max := FRowknots[N - 1];
+    vMin := FRowknots[0];
+    vMax := FRowknots[N - 1];
     if Min <> Max then
       for I := 1 to N do
       begin
-        New := (FRowknots[I - 1] - Min) / (Max - Min);
+        New := (FRowknots[I - 1] - vMin) / (vMax - vMin);
         if New > 1.0 then
           New := 1.0;
         FRowknots[I - 1] := New;
@@ -388,12 +388,12 @@ begin
   N := length(FColknots);
   if N > 0 then
   begin
-    Min := FColknots[0];
-    Max := FColknots[N - 1];
-    if Min <> Max then
+    vMin := FColknots[0];
+    vMax := FColknots[N - 1];
+    if vMin <> vMax then
       for I := 1 to N do
       begin
-        New := (FColknots[I - 1] - Min) / (Max - Min);
+        New := (FColknots[I - 1] - vMin) / (vMax - vMin);
         if New > 1.0 then
           New := 1.0;
         FColknots[I - 1] := New;

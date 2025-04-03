@@ -63,6 +63,8 @@ begin
     AlphaPrec := 8;
     AlphaShift := 0;
   end;
+  if not Assigned(FIntfImage) then FIntfImage := TLazIntfImage.Create(FRawImage, true);
+  if not Assigned(FBitmap) then FBitmap := TBitmap.Create();
   try
     FIntfImage.SetRawImage(FRawImage);
     FIntfImage.LoadFromFile(FileName);
@@ -262,14 +264,13 @@ var
   Min, Max: T3DCoordinate;
   r, g, b: integer;
   PenWidthfactor: integer;
-  EdgeColor: TColor;
   Str: string;
   WlPlane: T3Dplane;
   MinZ, MaxZ: TFloatType;
   s1, s2, s3: TFloatType;
   Above, Below: TFreeCoordinateArray;
   Na, Nb: integer;
-  FShowInteriorEdges, FShadeSubmerged: boolean;
+  FShadeSubmerged: boolean;
   p2d,p2d1,p2d2,p2d3:T2DCoordinate;
   p3d,p3d2:T3DCoordinate;
 
@@ -294,130 +295,122 @@ var
     Viewport.Polygon(Pts);
   end;{DrawTriangle}
 
-  procedure DrawLine(P1, P2: T3DCoordinate; Color: TColor);
-  var A,B: TPoint;
+  procedure DrawLine(p2d1, p2d2: T2DCoordinate; Color: TColor);
+  var A,B: TPoint; P1, P2: T3DCoordinate;
   begin
+    if FMirrored then
+    begin
+      p2d1 := Self.Mirror2DCoordinate(p2d1);
+      p2d2 := Self.Mirror2DCoordinate(p2d2);
+    end;
+
+    P1:=Project2DtoViewport(p2d1);
+    P2:=Project2DtoViewport(p2d2);
+
     A := Viewport.Project(P1);
     B := Viewport.Project(P2);
-    //Viewport.PenColor := Color;
-    //Viewport.BrushColor := Color;
+    Viewport.PenColor := Color;
     Viewport.Line(A.X,A.Y, B.X,B.Y);
   end;{DrawTriangle}
 
 begin
-  FShowInteriorEdges:=true;
   FShadeSubmerged:=true;
 
-  EdgeColor := clRed;
-  Viewport.PenColor := EdgeColor;
+  Viewport.PenColor := FColor;
   Viewport.PenWidth := 1;
   Viewport.PenStyle := psSolid;
   Viewport.BrushStyle := bsClear;
 
-  if (FShowInteriorEdges) then
+  Wlplane := Layer.Surface.WaterlinePlane;
+
+  for i:=0 to FFaces.Count-1 do
   begin
-
-    Wlplane := Layer.Surface.WaterlinePlane;
-
-    //Faces := DevelopedPatch.FDoneList;
-    for i:=0 to FFaces.Count-1 do
+    Face := FFaces[i];
+    for j:=1 to Face.NumberOfPoints-1 do
     begin
-      Face := FFaces[i];
-      for j:=1 to Face.NumberOfPoints-1 do
-        begin
-
-          p2d1 := Face.FUnrolledPoints[j-1];
-          p2d2 := Face.FUnrolledPoints[j];
-
-          if FMirrored then
-          begin
-            p2d1 := Self.Mirror2DCoordinate(p2d1);
-            p2d2 := Self.Mirror2DCoordinate(p2d2);
-          end;
-
-          P1:=Project2DtoViewport(p2d1);
-          P2:=Project2DtoViewport(p2d2);
-
-          //DrawTriangle(P1, P2, P3, FColor);
-          DrawLine(P1,P2,FColor);
-        end;
+      p2d1 := Face.FUnrolledPoints[j-1];
+      p2d2 := Face.FUnrolledPoints[j];
+      DrawLine(p2d1,p2d2,FColor);
     end;
+    p2d1 := Face.FUnrolledPoints[0];
+    p2d2 := Face.FUnrolledPoints[Face.NumberOfPoints-1];
+    DrawLine(p2d1,p2d2,FColor);
+  end;
 
 {    // check texture projection
-    if Assigned(Viewport.BackgroundImage.Bitmap)
-      and (Viewport.BackgroundImage.Bitmap.Width > 0)
-      and (Viewport.BackgroundImage.Bitmap.Height > 0)
-    then
-    for i:=0 to FFaces.Count-1 do
-    begin
-      Face := FFaces[i];
-      for J := 3 to Face.NumberOfPoints do
-        begin
-          p2d1 := Face.FUnrolledPoints[0];
-          p2d2 := Face.FUnrolledPoints[J-2];
-          p2d3 := Face.FUnrolledPoints[J-1];
-
-          bP1 := ProjectOnBitmap(p2d1);
-          bP2 := ProjectOnBitmap(p2d2);
-          bP3 := ProjectOnBitmap(p2d3);
-
-          bP1 := Viewport.BackgroundImage.TargetCoordinate(bP1.X, bP1.Y);
-          bP2 := Viewport.BackgroundImage.TargetCoordinate(bP2.X, bP2.Y);
-          bP3 := Viewport.BackgroundImage.TargetCoordinate(bP3.X, bP3.Y);
-
-          Viewport.PenColor:=clBlue;
-          Viewport.Polyline([bP1, bP2, bP3]);
-        end;
-    end;   }
-
-    {
-    for i:=0 to DevelopedPatch.FPoints.Count-1 do
-    begin
-      p2d := DevelopedPatch.FPoints[i].UnrolledCoordinate;
+  if Assigned(Viewport.BackgroundImage.Bitmap)
+    and (Viewport.BackgroundImage.Bitmap.Width > 0)
+    and (Viewport.BackgroundImage.Bitmap.Height > 0)
+  then
+  for i:=0 to FFaces.Count-1 do
+  begin
+    Face := FFaces[i];
+    for J := 3 to Face.NumberOfPoints do
       begin
-        P1:=Project2DtoViewport(p2d);
-        pt:=Viewport.Project(P1);
-        Viewport.PenColor:=clBlack;
-        Viewport.Rectangle(pt.X-1,pt.Y-1,pt.X+1,pt.Y+1);
-        Viewport.PenColor:=clWhite;
-        Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
-        Viewport.PenColor:=clRed;
-        Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
+        p2d1 := Face.FUnrolledPoints[0];
+        p2d2 := Face.FUnrolledPoints[J-2];
+        p2d3 := Face.FUnrolledPoints[J-1];
+
+        bP1 := ProjectOnBitmap(p2d1);
+        bP2 := ProjectOnBitmap(p2d2);
+        bP3 := ProjectOnBitmap(p2d3);
+
+        bP1 := Viewport.BackgroundImage.TargetCoordinate(bP1.X, bP1.Y);
+        bP2 := Viewport.BackgroundImage.TargetCoordinate(bP2.X, bP2.Y);
+        bP3 := Viewport.BackgroundImage.TargetCoordinate(bP3.X, bP3.Y);
+
+        Viewport.PenColor:=clBlue;
+        Viewport.Polyline([bP1, bP2, bP3]);
       end;
+  end;   }
+
+  {
+  for i:=0 to DevelopedPatch.FPoints.Count-1 do
+  begin
+    p2d := DevelopedPatch.FPoints[i].UnrolledCoordinate;
+    begin
+      P1:=Project2DtoViewport(p2d);
+      pt:=Viewport.Project(P1);
+      Viewport.PenColor:=clBlack;
+      Viewport.Rectangle(pt.X-1,pt.Y-1,pt.X+1,pt.Y+1);
+      Viewport.PenColor:=clWhite;
+      Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
+      Viewport.PenColor:=clRed;
+      Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
     end;
-    }
-
-    // draw 2D anchor points
-    p2d := FDevelopedPatchAnchorPoint1;
-    P1:=Project2DtoViewport(p2d);
-    pt:=Viewport.Project(P1);
-    Viewport.PenColor:=clBlack;
-    Viewport.Rectangle(pt.X-1,pt.Y-1,pt.X+1,pt.Y+1);
-    Viewport.PenColor:=clWhite;
-    Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
-    Viewport.PenColor:=clRed;
-    Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
-
-    p2d := FDevelopedPatchAnchorPoint2;
-    P1:=Project2DtoViewport(p2d);
-    pt:=Viewport.Project(P1);
-    Viewport.PenColor:=clBlack;
-    Viewport.Rectangle(pt.X-1,pt.Y-1,pt.X+1,pt.Y+1);
-    Viewport.PenColor:=clYellow;
-    Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
-    Viewport.PenColor:=clRed;
-    Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
-
-    Viewport.PenColor := Viewport.BrushColor;
-
   end;
+  }
+
+  // draw 2D anchor points
+  p2d := FDevelopedPatchAnchorPoint1;
+  P1:=Project2DtoViewport(p2d);
+  pt:=Viewport.Project(P1);
+  Viewport.PenColor:=clBlack;
+  Viewport.Rectangle(pt.X-1,pt.Y-1,pt.X+1,pt.Y+1);
+  Viewport.PenColor:=clWhite;
+  Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
+  Viewport.PenColor:=clRed;
+  Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
+
+  p2d := FDevelopedPatchAnchorPoint2;
+  P1:=Project2DtoViewport(p2d);
+  pt:=Viewport.Project(P1);
+  Viewport.PenColor:=clBlack;
+  Viewport.Rectangle(pt.X-1,pt.Y-1,pt.X+1,pt.Y+1);
+  Viewport.PenColor:=clYellow;
+  Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
+  Viewport.PenColor:=clRed;
+  Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
+
+  Viewport.PenColor := Viewport.BrushColor;
+
 
   Viewport.BrushStyle := bsClear;
   Viewport.FontColor := clBlack;
 
 end;{TFreeTexture.Draw}
 
-function TFreeTexture.FGetMidPoint: T2DCoordinate;
+function TFreeTexture.GetMidPoint: T2DCoordinate;
 begin
   Result.X := 0.5 * (FMin2D.X + FMax2D.X);
   Result.Y := 0.5 * (FMin2D.Y + FMax2D.Y);
@@ -430,7 +423,7 @@ var
   Mid: T2DCoordinate;
   P2: T2DCoordinate;
 begin
-  Mid := SELF.FGetMidPoint;
+  Mid := Self.GetMidPoint;
   // translate to origin
   P2.X := P.X - Mid.X;
   P2.Y := P.Y - Mid.Y;
@@ -452,7 +445,7 @@ var
   Mid: T2DCoordinate;
   P2: T2DCoordinate;
 begin
-  Mid := SELF.FGetMidPoint;
+  Mid := Self.GetMidPoint;
   // translate to origin
   P2.X := P.X - Mid.X - FTranslation.X;
   P2.Y := P.Y - Mid.Y - FTranslation.Y;
@@ -889,10 +882,28 @@ begin
 
 end;{TFreeTexture.FSetRotation}
 
+function TFreeTexture.HasBitmap: boolean;
+begin
+  Result :=  Assigned(FBitmap) and (FBitmap.Width>0) and (FBitmap.Height>0)
+         and Assigned(FIntfImage) and (FIntfImage.Width>0) and (FIntfImage.Height>0);
+end;
+
 function TFreeTexture.Valid: boolean;
 begin
-  Result := (FFaces.Count>0)and(FPoints.Count>0)
-         and Assigned(FBitmap) and (FBitmap.Width>0) and (FBitmap.Height>0)
-         and Assigned(FIntfImage) and (FIntfImage.Width>0) and (FIntfImage.Height>0);
-         //and Assigned(FRawImage) and (FRawImage.DataSize>0);
+  Result := (FFaces.Count>0)and(FPoints.Count>0) and HasBitmap;
 end;
+
+procedure TFreeTexture.ClearBitmap;
+var P: procedure of Object;
+begin
+  {with FBitmap do
+    P := Clear;
+  if Assigned(FBitmap)
+    and (Int64(P)>0)
+     then FBitmap.Clear;}
+  FreeAndNil(FBitmap);
+  //FreeAndNil(FRawImage);
+  FreeAndNil(FIntfImage);
+  Self.IsCorelated:=false;
+end;
+

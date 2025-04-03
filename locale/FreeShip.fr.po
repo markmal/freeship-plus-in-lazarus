@@ -10388,6 +10388,7 @@ msgid "Cancel"
 msgstr "Cancel"
 
 #: tfreepointgroupform.bitbtnok.caption
+msgctxt "tfreepointgroupform.bitbtnok.caption"
 msgid "Ok"
 msgstr ""
 
@@ -15808,11 +15809,13 @@ msgid "From hydrostatics"
 msgstr ""
 
 #: tfreetextureform.button1.caption
-msgid "Set anchors"
-msgstr ""
+#, fuzzy
+msgctxt "tfreetextureform.button1.caption"
+msgid "Reset"
+msgstr "Réinitialisation"
 
 #: tfreetextureform.button1.hint
-msgid "Autoset 2d anchors"
+msgid "Reset 2d anchors"
 msgstr ""
 
 #: tfreetextureform.caption
@@ -15821,12 +15824,23 @@ msgstr ""
 
 #: tfreetextureform.closedialog.caption
 #, fuzzy
+#| msgid "CloseDialog"
 msgctxt "tfreetextureform.closedialog.caption"
-msgid "CloseDialog"
+msgid "Close Dialog"
 msgstr "Fermer la boite de dialogue"
 
 #: tfreetextureform.comboboxselecttexture.text
 msgid "ComboBoxSelectTexture"
+msgstr ""
+
+#: tfreetextureform.delete.caption
+msgctxt "tfreetextureform.delete.caption"
+msgid "DeleteTexture"
+msgstr ""
+
+#: tfreetextureform.delete.hint
+msgctxt "tfreetextureform.delete.hint"
+msgid "Delete texture"
 msgstr ""
 
 #: tfreetextureform.floatspineditshiftx.hint
@@ -15873,11 +15887,12 @@ msgstr ""
 
 #: tfreetextureform.loadfile.caption
 msgctxt "tfreetextureform.loadfile.caption"
-msgid "ActionOpenImage"
+msgid "Load image"
 msgstr ""
 
-#: tfreetextureform.showinterioredges.caption
-msgid "ShowInteriorEdges"
+#: tfreetextureform.ok.caption
+msgctxt "tfreetextureform.ok.caption"
+msgid "Ok"
 msgstr ""
 
 #: tfreetextureform.statusbar1.panels[0].text
@@ -15902,6 +15917,15 @@ msgstr ""
 #: tfreetextureform.toolbar1.caption
 msgctxt "tfreetextureform.toolbar1.caption"
 msgid "ToolBar1"
+msgstr ""
+
+#: tfreetextureform.toolbutton1.hint
+msgctxt "tfreetextureform.toolbutton1.hint"
+msgid "Load image"
+msgstr ""
+
+#: tfreetextureform.toolbuttoncancel.hint
+msgid "Close with Cancel"
 msgstr ""
 
 #: tfreeundohistorydialog.caption

@@ -65,7 +65,7 @@ begin
   MinMax(FMax, Min, Max);
 end;{TFreeEntity.Extents}
 
-procedure TFreeEntity.Draw;
+procedure TFreeEntity.Draw(Viewport: TFreeViewport);
 begin
 end;{TFreeEntity.Draw}
 

@@ -1714,7 +1714,7 @@ end;{VectorLength}
 function Angle( Line1point1, Line1point2, Line2point1, Line2point2: T2DCoordinate): TFloatType;
 var
   v1, v2: T2DCoordinate;
-  dotProduct, magnitudeV1, magnitudeV2, cosAngle, angle: TFloatType;
+  dotProduct, magnitudeV1, magnitudeV2, cosAngle, vAngle: TFloatType;
 begin
   // Calculate vectors representing the lines
   v1.X := Line1point2.X - Line1point1.X;
@@ -1740,10 +1740,10 @@ begin
   cosAngle := dotProduct / (magnitudeV1 * magnitudeV2);
 
   // Calculate the angle in radians
-  angle := ArcCos(cosAngle);
+  vAngle := ArcCos(cosAngle);
 
   // Return the angle in Degrees
-  Result := RadToDeg(angle);
+  Result := RadToDeg(vAngle);
 end;
 
 

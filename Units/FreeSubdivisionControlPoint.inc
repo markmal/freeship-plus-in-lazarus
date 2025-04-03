@@ -169,11 +169,11 @@ end;{TFreeSubdivisionControlPoint.FSetCoordinate}
 procedure TFreeSubdivisionControlPoint.Collapse0;
 var
   I, J: integer;
-  Face: TFreeSubdivisionControlFace;
+  vFace: TFreeSubdivisionControlFace;
   Edge1: TFreesubdivisionControlEdge;
   Edge2: TFreesubdivisionControlEdge;
-  Edges: TFasterListTFreeSubdivisionEdge;
-  Points: TFasterListTFreeSubdivisionPoint;
+  vEdges: TFasterListTFreeSubdivisionEdge;
+  vPoints: TFasterListTFreeSubdivisionControlPoint;
   SortedPointLists: TFasterListTFreeSubdivisionFace; // using Face class as list of Points
   sPointList:TFreeSubdivisionFace;
   Checklist: TFasterListTFreeSubdivisionControlPoint;
@@ -231,14 +231,14 @@ begin
 
     for i := NumberOfFaces-1 downto 0 do
     begin
-      Face := FFaces[i] as TFreeSubdivisionControlFace;
-      Points := TFasterListTFreeSubdivisionPoint.Create;
-      for j := 0 to Face.FPoints.Count-1 do
-        if Face.FPoints[j] <> self then
-          Points.Add(Face.FPoints[j]);
-      FSurface.AddControlFace(TFasterList(Points), False, Face.Layer);
-      FreeAndNil(Points);
-      Face.Delete;
+      vFace := FFaces[i] as TFreeSubdivisionControlFace;
+      vPoints := TFasterListTFreeSubdivisionControlPoint.Create;
+      for j := 0 to vFace.FPoints.Count-1 do
+        if vFace.FPoints[j] <> self then
+          vPoints.Add(vFace.Point[j]);
+      FSurface.AddControlFace(vPoints, False, vFace.Layer);
+      FreeAndNil(vPoints);
+      vFace.Delete;
     end;
 
 
@@ -257,7 +257,7 @@ begin
   else
   begin
     Checklist := TFasterListTFreeSubdivisionControlPoint.Create;
-    Edges := TFasterListTFreeSubdivisionEdge.Create;
+    vEdges := TFasterListTFreeSubdivisionEdge.Create;
     for i := 1 to NumberOfEdges do
       if Edge[I - 1].StartPoint = self then
         CheckList.Add(Edge[I - 1].EndPoint as TFreeSubdivisionControlPoint)
@@ -265,41 +265,43 @@ begin
         CheckList.Add(Edge[I - 1].StartPoint as TFreeSubdivisionControlPoint);
     for I := 1 to NumberOfFaces do
     begin
-      Face := Ffaces[I - 1] as TFreeSubdivisionControlFace;
-      P1 := Face.FPoints[Face.NumberOfPoints - 1] as TFreeSubdivisionControlPoint;
-      for J := 1 to Face.FPoints.Count do
+      vFace := FFaces[I - 1] as TFreeSubdivisionControlFace;
+      P1 := vFace.FPoints[vFace.NumberOfPoints - 1] as TFreeSubdivisionControlPoint;
+      for J := 1 to vFace.FPoints.Count do
       begin
-        P2 := face.FPoints[J - 1] as TFreeSubdivisionControlPoint;
+        P2 := vFace.FPoints[J - 1] as TFreeSubdivisionControlPoint;
         if (P1 <> self) and (P2 <> self) then
         begin
           Edge1 := FSurface.EdgeExists(P1, P2) as TFreesubdivisionControlEdge;
           if Edge1 <> nil then
-            if Edges.IndexOf(Edge1) = -1 then
-              Edges.Add(Edge1);
+            if vEdges.IndexOf(Edge1) = -1 then
+              vEdges.Add(Edge1);
         end;
         P1 := P2;
       end;
     end;
     // sort edges in correct order and add new face
-    if Edges.Count > 2 then
+    if vEdges.Count > 2 then
     begin
       SortedPointLists := TFasterListTFreeSubdivisionFace.Create;
-      FSurface.IsolateEdges(Edges, SortedPointLists);
-      FreeAndNil(Edges);
+      FSurface.IsolateEdges(vEdges, SortedPointLists);
+      FreeAndNil(vEdges);
       for i := 0 to SortedPointLists.Count-1 do
       begin
         // was Points := Sorted[I - 1]; ??? Points := ControlEdges?
         sPointList := SortedPointLists[i];
-        Points:= sPointList.FPoints;
-        if Points.Count > 2 then
+        //vPoints:= sPointList.FPoints;
+        for j:=0 to sPointList.FPoints.Count-1 do
+          vPoints.Add(sPointList.FPoints[j] as TFreeSubdivisionControlPoint);
+        if vPoints.Count > 2 then
         begin
-          Face := FSurface.AddControlFace(TFasterList(Points), False);
-          if Face <> nil then
+          vFace := FSurface.AddControlFace(vPoints, False);
+          if vFace <> nil then
           begin
-            P1 := Face.FPoints[Face.FPoints.Count - 1] as TFreeSubdivisionControlPoint;
-            for j := 0 to Face.FPoints.Count-1 do
+            P1 := vFace.FPoints[vFace.FPoints.Count - 1] as TFreeSubdivisionControlPoint;
+            for j := 0 to vFace.FPoints.Count-1 do
             begin
-              P2 := face.FPoints[j] as TFreeSubdivisionControlPoint;
+              P2 := vFace.FPoints[j] as TFreeSubdivisionControlPoint;
               //                     Edge1:=FSurface.EdgeExists(p1,p2) as TFreesubdivisionControlEdge;
               //                     if edge1<>nil then
               //                     begin
@@ -313,12 +315,12 @@ begin
             end;
           end;
         end;
-        Points.Free;
+        FreeAndNil(vPoints);
       end;
-      SortedPointLists.Free;
+      FreeAndNil(SortedPointLists);
     end
     else
-      FreeAndNil(Edges);
+      FreeAndNil(vEdges);
 
 
     Delete;
@@ -395,8 +397,8 @@ end;{TFreeSubdivisionControlPoint.Create}
 procedure TFreeSubdivisionControlPoint.Delete;
 var
   Index,i: integer;
-  Face: TFreesubdivisionFace;
-  Edge: TFreesubdivisionEdge; //TFreesubdivisionControlEdge;
+  vFace: TFreesubdivisionFace;
+  vEdge: TFreesubdivisionEdge; //TFreesubdivisionControlEdge;
   EdgesToDelete: TFasterListTFreesubdivisionEdge;
   FacesToDelete: TFasterListTFreesubdivisionFace;
 begin
@@ -419,9 +421,9 @@ begin
   FacesToDelete:= TFasterListTFreesubdivisionFace.Create(true,false);
   while FFaces.Count > 0 do
   begin
-    Face := FFaces[0];
+    vFace := FFaces[0];
     FFaces.Delete(0);
-    FacesToDelete.Add(Face);
+    FacesToDelete.Add(vFace);
     //Edge.Delete;
   end;
   //FacesToDelete.AddList(FFaces);
@@ -430,9 +432,9 @@ begin
   EdgesToDelete:= TFasterListTFreesubdivisionEdge.Create(true,false);
   while FEdges.Count>0 do
     begin
-      Edge := self.Edge[0];
+      vEdge := self.Edge[0];
       FEdges.Delete(0);
-      EdgesToDelete.Add(Edge);
+      EdgesToDelete.Add(vEdge);
       //Edge.Delete;
     end;
   FEdges.Clear;

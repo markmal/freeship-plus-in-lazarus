@@ -196,7 +196,7 @@ end;{TFreeViewport.FGetFontSize}
 
 procedure TFreeViewport.FSetFontHeight(val: integer);
 var
-  Height: TFloatType;
+  //Height: TFloatType;
   CurrentHeight: integer;
 begin
   if FDrawingCanvas.Font.Height <> val then
@@ -222,7 +222,7 @@ begin
   if FHorScrollbar <> nil then
   begin
     FOriginalHorScrollbarChange:=val.OnChange;
-    FHorScrollbar.OnChange := FHorScrollbarChange;
+    FHorScrollbar.OnChange := @FHorScrollbarChange;
     FHorScrollbar.Min := -180;
     FHorScrollbar.Max := 180;
     if FHorScrollbar.Position <> round(angle) then
@@ -262,7 +262,7 @@ begin
   if FVertScrollbar <> nil then
   begin
     FOriginalVertScrollbarChange := val.OnChange;
-    FVertScrollbar.OnChange := FVertScrollbarChange;
+    FVertScrollbar.OnChange := @FVertScrollbarChange;
     FVertScrollbar.Min := -180;
     FVertScrollbar.Max := 180;
     if FVertScrollbar.Position <> round(Elevation) then
@@ -708,7 +708,7 @@ var
   I: integer;
   VertCorr: integer;
   HorCorr: integer;
-  Width, Height: TFloatType;
+  vWidth, vHeight: TFloatType;
   Tmp: TFloatType;
   XScale: TFloatType;
   YScale: TFloatType;
@@ -805,12 +805,12 @@ begin
     end;
     MinMax(Projected);
   end;
-  Width := Max2D.X - Min2D.X;
-  Height := Max2D.Y - Min2D.Y;
-  if (abs(Width) > 1e-7) and (abs(Height) > 1e-7) then
+  vWidth := Max2D.X - Min2D.X;
+  vHeight := Max2D.Y - Min2D.Y;
+  if (abs(vWidth) > 1e-7) and (abs(vHeight) > 1e-7) then
   begin
-    XScale := ClientWidth / Width;
-    YScale := ClientHeight / Height;
+    XScale := ClientWidth / vWidth;
+    YScale := ClientHeight / vHeight;
     if XScale < YScale then
       FScale := XScale
     else
@@ -852,8 +852,8 @@ var
   XScale: extended;
   OldZoom: extended;
   YScale: extended;
-  Scale, Tmp: extended;
-  Width, Height: extended;
+  vScale, Tmp: extended;
+  vWidth, vHeight: extended;
   ModelSize: extended;
   OldScale: extended;
   OldPan: TPoint;
@@ -940,22 +940,22 @@ begin
         end;
         MinMax(Projected);
       end;
-      Width := Max2D.X - Min2D.X;
-      Height := Max2D.Y - Min2D.Y;
-      if (Width <> 0) and (Height <> 0) then
+      vWidth := Max2D.X - Min2D.X;
+      vHeight := Max2D.Y - Min2D.Y;
+      if (vWidth <> 0) and (vHeight <> 0) then
       begin
-        XScale := CanvasWidth / Width;
-        YScale := CanvasHeight / Height;
+        XScale := CanvasWidth / vWidth;
+        YScale := CanvasHeight / vHeight;
         if XScale < YScale then
-          Scale := XScale
+          vScale := XScale
         else
-          Scale := YScale;
+          vScale := YScale;
       end
       else
-        Scale := 1;
+        vScale := 1;
       // Set max. scale
       //         Scale:=0.99*Scale;
-      FScale := Scale;
+      FScale := vScale;
 
       // Calculate the size at modelspace
       ModelSize := Round(Width * FScale);  // Size in pixels
@@ -1493,7 +1493,7 @@ var
   CanvasHeight: integer;
   XScale: TFloatType;
   YScale: TFloatType;
-  Scale: TFloatType;
+  vScale: TFloatType;
   OldScale: TFloatType;
   OldPan: TPoint;
   OldCanvas: TCanvas;
@@ -1542,10 +1542,10 @@ begin
       XScale := CanvasWidth / ClientWidth;
       YScale := CanvasHeight / ClientHeight;
       if XScale < YScale then
-        Scale := XScale
+        vScale := XScale
       else
-        Scale := YScale;
-      FScale := FScale * Scale;
+        vScale := YScale;
+      FScale := FScale * vScale;
       FScreencenter.X := round(XScale * FScreencenter.X);
       FScreencenter.Y := round(YScale * FScreencenter.Y);
       ///FPrinting := True;
@@ -2027,10 +2027,10 @@ begin
     TWinControl(Parent).ActiveDefaultControlChanged(Self);
 end;
 
-procedure TFreeViewport.SetPenWidth(Width: integer);
+procedure TFreeViewport.SetPenWidth(pWidth: integer);
 begin
-  if FDrawingCanvas.Pen.Width <> Width then
-    FDrawingCanvas.Pen.Width := Width;
+  if FDrawingCanvas.Pen.Width <> pWidth then
+    FDrawingCanvas.Pen.Width := pWidth;
 end;{TFreeViewport.SetPenWidth}
 
 procedure TFreeViewport.ShadedColor(aIntensityRatio: single; R, G, B: byte; var ROut, GOut, BOut: byte);
@@ -2309,7 +2309,7 @@ end;{TFreeViewport.ShadeTriangle}
 procedure TFreeViewport.ShadeTriangle(P_1, P_2, P_3: T3DCoordinate;
   R1, G1, B1, R2, G2, B2, R3, G3, B3: byte);
 var
-  Left, Right, DLeft, dRight: TShadePoint;
+  vLeft, vRight, DLeft, dRight: TShadePoint;
   Y, d: integer;
   Tmp: TShadePoint;
   V1, V2, V3: TShadePoint;
@@ -2326,7 +2326,7 @@ var
     P.B := B shl 8;
   end;{SetColor}
 
-  procedure ShadeLine(Left, Right: TShadePoint; Y: integer);
+  procedure ShadeLine(pLeft, pRight: TShadePoint; Y: integer);
   var
     Delta, Tmp: TShadePoint;
     d: integer;
@@ -2335,24 +2335,24 @@ var
     Pixel: TRGBTriple;
   begin
     //      if (Y<0) or (Y>H-1) then exit;
-    Left.X := Left.X div 256;
-    Right.X := Right.X div 256;
-    if Left.X > Right.X then
+    pLeft.X := pLeft.X div 256;
+    pRight.X := pRight.X div 256;
+    if pLeft.X > pRight.X then
     begin
-      Tmp := Left;
-      Left := Right;
-      Right := Tmp;
+      Tmp := pLeft;
+      pLeft := pRight;
+      pRight := Tmp;
     end;
-    if (Left.X > ClientWidth - 1) or (Right.X < 0) or (Y < 0) or (Y > ClientHeight - 1) then
+    if (pLeft.X > ClientWidth - 1) or (pRight.X < 0) or (Y < 0) or (Y > ClientHeight - 1) then
       exit;
 
-    d := Right.X - Left.X;
+    d := pRight.X - pLeft.X;
     if d <> 0 then
     begin
-      Delta.Z := (Right.Z - Left.Z) / d;
-      Delta.R := (Right.R - Left.R) div d;
-      Delta.G := (Right.G - Left.G) div d;
-      Delta.B := (Right.B - Left.B) div d;
+      Delta.Z := (pRight.Z - pLeft.Z) / d;
+      Delta.R := (pRight.R - pLeft.R) div d;
+      Delta.G := (pRight.G - pLeft.G) div d;
+      Delta.B := (pRight.B - pLeft.B) div d;
     end
     else
     begin
@@ -2363,27 +2363,27 @@ var
     end;
 
     //      if (Left.X>W) or (Right.X<0) then exit;
-    if (Left.X < 0) then
+    if (pLeft.X < 0) then
     begin
-      Left.Z := Left.Z + -Left.X * Delta.Z;
-      Inc(Left.R, -Left.X * Delta.R);
-      Inc(Left.G, -Left.X * Delta.G);
-      Inc(Left.B, -Left.X * Delta.B);
-      Left.X := 0;
+      pLeft.Z := pLeft.Z + -pLeft.X * Delta.Z;
+      Inc(pLeft.R, -pLeft.X * Delta.R);
+      Inc(pLeft.G, -pLeft.X * Delta.G);
+      Inc(pLeft.B, -pLeft.X * Delta.B);
+      pLeft.X := 0;
     end;
 
-    if Right.X > ClientWidth - 1 then
-      Right.X := ClientWidth - 1;
-    if Left.X >= 0 then
+    if pRight.X > ClientWidth - 1 then
+      pRight.X := ClientWidth - 1;
+    if pLeft.X >= 0 then
     begin
       //Row:=FDrawingBuffer.Scanline[y];
       //pRow := FDrawingBuffer.RawImage.GetLineStart(Y); // this is slow!
 
-      while Left.X <= Right.X do
+      while pLeft.X <= pRight.X do
       begin
-        if Left.Z > FZBuffer.FBuffer[Y][Left.X] then
+        if pLeft.Z > FZBuffer.FBuffer[Y][pLeft.X] then
         begin
-          FZBuffer.FBuffer[Y][Left.X] := Left.Z;
+          FZBuffer.FBuffer[Y][pLeft.X] := pLeft.Z;
 
                {pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * Left.X;
                Pixel.rgbtRed:=Left.R shr 8;
@@ -2393,13 +2393,13 @@ var
 
           // temporary draw via canvas
           //FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
-          SetPixel(Left.X, Y, Left.R shr 8, Left.G shr 8, Left.B shr 8);
+          SetPixel(pLeft.X, Y, pLeft.R shr 8, pLeft.G shr 8, pLeft.B shr 8);
         end;
-        Left.Z := Left.Z + Delta.Z;
-        Inc(Left.R, Delta.R);
-        Inc(Left.G, Delta.G);
-        Inc(Left.B, Delta.B);
-        Inc(Left.X);
+        pLeft.Z := pLeft.Z + Delta.Z;
+        Inc(pLeft.R, Delta.R);
+        Inc(pLeft.G, Delta.G);
+        Inc(pLeft.B, Delta.B);
+        Inc(pLeft.X);
       end;
     end;
   end;{ShadeLine}
@@ -2461,7 +2461,7 @@ begin
     Exit;
   end;
 
-  Left := V1;
+  vLeft := V1;
   d := (V3.Y - V1.Y);
   if d <> 0 then
   begin
@@ -2472,7 +2472,7 @@ begin
     dLeft.B := (V3.B - V1.B) div d;
   end;
 
-  Right := V1;
+  vRight := V1;
   d := (V2.Y - V1.Y);
   if d <> 0 then
   begin
@@ -2486,46 +2486,46 @@ begin
   Y := V1.Y;
   if (Y < 0) and (V2.Y > 0) then
   begin
-    Inc(Left.X, -Y * dLeft.X);
-    Left.Z := Left.Z + -Y * dLeft.Z;
-    Inc(Left.R, -Y * dLeft.R);
-    Inc(Left.G, -Y * dLeft.G);
-    Inc(Left.B, -Y * dLeft.B);
+    Inc(vLeft.X, -Y * dLeft.X);
+    vLeft.Z := vLeft.Z + -Y * dLeft.Z;
+    Inc(vLeft.R, -Y * dLeft.R);
+    Inc(vLeft.G, -Y * dLeft.G);
+    Inc(vLeft.B, -Y * dLeft.B);
 
-    Inc(Right.X, -Y * dRight.X);
-    Right.Z := Right.Z + -Y * dRight.Z;
-    Inc(Right.R, -Y * dRight.R);
-    Inc(Right.G, -Y * dRight.G);
-    Inc(Right.B, -Y * dRight.B);
+    Inc(vRight.X, -Y * dRight.X);
+    vRight.Z := vRight.Z + -Y * dRight.Z;
+    Inc(vRight.R, -Y * dRight.R);
+    Inc(vRight.G, -Y * dRight.G);
+    Inc(vRight.B, -Y * dRight.B);
     Y := 0;
   end;
 
   while Y < V2.Y do
   begin
-    if Right.X >= Left.X then
-      ShadeLine(Left, Right, Y)
+    if vRight.X >= vLeft.X then
+      ShadeLine(vLeft, vRight, Y)
     else
-      ShadeLine(Right, Left, Y);
+      ShadeLine(vRight, vLeft, Y);
     if Y < V2.Y then
     begin
-      Inc(Left.X, dLeft.X);
-      Left.Z := Left.Z + dLeft.Z;
-      Inc(Left.R, dLeft.R);
-      Inc(Left.G, dLeft.G);
-      Inc(Left.B, dLeft.B);
+      Inc(vLeft.X, dLeft.X);
+      vLeft.Z := vLeft.Z + dLeft.Z;
+      Inc(vLeft.R, dLeft.R);
+      Inc(vLeft.G, dLeft.G);
+      Inc(vLeft.B, dLeft.B);
 
-      Inc(Right.X, dRight.X);
-      Right.Z := Right.Z + dRight.Z;
-      Inc(Right.R, dRight.R);
-      Inc(Right.G, dRight.G);
-      Inc(Right.B, dRight.B);
+      Inc(vRight.X, dRight.X);
+      vRight.Z := vRight.Z + dRight.Z;
+      Inc(vRight.R, dRight.R);
+      Inc(vRight.G, dRight.G);
+      Inc(vRight.B, dRight.B);
     end;
     Inc(Y);
   end;
   if V2.Y = V3.Y then
     Exit;
 
-  Right := V2;
+  vRight := V2;
   d := V3.Y - V2.Y;
   if d <> 0 then
   begin
@@ -2541,38 +2541,38 @@ begin
   Y := V2.Y;
   if (Y < 0) and (V3.Y > 0) then
   begin
-    Inc(Left.X, -Y * dLeft.X);
-    Left.Z := Left.Z + -Y * dLeft.Z;
-    Inc(Left.R, -Y * dLeft.R);
-    Inc(Left.G, -Y * dLeft.G);
-    Inc(Left.B, -Y * dLeft.B);
+    Inc(vLeft.X, -Y * dLeft.X);
+    vLeft.Z := vLeft.Z + -Y * dLeft.Z;
+    Inc(vLeft.R, -Y * dLeft.R);
+    Inc(vLeft.G, -Y * dLeft.G);
+    Inc(vLeft.B, -Y * dLeft.B);
 
-    Inc(Right.X, -Y * dRight.X);
-    Right.Z := Right.Z + -Y * dRight.Z;
-    Inc(Right.R, -Y * dRight.R);
-    Inc(Right.G, -Y * dRight.G);
-    Inc(Right.B, -Y * dRight.B);
+    Inc(vRight.X, -Y * dRight.X);
+    vRight.Z := vRight.Z + -Y * dRight.Z;
+    Inc(vRight.R, -Y * dRight.R);
+    Inc(vRight.G, -Y * dRight.G);
+    Inc(vRight.B, -Y * dRight.B);
     Y := 0;
   end;
   while Y <= V3.Y do
   begin
-    if Right.X >= Left.X then
-      ShadeLine(Left, Right, Y)
+    if vRight.X >= vLeft.X then
+      ShadeLine(vLeft, vRight, Y)
     else
-      ShadeLine(Right, Left, Y);
+      ShadeLine(vRight, vLeft, Y);
     if Y <= V3.Y then
     begin
-      Inc(Left.X, dLeft.X);
-      Left.Z := Left.Z + dLeft.Z;
-      Inc(Left.R, dLeft.R);
-      Inc(Left.G, dLeft.G);
-      Inc(Left.B, dLeft.B);
+      Inc(vLeft.X, dLeft.X);
+      vLeft.Z := vLeft.Z + dLeft.Z;
+      Inc(vLeft.R, dLeft.R);
+      Inc(vLeft.G, dLeft.G);
+      Inc(vLeft.B, dLeft.B);
 
-      Inc(Right.X, dRight.X);
-      Right.Z := Right.Z + dRight.Z;
-      Inc(Right.R, dRight.R);
-      Inc(Right.G, dRight.G);
-      Inc(Right.B, dRight.B);
+      Inc(vRight.X, dRight.X);
+      vRight.Z := vRight.Z + dRight.Z;
+      Inc(vRight.R, dRight.R);
+      Inc(vRight.G, dRight.G);
+      Inc(vRight.B, dRight.B);
       Inc(Y);
     end;
   end;
@@ -2582,7 +2582,7 @@ end;{TFreeViewport.ShadeTriangle}
 // different color, as for example when shading GAUSS curvature
 procedure TFreeViewport.ShadeTriangle(P_1, P_2, P_3: T3DCoordinate; C1, C2, C3: extended);
 var
-  Left, Right, DLeft, dRight: TShadePoint;
+  vLeft, vRight, DLeft, dRight: TShadePoint;
   Y, d: integer;
   Tmp: TShadePoint;
   V1, V2, V3: TShadePoint;
@@ -2604,7 +2604,7 @@ var
     P.B := B shl 8;
   end;{SetColor}
 
-  procedure ShadeLine(Left, Right: TShadePoint; Y: integer);
+  procedure ShadeLine(pLeft, pRight: TShadePoint; Y: integer);
   var
     Delta, Tmp: TShadePoint;
     d: integer;
@@ -2613,24 +2613,24 @@ var
     Pixel: TRGBTriple;
   begin
     //      if (Y<0) or (Y>H-1) then exit;
-    Left.X := Left.X div 256;
-    Right.X := Right.X div 256;
-    if Left.X > Right.X then
+    pLeft.X := pLeft.X div 256;
+    pRight.X := pRight.X div 256;
+    if pLeft.X > pRight.X then
     begin
-      Tmp := Left;
-      Left := Right;
-      Right := Tmp;
+      Tmp := pLeft;
+      pLeft := pRight;
+      pRight := Tmp;
     end;
-    if (Left.X > ClientWidth - 1) or (Right.X < 0) or (Y < 0) or (Y > ClientHeight - 1) then
+    if (pLeft.X > ClientWidth - 1) or (pRight.X < 0) or (Y < 0) or (Y > ClientHeight - 1) then
       exit;
 
-    d := Right.X - Left.X;
+    d := pRight.X - pLeft.X;
     if d <> 0 then
     begin
-      Delta.Z := (Right.Z - Left.Z) / d;
-      Delta.R := (Right.R - Left.R) div d;
-      Delta.G := (Right.G - Left.G) div d;
-      Delta.B := (Right.B - Left.B) div d;
+      Delta.Z := (pRight.Z - pLeft.Z) / d;
+      Delta.R := (pRight.R - pLeft.R) div d;
+      Delta.G := (pRight.G - pLeft.G) div d;
+      Delta.B := (pRight.B - pLeft.B) div d;
     end
     else
     begin
@@ -2641,27 +2641,27 @@ var
     end;
 
     //      if (Left.X>W) or (Right.X<0) then exit;
-    if (Left.X < 0) then
+    if (pLeft.X < 0) then
     begin
-      Left.Z := Left.Z + -Left.X * Delta.Z;
-      Inc(Left.R, -Left.X * Delta.R);
-      Inc(Left.G, -Left.X * Delta.G);
-      Inc(Left.B, -Left.X * Delta.B);
-      Left.X := 0;
+      pLeft.Z := pLeft.Z + -pLeft.X * Delta.Z;
+      Inc(pLeft.R, -pLeft.X * Delta.R);
+      Inc(pLeft.G, -pLeft.X * Delta.G);
+      Inc(pLeft.B, -pLeft.X * Delta.B);
+      pLeft.X := 0;
     end;
 
-    if Right.X > ClientWidth - 1 then
-      Right.X := ClientWidth - 1;
-    if Left.X >= 0 then
+    if pRight.X > ClientWidth - 1 then
+      pRight.X := ClientWidth - 1;
+    if pLeft.X >= 0 then
     begin
       //Row:=FDrawingBuffer.Scanline[y];
       ///pRow := FDrawingBuffer.RawImage.GetLineStart(Y);
 
-      while Left.X <= Right.X do
+      while pLeft.X <= pRight.X do
       begin
-        if Left.Z > FZBuffer.FBuffer[Y][Left.X] then
+        if pLeft.Z > FZBuffer.FBuffer[Y][pLeft.X] then
         begin
-          FZBuffer.FBuffer[Y][Left.X] := Left.Z;
+          FZBuffer.FBuffer[Y][pLeft.X] := pLeft.Z;
                {pPixel := pRow + FBitmapFormatHelper.BytesPerPixel * Left.X;
                Pixel.rgbtRed:=Left.R shr 8;
                Pixel.rgbtGreen:=Left.G shr 8;
@@ -2671,13 +2671,13 @@ var
           // temporary draw via canvas
           //FDrawingBuffer.Canvas.Pixels[Left.X,Y]:=RGBtoColor(Left.R shr 8, Left.G shr 8, Left.B shr 8);
 
-          SetPixel(Left.X, Y, Left.R shr 8, Left.G shr 8, Left.B shr 8);
+          SetPixel(pLeft.X, Y, pLeft.R shr 8, pLeft.G shr 8, pLeft.B shr 8);
         end;
-        Left.Z := Left.Z + Delta.Z;
-        Inc(Left.R, Delta.R);
-        Inc(Left.G, Delta.G);
-        Inc(Left.B, Delta.B);
-        Inc(Left.X);
+        pLeft.Z := pLeft.Z + Delta.Z;
+        Inc(pLeft.R, Delta.R);
+        Inc(pLeft.G, Delta.G);
+        Inc(pLeft.B, Delta.B);
+        Inc(pLeft.X);
       end;
     end;
   end;{ShadeLine}
@@ -2739,7 +2739,7 @@ begin
     Exit;
   end;
 
-  Left := V1;
+  vLeft := V1;
   d := (V3.Y - V1.Y);
   if d <> 0 then
   begin
@@ -2750,7 +2750,7 @@ begin
     dLeft.B := (V3.B - V1.B) div d;
   end;
 
-  Right := V1;
+  vRight := V1;
   d := (V2.Y - V1.Y);
   if d <> 0 then
   begin
@@ -2764,46 +2764,46 @@ begin
   Y := V1.Y;
   if (Y < 0) and (V2.Y > 0) then
   begin
-    Inc(Left.X, -Y * dLeft.X);
-    Left.Z := Left.Z + -Y * dLeft.Z;
-    Inc(Left.R, -Y * dLeft.R);
-    Inc(Left.G, -Y * dLeft.G);
-    Inc(Left.B, -Y * dLeft.B);
+    Inc(vLeft.X, -Y * dLeft.X);
+    vLeft.Z := vLeft.Z + -Y * dLeft.Z;
+    Inc(vLeft.R, -Y * dLeft.R);
+    Inc(vLeft.G, -Y * dLeft.G);
+    Inc(vLeft.B, -Y * dLeft.B);
 
-    Inc(Right.X, -Y * dRight.X);
-    Right.Z := Right.Z + -Y * dRight.Z;
-    Inc(Right.R, -Y * dRight.R);
-    Inc(Right.G, -Y * dRight.G);
-    Inc(Right.B, -Y * dRight.B);
+    Inc(vRight.X, -Y * dRight.X);
+    vRight.Z := vRight.Z + -Y * dRight.Z;
+    Inc(vRight.R, -Y * dRight.R);
+    Inc(vRight.G, -Y * dRight.G);
+    Inc(vRight.B, -Y * dRight.B);
     Y := 0;
   end;
 
   while Y < V2.Y do
   begin
-    if Right.X >= Left.X then
-      ShadeLine(Left, Right, Y)
+    if vRight.X >= vLeft.X then
+      ShadeLine(vLeft, vRight, Y)
     else
-      ShadeLine(Right, Left, Y);
+      ShadeLine(vRight, vLeft, Y);
     if Y < V2.Y then
     begin
-      Inc(Left.X, dLeft.X);
-      Left.Z := Left.Z + dLeft.Z;
-      Inc(Left.R, dLeft.R);
-      Inc(Left.G, dLeft.G);
-      Inc(Left.B, dLeft.B);
+      Inc(vLeft.X, dLeft.X);
+      vLeft.Z := vLeft.Z + dLeft.Z;
+      Inc(vLeft.R, dLeft.R);
+      Inc(vLeft.G, dLeft.G);
+      Inc(vLeft.B, dLeft.B);
 
-      Inc(Right.X, dRight.X);
-      Right.Z := Right.Z + dRight.Z;
-      Inc(Right.R, dRight.R);
-      Inc(Right.G, dRight.G);
-      Inc(Right.B, dRight.B);
+      Inc(vRight.X, dRight.X);
+      vRight.Z := vRight.Z + dRight.Z;
+      Inc(vRight.R, dRight.R);
+      Inc(vRight.G, dRight.G);
+      Inc(vRight.B, dRight.B);
     end;
     Inc(Y);
   end;
   if V2.Y = V3.Y then
     Exit;
 
-  Right := V2;
+  vRight := V2;
   d := V3.Y - V2.Y;
   if d <> 0 then
   begin
@@ -2819,38 +2819,38 @@ begin
   Y := V2.Y;
   if (Y < 0) and (V3.Y > 0) then
   begin
-    Inc(Left.X, -Y * dLeft.X);
-    Left.Z := Left.Z + -Y * dLeft.Z;
-    Inc(Left.R, -Y * dLeft.R);
-    Inc(Left.G, -Y * dLeft.G);
-    Inc(Left.B, -Y * dLeft.B);
+    Inc(vLeft.X, -Y * dLeft.X);
+    vLeft.Z := vLeft.Z + -Y * dLeft.Z;
+    Inc(vLeft.R, -Y * dLeft.R);
+    Inc(vLeft.G, -Y * dLeft.G);
+    Inc(vLeft.B, -Y * dLeft.B);
 
-    Inc(Right.X, -Y * dRight.X);
-    Right.Z := Right.Z + -Y * dRight.Z;
-    Inc(Right.R, -Y * dRight.R);
-    Inc(Right.G, -Y * dRight.G);
-    Inc(Right.B, -Y * dRight.B);
+    Inc(vRight.X, -Y * dRight.X);
+    vRight.Z := vRight.Z + -Y * dRight.Z;
+    Inc(vRight.R, -Y * dRight.R);
+    Inc(vRight.G, -Y * dRight.G);
+    Inc(vRight.B, -Y * dRight.B);
     Y := 0;
   end;
   while Y <= V3.Y do
   begin
-    if Right.X >= Left.X then
-      ShadeLine(Left, Right, Y)
+    if vRight.X >= vLeft.X then
+      ShadeLine(vLeft, vRight, Y)
     else
-      ShadeLine(Right, Left, Y);
+      ShadeLine(vRight, vLeft, Y);
     if Y <= V3.Y then
     begin
-      Inc(Left.X, dLeft.X);
-      Left.Z := Left.Z + dLeft.Z;
-      Inc(Left.R, dLeft.R);
-      Inc(Left.G, dLeft.G);
-      Inc(Left.B, dLeft.B);
+      Inc(vLeft.X, dLeft.X);
+      vLeft.Z := vLeft.Z + dLeft.Z;
+      Inc(vLeft.R, dLeft.R);
+      Inc(vLeft.G, dLeft.G);
+      Inc(vLeft.B, dLeft.B);
 
-      Inc(Right.X, dRight.X);
-      Right.Z := Right.Z + dRight.Z;
-      Inc(Right.R, dRight.R);
-      Inc(Right.G, dRight.G);
-      Inc(Right.B, dRight.B);
+      Inc(vRight.X, dRight.X);
+      vRight.Z := vRight.Z + dRight.Z;
+      Inc(vRight.R, dRight.R);
+      Inc(vRight.G, dRight.G);
+      Inc(vRight.B, dRight.B);
       Inc(Y);
     end;
   end;

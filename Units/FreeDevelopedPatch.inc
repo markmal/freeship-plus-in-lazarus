@@ -229,7 +229,7 @@ begin
   FDiagonals.Clear;
 end;{TFreeDevelopedPatch.Clear}
 
-constructor TFreeDevelopedPatch.Create;
+constructor TFreeDevelopedPatch.Create(Owner: TFreeSubdivisionLayer);
 begin
   inherited Create;
   FOwner := Owner;
@@ -306,7 +306,7 @@ var
   Index, Cap: integer;
   Face: TFreeSubdivisionFace;
   Edge: TFreeSubdivisionEdge;
-  Point: TFreeSubdivisionPoint;
+  vPoint: TFreeSubdivisionPoint;
   Pts: array of TPoint;
   Pt: TPoint;
   P1, P2, P3: T3DCoordinate;
@@ -478,7 +478,7 @@ begin
       begin
         for J := 3 to Face.NumberOfpoints do
         begin
-          Point := Face.Point[0];
+          vPoint := Face.Point[0];
           Index := FPoints.SortedIndexOf(Face.Point[0]);
           if Index <> -1 then
             P1 := self.Point[index];
@@ -491,21 +491,21 @@ begin
 
           // Check if clipping is required
 
-          Point := Face.Point[0];
-          s1 := WlPlane.a * Point.Coordinate.x + WlPlane.b * Point.Coordinate.y +
-            WlPlane.c * Point.Coordinate.z + WlPlane.d;
+          vPoint := Face.Point[0];
+          s1 := WlPlane.a * vPoint.Coordinate.x + WlPlane.b * vPoint.Coordinate.y +
+            WlPlane.c * vPoint.Coordinate.z + WlPlane.d;
           MinZ := s1;
           MaxZ := MinZ;
-          Point := Face.Point[J - 2];
-          s2 := WlPlane.a * Point.Coordinate.x + WlPlane.b * Point.Coordinate.y +
-            WlPlane.c * Point.Coordinate.z + WlPlane.d;
+          vPoint := Face.Point[J - 2];
+          s2 := WlPlane.a * vPoint.Coordinate.x + WlPlane.b * vPoint.Coordinate.y +
+            WlPlane.c * vPoint.Coordinate.z + WlPlane.d;
           if s2 < MinZ then
             MinZ := s2
           else if s2 > MaxZ then
             MaxZ := s2;
-          Point := Face.Point[J - 1];
-          s3 := WlPlane.a * Point.Coordinate.x + WlPlane.b * Point.Coordinate.y +
-            WlPlane.c * Point.Coordinate.z + WlPlane.d;
+          vPoint := Face.Point[J - 1];
+          s3 := WlPlane.a * vPoint.Coordinate.x + WlPlane.b * vPoint.Coordinate.y +
+            WlPlane.c * vPoint.Coordinate.z + WlPlane.d;
           if s3 < MinZ then
             MinZ := s3
           else if s3 > MaxZ then
@@ -626,8 +626,8 @@ begin
 
     for I := 1 to FCorners.Count do
     begin
-      Point := FCorners[I - 1];
-      S := FPoints.SortedIndexOf(Point);
+      vPoint := FCorners[I - 1];
+      S := FPoints.SortedIndexOf(vPoint);
       P1 := Self.Point[S];
       Str := '(' + ConvertDimension(P1.X, Units) + ' / ' + ConvertDimension(P1.Y, Units) + ')';
       Pt := Viewport.Project(P1);
@@ -1160,7 +1160,7 @@ var
   BestIndex: integer;
   ErrorIndex: integer;
   Error, Area: extended;
-  MaxError: extended;
+  vMaxError: extended;
   SeedArea: extended;
   OptArea, Dist: TFloatType;
   OptAngle: TFloatType;
@@ -1714,7 +1714,7 @@ begin
   end;
   if SeedFaces.Count > 0 then
   begin
-    MaxError := 1e10;
+    vMaxError := 1e10;
     BestIndex := -1;
     I := 1;
     FNoIterations := 0;
@@ -1733,7 +1733,7 @@ begin
       end;
       if Error < MaxError then
       begin
-        MaxError := Error;
+        vMaxError := Error;
         BestIndex := I - 1;
       end;
       Inc(I);

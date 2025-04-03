@@ -368,9 +368,9 @@ procedure TFreeSubdivisionEdge.Delete;
 var
   I: integer;
   Index: integer;
-  Face: TFreeSubdivisionFace;
+  vFace: TFreeSubdivisionFace;
   CFace: TFreeSubdivisionControlFace;
-  Point: TFreeSubdivisionControlPoint;
+  vPoint: TFreeSubdivisionControlPoint;
 begin
   logger.IncreaseIndent;
   logger.Debug(format('TFreeSubdivisionEdge[%d].Delete',[self.FId]));
@@ -380,9 +380,9 @@ begin
   begin
     for I := FFaces.Count-1 downto 0 do
     begin
-      Face:=FFaces[I];
+      vFace:=FFaces[I];
       FFaces.Delete(I);
-      Face.Delete;
+      vFace.Delete;
     end;
 
     // Remove endpoint from startpoint neighbours
@@ -391,8 +391,8 @@ begin
       EndPoint.UnreferenceEdge(self);
       if EndPoint.NumberOfEdges = 0 then
       begin
-        Point := Endpoint as TFreeSubdivisionControlPoint;
-        Point.Delete;
+        vPoint := Endpoint as TFreeSubdivisionControlPoint;
+        vPoint.Delete;
       end;
       EndPoint := nil;
     end;
@@ -403,8 +403,8 @@ begin
       StartPoint.UnreferenceEdge(self);
       if StartPoint.NumberOfEdges = 0 then
       begin
-        Point := StartPoint as TFreeSubdivisionControlPoint;
-        Point.Delete;
+        vPoint := StartPoint as TFreeSubdivisionControlPoint;
+        vPoint.Delete;
       end;
       StartPoint := nil;
     end;

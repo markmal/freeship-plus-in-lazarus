@@ -23,15 +23,15 @@ end;{TFreesubdivisionControlEdge.FGetIndex}
 function TFreesubdivisionControlEdge.FGetIsBoundaryEdge: boolean;
 var
   I, N: integer;
-  Face: TFreeSubdivisionFace;
+  vFace: TFreeSubdivisionFace;
 begin
   N := 0;
   for I := 0 to NumberOfFaces - 1 do
   begin
-    Face := FFaces[I];
-    if Face is TFreeSubdivisionControlFace then
-       if ((Face as TFreeSubdivisionControlFace).Layer <> nil)
-         and (Face as TFreeSubdivisionControlFace).Layer.UseInHydrostatics then
+    vFace := FFaces[I];
+    if vFace is TFreeSubdivisionControlFace then
+       if ((vFace as TFreeSubdivisionControlFace).Layer <> nil)
+         and (vFace as TFreeSubdivisionControlFace).Layer.UseInHydrostatics then
           Inc(N);
   end;
 
@@ -410,9 +410,9 @@ procedure TFreesubdivisionControlEdge.Delete;
 var
   I: integer;
   Index: integer;
-  Face: TFreeSubdivisionFace;
+  vFace: TFreeSubdivisionFace;
   CFace: TFreeSubdivisionControlFace;
-  Point: TFreeSubdivisionControlPoint;
+  vPoint: TFreeSubdivisionControlPoint;
 begin
   logger.IncreaseIndent;
   logger.Debug(format('TFreesubdivisionControlEdge[%d].Delete',[self.FID]));
@@ -431,9 +431,9 @@ begin
     while FFaces.Count>0 do
     begin
       //DeleteFace(FFaces[FFaces.Count-1]);
-      Face := FFaces[0];
+      vFace := FFaces[0];
       FFaces.Delete(0);
-      Face.Delete;
+      vFace.Delete;
     end;
     FFaces.Clear;
 
@@ -655,8 +655,8 @@ function TFreesubdivisionControlEdge.InsertControlPoint(P: T3DCoordinate
 var
   I: integer;
   I1, I2: integer;
-  Face: TFreeSubdivisionFace;
-  Edge: TFreeSubdivisionControlEdge;
+  vFace: TFreeSubdivisionFace;
+  vEdge: TFreeSubdivisionControlEdge;
   ds, de: TFloatType;
 begin
   Result := nil;
@@ -676,33 +676,33 @@ begin
   FSurface.FControlPoints.Add(Result);
   for I := 1 to NumberOfFaces do
   begin
-    Face := FFaces[I - 1];
-    I1 := Face.FPoints.IndexOf(FStartPoint);
-    I2 := Face.FPoints.IndexOf(FEndPoint);
+    vFace := FFaces[I - 1];
+    I1 := vFace.FPoints.IndexOf(FStartPoint);
+    I2 := vFace.FPoints.IndexOf(FEndPoint);
     if (I1 <> -1) and (I2 <> -1) then
     begin
       if (I2 = I1 + 1) then
-        Face.FPoints.Insert(I2, Result)
+        vFace.FPoints.Insert(I2, Result)
       else
       if (I1 = I2 + 1) then
-        Face.FPoints.Insert(I1, Result)
+        vFace.FPoints.Insert(I1, Result)
       else
-      if (I1 = 0) and (I2 = Face.FPoints.Count - 1) then
-        Face.FPoints.Insert(0, Result)
+      if (I1 = 0) and (I2 = vFace.FPoints.Count - 1) then
+        vFace.FPoints.Insert(0, Result)
       else
-      if (I2 = 0) and (I1 = Face.FPoints.Count - 1) then
-        Face.FPoints.Insert(0, Result);
-      Result.AddFace(Face);
+      if (I2 = 0) and (I1 = vFace.FPoints.Count - 1) then
+        vFace.FPoints.Insert(0, Result);
+      Result.AddFace(vFace);
     end;
   end;
   FEndpoint.UnreferenceEdge(self);
-  Edge := FSurface.AddControlEdge(Result, FEndPoint as TFreeSubdivisionControlPoint);
-  Edge.FCrease := FCrease;
-  Edge.FCurve := FCurve;
+  vEdge := FSurface.AddControlEdge(Result, FEndPoint as TFreeSubdivisionControlPoint);
+  vEdge.FCrease := FCrease;
+  vEdge.FCurve := FCurve;
   if FCrease then
     Result.FVertexType := svCrease;
   for I := 1 to NumberOffaces do
-    Edge.AddFace(FFaces[I - 1]);
+    vEdge.AddFace(FFaces[I - 1]);
   FEndPoint := Result;
   Result.AddEdge(self);
 end;{TFreeSubdivisionControlEdge.InsertControlPoint}

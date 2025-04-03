@@ -79,7 +79,7 @@ begin
   Result := Normalize(Result);
 end;{TFreeSubdivisionFace.FGetFaceNormal}
 
-function TFreeSubdivisionFace.FGetNumberOfPoints;
+function TFreeSubdivisionFace.FGetNumberOfPoints: integer;
 begin
   Result := FPoints.Count;
 end;{TFreeSubdivisionFace.FGetNumberOfPoints}
@@ -132,7 +132,7 @@ end;{TFreeSubdivisionFace.CalculateFacePoint}
 
 function TFreeSubdivisionFace.CheckIntegrity: boolean;
 var  I, J: integer;
-  point: TFreeSubdivisionPoint;
+  vPoint: TFreeSubdivisionPoint;
 begin
   result:=true;
 
@@ -153,13 +153,13 @@ begin
   for I := 0 to FPoints.Count-1 do
     if FPoints[i] <> nil then
     begin
-      Point := FPoints[i];
-      if Point.FFaces.IndexOf(Self) = -1 then
+      vPoint := FPoints[i];
+      if vPoint.FFaces.IndexOf(Self) = -1 then
       begin
         logger.Error(Format('TFreeSubdivisionFace.CheckIntegrity: not in Point[%d]',[I]));
         result := false;
       end;
-      result := result and Point.CheckIntegrity;
+      result := result and vPoint.CheckIntegrity;
     end
   else
   begin
@@ -363,28 +363,28 @@ begin
 
       Index0 := (I - 1) mod 4;
       TmpIndex := aRefVertices.SortedIndexOf(P2);
-      Pts[Index0] := aRefVertices.Objects[TmpIndex];// P2.FNewLocation;
+      Pts[Index0] := TFreeSubdivisionPoint(aRefVertices.Objects[TmpIndex]);// P2.FNewLocation;
       if Pts[Index0] = nil
         then raise Exception.Create('Subdivision error. Point 0 not found');
       P2Point := Pts[Index0];
 
       Index1 := (Index0 + 1) mod 4;
       TmpIndex := aRefEdges.SortedIndexOf(CurrEdge);
-      Pts[index1] := aRefEdges.Objects[TmpIndex];//CurrEdge.FNewLocation;
+      Pts[index1] := TFreeSubdivisionPoint(aRefEdges.Objects[TmpIndex]);//CurrEdge.FNewLocation;
       if Pts[Index1] = nil
          then raise Exception.Create('Subdivision error. Point 1 not found');
       CurrEdgePoint := Pts[index1];
 
       Index2 := (Index1 + 1) mod 4;
       TmpIndex := aRefFaces.SortedIndexOf(self);
-      Pts[index2] := aRefFaces.Objects[TmpIndex];//self.FNewLocation;
+      Pts[index2] := TFreeSubdivisionPoint(aRefFaces.Objects[TmpIndex]);//self.FNewLocation;
       if Pts[Index2] = nil
          then raise Exception.Create('Subdivision error. Point 2 (face center) not found');
       NewLocation := Pts[index2];
 
       Index3 := (Index2 + 1) mod 4;
       TmpIndex := aRefEdges.SortedIndexOf(PrevEdge);
-      Pts[index3] := aRefEdges.Objects[TmpIndex];// PrevEdge.FNewLocation;
+      Pts[index3] := TFreeSubdivisionPoint(aRefEdges.Objects[TmpIndex]);// PrevEdge.FNewLocation;
       if Pts[Index3] = nil
          then raise Exception.Create('Subdivision error. Point 3 not found');
       PrevEdgePoint := Pts[index3];
@@ -425,13 +425,13 @@ begin
 
       Index0 := 0;
       TmpIndex := aRefEdges.SortedIndexOf(PrevEdge);
-      Pts[Index0] := aRefEdges.Objects[tmpindex];// PrevEdge.FNewLocation;
+      Pts[Index0] := TFreeSubdivisionPoint(aRefEdges.Objects[tmpindex]);// PrevEdge.FNewLocation;
       Index1 := 1;
       TmpIndex := aRefVertices.SortedIndexOf(P2);
-      Pts[index1] := aRefVertices.Objects[Tmpindex];// P2.FNewLocation;
+      Pts[index1] := TFreeSubdivisionPoint(aRefVertices.Objects[Tmpindex]);// P2.FNewLocation;
       Index2 := 2;
       TmpIndex := aRefEdges.SortedIndexOf(CurrEdge);
-      Pts[index2] := aRefEdges.Objects[Tmpindex];// CurrEdge.FNewLocation;
+      Pts[index2] := TFreeSubdivisionPoint(aRefEdges.Objects[Tmpindex]);// CurrEdge.FNewLocation;
 
       // add the new face
       NewFace := TFreeSubdivisionFace.Create(aOwner);
@@ -459,7 +459,7 @@ begin
       IndexPE := (I - 2 + FPoints.Count) mod FPoints.Count;
       PrevEdge := aOwner.EdgeExists(P2, FPoints[IndexPE]);
       TmpIndex := aRefEdges.SortedIndexOf(PrevEdge);
-      Pts[I - 1] := aRefEdges.Objects[TmpIndex];// PrevEdge.FNewLocation;
+      Pts[I - 1] := TFreeSubdivisionPoint(aRefEdges.Objects[TmpIndex]);// PrevEdge.FNewLocation;
     end;
 
     // add the new face

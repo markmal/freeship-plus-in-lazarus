@@ -33,6 +33,7 @@ var
     outputlength, stderrlength : integer;
     stderrnumbytes,stderrbytesread : integer;
 begin
+  outputstring:=''; stderrstring:=''; exitstatus:=-1;
   result:=-1;
   try
     try

@@ -40,7 +40,7 @@ uses
      {$ELSE}
        LCLIntf, LCLType, 
        TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
-       TAChartAxis, TAChartAxisUtils,
+       TAChartAxis, //TAChartAxisUtils,
        PrintersDlgs, Printer4Lazarus, FreePrinter,
        {$IFDEF VER3}
         LazUTF8,
@@ -429,7 +429,7 @@ begin
 end;{TFreeHydrodyn_Maneuv.FSetDat20}
 
 procedure TFreeHydrodyn_Maneuv.Calculate;
-Type TTable = array[0..16,0..13] of single;
+//Type TTable = array[0..16,0..13] of single;
 
 var Units  : TFreeUnitType;
     I,J,II,len        : Integer;

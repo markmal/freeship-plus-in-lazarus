@@ -1016,16 +1016,16 @@ end;{TFreeHydrostaticCalc.AddFooter}
 function TFreeHydrostaticCalc.Balance(Displacement: TFloatType;
   FreeToTrim: boolean; var Output: TFreeCrosscurvesData): boolean;
 
-const
-  MaxIterations = 25;
+//const
+  //MaxIterations = 25;
   //      MaxError       = 5e-6;
   //      MaxTrimError   = 1e-6;
 
 type
-  TTrimData = record
+  {TTrimData = record
     Trim: single;
     LCB: single;
-  end;
+  end;}
 
   TDraftdata = record
     Draft: single;

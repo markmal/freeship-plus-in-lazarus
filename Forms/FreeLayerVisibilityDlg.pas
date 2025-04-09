@@ -6,10 +6,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  CheckLst, StdCtrls, ComCtrls, Grids,
+  StdCtrls, ComCtrls, Grids,
   LCLTranslator,
      FreeShipUnit,
-     FreeTypes,
+     //FreeTypes,
      FreeGeometry,
      FasterList;
 
@@ -39,7 +39,7 @@ type
   private
     FFreeShip : TFreeShip;
     FOnChange: TNotifyEvent;
-    Layers   : specialize TFasterList<TFreeSubdivisionLayer>;
+    //Layers   : specialize TFasterList<TFreeSubdivisionLayer>;
     procedure UpdateMenu;
 
   public

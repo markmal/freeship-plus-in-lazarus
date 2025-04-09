@@ -171,6 +171,17 @@ const
 
 
 type
+  PObjectVMT=^TObjectVMT;
+  TObjectVMT=record
+    size,msize:SizeUInt;
+    parent:{$ifdef VER3_0}pointer{$else}ppointer{$endif};
+  end;
+
+type
+  TObjHdr=record vmt: pobjectvmt; end;
+  PObjHdr=^TobjHdr;
+
+type
 
   TShadePoint = record                         // Used for drawing to the Z-buffer
     X, Y: integer;
@@ -612,8 +623,6 @@ type
     FLastResizeClientHeight:integer;
     FOriginalVertScrollbarChange:TNotifyEvent;
     FOriginalHorScrollbarChange:TNotifyEvent;
-
-    FShadingFace: TFreeSubdivisionFace;
 
     function FGetBrushColor: TColor;
     function FGetBrushStyle: TBrushStyle;
@@ -1260,13 +1269,14 @@ type
     function GetColor: TColor;
     function GetNumberOfControlPoints: integer;
     function GetControlPoint(Index: integer): TFreeSubdivisionControlPoint;
-    function FGetSelected: boolean; override;
     function GetVisible: boolean;
     procedure LastAveragePoint(PrevPoint, Point,
       NextPoint: TFreeSubdivisionPoint);
     procedure SetBuilt(Val: boolean);
-    procedure FSetSelected(val: boolean); override;
     procedure SubdivideFreeStanding(level: integer);
+  protected
+    function FGetSelected: boolean; override;
+    procedure FSetSelected(val: boolean); override;
   public
     procedure AddPoint(P: TFreeSubdivisionControlPoint);
     procedure DeletePoint(P: TFreeSubdivisionControlPoint);
@@ -1463,7 +1473,6 @@ type
     function FGetRegularPoint: boolean;
     function FGetLimitPoint: T3DCoordinate;
     procedure FSetCoordinate(Val: T3DCoordinate);virtual;
-    procedure PrintDebug; override;
     procedure SetVertexType(AValue: TFreeVertexType);
   public
     procedure AddEdge(Edge: TFreeSubdivisionEdge);
@@ -1476,6 +1485,7 @@ type
     procedure Clear;
     constructor Create(aSurface: TFreeSubdivisionSurface);override;
     procedure Delete; virtual;
+    procedure PrintDebug; override;
     procedure UnreferenceEdge(Edge: TFreeSubdivisionEdge);
     procedure UnreferenceFace(Face: TFreeSubdivisionFace);
     procedure Unreference; virtual;
@@ -1526,11 +1536,12 @@ type
       override;
     function FGetIsLeak: boolean;
     function GetIsFreeStanding: boolean;
-    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetLocked(val: boolean);
-    procedure FSetSelected(val: boolean); override;
     procedure FSetCoordinate(Val: T3DCoordinate); override;
+  protected
+    function FGetSelected: boolean; override;
+    procedure FSetSelected(val: boolean); override;
   public
     procedure Collapse0;
     procedure Collapse;
@@ -1579,9 +1590,10 @@ type
     FLocked: boolean;
     function CalculateCenterPoint: T3DCoordinate;
     function FGetIndex: integer;
-    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetLocked(val: boolean);
+  protected
+    function FGetSelected: boolean; override;
     procedure FSetSelected(val: boolean); override;
   public
     procedure AddControlPoint(cp:TFreeSubdivisionControlPoint);
@@ -1622,7 +1634,6 @@ type
     procedure FSetCrease(Val: boolean); virtual;
     function FGetPreviousEdge: TFreeSubdivisionEdge;
     function FGetNextEdge: TFreeSubdivisionEdge;
-    procedure PrintDebug; override;
     procedure SetCurve(AValue: TFreeSubdivisionControlCurve);
     procedure SetStartPoint(aPoint:TFreeSubdivisionPoint);
     procedure SetEndPoint(aPoint:TFreeSubdivisionPoint);
@@ -1643,6 +1654,7 @@ type
       var P: T3DCoordinate; Viewport: TFreeViewport): integer; virtual;
     procedure Draw(DrawMirror: boolean;
       Viewport: TFreeViewport); virtual;
+    procedure PrintDebug; override;
     procedure SwapData;
     //function getPoints:TFasterListTFreeSubdivisionPoint;
     property Crease: boolean read FCrease write FSetCrease;
@@ -1677,13 +1689,14 @@ type
     function FGetColor: TColor;
     function FGetIndex: integer; override;
     function FGetIsBoundaryEdge: boolean; override;
-    procedure FSetSelected(val: boolean); override;
-    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     function GetStartPoint:TFreeSubdivisionControlPoint;
     procedure SetStartPoint(aPoint:TFreeSubdivisionControlPoint);
     function GetEndPoint:TFreeSubdivisionControlPoint;
     procedure SetEndPoint(aPoint:TFreeSubdivisionControlPoint);
+  protected
+    procedure FSetSelected(val: boolean); override;
+    function FGetSelected: boolean; override;
   public
     procedure Collapse;
     constructor Create(Owner: TFreeSubdivisionSurface);
@@ -1783,9 +1796,10 @@ type
     function FGetEdgeCount: integer;
     function FGetIndex: integer;
     function FGetPoint(Index: integer): TFreeSubdivisionControlPoint;
-    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetLayer(Val: TFreeSubdivisionLayer);
+  protected
+    function FGetSelected: boolean; override;
     procedure FSetSelected(val: boolean); override;
   public
     procedure CalcExtents;
@@ -2464,6 +2478,8 @@ function WeightStr(Units: TFreeUnitType): string;
 function DegrStr(Units: TFreeUnitType): string;
 // Returns a string value with the length (mm or inch) units
 function LenMMStr(Units: TFreeUnitType): string;
+// Checks if an object is free. NOT 100% reliable. Same reliable as FPC $R+ check.
+function check_object(O: TObject; C: TClass): boolean;
 
 var
   DelayedDestroyList: TFreeDestroyList;

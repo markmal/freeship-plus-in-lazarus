@@ -55,7 +55,8 @@ uses SysUtils,// this declaration must be at the start, before the FreeGeometry 
 
      {$endif}
      {$IFDEF LCLGTK2}
-  Gtk2WSDialogs, GTK2,
+     //Gtk2WSDialogs,
+     GTK2,
      {$ENDIF}
   Types,
   IniFiles,
@@ -465,6 +466,7 @@ type
   private
     FVisible: boolean;
     FOwner: TFreeShip;
+  protected
     function FGetSelected: boolean; override;
     procedure FSetSelected(AValue: boolean); override;
   public
@@ -496,9 +498,10 @@ type
     FFreeShip: TFreeShip;
     FMethodNew: boolean;
     function FGetColor: TColor;
-    function FGetSelected: boolean; override;
     function FGetVisible: boolean;
     procedure FSetBuild(val: boolean);
+  protected
+    function FGetSelected: boolean; override;
     procedure FSetSelected(aValue: boolean); override;
   public
     procedure Clear;
@@ -621,8 +624,8 @@ type
     FFreeShip: TFreeShip;
     FRecentFiles: TStringList;
 
-    PreviewFrm: TForm;
-    PreviewImg: TImage;
+    //PreviewFrm: TForm;
+    //PreviewImg: TImage;
     FProgressBar: TProgressBar;
     function FGetRecentFile(Index: integer): string;
     function FGetRecentFileCount: integer;
@@ -1016,7 +1019,7 @@ type
     procedure dumpIcons(ImageList: TImageList; ActionList: TActionList);
     procedure LoadImageIntoBitmap(Bitmap: TBitmap; Name: string);
     procedure LoadImageListByActions(ImageList: TImageList;
-      ActionList: TActionList);
+      ActionList: TActionList; ActionPrefix: string);
     procedure LoadImageIntoList(ImageList: TImageList; Item: integer; Name: string);
     function IsThemeCustom(ThemeName: string): boolean;
     procedure SaveCustomTheme;
@@ -1598,7 +1601,7 @@ uses Math,
   FreeHydrostaticsFrm,
   FreePreferencesDlg,
   FreeExpanedPlatesDlg,
-  FreeLinesplanFrm,
+  //FreeLinesplanFrm,
   FreeLinesplanFrme,
   FreeInsertPlaneDlg,
   FreeMichletOutputDlg,

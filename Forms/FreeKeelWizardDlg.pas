@@ -874,7 +874,7 @@ type
     FFreeship: TFreeShip;
     FProfile: TFreeSpline;
     COG: T2DCoordinate;
-    Span: TFloatType;
+    //Span: TFloatType;
     Area, MeanChord: TFloatType;
     GeomAspectRatio: TFloatType;
     EffAspectRatio: TFloatType;
@@ -938,8 +938,7 @@ begin
 end;{TFreeKeelWizardDialog.FGetRows}
 
 procedure TFreeKeelWizardDialog.UpdateData;
-const
-  Cl2D = 0.10;
+//const Cl2D = 0.10;
 var
   L, a, b: TFloatType;
   I, J, Index, N: integer;

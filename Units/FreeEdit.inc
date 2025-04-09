@@ -3467,7 +3467,7 @@ begin
       FreeShip.Preferences.ExportDirectory := ExtractFilePath(Dialog.FileName);
       IGESList := TFreeIGESList.Create;
       IGESList.IGESUnits := FreeShip.ProjectSettings.ProjectUnits;
-      IGESList.SystemID := 'FREE!ship' + #32 + VersionString(CurrentVersion);
+      IGESList.SystemID := 'FREE!ship ' + VersionString(CurrentVersion);
       IGESList.FileCreatedBy := FreeShip.ProjectSettings.ProjectFileCreatedBy;
       IGESList.FileName := Dialog.FileName;
       // Build color table

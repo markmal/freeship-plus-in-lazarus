@@ -5,9 +5,9 @@ unit TileDialog;
 interface
 
 uses
-{$IFDEF LCLGTK2}
-  Gtk2,
-{$ENDIF}
+//{$IFDEF LCLGTK2}
+//  Gtk2,
+//{$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
   StdCtrls, ActnList, Menus, ComCtrls,
   LCLTranslator;

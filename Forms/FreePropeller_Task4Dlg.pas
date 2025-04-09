@@ -399,8 +399,8 @@ begin
 end;{TFreePropeller_Task4.FSetDat16}
 
 procedure TFreePropeller_Task4.Calculate;
-type
-  TTable = array[0..16, 0..13] of single;
+//type
+//  TTable = array[0..16, 0..13] of single;
 
 var
   Units: TFreeUnitType;

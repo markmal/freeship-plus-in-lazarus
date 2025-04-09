@@ -7,7 +7,7 @@ uses
   Classes, SysUtils, Graphics,
   FileIcon,
   GTK2,
-  GLib2,
+  //GLib2,
   LazGio2, LazGlib2
   ;
 
@@ -15,9 +15,9 @@ type TFileIconGtk = class(TFileIconAdapter)
 protected
   function getIconByNameGtk(icon_name:Pgchar; size:integer):TIcon;
   function getIconByName( iconName:string; size:integer):TIcon;
+public
   function getIconNameForFile(filename:string; size:integer):string; override;
   function getIconForFile(filename:string; size:integer):TIcon; override;
-public
   function addIconsForFile(filename:string):integer; override;
 end;
 

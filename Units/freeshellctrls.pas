@@ -2231,8 +2231,10 @@ begin
   sl.Delimiter:=DirectorySeparator;
   sl.DelimitedText:=vPath;
 
+  {$WARNINGS OFF} // do not warn about unreacheable code
   if DirectorySeparator='/' then FPathType:=ptUnixRelative;
   if DirectorySeparator='\' then FPathType:=ptWindowsRelative;
+  {$WARNINGS ON}
 
   if FilenameIsUnixAbsolute(vPath) then
     begin

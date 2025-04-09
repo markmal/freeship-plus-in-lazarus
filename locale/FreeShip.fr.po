@@ -15808,6 +15808,16 @@ msgstr "moyen"
 msgid "From hydrostatics"
 msgstr ""
 
+#: tfreetextureform.actiondelete.caption
+msgctxt "tfreetextureform.actiondelete.caption"
+msgid "DeleteTexture"
+msgstr ""
+
+#: tfreetextureform.actiondelete.hint
+msgctxt "tfreetextureform.actiondelete.hint"
+msgid "Delete texture"
+msgstr ""
+
 #: tfreetextureform.button1.caption
 #, fuzzy
 msgctxt "tfreetextureform.button1.caption"
@@ -15831,16 +15841,6 @@ msgstr "Fermer la boite de dialogue"
 
 #: tfreetextureform.comboboxselecttexture.text
 msgid "ComboBoxSelectTexture"
-msgstr ""
-
-#: tfreetextureform.delete.caption
-msgctxt "tfreetextureform.delete.caption"
-msgid "DeleteTexture"
-msgstr ""
-
-#: tfreetextureform.delete.hint
-msgctxt "tfreetextureform.delete.hint"
-msgid "Delete texture"
 msgstr ""
 
 #: tfreetextureform.floatspineditshiftx.hint
@@ -16035,6 +16035,18 @@ msgctxt "tmainform.actioncheckupdates.caption"
 msgid "Check for updates"
 msgstr ""
 
+#: tmainform.actiondelete.caption
+#, fuzzy
+msgctxt "tmainform.actiondelete.caption"
+msgid "Delete"
+msgstr "Delete"
+
+#: tmainform.actiondelete.hint
+#, fuzzy
+msgctxt "tmainform.actiondelete.hint"
+msgid "Delete all selected items."
+msgstr "Supprimer tous les éléments sélectionnés."
+
 #: tmainform.activelayercolor.caption
 msgid "Active layer color"
 msgstr "Activer la couleur du calque"
@@ -16133,15 +16145,6 @@ msgstr "Decr. échelle de courbure"
 #: tmainform.decreasecurvaturescale.hint
 msgid "Decrease the scale of the curvature plots"
 msgstr "Diminuer l'échelle des rayons de courbure"
-
-#: tmainform.delete.caption
-msgctxt "tmainform.delete.caption"
-msgid "Delete"
-msgstr "Delete"
-
-#: tmainform.delete.hint
-msgid "Delete all selected items."
-msgstr "Supprimer tous les éléments sélectionnés."
 
 #: tmainform.deleteemptylayers.caption
 msgid "Delete empty"
@@ -16282,13 +16285,15 @@ msgid "Export all faces to a 3D DXF file."
 msgstr "Exporter toutes les surfaces dans un fichier DXF 3D."
 
 #: tmainform.exportfef.caption
+#, fuzzy
 msgctxt "tmainform.exportfef.caption"
 msgid "FEF file..."
 msgstr "fichier FEF ..."
 
 #: tmainform.exportfef.hint
+msgctxt "tmainform.exportfef.hint"
 msgid "Export to a FEF (Freeship Exchange Format) hull."
-msgstr "Exporter vers un format de coque FEF (Freeship Exchange Format)."
+msgstr ""
 
 #: tmainform.exportghs.caption
 msgid "GHS..."

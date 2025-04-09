@@ -637,13 +637,13 @@ end;{Interpolate}
 procedure JoinSplineSegments(JoinError: TFloatType; ForceToOneSegment: boolean;
   List: TFasterListTFreeSpline);
 
-type
+{type
   TSegmentRecord = record
     Length: TFloatType;
     COG: T3DCoordinate;
-  end;
-  TSegmentdata = array[0..0] of TSegmentRecord;
-  PSegmentdata = ^TSegmentdata;
+  end;}
+  //TSegmentdata = array[0..0] of TSegmentRecord;
+  //PSegmentdata = ^TSegmentdata;
 
 var
   I, J: integer;
@@ -762,7 +762,7 @@ function Lines3DIntersect(P1, P2, P3, P4: T3DCoordinate; var Param: double;
 const
   eps = 1e-6;
   eps2 = 1e-12;
-  eps3 = 3e-6;
+  //eps3 = 3e-6;
 var
   pa, pb, p13, p43, p21: T3DCoordinate;
   numer, denom, mua, mub: double;
@@ -1745,6 +1745,23 @@ begin
   // Return the angle in Degrees
   Result := RadToDeg(vAngle);
 end;
+
+function check_object(O: TObject; C: TClass): boolean;
+var _vmt : pobjectvmt; InstSz:SizeUInt;
+begin
+  if O <> nil then
+  begin
+    InstSz := C.InstanceSize;
+    _vmt := PobjHdr(O)^.vmt;
+    Result := not ( (_vmt = nil)
+      or (_vmt^.size = 0)
+      or (_vmt^.size <> InstSz)
+      or (_vmt^.size <> not(_vmt^.msize)+1)
+    );
+  end
+  else Result := false;
+end;
+
 
 
 

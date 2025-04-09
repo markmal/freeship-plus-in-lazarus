@@ -561,8 +561,8 @@ end;{TFreePropeller_Task2.FSetDat18_5}
 
 
 procedure TFreePropeller_Task2.Calculate;
-type
-  TTable = array[0..16, 0..13] of single;
+//type
+//  TTable = array[0..16, 0..13] of single;
 const
   Rom: array[1..8] of single = (8.4, 8.8, 7.8, 8.5, 7.7, 7.7, 7.9, 2.8);
   SigmaT: array[1..8] of single = (195, 215, 224, 242, 272, 292, 438, 430);

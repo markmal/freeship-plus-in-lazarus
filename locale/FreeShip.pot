@@ -14126,6 +14126,16 @@ msgstr ""
 msgid "From hydrostatics"
 msgstr ""
 
+#: tfreetextureform.actiondelete.caption
+msgctxt "tfreetextureform.actiondelete.caption"
+msgid "DeleteTexture"
+msgstr ""
+
+#: tfreetextureform.actiondelete.hint
+msgctxt "tfreetextureform.actiondelete.hint"
+msgid "Delete texture"
+msgstr ""
+
 #: tfreetextureform.button1.caption
 msgctxt "tfreetextureform.button1.caption"
 msgid "Reset"
@@ -14146,16 +14156,6 @@ msgstr ""
 
 #: tfreetextureform.comboboxselecttexture.text
 msgid "ComboBoxSelectTexture"
-msgstr ""
-
-#: tfreetextureform.delete.caption
-msgctxt "tfreetextureform.delete.caption"
-msgid "DeleteTexture"
-msgstr ""
-
-#: tfreetextureform.delete.hint
-msgctxt "tfreetextureform.delete.hint"
-msgid "Delete texture"
 msgstr ""
 
 #: tfreetextureform.floatspineditshiftx.hint
@@ -14349,6 +14349,16 @@ msgctxt "tmainform.actioncheckupdates.caption"
 msgid "Check for updates"
 msgstr ""
 
+#: tmainform.actiondelete.caption
+msgctxt "tmainform.actiondelete.caption"
+msgid "Delete"
+msgstr ""
+
+#: tmainform.actiondelete.hint
+msgctxt "tmainform.actiondelete.hint"
+msgid "Delete all selected items."
+msgstr ""
+
 #: tmainform.activelayercolor.caption
 msgid "Active layer color"
 msgstr ""
@@ -14444,15 +14454,6 @@ msgstr ""
 
 #: tmainform.decreasecurvaturescale.hint
 msgid "Decrease the scale of the curvature plots"
-msgstr ""
-
-#: tmainform.delete.caption
-msgctxt "tmainform.delete.caption"
-msgid "Delete"
-msgstr ""
-
-#: tmainform.delete.hint
-msgid "Delete all selected items."
 msgstr ""
 
 #: tmainform.deleteemptylayers.caption
@@ -14598,6 +14599,7 @@ msgid "FEF file..."
 msgstr ""
 
 #: tmainform.exportfef.hint
+msgctxt "tmainform.exportfef.hint"
 msgid "Export to a FEF (Freeship Exchange Format) hull."
 msgstr ""
 

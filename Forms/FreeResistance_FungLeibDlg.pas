@@ -261,8 +261,8 @@ type
     procedure Estimate2BoxClick(Sender: TObject);
   private
     FFreeship: TFreeship;
-    B_T, L_D, A_D, L_B, Vsr, Rtotal: single;
-    Am, Cm, Cwp, S_, Ie_, Ie, Z0, Tc: single;
+    B_T, L_D, A_D, L_B, Rtotal: single;
+    Am, Cm, Cwp, S_, Ie_, Z0, Tc: single;
     Ae0, P_D0, Nver: single;
     procedure CalculateResistanceFungLeib(
       ConvertedSpeed, LCB, Cp: single; var Rf, Rr, w, t0, nr: single);

@@ -10,7 +10,7 @@ uses
   {$endif}
   }
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Spin, Buttons, ActnList,
+  Buttons, ActnList,
   LCLTranslator,
   //{$IF (FPC_FULLVERSION >= 30200) and (defined(unix))}
   {$IF FPC_FULLVERSION >= 30200}

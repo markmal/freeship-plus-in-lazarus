@@ -207,7 +207,7 @@ object FreeTextureForm: TFreeTextureForm
     object ToolButtonDelete: TToolButton
       Left = 429
       Top = 2
-      Action = Delete
+      Action = ActionDelete
       ShowCaption = False
     end
   end
@@ -234,7 +234,7 @@ object FreeTextureForm: TFreeTextureForm
       ImageIndex = 2
       OnExecute = CloseDialogExecute
     end
-    object Delete: TAction
+    object ActionDelete: TAction
       Caption = 'DeleteTexture'
       Hint = 'Delete texture'
       ImageIndex = 3

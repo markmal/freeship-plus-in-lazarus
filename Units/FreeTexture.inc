@@ -894,15 +894,11 @@ begin
 end;
 
 procedure TFreeTexture.ClearBitmap;
-var P: procedure of Object;
+var P: procedure of Object; A: codepointer; S,MS: int64;  V: Pointer;
+  vmt:PVmt;    I:integer;
 begin
-  {with FBitmap do
-    P := Clear;
-  if Assigned(FBitmap)
-    and (Int64(P)>0)
-     then FBitmap.Clear;}
-  FreeAndNil(FBitmap);
-  //FreeAndNil(FRawImage);
+  if Check_Object(FBitmap, TBitmap) then
+    FreeAndNil(FBitmap);
   FreeAndNil(FIntfImage);
   Self.IsCorelated:=false;
 end;

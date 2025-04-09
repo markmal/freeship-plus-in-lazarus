@@ -52,7 +52,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Controls,
-  Forms, Dialogs, StdCtrls,
+  Forms, Dialogs, //StdCtrls,
   SysUtils,
      {$IFDEF VER3}
       LazUTF8,

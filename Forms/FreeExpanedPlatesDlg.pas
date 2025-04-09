@@ -380,7 +380,7 @@ begin
   //USE ONCE!
   ////Freeship.Preferences.dumpIcons(MenuImages,ActionList1);
 
-  Freeship.Preferences.LoadImageListByActions(MenuImages, ActionList1);
+  Freeship.Preferences.LoadImageListByActions(MenuImages, ActionList1, 'Action');
   ToolBar1.ButtonHeight:= MenuImages.Height + 4;
   ToolBar1.ButtonWidth := MenuImages.Width  + 4;
 

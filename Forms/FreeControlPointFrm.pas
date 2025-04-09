@@ -48,7 +48,9 @@ uses
      LCLTranslator,
      FreeTypes,
      FreeGeometry,
-     StdCtrls, Buttons, ExtCtrls, Spin, FileCtrl, Types;
+     StdCtrls, Buttons, ExtCtrls, Spin,
+     //FileCtrl,
+     Types;
 
 type
 
@@ -135,7 +137,7 @@ type
       FSkipCheckbox1OnClick: boolean;
       FPointEditorChanging: boolean;
       FActiveControlPointChanging: boolean;
-      FilterComboBoxLinearConstraintAPopulating, FilterComboBoxLinearConstraintBPopulating : boolean; //TODO delete if not used
+      //FilterComboBoxLinearConstraintAPopulating, FilterComboBoxLinearConstraintBPopulating : boolean; //TODO delete if not used
       EnteredControl: TControl;
       EntryMethod: TEntryMethod;
       procedure FSetActiveControlPoint(Val:TFreeSubdivisionControlPoint);

@@ -10,8 +10,7 @@ uses
   Math,
   FreeTypes, FreeGeometry,
   FreeShipUnit,
-  LCLTranslator, Spin,
-  FreeStringUtils;
+  LCLTranslator, Spin;
 
 type
 
@@ -21,7 +20,7 @@ type
   { TFreeTextureForm }
 
   TFreeTextureForm = class(TForm)
-    Delete: TAction;
+    ActionDelete: TAction;
     ColorButton1: TColorButton;
     Ok: TAction;
     Button1: TButton;
@@ -78,17 +77,10 @@ type
     FActiveTexture: TFreeTexture;
     FFreeShip: TFreeShip;
     FLayer: TFreeSubdivisionLayer;
-    FPatchScale: TFloatType;
-    FPatchAngle: TFloatType;
-    FImageScale: TFloatType;
-    FImageAngle: TFloatType;
     FFontSize: integer;
     FControlMode: TControlModeEnum;
     FInitialPosition: TPoint;
-    FInitialZoom: TPoint;
     FInitialPatchPosition: TPoint;
-    FInitialPatchScale: TPoint;
-    FInitialPatchAngle: TPoint;
     FFoundPoint: TFreeSubdivisionPoint;
     FFoundUnrolledPoint: T2DCoordinate;
     FFoundEdge: TFreeSubdivisionEdge;
@@ -204,7 +196,7 @@ begin
   ImageList1.Width := Freeship.Preferences.ToolIconSize;
   ToolBar1.ButtonHeight:= ImageList1.Height + 4;
   ToolBar1.ButtonWidth := ImageList1.Width  + 4;
-  Freeship.Preferences.LoadImageListByActions(ImageList1, ActionList1);
+  Freeship.Preferences.LoadImageListByActions(ImageList1, ActionList1, 'Action');
 
   //FUpdateListBox;
 
@@ -657,10 +649,8 @@ procedure TFreeTextureForm.ViewportRedraw(Sender: TObject);
 var
   Pt0, Pt: TPoint;
 begin
-
   FActiveTexture.Color := ColorButton1.ButtonColor;
   FActiveTexture.Draw(Viewport);
-
 end;{TFreeTextureForm.ViewportRedraw}
 
 end.

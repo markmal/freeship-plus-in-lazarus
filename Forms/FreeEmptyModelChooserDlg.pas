@@ -52,7 +52,6 @@ uses
     Buttons,
     ExtCtrls,
     LCLTranslator,
-    FreeGeometry,
     FreeShipUnit,
     FreeStringsUnit
      ;
@@ -76,7 +75,7 @@ type
     procedure OKbuttonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
  private   { Private declarations }
-    FViewport: TFreeViewport;
+    //FViewport: TFreeViewport;
  public    { Public declarations }
     function Execute(FileName:String):Boolean;
 end;

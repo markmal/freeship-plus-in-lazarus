@@ -209,7 +209,7 @@ type
 private    { Private declarations }
    //FOnClose: TCloseEvent;
    FLCLVersion : string;
-   FFormState : TFormState;
+   //FFormState : TFormState;
    FFreeShip         : TFreeShip;
    FPanned           : Boolean;  // Private variable from which can be seen if the popup menu has to be shown or not
    FInitialPosition  : TPoint;   // Initial position of the mouse cursor when the left or right button was pressed

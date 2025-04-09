@@ -41,11 +41,11 @@ type
   private
     FOwner: TVRMLList;
   public
-    constructor Create(Owner: TVRMLList); virtual;
+    constructor Create(Owner: TVRMLList); virtual; overload;
     procedure Clear; virtual;
     destructor Destroy; override;
     procedure Load(var LineNr: integer;
-      Strings: TStringList); virtual;
+      Strings: TStringList); virtual; overload;
   end;
 
   TFasterListTVRMLObject = specialize TFasterList<TVRMLObject>;

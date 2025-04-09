@@ -16,8 +16,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList,
-  StdActns, ComCtrls, Toolwin,
-  ImgList, IntfGraphics, ExtCtrls, StdCtrls, LCLType, Math;
+  ComCtrls, Toolwin,
+  ImgList, IntfGraphics, ExtCtrls, LCLType, Math;
 {
 type
 TLeftSortedList = class(specialize TFPGObjectList<TControl>)

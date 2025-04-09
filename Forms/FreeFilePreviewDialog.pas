@@ -7,11 +7,11 @@ interface
 
 uses
   Classes, SysUtils, LazFileUtils, Forms, Controls, Graphics,
-  Dialogs, ComCtrls, EditBtn,
+  Dialogs, ComCtrls,
   //ShellCtrls, FileCtrl,
   FreeShellCtrls,
   StdCtrls, Buttons,
-  ExtCtrls, PairSplitter, Menus, ActnList, FileCtrl, Math,
+  ExtCtrls, PairSplitter, Menus, ActnList, Math,
   FileIcon,
   {$IFDEF WINDOWS}
   FileIconWin,
@@ -320,8 +320,8 @@ uses LCLType,
 
 const
   cSecunde = 1/24/60/60;
-  cMinute  = 1/24/60;
-  cHour    = 1/24;
+  //cMinute  = 1/24/60;
+  //cHour    = 1/24;
 
 constructor TDir.Create(p:string);
 begin
@@ -425,7 +425,7 @@ begin
     g_object_set(G_OBJECT(text_renderer),
       PChar('alignment'), [gpointer(ptrint(PANGO_ALIGN_CENTER)),
       PChar('wrap-mode'),  gpointer(ptrint(PANGO_WRAP_WORD_CHAR)),
-      PChar('wrap-width'), gpointer(ptrint(AWrapWidth)), nil]);
+      PChar('wrap-width'), gpointer(@AWrapWidth), nil]);
 
     //g_object_set(G_OBJECT(text_renderer), PChar('background'), [PChar('lightgray'),nil]);
     //g_object_set(G_OBJECT(text_renderer), PChar('width'), [gpointer(ptrint(160)),nil]); // CAUSES Memory ERROR

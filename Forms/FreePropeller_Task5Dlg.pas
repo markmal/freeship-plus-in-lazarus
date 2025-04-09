@@ -44,9 +44,9 @@ uses
   ShellAPI,
   {$ELSE}
   LCLIntf, LCLType, 
-  TATools, TASeries, TACustomSeries, TAGraph, TAChartUtils,
+  TASeries, TACustomSeries, TAGraph, TAChartUtils,
   TAChartAxis, TAChartAxisUtils,
-  PrintersDlgs, Printer4Lazarus, FreePrinter,
+  PrintersDlgs, FreePrinter,
   {$IFDEF VER3}
   LazUTF8,
   LazFileUtils,
@@ -62,14 +62,11 @@ uses
   Forms,
   Dialogs,
   StdCtrls,
-  Buttons,
   FreeGeometry,
   ExtCtrls,
   FreeshipUnit,
   Spin,
-  ComCtrls,
-  LCLTranslator,
-  ImgList;
+  ComCtrls;
 
      {$IFDEF FPC}
 const
@@ -168,7 +165,7 @@ implementation
 
 uses FreeStringsUnit,
   Printers,
-  Math,
+  //Math,
   FreeProcess;
 
 {$IFnDEF FPC}
@@ -247,8 +244,8 @@ resourcestring
   rsNoResultFile = 'Result file "%s" not found';
 
 procedure TFreePropeller_Task5.Calculate;
-type
-  TTable = array[0..16, 0..13] of single;
+//type
+//  TTable = array[0..16, 0..13] of single;
 
 var
   Units: TFreeUnitType;

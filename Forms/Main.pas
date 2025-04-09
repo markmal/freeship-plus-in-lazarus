@@ -188,7 +188,7 @@ type
     Autogroup1                 : TMenuItem;
     NewLayer                   : TAction;
     New1                       : TMenuItem;
-    Delete: TAction;
+    ActionDelete: TAction;
     ToolButtonOpenFile: TToolButton;
     ToolButton3: TToolButton;
     ToolButton5: TToolButton;
@@ -518,7 +518,7 @@ type
     procedure LayerAutoGroupExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure NewLayerExecute(Sender: TObject);
-    procedure DeleteExecute(Sender: TObject);
+    procedure ActionDeleteExecute(Sender: TObject);
     procedure EdgeCollapseExecute(Sender: TObject);
     procedure NewEdgeExecute(Sender: TObject);
     procedure ImportFEFExecute(Sender: TObject);
@@ -659,7 +659,6 @@ type
       FToolBarEdgesControlsWidth : integer;
       FToolBarFacesControlsWidth : integer;
       FToolBarCurvesControlsWidth : integer;
-      FActionListHull : TActionList;
       FDestroying: boolean;
       FSplitSectionDialog: TFreeSplitSectionDialog;
 
@@ -1100,8 +1099,8 @@ end;
 procedure TMainForm.AddPointToGroupExecute(Sender: TObject);
 var pgf:TFreePointGroupForm;
 begin
-  pgf:=TFreePointGroupForm.Create(Self);
-  pgf.FreeShip:=FreeShip;
+  pgf := TFreePointGroupForm.Create(Self);
+  pgf.FreeShip := FreeShip;
   pgf.LoadGroups;
   if pgf.ShowModal = mrOk then
     begin
@@ -1473,8 +1472,8 @@ begin
    // Show both sides
    BothSides.Checked:=Freeship.Visibility.ModelView=mvBoth;
    BothSides.Enabled:=FreeShip.Surface.NumberOfControlFaces>0;
-   // Delete
-   Delete.Enabled := Freeship.NumberOfSelectedControlPoints
+   // ActionDelete
+   ActionDelete.Enabled := Freeship.NumberOfSelectedControlPoints
                     +FreeShip.NumberOfSelectedControlEdges
                     +Freeship.NumberOfSelectedControlFaces
                     +Freeship.NumberOfSelectedControlCurves
@@ -2217,7 +2216,7 @@ begin
    UpdateMenu;
 end;{TMainForm.NewLayerExecute}
 
-procedure TMainForm.DeleteExecute(Sender: TObject);
+procedure TMainForm.ActionDeleteExecute(Sender: TObject);
 begin
    Freeship.Edit.Selection_Delete;
    UpdateMenu;
@@ -2716,7 +2715,7 @@ procedure TMainForm.FreeShipUpdateRecentFileList(Sender: TObject);
 var I    : Integer;
     Item : TMenuItem;
 begin
-   // delete old menu items
+   // ActionDelete old menu items
    RecentFiles.Clear;
    // add the new data
    for I:=1 to FreeShip.Edit.RecentFileCount do
@@ -3277,7 +3276,7 @@ var i, II, sz, w, ww, ilcnt:integer;
 
 
 begin
-  FreeShip.preferences.LoadImageListByActions(MenuImages, ActionList1);
+  FreeShip.preferences.LoadImageListByActions(MenuImages, ActionList1, 'Action');
 
   sz := Freeship.Preferences.ToolIconSize;
 

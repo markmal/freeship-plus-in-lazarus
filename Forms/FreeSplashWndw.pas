@@ -138,7 +138,7 @@ uses FreeStringsUnit, Translations, LResources, TypInfo;
   {$R *.lfm}
 {$ENDIF}
 
-const
+{const
   WS_EX_LAYERED = $80000;
   LWA_COLORKEY = 1;
   LWA_ALPHA = 2;
@@ -149,7 +149,7 @@ type
     crKey: TColor;      // specifies the color key
     bAlpha: byte;       // value for the blend function
     dwFlags: DWORD      // action
-    ): BOOL; stdcall;
+    ): BOOL; stdcall; }
 
 {$IFNDEF LCL}
 procedure SetTransparentForm(form: TForm; AValue: byte = 0);

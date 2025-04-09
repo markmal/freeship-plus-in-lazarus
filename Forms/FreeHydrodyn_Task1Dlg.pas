@@ -311,7 +311,7 @@ end;{TFreeHydrodyn_Task1.FSetDat12}
 
 
 procedure TFreeHydrodyn_Task1.Calculate;
-Type TTable = array[0..16,0..13] of single;
+//Type TTable = array[0..16,0..13] of single;
 
 var Units  : TFreeUnitType;
     I,J,II,N,JJ: Integer;

@@ -1,10 +1,10 @@
 object MainForm: TMainForm
   Left = 483
-  Height = 641
+  Height = 607
   Top = 321
   Width = 1132
   Align = alTop
-  ClientHeight = 641
+  ClientHeight = 607
   ClientWidth = 1132
   Color = clAppWorkspace
   Constraints.MinHeight = 200
@@ -21,18 +21,18 @@ object MainForm: TMainForm
   OnWindowStateChange = FormWindowStateChange
   Position = poDefault
   ShowHint = True
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '3.8.0.0'
   object StatusBar: TPanel
     Left = 0
-    Height = 37
-    Top = 604
+    Height = 38
+    Top = 569
     Width = 1132
     Align = alBottom
     AutoSize = True
     BevelOuter = bvLowered
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 37
+    ClientHeight = 38
     ClientWidth = 1132
     Color = clMenuBar
     ParentBackground = False
@@ -40,9 +40,9 @@ object MainForm: TMainForm
     ParentFont = False
     TabOrder = 0
     object StatusPanel2: TPanel
-      Left = 0
+      Left = 1
       Height = 36
-      Top = 0
+      Top = 1
       Width = 206
       AutoSize = True
       BevelOuter = bvLowered
@@ -67,10 +67,10 @@ object MainForm: TMainForm
       end
     end
     object StatusPanel3: TPanel
-      Left = 206
+      Left = 207
       Height = 36
-      Top = 0
-      Width = 110
+      Top = 1
+      Width = 111
       BevelOuter = bvLowered
       ChildSizing.LeftRightSpacing = 10
       ChildSizing.TopBottomSpacing = 4
@@ -78,14 +78,14 @@ object MainForm: TMainForm
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 36
-      ClientWidth = 110
+      ClientWidth = 111
       Constraints.MinWidth = 100
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
       OnClick = StatusPanel3Click
       object LabelDistance: TLabel
-        Left = 10
+        Left = 11
         Height = 26
         Top = 5
         Width = 89
@@ -97,10 +97,10 @@ object MainForm: TMainForm
       end
     end
     object StatusPanel4: TPanel
-      Left = 316
+      Left = 318
       Height = 36
-      Top = 0
-      Width = 150
+      Top = 1
+      Width = 151
       BevelOuter = bvLowered
       ChildSizing.LeftRightSpacing = 10
       ChildSizing.TopBottomSpacing = 4
@@ -108,14 +108,14 @@ object MainForm: TMainForm
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 36
-      ClientWidth = 150
+      ClientWidth = 151
       Constraints.MinWidth = 100
       ParentBackground = False
       ParentFont = False
       TabOrder = 2
       OnClick = StatusPanel3Click
       object LabelNumbers: TLabel
-        Left = 10
+        Left = 11
         Height = 26
         Top = 5
         Width = 129
@@ -127,10 +127,10 @@ object MainForm: TMainForm
       end
     end
     object StatusPanel5: TPanel
-      Left = 466
+      Left = 469
       Height = 36
-      Top = 0
-      Width = 300
+      Top = 1
+      Width = 301
       BevelInner = bvLowered
       BevelOuter = bvNone
       ChildSizing.LeftRightSpacing = 10
@@ -139,12 +139,12 @@ object MainForm: TMainForm
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
       ClientHeight = 36
-      ClientWidth = 300
+      ClientWidth = 301
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
       object ProgressBarMain: TProgressBar
-        Left = 10
+        Left = 11
         Height = 26
         Top = 5
         Width = 150
@@ -153,7 +153,7 @@ object MainForm: TMainForm
         TabOrder = 0
       end
       object LabelProgress: TLabel
-        Left = 166
+        Left = 167
         Height = 26
         Top = 5
         Width = 123
@@ -560,7 +560,7 @@ object MainForm: TMainForm
         Tag = 1
         Left = 23
         Top = 0
-        Action = Delete
+        Action = ActionDelete
         AutoSize = True
       end
       object ToolButtonUndo: TToolButton
@@ -693,7 +693,7 @@ object MainForm: TMainForm
   end
   object MainClientPanel: TPanel
     Left = 0
-    Height = 557
+    Height = 522
     Top = 47
     Width = 1132
     Align = alClient
@@ -818,12 +818,12 @@ object MainForm: TMainForm
       ImageIndex = 7
       OnExecute = NewLayerExecute
     end
-    object Delete: TAction
+    object ActionDelete: TAction
       Category = 'Edit'
       Caption = 'Delete'
       Hint = 'Delete all selected items.'
       ImageIndex = 8
-      OnExecute = DeleteExecute
+      OnExecute = ActionDeleteExecute
       ShortCut = 16472
     end
     object EdgeCollapse: TAction
@@ -2155,7 +2155,7 @@ object MainForm: TMainForm
         Action = Redo
       end
       object Delete1: TMenuItem
-        Action = Delete
+        Action = ActionDelete
       end
       object N7: TMenuItem
         Caption = '-'

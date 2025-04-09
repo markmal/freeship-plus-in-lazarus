@@ -47,15 +47,16 @@ uses
   ExtCtrls,
   Dialogs,
   FreeTypes,
-  FreeGeometry,
+  //FreeGeometry,
   FreeShipUnit,
   Menus,
-  CheckLst,
+  //CheckLst,
   ImgList,
   ComCtrls,
   LCLTranslator,
   //ToolWin,
-  ActnList, Grids, Spin;
+  //Spin
+  ActnList, Grids ;
 
 type
 
@@ -341,7 +342,7 @@ end;{TFreeIntersectionDialog.Diagonals}
 procedure TFreeIntersectionDialog.Execute(FreeShip: TFreeShip);
 begin
   FFreeShip := FreeShip;
-  Freeship.Preferences.LoadImageListByActions(MenuImages, ActionList1);
+  Freeship.Preferences.LoadImageListByActions(MenuImages, ActionList1, 'Action');
   //FillBox;
   FillGrids;
   UpdateMenu;

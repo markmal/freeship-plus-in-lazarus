@@ -223,7 +223,7 @@ implementation
 
 uses FreeStringsUnit,
   Printers,
-  Math,
+  //Math,
   FreeProcess;
 
 {$IFnDEF FPC}
@@ -432,8 +432,8 @@ end;{TFreeHydrodyn_Rvrs.FSetDat18}
 
 
 procedure TFreeHydrodyn_Rvrs.Calculate;
-type
-  TTable = array[0..16, 0..13] of single;
+//type
+//  TTable = array[0..16, 0..13] of single;
 
 var
   I, J, ii: integer;

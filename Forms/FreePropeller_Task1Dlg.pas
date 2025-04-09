@@ -441,8 +441,8 @@ end;{TFreePropeller_Task1.FSetDat18}
 
 
 procedure TFreePropeller_Task1.Calculate;
-type
-  TTable = array[0..16, 0..13] of single;
+//type
+//  TTable = array[0..16, 0..13] of single;
 
 var
   I, J, N: integer;

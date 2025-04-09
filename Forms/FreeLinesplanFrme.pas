@@ -57,7 +57,8 @@ uses
   Printers,
   Math,
   ImgList,
-  ActnList, StdCtrls, Spin,
+  ActnList, //StdCtrls,
+  Spin,
   FreeStringUtils;
 
 const
@@ -253,7 +254,7 @@ begin
     //USE ONCE!
     ///FFreeship.Preferences.dumpIcons(MenuImages,ActionList1);
 
-    Freeship.Preferences.LoadImageListByActions(MenuImages, ActionList1);
+    Freeship.Preferences.LoadImageListByActions(MenuImages, ActionList1, 'Action');
 
     FFreeShip.LinesplanFrame := self;
     UpdateMenu;

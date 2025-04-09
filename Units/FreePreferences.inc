@@ -831,8 +831,12 @@ end;
 
 
 // loads icons from FMenuIconDirectory that is set according to theme and icon size
+// Action Name can start with ActionPrefix, in this case ActionPrefix will not be
+// factored into Image search.
+// Example: ActionPrefix='Action', Action.Name='ActionNew', icon file New.png will be found
+// It needs when an Action cannot be named same as a Pascal keyword, then a Prefix should be used.
 procedure TFreePreferences.LoadImageListByActions(ImageList: TImageList;
-  ActionList: TActionList);
+  ActionList: TActionList; ActionPrefix: string);
 var
   i, II, sz, ilcnt: integer;
   A: TAction;
@@ -866,6 +870,8 @@ begin
   begin
     A := TAction(ActionList.Actions[i]);
     AName := A.Name;
+    if Aname.StartsWith(ActionPrefix) then
+      Aname := Aname.Substring(ActionPrefix.Length);
     if Aname = 'Delete' then
       II:=0;
     II := A.ImageIndex;

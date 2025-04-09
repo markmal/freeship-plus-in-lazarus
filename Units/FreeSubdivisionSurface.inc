@@ -352,19 +352,19 @@ var
 
   procedure AssembleFaces(CtrlFaces: TFasterListTFreeSubdivisionControlFace;
         var Assembled: TFreeFaceArray;
-  var NAssembled: integer);
-  type
-    TPointRow = record
+        var NAssembled: integer);
+  //type
+    {TPointRow = record
       NPoints: integer;
       Points: array of TFreeSubdivisionPoint;
-    end;
+    end;}
 
-    TPointGrid = record
+    {TPointGrid = record
       NRows: integer;
       RowCapacity: integer;
       ColCapacity: integer;
       Rows: array of TPointRow;
-    end;
+    end;}
 
   var
     I, J: integer;
@@ -925,7 +925,7 @@ var
         if Index <> -1 then
           CtrlFaces.Delete(Index);
 
-        if Face.NumberOfpoints = 4 then
+        if vFace.NumberOfpoints = 4 then
         begin
           NCols := 2;
           NRows := 2;
@@ -968,7 +968,7 @@ var
           NewFace.NRows := 1;
           Setlength(NewFace.Faces, NewFace.NRows);
           Setlength(NewFace.Faces[0], NewFace.NCols);
-          NewFace.Faces[0][0] := Face;
+          NewFace.Faces[0][0] := vFace;
           AddFace(NewFace);
         end;
 
@@ -5001,11 +5001,11 @@ begin
 end;{TFreeSubdivisionSurface.SortEdges}
 
 procedure TFreeSubdivisionSurface.SubDivide;
-type
+{type
   TQuadData = record
     P: array[1..4] of TFreeSubdivisionPoint;
     Crease1, Crease2: boolean;
-  end;
+  end;}
 var
   I, J, FaceCnt, CFaceCnt, X: integer;
   CtrlFace: TFreeSubdivisionControlFace;

@@ -69,7 +69,6 @@ uses
   ExtCtrls,
   LCLTranslator,
   ImgList,
-  ToolWin,
   Menus;
 
 
@@ -271,7 +270,7 @@ type
   private
     FFreeship: TFreeship;
     B_T, L_D, A_D, L_B, Vsr, Rtotal: single;
-    Am, Cm, Cwp, S_, Ie_, Ie: single;
+    Am, Cm, Cwp, S_, Ie_: single;
 
     procedure CalculateResistanceOortmer(
       ConvertedSpeed, LCB, Cp: single; var Rf, Rr, w, t0, nr: single);

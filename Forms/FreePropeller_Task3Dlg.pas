@@ -443,8 +443,8 @@ begin
 end;{TFreePropeller_Task3.FSetDat17}
 
 procedure TFreePropeller_Task3.Calculate;
-type
-  TTable = array[0..16, 0..13] of single;
+//type
+//  TTable = array[0..16, 0..13] of single;
 
 var
   I, J, JI, IJ, Km, Kt, Kk, Nser, Nprop: integer;

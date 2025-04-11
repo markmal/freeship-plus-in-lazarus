@@ -600,7 +600,7 @@ procedure TFreeTextureForm.LoadFileExecute(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then
   begin
-    FActiveTexture.LoadIntfImage(OpenPictureDialog1.FileName);
+    FActiveTexture.LoadIntfImageFromFile(OpenPictureDialog1.FileName);
     FActiveTexture.IsCorelated := false;
     if FActiveTexture.HasBitmap then
     begin

@@ -36,28 +36,24 @@ unit FreeShipUnit;
 interface
 
 uses SysUtils,// this declaration must be at the start, before the FreeGeometry unit
-     {$ifdef windows}
+{$ifdef windows}
   Windows, Windirs, shellapi, shfolder,
      {$ifndef LCL} JPeg,{$endif}
-     {$endif}
-     {$ifdef LCL}
+{$endif}
+{$ifdef LCL}
   Interfaces, LCLIntf, LCLType, LCLProc,
   IntfGraphics,
   FPImage,
   GraphType, Graphics, Controls,
   Printer4Lazarus,
-     {$IFDEF VER3}
   LazUTF8,
   LazFileUtils,
-     {$ELSE}
-  FileUtil, //deprecated
-     {$ENDIF}
-
-     {$endif}
-     {$IFDEF LCLGTK2}
-     //Gtk2WSDialogs,
-     GTK2,
-     {$ENDIF}
+  FileUtil,
+{$endif}
+{$IFDEF LCLGTK2}
+  //Gtk2WSDialogs,
+  GTK2,
+{$ENDIF}
   Types,
   IniFiles,
   Forms,
@@ -1447,6 +1443,7 @@ type
     procedure SaveControlPointAnchors(Destination:TFreeFileBuffer);
     procedure SaveControlPointLinearConstraints(Destination:TFreeFileBuffer);
     procedure SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
+    procedure SaveTextures(Destination:TFreeFileBuffer);
     procedure SelectPointsInFrame(Viewport: TfreeViewport; rect:TRect);
     procedure SubmergedHullExtents(Wlplane: T3DPlane; var Min, Max: T3DCoordinate);
     procedure KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);

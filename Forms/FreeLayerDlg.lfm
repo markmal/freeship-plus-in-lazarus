@@ -1,14 +1,14 @@
 object FreeLayerDialog: TFreeLayerDialog
-  Left = 614
+  Left = 682
   Height = 727
-  Top = 245
+  Top = 230
   Width = 800
   BorderIcons = []
   Caption = 'Layer properties.'
   ClientHeight = 727
   ClientWidth = 800
   Position = poOwnerFormCenter
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '3.8.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 703
@@ -35,7 +35,7 @@ object FreeLayerDialog: TFreeLayerDialog
       TabOrder = 0
       object Panel4: TPanel
         Left = 0
-        Height = 112
+        Height = 114
         Top = 0
         Width = 338
         BevelOuter = bvNone
@@ -44,7 +44,7 @@ object FreeLayerDialog: TFreeLayerDialog
         ChildSizing.VerticalSpacing = 2
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 112
+        ClientHeight = 114
         ClientWidth = 338
         TabOrder = 0
         object Label1: TLabel
@@ -66,7 +66,7 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Label2: TLabel
           Left = 10
-          Height = 26
+          Height = 28
           Top = 38
           Width = 117
           Caption = 'Color'
@@ -75,17 +75,17 @@ object FreeLayerDialog: TFreeLayerDialog
         end
         object Panel5: TPanel
           Left = 133
-          Height = 26
+          Height = 28
           Top = 38
           Width = 150
           AutoSize = True
           BevelOuter = bvNone
-          ClientHeight = 26
+          ClientHeight = 28
           ClientWidth = 150
           TabOrder = 1
           object Panel3: TPanel
             Left = 0
-            Height = 26
+            Height = 28
             Top = 0
             Width = 40
             Align = alLeft
@@ -96,7 +96,7 @@ object FreeLayerDialog: TFreeLayerDialog
           end
           object SpeedButtonTexture: TSpeedButton
             Left = 120
-            Height = 26
+            Height = 28
             Hint = 'Texture'
             Top = 0
             Width = 30
@@ -187,7 +187,7 @@ object FreeLayerDialog: TFreeLayerDialog
         object Label4: TLabel
           Left = 10
           Height = 46
-          Top = 66
+          Top = 68
           Width = 117
           Caption = 'Transparency'
           Layout = tlCenter
@@ -196,7 +196,7 @@ object FreeLayerDialog: TFreeLayerDialog
         object AlphaBar: TTrackBar
           Left = 133
           Height = 46
-          Top = 66
+          Top = 68
           Width = 150
           Max = 100
           OnChange = AlphaBarChange
@@ -209,7 +209,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel6: TPanel
         Left = 0
         Height = 208
-        Top = 112
+        Top = 114
         Width = 338
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -286,7 +286,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel7: TPanel
         Left = 0
         Height = 132
-        Top = 320
+        Top = 322
         Width = 338
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -392,7 +392,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel8: TPanel
         Left = 0
         Height = 30
-        Top = 462
+        Top = 464
         Width = 338
         BorderSpacing.Top = 10
         BevelOuter = bvNone
@@ -427,7 +427,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object Panel9: TPanel
         Left = 0
         Height = 36
-        Top = 492
+        Top = 494
         Width = 338
         BevelOuter = bvNone
         ChildSizing.LeftRightSpacing = 10
@@ -501,7 +501,7 @@ object FreeLayerDialog: TFreeLayerDialog
       object GroupBox1: TGroupBox
         Left = 0
         Height = 138
-        Top = 538
+        Top = 540
         Width = 338
         BorderSpacing.Top = 10
         Caption = 'Surface properties. '

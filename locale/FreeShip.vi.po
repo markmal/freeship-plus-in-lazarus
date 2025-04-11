@@ -367,8 +367,17 @@ msgstr ""
 msgid "Unable to create backup file"
 msgstr ""
 
+#: freeshipunit.rsunablecreatetmpfile
+msgid "Unable to create temporary file"
+msgstr ""
+
 #: freeshipunit.rsunabledeletebackupfile
 msgid "Unable to delete backup file"
+msgstr ""
+
+#: freeshipunit.rsunablerenametmpfile
+#, object-pascal-format
+msgid "Unable to rename temporary file %s to %s"
 msgstr ""
 
 #: freeshipunit.rsunabletosavefile

@@ -447,6 +447,7 @@ type
   {---------------------------------------------------------------------------------------------------}
   TFreeTexture = class //(TPersistent)
   private
+    FSurface: TFreeSubdivisionSurface;
     FLayer: TFreeSubdivisionLayer;
     FColor: TColor;
     FDevelopedPatchName: String;
@@ -475,24 +476,30 @@ type
     BitmapScale: TFloatType;
     BitmapOrigin: TPoint;
     procedure AssignData(Layer: TFreeSubdivisionLayer;
-       //DevelopedPatch: TFreeDevelopedPatch;
+       DevelopedPatchId: string;
        Bitmap: TBitmap; IntfImage: TLazIntfImage; RawImage: TRawImage;
        DevelopedPatchAnchorPoint1:T2DCoordinate;
        DevelopedPatchAnchorPoint2:T2DCoordinate;
        BitmapTargetPoint1:TPoint;
        BitmapTargetPoint2:TPoint);
+    procedure AssignLayer(Layer: TFreeSubdivisionLayer;
+      DevelopedPatchId: string );
+    procedure Clear;
     procedure SetAnchorPoints(
       DevelopedPatchAnchorPoint1: T2DCoordinate;
       DevelopedPatchAnchorPoint2: T2DCoordinate;
       BitmapTargetPoint1: TPoint;
       BitmapTargetPoint2: TPoint);
-    procedure LoadIntfImage(FileName: String);
-    procedure Clear;
+    procedure LoadIntfImage(Stream: TStream);
+    procedure LoadIntfImageFromFile(FileName: String);
+    procedure LoadBinary(Source: TFreeFileBuffer);
+    procedure SaveBinary(Destination: TFreeFileBuffer);
     function GetMidPoint: T2DCoordinate;
     function Project2DtoViewport(P: T2DCoordinate): T3DCoordinate;
     function ProjectViewportTo2D(P: T2DCoordinate): T2DCoordinate;
     procedure AutoSetDevelopedPatchAnchorPoints;
     procedure SetBitmapTargetPointsByDevelopedPatchAnchors(Viewport: TFreeViewport);
+    constructor Create(Surface: TFreeSubdivisionSurface);
     constructor Create(Layer: TFreeSubdivisionLayer; DevelopedPatch: TFreeDevelopedPatch);
     destructor Destroy; override;
     procedure Draw(Viewport: TFreeViewport);

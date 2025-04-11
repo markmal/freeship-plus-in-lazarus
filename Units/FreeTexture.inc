@@ -5,7 +5,7 @@
 // Class TFreeTexture is defined in FreeGeometry.pas
 
 procedure TFreeTexture.AssignData(Layer: TFreeSubdivisionLayer;
-  //DevelopedPatch: TFreeDevelopedPatch;
+  DevelopedPatchId: string;
   Bitmap: TBitmap; IntfImage: TLazIntfImage; RawImage: TRawImage;
   DevelopedPatchAnchorPoint1: T2DCoordinate;
   DevelopedPatchAnchorPoint2: T2DCoordinate;
@@ -35,7 +35,65 @@ begin
   FBitmapTargetPoint2 := BitmapTargetPoint2;
 end;
 
-procedure TFreeTexture.LoadIntfImage(FileName: String);
+procedure TFreeTexture.LoadBinary(Source: TFreeFileBuffer);
+var
+  layerName: string;
+  png: TPortableNetworkGraphic;
+  vLayer: TFreeSubdivisionLayer; vDevelopedPatchId: string;
+begin
+  Source.LoadString(layerName);
+  vLayer := FSurface.FindLayer(layerName);
+  Source.LoadString(vDevelopedPatchId);
+  AssignLayer(vLayer, vDevelopedPatchId);
+  Source.LoadTFloatType(FDevelopedPatchAnchorPoint1.X);
+  Source.LoadTFloatType(FDevelopedPatchAnchorPoint1.Y);
+  Source.LoadTFloatType(FDevelopedPatchAnchorPoint2.X);
+  Source.LoadTFloatType(FDevelopedPatchAnchorPoint2.Y);
+  Source.LoadInteger(FBitmapTargetPoint1.X);
+  Source.LoadInteger(FBitmapTargetPoint1.Y);
+  Source.LoadInteger(FBitmapTargetPoint2.X);
+  Source.LoadInteger(FBitmapTargetPoint2.Y);
+  Source.LoadBoolean(FMirrored);
+  Source.LoadTColor(FColor);
+  png := TPortableNetworkGraphic.Create;
+  Source.LoadPngImage(png);
+  FBitmap.Assign(png);
+  png.Free;
+  FIntfImage.LoadFromBitmap(FBitmap.Handle, FBitmap.MaskHandle);
+  FIsCorelated := true;
+  vLayer.ShowTexture:=true;
+end;
+
+procedure TFreeTexture.SaveBinary(Destination: TFreeFileBuffer);
+var png: TPortableNetworkGraphic;
+begin
+  Destination.Add(FLayer.Name);
+  Destination.Add(FDevelopedPatchId);
+  Destination.Add(FDevelopedPatchAnchorPoint1.X);
+  Destination.Add(FDevelopedPatchAnchorPoint1.Y);
+  Destination.Add(FDevelopedPatchAnchorPoint2.X);
+  Destination.Add(FDevelopedPatchAnchorPoint2.Y);
+  Destination.Add(FBitmapTargetPoint1.X);
+  Destination.Add(FBitmapTargetPoint1.Y);
+  Destination.Add(FBitmapTargetPoint2.X);
+  Destination.Add(FBitmapTargetPoint2.Y);
+  Destination.Add(FMirrored);
+  Destination.Add(FColor);
+  png := TPortableNetworkGraphic.Create;
+  png.Assign(FBitmap);
+  Destination.Add(png);
+  png.Free;
+end;
+
+procedure TFreeTexture.LoadIntfImageFromFile(FileName: String);
+var stream: TFileStream;
+begin
+  stream := TFileStream.Create(FileName, fmOpenRead);
+  LoadIntfImage(stream);
+  stream.Free;
+end;
+
+procedure TFreeTexture.LoadIntfImage(stream: TStream);
 var tmpBitmapHandle, tmpMaskBitmapHandle: HBitmap;
 begin
   FRawImage.Init;
@@ -67,7 +125,7 @@ begin
   if not Assigned(FBitmap) then FBitmap := TBitmap.Create();
   try
     FIntfImage.SetRawImage(FRawImage);
-    FIntfImage.LoadFromFile(FileName);
+    FIntfImage.LoadFromStream(stream);
     //FIntfImage.CreateBitmaps(tmpBitmapHandle, tmpMaskBitmapHandle, true);
     //FBitmap.Handle:=tmpBitmapHandle;
     //FBitmap.MaskHandle:=tmpMaskBitmapHandle;
@@ -217,11 +275,44 @@ begin
   FIsCorelated := true;
 end;
 
+procedure TFreeTexture.AssignLayer(Layer: TFreeSubdivisionLayer;
+  DevelopedPatchId: string );
+var i: integer;
+  Patch: TFreeDevelopedPatch; Patches: TFasterListTFreeDevelopedPatch;
+begin
+  FSurface := Layer.Surface;
+  FLayer := Layer;
+  FPoints.Clear;
+  FFaces.Clear;
+
+  Patches:= TFasterListTFreeDevelopedPatch.Create();
+  if not FSurface.Built then FSurface.Rebuild;
+  FLayer.Unroll(Patches);
+  {for i:=0 to Count.Count-1 do
+    if (not FLayer.Symmetric) or (FLayer.Symmetric and (DPL[i].Side=fsPort)) then
+    begin
+    end;}
+
+  for i:=0 to Patches.Count-1 do
+    if Patches[i].Id = DevelopedPatchId then
+      Patch := Patches[i];
+
+  LoadUnrolledPatch(Patch);
+
+  if FLayer.FTextures.IndexOf(Self)<0 then
+    FLayer.FTextures.Add(Self);
+
+  AutoSetDevelopedPatchAnchorPoints;
+
+end;
+
+
 constructor TFreeTexture.Create(Layer: TFreeSubdivisionLayer; DevelopedPatch: TFreeDevelopedPatch);
 var i,j: integer; Face: TFreeSubdivisionFace;
   Point: TFreeSubdivisionPoint;
   tp, p1,p2: T2DCoordinate;
 begin
+  FSurface := Layer.FOwner;
   FPoints := TFasterListTFreeSubdivisionPoint.Create();
   FFaces := TFasterListTFreeSubdivisionFace.Create();
   Clear;
@@ -234,11 +325,25 @@ begin
   tp.x := 0; tp.y := 0;
   FTranslation := tp;
   FRotation := 0;
-  //SELF.Rotation := 0;
-  //tp.x := 0; tp.y := 0;
-  //SELF.Translation := tp;
 
+  FBitmap := TBitmap.Create;
+  FRawImage.CreateData(false);
+  FIntfImage := TLazIntfImage.Create(0,0);
+end;
 
+constructor TFreeTexture.Create(Surface: TFreeSubdivisionSurface);
+var i,j: integer; Face: TFreeSubdivisionFace;
+  Point: TFreeSubdivisionPoint;
+  tp, p1,p2: T2DCoordinate;
+begin
+  FLayer := nil;
+  FPoints := TFasterListTFreeSubdivisionPoint.Create();
+  FFaces := TFasterListTFreeSubdivisionFace.Create();
+  Clear;
+  FSurface := Surface;
+  tp.x := 0; tp.y := 0;
+  FTranslation := tp;
+  FRotation := 0;
   FBitmap := TBitmap.Create;
   FRawImage.CreateData(false);
   FIntfImage := TLazIntfImage.Create(0,0);

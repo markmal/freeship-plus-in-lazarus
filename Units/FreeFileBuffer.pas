@@ -13,7 +13,8 @@ uses
   LConvEncoding,
   FreeVersionUnit,
   FreeTypes,
-  FreeStringsUnit;
+  FreeStringsUnit,
+  IntfGraphics;
 
 const
   FileBufferBlockSize = 4096;
@@ -79,6 +80,7 @@ type
     procedure Add(Data: TFreeMHSeriesResistanceData);        overload; virtual;
     //procedure Add(const source;Size:Integer);    overload;virtual;
     procedure Add(JPegImage: TJPEGImage);      overload; virtual;
+    procedure Add(PngImage: TPortableNetworkGraphic); overload; virtual;
 
     procedure LoadInteger(var Output: integer);    virtual;
     procedure LoadString(var Output: string);      virtual;
@@ -94,6 +96,7 @@ type
     procedure LoadT3DCoordinate(var Output: T3DCoordinate);       virtual;
     procedure LoadT3DPlane(var Output: T3DPlane);       virtual;
     procedure LoadTJPEGImage(var JPegImage: TJPEGImage);       virtual;
+    procedure LoadPngImage(var PngImage: TPortableNetworkGraphic);       virtual;
     procedure LoadTFreeKAPERResistanceData(var Data: TFreeKAPERResistanceData);       virtual;
     procedure LoadTFreeDelftSeriesResistanceData(var Data: TFreeDelftSeriesResistanceData);  virtual;
     procedure LoadTFreeHoltrSeriesResistanceData(var Data: TFreeHoltrSeriesResistanceData);  virtual;
@@ -156,6 +159,7 @@ type
     procedure Add(Plane: T3DPlane); override; overload;
     //procedure Add(const source;Size:Integer);     override;
     procedure Add(JPegImage: TJPEGImage); override; overload;
+    procedure Add(PngImage: TPortableNetworkGraphic); override; overload;
 
     procedure LoadInteger(var Output: integer); override;
     procedure LoadString(var Output: string); override;
@@ -170,6 +174,7 @@ type
     procedure LoadT3DCoordinate(var Output: T3DCoordinate); override;
     procedure LoadT3DPlane(var Output: T3DPlane); override;
     procedure LoadTJPEGImage(var JPegImage: TJPEGImage); override;
+    procedure LoadPngImage(var PngImage: TPortableNetworkGraphic); override;
     //procedure LoadTFreeMHSeriesResistanceData(var Dest;Size:Integer);        override;
 
     procedure Clear; override;
@@ -331,6 +336,26 @@ begin
   FreeAndNil(Stream);
 end;{TFreeFileBuffer.Add}
 
+procedure TFreeFileBuffer.Add(PngImage: TPortableNetworkGraphic);
+var
+  Stream: TMemoryStream;
+  Size: integer;
+begin
+  Add(PngImage.Width);
+  Add(PngImage.Height);
+  Stream := TMemoryStream.Create;
+  PngImage.SaveToStream(Stream);
+  Size := Stream.Size;
+  Stream.Position := 0;
+  Add(Size);
+  if Count + Size + 20 > Capacity then
+    FGrow(Size + 20);
+  Stream.Read(FData[FCount], Size);
+  Inc(FCount, Size);
+  FreeAndNil(Stream);
+end;{TFreeFileBuffer.Add}
+
+
 procedure TFreeFileBuffer.LoadTJPEGImage(var JPegImage: TJPEGImage);
 var
   Stream: TMemoryStream;
@@ -347,6 +372,23 @@ begin
   JPEGImage.LoadFromStream(Stream);
   FreeAndNil(Stream);
 end;{TFreeFileBuffer.Add}
+
+procedure TFreeFileBuffer.LoadPngImage(var PngImage: TPortableNetworkGraphic);
+var
+  Stream: TMemoryStream;
+  W, H, Size: integer;
+begin
+  LoadInteger(W);
+  LoadInteger(H);
+  LoadInteger(Size);
+  Stream := TMemoryStream.Create;
+  Stream.SetSize(Size);
+  Stream.Write(FData[FPosition], Size);
+  Inc(FPosition, Size);
+  Stream.Position := 0;
+  PngImage.LoadFromStream(Stream);
+  FreeAndNil(Stream);
+end;
 
 {
 procedure TFreeFileBuffer.LoadTFreeMHSeriesResistanceData(var Dest;Size:Integer);
@@ -2422,6 +2464,35 @@ begin
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}
 
+procedure TFreeTextBuffer.Add(PngImage: TPortableNetworkGraphic);
+var
+  Stream: TMemoryStream;
+  Size: integer;
+  S: PChar;
+  P: PChar;
+  L: string;
+begin
+  Add(PngImage.Width);
+  Add(PngImage.Height);
+
+  Stream := TMemoryStream.Create;
+  PngImage.SaveToStream(Stream);
+  Size := Stream.Size;
+  Stream.Position := 0;
+  Add(Size);
+
+  S := StrAlloc(Size * 2 + 2);
+  S[Size * 2] := #0;
+  S[Size * 2 + 1] := #0;
+  P := Stream.Memory;
+  BinToHex(P, S, size);
+  L := StrPas(S);
+  StrDispose(S);
+  FLines.Add(L);
+  FreeAndNil(Stream);
+  Inc(FPosition);
+end;{TFreeTextBuffer.Add}
+
 procedure TFreeTextBuffer.LoadTJPEGImage(var JPegImage: TJPEGImage);
 var
   Stream: TMemoryStream;
@@ -2439,6 +2510,27 @@ begin
   StrDispose(PData);
   Stream.Position := 0;
   JPEGImage.LoadFromStream(Stream);
+  FreeAndNil(Stream);
+  Inc(FPosition);
+end;{TFreeTextBuffer.Add}
+
+procedure TFreeTextBuffer.LoadPngImage(var PngImage: TPortableNetworkGraphic);
+var
+  Stream: TMemoryStream;
+  W, H, Size: integer;
+  PData: PChar;
+begin
+  LoadInteger(W);
+  LoadInteger(H);
+  LoadInteger(Size);
+  PData := StrAlloc(Size);
+  Stream := TMemoryStream.Create;
+  Stream.SetSize(Size);
+  HexToBin(PChar(FLines[FPosition]), Stream.Memory, Size);
+  //Stream.Write(PData, Size);
+  StrDispose(PData);
+  Stream.Position := 0;
+  PngImage.LoadFromStream(Stream);
   FreeAndNil(Stream);
   Inc(FPosition);
 end;{TFreeTextBuffer.Add}

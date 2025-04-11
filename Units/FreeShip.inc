@@ -2221,6 +2221,10 @@ begin
                   LoadControlPointAnchors(Source);
                 end;
 
+                if FileVersion >= fv510 then
+                begin
+                  LoadTextures(Source);
+                end;
 
                 //if FileVersion >= fv541 then
                 //LoadTextures(Source);
@@ -2230,7 +2234,6 @@ begin
             end; //if FileVersion>=fv210
           end;  //if FileVersion>=fv191
         end;  //if FileVersion>=fv180
-        LoadTextures(Source); // REMOVE LATER
       end //if (FFileVersion<=CurrentVersion) or (FFileVersion<=High(FFileVersion))
       else
         MessageDlg(rs_This_file_was_created_with_a_later_version_of_FREE_ship_ {UserString[113]} + eol + rs_and_cannot_be_opened_with_this_version {UserString[188]} +
@@ -2262,29 +2265,15 @@ end;{TFreeShip.LoadBinary}
 
 procedure TFreeShip.LoadTextures(Source:TFreeFileBuffer);
 var Texture: TFreeTexture;
-  L: TFreeSubdivisionLayer; BM : TPicture;  DP: TFreeDevelopedPatch; DPL: TFasterListTFreeDevelopedPatch;
-  A1,A2: T2DCoordinate; P1,P2:TPoint;
-  c: TColor; w,h,i:integer;
+  N,i:integer;
 begin
-  exit;
-  // experimental load texture. later replace with normal load
-  L:=Layer[0];
-  DPL:= TFasterListTFreeDevelopedPatch.Create;
-  if not L.Surface.Built then L.Surface.Rebuild;
-  L.Unroll(DPL);
-  for i:=0 to DPL.Count-1 do
-    if (not L.Symmetric) or (L.Symmetric and (DPL[i].Side=fsPort)) then
-    begin
-      Texture := TFreeTexture.Create(L, DPL[i]);
-      Texture.LoadIntfImage('/home/mark/MyProjects/freeship-plus-in-lazarus/tmptexture.png');
-      A1:=Texture.DevelopedPatchAnchorPoint1;
-      A2:=Texture.DevelopedPatchAnchorPoint2;
-      P1.X:=50; P1.Y:=30;
-      P2.X:=1500; P2.Y:=800;    // pixels
-      Texture.SetAnchorPoints(A1,A2,P1,P2);
-      L.Textures.Add(Texture);
-    end;
-  L.ShowTexture:=true;
+  Source.LoadInteger(N);
+  for i:=0 to N-1 do
+  begin
+    Texture := TFreeTexture.Create(FSurface);
+    Texture.LoadBinary(Source);
+    Texture.Layer.ShowTexture:=true;
+  end;
 end;
 
 procedure TFreeShip.LoadControlPointNames(Source:TFreeFileBuffer);
@@ -2552,6 +2541,10 @@ begin
   if ProjectSettings.ProjectUnderWaterColorAlpha < 255 then
      result := fv500;
 
+  for i:=0 to Surface.NumberOfLayers-1 do
+    if Surface.Layer[i].Textures.Count > 0 then
+      result := fv510;
+
 end;{TFreeShip.DetectMinresult}
 
 procedure TFreeShip.SaveProject(Destination: TFreeFileBuffer);
@@ -2677,6 +2670,11 @@ begin
           if FileVersion >= fv462 then
           begin
             SaveControlPointAnchors(Destination);
+          end;
+
+          if FileVersion >= fv510 then
+          begin
+            SaveTextures(Destination);
           end;
 
         end;
@@ -2827,6 +2825,26 @@ begin
       Destination.Add(NameData);
     end;
 end;
+
+procedure TFreeShip.SaveTextures(Destination:TFreeFileBuffer);
+var i,j,N:integer; vLayer:TFreeSubdivisionLayer;
+begin
+  N:=0;
+  for i:=0 to Surface.NumberOfLayers-1 do
+  begin
+    vLayer := Surface.Layer[i];
+    inc(N,vLayer.Textures.Count);
+  end;
+  Destination.Add(N);
+  for i:=0 to Surface.NumberOfLayers-1 do
+  begin
+    vLayer := Surface.Layer[i];
+    for j:=0 to vLayer.Textures.Count-1 do
+       vLayer.Textures[j].SaveBinary(Destination);
+  end
+end;
+
+
 
 procedure TFreeShip.SavePart(Faces: TFasterListTFreeSubdivisionControlFace);
 var

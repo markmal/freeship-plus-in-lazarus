@@ -6033,18 +6033,51 @@ end;{TFreeEdit.File_Load}
 resourcestring
   rsUnableDeleteBackupFile='Unable to delete backup file';
   rsUnableCreateBackupFile='Unable to create backup file';
+  rsUnableCreateTmpFile='Unable to create temporary file';
+  rsUnableRenameTmpFile='Unable to rename temporary file %s to %s';
   rsSaveWithHigherFileVersion='The current file version is %s.%sDo you want to save the file as version %s ?';
   rsUnableToSaveFile='Unable to save file';
 
 // save as FREE!ship file without prompting for a filename (must already been set)
 function TFreeEdit.File_Save:boolean;
 var
-  Backup: string;
+  Backup, tmpFileName: string;
   Destination: TFreeFileBuffer;
   Str, Ext: string;
   Answer: word;
   fAttr:longint;  fh:THandle;
   MinFileVersion: TFreeFileVersion;
+
+  function makeBackup: boolean;
+  begin
+    result := false;
+    // Check if the file already exists
+    if FileExistsUTF8(FreeShip.Filename) then
+    begin
+      Backup := ChangeFileExt(FreeShip.Filename, '.Bak');
+      // First check for a backup, and delete when present
+      if FileExistsUTF8(Backup)  then
+        if not DeleteFileUTF8(Backup) then
+        begin
+          MessageDlg(rsUnableDeleteBackupFile+' '+Backup, mtError, [mbOK], 0);
+          FreeShip.FileIsReadOnly:=true;
+          result := false;
+          exit;
+        end;
+      // Then create a backup of the old file
+      result := CopyFile(FreeShip.Filename, Backup);
+      if not result then
+      begin
+        MessageDlg(rsUnableCreateBackupFile+' '+Backup, mtError, [mbOK], 0);
+        FreeShip.FileIsReadOnly:=true;
+        result := false;
+        exit;
+      end;
+    end
+    else
+      result := true;
+  end;
+
 begin
   result := false;
 {  if FileExistsUTF8(FreeShip.Filename) then
@@ -6087,37 +6120,41 @@ begin
   else FreeShip.FileVersion := MinFileVersion;
 
   FreeShip.FFilenameSet := True;
-  // Check if the file already exists
-  if FileExistsUTF8(FreeShip.Filename) then
-  begin
-    Backup := ChangeFileExt(FreeShip.Filename, '.Bak');
-    // First check for a backup, and delete when present
-    if FileExistsUTF8(Backup)  then
-      if not DeleteFileUTF8(Backup) then
-      begin
-        MessageDlg(rsUnableDeleteBackupFile+' '+Backup, mtError, [mbOK], 0);
-        FreeShip.FileIsReadOnly:=true;
-        result := false;
-        exit;
-      end;
-    // Then create a backup of the old file
-    if not RenameFileUTF8(FreeShip.Filename, Backup) then
-    begin
-      MessageDlg(rsUnableCreateBackupFile+' '+Backup, mtError, [mbOK], 0);
-      FreeShip.FileIsReadOnly:=true;
-      result := false;
-      exit;
-    end;
-  end;
+
+
   Ext := ExtractFileExt(FreeShip.Filename);
   if Ext = '.fbm' then
     Destination := TFreeFileBuffer.Create
   else
     Destination := TFreeTextBuffer.Create;
   Destination.Encoding := FreeShip.Preferences.FbmEncoding;
+
   FreeShip.SaveProject(Destination);
+
+  tmpFileName := FreeShip.Filename + '.tmp';
+
   try
-    result := Destination.SaveToFile(FreeShip.Filename);
+    result := makeBackup;
+    if not result then exit;
+    result := Destination.SaveToFile(tmpFileName);
+    if not result then
+    begin
+      MessageDlg(rsUnableCreateTmpFile+' '+tmpFileName, mtError, [mbOK], 0);
+      FreeShip.FileIsReadOnly:=true;
+      result := false;
+      exit;
+    end;
+    result := RenameFileUTF8(tmpFileName, FreeShip.Filename);
+    if not result then
+    begin
+      MessageDlg(
+        String.Format(rsUnableRenameTmpFile,[tmpFileName,FreeShip.Filename]),
+        mtError, [mbOK], 0);
+      FreeShip.FileIsReadOnly:=true;
+      result := false;
+      exit;
+    end;
+
     FreeShip.FileChanged:=false;
     FreeAndNil(Destination);
     FreeShip.Preferences.LastDirectory := ExtractFilePath(FreeShip.FileName);

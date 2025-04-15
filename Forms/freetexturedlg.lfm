@@ -8,7 +8,7 @@ object FreeTextureForm: TFreeTextureForm
   ClientWidth = 987
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '3.8.0.0'
   object PanelRight: TPanel
     Left = 817
     Height = 565
@@ -52,26 +52,26 @@ object FreeTextureForm: TFreeTextureForm
       TabOrder = 2
     end
     object Button1: TButton
-      Left = 18
+      Left = 20
       Height = 32
       Hint = 'Reset 2d anchors'
-      Top = 320
+      Top = 352
       Width = 123
       Caption = 'Reset'
       TabOrder = 3
       OnClick = Button1Click
     end
     object LabelAnchor1: TLabel
-      Left = 19
+      Left = 21
       Height = 26
-      Top = 360
+      Top = 392
       Width = 122
       Caption = 'LabelAnchor1'
     end
     object LabelAnchor2: TLabel
-      Left = 19
+      Left = 20
       Height = 26
-      Top = 384
+      Top = 424
       Width = 122
       Caption = 'LabelAnchor2'
     end
@@ -106,14 +106,14 @@ object FreeTextureForm: TFreeTextureForm
     object LabelTarget1: TLabel
       Left = 19
       Height = 26
-      Top = 416
+      Top = 456
       Width = 114
       Caption = 'LabelTarget1'
     end
     object LabelTarget2: TLabel
-      Left = 19
+      Left = 18
       Height = 26
-      Top = 440
+      Top = 488
       Width = 114
       Caption = 'LabelTarget2'
     end
@@ -126,6 +126,20 @@ object FreeTextureForm: TFreeTextureForm
       Increment = 0.1
       OnChange = FloatSpinEditRotateChange
       TabOrder = 4
+    end
+    object LabelBmOrigin: TLabel
+      Left = 24
+      Height = 26
+      Top = 280
+      Width = 132
+      Caption = 'LabelBmOrigin'
+    end
+    object LabelBmScale: TLabel
+      Left = 24
+      Height = 26
+      Top = 304
+      Width = 121
+      Caption = 'LabelBmScale'
     end
   end
   object StatusBar1: TStatusBar

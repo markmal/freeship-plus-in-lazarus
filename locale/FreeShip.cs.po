@@ -15866,6 +15866,14 @@ msgstr ""
 msgid "LabelAnchor2"
 msgstr ""
 
+#: tfreetextureform.labelbmorigin.caption
+msgid "LabelBmOrigin"
+msgstr ""
+
+#: tfreetextureform.labelbmscale.caption
+msgid "LabelBmScale"
+msgstr ""
+
 #: tfreetextureform.labeltarget1.caption
 msgid "LabelTarget1"
 msgstr ""

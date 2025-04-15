@@ -102,6 +102,7 @@ object FreeLayerDialog: TFreeLayerDialog
             Width = 30
             Align = alRight
             Caption = 'Texture'
+            Enabled = False
             Glyph.Data = {
               36090000424D3609000000000000360000002800000018000000180000000100
               2000000000000009000064000000640000000000000000000000000000D70000

@@ -490,6 +490,7 @@ type
       DevelopedPatchAnchorPoint2: T2DCoordinate;
       BitmapTargetPoint1: TPoint;
       BitmapTargetPoint2: TPoint);
+    procedure InitRawImage();
     procedure LoadIntfImage(Stream: TStream);
     procedure LoadIntfImageFromFile(FileName: String);
     procedure LoadBinary(Source: TFreeFileBuffer);

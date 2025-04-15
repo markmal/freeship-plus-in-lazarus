@@ -42,8 +42,13 @@ begin
 end;{TFreeSubdivisionControlFace.FSetSelected}
 
 function TFreeSubdivisionControlFace.FGetPoint(Index: integer): TFreeSubdivisionControlPoint;
+var p:TFreeSubdivisionPoint;
 begin
-  Result := TFreeSubdivisionControlPoint(inherited);
+  p := inherited;
+  Result := nil;
+  if not (p is TFreeSubdivisionControlPoint)
+    then Exit;
+  Result := p as TFreeSubdivisionControlPoint;
 end;{TFreeSubdivisionControlFace.FGetSelected}
 
 function TFreeSubdivisionControlFace.FGetSelected: boolean;

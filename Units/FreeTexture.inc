@@ -55,11 +55,17 @@ begin
   Source.LoadInteger(FBitmapTargetPoint2.Y);
   Source.LoadBoolean(FMirrored);
   Source.LoadTColor(FColor);
-  png := TPortableNetworkGraphic.Create;
-  Source.LoadPngImage(png);
-  FBitmap.Assign(png);
-  png.Free;
-  FIntfImage.LoadFromBitmap(FBitmap.Handle, FBitmap.MaskHandle);
+  //png := TPortableNetworkGraphic.Create;
+  //Source.LoadPngImage(png);
+  //FIntfImage.Free;
+  //FIntfImage := png.CreateIntfImage;
+  InitRawImage();
+  FIntfImage.SetRawImage(FRawImage);
+  FBitmap.FreeImage;
+  Source.LoadIntfImage(FIntfImage);
+  FBitmap.LoadFromIntfImage(FIntfImage);
+  //png.Free;
+  //FIntfImage.LoadFromBitmap(FBitmap.Handle, FBitmap.MaskHandle);
   FIsCorelated := true;
   vLayer.ShowTexture:=true;
 end;
@@ -79,10 +85,15 @@ begin
   Destination.Add(FBitmapTargetPoint2.Y);
   Destination.Add(FMirrored);
   Destination.Add(FColor);
-  png := TPortableNetworkGraphic.Create;
-  png.Assign(FBitmap);
-  Destination.Add(png);
-  png.Free;
+  //png := TPortableNetworkGraphic.Create;
+  //png.PixelFormat:=pf32bit;
+  //InitRawImage();
+  //FIntfImage.SetRawImage(FRawImage);
+  //png.RawImage.Description := FRawImage.Description;
+  //png.LoadFromIntfImage(FIntfImage);
+  //png.Assign(FBitmap);
+  Destination.Add(FIntfImage);
+  //png.Free;
 end;
 
 procedure TFreeTexture.LoadIntfImageFromFile(FileName: String);
@@ -93,12 +104,10 @@ begin
   stream.Free;
 end;
 
-procedure TFreeTexture.LoadIntfImage(stream: TStream);
-var tmpBitmapHandle, tmpMaskBitmapHandle: HBitmap;
+procedure TFreeTexture.InitRawImage();
 begin
   FRawImage.Init;
   //FRawImage.Description.Init_BPP32_R8G8B8A8_BIO_TTB(0,0);
-
   // Init_BPP32_A8B8G8R8_BIO_TTB(0,0);
   with FRawImage.Description do
   begin
@@ -121,14 +130,17 @@ begin
     AlphaPrec := 8;
     AlphaShift := 0;
   end;
+end;
+
+procedure TFreeTexture.LoadIntfImage(stream: TStream);
+var tmpBitmapHandle, tmpMaskBitmapHandle: HBitmap;
+begin
+  InitRawImage();
   if not Assigned(FIntfImage) then FIntfImage := TLazIntfImage.Create(FRawImage, true);
   if not Assigned(FBitmap) then FBitmap := TBitmap.Create();
   try
     FIntfImage.SetRawImage(FRawImage);
     FIntfImage.LoadFromStream(stream);
-    //FIntfImage.CreateBitmaps(tmpBitmapHandle, tmpMaskBitmapHandle, true);
-    //FBitmap.Handle:=tmpBitmapHandle;
-    //FBitmap.MaskHandle:=tmpMaskBitmapHandle;
     FBitmap.LoadFromIntfImage(FIntfImage);
   except
     FreeAndNil(FIntfImage);
@@ -214,6 +226,8 @@ begin
   FSin:=0;
   FCos:=1;
   FIsCorelated := false;
+  BitmapOrigin := ToPoint(0,0);
+  BitmapScale := 0.001; //not 0 but small enough
 end;
 
 // find two most distanced 2d points
@@ -403,11 +417,11 @@ var
   procedure DrawLine(p2d1, p2d2: T2DCoordinate; Color: TColor);
   var A,B: TPoint; P1, P2: T3DCoordinate;
   begin
-    if FMirrored then
+    {if FMirrored then
     begin
       p2d1 := Self.Mirror2DCoordinate(p2d1);
       p2d2 := Self.Mirror2DCoordinate(p2d2);
-    end;
+    end;}
 
     P1:=Project2DtoViewport(p2d1);
     P2:=Project2DtoViewport(p2d2);
@@ -416,7 +430,7 @@ var
     B := Viewport.Project(P2);
     Viewport.PenColor := Color;
     Viewport.Line(A.X,A.Y, B.X,B.Y);
-  end;{DrawTriangle}
+  end;
 
 begin
   FShadeSubmerged:=true;
@@ -696,6 +710,7 @@ function TFreeTexture.ProjectOnBitmap(C1: T2DCoordinate): TPoint;
 var
   A1,B1: T2DCoordinate;  A2,B2: TPoint;
   num_real, num_imag, den, ratio_real, ratio_imag, C2x, C2y: TFloatType;
+  x64,y64: int64;
 begin
   Result.X := -1;
   Result.Y := -1;
@@ -731,8 +746,14 @@ begin
   if (C2y>Integer.MaxValue) then C2y:=Integer.MaxValue-10;
 
   if IsNAN(C2x) or IsNAN(C2y) then exit;
-  Result.X := round(C2x);
-  Result.Y := round(C2y);
+  x64 := round(C2x);
+  y64 := round(C2y);
+  if x64 > longint.MaxValue then x64 := longint.MaxValue;
+  if x64 < longint.MinValue then x64 := longint.MinValue;
+  if y64 > longint.MaxValue then y64 := longint.MaxValue;
+  if y64 < longint.MinValue then y64 := longint.MinValue;
+  Result.X := x64;
+  Result.Y := y64;
 end;
 
 // Given 3d triangle A1,B1,C1 and point D1 in it, find D2 in corresponding 2d triandle A2,B2,C2

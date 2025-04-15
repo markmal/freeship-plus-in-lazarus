@@ -1815,6 +1815,7 @@ begin
       for J := 1 to FEdges.Count do
       begin
         Edge := FEdges[J - 1];
+        //2025-04-14 MM: not sure why to make the patch Fmirror if it touches centerline
         if (Edge.NumberOfFaces = 1) and (abs(Edge.StartPoint.Coordinate.Y) <= 1e-4) and
           (abs(Edge.EndPoint.Coordinate.Y) <= 1e-4) then
         begin

@@ -363,6 +363,9 @@ begin
 
   AlphaBar.Position:=round((255-Layer.AlphaBlend) * 100 / 255);
   //_label1.Caption:=FloatToStrF(100*(255-Layer.AlphaBlend)/255,ffFixed,7,1)+'%';
+
+  SpeedButtonTexture.Enabled := (Layer.Count > 0);
+
   UpdateMenu;
   FProgrammaticalChange := false;
 end;{TFreeLayerDialog.LayerBoxClick}

@@ -81,7 +81,7 @@ type
     //procedure Add(const source;Size:Integer);    overload;virtual;
     procedure Add(JPegImage: TJPEGImage);      overload; virtual;
     procedure Add(PngImage: TPortableNetworkGraphic); overload; virtual;
-    procedure Add(IntfImage: TLazIntfImage); overload; virtual;
+    procedure Add(IntfImage: TLazIntfImage;  Format:string); overload; virtual;
 
     procedure LoadInteger(var Output: integer);    virtual;
     procedure LoadString(var Output: string);      virtual;
@@ -98,7 +98,7 @@ type
     procedure LoadT3DPlane(var Output: T3DPlane);       virtual;
     procedure LoadTJPEGImage(var JPegImage: TJPEGImage);       virtual;
     procedure LoadPngImage(var PngImage: TPortableNetworkGraphic);       virtual;
-    procedure LoadIntfImage(var IntfImage: TLazIntfImage);       virtual;
+    procedure LoadIntfImage(var IntfImage: TLazIntfImage; var Format: string);       virtual;
     procedure LoadTFreeKAPERResistanceData(var Data: TFreeKAPERResistanceData);       virtual;
     procedure LoadTFreeDelftSeriesResistanceData(var Data: TFreeDelftSeriesResistanceData);  virtual;
     procedure LoadTFreeHoltrSeriesResistanceData(var Data: TFreeHoltrSeriesResistanceData);  virtual;
@@ -162,7 +162,7 @@ type
     //procedure Add(const source;Size:Integer);     override;
     procedure Add(JPegImage: TJPEGImage); override; overload;
     procedure Add(PngImage: TPortableNetworkGraphic); override; overload;
-    procedure Add(IntfImage: TLazIntfImage); override; overload;
+    procedure Add(IntfImage: TLazIntfImage; Format: string); override; overload;
 
     procedure LoadInteger(var Output: integer); override;
     procedure LoadString(var Output: string); override;
@@ -178,7 +178,7 @@ type
     procedure LoadT3DPlane(var Output: T3DPlane); override;
     procedure LoadTJPEGImage(var JPegImage: TJPEGImage); override;
     procedure LoadPngImage(var PngImage: TPortableNetworkGraphic); override;
-    procedure LoadIntfImage(var IntfImage: TLazIntfImage); override;
+    procedure LoadIntfImage(var IntfImage: TLazIntfImage; var Format: string); override;
     //procedure LoadTFreeMHSeriesResistanceData(var Dest;Size:Integer);        override;
 
     procedure Clear; override;
@@ -195,7 +195,7 @@ type
 
 
 implementation
-uses fpWritePng, ZStream;
+uses fpImage, fpWritePng, fpWriteJpeg, ZStream;
 
 {---------------------------------------------------------------------------------------------------}
 {                                           TFreeFileBuffer                                         }
@@ -359,20 +359,49 @@ begin
   FreeAndNil(Stream);
 end;{TFreeFileBuffer.Add}
 
-procedure TFreeFileBuffer.Add(IntfImage: TLazIntfImage);
+procedure TFreeFileBuffer.Add(IntfImage: TLazIntfImage; Format:string);
 var
   Stream: TMemoryStream;
   Size: integer;
-  pngWriter: TFPWriterPNG;
+  //pngWriter: TFPWriterPNG;
+  //jpgWriter: TFPWriterJPEG;
+  pngImg: TPortableNetworkGraphic;
+  jpgImg: TJPEGImage;
 begin
   Add(IntfImage.Width);
   Add(IntfImage.Height);
   Stream := TMemoryStream.Create;
-  pngWriter := TFPWriterPNG.create;
-  pngWriter.CompressionLevel := clmax;
-  pngWriter.WordSized := false;
-  pngWriter.UseAlpha:=true;
-  IntfImage.SaveToStream(Stream, pngWriter);
+  if Format.ToUpper = 'PNG' then
+  begin
+    //Add('PNG');
+    { // it switches R and G, saves no A
+    pngWriter := TFPWriterPNG.create;
+    pngWriter.CompressionLevel := clmax;
+    pngWriter.WordSized := false;
+    pngWriter.UseAlpha:=true;
+    IntfImage.SaveToStream(Stream, pngWriter);
+    pngWriter.Free;}
+
+    pngImg := TPortableNetworkGraphic.Create;
+    pngImg.LoadFromIntfImage(IntfImage);
+    pngImg.SaveToStream(Stream);
+    pngImg.Free;
+
+  end
+  else if Format.ToUpper = 'JPG' then
+  begin
+    //Add('JPG');
+    {jpgWriter := TFPWriterJPEG.create;
+    jpgWriter.CompressionQuality := 90;
+    IntfImage.SaveToStream(Stream, jpgWriter);
+    jpgWriter.Free;}
+
+    jpgImg := TJPEGImage.Create;
+    jpgImg.LoadFromIntfImage(IntfImage);
+    jpgImg.SaveToStream(Stream);
+    jpgImg.Free;
+
+  end;
   Size := Stream.Size;
   Stream.Position := 0;
   Add(Size);
@@ -380,7 +409,7 @@ begin
     FGrow(Size + 20);
   Stream.Read(FData[FCount], Size);
   Inc(FCount, Size);
-  FreeAndNil(Stream);
+  Stream.Free;
 end;{TFreeFileBuffer.Add}
 
 procedure TFreeFileBuffer.LoadTJPEGImage(var JPegImage: TJPEGImage);
@@ -417,10 +446,11 @@ begin
   FreeAndNil(Stream);
 end;
 
-procedure TFreeFileBuffer.LoadIntfImage(var IntfImage: TLazIntfImage);
+procedure TFreeFileBuffer.LoadIntfImage(var IntfImage: TLazIntfImage; var Format: string);
 var
   Stream: TMemoryStream;
   W, H, Size: integer;
+  IIH: TIHData;
 begin
   LoadInteger(W);
   LoadInteger(H);
@@ -430,7 +460,15 @@ begin
   Stream.Write(FData[FPosition], Size);
   Inc(FPosition, Size);
   Stream.Position := 0;
+
+  IIH := IntfImage.FindHandlerFromStream(Stream);
+  if IIH.DefaultExt = 'JPG' then
+    Format := 'JPG'
+  else
+    Format := 'PNG';
+
   IntfImage.LoadFromStream(Stream);
+
   FreeAndNil(Stream);
 end;
 
@@ -2538,26 +2576,56 @@ begin
 end;{TFreeTextBuffer.Add}
 
 
-procedure TFreeTextBuffer.Add(IntfImage: TLazIntfImage);
+procedure TFreeTextBuffer.Add(IntfImage: TLazIntfImage; Format: string);
 var
   Stream: TMemoryStream;
   Size: integer;
   S: PChar;
   P: PChar;
   L: string;
-  pngWriter: TFPWriterPNG;
+  //pngWriter: TFPWriterPNG;
+  //jpgWriter: TFPWriterJPEG;
+  pngImg: TPortableNetworkGraphic;
+  jpgImg: TJPEGImage;
 begin
   Add(IntfImage.Width);
   Add(IntfImage.Height);
 
   Stream := TMemoryStream.Create;
+  if Format.ToUpper = 'PNG' then
+  begin
+    //Add('PNG');
+    { // this way it switches B and R colors, saves no A
+    pngWriter := TFPWriterPNG.create;
+    pngWriter.CompressionLevel := clmax;
+    pngWriter.WordSized := false;
+    pngWriter.UseAlpha := true;
+    IntfImage.SaveToStream(Stream, pngWriter);
+    pngWriter.Free;}
 
-  pngWriter := TFPWriterPNG.create;
-  pngWriter.CompressionLevel := clmax;
-  pngWriter.WordSized := false;
-  pngWriter.UseAlpha:=true;
+    pngImg := TPortableNetworkGraphic.Create;
+    pngImg.LoadFromIntfImage(IntfImage);
+    pngImg.SaveToStream(Stream);
+    pngImg.Free;
 
-  IntfImage.SaveToStream(Stream, pngWriter);
+  end
+  else if Format.ToUpper = 'JPG' then
+  begin
+    //Add('JPG');
+    {jpgWriter := TFPWriterJPEG.create;
+    jpgWriter.CompressionQuality := 90;
+    IntfImage.SaveToStream(Stream, jpgWriter);
+    jpgWriter.Free;}
+
+    jpgImg := TJPEGImage.Create;
+    jpgImg.LoadFromIntfImage(IntfImage);
+    jpgImg.SaveToStream(Stream);
+    jpgImg.Free;
+
+  end;
+
+  //Stream.Position := 0;
+  //Stream.SaveToFile('/home/mark/Documents/FreeShip/Import/texture-dump.png');
 
   Size := Stream.Size;
   Stream.Position := 0;
@@ -2572,8 +2640,7 @@ begin
   StrDispose(S);
   FLines.Add(L);
 
-  FreeAndNil(pngWriter);
-  FreeAndNil(Stream);
+  Stream.Free;
   Inc(FPosition);
 end;
 
@@ -2619,14 +2686,16 @@ begin
   Inc(FPosition);
 end;
 
-procedure TFreeTextBuffer.LoadIntfImage(var IntfImage: TLazIntfImage);
+procedure TFreeTextBuffer.LoadIntfImage(var IntfImage: TLazIntfImage; var Format: string);
 var
   Stream: TMemoryStream;
   W, H, Size: integer;
   PData: PChar;
+  IIH: TIHData;
 begin
   LoadInteger(W);
   LoadInteger(H);
+  //LoadString(Format);
   LoadInteger(Size);
   PData := StrAlloc(Size);
   Stream := TMemoryStream.Create;
@@ -2635,6 +2704,13 @@ begin
   //Stream.Write(PData, Size);
   StrDispose(PData);
   Stream.Position := 0;
+
+  IIH := IntfImage.FindHandlerFromStream(Stream);
+  if IIH.DefaultExt = 'jpg' then
+    Format := 'JPG'
+  else
+    Format := 'PNG';
+
   IntfImage.LoadFromStream(Stream);
   FreeAndNil(Stream);
   Inc(FPosition);

@@ -10,7 +10,7 @@ uses
   Math,
   FreeTypes, FreeGeometry,
   FreeShipUnit,
-  LCLTranslator, Spin;
+  LCLTranslator, Spin, Types;
 
 type
 
@@ -22,6 +22,12 @@ type
   TFreeTextureForm = class(TForm)
     ActionDelete: TAction;
     ColorButton1: TColorButton;
+    FloatSpinEditTextureScale: TFloatSpinEdit;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     LabelBmOrigin: TLabel;
     LabelBmScale: TLabel;
     Ok: TAction;
@@ -45,6 +51,8 @@ type
     ImageList1: TImageList;
     OpenPictureDialog1: TOpenPictureDialog;
     PanelRight: TPanel;
+    SpinEditTextureShiftX: TSpinEdit;
+    SpinEditTextureShiftY: TSpinEdit;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
@@ -62,8 +70,13 @@ type
     procedure FloatSpinEditShiftXChange(Sender: TObject);
     procedure FloatSpinEditShiftYChange(Sender: TObject);
     procedure FloatSpinEditScaleChange(Sender: TObject);
+    procedure FloatSpinEditTextureScaleChange(Sender: TObject);
+    procedure SpinEditTextureShiftXChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure SpinEditTextureShiftYChange(Sender: TObject);
+    procedure ViewportMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure LoadFileExecute(Sender: TObject);
     procedure FloatSpinEditRotateChange(Sender: TObject);
     procedure OkExecute(Sender: TObject);
@@ -138,8 +151,10 @@ begin
     OnMouseMove := @ViewportMouseMove;
     OnRedraw := @ViewportRedraw;
     OnRequestExtents := @ViewportRequestExtents;
+    OnMouseWheel:= @ViewportMouseWheel;
   end;
 end;
+
 
 procedure TFreeTextureForm.CreateUnrolledPatches;
 var i: integer;
@@ -249,7 +264,7 @@ begin
   if not Assigned(FActiveTexture) then exit;
 
   if FControlMode <> cmNone then
-  if FControlMode = cmViewportZoom then
+  if (FControlMode = cmViewportZoom) and (ssRight in Shift) then
   begin
     // Zoom in or zoom out
     if abs(FInitialPosition.Y - Y) > 4 then
@@ -265,7 +280,7 @@ begin
       Viewport.Invalidate;
     end;
   end
-  else if FControlMode = cmViewportPan then
+  else if (FControlMode = cmViewportPan) and (ssLeft in Shift) then
     if (abs(FInitialPosition.X - X) > 4) or (abs(FInitialPosition.Y - Y) > 4) then
     begin
       P.X := Viewport.Pan.X + X - FInitialPosition.X;
@@ -277,7 +292,7 @@ begin
       Viewport.Invalidate;
     end
   else
-  else if (FControlMode = cmPatchMove)
+  else if (FControlMode = cmPatchMove) and (ssLeft in Shift)
      and ((abs(FInitialPatchPosition.X - X) > 0) or (abs(FInitialPatchPosition.Y - Y) > 0)) then
     begin
       T := FActiveTexture.Translation;
@@ -300,7 +315,7 @@ begin
       SetBitmapTargetPoints;
       Viewport.Invalidate;
     end
-  else if FControlMode = cmPatchScale then
+  else if (FControlMode = cmPatchScale) and (ssRight in Shift) then
     begin
       S := FActiveTexture.Scale;
       P1 := FActiveTexture.GetMidPoint;
@@ -318,7 +333,7 @@ begin
       SetBitmapTargetPoints;
       Viewport.Invalidate;
     end
-  else if FControlMode = cmPatchRotate then
+  else if (FControlMode = cmPatchRotate) and (ssLeft in Shift) then
     begin
       S := FActiveTexture.Rotation;
       P1 := FActiveTexture.GetMidPoint;
@@ -334,7 +349,7 @@ begin
       SetBitmapTargetPoints;
       Viewport.Invalidate;
     end
-  else if (FControlMode = cmBgImageMove)
+  else if (FControlMode = cmBgImageMove) and (ssLeft in Shift)
     and ((abs(FInitialBGimagePosition.X - X) > 0) or (abs(FInitialBGimagePosition.Y - Y) > 0)) then
     begin
       Po := FActiveTexture.BitmapOrigin;
@@ -345,6 +360,7 @@ begin
 
       FActiveTexture.BitmapOrigin := P;
       Viewport.BackgroundImage.Origin := P;
+      Viewport.BackgroundMode := emSetFrame;
 
       FInitialBGimagePosition.X := X;
       FInitialBGimagePosition.Y := Y;
@@ -352,8 +368,9 @@ begin
       SetBitmapTargetPoints;
       Viewport.Invalidate;
     end
-  else if FControlMode = cmBgImageScale then
+  else if (FControlMode = cmBgImageScale) and (ssRight in Shift)then
     begin
+      Viewport.BackgroundMode := emSetFrame;
     end;
 
   P.X := X;
@@ -372,6 +389,7 @@ begin
   Viewport.Cursor := crDefault;
 
   FFoundBGimage := nil;
+  Viewport.BackgroundMode := emUnsetFrame;
   if Assigned(Viewport.BackgroundImage.Bitmap)
       and (Viewport.BackgroundImage.Bitmap.Width > 0)
       and (Viewport.BackgroundImage.Bitmap.Height > 0) then
@@ -385,7 +403,8 @@ begin
       Viewport.Cursor := crSizeAll;
     end;
     StatusBar1.Panels[1].Text := String.Format('Bmp %0:d:%1:d',[bP.X,bP.Y]);
-  end;
+  end
+;
 
   StatusBar1.Panels[2].Text := String.Format('Viw %0:.3f:%1:.3f',[P3.X, P3.Y]);
 
@@ -457,6 +476,47 @@ begin
   FFoundBGimage := nil;
 end;{TFreeTextureForm.ViewportMouseUp}
 
+procedure TFreeTextureForm.ViewportMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+var S,d: TFloatType; oldVPPan:Tpoint; oldVPZoom: TFloatType;
+begin
+  FControlMode := cmNone;
+  if Assigned(FFoundEdge) then FControlMode := cmPatchScale
+  else if Assigned(FFoundPoint) then FControlMode := cmPatchScale
+  else if Assigned(FFoundPoint) then FControlMode := cmPatchScale
+  else if Assigned(FFoundBGimage) then FControlMode := cmBGimageScale
+  else if Assigned(FFoundBGimage) then FControlMode := cmBGimageScale
+  else FControlMode := cmViewportZoom;
+
+  if FControlMode = cmViewportZoom then
+  begin
+  end
+  else if FControlMode = cmPatchScale then
+    begin
+      S := FActiveTexture.Scale;
+      S := S + 0.01 * (WheelDelta/120);
+      FloatSpinEditScale.OnChange := nil;
+      FActiveTexture.Scale  := S;
+      FloatSpinEditScale.Value := S;
+      FloatSpinEditScale.OnChange := @FloatSpinEditScaleChange;
+      FActiveTexture.IsManuallyAdjusted := true;
+      SetBitmapTargetPoints;
+      Viewport.Invalidate;
+      Handled := true;
+    end
+  else if FControlMode = cmBGimageScale then
+    begin
+      S := Viewport.BackgroundImage.Scale;
+      d := 0.01 * Viewport.BackgroundImage.Scale;
+      Viewport.BackgroundImage.Scale := S + d * (WheelDelta/120);
+      FActiveTexture.IsManuallyAdjusted := true;
+      SetBitmapTargetPoints;
+      Viewport.Invalidate;
+      Handled := true;
+    end;
+
+  FControlMode := cmNone;
+end;
 
 procedure TFreeTextureForm.SetBitmapTargetPoints;
 var p1,p2: T3DCoordinate;
@@ -639,6 +699,20 @@ begin
   FloatSpinEditShiftY.OnChange := @FloatSpinEditShiftYChange;
   FloatSpinEditScale.OnChange := @FloatSpinEditScaleChange;
 
+
+  SpinEditTextureShiftX.OnChange := nil;
+  SpinEditTextureShiftY.OnChange := nil;
+  FloatSpinEditTextureScale.OnChange := nil;
+
+  SpinEditTextureShiftX.Value := FActiveTexture.BitmapOrigin.X;
+  SpinEditTextureShiftY.Value := FActiveTexture.BitmapOrigin.Y;
+  FloatSpinEditTextureScale.Value := FActiveTexture.BitmapScale;
+
+  SpinEditTextureShiftX.OnChange := @SpinEditTextureShiftXChange;
+  SpinEditTextureShiftY.OnChange := @SpinEditTextureShiftYChange;
+  FloatSpinEditTextureScale.OnChange := @FloatSpinEditTextureScaleChange;
+
+
   FActiveTexture.Color := clYellow;
 
   LabelAnchor1.Caption:= String.Format('%0:.3f : %1:.3f',
@@ -694,6 +768,33 @@ end;
 procedure TFreeTextureForm.FloatSpinEditRotateChange(Sender: TObject);
 begin
   FActiveTexture.Rotation := FloatSpinEditRotate.Value;
+  FActiveTexture.IsManuallyAdjusted := true;
+  SetBitmapTargetPoints;
+  Viewport.Invalidate;
+end;
+
+procedure TFreeTextureForm.SpinEditTextureShiftXChange(Sender: TObject);
+begin
+  FActiveTexture.BitmapOrigin.X := SpinEditTextureShiftX.Value;
+  Viewport.BackgroundImage.Origin := FActiveTexture.BitmapOrigin;
+  FActiveTexture.IsManuallyAdjusted := true;
+  SetBitmapTargetPoints;
+  Viewport.Invalidate;
+end;
+
+procedure TFreeTextureForm.SpinEditTextureShiftYChange(Sender: TObject);
+begin
+  FActiveTexture.BitmapOrigin.Y := SpinEditTextureShiftY.Value;
+  Viewport.BackgroundImage.Origin := FActiveTexture.BitmapOrigin;
+  FActiveTexture.IsManuallyAdjusted := true;
+  SetBitmapTargetPoints;
+  Viewport.Invalidate;
+end;
+
+procedure TFreeTextureForm.FloatSpinEditTextureScaleChange(Sender: TObject);
+begin
+  FActiveTexture.BitmapScale := FloatSpinEditTextureScale.Value;
+  Viewport.BackgroundImage.Scale := FloatSpinEditTextureScale.Value;
   FActiveTexture.IsManuallyAdjusted := true;
   SetBitmapTargetPoints;
   Viewport.Invalidate;

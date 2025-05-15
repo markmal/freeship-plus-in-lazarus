@@ -1982,6 +1982,7 @@ begin
    {$IFDEF WIN32}// We need to bring ScreenToClient in MDF mode, not a case for X11
   MousePos := self.ScreenToClient(MousePos);
    {$ENDIF}
+  if Result then exit; // exit when the wheel is already processed in inherited handler(s)
 
   if (MousePos.X >= 0) and (MousePos.Y >= 0) and (MousePos.X < Clientwidth) and
      (MousePos.Y < Clientheight) then

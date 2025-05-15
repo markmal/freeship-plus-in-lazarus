@@ -55,17 +55,11 @@ begin
   Source.LoadInteger(FBitmapTargetPoint2.Y);
   Source.LoadBoolean(FMirrored);
   Source.LoadTColor(FColor);
-  //png := TPortableNetworkGraphic.Create;
-  //Source.LoadPngImage(png);
-  //FIntfImage.Free;
-  //FIntfImage := png.CreateIntfImage;
   InitRawImage();
   FIntfImage.SetRawImage(FRawImage);
   FBitmap.FreeImage;
-  Source.LoadIntfImage(FIntfImage);
+  Source.LoadIntfImage(FIntfImage, FIntfImageFormat);
   FBitmap.LoadFromIntfImage(FIntfImage);
-  //png.Free;
-  //FIntfImage.LoadFromBitmap(FBitmap.Handle, FBitmap.MaskHandle);
   FIsCorelated := true;
   vLayer.ShowTexture:=true;
 end;
@@ -85,22 +79,17 @@ begin
   Destination.Add(FBitmapTargetPoint2.Y);
   Destination.Add(FMirrored);
   Destination.Add(FColor);
-  //png := TPortableNetworkGraphic.Create;
-  //png.PixelFormat:=pf32bit;
-  //InitRawImage();
-  //FIntfImage.SetRawImage(FRawImage);
-  //png.RawImage.Description := FRawImage.Description;
-  //png.LoadFromIntfImage(FIntfImage);
-  //png.Assign(FBitmap);
-  Destination.Add(FIntfImage);
-  //png.Free;
+  Destination.Add(FIntfImage, FIntfImageFormat);
 end;
 
 procedure TFreeTexture.LoadIntfImageFromFile(FileName: String);
-var stream: TFileStream;
+var stream: TFileStream; ext: string;
 begin
   stream := TFileStream.Create(FileName, fmOpenRead);
   LoadIntfImage(stream);
+  ext := String(ExtractFileExt(FileName)).ToUpper;
+  FIntfImageFormat := 'PNG'; //loseless format by default, unless it is JPEG
+  if (ext = 'JPG') or (ext = 'JPEG') then FIntfImageFormat := 'JPG';
   stream.Free;
 end;
 

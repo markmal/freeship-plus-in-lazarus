@@ -460,6 +460,7 @@ type
     FMirrored: boolean;
     FBitmap: TBitmap;
     FIntfImage: TLazIntfImage;
+    FIntfImageFormat: string;
     FRawImage: TRawImage;
     FBitmapTargetPoint1: TPoint;
     FBitmapTargetPoint2: TPoint;

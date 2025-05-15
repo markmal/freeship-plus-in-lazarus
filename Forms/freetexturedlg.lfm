@@ -1,131 +1,51 @@
 object FreeTextureForm: TFreeTextureForm
-  Left = 623
-  Height = 633
-  Top = 257
-  Width = 987
+  Left = 619
+  Height = 800
+  Top = 173
+  Width = 1200
   Caption = 'FreeTextureForm'
-  ClientHeight = 633
-  ClientWidth = 987
+  ClientHeight = 800
+  ClientWidth = 1200
   OnClose = FormClose
   OnCreate = FormCreate
+  OnMouseWheel = ViewportMouseWheel
   LCLVersion = '3.8.0.0'
   object PanelRight: TPanel
-    Left = 817
-    Height = 565
+    Left = 1000
+    Height = 732
     Top = 38
-    Width = 170
+    Width = 200
     Align = alRight
-    ClientHeight = 565
-    ClientWidth = 170
+    ClientHeight = 732
+    ClientWidth = 200
     TabOrder = 0
-    object FloatSpinEditShiftX: TFloatSpinEdit
-      Left = 16
-      Height = 36
-      Hint = 'X shift'
-      Top = 104
-      Width = 126
-      Increment = 0.01
-      OnChange = FloatSpinEditShiftXChange
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-    end
-    object FloatSpinEditShiftY: TFloatSpinEdit
-      Left = 19
-      Height = 36
-      Hint = 'Y shift'
-      Top = 168
-      Width = 126
-      Increment = 0.01
-      OnChange = FloatSpinEditShiftYChange
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 1
-    end
-    object FloatSpinEditScale: TFloatSpinEdit
-      Left = 19
-      Height = 36
-      Top = 232
-      Width = 126
-      Increment = 0.01
-      OnChange = FloatSpinEditScaleChange
-      TabOrder = 2
-    end
-    object Button1: TButton
-      Left = 20
-      Height = 32
-      Hint = 'Reset 2d anchors'
-      Top = 352
-      Width = 123
-      Caption = 'Reset'
-      TabOrder = 3
-      OnClick = Button1Click
-    end
     object LabelAnchor1: TLabel
-      Left = 21
+      Left = 10
       Height = 26
-      Top = 392
+      Top = 592
       Width = 122
       Caption = 'LabelAnchor1'
     end
     object LabelAnchor2: TLabel
-      Left = 20
+      Left = 9
       Height = 26
-      Top = 424
+      Top = 624
       Width = 122
       Caption = 'LabelAnchor2'
     end
-    object Label3: TLabel
-      Left = 17
-      Height = 26
-      Top = 15
-      Width = 58
-      Caption = 'Rotate'
-    end
-    object Label4: TLabel
-      Left = 16
-      Height = 26
-      Top = 80
-      Width = 56
-      Caption = 'Shift X'
-    end
-    object Label5: TLabel
-      Left = 19
-      Height = 26
-      Top = 144
-      Width = 56
-      Caption = 'Shift Y'
-    end
-    object Label6: TLabel
-      Left = 21
-      Height = 26
-      Top = 208
-      Width = 45
-      Caption = 'Scale'
-    end
     object LabelTarget1: TLabel
-      Left = 19
+      Left = 8
       Height = 26
-      Top = 456
+      Top = 656
       Width = 114
       Caption = 'LabelTarget1'
     end
     object LabelTarget2: TLabel
-      Left = 18
+      Left = 10
       Height = 26
-      Top = 488
+      Top = 688
       Width = 114
       Caption = 'LabelTarget2'
-    end
-    object FloatSpinEditRotate: TFloatSpinEdit
-      Left = 16
-      Height = 36
-      Top = 40
-      Width = 121
-      DecimalPlaces = 1
-      Increment = 0.1
-      OnChange = FloatSpinEditRotateChange
-      TabOrder = 4
     end
     object LabelBmOrigin: TLabel
       Left = 24
@@ -141,12 +61,151 @@ object FreeTextureForm: TFreeTextureForm
       Width = 121
       Caption = 'LabelBmScale'
     end
+    object GroupBox1: TGroupBox
+      Left = 1
+      Height = 299
+      Top = 1
+      Width = 198
+      Align = alTop
+      Caption = 'Patch'
+      ClientHeight = 271
+      ClientWidth = 194
+      TabOrder = 0
+      object Label3: TLabel
+        Left = 17
+        Height = 26
+        Top = 8
+        Width = 58
+        Caption = 'Rotate'
+      end
+      object Label4: TLabel
+        Left = 16
+        Height = 26
+        Top = 73
+        Width = 56
+        Caption = 'Shift X'
+      end
+      object Label5: TLabel
+        Left = 19
+        Height = 26
+        Top = 137
+        Width = 56
+        Caption = 'Shift Y'
+      end
+      object Label6: TLabel
+        Left = 21
+        Height = 26
+        Top = 201
+        Width = 45
+        Caption = 'Scale'
+      end
+      object FloatSpinEditShiftX: TFloatSpinEdit
+        Left = 16
+        Height = 36
+        Hint = 'X shift'
+        Top = 97
+        Width = 126
+        Increment = 0.01
+        OnChange = FloatSpinEditShiftXChange
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+      end
+      object FloatSpinEditShiftY: TFloatSpinEdit
+        Left = 19
+        Height = 36
+        Hint = 'Y shift'
+        Top = 161
+        Width = 126
+        Increment = 0.01
+        OnChange = FloatSpinEditShiftYChange
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 1
+      end
+      object FloatSpinEditScale: TFloatSpinEdit
+        Left = 19
+        Height = 36
+        Top = 225
+        Width = 126
+        Increment = 0.01
+        OnChange = FloatSpinEditScaleChange
+        TabOrder = 2
+      end
+      object FloatSpinEditRotate: TFloatSpinEdit
+        Left = 16
+        Height = 36
+        Top = 33
+        Width = 121
+        DecimalPlaces = 1
+        Increment = 0.1
+        OnChange = FloatSpinEditRotateChange
+        TabOrder = 3
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 1
+      Height = 240
+      Top = 300
+      Width = 198
+      Align = alTop
+      Caption = 'Texture'
+      ClientHeight = 212
+      ClientWidth = 194
+      TabOrder = 1
+      object Label7: TLabel
+        Left = 16
+        Height = 26
+        Top = 8
+        Width = 56
+        Caption = 'Shift X'
+      end
+      object Label8: TLabel
+        Left = 19
+        Height = 26
+        Top = 72
+        Width = 56
+        Caption = 'Shift Y'
+      end
+      object Label9: TLabel
+        Left = 21
+        Height = 26
+        Top = 136
+        Width = 45
+        Caption = 'Scale'
+      end
+      object FloatSpinEditTextureScale: TFloatSpinEdit
+        Left = 19
+        Height = 36
+        Top = 160
+        Width = 126
+        Increment = 0.01
+        OnChange = FloatSpinEditTextureScaleChange
+        TabOrder = 0
+      end
+      object SpinEditTextureShiftX: TSpinEdit
+        Left = 19
+        Height = 36
+        Top = 33
+        Width = 123
+        OnChange = SpinEditTextureShiftXChange
+        TabOrder = 1
+      end
+      object SpinEditTextureShiftY: TSpinEdit
+        Left = 19
+        Height = 36
+        Top = 96
+        Width = 123
+        OnChange = SpinEditTextureShiftYChange
+        TabOrder = 2
+      end
+    end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Height = 30
-    Top = 603
-    Width = 987
+    Top = 770
+    Width = 1200
     Panels = <    
       item
         Text = 'Scr X:Y'
@@ -170,7 +229,7 @@ object FreeTextureForm: TFreeTextureForm
     Left = 0
     Height = 38
     Top = 0
-    Width = 987
+    Width = 1200
     AutoSize = True
     BorderWidth = 4
     ButtonHeight = 32
@@ -223,6 +282,16 @@ object FreeTextureForm: TFreeTextureForm
       Top = 2
       Action = ActionDelete
       ShowCaption = False
+    end
+    object Button1: TButton
+      Left = 461
+      Height = 32
+      Hint = 'Reset 2d anchors'
+      Top = 2
+      Width = 123
+      Caption = 'Reset'
+      TabOrder = 1
+      OnClick = Button1Click
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog

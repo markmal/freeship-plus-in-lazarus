@@ -300,8 +300,15 @@ var
   Dest: TRect;
 begin
   Dest := TargetRect;
-  Result.X := round(((X - Dest.Left) / (Dest.Right - Dest.Left)) * FBitmap.Width);
-  Result.Y := round(((Y - Dest.Top) / (Dest.Bottom - Dest.Top)) * FBitmap.Height);
+
+  if (Dest.Right <> Dest.Left)
+  then Result.X := round(((X - Dest.Left) / (Dest.Right - Dest.Left)) * FBitmap.Width)
+  else Result.X := Dest.Left;
+
+  if (Dest.Bottom <> Dest.Top)
+  then Result.Y := round(((Y - Dest.Top) / (Dest.Bottom - Dest.Top)) * FBitmap.Height)
+  else Result.X := Dest.Top;
+
 end;{TFreeBackgroundImage.ImageCoordinate}
 
 // image coordinate to viewport screen coordinate

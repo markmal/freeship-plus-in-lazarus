@@ -14177,19 +14177,46 @@ msgctxt "tfreetextureform.floatspineditshifty.hint"
 msgid "Y shift"
 msgstr ""
 
+#: tfreetextureform.groupbox1.caption
+msgid "Patch"
+msgstr ""
+
+#: tfreetextureform.groupbox2.caption
+msgctxt "tfreetextureform.groupbox2.caption"
+msgid "Texture"
+msgstr ""
+
 #: tfreetextureform.label3.caption
 msgid "Rotate"
 msgstr ""
 
 #: tfreetextureform.label4.caption
+msgctxt "tfreetextureform.label4.caption"
 msgid "Shift X"
 msgstr ""
 
 #: tfreetextureform.label5.caption
+msgctxt "tfreetextureform.label5.caption"
 msgid "Shift Y"
 msgstr ""
 
 #: tfreetextureform.label6.caption
+msgctxt "tfreetextureform.label6.caption"
+msgid "Scale"
+msgstr ""
+
+#: tfreetextureform.label7.caption
+msgctxt "tfreetextureform.label7.caption"
+msgid "Shift X"
+msgstr ""
+
+#: tfreetextureform.label8.caption
+msgctxt "tfreetextureform.label8.caption"
+msgid "Shift Y"
+msgstr ""
+
+#: tfreetextureform.label9.caption
+msgctxt "tfreetextureform.label9.caption"
 msgid "Scale"
 msgstr ""
 

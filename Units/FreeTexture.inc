@@ -40,6 +40,7 @@ var
   layerName: string;
   png: TPortableNetworkGraphic;
   vLayer: TFreeSubdivisionLayer; vDevelopedPatchId: string;
+  wm: integer;
 begin
   Source.LoadString(layerName);
   vLayer := FSurface.FindLayer(layerName);
@@ -60,6 +61,12 @@ begin
   FBitmap.FreeImage;
   Source.LoadIntfImage(FIntfImage, FIntfImageFormat);
   FBitmap.LoadFromIntfImage(FIntfImage);
+  Source.LoadInteger(wm);
+  case wm of
+    0: FWrapMode := twmNone;
+    1: FWrapMode := twmColor;
+    2: FWrapMode := twmTile;
+  end;
   FIsCorelated := true;
   vLayer.ShowTexture:=true;
 end;
@@ -80,6 +87,7 @@ begin
   Destination.Add(FMirrored);
   Destination.Add(FColor);
   Destination.Add(FIntfImage, FIntfImageFormat);
+  Destination.Add(ord(FWrapMode));
 end;
 
 procedure TFreeTexture.LoadIntfImageFromFile(FileName: String);
@@ -217,6 +225,7 @@ begin
   FIsCorelated := false;
   BitmapOrigin := ToPoint(0,0);
   BitmapScale := 0.001; //not 0 but small enough
+  FWrapMode := twmColor;
 end;
 
 // find two most distanced 2d points
@@ -819,7 +828,7 @@ function TFreeTexture.GetTextureColor( ModelPoint:T3DCoordinate;
                                        IsMirrored: boolean): TColor;
 type TABGR = record A,B,G,R: byte; end;
 var P: TPoint; UnrolledPoint: T2DCoordinate;
-  C: TRGBA; PSL:^TABGR;
+  C: TABGR; PSL:^TABGR;
   DPL: TFasterListTFreeDevelopedPatch;
 begin
   Result := clBlack;
@@ -839,12 +848,41 @@ begin
   // TColor is 4 bytes: RGBA
   // FIntfImage format must be always pf32bit,
   // FIntfImage bitmap is converted to RGBA when an image file is loaded
-  if (P.Y>=0) and (P.Y<=FBitmap.Height) and (P.X>=0) and (P.X<=FBitmap.Width) then
-  begin
-    PSL := FIntfImage.GetDataLineStart(P.Y);
-    inc(PSL,P.X);
-    result := TColor(PSL^);
+  case FWrapMode of
+    twmNone:
+      if (P.Y>=0) and (P.Y<=FBitmap.Height) and (P.X>=0) and (P.X<=FBitmap.Width) then
+      begin
+        PSL := FIntfImage.GetDataLineStart(P.Y);
+        inc(PSL,P.X);
+        result := TColor(PSL^);
+      end;
+    twmColor:
+      if (P.Y>=0) and (P.Y<=FBitmap.Height) and (P.X>=0) and (P.X<=FBitmap.Width) then
+      begin
+        PSL := FIntfImage.GetDataLineStart(P.Y);
+        inc(PSL,P.X);
+        result := TColor(PSL^);
+      end
+      else
+      begin
+        C.R := GetRValue(Layer.Color);
+        C.G := GetGValue(Layer.Color);
+        C.B := GetBValue(Layer.Color);
+        C.A := Layer.AlphaBlend;
+        result := TColor(C);
+      end;
+    twmTile:
+      begin
+        P.Y := P.Y mod FIntfImage.Height;
+        if P.Y < 0 then P.Y := FIntfImage.Height + P.Y;
+        P.X := P.X mod FIntfImage.Width;
+        if P.X < 0 then P.X := FIntfImage.Width + P.X;
+        PSL := FIntfImage.GetDataLineStart(P.Y);
+        inc(PSL,P.X);
+        result := TColor(PSL^);
+      end
   end;
+
 end;
 
 procedure TFreeTexture.FSetRotation(Val: TFloatType);

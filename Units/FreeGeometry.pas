@@ -437,6 +437,21 @@ type
       read FVisible write FSetVisible;
   end;
 
+
+  {---------------------------------------------------------------------------------------------------}
+  {                                           TFreeTexture                                            }
+  {---------------------------------------------------------------------------------------------------}
+
+
+  { Wrap Mode
+    When target pixel projects outside the texture it will be painted following way:
+    twmNone:  it will not be painted, left effectively transparent
+    twmColor: it will be painted using the Layer color
+    twmTile: it will be painted using the color of wrapped coordinate. Tx.X = X div Tx.Width
+             effectively repeating / tiling the texture
+  }
+  TFreeTextureWrapMode = (twmNone, twmColor, twmTile);
+
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeTexture                                            }
   { This combines unrolled(developed) patch with a bitmap.                                            }
@@ -473,6 +488,7 @@ type
     FScale: TFloatType;
     FSin: TFloatType;
     FCos: TFloatType;
+    FWrapMode : TFreeTextureWrapMode;
   public
     BitmapScale: TFloatType;
     BitmapOrigin: TPoint;
@@ -540,6 +556,7 @@ type
     property Scale: TFloatType read FScale write FScale;
     property IsCorelated: boolean read FIsCorelated write FIsCorelated;
     property IsManuallyAdjusted: boolean read FIsManuallyAdjusted write FIsManuallyAdjusted;
+    property WrapMode : TFreeTextureWrapMode read FWrapMode write FWrapMode;
   end;
   { // TFreeTexture }
 

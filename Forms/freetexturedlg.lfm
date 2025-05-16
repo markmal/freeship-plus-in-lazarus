@@ -293,6 +293,21 @@ object FreeTextureForm: TFreeTextureForm
       TabOrder = 1
       OnClick = Button1Click
     end
+    object ComboBoxWrapMode: TComboBox
+      Left = 584
+      Height = 36
+      Top = 2
+      Width = 192
+      ItemHeight = 0
+      Items.Strings = (
+        'None'
+        'LayerColor'
+        'Tile'
+      )
+      TabOrder = 2
+      Text = 'ComboBoxWrapMode'
+      OnSelect = ComboBoxWrapModeSelect
+    end
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 150

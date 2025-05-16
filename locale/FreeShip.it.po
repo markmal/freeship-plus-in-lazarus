@@ -15853,6 +15853,10 @@ msgstr "CloseDialog"
 msgid "ComboBoxSelectTexture"
 msgstr ""
 
+#: tfreetextureform.comboboxwrapmode.text
+msgid "ComboBoxWrapMode"
+msgstr ""
+
 #: tfreetextureform.floatspineditshiftx.hint
 msgctxt "tfreetextureform.floatspineditshiftx.hint"
 msgid "X shift"

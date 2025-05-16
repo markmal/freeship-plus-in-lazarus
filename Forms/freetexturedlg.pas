@@ -22,6 +22,7 @@ type
   TFreeTextureForm = class(TForm)
     ActionDelete: TAction;
     ColorButton1: TColorButton;
+    ComboBoxWrapMode: TComboBox;
     FloatSpinEditTextureScale: TFloatSpinEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
@@ -60,6 +61,7 @@ type
     ToolButtonCancel: TToolButton;
     ToolButtonOk: TToolButton;
     Viewport: TFreeViewport;
+    procedure ComboBoxWrapModeSelect(Sender: TObject);
     procedure DeleteTextureExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure CloseDialogExecute(Sender: TObject);
@@ -677,6 +679,8 @@ begin
     end;
   end;
 
+  ComboBoxWrapMode.ItemIndex := ord( FActiveTexture.WrapMode );
+
   setControlsAndLabels();
 
   Viewport.Invalidate;
@@ -865,6 +869,14 @@ begin
   FActiveTexture.ClearBitmap;
 end;
 
+procedure TFreeTextureForm.ComboBoxWrapModeSelect(Sender: TObject);
+begin
+  case ComboBoxWrapMode.ItemIndex of
+    0: FActiveTexture.WrapMode := twmNone;
+    1: FActiveTexture.WrapMode := twmColor;
+    2: FActiveTexture.WrapMode := twmTile;
+  end;
+end;
 
 procedure TFreeTextureForm.ViewportRedraw(Sender: TObject);
 var

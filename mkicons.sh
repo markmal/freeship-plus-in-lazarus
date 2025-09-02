@@ -10,3 +10,7 @@ for S in 24 32 48 64 96 128; do
   PS=$S
 done
 cd ..
+
+# create Windows icon from all sizes
+convert $(find Themes -name 00-freeship.png) 00-freeship.ico
+# you should manually load it in Project Options

@@ -11,7 +11,6 @@
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <Title Value="FreeShip"/>
-      <Scaled Value="True"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -33,7 +32,7 @@
       <MajorVersionNr Value="5"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="584"/>
+      <BuildNr Value="585"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>

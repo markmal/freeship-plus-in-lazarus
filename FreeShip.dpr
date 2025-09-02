@@ -306,7 +306,6 @@ begin
 
    RequireDerivedFormResource:=True; // new
    FormatSettings.DecimalSeparator:='.';
-  Application.Scaled:=True;
    Application.Initialize;
 
    if ParametersHelp then

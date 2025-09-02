@@ -90,7 +90,7 @@ implementation
 
 function TFreeMirrorPlaneDialog.FGetPlane:T3DPlane;
 begin
-   Fillchar(Result,SizeOf(Result),0);
+   Result := ZEROPLANE;
    if RadioButton1.Checked then Result.a:=1.0;
    if RadioButton2.Checked then Result.c:=1.0;
    if RadioButton3.Checked then Result.b:=1.0;

@@ -51,14 +51,6 @@ msgstr ""
 msgid "Amplitude of heel angle <2.0 degrees !!!"
 msgstr ""
 
-#: freeexpanedplatesdlg.exportdxf_filter
-msgid "AutoCad dxf files"
-msgstr ""
-
-#: freeexpanedplatesdlg.exporttextfile_filter
-msgid "Coordinates to text file"
-msgstr ""
-
 #: freefilebuffer.rsparsingerroroutoffilesize
 #, object-pascal-format
 msgid "Error parsing of file \"%s\". Reading %s of size %d at position %d that is out of file size %d."
@@ -114,11 +106,6 @@ msgstr ""
 #: freefilepreviewdialog.statuswrongname
 #, object-pascal-format
 msgid "Wrong name \"%s\""
-msgstr ""
-
-#: freelinesplanfrme.exportdxf_filter
-msgctxt "freelinesplanfrme.exportdxf_filter"
-msgid "Autocad dxf file"
 msgstr ""
 
 #: freepropeller_task5dlg.rsnoresultfile

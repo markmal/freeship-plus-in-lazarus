@@ -676,6 +676,7 @@ type
 
 const
   ZERO : T3DCoordinate  = (X:0.0;Y:0.0;Z:0.0);
+  ZEROPLANE : T3DPlane = (a:0; b:0; c:0; d:0);
   EOL                           = #13#10;
 
 function isEmpty(rec:TFreePlaningResistanceData):boolean; overload;

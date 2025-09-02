@@ -876,6 +876,7 @@ begin
   if Value < 1e-6 then
     Value := 1e-6;
   I := Ln(Value) / 2.30258;
+  if I>4 then I:=4;
   Result := 4 - Trunc(I);
   if Result < 0 then
   begin

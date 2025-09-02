@@ -33,12 +33,12 @@
       <MajorVersionNr Value="5"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="583"/>
+      <BuildNr Value="584"/>
       <Attributes pvaDebug="True" pvaPreRelease="True" pvaPatched="True"/>
       <StringTable LegalCopyright="GPLv3" OriginalFilename="FreeShip" ProductName="FREE!ship" ProductVersion="4.4"/>
     </VersionInfo>
     <MacroValues Count="1">
-      <Macro1 Name="LazVer" Value="3.8.0"/>
+      <Macro1 Name="LazVer" Value="4.2.0"/>
     </MacroValues>
     <BuildModes Count="6">
       <Item1 Name="Gtk2 Debug" Default="True"/>
@@ -336,7 +336,7 @@
         </CompilerOptions>
       </Item6>
       <SharedMatrixOptions Count="1">
-        <Item1 ID="988489124168" Modes="Gtk2 Debug" Type="IDEMacro" MacroName="LazVer" Value="3.8.0"/>
+        <Item1 ID="988489124168" Modes="Gtk2 Debug" Type="IDEMacro" MacroName="LazVer" Value="4.2.0"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
@@ -1160,7 +1160,7 @@
     <SearchPaths>
       <IncludeFiles Value="Units;Forms;$(ProjOutDir)"/>
       <Libraries Value="lib"/>
-      <OtherUnitFiles Value="Units;Forms"/>
+      <OtherUnitFiles Value="Units;Forms;/usr/share/lazarus/$(LazVer)/lcl/interfaces/gtk3/gtk3bindings/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
@@ -1188,7 +1188,7 @@
       </Debugging>
       <Options>
         <PassLinkerOptions Value="True"/>
-        <LinkerOptions Value="-rpath=&apos;$ORIGIN/../lib&apos; &quot;-Map out.map&quot;"/>
+        <LinkerOptions Value="-rpath=&apos;$ORIGIN/../lib&apos; -Map out.map"/>
       </Options>
     </Linking>
     <Other>

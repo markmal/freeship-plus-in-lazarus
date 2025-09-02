@@ -799,7 +799,7 @@ var
 begin
   // Force to destroy all current Items
   Built := False;
-  FreeShip.Surface.IntersectPlane(Plane, FUseHydrostaticsSurfacesOnly, FItems);
+  FreeShip.Surface.IntersectPlane(FPlane, FUseHydrostaticsSurfacesOnly, FItems);
   // Use a low simplification factor to remove only points that are (nearly) on a line
   if FreeShip.ProjectSettings.ProjectSimplifyIntersections then
     for I := 1 to Count do

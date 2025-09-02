@@ -117,7 +117,7 @@ end;{TFreeInsertPlaneDialog.FGetCreateControlcurve}
 
 function TFreeInsertPlaneDialog.FGetPlane: T3DPlane;
 begin
-  Fillchar(Result, SizeOf(Result), 0);
+  Result := ZEROPLANE;
   if RadioButton1.Checked then
     Result.a := 1.0;
   if RadioButton2.Checked then

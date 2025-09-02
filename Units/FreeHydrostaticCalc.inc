@@ -1969,9 +1969,9 @@ begin
         (Owner.NumberofStations < 100) and Owner.ProjectSettings.EnableBonjeanSAC then
       begin
         Assignfile(FFile, 'SACs.txt');
-         {$I-}
+        {$I-}
         Rewrite(FFile);
-{$I+}
+        {$I+}
         Writeln(FFile, Owner.NumberofWaterlines: 3, Owner.NumberofStations: 3);
         Writeln(FFile, ' ');
         for J := 0 to Owner.NumberofWaterlines - 1 do

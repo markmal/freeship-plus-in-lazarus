@@ -7,8 +7,20 @@ uses
   Classes, SysUtils, Graphics,
   FileIcon,
   GTK2,
-  //GLib2,
-  LazGio2, LazGlib2
+  //GLib2
+
+  {
+  There is no easy way to get an icon name for a file in GTK2.
+  So we use Gtk3 to just get icon names.
+  Then it can be used to get an icon file name using GTK2.
+
+  ATTENTION! Do not try to use LazGTK3 module here because it initializes app environment for GTK3.
+  that conflicts with GTK2 of an application.
+  Using GTK3 for whole application is not really possibble because LCL for GTK3 is not complete yet.
+  }
+  // You need to add /usr/share/lazarus/$(LazVer)/lcl/interfaces/gtk3/gtk3bindings to project Units path
+  LazGio2,
+  LazGlib2
   ;
 
 type TFileIconGtk = class(TFileIconAdapter)

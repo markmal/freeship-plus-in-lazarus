@@ -3025,7 +3025,7 @@ var
 begin
   // first assemble all edges belonging to this set of faces
   Edges := TFasterListTFreeSubdivisionEdge.Create(false,true);
-  Edges.Capacity := Faces.Count + 100;
+  Edges.Capacity := Faces.Count * 4;
   ArrayLength := 10;
   Setlength(IntArray, ArrayLength);
   Size := SizeOf(IntersectionData);

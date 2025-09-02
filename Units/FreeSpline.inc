@@ -990,10 +990,10 @@ var
   end;{AddToOutput}
 
 begin
-  Capacity := 0;
+  vCapacity := 0;
   Output.NumberOfIntersections := 0;
-  Setlength(Output.Points, Capacity);
-  Setlength(Output.Parameters, Capacity);
+  Setlength(Output.Points, vCapacity);
+  Setlength(Output.Parameters, vCapacity);
   T1 := 0.0;
   P1 := Value(T1);
   S1 := Plane.a * P1.x + Plane.b * P1.y + Plane.c * P1.z + Plane.d;

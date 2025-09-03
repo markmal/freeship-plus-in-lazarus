@@ -9342,12 +9342,19 @@ msgid "ToolBar1"
 msgstr ""
 
 #: tfreelayerdialog.toolbutton1.caption
-msgid "Done"
+msgctxt "tfreelayerdialog.toolbutton1.caption"
+msgid "Ok"
 msgstr ""
 
 #: tfreelayerdialog.toolbutton1.hint
 msgid "Close this window."
 msgstr ""
+
+#: tfreelayerdialog.toolbutton2.caption
+#, fuzzy
+msgctxt "tfreelayerdialog.toolbutton2.caption"
+msgid "Cancel"
+msgstr "Отмена"
 
 #: tfreelayerdialog.toolbutton20.hint
 msgid "Create a new empty layer."

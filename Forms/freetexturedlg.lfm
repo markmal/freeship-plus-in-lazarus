@@ -9,7 +9,6 @@ object FreeTextureForm: TFreeTextureForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnMouseWheel = ViewportMouseWheel
-  LCLVersion = '3.8.0.0'
   object PanelRight: TPanel
     Left = 1000
     Height = 732
@@ -106,10 +105,10 @@ object FreeTextureForm: TFreeTextureForm
         Top = 97
         Width = 126
         Increment = 0.01
-        OnChange = FloatSpinEditShiftXChange
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
+        OnChange = FloatSpinEditShiftXChange
       end
       object FloatSpinEditShiftY: TFloatSpinEdit
         Left = 19
@@ -118,10 +117,10 @@ object FreeTextureForm: TFreeTextureForm
         Top = 161
         Width = 126
         Increment = 0.01
-        OnChange = FloatSpinEditShiftYChange
         ParentShowHint = False
         ShowHint = True
         TabOrder = 1
+        OnChange = FloatSpinEditShiftYChange
       end
       object FloatSpinEditScale: TFloatSpinEdit
         Left = 19
@@ -129,8 +128,8 @@ object FreeTextureForm: TFreeTextureForm
         Top = 225
         Width = 126
         Increment = 0.01
-        OnChange = FloatSpinEditScaleChange
         TabOrder = 2
+        OnChange = FloatSpinEditScaleChange
       end
       object FloatSpinEditRotate: TFloatSpinEdit
         Left = 16
@@ -139,8 +138,8 @@ object FreeTextureForm: TFreeTextureForm
         Width = 121
         DecimalPlaces = 1
         Increment = 0.1
-        OnChange = FloatSpinEditRotateChange
         TabOrder = 3
+        OnChange = FloatSpinEditRotateChange
       end
     end
     object GroupBox2: TGroupBox
@@ -180,24 +179,24 @@ object FreeTextureForm: TFreeTextureForm
         Top = 160
         Width = 126
         Increment = 0.01
-        OnChange = FloatSpinEditTextureScaleChange
         TabOrder = 0
+        OnChange = FloatSpinEditTextureScaleChange
       end
       object SpinEditTextureShiftX: TSpinEdit
         Left = 19
         Height = 36
         Top = 33
         Width = 123
-        OnChange = SpinEditTextureShiftXChange
         TabOrder = 1
+        OnChange = SpinEditTextureShiftXChange
       end
       object SpinEditTextureShiftY: TSpinEdit
         Left = 19
         Height = 36
         Top = 96
         Width = 123
-        OnChange = SpinEditTextureShiftYChange
         TabOrder = 2
+        OnChange = SpinEditTextureShiftYChange
       end
     end
   end

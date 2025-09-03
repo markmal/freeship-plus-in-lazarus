@@ -46,8 +46,8 @@ const
 
 
  //SUBVERSION_REVISION:integer={$I SVNLastChangeRevision.inc};
- GITVERSION_REVISION={$I GITLastChangeRevision.inc};//number of git commits
- GITCOMMIT={$I GitCommit.inc};//git commit
+ GITVERSION_REVISION={$I GITLastChangeRevision.inc};//last git commit abbreviated
+ GITCOMMIT={$I GitCommit.inc};//last git commit full
 
 type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv170,fv180,fv190,fv191,fv195,fv198,fv200,
                              fv201,fv210,fv220,fv230,fv240,fv250,fv260,fv270,fv280,fv290,fv295,fv296,fv297,fv298,fv300,
@@ -61,7 +61,7 @@ type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv1
                              fv510  // Textures
                              );
 
-const CurrentVersion      = fv462;   // Current (latest) version of the FREE!ship project.
+const CurrentVersion      = fv510;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
       ReleasedDate        = {$I %DATE%};
 

@@ -240,11 +240,12 @@ begin
   ShowModal;
   Result := ModalResult = mrOk;
 
-  if Result then
+  if Result and FActiveTexture.IsManuallyAdjusted then
   begin
     FLayer.Textures.Clear;
     FLayer.Textures.AddList(FTextures);
     FLayer.ShowTexture:=true;
+    Self.FFreeShip.FileChanged:=true;
   end;
 
 end;{TFreeTextureForm.Execute}
@@ -522,7 +523,7 @@ end;
 
 procedure TFreeTextureForm.SetBitmapTargetPoints;
 var p1,p2: T3DCoordinate;
-  tp1, tp2: TPoint;
+  tp1, tp2, tp1cur, tp2cur: TPoint;
   z: TFloatType;
 begin
   if (Assigned(ViewPort.BackgroundImage.Bitmap)
@@ -530,6 +531,10 @@ begin
      and (ViewPort.BackgroundImage.Bitmap.Height > 0))
   then
   begin
+    // remember current values
+    tp1cur := FActiveTexture.BitmapTargetPoint1;
+    tp2cur := FActiveTexture.BitmapTargetPoint2;
+
     p1 := FActiveTexture.Project2DtoViewport(FActiveTexture.DevelopedPatchAnchorPoint1);
     tp1 := ViewPort.Project(p1);
     FActiveTexture.BitmapTargetPoint1 := ViewPort.BackgroundImage.ImageCoordinate(tp1.X,tp1.Y);
@@ -539,6 +544,10 @@ begin
     FActiveTexture.BitmapTargetPoint2 := ViewPort.BackgroundImage.ImageCoordinate(tp2.X,tp2.Y);
 
     FActiveTexture.IsCorelated := true;
+
+    FActiveTexture.IsManuallyAdjusted := FActiveTexture.IsManuallyAdjusted or (
+      (tp1cur <> FActiveTexture.BitmapTargetPoint1)
+    or(tp2cur <> FActiveTexture.BitmapTargetPoint2) );
 
     setControlsAndLabels();
   end;

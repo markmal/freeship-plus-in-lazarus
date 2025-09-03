@@ -6,9 +6,9 @@ object FreeAboutDlg: TFreeAboutDlg
   Caption = 'FREE!ship About'
   ClientHeight = 600
   ClientWidth = 900
-  OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '4.2.0.0'
+  OnCreate = FormCreate
   object LabelTitle: TLabel
     Left = 0
     Height = 30
@@ -2517,14 +2517,14 @@ object FreeAboutDlg: TFreeAboutDlg
           item
             ReadOnly = True
             Title.Caption = 'Title'
-            Width = 288
+            Width = 290
           end        
           item
             MaxSize = 500
             ReadOnly = True
             SizePriority = 2
             Title.Caption = 'Title'
-            Width = 288
+            Width = 290
           end>
         FixedCols = 0
         FixedRows = 0
@@ -2534,8 +2534,8 @@ object FreeAboutDlg: TFreeAboutDlg
         RowCount = 0
         TabOrder = 0
         ColWidths = (
-          288
-          288
+          290
+          290
         )
       end
       object Label1: TLabel
@@ -2575,13 +2575,13 @@ object FreeAboutDlg: TFreeAboutDlg
           item
             ReadOnly = True
             Title.Caption = 'Title'
-            Width = 288
+            Width = 290
           end        
           item
             MaxSize = 1000
             ReadOnly = True
             Title.Caption = 'Title'
-            Width = 288
+            Width = 290
           end>
         FixedCols = 0
         FixedRows = 0
@@ -2591,8 +2591,8 @@ object FreeAboutDlg: TFreeAboutDlg
         RowCount = 0
         TabOrder = 1
         ColWidths = (
-          288
-          288
+          290
+          290
         )
       end
       object Label4: TLabel
@@ -2621,14 +2621,14 @@ object FreeAboutDlg: TFreeAboutDlg
           item
             ReadOnly = True
             Title.Caption = 'Title'
-            Width = 288
+            Width = 290
           end        
           item
             Font.Style = [fsUnderline]
             MaxSize = 1000
             ReadOnly = True
             Title.Caption = 'Title'
-            Width = 288
+            Width = 290
           end>
         FixedCols = 0
         FixedRows = 0
@@ -2640,8 +2640,8 @@ object FreeAboutDlg: TFreeAboutDlg
         OnClick = StringGridCopyrightsClick
         OnSelectCell = StringGridCopyrightsSelectCell
         ColWidths = (
-          288
-          288
+          290
+          290
         )
       end
     end

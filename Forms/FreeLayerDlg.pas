@@ -97,6 +97,7 @@ type
     Panel9: TPanel;
     SpeedButtonTexture: TSpeedButton;
     ToolBar1: TToolBar;
+    ToolButton2: TToolButton;
     ToolButton20: TToolButton;
     MenuImages: TImageList;
     ColorDialog: TColorDialog;
@@ -132,6 +133,7 @@ type
     procedure SpeedButtonTextureClick(Sender: TObject);
     procedure ToolButton20Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
+    procedure ToolButton2Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
     procedure CheckBox3Click(Sender: TObject);
@@ -214,11 +216,12 @@ begin
    ToolBar1.ButtonWidth :=Freeship.Preferences.ToolIconSize;
    ToolBar1.ButtonHeight:=Freeship.Preferences.ToolIconSize;
 
-   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'ExitProgram');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 0, 'Ok');
    Freeship.Preferences.LoadImageIntoList(MenuImages, 1, 'NewLayer');
    Freeship.Preferences.LoadImageIntoList(MenuImages, 2, 'DeleteEmptyLayers');
    Freeship.Preferences.LoadImageIntoList(MenuImages, 3, 'MoveUp');
    Freeship.Preferences.LoadImageIntoList(MenuImages, 4, 'MoveDown');
+   Freeship.Preferences.LoadImageIntoList(MenuImages, 5, 'Cancel');
 
    UpdateMenu;
    ShowModal;
@@ -463,6 +466,11 @@ procedure TFreeLayerDialog.ToolButton1Click(Sender: TObject);
 begin
    Modalresult:=mrOK;
 end;{TFreeLayerDialog.ToolButton1Click}
+
+procedure TFreeLayerDialog.ToolButton2Click(Sender: TObject);
+begin
+   Modalresult:=mrCancel;
+end;
 
 procedure TFreeLayerDialog.ToolButton3Click(Sender: TObject);
 var noFeedback: Boolean;

@@ -293,7 +293,7 @@ begin
    ver := ResourceVersionInfo;
    Logger.Info('FreeShip Product version: '+FREESHIP_VERSION);
    Logger.Info('FreeShip Program version: '+ver);
-   Logger.Info('Last Git Change Revision: '+IntToStr(GITVERSION_REVISION));
+   Logger.Info('Last Git Change Revision: '+GITVERSION_REVISION);
    Logger.Info('Last Git Commit: '+GITCOMMIT);
    Logger.LogLevel:=LOG_ERROR;
 

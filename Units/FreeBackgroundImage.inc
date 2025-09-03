@@ -327,6 +327,7 @@ function TFreeBackgroundImage.TargetRect: TRect;
 var
   Pt: TPoint;
 begin
+  if FBitmap = nil then exit;
   Pt := FOwner.Project(ZERO);
   Result.Left := Pt.X - round(Owner.Scale * Owner.Zoom * FScale * FOrigin.X);
   Result.Top := Pt.Y - round(Owner.Scale * Owner.Zoom * FScale * FOrigin.Y);

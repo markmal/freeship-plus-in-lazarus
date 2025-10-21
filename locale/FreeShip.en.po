@@ -14681,8 +14681,39 @@ msgctxt "tfreetextureform.toolbutton1.hint"
 msgid "Load image"
 msgstr ""
 
+#: tfreetextureform.toolbutton2.caption
+msgid "ToolButton2"
+msgstr ""
+
+#: tfreetextureform.toolbuttonanchors.caption
+msgid "ToolButtonAnchors"
+msgstr ""
+
+#: tfreetextureform.toolbuttonanchors.hint
+msgid "Anchors"
+msgstr ""
+
 #: tfreetextureform.toolbuttoncancel.hint
 msgid "Close with Cancel"
+msgstr ""
+
+#: tfreetextureform.toolbuttonlayer.caption
+msgid "ToolButtonLayer"
+msgstr ""
+
+#: tfreetextureform.toolbuttonlayer.hint
+#, fuzzy
+msgctxt "tfreetextureform.toolbuttonlayer.hint"
+msgid "Layer"
+msgstr "Layer"
+
+#: tfreetextureform.toolbuttontexture.caption
+msgid "ToolButtonTexture"
+msgstr ""
+
+#: tfreetextureform.toolbuttontexture.hint
+msgctxt "tfreetextureform.toolbuttontexture.hint"
+msgid "Texture"
 msgstr ""
 
 #: tfreeundohistorydialog.caption

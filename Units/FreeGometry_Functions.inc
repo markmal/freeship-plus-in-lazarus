@@ -1609,6 +1609,16 @@ begin
     Result := Result + '0';
 end;{FloatToDec}
 
+function RadianToDegree(Rad: TFloatType): TFloatType;
+begin
+  Result := Rad * (180.0 / Pi);
+end;
+
+function DegreeToRadian(Deg: TFloatType): TFloatType;
+begin
+  Result := Deg * (Pi / 180.0);
+end;
+
 function MakeLength(Value: TFloatType; Decimals, DesLength: integer): string;
 var
   Input: string;
@@ -1698,8 +1708,8 @@ begin
   end;
 end;{Normalize}
 
+// calculate the length of a 3D vector
 function VectorLength(Normal: T3DCoordinate): TFloatType;
-  // calculate the length of a vector
 var
   Tmp: TFloatType;
 begin
@@ -1710,6 +1720,13 @@ begin
   if Result = 0 then
     Result := 0.0000001;
 end;{VectorLength}
+
+// calculate the length of a 2D vector
+function VectorLength(P: T2DCoordinate): TFloatType;
+begin
+  Result := Sqrt(P.X * P.X + P.Y * P.Y);
+end;
+
 
 // Angle between two lines
 function Angle( Line1point1, Line1point2, Line2point1, Line2point2: T2DCoordinate): TFloatType;

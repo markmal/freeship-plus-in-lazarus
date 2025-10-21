@@ -508,7 +508,11 @@ begin
   Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
   Viewport.PenColor:=clRed;
   Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
-
+  if FHiglightMode = thmAnchor then
+    begin
+    Viewport.PenColor:=clYellow;
+    Viewport.Rectangle(pt.X-5,pt.Y-5,pt.X+5,pt.Y+5);
+    end;
   p2d := FDevelopedPatchAnchorPoint2;
   P1:=Project2DtoViewport(p2d);
   pt:=Viewport.Project(P1);
@@ -518,9 +522,13 @@ begin
   Viewport.Rectangle(pt.X-2,pt.Y-2,pt.X+2,pt.Y+2);
   Viewport.PenColor:=clRed;
   Viewport.Rectangle(pt.X-3,pt.Y-3,pt.X+3,pt.Y+3);
+  if FHiglightMode = thmAnchor then
+    begin
+    Viewport.PenColor:=clYellow;
+    Viewport.Rectangle(pt.X-5,pt.Y-5,pt.X+5,pt.Y+5);
+    end;
 
   Viewport.PenColor := Viewport.BrushColor;
-
 
   Viewport.BrushStyle := bsClear;
   Viewport.FontColor := clBlack;
@@ -555,6 +563,104 @@ begin
   Result.Y := P.Y + Mid.Y + FTranslation.Y;
   Result.Z := 0.0;
 end;{TFreeDevelopedPatch.ConvertTo3D}
+
+// The core procedure to find the new transformation parameters (Scale, Rotation, Translation)
+procedure TFreeTexture.CalculateNewTransform(
+  newAnchor1ViewPort, newAnchor2ViewPort: T2DCoordinate
+);
+var
+  Anchor1, Anchor2: T2DCoordinate;
+  Mid: T2DCoordinate;
+  DeltaA, DeltaV_new: T2DCoordinate; // Vector differences
+  LenA, LenV_new: Real;              // Vector lengths
+  ThetaA, ThetaV_new, Theta_new_rad: Real; // Angles in Radians
+  A1_Relative, P1_RotScaled: T2DCoordinate; // Temporary coordinates
+  TempX: Real; // Temporary variable for rotation calculation
+begin
+  Anchor1 := FDevelopedPatchAnchorPoint1;
+  Anchor2 := FDevelopedPatchAnchorPoint2;
+
+  // 0. Get the model's center point for rotation and scaling
+  Mid := Self.GetMidPoint;
+
+  // 1. Calculate vector differences
+  // DeltaA is the vector between anchors in Model space
+  DeltaA.X := Anchor2.X - Anchor1.X;
+  DeltaA.Y := Anchor2.Y - Anchor1.Y;
+
+  // DeltaV_new is the vector between new viewport positions
+  DeltaV_new.X := newAnchor2ViewPort.X - newAnchor1ViewPort.X;
+  DeltaV_new.Y := newAnchor2ViewPort.Y - newAnchor1ViewPort.Y;
+
+  // 2. Calculate New Scale (FScale)
+  LenA := VectorLength(DeltaA);
+  LenV_new := VectorLength(DeltaV_new);
+
+  // Handle the special case where the anchors overlap (A1 = A2)
+  if (LenA = 0.0) then
+  begin
+    // If anchors overlap, rotation and scale are preserved.
+
+    // Convert old rotation (FRotation) to radians for calculation
+    Theta_new_rad := DegreeToRadian(Self.FRotation);
+
+    // Calculate A1' (Anchor1 after old scale and old rotation, relative to origin)
+    A1_Relative.X := Anchor1.X - Mid.X;
+    A1_Relative.Y := Anchor1.Y - Mid.Y;
+
+    // Scale by old scale
+    A1_Relative.X := A1_Relative.X * Self.FScale;
+    A1_Relative.Y := A1_Relative.Y * Self.FScale;
+
+    // Rotate by old rotation (using FCos/FSin or Theta_new_rad)
+    TempX := A1_Relative.X;
+    P1_RotScaled.X := TempX * Cos(Theta_new_rad) - A1_Relative.Y * Sin(Theta_new_rad);
+    P1_RotScaled.Y := TempX * Sin(Theta_new_rad) + A1_Relative.Y * Cos(Theta_new_rad);
+
+    // Recalculate T_new: T_new = V1_new - Mid - P1_RotScaled
+    Self.FTranslation.X := newAnchor1ViewPort.X - Mid.X - P1_RotScaled.X;
+    Self.FTranslation.Y := newAnchor1ViewPort.Y - Mid.Y - P1_RotScaled.Y;
+
+    // Scale, FCos, FSin, and FRotation are unchanged
+    Exit;
+  end;
+
+  // Normal Case: Calculate new scale
+  Self.FScale := LenV_new / LenA;
+
+  // 3. Calculate New Rotation (Theta_new_rad)
+  // Theta is the angle difference between the model vector (DeltaA) and the viewport vector (DeltaV_new)
+  ThetaA := ArcTan2(DeltaA.Y, DeltaA.X);
+  ThetaV_new := ArcTan2(DeltaV_new.Y, DeltaV_new.X);
+
+  // The new rotation angle (in radians)
+  Theta_new_rad := ThetaV_new - ThetaA;
+
+  // Update FCos, FSin, and FRotation (in degrees)
+  Self.FCos := Cos(Theta_new_rad);
+  Self.FSin := Sin(Theta_new_rad);
+  Self.FRotation := RadianToDegree(Theta_new_rad);
+
+  // 4. Calculate New Translation (FTranslation)
+  // Find where Anchor1 lands after the new scale and rotation (relative to the Midpoint)
+
+  // A1_Relative = A1 - Mid
+  A1_Relative.X := Anchor1.X - Mid.X;
+  A1_Relative.Y := Anchor1.Y - Mid.Y;
+
+  // Scale: S_new * A1_Relative
+  P1_RotScaled.X := A1_Relative.X * Self.FScale;
+  P1_RotScaled.Y := A1_Relative.Y * Self.FScale;
+
+  // Rotate: R(new) * (Scaled A1_Relative)
+  TempX := P1_RotScaled.X;
+  P1_RotScaled.X := TempX * Self.FCos - P1_RotScaled.Y * Self.FSin; // Note: using FCos/FSin here
+  P1_RotScaled.Y := TempX * Self.FSin + P1_RotScaled.Y * Self.FCos;
+
+  // Solve for T_new: T_new = V1_new - Mid - P1_RotScaled
+  Self.FTranslation.X := newAnchor1ViewPort.X - Mid.X - P1_RotScaled.X;
+  Self.FTranslation.Y := newAnchor1ViewPort.Y - Mid.Y - P1_RotScaled.Y;
+end;
 
 // Converts viewport 3D space to unrolled 2D
 function TFreeTexture.ProjectViewportTo2D(P: T2DCoordinate): T2DCoordinate;
@@ -597,7 +703,7 @@ begin
   end;
 end;
 
-function TFreeTexture.FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
+function TFreeTexture.FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport; tolerance:integer): TFreeSubdivisionPoint;
 var i,j: integer; d:TFloatType; Face: TFreeSubdivisionFace;
   MP,UP: T2DCoordinate;
   VP: T3DCoordinate;
@@ -612,7 +718,7 @@ begin
       MP := Face.FUnrolledPoints[j];
       VP:=Self.Project2DtoViewport(MP);
       P:=Viewport.Project(VP);
-      if (abs(P.X - X) < 3) and (abs(P.Y - Y) < 3) then
+      if (abs(P.X - X) < tolerance) and (abs(P.Y - Y) < tolerance) then
       begin
         Result := Face.FPoints[j];
         exit;
@@ -622,6 +728,7 @@ begin
 end;
 
 function TFreeTexture.FindSubdivionEdgeByScreen(X,Y:integer; Viewport:TFreeViewport;
+  tolerance:integer;
   var UP1,UP2: T2DCoordinate): TFreeSubdivisionEdge;
 var i,j,k, ep,sp: integer; D,Par:TFloatType; Face: TFreeSubdivisionFace;
   Point: TFreeSubdivisionPoint; Edge: TFreeSubdivisionEdge;
@@ -658,7 +765,7 @@ begin
           P1:=Viewport.Project(VP1);
           P2:=Viewport.Project(VP2);
           D := DistanceToLine(P1, P2, X, Y, Par);
-          if D < 3 then
+          if D < tolerance then
           begin
             Result := Edge;
             exit;
@@ -888,8 +995,8 @@ end;
 procedure TFreeTexture.FSetRotation(Val: TFloatType);
 begin
   FRotation := val;
-  FCos := Cos(DegTorad(FRotation));
-  FSin := Sin(DegTorad(FRotation));
+  FCos := Cos(DegToRad(FRotation));
+  FSin := Sin(DegToRad(FRotation));
 end;{TFreeDevelopedPatch.FSetRotation}
 
 function TFreeTexture.GetAverageNormal: T3DCoordinate;

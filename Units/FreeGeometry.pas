@@ -452,6 +452,11 @@ type
   }
   TFreeTextureWrapMode = (twmNone, twmColor, twmTile);
 
+  { Higlight Mode
+    Defines which elemet to highlight
+  }
+  TFreeTextureHiglightMode = (thmNone, thmAnchor, thmPatch, thmBMImaage);
+
   {---------------------------------------------------------------------------------------------------}
   {                                           TFreeTexture                                            }
   { This combines unrolled(developed) patch with a bitmap.                                            }
@@ -465,6 +470,7 @@ type
     FSurface: TFreeSubdivisionSurface;
     FLayer: TFreeSubdivisionLayer;
     FColor: TColor;
+    FHiglightMode: TFreeTextureHiglightMode;
     FDevelopedPatchName: String;
     FDevelopedPatchId: String;
     FDevelopedPatchAnchorPoint1: T2DCoordinate;
@@ -515,6 +521,9 @@ type
     function GetMidPoint: T2DCoordinate;
     function Project2DtoViewport(P: T2DCoordinate): T3DCoordinate;
     function ProjectViewportTo2D(P: T2DCoordinate): T2DCoordinate;
+    procedure CalculateNewTransform(
+      newAnchor1ViewPort, newAnchor2ViewPort: T2DCoordinate
+    );
     procedure AutoSetDevelopedPatchAnchorPoints;
     procedure SetBitmapTargetPointsByDevelopedPatchAnchors(Viewport: TFreeViewport);
     constructor Create(Surface: TFreeSubdivisionSurface);
@@ -523,8 +532,8 @@ type
     procedure Draw(Viewport: TFreeViewport);
     procedure Extents(var Min, Max:T3DCoordinate);
     function FindSubdivionPoint(P: T2DCoordinate): TFreeSubdivisionPoint;
-    function FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport): TFreeSubdivisionPoint;
-    function FindSubdivionEdgeByScreen(X,Y:integer; Viewport:TFreeViewport; var UP1,UP2: T2DCoordinate): TFreeSubdivisionEdge;
+    function FindSubdivionPointByScreen(X,Y:integer; Viewport:TFreeViewport; tolerance:integer): TFreeSubdivisionPoint;
+    function FindSubdivionEdgeByScreen(X,Y:integer; Viewport:TFreeViewport; tolerance:integer; var UP1,UP2: T2DCoordinate): TFreeSubdivisionEdge;
     function FindUnrolledPointForSubdivionPoint(P: TFreeSubdivisionPoint): T2DCoordinate;
     function ProjectOnUnrolled(A1,B1,C1,D1:T3DCoordinate; A2,B2,C2:T2DCoordinate): T2DCoordinate;
     function ProjectOnBitmap(C1:T2DCoordinate): TPoint;
@@ -557,6 +566,7 @@ type
     property IsCorelated: boolean read FIsCorelated write FIsCorelated;
     property IsManuallyAdjusted: boolean read FIsManuallyAdjusted write FIsManuallyAdjusted;
     property WrapMode : TFreeTextureWrapMode read FWrapMode write FWrapMode;
+    property HiglightMode : TFreeTextureHiglightMode read FHiglightMode write FHiglightMode;
   end;
   { // TFreeTexture }
 
@@ -2405,6 +2415,7 @@ function DisplacementToVolume(Displ, Density, AppCoeff: TFloatType;
 // Returns a string value with the density units
 function DensityStr(Units: TFreeUnitType): string;
 // Calculates the distance between two points
+function DistPoint2D(P1, P2: TPoint): TFloatType;
 function DistPP3D(P1, P2: T3DCoordinate): TFloatType;
 function Distance2D(P1, P2: T2DCoordinate): TFloatType;
 function DistanceToLine(P1, P2: TPoint; X, Y: integer; var Parameter: TFloatType): TFloatType;
@@ -2481,12 +2492,15 @@ function SquaredDistPP(P1, P2: T3DCoordinate): TFloatType;
 function Subtract(AVec1, AVec2: T3DCoordinate): T3DCoordinate;
 // Convert a floatingpoint to a string value with a max. number of specified decimals All trailing zeros will be removed
 function FloatToDec(Value: TFloatType; Maxlength: integer): string;
+function RadianToDegree(Rad: TFloatType): TFloatType;
+function DegreeToRadian(Deg: TFloatType): TFloatType;
 // calculate the normal of a plane defined by points P1,P2,P3 and scale to unit-length
 function UnifiedNormal(P1, P2, P3: T3DCoordinate): T3DCoordinate;
 // Scale a vector sucht that it's length is 1.0
 function UnitVector(P: T3DCoordinate): T3DCoordinate;
 // Calculate the length of a vector
 function VectorLength(Normal: T3DCoordinate): TFloatType;
+function VectorLength(P: T2DCoordinate): TFloatType;
 // Angle between two lines
 function Angle( Line1point1, Line1point2, Line2point1, Line2point2: T2DCoordinate): TFloatType;
 // Returns a string value with the volume units

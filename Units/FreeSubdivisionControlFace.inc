@@ -496,11 +496,16 @@ begin
   for I := 0 to FPoints.Count-1 do
   begin
     vPoint := FPoints[i];
-    if vPoint.FFaces.IndexOf(Self) = -1 then
-       logger.Error(Format('TFreeSubdivisionControlFace(%d).CheckIntegrity: Self not in Point[%d]',[FID,I]));
+    if vPoint.FFaces = nil then
+    begin
+       logger.Error(Format('TFreeSubdivisionControlFace(%0:d).CheckIntegrity: Faces list is nil in Point[%1:d]',[FID,I]));
+       result := false;
+    end;
+    if (vPoint.FFaces <> nil) and (vPoint.FFaces.IndexOf(Self) = -1) then
+       logger.Error(Format('TFreeSubdivisionControlFace(%0:d).CheckIntegrity: Self not in Point[%1:d]',[FID,I]));
     if not vPoint.CheckIntegrity then
       begin
-        logger.Error(Format('TFreeSubdivisionControlFace(%d).CheckIntegrity: in Point[%d]',[FID,I]));
+        logger.Error(Format('TFreeSubdivisionControlFace(%0:d).CheckIntegrity: in Point[%1:d]',[FID,I]));
         result := false;
       end;
   end;

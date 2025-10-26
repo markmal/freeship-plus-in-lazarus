@@ -215,15 +215,15 @@ object FreeTextureForm: TFreeTextureForm
         Width = 120
       end    
       item
-        Text = 'Bmp X:Y'
-        Width = 150
-      end    
-      item
-        Text = '2D X:Y'
+        Text = 'VP X:Y'
         Width = 200
       end    
       item
-        Text = 'Mdl X:Y:Z'
+        Text = 'Patch X:Y'
+        Width = 200
+      end    
+      item
+        Text = 'Img X:Y'
         Width = 250
       end>
     SimplePanel = False
@@ -324,7 +324,9 @@ object FreeTextureForm: TFreeTextureForm
       Hint = 'Layer'
       Top = 2
       Caption = 'ToolButtonLayer'
+      Grouped = True
       ImageIndex = 5
+      ShowCaption = False
       Style = tbsCheck
     end
     object ToolButtonTexture: TToolButton
@@ -332,14 +334,20 @@ object FreeTextureForm: TFreeTextureForm
       Hint = 'Texture'
       Top = 2
       Caption = 'ToolButtonTexture'
+      Grouped = True
       ImageIndex = 6
+      ShowCaption = False
+      Style = tbsCheck
     end
     object ToolButtonAnchors: TToolButton
       Left = 781
       Hint = 'Anchors'
       Top = 2
       Caption = 'ToolButtonAnchors'
+      Down = True
+      Grouped = True
       ImageIndex = 4
+      ShowCaption = False
       Style = tbsCheck
     end
   end

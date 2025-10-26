@@ -275,11 +275,17 @@ begin
   ShowModal;
   Result := ModalResult = mrOk;
 
-  if Result and FActiveTexture.IsManuallyAdjusted then
+  if Result and ((FActiveTexture<>nil) and FActiveTexture.IsManuallyAdjusted) then
   begin
     FLayer.Textures.Clear;
     FLayer.Textures.AddList(FTextures);
     FLayer.ShowTexture:=true;
+    Self.FFreeShip.FileChanged:=true;
+  end;
+  if Result and (FActiveTexture=nil) then
+  begin
+    FLayer.Textures.Clear;
+    FLayer.ShowTexture:=false;
     Self.FFreeShip.FileChanged:=true;
   end;
 
@@ -309,6 +315,10 @@ begin
   if self.ToolButtonLayer.Down then Include(FWorkModes, wmPatch);
   if self.ToolButtonTexture.Down then Include(FWorkModes, wmBGimage);
 
+  StatusBar1.Panels[0].Text := String.Format('Scr %0:d:%1:d',[X,Y]);
+  P3 := Viewport.ProjectBackTo2D(Point(X,Y));
+  StatusBar1.Panels[1].Text := String.Format('VP %0:.3f:%1:.3f',[P3.X, P3.Y]);
+
   FFoundBGimage := nil;
   Viewport.BackgroundMode := emUnsetFrame;
   if Assigned(Viewport.BackgroundImage.Bitmap)
@@ -325,10 +335,9 @@ begin
       FFoundBGimage := Viewport.BackgroundImage;
       Viewport.Cursor := crSizeAll;
     end;
-    StatusBar1.Panels[1].Text := String.Format('Bmp %0:d:%1:d',[bP.X,bP.Y]);
+    StatusBar1.Panels[2].Text := String.Format('Img %0:d:%1:d',[bP.X,bP.Y]);
   end;
 
-  StatusBar1.Panels[2].Text := String.Format('Viw %0:.3f:%1:.3f',[P3.X, P3.Y]);
 
   FFoundAnchorNo := 0;
   FFoundAnchor2d := ZERO2D;
@@ -559,8 +568,6 @@ begin
 
   //MP := FActiveTexture.FindSubdivionPoint(P3);
 
-  StatusBar1.Panels[0].Text := String.Format('Scr %0:d:%1:d',[X,Y]);
-
 end;{TFreeTextureForm.ViewportMouseMove}
 
 procedure TFreeTextureForm.ViewportMouseDown(Sender: TObject;
@@ -717,7 +724,7 @@ end;{TFreeTextureForm.ViewportRequestExtents}
 
 procedure TFreeTextureForm.FitBitmap;
 var Pt0, Pt, Pt1, Pt2: TPoint; W,H: integer;
-  PatchW, PatchH: TFloatType;
+  PatchW, PatchH, SclW, SclH: TFloatType;
   Bm1,Bm2,P2D: T2DCoordinate; Bm3: T3DCoordinate;
 begin
   Viewport.BackgroundImage.Visible := false;
@@ -726,7 +733,10 @@ begin
   W := FActiveTexture.Bitmap.Width;
   H := FActiveTexture.Bitmap.Height;
   if (W=0) or (H=0) then exit;
-  FActiveTexture.BitmapScale := (Viewport.ClientWidth - 40) / W / Viewport.Scale;
+  SclW := (Viewport.ClientWidth - 40) / W / Viewport.Scale;
+  SclH := (Viewport.ClientHeight - 40) / H / Viewport.Scale;
+  FActiveTexture.BitmapScale := SclW;
+  if SclW > SclH then FActiveTexture.BitmapScale := SclH;
   Bm1 := Viewport.ProjectBackTo2D(ToPoint(0+20, 0+20));
   Bm2 := Viewport.ProjectBackTo2D(ToPoint(Viewport.ClientWidth-20, Viewport.ClientHeight-20));
   Pt.X := round( -Bm1.X / FActiveTexture.BitmapScale);
@@ -1133,6 +1143,9 @@ begin
   Viewport.BackgroundImage.Visible:=false;
   Viewport.BackgroundImage.Bitmap := nil;
   FActiveTexture.ClearBitmap;
+  FTextures.DeleteItem(FActiveTexture);
+  FLayer.Textures.DeleteItem(FActiveTexture);
+  FreeAndNil(FActiveTexture);
 end;
 
 procedure TFreeTextureForm.ComboBoxWrapModeSelect(Sender: TObject);

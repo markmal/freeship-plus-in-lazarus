@@ -15277,17 +15277,17 @@ msgstr ""
 
 #: tfreetextureform.statusbar1.panels[1].text
 msgctxt "tfreetextureform.statusbar1.panels[1].text"
-msgid "Bmp X:Y"
+msgid "VP X:Y"
 msgstr ""
 
 #: tfreetextureform.statusbar1.panels[2].text
 msgctxt "tfreetextureform.statusbar1.panels[2].text"
-msgid "2D X:Y"
+msgid "Patch X:Y"
 msgstr ""
 
 #: tfreetextureform.statusbar1.panels[3].text
 msgctxt "tfreetextureform.statusbar1.panels[3].text"
-msgid "Mdl X:Y:Z"
+msgid "Img X:Y"
 msgstr ""
 
 #: tfreetextureform.toolbar1.caption

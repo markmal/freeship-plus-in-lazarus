@@ -245,11 +245,12 @@ end;{TFreeSubdivisionLayer.FSetSurfaceVisible}
 procedure TFreeSubdivisionLayer.AddControlFace(ControlFace: TFreeSubdivisionControlFace);
 begin
   // disconnect from current layer
-  if ControlFace.Layer <> nil then
+  if (ControlFace.Layer <> nil) and (ControlFace.Layer <> Self)then
     ControlFace.Layer.DeleteControlFace(ControlFace);
   if FControlFaces.Indexof(ControlFace) = -1 then
     FControlFaces.Add(ControlFace);
-  ControlFace.FLayer := self;
+  ControlFace.FLayer := Self;
+  Invalidate;
 end;{TFreeSubdivisionLayer.AddPatch}
 
 procedure TFreeSubdivisionLayer.AssignProperties(Source: TFreeSubdivisionLayer);
@@ -857,6 +858,7 @@ begin
 end;{TFreeSubdivisionLayer.Create}
 
 procedure TFreeSubdivisionLayer.Clear;
+var i: integer;
 begin
   FLayerID := -1;
   FControlFaces.Clear;
@@ -872,6 +874,11 @@ begin
   FMaterialDensity := 0.0;
   FThickness := 0.0;
   FAlphaBlend := 255;
+  for i:=0 to FTextures.Count-1 do
+    begin
+    FTextures[i].Clear;
+    FTextures[i].Free;
+    end;
   FTextures.Clear;
 end;{TFreeSubdivisionLayer.Clear}
 
@@ -901,11 +908,9 @@ var
   Index: integer;
 begin
   FControlFaces.DeleteItem(ControlFace);
- {
-  Index := FControlFaces.IndexOf(ControlFace);
-  if index <> -1 then
-    FControlFaces.Delete(Index);
- }
+  Invalidate;
+  if assigned(Surface.FOnChangeLayerData) then
+    Surface.FOnChangeLayerData(self);
 end;{TFreeSubdivisionLayer.DeleteControlFace}
 
 destructor TFreeSubdivisionLayer.Destroy;
@@ -913,6 +918,13 @@ begin
   FreeAndNil(FControlFaces);
   inherited Destroy;
 end;{TFreeSubdivisionLayer.Destroy}
+
+procedure TFreeSubdivisionLayer.Invalidate;
+var i: integer;
+begin
+  for i:=0 to FTextures.Count-1 do
+    FTextures[i].ReloadPatch;
+end;
 
 function TFreeSubdivisionLayer.CheckIntegrity: boolean;
 var  I, J: integer;

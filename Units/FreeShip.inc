@@ -602,7 +602,8 @@ begin
     Surface.DesiredSubdivisionLevel := Ord(Precision) + 1;
     FileChanged := True;
     Built := False;
-    Redraw;
+    //Redraw;
+    InvalidateViews;
   end;
 end;{TFreeShip.FSetPrecision}
 
@@ -2457,6 +2458,20 @@ begin
     TFreeLinesplanframe(LinesplanFrame).Viewport.Refresh;
 end;{TFreeShip.Redraw}
 
+procedure TFreeShip.InvalidateViews;
+var
+  I: integer;
+begin
+  // Invalidates all viewports that should cause their redraw
+  for I := 0 to NumberOfViewports-1 do
+    if Viewport[I].Zoom = 1.0 then
+      Viewport[I].ZoomExtents
+    else
+      Viewport[I].Invalidate;
+  if LinesplanFrame <> nil then
+    TFreeLinesplanFrame(LinesplanFrame).Viewport.Invalidate;
+end;{TFreeShip.Redraw}
+
 // Detect Minimal File Version depneding on features used
 function TFreeShip.DetectMinFileVersion:TFreeFileVersion;
 var I: integer;
@@ -3378,6 +3393,9 @@ begin
     end;
   end;
 
+  if not Surface.CheckIntegrity
+     then I:=0;
+
   if (Entity = nil) then
   begin
     I := 1;
@@ -3403,6 +3421,9 @@ begin
     end;
   end;
 
+  if not Surface.CheckIntegrity
+     then I:=0;
+
   // check flowlines
   if (Entity = nil) and (not ItemSelected) and (Visibility.ShowFlowlines) then
   begin
@@ -3424,6 +3445,9 @@ begin
     end;
   end;
 
+  if not Surface.CheckIntegrity
+     then I:=0;
+
   // check Markers
   if (Entity = nil) and (not ItemSelected) and (Visibility.ShowMarkers) then
   begin
@@ -3444,6 +3468,9 @@ begin
       Inc(I);
     end;
   end;
+
+  if not Surface.CheckIntegrity
+     then I:=0;
 
   // search by surface
   if (Entity = nil) and (Viewport.ViewPortMode <> vmWireFrame ) then
@@ -3613,6 +3640,9 @@ begin
     EditMode := emSelectItems;
   ///if not Viewport.Focused then
   ///  Viewport.SetFocus;
+
+  /// INVESTIGATION
+  //Surface.Rebuild;
 end;{TFreeShip.MouseDown}
 
 

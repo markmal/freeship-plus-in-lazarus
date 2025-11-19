@@ -315,9 +315,12 @@ begin
     FLayer.FTextures.Add(Self);
 
   AutoSetDevelopedPatchAnchorPoints;
-
 end;
 
+procedure TFreeTexture.ReloadPatch;
+begin
+  AssignLayer(FLayer, FDevelopedPatchId);
+end;
 
 constructor TFreeTexture.Create(Layer: TFreeSubdivisionLayer; DevelopedPatch: TFreeDevelopedPatch);
 var i,j: integer; Face: TFreeSubdivisionFace;

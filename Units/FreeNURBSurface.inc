@@ -376,7 +376,7 @@ begin
   begin
     vMin := FRowknots[0];
     vMax := FRowknots[N - 1];
-    if Min <> Max then
+    if vMin <> vMax then
       for I := 1 to N do
       begin
         New := (FRowknots[I - 1] - vMin) / (vMax - vMin);

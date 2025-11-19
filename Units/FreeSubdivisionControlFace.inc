@@ -96,9 +96,10 @@ begin
     begin
       // Connect to the new layer
       FLayer.AddControlFace(self);
+
+      if FLayer.Textures.Count>0 then
+        FTexture := FLayer.Textures[0];
     end;
-    if FTexture <> nil then
-      FTexture := FLayer.Textures[0];
   end;
 end;{TFreeSubdivisionControlFace.FSetLayer}
 
@@ -138,52 +139,190 @@ end;{TFreeSubdivisionControlFace.CalcExtents}
 
 procedure TFreeSubdivisionControlFace.Clear;
 begin
-  ClearChildren;
+  //UnreferenceChildren;
   inherited Clear;
   FLayer := nil;
 end;{TFreeSubdivisionControlFace.Clear}
 
-procedure TFreeSubdivisionControlFace.ClearChildren;
+// gathers all children faces, edges and points. The lists should be unique, sorted
+procedure TFreeSubdivisionControlFace.GetChildrenComponents(
+  const chldFaces: TFasterListTFreeSubdivisionFace;
+  const chldEdges: TFasterListTFreeSubdivisionEdge;
+  const chldPoints: TFasterListTFreeSubdivisionPoint);
 var
-  I, X: integer;  ch:TFreeSubdivisionFace; ej:TFreeSubdivisionEdge;
+  i,j: integer;
+  vFace: TFreeSubdivisionFace;
+  vEdge: TFreeSubdivisionEdge;
+  vPoint: TFreeSubdivisionPoint;
 begin
+  //chldFaces:= TFasterListTFreeSubdivisionFace.Create(true,false);
+  //chldEdges:= TFasterListTFreeSubdivisionEdge.Create(true,false);
+  //chldPoints:= TFasterListTFreeSubdivisionPoint.Create(true,false);
+
   if Assigned(FChildren) then
   begin
-    for I := 0 to FChildren.Count-1 do
-      if assigned(FChildren[I]) then
-        begin FChildren[I].Free; FChildren[I]:=nil; end;
-    {while FChildren.Count > 0 do
+    // new code.
+    for i:=0 to FChildren.Count-1 do
+    begin
+      vFace := FChildren[i];
+      chldFaces.Add(vFace);
+
+      for j:=0 to vFace.FPoints.Count-1 do
       begin
-      i := FChildren.Count-1;
-      ch := FChildren[i];
-      FChildren.Delete(i);
-      ch.Free;
-      end;}
-    FChildren.Clear;
+        vPoint := vFace.FPoints[j];
+        chldPoints.Add(vPoint);
+      end;
+
+    end;
   end;
 
   if Assigned(FEdges) then
   begin
-    {for I := 0 to FEdges.Count-1 do
+    for i:=0 to FEdges.Count-1 do
+    begin
+      vEdge := FEdges[i];
+      chldEdges.Add(vEdge);
+
+      vPoint := vEdge.StartPoint;
+      chldPoints.Add(vPoint);
+      vPoint := vEdge.EndPoint;
+      chldPoints.Add(vPoint);
+
+    end;
+  end;
+
+  if Assigned(FControlDescendantEdges) then
+  begin
+    for i:=0 to FControlDescendantEdges.Count-1 do
+    begin
+      vEdge := FControlDescendantEdges[i];
+      chldEdges.Add(vEdge);
+
+      vPoint := vEdge.StartPoint;
+      chldPoints.Add(vPoint);
+      vPoint := vEdge.EndPoint;
+      chldPoints.Add(vPoint);
+    end;
+  end;
+end;{TFreeSubdivisionControlFace.GetChildrenComponents}
+
+
+procedure TFreeSubdivisionControlFace.UnreferenceChildren;
+var
+  i,j: integer;
+  vFace: TFreeSubdivisionFace;
+  vEdge: TFreeSubdivisionEdge;
+  vPoint: TFreeSubdivisionPoint;
+  chldFaces: TFasterListTFreeSubdivisionFace;
+  chldEdges: TFasterListTFreeSubdivisionEdge;
+  chldPoints: TFasterListTFreeSubdivisionPoint;
+begin
+  chldFaces:= TFasterListTFreeSubdivisionFace.Create(true,true);
+  chldEdges:= TFasterListTFreeSubdivisionEdge.Create(true,true);
+  chldPoints:= TFasterListTFreeSubdivisionPoint.Create(true,true);
+
+  if Assigned(FChildren) then
+  begin
+    // new code.
+    for i:=0 to FChildren.Count-1 do
+    begin
+      vFace := FChildren[i];
+      if vFace is TFreeSubdivisionControlFace then
       begin
-      if assigned(FEdges[I]) then
-         FEdges[I].Free;
-      end;}
-    while FEdges.Count>0 do
-      begin
-      i:=FEdges.Count-1;
-      ej := FEdges[i];
-      if (ej<>nil) and (ej.FFaces<>nil) then
-        begin
-        x:=ej.FFaces.Count;
-        ej.FFaces.DeleteItem(Self);
-        if (ej.FFaces.Count=0) and (ej.FEndpoint=nil) and (ej.FStartpoint=nil) then
-            ej.Free;
-        end;
-      FEdges.Delete(i);
+        FSurface.UnreferenceControlFace(TFreeSubdivisionControlFace(vFace));
+        FSurface.FControlFaces.DeleteItem(TFreeSubdivisionControlFace(vFace));
       end;
+      if vFace is TFreeSubdivisionFace then
+      begin
+        //FSurface.UnreferenceFace(vFace);
+        vFace.Unreference;
+        //vFace.Clear;
+      end;
+      //vFace.Free;
+      chldFaces.Add(vFace);
+    end;
+    FChildren.Clear;
+  end;
+  //if not self.CheckIntegrity
+  //  then I:=0;
+
+  if Assigned(FEdges) then
+  begin
+    for i:=0 to FEdges.Count-1 do
+    begin
+      vEdge := FEdges[i];
+      if vEdge is TFreeSubdivisionControlEdge then
+      begin
+        FSurface.UnreferenceControlEdge(TFreeSubdivisionControlEdge(vEdge));
+        FSurface.FControlEdges.DeleteItem(TFreeSubdivisionControlEdge(vEdge));
+      end;
+      if vEdge is TFreeSubdivisionEdge then
+      begin
+        ///FSurface.UnreferenceEdge(vEdge);
+        ///FSurface.FEdges.DeleteItem(vEdge);
+        vEdge.Unreference;
+      end;
+      //vEdge.Free;
+      chldEdges.Add(vEdge);
+    end;
     FEdges.Clear;
   end;
+
+  if Assigned(FControlDescendantEdges) then
+  begin
+    for i:=0 to FControlDescendantEdges.Count-1 do
+    begin
+      vEdge := FControlDescendantEdges[i];
+      if vEdge is TFreeSubdivisionControlEdge then
+      begin
+        FSurface.UnreferenceControlEdge(TFreeSubdivisionControlEdge(vEdge));
+        FSurface.FControlEdges.DeleteItem(TFreeSubdivisionControlEdge(vEdge));
+      end;
+      if vEdge is TFreeSubdivisionEdge then
+      begin
+        ///FSurface.UnreferenceEdge(vEdge);
+        ///FSurface.FEdges.DeleteItem(vEdge);
+        vEdge.Unreference;
+      end;
+      //vEdge.Free;
+      chldEdges.Add(vEdge);
+    end;
+    FControlDescendantEdges.Clear;
+  end;
+
+  // delete children points
+  for i:=0 to chldFaces.Count-1 do
+  begin
+    vFace := chldFaces[i];
+    if vFace is TFreeSubdivisionControlFace then
+    begin
+      FSurface.UnreferenceControlFace(TFreeSubdivisionControlFace(vFace));
+      FSurface.FControlFaces.DeleteItem(TFreeSubdivisionControlFace(vFace));
+    end;
+    if vFace is TFreeSubdivisionFace then
+    begin
+      for j:=0 to vFace.FPoints.Count-1 do
+      begin
+        vPoint := vFace.FPoints[j];
+        vPoint.Unreference;
+        vPoint.Clear;
+        chldPoints.Add(vPoint);
+      end;
+      //FSurface.UnreferenceFace(vFace);
+      vFace.Unreference;
+      //vFace.Clear;
+    end;
+    //vFace.Free;
+    chldFaces.Add(vFace);
+  end;
+
+  chldFaces.Free;
+  chldEdges.Free;
+  chldPoints.Free;
+
+  if not self.CheckIntegrity
+    then I:=0;
+
 end;{TFreeSubdivisionControlFace.ClearChildren}
 
 constructor TFreeSubdivisionControlFace.Create(Owner: TFreeSubdivisionSurface);
@@ -474,7 +613,8 @@ begin
 end;{TFreeSubdivisionControlFace.Destroy}
 
 function TFreeSubdivisionControlFace.CheckIntegrity: boolean;
-var  I, J: integer; IsFaceFound:boolean;
+var  I, J: integer;
+  IsFaceFound, PointIntegrity: boolean;
   ChildFace: TFreeSubdivisionFace;
   vEdge: TFreeSubdivisionEdge;
   Startpoint: TFreeSubdivisionPoint;
@@ -503,7 +643,16 @@ begin
     end;
     if (vPoint.FFaces <> nil) and (vPoint.FFaces.IndexOf(Self) = -1) then
        logger.Error(Format('TFreeSubdivisionControlFace(%0:d).CheckIntegrity: Self not in Point[%1:d]',[FID,I]));
-    if not vPoint.CheckIntegrity then
+
+    try
+      PointIntegrity := vPoint.CheckIntegrity;
+    except on Exception do
+      begin
+        PointIntegrity := false;
+        logger.Error(Format('TFreeSubdivisionControlFace(%0:d).Point.CheckIntegrity: in Point[%1:d]',[FID,I]));
+      end;
+    end;
+    if not PointIntegrity then
       begin
         logger.Error(Format('TFreeSubdivisionControlFace(%0:d).CheckIntegrity: in Point[%1:d]',[FID,I]));
         result := false;
@@ -915,7 +1064,7 @@ begin
       for I := 1 to ChildCount do
       begin
         vChild := Self.Child[I - 1];
-        for J := 2 to vChild.NumberOfpoints - 1 do
+        for J := 2 to vChild.NumberOfPoints - 1 do
         begin
           Point1 := vChild.Point[0];
           Point2 := vChild.Point[J-1];
@@ -1011,7 +1160,7 @@ begin
       for I := 1 to ChildCount do
       begin
         vChild := Self.Child[I - 1];
-        for J := 2 to vChild.NumberOfpoints - 1 do
+        for J := 2 to vChild.NumberOfPoints - 1 do
         begin
           Point1 := vChild.Point[0];
           Point2 := vChild.Point[J-1];
@@ -1137,11 +1286,11 @@ begin
       for I := 1 to ChildCount do
       begin
         vChild := Self.Child[I - 1];
-        for J := 1 to vChild.NumberOfpoints - 1 do
+        for J := 1 to vChild.NumberOfPoints - 1 do
         begin
           vPoint := vChild.Point[J - 1];
           if vPoints.SortedIndexOf(vPoint) = -1 then
-            Points.AddSorted(vPoint);
+            vPoints.AddSorted(vPoint);
         end;
       end;
       for I := 1 to vPoints.Count do
@@ -1589,23 +1738,24 @@ begin
   strings.Add(Str);
 end;{TFreeSubdivisionControlFace.SaveToStream}
 
-procedure TFreeSubdivisionControlFace.Subdivide(
-      aOwner: TFreeSubdivisionSurface;
+procedure TFreeSubdivisionControlFace.SubdivideChildren(
+      aSurface: TFreeSubdivisionSurface;
       aControlFace: boolean;
-      aVertexPoints:TFasterListTFreeSubdivisionPoint;
-      aEdgePoints:TFasterListTFreeSubdivisionEdge;
-      aFacePoints:TFasterListTFreeSubdivisionFace;
+      aRefPoints:TFasterListTFreeSubdivisionPoint;
+      aRefEdgePoints:TFasterListTFreeSubdivisionEdge;
+      aRefFacePoints:TFasterListTFreeSubdivisionFace;
       aInteriorEdges:TFasterListTFreeSubdivisionEdge;
-      aControlEdges:TFasterListTFreeSubdivisionEdge; // MM: not really control edges, just children of them after dividing
-      aDest: TFasterListTFreeSubdivisionFace);
+      aControlDescendandEdges:TFasterListTFreeSubdivisionEdge; // MM: not really control edges, just children of them after dividing
+      aDestFaces: TFasterListTFreeSubdivisionFace);
 var
-  TmpFaces: TFasterListTFreeSubdivisionFace;
-  TmpEdges: TFasterListTFreeSubdivisionEdge;
-  I,X: integer;
-  ChildFace: TFreeSubdivisionFace;
-  NewControlEdges:TFasterListTFreeSubdivisionEdge; // MM: not really control edges, just children of them
+  newFaces: TFasterListTFreeSubdivisionFace;
+  newInteriorEdges: TFasterListTFreeSubdivisionEdge;
+  I,j,X: integer;
+  ChildFace, vFace: TFreeSubdivisionFace;
+  vEdge: TFreeSubdivisionEdge;
+  newControlDescendandEdges:TFasterListTFreeSubdivisionEdge; // MM: not really control edges, just children of them
 begin
-  NewControlEdges:=TFasterListTFreeSubdivisionEdge.Create(false,false);
+  newControlDescendandEdges:=TFasterListTFreeSubdivisionEdge.Create(false,false);
 
   //if not CheckIntegrity
   //     then X:=0;
@@ -1617,46 +1767,83 @@ begin
   if FChildren.Count = 0 then
   begin
     FChildren.Capacity := NumberOfPoints;
-    FEdges.Capacity := 4;
-    inherited Subdivide(aOwner, True, aVertexPoints, aEdgePoints, aFacePoints,
-      FEdges, NewControlEdges, FChildren);
+    FEdges.Capacity := NumberOfPoints;
+    inherited Subdivide(aSurface, True, aRefPoints, aRefEdgePoints, aRefFacePoints,
+      FEdges, newControlDescendandEdges, FChildren);
   end
   else
   begin
-    TmpFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
-    TmpFaces.Capacity := 4 * ChildCount;
-    TmpEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
-    I := Round(Power(2, aOwner.FCurrentSubdivisionLevel));
-    TmpEdges.Capacity := 2 * (I * (I - 1));
+    newFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
+    newFaces.Capacity := 4 * ChildCount;
+    newInteriorEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
+    I := Round(Power(2, aSurface.FCurrentSubdivisionLevel));
+    newInteriorEdges.Capacity := 2 * (I * (I - 1));
 
     for I := 0 to FChildren.Count-1 do
     begin
       ChildFace := FChildren[I];
-      ChildFace.Subdivide(aOwner, False, aVertexPoints, aEdgePoints, aFacePoints,
-        TmpEdges, NewControlEdges, TmpFaces);
+      ChildFace.Subdivide(aSurface, False, aRefPoints, aRefEdgePoints, aRefFacePoints,
+        newInteriorEdges, newControlDescendandEdges, newFaces);
     end;
 
-    ClearChildren;
+    ///ClearChildren;
+    //UnreferenceChildren;
 
-    //for i:=0 to FEdges.Count-1 do
-    //    FEdges[i].Free;
+    // new code.
+    for i:=0 to FEdges.Count-1 do
+    begin
+      vEdge := FEdges[i];
+      if vEdge is TFreeSubdivisionControlEdge then
+      begin
+        ///FSurface.UnreferenceControlEdge(TFreeSubdivisionControlEdge(vEdge));
+        FSurface.FControlEdges.DeleteItem(TFreeSubdivisionControlEdge(vEdge));
+      end;
+      if vEdge is TFreeSubdivisionEdge then
+      begin
+        vEdge.Unreference;
+        FSurface.UnreferenceEdge(vEdge);
+        FSurface.FEdges.DeleteItem(vEdge);
+      end;
+      vEdge.Free;
+    end;
+    FEdges.Clear;
+    // original code.
     while FEdges.Count>0 do
       begin
-      FEdges[FEdges.Count-1].Destroy;
-      //FEdges.Delete(FEdges.Count-1);
+      FEdges[FEdges.Count-1].Free;
+      FEdges.Delete(FEdges.Count-1);
       end;
-    FEdges.Free;
-    FEdges := TmpEdges;
 
-    //for i:=0 to FChildren.Count-1 do
-    //    FChildren[i].Free;
+    FEdges.Free;
+    FEdges := newInteriorEdges;
+
+    // new code.
+    for i:=0 to FChildren.Count-1 do
+    begin
+      vFace := FChildren[i];
+      if vFace is TFreeSubdivisionControlFace then
+      begin
+        ///FSurface.UnreferenceControlFace(TFreeSubdivisionControlFace(vFace));
+        ///FSurface.FControlFaces.DeleteItem(TFreeSubdivisionControlFace(vFace));
+      end;
+      if vFace is TFreeSubdivisionFace then
+      begin
+        vFace.Unreference;
+        FSurface.UnreferenceFace(vFace);
+        ///FSurface.FFaces.DeleteItem(vFace);
+      end;
+      vFace.Free;
+    end;
+    FChildren.Clear;
+    // original code.
     while FChildren.Count > 0 do
       begin
       FChildren[FChildren.Count-1].Free;
-      //FChildren.Delete(FChildren.Count-1);
+      FChildren.Delete(FChildren.Count-1);
       end;
+
     FChildren.Free;
-    FChildren := TmpFaces;
+    FChildren := newFaces;
 
 {    // investigation
     for I := 0 to FEdges.Count-1 do
@@ -1670,22 +1857,22 @@ begin
   end;
 
   FControlDescendantEdges.Clear;
-  FControlDescendantEdges.Capacity := NewControlEdges.Count;
-  aControlEdges.Capacity := aControlEdges.Count + FControlDescendantEdges.Count;
-  aControlEdges.Sort;
-  for I := 0 to NewControlEdges.Count - 1 do
+  FControlDescendantEdges.Capacity := newControlDescendandEdges.Count;
+  aControlDescendandEdges.Capacity := aControlDescendandEdges.Count + FControlDescendantEdges.Count;
+  aControlDescendandEdges.Sort;
+  for I := 0 to newControlDescendandEdges.Count - 1 do
   begin
-    if aControlEdges.SortedIndexOf(NewControlEdges[I]) = -1 then
+    if aControlDescendandEdges.SortedIndexOf(newControlDescendandEdges[I]) = -1 then
       begin
-      aControlEdges.AddSorted(NewControlEdges[I]);
-      FControlDescendantEdges.Add(NewControlEdges[I]);
+      aControlDescendandEdges.AddSorted(newControlDescendandEdges[I]);
+      FControlDescendantEdges.Add(newControlDescendandEdges[I]);
       end;
   end;
 
-  //NewControlEdges.Clear;
-  FreeAndNil(NewControlEdges);
+  //newControlDescendandEdges.Clear;
+  FreeAndNil(newControlDescendandEdges);
   CalcExtents;
-end;{TFreeSubdivisionControlFace.Subdivide}
+end;{TFreeSubdivisionControlFace.SubdivideChildren}
 
 // select all controlfaces connected to the current one that belong to the same layer and are not separated by a crease edge
 procedure TFreeSubdivisionControlFace.Trace;

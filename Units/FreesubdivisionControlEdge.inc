@@ -351,10 +351,10 @@ begin
         if Ind1 <> -1 then
           Surface.FControlFaces.Delete(Ind1);}
 
-        Face1.ClearChildren;
+        Face1.UnreferenceChildren;
         Face1.Unreference;
 
-        Face2.ClearChildren;
+        Face2.UnreferenceChildren;
         Face2.Unreference;
 
         Self.Unreference;

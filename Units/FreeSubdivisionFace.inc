@@ -227,6 +227,7 @@ begin
          E.FFaces.DeleteItem(Self);
       end;}
     end;
+  if Self.FTexture <> nil then FTexture.FFaces.DeleteItem(Self);
   if FSurface <> nil then FSurface.UnreferenceFace(Self);
   InUnreference := false;
   logger.DecreaseIndent;
@@ -245,12 +246,13 @@ end;{TFreeSubdivisionFace.Destroy}
 procedure TFreeSubdivisionFace.FlipNormal;
 var
   Mid: integer;
-  I: integer;
+  I,C: integer;
 begin
-  Mid := (FPoints.Count div 2) - 1;
+  C := FPoints.Count;
+  Mid := (C div 2) - 1;
   for I := 0 to Mid do
   begin
-    FPoints.Exchange(I, FPoints.Count - I - 1);
+    FPoints.Exchange(I, C - I - 1);
   end;
 end;{TFreeSubdivisionFace.FlipNormal}
 
@@ -270,23 +272,22 @@ end;
 
 
 procedure TFreeSubdivisionFace.Subdivide(
-    aOwner: TFreeSubdivisionSurface;
+    aSurface: TFreeSubdivisionSurface;
     aIsControlFace: boolean; // All new edges will be Control Descendand
     aRefVertices:TFasterListTFreeSubdivisionPoint;
     aRefEdges:TFasterListTFreeSubdivisionEdge;
     aRefFaces:TFasterListTFreeSubdivisionFace;
-    aInteriorEdges:TFasterListTFreeSubdivisionEdge; // Output. Here TFreeSubdivisionEdge edges will be added.
+    aInteriorEdges:TFasterListTFreeSubdivisionEdge; // Output. Here interior edges will be added.
     aControlDescendandEdges:TFasterListTFreeSubdivisionEdge; // Output. Here boundary edges will be added.
     aNewFaces: TFasterListTFreeSubdivisionFace); // Output. Here new faces will be added.
 var
   P1,P2, P: TFreeSubdivisionPoint;
-  I, TmpIndex: integer;
+  I,J: integer;
   NewFace: TFreeSubdivisionFace;
-  IndexPE, IndexCE, Index0, Index1, Index2, Index3, J, X: integer;
+  IndexPE, IndexCE, Index0, Index1, Index2, Index3, TmpIndex: integer;
   Pts: array[0..3] of TFreeSubdivisionPoint;
   PrevEdge: TFreeSubdivisionEdge;
   CurrEdge: TFreeSubdivisionEdge;
-  Edge: TFreeSubdivisionEdge;
   PrevEdgePoint, CurrEdgePoint, P2Point, NewLocation: TFreeSubdivisionPoint;
 
   procedure EdgeCheck(P1,P2:TFreeSubdivisionPoint; Crease, IsControledge:Boolean;
@@ -299,10 +300,10 @@ var
        // MM: we create regular edge that can inherit just some properties of Control Edge, like Curve
        // It is sort of Control Edge child called Control Descendant Edge.
        // But there are no real ControlEdges in subdivided faces
-       NewEdge:=aOwner.EdgeExists(P1,P2);
+       NewEdge:=aSurface.EdgeExists(P1,P2);
        if NewEdge=nil then
         begin
-          NewEdge := TFreeSubdivisionEdge.Create(aOwner);
+          NewEdge := TFreeSubdivisionEdge.Create(aSurface);
           NewEdge.FStartpoint:=P1;
           NewEdge.FEndpoint:=P2;
           NewEdge.FFaces.Capacity:=2;
@@ -313,7 +314,6 @@ var
           if IsControlEdge
             then aControlDescendandEdges.Add(NewEdge)
             else aInteriorEdges.Add(NewEdge);
-
         end
         else
         begin
@@ -328,8 +328,12 @@ var
             NewEdge.FEndpoint.FEdges.Add(NewEdge);
 
           if IsControlEdge
-            then aControlDescendandEdges.Add(NewEdge)
-            else aInteriorEdges.Add(NewEdge);
+            then
+              if aControlDescendandEdges.IndexOf(NewEdge) = -1
+                then aControlDescendandEdges.Add(NewEdge)
+            else
+              if aInteriorEdges.IndexOf(NewEdge) = -1
+                then aInteriorEdges.Add(NewEdge);
         end;
         if IsControlEdge then
          begin
@@ -344,20 +348,20 @@ var
   end; //EdgeCheck
 
 begin
-  if (NumberOfPoints <> 3) or (aOwner.FSubdivisionMode = fmCatmullClark) then
+  if (NumberOfPoints <> 3) or (aSurface.FSubdivisionMode = fmCatmullClark) then
   begin
     for I := 1 to FPoints.Count do
     begin
       P2 := FPoints[I - 1];
       IndexPE := (I - 2 + FPoints.Count) mod FPoints.Count;
       P1 := FPoints[IndexPE];
-      PrevEdge := aOwner.EdgeExists(P2, P1);
+      PrevEdge := aSurface.EdgeExists(P2, P1);
       if PrevEdge = nil
         then raise Exception.Create('Subdivision error. Previous edge not found');
 
       IndexCE := (I + FPoints.Count) mod FPoints.Count;
       P := FPoints[IndexCE];
-      CurrEdge := aOwner.EdgeExists(P2, FPoints[IndexCE]);
+      CurrEdge := aSurface.EdgeExists(P2, FPoints[IndexCE]);
       if CurrEdge = nil
          then raise Exception.Create('Subdivision error. Current edge not found');
 
@@ -390,7 +394,7 @@ begin
       PrevEdgePoint := Pts[index3];
 
       // add the new face
-      NewFace := TFreeSubdivisionFace.Create(aOwner);
+      NewFace := TFreeSubdivisionFace.Create(aSurface);
       NewFace.SubdivisionLevel:=self.SubdivisionLevel+1;
       aNewFaces.Add(NewFace);
 
@@ -399,13 +403,16 @@ begin
       EdgeCheck(CurrEdgePoint,NewLocation,False,False,nil);
       EdgeCheck(PrevEdgePoint,NewLocation,False,False,nil);
 
+      if NewFace.FPoints.Count > 4
+        then J:=0; // INVEST
       NewFace.FPoints.Capacity := 4;
       for J := 0 to 3 do
       if Pts[J] <> nil then // TEMP
         begin
           // Add new face to points
-          Pts[J].FFaces.Add(NewFace);
-          NewFace.FPoints.Add(Pts[J]);
+          P := Pts[J];
+          P.FFaces.Add(NewFace);
+          NewFace.FPoints.Add(P);
         end
       else raise Exception.Create(format('Subdivision error. Pts[%d] is nil',[J]));
     end;
@@ -419,9 +426,9 @@ begin
     begin
       P2 := FPoints[I - 1];
       IndexPE := (I - 2 + FPoints.Count) mod FPoints.Count;
-      PrevEdge := aOwner.EdgeExists(P2, FPoints[IndexPE]);
+      PrevEdge := aSurface.EdgeExists(P2, FPoints[IndexPE]);
       IndexCE := (I + FPoints.Count) mod FPoints.Count;
-      CurrEdge := aOwner.EdgeExists(P2, FPoints[IndexCE]);
+      CurrEdge := aSurface.EdgeExists(P2, FPoints[IndexCE]);
 
       Index0 := 0;
       TmpIndex := aRefEdges.SortedIndexOf(PrevEdge);
@@ -434,7 +441,7 @@ begin
       Pts[index2] := TFreeSubdivisionPoint(aRefEdges.Objects[Tmpindex]);// CurrEdge.FNewLocation;
 
       // add the new face
-      NewFace := TFreeSubdivisionFace.Create(aOwner);
+      NewFace := TFreeSubdivisionFace.Create(aSurface);
       NewFace.SubdivisionLevel:=self.SubdivisionLevel+1;
       aNewFaces.Add(NewFace);
       EdgeCheck(Pts[0], Pts[1], PrevEdge.Crease, PrevEdge.FControlEdge or
@@ -443,6 +450,8 @@ begin
         aIsControlFace, CurrEdge.FCurve);
       EdgeCheck(Pts[2], Pts[0], False, False, nil);
 
+      if NewFace.FPoints.Count>3 then
+        J:=0; // INVEST
       NewFace.FPoints.Capacity := 3;
       for J := 1 to 3 do
       begin
@@ -457,13 +466,13 @@ begin
     begin
       P2 := FPoints[I - 1];
       IndexPE := (I - 2 + FPoints.Count) mod FPoints.Count;
-      PrevEdge := aOwner.EdgeExists(P2, FPoints[IndexPE]);
+      PrevEdge := aSurface.EdgeExists(P2, FPoints[IndexPE]);
       TmpIndex := aRefEdges.SortedIndexOf(PrevEdge);
       Pts[I - 1] := TFreeSubdivisionPoint(aRefEdges.Objects[TmpIndex]);// PrevEdge.FNewLocation;
     end;
 
     // add the new face
-    NewFace := TFreeSubdivisionFace.Create(aOwner);
+    NewFace := TFreeSubdivisionFace.Create(aSurface);
     aNewFaces.Add(NewFace);
 
     EdgeCheck(Pts[0],Pts[1],False,False,nil);

@@ -1433,6 +1433,7 @@ type
     procedure RebuildModel; // Force to rebuild the entire ship and recalculate all data
     procedure RebuildModelIfRequired;
     procedure Redraw;  // Redraws the model on all viewports
+    procedure InvalidateViews; // should cause redraw
     function  DetectMinFileVersion:TFreeFileVersion;
     procedure SaveProject(Destination: TFreeFileBuffer);
     procedure SaveControlPointGroups(Destination:TFreeFileBuffer);

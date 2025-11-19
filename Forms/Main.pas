@@ -1158,6 +1158,10 @@ begin
      end;
 }
 
+  // INVESTIGATION
+  if not FreeShip.Surface.CheckIntegrity
+    then I:=0;
+
    if FreeShip.NumberOfSelectedControlFaces>0 then
    begin
       // set the layerbox itemindex to the index of the layer of the selected controlfaces
@@ -1179,6 +1183,10 @@ begin
       end else FreeShipChangeActiveLayer(self,nil);
    end else FreeShipChangeActiveLayer(self,FreeShip.ActiveLayer);
    UpdateMenu;
+
+   // INVESTIGATION
+   if not FreeShip.Surface.CheckIntegrity
+     then I:=0;
 end;{TMainForm.FOnselectItem}
 
 procedure TMainForm.OnChangeActiveControlPoint(Sender: TObject);
@@ -1674,7 +1682,7 @@ begin
     FreeShip.ClearUndo;
     FreeShip.Clear;
     FreeShip.Surface.ClearSelection;
-    FreeShip.Surface.ClearFaces;
+    FreeShip.Surface.ClearSubdivisionFaces;
     FreeShip.Surface.Clear;
     FreeShip.Edit.File_Load(vFileName);
     FreeShip.Surface.Rebuild;

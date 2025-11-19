@@ -327,6 +327,7 @@ begin
   then
   begin
     bP := Viewport.BackgroundImage.ImageCoordinate(X,Y);
+    StatusBar1.Panels[2].Text := String.Format('Img %0:d:%1:d',[bP.X,bP.Y]);
     if (bP.X>=0) and (bP.X<=Viewport.BackgroundImage.Bitmap.Width)
       and (bP.Y>=0) and (bP.Y<=Viewport.BackgroundImage.Bitmap.Height)
       and (wmBGimage in FWorkModes)
@@ -335,7 +336,6 @@ begin
       FFoundBGimage := Viewport.BackgroundImage;
       Viewport.Cursor := crSizeAll;
     end;
-    StatusBar1.Panels[2].Text := String.Format('Img %0:d:%1:d',[bP.X,bP.Y]);
   end;
 
 
@@ -369,20 +369,10 @@ begin
       if (wmPatch in FWorkModes) and (FFoundAnchorNo > 0)
       then Viewport.Cursor := crRotate2d;
 
-      {if (wmAnchors in FWorkModes) and (FFoundAnchorNo > 0)
-      then
-      begin
-        Viewport.Cursor := crSizeAll;
-        Viewport.Invalidate();
-      end;}
-
       StatusBar1.Panels[3].Text := String.Format(
         'Plt %0:8.3f:%1:8.3f  Mdl %2:8.3f:%3:8.3f:%4:8.3f  Anchor:%5:d CM:%6:d',
         [uP.X, uP.Y,
          MP.Coordinate.X, MP.Coordinate.Y, MP.Coordinate.Z, FFoundAnchorNo,FControlMode]);
-
-      bP := FActiveTexture.ProjectOnBitmap(uP);
-      StatusBar1.Panels[0].Text := String.Format('Txt %0:d:%1:d',[bP.X,bP.Y]);
     end;
   end;
 
@@ -419,6 +409,7 @@ begin
       Viewport.Cursor := crSizeAll;
     end;
   end;
+
 
   if FControlMode <> cmNone then
   if (FControlMode = cmViewportZoom) and (ssRight in Shift) then

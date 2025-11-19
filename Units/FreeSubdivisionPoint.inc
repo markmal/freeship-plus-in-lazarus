@@ -618,12 +618,12 @@ begin
   }
 
   if (FFaces <> nil) then
-  for i:=0 to FFaces.Count-1 do
-  if FFaces[i].FPoints.IndexOf(Self) = -1 then
-  begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): Self not in FFaces[%d]',[self.FID,i]));
-    result := false;
-  end;
+    for i:=0 to FFaces.Count-1 do
+      if FFaces[i].FPoints.IndexOf(Self) = -1 then
+      begin
+        logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): Self not in FFaces[%d]',[self.FID,i]));
+        result := false;
+      end;
 
   { // Free points are ok
   if (FEdges <> nil) and (FEdges.Count < 1) then
@@ -634,12 +634,12 @@ begin
   }
 
   if (FEdges <> nil) then
-  for i:=0 to FEdges.Count-1 do
-  if (FEdges[i].StartPoint <> Self) and (FEdges[i].EndPoint <> Self) then
-  begin
-    logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): Self not in FEdges[%d]',[self.FID,i]));
-    result := false;
-  end;
+    for i:=0 to FEdges.Count-1 do
+      if (FEdges[i].StartPoint <> Self) and (FEdges[i].EndPoint <> Self) then
+      begin
+        logger.Error(Format('TFreeSubdivisionPoint.CheckIntegrity(%d): Self not in FEdges[%d]',[self.FID,i]));
+        result := false;
+      end;
   if not result then self.PrintDebug;
 end; {TFreeSubdivisionPoint.CheckIntegrity}
 
@@ -656,8 +656,8 @@ end;{TFreeSubdivisionPoint.Clear}
 constructor TFreeSubdivisionPoint.Create(aSurface: TFreeSubdivisionSurface);
 begin
   inherited Create(aSurface);
-  FFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
-  FEdges := TFasterListTFreeSubdivisionEdge.Create(false,false);
+  FFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
+  FEdges := TFasterListTFreeSubdivisionEdge.Create(true,false);
   Clear;
 end;{TFreeSubdivisionPoint.Create}
 
@@ -766,10 +766,13 @@ begin
   Logger.Debug(Format(' SubdivisionLevel:%d',[SubdivisionLevel]));
   Logger.Debug(Format(' VertexType:%s',[svt]));
   Logger.IncreaseIndent;
-  for i:=0 to FFaces.Count-1 do
-      FFaces[i].PrintDebug;
-  for i:=0 to FEdges.Count-1 do
-      FEdges[i].PrintDebug;
+  if FFaces <> nil then
+  begin
+    for i:=0 to FFaces.Count-1 do
+        FFaces[i].PrintDebug;
+    for i:=0 to FEdges.Count-1 do
+        FEdges[i].PrintDebug;
+  end;
   Logger.DecreaseIndent;
 end;
 

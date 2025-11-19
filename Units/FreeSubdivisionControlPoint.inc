@@ -347,7 +347,7 @@ begin
   if NumberOfEdges>2 then exit;
   Surface.Built:=false;
   for i:=0 to FFaces.Count-1 do
-    (FFaces.Items[i] as TFreeSubdivisionControlFace).ClearChildren;
+    (FFaces.Items[i] as TFreeSubdivisionControlFace).UnreferenceChildren;
 
   for i:=0 to FFaces.Count-1 do
     FFaces.Items[i].Points.DeleteItem(Self);

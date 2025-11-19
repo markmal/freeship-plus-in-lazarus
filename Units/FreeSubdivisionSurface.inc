@@ -259,7 +259,7 @@ begin
 end;
 
 procedure TFreeSubdivisionSurface.UnreferenceFace(F: TFreeSubdivisionFace);
-var i: integer;
+var i: integer; L:TFreeSubdivisionLayer;
 begin
   if InUnreferenceFace then exit;
   InUnreferenceFace:=true; // anti loop
@@ -300,16 +300,17 @@ var
   function GetFace(P1, P2, P3, P4: TFreeSubdivisionPoint): TFreeSubdivisionControlFace;
   var
     I: integer;
-    Face: TFreeSubdivisionFace;
+    vFace: TFreeSubdivisionFace;
   begin
     Result := nil;
     for I := 1 to P1.NumberOfFaces do
     begin
-      Face := P1.Face[I - 1];
-      if (P2.IndexOfFace(Face) <> -1) and (P3.IndexOfFace(Face) <> -1) and
-        (P4.IndexOfFace(Face) <> -1) then
+      vFace := P1.Face[I - 1];
+      if (P2.IndexOfFace(vFace) <> -1)
+         and (P3.IndexOfFace(vFace) <> -1)
+         and (P4.IndexOfFace(vFace) <> -1) then
       begin
-        Result := Face as TFreeSubdivisionControlFace;
+        Result := vFace as TFreeSubdivisionControlFace;
         exit;
       end;
     end;
@@ -321,26 +322,26 @@ var
     I, J: integer;
     Index: integer;
     P1, P2: TFreeSubdivisionPoint;
-    Edge: TFreeSubdivisionEdge;
+    vEdge: TFreeSubdivisionEdge;
   begin
     P1 := Face.Point[Face.NumberOfPoints - 1];
     for I := 1 to Face.NumberOfpoints do
     begin
       P2 := Face.Point[I - 1];
-      Edge := Face.Surface.EdgeExists(P1, P2);
-      if Edge <> nil then
+      vEdge := Face.Surface.EdgeExists(P1, P2);
+      if vEdge <> nil then
       begin
-        if not Edge.Crease then
+        if not vEdge.Crease then
         begin
-          for J := 1 to Edge.NumberOfFaces do
-            if Edge.Face[J - 1] <> Face then
+          for J := 1 to vEdge.NumberOfFaces do
+            if vEdge.Face[J - 1] <> Face then
             begin
-              Index := ToDoList.IndexOf(Edge.Face[J - 1] as TFreeSubdivisionControlFace);
+              Index := ToDoList.IndexOf(vEdge.Face[J - 1] as TFreeSubdivisionControlFace);
               if Index <> -1 then
               begin
-                List.Add(Edge.Face[J - 1] as TFreeSubdivisionControlFace);
+                List.Add(vEdge.Face[J - 1] as TFreeSubdivisionControlFace);
                 ToDoList.Delete(Index);
-                FindAttachedFaces(List, Edge.Face[J - 1] as
+                FindAttachedFaces(List, vEdge.Face[J - 1] as
                   TFreeSubdivisionControlFace);
               end;
             end;
@@ -371,8 +372,8 @@ var
     Index: integer;
     NCols: integer;
     NRows: integer;
-    Face: TFreeSubdivisionControlFace;
-    Grid: TFreeSubdivisionPointGrid;
+    vFace: TFreeSubdivisionControlFace;
+    vGrid: TFreeSubdivisionPointGrid;
     NewFace: TFreeFaceGrid;
     CheckFaces: TFasterListTFreeSubdivisionFace;
     // temporary list with all controlfaces that is used to check if a crease vertex is
@@ -382,32 +383,32 @@ var
     var
       I, J, K: integer;
       NFaces: integer;
-      Face: TFreeSubdivisionControlFace;
-      Face2: TFreeSubdivisionControlFace;
+      vFace: TFreeSubdivisionControlFace;
+      vFace2: TFreeSubdivisionControlFace;
       P: TFreeSubdivisionPoint;
     begin
       Result := nil;
       I := 1;
       while (I <= CtrlFaces.Count) and (Result = nil) do
       begin
-        Face := Ctrlfaces[I - 1];
+        vFace := Ctrlfaces[I - 1];
         J := 1;
-        while (J <= Face.NumberOfpoints) and (Result = nil) do
+        while (J <= vFace.NumberOfpoints) and (Result = nil) do
         begin
-          P := Face.Point[J - 1];
+          P := vFace.Point[J - 1];
           NFaces := 1;
           for K := 1 to P.NumberOfFaces do
           begin
-            Face2 := P.Face[K - 1] as TFreeSubdivisionControlFace;
-            if Face2 <> Face then
-              if CtrlFaces.SortedIndexOf(Face2) <> -1 then
+            vFace2 := P.Face[K - 1] as TFreeSubdivisionControlFace;
+            if vFace2 <> vFace then
+              if CtrlFaces.SortedIndexOf(vFace2) <> -1 then
               begin
                 Inc(NFaces);
                 break;
               end;
           end;
           if NFaces = 1 then
-            Result := Face;
+            Result := vFace;
           Inc(J);
         end;
         Inc(I);
@@ -428,7 +429,7 @@ var
     end;{AddFace}
 
     procedure DoAssemble(var Grid: TFreeSubdivisionPointGrid;
-    var Cols, Rows: integer; pFaces: TFasterListTFreeSubdivisionControlFace);
+              var Cols, Rows: integer; pFaces: TFasterListTFreeSubdivisionControlFace);
     var
       SearchBottom: boolean;
       SearchTop: boolean;
@@ -442,32 +443,32 @@ var
       TmpFaces: array of TFreeSubdivisionControlFace;
       DataOK: boolean;
 
-      function ValidFace(Face: TFreeSubdivisionface): boolean;
+      function ValidFace(pFace: TFreeSubdivisionface): boolean;
       var
         I, J, N, Index: integer;
         Tmp: TFreeSubdivisionFace;
       begin
         Result := False;
-        if Face.NumberOfpoints = 4 then
+        if pFace.NumberOfpoints = 4 then
         begin
           Index := pFaces.SortedIndexOf(vFace);
           if Index <> -1 then
           begin
             Result := True;
             for I := 1 to NFaces do
-              if TmpFaces[I - 1] = face then
+              if TmpFaces[I - 1] = pFace then
               begin
                 Result := False;
                 exit;
               end;
             if NFaces > 0 then
             begin
-              // must also be connected to previous face
+              // must also be connected to previous pFace
               Tmp := TmpFaces[NFaces - 1];
               N := 0;
-              for J := 1 to Face.NumberOfpoints do
+              for J := 1 to pFace.NumberOfpoints do
               begin
-                if Tmp.IndexOfPoint(Face.Point[J - 1]) <> -1 then
+                if Tmp.IndexOfPoint(pFace.Point[J - 1]) <> -1 then
                   Inc(N);
               end;
               Result := N > 1;
@@ -915,7 +916,7 @@ var
         Checkfaces.Add(CtrlFaces[i]);
     while CtrlFaces.Count > 0 do
     begin
-      // find a corner face
+      // find a corner vFace
       vFace := FindCornerFace;
       Inc(ErrInd);
 
@@ -929,15 +930,15 @@ var
         begin
           NCols := 2;
           NRows := 2;
-          Setlength(Grid, NRows);
-          Setlength(Grid[0], NCols);
-          Setlength(Grid[1], NCols);
-          Grid[0][1] := vFace.Point[0];
-          Grid[0][0] := vFace.Point[1];
-          Grid[1][0] := vFace.Point[2];
-          Grid[1][1] := vFace.Point[3];
+          Setlength(vGrid, NRows);
+          Setlength(vGrid[0], NCols);
+          Setlength(vGrid[1], NCols);
+          vGrid[0][1] := vFace.Point[0];
+          vGrid[0][0] := vFace.Point[1];
+          vGrid[1][0] := vFace.Point[2];
+          vGrid[1][1] := vFace.Point[3];
 
-          DoAssemble(Grid, NCols, NRows, CtrlFaces);
+          DoAssemble(vGrid, NCols, NRows, CtrlFaces);
 
           Newface.NCols := NCols - 1;
           NewFace.NRows := NRows - 1;
@@ -947,8 +948,8 @@ var
             Setlength(NewFace.Faces[I - 2], NewFace.NCols);
             for J := 2 to NCols do
             begin
-              vFace := GetFace(Grid[I - 2][J - 1], Grid[I - 2][J - 2],
-                Grid[I - 1][J - 2], Grid[I - 1][J - 1]);
+              vFace := GetFace(vGrid[I - 2][J - 1], vGrid[I - 2][J - 2],
+                vGrid[I - 1][J - 2], vGrid[I - 1][J - 1]);
               if vFace <> nil then
               begin
                 NewFace.Faces[I - 2][J - 2] := vFace;
@@ -1484,7 +1485,7 @@ begin
   { moved to Rebuild. because it may cause corruption if called here during rebuilding
   if not Val then
   begin
-    ClearFaces;
+    ClearSubdivisionFaces;
     for I := 1 to NumberofControlCurves do
       ControlCurve[I - 1].Built := False;
     FCurrentSubdivisionLevel := 0;
@@ -2048,38 +2049,131 @@ begin
   end;
 end;
 
-procedure TFreeSubdivisionSurface.ClearFaces;
+procedure TFreeSubdivisionSurface.ClearSubdivisionFaces;
 var
   I,j: integer;
   P: TFreeSubdivisionPoint;
+  E: TFreeSubdivisionEdge;
+  F: TFreeSubdivisionFace;
+  CF: TFreeSubdivisionControlFace;
+  chldFaces: TFasterListTFreeSubdivisionFace;
+  chldEdges: TFasterListTFreeSubdivisionEdge;
+  chldPoints: TFasterListTFreeSubdivisionPoint;
 begin
+  chldFaces:= TFasterListTFreeSubdivisionFace.Create(true,true);
+  chldEdges:= TFasterListTFreeSubdivisionEdge.Create(true,true);
+  chldPoints:= TFasterListTFreeSubdivisionPoint.Create(true,true);
+
   if Assigned(FControlFaces) then
     for I := 0 to NumberOfControlFaces - 1 do
-      Controlface[I].ClearChildren; // deletes children and rendermesh
+      Controlface[I].GetChildrenComponents(chldFaces, chldEdges, chldPoints);
+
+  for i:=0 to chldPoints.Count-1 do
+  begin
+    P := chldPoints[i];
+    //P.Unreference;
+    P.Clear;
+    P.Free;
+  end;
+
+  for i:=0 to chldEdges.Count-1 do
+  begin
+    E := chldEdges[i];
+    //E.Unreference;
+    E.Clear;
+    E.Free;
+  end;
+
+  for i:=0 to chldFaces.Count-1 do
+  begin
+    F := chldFaces[i];
+    //F.Unreference;
+    F.Clear;
+    F.Free;
+  end;
+
+  chldPoints.Free; chldEdges.Free; chldFaces.Free;
+
+  FEdges.Clear;
+  FPoints.Clear;
+
+  if Assigned(FControlFaces) then
+    for I := 0 to FControlFaces.Count - 1 do
+      begin
+        CF := ControlFace[I];
+        CF.FControlDescendantEdges.Clear;
+        CF.FChildren.Clear;
+        CF.FEdges.Clear;
+      end;
+
+  if not self.CheckIntegrity
+    then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
+
+{
+  if Assigned(FControlFaces) then
+    for I := 0 to NumberOfControlFaces - 1 do
+      Controlface[I].UnreferenceChildren; // deletes children and rendermesh
+
+  if not self.CheckIntegrity
+    then ShowMessage('After deletes Controlface children and rendermesh integrity corruption');
+
   if Assigned(FEdges) then
   begin
-    for I := 0 to FEdges.Count - 1 do
-      if not (FEdges[I] is TFreeSubdivisionControlEdge) then
-        FEdges[I].Free;
-    FEdges.Clear;
+    while FEdges.Count > 0 do
+    begin
+      E := FEdges[0];
+      if (E is TFreeSubdivisionControlEdge) then
+        E := E;
+      if (E is TFreeSubdivisionEdge) then
+      begin
+        //Self.UnreferenceEdge(E);
+        FEdges.DeleteItem(E);
+        E.Free;
+      end;
+    end;
+    //FEdges.Clear;
   end;
+
+  if not self.CheckIntegrity
+    then ShowMessage('After deletes children Edges integrity corruption');
+
   if Assigned(FPoints) then
   begin
-    for I := 0 to FPoints.Count - 1 do
+    while FPoints.Count > 0 do
       begin
-        P:=FPoints[I];
-        if not (P is TFreeSubdivisionControlPoint)
-           and (P.Faces.Count > 0) then
-           P.Free;
+        P:=FPoints[0];
+        if (P is TFreeSubdivisionControlPoint)
+          then P:=P;
+        if (P is TFreeSubdivisionPoint)
+           {and (P.Faces.Count > 0)} then
+        begin
+          //Self.UnreferencePoint(P);
+          FPoints.DeleteItem(P);
+          P.Free;
+        end;
       end;
-    FPoints.Clear;
+    //FPoints.Clear;
   end;
+
+  if not self.CheckIntegrity
+    then ShowMessage('After deletes children Points integrity corruption');
+
   if Assigned(FControlFaces) then
     for I := 0 to NumberOfControlFaces - 1 do
       begin
-      ControlFace[I].FControlDescendantEdges.Clear;
+        CF := ControlFace[I];
+        for j:=0 to CF.FControlDescendantEdges.Count-1 do
+          begin
+            E := CF.FControlDescendantEdges[i];
+            //Self.UnreferenceEdge(E);
+          end;
+        CF.FControlDescendantEdges.Clear;
       end;
-end;{TFreeSubdivisionSurface.ClearFaces}
+
+  if not self.CheckIntegrity
+    then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
+}
+end;{TFreeSubdivisionSurface.ClearSubdivisionFaces}
 
 procedure TFreeSubdivisionSurface.ClearSelection;
 // Deselect all selected items at once
@@ -2095,8 +2189,8 @@ end;{TFreeSubdivisionSurface.Clearselection}
 
 procedure TFreeSubdivisionSurface.ClearMesh;
 begin
-  ClearCurvesSubdivision; //this should be called before ClearFaces
-  ClearFaces;
+  ClearCurvesSubdivision; //this should be called before ClearSubdivisionFaces
+  ClearSubdivisionFaces;
   FBuilt := False;
 end;
 
@@ -2123,32 +2217,32 @@ var
     Face: TFreeSubdivisionFace;
     TmpFaces: array of TFreeSubdivisionFace;
 
-    function ValidFace(Face: TFreeSubdivisionface): boolean;
+    function ValidFace(pFace: TFreeSubdivisionface): boolean;
     var
       I, J, N, Index: integer;
       Tmp: TFreeSubdivisionFace;
     begin
       Result := False;
-      if Face.NumberOfpoints = 4 then
+      if pFace.NumberOfpoints = 4 then
       begin
-        Index := Faces.SortedIndexOf(Face);
+        Index := Faces.SortedIndexOf(pFace);
         if Index <> -1 then
         begin
           Result := True;
           for I := 1 to NFaces do
-            if TmpFaces[I - 1] = face then
+            if TmpFaces[I - 1] = pFace then
             begin
               Result := False;
               exit;
             end;
           if NFaces > 0 then
           begin
-            // must also be connected to previous face
+            // must also be connected to previous pFace
             Tmp := TmpFaces[NFaces - 1];
             N := 0;
-            for J := 1 to Face.NumberOfpoints do
+            for J := 1 to pFace.NumberOfpoints do
             begin
-              if Tmp.IndexOfPoint(Face.Point[J - 1]) <> -1 then
+              if Tmp.IndexOfPoint(pFace.Point[J - 1]) <> -1 then
                 Inc(N);
             end;
             Result := N > 1;
@@ -3405,6 +3499,14 @@ begin
   FControlCurveColor := clRed;
   FSubdivisionMode := fmQuadTriangle;
   FZebraColor := clBlack;
+
+  InUnreferenceControlFace := false;
+  InUnreferenceControlEdge := false;
+  InUnreferenceControlPoint := false;
+  InUnreferenceFace := false;
+  InUnreferenceEdge := false;
+  InUnreferencePoint := false;
+
 end;{TFreeSubdivisionSurface.Create}
 
 destructor TFreeSubdivisionSurface.Destroy;
@@ -3499,6 +3601,7 @@ begin
 
 end;{TFreeSubdivisionSurface.Draw}
 
+// Finds an Edge in Surface by its Points
 function TFreeSubdivisionSurface.EdgeExists(P1, P2: TFreeSubdivisionPoint):
 TFreeSubdivisionEdge;
 var
@@ -4215,9 +4318,8 @@ var
   vCurve: TFreeSubdivisionControlCurve;
   vLayer: TFreeSubdivisionLayer;
   saveOnSelectItem:TNotifyEvent=nil;
-  vIsLoading: Boolean;
 begin
-  vIsLoading := true;
+  FIsLoading := true;
 
   // First load layerdata
   Source.LoadInteger(N);
@@ -4299,7 +4401,7 @@ begin
   if assigned(FOnChangeActiveLayer) then
     FOnChangeActiveLayer(self, self.Layer[0]);
 
-  vIsLoading := false;
+  FIsLoading := false;
 end;{TFreeSubdivisionSurface.LoadBinary}
 
 procedure TFreeSubdivisionSurface.LoadFromStream(var LineNr: integer; Strings: TStringList);
@@ -4612,28 +4714,179 @@ var
     end;  // l
   end;
 
+//// TEMP
+  procedure ClearSubdivisionFacesLocal;
+  var
+    I,j: integer;
+    P: TFreeSubdivisionPoint;
+    E: TFreeSubdivisionEdge;
+    F: TFreeSubdivisionFace;
+    CF: TFreeSubdivisionControlFace;
+    chldFaces: TFasterListTFreeSubdivisionFace;
+    chldEdges: TFasterListTFreeSubdivisionEdge;
+    chldPoints: TFasterListTFreeSubdivisionPoint;
+  begin
+    chldFaces:= TFasterListTFreeSubdivisionFace.Create(true,true);
+    chldEdges:= TFasterListTFreeSubdivisionEdge.Create(true,true);
+    chldPoints:= TFasterListTFreeSubdivisionPoint.Create(true,true);
+
+    if Assigned(FControlFaces) then
+      for I := 0 to NumberOfControlFaces - 1 do
+        Controlface[I].GetChildrenComponents(chldFaces, chldEdges, chldPoints);
+
+    for i:=0 to chldPoints.Count-1 do
+    begin
+      P := chldPoints[i];
+      //P.Unreference;
+      P.Clear;
+      P.Free;
+    end;
+
+    for i:=0 to chldEdges.Count-1 do
+    begin
+      E := chldEdges[i];
+      //E.Unreference;
+      E.Clear;
+      E.Free;
+    end;
+
+    for i:=0 to chldFaces.Count-1 do
+    begin
+      F := chldFaces[i];
+      //F.Unreference;
+      F.Clear;
+      F.Free;
+    end;
+
+    chldPoints.Free; chldEdges.Free; chldFaces.Free;
+
+    FEdges.Clear;
+    FPoints.Clear;
+
+    if Assigned(FControlFaces) then
+      for I := 0 to FControlFaces.Count - 1 do
+        begin
+          CF := ControlFace[I];
+          CF.FControlDescendantEdges.Clear;
+          CF.FChildren.Clear;
+          CF.FEdges.Clear;
+        end;
+
+    if not self.CheckIntegrity
+      then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
+
+  {
+    if Assigned(FControlFaces) then
+      for I := 0 to NumberOfControlFaces - 1 do
+        Controlface[I].UnreferenceChildren; // deletes children and rendermesh
+
+    if not self.CheckIntegrity
+      then ShowMessage('After deletes Controlface children and rendermesh integrity corruption');
+
+    if Assigned(FEdges) then
+    begin
+      while FEdges.Count > 0 do
+      begin
+        E := FEdges[0];
+        if (E is TFreeSubdivisionControlEdge) then
+          E := E;
+        if (E is TFreeSubdivisionEdge) then
+        begin
+          //Self.UnreferenceEdge(E);
+          FEdges.DeleteItem(E);
+          E.Free;
+        end;
+      end;
+      //FEdges.Clear;
+    end;
+
+    if not self.CheckIntegrity
+      then ShowMessage('After deletes children Edges integrity corruption');
+
+    if Assigned(FPoints) then
+    begin
+      while FPoints.Count > 0 do
+        begin
+          P:=FPoints[0];
+          if (P is TFreeSubdivisionControlPoint)
+            then P:=P;
+          if (P is TFreeSubdivisionPoint)
+             {and (P.Faces.Count > 0)} then
+          begin
+            //Self.UnreferencePoint(P);
+            FPoints.DeleteItem(P);
+            P.Free;
+          end;
+        end;
+      //FPoints.Clear;
+    end;
+
+    if not self.CheckIntegrity
+      then ShowMessage('After deletes children Points integrity corruption');
+
+    if Assigned(FControlFaces) then
+      for I := 0 to NumberOfControlFaces - 1 do
+        begin
+          CF := ControlFace[I];
+          for j:=0 to CF.FControlDescendantEdges.Count-1 do
+            begin
+              E := CF.FControlDescendantEdges[i];
+              //Self.UnreferenceEdge(E);
+            end;
+          CF.FControlDescendantEdges.Clear;
+        end;
+
+    if not self.CheckIntegrity
+      then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
+  }
+  end;{TFreeSubdivisionSurface.ClearSubdivisionFaces}
+//// ^^^ TEMP
+
+  procedure ClearCurvesSubdivisionLOCAL;
+  var i,j:integer; Curve:TFreeSubdivisionControlCurve;
+  begin
+    // clear curves subdivision
+    FFreeStandingEdges.Clear;
+    FFreeStandingPoints.Clear;
+    for I := 0 to NumberOfControlCurves - 1 do
+    begin
+      Curve := ControlCurve[I];
+      Curve.DeleteSubdivision;
+      //Curve.PrintDebug;
+    end;
+  end;
+
 begin
   if FIsBuilding then exit; // no double entries
   FIsBuilding:=true;
   FBuilt := false;
 
-  ClearCurvesSubdivision; //this should be called before ClearFaces
+  if not self.CheckIntegrity
+    then ShowMessage('Before ClearCurvesSubdivision integrity corruption');
+
+  ClearCurvesSubdivisionLocal; //this should be called before ClearSubdivisionFaces
+
+  if not self.CheckIntegrity
+    then ShowMessage('Before ClearFaces integrity corruption');
   // moved here from SetBuild
-  ClearFaces;
+  ClearSubdivisionFacesLocal;
 
   FCurrentSubdivisionLevel := 0;
   Setlength(FGausCurvature, 0);
   FMinGaussCurvature := 0.0;
   FMaxGaussCurvature := 0.0;
 
-  //if not self.CheckIntegrity
-  //  then X:=0; //ShowMessage('Before Init Model integrity corruption');
+  if not self.CheckIntegrity
+    then ShowMessage('Before Init Model integrity corruption');
 
   if not FInitialized then
     Initialize(1, 1, 1);
 
   //if (self.NumberOfControlFaces > 0) then
   begin
+
+    if not self.CheckIntegrity
+      then ShowMessage('Before Curve.FSubdividedPoints.Add integrity corruption');
 
     for I := 0 to NumberOfControlCurves - 1 do
     begin
@@ -5188,7 +5441,7 @@ begin
   begin
     CtrlFace := ControlFace[I];
     CtrlFace.SubdivisionLevel := PrevCurrentSubdivisionLevel;
-    CtrlFace.Subdivide(Self, True, RefVertexPoints, RefEdges, RefFaces,
+    CtrlFace.SubdivideChildren(Self, True, RefVertexPoints, RefEdges, RefFaces,
       nil, NewEdgeList, nil);
     if assigned(FOnFaceRebuilt) then FOnFaceRebuilt(self, I+1, NumberOfControlFaces);
   end;

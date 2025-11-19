@@ -526,6 +526,7 @@ type
     );
     procedure AutoSetDevelopedPatchAnchorPoints;
     procedure SetBitmapTargetPointsByDevelopedPatchAnchors(Viewport: TFreeViewport);
+    procedure ReloadPatch;
     constructor Create(Surface: TFreeSubdivisionSurface);
     constructor Create(Layer: TFreeSubdivisionLayer; DevelopedPatch: TFreeDevelopedPatch);
     destructor Destroy; override;
@@ -1430,6 +1431,7 @@ type
     function Delete: boolean;
     procedure DeleteControlFace(
       ControlFace: TFreeSubdivisionControlFace);
+    procedure Invalidate;
     destructor Destroy;
       override;
     procedure Draw(Viewport: TFreeViewport);
@@ -1675,13 +1677,11 @@ type
     procedure SetEndPoint(aPoint:TFreeSubdivisionPoint);
   public
     procedure AddFace(Face: TFreeSubdivisionFace);
-    procedure Assign(Edge: TFreeSubdivisionEdge);
-      virtual;
+    procedure Assign(Edge: TFreeSubdivisionEdge); virtual;
     function CalculateEdgeCenterPoint: TFreeSubdivisionPoint;
     function CheckIntegrity: boolean;
     procedure Clear;
-    constructor Create(Owner: TFreeSubdivisionSurface);
-      override;
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
     procedure Delete; virtual;
     procedure UnreferenceFace(Face: TFreeSubdivisionFace);
     procedure Unreference; virtual;
@@ -1780,14 +1780,11 @@ type
     procedure AddPoint(Point: TFreeSubdivisionPoint);
     function CalculateFaceCenterPoint: TFreeSubdivisionPoint;
     function CheckIntegrity: boolean;
-    procedure Clear;
-      virtual;
-    constructor Create(Owner: TFreeSubdivisionSurface);
-      override;
+    procedure Clear; virtual;
+    constructor Create(Owner: TFreeSubdivisionSurface); override;
     procedure Delete; virtual;
     procedure Unreference; virtual;
-    destructor Destroy;
-      override;
+    destructor Destroy; override;
     procedure FlipNormal;
     // Inverts the point ordering of the face
     function IndexOfPoint(
@@ -1795,7 +1792,7 @@ type
     procedure PrintDebug; override;
     //procedure SetUnrolledPoint(i:ineger; P:T2DCoordinate);
     procedure Subdivide(
-      aOwner: TFreeSubdivisionSurface;
+      aSurface: TFreeSubdivisionSurface;
       aIsControlFace: boolean;
       aRefVertices:TFasterListTFreeSubdivisionPoint;
       aRefEdges:TFasterListTFreeSubdivisionEdge;
@@ -1821,7 +1818,7 @@ type
     FChildren: TFasterListTFreeSubdivisionFace;
     FMin, FMax: T3DCoordinate;
     FEdges: TFasterListTFreeSubdivisionEdge;
-    FControlDescendantEdges: TFasterListTFreeSubdivisionEdge; // here can be real ControlEdges and divided "children" of them. Do not why.
+    FControlDescendantEdges: TFasterListTFreeSubdivisionEdge; // here can be real ControlEdges and divided "children" of them. Do not know why.
     function FGetChild(Index: integer):
       TFreeSubdivisionFace;
     function FGetChildCount: integer;
@@ -1840,9 +1837,12 @@ type
   public
     procedure CalcExtents;
     function CheckIntegrity: boolean;
-    procedure Clear;
-      override;
-    procedure ClearChildren;
+    procedure Clear; override;
+    procedure GetChildrenComponents(
+      const chldFaces: TFasterListTFreeSubdivisionFace;
+      const chldEdges: TFasterListTFreeSubdivisionEdge;
+      const chldPoints: TFasterListTFreeSubdivisionPoint);
+    procedure UnreferenceChildren;
     constructor Create(Owner: TFreeSubdivisionSurface);
       override;
     function DistanceToCursor(X, Y: integer;
@@ -1866,15 +1866,15 @@ type
     procedure SaveToDXF(Strings: TStringList);
     procedure SaveToStream(Strings: TStringList);
       virtual;
-    procedure Subdivide(
-      aOwner: TFreeSubdivisionSurface;
+    procedure SubdivideChildren(
+      aSurface: TFreeSubdivisionSurface;
       aControlFace: boolean;
-      aVertexPoints:TFasterListTFreeSubdivisionPoint;
-      aEdgePoints:TFasterListTFreeSubdivisionEdge;
-      aFacePoints:TFasterListTFreeSubdivisionFace;
+      aRefPoints:TFasterListTFreeSubdivisionPoint;
+      aRefEdgePoints:TFasterListTFreeSubdivisionEdge;
+      aRefFacePoints:TFasterListTFreeSubdivisionFace;
       aInteriorEdges:TFasterListTFreeSubdivisionEdge;
-      aControlEdges:TFasterListTFreeSubdivisionEdge;
-      aDest: TFasterListTFreeSubdivisionFace);
+      aControlDescendandEdges:TFasterListTFreeSubdivisionEdge;
+      aDestFaces: TFasterListTFreeSubdivisionFace);
     procedure Trace;
     // select all controlfaces connected to the current one that belong to the same layer and are not separated by a crease edge
     property Color: TColor
@@ -2152,7 +2152,7 @@ type
     function CheckIntegrity:boolean;
 
     procedure Clear; override;
-    procedure ClearFaces;
+    procedure ClearSubdivisionFaces;
     procedure ClearSelection;
     procedure ClearMesh;
     procedure ConvertToGrid(Input: TFreeFaceGrid; var Cols, Rows: integer;

@@ -183,7 +183,7 @@ var
 begin
   if not FUseUserData then
   begin
-    SetLength(FData, FCapacity);
+    SetLength(FData, FCapacity);  // FPC initializes the array to nulls
     FUseUserdata := True;
   end;
 
@@ -444,6 +444,7 @@ begin
   FCapacity := 0;
   FSorted := False;
   FUnique := False;
+  FUseUserData := False;
 end;{TFasterList.Create}
 
 constructor TFasterList.Create(aUnique, aSorted: boolean);
@@ -460,7 +461,7 @@ begin
   if FUseUserData then
      FillByte(FData, FCapacity * SizeOf(Pointer), 0);
   }
-
+  FCount := 0;
   FSetCapacity(0);
   //FCount := 0;
   //FSorted := False; //leave it as created

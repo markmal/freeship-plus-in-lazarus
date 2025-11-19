@@ -277,7 +277,7 @@ end;
 constructor TFreeSubdivisionEdge.Create(Owner: TFreeSubdivisionSurface);
 begin
   inherited Create(Owner);
-  FFaces := TFasterListTFreeSubdivisionFace.Create(false,false);
+  FFaces := TFasterListTFreeSubdivisionFace.Create(true,false);
   Clear;
 end;{TFreeSubdivisionEdge.Create}
 
@@ -437,6 +437,9 @@ begin
     if (F is TFreeSubdivisionControlFace)
        and ((F as TFreeSubdivisionControlFace).FEdges <> nil) then
      (F as TFreeSubdivisionControlFace).FEdges.DeleteItem(Self);
+    if (F is TFreeSubdivisionControlFace)
+       and ((F as TFreeSubdivisionControlFace).FControlDescendantEdges <> nil) then
+     (F as TFreeSubdivisionControlFace).FControlDescendantEdges.DeleteItem(Self);
     if (F.FPoints = nil) or not(F.FPoints is TFasterListTFreeSubdivisionPoint) then continue;
     for j:=0 to F.FPoints.Count-1 do
       if F.FPoints[j].FEdges <> nil then

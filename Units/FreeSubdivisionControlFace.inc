@@ -319,10 +319,6 @@ begin
   chldFaces.Free;
   chldEdges.Free;
   chldPoints.Free;
-
-  if not self.CheckIntegrity
-    then I:=0;
-
 end;{TFreeSubdivisionControlFace.ClearChildren}
 
 constructor TFreeSubdivisionControlFace.Create(Owner: TFreeSubdivisionSurface);
@@ -1844,16 +1840,6 @@ begin
 
     FChildren.Free;
     FChildren := newFaces;
-
-{    // investigation
-    for I := 0 to FEdges.Count-1 do
-      if not  FEdges[i].CheckIntegrity
-         then X:=0;
-    // investigation
-    for I := 0 to FChildren.Count-1 do
-      if not  FChildren[i].CheckIntegrity
-         then X:=0;
- }
   end;
 
   FControlDescendantEdges.Clear;

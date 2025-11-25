@@ -12,7 +12,6 @@ object MainForm: TMainForm
   Menu = MainMenu1
   Position = poDefault
   ShowHint = True
-  LCLVersion = '4.2.0.0'
   OnActivate = FormActivate
   OnChangeBounds = FormChangeBounds
   OnClose = FormClose
@@ -701,7 +700,6 @@ object MainForm: TMainForm
     ParentBackground = False
     ParentFont = False
     TabOrder = 2
-    OnClick = MainClientPanelClick
   end
   object ActionList1: TActionList
     Images = MenuImages

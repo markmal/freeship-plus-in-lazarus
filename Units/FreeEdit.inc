@@ -7705,8 +7705,8 @@ begin
   NonManifold := 0;
   DblEdges := 0;
 
-  if not FreeShip.Surface.CheckIntegrity
-      then ShowMessage('Model_Check integrity corruption 1');
+  //if not FreeShip.Surface.CheckIntegrity
+  //    then ShowMessage('Model_Check integrity corruption 1');
 
   // if ShowResult=false a quiet test is done, only the direction of facenormals is checked and fixed
   if ShowResult then
@@ -7733,8 +7733,8 @@ begin
           end;
     end;
 
-    if not FreeShip.Surface.CheckIntegrity
-        then ShowMessage('Model_Check integrity corruption 2');
+    //if not FreeShip.Surface.CheckIntegrity
+    //    then ShowMessage('Model_Check integrity corruption 2');
 
     Points := TFasterListTFreeSubdivisionControlPoint.Create;
     for I := 1 to DoubleEdges.Count do
@@ -7793,8 +7793,8 @@ begin
     FreeAndNil(DoubleEdges);
     FreeAndNil(Points);
 
-    if not FreeShip.Surface.CheckIntegrity
-        then ShowMessage('Model_Check integrity corruption 3');
+    //if not FreeShip.Surface.CheckIntegrity
+    //    then ShowMessage('Model_Check integrity corruption 3');
   end;
 
   // Check for correct normal direction (outward)
@@ -7806,8 +7806,8 @@ begin
     AllFaces.Add(FreeShip.Surface.ControlFace[I - 1]);
   AllFaces.Sort; // Sort list for faster object search
 
-  if not FreeShip.Surface.CheckIntegrity
-      then ShowMessage('Model_Check integrity corruption 4');
+  //if not FreeShip.Surface.CheckIntegrity
+  //    then ShowMessage('Model_Check integrity corruption 4');
 
   Leaks := TFasterListTFreeSubdivisionControlPoint.Create;
   // assemble leaks
@@ -7841,15 +7841,15 @@ begin
         Leaks.Exchange(I - 1, J - 1);
     end;
 
-  if not FreeShip.Surface.CheckIntegrity
-      then ShowMessage('Model_Check integrity corruption 5');
+  //if not FreeShip.Surface.CheckIntegrity
+  //    then ShowMessage('Model_Check integrity corruption 5');
 
   for I := 1 to FreeShip.Surface.NumberOfControlEdges do
     if FreeShip.Surface.ControlEdge[I - 1].NumberOfFaces > 2 then
       Inc(NonManifold);
 
-  if not FreeShip.Surface.CheckIntegrity
-      then ShowMessage('Model_Check integrity corruption 6');
+  //if not FreeShip.Surface.CheckIntegrity
+  //    then ShowMessage('Model_Check integrity corruption 6');
 
   if AllFaces.Count > 0 then
   begin
@@ -7919,8 +7919,8 @@ begin
       end;
     end;
 
-    if not FreeShip.Surface.CheckIntegrity
-        then ShowMessage('Model_Check integrity corruption 7');
+    //if not FreeShip.Surface.CheckIntegrity
+    //    then ShowMessage('Model_Check integrity corruption 7');
 
     FreeAndNil(NewGroup);
     if (Leaks.Count > 0) and (ShowResult) then
@@ -7947,21 +7947,21 @@ begin
       ///////////// end Victor T
     end;
 
-    if not FreeShip.Surface.CheckIntegrity
-        then ShowMessage('Model_Check integrity corruption 8');
+    //if not FreeShip.Surface.CheckIntegrity
+    //    then ShowMessage('Model_Check integrity corruption 8');
 
     if (Changed) or (Inconsistent > 0) or (NonManifold > 0) or (DblEdges > 0) then
     begin
       vUndo.Accept;
 
-      if not FreeShip.Surface.CheckIntegrity
-          then ShowMessage('Model_Check integrity corruption 9');
+      //if not FreeShip.Surface.CheckIntegrity
+      //    then ShowMessage('Model_Check integrity corruption 9');
 
       FreeShip.Built := False;
       Freeship.RebuildModel;
 
-      if not FreeShip.Surface.CheckIntegrity
-          then ShowMessage('Model_Check integrity corruption 10');
+      //if not FreeShip.Surface.CheckIntegrity
+      //    then ShowMessage('Model_Check integrity corruption 10');
 
       FreeShip.FileChanged := True;
       if ShowResult then
@@ -7999,8 +7999,8 @@ begin
     IsIntegrityOk := IsIntegrityOk and B;
     end;
 
-  if not FreeShip.Surface.CheckIntegrity
-      then ShowMessage('Model_Check integrity corruption 10');
+  //if not FreeShip.Surface.CheckIntegrity
+  //    then ShowMessage('Model_Check integrity corruption 10');
 
   if not IsIntegrityOk then
     ShowMessage('Layers integrity is not Ok. Enable logs and check logs output. Further processing is not safe.');

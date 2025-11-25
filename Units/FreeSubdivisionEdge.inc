@@ -450,7 +450,7 @@ begin
   if FCurve <> nil then
      FCurve.DeleteEdge(Self as TFreeSubdivisionControlEdge);
   }
-  if FSurface <> nil then FSurface.UnreferenceEdge(Self);
+  FSurface.UnreferenceEdge(Self);
 
   InUnreference := false;
 end;

@@ -2071,7 +2071,7 @@ begin
   for i:=0 to chldPoints.Count-1 do
   begin
     P := chldPoints[i];
-    //P.Unreference;
+    //P.Unreference; // do not use here, coz it breaks structure
     P.Clear;
     P.Free;
   end;
@@ -2079,7 +2079,7 @@ begin
   for i:=0 to chldEdges.Count-1 do
   begin
     E := chldEdges[i];
-    //E.Unreference;
+    //E.Unreference; // do not use here, coz it breaks structure
     E.Clear;
     E.Free;
   end;
@@ -2087,15 +2087,15 @@ begin
   for i:=0 to chldFaces.Count-1 do
   begin
     F := chldFaces[i];
-    //F.Unreference;
+    //F.Unreference; // do not use here, coz it breaks structure
     F.Clear;
     F.Free;
   end;
 
   chldPoints.Free; chldEdges.Free; chldFaces.Free;
 
-  FEdges.Clear;
-  FPoints.Clear;
+  FEdges.Clear; //clear subdivision edges
+  FPoints.Clear; //clear subdivision points
 
   if Assigned(FControlFaces) then
     for I := 0 to FControlFaces.Count - 1 do
@@ -2106,73 +2106,9 @@ begin
         CF.FEdges.Clear;
       end;
 
-  if not self.CheckIntegrity
+  if not CheckIntegrity
     then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
 
-{
-  if Assigned(FControlFaces) then
-    for I := 0 to NumberOfControlFaces - 1 do
-      Controlface[I].UnreferenceChildren; // deletes children and rendermesh
-
-  if not self.CheckIntegrity
-    then ShowMessage('After deletes Controlface children and rendermesh integrity corruption');
-
-  if Assigned(FEdges) then
-  begin
-    while FEdges.Count > 0 do
-    begin
-      E := FEdges[0];
-      if (E is TFreeSubdivisionControlEdge) then
-        E := E;
-      if (E is TFreeSubdivisionEdge) then
-      begin
-        //Self.UnreferenceEdge(E);
-        FEdges.DeleteItem(E);
-        E.Free;
-      end;
-    end;
-    //FEdges.Clear;
-  end;
-
-  if not self.CheckIntegrity
-    then ShowMessage('After deletes children Edges integrity corruption');
-
-  if Assigned(FPoints) then
-  begin
-    while FPoints.Count > 0 do
-      begin
-        P:=FPoints[0];
-        if (P is TFreeSubdivisionControlPoint)
-          then P:=P;
-        if (P is TFreeSubdivisionPoint)
-           {and (P.Faces.Count > 0)} then
-        begin
-          //Self.UnreferencePoint(P);
-          FPoints.DeleteItem(P);
-          P.Free;
-        end;
-      end;
-    //FPoints.Clear;
-  end;
-
-  if not self.CheckIntegrity
-    then ShowMessage('After deletes children Points integrity corruption');
-
-  if Assigned(FControlFaces) then
-    for I := 0 to NumberOfControlFaces - 1 do
-      begin
-        CF := ControlFace[I];
-        for j:=0 to CF.FControlDescendantEdges.Count-1 do
-          begin
-            E := CF.FControlDescendantEdges[i];
-            //Self.UnreferenceEdge(E);
-          end;
-        CF.FControlDescendantEdges.Clear;
-      end;
-
-  if not self.CheckIntegrity
-    then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
-}
 end;{TFreeSubdivisionSurface.ClearSubdivisionFaces}
 
 procedure TFreeSubdivisionSurface.ClearSelection;
@@ -2182,7 +2118,7 @@ begin
   FSelectedControlEdges.Clear;
   FSelectedControlFaces.Clear;
   FSelectedControlCurves.Clear;
-  self.ExecuteOnSelectItem(nil);
+  ExecuteOnSelectItem(nil);
   FActiveControlPoint:=nil;
   ExecuteOnChangeActiveControlPoint(nil);
 end;{TFreeSubdivisionSurface.Clearselection}
@@ -4714,170 +4650,32 @@ var
     end;  // l
   end;
 
-//// TEMP
-  procedure ClearSubdivisionFacesLocal;
-  var
-    I,j: integer;
-    P: TFreeSubdivisionPoint;
-    E: TFreeSubdivisionEdge;
-    F: TFreeSubdivisionFace;
-    CF: TFreeSubdivisionControlFace;
-    chldFaces: TFasterListTFreeSubdivisionFace;
-    chldEdges: TFasterListTFreeSubdivisionEdge;
-    chldPoints: TFasterListTFreeSubdivisionPoint;
-  begin
-    chldFaces:= TFasterListTFreeSubdivisionFace.Create(true,true);
-    chldEdges:= TFasterListTFreeSubdivisionEdge.Create(true,true);
-    chldPoints:= TFasterListTFreeSubdivisionPoint.Create(true,true);
-
-    if Assigned(FControlFaces) then
-      for I := 0 to NumberOfControlFaces - 1 do
-        Controlface[I].GetChildrenComponents(chldFaces, chldEdges, chldPoints);
-
-    for i:=0 to chldPoints.Count-1 do
-    begin
-      P := chldPoints[i];
-      //P.Unreference;
-      P.Clear;
-      P.Free;
-    end;
-
-    for i:=0 to chldEdges.Count-1 do
-    begin
-      E := chldEdges[i];
-      //E.Unreference;
-      E.Clear;
-      E.Free;
-    end;
-
-    for i:=0 to chldFaces.Count-1 do
-    begin
-      F := chldFaces[i];
-      //F.Unreference;
-      F.Clear;
-      F.Free;
-    end;
-
-    chldPoints.Free; chldEdges.Free; chldFaces.Free;
-
-    FEdges.Clear;
-    FPoints.Clear;
-
-    if Assigned(FControlFaces) then
-      for I := 0 to FControlFaces.Count - 1 do
-        begin
-          CF := ControlFace[I];
-          CF.FControlDescendantEdges.Clear;
-          CF.FChildren.Clear;
-          CF.FEdges.Clear;
-        end;
-
-    if not self.CheckIntegrity
-      then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
-
-  {
-    if Assigned(FControlFaces) then
-      for I := 0 to NumberOfControlFaces - 1 do
-        Controlface[I].UnreferenceChildren; // deletes children and rendermesh
-
-    if not self.CheckIntegrity
-      then ShowMessage('After deletes Controlface children and rendermesh integrity corruption');
-
-    if Assigned(FEdges) then
-    begin
-      while FEdges.Count > 0 do
-      begin
-        E := FEdges[0];
-        if (E is TFreeSubdivisionControlEdge) then
-          E := E;
-        if (E is TFreeSubdivisionEdge) then
-        begin
-          //Self.UnreferenceEdge(E);
-          FEdges.DeleteItem(E);
-          E.Free;
-        end;
-      end;
-      //FEdges.Clear;
-    end;
-
-    if not self.CheckIntegrity
-      then ShowMessage('After deletes children Edges integrity corruption');
-
-    if Assigned(FPoints) then
-    begin
-      while FPoints.Count > 0 do
-        begin
-          P:=FPoints[0];
-          if (P is TFreeSubdivisionControlPoint)
-            then P:=P;
-          if (P is TFreeSubdivisionPoint)
-             {and (P.Faces.Count > 0)} then
-          begin
-            //Self.UnreferencePoint(P);
-            FPoints.DeleteItem(P);
-            P.Free;
-          end;
-        end;
-      //FPoints.Clear;
-    end;
-
-    if not self.CheckIntegrity
-      then ShowMessage('After deletes children Points integrity corruption');
-
-    if Assigned(FControlFaces) then
-      for I := 0 to NumberOfControlFaces - 1 do
-        begin
-          CF := ControlFace[I];
-          for j:=0 to CF.FControlDescendantEdges.Count-1 do
-            begin
-              E := CF.FControlDescendantEdges[i];
-              //Self.UnreferenceEdge(E);
-            end;
-          CF.FControlDescendantEdges.Clear;
-        end;
-
-    if not self.CheckIntegrity
-      then ShowMessage('After ControlFace[I].FControlDescendantEdges.Clear integrity corruption');
-  }
-  end;{TFreeSubdivisionSurface.ClearSubdivisionFaces}
-//// ^^^ TEMP
-
-  procedure ClearCurvesSubdivisionLOCAL;
-  var i,j:integer; Curve:TFreeSubdivisionControlCurve;
-  begin
-    // clear curves subdivision
-    FFreeStandingEdges.Clear;
-    FFreeStandingPoints.Clear;
-    for I := 0 to NumberOfControlCurves - 1 do
-    begin
-      Curve := ControlCurve[I];
-      Curve.DeleteSubdivision;
-      //Curve.PrintDebug;
-    end;
-  end;
-
 begin
   if FIsBuilding then exit; // no double entries
   FIsBuilding:=true;
   FBuilt := false;
 
-  if not self.CheckIntegrity
-    then ShowMessage('Before ClearCurvesSubdivision integrity corruption');
+  if (logger.LogLevel=LOG_DEBUG) and not self.CheckIntegrity
+    then logger.Debug('Before Surface.Rebuild integrity corruption');
 
-  ClearCurvesSubdivisionLocal; //this should be called before ClearSubdivisionFaces
+  //if not self.CheckIntegrity
+  //  then ShowMessage('Before ClearCurvesSubdivision integrity corruption');
 
-  if not self.CheckIntegrity
-    then ShowMessage('Before ClearFaces integrity corruption');
+  ClearCurvesSubdivision; //this should be called before ClearSubdivisionFaces
+
+  //if not self.CheckIntegrity
+  //  then ShowMessage('Before ClearFaces integrity corruption');
+
   // moved here from SetBuild
-  ClearSubdivisionFacesLocal;
+  ClearSubdivisionFaces;
 
   FCurrentSubdivisionLevel := 0;
   Setlength(FGausCurvature, 0);
   FMinGaussCurvature := 0.0;
   FMaxGaussCurvature := 0.0;
 
-  if not self.CheckIntegrity
-    then ShowMessage('Before Init Model integrity corruption');
+  //if not self.CheckIntegrity
+  //  then ShowMessage('Before Init Model integrity corruption');
 
   if not FInitialized then
     Initialize(1, 1, 1);
@@ -4885,8 +4683,8 @@ begin
   //if (self.NumberOfControlFaces > 0) then
   begin
 
-    if not self.CheckIntegrity
-      then ShowMessage('Before Curve.FSubdividedPoints.Add integrity corruption');
+    //if not self.CheckIntegrity
+    //  then ShowMessage('Before Curve.FSubdividedPoints.Add integrity corruption');
 
     for I := 0 to NumberOfControlCurves - 1 do
     begin
@@ -4897,8 +4695,8 @@ begin
         Curve.FSubdividedPoints.Add(TFreeSubdivisionPoint(Curve.FControlPoints[i]))
     end;
 
-    if not self.CheckIntegrity
-      then ShowMessage('Before build Model integrity corruption');
+    //if not self.CheckIntegrity
+    //  then ShowMessage('Before build Model integrity corruption');
 
     while (FCurrentSubdivisionLevel < FDesiredSubdivisionlevel) do
     begin
@@ -4966,8 +4764,8 @@ begin
     FMax.Z := 1.0;
   end;
 
-  if not self.CheckIntegrity
-    then ShowMessage('After Build Model integrity corruption');
+  if (logger.LogLevel=LOG_DEBUG) and not self.CheckIntegrity
+    then logger.Debug('After Build Model integrity corruption');
 
   AssignTextures;
 

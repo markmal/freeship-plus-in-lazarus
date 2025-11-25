@@ -499,8 +499,6 @@ type
     procedure LayerVisibilityDialogExecute(Sender: TObject);
     function  ShowSplashWindow:TModalResult;
     procedure FormShow(Sender: TObject);
-    procedure MainClientPanelClick(Sender: TObject);
-    procedure MenuItem1Click(Sender: TObject);
     procedure PanelMainResize(Sender: TObject);
     procedure PointAnchorExecute(Sender: TObject);
     procedure SelectAllControlPoints1Click(Sender: TObject);
@@ -1158,10 +1156,6 @@ begin
      end;
 }
 
-  // INVESTIGATION
-  if not FreeShip.Surface.CheckIntegrity
-    then I:=0;
-
    if FreeShip.NumberOfSelectedControlFaces>0 then
    begin
       // set the layerbox itemindex to the index of the layer of the selected controlfaces
@@ -1183,10 +1177,6 @@ begin
       end else FreeShipChangeActiveLayer(self,nil);
    end else FreeShipChangeActiveLayer(self,FreeShip.ActiveLayer);
    UpdateMenu;
-
-   // INVESTIGATION
-   if not FreeShip.Surface.CheckIntegrity
-     then I:=0;
 end;{TMainForm.FOnselectItem}
 
 procedure TMainForm.OnChangeActiveControlPoint(Sender: TObject);
@@ -1859,16 +1849,6 @@ begin
    ArrangeRibbonPanel(PanelMain);
 
 end;{TMainForm.FormShow}
-
-procedure TMainForm.MainClientPanelClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.MenuItem1Click(Sender: TObject);
-begin
-
-end;
 
 procedure TMainForm.PanelMainResize(Sender: TObject);
 begin

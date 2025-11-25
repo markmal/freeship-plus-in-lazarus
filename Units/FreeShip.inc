@@ -3393,9 +3393,6 @@ begin
     end;
   end;
 
-  if not Surface.CheckIntegrity
-     then I:=0;
-
   if (Entity = nil) then
   begin
     I := 1;
@@ -3421,9 +3418,6 @@ begin
     end;
   end;
 
-  if not Surface.CheckIntegrity
-     then I:=0;
-
   // check flowlines
   if (Entity = nil) and (not ItemSelected) and (Visibility.ShowFlowlines) then
   begin
@@ -3444,9 +3438,6 @@ begin
       Inc(I);
     end;
   end;
-
-  if not Surface.CheckIntegrity
-     then I:=0;
 
   // check Markers
   if (Entity = nil) and (not ItemSelected) and (Visibility.ShowMarkers) then

@@ -4237,9 +4237,9 @@ begin
   begin
     FreeShip.Preferences.ExportDirectory := ExtractFilePath(SaveDialog.FileName);
     AssignFile(FFile, Changefileext(SaveDialog.FileName, '.stl'));
-      {$I-}
+    {$I-}
     Rewrite(FFile);
-{$I+}
+    {$I+}
     if IOResult = 0 then
     begin
       // perform modelcheck to ensure normals point outward

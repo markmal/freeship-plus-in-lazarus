@@ -51,7 +51,7 @@ uses
   LCLTranslator,
   FreeLogger,
   FreeShipUnit,
-  FreeTYpes;
+  FreeTypes;
 
 const
   SPLASH_TIME = 5000;
@@ -280,6 +280,7 @@ begin
 end;
 var propInfo:TPropInfo;
 var _ptypeInfo: PTypeInfo;
+
 procedure TFreeSplashWindow.FormCreate(Sender: TObject);
 var
   Str: string;

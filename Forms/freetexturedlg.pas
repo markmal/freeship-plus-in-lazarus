@@ -22,6 +22,7 @@ type
 
   TFreeTextureForm = class(TForm)
     ActionDelete: TAction;
+    CheckBoxSymmetric: TCheckBox;
     ColorButton1: TColorButton;
     ComboBoxWrapMode: TComboBox;
     FloatSpinEditTextureScale: TFloatSpinEdit;
@@ -59,6 +60,8 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
     ToolButtonLayer: TToolButton;
     ToolButtonTexture: TToolButton;
     ToolButtonAnchors: TToolButton;
@@ -66,6 +69,7 @@ type
     ToolButtonCancel: TToolButton;
     ToolButtonOk: TToolButton;
     Viewport: TFreeViewport;
+    procedure CheckBoxSymmetricChange(Sender: TObject);
     procedure ComboBoxWrapModeSelect(Sender: TObject);
     procedure DeleteTextureExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -947,6 +951,9 @@ begin
   end;
 
   ComboBoxWrapMode.ItemIndex := ord( FActiveTexture.WrapMode );
+  ColorButton1.ButtonColor := FActiveTexture.Color;
+  CheckBoxSymmetric.Checked := FActiveTexture.Symmetric;
+  CheckBoxSymmetric.Enabled := FActiveTexture.Layer.Symmetric;
 
   setControlsAndLabels();
 
@@ -1094,6 +1101,10 @@ begin
   begin
     FActiveTexture.LoadIntfImageFromFile(OpenPictureDialog1.FileName);
     FActiveTexture.IsCorelated := false;
+    FActiveTexture.Symmetric := FActiveTexture.Layer.Symmetric;
+    CheckBoxSymmetric.Checked := FActiveTexture.Symmetric;
+    CheckBoxSymmetric.Enabled := FActiveTexture.Layer.Symmetric;
+
     if FActiveTexture.HasBitmap then
     begin
       Viewport.BackgroundImage.Bitmap := FActiveTexture.Bitmap;
@@ -1148,12 +1159,18 @@ begin
   end;
 end;
 
+procedure TFreeTextureForm.CheckBoxSymmetricChange(Sender: TObject);
+begin
+  FActiveTexture.Symmetric := CheckBoxSymmetric.Checked;
+end;
+
 procedure TFreeTextureForm.ViewportRedraw(Sender: TObject);
 var
   Pt0, Pt: TPoint;
 begin
   if not Assigned(FActiveTexture) then exit;
   FActiveTexture.Color := ColorButton1.ButtonColor;
+  FActiveTexture.Symmetric := CheckBoxSymmetric.Checked;
   if FFoundAnchorNo>0 then
     FActiveTexture.HiglightMode := thmAnchor;
   FActiveTexture.Draw(Viewport);

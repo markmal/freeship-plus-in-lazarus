@@ -8420,6 +8420,7 @@ msgid "Show in linesplan"
 msgstr ""
 
 #: tfreelayerdialog.checkbox5.caption
+msgctxt "tfreelayerdialog.checkbox5.caption"
 msgid "Symmetric"
 msgstr ""
 
@@ -14552,6 +14553,11 @@ msgstr ""
 msgid "FreeTextureForm"
 msgstr ""
 
+#: tfreetextureform.checkboxsymmetric.caption
+msgctxt "tfreetextureform.checkboxsymmetric.caption"
+msgid "Symmetric"
+msgstr ""
+
 #: tfreetextureform.closedialog.caption
 msgctxt "tfreetextureform.closedialog.caption"
 msgid "Close Dialog"
@@ -14559,6 +14565,10 @@ msgstr ""
 
 #: tfreetextureform.comboboxselecttexture.text
 msgid "ComboBoxSelectTexture"
+msgstr ""
+
+#: tfreetextureform.comboboxwrapmode.hint
+msgid "Wrap mode"
 msgstr ""
 
 #: tfreetextureform.comboboxwrapmode.text
@@ -14683,6 +14693,15 @@ msgstr ""
 
 #: tfreetextureform.toolbutton2.caption
 msgid "ToolButton2"
+msgstr ""
+
+#: tfreetextureform.toolbutton3.caption
+msgctxt "tfreetextureform.toolbutton3.caption"
+msgid "ToolButton3"
+msgstr ""
+
+#: tfreetextureform.toolbutton4.caption
+msgid "ToolButton4"
 msgstr ""
 
 #: tfreetextureform.toolbuttonanchors.caption

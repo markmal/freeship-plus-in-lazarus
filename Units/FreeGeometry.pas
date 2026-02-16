@@ -478,7 +478,16 @@ type
     FFaces: TFasterListTFreeSubdivisionFace;
     FPoints: TFasterListTFreeSubdivisionPoint;
     FMirrorPlane: T3DPlane;
-    FMirrored: boolean;
+    { Symmetric texture applies to a symmetric Layer.
+      Asymmetric texture applies to a symmetric or asymmetric Layer.
+      |Layer     | Texture    | Action
+      +----------+------------+-------------------------------------------
+      |symmetric | symmetric  | Mirrored texture applied on mirrored part
+      |symmetric | asymmetric | Texture applied on main and mirrored part combined
+      |asymmetric| asymmetric | Texture applied on full layer
+      +----------+------------+-------------------------------------------
+    }
+    FSymmetric: boolean;
     FBitmap: TBitmap;
     FIntfImage: TLazIntfImage;
     FIntfImageFormat: string;
@@ -568,6 +577,7 @@ type
     property IsManuallyAdjusted: boolean read FIsManuallyAdjusted write FIsManuallyAdjusted;
     property WrapMode : TFreeTextureWrapMode read FWrapMode write FWrapMode;
     property HiglightMode : TFreeTextureHiglightMode read FHiglightMode write FHiglightMode;
+    property Symmetric : boolean read FSymmetric write FSymmetric;
   end;
   { // TFreeTexture }
 

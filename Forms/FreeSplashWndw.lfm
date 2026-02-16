@@ -13,12 +13,11 @@ object FreeSplashWindow: TFreeSplashWindow
   Color = clSilver
   DefaultMonitor = dmMainForm
   FormStyle = fsSystemStayOnTop
+  Position = poWorkAreaCenter
+  ShowInTaskBar = stAlways
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  Position = poWorkAreaCenter
-  ShowInTaskBar = stAlways
-  LCLVersion = '3.2.0.0'
   object Image1: TImage
     Left = 8
     Height = 419
@@ -2445,7 +2444,7 @@ object FreeSplashWindow: TFreeSplashWindow
       ParentFont = False
       TabOrder = 0
       object _Label2: TLabel
-        Left = 69
+        Left = 68
         Height = 26
         Top = 4
         Width = 366
@@ -2456,7 +2455,7 @@ object FreeSplashWindow: TFreeSplashWindow
         ParentFont = False
       end
       object Label2: TLabel
-        Left = 69
+        Left = 68
         Height = 26
         Top = 30
         Width = 366
@@ -2467,7 +2466,7 @@ object FreeSplashWindow: TFreeSplashWindow
         ParentFont = False
       end
       object Label3: TLabel
-        Left = 69
+        Left = 68
         Height = 26
         Top = 56
         Width = 366
@@ -2480,7 +2479,7 @@ object FreeSplashWindow: TFreeSplashWindow
     end
     object PanelWarranty: TPanel
       Left = 0
-      Height = 244
+      Height = 242
       Top = 145
       Width = 503
       Align = alClient
@@ -2495,7 +2494,7 @@ object FreeSplashWindow: TFreeSplashWindow
       ChildSizing.ShrinkVertical = crsHomogenousChildResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 244
+      ClientHeight = 242
       ClientWidth = 503
       ParentBackground = False
       ParentFont = False
@@ -2503,7 +2502,7 @@ object FreeSplashWindow: TFreeSplashWindow
       object LabelCondition: TLabel
         Left = 10
         Height = 57
-        Top = 7
+        Top = 8
         Width = 483
         Alignment = taCenter
         Caption = 'This is free software, and you are welcome to redistribute it under the conditions of the GNU General Public License (GPL) Version 3,  29 June 2007 or later'
@@ -2532,7 +2531,7 @@ object FreeSplashWindow: TFreeSplashWindow
       object Panel2: TPanel
         Left = 10
         Height = 38
-        Top = 198
+        Top = 196
         Width = 483
         AutoSize = True
         BevelOuter = bvNone
@@ -2556,7 +2555,6 @@ object FreeSplashWindow: TFreeSplashWindow
           Constraints.MaxWidth = 90
           Constraints.MinHeight = 38
           Constraints.MinWidth = 90
-          OnClick = Image2Click
           Picture.Data = {
             1754506F727461626C654E6574776F726B477261706869638D0E000089504E47
             0D0A1A0A0000000D494844520000005A00000026080600000044488CB8000000
@@ -2677,6 +2675,7 @@ object FreeSplashWindow: TFreeSplashWindow
             E7E2060C50CF097358CC7F2A227FE053FAB79EDCAF76F28F2E5F3C1552000000
             0049454E44AE426082
           }
+          OnClick = Image2Click
         end
         object Label4: TLabel
           Left = 100
@@ -2691,8 +2690,8 @@ object FreeSplashWindow: TFreeSplashWindow
     end
     object ButtonPanel: TPanel
       Left = 0
-      Height = 46
-      Top = 389
+      Height = 48
+      Top = 387
       Width = 503
       Align = alBottom
       AutoSize = True
@@ -2702,14 +2701,14 @@ object FreeSplashWindow: TFreeSplashWindow
       ChildSizing.ShrinkHorizontal = crsHomogenousSpaceResize
       ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
       ChildSizing.ControlsPerLine = 4
-      ClientHeight = 46
+      ClientHeight = 48
       ClientWidth = 503
       ParentBackground = False
       ParentFont = False
       TabOrder = 2
       object Panel1: TPanel
         Left = 0
-        Height = 36
+        Height = 38
         Top = 0
         Width = 503
         Align = alClient
@@ -2719,16 +2718,16 @@ object FreeSplashWindow: TFreeSplashWindow
         ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 3
-        ClientHeight = 36
+        ClientHeight = 38
         ClientWidth = 503
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
         object Button1: TButton
-          Left = 65
-          Height = 36
+          Left = 63
+          Height = 38
           Top = 0
-          Width = 94
+          Width = 96
           AutoSize = True
           Caption = 'Read GPL'
           ParentFont = False
@@ -2736,8 +2735,8 @@ object FreeSplashWindow: TFreeSplashWindow
           OnClick = Button1Click
         end
         object CheckBox1: TCheckBox
-          Left = 224
-          Height = 36
+          Left = 223
+          Height = 38
           Hint = 'I accept License terms and conditions'
           Top = 0
           Width = 94
@@ -2748,10 +2747,10 @@ object FreeSplashWindow: TFreeSplashWindow
           OnChange = CheckBox1Change
         end
         object Button2: TButton
-          Left = 383
-          Height = 36
+          Left = 380
+          Height = 38
           Top = 0
-          Width = 58
+          Width = 60
           AutoSize = True
           Caption = 'Close'
           ParentFont = False

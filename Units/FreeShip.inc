@@ -2222,7 +2222,7 @@ begin
                   LoadControlPointAnchors(Source);
                 end;
 
-                if FileVersion >= fv510 then
+                if FileVersion >= fv600 then
                 begin
                   LoadTextures(Source);
                 end;
@@ -2558,7 +2558,7 @@ begin
 
   for i:=0 to Surface.NumberOfLayers-1 do
     if Surface.Layer[i].Textures.Count > 0 then
-      result := fv510;
+      result := fv600;
 
 end;{TFreeShip.DetectMinresult}
 
@@ -2687,7 +2687,7 @@ begin
             SaveControlPointAnchors(Destination);
           end;
 
-          if FileVersion >= fv510 then
+          if FileVersion >= fv600 then
           begin
             SaveTextures(Destination);
           end;

@@ -58,19 +58,19 @@ type TFreeFileVersion     = (fv100,fv110,fv120,fv130,fv140,fv150,fv160,fv165,fv1
                              fv430, // ControlPointGroups
                              fv462, // Anchors
                              fv500,  // UnderWaterColorAlpha
-                             fv510  // Textures
+                             fv600  // Textures
                              );
 
-const CurrentVersion      = fv510;   // Current (latest) version of the FREE!ship project.
+const CurrentVersion      = fv600;   // Current (latest) version of the FREE!ship project.
                                      // All new created models are initialized to this version
       ReleasedDate        = {$I %DATE%};
 
 var
-FREESHIP_MAJOR_VERSION : string ='5.0';   //Major version
+FREESHIP_MAJOR_VERSION : string ='6.0';   //Major version
 
 // This is placeholder
 // Set actual version in Lazarus Project -> Project Options -> Version Info -> Version
-FREESHIP_VERSION : string = '5.2.0.0';   //Major full version
+FREESHIP_VERSION : string = '6.0.0.0';   //Major full version
 
 function VersionString(Version:TFreeFileVersion):String;
 function VersionBinary(Version:String):TFreeFileVersion;
@@ -131,7 +131,7 @@ begin
       fv430  : Result:='4.3';
       fv462  : Result:='4.6.2';
       fv500  : Result:='5.0';
-      fv510  : Result:='5.1';
+      fv600  : Result:='6.0';
       else MessageDlg(rs_Unknown_fileversion {UserString[204]}+'!',mtError,[mbok],0);
    end
 end;{VersionString}
@@ -183,7 +183,7 @@ begin
   if Version =	'4.3'	 then Result:=	      fv430	 else
   if Version =	'4.6.2'	 then Result:=	      fv462	 else
   if Version =	'5.0'	 then Result:=	      fv500	 else
-  if Version =	'5.1'	 then Result:=	      fv510	 else
+  if Version =	'6.0'	 then Result:=	      fv600	 else
   raise Exception.Create(rs_Unknown_fileversion {UserString[204]}+'! '+Version);
 end;{VersionString}
 

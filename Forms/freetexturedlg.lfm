@@ -273,7 +273,7 @@ object FreeTextureForm: TFreeTextureForm
       Action = Ok
     end
     object ColorButton1: TColorButton
-      Left = 397
+      Left = 726
       Height = 32
       Top = 2
       Width = 32
@@ -282,24 +282,26 @@ object FreeTextureForm: TFreeTextureForm
       ButtonColor = clRed
     end
     object ToolButtonDelete: TToolButton
-      Left = 429
+      Left = 397
       Top = 2
       Action = ActionDelete
       ShowCaption = False
     end
     object Button1: TButton
-      Left = 461
-      Height = 32
+      Left = 429
+      Height = 38
       Hint = 'Reset 2d anchors'
       Top = 2
-      Width = 123
+      Width = 62
+      AutoSize = True
       Caption = 'Reset'
       TabOrder = 1
       OnClick = Button1Click
     end
     object ComboBoxWrapMode: TComboBox
-      Left = 584
+      Left = 758
       Height = 38
+      Hint = 'Wrap mode'
       Top = 2
       Width = 192
       ItemHeight = 0
@@ -313,14 +315,14 @@ object FreeTextureForm: TFreeTextureForm
       OnSelect = ComboBoxWrapModeSelect
     end
     object ToolButton2: TToolButton
-      Left = 776
+      Left = 491
       Height = 32
       Top = 2
       Caption = 'ToolButton2'
       Style = tbsDivider
     end
     object ToolButtonLayer: TToolButton
-      Left = 813
+      Left = 528
       Hint = 'Layer'
       Top = 2
       Caption = 'ToolButtonLayer'
@@ -330,7 +332,7 @@ object FreeTextureForm: TFreeTextureForm
       Style = tbsCheck
     end
     object ToolButtonTexture: TToolButton
-      Left = 845
+      Left = 560
       Hint = 'Texture'
       Top = 2
       Caption = 'ToolButtonTexture'
@@ -340,7 +342,7 @@ object FreeTextureForm: TFreeTextureForm
       Style = tbsCheck
     end
     object ToolButtonAnchors: TToolButton
-      Left = 781
+      Left = 496
       Hint = 'Anchors'
       Top = 2
       Caption = 'ToolButtonAnchors'
@@ -349,6 +351,29 @@ object FreeTextureForm: TFreeTextureForm
       ImageIndex = 4
       ShowCaption = False
       Style = tbsCheck
+    end
+    object ToolButton3: TToolButton
+      Left = 592
+      Height = 32
+      Top = 2
+      Caption = 'ToolButton3'
+      Style = tbsSeparator
+    end
+    object CheckBoxSymmetric: TCheckBox
+      Left = 600
+      Height = 30
+      Top = 2
+      Width = 118
+      Caption = 'Symmetric'
+      TabOrder = 3
+      OnChange = CheckBoxSymmetricChange
+    end
+    object ToolButton4: TToolButton
+      Left = 718
+      Height = 32
+      Top = 2
+      Caption = 'ToolButton4'
+      Style = tbsSeparator
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog

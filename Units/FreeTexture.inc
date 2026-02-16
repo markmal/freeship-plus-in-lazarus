@@ -54,7 +54,7 @@ begin
   Source.LoadInteger(FBitmapTargetPoint1.Y);
   Source.LoadInteger(FBitmapTargetPoint2.X);
   Source.LoadInteger(FBitmapTargetPoint2.Y);
-  Source.LoadBoolean(FMirrored);
+  Source.LoadBoolean(FSymmetric);
   Source.LoadTColor(FColor);
   InitRawImage();
   FIntfImage.SetRawImage(FRawImage);
@@ -84,7 +84,7 @@ begin
   Destination.Add(FBitmapTargetPoint1.Y);
   Destination.Add(FBitmapTargetPoint2.X);
   Destination.Add(FBitmapTargetPoint2.Y);
-  Destination.Add(FMirrored);
+  Destination.Add(FSymmetric);
   Destination.Add(FColor);
   Destination.Add(FIntfImage, FIntfImageFormat);
   Destination.Add(ord(FWrapMode));
@@ -172,7 +172,7 @@ begin
   FMin2D := DevelopedPatch.FMin2D;
   FMax2D := DevelopedPatch.FMax2D;
 
-  FMirrored := DevelopedPatch.FMirror or DevelopedPatch.FMirrorOnScreen
+  FSymmetric := DevelopedPatch.FMirror or DevelopedPatch.FMirrorOnScreen
                or (DevelopedPatch.FSide = fsStarboard);
 
   FPoints.Clear;
@@ -418,7 +418,7 @@ var
   procedure DrawLine(p2d1, p2d2: T2DCoordinate; Color: TColor);
   var A,B: TPoint; P1, P2: T3DCoordinate;
   begin
-    {if FMirrored then
+    {if FSymmetric then
     begin
       p2d1 := Self.Mirror2DCoordinate(p2d1);
       p2d2 := Self.Mirror2DCoordinate(p2d2);
@@ -945,7 +945,7 @@ begin
   //if FDevelopedPatch = nil then Exit;
 
   // unmirriror the model point to make it inside Point1,Point2,Point3 triangle.
-  if IsMirrored then
+  if IsMirrored and self.FLayer.Symmetric and self.FSymmetric then
     ModelPoint.Y := - ModelPoint.Y;
 
   // Find a point on unrolled patch that corresponds to a point on Model

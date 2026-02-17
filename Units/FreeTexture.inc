@@ -172,8 +172,8 @@ begin
   FMin2D := DevelopedPatch.FMin2D;
   FMax2D := DevelopedPatch.FMax2D;
 
-  FSymmetric := DevelopedPatch.FMirror or DevelopedPatch.FMirrorOnScreen
-               or (DevelopedPatch.FSide = fsStarboard);
+  //FSymmetric := DevelopedPatch.FMirror or DevelopedPatch.FMirrorOnScreen
+  //             or (DevelopedPatch.FSide = fsStarboard);
 
   FPoints.Clear;
   FPoints.AddList(DevelopedPatch.FPoints);

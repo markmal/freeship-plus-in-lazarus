@@ -747,8 +747,8 @@ end;
 
 procedure TFreeTextureForm.AdjustBitmapOriginAndScale();
 var Pt0, vzP, Pt1, Pt2, bmP1,bmP2, vbP0,vbP1,vbP2, vmP1,vmP2: TPoint;
-  mP1, mP2 : T2DCoordinate;
-  vP1,vP2 : T3DCoordinate;
+  mP1, mP2, midPoint : T2DCoordinate;
+  vP1,vP2 , Normal: T3DCoordinate;
   bmR: TRect; Z, A, L: TFloatType;
   vX, vY: longint;
 begin
@@ -772,7 +772,11 @@ begin
 
   A := Angle( Point2D(vbP1.X,vbP1.Y), Point2D(vbP2.X,vbP2.Y),
               Point2D(vmP1.X,vmP1.Y), Point2D(vmP2.X,vmP2.Y));
-  FActiveTexture.Rotation := -A;
+  // TODO: for deck it needs positive angle, for bottom - negative. How to find???
+  // For time being use midPoint.X sign
+  Normal := FActiveTexture.GetAverageNormal;
+  midPoint := FActiveTexture.GetMidPoint;
+  FActiveTexture.Rotation := A * sign(midPoint.X);
 
   vP1 := FActiveTexture.Project2DtoViewport(mP1);
   vP2 := FActiveTexture.Project2DtoViewport(mP2);
@@ -826,7 +830,7 @@ begin
     trl := FActiveTexture.Translation;
     trl.X := (mP1.X - mp2.X)/(1.0*origBTP1.X - origBTP2.X)
             *(1.0*bmP1.X - origBTP1.X);
-    //FActiveTexture.Translation := trl;
+    FActiveTexture.Translation := trl;
   end;
 
   if bmP1.Y < origBTP1.Y then
@@ -834,7 +838,7 @@ begin
     trl := FActiveTexture.Translation;
     trl.Y := (mP1.Y - mp2.Y)/(1.0*origBTP1.Y - origBTP2.Y)
             *(1.0*bmP1.Y - origBTP1.Y);
-    //FActiveTexture.Translation := trl;
+    FActiveTexture.Translation := trl;
   end;
 
   Viewport.BackgroundImage.Origin := ToPoint(0,0);
@@ -845,7 +849,7 @@ begin
 
   A := Angle( Point2D(vbP1.X,vbP1.Y), Point2D(vbP2.X,vbP2.Y),
               Point2D(vmP1.X,vmP1.Y), Point2D(vmP2.X,vmP2.Y));
-  FActiveTexture.Rotation := -A;
+  FActiveTexture.Rotation := A;
 
   {
   vP1 := FActiveTexture.Project2DtoViewport(mP1);
@@ -914,9 +918,11 @@ end;
 
 
 procedure TFreeTextureForm.ComboBoxSelectTextureSelect(Sender: TObject);
-var Pt0, Pt, Pt1, Pt2, bmP1,bmP2, vpP1,vpP2: TPoint; W,H: integer;
+var Pt0, Pt, Pt1, Pt2, bmP1,bmP2, vpP1,vpP2, origBTP1, origBTP2: TPoint;
+  W,H: integer;
   PatchW, PatchH: TFloatType;
-  Bm2, mP1, mP2: T2DCoordinate; Bm3: T3DCoordinate;
+  Bm2, mP1, mP2: T2DCoordinate;
+  Bm3, vp1,vp2: T3DCoordinate;
   bmR: TRect; Z: TFloatType;
 begin
   FActiveTexture := TFreeTexture(ComboBoxSelectTexture.Items.Objects[ComboBoxSelectTexture.ItemIndex]);
@@ -933,6 +939,15 @@ begin
       begin
         Viewport.ZoomExtents;
         AdjustBitmapOriginAndScale();
+        // get actual image coordinates of the anchors
+        vp1 := FActiveTexture.Project2DtoViewport(FActiveTexture.DevelopedPatchAnchorPoint1);
+        vp2 := FActiveTexture.Project2DtoViewport(FActiveTexture.DevelopedPatchAnchorPoint2);
+        pt1:=Viewport.Project(vp1);
+        pt2:=Viewport.Project(vp2);
+        origBTP1 := Viewport.BackgroundImage.ImageCoordinate(pt1.X, pt1.Y);
+        origBTP2 := Viewport.BackgroundImage.ImageCoordinate(pt2.X, pt2.Y);
+        //AdjustPatchScaleTranslationAndRotation(origBTP1, origBTP2);
+        //SetBitmapTargetPoints;
       end
       else
       begin
@@ -952,6 +967,7 @@ begin
 
   ComboBoxWrapMode.ItemIndex := ord( FActiveTexture.WrapMode );
   ColorButton1.ButtonColor := FActiveTexture.Color;
+  ColorButton1.Enabled := FActiveTexture.WrapMode = twmColor;
   CheckBoxSymmetric.Checked := FActiveTexture.Symmetric;
   CheckBoxSymmetric.Enabled := FActiveTexture.Layer.Symmetric;
 
@@ -1157,10 +1173,12 @@ begin
     1: FActiveTexture.WrapMode := twmColor;
     2: FActiveTexture.WrapMode := twmTile;
   end;
+  Self.ColorButton1.Enabled := FActiveTexture.WrapMode = twmColor;
 end;
 
 procedure TFreeTextureForm.CheckBoxSymmetricChange(Sender: TObject);
 begin
+  if FActiveTexture.Symmetric = CheckBoxSymmetric.Checked then Exit;
   FActiveTexture.Symmetric := CheckBoxSymmetric.Checked;
 end;
 

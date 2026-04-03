@@ -2006,7 +2006,40 @@ begin
       // prefer 1-byte. A genuine 4-byte file with version>High would have
       // been saved by a build that also has that version in its enum.
       if (RawValue >= 0) and (RawValue <= Ord(High(TFreeFileVersion))) then
-        Use4Byte := True  // in-range + valid lookahead = 4-byte confirmed
+      begin
+        // Both 1-byte and 4-byte interpretations give a valid version ordinal.
+        // The single lookahead (Precision) is ambiguous because zeros in the
+        // padding bytes of a 1-byte file also look like valid Precision.
+        // Deeper validation: peek at the field AFTER Precision (CreatedBy string
+        // length). Under 4-byte path it starts at pos+8; under 1-byte at pos+5.
+        // A valid string length is 0..reasonable (< 10000). Garbage = wrong path.
+        if FPosition + Size + 4 + 4 <= FCount then
+        begin
+          // Check string-length field under 4-byte interpretation (at pos+8)
+          NextValue := 0;
+          Move(FData[FPosition + Size + 4], NextValue, 4);
+          if (NextValue >= 0) and (NextValue < 10000) then
+            Use4Byte := True   // 4-byte path: valid string length after prec
+          else
+          begin
+            // 4-byte path gives garbage string length. Check 1-byte path.
+            // Under 1-byte: string length is at pos+1+4 = pos+5
+            if FPosition + 1 + 4 + 4 <= FCount then
+            begin
+              NextValue := 0;
+              Move(FData[FPosition + 1 + 4], NextValue, 4);
+              if (NextValue >= 0) and (NextValue < 10000) then
+                Use4Byte := False  // 1-byte path: valid string length
+              else
+                Use4Byte := True;  // neither makes sense, default to 4-byte
+            end
+            else
+              Use4Byte := True;
+          end;
+        end
+        else
+          Use4Byte := True;  // not enough data for deeper check, trust 4-byte
+      end
       else
       begin
         // Out-of-range 4-byte value. Check if 1-byte interpretation is valid.

@@ -1953,16 +1953,67 @@ end;{TFreeFileBuffer.Add}
 procedure TFreeFileBuffer.LoadTFreeFileVersion(var Output: TFreeFileVersion);
 var
   Size: integer;
+  RawValue: integer;
+  NextValue: integer;
+  ByteValue: byte;
+  Use4Byte: boolean;
 begin
-  Size := SizeOf(Output);
+  // Fix for Issue #111: Files saved by older FreeShip versions (or original
+  // Delphi builds) store TFreeFileVersion as 1 byte (Z1 enum packing),
+  // while current Free Pascal in MODE Delphi uses 4-byte enums (Z4).
+  //
+  // Detection strategy:
+  // 1. Read 4 bytes as a tentative version ordinal.
+  // 2. If the value exceeds the valid enum range, it must be a 1-byte file.
+  // 3. If the value IS in range, peek at the next 4 bytes (Precision field).
+  //    In a true 4-byte file, Precision is 0..3 (TFreePrecisionType).
+  //    In a 1-byte file where the version ordinal happens to be small,
+  //    bytes 1-3 of our 4-byte read are actually part of Precision,
+  //    so the NEXT 4 bytes after pos+4 will be garbage (not 0..3).
+  // 4. If the lookahead Precision is invalid, fall back to 1-byte read.
+
+  Size := SizeOf(Output);  // 4 bytes in current build
+  Use4Byte := False;
 
   if FPosition + Size > FCount then
     raise Exception.Create(format(rsParsingErrorOutOfFileSize,
        [FFileName,'TFreeFileVersion',Size,FPosition,FCount]) );
 
-  Move(FData[FPosition], Output, Size);
-  Inc(FPosition, Size);
-end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
+  // Read 4 bytes as tentative version
+  RawValue := 0;
+  Move(FData[FPosition], RawValue, Size);
+
+  if (RawValue >= 0) and (RawValue <= Ord(High(TFreeFileVersion))) then
+  begin
+    // Value is in valid range — could be genuine 4-byte OR a small 1-byte value.
+    // Lookahead: check if the next 4 bytes form a valid Precision (0..3).
+    if FPosition + Size + 4 <= FCount then
+    begin
+      NextValue := 0;
+      Move(FData[FPosition + Size], NextValue, 4);
+      if (NextValue >= 0) and (NextValue <= 3) then
+        Use4Byte := True;  // next field is valid Precision — 4-byte path confirmed
+    end
+    else
+      Use4Byte := True;  // near EOF, trust the 4-byte read
+  end;
+
+  if Use4Byte then
+  begin
+    Output := TFreeFileVersion(RawValue);
+    Inc(FPosition, Size);
+  end
+  else
+  begin
+    // 1-byte enum: read only the first byte as the version ordinal.
+    ByteValue := FData[FPosition];
+    if ByteValue <= Ord(High(TFreeFileVersion)) then
+      Output := TFreeFileVersion(ByteValue)
+    else
+      Output := High(TFreeFileVersion);
+    Inc(FPosition, 1);
+  end;
+end;{TFreeFileBuffer.LoadTFreeFileVersion}
 
 procedure TFreeFileBuffer.LoadBoolean(var Output: boolean);
 var

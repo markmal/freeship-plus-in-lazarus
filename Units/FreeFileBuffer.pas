@@ -400,7 +400,7 @@ begin
     // Structures are aligned to 2 bytes, so LoadTFreeMHSeriesResistanceData Boolean as Word
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeKAPERResistanceData(var Data: TFreeKAPERResistanceData);
@@ -421,7 +421,7 @@ begin
     LoadTFloatType(EntranceAngle);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeHoltrSeriesResistanceData(var Data: TFreeHoltrSeriesResistanceData);
@@ -477,7 +477,7 @@ begin
     LoadBoolean(EstimateWetSurf);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeOSTSeriesResistanceData(var Data: TFreeOSTSeriesResistanceData);
@@ -542,7 +542,7 @@ begin
     LoadBoolean(EstimateWetSurf);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeTask1PropellerData(var Data: TFreeTask1PropellerData);
@@ -569,7 +569,7 @@ begin
     LoadTFloatType(Dat16);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeTask2PropellerData(var Data: TFreeTask2PropellerData);
@@ -606,7 +606,7 @@ begin
     LoadTFloatType(Dat18_5);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeTask3PropellerData(var Data: TFreeTask3PropellerData);
@@ -634,7 +634,7 @@ begin
     LoadTFloatType(Dat17);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreePlaningResistanceData(var Data: TFreePlaningResistanceData);
@@ -659,7 +659,7 @@ begin
     LoadTFloatType(K);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeRvrsPropellerData(var Data: TFreeRvrsPropellerData);
@@ -687,7 +687,7 @@ begin
     LoadTFloatType(Dat17);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeHollenSeriesResistanceData(var Data: TFreeHollenSeriesResistanceData);
@@ -743,7 +743,7 @@ begin
     LoadBoolean(EstimateWetSurf);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeTask4PropellerData(var Data: TFreeTask4PropellerData);
@@ -770,7 +770,7 @@ begin
     LoadTFloatType(Dat16);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeTask5PropellerData(var Data: TFreeTask5PropellerData);
@@ -787,7 +787,7 @@ begin
     LoadTFloatType(Dat6);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeOortmerSeriesResistanceData(var Data: TFreeOortmerSeriesResistanceData);
@@ -843,7 +843,7 @@ begin
     LoadBoolean(EstimateWetSurf);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeFungSeriesResistanceData(var Data: TFreeFungSeriesResistanceData);
@@ -899,7 +899,7 @@ begin
     LoadBoolean(EstimateWetSurf);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeHydrodynManeuvData(var Data: TFreeHydrodynManeuvData);
@@ -930,7 +930,7 @@ begin
     LoadTFloatType(Dat20);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeHydrodynTask1Data(var Data: TFreeHydrodynTask1Data);
@@ -953,7 +953,7 @@ begin
     LoadTFloatType(Dat12);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeRBHSSeriesResistanceData(var Data: TFreeRBHSSeriesResistanceData);
@@ -1018,7 +1018,7 @@ begin
     LoadBoolean(EstimateWetSurf);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.LoadTFreeMHSeriesResistanceData(var Data: TFreeMHSeriesResistanceData);
@@ -1083,7 +1083,7 @@ begin
     LoadBoolean(EstimateWetSurf);
     LoadBoolean(Extract);
   end;
-  FPosition := bp + sizeof(Data); //record data can be aligned
+  //FPosition := bp + sizeof(Data); // Removed: let field reads advance position naturally //record data can be aligned
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 
@@ -1118,7 +1118,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeKAPERResistanceData);
@@ -1142,7 +1142,7 @@ begin
     Add(EntranceAngle);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.Add}
 
 procedure TFreeFileBuffer.Add(Data: TFreeHoltrSeriesResistanceData);
@@ -1201,7 +1201,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeOSTSeriesResistanceData);
@@ -1269,7 +1269,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask1PropellerData);
@@ -1299,7 +1299,7 @@ begin
     Add(Dat16);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask2PropellerData);
@@ -1339,7 +1339,7 @@ begin
     Add(Dat18_5);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask3PropellerData);
@@ -1370,7 +1370,7 @@ begin
     Add(Dat17);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreePlaningResistanceData);
@@ -1398,7 +1398,7 @@ begin
     Add(K);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeRvrsPropellerData);
@@ -1429,7 +1429,7 @@ begin
     Add(Dat17);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeHollenSeriesResistanceData);
@@ -1488,7 +1488,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask4PropellerData);
@@ -1518,7 +1518,7 @@ begin
     Add(Dat16);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeTask5PropellerData);
@@ -1538,7 +1538,7 @@ begin
     Add(Dat6);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeOortmerSeriesResistanceData);
@@ -1597,7 +1597,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeFungSeriesResistanceData);
@@ -1656,7 +1656,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeHydrodynManeuvData);
@@ -1690,7 +1690,7 @@ begin
     Add(Dat20);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeHydrodynTask1Data);
@@ -1716,7 +1716,7 @@ begin
     Add(Dat12);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeRBHSSeriesResistanceData);
@@ -1784,7 +1784,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 procedure TFreeFileBuffer.Add(Data: TFreeMHSeriesResistanceData);
@@ -1852,7 +1852,7 @@ begin
     Add(EstimateWetSurf);
     Add(Extract);
   end;
-  FCount := bp + Size;
+  //FCount := bp + Size; // Removed: let field writes advance count naturally
 end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
 
 
@@ -1953,16 +1953,124 @@ end;{TFreeFileBuffer.Add}
 procedure TFreeFileBuffer.LoadTFreeFileVersion(var Output: TFreeFileVersion);
 var
   Size: integer;
+  RawValue: integer;
+  NextValue: integer;
+  ByteValue: byte;
+  Use4Byte: boolean;
 begin
-  Size := SizeOf(Output);
+  // Fix for Issue #111: Files saved by older FreeShip versions (or original
+  // Delphi builds) store TFreeFileVersion as 1 byte (Z1 enum packing),
+  // while current Free Pascal in MODE Delphi uses 4-byte enums (Z4).
+  //
+  // Detection strategy:
+  // 1. Read 4 bytes as a tentative version ordinal.
+  // 2. If the value is in valid enum range (0..High), lookahead at the next
+  //    4 bytes (Precision field). In a true 4-byte file, Precision is 0..3.
+  //    In a 1-byte file where the version ordinal happens to be small,
+  //    bytes 1-3 of our 4-byte read are actually part of Precision,
+  //    so the NEXT 4 bytes after pos+4 will be garbage (not 0..3).
+  // 3. If the value exceeds valid enum range, it could be either:
+  //    a) A 1-byte file (bytes 1-3 are garbage from the Precision field), or
+  //    b) A genuine 4-byte file with a future version (>High) from a newer build.
+  //    Lookahead at the next 4 bytes to distinguish: valid Precision (0..3)
+  //    means 4-byte file with unknown version; invalid means 1-byte file.
+  // 4. If lookahead confirms 4-byte, consume 4 bytes. Otherwise consume 1.
+
+  Size := SizeOf(Output);  // 4 bytes in current build
+  Use4Byte := False;
 
   if FPosition + Size > FCount then
     raise Exception.Create(format(rsParsingErrorOutOfFileSize,
        [FFileName,'TFreeFileVersion',Size,FPosition,FCount]) );
 
-  Move(FData[FPosition], Output, Size);
-  Inc(FPosition, Size);
-end;{TFreeFileBuffer.LoadTFreeMHSeriesResistanceData}
+  // Read 4 bytes as tentative version
+  RawValue := 0;
+  Move(FData[FPosition], RawValue, Size);
+
+  // Lookahead: peek at the next 4 bytes (Precision field) to validate.
+  // This is needed whether RawValue is in range or not, because:
+  //   - In-range values are ambiguous (could be 1-byte or 4-byte)
+  //   - Out-of-range values could be future 4-byte versions
+  if FPosition + Size + 4 <= FCount then
+  begin
+    NextValue := 0;
+    Move(FData[FPosition + Size], NextValue, 4);
+    if (NextValue >= 0) and (NextValue <= 3) then
+    begin
+      // Lookahead Precision is valid. But we need one more check:
+      // In a 1-byte file, byte[0]=version, bytes[1..4]=Precision (4-byte int).
+      // If we mistakenly read 4 bytes, bytes[4..7] (our lookahead) could
+      // coincidentally be 0..3 (start of Visibility data).
+      // Tiebreaker: if the 1-byte interpretation also yields a valid version
+      // AND the 4-byte interpretation yields an INVALID version (>High),
+      // prefer 1-byte. A genuine 4-byte file with version>High would have
+      // been saved by a build that also has that version in its enum.
+      if (RawValue >= 0) and (RawValue <= Ord(High(TFreeFileVersion))) then
+      begin
+        if FPosition + Size + 4 + 4 <= FCount then
+        begin
+          NextValue := 0;
+          Move(FData[FPosition + Size + 4], NextValue, 4);
+          if (NextValue >= 0) and (NextValue < 10000) then
+          begin
+            Use4Byte := True;
+          end
+          else
+          begin
+            if FPosition + 1 + 4 + 4 <= FCount then
+            begin
+              NextValue := 0;
+              Move(FData[FPosition + 1 + 4], NextValue, 4);
+              if (NextValue >= 0) and (NextValue < 10000) then
+              begin
+                Use4Byte := False;
+              end
+              else
+              begin
+                Use4Byte := True;
+              end;
+            end
+            else
+              Use4Byte := True;
+          end;
+        end
+        else
+          Use4Byte := True;
+      end
+      else
+      begin
+        // Out-of-range 4-byte value. Check if 1-byte interpretation is valid.
+        ByteValue := FData[FPosition];
+        if ByteValue <= Ord(High(TFreeFileVersion)) then
+          Use4Byte := False  // 1-byte gives valid version, prefer it
+        else
+          Use4Byte := True;  // both interpretations are out-of-range, trust 4-byte
+      end;
+    end;
+    // else: NextValue not 0..3 => Use4Byte stays False => 1-byte path
+  end
+  else
+    Use4Byte := True;  // near EOF, trust the 4-byte read
+
+  if Use4Byte then
+  begin
+    if (RawValue >= 0) and (RawValue <= Ord(High(TFreeFileVersion))) then
+      Output := TFreeFileVersion(RawValue)
+    else
+      Output := High(TFreeFileVersion);
+    Inc(FPosition, Size);
+  end
+  else
+  begin
+    // 1-byte enum: read only the first byte as the version ordinal.
+    ByteValue := FData[FPosition];
+    if ByteValue <= Ord(High(TFreeFileVersion)) then
+      Output := TFreeFileVersion(ByteValue)
+    else
+      Output := High(TFreeFileVersion);
+    Inc(FPosition, 1);
+  end;
+end;{TFreeFileBuffer.LoadTFreeFileVersion}
 
 procedure TFreeFileBuffer.LoadBoolean(var Output: boolean);
 var

@@ -1981,7 +1981,7 @@ begin
 
   if FPosition + Size > FCount then
     raise Exception.Create(format(rsParsingErrorOutOfFileSize,
-       [FFileName,TFreeFileVersion,Size,FPosition,FCount]) );
+       [FFileName,'TFreeFileVersion',Size,FPosition,FCount]) );
 
   // Read 4 bytes as tentative version
   RawValue := 0;

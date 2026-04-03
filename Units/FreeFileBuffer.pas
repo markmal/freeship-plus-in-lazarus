@@ -1964,43 +1964,70 @@ begin
   //
   // Detection strategy:
   // 1. Read 4 bytes as a tentative version ordinal.
-  // 2. If the value exceeds the valid enum range, it must be a 1-byte file.
-  // 3. If the value IS in range, peek at the next 4 bytes (Precision field).
-  //    In a true 4-byte file, Precision is 0..3 (TFreePrecisionType).
+  // 2. If the value is in valid enum range (0..High), lookahead at the next
+  //    4 bytes (Precision field). In a true 4-byte file, Precision is 0..3.
   //    In a 1-byte file where the version ordinal happens to be small,
   //    bytes 1-3 of our 4-byte read are actually part of Precision,
   //    so the NEXT 4 bytes after pos+4 will be garbage (not 0..3).
-  // 4. If the lookahead Precision is invalid, fall back to 1-byte read.
+  // 3. If the value exceeds valid enum range, it could be either:
+  //    a) A 1-byte file (bytes 1-3 are garbage from the Precision field), or
+  //    b) A genuine 4-byte file with a future version (>High) from a newer build.
+  //    Lookahead at the next 4 bytes to distinguish: valid Precision (0..3)
+  //    means 4-byte file with unknown version; invalid means 1-byte file.
+  // 4. If lookahead confirms 4-byte, consume 4 bytes. Otherwise consume 1.
 
   Size := SizeOf(Output);  // 4 bytes in current build
   Use4Byte := False;
 
   if FPosition + Size > FCount then
     raise Exception.Create(format(rsParsingErrorOutOfFileSize,
-       [FFileName,'TFreeFileVersion',Size,FPosition,FCount]) );
+       [FFileName,TFreeFileVersion,Size,FPosition,FCount]) );
 
   // Read 4 bytes as tentative version
   RawValue := 0;
   Move(FData[FPosition], RawValue, Size);
 
-  if (RawValue >= 0) and (RawValue <= Ord(High(TFreeFileVersion))) then
+  // Lookahead: peek at the next 4 bytes (Precision field) to validate.
+  // This is needed whether RawValue is in range or not, because:
+  //   - In-range values are ambiguous (could be 1-byte or 4-byte)
+  //   - Out-of-range values could be future 4-byte versions
+  if FPosition + Size + 4 <= FCount then
   begin
-    // Value is in valid range — could be genuine 4-byte OR a small 1-byte value.
-    // Lookahead: check if the next 4 bytes form a valid Precision (0..3).
-    if FPosition + Size + 4 <= FCount then
+    NextValue := 0;
+    Move(FData[FPosition + Size], NextValue, 4);
+    if (NextValue >= 0) and (NextValue <= 3) then
     begin
-      NextValue := 0;
-      Move(FData[FPosition + Size], NextValue, 4);
-      if (NextValue >= 0) and (NextValue <= 3) then
-        Use4Byte := True;  // next field is valid Precision — 4-byte path confirmed
-    end
-    else
-      Use4Byte := True;  // near EOF, trust the 4-byte read
-  end;
+      // Lookahead Precision is valid. But we need one more check:
+      // In a 1-byte file, byte[0]=version, bytes[1..4]=Precision (4-byte int).
+      // If we mistakenly read 4 bytes, bytes[4..7] (our lookahead) could
+      // coincidentally be 0..3 (start of Visibility data).
+      // Tiebreaker: if the 1-byte interpretation also yields a valid version
+      // AND the 4-byte interpretation yields an INVALID version (>High),
+      // prefer 1-byte. A genuine 4-byte file with version>High would have
+      // been saved by a build that also has that version in its enum.
+      if (RawValue >= 0) and (RawValue <= Ord(High(TFreeFileVersion))) then
+        Use4Byte := True  // in-range + valid lookahead = 4-byte confirmed
+      else
+      begin
+        // Out-of-range 4-byte value. Check if 1-byte interpretation is valid.
+        ByteValue := FData[FPosition];
+        if ByteValue <= Ord(High(TFreeFileVersion)) then
+          Use4Byte := False  // 1-byte gives valid version, prefer it
+        else
+          Use4Byte := True;  // both interpretations are out-of-range, trust 4-byte
+      end;
+    end;
+    // else: NextValue not 0..3 => Use4Byte stays False => 1-byte path
+  end
+  else
+    Use4Byte := True;  // near EOF, trust the 4-byte read
 
   if Use4Byte then
   begin
-    Output := TFreeFileVersion(RawValue);
+    if (RawValue >= 0) and (RawValue <= Ord(High(TFreeFileVersion))) then
+      Output := TFreeFileVersion(RawValue)
+    else
+      Output := High(TFreeFileVersion);
     Inc(FPosition, Size);
   end
   else
